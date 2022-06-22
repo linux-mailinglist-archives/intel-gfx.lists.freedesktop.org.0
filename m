@@ -2,48 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2768554541
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 12:24:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3DC554543
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jun 2022 12:25:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD5310E78D;
-	Wed, 22 Jun 2022 10:24:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEA6910E78D;
+	Wed, 22 Jun 2022 10:25:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 151B710E78D
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 10:24:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655893447; x=1687429447;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lR0v0f3UoAHjjn+fvisPCghp1sqi88Xm9JTjzE5pSEo=;
- b=cL6OfRBEi0wks25NBhuP5xK/axxJJCUeqrxPOqJwNZaqkevzT71UHtfv
- f2oEQDjddmXxaM8AklYl8q2zGtFUiOkvEpDGUN/l40i27b8BQ/uqfi+h+
- ijM3zQI6xLPyyYGSIQ7VRUyel/HYgFDpf6VFKy3h3vBRX9Pmfc4QJAlGK
- GHYD+yJxEG360QbrIyB4zlQfMCYR92IZ8/vt4j6/gdM2GKh5cyuUaQU5n
- hKmxEZjWqVxveqYm50SIF/ro3YTHMTN5LiQlGohMf9Ou2I2GaJfRlm7Pm
- o7m9XWtNlbrq3Y4Ng/7A+YLn7Z2i5KKE8k2T9zfdNdgd1njmuFAy97XEP Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="279147159"
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="279147159"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 03:24:05 -0700
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; d="scan'208";a="715349317"
-Received: from tsengwil-desk1.itwn.intel.com (HELO gar) ([10.5.231.22])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2022 03:24:04 -0700
-From: William Tseng <william.tseng@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Jun 2022 18:24:01 +0800
-Message-Id: <20220622102401.23721-1-william.tseng@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220620085934.25237-1-william.tseng@intel.com>
-References: <20220620085934.25237-1-william.tseng@intel.com>
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com
+ [IPv6:2607:f8b0:4864:20::f2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CEF610E78D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 10:25:08 +0000 (UTC)
+Received: by mail-qv1-xf2c.google.com with SMTP id y14so19134403qvs.10
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 03:25:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=t0zkfNkmV2Qz5sr+V8fAnuU1cdQQ/TxaOylG7UKJ4kI=;
+ b=IeklxBt9+/OYXe33rqMZwq3ody+OX61PbPkdRGj/bbIXYKyxQ6vB2416TvlVKOKXTE
+ OUDUcDdoDwxewA0OAcNzE9cloM2rhUrzlXeWleTcaFf/8ReyxxRRjaPpaEAfJ6F/78gh
+ KOrFnoO5WsfLL2jJCYo0KIj9quJ9xbDP2SMl5nDVRZ6WT+MpFxJZdLCykJDam9wkaCSn
+ Ue5eYQyx9KJBJTCY5ULt0mTKNinG6vrlXryGwhg93WOLxRZ8G3AQAG/4oaH+yaRmf9yR
+ fGZBaGichY6Wh80EiTQxYdNT2PPb1shvj+ECmZSokQJTewIbgRykwMB13hBZBMTHvwnv
+ 0cUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=t0zkfNkmV2Qz5sr+V8fAnuU1cdQQ/TxaOylG7UKJ4kI=;
+ b=4NMLBrVUNan8B6akApIppSc1CEqAeBTaQNNedJHyHNwE2K9yefmy4E7+ruVJwCeyOA
+ tFHzJ2uwzq8Fp/lDlGhn99gB9Eq2p9qnahqM1A16y2edLSPnDRgWdtSYZZQGbJ/W0226
+ g0CQqlhhIeEMTCzd5K5xLtIMTEqZcHYKkK7GVwoKYWTpi9xK/UcFITEHzzpZd8KiiqZD
+ Qedyz2unc7VwGI3tmARVsGuQZVJpFT0Ix8c6zLxTCi17DiHZWGaeSBfAKo9iDbN9oq8x
+ 4PDroI5rdATbOvbSDdd5Z7bJGs4P3tE4KqnZNHIvfximsctwvXeOrsyid8TZwhmr2NJs
+ 4SGg==
+X-Gm-Message-State: AJIora/D6QgdtMkj9Ehwjbbkx8ptJNzD67tXEvvFa7sYTGecPSI6izM5
+ 6E4xEcmu0Sm2OVyE00sRHImCftdTrkecARLCd3M=
+X-Google-Smtp-Source: AGRyM1shD8Pw4kN5QwGnpquRQWI3QgXXRokWyK0jHhr7PFQz+b8bOS05whtAI9gPRqr2osE9PcdErkMT1TEwwCj/i3k=
+X-Received: by 2002:a05:622a:1794:b0:306:153d:75a7 with SMTP id
+ s20-20020a05622a179400b00306153d75a7mr2189493qtk.645.1655893507410; Wed, 22
+ Jun 2022 03:25:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6] drm/i915/dsi: add payload receiving code
+References: <20220610121205.29645-1-juhapekka.heikkila@gmail.com>
+ <20220610121205.29645-2-juhapekka.heikkila@gmail.com>
+ <CAM0jSHN+eOh_iMGT9wAOGKNCegjnrKA_5Cen8LE5NfBcZhD0CA@mail.gmail.com>
+ <CAM0jSHPY8ehnuFe05QZEset1-10wfk_i0+63iYFEWXmwnugtaw@mail.gmail.com>
+ <8cbeb646-9052-6f05-201c-ba00f565691b@gmail.com>
+ <CAM0jSHON77u9gFYf_+Y8DpSfUheOWHUYfSob2n7HYDt6sHoz9Q@mail.gmail.com>
+ <38359ca4-b2e0-e05b-47b3-3ed1faa6b579@gmail.com>
+In-Reply-To: <38359ca4-b2e0-e05b-47b3-3ed1faa6b579@gmail.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 22 Jun 2022 11:24:41 +0100
+Message-ID: <CAM0jSHO6OGxc2esz_QKdbPTYL30Y_k+7sW31=_zU5wAzvJ+4Xg@mail.gmail.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Fix i915_vma_pin_iomap()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,174 +68,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: William Tseng <william.tseng@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To support Host to read data from Peripheral after
-a DCS read command is sent over DSI.
+On Tue, 21 Jun 2022 at 19:38, Juha-Pekka Heikkila
+<juhapekka.heikkila@gmail.com> wrote:
+>
+> On 21.6.2022 13.53, Matthew Auld wrote:
+> > On Mon, 20 Jun 2022 at 10:38, Juha-Pekka Heikkila
+> > <juhapekka.heikkila@gmail.com> wrote:
+> >>
+> >> On 10.6.2022 20.43, Matthew Auld wrote:
+> >>> On Fri, 10 Jun 2022 at 15:53, Matthew Auld
+> >>> <matthew.william.auld@gmail.com> wrote:
+> >>>>
+> >>>> On Fri, 10 Jun 2022 at 13:12, Juha-Pekka Heikkila
+> >>>> <juhapekka.heikkila@gmail.com> wrote:
+> >>>>>
+> >>>>> From: CQ Tang <cq.tang@intel.com>
+> >>>>>
+> >>>>> Display might allocate a smem object and call
+> >>>>> i915_vma_pin_iomap(), the existing code will fail.
+> >>>>>
+> >>>>> This fix was suggested by Chris P Wilson, that we pin
+> >>>>> the smem with i915_gem_object_pin_map_unlocked().
+> >>>>>
+> >>>>> v2 (jheikkil): Change i915_gem_object_pin_map_unlocked to
+> >>>>>                  i915_gem_object_pin_map
+> >>>>>
+> >>>>> Signed-off-by: CQ Tang <cq.tang@intel.com>
+> >>>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> >>>>> Cc: Chris Wilson <chris.p.wilson@intel.com>
+> >>>>> Cc: Jari Tahvanainen <jari.tahvanainen@intel.com>
+> >>>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> >>>
+> >>> Although maybe consider putting this as patch 1, and then reword the
+> >>> commit title/message to be more like "drm/i915: extend
+> >>> i915_vma_iomap()" or so, which then becomes a prep patch for
+> >>> supporting the dpt fallback to smem. Otherwise it looks like this
+> >>> patch is basically just fixing the first patch to not trigger the
+> >>> WARN_ON(), which seems iffy IMO. Each patch by itself should ideally
+> >>> be functional.
+> >>
+> >> Probably easiest is to put patch 1 in as last, it's the final customer
+> >> for these two other patches. This way if someone will end up doing
+> >> bisecting there would be nothing interesting to see with these.
+> >>
+> >> I did finally get ci to look all green after last weeks outages. I'd
+> >> guess these patches are ready to be pushed but I don't have commit
+> >> rights to drm-tip. Are you able to help with these or I'll go bother
+> >> Imre or Jani to get them into tip?
+> >
+> > Ok, if no objections I will go ahead and push this to
+> > drm-intel-gt-next, with the tweaked patch ordering.
+>
+> No objections. I had this set yet on test run on Imre's wish on try-bot
+> with forcing adlp (on bat) to use smem and results were all clean.
 
-v1: initial version.
-v2:
-- adding error message when failing to place BTA.
-- returning byte number instead of 0 for the read
-function dsi_read_pkt_payld().
-v3: fixing coding style warning.
-v4:
-- correcting the data type of returning data for
-the read function dsi_read_pkt_payld().
-v5: adding change history as part of commit messages.
-v6: according to the review comments from Jani,
-- drop the commented out variable "hdr_data".
-- use int insteaf of u8 as the data type of the loop
-variable i.
-- use intel_de_rmw() for read-modify-write.
-- add new function place_bta_request() to keep
-payload receive function clean.
-- explicitly clear the READ_UNLOADS_DW bit of
-DSI_CMD_RXCTL before reading receive payload.
-- use two loops to copy received data.
-- remove the unrelated change from this patch,
-which is made to gen11_dsi_setup_timeouts().
-- drop the comment in gen11_dsi_host_transfer().
-- change the condition to call the payload
-receive function in gen11_dsi_host_transfer().
+And pushed. Thanks for the patches.
 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Cc: Lee Shawn C <shawn.c.lee@intel.com>
-Signed-off-by: William Tseng <william.tseng@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c      | 76 ++++++++++++++++++++-
- drivers/gpu/drm/i915/display/icl_dsi_regs.h | 13 ++++
- 2 files changed, 86 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 19bf717fd4cb..edf20016af91 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -201,6 +201,75 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
- 	return 0;
- }
- 
-+static bool place_bta_request(struct intel_dsi_host *host)
-+{
-+	struct intel_dsi *intel_dsi = host->intel_dsi;
-+	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
-+	enum transcoder dsi_trans = dsi_port_to_transcoder(host->port);
-+
-+	/* step2a(i): specify Turn-Around timeout */
-+	intel_de_rmw(dev_priv, DSI_TA_TO(dsi_trans), TA_TIMEOUT_VALUE_MASK,
-+		     TA_TIMEOUT_VALUE(intel_dsi->turn_arnd_val));
-+
-+	 /* step2a(ii): specify maximum allowed time */
-+	intel_de_rmw(dev_priv, DSI_LPRX_HOST_TO(dsi_trans), ~LPRX_TIMEOUT_VALUE_MASK,
-+		     LPRX_TIMEOUT_VALUE(intel_dsi->lp_rx_timeout));
-+
-+	/* check if header credit available */
-+	if (!wait_for_header_credits(dev_priv, dsi_trans, 1)) {
-+		drm_err(&dev_priv->drm, "not ready to recive payload\n");
-+		return false;
-+	}
-+
-+	/* place BTA request */
-+	intel_de_rmw(dev_priv, DSI_LP_MSG(dsi_trans), LINK_BTA, LINK_BTA);
-+
-+	return true;
-+}
-+
-+static int dsi_read_pkt_payld(struct intel_dsi_host *host,
-+			      u8 *rx_buf, size_t rx_len)
-+{
-+	struct intel_dsi *intel_dsi = host->intel_dsi;
-+	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
-+	enum transcoder dsi_trans = dsi_port_to_transcoder(host->port);
-+	u32 tmp, payld_data;
-+	u32 payld_dw;
-+	int i, j;
-+
-+	if (rx_len <= 0)
-+		return 0;
-+
-+	/* do not unload receive queue */
-+	tmp = intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans));
-+	tmp &= ~READ_UNLOADS_DW;
-+	intel_de_write(dev_priv, DSI_CMD_RXCTL(dsi_trans), tmp);
-+
-+	/* step2: place a BTA request */
-+	if (!place_bta_request(host))
-+		return -EBUSY;
-+
-+	/* step4a: wait and read payload */
-+	if (wait_for_us(((intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans)) &
-+		NUMBER_RX_PLOAD_DW_MASK) >> NUMBER_RX_PLOAD_DW_SHIFT) > 0, 100000)) {
-+		drm_err(&dev_priv->drm, "DSI fails to receive payload\n");
-+		return -EBUSY;
-+	}
-+
-+	tmp = intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans));
-+	payld_dw = (tmp & NUMBER_RX_PLOAD_DW_MASK) >> NUMBER_RX_PLOAD_DW_SHIFT;
-+
-+	for (i = 0; i < payld_dw; i++) {
-+
-+		payld_data = intel_de_read(dev_priv, DSI_CMD_RXPYLD(dsi_trans));
-+
-+		for (j = 0; j < min_t(u32, rx_len - (i * 4), 4); j++)
-+			*(rx_buf + (i * 4 + j)) = (payld_data >> 8 * j) & 0xff;
-+	}
-+
-+	return ((i - 1) * 4 + j);
-+}
-+
- void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -1837,9 +1906,10 @@ static ssize_t gen11_dsi_host_transfer(struct mipi_dsi_host *host,
- 	if (ret < 0)
- 		return ret;
- 
--	//TODO: add payload receive code if needed
--
--	ret = sizeof(dsi_pkt.header) + dsi_pkt.payload_length;
-+	if (msg->rx_buf)
-+		ret = dsi_read_pkt_payld(intel_dsi_host, msg->rx_buf, msg->rx_len);
-+	else
-+		ret = sizeof(dsi_pkt.header) + dsi_pkt.payload_length;
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi_regs.h b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-index f78f28b8dd94..a77a49b42d60 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-+++ b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-@@ -251,6 +251,18 @@
- #define  NUMBER_RX_PLOAD_DW_MASK	(0xff << 0)
- #define  NUMBER_RX_PLOAD_DW_SHIFT	0
- 
-+#define _DSI_CMD_RXHDR_0		0x6b0e0
-+#define _DSI_CMD_RXHDR_1		0x6b8e0
-+#define DSI_CMD_RXHDR(tc)		_MMIO_DSI(tc,	\
-+						  _DSI_CMD_RXHDR_0,\
-+						  _DSI_CMD_RXHDR_1)
-+
-+#define _DSI_CMD_RXPYLD_0		0x6b0e4
-+#define _DSI_CMD_RXPYLD_1		0x6b8e4
-+#define DSI_CMD_RXPYLD(tc)		_MMIO_DSI(tc,	\
-+						  _DSI_CMD_RXPYLD_0,\
-+						  _DSI_CMD_RXPYLD_1)
-+
- #define _DSI_CMD_TXCTL_0		0x6b0d0
- #define _DSI_CMD_TXCTL_1		0x6b8d0
- #define DSI_CMD_TXCTL(tc)		_MMIO_DSI(tc,	\
-@@ -294,6 +306,7 @@
- #define  LPTX_IN_PROGRESS		(1 << 17)
- #define  LINK_IN_ULPS			(1 << 16)
- #define  LINK_ULPS_TYPE_LP11		(1 << 8)
-+#define  LINK_BTA			(1 << 1)
- #define  LINK_ENTER_ULPS		(1 << 0)
- 
- /* DSI timeout registers */
--- 
-2.17.1
-
+>
+> /Juha-Pekka
