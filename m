@@ -1,63 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD451557610
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 10:57:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A180557624
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 10:59:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 029F911A5A4;
-	Thu, 23 Jun 2022 08:57:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B996911A17D;
+	Thu, 23 Jun 2022 08:59:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58CD011A5A1;
- Thu, 23 Jun 2022 08:57:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655974668; x=1687510668;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to;
- bh=Whi64ghsygof+6jgxvRE37LbVahudq1GCtQ+yooeRsw=;
- b=Kx8gJHWOtuWt+mwUfIg5C7mKNp+9cg3j4q3csrj/Vj2h00UEcTs8rET5
- C07x743OJ04lc/+rDJdCr+IHVR1Sg6rsgQAy6VsPjpC/HmDIDlE0lNQtV
- yesVdU9XKHOPWtqee+VvHqdf3aTzmHwsJsh7tyIvMFGgtSuW1cPc2HR0w
- kRU4/UHihbHFsm+i9GCWrm6uvu8dMC8IuXaLB6otcR5hymocIHyr5H725
- R+/26rR1SSbPiUku1E/pfYQWzxb5PcgQQ5SASJyTE/SsoaIFukvez+B8F
- KH05e7VqCJWcgYAaP4xgM38KmsHYIgD+m75J7Qi9iczBFaU8YYcBCLLXm A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="281395567"
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; 
- d="scan'208,217";a="281395567"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 01:57:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; 
- d="scan'208,217";a="592611770"
-Received: from linux.intel.com ([10.54.29.200])
- by fmsmga007.fm.intel.com with ESMTP; 23 Jun 2022 01:57:47 -0700
-Received: from [10.249.129.203] (unknown [10.249.129.203])
- by linux.intel.com (Postfix) with ESMTP id CCBF55802A4;
- Thu, 23 Jun 2022 01:57:43 -0700 (PDT)
-Content-Type: multipart/alternative;
- boundary="------------awMy26US0w3myjvV1xJosopt"
-Message-ID: <1874e47b-4337-5ac6-ebea-fca21ea1ba4c@intel.com>
-Date: Thu, 23 Jun 2022 11:57:42 +0300
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1BC4411A17A;
+ Thu, 23 Jun 2022 08:59:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 11191AA0ED;
+ Thu, 23 Jun 2022 08:59:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-References: <20220622035650.29256-1-niranjana.vishwanathapura@intel.com>
- <20220622035650.29256-4-niranjana.vishwanathapura@intel.com>
- <6ac2f495-8ead-4824-f9af-1c03fb3770c4@linux.intel.com>
- <20220622151229.GY376@nvishwa1-DESK>
- <b347fb63-5200-9f5c-b0d6-ca51b7a064f9@linux.intel.com>
- <20220622164445.GZ376@nvishwa1-DESK>
- <e6ed0d2f-ee2a-2219-c2cc-49efc32f0560@linux.intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-In-Reply-To: <e6ed0d2f-ee2a-2219-c2cc-49efc32f0560@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/doc/rfc: VM_BIND uapi definition
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 23 Jun 2022 08:59:49 -0000
+Message-ID: <165597478906.17071.1583073716927137858@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1655895388.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1655895388.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/edid=3A_expand_on_struct_drm=5Fedid_usage_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,97 +40,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, thomas.hellstrom@intel.com,
- chris.p.wilson@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com,
- matthew.auld@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------awMy26US0w3myjvV1xJosopt
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+== Series Details ==
 
-On 23/06/2022 11:27, Tvrtko Ursulin wrote:
->>
->> After a vm_unbind, UMD can re-bind to same VA range against an active 
->> VM.
->> Though I am not sue with Mesa usecase if that new mapping is required 
->> for
->> running GPU job or it will be for the next submission. But ensuring the
->> tlb flush upon unbind, KMD can ensure correctness.
->
-> Isn't that their problem? If they re-bind for submitting _new_ work 
-> then they get the flush as part of batch buffer pre-amble. 
+Series: drm/edid: expand on struct drm_edid usage (rev6)
+URL   : https://patchwork.freedesktop.org/series/104309/
+State : warning
 
-In the non sparse case, if a VA range is unbound, it is invalid to use 
-that range for anything until it has been rebound by something else.
+== Summary ==
 
-We'll take the fence provided by vm_bind and put it as a wait fence on 
-the next execbuffer.
+Error: dim checkpatch failed
+81051dc0bb2d drm/edid: move drm_connector_update_edid_property() to drm_edid.c
+e87e79e1fff3 drm/edid: convert drm_connector_update_edid_property() to struct drm_edid
+a9073db34d21 drm/edid: clean up connector update error handling and debug logging
+f1012e31b7af drm/edid: abstract debugfs override EDID set/reset
+c571e45c1e4f drm/edid: add drm_edid_connector_update()
+dbcbebd4a748 drm/probe-helper: add drm_connector_helper_get_modes()
+bd6ba4e083f1 drm/edid: add drm_edid_raw() to access the raw EDID data
+0b75a2a28bb4 drm/i915/edid: convert DP, HDMI and LVDS to drm_edid
+-:266: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "drm_edid"
+#266: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:2429:
++	intel_hdmi_dp_dual_mode_detect(connector, drm_edid != NULL);
 
-It might be safer in case of memory over fetching?
-
-
-TLB flush will have to happen at some point right?
-
-What's the alternative to do it in unbind?
+total: 0 errors, 0 warnings, 1 checks, 311 lines checked
+e69f358010a7 drm/i915/bios: convert intel_bios_init_panel() to drm_edid
+dbc2521261f9 drm/edid: do invalid block filtering in-place
+e32e5504ba7f drm/edid: add HF-EEODB support to EDID read and allocation
+490aace425fc drm/edid: take HF-EEODB extension count into account
+790542700a75 drm/todo: add entry for converting the subsystem to struct drm_edid
 
 
--Lionel
-
-
---------------awMy26US0w3myjvV1xJosopt
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 23/06/2022 11:27, Tvrtko Ursulin
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:e6ed0d2f-ee2a-2219-c2cc-49efc32f0560@linux.intel.com">
-      <blockquote type="cite" style="color: #007cff;"><br>
-        After a vm_unbind, UMD can re-bind to same VA range against an
-        active VM.
-        <br>
-        Though I am not sue with Mesa usecase if that new mapping is
-        required for
-        <br>
-        running GPU job or it will be for the next submission. But
-        ensuring the
-        <br>
-        tlb flush upon unbind, KMD can ensure correctness.
-        <br>
-      </blockquote>
-      <br>
-      Isn't that their problem? If they re-bind for submitting <span
-        class="moz-txt-underscore"><span class="moz-txt-tag">_</span>new<span
-          class="moz-txt-tag">_</span></span> work then they get the
-      flush as part of batch buffer pre-amble.
-    </blockquote>
-    <p>In the non sparse case, if a VA range is unbound, it is invalid
-      to use that range for anything until it has been rebound by
-      something else.</p>
-    <p>We'll take the fence provided by vm_bind and put it as a wait
-      fence on the next execbuffer.</p>
-    <p>It might be safer in case of memory over fetching?</p>
-    <p><br>
-    </p>
-    <p>TLB flush will have to happen at some point right?</p>
-    <p>What's the alternative to do it in unbind?</p>
-    <p><br>
-    </p>
-    <p>-Lionel<br>
-    </p>
-    <p><br>
-    </p>
-  </body>
-</html>
-
---------------awMy26US0w3myjvV1xJosopt--
