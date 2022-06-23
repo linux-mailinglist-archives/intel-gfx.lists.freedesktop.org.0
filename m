@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F74557C85
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 15:09:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDCA2557C86
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 15:09:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3C2310E5E5;
-	Thu, 23 Jun 2022 13:09:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D59210ED03;
+	Thu, 23 Jun 2022 13:09:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 452CF10ED03
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 13:09:20 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A88310ED62
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 13:09:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655989760; x=1687525760;
+ t=1655989762; x=1687525762;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=tcmzupEC8f5l2C9O+SnY18M20Vs5sjlMkpH/GyxKb3Q=;
- b=cxgRg7AlhaMpEP+bSe0UTZWACwcnPZJxwHeombsLcrxvpejuqe6WSbLE
- HroKCsD/4f6kvbDfkKvobLkCo5GjZ7s1mpG3XTJ5CDz7IBSj4lD2UT927
- UIUfpYr7BRjjM9VoZq4G1NWuwA//SuHTz8P2Y4h5CfG+VGFHQ9yTU2CWK
- PeT0i+grWv4zADMD5/zQcbkFnI2Wqbc7UHX1w3JVRXKASzpuQN3YnWJFm
- ot4ELVweSbmdMC5SH085i1GQpE1WgUAxsTvp4HXx8JEM2q8aHnsdni2Z/
- XThMBxYGclnDhje+D7NnLSu9GvjoLPaQ8spxtiTbaYD4bxFRMyQqQxy1C g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="344703283"
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="344703283"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 06:09:19 -0700
+ bh=tbeXfVq7ZwP47zCG1tOZfxBi7BJgsdG91DkY6r72eIY=;
+ b=UOT/FiGOwrqYhrVwobAO+27Ap4z0i7icxygpSh4mISQgY7ho8A9X3AWw
+ eRrhO0oR79fT4xawX0sr/GDwzLrClLoCkOzZRPup3oH3rZTlgNWEaOCCs
+ tUcIENXV1TcjhfKbdmkEqgP+zYwZwZYff1acCmIaCXhYnE/7flC0NI+3N
+ 1waSmyK/ojey/7taFNojbqLjNZFD06drLX1kXWqgCXAvz7fDkjJrX25Qd
+ w7442ZIHG/atCHT7uJYiaUOlqRnUMj9Qmnjwbr7+76oa5kf5aKxJEcer3
+ o/0buFVc+0s8jtSqMsYS6FbzDaf4QGtpWCW4L0mcsUlaNkYzZrneydkGZ Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="261144526"
+X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="261144526"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2022 06:09:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="588614428"
+X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="615569494"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by orsmga002.jf.intel.com with SMTP; 23 Jun 2022 06:09:16 -0700
+ by orsmga008.jf.intel.com with SMTP; 23 Jun 2022 06:09:19 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Jun 2022 16:09:15 +0300
+ Thu, 23 Jun 2022 16:09:18 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jun 2022 16:08:56 +0300
-Message-Id: <20220623130900.26078-6-ville.syrjala@linux.intel.com>
+Date: Thu, 23 Jun 2022 16:08:57 +0300
+Message-Id: <20220623130900.26078-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220623130900.26078-1-ville.syrjala@linux.intel.com>
 References: <20220623130900.26078-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/9] drm/i915: s/_CURSOR2/_MMIO_CURSOR2//
+Subject: [Intel-gfx] [PATCH 6/9] drm/i915: Use _MMIO_TRANS2() where
+ appropriate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +64,79 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The other similar macros have the _MMIO prefix, so give
-it also to _CURSOR2.
+Stop hand rolling _MMIO_TRANS2() and just use the real thing.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h | 19 +++++++++----------
+ 1 file changed, 9 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c64cf302ccb7..b3fe01aaeba8 100644
+index b3fe01aaeba8..8bcde74e9217 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -168,7 +168,7 @@
- 					 INTEL_INFO(dev_priv)->display.trans_offsets[TRANSCODER_A] + \
- 					 DISPLAY_MMIO_BASE(dev_priv) + (reg))
- #define _MMIO_TRANS2(tran, reg)		_MMIO(_TRANS2(tran, reg))
--#define _CURSOR2(pipe, reg)		_MMIO(INTEL_INFO(dev_priv)->display.cursor_offsets[(pipe)] - \
-+#define _MMIO_CURSOR2(pipe, reg)	_MMIO(INTEL_INFO(dev_priv)->display.cursor_offsets[(pipe)] - \
+@@ -164,10 +164,9 @@
+ #define _MMIO_PIPE2(pipe, reg)		_MMIO(INTEL_INFO(dev_priv)->display.pipe_offsets[(pipe)] - \
+ 					      INTEL_INFO(dev_priv)->display.pipe_offsets[PIPE_A] + \
+ 					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
+-#define _TRANS2(tran, reg)		(INTEL_INFO(dev_priv)->display.trans_offsets[(tran)] - \
+-					 INTEL_INFO(dev_priv)->display.trans_offsets[TRANSCODER_A] + \
+-					 DISPLAY_MMIO_BASE(dev_priv) + (reg))
+-#define _MMIO_TRANS2(tran, reg)		_MMIO(_TRANS2(tran, reg))
++#define _MMIO_TRANS2(tran, reg)		_MMIO(INTEL_INFO(dev_priv)->display.trans_offsets[(tran)] - \
++					      INTEL_INFO(dev_priv)->display.trans_offsets[TRANSCODER_A] + \
++					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
+ #define _MMIO_CURSOR2(pipe, reg)	_MMIO(INTEL_INFO(dev_priv)->display.cursor_offsets[(pipe)] - \
  					      INTEL_INFO(dev_priv)->display.cursor_offsets[PIPE_A] + \
  					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
+@@ -2171,7 +2170,7 @@
+  */
+ #define _SRD_CTL_A				0x60800
+ #define _SRD_CTL_EDP				0x6f800
+-#define EDP_PSR_CTL(tran)			_MMIO(_TRANS2(tran, _SRD_CTL_A))
++#define EDP_PSR_CTL(tran)			_MMIO_TRANS2(tran, _SRD_CTL_A)
+ #define   EDP_PSR_ENABLE			(1 << 31)
+ #define   BDW_PSR_SINGLE_FRAME			(1 << 30)
+ #define   EDP_PSR_RESTORE_PSR_ACTIVE_CTX_MASK	(1 << 29) /* SW can't modify */
+@@ -2217,11 +2216,11 @@
  
-@@ -4328,12 +4328,12 @@
- #define _CURBBASE_IVB		0x71084
- #define _CURBPOS_IVB		0x71088
+ #define _SRD_AUX_DATA_A				0x60814
+ #define _SRD_AUX_DATA_EDP			0x6f814
+-#define EDP_PSR_AUX_DATA(tran, i)		_MMIO(_TRANS2(tran, _SRD_AUX_DATA_A) + (i) + 4) /* 5 registers */
++#define EDP_PSR_AUX_DATA(tran, i)		_MMIO_TRANS2(tran, _SRD_AUX_DATA_A + (i) + 4) /* 5 registers */
  
--#define CURCNTR(pipe) _CURSOR2(pipe, _CURACNTR)
--#define CURBASE(pipe) _CURSOR2(pipe, _CURABASE)
--#define CURPOS(pipe) _CURSOR2(pipe, _CURAPOS)
--#define CURSIZE(pipe) _CURSOR2(pipe, _CURASIZE)
--#define CUR_FBC_CTL(pipe) _CURSOR2(pipe, _CUR_FBC_CTL_A)
--#define CURSURFLIVE(pipe) _CURSOR2(pipe, _CURASURFLIVE)
-+#define CURCNTR(pipe) _MMIO_CURSOR2(pipe, _CURACNTR)
-+#define CURBASE(pipe) _MMIO_CURSOR2(pipe, _CURABASE)
-+#define CURPOS(pipe) _MMIO_CURSOR2(pipe, _CURAPOS)
-+#define CURSIZE(pipe) _MMIO_CURSOR2(pipe, _CURASIZE)
-+#define CUR_FBC_CTL(pipe) _MMIO_CURSOR2(pipe, _CUR_FBC_CTL_A)
-+#define CURSURFLIVE(pipe) _MMIO_CURSOR2(pipe, _CURASURFLIVE)
+ #define _SRD_STATUS_A				0x60840
+ #define _SRD_STATUS_EDP				0x6f840
+-#define EDP_PSR_STATUS(tran)			_MMIO(_TRANS2(tran, _SRD_STATUS_A))
++#define EDP_PSR_STATUS(tran)			_MMIO_TRANS2(tran, _SRD_STATUS_A)
+ #define   EDP_PSR_STATUS_STATE_MASK		(7 << 29)
+ #define   EDP_PSR_STATUS_STATE_SHIFT		29
+ #define   EDP_PSR_STATUS_STATE_IDLE		(0 << 29)
+@@ -2248,13 +2247,13 @@
  
- #define CURSOR_A_OFFSET 0x70080
- #define CURSOR_B_OFFSET 0x700c0
+ #define _SRD_PERF_CNT_A			0x60844
+ #define _SRD_PERF_CNT_EDP		0x6f844
+-#define EDP_PSR_PERF_CNT(tran)		_MMIO(_TRANS2(tran, _SRD_PERF_CNT_A))
++#define EDP_PSR_PERF_CNT(tran)		_MMIO_TRANS2(tran, _SRD_PERF_CNT_A)
+ #define   EDP_PSR_PERF_CNT_MASK		0xffffff
+ 
+ /* PSR_MASK on SKL+ */
+ #define _SRD_DEBUG_A				0x60860
+ #define _SRD_DEBUG_EDP				0x6f860
+-#define EDP_PSR_DEBUG(tran)			_MMIO(_TRANS2(tran, _SRD_DEBUG_A))
++#define EDP_PSR_DEBUG(tran)			_MMIO_TRANS2(tran, _SRD_DEBUG_A)
+ #define   EDP_PSR_DEBUG_MASK_MAX_SLEEP         (1 << 28)
+ #define   EDP_PSR_DEBUG_MASK_LPSP              (1 << 27)
+ #define   EDP_PSR_DEBUG_MASK_MEMUP             (1 << 26)
+@@ -2329,7 +2328,7 @@
+ 
+ #define _PSR2_SU_STATUS_A		0x60914
+ #define _PSR2_SU_STATUS_EDP		0x6f914
+-#define _PSR2_SU_STATUS(tran, index)	_MMIO(_TRANS2(tran, _PSR2_SU_STATUS_A) + (index) * 4)
++#define _PSR2_SU_STATUS(tran, index)	_MMIO_TRANS2(tran, _PSR2_SU_STATUS_A + (index) * 4)
+ #define PSR2_SU_STATUS(tran, frame)	(_PSR2_SU_STATUS(tran, (frame) / 3))
+ #define PSR2_SU_STATUS_SHIFT(frame)	(((frame) % 3) * 10)
+ #define PSR2_SU_STATUS_MASK(frame)	(0x3ff << PSR2_SU_STATUS_SHIFT(frame))
 -- 
 2.35.1
 
