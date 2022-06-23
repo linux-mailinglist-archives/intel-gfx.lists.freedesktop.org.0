@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E1B05584C9
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 19:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 678345585E8
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 20:06:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E93C10E063;
-	Thu, 23 Jun 2022 17:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC66310E559;
+	Thu, 23 Jun 2022 18:06:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB74910E063
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 17:49:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABA6410E544
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 18:06:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656006554; x=1687542554;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=yEn0AlqILYPw/ipp3GhfZYQSdzGMUwWgxQ0n2SbBJoA=;
- b=WXKqzgWx+41dkiZEYW8b/7pcCQT/yOFyJhogCsS7r6hlXoqd1QeH50IM
- j8r+N9qKt0B97uYBTr8SP6pEUpjrwvvL8A6IhdHgLQshmPSth7Do8cqwO
- /1tRQcQYBBrHq3lEZDlzKiHN8DReIV2VgriYn4ToFpwHE8nt/UwznBRWQ
- D7WKghmfH6MOTz8kGcUSfEku5kuyQh14vzCMewh02MktVg7WDlTC1hhlW
- D5BbhWz7azT5gFo1xdJ81aQ2GENIkONNPNASHasKQ+HhrjfoM+bov3v89
- HyOgoE7q1r9rUNETZeoOwXTe+jLubiTwfPN4k5aQcEmWm9gAHVjn1UFh1 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="281523326"
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="281523326"
+ t=1656007585; x=1687543585;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=2b1PR/aYOHkiAYfIChLORbvyAJS+KWXNdpRvpUo5DDg=;
+ b=M7HG4rdQ13PiW7pCpoOJQplvMzlillx2RmuIHk94nIXqYjeDj/02ZJRm
+ vayh2WORru2Ns1ezqG9VsGLWPstU+zGc0JzH1GPVDAy3nh/7PZVp1C4dt
+ xdDcbKsbRwvz1joGKksYOIA3mRZw4SJW14yuhJ37nHMTvsPPwOwd2e9Gs
+ cmxIZF9Ew42skCS7PxOnpT7WgaKscPq7juydMRPDoDAzwTRu5PyWwmuQy
+ 4r28t/pVbkOqhGv1Ar4sAF4y6h+elJmjXoEt/Rq65AEVbhO0MxeU5AToi
+ WxmDr4AtbBbrzhr+/laOjs7iIlPfLb4mFLiMYA7Y2ElkK4k05a4xnyge2 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="281528317"
+X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="281528317"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 10:49:14 -0700
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="644855349"
-Received: from anefedov-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.252.38.20])
+ 23 Jun 2022 11:06:25 -0700
+X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="644861686"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 10:49:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Tangudu, Tilak" <tilak.tangudu@intel.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>
-In-Reply-To: <DM4PR11MB5248CEEF733FACCE6543C5AFE2B59@DM4PR11MB5248.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220621123516.370479-1-tilak.tangudu@intel.com>
- <20220621123516.370479-5-tilak.tangudu@intel.com>
- <0f1834aa89ed4f6b89db4ee7eacdbd55@intel.com>
- <DM4PR11MB52480BDD4014D227789713F4E2B39@DM4PR11MB5248.namprd11.prod.outlook.com>
- <87zgi4rh7c.fsf@intel.com> <YrN+QL4K0zRMA8Ey@intel.com>
- <DM4PR11MB5248CEEF733FACCE6543C5AFE2B59@DM4PR11MB5248.namprd11.prod.outlook.com>
-Date: Thu, 23 Jun 2022 20:49:04 +0300
-Message-ID: <87v8srmfsf.fsf@intel.com>
+ 23 Jun 2022 11:06:24 -0700
+Date: Thu, 23 Jun 2022 11:06:23 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <YrSrn7uZlHlTDcDc@mdroper-desk1.amr.corp.intel.com>
+References: <20220617190629.355356-1-jose.souza@intel.com>
+ <YqzV9N4qGegV7Y3h@mdroper-desk1.amr.corp.intel.com>
+ <2ace5508071ad1e7fc9048cb988ceea313bcb151.camel@intel.com>
+ <YrOVVcGkuq5QEMrY@mdroper-desk1.amr.corp.intel.com>
+ <80633c435571ead14b963a17d96874bcb9cd92e6.camel@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 04/11] drm/i915: Added is_intel_rpm_allowed
- helper
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <80633c435571ead14b963a17d96874bcb9cd92e6.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Call i915_gem_suspend() only
+ after display is turned off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,233 +62,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Wilson, Chris P" <chris.p.wilson@intel.com>, "Gupta,
- saurabhg" <saurabhg.gupta@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 23 Jun 2022, "Tangudu, Tilak" <tilak.tangudu@intel.com> wrote:
->> -----Original Message-----
->> From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
->> Sent: Thursday, June 23, 2022 2:11 AM
->> To: Jani Nikula <jani.nikula@linux.intel.com>
->> Cc: Tangudu, Tilak <tilak.tangudu@intel.com>; Gupta, Anshuman
->> <anshuman.gupta@intel.com>; intel-gfx@lists.freedesktop.org; Ewins, Jon
->> <jon.ewins@intel.com>; Belgaumkar, Vinay <vinay.belgaumkar@intel.com>;
->> Wilson, Chris P <chris.p.wilson@intel.com>; Dixit, Ashutosh
->> <ashutosh.dixit@intel.com>; Nilawar, Badal <badal.nilawar@intel.com>;
->> Roper, Matthew D <matthew.d.roper@intel.com>; Gupta, saurabhg
->> <saurabhg.gupta@intel.com>; Iddamsetty, Aravind
->> <aravind.iddamsetty@intel.com>; Sundaresan, Sujaritha
->> <sujaritha.sundaresan@intel.com>; Deak, Imre <imre.deak@intel.com>
->> Subject: Re: [Intel-gfx] [PATCH 04/11] drm/i915: Added is_intel_rpm_allowed
->> helper
->> 
->> On Wed, Jun 22, 2022 at 03:55:03PM +0300, Jani Nikula wrote:
->> > On Tue, 21 Jun 2022, "Tangudu, Tilak" <tilak.tangudu@intel.com> wrote:
->> > >> -----Original Message-----
->> > >> From: Gupta, Anshuman <anshuman.gupta@intel.com>
->> > >> Sent: Tuesday, June 21, 2022 7:47 PM
->> > >> To: Tangudu, Tilak <tilak.tangudu@intel.com>;
->> > >> intel-gfx@lists.freedesktop.org; Ewins, Jon <jon.ewins@intel.com>;
->> > >> Vivi, Rodrigo <rodrigo.vivi@intel.com>; Belgaumkar, Vinay
->> > >> <vinay.belgaumkar@intel.com>; Wilson, Chris P
->> > >> <chris.p.wilson@intel.com>; Dixit, Ashutosh
->> > >> <ashutosh.dixit@intel.com>; Nilawar, Badal
->> > >> <badal.nilawar@intel.com>; Roper, Matthew D
->> > >> <matthew.d.roper@intel.com>; Gupta, saurabhg
->> > >> <saurabhg.gupta@intel.com>; Iddamsetty, Aravind
->> > >> <aravind.iddamsetty@intel.com>; Sundaresan, Sujaritha
->> > >> <sujaritha.sundaresan@intel.com>
->> > >> Subject: RE: [PATCH 04/11] drm/i915: Added is_intel_rpm_allowed
->> > >> helper
->> > >>
->> > >>
->> > >>
->> > >> > -----Original Message-----
->> > >> > From: Tangudu, Tilak <tilak.tangudu@intel.com>
->> > >> > Sent: Tuesday, June 21, 2022 6:05 PM
->> > >> > To: intel-gfx@lists.freedesktop.org; Ewins, Jon
->> > >> > <jon.ewins@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
->> > >> > Belgaumkar, Vinay <vinay.belgaumkar@intel.com>; Wilson, Chris P
->> > >> > <chris.p.wilson@intel.com>; Dixit, Ashutosh
->> > >> > <ashutosh.dixit@intel.com>; Nilawar, Badal
->> > >> > <badal.nilawar@intel.com>; Gupta, Anshuman
->> > >> > <anshuman.gupta@intel.com>; Tangudu, Tilak
->> > >> > <tilak.tangudu@intel.com>; Roper, Matthew D
->> > >> > <matthew.d.roper@intel.com>; Gupta, saurabhg
->> > >> > <saurabhg.gupta@intel.com>; Iddamsetty, Aravind
->> > >> > <aravind.iddamsetty@intel.com>; Sundaresan, Sujaritha
->> > >> > <sujaritha.sundaresan@intel.com>
->> > >> > Subject: [PATCH 04/11] drm/i915: Added is_intel_rpm_allowed
->> > >> > helper
->> > >> >
->> > >> > Added is_intel_rpm_allowed function to query the runtime_pm
->> > >> > status and disllow during suspending and resuming.
->> > >> This seems a hack,
->> > >> Not sure if we have better way to handle it.
->> > >> May be check this in intel_pm_runtime_{get,put} to keep entire code
->> simple ?
->> > > Yes, that would be simple without code refactoring.
->> > > Checked the same with Chris, he suggested unbalancing of wakeref
->> > > might popup If used at intel_pm_runtime_{get,put}  . So used like
->> > > this,  @Wilson, Chris P , Please comment .
->> > > @Vivi, Rodrigo , Any suggestion ?
->> >
->> > One option would be to track this in intel_wakeref_t, i.e. _get flags
->> > the case in the returned wakeref and _put skips in that case.
->
-> @Jani Nikula 
->
-> I did not understand the suggestion, Can you please elaborate ?
-> Did you mean below or something more ? please help clarify.
+On Thu, Jun 23, 2022 at 07:48:32AM -0700, Souza, Jose wrote:
+> On Wed, 2022-06-22 at 15:19 -0700, Matt Roper wrote:
+> > On Tue, Jun 21, 2022 at 10:03:04AM -0700, Souza, Jose wrote:
+> > > On Fri, 2022-06-17 at 12:28 -0700, Matt Roper wrote:
+> > > > On Fri, Jun 17, 2022 at 12:06:29PM -0700, José Roberto de Souza wrote:
+> > > > > Gem buffers could still be in use by display after i915_gem_suspend()
+> > > > > is executed so there is chances that i915_gem_flush_free_objects()
+> > > > > will be being executed at the same time that
+> > > > > intel_runtime_pm_driver_release() is executed printing warnings about
+> > > > > wakerefs will being held.
+> > > > 
+> > > > By the same logic do we need to adjust i915_driver_remove() too?
+> > > 
+> > > Nope, all display buffers are freed in i915_driver_unregister() call chain:
+> > > 
+> > > 
+> > > i915_driver_remove()
+> > > 	i915_driver_unregister()
+> > > 		intel_display_driver_unregister()
+> > > 			drm_atomic_helper_shutdown()
+> > > 	i915_gem_suspend()
+> > > 		i915_gem_drain_freed_objects()
+> > > 
+> > > 
+> > > Only FBC compressed framebuffer is freed after that but that will not cause any warnings as it is allocated from stolen memory.
+> > 
+> > Okay sounds good; thanks for checking.
+> > 
+> > I'm still having a bit of trouble understanding your description of the
+> > issue in the commit message though:
+> > 
+> >         "...so there is chances that i915_gem_flush_free_objects() will
+> >         be being executed at the same time that
+> >         intel_runtime_pm_driver_release()..."
+> > 
+> > I'm not super familiar with the driver teardown paths, or the memory
+> > management cleanup details.  Intuitively it makes sense that we should
+> > clean up memory management (GEM) only after we've torn down display so
+> > that all objects that were used by framebuffers are out of circulation.
+> > But from a cursory view, it looks like i915_gem_suspend() is mostly
+> > concerned with quiescing the GT and cleaning up PPGTT (which doesn't
+> > impact display since all of its buffers are in the GGTT).
+> > 
+> > Is the problem arising from i915->mm.free_work still doing asynchronous
+> > work to actually release the unused objects at the same time we're
+> > tearing down runtime PM later?  If so does swapping the order of the
+> > gem_suspend and display disable here actually prevent that from
+> > happening or does it just make the race less likely by helping some
+> > objects free up earlier?
+> 
+> So when the last reference of a gem object is removed it is added to the mm.free_list list and mm.free_work is queued to actually free the object.
+> i915_gem_drain_freed_objects() flushes the mm.free_work.
+> 
+> If any other gem object has its last reference removed after i915_gem_suspend()/i915_gem_drain_freed_objects() the warning in
+> intel_runtime_pm_driver_release() can happen as the mm.free_work could be running at the same time.
+> 
+> But when pci_driver.remove() is called, probably all file descriptors attached to this device have been closed and the functions called after
+> i915_gem_suspend() will not free any gem object, so I don't believe we will have any more warnings.
 
-The code below will lead to get/put inbalance if is_intel_rpm_allowed()
-status changes between the get/put calls. I don't know how likely that
-is, but if it happens it's nasty.
+Okay, thanks for explaining, makes sense.  You might want to add some of
+this extra explanation to the commit message too for future reference,
+but either way,
 
-intel_wakeref_t is depot_stack_handle_t, which is actually just u32. We
-already abuse -1 value to not track wakeref (when
-CONFIG_DRM_I915_DEBUG_RUNTIME_PM=n or track_intel_runtime_pm_wakeref()
-fails.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-It's a bit of a hack, but we could have __intel_runtime_pm_get() early
-return -2 as the wakeref when !is_intel_rpm_allowed(), and
-intel_runtime_pm_put() (both versions for both kconfig option values!)
-ignore the put when the passed in wakeref == -2.
-
-This requires no changes in the calling code anywhere, even though the
-implementation is a hack. A pedantically correct implementation would
-turn intel_wakeref_t into a struct that wraps depot_stack_handle_t
-inside, and has a separate field for validity, but that probably has a
-non-trivial code size penalty.
-
-
-BR,
-Jani.
-
-
->
-> 8< ------------------------------
-> linux-desk:~/Code/drm-tip$ git diff
-> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> index 3759a8596084..ce272c569a89 100644
-> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> @@ -369,12 +369,16 @@ static intel_wakeref_t __intel_runtime_pm_get(struct intel_runtime_pm *rpm,
->                                                      runtime_pm);
->         int ret;
->
-> +       if (!is_intel_rpm_allowed(rpm))
-> +               goto out:
-> +
->         ret = pm_runtime_get_sync(rpm->kdev);
->         drm_WARN_ONCE(&i915->drm, ret < 0,
->                       "pm_runtime_get_sync() failed: %d\n", ret);
->
->         intel_runtime_pm_acquire(rpm, wakelock);
->
-> +out:
->         return track_intel_runtime_pm_wakeref(rpm);
->  }
->
-> @@ -505,6 +509,9 @@ static void __intel_runtime_pm_put(struct intel_runtime_pm *rpm,
->
->         untrack_intel_runtime_pm_wakeref(rpm, wref);
->
-> +       if (!is_intel_rpm_allowed(rpm))
-> +               return;
-> +
->         intel_runtime_pm_release(rpm, wakelock);
->
->         pm_runtime_mark_last_busy(kdev);
-> ----------------------------------------------------------  >8
->
-> Thanks
-> Tilak
->> 
->> yeap, this seems to be the quick path at this moment...
->> 
->> Imre, do you see any other quick option?
->> 
->> In general I don't like much the big wakeref infra we end up creating here
->> because all of the historical unbalanced cases we got.
->> We should be able to get something cleaner and use the rpm infra as other
->> drivers are using, or improve in the rpm side itself whatever we feel that we
->> are missing to deal with these cases.
->> 
->> But back to this specific case/usage here we might need to duplicate some
->> functions to be called just from the inside the resuming/suspending path...
->> and/or moving the gets & puts upper on the stack...
->> 
->> The quick hacks will solve our short term problems and continue bloating our
->> rpm infra.
->> 
->> >
->> > BR,
->> > Jani.
->> >
->> >
->> > >
->> > >> >
->> > >> > Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
->> > >> > ---
->> > >> >  drivers/gpu/drm/i915/intel_runtime_pm.c | 15 +++++++++++++++
->> > >> > drivers/gpu/drm/i915/intel_runtime_pm.h |  1 +
->> > >> >  2 files changed, 16 insertions(+)
->> > >> >
->> > >> > diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c
->> > >> > b/drivers/gpu/drm/i915/intel_runtime_pm.c
->> > >> > index 6ed5786bcd29..3759a8596084 100644
->> > >> > --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
->> > >> > +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
->> > >> > @@ -320,6 +320,21 @@ untrack_all_intel_runtime_pm_wakerefs(struct
->> > >> > intel_runtime_pm *rpm)  }
->> > >> >
->> > >> >  #endif
->> > >> > +static int intel_runtime_pm_status(struct intel_runtime_pm *rpm)
->> > >> > +{ return rpm->kdev->power.runtime_status; }
->> > >> This is racy in principal, we need a kdev->power lock here.
->> > >> Regards,
->> > >> Anshuman Gupta.
->> > >> > +
->> > >> > +bool is_intel_rpm_allowed(struct intel_runtime_pm *rpm) { int
->> > >> > +rpm_status;
->> > >> > +
->> > >> > +rpm_status = intel_runtime_pm_status(rpm); if (rpm_status ==
->> > >> > +RPM_RESUMING || rpm_status ==
->> > >> > RPM_SUSPENDING)
->> > >> > +return false;
->> > >> > +else
->> > >> > +return true;
->> > >> > +}
->> > >> >
->> > >> >  static void
->> > >> >  intel_runtime_pm_acquire(struct intel_runtime_pm *rpm, bool
->> > >> > wakelock) diff -- git a/drivers/gpu/drm/i915/intel_runtime_pm.h
->> > >> > b/drivers/gpu/drm/i915/intel_runtime_pm.h
->> > >> > index d9160e3ff4af..99418c3a934a 100644
->> > >> > --- a/drivers/gpu/drm/i915/intel_runtime_pm.h
->> > >> > +++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
->> > >> > @@ -173,6 +173,7 @@ void intel_runtime_pm_init_early(struct
->> > >> > intel_runtime_pm *rpm);  void intel_runtime_pm_enable(struct
->> > >> > intel_runtime_pm *rpm);  void intel_runtime_pm_disable(struct
->> > >> > intel_runtime_pm *rpm);  void
->> > >> > intel_runtime_pm_driver_release(struct
->> > >> > intel_runtime_pm *rpm);
->> > >> > +bool is_intel_rpm_allowed(struct intel_runtime_pm *rpm);
->> > >> >
->> > >> >  intel_wakeref_t intel_runtime_pm_get(struct intel_runtime_pm
->> > >> > *rpm); intel_wakeref_t intel_runtime_pm_get_if_in_use(struct
->> > >> > intel_runtime_pm *rpm);
->> > >> > --
->> > >> > 2.25.1
->> > >>
->> > >
->> >
->> > --
->> > Jani Nikula, Intel Open Source Graphics Center
+> 
+> > 
+> > 
+> > Matt
+> > 
+> > > 
+> > > > 
+> > > > 
+> > > > Matt
+> > > > 
+> > > > > 
+> > > > > So here only calling i915_gem_suspend() and by consequence
+> > > > > i915_gem_drain_freed_objects() only after display is down making
+> > > > > sure all buffers are freed.
+> > > > > 
+> > > > > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/i915_driver.c | 4 ++--
+> > > > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> > > > > index d26dcca7e654a..4227675dd1cfe 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > > > > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > > > > @@ -1067,8 +1067,6 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+> > > > >  	intel_runtime_pm_disable(&i915->runtime_pm);
+> > > > >  	intel_power_domains_disable(i915);
+> > > > >  
+> > > > > -	i915_gem_suspend(i915);
+> > > > > -
+> > > > >  	if (HAS_DISPLAY(i915)) {
+> > > > >  		drm_kms_helper_poll_disable(&i915->drm);
+> > > > >  
+> > > > > @@ -1085,6 +1083,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+> > > > >  
+> > > > >  	intel_dmc_ucode_suspend(i915);
+> > > > >  
+> > > > > +	i915_gem_suspend(i915);
+> > > > > +
+> > > > >  	/*
+> > > > >  	 * The only requirement is to reboot with display DC states disabled,
+> > > > >  	 * for now leaving all display power wells in the INIT power domain
+> > > > > -- 
+> > > > > 2.36.1
+> > > > > 
+> > > > 
+> > > 
+> > 
+> 
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
