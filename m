@@ -2,162 +2,150 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EA2D558A77
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 23:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E57B558BA7
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 01:22:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF93D10E769;
-	Thu, 23 Jun 2022 21:06:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A526E10ECDF;
+	Thu, 23 Jun 2022 23:21:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA1D10E364;
- Thu, 23 Jun 2022 21:06:19 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACC3B10EC9F;
+ Thu, 23 Jun 2022 23:21:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656018379; x=1687554379;
- h=from:to:cc:subject:date:message-id:references:
+ t=1656026511; x=1687562511;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=grWU+eC36VuWJH7gkj4OIhMnVfqijTiiFAE525e8ns8=;
- b=eWgNKYgV2pES6pTwXDmc7ViSxdpY1FlzXBH7EHb96er7kDb1wuKYiQGz
- kZ0uhezOiFpUCOw63k9Kx/VEPDNL1mcFPhOn+KzZ1RJXtcLItt0vaUSic
- kACDlbH44dh7aUZBjHF0bg3bRgjiN0W11n14jDdhLhu0FFKixiVRJvRHB
- gPt+toUs+41Rb+Sc5p1tCA0eHfDB0w9ll3H4lOxpb5284/2kVfrCQel3N
- vbd7jDXdc24d+jlfizvecdbm09kUcJF84inbk1DuXjl6QZk98m9nZlQ0q
- sWrheyBbpLLEwVgd3rnGoBHQZOeMWP0TTN0m36zsRgX6R/u/SOuIikkM7 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="367160590"
-X-IronPort-AV: E=Sophos;i="5.92,217,1650956400"; d="scan'208";a="367160590"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 14:05:50 -0700
+ bh=2zeJqCZMT+utEihV96iZLZzy3LIyHg5u+47OPuwpkbI=;
+ b=Uerl7x0khtgxi9uFPpcBLFcCCk9EQOkwxos7hnpU8r9ojaiWoc04nwEv
+ HOYrAM33kufnvala7NPzJJdJ9v9uJkUZUmOgyx/pEk9OqOYgYmBMUEPar
+ 9qhV/tM0sL68FMAx7bl7e+YoIJq+HQdGS2hJnCEILL+iYesPc1Dw5QWXA
+ nN4kPoE178++w6vgArdzkQHiMwHjzUL/YZ2bDmrAXvL2wZqzz5luXyQMG
+ ZUpboCUW+uys7QaTZSMADhlIN6unH7wAp3tTur9h7vaTxIcanc0EJe1Ae
+ toVqWnuCHOziPWnxG7wJRx9yRcIlA1Prz46yhGvjKr0rsVUrMkt2ys5GA A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="280913268"
+X-IronPort-AV: E=Sophos;i="5.92,217,1650956400"; d="scan'208";a="280913268"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2022 16:21:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,217,1650956400"; d="scan'208";a="691210569"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by fmsmga002.fm.intel.com with ESMTP; 23 Jun 2022 14:05:50 -0700
+X-IronPort-AV: E=Sophos;i="5.92,217,1650956400"; d="scan'208";a="678281031"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by FMSMGA003.fm.intel.com with ESMTP; 23 Jun 2022 16:21:51 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 23 Jun 2022 14:05:49 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ 15.1.2308.27; Thu, 23 Jun 2022 16:21:50 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 23 Jun 2022 14:05:49 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Thu, 23 Jun 2022 14:05:49 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2308.27 via Frontend Transport; Thu, 23 Jun 2022 16:21:50 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Thu, 23 Jun 2022 14:05:49 -0700
+ 15.1.2308.27; Thu, 23 Jun 2022 16:21:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wt5lIANZUa/C9gEWXeI27aES+Tul+WU72t3cs4IoN22bUJP0W9I7BQjXpYOF3gcjbdtpVvoefYjpmeI1UEll8jXtf0+b0yiKk9jqutngxPDKFeu7HSBO4pYwmt1C9hoQlAZS1X3iA8yWsc5vGDuVk0qmU8T2f1VJtya4IKioyu5xRNQFQvKp6rivPRvobGM6uQLGH6J19sjE6+jKZg1nPCM1wi2qgMd2uDjCqIy1J0cguuUZRr9F/7nFV3e6Wd2qDtrMadN+MP3gvsNqJJkWblTlqzo+U63R1IEjkORbJZUhKEzuy52vj3jUA2alvbcHXxyJePkBPK6fedVV0WdG9g==
+ b=NOYGNHiN7DrxEH1ezeC2NQnsZbRZjjoUgL6jpUH3HKyXe4SanmctcusHcLJ8lfB4sPa4NVXH7ozs17TpOMvXpsTu9caP6WfIkbJV/ExkNWoKQIPd2eEjHzhk2ZNniwJQ9Ajqtx8XYddRD/fFONbmFltf7KjQGqSLOfPajcf+RYeWHelEyw0+aMxBNOH0mnYuRrCUz6iF2qAbx+snOsJOGDc69LSjvDfKL2Vk+8Q6jfGnEMBaTBSDvANXSXbtSI6UNLunQVld90soUuYeNq7FcqySbtAToHbyLbiln3SHM3w3fR0LXlNNhvd6rZOpX6NoPyA3CTJDyqTlKxKGK9ZFEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=grWU+eC36VuWJH7gkj4OIhMnVfqijTiiFAE525e8ns8=;
- b=c6oq0VBnIfySYOqXv3CFjN53ZVOYv3n0zFSMy8yVwVkotYCGPxyUlfAD/m7D+OnE4elUNVeVPEgLFOCCau/8N05tA5UViPjiGULd7GjF6lncamXfeh1crJPTJ5Y3O+v+rPbRI9wA6P+lFjyd9QGBqgYayUo36nlwRdRfWSdYPC0P/G+Gn2UJ5OfVr7Xx22BfZMdlGX/U6g881y38q/Nhjt27NCeR5waxghrmepph1h6k1wslQ1k77s2kvz9YBpuNpRCNTsIJqEnGzW2rcpsqF/OaXqiL22I0AdU3I3u923N3WeRfHd0Y55Ga370dagKOZFXMoyCVY+eZMwiZwgKRgQ==
+ bh=9cZUmJPA2SdTaxVQgS0JbskrVutT35zmPQzSvEy3TYY=;
+ b=ku0O8cUAHa1CeCcEzIXQ1/F/ycuqTfUVnUfuSSkHwszh9f2Ph7vtF/DyLlyNNZsa58w7d5Ljpdwb62+Ewc8s8JlKh8xTDo4IiOIjyEXANNWOqYDv1RO/NVWwHGija4fst6QKc7BnEN0OxST+qOG0DekbYOMTFYTZwim3xoHr7u+Cyhk6z49/PsvGCAlHf5tIqbkBRK/dVBpnajPpLapHkTZyzedr6l8zVvW6LD3EuL7xgRU/0uuvKhnaSKYFbWJsplmDW25XPdeA9C/9y5ywQ8HYA+RZCHKkgR6/+ir+n9syDCOoGrCBgKEL+sXHMP7Jm0RGjjFVUW4ELkBvM9A/xQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from BN6PR11MB1633.namprd11.prod.outlook.com (2603:10b6:405:e::22)
- by DM6PR11MB3081.namprd11.prod.outlook.com (2603:10b6:5:6a::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.16; Thu, 23 Jun
- 2022 21:05:47 +0000
-Received: from BN6PR11MB1633.namprd11.prod.outlook.com
- ([fe80::98ce:859e:1d00:e639]) by BN6PR11MB1633.namprd11.prod.outlook.com
- ([fe80::98ce:859e:1d00:e639%8]) with mapi id 15.20.5353.022; Thu, 23 Jun 2022
- 21:05:47 +0000
-From: "Zeng, Oak" <oak.zeng@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, "Landwerlin, Lionel G"
- <lionel.g.landwerlin@intel.com>, "Vishwanathapura, Niranjana"
- <niranjana.vishwanathapura@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v3 3/3] drm/doc/rfc: VM_BIND uapi definition
-Thread-Index: AQHYhewtASI2jWfgB0G497ALZvi+T61bEx+AgAB2AwCAAAyDgIAADUaAgAEHWwCAAAh5AIAAI9AAgACkqeA=
-Date: Thu, 23 Jun 2022 21:05:47 +0000
-Message-ID: <BN6PR11MB1633C90D1B2E40359F1F168F92B59@BN6PR11MB1633.namprd11.prod.outlook.com>
-References: <20220622035650.29256-1-niranjana.vishwanathapura@intel.com>
- <20220622035650.29256-4-niranjana.vishwanathapura@intel.com>
- <6ac2f495-8ead-4824-f9af-1c03fb3770c4@linux.intel.com>
- <20220622151229.GY376@nvishwa1-DESK>
- <b347fb63-5200-9f5c-b0d6-ca51b7a064f9@linux.intel.com>
- <20220622164445.GZ376@nvishwa1-DESK>
- <e6ed0d2f-ee2a-2219-c2cc-49efc32f0560@linux.intel.com>
- <1874e47b-4337-5ac6-ebea-fca21ea1ba4c@intel.com>
- <6d70cde9-f856-540a-b1d4-0325596b0c88@linux.intel.com>
-In-Reply-To: <6d70cde9-f856-540a-b1d4-0325596b0c88@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.6.500.17
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 92a6b336-9b86-474c-2617-08da555c24f3
-x-ms-traffictypediagnostic: DM6PR11MB3081:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 40Sq9hLeeDwb2NFVD4U5x8RLDGHOyUENIzqarjBtzkKZYjVbJ1tv5kZWVueWbh6lir0T9a0SGwqlPsxcngbBQhrqaUj48vq6rlRf1vxY5rBw4c67IE0WmzUkJuaRmF57oDikrIHV/vD1hIkg1CM8t99LbHxTsuKVgg6gbFIxxdbS6X29KSncY9acZFfeoKEt57wdpovxTfg8QIcsmi45OPbytB9E25M0CRz/sFQE/rATlYjzyPDMsWAXazOy8D/8O4hT52wnn1DisINCAjf7Ity9hlazl1jczb4nMfBals+QyOadYZlJ0lV8AWnex8OLONdP2e+VpazpOghgsty5egWZWr3gWv6hSERU8Mk4XgsXi7Rd8aOp14BMreDxdNvJL2Lx4RQa8OquoU6TQkKeVxFEePlZxb8E2u8RkYxha1tvshEx84wTmpLUlSryma9gAJW7kUxL2nE2KOQwTlC/xTPBBGP3CgTvq18RiLFGs1cPFWdbUlpazfB5soIPX3czmz0UuloZ5imRJ1zRDY+KH9FaMXsC4rSGzojzPqBMLOzQVdd4Jyz+YSTLttXrWXa/02mFDgzHz4cz0hwJmMyLIQ72dTX8XmJMTQh8kbnZRVlgr9H4XoZwOQ/ElHECKAgPllzA265HeStBVsMe5ju8dycFBgGc0sN3sgUgfE2qcfg8Awktr05z5iLDA/0zrW8LiU+VkqoN+6UuuHjYmdYWDuYUe8bOA61kjxW89/wygSHkq7sCJ0jYbhimDDD9AveI4ueJhW9G+NjsohuwUg3pFHiOl98W2LYePyX6ZxQTwNA=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN6PR11MB1633.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(136003)(396003)(366004)(346002)(376002)(39860400002)(71200400001)(9686003)(52536014)(4326008)(38070700005)(53546011)(38100700002)(5660300002)(33656002)(8936002)(6506007)(7696005)(478600001)(64756008)(66946007)(6636002)(55016003)(186003)(76116006)(54906003)(122000001)(41300700001)(316002)(110136005)(26005)(83380400001)(66476007)(86362001)(2906002)(66556008)(66446008)(8676002)(82960400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cmgvd1pVbFNCd29RRENsalEzZUtSYTUxUU4yZHdobDY5ZXVUdWdWYmthMzhy?=
- =?utf-8?B?TGd6WlEzRkZrcHhrR2lreGZ4czhMK0xiWmFEMEtCeGlmeEpWZHNscWIvT1hF?=
- =?utf-8?B?cEIvUStvZnF0b0RwY01nMWlQUjJ1ejdGZlJtTjY4MTd4TlFtZEtGaE1kbVhG?=
- =?utf-8?B?QVBubnNMTGhZSngrRzFUSW84bjFHdVRZMlRnb0xQVEJYUVh0YVVSUE05Nzkw?=
- =?utf-8?B?aDV0MDF0N0wyNWE4VGVrMGJhMHF3bHRNVXMwYUhMWEpOcFdpWjhFdy9TekY3?=
- =?utf-8?B?aEF3dys2cXhNV2VDcEFGdWV0MWRwUWxETEFZL0tpNVRnM3czUStFOHNZMGJE?=
- =?utf-8?B?aXdpV1lBVEdwdkJoUEQ1NUc0a1hsc0VJRHFhNDQ0M05FQWs3L3RlVExuczNq?=
- =?utf-8?B?UGRxdVBnUXpKUmMydGZENmRYS3Y2TzMvbC8xU3JXMEtLWE94eCtsWi8vQmha?=
- =?utf-8?B?bnZuTEhjMWNVYUFCc1VIZStxNWdSWmxsNitJVGVxSmRVNXg4c0dWWDFleXA4?=
- =?utf-8?B?aWJXQUR6ZFlvMk1BWEJQZWlWUUwrajB2NERwWnEwM2VLZDNBMFpGVk5tQzhE?=
- =?utf-8?B?ZHJlRGlXNGtnemx0RjRKUFVFMklVR3NKeWtCblVGQWt4RlBFRXFSRzhQQU1a?=
- =?utf-8?B?NzlrVTFlTzRCNDNBSWRFT2JwM0dqMnd1bm5IR3I1RVhHWWcwR3dXenQwVmVr?=
- =?utf-8?B?dEVlWVVLalhpNGlucHA2TUwzVFcwTzJFV0VpWEM5ZGhtRWdVOGQvUmUycEpi?=
- =?utf-8?B?L240Zkx2djlWdEw3L0crak96TFBOcnV4SjZ5bWNnMHFQQmlFdEY1ZFo2TEMx?=
- =?utf-8?B?QURVUml3ZTJnbkFRSWJpVmpJeEVBcEpPR0E3LzV2dkxNb2x5S2VWMFdzZC9i?=
- =?utf-8?B?NW5TT2V3U2xyeERNOXhFUXpPWG45YzVFaC9RWStNQkt5cFUzVko5NENPbmRx?=
- =?utf-8?B?ZU40Y0VXQkdoUytiRlRwRnAyUU52dmZBMXlMZGE2eHZwY3lpT2NXdElOMHRk?=
- =?utf-8?B?Rzd6Sm8zc0NiY25FNFZiaDlkRGRTNVh0WU9xMVR1ZXpJdTNTbHlWQzI1Q1hh?=
- =?utf-8?B?bFdnWk93cjlROEN5TGdNK3FTVU9jWkVYbU9nZlpjZnBxNTJpeWtJVllzYS93?=
- =?utf-8?B?MFo4U09ERlpvU3pPdmRVa1czMDBzRHpRSCtpTTA4ME0xVHN4ZURnNzk1eXBp?=
- =?utf-8?B?Yy8vN01rVlc2UlBpM0I4OTRienQ4VWtpcGxENmFycDZXRCswY01pSmxNY3JD?=
- =?utf-8?B?d2JjS1d5YThEKzFDdGtPU3NSaysxcGdYYUY5V1VWY1MyUFlNL2IwL25rTUVM?=
- =?utf-8?B?NS80YWtyUXo2R1hhK1oyZUZPcjIzRWRHby9FaUZJbzBpMHdIbFZOekd3STU5?=
- =?utf-8?B?VFpEblVsZkVkUTBQb2RONUI3M2hIL3ZDK2dXYlNSTy81N1dWMk9jWlFXQVhj?=
- =?utf-8?B?dlhDc3loTVV1SUxyQ3drVy83ekdmUkFkVS9LVHRvK2lSZWE0MDlRU3l6OE1q?=
- =?utf-8?B?eTJ1OUdjblJBeGREMjdnR0VVNG5xdjJ5SGpqOWUxSzA2cEVSZnRjbVU0L0U1?=
- =?utf-8?B?NndPRlJuZWtRZ2RxMll6WFZFbEZUeUFMRUU1RkVWa1hKTjc2emJVcGRYdmc4?=
- =?utf-8?B?UEFiTUNnc0lRb2ZwUE1tbVlZLy9GQjRNT1lTL0Y1V05uc2txMVdsbXBENXQ2?=
- =?utf-8?B?TmNUM0hHNzE4ZDNuT3o5a3B2bWlMc29PcEFRcFNjS1JKR1YvUjNOZXdkVUoz?=
- =?utf-8?B?em9PTldMb01jUnVoamw1SnF3ZFBJeTBqaTI0bVNDWFRKbXhMdUFwdFlBemtX?=
- =?utf-8?B?ZWFRSTRHcXBiMk1yaVdhSENkdG1HOHNnME1rL290citRckN3S0wwakd6eXVR?=
- =?utf-8?B?dmdJNytKN0IrSi9Pem5sNHdRY3IvTU91dld0dFVUT3lGMmN6TFhpR1ZheFhC?=
- =?utf-8?B?ZTkwL01TNEI5MHdYMGk0bVpuZ1lKMjZTRTlwMXRNVk9zRnJyMlpjV2ZUUEJj?=
- =?utf-8?B?RDJSQU1mWkxnb2JaMnBzV0VCTTl1OW1aWjRuU2RvaHFaUW9XaCtNa3dnTERP?=
- =?utf-8?B?eHZ5N2RQU1RoRDNmSlFxRHdTTEN6Mmg0cFA1VS9CMm1UVTRoSEFkYlIrWWpK?=
- =?utf-8?Q?uR+lRLHhNJrKmyeHha+ZZAoj+?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from BY5PR11MB4274.namprd11.prod.outlook.com (2603:10b6:a03:1c1::23)
+ by MN0PR11MB6060.namprd11.prod.outlook.com (2603:10b6:208:378::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.14; Thu, 23 Jun
+ 2022 23:21:47 +0000
+Received: from BY5PR11MB4274.namprd11.prod.outlook.com
+ ([fe80::f440:6688:c682:21e7]) by BY5PR11MB4274.namprd11.prod.outlook.com
+ ([fe80::f440:6688:c682:21e7%2]) with mapi id 15.20.5353.022; Thu, 23 Jun 2022
+ 23:21:47 +0000
+Message-ID: <9d734dfa-ce26-465a-d20a-90dcd7355e78@intel.com>
+Date: Thu, 23 Jun 2022 16:21:46 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20220610234712.36849-1-vinay.belgaumkar@intel.com>
+ <87leto1lsc.wl-ashutosh.dixit@intel.com>
+From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+In-Reply-To: <87leto1lsc.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY3PR03CA0030.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::35) To BY5PR11MB4274.namprd11.prod.outlook.com
+ (2603:10b6:a03:1c1::23)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f749ac4e-c88e-4d43-8db5-08da556f24f4
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6060:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: g0WWk74nTZt+4dqIpcOeModFdgttyeA2H9EQ4iCbw76jNECD3+ycu9rJEw9yX1gv5oYhHXjD1MNCmCZLFRhQSspgntn/Fy2H3qUhcPjkNIa8zf/ZQbWDKzezgsCRk75yTbrEHgN/EY2yDBWj3IKb1/pdjxwLV9jhjavO4Ir7eCg422F9FS1omcUWbewEvAlOhv56lnK5skCq2ZUiF2FvM9P17kkTsC7UYGpEn1HSJYAGwv1U0QUJFs722cyYnH7hqDvF//wlrsZ49jKJ+pXJFZsCaWn27ws7hPiJa7n5bramKkkHsEOBrouuXD70v/MFgMIl1KPGog+677DCdYgb+LLYCUaRN018Svw0ZkdqmzmozneIaVtN/jtKMmiNKZttiTWn+JAc2KHa4tVKvrvjxuXrz3dDfg6MNNI0jO41v8EpFdEYgRXcBjFYRd3UBAy5D4AA6vYi4w1Rt0rkCws5WTz9bxAbeodIwI5r1qTy+vYlWrht3cmeudYhVvHz8P9Hl8XqMIKmBZcQy5dJ1/RbEeL3PWgauWt96p6nANLfy1yV/uIWPtV8cXJSgyqEDQaMmaIoB/+oqkaBEqhGTqIFiK8CdlvECXNwjMs2xs1/90Jb7zXNJwn2Flq5YVyKIAwde8IZYUtD+sVRb82tSpzbxCOmlFbooN7JNI1cYykBoGu9m1AhMcpS9HzSLDm/d1wnxlXpXuHgqw4E1skPg+ixIjqH29EcG2nGbIUKZ5sxa+GsRPz3N3/1A/qPaNsgJPI1eZeCNC7ouIY+DYOcNgE9v1GSjB2u3YaLzdda/L/rTBvqL6qvfDwUSpJTv2NPV1fobriU4m6TvWiFR5pcFuH6kA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB4274.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(396003)(136003)(39860400002)(346002)(366004)(376002)(66946007)(37006003)(316002)(66476007)(4326008)(8676002)(2616005)(478600001)(41300700001)(5660300002)(186003)(6506007)(26005)(6636002)(83380400001)(66556008)(6862004)(36756003)(8936002)(82960400001)(31696002)(6486002)(38100700002)(31686004)(6512007)(53546011)(450100002)(2906002)(86362001)(30864003)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U2dPaVZrUm4zcjAvVWFwNFNBOGhaODdNcStRbXRCNklCamdFSUNJdE0valFH?=
+ =?utf-8?B?Y3Jha29kakFMUU1NdkJGYU5VeTJ6aDduc1NNL2s4NTh5WFhEZVRBOVVvMHFn?=
+ =?utf-8?B?TFJWQ0NvVkpjNU13Ylo5Q0FWWGVVR2JudC9GOTQ2cDZ1Z0pXaGZTMVM0bGp4?=
+ =?utf-8?B?SkRSNlVWUlVnV0N1OUlnallTbWo0TXNjQTJJUTU3YmhVRktNbEQxWG5uVjRq?=
+ =?utf-8?B?bDhIY1l6Z0dyME5tSU00dGNTS1JCOVd5dUE3OXl4WnVGaUQ1R3pEV09qMllp?=
+ =?utf-8?B?MmNzWlhOT0lDVXB1WlRrZmJwaVhYSnY4YURRTXdmTU1RY2NMWEtheHRTUEYv?=
+ =?utf-8?B?aWxRZitZeHpKRzZld29aOFZZcDFNa2hCeTdkWHI0Qm1OWFVFSVpSbGpWRXd5?=
+ =?utf-8?B?UnhCTnh3aW5zQW5rZnd6dE1DeFFvcUtsVE5JZjFPMldFOXlkYkk2ckI4VFZ0?=
+ =?utf-8?B?T3pxMlVvd3BKZHViTm9pZGhiZFFTQitNVi9YQUM3L25kTDZTMnBTbTVrZGxI?=
+ =?utf-8?B?bm5NNEpQQThjMlcvSzVuQUFNZmZjZVZpUkh4NGdTNWZDM0wrOVJWUStLN1Zz?=
+ =?utf-8?B?d3hVaHg5a3VIdWVib1F3bUtnRUNRM29XdllRQ2ZHWTVINXlUYnFZS1haM1B0?=
+ =?utf-8?B?eUFwVm4rZzBaaFZ0Y2dMOU5VMXFFdTVnb0FNNjZwNEhhdVAvV2kwWmVDV0pz?=
+ =?utf-8?B?SWhkMDdodkQ5aU9jUkNveVZDYzdSbkl3a0R2dytQNlZjZ2lvRmFBMnQ2b2Ja?=
+ =?utf-8?B?YWdGNmUxTjVKTjNCa3E0djRXc3RvTUhOenNKdXF2b1A5Z09uREhmMXJGMnlV?=
+ =?utf-8?B?MlpCZVluNXdNUmdUR0RuWXhXU1R4VEZTQkp6TVoxL3BQOFBRZE1uTmk0bkFH?=
+ =?utf-8?B?N1JIcUl1elNCQlF4d2NmRERmcHg4dHVhaGNsY1dKbDcwTmFtMmZHdEJ0emhQ?=
+ =?utf-8?B?NXlLZUQxRy95ZTZxYW4zeW9seEV1YkxScTdvQnBTZzdEbXZGQU9OcU9kSlEz?=
+ =?utf-8?B?ZDZKcTRKc09vZlg0WGVjSDVEeElhZ05xTmF6Tjh1ZEw2b0xLVk9RWHc0Q3NK?=
+ =?utf-8?B?b0llV0ZRVm9ycDMrYlpoSDhTYjQ5RDNKTU5SbFB5Uks2RlpNZmxGUjlwTVIz?=
+ =?utf-8?B?ZDBQd3R0cVM3SHV6WE5WVzRabUJVWmJ3bVNKTmRYTGpNekRlWWRnTkd0NXVt?=
+ =?utf-8?B?bTRaUlRQOW93N3lSUER5Z3VuMEhaYTZLRGFqOHB1Z2VNQTRObFV5bGY1c2dn?=
+ =?utf-8?B?UWtyL01lMkhjSmpuc1ZJakZxSDRuejcxWHUveUZNMTJweW1xSG5KNWYzendu?=
+ =?utf-8?B?dnZWYXlBVkErdXRwcUgyeGRhTG5hSXhTRFhSVUYzS2xiQVVnRTgrNUtyQnAz?=
+ =?utf-8?B?T0x1aUF2K0dMYlAyYXNwb0wxT1ZUdkNZVHZTMXJuU09IVjdDeHEyN2lnWXBL?=
+ =?utf-8?B?OGg5QXJUajE3d0JPSlRpR0g1b1JyWkpSRDVjak5uMDg5clFoaW1FeG5BTTdO?=
+ =?utf-8?B?aWJFUllKOVZTZ1RhRlpWWDc3VmVBaXhZTXowTTN1WUtJaTVJaEJFV0cvak1q?=
+ =?utf-8?B?MnJ6cnRxcUcvejBZY2RNM1E4a1pZcklGdnEwRlhHR2tYMGxocHcvb01vMFBC?=
+ =?utf-8?B?V1JvRCsrVU1OK2d5SFAwMVZLaDMyWVYxclM3MlVrVGN2N0Jnd3BySnlwWDZl?=
+ =?utf-8?B?NmhldHo1cG9OcXFtQ1M5cWpGSVFBN1QrbGplQit2TFFuSENnMHViUmhhbVcw?=
+ =?utf-8?B?VWtsc0FQdUZsOGgrL0hxY0ppL0dlQXVTYzAwMW4wNFVuY3VDWUtIbXZvY2hs?=
+ =?utf-8?B?Mkhza2NyeGFROFp6TnhWYXR6SG91NjF0Vk5LRUJwelpoS1pseklLKzhQbnNw?=
+ =?utf-8?B?enp1azBjbFlQK080UkdaYXdiMVNTRThxMUVJOUpTYWlZSG9SM1F2cEZQbHlt?=
+ =?utf-8?B?N0phK2I2dUpDRFNDNlhLOVE3NThGRW41bEdBZjU5ZFd4RWhUcmFCaU5lSTA3?=
+ =?utf-8?B?cWdkWklrYzkzSHdqYytuNjFhT1FGL21kUm91VmYvOHlVaDNNZENzWkQ0aDE3?=
+ =?utf-8?B?amJHd0p5Z1N3SDNYOXNqTmZ1SGlCSDVUSzhnRk15QW4yV3RWWmh3YUgwREZY?=
+ =?utf-8?B?MWpTajFURVZRbWFtbE5BYUFLbkd1Rm5GNy9HTlQ3SVZBN2gxdHRnM29raW1K?=
+ =?utf-8?B?VzhnYTU3MWphdU9seHY3dzVwUnpHNEZqaktZT1NXNkRJS1FCa2Z3ZjBMZW81?=
+ =?utf-8?B?a0w2aW5adEhIckFZR0VMMGZDUTJNSzMyV05hcXlxa0J3eTZNTjlGbEtueVEz?=
+ =?utf-8?B?d0Z2V1JyVGdCMFlLNmZzZG02SEk5S0RqNG9lTnIrNzV3c0NaTGd5NzRoTmpk?=
+ =?utf-8?Q?vPV74s586N5GOQRQ=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f749ac4e-c88e-4d43-8db5-08da556f24f4
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4274.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB1633.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92a6b336-9b86-474c-2617-08da555c24f3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2022 21:05:47.1300 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dHE4Iv6dmD0ZxVmyAY7mS0mKM0sp+899vBw6DOJ1pLQPhiA9cmyrjXi3abUd9dB5d+CNe41Y/6T33v2MLP4f5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3081
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2022 23:21:47.7334 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VPAg4I+MjYti2Bzs3yJZdF4mmXgT0B3HDOESsV+JqBxHzNphe89rxncgD65w1XU8b6NOEdmTliPlloffePgybVK/3lH6B/clvsLL0GkSbrY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6060
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/doc/rfc: VM_BIND uapi definition
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Add a new SLPC selftest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,76 +158,467 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Wilson,
- Chris P" <chris.p.wilson@intel.com>, "Vetter,
- Daniel" <daniel.vetter@intel.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>, "Auld,
- Matthew" <matthew.auld@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNClJlZ2FyZHMsDQpPYWsNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9t
-OiBJbnRlbC1nZnggPGludGVsLWdmeC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24g
-QmVoYWxmIE9mIFR2cnRrbw0KPiBVcnN1bGluDQo+IFNlbnQ6IEp1bmUgMjMsIDIwMjIgNzowNiBB
-TQ0KPiBUbzogTGFuZHdlcmxpbiwgTGlvbmVsIEcgPGxpb25lbC5nLmxhbmR3ZXJsaW5AaW50ZWwu
-Y29tPjsgVmlzaHdhbmF0aGFwdXJhLA0KPiBOaXJhbmphbmEgPG5pcmFuamFuYS52aXNod2FuYXRo
-YXB1cmFAaW50ZWwuY29tPg0KPiBDYzogWmFub25pLCBQYXVsbyBSIDxwYXVsby5yLnphbm9uaUBp
-bnRlbC5jb20+OyBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOw0KPiBkcmktZGV2ZWxA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBIZWxsc3Ryb20sIFRob21hcyA8dGhvbWFzLmhlbGxzdHJv
-bUBpbnRlbC5jb20+Ow0KPiBXaWxzb24sIENocmlzIFAgPGNocmlzLnAud2lsc29uQGludGVsLmNv
-bT47IFZldHRlciwgRGFuaWVsDQo+IDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT47IGNocmlzdGlh
-bi5rb2VuaWdAYW1kLmNvbTsgQXVsZCwgTWF0dGhldw0KPiA8bWF0dGhldy5hdWxkQGludGVsLmNv
-bT4NCj4gU3ViamVjdDogUmU6IFtJbnRlbC1nZnhdIFtQQVRDSCB2MyAzLzNdIGRybS9kb2MvcmZj
-OiBWTV9CSU5EIHVhcGkgZGVmaW5pdGlvbg0KPiANCj4gDQo+IE9uIDIzLzA2LzIwMjIgMDk6NTcs
-IExpb25lbCBMYW5kd2VybGluIHdyb3RlOg0KPiA+IE9uIDIzLzA2LzIwMjIgMTE6MjcsIFR2cnRr
-byBVcnN1bGluIHdyb3RlOg0KPiA+Pj4NCj4gPj4+IEFmdGVyIGEgdm1fdW5iaW5kLCBVTUQgY2Fu
-IHJlLWJpbmQgdG8gc2FtZSBWQSByYW5nZSBhZ2FpbnN0IGFuIGFjdGl2ZQ0KPiA+Pj4gVk0uDQo+
-ID4+PiBUaG91Z2ggSSBhbSBub3Qgc3VlIHdpdGggTWVzYSB1c2VjYXNlIGlmIHRoYXQgbmV3IG1h
-cHBpbmcgaXMgcmVxdWlyZWQNCj4gPj4+IGZvcg0KPiA+Pj4gcnVubmluZyBHUFUgam9iIG9yIGl0
-IHdpbGwgYmUgZm9yIHRoZSBuZXh0IHN1Ym1pc3Npb24uIEJ1dCBlbnN1cmluZyB0aGUNCj4gPj4+
-IHRsYiBmbHVzaCB1cG9uIHVuYmluZCwgS01EIGNhbiBlbnN1cmUgY29ycmVjdG5lc3MuDQo+ID4+
-DQo+ID4+IElzbid0IHRoYXQgdGhlaXIgcHJvYmxlbT8gSWYgdGhleSByZS1iaW5kIGZvciBzdWJt
-aXR0aW5nIF9uZXdfIHdvcmsNCj4gPj4gdGhlbiB0aGV5IGdldCB0aGUgZmx1c2ggYXMgcGFydCBv
-ZiBiYXRjaCBidWZmZXIgcHJlLWFtYmxlLg0KPiA+DQo+ID4gSW4gdGhlIG5vbiBzcGFyc2UgY2Fz
-ZSwgaWYgYSBWQSByYW5nZSBpcyB1bmJvdW5kLCBpdCBpcyBpbnZhbGlkIHRvIHVzZQ0KPiA+IHRo
-YXQgcmFuZ2UgZm9yIGFueXRoaW5nIHVudGlsIGl0IGhhcyBiZWVuIHJlYm91bmQgYnkgc29tZXRo
-aW5nIGVsc2UuDQo+ID4NCj4gPiBXZSdsbCB0YWtlIHRoZSBmZW5jZSBwcm92aWRlZCBieSB2bV9i
-aW5kIGFuZCBwdXQgaXQgYXMgYSB3YWl0IGZlbmNlIG9uDQo+ID4gdGhlIG5leHQgZXhlY2J1ZmZl
-ci4NCj4gPg0KPiA+IEl0IG1pZ2h0IGJlIHNhZmVyIGluIGNhc2Ugb2YgbWVtb3J5IG92ZXIgZmV0
-Y2hpbmc/DQo+ID4NCj4gPg0KPiA+IFRMQiBmbHVzaCB3aWxsIGhhdmUgdG8gaGFwcGVuIGF0IHNv
-bWUgcG9pbnQgcmlnaHQ/DQo+ID4NCj4gPiBXaGF0J3MgdGhlIGFsdGVybmF0aXZlIHRvIGRvIGl0
-IGluIHVuYmluZD8NCj4gDQo+IEN1cnJlbnRseSBUTEIgZmx1c2ggaGFwcGVucyBmcm9tIHRoZSBy
-aW5nIGJlZm9yZSBldmVyeSBCQl9TVEFSVCBhbmQgYWxzbw0KPiB3aGVuIGk5MTUgcmV0dXJucyB0
-aGUgYmFja2luZyBzdG9yZSBwYWdlcyB0byB0aGUgc3lzdGVtLg0KDQoNCkNhbiB5b3UgZXhwbGFp
-biBtb3JlIHdoeSB0bGIgZmx1c2ggd2hlbiBpOTE1IHJldGlyZSB0aGUgYmFja2luZyBzdG9yYWdl
-PyBJIG5ldmVyIGZpZ3VyZWQgdGhhdCBvdXQgd2hlbiBJIGxvb2tlZCBhdCB0aGUgY29kZXMuIEFz
-IEkgdW5kZXJzdGFuZCBpdCwgdGxiIGNhY2hlcyB0aGUgZ3B1IHBhZ2UgdGFibGVzIHdoaWNoIG1h
-cCBhIHZhIHRvIGEgcGEuIFNvIGl0IGlzIHN0cmFpZ2h0IGZvcndhcmQgdG8gbWUgdGhhdCB3ZSBw
-ZXJmb3JtIGEgdGxiIGZsdXNoIHdoZW4gd2UgY2hhbmdlIHRoZSBwYWdlIHRhYmxlIChlaXRoZXIg
-YXQgdm0gYmluZCB0aW1lIG9yIHVuYmluZCB0aW1lLiBCZXR0ZXIgYXQgdW5iaW5kIHRpbWUgZm9y
-IHBlcmZvcm1hbmNlIHJlYXNvbikuDQoNCkJ1dCBpdCBpcyByYXRoZXIgdHJpY2t5IHRvIG1lIHRv
-IGZsdXNoIHRsYiB3aGVuIHdlIHJldGlyZSBhIGJhY2tpbmcgc3RvcmFnZS4gSSBkb24ndCBzZWUg
-aG93IGJhY2tpbmcgc3RvcmFnZSBjYW4gYmUgY29ubmVjdGVkIHRvIHBhZ2UgdGFibGUuIExldCdz
-IHNheSB1c2VyIHVuYmluZCB2YTEgZnJvbSBwYTEsIHRoZW4gYmluZCB2YTEgdG8gcGEyLiBUaGVu
-IHJldGlyZSBwYTEuIFN1Ym1pdCBzaGFkZXIgY29kZSB1c2luZyB2YTEuIElmIHdlIGRvbid0IHRs
-YiBmbHVzaCBhZnRlciB1bmJpbmQgdmExLCB0aGUgbmV3IHNoYWRlciBjb2RlIHdoaWNoIGlzIHN1
-cHBvc2VkIHRvIHVzZSBwYTIgd2lsbCBzdGlsbCB1c2UgcGExIGR1ZSB0byB0aGUgc3RhbGUgZW50
-cmllcyBpbiB0bGIsIHJpZ2h0PyBUaGUgcG9pbnQgaXMsIHRsYiBjYWNoZWQgaXMgdGFnZ2VkIHdp
-dGggdmlydHVhbCBhZGRyZXNzLCBub3QgcGh5c2ljYWwgYWRkcmVzcy4gc28gYWZ0ZXIgd2UgdW5i
-aW5kIHZhMSBmcm9tIHBhMSwgcmVnYXJkbGVzcyB3ZSByZXRpcmUgcGExIG9yIG5vdCwgdmExIGNh
-biBiZSBib3VuZCB0byBhbm90aGVyIHBhMi4NCg0KVGhhbmtzLA0KT2FrIA0KDQoNCj4gDQo+IEZv
-ciB0aGUgZm9ybWVyLCBJIGhhdmVuJ3Qgc2VlbiBhbnkgbWVudGlvbiB0aGF0IGZvciBleGVjYnVm
-MyB0aGVyZSBhcmUNCj4gcGxhbnMgdG8gc3RvcCBkb2luZyBpdD8gQW55d2F5LCBhcyBsb25nIGFz
-IHRoaXMgaXMga2VwdCBhbmQgc2VxdWVuY2Ugb2YNCj4gYmluZFsxLi5OXStleGVjYnVmIGlzIHNh
-ZmUgYW5kIGNvcnJlY3RseSBzZWVzIGFsbCB0aGUgcHJlY2VkaW5nIGJpbmRzLg0KPiBIZW5jZSBh
-Ym91dCB0aGUgYWx0ZXJuYXRpdmUgdG8gZG9pbmcgaXQgaW4gdW5iaW5kIC0gZmlyc3QgSSB0aGlu
-ayBsZXRzDQo+IHN0YXRlIHRoZSBwcm9ibGVtIHRoYXQgaXMgdHJ5aW5nIHRvIHNvbHZlLg0KPiAN
-Cj4gRm9yIGluc3RhbmNlIGlzIGl0IGp1c3QgZm9yIHRoZSBjb21wdXRlICJhcHBlbmQgd29yayB0
-byB0aGUgcnVubmluZw0KPiBiYXRjaCIgdXNlIGNhc2U/IEkgaG9uZXN0bHkgZG9uJ3QgcmVtZW1i
-ZXIgaG93IHdhcyB0aGF0IHN1cHBvc2VkIHRvIHdvcmsNCj4gc28gbWF5YmUgdGhlIHRsYiBmbHVz
-aCBvbiBiaW5kIHdhcyBzdXBwb3NlZCB0byBkZWFsIHdpdGggdGhhdCBzY2VuYXJpbz8NCj4gDQo+
-IE9yIHlvdSBzZWUgYSBwcm9ibGVtIGV2ZW4gZm9yIE1lc2Egd2l0aCB0aGUgY3VycmVudCBtb2Rl
-bD8NCj4gDQo+IFJlZ2FyZHMsDQo+IA0KPiBUdnJ0a28NCg==
+
+On 6/22/2022 1:32 PM, Dixit, Ashutosh wrote:
+> On Fri, 10 Jun 2022 16:47:12 -0700, Vinay Belgaumkar wrote:
+>> This test will validate we can achieve actual frequency of RP0. Pcode
+>> grants frequencies based on what GuC is requesting. However, thermal
+>> throttling can limit what is being granted. Add a test to request for
+>> max, but don't fail the test if RP0 is not granted due to throttle
+>> reasons.
+>>
+>> Also optimize the selftest by using a common run_test function to avoid
+>> code duplication.
+> The refactoring does change the order of operations (changing the freq vs
+> spawning the spinner) but should be fine I think.
+Yes, we now start the spinner outside the for loop, so that freq changes 
+occur quickly. This ensures we don't mess with SLPC algorithm's history 
+by frequently restarting the WL in the for loop.
+>
+>> Rename the "clamp" tests to vary_max_freq and vary_min_freq.
+> Either is ok, but maybe "clamp" names were ok I think since they verify req
+> freq is clamped at min/max.
+True, though clamp usually is associated with limiting, whereas we 
+actually increase the min.
+>
+>> v2: Fix compile warning
+>>
+>> Fixes 8ee2c227822e ("drm/i915/guc/slpc: Add SLPC selftest")
+>> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/selftest_slpc.c | 323 ++++++++++++------------
+>>   1 file changed, 158 insertions(+), 165 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/selftest_slpc.c b/drivers/gpu/drm/i915/gt/selftest_slpc.c
+>> index b768cea5943d..099129aae9a5 100644
+>> --- a/drivers/gpu/drm/i915/gt/selftest_slpc.c
+>> +++ b/drivers/gpu/drm/i915/gt/selftest_slpc.c
+>> @@ -8,6 +8,11 @@
+>>   #define delay_for_h2g() usleep_range(H2G_DELAY, H2G_DELAY + 10000)
+>>   #define FREQUENCY_REQ_UNIT	DIV_ROUND_CLOSEST(GT_FREQUENCY_MULTIPLIER, \
+>> 						  GEN9_FREQ_SCALER)
+>> +enum test_type {
+>> +	VARY_MIN,
+>> +	VARY_MAX,
+>> +	MAX_GRANTED
+>> +};
+>>
+>>   static int slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 freq)
+>>   {
+>> @@ -36,147 +41,120 @@ static int slpc_set_max_freq(struct intel_guc_slpc *slpc, u32 freq)
+>> 	return ret;
+>>   }
+>>
+>> -static int live_slpc_clamp_min(void *arg)
+>> +static int vary_max_freq(struct intel_guc_slpc *slpc, struct intel_rps *rps,
+>> +		  u32 *max_act_freq)
+> Please run checkpatch, indentation seems off.
+I had run it. Not sure why this wasn't caught.
+>
+>>   {
+>> -	struct drm_i915_private *i915 = arg;
+>> -	struct intel_gt *gt = to_gt(i915);
+>> -	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
+>> -	struct intel_rps *rps = &gt->rps;
+>> -	struct intel_engine_cs *engine;
+>> -	enum intel_engine_id id;
+>> -	struct igt_spinner spin;
+>> +	u32 step, max_freq, req_freq;
+>> +	u32 act_freq;
+>> 	u32 slpc_min_freq, slpc_max_freq;
+>> 	int err = 0;
+>>
+>> -	if (!intel_uc_uses_guc_slpc(&gt->uc))
+>> -		return 0;
+>> -
+>> -	if (igt_spinner_init(&spin, gt))
+>> -		return -ENOMEM;
+>> +	slpc_min_freq = slpc->min_freq;
+>> +	slpc_max_freq = slpc->rp0_freq;
+> nit but we don't really need such variables since we don't change their
+> values, we should just use slpc->min_freq, slpc->rp0_freq directly. I'd
+> change this in all places in this patch.
+
+I will remove it from the sub-functions, but will need to keep the one 
+in the main run_test(). We should query SLPC's min and max and then 
+restore that at the end of the test. It is possible that SLPC's min is 
+different from platform min for certain skus.
+
+>
+>> -	if (intel_guc_slpc_get_max_freq(slpc, &slpc_max_freq)) {
+>> -		pr_err("Could not get SLPC max freq\n");
+>> -		return -EIO;
+>> -	}
+>> -
+>> -	if (intel_guc_slpc_get_min_freq(slpc, &slpc_min_freq)) {
+>> -		pr_err("Could not get SLPC min freq\n");
+>> -		return -EIO;
+> Why do we need these two function calls? Can't we just use slpc->rp0_freq
+> and slpc->min_freq as we are doing in the vary_min/max_freq() functions
+> above?
+Same as above.
+>
+> Also, as mentioned below I think here we should just do:
+>
+>          slpc_set_max_freq(slpc, slpc->rp0_freq);
+>          slpc_set_min_freq(slpc, slpc->min_freq);
+>
+> to restore freq to a known state before starting the test (just in case a
+> previous test changed the values).
+Any test that changes the frequencies should restore them as well.
+>
+>> -	}
+>> -
+>> -	if (slpc_min_freq == slpc_max_freq) {
+>> -		pr_err("Min/Max are fused to the same value\n");
+>> -		return -EINVAL;
+> What if they are actually equal? I think basically the max/min freq test
+> loops will just not be entered (so effectively the tests will just
+> skip). The granted freq test will be fine. So I think we can just delete
+> this if statement?
+>
+> (It is showing deleted above in the patch but is in the new code somewhere
+> too).
+Actually, we should set it to min/rp0 if this is the case. That change 
+will be in a separate patch. This is needed for certain cases.
+>
+>> -	}
+>> -
+>> -	intel_gt_pm_wait_for_idle(gt);
+>> -	intel_gt_pm_get(gt);
+>> -	for_each_engine(engine, gt, id) {
+>> -		struct i915_request *rq;
+>> -		u32 step, min_freq, req_freq;
+>> -		u32 act_freq, max_act_freq;
+>> -
+>> -		if (!intel_engine_can_store_dword(engine))
+>> -			continue;
+>> +	/* Go from max to min in 5 steps */
+>> +	step = (slpc_max_freq - slpc_min_freq) / NUM_STEPS;
+>> +	*max_act_freq = slpc_min_freq;
+>> +	for (max_freq = slpc_max_freq; max_freq > slpc_min_freq;
+>> +				max_freq -= step) {
+>> +		err = slpc_set_max_freq(slpc, max_freq);
+>> +		if (err)
+>> +			break;
+>>
+>> -		/* Go from min to max in 5 steps */
+>> -		step = (slpc_max_freq - slpc_min_freq) / NUM_STEPS;
+>> -		max_act_freq = slpc_min_freq;
+>> -		for (min_freq = slpc_min_freq; min_freq < slpc_max_freq;
+>> -					min_freq += step) {
+>> -			err = slpc_set_min_freq(slpc, min_freq);
+>> -			if (err)
+>> -				break;
+>> -
+>> -			st_engine_heartbeat_disable(engine);
+>> -
+>> -			rq = igt_spinner_create_request(&spin,
+>> -							engine->kernel_context,
+>> -							MI_NOOP);
+>> -			if (IS_ERR(rq)) {
+>> -				err = PTR_ERR(rq);
+>> -				st_engine_heartbeat_enable(engine);
+>> -				break;
+>> -			}
+>> +		req_freq = intel_rps_read_punit_req_frequency(rps);
+>>
+>> -			i915_request_add(rq);
+>> +		/* GuC requests freq in multiples of 50/3 MHz */
+>> +		if (req_freq > (max_freq + FREQUENCY_REQ_UNIT)) {
+>> +			pr_err("SWReq is %d, should be at most %d\n", req_freq,
+>> +				max_freq + FREQUENCY_REQ_UNIT);
+>> +			err = -EINVAL;
+> Probably a nit but check can be (so should we be checking both high and low
+> limits?):
+> 		if (req_freq > (max_freq + FREQUENCY_REQ_UNIT) ||
+> 		    req_freq < (slpc_min_freq - FREQUENCY_REQ_UNIT))
+>
+> Though if we do this we'd need to change the pr_err() or have two separate
+> if statements. Not sure if it's worth it but thought I'll mention it.
+We are looking to validate it does not cross the upper limit.
+>
+>> +static int vary_min_freq(struct intel_guc_slpc *slpc, struct intel_rps *rps,
+>> +		  u32 *max_act_freq)
+>> +{
+>> +	u32 step, min_freq, req_freq;
+>> +	u32 act_freq;
+>> +	u32 slpc_min_freq, slpc_max_freq;
+>> +	int err = 0;
+>>
+>> -			act_freq =  intel_rps_read_actual_frequency(rps);
+>> -			if (act_freq > max_act_freq)
+>> -				max_act_freq = act_freq;
+>> +	slpc_min_freq = slpc->min_freq;
+>> +	slpc_max_freq = slpc->rp0_freq;
+>>
+>> -			igt_spinner_end(&spin);
+>> -			st_engine_heartbeat_enable(engine);
+>> -		}
+>> +	/* Go from min to max in 5 steps */
+>> +	step = (slpc_max_freq - slpc_min_freq) / NUM_STEPS;
+>> +	*max_act_freq = slpc_min_freq;
+>> +	for (min_freq = slpc_min_freq; min_freq < slpc_max_freq;
+>> +				min_freq += step) {
+>> +		err = slpc_set_min_freq(slpc, min_freq);
+>> +		if (err)
+>> +			break;
+>>
+>> -		pr_info("Max actual frequency for %s was %d\n",
+>> -			engine->name, max_act_freq);
+>> +		req_freq = intel_rps_read_punit_req_frequency(rps);
+>>
+>> -		/* Actual frequency should rise above min */
+>> -		if (max_act_freq == slpc_min_freq) {
+> Nit again. This check is somewhere in the new code but I think a better
+> check is
+>
+> 		if (max_act_freq <= slpc_min_freq)
+>
+> just in case the act freq for whatever reason falls below
+> slpc_min_freq. Even if we know this is impossible (bugs make the impossible
+> possible).
+sure.
+>
+>> -			pr_err("Actual freq did not rise above min\n");
+>> +		/* GuC requests freq in multiples of 50/3 MHz */
+>> +		if (req_freq < (min_freq - FREQUENCY_REQ_UNIT)) {
+>> +			pr_err("SWReq is %d, should be at least %d\n", req_freq,
+>> +				min_freq - FREQUENCY_REQ_UNIT);
+>> 			err = -EINVAL;
+> Again nit as above, but check can be:
+> 		if (req_freq < (min_freq - FREQUENCY_REQ_UNIT) ||
+> 		    req_freq > (slpc_max_freq + FREQUENCY_REQ_UNIT)) {
+It can be higher, we want to validate lower range.
+>
+>> 		}
+>>
+>> +		act_freq =  intel_rps_read_actual_frequency(rps);
+>> +		if (act_freq > *max_act_freq)
+>> +			*max_act_freq = act_freq;
+>> +
+>> 		if (err)
+>> 			break;
+>> 	}
+>>
+>> -	/* Restore min/max frequencies */
+>> -	slpc_set_max_freq(slpc, slpc_max_freq);
+>> -	slpc_set_min_freq(slpc, slpc_min_freq);
+>> +	return err;
+>> +}
+>>
+>> -	if (igt_flush_test(gt->i915))
+>> -		err = -EIO;
+>> +static int max_granted_freq(struct intel_guc_slpc *slpc, struct intel_rps *rps, u32 *max_act_freq)
+>> +{
+>> +	struct intel_gt *gt = rps_to_gt(rps);
+>> +	u32 perf_limit_reasons;
+>> +	int err = 0;
+>>
+>> -	intel_gt_pm_put(gt);
+>> -	igt_spinner_fini(&spin);
+>> -	intel_gt_pm_wait_for_idle(gt);
+>> +	err = slpc_set_min_freq(slpc, slpc->rp0_freq);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	*max_act_freq =  intel_rps_read_actual_frequency(rps);
+>> +	if (!(*max_act_freq == slpc->rp0_freq)) {
+>> +		/* Check if there was some throttling by pcode */
+>> +		perf_limit_reasons = intel_uncore_read(gt->uncore, GT0_PERF_LIMIT_REASONS);
+>> +
+>> +		/* If not, this is an error */
+>> +		if (perf_limit_reasons && GT0_PERF_LIMIT_REASONS_MASK) {
+>> +			pr_err("Pcode did not grant max freq\n");
+>> +			err = -EINVAL;
+> Looks incorrect, probably something like:
+> 		if (!(perf_limit_reasons & GT0_PERF_LIMIT_REASONS_MASK))
+Hmm, good catch. We should flag error iff there is no throttling and act 
+freq does not go to max.
+>
+>> +		}
+>> +	}
+>>
+>> 	return err;
+>>   }
+>>
+>> -static int live_slpc_clamp_max(void *arg)
+>> +static int run_test(struct intel_gt *gt, int test_type)
+>>   {
+>> -	struct drm_i915_private *i915 = arg;
+>> -	struct intel_gt *gt = to_gt(i915);
+>> -	struct intel_guc_slpc *slpc;
+>> -	struct intel_rps *rps;
+>> +	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
+>> +	struct intel_rps *rps = &gt->rps;
+>> 	struct intel_engine_cs *engine;
+>> 	enum intel_engine_id id;
+>> 	struct igt_spinner spin;
+>> -	int err = 0;
+>> 	u32 slpc_min_freq, slpc_max_freq;
+>> -
+>> -	slpc = &gt->uc.guc.slpc;
+>> -	rps = &gt->rps;
+>> +	int err = 0;
+>>
+>> 	if (!intel_uc_uses_guc_slpc(&gt->uc))
+>> 		return 0;
+>> @@ -203,69 +181,56 @@ static int live_slpc_clamp_max(void *arg)
+>> 	intel_gt_pm_get(gt);
+>> 	for_each_engine(engine, gt, id) {
+>> 		struct i915_request *rq;
+>> -		u32 max_freq, req_freq;
+>> -		u32 act_freq, max_act_freq;
+>> -		u32 step;
+>> +		u32 max_act_freq;
+>>
+>> 		if (!intel_engine_can_store_dword(engine))
+>> 			continue;
+>>
+>> -		/* Go from max to min in 5 steps */
+>> -		step = (slpc_max_freq - slpc_min_freq) / NUM_STEPS;
+>> -		max_act_freq = slpc_min_freq;
+>> -		for (max_freq = slpc_max_freq; max_freq > slpc_min_freq;
+>> -					max_freq -= step) {
+>> -			err = slpc_set_max_freq(slpc, max_freq);
+>> -			if (err)
+>> -				break;
+>> -
+>> -			st_engine_heartbeat_disable(engine);
+>> -
+>> -			rq = igt_spinner_create_request(&spin,
+>> -							engine->kernel_context,
+>> -							MI_NOOP);
+>> -			if (IS_ERR(rq)) {
+>> -				st_engine_heartbeat_enable(engine);
+>> -				err = PTR_ERR(rq);
+>> -				break;
+>> -			}
+>> +		st_engine_heartbeat_disable(engine);
+>>
+>> -			i915_request_add(rq);
+>> +		rq = igt_spinner_create_request(&spin,
+>> +						engine->kernel_context,
+>> +						MI_NOOP);
+>> +		if (IS_ERR(rq)) {
+>> +			err = PTR_ERR(rq);
+>> +			st_engine_heartbeat_enable(engine);
+>> +			break;
+>> +		}
+>>
+>> -			if (!igt_wait_for_spinner(&spin, rq)) {
+>> -				pr_err("%s: SLPC spinner did not start\n",
+>> -				       engine->name);
+>> -				igt_spinner_end(&spin);
+>> -				st_engine_heartbeat_enable(engine);
+>> -				intel_gt_set_wedged(engine->gt);
+>> -				err = -EIO;
+>> -				break;
+>> -			}
+>> +		i915_request_add(rq);
+>> +
+>> +		if (!igt_wait_for_spinner(&spin, rq)) {
+>> +			pr_err("%s: Spinner did not start\n",
+>> +			       engine->name);
+>> +			igt_spinner_end(&spin);
+>> +			st_engine_heartbeat_enable(engine);
+>> +			intel_gt_set_wedged(engine->gt);
+>> +			err = -EIO;
+>> +			break;
+>> +		}
+>>
+>> -			delay_for_h2g();
+>> +		switch (test_type) {
+>>
+>> -			/* Verify that SWREQ indeed was set to specific value */
+>> -			req_freq = intel_rps_read_punit_req_frequency(rps);
+>> +		case VARY_MIN:
+>> +			err = vary_min_freq(slpc, rps, &max_act_freq);
+>> +			break;
+>> +
+>> +		case VARY_MAX:
+>> +			err = vary_max_freq(slpc, rps, &max_act_freq);
+>> +			break;
+>>
+>> -			/* GuC requests freq in multiples of 50/3 MHz */
+>> -			if (req_freq > (max_freq + FREQUENCY_REQ_UNIT)) {
+>> -				pr_err("SWReq is %d, should be at most %d\n", req_freq,
+>> -				       max_freq + FREQUENCY_REQ_UNIT);
+>> +		case MAX_GRANTED:
+>> +			/* Media engines have a different RP0 */
+>> +			if ((engine->class == VIDEO_DECODE_CLASS) ||
+>> +			    (engine->class == VIDEO_ENHANCEMENT_CLASS)) {
+>> 				igt_spinner_end(&spin);
+>> 				st_engine_heartbeat_enable(engine);
+>> -				err = -EINVAL;
+>> -				break;
+>> +				err = 0;
+>> +				continue;
+> I think it's preferable to move this media engine code out of the main loop
+> into max_granted_freq() function if possible (maybe by faking max_act_freq
+> if needed)?
+All the engine related info is here. I will need to pass it to the 
+max_granted_freq() function. Also, faking the act_freq probably 
+overkill. I can add a fixme here instead to update when we have a 
+reliable way to obtain media RP0 instead.
+>
+>> 			}
+>>
+>> -			act_freq =  intel_rps_read_actual_frequency(rps);
+>> -			if (act_freq > max_act_freq)
+>> -				max_act_freq = act_freq;
+>> -
+>> -			st_engine_heartbeat_enable(engine);
+>> -			igt_spinner_end(&spin);
+>> -
+>> -			if (err)
+>> -				break;
+>> +			err = max_granted_freq(slpc, rps, &max_act_freq);
+>> +			break;
+>> 		}
+>>
+>> 		pr_info("Max actual frequency for %s was %d\n",
+>> @@ -277,31 +242,59 @@ static int live_slpc_clamp_max(void *arg)
+>> 			err = -EINVAL;
+>> 		}
+>>
+>> -		if (igt_flush_test(gt->i915)) {
+>> -			err = -EIO;
+>> -			break;
+>> -		}
+>> +		igt_spinner_end(&spin);
+>> +		st_engine_heartbeat_enable(engine);
+>>
+>> 		if (err)
+>> 			break;
+>> 	}
+>>
+>> -	/* Restore min/max freq */
+>> +	/* Restore min/max frequencies */
+>> 	slpc_set_max_freq(slpc, slpc_max_freq);
+>> 	slpc_set_min_freq(slpc, slpc_min_freq);
+> As mentioned above maybe we should restore at the beginning of the test too
+> (before the for_each_engine() loop) to start from a known state?
+>
+> Anyway here maybe get rid of the variables and:
+
+This is restoring whatever frequencies SLPC was running with initially. 
+Regarding resetting the frequencies to min for every engine loop 
+iteration, we are already iterating from min->max inside the for loop, 
+so will be duplication.
+
+Thanks for the detailed review,
+
+Vinay.
+
+>
+>          slpc_set_max_freq(slpc, slpc->rp0_freq);
+>          slpc_set_min_freq(slpc, slpc->min_freq);
+>
+> Thanks.
+> --
+> Ashutosh
