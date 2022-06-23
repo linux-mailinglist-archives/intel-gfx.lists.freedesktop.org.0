@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E41AB55768E
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 11:25:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A22B557690
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 11:26:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 912101137B8;
-	Thu, 23 Jun 2022 09:25:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0267C11A02F;
+	Thu, 23 Jun 2022 09:26:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6421F1137B8
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 09:25:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655976334; x=1687512334;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MhN+MYfPJQ9UxV3cKQ+WOdPSlIIEyFMkc4+3aDI8k04=;
- b=Fe9LYPuXZ5xijpxRzLR59oQIitveDkOzVmaMj+QzwPxWEarhoBBctM6x
- /2hjmTvNVWp2WHeBMMqbKj2fTsXsAzXeRA4hd+j6zINxnnx+V5wYjm0RA
- 3FWRx36AwxAx6J5eZlgmyItGDl0NC40PHb1i/0SH+g0PcG2c/PTzYXqSg
- Ns8txeh/o2cCr90LQfZRUnYPeeZ9TpY3ucME7PFgiNZCF+ydTw49F6T4b
- BB9Ef8PF1W6gCs1eB/MiDNDWk5uqJpQfJyAESfd4ok3F4drMv5cymTvOf
- cmGsD88iT7uOQggx/a276L8HBXNBpVeIV/YSiii7YzEJshVqNnxgYB+cT A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="278220321"
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; d="scan'208";a="278220321"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 02:25:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; d="scan'208";a="621248389"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by orsmga001.jf.intel.com with SMTP; 23 Jun 2022 02:25:22 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Jun 2022 12:25:21 +0300
-Date: Thu, 23 Jun 2022 12:25:21 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YrQxgbOEmVNnyPf8@intel.com>
-References: <20220621123732.1118437-1-jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E1DFA11A02A;
+ Thu, 23 Jun 2022 09:26:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D6CAFAADD8;
+ Thu, 23 Jun 2022 09:26:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1007539965010977041=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220621123732.1118437-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/bios: debug log ddi port info
- after parsing
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 23 Jun 2022 09:26:46 -0000
+Message-ID: <165597640687.17066.8096171297179109618@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1655895388.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1655895388.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/edid=3A_expand_on_struct_drm=5Fedid_usage_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,63 +40,226 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 21, 2022 at 03:37:32PM +0300, Jani Nikula wrote:
-> The ddc pin and aux channel sanitization may disable DVI/HDMI and DP,
-> respectively, of ports parsed earlier, in "last one wins" fashion. With
-> parsing and printing interleaved, we'll end up logging support first and
-> disabling later anyway.
-> 
-> Now that we've split ddi port info parsing and printing, take it further
-> by doing the printing in a separate loop, fixing the logging.
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+--===============1007539965010977041==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index ab23324c0402..51dde5bfd956 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -2670,8 +2670,6 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
->  
->  	sanitize_device_type(devdata, port);
->  
-> -	print_ddi_port(devdata, port);
-> -
->  	if (intel_bios_encoder_supports_dvi(devdata))
->  		sanitize_ddc_pin(devdata, port);
->  
-> @@ -2689,12 +2687,18 @@ static bool has_ddi_port_info(struct drm_i915_private *i915)
->  static void parse_ddi_ports(struct drm_i915_private *i915)
->  {
->  	struct intel_bios_encoder_data *devdata;
-> +	enum port port;
->  
->  	if (!has_ddi_port_info(i915))
->  		return;
->  
->  	list_for_each_entry(devdata, &i915->vbt.display_devices, node)
->  		parse_ddi_port(devdata);
-> +
-> +	for_each_port(port) {
-> +		if (i915->vbt.ports[port])
-> +			print_ddi_port(i915->vbt.ports[port], port);
-> +	}
->  }
->  
->  static void
-> -- 
-> 2.30.2
+Series: drm/edid: expand on struct drm_edid usage (rev6)
+URL   : https://patchwork.freedesktop.org/series/104309/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11795 -> Patchwork_104309v6
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/index.html
+
+Participating hosts (39 -> 34)
+------------------------------
+
+  Missing    (5): fi-rkl-11600 fi-bsw-n3050 bat-dg2-8 bat-adlp-6 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_104309v6 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_engines:
+    - fi-rkl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#4418])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11795/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
+    - fi-tgl-u2:          [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11795/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
+
+  * igt@runner@aborted:
+    - fi-rkl-guc:         NOTRUN -> [FAIL][6] ([i915#4312])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-rkl-guc/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][7] ([i915#3921]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11795/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
+    - fi-tgl-u2:          [DMESG-WARN][9] ([i915#402]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11795/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11795 -> Patchwork_104309v6
+
+  CI-20190529: 20190529
+  CI_DRM_11795: 5a84eaf663caab407f4baf1cd854f1ebd5980d61 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6541: 02153f109bd422d93cfce7f5aa9d7b0e22fab13c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_104309v6: 5a84eaf663caab407f4baf1cd854f1ebd5980d61 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+04e791613917 drm/todo: add entry for converting the subsystem to struct drm_edid
+621b1b7e1b31 drm/edid: take HF-EEODB extension count into account
+f63d3cfaaf1c drm/edid: add HF-EEODB support to EDID read and allocation
+279938efbb66 drm/edid: do invalid block filtering in-place
+09c8ecb85620 drm/i915/bios: convert intel_bios_init_panel() to drm_edid
+197835a2fb4d drm/i915/edid: convert DP, HDMI and LVDS to drm_edid
+96995b5046ae drm/edid: add drm_edid_raw() to access the raw EDID data
+cfe9d127cf54 drm/probe-helper: add drm_connector_helper_get_modes()
+e726f2478121 drm/edid: add drm_edid_connector_update()
+3324667fc844 drm/edid: abstract debugfs override EDID set/reset
+b0832843f460 drm/edid: clean up connector update error handling and debug logging
+ab8fa091f168 drm/edid: convert drm_connector_update_edid_property() to struct drm_edid
+4961061f2af1 drm/edid: move drm_connector_update_edid_property() to drm_edid.c
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/index.html
+
+--===============1007539965010977041==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/edid: expand on struct drm_edid usage (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104309/">https://patchwork.freedesktop.org/series/104309/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11795 -&gt; Patchwork_104309v6</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/index.html</p>
+<h2>Participating hosts (39 -&gt; 34)</h2>
+<p>Missing    (5): fi-rkl-11600 fi-bsw-n3050 bat-dg2-8 bat-adlp-6 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_104309v6 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11795/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11795/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11795/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms@a-edp1:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11795/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104309v6/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11795 -&gt; Patchwork_104309v6</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11795: 5a84eaf663caab407f4baf1cd854f1ebd5980d61 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6541: 02153f109bd422d93cfce7f5aa9d7b0e22fab13c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_104309v6: 5a84eaf663caab407f4baf1cd854f1ebd5980d61 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>04e791613917 drm/todo: add entry for converting the subsystem to struct drm_edid<br />
+621b1b7e1b31 drm/edid: take HF-EEODB extension count into account<br />
+f63d3cfaaf1c drm/edid: add HF-EEODB support to EDID read and allocation<br />
+279938efbb66 drm/edid: do invalid block filtering in-place<br />
+09c8ecb85620 drm/i915/bios: convert intel_bios_init_panel() to drm_edid<br />
+197835a2fb4d drm/i915/edid: convert DP, HDMI and LVDS to drm_edid<br />
+96995b5046ae drm/edid: add drm_edid_raw() to access the raw EDID data<br />
+cfe9d127cf54 drm/probe-helper: add drm_connector_helper_get_modes()<br />
+e726f2478121 drm/edid: add drm_edid_connector_update()<br />
+3324667fc844 drm/edid: abstract debugfs override EDID set/reset<br />
+b0832843f460 drm/edid: clean up connector update error handling and debug logging<br />
+ab8fa091f168 drm/edid: convert drm_connector_update_edid_property() to struct drm_edid<br />
+4961061f2af1 drm/edid: move drm_connector_update_edid_property() to drm_edid.c</p>
+
+</body>
+</html>
+
+--===============1007539965010977041==--
