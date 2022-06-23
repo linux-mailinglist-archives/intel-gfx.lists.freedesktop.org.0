@@ -2,60 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A89E7557861
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 13:05:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45DC655786D
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 13:07:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB4E010E36D;
-	Thu, 23 Jun 2022 11:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D7D110EC28;
+	Thu, 23 Jun 2022 11:07:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A85310E36D;
- Thu, 23 Jun 2022 11:05:56 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDD5010E36D;
+ Thu, 23 Jun 2022 11:07:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655982357; x=1687518357;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=13XOENe0irCM+kI77q75ASTCU+eCvf/oQlu39KeQd6s=;
- b=ERDyjomF0MolLcbUZww0rWaoF4HfIsX7s2Lb8H0kXWSuj/7t6JDkgaDR
- 1hHQWtulZFu7LOfU2IZGv3NE0FvHxhgRYY4PED49c00Ph6tyvWif0mAYo
- c7kXlud20x77UpD3MBPZSvExLxSz2NEIlXMWeZneSBJ7mh2SnCMjHw+2f
- UchT+LhpaTBE/ZyNPlIaD9OU7IVv535/GBfea6oGOjO9rJeR/7lP7HtS4
- gwe4f3w+cbDMsBbrQGrBm9KsdntD/YAbj9azW8z77NKZ2A22lwg6915aV
- XOVCf5saBe4iBFLEkJQmLZH5lVKLQqaJ248iH7uTvWmjE50+3Wc5OY0N6 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="281767321"
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; d="scan'208";a="281767321"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 04:05:56 -0700
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; d="scan'208";a="615539098"
-Received: from bo3zhang-mobl.amr.corp.intel.com (HELO [10.212.47.148])
- ([10.212.47.148])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 04:05:54 -0700
-Message-ID: <6d70cde9-f856-540a-b1d4-0325596b0c88@linux.intel.com>
-Date: Thu, 23 Jun 2022 12:05:52 +0100
+ t=1655982463; x=1687518463;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=psEJ+vJmelq51ss3ng/bRO3PFKsQrysX325BnCxiWyU=;
+ b=XeazfvLOTFqA9JJstho5+tEtmUuMAZfqaPxIBKbLJ6+cnyKmO0SJDdZd
+ 7MCxRDnhFh8aZmixMu5RWWNONkOj4wU8b65IZzW64gCsk10k5JXt3BnvJ
+ 5WcekYVw3tp0msPscz4CMfKdYpk97hsBmZBwe16iDQjZ0dmyYq8fPrVY0
+ hXaOjNr8oqtGQTENCfxDNlmLK0bz7HkzLzCcqhfx8zI4v1CbOHCYjKv7w
+ kjxXgujAOiZUntR4+jkNtYn5K0Wge7nSPNHObjvOAtfvFQ/wumzKZgGqB
+ Xp+UBF6bH0jg/eWIc5ENqa+9njSpGyM17KEdGZzNVFNt1yOGHetK9BvDu A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="263723595"
+X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; d="scan'208";a="263723595"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2022 04:07:43 -0700
+X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; d="scan'208";a="644687438"
+Received: from hazegrou-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.216.121])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2022 04:07:37 -0700
+Date: Thu, 23 Jun 2022 13:07:35 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+Message-ID: <YrRJd2oBgpcVJ/M4@intel.intel>
+References: <cover.1655306128.git.mchehab@kernel.org>
+ <653bf9815d562f02c7247c6b66b85b243f3172e7.1655306128.git.mchehab@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-References: <20220622035650.29256-1-niranjana.vishwanathapura@intel.com>
- <20220622035650.29256-4-niranjana.vishwanathapura@intel.com>
- <6ac2f495-8ead-4824-f9af-1c03fb3770c4@linux.intel.com>
- <20220622151229.GY376@nvishwa1-DESK>
- <b347fb63-5200-9f5c-b0d6-ca51b7a064f9@linux.intel.com>
- <20220622164445.GZ376@nvishwa1-DESK>
- <e6ed0d2f-ee2a-2219-c2cc-49efc32f0560@linux.intel.com>
- <1874e47b-4337-5ac6-ebea-fca21ea1ba4c@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <1874e47b-4337-5ac6-ebea-fca21ea1ba4c@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/doc/rfc: VM_BIND uapi definition
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <653bf9815d562f02c7247c6b66b85b243f3172e7.1655306128.git.mchehab@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/gt: Invalidate TLB of the OA
+ unit at TLB invalidations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,55 +59,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, thomas.hellstrom@intel.com,
- chris.p.wilson@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com,
- matthew.auld@intel.com
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Dave Airlie <airlied@redhat.com>,
+ Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, mauro.chehab@linux.intel.com,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Mauro,
 
-On 23/06/2022 09:57, Lionel Landwerlin wrote:
-> On 23/06/2022 11:27, Tvrtko Ursulin wrote:
->>>
->>> After a vm_unbind, UMD can re-bind to same VA range against an active 
->>> VM.
->>> Though I am not sue with Mesa usecase if that new mapping is required 
->>> for
->>> running GPU job or it will be for the next submission. But ensuring the
->>> tlb flush upon unbind, KMD can ensure correctness.
->>
->> Isn't that their problem? If they re-bind for submitting _new_ work 
->> then they get the flush as part of batch buffer pre-amble. 
+On Wed, Jun 15, 2022 at 04:27:36PM +0100, Mauro Carvalho Chehab wrote:
+> From: Chris Wilson <chris.p.wilson@intel.com>
 > 
-> In the non sparse case, if a VA range is unbound, it is invalid to use 
-> that range for anything until it has been rebound by something else.
+> On gen12 HW, ensure that the TLB of the OA unit is also invalidated
+> as just invalidating the TLB of an engine is not enough.
 > 
-> We'll take the fence provided by vm_bind and put it as a wait fence on 
-> the next execbuffer.
+> Fixes: 7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
 > 
-> It might be safer in case of memory over fetching?
-> 
-> 
-> TLB flush will have to happen at some point right?
-> 
-> What's the alternative to do it in unbind?
+> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+> Cc: Fei Yang <fei.yang@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: stable@vger.kernel.org
+> Acked-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-Currently TLB flush happens from the ring before every BB_START and also 
-when i915 returns the backing store pages to the system.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-For the former, I haven't seen any mention that for execbuf3 there are 
-plans to stop doing it? Anyway, as long as this is kept and sequence of 
-bind[1..N]+execbuf is safe and correctly sees all the preceding binds.
-Hence about the alternative to doing it in unbind - first I think lets 
-state the problem that is trying to solve.
-
-For instance is it just for the compute "append work to the running 
-batch" use case? I honestly don't remember how was that supposed to work 
-so maybe the tlb flush on bind was supposed to deal with that scenario?
-
-Or you see a problem even for Mesa with the current model?
-
-Regards,
-
-Tvrtko
+Thanks,
+Andi
