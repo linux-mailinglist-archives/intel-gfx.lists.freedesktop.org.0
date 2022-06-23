@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F552557C84
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 15:09:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F74557C85
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 15:09:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51E1210E5D9;
-	Thu, 23 Jun 2022 13:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3C2310E5E5;
+	Thu, 23 Jun 2022 13:09:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C22DB10E5D9
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 13:09:16 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 452CF10ED03
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 13:09:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655989756; x=1687525756;
+ t=1655989760; x=1687525760;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=2cqk18RhDxfcPcvUZG4dE0SlGpyjdN3pOp+v2obr+1E=;
- b=e55ASSeM2GGxVMjv/KtRVnKmqMYuc4NzXu490az4X2mgqwGIaQ1VA0LU
- YrDX9aCOLjKjqsihVJnRWxqJZq+RPnPbXmYg3LHj90mblefcYfESTgw2r
- Gc1cOFl1cph9uYjJCHeqH5ZJXC/3NzdgwsZunX9PqIbEIodAQ4UmaIvIU
- 8ZfqQxr0gq6b4ixGckGW5VjkmEQ9mydbYpkngacrTMhPpR6cTF5QQC1wH
- I8i6goCM27WDxEOpwd/QqoENLFr4OgRL5bJ8m2fzStw2yspCxPBF9g/GL
- mwfg26ubxLtQV/WudMnSpB0/jyNRBGdnqyGwnqNsPCvBuQ2Oaw8gzeY+H Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="281791593"
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="281791593"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 06:09:15 -0700
+ bh=tcmzupEC8f5l2C9O+SnY18M20Vs5sjlMkpH/GyxKb3Q=;
+ b=cxgRg7AlhaMpEP+bSe0UTZWACwcnPZJxwHeombsLcrxvpejuqe6WSbLE
+ HroKCsD/4f6kvbDfkKvobLkCo5GjZ7s1mpG3XTJ5CDz7IBSj4lD2UT927
+ UIUfpYr7BRjjM9VoZq4G1NWuwA//SuHTz8P2Y4h5CfG+VGFHQ9yTU2CWK
+ PeT0i+grWv4zADMD5/zQcbkFnI2Wqbc7UHX1w3JVRXKASzpuQN3YnWJFm
+ ot4ELVweSbmdMC5SH085i1GQpE1WgUAxsTvp4HXx8JEM2q8aHnsdni2Z/
+ XThMBxYGclnDhje+D7NnLSu9GvjoLPaQ8spxtiTbaYD4bxFRMyQqQxy1C g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="344703283"
+X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="344703283"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2022 06:09:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="621309574"
+X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; d="scan'208";a="588614428"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by orsmga001.jf.intel.com with SMTP; 23 Jun 2022 06:09:13 -0700
+ by orsmga002.jf.intel.com with SMTP; 23 Jun 2022 06:09:16 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Jun 2022 16:09:12 +0300
+ Thu, 23 Jun 2022 16:09:15 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jun 2022 16:08:55 +0300
-Message-Id: <20220623130900.26078-5-ville.syrjala@linux.intel.com>
+Date: Thu, 23 Jun 2022 16:08:56 +0300
+Message-Id: <20220623130900.26078-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220623130900.26078-1-ville.syrjala@linux.intel.com>
 References: <20220623130900.26078-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/9] drm/i915: Make pipe_offsets[] & co. u32
+Subject: [Intel-gfx] [PATCH 5/9] drm/i915: s/_CURSOR2/_MMIO_CURSOR2//
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,31 +63,46 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Using a signed type for the register offsets doesn't really
-make sense. Switch to u32.
+The other similar macros have the _MMIO prefix, so give
+it also to _CURSOR2.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_device_info.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index e3b40f5782a4..2be7ba78f123 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -242,9 +242,9 @@ struct intel_device_info {
- 		u32 mmio_offset;
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index c64cf302ccb7..b3fe01aaeba8 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -168,7 +168,7 @@
+ 					 INTEL_INFO(dev_priv)->display.trans_offsets[TRANSCODER_A] + \
+ 					 DISPLAY_MMIO_BASE(dev_priv) + (reg))
+ #define _MMIO_TRANS2(tran, reg)		_MMIO(_TRANS2(tran, reg))
+-#define _CURSOR2(pipe, reg)		_MMIO(INTEL_INFO(dev_priv)->display.cursor_offsets[(pipe)] - \
++#define _MMIO_CURSOR2(pipe, reg)	_MMIO(INTEL_INFO(dev_priv)->display.cursor_offsets[(pipe)] - \
+ 					      INTEL_INFO(dev_priv)->display.cursor_offsets[PIPE_A] + \
+ 					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
  
- 		/* Register offsets for the various display pipes and transcoders */
--		int pipe_offsets[I915_MAX_TRANSCODERS];
--		int trans_offsets[I915_MAX_TRANSCODERS];
--		int cursor_offsets[I915_MAX_PIPES];
-+		u32 pipe_offsets[I915_MAX_TRANSCODERS];
-+		u32 trans_offsets[I915_MAX_TRANSCODERS];
-+		u32 cursor_offsets[I915_MAX_PIPES];
- 	} display;
+@@ -4328,12 +4328,12 @@
+ #define _CURBBASE_IVB		0x71084
+ #define _CURBPOS_IVB		0x71088
  
+-#define CURCNTR(pipe) _CURSOR2(pipe, _CURACNTR)
+-#define CURBASE(pipe) _CURSOR2(pipe, _CURABASE)
+-#define CURPOS(pipe) _CURSOR2(pipe, _CURAPOS)
+-#define CURSIZE(pipe) _CURSOR2(pipe, _CURASIZE)
+-#define CUR_FBC_CTL(pipe) _CURSOR2(pipe, _CUR_FBC_CTL_A)
+-#define CURSURFLIVE(pipe) _CURSOR2(pipe, _CURASURFLIVE)
++#define CURCNTR(pipe) _MMIO_CURSOR2(pipe, _CURACNTR)
++#define CURBASE(pipe) _MMIO_CURSOR2(pipe, _CURABASE)
++#define CURPOS(pipe) _MMIO_CURSOR2(pipe, _CURAPOS)
++#define CURSIZE(pipe) _MMIO_CURSOR2(pipe, _CURASIZE)
++#define CUR_FBC_CTL(pipe) _MMIO_CURSOR2(pipe, _CUR_FBC_CTL_A)
++#define CURSURFLIVE(pipe) _MMIO_CURSOR2(pipe, _CURASURFLIVE)
  
+ #define CURSOR_A_OFFSET 0x70080
+ #define CURSOR_B_OFFSET 0x700c0
 -- 
 2.35.1
 
