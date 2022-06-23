@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D8AC5576CC
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 11:39:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A6E35576EA
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jun 2022 11:44:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20A6D10E190;
-	Thu, 23 Jun 2022 09:39:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58BD5113F88;
+	Thu, 23 Jun 2022 09:44:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2DB10E190
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 09:39:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1655977157; x=1687513157;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=YAu4iQSE8pnWzlNG2HJ9LlCXuMAZCuZjPwjGBHb4qz4=;
- b=UXy0jHstjKRMIr4nmuAxurWBEP7S6Z00ICByy4ITvwy5iBEHZeg3bfCR
- PLlLL31b7YMqWOFXXYeo5uByVlNq6rMR5A5JmBnxe3qDsQpDYT5dy5fNM
- 1+H9RVxp79xSq3yHmXTTywKfNu0hUhuYOw9/G+BASyCWnYC3c9VLZjBjl
- mZJo4ebjp7NducZ0dE45AwQqhCC0BMtg4jNrEAhtY7/rF+5uw38ngVk+Y
- 0dmjjyu+EvAYAcjHsEnBkv6l/H2r2DXVnmo28zNU/pU79ONv+9T5aKP6z
- mfB6DqXUaRwu1rOY4RMoi61TzzEEAOUCGjgIBo4yhu84lW9g9Erqa5vVw A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="279442079"
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; d="scan'208";a="279442079"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2022 02:39:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; d="scan'208";a="615517692"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.163])
- by orsmga008.jf.intel.com with SMTP; 23 Jun 2022 02:39:13 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Jun 2022 12:39:12 +0300
-Date: Thu, 23 Jun 2022 12:39:12 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YrQ0wKJqc98VQ10Y@intel.com>
-References: <cover.1655748056.git.jani.nikula@intel.com>
- <a0edacd8be456458b432e77865cf3bf0078ec9c6.1655748056.git.jani.nikula@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF001113F88
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 09:44:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1655977469;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=5Z+ZDJJgpbgIXOZdFi38EUFLQ9DT89Je0CI9wqZBuNk=;
+ b=WsK7lRIqe8O26GxhDScwQm/bUutjhuKUXXph/u1vHjZT5VZRWSb0M51xqfeUhGecQWXV7j
+ MXSowZesw4fbYX0mGb7CzypgSSCHBJsd3CeJqe+ImCtf5L449obS5h705mW4jbEC59a27J
+ j3TwELUP+p21POee6UcCy8iodS4frJI=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-163-smz41-0vPfiHxCFPUHlplg-1; Thu, 23 Jun 2022 05:44:26 -0400
+X-MC-Unique: smz41-0vPfiHxCFPUHlplg-1
+Received: from smtp.corp.redhat.com (int-mx09.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.9])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 623D4185A7B2;
+ Thu, 23 Jun 2022 09:44:25 +0000 (UTC)
+Received: from starship (unknown [10.40.194.180])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 3462E492CA5;
+ Thu, 23 Jun 2022 09:44:19 +0000 (UTC)
+Message-ID: <f64191bf059d1fe73627a8738b831ce4b06548c4.camel@redhat.com>
+From: Maxim Levitsky <mlevitsk@redhat.com>
+To: Sean Christopherson <seanjc@google.com>
+Date: Thu, 23 Jun 2022 12:44:18 +0300
+In-Reply-To: <YoZrG3n5fgMp4LQl@google.com>
+References: <20220427200314.276673-1-mlevitsk@redhat.com>
+ <20220427200314.276673-3-mlevitsk@redhat.com> <YoZrG3n5fgMp4LQl@google.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-2.fc32) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a0edacd8be456458b432e77865cf3bf0078ec9c6.1655748056.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [RFC 2/2] drm/i915/display: add
- intel_display_features.h for feature check macros
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.9
+Subject: Re: [Intel-gfx] [RFC PATCH v3 02/19] KVM: x86: inhibit APICv/AVIC
+ when the guest and/or host changes apic id/base from the defaults.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,249 +63,273 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, Dave Hansen <dave.hansen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, "H. Peter Anvin" <hpa@zytor.com>,
+ Brijesh Singh <brijesh.singh@amd.com>, Joerg Roedel <joro@8bytes.org>,
+ x86@kernel.org, Ingo Molnar <mingo@redhat.com>,
+ Tom Lendacky <thomas.lendacky@amd.com>, intel-gfx@lists.freedesktop.org,
+ Borislav Petkov <bp@alien8.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
+ Jim Mattson <jmattson@google.com>, linux-kernel@vger.kernel.org,
+ Paolo Bonzini <pbonzini@redhat.com>, Vitaly Kuznetsov <vkuznets@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 20, 2022 at 09:03:51PM +0300, Jani Nikula wrote:
-> Group widely used display feature check macros together in one place.
-
-I was also pondering whether we could pull in the whole INTEL_INFO->display
-struct definition, but dunno if that would just make a bigger mess of the
-includes.
-
+On Thu, 2022-05-19 at 16:06 +0000, Sean Christopherson wrote:
+> On Wed, Apr 27, 2022, Maxim Levitsky wrote:
+> > Neither of these settings should be changed by the guest and it is
+> > a burden to support it in the acceleration code, so just inhibit
+> > it instead.
+> > 
+> > Also add a boolean 'apic_id_changed' to indicate if apic id ever changed.
+> > 
+> > Signed-off-by: Maxim Levitsky <mlevitsk@redhat.com>
+> > ---
+> >  arch/x86/include/asm/kvm_host.h |  3 +++
+> >  arch/x86/kvm/lapic.c            | 25 ++++++++++++++++++++++---
+> >  arch/x86/kvm/lapic.h            |  8 ++++++++
+> >  3 files changed, 33 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/arch/x86/include/asm/kvm_host.h b/arch/x86/include/asm/kvm_host.h
+> > index 63eae00625bda..636df87542555 100644
+> > --- a/arch/x86/include/asm/kvm_host.h
+> > +++ b/arch/x86/include/asm/kvm_host.h
+> > @@ -1070,6 +1070,8 @@ enum kvm_apicv_inhibit {
+> >  	APICV_INHIBIT_REASON_ABSENT,
+> >  	/* AVIC is disabled because SEV doesn't support it */
+> >  	APICV_INHIBIT_REASON_SEV,
+> > +	/* APIC ID and/or APIC base was changed by the guest */
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> I don't see any reason to inhibit APICv if the APIC base is changed.  KVM has
+> never supported that, and disabling APICv won't "fix" anything.
+> 
+> Ignoring that is a minor simplification, but also allows for a more intuitive
+> name, e.g.
+> 
+> 	APICV_INHIBIT_REASON_APIC_ID_MODIFIED,
+> 
+> The inhibit also needs to be added avic_check_apicv_inhibit_reasons() and
+> vmx_check_apicv_inhibit_reasons().
+> 
+> > +	APICV_INHIBIT_REASON_RO_SETTINGS,
+> >  };
+> >  
+> >  struct kvm_arch {
+> > @@ -1258,6 +1260,7 @@ struct kvm_arch {
+> >  	hpa_t	hv_root_tdp;
+> >  	spinlock_t hv_root_tdp_lock;
+> >  #endif
+> > +	bool apic_id_changed;
+> >  };
+> >  
+> >  struct kvm_vm_stat {
+> > diff --git a/arch/x86/kvm/lapic.c b/arch/x86/kvm/lapic.c
+> > index 66b0eb0bda94e..8996675b3ef4c 100644
+> > --- a/arch/x86/kvm/lapic.c
+> > +++ b/arch/x86/kvm/lapic.c
+> > @@ -2038,6 +2038,19 @@ static void apic_manage_nmi_watchdog(struct kvm_lapic *apic, u32 lvt0_val)
+> >  	}
+> >  }
+> >  
+> > +static void kvm_lapic_check_initial_apic_id(struct kvm_lapic *apic)
+> 
+> The "check" part is misleading/confusing.  "check" helpers usually query and return
+> state.  I assume you avoided "changed" because the ID may or may not actually be
+> changing.  Maybe kvm_apic_id_updated()?  Ah, better idea.  What about
+> kvm_lapic_xapic_id_updated()?  See below for reasoning.
+> 
+> > +{
+> > +	if (kvm_apic_has_initial_apic_id(apic))
+> 
+> Rather than add a single-use helper, invoke the helper from kvm_apic_state_fixup()
+> in the !x2APIC path, then this can KVM_BUG_ON() x2APIC to help document that KVM
+> should never allow the ID to change for x2APIC.
+> 
+> > +		return;
+> > +
+> > +	pr_warn_once("APIC ID change is unsupported by KVM");
+> 
+> It's supported (modulo x2APIC shenanigans), otherwise KVM wouldn't need to disable
+> APICv.
+> 
+> > +	kvm_set_apicv_inhibit(apic->vcpu->kvm,
+> > +			APICV_INHIBIT_REASON_RO_SETTINGS);
+> > +
+> > +	apic->vcpu->kvm->arch.apic_id_changed = true;
+> > +}
+> > +
+> >  static int kvm_lapic_reg_write(struct kvm_lapic *apic, u32 reg, u32 val)
+> >  {
+> >  	int ret = 0;
+> > @@ -2046,9 +2059,11 @@ static int kvm_lapic_reg_write(struct kvm_lapic *apic, u32 reg, u32 val)
+> >  
+> >  	switch (reg) {
+> >  	case APIC_ID:		/* Local APIC ID */
+> > -		if (!apic_x2apic_mode(apic))
+> > +		if (!apic_x2apic_mode(apic)) {
+> > +
+> 
+> Spurious newline.
+> 
+> >  			kvm_apic_set_xapic_id(apic, val >> 24);
+> > -		else
+> > +			kvm_lapic_check_initial_apic_id(apic);
+> > +		} else
+> 
+> Needs curly braces for both paths.
+> 
+> >  			ret = 1;
+> >  		break;
+> >  
+> 
+> E.g.
+> 
 > ---
->  .../drm/i915/display/intel_display_features.h | 37 +++++++++++++++++++
->  .../i915/display/intel_display_power_map.c    |  5 +--
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  .../gpu/drm/i915/display/intel_lpe_audio.c    |  1 +
->  drivers/gpu/drm/i915/i915_drv.h               | 35 ------------------
->  drivers/gpu/drm/i915/i915_suspend.c           |  1 +
->  drivers/gpu/drm/i915/intel_device_info.c      |  1 +
->  drivers/gpu/drm/i915/intel_dram.c             |  1 +
->  drivers/gpu/drm/i915/intel_pch.c              |  1 +
->  9 files changed, 45 insertions(+), 38 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_features.h
+>  arch/x86/include/asm/kvm_host.h |  1 +
+>  arch/x86/kvm/lapic.c            | 21 +++++++++++++++++++--
+>  arch/x86/kvm/svm/avic.c         |  3 ++-
+>  arch/x86/kvm/vmx/vmx.c          |  3 ++-
+>  4 files changed, 24 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_features.h b/drivers/gpu/drm/i915/display/intel_display_features.h
-> new file mode 100644
-> index 000000000000..019ee4c10252
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_display_features.h
-> @@ -0,0 +1,37 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2022 Intel Corporation
-> + */
+> diff --git a/arch/x86/include/asm/kvm_host.h b/arch/x86/include/asm/kvm_host.h
+> index d895d25c5b2f..d888fa1bae77 100644
+> --- a/arch/x86/include/asm/kvm_host.h
+> +++ b/arch/x86/include/asm/kvm_host.h
+> @@ -1071,6 +1071,7 @@ enum kvm_apicv_inhibit {
+>  	APICV_INHIBIT_REASON_BLOCKIRQ,
+>  	APICV_INHIBIT_REASON_ABSENT,
+>  	APICV_INHIBIT_REASON_SEV,
+> +	APICV_INHIBIT_REASON_APIC_ID_MODIFIED,
+>  };
+> 
+>  struct kvm_arch {
+> diff --git a/arch/x86/kvm/lapic.c b/arch/x86/kvm/lapic.c
+> index 5fd678c90288..6fe8f20f03d8 100644
+> --- a/arch/x86/kvm/lapic.c
+> +++ b/arch/x86/kvm/lapic.c
+> @@ -2039,6 +2039,19 @@ static void apic_manage_nmi_watchdog(struct kvm_lapic *apic, u32 lvt0_val)
+>  	}
+>  }
+> 
+> +static void kvm_lapic_xapic_id_updated(struct kvm_lapic *apic)
+> +{
+> +	struct kvm *kvm = apic->vcpu->kvm;
 > +
-> +#ifndef __INTEL_DISPLAY_FEATURES_H__
-> +#define __INTEL_DISPLAY_FEATURES_H__
+> +	if (KVM_BUG_ON(apic_x2apic_mode(apic), kvm))
+> +		return;
 > +
-> +/* Platform based conditions */
-> +#define HAS_ASYNC_FLIPS(__i915)		(DISPLAY_VER(__i915) >= 5)
-> +#define HAS_D12_PLANE_MINIMIZATION(__i915) (IS_ROCKETLAKE(__i915) || IS_ALDERLAKE_S(__i915))
-> +#define HAS_DP20(__i915)		(IS_DG2(__i915))
-> +#define HAS_HW_SAGV_WM(__i915)		(DISPLAY_VER(__i915) >= 13 && !IS_DGFX(__i915))
-> +#define HAS_IPS(__i915)			(IS_HSW_ULT(__i915) || IS_BROADWELL(__i915))
-> +#define HAS_MSO(__i915)			(DISPLAY_VER(__i915) >= 12)
-> +#define HAS_VRR(__i915)			(DISPLAY_VER(__i915) >= 11)
+> +	if (kvm_xapic_id(apic) == apic->vcpu->vcpu_id)
+> +		return;
 > +
-> +/* Device info flags */
-> +#define HAS_DDI(__i915)		 	(INTEL_INFO(__i915)->display.has_ddi)
-> +#define HAS_DISPLAY(__i915)		(INTEL_INFO(__i915)->display.pipe_mask != 0)
-> +#define HAS_DP_MST(__i915)		(INTEL_INFO(__i915)->display.has_dp_mst)
-> +#define HAS_FBC(__i915)			(INTEL_INFO(__i915)->display.fbc_mask != 0)
-> +#define HAS_GMCH(__i915)		(INTEL_INFO(__i915)->display.has_gmch)
-> +#define HAS_IPC(__i915)			(INTEL_INFO(__i915)->display.has_ipc)
-> +#define HAS_PSR(__i915)		 	(INTEL_INFO(__i915)->display.has_psr)
-> +#define HAS_TRANSCODER(__i915, trans)	((INTEL_INFO(__i915)->display.cpu_transcoder_mask & BIT(trans)) != 0)
-> +#define I915_HAS_HOTPLUG(__i915)	(INTEL_INFO(__i915)->display.has_hotplug)
-> +#define INTEL_NUM_PIPES(__i915)		(hweight8(INTEL_INFO(__i915)->display.pipe_mask))
-> +#define SUPPORTS_TV(__i915)		(INTEL_INFO(__i915)->display.supports_tv)
+> +	kvm_set_apicv_inhibit(kvm, APICV_INHIBIT_REASON_APIC_ID_MODIFIED);
+> +}
 > +
-> +/* Only valid when HAS_DISPLAY() is true */
-> +#define INTEL_DISPLAY_ENABLED(__i915) \
-> +	(drm_WARN_ON(&(__i915)->drm, !HAS_DISPLAY(__i915)),		\
-> +	 !(__i915)->params.disable_display &&				\
-> +	 !intel_opregion_headless_sku(__i915))
-> +
-> +#endif /* __INTEL_DISPLAY_FEATURES_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> index 97b367f39f35..d84fdcdea588 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> @@ -5,11 +5,10 @@
->  
->  #include "i915_drv.h"
->  #include "i915_reg.h"
-> -
-> -#include "vlv_sideband_reg.h"
-> -
-> +#include "intel_display_features.h"
->  #include "intel_display_power_map.h"
->  #include "intel_display_power_well.h"
-> +#include "vlv_sideband_reg.h"
->  
->  #define __LIST_INLINE_ELEMS(__elem_type, ...) \
->  	((__elem_type[]) { __VA_ARGS__ })
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 8b0949b6dc75..9dd008c7b4ec 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -49,6 +49,7 @@
->  #include "i915_vma_types.h"
->  #include "intel_bios.h"
->  #include "intel_display.h"
-> +#include "intel_display_features.h"
->  #include "intel_display_power.h"
->  #include "intel_dpll_mgr.h"
->  #include "intel_pm_types.h"
-> diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> index 4970bf146c4a..9c89801ebaa7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-> @@ -72,6 +72,7 @@
->  
->  #include "i915_drv.h"
->  #include "intel_de.h"
-> +#include "intel_display_features.h"
->  #include "intel_lpe_audio.h"
->  
->  #define HAS_LPE_AUDIO(dev_priv) ((dev_priv)->audio.lpe.platdev != NULL)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 1d9ba4cf9e01..fd2a4c3b5d74 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1227,20 +1227,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->   */
->  #define HAS_128_BYTE_Y_TILING(dev_priv) (GRAPHICS_VER(dev_priv) != 2 && \
->  					 !(IS_I915G(dev_priv) || IS_I915GM(dev_priv)))
-> -#define SUPPORTS_TV(dev_priv)		(INTEL_INFO(dev_priv)->display.supports_tv)
-> -#define I915_HAS_HOTPLUG(dev_priv)	(INTEL_INFO(dev_priv)->display.has_hotplug)
-> -
-> -#define HAS_FBC(dev_priv)	(INTEL_INFO(dev_priv)->display.fbc_mask != 0)
-> -
-> -#define HAS_IPS(dev_priv)	(IS_HSW_ULT(dev_priv) || IS_BROADWELL(dev_priv))
-> -
-> -#define HAS_DP_MST(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dp_mst)
-> -#define HAS_DP20(dev_priv)	(IS_DG2(dev_priv))
-> -
-> -#define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
->  #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.has_fpga_dbg)
-> -#define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
-> -#define HAS_TRANSCODER(dev_priv, trans)	 ((INTEL_INFO(dev_priv)->display.cpu_transcoder_mask & BIT(trans)) != 0)
->  
->  #define HAS_RC6(dev_priv)		 (INTEL_INFO(dev_priv)->has_rc6)
->  #define HAS_RC6p(dev_priv)		 (INTEL_INFO(dev_priv)->has_rc6p)
-> @@ -1256,7 +1243,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  
->  #define HAS_HECI_GSC(dev_priv) (HAS_HECI_PXP(dev_priv) || HAS_HECI_GSCFI(dev_priv))
->  
-> -#define HAS_MSO(i915)		(DISPLAY_VER(i915) >= 12)
->  
->  #define HAS_RUNTIME_PM(dev_priv) (INTEL_INFO(dev_priv)->has_runtime_pm)
->  #define HAS_64BIT_RELOC(dev_priv) (INTEL_INFO(dev_priv)->has_64bit_reloc)
-> @@ -1274,8 +1260,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->   */
->  #define NEEDS_COMPACT_PT(dev_priv) (INTEL_INFO(dev_priv)->needs_compact_pt)
->  
-> -#define HAS_IPC(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ipc)
-> -
->  #define HAS_REGION(i915, i) (INTEL_INFO(i915)->memory_regions & (i))
->  #define HAS_LMEM(i915) HAS_REGION(i915, REGION_LMEM)
->  
-> @@ -1295,8 +1279,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  			    INTEL_INFO(dev_priv)->has_pxp) && \
->  			    VDBOX_MASK(to_gt(dev_priv)))
->  
-> -#define HAS_GMCH(dev_priv) (INTEL_INFO(dev_priv)->display.has_gmch)
-> -
->  #define HAS_L3_CCS_READ(i915) (INTEL_INFO(i915)->has_l3_ccs_read)
->  
->  /* DPF == dynamic parity feature */
-> @@ -1307,29 +1289,12 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  #define GT_FREQUENCY_MULTIPLIER 50
->  #define GEN9_FREQ_SCALER 3
->  
-> -#define INTEL_NUM_PIPES(dev_priv) (hweight8(INTEL_INFO(dev_priv)->display.pipe_mask))
-> -
-> -#define HAS_DISPLAY(dev_priv) (INTEL_INFO(dev_priv)->display.pipe_mask != 0)
-> -
-> -#define HAS_VRR(i915)	(DISPLAY_VER(i915) >= 11)
-> -
-> -#define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
-> -
-> -/* Only valid when HAS_DISPLAY() is true */
-> -#define INTEL_DISPLAY_ENABLED(dev_priv) \
-> -	(drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)),		\
-> -	 !(dev_priv)->params.disable_display &&				\
-> -	 !intel_opregion_headless_sku(dev_priv))
-> -
->  #define HAS_GUC_DEPRIVILEGE(dev_priv) \
->  	(INTEL_INFO(dev_priv)->has_guc_deprivilege)
->  
->  #define HAS_PERCTX_PREEMPT_CTRL(i915) \
->  	((GRAPHICS_VER(i915) >= 9) &&  GRAPHICS_VER_FULL(i915) < IP_VER(12, 55))
->  
-> -#define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
-> -					      IS_ALDERLAKE_S(dev_priv))
-> -
->  #define HAS_3D_PIPELINE(i915)	(INTEL_INFO(i915)->has_3d_pipeline)
->  
->  #define HAS_ONE_EU_PER_FUSE_BIT(i915)	(INTEL_INFO(i915)->has_one_eu_per_fuse_bit)
-> diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i915_suspend.c
-> index 81def10eb58f..af338f535fb1 100644
-> --- a/drivers/gpu/drm/i915/i915_suspend.c
-> +++ b/drivers/gpu/drm/i915/i915_suspend.c
-> @@ -25,6 +25,7 @@
->   */
->  
->  #include "display/intel_de.h"
-> +#include "display/intel_display_features.h"
->  #include "display/intel_gmbus.h"
->  #include "display/intel_vga.h"
->  
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index f0bf23726ed8..94310ac38137 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -29,6 +29,7 @@
->  
->  #include "display/intel_cdclk.h"
->  #include "display/intel_de.h"
-> +#include "display/intel_display_features.h"
->  #include "intel_device_info.h"
->  #include "i915_drv.h"
->  #include "i915_utils.h"
-> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
-> index 437447119770..757fae87a32a 100644
-> --- a/drivers/gpu/drm/i915/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/intel_dram.c
-> @@ -5,6 +5,7 @@
->  
->  #include <linux/string_helpers.h>
->  
-> +#include "display/intel_display_features.h"
->  #include "i915_drv.h"
->  #include "i915_reg.h"
->  #include "intel_dram.h"
-> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-> index e2b2bbdc0714..c60c8460eba9 100644
-> --- a/drivers/gpu/drm/i915/intel_pch.c
-> +++ b/drivers/gpu/drm/i915/intel_pch.c
-> @@ -3,6 +3,7 @@
->   * Copyright 2019 Intel Corporation.
->   */
->  
-> +#include "display/intel_display_features.h"
->  #include "i915_drv.h"
->  #include "i915_utils.h"
->  #include "intel_pch.h"
-> -- 
-> 2.30.2
+>  static int kvm_lapic_reg_write(struct kvm_lapic *apic, u32 reg, u32 val)
+>  {
+>  	int ret = 0;
+> @@ -2047,10 +2060,12 @@ static int kvm_lapic_reg_write(struct kvm_lapic *apic, u32 reg, u32 val)
+> 
+>  	switch (reg) {
+>  	case APIC_ID:		/* Local APIC ID */
+> -		if (!apic_x2apic_mode(apic))
+> +		if (!apic_x2apic_mode(apic)) {
+>  			kvm_apic_set_xapic_id(apic, val >> 24);
+> -		else
+> +			kvm_lapic_xapic_id_updated(apic);
+> +		} else {
+>  			ret = 1;
+> +		}
+>  		break;
+> 
+>  	case APIC_TASKPRI:
+> @@ -2665,6 +2680,8 @@ static int kvm_apic_state_fixup(struct kvm_vcpu *vcpu,
+>  			icr = __kvm_lapic_get_reg64(s->regs, APIC_ICR);
+>  			__kvm_lapic_set_reg(s->regs, APIC_ICR2, icr >> 32);
+>  		}
+> +	} else {
+> +		kvm_lapic_xapic_id_updated(vcpu->arch.apic);
+>  	}
+> 
+>  	return 0;
+> diff --git a/arch/x86/kvm/svm/avic.c b/arch/x86/kvm/svm/avic.c
+> index 54fe03714f8a..239c3e8b1f3f 100644
+> --- a/arch/x86/kvm/svm/avic.c
+> +++ b/arch/x86/kvm/svm/avic.c
+> @@ -910,7 +910,8 @@ bool avic_check_apicv_inhibit_reasons(enum kvm_apicv_inhibit reason)
+>  			  BIT(APICV_INHIBIT_REASON_PIT_REINJ) |
+>  			  BIT(APICV_INHIBIT_REASON_X2APIC) |
+>  			  BIT(APICV_INHIBIT_REASON_BLOCKIRQ) |
+> -			  BIT(APICV_INHIBIT_REASON_SEV);
+> +			  BIT(APICV_INHIBIT_REASON_SEV) |
+> +			  BIT(APICV_INHIBIT_REASON_APIC_ID_MODIFIED);
+> 
+>  	return supported & BIT(reason);
+>  }
+> diff --git a/arch/x86/kvm/vmx/vmx.c b/arch/x86/kvm/vmx/vmx.c
+> index b06eafa5884d..941adade21ea 100644
+> --- a/arch/x86/kvm/vmx/vmx.c
+> +++ b/arch/x86/kvm/vmx/vmx.c
+> @@ -7818,7 +7818,8 @@ static bool vmx_check_apicv_inhibit_reasons(enum kvm_apicv_inhibit reason)
+>  	ulong supported = BIT(APICV_INHIBIT_REASON_DISABLE) |
+>  			  BIT(APICV_INHIBIT_REASON_ABSENT) |
+>  			  BIT(APICV_INHIBIT_REASON_HYPERV) |
+> -			  BIT(APICV_INHIBIT_REASON_BLOCKIRQ);
+> +			  BIT(APICV_INHIBIT_REASON_BLOCKIRQ) |
+> +			  BIT(APICV_INHIBIT_REASON_APIC_ID_MODIFIED);
+> 
+>  	return supported & BIT(reason);
+>  }
+> 
+> base-commit: 6ab6e3842d18e4529fa524fb6c668ae8a8bf54f4
+> --
+> 
 
--- 
-Ville Syrjälä
-Intel
+
+Hi Sean!
+
+So, I decided to stop beeing lazy and to understand how KVM actually treats the whole thing:
+
+
+- kvm_apic_set_xapic_id - called when apic id changes either by guest write,
+  cpu reset or x2apic beeing disabled due to write to apic base msr.
+  apic register is updated, and apic map is recalculated
+
+
+- kvm_apic_set_x2apic_id - called only when apic base write (guest or userspace),
+  enables x2apic. caller uses vcpu->vcpu_id explicity
+
+
+- kvm_apic_state_fixup - when apic state is uploaded by userspace, has check
+  that check for x2apic api. Also triggers apic map update
+
+
+- kvm_recalculate_apic_map
+  this updates the apic map that we use in IPI emulation.
+  - xapic id (aka APIC_ID >> 24) is only used for APICs which are not in xapic mode.
+  - x2apic ids (aka vcpu->vcpu_id) are used for all APICs which are in x2apic mode,
+    and also (as a hack, when an apic has vcpu_id > 255, even if not in x2apic mode,
+    its x2apic id is still put in the map)
+
+
+Conclusions:
+
+- Practically speaking, when an apic is in x2apic mode, even if userspace uploaded
+non standard APIC_ID, it is ignored, and just read back (garbage in - garbage out)
+
+- Non standard APIC ID is lost when switching to x2apic mode.
+
+
+
+
+Best regards,
+	Maxim Levitsky
+
+
+
+PS: sending this so this info is not lost.
+
+Thankfully my APICv inhibit patch got accepted upstream,
+so one issue less to deal with.
+
+
