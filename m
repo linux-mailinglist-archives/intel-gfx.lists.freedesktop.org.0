@@ -1,45 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18A61559727
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 11:59:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D4365597C1
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 12:23:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB6310E1D2;
-	Fri, 24 Jun 2022 09:59:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C47010E766;
+	Fri, 24 Jun 2022 10:23:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F0E710E378;
- Fri, 24 Jun 2022 09:59:12 +0000 (UTC)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out1.suse.de (Postfix) with ESMTP id 29BB821A74;
- Fri, 24 Jun 2022 09:59:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1656064751; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=YRx5MsPC3bOKBussEAACbRbCrT13pUlZg+D3y9hzeFQ=;
- b=k1jLteFpvAGft+ORFG/tzqlURXKLRNicj7+oUgUIuX8osjH4+RjNVm62/jfqHf/FKhN7zD
- JkM1/iDo+UtWtCT89LSvKZPXJRE/SPVqpxUdXuUhXgeFakRbgDUpIRPPRwwC/o9HRxOK/+
- gqzcjpY9QSRIzgUY++eA0/TlwRk7dss=
-Received: from suse.cz (unknown [10.100.201.86])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by relay2.suse.de (Postfix) with ESMTPS id D56122C1E2;
- Fri, 24 Jun 2022 09:59:10 +0000 (UTC)
-Date: Fri, 24 Jun 2022 11:59:10 +0200
-From: Michal Hocko <mhocko@suse.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <YrWK7pwZP3K2vbye@dhcp22.suse.cz>
-References: <20220624080444.7619-1-christian.koenig@amd.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E964610E766;
+ Fri, 24 Jun 2022 10:23:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E1273AADDA;
+ Fri, 24 Jun 2022 10:23:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Date: Fri, 24 Jun 2022 10:23:24 -0000
+Message-ID: <165606620489.16786.398681279191559707@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220624080444.7619-1-christian.koenig@amd.com>
 In-Reply-To: <20220624080444.7619-1-christian.koenig@amd.com>
-Subject: Re: [Intel-gfx] [RFC] Per file OOM-badness / RSS once more
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/14=5D_fs=3A_add_per_file_RSS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,72 +40,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-fsdevel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- linux-media@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri 24-06-22 10:04:30, Christian K�nig wrote:
-> Hello everyone,
-> 
-> To summarize the issue I'm trying to address here: Processes can allocate
-> resources through a file descriptor without being held responsible for it.
-> 
-> I'm not explaining all the details again. See here for a more deeply
-> description of the problem: https://lwn.net/ml/linux-kernel/20220531100007.174649-1-christian.koenig@amd.com/
-> 
-> With this iteration I'm trying to address a bunch of the comments Michal Hocko
-> (thanks a lot for that) gave as well as giving some new ideas.
-> 
-> Changes made so far:
-> 1. Renamed the callback into file_rss(). This is at least a start to better
->    describe what this is all about. I've been going back and forth over the
->    naming here, if you have any better idea please speak up.
-> 
-> 2. Cleanups, e.g. now providing a helper function in the fs layer to sum up
->    all the pages allocated by the files in a file descriptor table.
-> 
-> 3. Using the actual number of allocated pages for the shmem implementation
->    instead of just the size. I also tried to ignore shmem files which are part
->    of tmpfs, cause that has a separate accounting/limitation approach.
+== Series Details ==
 
-OK, this is better than the original approach there are still holes
-there though I am afraid. I am not sure your i_count hack is correct
-but that would be mostly an implementation detail.  The scheme will
-over-account memory mapped files (including memfd).  How much that
-matters will really differ.
+Series: series starting with [01/14] fs: add per file RSS
+URL   : https://patchwork.freedesktop.org/series/105588/
+State : warning
 
-For the global OOM situations it is very likely that there will be
-barely any disk based page cache as it would be reclaimed by the time
-the oom killer is invoked. So this should be OK. Swap backed page cache
-(shmem and its users) is more tricky. It is swap bound and processes
-which map it will get "charged" in the form of swap entries while those
-which rely on read/write will just escape from the sight of the oom
-killer no matter how much memory they own via their shmem backed fd.
-This sounds rather serious to me and I hope I haven't missed anything
-subtle here that would keep those pages somehow visible. Anyway
-something to very carefully document.
+== Summary ==
 
-For the memcg OOM this gets even more tricky. Files can be shared among
-tasks accross memcgs. Something that is not really straightforward from
-the userspace POV because this is not strictly deterministic as
-first-one-first-charged logic is applied so a lot might depend on timing.
-This could also easily mean that a large part of the in memory state of
-the file is outside of the reclaim and therefore OOM scope of the memcg
-which is hitting the hard limit. This could result in tasks being killed
-just because they (co)operate on a large file outside of their memcg
-domain. To be honest I am not sure how big of a problem this would be in
-practice and the existing behavior has its own cons so to me it sounds
-like changing one set of deficiency with other.
+Error: dim checkpatch failed
+babddea434e1 fs: add per file RSS
+-:31: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#31: FILE: fs/file.c:1311:
++static int sumup_file_rss(const void *sum, struct file *file, unsigned n)
 
-As we have discussed previously, there is unlikely a great solution but
-you a) need to document most prominent downsides so that people can at
-least see this is understood and documented behavior and b) think of the
-runaway situation wrt non mapped shmems memtioned above and see whether
-there is something we can do about that.
--- 
-Michal Hocko
-SUSE Labs
+-:87: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct file *' should also have an identifier name
+#87: FILE: include/linux/fs.h:2006:
++	long (*file_rss)(struct file *);
+
+total: 0 errors, 2 warnings, 0 checks, 49 lines checked
+636241e5d05e oom: take per file RSS into account
+39df4975050f proc: expose per file RSS
+-:56: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#56: FILE: fs/proc/internal.h:308:
++extern void task_mem(struct seq_file *, struct mm_struct *,
+
+-:56: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct seq_file *' should also have an identifier name
+#56: FILE: fs/proc/internal.h:308:
++extern void task_mem(struct seq_file *, struct mm_struct *,
+
+-:56: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct mm_struct *' should also have an identifier name
+#56: FILE: fs/proc/internal.h:308:
++extern void task_mem(struct seq_file *, struct mm_struct *,
+
+-:56: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct files_struct *' should also have an identifier name
+#56: FILE: fs/proc/internal.h:308:
++extern void task_mem(struct seq_file *, struct mm_struct *,
+
+-:103: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 4 warnings, 1 checks, 66 lines checked
+87761c6448cb mm: shmem: provide RSS for shmem files
+-:47: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+08739a34f27a dma-buf: provide file RSS for DMA-buf files
+-:37: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
+e4733c89ac5b drm/gem: adjust per file RSS on handling buffers
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+Large amounts of VRAM are usually not CPU accessible, so they are not mapped
+
+-:28: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#28: FILE: drivers/gpu/drm/drm_file.c:1053:
++
++
+
+-:37: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#37: FILE: drivers/gpu/drm/drm_file.c:1062:
++{
++
+
+total: 0 errors, 1 warnings, 2 checks, 83 lines checked
+48d66273f79a drm/gma500: use drm_file_rss
+-:24: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+2a9bf2b10bb3 drm/amdgpu: use drm_file_rss
+4bc4faea2d54 drm/radeon: use drm_oom_badness
+-:24: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+7c46b377611b drm/i915: use drm_file_rss
+-:24: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+084bd2d1efa5 drm/nouveau: use drm_file_rss
+-:24: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+4a23b1e57e43 drm/omap: use drm_file_rss
+-:24: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+c148997308a5 drm/vmwgfx: use drm_file_rss
+-:24: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+61078582a53e drm/tegra: use drm_file_rss
+-:24: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+
+
