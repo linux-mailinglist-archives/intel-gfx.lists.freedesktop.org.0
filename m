@@ -2,54 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 314A455951F
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 10:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB3C559578
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 10:32:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECCBD10F5A4;
-	Fri, 24 Jun 2022 08:11:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB10112CB6;
+	Fri, 24 Jun 2022 08:32:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD2610E82D;
- Fri, 24 Jun 2022 08:11:39 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB4FD112CB5;
+ Fri, 24 Jun 2022 08:32:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656058299; x=1687594299;
+ t=1656059530; x=1687595530;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=vDFfIZI9Z0kqicu7Rh1fgTk87NG8ri1IqI3PWZO/QDQ=;
- b=BgP9tGdHz+dI/udouomBja34FEe6pHqdD6AbXjlVeVHxMew2ZEy1L90D
- WSBeLVBOZRqVXaw/AZZF7T6VQgx+EmRI91nrMTnBijk0zSFLKCF63tiua
- GD8tI3cFM5xYZDPJhq+/oR6bsU1bQakLuwlQNkExMx7mxPyo1mSkbHvnL
- lzxjtDsNRsKI3BYt984wkgRuwFvwLZrIW7QyDC7C4WkdY3oYe0xpNyGuP
- BxiqWelPkosGahKsJ6mZIP9iaJDQOX5C06BE0cne+LyCJeO76wtV+r5XL
- usxn5Fx2m5NdRgaa85r7U9oe7cBVJgcHvAC1j/CvKLrK8qEnXOUxurtpL A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="279717593"
-X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="279717593"
+ bh=WunH/GL2HkxFEFwyyoLIK3zQHPDrYrHNLEqmjkJSQjc=;
+ b=nXvHieJ3woDNvtkTYQTNgbVRFC8NlIa8EXS71Q23DHYGQQNEUmd7jgH2
+ ma19zUtG+grbvwy+N4xxQser9yYD1qbonxgkNl/11TXLU4TobYaf5kEuW
+ 0/g35V3lxXBDILRHZFN0zzEpmajUTOkfNewm6WBaOqw2RYjs6mZJ4toYf
+ H+FIPoC4O7jdkdlZ5C/YsqyjGw3E7jxSYOVGCRJ7Tm/Aj42GObf3Ex1tt
+ B9cZduMv3q+0LyOAyIj0EqXsIcNTRWAB5iKLo93YuzWETSdO3a49YIMvu
+ x/CZQFfz9L8MlRbk3pCJaeMHzwBkeQRKayOlNiVLTi+q52FNy4sP0DjAH A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="260770906"
+X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="260770906"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2022 01:11:38 -0700
-X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="915589765"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2022 01:32:10 -0700
+X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="915595800"
 Received: from acamigob-mobl.amr.corp.intel.com (HELO [10.212.103.132])
  ([10.212.103.132])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2022 01:11:36 -0700
-Message-ID: <e6291691-d792-7ba5-5676-fe79b9c96c1e@linux.intel.com>
-Date: Fri, 24 Jun 2022 09:11:35 +0100
+ 24 Jun 2022 01:32:08 -0700
+Message-ID: <1d36da1a-9224-5750-d103-60e7cdfdf8df@linux.intel.com>
+Date: Fri, 24 Jun 2022 09:32:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20220624053208.23723-1-niranjana.vishwanathapura@intel.com>
- <20220624053208.23723-4-niranjana.vishwanathapura@intel.com>
+To: "Zeng, Oak" <oak.zeng@intel.com>,
+ "Landwerlin, Lionel G" <lionel.g.landwerlin@intel.com>,
+ "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>
+References: <20220622035650.29256-1-niranjana.vishwanathapura@intel.com>
+ <20220622035650.29256-4-niranjana.vishwanathapura@intel.com>
+ <6ac2f495-8ead-4824-f9af-1c03fb3770c4@linux.intel.com>
+ <20220622151229.GY376@nvishwa1-DESK>
+ <b347fb63-5200-9f5c-b0d6-ca51b7a064f9@linux.intel.com>
+ <20220622164445.GZ376@nvishwa1-DESK>
+ <e6ed0d2f-ee2a-2219-c2cc-49efc32f0560@linux.intel.com>
+ <1874e47b-4337-5ac6-ebea-fca21ea1ba4c@intel.com>
+ <6d70cde9-f856-540a-b1d4-0325596b0c88@linux.intel.com>
+ <BN6PR11MB1633C90D1B2E40359F1F168F92B59@BN6PR11MB1633.namprd11.prod.outlook.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20220624053208.23723-4-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <BN6PR11MB1633C90D1B2E40359F1F168F92B59@BN6PR11MB1633.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 3/3] drm/doc/rfc: VM_BIND uapi definition
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/doc/rfc: VM_BIND uapi definition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,301 +71,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, chris.p.wilson@intel.com,
- thomas.hellstrom@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
- christian.koenig@amd.com
+Cc: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Wilson,
+ Chris P" <chris.p.wilson@intel.com>, "Vetter,
+ Daniel" <daniel.vetter@intel.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>, "Auld,
+ Matthew" <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 24/06/2022 06:32, Niranjana Vishwanathapura wrote:
-> VM_BIND and related uapi definitions
+On 23/06/2022 22:05, Zeng, Oak wrote:
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Tvrtko
+>> Ursulin
+>> Sent: June 23, 2022 7:06 AM
+>> To: Landwerlin, Lionel G <lionel.g.landwerlin@intel.com>; Vishwanathapura,
+>> Niranjana <niranjana.vishwanathapura@intel.com>
+>> Cc: Zanoni, Paulo R <paulo.r.zanoni@intel.com>; intel-gfx@lists.freedesktop.org;
+>> dri-devel@lists.freedesktop.org; Hellstrom, Thomas <thomas.hellstrom@intel.com>;
+>> Wilson, Chris P <chris.p.wilson@intel.com>; Vetter, Daniel
+>> <daniel.vetter@intel.com>; christian.koenig@amd.com; Auld, Matthew
+>> <matthew.auld@intel.com>
+>> Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/doc/rfc: VM_BIND uapi definition
+>>
+>>
+>> On 23/06/2022 09:57, Lionel Landwerlin wrote:
+>>> On 23/06/2022 11:27, Tvrtko Ursulin wrote:
+>>>>>
+>>>>> After a vm_unbind, UMD can re-bind to same VA range against an active
+>>>>> VM.
+>>>>> Though I am not sue with Mesa usecase if that new mapping is required
+>>>>> for
+>>>>> running GPU job or it will be for the next submission. But ensuring the
+>>>>> tlb flush upon unbind, KMD can ensure correctness.
+>>>>
+>>>> Isn't that their problem? If they re-bind for submitting _new_ work
+>>>> then they get the flush as part of batch buffer pre-amble.
+>>>
+>>> In the non sparse case, if a VA range is unbound, it is invalid to use
+>>> that range for anything until it has been rebound by something else.
+>>>
+>>> We'll take the fence provided by vm_bind and put it as a wait fence on
+>>> the next execbuffer.
+>>>
+>>> It might be safer in case of memory over fetching?
+>>>
+>>>
+>>> TLB flush will have to happen at some point right?
+>>>
+>>> What's the alternative to do it in unbind?
+>>
+>> Currently TLB flush happens from the ring before every BB_START and also
+>> when i915 returns the backing store pages to the system.
 > 
-> v2: Reduce the scope to simple Mesa use case.
-> v3: Expand VM_UNBIND documentation and add
->      I915_GEM_VM_BIND/UNBIND_FENCE_VALID
->      and I915_GEM_VM_BIND_TLB_FLUSH flags.
-> v4: Remove I915_GEM_VM_BIND_TLB_FLUSH flag and add additional
->      documentation for vm_bind/unbind.
-> v5: Remove TLB flush requirement on VM_UNBIND.
->      Add version support to stage implementation.
+> 
+> Can you explain more why tlb flush when i915 retire the backing storage? I never figured that out when I looked at the codes. As I understand it, tlb caches the gpu page tables which map a va to a pa. So it is straight forward to me that we perform a tlb flush when we change the page table (either at vm bind time or unbind time. Better at unbind time for performance reason).
 
-Mostly LGTM with one final question.
+I don't know what performs better - someone can measure the two 
+approaches? Certainly on platforms where we only have global TLB 
+flushing the cost is quite high so my thinking was to allow i915 to 
+control when it will be done and not guarantee it in the uapi if it 
+isn't needed for security reasons.
 
-Would an extension to execbuf3 saying "async wait on any ongoing 
-bind/unbind activity on this vm"? Would such an easy "fire and forget" 
-mechanism be useful to userspace? Or are separate "queues" the minimal 
-useful thing?
+> But it is rather tricky to me to flush tlb when we retire a backing storage. I don't see how backing storage can be connected to page table. Let's say user unbind va1 from pa1, then bind va1 to pa2. Then retire pa1. Submit shader code using va1. If we don't tlb flush after unbind va1, the new shader code which is supposed to use pa2 will still use pa1 due to the stale entries in tlb, right? The point is, tlb cached is tagged with virtual address, not physical address. so after we unbind va1 from pa1, regardless we retire pa1 or not, va1 can be bound to another pa2.
+
+When you say "retire pa1" I will assume you meant release backing 
+storage for pa1. At this point i915 currently does do the TLB flush and 
+that ensures no PTE can point to pa1.
+
+This approach deals with security of the system as a whole. Client may 
+still cause rendering corruption or a GPU hang for itself but that 
+should be completely isolated. (This is the part where you say 
+"regardless if we retire pa1 or not" I think.)
+
+But I think those are advanced use cases where userspace wants to 
+manipulate PTEs while something is running on the GPU in parallel. AFAIK 
+limited to compute "infinite batch" so my thinking is to avoid adding a 
+performance penalty to the common case. Especially on platforms which 
+only have global flush.
+
+But.. to circle back on the measuring angle. Until someone invests time 
+and effort to benchmark the two approaches (flush on unbind vs flush on 
+backing store release) we don't really know. All I know is the perf hit 
+with the current solution was significant, AFAIR up to teen digits on 
+some games. And considering the flushes were driven only by the shrinker 
+activity, my thinking was they would be less frequent than the unbinds, 
+therefore have the potential for a smaller perf hit.
 
 Regards,
 
 Tvrtko
-
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> ---
->   Documentation/gpu/rfc/i915_vm_bind.h | 256 +++++++++++++++++++++++++++
->   1 file changed, 256 insertions(+)
->   create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
-> 
-> diff --git a/Documentation/gpu/rfc/i915_vm_bind.h b/Documentation/gpu/rfc/i915_vm_bind.h
-> new file mode 100644
-> index 000000000000..8af6c035ccf4
-> --- /dev/null
-> +++ b/Documentation/gpu/rfc/i915_vm_bind.h
-> @@ -0,0 +1,256 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2022 Intel Corporation
-> + */
-> +
-> +/**
-> + * DOC: I915_PARAM_HAS_VM_BIND
-> + *
-> + * VM_BIND feature availability.
-> + * See typedef drm_i915_getparam_t param.
-> + * bit[0]: If set, VM_BIND is supported, otherwise not.
-> + * bits[8-15]: VM_BIND implementation version.
-> + * Version 0 requires in VM_UNBIND call, UMDs to specify the exact mapping
-> + * created previously with the VM_BIND call. i.e., i915 will not support
-> + * splitting/merging of the mappings created with VM_BIND call (See
-> + * struct drm_i915_gem_vm_bind and struct drm_i915_gem_vm_unbind).
-> + */
-> +#define I915_PARAM_HAS_VM_BIND		57
-> +
-> +/**
-> + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
-> + *
-> + * Flag to opt-in for VM_BIND mode of binding during VM creation.
-> + * See struct drm_i915_gem_vm_control flags.
-> + *
-> + * The older execbuf2 ioctl will not support VM_BIND mode of operation.
-> + * For VM_BIND mode, we have new execbuf3 ioctl which will not accept any
-> + * execlist (See struct drm_i915_gem_execbuffer3 for more details).
-> + *
-> + */
-> +#define I915_VM_CREATE_FLAGS_USE_VM_BIND	(1 << 0)
-> +
-> +/* VM_BIND related ioctls */
-> +#define DRM_I915_GEM_VM_BIND		0x3d
-> +#define DRM_I915_GEM_VM_UNBIND		0x3e
-> +#define DRM_I915_GEM_EXECBUFFER3	0x3f
-> +
-> +#define DRM_IOCTL_I915_GEM_VM_BIND		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
-> +#define DRM_IOCTL_I915_GEM_VM_UNBIND		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_bind)
-> +#define DRM_IOCTL_I915_GEM_EXECBUFFER3		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_execbuffer3)
-> +
-> +/**
-> + * struct drm_i915_gem_vm_bind_fence - Bind/unbind completion notification.
-> + *
-> + * A timeline out fence for vm_bind/unbind completion notification.
-> + */
-> +struct drm_i915_gem_vm_bind_fence {
-> +	/** @handle: User's handle for a drm_syncobj to signal. */
-> +	__u32 handle;
-> +
-> +	/** @rsvd: Reserved, MBZ */
-> +	__u32 rsvd;
-> +
-> +	/**
-> +	 * @value: A point in the timeline.
-> +	 * Value must be 0 for a binary drm_syncobj. A Value of 0 for a
-> +	 * timeline drm_syncobj is invalid as it turns a drm_syncobj into a
-> +	 * binary one.
-> +	 */
-> +	__u64 value;
-> +};
-> +
-> +/**
-> + * struct drm_i915_gem_vm_bind - VA to object mapping to bind.
-> + *
-> + * This structure is passed to VM_BIND ioctl and specifies the mapping of GPU
-> + * virtual address (VA) range to the section of an object that should be bound
-> + * in the device page table of the specified address space (VM).
-> + * The VA range specified must be unique (ie., not currently bound) and can
-> + * be mapped to whole object or a section of the object (partial binding).
-> + * Multiple VA mappings can be created to the same section of the object
-> + * (aliasing).
-> + *
-> + * The @start, @offset and @length should be 4K page aligned. However the DG2
-> + * and XEHPSDV has 64K page size for device local-memory and has compact page
-> + * table. On those platforms, for binding device local-memory objects, the
-> + * @start should be 2M aligned, @offset and @length should be 64K aligned.
-> + * Also, on those platforms, error -ENOSPC will be returned if user tries to
-> + * bind a device local-memory object and a system memory object in a single 2M
-> + * section of VA range.
-> + *
-> + * Error code -EINVAL will be returned if @start, @offset and @length are not
-> + * properly aligned. Error code of -ENOSPC will be returned if the VA range
-> + * specified can't be reserved.
-> + *
-> + * The bind operation can get completed asynchronously and out of submission
-> + * order. When I915_GEM_VM_BIND_FENCE_VALID flag is set, the @fence will be
-> + * signaled upon completion of bind operation.
-> + */
-> +struct drm_i915_gem_vm_bind {
-> +	/** @vm_id: VM (address space) id to bind */
-> +	__u32 vm_id;
-> +
-> +	/** @handle: Object handle */
-> +	__u32 handle;
-> +
-> +	/** @start: Virtual Address start to bind */
-> +	__u64 start;
-> +
-> +	/** @offset: Offset in object to bind */
-> +	__u64 offset;
-> +
-> +	/** @length: Length of mapping to bind */
-> +	__u64 length;
-> +
-> +	/**
-> +	 * @flags: Supported flags are:
-> +	 *
-> +	 * I915_GEM_VM_BIND_FENCE_VALID:
-> +	 * @fence is valid, needs bind completion notification.
-> +	 *
-> +	 * I915_GEM_VM_BIND_READONLY:
-> +	 * Mapping is read-only.
-> +	 *
-> +	 * I915_GEM_VM_BIND_CAPTURE:
-> +	 * Capture this mapping in the dump upon GPU error.
-> +	 */
-> +	__u64 flags;
-> +#define I915_GEM_VM_BIND_FENCE_VALID	(1 << 0)
-> +#define I915_GEM_VM_BIND_READONLY	(1 << 1)
-> +#define I915_GEM_VM_BIND_CAPTURE	(1 << 2)
-> +
-> +	/** @fence: Timeline fence for bind completion signaling */
-> +	struct drm_i915_gem_vm_bind_fence fence;
-> +
-> +	/** @extensions: 0-terminated chain of extensions */
-> +	__u64 extensions;
-> +};
-> +
-> +/**
-> + * struct drm_i915_gem_vm_unbind - VA to object mapping to unbind.
-> + *
-> + * This structure is passed to VM_UNBIND ioctl and specifies the GPU virtual
-> + * address (VA) range that should be unbound from the device page table of the
-> + * specified address space (VM). VM_UNBIND will force unbind the specified
-> + * range from device page table without waiting for any GPU job to complete.
-> + * It is UMDs responsibility to ensure the mapping is no longer in use before
-> + * calling VM_UNBIND.
-> + *
-> + * If the specified mapping is not found, the ioctl will simply return without
-> + * any error.
-> + *
-> + * The unbind operation can get completed asynchronously and out of submission
-> + * order. When I915_GEM_VM_UNBIND_FENCE_VALID flag is set, the @fence will be
-> + * signaled upon completion of unbind operation.
-> + */
-> +struct drm_i915_gem_vm_unbind {
-> +	/** @vm_id: VM (address space) id to bind */
-> +	__u32 vm_id;
-> +
-> +	/** @rsvd: Reserved, MBZ */
-> +	__u32 rsvd;
-> +
-> +	/** @start: Virtual Address start to unbind */
-> +	__u64 start;
-> +
-> +	/** @length: Length of mapping to unbind */
-> +	__u64 length;
-> +
-> +	/**
-> +	 * @flags: Supported flags are:
-> +	 *
-> +	 * I915_GEM_VM_UNBIND_FENCE_VALID:
-> +	 * @fence is valid, needs unbind completion notification.
-> +	 */
-> +	__u64 flags;
-> +#define I915_GEM_VM_UNBIND_FENCE_VALID	(1 << 0)
-> +
-> +	/** @fence: Timeline fence for unbind completion signaling */
-> +	struct drm_i915_gem_vm_bind_fence fence;
-> +
-> +	/** @extensions: 0-terminated chain of extensions */
-> +	__u64 extensions;
-> +};
-> +
-> +/**
-> + * struct drm_i915_gem_execbuffer3 - Structure for DRM_I915_GEM_EXECBUFFER3
-> + * ioctl.
-> + *
-> + * DRM_I915_GEM_EXECBUFFER3 ioctl only works in VM_BIND mode and VM_BIND mode
-> + * only works with this ioctl for submission.
-> + * See I915_VM_CREATE_FLAGS_USE_VM_BIND.
-> + */
-> +struct drm_i915_gem_execbuffer3 {
-> +	/**
-> +	 * @ctx_id: Context id
-> +	 *
-> +	 * Only contexts with user engine map are allowed.
-> +	 */
-> +	__u32 ctx_id;
-> +
-> +	/**
-> +	 * @engine_idx: Engine index
-> +	 *
-> +	 * An index in the user engine map of the context specified by @ctx_id.
-> +	 */
-> +	__u32 engine_idx;
-> +
-> +	/** @rsvd1: Reserved, MBZ */
-> +	__u32 rsvd1;
-> +
-> +	/**
-> +	 * @batch_count: Number of batches in @batch_address array.
-> +	 *
-> +	 * 0 is invalid. For parallel submission, it should be equal to the
-> +	 * number of (parallel) engines involved in that submission.
-> +	 */
-> +	__u32 batch_count;
-> +
-> +	/**
-> +	 * @batch_address: Array of batch gpu virtual addresses.
-> +	 *
-> +	 * If @batch_count is 1, then it is the gpu virtual address of the
-> +	 * batch buffer. If @batch_count > 1, then it is a pointer to an array
-> +	 * of batch buffer gpu virtual addresses.
-> +	 */
-> +	__u64 batch_address;
-> +
-> +	/**
-> +	 * @flags: Supported flags are:
-> +	 *
-> +	 * I915_EXEC3_SECURE:
-> +	 * Request a privileged ("secure") batch buffer/s.
-> +	 * It is only available for DRM_ROOT_ONLY | DRM_MASTER processes.
-> +	 */
-> +	__u64 flags;
-> +#define I915_EXEC3_SECURE	(1<<0)
-> +
-> +	/** @rsvd2: Reserved, MBZ */
-> +	__u64 rsvd2;
-> +
-> +	/**
-> +	 * @extensions: Zero-terminated chain of extensions.
-> +	 *
-> +	 * DRM_I915_GEM_EXECBUFFER3_EXT_TIMELINE_FENCES:
-> +	 * It has same format as DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES.
-> +	 * See struct drm_i915_gem_execbuffer_ext_timeline_fences.
-> +	 */
-> +	__u64 extensions;
-> +#define DRM_I915_GEM_EXECBUFFER3_EXT_TIMELINE_FENCES	0
-> +};
-> +
-> +/**
-> + * struct drm_i915_gem_create_ext_vm_private - Extension to make the object
-> + * private to the specified VM.
-> + *
-> + * See struct drm_i915_gem_create_ext.
-> + */
-> +struct drm_i915_gem_create_ext_vm_private {
-> +#define I915_GEM_CREATE_EXT_VM_PRIVATE		2
-> +	/** @base: Extension link. See struct i915_user_extension. */
-> +	struct i915_user_extension base;
-> +
-> +	/** @vm_id: Id of the VM to which the object is private */
-> +	__u32 vm_id;
-> +};
