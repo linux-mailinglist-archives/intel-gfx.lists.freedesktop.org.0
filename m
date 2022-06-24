@@ -1,33 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD00C559E8D
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 18:28:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83582559FBB
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 19:50:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2429310F1C3;
-	Fri, 24 Jun 2022 16:28:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC7C210E21C;
+	Fri, 24 Jun 2022 17:49:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4937C10F1B3;
- Fri, 24 Jun 2022 16:28:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3D7C0A7DFC;
- Fri, 24 Jun 2022 16:28:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CE7110E0C9;
+ Fri, 24 Jun 2022 17:49:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1656092997; x=1687628997;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MzE+2ksyKRjGwe+QVuFeIVLP7uV7C16ndqRtpGhMGKU=;
+ b=C29Q2zT7N2rdGP9jKFWWqDzuWK7Wl4Rh2jYZihO+eWViXgOHmmvURzje
+ SehOYsXgLDNIoNGLEdiZ51zP0mEHcUkmXaxdHZf3w1k19fFdWE/g5Xdpb
+ H5plcFGMGQKvW8MDEfLCd7Rh0mDiRmFf7XZzcjYgtxRgeH4RZC6hCo+GN
+ 3i5o09r0B4zFcYPgJ15P+2MF+I9ajayVdaTYg/g1nkdGeJEsZaZWAEyzT
+ 8YnpY+U0cnz592oAlO2jBEVotNv+TdWV1BGo4PdbonpGVdp2NlrLrfPxh
+ M6TXfT4EoUVA2Ww1J5Faugo5yVwCo2MA40k8/cjmf7ut91ebpXgcxqRNU Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10388"; a="281100591"
+X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="281100591"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2022 10:49:56 -0700
+X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="593318807"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 24 Jun 2022 10:49:56 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 24 Jun 2022 10:49:33 -0700
+Message-Id: <20220624174936.1065-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Fri, 24 Jun 2022 16:28:45 -0000
-Message-ID: <165608812521.16789.2261776346531634943@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220624155922.7435-1-anshuman.gupta@intel.com>
-In-Reply-To: <20220624155922.7435-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBE?=
- =?utf-8?q?G2_VRAM=5FSR_Support_=28rev4=29?=
+Subject: [Intel-gfx] [PATCH v6 0/3] drm/doc/rfc: i915 VM_BIND feature design
+ + uapi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,38 +55,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: paulo.r.zanoni@intel.com, chris.p.wilson@intel.com,
+ thomas.hellstrom@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This is the i915 driver VM_BIND feature design RFC patch series along
+with the required uapi definition and description of intended use cases.
 
-Series: DG2 VRAM_SR Support (rev4)
-URL   : https://patchwork.freedesktop.org/series/104128/
-State : failure
+v2: Reduce the scope to simple Mesa use case.
+    Remove all compute related uapi, vm_bind/unbind queue support and
+    only support a timeline out fence instead of an in/out timeline
+    fence array.
+v3: Expand documentation on dma-resv usage, TLB flushing, execbuf3 and
+    VM_UNBIND. Add FENCE_VALID and TLB_FLUSH flags.
+v4: Remove I915_GEM_VM_BIND_TLB_FLUSH flag and add additional
+    uapi documentation for vm_bind/unbind.
+v5: Update TLB flushing documentation.
+    Add version support to stage implementation.
+v6: Define and use drm_i915_gem_timeline_fence structure for
+    execbuf3 and vm_bind/unbind timeline fences.
 
-== Summary ==
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/intel_pm.o
-drivers/gpu/drm/i915/intel_pm.c:8304:5: error: no previous prototype for ‘intel_pcode_enable_vram_sr’ [-Werror=missing-prototypes]
- int intel_pcode_enable_vram_sr(struct drm_i915_private *i915)
-     ^~~~~~~~~~~~~~~~~~~~~~~~~~
-cc1: all warnings being treated as errors
-scripts/Makefile.build:249: recipe for target 'drivers/gpu/drm/i915/intel_pm.o' failed
-make[4]: *** [drivers/gpu/drm/i915/intel_pm.o] Error 1
-scripts/Makefile.build:466: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:466: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:466: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1843: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+Niranjana Vishwanathapura (3):
+  drm/doc/rfc: VM_BIND feature design document
+  drm/i915: Update i915 uapi documentation
+  drm/doc/rfc: VM_BIND uapi definition
 
+ Documentation/gpu/rfc/i915_vm_bind.h   | 286 +++++++++++++++++++++++++
+ Documentation/gpu/rfc/i915_vm_bind.rst | 246 +++++++++++++++++++++
+ Documentation/gpu/rfc/index.rst        |   4 +
+ include/uapi/drm/i915_drm.h            | 205 ++++++++++++++----
+ 4 files changed, 696 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+ create mode 100644 Documentation/gpu/rfc/i915_vm_bind.rst
+
+-- 
+2.21.0.rc0.32.g243a4c7e27
 
