@@ -2,56 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9684555957F
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 10:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18A61559727
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 11:59:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B04410FC50;
-	Fri, 24 Jun 2022 08:34:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB6310E1D2;
+	Fri, 24 Jun 2022 09:59:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD41F10FC50;
- Fri, 24 Jun 2022 08:34:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656059666; x=1687595666;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=GL7gNHkZqM1sWdOok001Mz0b5ZGecYzNGjnRUb23NBQ=;
- b=WuBGWNCyBYKwCdVT3AWZOGl2wphgyNXiCkeW21lfuLPfaerAVr+mBCQK
- siLJBBKUy7zObDq3zEYns135BVU3sarQQgx2QLE3mLY2jfpoGZ/Y/Y1aA
- MDsCYhzXg2vzm690EYIV7pWNWHmywnABwd9OLdQ0sMbadz2dQiCT6oYND
- k4s7RUxGI2R3++9DwWVCcSHWzOhaNOQM+lXbanAyQ6evjGCBB9GQyGOY9
- JGBsvKmr6QOEDjKy7KJyLqEipAeXh532bNU6zXL1s96dNmSQNBl2phqNV
- 9boqw7VlWat083JbcFg9eqPyOPNCQgWN1qr+OOXcpFmyq4rYqdfN1ax6H A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="279720883"
-X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="279720883"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2022 01:34:26 -0700
-X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="915596863"
-Received: from acamigob-mobl.amr.corp.intel.com (HELO [10.212.103.132])
- ([10.212.103.132])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2022 01:34:22 -0700
-Message-ID: <160e613f-a0a8-18ff-5d4b-249d4280caa8@linux.intel.com>
-Date: Fri, 24 Jun 2022 09:34:21 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F0E710E378;
+ Fri, 24 Jun 2022 09:59:12 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id 29BB821A74;
+ Fri, 24 Jun 2022 09:59:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1656064751; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=YRx5MsPC3bOKBussEAACbRbCrT13pUlZg+D3y9hzeFQ=;
+ b=k1jLteFpvAGft+ORFG/tzqlURXKLRNicj7+oUgUIuX8osjH4+RjNVm62/jfqHf/FKhN7zD
+ JkM1/iDo+UtWtCT89LSvKZPXJRE/SPVqpxUdXuUhXgeFakRbgDUpIRPPRwwC/o9HRxOK/+
+ gqzcjpY9QSRIzgUY++eA0/TlwRk7dss=
+Received: from suse.cz (unknown [10.100.201.86])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id D56122C1E2;
+ Fri, 24 Jun 2022 09:59:10 +0000 (UTC)
+Date: Fri, 24 Jun 2022 11:59:10 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <YrWK7pwZP3K2vbye@dhcp22.suse.cz>
+References: <20220624080444.7619-1-christian.koenig@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <cover.1655306128.git.mchehab@kernel.org>
- <5ee647f243a774927ec328bfca8212abc4957909.1655306128.git.mchehab@kernel.org>
- <YrRLyg1IJoZpVGfg@intel.intel>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YrRLyg1IJoZpVGfg@intel.intel>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915/gt: Serialize GRDOM access
- between multiple engine resets
+In-Reply-To: <20220624080444.7619-1-christian.koenig@amd.com>
+Subject: Re: [Intel-gfx] [RFC] Per file OOM-badness / RSS once more
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +52,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Chris Wilson <chris.p.wilson@intel.com>, Dave Airlie <airlied@redhat.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, mauro.chehab@linux.intel.com,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-fsdevel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 23/06/2022 12:17, Andi Shyti wrote:
-> Hi Mauro,
+On Fri 24-06-22 10:04:30, Christian Kˆnig wrote:
+> Hello everyone,
 > 
-> On Wed, Jun 15, 2022 at 04:27:39PM +0100, Mauro Carvalho Chehab wrote:
->> From: Chris Wilson <chris.p.wilson@intel.com>
->>
->> Don't allow two engines to be reset in parallel, as they would both
->> try to select a reset bit (and send requests to common registers)
->> and wait on that register, at the same time. Serialize control of
->> the reset requests/acks using the uncore->lock, which will also ensure
->> that no other GT state changes at the same time as the actual reset.
->>
->> Fixes: 7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
->>
->> Reported-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->> Cc: Andi Shyti <andi.shyti@intel.com>
->> Cc: stable@vger.kernel.org
->> Acked-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
->> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> To summarize the issue I'm trying to address here: Processes can allocate
+> resources through a file descriptor without being held responsible for it.
 > 
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> I'm not explaining all the details again. See here for a more deeply
+> description of the problem: https://lwn.net/ml/linux-kernel/20220531100007.174649-1-christian.koenig@amd.com/
+> 
+> With this iteration I'm trying to address a bunch of the comments Michal Hocko
+> (thanks a lot for that) gave as well as giving some new ideas.
+> 
+> Changes made so far:
+> 1. Renamed the callback into file_rss(). This is at least a start to better
+>    describe what this is all about. I've been going back and forth over the
+>    naming here, if you have any better idea please speak up.
+> 
+> 2. Cleanups, e.g. now providing a helper function in the fs layer to sum up
+>    all the pages allocated by the files in a file descriptor table.
+> 
+> 3. Using the actual number of allocated pages for the shmem implementation
+>    instead of just the size. I also tried to ignore shmem files which are part
+>    of tmpfs, cause that has a separate accounting/limitation approach.
 
-Notice I had a bunch of questions and asks in this series so please do 
-not merge until those are addressed.
+OK, this is better than the original approach there are still holes
+there though I am afraid. I am not sure your i_count hack is correct
+but that would be mostly an implementation detail.  The scheme will
+over-account memory mapped files (including memfd).  How much that
+matters will really differ.
 
-In this particular patch (and some others) for instance Fixes: tag, at 
-least against that sha, shouldn't be there.
+For the global OOM situations it is very likely that there will be
+barely any disk based page cache as it would be reclaimed by the time
+the oom killer is invoked. So this should be OK. Swap backed page cache
+(shmem and its users) is more tricky. It is swap bound and processes
+which map it will get "charged" in the form of swap entries while those
+which rely on read/write will just escape from the sight of the oom
+killer no matter how much memory they own via their shmem backed fd.
+This sounds rather serious to me and I hope I haven't missed anything
+subtle here that would keep those pages somehow visible. Anyway
+something to very carefully document.
 
-Regards,
+For the memcg OOM this gets even more tricky. Files can be shared among
+tasks accross memcgs. Something that is not really straightforward from
+the userspace POV because this is not strictly deterministic as
+first-one-first-charged logic is applied so a lot might depend on timing.
+This could also easily mean that a large part of the in memory state of
+the file is outside of the reclaim and therefore OOM scope of the memcg
+which is hitting the hard limit. This could result in tasks being killed
+just because they (co)operate on a large file outside of their memcg
+domain. To be honest I am not sure how big of a problem this would be in
+practice and the existing behavior has its own cons so to me it sounds
+like changing one set of deficiency with other.
 
-Tvrtko
+As we have discussed previously, there is unlikely a great solution but
+you a) need to document most prominent downsides so that people can at
+least see this is understood and documented behavior and b) think of the
+runaway situation wrt non mapped shmems memtioned above and see whether
+there is something we can do about that.
+-- 
+Michal Hocko
+SUSE Labs
