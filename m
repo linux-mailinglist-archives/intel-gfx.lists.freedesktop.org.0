@@ -1,48 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CD90559A10
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 15:04:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB99559A1D
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 15:07:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8E7710E12B;
-	Fri, 24 Jun 2022 13:04:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E16210EEFA;
+	Fri, 24 Jun 2022 13:07:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78D6A10E12B
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jun 2022 13:04:30 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B98110F039
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jun 2022 13:07:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656075870; x=1687611870;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=osY20LWSpBnvjqOSag5yBOsT/wAhBZecxfnYyaFEacI=;
- b=e0r4ZkmQIIX3byMJ7St4GwrBEMlKaRNh2r7BNGmjffxnDwvMTiVDppL6
- jp6KgzCKa2PYMXLChTPVe4g1c+VzE0zkcWlOkaVLeqCjE+yQv7K+g02eq
- H1FACZaciWOl9T6IvoKye5SEwQd6gUsOWHgvTOYd0xXCnYaYUTnfMhKQO
- SdxF7y+2f3AmQwxL7GXnC8l6dt2aLQrRzAX5Ak+cmHJzKKRRtOxphljvV
- GvXdjDxlARB5ERl5c9qQyt7Ovu+WJcwqwcmlg1ZUwlMj2Lw62A/jtNCWd
- eZe+irQZ9DSWLEQSFtATFnCxrANFY47r4FlZajKv/DWj/J6Iq0w7/amt8 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="306462075"
-X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="306462075"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2022 06:04:20 -0700
-X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="656637948"
-Received: from josouza-mobl2.fso.intel.com ([10.230.19.134])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2022 06:04:19 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jun 2022 06:04:06 -0700
-Message-Id: <20220624130406.17996-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.36.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm: i915: fix a possible refcount leak in
+ t=1656076076; x=1687612076;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=NmIBPI7Ilk+JfYKs6wLj0IMZ2mhiG77JEJLZBfvZtMM=;
+ b=Suz42V1Hw6ShyMiaRLdHUXwXTQZa5fDNd6QBcb9glng2863iFe3fSXt5
+ tWBhiXaYwptfz8K3Sby8+W/i/GFdkYMxinIh20M0aAWqQVl0Do+d1PdiH
+ EDy8ZUgWFuibvafHkPHugOLeeOkA2keB6/9GYBvGEsSnNQR3ef9iTx4it
+ lJOQmDuziZk0HHw5f8hQPA0doTbGbMNd0vJ50klQNDn/fslkuRLOJbIHi
+ 2YL2JB3loaNSTaEYTKQvt0iZtbTNDWMjFQqTsT3q3tK5Hf83HwIpdQvAU
+ BCheQsD2+erXV+Nrhg6LZ+yNyFWhXjZDvO9wl9rMo5KVoRDAcU1+zAM/e Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="281731090"
+X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="281731090"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2022 06:07:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; d="scan'208";a="691520851"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga002.fm.intel.com with ESMTP; 24 Jun 2022 06:07:55 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 24 Jun 2022 06:07:55 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 24 Jun 2022 06:07:54 -0700
+Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
+ fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
+ Fri, 24 Jun 2022 06:07:54 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "hbh25y@gmail.com" <hbh25y@gmail.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH RESEND] drm: i915: fix a possible refcount leak in
  intel_dp_add_mst_connector()
+Thread-Index: AQHYh3IuErwhyUZyaEi4H5GZcMeo4a1e/UYA
+Date: Fri, 24 Jun 2022 13:07:54 +0000
+Message-ID: <1f1ab1c04d1eb887e32fa95e3af9062bfbfc44e8.camel@intel.com>
+References: <20220624022813.10796-1-hbh25y@gmail.com>
+In-Reply-To: <20220624022813.10796-1-hbh25y@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D746B2649FE18349AD7A96D1A5B774E0@intel.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH RESEND] drm: i915: fix a possible refcount
+ leak in intel_dp_add_mst_connector()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,35 +77,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hangyu Hua <hbh25y@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Hangyu Hua <hbh25y@gmail.com>
-
-If drm_connector_init fails, intel_connector_free will be called to take
-care of proper free. So it is necessary to drop the refcount of port
-before intel_connector_free.
-
-Fixes: 091a4f91942a ("drm/i915: Handle drm-layer errors in intel_dp_add_mst_connector")
-Signed-off-by: Hangyu Hua <hbh25y@gmail.com>
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 061b277e5ce78..14d2a64193b2d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -839,6 +839,7 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 	ret = drm_connector_init(dev, connector, &intel_dp_mst_connector_funcs,
- 				 DRM_MODE_CONNECTOR_DisplayPort);
- 	if (ret) {
-+		drm_dp_mst_put_port_malloc(port);
- 		intel_connector_free(intel_connector);
- 		return NULL;
- 	}
--- 
-2.36.1
-
+SGkgSGFuZ3l1DQoNCkRvbid0IGtub3cgd2h5IGJ1dCBvdXIgQ0kgc3RpbGwgZGlkIG5vdCBjYXVn
+aHQgdGhpcyBwYXRjaC4NCk1heWJlIGl0IGlzIGJlY2F1c2UgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZyBuZWVkcyB0byBiZSBpbiB0aGUgInRvIiBsaXN0LCB0cnkgdGhhdCBpbiBmdXR1
+cmUgcGF0Y2hlcy4NCg0KQW55d2F5cyBJIGhhdmUgcmVzZW5kIGl0IGFuZCBpdCBpcyBwcm9wZXJs
+eSBiZWhhdmluZyBub3cuDQpodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVz
+LzEwNTYwMS8NCg0KQWZ0ZXIgQ0kgcmVzdWx0cyBJIHdpbGwgcHVzaCB0aGlzIGZvciB5b3UuDQoN
+Ck9uIEZyaSwgMjAyMi0wNi0yNCBhdCAxMDoyOCArMDgwMCwgSGFuZ3l1IEh1YSB3cm90ZToNCj4g
+SWYgZHJtX2Nvbm5lY3Rvcl9pbml0IGZhaWxzLCBpbnRlbF9jb25uZWN0b3JfZnJlZSB3aWxsIGJl
+IGNhbGxlZCB0byB0YWtlDQo+IGNhcmUgb2YgcHJvcGVyIGZyZWUuIFNvIGl0IGlzIG5lY2Vzc2Fy
+eSB0byBkcm9wIHRoZSByZWZjb3VudCBvZiBwb3J0DQo+IGJlZm9yZSBpbnRlbF9jb25uZWN0b3Jf
+ZnJlZS4NCj4gDQo+IEZpeGVzOiAwOTFhNGY5MTk0MmEgKCJkcm0vaTkxNTogSGFuZGxlIGRybS1s
+YXllciBlcnJvcnMgaW4gaW50ZWxfZHBfYWRkX21zdF9jb25uZWN0b3IiKQ0KPiBTaWduZWQtb2Zm
+LWJ5OiBIYW5neXUgSHVhIDxoYmgyNXlAZ21haWwuY29tPg0KPiBSZXZpZXdlZC1ieTogSm9zw6kg
+Um9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyB8IDEgKw0KPiAgMSBmaWxlIGNo
+YW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZHBfbXN0LmMNCj4gaW5kZXggMDYxYjI3N2U1Y2U3Li4xNGQyYTY0MTkzYjIgMTAw
+NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMN
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0KPiBA
+QCAtODM5LDYgKzgzOSw3IEBAIHN0YXRpYyBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqaW50ZWxfZHBf
+YWRkX21zdF9jb25uZWN0b3Ioc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvDQo+ICAJcmV0ID0gZHJt
+X2Nvbm5lY3Rvcl9pbml0KGRldiwgY29ubmVjdG9yLCAmaW50ZWxfZHBfbXN0X2Nvbm5lY3Rvcl9m
+dW5jcywNCj4gIAkJCQkgRFJNX01PREVfQ09OTkVDVE9SX0Rpc3BsYXlQb3J0KTsNCj4gIAlpZiAo
+cmV0KSB7DQo+ICsJCWRybV9kcF9tc3RfcHV0X3BvcnRfbWFsbG9jKHBvcnQpOw0KPiAgCQlpbnRl
+bF9jb25uZWN0b3JfZnJlZShpbnRlbF9jb25uZWN0b3IpOw0KPiAgCQlyZXR1cm4gTlVMTDsNCj4g
+IAl9DQoNCg==
