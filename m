@@ -2,48 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECDD55A33D
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 23:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1599055A3B7
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 23:38:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A415810F52D;
-	Fri, 24 Jun 2022 21:03:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 411CC10F51D;
+	Fri, 24 Jun 2022 21:38:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2AE899B7;
- Fri, 24 Jun 2022 21:03:53 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51E9410F51D;
+ Fri, 24 Jun 2022 21:38:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656104633; x=1687640633;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p5LgnosP1tpB9AxMJ/rgUsLegY9QeXjOAsfsrE5tGjg=;
- b=czaezzj5XkVaZuZXHONnWApR7ZvUTEDm8kl+jCWmnc6MqyUY51t1+14r
- TGA0t5Bro3XrUS9Wj5DVospWM65JqSYF4WiCGrZ8UKklm5+1G/B4GYwhF
- bG+5YOrYAF1B/FiVDIIj0Og/TU1B5LwUsUYEoIUhLNQmk5Su8m/Tqq6lV
- U+GvfNaIFtvqP/Ixgh9+WowvYCcCKBr9tTGa2WjegqdFkfHL7NI/25snI
- T9U56zri7LLY5cWywEvMNQiVFEDy7Ze2FR1vqPDcgqQrTeopI0d6J6r+P
- Zya87W6YIHlA/wo+rv0uFxorlo5m0F0FAgqTDv1tAx0QZvZA1lJ3AFefZ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10388"; a="367411086"
-X-IronPort-AV: E=Sophos;i="5.92,220,1650956400"; d="scan'208";a="367411086"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2022 14:03:52 -0700
-X-IronPort-AV: E=Sophos;i="5.92,220,1650956400"; d="scan'208";a="593387305"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2022 14:03:52 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jun 2022 14:03:28 -0700
-Message-Id: <20220624210328.308630-2-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220624210328.308630-1-matthew.d.roper@intel.com>
-References: <20220624210328.308630-1-matthew.d.roper@intel.com>
+ t=1656106734; x=1687642734;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=pBsYLttLORse88Zk3fF74Bu/QR9CgKzHsQSOh5M63bY=;
+ b=m91H8VLhRp7z2T1urSM/TJLwwJjErhGgRcHh6ynz3YxTqTCXisqqrSQs
+ OJnf+sYd0THkhyKGCEPKyc/NDEq3RyLJuzKKV956yPYt4he+6R7T5SlAF
+ k0VUfzA6VeJGOFGmowzvKWbnHxHTh4phc6LTaSbJzZD1D4hLcNfGF3S7l
+ tnqyu4deibWAK+tYw081Z2gapKqEwofTGlAPlcs9nG2wO03/1UBHt2Dgp
+ jViDnhGKTJGxS9rq1h+Ipx10ZwR1RgCQtJwNcmy77RzHhnEasBqwmba36
+ /nIVtDCzxYvCpILIVRzDb4vNjfpIbMT0BUOWhUvhg89pHey2M5mnQU12D w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10388"; a="345098198"
+X-IronPort-AV: E=Sophos;i="5.92,220,1650956400"; d="scan'208";a="345098198"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2022 14:38:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,220,1650956400"; d="scan'208";a="586718906"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+ by orsmga007.jf.intel.com with ESMTP; 24 Jun 2022 14:38:53 -0700
+Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 24 Jun 2022 14:38:53 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Fri, 24 Jun 2022 14:38:53 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Fri, 24 Jun 2022 14:38:53 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hhklZ/NBDTU6KM2MnQAMtR57OAnueqJSp8kI/yubFaivvZCTzdbMF79MIxnlSdNjJmCaygqJig+oyUr/7aIv1xl1jY9ZQkznlipcqSTDNhqobc0ooGVOH/3d4iZLCiwt4Ur7ygLteqzw/bwl2cW6RrttCVH0RMPd4yiVR/jn4FDP9E4GXQBUWYojaU2yCm4lBnb2tasJKz/8ezG4pwqq+6AGET3ltNfTdS9lo8IofGJG9QrN/EB1SdUBLyN1T+XxJynSjz9rNpPlMODJHPnkJunvV3u+dpzonKjOQSMrtTnayDzqxxTyaiw4R9BHeDadNMVK2N3ukvfFcR1x8QZYzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A3hYM+/eTxaFE79X7nkqEpSFtvKc6VpBJKYWrU+osyc=;
+ b=MW/DEXxayb9Yfxw08h/oqPOVnOMEMZUi78hiYWnUOBO7KDigObK0I0Lxhb2LSZOCS/Jfk/L8yJn0ZleV2js2SjxZdFz1BHdow3I7gNgC990h5ulN/0urLzUvmY5bS7rWeZz9UlPMpi7zio8qE0hczUiA/iEH8UbhxKRmCICX8ekyTO2YN60y0wStKWJhzqRSjj7zWnGSXjsnaJWViDBtpFhQ44mf1EC56mGPx7C4N6wWHj3am94x99L5fBZ1rzX4ywGly7evtb6drrklyS2rq9Lne0MF4v8CV7wv/8PesUNgyn3d7YpfkIabrglFRqpzopE1IbAtFGPMatZSbyzE0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5995.namprd11.prod.outlook.com (2603:10b6:8:5e::11) by
+ PH0PR11MB5951.namprd11.prod.outlook.com (2603:10b6:510:145::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.15; Fri, 24 Jun
+ 2022 21:38:50 +0000
+Received: from DM4PR11MB5995.namprd11.prod.outlook.com
+ ([fe80::29a2:9f6:b236:d021]) by DM4PR11MB5995.namprd11.prod.outlook.com
+ ([fe80::29a2:9f6:b236:d021%3]) with mapi id 15.20.5373.016; Fri, 24 Jun 2022
+ 21:38:50 +0000
+From: "Chery, Nanley G" <nanley.g.chery@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/fourcc: Document the Intel CCS modifiers' CC plane
+ expected pitch
+Thread-Index: AQHYhxCGJ9Q/cdfmOkWDJdgLp3HCJK1fFj6g
+Date: Fri, 24 Jun 2022 21:38:50 +0000
+Message-ID: <DM4PR11MB59952D0A2E4B2CA1B01E9BAFDCB49@DM4PR11MB5995.namprd11.prod.outlook.com>
+References: <20220623144955.2486736-1-imre.deak@intel.com>
+In-Reply-To: <20220623144955.2486736-1-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.500.17
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 25890f5a-074c-46f3-2c06-08da5629ed47
+x-ms-traffictypediagnostic: PH0PR11MB5951:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: oN7EQxOAQyQTze9QclvhsC6Hzqpgk81NZxgd3VY1TJUcS29zLhhGuP+da2gk8qLHdZxH8N15wETSEu9V1Hi8GqCCWCI9OOveqLJvkU6VN0kf2wsGr3TeGWtWNKKh7F3QGXBIpgxH7Opm0BARblKX0kjc9OflknjjTzS5pH3oYzh17lZTiTRP0hwzbzSNXjXJrXxqdhMEf4HdEXLx1jAgNhm4ME2E/gWF8bg9+X/a7U0KdXOkXzbFNrgFfu1PKwedxLUUu7EG552gb8h9pjO5M3PIvvl+HGuTerS8HIjiYOZe3S6cfpmMxm+7YdJ3Y6vfox1JCzsbLjSbC81sIEkBV51wgWOiiPaKo1+GuZ+PCYgPforFonU6ThNMPsUqKYS1vfNBNgfMvLn2FTyh2c99gTB32kc26CoPDeqEKjyZe/WJkGuiT6qhS/nesyeG9/M+Y/ZXOwG0sS2iugqHwaoQZUXfafBlcfuyYakv5mYN1UOuYgI3FqoQnTXniQ3H4Bkc3NpQIzbDND/a1e4ELtK8UqNI8cHQ6o6ALKUk86u2m79sj0AZDL6JueEftKotnqAAqOdl3/g/wbS5gj/wkJo/bZzgrA7aXTPbVIhJ4UeH7PpKVtiacK6/GSM+5V9znqyPiDB1uSnq4DEJzMQj130mBYauaEhX3RyTsZYsheQQC6o36D9FPDdxocRZPwdb6INoz6GKdamxurM9CHTvFgKAohY166jwKCNWeLhMWwK8Et/V0jQ/5QkUGKQOzxN+l0fRM6BP0fbVsruwkfRCOmv59Ryx22El8rykcAHccUOZs5g=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5995.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(396003)(39860400002)(366004)(136003)(346002)(376002)(83380400001)(186003)(66946007)(110136005)(38100700002)(38070700005)(316002)(33656002)(53546011)(7696005)(66476007)(9686003)(86362001)(122000001)(71200400001)(6506007)(8676002)(2906002)(41300700001)(52536014)(66556008)(76116006)(8936002)(55016003)(450100002)(26005)(4326008)(66446008)(5660300002)(64756008)(82960400001)(478600001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?tMZnhKD49cdC6rahGtA+G1FodqtOVM0IcNQTdVKu8eZMgEoQRvP8el2QkXS+?=
+ =?us-ascii?Q?4aNpjBBdJMVNrrTY9FPpPDNemxBUP2swl/rVA16c/Oe3RgbHKvdhXC5+bOuf?=
+ =?us-ascii?Q?5gb4D4DEfY+RVNY1+69WbZVrh1GhlJn/VTbdxfC67pQCWZM+I/rR/SR2lmC4?=
+ =?us-ascii?Q?DSDorUVPVoTLaJVABW1UZ6xe3XeqesVZAPw54NVqI9USw2GHOMvW4V7sGvs4?=
+ =?us-ascii?Q?ayWYeMlY9i97bWn5cAawuTNV6n9DC5i6Wd2qKYuCHK3g2biKoAx70bmnyyo5?=
+ =?us-ascii?Q?u0PPXakE9Y4ECe27lWatokOWYYRp40ZYd9+56gLmZaoUMLrw1UEw6n7uuZkN?=
+ =?us-ascii?Q?BoBSxTK9B/J1r4EfoaRKMI7HKp4nSlv3am3k7iJjTJTfA/b+g6I4kaKE0peH?=
+ =?us-ascii?Q?pTeTXGqAQhGADVtVjrS6Q30hHIYX/mgf/3wmpsyzyUJzD+Efb7CYIoBNmjqw?=
+ =?us-ascii?Q?9dsTZ6gdBMiWG7wD786XmXgYkLblZludgZR+/0YUmMMMnDoyq4/Nfb9lCAN+?=
+ =?us-ascii?Q?FMB3K0sYwKXeDwF4kf3WOToIMrlENVJd75kzlIfo+Z0XwBTTP1BudPHs1/mN?=
+ =?us-ascii?Q?P9tt+8qu+XZpnssx0m8AwmdDAHUfB+AFGmaNobr1EHYdxcjEJjq/13pnDuAN?=
+ =?us-ascii?Q?XSRBIQedfNds907fVPm2haOoYMfqb4agvu1QqJdpwfWfXOAd2y99CW2bCoux?=
+ =?us-ascii?Q?KMpExYIl8pmjDrdJvzrUQESWRTrqrhICfCowHogdT9gWNbmx2H2YLNVgum3Z?=
+ =?us-ascii?Q?g42r87aWUyUyR0p+vTk8NNhQdEgUmUnnlsHzzNHcuSD/2yyXhbkn7xLqYpnu?=
+ =?us-ascii?Q?FjL4tZofv768SRcgZirRReCjeaHLLCf0mxQVyF5Q3WXC7HPDoDrf1v6P1o9U?=
+ =?us-ascii?Q?BudjHpuaD/EV6wrA04rNYN0RnLzl/r/Hxr5nZuLK1BLtOuJIP2h4of+2K19c?=
+ =?us-ascii?Q?psmZ/6BDUs4tEs8coE4tlQfqmMV2LbFIoDlL5zfswV49IdyHvq1/UOK5E+tO?=
+ =?us-ascii?Q?ZhZHtdtn2Esha/yhW9qTrkDBz+96XYwB3nwiM6K8lHAb6YbJKMGw4RUVigPa?=
+ =?us-ascii?Q?62gYeUZoBTGFtSYCloePUF543HrPMXJzpidx3J2UPvWUciSS9bv02BnpC+WV?=
+ =?us-ascii?Q?4dN8z4SWtmupK3mNoKZ8pJBe7M4lBXwMO6C1OvyA+tRYZrUv94Y124YXvmKA?=
+ =?us-ascii?Q?0MH2UcT+cGj5jhZIlhijLTT/gJFgt/m7qxp3Elqe4n+k/IH7ADMlduzkBltZ?=
+ =?us-ascii?Q?zo5XaobKou7lVXUWjkAuPP1rtQ42NJkYNvvgHzwk8+y6mmAypmY1nYOy0Tyx?=
+ =?us-ascii?Q?LJQJJ5pgCE7kwg3uXQuo6TPVR9GRXABLTNH11j999a/vHimGN3LmWylVd6vY?=
+ =?us-ascii?Q?DgapqEKRXAHxfgxTfBNWsNOGyvT57PBazuO7D38gnxfKxBEfgncouQa/XG/c?=
+ =?us-ascii?Q?A8S1rTXXEJbYjsyyLdPT17oNBxEfEjDwPH4Gmu98HPl2w6NthT+uBarIDN6N?=
+ =?us-ascii?Q?0DmixPTJXxQwLBRlh4ucux/pfhWK/jiv2CikGY954gqsu8PdA7MHQQ+ukoFW?=
+ =?us-ascii?Q?msTOu7MLIFdolJ4F45TYI1SGTrQ1pl7Lev1K2ggT?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Prefer "XEHP_" prefix for
- registers
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5995.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25890f5a-074c-46f3-2c06-08da5629ed47
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2022 21:38:50.0389 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hWfdow4hnuPrWNW9urPhSD2yErdXtTPFpf7BL9ds8yzEypUV/7mhSDAvwzQ9Qxk4dKTZbn4AzNezuOqVLKMFmxWUKb49AtcK8pgeNwcvB5U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5951
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/fourcc: Document the Intel CCS
+ modifiers' CC plane expected pitch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,125 +150,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We've been introducing new registers with a mix of "XEHP_"
-(architecture) and "XEHPSDV_" (platform) prefixes.  For consistency,
-let's settle on "XEHP_" as the preferred form.
++Jordan (FYI)
 
-XEHPSDV_RP_STATE_CAP stays with its current name since that's truly a
-platform-specific register and not something that applies to the Xe_HP
-architecture as a whole.
+I think the commit message has an extra "color" next to "CC".=20
+With or without that dropped,
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c  | 4 ++--
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 8 ++++----
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 4 ++--
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 8 ++++----
- drivers/gpu/drm/i915/i915_reg.h             | 6 +++---
- 5 files changed, 15 insertions(+), 15 deletions(-)
+Reviewed-by: Nanley Chery <nanley.g.chery@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index e63de9c06596..166d0a4b9e8c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -836,8 +836,8 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 	} else {
- 		resource_size_t lmem_range;
- 
--		lmem_range = intel_gt_mcr_read_any(&i915->gt0, XEHPSDV_TILE0_ADDR_RANGE) & 0xFFFF;
--		lmem_size = lmem_range >> XEHPSDV_TILE_LMEM_RANGE_SHIFT;
-+		lmem_range = intel_gt_mcr_read_any(&i915->gt0, XEHP_TILE0_ADDR_RANGE) & 0xFFFF;
-+		lmem_size = lmem_range >> XEHP_TILE_LMEM_RANGE_SHIFT;
- 		lmem_size *= SZ_1G;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 61815b6e87de..37c1095d8603 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -324,11 +324,11 @@
- 
- #define GEN12_PAT_INDEX(index)			_MMIO(0x4800 + (index) * 4)
- 
--#define XEHPSDV_TILE0_ADDR_RANGE		_MMIO(0x4900)
--#define   XEHPSDV_TILE_LMEM_RANGE_SHIFT		8
-+#define XEHP_TILE0_ADDR_RANGE			_MMIO(0x4900)
-+#define   XEHP_TILE_LMEM_RANGE_SHIFT		8
- 
--#define XEHPSDV_FLAT_CCS_BASE_ADDR		_MMIO(0x4910)
--#define   XEHPSDV_CCS_BASE_SHIFT		8
-+#define XEHP_FLAT_CCS_BASE_ADDR			_MMIO(0x4910)
-+#define   XEHP_CCS_BASE_SHIFT			8
- 
- #define GAMTARBMODE				_MMIO(0x4a08)
- #define   ARB_MODE_BWGTLB_DISABLE		(1 << 9)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index ae8a8f725f01..73a8b46e0234 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -679,7 +679,7 @@ static ssize_t media_RP0_freq_mhz_show(struct device *dev,
- 	u32 val;
- 	int err;
- 
--	err = snb_pcode_read_p(gt->uncore, XEHPSDV_PCODE_FREQUENCY_CONFIG,
-+	err = snb_pcode_read_p(gt->uncore, XEHP_PCODE_FREQUENCY_CONFIG,
- 			       PCODE_MBOX_FC_SC_READ_FUSED_P0,
- 			       PCODE_MBOX_DOMAIN_MEDIAFF, &val);
- 
-@@ -700,7 +700,7 @@ static ssize_t media_RPn_freq_mhz_show(struct device *dev,
- 	u32 val;
- 	int err;
- 
--	err = snb_pcode_read_p(gt->uncore, XEHPSDV_PCODE_FREQUENCY_CONFIG,
-+	err = snb_pcode_read_p(gt->uncore, XEHP_PCODE_FREQUENCY_CONFIG,
- 			       PCODE_MBOX_FC_SC_READ_FUSED_PN,
- 			       PCODE_MBOX_DOMAIN_MEDIAFF, &val);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index 2ff448047020..d09b996a9759 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -105,12 +105,12 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
- 		resource_size_t lmem_range;
- 		u64 tile_stolen, flat_ccs_base;
- 
--		lmem_range = intel_gt_mcr_read_any(&i915->gt0, XEHPSDV_TILE0_ADDR_RANGE) & 0xFFFF;
--		lmem_size = lmem_range >> XEHPSDV_TILE_LMEM_RANGE_SHIFT;
-+		lmem_range = intel_gt_mcr_read_any(&i915->gt0, XEHP_TILE0_ADDR_RANGE) & 0xFFFF;
-+		lmem_size = lmem_range >> XEHP_TILE_LMEM_RANGE_SHIFT;
- 		lmem_size *= SZ_1G;
- 
--		flat_ccs_base = intel_gt_mcr_read_any(gt, XEHPSDV_FLAT_CCS_BASE_ADDR);
--		flat_ccs_base = (flat_ccs_base >> XEHPSDV_CCS_BASE_SHIFT) * SZ_64K;
-+		flat_ccs_base = intel_gt_mcr_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
-+		flat_ccs_base = (flat_ccs_base >> XEHP_CCS_BASE_SHIFT) * SZ_64K;
- 
- 		/* FIXME: Remove this when we have small-bar enabled */
- 		if (pci_resource_len(pdev, 2) < lmem_size) {
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index cf5e16abf6c7..643d7f020a4a 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6767,12 +6767,12 @@
- #define     DG1_UNCORE_GET_INIT_STATUS		0x0
- #define     DG1_UNCORE_INIT_STATUS_COMPLETE	0x1
- #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
--#define   XEHPSDV_PCODE_FREQUENCY_CONFIG		0x6e	/* xehpsdv, pvc */
--/* XEHPSDV_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
-+#define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* xehpsdv, pvc */
-+/* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
- #define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
- #define     PCODE_MBOX_FC_SC_READ_FUSED_PN	0x1
- /* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
--/*   XEHPSDV_PCODE_FREQUENCY_CONFIG param2 */
-+/*   XEHP_PCODE_FREQUENCY_CONFIG param2 */
- #define     PCODE_MBOX_DOMAIN_NONE		0x0
- #define     PCODE_MBOX_DOMAIN_MEDIAFF		0x3
- #define GEN6_PCODE_DATA				_MMIO(0x138128)
--- 
-2.36.1
+Thanks for the fix.
+
+> -----Original Message-----
+> From: Deak, Imre <imre.deak@intel.com>
+> Sent: Thursday, June 23, 2022 10:50 AM
+> To: dri-devel@lists.freedesktop.org
+> Cc: intel-gfx@lists.freedesktop.org; Chery, Nanley G <nanley.g.chery@inte=
+l.com>
+> Subject: [PATCH] drm/fourcc: Document the Intel CCS modifiers' CC plane e=
+xpected pitch
+>=20
+> The driver expects the pitch of the Intel CCS CC color planes to be
+> 64 bytes aligned, adjust the modifier descriptions accordingly.
+>=20
+> Cc: Nanley Chery <nanley.g.chery@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  include/uapi/drm/drm_fourcc.h | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.=
+h
+> index f1972154a5940..c1b4cfda75075 100644
+> --- a/include/uapi/drm/drm_fourcc.h
+> +++ b/include/uapi/drm/drm_fourcc.h
+> @@ -559,7 +559,7 @@ extern "C" {
+>   *
+>   * The main surface is Y-tiled and is at plane index 0 whereas CCS is li=
+near
+>   * and at index 1. The clear color is stored at index 2, and the pitch s=
+hould
+> - * be ignored. The clear color structure is 256 bits. The first 128 bits
+> + * be 64 bytes aligned. The clear color structure is 256 bits. The first=
+ 128 bits
+>   * represents Raw Clear Color Red, Green, Blue and Alpha color each repr=
+esented
+>   * by 32 bits. The raw clear color is consumed by the 3d engine and gene=
+rates
+>   * the converted clear color of size 64 bits. The first 32 bits store th=
+e Lower
+> @@ -612,9 +612,9 @@ extern "C" {
+>   * outside of the GEM object in a reserved memory area dedicated for the
+>   * storage of the CCS data for all RC/RC_CC/MC compressible GEM objects.=
+ The
+>   * main surface pitch is required to be a multiple of four Tile 4 widths=
+. The
+> - * clear color is stored at plane index 1 and the pitch should be ignore=
+d. The
+> - * format of the 256 bits of clear color data matches the one used for t=
+he
+> - * I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC modifier, see its description
+> + * clear color is stored at plane index 1 and the pitch should be 64 byt=
+es
+> + * aligned. The format of the 256 bits of clear color data matches the o=
+ne used
+> + * for the I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC modifier, see its des=
+cription
+>   * for details.
+>   */
+>  #define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC fourcc_mod_code(INTEL, 12)
+> --
+> 2.30.2
 
