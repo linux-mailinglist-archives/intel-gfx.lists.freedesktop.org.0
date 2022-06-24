@@ -2,111 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B642A55A1CD
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 21:30:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC0355A1D2
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jun 2022 21:31:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C23410E64D;
-	Fri, 24 Jun 2022 19:30:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C662810EA29;
+	Fri, 24 Jun 2022 19:31:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2059.outbound.protection.outlook.com [40.107.237.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4538510E64D;
- Fri, 24 Jun 2022 19:30:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OrZupekqEwqoaPrP5VgNhVrAdw5YGAJapuWJw4MLk+Pxej/eHH0KY7u1TZoeyx1CGx9BIzNhSuOPcTMdJy/QkKcQ9dR+FL7+E3fiVPdvGChtoMovzG+NzF6qLjv4ZVbG54HPNGz2Yzs5em/uEHfuLuGYhPZZkINi+h3XbRO4bI/sJnxPROMqW7SP3vQWHKPMQTbT4oc0VwiKdcOz5dCATv5JEgq0BaVg4n6eZ22fuh5lP7mJyZ9njqrcdfXAzgJByI/D1XS3v4wjAGZuwugojSlFl8UPgkeko+fAj98g2AdB8NrFw9f0jWkqz7zc5NNl2ykYUVgEqZ4s2DyQM8iZsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oqNqUHCbLomiuGFtXesA5iI2i5qqLUtQ71Ia1noIpuI=;
- b=e/mYdeUyUFBd4QitnAviSV1B9sQ15V5UdMfiS3t0vEKBAYcfgycgAFtgUvlQu6IwPQbfPjAOTadv/C+VLp39H+UJYrxDEcN+IixZ+bQjqdEgopFU32BiCzwPFGJyj4A914jTrYn5flCRhNclxdvjhCpBc20Zm1ShaFKcA5ETCTPkR/yWumZPz5LTzvZmmm5ZGwxJFbUDx2lWNCB+zG5xBNZYyYHh9FuRUB9m/xnH7XjpVn9574sfS/TTA5GFNXyQ4GTeywi4L8ZzFFpkYTjSJIGsC2JiUIrJd7ukyUBdwRw6tvGSAW7rioQ8rGjLwos7hKSnwOx9+xMb8uLHHRAqog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oqNqUHCbLomiuGFtXesA5iI2i5qqLUtQ71Ia1noIpuI=;
- b=ubwhXcRVMJsqHjOnuQob5NhYLe8/rsc5B7VdFGgkLln1eqqCN0S3OubBF7aIIIRskSDgOSfvLH4yuq8VfLMi08udU8vNKMxUEgTUoc1JKggXtF+rA3Ai3T+BoXdbMdRsq3mOT6FI8aVxlb3RCab+VvLugDx3n5UE33IOdM0+s24u2vTvq98r1rnc+/fmoKDwKpfxvT7PFOAwcTm/djX37E1FQP5inmITWKnRE2mLm7o67WfpSiFCLvmQckiELkoT9muy5z8uc3lhYsTCXPkqYMLhZh5KcCF6kcDR2ppa2rK11imzmAeEX7084MKLT9pdxegMWMVDJ2W2olzFnuvd+Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
- by CH0PR12MB5331.namprd12.prod.outlook.com (2603:10b6:610:d6::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.17; Fri, 24 Jun
- 2022 19:30:43 +0000
-Received: from MN2PR12MB4192.namprd12.prod.outlook.com
- ([fe80::ac35:7c4b:3282:abfb]) by MN2PR12MB4192.namprd12.prod.outlook.com
- ([fe80::ac35:7c4b:3282:abfb%3]) with mapi id 15.20.5373.016; Fri, 24 Jun 2022
- 19:30:43 +0000
-Date: Fri, 24 Jun 2022 16:30:42 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Nicolin Chen <nicolinc@nvidia.com>
-Message-ID: <20220624193042.GB4147@nvidia.com>
-References: <20220616235212.15185-1-nicolinc@nvidia.com>
- <20220616235212.15185-6-nicolinc@nvidia.com>
- <Yqw+7gM3Lz96UFdz@infradead.org> <20220620025726.GA5219@nvidia.com>
- <YrAUZ7hXy2FcZcjl@infradead.org> <YrI2Ul/u6pRvt0rT@Asurada-Nvidia>
- <20220624135615.GO4147@nvidia.com>
- <YrYO/KAa2bqmxEIu@Asurada-Nvidia>
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
+ [IPv6:2a00:1450:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F52310EA29
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jun 2022 19:31:44 +0000 (UTC)
+Received: by mail-ej1-x62e.google.com with SMTP id h23so6610643ejj.12
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jun 2022 12:31:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=iQJktb5PWNbfqrDPP+5As0opGXtly/i+6fOECL9yDVA=;
+ b=PlCeNB0agVYLKaMw0QpPczGH2N6RTgviEs5yL26oRCV4LDYSRhi23JeX+aNP9ocSgh
+ 3AhtATlD85dln5vr5l4b+Avo9r/ieOTjfm+Ri6wm9igH7yajWH5rBgvx2rqbxgMfD15u
+ odPZC0KEkLiBv3sdrDXUVBBy129b1EFya81iw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=iQJktb5PWNbfqrDPP+5As0opGXtly/i+6fOECL9yDVA=;
+ b=ANmBTDVAbZaixbw2GYKH4phxqn8bsoHJN/hygoWoFGTnZEcC0XoCFz0jLpORTl/DBh
+ 7XyBki5qfIyYC7XFySoqeIcmbqMX3zxHpWE4T6fDUUOklY9N9orTIfRfY9YnVpTk/TGi
+ CbG0nNp1TMWqrvc6Jc6iP3OiWmTUFO/M4+7B8kGcEQzrgRSA6VMsGArCm3MCFW52stDq
+ QzCI212hja3dpGDdgEssSKlcIO69Pu1mq0Sz+yQbemZgDzdnS29Sh9JHPRgEGgA5H1eg
+ SRkpaLJhWjn+SMptQaE1dbaT5CndyW5kKcvbNExHz9g5UnOfQAj+yvrGW3zT2zVw4O0N
+ ZpZA==
+X-Gm-Message-State: AJIora+uRQ35svDkKsp8/+h4niCsmYXho6Sx3/NvT/LZmHyJR+QCNuWi
+ IRqlabCUsd49YZbYwD5i0tJ/1g==
+X-Google-Smtp-Source: AGRyM1ttfvaD/x2ANe1ndhtxnrmB60CMRxFYqLv+uwvxWlCXANgOgtmKgoA3/6TcXefpyDtnyK1LUg==
+X-Received: by 2002:a17:907:1b0c:b0:6fe:25bf:b3e5 with SMTP id
+ mp12-20020a1709071b0c00b006fe25bfb3e5mr525309ejc.689.1656099102402; 
+ Fri, 24 Jun 2022 12:31:42 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ a25-20020a50f0d9000000b004357f391015sm2625294edm.97.2022.06.24.12.31.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 24 Jun 2022 12:31:41 -0700 (PDT)
+Date: Fri, 24 Jun 2022 21:31:39 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Message-ID: <YrYRG0hwnfPcaMKA@phenom.ffwll.local>
+References: <20220624174936.1065-1-niranjana.vishwanathapura@intel.com>
+ <20220624174936.1065-2-niranjana.vishwanathapura@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YrYO/KAa2bqmxEIu@Asurada-Nvidia>
-X-ClientProxiedBy: MN2PR17CA0029.namprd17.prod.outlook.com
- (2603:10b6:208:15e::42) To MN2PR12MB4192.namprd12.prod.outlook.com
- (2603:10b6:208:1d5::15)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8223e9c2-4f40-4523-98de-08da5618079f
-X-MS-TrafficTypeDiagnostic: CH0PR12MB5331:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZIpJ76pLml8f+Hiv9WfS3vSJM602QJR0S4rCGWCmzIWp+LRw03IbXcODhcttltWYDZg8dfBE/c5hW5DqxRGlourwfueklIkwgBaAZDmOxv8iQd+bBlUB+HSgudHkGNwniVEr4rOgcsVE2r4eRwEiXEQNOXsP8A2LbTmkXKmbD0OxFxHwWJyGg9kb+G4VwDk0SrG7P4xYVGJvmz9BauzVPu4Jm24r/snCODW9qugQNG0f8Wuu9M5jN5D7Ppy4ci/+zXnfWFGji7aWrG24NqUGoCHM5NGCC4x2hlRvpz/W0xU9BkKqikGdYtRYrvL+2iCGHNasmYNqrDQb60U7gUebvZlU7bnK4eOur7Qdz4BOPcAhIAsl949BYWWdeHPi1XyELsfCFgr8nHkjWGlRr0qpMPaIA1ZLLfQVk6m+kAN3ureAWQBpYm9SDGGm2c+5dusy71YpvJv40y3744G21PsqWobrq7salbOIsyOP8EBK28TPZa6m0ArxydboIZiUIrBhYd1RIxw7Qd5eiDXPfmsBsP1dlXbY/Bo4kF2Qs2e2N/U04L2gcx4m2kr03vp3VH/SE8jEJBglDpVVlvizPU3J2XOdAEYgKbNl1llJOOicxNH2UwPE8e2re70N0qzB31GUOFKpbHCo2EbrcKP4FxZqwETaLrBCedrtiXZ6dk/wOlNYRteKb6if4A1CHNeUPapfqBm9LWSMxhUQ4homaevhL5gRc1ECIxOOnS57nDF7WM0L4VeqFCGnJImYdusj1deo
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(136003)(376002)(366004)(396003)(39860400002)(6512007)(26005)(83380400001)(38100700002)(316002)(6506007)(2906002)(6486002)(36756003)(41300700001)(478600001)(33656002)(66556008)(2616005)(37006003)(4326008)(8676002)(66946007)(6636002)(66476007)(8936002)(7406005)(6862004)(7416002)(186003)(86362001)(1076003)(5660300002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?v6mWWETTX6YUz3aWn9aztuCsVweXB8qFKW6kkclcl4R2B30JdBBG07A5jg+2?=
- =?us-ascii?Q?KkqzSh13M2ElwhcGYWdj+F8Chj9Urd4PUbYMQBX/b+qsY++TRPDWSb322TGe?=
- =?us-ascii?Q?lCfra2VU6VoxaO0vYH52K0SxBFjdWdHx90WMsBGNol4DXt6XhArMXZpNzFhA?=
- =?us-ascii?Q?t+loW1NEUm+sGKsDcimivulYhVVHMOSG0dXkkeK7nSIhdvqlHHHqDVzs7rxS?=
- =?us-ascii?Q?c78QwRaLOBkLR9Ojzyt6V0O7AzXgcFIsTAgpWeRRCaB0gBknrGrIDTkIQG2+?=
- =?us-ascii?Q?YclpMKqPmNski3tBG7FPc6P+nCC/8cvsu4PZiNxT5v6QZrRYuGsCbIkxHvsR?=
- =?us-ascii?Q?HO1GkhhxCPB5z6OmmF+1pHtCaLqh1hZyfhD6R2HKPv0V3KgFF2qy220vk0hA?=
- =?us-ascii?Q?zRXen71pZ62yipmQxUouN12fV2WuNstrbFXCs+XlYhDyehGKL4tBn9m53rs7?=
- =?us-ascii?Q?P30hfKH1gMUsdS66400L+MhxpWxz9Sc64/Xa5QKzO50KsMVGYcqLVRoYAMAI?=
- =?us-ascii?Q?IAK3aRZQETPdT0cQl5H9jRzJ4AoIpodKiveoTRHc8ADhkzpGFlvreggjsRqA?=
- =?us-ascii?Q?Xu3OOS+/D/6A6SxKC6/06dp8nUeJZp0HSM8Rg/jDy6EXR1m5wkJ05DAqSoXv?=
- =?us-ascii?Q?JNiBFqGE5RO734M8Cd9+qY8ichfY2lXdKA7QFbZXHGfOv0aNmcrGVI2McxcF?=
- =?us-ascii?Q?g8GB5M/hAI/fyfZXJJnNrvNhfvDHDfE+BFLRcfta2Jdd7IXetRndDTkY8gR6?=
- =?us-ascii?Q?/yRGZWuU5VKT4p59bLw0LiU3u5vd3Q9ich7Z0fGYN18LLG760jYk6agjqQWl?=
- =?us-ascii?Q?NsazPzpTlAbZH3vuwhYysQIi92DkjECZXolw625bCWhcjCMq1ObuyiRPpYpz?=
- =?us-ascii?Q?b3ZsnkeKB/olLChgZlkQcjY32xUWlKcKsIKZn+EhybSfZcXjLIgQDJzvXm3/?=
- =?us-ascii?Q?u9ZaCqUC3Xr9KdjDEIQhRBpxpT8web7k678OwpNlCOKVDUryc255MNPS61rZ?=
- =?us-ascii?Q?AS1VxO9shSoIbhg2XgBophyCgbak6UbVGO7acF7JUmqyKbvJL7lo+Q4nTeDq?=
- =?us-ascii?Q?tlgb4mcWU3kP05aE/Z0Vly0/SOtKMkUbysWPTm4n3AbBRMWxlN1wwJoww5Oq?=
- =?us-ascii?Q?XqIVXK+6GQePApvGEab+2JV2qR2zA6idF1eKyt9RJBTZdEUueHA+DO00uWE5?=
- =?us-ascii?Q?981YpB6IqNwvdPUeobfuh5bdZDgPUnStbV0mG9xJ62Qm1FXuwJrWRRowNM88?=
- =?us-ascii?Q?8XLzkmTeASdBzuhtjUVemOuFicgoEOBnnrf7+5FyjV7lVG6kKdTOWTjpVVFk?=
- =?us-ascii?Q?p3igQYPweXO4z0QVAoU9YVziZyZPkE/LEg2e7HwQa3E3SlWtauIyte4SvXRv?=
- =?us-ascii?Q?q1UNdQ3iVBP7QNMoingHbRgSBR2Kt66bezslCuqhOyzJxRFv7WhfdlijIUV3?=
- =?us-ascii?Q?nkZvirGd0Pmy7K+mnfrz+O7sGeNqk9ncjhHDjXWkXsQD7+nAyQ6/0sR7G1B7?=
- =?us-ascii?Q?ZLkgbpRzQWqeD32hGzokRfuskWTHFvHAHkXqx9ylZaANOBupGEKfBCBq8Tag?=
- =?us-ascii?Q?2PC8d9gZduYmWp19Njt+rvjVBakDfWt07bL8N3ya?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8223e9c2-4f40-4523-98de-08da5618079f
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2022 19:30:43.5012 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JyxMbDJH2V84CJP3CsMtkggsId4guSxEmQ7gqDKKnx6F2fysLFWeUFs72u34yyDC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5331
-Subject: Re: [Intel-gfx] [RFT][PATCH v1 5/6] vfio/ccw: Add kmap_local_page()
- for memcpy
+In-Reply-To: <20220624174936.1065-2-niranjana.vishwanathapura@intel.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH v6 1/3] drm/doc/rfc: VM_BIND feature design
+ document
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,54 +69,322 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, linux-doc@vger.kernel.org, airlied@linux.ie,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kwankhede@nvidia.com, vneethv@linux.ibm.com, agordeev@linux.ibm.com,
- pasic@linux.ibm.com, kvm@vger.kernel.org, corbet@lwn.net,
- Christoph Hellwig <hch@infradead.org>, borntraeger@linux.ibm.com,
- intel-gfx@lists.freedesktop.org, jjherne@linux.ibm.com, farman@linux.ibm.com,
- jchrist@linux.ibm.com, gor@linux.ibm.com, linux-s390@vger.kernel.org,
- hca@linux.ibm.com, freude@linux.ibm.com, rodrigo.vivi@intel.com,
- intel-gvt-dev@lists.freedesktop.org, akrowiak@linux.ibm.com, cohuck@redhat.com,
- oberpar@linux.ibm.com, svens@linux.ibm.com
+Cc: chris.p.wilson@intel.com, paulo.r.zanoni@intel.com,
+ intel-gfx@lists.freedesktop.org, thomas.hellstrom@intel.com,
+ dri-devel@lists.freedesktop.org, daniel.vetter@intel.com,
+ christian.koenig@amd.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 24, 2022 at 12:22:36PM -0700, Nicolin Chen wrote:
-> On Fri, Jun 24, 2022 at 10:56:15AM -0300, Jason Gunthorpe wrote:
+On Fri, Jun 24, 2022 at 10:49:34AM -0700, Niranjana Vishwanathapura wrote:
+> VM_BIND design document with description of intended use cases.
 > 
-> > > How about the updated commit log below? Thanks.
-> > > 
-> > > The pinned PFN list returned from vfio_pin_pages() is converted using
-> > > page_to_pfn(), so direct access via memcpy() will crash on S390 if the
-> > > PFN is an IO PFN, as we have to use the memcpy_to/fromio(), which uses
-> > > the special s390 IO access instructions.
-> > > 
-> > > As a standard practice for security purpose, add kmap_local_page() to
-> > > block any IO memory from ever getting into this call path.
-> > 
-> > The kmap_local_page is not about the IO memory, the switch to struct
-> > page is what is protecting against IO memory.
-> > 
-> > Use kmap_local_page() is just the correct way to convert a struct page
-> > into a CPU address to use with memcpy and it is a NOP on S390 because
-> > it doesn't use highmem/etc.
+> v2: Reduce the scope to simple Mesa use case.
+> v3: Expand documentation on dma-resv usage, TLB flushing and
+>     execbuf3.
+> v4: Remove vm_bind tlb flush request support.
+> v5: Update TLB flushing documentation.
 > 
-> I thought the whole purpose of switching to "struct page *" was to use
-> kmap_local_page() for the memcpy call, and the combination of these two
-> does the protection. Do you mind explaining how the switching part does
-> the protection?
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> ---
+>  Documentation/gpu/rfc/i915_vm_bind.rst | 246 +++++++++++++++++++++++++
+>  Documentation/gpu/rfc/index.rst        |   4 +
+>  2 files changed, 250 insertions(+)
+>  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.rst
+> 
+> diff --git a/Documentation/gpu/rfc/i915_vm_bind.rst b/Documentation/gpu/rfc/i915_vm_bind.rst
+> new file mode 100644
+> index 000000000000..534adf0c6c7a
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/i915_vm_bind.rst
+> @@ -0,0 +1,246 @@
+> +==========================================
+> +I915 VM_BIND feature design and use cases
+> +==========================================
+> +
+> +VM_BIND feature
+> +================
+> +DRM_I915_GEM_VM_BIND/UNBIND ioctls allows UMD to bind/unbind GEM buffer
+> +objects (BOs) or sections of a BOs at specified GPU virtual addresses on a
+> +specified address space (VM). These mappings (also referred to as persistent
+> +mappings) will be persistent across multiple GPU submissions (execbuf calls)
+> +issued by the UMD, without user having to provide a list of all required
+> +mappings during each submission (as required by older execbuf mode).
+> +
+> +The VM_BIND/UNBIND calls allow UMDs to request a timeline fence for signaling
+> +the completion of bind/unbind operation.
+> +
+> +VM_BIND feature is advertised to user via I915_PARAM_HAS_VM_BIND.
+> +User has to opt-in for VM_BIND mode of binding for an address space (VM)
+> +during VM creation time via I915_VM_CREATE_FLAGS_USE_VM_BIND extension.
+> +
+> +The bind/unbind operation can get completed asynchronously and out of
+> +submission order. The out fence when specified will be signaled upon
+> +completion of bind/unbind operation.
+> +
+> +VM_BIND features include:
+> +
+> +* Multiple Virtual Address (VA) mappings can map to the same physical pages
+> +  of an object (aliasing).
+> +* VA mapping can map to a partial section of the BO (partial binding).
+> +* Support capture of persistent mappings in the dump upon GPU error.
+> +* Support for userptr gem objects (no special uapi is required for this).
+> +
+> +TLB flush consideration
+> +------------------------
+> +The i915 driver flushes the TLB for each submission and when an object's
+> +pages are released. The VM_BIND/UNBIND operation will not do any additional
+> +TLB flush. Any VM_BIND mapping added will be in the working set for subsequent
+> +submissions on that VM and will not be in the working set for currently running
+> +batches (which would require additional TLB flushes, which is not supported).
+> +
+> +Execbuf ioctl in VM_BIND mode
+> +-------------------------------
+> +A VM in VM_BIND mode will not support older execbuf mode of binding.
+> +The execbuf ioctl handling in VM_BIND mode differs significantly from the
+> +older execbuf2 ioctl (See struct drm_i915_gem_execbuffer2).
+> +Hence, a new execbuf3 ioctl has been added to support VM_BIND mode. (See
+> +struct drm_i915_gem_execbuffer3). The execbuf3 ioctl will not accept any
+> +execlist. Hence, no support for implicit sync. It is expected that the below
+> +work will be able to support requirements of object dependency setting in all
+> +use cases:
+> +
+> +"dma-buf: Add an API for exporting sync files"
+> +(https://lwn.net/Articles/859290/)
+> +
+> +The new execbuf3 ioctl only works in VM_BIND mode and the VM_BIND mode only
+> +works with execbuf3 ioctl for submission. All BOs mapped on that VM (through
+> +VM_BIND call) at the time of execbuf3 call are deemed required for that
+> +submission.
+> +
+> +The execbuf3 ioctl directly specifies the batch addresses instead of as
+> +object handles as in execbuf2 ioctl. The execbuf3 ioctl will also not
+> +support many of the older features like in/out/submit fences, fence array,
+> +default gem context and many more (See struct drm_i915_gem_execbuffer3).
+> +
+> +In VM_BIND mode, VA allocation is completely managed by the user instead of
+> +the i915 driver. Hence all VA assignment, eviction are not applicable in
+> +VM_BIND mode. Also, for determining object activeness, VM_BIND mode will not
+> +be using the i915_vma active reference tracking. It will instead use dma-resv
+> +object for that (See `VM_BIND dma_resv usage`_).
+> +
+> +So, a lot of existing code supporting execbuf2 ioctl, like relocations, VA
+> +evictions, vma lookup table, implicit sync, vma active reference tracking etc.,
+> +are not applicable for execbuf3 ioctl. Hence, all execbuf3 specific handling
+> +should be in a separate file and only functionalities common to these ioctls
+> +can be the shared code where possible.
+> +
+> +VM_PRIVATE objects
+> +-------------------
+> +By default, BOs can be mapped on multiple VMs and can also be dma-buf
+> +exported. Hence these BOs are referred to as Shared BOs.
+> +During each execbuf submission, the request fence must be added to the
+> +dma-resv fence list of all shared BOs mapped on the VM.
+> +
+> +VM_BIND feature introduces an optimization where user can create BO which
+> +is private to a specified VM via I915_GEM_CREATE_EXT_VM_PRIVATE flag during
+> +BO creation. Unlike Shared BOs, these VM private BOs can only be mapped on
+> +the VM they are private to and can't be dma-buf exported.
+> +All private BOs of a VM share the dma-resv object. Hence during each execbuf
+> +submission, they need only one dma-resv fence list updated. Thus, the fast
+> +path (where required mappings are already bound) submission latency is O(1)
+> +w.r.t the number of VM private BOs.
+> +
+> +VM_BIND locking hirarchy
+> +-------------------------
+> +The locking design here supports the older (execlist based) execbuf mode, the
+> +newer VM_BIND mode, the VM_BIND mode with GPU page faults and possible future
+> +system allocator support (See `Shared Virtual Memory (SVM) support`_).
+> +The older execbuf mode and the newer VM_BIND mode without page faults manages
+> +residency of backing storage using dma_fence. The VM_BIND mode with page faults
+> +and the system allocator support do not use any dma_fence at all.
+> +
+> +VM_BIND locking order is as below.
+> +
+> +1) Lock-A: A vm_bind mutex will protect vm_bind lists. This lock is taken in
+> +   vm_bind/vm_unbind ioctl calls, in the execbuf path and while releasing the
+> +   mapping.
+> +
+> +   In future, when GPU page faults are supported, we can potentially use a
+> +   rwsem instead, so that multiple page fault handlers can take the read side
+> +   lock to lookup the mapping and hence can run in parallel.
+> +   The older execbuf mode of binding do not need this lock.
+> +
+> +2) Lock-B: The object's dma-resv lock will protect i915_vma state and needs to
+> +   be held while binding/unbinding a vma in the async worker and while updating
+> +   dma-resv fence list of an object. Note that private BOs of a VM will all
+> +   share a dma-resv object.
+> +
+> +   The future system allocator support will use the HMM prescribed locking
+> +   instead.
+> +
+> +3) Lock-C: Spinlock/s to protect some of the VM's lists like the list of
+> +   invalidated vmas (due to eviction and userptr invalidation) etc.
+> +
+> +When GPU page faults are supported, the execbuf path do not take any of these
+> +locks. There we will simply smash the new batch buffer address into the ring and
+> +then tell the scheduler run that. The lock taking only happens from the page
+> +fault handler, where we take lock-A in read mode, whichever lock-B we need to
+> +find the backing storage (dma_resv lock for gem objects, and hmm/core mm for
+> +system allocator) and some additional locks (lock-D) for taking care of page
+> +table races. Page fault mode should not need to ever manipulate the vm lists,
+> +so won't ever need lock-C.
+> +
+> +VM_BIND LRU handling
+> +---------------------
+> +We need to ensure VM_BIND mapped objects are properly LRU tagged to avoid
+> +performance degradation. We will also need support for bulk LRU movement of
+> +VM_BIND objects to avoid additional latencies in execbuf path.
+> +
+> +The page table pages are similar to VM_BIND mapped objects (See
+> +`Evictable page table allocations`_) and are maintained per VM and needs to
+> +be pinned in memory when VM is made active (ie., upon an execbuf call with
+> +that VM). So, bulk LRU movement of page table pages is also needed.
+> +
+> +VM_BIND dma_resv usage
+> +-----------------------
+> +Fences needs to be added to all VM_BIND mapped objects. During each execbuf
+> +submission, they are added with DMA_RESV_USAGE_BOOKKEEP usage to prevent
+> +over sync (See enum dma_resv_usage). One can override it with either
+> +DMA_RESV_USAGE_READ or DMA_RESV_USAGE_WRITE usage during explicit object
+> +dependency setting.
 
-A 'struct page' (ignoring ZONE_DEVICE) cannot represent IO memory
-inherently because a 'struct page' is always a CPU coherent thing.
+I thought we've ditched that in favour of the import/export ioctls, and
+execbuf will only ever set BOOKKEEPING?
 
-So, when VFIO returns only struct pages it also is promising that the
-memory is not IO.
+> +Note that DRM_I915_GEM_WAIT and DRM_I915_GEM_BUSY ioctls do not check for
+> +DMA_RESV_USAGE_BOOKKEEP usage and hence should not be used for end of batch
+> +check. Instead, the execbuf3 out fence should be used for end of batch check
+> +(See struct drm_i915_gem_execbuffer3).
 
-The kmap_local_page() arose because the code doing memcpy had to be
-updated to go from a struct page to a void * for use with memcpy and
-the kmap_local_page() is the correct API to use for that.
+This is a bit confused. Changing gem_wait and gem_busy ioctls to also look
+at bookkeeping will not fix the issue, because in a vm_bind vm _all_
+objects (and hence also all batchbuffers mapped into the vm) always have
+the same fences in their dma_resv from that vm. Which means that if any
+batchbuffer is still running, all batchbuffers are considered active. And
+so checking fences in the dma_resv is useless for the umd and it needs to
+track batchbuffer usage itself somewhere.
 
-The existing code which casts a pfn to a void * is improper.
+> +
+> +Also, in VM_BIND mode, use dma-resv apis for determining object activeness
+> +(See dma_resv_test_signaled() and dma_resv_wait_timeout()) and do not use the
+> +older i915_vma active reference tracking which is deprecated. This should be
+> +easier to get it working with the current TTM backend.
 
-Jason
+Hm I thought he plan is to require ttm, since ttm has the bulk lru stuff
+only and our i915-gem shrinker/lru code is very busted? Maybe needs to be
+clarified slightly.
+
+> +
+> +Mesa use case
+> +--------------
+> +VM_BIND can potentially reduce the CPU overhead in Mesa (both Vulkan and Iris),
+> +hence improving performance of CPU-bound applications. It also allows us to
+> +implement Vulkan's Sparse Resources. With increasing GPU hardware performance,
+> +reducing CPU overhead becomes more impactful.
+> +
+> +
+> +Other VM_BIND use cases
+> +========================
+> +
+> +Long running Compute contexts
+> +------------------------------
+> +Usage of dma-fence expects that they complete in reasonable amount of time.
+> +Compute on the other hand can be long running. Hence it is appropriate for
+> +compute to use user/memory fence (See `User/Memory Fence`_) and dma-fence usage
+> +must be limited to in-kernel consumption only.
+> +
+> +Where GPU page faults are not available, kernel driver upon buffer invalidation
+> +will initiate a suspend (preemption) of long running context, finish the
+> +invalidation, revalidate the BO and then resume the compute context. This is
+> +done by having a per-context preempt fence which is enabled when someone tries
+> +to wait on it and triggers the context preemption.
+> +
+> +User/Memory Fence
+> +~~~~~~~~~~~~~~~~~~
+> +User/Memory fence is a <address, value> pair. To signal the user fence, the
+> +specified value will be written at the specified virtual address and wakeup the
+> +waiting process. User fence can be signaled either by the GPU or kernel async
+> +worker (like upon bind completion). User can wait on a user fence with a new
+> +user fence wait ioctl.
+> +
+> +Here is some prior work on this:
+> +https://patchwork.freedesktop.org/patch/349417/
+> +
+> +Low Latency Submission
+> +~~~~~~~~~~~~~~~~~~~~~~~
+> +Allows compute UMD to directly submit GPU jobs instead of through execbuf
+> +ioctl. This is made possible by VM_BIND is not being synchronized against
+> +execbuf. VM_BIND allows bind/unbind of mappings required for the directly
+> +submitted jobs.
+> +
+> +Debugger
+> +---------
+> +With debug event interface user space process (debugger) is able to keep track
+> +of and act upon resources created by another process (debugged) and attached
+> +to GPU via vm_bind interface.
+> +
+> +GPU page faults
+> +----------------
+> +GPU page faults when supported (in future), will only be supported in the
+> +VM_BIND mode. While both the older execbuf mode and the newer VM_BIND mode of
+> +binding will require using dma-fence to ensure residency, the GPU page faults
+> +mode when supported, will not use any dma-fence as residency is purely managed
+> +by installing and removing/invalidating page table entries.
+> +
+> +Page level hints settings
+> +--------------------------
+> +VM_BIND allows any hints setting per mapping instead of per BO.
+> +Possible hints include read-only mapping, placement and atomicity.
+> +Sub-BO level placement hint will be even more relevant with
+> +upcoming GPU on-demand page fault support.
+> +
+> +Page level Cache/CLOS settings
+> +-------------------------------
+> +VM_BIND allows cache/CLOS settings per mapping instead of per BO.
+> +
+> +Evictable page table allocations
+> +---------------------------------
+> +Make pagetable allocations evictable and manage them similar to VM_BIND
+> +mapped objects. Page table pages are similar to persistent mappings of a
+> +VM (difference here are that the page table pages will not have an i915_vma
+> +structure and after swapping pages back in, parent page link needs to be
+> +updated).
+> +
+> +Shared Virtual Memory (SVM) support
+> +------------------------------------
+> +VM_BIND interface can be used to map system memory directly (without gem BO
+> +abstraction) using the HMM interface. SVM is only supported with GPU page
+> +faults enabled.
+> +
+> +VM_BIND UAPI
+> +=============
+> +
+> +.. kernel-doc:: Documentation/gpu/rfc/i915_vm_bind.h
+> diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+> index 91e93a705230..7d10c36b268d 100644
+> --- a/Documentation/gpu/rfc/index.rst
+> +++ b/Documentation/gpu/rfc/index.rst
+> @@ -23,3 +23,7 @@ host such documentation:
+>  .. toctree::
+>  
+>      i915_scheduler.rst
+> +
+> +.. toctree::
+> +
+> +    i915_vm_bind.rst
+> -- 
+> 2.21.0.rc0.32.g243a4c7e27
+
+So I had a few comments/questions on the dma_resv side, but frankly we can
+also adjust them later on - either when we land the code or with a quick
+patch for the rfc docs here.
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
