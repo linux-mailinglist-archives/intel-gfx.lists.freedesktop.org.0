@@ -2,113 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7333955A471
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Jun 2022 00:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 826D855A6B4
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Jun 2022 05:59:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81F5210F6C9;
-	Fri, 24 Jun 2022 22:42:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4F8B10EE18;
+	Sat, 25 Jun 2022 03:59:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2043.outbound.protection.outlook.com [40.107.94.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FFDA10F6C4;
- Fri, 24 Jun 2022 22:42:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CWH9kZFDRZNVrAy6Olb6IemiEth04hNMhUD0Be87S7Tx9Y3oqQ4D+WJsf6cLhzc4CnQXGC7FwsfKHgnDxfX40AVi+2bw5+NkBgagttMtX0nr5wuB5EOPURBDsdR6Le870NgCifCaAR4+Mdfr9q6d5/R9Im2u3m+dARrB+8Omg0SA+C+NEbf5vq6JhTps46vmtxJg/MK8C+H1ir2+P2E4/m2ja6cvZxhFQ6fajBTBLzOAhHL8BOkF6fkFSjZNiQpsOrI1qu7qMj2OSPOPcVfqyZ+/DFL0FWjwXUvbAsQD47hVXG83Jom80aNKB1PR3qb7+vucd3Ea7SAVEneBhWLDFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WMIWfcVCPcPY7eyamtxYEi2QuYTPSHZ15Hi2O2J0Mk8=;
- b=U7u9TFKxg65mWnG/qcx/GO5FAfuZ2MSOSO9PxJ/s0swWAk3UpMlUtho/FBF5rded+e87f+0qi6T8sCOLXtgVpXhiQc4I/80AezioB0tn7x8xIG6o3c4x+a2KA8ynZ4CmkOfOOtvIqqka/HdbUiEeMxaD7v9SMquhAOE/SJg2x9POtrX53bczKsOgcpTLaG3e64OYz01EhL0+I6Rtq+iOMK/Liw0fycFEG9s7CLvugAIhu/Po9zA+y2kaACF9i9No18BtN1sLcjQYytUGiCW6wtmDok8VaxiiB8g1N7FCXudJdiAGHMINKqGekCc7dPCAJ/I6kESciwsgjNfU0dL/uw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WMIWfcVCPcPY7eyamtxYEi2QuYTPSHZ15Hi2O2J0Mk8=;
- b=rPsEMYen+HjCyrndhf3UJ9kPTQLZxwhVta/GqMcZmrwi8QzPa+H8XoTdnFhZP2rHrJlzkcl2VysR/PuLxPcuPk/1b9RnY2aVs6cPpgLVEge3DpHTXV1iR/AE9tFj5QA05Gd8OqdFaR7/KLudVA89OiTazCGrpC9uxhSJBFCob9I3Q98WJK6uqejjRVM5H2yCtUPKOC89PVYAdIm29mO0/j4ELSeb9T6w55EP/FHAleAazGAhGIGqUSD3c1usXFHrtE2JSwCLrCOMFePpTsRkYjbhyMuT+5J9CW8kNIFvX/5vaKfkqCkQx2cgbbiu/QFr5VbRCd7R79cSAGw2IRAlxg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
- by CH2PR12MB4277.namprd12.prod.outlook.com (2603:10b6:610:ae::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.17; Fri, 24 Jun
- 2022 22:42:47 +0000
-Received: from MN2PR12MB4192.namprd12.prod.outlook.com
- ([fe80::ac35:7c4b:3282:abfb]) by MN2PR12MB4192.namprd12.prod.outlook.com
- ([fe80::ac35:7c4b:3282:abfb%3]) with mapi id 15.20.5373.016; Fri, 24 Jun 2022
- 22:42:47 +0000
-Date: Fri, 24 Jun 2022 19:42:45 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Nicolin Chen <nicolinc@nvidia.com>
-Message-ID: <20220624224245.GC4147@nvidia.com>
-References: <20220616235212.15185-1-nicolinc@nvidia.com>
- <20220616235212.15185-6-nicolinc@nvidia.com>
- <Yqw+7gM3Lz96UFdz@infradead.org> <20220620025726.GA5219@nvidia.com>
- <YrAUZ7hXy2FcZcjl@infradead.org> <YrI2Ul/u6pRvt0rT@Asurada-Nvidia>
- <20220624135615.GO4147@nvidia.com>
- <YrYO/KAa2bqmxEIu@Asurada-Nvidia>
- <20220624193042.GB4147@nvidia.com>
- <YrYayPvA7XlCZLQ2@Asurada-Nvidia>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YrYayPvA7XlCZLQ2@Asurada-Nvidia>
-X-ClientProxiedBy: BL0PR0102CA0063.prod.exchangelabs.com
- (2603:10b6:208:25::40) To MN2PR12MB4192.namprd12.prod.outlook.com
- (2603:10b6:208:1d5::15)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bc6949e5-adb7-42a7-2849-08da5632dc84
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4277:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: r1x/gn3AwOcF7Yr29cD6d6WjnEs4ILExmWlMwoMDDSqzzfDuBlEKgrxN2de0eVulZhAgO84m689l7V9gqCiSbw5Cqh8nhOzGkLMzAYqd29VeQJzBMmaVDyXMz1tlcu+8/3Mz/CN1QQSdfJTjYsNBKSxWFu2JKl0FdaJj8YR+Lh1TuyPBl33T4ko3HJVB5bW9NFkFj0Hi5ZZp3rDsintwGF40OBYzvLamwNZdKIoPcbUgVz85a3giDFQVNChgTUyXrHlCBRlCyGGJGWWZgtPTD1+2EQd68ntvll/wa/2RQNGqog7NUX9nY9RaEICffUT4PY+1vkfsdiE7QQ4tUNZNbQiAO0E8eQ8lHWg2DTMbatNp2xGC5Ldi0DBtP8Vfu0Wabf0ZiWpwbSUPd51CB2lbLuiiDJ2EsFWPG3PCiUV/KL+VSl16D3TAUG3Sp+PQLdf3vMAyf7/kKOHpXXTdP36/hKhxcy/JGRhKHL28aIbIy/NU3uprnsdxFXaNB4X5c3VwHIJ2jpNs625gDUhjA0qdQU1K7Vph4bi0SDkmBpuKcDyBPlJA7sQ88vPb/EMehRDpgdNhaaeAnhOn3DWNq2i/2JTaySl5ch6SWjaA6xVNo+rYYSZqCctCbCJbx0Ze3SFta3do4qHPHk+cJFcqFBKeYu5oBiY5SbfD1la/QoWHZMqQ/KdOJjLHjQ1cbJkcthQ7iiA8xhHAMTQ3keA8btuP6bRoabkFFZkjvN1o1B0sewClY73G4rhToOB8Rz1eqGWH
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(376002)(39860400002)(346002)(366004)(136003)(6506007)(6512007)(478600001)(8676002)(186003)(41300700001)(6486002)(83380400001)(2616005)(38100700002)(26005)(7416002)(1076003)(2906002)(7406005)(36756003)(5660300002)(86362001)(6862004)(8936002)(33656002)(6636002)(316002)(37006003)(66476007)(66556008)(4326008)(66946007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Nm+gR6serET8WEH6FfubHaBjyr7D4+qBeJIWyjLRDsbMItGk4WJm6c3/rj9O?=
- =?us-ascii?Q?hUgOVjVfBHGWLAwM8o+1HxACdGKr2z7plBNrURaJfH3xUq/CnoQXaiWYWjsy?=
- =?us-ascii?Q?1cn8vEww0c4t7cNJN9fhv3JF5A9nKhnvGUDAPWdkX1xF/1AUd/QHQDA5X/Oc?=
- =?us-ascii?Q?LPd1mSHmHLEOvu9ng1n/e1l68bDkPNpt82ixxLCF1zmBefewk11jIBa9gBKK?=
- =?us-ascii?Q?vzgLOEO2DN6CDIrVe5gf2UoDYdWxn1X2Mvn47ZW5sZkAB68DaYVZ/kTIpL7/?=
- =?us-ascii?Q?Duy1jG5oVqhzhLoQqq5k5Bz+3C1LxHwmAFOX0e+bs2vZXHATwuzz8EgsPjBL?=
- =?us-ascii?Q?4bE2GUoNHQRLGK8ymV+7oTX41YZ00GWNH36FYaiqs1le9PeU32OHZroYpfJO?=
- =?us-ascii?Q?NHfdkqFzRU3F2wFslcTXqIJRYEk7vGIl1emrJ5qGy3qRCtQnA50RjqzxPFjB?=
- =?us-ascii?Q?NTKX+BHM4J/YNb4ilM/aZBdulPNzF9Vf5p4j98qbAtgmHRvxeFpMmK7tHtnv?=
- =?us-ascii?Q?sxfwY85LA9WHx58XOEzY1pdddVyFnvyx7mFxZsErNjb6zD9s4RJIuqNxdiK8?=
- =?us-ascii?Q?0xbzspyjWC9jEWrPayAc16sOoaM9qkftXDhXrjDoA2ZENBrLKxLieukg9koS?=
- =?us-ascii?Q?Zj4gRX9lDWVzPMwt2D5DygAl9Ta2SHIewABaDHoYxnLf0SWGwcnl/qfiGeeB?=
- =?us-ascii?Q?U18CkBn4NmxYfU03wPhyWdjti9FDVvKCrVpGxX9P4hJ2LXPY7f0GSTbrIlI5?=
- =?us-ascii?Q?lVoQpctiNVg3x7efsK6/XzlGTqb3L7hTnt4t0UerGqIx5638MVqSd0nm4Zls?=
- =?us-ascii?Q?S4QNHG2a2BJuUMfWV8W6lDFWe/0ZFEkljPwBi+saV5rftxAMmf5keP2uot7e?=
- =?us-ascii?Q?Q6VdwVQl36u7tcSw10FpbbtYk8yotBR763UBLRvgUjeIopzlIb8qGNzW0bkV?=
- =?us-ascii?Q?KvuDCWPVgxLFHVw8g5zxIdoZargY8CByYckIzwaeOrNwLOnQZJiJPxZRcPtb?=
- =?us-ascii?Q?8FDwjwa/IAsj54Pkk2g82DBZLuuN0GAeMNm355iuAI3AAr8SVypxL+u9Ih1I?=
- =?us-ascii?Q?MhL7Gu4O7KDRB17xSlY70RNdqaN4HXwqisIhVxGjxolhwAVRInft597ZHstk?=
- =?us-ascii?Q?/hnm6wgglutx/y0kf1phscmo05bhvNE+K3lOmxuzYz2K2f34rszsaLZw9x3q?=
- =?us-ascii?Q?vGRzv38bklxs4z+3IOuirj4cuhNHcJSN6TCN4/eJp/BxB+ArTvj7QVzHhyLq?=
- =?us-ascii?Q?ey3pfdnOAe1TUBHU+Gy6+wvPwvU+h5f2iuq539PEzaig0GOXT8yxljQOsVya?=
- =?us-ascii?Q?ei+U7O+Q+xz2FFzfbyZNk7F7LLGvdyAkAcSWAkTqy9h7/WwrSc61EQwapDVN?=
- =?us-ascii?Q?WK9ELnYR0uwgdHVLeS1NABDJPFuO1FC6rh/LMVVXzQVOtUXhrapVic6qcfB7?=
- =?us-ascii?Q?kG8d33UUhoVh20O0K45WUJCOJhUL4LeaFhzOBuxTNApmVeAQuxmqCZxvQUjf?=
- =?us-ascii?Q?v6+BTeiJg9qfLzh6LlsSL83sd+tr++hEqUJeQAJj7bM6Ekh3WTC3kdfF4rV/?=
- =?us-ascii?Q?VoFJw4o72HkGxz3dGxqPoNIXSAFE6novdZ9EmtN7?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc6949e5-adb7-42a7-2849-08da5632dc84
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2022 22:42:47.6691 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QOqirtq65UgX9LCdtBk8ZDcVwG+ghOtySzzGBzLd99rXsmwZM7AFK5fv/uoCl6O0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4277
-Subject: Re: [Intel-gfx] [RFT][PATCH v1 5/6] vfio/ccw: Add kmap_local_page()
- for memcpy
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FCEE10EAFE;
+ Sat, 25 Jun 2022 03:59:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1656129557; x=1687665557;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=NUDwROg0Nj5+GhopjtKgYR+Ld7nKb8B4nReVTTJK10I=;
+ b=hoPrWngi5UOps9apolL/vTreAJ7XepnBqXR+dFL4Rf8i8HPVw2paiZfv
+ N/9R1fE5M+tpD3LxSGx9meY4a/iAjfRMWwhY3Dpaskew4FuowEvZc1EEs
+ mVRGcmZzz6ZDkPoKchKzZCIxHCumvN0BBhMBjK/EGBES6sD4IyEgwXWMI
+ lPrruN+aPQZaqoXyRbprRZOcJ2f+DmdNn7VRuxj6SW5zy7haP3QmHRwBp
+ cNSp9I3Dq6gk50pmRyCLDDEAQFhyJL++9X9SdV72xWAKx3gmoVpHWCtCk
+ 46X+jI7GuaiRkLYDmqbhYJ1ADZ+q97FHr5F3qSERE5lc5vkmjfj+loHYI w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10388"; a="269880219"
+X-IronPort-AV: E=Sophos;i="5.92,221,1650956400"; d="scan'208";a="269880219"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2022 20:59:15 -0700
+X-IronPort-AV: E=Sophos;i="5.92,221,1650956400"; d="scan'208";a="586805144"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.58.126])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2022 20:59:15 -0700
+Date: Fri, 24 Jun 2022 20:59:15 -0700
+Message-ID: <87letl8kbw.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+In-Reply-To: <9d734dfa-ce26-465a-d20a-90dcd7355e78@intel.com>
+References: <20220610234712.36849-1-vinay.belgaumkar@intel.com>	<87leto1lsc.wl-ashutosh.dixit@intel.com>	<9d734dfa-ce26-465a-d20a-90dcd7355e78@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Add a new SLPC selftest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,46 +58,496 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, linux-doc@vger.kernel.org, airlied@linux.ie,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kwankhede@nvidia.com, vneethv@linux.ibm.com, agordeev@linux.ibm.com,
- pasic@linux.ibm.com, kvm@vger.kernel.org, corbet@lwn.net,
- Christoph Hellwig <hch@infradead.org>, borntraeger@linux.ibm.com,
- intel-gfx@lists.freedesktop.org, jjherne@linux.ibm.com, farman@linux.ibm.com,
- jchrist@linux.ibm.com, gor@linux.ibm.com, linux-s390@vger.kernel.org,
- hca@linux.ibm.com, freude@linux.ibm.com, rodrigo.vivi@intel.com,
- intel-gvt-dev@lists.freedesktop.org, akrowiak@linux.ibm.com, cohuck@redhat.com,
- oberpar@linux.ibm.com, svens@linux.ibm.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 24, 2022 at 01:12:56PM -0700, Nicolin Chen wrote:
+On Thu, 23 Jun 2022 16:21:46 -0700, Belgaumkar, Vinay wrote:
+> On 6/22/2022 1:32 PM, Dixit, Ashutosh wrote:
+> > On Fri, 10 Jun 2022 16:47:12 -0700, Vinay Belgaumkar wrote:
+> >> This test will validate we can achieve actual frequency of RP0. Pcode
+> >> grants frequencies based on what GuC is requesting. However, thermal
+> >> throttling can limit what is being granted. Add a test to request for
+> >> max, but don't fail the test if RP0 is not granted due to throttle
+> >> reasons.
+> >>
+> >> Also optimize the selftest by using a common run_test function to avoid
+> >> code duplication.
+> > The refactoring does change the order of operations (changing the freq vs
+> > spawning the spinner) but should be fine I think.
+> Yes, we now start the spinner outside the for loop, so that freq changes
+> occur quickly. This ensures we don't mess with SLPC algorithm's history by
+> frequently restarting the WL in the for loop.
+> >
+> >> Rename the "clamp" tests to vary_max_freq and vary_min_freq.
+> > Either is ok, but maybe "clamp" names were ok I think since they verify req
+> > freq is clamped at min/max.
+> True, though clamp usually is associated with limiting, whereas we actually
+> increase the min.
+> >
+> >> v2: Fix compile warning
+> >>
+> >> Fixes 8ee2c227822e ("drm/i915/guc/slpc: Add SLPC selftest")
+> >> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/gt/selftest_slpc.c | 323 ++++++++++++------------
+> >>   1 file changed, 158 insertions(+), 165 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/gt/selftest_slpc.c b/drivers/gpu/drm/i915/gt/selftest_slpc.c
+> >> index b768cea5943d..099129aae9a5 100644
+> >> --- a/drivers/gpu/drm/i915/gt/selftest_slpc.c
+> >> +++ b/drivers/gpu/drm/i915/gt/selftest_slpc.c
+> >> @@ -8,6 +8,11 @@
+> >>   #define delay_for_h2g() usleep_range(H2G_DELAY, H2G_DELAY + 10000)
+> >>   #define FREQUENCY_REQ_UNIT	DIV_ROUND_CLOSEST(GT_FREQUENCY_MULTIPLIER, \
+> >>						  GEN9_FREQ_SCALER)
+> >> +enum test_type {
+> >> +	VARY_MIN,
+> >> +	VARY_MAX,
+> >> +	MAX_GRANTED
+> >> +};
+> >>
+> >>   static int slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 freq)
+> >>   {
+> >> @@ -36,147 +41,120 @@ static int slpc_set_max_freq(struct intel_guc_slpc *slpc, u32 freq)
+> >>	return ret;
+> >>   }
+> >>
+> >> -static int live_slpc_clamp_min(void *arg)
+> >> +static int vary_max_freq(struct intel_guc_slpc *slpc, struct intel_rps *rps,
+> >> +		  u32 *max_act_freq)
+> > Please run checkpatch, indentation seems off.
+> I had run it. Not sure why this wasn't caught.
 
-> > The kmap_local_page() arose because the code doing memcpy had to be
-> > updated to go from a struct page to a void * for use with memcpy and
-> > the kmap_local_page() is the correct API to use for that.
-> > 
-> > The existing code which casts a pfn to a void * is improper.
-> 
-> Yes.
-> 
-> If I understand everything correctly:
-> 
-> A PFN is not secure enough to promise that the memory is not IO. And
-> direct access via memcpy() that only handles CPU memory will crash on
-> S390 if the PFN is an IO PFN, as we have to use the memcpy_to/fromio()
-> that uses the special S390 IO access instructions. On the other hand,
-> a "struct page *" is always a CPU coherent thing that fits memcpy().
-> 
-> Also, casting a PFN to "void *" for memcpy() is not an proper practice,
-> kmap_local_page() is the correct API to call here, though S390 doesn't
-> use highmem, which means kmap_local_page() is a NOP.
-> 
-> There's a following patch changing the vfio_pin_pages() API to return
-> a list of "struct page *" instead of PFNs. It will block any IO memory
-> from ever getting into this call path, for such a security purpose. In
-> this patch, add kmap_local_page() to prepare for that.
+Need to use 'checkpatch --strict'.
 
-Yes, basically
+> >
+> >>   {
+> >> -	struct drm_i915_private *i915 = arg;
+> >> -	struct intel_gt *gt = to_gt(i915);
+> >> -	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
+> >> -	struct intel_rps *rps = &gt->rps;
+> >> -	struct intel_engine_cs *engine;
+> >> -	enum intel_engine_id id;
+> >> -	struct igt_spinner spin;
+> >> +	u32 step, max_freq, req_freq;
+> >> +	u32 act_freq;
+> >>	u32 slpc_min_freq, slpc_max_freq;
+> >>	int err = 0;
+> >>
+> >> -	if (!intel_uc_uses_guc_slpc(&gt->uc))
+> >> -		return 0;
+> >> -
+> >> -	if (igt_spinner_init(&spin, gt))
+> >> -		return -ENOMEM;
+> >> +	slpc_min_freq = slpc->min_freq;
+> >> +	slpc_max_freq = slpc->rp0_freq;
+> > nit but we don't really need such variables since we don't change their
+> > values, we should just use slpc->min_freq, slpc->rp0_freq directly. I'd
+> > change this in all places in this patch.
+>
+> I will remove it from the sub-functions, but will need to keep the one in
+> the main run_test(). We should query SLPC's min and max and then restore
+> that at the end of the test. It is possible that SLPC's min is different
+> from platform min for certain skus.
 
-Jason
+Sorry, I am not following. The tests are varying freq between platform min
+to platform max correct? And platform min can be different from slpc min?
+So why don't the tests start at slpc min rather than platform min? Can't
+this return error?
+
+And shouldn't slpc->min set to the real slpc min rather than to the
+platform min when slpc initializes (in intel_guc_slpc_enable() or
+slpc_get_rp_values())? (I am assuming the issue is only for the min and not
+the max but not sure).
+
+So I'd expect everywhere a consistent set of freq's be used, in run_test()
+and the actual vary_min/max_freq tests and also in the main driver.
+
+> >
+> >> -	if (intel_guc_slpc_get_max_freq(slpc, &slpc_max_freq)) {
+> >> -		pr_err("Could not get SLPC max freq\n");
+> >> -		return -EIO;
+> >> -	}
+> >> -
+> >> -	if (intel_guc_slpc_get_min_freq(slpc, &slpc_min_freq)) {
+> >> -		pr_err("Could not get SLPC min freq\n");
+> >> -		return -EIO;
+> > Why do we need these two function calls? Can't we just use slpc->rp0_freq
+> > and slpc->min_freq as we are doing in the vary_min/max_freq() functions
+> > above?
+> Same as above.
+> >
+> > Also, as mentioned below I think here we should just do:
+> >
+> >          slpc_set_max_freq(slpc, slpc->rp0_freq);
+> >          slpc_set_min_freq(slpc, slpc->min_freq);
+> >
+> > to restore freq to a known state before starting the test (just in case a
+> > previous test changed the values).
+> Any test that changes the frequencies should restore them as well.
+
+I was saying restore the freq's *before* starting the tests as well to
+start from a known state.
+
+> >
+> >> -	}
+> >> -
+> >> -	if (slpc_min_freq == slpc_max_freq) {
+> >> -		pr_err("Min/Max are fused to the same value\n");
+> >> -		return -EINVAL;
+> > What if they are actually equal? I think basically the max/min freq test
+> > loops will just not be entered (so effectively the tests will just
+> > skip). The granted freq test will be fine. So I think we can just delete
+> > this if statement?
+> >
+> > (It is showing deleted above in the patch but is in the new code somewhere
+> > too).
+> Actually, we should set it to min/rp0 if this is the case. That change will
+> be in a separate patch. This is needed for certain cases.
+
+I don't see why it's needed as I said, can you explain? Set what to min/rp0?
+
+> >
+> >> -	}
+> >> -
+> >> -	intel_gt_pm_wait_for_idle(gt);
+> >> -	intel_gt_pm_get(gt);
+> >> -	for_each_engine(engine, gt, id) {
+> >> -		struct i915_request *rq;
+> >> -		u32 step, min_freq, req_freq;
+> >> -		u32 act_freq, max_act_freq;
+> >> -
+> >> -		if (!intel_engine_can_store_dword(engine))
+> >> -			continue;
+> >> +	/* Go from max to min in 5 steps */
+> >> +	step = (slpc_max_freq - slpc_min_freq) / NUM_STEPS;
+> >> +	*max_act_freq = slpc_min_freq;
+> >> +	for (max_freq = slpc_max_freq; max_freq > slpc_min_freq;
+> >> +				max_freq -= step) {
+> >> +		err = slpc_set_max_freq(slpc, max_freq);
+> >> +		if (err)
+> >> +			break;
+> >>
+> >> -		/* Go from min to max in 5 steps */
+> >> -		step = (slpc_max_freq - slpc_min_freq) / NUM_STEPS;
+> >> -		max_act_freq = slpc_min_freq;
+> >> -		for (min_freq = slpc_min_freq; min_freq < slpc_max_freq;
+> >> -					min_freq += step) {
+> >> -			err = slpc_set_min_freq(slpc, min_freq);
+> >> -			if (err)
+> >> -				break;
+> >> -
+> >> -			st_engine_heartbeat_disable(engine);
+> >> -
+> >> -			rq = igt_spinner_create_request(&spin,
+> >> -							engine->kernel_context,
+> >> -							MI_NOOP);
+> >> -			if (IS_ERR(rq)) {
+> >> -				err = PTR_ERR(rq);
+> >> -				st_engine_heartbeat_enable(engine);
+> >> -				break;
+> >> -			}
+> >> +		req_freq = intel_rps_read_punit_req_frequency(rps);
+> >>
+> >> -			i915_request_add(rq);
+> >> +		/* GuC requests freq in multiples of 50/3 MHz */
+> >> +		if (req_freq > (max_freq + FREQUENCY_REQ_UNIT)) {
+> >> +			pr_err("SWReq is %d, should be at most %d\n", req_freq,
+> >> +				max_freq + FREQUENCY_REQ_UNIT);
+> >> +			err = -EINVAL;
+> > Probably a nit but check can be (so should we be checking both high and low
+> > limits?):
+> >		if (req_freq > (max_freq + FREQUENCY_REQ_UNIT) ||
+> >		    req_freq < (slpc_min_freq - FREQUENCY_REQ_UNIT))
+> >
+> > Though if we do this we'd need to change the pr_err() or have two separate
+> > if statements. Not sure if it's worth it but thought I'll mention it.
+> We are looking to validate it does not cross the upper limit.
+
+OK.
+
+> >
+> >> +static int vary_min_freq(struct intel_guc_slpc *slpc, struct intel_rps *rps,
+> >> +		  u32 *max_act_freq)
+> >> +{
+> >> +	u32 step, min_freq, req_freq;
+> >> +	u32 act_freq;
+> >> +	u32 slpc_min_freq, slpc_max_freq;
+> >> +	int err = 0;
+> >>
+> >> -			act_freq =  intel_rps_read_actual_frequency(rps);
+> >> -			if (act_freq > max_act_freq)
+> >> -				max_act_freq = act_freq;
+> >> +	slpc_min_freq = slpc->min_freq;
+> >> +	slpc_max_freq = slpc->rp0_freq;
+> >>
+> >> -			igt_spinner_end(&spin);
+> >> -			st_engine_heartbeat_enable(engine);
+> >> -		}
+> >> +	/* Go from min to max in 5 steps */
+> >> +	step = (slpc_max_freq - slpc_min_freq) / NUM_STEPS;
+> >> +	*max_act_freq = slpc_min_freq;
+> >> +	for (min_freq = slpc_min_freq; min_freq < slpc_max_freq;
+> >> +				min_freq += step) {
+> >> +		err = slpc_set_min_freq(slpc, min_freq);
+> >> +		if (err)
+> >> +			break;
+> >>
+> >> -		pr_info("Max actual frequency for %s was %d\n",
+> >> -			engine->name, max_act_freq);
+> >> +		req_freq = intel_rps_read_punit_req_frequency(rps);
+> >>
+> >> -		/* Actual frequency should rise above min */
+> >> -		if (max_act_freq == slpc_min_freq) {
+> > Nit again. This check is somewhere in the new code but I think a better
+> > check is
+> >
+> >		if (max_act_freq <= slpc_min_freq)
+> >
+> > just in case the act freq for whatever reason falls below
+> > slpc_min_freq. Even if we know this is impossible (bugs make the impossible
+> > possible).
+> sure.
+> >
+> >> -			pr_err("Actual freq did not rise above min\n");
+> >> +		/* GuC requests freq in multiples of 50/3 MHz */
+> >> +		if (req_freq < (min_freq - FREQUENCY_REQ_UNIT)) {
+> >> +			pr_err("SWReq is %d, should be at least %d\n", req_freq,
+> >> +				min_freq - FREQUENCY_REQ_UNIT);
+> >>			err = -EINVAL;
+> > Again nit as above, but check can be:
+> >		if (req_freq < (min_freq - FREQUENCY_REQ_UNIT) ||
+> >		    req_freq > (slpc_max_freq + FREQUENCY_REQ_UNIT)) {
+> It can be higher, we want to validate lower range.
+
+OK.
+
+> >
+> >>		}
+> >>
+> >> +		act_freq =  intel_rps_read_actual_frequency(rps);
+> >> +		if (act_freq > *max_act_freq)
+> >> +			*max_act_freq = act_freq;
+> >> +
+> >>		if (err)
+> >>			break;
+> >>	}
+> >>
+> >> -	/* Restore min/max frequencies */
+> >> -	slpc_set_max_freq(slpc, slpc_max_freq);
+> >> -	slpc_set_min_freq(slpc, slpc_min_freq);
+> >> +	return err;
+> >> +}
+> >>
+> >> -	if (igt_flush_test(gt->i915))
+> >> -		err = -EIO;
+> >> +static int max_granted_freq(struct intel_guc_slpc *slpc, struct intel_rps *rps, u32 *max_act_freq)
+> >> +{
+> >> +	struct intel_gt *gt = rps_to_gt(rps);
+> >> +	u32 perf_limit_reasons;
+> >> +	int err = 0;
+> >>
+> >> -	intel_gt_pm_put(gt);
+> >> -	igt_spinner_fini(&spin);
+> >> -	intel_gt_pm_wait_for_idle(gt);
+> >> +	err = slpc_set_min_freq(slpc, slpc->rp0_freq);
+> >> +	if (err)
+> >> +		return err;
+> >> +
+> >> +	*max_act_freq =  intel_rps_read_actual_frequency(rps);
+> >> +	if (!(*max_act_freq == slpc->rp0_freq)) {
+> >> +		/* Check if there was some throttling by pcode */
+> >> +		perf_limit_reasons = intel_uncore_read(gt->uncore, GT0_PERF_LIMIT_REASONS);
+> >> +
+> >> +		/* If not, this is an error */
+> >> +		if (perf_limit_reasons && GT0_PERF_LIMIT_REASONS_MASK) {
+> >> +			pr_err("Pcode did not grant max freq\n");
+> >> +			err = -EINVAL;
+> > Looks incorrect, probably something like:
+> >		if (!(perf_limit_reasons & GT0_PERF_LIMIT_REASONS_MASK))
+> Hmm, good catch. We should flag error iff there is no throttling and act
+> freq does not go to max.
+> >
+> >> +		}
+> >> +	}
+> >>
+> >>	return err;
+> >>   }
+> >>
+> >> -static int live_slpc_clamp_max(void *arg)
+> >> +static int run_test(struct intel_gt *gt, int test_type)
+> >>   {
+> >> -	struct drm_i915_private *i915 = arg;
+> >> -	struct intel_gt *gt = to_gt(i915);
+> >> -	struct intel_guc_slpc *slpc;
+> >> -	struct intel_rps *rps;
+> >> +	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
+> >> +	struct intel_rps *rps = &gt->rps;
+> >>	struct intel_engine_cs *engine;
+> >>	enum intel_engine_id id;
+> >>	struct igt_spinner spin;
+> >> -	int err = 0;
+> >>	u32 slpc_min_freq, slpc_max_freq;
+> >> -
+> >> -	slpc = &gt->uc.guc.slpc;
+> >> -	rps = &gt->rps;
+> >> +	int err = 0;
+> >>
+> >>	if (!intel_uc_uses_guc_slpc(&gt->uc))
+> >>		return 0;
+> >> @@ -203,69 +181,56 @@ static int live_slpc_clamp_max(void *arg)
+> >>	intel_gt_pm_get(gt);
+> >>	for_each_engine(engine, gt, id) {
+> >>		struct i915_request *rq;
+> >> -		u32 max_freq, req_freq;
+> >> -		u32 act_freq, max_act_freq;
+> >> -		u32 step;
+> >> +		u32 max_act_freq;
+> >>
+> >>		if (!intel_engine_can_store_dword(engine))
+> >>			continue;
+> >>
+> >> -		/* Go from max to min in 5 steps */
+> >> -		step = (slpc_max_freq - slpc_min_freq) / NUM_STEPS;
+> >> -		max_act_freq = slpc_min_freq;
+> >> -		for (max_freq = slpc_max_freq; max_freq > slpc_min_freq;
+> >> -					max_freq -= step) {
+> >> -			err = slpc_set_max_freq(slpc, max_freq);
+> >> -			if (err)
+> >> -				break;
+> >> -
+> >> -			st_engine_heartbeat_disable(engine);
+> >> -
+> >> -			rq = igt_spinner_create_request(&spin,
+> >> -							engine->kernel_context,
+> >> -							MI_NOOP);
+> >> -			if (IS_ERR(rq)) {
+> >> -				st_engine_heartbeat_enable(engine);
+> >> -				err = PTR_ERR(rq);
+> >> -				break;
+> >> -			}
+> >> +		st_engine_heartbeat_disable(engine);
+> >>
+> >> -			i915_request_add(rq);
+> >> +		rq = igt_spinner_create_request(&spin,
+> >> +						engine->kernel_context,
+> >> +						MI_NOOP);
+> >> +		if (IS_ERR(rq)) {
+> >> +			err = PTR_ERR(rq);
+> >> +			st_engine_heartbeat_enable(engine);
+> >> +			break;
+> >> +		}
+> >>
+> >> -			if (!igt_wait_for_spinner(&spin, rq)) {
+> >> -				pr_err("%s: SLPC spinner did not start\n",
+> >> -				       engine->name);
+> >> -				igt_spinner_end(&spin);
+> >> -				st_engine_heartbeat_enable(engine);
+> >> -				intel_gt_set_wedged(engine->gt);
+> >> -				err = -EIO;
+> >> -				break;
+> >> -			}
+> >> +		i915_request_add(rq);
+> >> +
+> >> +		if (!igt_wait_for_spinner(&spin, rq)) {
+> >> +			pr_err("%s: Spinner did not start\n",
+> >> +			       engine->name);
+> >> +			igt_spinner_end(&spin);
+> >> +			st_engine_heartbeat_enable(engine);
+> >> +			intel_gt_set_wedged(engine->gt);
+> >> +			err = -EIO;
+> >> +			break;
+> >> +		}
+> >>
+> >> -			delay_for_h2g();
+> >> +		switch (test_type) {
+> >>
+> >> -			/* Verify that SWREQ indeed was set to specific value */
+> >> -			req_freq = intel_rps_read_punit_req_frequency(rps);
+> >> +		case VARY_MIN:
+> >> +			err = vary_min_freq(slpc, rps, &max_act_freq);
+> >> +			break;
+> >> +
+> >> +		case VARY_MAX:
+> >> +			err = vary_max_freq(slpc, rps, &max_act_freq);
+> >> +			break;
+> >>
+> >> -			/* GuC requests freq in multiples of 50/3 MHz */
+> >> -			if (req_freq > (max_freq + FREQUENCY_REQ_UNIT)) {
+> >> -				pr_err("SWReq is %d, should be at most %d\n", req_freq,
+> >> -				       max_freq + FREQUENCY_REQ_UNIT);
+> >> +		case MAX_GRANTED:
+> >> +			/* Media engines have a different RP0 */
+> >> +			if ((engine->class == VIDEO_DECODE_CLASS) ||
+> >> +			    (engine->class == VIDEO_ENHANCEMENT_CLASS)) {
+> >>				igt_spinner_end(&spin);
+> >>				st_engine_heartbeat_enable(engine);
+> >> -				err = -EINVAL;
+> >> -				break;
+> >> +				err = 0;
+> >> +				continue;
+> > I think it's preferable to move this media engine code out of the main loop
+> > into max_granted_freq() function if possible (maybe by faking max_act_freq
+> > if needed)?
+> All the engine related info is here. I will need to pass it to the
+> max_granted_freq() function.  Also, faking the act_freq probably
+> overkill. I can add a fixme here instead to update when we have a
+> reliable way to obtain media RP0 instead.
+
+OK let's leave as is, no need for FIXME, just leave the comment as before.
+
+> >
+> >>			}
+> >>
+> >> -			act_freq =  intel_rps_read_actual_frequency(rps);
+> >> -			if (act_freq > max_act_freq)
+> >> -				max_act_freq = act_freq;
+> >> -
+> >> -			st_engine_heartbeat_enable(engine);
+> >> -			igt_spinner_end(&spin);
+> >> -
+> >> -			if (err)
+> >> -				break;
+> >> +			err = max_granted_freq(slpc, rps, &max_act_freq);
+> >> +			break;
+> >>		}
+> >>
+> >>		pr_info("Max actual frequency for %s was %d\n",
+> >> @@ -277,31 +242,59 @@ static int live_slpc_clamp_max(void *arg)
+> >>			err = -EINVAL;
+> >>		}
+> >>
+> >> -		if (igt_flush_test(gt->i915)) {
+> >> -			err = -EIO;
+> >> -			break;
+> >> -		}
+> >> +		igt_spinner_end(&spin);
+> >> +		st_engine_heartbeat_enable(engine);
+> >>
+> >>		if (err)
+> >>			break;
+> >>	}
+> >>
+> >> -	/* Restore min/max freq */
+> >> +	/* Restore min/max frequencies */
+> >>	slpc_set_max_freq(slpc, slpc_max_freq);
+> >>	slpc_set_min_freq(slpc, slpc_min_freq);
+> > As mentioned above maybe we should restore at the beginning of the test too
+> > (before the for_each_engine() loop) to start from a known state?
+> >
+> > Anyway here maybe get rid of the variables and:
+>
+> This is restoring whatever frequencies SLPC was running with
+> initially. Regarding resetting the frequencies to min for every engine loop
+> iteration, we are already iterating from min->max inside the for loop, so
+> will be duplication.
+
+I didn't say reset frequencies to min for every engine loop iteration, I
+said "before the for_each_engine() loop". Same as above: "I was saying
+restore the freq's *before* starting the tests as well to start from a
+known state".
+
+Thanks.
+--
+Ashutosh
