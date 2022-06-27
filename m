@@ -1,63 +1,158 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 907F955BAFE
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jun 2022 18:12:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C8B655BB35
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jun 2022 18:57:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B61D310E149;
-	Mon, 27 Jun 2022 16:12:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F287710E424;
+	Mon, 27 Jun 2022 16:57:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CCD310E149
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jun 2022 16:12:22 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id
- v65-20020a1cac44000000b003a03c76fa38so5175589wme.5
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jun 2022 09:12:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=SCKR1uN8pLxW1owLc41DnFmVXasQdFDzVtaRDFTEsMw=;
- b=TKadUvZ5iwXvSWFjdtZdMhHTgJ1keEUmllLxvJgAmKP++lHDrmBCv5Gfr4Z1sYxleF
- FArhTEGhB7AVdKI+pURZTKqtrnVNuS/rCyddeFvaO/A6IqBMddD/m25D3hMB+hxL+C0V
- Aps62Hd6vXMj3nRal9nKOFxCcmTzIczl0MoXU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=SCKR1uN8pLxW1owLc41DnFmVXasQdFDzVtaRDFTEsMw=;
- b=lGeAIFm+yd1G9trXqo7/olI7988kzIMD3cqQyzmrvgnThGXqZN1J1ZWKDB1l+J+gFA
- A7IBEGVYpmEcukkW23UzFrhw9qu+CV0waptgI/wxcyj0F0xLWl8+NFJabrADXxB8YIdR
- Mdc7LxIQGP0iN1SQTgaQzRSSRklrzevjxjXs5PRzJwCDT1ss6aJJOWvuM84Y03Png1fA
- fxOyuulFKvtChNELSM8oC4ZkQgUUjQOJY+NWoIziftmY08OxhgcuuSwOQemKs7PxQyht
- xFC2J52U0gkVpsyUeKebGkYmano9fdxuxblLODV2JxchkqqTw5l2X3RR3s2Loa79J4rQ
- uAyg==
-X-Gm-Message-State: AJIora+/qnYIl6mCXaO2SfXBSfdx2q3NreC9fT79L9SVPIHJ5ycQHtoh
- Y0tuaj7G1tvOf0HNXwg2RysrGQ==
-X-Google-Smtp-Source: AGRyM1tjAEY/0/OE5XlcAFSGZzTL9bwfp/yKGk2dPplAxH6qefagb6tRAxPJnKGqe+iUrApfnur2qA==
-X-Received: by 2002:a05:600c:2051:b0:3a0:3c58:6ff6 with SMTP id
- p17-20020a05600c205100b003a03c586ff6mr19427599wmg.98.1656346340651; 
- Mon, 27 Jun 2022 09:12:20 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- w9-20020a5d6089000000b0020e5b4ebaecsm10905029wrt.4.2022.06.27.09.12.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 27 Jun 2022 09:12:19 -0700 (PDT)
-Date: Mon, 27 Jun 2022 18:12:17 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Message-ID: <YrnW4bCdWKjEh0Bh@phenom.ffwll.local>
-References: <20220626014916.5130-1-niranjana.vishwanathapura@intel.com>
- <20220626014916.5130-2-niranjana.vishwanathapura@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDD7F10E590
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jun 2022 16:57:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1656349039; x=1687885039;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ mime-version; bh=GwISaJcQ9sFGlJO2XBl9t/yDXRJyY/lxsYJ7vR+4BuI=;
+ b=NPYhrg9gRCJXdrnOozE9VS64uh84oh+IeN1DQLIGXFzc4z/exLa8Vff6
+ zMKN7s2PvaE8xM2/jvpm26iLr4S2kS1OpwBMq6Mf8Io+u/NOpDvSeT6nx
+ moEhjMcDemEWuAMXvU1t+Oz+p6DJOC6V9ddZUHhL9UZUHQIsuA3/q1nHQ
+ DdbipQeRciMH+kKlSv0Vff1OrjF2nin2M/gYiPufPIBRjChE2MHqjmfhQ
+ A1fTsSoJ/sDBQaNI7nOje+0h3CFk0wVf2hP2jdFrChCw3N5Qeh/rwOKpn
+ uOqO0sKYVdzXqYQ6IDAJ2yMger30BiEMEjaI+nPHK7+zyDgSW7f4hFOiL Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="281541924"
+X-IronPort-AV: E=Sophos;i="5.92,226,1650956400"; 
+ d="scan'208,217";a="281541924"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2022 09:56:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,226,1650956400"; 
+ d="scan'208,217";a="616855444"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by orsmga008.jf.intel.com with ESMTP; 27 Jun 2022 09:56:52 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 27 Jun 2022 09:56:51 -0700
+Received: from orsmsx604.amr.corp.intel.com (10.22.229.17) by
+ ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 27 Jun 2022 09:56:51 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Mon, 27 Jun 2022 09:56:51 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.170)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Mon, 27 Jun 2022 09:56:48 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cBR3mF5CkWI4VP407xPlw5dsppuUkcdboPbnb9cMCMY2A7Kvj68EuHTRkQgZIjJePSZGP+qrCn4B171XoO4jDHJ4Gcyp9WOVb5teyMsTZyx5iEWXDZRnIFACfIl/qUItBxK9Obn7ey10BapPnCnfIJ7ZApgHqnFx91t1TXKoOm2E+yCSM8SHzrMNUXxWsdeoh+LvNMZKITqS2dILV8lfIZ9mUW2Fbr02ihLg2klUx9XyW/Qd6m20NvmwoZY0EZxHsGRYaWoJJZKBD5mH0akaEOG95nMnRioPoqBoQx/UazSGzo/zwy0c7+rwdjma0rh0ayMmcwKINgO1cmsym3/cMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GwISaJcQ9sFGlJO2XBl9t/yDXRJyY/lxsYJ7vR+4BuI=;
+ b=H1cQZI3lBKbzf3hWt+sD0H1eIrv9eTP73jE08wIcPIK47md0mOcmbaQ97GZgrhTPoZ3XBYKfdSSwzP6FXXTfXmwKIrHiKTCEN92RGuTRSgzD0Kibz/HgwpJeeFkYY7jd6v2NL6F9f4ay4fqu12tdWws14xKemKZQkQfUR62yr2DjYhveTEkXACerXv5O93aaWb30aq5pmY1PDg/nSiJG4CEy1avYYKaKoch1ycyNyOpl5Hk6J617QmolI467yki0ZYg8N8bZwWPTfZCDO7KRrBDVztaIs3E+1ZXEKz5sJgCVPNMqYEzIuzZ+MGaXMe3hLaa+OTvaXD1cZabZ/gPHcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
+ BL0PR11MB3090.namprd11.prod.outlook.com (2603:10b6:208:74::23) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5373.17; Mon, 27 Jun 2022 16:56:47 +0000
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::61bd:a251:1543:93d7]) by DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::61bd:a251:1543:93d7%6]) with mapi id 15.20.5373.018; Mon, 27 Jun 2022
+ 16:56:47 +0000
+From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5?=
+ =?utf-8?B?MTUvZ3VjOiBEb24ndCB1cGRhdGUgZW5naW5lIGJ1c3luZXNzIHN0YXRzIHRv?=
+ =?utf-8?Q?o_frequently?=
+Thread-Index: AQHYiiQhINZd620ek0irSATlTZDbu61jea2A
+Date: Mon, 27 Jun 2022 16:56:47 +0000
+Message-ID: <ca37244529a506b6178bcc759f25a4593e3b2f52.camel@intel.com>
+References: <20220623023157.211650-1-alan.previn.teres.alexis@intel.com>
+ <165633405957.11794.7627156763849171332@emeril.freedesktop.org>
+In-Reply-To: <165633405957.11794.7627156763849171332@emeril.freedesktop.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.36.5-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e5779093-096e-4c41-9142-08da585e05b8
+x-ms-traffictypediagnostic: BL0PR11MB3090:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: VUOydUxiyWTWr/7vdvNeo8R0v5u4af9CpS32qEcCInzPkGuFfvdr8dZaKhSdFZHEcIakW7mP8gJn4hiHGVgjGLbwfzTu10a1tkDl152wg3KdzuOgxjsz58J0l+0S077Hn2cWD43EGYdRHEWA4xiWG/1Ll+OoIRgb9IpmOciAbd6pJz0dcoMSw9cKnS4c8bjyZL337OqUkHH3dWEd3VOcDPbQEmqe8jE6ywhO0K831TSV17/YRuViQtrgwO3fbs8qfNeTdpidYOxjQpGtx+QNQFsNET0e7uuUo+6DnzAP9Q+ddoW6X7k1XyYeSqm+GTO19MQHKkwFqJc+9e+kgKgLv5ujpoc99O4kOywvaMo2LMQcHdjpSmUED/3pBMGyOfXH/BrarJbc9Xp/KnUQ7cFjReMF9GyM8Z+f+xmvTsBs3TqHn+WvrKkiYhH4jw6y3czqsiytPVoPGOuRud+PcJibjWYs4J2Ow12QR4eeAy1fDpGfNecCRiNkMH8O60YESc5kKEw493uZldWJp19jnP1ZgMtqvQIJkydEsWr2v//daMUqCmLzekNrwI2048Khezij/1A2YUUALBbWFQ1AXyOaVxw3+nf6gr23TeRYzQXMZTlRO8T0Oykr9ku5rRtWeMmbaA6NT8PD+Fg7qS/Ia/0cEd2v+/hU2RQxPKnlpT76+GZzQKtTYvWNJ3e5iGeUU/AKYBZmcGbF9goWK9CuGaIXX65EWT+Z1jcosSBaCgcklgKXn2eeRI8/pO8TmmKCNPlSvyjIXWpOBFr96nenE2BEuHx7GPsNUpU6D36wUCCt8bKnIeHRzkPlAVyhnWYuDXgjPiy8B9XyFGS15bYXScHJ1MXy0zx3ZqbpCMmizKST5e4=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(366004)(396003)(346002)(376002)(136003)(39860400002)(66556008)(66946007)(66476007)(5660300002)(86362001)(2616005)(76116006)(66446008)(186003)(91956017)(38100700002)(8936002)(83380400001)(64756008)(122000001)(4744005)(41300700001)(6506007)(36756003)(40265005)(6512007)(21615005)(38070700005)(6486002)(6916009)(15650500001)(966005)(82960400001)(478600001)(166002)(26005)(2906002)(71200400001)(316002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Y2JtOUloZnVUbHE5TzEzRnE4UWNSSlBXQXVHWFNtRVIvSmNGUWIyTXIxbS9y?=
+ =?utf-8?B?V3IvaGZOaDhYakF6ZFRNbFB0a3dEckhkZEgrWFhsRE1vZW5FYVhzL0kwTkRL?=
+ =?utf-8?B?VDNPaEY4QjlIMjNCNVpPT1BGdFJ2aHpkS0F2OS8ySjFBaXlmYmJDT2lmL2dR?=
+ =?utf-8?B?TThDVmRuYlNTbk1VcEN4KytMa0VJcmhCb1NxUlJVU0tQYTJ4TU9zRTVleDVD?=
+ =?utf-8?B?NjVaYnArSXBEOGlNWml5UnZRdjJpSFRHRVNJTHN1WDVKRmdudVJRT1gvQzdl?=
+ =?utf-8?B?RXRYVUlUWDJJa25mOVFqMTN5N1JPaGljeWtJWHo5Uy94ZVNHSlhweEY0KzdV?=
+ =?utf-8?B?WWdVQXJIejJXTElhWXovYlozLzdyK1FCWlBETzJ0QkorVjNlNzZRQUxIS25C?=
+ =?utf-8?B?TVlYNjdueTZJTHQ1MVRqLzNBRjJlWTZpaHJEVWRLMngrMUp1c3RYVGp2bklj?=
+ =?utf-8?B?VFJUTzhWK3hXc2QyVW02eXU2RXpBVU8yUUgyQ3RtejJhRkZZb0dVSkhvRFo0?=
+ =?utf-8?B?dDZhWStzRHhEKzdTVkE3N2cvRXE0bDZMU3ExRGpzUlZWSTNiWWRYTkdjeFNY?=
+ =?utf-8?B?WGxyRDNmRUZibFZhL2t6TGF4WkFRMHFVUkkwZTZDRE9pbnB3UG5IaWxQbXNF?=
+ =?utf-8?B?UDdsQmNhdE5lcWgvNGZmUkQ5ellSK3hQTFNvMU1GZitxK2szdFpzd0UveU1N?=
+ =?utf-8?B?dEJqeE9ZK1JnbWs2bGN0aS9QSEdPRTh4K2RqbTlVUmQrOEdXYlVWeFMzaWts?=
+ =?utf-8?B?ZUt4QkdmTEpvTnJUZlVneEw1Nkg0aHZ5cmRPbm5pSktZWWhaL0N1Y0Vha2RP?=
+ =?utf-8?B?aTdVQVVaNmEwRnFaWnV1Y2R6TTJSRjVCc1RiS2VuU2k4bUN5SUlIZC82cU52?=
+ =?utf-8?B?TjZCNnF3Si8zTXZ6bzdVSjJySTA1ZWhiVldQMEhIanc2bU4rWURjMHpZellr?=
+ =?utf-8?B?VU9zMDhPajlKTkRTbUpqNVFIbUNidlBiZjN0N21XSkFJdzlyamFaOURPSXZX?=
+ =?utf-8?B?VjF1NHY3Q1d6bGVvNDI5OS94YWVtYTIwcnJ5bERhVXJ5WEYwOUZOZGJadGlS?=
+ =?utf-8?B?V3NDTWM4eVBCWjFlTEpYc01oU0E3YTlNVnBDU0thRnBNTXdoMjlrVzRpSXV0?=
+ =?utf-8?B?dnQ2RzNZWDdiQ3lXV3NxRVVNYXNBYnVLY0o0eEZlNmxwNVBsNmNWQnRvb3RS?=
+ =?utf-8?B?Mmg5L0ljQjdOTHF1aTh4L25aYmFHUEowOVlseHdNWlpMNmlWL2QzbUNHSWVj?=
+ =?utf-8?B?czdmenNPVlFyTVc0SS9VOGtaR0tTM2paUHpyY3VrVkRIRzg1VzdUeEdJZy9t?=
+ =?utf-8?B?L3JYc1YreThtajZiRStVcEhVbm8vSHZHbzd6OTNPUmc3V1o1ajltM1kyVk1i?=
+ =?utf-8?B?V0RuQ1d0aFRhQTloVysrQU9tVTRocExVcVZSbHIraElhNnRzQmRzamxxd2E5?=
+ =?utf-8?B?NWpLUmQ1VEhMTElubWY0ckRaVUpPVnpTc2RCd1ZtdlJkUkJPNlkxL2poWHBW?=
+ =?utf-8?B?THIrK3FFSnEvVGdTNUNONnVUMzBrTUNmeW96NDA5OEZyalNQQlpFNkdaK3I0?=
+ =?utf-8?B?a09IVjFsY0RNa3lqZTJWTHBMMFRvUWFSeEJ1dkJjRW1Fb2Zac1IvWEdxTk9k?=
+ =?utf-8?B?WFpQRFFETldjNFlKamd3Zk43dWdGSGk3NUl3cElwMnZOZHBVbG93RmpCM0d2?=
+ =?utf-8?B?TmhvUG1Ka2lVVUNiQ0wxWEg1cGx6dlZKMVA1ZmVaWFI3SlFXUkhKellZdDli?=
+ =?utf-8?B?aml1QzJ1N3BDM3pWU0xWS3lYTitJMVQ0aHNYRXkvRmUrTDdOUWVsRmhkUkE2?=
+ =?utf-8?B?aWpPZWt4R1RDUWxNQjhzeEJJTEdoSHVaWFMxTmVvMlR3Yy94UGw3bkJEUk10?=
+ =?utf-8?B?Um9WM2hYbG5DejA3WlBDaEF6dGd1UHBhdDVNQmRWRWY0eUpxL05rZmlSbnZr?=
+ =?utf-8?B?a2lxVVB4azhiRWQrdkxKTU0xOXZDaklYb09vWm9sU3RVV2tKMDF4Wk1qUFFX?=
+ =?utf-8?B?OXFsOW1PY05FaDNBRE1TVThva0s4VFBsMkdYbDJhckRXalJvQkNDNWUwM1po?=
+ =?utf-8?B?RU1PQUNqRm9meDd2UnBnRnp0VmhZREFOblA4amhiTG95Rnc2UzI5OWdpNlZt?=
+ =?utf-8?B?M3NXb2cwdVRWZUR6L0dWTmZlRWdzbUszbisyR2NiZ25uRWxUNGtuUmFKVDZt?=
+ =?utf-8?Q?XAwkpDdk8QGKl/GNC1S2nng=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_ca37244529a506b6178bcc759f25a4593e3b2f52camelintelcom_"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220626014916.5130-2-niranjana.vishwanathapura@intel.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH v6 1/3] drm/doc/rfc: VM_BIND feature design
- document
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5779093-096e-4c41-9142-08da585e05b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2022 16:56:47.2186 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FjX76GXsgl5EQj3JZ+VjDnQoakFjrrDzMKrj9cWWDo/Hba5pRkKH96XJLcb7EcQHtP5NLLEdaIc7gIK4HiX7s6pvQ0PJ4yFrXHmHaaYtOTn46ozQpfaauxXeL6mEnSX4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR11MB3090
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/guc=3A_Don=27t_update_engine_busyness_stats_too_frequentl?=
+ =?utf-8?q?y?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,309 +165,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, intel-gfx@lists.freedesktop.org,
- chris.p.wilson@intel.com, thomas.hellstrom@intel.com,
- dri-devel@lists.freedesktop.org, daniel.vetter@intel.com,
- christian.koenig@amd.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jun 25, 2022 at 06:49:14PM -0700, Niranjana Vishwanathapura wrote:
-> VM_BIND design document with description of intended use cases.
-> 
-> v2: Reduce the scope to simple Mesa use case.
-> v3: Expand documentation on dma-resv usage, TLB flushing and
->     execbuf3.
-> v4: Remove vm_bind tlb flush request support.
-> v5: Update TLB flushing documentation.
-> v6: Update out of order completion documentation.
-> 
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+--_000_ca37244529a506b6178bcc759f25a4593e3b2f52camelintelcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+V1JUIHBvc3NpYmxlIG5ldyBpc3N1ZXMgYmVsb3csIHRoZSBwYXRjaGVzIGkgbWFkZSBkb2VzIG5v
+dCBpbXBhY3QgYW55IGRpc3BsYXkgb3IgZXZlbiBleGVjdXRpb24gb3BlcmF0aW9uLg0KVW5mb3J0
+dW5hdGVseSwgaSBjYW50IHNlZW0gdG8gYWNjZXNzIHRoZSAicG9zc2libGUgcmVncmVzc2lvbiIg
+ZmFpbHVyZSBiZWxvdy4gQWRkaXRpb25hbGx5LCBHdUMgaXMgbm90IHN1cHBvcnRlZCBvbiBTS0wu
+DQp0aHVzIHdlIGNhbiBzYWZlbHkgaWdub3JlIHRoZXNlLg0KDQoNCk9uIE1vbiwgMjAyMi0wNi0y
+NyBhdCAxMjo0NyArMDAwMCwgUGF0Y2h3b3JrIHdyb3RlOg0KUGF0Y2ggRGV0YWlscw0KU2VyaWVz
+OiBkcm0vaTkxNS9ndWM6IERvbid0IHVwZGF0ZSBlbmdpbmUgYnVzeW5lc3Mgc3RhdHMgdG9vIGZy
+ZXF1ZW50bHkNClVSTDogICAgaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmll
+cy8xMDU1MjUvDQpTdGF0ZTogIGZhaWx1cmUNCkRldGFpbHM6DQoNCi4uLg0KLi4uDQpQb3NzaWJs
+ZSBuZXcgaXNzdWVzDQoNCkhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2
+ZSBiZWVuIGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzEwNTUyNXYxX2Z1bGw6DQoNCklHVCBjaGFu
+Z2VzDQpQb3NzaWJsZSByZWdyZXNzaW9ucw0KDQogICogICBpZ3RAa21zX2N1cnNvcl9sZWdhY3lA
+ZmxpcC12cy1jdXJzb3JAdmFyeWluZy1zaXplOg0KICAgICAqICAgc2hhcmQtc2tsOiBOT1RSVU4g
+LT4gRkFJTDxodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29y
+a18xMDU1MjV2MS9zaGFyZC1za2w3L2lndEBrbXNfY3Vyc29yX2xlZ2FjeUBmbGlwLXZzLWN1cnNv
+ckB2YXJ5aW5nLXNpemUuaHRtbD4gKzMgc2ltaWxhciBpc3N1ZXMNCg0KU3VwcHJlc3NlZA0KDQpU
+aGUgZm9sbG93aW5nIHJlc3VsdHMgY29tZSBmcm9tIHVudHJ1c3RlZCBtYWNoaW5lcywgdGVzdHMs
+IG9yIHN0YXR1c2VzLg0KVGhleSBkbyBub3QgYWZmZWN0IHRoZSBvdmVyYWxsIHJlc3VsdC4NCg0K
+ICAqICAge2lndEBrbXNfY3Vyc29yX2NyY0BjdXJzb3Itb2Zmc2NyZWVuQHBpcGUtZC1oZG1pLWEt
+MS0zMngxMH06DQogICAgICogICB7c2hhcmQtZGcxfTogTk9UUlVOIC0+IFNLSVA8aHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTA1NTI1djEvc2hhcmQt
+ZGcxLTE1L2lndEBrbXNfY3Vyc29yX2NyY0BjdXJzb3Itb2Zmc2NyZWVuQHBpcGUtZC1oZG1pLWEt
+MS0zMngxMC5odG1sPiArMTUgc2ltaWxhciBpc3N1ZXMNCg0K
 
-Aside on the tlb flush discussion: I think that one doesn't have a big
-impact if we need to later on fix it with a flag, and what's currently
-specified here is the solution that fits best into the existing semantics.
-So feels like a solid path until we have this all up&running and can do
-real benchmarks with applications.
--Daniel
+--_000_ca37244529a506b6178bcc759f25a4593e3b2f52camelintelcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <B142F764E21A9D41B7017753E5D7A150@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-> ---
->  Documentation/gpu/rfc/i915_vm_bind.rst | 246 +++++++++++++++++++++++++
->  Documentation/gpu/rfc/index.rst        |   4 +
->  2 files changed, 250 insertions(+)
->  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.rst
-> 
-> diff --git a/Documentation/gpu/rfc/i915_vm_bind.rst b/Documentation/gpu/rfc/i915_vm_bind.rst
-> new file mode 100644
-> index 000000000000..032ee32b885c
-> --- /dev/null
-> +++ b/Documentation/gpu/rfc/i915_vm_bind.rst
-> @@ -0,0 +1,246 @@
-> +==========================================
-> +I915 VM_BIND feature design and use cases
-> +==========================================
-> +
-> +VM_BIND feature
-> +================
-> +DRM_I915_GEM_VM_BIND/UNBIND ioctls allows UMD to bind/unbind GEM buffer
-> +objects (BOs) or sections of a BOs at specified GPU virtual addresses on a
-> +specified address space (VM). These mappings (also referred to as persistent
-> +mappings) will be persistent across multiple GPU submissions (execbuf calls)
-> +issued by the UMD, without user having to provide a list of all required
-> +mappings during each submission (as required by older execbuf mode).
-> +
-> +The VM_BIND/UNBIND calls allow UMDs to request a timeline out fence for
-> +signaling the completion of bind/unbind operation.
-> +
-> +VM_BIND feature is advertised to user via I915_PARAM_HAS_VM_BIND.
-> +User has to opt-in for VM_BIND mode of binding for an address space (VM)
-> +during VM creation time via I915_VM_CREATE_FLAGS_USE_VM_BIND extension.
-> +
-> +VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrently are
-> +not ordered. Furthermore, parts of the VM_BIND/UNBIND operations can be done
-> +asynchronously, when valid out fence is specified.
-> +
-> +VM_BIND features include:
-> +
-> +* Multiple Virtual Address (VA) mappings can map to the same physical pages
-> +  of an object (aliasing).
-> +* VA mapping can map to a partial section of the BO (partial binding).
-> +* Support capture of persistent mappings in the dump upon GPU error.
-> +* Support for userptr gem objects (no special uapi is required for this).
-> +
-> +TLB flush consideration
-> +------------------------
-> +The i915 driver flushes the TLB for each submission and when an object's
-> +pages are released. The VM_BIND/UNBIND operation will not do any additional
-> +TLB flush. Any VM_BIND mapping added will be in the working set for subsequent
-> +submissions on that VM and will not be in the working set for currently running
-> +batches (which would require additional TLB flushes, which is not supported).
-> +
-> +Execbuf ioctl in VM_BIND mode
-> +-------------------------------
-> +A VM in VM_BIND mode will not support older execbuf mode of binding.
-> +The execbuf ioctl handling in VM_BIND mode differs significantly from the
-> +older execbuf2 ioctl (See struct drm_i915_gem_execbuffer2).
-> +Hence, a new execbuf3 ioctl has been added to support VM_BIND mode. (See
-> +struct drm_i915_gem_execbuffer3). The execbuf3 ioctl will not accept any
-> +execlist. Hence, no support for implicit sync. It is expected that the below
-> +work will be able to support requirements of object dependency setting in all
-> +use cases:
-> +
-> +"dma-buf: Add an API for exporting sync files"
-> +(https://lwn.net/Articles/859290/)
-> +
-> +The new execbuf3 ioctl only works in VM_BIND mode and the VM_BIND mode only
-> +works with execbuf3 ioctl for submission. All BOs mapped on that VM (through
-> +VM_BIND call) at the time of execbuf3 call are deemed required for that
-> +submission.
-> +
-> +The execbuf3 ioctl directly specifies the batch addresses instead of as
-> +object handles as in execbuf2 ioctl. The execbuf3 ioctl will also not
-> +support many of the older features like in/out/submit fences, fence array,
-> +default gem context and many more (See struct drm_i915_gem_execbuffer3).
-> +
-> +In VM_BIND mode, VA allocation is completely managed by the user instead of
-> +the i915 driver. Hence all VA assignment, eviction are not applicable in
-> +VM_BIND mode. Also, for determining object activeness, VM_BIND mode will not
-> +be using the i915_vma active reference tracking. It will instead use dma-resv
-> +object for that (See `VM_BIND dma_resv usage`_).
-> +
-> +So, a lot of existing code supporting execbuf2 ioctl, like relocations, VA
-> +evictions, vma lookup table, implicit sync, vma active reference tracking etc.,
-> +are not applicable for execbuf3 ioctl. Hence, all execbuf3 specific handling
-> +should be in a separate file and only functionalities common to these ioctls
-> +can be the shared code where possible.
-> +
-> +VM_PRIVATE objects
-> +-------------------
-> +By default, BOs can be mapped on multiple VMs and can also be dma-buf
-> +exported. Hence these BOs are referred to as Shared BOs.
-> +During each execbuf submission, the request fence must be added to the
-> +dma-resv fence list of all shared BOs mapped on the VM.
-> +
-> +VM_BIND feature introduces an optimization where user can create BO which
-> +is private to a specified VM via I915_GEM_CREATE_EXT_VM_PRIVATE flag during
-> +BO creation. Unlike Shared BOs, these VM private BOs can only be mapped on
-> +the VM they are private to and can't be dma-buf exported.
-> +All private BOs of a VM share the dma-resv object. Hence during each execbuf
-> +submission, they need only one dma-resv fence list updated. Thus, the fast
-> +path (where required mappings are already bound) submission latency is O(1)
-> +w.r.t the number of VM private BOs.
-> +
-> +VM_BIND locking hirarchy
-> +-------------------------
-> +The locking design here supports the older (execlist based) execbuf mode, the
-> +newer VM_BIND mode, the VM_BIND mode with GPU page faults and possible future
-> +system allocator support (See `Shared Virtual Memory (SVM) support`_).
-> +The older execbuf mode and the newer VM_BIND mode without page faults manages
-> +residency of backing storage using dma_fence. The VM_BIND mode with page faults
-> +and the system allocator support do not use any dma_fence at all.
-> +
-> +VM_BIND locking order is as below.
-> +
-> +1) Lock-A: A vm_bind mutex will protect vm_bind lists. This lock is taken in
-> +   vm_bind/vm_unbind ioctl calls, in the execbuf path and while releasing the
-> +   mapping.
-> +
-> +   In future, when GPU page faults are supported, we can potentially use a
-> +   rwsem instead, so that multiple page fault handlers can take the read side
-> +   lock to lookup the mapping and hence can run in parallel.
-> +   The older execbuf mode of binding do not need this lock.
-> +
-> +2) Lock-B: The object's dma-resv lock will protect i915_vma state and needs to
-> +   be held while binding/unbinding a vma in the async worker and while updating
-> +   dma-resv fence list of an object. Note that private BOs of a VM will all
-> +   share a dma-resv object.
-> +
-> +   The future system allocator support will use the HMM prescribed locking
-> +   instead.
-> +
-> +3) Lock-C: Spinlock/s to protect some of the VM's lists like the list of
-> +   invalidated vmas (due to eviction and userptr invalidation) etc.
-> +
-> +When GPU page faults are supported, the execbuf path do not take any of these
-> +locks. There we will simply smash the new batch buffer address into the ring and
-> +then tell the scheduler run that. The lock taking only happens from the page
-> +fault handler, where we take lock-A in read mode, whichever lock-B we need to
-> +find the backing storage (dma_resv lock for gem objects, and hmm/core mm for
-> +system allocator) and some additional locks (lock-D) for taking care of page
-> +table races. Page fault mode should not need to ever manipulate the vm lists,
-> +so won't ever need lock-C.
-> +
-> +VM_BIND LRU handling
-> +---------------------
-> +We need to ensure VM_BIND mapped objects are properly LRU tagged to avoid
-> +performance degradation. We will also need support for bulk LRU movement of
-> +VM_BIND objects to avoid additional latencies in execbuf path.
-> +
-> +The page table pages are similar to VM_BIND mapped objects (See
-> +`Evictable page table allocations`_) and are maintained per VM and needs to
-> +be pinned in memory when VM is made active (ie., upon an execbuf call with
-> +that VM). So, bulk LRU movement of page table pages is also needed.
-> +
-> +VM_BIND dma_resv usage
-> +-----------------------
-> +Fences needs to be added to all VM_BIND mapped objects. During each execbuf
-> +submission, they are added with DMA_RESV_USAGE_BOOKKEEP usage to prevent
-> +over sync (See enum dma_resv_usage). One can override it with either
-> +DMA_RESV_USAGE_READ or DMA_RESV_USAGE_WRITE usage during explicit object
-> +dependency setting.
-> +
-> +Note that DRM_I915_GEM_WAIT and DRM_I915_GEM_BUSY ioctls do not check for
-> +DMA_RESV_USAGE_BOOKKEEP usage and hence should not be used for end of batch
-> +check. Instead, the execbuf3 out fence should be used for end of batch check
-> +(See struct drm_i915_gem_execbuffer3).
-> +
-> +Also, in VM_BIND mode, use dma-resv apis for determining object activeness
-> +(See dma_resv_test_signaled() and dma_resv_wait_timeout()) and do not use the
-> +older i915_vma active reference tracking which is deprecated. This should be
-> +easier to get it working with the current TTM backend.
-> +
-> +Mesa use case
-> +--------------
-> +VM_BIND can potentially reduce the CPU overhead in Mesa (both Vulkan and Iris),
-> +hence improving performance of CPU-bound applications. It also allows us to
-> +implement Vulkan's Sparse Resources. With increasing GPU hardware performance,
-> +reducing CPU overhead becomes more impactful.
-> +
-> +
-> +Other VM_BIND use cases
-> +========================
-> +
-> +Long running Compute contexts
-> +------------------------------
-> +Usage of dma-fence expects that they complete in reasonable amount of time.
-> +Compute on the other hand can be long running. Hence it is appropriate for
-> +compute to use user/memory fence (See `User/Memory Fence`_) and dma-fence usage
-> +must be limited to in-kernel consumption only.
-> +
-> +Where GPU page faults are not available, kernel driver upon buffer invalidation
-> +will initiate a suspend (preemption) of long running context, finish the
-> +invalidation, revalidate the BO and then resume the compute context. This is
-> +done by having a per-context preempt fence which is enabled when someone tries
-> +to wait on it and triggers the context preemption.
-> +
-> +User/Memory Fence
-> +~~~~~~~~~~~~~~~~~~
-> +User/Memory fence is a <address, value> pair. To signal the user fence, the
-> +specified value will be written at the specified virtual address and wakeup the
-> +waiting process. User fence can be signaled either by the GPU or kernel async
-> +worker (like upon bind completion). User can wait on a user fence with a new
-> +user fence wait ioctl.
-> +
-> +Here is some prior work on this:
-> +https://patchwork.freedesktop.org/patch/349417/
-> +
-> +Low Latency Submission
-> +~~~~~~~~~~~~~~~~~~~~~~~
-> +Allows compute UMD to directly submit GPU jobs instead of through execbuf
-> +ioctl. This is made possible by VM_BIND is not being synchronized against
-> +execbuf. VM_BIND allows bind/unbind of mappings required for the directly
-> +submitted jobs.
-> +
-> +Debugger
-> +---------
-> +With debug event interface user space process (debugger) is able to keep track
-> +of and act upon resources created by another process (debugged) and attached
-> +to GPU via vm_bind interface.
-> +
-> +GPU page faults
-> +----------------
-> +GPU page faults when supported (in future), will only be supported in the
-> +VM_BIND mode. While both the older execbuf mode and the newer VM_BIND mode of
-> +binding will require using dma-fence to ensure residency, the GPU page faults
-> +mode when supported, will not use any dma-fence as residency is purely managed
-> +by installing and removing/invalidating page table entries.
-> +
-> +Page level hints settings
-> +--------------------------
-> +VM_BIND allows any hints setting per mapping instead of per BO.
-> +Possible hints include read-only mapping, placement and atomicity.
-> +Sub-BO level placement hint will be even more relevant with
-> +upcoming GPU on-demand page fault support.
-> +
-> +Page level Cache/CLOS settings
-> +-------------------------------
-> +VM_BIND allows cache/CLOS settings per mapping instead of per BO.
-> +
-> +Evictable page table allocations
-> +---------------------------------
-> +Make pagetable allocations evictable and manage them similar to VM_BIND
-> +mapped objects. Page table pages are similar to persistent mappings of a
-> +VM (difference here are that the page table pages will not have an i915_vma
-> +structure and after swapping pages back in, parent page link needs to be
-> +updated).
-> +
-> +Shared Virtual Memory (SVM) support
-> +------------------------------------
-> +VM_BIND interface can be used to map system memory directly (without gem BO
-> +abstraction) using the HMM interface. SVM is only supported with GPU page
-> +faults enabled.
-> +
-> +VM_BIND UAPI
-> +=============
-> +
-> +.. kernel-doc:: Documentation/gpu/rfc/i915_vm_bind.h
-> diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
-> index 91e93a705230..7d10c36b268d 100644
-> --- a/Documentation/gpu/rfc/index.rst
-> +++ b/Documentation/gpu/rfc/index.rst
-> @@ -23,3 +23,7 @@ host such documentation:
->  .. toctree::
->  
->      i915_scheduler.rst
-> +
-> +.. toctree::
-> +
-> +    i915_vm_bind.rst
-> -- 
-> 2.21.0.rc0.32.g243a4c7e27
-> 
+PGh0bWwgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIGRpcj0ibHRyIj4NCjxo
+ZWFkPg0KPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7
+IGNoYXJzZXQ9dXRmLTgiPg0KPHRpdGxlPlByb2plY3QgTGlzdCAtIFBhdGNod29yazwvdGl0bGU+
+DQo8c3R5bGUgaWQ9ImNzcy10YWJsZS1zZWxlY3QiIHR5cGU9InRleHQvY3NzIj4NCiAgIHRkIHsg
+cGFkZGluZzogMnB0OyB9DQogIDwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBzdHlsZT0idGV4dC1h
+bGlnbjpsZWZ0OyBkaXJlY3Rpb246bHRyOyI+DQo8ZGl2PldSVCBwb3NzaWJsZSBuZXcgaXNzdWVz
+IGJlbG93LCB0aGUgcGF0Y2hlcyBpIG1hZGUgZG9lcyBub3QgaW1wYWN0IGFueSBkaXNwbGF5IG9y
+IGV2ZW4gZXhlY3V0aW9uIG9wZXJhdGlvbi48L2Rpdj4NCjxkaXY+VW5mb3J0dW5hdGVseSwgaSBj
+YW50IHNlZW0gdG8gYWNjZXNzIHRoZSAmcXVvdDtwb3NzaWJsZSByZWdyZXNzaW9uJnF1b3Q7IGZh
+aWx1cmUgYmVsb3cuIEFkZGl0aW9uYWxseSwgR3VDIGlzIG5vdCBzdXBwb3J0ZWQgb24gU0tMLjwv
+ZGl2Pg0KPGRpdj50aHVzIHdlIGNhbiBzYWZlbHkgaWdub3JlIHRoZXNlLjwvZGl2Pg0KPGRpdj48
+YnI+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PjwvZGl2Pg0KPGRpdj5PbiBNb24s
+IDIwMjItMDYtMjcgYXQgMTI6NDcgKzAwMDAsIFBhdGNod29yayB3cm90ZTo8L2Rpdj4NCjxibG9j
+a3F1b3RlIHR5cGU9ImNpdGUiIHN0eWxlPSJtYXJnaW46MCAwIDAgLjhleDsgYm9yZGVyLWxlZnQ6
+MnB4ICM3MjlmY2Ygc29saWQ7cGFkZGluZy1sZWZ0OjFleCI+DQo8Yj5QYXRjaCBEZXRhaWxzPC9i
+Pg0KPHRhYmxlPg0KPHRib2R5Pg0KPHRyPg0KPHRkPjxiPlNlcmllczo8L2I+PC90ZD4NCjx0ZD5k
+cm0vaTkxNS9ndWM6IERvbid0IHVwZGF0ZSBlbmdpbmUgYnVzeW5lc3Mgc3RhdHMgdG9vIGZyZXF1
+ZW50bHk8L3RkPg0KPC90cj4NCjx0cj4NCjx0ZD48Yj5VUkw6PC9iPjwvdGQ+DQo8dGQ+PGEgaHJl
+Zj0iaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy8xMDU1MjUvIj5odHRw
+czovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzEwNTUyNS88L2E+PC90ZD4NCjwv
+dHI+DQo8dHI+DQo8dGQ+PGI+U3RhdGU6PC9iPjwvdGQ+DQo8dGQ+ZmFpbHVyZTwvdGQ+DQo8L3Ry
+Pg0KPHRyPg0KPHRkPjxiPkRldGFpbHM6PGJyPg0KPGJyPg0KPC9iPjwvdGQ+DQo8dGQ+PC90ZD4N
+CjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjwvYmxvY2txdW90ZT4NCjxkaXY+Li4uPC9kaXY+
+DQo8ZGl2Pi4uLjxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSIgc3R5bGU9Im1h
+cmdpbjowIDAgMCAuOGV4OyBib3JkZXItbGVmdDoycHggIzcyOWZjZiBzb2xpZDtwYWRkaW5nLWxl
+ZnQ6MWV4Ij4NCjxoMT5Qb3NzaWJsZSBuZXcgaXNzdWVzPGJyPg0KPC9oMT4NCjxwPkhlcmUgYXJl
+IHRoZSB1bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW4gUGF0
+Y2h3b3JrXzEwNTUyNXYxX2Z1bGw6PC9wPg0KPGgzPklHVCBjaGFuZ2VzPC9oMz4NCjxoND5Qb3Nz
+aWJsZSByZWdyZXNzaW9uczwvaDQ+DQo8dWw+DQo8bGk+aWd0QGttc19jdXJzb3JfbGVnYWN5QGZs
+aXAtdnMtY3Vyc29yQHZhcnlpbmctc2l6ZToNCjx1bD4NCjxsaT5zaGFyZC1za2w6IE5PVFJVTiAt
+Jmd0OyA8YSBocmVmPSJodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1Bh
+dGNod29ya18xMDU1MjV2MS9zaGFyZC1za2w3L2lndEBrbXNfY3Vyc29yX2xlZ2FjeUBmbGlwLXZz
+LWN1cnNvckB2YXJ5aW5nLXNpemUuaHRtbCI+DQpGQUlMPC9hPiArMyBzaW1pbGFyIGlzc3Vlczwv
+bGk+PC91bD4NCjwvbGk+PC91bD4NCjxoND5TdXBwcmVzc2VkPC9oND4NCjxwPlRoZSBmb2xsb3dp
+bmcgcmVzdWx0cyBjb21lIGZyb20gdW50cnVzdGVkIG1hY2hpbmVzLCB0ZXN0cywgb3Igc3RhdHVz
+ZXMuPGJyPg0KVGhleSBkbyBub3QgYWZmZWN0IHRoZSBvdmVyYWxsIHJlc3VsdC48L3A+DQo8dWw+
+DQo8bGk+e2lndEBrbXNfY3Vyc29yX2NyY0BjdXJzb3Itb2Zmc2NyZWVuQHBpcGUtZC1oZG1pLWEt
+MS0zMngxMH06DQo8dWw+DQo8bGk+e3NoYXJkLWRnMX06IE5PVFJVTiAtJmd0OyA8YSBocmVmPSJo
+dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMDU1MjV2
+MS9zaGFyZC1kZzEtMTUvaWd0QGttc19jdXJzb3JfY3JjQGN1cnNvci1vZmZzY3JlZW5AcGlwZS1k
+LWhkbWktYS0xLTMyeDEwLmh0bWwiPg0KU0tJUDwvYT4gKzE1IHNpbWlsYXIgaXNzdWVzPC9saT48
+L3VsPg0KPC9saT48L3VsPg0KPC9ibG9ja3F1b3RlPg0KPGRpdj48YnI+DQo8L2Rpdj4NCjwvYm9k
+eT4NCjwvaHRtbD4NCg==
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+--_000_ca37244529a506b6178bcc759f25a4593e3b2f52camelintelcom_--
