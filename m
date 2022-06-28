@@ -1,68 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAD7455BFA7
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 10:58:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2CD55BFD2
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 11:41:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF16B12A9C6;
-	Tue, 28 Jun 2022 08:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2871B12B0F3;
+	Tue, 28 Jun 2022 09:41:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F24812A9C2;
- Tue, 28 Jun 2022 08:58:07 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6A412B0EE;
+ Tue, 28 Jun 2022 09:41:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656406687; x=1687942687;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=8ccncddsC7dzCiGIKRKLjjxcx6QDuw9ZKZ2b7p3u5fU=;
- b=cTjz10mp/poxno/V2WCDCmMxJw31i2BH570Mox6MGYI7sPV8vUlyO03i
- AKjW+uobAc1jHPiGhDR831Q3On7hKQtgskj4EQmiEz1DUzGwcRQ5YLiSF
- p8WJgsnwzovT6AV0K2iaRhCh3pMznsDBsGgCiAvl5+gSOlTpnKbp+mshv
- cTw8zP4fDnkLV5tGOmMMhotJ0SgSPkdL/OSVENq3Bri2UxEmkGXrt8ado
- OnDlcVVha7OuxPdFFLJsdpLiZL34rYz+tpaqcNPiQhXwcOk/5QZdnxStQ
- BJdlbR8zPTQ/Qfy63mGEJlLbW4RGRSLBcpr/+7Wd3DOiF9EF8AMJWN7QK g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="280441284"
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="280441284"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2022 01:58:05 -0700
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="587793739"
-Received: from leejust1-mobl.amr.corp.intel.com (HELO [10.209.162.132])
- ([10.209.162.132])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2022 01:58:03 -0700
-Message-ID: <2ce76c99-e0bc-8a96-9e1c-f9d96ece62d4@linux.intel.com>
-Date: Tue, 28 Jun 2022 09:58:01 +0100
+ t=1656409263; x=1687945263;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=E1shaTiRi2MGix+vGmQFahHOJVh393tMghirsTFvSWs=;
+ b=Y5xKzfEJ91qaw7bzgc/7AsooEOXpqm4FkdUsIksyM3wI5cmOL4aCHtr7
+ Z/u4FRYZ5sxH76HPbYyDK7/cHkG4LtvPBGD8IwDR/Gz23WuUtY3oTsGJD
+ brhUwOnpUXjHlzYIazy/qPtw53sE1JLFBBLAiZ69RrNk6zXtbSvLRnd0D
+ vaHglrbm4LAwZzy46NRETnx1jGQHrBL/i5oNCjWmC5QkHM6mko3dwpCY5
+ lNWGPkuQm73fL4ow4Ab5PzOBEQxzvANbUuI7VzaZS1ISCNAK28l2OKqfX
+ n5R+9CgimiKXyIfxLY+M/jAvpBN+mMM3tzgR+G+zerc5/cJnqmpNpL9H0 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="262103721"
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="262103721"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2022 02:41:02 -0700
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="693036661"
+Received: from dlee-mobl1.gar.corp.intel.com (HELO [10.214.144.75])
+ ([10.214.144.75])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2022 02:41:00 -0700
+Message-ID: <61281f78-407f-8953-acd3-2de1b306e741@intel.com>
+Date: Tue, 28 Jun 2022 10:40:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: "Zeng, Oak" <oak.zeng@intel.com>,
- "Landwerlin, Lionel G" <lionel.g.landwerlin@intel.com>,
- "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>
-References: <20220622035650.29256-1-niranjana.vishwanathapura@intel.com>
- <20220622035650.29256-4-niranjana.vishwanathapura@intel.com>
- <6ac2f495-8ead-4824-f9af-1c03fb3770c4@linux.intel.com>
- <20220622151229.GY376@nvishwa1-DESK>
- <b347fb63-5200-9f5c-b0d6-ca51b7a064f9@linux.intel.com>
- <20220622164445.GZ376@nvishwa1-DESK>
- <e6ed0d2f-ee2a-2219-c2cc-49efc32f0560@linux.intel.com>
- <1874e47b-4337-5ac6-ebea-fca21ea1ba4c@intel.com>
- <6d70cde9-f856-540a-b1d4-0325596b0c88@linux.intel.com>
- <BN6PR11MB1633C90D1B2E40359F1F168F92B59@BN6PR11MB1633.namprd11.prod.outlook.com>
- <1d36da1a-9224-5750-d103-60e7cdfdf8df@linux.intel.com>
- <BN6PR11MB1633F819E6DF445769061CF092B49@BN6PR11MB1633.namprd11.prod.outlook.com>
- <1f2ce51e-4b45-c654-954a-a71899309fb5@linux.intel.com>
- <BN6PR11MB1633B73631737329161B289A92B99@BN6PR11MB1633.namprd11.prod.outlook.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <BN6PR11MB1633B73631737329161B289A92B99@BN6PR11MB1633.namprd11.prod.outlook.com>
+ Firefox/91.0 Thunderbird/91.10.0
+Content-Language: en-GB
+To: Ramalingam C <ramalingam.c@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+References: <20220627173539.29094-1-ramalingam.c@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220627173539.29094-1-ramalingam.c@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/doc/rfc: VM_BIND uapi definition
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: handle null ptr at sg
+ traversing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,76 +62,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Wilson,
- Chris P" <chris.p.wilson@intel.com>, "Vetter,
- Daniel" <daniel.vetter@intel.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>, "Auld,
- Matthew" <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 27/06/2022 18:35, Ramalingam C wrote:
+> When calculating the starting address for ccs data in smem scatterlist,
+> handle the NULL pointer returned from sg_next, incase of scatterlist
+> less than required size..
 
-On 27/06/2022 19:58, Zeng, Oak wrote:
+Do we have some more information on how we can hit this? Is this a 
+programmer error? Do we have a testcase?
+
 > 
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_migrate.c | 13 ++++++++++---
+>   1 file changed, 10 insertions(+), 3 deletions(-)
 > 
-> Thanks,
-> Oak
-> 
->> -----Original Message-----
->> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->> Sent: June 27, 2022 4:30 AM
->> To: Zeng, Oak <oak.zeng@intel.com>; Landwerlin, Lionel G
->> <lionel.g.landwerlin@intel.com>; Vishwanathapura, Niranjana
->> <niranjana.vishwanathapura@intel.com>
->> Cc: Zanoni, Paulo R <paulo.r.zanoni@intel.com>; intel-
->> gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Hellstrom,
->> Thomas <thomas.hellstrom@intel.com>; Wilson, Chris P
->> <chris.p.wilson@intel.com>; Vetter, Daniel <daniel.vetter@intel.com>;
->> christian.koenig@amd.com; Auld, Matthew <matthew.auld@intel.com>
->> Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/doc/rfc: VM_BIND uapi definition
->>
->>
->> On 24/06/2022 21:23, Zeng, Oak wrote:
->>> Let's compare "tlb invalidate at vm unbind" vs "tlb invalidate at backing
->> storage":
->>>
->>> Correctness:
->>> consider this sequence of:
->>> 1. unbind va1 from pa1,
->>> 2. then bind va1 to pa2. //user space has the freedom to do this as it
->>> manages virtual address space 3. Submit shader code using va1, 4. Then
->>> retire pa1.
->>>
->>> If you don't perform tlb invalidate at step #1, in step #3, shader will use
->> stale entries in tlb and pa1 will be used for the shader. User want to use pa2.
->> So I don't think invalidate tlb at step #4 make correctness.
->>
->> Define step 3. Is it a new execbuf? If so then there will be a TLB flush there.
->> Unless the plan is to stop doing that with eb3 but I haven't picked up on that
->> anywhere so far.
-> 
-> In Niranjana's latest patch series, he removed the TLB flushing from vm_unbind. He also said explicitly TLB invalidation will be performed at job submission and backing storage releasing time, which is the existing behavior of the current i915 driver.
-> 
-> I think if we invalidate TLB on each vm_unbind, then we don't need to invalidate at submission and backing storage releasing. It doesn't make a lot of sense to me to perform a tlb invalidation at execbuf time. Maybe it is a behavior for the old implicit binding programming model. For vm_bind and eb3, we separate the binding and job submission into two APIs. It is more natural the TLB invalidation be coupled with the vm bind/unbind, not job submission. So in my opinion we should remove tlb invalidation from submission and backing storage releasing and add it to vm unbind. This is method is cleaner to me.
-
-You can propose this model (not flushing in eb3) but I have my doubts. 
-Consider the pointlessness of flushing on N unbinds for 99% of clients 
-which are not infinite compute batch. And consider how you make the 
-behaviour consistent on all platforms (selective vs global tlb flush).
-
-Also note that this discussion is orthogonal to unbind vs backing store 
-release.
-
-> Regarding performance, we don't have data. In my opinion, we should make things work in a most straight forward way as the first step. Then consider performance improvement if necessary. Consider some delayed tlb invalidation at submission and backing release time without performance data support wasn't a good decision.
-
-It is quite straightforward though. ;) It aligns with the eb2 model and 
-argument can be made backing store release is (much) less frequent than 
-unbind (consider softpin where client could trigger a lot of pointless 
-flushes).
-
-Regards,
-
-Tvrtko
+> diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> index 2c35324b5f68..c206fb4f4186 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> @@ -669,7 +669,7 @@ calculate_chunk_sz(struct drm_i915_private *i915, bool src_is_lmem,
+>   	}
+>   }
+>   
+> -static void get_ccs_sg_sgt(struct sgt_dma *it, u32 bytes_to_cpy)
+> +static int get_ccs_sg_sgt(struct sgt_dma *it, u32 bytes_to_cpy)
+>   {
+>   	u32 len;
+>   
+> @@ -684,9 +684,13 @@ static void get_ccs_sg_sgt(struct sgt_dma *it, u32 bytes_to_cpy)
+>   		bytes_to_cpy -= len;
+>   
+>   		it->sg = __sg_next(it->sg);
+> +		if (!it->sg)
+> +			return -EINVAL;
+>   		it->dma = sg_dma_address(it->sg);
+>   		it->max = it->dma + sg_dma_len(it->sg);
+>   	} while (bytes_to_cpy);
+> +
+> +	return 0;
+>   }
+>   
+>   int
+> @@ -745,8 +749,11 @@ intel_context_migrate_copy(struct intel_context *ce,
+>   		 * Need to fix it.
+>   		 */
+>   		ccs_bytes_to_cpy = src_sz != dst_sz ? GET_CCS_BYTES(i915, bytes_to_cpy) : 0;
+> -		if (ccs_bytes_to_cpy)
+> -			get_ccs_sg_sgt(&it_ccs, bytes_to_cpy);
+> +		if (ccs_bytes_to_cpy) {
+> +			err = get_ccs_sg_sgt(&it_ccs, bytes_to_cpy);
+> +			if (err)
+> +				return err;
+> +		}
+>   	}
+>   
+>   	src_offset = 0;
