@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE66155E5EC
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 18:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D75055EA1A
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 18:48:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41C19113102;
-	Tue, 28 Jun 2022 16:22:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 468F7113CD2;
+	Tue, 28 Jun 2022 16:47:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCA86112E7A
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 16:22:09 +0000 (UTC)
-Received: from [192.168.178.53] (82-71-8-225.dsl.in-addr.zen.co.uk
- [82.71.8.225])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbeckett)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 4226366017DC;
- Tue, 28 Jun 2022 17:22:08 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1656433328;
- bh=3QbQTnwG/Q8J2ReHdW3CcJOdzFWM5FjP0qW4FH0Icd4=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=m3DIKBC71BZNZVJSJOymiD7i4Ip+GO2a2mzNH1x3fPf1OfRmZIkYFjyKk/lDUsScd
- eVsFqgUXMrEDnGgmuXQs4Ym7ouUofmIFUjtfq2VUWJ7LT1reB+R0p14vkop17wGJ7j
- uCvUf0NA8XhFoC5YkemzRvZWd8pB3uC+fovL726eKQ4H4sBgWCmoZdhj3Bt8+ColdE
- YIjqREBwN0zmOwocCUhGRvNMIr/xybrPy1HC2Jc1NT/C17hIHvwdc/uIUpI4GYDD2F
- VDbi7icFCOKc48Q/f+qmrHw5i/R9x78XdSRe8ZiS3I3/kx8HId7vohlXqsYDsAr2HZ
- 6yCy3LNOzbixw==
-Message-ID: <b20da287-e7f4-ebad-a534-a129b57eeede@collabora.com>
-Date: Tue, 28 Jun 2022 17:22:05 +0100
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E76D7113AA8;
+ Tue, 28 Jun 2022 16:47:57 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id r20so18579823wra.1;
+ Tue, 28 Jun 2022 09:47:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=n3HZDcdfLwNiQ/tf7zCGAV+A8ooVMIqgPIQ28MjTeog=;
+ b=e3zeLjiXoUYC1IVaQKWrsc2qKrKVYQG+FiwqsRzNz/YxbDT0nHSgZ8eR2tVfrLi0Hs
+ 5GLXKpxS/5dpbABkwwBi+kl4n0khKod1v0GPWJ89X1h3TNUjfC7RS4740ITfxK5/nbrh
+ SHkGrTqHNILhXqHROw320nvIeM2Nre2164Aj2miAgQcaKDnte8RFr2pkEHfcg3h7Vbln
+ 87QzWotvsNkfT2Db3zhU9670nwzLrALbqwb/9ZXx2DFpvoAA8Xva7TAYCeAEhYv0BfZt
+ Gn6YjailqEcJJ+mqGAUnmO0/+pJ+0fHuqqBi12yhe5oQnxR7ZUa+HprAzGiPrKPmAQgn
+ fCdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=n3HZDcdfLwNiQ/tf7zCGAV+A8ooVMIqgPIQ28MjTeog=;
+ b=OjhiqD6bz/appPLq+E/jS9LG5GPv+9ciURQzPVYVn9xRX6ZtZ6WX1PmwRQF6U4ih2r
+ 2NZJQ3vw/anSLYHIh69jmvxrDeYyCyrv10p7cYDvW2mNWnloOv/ABV3Ex1MOS+QUDQ3u
+ PZUydGCNrTRg+hPR4lpIl3yxrd8dhg9AG/78awDFUjugJQGp9ZqGSxoRdBt9dQgrK3N3
+ XPxT7wIH6b+apcXTZdPcQMKEkbiGbzdLsIgaynNuoNUt4Rkg/czM/rwWUaQcRTaPR8tC
+ XxZsvYfGQpdLDNMVqkPZiQgb9F2dDZZQdrEA23xeGPeaHsWYS5JyzZ5OpyuF4J59xLNH
+ 92kw==
+X-Gm-Message-State: AJIora/49LLZOsApNHapDFqgnt+1jzB7N0ztQZHRXR7b3145c3OtcdUl
+ ndKYDn6xM8eVtyQWJ6rdjsFX7OrZosnQCuJxmS0=
+X-Google-Smtp-Source: AGRyM1shfbz2wZj9C+y4AJcD4Xp16+D3E3FTqL5mLWkwiHI8GjKt117H2EdLaDQl5pCDFAKa86OSOaxFM0gmoOv0egA=
+X-Received: by 2002:a5d:6d8b:0:b0:21b:9814:793d with SMTP id
+ l11-20020a5d6d8b000000b0021b9814793dmr18409107wrs.344.1656434876256; Tue, 28
+ Jun 2022 09:47:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220620213340.3199605-1-bob.beckett@collabora.com>
- <165583307119.13647.9219456323624399121@emeril.freedesktop.org>
- <20dedda6-534b-b39e-fb35-8becc5c27043@collabora.com>
- <2752282d-a28a-ef9b-8b27-2d84aee9c8bf@linux.intel.com>
- <4eee638e-ff08-0e45-ac79-ca6c77a0bb6f@collabora.com>
- <6d608010-a9b1-8182-a967-6ea435fd20a4@linux.intel.com>
-From: Robert Beckett <bob.beckett@collabora.com>
-In-Reply-To: <6d608010-a9b1-8182-a967-6ea435fd20a4@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_ttm_for_stolen_=28rev5=29?=
+References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
+ <49cc6f0c-e90e-8edd-52e7-4188620e2c28@arm.com>
+ <f77c1c2d-d9f9-db00-906a-ec10b535621d@collabora.com>
+In-Reply-To: <f77c1c2d-d9f9-db00-906a-ec10b535621d@collabora.com>
+From: Rob Clark <robdclark@gmail.com>
+Date: Tue, 28 Jun 2022 09:48:09 -0700
+Message-ID: <CAF6AEGsQBcHbU6Ps5fp5v6ANaZwMAtig-3i-ekQzwG=7BBDNwA@mail.gmail.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v6 00/22] Add generic memory shrinker to
+ VirtIO-GPU and Panfrost DRM drivers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,201 +65,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, Sumit Semwal <sumit.semwal@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
+ Daniel Stone <daniel@fooishbar.org>, Steven Price <steven.price@arm.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ "open list:VIRTIO GPU DRIVER" <virtualization@lists.linux-foundation.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Tomasz Figa <tfiga@chromium.org>, Qiang Yu <yuq825@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>, Robin Murphy <robin.murphy@arm.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Jun 28, 2022 at 5:51 AM Dmitry Osipenko
+<dmitry.osipenko@collabora.com> wrote:
+>
+> On 6/28/22 15:31, Robin Murphy wrote:
+> > ----->8-----
+> > [   68.295951] ======================================================
+> > [   68.295956] WARNING: possible circular locking dependency detected
+> > [   68.295963] 5.19.0-rc3+ #400 Not tainted
+> > [   68.295972] ------------------------------------------------------
+> > [   68.295977] cc1/295 is trying to acquire lock:
+> > [   68.295986] ffff000008d7f1a0
+> > (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_gem_shmem_free+0x7c/0x198
+> > [   68.296036]
+> > [   68.296036] but task is already holding lock:
+> > [   68.296041] ffff80000c14b820 (fs_reclaim){+.+.}-{0:0}, at:
+> > __alloc_pages_slowpath.constprop.0+0x4d8/0x1470
+> > [   68.296080]
+> > [   68.296080] which lock already depends on the new lock.
+> > [   68.296080]
+> > [   68.296085]
+> > [   68.296085] the existing dependency chain (in reverse order) is:
+> > [   68.296090]
+> > [   68.296090] -> #1 (fs_reclaim){+.+.}-{0:0}:
+> > [   68.296111]        fs_reclaim_acquire+0xb8/0x150
+> > [   68.296130]        dma_resv_lockdep+0x298/0x3fc
+> > [   68.296148]        do_one_initcall+0xe4/0x5f8
+> > [   68.296163]        kernel_init_freeable+0x414/0x49c
+> > [   68.296180]        kernel_init+0x2c/0x148
+> > [   68.296195]        ret_from_fork+0x10/0x20
+> > [   68.296207]
+> > [   68.296207] -> #0 (reservation_ww_class_mutex){+.+.}-{3:3}:
+> > [   68.296229]        __lock_acquire+0x1724/0x2398
+> > [   68.296246]        lock_acquire+0x218/0x5b0
+> > [   68.296260]        __ww_mutex_lock.constprop.0+0x158/0x2378
+> > [   68.296277]        ww_mutex_lock+0x7c/0x4d8
+> > [   68.296291]        drm_gem_shmem_free+0x7c/0x198
+> > [   68.296304]        panfrost_gem_free_object+0x118/0x138
+> > [   68.296318]        drm_gem_object_free+0x40/0x68
+> > [   68.296334]        drm_gem_shmem_shrinker_run_objects_scan+0x42c/0x5b8
+> > [   68.296352]        drm_gem_shmem_shrinker_scan_objects+0xa4/0x170
+> > [   68.296368]        do_shrink_slab+0x220/0x808
+> > [   68.296381]        shrink_slab+0x11c/0x408
+> > [   68.296392]        shrink_node+0x6ac/0xb90
+> > [   68.296403]        do_try_to_free_pages+0x1dc/0x8d0
+> > [   68.296416]        try_to_free_pages+0x1ec/0x5b0
+> > [   68.296429]        __alloc_pages_slowpath.constprop.0+0x528/0x1470
+> > [   68.296444]        __alloc_pages+0x4e0/0x5b8
+> > [   68.296455]        __folio_alloc+0x24/0x60
+> > [   68.296467]        vma_alloc_folio+0xb8/0x2f8
+> > [   68.296483]        alloc_zeroed_user_highpage_movable+0x58/0x68
+> > [   68.296498]        __handle_mm_fault+0x918/0x12a8
+> > [   68.296513]        handle_mm_fault+0x130/0x300
+> > [   68.296527]        do_page_fault+0x1d0/0x568
+> > [   68.296539]        do_translation_fault+0xa0/0xb8
+> > [   68.296551]        do_mem_abort+0x68/0xf8
+> > [   68.296562]        el0_da+0x74/0x100
+> > [   68.296572]        el0t_64_sync_handler+0x68/0xc0
+> > [   68.296585]        el0t_64_sync+0x18c/0x190
+> > [   68.296596]
+> > [   68.296596] other info that might help us debug this:
+> > [   68.296596]
+> > [   68.296601]  Possible unsafe locking scenario:
+> > [   68.296601]
+> > [   68.296604]        CPU0                    CPU1
+> > [   68.296608]        ----                    ----
+> > [   68.296612]   lock(fs_reclaim);
+> > [   68.296622] lock(reservation_ww_class_mutex);
+> > [   68.296633]                                lock(fs_reclaim);
+> > [   68.296644]   lock(reservation_ww_class_mutex);
+> > [   68.296654]
+> > [   68.296654]  *** DEADLOCK ***
+>
+> This splat could be ignored for now. I'm aware about it, although
+> haven't looked closely at how to fix it since it's a kind of a lockdep
+> misreporting.
 
+The lockdep splat could be fixed with something similar to what I've
+done in msm, ie. basically just not acquire the lock in the finalizer:
 
-On 28/06/2022 09:46, Tvrtko Ursulin wrote:
-> 
-> On 27/06/2022 18:08, Robert Beckett wrote:
->>
->>
->> On 22/06/2022 10:05, Tvrtko Ursulin wrote:
->>>
->>> On 21/06/2022 20:11, Robert Beckett wrote:
->>>>
->>>>
->>>> On 21/06/2022 18:37, Patchwork wrote:
->>>>> *Patch Details*
->>>>> *Series:*    drm/i915: ttm for stolen (rev5)
->>>>> *URL:*    https://patchwork.freedesktop.org/series/101396/ 
->>>>> <https://patchwork.freedesktop.org/series/101396/>
->>>>> *State:*    failure
->>>>> *Details:* 
->>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html 
->>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html> 
->>>>>
->>>>>
->>>>>
->>>>>   CI Bug Log - changes from CI_DRM_11790 -> Patchwork_101396v5
->>>>>
->>>>>
->>>>>     Summary
->>>>>
->>>>> *FAILURE*
->>>>>
->>>>> Serious unknown changes coming with Patchwork_101396v5 absolutely 
->>>>> need to be
->>>>> verified manually.
->>>>>
->>>>> If you think the reported changes have nothing to do with the changes
->>>>> introduced in Patchwork_101396v5, please notify your bug team to 
->>>>> allow them
->>>>> to document this new failure mode, which will reduce false 
->>>>> positives in CI.
->>>>>
->>>>> External URL: 
->>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html
->>>>>
->>>>>
->>>>>     Participating hosts (40 -> 41)
->>>>>
->>>>> Additional (2): fi-icl-u2 bat-dg2-9
->>>>> Missing (1): fi-bdw-samus
->>>>>
->>>>>
->>>>>     Possible new issues
->>>>>
->>>>> Here are the unknown changes that may have been introduced in 
->>>>> Patchwork_101396v5:
->>>>>
->>>>>
->>>>>       IGT changes
->>>>>
->>>>>
->>>>>         Possible regressions
->>>>>
->>>>>   * igt@i915_selftest@live@reset:
->>>>>       o bat-adlp-4: PASS
->>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-4/igt@i915_selftest@live@reset.html> 
->>>>>
->>>>>         -> DMESG-FAIL
->>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-4/igt@i915_selftest@live@reset.html> 
->>>>>
->>>>>
->>>>
->>>> I keep hitting clobbered pages during engine resets on bat-adlp-4.
->>>> It seems to happen most of the time on that machine and occasionally 
->>>> on bat-adlp-6.
->>>>
->>>> Should bat-adlp-4 be considered an unreliable machine like 
->>>> bat-adlp-6 is for now?
->>>>
->>>> Alternatively, seeing the history of this in
->>>>
->>>> commit 3da3c5c1c9825c24168f27b021339e90af37e969 "drm/i915: Exclude 
->>>> low pages (128KiB) of stolen from use"
->>>>
->>>> could this be an indication that maybe the original issue is worse 
->>>> on adlp machines?
->>>> I have only ever seen page page 135 or 136 clobbered across many 
->>>> runs via trybot, so it looks fairly consistent.
->>>> Though excluding the use of over 540K of stolen might be too severe.
->>>
->>> Don't know but I see that on the latest version you even hit pages 
->>> 165/166.
->>>
->>> Any history of hitting this in CI without your series? If not, are 
->>> there some other changes which could explain it? Are you touching the 
->>> selftest itself?
->>>
->>> Hexdump of the clobbered page looks quite complex. Especially 
->>> POISON_FREE. Any idea how that ends up there?
->>
->>
->> (see 
->> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v4/fi-rkl-guc/igt@i915_selftest@live@reset.html#dmesg-warnings702) 
->>
->>
->> after lots of slow debug via CI, it looks like the issue is that a 
->> ring buffer was allocated and taking up that page during the initial 
->> crc capture in the test, but by the time it came to check for 
->> corruption, it had been freed from that page.
->>
->> The test has a number of weaknesses:
->>
->> 1. the busy check is done twice, without taking in to account any 
->> change in between. I assume previously this could be relied on never 
->> to occur, but now it can for some reason (more on that later)
-> 
-> You mean the stolen page used/unused test? Probably the premise is that 
-> the test controls the driver completely ie. is the sole user and the two 
-> checks are run at the time where nothing else could have changed the state.
-> 
-> With the nerfed request (as with GuC) this actually should hold. In the 
-> generic case I am less sure, my working knowledge faded a bit, but 
-> perhaps there was something guaranteeing the spinner couldn't have been 
-> retired yet at the time of the second check. Would need clarifying at 
-> least in comments.
->>
->> 2. the engine reset returns early with an error for guc submission 
->> engines, but it is silently ignored in the test. Perhaps it should 
->> ignore guc submission engines as it is a largely useless test for 
->> those situations.
-> 
-> Yes looks dodgy indeed. You will need to summon the owners of the GuC 
-> backend to comment on this.
-> 
-> However even if the test should be skipped with GuC it is extremely 
-> interesting that you are hitting this so I suspect there is a more 
-> serious issue at play.
+https://patchwork.freedesktop.org/patch/489364/
 
-indeed. That's why I am keen to get to the root cause instead of just 
-slapping in a fix.
+There is one gotcha to watch for, as danvet pointed out
+(scan_objects() could still see the obj in the LRU before the
+finalizer removes it), but if scan_objects() does the
+kref_get_unless_zero() trick, it is safe.
 
-> 
->> A quick obvious fix is to have a busy bitmask that remembers each 
->> page's busy state initially and only check for corruption if it was 
->> busy during both checks.
->>
->> However, the main question is why this is occurring now with my changes.
->> I have added more debug to check where the stolen memory is being 
->> freed, but the first run last night didn't hit the issue for once.
->> I am running again now, will report back if I figure out where it is 
->> being freed.
->>
->> I am pretty sure the "corruption" (which isn't actually corruption) is 
->> from a ring buffer.
->> The POISON_FREE is the only difference between the captured before and 
->> after dumps:
->>
->> [0040] 00000000 02800000 6b6b6b6b 6b6b6b6b 6b6b6b6b 6b6b6b6b 6b6b6b6b 
->> 6b6b6b6b
->>
->> with the 2nd dword being the MI_ARB_CHECK used for the spinner.
->> I think this is the request poisoning from i915_request_retire()
->>
->> The bit I don't know yet is why a ring buffer was freed between the 
->> initial crc capture and the corruption check. The spinner should be 
->> active across the entire test, maintaining a ref on the context and 
->> it's ring.
->>
->> hopefully my latest debug will give more answers.
-> 
-> Yeah if you can figure our whether the a) spinner is still active during 
-> the 2nd check (as I think it should be), and b) is the corruption 
-> detected in the same pages which were used in the 1st pass that would be 
-> interesting.
-
-yep. The latest run is still stuck in the CI queue after 27 hours.
-I think I have enough debug in there to catch it now.
-Hopefully I can get a root cause once it gets chance to run.
-
-
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->>
->>
->>>
->>> Btw what is the benefit of converting stolen to start with? It's not 
->>> much of a backend since it just uses the drm range manager. So quite 
->>> thin and uneventful. Diffstats for the series also do not look like 
->>> you end up with much code reduction?
->>>
->>> Regards,
->>>
->>> Tvrtko
+BR,
+-R
