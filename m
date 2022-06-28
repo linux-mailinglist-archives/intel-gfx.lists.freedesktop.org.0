@@ -2,46 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E202E55C089
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 13:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 051BF55C0DB
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 14:08:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3C0D10EDE2;
-	Tue, 28 Jun 2022 11:04:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC02C12B034;
+	Tue, 28 Jun 2022 12:08:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E3C710E0E3;
- Tue, 28 Jun 2022 11:04:33 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E87D312B066;
+ Tue, 28 Jun 2022 12:08:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656414273; x=1687950273;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=u26f8E6TpNfK/rqXpKl2SvKd22EU8PN7Ord6IQEYsZc=;
- b=CKZaPdQPh91CbAcAjpznA0CA6ZPn2YtWmiH8zo+aCZVmNIjrZ8tggBgI
- ZpOggcxRgbMGh71+E8euyHh6deylG69ssWLaEhm6z1U8igYKD5E1KWeCd
- W1TPb0ArsbgqtFw+z23IAYnvYbR8NVMDpTf+nMYo5/LXLsoU5+HUCcr1b
- fKBgJOy8ypfz1rtFA0YtbFBVgOBmX3KQjlUHsld2eh3K8FLxYDM2K3QtA
- HAumr0lyXlLdDsqdFe4WTzsXLni91lL98fWuP5nUSofw+YWO5z5aaeHOW
- oGmZJa2BfjPvEiTQwanfnNE9L6m3VeMQIZZY0wTidbpTK0b1NxqrR4fdS A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="280470369"
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="280470369"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2022 04:04:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="693065215"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmsmga002.fm.intel.com with ESMTP; 28 Jun 2022 04:04:30 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Tue, 28 Jun 2022 16:34:09 +0530
-Message-Id: <20220628110409.768308-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
+ t=1656418081; x=1687954081;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=pmPlDq9y+gIWKalrXM/WfpvHQmRH2B99p260nqUZybI=;
+ b=IoXergICmDmAyNH78y1AxG+DmwArpAo7l0atsgBGdGVEsNnRI094vJN2
+ +SncQ8AGxWhNaUNRDIbZ3eMJAjucV2BV8/dt+W7wZ65cAtIpLJMOVAI9a
+ 7g7yMLJh4f/m7TgvBJTqH2bZUn6xs/DbejnZO5gwpYiHq0nnlAfIRg3BA
+ fWr2o6kdhSCrnSP1MtpJGQJ20gLHHD/DbaLhVqOV01qdMfR7qMa/+EPFl
+ KthskSeyxl5l/kftQTXHq7xlivvtpElJXbSKxdH/oX9wsNDMxKtXKwXaF
+ iO5N6QHMbZoRAqDk5RDLyWSF5nC+P92CsYIIQAbAnQl35vfgLySf4ZF6h w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="368035324"
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="368035324"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2022 05:08:01 -0700
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="594773383"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2022 05:08:00 -0700
+Date: Tue, 28 Jun 2022 15:07:56 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Nanley G Chery <nanley.g.chery@intel.com>,
+ Jordan Justen <jordan.l.justen@intel.com>
+Message-ID: <YrrvHCc+/5nEkJa0@ideak-desk.fi.intel.com>
+References: <20220623144955.2486736-1-imre.deak@intel.com>
+ <DM4PR11MB59952D0A2E4B2CA1B01E9BAFDCB49@DM4PR11MB5995.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t] tests/i915/kms_big_fb: trigger async flip
- with a dummy flip
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM4PR11MB59952D0A2E4B2CA1B01E9BAFDCB49@DM4PR11MB5995.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/fourcc: Document the Intel CCS
+ modifiers' CC plane expected pitch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,85 +58,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In oder to trigger the async flip, a dummy flip is required after sync
-flip so as to update the watermarks for async in KMD which happens as
-part of this dummy flip. Thereafter async memory update will act as a
-trigger register.
-Capturing the CRC is done after the async flip as async flip at some
-times can consume fairly a vblank period time.
+On Sat, Jun 25, 2022 at 12:38:50AM +0300, Chery, Nanley G wrote:
+> +Jordan (FYI)
+> 
+> I think the commit message has an extra "color" next to "CC".
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- tests/i915/kms_big_fb.c | 29 +++++++++++++++++++----------
- 1 file changed, 19 insertions(+), 10 deletions(-)
+IIUC, i915 calls all the planes contained in a framebuffer "color
+planes" for consistency (so main-, aux-, CC color planes).
 
-diff --git a/tests/i915/kms_big_fb.c b/tests/i915/kms_big_fb.c
-index d50fde45..6caf3c31 100644
---- a/tests/i915/kms_big_fb.c
-+++ b/tests/i915/kms_big_fb.c
-@@ -465,7 +465,7 @@ static bool test_pipe(data_t *data)
- static bool
- max_hw_stride_async_flip_test(data_t *data)
- {
--	uint32_t ret, startframe;
-+	uint32_t ret, frame;
- 	const uint32_t w = data->output->config.default_mode.hdisplay,
- 		       h = data->output->config.default_mode.vdisplay;
- 	igt_plane_t *primary;
-@@ -519,7 +519,19 @@ max_hw_stride_async_flip_test(data_t *data)
- 					  DRM_MODE_ATOMIC_ALLOW_MODESET, NULL);
- 
- 		igt_wait_for_vblank(data->drm_fd, data->display.pipes[primary->pipe->pipe].crtc_offset);
--		startframe = kmstest_get_vblank(data->drm_fd, data->pipe, 0) + 1;
-+		/*
-+		 * In older platforms (<= Gen10), async address update bit is double buffered.
-+		 * So flip timestamp can be verified only from the second flip.
-+		 * The first async flip just enables the async address update.
-+		 * In platforms greater than DISPLAY13 the first async flip will be discarded
-+		 * in order to change the watermark levels as per the optimization. Hence the
-+		 * subsequent async flips will actually do the asynchronous flips.
-+		 */
-+		ret = drmModePageFlip(data->drm_fd, data->output->config.crtc->crtc_id,
-+						      data->big_fb_flip[i].fb_id,
-+						      DRM_MODE_PAGE_FLIP_ASYNC, NULL);
-+		igt_wait_for_vblank(data->drm_fd, data->display.pipes[primary->pipe->pipe].crtc_offset);
-+		frame = kmstest_get_vblank(data->drm_fd, data->pipe, 0) + 1;
- 
- 		for (int j = 0; j < 2; j++) {
- 			do {
-@@ -528,23 +540,20 @@ max_hw_stride_async_flip_test(data_t *data)
- 						      DRM_MODE_PAGE_FLIP_ASYNC, NULL);
- 			} while (ret == -EBUSY);
- 			igt_assert(ret == 0);
-+			igt_pipe_crc_get_for_frame(data->drm_fd, data->pipe_crc,
-+					   frame, &compare_crc);
- 
-+			frame = kmstest_get_vblank(data->drm_fd, data->pipe, 0) + 1;
- 			do {
- 				ret = drmModePageFlip(data->drm_fd, data->output->config.crtc->crtc_id,
- 						      data->big_fb.fb_id,
- 						      DRM_MODE_PAGE_FLIP_ASYNC, NULL);
- 			} while (ret == -EBUSY);
- 			igt_assert(ret == 0);
-+			igt_pipe_crc_get_for_frame(data->drm_fd, data->pipe_crc,
-+					   frame, &async_crc);
- 		}
- 
--		igt_pipe_crc_get_for_frame(data->drm_fd, data->pipe_crc,
--					   startframe, &compare_crc);
--		igt_pipe_crc_get_for_frame(data->drm_fd, data->pipe_crc,
--					   startframe + 1, &async_crc);
--
--		igt_assert_f(kmstest_get_vblank(data->drm_fd, data->pipe, 0) -
--			     startframe == 1, "lost frames\n");
--
- 		igt_assert_f(igt_check_crc_equal(&compare_crc, &async_crc)^(i^1),
- 			     "CRC failure with async flip, crc %s match for checked round\n",
- 			     i?"should":"shouldn't");
--- 
-2.25.1
+> With or without that dropped,
+> 
+> Reviewed-by: Nanley Chery <nanley.g.chery@intel.com>
 
+The patch is pushed to drm-misc-next, thanks for the reviews.
+
+--Imre
+
+> Thanks for the fix.
+> 
+> > -----Original Message-----
+> > From: Deak, Imre <imre.deak@intel.com>
+> > Sent: Thursday, June 23, 2022 10:50 AM
+> > To: dri-devel@lists.freedesktop.org
+> > Cc: intel-gfx@lists.freedesktop.org; Chery, Nanley G <nanley.g.chery@intel.com>
+> > Subject: [PATCH] drm/fourcc: Document the Intel CCS modifiers' CC plane expected pitch
+> >
+> > The driver expects the pitch of the Intel CCS CC color planes to be
+> > 64 bytes aligned, adjust the modifier descriptions accordingly.
+> >
+> > Cc: Nanley Chery <nanley.g.chery@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  include/uapi/drm/drm_fourcc.h | 8 ++++----
+> >  1 file changed, 4 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+> > index f1972154a5940..c1b4cfda75075 100644
+> > --- a/include/uapi/drm/drm_fourcc.h
+> > +++ b/include/uapi/drm/drm_fourcc.h
+> > @@ -559,7 +559,7 @@ extern "C" {
+> >   *
+> >   * The main surface is Y-tiled and is at plane index 0 whereas CCS is linear
+> >   * and at index 1. The clear color is stored at index 2, and the pitch should
+> > - * be ignored. The clear color structure is 256 bits. The first 128 bits
+> > + * be 64 bytes aligned. The clear color structure is 256 bits. The first 128 bits
+> >   * represents Raw Clear Color Red, Green, Blue and Alpha color each represented
+> >   * by 32 bits. The raw clear color is consumed by the 3d engine and generates
+> >   * the converted clear color of size 64 bits. The first 32 bits store the Lower
+> > @@ -612,9 +612,9 @@ extern "C" {
+> >   * outside of the GEM object in a reserved memory area dedicated for the
+> >   * storage of the CCS data for all RC/RC_CC/MC compressible GEM objects. The
+> >   * main surface pitch is required to be a multiple of four Tile 4 widths. The
+> > - * clear color is stored at plane index 1 and the pitch should be ignored. The
+> > - * format of the 256 bits of clear color data matches the one used for the
+> > - * I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC modifier, see its description
+> > + * clear color is stored at plane index 1 and the pitch should be 64 bytes
+> > + * aligned. The format of the 256 bits of clear color data matches the one used
+> > + * for the I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC modifier, see its description
+> >   * for details.
+> >   */
+> >  #define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC fourcc_mod_code(INTEL, 12)
+> > --
+> > 2.30.2
+> 
