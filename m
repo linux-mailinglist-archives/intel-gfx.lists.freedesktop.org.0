@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C4C555BDEE
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 05:56:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47BE255BDF1
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 06:05:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE92D112096;
-	Tue, 28 Jun 2022 03:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA0810F886;
+	Tue, 28 Jun 2022 04:05:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 81044112096;
- Tue, 28 Jun 2022 03:56:19 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7DC1F10F886;
+ Tue, 28 Jun 2022 04:05:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 77C85A8169;
- Tue, 28 Jun 2022 03:56:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4009628816008072335=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 737F2A77A5;
+ Tue, 28 Jun 2022 04:05:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-Date: Tue, 28 Jun 2022 03:56:19 -0000
-Message-ID: <165638857944.14503.15513456448884033394@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Tue, 28 Jun 2022 04:05:28 -0000
+Message-ID: <165638912843.14503.13774732629902203482@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220621233005.3952293-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20220621233005.3952293-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_ADL-N_should_use_the_same_GuC_FW_as_ADL-S_=28rev2?=
- =?utf-8?q?=29?=
+References: <20220627224751.3627465-1-lucas.demarchi@intel.com>
+In-Reply-To: <20220627224751.3627465-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/2=5D_iosys-map=3A_Add_per-wo?=
+ =?utf-8?q?rd_read?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,316 +46,238 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4009628816008072335==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/guc: ADL-N should use the same GuC FW as ADL-S (rev2)
-URL   : https://patchwork.freedesktop.org/series/105444/
-State : success
+Series: series starting with [CI,1/2] iosys-map: Add per-word read
+URL   : https://patchwork.freedesktop.org/series/105692/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_11816 -> Patchwork_105444v2
-====================================================
+Error: dim checkpatch failed
+e6ff19d2ffd3 iosys-map: Add per-word read
+-:88: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#88: FILE: include/linux/iosys-map.h:339:
++	u64: val_ = readq(vaddr_iomem_)
+ 	   ^
 
-Summary
--------
+-:88: WARNING:INDENTED_LABEL: labels should not be indented
+#88: FILE: include/linux/iosys-map.h:339:
++	u64: val_ = readq(vaddr_iomem_)
 
-  **SUCCESS**
+-:91: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#91: FILE: include/linux/iosys-map.h:342:
++	u64: memcpy_fromio(&(val_), vaddr_iomem_, sizeof(u64))
+ 	   ^
 
-  No regressions found.
+-:91: WARNING:INDENTED_LABEL: labels should not be indented
+#91: FILE: include/linux/iosys-map.h:342:
++	u64: memcpy_fromio(&(val_), vaddr_iomem_, sizeof(u64))
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/index.html
+-:94: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
+#94: FILE: include/linux/iosys-map.h:345:
++#define __iosys_map_rd_io(val__, vaddr_iomem__, type__) _Generic(val__,		\
 
-Participating hosts (40 -> 39)
-------------------------------
+-:94: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val__' - possible side-effects?
+#94: FILE: include/linux/iosys-map.h:345:
++#define __iosys_map_rd_io(val__, vaddr_iomem__, type__) _Generic(val__,		\
++	u8: val__ = readb(vaddr_iomem__),					\
++	u16: val__ = readw(vaddr_iomem__),					\
++	u32: val__ = readl(vaddr_iomem__),					\
++	__iosys_map_rd_io_u64_case(val__, vaddr_iomem__))
 
-  Additional (1): fi-hsw-4770 
-  Missing    (2): bat-adln-1 fi-bdw-samus 
+-:94: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'vaddr_iomem__' - possible side-effects?
+#94: FILE: include/linux/iosys-map.h:345:
++#define __iosys_map_rd_io(val__, vaddr_iomem__, type__) _Generic(val__,		\
++	u8: val__ = readb(vaddr_iomem__),					\
++	u16: val__ = readw(vaddr_iomem__),					\
++	u32: val__ = readl(vaddr_iomem__),					\
++	__iosys_map_rd_io_u64_case(val__, vaddr_iomem__))
 
-Known issues
-------------
+-:95: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#95: FILE: include/linux/iosys-map.h:346:
++	u8: val__ = readb(vaddr_iomem__),					\
+ 	  ^
 
-  Here are the changes found in Patchwork_105444v2 that come from known issues:
+-:95: WARNING:INDENTED_LABEL: labels should not be indented
+#95: FILE: include/linux/iosys-map.h:346:
++	u8: val__ = readb(vaddr_iomem__),					\
 
-### IGT changes ###
+-:96: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#96: FILE: include/linux/iosys-map.h:347:
++	u16: val__ = readw(vaddr_iomem__),					\
+ 	   ^
 
-#### Issues hit ####
+-:96: WARNING:INDENTED_LABEL: labels should not be indented
+#96: FILE: include/linux/iosys-map.h:347:
++	u16: val__ = readw(vaddr_iomem__),					\
 
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#3012])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
+-:97: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#97: FILE: include/linux/iosys-map.h:348:
++	u32: val__ = readl(vaddr_iomem__),					\
+ 	   ^
 
-  * igt@i915_selftest@live@gem:
-    - fi-pnv-d510:        NOTRUN -> [DMESG-FAIL][2] ([i915#4528])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-pnv-d510/igt@i915_selftest@live@gem.html
+-:97: WARNING:INDENTED_LABEL: labels should not be indented
+#97: FILE: include/linux/iosys-map.h:348:
++	u32: val__ = readl(vaddr_iomem__),					\
 
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-bdw-5557u:       [PASS][3] -> [INCOMPLETE][4] ([i915#5502])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html
+-:100: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'type__' may be better as '(type__)' to avoid precedence issues
+#100: FILE: include/linux/iosys-map.h:351:
++#define __iosys_map_rd_sys(val__, vaddr__, type__) ({				\
++	compiletime_assert(sizeof(type__) <= sizeof(u64),			\
++			   "Unsupported access size for __iosys_map_rd_sys()");	\
++	val__ = READ_ONCE(*((type__ *)vaddr__));				\
++})
 
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-5:          [PASS][5] -> [INCOMPLETE][6] ([i915#4418])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-    - bat-dg1-6:          [PASS][7] -> [INCOMPLETE][8] ([i915#4418])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
+-:126: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'map__' - possible side-effects?
+#126: FILE: include/linux/iosys-map.h:371:
++#define iosys_map_rd(map__, offset__, type__) ({				\
++	type__ val;								\
++	if ((map__)->is_iomem) {						\
++		__iosys_map_rd_io(val, (map__)->vaddr_iomem + (offset__), type__);\
++	} else {								\
++		__iosys_map_rd_sys(val, (map__)->vaddr + (offset__), type__);	\
++	}									\
++	val;									\
+ })
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][9] ([fdo#109271]) +9 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+-:126: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset__' - possible side-effects?
+#126: FILE: include/linux/iosys-map.h:371:
++#define iosys_map_rd(map__, offset__, type__) ({				\
++	type__ val;								\
++	if ((map__)->is_iomem) {						\
++		__iosys_map_rd_io(val, (map__)->vaddr_iomem + (offset__), type__);\
++	} else {								\
++		__iosys_map_rd_sys(val, (map__)->vaddr + (offset__), type__);	\
++	}									\
++	val;									\
+ })
 
-  * igt@kms_busy@basic@flip:
-    - bat-adlp-4:         [PASS][10] -> [DMESG-WARN][11] ([i915#3576])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-adlp-4/igt@kms_busy@basic@flip.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-adlp-4/igt@kms_busy@basic@flip.html
+-:126: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'type__' - possible side-effects?
+#126: FILE: include/linux/iosys-map.h:371:
++#define iosys_map_rd(map__, offset__, type__) ({				\
++	type__ val;								\
++	if ((map__)->is_iomem) {						\
++		__iosys_map_rd_io(val, (map__)->vaddr_iomem + (offset__), type__);\
++	} else {								\
++		__iosys_map_rd_sys(val, (map__)->vaddr + (offset__), type__);	\
++	}									\
++	val;									\
+ })
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][12] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
+total: 5 errors, 5 warnings, 7 checks, 73 lines checked
+444bfcd41d67 iosys-map: Add per-word write
+-:31: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#31: FILE: include/linux/iosys-map.h:341:
++	u64: writeq(val_, vaddr_iomem_)
+ 	   ^
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [PASS][13] -> [FAIL][14] ([i915#6298])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+-:31: WARNING:INDENTED_LABEL: labels should not be indented
+#31: FILE: include/linux/iosys-map.h:341:
++	u64: writeq(val_, vaddr_iomem_)
 
-  * igt@kms_flip@basic-flip-vs-dpms@a-edp1:
-    - fi-tgl-u2:          [PASS][15] -> [DMESG-WARN][16] ([i915#402])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html
+-:36: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#36: FILE: include/linux/iosys-map.h:346:
++	u64: memcpy_toio(vaddr_iomem_, &(val_), sizeof(u64))
+ 	   ^
 
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][17] ([fdo#109271] / [i915#1072]) +3 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
+-:36: WARNING:INDENTED_LABEL: labels should not be indented
+#36: FILE: include/linux/iosys-map.h:346:
++	u64: memcpy_toio(vaddr_iomem_, &(val_), sizeof(u64))
 
-  
-#### Possible fixes ####
+-:44: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
+#44: FILE: include/linux/iosys-map.h:361:
++#define __iosys_map_wr_io(val__, vaddr_iomem__, type__) _Generic(val__,		\
 
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-11600:       [DMESG-FAIL][18] ([i915#2373]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-rkl-11600/igt@i915_selftest@live@gt_lrc.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-rkl-11600/igt@i915_selftest@live@gt_lrc.html
+-:44: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val__' - possible side-effects?
+#44: FILE: include/linux/iosys-map.h:361:
++#define __iosys_map_wr_io(val__, vaddr_iomem__, type__) _Generic(val__,		\
++	u8: writeb(val__, vaddr_iomem__),					\
++	u16: writew(val__, vaddr_iomem__),					\
++	u32: writel(val__, vaddr_iomem__),					\
++	__iosys_map_wr_io_u64_case(val__, vaddr_iomem__))
 
-  * igt@i915_selftest@live@gtt:
-    - fi-bdw-5557u:       [DMESG-FAIL][20] ([i915#3674]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
+-:44: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'vaddr_iomem__' - possible side-effects?
+#44: FILE: include/linux/iosys-map.h:361:
++#define __iosys_map_wr_io(val__, vaddr_iomem__, type__) _Generic(val__,		\
++	u8: writeb(val__, vaddr_iomem__),					\
++	u16: writew(val__, vaddr_iomem__),					\
++	u32: writel(val__, vaddr_iomem__),					\
++	__iosys_map_wr_io_u64_case(val__, vaddr_iomem__))
 
-  * igt@i915_selftest@live@requests:
-    - fi-pnv-d510:        [DMESG-FAIL][22] ([i915#4528]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-pnv-d510/igt@i915_selftest@live@requests.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-pnv-d510/igt@i915_selftest@live@requests.html
+-:45: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#45: FILE: include/linux/iosys-map.h:362:
++	u8: writeb(val__, vaddr_iomem__),					\
+ 	  ^
 
-  * igt@i915_selftest@live@reset:
-    - {bat-adlp-6}:       [DMESG-FAIL][24] ([i915#4983]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-adlp-6/igt@i915_selftest@live@reset.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-adlp-6/igt@i915_selftest@live@reset.html
+-:45: WARNING:INDENTED_LABEL: labels should not be indented
+#45: FILE: include/linux/iosys-map.h:362:
++	u8: writeb(val__, vaddr_iomem__),					\
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - bat-adlp-4:         [DMESG-WARN][26] ([i915#3576]) -> [PASS][27]
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-adlp-4/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-adlp-4/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+-:46: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#46: FILE: include/linux/iosys-map.h:363:
++	u16: writew(val__, vaddr_iomem__),					\
+ 	   ^
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:46: WARNING:INDENTED_LABEL: labels should not be indented
+#46: FILE: include/linux/iosys-map.h:363:
++	u16: writew(val__, vaddr_iomem__),					\
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3674]: https://gitlab.freedesktop.org/drm/intel/issues/3674
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5502]: https://gitlab.freedesktop.org/drm/intel/issues/5502
-  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+-:47: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#47: FILE: include/linux/iosys-map.h:364:
++	u32: writel(val__, vaddr_iomem__),					\
+ 	   ^
 
+-:47: WARNING:INDENTED_LABEL: labels should not be indented
+#47: FILE: include/linux/iosys-map.h:364:
++	u32: writel(val__, vaddr_iomem__),					\
 
-Build changes
--------------
+-:50: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'type__' may be better as '(type__)' to avoid precedence issues
+#50: FILE: include/linux/iosys-map.h:367:
++#define __iosys_map_wr_sys(val__, vaddr__, type__) ({				\
++	compiletime_assert(sizeof(type__) <= sizeof(u64),			\
++			   "Unsupported access size for __iosys_map_wr_sys()"); \
++	WRITE_ONCE(*((type__ *)vaddr__), val__);				\
++})
 
-  * Linux: CI_DRM_11816 -> Patchwork_105444v2
+-:56: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#56: FILE: include/linux/iosys-map.h:373:
++
++
 
-  CI-20190529: 20190529
-  CI_DRM_11816: df99947ea190ec0665196a80775e0007f497eb2e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6543: 0463b607ed58ceede542f9bad6a9dad8d77d6f9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_105444v2: df99947ea190ec0665196a80775e0007f497eb2e @ git://anongit.freedesktop.org/gfx-ci/linux
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'map__' - possible side-effects?
+#73: FILE: include/linux/iosys-map.h:410:
++#define iosys_map_wr(map__, offset__, type__, val__) ({				\
++	type__ val = (val__);							\
++	if ((map__)->is_iomem) {						\
++		__iosys_map_wr_io(val, (map__)->vaddr_iomem + (offset__), type__);\
++	} else {								\
++		__iosys_map_wr_sys(val, (map__)->vaddr + (offset__), type__);	\
++	}									\
+ })
 
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset__' - possible side-effects?
+#73: FILE: include/linux/iosys-map.h:410:
++#define iosys_map_wr(map__, offset__, type__, val__) ({				\
++	type__ val = (val__);							\
++	if ((map__)->is_iomem) {						\
++		__iosys_map_wr_io(val, (map__)->vaddr_iomem + (offset__), type__);\
++	} else {								\
++		__iosys_map_wr_sys(val, (map__)->vaddr + (offset__), type__);	\
++	}									\
+ })
 
-### Linux commits
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'type__' - possible side-effects?
+#73: FILE: include/linux/iosys-map.h:410:
++#define iosys_map_wr(map__, offset__, type__, val__) ({				\
++	type__ val = (val__);							\
++	if ((map__)->is_iomem) {						\
++		__iosys_map_wr_io(val, (map__)->vaddr_iomem + (offset__), type__);\
++	} else {								\
++		__iosys_map_wr_sys(val, (map__)->vaddr + (offset__), type__);	\
++	}									\
+ })
 
-99f68954c7b0 drm/i915/guc: ADL-N should use the same GuC FW as ADL-S
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/index.html
-
---===============4009628816008072335==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: ADL-N should use the same GuC FW as ADL-S (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105444/">https://patchwork.freedesktop.org/series/105444/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/index.html</a></td></tr>
-
-</table>
+total: 5 errors, 5 warnings, 8 checks, 70 lines checked
 
 
-    <h1>CI Bug Log - changes from CI_DRM_11816 -&gt; Patchwork_105444v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/index.html</p>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Additional (1): fi-hsw-4770 <br />
-  Missing    (2): bat-adln-1 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_105444v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-pnv-d510/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-bdw-5557u/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5502">i915#5502</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>
-<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</p>
-</li>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-adlp-4/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@a-edp1:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-tgl-u2/igt@kms_flip@basic-flip-vs-dpms@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-rkl-11600/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2373">i915#2373</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-rkl-11600/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gtt:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3674">i915#3674</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-adlp-6/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-adlp-6/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11816/bat-adlp-4/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105444v2/bat-adlp-4/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11816 -&gt; Patchwork_105444v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11816: df99947ea190ec0665196a80775e0007f497eb2e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6543: 0463b607ed58ceede542f9bad6a9dad8d77d6f9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_105444v2: df99947ea190ec0665196a80775e0007f497eb2e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>99f68954c7b0 drm/i915/guc: ADL-N should use the same GuC FW as ADL-S</p>
-
-</body>
-</html>
-
---===============4009628816008072335==--
