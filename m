@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD55955D4B3
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 15:14:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A388355D4BA
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jun 2022 15:14:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE1FA10EECE;
-	Tue, 28 Jun 2022 13:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C392E10F094;
+	Tue, 28 Jun 2022 13:14:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F68D10E711;
- Tue, 28 Jun 2022 13:14:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E02F10F094;
+ Tue, 28 Jun 2022 13:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656422056; x=1687958056;
+ t=1656422059; x=1687958059;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TnCnUIlmHzDmvWQ0gJEaaPDtlRpW137dVNAfMtgWCnQ=;
- b=mE2QdFzMbt/KGZBf8ZuPTPOwkHLtLJnMGcD8jc0e13h0iNi6g7eC2mJr
- ZqYinimty9odtf0EOoaE85iGXx3TV08zoUg9ijyr7YdkTYSkxHoHxh4Hi
- 2wZBWshBmF+9KcMeoqauyie++KvkFDqIuYw+kRwPZGjliNuNKb/IIsbCA
- wZcihV6qUE9cNzbnPTudaefDtQtLIRyR1WvgwYeCi7GbohVUXtEggpxIb
- T17/G6LR1H4lJJ6AxTrIakLP89fLmxLY3jvzn4pJ6Q0lxoBD5xBhqSQLu
- HI7o0HmCRkSDuPE2U3ByEErqOrkb+q3gyTfsLUw1sw/32CwC5tDYStj/5 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="343427302"
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="343427302"
+ bh=7vF5SJUBLsBQXKBwforV0poww+OqgLPMjvmE9RNjwfo=;
+ b=UAF6jOhgx+bLgUeZKU4pX9RjyBkYoXE14EGazeuffGEvD9jGgEG4Oe7/
+ 4oB3MoQ/YmVi9frBqodbNeeUmVtQ5fyAsR3vrKD3QS+XGyhoC1PQelGJh
+ gWb9pb02c676/Gc+CPvYDwia/ScWC+s254dg3Gs0OBzxfX2aFriopI3jF
+ l5s2OJirXjgmCku90WlNlYnMsqVQEzJ6EC6Eci9IDa7mWgDJhDNpfmLlq
+ vTLCyiT/SYJR+5cQDELCcgHwXxZSjFvK6AWdxYZA0Pe1ynXJM2/HNZ+X8
+ 1G6GzvRQRtKOneX2/wk5xXmh6m+ikKQDbef2IxJihZ9qPM+b1YFIlbxiK A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="343427320"
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="343427320"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2022 06:14:16 -0700
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="594790365"
+ 28 Jun 2022 06:14:19 -0700
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; d="scan'208";a="594790372"
 Received: from dlee-mobl1.gar.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.214.144.75])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2022 06:14:14 -0700
+ 28 Jun 2022 06:14:16 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Tue, 28 Jun 2022 14:13:17 +0100
-Message-Id: <20220628131318.197965-2-matthew.auld@intel.com>
+Date: Tue, 28 Jun 2022 14:13:18 +0100
+Message-Id: <20220628131318.197965-3-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220628131318.197965-1-matthew.auld@intel.com>
 References: <20220628131318.197965-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 2/3] tests/kms_cursor_crc: fix truncated
- warning
+Subject: [Intel-gfx] [PATCH i-g-t 3/3]
+ tests/amdgpu/amdgpu_command_submission: fix uaf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,50 +62,36 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Looks reasonable to just increase the size of 'name' to avoid the
-potential truncation:
-
-../tests/kms_cursor_crc.c: In function ‘run_size_tests.constprop’:
-../tests/kms_cursor_crc.c:699:50: warning: ‘%d’ directive output may be truncated writing between 1 and 11 bytes into a region of size between 4 and 14 [-Wformat-truncation=]
-  699 |                 snprintf(name, sizeof(name), "%dx%d", w, h);
-      |                                                  ^~
-../tests/kms_cursor_crc.c:699:46: note: directive argument in the range [-2147483648, 1024]
-  699 |                 snprintf(name, sizeof(name), "%dx%d", w, h);
-      |                                              ^~~~~~~
-In file included from /usr/include/stdio.h:894,
-                 from ../lib/igt_core.h:38,
-                 from ../lib/drmtest.h:39,
-                 from ../lib/igt.h:27,
-                 from ../tests/kms_cursor_crc.c:25:
-In function ‘snprintf’,
-    inlined from ‘run_size_tests.constprop’ at ../tests/kms_cursor_crc.c:699:3:
-/usr/include/bits/stdio2.h:71:10: note: ‘__builtin___snprintf_chk’ output between 4 and 24 bytes into a destination of size 16
-   71 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   72 |                                    __glibc_objsize (__s), __fmt,
-      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   73 |                                    __va_arg_pack ());
-      |                                    ~~~~~~~~~~~~~~~~~
+../lib/amdgpu/amd_command_submission.c: In function ‘amdgpu_command_submission_write_linear_helper’:
+../lib/amdgpu/amd_command_submission.c:201:13: warning: pointer ‘ring_context’ used after ‘free’ [-Wuse-after-free]
+  201 |         r = amdgpu_cs_ctx_free(ring_context->context_handle);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../lib/amdgpu/amd_command_submission.c:199:9: note: call to ‘free’ here
+  199 |         free(ring_context);
+      |         ^~~~~~~~~~~~~~~~~~
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Petri Latvala <petri.latvala@intel.com>
 ---
- tests/kms_cursor_crc.c | 2 +-
+ lib/amdgpu/amd_command_submission.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tests/kms_cursor_crc.c b/tests/kms_cursor_crc.c
-index 513c9715..131fdb0a 100644
---- a/tests/kms_cursor_crc.c
-+++ b/tests/kms_cursor_crc.c
-@@ -691,7 +691,7 @@ static void test_rapid_movement(data_t *data)
- static void run_size_tests(data_t *data, enum pipe pipe,
- 			   int w, int h)
- {
--	char name[16];
-+	char name[32];
+diff --git a/lib/amdgpu/amd_command_submission.c b/lib/amdgpu/amd_command_submission.c
+index 4dc4df95..16939653 100644
+--- a/lib/amdgpu/amd_command_submission.c
++++ b/lib/amdgpu/amd_command_submission.c
+@@ -196,10 +196,10 @@ void amdgpu_command_submission_write_linear_helper(amdgpu_device_handle device,
+ 	}
+ 	/* clean resources */
+ 	free(ring_context->pm4);
+-	free(ring_context);
+ 	/* end of test */
+ 	r = amdgpu_cs_ctx_free(ring_context->context_handle);
+ 	igt_assert_eq(r, 0);
++	free(ring_context);
+ }
  
- 	if (w == 0 && h == 0)
- 		strcpy(name, "max-size");
+ 
 -- 
 2.36.1
 
