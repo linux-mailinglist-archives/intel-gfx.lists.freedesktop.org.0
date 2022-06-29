@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9618D560796
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jun 2022 19:44:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B484560793
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jun 2022 19:44:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 506A910EDD1;
-	Wed, 29 Jun 2022 17:44:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3F1F10EDA6;
+	Wed, 29 Jun 2022 17:44:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BD4710E723
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01D1310E723
  for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 17:44:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656524653; x=1688060653;
+ t=1656524654; x=1688060654;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=01cTeNSjGRd9yhKM+Z6/7kM/z41WldxmomsVEthQV+8=;
- b=WMd85vrl7ZpPfoq+of10D8rdoJTZJUGvKCUqNgXGE7aDv20m1ataE4vY
- 82BqNP8Vmi4wv1N08o31+sGw9P72VbDp6J/IaAVpDwjdhVXgPojSZi8Ac
- ZC6O56vy4gAb9r1j/h5PF8YEyM99i9OghFAkkHDTiDYbwu30oNHejoCxR
- YnMvjWkOJWbHTDmC/z5c8y88oXDqm5Q2RG4tn8jTMDy1RANyqnmGjW+io
- Skp/mEOql0ihAAr/Wt9/45Is/D/kWrHmbFulM8otvXc+252h2QAEvS2ED
- 5OVtCpRFY2+hOG0Yv3kkRL14rsK30T0jhPLHyQNZ1x+4sYqZjwgadUJFP A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="279643938"
-X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="279643938"
+ bh=qaafeqjiidfwOCKizyQ1wuLORe0zF3uc0Q7VB8PtMXU=;
+ b=DddN1WSHWVLZp4h9+dDh8aqWhLiIenJLy2HGxpx+OqSa0Chg5RnD8XRP
+ nKwKS3dcxzL44ayn/l7vasQBsQXgm76noGAGroo5aPipG2NP/6b8E+Moz
+ eQpqibW+hnQMJyI5egRvNLPhuidNXuLD9Nsc5l+Nc1EsHcOwpiVgfjHhi
+ qJZIFkfWMwFQg20soI1A8y5pkUtL4l1jcyzC/2R+dKku5ffjwEAyqXX5M
+ bfNpcriH9mDmZJNiukcW3taqkivN0UL63RWVSuhoQIUEkBxSPsWixKP00
+ ocbmGsq6stPai7xNxbBC5fxOtQU03VmFR3z2K4kdVDciN0ZxaXAe02thM g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="279643942"
+X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="279643942"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Jun 2022 10:44:13 -0700
-X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="595331064"
+X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="595331066"
 Received: from nwalsh-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.213.202.136])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2022 10:44:12 -0700
+ 29 Jun 2022 10:44:13 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Jun 2022 18:43:45 +0100
-Message-Id: <20220629174350.384910-8-matthew.auld@intel.com>
+Date: Wed, 29 Jun 2022 18:43:46 +0100
+Message-Id: <20220629174350.384910-9-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220629174350.384910-1-matthew.auld@intel.com>
 References: <20220629174350.384910-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI v4 08/13] drm/i915/uapi: tweak error capture on
- recoverable contexts
+Subject: [Intel-gfx] [CI v4 09/13] drm/i915/selftests: skip the mman tests
+ for stolen
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,18 +61,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A non-recoverable context must be used if the user wants proper error
-capture on discrete platforms. In the future the kernel may want to blit
-the contents of some objects when later doing the capture stage. Also
-extend to newer integrated platforms.
+It's not supported, and just skips later anyway. With small-BAR things
+get more complicated since all of stolen is likely not even CPU
+accessible, hence not passing I915_BO_ALLOC_GPU_ONLY just results in the
+object create failing.
 
-v2(Thomas):
-  - Also extend to newer integrated platforms, for capture buffer memory
-    allocation purposes.
-v3 (Reported-by: kernel test robot <lkp@intel.com>):
-  - Fix build on !CONFIG_DRM_I915_CAPTURE_ERROR
-
-Testcase: igt@gem_exec_capture@capture-recoverable
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
@@ -84,64 +77,53 @@ Cc: Kenneth Graunke <kenneth@whitecape.org>
 Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 30fe847c6664..b7b2c14fd9e1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1951,7 +1951,7 @@ eb_find_first_request_added(struct i915_execbuffer *eb)
- #if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+index 5bc93a1ce3e3..388c85b0f764 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+@@ -979,6 +979,9 @@ static int igt_mmap(void *arg)
+ 		};
+ 		int i;
  
- /* Stage with GFP_KERNEL allocations before we enter the signaling critical path */
--static void eb_capture_stage(struct i915_execbuffer *eb)
-+static int eb_capture_stage(struct i915_execbuffer *eb)
- {
- 	const unsigned int count = eb->buffer_count;
- 	unsigned int i = count, j;
-@@ -1964,6 +1964,10 @@ static void eb_capture_stage(struct i915_execbuffer *eb)
- 		if (!(flags & EXEC_OBJECT_CAPTURE))
++		if (mr->private)
++			continue;
++
+ 		for (i = 0; i < ARRAY_SIZE(sizes); i++) {
+ 			struct drm_i915_gem_object *obj;
+ 			int err;
+@@ -1435,6 +1438,9 @@ static int igt_mmap_access(void *arg)
+ 		struct drm_i915_gem_object *obj;
+ 		int err;
+ 
++		if (mr->private)
++			continue;
++
+ 		obj = __i915_gem_object_create_user(i915, PAGE_SIZE, &mr, 1);
+ 		if (obj == ERR_PTR(-ENODEV))
  			continue;
+@@ -1580,6 +1586,9 @@ static int igt_mmap_gpu(void *arg)
+ 		struct drm_i915_gem_object *obj;
+ 		int err;
  
-+		if (i915_gem_context_is_recoverable(eb->gem_context) &&
-+		    (IS_DGFX(eb->i915) || GRAPHICS_VER_FULL(eb->i915) > IP_VER(12, 0)))
-+			return -EINVAL;
++		if (mr->private)
++			continue;
 +
- 		for_each_batch_create_order(eb, j) {
- 			struct i915_capture_list *capture;
+ 		obj = __i915_gem_object_create_user(i915, PAGE_SIZE, &mr, 1);
+ 		if (obj == ERR_PTR(-ENODEV))
+ 			continue;
+@@ -1727,6 +1736,9 @@ static int igt_mmap_revoke(void *arg)
+ 		struct drm_i915_gem_object *obj;
+ 		int err;
  
-@@ -1976,6 +1980,8 @@ static void eb_capture_stage(struct i915_execbuffer *eb)
- 			eb->capture_lists[j] = capture;
- 		}
- 	}
++		if (mr->private)
++			continue;
 +
-+	return 0;
- }
- 
- /* Commit once we're in the critical path */
-@@ -2017,8 +2023,9 @@ static void eb_capture_list_clear(struct i915_execbuffer *eb)
- 
- #else
- 
--static void eb_capture_stage(struct i915_execbuffer *eb)
-+static int eb_capture_stage(struct i915_execbuffer *eb)
- {
-+	return 0;
- }
- 
- static void eb_capture_commit(struct i915_execbuffer *eb)
-@@ -3410,7 +3417,9 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	}
- 
- 	ww_acquire_done(&eb.ww.ctx);
--	eb_capture_stage(&eb);
-+	err = eb_capture_stage(&eb);
-+	if (err)
-+		goto err_vma;
- 
- 	out_fence = eb_requests_create(&eb, in_fence, out_fence_fd);
- 	if (IS_ERR(out_fence)) {
+ 		obj = __i915_gem_object_create_user(i915, PAGE_SIZE, &mr, 1);
+ 		if (obj == ERR_PTR(-ENODEV))
+ 			continue;
 -- 
 2.36.1
 
