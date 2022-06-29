@@ -1,52 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FCB257B832
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 16:08:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D86ED57B82D
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 16:08:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0D8711B968;
-	Wed, 20 Jul 2022 14:08:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D760F11B7BC;
+	Wed, 20 Jul 2022 14:08:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from madras.collabora.co.uk (madras.collabora.co.uk
  [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE51F10E81E;
- Wed, 29 Jun 2022 08:22:09 +0000 (UTC)
-Received: from [192.168.2.145] (unknown [109.252.118.164])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 111BF10E182;
+ Wed, 29 Jun 2022 08:23:58 +0000 (UTC)
+Received: from [192.168.2.145] (109-252-118-164.nat.spd-mgts.ru
+ [109.252.118.164])
  (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
  (No client certificate requested)
  (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 96AF966018F1;
- Wed, 29 Jun 2022 09:22:05 +0100 (BST)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 2C51C66018F6;
+ Wed, 29 Jun 2022 09:23:54 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1656490928;
- bh=XVQSgsxJcmy7E9dO6ydXkj4ChuEFXc7MVQ+QygUQC8s=;
+ s=mail; t=1656491036;
+ bh=TKplUYktuy+fI9Fnwv5CbrVDB+CILHnu464IQXTpgjg=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=XDA5Kxe1tQjVWoYM/BGtNXeKxwfzbPWBe/P8pqnkFIaP99Cob4KetSZp2mOV5ryP3
- u7HvrxECrEmyBllUyLM9aJt9NxlBWJIjI1vH3F6cyKv3t6zcOoQ5eEnHwrBxui1qxj
- dhHHwgtCyjFiz0GVKfGTNTYY/r/P8cU6ccDNK3YajGTlvfcYzw3D0HBZvWZG99gBdw
- g3iqha1unBFwIZIh55U+Qs/ChxM3VgIRVZFM+pX3989oy8OqosWoTMbE+652VhJgHQ
- FAJaw4N5wVvjKnuA74fSOiQp7M9aReCv8cXtUS2LQKv6/MwDyHx8fBx07oNXwQjIzB
- fo3DQeZjKtWZw==
-Message-ID: <c0273ac2-c87c-2612-03d4-dc52510b22f7@collabora.com>
-Date: Wed, 29 Jun 2022 11:22:02 +0300
+ b=Hh50EXmRXalD8uakgN300BfHpmjducw9bC+QVgu+5qZJ+/06XJI6vmnwyVunKHvTu
+ UurO0sBxI/nVuIlAr3VXYn58dM1imSvobu55OFj091KfdlQDYptmB3FkuxkWooYgI5
+ NpSItA+GHgY6jPnWQbmqoBN/FD6L4QqvRvJdrRvwozQKplNFqn5bxByj5x7N8ZzztY
+ 1NGWfuHPh2QKNtJVxBm0HGaBnWhbCFAyCwSOa/+Zp73xpzBmDZHRMCEIF/ZeONMbYT
+ XUq5kP9/+4sLtdAJWqQ7HViJKJJxcDwBrTJthLmqG4Pw4WwunvIZwT0lC3xjDWQAmJ
+ 8GjaWihLHjnhA==
+Message-ID: <51d58fff-238e-33e9-20d0-0836b1197459@collabora.com>
+Date: Wed, 29 Jun 2022 11:23:51 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ Rob Clark <robdclark@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, Qiang Yu <yuq825@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
- <20220526235040.678984-3-dmitry.osipenko@collabora.com>
- <b8271f0c-d6a3-4194-1959-e112859756a3@shipmail.org>
+ <20220526235040.678984-2-dmitry.osipenko@collabora.com>
+ <d3fcb4ee-83ec-09b8-d1ef-0191512fda91@shipmail.org>
 From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <b8271f0c-d6a3-4194-1959-e112859756a3@shipmail.org>
+In-Reply-To: <d3fcb4ee-83ec-09b8-d1ef-0191512fda91@shipmail.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 20 Jul 2022 14:07:33 +0000
-Subject: Re: [Intel-gfx] [PATCH v6 02/22] drm/gem: Move mapping of imported
- dma-bufs to drm_gem_mmap_obj()
+Subject: Re: [Intel-gfx] [PATCH v6 01/22] drm/gem: Properly annotate WW
+ context on drm_gem_lock_reservations() error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,77 +85,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Daniel Stone <daniel@fooishbar.org>, Steven Price <steven.price@arm.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Chia-I Wu <olvaffe@gmail.com>, linux-media@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Daniel Almeida <daniel.almeida@collabora.com>, amd-gfx@lists.freedesktop.org,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
- Qiang Yu <yuq825@gmail.com>, Alex Deucher <alexander.deucher@amd.com>,
- Robin Murphy <robin.murphy@arm.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 6/29/22 09:40, Thomas Hellström (Intel) wrote:
+On 6/28/22 23:12, Thomas Hellström (Intel) wrote:
+> Hi,
 > 
 > On 5/27/22 01:50, Dmitry Osipenko wrote:
->> Drivers that use drm_gem_mmap() and drm_gem_mmap_obj() helpers don't
->> handle imported dma-bufs properly, which results in mapping of something
->> else than the imported dma-buf. For example, on NVIDIA Tegra we get a
->> hard
->> lockup when userspace writes to the memory mapping of a dma-buf that was
->> imported into Tegra's DRM GEM.
->>
->> To fix this bug, move mapping of imported dma-bufs to drm_gem_mmap_obj().
->> Now mmaping of imported dma-bufs works properly for all DRM drivers.
-> Same comment about Fixes: as in patch 1,
+>> Use ww_acquire_fini() in the error code paths. Otherwise lockdep
+>> thinks that lock is held when lock's memory is freed after the
+>> drm_gem_lock_reservations() error. The WW needs to be annotated
+>> as "freed"
+> 
+> s /WW/ww_acquire_context/ ?
+> s /"freed"/"released"/ ?
+> 
+> 
+>> , which fixes the noisy "WARNING: held lock freed!" splat
+>> of VirtIO-GPU driver with CONFIG_DEBUG_MUTEXES=y and enabled lockdep.
 >>
 >> Cc: stable@vger.kernel.org
->> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->> ---
->>   drivers/gpu/drm/drm_gem.c              | 3 +++
->>   drivers/gpu/drm/drm_gem_shmem_helper.c | 9 ---------
->>   drivers/gpu/drm/tegra/gem.c            | 4 ++++
->>   3 files changed, 7 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
->> index 86d670c71286..7c0b025508e4 100644
->> --- a/drivers/gpu/drm/drm_gem.c
->> +++ b/drivers/gpu/drm/drm_gem.c
->> @@ -1038,6 +1038,9 @@ int drm_gem_mmap_obj(struct drm_gem_object *obj,
->> unsigned long obj_size,
->>       if (obj_size < vma->vm_end - vma->vm_start)
->>           return -EINVAL;
->>   +    if (obj->import_attach)
->> +        return dma_buf_mmap(obj->dma_buf, vma, 0);
 > 
-> If we start enabling mmaping of imported dma-bufs on a majority of
-> drivers in this way, how do we ensure that user-space is not blindly
-> using the object mmap without calling the needed DMA_BUF_IOCTL_SYNC
-> which is needed before and after cpu access of mmap'ed dma-bufs?
+> Can you dig up the commit in error and add a Fixes: Tag?
 > 
-> I was under the impression (admittedly without looking) that the few
-> drivers that actually called into dma_buf_mmap() had some private
-> user-mode driver code in place that ensured this happened.
+> Using that and "dim fixes" will also make the Cc: stable tag a bit more
+> verbose.
+> 
+> With that fixed,
+> 
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Since it's a userspace who does the mapping, then it should be a
-responsibility of userspace to do all the necessary syncing. I'm not
-sure whether anyone in userspace really needs to map imported dma-bufs
-in practice. Nevertheless, this use-case is broken and should be fixed
-by either allowing to do the mapping or prohibiting it.
+I'll update this patch, thank you for taking a look.
 
 -- 
 Best regards,
