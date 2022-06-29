@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48F2F560A0A
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jun 2022 21:11:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 295DB560A0B
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jun 2022 21:11:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DAB910EC65;
-	Wed, 29 Jun 2022 19:11:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 973DB10EC99;
+	Wed, 29 Jun 2022 19:11:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93E4F10EC4B;
- Wed, 29 Jun 2022 19:11:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E69810EC88;
+ Wed, 29 Jun 2022 19:11:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656529872; x=1688065872;
+ t=1656529881; x=1688065881;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=I9/q0/wN9fLoA5X4ltpLiFzBB05RC2mm4NrLgHfuIUI=;
- b=EtHYIi8Aaud89OZ+NRqecr+cPP7OP/k2jyfF+Z+y4q9m4HhAJrcVcfh8
- z8VLfmctoLEBaubW8fOdVf8pSdSE4UVr7dG1P3SIfq2ZTB2mro9cEaN74
- ffVGfAgyC42vTyHiHpxttmueay/OnGGcwf4zihSIx8V79wxs8y374c2ds
- 5s7oXdG4Br0l06vlDWwZUOlwpnYLZGZpOT4Yj9kodxJi+9DBvTZ62p4B0
- 9GtQrSu66gaQf6ccmG7kIciZBz9YcbUXenkkvb2rJKoUv2V/ByNLatuWH
- gAW9OieKU/a472PPBkWnWyyosA+zuySTVMlT7vbI/erxVZxHCjO13cH7i Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="368439089"
-X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="368439089"
+ bh=qnuqdOMlRBZMD26Jo6TiQSXBOQUdGfrlIsRrelA+8V8=;
+ b=YJFCuOL8d8M+d7NVV/ByKi4k7mAQ/s8DR5Iau4zwCgWGebmKt956PbZC
+ sMyFszjA5o0plHSdsoxfIMu29jhe5zJAxegEcizxPveJuaPbfdwAzZIUM
+ 1vSUc9Ep6Vzc9PB+FEvwRNqD5amx/qRjrN0B0l6YvNkswFOUiX5gPJqFD
+ FJAI8sg4SMNFNC7NW7J63rn0zGKbLJSDlq7+IMtFpC8pTpvGeTWgo8erQ
+ XQT0iX0+l/v5oaSGFpCWKaGn5qjlIVqiQyfYWlFk8z+1yiWTjdNpUOdwA
+ 3ZVb+biT/8WMSKo0PT9hpRB1/Xn9fTN37lBNbfiloG6j+EiCyq7wgFy/+ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="368439122"
+X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="368439122"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2022 12:07:13 -0700
-X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="733297115"
+ 29 Jun 2022 12:07:14 -0700
+X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="733297124"
 Received: from nwalsh-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.213.202.136])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2022 12:07:12 -0700
+ 29 Jun 2022 12:07:14 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Wed, 29 Jun 2022 20:06:52 +0100
-Message-Id: <20220629190658.395463-3-matthew.auld@intel.com>
+Date: Wed, 29 Jun 2022 20:06:53 +0100
+Message-Id: <20220629190658.395463-4-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220629190658.395463-1-matthew.auld@intel.com>
 References: <20220629190658.395463-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 3/9] tests/i915/gem_create: exercise
- NEEDS_CPU_ACCESS
+Subject: [Intel-gfx] [PATCH i-g-t 4/9] lib/i915: add
+ gem_create_with_cpu_access_in_memory_regions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,362 +62,221 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add some basic tests for this new flag.
+Most users shouldn't care about such an interface, but where required,
+this should be useful to aid in setting NEEDS_CPU_ACCESS for a given BO.
+Underneath we try to smooth over needing to provide an explicit SMEM
+region, or if this is SMEM-only, we don't want the kernel to throw an
+error.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- tests/i915/gem_create.c | 309 +++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 308 insertions(+), 1 deletion(-)
+ lib/i915/intel_memory_region.c | 10 +++--
+ lib/i915/intel_memory_region.h | 68 ++++++++++++++++++++++++++++++++--
+ tests/i915/gem_eio.c           |  1 +
+ tests/i915/gem_lmem_swapping.c |  2 +-
+ tests/i915/i915_pm_rpm.c       |  6 +--
+ 5 files changed, 75 insertions(+), 12 deletions(-)
 
-diff --git a/tests/i915/gem_create.c b/tests/i915/gem_create.c
-index 7198c6ed..1b694c6a 100644
---- a/tests/i915/gem_create.c
-+++ b/tests/i915/gem_create.c
-@@ -43,6 +43,8 @@
- #include <getopt.h>
- #include <pthread.h>
- #include <stdatomic.h>
-+#include <setjmp.h>
-+#include <signal.h>
+diff --git a/lib/i915/intel_memory_region.c b/lib/i915/intel_memory_region.c
+index ce04c6a3..3173507f 100644
+--- a/lib/i915/intel_memory_region.c
++++ b/lib/i915/intel_memory_region.c
+@@ -197,7 +197,7 @@ bool gem_has_lmem(int fd)
  
- #include "drm.h"
- #include "drmtest.h"
-@@ -317,8 +319,8 @@ static void create_ext_placement_sanity_check(int fd)
- 		.memory_class = -1,
- 		.memory_instance = -1,
- 	};
-+	uint32_t handle, create_ext_supported_flags;
- 	uint64_t size;
--	uint32_t handle;
- 	int i;
- 
- 	regions = gem_get_query_memory_regions(fd);
-@@ -334,6 +336,11 @@ static void create_ext_placement_sanity_check(int fd)
- 	gem_close(fd, handle);
- 
- 	/* Try some uncreative invalid combinations */
-+	create_ext_supported_flags =
-+		I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS;
-+	igt_assert_neq(__gem_create_ext(fd, &size, ~create_ext_supported_flags,
-+					&handle, 0), 0);
-+
- 	setparam_region.regions = to_user_pointer(&region_smem);
- 	setparam_region.num_regions = 0;
- 	size = PAGE_SIZE;
-@@ -480,6 +487,295 @@ static void create_ext_placement_each(int fd)
- 	free(regions);
- }
- 
-+static bool supports_needs_cpu_access(int fd)
-+{
-+	struct drm_i915_gem_memory_class_instance regions[] = {
-+		{ I915_MEMORY_CLASS_DEVICE, },
-+		{ I915_MEMORY_CLASS_SYSTEM, },
-+	};
-+	struct drm_i915_gem_create_ext_memory_regions setparam_region = {
-+		.base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
-+		.regions = to_user_pointer(&regions),
-+		.num_regions = ARRAY_SIZE(regions),
-+	};
-+	uint64_t size = PAGE_SIZE;
-+	uint32_t handle;
-+	int ret;
-+
-+	ret = __gem_create_ext(fd, &size,
-+			       I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS,
-+			       &handle, &setparam_region.base);
-+	if (!ret) {
-+		gem_close(fd, handle);
-+		igt_assert(gem_has_lmem(fd)); /* Should be dgpu only */
-+	}
-+
-+	return ret == 0;
-+}
-+
-+static uint32_t batch_create_size(int fd, uint64_t size)
-+{
-+	const uint32_t bbe = MI_BATCH_BUFFER_END;
-+	uint32_t handle;
-+
-+	handle = gem_create(fd, size);
-+	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-+
-+	return handle;
-+}
-+
-+static int upload(int fd, uint32_t handle)
-+{
-+	struct drm_i915_gem_exec_object2 exec[2] = {};
-+	struct drm_i915_gem_execbuffer2 execbuf = {
-+		.buffers_ptr = to_user_pointer(&exec),
-+		.buffer_count = 2,
-+	};
-+
-+	/*
-+	 * To be reasonably sure that we are not being swindled, let's make
-+	 * sure to 'touch' the pages from the GPU first to ensure the object is
-+	 * for sure placed in one of requested regions.
-+	 */
-+	exec[0].handle = handle;
-+	exec[1].handle = batch_create_size(fd, PAGE_SIZE);
-+
-+	return __gem_execbuf(fd, &execbuf);
-+}
-+
-+static int alloc_lmem(int fd, uint32_t *handle,
-+		      struct drm_i915_gem_memory_class_instance ci,
-+		      uint64_t size, bool cpu_access, bool do_upload)
-+{
-+	struct drm_i915_gem_memory_class_instance regions[] = {
-+		ci, { I915_MEMORY_CLASS_SYSTEM, },
-+	};
-+	struct drm_i915_gem_create_ext_memory_regions setparam_region = {
-+		.base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
-+		.regions = to_user_pointer(&regions),
-+	};
-+	uint32_t flags;
-+
-+	igt_assert_eq(ci.memory_class, I915_MEMORY_CLASS_DEVICE);
-+
-+	flags = 0;
-+	setparam_region.num_regions = 1;
-+	if (cpu_access) {
-+		flags = I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS,
-+		setparam_region.num_regions = 2;
-+	}
-+
-+	*handle = gem_create_ext(fd, size, flags, &setparam_region.base);
-+
-+	if (do_upload)
-+		return upload(fd, *handle);
-+
-+	return 0;
-+}
-+
-+static void create_ext_cpu_access_sanity_check(int fd)
-+{
-+	struct drm_i915_gem_create_ext_memory_regions setparam_region = {
-+		.base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
-+	};
-+	struct drm_i915_query_memory_regions *regions;
-+	uint64_t size = PAGE_SIZE;
-+	uint32_t handle;
-+	int i;
-+
-+	/*
-+	 * The ABI is that FLAG_NEEDS_CPU_ACCESS can only be applied to LMEM +
-+	 * SMEM objects. Make sure the kernel follows that, while also checking
-+	 * the basic CPU faulting behavour.
-+	 */
-+
-+	/* Implicit placement; should fail */
-+	igt_assert_eq(__gem_create_ext(fd, &size,
-+				       I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS,
-+				       &handle, NULL), -EINVAL);
-+
-+	regions = gem_get_query_memory_regions(fd);
-+	igt_assert(regions);
-+	igt_assert(regions->num_regions);
-+
-+	for (i = 0; i < regions->num_regions; i++) {
-+		struct drm_i915_gem_memory_class_instance ci_regions[2] = {
-+			regions->regions[i].region,
-+			{ I915_MEMORY_CLASS_SYSTEM, },
-+		};
-+		uint32_t *ptr;
-+
-+		setparam_region.regions = to_user_pointer(ci_regions);
-+		setparam_region.num_regions = 1;
-+
-+		/* Single explicit placement; should fail */
-+		igt_assert_eq(__gem_create_ext(fd, &size,
-+					       I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS,
-+					       &handle, &setparam_region.base),
-+			      -EINVAL);
-+
-+		if (ci_regions[0].memory_class == I915_MEMORY_CLASS_SYSTEM)
-+			continue;
-+
-+		/*
-+		 * Now combine with system memory; should pass. We should also
-+		 * be able to fault it.
-+		 */
-+		setparam_region.num_regions = 2;
-+		igt_assert_eq(__gem_create_ext(fd, &size,
-+					       I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS,
-+					       &handle, &setparam_region.base),
-+			      0);
-+		upload(fd, handle);
-+		ptr = gem_mmap_offset__fixed(fd, handle, 0, size,
-+					     PROT_READ | PROT_WRITE);
-+		ptr[0] = 0xdeadbeaf;
-+		gem_close(fd, handle);
-+
-+		/*
-+		 * It should also work just fine without the flag, where in the
-+		 * worst case we need to migrate it when faulting it.
-+		 */
-+		igt_assert_eq(__gem_create_ext(fd, &size,
-+					       0,
-+					       &handle, &setparam_region.base),
-+			      0);
-+		upload(fd, handle);
-+		ptr = gem_mmap_offset__fixed(fd, handle, 0, size,
-+					     PROT_READ | PROT_WRITE);
-+		ptr[0] = 0xdeadbeaf;
-+		gem_close(fd, handle);
-+	}
-+
-+	free(regions);
-+}
-+
-+static jmp_buf jmp;
-+
-+__noreturn static void sigtrap(int sig)
-+{
-+	siglongjmp(jmp, sig);
-+}
-+
-+static void trap_sigbus(uint32_t *ptr)
-+{
-+	sighandler_t old_sigbus;
-+
-+	old_sigbus = signal(SIGBUS, sigtrap);
-+	switch (sigsetjmp(jmp, SIGBUS)) {
-+	case SIGBUS:
-+		break;
-+	case 0:
-+		*ptr = 0xdeadbeaf;
-+	default:
-+		igt_assert(!"reached");
-+		break;
-+	}
-+	signal(SIGBUS, old_sigbus);
-+}
-+
-+/**
-+ * XXX: Remove this once we can safely sync the uapi header with the kernel.
-+ * Should be source compatible either way though.
-+ */
-+#define probed_cpu_visible_size rsvd1[0]
-+static void create_ext_cpu_access_big(int fd)
-+{
-+	struct drm_i915_query_memory_regions *regions;
-+	int i;
-+
-+	/*
-+	 * Sanity check that we can still CPU map an overly large object, even
-+	 * if it happens to be larger the CPU visible portion of LMEM. Also
-+	 * check that an overly large allocation, which can't be spilled into
-+	 * system memory does indeed fail.
-+	 */
-+
-+	regions = gem_get_query_memory_regions(fd);
-+	igt_assert(regions);
-+	igt_assert(regions->num_regions);
-+
-+	for (i = 0; i < regions->num_regions; i++) {
-+		struct drm_i915_memory_region_info qmr = regions->regions[i];
-+		struct drm_i915_gem_memory_class_instance ci = qmr.region;
-+		uint64_t size, visible_size, lmem_size;
-+		uint32_t handle;
-+		uint32_t *ptr;
-+
-+		if (ci.memory_class == I915_MEMORY_CLASS_SYSTEM)
-+			continue;
-+
-+		lmem_size = qmr.probed_size;
-+		visible_size = qmr.probed_cpu_visible_size;
-+		igt_assert_neq(visible_size, 0);
-+
-+		if (visible_size <= (0.70 * lmem_size)) {
-+			/*
-+			 * Too big. We should still be able to allocate it just
-+			 * fine, but faulting should result in tears.
-+			 */
-+			size = visible_size;
-+			igt_assert_eq(alloc_lmem(fd, &handle, ci, size, false, true), 0);
-+			ptr = gem_mmap_offset__fixed(fd, handle, 0, size,
-+						     PROT_READ | PROT_WRITE);
-+			trap_sigbus(ptr);
-+			gem_close(fd, handle);
-+
-+			/*
-+			 * Too big again, but this time we can spill to system
-+			 * memory when faulting the object.
-+			 */
-+			size = visible_size;
-+			igt_assert_eq(alloc_lmem(fd, &handle, ci, size, true, true), 0);
-+			ptr = gem_mmap_offset__fixed(fd, handle, 0, size,
-+						     PROT_READ | PROT_WRITE);
-+			ptr[0] = 0xdeadbeaf;
-+			gem_close(fd, handle);
-+
-+			/*
-+			 * Let's also move the upload to after faulting the
-+			 * pages. The current behaviour is that the pages are
-+			 * only allocated in device memory when initially
-+			 * touched by the GPU. With this in mind we should also
-+			 * make sure that the pages are indeed migrated, as
-+			 * expected.
-+			 */
-+			size = visible_size;
-+			igt_assert_eq(alloc_lmem(fd, &handle, ci, size, false, false), 0);
-+			ptr = gem_mmap_offset__fixed(fd, handle, 0, size,
-+						     PROT_READ | PROT_WRITE);
-+			ptr[0] = 0xdeadbeaf; /* temp system memory */
-+			igt_assert_eq(upload(fd, handle), 0);
-+			trap_sigbus(ptr); /* non-mappable device memory */
-+			gem_close(fd, handle);
-+		}
-+
-+		/*
-+		 * Should fit. We likely need to migrate to the mappable portion
-+		 * on fault though, if this device has a small BAR, given how
-+		 * large the initial allocation is.
-+		 */
-+		size = visible_size >> 1;
-+		igt_assert_eq(alloc_lmem(fd, &handle, ci, size, false, true), 0);
-+		ptr = gem_mmap_offset__fixed(fd, handle, 0, size,
-+					     PROT_READ | PROT_WRITE);
-+		ptr[0] = 0xdeadbeaf;
-+		gem_close(fd, handle);
-+
-+		/*
-+		 * And then with the CPU_ACCESS flag enabled; should also be no
-+		 * surprises here.
-+		 */
-+		igt_assert_eq(alloc_lmem(fd, &handle, ci, size, true, true), 0);
-+		ptr = gem_mmap_offset__fixed(fd, handle, 0, size,
-+					     PROT_READ | PROT_WRITE);
-+		ptr[0] = 0xdeadbeaf;
-+		gem_close(fd, handle);
-+	}
-+
-+	free(regions);
-+}
-+
- igt_main
+ /* A version of gem_create_in_memory_region_list which can be allowed to
+    fail so that the object creation can be retried */
+-int __gem_create_in_memory_region_list(int fd, uint32_t *handle, uint64_t *size,
++int __gem_create_in_memory_region_list(int fd, uint32_t *handle, uint64_t *size, uint32_t flags,
+ 				       struct drm_i915_gem_memory_class_instance *mem_regions,
+ 				       int num_regions)
  {
- 	int fd = -1;
-@@ -531,4 +827,15 @@ igt_main
- 	igt_subtest("create-ext-placement-all")
- 		create_ext_placement_all(fd);
+@@ -208,7 +208,9 @@ int __gem_create_in_memory_region_list(int fd, uint32_t *handle, uint64_t *size,
+ 	};
+ 	int ret;
  
-+	igt_describe("Verify the basic functionally and expected ABI contract around I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS");
-+	igt_subtest("create-ext-cpu-access-sanity-check") {
-+		igt_require(supports_needs_cpu_access(fd));
-+		create_ext_cpu_access_sanity_check(fd);
-+	}
+-	ret = __gem_create_ext(fd, size, 0, handle, &ext_regions.base);
++	ret = __gem_create_ext(fd, size, flags, handle, &ext_regions.base);
++	if (flags && ret == -EINVAL)
++		ret = __gem_create_ext(fd, size, 0, handle, &ext_regions.base);
+ 
+ 	/*
+ 	 * Provide fallback for stable kernels if region passed in the array
+@@ -231,12 +233,12 @@ int __gem_create_in_memory_region_list(int fd, uint32_t *handle, uint64_t *size,
+  * @mem_regions: memory regions array (priority list)
+  * @num_regions: @mem_regions length
+  */
+-uint32_t gem_create_in_memory_region_list(int fd, uint64_t size,
++uint32_t gem_create_in_memory_region_list(int fd, uint64_t size, uint32_t flags,
+ 					  struct drm_i915_gem_memory_class_instance *mem_regions,
+ 					  int num_regions)
+ {
+ 	uint32_t handle;
+-	int ret = __gem_create_in_memory_region_list(fd, &handle, &size,
++	int ret = __gem_create_in_memory_region_list(fd, &handle, &size, flags,
+ 						     mem_regions, num_regions);
+ 	igt_assert_eq(ret, 0);
+ 	return handle;
+diff --git a/lib/i915/intel_memory_region.h b/lib/i915/intel_memory_region.h
+index a8741724..40ff832d 100644
+--- a/lib/i915/intel_memory_region.h
++++ b/lib/i915/intel_memory_region.h
+@@ -22,6 +22,7 @@
+  */
+ #include "i915_drm.h"
+ #include "igt_collection.h"
++#include "i915_drm_local.h"
+ 
+ #ifndef INTEL_MEMORY_REGION_H
+ #define INTEL_MEMORY_REGION_H
+@@ -63,11 +64,11 @@ unsigned int gem_get_lmem_region_count(int fd);
+ 
+ bool gem_has_lmem(int fd);
+ 
+-int __gem_create_in_memory_region_list(int fd, uint32_t *handle, uint64_t *size,
++int __gem_create_in_memory_region_list(int fd, uint32_t *handle, uint64_t *size, uint32_t flags,
+ 				       struct drm_i915_gem_memory_class_instance *mem_regions,
+ 				       int num_regions);
+ 
+-uint32_t gem_create_in_memory_region_list(int fd, uint64_t size,
++uint32_t gem_create_in_memory_region_list(int fd, uint64_t size, uint32_t flags,
+ 					  struct drm_i915_gem_memory_class_instance *mem_regions,
+ 					  int num_regions);
+ 
+@@ -83,7 +84,7 @@ uint32_t gem_create_in_memory_region_list(int fd, uint64_t size,
+ 		arr_query__[i__].memory_class = MEMORY_TYPE_FROM_REGION(arr__[i__]);  \
+ 		arr_query__[i__].memory_instance = MEMORY_INSTANCE_FROM_REGION(arr__[i__]);  \
+ 	} \
+-	__gem_create_in_memory_region_list(fd, handle, size, arr_query__, ARRAY_SIZE(arr_query__)); \
++	__gem_create_in_memory_region_list(fd, handle, size, 0, arr_query__, ARRAY_SIZE(arr_query__)); \
+ })
+ #define gem_create_in_memory_regions(fd, size, regions...) ({ \
+ 	unsigned int arr__[] = { regions }; \
+@@ -92,7 +93,66 @@ uint32_t gem_create_in_memory_region_list(int fd, uint64_t size,
+ 		arr_query__[i__].memory_class = MEMORY_TYPE_FROM_REGION(arr__[i__]);  \
+ 		arr_query__[i__].memory_instance = MEMORY_INSTANCE_FROM_REGION(arr__[i__]);  \
+ 	} \
+-	gem_create_in_memory_region_list(fd, size, arr_query__, ARRAY_SIZE(arr_query__)); \
++	gem_create_in_memory_region_list(fd, size, 0, arr_query__, ARRAY_SIZE(arr_query__)); \
++})
 +
-+	igt_describe("Verify the extreme cases with very large objects and I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS");
-+	igt_subtest("create-ext-cpu-access-big") {
-+		igt_require(supports_needs_cpu_access(fd));
-+		create_ext_cpu_access_big(fd);
-+	}
- }
++/*
++ * Create an object that requires CPU access. This only becomes interesting on
++ * platforms that have a small BAR for LMEM CPU access. Without this the object
++ * might need to be migrated when CPU faulting the object, or if that is not
++ * possible we hit SIGBUS. Most users should be fine with this. If enabled the
++ * kernel will never allocate this object in the non-CPU visible portion of
++ * LMEM.
++ *
++ * Underneath this just enables the I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS
++ * flag, if we also have an LMEM placement. Also since the kernel requires SMEM
++ * as a potential placement, we automatically attach that as a possible
++ * placement, if not already provided. If this happens to be an SMEM-only
++ * placement then we don't supply the flag, and instead just treat as normal
++ * allocation.
++ */
++
++#define __gem_create_with_cpu_access_in_memory_regions(fd, handle, size, regions...) ({ \
++	unsigned int arr__[] = { regions }; \
++	struct drm_i915_gem_memory_class_instance arr_query__[ARRAY_SIZE(arr__) + 1]; \
++	int i__, arr_query_size__ = ARRAY_SIZE(arr__); \
++	uint32_t ext_flags__ = 0; \
++	bool ext_found_smem__ = false; \
++	for (i__  = 0; i__ < arr_query_size__; ++i__) { \
++		arr_query__[i__].memory_class = MEMORY_TYPE_FROM_REGION(arr__[i__]);  \
++		if (arr_query__[i__].memory_class == I915_MEMORY_CLASS_DEVICE) \
++			ext_flags__ = I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS; \
++		else \
++			ext_found_smem__ = true; \
++		arr_query__[i__].memory_instance = MEMORY_INSTANCE_FROM_REGION(arr__[i__]);  \
++	} \
++	if (ext_flags__ && !ext_found_smem__) { \
++		arr_query__[i__].memory_class = I915_MEMORY_CLASS_SYSTEM; \
++		arr_query__[i__].memory_instance = 0; \
++		arr_query_size__++; \
++	} \
++	__gem_create_in_memory_region_list(fd, handle, size, ext_flags__, arr_query__, arr_query_size__); \
++})
++#define gem_create_with_cpu_access_in_memory_regions(fd, size, regions...) ({ \
++	unsigned int arr__[] = { regions }; \
++	struct drm_i915_gem_memory_class_instance arr_query__[ARRAY_SIZE(arr__) + 1]; \
++	int i__, arr_query_size__ = ARRAY_SIZE(arr__); \
++	uint32_t ext_flags__ = 0; \
++	bool ext_found_smem__ = false; \
++	for (i__  = 0; i__ < arr_query_size__; ++i__) { \
++		arr_query__[i__].memory_class = MEMORY_TYPE_FROM_REGION(arr__[i__]);  \
++		if (arr_query__[i__].memory_class == I915_MEMORY_CLASS_DEVICE) \
++			ext_flags__ = I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS; \
++		else \
++			ext_found_smem__ = true; \
++		arr_query__[i__].memory_instance = MEMORY_INSTANCE_FROM_REGION(arr__[i__]);  \
++	} \
++	if (ext_flags__ && !ext_found_smem__) { \
++		arr_query__[i__].memory_class = I915_MEMORY_CLASS_SYSTEM; \
++		arr_query__[i__].memory_instance = 0; \
++		arr_query_size__++; \
++	} \
++	gem_create_in_memory_region_list(fd, size, ext_flags__, arr_query__, arr_query_size__); \
+ })
+ 
+ struct igt_collection *
+diff --git a/tests/i915/gem_eio.c b/tests/i915/gem_eio.c
+index 6cbae6eb..70e82b81 100644
+--- a/tests/i915/gem_eio.c
++++ b/tests/i915/gem_eio.c
+@@ -146,6 +146,7 @@ static void test_create_ext(int fd)
+ 		igt_assert_eq(__gem_create_in_memory_region_list(fd,
+ 								 &handle,
+ 								 &size,
++								 0,
+ 								 &r->ci, 1),
+ 			      0);
+ 
+diff --git a/tests/i915/gem_lmem_swapping.c b/tests/i915/gem_lmem_swapping.c
+index 21c2bf72..1a4f4ca5 100644
+--- a/tests/i915/gem_lmem_swapping.c
++++ b/tests/i915/gem_lmem_swapping.c
+@@ -131,7 +131,7 @@ static uint32_t create_bo(int i915,
+ 	int ret;
+ 
+ retry:
+-	ret = __gem_create_in_memory_region_list(i915, &handle, size, region, 1);
++	ret = __gem_create_in_memory_region_list(i915, &handle, size, 0, region, 1);
+ 	if (do_oom_test && ret == -ENOMEM)
+ 		goto retry;
+ 	igt_assert_eq(ret, 0);
+diff --git a/tests/i915/i915_pm_rpm.c b/tests/i915/i915_pm_rpm.c
+index bf145b6c..e95875dc 100644
+--- a/tests/i915/i915_pm_rpm.c
++++ b/tests/i915/i915_pm_rpm.c
+@@ -1117,7 +1117,7 @@ static void gem_mmap_args(const struct mmap_offset *t,
+ 	/* Create, map and set data while the device is active. */
+ 	enable_one_screen_or_forcewake_get_and_wait(&ms_data);
+ 
+-	handle = gem_create_in_memory_region_list(drm_fd, buf_size, mem_regions, 1);
++	handle = gem_create_in_memory_region_list(drm_fd, buf_size, 0, mem_regions, 1);
+ 
+ 	gem_buf = __gem_mmap_offset(drm_fd, handle, 0, buf_size,
+ 				    PROT_READ | PROT_WRITE, t->type);
+@@ -1348,7 +1348,7 @@ static void gem_execbuf_subtest(struct drm_i915_gem_memory_class_instance *mem_r
+ 	/* Create and set data while the device is active. */
+ 	enable_one_screen_or_forcewake_get_and_wait(&ms_data);
+ 
+-	handle = gem_create_in_memory_region_list(drm_fd, dst_size, mem_regions, 1);
++	handle = gem_create_in_memory_region_list(drm_fd, dst_size, 0, mem_regions, 1);
+ 
+ 	cpu_buf = malloc(dst_size);
+ 	igt_assert(cpu_buf);
+@@ -1453,7 +1453,7 @@ gem_execbuf_stress_subtest(int rounds, int wait_flags,
+ 	if (wait_flags & WAIT_PC8_RES)
+ 		handle = gem_create(drm_fd, batch_size);
+ 	else
+-		handle = gem_create_in_memory_region_list(drm_fd, batch_size, mem_regions, 1);
++		handle = gem_create_in_memory_region_list(drm_fd, batch_size, 0, mem_regions, 1);
+ 
+ 	gem_write(drm_fd, handle, 0, batch_buf, batch_size);
+ 
 -- 
 2.36.1
 
