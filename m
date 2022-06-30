@@ -1,33 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20DA356165B
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 11:32:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30026561667
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 11:33:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BA7B1139C7;
-	Thu, 30 Jun 2022 09:32:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFE6F113A16;
+	Thu, 30 Jun 2022 09:33:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DAC881139C8;
- Thu, 30 Jun 2022 09:32:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D1D1CAA0ED;
- Thu, 30 Jun 2022 09:32:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3675511086865060077=="
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81A49113A06
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 09:33:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1656581624; x=1688117624;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=EyD++WJb1ZGXz7EpiI7Iq8kiPyea4Vfw6ht6rwnQ9XQ=;
+ b=PmW+jessfVx99bq4dEMZPV1ijgdAmhplZQNkWTsEIITrosWoEYCKi6uH
+ LEbIyfINyQrNr3GFyZassTlkYlz/yFtKhIvBSuJidsM9L072YSgHNOFlZ
+ /lAbaIFtS/7Lly4emNQBQH3C4xQ3ypEhDIh+l4x2n5UudTr9N+eamqmLx
+ PGLdyAOB+o2TKHhTxjnUhRTy8jgJ+46izCQvrYhjsjGb4t69HU4LvsD+A
+ PLLR7KiMwQQTJ+MxnKCc47QXDlW+TTsUS68pYtK/7gfM/JDOvou7BZxnS
+ RCbPmbq+dCPba5Ocj+OO8GMLgnAs6+H3UaMDiErhwPi/S1xE11lkpRYrz w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="343988409"
+X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="343988409"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 02:33:26 -0700
+X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="647816480"
+Received: from fdugast-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.70])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 02:33:25 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <DM6PR11MB3177171F55430E985075F9DEBABA9@DM6PR11MB3177.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220630070607.858766-1-arun.r.murthy@intel.com>
+ <87k08ypp9z.fsf@intel.com>
+ <DM6PR11MB3177171F55430E985075F9DEBABA9@DM6PR11MB3177.namprd11.prod.outlook.com>
+Date: Thu, 30 Jun 2022 12:33:22 +0300
+Message-ID: <87edz6pkbh.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Thu, 30 Jun 2022 09:32:23 -0000
-Message-ID: <165658154383.26515.11700943389153655568@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220630083508.223348-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20220630083508.223348-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dg2=3A_Add_performance_workaround_18019455067_=28rev3=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCHv2] drm/i915: free crtc on driver remove
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,288 +59,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3675511086865060077==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 30 Jun 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> > intel_crtc is being allocated as part of intel_modeset_init_nogem and
+>> > not freed as part of driver remove. This will lead to memory leak.
+>> > Hence free up the allocated crtc on driver remove as part of
+>> > intel_modeset_driver_remove_nogem.
+>>
+>> No, there's no leak and this is not needed.
+>>
+>> See drm_mode_config_cleanup() calling crtc->funcs->destroy() on each crtc.
+>
+> Sorry, I didn't notice this function.
+>
+> intel_crtc_alloc() is called as part of probe->intel_modeset_init_nogem->intel_crtc_init
+> on similar basis cleanup/free should be done in  driver
+> remove->intel_modeset_driver_remove_nogem->intel_crtc_free
 
-== Series Details ==
+It's just an error prone extra burden for the drivers to take care of
+this manually, so we have drm_mode_config_cleanup(). Which also cleans
+up encoders and encoders etc.
 
-Series: drm/i915/dg2: Add performance workaround 18019455067 (rev3)
-URL   : https://patchwork.freedesktop.org/series/105512/
-State : success
+> Does this look cleaner?
+>
+> Kfree(crtc) which is called in crtc->funcs->destroy is intended for cleanup and hence
+> drm_crtc_cleanup() is being called from intel_crtc_destroy(). The comments added in
+> drm_crtc_funcs say that cleanup resources on destroy.
+>
+> Again looking at the driver design, intel_crtc_alloc is not done as part of any
+> drm_crtc_funcs, rather on probe->modeset_init_nogem, so calling intel_crtc_free
+> from remove->modeset_driver_remove_nogem would make more sence.
 
-== Summary ==
+That would add another ordering dependency between calling
+drm_mode_config_cleanup() and freeing the individual crtcs separately
+afterwards. And looking at the cleanup code, I'm sure that's not what we
+want.
 
-CI Bug Log - changes from CI_DRM_11829 -> Patchwork_105512v3
-====================================================
+Moreover, drm is moving towards managed initialization, which means not
+having to call drm_mode_config_cleanup() explicitly at all. It'll get
+called as part of drmm managed release action tied to the drm device. So
+really, calling kfree as part of the callback is the natural thing to
+do. Indeed it would be difficult to do it anywhere else, for no benefit.
 
-Summary
--------
+> Also, looking into the func intel_modeset_init_nogem(), the func intel_modeset_driver_remove_nogem
+> should be renamed as intel_modeset_deinit_nogem().
 
-  **SUCCESS**
+The cleanup naming comes from them being called as part of struct
+pci_driver .remove callback chain, and it's a useful reminder.
 
-  No regressions found.
+Also, the intel_modeset_driver_remove{,noirq,nogem} functions should
+*not* be considered 1:1 counterparts of intel_modeset_init{noirq,nogem,}
+as the init/remove are asymmetric around irq and gem.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/index.html
-
-Participating hosts (43 -> 34)
-------------------------------
-
-  Additional (1): fi-icl-u2 
-  Missing    (10): fi-rkl-11600 bat-dg1-6 bat-dg1-5 bat-dg2-8 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 fi-cfl-8109u bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_105512v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@engines@fds:
-    - fi-bsw-kefka:       [PASS][1] -> [INCOMPLETE][2] ([i915#6310])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11829/fi-bsw-kefka/igt@gem_exec_parallel@engines@fds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-bsw-kefka/igt@gem_exec_parallel@engines@fds.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][4] ([i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-pnv-d510:        [PASS][5] -> [DMESG-FAIL][6] ([i915#4528])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11829/fi-pnv-d510/igt@i915_selftest@live@requests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-pnv-d510/igt@i915_selftest@live@requests.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-icl-u2:          NOTRUN -> [SKIP][7] ([i915#5903])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][8] ([fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
-    - fi-icl-u2:          NOTRUN -> [SKIP][9] ([i915#4103])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
-    - fi-tgl-u2:          [PASS][10] -> [DMESG-WARN][11] ([i915#402]) +3 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11829/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-icl-u2:          NOTRUN -> [WARN][12] ([i915#6008])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][13] ([fdo#109285])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-icl-u2:          NOTRUN -> [SKIP][14] ([i915#3555])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][15] ([fdo#109295] / [i915#3301])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-tgl-u2/igt@prime_vgem@basic-userptr.html
-    - fi-icl-u2:          NOTRUN -> [SKIP][16] ([fdo#109295] / [i915#3301])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][17] ([i915#4312])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-bsw-kefka/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
-  [i915#5905]: https://gitlab.freedesktop.org/drm/intel/issues/5905
-  [i915#6008]: https://gitlab.freedesktop.org/drm/intel/issues/6008
-  [i915#6310]: https://gitlab.freedesktop.org/drm/intel/issues/6310
+Sure, there's work to be done in cleaning up the probe and remove paths,
+and further trying to separate the gem and display parts, but that's way
+more involved than simple renames, really.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11829 -> Patchwork_105512v3
-
-  CI-20190529: 20190529
-  CI_DRM_11829: 3f759327f5d96d593c2f5b067228ee5938719d2d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6552: 9ed947c9610bf3b271b5f4d329db54922740c0ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_105512v3: 3f759327f5d96d593c2f5b067228ee5938719d2d @ git://anongit.freedesktop.org/gfx-ci/linux
+BR,
+Jani.
 
 
-### Linux commits
-
-3d4a950651cc drm/i915/dg2: Add performance workaround 18019455067
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/index.html
-
---===============3675511086865060077==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dg2: Add performance workaround 18019455067 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105512/">https://patchwork.freedesktop.org/series/105512/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11829 -&gt; Patchwork_105512v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/index.html</p>
-<h2>Participating hosts (43 -&gt; 34)</h2>
-<p>Additional (1): fi-icl-u2 <br />
-  Missing    (10): fi-rkl-11600 bat-dg1-6 bat-dg1-5 bat-dg2-8 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-adln-1 fi-cfl-8109u bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_105512v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@fds:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11829/fi-bsw-kefka/igt@gem_exec_parallel@engines@fds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-bsw-kefka/igt@gem_exec_parallel@engines@fds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6310">i915#6310</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11829/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5903">i915#5903</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11829/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-tgl-u2/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_force_connector_basic@force-connector-state.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6008">i915#6008</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>
-<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-tgl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105512v3/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11829 -&gt; Patchwork_105512v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11829: 3f759327f5d96d593c2f5b067228ee5938719d2d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6552: 9ed947c9610bf3b271b5f4d329db54922740c0ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_105512v3: 3f759327f5d96d593c2f5b067228ee5938719d2d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>3d4a950651cc drm/i915/dg2: Add performance workaround 18019455067</p>
-
-</body>
-</html>
-
---===============3675511086865060077==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
