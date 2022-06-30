@@ -2,48 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99BF56138C
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 09:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 796DA56138D
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 09:48:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A8BD112A00;
-	Thu, 30 Jun 2022 07:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54B44112A22;
+	Thu, 30 Jun 2022 07:48:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF814112A00
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 07:47:44 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B535112A28;
+ Thu, 30 Jun 2022 07:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656575265; x=1688111265;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=8K/sA0ZG2AZbGsTLf7Y6aGnecv/EjaxRzpqINFHe8mM=;
- b=KHeszZVZxslT3DcPTrNZI3VtV1tZ8YFWg3ZyvrFDJWfXVa99m1EQtoui
- l+dNQCi0OIvzdSqhABAG1OHgVGf1bID1K2c5qKb1kp3LsuMpGhlcmDYua
- 2MDV+sTFjt4EvRVbIdgB16LSTFyuOVKl/beVK/tyKTXD2YJDysPLT/xp8
- Oz1Rw02Rk+TvSYLKl2x9gRpVBDWyss8AJOLkmBj8yYy6cvtHZLyURina0
- EeO9HB0vBHtkcjTJrUkL0y/6TxdHBw/Zo52UtM8p5xzeacfDKLRt8gqXv
- qpcD/RQsKXwj+IMS99TXRzdSYWJDBOQzojALyaZ1hVBCGJEzMxE9tMhIR g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="343964208"
-X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="343964208"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 00:46:21 -0700
-X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="647779287"
-Received: from fdugast-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.39.70])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 00:46:18 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220630070607.858766-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220630070607.858766-1-arun.r.murthy@intel.com>
-Date: Thu, 30 Jun 2022 10:46:16 +0300
-Message-ID: <87k08ypp9z.fsf@intel.com>
+ t=1656575281; x=1688111281;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=vRk3q5zmBBj8n2ucBu3qNMadHRd94C2VurVWcV0JYgY=;
+ b=mlBKw+Px5C3Hz//UhicOTfnlmyrOBxH/Z8o4J+B7QzoUPn5bpB7nWren
+ krnQsv9yr6WFTTfs2tyf0rlcEnEhBGmHeDIVkX8Dw6MN8Zx9ZFnoCCZuG
+ U6G5Aev8yH3gU5FFqUOz72oeDec58c0oM96jJ/ifmrxBVwQQOnj8lFyhX
+ nyfGq9BLD1hPiXwdNxGwVF4cpkzKyo7KcJjXq2zavrwtgIpbP6FLF6cPR
+ mVUtk9ipaywAfM8IMUbRzsk7Fs3mPbaX/LJlS32GGtOufvw13w/V82MIS
+ 5fe6qGnida+z5iT06/zxsYSIVuxougUjBEEpsJ/jOvHjj10A29wD3rJ1e A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="346267090"
+X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="346267090"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 00:46:41 -0700
+X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="837496688"
+Received: from hanj1-mobl1.ccr.corp.intel.com (HELO [10.213.202.230])
+ ([10.213.202.230])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 00:46:38 -0700
+Message-ID: <98c6d61e-0c0f-e385-6100-6b7ebe6874b1@linux.intel.com>
+Date: Thu, 30 Jun 2022 08:46:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCHv2] drm/i915: free crtc on driver remove
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <bdf23a1c-0d89-c395-4a7a-2840ce5f639a@I-love.SAKURA.ne.jp>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <bdf23a1c-0d89-c395-4a7a-2840ce5f639a@I-love.SAKURA.ne.jp>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] How to convert drivers/gpu/drm/i915/ to use local
+ workqueue?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,80 +64,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 30 Jun 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> intel_crtc is being allocated as part of intel_modeset_init_nogem
-> and not freed as part of driver remove. This will lead to memory
-> leak. Hence free up the allocated crtc on driver remove as part of
-> intel_modeset_driver_remove_nogem.
 
-No, there's no leak and this is not needed.
+Hi,
 
-See drm_mode_config_cleanup() calling crtc->funcs->destroy() on each
-crtc.
+On 10/06/2022 15:57, Tetsuo Handa wrote:
+> Hello.
+> 
+> Like commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using
+> a macro") explains, we are removing flush_scheduled_work() calls. And now
+> 
+>    drivers/gpu/drm/i915/display/intel_display.c
+>    drivers/gpu/drm/i915/gt/selftest_execlists.c
+> 
+> are the last flush_scheduled_work() callers which have no patch proposed.
+> I want to make a patch like
+> https://lkml.kernel.org/r/e9b95132-89cd-5cfc-1a09-966393c5ecb0@I-love.SAKURA.ne.jp
+> but I couldn't understand how to interpret drivers/gpu/drm/i915/ part.
 
+Could you provide some more context please? I did not immediately 
+understand whether the goal is remove flush_schedule_work helper with no 
+arguments, or actually stop drivers using the system work queues.
 
-BR,
-Jani.
+Regards,
 
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_crtc.c    | 2 +-
->  drivers/gpu/drm/i915/display/intel_crtc.h    | 1 +
->  drivers/gpu/drm/i915/display/intel_display.c | 6 ++++++
->  3 files changed, 8 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index 4442aa355f86..c90b2854c772 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -193,7 +193,7 @@ static struct intel_crtc *intel_crtc_alloc(void)
->  	return crtc;
->  }
->  
-> -static void intel_crtc_free(struct intel_crtc *crtc)
-> +void intel_crtc_free(struct intel_crtc *crtc)
->  {
->  	intel_crtc_destroy_state(&crtc->base, crtc->base.state);
->  	kfree(crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
-> index 73077137fb99..d20200a2c33b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-> @@ -35,5 +35,6 @@ struct intel_crtc *intel_crtc_for_pipe(struct drm_i915_private *i915,
->  void intel_wait_for_vblank_if_active(struct drm_i915_private *i915,
->  				     enum pipe pipe);
->  void intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc);
-> +void intel_crtc_free(struct intel_crtc *crtc);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index a0f84cbe974f..33e29455fe56 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -9046,6 +9046,8 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
->  /* part #3: call after gem init */
->  void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
->  {
-> +	struct intel_crtc *crtc;
-> +
->  	intel_dmc_ucode_fini(i915);
->  
->  	intel_power_domains_driver_remove(i915);
-> @@ -9053,6 +9055,10 @@ void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
->  	intel_vga_unregister(i915);
->  
->  	intel_bios_driver_remove(i915);
-> +
-> +	/* Free the allocated crtc */
-> +	for_each_intel_crtc(&i915->drm, crtc)
-> +		intel_crtc_free(crtc);
->  }
->  
->  bool intel_modeset_probe_defer(struct pci_dev *pdev)
+Tvrtko
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> 
+> 
+> There are many schedule_work()/schedule_delayed_work() callers within
+> drivers/gpu/drm/i915/ directory.
+> 
+> intel_modeset_driver_remove_noirq() in intel_display.c says
+> 
+>          /* flush any delayed tasks or pending work */
+>          flush_scheduled_work();
+> 
+> but intel_display.c itself does not call schedule_delayed_work().
+> Then, does this flush_scheduled_work() mean to wait all schedule_work()/schedule_delayed_work()
+> calls inside drivers/gpu/drm/i915/ directory?
+> 
+> wait_for_reset() in selftest_execlists.c says
+> 
+> 	flush_scheduled_work();
+> 
+> but selftest_execlists.c itself does not call schedule_work()/schedule_delayed_work().
+> Then, does this flush_scheduled_work() mean to wait all schedule_work()/schedule_delayed_work()
+> calls inside drivers/gpu/drm/i915/ directory, by sharing a WQ created for
+> intel_modeset_driver_remove_noirq() ?
