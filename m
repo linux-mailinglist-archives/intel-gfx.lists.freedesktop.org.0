@@ -2,54 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8950561EEA
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 17:14:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5111E561F28
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 17:24:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5198E10EEF6;
-	Thu, 30 Jun 2022 15:14:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF5EB10F31E;
+	Thu, 30 Jun 2022 15:24:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE8010EE62;
- Thu, 30 Jun 2022 15:14:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656602071; x=1688138071;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Atx53C17TvIPVOzyATv3BG/wETOFzi/HrHrFYJjJBEU=;
- b=ZzNDj+vXv/RdgUOhJviZJPuquUfyni5JYJjyBWcBzrg/ECuMNedywiUF
- Fl2cs8qp18oGNuC1U10zQ6SmV/uav36sEW58hj5IMcbuv4Q/XMf6GtzeH
- Sh82UOMFssKeQ/Ly0yZZqyXSTLs2zzGYt9z+FAqtuAmwAtxs5A2f0yWVT
- W7x/xtnNcruh6jmc4MMbB5Vf1GHQc2bLeR89PBgkYJNrQDRAfrHK3I5X+
- 6hfdr2JkaM9RvQnkRqnzyt6FhoFYeSJZnZAzuGQc7UzpEt3BT+mO1NGDV
- Mw8PB/Y2gt8C1J5SHSEHS/4ByIZkFmn4NXuG2ySajmieqJvZP94Wwg/z3 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="281140234"
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="281140234"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 08:14:30 -0700
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="588793196"
-Received: from dtorranx-mobl.ger.corp.intel.com (HELO [10.213.226.91])
- ([10.213.226.91])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 08:14:27 -0700
-Message-ID: <41f09e4b-4da2-de96-5f4b-a571670f738f@intel.com>
-Date: Thu, 30 Jun 2022 16:14:25 +0100
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B86A10F31E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 15:24:46 +0000 (UTC)
+Received: from [192.168.178.53] (82-71-8-225.dsl.in-addr.zen.co.uk
+ [82.71.8.225])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbeckett)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 7BFAB660194E;
+ Thu, 30 Jun 2022 16:24:44 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1656602684;
+ bh=Pt3Zfc12+MN0iYwZU4pO0zlj7YzG9yAOLyS2/JrEaSY=;
+ h=Date:Subject:To:References:From:In-Reply-To:From;
+ b=G3DxjXMfIZi0ztMAjLIWsqgrpOtV5hpN43s/WRcHld+vzN8GbyxbL5cT9/u8ciahy
+ 7vkdV7bpErkZmL9LW0jFjJYinLRRcWKPQ7O0NqqKxiZxguEZfYlElrKHEQIOH0vpXW
+ pWkggD/HT1jho8q/jkvNsrUd/DrcThBtMWwBwp4k6+CH/GcoqJqkSFVLu8Q1OsGNNl
+ 1T0lskcFnVYLOxE/SBfCsGJYNMk+ZN6GBK9qbvK/O/FWowCRvV6jiYt7cgEaf+PINN
+ To0IY1t6WdZfhOOY8dj2bmO2e2F1mPJMA5ow3sFMICYzgblylZkNS6wHA7h1Z/2axx
+ UBZw5TfexztRQ==
+Message-ID: <420143d8-e35e-31ee-25a0-95035677b8fd@collabora.com>
+Date: Thu, 30 Jun 2022 16:24:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.10.0
-Content-Language: en-GB
-To: Jason Ekstrand <jason@jlekstrand.net>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-References: <20220626014916.5130-1-niranjana.vishwanathapura@intel.com>
- <20220626014916.5130-4-niranjana.vishwanathapura@intel.com>
- <CAOFGe954aK2wz_TEORbw3BsW1a7EHtpUB1g6ZoYX=kSVmn+kRg@mail.gmail.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <CAOFGe954aK2wz_TEORbw3BsW1a7EHtpUB1g6ZoYX=kSVmn+kRg@mail.gmail.com>
+ Thunderbird/91.9.1
+Content-Language: en-US
+To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>,
+ "Harrison, John C" <john.c.harrison@intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>,
+ "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20220620213340.3199605-1-bob.beckett@collabora.com>
+ <165583307119.13647.9219456323624399121@emeril.freedesktop.org>
+ <20dedda6-534b-b39e-fb35-8becc5c27043@collabora.com>
+ <2752282d-a28a-ef9b-8b27-2d84aee9c8bf@linux.intel.com>
+ <4eee638e-ff08-0e45-ac79-ca6c77a0bb6f@collabora.com>
+ <6d608010-a9b1-8182-a967-6ea435fd20a4@linux.intel.com>
+ <b20da287-e7f4-ebad-a534-a129b57eeede@collabora.com>
+ <d7332e3c-2375-d0a4-0d1a-38faa2d7fe6c@collabora.com>
+ <38401ddd-1a81-b82e-d3d8-018b22155534@collabora.com>
+ <7b2bb26d89919db3f71930e3b887e8d0fd390a5b.camel@intel.com>
+From: Robert Beckett <bob.beckett@collabora.com>
+In-Reply-To: <7b2bb26d89919db3f71930e3b887e8d0fd390a5b.camel@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v6 3/3] drm/doc/rfc: VM_BIND uapi definition
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_ttm_for_stolen_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,447 +70,350 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 30/06/2022 06:11, Jason Ekstrand wrote:
-> On Sat, Jun 25, 2022 at 8:49 PM Niranjana Vishwanathapura 
-> <niranjana.vishwanathapura@intel.com 
-> <mailto:niranjana.vishwanathapura@intel.com>> wrote:
-> 
->     VM_BIND and related uapi definitions
-> 
->     v2: Reduce the scope to simple Mesa use case.
->     v3: Expand VM_UNBIND documentation and add
->          I915_GEM_VM_BIND/UNBIND_FENCE_VALID
->          and I915_GEM_VM_BIND_TLB_FLUSH flags.
->     v4: Remove I915_GEM_VM_BIND_TLB_FLUSH flag and add additional
->          documentation for vm_bind/unbind.
->     v5: Remove TLB flush requirement on VM_UNBIND.
->          Add version support to stage implementation.
->     v6: Define and use drm_i915_gem_timeline_fence structure for
->          all timeline fences.
->     v7: Rename I915_PARAM_HAS_VM_BIND to I915_PARAM_VM_BIND_VERSION.
->          Update documentation on async vm_bind/unbind and versioning.
->          Remove redundant vm_bind/unbind FENCE_VALID flag, execbuf3
->          batch_count field and I915_EXEC3_SECURE flag.
-> 
->     Signed-off-by: Niranjana Vishwanathapura
->     <niranjana.vishwanathapura@intel.com
->     <mailto:niranjana.vishwanathapura@intel.com>>
->     Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch
->     <mailto:daniel.vetter@ffwll.ch>>
->     ---
->       Documentation/gpu/rfc/i915_vm_bind.h | 280 +++++++++++++++++++++++++++
->       1 file changed, 280 insertions(+)
->       create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
-> 
->     diff --git a/Documentation/gpu/rfc/i915_vm_bind.h
->     b/Documentation/gpu/rfc/i915_vm_bind.h
->     new file mode 100644
->     index 000000000000..a93e08bceee6
->     --- /dev/null
->     +++ b/Documentation/gpu/rfc/i915_vm_bind.h
->     @@ -0,0 +1,280 @@
->     +/* SPDX-License-Identifier: MIT */
->     +/*
->     + * Copyright © 2022 Intel Corporation
->     + */
->     +
->     +/**
->     + * DOC: I915_PARAM_VM_BIND_VERSION
->     + *
->     + * VM_BIND feature version supported.
->     + * See typedef drm_i915_getparam_t param.
->     + *
->     + * Specifies the VM_BIND feature version supported.
->     + * The following versions of VM_BIND have been defined:
->     + *
->     + * 0: No VM_BIND support.
->     + *
->     + * 1: In VM_UNBIND calls, the UMD must specify the exact mappings
->     created
->     + *    previously with VM_BIND, the ioctl will not support unbinding
->     multiple
->     + *    mappings or splitting them. Similarly, VM_BIND calls will not
->     replace
->     + *    any existing mappings.
->     + *
->     + * 2: The restrictions on unbinding partial or multiple mappings is
->     + *    lifted, Similarly, binding will replace any mappings in the
->     given range.
->     + *
->     + * See struct drm_i915_gem_vm_bind and struct drm_i915_gem_vm_unbind.
->     + */
->     +#define I915_PARAM_VM_BIND_VERSION     57
->     +
->     +/**
->     + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
->     + *
->     + * Flag to opt-in for VM_BIND mode of binding during VM creation.
->     + * See struct drm_i915_gem_vm_control flags.
->     + *
->     + * The older execbuf2 ioctl will not support VM_BIND mode of operation.
->     + * For VM_BIND mode, we have new execbuf3 ioctl which will not
->     accept any
->     + * execlist (See struct drm_i915_gem_execbuffer3 for more details).
->     + */
->     +#define I915_VM_CREATE_FLAGS_USE_VM_BIND       (1 << 0)
->     +
->     +/* VM_BIND related ioctls */
->     +#define DRM_I915_GEM_VM_BIND           0x3d
->     +#define DRM_I915_GEM_VM_UNBIND         0x3e
->     +#define DRM_I915_GEM_EXECBUFFER3       0x3f
->     +
->     +#define DRM_IOCTL_I915_GEM_VM_BIND           
->       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct
->     drm_i915_gem_vm_bind)
->     +#define DRM_IOCTL_I915_GEM_VM_UNBIND         
->       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct
->     drm_i915_gem_vm_bind)
->     +#define DRM_IOCTL_I915_GEM_EXECBUFFER3       
->       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct
->     drm_i915_gem_execbuffer3)
->     +
->     +/**
->     + * struct drm_i915_gem_timeline_fence - An input or output timeline
->     fence.
->     + *
->     + * The operation will wait for input fence to signal.
->     + *
->     + * The returned output fence will be signaled after the completion
->     of the
->     + * operation.
->     + */
->     +struct drm_i915_gem_timeline_fence {
->     +       /** @handle: User's handle for a drm_syncobj to wait on or
->     signal. */
->     +       __u32 handle;
->     +
->     +       /**
->     +        * @flags: Supported flags are:
->     +        *
->     +        * I915_TIMELINE_FENCE_WAIT:
->     +        * Wait for the input fence before the operation.
->     +        *
->     +        * I915_TIMELINE_FENCE_SIGNAL:
->     +        * Return operation completion fence as output.
->     +        */
->     +       __u32 flags;
->     +#define I915_TIMELINE_FENCE_WAIT            (1 << 0)
->     +#define I915_TIMELINE_FENCE_SIGNAL          (1 << 1)
->     +#define __I915_TIMELINE_FENCE_UNKNOWN_FLAGS
->     (-(I915_TIMELINE_FENCE_SIGNAL << 1))
->     +
->     +       /**
->     +        * @value: A point in the timeline.
->     +        * Value must be 0 for a binary drm_syncobj. A Value of 0 for a
->     +        * timeline drm_syncobj is invalid as it turns a drm_syncobj
->     into a
->     +        * binary one.
->     +        */
->     +       __u64 value;
->     +};
->     +
->     +/**
->     + * struct drm_i915_gem_vm_bind - VA to object mapping to bind.
->     + *
->     + * This structure is passed to VM_BIND ioctl and specifies the
->     mapping of GPU
->     + * virtual address (VA) range to the section of an object that
->     should be bound
->     + * in the device page table of the specified address space (VM).
->     + * The VA range specified must be unique (ie., not currently bound)
->     and can
->     + * be mapped to whole object or a section of the object (partial
->     binding).
->     + * Multiple VA mappings can be created to the same section of the
->     object
->     + * (aliasing).
->     + *
->     + * The @start, @offset and @length must be 4K page aligned. However
->     the DG2
->     + * and XEHPSDV has 64K page size for device local-memory and has
->     compact page
->     + * table. On those platforms, for binding device local-memory
->     objects, the
->     + * @start must be 2M aligned, @offset and @length must be 64K aligned.
-> 
-> 
-> This is not acceptable.  We need 64K granularity.  This includes the 
-> starting address, the BO offset, and the length.  Why?  The tl;dr is 
-> that it's a requirement for about 50% of D3D12 apps if we want them to 
-> run on Linux via D3D12.  A longer explanation follows.  I don't 
-> necessarily expect kernel folks to get all the details but hopefully 
-> I'll have left enough of a map that some of the Intel Mesa folks can 
-> help fill in details.
-> 
-> Many modern D3D12 apps have a hard requirement on Tier2 tiled 
-> resources.  This is a feature that Intel has supported in the D3D12 
-> driver since Skylake.  In order to implement this feature, VKD3D 
-> requires the various sparseResidencyImage* and sparseResidency*Sampled 
-> Vulkan features.  If we want those apps to work (there's getting to be 
-> quite a few of them), we need to implement the Vulkan sparse residency 
-> features.
-> |
-> |
-> What is sparse residency?  I'm glad you asked!  The sparse residency 
-> features allow a client to separately bind each miplevel or array slice 
-> of an image to a chunk of device memory independently, without affecting 
-> any other areas of the image.  Once you get to a high enough miplevel 
-> that everything fits inside a single sparse image block (that's a 
-> technical Vulkan term you can search for in the spec), you can enter a 
-> "miptail" which contains all the remaining miplevels in a single sparse 
-> image block.
-> 
-> The term "sparse image block" is what the Vulkan spec uses.  On Intel 
-> hardware and in the docs, it's what we call a "tile".  Specifically, the 
-> image needs to use Yf or Ys tiling on SKL-TGL or a Tile64 on DG2+.  This 
-> is because Tile4 and legacy X and Y-tiling don't provide any guarantees 
-> about page alignment for slices.  Yf, Ys, and Tile64, on the other hand, 
-> align all slices of the image to a tile boundary, allowing us to map 
-> memory to different slices independently, assuming we have 64K (or 4K 
-> for Yf) VM_BIND granularity.  (4K isn't actually a requirement for 
-> SKL-TGL; we can use Ys all the time which has 64K tiles but there's no 
-> reason to not support 4K alignments on integrated.)
-> 
-> Someone may be tempted to ask, "Can't we wiggle the strides around or 
-> something to make it work?"  I thought about that and no, you can't.  
-> The problem here is LOD2+.  Sure, you can have a stride such that the 
-> image is a multiple of 2M worth of tiles across.  That'll work fine for 
-> LOD0 and LOD1; both will be 2M aligned.  However, LOD2 won't be and 
-> there's no way to control that.  The hardware will place it to the right 
-> of LOD1 by ROUND_UP(width, tile_width) pixels and there's nothing you 
-> can do about that.  If that position doesn't happen to hit a 2M 
-> boundary, you're out of luck.
-> 
-> I hope that explanation provides enough detail.  Sadly, this is one of 
-> those things which has a lot of moving pieces all over different bits of 
-> the hardware and various APIs and they all have to work together just 
-> right for it to all come out in the end.  But, yeah, we really need 64K 
-> aligned binding if we want VKD3D to work.
 
-Just to confirm, the new model would be to enforce 64K GTT alignment for 
-lmem pages, and then for smem pages we would only require 4K alignment, 
-but with the added restriction that userspace will never try to mix the 
-two (lmem vs smem) within the same 2M va range (page-table). The kernel 
-will verify this and throw an error if needed. This model should work 
-with the above?
 
+On 30/06/2022 15:52, Hellstrom, Thomas wrote:
+> Hi!
 > 
-> --Jason
+> On Thu, 2022-06-30 at 15:20 +0100, Robert Beckett wrote:
+>>
+>>
+>> On 29/06/2022 13:51, Robert Beckett wrote:
+>>>
+>>>
+>>> On 28/06/2022 17:22, Robert Beckett wrote:
+>>>>
+>>>>
+>>>> On 28/06/2022 09:46, Tvrtko Ursulin wrote:
+>>>>>
+>>>>> On 27/06/2022 18:08, Robert Beckett wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 22/06/2022 10:05, Tvrtko Ursulin wrote:
+>>>>>>>
+>>>>>>> On 21/06/2022 20:11, Robert Beckett wrote:
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On 21/06/2022 18:37, Patchwork wrote:
+>>>>>>>>> *Patch Details*
+>>>>>>>>> *Series:*    drm/i915: ttm for stolen (rev5)
+>>>>>>>>> *URL:*
+>>>>>>>>> https://patchwork.freedesktop.org/series/101396/
+>>>>>>>>> <https://patchwork.freedesktop.org/series/101396/>
+>>>>>>>>> *State:*    failure
+>>>>>>>>> *Details:*
+>>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html
+>>>>>>>>>   
+>>>>>>>>> <
+>>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>    CI Bug Log - changes from CI_DRM_11790 ->
+>>>>>>>>> Patchwork_101396v5
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>      Summary
+>>>>>>>>>
+>>>>>>>>> *FAILURE*
+>>>>>>>>>
+>>>>>>>>> Serious unknown changes coming with Patchwork_101396v5
+>>>>>>>>> absolutely
+>>>>>>>>> need to be
+>>>>>>>>> verified manually.
+>>>>>>>>>
+>>>>>>>>> If you think the reported changes have nothing to do
+>>>>>>>>> with the
+>>>>>>>>> changes
+>>>>>>>>> introduced in Patchwork_101396v5, please notify your
+>>>>>>>>> bug team to
+>>>>>>>>> allow them
+>>>>>>>>> to document this new failure mode, which will reduce
+>>>>>>>>> false
+>>>>>>>>> positives in CI.
+>>>>>>>>>
+>>>>>>>>> External URL:
+>>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html
+>>>>>>>>>   
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>      Participating hosts (40 -> 41)
+>>>>>>>>>
+>>>>>>>>> Additional (2): fi-icl-u2 bat-dg2-9
+>>>>>>>>> Missing (1): fi-bdw-samus
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>      Possible new issues
+>>>>>>>>>
+>>>>>>>>> Here are the unknown changes that may have been
+>>>>>>>>> introduced in
+>>>>>>>>> Patchwork_101396v5:
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>        IGT changes
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>          Possible regressions
+>>>>>>>>>
+>>>>>>>>>    * igt@i915_selftest@live@reset:
+>>>>>>>>>        o bat-adlp-4: PASS
+>>>>>>>>> <
+>>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-4/igt@i915_selftest@live@reset.html
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>          -> DMESG-FAIL
+>>>>>>>>> <
+>>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-4/igt@i915_selftest@live@reset.html
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>> I keep hitting clobbered pages during engine resets on
+>>>>>>>> bat-adlp-4.
+>>>>>>>> It seems to happen most of the time on that machine and
+>>>>>>>> occasionally on bat-adlp-6.
+>>>>>>>>
+>>>>>>>> Should bat-adlp-4 be considered an unreliable machine
+>>>>>>>> like
+>>>>>>>> bat-adlp-6 is for now?
+>>>>>>>>
+>>>>>>>> Alternatively, seeing the history of this in
+>>>>>>>>
+>>>>>>>> commit 3da3c5c1c9825c24168f27b021339e90af37e969
+>>>>>>>> "drm/i915: Exclude
+>>>>>>>> low pages (128KiB) of stolen from use"
+>>>>>>>>
+>>>>>>>> could this be an indication that maybe the original issue
+>>>>>>>> is worse
+>>>>>>>> on adlp machines?
+>>>>>>>> I have only ever seen page page 135 or 136 clobbered
+>>>>>>>> across many
+>>>>>>>> runs via trybot, so it looks fairly consistent.
+>>>>>>>> Though excluding the use of over 540K of stolen might be
+>>>>>>>> too severe.
+>>>>>>>
+>>>>>>> Don't know but I see that on the latest version you even
+>>>>>>> hit pages
+>>>>>>> 165/166.
+>>>>>>>
+>>>>>>> Any history of hitting this in CI without your series? If
+>>>>>>> not, are
+>>>>>>> there some other changes which could explain it? Are you
+>>>>>>> touching
+>>>>>>> the selftest itself?
+>>>>>>>
+>>>>>>> Hexdump of the clobbered page looks quite complex.
+>>>>>>> Especially
+>>>>>>> POISON_FREE. Any idea how that ends up there?
+>>>>>>
+>>>>>>
+>>>>>> (see
+>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v4/fi-rkl-guc/igt@i915_selftest@live@reset.html#dmesg-warnings702
+>>>>>> )
+>>>>>>
+>>>>>>
+>>>>>> after lots of slow debug via CI, it looks like the issue is
+>>>>>> that a
+>>>>>> ring buffer was allocated and taking up that page during the
+>>>>>> initial
+>>>>>> crc capture in the test, but by the time it came to check for
+>>>>>> corruption, it had been freed from that page.
+>>>>>>
+>>>>>> The test has a number of weaknesses:
+>>>>>>
+>>>>>> 1. the busy check is done twice, without taking in to account
+>>>>>> any
+>>>>>> change in between. I assume previously this could be relied
+>>>>>> on never
+>>>>>> to occur, but now it can for some reason (more on that later)
+>>>>>
+>>>>> You mean the stolen page used/unused test? Probably the premise
+>>>>> is
+>>>>> that the test controls the driver completely ie. is the sole
+>>>>> user and
+>>>>> the two checks are run at the time where nothing else could
+>>>>> have
+>>>>> changed the state.
+>>>>>
+>>>>> With the nerfed request (as with GuC) this actually should
+>>>>> hold. In
+>>>>> the generic case I am less sure, my working knowledge faded a
+>>>>> bit,
+>>>>> but perhaps there was something guaranteeing the spinner
+>>>>> couldn't
+>>>>> have been retired yet at the time of the second check. Would
+>>>>> need
+>>>>> clarifying at least in comments.
+>>>>>>
+>>>>>> 2. the engine reset returns early with an error for guc
+>>>>>> submission
+>>>>>> engines, but it is silently ignored in the test. Perhaps it
+>>>>>> should
+>>>>>> ignore guc submission engines as it is a largely useless test
+>>>>>> for
+>>>>>> those situations.
+>>>>>
+>>>>> Yes looks dodgy indeed. You will need to summon the owners of
+>>>>> the GuC
+>>>>> backend to comment on this.
+>>>>>
+>>>>> However even if the test should be skipped with GuC it is
+>>>>> extremely
+>>>>> interesting that you are hitting this so I suspect there is a
+>>>>> more
+>>>>> serious issue at play.
+>>>>
+>>>> indeed. That's why I am keen to get to the root cause instead of
+>>>> just
+>>>> slapping in a fix.
+>>>>
+>>>>>
+>>>>>> A quick obvious fix is to have a busy bitmask that remembers
+>>>>>> each
+>>>>>> page's busy state initially and only check for corruption if
+>>>>>> it was
+>>>>>> busy during both checks.
+>>>>>>
+>>>>>> However, the main question is why this is occurring now with
+>>>>>> my
+>>>>>> changes.
+>>>>>> I have added more debug to check where the stolen memory is
+>>>>>> being
+>>>>>> freed, but the first run last night didn't hit the issue for
+>>>>>> once.
+>>>>>> I am running again now, will report back if I figure out
+>>>>>> where it is
+>>>>>> being freed.
+>>>>>>
+>>>>>> I am pretty sure the "corruption" (which isn't actually
+>>>>>> corruption)
+>>>>>> is from a ring buffer.
+>>>>>> The POISON_FREE is the only difference between the captured
+>>>>>> before
+>>>>>> and after dumps:
+>>>>>>
+>>>>>> [0040] 00000000 02800000 6b6b6b6b 6b6b6b6b 6b6b6b6b 6b6b6b6b
+>>>>>> 6b6b6b6b 6b6b6b6b
+>>>>>>
+>>>>>> with the 2nd dword being the MI_ARB_CHECK used for the
+>>>>>> spinner.
+>>>>>> I think this is the request poisoning from
+>>>>>> i915_request_retire()
+>>>>>>
+>>>>>> The bit I don't know yet is why a ring buffer was freed
+>>>>>> between the
+>>>>>> initial crc capture and the corruption check. The spinner
+>>>>>> should be
+>>>>>> active across the entire test, maintaining a ref on the
+>>>>>> context and
+>>>>>> it's ring.
+>>>>>>
+>>>>>> hopefully my latest debug will give more answers.
+>>>>>
+>>>>> Yeah if you can figure our whether the a) spinner is still
+>>>>> active
+>>>>> during the 2nd check (as I think it should be), and b) is the
+>>>>> corruption detected in the same pages which were used in the
+>>>>> 1st pass
+>>>>> that would be interesting.
+>>>>
+>>>> yep. The latest run is still stuck in the CI queue after 27
+>>>> hours.
+>>>> I think I have enough debug in there to catch it now.
+>>>> Hopefully I can get a root cause once it gets chance to run.
+>>>>
+>>>
+>>> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v7/fi-adl-ddr5/igt@i915_selftest@live@reset.html#dmesg-warnings496
+>>>   
+>>>
+>>>
+>>> well, the run finally happened.
+>>> And it shows that the freed resource happens from a workqueue. Not
+>>> helpful.
+>>>
+>>> I'll now add a saved stack traces to all objects that saves where
+>>> it is
+>>> allocated and freed/queued for free.
+>>>
+>>
+>> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v8/fi-rkl-guc/igt@i915_selftest@live@reset.html#dmesg-warnings419
+>>
+>> I'm pretty sure I know what is going on now.
+>>
+>> igt_reset_engines_stolen() loops around each engine and calls
+>> __igt_reset_stolen() for that engine.
+>>
+>>
+>> __igt_reset_stolen() does
+>> intel_context_create()
+>>
+>> igt_spinner_create_request()->intel_context_create_request()-
+>>> __i915_request_create()->intel_context_get()
+>>
+>> intel_context_put()
+>>
+>> leaving the request as the remaining holder of the context.
+>>
+>> it then does the reset, which does nothing on GuC setups, does the
+>> comparisons, then ends the spinner via igt_spinner_fini()-
+>>> igt_spinner_end()
+>> which lets the spinner request finish.
+>>
+>> once the request is retired, intel_context_put() is eventually
+>> called,
+>> which starts the GuC teardown of the context as the request was the
+>> last
+>> holder of the context.
+>>
+>> This GuC teardown is asynchronous via ct transactions.
+>> By the time the ct_process_request() sees the
+>> INTEL_GUC_ACTION_DEREGISTER_CONTEXT_DONE message, the test has
+>> already
+>> looped to the next engine and has already checked the original status
+>> of
+>> the page that the destroying context used for its ring buffer, so the
+>> test sees it being freed from the previous loop while testing the
+>> next
+>> engine. It considers this a corruption of the stolen memory due to
+>> the
+>> previously highlighted double checking of busy state for each page.
+>>
+>> I think for now, we should simply not test GuC submission engines in
+>> line with the reset call returning an error.
+>> If at some point we want to enable this test for GuC setups, then
+>> flushing and waiting for context cleanup would need to be added to
+>> the test.
+>>
+>> Anyone know why per engine reset is not allowed for GuC submission
+>> setup?
+>> looking at commit "eb5e7da736f3 drm/i915/guc: Reset implementation
+>> for
+>> new GuC interface" doesn't really detail why per engine resets are
+>> not
+>> allowed.
+>> Maybe it just never got implemented? or are there reasons to not
+>> allow
+>> the host to request specific engine resets?
+>>
 > 
->     + * Also, for such mappings, i915 will reserve the whole 2M range
->     for it so as
->     + * to not allow multiple mappings in that 2M range (Compact page
->     tables do not
->     + * allow 64K page and 4K page bindings in the same 2M range).
->     + *
->     + * Error code -EINVAL will be returned if @start, @offset and
->     @length are not
->     + * properly aligned. In version 1 (See I915_PARAM_VM_BIND_VERSION),
->     error code
->     + * -ENOSPC will be returned if the VA range specified can't be
->     reserved.
->     + *
->     + * VM_BIND/UNBIND ioctl calls executed on different CPU threads
->     concurrently
->     + * are not ordered. Furthermore, parts of the VM_BIND operation can
->     be done
->     + * asynchronously, if valid @fence is specified.
->     + */
->     +struct drm_i915_gem_vm_bind {
->     +       /** @vm_id: VM (address space) id to bind */
->     +       __u32 vm_id;
->     +
->     +       /** @handle: Object handle */
->     +       __u32 handle;
->     +
->     +       /** @start: Virtual Address start to bind */
->     +       __u64 start;
->     +
->     +       /** @offset: Offset in object to bind */
->     +       __u64 offset;
->     +
->     +       /** @length: Length of mapping to bind */
->     +       __u64 length;
->     +
->     +       /**
->     +        * @flags: Supported flags are:
->     +        *
->     +        * I915_GEM_VM_BIND_READONLY:
->     +        * Mapping is read-only.
->     +        *
->     +        * I915_GEM_VM_BIND_CAPTURE:
->     +        * Capture this mapping in the dump upon GPU error.
->     +        */
->     +       __u64 flags;
->     +#define I915_GEM_VM_BIND_READONLY      (1 << 1)
->     +#define I915_GEM_VM_BIND_CAPTURE       (1 << 2)
->     +
->     +       /**
->     +        * @fence: Timeline fence for bind completion signaling.
->     +        *
->     +        * It is an out fence, hence using I915_TIMELINE_FENCE_WAIT flag
->     +        * is invalid, and an error will be returned.
->     +        */
->     +       struct drm_i915_gem_timeline_fence fence;
->     +
->     +       /**
->     +        * @extensions: Zero-terminated chain of extensions.
->     +        *
->     +        * For future extensions. See struct i915_user_extension.
->     +        */
->     +       __u64 extensions;
->     +};
->     +
->     +/**
->     + * struct drm_i915_gem_vm_unbind - VA to object mapping to unbind.
->     + *
->     + * This structure is passed to VM_UNBIND ioctl and specifies the
->     GPU virtual
->     + * address (VA) range that should be unbound from the device page
->     table of the
->     + * specified address space (VM). VM_UNBIND will force unbind the
->     specified
->     + * range from device page table without waiting for any GPU job to
->     complete.
->     + * It is UMDs responsibility to ensure the mapping is no longer in
->     use before
->     + * calling VM_UNBIND.
->     + *
->     + * If the specified mapping is not found, the ioctl will simply
->     return without
->     + * any error.
->     + *
->     + * VM_BIND/UNBIND ioctl calls executed on different CPU threads
->     concurrently
->     + * are not ordered. Furthermore, parts of the VM_UNBIND operation
->     can be done
->     + * asynchronously, if valid @fence is specified.
->     + */
->     +struct drm_i915_gem_vm_unbind {
->     +       /** @vm_id: VM (address space) id to bind */
->     +       __u32 vm_id;
->     +
->     +       /** @rsvd: Reserved, MBZ */
->     +       __u32 rsvd;
->     +
->     +       /** @start: Virtual Address start to unbind */
->     +       __u64 start;
->     +
->     +       /** @length: Length of mapping to unbind */
->     +       __u64 length;
->     +
->     +       /** @flags: Currently reserved, MBZ */
->     +       __u64 flags;
->     +
->     +       /**
->     +        * @fence: Timeline fence for unbind completion signaling.
->     +        *
->     +        * It is an out fence, hence using I915_TIMELINE_FENCE_WAIT flag
->     +        * is invalid, and an error will be returned.
->     +        */
->     +       struct drm_i915_gem_timeline_fence fence;
->     +
->     +       /**
->     +        * @extensions: Zero-terminated chain of extensions.
->     +        *
->     +        * For future extensions. See struct i915_user_extension.
->     +        */
->     +       __u64 extensions;
->     +};
->     +
->     +/**
->     + * struct drm_i915_gem_execbuffer3 - Structure for
->     DRM_I915_GEM_EXECBUFFER3
->     + * ioctl.
->     + *
->     + * DRM_I915_GEM_EXECBUFFER3 ioctl only works in VM_BIND mode and
->     VM_BIND mode
->     + * only works with this ioctl for submission.
->     + * See I915_VM_CREATE_FLAGS_USE_VM_BIND.
->     + */
->     +struct drm_i915_gem_execbuffer3 {
->     +       /**
->     +        * @ctx_id: Context id
->     +        *
->     +        * Only contexts with user engine map are allowed.
->     +        */
->     +       __u32 ctx_id;
->     +
->     +       /**
->     +        * @engine_idx: Engine index
->     +        *
->     +        * An index in the user engine map of the context specified
->     by @ctx_id.
->     +        */
->     +       __u32 engine_idx;
->     +
->     +       /**
->     +        * @batch_address: Batch gpu virtual address/es.
->     +        *
->     +        * For normal submission, it is the gpu virtual address of
->     the batch
->     +        * buffer. For parallel submission, it is a pointer to an
->     array of
->     +        * batch buffer gpu virtual addresses with array size equal
->     to the
->     +        * number of (parallel) engines involved in that submission (See
->     +        * struct i915_context_engines_parallel_submit).
->     +        */
->     +       __u64 batch_address;
->     +
->     +       /** @flags: Currently reserved, MBZ */
->     +       __u64 flags;
->     +
->     +       /** @rsvd1: Reserved, MBZ */
->     +       __u32 rsvd1;
->     +
->     +       /** @fence_count: Number of fences in @timeline_fences array. */
->     +       __u32 fence_count;
->     +
->     +       /**
->     +        * @timeline_fences: Pointer to an array of timeline fences.
->     +        *
->     +        * Timeline fences are of format struct
->     drm_i915_gem_timeline_fence.
->     +        */
->     +       __u64 timeline_fences;
->     +
->     +       /** @rsvd2: Reserved, MBZ */
->     +       __u64 rsvd2;
->     +
->     +       /**
->     +        * @extensions: Zero-terminated chain of extensions.
->     +        *
->     +        * For future extensions. See struct i915_user_extension.
->     +        */
->     +       __u64 extensions;
->     +};
->     +
->     +/**
->     + * struct drm_i915_gem_create_ext_vm_private - Extension to make
->     the object
->     + * private to the specified VM.
->     + *
->     + * See struct drm_i915_gem_create_ext.
->     + */
->     +struct drm_i915_gem_create_ext_vm_private {
->     +#define I915_GEM_CREATE_EXT_VM_PRIVATE         2
->     +       /** @base: Extension link. See struct i915_user_extension. */
->     +       struct i915_user_extension base;
->     +
->     +       /** @vm_id: Id of the VM to which the object is private */
->     +       __u32 vm_id;
->     +};
->     -- 
->     2.21.0.rc0.32.g243a4c7e27
+> IIRC, the GuC by design decides for itself when it needs to do a per-
+> engine reset, hence the host can't trigger those.
 > 
+> /Thomas
+> 
+
+okay, understood.
+I'll include a fix to the test in the next version to not test if GuC 
+submissions are active.
+
+The only curious bit is that the conversion to ttm makes this issue 
+occur more often. In theory this should have been happening with the old 
+code too.
+I suspect it is just a timing thing. Maybe the ttm code has sped up or 
+slowed down the process somewhere.
+
