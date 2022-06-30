@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB053561CB7
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 16:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E29CE561DB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 16:20:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8B511B1F8;
-	Thu, 30 Jun 2022 14:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 305F211B501;
+	Thu, 30 Jun 2022 14:20:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
- [IPv6:2a00:1450:4864:20::12a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D32C911B1F3
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 14:05:45 +0000 (UTC)
-Received: by mail-lf1-x12a.google.com with SMTP id a2so33975679lfg.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 07:05:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=cApiWli8UaYPr20S54/EfbyEdXjunOidpS8c1+XIy+A=;
- b=GuNmoGeMEEoR67uydPGqG43LkzORAUE/2sLbDlBtFcQUuYMOh17jwpfq/4vlyRjyTX
- VoOu36hfNZeo0N1GSVhf3a9nXdV1nI+ralJPisKam296burBJwjK3fIOTXwqVBs5ij1b
- VihL0Xh2WoEFaU1nynssigfiN/0pERDBcUkyicLMGxCUeOCnAr/DdpXyG+PjQgwL82Py
- nNzmxSEsOfDVAnKV+ihn/w+T4+aWQvYNrdLuD3swrr040JTK4RBncj6EeeqZXinkDzyg
- z+6SF3wbKpfR7BKQtYH4+jGK7rRpa2C+B2VMOAiY5K294PFzK7XxB4weCQRddKqdyAdw
- kT8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=cApiWli8UaYPr20S54/EfbyEdXjunOidpS8c1+XIy+A=;
- b=YO0b6/z9lCNHAOE5lY8udwYabSX/WZbHKEA0utxKWRsfXWgIUzzTjvx3BVH71RYCas
- RPgJphXjpY2Bznm2TAOfvhx0g/zG2dFH38FJMx4Wulv3un5g9xlt4QDrp/bi5JfRA425
- 1J22yULuOyiVXxIiYe/TKJnfrUKwoM0wE+QWPD3K90ENzZ3eljX5Um/oInGjEiGhwKKc
- NoLJH9m2NsYWfEjCVkBaAVh/uR2OCsepzX+/TuBA6HmlaRfWA/XHhJhM7yPjh4JRQkcK
- pFyxky9SN7RiFBZAiQKjVFEafgj/K6dRXPM94/+05p5sIQfMLBNpUJZy6dmsgzAg1rmN
- aMvA==
-X-Gm-Message-State: AJIora/PpDNPCma0GOCn2GmCW7gDprbO3KnJfg7WkJMZXv0m7iDCyrfF
- FeCirrPyeQBZQq5NXvemsNcm2STjJYhao1Qw3uk=
-X-Google-Smtp-Source: AGRyM1tqS25fgdeWxjqOVLdOPY7pOFc88o1w42sbnYpP6RFxsdxsT0kkVAt2HMikWjO9omf18ajkgCut5kjNSTSffvk=
-X-Received: by 2002:a05:6512:10c5:b0:47f:74d6:b8f5 with SMTP id
- k5-20020a05651210c500b0047f74d6b8f5mr5565612lfg.583.1656597943521; Thu, 30
- Jun 2022 07:05:43 -0700 (PDT)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91E8E11B4F7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 14:20:56 +0000 (UTC)
+Received: from [192.168.178.53] (82-71-8-225.dsl.in-addr.zen.co.uk
+ [82.71.8.225])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbeckett)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 0DC4D6601752;
+ Thu, 30 Jun 2022 15:20:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1656598855;
+ bh=7RpebjLWu+MhIMlToSFHZUdMVRE9a4kHk0Xl5xfxB4Y=;
+ h=Date:Subject:From:To:References:In-Reply-To:From;
+ b=PGY2pDcN0yuiF0idDxU4o/18o2XEUg7vGerHtJZPuPmso3dsa5FBYV/b3ydTJNc66
+ LkE0Mvy+J8wrvPLqrIJMdz4tN9xvTz/bYHoKHAK9g/y0b9VT8NAeytJNLz4BPuVs+j
+ le3nr8fY8GUmoO5JgqAEPJjv4z7PnmnQynjn5g+3pEd7kgBZzxIkcSY8ZoUJ325PfO
+ +rOxo/Uj/TEeOeAXb6KJ/CBMn/JaaH8cPd7AA24a+u8wcY/rq1Sava00fbcFmSYcN7
+ O8VS82/+YTvYRlDAo+J9gxTMnBog3Erd0hTQzmVPizzBZ92AeoElbMe4OonrNSPGsQ
+ mExRn/LplOpaw==
+Message-ID: <38401ddd-1a81-b82e-d3d8-018b22155534@collabora.com>
+Date: Thu, 30 Jun 2022 15:20:53 +0100
 MIME-Version: 1.0
-References: <20220614011350.122168-1-adrian.larumbe@collabora.com>
- <20220614011350.122168-3-adrian.larumbe@collabora.com>
- <CAM0jSHNvCqeNLO_i0_uVUHGhw_-DQi5Mxtw5nOiogeGU2HSWkg@mail.gmail.com>
- <db968b93-6f9c-b3aa-02cd-81e99f64f013@collabora.com>
-In-Reply-To: <db968b93-6f9c-b3aa-02cd-81e99f64f013@collabora.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 30 Jun 2022 15:05:16 +0100
-Message-ID: <CAM0jSHPSBY7JqtQpxB-XTVdJOn-oUsHGfY7p6=nYMR-PRArQ1g@mail.gmail.com>
-To: Robert Beckett <bob.beckett@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/ttm: don't overwrite
- cache_dirty after setting coherency
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Content-Language: en-US
+From: Robert Beckett <bob.beckett@collabora.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>,
+ John Harrison <john.c.harrison@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20220620213340.3199605-1-bob.beckett@collabora.com>
+ <165583307119.13647.9219456323624399121@emeril.freedesktop.org>
+ <20dedda6-534b-b39e-fb35-8becc5c27043@collabora.com>
+ <2752282d-a28a-ef9b-8b27-2d84aee9c8bf@linux.intel.com>
+ <4eee638e-ff08-0e45-ac79-ca6c77a0bb6f@collabora.com>
+ <6d608010-a9b1-8182-a967-6ea435fd20a4@linux.intel.com>
+ <b20da287-e7f4-ebad-a534-a129b57eeede@collabora.com>
+ <d7332e3c-2375-d0a4-0d1a-38faa2d7fe6c@collabora.com>
+In-Reply-To: <d7332e3c-2375-d0a4-0d1a-38faa2d7fe6c@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_ttm_for_stolen_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,99 +68,271 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Adrian Larumbe <adrian.larumbe@collabora.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 Jun 2022 at 22:11, Robert Beckett <bob.beckett@collabora.com> wrote:
->
->
->
-> On 14/06/2022 18:55, Matthew Auld wrote:
-> > On Tue, 14 Jun 2022 at 02:14, Adrian Larumbe
-> > <adrian.larumbe@collabora.com> wrote:
-> >>
-> >> When i915_gem_object_set_cache_level sets the GEM object's cache_dirty to
-> >> true, in the case of TTM that will sometimes be overwritten when getting
-> >> the object's pages, more specifically for shmem-placed objects for which
-> >> its ttm structure has just been populated.
-> >>
-> >> This wasn't an issue so far, even though intel_dpt_create was setting the
-> >> object's cache level to 'none', regardless of the platform and memory
-> >> placement of the framebuffer. However, commit 2f0ec95ed20c ("drm/i915/ttm:
-> >> dont trample cache_level overrides during ttm move") makes sure the cache
-> >> level set by older backends soon to be managed by TTM isn't altered after
-> >> their TTM bo ttm structure is populated.
-> >>
-> >> However this led to the 'obj->cache_dirty = true' set in
-> >> i915_gem_object_set_cache_level to stick around rather than being reset
-> >> inside i915_ttm_adjust_gem_after_move after calling ttm_tt_populate in
-> >> __i915_ttm_get_pages, which eventually led to a warning in DGFX platforms.
-> >>
-> >> There also seems to be no need for this statement to be kept in
-> >> i915_gem_object_set_cache_level, since i915_gem_object_set_cache_coherency
-> >> is already taking care of it, and also considering whether it's a discrete
-> >> platform.
-> >>
-> >> Remove statement altogether.
-> >>
-> >> Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/gem/i915_gem_domain.c | 4 +---
-> >>   1 file changed, 1 insertion(+), 3 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> >> index 3e5d6057b3ef..b2c9e16bfa55 100644
-> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> >> @@ -273,10 +273,8 @@ int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
-> >>                  return ret;
-> >>
-> >>          /* Always invalidate stale cachelines */
-> >> -       if (obj->cache_level != cache_level) {
-> >> +       if (obj->cache_level != cache_level)
-> >>                  i915_gem_object_set_cache_coherency(obj, cache_level);
-> >> -               obj->cache_dirty = true;
-> >
-> > Maybe ban calling this on dgpu or have it fail silently? At the ioctl
-> > level this should already be banned.
-> >
-> > Ignoring dgpu, the cache_dirty handling is quite thorny on non-LLC
-> > platforms. I'm not sure if there are other historical reasons for
-> > having this here, but one big issue is that we are not allowed to
-> > freely set cache_dirty = false, unless we are certain that the pages
-> > underneath have been populated and the potential flush-on-acquire
-> > completed. See the kernel-doc for @cache_dirty for more details.
->
-> given the commit "068b1bd09253 drm/i915: stop setting cache_dirty on
-> discrete"
-> with it's justification of cache_dirty should not be set on discreet as
-> it is not needed, I think this patch should change to set
->
-> obj->cache_dirty = !IS_DGFX(to_i915(obj->base.dev));
 
-Yeah, seems reasonable to me.
 
->
-> along with the assignment in flush_write_domain()
+On 29/06/2022 13:51, Robert Beckett wrote:
+> 
+> 
+> On 28/06/2022 17:22, Robert Beckett wrote:
+>>
+>>
+>> On 28/06/2022 09:46, Tvrtko Ursulin wrote:
+>>>
+>>> On 27/06/2022 18:08, Robert Beckett wrote:
+>>>>
+>>>>
+>>>> On 22/06/2022 10:05, Tvrtko Ursulin wrote:
+>>>>>
+>>>>> On 21/06/2022 20:11, Robert Beckett wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 21/06/2022 18:37, Patchwork wrote:
+>>>>>>> *Patch Details*
+>>>>>>> *Series:*    drm/i915: ttm for stolen (rev5)
+>>>>>>> *URL:*    https://patchwork.freedesktop.org/series/101396/ 
+>>>>>>> <https://patchwork.freedesktop.org/series/101396/>
+>>>>>>> *State:*    failure
+>>>>>>> *Details:* 
+>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html 
+>>>>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html> 
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>>   CI Bug Log - changes from CI_DRM_11790 -> Patchwork_101396v5
+>>>>>>>
+>>>>>>>
+>>>>>>>     Summary
+>>>>>>>
+>>>>>>> *FAILURE*
+>>>>>>>
+>>>>>>> Serious unknown changes coming with Patchwork_101396v5 absolutely 
+>>>>>>> need to be
+>>>>>>> verified manually.
+>>>>>>>
+>>>>>>> If you think the reported changes have nothing to do with the 
+>>>>>>> changes
+>>>>>>> introduced in Patchwork_101396v5, please notify your bug team to 
+>>>>>>> allow them
+>>>>>>> to document this new failure mode, which will reduce false 
+>>>>>>> positives in CI.
+>>>>>>>
+>>>>>>> External URL: 
+>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html 
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>>     Participating hosts (40 -> 41)
+>>>>>>>
+>>>>>>> Additional (2): fi-icl-u2 bat-dg2-9
+>>>>>>> Missing (1): fi-bdw-samus
+>>>>>>>
+>>>>>>>
+>>>>>>>     Possible new issues
+>>>>>>>
+>>>>>>> Here are the unknown changes that may have been introduced in 
+>>>>>>> Patchwork_101396v5:
+>>>>>>>
+>>>>>>>
+>>>>>>>       IGT changes
+>>>>>>>
+>>>>>>>
+>>>>>>>         Possible regressions
+>>>>>>>
+>>>>>>>   * igt@i915_selftest@live@reset:
+>>>>>>>       o bat-adlp-4: PASS
+>>>>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-4/igt@i915_selftest@live@reset.html> 
+>>>>>>>
+>>>>>>>         -> DMESG-FAIL
+>>>>>>> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-4/igt@i915_selftest@live@reset.html> 
+>>>>>>>
+>>>>>>>
+>>>>>>
+>>>>>> I keep hitting clobbered pages during engine resets on bat-adlp-4.
+>>>>>> It seems to happen most of the time on that machine and 
+>>>>>> occasionally on bat-adlp-6.
+>>>>>>
+>>>>>> Should bat-adlp-4 be considered an unreliable machine like 
+>>>>>> bat-adlp-6 is for now?
+>>>>>>
+>>>>>> Alternatively, seeing the history of this in
+>>>>>>
+>>>>>> commit 3da3c5c1c9825c24168f27b021339e90af37e969 "drm/i915: Exclude 
+>>>>>> low pages (128KiB) of stolen from use"
+>>>>>>
+>>>>>> could this be an indication that maybe the original issue is worse 
+>>>>>> on adlp machines?
+>>>>>> I have only ever seen page page 135 or 136 clobbered across many 
+>>>>>> runs via trybot, so it looks fairly consistent.
+>>>>>> Though excluding the use of over 540K of stolen might be too severe.
+>>>>>
+>>>>> Don't know but I see that on the latest version you even hit pages 
+>>>>> 165/166.
+>>>>>
+>>>>> Any history of hitting this in CI without your series? If not, are 
+>>>>> there some other changes which could explain it? Are you touching 
+>>>>> the selftest itself?
+>>>>>
+>>>>> Hexdump of the clobbered page looks quite complex. Especially 
+>>>>> POISON_FREE. Any idea how that ends up there?
+>>>>
+>>>>
+>>>> (see 
+>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v4/fi-rkl-guc/igt@i915_selftest@live@reset.html#dmesg-warnings702) 
+>>>>
+>>>>
+>>>> after lots of slow debug via CI, it looks like the issue is that a 
+>>>> ring buffer was allocated and taking up that page during the initial 
+>>>> crc capture in the test, but by the time it came to check for 
+>>>> corruption, it had been freed from that page.
+>>>>
+>>>> The test has a number of weaknesses:
+>>>>
+>>>> 1. the busy check is done twice, without taking in to account any 
+>>>> change in between. I assume previously this could be relied on never 
+>>>> to occur, but now it can for some reason (more on that later)
+>>>
+>>> You mean the stolen page used/unused test? Probably the premise is 
+>>> that the test controls the driver completely ie. is the sole user and 
+>>> the two checks are run at the time where nothing else could have 
+>>> changed the state.
+>>>
+>>> With the nerfed request (as with GuC) this actually should hold. In 
+>>> the generic case I am less sure, my working knowledge faded a bit, 
+>>> but perhaps there was something guaranteeing the spinner couldn't 
+>>> have been retired yet at the time of the second check. Would need 
+>>> clarifying at least in comments.
+>>>>
+>>>> 2. the engine reset returns early with an error for guc submission 
+>>>> engines, but it is silently ignored in the test. Perhaps it should 
+>>>> ignore guc submission engines as it is a largely useless test for 
+>>>> those situations.
+>>>
+>>> Yes looks dodgy indeed. You will need to summon the owners of the GuC 
+>>> backend to comment on this.
+>>>
+>>> However even if the test should be skipped with GuC it is extremely 
+>>> interesting that you are hitting this so I suspect there is a more 
+>>> serious issue at play.
+>>
+>> indeed. That's why I am keen to get to the root cause instead of just 
+>> slapping in a fix.
+>>
+>>>
+>>>> A quick obvious fix is to have a busy bitmask that remembers each 
+>>>> page's busy state initially and only check for corruption if it was 
+>>>> busy during both checks.
+>>>>
+>>>> However, the main question is why this is occurring now with my 
+>>>> changes.
+>>>> I have added more debug to check where the stolen memory is being 
+>>>> freed, but the first run last night didn't hit the issue for once.
+>>>> I am running again now, will report back if I figure out where it is 
+>>>> being freed.
+>>>>
+>>>> I am pretty sure the "corruption" (which isn't actually corruption) 
+>>>> is from a ring buffer.
+>>>> The POISON_FREE is the only difference between the captured before 
+>>>> and after dumps:
+>>>>
+>>>> [0040] 00000000 02800000 6b6b6b6b 6b6b6b6b 6b6b6b6b 6b6b6b6b 
+>>>> 6b6b6b6b 6b6b6b6b
+>>>>
+>>>> with the 2nd dword being the MI_ARB_CHECK used for the spinner.
+>>>> I think this is the request poisoning from i915_request_retire()
+>>>>
+>>>> The bit I don't know yet is why a ring buffer was freed between the 
+>>>> initial crc capture and the corruption check. The spinner should be 
+>>>> active across the entire test, maintaining a ref on the context and 
+>>>> it's ring.
+>>>>
+>>>> hopefully my latest debug will give more answers.
+>>>
+>>> Yeah if you can figure our whether the a) spinner is still active 
+>>> during the 2nd check (as I think it should be), and b) is the 
+>>> corruption detected in the same pages which were used in the 1st pass 
+>>> that would be interesting.
+>>
+>> yep. The latest run is still stuck in the CI queue after 27 hours.
+>> I think I have enough debug in there to catch it now.
+>> Hopefully I can get a root cause once it gets chance to run.
+>>
+> 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v7/fi-adl-ddr5/igt@i915_selftest@live@reset.html#dmesg-warnings496 
+> 
+> 
+> well, the run finally happened.
+> And it shows that the freed resource happens from a workqueue. Not helpful.
+> 
+> I'll now add a saved stack traces to all objects that saves where it is 
+> allocated and freed/queued for free.
+> 
 
-I think this one should already be covered by the check in
-gpu_write_needs_flush().
+https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v8/fi-rkl-guc/igt@i915_selftest@live@reset.html#dmesg-warnings419
 
->
-> and should be considered a fix for that patch.
->
-> It should keep the asignment for integrated as it's original purpose
-> still holds there.
->
->
->
-> >
-> >> -       }
-> >>
-> >>          /* The cache-level will be applied when each vma is rebound. */
-> >>          return i915_gem_object_unbind(obj,
-> >> --
-> >> 2.36.1
-> >>
+I'm pretty sure I know what is going on now.
+
+igt_reset_engines_stolen() loops around each engine and calls 
+__igt_reset_stolen() for that engine.
+
+
+__igt_reset_stolen() does
+intel_context_create()
+
+igt_spinner_create_request()->intel_context_create_request()->__i915_request_create()->intel_context_get()
+
+intel_context_put()
+
+leaving the request as the remaining holder of the context.
+
+it then does the reset, which does nothing on GuC setups, does the 
+comparisons, then ends the spinner via igt_spinner_fini()->igt_spinner_end()
+which lets the spinner request finish.
+
+once the request is retired, intel_context_put() is eventually called, 
+which starts the GuC teardown of the context as the request was the last 
+holder of the context.
+
+This GuC teardown is asynchronous via ct transactions.
+By the time the ct_process_request() sees the 
+INTEL_GUC_ACTION_DEREGISTER_CONTEXT_DONE message, the test has already 
+looped to the next engine and has already checked the original status of 
+the page that the destroying context used for its ring buffer, so the 
+test sees it being freed from the previous loop while testing the next 
+engine. It considers this a corruption of the stolen memory due to the 
+previously highlighted double checking of busy state for each page.
+
+I think for now, we should simply not test GuC submission engines in 
+line with the reset call returning an error.
+If at some point we want to enable this test for GuC setups, then 
+flushing and waiting for context cleanup would need to be added to the test.
+
+Anyone know why per engine reset is not allowed for GuC submission setup?
+looking at commit "eb5e7da736f3 drm/i915/guc: Reset implementation for 
+new GuC interface" doesn't really detail why per engine resets are not 
+allowed.
+Maybe it just never got implemented? or are there reasons to not allow 
+the host to request specific engine resets?
+
+
+
+> 
+>>
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>>
+>>>>
+>>>>>
+>>>>> Btw what is the benefit of converting stolen to start with? It's 
+>>>>> not much of a backend since it just uses the drm range manager. So 
+>>>>> quite thin and uneventful. Diffstats for the series also do not 
+>>>>> look like you end up with much code reduction?
+>>>>>
+>>>>> Regards,
+>>>>>
+>>>>> Tvrtko
