@@ -1,57 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69C0656107A
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 07:11:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2496C5611CF
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 07:30:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3676F10EF82;
-	Thu, 30 Jun 2022 05:11:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A80210EF99;
+	Thu, 30 Jun 2022 05:30:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com
- [IPv6:2607:f8b0:4864:20::b2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 458ED10EF79
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 05:11:27 +0000 (UTC)
-Received: by mail-yb1-xb2c.google.com with SMTP id g4so20232195ybg.9
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 22:11:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20210112.gappssmtp.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=CFDHdlaGCHE+PeJHIS168pg77GYQjQuDqoyDy9FetXc=;
- b=Qn8wpoukzWbB5p2jHMf6EOZc6f8yjFXRfDe6Hoov6xlOW4EXXIm4DiCEk/073tDtkf
- RczKNvBvmnuc4zD16R05YWKtjbrLaO3blAZQDyV/1X1NpXan7n1aHvzcn/TR9QsH2LWs
- CTLzZWf43tp56GJOt/n7KpJsraMsvbwswLsGD29w7/xeGlaAi8S0hFyLJ6fFBRG7Qaiv
- f2OZ3kIRQC9Jj3vBkkF2fK5dof6LbE7532QZw9ELjyyPwJNtteNw+v1GEmSrQtFo5wX7
- gcz4EC0B+T6wzkmVBVoxqam3mCP3AFch1OZi4lRFuxNU/g5+DBCGCCMO1klJHxuxZ7Cr
- 6SfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=CFDHdlaGCHE+PeJHIS168pg77GYQjQuDqoyDy9FetXc=;
- b=ry+uvvsIlppIXVTJ+OX8MRjOyCXo5EjXj5QrclVXoxqYemA5sY1g/MeAq1hhRG7k2z
- Un7RiPSFYAdKLQfjYWXIAHTVlggnXduDoPZEuAIMWI6bEUpEBDvc4j/GMQlhPCxG9JsU
- JE0v8LGDrhgu74W2UwOjGCIF10vkw6gGJSIk2ZXENjh/UjedcSgu/DqgPCjxeTKkLCcb
- C1dB4U31GzW7hR4PdgKpxCg/6ZfRVRhAw1aslO270JLvIdACFPgaU8ETe27axtS3fCRh
- XUwn7MNkn0IK0g3hx2RHJ+pLsWEZp6Thqdl1g+RH4WD8PdHpJzI2RQ4xW8lyv/d0Mx22
- f6/g==
-X-Gm-Message-State: AJIora96CH28MiO+XHfOTrbyN1a3+md5tt2JGVEA+p9rksUWpheENh5q
- Gn8u2RfnhtTZPl3aBvhN7aF8cqyMhX+OyBSo+RRylw==
-X-Google-Smtp-Source: AGRyM1s3EpYie/uFcrbj3QI3TfLSoZAql+Jo5um/zwzDT4DvAb6ENiL3CrS2uQHD2GDq4kX9ViKhDX19u8d31vylhT4=
-X-Received: by 2002:a25:9382:0:b0:66d:ae8e:19e8 with SMTP id
- a2-20020a259382000000b0066dae8e19e8mr865921ybm.236.1656565886296; Wed, 29 Jun
- 2022 22:11:26 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5560010EA52;
+ Thu, 30 Jun 2022 05:30:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4E728A8169;
+ Thu, 30 Jun 2022 05:30:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0950008224638575820=="
 MIME-Version: 1.0
-References: <20220626014916.5130-1-niranjana.vishwanathapura@intel.com>
- <20220626014916.5130-4-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20220626014916.5130-4-niranjana.vishwanathapura@intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Thu, 30 Jun 2022 00:11:15 -0500
-Message-ID: <CAOFGe954aK2wz_TEORbw3BsW1a7EHtpUB1g6ZoYX=kSVmn+kRg@mail.gmail.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Content-Type: multipart/alternative; boundary="000000000000333eea05e2a34dc6"
-Subject: Re: [Intel-gfx] [PATCH v6 3/3] drm/doc/rfc: VM_BIND uapi definition
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+Date: Thu, 30 Jun 2022 05:30:44 -0000
+Message-ID: <165656704429.26513.10590649883011871333@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220630043959.5708-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20220630043959.5708-1-ashutosh.dixit@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/reset=3A_Handle_reset_timeouts_under_unrelated_kernel_han?=
+ =?utf-8?b?Z3MgKHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,902 +41,370 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---000000000000333eea05e2a34dc6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============0950008224638575820==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Sat, Jun 25, 2022 at 8:49 PM Niranjana Vishwanathapura <
-niranjana.vishwanathapura@intel.com> wrote:
+== Series Details ==
 
-> VM_BIND and related uapi definitions
->
-> v2: Reduce the scope to simple Mesa use case.
-> v3: Expand VM_UNBIND documentation and add
->     I915_GEM_VM_BIND/UNBIND_FENCE_VALID
->     and I915_GEM_VM_BIND_TLB_FLUSH flags.
-> v4: Remove I915_GEM_VM_BIND_TLB_FLUSH flag and add additional
->     documentation for vm_bind/unbind.
-> v5: Remove TLB flush requirement on VM_UNBIND.
->     Add version support to stage implementation.
-> v6: Define and use drm_i915_gem_timeline_fence structure for
->     all timeline fences.
-> v7: Rename I915_PARAM_HAS_VM_BIND to I915_PARAM_VM_BIND_VERSION.
->     Update documentation on async vm_bind/unbind and versioning.
->     Remove redundant vm_bind/unbind FENCE_VALID flag, execbuf3
->     batch_count field and I915_EXEC3_SECURE flag.
->
-> Signed-off-by: Niranjana Vishwanathapura <
-> niranjana.vishwanathapura@intel.com>
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> ---
->  Documentation/gpu/rfc/i915_vm_bind.h | 280 +++++++++++++++++++++++++++
->  1 file changed, 280 insertions(+)
->  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
->
-> diff --git a/Documentation/gpu/rfc/i915_vm_bind.h
-> b/Documentation/gpu/rfc/i915_vm_bind.h
-> new file mode 100644
-> index 000000000000..a93e08bceee6
-> --- /dev/null
-> +++ b/Documentation/gpu/rfc/i915_vm_bind.h
-> @@ -0,0 +1,280 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright =C2=A9 2022 Intel Corporation
-> + */
-> +
-> +/**
-> + * DOC: I915_PARAM_VM_BIND_VERSION
-> + *
-> + * VM_BIND feature version supported.
-> + * See typedef drm_i915_getparam_t param.
-> + *
-> + * Specifies the VM_BIND feature version supported.
-> + * The following versions of VM_BIND have been defined:
-> + *
-> + * 0: No VM_BIND support.
-> + *
-> + * 1: In VM_UNBIND calls, the UMD must specify the exact mappings create=
-d
-> + *    previously with VM_BIND, the ioctl will not support unbinding
-> multiple
-> + *    mappings or splitting them. Similarly, VM_BIND calls will not
-> replace
-> + *    any existing mappings.
-> + *
-> + * 2: The restrictions on unbinding partial or multiple mappings is
-> + *    lifted, Similarly, binding will replace any mappings in the given
-> range.
-> + *
-> + * See struct drm_i915_gem_vm_bind and struct drm_i915_gem_vm_unbind.
-> + */
-> +#define I915_PARAM_VM_BIND_VERSION     57
-> +
-> +/**
-> + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
-> + *
-> + * Flag to opt-in for VM_BIND mode of binding during VM creation.
-> + * See struct drm_i915_gem_vm_control flags.
-> + *
-> + * The older execbuf2 ioctl will not support VM_BIND mode of operation.
-> + * For VM_BIND mode, we have new execbuf3 ioctl which will not accept an=
-y
-> + * execlist (See struct drm_i915_gem_execbuffer3 for more details).
-> + */
-> +#define I915_VM_CREATE_FLAGS_USE_VM_BIND       (1 << 0)
-> +
-> +/* VM_BIND related ioctls */
-> +#define DRM_I915_GEM_VM_BIND           0x3d
-> +#define DRM_I915_GEM_VM_UNBIND         0x3e
-> +#define DRM_I915_GEM_EXECBUFFER3       0x3f
-> +
-> +#define DRM_IOCTL_I915_GEM_VM_BIND             DRM_IOWR(DRM_COMMAND_BASE
-> + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
-> +#define DRM_IOCTL_I915_GEM_VM_UNBIND           DRM_IOWR(DRM_COMMAND_BASE
-> + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_bind)
-> +#define DRM_IOCTL_I915_GEM_EXECBUFFER3         DRM_IOWR(DRM_COMMAND_BASE
-> + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_execbuffer3)
-> +
-> +/**
-> + * struct drm_i915_gem_timeline_fence - An input or output timeline fenc=
-e.
-> + *
-> + * The operation will wait for input fence to signal.
-> + *
-> + * The returned output fence will be signaled after the completion of th=
-e
-> + * operation.
-> + */
-> +struct drm_i915_gem_timeline_fence {
-> +       /** @handle: User's handle for a drm_syncobj to wait on or signal=
-.
-> */
-> +       __u32 handle;
-> +
-> +       /**
-> +        * @flags: Supported flags are:
-> +        *
-> +        * I915_TIMELINE_FENCE_WAIT:
-> +        * Wait for the input fence before the operation.
-> +        *
-> +        * I915_TIMELINE_FENCE_SIGNAL:
-> +        * Return operation completion fence as output.
-> +        */
-> +       __u32 flags;
-> +#define I915_TIMELINE_FENCE_WAIT            (1 << 0)
-> +#define I915_TIMELINE_FENCE_SIGNAL          (1 << 1)
-> +#define __I915_TIMELINE_FENCE_UNKNOWN_FLAGS (-(I915_TIMELINE_FENCE_SIGNA=
-L
-> << 1))
-> +
-> +       /**
-> +        * @value: A point in the timeline.
-> +        * Value must be 0 for a binary drm_syncobj. A Value of 0 for a
-> +        * timeline drm_syncobj is invalid as it turns a drm_syncobj into=
- a
-> +        * binary one.
-> +        */
-> +       __u64 value;
-> +};
-> +
-> +/**
-> + * struct drm_i915_gem_vm_bind - VA to object mapping to bind.
-> + *
-> + * This structure is passed to VM_BIND ioctl and specifies the mapping o=
-f
-> GPU
-> + * virtual address (VA) range to the section of an object that should be
-> bound
-> + * in the device page table of the specified address space (VM).
-> + * The VA range specified must be unique (ie., not currently bound) and
-> can
-> + * be mapped to whole object or a section of the object (partial binding=
-).
-> + * Multiple VA mappings can be created to the same section of the object
-> + * (aliasing).
-> + *
-> + * The @start, @offset and @length must be 4K page aligned. However the
-> DG2
-> + * and XEHPSDV has 64K page size for device local-memory and has compact
-> page
-> + * table. On those platforms, for binding device local-memory objects, t=
-he
-> + * @start must be 2M aligned, @offset and @length must be 64K aligned.
->
+Series: drm/i915/reset: Handle reset timeouts under unrelated kernel hangs (rev2)
+URL   : https://patchwork.freedesktop.org/series/105748/
+State : success
 
-This is not acceptable.  We need 64K granularity.  This includes the
-starting address, the BO offset, and the length.  Why?  The tl;dr is that
-it's a requirement for about 50% of D3D12 apps if we want them to run on
-Linux via D3D12.  A longer explanation follows.  I don't necessarily expect
-kernel folks to get all the details but hopefully I'll have left enough of
-a map that some of the Intel Mesa folks can help fill in details.
+== Summary ==
 
-Many modern D3D12 apps have a hard requirement on Tier2 tiled resources.
-This is a feature that Intel has supported in the D3D12 driver since
-Skylake.  In order to implement this feature, VKD3D requires the various
-sparseResidencyImage* and sparseResidency*Sampled Vulkan features.  If we
-want those apps to work (there's getting to be quite a few of them), we
-need to implement the Vulkan sparse residency features.
+CI Bug Log - changes from CI_DRM_11828 -> Patchwork_105748v2
+====================================================
 
-What is sparse residency?  I'm glad you asked!  The sparse residency
-features allow a client to separately bind each miplevel or array slice of
-an image to a chunk of device memory independently, without affecting any
-other areas of the image.  Once you get to a high enough miplevel that
-everything fits inside a single sparse image block (that's a technical
-Vulkan term you can search for in the spec), you can enter a "miptail"
-which contains all the remaining miplevels in a single sparse image block.
+Summary
+-------
 
-The term "sparse image block" is what the Vulkan spec uses.  On Intel
-hardware and in the docs, it's what we call a "tile".  Specifically, the
-image needs to use Yf or Ys tiling on SKL-TGL or a Tile64 on DG2+.  This is
-because Tile4 and legacy X and Y-tiling don't provide any guarantees about
-page alignment for slices.  Yf, Ys, and Tile64, on the other hand, align
-all slices of the image to a tile boundary, allowing us to map memory to
-different slices independently, assuming we have 64K (or 4K for Yf) VM_BIND
-granularity.  (4K isn't actually a requirement for SKL-TGL; we can use Ys
-all the time which has 64K tiles but there's no reason to not support 4K
-alignments on integrated.)
+  **SUCCESS**
 
-Someone may be tempted to ask, "Can't we wiggle the strides around or
-something to make it work?"  I thought about that and no, you can't.  The
-problem here is LOD2+.  Sure, you can have a stride such that the image is
-a multiple of 2M worth of tiles across.  That'll work fine for LOD0 and
-LOD1; both will be 2M aligned.  However, LOD2 won't be and there's no way
-to control that.  The hardware will place it to the right of LOD1 by
-ROUND_UP(width, tile_width) pixels and there's nothing you can do about
-that.  If that position doesn't happen to hit a 2M boundary, you're out of
-luck.
+  No regressions found.
 
-I hope that explanation provides enough detail.  Sadly, this is one of
-those things which has a lot of moving pieces all over different bits of
-the hardware and various APIs and they all have to work together just right
-for it to all come out in the end.  But, yeah, we really need 64K aligned
-binding if we want VKD3D to work.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/index.html
 
---Jason
+Participating hosts (43 -> 43)
+------------------------------
+
+  Additional (1): fi-bxt-dsi 
+  Missing    (1): fi-icl-u2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_105748v2:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-ehl-2}:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-ehl-2/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-ehl-2/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_105748v2 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - fi-snb-2600:        [PASS][3] -> [FAIL][4] ([i915#4338])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-snb-2600/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-snb-2600/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#2190])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bxt-dsi/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][7] ([fdo#109271]) +12 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bxt-dsi/igt@gem_tiled_blits@basic.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][8] -> [INCOMPLETE][9] ([i915#4785])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_busy@basic@flip:
+    - bat-adlp-4:         [PASS][10] -> [DMESG-WARN][11] ([i915#3576]) +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-adlp-4/igt@kms_busy@basic@flip.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-adlp-4/igt@kms_busy@basic@flip.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][12] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bxt-dsi/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][13] ([fdo#109271] / [i915#4312] / [i915#5594] / [i915#6246])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-adlp-6}:       [DMESG-WARN][14] ([i915#3576]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - {bat-dg2-9}:        [INCOMPLETE][16] ([i915#5270]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-dg2-9/igt@i915_selftest@live@gt_lrc.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-dg2-9/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [DMESG-FAIL][18] ([i915#4494] / [i915#4957]) -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@sanitycheck:
+    - {bat-adln-1}:       [DMESG-FAIL][20] ([i915#6297]) -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-adln-1/igt@i915_selftest@live@sanitycheck.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-adln-1/igt@i915_selftest@live@sanitycheck.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-tgl-u2:          [DMESG-WARN][22] ([i915#402]) -> [PASS][23] +2 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-tgl-u2/igt@kms_busy@basic@flip.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-tgl-u2/igt@kms_busy@basic@flip.html
+    - {bat-adln-1}:       [DMESG-WARN][24] ([i915#3576]) -> [PASS][25] +1 similar issue
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-adln-1/igt@kms_busy@basic@flip.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-adln-1/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][26] ([i915#6298]) -> [PASS][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       [INCOMPLETE][28] ([i915#3921]) -> [INCOMPLETE][29] ([i915#3921] / [i915#6105])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4338]: https://gitlab.freedesktop.org/drm/intel/issues/4338
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5270]: https://gitlab.freedesktop.org/drm/intel/issues/5270
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
+  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
+  [i915#6105]: https://gitlab.freedesktop.org/drm/intel/issues/6105
+  [i915#6246]: https://gitlab.freedesktop.org/drm/intel/issues/6246
+  [i915#6297]: https://gitlab.freedesktop.org/drm/intel/issues/6297
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
 
 
+Build changes
+-------------
 
-> + * Also, for such mappings, i915 will reserve the whole 2M range for it
-> so as
-> + * to not allow multiple mappings in that 2M range (Compact page tables
-> do not
-> + * allow 64K page and 4K page bindings in the same 2M range).
-> + *
-> + * Error code -EINVAL will be returned if @start, @offset and @length ar=
-e
-> not
-> + * properly aligned. In version 1 (See I915_PARAM_VM_BIND_VERSION), erro=
-r
-> code
-> + * -ENOSPC will be returned if the VA range specified can't be reserved.
-> + *
-> + * VM_BIND/UNBIND ioctl calls executed on different CPU threads
-> concurrently
-> + * are not ordered. Furthermore, parts of the VM_BIND operation can be
-> done
-> + * asynchronously, if valid @fence is specified.
-> + */
-> +struct drm_i915_gem_vm_bind {
-> +       /** @vm_id: VM (address space) id to bind */
-> +       __u32 vm_id;
-> +
-> +       /** @handle: Object handle */
-> +       __u32 handle;
-> +
-> +       /** @start: Virtual Address start to bind */
-> +       __u64 start;
-> +
-> +       /** @offset: Offset in object to bind */
-> +       __u64 offset;
-> +
-> +       /** @length: Length of mapping to bind */
-> +       __u64 length;
-> +
-> +       /**
-> +        * @flags: Supported flags are:
-> +        *
-> +        * I915_GEM_VM_BIND_READONLY:
-> +        * Mapping is read-only.
-> +        *
-> +        * I915_GEM_VM_BIND_CAPTURE:
-> +        * Capture this mapping in the dump upon GPU error.
-> +        */
-> +       __u64 flags;
-> +#define I915_GEM_VM_BIND_READONLY      (1 << 1)
-> +#define I915_GEM_VM_BIND_CAPTURE       (1 << 2)
-> +
-> +       /**
-> +        * @fence: Timeline fence for bind completion signaling.
-> +        *
-> +        * It is an out fence, hence using I915_TIMELINE_FENCE_WAIT flag
-> +        * is invalid, and an error will be returned.
-> +        */
-> +       struct drm_i915_gem_timeline_fence fence;
-> +
-> +       /**
-> +        * @extensions: Zero-terminated chain of extensions.
-> +        *
-> +        * For future extensions. See struct i915_user_extension.
-> +        */
-> +       __u64 extensions;
-> +};
-> +
-> +/**
-> + * struct drm_i915_gem_vm_unbind - VA to object mapping to unbind.
-> + *
-> + * This structure is passed to VM_UNBIND ioctl and specifies the GPU
-> virtual
-> + * address (VA) range that should be unbound from the device page table
-> of the
-> + * specified address space (VM). VM_UNBIND will force unbind the specifi=
-ed
-> + * range from device page table without waiting for any GPU job to
-> complete.
-> + * It is UMDs responsibility to ensure the mapping is no longer in use
-> before
-> + * calling VM_UNBIND.
-> + *
-> + * If the specified mapping is not found, the ioctl will simply return
-> without
-> + * any error.
-> + *
-> + * VM_BIND/UNBIND ioctl calls executed on different CPU threads
-> concurrently
-> + * are not ordered. Furthermore, parts of the VM_UNBIND operation can be
-> done
-> + * asynchronously, if valid @fence is specified.
-> + */
-> +struct drm_i915_gem_vm_unbind {
-> +       /** @vm_id: VM (address space) id to bind */
-> +       __u32 vm_id;
-> +
-> +       /** @rsvd: Reserved, MBZ */
-> +       __u32 rsvd;
-> +
-> +       /** @start: Virtual Address start to unbind */
-> +       __u64 start;
-> +
-> +       /** @length: Length of mapping to unbind */
-> +       __u64 length;
-> +
-> +       /** @flags: Currently reserved, MBZ */
-> +       __u64 flags;
-> +
-> +       /**
-> +        * @fence: Timeline fence for unbind completion signaling.
-> +        *
-> +        * It is an out fence, hence using I915_TIMELINE_FENCE_WAIT flag
-> +        * is invalid, and an error will be returned.
-> +        */
-> +       struct drm_i915_gem_timeline_fence fence;
-> +
-> +       /**
-> +        * @extensions: Zero-terminated chain of extensions.
-> +        *
-> +        * For future extensions. See struct i915_user_extension.
-> +        */
-> +       __u64 extensions;
-> +};
-> +
-> +/**
-> + * struct drm_i915_gem_execbuffer3 - Structure for
-> DRM_I915_GEM_EXECBUFFER3
-> + * ioctl.
-> + *
-> + * DRM_I915_GEM_EXECBUFFER3 ioctl only works in VM_BIND mode and VM_BIND
-> mode
-> + * only works with this ioctl for submission.
-> + * See I915_VM_CREATE_FLAGS_USE_VM_BIND.
-> + */
-> +struct drm_i915_gem_execbuffer3 {
-> +       /**
-> +        * @ctx_id: Context id
-> +        *
-> +        * Only contexts with user engine map are allowed.
-> +        */
-> +       __u32 ctx_id;
-> +
-> +       /**
-> +        * @engine_idx: Engine index
-> +        *
-> +        * An index in the user engine map of the context specified by
-> @ctx_id.
-> +        */
-> +       __u32 engine_idx;
-> +
-> +       /**
-> +        * @batch_address: Batch gpu virtual address/es.
-> +        *
-> +        * For normal submission, it is the gpu virtual address of the
-> batch
-> +        * buffer. For parallel submission, it is a pointer to an array o=
-f
-> +        * batch buffer gpu virtual addresses with array size equal to th=
-e
-> +        * number of (parallel) engines involved in that submission (See
-> +        * struct i915_context_engines_parallel_submit).
-> +        */
-> +       __u64 batch_address;
-> +
-> +       /** @flags: Currently reserved, MBZ */
-> +       __u64 flags;
-> +
-> +       /** @rsvd1: Reserved, MBZ */
-> +       __u32 rsvd1;
-> +
-> +       /** @fence_count: Number of fences in @timeline_fences array. */
-> +       __u32 fence_count;
-> +
-> +       /**
-> +        * @timeline_fences: Pointer to an array of timeline fences.
-> +        *
-> +        * Timeline fences are of format struct
-> drm_i915_gem_timeline_fence.
-> +        */
-> +       __u64 timeline_fences;
-> +
-> +       /** @rsvd2: Reserved, MBZ */
-> +       __u64 rsvd2;
-> +
-> +       /**
-> +        * @extensions: Zero-terminated chain of extensions.
-> +        *
-> +        * For future extensions. See struct i915_user_extension.
-> +        */
-> +       __u64 extensions;
-> +};
-> +
-> +/**
-> + * struct drm_i915_gem_create_ext_vm_private - Extension to make the
-> object
-> + * private to the specified VM.
-> + *
-> + * See struct drm_i915_gem_create_ext.
-> + */
-> +struct drm_i915_gem_create_ext_vm_private {
-> +#define I915_GEM_CREATE_EXT_VM_PRIVATE         2
-> +       /** @base: Extension link. See struct i915_user_extension. */
-> +       struct i915_user_extension base;
-> +
-> +       /** @vm_id: Id of the VM to which the object is private */
-> +       __u32 vm_id;
-> +};
-> --
-> 2.21.0.rc0.32.g243a4c7e27
->
->
+  * Linux: CI_DRM_11828 -> Patchwork_105748v2
 
---000000000000333eea05e2a34dc6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  CI-20190529: 20190529
+  CI_DRM_11828: bfa673739cafe6310dd6472be8cfbda682256c65 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6551: a01ebaef40f1fa653e9d6a59b719f2d69af2b458 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_105748v2: bfa673739cafe6310dd6472be8cfbda682256c65 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Sat, Jun 25, 2022 at 8:49 PM Niranjana Vishwanathapura &lt;<a hre=
-f=3D"mailto:niranjana.vishwanathapura@intel.com">niranjana.vishwanathapura@=
-intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">VM_BIND and related uapi definitions<br>
-<br>
-v2: Reduce the scope to simple Mesa use case.<br>
-v3: Expand VM_UNBIND documentation and add<br>
-=C2=A0 =C2=A0 I915_GEM_VM_BIND/UNBIND_FENCE_VALID<br>
-=C2=A0 =C2=A0 and I915_GEM_VM_BIND_TLB_FLUSH flags.<br>
-v4: Remove I915_GEM_VM_BIND_TLB_FLUSH flag and add additional<br>
-=C2=A0 =C2=A0 documentation for vm_bind/unbind.<br>
-v5: Remove TLB flush requirement on VM_UNBIND.<br>
-=C2=A0 =C2=A0 Add version support to stage implementation.<br>
-v6: Define and use drm_i915_gem_timeline_fence structure for<br>
-=C2=A0 =C2=A0 all timeline fences.<br>
-v7: Rename I915_PARAM_HAS_VM_BIND to I915_PARAM_VM_BIND_VERSION.<br>
-=C2=A0 =C2=A0 Update documentation on async vm_bind/unbind and versioning.<=
-br>
-=C2=A0 =C2=A0 Remove redundant vm_bind/unbind FENCE_VALID flag, execbuf3<br=
->
-=C2=A0 =C2=A0 batch_count field and I915_EXEC3_SECURE flag.<br>
-<br>
-Signed-off-by: Niranjana Vishwanathapura &lt;<a href=3D"mailto:niranjana.vi=
-shwanathapura@intel.com" target=3D"_blank">niranjana.vishwanathapura@intel.=
-com</a>&gt;<br>
-Reviewed-by: Daniel Vetter &lt;<a href=3D"mailto:daniel.vetter@ffwll.ch" ta=
-rget=3D"_blank">daniel.vetter@ffwll.ch</a>&gt;<br>
----<br>
-=C2=A0Documentation/gpu/rfc/i915_vm_bind.h | 280 ++++++++++++++++++++++++++=
-+<br>
-=C2=A01 file changed, 280 insertions(+)<br>
-=C2=A0create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h<br>
-<br>
-diff --git a/Documentation/gpu/rfc/i915_vm_bind.h b/Documentation/gpu/rfc/i=
-915_vm_bind.h<br>
-new file mode 100644<br>
-index 000000000000..a93e08bceee6<br>
---- /dev/null<br>
-+++ b/Documentation/gpu/rfc/i915_vm_bind.h<br>
-@@ -0,0 +1,280 @@<br>
-+/* SPDX-License-Identifier: MIT */<br>
-+/*<br>
-+ * Copyright =C2=A9 2022 Intel Corporation<br>
-+ */<br>
-+<br>
-+/**<br>
-+ * DOC: I915_PARAM_VM_BIND_VERSION<br>
-+ *<br>
-+ * VM_BIND feature version supported.<br>
-+ * See typedef drm_i915_getparam_t param.<br>
-+ *<br>
-+ * Specifies the VM_BIND feature version supported.<br>
-+ * The following versions of VM_BIND have been defined:<br>
-+ *<br>
-+ * 0: No VM_BIND support.<br>
-+ *<br>
-+ * 1: In VM_UNBIND calls, the UMD must specify the exact mappings created<=
-br>
-+ *=C2=A0 =C2=A0 previously with VM_BIND, the ioctl will not support unbind=
-ing multiple<br>
-+ *=C2=A0 =C2=A0 mappings or splitting them. Similarly, VM_BIND calls will =
-not replace<br>
-+ *=C2=A0 =C2=A0 any existing mappings.<br>
-+ *<br>
-+ * 2: The restrictions on unbinding partial or multiple mappings is<br>
-+ *=C2=A0 =C2=A0 lifted, Similarly, binding will replace any mappings in th=
-e given range.<br>
-+ *<br>
-+ * See struct drm_i915_gem_vm_bind and struct drm_i915_gem_vm_unbind.<br>
-+ */<br>
-+#define I915_PARAM_VM_BIND_VERSION=C2=A0 =C2=A0 =C2=A057<br>
-+<br>
-+/**<br>
-+ * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND<br>
-+ *<br>
-+ * Flag to opt-in for VM_BIND mode of binding during VM creation.<br>
-+ * See struct drm_i915_gem_vm_control flags.<br>
-+ *<br>
-+ * The older execbuf2 ioctl will not support VM_BIND mode of operation.<br=
->
-+ * For VM_BIND mode, we have new execbuf3 ioctl which will not accept any<=
-br>
-+ * execlist (See struct drm_i915_gem_execbuffer3 for more details).<br>
-+ */<br>
-+#define I915_VM_CREATE_FLAGS_USE_VM_BIND=C2=A0 =C2=A0 =C2=A0 =C2=A0(1 &lt;=
-&lt; 0)<br>
-+<br>
-+/* VM_BIND related ioctls */<br>
-+#define DRM_I915_GEM_VM_BIND=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00x3d<=
-br>
-+#define DRM_I915_GEM_VM_UNBIND=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00x3e<br>
-+#define DRM_I915_GEM_EXECBUFFER3=C2=A0 =C2=A0 =C2=A0 =C2=A00x3f<br>
-+<br>
-+#define DRM_IOCTL_I915_GEM_VM_BIND=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915=
-_gem_vm_bind)<br>
-+#define DRM_IOCTL_I915_GEM_VM_UNBIND=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_=
-vm_bind)<br>
-+#define DRM_IOCTL_I915_GEM_EXECBUFFER3=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DR=
-M_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_exe=
-cbuffer3)<br>
-+<br>
-+/**<br>
-+ * struct drm_i915_gem_timeline_fence - An input or output timeline fence.=
-<br>
-+ *<br>
-+ * The operation will wait for input fence to signal.<br>
-+ *<br>
-+ * The returned output fence will be signaled after the completion of the<=
-br>
-+ * operation.<br>
-+ */<br>
-+struct drm_i915_gem_timeline_fence {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @handle: User&#39;s handle for a drm_syncob=
-j to wait on or signal. */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 handle;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @flags: Supported flags are:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * I915_TIMELINE_FENCE_WAIT:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Wait for the input fence before the operatio=
-n.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * I915_TIMELINE_FENCE_SIGNAL:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Return operation completion fence as output.=
-<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 flags;<br>
-+#define I915_TIMELINE_FENCE_WAIT=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-(1 &lt;&lt; 0)<br>
-+#define I915_TIMELINE_FENCE_SIGNAL=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (1 &l=
-t;&lt; 1)<br>
-+#define __I915_TIMELINE_FENCE_UNKNOWN_FLAGS (-(I915_TIMELINE_FENCE_SIGNAL =
-&lt;&lt; 1))<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @value: A point in the timeline.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Value must be 0 for a binary drm_syncobj. A =
-Value of 0 for a<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * timeline drm_syncobj is invalid as it turns =
-a drm_syncobj into a<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * binary one.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 value;<br>
-+};<br>
-+<br>
-+/**<br>
-+ * struct drm_i915_gem_vm_bind - VA to object mapping to bind.<br>
-+ *<br>
-+ * This structure is passed to VM_BIND ioctl and specifies the mapping of =
-GPU<br>
-+ * virtual address (VA) range to the section of an object that should be b=
-ound<br>
-+ * in the device page table of the specified address space (VM).<br>
-+ * The VA range specified must be unique (ie., not currently bound) and ca=
-n<br>
-+ * be mapped to whole object or a section of the object (partial binding).=
-<br>
-+ * Multiple VA mappings can be created to the same section of the object<b=
-r>
-+ * (aliasing).<br>
-+ *<br>
-+ * The @start, @offset and @length must be 4K page aligned. However the DG=
-2<br>
-+ * and XEHPSDV has 64K page size for device local-memory and has compact p=
-age<br>
-+ * table. On those platforms, for binding device local-memory objects, the=
-<br>
-+ * @start must be 2M aligned, @offset and @length must be 64K aligned.<br>=
-</blockquote><div><br></div><div>This is not acceptable.=C2=A0 We need 64K =
-granularity.=C2=A0 This includes the starting address, the BO offset, and t=
-he length.=C2=A0 Why?=C2=A0 The tl;dr is that it&#39;s a requirement for ab=
-out 50% of D3D12 apps if we want them to run on Linux via D3D12.=C2=A0 A lo=
-nger explanation follows.=C2=A0 I don&#39;t necessarily expect kernel folks=
- to get all the details but hopefully I&#39;ll have left enough of a map th=
-at some of the Intel Mesa folks can help fill in details.<br></div><div><br=
-></div><div>Many modern D3D12 apps have a hard requirement on Tier2 tiled r=
-esources.=C2=A0 This is a feature that Intel has supported in the D3D12 dri=
-ver since Skylake.=C2=A0 In order to implement this feature, VKD3D requires=
- the various sparseResidencyImage* and sparseResidency*Sampled Vulkan featu=
-res.=C2=A0 If we want those apps to work (there&#39;s getting to be quite a=
- few of them), we need to implement the Vulkan sparse residency features.<b=
-r></div><div><code><br></code></div><div>What is sparse residency?=C2=A0 I&=
-#39;m glad you asked!=C2=A0 The sparse residency features allow a client to=
- separately bind each miplevel or array slice of an image to a chunk of dev=
-ice memory independently, without affecting any other areas of the image.=
-=C2=A0 Once you get to a high enough miplevel that everything fits inside a=
- single sparse image block (that&#39;s a technical Vulkan term you can sear=
-ch for in the spec), you can enter a &quot;miptail&quot; which contains all=
- the remaining miplevels in a single sparse image block.</div><div><br></di=
-v><div>The term &quot;sparse image block&quot; is what the Vulkan spec uses=
-.=C2=A0 On Intel hardware and in the docs, it&#39;s what we call a &quot;ti=
-le&quot;.=C2=A0 Specifically, the image needs to use Yf or Ys tiling on SKL=
--TGL or a Tile64 on DG2+.=C2=A0 This is because Tile4 and legacy X and Y-ti=
-ling don&#39;t provide any guarantees about page alignment for slices.=C2=
-=A0 Yf, Ys, and Tile64, on the other hand, align all slices of the image to=
- a tile boundary, allowing us to map memory to different slices independent=
-ly, assuming we have 64K (or 4K for Yf) VM_BIND granularity.=C2=A0 (4K isn&=
-#39;t actually a requirement for SKL-TGL; we can use Ys all the time which =
-has 64K tiles but there&#39;s no reason to not support 4K alignments on int=
-egrated.)<br></div><div><br></div><div>Someone may be tempted to ask, &quot=
-;Can&#39;t we wiggle the strides around or something to make it work?&quot;=
-=C2=A0 I thought about that and no, you can&#39;t.=C2=A0 The problem here i=
-s LOD2+.=C2=A0 Sure, you can have a stride such that the image is a multipl=
-e of 2M worth of tiles across.=C2=A0 That&#39;ll work fine for LOD0 and LOD=
-1; both will be 2M aligned.=C2=A0 However, LOD2 won&#39;t be and there&#39;=
-s no way to control that.=C2=A0 The hardware will place it to the right of =
-LOD1 by ROUND_UP(width, tile_width) pixels and there&#39;s nothing you can =
-do about that.=C2=A0 If that position doesn&#39;t happen to hit a 2M bounda=
-ry, you&#39;re out of luck.</div><div><br></div><div>I hope that explanatio=
-n provides enough detail.=C2=A0 Sadly, this is one of those things which ha=
-s a lot of moving pieces all over different bits of the hardware and variou=
-s APIs and they all have to work together just right for it to all come out=
- in the end.=C2=A0 But, yeah, we really need 64K aligned binding if we want=
- VKD3D to work.</div><div><br></div><div>--Jason</div><div><br></div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-+ * Also, for such mappings, i915 will reserve the whole 2M range for it so=
- as<br>
-+ * to not allow multiple mappings in that 2M range (Compact page tables do=
- not<br>
-+ * allow 64K page and 4K page bindings in the same 2M range).<br>
-+ *<br>
-+ * Error code -EINVAL will be returned if @start, @offset and @length are =
-not<br>
-+ * properly aligned. In version 1 (See I915_PARAM_VM_BIND_VERSION), error =
-code<br>
-+ * -ENOSPC will be returned if the VA range specified can&#39;t be reserve=
-d.<br>
-+ *<br>
-+ * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrent=
-ly<br>
-+ * are not ordered. Furthermore, parts of the VM_BIND operation can be don=
-e<br>
-+ * asynchronously, if valid @fence is specified.<br>
-+ */<br>
-+struct drm_i915_gem_vm_bind {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @vm_id: VM (address space) id to bind */<br=
->
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 vm_id;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @handle: Object handle */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 handle;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @start: Virtual Address start to bind */<br=
->
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 start;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @offset: Offset in object to bind */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 offset;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @length: Length of mapping to bind */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 length;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @flags: Supported flags are:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * I915_GEM_VM_BIND_READONLY:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Mapping is read-only.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * I915_GEM_VM_BIND_CAPTURE:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Capture this mapping in the dump upon GPU er=
-ror.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 flags;<br>
-+#define I915_GEM_VM_BIND_READONLY=C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; 1)<br>
-+#define I915_GEM_VM_BIND_CAPTURE=C2=A0 =C2=A0 =C2=A0 =C2=A0(1 &lt;&lt; 2)<=
-br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @fence: Timeline fence for bind completion s=
-ignaling.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * It is an out fence, hence using I915_TIMELIN=
-E_FENCE_WAIT flag<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * is invalid, and an error will be returned.<b=
-r>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_i915_gem_timeline_fence fence;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @extensions: Zero-terminated chain of extens=
-ions.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * For future extensions. See struct i915_user_=
-extension.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 extensions;<br>
-+};<br>
-+<br>
-+/**<br>
-+ * struct drm_i915_gem_vm_unbind - VA to object mapping to unbind.<br>
-+ *<br>
-+ * This structure is passed to VM_UNBIND ioctl and specifies the GPU virtu=
-al<br>
-+ * address (VA) range that should be unbound from the device page table of=
- the<br>
-+ * specified address space (VM). VM_UNBIND will force unbind the specified=
-<br>
-+ * range from device page table without waiting for any GPU job to complet=
-e.<br>
-+ * It is UMDs responsibility to ensure the mapping is no longer in use bef=
-ore<br>
-+ * calling VM_UNBIND.<br>
-+ *<br>
-+ * If the specified mapping is not found, the ioctl will simply return wit=
-hout<br>
-+ * any error.<br>
-+ *<br>
-+ * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrent=
-ly<br>
-+ * are not ordered. Furthermore, parts of the VM_UNBIND operation can be d=
-one<br>
-+ * asynchronously, if valid @fence is specified.<br>
-+ */<br>
-+struct drm_i915_gem_vm_unbind {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @vm_id: VM (address space) id to bind */<br=
->
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 vm_id;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @rsvd: Reserved, MBZ */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 rsvd;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @start: Virtual Address start to unbind */<=
-br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 start;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @length: Length of mapping to unbind */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 length;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @flags: Currently reserved, MBZ */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 flags;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @fence: Timeline fence for unbind completion=
- signaling.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * It is an out fence, hence using I915_TIMELIN=
-E_FENCE_WAIT flag<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * is invalid, and an error will be returned.<b=
-r>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_i915_gem_timeline_fence fence;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @extensions: Zero-terminated chain of extens=
-ions.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * For future extensions. See struct i915_user_=
-extension.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 extensions;<br>
-+};<br>
-+<br>
-+/**<br>
-+ * struct drm_i915_gem_execbuffer3 - Structure for DRM_I915_GEM_EXECBUFFER=
-3<br>
-+ * ioctl.<br>
-+ *<br>
-+ * DRM_I915_GEM_EXECBUFFER3 ioctl only works in VM_BIND mode and VM_BIND m=
-ode<br>
-+ * only works with this ioctl for submission.<br>
-+ * See I915_VM_CREATE_FLAGS_USE_VM_BIND.<br>
-+ */<br>
-+struct drm_i915_gem_execbuffer3 {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @ctx_id: Context id<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Only contexts with user engine map are allow=
-ed.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 ctx_id;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @engine_idx: Engine index<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * An index in the user engine map of the conte=
-xt specified by @ctx_id.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 engine_idx;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @batch_address: Batch gpu virtual address/es=
-.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * For normal submission, it is the gpu virtual=
- address of the batch<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * buffer. For parallel submission, it is a poi=
-nter to an array of<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * batch buffer gpu virtual addresses with arra=
-y size equal to the<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * number of (parallel) engines involved in tha=
-t submission (See<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * struct i915_context_engines_parallel_submit)=
-.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 batch_address;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @flags: Currently reserved, MBZ */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 flags;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @rsvd1: Reserved, MBZ */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 rsvd1;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @fence_count: Number of fences in @timeline=
-_fences array. */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 fence_count;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @timeline_fences: Pointer to an array of tim=
-eline fences.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Timeline fences are of format struct drm_i91=
-5_gem_timeline_fence.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 timeline_fences;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @rsvd2: Reserved, MBZ */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 rsvd2;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @extensions: Zero-terminated chain of extens=
-ions.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * For future extensions. See struct i915_user_=
-extension.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 extensions;<br>
-+};<br>
-+<br>
-+/**<br>
-+ * struct drm_i915_gem_create_ext_vm_private - Extension to make the objec=
-t<br>
-+ * private to the specified VM.<br>
-+ *<br>
-+ * See struct drm_i915_gem_create_ext.<br>
-+ */<br>
-+struct drm_i915_gem_create_ext_vm_private {<br>
-+#define I915_GEM_CREATE_EXT_VM_PRIVATE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02<=
-br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @base: Extension link. See struct i915_user=
-_extension. */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0struct i915_user_extension base;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @vm_id: Id of the VM to which the object is=
- private */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 vm_id;<br>
-+};<br>
--- <br>
-2.21.0.rc0.32.g243a4c7e27<br>
-<br>
-</blockquote></div></div>
 
---000000000000333eea05e2a34dc6--
+### Linux commits
+
+c169a92a2582 drm/i915/reset: Handle reset timeouts under unrelated kernel hangs
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/index.html
+
+--===============0950008224638575820==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/reset: Handle reset timeouts under unrelated kernel hangs (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105748/">https://patchwork.freedesktop.org/series/105748/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11828 -&gt; Patchwork_105748v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/index.html</p>
+<h2>Participating hosts (43 -&gt; 43)</h2>
+<p>Additional (1): fi-bxt-dsi <br />
+  Missing    (1): fi-icl-u2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_105748v2:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-ehl-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-ehl-2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_105748v2 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-snb-2600/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-snb-2600/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4338">i915#4338</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bxt-dsi/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bxt-dsi/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +12 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-adlp-4/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bxt-dsi/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6246">i915#6246</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-dg2-9/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5270">i915#5270</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-dg2-9/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-adln-1/igt@i915_selftest@live@sanitycheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6297">i915#6297</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-adln-1/igt@i915_selftest@live@sanitycheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-tgl-u2/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-tgl-u2/igt@kms_busy@basic@flip.html">PASS</a> +2 similar issues</p>
+</li>
+<li>
+<p>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/bat-adln-1/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/bat-adln-1/igt@kms_busy@basic@flip.html">PASS</a> +1 similar issue</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11828/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105748v2/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6105">i915#6105</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11828 -&gt; Patchwork_105748v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11828: bfa673739cafe6310dd6472be8cfbda682256c65 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6551: a01ebaef40f1fa653e9d6a59b719f2d69af2b458 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_105748v2: bfa673739cafe6310dd6472be8cfbda682256c65 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>c169a92a2582 drm/i915/reset: Handle reset timeouts under unrelated kernel hangs</p>
+
+</body>
+</html>
+
+--===============0950008224638575820==--
