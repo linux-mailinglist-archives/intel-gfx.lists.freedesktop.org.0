@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B84561EBC
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 17:06:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECBA1561EBD
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 17:06:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8494611B630;
-	Thu, 30 Jun 2022 15:06:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56B6C11B45F;
+	Thu, 30 Jun 2022 15:06:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F85211B380
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 15:06:07 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FEA011B639
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 15:06:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656601567; x=1688137567;
+ t=1656601569; x=1688137569;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=l36lT6ehgiE24ToA7jNioTB21XFc8m7YVsl3wZKS4Vo=;
- b=DtFiQl9WeCvHnSXxPH8bCf7S/CcYS/1TdlfUtRl0apehD+m7CJXuj03x
- VUrZeu7ER9p6UbUQ87egT6YtQeQXIIpgIpOPksFqAp3elsTaKf+YZItEW
- tIXP7xNslU3yRJOu5WpOq7CMndlLS9Mz5hJRe9gsdG1C7cy1nhTkRMpbg
- zyTLpdlGtOWXWlCBe0unDZPrgkWUoYyehomN8cDBAE7fSu2pTL6I5UcWV
- NKOy8FQ6Oy2OFBhXJBdOgo8Q/euLgVn1RVx9bH0aMkcYd7TXT/eTRvT0j
- Wbz8qY/rcB1EifZ7za0PSh3g3RPJVLFJS/cG74csOlnFLvTEeW1vp4Be+ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="368687197"
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="368687197"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 08:06:06 -0700
+ bh=OuOaoZbO/PBOmG45YWidGBNCAWwrXLXMAGc+OKk9SRU=;
+ b=J1K4zrrcVpajsR0nHt+Jbs1Y91X9vvY4U1Qsg9T51VFEEjpzLRh3VFE+
+ bYCGK28flstAjs1Dtg8FnV5z7LI46rAuuTTnlLdXo4il1hsiSLV00bBY4
+ H5U0UmOE+33IMPDmjwJpBnBEcS+S6/iNn3vagiFxy2A5x436ceX8msOLy
+ 1CKQNr8jLITiSMytEapkm86jcTDmDwF4vRj5IfzlkowW4+wzPgJdzeKoQ
+ +t+s9qf2NYmBiTAn6B0JnRE+gB71/JigGmQKiegBsHujHKt/9eMkzP6wY
+ 9fu0y2zgea+AYY8/p5YnHEWpVFj/n15pYMWIIn7p9H0bqNQAWclAjmUh/ Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="344059988"
+X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="344059988"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 08:06:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="565880827"
+X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="623762143"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.161])
- by orsmga006.jf.intel.com with SMTP; 30 Jun 2022 08:06:04 -0700
+ by orsmga001.jf.intel.com with SMTP; 30 Jun 2022 08:06:07 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 30 Jun 2022 18:06:03 +0300
+ Thu, 30 Jun 2022 18:06:06 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Jun 2022 18:05:58 +0300
-Message-Id: <20220630150600.24611-2-ville.syrjala@linux.intel.com>
+Date: Thu, 30 Jun 2022 18:05:59 +0300
+Message-Id: <20220630150600.24611-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220630150600.24611-1-ville.syrjala@linux.intel.com>
 References: <20220630150600.24611-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Use short PCH names consistently
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Nuke PCH_MCC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,62 +63,80 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The comments regarding PCH compatibility use long vs.
-short names inconsistently. Just use short names always.
+MCC is derived from TGP, and we have no real need to
+differentiate between the two. Thus remove PCH_MCC and
+just declare it to be PCH_TGP compatible.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_pch.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c  | 2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 2 +-
+ drivers/gpu/drm/i915/intel_pch.c          | 3 ++-
+ drivers/gpu/drm/i915/intel_pch.h          | 4 +---
+ 4 files changed, 5 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 272e1bf6006b..2330604b0bcc 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4179,7 +4179,7 @@ static enum hpd_pin ehl_hpd_pin(struct drm_i915_private *dev_priv,
+ 	if (port == PORT_D)
+ 		return HPD_PORT_A;
+ 
+-	if (HAS_PCH_MCC(dev_priv))
++	if (HAS_PCH_TGP(dev_priv))
+ 		return icl_hpd_pin(dev_priv, port);
+ 
+ 	return HPD_PORT_A + port - PORT_A;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 1ae09431f53a..ebd91aa69dd2 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2852,7 +2852,7 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
+ 		ddc_pin = rkl_port_to_ddc_pin(dev_priv, port);
+ 	else if (DISPLAY_VER(dev_priv) == 9 && HAS_PCH_TGP(dev_priv))
+ 		ddc_pin = gen9bc_tgp_port_to_ddc_pin(dev_priv, port);
+-	else if (HAS_PCH_MCC(dev_priv))
++	else if (IS_JSL_EHL(dev_priv) && HAS_PCH_TGP(dev_priv))
+ 		ddc_pin = mcc_port_to_ddc_pin(dev_priv, port);
+ 	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+ 		ddc_pin = icl_port_to_ddc_pin(dev_priv, port);
 diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-index e2b2bbdc0714..94446cac6605 100644
+index 94446cac6605..b45c504c6f03 100644
 --- a/drivers/gpu/drm/i915/intel_pch.c
 +++ b/drivers/gpu/drm/i915/intel_pch.c
-@@ -25,7 +25,7 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
- 		drm_dbg_kms(&dev_priv->drm, "Found PantherPoint PCH\n");
- 		drm_WARN_ON(&dev_priv->drm,
- 			    GRAPHICS_VER(dev_priv) != 6 && !IS_IVYBRIDGE(dev_priv));
--		/* PantherPoint is CPT compatible */
-+		/* PPT is CPT compatible */
- 		return PCH_CPT;
- 	case INTEL_PCH_LPT_DEVICE_ID_TYPE:
- 		drm_dbg_kms(&dev_priv->drm, "Found LynxPoint PCH\n");
-@@ -47,7 +47,7 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
- 			    !IS_HASWELL(dev_priv) && !IS_BROADWELL(dev_priv));
- 		drm_WARN_ON(&dev_priv->drm,
- 			    IS_HSW_ULT(dev_priv) || IS_BDW_ULT(dev_priv));
--		/* WildcatPoint is LPT compatible */
-+		/* WPT is LPT compatible */
- 		return PCH_LPT;
- 	case INTEL_PCH_WPT_LP_DEVICE_ID_TYPE:
- 		drm_dbg_kms(&dev_priv->drm, "Found WildcatPoint LP PCH\n");
-@@ -55,7 +55,7 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
- 			    !IS_HASWELL(dev_priv) && !IS_BROADWELL(dev_priv));
- 		drm_WARN_ON(&dev_priv->drm,
- 			    !IS_HSW_ULT(dev_priv) && !IS_BDW_ULT(dev_priv));
--		/* WildcatPoint is LPT compatible */
-+		/* WPT is LPT compatible */
- 		return PCH_LPT;
- 	case INTEL_PCH_SPT_DEVICE_ID_TYPE:
- 		drm_dbg_kms(&dev_priv->drm, "Found SunrisePoint PCH\n");
-@@ -99,14 +99,14 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
- 			    !IS_COFFEELAKE(dev_priv) &&
- 			    !IS_COMETLAKE(dev_priv) &&
- 			    !IS_ROCKETLAKE(dev_priv));
--		/* CometPoint is CNP Compatible */
-+		/* CMP is CNP compatible */
- 		return PCH_CNP;
- 	case INTEL_PCH_CMP_V_DEVICE_ID_TYPE:
- 		drm_dbg_kms(&dev_priv->drm, "Found Comet Lake V PCH (CMP-V)\n");
- 		drm_WARN_ON(&dev_priv->drm,
- 			    !IS_COFFEELAKE(dev_priv) &&
- 			    !IS_COMETLAKE(dev_priv));
--		/* Comet Lake V PCH is based on KBP, which is SPT compatible */
-+		/* CMP-V is based on KBP, which is SPT compatible */
- 		return PCH_SPT;
- 	case INTEL_PCH_ICP_DEVICE_ID_TYPE:
- 	case INTEL_PCH_ICP2_DEVICE_ID_TYPE:
+@@ -116,7 +116,8 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
+ 	case INTEL_PCH_MCC_DEVICE_ID_TYPE:
+ 		drm_dbg_kms(&dev_priv->drm, "Found Mule Creek Canyon PCH\n");
+ 		drm_WARN_ON(&dev_priv->drm, !IS_JSL_EHL(dev_priv));
+-		return PCH_MCC;
++		/* MCC is TGP compatible */
++		return PCH_TGP;
+ 	case INTEL_PCH_TGP_DEVICE_ID_TYPE:
+ 	case INTEL_PCH_TGP2_DEVICE_ID_TYPE:
+ 		drm_dbg_kms(&dev_priv->drm, "Found Tiger Lake LP PCH\n");
+diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/intel_pch.h
+index b7a8cf409d48..07f6f5517968 100644
+--- a/drivers/gpu/drm/i915/intel_pch.h
++++ b/drivers/gpu/drm/i915/intel_pch.h
+@@ -24,8 +24,7 @@ enum intel_pch {
+ 	PCH_CNP,        /* Cannon/Comet Lake PCH */
+ 	PCH_ICP,	/* Ice Lake PCH */
+ 	PCH_JSP,	/* Jasper Lake PCH */
+-	PCH_MCC,        /* Mule Creek Canyon PCH */
+-	PCH_TGP,	/* Tiger Lake PCH */
++	PCH_TGP,	/* Tiger Lake/Mule Creek Canyon PCH */
+ 	PCH_ADP,	/* Alder Lake PCH */
+ 
+ 	/* Fake PCHs, functionality handled on the same PCI dev */
+@@ -69,7 +68,6 @@ enum intel_pch {
+ #define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
+ #define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG1)
+ #define HAS_PCH_JSP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_JSP)
+-#define HAS_PCH_MCC(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MCC)
+ #define HAS_PCH_TGP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_TGP)
+ #define HAS_PCH_ICP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ICP)
+ #define HAS_PCH_CNP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_CNP)
 -- 
 2.35.1
 
