@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 013C65612C8
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 08:55:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 474A55612E4
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 09:06:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10EAA10E981;
-	Thu, 30 Jun 2022 06:55:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6164710FDC4;
+	Thu, 30 Jun 2022 07:06:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB8A10E64F
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 06:55:02 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 745D110FDE5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 07:06:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656572102; x=1688108102;
+ t=1656572788; x=1688108788;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=mKjWV5GwbJGZShAvCvTDHzYvY06/BxWFwujRlg1XuEQ=;
- b=M/ukOlTyaGyFYVd3C/n9niz9Xp0h+dPiBQ709GwQGv4GgmZ19J9qS1xY
- hZ01RPzf0OPD+35njbMHD0a5YhV8Ho74K8FzhFGiQgQmIj6vTV7xY7azi
- 5OWBRVkk+5TDnNKNeXIcb4ZhGe+dYW/QjuL58mUO5iwTzWImZdEQHMghF
- M/L+/6et+xKt0fQwCmnAELnB1lVnVzCFBHRVloC6AxZvAkhCKjjlkUlyg
- c7P8SA6mZhhZozE7z+HTDok+IJqam15KoUrd8NvTY/b5O4KONrU64/EmQ
- tPu22wPe9XiBpC5ErQxfSpzlaJm3YgHJoQx5S0SruQJBIpkfwEacQo68c w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="279808928"
-X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="279808928"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2022 23:55:02 -0700
+ bh=yUHWEOnBAHuO+QnpZFLkE9Tuboymfqv2QdXHaPZUwjg=;
+ b=W9rNwX2fL3oooLUal7dlSUbIe2SbDropN6VDHV2Q+uphc5D/jrtyT4JW
+ BjFhV6tHsdP1446fEyGuhSRNKaMQvcNm2KlqaQVb+y7jOQfI9nauplwqu
+ +DN2YBbfWXQkcTcd+LqzWrPs+fKM+uKtFfCk6YVf3da4T4HxEP1Oy462B
+ EhAeu7UEGW/Hg3AVAyJspt61C1dmNq/PzGY/ULrMQAhTXfdCySZof6hfI
+ 3j5E0UlN2reJS9Uuw42UbFRhN26hkMccEl4agXMSikf1R34Z6gQOIgFS5
+ Soi9Q5oJ9ak0sY5rptZV/iaqlHXsNc6LU+2NIjBBHh0vnt6oD7R55akGM A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="307770241"
+X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="307770241"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 00:06:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="680853246"
+X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="617872419"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by FMSMGA003.fm.intel.com with ESMTP; 29 Jun 2022 23:55:00 -0700
+ by orsmga008.jf.intel.com with ESMTP; 30 Jun 2022 00:06:25 -0700
 From: Arun R Murthy <arun.r.murthy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Jun 2022 12:24:42 +0530
-Message-Id: <20220630065442.830061-1-arun.r.murthy@intel.com>
+Date: Thu, 30 Jun 2022 12:36:07 +0530
+Message-Id: <20220630070607.858766-1-arun.r.murthy@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: free crtc on driver remove
+Subject: [Intel-gfx] [PATCHv2] drm/i915: free crtc on driver remove
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,9 +64,35 @@ intel_modeset_driver_remove_nogem.
 
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
+ drivers/gpu/drm/i915/display/intel_crtc.c    | 2 +-
+ drivers/gpu/drm/i915/display/intel_crtc.h    | 1 +
  drivers/gpu/drm/i915/display/intel_display.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ 3 files changed, 8 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 4442aa355f86..c90b2854c772 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -193,7 +193,7 @@ static struct intel_crtc *intel_crtc_alloc(void)
+ 	return crtc;
+ }
+ 
+-static void intel_crtc_free(struct intel_crtc *crtc)
++void intel_crtc_free(struct intel_crtc *crtc)
+ {
+ 	intel_crtc_destroy_state(&crtc->base, crtc->base.state);
+ 	kfree(crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
+index 73077137fb99..d20200a2c33b 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.h
++++ b/drivers/gpu/drm/i915/display/intel_crtc.h
+@@ -35,5 +35,6 @@ struct intel_crtc *intel_crtc_for_pipe(struct drm_i915_private *i915,
+ void intel_wait_for_vblank_if_active(struct drm_i915_private *i915,
+ 				     enum pipe pipe);
+ void intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc);
++void intel_crtc_free(struct intel_crtc *crtc);
+ 
+ #endif
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
 index a0f84cbe974f..33e29455fe56 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
