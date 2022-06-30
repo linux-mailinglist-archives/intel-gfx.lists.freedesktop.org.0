@@ -1,53 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1662561CAF
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 16:03:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB053561CB7
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 16:05:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA96611B1E0;
-	Thu, 30 Jun 2022 14:03:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8B511B1F8;
+	Thu, 30 Jun 2022 14:05:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD71C11B1CD;
- Thu, 30 Jun 2022 14:03:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656597826; x=1688133826;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=TD4vUpyaKldefz9Z4eNZL8pceZrDVpmvWLWLlfrAxSE=;
- b=RKxSSz2nhnXLX+A6XhkNN1whULjUPFUG673tcNObI98PR1+7Aq5tJTEK
- xy9jyKK5BQCBJl/XO8OV9tvVymGhmJ5WtGB2g0/f7eJEcsHMfi/zmEYT6
- wc1Q5SDmkcAx3mSTQrqvmrB7m/WCp3USte6EBxItd9l7s8dzioIENiUzL
- fXJ4s285PcuCoKTIGfB4XWd2lupN1ruIzsHAlZ+5qCyKA8flldaUS2H7O
- c/omvLmirbTEALmtQYvJUxa5F7HPtPfNBVSwNB5kB2AtVQK/fsI+xcMZx
- NtwBY0wkiVhvpiWU9SDb5DZ0RjCAo1CT3/Wa8qBCY7jgXnogm8PhKS9+e g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="262153434"
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="262153434"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 07:03:30 -0700
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="647903049"
-Received: from lab-ah.igk.intel.com ([10.91.215.196])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 07:03:28 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>
-Date: Thu, 30 Jun 2022 16:03:08 +0200
-Message-Id: <20220630140308.3485100-3-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220630140308.3485100-1-andrzej.hajda@intel.com>
-References: <20220630140308.3485100-1-andrzej.hajda@intel.com>
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
+ [IPv6:2a00:1450:4864:20::12a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D32C911B1F3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 14:05:45 +0000 (UTC)
+Received: by mail-lf1-x12a.google.com with SMTP id a2so33975679lfg.5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 07:05:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=cApiWli8UaYPr20S54/EfbyEdXjunOidpS8c1+XIy+A=;
+ b=GuNmoGeMEEoR67uydPGqG43LkzORAUE/2sLbDlBtFcQUuYMOh17jwpfq/4vlyRjyTX
+ VoOu36hfNZeo0N1GSVhf3a9nXdV1nI+ralJPisKam296burBJwjK3fIOTXwqVBs5ij1b
+ VihL0Xh2WoEFaU1nynssigfiN/0pERDBcUkyicLMGxCUeOCnAr/DdpXyG+PjQgwL82Py
+ nNzmxSEsOfDVAnKV+ihn/w+T4+aWQvYNrdLuD3swrr040JTK4RBncj6EeeqZXinkDzyg
+ z+6SF3wbKpfR7BKQtYH4+jGK7rRpa2C+B2VMOAiY5K294PFzK7XxB4weCQRddKqdyAdw
+ kT8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=cApiWli8UaYPr20S54/EfbyEdXjunOidpS8c1+XIy+A=;
+ b=YO0b6/z9lCNHAOE5lY8udwYabSX/WZbHKEA0utxKWRsfXWgIUzzTjvx3BVH71RYCas
+ RPgJphXjpY2Bznm2TAOfvhx0g/zG2dFH38FJMx4Wulv3un5g9xlt4QDrp/bi5JfRA425
+ 1J22yULuOyiVXxIiYe/TKJnfrUKwoM0wE+QWPD3K90ENzZ3eljX5Um/oInGjEiGhwKKc
+ NoLJH9m2NsYWfEjCVkBaAVh/uR2OCsepzX+/TuBA6HmlaRfWA/XHhJhM7yPjh4JRQkcK
+ pFyxky9SN7RiFBZAiQKjVFEafgj/K6dRXPM94/+05p5sIQfMLBNpUJZy6dmsgzAg1rmN
+ aMvA==
+X-Gm-Message-State: AJIora/PpDNPCma0GOCn2GmCW7gDprbO3KnJfg7WkJMZXv0m7iDCyrfF
+ FeCirrPyeQBZQq5NXvemsNcm2STjJYhao1Qw3uk=
+X-Google-Smtp-Source: AGRyM1tqS25fgdeWxjqOVLdOPY7pOFc88o1w42sbnYpP6RFxsdxsT0kkVAt2HMikWjO9omf18ajkgCut5kjNSTSffvk=
+X-Received: by 2002:a05:6512:10c5:b0:47f:74d6:b8f5 with SMTP id
+ k5-20020a05651210c500b0047f74d6b8f5mr5565612lfg.583.1656597943521; Thu, 30
+ Jun 2022 07:05:43 -0700 (PDT)
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/fbdev: suspend HPD before fbdev
- unregistration
+References: <20220614011350.122168-1-adrian.larumbe@collabora.com>
+ <20220614011350.122168-3-adrian.larumbe@collabora.com>
+ <CAM0jSHNvCqeNLO_i0_uVUHGhw_-DQi5Mxtw5nOiogeGU2HSWkg@mail.gmail.com>
+ <db968b93-6f9c-b3aa-02cd-81e99f64f013@collabora.com>
+In-Reply-To: <db968b93-6f9c-b3aa-02cd-81e99f64f013@collabora.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 30 Jun 2022 15:05:16 +0100
+Message-ID: <CAM0jSHPSBY7JqtQpxB-XTVdJOn-oUsHGfY7p6=nYMR-PRArQ1g@mail.gmail.com>
+To: Robert Beckett <bob.beckett@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/ttm: don't overwrite
+ cache_dirty after setting coherency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,50 +66,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Adrian Larumbe <adrian.larumbe@collabora.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-HPD event after fbdev unregistration can cause registration of deferred
-fbdev which will not be unregistered later, causing use-after-free.
-To avoid it HPD handling should be suspended before fbdev unregistration.
+On Tue, 28 Jun 2022 at 22:11, Robert Beckett <bob.beckett@collabora.com> wrote:
+>
+>
+>
+> On 14/06/2022 18:55, Matthew Auld wrote:
+> > On Tue, 14 Jun 2022 at 02:14, Adrian Larumbe
+> > <adrian.larumbe@collabora.com> wrote:
+> >>
+> >> When i915_gem_object_set_cache_level sets the GEM object's cache_dirty to
+> >> true, in the case of TTM that will sometimes be overwritten when getting
+> >> the object's pages, more specifically for shmem-placed objects for which
+> >> its ttm structure has just been populated.
+> >>
+> >> This wasn't an issue so far, even though intel_dpt_create was setting the
+> >> object's cache level to 'none', regardless of the platform and memory
+> >> placement of the framebuffer. However, commit 2f0ec95ed20c ("drm/i915/ttm:
+> >> dont trample cache_level overrides during ttm move") makes sure the cache
+> >> level set by older backends soon to be managed by TTM isn't altered after
+> >> their TTM bo ttm structure is populated.
+> >>
+> >> However this led to the 'obj->cache_dirty = true' set in
+> >> i915_gem_object_set_cache_level to stick around rather than being reset
+> >> inside i915_ttm_adjust_gem_after_move after calling ttm_tt_populate in
+> >> __i915_ttm_get_pages, which eventually led to a warning in DGFX platforms.
+> >>
+> >> There also seems to be no need for this statement to be kept in
+> >> i915_gem_object_set_cache_level, since i915_gem_object_set_cache_coherency
+> >> is already taking care of it, and also considering whether it's a discrete
+> >> platform.
+> >>
+> >> Remove statement altogether.
+> >>
+> >> Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/gem/i915_gem_domain.c | 4 +---
+> >>   1 file changed, 1 insertion(+), 3 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+> >> index 3e5d6057b3ef..b2c9e16bfa55 100644
+> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+> >> @@ -273,10 +273,8 @@ int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
+> >>                  return ret;
+> >>
+> >>          /* Always invalidate stale cachelines */
+> >> -       if (obj->cache_level != cache_level) {
+> >> +       if (obj->cache_level != cache_level)
+> >>                  i915_gem_object_set_cache_coherency(obj, cache_level);
+> >> -               obj->cache_dirty = true;
+> >
+> > Maybe ban calling this on dgpu or have it fail silently? At the ioctl
+> > level this should already be banned.
+> >
+> > Ignoring dgpu, the cache_dirty handling is quite thorny on non-LLC
+> > platforms. I'm not sure if there are other historical reasons for
+> > having this here, but one big issue is that we are not allowed to
+> > freely set cache_dirty = false, unless we are certain that the pages
+> > underneath have been populated and the potential flush-on-acquire
+> > completed. See the kernel-doc for @cache_dirty for more details.
+>
+> given the commit "068b1bd09253 drm/i915: stop setting cache_dirty on
+> discrete"
+> with it's justification of cache_dirty should not be set on discreet as
+> it is not needed, I think this patch should change to set
+>
+> obj->cache_dirty = !IS_DGFX(to_i915(obj->base.dev));
 
-It should fix following GPF:
-[272.634530] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b6b: 0000 [#1] PREEMPT SMP NOPTI
-[272.634536] CPU: 0 PID: 6030 Comm: i915_selftest Tainted: G     U            5.18.0-rc5-CI_DRM_11603-g12dccf4f5eef+ #1
-[272.634541] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
-[272.634545] RIP: 0010:fb_do_apertures_overlap.part.14+0x26/0x60
-...
-[272.634582] Call Trace:
-[272.634583]  <TASK>
-[272.634585]  do_remove_conflicting_framebuffers+0x59/0xa0
-[272.634589]  remove_conflicting_framebuffers+0x2d/0xc0
-[272.634592]  remove_conflicting_pci_framebuffers+0xc8/0x110
-[272.634595]  drm_aperture_remove_conflicting_pci_framebuffers+0x52/0x70
-[272.634604]  i915_driver_probe+0x63a/0xdd0 [i915]
+Yeah, seems reasonable to me.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5329
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5510
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbdev.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> along with the assignment in flush_write_domain()
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 221336178991f0..b682fd72d4bf25 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -573,7 +573,8 @@ void intel_fbdev_unregister(struct drm_i915_private *dev_priv)
- 	if (!ifbdev)
- 		return;
- 
--	cancel_work_sync(&dev_priv->fbdev_suspend_work);
-+	intel_fbdev_set_suspend(&dev_priv->drm, FBINFO_STATE_SUSPENDED, true);
-+
- 	if (!current_is_async())
- 		intel_fbdev_sync(ifbdev);
- 
--- 
-2.25.1
+I think this one should already be covered by the check in
+gpu_write_needs_flush().
 
+>
+> and should be considered a fix for that patch.
+>
+> It should keep the asignment for integrated as it's original purpose
+> still holds there.
+>
+>
+>
+> >
+> >> -       }
+> >>
+> >>          /* The cache-level will be applied when each vma is rebound. */
+> >>          return i915_gem_object_unbind(obj,
+> >> --
+> >> 2.36.1
+> >>
