@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5033561E02
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 16:34:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2F9A561E5F
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 16:46:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC180112ACE;
-	Thu, 30 Jun 2022 14:34:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2497711B809;
+	Thu, 30 Jun 2022 14:46:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52395112A35;
- Thu, 30 Jun 2022 14:34:27 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 402EF11B67A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 14:46:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656599667; x=1688135667;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=crOZD7V4ZX3FEAarkbR7Sp/bHKjgCb3lUrH+0mhBeX0=;
- b=mtehrtepXeBXGckpJcewt7l+kF+2W8A7xxGSuQER9kyyuuQ6keQvkzKQ
- wwq1QdTMKTLrAwEU/N8rh1EDUz4FAdC6DilQU0M+8o5V7QkfnIjKiLmwZ
- bmD4g0iG5Xkg3BzO09bLhYHIL8Tuj3UibTUmj7AFTnXCIg1BZFe5SPWE5
- b1JTe5+4OjUY77bRK4K1lfiOC8/tRrLu/Os0n8/7ETyAdySd2BWCdWLbp
- 7zT+pjDrbd3NjucTVZlgBITzFMono6un2MJLZKJHzUdR7v5jtf/dpSdiy
- v5KJxjlgVyNIiCL76dza1ArvDja08a+rNTaX7h2Cx8fzzV+d+92hIqAYH A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="262767760"
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="262767760"
+ t=1656600399; x=1688136399;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=JHF3ClGLN9RYb9SS96RCpn7UVDJ/Dn+WUsjuvKh1cTs=;
+ b=aMixu1lZr12/PhlPg/5fvG7mkTKy8xDSf4E3TEyQOGlQ2PX6CLOQKWe6
+ abiXrQ3r1ByHlGoOG7R3SLZ1534uavI5mPbTVLPEtEeQkYksh6BqUguEO
+ BXEv4tRJUnedFO20WkasMepoqi40XBgTQwATb+Uugj7jucuNn2VTdzr7L
+ LY1ERRXoYnmfcN5cNtZuMoarWAF7GL6B3epFNX6Q3e/LDab6uTWJ4s89s
+ pDmpS10MjD3hyPTDFrCa+gTGTHrKupG5pvDaCw8UYcBLnJXqjFaE4mns/
+ qz+QZULLAnnPrH2rUChVnXrQxsq5A6HbNwZwBTRPCkq69VlHq9DBxhhvq g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="307876819"
+X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="307876819"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 07:34:26 -0700
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="647914615"
-Received: from fdugast-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.39.70])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 07:46:38 -0700
+X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="647918072"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.25.211])
+ ([10.213.25.211])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 07:34:24 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <Yr2sJBdZ3TnXZF+s@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <bdf23a1c-0d89-c395-4a7a-2840ce5f639a@I-love.SAKURA.ne.jp>
- <98c6d61e-0c0f-e385-6100-6b7ebe6874b1@linux.intel.com>
- <c379bbe5-a416-7757-b0e3-1b767bb5a775@I-love.SAKURA.ne.jp>
- <703244a5-f2c9-adfb-892f-dd2353cf384e@linux.intel.com>
- <f15c7336-10fd-cd86-a95f-aec99154319b@I-love.SAKURA.ne.jp>
- <b21d9f1e-65e3-8f2f-a5c3-04bf866823e3@linux.intel.com>
- <Yr2sJBdZ3TnXZF+s@intel.com>
-Date: Thu, 30 Jun 2022 17:34:22 +0300
-Message-ID: <87wncynrtd.fsf@intel.com>
+ 30 Jun 2022 07:46:37 -0700
+Message-ID: <e32143e0-1b75-e9c4-d9d2-90c738da5d9d@intel.com>
+Date: Thu, 30 Jun 2022 16:46:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] How to convert drivers/gpu/drm/i915/ to use local
- workqueue?
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.10.0
+Content-Language: en-US
+To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220624130406.17996-1-jose.souza@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220624130406.17996-1-jose.souza@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm: i915: fix a possible refcount leak in
+ intel_dp_add_mst_connector()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,147 +63,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
+Cc: Hangyu Hua <hbh25y@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 30 Jun 2022, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Jun 30, 2022 at 02:09:02PM +0100, Tvrtko Ursulin wrote:
->> 
->> On 30/06/2022 12:19, Tetsuo Handa wrote:
->> > On 2022/06/30 19:17, Tvrtko Ursulin wrote:
->> > > Could you give more context on reasoning here please? What is the difference
->> > > between using the system_wq and flushing it from a random context? Or concern
->> > > is about flushing from specific contexts?
->> > 
->> > Excuse me, but I couldn't catch what you want. Thus, I show three patterns of
->> > problems with an example.
->> > 
->> > Commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using a macro") says:
->> > 
->> >    Tejun Heo commented that it makes no sense at all to call flush_workqueue()
->> >    on the shared WQs as the caller has no idea what it's gonna end up waiting for.
->> > 
->> >    The "Think twice before calling this function! It's very easy to get into trouble
->> >    if you don't take great care." warning message does not help avoiding problems.
->> > 
->> >    Let's change the direction to that developers had better use their local WQs
->> >    if flush_scheduled_work()/flush_workqueue(system_*_wq) is inevitable.
->> > 
->> > Three patterns of problems are:
->> > 
->> >    (a) Flushing from specific contexts (e.g. GFP_NOFS/GFP_NOIO) can cause deadlock
->> >        (circular locking dependency) problem.
->> > 
->> >    (b) Flushing with specific locks (e.g. module_mutex) held can cause deadlock
->> >        (circular locking dependency) problem.
->> > 
->> >    (c) Even if there is no possibility of deadlock, flushing with specific locks
->> >        held can cause khungtaskd to complain.
->> > 
->> > An example of (a):
->> > 
->> >    ext4 filesystem called flush_scheduled_work(), which meant to wait for only
->> >    work item scheduled by ext4 filesystem, tried to also wait for work item
->> >    scheduled by 9p filesystem.
->> >    https://syzkaller.appspot.com/bug?extid=bde0f89deacca7c765b8
->> > 
->> >    Fixed by reverting the problematic patch.
->> > 
->> > An example of (b):
->> > 
->> >    It is GFP_KERNEL context when module's __exit function is called. But whether
->> >    flush_workqueue() is called from restricted context depends on what locks does
->> >    the module's __exit function hold.
->> > 
->> >    If request_module() is called from some work function using one of system-wide WQs,
->> >    and flush_workqueue() is called on that WQ from module's __exit function, the kernel
->> >    might deadlock on module_mutex lock. Making sure that flush_workqueue() is not called
->> >    on system-wide WQs is the safer choice.
->> > 
->> >    Commit 1b3ce51dde365296 ("Input: psmouse-smbus - avoid flush_scheduled_work() usage")
->> >    is for drivers/input/mouse/psmouse-smbus.c .
->> > 
->> > An example of (c):
->> > 
->> >    ath9k driver calls schedule_work() via request_firmware_nowait().
->> >    https://syzkaller.appspot.com/bug?id=78a242c8f1f4d15752c8ef4efc22974e2c52c833
->> > 
->> >    ath6kl driver calls flush_scheduled_work() which needlessly waits for completion
->> >    of works scheduled by ath9k driver (i.e. loading firmware used by ath9k driver).
->> >    https://syzkaller.appspot.com/bug?id=10a1cba59c42d11e12f897644341156eac9bb7ee
->> > 
->> >    Commit 4b2b8e748467985c ("ath6kl: avoid flush_scheduled_work() usage") in linux-next.git
->> >    might be able to mitigate these problems. (Waiting for next merge window...)
->> 
->> Okay, from 1b3ce51dde365296:
->> 
->>  "Flushing system-wide workqueues is dangerous and will be forbidden."
->> 
->> Thank you, this exactly explains the motivation which is what I was after. I
->> certainly agree there is a possibility for lock coupling via the shared wq
->> so that is fine by me.
->> 
->> > > On the i915 specifics, the caller in drivers/gpu/drm/i915/gt/selftest_execlists.c
->> > > I am pretty sure can be removed. It is synchronized with the error capture side of
->> > > things which is not required for the test to work.
->> > > 
->> > > I can send a patch for that or you can, as you prefer?
->> > 
->> > OK. Please send a patch for that, for that patch will go linux-next.git tree via
->> > a tree for gpu/drm/i915 driver.
->> 
->> Patch sent. If I am right the easiest solution was just to remove the flush.
->> If I was wrong though I'll need to create a dedicated wq so we will see what
->> our automated CI will say.
->
-> But besides of flush_scheduled_work() it looks like
-> we also need to take care of the flush_workqueue() calls, no?!
->
-> * i915_gem_drain_workqueue()
-> * intel_ggtt.c:   flush_workqueue(ggtt->vm.i915->wq);
-> * i915_gem_pm.c: flush_workqueue(i915->wq);
->
-> and the display ones for
-> dev_priv->modeset_wq
-> i915->flip_wq
->
-> besides the flush_scheduled_work in intel_modeset_driver_remove_noirq
-
-I thought the problem was flushing the system-wide workqueues. The above
-calls flush our own.
-
-As to removing flush_scheduled_work() from
-intel_modeset_driver_remove_noirq(), I think we'll need to account for
-all the work and delayed work we've scheduled on the system workqueue,
-i.e. we need to cancel or flush each of them individually, as
-necessary. Some of them we do already, but some others, not really.
-
-For example we never cancel the fbc underrun work on the driver remove
-path AFAICT. And it's not even as simple as just adding the
-cancel_work_sync(&fbc->underrun_work) call in intel_fbc_cleanup(),
-because intel_fbc_cleanup() is called *after*
-intel_mode_config_cleanup(), i.e. the work function might get called
-after the crtc it accesses has been destroyed. So we're going to need to
-change the cleanup order too.
-
-Things have changed considerably since the flush was added in
-1630fe754c83 ("drm/i915: Perform intel_enable_fbc() from a delayed
-task").
-
-I suppose the alternative is to have a local i915 display workqueue,
-schedule all the random display works and delayed works on that, and
-then flush that wq instead of the system wq in
-intel_modeset_driver_remove_noirq().
-
-IIUC, anyway.
+On 24.06.2022 15:04, José Roberto de Souza wrote:
+> From: Hangyu Hua <hbh25y@gmail.com>
+> 
+> If drm_connector_init fails, intel_connector_free will be called to take
+> care of proper free. So it is necessary to drop the refcount of port
+> before intel_connector_free.
+> 
+> Fixes: 091a4f91942a ("drm/i915: Handle drm-layer errors in intel_dp_add_mst_connector")
+> Signed-off-by: Hangyu Hua <hbh25y@gmail.com>
+> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
 
 
-BR,
-Jani.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
+Regards
+Andrzej
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> ---
+>   drivers/gpu/drm/i915/display/intel_dp_mst.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 061b277e5ce78..14d2a64193b2d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -839,6 +839,7 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
+>   	ret = drm_connector_init(dev, connector, &intel_dp_mst_connector_funcs,
+>   				 DRM_MODE_CONNECTOR_DisplayPort);
+>   	if (ret) {
+> +		drm_dp_mst_put_port_malloc(port);
+>   		intel_connector_free(intel_connector);
+>   		return NULL;
+>   	}
+
