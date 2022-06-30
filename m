@@ -1,145 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AB63561F2A
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 17:25:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F72E561F5A
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 17:35:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2935110FC13;
-	Thu, 30 Jun 2022 15:25:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18A2410F68E;
+	Thu, 30 Jun 2022 15:35:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4A3810FC13;
- Thu, 30 Jun 2022 15:25:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656602728; x=1688138728;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=sBMChuLMSF8Q8sGznwWeotfltJdQouHuRn4L4s1Zans=;
- b=dTw1NbGIqkK3T2bRIqphCLVPsC6ySegDBIs6sX7hVznGvNfRE0iHAYsq
- N/JqQdo20QaqfW40Uxv9QUn/cS2di1LouIqC3g6OjUkGnmJf0zq/aHF/F
- fCqRtIFrgakqdUqtmSMUJR+pQW3h6+etMF1o8yCuxiH3gK2Vd+dJDFpV2
- t5uYvk7C9GWkUxpDPJV33VozkEx3emHRyxvaUyPgIwMJI8O+HeeIU0/nq
- 6oDrGWAU74DFS98AplqoRik9de3PE1zuS9NpYlDwmx8tXgp4AxMwitV1z
- r1pXLuM6G8uqz4ybkrTMdowQF194PYmO9469A4Wgscvm1jSY7RPcuujjc w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="283112750"
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="283112750"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 08:25:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="623768074"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga001.jf.intel.com with ESMTP; 30 Jun 2022 08:25:27 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 30 Jun 2022 08:25:27 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 30 Jun 2022 08:25:27 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Thu, 30 Jun 2022 08:25:27 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.106)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Thu, 30 Jun 2022 08:25:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h2uoyrP4eLOYkFwafdE2/pO9WYZQlWEIJxPy3H2ZzI2twV2VEcS8/5TwHUQjcmuUHw5yLhkssmqUPX42X8k16XRB+kYcDXT1h2Th2wrEiJwHCWv906sFFWJ7WUvqo61rRBIiHv4lM6csX5MoWLrxIsCoMh+KGwvNXrFsVf94Nytd4rw0LxKhudmrFo9nW4bGFfzcFjGFq0UkRHNikT0Uvhb2/oV1F2F21Z6p6Sbb4n25RL5+jacmPIfFETpG2/nhq5S6phxrhu+e1j33FqMhOwHOJ+IIZCqoSPhFKyN3QK353wRcgOoUbNTqWbl+832DvbZUGZG03Zz2DjeP2cZH6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=glLSgqXROnj6SPYuYH3QDy76AXrmWdBkl3ty1y/xa3w=;
- b=FN/x22TUIpUHDp+ZOfOrLPy7cN96gw5IjE6vc+R63Ik4B4bymDWYMn9PMGWrehmHt28RrEucHpLVOy0F6OgBQTpU/aZAN1QXdVJWcUymHSkC1v5+gGDgqvQjdgJj2pXxKivin5OXcnquC0u29nelj3S7EmucagCDHlkLL+VtBMDZFJP5ghsEFJv+LoQix4CIvgSrD41xHD1nObbPfLhViLHUpON3k40hWogcUE5bKPm+HtPIaAJ6/cdbeHp3Kxv0GjFSkSmUuI6RlHskl27gm4v4CyxI9N/GbOQUc28jHRRRD6Gsi1yO41fTSjm36zm3LSEtcuG+TZUaOa/oxl2aJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by BN6PR11MB1699.namprd11.prod.outlook.com (2603:10b6:404:3c::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Thu, 30 Jun
- 2022 15:25:25 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::8053:3c59:9f5d:b615]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::8053:3c59:9f5d:b615%7]) with mapi id 15.20.5373.018; Thu, 30 Jun 2022
- 15:25:25 +0000
-Date: Thu, 30 Jun 2022 11:25:20 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Yr3AYICeIr56B095@intel.com>
-References: <bdf23a1c-0d89-c395-4a7a-2840ce5f639a@I-love.SAKURA.ne.jp>
- <98c6d61e-0c0f-e385-6100-6b7ebe6874b1@linux.intel.com>
- <c379bbe5-a416-7757-b0e3-1b767bb5a775@I-love.SAKURA.ne.jp>
- <703244a5-f2c9-adfb-892f-dd2353cf384e@linux.intel.com>
- <f15c7336-10fd-cd86-a95f-aec99154319b@I-love.SAKURA.ne.jp>
- <b21d9f1e-65e3-8f2f-a5c3-04bf866823e3@linux.intel.com>
- <Yr2sJBdZ3TnXZF+s@intel.com> <87wncynrtd.fsf@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <87wncynrtd.fsf@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0190.namprd05.prod.outlook.com
- (2603:10b6:a03:330::15) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com
+ [IPv6:2607:f8b0:4864:20::1135])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D488710E432
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 15:35:11 +0000 (UTC)
+Received: by mail-yw1-x1135.google.com with SMTP id
+ 00721157ae682-317710edb9dso183461017b3.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 08:35:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20210112.gappssmtp.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=t8haTjNBcH+LcftoXE3ahpr3dk7E0a9MOTmlN+dsj4M=;
+ b=BsXPi7eVJunj/Tvfh7LnIaCGWjcpdiOpYVN/0JKA7HeW7l7oGUzYIPi8aPQYIGwaxT
+ rG4cTrqImejVN9MABcoW7XC8hNfGrL27k4qpVHAe0GFeadBrs2FFRX7camHs4wUP9C0Z
+ Fqll7tSS6pUxWrhZCaHNyehzZgGUBBY7xNbq6scZqRQneY6rAXY3+BXcD3ovJL6jkEma
+ PZzIbRw/5jnpRcRWB0sYDK2HOMqKjgeklap6pHoUy7S9wyruwGuIhrjb9h9Kneax+vDI
+ vJexpNRFf5NaNthQrDgpcyBSdu0FXi4Pexv4vcvWOm2On1W/HlmC/6QVArcHfHCzYH0a
+ oaEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=t8haTjNBcH+LcftoXE3ahpr3dk7E0a9MOTmlN+dsj4M=;
+ b=CCDNTP9Lx4exd1jHamWo7/UwZEicaqOdI8Mdrq3ebwGsHSZNmfV0reoVLPuJ5u0GbA
+ L85FtJZe6D96gwG9GflZZqYBtzzuBmm6iJ4f1fh2Ag38jNwunPEbUXJMJszaOlQSi64e
+ HFa+RQ6916Yp3TF3MvTFa3hLRCPbiyFyPsoR6+PmBumin0fhQU0mFD2jYSl+UTVc1/2r
+ ac+qkvj3E5ujBFZloMf06Xt0/2M5OTYK4Ae/FaAivwIx/WKMFpnzEZ2RJUPSdLlyveCs
+ Pgf7yPVWJLxe2JyFF/jS+D9j7X4ZRM/A2q04dKPmLwjxR8UmqFqV9ctKA+CgOraIv8TF
+ 5maQ==
+X-Gm-Message-State: AJIora8F9c30JKnM34YSq0uR2sR1q73sXtAcQenY0bGHn3JNyt5xDMdz
+ /LqTMo+L2JIcEyBM0/ks7ygCocPJVi2Uc3B6pRxYwA==
+X-Google-Smtp-Source: AGRyM1utiyQEpt4zUSHSw+wrssNyP5doS+Qyb+cNRng5NOs2cV0mYAt9a8n2w3he2aHY2rSWEIymiz5Rjco7atAK9oU=
+X-Received: by 2002:a81:5745:0:b0:318:99e6:3279 with SMTP id
+ l66-20020a815745000000b0031899e63279mr10763213ywb.311.1656603310656; Thu, 30
+ Jun 2022 08:35:10 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b7be1677-a2f0-4d3e-c3c7-08da5aacc115
-X-MS-TrafficTypeDiagnostic: BN6PR11MB1699:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6BjqO264AyhQY2HenESWcH9Eo9QnaQoNyZV5jvfFUmJhn6oM4kAtX9ACYVpinKT3IpvQycFqpG4h90BdTRKPUDpCTJWt6w7ppwUpE4i+3b73bjzyrLT/m7lEZuhSvbYfxr+Qe+I3jzNZfbyVUNclW9pyxSfmIg9uFhMKYw6uLekT/2uljYqnIMzwgDcKmrAdyJ7++dOEcU20CgDebKS85fPmVz8jTIYfJh/wCICoH0lNr44W+3uygIHzLXlojXEvWSC9ppls1tOdLwUU6/6D+W0wjVMUV2P2H8Hao7qUJaRrKEwaCuArfK+c8U/9vquY8xhblaK9haRaPr2g/qAI88OhBW9I2ZN2A5BGjn9V0HO009K6U0vZF7Mqb5eFTS9/70MZVuPIP4a5IFzg4ebzkUll1UcgdMu9PuW0QTVP2pQ+hnrb0UQ8GBDLfEg9uqqUwz8SzBXX2QH12ZjsBzKJgIyFm3mYRFaAN/Y5Qa/9j1eFyHgT359Tezvcet2ID1EUlxBqUvGAmNhA3wAIGfoCnC5nS/e9DIJT5PZmHThgvp3DX18UVGeasEMDei2d9ZX7XLh5hz0iz24HkV4YGiUR4CrFdp5s7vofUb0hlK36KIJUJ51xqD7Fu4thxly5hPqLE5g3ZQI5Rj9OMI9jfAebfASZsYk6k4Ffpmww7P2DBjL86YYKwSr8nzvzeohTJgj6kMjFsUlGPgZTjVJqhbdPZV7wV6sb/ZaDITI8ra8rgtptxzUgdPl/zejUDgDpVM0PmFepWFsFYo2FHy+KAZ+YNuump6dBSaxVg8BXRr/QSyTshSK437y8YhOIW+O4YtzcU5+JQcW4VXvUAImhSdrhdw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(39860400002)(396003)(136003)(376002)(366004)(346002)(66556008)(8676002)(4326008)(66476007)(5660300002)(8936002)(66946007)(44832011)(2906002)(6666004)(2616005)(26005)(38100700002)(86362001)(6486002)(41300700001)(82960400001)(316002)(83380400001)(966005)(478600001)(6916009)(54906003)(186003)(53546011)(6506007)(36756003)(6512007)(99710200001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?It8oOgXLOnnEQdJd1bmG/21vevUm3Jz3IDuKoeAmfYWE/ufIgH2PMoOAvPVj?=
- =?us-ascii?Q?1sktmt1/0vV2/r4MDt1zTZD1pa8ZrODT7Lici079H2O+FTuDCoOnF5SViO2A?=
- =?us-ascii?Q?/v/OFx5evI4nIPQW9DsgExUedNrt95xthHu7cbsL9DMqWnUiXa60f8zbFgF1?=
- =?us-ascii?Q?X2uzQhGhIejUgOTPNLsYeK7NLlo25PrOOT8lfTURjWwvg2D1K1dirLE+FJfM?=
- =?us-ascii?Q?Kk9nRV6vgndMGt4+ebW5jyDkoLXROrBdzJtwFMjVV6wAUGwg4yIXvcJTxbEo?=
- =?us-ascii?Q?Wkv/y3l74vxN6FGxrxuROAd6ROkcISpN7pMVwNbUp+kQcGSDHHH2QyAeTcVC?=
- =?us-ascii?Q?xK+wkzaaIGP2lZ46Dz0fyf6EzWzuW/ST3GQxUE3s0tsm5KR5BNht0HBPZK6I?=
- =?us-ascii?Q?+7gZhp35Mb2ebA4/0j379HfnDaN8r8+NTKlE0c3209GP+Iu+uf3UURErYpn+?=
- =?us-ascii?Q?XudWwY79b2naIpEW04aVIyR/f/7shq+c1dwXKYdtL+UGRQy8Xu+PdDXvYhqh?=
- =?us-ascii?Q?ww1E3CxoH9niMpTqcRpX2T42IFfIK8/kJQPqvZpr9bbFX9IOwXEeGoUKlrut?=
- =?us-ascii?Q?t41Vjk0LqFpeeoCivKs4C58jfT3jxkb+sj5rr980WNCkCUdz+qk67jPKj5WT?=
- =?us-ascii?Q?DeNcEU9zCnJkAkDm1gZr1nNRZOCqvg3HSg+dJ3C8kupZF2GetrsGQzBx2xXi?=
- =?us-ascii?Q?7N2hFaHtJ+XgWBxPSxlZyJEdDM3Kg065mGkFKPpCVVIwLjkDOtADyltKmdlw?=
- =?us-ascii?Q?bPMQf93mUy9USWgl2TOdKYx8U3EO+oJARmzOdny7Wcd12tU3L5wS6juPutSP?=
- =?us-ascii?Q?ECB6DiFBTVyVyyLAI4YZe6MDGu16KdS+UruIOwQ1TWtwBgCZLnVOakF9+oyH?=
- =?us-ascii?Q?YWOAX0BLwUcnYs0PKNTWExQLNbtUVKYMDYjx0v7QLeas8Ut1eHZ7gY6vpFEg?=
- =?us-ascii?Q?7pyKf6uyehh2S2r5deoYWlnH5Htak2cuy6MniXJrCAeDce6LAKZiX0CmG/Jb?=
- =?us-ascii?Q?lMcZdvbUov0fMf8pYT9nF4tym4igAvQJL9xr1YJY6+9qUk8gmqCzJ0h6cP48?=
- =?us-ascii?Q?m6HivxeVEmtOfPrOVkrb1j4xUKqvuyisFBSLoSvHO8tFv+C/f/DGKIbAlk8y?=
- =?us-ascii?Q?NPfHtKf+emaYJ5bRaTGwUgu1bJg5oBbRks/DYLmuWcZV8AZoFdM2/4GGSRPf?=
- =?us-ascii?Q?gMlHagpOelhQuhRillujdWqvW6YNM67moZozYmJjKlCiPIqhu7MApfXrP6Vb?=
- =?us-ascii?Q?mPSGpFLA5uG3YxC/CB+xT+4wL8rHUc2onw/Ogauaj34X6TlZ7igRv2t5FqkW?=
- =?us-ascii?Q?Yj2wkzQ54QEHopenvuvgUHAwhhfQyCUn9gAYd+JtLbbTivdgCVj6FlAXcjrp?=
- =?us-ascii?Q?TDjaNqkob9Cf1qin/xhiWkaC0sBA09nOg4PvRmjh9n/ZR+lad73g8ey2oAva?=
- =?us-ascii?Q?Epri6ZV8yjbd3Jdu7D1a9GBC1cSvwEdGHOJxdveIFJbE/cjBfF4A4fvoei3w?=
- =?us-ascii?Q?wv0gDA06dxMpDQ5S+LcH3fqvIrNRQHug8yJaM6PqU4hP145mFUxOsLERiHXf?=
- =?us-ascii?Q?kYRxJK9hD5n43ese0YqRnzaTLsXFHbsIcgG8P4zcU/llGRFI08wn29knsCfi?=
- =?us-ascii?Q?EQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7be1677-a2f0-4d3e-c3c7-08da5aacc115
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2022 15:25:24.9787 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: glP/shqHx2Db7zmXUM5a/4JivAuzh5VDRWuy0zTYO5LwVIZMMEKrZ8NE3IiC7rFWwAXMhUfA4nZC5FJGwUQ1lQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1699
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] How to convert drivers/gpu/drm/i915/ to use local
- workqueue?
+References: <20220626014916.5130-1-niranjana.vishwanathapura@intel.com>
+ <20220626014916.5130-4-niranjana.vishwanathapura@intel.com>
+ <CAOFGe954aK2wz_TEORbw3BsW1a7EHtpUB1g6ZoYX=kSVmn+kRg@mail.gmail.com>
+ <41f09e4b-4da2-de96-5f4b-a571670f738f@intel.com>
+In-Reply-To: <41f09e4b-4da2-de96-5f4b-a571670f738f@intel.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Thu, 30 Jun 2022 10:34:59 -0500
+Message-ID: <CAOFGe95FeJmhisxfL9vk_Fy8cGYZLG5FR8ZRA8r7MjOfz3r3fQ@mail.gmail.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Content-Type: multipart/alternative; boundary="000000000000dd9f2e05e2ac03d7"
+Subject: Re: [Intel-gfx] [PATCH v6 3/3] drm/doc/rfc: VM_BIND uapi definition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,156 +67,1133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
+Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Chris Wilson <chris.p.wilson@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 30, 2022 at 05:34:22PM +0300, Jani Nikula wrote:
-> On Thu, 30 Jun 2022, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > On Thu, Jun 30, 2022 at 02:09:02PM +0100, Tvrtko Ursulin wrote:
-> >> 
-> >> On 30/06/2022 12:19, Tetsuo Handa wrote:
-> >> > On 2022/06/30 19:17, Tvrtko Ursulin wrote:
-> >> > > Could you give more context on reasoning here please? What is the difference
-> >> > > between using the system_wq and flushing it from a random context? Or concern
-> >> > > is about flushing from specific contexts?
-> >> > 
-> >> > Excuse me, but I couldn't catch what you want. Thus, I show three patterns of
-> >> > problems with an example.
-> >> > 
-> >> > Commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using a macro") says:
-> >> > 
-> >> >    Tejun Heo commented that it makes no sense at all to call flush_workqueue()
-> >> >    on the shared WQs as the caller has no idea what it's gonna end up waiting for.
-> >> > 
-> >> >    The "Think twice before calling this function! It's very easy to get into trouble
-> >> >    if you don't take great care." warning message does not help avoiding problems.
-> >> > 
-> >> >    Let's change the direction to that developers had better use their local WQs
-> >> >    if flush_scheduled_work()/flush_workqueue(system_*_wq) is inevitable.
-> >> > 
-> >> > Three patterns of problems are:
-> >> > 
-> >> >    (a) Flushing from specific contexts (e.g. GFP_NOFS/GFP_NOIO) can cause deadlock
-> >> >        (circular locking dependency) problem.
-> >> > 
-> >> >    (b) Flushing with specific locks (e.g. module_mutex) held can cause deadlock
-> >> >        (circular locking dependency) problem.
-> >> > 
-> >> >    (c) Even if there is no possibility of deadlock, flushing with specific locks
-> >> >        held can cause khungtaskd to complain.
-> >> > 
-> >> > An example of (a):
-> >> > 
-> >> >    ext4 filesystem called flush_scheduled_work(), which meant to wait for only
-> >> >    work item scheduled by ext4 filesystem, tried to also wait for work item
-> >> >    scheduled by 9p filesystem.
-> >> >    https://syzkaller.appspot.com/bug?extid=bde0f89deacca7c765b8
-> >> > 
-> >> >    Fixed by reverting the problematic patch.
-> >> > 
-> >> > An example of (b):
-> >> > 
-> >> >    It is GFP_KERNEL context when module's __exit function is called. But whether
-> >> >    flush_workqueue() is called from restricted context depends on what locks does
-> >> >    the module's __exit function hold.
-> >> > 
-> >> >    If request_module() is called from some work function using one of system-wide WQs,
-> >> >    and flush_workqueue() is called on that WQ from module's __exit function, the kernel
-> >> >    might deadlock on module_mutex lock. Making sure that flush_workqueue() is not called
-> >> >    on system-wide WQs is the safer choice.
-> >> > 
-> >> >    Commit 1b3ce51dde365296 ("Input: psmouse-smbus - avoid flush_scheduled_work() usage")
-> >> >    is for drivers/input/mouse/psmouse-smbus.c .
-> >> > 
-> >> > An example of (c):
-> >> > 
-> >> >    ath9k driver calls schedule_work() via request_firmware_nowait().
-> >> >    https://syzkaller.appspot.com/bug?id=78a242c8f1f4d15752c8ef4efc22974e2c52c833
-> >> > 
-> >> >    ath6kl driver calls flush_scheduled_work() which needlessly waits for completion
-> >> >    of works scheduled by ath9k driver (i.e. loading firmware used by ath9k driver).
-> >> >    https://syzkaller.appspot.com/bug?id=10a1cba59c42d11e12f897644341156eac9bb7ee
-> >> > 
-> >> >    Commit 4b2b8e748467985c ("ath6kl: avoid flush_scheduled_work() usage") in linux-next.git
-> >> >    might be able to mitigate these problems. (Waiting for next merge window...)
-> >> 
-> >> Okay, from 1b3ce51dde365296:
-> >> 
-> >>  "Flushing system-wide workqueues is dangerous and will be forbidden."
-> >> 
-> >> Thank you, this exactly explains the motivation which is what I was after. I
-> >> certainly agree there is a possibility for lock coupling via the shared wq
-> >> so that is fine by me.
-> >> 
-> >> > > On the i915 specifics, the caller in drivers/gpu/drm/i915/gt/selftest_execlists.c
-> >> > > I am pretty sure can be removed. It is synchronized with the error capture side of
-> >> > > things which is not required for the test to work.
-> >> > > 
-> >> > > I can send a patch for that or you can, as you prefer?
-> >> > 
-> >> > OK. Please send a patch for that, for that patch will go linux-next.git tree via
-> >> > a tree for gpu/drm/i915 driver.
-> >> 
-> >> Patch sent. If I am right the easiest solution was just to remove the flush.
-> >> If I was wrong though I'll need to create a dedicated wq so we will see what
-> >> our automated CI will say.
-> >
-> > But besides of flush_scheduled_work() it looks like
-> > we also need to take care of the flush_workqueue() calls, no?!
-> >
-> > * i915_gem_drain_workqueue()
-> > * intel_ggtt.c:   flush_workqueue(ggtt->vm.i915->wq);
-> > * i915_gem_pm.c: flush_workqueue(i915->wq);
-> >
-> > and the display ones for
-> > dev_priv->modeset_wq
-> > i915->flip_wq
-> >
-> > besides the flush_scheduled_work in intel_modeset_driver_remove_noirq
-> 
-> I thought the problem was flushing the system-wide workqueues. The above
-> calls flush our own.
+--000000000000dd9f2e05e2ac03d7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-oh, indeed, sorry for the noise.
-I had ignored the if for the new __warn_flushing...
+On Thu, Jun 30, 2022 at 10:14 AM Matthew Auld <matthew.auld@intel.com>
+wrote:
 
-> 
-> As to removing flush_scheduled_work() from
->intel_modeset_driver_remove_noirq(),
+> On 30/06/2022 06:11, Jason Ekstrand wrote:
+> > On Sat, Jun 25, 2022 at 8:49 PM Niranjana Vishwanathapura
+> > <niranjana.vishwanathapura@intel.com
+> > <mailto:niranjana.vishwanathapura@intel.com>> wrote:
+> >
+> >     VM_BIND and related uapi definitions
+> >
+> >     v2: Reduce the scope to simple Mesa use case.
+> >     v3: Expand VM_UNBIND documentation and add
+> >          I915_GEM_VM_BIND/UNBIND_FENCE_VALID
+> >          and I915_GEM_VM_BIND_TLB_FLUSH flags.
+> >     v4: Remove I915_GEM_VM_BIND_TLB_FLUSH flag and add additional
+> >          documentation for vm_bind/unbind.
+> >     v5: Remove TLB flush requirement on VM_UNBIND.
+> >          Add version support to stage implementation.
+> >     v6: Define and use drm_i915_gem_timeline_fence structure for
+> >          all timeline fences.
+> >     v7: Rename I915_PARAM_HAS_VM_BIND to I915_PARAM_VM_BIND_VERSION.
+> >          Update documentation on async vm_bind/unbind and versioning.
+> >          Remove redundant vm_bind/unbind FENCE_VALID flag, execbuf3
+> >          batch_count field and I915_EXEC3_SECURE flag.
+> >
+> >     Signed-off-by: Niranjana Vishwanathapura
+> >     <niranjana.vishwanathapura@intel.com
+> >     <mailto:niranjana.vishwanathapura@intel.com>>
+> >     Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch
+> >     <mailto:daniel.vetter@ffwll.ch>>
+> >     ---
+> >       Documentation/gpu/rfc/i915_vm_bind.h | 280
+> +++++++++++++++++++++++++++
+> >       1 file changed, 280 insertions(+)
+> >       create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+> >
+> >     diff --git a/Documentation/gpu/rfc/i915_vm_bind.h
+> >     b/Documentation/gpu/rfc/i915_vm_bind.h
+> >     new file mode 100644
+> >     index 000000000000..a93e08bceee6
+> >     --- /dev/null
+> >     +++ b/Documentation/gpu/rfc/i915_vm_bind.h
+> >     @@ -0,0 +1,280 @@
+> >     +/* SPDX-License-Identifier: MIT */
+> >     +/*
+> >     + * Copyright =C2=A9 2022 Intel Corporation
+> >     + */
+> >     +
+> >     +/**
+> >     + * DOC: I915_PARAM_VM_BIND_VERSION
+> >     + *
+> >     + * VM_BIND feature version supported.
+> >     + * See typedef drm_i915_getparam_t param.
+> >     + *
+> >     + * Specifies the VM_BIND feature version supported.
+> >     + * The following versions of VM_BIND have been defined:
+> >     + *
+> >     + * 0: No VM_BIND support.
+> >     + *
+> >     + * 1: In VM_UNBIND calls, the UMD must specify the exact mappings
+> >     created
+> >     + *    previously with VM_BIND, the ioctl will not support unbindin=
+g
+> >     multiple
+> >     + *    mappings or splitting them. Similarly, VM_BIND calls will no=
+t
+> >     replace
+> >     + *    any existing mappings.
+> >     + *
+> >     + * 2: The restrictions on unbinding partial or multiple mappings i=
+s
+> >     + *    lifted, Similarly, binding will replace any mappings in the
+> >     given range.
+> >     + *
+> >     + * See struct drm_i915_gem_vm_bind and struct
+> drm_i915_gem_vm_unbind.
+> >     + */
+> >     +#define I915_PARAM_VM_BIND_VERSION     57
+> >     +
+> >     +/**
+> >     + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
+> >     + *
+> >     + * Flag to opt-in for VM_BIND mode of binding during VM creation.
+> >     + * See struct drm_i915_gem_vm_control flags.
+> >     + *
+> >     + * The older execbuf2 ioctl will not support VM_BIND mode of
+> operation.
+> >     + * For VM_BIND mode, we have new execbuf3 ioctl which will not
+> >     accept any
+> >     + * execlist (See struct drm_i915_gem_execbuffer3 for more details)=
+.
+> >     + */
+> >     +#define I915_VM_CREATE_FLAGS_USE_VM_BIND       (1 << 0)
+> >     +
+> >     +/* VM_BIND related ioctls */
+> >     +#define DRM_I915_GEM_VM_BIND           0x3d
+> >     +#define DRM_I915_GEM_VM_UNBIND         0x3e
+> >     +#define DRM_I915_GEM_EXECBUFFER3       0x3f
+> >     +
+> >     +#define DRM_IOCTL_I915_GEM_VM_BIND
+> >       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct
+> >     drm_i915_gem_vm_bind)
+> >     +#define DRM_IOCTL_I915_GEM_VM_UNBIND
+> >       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct
+> >     drm_i915_gem_vm_bind)
+> >     +#define DRM_IOCTL_I915_GEM_EXECBUFFER3
+> >       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct
+> >     drm_i915_gem_execbuffer3)
+> >     +
+> >     +/**
+> >     + * struct drm_i915_gem_timeline_fence - An input or output timelin=
+e
+> >     fence.
+> >     + *
+> >     + * The operation will wait for input fence to signal.
+> >     + *
+> >     + * The returned output fence will be signaled after the completion
+> >     of the
+> >     + * operation.
+> >     + */
+> >     +struct drm_i915_gem_timeline_fence {
+> >     +       /** @handle: User's handle for a drm_syncobj to wait on or
+> >     signal. */
+> >     +       __u32 handle;
+> >     +
+> >     +       /**
+> >     +        * @flags: Supported flags are:
+> >     +        *
+> >     +        * I915_TIMELINE_FENCE_WAIT:
+> >     +        * Wait for the input fence before the operation.
+> >     +        *
+> >     +        * I915_TIMELINE_FENCE_SIGNAL:
+> >     +        * Return operation completion fence as output.
+> >     +        */
+> >     +       __u32 flags;
+> >     +#define I915_TIMELINE_FENCE_WAIT            (1 << 0)
+> >     +#define I915_TIMELINE_FENCE_SIGNAL          (1 << 1)
+> >     +#define __I915_TIMELINE_FENCE_UNKNOWN_FLAGS
+> >     (-(I915_TIMELINE_FENCE_SIGNAL << 1))
+> >     +
+> >     +       /**
+> >     +        * @value: A point in the timeline.
+> >     +        * Value must be 0 for a binary drm_syncobj. A Value of 0
+> for a
+> >     +        * timeline drm_syncobj is invalid as it turns a drm_syncob=
+j
+> >     into a
+> >     +        * binary one.
+> >     +        */
+> >     +       __u64 value;
+> >     +};
+> >     +
+> >     +/**
+> >     + * struct drm_i915_gem_vm_bind - VA to object mapping to bind.
+> >     + *
+> >     + * This structure is passed to VM_BIND ioctl and specifies the
+> >     mapping of GPU
+> >     + * virtual address (VA) range to the section of an object that
+> >     should be bound
+> >     + * in the device page table of the specified address space (VM).
+> >     + * The VA range specified must be unique (ie., not currently bound=
+)
+> >     and can
+> >     + * be mapped to whole object or a section of the object (partial
+> >     binding).
+> >     + * Multiple VA mappings can be created to the same section of the
+> >     object
+> >     + * (aliasing).
+> >     + *
+> >     + * The @start, @offset and @length must be 4K page aligned. Howeve=
+r
+> >     the DG2
+> >     + * and XEHPSDV has 64K page size for device local-memory and has
+> >     compact page
+> >     + * table. On those platforms, for binding device local-memory
+> >     objects, the
+> >     + * @start must be 2M aligned, @offset and @length must be 64K
+> aligned.
+> >
+> >
+> > This is not acceptable.  We need 64K granularity.  This includes the
+> > starting address, the BO offset, and the length.  Why?  The tl;dr is
+> > that it's a requirement for about 50% of D3D12 apps if we want them to
+> > run on Linux via D3D12.  A longer explanation follows.  I don't
+> > necessarily expect kernel folks to get all the details but hopefully
+> > I'll have left enough of a map that some of the Intel Mesa folks can
+> > help fill in details.
+> >
+> > Many modern D3D12 apps have a hard requirement on Tier2 tiled
+> > resources.  This is a feature that Intel has supported in the D3D12
+> > driver since Skylake.  In order to implement this feature, VKD3D
+> > requires the various sparseResidencyImage* and sparseResidency*Sampled
+> > Vulkan features.  If we want those apps to work (there's getting to be
+> > quite a few of them), we need to implement the Vulkan sparse residency
+> > features.
+> > |
+> > |
+> > What is sparse residency?  I'm glad you asked!  The sparse residency
+> > features allow a client to separately bind each miplevel or array slice
+> > of an image to a chunk of device memory independently, without affectin=
+g
+> > any other areas of the image.  Once you get to a high enough miplevel
+> > that everything fits inside a single sparse image block (that's a
+> > technical Vulkan term you can search for in the spec), you can enter a
+> > "miptail" which contains all the remaining miplevels in a single sparse
+> > image block.
+> >
+> > The term "sparse image block" is what the Vulkan spec uses.  On Intel
+> > hardware and in the docs, it's what we call a "tile".  Specifically, th=
+e
+> > image needs to use Yf or Ys tiling on SKL-TGL or a Tile64 on DG2+.  Thi=
+s
+> > is because Tile4 and legacy X and Y-tiling don't provide any guarantees
+> > about page alignment for slices.  Yf, Ys, and Tile64, on the other hand=
+,
+> > align all slices of the image to a tile boundary, allowing us to map
+> > memory to different slices independently, assuming we have 64K (or 4K
+> > for Yf) VM_BIND granularity.  (4K isn't actually a requirement for
+> > SKL-TGL; we can use Ys all the time which has 64K tiles but there's no
+> > reason to not support 4K alignments on integrated.)
+> >
+> > Someone may be tempted to ask, "Can't we wiggle the strides around or
+> > something to make it work?"  I thought about that and no, you can't.
+> > The problem here is LOD2+.  Sure, you can have a stride such that the
+> > image is a multiple of 2M worth of tiles across.  That'll work fine for
+> > LOD0 and LOD1; both will be 2M aligned.  However, LOD2 won't be and
+> > there's no way to control that.  The hardware will place it to the righ=
+t
+> > of LOD1 by ROUND_UP(width, tile_width) pixels and there's nothing you
+> > can do about that.  If that position doesn't happen to hit a 2M
+> > boundary, you're out of luck.
+> >
+> > I hope that explanation provides enough detail.  Sadly, this is one of
+> > those things which has a lot of moving pieces all over different bits o=
+f
+> > the hardware and various APIs and they all have to work together just
+> > right for it to all come out in the end.  But, yeah, we really need 64K
+> > aligned binding if we want VKD3D to work.
+>
+> Just to confirm, the new model would be to enforce 64K GTT alignment for
+> lmem pages, and then for smem pages we would only require 4K alignment,
+> but with the added restriction that userspace will never try to mix the
+> two (lmem vs smem) within the same 2M va range (page-table). The kernel
+> will verify this and throw an error if needed. This model should work
+> with the above?
+>
 
-yeap, this is the only real one...
+Mesa doesn't have full control over BO placement so I don't think we can
+guarantee quite as much as you want there.  We can guarantee, I think, that
+we never place LMEM-only and SMEM-only in the same 2M block.  However, most
+BOs will be LMEM+SMEM (with a preference for LMEM) and then it'll be up to
+the kernel to sort out any issues.  Is that reasonable?
 
-> I think we'll need to account for
-> all the work and delayed work we've scheduled on the system workqueue,
-> i.e. we need to cancel or flush each of them individually, as
-> necessary. Some of them we do already, but some others, not really.
-> 
-> For example we never cancel the fbc underrun work on the driver remove
-> path AFAICT. And it's not even as simple as just adding the
-> cancel_work_sync(&fbc->underrun_work) call in intel_fbc_cleanup(),
-> because intel_fbc_cleanup() is called *after*
-> intel_mode_config_cleanup(), i.e. the work function might get called
-> after the crtc it accesses has been destroyed. So we're going to need to
-> change the cleanup order too.
-> 
-> Things have changed considerably since the flush was added in
-> 1630fe754c83 ("drm/i915: Perform intel_enable_fbc() from a delayed
-> task").
-> 
-> I suppose the alternative is to have a local i915 display workqueue,
-> schedule all the random display works and delayed works on that, and
-> then flush that wq instead of the system wq in
-> intel_modeset_driver_remove_noirq().
-> 
-> IIUC, anyway.
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+--Jason
+
+
+
+> >
+> > --Jason
+> >
+> >     + * Also, for such mappings, i915 will reserve the whole 2M range
+> >     for it so as
+> >     + * to not allow multiple mappings in that 2M range (Compact page
+> >     tables do not
+> >     + * allow 64K page and 4K page bindings in the same 2M range).
+> >     + *
+> >     + * Error code -EINVAL will be returned if @start, @offset and
+> >     @length are not
+> >     + * properly aligned. In version 1 (See I915_PARAM_VM_BIND_VERSION)=
+,
+> >     error code
+> >     + * -ENOSPC will be returned if the VA range specified can't be
+> >     reserved.
+> >     + *
+> >     + * VM_BIND/UNBIND ioctl calls executed on different CPU threads
+> >     concurrently
+> >     + * are not ordered. Furthermore, parts of the VM_BIND operation ca=
+n
+> >     be done
+> >     + * asynchronously, if valid @fence is specified.
+> >     + */
+> >     +struct drm_i915_gem_vm_bind {
+> >     +       /** @vm_id: VM (address space) id to bind */
+> >     +       __u32 vm_id;
+> >     +
+> >     +       /** @handle: Object handle */
+> >     +       __u32 handle;
+> >     +
+> >     +       /** @start: Virtual Address start to bind */
+> >     +       __u64 start;
+> >     +
+> >     +       /** @offset: Offset in object to bind */
+> >     +       __u64 offset;
+> >     +
+> >     +       /** @length: Length of mapping to bind */
+> >     +       __u64 length;
+> >     +
+> >     +       /**
+> >     +        * @flags: Supported flags are:
+> >     +        *
+> >     +        * I915_GEM_VM_BIND_READONLY:
+> >     +        * Mapping is read-only.
+> >     +        *
+> >     +        * I915_GEM_VM_BIND_CAPTURE:
+> >     +        * Capture this mapping in the dump upon GPU error.
+> >     +        */
+> >     +       __u64 flags;
+> >     +#define I915_GEM_VM_BIND_READONLY      (1 << 1)
+> >     +#define I915_GEM_VM_BIND_CAPTURE       (1 << 2)
+> >     +
+> >     +       /**
+> >     +        * @fence: Timeline fence for bind completion signaling.
+> >     +        *
+> >     +        * It is an out fence, hence using I915_TIMELINE_FENCE_WAIT
+> flag
+> >     +        * is invalid, and an error will be returned.
+> >     +        */
+> >     +       struct drm_i915_gem_timeline_fence fence;
+> >     +
+> >     +       /**
+> >     +        * @extensions: Zero-terminated chain of extensions.
+> >     +        *
+> >     +        * For future extensions. See struct i915_user_extension.
+> >     +        */
+> >     +       __u64 extensions;
+> >     +};
+> >     +
+> >     +/**
+> >     + * struct drm_i915_gem_vm_unbind - VA to object mapping to unbind.
+> >     + *
+> >     + * This structure is passed to VM_UNBIND ioctl and specifies the
+> >     GPU virtual
+> >     + * address (VA) range that should be unbound from the device page
+> >     table of the
+> >     + * specified address space (VM). VM_UNBIND will force unbind the
+> >     specified
+> >     + * range from device page table without waiting for any GPU job to
+> >     complete.
+> >     + * It is UMDs responsibility to ensure the mapping is no longer in
+> >     use before
+> >     + * calling VM_UNBIND.
+> >     + *
+> >     + * If the specified mapping is not found, the ioctl will simply
+> >     return without
+> >     + * any error.
+> >     + *
+> >     + * VM_BIND/UNBIND ioctl calls executed on different CPU threads
+> >     concurrently
+> >     + * are not ordered. Furthermore, parts of the VM_UNBIND operation
+> >     can be done
+> >     + * asynchronously, if valid @fence is specified.
+> >     + */
+> >     +struct drm_i915_gem_vm_unbind {
+> >     +       /** @vm_id: VM (address space) id to bind */
+> >     +       __u32 vm_id;
+> >     +
+> >     +       /** @rsvd: Reserved, MBZ */
+> >     +       __u32 rsvd;
+> >     +
+> >     +       /** @start: Virtual Address start to unbind */
+> >     +       __u64 start;
+> >     +
+> >     +       /** @length: Length of mapping to unbind */
+> >     +       __u64 length;
+> >     +
+> >     +       /** @flags: Currently reserved, MBZ */
+> >     +       __u64 flags;
+> >     +
+> >     +       /**
+> >     +        * @fence: Timeline fence for unbind completion signaling.
+> >     +        *
+> >     +        * It is an out fence, hence using I915_TIMELINE_FENCE_WAIT
+> flag
+> >     +        * is invalid, and an error will be returned.
+> >     +        */
+> >     +       struct drm_i915_gem_timeline_fence fence;
+> >     +
+> >     +       /**
+> >     +        * @extensions: Zero-terminated chain of extensions.
+> >     +        *
+> >     +        * For future extensions. See struct i915_user_extension.
+> >     +        */
+> >     +       __u64 extensions;
+> >     +};
+> >     +
+> >     +/**
+> >     + * struct drm_i915_gem_execbuffer3 - Structure for
+> >     DRM_I915_GEM_EXECBUFFER3
+> >     + * ioctl.
+> >     + *
+> >     + * DRM_I915_GEM_EXECBUFFER3 ioctl only works in VM_BIND mode and
+> >     VM_BIND mode
+> >     + * only works with this ioctl for submission.
+> >     + * See I915_VM_CREATE_FLAGS_USE_VM_BIND.
+> >     + */
+> >     +struct drm_i915_gem_execbuffer3 {
+> >     +       /**
+> >     +        * @ctx_id: Context id
+> >     +        *
+> >     +        * Only contexts with user engine map are allowed.
+> >     +        */
+> >     +       __u32 ctx_id;
+> >     +
+> >     +       /**
+> >     +        * @engine_idx: Engine index
+> >     +        *
+> >     +        * An index in the user engine map of the context specified
+> >     by @ctx_id.
+> >     +        */
+> >     +       __u32 engine_idx;
+> >     +
+> >     +       /**
+> >     +        * @batch_address: Batch gpu virtual address/es.
+> >     +        *
+> >     +        * For normal submission, it is the gpu virtual address of
+> >     the batch
+> >     +        * buffer. For parallel submission, it is a pointer to an
+> >     array of
+> >     +        * batch buffer gpu virtual addresses with array size equal
+> >     to the
+> >     +        * number of (parallel) engines involved in that submission
+> (See
+> >     +        * struct i915_context_engines_parallel_submit).
+> >     +        */
+> >     +       __u64 batch_address;
+> >     +
+> >     +       /** @flags: Currently reserved, MBZ */
+> >     +       __u64 flags;
+> >     +
+> >     +       /** @rsvd1: Reserved, MBZ */
+> >     +       __u32 rsvd1;
+> >     +
+> >     +       /** @fence_count: Number of fences in @timeline_fences
+> array. */
+> >     +       __u32 fence_count;
+> >     +
+> >     +       /**
+> >     +        * @timeline_fences: Pointer to an array of timeline fences=
+.
+> >     +        *
+> >     +        * Timeline fences are of format struct
+> >     drm_i915_gem_timeline_fence.
+> >     +        */
+> >     +       __u64 timeline_fences;
+> >     +
+> >     +       /** @rsvd2: Reserved, MBZ */
+> >     +       __u64 rsvd2;
+> >     +
+> >     +       /**
+> >     +        * @extensions: Zero-terminated chain of extensions.
+> >     +        *
+> >     +        * For future extensions. See struct i915_user_extension.
+> >     +        */
+> >     +       __u64 extensions;
+> >     +};
+> >     +
+> >     +/**
+> >     + * struct drm_i915_gem_create_ext_vm_private - Extension to make
+> >     the object
+> >     + * private to the specified VM.
+> >     + *
+> >     + * See struct drm_i915_gem_create_ext.
+> >     + */
+> >     +struct drm_i915_gem_create_ext_vm_private {
+> >     +#define I915_GEM_CREATE_EXT_VM_PRIVATE         2
+> >     +       /** @base: Extension link. See struct i915_user_extension. =
+*/
+> >     +       struct i915_user_extension base;
+> >     +
+> >     +       /** @vm_id: Id of the VM to which the object is private */
+> >     +       __u32 vm_id;
+> >     +};
+> >     --
+> >     2.21.0.rc0.32.g243a4c7e27
+> >
+>
+
+--000000000000dd9f2e05e2ac03d7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Thu, Jun 30, 2022 at 10:14 AM Matthew Auld &lt;<a href=3D"mailto:=
+matthew.auld@intel.com">matthew.auld@intel.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex">On 30/06/2022 06:11, Jason Ek=
+strand wrote:<br>
+&gt; On Sat, Jun 25, 2022 at 8:49 PM Niranjana Vishwanathapura <br>
+&gt; &lt;<a href=3D"mailto:niranjana.vishwanathapura@intel.com" target=3D"_=
+blank">niranjana.vishwanathapura@intel.com</a> <br>
+&gt; &lt;mailto:<a href=3D"mailto:niranjana.vishwanathapura@intel.com" targ=
+et=3D"_blank">niranjana.vishwanathapura@intel.com</a>&gt;&gt; wrote:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0VM_BIND and related uapi definitions<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0v2: Reduce the scope to simple Mesa use case.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0v3: Expand VM_UNBIND documentation and add<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 I915_GEM_VM_BIND/UNBIND_FENCE_VALID<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 and I915_GEM_VM_BIND_TLB_FLUSH flags=
+.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0v4: Remove I915_GEM_VM_BIND_TLB_FLUSH flag and add =
+additional<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 documentation for vm_bind/unbind.<br=
+>
+&gt;=C2=A0 =C2=A0 =C2=A0v5: Remove TLB flush requirement on VM_UNBIND.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Add version support to stage impleme=
+ntation.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0v6: Define and use drm_i915_gem_timeline_fence stru=
+cture for<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 all timeline fences.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0v7: Rename I915_PARAM_HAS_VM_BIND to I915_PARAM_VM_=
+BIND_VERSION.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Update documentation on async vm_bin=
+d/unbind and versioning.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Remove redundant vm_bind/unbind FENC=
+E_VALID flag, execbuf3<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 batch_count field and I915_EXEC3_SEC=
+URE flag.<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Signed-off-by: Niranjana Vishwanathapura<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"mailto:niranjana.vishwanathapura@int=
+el.com" target=3D"_blank">niranjana.vishwanathapura@intel.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:niranjana.vishwanathap=
+ura@intel.com" target=3D"_blank">niranjana.vishwanathapura@intel.com</a>&gt=
+;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Reviewed-by: Daniel Vetter &lt;<a href=3D"mailto:da=
+niel.vetter@ffwll.ch" target=3D"_blank">daniel.vetter@ffwll.ch</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:daniel.vetter@ffwll.ch=
+" target=3D"_blank">daniel.vetter@ffwll.ch</a>&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0---<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Documentation/gpu/rfc/i915_vm_bind.h | 280 +=
+++++++++++++++++++++++++++<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A01 file changed, 280 insertions(+)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0create mode 100644 Documentation/gpu/rfc/i91=
+5_vm_bind.h<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0diff --git a/Documentation/gpu/rfc/i915_vm_bind.h<b=
+r>
+&gt;=C2=A0 =C2=A0 =C2=A0b/Documentation/gpu/rfc/i915_vm_bind.h<br>
+&gt;=C2=A0 =C2=A0 =C2=A0new file mode 100644<br>
+&gt;=C2=A0 =C2=A0 =C2=A0index 000000000000..a93e08bceee6<br>
+&gt;=C2=A0 =C2=A0 =C2=A0--- /dev/null<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+++ b/Documentation/gpu/rfc/i915_vm_bind.h<br>
+&gt;=C2=A0 =C2=A0 =C2=A0@@ -0,0 +1,280 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/* SPDX-License-Identifier: MIT */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/*<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * Copyright =C2=A9 2022 Intel Corporation<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * DOC: I915_PARAM_VM_BIND_VERSION<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * VM_BIND feature version supported.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * See typedef drm_i915_getparam_t param.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * Specifies the VM_BIND feature version supported=
+.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * The following versions of VM_BIND have been def=
+ined:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * 0: No VM_BIND support.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * 1: In VM_UNBIND calls, the UMD must specify the=
+ exact mappings<br>
+&gt;=C2=A0 =C2=A0 =C2=A0created<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *=C2=A0 =C2=A0 previously with VM_BIND, the ioctl=
+ will not support unbinding<br>
+&gt;=C2=A0 =C2=A0 =C2=A0multiple<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *=C2=A0 =C2=A0 mappings or splitting them. Simila=
+rly, VM_BIND calls will not<br>
+&gt;=C2=A0 =C2=A0 =C2=A0replace<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *=C2=A0 =C2=A0 any existing mappings.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * 2: The restrictions on unbinding partial or mul=
+tiple mappings is<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *=C2=A0 =C2=A0 lifted, Similarly, binding will re=
+place any mappings in the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0given range.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * See struct drm_i915_gem_vm_bind and struct drm_=
+i915_gem_vm_unbind.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_PARAM_VM_BIND_VERSION=C2=A0 =C2=A0 =
+=C2=A057<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * Flag to opt-in for VM_BIND mode of binding duri=
+ng VM creation.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * See struct drm_i915_gem_vm_control flags.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * The older execbuf2 ioctl will not support VM_BI=
+ND mode of operation.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * For VM_BIND mode, we have new execbuf3 ioctl wh=
+ich will not<br>
+&gt;=C2=A0 =C2=A0 =C2=A0accept any<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * execlist (See struct drm_i915_gem_execbuffer3 f=
+or more details).<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_VM_CREATE_FLAGS_USE_VM_BIND=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0(1 &lt;&lt; 0)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/* VM_BIND related ioctls */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define DRM_I915_GEM_VM_BIND=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A00x3d<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define DRM_I915_GEM_VM_UNBIND=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A00x3e<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define DRM_I915_GEM_EXECBUFFER3=C2=A0 =C2=A0 =C2=
+=A0 =C2=A00x3f<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define DRM_IOCTL_I915_GEM_VM_BIND=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_=
+BIND, struct<br>
+&gt;=C2=A0 =C2=A0 =C2=A0drm_i915_gem_vm_bind)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define DRM_IOCTL_I915_GEM_VM_UNBIND=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_=
+UNBIND, struct<br>
+&gt;=C2=A0 =C2=A0 =C2=A0drm_i915_gem_vm_bind)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define DRM_IOCTL_I915_GEM_EXECBUFFER3=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXE=
+CBUFFER3, struct<br>
+&gt;=C2=A0 =C2=A0 =C2=A0drm_i915_gem_execbuffer3)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * struct drm_i915_gem_timeline_fence - An input o=
+r output timeline<br>
+&gt;=C2=A0 =C2=A0 =C2=A0fence.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * The operation will wait for input fence to sign=
+al.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * The returned output fence will be signaled afte=
+r the completion<br>
+&gt;=C2=A0 =C2=A0 =C2=A0of the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * operation.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+struct drm_i915_gem_timeline_fence {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @handle: User&#39;s=
+ handle for a drm_syncobj to wait on or<br>
+&gt;=C2=A0 =C2=A0 =C2=A0signal. */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 handle;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @flags: Supported fl=
+ags are:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * I915_TIMELINE_FENCE_=
+WAIT:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Wait for the input f=
+ence before the operation.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * I915_TIMELINE_FENCE_=
+SIGNAL:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Return operation com=
+pletion fence as output.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 flags;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_TIMELINE_FENCE_WAIT=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; 0)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_TIMELINE_FENCE_SIGNAL=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; 1)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define __I915_TIMELINE_FENCE_UNKNOWN_FLAGS<br>
+&gt;=C2=A0 =C2=A0 =C2=A0(-(I915_TIMELINE_FENCE_SIGNAL &lt;&lt; 1))<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @value: A point in t=
+he timeline.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Value must be 0 for =
+a binary drm_syncobj. A Value of 0 for a<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * timeline drm_syncobj=
+ is invalid as it turns a drm_syncobj<br>
+&gt;=C2=A0 =C2=A0 =C2=A0into a<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * binary one.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 value;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+};<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * struct drm_i915_gem_vm_bind - VA to object mapp=
+ing to bind.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * This structure is passed to VM_BIND ioctl and s=
+pecifies the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0mapping of GPU<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * virtual address (VA) range to the section of an=
+ object that<br>
+&gt;=C2=A0 =C2=A0 =C2=A0should be bound<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * in the device page table of the specified addre=
+ss space (VM).<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * The VA range specified must be unique (ie., not=
+ currently bound)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0and can<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * be mapped to whole object or a section of the o=
+bject (partial<br>
+&gt;=C2=A0 =C2=A0 =C2=A0binding).<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * Multiple VA mappings can be created to the same=
+ section of the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0object<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * (aliasing).<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * The @start, @offset and @length must be 4K page=
+ aligned. However<br>
+&gt;=C2=A0 =C2=A0 =C2=A0the DG2<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * and XEHPSDV has 64K page size for device local-=
+memory and has<br>
+&gt;=C2=A0 =C2=A0 =C2=A0compact page<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * table. On those platforms, for binding device l=
+ocal-memory<br>
+&gt;=C2=A0 =C2=A0 =C2=A0objects, the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * @start must be 2M aligned, @offset and @length =
+must be 64K aligned.<br>
+&gt; <br>
+&gt; <br>
+&gt; This is not acceptable.=C2=A0 We need 64K granularity.=C2=A0 This incl=
+udes the <br>
+&gt; starting address, the BO offset, and the length.=C2=A0 Why?=C2=A0 The =
+tl;dr is <br>
+&gt; that it&#39;s a requirement for about 50% of D3D12 apps if we want the=
+m to <br>
+&gt; run on Linux via D3D12.=C2=A0 A longer explanation follows.=C2=A0 I do=
+n&#39;t <br>
+&gt; necessarily expect kernel folks to get all the details but hopefully <=
+br>
+&gt; I&#39;ll have left enough of a map that some of the Intel Mesa folks c=
+an <br>
+&gt; help fill in details.<br>
+&gt; <br>
+&gt; Many modern D3D12 apps have a hard requirement on Tier2 tiled <br>
+&gt; resources.=C2=A0 This is a feature that Intel has supported in the D3D=
+12 <br>
+&gt; driver since Skylake.=C2=A0 In order to implement this feature, VKD3D =
+<br>
+&gt; requires the various sparseResidencyImage* and sparseResidency*Sampled=
+ <br>
+&gt; Vulkan features.=C2=A0 If we want those apps to work (there&#39;s gett=
+ing to be <br>
+&gt; quite a few of them), we need to implement the Vulkan sparse residency=
+ <br>
+&gt; features.<br>
+&gt; |<br>
+&gt; |<br>
+&gt; What is sparse residency?=C2=A0 I&#39;m glad you asked!=C2=A0 The spar=
+se residency <br>
+&gt; features allow a client to separately bind each miplevel or array slic=
+e <br>
+&gt; of an image to a chunk of device memory independently, without affecti=
+ng <br>
+&gt; any other areas of the image.=C2=A0 Once you get to a high enough mipl=
+evel <br>
+&gt; that everything fits inside a single sparse image block (that&#39;s a =
+<br>
+&gt; technical Vulkan term you can search for in the spec), you can enter a=
+ <br>
+&gt; &quot;miptail&quot; which contains all the remaining miplevels in a si=
+ngle sparse <br>
+&gt; image block.<br>
+&gt; <br>
+&gt; The term &quot;sparse image block&quot; is what the Vulkan spec uses.=
+=C2=A0 On Intel <br>
+&gt; hardware and in the docs, it&#39;s what we call a &quot;tile&quot;.=C2=
+=A0 Specifically, the <br>
+&gt; image needs to use Yf or Ys tiling on SKL-TGL or a Tile64 on DG2+.=C2=
+=A0 This <br>
+&gt; is because Tile4 and legacy X and Y-tiling don&#39;t provide any guara=
+ntees <br>
+&gt; about page alignment for slices.=C2=A0 Yf, Ys, and Tile64, on the othe=
+r hand, <br>
+&gt; align all slices of the image to a tile boundary, allowing us to map <=
+br>
+&gt; memory to different slices independently, assuming we have 64K (or 4K =
+<br>
+&gt; for Yf) VM_BIND granularity.=C2=A0 (4K isn&#39;t actually a requiremen=
+t for <br>
+&gt; SKL-TGL; we can use Ys all the time which has 64K tiles but there&#39;=
+s no <br>
+&gt; reason to not support 4K alignments on integrated.)<br>
+&gt; <br>
+&gt; Someone may be tempted to ask, &quot;Can&#39;t we wiggle the strides a=
+round or <br>
+&gt; something to make it work?&quot;=C2=A0 I thought about that and no, yo=
+u can&#39;t.=C2=A0 <br>
+&gt; The problem here is LOD2+.=C2=A0 Sure, you can have a stride such that=
+ the <br>
+&gt; image is a multiple of 2M worth of tiles across.=C2=A0 That&#39;ll wor=
+k fine for <br>
+&gt; LOD0 and LOD1; both will be 2M aligned.=C2=A0 However, LOD2 won&#39;t =
+be and <br>
+&gt; there&#39;s no way to control that.=C2=A0 The hardware will place it t=
+o the right <br>
+&gt; of LOD1 by ROUND_UP(width, tile_width) pixels and there&#39;s nothing =
+you <br>
+&gt; can do about that.=C2=A0 If that position doesn&#39;t happen to hit a =
+2M <br>
+&gt; boundary, you&#39;re out of luck.<br>
+&gt; <br>
+&gt; I hope that explanation provides enough detail.=C2=A0 Sadly, this is o=
+ne of <br>
+&gt; those things which has a lot of moving pieces all over different bits =
+of <br>
+&gt; the hardware and various APIs and they all have to work together just =
+<br>
+&gt; right for it to all come out in the end.=C2=A0 But, yeah, we really ne=
+ed 64K <br>
+&gt; aligned binding if we want VKD3D to work.<br>
+<br>
+Just to confirm, the new model would be to enforce 64K GTT alignment for <b=
+r>
+lmem pages, and then for smem pages we would only require 4K alignment, <br=
+>
+but with the added restriction that userspace will never try to mix the <br=
+>
+two (lmem vs smem) within the same 2M va range (page-table). The kernel <br=
+>
+will verify this and throw an error if needed. This model should work <br>
+with the above?<br></blockquote><div><br></div><div>Mesa doesn&#39;t have f=
+ull control over BO placement so I don&#39;t think we can guarantee quite a=
+s much as you want there.=C2=A0 We can guarantee, I think, that we never pl=
+ace LMEM-only and SMEM-only in the same 2M block.=C2=A0 However, most BOs w=
+ill be LMEM+SMEM (with a preference for LMEM) and then it&#39;ll be up to t=
+he kernel to sort out any issues.=C2=A0 Is that reasonable?</div><div><br><=
+/div><div>--Jason</div><div><br></div><div>=C2=A0</div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex">
+&gt; <br>
+&gt; --Jason<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * Also, for such mappings, i915 will reserve the =
+whole 2M range<br>
+&gt;=C2=A0 =C2=A0 =C2=A0for it so as<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * to not allow multiple mappings in that 2M range=
+ (Compact page<br>
+&gt;=C2=A0 =C2=A0 =C2=A0tables do not<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * allow 64K page and 4K page bindings in the same=
+ 2M range).<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * Error code -EINVAL will be returned if @start, =
+@offset and<br>
+&gt;=C2=A0 =C2=A0 =C2=A0@length are not<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * properly aligned. In version 1 (See I915_PARAM_=
+VM_BIND_VERSION),<br>
+&gt;=C2=A0 =C2=A0 =C2=A0error code<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * -ENOSPC will be returned if the VA range specif=
+ied can&#39;t be<br>
+&gt;=C2=A0 =C2=A0 =C2=A0reserved.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * VM_BIND/UNBIND ioctl calls executed on differen=
+t CPU threads<br>
+&gt;=C2=A0 =C2=A0 =C2=A0concurrently<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * are not ordered. Furthermore, parts of the VM_B=
+IND operation can<br>
+&gt;=C2=A0 =C2=A0 =C2=A0be done<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * asynchronously, if valid @fence is specified.<b=
+r>
+&gt;=C2=A0 =C2=A0 =C2=A0+ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+struct drm_i915_gem_vm_bind {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @vm_id: VM (address=
+ space) id to bind */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 vm_id;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @handle: Object han=
+dle */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 handle;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @start: Virtual Add=
+ress start to bind */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 start;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @offset: Offset in =
+object to bind */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 offset;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @length: Length of =
+mapping to bind */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 length;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @flags: Supported fl=
+ags are:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * I915_GEM_VM_BIND_REA=
+DONLY:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Mapping is read-only=
+.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * I915_GEM_VM_BIND_CAP=
+TURE:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Capture this mapping=
+ in the dump upon GPU error.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 flags;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_GEM_VM_BIND_READONLY=C2=A0 =C2=A0 =C2=
+=A0 (1 &lt;&lt; 1)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_GEM_VM_BIND_CAPTURE=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0(1 &lt;&lt; 2)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @fence: Timeline fen=
+ce for bind completion signaling.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * It is an out fence, =
+hence using I915_TIMELINE_FENCE_WAIT flag<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * is invalid, and an e=
+rror will be returned.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_i915_gem_tim=
+eline_fence fence;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @extensions: Zero-te=
+rminated chain of extensions.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * For future extension=
+s. See struct i915_user_extension.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 extensions;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+};<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * struct drm_i915_gem_vm_unbind - VA to object ma=
+pping to unbind.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * This structure is passed to VM_UNBIND ioctl and=
+ specifies the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0GPU virtual<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * address (VA) range that should be unbound from =
+the device page<br>
+&gt;=C2=A0 =C2=A0 =C2=A0table of the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * specified address space (VM). VM_UNBIND will fo=
+rce unbind the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0specified<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * range from device page table without waiting fo=
+r any GPU job to<br>
+&gt;=C2=A0 =C2=A0 =C2=A0complete.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * It is UMDs responsibility to ensure the mapping=
+ is no longer in<br>
+&gt;=C2=A0 =C2=A0 =C2=A0use before<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * calling VM_UNBIND.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * If the specified mapping is not found, the ioct=
+l will simply<br>
+&gt;=C2=A0 =C2=A0 =C2=A0return without<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * any error.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * VM_BIND/UNBIND ioctl calls executed on differen=
+t CPU threads<br>
+&gt;=C2=A0 =C2=A0 =C2=A0concurrently<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * are not ordered. Furthermore, parts of the VM_U=
+NBIND operation<br>
+&gt;=C2=A0 =C2=A0 =C2=A0can be done<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * asynchronously, if valid @fence is specified.<b=
+r>
+&gt;=C2=A0 =C2=A0 =C2=A0+ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+struct drm_i915_gem_vm_unbind {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @vm_id: VM (address=
+ space) id to bind */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 vm_id;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @rsvd: Reserved, MB=
+Z */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 rsvd;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @start: Virtual Add=
+ress start to unbind */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 start;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @length: Length of =
+mapping to unbind */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 length;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @flags: Currently r=
+eserved, MBZ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 flags;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @fence: Timeline fen=
+ce for unbind completion signaling.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * It is an out fence, =
+hence using I915_TIMELINE_FENCE_WAIT flag<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * is invalid, and an e=
+rror will be returned.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_i915_gem_tim=
+eline_fence fence;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @extensions: Zero-te=
+rminated chain of extensions.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * For future extension=
+s. See struct i915_user_extension.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 extensions;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+};<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * struct drm_i915_gem_execbuffer3 - Structure for=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0DRM_I915_GEM_EXECBUFFER3<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * ioctl.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * DRM_I915_GEM_EXECBUFFER3 ioctl only works in VM=
+_BIND mode and<br>
+&gt;=C2=A0 =C2=A0 =C2=A0VM_BIND mode<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * only works with this ioctl for submission.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * See I915_VM_CREATE_FLAGS_USE_VM_BIND.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+struct drm_i915_gem_execbuffer3 {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @ctx_id: Context id<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Only contexts with u=
+ser engine map are allowed.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 ctx_id;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @engine_idx: Engine =
+index<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * An index in the user=
+ engine map of the context specified<br>
+&gt;=C2=A0 =C2=A0 =C2=A0by @ctx_id.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 engine_idx;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @batch_address: Batc=
+h gpu virtual address/es.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * For normal submissio=
+n, it is the gpu virtual address of<br>
+&gt;=C2=A0 =C2=A0 =C2=A0the batch<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * buffer. For parallel=
+ submission, it is a pointer to an<br>
+&gt;=C2=A0 =C2=A0 =C2=A0array of<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * batch buffer gpu vir=
+tual addresses with array size equal<br>
+&gt;=C2=A0 =C2=A0 =C2=A0to the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * number of (parallel)=
+ engines involved in that submission (See<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * struct i915_context_=
+engines_parallel_submit).<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 batch_address;<br=
+>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @flags: Currently r=
+eserved, MBZ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 flags;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @rsvd1: Reserved, M=
+BZ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 rsvd1;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @fence_count: Numbe=
+r of fences in @timeline_fences array. */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 fence_count;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @timeline_fences: Po=
+inter to an array of timeline fences.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * Timeline fences are =
+of format struct<br>
+&gt;=C2=A0 =C2=A0 =C2=A0drm_i915_gem_timeline_fence.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 timeline_fences;<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @rsvd2: Reserved, M=
+BZ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 rsvd2;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @extensions: Zero-te=
+rminated chain of extensions.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * For future extension=
+s. See struct i915_user_extension.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 extensions;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+};<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+/**<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * struct drm_i915_gem_create_ext_vm_private - Ext=
+ension to make<br>
+&gt;=C2=A0 =C2=A0 =C2=A0the object<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * private to the specified VM.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ * See struct drm_i915_gem_create_ext.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+ */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+struct drm_i915_gem_create_ext_vm_private {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_GEM_CREATE_EXT_VM_PRIVATE=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A02<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @base: Extension li=
+nk. See struct i915_user_extension. */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0struct i915_user_extens=
+ion base;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** @vm_id: Id of the V=
+M to which the object is private */<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 vm_id;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0+};<br>
+&gt;=C2=A0 =C2=A0 =C2=A0-- <br>
+&gt;=C2=A0 =C2=A0 =C2=A02.21.0.rc0.32.g243a4c7e27<br>
+&gt; <br>
+</blockquote></div></div>
+
+--000000000000dd9f2e05e2ac03d7--
