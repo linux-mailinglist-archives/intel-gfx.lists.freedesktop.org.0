@@ -1,140 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D73545612F3
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 09:12:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A93A561324
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 09:20:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88FD710FF0C;
-	Thu, 30 Jun 2022 07:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 368F011219F;
+	Thu, 30 Jun 2022 07:20:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2219610FF02
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 07:12:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656573123; x=1688109123;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=u+lN3+273tyjozJrLV9IVPYHIJV4vfQhP1bGey8qGas=;
- b=C/8iK06mxUwoZfldL8byRqblJJy1xSfTUBidwTAapyba2u63s5l18G5m
- wHouq7/IBhRQq8tCEGVTlb3vKtYLy4Jm+hvF6d6hlIeH4Unhdhz/Up5cv
- sm/miAWA59dZPBIiZ50eWdlQqOvXHrHjavFjpv8/gEMc3MdHzC8fKAMkd
- kfWnQK45mKPZRAFIsSnIfTQiBFexYPb0yb0ynnW8YC1jQJWvHnUCbBZQH
- iqBKus3v5KAwNMlyJiY6lXNDmpRjV22RFGlI2NMxBURnYv5VDQ0utHyLQ
- f0ntO0j/yDS3ph36A6xYqGpOb0UyZ9dCM1MtMnrld6QDUMe9WL/BX4fct w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="346257868"
-X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="346257868"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 00:11:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,233,1650956400"; d="scan'208";a="917932331"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga005.fm.intel.com with ESMTP; 30 Jun 2022 00:11:56 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 30 Jun 2022 00:11:55 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Thu, 30 Jun 2022 00:11:55 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.46) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Thu, 30 Jun 2022 00:11:55 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ctgKsQMDM1jM6F5Vzn4EfJ9SQyhbMenHIdYn1JNlR7GgM7GwpHxauDHtdcDPGvvm2eWrYZWZmuWf/3Z3kOftBbP5zIdR63jZLu8jUBi6piRRRPwDJm3qkjBAQrEDHk00hhuyB2mtNXuLixz6DDpuY/mZoKCkhWVSxQxlpQfCye20FNQ2vfZVofj2ZJASBb6dPWRKxAp9gkEghn2BzvxGpDLrkz2mUpCrfsTYGVJy2x9kIAcH8YZeUTuDgKm/ONK4/x3TiPplGq0fIMrMat6SDkOt5m4baAnxidIfKJ9GUL8hdx1e6mmqDPLq2inBsN5E3WXxlRPdlTHucr4Ie2HLQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u+lN3+273tyjozJrLV9IVPYHIJV4vfQhP1bGey8qGas=;
- b=b7pk/jWKaVumGPVVRKZqpiYPZCuZQ8krv/toZEXZlOj7BNrCHuZIYXDwInhwI6gec5K1v5166gJoC4CKdfKchuof6PrG1+cH8fYzBVMJBAAE04DYsbOj9rZaE0ZAxYgW+089ZTTqOWqDnHk5oaUccH0VTwLkIwMTUIBxr8GeDKeByqvuO+pKgPMVvHhqcCqZvz1EcDVNFa2WJR7u5NfgFbDxgcT/9zIwncBJk0y6u/+n80D2OzmGl0qMQGXMkOw9M77Pi0ajsOoDNNjU9o2GY/YlfZOIUb+DXATF34pwnSRe+l5xxgIjiidPxJyZUInw3Ks7BYws4v8rWNtyCs2dbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
- BN6PR11MB4067.namprd11.prod.outlook.com (2603:10b6:405:7e::35) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5395.14; Thu, 30 Jun 2022 07:11:53 +0000
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::3546:7df4:c8d2:1152]) by DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::3546:7df4:c8d2:1152%5]) with mapi id 15.20.5395.015; Thu, 30 Jun 2022
- 07:11:53 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915: free crtc on driver remove
-Thread-Index: AQHYjE5WXS4uUydQ1EaqS8pZiAApu61niDlw
-Date: Thu, 30 Jun 2022 07:11:53 +0000
-Message-ID: <DM6PR11MB3177DA053DD0AF72F434F2B3BABA9@DM6PR11MB3177.namprd11.prod.outlook.com>
-References: <20220630065442.830061-1-arun.r.murthy@intel.com>
-In-Reply-To: <20220630065442.830061-1-arun.r.murthy@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 379bfb21-9377-4b79-6854-08da5a67cf59
-x-ms-traffictypediagnostic: BN6PR11MB4067:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yjyyII3FVS9hNOUOUohYgQp5wgXHeFRz23XjEi9tb7D1O9IBuW5s5M2WfZmUKhg8pmBjCMT7Yp+qhpSmXyLiFyy1M2/oXMf6B3F07b56ZAoiM3wN0t1osQdGmOLKF4kD4mWPIP+Et0xzpZGLerdY9WtofAM9ZcBZP1fgPIOFJu/7kj7wkHeN1BMyYuRrstrQUHPW8Zz9vJ575Rwq/gQQRuIGTqnQTDojFDstQaedcykSqxwg0GkkvKVOuQjZ+yPRXmaMjY7+Dr5rqG9j1bqI52z/j8m0hR0ipQxM0iYaG38GUDpCJHSP50YLWALIMaCP/lHo78qS8giJZiAi4Hg/1XJvX0UtGtXJgOZza1tkdmUDEq6IiIzaQvy+rOJGnHH3J6BS5unDrWgATpHVCwLAPirlzBeFLnv1vE4pMSUviDEmKKaiFpbIotLR5227Po/oJnid4352xg3MHnWwwekRlR1Xy/hEwUIcznEgVRS6su9a2TorDKKkLf40IT8dTO+jWphd/qbBJBrxjRWonU9UsW2j6eez9iYiu9pgHz9Wxw5bxbH4EVkViabsWVy9EOj2kAS/hZGUzVFC7LJ19cuWGejzVb4+AupicZ3e8GCTR1wLu8rLvrgIqltK1yR/blUh/fJ+Wf3aavQnqJLAUyMTkSDf8kn4/kMq+7vtBGOAtmZTCGCRNoK6W5BFpzQQQ4/9rh0R9vyTV0jTye336yDpZnB4C8HhadhiAylwMM8kwpV0HLCSWNSoaVlUykpjAdSkUXXDXZvp7xGwlLzCHwAgn1nA2X6+3eIlEdO18ntIID3xrQXCBeXH/S1vNso8ZivG
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(136003)(366004)(396003)(39860400002)(346002)(376002)(38070700005)(8936002)(66556008)(478600001)(52536014)(4744005)(5660300002)(6916009)(82960400001)(41300700001)(2906002)(122000001)(54906003)(316002)(33656002)(64756008)(86362001)(71200400001)(66446008)(66476007)(8676002)(4326008)(66946007)(76116006)(26005)(186003)(9686003)(38100700002)(55236004)(55016003)(6506007)(7696005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?XuLovgcehHhaaOvA4/+sIbZyx57WBjW0dEpswLg9Gq/M9WhZIGISaCTa9kYS?=
- =?us-ascii?Q?Z5IwStBTpOwrza9ldMZ37rRE295uRV6EGtMlyGjXGKGrQtnKS4VKpPodaKBT?=
- =?us-ascii?Q?IZwK5IseviE35ydXKxBxZTNwZUWVp5fAKzg1R61OA96J28ALR8DNkGfB2VgB?=
- =?us-ascii?Q?qmCKh6iog0VfsdjAMEVNq3PfrPCZnY0ZXXBJ0V8O2eAejLWgm5SXsvIG1aNR?=
- =?us-ascii?Q?3H6vgNjkEs3c4BJyA7ZYlZoHmIJTzl6Jmf87epI3ZmH/h2/kLniR8ABazA6T?=
- =?us-ascii?Q?DjVtOqb7TMQjmkrAqzKwVDLvWeomvglCrPAXbJ7td5NXIGlyJmdHCllXLJpm?=
- =?us-ascii?Q?rsXJjRNXGrWNaASR542MzGL3wtxBoWr6MBH5EYtNu/69C8jmU4hv5tglEusP?=
- =?us-ascii?Q?x62/8BcnmMPyHZj+Xh/RgUkABBLW5MKsxSYWfpV3u52sgalgD40udW3GZBJu?=
- =?us-ascii?Q?Qx6CrIl894HAlUhloWK3ggn5nB0YkBYAxQfbAQcx6BRaVnBL8EDj9riFVfkb?=
- =?us-ascii?Q?065v96LwBfraitBT9T3s1B/QbAgBBKcC6Q/saGUj4XOvo6jod/GGhRkHrQLI?=
- =?us-ascii?Q?Fea7FN8nP9KeqNggzRBAJZF56lCIZu/j8kc0/htqhUVGvEvXP98USvcyULGb?=
- =?us-ascii?Q?neem8Wwj0qLiMcou4Z6YeXW39HYgPSpV+tRRC7fitwFqB40M70VaRxg42S9u?=
- =?us-ascii?Q?mvjjSjuXAYbOgq1oX10tSH3Z5Nbh3rKSAMxWHdGVYcBjiW4LtHKecC+elPQP?=
- =?us-ascii?Q?wvjErCUn7of2VFUKOdvvDQiVzKJbFPj6W+EdZeZ+N4sUAlU13HrIlx+xKb/L?=
- =?us-ascii?Q?J76j0Hw5YwLMCA/Vmij4A1fXUtzRsjdNhQoGJDa23MZFzyNZiurNwP2R2NX2?=
- =?us-ascii?Q?QZygdP80vD4KZJzg+F27roqogKKwjfbXuErdBFWtZSm9ZWEg70kIgEThPb9h?=
- =?us-ascii?Q?DiB+UTxXa2p0st4ddpzBAbb+Bb3lxClR+XPJW+INnNEGjezC4OfUpWsDqTBR?=
- =?us-ascii?Q?+wtpZL2XaEdlyaXpCyDNpLD1gtrgP5DbmEpOncK2n6wd++HpV0DCWagbsS0T?=
- =?us-ascii?Q?/pY0p3yXyTlRRTVfZSMLltYCpOGz8UJX0dourl1ThPIWfjZ9BU7Vm0J2OTdd?=
- =?us-ascii?Q?Bhq/jOmF+X80tRYUILgp9FHa7623N2zUSceiMNeWrdSS96HPW8bu1kFaTAjI?=
- =?us-ascii?Q?PGw/Laie0v5/LMvk5cdC2HaedtzFbyBk2Ga74ImcdHH4iN8pnQ9J6Z36xdyR?=
- =?us-ascii?Q?NNNSf63y8G+Z6kx1gr0QX49N5IIUIpMQwpRpUjf1iXdOyBynJUBjUB7LDFY+?=
- =?us-ascii?Q?H+AxSxz5x/3VCr1jbGTyiBNPwlPjd+YIc4GL2HskaHW7RDzGZMHImrwLaf8A?=
- =?us-ascii?Q?k3akbsiFZzRDlKizHNkYEINubVnMMyZ82Cb1FKzXzRtnT5w6Fks0udODPTOW?=
- =?us-ascii?Q?uo9OdEq/8qa6JqlTXyB44FLkPKTxOXOFpT/xvGAmjaJH5w38Fxh1/Ia+Kel3?=
- =?us-ascii?Q?M+chdzmCUi0Dau/pw0vz3aMWYVhDC2nAbYLC9NF7GQY/Wkmp9oMHrQGsSiUW?=
- =?us-ascii?Q?TCCRME715UE4kKaxO9ywTN7foaxSmgG43E2mEriY?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33574112184;
+ Thu, 30 Jun 2022 07:20:02 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id D5BE121C34;
+ Thu, 30 Jun 2022 07:20:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1656573600; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=4eMp8hUdAb76tKhRqtL8MV/4D15zatFvTlc2D52sWv0=;
+ b=mfo7meEATOmg4oOhMOoqt60qiibHArAIrmBiaieUewAJMpqfCBdf91e6fOiVdgPfIkArbp
+ 2E0Fb5fPw9lQQW9uv3PfLZSnDWcHbBAm0nrc/IQjxWgoO76N6nF6JLjjBQ4M+mrcYXk8sV
+ EsTEOTA8P1jgHxlvWAVa8uEpXkg0KNY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1656573600;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=4eMp8hUdAb76tKhRqtL8MV/4D15zatFvTlc2D52sWv0=;
+ b=uZnq3JjaKe8Y3P9UkRCTTP9MgezBL+0OnjgoaHWvqsg7hDUqxPHSakOc+k5sr2GUvmHQUw
+ MKwTNuqbf8W0WdBA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 983C513A5C;
+ Thu, 30 Jun 2022 07:20:00 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id xIe+I6BOvWIPLQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 30 Jun 2022 07:20:00 +0000
+Date: Thu, 30 Jun 2022 09:19:59 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Yr1On+eT1mCvIMzW@linux-uq9g>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 379bfb21-9377-4b79-6854-08da5a67cf59
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2022 07:11:53.3064 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 47mY7upSlS5T1L8mBPzfjVUo+ILt6HXgKN3GGLRryQvuK+6u0Nx2Vh20Uc+UnRNQohKwc3PUQukUmANtveHLIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB4067
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: free crtc on driver remove
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,23 +64,347 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula,
- Jani" <jani.nikula@intel.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> intel_crtc is being allocated as part of intel_modeset_init_nogem and not
-> freed as part of driver remove. This will lead to memory leak. Hence free=
- up
-> the allocated crtc on driver remove as part of
-> intel_modeset_driver_remove_nogem.
->=20
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
+Hi Dave and Daniel,
 
-Please discard this version, accidently sent a wrong patch, floated the rig=
-ht patch under v2.
+this is the drm-misc-next PR for this week.
 
-Thanks and Regards,
-Arun R Murthy
--------------------
+Best regards
+Thomas
+
+drm-misc-next-2022-06-30:
+drm-misc-next for v5.20:
+
+UAPI Changes:
+
+ * fourcc: Update documentation
+
+Cross-subsystem Changes:
+
+ * iosys-map: Rework iosys_map_{rd,wr} for improved performance
+
+ * vfio: Use aperture helpers
+
+Core Changes:
+
+ * aperture: Export for use with other subsystems
+
+ * connector: Remove deprecated ida_simple_get()
+
+ * crtc: Add helper with general state checks, convert drivers
+
+ * format-helper: Add Kunit tests for RGB32 to RGB8
+
+Driver Changes:
+
+ * ast: Fix black screen on resume
+
+ * bridge: tc358767: Simplify DSI lane handling
+
+ * mcde: Fix ref-count leak
+
+ * mxsfb/lcdif: Support i.MX8MP LCD controller
+
+ * stm/ltdc: Support dynamic Z order; Support mirroring; Fixes and cleanups
+
+ * vc4: Many small fixes throughout the driver
+The following changes since commit 009a3a52791f31c57d755a73f6bc66fbdd8bd76c:
+
+  drm/hyperv-drm: Include framebuffer and EDID headers (2022-06-22 16:07:38 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2022-06-30
+
+for you to fetch changes up to 6fb5ee7cec06266a29f25ecc01a23b9d107f64e1:
+
+  iosys-map: Add per-word write (2022-06-29 17:42:28 -0700)
+
+----------------------------------------------------------------
+drm-misc-next for v5.20:
+
+UAPI Changes:
+
+ * fourcc: Update documentation
+
+Cross-subsystem Changes:
+
+ * iosys-map: Rework iosys_map_{rd,wr} for improved performance
+
+ * vfio: Use aperture helpers
+
+Core Changes:
+
+ * aperture: Export for use with other subsystems
+
+ * connector: Remove deprecated ida_simple_get()
+
+ * crtc: Add helper with general state checks, convert drivers
+
+ * format-helper: Add Kunit tests for RGB32 to RGB8
+
+Driver Changes:
+
+ * ast: Fix black screen on resume
+
+ * bridge: tc358767: Simplify DSI lane handling
+
+ * mcde: Fix ref-count leak
+
+ * mxsfb/lcdif: Support i.MX8MP LCD controller
+
+ * stm/ltdc: Support dynamic Z order; Support mirroring; Fixes and cleanups
+
+ * vc4: Many small fixes throughout the driver
+
+----------------------------------------------------------------
+Alex Williamson (1):
+      vfio/pci: Remove console drivers
+
+Alexander Stein (1):
+      drm/panel: panel-simple: Add dev_err_probe if backlight could not be found
+
+Bastian Krause (2):
+      dt-bindings: display: simple: add Ampire AM-800600P5TMQW-TB8H panel
+      drm/panel: simple: add AM-800600P5TMQW-TB8H
+
+Bjorn Andersson (1):
+      drm/panel-edp: Add LQ140M1JW48 edp panel entry
+
+Bo Liu (1):
+      drm/connector: Remove usage of the deprecated ida_simple_xxx API
+
+Christian König (1):
+      dma-buf: deprecate DMABUF_SYSFS_STATS
+
+Dan Carpenter (2):
+      drm: logicvc: Fix uninitialized variable in probe
+      drm: logicvc: fix error code in logicvc_layer_init()
+
+Dave Stevenson (21):
+      drm/vc4: drv: Adopt the dma configuration from the HVS or V3D component
+      drm/vc4: plane: Fix margin calculations for the right/bottom edges
+      drm/vc4: plane: Add alpha_blend_mode property to each plane.
+      drm/vc4: hvs: Add debugfs node that dumps the current display lists
+      drm/vc4: dpi: Add support for composite syncs to vc4_dpi
+      drm/vc4: dpi: Add option for inverting pixel clock and output enable
+      drm/vc4: dpi: Ensure a default format is selected
+      drm/vc4: dsi: Release workaround buffer and DMA
+      drm/vc4: dsi: Correct DSI divider calculations
+      drm/vc4: dsi: Correct pixel order for DSI0
+      drm/vc4: dsi: Register dsi0 as the correct vc4 encoder type
+      drm/vc4: dsi: Fix dsi0 interrupt support
+      drm/vc4: dsi: Add correct stop condition to vc4_dsi_encoder_disable iteration
+      drm/vc4: hdmi: Add all the vc5 HDMI registers into the debugfs dumps
+      drm/vc4: hdmi: Reset HDMI MISC_CONTROL register
+      drm/vc4: hdmi: Switch to pm_runtime_status_suspended
+      drm/vc4: hdmi: Move HDMI reset to pm_resume
+      drm/vc4: hdmi: Add HDMI format detection registers to register list
+      drm/vc4: hdmi: Add MISC_CONTROL register for vc4
+      drm/vc4: hdmi: Correct HDMI timing registers for interlaced modes
+      drm/vc4: hdmi: Move pixel doubling from Pixelvalve to HDMI block
+
+Dom Cobley (8):
+      drm/vc4: plane: Remove subpixel positioning check
+      drm/vc4: hdmi: Clear unused infoframe packet RAM registers
+      drm/vc4: hdmi: Avoid full hdmi audio fifo writes
+      drm/vc4: hdmi: Stop checking for enabled output in audio
+      drm/vc4: hdmi: Skip writes to disabled packet RAM
+      drm/vc4: hdmi: Remove VC4_HDMI_SCHEDULER_CONTROL_VERT_ALWAYS_KEEPOUT
+      drm/vc4: hdmi: Report that 3d/stereo is allowed
+      drm/vc4: hdmi: Force modeset when bpc or format changes
+
+Hans de Goede (1):
+      drm/nouveau/Kconfig: Drop duplicate "select ACPI_VIDEO"
+
+Imre Deak (1):
+      drm/fourcc: Document the Intel CCS modifiers' CC plane expected pitch
+
+Jiang Jian (3):
+      drm/panel: nt35510: Remove duplicate 'the' in two places.
+      drm/pl111: drop unexpected word "the" in the comments
+      drm/display/selftests: drop extra word 'for' in comments for MST selftests
+
+Jiasheng Jiang (1):
+      drm: bridge: adv7511: Add check for mipi_dsi_driver_register
+
+Jocelyn Falempe (1):
+      drm/ast: Fix black screen when getting out of suspend
+
+Joel Selvaraj (4):
+      dt-bindings: vendor-prefixes: Add prefix for EBBG
+      dt-bindings: display: Add bindings for EBBG FT8719
+      drm/mipi-dsi: Introduce mipi_dsi_dcs_write_seq macro
+      drm/panel: introduce ebbg,ft8719 panel
+
+José Expósito (3):
+      drm/rect: Add DRM_RECT_INIT() macro
+      drm/format-helper: Add KUnit tests for drm_fb_xrgb8888_to_rgb332()
+      drm/doc: Add KUnit documentation
+
+Julia Lawall (1):
+      drm: fix device_node_continue.cocci warnings
+
+KuoHsiang Chou (1):
+      drm/ast: Fixed the casting issue reported by sparse
+
+Lucas De Marchi (2):
+      iosys-map: Add per-word read
+      iosys-map: Add per-word write
+
+Marek Vasut (4):
+      drm/doc: Fix comment typo
+      drm/bridge: tc358767: Do not cache dsi_lanes twice
+      dt-bindings: lcdif: Add compatible for i.MX8MP
+      drm: lcdif: Add support for i.MX8MP LCDIF variant
+
+Mateusz Kwiatkowski (1):
+      drm/vc4: hdmi: Fix timings for interlaced modes
+
+Maxime Ripard (2):
+      drm/vc4: kms: Warn if clk_set_min_rate fails
+      drm/vc4: kms: Use maximum FIFO load for the HVS clock rate
+
+Miaoqian Lin (1):
+      drm/mcde: Fix refcount leak in mcde_dsi_bind
+
+Phil Elwell (1):
+      drm/vc4: hdmi: Disable audio if dmas property is present but empty
+
+Philip Oberfichtner (2):
+      dt-bindings: display: simple: Add DataImage FG1001L0DSSWMG01 compatible string
+      drm/panel: simple: Add DataImage FG1001L0DSSWMG01 panel support
+
+Stephen Kitt (5):
+      drm/panel: sony-acx565akm: Use backlight helpers
+      drm/panel: panel-dsi-cm: Use backlight helpers
+      drm/panel: panel-asus-z00t-tm5p5-n35596: Use backlight helper
+      drm: shmobile: Use backlight helper
+      drm/bridge: parade-ps8622: Use backlight helper
+
+Thomas Zimmermann (6):
+      MAINTAINERS: Broaden scope of simpledrm entry
+      drm: Implement DRM aperture helpers under video/
+      drm/fb-helper: Fix out-of-bounds access
+      drm/atomic-helper: Add helper drm_atomic_helper_check_crtc_state()
+      drm/simple-kms: Use drm_atomic_helper_check_crtc_state()
+      drm/ast: Enable primary plane with CRTC
+
+Yang Li (1):
+      drm: Remove unnecessary print function dev_err()
+
+Yang Yingliang (1):
+      drm/logicvc: add missing of_node_put() in logicvc_layers_init()
+
+Yannick Fertre (6):
+      drm/stm: ltdc: disable all layers before crtc shutdown
+      drm/stm: ltdc: remove error message about scaling
+      drm/stm: ltdc: fix various coding-style warnings
+      drm/stm: ltdc: add support of the dynamic z-order
+      drm/stm: ltdc: add support of horizontal & vertical mirroring
+      drm/stm: ltdc: update hardware error management
+
+YueHaibing (1):
+      drm/display: Fix build error without CONFIG_OF
+
+ .../devicetree/bindings/display/fsl,lcdif.yaml     |   1 +
+ .../bindings/display/panel/ebbg,ft8719.yaml        |  74 ++++
+ .../bindings/display/panel/panel-simple.yaml       |   4 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ Documentation/driver-api/aperture.rst              |  13 +
+ Documentation/driver-api/index.rst                 |   1 +
+ Documentation/gpu/drm-internals.rst                |  32 ++
+ MAINTAINERS                                        |  13 +-
+ drivers/dma-buf/Kconfig                            |   6 +-
+ drivers/gpu/drm/Kconfig                            |  16 +
+ drivers/gpu/drm/Makefile                           |   3 +-
+ drivers/gpu/drm/ast/ast_dp.c                       |  10 +-
+ drivers/gpu/drm/ast/ast_drv.h                      |   2 +-
+ drivers/gpu/drm/ast/ast_mode.c                     |  26 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |  17 +-
+ drivers/gpu/drm/bridge/parade-ps8622.c             |   6 +-
+ drivers/gpu/drm/bridge/tc358767.c                  |   6 +-
+ drivers/gpu/drm/display/Kconfig                    |   2 +-
+ drivers/gpu/drm/drm_aperture.c                     | 178 +-------
+ drivers/gpu/drm/drm_atomic_helper.c                |  55 +++
+ drivers/gpu/drm/drm_blend.c                        |   2 +-
+ drivers/gpu/drm/drm_connector.c                    |  13 +-
+ drivers/gpu/drm/drm_fb_helper.c                    |  27 +-
+ drivers/gpu/drm/drm_simple_kms_helper.c            |  14 +-
+ drivers/gpu/drm/logicvc/logicvc_drm.c              |   3 +-
+ drivers/gpu/drm/logicvc/logicvc_layer.c            |   7 +-
+ drivers/gpu/drm/mcde/mcde_dsi.c                    |   1 +
+ drivers/gpu/drm/mxsfb/Kconfig                      |  16 +
+ drivers/gpu/drm/mxsfb/Makefile                     |   2 +
+ drivers/gpu/drm/mxsfb/lcdif_drv.c                  | 340 +++++++++++++++
+ drivers/gpu/drm/mxsfb/lcdif_drv.h                  |  44 ++
+ drivers/gpu/drm/mxsfb/lcdif_kms.c                  | 484 +++++++++++++++++++++
+ drivers/gpu/drm/mxsfb/lcdif_regs.h                 | 257 +++++++++++
+ drivers/gpu/drm/nouveau/Kconfig                    |   1 -
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ .../gpu/drm/panel/panel-asus-z00t-tm5p5-n35596.c   |   7 +-
+ drivers/gpu/drm/panel/panel-dsi-cm.c               |  29 +-
+ drivers/gpu/drm/panel/panel-ebbg-ft8719.c          | 285 ++++++++++++
+ drivers/gpu/drm/panel/panel-edp.c                  |   1 +
+ drivers/gpu/drm/panel/panel-novatek-nt35510.c      |   6 +-
+ drivers/gpu/drm/panel/panel-simple.c               |  64 ++-
+ drivers/gpu/drm/panel/panel-sony-acx565akm.c       |  12 +-
+ drivers/gpu/drm/pl111/pl111_display.c              |   2 +-
+ drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c |   2 +-
+ drivers/gpu/drm/shmobile/shmob_drm_backlight.c     |   6 +-
+ drivers/gpu/drm/stm/drv.c                          |   1 +
+ drivers/gpu/drm/stm/ltdc.c                         | 290 ++++++++----
+ drivers/gpu/drm/stm/ltdc.h                         |   8 +-
+ drivers/gpu/drm/tests/.kunitconfig                 |   3 +
+ drivers/gpu/drm/tests/Makefile                     |   3 +
+ drivers/gpu/drm/tests/drm_format_helper_test.c     | 161 +++++++
+ drivers/gpu/drm/tiny/Kconfig                       |   1 +
+ drivers/gpu/drm/vc4/vc4_crtc.c                     |  14 +-
+ drivers/gpu/drm/vc4/vc4_dpi.c                      |  99 +++--
+ drivers/gpu/drm/vc4/vc4_drv.c                      |  19 +
+ drivers/gpu/drm/vc4/vc4_dsi.c                      | 152 +++++--
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     | 210 ++++++---
+ drivers/gpu/drm/vc4/vc4_hdmi.h                     |  14 +-
+ drivers/gpu/drm/vc4/vc4_hdmi_regs.h                |  38 +-
+ drivers/gpu/drm/vc4/vc4_hvs.c                      |  42 ++
+ drivers/gpu/drm/vc4/vc4_kms.c                      |   8 +-
+ drivers/gpu/drm/vc4/vc4_plane.c                    |  92 ++--
+ drivers/vfio/pci/vfio_pci_core.c                   |   5 +
+ drivers/video/Kconfig                              |   6 +
+ drivers/video/Makefile                             |   2 +
+ drivers/video/aperture.c                           | 351 +++++++++++++++
+ drivers/video/console/Kconfig                      |   1 +
+ drivers/video/fbdev/Kconfig                        |   7 +-
+ include/drm/drm_atomic_helper.h                    |   2 +
+ include/drm/drm_mipi_dsi.h                         |  17 +
+ include/drm/drm_rect.h                             |  16 +
+ include/linux/aperture.h                           |  56 +++
+ include/linux/iosys-map.h                          |  80 +++-
+ include/uapi/drm/drm_fourcc.h                      |   8 +-
+ 75 files changed, 3245 insertions(+), 565 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ebbg,ft8719.yaml
+ create mode 100644 Documentation/driver-api/aperture.rst
+ create mode 100644 drivers/gpu/drm/mxsfb/lcdif_drv.c
+ create mode 100644 drivers/gpu/drm/mxsfb/lcdif_drv.h
+ create mode 100644 drivers/gpu/drm/mxsfb/lcdif_kms.c
+ create mode 100644 drivers/gpu/drm/mxsfb/lcdif_regs.h
+ create mode 100644 drivers/gpu/drm/panel/panel-ebbg-ft8719.c
+ create mode 100644 drivers/gpu/drm/tests/.kunitconfig
+ create mode 100644 drivers/gpu/drm/tests/Makefile
+ create mode 100644 drivers/gpu/drm/tests/drm_format_helper_test.c
+ create mode 100644 drivers/video/aperture.c
+ create mode 100644 include/linux/aperture.h
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
