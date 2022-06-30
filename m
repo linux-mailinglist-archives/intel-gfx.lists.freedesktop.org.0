@@ -2,62 +2,144 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5111E561F28
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 17:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AB63561F2A
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 17:25:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF5EB10F31E;
-	Thu, 30 Jun 2022 15:24:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2935110FC13;
+	Thu, 30 Jun 2022 15:25:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B86A10F31E
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jun 2022 15:24:46 +0000 (UTC)
-Received: from [192.168.178.53] (82-71-8-225.dsl.in-addr.zen.co.uk
- [82.71.8.225])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbeckett)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 7BFAB660194E;
- Thu, 30 Jun 2022 16:24:44 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1656602684;
- bh=Pt3Zfc12+MN0iYwZU4pO0zlj7YzG9yAOLyS2/JrEaSY=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=G3DxjXMfIZi0ztMAjLIWsqgrpOtV5hpN43s/WRcHld+vzN8GbyxbL5cT9/u8ciahy
- 7vkdV7bpErkZmL9LW0jFjJYinLRRcWKPQ7O0NqqKxiZxguEZfYlElrKHEQIOH0vpXW
- pWkggD/HT1jho8q/jkvNsrUd/DrcThBtMWwBwp4k6+CH/GcoqJqkSFVLu8Q1OsGNNl
- 1T0lskcFnVYLOxE/SBfCsGJYNMk+ZN6GBK9qbvK/O/FWowCRvV6jiYt7cgEaf+PINN
- To0IY1t6WdZfhOOY8dj2bmO2e2F1mPJMA5ow3sFMICYzgblylZkNS6wHA7h1Z/2axx
- UBZw5TfexztRQ==
-Message-ID: <420143d8-e35e-31ee-25a0-95035677b8fd@collabora.com>
-Date: Thu, 30 Jun 2022 16:24:41 +0100
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4A3810FC13;
+ Thu, 30 Jun 2022 15:25:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1656602728; x=1688138728;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=sBMChuLMSF8Q8sGznwWeotfltJdQouHuRn4L4s1Zans=;
+ b=dTw1NbGIqkK3T2bRIqphCLVPsC6ySegDBIs6sX7hVznGvNfRE0iHAYsq
+ N/JqQdo20QaqfW40Uxv9QUn/cS2di1LouIqC3g6OjUkGnmJf0zq/aHF/F
+ fCqRtIFrgakqdUqtmSMUJR+pQW3h6+etMF1o8yCuxiH3gK2Vd+dJDFpV2
+ t5uYvk7C9GWkUxpDPJV33VozkEx3emHRyxvaUyPgIwMJI8O+HeeIU0/nq
+ 6oDrGWAU74DFS98AplqoRik9de3PE1zuS9NpYlDwmx8tXgp4AxMwitV1z
+ r1pXLuM6G8uqz4ybkrTMdowQF194PYmO9469A4Wgscvm1jSY7RPcuujjc w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="283112750"
+X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="283112750"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 08:25:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="623768074"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga001.jf.intel.com with ESMTP; 30 Jun 2022 08:25:27 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Thu, 30 Jun 2022 08:25:27 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Thu, 30 Jun 2022 08:25:27 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Thu, 30 Jun 2022 08:25:27 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.106)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Thu, 30 Jun 2022 08:25:26 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=h2uoyrP4eLOYkFwafdE2/pO9WYZQlWEIJxPy3H2ZzI2twV2VEcS8/5TwHUQjcmuUHw5yLhkssmqUPX42X8k16XRB+kYcDXT1h2Th2wrEiJwHCWv906sFFWJ7WUvqo61rRBIiHv4lM6csX5MoWLrxIsCoMh+KGwvNXrFsVf94Nytd4rw0LxKhudmrFo9nW4bGFfzcFjGFq0UkRHNikT0Uvhb2/oV1F2F21Z6p6Sbb4n25RL5+jacmPIfFETpG2/nhq5S6phxrhu+e1j33FqMhOwHOJ+IIZCqoSPhFKyN3QK353wRcgOoUbNTqWbl+832DvbZUGZG03Zz2DjeP2cZH6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=glLSgqXROnj6SPYuYH3QDy76AXrmWdBkl3ty1y/xa3w=;
+ b=FN/x22TUIpUHDp+ZOfOrLPy7cN96gw5IjE6vc+R63Ik4B4bymDWYMn9PMGWrehmHt28RrEucHpLVOy0F6OgBQTpU/aZAN1QXdVJWcUymHSkC1v5+gGDgqvQjdgJj2pXxKivin5OXcnquC0u29nelj3S7EmucagCDHlkLL+VtBMDZFJP5ghsEFJv+LoQix4CIvgSrD41xHD1nObbPfLhViLHUpON3k40hWogcUE5bKPm+HtPIaAJ6/cdbeHp3Kxv0GjFSkSmUuI6RlHskl27gm4v4CyxI9N/GbOQUc28jHRRRD6Gsi1yO41fTSjm36zm3LSEtcuG+TZUaOa/oxl2aJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by BN6PR11MB1699.namprd11.prod.outlook.com (2603:10b6:404:3c::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Thu, 30 Jun
+ 2022 15:25:25 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::8053:3c59:9f5d:b615]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::8053:3c59:9f5d:b615%7]) with mapi id 15.20.5373.018; Thu, 30 Jun 2022
+ 15:25:25 +0000
+Date: Thu, 30 Jun 2022 11:25:20 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Yr3AYICeIr56B095@intel.com>
+References: <bdf23a1c-0d89-c395-4a7a-2840ce5f639a@I-love.SAKURA.ne.jp>
+ <98c6d61e-0c0f-e385-6100-6b7ebe6874b1@linux.intel.com>
+ <c379bbe5-a416-7757-b0e3-1b767bb5a775@I-love.SAKURA.ne.jp>
+ <703244a5-f2c9-adfb-892f-dd2353cf384e@linux.intel.com>
+ <f15c7336-10fd-cd86-a95f-aec99154319b@I-love.SAKURA.ne.jp>
+ <b21d9f1e-65e3-8f2f-a5c3-04bf866823e3@linux.intel.com>
+ <Yr2sJBdZ3TnXZF+s@intel.com> <87wncynrtd.fsf@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <87wncynrtd.fsf@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0190.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::15) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>,
- "Harrison, John C" <john.c.harrison@intel.com>,
- "Brost, Matthew" <matthew.brost@intel.com>,
- "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20220620213340.3199605-1-bob.beckett@collabora.com>
- <165583307119.13647.9219456323624399121@emeril.freedesktop.org>
- <20dedda6-534b-b39e-fb35-8becc5c27043@collabora.com>
- <2752282d-a28a-ef9b-8b27-2d84aee9c8bf@linux.intel.com>
- <4eee638e-ff08-0e45-ac79-ca6c77a0bb6f@collabora.com>
- <6d608010-a9b1-8182-a967-6ea435fd20a4@linux.intel.com>
- <b20da287-e7f4-ebad-a534-a129b57eeede@collabora.com>
- <d7332e3c-2375-d0a4-0d1a-38faa2d7fe6c@collabora.com>
- <38401ddd-1a81-b82e-d3d8-018b22155534@collabora.com>
- <7b2bb26d89919db3f71930e3b887e8d0fd390a5b.camel@intel.com>
-From: Robert Beckett <bob.beckett@collabora.com>
-In-Reply-To: <7b2bb26d89919db3f71930e3b887e8d0fd390a5b.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_ttm_for_stolen_=28rev5=29?=
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b7be1677-a2f0-4d3e-c3c7-08da5aacc115
+X-MS-TrafficTypeDiagnostic: BN6PR11MB1699:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6BjqO264AyhQY2HenESWcH9Eo9QnaQoNyZV5jvfFUmJhn6oM4kAtX9ACYVpinKT3IpvQycFqpG4h90BdTRKPUDpCTJWt6w7ppwUpE4i+3b73bjzyrLT/m7lEZuhSvbYfxr+Qe+I3jzNZfbyVUNclW9pyxSfmIg9uFhMKYw6uLekT/2uljYqnIMzwgDcKmrAdyJ7++dOEcU20CgDebKS85fPmVz8jTIYfJh/wCICoH0lNr44W+3uygIHzLXlojXEvWSC9ppls1tOdLwUU6/6D+W0wjVMUV2P2H8Hao7qUJaRrKEwaCuArfK+c8U/9vquY8xhblaK9haRaPr2g/qAI88OhBW9I2ZN2A5BGjn9V0HO009K6U0vZF7Mqb5eFTS9/70MZVuPIP4a5IFzg4ebzkUll1UcgdMu9PuW0QTVP2pQ+hnrb0UQ8GBDLfEg9uqqUwz8SzBXX2QH12ZjsBzKJgIyFm3mYRFaAN/Y5Qa/9j1eFyHgT359Tezvcet2ID1EUlxBqUvGAmNhA3wAIGfoCnC5nS/e9DIJT5PZmHThgvp3DX18UVGeasEMDei2d9ZX7XLh5hz0iz24HkV4YGiUR4CrFdp5s7vofUb0hlK36KIJUJ51xqD7Fu4thxly5hPqLE5g3ZQI5Rj9OMI9jfAebfASZsYk6k4Ffpmww7P2DBjL86YYKwSr8nzvzeohTJgj6kMjFsUlGPgZTjVJqhbdPZV7wV6sb/ZaDITI8ra8rgtptxzUgdPl/zejUDgDpVM0PmFepWFsFYo2FHy+KAZ+YNuump6dBSaxVg8BXRr/QSyTshSK437y8YhOIW+O4YtzcU5+JQcW4VXvUAImhSdrhdw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(39860400002)(396003)(136003)(376002)(366004)(346002)(66556008)(8676002)(4326008)(66476007)(5660300002)(8936002)(66946007)(44832011)(2906002)(6666004)(2616005)(26005)(38100700002)(86362001)(6486002)(41300700001)(82960400001)(316002)(83380400001)(966005)(478600001)(6916009)(54906003)(186003)(53546011)(6506007)(36756003)(6512007)(99710200001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?It8oOgXLOnnEQdJd1bmG/21vevUm3Jz3IDuKoeAmfYWE/ufIgH2PMoOAvPVj?=
+ =?us-ascii?Q?1sktmt1/0vV2/r4MDt1zTZD1pa8ZrODT7Lici079H2O+FTuDCoOnF5SViO2A?=
+ =?us-ascii?Q?/v/OFx5evI4nIPQW9DsgExUedNrt95xthHu7cbsL9DMqWnUiXa60f8zbFgF1?=
+ =?us-ascii?Q?X2uzQhGhIejUgOTPNLsYeK7NLlo25PrOOT8lfTURjWwvg2D1K1dirLE+FJfM?=
+ =?us-ascii?Q?Kk9nRV6vgndMGt4+ebW5jyDkoLXROrBdzJtwFMjVV6wAUGwg4yIXvcJTxbEo?=
+ =?us-ascii?Q?Wkv/y3l74vxN6FGxrxuROAd6ROkcISpN7pMVwNbUp+kQcGSDHHH2QyAeTcVC?=
+ =?us-ascii?Q?xK+wkzaaIGP2lZ46Dz0fyf6EzWzuW/ST3GQxUE3s0tsm5KR5BNht0HBPZK6I?=
+ =?us-ascii?Q?+7gZhp35Mb2ebA4/0j379HfnDaN8r8+NTKlE0c3209GP+Iu+uf3UURErYpn+?=
+ =?us-ascii?Q?XudWwY79b2naIpEW04aVIyR/f/7shq+c1dwXKYdtL+UGRQy8Xu+PdDXvYhqh?=
+ =?us-ascii?Q?ww1E3CxoH9niMpTqcRpX2T42IFfIK8/kJQPqvZpr9bbFX9IOwXEeGoUKlrut?=
+ =?us-ascii?Q?t41Vjk0LqFpeeoCivKs4C58jfT3jxkb+sj5rr980WNCkCUdz+qk67jPKj5WT?=
+ =?us-ascii?Q?DeNcEU9zCnJkAkDm1gZr1nNRZOCqvg3HSg+dJ3C8kupZF2GetrsGQzBx2xXi?=
+ =?us-ascii?Q?7N2hFaHtJ+XgWBxPSxlZyJEdDM3Kg065mGkFKPpCVVIwLjkDOtADyltKmdlw?=
+ =?us-ascii?Q?bPMQf93mUy9USWgl2TOdKYx8U3EO+oJARmzOdny7Wcd12tU3L5wS6juPutSP?=
+ =?us-ascii?Q?ECB6DiFBTVyVyyLAI4YZe6MDGu16KdS+UruIOwQ1TWtwBgCZLnVOakF9+oyH?=
+ =?us-ascii?Q?YWOAX0BLwUcnYs0PKNTWExQLNbtUVKYMDYjx0v7QLeas8Ut1eHZ7gY6vpFEg?=
+ =?us-ascii?Q?7pyKf6uyehh2S2r5deoYWlnH5Htak2cuy6MniXJrCAeDce6LAKZiX0CmG/Jb?=
+ =?us-ascii?Q?lMcZdvbUov0fMf8pYT9nF4tym4igAvQJL9xr1YJY6+9qUk8gmqCzJ0h6cP48?=
+ =?us-ascii?Q?m6HivxeVEmtOfPrOVkrb1j4xUKqvuyisFBSLoSvHO8tFv+C/f/DGKIbAlk8y?=
+ =?us-ascii?Q?NPfHtKf+emaYJ5bRaTGwUgu1bJg5oBbRks/DYLmuWcZV8AZoFdM2/4GGSRPf?=
+ =?us-ascii?Q?gMlHagpOelhQuhRillujdWqvW6YNM67moZozYmJjKlCiPIqhu7MApfXrP6Vb?=
+ =?us-ascii?Q?mPSGpFLA5uG3YxC/CB+xT+4wL8rHUc2onw/Ogauaj34X6TlZ7igRv2t5FqkW?=
+ =?us-ascii?Q?Yj2wkzQ54QEHopenvuvgUHAwhhfQyCUn9gAYd+JtLbbTivdgCVj6FlAXcjrp?=
+ =?us-ascii?Q?TDjaNqkob9Cf1qin/xhiWkaC0sBA09nOg4PvRmjh9n/ZR+lad73g8ey2oAva?=
+ =?us-ascii?Q?Epri6ZV8yjbd3Jdu7D1a9GBC1cSvwEdGHOJxdveIFJbE/cjBfF4A4fvoei3w?=
+ =?us-ascii?Q?wv0gDA06dxMpDQ5S+LcH3fqvIrNRQHug8yJaM6PqU4hP145mFUxOsLERiHXf?=
+ =?us-ascii?Q?kYRxJK9hD5n43ese0YqRnzaTLsXFHbsIcgG8P4zcU/llGRFI08wn29knsCfi?=
+ =?us-ascii?Q?EQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b7be1677-a2f0-4d3e-c3c7-08da5aacc115
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2022 15:25:24.9787 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: glP/shqHx2Db7zmXUM5a/4JivAuzh5VDRWuy0zTYO5LwVIZMMEKrZ8NE3IiC7rFWwAXMhUfA4nZC5FJGwUQ1lQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1699
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] How to convert drivers/gpu/drm/i915/ to use local
+ workqueue?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,350 +152,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 30/06/2022 15:52, Hellstrom, Thomas wrote:
-> Hi!
+On Thu, Jun 30, 2022 at 05:34:22PM +0300, Jani Nikula wrote:
+> On Thu, 30 Jun 2022, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> > On Thu, Jun 30, 2022 at 02:09:02PM +0100, Tvrtko Ursulin wrote:
+> >> 
+> >> On 30/06/2022 12:19, Tetsuo Handa wrote:
+> >> > On 2022/06/30 19:17, Tvrtko Ursulin wrote:
+> >> > > Could you give more context on reasoning here please? What is the difference
+> >> > > between using the system_wq and flushing it from a random context? Or concern
+> >> > > is about flushing from specific contexts?
+> >> > 
+> >> > Excuse me, but I couldn't catch what you want. Thus, I show three patterns of
+> >> > problems with an example.
+> >> > 
+> >> > Commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using a macro") says:
+> >> > 
+> >> >    Tejun Heo commented that it makes no sense at all to call flush_workqueue()
+> >> >    on the shared WQs as the caller has no idea what it's gonna end up waiting for.
+> >> > 
+> >> >    The "Think twice before calling this function! It's very easy to get into trouble
+> >> >    if you don't take great care." warning message does not help avoiding problems.
+> >> > 
+> >> >    Let's change the direction to that developers had better use their local WQs
+> >> >    if flush_scheduled_work()/flush_workqueue(system_*_wq) is inevitable.
+> >> > 
+> >> > Three patterns of problems are:
+> >> > 
+> >> >    (a) Flushing from specific contexts (e.g. GFP_NOFS/GFP_NOIO) can cause deadlock
+> >> >        (circular locking dependency) problem.
+> >> > 
+> >> >    (b) Flushing with specific locks (e.g. module_mutex) held can cause deadlock
+> >> >        (circular locking dependency) problem.
+> >> > 
+> >> >    (c) Even if there is no possibility of deadlock, flushing with specific locks
+> >> >        held can cause khungtaskd to complain.
+> >> > 
+> >> > An example of (a):
+> >> > 
+> >> >    ext4 filesystem called flush_scheduled_work(), which meant to wait for only
+> >> >    work item scheduled by ext4 filesystem, tried to also wait for work item
+> >> >    scheduled by 9p filesystem.
+> >> >    https://syzkaller.appspot.com/bug?extid=bde0f89deacca7c765b8
+> >> > 
+> >> >    Fixed by reverting the problematic patch.
+> >> > 
+> >> > An example of (b):
+> >> > 
+> >> >    It is GFP_KERNEL context when module's __exit function is called. But whether
+> >> >    flush_workqueue() is called from restricted context depends on what locks does
+> >> >    the module's __exit function hold.
+> >> > 
+> >> >    If request_module() is called from some work function using one of system-wide WQs,
+> >> >    and flush_workqueue() is called on that WQ from module's __exit function, the kernel
+> >> >    might deadlock on module_mutex lock. Making sure that flush_workqueue() is not called
+> >> >    on system-wide WQs is the safer choice.
+> >> > 
+> >> >    Commit 1b3ce51dde365296 ("Input: psmouse-smbus - avoid flush_scheduled_work() usage")
+> >> >    is for drivers/input/mouse/psmouse-smbus.c .
+> >> > 
+> >> > An example of (c):
+> >> > 
+> >> >    ath9k driver calls schedule_work() via request_firmware_nowait().
+> >> >    https://syzkaller.appspot.com/bug?id=78a242c8f1f4d15752c8ef4efc22974e2c52c833
+> >> > 
+> >> >    ath6kl driver calls flush_scheduled_work() which needlessly waits for completion
+> >> >    of works scheduled by ath9k driver (i.e. loading firmware used by ath9k driver).
+> >> >    https://syzkaller.appspot.com/bug?id=10a1cba59c42d11e12f897644341156eac9bb7ee
+> >> > 
+> >> >    Commit 4b2b8e748467985c ("ath6kl: avoid flush_scheduled_work() usage") in linux-next.git
+> >> >    might be able to mitigate these problems. (Waiting for next merge window...)
+> >> 
+> >> Okay, from 1b3ce51dde365296:
+> >> 
+> >>  "Flushing system-wide workqueues is dangerous and will be forbidden."
+> >> 
+> >> Thank you, this exactly explains the motivation which is what I was after. I
+> >> certainly agree there is a possibility for lock coupling via the shared wq
+> >> so that is fine by me.
+> >> 
+> >> > > On the i915 specifics, the caller in drivers/gpu/drm/i915/gt/selftest_execlists.c
+> >> > > I am pretty sure can be removed. It is synchronized with the error capture side of
+> >> > > things which is not required for the test to work.
+> >> > > 
+> >> > > I can send a patch for that or you can, as you prefer?
+> >> > 
+> >> > OK. Please send a patch for that, for that patch will go linux-next.git tree via
+> >> > a tree for gpu/drm/i915 driver.
+> >> 
+> >> Patch sent. If I am right the easiest solution was just to remove the flush.
+> >> If I was wrong though I'll need to create a dedicated wq so we will see what
+> >> our automated CI will say.
+> >
+> > But besides of flush_scheduled_work() it looks like
+> > we also need to take care of the flush_workqueue() calls, no?!
+> >
+> > * i915_gem_drain_workqueue()
+> > * intel_ggtt.c:   flush_workqueue(ggtt->vm.i915->wq);
+> > * i915_gem_pm.c: flush_workqueue(i915->wq);
+> >
+> > and the display ones for
+> > dev_priv->modeset_wq
+> > i915->flip_wq
+> >
+> > besides the flush_scheduled_work in intel_modeset_driver_remove_noirq
 > 
-> On Thu, 2022-06-30 at 15:20 +0100, Robert Beckett wrote:
->>
->>
->> On 29/06/2022 13:51, Robert Beckett wrote:
->>>
->>>
->>> On 28/06/2022 17:22, Robert Beckett wrote:
->>>>
->>>>
->>>> On 28/06/2022 09:46, Tvrtko Ursulin wrote:
->>>>>
->>>>> On 27/06/2022 18:08, Robert Beckett wrote:
->>>>>>
->>>>>>
->>>>>> On 22/06/2022 10:05, Tvrtko Ursulin wrote:
->>>>>>>
->>>>>>> On 21/06/2022 20:11, Robert Beckett wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>> On 21/06/2022 18:37, Patchwork wrote:
->>>>>>>>> *Patch Details*
->>>>>>>>> *Series:*    drm/i915: ttm for stolen (rev5)
->>>>>>>>> *URL:*
->>>>>>>>> https://patchwork.freedesktop.org/series/101396/
->>>>>>>>> <https://patchwork.freedesktop.org/series/101396/>
->>>>>>>>> *State:*    failure
->>>>>>>>> *Details:*
->>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html
->>>>>>>>>   
->>>>>>>>> <
->>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>    CI Bug Log - changes from CI_DRM_11790 ->
->>>>>>>>> Patchwork_101396v5
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>      Summary
->>>>>>>>>
->>>>>>>>> *FAILURE*
->>>>>>>>>
->>>>>>>>> Serious unknown changes coming with Patchwork_101396v5
->>>>>>>>> absolutely
->>>>>>>>> need to be
->>>>>>>>> verified manually.
->>>>>>>>>
->>>>>>>>> If you think the reported changes have nothing to do
->>>>>>>>> with the
->>>>>>>>> changes
->>>>>>>>> introduced in Patchwork_101396v5, please notify your
->>>>>>>>> bug team to
->>>>>>>>> allow them
->>>>>>>>> to document this new failure mode, which will reduce
->>>>>>>>> false
->>>>>>>>> positives in CI.
->>>>>>>>>
->>>>>>>>> External URL:
->>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/index.html
->>>>>>>>>   
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>      Participating hosts (40 -> 41)
->>>>>>>>>
->>>>>>>>> Additional (2): fi-icl-u2 bat-dg2-9
->>>>>>>>> Missing (1): fi-bdw-samus
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>      Possible new issues
->>>>>>>>>
->>>>>>>>> Here are the unknown changes that may have been
->>>>>>>>> introduced in
->>>>>>>>> Patchwork_101396v5:
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>        IGT changes
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>          Possible regressions
->>>>>>>>>
->>>>>>>>>    * igt@i915_selftest@live@reset:
->>>>>>>>>        o bat-adlp-4: PASS
->>>>>>>>> <
->>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11790/bat-adlp-4/igt@i915_selftest@live@reset.html
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>>          -> DMESG-FAIL
->>>>>>>>> <
->>>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101396v5/bat-adlp-4/igt@i915_selftest@live@reset.html
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>
->>>>>>>> I keep hitting clobbered pages during engine resets on
->>>>>>>> bat-adlp-4.
->>>>>>>> It seems to happen most of the time on that machine and
->>>>>>>> occasionally on bat-adlp-6.
->>>>>>>>
->>>>>>>> Should bat-adlp-4 be considered an unreliable machine
->>>>>>>> like
->>>>>>>> bat-adlp-6 is for now?
->>>>>>>>
->>>>>>>> Alternatively, seeing the history of this in
->>>>>>>>
->>>>>>>> commit 3da3c5c1c9825c24168f27b021339e90af37e969
->>>>>>>> "drm/i915: Exclude
->>>>>>>> low pages (128KiB) of stolen from use"
->>>>>>>>
->>>>>>>> could this be an indication that maybe the original issue
->>>>>>>> is worse
->>>>>>>> on adlp machines?
->>>>>>>> I have only ever seen page page 135 or 136 clobbered
->>>>>>>> across many
->>>>>>>> runs via trybot, so it looks fairly consistent.
->>>>>>>> Though excluding the use of over 540K of stolen might be
->>>>>>>> too severe.
->>>>>>>
->>>>>>> Don't know but I see that on the latest version you even
->>>>>>> hit pages
->>>>>>> 165/166.
->>>>>>>
->>>>>>> Any history of hitting this in CI without your series? If
->>>>>>> not, are
->>>>>>> there some other changes which could explain it? Are you
->>>>>>> touching
->>>>>>> the selftest itself?
->>>>>>>
->>>>>>> Hexdump of the clobbered page looks quite complex.
->>>>>>> Especially
->>>>>>> POISON_FREE. Any idea how that ends up there?
->>>>>>
->>>>>>
->>>>>> (see
->>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v4/fi-rkl-guc/igt@i915_selftest@live@reset.html#dmesg-warnings702
->>>>>> )
->>>>>>
->>>>>>
->>>>>> after lots of slow debug via CI, it looks like the issue is
->>>>>> that a
->>>>>> ring buffer was allocated and taking up that page during the
->>>>>> initial
->>>>>> crc capture in the test, but by the time it came to check for
->>>>>> corruption, it had been freed from that page.
->>>>>>
->>>>>> The test has a number of weaknesses:
->>>>>>
->>>>>> 1. the busy check is done twice, without taking in to account
->>>>>> any
->>>>>> change in between. I assume previously this could be relied
->>>>>> on never
->>>>>> to occur, but now it can for some reason (more on that later)
->>>>>
->>>>> You mean the stolen page used/unused test? Probably the premise
->>>>> is
->>>>> that the test controls the driver completely ie. is the sole
->>>>> user and
->>>>> the two checks are run at the time where nothing else could
->>>>> have
->>>>> changed the state.
->>>>>
->>>>> With the nerfed request (as with GuC) this actually should
->>>>> hold. In
->>>>> the generic case I am less sure, my working knowledge faded a
->>>>> bit,
->>>>> but perhaps there was something guaranteeing the spinner
->>>>> couldn't
->>>>> have been retired yet at the time of the second check. Would
->>>>> need
->>>>> clarifying at least in comments.
->>>>>>
->>>>>> 2. the engine reset returns early with an error for guc
->>>>>> submission
->>>>>> engines, but it is silently ignored in the test. Perhaps it
->>>>>> should
->>>>>> ignore guc submission engines as it is a largely useless test
->>>>>> for
->>>>>> those situations.
->>>>>
->>>>> Yes looks dodgy indeed. You will need to summon the owners of
->>>>> the GuC
->>>>> backend to comment on this.
->>>>>
->>>>> However even if the test should be skipped with GuC it is
->>>>> extremely
->>>>> interesting that you are hitting this so I suspect there is a
->>>>> more
->>>>> serious issue at play.
->>>>
->>>> indeed. That's why I am keen to get to the root cause instead of
->>>> just
->>>> slapping in a fix.
->>>>
->>>>>
->>>>>> A quick obvious fix is to have a busy bitmask that remembers
->>>>>> each
->>>>>> page's busy state initially and only check for corruption if
->>>>>> it was
->>>>>> busy during both checks.
->>>>>>
->>>>>> However, the main question is why this is occurring now with
->>>>>> my
->>>>>> changes.
->>>>>> I have added more debug to check where the stolen memory is
->>>>>> being
->>>>>> freed, but the first run last night didn't hit the issue for
->>>>>> once.
->>>>>> I am running again now, will report back if I figure out
->>>>>> where it is
->>>>>> being freed.
->>>>>>
->>>>>> I am pretty sure the "corruption" (which isn't actually
->>>>>> corruption)
->>>>>> is from a ring buffer.
->>>>>> The POISON_FREE is the only difference between the captured
->>>>>> before
->>>>>> and after dumps:
->>>>>>
->>>>>> [0040] 00000000 02800000 6b6b6b6b 6b6b6b6b 6b6b6b6b 6b6b6b6b
->>>>>> 6b6b6b6b 6b6b6b6b
->>>>>>
->>>>>> with the 2nd dword being the MI_ARB_CHECK used for the
->>>>>> spinner.
->>>>>> I think this is the request poisoning from
->>>>>> i915_request_retire()
->>>>>>
->>>>>> The bit I don't know yet is why a ring buffer was freed
->>>>>> between the
->>>>>> initial crc capture and the corruption check. The spinner
->>>>>> should be
->>>>>> active across the entire test, maintaining a ref on the
->>>>>> context and
->>>>>> it's ring.
->>>>>>
->>>>>> hopefully my latest debug will give more answers.
->>>>>
->>>>> Yeah if you can figure our whether the a) spinner is still
->>>>> active
->>>>> during the 2nd check (as I think it should be), and b) is the
->>>>> corruption detected in the same pages which were used in the
->>>>> 1st pass
->>>>> that would be interesting.
->>>>
->>>> yep. The latest run is still stuck in the CI queue after 27
->>>> hours.
->>>> I think I have enough debug in there to catch it now.
->>>> Hopefully I can get a root cause once it gets chance to run.
->>>>
->>>
->>> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v7/fi-adl-ddr5/igt@i915_selftest@live@reset.html#dmesg-warnings496
->>>   
->>>
->>>
->>> well, the run finally happened.
->>> And it shows that the freed resource happens from a workqueue. Not
->>> helpful.
->>>
->>> I'll now add a saved stack traces to all objects that saves where
->>> it is
->>> allocated and freed/queued for free.
->>>
->>
->> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_105517v8/fi-rkl-guc/igt@i915_selftest@live@reset.html#dmesg-warnings419
->>
->> I'm pretty sure I know what is going on now.
->>
->> igt_reset_engines_stolen() loops around each engine and calls
->> __igt_reset_stolen() for that engine.
->>
->>
->> __igt_reset_stolen() does
->> intel_context_create()
->>
->> igt_spinner_create_request()->intel_context_create_request()-
->>> __i915_request_create()->intel_context_get()
->>
->> intel_context_put()
->>
->> leaving the request as the remaining holder of the context.
->>
->> it then does the reset, which does nothing on GuC setups, does the
->> comparisons, then ends the spinner via igt_spinner_fini()-
->>> igt_spinner_end()
->> which lets the spinner request finish.
->>
->> once the request is retired, intel_context_put() is eventually
->> called,
->> which starts the GuC teardown of the context as the request was the
->> last
->> holder of the context.
->>
->> This GuC teardown is asynchronous via ct transactions.
->> By the time the ct_process_request() sees the
->> INTEL_GUC_ACTION_DEREGISTER_CONTEXT_DONE message, the test has
->> already
->> looped to the next engine and has already checked the original status
->> of
->> the page that the destroying context used for its ring buffer, so the
->> test sees it being freed from the previous loop while testing the
->> next
->> engine. It considers this a corruption of the stolen memory due to
->> the
->> previously highlighted double checking of busy state for each page.
->>
->> I think for now, we should simply not test GuC submission engines in
->> line with the reset call returning an error.
->> If at some point we want to enable this test for GuC setups, then
->> flushing and waiting for context cleanup would need to be added to
->> the test.
->>
->> Anyone know why per engine reset is not allowed for GuC submission
->> setup?
->> looking at commit "eb5e7da736f3 drm/i915/guc: Reset implementation
->> for
->> new GuC interface" doesn't really detail why per engine resets are
->> not
->> allowed.
->> Maybe it just never got implemented? or are there reasons to not
->> allow
->> the host to request specific engine resets?
->>
-> 
-> IIRC, the GuC by design decides for itself when it needs to do a per-
-> engine reset, hence the host can't trigger those.
-> 
-> /Thomas
-> 
+> I thought the problem was flushing the system-wide workqueues. The above
+> calls flush our own.
 
-okay, understood.
-I'll include a fix to the test in the next version to not test if GuC 
-submissions are active.
+oh, indeed, sorry for the noise.
+I had ignored the if for the new __warn_flushing...
 
-The only curious bit is that the conversion to ttm makes this issue 
-occur more often. In theory this should have been happening with the old 
-code too.
-I suspect it is just a timing thing. Maybe the ttm code has sped up or 
-slowed down the process somewhere.
+> 
+> As to removing flush_scheduled_work() from
+>intel_modeset_driver_remove_noirq(),
 
+yeap, this is the only real one...
+
+> I think we'll need to account for
+> all the work and delayed work we've scheduled on the system workqueue,
+> i.e. we need to cancel or flush each of them individually, as
+> necessary. Some of them we do already, but some others, not really.
+> 
+> For example we never cancel the fbc underrun work on the driver remove
+> path AFAICT. And it's not even as simple as just adding the
+> cancel_work_sync(&fbc->underrun_work) call in intel_fbc_cleanup(),
+> because intel_fbc_cleanup() is called *after*
+> intel_mode_config_cleanup(), i.e. the work function might get called
+> after the crtc it accesses has been destroyed. So we're going to need to
+> change the cleanup order too.
+> 
+> Things have changed considerably since the flush was added in
+> 1630fe754c83 ("drm/i915: Perform intel_enable_fbc() from a delayed
+> task").
+> 
+> I suppose the alternative is to have a local i915 display workqueue,
+> schedule all the random display works and delayed works on that, and
+> then flush that wq instead of the system wq in
+> intel_modeset_driver_remove_noirq().
+> 
+> IIUC, anyway.
+> 
+> 
+> BR,
+> Jani.
+> 
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
