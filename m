@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A47561FD1
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 18:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C1AE562020
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jun 2022 18:20:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ACB81131C3;
-	Thu, 30 Jun 2022 16:01:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEED01128A4;
+	Thu, 30 Jun 2022 16:20:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAAD71131C5;
- Thu, 30 Jun 2022 16:01:47 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 5FD2961F2F;
- Thu, 30 Jun 2022 16:01:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB750C34115;
- Thu, 30 Jun 2022 16:01:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1656604904;
- bh=9a7QJETb8qsbuncRpKStDGFKmjVy6m0K4HKIoKMMraU=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=V/N8XLuksk5MA93MtP65IvD7QRm6kOLDphiRkrcJ5MtaosHu31TRkakySZuHwYo90
- rogmqcWoZ1QRiAV0sCQGHVYnmySgxLFNjDVq3ptVjPJCdLefLEmfw3Xxr0wYdcVsqI
- a8gjOBcEa4AJtTZ31xzfkhuzScgblTIbwRpqpyTZQGDzunmlIOjDsw6Z1flIZPriHj
- iCyhwIKgVE1NKu81yg6j3SBZCZ+a+HvOIbtDj8bUhuzoAW6DSzIn2dzzI2h79dx7uz
- Yx9UoqFuM7S1WUqhkrgbeZo14g95py2IcmGzBLLjTtJDjj+OKBl1RsX5NBOuEiaHSh
- Cp4bLllWiFveA==
-Date: Thu, 30 Jun 2022 17:01:34 +0100
-From: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220630170134.3f89e0a3@sal.lan>
-In-Reply-To: <9477a8f1-3535-ed7f-c491-9ca9f27a10dc@linux.intel.com>
-References: <cover.1655306128.git.mchehab@kernel.org>
- <5ee647f243a774927ec328bfca8212abc4957909.1655306128.git.mchehab@kernel.org>
- <YrRLyg1IJoZpVGfg@intel.intel>
- <160e613f-a0a8-18ff-5d4b-249d4280caa8@linux.intel.com>
- <20220627110056.6dfa4f9b@maurocar-mobl2>
- <d79492ad-b99a-f9a9-f64a-52b94db68a3b@linux.intel.com>
- <20220629172955.64ffb5c3@maurocar-mobl2>
- <7e6a9a27-7286-7f21-7fec-b9832b93b10c@linux.intel.com>
- <20220630083256.35a56cb1@sal.lan>
- <9477a8f1-3535-ed7f-c491-9ca9f27a10dc@linux.intel.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3733511264C;
+ Thu, 30 Jun 2022 16:20:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1656606002; x=1688142002;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=vCfcFBwVzLgjcWafOLHuS9b7OnfcJifWpaAae9T7Xbk=;
+ b=fItRpHCkKwzwPGj0nJ/Sn1G6v90LdvTt7sfBDyjuX1Gsr0SM3jxA+rj8
+ 20jky33hm+kGwVv/Pfaqp4wDRvS+1GstjIOYY+sf0WjrJQg5j2o4WSf2w
+ zadgo/WmyXcUs7J56rqxjy8z5h4S1o5TyQviRLDsZJMXZFgZ/GH4rV14h
+ nWozJcJRPCLGj7ZwlBaMQlrPefr57+PFIFp304eWblbTKYlnXQqWJioFr
+ 91F8RQ1zQwQYw17iKrKU+J7FiJNrdlf2XW+AE9JtD98pmkJfnFuUwKRgi
+ uIlbszz+v/Kdr56Hmx3eMjI+g4bmlC894PRaA3LS9VX24KsQHbMfTP0ya g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10394"; a="282426508"
+X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="282426508"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 09:18:31 -0700
+X-IronPort-AV: E=Sophos;i="5.92,234,1650956400"; d="scan'208";a="918109402"
+Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 09:18:31 -0700
+Date: Thu, 30 Jun 2022 09:18:11 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>
+Message-ID: <20220630161811.GF14039@nvishwa1-DESK>
+References: <20220626014916.5130-1-niranjana.vishwanathapura@intel.com>
+ <20220626014916.5130-4-niranjana.vishwanathapura@intel.com>
+ <d805c4bfb11acd1f9271a72650f39174be30501c.camel@intel.com>
+ <20220630060820.GB14039@nvishwa1-DESK>
+ <406c2c67ad85258d1f8ee0fa918706a7e8b6605d.camel@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915/gt: Serialize GRDOM access
- between multiple engine resets
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <406c2c67ad85258d1f8ee0fa918706a7e8b6605d.camel@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v6 3/3] drm/doc/rfc: VM_BIND uapi definition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,254 +61,426 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?UTF-8?B?SGVsbHN0csO2?= =?UTF-8?B?bQ==?=
- <thomas.hellstrom@linux.intel.com>,
- Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Chris Wilson <chris.p.wilson@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dave Airlie <airlied@redhat.com>, stable@vger.kernel.org,
- Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>, "Wilson,
+ Chris P" <chris.p.wilson@intel.com>, "Vetter,
+ Daniel" <daniel.vetter@intel.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>, "Auld,
+ Matthew" <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em Thu, 30 Jun 2022 09:12:41 +0100
-Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> escreveu:
+On Wed, Jun 29, 2022 at 11:39:52PM -0700, Zanoni, Paulo R wrote:
+>On Wed, 2022-06-29 at 23:08 -0700, Niranjana Vishwanathapura wrote:
+>> On Wed, Jun 29, 2022 at 05:33:49PM -0700, Zanoni, Paulo R wrote:
+>> > On Sat, 2022-06-25 at 18:49 -0700, Niranjana Vishwanathapura wrote:
+>> > > VM_BIND and related uapi definitions
+>> > >
+>> > > v2: Reduce the scope to simple Mesa use case.
+>> > > v3: Expand VM_UNBIND documentation and add
+>> > >     I915_GEM_VM_BIND/UNBIND_FENCE_VALID
+>> > >     and I915_GEM_VM_BIND_TLB_FLUSH flags.
+>> > > v4: Remove I915_GEM_VM_BIND_TLB_FLUSH flag and add additional
+>> > >     documentation for vm_bind/unbind.
+>> > > v5: Remove TLB flush requirement on VM_UNBIND.
+>> > >     Add version support to stage implementation.
+>> > > v6: Define and use drm_i915_gem_timeline_fence structure for
+>> > >     all timeline fences.
+>> > > v7: Rename I915_PARAM_HAS_VM_BIND to I915_PARAM_VM_BIND_VERSION.
+>> > >     Update documentation on async vm_bind/unbind and versioning.
+>> > >     Remove redundant vm_bind/unbind FENCE_VALID flag, execbuf3
+>> > >     batch_count field and I915_EXEC3_SECURE flag.
+>> > >
+>> > > Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+>> > > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>> > > ---
+>> > >  Documentation/gpu/rfc/i915_vm_bind.h | 280 +++++++++++++++++++++++++++
+>> > >  1 file changed, 280 insertions(+)
+>> > >  create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+>> > >
+>> > > diff --git a/Documentation/gpu/rfc/i915_vm_bind.h b/Documentation/gpu/rfc/i915_vm_bind.h
+>> > > new file mode 100644
+>> > > index 000000000000..a93e08bceee6
+>> > > --- /dev/null
+>> > > +++ b/Documentation/gpu/rfc/i915_vm_bind.h
+>> > > @@ -0,0 +1,280 @@
+>> > > +/* SPDX-License-Identifier: MIT */
+>> > > +/*
+>> > > + * Copyright © 2022 Intel Corporation
+>> > > + */
+>> > > +
+>> > > +/**
+>> > > + * DOC: I915_PARAM_VM_BIND_VERSION
+>> > > + *
+>> > > + * VM_BIND feature version supported.
+>> > > + * See typedef drm_i915_getparam_t param.
+>> > > + *
+>> > > + * Specifies the VM_BIND feature version supported.
+>> > > + * The following versions of VM_BIND have been defined:
+>> > > + *
+>> > > + * 0: No VM_BIND support.
+>> > > + *
+>> > > + * 1: In VM_UNBIND calls, the UMD must specify the exact mappings created
+>> > > + *    previously with VM_BIND, the ioctl will not support unbinding multiple
+>> > > + *    mappings or splitting them. Similarly, VM_BIND calls will not replace
+>> > > + *    any existing mappings.
+>> > > + *
+>> > > + * 2: The restrictions on unbinding partial or multiple mappings is
+>> > > + *    lifted, Similarly, binding will replace any mappings in the given range.
+>> > > + *
+>> > > + * See struct drm_i915_gem_vm_bind and struct drm_i915_gem_vm_unbind.
+>> > > + */
+>> > > +#define I915_PARAM_VM_BIND_VERSION   57
+>> > > +
+>> > > +/**
+>> > > + * DOC: I915_VM_CREATE_FLAGS_USE_VM_BIND
+>> > > + *
+>> > > + * Flag to opt-in for VM_BIND mode of binding during VM creation.
+>> > > + * See struct drm_i915_gem_vm_control flags.
+>> > > + *
+>> > > + * The older execbuf2 ioctl will not support VM_BIND mode of operation.
+>> > > + * For VM_BIND mode, we have new execbuf3 ioctl which will not accept any
+>> > > + * execlist (See struct drm_i915_gem_execbuffer3 for more details).
+>> > > + */
+>> > > +#define I915_VM_CREATE_FLAGS_USE_VM_BIND     (1 << 0)
+>> > > +
+>> > > +/* VM_BIND related ioctls */
+>> > > +#define DRM_I915_GEM_VM_BIND         0x3d
+>> > > +#define DRM_I915_GEM_VM_UNBIND               0x3e
+>> > > +#define DRM_I915_GEM_EXECBUFFER3     0x3f
+>> > > +
+>> > > +#define DRM_IOCTL_I915_GEM_VM_BIND           DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
+>> > > +#define DRM_IOCTL_I915_GEM_VM_UNBIND         DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_bind)
+>> > > +#define DRM_IOCTL_I915_GEM_EXECBUFFER3               DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_execbuffer3)
+>> > > +
+>> > > +/**
+>> > > + * struct drm_i915_gem_timeline_fence - An input or output timeline fence.
+>> > > + *
+>> > > + * The operation will wait for input fence to signal.
+>> > > + *
+>> > > + * The returned output fence will be signaled after the completion of the
+>> > > + * operation.
+>> > > + */
+>> > > +struct drm_i915_gem_timeline_fence {
+>> > > +     /** @handle: User's handle for a drm_syncobj to wait on or signal. */
+>> > > +     __u32 handle;
+>> > > +
+>> > > +     /**
+>> > > +      * @flags: Supported flags are:
+>> > > +      *
+>> > > +      * I915_TIMELINE_FENCE_WAIT:
+>> > > +      * Wait for the input fence before the operation.
+>> > > +      *
+>> > > +      * I915_TIMELINE_FENCE_SIGNAL:
+>> > > +      * Return operation completion fence as output.
+>> > > +      */
+>> > > +     __u32 flags;
+>> > > +#define I915_TIMELINE_FENCE_WAIT            (1 << 0)
+>> > > +#define I915_TIMELINE_FENCE_SIGNAL          (1 << 1)
+>> > > +#define __I915_TIMELINE_FENCE_UNKNOWN_FLAGS (-(I915_TIMELINE_FENCE_SIGNAL << 1))
+>> > > +
+>> > > +     /**
+>> > > +      * @value: A point in the timeline.
+>> > > +      * Value must be 0 for a binary drm_syncobj. A Value of 0 for a
+>> > > +      * timeline drm_syncobj is invalid as it turns a drm_syncobj into a
+>> > > +      * binary one.
+>> > > +      */
+>> > > +     __u64 value;
+>> > > +};
+>> > > +
+>> > > +/**
+>> > > + * struct drm_i915_gem_vm_bind - VA to object mapping to bind.
+>> > > + *
+>> > > + * This structure is passed to VM_BIND ioctl and specifies the mapping of GPU
+>> > > + * virtual address (VA) range to the section of an object that should be bound
+>> > > + * in the device page table of the specified address space (VM).
+>> > > + * The VA range specified must be unique (ie., not currently bound) and can
+>> > > + * be mapped to whole object or a section of the object (partial binding).
+>> > > + * Multiple VA mappings can be created to the same section of the object
+>> > > + * (aliasing).
+>> > > + *
+>> > > + * The @start, @offset and @length must be 4K page aligned. However the DG2
+>> > > + * and XEHPSDV has 64K page size for device local-memory and has compact page
+>> > > + * table. On those platforms, for binding device local-memory objects, the
+>> > > + * @start must be 2M aligned, @offset and @length must be 64K aligned.
+>> > > + * Also, for such mappings, i915 will reserve the whole 2M range for it so as
+>> > > + * to not allow multiple mappings in that 2M range (Compact page tables do not
+>> > > + * allow 64K page and 4K page bindings in the same 2M range).
+>> > > + *
+>> > > + * Error code -EINVAL will be returned if @start, @offset and @length are not
+>> > > + * properly aligned. In version 1 (See I915_PARAM_VM_BIND_VERSION), error code
+>> > > + * -ENOSPC will be returned if the VA range specified can't be reserved.
+>> > > + *
+>> > > + * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrently
+>> > > + * are not ordered. Furthermore, parts of the VM_BIND operation can be done
+>> > > + * asynchronously, if valid @fence is specified.
+>> >
+>> > Does that mean that if I don't provide @fence, then this ioctl will be
+>> > synchronous (i.e., when it returns, the memory will be guaranteed to be
+>> > bound)? The text is kinda implying that, but from one of your earlier
+>> > replies to Tvrtko, that doesn't seem to be the case. I guess we could
+>> > change the text to make this more explicit.
+>> >
+>>
+>> Yes, I thought, if user doesn't specify the out fence, KMD better make
+>> the ioctl synchronous by waiting until the binding finishes before
+>> returning. Otherwise, UMD has no way to ensure binding is complete and
+>> UMD must pass in out fence for VM_BIND calls.
+>>
+>> But latest comment form Daniel on other thread might suggest something else.
+>> Daniel, can you comment?
+>
+>Whatever we decide, let's make sure it's documented.
+>
+>>
+>> > In addition, previously we had the guarantee that an execbuf ioctl
+>> > would wait for all the pending vm_bind operations to finish before
+>> > doing anything. Do we still have this guarantee or do we have to make
+>> > use of the fences now?
+>> >
+>>
+>> No, we don't have that anymore (execbuf is decoupled from VM_BIND).
+>> Execbuf3 submission will not wait for any previous VM_BIND to finish.
+>> UMD must pass in VM_BIND out fence as in fence for execbuf3 to ensure
+>> that.
+>
+>Got it, thanks.
+>
+>>
+>> > > + */
+>> > > +struct drm_i915_gem_vm_bind {
+>> > > +     /** @vm_id: VM (address space) id to bind */
+>> > > +     __u32 vm_id;
+>> > > +
+>> > > +     /** @handle: Object handle */
+>> > > +     __u32 handle;
+>> > > +
+>> > > +     /** @start: Virtual Address start to bind */
+>> > > +     __u64 start;
+>> > > +
+>> > > +     /** @offset: Offset in object to bind */
+>> > > +     __u64 offset;
+>> > > +
+>> > > +     /** @length: Length of mapping to bind */
+>> > > +     __u64 length;
+>> > > +
+>> > > +     /**
+>> > > +      * @flags: Supported flags are:
+>> > > +      *
+>> > > +      * I915_GEM_VM_BIND_READONLY:
+>> > > +      * Mapping is read-only.
+>> >
+>> > Can you please explain what happens when we try to write to a range
+>> > that's bound as read-only?
+>> >
+>>
+>> It will be mapped as read-only in device page table. Hence any
+>> write access will fail. I would expect a CAT error reported.
+>
+>What's a CAT error? Does this lead to machine freeze or a GPU hang?
+>Let's make sure we document this.
+>
 
-> On 30/06/2022 08:32, Mauro Carvalho Chehab wrote:
-> > Em Wed, 29 Jun 2022 17:02:59 +0100
-> > Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> escreveu:
-> >  =20
-> >> On 29/06/2022 16:30, Mauro Carvalho Chehab wrote: =20
-> >>> On Tue, 28 Jun 2022 16:49:23 +0100
-> >>> Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> >>>     =20
-> >>>> .. which for me means a different patch 1, followed by patch 6 (moved
-> >>>> to be patch 2) would be ideal stable material.
-> >>>>
-> >>>> Then we have the current patch 2 which is open/unknown (to me at lea=
-st).
-> >>>>
-> >>>> And the rest seem like optimisations which shouldn't be tagged as fi=
-xes.
-> >>>>
-> >>>> Apart from patch 5 which should be cc: stable, but no fixes as agree=
-d.
-> >>>>
-> >>>> Could you please double check if what I am suggesting here is feasib=
-le
-> >>>> to implement and if it is just send those minimal patches out alone?=
- =20
-> >>>
-> >>> Tested and porting just those 3 patches are enough to fix the Broadwe=
-ll
-> >>> bug.
-> >>>
-> >>> So, I submitted a v2 of this series with just those. They all need to
-> >>> be backported to stable. =20
-> >>
-> >> I would really like to give even a smaller fix a try. Something like, =
-although not even compile tested:
-> >>
-> >> commit 4d5e94aef164772f4d85b3b4c1a46eac9a2bd680
-> >> Author: Chris Wilson <chris.p.wilson@intel.com>
-> >> Date:   Wed Jun 29 16:25:24 2022 +0100
-> >>
-> >>       drm/i915/gt: Serialize TLB invalidates with GT resets
-> >>      =20
-> >>       Avoid trying to invalidate the TLB in the middle of performing an
-> >>       engine reset, as this may result in the reset timing out. Curren=
-tly,
-> >>       the TLB invalidate is only serialised by its own mutex, forgoing=
- the
-> >>       uncore lock, but we can take the uncore->lock as well to seriali=
-se
-> >>       the mmio access, thereby serialising with the GDRST.
-> >>      =20
-> >>       Tested on a NUC5i7RYB, BIOS RYBDWi35.86A.0380.2019.0517.1530 with
-> >>       i915 selftest/hangcheck.
-> >>      =20
-> >>       Cc: stable@vger.kernel.org
-> >>       Fixes: 7938d61591d3 ("drm/i915: Flush TLBs before releasing back=
-ing store")
-> >>       Reported-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >>       Tested-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >>       Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >>       Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
-> >>       Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> >>       Acked-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.co=
-m>
-> >>       Reviewed-by: Andi Shyti <andi.shyti@intel.com>
-> >>       Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >>       Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915=
-/gt/intel_gt.c
-> >> index 8da3314bb6bf..aaadd0b02043 100644
-> >> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> >> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> >> @@ -952,7 +952,23 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
-> >>           mutex_lock(&gt->tlb_invalidate_lock);
-> >>           intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
-> >>   =20
-> >> +       spin_lock_irq(&uncore->lock); /* serialise invalidate with GT =
-reset */
-> >> +
-> >> +       for_each_engine(engine, gt, id) {
-> >> +               struct reg_and_bit rb;
-> >> +
-> >> +               rb =3D get_reg_and_bit(engine, regs =3D=3D gen8_regs, =
-regs, num);
-> >> +               if (!i915_mmio_reg_offset(rb.reg))
-> >> +                       continue;
-> >> +
-> >> +               intel_uncore_write_fw(uncore, rb.reg, rb.bit);
-> >> +       }
-> >> +
-> >> +       spin_unlock_irq(&uncore->lock);
-> >> +
-> >>           for_each_engine(engine, gt, id) {
-> >> +               struct reg_and_bit rb;
-> >> +
-> >>                   /*
-> >>                    * HW architecture suggest typical invalidation time=
- at 40us,
-> >>                    * with pessimistic cases up to 100us and a recommen=
-dation to
-> >> @@ -960,13 +976,11 @@ void intel_gt_invalidate_tlbs(struct intel_gt *g=
-t)
-> >>                    */
-> >>                   const unsigned int timeout_us =3D 100;
-> >>                   const unsigned int timeout_ms =3D 4;
-> >> -               struct reg_and_bit rb;
-> >>   =20
-> >>                   rb =3D get_reg_and_bit(engine, regs =3D=3D gen8_regs=
-, regs, num);
-> >>                   if (!i915_mmio_reg_offset(rb.reg))
-> >>                           continue;
-> >>   =20
-> >> -               intel_uncore_write_fw(uncore, rb.reg, rb.bit);
-> >>                   if (__intel_wait_for_register_fw(uncore,
-> >>                                                    rb.reg, rb.bit, 0,
-> >>                                                    timeout_us, timeout=
-_ms,
-> >> =20
-> >=20
-> > This won't work, as it is not serializing TLB cache invalidation with
-> > i915 resets. Besides that, this is more or less merging patches 1 and 3=
-, =20
->=20
-> Could you explain why you think it is not doing exactly that? In both=20
-> versions end result is TLB flush requests are under the uncore lock and=20
-> waits are outside it.
+Catastrophic error.
 
-Sure, but patch 2/3 (see v2) serializes i915 reset with TLB cache changes.
-This is needed in order to fix the regression.
+>>
+>> I am seeing that currently the page table R/W setting is based
+>> on whether BO is readonly or not (UMDs can request a userptr
+>> BO to readonly). We can make this READONLY here as a subset.
+>> ie., if BO is readonly, the mappings must be readonly. If BO
+>> is not readonly, then the mapping can be either readonly or
+>> not.
+>>
+>> But if Mesa doesn't have a use for this, then we can remove
+>> this flag for now.
+>>
+>
+>I was considering using it for Vulkan's Sparse
+>residencyNonResidentStrict, so we map all unbound pages to a read-only
+>page. But for that to work, the required behavior would have to be:
+>reads all return zero, writes are ignored without any sort of error.
+>
+>But maybe our hardware provides other ways to implement this, I haven't
+>checked yet.
+>
 
-> > placing patches with different rationales altogether. Upstream rule is
-> > to have one logical change per patch. =20
->=20
-> I don't think it applies in this case. It is simply splitting into two=20
-> loops so lock can be held across all mmio writes. I think of it this way=
-=20
-> - what is the rationale for sending only the first patch to stable? What=
-=20
-> does it _fix_ on it's own?
+I am not sure what the behavior is. Probably writes are not simply ignored,
+will check.
+Looks like we can remove this flag for now. We can always add it back
+later if we need it. Is that Ok with you?
 
-There's no -stable rule enforcing that only one patch would be allowed,
-nor saying that patches should be fold, doing multiple changes on as single
-patch just due to "Fixes" tag.
+Niranjana
 
-So, while several -stable fixes can be done on a single patch, there are
-fixes that will require multiple patches. That's nothing wrong with that.
-
-The only rule is that backports should follow what's merged upstream.
-So, if, in order to fix a regression, multiple patches are needed upstream,
-in principle, all of those can be backported if they fit at -stable rules.
-
-As an example, once we backported a patch series on media that had ~20 patc=
-hes,
-addressing security issues at the media compat32 logic (media ioctls usually
-pass structs and some with pointers). As the issue was discovered several
-years after compat32 got introduced, those 22 patches (some containing
-compat32 redesigns) had to be backported to all maintained LTS.
-
--
-
-In this specific case, fixing the regression requires 3 logical changes:
-
-	1) Split the loop;
-	2) Add serialize logic to i915 reset;
-	3) use the same i915 reset spinlock to serialize TLB cache
-	   invalidation.
-
-Neither one of those logical changes alone would solve the issue. That's
-why I originally added the same Fixes: to the entire series: basically,
-any Kernel that has the TLB patch backported will require those
-three logical changes to be backported too.
-
-That basically will follow what's there at the Kernel process docs:
-
-	"If your patch fixes a bug in a specific commit, e.g. you found an issue u=
-sing
-	 ``git bisect``, please use the 'Fixes:' tag with the first 12 characters =
-of
-	 the SHA-1 ID, and the one line summary."
-
-	Documentation/process/submitting-patches.rst
-
-See, Fixes was originally introduced to be a hint to help stable=20
-and distro maintainers to identify how far they need to backport
-a patch. That's mainly why I placed fixes to the entire series.=20
-Yet, the same will also happen, in practice, if we place:
-
-	Cc: stable@vger.kernel.org # Up to version 4.4
-
-Greg, Sasha and others -stable/distro maintainers will also have a=20
-(much less precise) hint about how far the backport is needed.
-
->> If this works it would be least painful to backport. The other improveme=
-nts can then be devoid of the fixes tag. =20
-> >=20
-> >  From backport PoV, it wouldn't make any difference applying one patch
-> > or two. See, intel_gt_invalidate_tlbs() function doesn't exist before
-> > changeset 7938d61591d3 ("drm/i915: Flush TLBs before releasing backing =
-store"),
-> > so, it shouldn't have merge conflicts while backporting it, maybe except
-> > if some functions it calls (or parameters) have changed. On such case,
-> > the backport fix should be trivial, and the end result of backporting
-> > one folded patch or two would be the same. =20
->=20
-> Yes a lot of things changed. Not least engine and GT pm code. Note that=20
-> TLB flushing was backported all the way to 4.4 so any hunk you don't=20
-> strictly need can and will bite you. I have attached a tarball of=20
-> patches for you to explore. :)
-> Regards,
-
-Thanks! That's very helpful to check the amount of work. It makes easy
-to use interdiff and (k)diff3 to check what changed.
-
-=46rom it, the differences between 5.4 and 5.16 at intel_gt_invalidate_tlbs()
-are really trivial.
-
-On 4.14, the function was added on a different file (intel_gem), and
-there were a few more API differences, as only gen8 code is there,
-but again, the changes are trivial: mostly macros/functions were renamed
-and some function parameters changed.
-
-=46rom 4.9 to 4.14 there were also some changes but they also look trivial.
-
-Kernel 4.4 has some other differences - the loop logic is different, and
-there's a ring initialization function, but, as version 4.4 is not listed
-anymore as LTS at kernel.org, we probably need to backport only up to
-4.9.
-
-All the above should be affecting patch v2 1/3. Patches v2 2/3 and 3/3 just
-have spin lock/unlock for the gt uncore spinlock. Those will very likely
-require some work on Kernels 4.x, but folding (or not) the patches won't
-really help.
-
-Regards,
-Mauro
+>
+>> >
+>> > > +      *
+>> > > +      * I915_GEM_VM_BIND_CAPTURE:
+>> > > +      * Capture this mapping in the dump upon GPU error.
+>> > > +      */
+>> > > +     __u64 flags;
+>> > > +#define I915_GEM_VM_BIND_READONLY    (1 << 1)
+>> > > +#define I915_GEM_VM_BIND_CAPTURE     (1 << 2)
+>> > > +
+>> > > +     /**
+>> > > +      * @fence: Timeline fence for bind completion signaling.
+>> > > +      *
+>> > > +      * It is an out fence, hence using I915_TIMELINE_FENCE_WAIT flag
+>> > > +      * is invalid, and an error will be returned.
+>> > > +      */
+>> > > +     struct drm_i915_gem_timeline_fence fence;
+>> > > +
+>> > > +     /**
+>> > > +      * @extensions: Zero-terminated chain of extensions.
+>> > > +      *
+>> > > +      * For future extensions. See struct i915_user_extension.
+>> > > +      */
+>> > > +     __u64 extensions;
+>> > > +};
+>> > > +
+>> > > +/**
+>> > > + * struct drm_i915_gem_vm_unbind - VA to object mapping to unbind.
+>> > > + *
+>> > > + * This structure is passed to VM_UNBIND ioctl and specifies the GPU virtual
+>> > > + * address (VA) range that should be unbound from the device page table of the
+>> > > + * specified address space (VM). VM_UNBIND will force unbind the specified
+>> > > + * range from device page table without waiting for any GPU job to complete.
+>> > > + * It is UMDs responsibility to ensure the mapping is no longer in use before
+>> > > + * calling VM_UNBIND.
+>> > > + *
+>> > > + * If the specified mapping is not found, the ioctl will simply return without
+>> > > + * any error.
+>> > > + *
+>> > > + * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrently
+>> > > + * are not ordered. Furthermore, parts of the VM_UNBIND operation can be done
+>> > > + * asynchronously, if valid @fence is specified.
+>> > > + */
+>> > > +struct drm_i915_gem_vm_unbind {
+>> > > +     /** @vm_id: VM (address space) id to bind */
+>> > > +     __u32 vm_id;
+>> > > +
+>> > > +     /** @rsvd: Reserved, MBZ */
+>> > > +     __u32 rsvd;
+>> > > +
+>> > > +     /** @start: Virtual Address start to unbind */
+>> > > +     __u64 start;
+>> > > +
+>> > > +     /** @length: Length of mapping to unbind */
+>> > > +     __u64 length;
+>> > > +
+>> > > +     /** @flags: Currently reserved, MBZ */
+>> > > +     __u64 flags;
+>> > > +
+>> > > +     /**
+>> > > +      * @fence: Timeline fence for unbind completion signaling.
+>> > > +      *
+>> > > +      * It is an out fence, hence using I915_TIMELINE_FENCE_WAIT flag
+>> > > +      * is invalid, and an error will be returned.
+>> > > +      */
+>> > > +     struct drm_i915_gem_timeline_fence fence;
+>> > > +
+>> > > +     /**
+>> > > +      * @extensions: Zero-terminated chain of extensions.
+>> > > +      *
+>> > > +      * For future extensions. See struct i915_user_extension.
+>> > > +      */
+>> > > +     __u64 extensions;
+>> > > +};
+>> > > +
+>> > > +/**
+>> > > + * struct drm_i915_gem_execbuffer3 - Structure for DRM_I915_GEM_EXECBUFFER3
+>> > > + * ioctl.
+>> > > + *
+>> > > + * DRM_I915_GEM_EXECBUFFER3 ioctl only works in VM_BIND mode and VM_BIND mode
+>> > > + * only works with this ioctl for submission.
+>> > > + * See I915_VM_CREATE_FLAGS_USE_VM_BIND.
+>> > > + */
+>> > > +struct drm_i915_gem_execbuffer3 {
+>> > > +     /**
+>> > > +      * @ctx_id: Context id
+>> > > +      *
+>> > > +      * Only contexts with user engine map are allowed.
+>> > > +      */
+>> > > +     __u32 ctx_id;
+>> > > +
+>> > > +     /**
+>> > > +      * @engine_idx: Engine index
+>> > > +      *
+>> > > +      * An index in the user engine map of the context specified by @ctx_id.
+>> > > +      */
+>> > > +     __u32 engine_idx;
+>> > > +
+>> > > +     /**
+>> > > +      * @batch_address: Batch gpu virtual address/es.
+>> > > +      *
+>> > > +      * For normal submission, it is the gpu virtual address of the batch
+>> > > +      * buffer. For parallel submission, it is a pointer to an array of
+>> > > +      * batch buffer gpu virtual addresses with array size equal to the
+>> > > +      * number of (parallel) engines involved in that submission (See
+>> > > +      * struct i915_context_engines_parallel_submit).
+>> > > +      */
+>> > > +     __u64 batch_address;
+>> > > +
+>> > > +     /** @flags: Currently reserved, MBZ */
+>> > > +     __u64 flags;
+>> > > +
+>> > > +     /** @rsvd1: Reserved, MBZ */
+>> > > +     __u32 rsvd1;
+>> > > +
+>> > > +     /** @fence_count: Number of fences in @timeline_fences array. */
+>> > > +     __u32 fence_count;
+>> > > +
+>> > > +     /**
+>> > > +      * @timeline_fences: Pointer to an array of timeline fences.
+>> > > +      *
+>> > > +      * Timeline fences are of format struct drm_i915_gem_timeline_fence.
+>> > > +      */
+>> > > +     __u64 timeline_fences;
+>> > > +
+>> > > +     /** @rsvd2: Reserved, MBZ */
+>> > > +     __u64 rsvd2;
+>> > > +
+>> >
+>> > Just out of curiosity: if we can extend behavior with @extensions and
+>> > even @flags, why would we need a rsvd2? Perhaps we could kill rsvd2?
+>> >
+>>
+>> True. I added it just in case some requests came up that would require
+>> some additional fields. During this review process itself there were
+>> some requests. Adding directly here should have a slight performance
+>> edge over adding it as an extension (one less copy_from_user).
+>>
+>> But if folks think this is an overkill, I will remove it.
+>
+>I do not have strong opinions here, I'm just curious.
+>
+>Thanks,
+>Paulo
+>
+>>
+>> Niranjana
+>>
+>> > > +     /**
+>> > > +      * @extensions: Zero-terminated chain of extensions.
+>> > > +      *
+>> > > +      * For future extensions. See struct i915_user_extension.
+>> > > +      */
+>> > > +     __u64 extensions;
+>> > > +};
+>> > > +
+>> > > +/**
+>> > > + * struct drm_i915_gem_create_ext_vm_private - Extension to make the object
+>> > > + * private to the specified VM.
+>> > > + *
+>> > > + * See struct drm_i915_gem_create_ext.
+>> > > + */
+>> > > +struct drm_i915_gem_create_ext_vm_private {
+>> > > +#define I915_GEM_CREATE_EXT_VM_PRIVATE               2
+>> > > +     /** @base: Extension link. See struct i915_user_extension. */
+>> > > +     struct i915_user_extension base;
+>> > > +
+>> > > +     /** @vm_id: Id of the VM to which the object is private */
+>> > > +     __u32 vm_id;
+>> > > +};
+>> >
+>
