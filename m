@@ -1,48 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57B25636D7
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Jul 2022 17:22:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ABFD563715
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Jul 2022 17:41:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB70B14A8F6;
-	Fri,  1 Jul 2022 15:22:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF00914ADD4;
+	Fri,  1 Jul 2022 15:41:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA65614A8F1;
- Fri,  1 Jul 2022 15:22:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656688960; x=1688224960;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aSx0YAyk0vFd4dXVoBZreWi9FzJFTAnlV8DJKuHT1q0=;
- b=aA4A5KrUvJOMGvfQwQDXr9U2g6jbfXIxmHJoU9+G4QrFxoSAbqdnb3eS
- XX8ClPVFmLVULse2kRcdZ4G7U3hbkKIM95xlkke64c6s4giZ7AY1yOP+1
- 3n8Tj4d7HpzkG4JJjoc5DQyTeSRIYQlgcjXaNAAZmgl9DRZfg5i7nO4Df
- xSZ7PncUGsjYGVT4JcxuTJwa+oDb6kxoOtEpmvzse1UOv1jLkuAEMUDyv
- p39Vq+i8zrNp7qqcvw0oTTTNEcBb+OYazm9PaYTPPYWubIiy8ocMRTT38
- VDyuSnVNy3cLQ/KRZUIS5a146QEijMO3yGG487262vtEIm9NyObX10Ums g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10395"; a="281437799"
-X-IronPort-AV: E=Sophos;i="5.92,237,1650956400"; d="scan'208";a="281437799"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2022 08:22:40 -0700
-X-IronPort-AV: E=Sophos;i="5.92,237,1650956400"; d="scan'208";a="596289675"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2022 08:22:37 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  1 Jul 2022 08:22:31 -0700
-Message-Id: <20220701152231.529511-2-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220701152231.529511-1-matthew.d.roper@intel.com>
-References: <20220701152231.529511-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7415A14ADC9;
+ Fri,  1 Jul 2022 15:41:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0B6B4A7E03;
+ Fri,  1 Jul 2022 15:41:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: DG2 and ATS-M device ID updates
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Fri, 01 Jul 2022 15:41:15 -0000
+Message-ID: <165669007501.30281.18336574196732488125@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220701152231.529511-1-matthew.d.roper@intel.com>
+In-Reply-To: <20220701152231.529511-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_Revert_=22topic/core-for-CI?=
+ =?utf-8?q?=3A_Add_remaining_DG2_and_ATS-M_device_IDs=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,110 +41,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Small BAR support has now landed, which allows us to add the PCI IDs
-that correspond to add-in card designs of DG2 and ATS-M.  There's also
-one additional MB-down PCI ID that recently appeared (0x5698) so we add
-it too.
+== Series Details ==
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c          |  2 +-
- drivers/gpu/drm/i915/intel_device_info.c |  2 ++
- include/drm/i915_pciids.h                | 26 +++++++++++++++++++++---
- 3 files changed, 26 insertions(+), 4 deletions(-)
+Series: series starting with [1/2] Revert "topic/core-for-CI: Add remaining DG2 and ATS-M device IDs"
+URL   : https://patchwork.freedesktop.org/series/105870/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 5edc8fbf1dff..0cdd6513fbb7 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1075,7 +1075,6 @@ static const struct intel_device_info dg2_info = {
- 	.require_force_probe = 1,
- };
- 
--__maybe_unused
- static const struct intel_device_info ats_m_info = {
- 	DG2_FEATURES,
- 	.display = { 0 },
-@@ -1189,6 +1188,7 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_RPLS_IDS(&adl_s_info),
- 	INTEL_RPLP_IDS(&adl_p_info),
- 	INTEL_DG2_IDS(&dg2_info),
-+	INTEL_ATS_M_IDS(&ats_m_info),
- 	{0, 0, 0}
- };
- MODULE_DEVICE_TABLE(pci, pciidlist);
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 7eb893666595..f0bf23726ed8 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -189,10 +189,12 @@ static const u16 subplatform_rpl_ids[] = {
- 
- static const u16 subplatform_g10_ids[] = {
- 	INTEL_DG2_G10_IDS(0),
-+	INTEL_ATS_M150_IDS(0),
- };
- 
- static const u16 subplatform_g11_ids[] = {
- 	INTEL_DG2_G11_IDS(0),
-+	INTEL_ATS_M75_IDS(0),
- };
- 
- static const u16 subplatform_g12_ids[] = {
-diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-index 283dadfbb4db..1bd0420a213d 100644
---- a/include/drm/i915_pciids.h
-+++ b/include/drm/i915_pciids.h
-@@ -696,22 +696,42 @@
- #define INTEL_DG2_G10_IDS(info) \
- 	INTEL_VGA_DEVICE(0x5690, info), \
- 	INTEL_VGA_DEVICE(0x5691, info), \
--	INTEL_VGA_DEVICE(0x5692, info)
-+	INTEL_VGA_DEVICE(0x5692, info), \
-+	INTEL_VGA_DEVICE(0x56A0, info), \
-+	INTEL_VGA_DEVICE(0x56A1, info), \
-+	INTEL_VGA_DEVICE(0x56A2, info)
- 
- #define INTEL_DG2_G11_IDS(info) \
- 	INTEL_VGA_DEVICE(0x5693, info), \
- 	INTEL_VGA_DEVICE(0x5694, info), \
- 	INTEL_VGA_DEVICE(0x5695, info), \
--	INTEL_VGA_DEVICE(0x56B0, info)
-+	INTEL_VGA_DEVICE(0x5698, info), \
-+	INTEL_VGA_DEVICE(0x56A5, info), \
-+	INTEL_VGA_DEVICE(0x56A6, info), \
-+	INTEL_VGA_DEVICE(0x56B0, info), \
-+	INTEL_VGA_DEVICE(0x56B1, info)
- 
- #define INTEL_DG2_G12_IDS(info) \
- 	INTEL_VGA_DEVICE(0x5696, info), \
- 	INTEL_VGA_DEVICE(0x5697, info), \
--	INTEL_VGA_DEVICE(0x56B2, info)
-+	INTEL_VGA_DEVICE(0x56A3, info), \
-+	INTEL_VGA_DEVICE(0x56A4, info), \
-+	INTEL_VGA_DEVICE(0x56B2, info), \
-+	INTEL_VGA_DEVICE(0x56B3, info)
- 
- #define INTEL_DG2_IDS(info) \
- 	INTEL_DG2_G10_IDS(info), \
- 	INTEL_DG2_G11_IDS(info), \
- 	INTEL_DG2_G12_IDS(info)
- 
-+#define INTEL_ATS_M150_IDS(info) \
-+	INTEL_VGA_DEVICE(0x56C0, info)
-+
-+#define INTEL_ATS_M75_IDS(info) \
-+	INTEL_VGA_DEVICE(0x56C1, info)
-+
+== Summary ==
+
+Error: dim checkpatch failed
+4863bd4151f5 Revert "topic/core-for-CI: Add remaining DG2 and ATS-M device IDs"
+576e6bc96bca drm/i915: DG2 and ATS-M device ID updates
+-:96: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#96: FILE: include/drm/i915_pciids.h:733:
 +#define INTEL_ATS_M_IDS(info) \
 +	INTEL_ATS_M150_IDS(info), \
 +	INTEL_ATS_M75_IDS(info)
-+
- #endif /* _I915_PCIIDS_H */
--- 
-2.36.1
+
+-:96: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
+#96: FILE: include/drm/i915_pciids.h:733:
++#define INTEL_ATS_M_IDS(info) \
++	INTEL_ATS_M150_IDS(info), \
++	INTEL_ATS_M75_IDS(info)
+
+total: 1 errors, 0 warnings, 1 checks, 71 lines checked
+
 
