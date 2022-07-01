@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D16A563C89
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 Jul 2022 00:51:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B591B563CBB
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 Jul 2022 01:19:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AFB81125EA;
-	Fri,  1 Jul 2022 22:51:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDA32112162;
+	Fri,  1 Jul 2022 23:19:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1B2D1125A7;
- Fri,  1 Jul 2022 22:51:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656715878; x=1688251878;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YUEPFON9WjBvXA+Sv1QyZi7oYbiiZInsuDd+EG4gmbA=;
- b=fVh9t0gKca4ngyhhVxzeWZWe/UyIVtOa04720DGEiw7oyKsxUR2jowgw
- lUl10h305Sl/3Nc0aiLSyxlfRpzNbpDhoNkSiLi5zsvm6fFzAyqEX7cSp
- wFxy1r+17cKDfccvEz/+PjnNDeCWiDkQbHi06dbzHtwIYbXNnpiN354cF
- NLYUQ4fA7t8hA5qMpIPpnfQeuO9RTHhoWI7EUqvtvFrFbOvAPgKZ9mSmd
- IL1d3Ow3voikumwkGaxPdERTeWvVIrfnwn0lf5Uu+4jyvNfyN4Oms/p5U
- 2dDEotpzJq1/vWIAKeWbKpsZttCDzXFjG+WO+CAscsJjF7THZTcO6X0RG w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10395"; a="282789057"
-X-IronPort-AV: E=Sophos;i="5.92,238,1650956400"; d="scan'208";a="282789057"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2022 15:51:18 -0700
-X-IronPort-AV: E=Sophos;i="5.92,238,1650956400"; d="scan'208";a="918645116"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 01 Jul 2022 15:51:18 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri,  1 Jul 2022 15:50:55 -0700
-Message-Id: <20220701225055.8204-11-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20220701225055.8204-1-niranjana.vishwanathapura@intel.com>
-References: <20220701225055.8204-1-niranjana.vishwanathapura@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6FDDB10E8F7;
+ Fri,  1 Jul 2022 23:19:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 65B31AA0EA;
+ Fri,  1 Jul 2022 23:19:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 10/10] drm/i915/vm_bind: Fix vm->vm_bind_mutex and
- vm->mutex nesting
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Fri, 01 Jul 2022 23:19:07 -0000
+Message-ID: <165671754738.30283.5824051868330044366@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220701225055.8204-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20220701225055.8204-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/vm=5Fbind=3A_Add_VM=5FBIND_functionality?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,79 +40,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, thomas.hellstrom@intel.com,
- matthew.auld@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VM_BIND functionality maintain that vm->vm_bind_mutex will never be taken
-while holding vm->mutex.
-However, while closing 'vm', vma is destroyed while holding vm->mutex.
-But vma releasing needs to take vm->vm_bind_mutex in order to delete vma
-from the vm_bind_list. To avoid this, destroy the vma outside vm->mutex
-while closing the 'vm'.
+== Series Details ==
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gtt.c | 23 ++++++++++++++++++-----
- 1 file changed, 18 insertions(+), 5 deletions(-)
+Series: drm/i915/vm_bind: Add VM_BIND functionality
+URL   : https://patchwork.freedesktop.org/series/105879/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 4ab3bda644ff..4f707d0eb3ef 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -109,7 +109,8 @@ int map_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object
- 	return 0;
- }
- 
--static void clear_vm_list(struct list_head *list)
-+static void clear_vm_list(struct list_head *list,
-+			  struct list_head *destroy_list)
- {
- 	struct i915_vma *vma, *vn;
- 
-@@ -138,8 +139,7 @@ static void clear_vm_list(struct list_head *list)
- 			i915_vm_resv_get(vma->vm);
- 			vma->vm_ddestroy = true;
- 		} else {
--			i915_vma_destroy_locked(vma);
--			i915_gem_object_put(obj);
-+			list_move_tail(&vma->vm_link, destroy_list);
- 		}
- 
- 	}
-@@ -147,16 +147,29 @@ static void clear_vm_list(struct list_head *list)
- 
- static void __i915_vm_close(struct i915_address_space *vm)
- {
-+	struct i915_vma *vma, *vn;
-+	struct list_head list;
-+
-+	INIT_LIST_HEAD(&list);
-+
- 	mutex_lock(&vm->mutex);
- 
--	clear_vm_list(&vm->bound_list);
--	clear_vm_list(&vm->unbound_list);
-+	clear_vm_list(&vm->bound_list, &list);
-+	clear_vm_list(&vm->unbound_list, &list);
- 
- 	/* Check for must-fix unanticipated side-effects */
- 	GEM_BUG_ON(!list_empty(&vm->bound_list));
- 	GEM_BUG_ON(!list_empty(&vm->unbound_list));
- 
- 	mutex_unlock(&vm->mutex);
-+
-+	/* Destroy vmas outside vm->mutex */
-+	list_for_each_entry_safe(vma, vn, &list, vm_link) {
-+		struct drm_i915_gem_object *obj = vma->obj;
-+
-+		i915_vma_destroy(vma);
-+		i915_gem_object_put(obj);
-+	}
- }
- 
- /* lock the vm into the current ww, if we lock one, we lock all */
--- 
-2.21.0.rc0.32.g243a4c7e27
+== Summary ==
+
+Error: dim checkpatch failed
+9a618f815c5e drm/i915/vm_bind: Introduce VM_BIND ioctl
+-:196: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#196: FILE: include/uapi/drm/i915_drm.h:539:
++#define DRM_IOCTL_I915_GEM_VM_BIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
+
+-:197: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#197: FILE: include/uapi/drm/i915_drm.h:540:
++#define DRM_IOCTL_I915_GEM_VM_UNBIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_unbind)
+
+total: 0 errors, 2 warnings, 0 checks, 368 lines checked
+b021c9cf1fd7 drm/i915/vm_bind: Bind and unbind mappings
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:73: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#73: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 443 lines checked
+6375255bdb22 drm/i915/vm_bind: Support private and shared BOs
+bc88aa1c4e77 drm/i915/vm_bind: Add out fence support
+150c21055b0e drm/i915/vm_bind: Handle persistent vmas
+bd2c34d240da drm/i915/vm_bind: Add I915_GEM_EXECBUFFER3 ioctl
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:44: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#44: 
+new file mode 100644
+
+-:232: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_i' - possible side-effects?
+#232: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c:184:
++#define for_each_batch_create_order(_eb, _i) \
++	for ((_i) = 0; (_i) < (_eb)->num_batches; ++(_i))
+
+-:234: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#234: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c:186:
++#define for_each_batch_add_order(_eb, _i) \
++	BUILD_BUG_ON(!typecheck(int, _i)); \
++	for ((_i) = (_eb)->num_batches - 1; (_i) >= 0; --(_i))
+
+-:234: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_i' - possible side-effects?
+#234: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c:186:
++#define for_each_batch_add_order(_eb, _i) \
++	BUILD_BUG_ON(!typecheck(int, _i)); \
++	for ((_i) = (_eb)->num_batches - 1; (_i) >= 0; --(_i))
+
+-:1119: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#1119: FILE: include/uapi/drm/i915_drm.h:542:
++#define DRM_IOCTL_I915_GEM_EXECBUFFER3	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_execbuffer3)
+
+total: 1 errors, 2 warnings, 2 checks, 1153 lines checked
+05108f6c5754 drm/i915/vm_bind: Handle persistent vmas in execbuf3
+481d633a73ce drm/i915/vm_bind: userptr dma-resv changes
+aaafeac528d6 drm/i915/vm_bind: Skip vma_lookup for persistent vmas
+27b31d00e6b0 drm/i915/vm_bind: Fix vm->vm_bind_mutex and vm->mutex nesting
+
 
