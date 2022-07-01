@@ -2,140 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51528563151
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Jul 2022 12:24:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E035631DF
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Jul 2022 12:48:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A184D10ED78;
-	Fri,  1 Jul 2022 10:24:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C915A11A46B;
+	Fri,  1 Jul 2022 10:48:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B906510ED78
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Jul 2022 10:24:44 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6344411A356
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Jul 2022 10:48:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656671084; x=1688207084;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=6tv54fQBX4ZVcjGVpgoS0eoJKf9NnmMh2OrTGBlgr/s=;
- b=SMC22MxDGkO/rJh5aLmr8s5YzAEX8f3d+/C0+HOkNv3je8vBQfVNyDxm
- 50MgFSZIAB80kd06Hkq6NOh7STHv0noSlkEK2xOLIY9t+WfyuTqKlIHvh
- +CczQOt1Njz+XrCYUKjIcxVYq2WMhDOiYjf0OIHSbzasv6whZM5MfnDDb
- dNkCdqy/4Vdgis2Rf0M22CRUSWtgga+QBPuNJPexj/vSxXnUhUhqISTxu
- 0x+Gv5fmd33Ubk5jyItwKP3OEUJo/3LaViQJdFYchrY2+tCq/nkvZuw/L
- yAMXYnkATgP1lwb0Yir+a/7cbeVC1yocd+wTQpOGxVdooygOEFrTnhLkP g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10394"; a="344305093"
-X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; d="scan'208";a="344305093"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2022 03:24:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; d="scan'208";a="681356500"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by FMSMGA003.fm.intel.com with ESMTP; 01 Jul 2022 03:24:43 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 1 Jul 2022 03:24:34 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Fri, 1 Jul 2022 03:24:34 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Fri, 1 Jul 2022 03:24:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VIlEKnQM/eOCo3J3JZWOD7ZCv5nJ8D1z9uwSeMsj/KBhAWewIdD/doaBbSAa3oAVNpu8J+RZGYlQbrf5Ki2+LxzFXF9rsuS6cRMGncdqn01G0Lrqjz+3tY+Lf+8ErZL4rQ6xOcjyStnmP95GJw9WV/tEXQ4WbNKXJ/E23WakzzQQP9SZgB2SJZOpE2OKTx50nZd0TjYe+BF9Dn54DDMI29LP8Z/BW9oL6c0zfSk60KGf/7K0smrff958b1ivPCKkuZJdMMqgvB/c78BAlsam1jQOegKs2mBE53p/tnryIVr+L6r27mxxSHU3D4xXjQcGP/VhCrj5miqhdI1cn6n0YQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b6SdlDyObz2I3zvVANLKJo0yQ1GA1dt6nhNJujX5YHI=;
- b=U0IlCTp1wSC505eTJYgzXAM2FM6M0FhQItNNrc7rl72MenRu9gttoYyksW+QIBGs4e06+CnJ3nJXD+GfHM7owwhjUJ+a5n0oVz+V1Y6dKx7hRh4M123cy4/zQh0D7sq+0/3DfI58GnJe8sETKjJ63uBOLN+YipZPfVesbKeDWta7u7xZCZIYDzodDlp61Ev4HjgPzxFFGLWkUHo/XK6TEExNcouJVWXCY1XECG08M9U1LlfkkoMacawOoIPQ16xywsirQL74UTOhO2r/V37JFQTbD0s5Kq2EtxV9vFYMRHsAFX+bS6Q3kOpIuzCmCjkizly7laO5MGnv3RybqqDxNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
- DM6PR11MB2907.namprd11.prod.outlook.com (2603:10b6:5:64::33) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5395.14; Fri, 1 Jul 2022 10:24:33 +0000
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::3546:7df4:c8d2:1152]) by DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::3546:7df4:c8d2:1152%5]) with mapi id 15.20.5395.015; Fri, 1 Jul 2022
- 10:24:32 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/dp: wait on timeout before retry
-Thread-Index: AQHYihUZPHLEMAc+r0ePHJMTS3iqA61pUaqAgAADJxA=
-Date: Fri, 1 Jul 2022 10:24:32 +0000
-Message-ID: <DM6PR11MB317747F0971477CD6C1E60D7BABD9@DM6PR11MB3177.namprd11.prod.outlook.com>
-References: <20220627105939.657782-1-arun.r.murthy@intel.com>
- <87a69tnnw4.fsf@intel.com>
-In-Reply-To: <87a69tnnw4.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 46cd2b29-5b7b-4a5d-e390-08da5b4be3b7
-x-ms-traffictypediagnostic: DM6PR11MB2907:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 4N7SC5zSH8d89Vy7Qr8hb8CR4c3sKQxVkGCDNvbw1P6GPLCM3YLWxmq8xqp98E7z0a2/AawWn00MsGo80LCBstJ67dvIu2qDIA/B1kmvgbXxk5qNYAfOtdtr5E9g+bO53843IgM5bWhnWcPIcyldZHaCO2BEeretSGSi7I4sAKx6xdTn1W0a5cG8dVvpKCPnIMVc88IPCSSOs+LjaCto4/Btw2/Jiq1hXbL3DP9YKQLi1/omKrpV0Jtaot1Bq9rDk0N1MMgNYmyHTTMc29yXNm+oCN2uTwdpuGZWfXqRstaKDSFiEpfq2MMxviOUgu4aDzvIhUQT5mWmB8WQHNCQEVITGDRgblCiZMU9UEK2THKGKrRi0vpL0maS1+aSCTx2T2IjF3JgvD/KA/Vng9ZCoTPL/X0sBNd9+vuDfgGlEd+/wS1R/xJejP7kjg3RN7gxXKhzGjZATyWteTSjjUiWk2vFTDCAfNBTGT/m7y3Qf9ZDqNaOkQSlMpFUtJ0WGAtZMw/N+HUSxOq5YawFGUnk34mk0LIN2/5Vd0zZZMzV8YsK60IlWDVpqqwv1X/DEJwtu8GnprtEAnI0QlyRe18YT8WAL9x5Ye82ueWu5mKhK5cftWVPVCArqsrkDLer/zkb70IWeZm+IYSAMg0jQEMNkfYeH/05pBDLoqJfkbXFaKNK7hdZchY2h98SUAI91lemhAeuZVMoSjR05D/J2lNDB4OEzDXLJtF88tqg0YjfULuMRFRlM02ir0ecOKx/e0ktnIicOJRy3fTV2TFgwoBYDxYRfXzPGxfVw1GVCfVezhteXei/lsWUTj0xI51XyggS
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(366004)(136003)(346002)(39860400002)(396003)(376002)(38070700005)(38100700002)(71200400001)(186003)(7696005)(86362001)(122000001)(6506007)(26005)(33656002)(83380400001)(41300700001)(82960400001)(55236004)(52536014)(9686003)(4326008)(110136005)(76116006)(66446008)(66476007)(478600001)(54906003)(316002)(66556008)(64756008)(8676002)(66946007)(5660300002)(2906002)(55016003)(8936002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ELtFcwOZ2gJr6fdR/yvJQhSeSm58eRqXOEngo9hN2Z1k/bE/rYffV8GwTOr2?=
- =?us-ascii?Q?LgLzU8UNyyDdzU7x/N5KnGFYCteYXoMOMJ9lMUCpgmCbapjgWTsSW0ieDx8j?=
- =?us-ascii?Q?dVZWzFM9feQ4bQT5z1v0zRA44PUJeS+YM7/RrEboWHiICIOvAWC9h0v2Yv6L?=
- =?us-ascii?Q?NGINuwpcAzWIAJfhuA4XaoSGQ2UyG0o1qLCAmWX4C/f4P/oWSDnFvkkQNeAP?=
- =?us-ascii?Q?JRoa5J0Le6JScqKa5tmyL8JeQeYU2CQqaGRbeXCM6sUAyX5j112PYiU7Sm4P?=
- =?us-ascii?Q?cTA4dg/9lf1ThSO0YNnAVWepoYoOsRxTmjj7J5uN61xxHKvIrVrlbyWANQAs?=
- =?us-ascii?Q?EQV0Cym94cj+FHMBqQ9tcOmVZvOgIhWv4uGntk7tC1x6p999KOA0BDcM2nbk?=
- =?us-ascii?Q?W/Jx+KvuefKWWNFNXrMX7FDlCkR44Z2a9joK0hsdZB5wpmPLI/xoHrsxdrcK?=
- =?us-ascii?Q?b+4WiEn7RZmUNBjoasDV3Mo9gUFdHIj6CIMVtPIuTbnWRsp2UOzOM/zm16sH?=
- =?us-ascii?Q?JW1jU2KyaaN172fToqHrSY/ZD71tKLH2qYXuuMVMF4ZzClzTecYbX4Yfgefs?=
- =?us-ascii?Q?PUKxD51VE3J/iktXaFoMLqbheV4DeSgMg9sp/ONNVjUeY/yc7H4K+OJT8k5V?=
- =?us-ascii?Q?JY/ywlT5ariEDbEHnlK+y7Qs7YrvH0G1w2vOjkomoT4zdFI2tB4yrWsPAR2F?=
- =?us-ascii?Q?Fpcu3QEKUOz27NpyEjfF0kBDnREmNskEsTS0VRklP9oVe8NvbkpVWK/DJ+jh?=
- =?us-ascii?Q?DiWTMGhfWDmN5kkQq8kJcuU0YPr6psHwViOkDs5X+Te6O/W//PckTo6FgJjv?=
- =?us-ascii?Q?4OSsZgJw3RCt2zFQmewp6JP3/rWBmNdUrmLnQVZ5toVddQNSbmT6Y3GPxtlA?=
- =?us-ascii?Q?CTkR2PfVYT/FVW53i2WOtKLJnluu52wBHLvy3tzMvvDRtYA08GARsUhm4WLI?=
- =?us-ascii?Q?Sv7NBLLLQIJOrf0YUt0Xq3Zqr5o/rRbxLn9KNnQwC7ilV2VMIWchrbTG092D?=
- =?us-ascii?Q?7SNJJmQgs5J+iaCHmcaOffevx4O0N2IBVYmqvH/yAO4WejSGR/XwPu94YcHX?=
- =?us-ascii?Q?LjwLidTkFRjpagnCHzj9bBUBAflG1cii1NUGeGFn6ZzPZFeYl8Btk83VCagd?=
- =?us-ascii?Q?7wst7Hko0zisyrUkV0buMbvAxaxGm7tnoHSaLhKKThuoz6sLlo6d5ks6h/ir?=
- =?us-ascii?Q?SKG3a8y1v6btexoQmXGG93gVy+hNLLgNWcQ1FfiJ7HDbV6o1pK6loRKlaval?=
- =?us-ascii?Q?XGq7Fn8Dph6Xaf8hb78DvU0+7oh1gZitakKw68wTvJv4cfrYeCoxK3pSK7Cp?=
- =?us-ascii?Q?NL/1f/f027Oi9OtrW+aJLqK72RbfJ/+rkuHACvUDq6qJ6Ovb2mJJyapvrw5f?=
- =?us-ascii?Q?OQACGGk40XcP8qNxF1QykBSZzSrHLZ9PpStwq1UGCOKGdrFYYXC/t9UKcpJC?=
- =?us-ascii?Q?sZSGg8XEGJodakgSclH2BGo1LBjcwVbnhNVsikWdJXfILfZVMoOmpSzKXPpr?=
- =?us-ascii?Q?+KoaeJI4nB7LipwjtEY9Z/E+pCw4RMUIkU5MHVDUJ79oqPTFBsaka9n/TirP?=
- =?us-ascii?Q?mGSlz6gULsdBwghwEdPbDLpnHQ3ksPPGlX5+UsWE?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ t=1656672486; x=1688208486;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=8NgatrOaYNxVuW0/2LYb2h9/S/A7OBFTLgUxrG8u9lo=;
+ b=OjqHr6VqlOEhZyZ4qXMn+sk4s6um4VqIu4q0pcXia82Vf58p3Bt0aKcO
+ gimmdDdMk3xOHvulCbcUd5LhKbcjF8LuSaDLFbJVV6uNyCCG+B0hvQPsX
+ SiAN0atQYLyKiNZCaGoBSGRDvn8kDcNRQEfSHjoiOMAxNUpkd+lKX+p8N
+ xPNaMXfHpaVaY8HH5IGMk7mwuQdysAY4AvmTjyG4ZJnGgr6B+hneglSOZ
+ FgLi6auAE566W7fIYGxy9JyFlCImVQpZhArGx8o9MrqABXcnr0fDm3SoF
+ +CUvlkdoZ2gkY9iaWrCccNz1MielHPKVqw/XSGEdmz8iRbRMc8d74oLlm g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10394"; a="346610789"
+X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; d="scan'208";a="346610789"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2022 03:48:05 -0700
+X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; d="scan'208";a="648305234"
+Received: from ksecero-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.116])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2022 03:48:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: William Tseng <william.tseng@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220622102401.23721-1-william.tseng@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220620085934.25237-1-william.tseng@intel.com>
+ <20220622102401.23721-1-william.tseng@intel.com>
+Date: Fri, 01 Jul 2022 13:48:00 +0300
+Message-ID: <877d4xnm73.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46cd2b29-5b7b-4a5d-e390-08da5b4be3b7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2022 10:24:32.7188 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xGD5zBx13XO2Cj8yeOdYHEsZ/9IZ2a2fZsds7Z9nRZF6kTvq62385kqoZZlTRMQgINjfZSlcCU6XmXrOhm9kCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2907
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: wait on timeout before retry
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v6] drm/i915/dsi: add payload receiving code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,87 +58,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "tprevite@gmail.com" <tprevite@gmail.com>, "Zanoni,
- Paulo R" <paulo.r.zanoni@intel.com>
+Cc: William Tseng <william.tseng@intel.com>, "Kurmi,
+ Suresh Kumar" <suresh.kumar.kurmi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> On Mon, 27 Jun 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> > On linktraining error/timeout before retry need to wait for 400usec as
-> > per the DP CTS spec1.2 The patch with commit id
-> > 74ebf294a1dd816bdc248ac733009a8915d59eb5
-> > drm/i915: Add a delay in Displayport AUX transactions for compliance
-> > testing
->=20
-> Please reference other commits like this: commit 74ebf294a1dd
-> ("drm/i915: Add a delay in Displayport AUX transactions for compliance
-> testing")
->=20
-> I've got this git alias in my .gitconfig:
->=20
-> 	cite =3D "!f() { git log -1 '--pretty=3Dformat:%H (\"%s\")%n' $1 | sed -=
-e
-> 's/\\([0-f]\\{12\\}\\)[0-f]*/\\1/'; }; f"
->=20
-> And you can use 'git cite <commit-ish>' to give you the right format.
->=20
+On Wed, 22 Jun 2022, William Tseng <william.tseng@intel.com> wrote:
+> To support Host to read data from Peripheral after
+> a DCS read command is sent over DSI.
 
-Will correct this!
+Please find a couple of comments inline below. Basically with them fixed
+this is
 
-> > removes this delay mentioning the hardware already meets this
-> > requirement, but as per the spec the delay mentioned in the spec
-> > specifies how long to wait for the receiver response before timeout.
-> > So the delay here to wait for timeout and not a delay after timeout.
-> > The DP spec specifies a delay after timeout and hence adding this delay=
-.
->=20
-> Please try to reflow commit messages to about 72 characters.
->=20
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Commit msg is maintained to be 72 char, but the patch details added might b=
-e misleading.
-Will correct them!
+I'm afraid I just don't have the time for further detailed review right
+now. I do note that this has no regression potential for the existing
+DSI write paths, so (apart from the potential buffer overflow I note
+below) this should be a pretty safe change, as long as it's tested to
+work.
 
-> I had a bit of a hard time parsing the above, but basically you're saying=
- that
-> the hardware handles and flags the timeout, but the DP spec says we need =
-to
-> wait 400 us *after* the error condition. Makes sense, though I didn't hav=
-e
-> the time to read the specs to verify.
->=20
-> >
-> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp_aux.c | 8 ++------
-> >  1 file changed, 2 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > index 2bc119374555..a1fef1645d6a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > @@ -286,13 +286,9 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  			/*
-> >  			 * DP CTS 1.2 Core Rev 1.1, 4.2.1.1 & 4.2.1.2
-> >  			 *   400us delay required for errors and timeouts
-> > -			 *   Timeout errors from the HW already meet this
-> > -			 *   requirement so skip to next iteration
-> >  			 */
-> > -			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR)
-> > -				continue;
-> > -
-> > -			if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
-> > +			if (status & (DP_AUX_CH_CTL_RECEIVE_ERROR |
-> > +
-> 	DP_AUX_CH_CTL_TIME_OUT_ERROR)) {
->=20
-> Please check the indentation here. The DP_AUX_CH_* should start in the
-> same column.
->=20
 
-Done!
+BR,
+Jani.
 
-Thanks and Regards,
-Arun R Murthy
---------------------
+
+>
+> v1: initial version.
+> v2:
+> - adding error message when failing to place BTA.
+> - returning byte number instead of 0 for the read
+> function dsi_read_pkt_payld().
+> v3: fixing coding style warning.
+> v4:
+> - correcting the data type of returning data for
+> the read function dsi_read_pkt_payld().
+> v5: adding change history as part of commit messages.
+> v6: according to the review comments from Jani,
+> - drop the commented out variable "hdr_data".
+> - use int insteaf of u8 as the data type of the loop
+> variable i.
+> - use intel_de_rmw() for read-modify-write.
+> - add new function place_bta_request() to keep
+> payload receive function clean.
+> - explicitly clear the READ_UNLOADS_DW bit of
+> DSI_CMD_RXCTL before reading receive payload.
+> - use two loops to copy received data.
+> - remove the unrelated change from this patch,
+> which is made to gen11_dsi_setup_timeouts().
+> - drop the comment in gen11_dsi_host_transfer().
+> - change the condition to call the payload
+> receive function in gen11_dsi_host_transfer().
+>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Lee Shawn C <shawn.c.lee@intel.com>
+> Signed-off-by: William Tseng <william.tseng@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c      | 76 ++++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/icl_dsi_regs.h | 13 ++++
+>  2 files changed, 86 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
+5/display/icl_dsi.c
+> index 19bf717fd4cb..edf20016af91 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -201,6 +201,75 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *h=
+ost,
+>  	return 0;
+>  }
+>=20=20
+> +static bool place_bta_request(struct intel_dsi_host *host)
+> +{
+> +	struct intel_dsi *intel_dsi =3D host->intel_dsi;
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_dsi->base.base.dev);
+> +	enum transcoder dsi_trans =3D dsi_port_to_transcoder(host->port);
+> +
+> +	/* step2a(i): specify Turn-Around timeout */
+> +	intel_de_rmw(dev_priv, DSI_TA_TO(dsi_trans), TA_TIMEOUT_VALUE_MASK,
+> +		     TA_TIMEOUT_VALUE(intel_dsi->turn_arnd_val));
+> +
+> +	 /* step2a(ii): specify maximum allowed time */
+> +	intel_de_rmw(dev_priv, DSI_LPRX_HOST_TO(dsi_trans), ~LPRX_TIMEOUT_VALUE=
+_MASK,
+> +		     LPRX_TIMEOUT_VALUE(intel_dsi->lp_rx_timeout));
+> +
+> +	/* check if header credit available */
+> +	if (!wait_for_header_credits(dev_priv, dsi_trans, 1)) {
+> +		drm_err(&dev_priv->drm, "not ready to recive payload\n");
+> +		return false;
+> +	}
+> +
+> +	/* place BTA request */
+> +	intel_de_rmw(dev_priv, DSI_LP_MSG(dsi_trans), LINK_BTA, LINK_BTA);
+> +
+> +	return true;
+> +}
+> +
+> +static int dsi_read_pkt_payld(struct intel_dsi_host *host,
+> +			      u8 *rx_buf, size_t rx_len)
+> +{
+> +	struct intel_dsi *intel_dsi =3D host->intel_dsi;
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_dsi->base.base.dev);
+> +	enum transcoder dsi_trans =3D dsi_port_to_transcoder(host->port);
+> +	u32 tmp, payld_data;
+> +	u32 payld_dw;
+> +	int i, j;
+> +
+> +	if (rx_len <=3D 0)
+> +		return 0;
+> +
+> +	/* do not unload receive queue */
+> +	tmp =3D intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans));
+> +	tmp &=3D ~READ_UNLOADS_DW;
+> +	intel_de_write(dev_priv, DSI_CMD_RXCTL(dsi_trans), tmp);
+> +
+> +	/* step2: place a BTA request */
+> +	if (!place_bta_request(host))
+> +		return -EBUSY;
+> +
+> +	/* step4a: wait and read payload */
+> +	if (wait_for_us(((intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans)) &
+> +		NUMBER_RX_PLOAD_DW_MASK) >> NUMBER_RX_PLOAD_DW_SHIFT) > 0, 100000)) {
+> +		drm_err(&dev_priv->drm, "DSI fails to receive payload\n");
+> +		return -EBUSY;
+> +	}
+> +
+> +	tmp =3D intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans));
+> +	payld_dw =3D (tmp & NUMBER_RX_PLOAD_DW_MASK) >> NUMBER_RX_PLOAD_DW_SHIF=
+T;
+> +
+> +	for (i =3D 0; i < payld_dw; i++) {
+> +
+> +		payld_data =3D intel_de_read(dev_priv, DSI_CMD_RXPYLD(dsi_trans));
+> +
+> +		for (j =3D 0; j < min_t(u32, rx_len - (i * 4), 4); j++)
+> +			*(rx_buf + (i * 4 + j)) =3D (payld_data >> 8 * j) & 0xff;
+
+Mmh, no matter what the hardware returns, you can't overflow rx_len in
+rx_buf.
+
+> +	}
+> +
+> +	return ((i - 1) * 4 + j);
+> +}
+> +
+>  void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -1837,9 +1906,10 @@ static ssize_t gen11_dsi_host_transfer(struct mipi=
+_dsi_host *host,
+>  	if (ret < 0)
+>  		return ret;
+>=20=20
+> -	//TODO: add payload receive code if needed
+> -
+> -	ret =3D sizeof(dsi_pkt.header) + dsi_pkt.payload_length;
+> +	if (msg->rx_buf)
+
+Matter of taste, I'd check for msg->rx_len here, and the return an error
+from dsi_read_pkt_payld() if !msg->rx_buf.
+
+> +		ret =3D dsi_read_pkt_payld(intel_dsi_host, msg->rx_buf, msg->rx_len);
+> +	else
+> +		ret =3D sizeof(dsi_pkt.header) + dsi_pkt.payload_length;
+>=20=20
+>  	return ret;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi_regs.h b/drivers/gpu/dr=
+m/i915/display/icl_dsi_regs.h
+> index f78f28b8dd94..a77a49b42d60 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi_regs.h
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
+> @@ -251,6 +251,18 @@
+>  #define  NUMBER_RX_PLOAD_DW_MASK	(0xff << 0)
+>  #define  NUMBER_RX_PLOAD_DW_SHIFT	0
+>=20=20
+> +#define _DSI_CMD_RXHDR_0		0x6b0e0
+> +#define _DSI_CMD_RXHDR_1		0x6b8e0
+> +#define DSI_CMD_RXHDR(tc)		_MMIO_DSI(tc,	\
+> +						  _DSI_CMD_RXHDR_0,\
+> +						  _DSI_CMD_RXHDR_1)
+> +
+> +#define _DSI_CMD_RXPYLD_0		0x6b0e4
+> +#define _DSI_CMD_RXPYLD_1		0x6b8e4
+> +#define DSI_CMD_RXPYLD(tc)		_MMIO_DSI(tc,	\
+> +						  _DSI_CMD_RXPYLD_0,\
+> +						  _DSI_CMD_RXPYLD_1)
+> +
+>  #define _DSI_CMD_TXCTL_0		0x6b0d0
+>  #define _DSI_CMD_TXCTL_1		0x6b8d0
+>  #define DSI_CMD_TXCTL(tc)		_MMIO_DSI(tc,	\
+> @@ -294,6 +306,7 @@
+>  #define  LPTX_IN_PROGRESS		(1 << 17)
+>  #define  LINK_IN_ULPS			(1 << 16)
+>  #define  LINK_ULPS_TYPE_LP11		(1 << 8)
+> +#define  LINK_BTA			(1 << 1)
+>  #define  LINK_ENTER_ULPS		(1 << 0)
+>=20=20
+>  /* DSI timeout registers */
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
