@@ -1,74 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C03BF565B89
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jul 2022 18:19:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7AD565B98
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jul 2022 18:20:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A38CB10EF88;
-	Mon,  4 Jul 2022 16:15:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D01D610F0C6;
+	Mon,  4 Jul 2022 16:15:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7F1E10E00A
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jul 2022 06:31:35 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FD0B10E00A
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jul 2022 07:24:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656916295; x=1688452295;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Zy96tSsV4C7m7Zb32mdvEbZdQ8JUr8AMH44cWEWgPDc=;
- b=UKLkDDVyVPT9wiywFXvgFOAGj+Ap42FhLiLfEhWvOQRdiLTRLvj+vJOT
- mWqm3RHksImCg9AynTBFiFjF7JlyvZt8NdFJsuk/dVfI3v6x/S6HhUcng
- FijyNbi5tBY3sBK8/kgkJLDtiIZUE9yy3aWGiKM0BFS/61ulT5IecxaNI
- /Yv27dQuEjSsyX8nyX+3JNgViMD039koSMbyGMFtDQYwXFU3qB48Ll3yT
- XSUYqY3Vx2KUDWVXCgaMcY7XcX3XEDiMu2jZuDg2NmA+4zLE8r0tcSs3g
- I1Mr5LPvoxTRJ3CwpVJx57d9iPFE5q8OV8DZ6D5FkXW5rawnrol8UeSE/ Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10397"; a="283775733"
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="283775733"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2022 23:31:34 -0700
+ t=1656919452; x=1688455452;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9mihaCnM0LoU2O8y7WkUueMYEASAEmEMj9ebrF40k2o=;
+ b=OaVNLhVRkqXNQFdPF4HDaHp7oPEvlYCuVUW9TNbvF1bQDqCYlLD7XqEp
+ fL3bfLNFc3csWI+pwwTIRu15yt3zgiM5/vCKnDFFFucCf6cj/iObOdZsA
+ zQ8MXC1fJkFMMF+r2VZK1CtCKAOeOxGD/ewbOcerWc9qcq9M+jVlbwpjk
+ 7Jzydc8O9IqOLa4HuGVeIpJW+ZFmgsG+3jq1zsU1DYiNzK5FVL6GLwuAa
+ tf3GDwlEEQFYoWdUFeLklKvPGrrvpmLamWUnzXLvSynGbf1Vnf7Dq4c/4
+ b9BfO4pfesyGIFKHVi9Wh2lI1S/a12OmACgKxGvIzrETVlJ4KonXXzRdK A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10397"; a="284165849"
+X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="284165849"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2022 00:24:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="624941652"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by orsmga001.jf.intel.com with ESMTP; 03 Jul 2022 23:31:34 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Sun, 3 Jul 2022 23:31:33 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Sun, 3 Jul 2022 23:31:33 -0700
-Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
- fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
- Sun, 3 Jul 2022 23:31:33 -0700
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>, "Nikula, Jani"
- <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCHv3] drm/i915/dp: wait on timeout before retry
-Thread-Index: AQHYjTo2E2aiiMhtnkGEoJ44I8ufP61p0nSAgAPd2yCAAHrGAP//mRgg
-Date: Mon, 4 Jul 2022 06:31:33 +0000
-Message-ID: <72638a4cf3c6434b810702337e29eb37@intel.com>
+X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="542481784"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orsmga003.jf.intel.com with ESMTP; 04 Jul 2022 00:24:09 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  4 Jul 2022 12:53:52 +0530
+Message-Id: <20220704072352.1331682-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220627105939.657782-1-arun.r.murthy@intel.com>
 References: <20220627105939.657782-1-arun.r.murthy@intel.com>
- <20220701110309.1237002-1-arun.r.murthy@intel.com> <87sfnlm6dw.fsf@intel.com>
- <ebb45d3701bb4a78ad8b7bf1d926addc@intel.com>
- <DM6PR11MB3177F52AE19DA65003E1D8FFBABE9@DM6PR11MB3177.namprd11.prod.outlook.com>
-In-Reply-To: <DM6PR11MB3177F52AE19DA65003E1D8FFBABE9@DM6PR11MB3177.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-x-originating-ip: [10.108.32.68]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCHv3] drm/i915/dp: wait on timeout before retry
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dp: wait on timeout before retry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,80 +56,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "tprevite@gmail.com" <tprevite@gmail.com>, "Zanoni,
- Paulo R" <paulo.r.zanoni@intel.com>
+Cc: tprevite@gmail.com, paulo.r.zanoni@intel.com, jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On linktraining error/timeout before retry need to wait for 400usec as
+per the DP CTS spec1.2
+Under section 2.7.2 AUX Transaction Response/Reply Time-outs
+AUX Replier (the uPacket RX) must start sending the reply back to the AUX
+requester (the uPacket TX) within the response period of 300μs. The timer
+for Response Time-out starts ticking after the uPacket RX has finished
+receiving the AUX STOP condition which ends the AUX Request transaction.
+The timer is reset either when the Response Time-out period has elapsed or
+when the uPacket RX has started to send the AUX Sync pattern (which follows
+10 to 16 active pre-charge pulses) for the Reply transaction. If the
+uPacket TX does not receive a reply from the uPacket RX it must wait for a
+Reply Time-out period of 400us before initiating the next AUX Request
+transaction. The timer for the Reply Time-out starts ticking after the
+uPacket TX has finished sending the AUX STOP condition.
 
+The patch with commit 74ebf294a1dd ("drm/i915: Add a delay in Displayport
+AUX transactions for compliance testing")
+removes this delay mentioning the hardware already meets this requirement,
+but as per the spec the delay mentioned in the spec specifies how long to
+wait for the receiver response before timeout. So the delay here to wait
+for timeout and not a delay after timeout. The DP spec specifies a delay
+after timeout and hence adding this delay.
 
-> -----Original Message-----
-> From: Murthy, Arun R <arun.r.murthy@intel.com>
-> Sent: Monday, July 4, 2022 11:07 AM
-> To: Shankar, Uma <uma.shankar@intel.com>; Nikula, Jani <jani.nikula@intel=
-.com>;
-> intel-gfx@lists.freedesktop.org
-> Cc: ville.syrjala@linux.intel.com; Zanoni, Paulo R <paulo.r.zanoni@intel.=
-com>;
-> tprevite@gmail.com
-> Subject: RE: [PATCHv3] drm/i915/dp: wait on timeout before retry
->=20
-> > > -----Original Message-----
-> > > From: Nikula, Jani <jani.nikula@intel.com>
-> > > Sent: Friday, July 1, 2022 4:45 PM
-> > > To: Murthy, Arun R <arun.r.murthy@intel.com>;
-> > > intel-gfx@lists.freedesktop.org
-> > > Cc: ville.syrjala@linux.intel.com; Zanoni, Paulo R
-> > > <paulo.r.zanoni@intel.com>; tprevite@gmail.com; Shankar, Uma
-> > > <uma.shankar@intel.com>; Murthy, Arun R <arun.r.murthy@intel.com>
-> > > Subject: Re: [PATCHv3] drm/i915/dp: wait on timeout before retry
-> > >
-> > > On Fri, 01 Jul 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> > > > On linktraining error/timeout before retry need to wait for
-> > > > 400usec as per the DP CTS spec1.2
-> > > >
-> > > > The patch with commit 74ebf294a1dd ("drm/i915: Add a delay in
-> > > > Displayport AUX transactions for compliance testing") removes this
-> > > > delay mentioning the hardware already meets this requirement, but
-> > > > as per the spec the delay mentioned in the spec specifies how long
-> > > > to wait for the receiver response before timeout. So the delay
-> > > > here to wait for timeout and not a delay after timeout. The DP
-> > > > spec specifies a delay after timeout and hence adding this delay.
-> >
-> > The source side as per bspec says how much time to wait for sink
-> > response before calling timeout:
-> > Reg: DDI_AUX_CTL, BitField: 27:26
-> > Name: Time out timer value
-> > Description:
-> > ValueName
-> > 00b400us (default)
-> > 01b600us
-> > 10b800us
-> > 11b4000us
-> >
-> > So this should meet the CTS requirement. For any non-timeout error
-> > from sink, s/w should add explicit delay of minimum 400us before retry
-> > (which is being done)
-> >
-> > If 400us is not enough this needs to be checked separately or the
-> > timeout value in this register can be changed from default of 400us
-> >
-> The delay specified in the register is the time to wait for triggering th=
-e timeout. This
-> is being achieved in the register mentioned above.
->=20
-> But what the CTS spec says is once the timeout has occurred, before retry=
-ing again
-> we need to wait for 400ms. This is the delay that this patch has added.
+v2: fixed checkpatch warning and error
+v3: used proper indentation
+v4: added DP CEA 1.2 spec details in patch commit msg
 
-Thanks Arun for clarification. Seems there is some confusion with the hardw=
-are wait
-and this retry wait. I would suggest to add the CTS spec details clarifying=
- this wait and
-we should be good.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
->=20
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 2bc119374555..722c9f210690 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -286,13 +286,9 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 			/*
+ 			 * DP CTS 1.2 Core Rev 1.1, 4.2.1.1 & 4.2.1.2
+ 			 *   400us delay required for errors and timeouts
+-			 *   Timeout errors from the HW already meet this
+-			 *   requirement so skip to next iteration
+ 			 */
+-			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR)
+-				continue;
+-
+-			if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
++			if (status & (DP_AUX_CH_CTL_RECEIVE_ERROR |
++				      DP_AUX_CH_CTL_TIME_OUT_ERROR)) {
+ 				usleep_range(400, 500);
+ 				continue;
+ 			}
+-- 
+2.25.1
 
