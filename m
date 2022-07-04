@@ -1,62 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CDE5565B8E
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jul 2022 18:19:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1DEE565BCA
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jul 2022 18:22:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 666A610F03F;
-	Mon,  4 Jul 2022 16:15:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AB0710E979;
+	Mon,  4 Jul 2022 16:16:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 972E210E028;
- Mon,  4 Jul 2022 08:43:02 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C422310E046
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jul 2022 12:27:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656924182; x=1688460182;
- h=date:from:to:cc:subject:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Z5AgiPRT1LGOtg/2zx17iOgDnsUMebMSOWAh7X2B8b0=;
- b=HVtTpeiBOJ2BFoi1oNCL1I5ULt39ZC8Z7unaN04jthDQDDwF6FrV6P5E
- 7pGyuEpGok3fd/pMJZz2TznodLscvY4JE5sYt9C9EsQ1ecWo5XD7HNScz
- znMneRbeYswySIOhA8Gb1No8OFuA2zJ96Q1+FAClqRFacKM1WAf/65KNa
- mrZKC7Y8iYRA9jerdFBUD3On3IKmXX51djoChhnbDMRhL5tqGGWPBuFTY
- 0KEwYf4ZjE+thT4B0OiUYfHm8CqeTCnUnhN9W6ypSsIp0b91bfTUMx9Q3
- 9FamvK9BrF7l21alQrgfL0xXu04MT/IGMLOwdGeKSri6sRP2wEU8nosSU A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10397"; a="263494937"
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="263494937"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2022 01:43:01 -0700
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="619194805"
-Received: from maurocar-mobl2.ger.corp.intel.com (HELO maurocar-mobl2)
- ([10.252.33.112])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2022 01:42:55 -0700
-Date: Mon, 4 Jul 2022 10:42:52 +0200
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220704104252.1ab7c579@maurocar-mobl2>
-In-Reply-To: <4c46e69e-9af7-3c20-7569-7a4b5897ec7d@linux.intel.com>
-References: <cover.1655306128.git.mchehab@kernel.org>
- <5ee647f243a774927ec328bfca8212abc4957909.1655306128.git.mchehab@kernel.org>
- <YrRLyg1IJoZpVGfg@intel.intel>
- <160e613f-a0a8-18ff-5d4b-249d4280caa8@linux.intel.com>
- <20220627110056.6dfa4f9b@maurocar-mobl2>
- <d79492ad-b99a-f9a9-f64a-52b94db68a3b@linux.intel.com>
- <20220629172955.64ffb5c3@maurocar-mobl2>
- <7e6a9a27-7286-7f21-7fec-b9832b93b10c@linux.intel.com>
- <20220630083256.35a56cb1@sal.lan>
- <9477a8f1-3535-ed7f-c491-9ca9f27a10dc@linux.intel.com>
- <20220630170134.3f89e0a3@sal.lan>
- <4c46e69e-9af7-3c20-7569-7a4b5897ec7d@linux.intel.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+ t=1656937661; x=1688473661;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=WT6FsmidFeXra5yufXP3ld2DOiW6pC2fTMaatZmDtx0=;
+ b=GNFJZ4g/IFwPuLXxEmWs8no2B+KUs3ulk9ifrlsfDP6akLyHxkg8m55B
+ mYQGUo69ZlhfT+ElGGt7r889KAFLtH7BX/otztAeu0hm/x6C7gFOTzJKm
+ IkCfiYdWkCn9Y+L2N0DDMhx9+5bzIloAsAEjB3dbPPt8e23HUoaUJL4Fr
+ qoCDyduEeMr2MFwobNo4VRV31mrO50btD7a/YW9NzEIsHwDgirSO+gddJ
+ Kbh9ODtm+S1DFsAUmDZMV3T4wAYE5/NZYGt4Rr3tgx73Od63HJr2Dtsxh
+ ShxIO5BZfDykU/cIzbbn2f8n2fIjDayIsD6HXiH3amTny7shRZusN31CS A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10397"; a="266142308"
+X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="266142308"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2022 05:27:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="734815304"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by fmsmga001.fm.intel.com with ESMTP; 04 Jul 2022 05:27:40 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 4 Jul 2022 05:27:37 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Mon, 4 Jul 2022 05:27:36 -0700
+Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
+ fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
+ Mon, 4 Jul 2022 05:27:36 -0700
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915/dp: wait on timeout before retry
+Thread-Index: AQHYihUObgp6TCpwhUCQ9chkYp4RY61uTzQA///fV5A=
+Date: Mon, 4 Jul 2022 12:27:36 +0000
+Message-ID: <248516b5125c4a109497bfe7ad506da4@intel.com>
+References: <20220627105939.657782-1-arun.r.murthy@intel.com>
+ <20220704072352.1331682-1-arun.r.murthy@intel.com>
+In-Reply-To: <20220704072352.1331682-1-arun.r.murthy@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.500.17
+x-originating-ip: [10.108.32.68]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915/gt: Serialize GRDOM access
- between multiple engine resets
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: wait on timeout before retry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,166 +78,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
- Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Chris Wilson <chris.p.wilson@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dave Airlie <airlied@redhat.com>, stable@vger.kernel.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: "tprevite@gmail.com" <tprevite@gmail.com>, "Nikula,
+ Jani" <jani.nikula@intel.com>, "Zanoni, 
+ Paulo R" <paulo.r.zanoni@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 1 Jul 2022 08:56:53 +0100
-Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-
-> On 30/06/2022 17:01, Mauro Carvalho Chehab wrote:
-> > Em Thu, 30 Jun 2022 09:12:41 +0100
-> > Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> escreveu:
-> >  =20
-> >> On 30/06/2022 08:32, Mauro Carvalho Chehab wrote: =20
-> >>> Em Wed, 29 Jun 2022 17:02:59 +0100
-> >>> Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> escreveu:
-> >>>     =20
-> >>>> On 29/06/2022 16:30, Mauro Carvalho Chehab wrote: =20
-> >>>>> On Tue, 28 Jun 2022 16:49:23 +0100
-> >>>>> Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> >>>>>        =20
-> >>>>>> .. which for me means a different patch 1, followed by patch 6 (mo=
-ved
-> >>>>>> to be patch 2) would be ideal stable material.
-> >>>>>>
-> >>>>>> Then we have the current patch 2 which is open/unknown (to me at l=
-east).
-> >>>>>>
-> >>>>>> And the rest seem like optimisations which shouldn't be tagged as =
-fixes.
-> >>>>>>
-> >>>>>> Apart from patch 5 which should be cc: stable, but no fixes as agr=
-eed.
-> >>>>>>
-> >>>>>> Could you please double check if what I am suggesting here is feas=
-ible
-> >>>>>> to implement and if it is just send those minimal patches out alon=
-e? =20
-> >>>>>
-> >>>>> Tested and porting just those 3 patches are enough to fix the Broad=
-well
-> >>>>> bug.
-> >>>>>
-> >>>>> So, I submitted a v2 of this series with just those. They all need =
-to
-> >>>>> be backported to stable. =20
-> >>>>
-> >>>> I would really like to give even a smaller fix a try. Something like=
-, although not even compile tested:
-> >>>>
-> >>>> commit 4d5e94aef164772f4d85b3b4c1a46eac9a2bd680
-> >>>> Author: Chris Wilson <chris.p.wilson@intel.com>
-> >>>> Date:   Wed Jun 29 16:25:24 2022 +0100
-> >>>>
-> >>>>        drm/i915/gt: Serialize TLB invalidates with GT resets
-> >>>>       =20
-> >>>>        Avoid trying to invalidate the TLB in the middle of performin=
-g an
-> >>>>        engine reset, as this may result in the reset timing out. Cur=
-rently,
-> >>>>        the TLB invalidate is only serialised by its own mutex, forgo=
-ing the
-> >>>>        uncore lock, but we can take the uncore->lock as well to seri=
-alise
-> >>>>        the mmio access, thereby serialising with the GDRST.
-> >>>>       =20
-> >>>>        Tested on a NUC5i7RYB, BIOS RYBDWi35.86A.0380.2019.0517.1530 =
-with
-> >>>>        i915 selftest/hangcheck.
-> >>>>       =20
-> >>>>        Cc: stable@vger.kernel.org
-> >>>>        Fixes: 7938d61591d3 ("drm/i915: Flush TLBs before releasing b=
-acking store")
-> >>>>        Reported-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >>>>        Tested-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >>>>        Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >>>>        Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
-> >>>>        Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> >>>>        Acked-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel=
-.com>
-> >>>>        Reviewed-by: Andi Shyti <andi.shyti@intel.com>
-> >>>>        Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >>>>        Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i9=
-15/gt/intel_gt.c
-> >>>> index 8da3314bb6bf..aaadd0b02043 100644
-> >>>> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> >>>> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> >>>> @@ -952,7 +952,23 @@ void intel_gt_invalidate_tlbs(struct intel_gt *=
-gt)
-> >>>>            mutex_lock(&gt->tlb_invalidate_lock);
-> >>>>            intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
-> >>>>    =20
-> >>>> +       spin_lock_irq(&uncore->lock); /* serialise invalidate with G=
-T reset */
-> >>>> +
-> >>>> +       for_each_engine(engine, gt, id) {
-> >>>> +               struct reg_and_bit rb;
-> >>>> +
-> >>>> +               rb =3D get_reg_and_bit(engine, regs =3D=3D gen8_regs=
-, regs, num);
-> >>>> +               if (!i915_mmio_reg_offset(rb.reg))
-> >>>> +                       continue;
-> >>>> +
-> >>>> +               intel_uncore_write_fw(uncore, rb.reg, rb.bit);
-> >>>> +       }
-> >>>> +
-> >>>> +       spin_unlock_irq(&uncore->lock);
-> >>>> +
-> >>>>            for_each_engine(engine, gt, id) {
-> >>>> +               struct reg_and_bit rb;
-> >>>> +
-> >>>>                    /*
-> >>>>                     * HW architecture suggest typical invalidation t=
-ime at 40us,
-> >>>>                     * with pessimistic cases up to 100us and a recom=
-mendation to
-> >>>> @@ -960,13 +976,11 @@ void intel_gt_invalidate_tlbs(struct intel_gt =
-*gt)
-> >>>>                     */
-> >>>>                    const unsigned int timeout_us =3D 100;
-> >>>>                    const unsigned int timeout_ms =3D 4;
-> >>>> -               struct reg_and_bit rb;
-> >>>>    =20
-> >>>>                    rb =3D get_reg_and_bit(engine, regs =3D=3D gen8_r=
-egs, regs, num);
-> >>>>                    if (!i915_mmio_reg_offset(rb.reg))
-> >>>>                            continue;
-> >>>>    =20
-> >>>> -               intel_uncore_write_fw(uncore, rb.reg, rb.bit);
-> >>>>                    if (__intel_wait_for_register_fw(uncore,
-> >>>>                                                     rb.reg, rb.bit, =
-0,
-> >>>>                                                     timeout_us, time=
-out_ms,
-> >>>>    =20
-
-...
-
-> What about intel_engine_pm_is_awake, what will you do with that one?
-
-Ok, let's keep this series plain simple. I'm dropping PM awake logic
-as you suggested on v3, keeping just the bare minimal required to
-fix the selftest breakage.
-
-That actually means that we're not considering on such backports that TLB=20
-cache invalidation does add performance penalties and might cause apps
-to break.
-
-I suspect that we'll need to also backport at least some of the other
-patches like the PM awake logic and the one that avoids TLB cache=20
-invalidation when the memory was not touched by userspace, but let's
-focus first on fixing the regression pointed by selftest.
-
-Regards,
-Mauro
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTXVydGh5LCBBcnVuIFIg
+PGFydW4uci5tdXJ0aHlAaW50ZWwuY29tPg0KPiBTZW50OiBNb25kYXksIEp1bHkgNCwgMjAyMiAx
+Mjo1NCBQTQ0KPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogdmls
+bGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb207IFphbm9uaSwgUGF1bG8gUiA8cGF1bG8uci56YW5v
+bmlAaW50ZWwuY29tPjsNCj4gdHByZXZpdGVAZ21haWwuY29tOyBTaGFua2FyLCBVbWEgPHVtYS5z
+aGFua2FyQGludGVsLmNvbT47IE5pa3VsYSwgSmFuaQ0KPiA8amFuaS5uaWt1bGFAaW50ZWwuY29t
+PjsgTXVydGh5LCBBcnVuIFIgPGFydW4uci5tdXJ0aHlAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBb
+UEFUQ0hdIGRybS9pOTE1L2RwOiB3YWl0IG9uIHRpbWVvdXQgYmVmb3JlIHJldHJ5DQo+IA0KPiBP
+biBsaW5rdHJhaW5pbmcgZXJyb3IvdGltZW91dCBiZWZvcmUgcmV0cnkgbmVlZCB0byB3YWl0IGZv
+ciA0MDB1c2VjIGFzIHBlciB0aGUgRFANCj4gQ1RTIHNwZWMxLjIgVW5kZXIgc2VjdGlvbiAyLjcu
+MiBBVVggVHJhbnNhY3Rpb24gUmVzcG9uc2UvUmVwbHkgVGltZS1vdXRzIEFVWA0KPiBSZXBsaWVy
+ICh0aGUgdVBhY2tldCBSWCkgbXVzdCBzdGFydCBzZW5kaW5nIHRoZSByZXBseSBiYWNrIHRvIHRo
+ZSBBVVggcmVxdWVzdGVyICh0aGUNCj4gdVBhY2tldCBUWCkgd2l0aGluIHRoZSByZXNwb25zZSBw
+ZXJpb2Qgb2YgMzAwzrxzLiBUaGUgdGltZXIgZm9yIFJlc3BvbnNlIFRpbWUtb3V0DQo+IHN0YXJ0
+cyB0aWNraW5nIGFmdGVyIHRoZSB1UGFja2V0IFJYIGhhcyBmaW5pc2hlZCByZWNlaXZpbmcgdGhl
+IEFVWCBTVE9QIGNvbmRpdGlvbg0KPiB3aGljaCBlbmRzIHRoZSBBVVggUmVxdWVzdCB0cmFuc2Fj
+dGlvbi4NCj4gVGhlIHRpbWVyIGlzIHJlc2V0IGVpdGhlciB3aGVuIHRoZSBSZXNwb25zZSBUaW1l
+LW91dCBwZXJpb2QgaGFzIGVsYXBzZWQgb3Igd2hlbg0KPiB0aGUgdVBhY2tldCBSWCBoYXMgc3Rh
+cnRlZCB0byBzZW5kIHRoZSBBVVggU3luYyBwYXR0ZXJuICh3aGljaCBmb2xsb3dzDQo+IDEwIHRv
+IDE2IGFjdGl2ZSBwcmUtY2hhcmdlIHB1bHNlcykgZm9yIHRoZSBSZXBseSB0cmFuc2FjdGlvbi4g
+SWYgdGhlIHVQYWNrZXQgVFggZG9lcw0KPiBub3QgcmVjZWl2ZSBhIHJlcGx5IGZyb20gdGhlIHVQ
+YWNrZXQgUlggaXQgbXVzdCB3YWl0IGZvciBhIFJlcGx5IFRpbWUtb3V0IHBlcmlvZCBvZg0KPiA0
+MDB1cyBiZWZvcmUgaW5pdGlhdGluZyB0aGUgbmV4dCBBVVggUmVxdWVzdCB0cmFuc2FjdGlvbi4g
+VGhlIHRpbWVyIGZvciB0aGUgUmVwbHkNCj4gVGltZS1vdXQgc3RhcnRzIHRpY2tpbmcgYWZ0ZXIg
+dGhlIHVQYWNrZXQgVFggaGFzIGZpbmlzaGVkIHNlbmRpbmcgdGhlIEFVWCBTVE9QDQo+IGNvbmRp
+dGlvbi4NCj4gDQo+IFRoZSBwYXRjaCB3aXRoIGNvbW1pdCA3NGViZjI5NGExZGQgKCJkcm0vaTkx
+NTogQWRkIGEgZGVsYXkgaW4gRGlzcGxheXBvcnQgQVVYDQo+IHRyYW5zYWN0aW9ucyBmb3IgY29t
+cGxpYW5jZSB0ZXN0aW5nIikgcmVtb3ZlcyB0aGlzIGRlbGF5IG1lbnRpb25pbmcgdGhlIGhhcmR3
+YXJlDQo+IGFscmVhZHkgbWVldHMgdGhpcyByZXF1aXJlbWVudCwgYnV0IGFzIHBlciB0aGUgc3Bl
+YyB0aGUgZGVsYXkgbWVudGlvbmVkIGluIHRoZSBzcGVjDQo+IHNwZWNpZmllcyBob3cgbG9uZyB0
+byB3YWl0IGZvciB0aGUgcmVjZWl2ZXIgcmVzcG9uc2UgYmVmb3JlIHRpbWVvdXQuIFNvIHRoZSBk
+ZWxheQ0KPiBoZXJlIHRvIHdhaXQgZm9yIHRpbWVvdXQgYW5kIG5vdCBhIGRlbGF5IGFmdGVyIHRp
+bWVvdXQuIFRoZSBEUCBzcGVjIHNwZWNpZmllcyBhIGRlbGF5DQo+IGFmdGVyIHRpbWVvdXQgYW5k
+IGhlbmNlIGFkZGluZyB0aGlzIGRlbGF5Lg0KPiANCj4gdjI6IGZpeGVkIGNoZWNrcGF0Y2ggd2Fy
+bmluZyBhbmQgZXJyb3INCj4gdjM6IHVzZWQgcHJvcGVyIGluZGVudGF0aW9uDQo+IHY0OiBhZGRl
+ZCBEUCBDRUEgMS4yIHNwZWMgZGV0YWlscyBpbiBwYXRjaCBjb21taXQgbXNnDQoNCkxvb2tzIEdv
+b2QgdG8gbWUuDQpSZXZpZXdlZC1ieTogVW1hIFNoYW5rYXIgPHVtYS5zaGFua2FyQGludGVsLmNv
+bT4NCg0KPiBTaWduZWQtb2ZmLWJ5OiBBcnVuIFIgTXVydGh5IDxhcnVuLnIubXVydGh5QGludGVs
+LmNvbT4NCj4gQWNrZWQtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+
+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXguYyB8IDgg
+KystLS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25z
+KC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kcF9hdXguYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4
+LmMNCj4gaW5kZXggMmJjMTE5Mzc0NTU1Li43MjJjOWYyMTA2OTAgMTAwNjQ0DQo+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4LmMNCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXguYw0KPiBAQCAtMjg2LDEzICsyODYs
+OSBAQCBpbnRlbF9kcF9hdXhfeGZlcihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0KPiAgCQkJ
+LyoNCj4gIAkJCSAqIERQIENUUyAxLjIgQ29yZSBSZXYgMS4xLCA0LjIuMS4xICYgNC4yLjEuMg0K
+PiAgCQkJICogICA0MDB1cyBkZWxheSByZXF1aXJlZCBmb3IgZXJyb3JzIGFuZCB0aW1lb3V0cw0K
+PiAtCQkJICogICBUaW1lb3V0IGVycm9ycyBmcm9tIHRoZSBIVyBhbHJlYWR5IG1lZXQgdGhpcw0K
+PiAtCQkJICogICByZXF1aXJlbWVudCBzbyBza2lwIHRvIG5leHQgaXRlcmF0aW9uDQo+ICAJCQkg
+Ki8NCj4gLQkJCWlmIChzdGF0dXMgJiBEUF9BVVhfQ0hfQ1RMX1RJTUVfT1VUX0VSUk9SKQ0KPiAt
+CQkJCWNvbnRpbnVlOw0KPiAtDQo+IC0JCQlpZiAoc3RhdHVzICYgRFBfQVVYX0NIX0NUTF9SRUNF
+SVZFX0VSUk9SKSB7DQo+ICsJCQlpZiAoc3RhdHVzICYgKERQX0FVWF9DSF9DVExfUkVDRUlWRV9F
+UlJPUiB8DQo+ICsJCQkJICAgICAgRFBfQVVYX0NIX0NUTF9USU1FX09VVF9FUlJPUikpIHsNCj4g
+IAkJCQl1c2xlZXBfcmFuZ2UoNDAwLCA1MDApOw0KPiAgCQkJCWNvbnRpbnVlOw0KPiAgCQkJfQ0K
+PiAtLQ0KPiAyLjI1LjENCg0K
