@@ -2,52 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1650565BFC
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jul 2022 18:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17FC6565BB8
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jul 2022 18:22:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76BA710E489;
-	Mon,  4 Jul 2022 16:16:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A924210F358;
+	Mon,  4 Jul 2022 16:16:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43EF510E14A
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jul 2022 14:11:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656943878; x=1688479878;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Gpb4Y4SKbtVQt5OBS/TuXF2inFf7YWSavIfwPTTyx7Y=;
- b=dOKQbJwFTzBZg7geW5povT0Qk/aQ+QY2wEc7iLSrMsV4dNk0KfMalA7p
- 4cCYHiLiBaVDoYIKUJ2VYvMQ3+PuZMQ3pphzEKujkw7ew9EAfbzHYKafL
- hrC1F7BwCP+EqioB6THhC5bNb3CAP/gEwyMYlJOWw6derkWm+yhpmC9bF
- 0equ8wcUp8ErNr11ORUieiJV0zPxjKl466+3TPPKQcbyin9pl4vv8Hn0x
- j/bFZjyV1fx5ngwpDjehODsN+f6RZrVlHZNo/qu0xNKXweU6iGdB4F82d
- 9elsfV4NljlblL90i6kTsMB7uGTBzA3geyKP5xbYVx6t6lPnZwwObLkwk g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10397"; a="281896853"
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="281896853"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2022 07:11:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="619307297"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.161])
- by orsmga008.jf.intel.com with SMTP; 04 Jul 2022 07:11:14 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 04 Jul 2022 17:11:13 +0300
-Date: Mon, 4 Jul 2022 17:11:13 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Message-ID: <YsL1Afbj7Mxx/0aF@intel.com>
-References: <20220627105939.657782-1-arun.r.murthy@intel.com>
- <20220704072352.1331682-1-arun.r.murthy@intel.com>
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96E9610E174;
+ Mon,  4 Jul 2022 15:20:12 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 7A29CB81014;
+ Mon,  4 Jul 2022 15:20:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28C8EC3411E;
+ Mon,  4 Jul 2022 15:20:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1656948008;
+ bh=D5q5Dno29GppKOQ4ew8H36+AhOTbVVxHP3lYtieRXwI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=GuMul2XePRnR7RYnHMhIwS5z5XCiwMtSxgrtkQVCLbE28d+mb3262Ia/XdYoz2o4W
+ bL3FUJYTLe69tzoox6yV0hdWPtIsiYVAOqMx/FjwYTJhlSlCJwmZFUuBWK6/iAGRKQ
+ k5GjOCHStr1FGODKEhz5axE0dS7XoZwuVYkvKynbSfrMmW1fAgQ5CMZrDJPiWLFXOO
+ HneDbpSK5A4nQEinuLvXAw2eAGIy8QW7ynTT1e0Zm61spMmUmpNJjcYxdFv41CCamn
+ Uq9sBQX72T6B+K1m+LzLcWZEdQfNq7gIP+Lgr4rGUqERXFiDTL/D39mz3CVRjDhdTp
+ yMNXR0E8J5K9Q==
+Received: from mchehab by mail.kernel.org with local (Exim 4.95)
+ (envelope-from <mchehab@kernel.org>) id 1o8Nro-009fKT-WA;
+ Mon, 04 Jul 2022 16:20:05 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: 
+Date: Mon,  4 Jul 2022 16:20:02 +0100
+Message-Id: <cover.1656921701.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220704072352.1331682-1-arun.r.murthy@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: wait on timeout before retry
+Subject: [Intel-gfx] [PATCH v3 0/2] Fix TLB invalidate issues with Broadwell
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,83 +53,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tprevite@gmail.com, jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- paulo.r.zanoni@intel.com
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>, dri-devel@lists.freedesktop.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 04, 2022 at 12:53:52PM +0530, Arun R Murthy wrote:
-> On linktraining error/timeout before retry need to wait for 400usec as
-> per the DP CTS spec1.2
+i915 selftest hangcheck is causing the i915 driver timeouts, as reported
+by Intel CI bot:
 
-s/CTS//
+http://gfx-ci.fi.intel.com/cibuglog-ng/issuefilterassoc/24297?query_key=42a999f48fa6ecce068bc8126c069be7c31153b4
 
-> Under section 2.7.2 AUX Transaction Response/Reply Time-outs
-> AUX Replier (the uPacket RX) must start sending the reply back to the AUX
-> requester (the uPacket TX) within the response period of 300μs. The timer
-> for Response Time-out starts ticking after the uPacket RX has finished
-> receiving the AUX STOP condition which ends the AUX Request transaction.
-> The timer is reset either when the Response Time-out period has elapsed or
-> when the uPacket RX has started to send the AUX Sync pattern (which follows
-> 10 to 16 active pre-charge pulses) for the Reply transaction. If the
-> uPacket TX does not receive a reply from the uPacket RX it must wait for a
-> Reply Time-out period of 400us before initiating the next AUX Request
-> transaction. The timer for the Reply Time-out starts ticking after the
-> uPacket TX has finished sending the AUX STOP condition.
-> 
-> The patch with commit 74ebf294a1dd ("drm/i915: Add a delay in Displayport
-> AUX transactions for compliance testing")
-> removes this delay mentioning the hardware already meets this requirement,
-> but as per the spec the delay mentioned in the spec specifies how long to
-> wait for the receiver response before timeout. So the delay here to wait
-> for timeout and not a delay after timeout. The DP spec specifies a delay
-> after timeout and hence adding this delay.
+When such test runs, the only output is:
 
-Not sure what you're saying here. The spec states the reply
-timeout should start counting once the TX has sent the
-AUX STOP, and gets reset when the reply AUX SYNC is detected.
+	[   68.811639] i915: Performing live selftests with st_random_seed=0xe138eac7 st_timeout=500
+	[   68.811792] i915: Running hangcheck
+	[   68.811859] i915: Running intel_hangcheck_live_selftests/igt_hang_sanitycheck
+	[   68.816910] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
+	[   68.841597] i915: Running intel_hangcheck_live_selftests/igt_reset_nop
+	[   69.346347] igt_reset_nop: 80 resets
+	[   69.362695] i915: Running intel_hangcheck_live_selftests/igt_reset_nop_engine
+	[   69.863559] igt_reset_nop_engine(rcs0): 709 resets
+	[   70.364924] igt_reset_nop_engine(bcs0): 903 resets
+	[   70.866005] igt_reset_nop_engine(vcs0): 659 resets
+	[   71.367934] igt_reset_nop_engine(vcs1): 549 resets
+	[   71.869259] igt_reset_nop_engine(vecs0): 553 resets
+	[   71.882592] i915: Running intel_hangcheck_live_selftests/igt_reset_idle_engine
+	[   72.383554] rcs0: Completed 16605 idle resets
+	[   72.884599] bcs0: Completed 18641 idle resets
+	[   73.385592] vcs0: Completed 17517 idle resets
+	[   73.886658] vcs1: Completed 15474 idle resets
+	[   74.387600] vecs0: Completed 17983 idle resets
+	[   74.387667] i915: Running intel_hangcheck_live_selftests/igt_reset_active_engine
+	[   74.889017] rcs0: Completed 747 active resets
+	[   75.174240] intel_engine_reset(bcs0) failed, err:-110
+	[   75.174301] bcs0: Completed 525 active resets
 
-If that doesn't match what the hardware is doing then we really
-need to get bspec updated to say what is actually happening.
+After that, the machine just silently hangs.
 
-Oh, and the reply timeout has been increased to 3.2ms in later
-revisions of the spec to deal with LTTPRs. We should adjust 
-the code to match.
+Bisecting the issue, the patch that introduced the regression is:
 
-> 
-> v2: fixed checkpatch warning and error
-> v3: used proper indentation
-> v4: added DP CEA 1.2 spec details in patch commit msg
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index 2bc119374555..722c9f210690 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -286,13 +286,9 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  			/*
->  			 * DP CTS 1.2 Core Rev 1.1, 4.2.1.1 & 4.2.1.2
->  			 *   400us delay required for errors and timeouts
-> -			 *   Timeout errors from the HW already meet this
-> -			 *   requirement so skip to next iteration
->  			 */
-> -			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR)
-> -				continue;
-> -
-> -			if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
-> +			if (status & (DP_AUX_CH_CTL_RECEIVE_ERROR |
-> +				      DP_AUX_CH_CTL_TIME_OUT_ERROR)) {
->  				usleep_range(400, 500);
->  				continue;
->  			}
-> -- 
-> 2.25.1
+    7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
+
+Reverting it fix the issues, but introduce other problems, as TLB
+won't be invalidated anymore. So, instead, let's fix the root cause.
+
+It turns that the TLB flush logic ends conflicting with i915 reset,
+which is called during selftest hangcheck. So, the TLB cache should
+be serialized together with i915 reset.
+
+Tested on an Intel NUC5i7RYB with an i7-5557U Broadwell CPU.
+
+v3:
+- Removed the logic that would check if the engine is awake before doing
+  TLB flush invalidation as backporting PM logic up to Kernel 4.x could be
+  too painful. After getting this one merged, I'll submit a separate patch
+  with the PM awake logic.
+
+v2:
+
+- Reduced to bare minimum fixes, as this shoud be backported deeply
+  into stable.
+
+
+Chris Wilson (2):
+  drm/i915/gt: Serialize GRDOM access between multiple engine resets
+  drm/i915/gt: Serialize TLB invalidates with GT resets
+
+ drivers/gpu/drm/i915/gt/intel_gt.c    | 15 ++++++++++-
+ drivers/gpu/drm/i915/gt/intel_reset.c | 37 ++++++++++++++++++++-------
+ 2 files changed, 42 insertions(+), 10 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.36.1
+
+
