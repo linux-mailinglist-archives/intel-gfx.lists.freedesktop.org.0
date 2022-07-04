@@ -1,49 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7AD565B98
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jul 2022 18:20:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F4DA565B7F
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jul 2022 18:19:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D01D610F0C6;
-	Mon,  4 Jul 2022 16:15:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE67C10ED3C;
+	Mon,  4 Jul 2022 16:15:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FD0B10E00A
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jul 2022 07:24:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656919452; x=1688455452;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9mihaCnM0LoU2O8y7WkUueMYEASAEmEMj9ebrF40k2o=;
- b=OaVNLhVRkqXNQFdPF4HDaHp7oPEvlYCuVUW9TNbvF1bQDqCYlLD7XqEp
- fL3bfLNFc3csWI+pwwTIRu15yt3zgiM5/vCKnDFFFucCf6cj/iObOdZsA
- zQ8MXC1fJkFMMF+r2VZK1CtCKAOeOxGD/ewbOcerWc9qcq9M+jVlbwpjk
- 7Jzydc8O9IqOLa4HuGVeIpJW+ZFmgsG+3jq1zsU1DYiNzK5FVL6GLwuAa
- tf3GDwlEEQFYoWdUFeLklKvPGrrvpmLamWUnzXLvSynGbf1Vnf7Dq4c/4
- b9BfO4pfesyGIFKHVi9Wh2lI1S/a12OmACgKxGvIzrETVlJ4KonXXzRdK A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10397"; a="284165849"
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="284165849"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2022 00:24:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,243,1650956400"; d="scan'208";a="542481784"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orsmga003.jf.intel.com with ESMTP; 04 Jul 2022 00:24:09 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 Jul 2022 12:53:52 +0530
-Message-Id: <20220704072352.1331682-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220627105939.657782-1-arun.r.murthy@intel.com>
-References: <20220627105939.657782-1-arun.r.murthy@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 490F910E00A;
+ Mon,  4 Jul 2022 08:09:37 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 9CFC461196;
+ Mon,  4 Jul 2022 08:09:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08BC9C385A5;
+ Mon,  4 Jul 2022 08:09:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1656922176;
+ bh=D5q5Dno29GppKOQ4ew8H36+AhOTbVVxHP3lYtieRXwI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Rt9N2X9DLYlkxitVXy4r2YmnjlAVgKS3pMkFFca2T7LESc7nWaOcUDH+pdUhNJ1Gk
+ Pe6J/79+S6KbN7D68GNqUfDRcced0npvnGAYJGbXhyOsoNozsi2LMVUk86V7IV+qn9
+ fvOtNnGmRxRZYmvgBrNzA1htJxc2SS3gejPLBtcaRW0HdYtqNeQUWYzMDONrIWStG1
+ ExYMdaQxD5HD3bUAZg2Lz/tTCRPL+1DCIhy51Ze8y/OyOlsAAe43kNb+Lpnu0OQghB
+ zZ57sB+JWEZ7VyAT+nSrwGb25Hxu96mb0yGSTiS807hPdOYM5HoNe3/bWQQ95Irh47
+ 6kj3sJkEmEuXQ==
+Received: from mchehab by mail.kernel.org with local (Exim 4.95)
+ (envelope-from <mchehab@kernel.org>) id 1o8H9A-009OaV-Qi;
+ Mon, 04 Jul 2022 09:09:32 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: 
+Date: Mon,  4 Jul 2022 09:09:27 +0100
+Message-Id: <cover.1656921701.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dp: wait on timeout before retry
+Subject: [Intel-gfx] [PATCH v3 0/2] Fix TLB invalidate issues with Broadwell
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,63 +53,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tprevite@gmail.com, paulo.r.zanoni@intel.com, jani.nikula@intel.com
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On linktraining error/timeout before retry need to wait for 400usec as
-per the DP CTS spec1.2
-Under section 2.7.2 AUX Transaction Response/Reply Time-outs
-AUX Replier (the uPacket RX) must start sending the reply back to the AUX
-requester (the uPacket TX) within the response period of 300μs. The timer
-for Response Time-out starts ticking after the uPacket RX has finished
-receiving the AUX STOP condition which ends the AUX Request transaction.
-The timer is reset either when the Response Time-out period has elapsed or
-when the uPacket RX has started to send the AUX Sync pattern (which follows
-10 to 16 active pre-charge pulses) for the Reply transaction. If the
-uPacket TX does not receive a reply from the uPacket RX it must wait for a
-Reply Time-out period of 400us before initiating the next AUX Request
-transaction. The timer for the Reply Time-out starts ticking after the
-uPacket TX has finished sending the AUX STOP condition.
+i915 selftest hangcheck is causing the i915 driver timeouts, as reported
+by Intel CI bot:
 
-The patch with commit 74ebf294a1dd ("drm/i915: Add a delay in Displayport
-AUX transactions for compliance testing")
-removes this delay mentioning the hardware already meets this requirement,
-but as per the spec the delay mentioned in the spec specifies how long to
-wait for the receiver response before timeout. So the delay here to wait
-for timeout and not a delay after timeout. The DP spec specifies a delay
-after timeout and hence adding this delay.
+http://gfx-ci.fi.intel.com/cibuglog-ng/issuefilterassoc/24297?query_key=42a999f48fa6ecce068bc8126c069be7c31153b4
 
-v2: fixed checkpatch warning and error
-v3: used proper indentation
-v4: added DP CEA 1.2 spec details in patch commit msg
+When such test runs, the only output is:
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_aux.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+	[   68.811639] i915: Performing live selftests with st_random_seed=0xe138eac7 st_timeout=500
+	[   68.811792] i915: Running hangcheck
+	[   68.811859] i915: Running intel_hangcheck_live_selftests/igt_hang_sanitycheck
+	[   68.816910] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
+	[   68.841597] i915: Running intel_hangcheck_live_selftests/igt_reset_nop
+	[   69.346347] igt_reset_nop: 80 resets
+	[   69.362695] i915: Running intel_hangcheck_live_selftests/igt_reset_nop_engine
+	[   69.863559] igt_reset_nop_engine(rcs0): 709 resets
+	[   70.364924] igt_reset_nop_engine(bcs0): 903 resets
+	[   70.866005] igt_reset_nop_engine(vcs0): 659 resets
+	[   71.367934] igt_reset_nop_engine(vcs1): 549 resets
+	[   71.869259] igt_reset_nop_engine(vecs0): 553 resets
+	[   71.882592] i915: Running intel_hangcheck_live_selftests/igt_reset_idle_engine
+	[   72.383554] rcs0: Completed 16605 idle resets
+	[   72.884599] bcs0: Completed 18641 idle resets
+	[   73.385592] vcs0: Completed 17517 idle resets
+	[   73.886658] vcs1: Completed 15474 idle resets
+	[   74.387600] vecs0: Completed 17983 idle resets
+	[   74.387667] i915: Running intel_hangcheck_live_selftests/igt_reset_active_engine
+	[   74.889017] rcs0: Completed 747 active resets
+	[   75.174240] intel_engine_reset(bcs0) failed, err:-110
+	[   75.174301] bcs0: Completed 525 active resets
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index 2bc119374555..722c9f210690 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -286,13 +286,9 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 			/*
- 			 * DP CTS 1.2 Core Rev 1.1, 4.2.1.1 & 4.2.1.2
- 			 *   400us delay required for errors and timeouts
--			 *   Timeout errors from the HW already meet this
--			 *   requirement so skip to next iteration
- 			 */
--			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR)
--				continue;
--
--			if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
-+			if (status & (DP_AUX_CH_CTL_RECEIVE_ERROR |
-+				      DP_AUX_CH_CTL_TIME_OUT_ERROR)) {
- 				usleep_range(400, 500);
- 				continue;
- 			}
+After that, the machine just silently hangs.
+
+Bisecting the issue, the patch that introduced the regression is:
+
+    7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
+
+Reverting it fix the issues, but introduce other problems, as TLB
+won't be invalidated anymore. So, instead, let's fix the root cause.
+
+It turns that the TLB flush logic ends conflicting with i915 reset,
+which is called during selftest hangcheck. So, the TLB cache should
+be serialized together with i915 reset.
+
+Tested on an Intel NUC5i7RYB with an i7-5557U Broadwell CPU.
+
+v3:
+- Removed the logic that would check if the engine is awake before doing
+  TLB flush invalidation as backporting PM logic up to Kernel 4.x could be
+  too painful. After getting this one merged, I'll submit a separate patch
+  with the PM awake logic.
+
+v2:
+
+- Reduced to bare minimum fixes, as this shoud be backported deeply
+  into stable.
+
+
+Chris Wilson (2):
+  drm/i915/gt: Serialize GRDOM access between multiple engine resets
+  drm/i915/gt: Serialize TLB invalidates with GT resets
+
+ drivers/gpu/drm/i915/gt/intel_gt.c    | 15 ++++++++++-
+ drivers/gpu/drm/i915/gt/intel_reset.c | 37 ++++++++++++++++++++-------
+ 2 files changed, 42 insertions(+), 10 deletions(-)
+
 -- 
-2.25.1
+2.36.1
+
 
