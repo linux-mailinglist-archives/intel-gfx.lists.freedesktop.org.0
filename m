@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5E8156699E
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jul 2022 13:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA18B5669AF
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jul 2022 13:34:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 132721124A8;
-	Tue,  5 Jul 2022 11:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 467081131EC;
+	Tue,  5 Jul 2022 11:31:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF33C10E021;
- Tue,  5 Jul 2022 10:49:54 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7508510E021
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Jul 2022 10:57:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657018194; x=1688554194;
+ t=1657018651; x=1688554651;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=rSrd0Ae/0JSEDxRd+dimy8jUuxmcwWgVGUCrAjTItTs=;
- b=EQzkCeqWHzPFjlfxCxZ+NR36h1gGx6PGrDvwBnQRfX/oR5zPX4I4ZBe1
- UZAvYMT4JfbpikgVwmAuodgwPTaMojal3RpDUkiHF22YHfzRB0KTAZEYA
- Mr+Vklx9vqSA1/Lm+NpkaSnJGfp75oDeMgl59rpHQN6Kqa2OyAnry/GOj
- 3lMHN9RMkKcrUrcsIA3QwEBBYFpEVol+wOt3bW4Ut+A2IYo9Q4phoLFWV
- Y3X6ZIMASkYnnW4JO6zUzlNXTGk0ROImbc0O/73zwUKVBxQJxlltTMwzn
- t+8EDFCqjaNbjz3LIYLfDs5kSZkroDHE3dWFMKTqtQk/R0G8hEyDXcLnB g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10398"; a="280874186"
-X-IronPort-AV: E=Sophos;i="5.92,245,1650956400"; d="scan'208";a="280874186"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2022 03:49:54 -0700
-X-IronPort-AV: E=Sophos;i="5.92,245,1650956400"; d="scan'208";a="625407079"
-Received: from dilipban-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.213.227.194])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2022 03:49:52 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Tue,  5 Jul 2022 11:49:45 +0100
-Message-Id: <20220705104945.118962-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.36.1
+ bh=0T1aY2HM491B0t9AxDUPxSRT15VpjlENe25r0NOfaT0=;
+ b=dwcLz4qBiUTFCQhimCHcxbct2wSw8gIjvkD0TNmA+7EcgpTcTYRjii2s
+ 38oVC2vPfIvVdkye4jGqNy6PpVFk/et+bzldSxCACswuLlrteV+o+doUp
+ te1Yr/Ck/53s9B8uinVO77bby3cOuxkIBU1sBUeTvEJj6sRHi0QbvK4bG
+ ERG63QIWnjLybZZWP6GIHXhD9wSfADtsMRWApYu78bEC5LUuBHdOQtRNk
+ FTdat8mjZThWmNWXmiuboajq4A1gRBgckATGeTbNqvHedQKVoAr4QQyjN
+ zDb1zmcSgb1Q42BsBhWeX5BMDmqdtdbFNkNc7slUqTlusdQ3srFTWbD/y w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10398"; a="308861250"
+X-IronPort-AV: E=Sophos;i="5.92,245,1650956400"; d="scan'208";a="308861250"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2022 03:57:31 -0700
+X-IronPort-AV: E=Sophos;i="5.92,245,1650956400"; d="scan'208";a="650076202"
+Received: from mtyszka-mobl.ger.corp.intel.com (HELO
+ kdrobnik-desk.toya.net.pl) ([10.213.16.14])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2022 03:57:29 -0700
+From: Karolina Drobnik <karolina.drobnik@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  5 Jul 2022 12:57:16 +0200
+Message-Id: <cover.1656911806.git.karolina.drobnik@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t] tests/gem_exec_capture: adjust the pi
- subtest
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915: Apply waitboosting before fence
+ wait
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,41 +55,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This was broken by the kernel change: 71b1669ea9bd ("drm/i915/uapi:
-tweak error capture on recoverable contexts"). Update the test to use
-non-recoverable context if needed.
+Waitboost is a heuristic that detects latency sensitive workloads waiting for
+the results from previous execution. The wait can be seen as GPU
+under-utilisation by RPS, Render Power State management, which might lower the
+GPU frequency to save power. Limiting the frequency means more waiting for
+results, which is undesirable for submissions with tight time constraints.
+To circumvent this, with waitboost we iteratively check the list of fences
+during gem_wait to see if any of them is stalled waiting for GPU. If such is
+found, and the request hasn't yet started its execution, we temporarily bump up
+the GPU frequency, so we get the required results as soon as possible.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6350
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
----
- tests/i915/gem_exec_capture.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Commit 047a1b877ed4 ("dma-buf & drm/amdgpu: remove dma_resv workaround") changes
+the fences order and how they are iterated. Under this new scheme, we would wait
+on each fence that starts executing, rendering them not suitable for waitboost.
 
-diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
-index c2639082..a25f529b 100644
---- a/tests/i915/gem_exec_capture.c
-+++ b/tests/i915/gem_exec_capture.c
-@@ -721,6 +721,15 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
- 
- 		ctx2 = intel_ctx_create_all_physical(fd);
- 		igt_assert(ctx2);
-+		if (needs_recoverable_ctx(fd)) {
-+			struct drm_i915_gem_context_param param = {
-+				.ctx_id = ctx2->id,
-+				.param = I915_CONTEXT_PARAM_RECOVERABLE,
-+				.value = 0,
-+			};
-+
-+			gem_context_set_param(fd, &param);
-+		}
- 
- 		intel_allocator_init();
- 		/* Reopen the allocator in the new process. */
--- 
-2.36.1
+To avoid situation like this, inspect the entire list of fences dma-resv
+earlier, before gem_wait, instead of sequentially waiting for each of them,
+applying the boost when needed.
 
+Test-with: 20220705103551.3720180-1-karolina.drobnik@intel.com
+
+Chris Wilson (3):
+  drm/i915/gem: Look for waitboosting across the whole object prior to
+    individual waits
+  drm/i915: Bump GT idling delay to 2 jiffies
+  drm/i915/gt: Only kick the signal worker if there's been an update
+
+ drivers/gpu/drm/i915/gem/i915_gem_wait.c    | 35 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c |  3 +-
+ drivers/gpu/drm/i915/i915_active.c          |  2 +-
+ 3 files changed, 38 insertions(+), 2 deletions(-)
+
+--
+2.25.1
