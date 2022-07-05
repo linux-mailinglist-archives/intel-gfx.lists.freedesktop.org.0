@@ -1,49 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0248E566B55
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jul 2022 14:05:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 558FE566D81
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jul 2022 14:25:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11489113AF0;
-	Tue,  5 Jul 2022 12:05:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB45D10E476;
+	Tue,  5 Jul 2022 12:25:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 882001139E7
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Jul 2022 12:05:52 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6502C10E30A;
+ Tue,  5 Jul 2022 12:25:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657022752; x=1688558752;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=iICJhix4jWMOeAvqUdK58tzDbtYiKDxUsri+V0hfrZw=;
- b=WRqUFiMzeFLIr3jgPTe1t4JLJY2SYDg9HJAPvYXrADBZ6vxpfoeKsBlv
- 0R81YTrMGRTPMmXb8WisBUqdLzbwK0ldoxahogVES4rwgUO+8LL1vRs5x
- AJOeTZl3w4PtSg+ZwY6nFqB/AUhIp3rVD438eUpGtoC/1R1GOu/rzA9VA
- ckeVbxbh8Nj8ZasVl1Fn+xXHnLdQgzBMxNzLDvH2iq/2WEzjseMuHqnKb
- XjMqBJ6xJuAnVMwSkRexf2h8R2ur2wsbejiaMSSoPIGV712Ik9KX3wk5j
- 56YCpIPMtl12Fe3V05ksje2JYKcR9XH1LF4VoEJKZ/gv3V7sZ425jfYc6 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10398"; a="369658311"
-X-IronPort-AV: E=Sophos;i="5.92,245,1650956400"; d="scan'208";a="369658311"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2022 05:05:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,245,1650956400"; d="scan'208";a="590377820"
-Received: from priyanka-nuc7i7bnh.iind.intel.com ([10.145.162.209])
- by orsmga007.jf.intel.com with ESMTP; 05 Jul 2022 05:05:50 -0700
-From: priyanka.dandamudi@intel.com
-To: priyanka.dandamudi@intel.com, matthew.auld@intel.com, nirmoy.das@intel.com,
- intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Jul 2022 17:24:51 +0530
-Message-Id: <20220705115451.2438928-3-priyanka.dandamudi@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220705115451.2438928-1-priyanka.dandamudi@intel.com>
-References: <20220705115451.2438928-1-priyanka.dandamudi@intel.com>
+ t=1657023903; x=1688559903;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ez4g0/LPC6LVLpM9YIfUBXO+wmd7mCxB16xqHAblQ70=;
+ b=LU4wwL5pruGnmUe0kA/BPspnz/YFxIanFIniKI3qAT1fo/VKJvR1ljHE
+ tpDLkxymgBZ4Z9w5fQ/W7LVYjV+NsVLncdiJGv4xQIcx3xFRNF9LJMFEk
+ v5fdijQ6F+qeRF6S3ETBiy9UTp6N1SFNU//sWodd0L8glbULApkX8JPAk
+ F8e3LsuyTZnpP6LGxT0dOSpUA6yl+uVbL31G0YKclG5TyNY/J9HQ4ZIU/
+ 156E3v6n446j1KWQVsopcQ7etG1eILCFKBnFMqL//Hme/MAws4frSwHw/
+ FPWB+gNVFJVRjOkv91+0QPM7MUig+7tvMYZtlZJh+wY7I3MfkXLctLKC9 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10398"; a="345019738"
+X-IronPort-AV: E=Sophos;i="5.92,245,1650956400"; d="scan'208";a="345019738"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2022 05:25:02 -0700
+X-IronPort-AV: E=Sophos;i="5.92,245,1650956400"; d="scan'208";a="650119399"
+Received: from mmckenzi-mobl.ger.corp.intel.com (HELO
+ hades.ger.corp.intel.com) ([10.252.50.45])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2022 05:24:59 -0700
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  5 Jul 2022 15:24:48 +0300
+Message-Id: <20220705122455.3866745-1-gwan-gyeong.mun@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915: Add lmem_bar_size modparam
+Subject: [Intel-gfx] [PATCH v2 0/7] Fixes integer overflow or integer
+ truncation issues in page lookups,
+ ttm place configuration and scatterlist creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,141 +57,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: thomas.hellstrom@linux.intel.com, jani.nikula@intel.com,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk, airlied@linux.ie,
+ matthew.auld@intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+This patch series fixes integer overflow or integer truncation issues in
+page lookups, ttm place configuration and scatterlist creation, etc.
+We need to check that we avoid integer overflows when looking up a page,
+and so fix all the instances where we have mistakenly used a plain integer
+instead of a more suitable long.
+And there is an impedance mismatch between the scatterlist API using
+unsigned int and our memory/page accounting in unsigned long. That is we
+may try to create a scatterlist for a large object that overflows returning
+a small table into which we try to fit very many pages. As the object size
+is under the control of userspace, we have to be prudent and catch the
+conversion errors. To catch the implicit truncation as we switch from
+unsigned long into the scatterlist's unsigned int, we use our overflows_type
+check and report E2BIG prior to the operation. This is already used in
+our create ioctls to indicate if the uABI request is simply too large for
+the backing store. 
+And ttm place also has the same problem with scatterlist creation,
+and we fix the integer truncation problem with the way approached by
+scatterlist creation.
+And It corrects the error code to return -E2BIG when creating gem objects
+using ttm or shmem, if the size is too large in each case.
+In order to provide a common macro, it moves and adds a few utility macros into drm util header
 
-For testing purposes, support forcing the lmem_bar_size through a new
-modparam. In CI we only have a limited number of configurations for DG2,
-but we still need to be reasonably sure we get a usable device (also
-verifying we report the correct values for things like
-probed_cpu_visible_size etc) with all the potential lmem_bar sizes that
-we might expect see in the wild.
-
-v2: Update commit message and a minor modification.(Matt)
-
-v3: Optimised lmem bar size code and modified code to resize
-bar maximum upto lmem_size instead of maximum supported size.(Nirmoy)
-
+Testcase: igt@gem_create@create-massive
+Testcase: igt@gem_userptr_blits@input-checking
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4991
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5411
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Nirmoy Das <nirmoy.das@intel.com>
-Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 51 +++++++++++----------
- drivers/gpu/drm/i915/i915_params.c          |  2 +
- drivers/gpu/drm/i915/i915_params.h          |  1 +
- 3 files changed, 29 insertions(+), 25 deletions(-)
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index 3e9ed395f408..2ed80c3f6064 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -14,6 +14,7 @@
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_mcr.h"
- #include "gt/intel_gt_regs.h"
-+#include "../../../pci/pci.h"
- 
- static void _release_bars(struct pci_dev *pdev)
- {
-@@ -44,38 +45,38 @@ _resize_bar(struct drm_i915_private *i915, int resno, resource_size_t size)
- 	drm_info(&i915->drm, "BAR%d resized to %dM\n", resno, 1 << bar_size);
- }
- 
--/* BAR size starts from 1MB - 2^20 */
--#define BAR_SIZE_SHIFT 20
--static resource_size_t
--_lmem_rebar_size(struct drm_i915_private *i915, int resno)
--{
--	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
--	u32 rebar = pci_rebar_get_possible_sizes(pdev, resno);
--	resource_size_t size;
--
--	if (!rebar)
--		return 0;
--
--	size = 1ULL << (__fls(rebar) + BAR_SIZE_SHIFT);
--
--	if (size <= pci_resource_len(pdev, resno))
--		return 0;
--
--	return size;
--}
--
- #define LMEM_BAR_NUM 2
--static void i915_resize_lmem_bar(struct drm_i915_private *i915)
-+static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t lmem_size)
- {
- 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	struct pci_bus *root = pdev->bus;
- 	struct resource *root_res;
--	resource_size_t rebar_size = _lmem_rebar_size(i915, LMEM_BAR_NUM);
-+	resource_size_t rebar_size;
-+	resource_size_t current_size;
- 	u32 pci_cmd;
- 	int i;
- 
--	if (!rebar_size)
--		return;
-+	current_size = roundup_pow_of_two(pci_resource_len(pdev, LMEM_BAR_NUM));
-+
-+	if (i915->params.lmem_bar_size) {
-+		resource_size_t min_bar_size = pci_rebar_size_to_bytes
-+			(__ffs(pci_rebar_get_possible_sizes(pdev, LMEM_BAR_NUM)));
-+
-+		rebar_size = pci_rebar_size_to_bytes(__fls(i915->params.lmem_bar_size));
-+
-+		if (rebar_size == current_size)
-+			return;
-+
-+		if (rebar_size >= roundup_pow_of_two(lmem_size) || rebar_size < min_bar_size)
-+			rebar_size = lmem_size;
-+	} else {
-+		rebar_size = current_size;
-+
-+		if (rebar_size != roundup_pow_of_two(lmem_size))
-+			rebar_size = lmem_size;
-+		else
-+			return;
-+	}
- 
- 	/* Find out if root bus contains 64bit memory addressing */
- 	while (root->parent)
-@@ -217,7 +218,7 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
- 		lmem_size = intel_uncore_read64(&i915->uncore, GEN12_GSMBASE);
- 	}
- 
--	i915_resize_lmem_bar(i915);
-+	i915_resize_lmem_bar(i915, lmem_size);
- 
- 	if (i915->params.lmem_size > 0) {
- 		lmem_size = min_t(resource_size_t, lmem_size,
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 701fbc98afa0..6fc475a5db61 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -204,6 +204,8 @@ i915_param_named_unsafe(request_timeout_ms, uint, 0600,
- 
- i915_param_named_unsafe(lmem_size, uint, 0400,
- 			"Set the lmem size(in MiB) for each region. (default: 0, all memory)");
-+i915_param_named_unsafe(lmem_bar_size, uint, 0400,
-+			"Set the lmem bar size(in MiB).");
- 
- static __always_inline void _print_param(struct drm_printer *p,
- 					 const char *name,
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index b5e7ea45d191..2733cb6cfe09 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -74,6 +74,7 @@ struct drm_printer;
- 	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
- 	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
- 	param(unsigned int, lmem_size, 0, 0400) \
-+	param(unsigned int, lmem_bar_size, 0, 0400) \
- 	/* leave bools at the end to not create holes */ \
- 	param(bool, enable_hangcheck, true, 0600) \
- 	param(bool, load_detect_test, false, 0600) \
+Chris Wilson (3):
+  drm/i915/gem: Typecheck page lookups
+  drm/i915: Check for integer truncation on scatterlist creation
+  drm/i915: Remove truncation warning for large objects
+
+Gwan-gyeong Mun (4):
+  drm: Move and add a few utility macros into drm util header
+  drm/i915: Check for integer truncation on the configuration of ttm
+    place
+  drm/i915: Check if the size is too big while creating shmem file
+  drm/i915: Use error code as -E2BIG when the size of gem ttm object is
+    too large
+
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  |  6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  7 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    | 77 +++++++++++--------
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 25 +++---
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c      |  4 +
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     | 14 +++-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 29 ++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |  5 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c | 12 +--
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |  8 +-
+ .../drm/i915/gem/selftests/i915_gem_object.c  |  8 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c             |  9 ++-
+ drivers/gpu/drm/i915/i915_gem.c               | 18 ++++-
+ drivers/gpu/drm/i915/i915_scatterlist.h       |  8 ++
+ drivers/gpu/drm/i915/i915_utils.h             |  5 +-
+ drivers/gpu/drm/i915/i915_vma.c               |  8 +-
+ drivers/gpu/drm/i915/intel_region_ttm.c       | 16 +++-
+ include/drm/drm_util.h                        | 54 +++++++++++++
+ 18 files changed, 226 insertions(+), 87 deletions(-)
+
 -- 
-2.27.0
+2.34.1
 
