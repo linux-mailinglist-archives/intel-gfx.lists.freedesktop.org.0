@@ -1,33 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DBA056715A
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jul 2022 16:42:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A647567160
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jul 2022 16:44:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96E3B113539;
-	Tue,  5 Jul 2022 14:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB617113E6B;
+	Tue,  5 Jul 2022 14:44:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C05D811349E;
- Tue,  5 Jul 2022 14:42:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B43A7A66C8;
- Tue,  5 Jul 2022 14:42:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0792490567137709912=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFEEC11AAF3;
+ Tue,  5 Jul 2022 14:44:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1657032293; x=1688568293;
+ h=date:from:to:cc:subject:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=UVtqlULTfhLZAuHz5vwZfO2/Uzzy0fT9xR0jTTa0oJ8=;
+ b=mxRwvjgDskZtA3Dch6UuTgDQc7uhQoQMZaIHjfVpU4fx+TF5Q/eEM2B6
+ IC1qJzO59bRyR00k8uoEDX36xhg1gdXP6nQghc9wmOMf0CkzOd3w40tvy
+ jdqhJFjx3V2vTIP3WvcTGXisChJ/FsxJfihJECXJIADvbMJOq1D3PPl+K
+ k3dhM8Sn9JGQ541q9vzM+0QSfBJCwj/RkFc3CWxhiPvodiqFYm7+pmw48
+ NLxnzdrOr/a1NwkbJW8nEQYWV/rZ2hr8R9IKgeZSWEwORch39S5O+puvn
+ 151NXMJhiQjDxTkBUsr6UnLmtPK+w8Hn2XzxezQx0lpkI2ke6RhexYhVE g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10398"; a="272150940"
+X-IronPort-AV: E=Sophos;i="5.92,247,1650956400"; d="scan'208";a="272150940"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2022 07:44:53 -0700
+X-IronPort-AV: E=Sophos;i="5.92,247,1650956400"; d="scan'208";a="650180384"
+Received: from maurocar-mobl2.ger.corp.intel.com (HELO maurocar-mobl2)
+ ([10.252.33.206])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2022 07:44:50 -0700
+Date: Tue, 5 Jul 2022 16:44:47 +0200
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Message-ID: <20220705164447.4ff15ab6@maurocar-mobl2>
+In-Reply-To: <20220705122455.3866745-5-gwan-gyeong.mun@intel.com>
+References: <20220705122455.3866745-1-gwan-gyeong.mun@intel.com>
+ <20220705122455.3866745-5-gwan-gyeong.mun@intel.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: priyanka.dandamudi@intel.com
-Date: Tue, 05 Jul 2022 14:42:00 -0000
-Message-ID: <165703212070.2010.13797219379829013206@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220705115451.2438928-1-priyanka.dandamudi@intel.com>
-In-Reply-To: <20220705115451.2438928-1-priyanka.dandamudi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?_support_for_LMEM_PCIe_resizable_bar?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 4/7] drm/i915: Check for integer
+ truncation on the configuration of ttm place
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,283 +59,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, jani.nikula@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, airlied@linux.ie, matthew.auld@intel.com,
+ nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0792490567137709912==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue,  5 Jul 2022 15:24:52 +0300
+Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
 
-== Series Details ==
+> There is an impedance mismatch between the first/last valid page
+> frame number of ttm place in unsigned and our memory/page accounting in
+> unsigned long.
+> As the object size is under the control of userspace, we have to be prude=
+nt
+> and catch the conversion errors.
+> To catch the implicit truncation as we switch from unsigned long to
+> unsigned, we use overflows_type check and report E2BIG or overflow_type
+> prior to the operation.
+>=20
+> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 12 +++++++++---
+>  drivers/gpu/drm/i915/intel_region_ttm.c | 16 +++++++++++++---
+>  2 files changed, 22 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i9=
+15/gem/i915_gem_ttm.c
+> index cdcb3ee0c433..d579524663b3 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -137,19 +137,25 @@ i915_ttm_place_from_region(const struct intel_memor=
+y_region *mr,
+>  	if (mr->type =3D=3D INTEL_MEMORY_SYSTEM)
+>  		return;
+> =20
+> +#define SAFE_CONVERSION(ptr, value) ({ \
+> +	if (!safe_conversion(ptr, value)) { \
+> +		GEM_BUG_ON(overflows_type(value, *ptr)); \
+> +	} \
+> +})
+>  	if (flags & I915_BO_ALLOC_CONTIGUOUS)
+>  		place->flags |=3D TTM_PL_FLAG_CONTIGUOUS;
+>  	if (offset !=3D I915_BO_INVALID_OFFSET) {
+> -		place->fpfn =3D offset >> PAGE_SHIFT;
+> -		place->lpfn =3D place->fpfn + (size >> PAGE_SHIFT);
+> +		SAFE_CONVERSION(&place->fpfn, offset >> PAGE_SHIFT);
+> +		SAFE_CONVERSION(&place->lpfn, place->fpfn + (size >> PAGE_SHIFT));
+>  	} else if (mr->io_size && mr->io_size < mr->total) {
+>  		if (flags & I915_BO_ALLOC_GPU_ONLY) {
+>  			place->flags |=3D TTM_PL_FLAG_TOPDOWN;
+>  		} else {
+>  			place->fpfn =3D 0;
+> -			place->lpfn =3D mr->io_size >> PAGE_SHIFT;
+> +			SAFE_CONVERSION(&place->lpfn, mr->io_size >> PAGE_SHIFT);
+>  		}
+>  	}
 
-Series: Add support for LMEM PCIe resizable bar
-URL   : https://patchwork.freedesktop.org/series/105928/
-State : success
+> +#undef SAFE_CONVERSION
+Why?
 
-== Summary ==
+>  }
+> =20
+>  static void
+> diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c b/drivers/gpu/drm/i9=
+15/intel_region_ttm.c
+> index 62ff77445b01..8fcb8654b978 100644
+> --- a/drivers/gpu/drm/i915/intel_region_ttm.c
+> +++ b/drivers/gpu/drm/i915/intel_region_ttm.c
+> @@ -202,24 +202,34 @@ intel_region_ttm_resource_alloc(struct intel_memory=
+_region *mem,
+>  	struct ttm_resource *res;
+>  	int ret;
+> =20
+> +#define SAFE_CONVERSION(ptr, value) ({ \
+> +	if (!safe_conversion(ptr, value)) { \
+> +		GEM_BUG_ON(overflows_type(value, *ptr)); \
+> +		ret =3D -E2BIG; \
+> +		goto out; \
+> +	} \
+> +})
 
-CI Bug Log - changes from CI_DRM_11849 -> Patchwork_105928v1
-====================================================
+It is a bad practice to change execution inside a macro.
+See "12) Macros, Enums and RTL" at Documentation/process/coding-style.rst.
 
-Summary
--------
+>  	if (flags & I915_BO_ALLOC_CONTIGUOUS)
+>  		place.flags |=3D TTM_PL_FLAG_CONTIGUOUS;
+>  	if (offset !=3D I915_BO_INVALID_OFFSET) {
+> -		place.fpfn =3D offset >> PAGE_SHIFT;
+> -		place.lpfn =3D place.fpfn + (size >> PAGE_SHIFT);
+> +		SAFE_CONVERSION(&place.fpfn, offset >> PAGE_SHIFT);
+> +		SAFE_CONVERSION(&place.lpfn, place.fpfn + (size >> PAGE_SHIFT));
+>  	} else if (mem->io_size && mem->io_size < mem->total) {
+>  		if (flags & I915_BO_ALLOC_GPU_ONLY) {
+>  			place.flags |=3D TTM_PL_FLAG_TOPDOWN;
+>  		} else {
+>  			place.fpfn =3D 0;
+> -			place.lpfn =3D mem->io_size >> PAGE_SHIFT;
+> +			SAFE_CONVERSION(&place.lpfn, mem->io_size >> PAGE_SHIFT);
+>  		}
+>  	}
 
-  **SUCCESS**
+> +#undef SAFE_CONVERSION
+Why?
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/index.html
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Additional (2): fi-kbl-x1275 fi-bxt-dsi 
-  Missing    (6): fi-bdw-5557u fi-tgl-u2 bat-dg2-9 fi-apl-guc fi-pnv-d510 bat-jsl-3 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_105928v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-bxt-dsi:         NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-bxt-dsi:         NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-bxt-dsi/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-kbl-x1275/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@gem_tiled_blits@basic:
-    - fi-bxt-dsi:         NOTRUN -> [SKIP][5] ([fdo#109271]) +12 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-bxt-dsi/igt@gem_tiled_blits@basic.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [PASS][6] -> [INCOMPLETE][7] ([i915#5982])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@dp-hpd-fast:
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-kbl-x1275/igt@kms_chamelium@dp-hpd-fast.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-bxt-dsi:         NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-bxt-dsi/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][10] ([fdo#109271]) +11 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-kbl-x1275/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-cfl-8109u:       [DMESG-FAIL][11] ([i915#5334]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][13] ([i915#4494] / [i915#4957]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
-    - {bat-adlp-6}:       [DMESG-WARN][15] ([i915#3576]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
-    - bat-adlp-4:         [DMESG-WARN][17] ([i915#3576]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5982]: https://gitlab.freedesktop.org/drm/intel/issues/5982
-  [i915#6297]: https://gitlab.freedesktop.org/drm/intel/issues/6297
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11849 -> Patchwork_105928v1
-
-  CI-20190529: 20190529
-  CI_DRM_11849: 66197f3ca0b462799e265b002dc5cf8dcec1c62d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6555: 1a3ffecd400b8f82c35745fa2e07992f6bdeede2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_105928v1: 66197f3ca0b462799e265b002dc5cf8dcec1c62d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-83a0c768f472 drm/i915: Add lmem_bar_size modparam
-16d577bbb7d9 drm/i915: Add support for LMEM PCIe resizable bar
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/index.html
-
---===============0792490567137709912==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add support for LMEM PCIe resizable bar</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105928/">https://patchwork.freedesktop.org/series/105928/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11849 -&gt; Patchwork_105928v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Additional (2): fi-kbl-x1275 fi-bxt-dsi <br />
-  Missing    (6): fi-bdw-5557u fi-tgl-u2 bat-dg2-9 fi-apl-guc fi-pnv-d510 bat-jsl-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_105928v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-bxt-dsi/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-kbl-x1275/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-bxt-dsi/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +12 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5982">i915#5982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-fast:</p>
-<ul>
-<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-kbl-x1275/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-bxt-dsi/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-kbl-x1275/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11849/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105928v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11849 -&gt; Patchwork_105928v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11849: 66197f3ca0b462799e265b002dc5cf8dcec1c62d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6555: 1a3ffecd400b8f82c35745fa2e07992f6bdeede2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_105928v1: 66197f3ca0b462799e265b002dc5cf8dcec1c62d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>83a0c768f472 drm/i915: Add lmem_bar_size modparam<br />
-16d577bbb7d9 drm/i915: Add support for LMEM PCIe resizable bar</p>
-
-</body>
-</html>
-
---===============0792490567137709912==--
+> =20
+>  	mock_bo.base.size =3D size;
+>  	mock_bo.bdev =3D &mem->i915->bdev;
+> =20
+>  	ret =3D man->func->alloc(man, &mock_bo, &place, &res);
+> +
+> +out:
+>  	if (ret =3D=3D -ENOSPC)
+>  		ret =3D -ENXIO;
+>  	if (!ret)
