@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA98568EA3
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 18:06:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31920568EC7
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 18:14:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A87A10F873;
-	Wed,  6 Jul 2022 16:06:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8E20112DF9;
+	Wed,  6 Jul 2022 16:14:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E316B112DDC;
- Wed,  6 Jul 2022 16:06:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657123592; x=1688659592;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Ltbc29n1dkyWzDSCgIo1DtvV/dyq2GIZlrhkWUkFlco=;
- b=SuN17C3VlI+WqdHK6PQHrXhx4Ueu7+kNSyuP0WKaQa2PMcIbjD3bWha9
- DfL9ZS88RfGL5vMFgsR06S0QX3dwApkQihNnrbLMNvSUJP6N5kVUC+KDp
- 16wgsFW/NIoXAbcBuUJhdDF5/TFEV3cU203W07xV0zQ3q0lF0YEXp66uO
- SmikoaMAEveNw87X5CwU7CPp3oIx3keUjmVcWFVhZSFAN/jEeJWr/cQue
- kGj4gsLySNd56wnMk4ZpthieixUREp+bPZVFoRB/FIjKFvfI5bAo9mDPa
- UppZDgNvCWHpNnWXwA+fqBrmrjV9oqXamhanfcpg5F752gdTJHnbcq9l+ A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="370113178"
-X-IronPort-AV: E=Sophos;i="5.92,250,1650956400"; d="scan'208";a="370113178"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2022 09:00:06 -0700
-X-IronPort-AV: E=Sophos;i="5.92,250,1650956400"; d="scan'208";a="650726356"
-Received: from mropara-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.252.49.154])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2022 09:00:04 -0700
-Date: Wed, 6 Jul 2022 18:00:02 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <YsWxgqZ+DtO1KCeK@alfio.lan>
-References: <20220706154738.235204-1-matthew.auld@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 437C8112DF9;
+ Wed,  6 Jul 2022 16:14:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3B59CA66C8;
+ Wed,  6 Jul 2022 16:14:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220706154738.235204-1-matthew.auld@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Grab the runtime pm in
- shrink_thp
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Date: Wed, 06 Jul 2022 16:14:23 -0000
+Message-ID: <165712406320.1546.10586401578923809108@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220706152924.73926-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20220706152924.73926-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gem=3A_Really_move_i915=5Fgem=5Fcontext=2Elink_und?=
+ =?utf-8?q?er_ref_protection?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,23 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On Wed, Jul 06, 2022 at 04:47:38PM +0100, Matthew Auld wrote:
-> From: Chris Wilson <chris@chris-wilson.co.uk>
-> 
-> Since we are not holding a wakeref, shrinking a bound object is not
-> guaranteed.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6370
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Series: drm/i915/gem: Really move i915_gem_context.link under ref protection
+URL   : https://patchwork.freedesktop.org/series/105975/
+State : warning
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+== Summary ==
 
-Andi
+Error: dim checkpatch failed
+475c5a4e6fa4 drm/i915/gem: Really move i915_gem_context.link under ref protection
+-:59: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a4e7ccdac38e ("drm/i915: Move context management under GEM")'
+#59: 
+References: a4e7ccdac38e ("drm/i915: Move context management under GEM")
+
+total: 1 errors, 0 warnings, 0 checks, 107 lines checked
+
+
