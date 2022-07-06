@@ -1,54 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA326568E09
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 17:51:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CA98568EA3
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 18:06:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A977811B0BA;
-	Wed,  6 Jul 2022 15:50:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A87A10F873;
+	Wed,  6 Jul 2022 16:06:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com
- [IPv6:2a00:1450:4864:20::22c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A14B11A77D;
- Wed,  6 Jul 2022 15:50:58 +0000 (UTC)
-Received: by mail-lj1-x22c.google.com with SMTP id q8so6525841ljj.10;
- Wed, 06 Jul 2022 08:50:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=JgkqeHuQlPU+G29JKQRsbmRnJbat568cRtAATn92ZqY=;
- b=fZgTc4CAgyE6a4VI5ndorhKPrP6Sekc8YHh9UIQCEmjIhOinMU6FhgXBSYo1FvQSS4
- J19cQCfwOYARDouo7K5de/+AxcsBxhSbrMKtWBuU1ukSaSx6DEIX1lQzrFTbAOXIaiys
- RwPRjSQiwlYc9L3baAACVV/TRXHfZjz5+1UQdE8IADoT3oSANdcdr+MjhjcJL88873dD
- M7SEL0mgsaVBe42cKmRmwvtzePq/4fQJ6Os3Z89q5+Ri5tfArq5CrZ0crMptY6lYdQUf
- RWH03KxKdlv8AT3k6ZUO/bAUinQu62Z8BUDwL+uWtbEfgp22OSQElmghX/3zyBl5aeXq
- U+hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=JgkqeHuQlPU+G29JKQRsbmRnJbat568cRtAATn92ZqY=;
- b=Xn8UrvRg2RKlTuJ3K3Rty4AVuiBDVNrkoHh5AzLymfbw4hPAtl7WktVlPyq+jKEzB5
- rfohOcaWmbSXaGh6tgy5CkFKlE87AMqVg/uu8PViFK+JT1RqU38/OVZFU2hVhQSFDnhf
- BujI9QrpbfHEKvAasQfWURCsG9jRSnGGOoh5/zwg+teO6Yb59gyQ036kuyeYHtkLdE5m
- xiY8xOOniIJhj6wwd+tF7in6f0jAVurcC4NrbxGbfmQ1YT23o5k6Q/yCxLSd/wCUTyNz
- MgUgpmAuTXc+cHJFL5vzRBmqqzKHAtRs2xxzOBs6Oi9/h07QlthH8s002pMQ8kU3Wmo9
- JFMA==
-X-Gm-Message-State: AJIora8ChNYUCsuYadPQBBk9NhVD0PlT0VsKtEVDlRK3PJz9CwP/+rwK
- b3cpHVs1+l4s5gst38DTy9Du98/91K9Zc9ioNeCF0yOGJfC09Q==
-X-Google-Smtp-Source: AGRyM1vbmEO7vGKglAK52r04sF+ZhpkVc8sTOaEY177+lC5yYQIKDpAPOJICajk6l50Xlgz2sPCtp4O4htxojlmsu2w=
-X-Received: by 2002:a2e:9297:0:b0:25b:10de:a17b with SMTP id
- d23-20020a2e9297000000b0025b10dea17bmr23702260ljh.71.1657122656654; Wed, 06
- Jul 2022 08:50:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220706154738.235204-1-matthew.auld@intel.com>
-In-Reply-To: <20220706154738.235204-1-matthew.auld@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 6 Jul 2022 16:50:28 +0100
-Message-ID: <CAM0jSHOCeLoLAa=WAyiQuC3qH3FzdtjA18YBjaOz05D98qrfGw@mail.gmail.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E316B112DDC;
+ Wed,  6 Jul 2022 16:06:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1657123592; x=1688659592;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Ltbc29n1dkyWzDSCgIo1DtvV/dyq2GIZlrhkWUkFlco=;
+ b=SuN17C3VlI+WqdHK6PQHrXhx4Ueu7+kNSyuP0WKaQa2PMcIbjD3bWha9
+ DfL9ZS88RfGL5vMFgsR06S0QX3dwApkQihNnrbLMNvSUJP6N5kVUC+KDp
+ 16wgsFW/NIoXAbcBuUJhdDF5/TFEV3cU203W07xV0zQ3q0lF0YEXp66uO
+ SmikoaMAEveNw87X5CwU7CPp3oIx3keUjmVcWFVhZSFAN/jEeJWr/cQue
+ kGj4gsLySNd56wnMk4ZpthieixUREp+bPZVFoRB/FIjKFvfI5bAo9mDPa
+ UppZDgNvCWHpNnWXwA+fqBrmrjV9oqXamhanfcpg5F752gdTJHnbcq9l+ A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="370113178"
+X-IronPort-AV: E=Sophos;i="5.92,250,1650956400"; d="scan'208";a="370113178"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2022 09:00:06 -0700
+X-IronPort-AV: E=Sophos;i="5.92,250,1650956400"; d="scan'208";a="650726356"
+Received: from mropara-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.49.154])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2022 09:00:04 -0700
+Date: Wed, 6 Jul 2022 18:00:02 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <YsWxgqZ+DtO1KCeK@alfio.lan>
+References: <20220706154738.235204-1-matthew.auld@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220706154738.235204-1-matthew.auld@intel.com>
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Grab the runtime pm in
  shrink_thp
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -63,19 +57,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 6 Jul 2022 at 16:48, Matthew Auld <matthew.auld@intel.com> wrote:
->
+Hi,
+
+On Wed, Jul 06, 2022 at 04:47:38PM +0100, Matthew Auld wrote:
 > From: Chris Wilson <chris@chris-wilson.co.uk>
->
+> 
 > Since we are not holding a wakeref, shrinking a bound object is not
 > guaranteed.
->
+> 
 > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6370
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Andi
