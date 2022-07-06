@@ -2,165 +2,129 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AFE05690A6
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 19:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 127245690C0
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 19:39:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8392211214F;
-	Wed,  6 Jul 2022 17:26:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 214A1113C1C;
+	Wed,  6 Jul 2022 17:39:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B85D112122
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jul 2022 17:26:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657128390; x=1688664390;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=LGIBr16BrR86atEeGpzf3iZMlc5PPRCpwE08SpHmvg4=;
- b=Pz3ChsNY0MMCc+6cQu9PR2le3BsP8uBk2ftGq9thnXVKgSZ1aWHj8516
- SXsaIODSe5kJF3bvFDB0HUYUVkZ6mHfn0sY2P5pcTyiV+Y9IymubrYAPt
- jef+phEvQC4um3CTC2KcEX+/+1RyHb+ZEPL63b5RQmghz/7EwkbOzsyrk
- 1wlPpqEgT5h96v9G/cCcl13SzqXmQrUVeeW4rp9tsDoZdNulztjSZbPYQ
- k3Bd/lGaR8WGQfhBdd3I/ZqUk3G1a8LXcYMj1gg2NWbg8cTWFAC6CrYKD
- o9mnJ/LL/Ng7/S5dFDRNZ+pAP3rzOs/KuV9Op7qcbwy6pIwqLsgV6wLKz g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="264236394"
-X-IronPort-AV: E=Sophos;i="5.92,250,1650956400"; d="scan'208";a="264236394"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2022 10:26:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,250,1650956400"; d="scan'208";a="920260727"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga005.fm.intel.com with ESMTP; 06 Jul 2022 10:26:29 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Wed, 6 Jul 2022 10:26:28 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Wed, 6 Jul 2022 10:26:28 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Wed, 6 Jul 2022 10:26:28 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Wed, 6 Jul 2022 10:26:28 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92221113AB2;
+ Wed,  6 Jul 2022 17:39:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nQldtoPQ2EPEpT3BR+QSRH9yWhHmddoUHMy5gV3X78RUg0YNLawrHz1rM5wl1fxwHETlemcpFo07H0m/Odm0AsNfCZcCXg99ARQeto1wdv1tZ1BpYT9gSxzm3mn9hLv3/dFa78SrV1tDDHiOa1qjzM3xYl9GO5KAOMCwvBXuXXKDhc1SLw4KN79aEVi7W437T0j3jqZpk8nxl1j5V+HI+HBVA/IJq6z18kt3VsWpsMXHAgjnUwAoL/u4SIQzPiceEW/1rx1vJSBKIkSBbs1Jln/wPZdyUdqSL0kt2cKFhWXGTwrs3HAIzmsQj+VWJ/NFqpSDUzb31ixcWpWS5HCZBA==
+ b=Ks1UJl9wA6avTUGFtA3mcJaCVvbfpMlqBpRCaknvSoaM1xB8rty+L+a7fsLaJy+NjAuvK15WvJTpCYzvsgU2HZKp0eI8YoQFgbP5/zMHguP9WVf5qyWymqhegxTWnGkL6TiD2qe2mCaUiE0KpO0dhUxS6QTPQFzDXjjqL0TLCkeNgefkftz633+PIpL8FDmirgpUD62lE8nkNopEsyVErul2Lx4FQV9c7tX3QStv2hZJ/rYqdae1Xol8htAZ/bY8rakIBpoK9Lth/3/tSygQWG8rgYSw7EaDrxPIfbsIsZxODWZOXnqWxkAyFmG79nVcdZdiiRi3Q72NfAdXrwByXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iyRhltpcRl3ZEtVhutB4+hzd67P0VcPEE89lhviVtwk=;
- b=WXKhXO2aYyJjbho0+A6r+41GypKoE8fI/YXVKmdbSlE8KVgywRg9xjawN7MqD1PxL5OUx73W8LL1d/+oErhEpAkW189QQ+yKSq/cVDG1DrXlrg5rLKjcgWHspxljnavulfrhVCQpQVDbgGcEXXSicVfiVa3pAUzGU33mZD84KFsADesMU7RQgy94apKg/L3O+uX3PIg35Auiph6a1uEauvn7L0agLbvDMPZsuC2UUBa9ZLt6zftLnjm9az3GeTlGiLHv2kWKCGF8jEhQx3jRcuPWooR+5bbZEvNIXcPQzoQS1eA+b8qRKV+LYS0Mu5QKUYhfm6BMZqWKMrjSbht3/g==
+ bh=u6ziMazrL2l45MPwaFk5Dt2cK55YBCC8qVIZb9KFD6o=;
+ b=Vw3xODCBGniV0f9C4Uq8wly2fM/AiG4yfKuEobIZ86fRBVYREcoC0G26hLeoxSu63eFLJ7aMpMilWVFE94/2MfoI74SJn8mgMToXhwNjVD4OYmDGCgX7mjcCVKU6XhATUSH/lHwYCokR1NlAjoTris93b8sq+Fq+4M8qBs4T7DNWTKUL9A9Qd7x7oGvPHBfQ/2wkp+z41hXrYTCQZ/j3sasZt9tluq1HxTDXLLKCEKCWWrP96eULTpIe5T7EUPFN422V9p1Hc9JHYQtboLNTXXFzZuqD4hkoPaj96xryFf21QaNFAwbsfnMnDtqpbtT8TNdGZE0N+ZkrelMTYG7TlA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u6ziMazrL2l45MPwaFk5Dt2cK55YBCC8qVIZb9KFD6o=;
+ b=hE0jn/mphFnyimiU/F0702EzeUaS33Rpo1WGwpgzFzOpHE3xZXAQCtMscZ+93ZiIv4bubVP7g1cHNPDQkrW/mr66zuDqk2vyi9DiwNUvytm+T4WwvIXuHwHDTeGH49lEZpJaKQO/9BRe4Sd1+Bkd2H/m+9UWSbPSSzMpmYOLOBErxu7c+/fKbwOmAP7pFXaCMHXHWHRwi7QhJAN0So0uz7i2hdDo5JhEMd3fCvdgQOiqFPkL+J+LbTyno9BM2fMq55M+KB9g24mocfZh3WJr2MLJ99vJU1Io5RVzffEdT28SoCaKEHn18vcqlrSh3SCKgrdSrjMO8oNb2AMg4ZU0nA==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM6PR11MB4514.namprd11.prod.outlook.com (2603:10b6:5:2a3::17)
- by BN9PR11MB5292.namprd11.prod.outlook.com (2603:10b6:408:119::12) with
- Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from MN2PR12MB4206.namprd12.prod.outlook.com (2603:10b6:208:1d5::18)
+ by BYAPR12MB4776.namprd12.prod.outlook.com (2603:10b6:a03:10d::19)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Wed, 6 Jul
- 2022 17:26:26 +0000
-Received: from DM6PR11MB4514.namprd11.prod.outlook.com
- ([fe80::427:3e51:a2cb:fb00]) by DM6PR11MB4514.namprd11.prod.outlook.com
- ([fe80::427:3e51:a2cb:fb00%6]) with mapi id 15.20.5417.016; Wed, 6 Jul 2022
- 17:26:26 +0000
-Message-ID: <a1560fac-71ac-7d97-1c1f-afe330b27a11@intel.com>
-Date: Wed, 6 Jul 2022 10:26:23 -0700
+ 2022 17:39:08 +0000
+Received: from MN2PR12MB4206.namprd12.prod.outlook.com
+ ([fe80::e16c:261d:891d:676c]) by MN2PR12MB4206.namprd12.prod.outlook.com
+ ([fe80::e16c:261d:891d:676c%3]) with mapi id 15.20.5395.022; Wed, 6 Jul 2022
+ 17:39:07 +0000
+Message-ID: <e73fe624-6e87-673e-b023-80cb8a0cf5f4@nvidia.com>
+Date: Wed, 6 Jul 2022 23:08:48 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>, "Zhang, Carl"
- <carl.zhang@intel.com>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20220609231955.3632596-1-daniele.ceraolospurio@intel.com>
- <dbc2ad75-1248-8d53-281d-f0a308733972@linux.intel.com>
- <7ede8090-bfbf-17a7-31f6-24e844a70673@intel.com>
- <a0860c06-4aba-deff-9101-aecdd8c14a02@linux.intel.com>
- <d6bc42f5-86c1-3bc9-d731-2bd0a978ece5@intel.com>
- <f50ee482-ed77-a644-095f-b2a988306de2@linux.intel.com>
- <7b394930-e6fb-8dc6-ba63-352f7a623b97@intel.com>
- <4d44c67a-4a38-fa53-6709-d5f206a9b0db@linux.intel.com>
- <e90f9dd1-7229-f958-d2e6-6fc4ec5a866b@intel.com>
- <954db3a4-e8c9-e157-5211-aceec87dfd9d@linux.intel.com>
- <4a7f6abe-e479-a3d9-8615-e52a2863733c@intel.com>
- <c565a81a-d86c-a5fd-c97e-27bd1459da6e@intel.com>
- <05a33039-ed2e-3364-6036-197955abacfc@linux.intel.com>
- <913becb5-7ffe-ca7b-7acd-71c2ee3ade23@intel.com>
- <PH0PR11MB557934FC60F660B9ABB96CA987AC9@PH0PR11MB5579.namprd11.prod.outlook.com>
- <a120b625-4042-f616-b314-aed2013f324b@intel.com>
-From: "Ye, Tony" <tony.ye@intel.com>
-In-Reply-To: <a120b625-4042-f616-b314-aed2013f324b@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0292.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::27) To DM6PR11MB4514.namprd11.prod.outlook.com
- (2603:10b6:5:2a3::17)
+To: Nicolin Chen <nicolinc@nvidia.com>, corbet@lwn.net, hca@linux.ibm.com,
+ gor@linux.ibm.com, agordeev@linux.ibm.com, borntraeger@linux.ibm.com,
+ svens@linux.ibm.com, zhenyuw@linux.intel.com, zhi.a.wang@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@linux.ie,
+ daniel@ffwll.ch, farman@linux.ibm.com, mjrosato@linux.ibm.com,
+ pasic@linux.ibm.com, vneethv@linux.ibm.com, oberpar@linux.ibm.com,
+ freude@linux.ibm.com, akrowiak@linux.ibm.com, jjherne@linux.ibm.com,
+ alex.williamson@redhat.com, cohuck@redhat.com, jgg@nvidia.com,
+ kevin.tian@intel.com, hch@infradead.org
+References: <20220706062759.24946-1-nicolinc@nvidia.com>
+ <20220706062759.24946-2-nicolinc@nvidia.com>
+From: Kirti Wankhede <kwankhede@nvidia.com>
+X-Nvconfidentiality: public
+In-Reply-To: <20220706062759.24946-2-nicolinc@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0091.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ae::14) To MN2PR12MB4206.namprd12.prod.outlook.com
+ (2603:10b6:208:1d5::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 62692c01-537b-432d-194b-08da5f74a7ae
-X-MS-TrafficTypeDiagnostic: BN9PR11MB5292:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9cbd5933-4a61-427b-f21b-08da5f766d63
+X-MS-TrafficTypeDiagnostic: BYAPR12MB4776:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3n2bzuk46vlu6+HRQD2CTXnpqWY1X7B5n62eYrNs1j45P3mbHzG65CpnKOreJQRfi15es1csQdNbNrkaSdnFgpTP8xdS9fJaniiRaLy1hFJ1lpmceMVx6UneG9iRIfV2G2lf9LXKjBczFtgW+23alc5WQpVRMrm8jdlh2nsqfItXAQqyWgF6kuxDpGckjxZVXJfzIrXxMCI5YakGwL/F6EqiKgetP7rCzXNugcyybysz5/lndHaxS0pW0yKQLkOIWaztZGvo+RkmKvHplfpXlmivMEGOrRIKRSkfY3dvMtdkZGy/E5R2v+78xAXWjkrwMsLX9juKlKIaO5tVvVribiPXmtTCYBPObpgLHl9/Pgsx/uXgqZcKC2saKmWlbdMePxYGDRb14szteXoVZ6pvAN7UyjtzA9wAjyb1zfrU3LjI/cuM29pE17MYSCfe8AKUItSYAnEaQTEkP7b/qrJDlh80rZsij+Wsi7nX2poVptWzVryoD1REbBdtpp9mZGZQM9zisOF855Hiw1apqGFcF8wqSzVpm+C9weN+vdnaPOjRyht9sS6ymD14Sybk+AVRDDKL2QoHrv1v85ijE+1dY6m7g9kSSpbcLFOqHJ5OQziyxzsJv60H0BdC4b8Cy4Yi0Ji3iHlDm56D5tyrV6fX5+wBzZhO6eD1p15v4SoP1FeuvTOWgw3tmVWAEfEEhtFm2Um7ff94IjXByKW/BOUeCgFMbjFvtCeP8gx7iyafq8vzYvQXRBow31tbq51OcgCiLpCXKP1EY5N5UudRI3BBG3QDqgW/AYmref2wgF/hrhH8O7mRfxmo3SpwAb9p80D2wdmLyNTnp+KbcMkvTDW4ud4Dzj/DJ3pE8aMCD6qAcIuMBCdVfHTAoR13Zw9/9q4t
+X-Microsoft-Antispam-Message-Info: /HHzjo3hP4I0bzL48f8QuS3SoauEJx0mu/vP90MtuPqMTTB+yq5Qz7KkXoUGpFVLvCzb66+HyVQt1QnHSRwfCsNR15ILfTgqfCJsDCl9SCPdTpKR+U/F/b4t+WTkM2aEG6YBPnQBMYrHnMO+B/c968HUSMQHZWcAbSWk0xeyqK02D67jsMeIFtsasETntYxuxuQLSX7fipJn34R10WNgDK48WG03OA0QqBzVQ+PNUzl9m/pEJg+V5bhAghT4U59kMfe5lwzDXKg2pP0wP5JAkrUdo+oAgtak1KE5Dw/p+qkRgkhOA7GzwiBcWhQ81QbUb4MwruiXFzzQJuKs6YDeFwB7kP3FO9MNDnjG03oa5s3DRCTRyfO1ycGxT72PjzWsuLxBX/UXmn189wY0oO30q0w5KCMkMd87ucJ9LE+YY8Jzb6TEXDGwAJbyElfZmke3APBFwirhFtyj6gyOE5dtSd7rjiUieB7pmzAgYpfWjFAnEDisGOiVAr/VDhcYZ0vjm+7WlRFDQUrFvPXAO+m+HTVQFZ+Y5K6ugU5AK9DXM9fP0eNMa/YczKdId1RfCqNY86HDE8PGkyPLuTyxPIK2CVY96BpCRuCwywSaViFbseKdaW6Unz7azVZtfnO+otRClkxS7CkrPjNJCSuv5ZTnyNgXb43Cz0EMqHlayo6AmEySfk8/zdPxp1kcLt4OUgdPmvzqpYxGuSdsT4PQx/0lfp4q0Srm+o4ZFGWb8LQtW1bTTalwgKk4IPWyWUrL6SvBAYFlHMEG5qMF1xxnGcLyiRPsP3cTABYusb+AiQM0SoALh5IGNyPh8kA0LgPIeOOLlq7pCdAvIXdafjBcTdvkdUd2uOrMiwbq4fG5UX18LQY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB4514.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(346002)(396003)(136003)(376002)(366004)(39860400002)(83380400001)(26005)(8676002)(4326008)(186003)(66946007)(66556008)(66476007)(478600001)(86362001)(31696002)(6486002)(30864003)(5660300002)(8936002)(82960400001)(38100700002)(41300700001)(2906002)(2616005)(6666004)(53546011)(54906003)(6506007)(110136005)(316002)(6512007)(31686004)(36756003)(60764002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4206.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(376002)(366004)(136003)(39860400002)(346002)(2906002)(6666004)(41300700001)(316002)(2616005)(38100700002)(921005)(8676002)(36756003)(66946007)(31686004)(7416002)(4326008)(7406005)(5660300002)(66476007)(66556008)(6512007)(186003)(6486002)(31696002)(107886003)(6506007)(55236004)(53546011)(26005)(8936002)(54906003)(478600001)(83380400001)(86362001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M240elArN1ZKNTZRT05ZczIzSlRJRFhBMndVcEkrRHA5b1h5ZEpOTGhrZ2lY?=
- =?utf-8?B?TkFvVFNKbGZYMGs5cjZ6dU5zUURPWFpwMmF4UXFMTE9rdElPalNmUDFxbmlL?=
- =?utf-8?B?cFRUMGIvTS8rc2l4NXRGdGlUdHZUa013M3NLakhVZWRvb1hjQVdxRzFoUHVK?=
- =?utf-8?B?ekZrVmlBYXNsaGtGb0ZaZVFOV2xiUU81UEdMUFYvV0VKUk5qR2N4eWlJSnRv?=
- =?utf-8?B?M09QYm80SXhFeU9wUVVSWGlhM21UL1IwRXl0SDRHaGJzRVJvRDl1OVFSQ2xR?=
- =?utf-8?B?YWRkQWlNRk5VZUxmK0dmS0s2ZDQ5S0Q4dVlOL0R0dTFNc0t2Qk1OeUFYOUwv?=
- =?utf-8?B?cHhLOFdCejlJSUFWMGtLWkxjQmlUL3FjcHVqa3BOdVFUdzVSU0M4UCt2dkUr?=
- =?utf-8?B?c0tmYXprazRvYkk5eEp4clpYR1ZlSm1VcFIrMStCQ3lOOE9TL3hoaVMyQndJ?=
- =?utf-8?B?ZG1YTW1TcWVhSWhab0YrZmpka1hoVzVqTkF6WllzSnFpRndIVFZwN1l6SkVS?=
- =?utf-8?B?TmxjUTVZTGNpb3Z2eUlZVGFQR0hXZlVXcUVGS1JpTkpJMTJNR1c1cm16dE8v?=
- =?utf-8?B?UG56OVA3MXlPYjJOMHFsYlBqcDZwK1lQdURTSTMreTRiWis4WllZelNIRXds?=
- =?utf-8?B?Y0xqV216cGovMmdYZ0wzZWpYbWs3T1J2eFpxTzlkeWRrb0N5SS80ZlRLV1RC?=
- =?utf-8?B?UVFhaU1zbVY3WW9vOVR2US82SmRaT1lzUWl0QXE0S09HSXdUK3RLUmMwNGxQ?=
- =?utf-8?B?WUJnNzZVeUh6VmVWVDIwenpwMjAvSGVmeDk4R2gzb3AxYkl5cDdoS1lLOEho?=
- =?utf-8?B?T3c2WXlXdGw1MFd6MjRXbElFbmR3cHlFM0xIYkRVMmw0VEFwaXpqVnVvclZo?=
- =?utf-8?B?RlpZNFZlVE5TVUh5N0Z5dyt6enZKS3VhaWRNV1VVekdYY2lsYUVwVHZNbVc2?=
- =?utf-8?B?YjVlVDdOYjdhcTBtaTVES3RwRlNyRTgyVVJhdTh1cmkwYVdTeGNCQ2pqSmxi?=
- =?utf-8?B?L2o1L1cxN3QwckRyRzJSTTY4U2hacmhKbnZjRXRLTHFTaW5XUUlibTUwajRk?=
- =?utf-8?B?SS92eHVtZ3RHekRCbEpVU2hQWTlRM3JKbjQrT2N0WnFvQ3VhajA0d3hCMVZp?=
- =?utf-8?B?cEFqK25JM24zWGUrS0Q5RnpwaFNNT1RWNXoyZFg0M1pzUDJXWnhjRGJmSGVl?=
- =?utf-8?B?ZWJpa2xjbmVZQVdqRkZKVDlCR3F4czV1OUJQekx5U1VJVXI0cHppSGYzaFF6?=
- =?utf-8?B?MFVtREpzOHd4alAwODBQNk1RTmlmS1ZpSlAwN0sxb2hwK2pMbW9XOFhDVFRZ?=
- =?utf-8?B?SmpWWWNqMEVkVTFxUXB4YXlYVC9xNitDcGhRR2NyRHRjNTJhSkFiS2F5VHM0?=
- =?utf-8?B?WjIyUUNQdzlRMUtyMndOQm5HRWdWWlhkTG9RejRQTy9XWlp5N2NPcFpaYmxG?=
- =?utf-8?B?VEJVNFZsWnQ0TCt4UHN6akltU2RQYVVkQTNMelo2bFA1aXo5T1dsVytmY2wv?=
- =?utf-8?B?MlpIUUhhdGpzc0kxOHJzTkFmSzVSbjE1YzhqRzJjcjhYek5Oc1B2cFU3ampF?=
- =?utf-8?B?RGo4a1VEaFZIbTNlU0FhQ0grUE1BVzVrVDk1OVpXMDlvQ1MwK0pCMHB1QVpU?=
- =?utf-8?B?TjBTb01CbEI0dXZQVXJHMnp4TnhrcW9TemlOaVN2cmZsYmdERGJQbzJVaHhP?=
- =?utf-8?B?VU8zRnc4L1djeks4UzVmczlwMk9HclhSb1Z0M0hzTkpvSnJRV1h2UkJDRVRT?=
- =?utf-8?B?Sm0xaVhEQXkySXFRV0FEZkhtOXA2Y0F6a1hEMXFDWHlDcmE3anpVY0xGSS9R?=
- =?utf-8?B?YWpnSUU1c2VYR3RLVzY3SUFhMjVMc1QvOGRsQlRuUVZ1Mk1oNVVlZ2JsZzVT?=
- =?utf-8?B?T0RpVGU1dFQwZjRRbVpEdS95bmZEbGdBd3U3MGNJcUNHVncrNGdHV3l2aUxm?=
- =?utf-8?B?bVdUTGlleUhnamYzdERKQjdRd2ppR3c0TXByeWFlVkVMakZuYk9nck8rRmUr?=
- =?utf-8?B?RGtwbkF6WWVtVXk4ZlRMdGJnTUpkamFLaVFubitzQTBrcnZlRGxHRXVMbkx5?=
- =?utf-8?B?VlRLdHVORnQxNlJxUDdEM3JqeU5pSlN4cW04eE11aXo2MnBtaTd2T1U2cUdp?=
- =?utf-8?Q?1Hc2mLqeev7zF1nBiO18jNFgx?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62692c01-537b-432d-194b-08da5f74a7ae
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4514.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QjB6dDhxN1dsNTdob21oVkpCN3lHVnAyM2VRVWpQT2FQcnNWSm4wSFR1SmIw?=
+ =?utf-8?B?T2dlNjhkS0F0QjFXVjcwR1JnRzhBZzVBL0orUDRWZ01pOExLTURsOHVMK25R?=
+ =?utf-8?B?YjlqeHpsWndoajVva3RXS3oxRFY5ZjBFcDdickRTaitaS0hXUm5tSmRZekxp?=
+ =?utf-8?B?c3RScVJ0Ym5rZkVLRTZaZmVWRUR6Nlg0eFNkUGtqUjNYSFJ2ajhSRTFDM2tu?=
+ =?utf-8?B?YVZLbEhJRVBvN0RvZW95c0xUNWdVdFVtVXozVlJSZmdpRFlhOFRxR2dNa3Qr?=
+ =?utf-8?B?K2NmYlRWTFRIVWY5NjQwemFVZW5DMUtkdnBPR0hMUS9iZW02NGJ2MVZXWG1B?=
+ =?utf-8?B?Wm1QbzBqNXBmK2pRRjEzdlAycXI4S3F6T1hqMDJOMmRSVGxnUCtGWmtsUjNx?=
+ =?utf-8?B?UGR4MlErdFdETGJQVEFWeDhCSVpoZ21MSDJvTVppa0ZTK1J2Qi9hemFPWDMz?=
+ =?utf-8?B?VkFaTVFyZlQwRkFOTWZibzVBSGJIblJEV1ZNUU85YkJpUjhwdDhQR1FZc3pr?=
+ =?utf-8?B?cWNCZmhqeWNocmY0Ykh5UmI0YjkzclJyUHZBSmNlWjZRdjBUV2xPNlU2SVgz?=
+ =?utf-8?B?ekJSYTlWZHJzd2NYUnBPNVcvNkF1eUNRc055OFJrZ0dicTR6S0wwcFpZUWls?=
+ =?utf-8?B?NlFITksxb2s0NG5GTVQ5QjdkL1BIelRzRERvSnZjUE9mLzhrSWpxWmYvVDhm?=
+ =?utf-8?B?OVBEZnVEU0dqZ3pPNHY1N0x4clBuUjJ5a25HeDNVNC81VXlVajhIUzBDY2NC?=
+ =?utf-8?B?aTNXeTJkRXBrOUd3MFNhWnFvOXY0RU5PMExBUzZhcGxJSGtsbXNEc2J3bEJn?=
+ =?utf-8?B?T1RLSlZzYTFFeHRNV2dOYlQ4bWRyYlNwTmFDMjlYYUI4QXI1bHo3bW1Ua0hW?=
+ =?utf-8?B?cnNSeEpHNWM3cnlSWjJPUWgwcTNyK0tXOGtjVmZMcHM4MzhHVEM2aHBpL080?=
+ =?utf-8?B?cjdFODBGbGVCS3pWMmRTMUpZb3JWSWEybWVDYjhaWjhqbEVIaU42RGFCNUhP?=
+ =?utf-8?B?ay8wOFpwSDhJaEVUdVZBQnQ3NXZ6S0RlNVVKN2lBeGJVbHhwT0ZvTEg5OHdV?=
+ =?utf-8?B?ZnNyRmkxcTRVZFQ4UC9SeHdiazhRMFlNRTBmbGg2anVtOFRHaE5qL0FyS2RM?=
+ =?utf-8?B?QU5TQnF2YnM4dnd6MGY0VGFVckY3akloZmZxak5vTmtaZVM0R0k2UlpwYVAy?=
+ =?utf-8?B?Uy8yemRiSnoyMXl2bWJqYjVNQk5rR0ZuWmEyaEhyOWtwSjZaeW5wdzBiYm5R?=
+ =?utf-8?B?ZHorNlM1WlBCSWtISHJDeC9CMnBMazllS2hUcVVVTE9zcXUvVlp6T0ZXSVl3?=
+ =?utf-8?B?clFBSjVPa2FRTkZTeEI1cUdkQjZxdHp5VjJGUWl6YTBnckhrM3BDYTV6czVY?=
+ =?utf-8?B?WFNHcnpJRFpkVFJ0TW9NU21ldkhob1R0U1pjTll6c0I0NTFGMkxLYndHOGlW?=
+ =?utf-8?B?MXREUzBYNzV6bHE0NE9KZXlhUE5KYUhBTG8wUm1BWmNJU05CdXYycnpEZFR3?=
+ =?utf-8?B?QkRlekhYWjlwK0l2a294VmRMQnN0eVN6NWVoUGRlL3c4ZUV1NkpxanhGKzlR?=
+ =?utf-8?B?MXhnVURQMG5sRnc5cnZMYWxrRWFMb25WV3pPaTgxbnBwYWVvTXdFWnhTckQr?=
+ =?utf-8?B?UlZQUXJrdDloUmNZYXFobnBQc09oc1N1eCtOY25VWmJSRVEzdmg4RXpoUklV?=
+ =?utf-8?B?SUxlamhubXlWek9QRUlLVk0zZnZnYWdPS0laSEt5YXN3dlJVY1RXbTV4YmhR?=
+ =?utf-8?B?NVBna0NCVnVMM1B2WXNNVDNnT0lsRGw4OUZwdUpzK3Y2WlFZNUR1NW03WUV5?=
+ =?utf-8?B?VklZeFc1NmFKMXh3d1Jha0JFbGI5L2NmN3NqVXdsakJVNzVSVkxpZFlkVHBw?=
+ =?utf-8?B?YVphWmU4Q2Q0bHFhY0cvR2xUYVNxNWxNRWVyVXFVMWordkpFeVI2aGRIUVBH?=
+ =?utf-8?B?a1o3NE5ZanI2WEV0cFdmSFR4dWxydUlFOTV6TFFac0U2ZEw1aml3bmVRT0Vy?=
+ =?utf-8?B?ekMwK1VrS2JFbkgvc1BRd3dTVWNaTVdZbm8wN0NYT2NBazFId09uemhOdVNJ?=
+ =?utf-8?B?dGk0NGFoRCtYS1BSNFdGUnJnaEZybjE1SFBnRVJ6VStVR3phL25PYlNCbi85?=
+ =?utf-8?Q?HOj932Yx2scXgPADdwpFMMxWa?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cbd5933-4a61-427b-f21b-08da5f766d63
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4206.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2022 17:26:26.2427 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2022 17:39:07.5829 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z8b1A5bFmqP0BVXX3NY8Y2zjwndplm/qb03L56m9Mli0GmpyJEALNw8leVKCXG/87qZSR0ndKtU65o7O4w2yYg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5292
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 00/15] HuC loading for DG2
+X-MS-Exchange-CrossTenant-UserPrincipalName: JXYwEWXS8AgUN579iYSQQ5gNXYd9fELIB4Xv7GvLpq9WNDvz5d8PwzAVoYHa0KX2xIB7RsI6Qo71TA584COUkw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB4776
+Subject: Re: [Intel-gfx] [RFT][PATCH v2 1/9] vfio: Make vfio_unpin_pages()
+ return void
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,308 +137,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Usyskin, Alexander" <alexander.usyskin@intel.com>, "Teres Alexis, Alan
- Previn" <alan.previn.teres.alexis@intel.com>
+Cc: linux-s390@vger.kernel.org, Neo Jia <cjia@nvidia.com>, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ jchrist@linux.ibm.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Tarun Gupta <targupta@nvidia.com>,
+ Shounak Deshpande <shdeshpande@nvidia.com>,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 7/5/2022 4:30 PM, Ceraolo Spurio, Daniele wrote:
->
->
-> On 6/15/2022 7:28 PM, Zhang, Carl wrote:
->>> On From: Ye, Tony <tony.ye@intel.com>
->>> Sent: Thursday, June 16, 2022 12:15 AM
->>>
->>>
->>> On 6/15/2022 3:13 AM, Tvrtko Ursulin wrote:
->>>> On 15/06/2022 00:15, Ye, Tony wrote:
->>>>> On 6/14/2022 8:30 AM, Ceraolo Spurio, Daniele wrote:
->>>>>> On 6/14/2022 12:44 AM, Tvrtko Ursulin wrote:
->>>>>>> On 13/06/2022 19:13, Ceraolo Spurio, Daniele wrote:
->>>>>>>> On 6/13/2022 10:39 AM, Tvrtko Ursulin wrote:
->>>>>>>>> On 13/06/2022 18:06, Ceraolo Spurio, Daniele wrote:
->>>>>>>>>> On 6/13/2022 9:56 AM, Tvrtko Ursulin wrote:
->>>>>>>>>>> On 13/06/2022 17:41, Ceraolo Spurio, Daniele wrote:
->>>>>>>>>>>> On 6/13/2022 9:31 AM, Tvrtko Ursulin wrote:
->>>>>>>>>>>>> On 13/06/2022 16:39, Ceraolo Spurio, Daniele wrote:
->>>>>>>>>>>>>> On 6/13/2022 1:16 AM, Tvrtko Ursulin wrote:
->>>>>>>>>>>>>>> On 10/06/2022 00:19, Daniele Ceraolo Spurio wrote:
->>>>>>>>>>>>>>>> On DG2, HuC loading is performed by the GSC, via a PXP
->>>>>>>>>>>>>>>> command. The load operation itself is relatively simple
->>>>>>>>>>>>>>>> (just send a message to the GSC with the physical address
->>>>>>>>>>>>>>>> of the HuC in LMEM), but there are timing changes that
->>>>>>>>>>>>>>>> requires special attention. In particular, to send a PXP
->>>>>>>>>>>>>>>> command we need to first export the GSC driver and then
->>>>>>>>>>>>>>>> wait for the mei-gsc and mei-pxp modules to start, which
->>>>>>>>>>>>>>>> means that HuC load will complete after i915 load is
->>>>>>>>>>>>>>>> complete. This means that there is a small window of time
->>>>>>>>>>>>>>>> after i915 is registered and before HuC is loaded during
->>>>>>>>>>>>>>>> which userspace could submit and/or checking the HuC load
->>>>>>>>>>>>>>>> status, although this is quite unlikely to happen (HuC is
->>>>>>>>>>>>>>>> usually loaded before kernel init/resume completes).
->>>>>>>>>>>>>>>> We've consulted with the media team in regards to how to
->>>>>>>>>>>>>>>> handle this and they've asked us to do the following:
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> 1) Report HuC as loaded in the getparam IOCTL even if load
->>>>>>>>>>>>>>>> is still in progress. The media driver uses the IOCTL as a
->>>>>>>>>>>>>>>> way to check if HuC is enabled and then includes a
->>>>>>>>>>>>>>>> secondary check in the batches to get the actual status,
->>>>>>>>>>>>>>>> so doing it this way allows userspace to keep working
->>>>>>>>>>>>>>>> without changes.
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> 2) Stall all userspace VCS submission until HuC is loaded.
->>>>>>>>>>>>>>>> Stalls are
->>>>>>>>>>>>>>>> expected to be very rare (if any), due to the fact that
->>>>>>>>>>>>>>>> HuC is usually loaded before kernel init/resume is
->>>>>>>>>>>>>>>> completed.
->>>>>>>>>>>>>>> Motivation to add these complications into i915 are not
->>>>>>>>>>>>>>> clear to me here. I mean there is no HuC on DG2 _yet_ is
->>>>>>>>>>>>>>> the premise of the series, right? So no backwards
->>>>>>>>>>>>>>> compatibility concerns. In this case why jump through the
->>>>>>>>>>>>>>> hoops and not let userspace handle all of this by just
->>>>>>>>>>>>>>> leaving the getparam return the true status?
->>>>>>>>>>>>>> The main areas impacted by the fact that we can't guarantee
->>>>>>>>>>>>>> that HuC load is complete when i915 starts accepting
->>>>>>>>>>>>>> submissions are boot and suspend/resume, with the latter
->>>>>>>>>>>>>> being the main problem; GT reset is not a concern because
->>>>>>>>>>>>>> HuC now survives it. A suspend/resume can be transparent to
->>>>>>>>>>>>>> userspace and therefore the HuC status can temporarily flip
->>>>>>>>>>>>>> from loaded to not without userspace knowledge, especially
->>>>>>>>>>>>>> if we start going into deeper suspend states and start
->>>>>>>>>>>>>> causing HuC resets when we go into runtime suspend. Note
->>>>>>>>>>>>>> that this is different from what happens during GT reset for
->>>>>>>>>>>>>> older platforms, because in that scenario we guarantee that
->>>>>>>>>>>>>> HuC reload is complete before we restart the submission
->>>>>>>>>>>>>> back-end, so userspace doesn't notice that the HuC status
->>>>>>>>>>>>>> change. We had an internal discussion about this problem
->>>>>>>>>>>>>> with both media and i915 archs and the conclusion was that
->>>>>>>>>>>>>> the best option is for i915 to stall media submission while
->>>>>>>>>>>>>> HuC (re-)load is in progress.
->>>>>>>>>>>>> Resume is potentialy a good reason - I did not pick up on
->>>>>>>>>>>>> that from the cover letter. I read the statement about the
->>>>>>>>>>>>> unlikely and small window where HuC is not loaded during
->>>>>>>>>>>>> kernel init/resume and I guess did not pick up on the resume
->>>>>>>>>>>>> part.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Waiting for GSC to load HuC from i915 resume is not an 
->>>>>>>>>>>>> option?
->>>>>>>>>>>> GSC is an aux device exported by i915, so AFAIU GSC resume
->>>>>>>>>>>> can't start until i915 resume completes.
->>>>>>>>>>> I'll dig into this in the next few days since I want to
->>>>>>>>>>> understand how exactly it works. Or someone can help explain.
->>>>>>>>>>>
->>>>>>>>>>> If in the end conclusion will be that i915 resume indeed cannot
->>>>>>>>>>> wait for GSC, then I think auto-blocking of queued up contexts
->>>>>>>>>>> on media engines indeed sounds unavoidable. Otherwise, as you
->>>>>>>>>>> explained, user experience post resume wouldn't be good.
->>>>>>>>>> Even if we could implement a wait, I'm not sure we should. GSC
->>>>>>>>>> resume and HuC reload takes ~300ms in most cases, I don't think
->>>>>>>>>> we want to block within the i915 resume path for that long.
->>>>>>>>> Yeah maybe not. But entertaining the idea that it is technically
->>>>>>>>> possible to block - we could perhaps add uapi for userspace to
->>>>>>>>> mark contexts which want HuC access. Then track if there are any
->>>>>>>>> such contexts with outstanding submissions and only wait in
->>>>>>>>> resume if there are. If that would end up significantly less code
->>>>>>>>> on the i915 side to maintain is an open.
->>>>>>>>>
->>>>>>>>> What would be the end result from users point of view in case
->>>>>>>>> where it suspended during video playback? The proposed solution
->>>>>>>>> from this series sees the video stuck after resume. Maybe
->>>>>>>>> compositor blocks as well since I am not sure how well they
->>>>>>>>> handle one window not providing new data. Probably depends on
->>> the
->>>>>>>>> compositor.
->>>>>>>>>
->>>>>>>>> And then with a simpler solution definitely the whole resume
->>>>>>>>> would be delayed by 300ms.
->>>>>>>>>
->>>>>>>>> With my ChromeOS hat the stalled media engines does sound like a
->>>>>>>>> better solution. But with the maintainer hat I'd like all options
->>>>>>>>> evaluated since there is attractiveness if a good enough solution
->>>>>>>>> can be achieved with significantly less kernel code.
->>>>>>>>>
->>>>>>>>> You say 300ms is typical time for HuC load. How long it is on
->>>>>>>>> other platforms? If much faster then why is it so slow here?
->>>>>>>> The GSC itself has to come out of suspend before it can perform
->>>>>>>> the load, which takes a few tens of ms I believe. AFAIU the GSC is
->>>>>>>> also slower in processing the HuC load and auth compared to the
->>>>>>>> legacy path. The GSC FW team gave a 250ms limit for the time the
->>>>>>>> GSC FW needs from start of the resume flow to HuC load complete,
->>>>>>>> so I bumped that to ~300ms to account for all other SW
->>>>>>>> interactions, plus a bit of buffer. Note that a bit of the SW
->>>>>>>> overhead is caused by the fact that we have 2 mei modules in play
->>>>>>>> here: mei-gsc, which manages the GSC device itself (including
->>>>>>>> resume), and mei-pxp, which owns the pxp messaging, including HuC
->>>>>>>> load.
->>>>>>> And how long on other platforms (not DG2) do you know? Presumably
->>>>>>> there the wait is on the i915 resume path?
->>>>>> I don't have "official" expected load times at hand, but looking at
->>>>>> the BAT boot logs for this series for DG1 I see it takes ~10 ms to
->>>>>> load both GuC and HuC:
->>>>>>
->>>>>> <7>[    8.157838] i915 0000:03:00.0: [drm:intel_huc_init [i915]] GSC
->>>>>> loads huc=no <6>[    8.158632] i915 0000:03:00.0: [drm] GuC firmware
->>>>>> i915/dg1_guc_70.1.1.bin version 70.1 <6>[ 8.158634] i915
->>>>>> 0000:03:00.0: [drm] HuC firmware i915/dg1_huc_7.9.3.bin version 7.9
->>>>>> <7>[    8.164255] i915 0000:03:00.0: [drm:guc_enable_communication
->>>>>> [i915]] GuC communication enabled <6>[ 8.166111] i915
->>>>>> 0000:03:00.0: [drm] HuC authenticated
->>>>>>
->>>>>> Note that we increase the GT frequency all the way to the max before
->>>>>> starting the FW load, which speeds things up.
->>>>>>
->>>>>>>>>>> However, do we really need to lie in the getparam? How about
->>>>>>>>>>> extend or add a new one to separate the loading vs loaded
->>>>>>>>>>> states? Since userspace does not support DG2 HuC yet this
->>>>>>>>>>> should be doable.
->>>>>>>>>> I don't really have a preference here. The media team asked us
->>>>>>>>>> to do it this way because they wouldn't have a use for the
->>>>>>>>>> different "in progress" and "done" states. If they're ok with
->>>>>>>>>> having separate flags that's fine by me.
->>>>>>>>>> Tony, any feedback here?
->>>>>>>>> We don't even have any docs in i915_drm.h in terms of what it
->>> means:
->>>>>>>>> #define I915_PARAM_HUC_STATUS         42
->>>>>>>>>
->>>>>>>>> Seems to be a boolean. Status false vs true? Could you add some
->>>>>>>>> docs?
->>>>>>>> There is documentation above intel_huc_check_status(), which is
->>>>>>>> also updated in this series. I can move that to i915_drm.h.
->>>>>>> That would be great, thanks.
->>>>>>>
->>>>>>> And with so rich return codes already documented and exposed via
->>>>>>> uapi - would we really need to add anything new for DG2 apart for
->>>>>>> userspace to know that if zero is returned (not a negative error
->>>>>>> value) it should retry? I mean is there another negative error
->>>>>>> missing which would prevent zero transitioning to one?
->>>>>> I think if the auth fails we currently return 0, because the uc
->>>>>> state in that case would be "TRANSFERRED", i.e. DMA complete but not
->>>>>> fully enabled. I don't have anything against changing the FW state
->>>>>> to "ERROR" in this scenario and leave the 0 to mean "not done yet",
->>>>>> but I'd prefer the media team to comment on their needs for this
->>>>>> IOCTL before committing to anything.
->>>>>
->>>>> Currently media doesn't differentiate "delayed loading is in
->>>>> progress" with "HuC is authenticated and running". If the HuC
->>>>> authentication eventually fails, the user needs to check the debugfs
->>>>> to know the reason. IMHO, it's not a big problem as this is what we
->>>>> do even when the IOCTL returns non-zero values. + Carl to comment.
->>>> (Side note - debugfs can be assumed to not exist so it is not
->>>> interesting to users.)
->>>>
->>>> There isn't currently a "delayed loading is in progress" state, that's
->>>> the discussion in this thread, if and how to add it.
->>>>
->>>> Getparam it currently documents these states:
->>>>
->>>>   -ENODEV if HuC is not present on this platform,
->>>>   -EOPNOTSUPP if HuC firmware is disabled,
->>>>   -ENOPKG if HuC firmware was not installed,
->>>>   -ENOEXEC if HuC firmware is invalid or mismatched,
->>>>   0 if HuC firmware is not running,
->>>>   1 if HuC firmware is authenticated and running.
->>>>
->>>> This patch proposed to change this to:
->>>>
->>>>   1 if HuC firmware is authenticated and running or if delayed load is
->>>> in progress,
->>>>   0 if HuC firmware is not running and delayed load is not in progress
->>>>
->>>> Alternative idea is for DG2 (well in general) to add some more fine
->>>> grained states, so that i915 does not have to use 1 for both running
->>>> and loading. This may be adding a new error code for auth fails as
->>>> Daniele mentioned. Then UMD can know that if 0 is returned and
->>>> platform is DG2 it needs to query it again since it will transition to
->>>> either 1 or error eventually. This would mean the non error states
->>>> would be:
->>>>
->>>>   0 not running (aka loading)
->>>>   1 running (and authenticated)
->>>>
->>>> @Daniele - one more thing - can you make sure in the series (if you
->>>> haven't already) that if HuC status was in any error before suspend
->>>> reload is not re-tried on resume? My thinking is that the error is
->>>> likely to persist and we don't want to impose long delay on every
->>>> resume afterwards. Makes sense to you?
->>>>
->>>> @Tony - one more question for the UMD. Or two.
->>>>
->>>> How prevalent is usage of HuC on DG2 depending on what codecs need it?
->>>> Do you know in advance, before creating a GEM context, that HuC
->>>> commands will be sent to the engine or this changes at runtime?
->>> HuC is needed for all codecs while HW bit rate control (CBR, VBR) is 
->>> in use.
->>> It's also used by content protection. And UMD doesn't know if it 
->>> will be used
->>> later at context creation time.
->>>
->> from UMD perspective, We don’t care much on the normal initialization 
->> process
->> because, I could not image that a system is boot up, and user select 
->> a crypted content
->> to playback, and huc is still not ready.
->> of course, We are  also ok to query the huc status twice, and wait if 
->> the status is "0 not running"
->> to avoid potential issue.
->>
->> I suppose the main possible issue will happen in the 
->> hibernation/awake process, it is transparent to UMD.
->> UMD will not call ioctrl  to query huc status in this process, and 
->> will continue to send command buffer to KMD.
->
-> I think there is an agreement that it is ok to return 0 to mark the 
-> load still in progress and 1 for load & auth complete. However, double 
-> checking the code it turns out that we currently return 0 on load 
-> failure, even if that's not particularly clear from the comment. I can 
-> easily change that to be an error code, but not sure if that's 
-> considered an API breakage considering it's not a well documented 
-> behavior. I believe that on pre-DG2 userspace considers 1 as ok and 
-> everything else as failure, so changing the ioctl to return an error 
-> code on failure and 0 for load pending (with the latter being a 
-> DG2-esclusive code for now) should be safe, but I'd like confirmation 
-> that I'm not breaking API before sending the relevant code.
+Reviewed-by: Kirti Wankhede <kwankhede@nvidia.com>
 
-The UMD code is like this:
-
-     struct drm_i915_getparam gp;
-     int32_t value;
-     gp.param = I915_PARAM_HUC_STATUS;
-     gp.value = &value;
-     ret = ioctl(fd, DRM_IOCTL_I915_GETPARAM, &gp);
-     if (ret != 0)
-         hasHuC = 0
-     else
-         if (value == 0)
-             hasHuC = 0;
-         else
-             hasHuC = 1;
-
-Currently the behavior of i915 is:
-
-     if there is an error, ioctl returns -1, and set errno as 
-ENODEV/EOPNOTSUPP/ENOPKG/ENOEXEC;
-
-     otherwise, set *(gp.value) as 0 if HuC is not running, or 1 if HuC 
-is authenticated.
-
-Hi Daniele, which value are you going to change - the "ret" or the "value"?
-
-
-Thanks,
-
-Tony
-
->
-> Thanks,
-> Daniele
->
->>
->>> Thanks,
->>>
->>> Tony
->>>
->>>> Regards,
->>>>
->>>> Tvrtko
->
+On 7/6/2022 11:57 AM, Nicolin Chen wrote:
+> There's only one caller that checks its return value with a WARN_ON_ONCE,
+> while all other callers do not check return value at all. So simplify the
+> API to return void by embedding similar WARN_ON_ONCEs.
+> 
+> Suggested-by: Christoph Hellwig <hch@infradead.org>
+> Signed-off-by: Nicolin Chen <nicolinc@nvidia.com>
+> ---
+>   .../driver-api/vfio-mediated-device.rst       |  2 +-
+>   drivers/gpu/drm/i915/gvt/kvmgt.c              |  5 +---
+>   drivers/vfio/vfio.c                           | 24 ++++++++-----------
+>   drivers/vfio/vfio.h                           |  2 +-
+>   drivers/vfio/vfio_iommu_type1.c               | 16 ++++++-------
+>   include/linux/vfio.h                          |  4 ++--
+>   6 files changed, 23 insertions(+), 30 deletions(-)
+> 
+> diff --git a/Documentation/driver-api/vfio-mediated-device.rst b/Documentation/driver-api/vfio-mediated-device.rst
+> index 1c57815619fd..b0fdf76b339a 100644
+> --- a/Documentation/driver-api/vfio-mediated-device.rst
+> +++ b/Documentation/driver-api/vfio-mediated-device.rst
+> @@ -265,7 +265,7 @@ driver::
+>   	int vfio_pin_pages(struct vfio_device *device, unsigned long *user_pfn,
+>   				  int npage, int prot, unsigned long *phys_pfn);
+>   
+> -	int vfio_unpin_pages(struct vfio_device *device, unsigned long *user_pfn,
+> +	void vfio_unpin_pages(struct vfio_device *device, unsigned long *user_pfn,
+>   				    int npage);
+>   
+>   These functions call back into the back-end IOMMU module by using the pin_pages
+> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> index e2f6c56ab342..8c67c9aba82d 100644
+> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> @@ -231,18 +231,15 @@ static void intel_gvt_cleanup_vgpu_type_groups(struct intel_gvt *gvt)
+>   static void gvt_unpin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
+>   		unsigned long size)
+>   {
+> -	struct drm_i915_private *i915 = vgpu->gvt->gt->i915;
+>   	int total_pages;
+>   	int npage;
+> -	int ret;
+>   
+>   	total_pages = roundup(size, PAGE_SIZE) / PAGE_SIZE;
+>   
+>   	for (npage = 0; npage < total_pages; npage++) {
+>   		unsigned long cur_gfn = gfn + npage;
+>   
+> -		ret = vfio_unpin_pages(&vgpu->vfio_device, &cur_gfn, 1);
+> -		drm_WARN_ON(&i915->drm, ret != 1);
+> +		vfio_unpin_pages(&vgpu->vfio_device, &cur_gfn, 1);
+>   	}
+>   }
+>   
+> diff --git a/drivers/vfio/vfio.c b/drivers/vfio/vfio.c
+> index 61e71c1154be..01f45ec70a3d 100644
+> --- a/drivers/vfio/vfio.c
+> +++ b/drivers/vfio/vfio.c
+> @@ -1959,31 +1959,27 @@ EXPORT_SYMBOL(vfio_pin_pages);
+>    *		   PFNs should not be greater than VFIO_PIN_PAGES_MAX_ENTRIES.
+>    * @npage [in]   : count of elements in user_pfn array.  This count should not
+>    *                 be greater than VFIO_PIN_PAGES_MAX_ENTRIES.
+> - * Return error or number of pages unpinned.
+>    */
+> -int vfio_unpin_pages(struct vfio_device *device, unsigned long *user_pfn,
+> -		     int npage)
+> +void vfio_unpin_pages(struct vfio_device *device, unsigned long *user_pfn,
+> +		      int npage)
+>   {
+>   	struct vfio_container *container;
+>   	struct vfio_iommu_driver *driver;
+> -	int ret;
+>   
+> -	if (!user_pfn || !npage || !vfio_assert_device_open(device))
+> -		return -EINVAL;
+> +	if (WARN_ON_ONCE(!user_pfn || !npage || !vfio_assert_device_open(device)))
+> +		return;
+>   
+> -	if (npage > VFIO_PIN_PAGES_MAX_ENTRIES)
+> -		return -E2BIG;
+> +	if (WARN_ON_ONCE(npage > VFIO_PIN_PAGES_MAX_ENTRIES))
+> +		return;
+>   
+>   	/* group->container cannot change while a vfio device is open */
+>   	container = device->group->container;
+>   	driver = container->iommu_driver;
+> -	if (likely(driver && driver->ops->unpin_pages))
+> -		ret = driver->ops->unpin_pages(container->iommu_data, user_pfn,
+> -					       npage);
+> -	else
+> -		ret = -ENOTTY;
+>   
+> -	return ret;
+> +	if (WARN_ON_ONCE(unlikely(!driver || !driver->ops->unpin_pages)))
+> +		return;
+> +
+> +	driver->ops->unpin_pages(container->iommu_data, user_pfn, npage);
+>   }
+>   EXPORT_SYMBOL(vfio_unpin_pages);
+>   
+> diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
+> index a67130221151..bef4edf58138 100644
+> --- a/drivers/vfio/vfio.h
+> +++ b/drivers/vfio/vfio.h
+> @@ -53,7 +53,7 @@ struct vfio_iommu_driver_ops {
+>   				     unsigned long *user_pfn,
+>   				     int npage, int prot,
+>   				     unsigned long *phys_pfn);
+> -	int		(*unpin_pages)(void *iommu_data,
+> +	void		(*unpin_pages)(void *iommu_data,
+>   				       unsigned long *user_pfn, int npage);
+>   	int		(*register_notifier)(void *iommu_data,
+>   					     unsigned long *events,
+> diff --git a/drivers/vfio/vfio_iommu_type1.c b/drivers/vfio/vfio_iommu_type1.c
+> index c13b9290e357..08613edaf722 100644
+> --- a/drivers/vfio/vfio_iommu_type1.c
+> +++ b/drivers/vfio/vfio_iommu_type1.c
+> @@ -948,20 +948,19 @@ static int vfio_iommu_type1_pin_pages(void *iommu_data,
+>   	return ret;
+>   }
+>   
+> -static int vfio_iommu_type1_unpin_pages(void *iommu_data,
+> -					unsigned long *user_pfn,
+> -					int npage)
+> +static void vfio_iommu_type1_unpin_pages(void *iommu_data,
+> +					 unsigned long *user_pfn, int npage)
+>   {
+>   	struct vfio_iommu *iommu = iommu_data;
+>   	bool do_accounting;
+>   	int i;
+>   
+> -	if (!iommu || !user_pfn || npage <= 0)
+> -		return -EINVAL;
+> +	if (WARN_ON_ONCE(!iommu || !user_pfn || npage <= 0))
+> +		return;
+>   
+>   	/* Supported for v2 version only */
+> -	if (!iommu->v2)
+> -		return -EACCES;
+> +	if (WARN_ON_ONCE(!iommu->v2))
+> +		return;
+>   
+>   	mutex_lock(&iommu->lock);
+>   
+> @@ -979,7 +978,8 @@ static int vfio_iommu_type1_unpin_pages(void *iommu_data,
+>   	}
+>   
+>   	mutex_unlock(&iommu->lock);
+> -	return i > 0 ? i : -EINVAL;
+> +
+> +	WARN_ON_ONCE(i != npage);
+>   }
+>   
+>   static long vfio_sync_unpin(struct vfio_dma *dma, struct vfio_domain *domain,
+> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+> index 49580fa2073a..d0844ecdc961 100644
+> --- a/include/linux/vfio.h
+> +++ b/include/linux/vfio.h
+> @@ -149,8 +149,8 @@ bool vfio_file_has_dev(struct file *file, struct vfio_device *device);
+>   
+>   int vfio_pin_pages(struct vfio_device *device, unsigned long *user_pfn,
+>   		   int npage, int prot, unsigned long *phys_pfn);
+> -int vfio_unpin_pages(struct vfio_device *device, unsigned long *user_pfn,
+> -		     int npage);
+> +void vfio_unpin_pages(struct vfio_device *device, unsigned long *user_pfn,
+> +		      int npage);
+>   int vfio_dma_rw(struct vfio_device *device, dma_addr_t user_iova,
+>   		void *data, size_t len, bool write);
+>   
