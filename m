@@ -1,53 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30589567F09
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 08:56:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74729567F14
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 08:57:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6916710FFEC;
-	Wed,  6 Jul 2022 06:56:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 671D311200C;
+	Wed,  6 Jul 2022 06:57:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34F0910FFEC;
- Wed,  6 Jul 2022 06:56:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657090602; x=1688626602;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=jOhdt7b/kiCMTGyfoJJ0gPFD49LHE0EfglgTIYfzPiI=;
- b=miAX87qD2d6sDd+0TXQHNl+edFCJLIPnWoJhSegEkJ8QW79DQZF2jVoj
- CV61F8lWf0weDVBjeoeQM7KYDXlQqkamwJCA54Wy2AKNqK5dtDi8cc0fg
- yqHt0Tu4Ejp7qrGUMwiwiLYOmkLRqaKkYw0dHvAQ4gRukuobd0FLUYqJA
- EreltCpVAkr5bQPOQjGBpg2tFiokjlh16oA8GcYTpiPVElv5npHL3Dbg5
- rPDkbbhPqHM/bdqPJiqq7LoaW9TNMNT+LF33+grW9M6pw9wZbLo3DxXir
- ceD+9+lW87WBDA2ZV6ZcU0Uc03LYlOVs4bQN9+SWnlqrEghs8zgv/g2+O A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10399"; a="369982080"
-X-IronPort-AV: E=Sophos;i="5.92,249,1650956400"; d="scan'208";a="369982080"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2022 23:56:41 -0700
-X-IronPort-AV: E=Sophos;i="5.92,249,1650956400"; d="scan'208";a="650533625"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.208.133])
- ([10.251.208.133])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2022 23:56:39 -0700
-Message-ID: <1d7ed3c3-5cc9-88c0-83a5-4a8884631425@linux.intel.com>
-Date: Wed, 6 Jul 2022 08:56:37 +0200
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02F0D10FFFD;
+ Wed,  6 Jul 2022 06:57:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=M7NmYC/Iylm9myghHwqILim55SAUt9QrM+UZYk0eJlw=; b=nqKbk1UlEewvZP+vqUJW8uTo8i
+ ZudlE5mJHs0GiUKJzeWrxuJLt1S0VH6qI4pXliPMFL8PRZBpw/xHTiurL8AVISlyOdyyoglpcG4r2
+ NZz7H5iFDgsxHbtzF1QGEnA3O4PyOa50x2Eq9aTnCR9QLFlkqY0unaTxBeki417LyDI+j93M8+uDX
+ qO0J3gGGRdgFSL/IVBFHNnQM5c+VJnkXR/RvdzbkSP8pICPfEPjgKpCBafV8ctXvQHiL2H9Vbr1Al
+ 5Ohz/6aUmBkaN/K4f3bthIE0T3bZlNp2xP66HEC5CVuUkWW2p9Nli3DPyQ8l3BTmd19sby4ECXWzn
+ 6RIGsQ4Q==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1o8yy7-006s5y-Jq; Wed, 06 Jul 2022 06:57:03 +0000
+Date: Tue, 5 Jul 2022 23:57:03 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: Nicolin Chen <nicolinc@nvidia.com>
+Message-ID: <YsUyP8zcjtaMp5y1@infradead.org>
+References: <20220706062759.24946-1-nicolinc@nvidia.com>
+ <20220706062759.24946-8-nicolinc@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
-References: <20220705104945.118962-1-matthew.auld@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20220705104945.118962-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/gem_exec_capture: adjust the pi
- subtest
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220706062759.24946-8-nicolinc@nvidia.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Subject: Re: [Intel-gfx] [RFT][PATCH v2 7/9] vfio: Rename user_iova of
+ vfio_dma_rw()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,41 +51,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: mjrosato@linux.ibm.com, linux-doc@vger.kernel.org, airlied@linux.ie,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kwankhede@nvidia.com, vneethv@linux.ibm.com, agordeev@linux.ibm.com,
+ hch@infradead.org, kvm@vger.kernel.org, corbet@lwn.net, pasic@linux.ibm.com,
+ jgg@nvidia.com, borntraeger@linux.ibm.com, intel-gfx@lists.freedesktop.org,
+ jjherne@linux.ibm.com, farman@linux.ibm.com, jchrist@linux.ibm.com,
+ gor@linux.ibm.com, linux-s390@vger.kernel.org, hca@linux.ibm.com,
+ freude@linux.ibm.com, rodrigo.vivi@intel.com,
+ intel-gvt-dev@lists.freedesktop.org, akrowiak@linux.ibm.com, cohuck@redhat.com,
+ oberpar@linux.ibm.com, svens@linux.ibm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+Looks good:
 
-On 7/5/2022 12:49 PM, Matthew Auld wrote:
-> This was broken by the kernel change: 71b1669ea9bd ("drm/i915/uapi:
-> tweak error capture on recoverable contexts"). Update the test to use
-> non-recoverable context if needed.
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6350
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
-> ---
->   tests/i915/gem_exec_capture.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
->
-> diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
-> index c2639082..a25f529b 100644
-> --- a/tests/i915/gem_exec_capture.c
-> +++ b/tests/i915/gem_exec_capture.c
-> @@ -721,6 +721,15 @@ static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
->   
->   		ctx2 = intel_ctx_create_all_physical(fd);
->   		igt_assert(ctx2);
-> +		if (needs_recoverable_ctx(fd)) {
-> +			struct drm_i915_gem_context_param param = {
-> +				.ctx_id = ctx2->id,
-> +				.param = I915_CONTEXT_PARAM_RECOVERABLE,
-> +				.value = 0,
-> +			};
-> +
-> +			gem_context_set_param(fd, &param);
-> +		}
->   
->   		intel_allocator_init();
->   		/* Reopen the allocator in the new process. */
+Reviewed-by: Christoph Hellwig <hch@lst.de>
