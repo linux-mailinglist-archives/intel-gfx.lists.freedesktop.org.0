@@ -1,47 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6106A568DF2
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 17:48:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA326568E09
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jul 2022 17:51:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BEFB11B030;
-	Wed,  6 Jul 2022 15:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A977811B0BA;
+	Wed,  6 Jul 2022 15:50:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CADB11B030;
- Wed,  6 Jul 2022 15:48:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657122527; x=1688658527;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QV8x1RQbBNVTKvv7PD4zmV50TuSjnuBMYiT29PvDPOU=;
- b=MhPo5E5eAtaEPmQ6Ca6dzsUSnvbmPNwu9odpLCYW9rW1oWo3mFlUTJMZ
- zG/pgksYCNJJvaM7KD9D7XcqtFd5qeTqKH9EFa0F/OsppcutPE5a7kbrZ
- ESLAFHQar/kEe4lfvmTQUlNhtABZeIHWXOHtZw7sR8P96wlKAzpRCzYvl
- pyv9+6qxRRC0VMA1cvPMz2O4/UL21ryE1SO0n1yxBwVs9N3hjHpVdmQgK
- 3N5l3F5bmUAqUsKKGW5BV+NHiPioiAhxJmD/20waHtWPb6CF+ACkhBdhA
- FBvfh0jUVaIP5vH1iwuMKONQ+O5hN7aApm1UIYnbNKsAqWO92Q4Ndgk99 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="264200156"
-X-IronPort-AV: E=Sophos;i="5.92,250,1650956400"; d="scan'208";a="264200156"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2022 08:48:09 -0700
-X-IronPort-AV: E=Sophos;i="5.92,250,1650956400"; d="scan'208";a="770091035"
-Received: from bbarabas-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.213.226.109])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2022 08:48:08 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Jul 2022 16:47:38 +0100
-Message-Id: <20220706154738.235204-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.36.1
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com
+ [IPv6:2a00:1450:4864:20::22c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A14B11A77D;
+ Wed,  6 Jul 2022 15:50:58 +0000 (UTC)
+Received: by mail-lj1-x22c.google.com with SMTP id q8so6525841ljj.10;
+ Wed, 06 Jul 2022 08:50:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=JgkqeHuQlPU+G29JKQRsbmRnJbat568cRtAATn92ZqY=;
+ b=fZgTc4CAgyE6a4VI5ndorhKPrP6Sekc8YHh9UIQCEmjIhOinMU6FhgXBSYo1FvQSS4
+ J19cQCfwOYARDouo7K5de/+AxcsBxhSbrMKtWBuU1ukSaSx6DEIX1lQzrFTbAOXIaiys
+ RwPRjSQiwlYc9L3baAACVV/TRXHfZjz5+1UQdE8IADoT3oSANdcdr+MjhjcJL88873dD
+ M7SEL0mgsaVBe42cKmRmwvtzePq/4fQJ6Os3Z89q5+Ri5tfArq5CrZ0crMptY6lYdQUf
+ RWH03KxKdlv8AT3k6ZUO/bAUinQu62Z8BUDwL+uWtbEfgp22OSQElmghX/3zyBl5aeXq
+ U+hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=JgkqeHuQlPU+G29JKQRsbmRnJbat568cRtAATn92ZqY=;
+ b=Xn8UrvRg2RKlTuJ3K3Rty4AVuiBDVNrkoHh5AzLymfbw4hPAtl7WktVlPyq+jKEzB5
+ rfohOcaWmbSXaGh6tgy5CkFKlE87AMqVg/uu8PViFK+JT1RqU38/OVZFU2hVhQSFDnhf
+ BujI9QrpbfHEKvAasQfWURCsG9jRSnGGOoh5/zwg+teO6Yb59gyQ036kuyeYHtkLdE5m
+ xiY8xOOniIJhj6wwd+tF7in6f0jAVurcC4NrbxGbfmQ1YT23o5k6Q/yCxLSd/wCUTyNz
+ MgUgpmAuTXc+cHJFL5vzRBmqqzKHAtRs2xxzOBs6Oi9/h07QlthH8s002pMQ8kU3Wmo9
+ JFMA==
+X-Gm-Message-State: AJIora8ChNYUCsuYadPQBBk9NhVD0PlT0VsKtEVDlRK3PJz9CwP/+rwK
+ b3cpHVs1+l4s5gst38DTy9Du98/91K9Zc9ioNeCF0yOGJfC09Q==
+X-Google-Smtp-Source: AGRyM1vbmEO7vGKglAK52r04sF+ZhpkVc8sTOaEY177+lC5yYQIKDpAPOJICajk6l50Xlgz2sPCtp4O4htxojlmsu2w=
+X-Received: by 2002:a2e:9297:0:b0:25b:10de:a17b with SMTP id
+ d23-20020a2e9297000000b0025b10dea17bmr23702260ljh.71.1657122656654; Wed, 06
+ Jul 2022 08:50:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Grab the runtime pm in
+References: <20220706154738.235204-1-matthew.auld@intel.com>
+In-Reply-To: <20220706154738.235204-1-matthew.auld@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 6 Jul 2022 16:50:28 +0100
+Message-ID: <CAM0jSHOCeLoLAa=WAyiQuC3qH3FzdtjA18YBjaOz05D98qrfGw@mail.gmail.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Grab the runtime pm in
  shrink_thp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -55,56 +63,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
-
-Since we are not holding a wakeref, shrinking a bound object is not
-guaranteed.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6370
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index ef15967be51a..72ce2c9f42fd 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -1623,6 +1623,7 @@ static int igt_shrink_thp(void *arg)
- 	struct file *file;
- 	unsigned int flags = PIN_USER;
- 	unsigned int n;
-+	intel_wakeref_t wf;
- 	bool should_swap;
- 	int err;
- 
-@@ -1659,9 +1660,11 @@ static int igt_shrink_thp(void *arg)
- 		goto out_put;
- 	}
- 
-+	wf = intel_runtime_pm_get(&i915->runtime_pm); /* active shrink */
-+
- 	err = i915_vma_pin(vma, 0, 0, flags);
- 	if (err)
--		goto out_put;
-+		goto out_wf;
- 
- 	if (obj->mm.page_sizes.phys < I915_GTT_PAGE_SIZE_2M) {
- 		pr_info("failed to allocate THP, finishing test early\n");
-@@ -1732,6 +1735,8 @@ static int igt_shrink_thp(void *arg)
- 
- out_unpin:
- 	i915_vma_unpin(vma);
-+out_wf:
-+	intel_runtime_pm_put(&i915->runtime_pm, wf);
- out_put:
- 	i915_gem_object_put(obj);
- out_vm:
--- 
-2.36.1
-
+On Wed, 6 Jul 2022 at 16:48, Matthew Auld <matthew.auld@intel.com> wrote:
+>
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+>
+> Since we are not holding a wakeref, shrinking a bound object is not
+> guaranteed.
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6370
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
