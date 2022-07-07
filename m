@@ -1,33 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A47569701
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 02:47:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A2C856974F
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 03:18:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BDD210E491;
-	Thu,  7 Jul 2022 00:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9921E10E05E;
+	Thu,  7 Jul 2022 01:18:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 119A110E0FA;
- Thu,  7 Jul 2022 00:47:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 069A0A0096;
- Thu,  7 Jul 2022 00:47:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FF3B10E097;
+ Thu,  7 Jul 2022 01:18:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1657156701; x=1688692701;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=sLaiNhJKL0NiwNDXeatHS4ezKnMJZBmzbEvcbMl4feM=;
+ b=RHcfhgQL1m1MQ+p6R7/UvsNYP4SkumU5+VYDE3fsbXtPBmOouZ7ptHQc
+ LLHYpJD7pKSeQPJT3FXrHJJOJO3M8TqS16ZS4ODxDQfz+B58YqvdIG1Wt
+ Y9D3mbnRI9mro0m0Bk9zO5/3g5+oXGZJPg0pbyflE/IWFJsOUbSPy1yDB
+ k9R7UJOCQRCh8x9q8OvjtT7Y8//UH/g9JnPcT6G1dOdnre8T0JoSNLjuw
+ arnTlQ6tX2eKUOJtuYuHCRA69+4bmhf8mipQvb5EzEdWa5UFn6fAxrDBt
+ iRhPWITNhARCRM0FX8rTZXuafUb69LqD+izmq1t0Sr//cqUw4y1ocMi7G A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="285028170"
+X-IronPort-AV: E=Sophos;i="5.92,251,1650956400"; d="scan'208";a="285028170"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2022 18:18:20 -0700
+X-IronPort-AV: E=Sophos;i="5.92,251,1650956400"; d="scan'208";a="650908998"
+Received: from ncarvaja-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.249.32.228])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2022 18:18:18 -0700
+Date: Thu, 7 Jul 2022 03:18:15 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
+Message-ID: <YsY0V2JJgXNPjy1s@alfio.lan>
+References: <20220701225055.8204-1-niranjana.vishwanathapura@intel.com>
+ <20220701225055.8204-2-niranjana.vishwanathapura@intel.com>
+ <fbbba03a0a0d0f97136b1449276b763a70beb084.camel@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
-Date: Thu, 07 Jul 2022 00:47:44 -0000
-Message-ID: <165715486498.2212.16727322646070060676@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220707003107.2533184-1-radhakrishna.sripada@intel.com>
-In-Reply-To: <20220707003107.2533184-1-radhakrishna.sripada@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBp?=
- =?utf-8?q?915=3A_Introduce_Meteorlake?=
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fbbba03a0a0d0f97136b1449276b763a70beb084.camel@intel.com>
+Subject: Re: [Intel-gfx] [RFC 01/10] drm/i915/vm_bind: Introduce VM_BIND
+ ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,39 +60,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Auld,
+ Matthew" <matthew.auld@intel.com>, "Vetter, Daniel" <daniel.vetter@intel.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: i915: Introduce Meteorlake
-URL   : https://patchwork.freedesktop.org/series/106000/
-State : failure
+[...]
 
-== Summary ==
+> > +/*
+> > + * VM_BIND feature version supported.
+> > + *
+> > + * The following versions of VM_BIND have been defined:
+> > + *
+> > + * 0: No VM_BIND support.
+> > + *
+> > + * 1: In VM_UNBIND calls, the UMD must specify the exact mappings
+> > created
+> > + *    previously with VM_BIND, the ioctl will not support unbinding
+> > multiple
+> > + *    mappings or splitting them. Similarly, VM_BIND calls will not
+> > replace
+> > + *    any existing mappings.
+> > + *
+> > + * 2: The restrictions on unbinding partial or multiple mappings is
+> > + *    lifted, Similarly, binding will replace any mappings in the
+> > given range.
+> > + *
+> > + * See struct drm_i915_gem_vm_bind and struct
+> > drm_i915_gem_vm_unbind.
+> > + */
+> > +#define I915_PARAM_VM_BIND_VERSION     57
+> 
+> Perhaps clarify that new versions are always backwards compatible?
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/106000/revisions/1/mbox/ not applied
-Applying: drm/i915/mtl: Add MeteorLake platform info
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/i915_drv.h
-M	drivers/gpu/drm/i915/i915_pci.c
-M	drivers/gpu/drm/i915/intel_device_info.c
-M	drivers/gpu/drm/i915/intel_device_info.h
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/intel_device_info.h
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/intel_device_info.h
-Auto-merging drivers/gpu/drm/i915/intel_device_info.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/intel_device_info.c
-Auto-merging drivers/gpu/drm/i915/i915_pci.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_pci.c
-Auto-merging drivers/gpu/drm/i915/i915_drv.h
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/mtl: Add MeteorLake platform info
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+how is this 57 coherent with the description above?
 
-
+Andi
