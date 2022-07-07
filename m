@@ -1,140 +1,136 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89A6356AA1F
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 19:58:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF0DC56AA41
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 20:09:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60154112939;
-	Thu,  7 Jul 2022 17:58:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ACF710ED28;
+	Thu,  7 Jul 2022 18:09:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2DB9112939
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jul 2022 17:57:59 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E73DE10EAF3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jul 2022 18:09:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657216679; x=1688752679;
+ t=1657217383; x=1688753383;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=mFkpS0g0Uw/0e4MZfoHcQnbMH6HpozwWVWVJ43m3VC0=;
- b=crj7AWIPOz5g32+0OvFbNVvRT7r6eORmiMyzw0yHEO9RxbRvyks9rstA
- 5fRHVuyIu0/+26RiZSrCz8R3+isH5+tln+7XvPWhkB3M+E1Do0CUhoNcq
- PDmktaSLX1I8C0gbPKce8CJVuL6PcyhtWu+VzN/GdwVUbRy6h9lczDEjJ
- GZVugx2NRjnQvrp/l008YCYWXKAjYwxmPvsdyEJZj8PoxpsvkIagx4WOI
- 668ZL82pi0aVldt3OHm+HbRyjBl4rF9gGyIhe6ytXIoRB+s1SiayRk6Qy
- BP6hnvLnNTjwnVe9/ZP385w0UKpHRWk02kMLm79V/+mV38Su6ufQnBLNE g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="370402582"
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="370402582"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2022 10:57:59 -0700
+ bh=BPULWEPaF5ToAuA+GrxGk6KyDa1I28m1bdBCFKWr16Q=;
+ b=Wf78XiDAjpdQhjze+s3eZOCitqSEFakca0saKry7OD9uztnC5nl/9UxA
+ ZEwu7rrwsMwCURGKMXQXKvV4g6cfJUyrvZb6IG4IIT2Hc+elHsC9cPjGV
+ but0yAQs+VicfF+waeh/rnwDqI+awFFpk2xzzLP6JVyQIkLmQJFAop+Ip
+ r5x15W/Wcrfz1SN4vi75TXTs9WiY7iUv13OC0beMk0ZISTACAUF3FZq43
+ E000VFE7eyS3fOUNgrOPLUatFKtw/+NJ/Lfb5S3LfKHB47ul7yB4GYhF8
+ bmm8g4hLu1VNC4Wqvk3756JUWmxJYWUUPK8rqA+D2E+26V/loLgm6VYoP Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="284831312"
+X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="284831312"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2022 11:09:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="593828204"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by orsmga002.jf.intel.com with ESMTP; 07 Jul 2022 10:57:59 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="651234136"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+ by fmsmga008.fm.intel.com with ESMTP; 07 Jul 2022 11:09:42 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 7 Jul 2022 10:57:58 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 7 Jul 2022 10:57:58 -0700
+ 15.1.2308.27; Thu, 7 Jul 2022 11:09:41 -0700
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Thu, 7 Jul 2022 10:57:58 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2308.27 via Frontend Transport; Thu, 7 Jul 2022 11:09:41 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.46) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Thu, 7 Jul 2022 10:57:58 -0700
+ 15.1.2308.27; Thu, 7 Jul 2022 11:09:41 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fN8ec9AL2HisEfK4bbkhyFc8BYVq69DUahqYX3F+mzVf5+klvoNEZUBk4bwXnjE95A/2BLk1qBAZPcOCc4d5EoPlZBywON3J/Op3PMeKCaEo8MeDp/Oo/cmCRv01S3dQleb/41ShJXg/XAjCbxbHetfJbpt+TWOx6Z0biXkb59tk1DZ5GeUvwpnXADSlTAYLYfNgehiSZ1+V9W1bpYagSyZmWsY+XExD8bMTSS7ZQEArqZvmvct0CuznvxkC4Wn3T+B5aYwNUkR1Tzo60yjBZAkykjjSLkffOTp17ZmPY3yZpSXKi6qoQleyXjdJRe5PgiTXss7LE0PeJbypCu5ReQ==
+ b=moPQUgdYNpxorDnp18zVZSSkv7vlFEkry/c9zAcq04HZ+ZHXxA4Y5FOh3Yz1oW7ukdOUUmc1Wcvd82SRxxTJa/SOuPC9uiKuu7Mn1YiQnST2SQAuVSD5sFp2pvoEfMNnFC5wLY4+ljL9WOy4emmA35Mf5k2Md6v5tQdhunRx+a5qDZ7pZ8TQNKVHk9mmSYiXXHJJn1EvYNza20bxqYhDLnj9mdzE11U/DakIdfxz5v/sGg3q/0JtasQ2kQdN9YhpSdR/oiV9q98iTqGISZsBG9Kq42hGCk+bFHd7wu6ASzgKWY3QiFZzyxOE6MH3MkN7fimdvYgwSHlMpRdv1vTQpQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qUNddOcWq99VtWWhtnfF0x5u2toDrOp9Ib6EU73MpRs=;
- b=jV3mIAinTeTXU/cnf7Krq9kVp01SB9LQiFbnvUlUyTEHX0SgIWBdhUxZ4UmkiBM6tMNsSuLDBC9p8MloOVmyuW6O6l/rOR0/2W6ydRA7ZPJ8dQT1I/bNjQSnxHh6OrK6H5wpfwsA/n+OYYDrGHoDa59E5dARymx5gDjbmb51wYX8Jx9zKLs8QA11WCE6EYmOjDD93VjDAzIHX+0UBMObspWxC8gpb4PFFas6+ZhtRDVmEuC+/PjZBstoEwJOZUbdLcIlBZDI5eaIFbNU5DYyZtBKUxXPk86aWFMbxSGKG/Z31nmX6IiZZEYcnIlaH+LrL9GR2dqznv+QqjymRYJTLQ==
+ bh=h0bUcIQRPMlQjNb2SoQD05Tq3yrOVJyk9Gg1a9uS8Xc=;
+ b=BNL9ORj71oFr7jf6UzgH1dUbJZQuFaarkgJsNAzTcGA22JHTVmu/pohVkRgzySZc2KP16KNgyNFHuW095X3wAZtk0+Vl+MClxRTD6YjiHjPm/1ABWOhqmhNvF3VztZ946V2pEVqjAQiqhuvdDkNuXXmjSNCn81n8etrJ5BuE1LqbXraws5V215pIYQSNr1TYyx18iDWKpPkXXwYSQcZ4TE+OQKyXGyxmTcIFfc5y3AiHIcpntq+WsW6Ua9QljkJsd158EUhlPI30114mM1v3hhM4ZA8aEAFDYoNccF9hnu96gY/O/rB5U7hVZJ5+2Qnu8R4KnW7jCG1FiQS3RMVevg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by BYAPR11MB3013.namprd11.prod.outlook.com (2603:10b6:a03:8b::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.18; Thu, 7 Jul
- 2022 17:57:56 +0000
+ by CO6PR11MB5665.namprd11.prod.outlook.com (2603:10b6:5:354::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Thu, 7 Jul
+ 2022 18:09:40 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::8053:3c59:9f5d:b615]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::8053:3c59:9f5d:b615%9]) with mapi id 15.20.5395.021; Thu, 7 Jul 2022
- 17:57:56 +0000
-Date: Thu, 7 Jul 2022 13:57:52 -0400
+ 18:09:39 +0000
+Date: Thu, 7 Jul 2022 14:09:36 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Karolina Drobnik <karolina.drobnik@intel.com>
-Message-ID: <YsceoP5CYySLWjJk@intel.com>
+Message-ID: <YschYEY9BDf/Mlqm@intel.com>
 References: <cover.1656911806.git.karolina.drobnik@intel.com>
- <b0d575e51f795d0b19ca93fbf3e796a747c961ab.1656911806.git.karolina.drobnik@intel.com>
+ <5c77a2a12b4159415e5e448a563ab70a13a8d8cb.1656911806.git.karolina.drobnik@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <b0d575e51f795d0b19ca93fbf3e796a747c961ab.1656911806.git.karolina.drobnik@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0007.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::12) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <5c77a2a12b4159415e5e448a563ab70a13a8d8cb.1656911806.git.karolina.drobnik@intel.com>
+X-ClientProxiedBy: BY3PR04CA0001.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::6) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f555701c-9797-473a-59e5-08da604238ae
-X-MS-TrafficTypeDiagnostic: BYAPR11MB3013:EE_
+X-MS-Office365-Filtering-Correlation-Id: 87aa4ce9-dc20-42c2-cfb1-08da6043dbe7
+X-MS-TrafficTypeDiagnostic: CO6PR11MB5665:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WFzv9ep3dZkNWoNyiyts2/wHcdgmrZcNrj8ReTYUP3ldyC2R+ykL2ognGxm7qcExpL/+SZr7u/9Pq44zfQrU0FNEaSQhe/1PcDYgsfi7TUmr2OkzmmxoIVicEF8FIuzXetLQTAo/nWIJKWmWoW4WhRgL4u74v6g8g5nzrvYKKdO/GZAHWWXdKIfIMycJfuz/eljDjCP9NTDEIpGo98KgulPxGwrhVPyvoeW41t7kZZL8owcxhctXmV8oUIfgsYSwqmkGTtCMBH6VVik3pisTGSW/Wufs8T7F631Pq4TLmCCUwFq0jbaM+5iAz8URCKHBZEoMlzmE0l8m6qBqnGVu0v6dA4/l1zvbLn1FG7SUpaEGZI3PmBTocad0C2v3DUNAsONwFV00aFDGHPN3nBdt4YZL8qbGeyyw3vAmwKAtmES6me7AML+8fhiAQU6YHMMsHmYZ/Pw5GL+ZU4wsUT0NrrIzdG5hHSDz8TJGB6R9I284R7agxUj0Jcb8K/m4kYhqWyzz0UH0LOMqkcmnW9M/+hZrm27uUcj4f2nSrLRrtvzoAXxK3tM0vVATwgk3LXpmDSgdRPWJkGT3tz2HzbcJll5r+twDTIFO9XsIe57UChAFqPcntiCQlo2LzrxoOgvmbOgh1deyjukHT4oUK4VHVSqO48L/Yky+s6D5M/So1hyqK0xqG7fHgnAcskqfnrn65ridjU6vL2rmuwL/A8yc9g==
+X-Microsoft-Antispam-Message-Info: y77fmZ4Yc/YIhVEGrWs2A4S6r7VEXd5ZpSVp7Xt0CDwxKvlZ3NWgqOC7TLNYf7zAbHHm7kB9NhGzM4dF0HElzHf1bVL9sQB2MeN5oS0AQeSmL+0/baaMRUHzuE7fc30a4Y6NWN+yQTzfkcnkXx64qsUdcT8sdJn+Ep5XxD9clPZQ7x7v8Jaxu4hMdO1qBkLtuXTIK4O2tZ0/eDWlOtTE4b+raKl/cNJ1/rQ3xg9KwtUU7MDigMJKTGSOH0tz+n/Hb6nggwsOBrZH8u0ub4B0YBgubNokJkVls4Nfxd2Lyb7v9WT1co6mIb+8Ncu+BzbO+pVRt452o0NQsUcZrL/xYMPQ6j+3d6lGAjS+2kRISYxtxY1zIAr6ARANwg4EsJMeFa2OcJv5QyLBTufVO2eZBc7cj25ibXtEHZf75fEg/49VLw65Ng06hC3rYQKRUHdRvMvd/VuxlDAL0WJ9W5vydcylGveQhn0lbQ3Hj+/RpM7Aw9W3URdyD5ym9ecyG5J0nQSANYadHiFRG0Nv8lIJLVXoTExIYnAJXJuKVR/seBn84HNkJoB3jpsX3KL7xIoSdUiXwohQWUycSTtpos02A9aC5qnKuEsDl2dY7D9xyDVbIoxUHznCQ5ZjJ2sBiMGd9uWhf0LDCr2KRXDziGwjHDKSQBMKMeuvr7FQRmNc/VinA08TBu7XZ0Zp7QicNRdHgiY464ue3wmtCgz4fuCkMA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(136003)(376002)(396003)(346002)(39860400002)(366004)(966005)(6486002)(37006003)(6512007)(478600001)(2616005)(8936002)(4326008)(316002)(41300700001)(5660300002)(6636002)(26005)(6862004)(44832011)(86362001)(6666004)(6506007)(8676002)(54906003)(2906002)(186003)(66556008)(83380400001)(66946007)(36756003)(38100700002)(66476007)(82960400001)(107886003);
+ SFS:(13230016)(366004)(136003)(396003)(376002)(346002)(39860400002)(316002)(6666004)(82960400001)(83380400001)(38100700002)(37006003)(44832011)(6636002)(8936002)(86362001)(66946007)(6512007)(8676002)(5660300002)(6862004)(2616005)(66476007)(66556008)(26005)(6506007)(6486002)(966005)(4326008)(36756003)(478600001)(186003)(2906002)(41300700001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fORx0yp5IqHMqgrQhe/vZKMmpmWxSJi5uTu9PuYX4ywQS+j3w++qFppecjY8?=
- =?us-ascii?Q?C/xLl3+7O9MQ4ArTfg5E6zXbJ6tNCtdJfvF85Z0LoY1Voxs9FxwN197E6ZyE?=
- =?us-ascii?Q?EB9D7VaBeNxT0Oub/xU7H/+DMiPcqmpHUrQQxZiuSnV0tWBUg3YYkfvR+C1K?=
- =?us-ascii?Q?cdntKGiwLp1Hi8CS9qQ2Ur2YEJ4HhcN4qiYk7SkVyDnSZnQXE/hRA6ImziXS?=
- =?us-ascii?Q?bDwiL/qvALHBL2wF9Mux4u0r97BVek06CnhNkm6zN1iXLijqcOmNHeNyiR2G?=
- =?us-ascii?Q?RBg8drLxTTLkp8UyLPLZWd8w7nHxz9il2UAryrbj/SYpbUiH634mfgwsqWdT?=
- =?us-ascii?Q?7iGekxYG9Gk3nh5KFSp0lXVic23oDED7UQ07YpKduLFSbrk4xhOkQ0OuaYQA?=
- =?us-ascii?Q?V6nuyZ2A910BIIseMvB92m6ugiCM6Onp42alOVm2dIuy2G5ZrWhjNxdh+VFE?=
- =?us-ascii?Q?sCnSBpH2OMO6INCS4es4c/yOoLu5f0gB0Ow2Td7ZnbGWtWknBcOiqt+QAd0T?=
- =?us-ascii?Q?ZsA398+pqu1Kpo4nJVUXFjJBC27obvF4zLj+aMmDcJ4f51TQxZ5qzqpkVzft?=
- =?us-ascii?Q?vlADwM35ZRwD1n/EiAZznr0wvCP8Zb51ui55lf1EfEMcuqA1ZNqVn3+/3tDO?=
- =?us-ascii?Q?VA3c6dEnckqpm22QkVff2AUzQzfYeAQDHRjMR/dGS2OLvHfmK38yq6qUKSKN?=
- =?us-ascii?Q?79Xkn5RgqfJCet7jO4PtLmRAGLaVzX822aLSzp4jm7CkmhtYq7jt440fViha?=
- =?us-ascii?Q?xYzrBL5VIA40VJKrZjWlN/tURVMZyBfQKFPYJ7gHy+Y83mW7KR7668+Xiptw?=
- =?us-ascii?Q?agCCFca1yuRypFZF44vAjtPV5KURGlD8PRnn36Eu978s35ga7MX39B/HCGjG?=
- =?us-ascii?Q?FXBupJMB6Kxwdl9W8tAQhj2/OksVKG7vrtM0q7K9u4MprPYZyuLXp52Dkv7A?=
- =?us-ascii?Q?nuG1jiODXHE9MHk3GkaLrXoDYUA/knIdop917lVFSEGq2oNCkRSryTYDXtE8?=
- =?us-ascii?Q?XoO5eidb5tmrKV8NdMX0uM0WWYp9r5EzN1s7Y/nVIystiaFF3MqsjAxfHjbt?=
- =?us-ascii?Q?vfHZq7h2nEwYXm+TksFvHFZ2JIagIrbb/kG+A297yBELkrOExbmjwzLlPByN?=
- =?us-ascii?Q?JDVjHXSfUwhf+vGcfd9X+wi0JtRpEtqLsXq1eU/mjUteLbKBLLobwTRAgCRd?=
- =?us-ascii?Q?ULWNzm7dA6FbfUnG8D+9KnXxli6ct3I+g92kNm82dg/FeibTvEuPKGdxZjEM?=
- =?us-ascii?Q?BQedpb/GMN9lExSDqHF1y/4DfyTDUkFVrzL6+gTBaizX7Xz2KQHwcaikF3dG?=
- =?us-ascii?Q?dLtmye1Z5dfQM5GfCfdUGoYF+T7maI9aQEvyVKQUOiOu4DToItrayBjcYtc+?=
- =?us-ascii?Q?aqMNVHA3QATKuxWVkyAA6C8mUNSfCZfmzniGBFc6MrK4ZjiuR1v37wdVR3W2?=
- =?us-ascii?Q?f618FxwlxWASkCjT5igW7fZdGi9ETNd2eug7knsQxAih+p7iUcWvWviqwxaX?=
- =?us-ascii?Q?skBBX/s6cWXNUWEYrN2IfSWkpxzn17Uj4+gWGp5HWe9CRa/P1iIelOED9/x4?=
- =?us-ascii?Q?TdI4NbpAm13d6FXAZNhMRxHvqzgJwHA6xQBv0L7DhfOV5hhrHwfHSle5LIZI?=
- =?us-ascii?Q?EA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f555701c-9797-473a-59e5-08da604238ae
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ajG20W9A2KHSO+wtCYfGXTNBONmBGNYs3zyevgVCOrYItlZ1cFM3IXgRibXl?=
+ =?us-ascii?Q?nT+Yh8s92ocY+36J3RX2UsZP84N2st20eixCGCpux6Vs2tuFMHfDR82aEOL8?=
+ =?us-ascii?Q?yxwvVMPCKIZEstTh0iiXKgpdkt9F88SdiyYiMLIFt4qhrC6sneUM7RGfv2Nc?=
+ =?us-ascii?Q?ah4hc0z22fvdWJaarU2Yzxq1RGbVQTHrOsAcF24wnms4Ax3ngD6kHDeaIKFm?=
+ =?us-ascii?Q?V4eA3z1LTo4rzqvDNNzOAyds8hlxx6Q1F+n36Ibze/g87tCJzewc2CIaHtsd?=
+ =?us-ascii?Q?HSIyn+VPlZjj3UmQFYghu7E/0yY4rEownERxEeCvBr0+bzho5m+sBwNzaAcF?=
+ =?us-ascii?Q?17CqyS4qMTDV/QwC5c8WQI7HOmSvKEaaE4KP5Ndit6ijhFEuXwN1VXZfMRSH?=
+ =?us-ascii?Q?StgVh0i8sdazeVqzMo+WoErEIgb/gmnS6zQ4WflcfH2y8tpGk9hRsPM/MNWS?=
+ =?us-ascii?Q?QTah7NUb60j7UKnOOay4ufh7w8/JPCp1wwu5zBpsBp+X7fFCSDmR+nbZMvhT?=
+ =?us-ascii?Q?CwwSny/y4fAvfEDRjaCfHCytqjhw1OcEDQkUyMtVkMnHeAljBlYhBPZfnesS?=
+ =?us-ascii?Q?riWdFKbV4jlXaeKZXuE/YxKrl/MyFQp728yeXBESQGkNV2ONwr626g/orjQ2?=
+ =?us-ascii?Q?Uav+xJidl5LuFXPIcRmPhUeJ8xOYWmOTfItuPvhtMzq7fF2Nccl9DgkgoxB4?=
+ =?us-ascii?Q?poWH1FthBHtSrVrUwiZsDC1QuXTVrdnPqXJPti/52GFZvi0tMHakV3l02/8Z?=
+ =?us-ascii?Q?GQfG0Cw/EFqcL8iO39g7y13m+XNYjD4rbDgcgB9GRW771k9hpJJkQjC/Kqjj?=
+ =?us-ascii?Q?q/u88z8IZFPmUhgLRPGaeh+v4OOxED2G58LfpQpeTFSSnS21RmU7D+uKA4qg?=
+ =?us-ascii?Q?7NJXwEJeEno08FMKeXA8o2p543UGL4cfdt2nUtjwx/dQstqxw2JqEKrsqcSj?=
+ =?us-ascii?Q?SNtKxUiP7CwNN0hpeVX1dHrcuq/LJLlhdWZMfoIUP47gmc6hYiN9VBKyw+li?=
+ =?us-ascii?Q?8GyaZ1M3FJYC03sArmxnXrJh8G96JddLLjKYb2Q+376WabA2Y7g8qgMFNiHm?=
+ =?us-ascii?Q?56AIB8fETH1kI4+v+Tf2pFRTs+VqlxYgqlMv9uV3pKtzHY95dTCrvUwV/Ltf?=
+ =?us-ascii?Q?mURcVvqmuSoaqcWsAL9fAz6K55IgyVe60WpmQegetdE3GP+itC9DhDc1mTH3?=
+ =?us-ascii?Q?TdgQPj7D3vC2DFrY/hcwg6wfKEW2X8Vsn86x+WdxDEKRNtOZDsg5oSQGYgxG?=
+ =?us-ascii?Q?ca0bu/ASLRvHrJeZets8vrVIJfku3VyfYNBKq3jI58ESuNeQ3jSLx+TKhc7B?=
+ =?us-ascii?Q?fM/oDB5r5gNLs8XckapD+6sWmtZIxllnPdnpK3R+YCCOo3KF1hv6VOb2o5KV?=
+ =?us-ascii?Q?5A+TLGJjsxxFS8KoKAOdPxjnXaYQhxxgsGGHjxVZSYbQ0qEcGaz9jgE/8am7?=
+ =?us-ascii?Q?Mp05lDCLETZGEcH4Z1ZREmcQuv4xGTqto4nByhAs5o9jQNoqAuzAUH5iO/r+?=
+ =?us-ascii?Q?Hzckr6PQb+DQGr196/GtHLxoD0ZuyPD++xj2oRr7fu9JJtF8h+6ivvkxerv1?=
+ =?us-ascii?Q?YvmO1D98BAtzKMN2fPQ6PKY9ZzrX+7PSWRA6RdcDId59fFRRYLhMaHd6ooiM?=
+ =?us-ascii?Q?lA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87aa4ce9-dc20-42c2-cfb1-08da6043dbe7
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2022 17:57:56.5165 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2022 18:09:39.7649 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jeEMT/VfsZ7LYsjhviUs+B+qox/0sBDPgI7VxUH/gKJ4Jx21x9th76U/5OGlOAN7HaQLqjJdW8dbG7/U1U8xsg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3013
+X-MS-Exchange-CrossTenant-UserPrincipalName: Q7JZcY+gpnpm8/camnhLzVrcNNvlVnXx5sgsXPnkiLvAqI+fiVhZlG0JMv2nPasOcgjGC31lQOoiZ/68ooNWhQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5665
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gem: Look for waitboosting
- across the whole object prior to individual waits
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Bump GT idling delay to 2
+ jiffies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,130 +143,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Voegtle <tv@lio96.de>, intel-gfx@lists.freedesktop.org,
- chris.p.wilson@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 05, 2022 at 12:57:17PM +0200, Karolina Drobnik wrote:
+On Tue, Jul 05, 2022 at 12:57:18PM +0200, Karolina Drobnik wrote:
 > From: Chris Wilson <chris@chris-wilson.co.uk>
 > 
-> We employ a "waitboost" heuristic to detect when userspace is stalled
-> waiting for results from earlier execution. Under latency sensitive work
-> mixed between the gpu/cpu, the GPU is typically under-utilised and so
-> RPS sees that low utilisation as a reason to downclock the frequency,
-> causing longer stalls and lower throughput. The user left waiting for
-> the results is not impressed.
+> In monitoring a transcode pipeline that is latency sensitive (it waits
+> between submitting frames, and each frame requires work on rcs/vcs/vecs
+> engines), it is found that it took longer than a single jiffy for it to
+> sustain its workload. Allowing an extra jiffy headroom for the userspace
+> prevents us from prematurely parking and having to exit powersaving
+> immediately.
 > 
-> On applying commit 047a1b877ed4 ("dma-buf & drm/amdgpu: remove dma_resv
-> workaround") it was observed that deinterlacing h264 on Haswell
-> performance dropped by 2-5x. The reason being that the natural workload
-> was not intense enough to trigger RPS (using HW evaluation intervals) to
-> upclock, and so it was depending on waitboosting for the throughput.
-> 
-> Commit 047a1b877ed4 ("dma-buf & drm/amdgpu: remove dma_resv workaround")
-> changes the composition of dma-resv from keeping a single write fence +
-> multiple read fences, to a single array of multiple write and read
-> fences (a maximum of one pair of write/read fences per context). The
-> iteration order was also changed implicitly from all-read fences then
-> the single write fence, to a mix of write fences followed by read
-> fences. It is that ordering change that belied the fragility of
-> waitboosting.
-> 
-> Currently, a waitboost is inspected at the point of waiting on an
-> outstanding fence. If the GPU is backlogged such that we haven't yet
-> stated the request we need to wait on, we force the GPU to upclock until
-> the completion of that request. By changing the order in which we waited
-> upon requests, we ended up waiting on those requests in sequence and as
-> such we saw that each request was already started and so not a suitable
-> candidate for waitboosting.
-> 
-> Instead of
-
-Okay, all the explanation makes sense. But this commit message and
-the cover letter tells that we are doing X *Instead* *of* Y.
-That would mean code for Y would be removed. But this patch just add X.
-
-So it looks to me that we are adding extra boosts with the code below.
-
-What am I missing?
-
-asking whether to boost each fence in turn, we can look at
-> whether boosting is required for the dma-resv ensemble prior to waiting
-> on any fence, making the heuristic more robust to the order in which
-> fences are stored in the dma-resv.
-> 
-> Reported-by: Thomas Voegtle <tv@lio96.de>
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6284
-> Fixes: 047a1b877ed4 ("dma-buf & drm/amdgpu: remove dma_resv workaround")
+> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/6284
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > Signed-off-by: Karolina Drobnik <karolina.drobnik@intel.com>
-> Tested-by: Thomas Voegtle <tv@lio96.de>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_wait.c | 35 ++++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
+>  drivers/gpu/drm/i915/i915_active.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> index 319936f91ac5..3fbb464746e1 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> @@ -9,6 +9,7 @@
->  #include <linux/jiffies.h>
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index ee2b3a375362..7412abf166a8 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -974,7 +974,7 @@ void i915_active_acquire_barrier(struct i915_active *ref)
 >  
->  #include "gt/intel_engine.h"
-> +#include "gt/intel_rps.h"
->  
->  #include "i915_gem_ioctls.h"
->  #include "i915_gem_object.h"
-> @@ -31,6 +32,38 @@ i915_gem_object_wait_fence(struct dma_fence *fence,
->  				      timeout);
+>  		GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
+>  		llist_add(barrier_to_ll(node), &engine->barrier_tasks);
+> -		intel_engine_pm_put_delay(engine, 1);
+> +		intel_engine_pm_put_delay(engine, 2);
+
+I believe we should make more use of the runtime_idle to check for some
+pending activity like this... but in the current structure this patch seems
+the best and easiest option.
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+>  	}
 >  }
 >  
-> +static void
-> +i915_gem_object_boost(struct dma_resv *resv, unsigned int flags)
-> +{
-> +	struct dma_resv_iter cursor;
-> +	struct dma_fence *fence;
-> +
-> +	/*
-> +	 * Prescan all fences for potential boosting before we begin waiting.
-> +	 *
-> +	 * When we wait, we wait on outstanding fences serially. If the
-> +	 * dma-resv contains a sequence such as 1:1, 1:2 instead of a reduced
-> +	 * form 1:2, then as we look at each wait in turn we see that each
-> +	 * request is currently executing and not worthy of boosting. But if
-> +	 * we only happen to look at the final fence in the sequence (because
-> +	 * of request coalescing or splitting between read/write arrays by
-> +	 * the iterator), then we would boost. As such our decision to boost
-> +	 * or not is delicately balanced on the order we wait on fences.
-> +	 *
-> +	 * So instead of looking for boosts sequentially, look for all boosts
-> +	 * upfront and then wait on the outstanding fences.
-> +	 */
-> +
-> +	dma_resv_iter_begin(&cursor, resv,
-> +			    dma_resv_usage_rw(flags & I915_WAIT_ALL));
-> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-> +		if (dma_fence_is_i915(fence) &&
-> +		    !i915_request_started(to_request(fence)))
-> +			intel_rps_boost(to_request(fence));
-> +	}
-> +	dma_resv_iter_end(&cursor);
-> +}
-> +
->  static long
->  i915_gem_object_wait_reservation(struct dma_resv *resv,
->  				 unsigned int flags,
-> @@ -40,6 +73,8 @@ i915_gem_object_wait_reservation(struct dma_resv *resv,
->  	struct dma_fence *fence;
->  	long ret = timeout ?: 1;
->  
-> +	i915_gem_object_boost(resv, flags);
-> +
->  	dma_resv_iter_begin(&cursor, resv,
->  			    dma_resv_usage_rw(flags & I915_WAIT_ALL));
->  	dma_resv_for_each_fence_unlocked(&cursor, fence) {
 > -- 
 > 2.25.1
 > 
