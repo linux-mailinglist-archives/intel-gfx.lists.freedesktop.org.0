@@ -1,55 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8D956A988
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 19:26:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF6056AA05
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 19:52:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9509711B2BC;
-	Thu,  7 Jul 2022 17:25:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1CD210FC87;
+	Thu,  7 Jul 2022 17:52:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 251FA11ABAE;
- Thu,  7 Jul 2022 17:25:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657214758; x=1688750758;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MdJwEM9SKez18tnwXLE6OCtQENFxNIaTyAbVi0K5JJc=;
- b=DzLEQzvPy8UG3ohZK9HiF9lGQoijDleukigsbZr4wjJbQWiAzKnqQRY7
- WwAhor4aLCY90PzM+uZ+ed9tAnmPrmDcD1SRLaNQo2So54++t3RFR5Q41
- 47RcuGle6Z9iiIJ497LT2aatyrNlrIrg6YusTFsfdr+g40DYn6liOoekr
- esZbvBwY2CledQlwbAOHZV0SZQL6Q1lLdWe9X/T+4rCjLMsHnowLeZ5Mp
- WUosGTuQGlXYqgfp5khGpLp0AfBTGkeEkzXCWXzzoLZlXRWTHKI7T4GwW
- z/yPv5dtPaVQ8Htik/X8Yjk2DGvs48pTWSVfkQyVhjkf4AHTPCVnBM2PF Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="264494802"
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="264494802"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2022 10:25:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="543899076"
-Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
- by orsmga003.jf.intel.com with ESMTP; 07 Jul 2022 10:25:54 -0700
-Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1o9VGE-000MGY-3c;
- Thu, 07 Jul 2022 17:25:54 +0000
-Date: Fri, 8 Jul 2022 01:24:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Message-ID: <202207080122.B4DLOdD2-lkp@intel.com>
-References: <20220707102453.3633-2-christian.koenig@amd.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D541E10FE8B;
+ Thu,  7 Jul 2022 17:52:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C9DD2A363D;
+ Thu,  7 Jul 2022 17:52:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8093373596895955226=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220707102453.3633-2-christian.koenig@amd.com>
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/ttm: rename and cleanup
- ttm_bo_init_reserved
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 07 Jul 2022 17:52:09 -0000
+Message-ID: <165721632978.2212.15386510163578029617@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220707170927.499451-1-matthew.auld@intel.com>
+In-Reply-To: <20220707170927.499451-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/ttm=3A_fix_sg=5Ftable_construction?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,141 +40,277 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi "Christian,
+--===============8093373596895955226==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I love your patch! Perhaps something to improve:
+== Series Details ==
 
-[auto build test WARNING on drm-tip/drm-tip]
+Series: drm/i915/ttm: fix sg_table construction
+URL   : https://patchwork.freedesktop.org/series/106048/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-ttm-rename-and-cleanup-ttm_bo_init_reserved/20220707-192538
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: x86_64-randconfig-a011 (https://download.01.org/0day-ci/archive/20220708/202207080122.B4DLOdD2-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-3) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/607b24f78509a1fb0e55c8f9f610113bb0421706
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Christian-K-nig/drm-ttm-rename-and-cleanup-ttm_bo_init_reserved/20220707-192538
-        git checkout 607b24f78509a1fb0e55c8f9f610113bb0421706
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/ttm/
+== Summary ==
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+CI Bug Log - changes from CI_DRM_11857 -> Patchwork_106048v1
+====================================================
 
-All warnings (new ones prefixed by >>):
+Summary
+-------
 
-   drivers/gpu/drm/ttm/ttm_bo.c:99: warning: Function parameter or member 'bulk' not described in 'ttm_bo_set_bulk_move'
->> drivers/gpu/drm/ttm/ttm_bo.c:962: warning: expecting prototype for ttm_bo_init_validate(). Prototype was for ttm_bo_init_reserved() instead
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/index.html
+
+Participating hosts (45 -> 40)
+------------------------------
+
+  Additional (1): bat-adlm-1 
+  Missing    (6): bat-dg1-5 bat-dg2-9 fi-ctg-p8600 fi-kbl-x1275 bat-rpls-1 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_106048v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2] ([i915#1888] / [i915#62])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_selftest@live@gem:
+    - fi-blb-e6850:       NOTRUN -> [DMESG-FAIL][3] ([i915#4528])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-blb-e6850/igt@i915_selftest@live@gem.html
+
+  * igt@kms_busy@basic@flip:
+    - bat-adlp-4:         [PASS][4] -> [DMESG-WARN][5] ([i915#3576]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/bat-adlp-4/igt@kms_busy@basic@flip.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/bat-adlp-4/igt@kms_busy@basic@flip.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-ivb-3770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-ivb-3770/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [PASS][7] -> [DMESG-FAIL][8] ([i915#62])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
+    - fi-cfl-8109u:       [PASS][9] -> [DMESG-WARN][10] ([i915#62]) +10 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-ivb-3770:        [INCOMPLETE][11] ([i915#3303] / [i915#5370]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [DMESG-FAIL][13] ([i915#4528]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_busy@basic@flip:
+    - {bat-adln-1}:       [DMESG-WARN][15] ([i915#3576]) -> [PASS][16] +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/bat-adln-1/igt@kms_busy@basic@flip.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/bat-adln-1/igt@kms_busy@basic@flip.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
+    - {bat-adlp-6}:       [DMESG-WARN][17] ([i915#3576]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+    - bat-adlp-4:         [DMESG-WARN][19] ([i915#3576]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5370]: https://gitlab.freedesktop.org/drm/intel/issues/5370
+  [i915#6099]: https://gitlab.freedesktop.org/drm/intel/issues/6099
+  [i915#6172]: https://gitlab.freedesktop.org/drm/intel/issues/6172
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#6297]: https://gitlab.freedesktop.org/drm/intel/issues/6297
 
 
-vim +962 drivers/gpu/drm/ttm/ttm_bo.c
+Build changes
+-------------
 
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   923  
-607b24f78509a1f Christian König   2022-07-07   924  /**
-607b24f78509a1f Christian König   2022-07-07   925   * ttm_bo_init_validate
-607b24f78509a1f Christian König   2022-07-07   926   *
-607b24f78509a1f Christian König   2022-07-07   927   * @bdev: Pointer to a ttm_device struct.
-607b24f78509a1f Christian König   2022-07-07   928   * @bo: Pointer to a ttm_buffer_object to be initialized.
-607b24f78509a1f Christian König   2022-07-07   929   * @type: Requested type of buffer object.
-607b24f78509a1f Christian König   2022-07-07   930   * @placement: Initial placement for buffer object.
-607b24f78509a1f Christian König   2022-07-07   931   * @alignment: Data alignment in pages.
-607b24f78509a1f Christian König   2022-07-07   932   * @ctx: TTM operation context for memory allocation.
-607b24f78509a1f Christian König   2022-07-07   933   * @sg: Scatter-gather table.
-607b24f78509a1f Christian König   2022-07-07   934   * @resv: Pointer to a dma_resv, or NULL to let ttm allocate one.
-607b24f78509a1f Christian König   2022-07-07   935   * @destroy: Destroy function. Use NULL for kfree().
-607b24f78509a1f Christian König   2022-07-07   936   *
-607b24f78509a1f Christian König   2022-07-07   937   * This function initializes a pre-allocated struct ttm_buffer_object.
-607b24f78509a1f Christian König   2022-07-07   938   * As this object may be part of a larger structure, this function,
-607b24f78509a1f Christian König   2022-07-07   939   * together with the @destroy function, enables driver-specific objects
-607b24f78509a1f Christian König   2022-07-07   940   * derived from a ttm_buffer_object.
-607b24f78509a1f Christian König   2022-07-07   941   *
-607b24f78509a1f Christian König   2022-07-07   942   * On successful return, the caller owns an object kref to @bo. The kref and
-607b24f78509a1f Christian König   2022-07-07   943   * list_kref are usually set to 1, but note that in some situations, other
-607b24f78509a1f Christian König   2022-07-07   944   * tasks may already be holding references to @bo as well.
-607b24f78509a1f Christian König   2022-07-07   945   * Furthermore, if resv == NULL, the buffer's reservation lock will be held,
-607b24f78509a1f Christian König   2022-07-07   946   * and it is the caller's responsibility to call ttm_bo_unreserve.
-607b24f78509a1f Christian König   2022-07-07   947   *
-607b24f78509a1f Christian König   2022-07-07   948   * If a failure occurs, the function will call the @destroy function. Thus,
-607b24f78509a1f Christian König   2022-07-07   949   * after a failure, dereferencing @bo is illegal and will likely cause memory
-607b24f78509a1f Christian König   2022-07-07   950   * corruption.
-607b24f78509a1f Christian König   2022-07-07   951   *
-607b24f78509a1f Christian König   2022-07-07   952   * Returns
-607b24f78509a1f Christian König   2022-07-07   953   * -ENOMEM: Out of memory.
-607b24f78509a1f Christian König   2022-07-07   954   * -EINVAL: Invalid placement flags.
-607b24f78509a1f Christian König   2022-07-07   955   * -ERESTARTSYS: Interrupted by signal while sleeping waiting for resources.
-607b24f78509a1f Christian König   2022-07-07   956   */
-607b24f78509a1f Christian König   2022-07-07   957  int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
-607b24f78509a1f Christian König   2022-07-07   958  			 enum ttm_bo_type type, struct ttm_placement *placement,
-607b24f78509a1f Christian König   2022-07-07   959  			 uint32_t alignment, struct ttm_operation_ctx *ctx,
-607b24f78509a1f Christian König   2022-07-07   960  			 struct sg_table *sg, struct dma_resv *resv,
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   961  			 void (*destroy) (struct ttm_buffer_object *))
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10  @962  {
-d79025c7f5e3764 Christian König   2021-02-16   963  	static const struct ttm_place sys_mem = { .mem_type = TTM_PL_SYSTEM };
-bfa3357ef9abc9d Christian König   2021-04-15   964  	int ret;
-57de4ba959b290f Jerome Glisse     2011-11-11   965  
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   966  	kref_init(&bo->kref);
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   967  	INIT_LIST_HEAD(&bo->ddestroy);
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   968  	bo->bdev = bdev;
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   969  	bo->type = type;
-607b24f78509a1f Christian König   2022-07-07   970  	bo->page_alignment = alignment;
-607b24f78509a1f Christian König   2022-07-07   971  	bo->destroy = destroy;
-deb0814b43f370a Christian König   2020-09-21   972  	bo->pin_count = 0;
-129b78bfca591e7 Dave Airlie       2012-04-02   973  	bo->sg = sg;
-fee2ede155423b0 Christian König   2022-01-24   974  	bo->bulk_move = NULL;
-607b24f78509a1f Christian König   2022-07-07   975  	if (resv)
-2e3c9ec4d151c04 Gerd Hoffmann     2019-08-05   976  		bo->base.resv = resv;
-607b24f78509a1f Christian König   2022-07-07   977  	else
-2e3c9ec4d151c04 Gerd Hoffmann     2019-08-05   978  		bo->base.resv = &bo->base._resv;
-8af8a109b34fa88 Christian König   2020-10-01   979  	atomic_inc(&ttm_glob.bo_count);
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   980  
-bfa3357ef9abc9d Christian König   2021-04-15   981  	ret = ttm_resource_alloc(bo, &sys_mem, &bo->resource);
-bfa3357ef9abc9d Christian König   2021-04-15   982  	if (unlikely(ret)) {
-bfa3357ef9abc9d Christian König   2021-04-15   983  		ttm_bo_put(bo);
-bfa3357ef9abc9d Christian König   2021-04-15   984  		return ret;
-bfa3357ef9abc9d Christian König   2021-04-15   985  	}
-bfa3357ef9abc9d Christian König   2021-04-15   986  
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   987  	/*
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   988  	 * For ttm_bo_type_device buffers, allocate
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   989  	 * address space from the device.
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   990  	 */
-607b24f78509a1f Christian König   2022-07-07   991  	if (bo->type == ttm_bo_type_device || bo->type == ttm_bo_type_sg) {
-9d6f4484e81c000 Gerd Hoffmann     2019-09-05   992  		ret = drm_vma_offset_add(bdev->vma_manager, &bo->base.vma_node,
-607b24f78509a1f Christian König   2022-07-07   993  					 PFN_UP(bo->base.size));
-607b24f78509a1f Christian König   2022-07-07   994  		if (ret)
-607b24f78509a1f Christian König   2022-07-07   995  			goto err_put;
-607b24f78509a1f Christian König   2022-07-07   996  	}
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10   997  
-f4f4e3e3e9f3bde Maarten Lankhorst 2014-01-09   998  	/* passed reservation objects should already be locked,
-f4f4e3e3e9f3bde Maarten Lankhorst 2014-01-09   999  	 * since otherwise lockdep will be angered in radeon.
-f4f4e3e3e9f3bde Maarten Lankhorst 2014-01-09  1000  	 */
-607b24f78509a1f Christian König   2022-07-07  1001  	if (!resv)
-607b24f78509a1f Christian König   2022-07-07  1002  		WARN_ON(!dma_resv_trylock(bo->base.resv));
-607b24f78509a1f Christian König   2022-07-07  1003  	else
-607b24f78509a1f Christian König   2022-07-07  1004  		dma_resv_assert_held(resv);
-5e338405119a80a Maarten Lankhorst 2013-06-27  1005  
-6fead44a4c5897c Christian König   2017-04-12  1006  	ret = ttm_bo_validate(bo, placement, ctx);
-607b24f78509a1f Christian König   2022-07-07  1007  	if (unlikely(ret))
-607b24f78509a1f Christian König   2022-07-07  1008  		goto err_unlock;
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10  1009  
-607b24f78509a1f Christian König   2022-07-07  1010  	return 0;
-607b24f78509a1f Christian König   2022-07-07  1011  
-607b24f78509a1f Christian König   2022-07-07  1012  err_unlock:
-c2c139cf435b189 Nicolai Hähnle    2017-02-14  1013  	if (!resv)
-607b24f78509a1f Christian König   2022-07-07  1014  		dma_resv_unlock(bo->base.resv);
-ba4e7d973dd09b6 Thomas Hellstrom  2009-06-10  1015  
-607b24f78509a1f Christian König   2022-07-07  1016  err_put:
-f44907593d746d4 Thomas Zimmermann 2018-06-21  1017  	ttm_bo_put(bo);
-c2c139cf435b189 Nicolai Hähnle    2017-02-14  1018  	return ret;
-c2c139cf435b189 Nicolai Hähnle    2017-02-14  1019  }
-ca9cf68de1e7429 Nicolai Hähnle    2017-02-16  1020  EXPORT_SYMBOL(ttm_bo_init_reserved);
-ca9cf68de1e7429 Nicolai Hähnle    2017-02-16  1021  
+  * Linux: CI_DRM_11857 -> Patchwork_106048v1
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+  CI-20190529: 20190529
+  CI_DRM_11857: de2555fd1402a79eb3c89db3f62944fec2026c8f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6561: 4b673211d1645eaafa9da32eece4c274d8cd6c41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_106048v1: de2555fd1402a79eb3c89db3f62944fec2026c8f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+cd5ec847a53a drm/i915/ttm: fix sg_table construction
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/index.html
+
+--===============8093373596895955226==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/ttm: fix sg_table construction</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106048/">https://patchwork.freedesktop.org/series/106048/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11857 -&gt; Patchwork_106048v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 40)</h2>
+<p>Additional (1): bat-adlm-1 <br />
+  Missing    (6): bat-dg1-5 bat-dg2-9 fi-ctg-p8600 fi-kbl-x1275 bat-rpls-1 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_106048v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-blb-e6850/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/bat-adlp-4/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-ivb-3770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) +10 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5370">i915#5370</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/bat-adln-1/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/bat-adln-1/igt@kms_busy@basic@flip.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
+<ul>
+<li>
+<p>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a> +1 similar issue</p>
+</li>
+<li>
+<p>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106048v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11857 -&gt; Patchwork_106048v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11857: de2555fd1402a79eb3c89db3f62944fec2026c8f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6561: 4b673211d1645eaafa9da32eece4c274d8cd6c41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_106048v1: de2555fd1402a79eb3c89db3f62944fec2026c8f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>cd5ec847a53a drm/i915/ttm: fix sg_table construction</p>
+
+</body>
+</html>
+
+--===============8093373596895955226==--
