@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E73056AA5C
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 20:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631DC56AA5B
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 20:20:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D9EF113AA9;
-	Thu,  7 Jul 2022 18:20:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2D7113815;
+	Thu,  7 Jul 2022 18:20:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E69131134C7
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jul 2022 18:20:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A32A113815
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jul 2022 18:20:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657218010; x=1688754010;
+ t=1657218011; x=1688754011;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2Cs43zpj5R5qhlOciqIAhaYsgVciFj2qaGwdQRqZe6A=;
- b=VZTYldH/dU+OdRqr6pyB6PzDQUIgcZF4hYYzMlj4mpyvt6frEhe3EJuf
- bBBDdioL/pdUUArSZPuJKqnkhuRDzRpegU+d9K2oix9ooCJw4FRklGYOm
- 0Q+gfTSWQ0IUl8k35JcDAm+gGoBQvO10oGOZ9a0v+52r3wqUEAd5rxPiT
- MPGAA+p0Jq0cXk6NHFqtmchWVgkYNxyNpo3b7/nuX1CO69811F8jSAcbN
- mbn7LAekCN45e29av8qKwYUwYaU1gjJCfu/N1PfcvMh147A7d6bn1Cqm6
- cF/YWnAfa8SMNpMK7pqnk6Ue3ccHO7UsDpkht5xUrb8pK9Sv0lYHV5uxR w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="272887608"
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="272887608"
+ bh=ozscBTXcqaaQ4qvWEqkU8P7P/EBzGEQjjOP0zvngAqA=;
+ b=mZVDlVEet3bg8qawAqhXsahNEHKt71LsXUi91diCk8KUkl1LXaSuw8iF
+ +XhohCqyOW7pNb43AS7i1wFuvLHdHaq6qFPWNrmAI5LxSo/BpzGCF2f4E
+ k/PKfS5vuXyNh5HM0XQppY6IeaZftWuYYTELINSPH6jBzW4kMvuAZL2L1
+ MB52zSS3f4mrP/iPQNPKLIfg1cxuc9nByvw2M7/Ews5onCsvNsneI06rk
+ enAHWy2uiXYSpu/uA0zkDy6BRsjtC0V96aV9ZN9X7PRO3grgnSVBZhWuN
+ Y4UqU4acXfZERgKzMdNAheCM7j7rC9rbr1KNOJoGl5SzvmsmbWLcHLb9H g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="272887609"
+X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="272887609"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jul 2022 11:20:10 -0700
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="598117542"
+X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="598117546"
 Received: from invictus.jf.intel.com ([10.165.21.205])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2022 11:20:09 -0700
+ 07 Jul 2022 11:20:10 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 Jul 2022 11:19:59 -0700
-Message-Id: <20220707182000.2794078-2-radhakrishna.sripada@intel.com>
+Date: Thu,  7 Jul 2022 11:20:00 -0700
+Message-Id: <20220707182000.2794078-3-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220707182000.2794078-1-radhakrishna.sripada@intel.com>
 References: <20220707003107.2533184-1-radhakrishna.sripada@intel.com>
  <20220707182000.2794078-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/mtl: Add MeteorLake platform info
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Add MeteorLake PCI IDs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,98 +60,122 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MTL has Xe_LPD+ display IP (version = 14), MTL graphics IP
-(version = 12.70), and Xe_LPM+ media IP (version = 13).
+Add Meteorlake PCI IDs. Split into M, and P subplatforms.
 
-Bspec: 55413
-Bspec: 55416
-Bspec: 55417
-Bspec: 55418
-Bspec: 55726
-Bspec: 45544
-Bspec: 65380
+Bspec: 55420
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h          |  1 +
- drivers/gpu/drm/i915/i915_pci.c          | 25 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/intel_device_info.c |  1 +
- drivers/gpu/drm/i915/intel_device_info.h |  1 +
- 4 files changed, 28 insertions(+)
+ drivers/gpu/drm/i915/i915_drv.h          |  4 ++++
+ drivers/gpu/drm/i915/i915_pci.c          |  1 +
+ drivers/gpu/drm/i915/intel_device_info.c | 14 ++++++++++++++
+ drivers/gpu/drm/i915/intel_device_info.h |  4 ++++
+ include/drm/i915_pciids.h                | 19 +++++++++++++++++++
+ 5 files changed, 42 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 2f6910050aa2..413a126a6dea 100644
+index 413a126a6dea..8bf3ea54f59c 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -999,6 +999,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- 	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_N)
+@@ -1000,6 +1000,10 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
  #define IS_ADLP_RPLP(dev_priv) \
  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_RPL)
-+#define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, INTEL_METEORLAKE)
+ #define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, INTEL_METEORLAKE)
++#define IS_METEORLAKE_M(dev_priv) \
++	IS_SUBPLATFORM(dev_priv, INTEL_METEORLAKE, INTEL_SUBPLATFORM_M)
++#define IS_METEORLAKE_P(dev_priv) \
++	IS_SUBPLATFORM(dev_priv, INTEL_METEORLAKE, INTEL_SUBPLATFORM_P)
  #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
  				    (INTEL_DEVID(dev_priv) & 0xFF00) == 0x0C00)
  #define IS_BDW_ULT(dev_priv) \
 diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 04346929d009..6559c770036f 100644
+index 6559c770036f..a5a9fc11338f 100644
 --- a/drivers/gpu/drm/i915/i915_pci.c
 +++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1069,6 +1069,31 @@ static const struct intel_device_info ats_m_info = {
- 	.require_force_probe = 1,
+@@ -1175,6 +1175,7 @@ static const struct pci_device_id pciidlist[] = {
+ 	INTEL_RPLS_IDS(&adl_s_info),
+ 	INTEL_RPLP_IDS(&adl_p_info),
+ 	INTEL_DG2_IDS(&dg2_info),
++	INTEL_MTL_IDS(&mtl_info),
+ 	{0, 0, 0}
  };
- 
-+#define XE_LPDP_FEATURES	\
-+	XE_LPD_FEATURES,	\
-+	.display.ver = 14,	\
-+	.display.has_cdclk_crawl = 1
-+
-+__maybe_unused
-+static const struct intel_device_info mtl_info = {
-+	XE_HP_FEATURES,
-+	XE_LPDP_FEATURES,
-+	/*
-+	 * Real graphics IP version will be obtained from hardware GMD_ID
-+	 * register.  Value provided here is just for sanity checking.
-+	 */
-+	.graphics.ver = 12,
-+	.graphics.rel = 70,
-+	.media.ver = 13,
-+	.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
-+	PLATFORM(INTEL_METEORLAKE),
-+	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
-+	.require_force_probe = 1,
-+	.has_flat_ccs = 0,
-+	.has_snoop = 1,
-+	.display.has_modular_fia = 1,
-+};
-+
- #undef PLATFORM
- 
- /*
+ MODULE_DEVICE_TABLE(pci, pciidlist);
 diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index cefa9ed784ff..d6934d4f965d 100644
+index d6934d4f965d..0f412c1ab449 100644
 --- a/drivers/gpu/drm/i915/intel_device_info.c
 +++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -72,6 +72,7 @@ static const char * const platform_names[] = {
- 	PLATFORM_NAME(ALDERLAKE_P),
- 	PLATFORM_NAME(XEHPSDV),
- 	PLATFORM_NAME(DG2),
-+	PLATFORM_NAME(METEORLAKE),
+@@ -199,6 +199,14 @@ static const u16 subplatform_g12_ids[] = {
+ 	INTEL_DG2_G12_IDS(0),
  };
- #undef PLATFORM_NAME
  
++static const u16 subplatform_m_ids[] = {
++	INTEL_MTL_M_IDS(0),
++};
++
++static const u16 subplatform_p_ids[] = {
++	INTEL_MTL_P_IDS(0),
++};
++
+ static bool find_devid(u16 id, const u16 *p, unsigned int num)
+ {
+ 	for (; num; num--, p++) {
+@@ -253,6 +261,12 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+ 	} else if (find_devid(devid, subplatform_g12_ids,
+ 			      ARRAY_SIZE(subplatform_g12_ids))) {
+ 		mask = BIT(INTEL_SUBPLATFORM_G12);
++	} else if (find_devid(devid, subplatform_m_ids,
++			      ARRAY_SIZE(subplatform_m_ids))) {
++		mask = BIT(INTEL_SUBPLATFORM_M);
++	} else if (find_devid(devid, subplatform_p_ids,
++			      ARRAY_SIZE(subplatform_p_ids))) {
++		mask = BIT(INTEL_SUBPLATFORM_P);
+ 	}
+ 
+ 	GEM_BUG_ON(mask & ~INTEL_SUBPLATFORM_MASK);
 diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index b259a3dbbe0e..2a86e8445fcf 100644
+index 2a86e8445fcf..8ab73923fc29 100644
 --- a/drivers/gpu/drm/i915/intel_device_info.h
 +++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -88,6 +88,7 @@ enum intel_platform {
- 	INTEL_ALDERLAKE_P,
- 	INTEL_XEHPSDV,
- 	INTEL_DG2,
-+	INTEL_METEORLAKE,
- 	INTEL_MAX_PLATFORMS
- };
+@@ -126,6 +126,10 @@ enum intel_platform {
+  */
+ #define INTEL_SUBPLATFORM_N    1
  
++/* MTL */
++#define INTEL_SUBPLATFORM_M	0
++#define INTEL_SUBPLATFORM_P	1
++
+ enum intel_ppgtt_type {
+ 	INTEL_PPGTT_NONE = I915_GEM_PPGTT_NONE,
+ 	INTEL_PPGTT_ALIASING = I915_GEM_PPGTT_ALIASING,
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index 283dadfbb4db..388c19c52c7d 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -714,4 +714,23 @@
+ 	INTEL_DG2_G11_IDS(info), \
+ 	INTEL_DG2_G12_IDS(info)
+ 
++/* MTL */
++#define INTEL_MTL_M_IDS(info) \
++	INTEL_VGA_DEVICE(0x7D40, info), \
++	INTEL_VGA_DEVICE(0x7D43, info), \
++	INTEL_VGA_DEVICE(0x7DC0, info)
++
++#define INTEL_MTL_P_IDS(info) \
++	INTEL_VGA_DEVICE(0x7D45, info), \
++	INTEL_VGA_DEVICE(0x7D47, info), \
++	INTEL_VGA_DEVICE(0x7D55, info), \
++	INTEL_VGA_DEVICE(0x7D60, info), \
++	INTEL_VGA_DEVICE(0x7DC5, info), \
++	INTEL_VGA_DEVICE(0x7DD5, info), \
++	INTEL_VGA_DEVICE(0x7DE0, info)
++
++#define INTEL_MTL_IDS(info) \
++	INTEL_MTL_M_IDS(info), \
++	INTEL_MTL_P_IDS(info)
++
+ #endif /* _I915_PCIIDS_H */
 -- 
 2.25.1
 
