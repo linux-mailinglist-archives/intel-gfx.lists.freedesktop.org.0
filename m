@@ -2,50 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E76B956AC8B
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 22:09:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52D1B56AC9E
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 22:19:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0F7C14A3AD;
-	Thu,  7 Jul 2022 20:09:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A2014A46B;
+	Thu,  7 Jul 2022 20:19:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F62114A39D;
- Thu,  7 Jul 2022 20:09:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657224544; x=1688760544;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=PJOXNirRxbQj5szCD2eK9bDM0x+hy95/wc7r4B0KjSA=;
- b=GVu5MunvkuCx8RSBKMN8rPJpN+HjZgOUdoGsNjNUv+FDBuBGIrLi9nM3
- MBJ3HzqdOHfdFhyzY3P/YrvsAB92Dqh1Id1mxobOjuiekQTUBYwqd36AI
- M82di3BracIyIqjh0ZjQwrQAnKv4PeyWRh6KAZPQdli9SJR6yRT1IaElK
- dQCBpT0YQSAx5suMdZNLwN++rPBW3RxM5yaKC4AlFLf5oM9ef/h9W6qSO
- VyOi3F9SsVxJ6VQkDSOk8U1q+t5e5Ep+9ifQ4Epm2MWvY7gV2U8bKnntc
- EqaUxGIJmU3zsDAG4+JqG6IZsqgUrvemWnn67KA6PRXfszfqNhtU1V6t9 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="309673986"
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="309673986"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2022 13:09:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="920725367"
-Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
- by fmsmga005.fm.intel.com with ESMTP; 07 Jul 2022 13:09:02 -0700
-Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1o9Xo5-000MQ6-Gd;
- Thu, 07 Jul 2022 20:09:01 +0000
-Date: Fri, 8 Jul 2022 04:08:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202207080407.Ah1H6WFK-lkp@intel.com>
-References: <20220707170927.499451-1-matthew.auld@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 23D6614A46B;
+ Thu,  7 Jul 2022 20:19:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1A125AADD1;
+ Thu,  7 Jul 2022 20:19:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6003737452619633501=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220707170927.499451-1-matthew.auld@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: fix sg_table construction
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
+Date: Thu, 07 Jul 2022 20:19:07 -0000
+Message-ID: <165722514706.2211.9448830448979609326@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220707193002.2859653-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20220707193002.2859653-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_i915/perf=3A_Replace_DRM=5FDEBUG_wi?=
+ =?utf-8?q?th_driver_specific_drm=5Fdbg_call?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,44 +41,212 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- kbuild-all@lists.01.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+--===============6003737452619633501==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you for the patch! Yet something to improve:
+== Series Details ==
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip drm/drm-next drm-exynos/exynos-drm-next drm-misc/drm-misc-next linus/master v5.19-rc5 next-20220707]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: series starting with [1/2] i915/perf: Replace DRM_DEBUG with driver specific drm_dbg call
+URL   : https://patchwork.freedesktop.org/series/106062/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Matthew-Auld/drm-i915-ttm-fix-sg_table-construction/20220708-011115
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: i386-defconfig (https://download.01.org/0day-ci/archive/20220708/202207080407.Ah1H6WFK-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-3) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/a318752ca76b5fc3e8d9efa87d483c88d177475a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Matthew-Auld/drm-i915-ttm-fix-sg_table-construction/20220708-011115
-        git checkout a318752ca76b5fc3e8d9efa87d483c88d177475a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+== Summary ==
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+CI Bug Log - changes from CI_DRM_11857 -> Patchwork_106062v1
+====================================================
 
-All errors (new ones prefixed by >>):
+Summary
+-------
 
-   ld: drivers/gpu/drm/i915/i915_scatterlist.o: in function `i915_rsgt_from_mm_node':
->> i915_scatterlist.c:(.text+0x196): undefined reference to `__udivdi3'
-   ld: drivers/gpu/drm/i915/i915_scatterlist.o: in function `i915_rsgt_from_buddy_resource':
->> i915_scatterlist.c:(.text+0x426): undefined reference to `__umoddi3'
+  **SUCCESS**
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/index.html
+
+Participating hosts (45 -> 33)
+------------------------------
+
+  Missing    (12): fi-bdw-samus bat-dg1-6 bat-dg1-5 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-adln-1 fi-kbl-x1275 bat-rpls-1 bat-rpls-2 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_106062v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rps@basic-api:
+    - fi-glk-j4005:       [PASS][1] -> [DMESG-WARN][2] ([i915#118])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-glk-j4005/igt@i915_pm_rps@basic-api.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-glk-j4005/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][3] -> [INCOMPLETE][4] ([i915#4785])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-ivb-3770:        NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-ivb-3770/igt@kms_chamelium@common-hpd-after-suspend.html
+    - fi-snb-2600:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][7] ([fdo#109271] / [i915#4312] / [i915#5594] / [i915#6246])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-ivb-3770:        [INCOMPLETE][8] ([i915#3303] / [i915#5370]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+    - fi-snb-2600:        [INCOMPLETE][10] ([i915#3921]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#5370]: https://gitlab.freedesktop.org/drm/intel/issues/5370
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#6246]: https://gitlab.freedesktop.org/drm/intel/issues/6246
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11857 -> Patchwork_106062v1
+
+  CI-20190529: 20190529
+  CI_DRM_11857: de2555fd1402a79eb3c89db3f62944fec2026c8f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6561: 4b673211d1645eaafa9da32eece4c274d8cd6c41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_106062v1: de2555fd1402a79eb3c89db3f62944fec2026c8f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+8aeebb353179 i915/perf: Disable OA sseu config param for gfx12.50+
+3246a7367afc i915/perf: Replace DRM_DEBUG with driver specific drm_dbg call
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/index.html
+
+--===============6003737452619633501==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] i915/perf: Replace DRM_DEBUG with driver specific drm_dbg call</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106062/">https://patchwork.freedesktop.org/series/106062/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11857 -&gt; Patchwork_106062v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 33)</h2>
+<p>Missing    (12): fi-bdw-samus bat-dg1-6 bat-dg1-5 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-adln-1 fi-kbl-x1275 bat-rpls-1 bat-rpls-2 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_106062v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-glk-j4005/igt@i915_pm_rps@basic-api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-glk-j4005/igt@i915_pm_rps@basic-api.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>
+<p>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-ivb-3770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+<li>
+<p>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-snb-2600/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6246">i915#6246</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5370">i915#5370</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11857 -&gt; Patchwork_106062v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11857: de2555fd1402a79eb3c89db3f62944fec2026c8f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6561: 4b673211d1645eaafa9da32eece4c274d8cd6c41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_106062v1: de2555fd1402a79eb3c89db3f62944fec2026c8f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>8aeebb353179 i915/perf: Disable OA sseu config param for gfx12.50+<br />
+3246a7367afc i915/perf: Replace DRM_DEBUG with driver specific drm_dbg call</p>
+
+</body>
+</html>
+
+--===============6003737452619633501==--
