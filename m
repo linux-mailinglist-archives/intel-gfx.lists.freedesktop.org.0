@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A30B56ABF3
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 21:39:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB6656AC4B
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jul 2022 22:00:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BAC014A12D;
-	Thu,  7 Jul 2022 19:38:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D38D210F15F;
+	Thu,  7 Jul 2022 20:00:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C6EE14A195;
- Thu,  7 Jul 2022 19:38:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657222737; x=1688758737;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=WAXsq/7umGZEXtIHC1TBk7MUCXfpreUdr3ejEKMjVNE=;
- b=b0Hf8cL4Fll36hVNNw8jzvDjZZVV+x3AQuzOjiFxbYTWrcqJ8dmbKeDW
- 152bcasAmTQi+l1LBnl+qiHIxXCmIHeLd6cLh855oqF5fOjm3CVutriNx
- IF/FPCqRYiRAezIv6xNwThrRaD2JNvJ++KTh89L83SNT8dYAVNOz06SBf
- UR5/ufBDUuEVyEg2yijem+MHbiCm6KEZjbb8pGnWz9XW5s/TJRZN3WtaS
- 7J+4l0rlmmJf8IBxKT/+blFBdkdK50UlDY7rKoEFpuu/VfCf2uuk5T/Rw
- cHMUtH6Mhjdd2DciB/bQb8YdZQkh9BIIHrgvVPeS7AexzgsmEliroysCN A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="272904007"
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="272904007"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2022 12:38:56 -0700
-X-IronPort-AV: E=Sophos;i="5.92,253,1650956400"; d="scan'208";a="651265237"
-Received: from tlonnber-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.251.208.235])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2022 12:38:54 -0700
-Date: Thu, 7 Jul 2022 21:38:51 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
-Message-ID: <Ysc2S2UopeMDnImT@alfio.lan>
-References: <20220701225055.8204-1-niranjana.vishwanathapura@intel.com>
- <20220701225055.8204-7-niranjana.vishwanathapura@intel.com>
- <b652db18dc2ea6724aae175420192a8fc4fe932d.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 80D2910EF52;
+ Thu,  7 Jul 2022 20:00:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 67AE8A00A0;
+ Thu,  7 Jul 2022 20:00:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b652db18dc2ea6724aae175420192a8fc4fe932d.camel@intel.com>
-Subject: Re: [Intel-gfx] [RFC 06/10] drm/i915/vm_bind: Add
- I915_GEM_EXECBUFFER3 ioctl
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>
+Date: Thu, 07 Jul 2022 20:00:03 -0000
+Message-ID: <165722400339.2213.13511996284227000748@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220707193002.2859653-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20220707193002.2859653-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_i915/perf=3A_Replace_DRM=5FD?=
+ =?utf-8?q?EBUG_with_driver_specific_drm=5Fdbg_call?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,21 +41,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Auld,
- Matthew" <matthew.auld@intel.com>, "Vetter, Daniel" <daniel.vetter@intel.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-> It seems we are duplicating a lot of code from i915_execbuffer.c. Did
-> you consider 
+Series: series starting with [1/2] i915/perf: Replace DRM_DEBUG with driver specific drm_dbg call
+URL   : https://patchwork.freedesktop.org/series/106062/
+State : warning
 
-yeah... while reading the code I was thinking the same then I see
-that you made the same comment. Perhaps we need to group
-commonalities and make common library for execbuf 2 and 3.
+== Summary ==
 
-Andi
+Error: dim checkpatch failed
+937235fcf86e i915/perf: Replace DRM_DEBUG with driver specific drm_dbg call
+-:345: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#345: FILE: drivers/gpu/drm/i915/i915_perf.c:4163:
+ 	if (!oa_config) {
++		drm_dbg(&perf->i915->drm,
+
+-:475: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>' != 'Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>'
+
+total: 0 errors, 2 warnings, 0 checks, 426 lines checked
+3a77186c82ad i915/perf: Disable OA sseu config param for gfx12.50+
+-:37: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>' != 'Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 13 lines checked
+
+
