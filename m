@@ -1,53 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A9756BE0A
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 18:09:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 538CF56BE1C
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 18:23:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2473410E342;
-	Fri,  8 Jul 2022 16:09:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C669F10E7E6;
+	Fri,  8 Jul 2022 16:23:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14E3C10E342
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 16:09:35 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EF0510E58A;
+ Fri,  8 Jul 2022 16:23:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657296575; x=1688832575;
+ t=1657297390; x=1688833390;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=2nFCOmSn5xyRsm2aCTNcRs3nm5RKu5A1X4RCm3T9Gik=;
- b=e5AvYoFQn/CEocxISBC3GfNoZwm3pWj8cTsOeTQAfYiJ9LLiNRUhY9bm
- DSUd5S6ioriBSW2ByRw1TzAi5hlDKJkdyvgfqClbXrLG7QI0Rnr4jyPGa
- 0528gYsSORZcWH7lxIAXsRQsTUoZCQKG74KJeoUDyEJgAnTlI8tX5bWkj
- GA471EqGM1BDWc5k5hgPubfJ7J2Pjn6t6jA4zFfzt5Dd784wnBuA6wGLY
- UHgRNL2gYqWC0BW3hhK0MggOj5WYyKst+UJDf5GXbfsuTsRhJCR1LkRUv
- Q0ZLLLRFg+nvviaUPVVwX9TUfxxQnIjv66YwCGDqruYU5fDwAl5khUELx g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="283063755"
-X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; d="scan'208";a="283063755"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2022 09:09:34 -0700
-X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; d="scan'208";a="626749260"
-Received: from orsosgc001.jf.intel.com ([10.165.21.135])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2022 09:09:34 -0700
-Date: Fri, 8 Jul 2022 09:09:34 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <YshWvt0abeiCmRu5@orsosgc001.jf.intel.com>
-References: <20220707193002.2859653-1-umesh.nerlige.ramappa@intel.com>
- <165728784098.4505.10608543927823141096@emeril.freedesktop.org>
- <YshSDaC2HFdFz9Hq@mdroper-desk1.amr.corp.intel.com>
+ bh=XDAR4wjxDM6IlR4rc3WkmL79CGx3gJUuWclspqWN1dk=;
+ b=cCMiaHrzTHobzG8InSVU9i+rKz7nnzr5iCr8zCSgeM/bJDOd0LE+lyPB
+ beTQiAvUMJJ4IQVnDHLIeTh4sXz3B362PN9NBYIU/VnTocUg6YnHcj+CY
+ f0w0+DQ/h5jKbuyZO/ak4yb/4jJPpWh1iBZutezQCUGR9FqhXDEugzpQ3
+ QzlD+4H/c62/0S2dnCqny3t1frd93dtpNQPmx5E/pLOR0iOYkXpt8cj+V
+ mGuW5XA65OIMLWoDOLeskNAJrd6BxWTTfRBRyWjDKaeWUs3wZpdWa6Glj
+ Y6CwtXNF7yrpGrGyIfuS8JmiMeaeQ/uAvp8IV19zk8Ui06J8VebAEeb3L Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10402"; a="264096127"
+X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; d="scan'208";a="264096127"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2022 09:23:09 -0700
+X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; d="scan'208";a="651621626"
+Received: from jgsalaza-mobl.amr.corp.intel.com (HELO msatwood-mobl)
+ ([10.212.57.206])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2022 09:23:09 -0700
+Date: Fri, 8 Jul 2022 09:23:03 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Message-ID: <YshZ52v6XhVXYPk9@msatwood-mobl>
+References: <20220701232006.1016135-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <YshSDaC2HFdFz9Hq@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_i915/perf=3A_Replace_DRM=5FDEBUG_wi?=
- =?utf-8?q?th_driver_specific_drm=5Fdbg_call?=
+In-Reply-To: <20220701232006.1016135-1-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Add general DSS steering
+ iterator to intel_gt_mcr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,90 +58,318 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 08, 2022 at 08:49:33AM -0700, Matt Roper wrote:
->On Fri, Jul 08, 2022 at 01:44:00PM +0000, Patchwork wrote:
->> == Series Details ==
->>
->> Series: series starting with [1/2] i915/perf: Replace DRM_DEBUG with driver specific drm_dbg call
->> URL   : https://patchwork.freedesktop.org/series/106062/
->> State : failure
->>
->> == Summary ==
->>
->> CI Bug Log - changes from CI_DRM_11857_full -> Patchwork_106062v1_full
->> ====================================================
->>
->> Summary
->> -------
->>
->>   **FAILURE**
->>
->>   Serious unknown changes coming with Patchwork_106062v1_full absolutely need to be
->>   verified manually.
->>
->>   If you think the reported changes have nothing to do with the changes
->>   introduced in Patchwork_106062v1_full, please notify your bug team to allow them
->>   to document this new failure mode, which will reduce false positives in CI.
->>
->>
->>
->> Participating hosts (13 -> 13)
->> ------------------------------
->>
->>   No changes in participating hosts
->>
->> Possible new issues
->> -------------------
->>
->>   Here are the unknown changes that may have been introduced in Patchwork_106062v1_full:
->>
->> ### IGT changes ###
->>
->> #### Possible regressions ####
->>
->>   * igt@i915_pm_rc6_residency@rc6-idle@vcs0:
->>     - shard-apl:          [PASS][1] -> [WARN][2]
->>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/shard-apl2/igt@i915_pm_rc6_residency@rc6-idle@vcs0.html
->>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/shard-apl2/igt@i915_pm_rc6_residency@rc6-idle@vcs0.html
->
->Seems to be the same warning seen in
->
->https://gitlab.freedesktop.org/drm/intel/-/issues/2684
->https://gitlab.freedesktop.org/drm/intel/-/issues/2681
->https://gitlab.freedesktop.org/drm/intel/-/issues/1804
->
->but on a different platform.  Not caused by these patches.
->
->>
->>   * igt@i915_selftest@live@slpc:
->>     - shard-skl:          [PASS][3] -> [INCOMPLETE][4]
->>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/shard-skl7/igt@i915_selftest@live@slpc.html
->>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/shard-skl6/igt@i915_selftest@live@slpc.html
->
->Log cuts off in middle.  Likely a sporadic system/network crash; not
->caused by the changes here.
->
->>
->>   * igt@kms_async_flips@test-time-stamp@pipe-a-edp-1:
->>     - shard-tglb:         [PASS][5] -> [INCOMPLETE][6]
->>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11857/shard-tglb1/igt@kms_async_flips@test-time-stamp@pipe-a-edp-1.html
->>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106062v1/shard-tglb8/igt@kms_async_flips@test-time-stamp@pipe-a-edp-1.html
->
->Another unexpected incomplete.  Not caused by these patches.
->
->
->Series applied to drm-intel-gt-next (with a minor tweak to the author
->line to make the formatting match the s-o-b line).  Thanks for the
->patches and reviews.
-
-Thanks for applying this,
-Umesh
-
->
->
->Matt
->
+On Fri, Jul 01, 2022 at 04:20:06PM -0700, Matt Roper wrote:
+> Although all DSS belong to a single pool on Xe_HP platforms (i.e.,
+> they're not organized into slices from a topology point of view), we do
+> still need to pass 'group' and 'instance' targets when steering register
+> accesses to a specific instance of a per-DSS multicast register.  The
+> rules for how to determine group and instance IDs (which previously used
+> legacy terms "slice" and "subslice") varies by platform.  Some platforms
+> determine steering by gslice membership, some platforms by cslice
+> membership, and future platforms may have other rules.
+> 
+> Since looping over each DSS and performing steered unicast register
+> accesses is a relatively common pattern, let's add a dedicated iteration
+> macro to handle this (and replace the platform-specific "instdone" loop
+> we were using previously.  This will avoid the calling code needing to
+> figure out the details about how to obtain steering IDs for a specific
+> DSS.
+> 
+> Most of the places where we use this new loop are in the GPU errorstate
+> code at the moment, but we do have some additional features coming in
+> the future that will also need to loop over each DSS and steer some
+> register accesses accordingly.
+> 
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 34 ++++++-------------
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h  | 22 ------------
+>  drivers/gpu/drm/i915/gt/intel_gt_mcr.c        | 25 ++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_gt_mcr.h        | 24 +++++++++++++
+>  .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 13 ++++---
+>  drivers/gpu/drm/i915/i915_gpu_error.c         | 32 ++++++-----------
+>  6 files changed, 75 insertions(+), 75 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 283870c65991..37fa813af766 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -1517,7 +1517,6 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+>  			       struct intel_instdone *instdone)
+>  {
+>  	struct drm_i915_private *i915 = engine->i915;
+> -	const struct sseu_dev_info *sseu = &engine->gt->info.sseu;
+>  	struct intel_uncore *uncore = engine->uncore;
+>  	u32 mmio_base = engine->mmio_base;
+>  	int slice;
+> @@ -1542,32 +1541,19 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+>  				intel_uncore_read(uncore, GEN12_SC_INSTDONE_EXTRA2);
+>  		}
+>  
+> -		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+> -			for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice) {
+> -				instdone->sampler[slice][subslice] =
+> -					intel_gt_mcr_read(engine->gt,
+> -							  GEN7_SAMPLER_INSTDONE,
+> -							  slice, subslice);
+> -				instdone->row[slice][subslice] =
+> -					intel_gt_mcr_read(engine->gt,
+> -							  GEN7_ROW_INSTDONE,
+> -							  slice, subslice);
+> -			}
+> -		} else {
+> -			for_each_instdone_slice_subslice(i915, sseu, slice, subslice) {
+> -				instdone->sampler[slice][subslice] =
+> -					intel_gt_mcr_read(engine->gt,
+> -							  GEN7_SAMPLER_INSTDONE,
+> -							  slice, subslice);
+> -				instdone->row[slice][subslice] =
+> -					intel_gt_mcr_read(engine->gt,
+> -							  GEN7_ROW_INSTDONE,
+> -							  slice, subslice);
+> -			}
+> +		for_each_ss_steering(iter, engine->gt, slice, subslice) {
+> +			instdone->sampler[slice][subslice] =
+> +				intel_gt_mcr_read(engine->gt,
+> +						  GEN7_SAMPLER_INSTDONE,
+> +						  slice, subslice);
+> +			instdone->row[slice][subslice] =
+> +				intel_gt_mcr_read(engine->gt,
+> +						  GEN7_ROW_INSTDONE,
+> +						  slice, subslice);
+>  		}
+>  
+>  		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55)) {
+> -			for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice)
+> +			for_each_ss_steering(iter, engine->gt, slice, subslice)
+>  				instdone->geom_svg[slice][subslice] =
+>  					intel_gt_mcr_read(engine->gt,
+>  							  XEHPG_INSTDONE_GEOM_SVG,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index 2286f96f5f87..633a7e5dba3b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -647,26 +647,4 @@ intel_engine_uses_wa_hold_ccs_switchout(struct intel_engine_cs *engine)
+>  	return engine->flags & I915_ENGINE_USES_WA_HOLD_CCS_SWITCHOUT;
+>  }
+>  
+> -#define instdone_has_slice(dev_priv___, sseu___, slice___) \
+> -	((GRAPHICS_VER(dev_priv___) == 7 ? 1 : ((sseu___)->slice_mask)) & BIT(slice___))
+> -
+> -#define instdone_has_subslice(dev_priv__, sseu__, slice__, subslice__) \
+> -	(GRAPHICS_VER(dev_priv__) == 7 ? (1 & BIT(subslice__)) : \
+> -	 intel_sseu_has_subslice(sseu__, 0, subslice__))
+> -
+> -#define for_each_instdone_slice_subslice(dev_priv_, sseu_, slice_, subslice_) \
+> -	for ((slice_) = 0, (subslice_) = 0; (slice_) < I915_MAX_SLICES; \
+> -	     (subslice_) = ((subslice_) + 1) % I915_MAX_SUBSLICES, \
+> -	     (slice_) += ((subslice_) == 0)) \
+> -		for_each_if((instdone_has_slice(dev_priv_, sseu_, slice_)) && \
+> -			    (instdone_has_subslice(dev_priv_, sseu_, slice_, \
+> -						    subslice_)))
+> -
+> -#define for_each_instdone_gslice_dss_xehp(dev_priv_, sseu_, iter_, gslice_, dss_) \
+> -	for ((iter_) = 0, (gslice_) = 0, (dss_) = 0; \
+> -	     (iter_) < GEN_SS_MASK_SIZE; \
+> -	     (iter_)++, (gslice_) = (iter_) / GEN_DSS_PER_GSLICE, \
+> -	     (dss_) = (iter_) % GEN_DSS_PER_GSLICE) \
+> -		for_each_if(intel_sseu_has_subslice((sseu_), 0, (iter_)))
+> -
+>  #endif /* __INTEL_ENGINE_TYPES_H__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> index 777025d5bd66..f8c64ab9d3ca 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> @@ -495,3 +495,28 @@ void intel_gt_mcr_report_steering(struct drm_printer *p, struct intel_gt *gt,
+>  	}
+>  }
+>  
+> +/**
+> + * intel_gt_mcr_get_ss_steering - returns the group/instance steering for a SS
+> + * @gt: GT structure
+> + * @dss: DSS ID to obtain steering for
+> + * @group: pointer to storage for steering group ID
+> + * @instance: pointer to storage for steering instance ID
+> + *
+> + * Returns the steering IDs (via the @group and @instance parameters) that
+> + * correspond to a specific subslice/DSS ID.
+> + */
+> +void intel_gt_mcr_get_ss_steering(struct intel_gt *gt, unsigned int dss,
+> +				   unsigned int *group, unsigned int *instance)
+> +{
+> +	if (IS_PONTEVECCHIO(gt->i915)) {
+> +		*group = dss / GEN_DSS_PER_CSLICE;
+> +		*instance = dss % GEN_DSS_PER_CSLICE;
+> +	} else if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50)) {
+> +		*group = dss / GEN_DSS_PER_GSLICE;
+> +		*instance = dss % GEN_DSS_PER_GSLICE;
+> +	} else {
+> +		*group = dss / GEN_MAX_HSW_SLICES;
+> +		*instance = dss % GEN_MAX_SS_PER_HSW_SLICE;
+> +		return;
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.h b/drivers/gpu/drm/i915/gt/intel_gt_mcr.h
+> index 506b0cbc8db3..77a8b11c287d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.h
+> @@ -31,4 +31,28 @@ void intel_gt_mcr_get_nonterminated_steering(struct intel_gt *gt,
+>  void intel_gt_mcr_report_steering(struct drm_printer *p, struct intel_gt *gt,
+>  				  bool dump_table);
+>  
+> +void intel_gt_mcr_get_ss_steering(struct intel_gt *gt, unsigned int dss,
+> +				  unsigned int *group, unsigned int *instance);
+> +
+> +/*
+> + * Helper for for_each_ss_steering loop.  On pre-Xe_HP platforms, subslice
+> + * presence is determined by using the group/instance as direct lookups in the
+> + * slice/subslice topology.  On Xe_HP and beyond, the steering is unrelated to
+> + * the topology, so we lookup the DSS ID directly in "slice 0."
+> + */
+> +#define _HAS_SS(ss_, gt_, group_, instance_) ( \
+> +	GRAPHICS_VER_FULL(gt_->i915) >= IP_VER(12, 50) ? \
+> +		intel_sseu_has_subslice(&(gt_)->info.sseu, 0, ss_) : \
+> +		intel_sseu_has_subslice(&(gt_)->info.sseu, group_, instance_))
+> +
+> +/*
+> + * Loop over each subslice/DSS and determine the group and instance IDs that
+> + * should be used to steer MCR accesses toward this DSS.
+> + */
+> +#define for_each_ss_steering(ss_, gt_, group_, instance_) \
+> +	for (ss_ = 0, intel_gt_mcr_get_ss_steering(gt_, 0, &group_, &instance_); \
+> +	     ss_ < I915_MAX_SS_FUSE_BITS; \
+> +	     ss_++, intel_gt_mcr_get_ss_steering(gt_, ss_, &group_, &instance_)) \
+> +		for_each_if(_HAS_SS(ss_, gt_, group_, instance_))
+> +
+>  #endif /* __INTEL_GT_MCR__ */
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+> index 97a32e610c30..4e47d0a308f1 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+> @@ -9,6 +9,7 @@
+>  
+>  #include "gt/intel_engine_regs.h"
+>  #include "gt/intel_gt.h"
+> +#include "gt/intel_gt_mcr.h"
+>  #include "gt/intel_gt_regs.h"
+>  #include "gt/intel_lrc.h"
+>  #include "guc_capture_fwif.h"
+> @@ -281,8 +282,7 @@ guc_capture_alloc_steered_lists_xe_lpd(struct intel_guc *guc,
+>  				       const struct __guc_mmio_reg_descr_group *lists)
+>  {
+>  	struct intel_gt *gt = guc_to_gt(guc);
+> -	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+> -	int slice, subslice, i, num_steer_regs, num_tot_regs = 0;
+> +	int slice, subslice, iter, i, num_steer_regs, num_tot_regs = 0;
+>  	const struct __guc_mmio_reg_descr_group *list;
+>  	struct __guc_mmio_reg_descr_group *extlists;
+>  	struct __guc_mmio_reg_descr *extarray;
+> @@ -298,7 +298,7 @@ guc_capture_alloc_steered_lists_xe_lpd(struct intel_guc *guc,
+>  	num_steer_regs = ARRAY_SIZE(xe_extregs);
+>  
+>  	sseu = &gt->info.sseu;
+> -	for_each_instdone_slice_subslice(i915, sseu, slice, subslice)
+> +	for_each_ss_steering(iter, gt, slice, subslice)
+>  		num_tot_regs += num_steer_regs;
+>  
+>  	if (!num_tot_regs)
+> @@ -315,7 +315,7 @@ guc_capture_alloc_steered_lists_xe_lpd(struct intel_guc *guc,
+>  	}
+>  
+>  	extarray = extlists[0].extlist;
+> -	for_each_instdone_slice_subslice(i915, sseu, slice, subslice) {
+> +	for_each_ss_steering(iter, gt, slice, subslice) {
+>  		for (i = 0; i < num_steer_regs; ++i) {
+>  			__fill_ext_reg(extarray, &xe_extregs[i], slice, subslice);
+>  			++extarray;
+> @@ -359,9 +359,8 @@ guc_capture_alloc_steered_lists_xe_hpg(struct intel_guc *guc,
+>  		num_steer_regs += ARRAY_SIZE(xehpg_extregs);
+>  
+>  	sseu = &gt->info.sseu;
+> -	for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice) {
+> +	for_each_ss_steering(iter, gt, slice, subslice)
+>  		num_tot_regs += num_steer_regs;
+> -	}
+>  
+>  	if (!num_tot_regs)
+>  		return;
+> @@ -377,7 +376,7 @@ guc_capture_alloc_steered_lists_xe_hpg(struct intel_guc *guc,
+>  	}
+>  
+>  	extarray = extlists[0].extlist;
+> -	for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice) {
+> +	for_each_ss_steering(iter, gt, slice, subslice) {
+>  		for (i = 0; i < ARRAY_SIZE(xe_extregs); ++i) {
+>  			__fill_ext_reg(extarray, &xe_extregs[i], slice, subslice);
+>  			++extarray;
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 52ea13fee015..32e92651ef7c 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -46,6 +46,7 @@
+>  #include "gem/i915_gem_lmem.h"
+>  #include "gt/intel_engine_regs.h"
+>  #include "gt/intel_gt.h"
+> +#include "gt/intel_gt_mcr.h"
+>  #include "gt/intel_gt_pm.h"
+>  #include "gt/intel_gt_regs.h"
+>  #include "gt/uc/intel_guc_capture.h"
+> @@ -436,7 +437,6 @@ static void err_compression_marker(struct drm_i915_error_state_buf *m)
+>  static void error_print_instdone(struct drm_i915_error_state_buf *m,
+>  				 const struct intel_engine_coredump *ee)
+>  {
+> -	const struct sseu_dev_info *sseu = &ee->engine->gt->info.sseu;
+>  	int slice;
+>  	int subslice;
+>  	int iter;
+> @@ -453,33 +453,21 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
+>  	if (GRAPHICS_VER(m->i915) <= 6)
+>  		return;
+>  
+> -	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 50)) {
+> -		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
+> -			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
+> -				   slice, subslice,
+> -				   ee->instdone.sampler[slice][subslice]);
+> +	for_each_ss_steering(iter, ee->engine->gt, slice, subslice)
+> +		err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
+> +			   slice, subslice,
+> +			   ee->instdone.sampler[slice][subslice]);
+>  
+> -		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
+> -			err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
+> -				   slice, subslice,
+> -				   ee->instdone.row[slice][subslice]);
+> -	} else {
+> -		for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
+> -			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
+> -				   slice, subslice,
+> -				   ee->instdone.sampler[slice][subslice]);
+> -
+> -		for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
+> -			err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
+> -				   slice, subslice,
+> -				   ee->instdone.row[slice][subslice]);
+> -	}
+> +	for_each_ss_steering(iter, ee->engine->gt, slice, subslice)
+> +		err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
+> +			   slice, subslice,
+> +			   ee->instdone.row[slice][subslice]);
+>  
+>  	if (GRAPHICS_VER(m->i915) < 12)
+>  		return;
+>  
+>  	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 55)) {
+> -		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
+> +		for_each_ss_steering(iter, ee->engine->gt, slice, subslice)
+>  			err_printf(m, "  GEOM_SVGUNIT_INSTDONE[%d][%d]: 0x%08x\n",
+>  				   slice, subslice,
+>  				   ee->instdone.geom_svg[slice][subslice]);
+> -- 
+> 2.36.1
+> 
