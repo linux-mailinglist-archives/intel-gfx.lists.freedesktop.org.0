@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4C2456BBEE
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 16:54:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3944256BBF0
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 16:55:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B272610E4AC;
-	Fri,  8 Jul 2022 14:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C06010E4CC;
+	Fri,  8 Jul 2022 14:55:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED6F610E4A1;
- Fri,  8 Jul 2022 14:54:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657292077; x=1688828077;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Y9SmuuHPz8GscEfHuUsZcx4KHke6FNdzhMwVeakNmf0=;
- b=QaiYufw6JsikAHJzosS8d5U2Ddi+iSlBQi//ihAcMlXn67kdVaf/i7gF
- jp6t0dzNEsau/POfgjFa9llL+Z/hzHCMsTYSnbgbb2x84ETCq2u8SHsYB
- NTXujK3fUMbSqjeP/i6RwQcDDRNMSF5rf3HNG3ntEuRv3lJFELanZgqiH
- xdL9go2ghiCrWZtZhjP47DyiUo0nvhX1TK+37QwulgIh8SpFGkFG5MxCw
- 4jAUDpkcwJ0p+XvmUnxIiGJjglpyWEvJV+HKjG5e6boL/Zd7KcVYZfglU
- DQVh0NTWPdV7oSdqETyMEQyKRv5JvXPj+xzHQrLea/fkq3PUiMPCpowaQ Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="284318225"
-X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="284318225"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2022 07:54:37 -0700
-X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="651590769"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2022 07:54:37 -0700
-Date: Fri, 8 Jul 2022 07:54:18 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
-Message-ID: <20220708145418.GY14039@nvishwa1-DESK>
-References: <20220701225055.8204-1-niranjana.vishwanathapura@intel.com>
- <20220701225055.8204-9-niranjana.vishwanathapura@intel.com>
- <cf5b29a58096cc2e3ab8233c126c01a94bf020b3.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C062410E49E;
+ Fri,  8 Jul 2022 14:55:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B544CA66C8;
+ Fri,  8 Jul 2022 14:55:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <cf5b29a58096cc2e3ab8233c126c01a94bf020b3.camel@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [RFC 08/10] drm/i915/vm_bind: userptr dma-resv
- changes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karolina Drobnik" <karolina.drobnik@intel.com>
+Date: Fri, 08 Jul 2022 14:55:22 -0000
+Message-ID: <165729212273.4506.9607116977312554430@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1657289332.git.karolina.drobnik@intel.com>
+In-Reply-To: <cover.1657289332.git.karolina.drobnik@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Apply_waitboosting_before_fence_wait_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,40 +40,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Auld,
- Matthew" <matthew.auld@intel.com>, "Vetter, Daniel" <daniel.vetter@intel.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 08, 2022 at 05:17:53AM -0700, Hellstrom, Thomas wrote:
->On Fri, 2022-07-01 at 15:50 -0700, Niranjana Vishwanathapura wrote:
->> For persistent (vm_bind) vmas of userptr BOs, handle the user
->> page pinning by using the i915_gem_object_userptr_submit_init()
->> /done() functions
->>
->> Signed-off-by: Niranjana Vishwanathapura
->> <niranjana.vishwanathapura@intel.com>
->> ---
->>  .../gpu/drm/i915/gem/i915_gem_execbuffer3.c   | 67
->> +++++++++++++++++++
->>  .../drm/i915/gem/i915_gem_vm_bind_object.c    | 16 +++++
->>  drivers/gpu/drm/i915/gt/intel_gtt.c           |  1 +
->>  drivers/gpu/drm/i915/gt/intel_gtt.h           |  1 +
->>  4 files changed, 85 insertions(+)
->>
->
->Hmm. I also miss the code in userptr invalidate that puts invalidated
->vm-private userptr vmas on the rebind list?
+== Series Details ==
 
-Yah, looks like it is lost in rebase.
-Based on discussion in other thread on this patch, it is going to be
-bit different here than adding to rebind_list.
+Series: drm/i915: Apply waitboosting before fence wait (rev2)
+URL   : https://patchwork.freedesktop.org/series/105925/
+State : warning
 
-Niranjana
+== Summary ==
 
->
->/Thomas
->
+Error: dim checkpatch failed
+e35c61e9e46c drm/i915/gem: Look for waitboosting across the whole object prior to individual waits
+85a4558b5d11 drm/i915: Bump GT idling delay to 2 jiffies
+0ec610488c77 drm/i915/gt: Only kick the signal worker if there's been an update
+-:23: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#23: 
+References: 047a1b877ed4 ("dma-buf & drm/amdgpu: remove dma_resv workaround")
+
+-:23: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 047a1b877ed4 ("dma-buf & drm/amdgpu: remove dma_resv workaround")'
+#23: 
+References: 047a1b877ed4 ("dma-buf & drm/amdgpu: remove dma_resv workaround")
+
+total: 1 errors, 1 warnings, 0 checks, 9 lines checked
+
+
