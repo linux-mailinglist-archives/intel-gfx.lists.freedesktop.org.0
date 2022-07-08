@@ -2,33 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13BAD56C197
-	for <lists+intel-gfx@lfdr.de>; Sat,  9 Jul 2022 00:37:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A59A56C19A
+	for <lists+intel-gfx@lfdr.de>; Sat,  9 Jul 2022 00:42:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCA7B10EEB2;
-	Fri,  8 Jul 2022 22:37:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70A7610EEC6;
+	Fri,  8 Jul 2022 22:42:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1386010EE9C;
- Fri,  8 Jul 2022 22:37:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0AD4FAA914;
- Fri,  8 Jul 2022 22:37:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56FD110EEC6;
+ Fri,  8 Jul 2022 22:42:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1657320143; x=1688856143;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=akQdRJEfKDC05LKJruYVz5knlaOrw4ZnWe0gXmRiWh8=;
+ b=NXQUhjrRAQoct92qwVdSEVWwix996hiT1+XmxGNpOSlJ3MMVE13G9oQ5
+ tkso0KiJiznfyJQ4haGYjI0q4a6H0+9BCIYo0i5tddRAeFbkAiOWbAnn9
+ j0E2pluP1nU3c4ANd0TRa64+94GV/1aACNvnjSrkF4soqxpYnRXSc71dW
+ B519LKn0OsMreT0WxyHzogpff65uNq6MbxcZdG3Z+v8jZ8DTsPFeidAar
+ TwTKlGyfwCgJPg1V1sYGuB4sPXCrfT4HBYTS2qtfxB77LucCwg8jPjF66
+ LKFHhUKK3jRJGWI74er3w2z5p2NGPg18LtRX8VjO/dw/KFalHLVkcBVmV w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10402"; a="285122059"
+X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; d="scan'208";a="285122059"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2022 15:42:22 -0700
+X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; d="scan'208";a="921151144"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2022 15:42:21 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  8 Jul 2022 15:41:58 -0700
+Message-Id: <20220708224158.929327-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 08 Jul 2022 22:37:14 -0000
-Message-ID: <165731983401.4507.6226620197871423271@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220708215804.2889246-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220708215804.2889246-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915/dg2=3A_Add_Wa=5F1501059?=
- =?utf-8?q?9737?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: skip scrub_ctbs selftest if reset
+ is disabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,47 +54,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The test needs GT reset to trigger the scrubbing logic, so we can only
+run it when reset is enabled.
 
-Series: series starting with [1/2] drm/i915/dg2: Add Wa_15010599737
-URL   : https://patchwork.freedesktop.org/series/106130/
-State : warning
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: John Harrison <john.c.harrison@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/selftest_guc.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-== Summary ==
-
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:28:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:28:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:28:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:33:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:33:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:51:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:51:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:51:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:57:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:57:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1391:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+./include/linux/find.h:40:31: warning: shift count is negative (-24)
-+./include/linux/find.h:40:31: warning: shift count is negative (-24)
-+./include/linux/find.h:40:31: warning: shift count is negative (-448)
-+./include/linux/find.h:40:31: warning: shift count is negative (-448)
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:404:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+index 1df71d0796ae..5bd804f29b32 100644
+--- a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+@@ -54,6 +54,9 @@ static int intel_guc_scrub_ctbs(void *arg)
+ 	struct intel_engine_cs *engine;
+ 	struct intel_context *ce;
+ 
++	if (!intel_has_gpu_reset(gt))
++		return 0;
++
+ 	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+ 	engine = intel_selftest_find_any_engine(gt);
+ 
+-- 
+2.25.1
 
