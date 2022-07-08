@@ -1,48 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636E956C180
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 23:58:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13BAD56C197
+	for <lists+intel-gfx@lfdr.de>; Sat,  9 Jul 2022 00:37:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D46D310E9E3;
-	Fri,  8 Jul 2022 21:58:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCA7B10EEB2;
+	Fri,  8 Jul 2022 22:37:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5BCA10E9E3
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 21:58:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657317490; x=1688853490;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=okOQf276OfHOl6bL0rClj9FB5N72iR6Yki4txY5Cy9w=;
- b=mbBs4sm5nYFRj44fDC0O7hvMEugMDzDixaKRURTGWzFsZBCOhM8IHnDl
- 8b1bBIlSOzi4yeSxzfNhnkBkUxjqr4JPRYZJ9qRRxdG06LUmFZhiV7xAu
- oGfcQYnc1pyPU9TE1b33ommVxeKDHmhLLYpof7f/EV7GNHbOVMaJATmxA
- scHx8Wt7bu8l/o2WLWk71VGOY3iJa7xaXoVYSd/5NpU4ifpoxMzYN14Z0
- wcf2Q9zcL8anfH7+xWBXzg1kSOZekK2tC1lAuaMQqgyhTcqlNJAbyQeTN
- x7twchbyIeddZXJsnzhJJYfBtw6675o2kxMgt06+Ph/FPfSOI8di6PqT/ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10402"; a="281927124"
-X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; d="scan'208";a="281927124"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2022 14:58:10 -0700
-X-IronPort-AV: E=Sophos;i="5.92,256,1650956400"; d="scan'208";a="651721143"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2022 14:58:10 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  8 Jul 2022 14:58:04 -0700
-Message-Id: <20220708215804.2889246-2-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220708215804.2889246-1-matthew.d.roper@intel.com>
-References: <20220708215804.2889246-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1386010EE9C;
+ Fri,  8 Jul 2022 22:37:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0AD4FAA914;
+ Fri,  8 Jul 2022 22:37:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Add Wa_14016291713
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Fri, 08 Jul 2022 22:37:14 -0000
+Message-ID: <165731983401.4507.6226620197871423271@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220708215804.2889246-1-matthew.d.roper@intel.com>
+In-Reply-To: <20220708215804.2889246-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915/dg2=3A_Add_Wa=5F1501059?=
+ =?utf-8?q?9737?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,35 +41,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We already disable FBC when PSR2 is enabled on display version 12 and
-above; this new workaround now requires that we do the same with PSR1 on
-display versions 12 and 13.
+== Series Details ==
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Series: series starting with [1/2] drm/i915/dg2: Add Wa_15010599737
+URL   : https://patchwork.freedesktop.org/series/106130/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 16537830ccf0..7436b35f7ea0 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1098,6 +1098,12 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 		return 0;
- 	}
- 
-+	/* Wa_14016291713 */
-+	if (IS_DISPLAY_VER(i915, 12, 13) && crtc_state->has_psr) {
-+		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
-+		return 0;
-+	}
-+
- 	if (!pixel_format_is_valid(plane_state)) {
- 		plane_state->no_fbc_reason = "pixel format not supported";
- 		return 0;
--- 
-2.36.1
+== Summary ==
+
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:28:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:28:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:28:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:33:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:33:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:51:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:51:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:51:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:57:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:57:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1391:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++./include/linux/find.h:40:31: warning: shift count is negative (-24)
++./include/linux/find.h:40:31: warning: shift count is negative (-24)
++./include/linux/find.h:40:31: warning: shift count is negative (-448)
++./include/linux/find.h:40:31: warning: shift count is negative (-448)
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:404:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
+
 
