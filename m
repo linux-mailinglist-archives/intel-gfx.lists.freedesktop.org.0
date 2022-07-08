@@ -1,34 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E0F756BB55
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 15:58:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9404F56BB6B
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 16:01:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E21A10E0EB;
-	Fri,  8 Jul 2022 13:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 022C510E3C7;
+	Fri,  8 Jul 2022 14:01:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9BC1A10E07F;
- Fri,  8 Jul 2022 13:58:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 91FD8AA0EA;
- Fri,  8 Jul 2022 13:58:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0481629248134419471=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA99310E36C;
+ Fri,  8 Jul 2022 14:01:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1657288896; x=1688824896;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=T76eLmW2JmR60//YD3FXp0eyv0BMqo+O7qdzKuFCZu4=;
+ b=EULO9Nxv6IICXaoiDsfEGYSDQtTxHXDMNBX9sSSuIAjd7bHkRSW/5IhJ
+ XFlix5mnzNyn8Cc+BHIOwbAXUFnUX7FWxa2I7QFwliJfnDn2h0A3jK6Gi
+ 9sxK2QHmRwGJwdDkCPF94Y1/9PuSqeNR8j4Hxv3oa099U6D/BsSiEAidz
+ SYcNedC0M6/EQrOrjKGC2ojHivPHRpUzrDQ0nDGRMbD5ylfEGwcRjf1r8
+ PUKqEBjxoYq81fnU225fikQfD9t4Fug/hmcxHG8cQpYnUaezNpuKCVcBk
+ TrpIvBfHwzn/1kJIhFuqLgr5L4MRxJD5b3XCkyYFgvijvwg+JsZ0VXKvl A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="309855612"
+X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="309855612"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2022 07:01:35 -0700
+X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="770791256"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.2.48])
+ ([10.252.2.48])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2022 07:01:34 -0700
+Message-ID: <c3e2b652-4838-7b87-1bff-e2f82df9500e@linux.intel.com>
+Date: Fri, 8 Jul 2022 16:01:31 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dan Carpenter" <dan.carpenter@oracle.com>
-Date: Fri, 08 Jul 2022 13:58:24 -0000
-Message-ID: <165728870459.4507.18229349362613855522@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220708094104.GL2316@kadam>
-In-Reply-To: <20220708094104.GL2316@kadam>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_fix_a_couple_IS=5FERR=28=29_vs_NULL_tests_?=
- =?utf-8?b?KHJldjIp?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220708074157.557932-1-matthew.auld@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220708074157.557932-1-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: fix sg_table construction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,234 +59,293 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0481629248134419471==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 7/8/2022 9:41 AM, Matthew Auld wrote:
+> If we encounter some monster sized local-memory page that exceeds the
+> maximum sg length (UINT32_MAX), ensure that don't end up with some
+> misaligned address in the entry that follows, leading to fireworks
+> later. Also ensure we have some coverage of this in the selftests.
+>
+> v2(Chris): use round_down consistently to avoid udiv errors
+>
+> Fixes: f701b16d4cc5 ("drm/i915/ttm: add i915_sg_from_buddy_resource")
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6379
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 11 +++++++++--
+>   drivers/gpu/drm/i915/i915_scatterlist.c       | 19 +++++++++++++++----
+>   drivers/gpu/drm/i915/i915_scatterlist.h       |  6 ++++--
+>   drivers/gpu/drm/i915/intel_region_ttm.c       | 10 +++++++---
+>   drivers/gpu/drm/i915/intel_region_ttm.h       |  3 ++-
+>   .../drm/i915/selftests/intel_memory_region.c  | 17 ++++++++++++++++-
+>   drivers/gpu/drm/i915/selftests/mock_region.c  |  3 ++-
+>   7 files changed, 55 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index 7e1f8b83077f..c5c8aa1f8558 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -602,10 +602,15 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
+>   			 struct ttm_resource *res)
+>   {
+>   	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
+> +	u64 page_alignment;
+>   
+>   	if (!i915_ttm_gtt_binds_lmem(res))
+>   		return i915_ttm_tt_get_st(bo->ttm);
+>   
+> +	page_alignment = bo->page_alignment << PAGE_SHIFT;
+> +	if (!page_alignment)
+> +		page_alignment = obj->mm.region->min_page_size;
+> +
+>   	/*
+>   	 * If CPU mapping differs, we need to add the ttm_tt pages to
+>   	 * the resulting st. Might make sense for GGTT.
+> @@ -616,7 +621,8 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
+>   			struct i915_refct_sgt *rsgt;
+>   
+>   			rsgt = intel_region_ttm_resource_to_rsgt(obj->mm.region,
+> -								 res);
+> +								 res,
+> +								 page_alignment);
+>   			if (IS_ERR(rsgt))
+>   				return rsgt;
+>   
+> @@ -625,7 +631,8 @@ i915_ttm_resource_get_st(struct drm_i915_gem_object *obj,
+>   		return i915_refct_sgt_get(obj->ttm.cached_io_rsgt);
+>   	}
+>   
+> -	return intel_region_ttm_resource_to_rsgt(obj->mm.region, res);
+> +	return intel_region_ttm_resource_to_rsgt(obj->mm.region, res,
+> +						 page_alignment);
+>   }
+>   
+>   static int i915_ttm_truncate(struct drm_i915_gem_object *obj)
+> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.c b/drivers/gpu/drm/i915/i915_scatterlist.c
+> index 159571b9bd24..f63b50b71e10 100644
+> --- a/drivers/gpu/drm/i915/i915_scatterlist.c
+> +++ b/drivers/gpu/drm/i915/i915_scatterlist.c
+> @@ -68,6 +68,7 @@ void i915_refct_sgt_init(struct i915_refct_sgt *rsgt, size_t size)
+>    * drm_mm_node
+>    * @node: The drm_mm_node.
+>    * @region_start: An offset to add to the dma addresses of the sg list.
+> + * @page_alignment: Required page alignment for each sg entry. Power of two.
+>    *
+>    * Create a struct sg_table, initializing it from a struct drm_mm_node,
+>    * taking a maximum segment length into account, splitting into segments
+> @@ -77,15 +78,18 @@ void i915_refct_sgt_init(struct i915_refct_sgt *rsgt, size_t size)
+>    * error code cast to an error pointer on failure.
+>    */
+>   struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
+> -					      u64 region_start)
+> +					      u64 region_start,
+> +					      u64 page_alignment)
+>   {
+> -	const u64 max_segment = SZ_1G; /* Do we have a limit on this? */
+> +	const u64 max_segment = round_down(UINT_MAX, page_alignment);
+>   	u64 segment_pages = max_segment >> PAGE_SHIFT;
+>   	u64 block_size, offset, prev_end;
+>   	struct i915_refct_sgt *rsgt;
+>   	struct sg_table *st;
+>   	struct scatterlist *sg;
+>   
+> +	GEM_BUG_ON(!max_segment);
+> +
+>   	rsgt = kmalloc(sizeof(*rsgt), GFP_KERNEL);
+>   	if (!rsgt)
+>   		return ERR_PTR(-ENOMEM);
+> @@ -112,6 +116,8 @@ struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
+>   				sg = __sg_next(sg);
+>   
+>   			sg_dma_address(sg) = region_start + offset;
+> +			GEM_BUG_ON(!IS_ALIGNED(sg_dma_address(sg),
+> +					       page_alignment));
+>   			sg_dma_len(sg) = 0;
+>   			sg->length = 0;
+>   			st->nents++;
+> @@ -138,6 +144,7 @@ struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
+>    * i915_buddy_block list
+>    * @res: The struct i915_ttm_buddy_resource.
+>    * @region_start: An offset to add to the dma addresses of the sg list.
+> + * @page_alignment: Required page alignment for each sg entry. Power of two.
+>    *
+>    * Create a struct sg_table, initializing it from struct i915_buddy_block list,
+>    * taking a maximum segment length into account, splitting into segments
+> @@ -147,11 +154,12 @@ struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
+>    * error code cast to an error pointer on failure.
+>    */
+>   struct i915_refct_sgt *i915_rsgt_from_buddy_resource(struct ttm_resource *res,
+> -						     u64 region_start)
+> +						     u64 region_start,
+> +						     u64 page_alignment)
+>   {
+>   	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
+>   	const u64 size = res->num_pages << PAGE_SHIFT;
+> -	const u64 max_segment = rounddown(UINT_MAX, PAGE_SIZE);
+> +	const u64 max_segment = round_down(UINT_MAX, page_alignment);
+>   	struct drm_buddy *mm = bman_res->mm;
+>   	struct list_head *blocks = &bman_res->blocks;
+>   	struct drm_buddy_block *block;
+> @@ -161,6 +169,7 @@ struct i915_refct_sgt *i915_rsgt_from_buddy_resource(struct ttm_resource *res,
+>   	resource_size_t prev_end;
+>   
+>   	GEM_BUG_ON(list_empty(blocks));
+> +	GEM_BUG_ON(!max_segment);
+>   
+>   	rsgt = kmalloc(sizeof(*rsgt), GFP_KERNEL);
+>   	if (!rsgt)
+> @@ -191,6 +200,8 @@ struct i915_refct_sgt *i915_rsgt_from_buddy_resource(struct ttm_resource *res,
+>   					sg = __sg_next(sg);
+>   
+>   				sg_dma_address(sg) = region_start + offset;
+> +				GEM_BUG_ON(!IS_ALIGNED(sg_dma_address(sg),
+> +						       page_alignment));
+>   				sg_dma_len(sg) = 0;
+>   				sg->length = 0;
+>   				st->nents++;
+> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
+> index 12c6a1684081..b13e4cdea923 100644
+> --- a/drivers/gpu/drm/i915/i915_scatterlist.h
+> +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
+> @@ -213,9 +213,11 @@ static inline void __i915_refct_sgt_init(struct i915_refct_sgt *rsgt,
+>   void i915_refct_sgt_init(struct i915_refct_sgt *rsgt, size_t size);
+>   
+>   struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
+> -					      u64 region_start);
+> +					      u64 region_start,
+> +					      u64 page_alignment);
+>   
+>   struct i915_refct_sgt *i915_rsgt_from_buddy_resource(struct ttm_resource *res,
+> -						     u64 region_start);
+> +						     u64 region_start,
+> +						     u64 page_alignment);
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c b/drivers/gpu/drm/i915/intel_region_ttm.c
+> index 62ff77445b01..6873808a7015 100644
+> --- a/drivers/gpu/drm/i915/intel_region_ttm.c
+> +++ b/drivers/gpu/drm/i915/intel_region_ttm.c
+> @@ -152,6 +152,7 @@ int intel_region_ttm_fini(struct intel_memory_region *mem)
+>    * Convert an opaque TTM resource manager resource to a refcounted sg_table.
+>    * @mem: The memory region.
+>    * @res: The resource manager resource obtained from the TTM resource manager.
+> + * @page_alignment: Required page alignment for each sg entry. Power of two.
+>    *
+>    * The gem backends typically use sg-tables for operations on the underlying
+>    * io_memory. So provide a way for the backends to translate the
+> @@ -161,16 +162,19 @@ int intel_region_ttm_fini(struct intel_memory_region *mem)
+>    */
+>   struct i915_refct_sgt *
+>   intel_region_ttm_resource_to_rsgt(struct intel_memory_region *mem,
+> -				  struct ttm_resource *res)
+> +				  struct ttm_resource *res,
+> +				  u64 page_alignment)
+>   {
+>   	if (mem->is_range_manager) {
+>   		struct ttm_range_mgr_node *range_node =
+>   			to_ttm_range_mgr_node(res);
+>   
+>   		return i915_rsgt_from_mm_node(&range_node->mm_nodes[0],
+> -					      mem->region.start);
+> +					      mem->region.start,
+> +					      page_alignment);
+>   	} else {
+> -		return i915_rsgt_from_buddy_resource(res, mem->region.start);
+> +		return i915_rsgt_from_buddy_resource(res, mem->region.start,
+> +						     page_alignment);
+>   	}
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/intel_region_ttm.h b/drivers/gpu/drm/i915/intel_region_ttm.h
+> index cf9d86dcf409..98fba5155619 100644
+> --- a/drivers/gpu/drm/i915/intel_region_ttm.h
+> +++ b/drivers/gpu/drm/i915/intel_region_ttm.h
+> @@ -24,7 +24,8 @@ int intel_region_ttm_fini(struct intel_memory_region *mem);
+>   
+>   struct i915_refct_sgt *
+>   intel_region_ttm_resource_to_rsgt(struct intel_memory_region *mem,
+> -				  struct ttm_resource *res);
+> +				  struct ttm_resource *res,
+> +				  u64 page_alignment);
+>   
+>   void intel_region_ttm_resource_free(struct intel_memory_region *mem,
+>   				    struct ttm_resource *res);
+> diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> index 73eb53edb8de..4e0069a87f15 100644
+> --- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> +++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> @@ -460,7 +460,9 @@ static int igt_mock_max_segment(void *arg)
+>   	struct drm_buddy *mm;
+>   	struct list_head *blocks;
+>   	struct scatterlist *sg;
+> +	I915_RND_STATE(prng);
+>   	LIST_HEAD(objects);
+> +	unsigned int ps;
+>   	u64 size;
+>   	int err = 0;
+>   
+> @@ -472,7 +474,11 @@ static int igt_mock_max_segment(void *arg)
+>   	 */
+>   
+>   	size = SZ_8G;
+> -	mem = mock_region_create(i915, 0, size, PAGE_SIZE, 0, 0);
+> +	ps = PAGE_SIZE;
+> +	if (i915_prandom_u64_state(&prng) & 1)
+> +		ps = SZ_64K; /* For something like DG2 */
 
-Series: drm/i915/selftests: fix a couple IS_ERR() vs NULL tests (rev2)
-URL   : https://patchwork.freedesktop.org/series/106093/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11862 -> Patchwork_106093v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/index.html
-
-Participating hosts (45 -> 41)
-------------------------------
-
-  Missing    (4): fi-ctg-p8600 fi-rkl-11600 fi-icl-u2 fi-hsw-4200u 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_106093v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - fi-kbl-soraka:      [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-kbl-soraka/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-kbl-soraka/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live@gem:
-    - fi-pnv-d510:        NOTRUN -> [DMESG-FAIL][3] ([i915#4528])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-pnv-d510/igt@i915_selftest@live@gem.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [PASS][4] -> [FAIL][5] ([i915#6298])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - {bat-adln-1}:       [DMESG-WARN][6] ([i915#6297]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adln-1/igt@i915_module_load@reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/bat-adln-1/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][8] ([i915#4494] / [i915#4957]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-pnv-d510:        [DMESG-FAIL][10] ([i915#4528]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-pnv-d510/igt@i915_selftest@live@requests.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-pnv-d510/igt@i915_selftest@live@requests.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
-    - {bat-adlp-6}:       [DMESG-WARN][12] ([i915#3576]) -> [PASS][13] +1 similar issue
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-
-  * igt@vgem_basic@setversion:
-    - fi-kbl-soraka:      [INCOMPLETE][14] -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-kbl-soraka/igt@vgem_basic@setversion.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-kbl-soraka/igt@vgem_basic@setversion.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#6297]: https://gitlab.freedesktop.org/drm/intel/issues/6297
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+Hi Matt,
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11862 -> Patchwork_106093v2
-
-  CI-20190529: 20190529
-  CI_DRM_11862: ffee806d103b9604db7eb9cd689c098aca1ffa96 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6563: 7d43b49bf10788d4870668f93a800888fc8ab339 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_106093v2: ffee806d103b9604db7eb9cd689c098aca1ffa96 @ git://anongit.freedesktop.org/gfx-ci/linux
+shouldn't max_segment also need to be adjusted accordingly here?
 
 
-### Linux commits
+Nirmoy
 
-e6f3f9fc9c2b drm/i915/selftests: fix a couple IS_ERR() vs NULL tests
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/index.html
-
---===============0481629248134419471==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: fix a couple IS_ERR() vs NULL tests (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106093/">https://patchwork.freedesktop.org/series/106093/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11862 -&gt; Patchwork_106093v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/index.html</p>
-<h2>Participating hosts (45 -&gt; 41)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-rkl-11600 fi-icl-u2 fi-hsw-4200u </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_106093v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-kbl-soraka/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-kbl-soraka/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-pnv-d510/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adln-1/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6297">i915#6297</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/bat-adln-1/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@setversion:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-kbl-soraka/igt@vgem_basic@setversion.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106093v2/fi-kbl-soraka/igt@vgem_basic@setversion.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11862 -&gt; Patchwork_106093v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11862: ffee806d103b9604db7eb9cd689c098aca1ffa96 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6563: 7d43b49bf10788d4870668f93a800888fc8ab339 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_106093v2: ffee806d103b9604db7eb9cd689c098aca1ffa96 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e6f3f9fc9c2b drm/i915/selftests: fix a couple IS_ERR() vs NULL tests</p>
-
-</body>
-</html>
-
---===============0481629248134419471==--
+> +
+> +	mem = mock_region_create(i915, 0, size, ps, 0, 0);
+>   	if (IS_ERR(mem))
+>   		return PTR_ERR(mem);
+>   
+> @@ -498,12 +504,21 @@ static int igt_mock_max_segment(void *arg)
+>   	}
+>   
+>   	for (sg = obj->mm.pages->sgl; sg; sg = sg_next(sg)) {
+> +		dma_addr_t daddr = sg_dma_address(sg);
+> +
+>   		if (sg->length > max_segment) {
+>   			pr_err("%s: Created an oversized scatterlist entry, %u > %u\n",
+>   			       __func__, sg->length, max_segment);
+>   			err = -EINVAL;
+>   			goto out_close;
+>   		}
+> +
+> +		if (!IS_ALIGNED(daddr, ps)) {
+> +			pr_err("%s: Created an unaligned scatterlist entry, addr=%pa, ps=%u\n",
+> +			       __func__,  &daddr, ps);
+> +			err = -EINVAL;
+> +			goto out_close;
+> +		}
+>   	}
+>   
+>   out_close:
+> diff --git a/drivers/gpu/drm/i915/selftests/mock_region.c b/drivers/gpu/drm/i915/selftests/mock_region.c
+> index 670557ce1024..bac21fe84ca5 100644
+> --- a/drivers/gpu/drm/i915/selftests/mock_region.c
+> +++ b/drivers/gpu/drm/i915/selftests/mock_region.c
+> @@ -33,7 +33,8 @@ static int mock_region_get_pages(struct drm_i915_gem_object *obj)
+>   		return PTR_ERR(obj->mm.res);
+>   
+>   	obj->mm.rsgt = intel_region_ttm_resource_to_rsgt(obj->mm.region,
+> -							 obj->mm.res);
+> +							 obj->mm.res,
+> +							 obj->mm.region->min_page_size);
+>   	if (IS_ERR(obj->mm.rsgt)) {
+>   		err = PTR_ERR(obj->mm.rsgt);
+>   		goto err_free_resource;
