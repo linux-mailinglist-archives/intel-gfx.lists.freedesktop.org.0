@@ -2,142 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EA4056B49D
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 10:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C11B956B49C
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 10:41:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 858FD1128A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4A111128A8;
 	Fri,  8 Jul 2022 08:41:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 732CD1128A1;
- Fri,  8 Jul 2022 08:41:29 +0000 (UTC)
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26876xbg013695;
- Fri, 8 Jul 2022 08:41:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : content-type : mime-version; s=corp-2021-07-09;
- bh=lZV4fvYGG9/ryEbkKZlQXt7Kvb2t8elcMSdT+82qar8=;
- b=Zj9ODdcCqRDG9y4IzIZACoRXfjZ87RVwglYld+W0zS61RIae5pl4hLxjxFG+8EG6WmK7
- CqfwmdBhCcyLrZ7mO/IBT4jMSJBhp2fo6GMyBk8mgbIZfINfVY347AmicX/r0WJ23OYn
- rErV39PPttADskDdjpS7UthJPHqxj4gk2Cy66IJD/UDtLrNe5+ScjCCYSDEo3ElAzOIo
- APKiUv2Q0al2xl6ofUSO9foRPHkAfcDpk8QzikfJJaBBKRxMwQND7pcgBwJZ2bn58Gjd
- Jo+sJU0Ik934qe9thHC+uTyBPUz8eSZuyqRB+f+JfuHTyKDX4m12BUBQe9osaWogUkmt 1g== 
-Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta03.appoci.oracle.com [130.35.103.27])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3h4ubyfh16-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 08 Jul 2022 08:41:21 +0000
-Received: from pps.filterd
- (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (8.16.1.2/8.16.1.2)
- with SMTP id 2688Zpq7002234; Fri, 8 Jul 2022 08:41:20 GMT
-Received: from nam02-sn1-obe.outbound.protection.outlook.com
- (mail-sn1anam02lp2048.outbound.protection.outlook.com [104.47.57.48])
- by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com with ESMTP id
- 3h4ud9ngk3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 08 Jul 2022 08:41:20 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nj8BXaLCm/CXufooZ99mqysNwcDMQH65tgcznw40r36o5AIPf6EcVC8RuYgneOF99umgrQJqGOPmZhhspUubYC7CW4EPf4o+NC1O+/4tNVPJViWENzYjL7sl3tSw9OZQ1Sn2QJer0S6sEPWaIZsTqIOo5K82NoZpL6EqMkehsWSUt2rITCX0TeYv527q9z7LGkQbpY7Z4hYcZ2dXus5rTAU+c5bqQpYJCqRpq2e/Q8TFBELgbXjOPpr3W81b1VzWbNWV0C19YHPndEQFUSyURajW48EfdUkGQoaVQ1c2PedxZ8TzjVWfwGQ16bIxHzQ8bD7oNIbVXbyGmxhS//ME6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lZV4fvYGG9/ryEbkKZlQXt7Kvb2t8elcMSdT+82qar8=;
- b=gNTyE80AMCKaGDN3T0L1QNl5jWYT4q/+Hnv641FaxzXUD/pOhIs27FlMly5hnZBfjdRWiAsCZBthB5tadRV/y9DERq1IFzEZZQW26b7/7D/gJvgDfbzHGkvoMLdwhUXydGUYP+YS4gjdU7BVXdhVqxiny5B8MoqFix4eOC34LOEvumyhxM8cIMtNg4MeFCLnecSekImIsruUZKqVU7vm62ign6skBvwY6X2XI4GAxYZ8iyLIGQO0mc0qT4V5hHenFSeMbarNDAx51SgVlauCfspZ/fJU9Hn4nicbvXHje5jBS0+0YU2a+qhR2cKMryQJYkiTJLoYv9R3RfQnDJG/iQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lZV4fvYGG9/ryEbkKZlQXt7Kvb2t8elcMSdT+82qar8=;
- b=M+CojtRC6uk+NqiN8/4glN6yRjZpg0j4zFmSqMZJrvbfg2t5f0yBE2gRfQgTzsgHe4WBiko5aXpgYDnpTflidAHgc6uGDr+LOz9ROoEs+mdiS5a16bCXSgelBDvSSUJDf+Pphebes6lnt58iUyhKh+0MsjExFZpHfeMQHVBgnH0=
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by IA1PR10MB6123.namprd10.prod.outlook.com
- (2603:10b6:208:3a9::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Fri, 8 Jul
- 2022 08:41:18 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::5020:9b82:5917:40b]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::5020:9b82:5917:40b%6]) with mapi id 15.20.5417.016; Fri, 8 Jul 2022
- 08:41:18 +0000
-Date: Fri, 8 Jul 2022 11:41:06 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <Ysftoia2BPUyqVcD@kili>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-ClientProxiedBy: ZR0P278CA0120.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:20::17) To MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B83DB1128A2
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 08:41:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1657269689; x=1688805689;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=MAlGfFcyRsncR26QtzThKHePJS9aIbfNdBZYh+SqVhU=;
+ b=N+OJXaCXV0oF1G9GNB92sys9raJ9h0LQYqqu4Mf6KvSXj3B4phy+6tUh
+ yY7w9PHsL1xMKRs14KNrmMECPzEYsaQIaU8WWdCfaRUz/CG+/4V//padO
+ iS/sty/1kByAzMil/5t/yPilmhchqqnHKPVAmRvKRBiYV/v2wPluL+j77
+ ZE34KQyogEMu9b0pjeMaSDIYB63zESgr5cuWc6huncwDEhOMRX1CKgWxP
+ KcLGW83P+lta9Dk9VKoriSKFdu/hABw+2dAzVv4g/dK5KTm5IMSPGsy5f
+ nEf+0b1/30huoWdiZvY6qtH9jVLn0NvepwWGCWwUulIt2on6fyAuzvTdM Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="348217780"
+X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="348217780"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2022 01:41:28 -0700
+X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="568866419"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.16.201])
+ ([10.213.16.201])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2022 01:41:25 -0700
+Message-ID: <e670c978-85e5-a133-87e1-4fde9f9415c9@intel.com>
+Date: Fri, 8 Jul 2022 10:41:21 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e18e65ef-7c13-4e1c-a106-08da60bda046
-X-MS-TrafficTypeDiagnostic: IA1PR10MB6123:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OCDYlr8QQRKRpY8k3CdWqjMs9O+31MTSvwuQMXdKBhCDa8ipbN3BEl2b00BCWRsIovqmctPXwA5CcrzvEcrxVmL+0cCquVbIDE9Z4Gd4ipZdBfFWgwWK2U1QuCRa/Do7CBcU4RGdvkRhyohpUoY9761m1JeZ3Da5tYFH8UTSgcxm46/uurKXu6UX1+vf/jakYpkl8iCICl9NcSJ8HthlZMUw+5vnRhEAhejjcpySNIVxyhdKfHE955nyCwq5oERTNXaCzsajemeucvBjfQ43SxPt84phxD44hprC65fKY4HvAdIiUaqQQ6byZ39idKyPQ+jdZ3RrzuT9dGuqrEkZQ6o+GBYghPkOCUWKCsc7YJ1BllOPjhVExOyc+J2ye01KEMjPvVmWpCi+fymjrRr0/1iWitkTcCcWIRczcSLHG9kkJ2vzYcfs79yRAOP+A2E6gdjHXOBVTqtZ/GZu2ZNRxDPnNthtRLbrtPv9Vir8JgKy6h6ZtxI0RK7occrfnMBsEIN/LyYAnBKBPJ34F/zTulO+q5QifDWy5hnY+4QWLZThjDoPp8/9Nm3CvqpH1X6Vuq4Sx2hNuST626FrxjqcJTzS81kOQmBG3/2rx5lTpeuREJJUr5EQM42MxJo09/ZDBx3SReRTO+UFJd7C9QcRpl378pd7lu2jLoxtTojvasGzwIaWdvo+jVPQbOie6MsMIlgfHnuRQmVM3LJz8jiAIHmYAasfcjm4XSe/MdmQ8ZBY7hherRWJ8LmleQddLIVfF+kYg34bkt4T3jf2h7SKzpzl3btKTzXCBTPsKqGFz/rTKjCSQONAKsmE3f6pO+Zm
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(7916004)(396003)(39860400002)(346002)(366004)(136003)(376002)(478600001)(2906002)(5660300002)(6666004)(4744005)(8936002)(52116002)(44832011)(33716001)(6506007)(7416002)(86362001)(26005)(6512007)(66556008)(54906003)(41300700001)(110136005)(316002)(38350700002)(8676002)(38100700002)(66476007)(6486002)(4326008)(83380400001)(9686003)(186003)(66946007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PER9GAvFndXF9YBTkUb4vTGL7MHGTKBbiTZy/fOL3lRxNl7iG6QwV2gLUg3n?=
- =?us-ascii?Q?Gpq/9AbKMu7DKaWYK5kqrE3Sc8YrZdewKraBCsM6k37g8izur+LsVQksQ8ai?=
- =?us-ascii?Q?yuYUJJiwFV8oiixEzj0XLaXr5FhzYXSeecGXI380BEA6bYhgVOhL64KsRfdl?=
- =?us-ascii?Q?7I8rTtKtfiyzp2/kgG6Onza9SF+ILMPhSX9S2tpc8zR2O1EXTXpQp9xLhGMx?=
- =?us-ascii?Q?C6sosy5DtvG2sFbLBxkNtOhvaD2t38+iaoopTk+pxwaX8Cm+Al41l042rjV9?=
- =?us-ascii?Q?JiW6uPVK6t3l8uxm2aVkNrPjkOvgasr+zrPGF1EOMg+3Sm0b5nufyf/miFCM?=
- =?us-ascii?Q?fVqvfKVgsfLTK51yPe/Tt/ZfVmqdCu3aa5vm7fy7fXKZZqcLyjGXN0HCHfkD?=
- =?us-ascii?Q?NE4OzYifSKnPm+qj6DnhoxLExgnjj9bfCJLe4XUsFTHr/8pFhmn9Eejgxnpa?=
- =?us-ascii?Q?MkqaVDYocao6E9sMkLAwD4fSpU9yUl0QmsDtVgATdzMBi2nDXveKVnnD1uL5?=
- =?us-ascii?Q?Svg/aNQChAiXYrHRqME1bR3rUB+76MlK2ui7odLINlKges7e3Nbc4f8DJbZK?=
- =?us-ascii?Q?VZCziLIujpf1ru18ZaVOKx+nIoW1Aumt25aJL71bax6O/awUxEDZ+7p3D7Y3?=
- =?us-ascii?Q?VH9Rcb1eUPsz/JZoFI8aeJR9Fwrk5aqtREiGWiRFAD+dyTQIlGIL/QJwkh9X?=
- =?us-ascii?Q?mYji4iSPq/xcjhC4ZJqLYveU87NlCEHlqkiJ9YZe1EGhHldix29O+3BN3jTU?=
- =?us-ascii?Q?LeJ27vTpC/W2Usm7nqETzIJ0tPvRg0REG/GtdwyAzYmy7+I5G5jhn1e6wDeu?=
- =?us-ascii?Q?AM7qaegjA/405y3HSgFGsMvuoqmJYc0fQhMNv4myHqAS14dlCRWTOkrc2bT7?=
- =?us-ascii?Q?6Fs2BrDAkMpt+mGqd542mtb8mcLSxyW9GiO4YfTGYNu3qoKifsdJ2PG/hu7k?=
- =?us-ascii?Q?8eB4ocvNXIYLwT/dz5At0FZUpUJxK4boDBsgKz+SM/sEIy7uNWJbla3dLPkQ?=
- =?us-ascii?Q?UqNzsLtkwwLyznMweujL9kalE+DB4Zms2TlGVIc/FLT5AdRtVlqA5PBxE/o1?=
- =?us-ascii?Q?n6dP1D7+reOg+cUwkuxZYhCsYYHPHG+kdfQP9cinIkEF4rj0tDbERxL36knP?=
- =?us-ascii?Q?cu9irCzxK1y+po9cPwuftfKplms7ABMZH6YP7YBWXJObXFVERg4Nw4LYZANN?=
- =?us-ascii?Q?gRJg23vKQa5mRue1+cxRibla0CXHGYnHg6q+T/XniCmB6sm6+xm16f3/P+6W?=
- =?us-ascii?Q?gThORnangE8tzxPqW8OyP3xG15cLQgdrP2GwL723HAUUCxke0NgDKPqb335L?=
- =?us-ascii?Q?3UfXNw5T9FaBAGQzzbY/xmJubcRIQ1lDOs9gsJGMesZpvqT/FHHsBibUuffl?=
- =?us-ascii?Q?MQ6ro6hLNn67DaYXD+ZJS5FUgwzHdshEJ01ZNgnvu/F6w8pmzs2vGnpxcCvh?=
- =?us-ascii?Q?fl5K7NuO9DBIRqD6gbUcOR0GgvuMIB+A6dyMxJpKTIfrVqcEuriw4iMHfHeg?=
- =?us-ascii?Q?LxzDX3XFmMdyq67Qk/RfIxkwbn+bDk/x8PccF2msAs7Wg7GLVIC+CTfteucB?=
- =?us-ascii?Q?rUfibPZ3/8iac93LMffAOENVuI1CKt5Ib5u6ZlyjpBGCYYfP2Lvl8sANzUHS?=
- =?us-ascii?Q?kw=3D=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e18e65ef-7c13-4e1c-a106-08da60bda046
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2022 08:41:18.3071 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Wq2Us77Pey8GsxlvQFidw0AyJWql0O/ZEJldqPWlgszZxRI67bfYisAuz2Wk49aJIAkZt82ezKv9at2X74LFBbNDvjeK159egDXHoVD3ceA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB6123
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.517, 18.0.883
- definitions=2022-07-08_06:2022-06-28,
- 2022-07-08 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
- bulkscore=0 malwarescore=0
- mlxscore=0 spamscore=0 suspectscore=0 adultscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
- definitions=main-2207080032
-X-Proofpoint-ORIG-GUID: QLtkGc64rLSGBCAyu8jBqJ1cX8kpRbLE
-X-Proofpoint-GUID: QLtkGc64rLSGBCAyu8jBqJ1cX8kpRbLE
-Subject: [Intel-gfx] [PATCH] drm/i915/gvt: IS_ERR() vs NULL bug in
- intel_gvt_update_reg_whitelist()
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.11.0
+Content-Language: en-US
+To: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+References: <20220707193002.2859653-1-umesh.nerlige.ramappa@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220707193002.2859653-1-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] i915/perf: Replace DRM_DEBUG with
+ driver specific drm_dbg call
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,38 +65,489 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The shmem_pin_map() function returns NULL, it doesn't return error
-pointers.
+On 07.07.2022 21:30, Nerlige Ramappa, Umesh wrote:
+> DRM_DEBUG is not the right debug call to use in i915 OA, replace it with
+> driver specific drm_dbg() call (Matt).
+> 
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com > ---
+>   drivers/gpu/drm/i915/i915_perf.c | 151 ++++++++++++++++++++-----------
+>   1 file changed, 100 insertions(+), 51 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 1577ab6754db..b3beb89884e0 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -885,8 +885,9 @@ static int gen8_oa_read(struct i915_perf_stream *stream,
+>   		if (ret)
+>   			return ret;
+>   
+> -		DRM_DEBUG("OA buffer overflow (exponent = %d): force restart\n",
+> -			  stream->period_exponent);
+> +		drm_dbg(&stream->perf->i915->drm,
 
-Fixes: 97ea656521c8 ("drm/i915/gvt: Parse default state to update reg whitelist")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
- drivers/gpu/drm/i915/gvt/cmd_parser.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Looking at number of uses of &stream->perf->i915->drm I wonder if some 
+helper wouldn't simplify things, sth like to_drm(stream) ?
 
-diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-index b9eb75a2b400..1c35a41620ae 100644
---- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
-+++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-@@ -3117,9 +3117,9 @@ void intel_gvt_update_reg_whitelist(struct intel_vgpu *vgpu)
- 			continue;
- 
- 		vaddr = shmem_pin_map(engine->default_state);
--		if (IS_ERR(vaddr)) {
--			gvt_err("failed to map %s->default state, err:%zd\n",
--				engine->name, PTR_ERR(vaddr));
-+		if (!vaddr) {
-+			gvt_err("failed to map %s->default state\n",
-+				engine->name);
- 			return;
- 		}
- 
--- 
-2.35.1
+Anyway:
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Regards
+Andrzej
+
+> +			"OA buffer overflow (exponent = %d): force restart\n",
+> +			stream->period_exponent);
+>   
+>   		stream->perf->ops.oa_disable(stream);
+>   		stream->perf->ops.oa_enable(stream);
+> @@ -1108,8 +1109,9 @@ static int gen7_oa_read(struct i915_perf_stream *stream,
+>   		if (ret)
+>   			return ret;
+>   
+> -		DRM_DEBUG("OA buffer overflow (exponent = %d): force restart\n",
+> -			  stream->period_exponent);
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"OA buffer overflow (exponent = %d): force restart\n",
+> +			stream->period_exponent);
+>   
+>   		stream->perf->ops.oa_disable(stream);
+>   		stream->perf->ops.oa_enable(stream);
+> @@ -2863,7 +2865,8 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>   	int ret;
+>   
+>   	if (!props->engine) {
+> -		DRM_DEBUG("OA engine not specified\n");
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"OA engine not specified\n");
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -2873,18 +2876,21 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>   	 * IDs
+>   	 */
+>   	if (!perf->metrics_kobj) {
+> -		DRM_DEBUG("OA metrics weren't advertised via sysfs\n");
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"OA metrics weren't advertised via sysfs\n");
+>   		return -EINVAL;
+>   	}
+>   
+>   	if (!(props->sample_flags & SAMPLE_OA_REPORT) &&
+>   	    (GRAPHICS_VER(perf->i915) < 12 || !stream->ctx)) {
+> -		DRM_DEBUG("Only OA report sampling supported\n");
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"Only OA report sampling supported\n");
+>   		return -EINVAL;
+>   	}
+>   
+>   	if (!perf->ops.enable_metric_set) {
+> -		DRM_DEBUG("OA unit not supported\n");
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"OA unit not supported\n");
+>   		return -ENODEV;
+>   	}
+>   
+> @@ -2894,12 +2900,14 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>   	 * we currently only allow exclusive access
+>   	 */
+>   	if (perf->exclusive_stream) {
+> -		DRM_DEBUG("OA unit already in use\n");
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"OA unit already in use\n");
+>   		return -EBUSY;
+>   	}
+>   
+>   	if (!props->oa_format) {
+> -		DRM_DEBUG("OA report format not specified\n");
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"OA report format not specified\n");
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -2929,20 +2937,23 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>   	if (stream->ctx) {
+>   		ret = oa_get_render_ctx_id(stream);
+>   		if (ret) {
+> -			DRM_DEBUG("Invalid context id to filter with\n");
+> +			drm_dbg(&stream->perf->i915->drm,
+> +				"Invalid context id to filter with\n");
+>   			return ret;
+>   		}
+>   	}
+>   
+>   	ret = alloc_noa_wait(stream);
+>   	if (ret) {
+> -		DRM_DEBUG("Unable to allocate NOA wait batch buffer\n");
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"Unable to allocate NOA wait batch buffer\n");
+>   		goto err_noa_wait_alloc;
+>   	}
+>   
+>   	stream->oa_config = i915_perf_get_oa_config(perf, props->metrics_set);
+>   	if (!stream->oa_config) {
+> -		DRM_DEBUG("Invalid OA config id=%i\n", props->metrics_set);
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"Invalid OA config id=%i\n", props->metrics_set);
+>   		ret = -EINVAL;
+>   		goto err_config;
+>   	}
+> @@ -2973,11 +2984,13 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>   
+>   	ret = i915_perf_stream_enable_sync(stream);
+>   	if (ret) {
+> -		DRM_DEBUG("Unable to enable metric set\n");
+> +		drm_dbg(&stream->perf->i915->drm,
+> +			"Unable to enable metric set\n");
+>   		goto err_enable;
+>   	}
+>   
+> -	DRM_DEBUG("opening stream oa config uuid=%s\n",
+> +	drm_dbg(&stream->perf->i915->drm,
+> +		"opening stream oa config uuid=%s\n",
+>   		  stream->oa_config->uuid);
+>   
+>   	hrtimer_init(&stream->poll_check_timer,
+> @@ -3429,7 +3442,8 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
+>   
+>   		specific_ctx = i915_gem_context_lookup(file_priv, ctx_handle);
+>   		if (IS_ERR(specific_ctx)) {
+> -			DRM_DEBUG("Failed to look up context with ID %u for opening perf stream\n",
+> +			drm_dbg(&perf->i915->drm,
+> +				"Failed to look up context with ID %u for opening perf stream\n",
+>   				  ctx_handle);
+>   			ret = PTR_ERR(specific_ctx);
+>   			goto err;
+> @@ -3463,7 +3477,8 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
+>   
+>   	if (props->hold_preemption) {
+>   		if (!props->single_context) {
+> -			DRM_DEBUG("preemption disable with no context\n");
+> +			drm_dbg(&perf->i915->drm,
+> +				"preemption disable with no context\n");
+>   			ret = -EINVAL;
+>   			goto err;
+>   		}
+> @@ -3485,7 +3500,8 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
+>   	 */
+>   	if (privileged_op &&
+>   	    i915_perf_stream_paranoid && !perfmon_capable()) {
+> -		DRM_DEBUG("Insufficient privileges to open i915 perf stream\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Insufficient privileges to open i915 perf stream\n");
+>   		ret = -EACCES;
+>   		goto err_ctx;
+>   	}
+> @@ -3592,7 +3608,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   	props->poll_oa_period = DEFAULT_POLL_PERIOD_NS;
+>   
+>   	if (!n_props) {
+> -		DRM_DEBUG("No i915 perf properties given\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"No i915 perf properties given\n");
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -3601,7 +3618,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   						 I915_ENGINE_CLASS_RENDER,
+>   						 0);
+>   	if (!props->engine) {
+> -		DRM_DEBUG("No RENDER-capable engines\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"No RENDER-capable engines\n");
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -3612,7 +3630,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   	 * from userspace.
+>   	 */
+>   	if (n_props >= DRM_I915_PERF_PROP_MAX) {
+> -		DRM_DEBUG("More i915 perf properties specified than exist\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"More i915 perf properties specified than exist\n");
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -3629,7 +3648,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   			return ret;
+>   
+>   		if (id == 0 || id >= DRM_I915_PERF_PROP_MAX) {
+> -			DRM_DEBUG("Unknown i915 perf property ID\n");
+> +			drm_dbg(&perf->i915->drm,
+> +				"Unknown i915 perf property ID\n");
+>   			return -EINVAL;
+>   		}
+>   
+> @@ -3644,19 +3664,22 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   			break;
+>   		case DRM_I915_PERF_PROP_OA_METRICS_SET:
+>   			if (value == 0) {
+> -				DRM_DEBUG("Unknown OA metric set ID\n");
+> +				drm_dbg(&perf->i915->drm,
+> +					"Unknown OA metric set ID\n");
+>   				return -EINVAL;
+>   			}
+>   			props->metrics_set = value;
+>   			break;
+>   		case DRM_I915_PERF_PROP_OA_FORMAT:
+>   			if (value == 0 || value >= I915_OA_FORMAT_MAX) {
+> -				DRM_DEBUG("Out-of-range OA report format %llu\n",
+> +				drm_dbg(&perf->i915->drm,
+> +					"Out-of-range OA report format %llu\n",
+>   					  value);
+>   				return -EINVAL;
+>   			}
+>   			if (!oa_format_valid(perf, value)) {
+> -				DRM_DEBUG("Unsupported OA report format %llu\n",
+> +				drm_dbg(&perf->i915->drm,
+> +					"Unsupported OA report format %llu\n",
+>   					  value);
+>   				return -EINVAL;
+>   			}
+> @@ -3664,7 +3687,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   			break;
+>   		case DRM_I915_PERF_PROP_OA_EXPONENT:
+>   			if (value > OA_EXPONENT_MAX) {
+> -				DRM_DEBUG("OA timer exponent too high (> %u)\n",
+> +				drm_dbg(&perf->i915->drm,
+> +					"OA timer exponent too high (> %u)\n",
+>   					 OA_EXPONENT_MAX);
+>   				return -EINVAL;
+>   			}
+> @@ -3692,7 +3716,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   				oa_freq_hz = 0;
+>   
+>   			if (oa_freq_hz > i915_oa_max_sample_rate && !perfmon_capable()) {
+> -				DRM_DEBUG("OA exponent would exceed the max sampling frequency (sysctl dev.i915.oa_max_sample_rate) %uHz without CAP_PERFMON or CAP_SYS_ADMIN privileges\n",
+> +				drm_dbg(&perf->i915->drm,
+> +					"OA exponent would exceed the max sampling frequency (sysctl dev.i915.oa_max_sample_rate) %uHz without CAP_PERFMON or CAP_SYS_ADMIN privileges\n",
+>   					  i915_oa_max_sample_rate);
+>   				return -EACCES;
+>   			}
+> @@ -3709,13 +3734,15 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   			if (copy_from_user(&user_sseu,
+>   					   u64_to_user_ptr(value),
+>   					   sizeof(user_sseu))) {
+> -				DRM_DEBUG("Unable to copy global sseu parameter\n");
+> +				drm_dbg(&perf->i915->drm,
+> +					"Unable to copy global sseu parameter\n");
+>   				return -EFAULT;
+>   			}
+>   
+>   			ret = get_sseu_config(&props->sseu, props->engine, &user_sseu);
+>   			if (ret) {
+> -				DRM_DEBUG("Invalid SSEU configuration\n");
+> +				drm_dbg(&perf->i915->drm,
+> +					"Invalid SSEU configuration\n");
+>   				return ret;
+>   			}
+>   			props->has_sseu = true;
+> @@ -3723,7 +3750,8 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   		}
+>   		case DRM_I915_PERF_PROP_POLL_OA_PERIOD:
+>   			if (value < 100000 /* 100us */) {
+> -				DRM_DEBUG("OA availability timer too small (%lluns < 100us)\n",
+> +				drm_dbg(&perf->i915->drm,
+> +					"OA availability timer too small (%lluns < 100us)\n",
+>   					  value);
+>   				return -EINVAL;
+>   			}
+> @@ -3774,7 +3802,8 @@ int i915_perf_open_ioctl(struct drm_device *dev, void *data,
+>   	int ret;
+>   
+>   	if (!perf->i915) {
+> -		DRM_DEBUG("i915 perf interface not available for this system\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"i915 perf interface not available for this system\n");
+>   		return -ENOTSUPP;
+>   	}
+>   
+> @@ -3782,7 +3811,8 @@ int i915_perf_open_ioctl(struct drm_device *dev, void *data,
+>   			   I915_PERF_FLAG_FD_NONBLOCK |
+>   			   I915_PERF_FLAG_DISABLED;
+>   	if (param->flags & ~known_open_flags) {
+> -		DRM_DEBUG("Unknown drm_i915_perf_open_param flag\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Unknown drm_i915_perf_open_param flag\n");
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -4028,7 +4058,8 @@ static struct i915_oa_reg *alloc_oa_regs(struct i915_perf *perf,
+>   			goto addr_err;
+>   
+>   		if (!is_valid(perf, addr)) {
+> -			DRM_DEBUG("Invalid oa_reg address: %X\n", addr);
+> +			drm_dbg(&perf->i915->drm,
+> +				"Invalid oa_reg address: %X\n", addr);
+>   			err = -EINVAL;
+>   			goto addr_err;
+>   		}
+> @@ -4102,30 +4133,35 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   	int err, id;
+>   
+>   	if (!perf->i915) {
+> -		DRM_DEBUG("i915 perf interface not available for this system\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"i915 perf interface not available for this system\n");
+>   		return -ENOTSUPP;
+>   	}
+>   
+>   	if (!perf->metrics_kobj) {
+> -		DRM_DEBUG("OA metrics weren't advertised via sysfs\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"OA metrics weren't advertised via sysfs\n");
+>   		return -EINVAL;
+>   	}
+>   
+>   	if (i915_perf_stream_paranoid && !perfmon_capable()) {
+> -		DRM_DEBUG("Insufficient privileges to add i915 OA config\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Insufficient privileges to add i915 OA config\n");
+>   		return -EACCES;
+>   	}
+>   
+>   	if ((!args->mux_regs_ptr || !args->n_mux_regs) &&
+>   	    (!args->boolean_regs_ptr || !args->n_boolean_regs) &&
+>   	    (!args->flex_regs_ptr || !args->n_flex_regs)) {
+> -		DRM_DEBUG("No OA registers given\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"No OA registers given\n");
+>   		return -EINVAL;
+>   	}
+>   
+>   	oa_config = kzalloc(sizeof(*oa_config), GFP_KERNEL);
+>   	if (!oa_config) {
+> -		DRM_DEBUG("Failed to allocate memory for the OA config\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Failed to allocate memory for the OA config\n");
+>   		return -ENOMEM;
+>   	}
+>   
+> @@ -4133,7 +4169,8 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   	kref_init(&oa_config->ref);
+>   
+>   	if (!uuid_is_valid(args->uuid)) {
+> -		DRM_DEBUG("Invalid uuid format for OA config\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Invalid uuid format for OA config\n");
+>   		err = -EINVAL;
+>   		goto reg_err;
+>   	}
+> @@ -4150,7 +4187,8 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   			     args->n_mux_regs);
+>   
+>   	if (IS_ERR(regs)) {
+> -		DRM_DEBUG("Failed to create OA config for mux_regs\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Failed to create OA config for mux_regs\n");
+>   		err = PTR_ERR(regs);
+>   		goto reg_err;
+>   	}
+> @@ -4163,7 +4201,8 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   			     args->n_boolean_regs);
+>   
+>   	if (IS_ERR(regs)) {
+> -		DRM_DEBUG("Failed to create OA config for b_counter_regs\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Failed to create OA config for b_counter_regs\n");
+>   		err = PTR_ERR(regs);
+>   		goto reg_err;
+>   	}
+> @@ -4182,7 +4221,8 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   				     args->n_flex_regs);
+>   
+>   		if (IS_ERR(regs)) {
+> -			DRM_DEBUG("Failed to create OA config for flex_regs\n");
+> +			drm_dbg(&perf->i915->drm,
+> +				"Failed to create OA config for flex_regs\n");
+>   			err = PTR_ERR(regs);
+>   			goto reg_err;
+>   		}
+> @@ -4198,7 +4238,8 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   	 */
+>   	idr_for_each_entry(&perf->metrics_idr, tmp, id) {
+>   		if (!strcmp(tmp->uuid, oa_config->uuid)) {
+> -			DRM_DEBUG("OA config already exists with this uuid\n");
+> +			drm_dbg(&perf->i915->drm,
+> +				"OA config already exists with this uuid\n");
+>   			err = -EADDRINUSE;
+>   			goto sysfs_err;
+>   		}
+> @@ -4206,7 +4247,8 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   
+>   	err = create_dynamic_oa_sysfs_entry(perf, oa_config);
+>   	if (err) {
+> -		DRM_DEBUG("Failed to create sysfs entry for OA config\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Failed to create sysfs entry for OA config\n");
+>   		goto sysfs_err;
+>   	}
+>   
+> @@ -4215,14 +4257,16 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   				  oa_config, 2,
+>   				  0, GFP_KERNEL);
+>   	if (oa_config->id < 0) {
+> -		DRM_DEBUG("Failed to create sysfs entry for OA config\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Failed to create sysfs entry for OA config\n");
+>   		err = oa_config->id;
+>   		goto sysfs_err;
+>   	}
+>   
+>   	mutex_unlock(&perf->metrics_lock);
+>   
+> -	DRM_DEBUG("Added config %s id=%i\n", oa_config->uuid, oa_config->id);
+> +	drm_dbg(&perf->i915->drm,
+> +		"Added config %s id=%i\n", oa_config->uuid, oa_config->id);
+>   
+>   	return oa_config->id;
+>   
+> @@ -4230,7 +4274,8 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   	mutex_unlock(&perf->metrics_lock);
+>   reg_err:
+>   	i915_oa_config_put(oa_config);
+> -	DRM_DEBUG("Failed to add new OA config\n");
+> +	drm_dbg(&perf->i915->drm,
+> +		"Failed to add new OA config\n");
+>   	return err;
+>   }
+>   
+> @@ -4254,12 +4299,14 @@ int i915_perf_remove_config_ioctl(struct drm_device *dev, void *data,
+>   	int ret;
+>   
+>   	if (!perf->i915) {
+> -		DRM_DEBUG("i915 perf interface not available for this system\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"i915 perf interface not available for this system\n");
+>   		return -ENOTSUPP;
+>   	}
+>   
+>   	if (i915_perf_stream_paranoid && !perfmon_capable()) {
+> -		DRM_DEBUG("Insufficient privileges to remove i915 OA config\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Insufficient privileges to remove i915 OA config\n");
+>   		return -EACCES;
+>   	}
+>   
+> @@ -4269,7 +4316,8 @@ int i915_perf_remove_config_ioctl(struct drm_device *dev, void *data,
+>   
+>   	oa_config = idr_find(&perf->metrics_idr, *arg);
+>   	if (!oa_config) {
+> -		DRM_DEBUG("Failed to remove unknown OA config\n");
+> +		drm_dbg(&perf->i915->drm,
+> +			"Failed to remove unknown OA config\n");
+>   		ret = -ENOENT;
+>   		goto err_unlock;
+>   	}
+> @@ -4282,7 +4330,8 @@ int i915_perf_remove_config_ioctl(struct drm_device *dev, void *data,
+>   
+>   	mutex_unlock(&perf->metrics_lock);
+>   
+> -	DRM_DEBUG("Removed config %s id=%i\n", oa_config->uuid, oa_config->id);
+> +	drm_dbg(&perf->i915->drm,
+> +		"Removed config %s id=%i\n", oa_config->uuid, oa_config->id);
+>   
+>   	i915_oa_config_put(oa_config);
+>   
 
