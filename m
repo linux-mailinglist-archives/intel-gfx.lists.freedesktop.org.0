@@ -2,50 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC8B56B140
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 06:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D120D56B259
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 07:43:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48C6812B4B6;
-	Fri,  8 Jul 2022 04:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC8410EF3D;
+	Fri,  8 Jul 2022 05:43:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9DB12B4B6;
- Fri,  8 Jul 2022 04:08:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657253306; x=1688789306;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=w+a9pw0jGz5UJqQLkFKwzJOSX8nn6ZRwZsIYHTH/MAs=;
- b=RJXYnItHYsAlAY7+hJZ7wcTJcD9SdHwydCzWntsAMw55tEfvpQ6n+fyw
- Fp2zXJcgbBgFFyPiefIwYhLWXkYMvkW8d7P7kXDQvidRM7IFCCRIUOQGx
- xLnaCk6CsAVl1LItBsS8Jo5iLBqwxQI1dsgr+uCHqrzqBiNvI3+Zc8My4
- Opmh+e5W0NkLW0HRaCwk7UgLv2dV1XncHpftDaGQ7/N5wCh2frn21RRlE
- y0sqKgRNBIXSk9m/nsFZsPhsITFF9QNhrIpYaXYctBe6dXLttB+83t5wx
- vSZr+kcFPxwno3Gx3xRxBaR9nabWwtQKiQfikCxaGfrZf03tCvAHYlbzo Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="285311017"
-X-IronPort-AV: E=Sophos;i="5.92,254,1650956400"; d="scan'208";a="285311017"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2022 21:08:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,254,1650956400"; d="scan'208";a="661634281"
-Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
- by fmsmga004.fm.intel.com with ESMTP; 07 Jul 2022 21:08:23 -0700
-Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1o9fHy-000MtG-QC;
- Fri, 08 Jul 2022 04:08:22 +0000
-Date: Fri, 8 Jul 2022 12:07:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202207081158.l1RcEsDh-lkp@intel.com>
-References: <20220707170927.499451-1-matthew.auld@intel.com>
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
+ [66.111.4.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7695910E818;
+ Fri,  8 Jul 2022 05:43:13 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailout.nyi.internal (Postfix) with ESMTP id 586B55C0100;
+ Fri,  8 Jul 2022 01:43:10 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Fri, 08 Jul 2022 01:43:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm2; t=
+ 1657258990; x=1657345390; bh=SaWTP/ipYOsNzkBPsdvH+wrCaeRLBav4Q0a
+ rAjsBm6k=; b=ekK9GFYo8Aj8NgCl4uLPMOR0+AIwQtyUZ0lB/DTcHjxrilg3S2j
+ 9F5cMTuOb/BYZ/p2LhM8Y+U3skNfSFchqbaeR3zvh1mI0F995oyXsLCmCKWabTIr
+ JML1BGmnYp/xDx6544gsEsPUDz7ffeE5p3lDyg4SJtWejAOB7xVpGkSSLZCNi6kl
+ GGtqhyHE5kZul46j2IOPQTYhIVycAIqKKPxCE02xbe0ODo5Jox+i0CBwHbowVaJd
+ XUbtGrcyZzkGOnA7z69Ff6tPlG3dCafjwJFrKhOon8G0ldhFHxv6rVCSVXkMYPqt
+ PJOen9nF20iTAbq2zfnp9ZNc8EVJ25XQAkw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1657258990; x=
+ 1657345390; bh=SaWTP/ipYOsNzkBPsdvH+wrCaeRLBav4Q0arAjsBm6k=; b=x
+ 0/z8+S4Rg/YN+tPnl2aF20r3m9/fWQlBHXIkq0jzNiETSrpO542sMmz4kvmosvyH
+ CutNEu4M6y+XnfUB/Ct8uQXkKRhvb0LsDVJcypFUEPUu2FrVv/JpvfaTi75L7eju
+ yQTv43iCQghMe6dEGXRwsKNz8l7lRFaBZXvKdv2+GDr0qpDrfmQvhXe4LyVl4Won
+ g0m0OBtMgEJ3sKasN1CJ3E9hInqRORELwPN4KO8CTkR18oOPgR7ZhACvJb0Puswb
+ qiyGY0g1PR57SUEzN5qYYZAhPEIhbKp2R1GB/2RC1DWdXqXmNxXQnevwbCe6H5PB
+ Bq5ME3+KAMY/uxd/AakjA==
+X-ME-Sender: <xms:7cPHYl2vDgZ9_TVUcc1rFZEjVwgQSoxjDWt7ZQIa-59BpnbBJ1vAsg>
+ <xme:7cPHYsFUgF3JiYUWbVSPllo3hiYZlk4NG-62cqvhfZMuy8AUuiQpAN6Av541fYKsX
+ gbyqZ_ojjNQvOmOXXc>
+X-ME-Received: <xmr:7cPHYl7UFZO5khLV4zLsF_L0Np_dRkm--S2J_vAmROEWyvhYZgSj1rB148pZjSBYz0SFrDA_2BnzdgvbwtA2UADHarGoaMZL1WSYSFM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudeiiedgleekucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeeuieehjefhieevtdehudfftdetgfdtuedvvdeugeetgfevgeevudegffduveej
+ ieenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
+ hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
+ thgvtghh
+X-ME-Proxy: <xmx:7cPHYi1Mo8wkIF2aCuIE2oOHVIK1WY_iN0Jiqzr78rnVK0qkfEiwOQ>
+ <xmx:7cPHYoGht1PIHV6e71zL1mo3uVMq2BBq1kFUKYLZR8609aYQQ87xtw>
+ <xmx:7cPHYj9GHOJApVtt94MBXZpU_lOSgArct9_6BdFTTi5Y-sDDRPx9Dg>
+ <xmx:7sPHYt6lqqifm_fbxYl9zNd66zmOZRVN_v_mIRB8Um5o8dqycudR-A>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 8 Jul 2022 01:43:08 -0400 (EDT)
+Date: Fri, 8 Jul 2022 07:43:06 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20220708054306.wr6jcfdunuypftbq@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="fwarr4xlxp4kje7c"
 Content-Disposition: inline
-In-Reply-To: <20220707170927.499451-1-matthew.auld@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: fix sg_table construction
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,44 +81,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- llvm@lists.linux.dev, kbuild-all@lists.01.org, dri-devel@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matthew,
 
-Thank you for the patch! Yet something to improve:
+--fwarr4xlxp4kje7c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip drm/drm-next drm-exynos/exynos-drm-next drm-misc/drm-misc-next linus/master v5.19-rc5 next-20220707]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hi
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Matthew-Auld/drm-i915-ttm-fix-sg_table-construction/20220708-011115
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: i386-randconfig-a011 (https://download.01.org/0day-ci/archive/20220708/202207081158.l1RcEsDh-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 66ae1d60bb278793fd651cece264699d522bab84)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/a318752ca76b5fc3e8d9efa87d483c88d177475a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Matthew-Auld/drm-i915-ttm-fix-sg_table-construction/20220708-011115
-        git checkout a318752ca76b5fc3e8d9efa87d483c88d177475a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+Here's this week drm-misc-fixes PR.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+Somehow the email wasn't sent yesterday when I first did it, so let's
+try again.
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+Maxime
 
->> ERROR: modpost: "__umoddi3" [drivers/gpu/drm/i915/i915.ko] undefined!
->> ERROR: modpost: "__udivdi3" [drivers/gpu/drm/i915/i915.ko] undefined!
+drm-misc-fixes-2022-07-07-1:
+Three mode setting fixes for fsl-ldb, a fbdev removal use-after-free fix,
+a dma-buf fence use-after-free fix, a DMA setup fix for rockchip, an error
+path fix and memory corruption fix for panfrost and one more orientation
+quirk
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+The following changes since commit ee7a69aa38d87a3bbced7b8245c732c05ed0c6ec:
+
+  fbdev: Disable sysfb device registration when removing conflicting FBs (2022-06-29 09:51:50 +0200)
+
+are available in the Git repository at:
+
+  ssh://git.freedesktop.org/git/drm/drm-misc tags/drm-misc-fixes-2022-07-07-1
+
+for you to fetch changes up to b68277f19e31a25312c4acccadb5cf1502e52e84:
+
+  drm/ssd130x: Fix pre-charge period setting (2022-07-07 10:52:03 +0200)
+
+----------------------------------------------------------------
+Three mode setting fixes for fsl-ldb, a fbdev removal use-after-free fix,
+a dma-buf fence use-after-free fix, a DMA setup fix for rockchip, an error
+path fix and memory corruption fix for panfrost and one more orientation
+quirk
+
+----------------------------------------------------------------
+Dmitry Osipenko (2):
+      drm/panfrost: Put mapping instead of shmem obj on panfrost_mmu_map_fault_addr() error
+      drm/panfrost: Fix shrinker list corruption by madvise IOCTL
+
+Ezequiel Garcia (1):
+      drm/ssd130x: Fix pre-charge period setting
+
+Hans de Goede (1):
+      drm: panel-orientation-quirks: Add quirk for the Lenovo Yoga Tablet 2 830
+
+Liu Ying (3):
+      drm/bridge: fsl-ldb: Fix mode clock rate validation
+      drm/bridge: fsl-ldb: Enable split mode for LVDS dual link
+      drm/bridge: fsl-ldb: Drop DE signal polarity inversion
+
+Steven Price (1):
+      drm/rockchip: Detach from ARM DMA domain in attach_device
+
+Thomas Zimmermann (1):
+      drm/aperture: Run fbdev removal before internal helpers
+
+xinhui pan (1):
+      dma-buf: Fix one use-after-free of fence
+
+ drivers/dma-buf/dma-resv.c                     |  2 +-
+ drivers/gpu/drm/bridge/fsl-ldb.c               | 21 ++-------------------
+ drivers/gpu/drm/drm_aperture.c                 | 26 +++++++++++++++-----------
+ drivers/gpu/drm/drm_panel_orientation_quirks.c | 15 +++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_drv.c        |  4 ++--
+ drivers/gpu/drm/panfrost/panfrost_mmu.c        |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c    | 17 +++++++++++++++++
+ drivers/gpu/drm/solomon/ssd130x.c              |  2 +-
+ 8 files changed, 54 insertions(+), 35 deletions(-)
+
+--fwarr4xlxp4kje7c
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYsfD6gAKCRDj7w1vZxhR
+xc3hAQCIVPsgwjqTEyaiOhpJmf3oeHMptoISeuOn+1IgD56Y9QEA/gsQSwn8eGMT
+njr8/wHZwrd9GfK+dKVz25ZlNqlW0gk=
+=g9tA
+-----END PGP SIGNATURE-----
+
+--fwarr4xlxp4kje7c--
