@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3177056BB95
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 16:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 045E256BB96
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jul 2022 16:20:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6816F10E5EA;
-	Fri,  8 Jul 2022 14:20:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4166510E5FE;
+	Fri,  8 Jul 2022 14:20:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4D6110E5DA
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 14:20:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E217D10E5DA
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 14:20:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657290029; x=1688826029;
+ t=1657290032; x=1688826032;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8lmJekwD4F2E+Y3Bh+B1Upv8Zq0gIGsA36K4HdviIns=;
- b=m48Kczs+GgOQlNzhAOajvGiRc7wWBXoA4j6kYeVCS170m7PZIm3fmE2n
- h8c5RIq4S9GPuWo271sX3LLpxOnivnMKLaMcM4IxbYbdCbh2D2hE8P2i7
- 2uFJtjFYQi4pL4EuA27sIYrfqF0u9crNJ5Z4NKGqhiG1QcWq/tfZH/66W
- uB3VvsS70+eeZL4ZgMPiQh0rEo3knV7RUO0McQ44ewnHpcW3VOJRuFHTA
- NKgb9Siv6fMX5Vd68m7Vq6vERdS7KaM2sUV1jeBFffiTwMOydOZZ0t9Mw
- jAlS2kvAvLTl+C+PZwxcNg+5t+EjtkgZphpJLGNukFe12//TbL2nu2jrL w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="267321218"
-X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="267321218"
+ bh=AD8zp/y/hDnsGxO0za+xZ/k9vt2OWI4EhU4E5B13MgY=;
+ b=j09U26WFKG+HiLw+OERKZpPLCozffkxivoG9hzgaXyHZNFzxHuyFMldT
+ JSQ4ClkALkxvPzD1a1ZcA02MXnM8pU+qwp04qoNhOKgGQc5uxfgGfAlr1
+ MqJNthbo7UiljKPlT2e1SN6mCEynqDlfiKO4TCOkmi93EgFfawHgbBrYo
+ GFDuYBi1HjtmzD3Ka7rVx2gFSJP1JDQaylRccwmMJLqYGp9n7F/5tlkk7
+ Sj+70XqYPSncMlZdpcJKRxItD3t0/00oPvIs4Ey5ISrBuy8+ow5HQ1zlN
+ oTkZta/3ER/o3J47JwW+luXuUTv+jHedD6xTueaRQRPxOmSbRnz2QFSz0 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="267321236"
+X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="267321236"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2022 07:20:29 -0700
-X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="621232134"
+ 08 Jul 2022 07:20:32 -0700
+X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="621232178"
 Received: from dgrynia-mobl.ger.corp.intel.com (HELO
  kdrobnik-desk.toya.net.pl) ([10.213.5.81])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2022 07:20:26 -0700
+ 08 Jul 2022 07:20:30 -0700
 From: Karolina Drobnik <karolina.drobnik@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  8 Jul 2022 16:20:12 +0200
-Message-Id: <e37911ec087a9ce50630d6faf61fa2c0d5f96d44.1657289332.git.karolina.drobnik@intel.com>
+Date: Fri,  8 Jul 2022 16:20:13 +0200
+Message-Id: <d7b953c7a4ba747c8196a164e2f8c5aef468d048.1657289332.git.karolina.drobnik@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1657289332.git.karolina.drobnik@intel.com>
 References: <cover.1657289332.git.karolina.drobnik@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/3] drm/i915: Bump GT idling delay to 2
- jiffies
+Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915/gt: Only kick the signal worker
+ if there's been an update
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,42 +57,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Chris Wilson <chris@chris-wilson.co.uk>
 
-In monitoring a transcode pipeline that is latency sensitive (it waits
-between submitting frames, and each frame requires work on rcs/vcs/vecs
-engines), it is found that it took longer than a single jiffy for it to
-sustain its workload. Allowing an extra jiffy headroom for the userspace
-prevents us from prematurely parking and having to exit powersaving
-immediately.
+One impact of commit 047a1b877ed4 ("dma-buf & drm/amdgpu: remove
+dma_resv workaround") is that it stores many, many more fences. Whereas
+adding an exclusive fence used to remove the shared fence list, that
+list is now preserved and the write fences included into the list. Not
+just a single write fence, but now a write/read fence per context. That
+causes us to have to track more fences than before (albeit half of those
+are redundant), and we trigger more interrupts for multi-engine
+workloads.
 
-Link: https://gitlab.freedesktop.org/drm/intel/-/issues/6284
+As part of reducing the impact from handling more signaling, we observe
+we only need to kick the signal worker after adding a fence iff we have
+good cause to believe that there is work to be done in processing the
+fence i.e. we either need to enable the interrupt or the request is
+already complete but we don't know if we saw the interrupt and so need
+to check signaling.
+
+References: 047a1b877ed4 ("dma-buf & drm/amdgpu: remove dma_resv workaround")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Signed-off-by: Karolina Drobnik <karolina.drobnik@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_active.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index ee2b3a375362..7412abf166a8 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -974,7 +974,7 @@ void i915_active_acquire_barrier(struct i915_active *ref)
- 
- 		GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
- 		llist_add(barrier_to_ll(node), &engine->barrier_tasks);
--		intel_engine_pm_put_delay(engine, 1);
-+		intel_engine_pm_put_delay(engine, 2);
- 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index 9dc9dccf7b09..ecc990ec1b95 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -399,7 +399,8 @@ static void insert_breadcrumb(struct i915_request *rq)
+ 	 * the request as it may have completed and raised the interrupt as
+ 	 * we were attaching it into the lists.
+ 	 */
+-	irq_work_queue(&b->irq_work);
++	if (!b->irq_armed || __i915_request_is_complete(rq))
++		irq_work_queue(&b->irq_work);
  }
  
+ bool i915_request_enable_breadcrumb(struct i915_request *rq)
 -- 
 2.25.1
 
