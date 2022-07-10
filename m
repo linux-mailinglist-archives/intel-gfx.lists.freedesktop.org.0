@@ -1,48 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9739F56D08C
-	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jul 2022 19:40:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C66B156D08D
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jul 2022 19:40:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB59218A108;
-	Sun, 10 Jul 2022 17:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEE3918A10B;
+	Sun, 10 Jul 2022 17:40:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8245618A107
- for <intel-gfx@lists.freedesktop.org>; Sun, 10 Jul 2022 17:40:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2A0518A109
+ for <intel-gfx@lists.freedesktop.org>; Sun, 10 Jul 2022 17:40:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657474834; x=1689010834;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LIcabc9Vxo1CF8VXr4oac+FGgDL5osszXjJORi37mXQ=;
- b=ScBjYCIgy/iqgK8G3soojVxY3cH6fsS+bR76cEjuB+/A1wsIFpA2YiM+
- M+dpQrk+eQipN4zD34PnkdnQk8o3SlPkTuomdjTbgqyM0Il7S9/GGFw4L
- TY0EhW/YmmaIQo/1iAkF/jsfYuv2hg2KboYugiwrBQs3V6Akq5xccx3zo
- yQ2GrIElwxLXbkFig9nn+n5uLUqM/aSBtMcGmaf+r/7gmdt2BVV7Xz2wp
- uDOsZN3Bju6ewkbgocKEZ7Bo7P7smptpLgDPx3VcQdT5dtEf/ZutHdEPd
- BxocfAbxdsoM2Rm5U4hh/sRO2ETGJSQYD8b4BEG2lZq668QNZtrEwIIWZ A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10404"; a="282078843"
-X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="282078843"
+ t=1657474835; x=1689010835;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=F1FBYQeFuLi8GYHT4EkBMeUta8vrb+BA31ShIcKnyww=;
+ b=Zxj1mvJi1rLSKT8ByR3MxdvHWguZm+7CywG0pUfG+WHZ0E8ajanJT8Uw
+ ceUTvj/zrEhsNgpHtFXKfgWnO8h9yd4AZvMMlhu1uOZz3qARr09n1L4lY
+ jPe4RieFYC4mSZxYYWnIpJ3en5HIwy3GcczlvJKJVOapc0xpIJU2lqYe8
+ x3ZZxvociFk6BDc24w5Ws+skzD1I6vzouW7HoZqOAo3Y1XhLcshbg6DfP
+ q3hQ0ljMP6wdggllWO+jn40i/gbY8KNrEbVWJce+J/2Ym+zjLKRBahaYw
+ iK1Hdn3BTgkRbkkrPcX5WwBZvULcEeccAQWmLUl5AdyIZxo1vB7Ls/lRo A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10404"; a="282078844"
+X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="282078844"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2022 10:40:33 -0700
+ 10 Jul 2022 10:40:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="662304977"
+X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="662304984"
 Received: from priyanka-nuc7i7bnh.iind.intel.com ([10.145.162.209])
- by fmsmga004.fm.intel.com with ESMTP; 10 Jul 2022 10:40:32 -0700
+ by fmsmga004.fm.intel.com with ESMTP; 10 Jul 2022 10:40:33 -0700
 From: priyanka.dandamudi@intel.com
 To: priyanka.dandamudi@intel.com, matthew.auld@intel.com, nirmoy.das@intel.com,
  intel-gfx@lists.freedesktop.org
-Date: Sun, 10 Jul 2022 22:59:23 +0530
-Message-Id: <20220710172925.2465158-1-priyanka.dandamudi@intel.com>
+Date: Sun, 10 Jul 2022 22:59:24 +0530
+Message-Id: <20220710172925.2465158-2-priyanka.dandamudi@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220710172925.2465158-1-priyanka.dandamudi@intel.com>
+References: <20220710172925.2465158-1-priyanka.dandamudi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 0/2] Add support for LMEM PCIe resizable bar
+Subject: [Intel-gfx] [PATCH v4 1/2] drm/i915: Add support for LMEM PCIe
+ resizable bar
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,22 +61,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
 
-Added support to resize the bar to maximum supported.
-Also, added new modparam lmem_bar_size which can resize the bar to one of the supported sizes.
+Add support for the local memory PICe resizable bar, so that
+local memory can be resized to the maximum size supported by the device,
+and mapped correctly to the PCIe memory bar. It is usual that GPU
+devices expose only 256MB BARs primarily to be compatible with 32-bit
+systems. So, those devices cannot claim larger memory BAR windows size due
+to the system BIOS limitation. With this change, it would be possible to
+reprogram the windows of the bridge directly above the requesting device
+on the same BAR type.
 
-Akeem G Abodunrin (1):
-  drm/i915: Add support for LMEM PCIe resizable bar
+v2:Moved code to gt/intel_region_lmem.c and used only
+single underscore for function names.(Jani)
 
-Priyanka Dandamudi (1):
-  drm/i915: Add lmem_bar_size modparam
+v3: Optimised code.
 
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 98 +++++++++++++++++++++
- drivers/gpu/drm/i915/i915_params.c          |  2 +
- drivers/gpu/drm/i915/i915_params.h          |  1 +
- 3 files changed, 101 insertions(+)
+Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Cc: Michael J Ruhl <michael.j.ruhl@intel.com>
+Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c | 75 +++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+index fa7b86f83e7b..129e5d8b080d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
++++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+@@ -15,6 +15,79 @@
+ #include "gt/intel_gt_mcr.h"
+ #include "gt/intel_gt_regs.h"
+ 
++static void _release_bars(struct pci_dev *pdev)
++{
++	int resno;
++
++	for (resno = PCI_STD_RESOURCES; resno < PCI_STD_RESOURCE_END; resno++) {
++		if (pci_resource_len(pdev, resno))
++			pci_release_resource(pdev, resno);
++	}
++}
++
++static void
++_resize_bar(struct drm_i915_private *i915, int resno, resource_size_t size)
++{
++	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
++	int bar_size = pci_rebar_bytes_to_size(size);
++	int ret;
++
++	_release_bars(pdev);
++
++	ret = pci_resize_resource(pdev, resno, bar_size);
++	if (ret) {
++		drm_info(&i915->drm, "Failed to resize BAR%d to %dM (%pe)\n",
++			 resno, 1 << bar_size, ERR_PTR(ret));
++		return;
++	}
++
++	drm_info(&i915->drm, "BAR%d resized to %dM\n", resno, 1 << bar_size);
++}
++
++#define LMEM_BAR_NUM 2
++static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t lmem_size)
++{
++	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
++	struct pci_bus *root = pdev->bus;
++	struct resource *root_res;
++	resource_size_t rebar_size;
++	u32 pci_cmd;
++	int i;
++
++	rebar_size = roundup_pow_of_two(pci_resource_len(pdev, LMEM_BAR_NUM));
++
++	if (rebar_size != roundup_pow_of_two(lmem_size))
++		rebar_size = lmem_size;
++	else
++		return;
++
++	/* Find out if root bus contains 64bit memory addressing */
++	while (root->parent)
++		root = root->parent;
++
++	pci_bus_for_each_resource(root, root_res, i) {
++		if (root_res && root_res->flags & (IORESOURCE_MEM |
++					IORESOURCE_MEM_64) && root_res->start > 0x100000000ull)
++			break;
++	}
++
++	/* pci_resize_resource will fail anyways */
++	if (!root_res) {
++		drm_info(&i915->drm, "Can't resize LMEM BAR - platform support is missing\n");
++		return;
++	}
++
++	/* First disable PCI memory decoding references */
++	pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
++	pci_write_config_dword(pdev, PCI_COMMAND,
++			       pci_cmd & ~PCI_COMMAND_MEMORY);
++
++	_resize_bar(i915, LMEM_BAR_NUM, rebar_size);
++
++	pci_assign_unassigned_bus_resources(pdev->bus);
++	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
++}
++
+ static int
+ region_lmem_release(struct intel_memory_region *mem)
+ {
+@@ -128,6 +201,8 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+ 		lmem_size = intel_uncore_read64(&i915->uncore, GEN12_GSMBASE);
+ 	}
+ 
++	i915_resize_lmem_bar(i915, lmem_size);
++
+ 	if (i915->params.lmem_size > 0) {
+ 		lmem_size = min_t(resource_size_t, lmem_size,
+ 				  mul_u32_u32(i915->params.lmem_size, SZ_1M));
 -- 
 2.27.0
 
