@@ -2,53 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F7856CB76
-	for <lists+intel-gfx@lfdr.de>; Sat,  9 Jul 2022 22:56:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9739F56D08C
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jul 2022 19:40:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F73911B8E0;
-	Sat,  9 Jul 2022 20:56:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB59218A108;
+	Sun, 10 Jul 2022 17:40:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D409D11B8DE;
- Sat,  9 Jul 2022 20:56:22 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8245618A107
+ for <intel-gfx@lists.freedesktop.org>; Sun, 10 Jul 2022 17:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657400182; x=1688936182;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=lorjjjRF59WC20APXAqWBxHXN1GVl6m7SiOezAXvgv8=;
- b=guGeGwTrBxVocDqLm+cJp6gQlG9o44sVq0Gc2bSKLyZ4j55PexpBVoAZ
- GC9ajeis7ll56Sj+bmbvS1d521KTXrKdx+JphaeUMezF2YMS371ODLCSO
- OAJUyCszp4tLSfFEs3HzbfLo8bixyRO/JW88DCM3ypZ/GTabgolbDODf3
- eXTpb8k4TlhDE3QoY+cDF8IV4BXcI2hWccZBHC0zFm1ugx7gTKrjW/K83
- vvUu71JDEvDopWxBO26pRSBtXSEp9udDLw1LP0YRd9UN59/mmnRSEnmwo
- QivEKTm6VLcMzjJCq8s/W1dhuyBb23Tasx2b6K1FujM8JWH18X4aPrPWF w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10403"; a="285586738"
-X-IronPort-AV: E=Sophos;i="5.92,259,1650956400"; d="scan'208";a="285586738"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2022 13:56:22 -0700
-X-IronPort-AV: E=Sophos;i="5.92,259,1650956400"; d="scan'208";a="651960839"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2022 13:56:21 -0700
-Date: Sat, 9 Jul 2022 13:56:02 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
-Message-ID: <20220709205601.GE14039@nvishwa1-DESK>
-References: <20220701225055.8204-1-niranjana.vishwanathapura@intel.com>
- <20220701225055.8204-9-niranjana.vishwanathapura@intel.com>
- <d1c8cd2c44c07ebc7053f192100bf0ee5aa67140.camel@intel.com>
- <20220708145157.GX14039@nvishwa1-DESK>
- <839b728191ae8e7dcc65ad2cf9978f4a7f1b8e6a.camel@intel.com>
+ t=1657474834; x=1689010834;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LIcabc9Vxo1CF8VXr4oac+FGgDL5osszXjJORi37mXQ=;
+ b=ScBjYCIgy/iqgK8G3soojVxY3cH6fsS+bR76cEjuB+/A1wsIFpA2YiM+
+ M+dpQrk+eQipN4zD34PnkdnQk8o3SlPkTuomdjTbgqyM0Il7S9/GGFw4L
+ TY0EhW/YmmaIQo/1iAkF/jsfYuv2hg2KboYugiwrBQs3V6Akq5xccx3zo
+ yQ2GrIElwxLXbkFig9nn+n5uLUqM/aSBtMcGmaf+r/7gmdt2BVV7Xz2wp
+ uDOsZN3Bju6ewkbgocKEZ7Bo7P7smptpLgDPx3VcQdT5dtEf/ZutHdEPd
+ BxocfAbxdsoM2Rm5U4hh/sRO2ETGJSQYD8b4BEG2lZq668QNZtrEwIIWZ A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10404"; a="282078843"
+X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="282078843"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2022 10:40:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="662304977"
+Received: from priyanka-nuc7i7bnh.iind.intel.com ([10.145.162.209])
+ by fmsmga004.fm.intel.com with ESMTP; 10 Jul 2022 10:40:32 -0700
+From: priyanka.dandamudi@intel.com
+To: priyanka.dandamudi@intel.com, matthew.auld@intel.com, nirmoy.das@intel.com,
+ intel-gfx@lists.freedesktop.org
+Date: Sun, 10 Jul 2022 22:59:23 +0530
+Message-Id: <20220710172925.2465158-1-priyanka.dandamudi@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <839b728191ae8e7dcc65ad2cf9978f4a7f1b8e6a.camel@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [RFC 08/10] drm/i915/vm_bind: userptr dma-resv
- changes
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/2] Add support for LMEM PCIe resizable bar
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,62 +55,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vetter,
- Daniel" <daniel.vetter@intel.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>, "Auld,
- Matthew" <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 08, 2022 at 03:20:01PM +0000, Hellstrom, Thomas wrote:
->On Fri, 2022-07-08 at 07:51 -0700, Niranjana Vishwanathapura wrote:
->> > Since we don't loop over the vm_bound_list, there is a need to
->> > check
->> > whether the rebind_list is empty here under the notifier_lock in
->> > read
->> > mode, and in that case, restart from eb_lookup_vmas(). That might
->> > also
->> > eliminate the need for the __EXEC3_USERPTR_USED flag?
->> >
->> > That will also catch any objects that were evicted between
->> > eb_lookup_vmas() where the rebind_list was last checked, and
->> > i915_gem_vm_priv_lock(), which prohibits further eviction, but if
->> > we
->> > want to catch these earlier (which I think is a good idea), we
->> > could
->> > check that the rebind_list is indeed empty just after taking the
->> > vm_priv_lock(), and if not, restart from eb_lookup_vmas().
->>
->> Yah, right, we need to check rebind_list here and if not empty,
->> restart
->> from lookup phase.
->> It is bit tricky with userptr here as the unbind happens during
->> submit_init() call after we scoop unbound vmas here, the vmas gets
->> re-added to rebind_list :(.
->
->Ugh.
->
->> I think we need a separate 'invalidated_userptr_list' here and we
->> iterate through it for submit_init() and submit_done() calls (yes,
->> __EXEC3_USERPTR_USED flag won't be needed then).
->> And, we call, eb_scoop_unbound_vmas() after calling
->> eb_lookup_persistent_userptr_vmas(), so that we scoop all unbound
->> vmas properly.
->>
->
->I'm not sure that will help much, because we'd also need to recheck the
->rebind_list and possibly restart after taking the vm_priv_lock, since
->objects can be evicted between the scooping and taking the
->vm_priv_lock. So then the userptrs will be caught by that check.
+From: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
 
-Yah, what I mentioned above is in addition to rechecking rebind_list and
-restarting.
+Added support to resize the bar to maximum supported.
+Also, added new modparam lmem_bar_size which can resize the bar to one of the supported sizes.
 
-Niranjana
+Akeem G Abodunrin (1):
+  drm/i915: Add support for LMEM PCIe resizable bar
 
->
->/Thomas
->
->
+Priyanka Dandamudi (1):
+  drm/i915: Add lmem_bar_size modparam
+
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c | 98 +++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_params.c          |  2 +
+ drivers/gpu/drm/i915/i915_params.h          |  1 +
+ 3 files changed, 101 insertions(+)
+
+-- 
+2.27.0
+
