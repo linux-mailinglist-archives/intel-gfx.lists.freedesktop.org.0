@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED41156D127
-	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jul 2022 21:51:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B37B56D128
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jul 2022 21:51:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 254E118B173;
-	Sun, 10 Jul 2022 19:51:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57FE818B176;
+	Sun, 10 Jul 2022 19:51:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED4F318B173
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03CB718B174
  for <intel-gfx@lists.freedesktop.org>; Sun, 10 Jul 2022 19:51:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657482687; x=1689018687;
+ t=1657482688; x=1689018688;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=VimeObqSAUdsl+VyBYK+6D0nkc7GGjZa6oJYVfC1ebA=;
- b=czqmptjUoKRQNiwR9yeqQ+CvsWX6X9MRJ7oAMKTnbKw2SyEeYhluOgNX
- fM1H9NrTCX/eTQQ5zlD7WPwFLyFqwNOO5FzOl+IDweRccLUEKGNFtzX3G
- MV3Yy8eaPJ0qIMNWTtG9N2Y1/Yhr97KFOn/ycpHYGQX6a62Cs4VSbPjSw
- HPk1iqeGisVmuvN8UPjqPlG2aWEoEvoxTYfqcj3buKTTm5JZw0jHVIMbj
- 4UIPj2ADQku5QBoK/NPSODGYCJYUkOi00qRO/5k4yamw6F/e2uzLP8svK
- 7ENWY5V9WhjRNeRfFbUQC5s3trPyP4RfjYUOtOtWI1mtc/OThyPceTICJ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10404"; a="264312124"
-X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="264312124"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=JT82txfABd2+w9YuBxFDbldHkxcs/m9vx4Tqb/9oSco=;
+ b=b+jCC5FMifUx6znvm6j+OPrFve17SXtvWhShwYrKD6tXgFeN1cWHqE6G
+ 2kg1fYh+3d+2v3OTAotjMQ5jDrOR86dB4Aq7+J+FcnpmSvvWLPsISb0DP
+ lpmF8gd6m3NBN30FLMpwv6TlItphREilmel+1vGXo9VlY5ZS3bmAmBNfW
+ 1O8+8lGAJxqT51tlqO6eWmcEd9z8XrMPO2uWa8e/mZ9E/GYlEt/iC2C2+
+ Llw6EUTWSqbTY6X6imF/CY1RBe+HJ85U6fXK2FJwAIBKVo4s3b2hubjzS
+ Rk8kJ6OpGVNCS9PxJpMIcI+ksPhvhdlb5FCxPFPxfQEmNuOENZDH9LB3A w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10404"; a="348518022"
+X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="348518022"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Jul 2022 12:51:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="684176248"
+X-IronPort-AV: E=Sophos;i="5.92,261,1650956400"; d="scan'208";a="771319382"
 Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
- by FMSMGA003.fm.intel.com with ESMTP; 10 Jul 2022 12:51:25 -0700
+ by orsmga005.jf.intel.com with ESMTP; 10 Jul 2022 12:51:25 -0700
 Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1oAcxh-000Q9o-1L;
+ (envelope-from <lkp@intel.com>) id 1oAcxh-000Q9q-25;
  Sun, 10 Jul 2022 19:51:25 +0000
-Date: Mon, 11 Jul 2022 03:51:03 +0800
+Date: Mon, 11 Jul 2022 03:51:05 +0800
 From: kernel test robot <lkp@intel.com>
 To: priyanka.dandamudi@intel.com, matthew.auld@intel.com,
  nirmoy.das@intel.com, intel-gfx@lists.freedesktop.org
-Message-ID: <202207110323.aQxXZ1kk-lkp@intel.com>
+Message-ID: <202207110340.zwofgDuU-lkp@intel.com>
 References: <20220710172925.2465158-2-priyanka.dandamudi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -72,7 +72,7 @@ Thank you for the patch! Perhaps something to improve:
 
 url:    https://github.com/intel-lab-lkp/linux/commits/priyanka-dandamudi-intel-com/Add-support-for-LMEM-PCIe-resizable-bar/20220711-014151
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: i386-randconfig-a004 (https://download.01.org/0day-ci/archive/20220711/202207110323.aQxXZ1kk-lkp@intel.com/config)
+config: i386-randconfig-a013 (https://download.01.org/0day-ci/archive/20220711/202207110340.zwofgDuU-lkp@intel.com/config)
 compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 6ce63e267aab79ca87bf63453d34dd3909ab978d)
 reproduce (this is a W=1 build):
         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
