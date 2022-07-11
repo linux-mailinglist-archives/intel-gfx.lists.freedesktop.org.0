@@ -2,33 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A26FF56D4EB
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jul 2022 08:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 066D756D4F0
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jul 2022 08:50:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 710C914B077;
-	Mon, 11 Jul 2022 06:49:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E64AB8BF55;
+	Mon, 11 Jul 2022 06:50:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 84FED14AFED;
- Mon, 11 Jul 2022 06:49:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7D442A0096;
- Mon, 11 Jul 2022 06:49:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2909468665289028336=="
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 920018BF55;
+ Mon, 11 Jul 2022 06:50:44 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 0A67AB80DBB;
+ Mon, 11 Jul 2022 06:50:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C91F9C341CA;
+ Mon, 11 Jul 2022 06:50:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1657522241;
+ bh=cnnoERE40MzPqtV3EZkAATxMqve/pI3Cp9fa58cSCT0=;
+ h=From:To:Cc:Subject:Date:From;
+ b=FFfWchprdS4RQkRLDDQ/+Yj4CSCqm2ic4fFvcRJ2gxj6UaMN8OUrJD2axK+OHajVY
+ +34EGByFAlDNuHT7JVyR6nnkbXeDzGquE4nN8KbnWDyBmqdvvVCdz6edpnU7jLPTmU
+ 3qQHKLXAgAAdQuVC8n9rF3VrdMxyczQ+6uD7sAlfeWWiXwyuLs5Bbi1S0IZWn4aWFs
+ 4S7BPgOOTjGPAMTU9YGIFghDO69ueZsuEfPeyX4xQ/ScWQzplHxSp9wNgGQQsw+kIx
+ fUmHihhZArFxLTXJTGobNJ56ZawO4YMksPIled6ak1WOIZybFpCOd/HCKaU/Mk00fm
+ jeAgOXlWxvMcw==
+Received: from mchehab by mail.kernel.org with local (Exim 4.95)
+ (envelope-from <mchehab@kernel.org>) id 1oAnFe-004a3J-FA;
+ Mon, 11 Jul 2022 07:50:38 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: 
+Date: Mon, 11 Jul 2022 07:50:35 +0100
+Message-Id: <cover.1657522157.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Mon, 11 Jul 2022 06:49:25 -0000
-Message-ID: <165752216547.5767.10094308260552271314@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220711061601.654694-1-jouni.hogander@intel.com>
-In-Reply-To: <20220711061601.654694-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Ensure_PSR_gets_disabled_if_no_encoders_in_new?=
- =?utf-8?q?_state?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/2] Fix TLB invalidate issues with Broadwell
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,182 +54,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Dave Airlie <airlied@redhat.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2909468665289028336==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+i915 selftest hangcheck is causing the i915 driver timeouts, as reported
+by Intel CI bot:
 
-== Series Details ==
+http://gfx-ci.fi.intel.com/cibuglog-ng/issuefilterassoc/24297?query_key=42a999f48fa6ecce068bc8126c069be7c31153b4
 
-Series: drm/i915/display: Ensure PSR gets disabled if no encoders in new state
-URL   : https://patchwork.freedesktop.org/series/106168/
-State : success
+When such test runs, the only output is:
 
-== Summary ==
+	[   68.811639] i915: Performing live selftests with st_random_seed=0xe138eac7 st_timeout=500
+	[   68.811792] i915: Running hangcheck
+	[   68.811859] i915: Running intel_hangcheck_live_selftests/igt_hang_sanitycheck
+	[   68.816910] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
+	[   68.841597] i915: Running intel_hangcheck_live_selftests/igt_reset_nop
+	[   69.346347] igt_reset_nop: 80 resets
+	[   69.362695] i915: Running intel_hangcheck_live_selftests/igt_reset_nop_engine
+	[   69.863559] igt_reset_nop_engine(rcs0): 709 resets
+	[   70.364924] igt_reset_nop_engine(bcs0): 903 resets
+	[   70.866005] igt_reset_nop_engine(vcs0): 659 resets
+	[   71.367934] igt_reset_nop_engine(vcs1): 549 resets
+	[   71.869259] igt_reset_nop_engine(vecs0): 553 resets
+	[   71.882592] i915: Running intel_hangcheck_live_selftests/igt_reset_idle_engine
+	[   72.383554] rcs0: Completed 16605 idle resets
+	[   72.884599] bcs0: Completed 18641 idle resets
+	[   73.385592] vcs0: Completed 17517 idle resets
+	[   73.886658] vcs1: Completed 15474 idle resets
+	[   74.387600] vecs0: Completed 17983 idle resets
+	[   74.387667] i915: Running intel_hangcheck_live_selftests/igt_reset_active_engine
+	[   74.889017] rcs0: Completed 747 active resets
+	[   75.174240] intel_engine_reset(bcs0) failed, err:-110
+	[   75.174301] bcs0: Completed 525 active resets
 
-CI Bug Log - changes from CI_DRM_11862 -> Patchwork_106168v1
-====================================================
+After that, the machine just silently hangs.
 
-Summary
--------
+Bisecting the issue, the patch that introduced the regression is:
 
-  **SUCCESS**
+    7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
 
-  No regressions found.
+Reverting it fix the issues, but introduce other problems, as TLB
+won't be invalidated anymore. So, instead, let's fix the root cause.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/index.html
+It turns that the TLB flush logic ends conflicting with i915 reset,
+which is called during selftest hangcheck. So, the TLB cache should
+be serialized together with i915 reset.
 
-Participating hosts (45 -> 40)
-------------------------------
+Tested on an Intel NUC5i7RYB with an i7-5557U Broadwell CPU.
 
-  Missing    (5): fi-cml-u2 fi-bxt-dsi fi-hsw-4200u fi-icl-u2 fi-ctg-p8600 
+v4:
+- No functional changes. All changes are at the patch descriptions:
+  - collected acked-by/reviewed-by;
+  - use the same e-mail on Author and SoB on patch 1.
 
-Known issues
-------------
+v3:
+- Removed the logic that would check if the engine is awake before doing
+  TLB flush invalidation as backporting PM logic up to Kernel 4.x could be
+  too painful. After getting this one merged, I'll submit a separate patch
+  with the PM awake logic.
 
-  Here are the changes found in Patchwork_106168v1 that come from known issues:
+v2:
 
-### IGT changes ###
+- Reduced to bare minimum fixes, as this shoud be backported deeply
+  into stable.
+Chris Wilson (2):
+  drm/i915/gt: Serialize GRDOM access between multiple engine resets
+  drm/i915/gt: Serialize TLB invalidates with GT resets
 
-#### Possible fixes ####
+ drivers/gpu/drm/i915/gt/intel_gt.c    | 15 ++++++++++-
+ drivers/gpu/drm/i915/gt/intel_reset.c | 37 ++++++++++++++++++++-------
+ 2 files changed, 42 insertions(+), 10 deletions(-)
 
-  * igt@i915_module_load@reload:
-    - {bat-adln-1}:       [DMESG-WARN][1] ([i915#6297]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adln-1/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/bat-adln-1/igt@i915_module_load@reload.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
-    - bat-adlp-4:         [DMESG-WARN][3] ([i915#3576]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-edp1:
-    - {bat-adlp-6}:       [DMESG-WARN][5] ([i915#3576]) -> [PASS][6] +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html
-
-  * igt@vgem_basic@setversion:
-    - fi-kbl-soraka:      [INCOMPLETE][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-kbl-soraka/igt@vgem_basic@setversion.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/fi-kbl-soraka/igt@vgem_basic@setversion.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
-  [i915#6106]: https://gitlab.freedesktop.org/drm/intel/issues/6106
-  [i915#6297]: https://gitlab.freedesktop.org/drm/intel/issues/6297
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11862 -> Patchwork_106168v1
-
-  CI-20190529: 20190529
-  CI_DRM_11862: ffee806d103b9604db7eb9cd689c098aca1ffa96 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6563: 7d43b49bf10788d4870668f93a800888fc8ab339 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_106168v1: ffee806d103b9604db7eb9cd689c098aca1ffa96 @ git://anongit.freedesktop.org/gfx-ci/linux
+-- 
+2.36.1
 
 
-### Linux commits
-
-7734dd805b56 drm/i915/display: Ensure PSR gets disabled if no encoders in new state
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/index.html
-
---===============2909468665289028336==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Ensure PSR gets disabled if no encoders in new state</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106168/">https://patchwork.freedesktop.org/series/106168/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11862 -&gt; Patchwork_106168v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 40)</h2>
-<p>Missing    (5): fi-cml-u2 fi-bxt-dsi fi-hsw-4200u fi-icl-u2 fi-ctg-p8600 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_106168v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adln-1/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6297">i915#6297</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/bat-adln-1/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@a-edp1:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/bat-adlp-4/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@b-edp1:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/bat-adlp-6/igt@kms_flip@basic-flip-vs-modeset@b-edp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@setversion:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11862/fi-kbl-soraka/igt@vgem_basic@setversion.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106168v1/fi-kbl-soraka/igt@vgem_basic@setversion.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11862 -&gt; Patchwork_106168v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11862: ffee806d103b9604db7eb9cd689c098aca1ffa96 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6563: 7d43b49bf10788d4870668f93a800888fc8ab339 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_106168v1: ffee806d103b9604db7eb9cd689c098aca1ffa96 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>7734dd805b56 drm/i915/display: Ensure PSR gets disabled if no encoders in new state</p>
-
-</body>
-</html>
-
---===============2909468665289028336==--
