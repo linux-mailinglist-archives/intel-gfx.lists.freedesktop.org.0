@@ -1,49 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 826C8570BA0
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jul 2022 22:27:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE61570B90
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jul 2022 22:26:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A9AB8D0C9;
-	Mon, 11 Jul 2022 20:26:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF75C90FD7;
+	Mon, 11 Jul 2022 20:26:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 447AE8D851;
- Mon, 11 Jul 2022 20:25:32 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3EE68A5D9;
+ Mon, 11 Jul 2022 20:25:29 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 02C5861666;
+ by ams.source.kernel.org (Postfix) with ESMTPS id 2ED65B81235;
  Mon, 11 Jul 2022 20:25:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D49AC385A5;
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B085C341CB;
  Mon, 11 Jul 2022 20:25:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=k20201202; t=1657571125;
- bh=UdbBOFAYSkJ31LJ7NEPV5jkgfH7PpdrewW2qgrHkwbM=;
+ bh=qqwuJnqcAEdVd2CKNcxW9SumulDWlgp+jNo8Uu8ukCo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=pLMeVYWxALOk8RWwUW5gRt3PP0b62nRZLuSxKIPXqZzUVOUnKhFAvdDnKuEQfEz/r
- j69hS+Z5GWEEzkl/nlNifflKxbYXM/hMOw0pu4KT4XjT1RYn5EDiTWmTkAkUWHf6Et
- PRhTH6Q4y7jdqSQXsbgDXGY0FW5lU8l/ZT2kahZUCRubeqOgdp6yGEdjoQp3m5IJbi
- utfQLWfEAk6L1Ct+rs4UBW0QTiY1pdkuErID8ffN8ejOAnucgW0iUBvpYSeLPgW5aG
- ovD4zNor57X0TN6Wr2vZjoF1tRDEtLae8gtVggIi9KQxK/HcGanmQOvzPpurETLh8V
- vahxDA6QbIBZQ==
+ b=dudh5KShRdhtmj9kmnfRQLO5r2UXwq4EfzbrNZ5xWNf/7HO2S77pnu5fsffV4aP53
+ csjxGFrYEApiMyBpm5nSLK+JsOZWDt1yeSx8OAz0wpsb/vYJuZQYxEV+dpEoZLCN9q
+ +q1sxxg+aeaMW7DHrd1Lw6pjjEnDI3555IKmEjGptKpbbaJW0503vyXSGCtbOUNG2A
+ 8+CVRvA3KzIxS96Pssq0QPIsx2aKrDpyUn4wVaGpWFmYD8yw0lP7CY/X34tnOnBytr
+ P8v99KKZFL7Qb779EFvphfr+AFXn4/PKU/+Rq/KvliedET9G4eoRNRpGO00bQPIY3L
+ 3jttgW+ivoo4Q==
 Received: from mchehab by mail.kernel.org with local (Exim 4.95)
- (envelope-from <mchehab@kernel.org>) id 1oAzy3-004e7p-F4;
+ (envelope-from <mchehab@kernel.org>) id 1oAzy3-004e7s-Fm;
  Mon, 11 Jul 2022 21:25:19 +0100
 From: Mauro Carvalho Chehab <mchehab@kernel.org>
 To: 
-Date: Mon, 11 Jul 2022 21:24:53 +0100
-Message-Id: <5f03e188e48746f86da543b1c983d01fab70e9ef.1657565224.git.mchehab@kernel.org>
+Date: Mon, 11 Jul 2022 21:24:54 +0100
+Message-Id: <6dabb8b59db64492e0d6bbb710fa8ace45b2e77b.1657565224.git.mchehab@kernel.org>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <cover.1657565224.git.mchehab@kernel.org>
 References: <cover.1657565224.git.mchehab@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 08/32] drm/i915: i915_gem_ttm_pm.c: fix
- kernel-doc markups
+Subject: [Intel-gfx] [PATCH 09/32] drm/i915: gem: add missing trivial
+ function parameters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,24 +56,15 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, Jasmine Newsome <jasmine.newsome@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
  Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, intel-gfx@lists.freedesktop.org
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-
-The documentation for the flags field is missing there. It sounds
-that some last-time change converted some bools into flags, but
-the kernel-doc change didn't follow it.
-
-Fix those warnings:
-
-	drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c:135: warning: Function parameter or member 'flags' not described in 'i915_ttm_backup_region'
-	drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c:135: warning: Excess function parameter 'allow_gpu' description in 'i915_ttm_backup_region'
-	drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c:135: warning: Excess function parameter 'backup_pinned' description in 'i915_ttm_backup_region'
-	drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c:199: warning: Function parameter or member 'flags' not described in 'i915_ttm_restore_region'
-	drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c:199: warning: Excess function parameter 'allow_gpu' description in 'i915_ttm_restore_region'
 
 Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 ---
@@ -82,35 +72,56 @@ Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
 See [PATCH 00/32] at: https://lore.kernel.org/all/cover.1657565224.git.mchehab@kernel.org/
 
- drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_object.c   | 2 ++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.h      | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 2 ++
+ 3 files changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
-index 9aad84059d56..1c4b576a2540 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
-@@ -123,8 +123,9 @@ void i915_ttm_recover_region(struct intel_memory_region *mr)
- /**
-  * i915_ttm_backup_region - Back up all objects of a region to smem.
-  * @mr: The memory region
-- * @allow_gpu: Whether to allow the gpu blitter for this backup.
-- * @backup_pinned: Backup also pinned objects.
-+ * @flags: Bitmap field with the following flags:
-+ * 	%I915_TTM_BACKUP_ALLOW_GPU: allow the gpu blitter for this backup;
-+ * 	%I915_TTM_BACKUP_PINNED: backup also pinned objects.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index ccec4055fde3..b5dd43405355 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -820,6 +820,8 @@ int i915_gem_object_wait_moving_fence(struct drm_i915_gem_object *obj,
+  * in an unknown_state. This means that userspace must NEVER be allowed to touch
+  * the pages, with either the GPU or CPU.
   *
-  * Loops over all objects of a region and either evicts them if they are
-  * evictable or backs them up using a backup object if they are pinned.
-@@ -188,7 +189,8 @@ static int i915_ttm_restore(struct i915_gem_apply_to_region *apply,
++ * @obj: The object to check its state.
++ *
+  * ONLY valid to be called after ensuring that all kernel fences have signalled
+  * (in particular the fence for moving/clearing the object).
+  */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
+index e4842b4296fc..64151f40098f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
+@@ -30,6 +30,7 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *bo);
  /**
-  * i915_ttm_restore_region - Restore backed-up objects of a region from smem.
-  * @mr: The memory region
-- * @allow_gpu: Whether to allow the gpu blitter to recover.
-+ * @flags: Bitmap field with the following flags:
-+ * 	%I915_TTM_BACKUP_ALLOW_GPU: allow the gpu blitter for this backup;
+  * i915_ttm_to_gem - Convert a struct ttm_buffer_object to an embedding
+  * struct drm_i915_gem_object.
++ * @bo: The ttm buffer object.
   *
-  * Loops over all objects of a region and if they are backed-up, restores
-  * them from smem.
+  * Return: Pointer to the embedding struct ttm_buffer_object, or NULL
+  * if the object was not an i915 ttm object.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+index 9a7e50534b84..56217d324a9b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+@@ -237,6 +237,7 @@ static struct dma_fence *i915_ttm_accel_move(struct ttm_buffer_object *bo,
+  * @_src_iter: Storage space for the source kmap iterator.
+  * @dst_iter: Pointer to the destination kmap iterator.
+  * @src_iter: Pointer to the source kmap iterator.
++ * @num_pages: Number of pages to copy or to be cleared.
+  * @clear: Whether to clear instead of copy.
+  * @src_rsgt: Refcounted scatter-gather list of source memory.
+  * @dst_rsgt: Refcounted scatter-gather list of destination memory.
+@@ -541,6 +542,7 @@ __i915_ttm_move(struct ttm_buffer_object *bo,
+  * i915_ttm_move - The TTM move callback used by i915.
+  * @bo: The buffer object.
+  * @evict: Whether this is an eviction.
++ * @ctx: Pointer to a struct ttm_operation_ctx
+  * @dst_mem: The destination ttm resource.
+  * @hop: If we need multihop, what temporary memory type to move to.
+  *
 -- 
 2.36.1
 
