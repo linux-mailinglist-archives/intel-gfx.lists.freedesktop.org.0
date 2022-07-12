@@ -1,53 +1,142 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29B44572838
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jul 2022 23:04:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE4C5728B7
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jul 2022 23:44:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40E8910FB60;
-	Tue, 12 Jul 2022 21:04:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF4DE14BA2B;
+	Tue, 12 Jul 2022 21:44:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE58911A681
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jul 2022 21:03:58 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A47DF14BAF9;
+ Tue, 12 Jul 2022 21:44:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657659839; x=1689195839;
+ t=1657662249; x=1689198249;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=rmQW3ehNPRI2KvBVSoPH2rajm062H1GvL4DZCnugl70=;
- b=ciVuLmHbkjCc6N/8tSsxawt4N35T5nj3GXBOVxP3SlS/GJmHv/f5rArK
- iCiA/9yfMa0YG7QHbw9JChmWYGbz6PLWxqRjh8Yg5/6a1XpFgmUEJhXBC
- 4rJQokPX13s2lKT6nc1tivflsbHY1uSRD+u9sgIsiO0A3Qb4ClSAhpuqG
- sBXBxLCzeDK+iM0UV+34kXsbGhGGCaI0n+bbvnMn66yB7thiYPbujcWkJ
- 3SUcI4hNjMxqkRFjC2OURCdYe1VllqAvS4/Eq/u7amlBq1zRzzpTCYI3a
- kZha+/lScCk3FkExBMPX1MzqYAIoHfKgB3qvn4TpbktLfHrDL+MuYb+Iu w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10406"; a="268079730"
-X-IronPort-AV: E=Sophos;i="5.92,266,1650956400"; d="scan'208";a="268079730"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2022 14:03:58 -0700
-X-IronPort-AV: E=Sophos;i="5.92,266,1650956400"; d="scan'208";a="570348605"
-Received: from orsosgc001.jf.intel.com ([10.165.21.135])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2022 14:03:58 -0700
-Date: Tue, 12 Jul 2022 14:03:58 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Ys3hvrtRHPw/15nT@orsosgc001.jf.intel.com>
-References: <5535d98d0c1f1fa22e6ca6e8973a05e58a097944.1656622601.git.stuart.summers@intel.com>
- <Yr47xCs/JmhX9X7H@unerlige-desk>
- <cbfb9255-bd95-87c7-aa9d-e3af56dffd76@linux.intel.com>
- <81c381a50536d23ec0922874e13df5e67ffcc3d7.camel@intel.com>
- <894bdfcb-c3c7-96ce-5ddc-a084ef04179d@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=zWMZaHQBjAy6L7woA6SgR4nYmN7wyKiZbNmszdMfsnM=;
+ b=UczNjGv/nDmXotx1FdZlYvjXd/eahH7Qs7T+NAY3nN1F8TpDl+RmCAfk
+ /aRdDwQoJUCaadAy7GH013RnCpk6K5xDSJMH8RUBBZqX18NAw2zvLmmO3
+ S3KyKZmMprVTQEiMou1xIvN/K77rllM9HvoJ8Ru4fDiGon9oT6XCRasFa
+ tkspDdIiempnqPAIHQGVd8WeBUOPC3MsqKyOQ0pv7DpZCfK09oATYIm/p
+ tV7cY2yKMPkLTLaRoEokkihtEJschig+UKc6TzfUD3vUOAuKyyeVtumQ5
+ YHtTRLpeWDjNLtew6jv8CsYZsF2miQI4xUAxh7uprrJCcwXmqZb0dKI/0 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10406"; a="310674977"
+X-IronPort-AV: E=Sophos;i="5.92,266,1650956400"; d="scan'208";a="310674977"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2022 14:44:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,266,1650956400"; d="scan'208";a="599521918"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga007.fm.intel.com with ESMTP; 12 Jul 2022 14:44:09 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Tue, 12 Jul 2022 14:44:08 -0700
+Received: from orsmsx606.amr.corp.intel.com (10.22.229.19) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Tue, 12 Jul 2022 14:44:08 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Tue, 12 Jul 2022 14:44:08 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Tue, 12 Jul 2022 14:44:08 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gXSmFxY68DxfAYFEJ0FdMjPRDsm+m2+7F9bn43erycizx5LFaxQ2Wz+d8QnVIzzEqNjozjAGXMeJMPaPdz7aoVDQ8bsIlCS9ztrQTOQCb+xauHoDNgcZlSmoE0W1r7N/PS6Lhx2QUOz/ZBR2Jwh4X+qI67qC3hK8ox6MFOCALdVPhOLVOCXuohRkrNY0rcBjhOD6l5giUzcbko24LoDlzm+H4MiW3/Vbds3d/lyDU2Ceevyy6TE463NUd1brKDKgcm2U7gS6A/LF9bgMisI6j2Cm3DVrEAsaZGiFJGqi0koNloLn2l+EbdG5cx6/W++KCUCulrgU1M15q2vTEEE1SA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6t1KKJvH5PrkebURrLdrdpd/0WXCh/xAhIx7/OLqb54=;
+ b=oOCh0fhJsUX/Gey8rFj1eASRY5kK9Q+CbkoPsjd8UWD7OoYWXhwya0Q3t2n1Vuj8TcawecUQynql7pUMsbFPEQ/NemfJCYLMmGV6JLPJhpewRZon8DfTc1VRfArNQCMyYsTyM8Y64TmiLHRwCYnkXcCXd4TDBXZ8duQRNCJgnt/z1WvXYByhmS5bMVYr4Ge3PNF5NXdZs4cX26SDZwscn8Oxy+QFkA52h0F139ZqpD+m1ahW3OcIvIFjsgDLhq+VO7XLQN7ssNLy5EwbD0dx7tgbXBwLmLf85lA1llT268L9ohqZ393vMTE/8ON5RyF0s2ZaD9H9tkDSDYL8MWKBUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by CO1PR11MB4961.namprd11.prod.outlook.com (2603:10b6:303:93::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Tue, 12 Jul
+ 2022 21:44:06 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::8053:3c59:9f5d:b615]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::8053:3c59:9f5d:b615%9]) with mapi id 15.20.5417.026; Tue, 12 Jul 2022
+ 21:44:06 +0000
+Date: Tue, 12 Jul 2022 17:44:00 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+Message-ID: <Ys3rIMMROTZB8JBh@intel.com>
+References: <cover.1657639152.git.mchehab@kernel.org>
+ <1e59a7c45dd919a530256b9ac721ac6ea86c0677.1657639152.git.mchehab@kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <894bdfcb-c3c7-96ce-5ddc-a084ef04179d@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix NPD in PMU during driver
- teardown
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1e59a7c45dd919a530256b9ac721ac6ea86c0677.1657639152.git.mchehab@kernel.org>
+X-ClientProxiedBy: BY5PR20CA0007.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::20) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e3665584-45b3-4e6a-cddc-08da644fa4cc
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4961:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jXgF7v2UQFsIoojWLFQjNk7dwwx8s4ePagNwiPxdYmY6ZFZ17DYpscjnoqUXS+u13BLGNbKwEncN97/IEb8iCuItwFMeiAkBdrisFxjHTOAW2OjpOZ6R7G6dD+xQSy/RZReyQzMqaEIdV6wtKRKT9wi7AsEt7ICJox694Mjbu/x6B/elD1SGk0/yCBMt3UsEiz40D920QF9SCMXTslePM7ekK0Q4TzuAhKqmGOuLOwbjyau56hW6xpdd7PnMSaCeTHnRkPxl16HrWxUn4iUHG36xHQD06TGRHOM0GQX0G0NsW+VMqjg8gPM71/vlAcBYI0a/r++tqgbf3feav5Cn/gpr0isXQo0vcMIKaHbgMMa5S6bqB+KMdIjcjVnJc24fbFsrx2vWekvrySmA0HZ9Eangbse/p7b1pUmqDkL/g+behkUxPV6yvikqfLnnewubUf2VLZ8cClpUMQvJZEqkhMe6/4x+t22lLcsTnN3PehRc+xHuiGAJctsTn98oAt94jYOpXdv2QKVkwYOF3qAomFu1DLe4cKtdFZMvjj7RsV5QClaxLLYVT8J6pzh5BrogRD/FhaTIoYrCvJjF68vPoV4/q9f/yCMOHHsM8sEJxr61mRCBQ+Y5JOnnC9OefQdnr+ZTE2X3QbvSzCLgTf8aB6hl3SDda0Kkgj38sUJQE7/21VER3+/Usx9DkYM0rEP+rCWhx1+v0CKg6ZS/RGA2cAqJso0uRPrG2qv4PfxFIASFNeOyxyit0/I1dTMNHFNvTThZjz58BAVndwXw/60eMuyTaltwSs+MsQzuvWIq0zg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(39860400002)(396003)(366004)(376002)(136003)(346002)(38100700002)(54906003)(66574015)(83380400001)(44832011)(186003)(4326008)(316002)(36756003)(66946007)(5660300002)(82960400001)(966005)(66476007)(66556008)(6512007)(6916009)(8676002)(86362001)(26005)(41300700001)(6666004)(2906002)(6506007)(8936002)(2616005)(7416002)(6486002)(478600001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Qf5+EHix0/t0m7i6Fj4qMEvqJFb/lfRXva4OGVm6FaO6ZHjZKK67aqp3oj?=
+ =?iso-8859-1?Q?+v4FfcwxZRNZdobKMEr8SB9o8mfpyV0wmL4gpvU9YCJfuSl7iNZVi9bYB7?=
+ =?iso-8859-1?Q?2dSyEDjAGRmtQhk3PMBmShIW7QoUPW+0icZAVjTaO+D7QpTG/i0nkWVrdf?=
+ =?iso-8859-1?Q?jV8RhYJ9kyYIoUEzoIoexZmUEAGXJn4Z8lVpuN+pICdd5UO9ERdby2Qrsu?=
+ =?iso-8859-1?Q?MUTlsHwFHrVR4oP8uh+BxpMXrgyMktLNW5eI22b92Jg49Jq6TQFBxfVGRS?=
+ =?iso-8859-1?Q?ngYeUTkxusI/mRj2qjWCBIe7UdtNEk4nblpSAHPFqGxfiIjFIC/aZrN8BQ?=
+ =?iso-8859-1?Q?JIdpqGerDCFrHAs/h0dCzzd31EzMy2ohnnUP5dtVxWkf+K0Foaek/owXxd?=
+ =?iso-8859-1?Q?xjK57S5g+E4NlOqXXrelv9fx0gva/2FHuSzSTBInrpzp0fFLpX3gLglSdF?=
+ =?iso-8859-1?Q?IF1f4xbAM8wKqfYsE08WpfRSk8RUBz0oilzwRJe4gjPs4QMxiQbBnvSWUR?=
+ =?iso-8859-1?Q?uVfj59Kv9Dz5HqNheXXGNbU6YGf3rfG0MMJQMLjv3KBEg3sTQ3UlrWkpyJ?=
+ =?iso-8859-1?Q?iiIfOzkORORNOT4Y17/nMxdGlYezHAMWIy3AR26yVdGcb+Gm4zzbJpE73X?=
+ =?iso-8859-1?Q?dT5ltRiiw5fQdzYP7n42vXaYMdAhUWI0F6VfkMJytUG6YH6pi9cNXZMLhG?=
+ =?iso-8859-1?Q?Ovwzv8fjq3vLXDckO2JTb3j5bmXPlsxDjmx162OAkp6h66gzLBLoF+WITi?=
+ =?iso-8859-1?Q?QkFNBjbzKuLNVxFd5/Dq7y+Lk65e62YKN199wSvtOPg2N4Arvh3Y2eFjVb?=
+ =?iso-8859-1?Q?cCo4s7kra5UyUYvZo7Q/FUSk0Qmyj3jaV3OAy+jxlWTphR2K9/M0UfDSqD?=
+ =?iso-8859-1?Q?y0OXlEKpLhM1rg/Je0VZthlM3SVTfDvf5daVhLXmZ46CS0FO1R/JMJBZ15?=
+ =?iso-8859-1?Q?SRFnedDLpPlYY2ZSg3YkxgB/WHUSOLF9CeK8X1Hlsbn58yBGOx6FD0YqfB?=
+ =?iso-8859-1?Q?r+4YdMcUENUSuacnJCvmfWjuFUyUS804Xkw3nOESAgV+8S2KevAUCdWeDj?=
+ =?iso-8859-1?Q?UO2liuD03bBrZc3FvCNj21leEhKNwk68ylRfDZu9lCl75BSriQwbIExBSj?=
+ =?iso-8859-1?Q?aHorZBlHK+5y7/oZ+anCZ40J79tFN60A1d9xjFRsx8PpFqzfhBhbVrjSkq?=
+ =?iso-8859-1?Q?zKQnwoPSUirnUc5Ezt66DnkEFT3jFbjl4dzsIMgoD6IzxBUkYTGMRAk1mn?=
+ =?iso-8859-1?Q?GUQKBgTS0aFY99gc/skAl0j4UhKgTdzZrMF0Goslde9Jm1Nu6DGfH3kmqX?=
+ =?iso-8859-1?Q?c4P0ljgziBWotcbqTzbnz8w3Z6Lfg37DYRN3/bMrWe0jnzfn/8S4bSYfH6?=
+ =?iso-8859-1?Q?+bfbQHV+OM458JnsdhGcjQNLxrsLoKdz/srI2oivB6lCmruzFKE4GGQw0h?=
+ =?iso-8859-1?Q?+SGiXY9lvMQctkvMQ7C/3x0Yhy/9s54dtZ8wFGU5xRWMyyzG0dvuyUZz7Z?=
+ =?iso-8859-1?Q?6CVRkDk3toIymaoMqm1M8eRCyy/ils08pO6f5zOoU9Usrwue+H/J81N/wV?=
+ =?iso-8859-1?Q?zLgpFzdbTtEYw0WfGjdmvI2SbXmGT13yGAkuIpknxsRFJd76QBoBLtdDxQ?=
+ =?iso-8859-1?Q?OZxq4o4YyurZSqraTm1jZ19Dy9MEuPWhIuYTr4ci3r3yZxOzQOZgahog?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3665584-45b3-4e6a-cddc-08da644fa4cc
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2022 21:44:06.0643 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ueSUWzWNu4nz6H98EDWk7+sxDXKG+DLhlHIXRmXvk8Ypz9pYFCqhBOYcBz8cDDPV+2puyl0GrC8PgS0ClGqWtA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4961
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 2/2] drm/i915/gt: Serialize TLB
+ invalidates with GT resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,159 +149,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Dave Airlie <airlied@redhat.com>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 04, 2022 at 09:31:55AM +0100, Tvrtko Ursulin wrote:
->
->On 01/07/2022 15:54, Summers, Stuart wrote:
->>On Fri, 2022-07-01 at 09:37 +0100, Tvrtko Ursulin wrote:
->>>On 01/07/2022 01:11, Umesh Nerlige Ramappa wrote:
->>>>On Thu, Jun 30, 2022 at 09:00:28PM +0000, Stuart Summers wrote:
->>>>>In the driver teardown, we are unregistering the gt prior
->>>>>to unregistering the PMU. This means there is a small window
->>>>>of time in which the application can request metrics from the
->>>>>PMU, some of which are calling into the uapi engines list,
->>>>>while the engines are not available. In this case we can
->>>>>see null pointer dereferences.
->>>>>
->>>>>Fix this ordering in both the driver load and unload sequences.
->>>>>
->>>>>Additionally add a check for engine presence to prevent this
->>>>>NPD in the event this ordering is accidentally reversed. Print
->>>>>a debug message indicating when they aren't available.
->>>>>
->>>>>v1: Actually address the driver load/unload ordering issue
->>>>>
->>>>>Signed-off-by: Stuart Summers <stuart.summers@intel.com>
->>>>>---
->>>>
->>>>I thought this is likely happening because intel_gpu_top is running
->>>>in
->>>>the background when i915 is unloaded. I tried a quick repro, I
->>>>don't see
->>>>the unload succeed ("fatal module in use", not sure if this was a
->>>>partial unload), but when I try to kill intel_gpu_top, I get an
->>>>NPD.
->>>>This is in the event disable path - i915_pmu_event_stop ->
->>>>i915_pmu_disable.
->>>
->>>So i915 failed to unload (as expected - with perf events open we
->>>elevate
->>>the module ref count via i915_pmu_event_init -> drm_dev_get), then
->>>you
->>>quit intel_gpu_top and get NPD? On the engine lookup? With the
->>>re-ordered init/fini sequence as from this patch?
->>>
->>>With elevated module count there shouldn't be any unloading happening
->>>so
->>>I am intrigued.
->>>
->>>>It's likely that you are seeing a different path (unload) leading
->>>>to the
->>>>same issue.
->>>>
->>>>I think in i915_pmu_disable/disable should be aware of event-
->>>>>hw.state
->>>>and or pmu->closed states before accessing the event. Maybe like,
->>>>
->>>>if (event->hw.state != PERF_HES_STOPPED && is_engine_event(event))
->>>>{
->>>>
->>>>@Tvrtko, wondering if this case is tested by igt@perf
->>>>_pmu@module-unload.
->>>
->>>A bit yes. From what Stuart wrote it seems the test would need to be
->>>extended to cover the case where PMU is getting opened while module
->>>unload is in progress.
->>>
->>>But the NPD you saw is for the moment confusing so I don't know what
->>>is
->>>happening.
->>>
->>>>I am not clear if we should use event->hw.state or pmu->closed here
->>>>and
->>>>if/how they are related. IMO, for this issue, the engine check is
->>>>good
->>>>enough too, so we don't really need the pmu state checks.
->>>>Thoughts?
->>>
->>>Engine check at the moment feels like papering.
->>>
->>>Indeed as you say I think the pmu->closed might be the solution.
->>>Perhaps
->>>the race is as mentioned above. PMU open happening in parallel to
->>>unload..
->>>
->>>If the sequence of events userspace triggers is:
->>>
->>>    i915_pmu_event_init
->>>    i915_pmu_event_start
->>>    i915_pmu_enable
->>>    i915_pmu_event_read
->>>
->>>I guess pmu->closed can get set halfway in i915_pmu_event_init. What
->>>would be the effect of that.. We'd try to get a module reference
->>>while
->>>in the process of unloading. Which is probably very bad.. So possibly
->>>a
->>>final check on pmu->close is needed there. Ho hum.. can it be made
->>>safe
->>>is the question.
->>>
->>>It doesn't explain the NPD on Ctrl-C though.. intel_gpu_top keeps
->>>the
->>>evens open all the time. So I think more info needed, for me at
->>>least.
->>
->>So one thing here is this doesn't have to do with module unload, but
->>module unbind specifically (while perf is open). I don't know if the
->>NPD from Umesh is the same as what we're seeing here. I'd really like
->>to separate these unless you know for sure that's related. Also it
->>would be interesting to know if this patch fixes your issue as well.
->>
->>I still think the re-ordering in i915_driver.c should be enough and we
->>shouldn't need to check pmu->closed. The unregister should be enough to
->>ensure the perf tools are notified that new events aren't allowed, and
->>at that time the engine structures are still intact. And even if for
->>some reason the perf code still calls in to our function pointers, we
->>have these engine checks as a failsafe.
->>
->>I'm by the way uploading one more version here with a drm_WARN_ONCE
->>instead of the debug print.
->
->Problem is I am not a fan of papering so lets get to the bottom of the 
->issue first. (In the meantime simple patch to re-order driver fini is 
->okay since that seems obvious enough, I tnink.)
->
->We need to see call traces from any oopses and try to extend perf_pmu 
->to catch them. And we need to understand the problem, if it is a real 
->problem, which I laid out last week about race between module unload 
->and elevating the module use count from our perf event init.
->
->Without understanding the details of possible failure mode flows we 
->don't know how much the papering with engine checks solves and how 
->much it leaves broken.
->
->If you guys are too busy to tackle that I'll put it onto myself, but 
->help would certainly be appreciated.
+On Tue, Jul 12, 2022 at 04:21:33PM +0100, Mauro Carvalho Chehab wrote:
+> From: Chris Wilson <chris.p.wilson@intel.com>
+> 
+> Avoid trying to invalidate the TLB in the middle of performing an
+> engine reset, as this may result in the reset timing out. Currently,
+> the TLB invalidate is only serialised by its own mutex, forgoing the
+> uncore lock, but we can take the uncore->lock as well to serialise
+> the mmio access, thereby serialising with the GDRST.
+> 
+> Tested on a NUC5i7RYB, BIOS RYBDWi35.86A.0380.2019.0517.1530 with
+> i915 selftest/hangcheck.
+> 
+> Cc: stable@vger.kernel.org  # v4.4 and upper
+> Fixes: 7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
+> Reported-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Tested-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Acked-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-Looks like Stuart/Chris are pointing towards the unbind as an issue.
+pushed to drm-intel-gt-next. Thanks for the patches, tests, reviews and patience.
 
-I ran this sequence and only the modprobe showed an error (FATAL: ...  
-still in use). What happens with the unbind. Should pmu also handle the 
-unbind somehow?
-
-- run intel_gpu_top
-- unbind
-- modprobe -r i915
-- kill intel_gpu_top.
-
-Thanks,
-Umesh
-
->
->Regards,
->
->Tvrtko
+> ---
+> 
+> See [PATCH v5 0/2] at: https://lore.kernel.org/all/cover.1657639152.git.mchehab@kernel.org/
+> 
+>  drivers/gpu/drm/i915/gt/intel_gt.c | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 8da3314bb6bf..68c2b0d8f187 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -952,6 +952,20 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
+>  	mutex_lock(&gt->tlb_invalidate_lock);
+>  	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+>  
+> +	spin_lock_irq(&uncore->lock); /* serialise invalidate with GT reset */
+> +
+> +	for_each_engine(engine, gt, id) {
+> +		struct reg_and_bit rb;
+> +
+> +		rb = get_reg_and_bit(engine, regs == gen8_regs, regs, num);
+> +		if (!i915_mmio_reg_offset(rb.reg))
+> +			continue;
+> +
+> +		intel_uncore_write_fw(uncore, rb.reg, rb.bit);
+> +	}
+> +
+> +	spin_unlock_irq(&uncore->lock);
+> +
+>  	for_each_engine(engine, gt, id) {
+>  		/*
+>  		 * HW architecture suggest typical invalidation time at 40us,
+> @@ -966,7 +980,6 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
+>  		if (!i915_mmio_reg_offset(rb.reg))
+>  			continue;
+>  
+> -		intel_uncore_write_fw(uncore, rb.reg, rb.bit);
+>  		if (__intel_wait_for_register_fw(uncore,
+>  						 rb.reg, rb.bit, 0,
+>  						 timeout_us, timeout_ms,
+> -- 
+> 2.36.1
+> 
