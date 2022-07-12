@@ -2,50 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB4A1571606
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jul 2022 11:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 848DD57174C
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jul 2022 12:28:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D627693E7A;
-	Tue, 12 Jul 2022 09:46:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4493A113C0A;
+	Tue, 12 Jul 2022 10:28:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4A8F93E76
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jul 2022 09:46:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657619184; x=1689155184;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=K4CR1/G82UxJFPYY75mEX62EkEPAcJuS/9XvvOEmADY=;
- b=eO2Uuw8j4GV+t/PTsu2RsuaWOmWKK7oso5BseykKoUgaCtGPAbXa/t9O
- 3EX0PqYpRHV5LpC6YftsacE/LFH2PHV3Zbh2/2PsI4rh/YT48AJR/A+I3
- OtqNnIUAGuMjqzKkndhrd7arzhkas9l5cEXs0uLqk3af9/ZU7yHjAb0bZ
- k3beFuayxx1GDwgjUFglaxDGJVER0q083BuWq4CmfWTfJ+Qfc8RAxxwHg
- NWYV840Uw7GG12UKM2ZafIsuqdsYCbbXCjaBGe3j4yPhPssIwHjwZ7HXS
- GaTrYD/zcbtpV5z7dWAH+GvUvzGu3TyronpVk1bpR6UP6CwoG4eg8BFCV w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10405"; a="264678628"
-X-IronPort-AV: E=Sophos;i="5.92,265,1650956400"; d="scan'208";a="264678628"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2022 02:46:24 -0700
-X-IronPort-AV: E=Sophos;i="5.92,265,1650956400"; d="scan'208";a="652839253"
-Received: from syeghiay-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.53.242])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2022 02:46:22 -0700
-Date: Tue, 12 Jul 2022 11:46:18 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Karolina Drobnik <karolina.drobnik@intel.com>
-Message-ID: <Ys1C6sG6VAuQvdlu@alfio.lan>
-References: <cover.1657289332.git.karolina.drobnik@intel.com>
- <d7b953c7a4ba747c8196a164e2f8c5aef468d048.1657289332.git.karolina.drobnik@intel.com>
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
+ [IPv6:2a00:1450:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23F901132E1;
+ Tue, 12 Jul 2022 10:28:53 +0000 (UTC)
+Received: by mail-ej1-x636.google.com with SMTP id os14so13520320ejb.4;
+ Tue, 12 Jul 2022 03:28:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=9EL4uc2GNr9WKPYdUaDRndHBqgmHq7u3C8hTHLq2e30=;
+ b=YiRc9+LOrD1GMrizBdS2PYQ/qFnCY1epAi+IP4WrCuSgTufRlRAZCD9fKbA+/KPR/s
+ mnh9K4KSTw4gsdtm2qKe5RUQ5Iw3bAEfPlXGlpjnwHxhBfobYhLM+5Aar3oYmwaAnT4G
+ I0q4oW3fLuGYdn8YY1wLSVBrzy6dIYFy8RHSuUX7fnTUJQUc1zpKj/YdDY3BkcRR0pr1
+ vLWA2MrtnT7FnK3ANzN4CSDkuDreBWky90YlJ6mvVaDyuCcC11QXUpS7VOaPUl5KYlFt
+ PIGxTCtoYUp6xGAtW9EUAfN21O0ZF47e8mxgYrP+V7utJHHRsmZIlqCkECgAJW/VPkZ8
+ G+Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=9EL4uc2GNr9WKPYdUaDRndHBqgmHq7u3C8hTHLq2e30=;
+ b=IF+YAtOeMZcU3i8IJfuJ69SRYh9CL0IKttVqjJAvf+9gmwKF0+q3On14JoOa28OJGw
+ j/jrZTopFHT0AzGZZJ30jk1oDGvGgWP/yMgh6o7F5qZ0NWvIi7GSucL+hqUlkjsd6GIt
+ phJauIl71qBWUD3NgaBIRZ5FhQQdVOwUZC+l6dypUEur56TYpg6vX4NRtuvXGKlBc2fd
+ gch1dWk/JYKyYfc9et+ieNth8JR0VM4UJBOTP/j6OosJzP1aNbRg2rZjayGTqMhYvJ1s
+ 6mPdqJz/gaPyTP9LBZY+8+xcsovCHvXFC0Ee+1nR2swubKpdCFjPdOLwVWwKhO800T7T
+ bjtQ==
+X-Gm-Message-State: AJIora/b8xwv0LR995HqZeSYNmmsCeomBEy+54yaLDK92RzHaxrVjsJ2
+ bvozfF+ddoLrkPrxdC7Qbt4=
+X-Google-Smtp-Source: AGRyM1u8EGwzFvXheiDLWV5f6fOamncJ1eS/rHiYb+aMaChi6Tr+nA9yDejxa9G4mZ+O4NUNhNBYgQ==
+X-Received: by 2002:a17:906:8a6a:b0:72b:552e:67f0 with SMTP id
+ hy10-20020a1709068a6a00b0072b552e67f0mr9569935ejc.733.1657621731677; 
+ Tue, 12 Jul 2022 03:28:51 -0700 (PDT)
+Received: from able.fritz.box (p57b0bd9f.dip0.t-ipconnect.de. [87.176.189.159])
+ by smtp.gmail.com with ESMTPSA id
+ o23-20020a170906769700b0072b3391193dsm3634028ejm.154.2022.07.12.03.28.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 12 Jul 2022 03:28:51 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: karolina.drobnik@intel.com, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Date: Tue, 12 Jul 2022 12:28:49 +0200
+Message-Id: <20220712102849.1562-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d7b953c7a4ba747c8196a164e2f8c5aef468d048.1657289332.git.karolina.drobnik@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/gt: Only kick the signal
- worker if there's been an update
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] dma-buf: revert "return only unsignaled fences
+ in dma_fence_unwrap_for_each v3"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,35 +73,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Karolina,
+This reverts commit 8f61973718485f3e89bc4f408f929048b7b47c83.
 
-> One impact of commit 047a1b877ed4 ("dma-buf & drm/amdgpu: remove
-> dma_resv workaround") is that it stores many, many more fences. Whereas
-> adding an exclusive fence used to remove the shared fence list, that
-> list is now preserved and the write fences included into the list. Not
-> just a single write fence, but now a write/read fence per context. That
-> causes us to have to track more fences than before (albeit half of those
-> are redundant), and we trigger more interrupts for multi-engine
-> workloads.
-> 
-> As part of reducing the impact from handling more signaling, we observe
-> we only need to kick the signal worker after adding a fence iff we have
-> good cause to believe that there is work to be done in processing the
-> fence i.e. we either need to enable the interrupt or the request is
-> already complete but we don't know if we saw the interrupt and so need
-> to check signaling.
-> 
-> References: 047a1b877ed4 ("dma-buf & drm/amdgpu: remove dma_resv workaround")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Karolina Drobnik <karolina.drobnik@intel.com>
+It turned out that this is not correct. Especially the sync_file info
+IOCTL needs to see even signaled fences to correctly report back their
+status to userspace.
 
-sorry, I missed this patch.
+Instead add the filter in the merge function again where it makes sense.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/dma-buf/dma-fence-unwrap.c | 3 ++-
+ include/linux/dma-fence-unwrap.h   | 6 +-----
+ 2 files changed, 3 insertions(+), 6 deletions(-)
 
-Thanks,
-Andi
+diff --git a/drivers/dma-buf/dma-fence-unwrap.c b/drivers/dma-buf/dma-fence-unwrap.c
+index 502a65ea6d44..7002bca792ff 100644
+--- a/drivers/dma-buf/dma-fence-unwrap.c
++++ b/drivers/dma-buf/dma-fence-unwrap.c
+@@ -72,7 +72,8 @@ struct dma_fence *__dma_fence_unwrap_merge(unsigned int num_fences,
+ 	count = 0;
+ 	for (i = 0; i < num_fences; ++i) {
+ 		dma_fence_unwrap_for_each(tmp, &iter[i], fences[i])
+-			++count;
++			if (!dma_fence_is_signaled(tmp))
++				++count;
+ 	}
+ 
+ 	if (count == 0)
+diff --git a/include/linux/dma-fence-unwrap.h b/include/linux/dma-fence-unwrap.h
+index 390de1ee9d35..66b1e56fbb81 100644
+--- a/include/linux/dma-fence-unwrap.h
++++ b/include/linux/dma-fence-unwrap.h
+@@ -43,14 +43,10 @@ struct dma_fence *dma_fence_unwrap_next(struct dma_fence_unwrap *cursor);
+  * Unwrap dma_fence_chain and dma_fence_array containers and deep dive into all
+  * potential fences in them. If @head is just a normal fence only that one is
+  * returned.
+- *
+- * Note that signalled fences are opportunistically filtered out, which
+- * means the iteration is potentially over no fence at all.
+  */
+ #define dma_fence_unwrap_for_each(fence, cursor, head)			\
+ 	for (fence = dma_fence_unwrap_first(head, cursor); fence;	\
+-	     fence = dma_fence_unwrap_next(cursor))			\
+-		if (!dma_fence_is_signaled(fence))
++	     fence = dma_fence_unwrap_next(cursor))
+ 
+ struct dma_fence *__dma_fence_unwrap_merge(unsigned int num_fences,
+ 					   struct dma_fence **fences,
+-- 
+2.25.1
+
