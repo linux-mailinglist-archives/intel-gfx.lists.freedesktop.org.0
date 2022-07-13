@@ -1,57 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FAD5733D1
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jul 2022 12:09:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76CA57362A
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jul 2022 14:15:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 087A698F4D;
-	Wed, 13 Jul 2022 10:09:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3A6697BF8;
+	Wed, 13 Jul 2022 12:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
- [IPv6:2a00:1450:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCACD98F4B;
- Wed, 13 Jul 2022 10:08:58 +0000 (UTC)
-Received: by mail-lj1-x233.google.com with SMTP id bn33so12876891ljb.13;
- Wed, 13 Jul 2022 03:08:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=Byd4/jahjyoyw0K/iMAz20kd4FdeP/AViHSjhRTyo1o=;
- b=hvXkweVLrF81HDyll6b+YOUORVhujNOXY357RUs2UlHOVR3BAuVzU5d8N6za3hjFNf
- zfcm6CRPC+T8DjUJfOb6wm8bIXgOiCbF3ppE4fVGCMNv0ZNl5qBRNOb+VTKGaeoQd/DZ
- q4iUpzy40dPt9JvJrQOElKG+PncHEKB6xYD3eYWY5oUfKoCGfqp9SYUVLDtebkCiHa13
- AhY67e+0px7Ckkwg2+PnV2LJKEIxpsifmyklpYmQOHWY+OaBYBaCVsvKbJx0bD+qh1Gl
- 8nzv6d6ePgazegjsMcIXnmiXr94L4kXTZZJGBshblPBDyCJdknYfI2/3Gw+xjH8H6r88
- 0mCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=Byd4/jahjyoyw0K/iMAz20kd4FdeP/AViHSjhRTyo1o=;
- b=5TN2OM5XwsRoZesNnjNye8J6Abyy7HMxe2Nra9+2ourz2PAbEIx2JLQ8mpFIFxZlbo
- eYrz/tRvi1Joj+GiQc576qGMb1n539phiacy8HGcaQ5b3FbbKQdLndE9a9Ar7SX3cRTH
- G3zUjaQLhGkT+2HHWOBw9AEP1sC4/1sEm2yEqNytwzVz0vX2ewl/CCvjVZpW+ukB+zBJ
- aC9ACVjsfEJTvX/NVaK7xXFAwAQWL1WEA+82vbdSAAq7H2kj/vaKDOeSlPNtVJrLyWyO
- 77TVXqcO/6priaAyNLlVIEl+LyJ+XHsFAJ+xZhQc7f6FawsdKU84tvQuk2eL6oMpwNSB
- skMQ==
-X-Gm-Message-State: AJIora9i23vRP/HNzpREiA5TYqs2iv1STi+5c5agkWUyylMDeEPKoHF2
- zD3ojRjmYwJXnSGqEZMYUG+/LCZMMxsUU2pYkC8=
-X-Google-Smtp-Source: AGRyM1tAZnzXtYYuYfWjBkbdDqiHPbR6CZzD48vTvXTahZWN6qSsFdEVuIZaHvEiMZY/6/uQFqUET+Sa/o1ORNjRVfk=
-X-Received: by 2002:a05:651c:981:b0:253:b87e:ba6c with SMTP id
- b1-20020a05651c098100b00253b87eba6cmr1291651ljq.530.1657706936921; Wed, 13
- Jul 2022 03:08:56 -0700 (PDT)
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80D0F9A1FE;
+ Wed, 13 Jul 2022 12:15:05 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Ljc4w07t5z4xvg;
+ Wed, 13 Jul 2022 22:14:55 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1657714500;
+ bh=uDhVXiqCj/rhBJXlqy337qGKpkTPsz6WFevTk5S1V0o=;
+ h=Date:From:To:Cc:Subject:From;
+ b=mXAxKtYg4H+GX8fk8PJZL5lIHkhQ+hbjy2si+rcjdyb0cMWT3t2IbgWifsmxALyWF
+ oXm9pxQrPDf5EYY4+ot8ZvhlJU1NXHRH0bwfLEQ5YR1u8vGnFOeYAjux1utTDYOf62
+ GJ+ULsOLMBauNOTuC4ga8hBvWBJy6sWjUGVBBAyRCdMHzt/b4JMH+B0riECVg51EBf
+ lvX92TvwSnQqsPYlt/CmFfibS9lZaACPkXNfpguLd/O5l+21CN5ksAy96g9aI6Jqig
+ neP23S9bq0Gs54EZGQ4e5Dr/wZxHQrVvXIDzI3eMlHG64HXLtm46eFJJeBbrvqiJZW
+ oo5xwJVf/+x3g==
+Date: Wed, 13 Jul 2022 22:14:54 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20220713221454.67bb20df@canb.auug.org.au>
 MIME-Version: 1.0
-References: <20220712114605.52369-1-christian.koenig@amd.com>
-In-Reply-To: <20220712114605.52369-1-christian.koenig@amd.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 13 Jul 2022 11:08:29 +0100
-Message-ID: <CAM0jSHOiFRZaU=NC9d0U8wD-1OWx_c+K0xfKz5unAxggU6WFtQ@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: audit bo->resource usage
+Content-Type: multipart/signed; boundary="Sig_/eJxh_gAMEwDnUciW=_vQR2V";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: [Intel-gfx] linux-next: build failure after merge of the
+ drm-intel-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,84 +51,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Matthew Auld <matthew.auld@intel.com>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 12 Jul 2022 at 12:46, Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Make sure we can at least move and alloc TT objects without backing store=
-.
->
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 6 ++----
->  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 2 +-
->  2 files changed, 3 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i9=
-15/gem/i915_gem_ttm.c
-> index 70e2ed4e99df..5449738c262f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -289,8 +289,6 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_b=
-uffer_object *bo,
->  {
->         struct drm_i915_private *i915 =3D container_of(bo->bdev, typeof(*=
-i915),
->                                                      bdev);
-> -       struct ttm_resource_manager *man =3D
-> -               ttm_manager_type(bo->bdev, bo->resource->mem_type);
->         struct drm_i915_gem_object *obj =3D i915_ttm_to_gem(bo);
->         unsigned long ccs_pages =3D 0;
->         enum ttm_caching caching;
-> @@ -304,8 +302,8 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_b=
-uffer_object *bo,
->         if (!i915_tt)
->                 return NULL;
->
-> -       if (obj->flags & I915_BO_ALLOC_CPU_CLEAR &&
-> -           man->use_tt)
-> +       if (obj->flags & I915_BO_ALLOC_CPU_CLEAR && bo->resource &&
-> +           ttm_manager_type(bo->bdev, bo->resource->mem_type)->use_tt)
->                 page_flags |=3D TTM_TT_FLAG_ZERO_ALLOC;
+--Sig_/eJxh_gAMEwDnUciW=_vQR2V
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-AFAICT it should be safe to make this:
+Hi all,
 
-if (obj->flags & I915_BO_ALLOC_CPU_CLEAR)
-        page_flags |=3D TTM_TT_FLAG_ZERO_ALLOC;
+After merging the drm-intel-fixes tree, today's linux-next build (i386
+defconfig) failed like this:
 
-Hopefully that fixes the igt_lmem_create_cleared_cpu subtest?
+x86_64-linux-gnu-ld: drivers/gpu/drm/i915/i915_scatterlist.o: in function `=
+i915_rsgt_from_mm_node':
+i915_scatterlist.c:(.text+0x196): undefined reference to `__udivdi3'
 
->
->         caching =3D i915_ttm_select_tt_caching(obj);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/d=
-rm/i915/gem/i915_gem_ttm_move.c
-> index a10716f4e717..dcb838dffd7b 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> @@ -490,7 +490,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool =
-evict,
->         bool clear;
->         int ret;
->
-> -       if (GEM_WARN_ON(!obj)) {
-> +       if (!bo->resource || GEM_WARN_ON(!obj)) {
+Caused by commit
 
-IIUC in patch 3 we now nuke the bo->resource when doing the "pipeline
-gutting" thing, but I think i915 is (ab)using that when swapping out
-shmem objects (see i915_ttm_shrink), so I think here we need to
-somehow inspect the tt to see if something needs to be swapped in? We
-might also need to move it back to lmem after. Or maybe this is
-already handled somehow? CI should hopefully be able to confirm
-(gem_lmem_swapping).
+  aff1e0b09b54 ("drm/i915/ttm: fix sg_table construction")
 
->                 ttm_bo_move_null(bo, dst_mem);
->                 return 0;
->         }
-> --
-> 2.25.1
->
+I have reverted that commit for today.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/eJxh_gAMEwDnUciW=_vQR2V
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmLOtz4ACgkQAVBC80lX
+0Gyu0AgAidtC+1SSKr14X+YbGBrvCORn0Pbc4VOBJgd/ET7eHhGwXO1XXW6G7Hfz
+Qm5TXiKTu76MXBcfja8Akh1yvVD3m6m5rIAQMn93ZmE+Cw5W5ROxku7pq1DZ1oKR
+h47QFCM0WdBCbF3jVtYX6XTflvQL9Pj5L9bUrgJNscPh48Nsu22eOcXBRsOQdKg7
+AmLjf6muUc5pLwsh3Dx3TlPLMrvpgyTVZUxQ0q050JxIPSOh/j9nx7X+CFweQjx0
+CrxCazdLAX7kZ73hoaVevmMwQ84UI2kIKOdkLL5McsmtgFwQBchcVw0C+Xw4Tdgq
+/gbu/YO0mwC3BQ+dlL3gz3ERyZuuvQ==
+=aURU
+-----END PGP SIGNATURE-----
+
+--Sig_/eJxh_gAMEwDnUciW=_vQR2V--
