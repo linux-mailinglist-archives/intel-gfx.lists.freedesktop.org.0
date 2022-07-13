@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B175737EB
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jul 2022 15:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE38E5737EA
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jul 2022 15:51:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5DC99AC6B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62F119AC75;
 	Wed, 13 Jul 2022 13:50:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 562279AC6E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0654B9AC70;
  Wed, 13 Jul 2022 13:50:44 +0000 (UTC)
 Received: from hermes-devbox.fritz.box (82-71-8-225.dsl.in-addr.zen.co.uk
  [82.71.8.225])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested) (Authenticated sender: bbeckett)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id C21006601A3C;
- Wed, 13 Jul 2022 14:50:42 +0100 (BST)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 80BEB66019BF;
+ Wed, 13 Jul 2022 14:50:43 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
  s=mail; t=1657720243;
- bh=lN7/72IELAABa/q8YAxfVX3RpiJXEatJtrVtob+QH7U=;
+ bh=uwyKpWlNH8QK8xQy7lI/WZGpczdTFtV/IRUxiesx9gY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=gcVqzi/HJAAI7hVp3JnLWU8GWvaQsk58Vwongwd5KUqf4pSAAhFM2aHPxw29a+1EO
- /hVp29d7FCLgTlytfunfYIwBEKMYeVz3NZVz/5sECf86iY7wRgDBAlH4A3asmTQr/z
- BOehwDs7oUmpRnXDsfCDQRSFGhcWA7/iMWlOYx73+VFdzu+IGlDe0J2YIZV5LCynXY
- vcEx7XuudwIQnFJ75EVeQZib4PCfY4bCc1Rc4Dhd64DKocgYX0uZ1BGbkTiPJcRyd9
- 7a+fysPR2l4eFV4xgJ0+p8tMfUU0NGx83DTguZHLiHee/2pwxywQkuxhEWa3EX0bBG
- 5aSwhhxwYMfZA==
+ b=XgTnw6wlQ/AA3P4NVbhMSJJGJT7StIXLfdSrRA7iEk/eC0sCupkCs28FO/0VnF7Ze
+ iWNS0M8zEo3y9Me3Wu+mwdcB3lCjz0eXnReuugnnMow0aRQD3bwwaw7YlD+UJQTnzP
+ O+2bhlAjFOktoDgcLEKpA0+b+8ra5lymJDoKVwp1tOSO7pS8iyQB4JQrjSpLGG78Xo
+ J9EsIO0yF6Ffkn+V0c0Kf0UuTCb0pwheQpejhyl7GAsNlrL1tV6MLJRVKKMusTcTw7
+ NyobeSE8OscKUF/sA7ac7x6hCdTb0KVw7FsHvltZQBrDkn3/VhLp41J8IOjMPrq50U
+ d1KRIRf+DyPeA==
 From: Robert Beckett <bob.beckett@collabora.com>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Jani Nikula <jani.nikula@linux.intel.com>,
@@ -36,16 +36,15 @@ To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 13 Jul 2022 14:50:17 +0100
-Message-Id: <20220713135022.3710682-6-bob.beckett@collabora.com>
+Date: Wed, 13 Jul 2022 14:50:18 +0100
+Message-Id: <20220713135022.3710682-7-bob.beckett@collabora.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220713135022.3710682-1-bob.beckett@collabora.com>
 References: <20220713135022.3710682-1-bob.beckett@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v11 05/10] drm/i915: sanitize mem_flags for
- stolen buffers
+Subject: [Intel-gfx] [PATCH v11 06/10] drm/i915: ttm move/clear logic fix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,44 +63,68 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Stolen regions are not page backed or considered iomem.
-Prevent flags indicating such.
-This correctly prevents stolen buffers from attempting to directly map
-them.
+ttm managed buffers start off with system resource definitions and ttm_tt
+tracking structures allocated (though unpopulated).
+currently this prevents clearing of buffers on first move to desired
+placements.
 
-See i915_gem_object_has_struct_page() and i915_gem_object_has_iomem()
-usage for where it would break otherwise.
+The desired behaviour is to clear user allocated buffers and any kernel
+buffers that specifically requests it only.
+Make the logic match the desired behaviour.
 
 Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 22 +++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-index 2cc2c08bd50f..18d574ac167f 100644
+index 18d574ac167f..6671345b2abe 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-@@ -14,6 +14,7 @@
- #include "gem/i915_gem_region.h"
- #include "gem/i915_gem_ttm.h"
- #include "gem/i915_gem_ttm_move.h"
-+#include "gem/i915_gem_stolen.h"
+@@ -3,6 +3,7 @@
+  * Copyright © 2021 Intel Corporation
+  */
  
- #include "gt/intel_engine_pm.h"
- #include "gt/intel_gt.h"
-@@ -130,8 +131,9 @@ void i915_ttm_adjust_gem_after_move(struct drm_i915_gem_object *obj)
++#include "drm/ttm/ttm_tt.h"
+ #include <drm/ttm/ttm_bo_driver.h>
  
- 	obj->mem_flags &= ~(I915_BO_FLAG_STRUCT_PAGE | I915_BO_FLAG_IOMEM);
+ #include "i915_deps.h"
+@@ -546,6 +547,25 @@ __i915_ttm_move(struct ttm_buffer_object *bo,
+ 	return fence;
+ }
  
--	obj->mem_flags |= i915_ttm_cpu_maps_iomem(bo->resource) ? I915_BO_FLAG_IOMEM :
--		I915_BO_FLAG_STRUCT_PAGE;
-+	if (!i915_gem_object_is_stolen(obj))
-+		obj->mem_flags |= i915_ttm_cpu_maps_iomem(bo->resource) ? I915_BO_FLAG_IOMEM :
-+			I915_BO_FLAG_STRUCT_PAGE;
++static bool
++allow_clear(struct drm_i915_gem_object *obj, struct ttm_tt *ttm, struct ttm_resource *dst_mem)
++{
++	/* never clear stolen */
++	if (dst_mem->mem_type == I915_PL_STOLEN)
++		return false;
++	/*
++	 * we want to clear user buffers and any kernel buffers
++	 * that specifically request clearing.
++	 */
++	if (obj->flags & I915_BO_ALLOC_USER)
++		return true;
++
++	if (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC)
++		return true;
++
++	return false;
++}
++
+ /**
+  * i915_ttm_move - The TTM move callback used by i915.
+  * @bo: The buffer object.
+@@ -596,7 +616,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+ 		return PTR_ERR(dst_rsgt);
  
- 	if (!obj->ttm.cache_level_override) {
- 		cache_level = i915_ttm_cache_level(to_i915(bo->base.dev),
+ 	clear = !i915_ttm_cpu_maps_iomem(bo->resource) && (!ttm || !ttm_tt_is_populated(ttm));
+-	if (!(clear && ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC))) {
++	if (!clear || allow_clear(obj, ttm, dst_mem)) {
+ 		struct i915_deps deps;
+ 
+ 		i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_NOWARN);
 -- 
 2.25.1
 
