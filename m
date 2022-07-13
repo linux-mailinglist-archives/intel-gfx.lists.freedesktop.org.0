@@ -1,34 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4675736FB
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jul 2022 15:13:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 848D857378F
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jul 2022 15:38:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6FDB12AC50;
-	Wed, 13 Jul 2022 13:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9833410E9EE;
+	Wed, 13 Jul 2022 13:38:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CEEE912AF2E;
- Wed, 13 Jul 2022 13:13:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B5A9FA0169;
- Wed, 13 Jul 2022 13:13:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAD2B10E39F;
+ Wed, 13 Jul 2022 13:38:39 +0000 (UTC)
+Received: from hermes-devbox.fritz.box (82-71-8-225.dsl.in-addr.zen.co.uk
+ [82.71.8.225])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbeckett)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 576D666019B6;
+ Wed, 13 Jul 2022 14:38:38 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1657719518;
+ bh=s+i54G2qFMY7k4hZiW6XrnLWSTCsbPrc1QYLZP1Vpqk=;
+ h=From:To:Cc:Subject:Date:From;
+ b=VhnZQq1tK/0oM/jV0oh3yvhbcDKYFbLCkh1hbuh1GxunyjZ1NKwkIVpMBDeqfrD3c
+ ZkhAn8Q7nGgZbVaAKcXjzsfumXQfZRcj6QJ9LHcJ6ft5SMxQ2PFS5ioFy+FxKu6GPU
+ cNBfTs+er73jsOkx3TtY1gy5+hoiQ235jMa8kkfQjU87ISXCT+ZqsvDTBvfcYB7quw
+ 9LS6WccB3TzZ8RXvU5gUjTPoXtQ7HEu/iKVQeSUhFLTy4AEqP7jVOhjJMT7iv9JFcI
+ /M42clRdfDQqTQB+r3VWe1rzrC6TQpSLwvar4GyfiAz+ZOayV9sYnA8IHzacyPLQkC
+ L2bf1jRp4tBDw==
+From: Robert Beckett <bob.beckett@collabora.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Wed, 13 Jul 2022 14:38:10 +0100
+Message-Id: <20220713133818.3699604-1-bob.beckett@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mauro Carvalho Chehab" <mchehab@kernel.org>
-Date: Wed, 13 Jul 2022 13:13:07 -0000
-Message-ID: <165771798769.739.1808396546922793507@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1657703926.git.mchehab@kernel.org>
-In-Reply-To: <cover.1657703926.git.mchehab@kernel.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBG?=
- =?utf-8?q?ix_performance_regressions_with_TLB_and_add_GuC_support_=28rev2?=
- =?utf-8?q?=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/8] drm/i915: ttm for internal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,31 +52,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ kernel@collabora.com, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This series refactors i915's internal buffer backend to use ttm.
+It uses ttm's pool allocator to allocate volatile pages in place of the
+old code which rolled its own via alloc_pages.
+This is continuing progress to align all backends on using ttm.
 
-Series: Fix performance regressions with TLB and add GuC support (rev2)
-URL   : https://patchwork.freedesktop.org/series/106293/
-State : failure
+v2:	- commit message improvements to add detail
+	- fix i915_ttm_shrink to purge !is_shmem volatile buffers
+	- limit ttm pool allocator to using dma32 on i965G[M]
+	- fix mman selftest to always use smem buffers
+	- create new internal memory region
+	- make internal backend allocate from internal region
+	- Fixed various issues with tests and i915 ttm usage as a result
+	  of supporting regions other than lmem via ttm.
 
-== Summary ==
+v3:	- limit i915 ttm default cache_level selection to only trust
+	  HAS_SNOOP on DGFX.
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/106293/revisions/2/mbox/ not applied
-Applying: drm/i915/gt: Ignore TLB invalidations on idle engines
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gt/intel_gt.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/gt/intel_gt.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gt/intel_gt.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/gt: Ignore TLB invalidations on idle engines
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+v4:	- rebase to drm-tip and handle conflicts
 
+Robert Beckett (8):
+  drm/i915/ttm: dont trample cache_level overrides during ttm move
+  drm/i915: limit ttm to dma32 for i965G[M]
+  drm/i915/ttm: only trust snooping for dgfx when deciding default
+    cache_level
+  drm/i915: add gen6 ppgtt dummy creation function
+  drm/i915: setup ggtt scratch page after memory regions
+  drm/i915: allow volatile buffers to use ttm pool allocator
+  drm/i915/gem: further fix mman selftest
+  drm/i915: internal buffers use ttm backend
+
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  | 187 +-----------------
+ drivers/gpu/drm/i915/gem/i915_gem_internal.h  |   5 -
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   1 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |   8 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  13 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |  17 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  43 +++-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  20 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   1 +
+ drivers/gpu/drm/i915/i915_driver.c            |  16 +-
+ drivers/gpu/drm/i915/i915_pci.c               |   4 +-
+ drivers/gpu/drm/i915/intel_memory_region.c    |   8 +-
+ drivers/gpu/drm/i915/intel_memory_region.h    |   2 +
+ drivers/gpu/drm/i915/intel_region_ttm.c       |   7 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |   2 +-
+ 16 files changed, 114 insertions(+), 221 deletions(-)
+
+-- 
+2.25.1
 
