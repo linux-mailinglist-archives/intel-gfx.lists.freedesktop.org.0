@@ -1,49 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6C41573290
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jul 2022 11:31:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65EDD57328D
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jul 2022 11:31:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEEB198A82;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4769D98A70;
 	Wed, 13 Jul 2022 09:30:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 581C498A72;
- Wed, 13 Jul 2022 09:30:26 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB69898A7B;
+ Wed, 13 Jul 2022 09:30:24 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 97258B81D74;
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 2060B61CCD;
  Wed, 13 Jul 2022 09:30:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57759C385A9;
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74B90C341E6;
  Wed, 13 Jul 2022 09:30:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=k20201202; t=1657704622;
- bh=YZ+rekclkz0PmGszpxR0kr32E1UilqxXVk+khwXJKBk=;
+ bh=CCKKzwB0qHXF+WGVUFGTqABjxYBM8eht5j02XIx4jVY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=D8IOZ3Ei1SBs13Sjy4Qij9irRpN3hW3b5vUuhYpTdLu9YQnrMZ+KvNs9AvdvMe6UI
- NHuwsSDqWB7ri0Bx0sQy1ijNvoPVuEpGfcZ5r6byyZFgRjrEP3yLbfmWG5e9GcgHqw
- 7ZvxwqkQ8W1a0Ad4N0MD+8Jkv+Ult97rVKirgOazolj+OCq67AiBex+zn1KiqYiByF
- Q0Ka+07d8H8G70Mh19WMggzLLZ5Varl8kkO3Q+O0Vcdx5lC0b5nQMrTGCNmQVvcU2P
- mKtdOGXdcUuyAeKlnp4T1QwuF+zAiHcmpLM2E8mynyFRN6v1K74ToaWjd/0oLykTUV
- ji0jhwbdFgdrg==
+ b=uTJLFfDrWmXusPvlk/y7wR2q/VA5ySyre0cG0m02FfgFLLaJ5BrBmOK7FqmakpLJS
+ xYVl9PR4l2pc/7fAeiOqKtV17Jx6+jBmlvDzKuRGhYHZyfZ1yaONRl9GyhIJv+USmx
+ nOub+MnFujdOK7+c1oh21empX7bgoMedy0TclG2SLbMpSZGbu6P57Oaz6saHaYp8QW
+ ZOMi1JMwjeYCR55Z9VEGP+aeUYlnozoMRLjNUjIa9pxNcQCrp3JeZf5bgSTeCpA2Fa
+ 8UDVuTgFBEOfJXuxw7gg9JfHzm8HER+L562SdDQl8O4iLnZwg5+1vEyB8ybY9c8gnL
+ YYenUXTz8VkUg==
 Received: from mchehab by mail.kernel.org with local (Exim 4.95)
- (envelope-from <mchehab@kernel.org>) id 1oBYhH-0050MB-Vc;
- Wed, 13 Jul 2022 10:30:19 +0100
+ (envelope-from <mchehab@kernel.org>) id 1oBYhI-0050MF-04;
+ Wed, 13 Jul 2022 10:30:20 +0100
 From: Mauro Carvalho Chehab <mchehab@kernel.org>
 To: 
-Date: Wed, 13 Jul 2022 10:30:16 +0100
-Message-Id: <de44277b998031453b7d69d73dbbd07b52a138b9.1657703926.git.mchehab@kernel.org>
+Date: Wed, 13 Jul 2022 10:30:17 +0100
+Message-Id: <73d51e0580ba98a466f951473902eda3cfa97053.1657703926.git.mchehab@kernel.org>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <cover.1657703926.git.mchehab@kernel.org>
 References: <cover.1657703926.git.mchehab@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 19/21] drm/i915/gt: document TLB cache
- invalidation functions
+Subject: [Intel-gfx] [PATCH 20/21] drm/i915/guc: describe enum
+ intel_guc_tlb_invalidation_type
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,90 +56,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Chris Wilson <chris.p.wilson@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+Cc: Borislav Petkov <bp@suse.de>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a description for the kAPI functions inside intel_tlb.c.
+Add a description for intel_guc_tlb_invalidation_type enum.
 
 Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 ---
 
 See [PATCH 00/21] at: https://lore.kernel.org/all/cover.1657703926.git.mchehab@kernel.org/
 
- drivers/gpu/drm/i915/gt/intel_tlb.c | 36 +++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.c b/drivers/gpu/drm/i915/gt/intel_tlb.c
-index 15ed83226676..aa2e0086ae88 100644
---- a/drivers/gpu/drm/i915/gt/intel_tlb.c
-+++ b/drivers/gpu/drm/i915/gt/intel_tlb.c
-@@ -146,6 +146,18 @@ static void mmio_invalidate_full(struct intel_gt *gt)
- 	intel_uncore_forcewake_put_delayed(uncore, FORCEWAKE_ALL);
- }
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+index 5c019856a269..e97065c62d28 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+@@ -187,6 +187,18 @@ enum intel_guc_state_capture_event_status {
+ /* Flush PPC or SMRO caches along with TLB invalidation request */
+ #define INTEL_GUC_TLB_INVAL_FLUSH_CACHE (1 << 31)
  
 +/**
-+ * intel_gt_invalidate_tlb_full - do full TLB cache invalidation
-+ * @gt: GT structure
-+ * @seqno: sequence number
++ * enum intel_guc_tlb_invalidation_type - type of TLB cache invalidation
 + *
-+ * Do a full TLB cache invalidation if the @seqno is bigger than the last
-+ * full TLB cache invalidation.
-+ *
-+ * Note:
-+ * The TLB cache invalidation logic depends on GEN-specific registers.
-+ * It currently supports GEN8 to GEN12 and GuC-based TLB cache invalidation.
++ * @INTEL_GUC_TLB_INVAL_FULL:
++ *	Global TLB invalidation
++ * @INTEL_GUC_TLB_INVAL_PAGE_SELECTIVE:
++ *	Page-selective TLB cache invalidation
++ * @INTEL_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX:
++ *	Context-selective TLB cache invalidation
++ * @INTEL_GUC_TLB_INVAL_GUC:
++ *	Invalidate TLB on GuC itself
 + */
- void intel_gt_invalidate_tlb_full(struct intel_gt *gt, u32 seqno)
- {
- 	intel_wakeref_t wakeref;
-@@ -220,6 +232,17 @@ static bool mmio_invalidate_range(struct intel_gt *gt, u64 start, u64 length)
- 	return err == 0;
- }
- 
-+/**
-+ * intel_gt_invalidate_tlb_range - do full TLB cache invalidation
-+ * @gt: GT structure
-+ * @start: range start
-+ * @length: range length
-+ *
-+ * Do a selected TLB cache invalidation on a range pointed by @start
-+ * with @length size.
-+ *
-+ * Only some GuC-based GPUs can do a selective cache invalidation.
-+ */
- bool intel_gt_invalidate_tlb_range(struct intel_gt *gt,
- 				   u64 start, u64 length)
- {
-@@ -247,12 +270,25 @@ bool intel_gt_invalidate_tlb_range(struct intel_gt *gt,
- 	return true;
- }
- 
-+/**
-+ * intel_gt_init_tlb - initialize TLB-specific vars
-+ * @gt: GT structure
-+ *
-+ * TLB cache invalidation logic internally uses some resources that require
-+ * initialization. Should be called before doing any TLB cache invalidation.
-+ */
- void intel_gt_init_tlb(struct intel_gt *gt)
- {
- 	mutex_init(&gt->tlb.invalidate_lock);
- 	seqcount_mutex_init(&gt->tlb.seqno, &gt->tlb.invalidate_lock);
- }
- 
-+/**
-+ * intel_gt_fini_tlb - initialize TLB-specific vars
-+ * @gt: GT structure
-+ *
-+ * Frees any resources needed by TLB cache invalidation logic.
-+ */
- void intel_gt_fini_tlb(struct intel_gt *gt)
- {
- 	mutex_destroy(&gt->tlb.invalidate_lock);
+ enum intel_guc_tlb_invalidation_type {
+ 	INTEL_GUC_TLB_INVAL_FULL = 0x0,
+ 	INTEL_GUC_TLB_INVAL_PAGE_SELECTIVE = 0x1,
 -- 
 2.36.1
 
