@@ -2,34 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C370C574C65
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jul 2022 13:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97487574D04
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jul 2022 14:07:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2565510E2D6;
-	Thu, 14 Jul 2022 11:44:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 150421129C9;
+	Thu, 14 Jul 2022 12:06:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1BA9010E2D6;
- Thu, 14 Jul 2022 11:44:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 12BE8A9932;
- Thu, 14 Jul 2022 11:44:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 785171128FC;
+ Thu, 14 Jul 2022 12:06:33 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id DBABAB824D6;
+ Thu, 14 Jul 2022 12:06:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC46C3411C;
+ Thu, 14 Jul 2022 12:06:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1657800390;
+ bh=ioPt7kFKeifnjLXg/GVO5rsw0/XP4QklnHiUNXNykLo=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Z7ro75iW1UoM7wHwaMx+qUHZI6vArOYbghmPbHedqR5hF+6JUW3pQMHJzbKJIjfeN
+ rDZ8bY/IlvHm53HAUe67A8TPgkjjMFbp+d8q00Wxd4hV+FZRuiKwbhGDZCJY4EsT5j
+ hsxaEQvBoeRs5G+JTdVUFRrRYRQFGTI4abDDjb6yUKdGQ4VMkW+IX4a1Y10yNtFj0D
+ nsI88zyDDDGmEMEAI2dzJe+hmO724/ZjwBdKnutsxKwLSPCF7kL5X6E/nBfBTq+ukc
+ BKaZC+FZP5Jk/riC30i7E6Qb1DvX8/AKB8HlO8luQXnvkFlY5WP6MIQ5Kh3fdU7kTA
+ Z4iCW7eROb5JQ==
+Received: from mchehab by mail.kernel.org with local (Exim 4.95)
+ (envelope-from <mchehab@kernel.org>) id 1oBxbv-0059sS-OX;
+ Thu, 14 Jul 2022 13:06:27 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: 
+Date: Thu, 14 Jul 2022 13:06:05 +0100
+Message-Id: <cover.1657800199.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Thu, 14 Jul 2022 11:44:35 -0000
-Message-ID: <165779907507.7511.14730998621265681512@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220714090807.2340818-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20220714090807.2340818-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBG?=
- =?utf-8?q?ixes_integer_overflow_or_integer_truncation_issues_in_page_look?=
- =?utf-8?q?ups=2C_ttm_place_configuration_and_scatterlist_creation_=28rev4?=
- =?utf-8?q?=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 00/21] Fix performance regressions with TLB
+ and add GuC support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,29 +55,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+TLB invalidation is a slow operation. It should not be doing lightly, as it
+causes performance regressions, like this:
 
-Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation (rev4)
-URL   : https://patchwork.freedesktop.org/series/104704/
-State : failure
+[178.821002] i915 0000:00:02.0: [drm] *ERROR* rcs0 TLB invalidation did not complete in 4ms!
 
-== Summary ==
+This series contain 
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/104704/revisions/4/mbox/ not applied
-Applying: drm: Move and add a few utility macros into drm util header
-Applying: drm/i915/gem: Typecheck page lookups
-Applying: drm/i915: Check for integer truncation on scatterlist creation
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/gem/i915_gem_ttm.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0003 drm/i915: Check for integer truncation on scatterlist creation
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+1) some patches that makes TLB invalidation to happen only on
+active, non-wedged engines, doing cache invalidation in batch 
+and only when GT objects are exposed to userspace:
+
+  drm/i915/gt: Ignore TLB invalidations on idle engines
+  drm/i915/gt: Only invalidate TLBs exposed to user manipulation
+  drm/i915/gt: Skip TLB invalidations once wedged
+  drm/i915/gt: Batch TLB invalidations
+  drm/i915/gt: Move TLB invalidation to its own file
+
+2) It fixes two bugs, being the first a workaround:
+
+  drm/i915/gt: Invalidate TLB of the OA unit at TLB invalidations
+  drm/i915: Invalidate the TLBs on each GT
+
+  drm/i915/guc: Introduce TLB_INVALIDATION_ALL action
+
+3) It adds GuC support. Besides providing TLB invalidation on some
+additional hardware, this should also help serializing GuC operations
+with TLB invalidation:
+
+  drm/i915/guc: Introduce TLB_INVALIDATION_ALL action
+  drm/i915/guc: Define CTB based TLB invalidation routines
+  drm/i915: Add platform macro for selective tlb flush
+  drm/i915: Define GuC Based TLB invalidation routines
+  drm/i915: Add generic interface for tlb invalidation for XeHP
+  drm/i915: Use selective tlb invalidations where supported
+
+4) It adds the corresponding kernel-doc markups for the kAPI
+used for TLB invalidation.
+
+While I could have split this into smaller pieces, I'm opting to send
+them altogether, in order for CI trybot to better verify what issues
+will be closed with this series.
+
+---
+
+v2:
+  - no changes. Just rebased on the top of drm-tip: 2022y-07m-14d-08h-35m-36s,
+   as CI trybot was having troubles applying it. Hopefully, it will now work.
+
+Chris Wilson (7):
+  drm/i915/gt: Ignore TLB invalidations on idle engines
+  drm/i915/gt: Invalidate TLB of the OA unit at TLB invalidations
+  drm/i915/gt: Only invalidate TLBs exposed to user manipulation
+  drm/i915/gt: Skip TLB invalidations once wedged
+  drm/i915/gt: Batch TLB invalidations
+  drm/i915/gt: Move TLB invalidation to its own file
+  drm/i915: Invalidate the TLBs on each GT
+
+Mauro Carvalho Chehab (8):
+  drm/i915/gt: document with_intel_gt_pm_if_awake()
+  drm/i915/gt: describe the new tlb parameter at i915_vma_resource
+  drm/i915/guc: use kernel-doc for enum intel_guc_tlb_inval_mode
+  drm/i915/guc: document the TLB invalidation struct members
+  drm/i915: document tlb field at struct drm_i915_gem_object
+  drm/i915/gt: document TLB cache invalidation functions
+  drm/i915/guc: describe enum intel_guc_tlb_invalidation_type
+  drm/i915/guc: document TLB cache invalidation functions
+
+Piotr Piórkowski (1):
+  drm/i915/guc: Introduce TLB_INVALIDATION_ALL action
+
+Prathap Kumar Valsan (5):
+  drm/i915/guc: Define CTB based TLB invalidation routines
+  drm/i915: Add platform macro for selective tlb flush
+  drm/i915: Define GuC Based TLB invalidation routines
+  drm/i915: Add generic interface for tlb invalidation for XeHP
+  drm/i915: Use selective tlb invalidations where supported
+
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  28 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h        |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            | 125 +-------
+ drivers/gpu/drm/i915/gt/intel_gt.h            |   2 -
+ .../gpu/drm/i915/gt/intel_gt_buffer_pool.h    |   3 +-
+ drivers/gpu/drm/i915/gt/intel_gt_defines.h    |  11 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm.h         |  10 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   8 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |  22 +-
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |   8 +-
+ drivers/gpu/drm/i915/gt/intel_tlb.c           | 295 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_tlb.h           |  30 ++
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  54 ++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        | 232 ++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  36 +++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  24 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   9 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  91 +++++-
+ drivers/gpu/drm/i915/i915_drv.h               |   4 +-
+ drivers/gpu/drm/i915/i915_pci.c               |   1 +
+ drivers/gpu/drm/i915/i915_vma.c               |  46 ++-
+ drivers/gpu/drm/i915/i915_vma.h               |   2 +
+ drivers/gpu/drm/i915/i915_vma_resource.c      |   9 +-
+ drivers/gpu/drm/i915/i915_vma_resource.h      |   6 +-
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ 27 files changed, 910 insertions(+), 155 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_defines.h
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_tlb.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_tlb.h
+
+-- 
+2.36.1
 
 
