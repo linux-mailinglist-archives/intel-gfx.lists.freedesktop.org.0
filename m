@@ -2,52 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1BD574790
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jul 2022 10:50:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BEFD5747B1
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jul 2022 11:06:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4C2EA38C4;
-	Thu, 14 Jul 2022 08:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1517A3A4E;
+	Thu, 14 Jul 2022 09:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFFA3A38C4;
- Thu, 14 Jul 2022 08:50:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657788640; x=1689324640;
- h=date:from:to:cc:subject:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+nkwAyhBBbTdcIq1r+Hu2NumNZeEfZRU9U/lzgfMfTI=;
- b=XovSQXpOZcj7uwp0B48ic02wrAcmoV7KTZIOdiw7ZDkok/Gzt4tvdo4n
- e+4BtzD3V9oqFJ/Ak76Gn4fUWXJT+Z5y2wGtlO/wKElr6PJlAH07HSj1J
- hlRsgm+7ghtUvigO+ByLOyuEfTqf3Z0YmeqJKZjaazVMR2WrnmNeq2s3+
- KKu6Rp8xayHaB5Ly8kyiRPOhqMRD6fGtQ7jvOx2qa77AwPZzyN29FVr2Q
- iaVpVoRCTeQbt1BDR+CvQbCmPZ8sZsE91GqK8ql6gqDC4WO2j8k557kbF
- jmB4IASaXlRefKPVgPRFK6Fhb1LcWE/5VmhILzMdxsdvbZNkPe+H6O8c/ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10407"; a="371768512"
-X-IronPort-AV: E=Sophos;i="5.92,269,1650956400"; d="scan'208";a="371768512"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2022 01:50:40 -0700
-X-IronPort-AV: E=Sophos;i="5.92,269,1650956400"; d="scan'208";a="653784267"
-Received: from maurocar-mobl2.ger.corp.intel.com (HELO maurocar-mobl2)
- ([10.252.36.101])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2022 01:50:37 -0700
-Date: Thu, 14 Jul 2022 10:50:34 +0200
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <20220714105034.0b370a6a@maurocar-mobl2>
-In-Reply-To: <Ys9Am6jkPiVnA+uW@intel.com>
-References: <cover.1657699522.git.mchehab@kernel.org>
- <72db6b58c1f223e326f84978267ba064eaf67ff0.1657699522.git.mchehab@kernel.org>
- <Ys8/JP3ITMKF1aHp@intel.com> <Ys9Am6jkPiVnA+uW@intel.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADD4FA3A4B;
+ Thu, 14 Jul 2022 09:06:02 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 5D11F34B34;
+ Thu, 14 Jul 2022 09:06:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1657789561; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=rneVqqvNkU1lCsrVXJD1UQj3t+VTBR1nfRYfa7CJYkc=;
+ b=XAXw75Kpvt6MYf8zjtDns5sH8nc1XRjWnZgYouFAIv6UdyVllA/XP0u6JkPd3LM/O6onlu
+ VHaCM2KR3AFSfFU3PLDkpP0TJpMrnKJXi5XHQ3rpQ27/BlQSaokQyeHezwDED63eAvbO6d
+ CxZxNAFKf04DvM2n/uvxuNO0Ds2fA74=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1657789561;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=rneVqqvNkU1lCsrVXJD1UQj3t+VTBR1nfRYfa7CJYkc=;
+ b=Sgv+AWlNIFtInavpZbj4fthznhh7tsGClBQDLdjxlIGMxXw9YI44nzukq5230fAfXh6ons
+ WTQTmyrrrrDw7oCg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 349D213A61;
+ Thu, 14 Jul 2022 09:06:01 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id LsD3C3ncz2KqIAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 14 Jul 2022 09:06:01 +0000
+Message-ID: <b16e783a-e7a2-09d5-a8c0-b3b8d18a3e1f@suse.de>
+Date: Thu, 14 Jul 2022 11:06:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 01/39] drm/i915/gvt: Fix kernel-doc for
- intel_gvt_switch_mmio()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ karolina.drobnik@intel.com, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+References: <20220712102849.1562-1-christian.koenig@amd.com>
+ <5b8aa549-c2f1-19b2-d0f4-26d4ea1a7ade@suse.de>
+ <e3accc2e-75e5-459a-ea72-116e44f73238@amd.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <e3accc2e-75e5-459a-ea72-116e44f73238@amd.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------XPkFX4C3NVZnEzUkxuc2ZhXD"
+Subject: Re: [Intel-gfx] [PATCH] dma-buf: revert "return only unsignaled
+ fences in dma_fence_unwrap_for_each v3"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,82 +76,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 13 Jul 2022 18:00:59 -0400
-Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------XPkFX4C3NVZnEzUkxuc2ZhXD
+Content-Type: multipart/mixed; boundary="------------SsqBmTukjqEeBF0GrExtPvTL";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ karolina.drobnik@intel.com, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <b16e783a-e7a2-09d5-a8c0-b3b8d18a3e1f@suse.de>
+Subject: Re: [PATCH] dma-buf: revert "return only unsignaled fences in
+ dma_fence_unwrap_for_each v3"
+References: <20220712102849.1562-1-christian.koenig@amd.com>
+ <5b8aa549-c2f1-19b2-d0f4-26d4ea1a7ade@suse.de>
+ <e3accc2e-75e5-459a-ea72-116e44f73238@amd.com>
+In-Reply-To: <e3accc2e-75e5-459a-ea72-116e44f73238@amd.com>
 
-> On Wed, Jul 13, 2022 at 05:54:44PM -0400, Rodrigo Vivi wrote:
-> > On Wed, Jul 13, 2022 at 09:11:49AM +0100, Mauro Carvalho Chehab wrote:  
-> > > From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-> > > 
-> > > Fix the following W=1 kernel warnings:
-> > > 
-> > > drivers/gpu/drm/i915/gvt/mmio_context.c:560: warning: expecting
-> > > prototype for intel_gvt_switch_render_mmio(). Prototype was for
-> > > intel_gvt_switch_mmio() instead.
-> > > 
-> > > Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> > > Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-> > > Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-> > > Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>  
-> > 
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>  
-> 
-> I actually changed my mind after seeing that in most cases you use "()"
-> for the functions and you didn't use for this case...
+--------------SsqBmTukjqEeBF0GrExtPvTL
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-The documentation build system handles both ways equally, and there's
-no consensus kernel-wide about what would be the preferred way[1].
+SGkNCg0KQW0gMTQuMDcuMjIgdW0gMTA6NDkgc2NocmllYiBDaHJpc3RpYW4gS8O2bmlnOg0K
+PiBIaSBUaG9tYXMsDQo+IA0KPiBBbSAxNC4wNy4yMiB1bSAxMDo0MCBzY2hyaWViIFRob21h
+cyBaaW1tZXJtYW5uOg0KPj4gSGkgQ2hyaXN0aWFuDQo+Pg0KPj4gQW0gMTIuMDcuMjIgdW0g
+MTI6Mjggc2NocmllYiBDaHJpc3RpYW4gS8O2bmlnOg0KPj4+IFRoaXMgcmV2ZXJ0cyBjb21t
+aXQgOGY2MTk3MzcxODQ4NWYzZTg5YmM0ZjQwOGY5MjkwNDhiN2I0N2M4My4NCj4+DQo+PiBJ
+IG9ubHkgZm91bmQgdGhpcyBjb21taXQgaW4gZHJtLW1pc2MtbmV4dC4gU2hvdWxkIHRoZSBy
+ZXZlcnQgYmUgDQo+PiBjaGVycnktcGlja2VkIGludG8gZHJtLW1pc2MtbmV4dC1maXhlcz8N
+Cj4gDQo+IHllcyBmb3IgYWxsIHRocmVlIHBhdGNoZXMgeW91IGp1c3QgcGluZ2VkIG1lLg0K
+PiANCj4gSSd2ZSBhbHJlYWR5IHRyaWVkIHRvIHB1c2ggdGhlbSB0byBkcm0tbWlzYy1uZXh0
+LWZpeGVzLCBidXQgdGhlIHBhdGNoZXMgDQo+IHNvbWVob3cgd291bGRuJ3QgYXBwbHkuIEkg
+dGhpbmsgdGhlIC1uZXh0LWZpeGVzIGJyYW5jaCB3YXMgc29tZWhvdyANCj4gbGFnZ2luZyBi
+ZWhpbmQuDQoNCkkganVzdCBmb3J3YXJkZWQgZHJtLW1pc2MtbmV4dC1maXhlcyB0byB0aGUg
+bGF0ZXN0IHN0YXRlIG9mIGRybS1uZXh0LiANCkNoYW5jZXMgYXJlLCB0aGVzZSBwYXRjaGVz
+IHdpbGwgYXBwbHkgbm93Lg0KDQpCZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+IA0KPiBUaGFu
+a3MsDQo+IENocmlzdGlhbi4NCj4gDQo+Pg0KPj4gQmVzdCByZWdhcmRzDQo+PiBUaG9tYXMN
+Cj4+DQo+Pj4NCj4+PiBJdCB0dXJuZWQgb3V0IHRoYXQgdGhpcyBpcyBub3QgY29ycmVjdC4g
+RXNwZWNpYWxseSB0aGUgc3luY19maWxlIGluZm8NCj4+PiBJT0NUTCBuZWVkcyB0byBzZWUg
+ZXZlbiBzaWduYWxlZCBmZW5jZXMgdG8gY29ycmVjdGx5IHJlcG9ydCBiYWNrIHRoZWlyDQo+
+Pj4gc3RhdHVzIHRvIHVzZXJzcGFjZS4NCj4+Pg0KPj4+IEluc3RlYWQgYWRkIHRoZSBmaWx0
+ZXIgaW4gdGhlIG1lcmdlIGZ1bmN0aW9uIGFnYWluIHdoZXJlIGl0IG1ha2VzIHNlbnNlLg0K
+Pj4+DQo+Pj4gU2lnbmVkLW9mZi1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtv
+ZW5pZ0BhbWQuY29tPg0KPj4+IC0tLQ0KPj4+IMKgIGRyaXZlcnMvZG1hLWJ1Zi9kbWEtZmVu
+Y2UtdW53cmFwLmMgfCAzICsrLQ0KPj4+IMKgIGluY2x1ZGUvbGludXgvZG1hLWZlbmNlLXVu
+d3JhcC5owqDCoCB8IDYgKy0tLS0tDQo+Pj4gwqAgMiBmaWxlcyBjaGFuZ2VkLCAzIGluc2Vy
+dGlvbnMoKyksIDYgZGVsZXRpb25zKC0pDQo+Pj4NCj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9kbWEtYnVmL2RtYS1mZW5jZS11bndyYXAuYyANCj4+PiBiL2RyaXZlcnMvZG1hLWJ1Zi9k
+bWEtZmVuY2UtdW53cmFwLmMNCj4+PiBpbmRleCA1MDJhNjVlYTZkNDQuLjcwMDJiY2E3OTJm
+ZiAxMDA2NDQNCj4+PiAtLS0gYS9kcml2ZXJzL2RtYS1idWYvZG1hLWZlbmNlLXVud3JhcC5j
+DQo+Pj4gKysrIGIvZHJpdmVycy9kbWEtYnVmL2RtYS1mZW5jZS11bndyYXAuYw0KPj4+IEBA
+IC03Miw3ICs3Miw4IEBAIHN0cnVjdCBkbWFfZmVuY2UgKl9fZG1hX2ZlbmNlX3Vud3JhcF9t
+ZXJnZSh1bnNpZ25lZCANCj4+PiBpbnQgbnVtX2ZlbmNlcywNCj4+PiDCoMKgwqDCoMKgIGNv
+dW50ID0gMDsNCj4+PiDCoMKgwqDCoMKgIGZvciAoaSA9IDA7IGkgPCBudW1fZmVuY2VzOyAr
+K2kpIHsNCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqAgZG1hX2ZlbmNlX3Vud3JhcF9mb3JfZWFj
+aCh0bXAsICZpdGVyW2ldLCBmZW5jZXNbaV0pDQo+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgKytjb3VudDsNCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoIWRtYV9mZW5j
+ZV9pc19zaWduYWxlZCh0bXApKQ0KPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgKytjb3VudDsNCj4+PiDCoMKgwqDCoMKgIH0NCj4+PiDCoCDCoMKgwqDCoMKgIGlmIChj
+b3VudCA9PSAwKQ0KPj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L2RtYS1mZW5jZS11
+bndyYXAuaCANCj4+PiBiL2luY2x1ZGUvbGludXgvZG1hLWZlbmNlLXVud3JhcC5oDQo+Pj4g
+aW5kZXggMzkwZGUxZWU5ZDM1Li42NmIxZTU2ZmJiODEgMTAwNjQ0DQo+Pj4gLS0tIGEvaW5j
+bHVkZS9saW51eC9kbWEtZmVuY2UtdW53cmFwLmgNCj4+PiArKysgYi9pbmNsdWRlL2xpbnV4
+L2RtYS1mZW5jZS11bndyYXAuaA0KPj4+IEBAIC00MywxNCArNDMsMTAgQEAgc3RydWN0IGRt
+YV9mZW5jZSAqZG1hX2ZlbmNlX3Vud3JhcF9uZXh0KHN0cnVjdCANCj4+PiBkbWFfZmVuY2Vf
+dW53cmFwICpjdXJzb3IpOw0KPj4+IMKgwqAgKiBVbndyYXAgZG1hX2ZlbmNlX2NoYWluIGFu
+ZCBkbWFfZmVuY2VfYXJyYXkgY29udGFpbmVycyBhbmQgZGVlcCANCj4+PiBkaXZlIGludG8g
+YWxsDQo+Pj4gwqDCoCAqIHBvdGVudGlhbCBmZW5jZXMgaW4gdGhlbS4gSWYgQGhlYWQgaXMg
+anVzdCBhIG5vcm1hbCBmZW5jZSBvbmx5IA0KPj4+IHRoYXQgb25lIGlzDQo+Pj4gwqDCoCAq
+IHJldHVybmVkLg0KPj4+IC0gKg0KPj4+IC0gKiBOb3RlIHRoYXQgc2lnbmFsbGVkIGZlbmNl
+cyBhcmUgb3Bwb3J0dW5pc3RpY2FsbHkgZmlsdGVyZWQgb3V0LCB3aGljaA0KPj4+IC0gKiBt
+ZWFucyB0aGUgaXRlcmF0aW9uIGlzIHBvdGVudGlhbGx5IG92ZXIgbm8gZmVuY2UgYXQgYWxs
+Lg0KPj4+IMKgwqAgKi8NCj4+PiDCoCAjZGVmaW5lIGRtYV9mZW5jZV91bndyYXBfZm9yX2Vh
+Y2goZmVuY2UsIGN1cnNvciwgaGVhZCnCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFwNCj4+PiDC
+oMKgwqDCoMKgIGZvciAoZmVuY2UgPSBkbWFfZmVuY2VfdW53cmFwX2ZpcnN0KGhlYWQsIGN1
+cnNvcik7IGZlbmNlO8KgwqDCoCBcDQo+Pj4gLcKgwqDCoMKgwqDCoMKgwqAgZmVuY2UgPSBk
+bWFfZmVuY2VfdW53cmFwX25leHQoY3Vyc29yKSnCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFwN
+Cj4+PiAtwqDCoMKgwqDCoMKgwqAgaWYgKCFkbWFfZmVuY2VfaXNfc2lnbmFsZWQoZmVuY2Up
+KQ0KPj4+ICvCoMKgwqDCoMKgwqDCoMKgIGZlbmNlID0gZG1hX2ZlbmNlX3Vud3JhcF9uZXh0
+KGN1cnNvcikpDQo+Pj4gwqAgwqAgc3RydWN0IGRtYV9mZW5jZSAqX19kbWFfZmVuY2VfdW53
+cmFwX21lcmdlKHVuc2lnbmVkIGludCBudW1fZmVuY2VzLA0KPj4+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZG1hX2ZlbmNlICoq
+ZmVuY2VzLA0KPj4NCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERy
+aXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0K
+TWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBB
+RyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
 
-Also, at the html (or pdf) output, they'll all look the same. So, no
-difference in practice at the produced documentation.
+--------------SsqBmTukjqEeBF0GrExtPvTL--
 
-[1] The current count (using drm-tip 2022y-07m-12d-21h-47m-27s) as basis,
-    is:
+--------------XPkFX4C3NVZnEzUkxuc2ZhXD
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-	$ git ls-files|xargs grep -Pzo "\/\*\*\n \* [_a-zA-Z0-9]+ -" |wc -l
-	36680
-	$ git ls-files|xargs grep -Pzo "\/\*\*\n \* [_a-zA-Z0-9]+\s*\(\) -" |wc -l
-	12068
+-----BEGIN PGP SIGNATURE-----
 
-    So, 48748 documented functions, being ~25% with parenthesis, 
-    and ~75% without it.
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmLP3HgFAwAAAAAACgkQlh/E3EQov+DO
+1BAAr//wC7+MDlw1XMfSpY716SwTDnRvi+lkaDDsG6T0opDlsNxXPKg82cBh+gHtwIaHGnkRE+Kv
+ElYicLXZ5rIPwwlT+C0Sp2Co77/Hsyq0sCuzqrhG4rTRHcYvPh0yqnMcrTA5u4rWKp3u0JAdDjGV
+rWwCzjAdAeoDrakm+auvna6rO++f2sK2KVnQ4vXdSP0901Y3py7i2JIKM9oEIdB9TlCXKKUx/gzF
+UafCAnZEQUKHQLtOTWM2YLXSDyKZ94EoQmYev0SoYXBKYxBR9wBr3yzbHB6mH3f8BmsealEr8+kZ
+R5GuHK+lPLJjGo8LjAkj8F4ayr28urS/dAmX5dRPgSyGIo14qFb0WeSrHuVRISCLUZmxrjxqIMIe
+P5CcAihULw5m01kVRvBTrsuTIZG05jBlms4I4gtKcsMg0MT7EwiRre13mfpODR9/qhE9u5yjBhsd
+0uuADYtnz3kkKDKMygF0FOMjOmPNlmUKnlyXAFpTUgHpxEgm1/NfUdTXTEP140YI1vpLI/CW94+W
+1X30lYCE2YySMPQLFeNheTodA8Es3h9Kgc03FR/L7nfV7fy5/gQ8F4QqSk9v2WA4zhQynA4lwhry
+0KWYGEd2Yyec3rBSouNIS+nVh77yuJvYUtbQ88Was6xXaEHeKPiHjvB9yubz4Gh2yo4BmaLH1ds5
+v9Y=
+=croK
+-----END PGP SIGNATURE-----
 
-    Under drivers/gpu, the numbers are:
-
-	$ git ls-files|grep drivers/gpu/|xargs grep -Pzo "\/\*\*\n \* [_a-zA-Z0-9]+\s*\(\) -" |wc -l
-	480
-	mchehab@sal /new_devel/v4l/tmp $ git ls-files|grep drivers/gpu/|xargs grep -Pzo "\/\*\*\n \* [_a-zA-Z0-9]+ -" |wc -l
-	4046
-
-> which one should we pick for consistency?
-
-Yeah, it is nicer to use the same way everywhere. Btw, on media, I was
-enforcing one way at the beginning, but I ended giving up doing that
-as it was too many efforts for too little. Nowadays, half of media
-function declarations have parenthesis, half doesn't.
-
-Anyway, this is what we have at i915 driver, before this series:
-
-	$ grep -Pzo "\/\*\*\n \* [_a-zA-Z0-9]+\s*\(\) -" $(find drivers/gpu/drm/i915 -type f)|wc -l
-	53
-	$ grep -Pzo "\/\*\*\n \* [_a-zA-Z0-9]+ -" $(find drivers/gpu/drm/i915 -type f)|wc -l
-	542
-
-This series include 3 functions with "()" (on patches 1 and 3, both
-authored by Jiapeng, and 11 functions without it on my own patches.
-
-I'll change those two patches to remove the "()" for consistency.
-
-I guess I'll add a patch at the end changing the other 53 functions
-to drop "()".
-
-Regards,
-Mauro
+--------------XPkFX4C3NVZnEzUkxuc2ZhXD--
