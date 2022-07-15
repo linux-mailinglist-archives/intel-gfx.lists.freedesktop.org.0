@@ -1,47 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37CE7575D58
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jul 2022 10:26:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB935575DEB
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jul 2022 10:54:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 594ED11B9B6;
-	Fri, 15 Jul 2022 08:26:25 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6313711B9B3;
- Fri, 15 Jul 2022 08:26:24 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id B191C62054;
- Fri, 15 Jul 2022 08:26:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1574CC34115;
- Fri, 15 Jul 2022 08:26:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1657873581;
- bh=iFolp2jzrEerpXz5e6fXs3X5/rU+qvcxywsSCPc3mvM=;
- h=From:To:Cc:Subject:Date:From;
- b=Eg/kmP5xzo/enM6Exj402J70zyK1j+DLRtqwgjhGHusdYy0Mo9MVHVqpZ9P/N5ZQH
- 4nDDJaSioBjua+9INgDucPBL8E8v7Ps0ZH7dcrQJuNPM0OEJ1k12nEbX0p4UBqZ+gy
- EeNyFNBnBJf+PHI/TiLM+Wr8Gy94dJ4qg2k36ZqgX8Su8ebOzyJRRM5xHgX/btAHin
- lGzs959UIzNIW28j4D9TdvAiaeL8+FV0mpOvex/7o5aHG11jaJO0S1e1vgDZzpWwKO
- KbaLuTB5Fw/nyYnAMQePu+HL4tQ3x3KgWUF4pkiyE5z/syKxeRIsCfWoC3yLND2v6B
- AdDfxhnfYiB9g==
-Received: from mchehab by mail.kernel.org with local (Exim 4.95)
- (envelope-from <mchehab@kernel.org>) id 1oCGeP-005Phx-FY;
- Fri, 15 Jul 2022 09:26:17 +0100
-From: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: 
-Date: Fri, 15 Jul 2022 09:26:16 +0100
-Message-Id: <2378da383d043de17172d928e59da0ec423cae76.1657873550.git.mchehab@kernel.org>
-X-Mailer: git-send-email 2.36.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13C6E11AEE3;
+	Fri, 15 Jul 2022 08:54:44 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+X-Greylist: delayed 1181 seconds by postgrey-1.36 at gabe;
+ Fri, 15 Jul 2022 08:54:43 UTC
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [IPv6:2a01:488:42:1000:50ed:8234::])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E9CD1125A5;
+ Fri, 15 Jul 2022 08:54:43 +0000 (UTC)
+Received: from [2a02:8108:963f:de38:eca4:7d19:f9a2:22c5]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1oCGmq-0007yL-4o; Fri, 15 Jul 2022 10:35:00 +0200
+Message-ID: <40101a14-ea44-1fd9-36ab-2048df2cb0e6@leemhuis.info>
+Date: Fri, 15 Jul 2022 10:34:59 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH RFC] drm/i915/gt: Retry RING_HEAD reset until it
- sticks
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: "regressions@lists.linux.dev" <regressions@lists.linux.dev>
+References: <20220412225955.1802543-1-John.C.Harrison@Intel.com>
+ <20220412225955.1802543-2-John.C.Harrison@Intel.com>
+ <Yli4/8OIbjyRaQAK@mdroper-desk1.amr.corp.intel.com>
+ <CAPM=9txdca1VnRpp-oNLXpBc2UWq3=ceeim5+Gw4N9tAriRY6A@mail.gmail.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <CAPM=9txdca1VnRpp-oNLXpBc2UWq3=ceeim5+Gw4N9tAriRY6A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1657875283;
+ 6d4fc315; 
+X-HE-SMSGID: 1oCGmq-0007yL-4o
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Update to GuC version
+ 70.1.1 #forregzbot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,139 +51,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, intel-gfx@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>
+Cc: Intel Graphics Development <Intel-GFX@lists.freedesktop.org>,
+ dri-devel <DRI-Devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
+[TLDR: I'm adding this regression report to the list of tracked
+regressions; all text from me you find below is based on a few templates
+paragraphs you might have encountered already already in similar form.]
 
-On Haswell, in particular, we see an issue where resets fails because
-the engine resumes from an incorrect RING_HEAD. Since the RING_HEAD
-doesn't point to the remaining requests to re-run, but may instead point
-into the uninitialised portion of the ring, the GPU may be then fed
-invalid instructions from a privileged context, oft pushing the GPU into
-an unrecoverable hang.
+Hi, this is your Linux kernel regression tracker.
 
-If at first the write doesn't succeed, try, try again.
+On 15.07.22 01:08, Dave Airlie wrote:
+> On Fri, 15 Apr 2022 at 10:15, Matt Roper <matthew.d.roper@intel.com> wrote:
+>>
+>> On Tue, Apr 12, 2022 at 03:59:55PM -0700, John.C.Harrison@Intel.com wrote:
+>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>
+>>> The latest GuC firmware drops the context descriptor pool in favour of
+>>> passing all creation data in the create H2G. It also greatly simplifies
+>>> the work queue and removes the process descriptor used for multi-LRC
+>>> submission. So, remove all mention of LRC and process descriptors and
+>>> update the registration code accordingly.
+>>>
+>>> Unfortunately, the new API also removes the ability to set default
+>>> values for the scheduling policies at context registration time.
+>>> Instead, a follow up H2G must be sent. The individual scheduling
+>>> policy update H2G commands are also dropped in favour of a single KLV
+>>> based H2G. So, change the update wrappers accordingly and call this
+>>> during context registration..
+>>>
+>>> Of course, this second H2G per registration might fail due to being
+>>> backed up. The registration code has a complicated state machine to
+>>> cope with the actual registration call failing. However, if that works
+>>> then there is no support for unwinding if a further call should fail.
+>>> Unwinding would require sending a H2G to de-register - but that can't
+>>> be done because the CTB is already backed up.
+>>>
+>>> So instead, add a new flag to say whether the context has a pending
+>>> policy update. This is set if the policy H2G fails at registration
+>>> time. The submission code checks for this flag and retries the policy
+>>> update if set. If that call fails, the submission path early exists
+>>> with a retry error. This is something that is already supported for
+>>> other reasons.
+>>>
+>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>
+>> Applied to drm-intel-gt-next.  Thanks for the patch and review.
+>>
+> 
+> (cc'ing Linus and danvet, as a headsup, there is also a phoronix
+> article where this was discovered).
+> 
+> Okay WTF.
+> 
+> This is in no way acceptable. This needs to be fixed in 5.19-rc ASAP.
+> 
+> Once hardware is released and we remove the gate flag by default, you
+> cannot just bump firmware versions blindly.
+> 
+> The kernel needs to retain compatibility with all released firmwares
+> since a device was declared supported.
+> 
+> This needs to be reverted, and then 70 should be introduced with a
+> fallback to 69 versions.
+> 
+> Very disappointing, I expect this to get dealt with v.quickly.
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/5432
-Testcase: igt/i915_selftest/hangcheck
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
----
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 44 +++++++++++++------
- drivers/gpu/drm/i915/i915_utils.h             | 10 +++++
- 2 files changed, 40 insertions(+), 14 deletions(-)
+To be sure below issue doesn't fall through the cracks unnoticed, I'm
+adding it to regzbot, my Linux kernel regression tracking bot:
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index d5d6f1fadcae..cc53feb1f8ed 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -190,6 +190,7 @@ static bool stop_ring(struct intel_engine_cs *engine)
- static int xcs_resume(struct intel_engine_cs *engine)
- {
- 	struct intel_ring *ring = engine->legacy.ring;
-+	ktime_t kt;
- 
- 	ENGINE_TRACE(engine, "ring:{HEAD:%04x, TAIL:%04x}\n",
- 		     ring->head, ring->tail);
-@@ -228,9 +229,20 @@ static int xcs_resume(struct intel_engine_cs *engine)
- 	set_pp_dir(engine);
- 
- 	/* First wake the ring up to an empty/idle ring */
--	ENGINE_WRITE_FW(engine, RING_HEAD, ring->head);
-+	until_timeout_ns(kt, 2 * NSEC_PER_MSEC) {
-+		ENGINE_WRITE_FW(engine, RING_HEAD, ring->head);
-+		if (ENGINE_READ_FW(engine, RING_HEAD) == ring->head)
-+			break;
-+	}
-+
- 	ENGINE_WRITE_FW(engine, RING_TAIL, ring->head);
--	ENGINE_POSTING_READ(engine, RING_TAIL);
-+	if (ENGINE_READ_FW(engine, RING_HEAD) != ENGINE_READ_FW(engine, RING_TAIL)) {
-+		ENGINE_TRACE(engine, "failed to reset empty ring: [%x, %x]: %x\n",
-+			     ENGINE_READ_FW(engine, RING_HEAD),
-+			     ENGINE_READ_FW(engine, RING_TAIL),
-+			     ring->head);
-+		goto err;
-+	}
- 
- 	ENGINE_WRITE_FW(engine, RING_CTL,
- 			RING_CTL_SIZE(ring->size) | RING_VALID);
-@@ -239,12 +251,16 @@ static int xcs_resume(struct intel_engine_cs *engine)
- 	if (__intel_wait_for_register_fw(engine->uncore,
- 					 RING_CTL(engine->mmio_base),
- 					 RING_VALID, RING_VALID,
--					 5000, 0, NULL))
-+					 5000, 0, NULL)) {
-+		ENGINE_TRACE(engine, "failed to restart\n");
- 		goto err;
-+	}
- 
--	if (GRAPHICS_VER(engine->i915) > 2)
-+	if (GRAPHICS_VER(engine->i915) > 2) {
- 		ENGINE_WRITE_FW(engine,
- 				RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
-+		ENGINE_POSTING_READ(engine, RING_MI_MODE);
-+	}
- 
- 	/* Now awake, let it get started */
- 	if (ring->tail != ring->head) {
-@@ -257,16 +273,16 @@ static int xcs_resume(struct intel_engine_cs *engine)
- 	return 0;
- 
- err:
--	drm_err(&engine->i915->drm,
--		"%s initialization failed; "
--		"ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
--		engine->name,
--		ENGINE_READ(engine, RING_CTL),
--		ENGINE_READ(engine, RING_CTL) & RING_VALID,
--		ENGINE_READ(engine, RING_HEAD), ring->head,
--		ENGINE_READ(engine, RING_TAIL), ring->tail,
--		ENGINE_READ(engine, RING_START),
--		i915_ggtt_offset(ring->vma));
-+	ENGINE_TRACE(engine,
-+		     "initialization failed; "
-+		     "ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
-+		     ENGINE_READ(engine, RING_CTL),
-+		     ENGINE_READ(engine, RING_CTL) & RING_VALID,
-+		     ENGINE_READ(engine, RING_HEAD), ring->head,
-+		     ENGINE_READ(engine, RING_TAIL), ring->tail,
-+		     ENGINE_READ(engine, RING_START),
-+		     i915_ggtt_offset(ring->vma));
-+	GEM_TRACE_DUMP();
- 	return -EIO;
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index c10d68cdc3ca..717fb6b9cc15 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -256,6 +256,16 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
- 	}
- }
- 
-+/**
-+ * until_timeout_ns - Keep retrying (busy spin) until the duration has passed
-+ * @end: temporary var to be used to track the spent time
-+ * @timeout_ns: Maximum timeout, in nanosseconds
-+ */
-+#define until_timeout_ns(end, timeout_ns) \
-+	for ((end) = ktime_get() + (timeout_ns); \
-+	     ktime_before(ktime_get(), (end)); \
-+	     cpu_relax())
-+
- /**
-  * __wait_for - magic wait macro
-  *
--- 
-2.36.1
+#regzbot ^introduced 2584b3549f4c4081
+#regzbot title
+#regzbot ignore-activity
 
+This isn't a regression? This issue or a fix for it are already
+discussed somewhere else? It was fixed already? You want to clarify when
+the regression started to happen? Or point out I got the title or
+something else totally wrong? Then just reply -- ideally with also
+telling regzbot about it, as explained here:
+https://linux-regtracking.leemhuis.info/tracked-regression/
 
+Reminder for developers: When fixing the issue, add 'Link:' tags
+pointing to the report (the mail this one replies to), as explained for
+in the Linux kernel's documentation; above webpage explains why this is
+important for tracked regressions.
+
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+
+P.S.: As the Linux kernel's regression tracker I deal with a lot of
+reports and sometimes miss something important when writing mails like
+this. If that's the case here, don't hesitate to tell me in a public
+reply, it's in everyone's interest to set the public record straight.
