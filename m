@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8A12576F63
-	for <lists+intel-gfx@lfdr.de>; Sat, 16 Jul 2022 16:43:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5308576F61
+	for <lists+intel-gfx@lfdr.de>; Sat, 16 Jul 2022 16:43:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93DD510F74C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27D1510F841;
 	Sat, 16 Jul 2022 14:37:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92F0010E05A
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 20:21:28 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA9D810E05A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 20:21:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657916488; x=1689452488;
+ t=1657916481; x=1689452481;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=hWSCqZHQ3w7AsMEk2Wq06SHmPBHp4x4FsCIMP7Pwwo8=;
- b=R03NNfiK6kya+ROhd3ewEazSYEVT6QMxhU+k39dq++qE39h0UnDIY6Oc
- h1K4/QkgEGnuC4Vsbxf89jox5VeFMSUmDZrxs0l2Sza2HoknQ/cWKpmj6
- 8qSk7emPthloU1v6SRak/P/ScPRkbFxv1K2613ef0U0JzeBd+kX5eFOCT
- ll1nX2jZqweUilLquCsjOpm4wDy3EUre5qnQArvDvIL0ClG2tWEI3xCDh
- HIY6dIrN99APU09TpWIYXlJXfEd6P5wSWhhC3ivZT1MB1toeHAxYp9ZlP
- V/KD0FHkJCJezGHOhZjG6EbBiShIrOYyAQ+t+aCKQavXbCtYGrTcwoGSC Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10409"; a="287033020"
-X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; d="scan'208";a="287033020"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2022 13:21:18 -0700
+ bh=kHudOhZJpg0qrTH9oO40Qvz1XNFvD1SFxaunTLyRm58=;
+ b=kBn70pnJqjvyJCIMsTJF9jI27xMWq22LmcbYH8oqqIbn34ssMcmYNA6S
+ YVJFWcIJFwE07ekzDZ90HFaxVQcihQX56HgFOpAftfSwQvs/+umK4qMbZ
+ ZfNwTzyP3UvJKwzgC6y8MlTfRFouRE4f3RIup2HofLxC/g/ftPh4qy/d4
+ /nWRl4rwGmZ0mC6QwY0zYsou015E2i09msDx2uUyUjDwioLzdtY2PdEZO
+ U6+6rig4kRHVK6exOCJ17gnlYgWrInGG901E7m4rmE+NOt/u5ORSzbZzq
+ 04R7vtaCbDd+aWxMrm3V4b+lME/LE6rVsgPkDdbkVRWQZUpwRdhU6xeW9 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10409"; a="311560812"
+X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; d="scan'208";a="311560812"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2022 13:21:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; d="scan'208";a="596591168"
+X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; d="scan'208";a="699333505"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.161])
- by orsmga002.jf.intel.com with SMTP; 15 Jul 2022 13:21:16 -0700
+ by fmsmga002.fm.intel.com with SMTP; 15 Jul 2022 13:21:19 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Jul 2022 23:21:16 +0300
+ Fri, 15 Jul 2022 23:21:19 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Jul 2022 23:20:43 +0300
-Message-Id: <20220715202044.11153-12-ville.syrjala@linux.intel.com>
+Date: Fri, 15 Jul 2022 23:20:44 +0300
+Message-Id: <20220715202044.11153-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220715202044.11153-1-ville.syrjala@linux.intel.com>
 References: <20220715202044.11153-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 11/12] drm/i915: WARN if a port should use VBT
- provided vswing tables
+Subject: [Intel-gfx] [PATCH 12/12] drm/i915: Parse DP/eDP max lane count
+ from VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,31 +64,90 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We don't parse the VBT vswing/preemphassis tables at all currently.
-Let's WARN if a port wants to use them so we get a heads up that
-whether we really need to implement this stuff or not. My
-current stash contains no VBTs with this bit set.
+Limit the DP lane count based on the new VBT DP/eDP max
+lane count field.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_bios.h |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c   | 13 ++++++++++++-
+ 3 files changed, 29 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 51dde5bfd956..cd86b65055ef 100644
+index cd86b65055ef..d8063c329b3a 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2661,6 +2661,10 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
- 		return;
- 	}
+@@ -2489,6 +2489,14 @@ static int _intel_bios_dp_max_link_rate(const struct intel_bios_encoder_data *de
+ 		return parse_bdb_216_dp_max_link_rate(devdata->child.dp_max_link_rate);
+ }
  
-+	drm_WARN(&i915->drm, child->use_vbt_vswing,
-+		 "Port %c asks to use VBT vswing/preemph tables\n",
-+		 port_name(port));
++static int _intel_bios_dp_max_lane_count(const struct intel_bios_encoder_data *devdata)
++{
++	if (!devdata || devdata->i915->vbt.version < 244)
++		return 0;
 +
- 	if (i915->vbt.ports[port]) {
- 		drm_dbg_kms(&i915->drm,
- 			    "More than one child device for port %c in VBT, using the first.\n",
++	return devdata->child.dp_max_lane_count + 1;
++}
++
+ static void sanitize_device_type(struct intel_bios_encoder_data *devdata,
+ 				 enum port port)
+ {
+@@ -3674,6 +3682,14 @@ int intel_bios_dp_max_link_rate(struct intel_encoder *encoder)
+ 	return _intel_bios_dp_max_link_rate(devdata);
+ }
+ 
++int intel_bios_dp_max_lane_count(struct intel_encoder *encoder)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	const struct intel_bios_encoder_data *devdata = i915->vbt.ports[encoder->port];
++
++	return _intel_bios_dp_max_lane_count(devdata);
++}
++
+ int intel_bios_alternate_ddc_pin(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index e47582b0de0a..e375405a7828 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -258,6 +258,7 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
+ int intel_bios_max_tmds_clock(struct intel_encoder *encoder);
+ int intel_bios_hdmi_level_shift(struct intel_encoder *encoder);
+ int intel_bios_dp_max_link_rate(struct intel_encoder *encoder);
++int intel_bios_dp_max_lane_count(struct intel_encoder *encoder);
+ int intel_bios_alternate_ddc_pin(struct intel_encoder *encoder);
+ bool intel_bios_port_supports_typec_usb(struct drm_i915_private *i915, enum port port);
+ bool intel_bios_port_supports_tbt(struct drm_i915_private *i915, enum port port);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 32292c0be2bd..0370c4c105dc 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -286,11 +286,22 @@ static int intel_dp_max_common_rate(struct intel_dp *intel_dp)
+ 	return intel_dp_common_rate(intel_dp, intel_dp->num_common_rates - 1);
+ }
+ 
++static int intel_dp_max_source_lane_count(struct intel_digital_port *dig_port)
++{
++	int vbt_max_lanes = intel_bios_dp_max_lane_count(&dig_port->base);
++	int max_lanes = dig_port->max_lanes;
++
++	if (vbt_max_lanes)
++		max_lanes = min(max_lanes, vbt_max_lanes);
++
++	return max_lanes;
++}
++
+ /* Theoretical max between source and sink */
+ static int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
+ {
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	int source_max = dig_port->max_lanes;
++	int source_max = intel_dp_max_source_lane_count(dig_port);
+ 	int sink_max = intel_dp->max_sink_lane_count;
+ 	int fia_max = intel_tc_port_fia_max_lane_count(dig_port);
+ 	int lttpr_max = drm_dp_lttpr_max_lane_count(intel_dp->lttpr_common_caps);
 -- 
 2.35.1
 
