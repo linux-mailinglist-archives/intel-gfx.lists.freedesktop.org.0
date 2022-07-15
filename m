@@ -1,41 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CDAF57B81C
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 16:08:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0179457B82E
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 16:08:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EAD311AA72;
-	Wed, 20 Jul 2022 14:07:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38A9811B8C8;
+	Wed, 20 Jul 2022 14:08:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtpbg.qq.com (biz-43-154-221-58.mail.qq.com [43.154.221.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE8248B8E2;
- Mon, 18 Jul 2022 13:25:53 +0000 (UTC)
-X-QQ-mid: bizesmtp67t1658150513tr550luw
-Received: from localhost.localdomain ( [171.223.96.21])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Mon, 18 Jul 2022 21:21:50 +0800 (CST)
-X-QQ-SSF: 01000000002000E0U000C00A0000000
-X-QQ-FEAT: +bXiSo2NuBd9WaWHuSP8maq7+K/rGilFjsIUzYuFnDmWeFbwKfnBWyLGSaW0c
- QzQ6SoGrFLGaTk/aAEo6aRhsijiMnWswHxW2xm6ECEjkYlSGuxOOtl4q39CpaQXQI3o2hWg
- YlTZhn+IhNbF2YCkBnHB7h8GU2/ImkgSxyYuL9EPJgOJXQy3WPIvDCbygBKmhJgUc+v8Jja
- D8MJlXlImEKhTa7tkS7L8CAJj4IJiWZjHS1T7k/BEweihd7DyntgWcqs6MmI19sd6eJOtRI
- meNjgZ1FBBrO2s/qDCLB6rNKXm0FHXMtreIbcuaJEQil7xqF2hWpe6LKbO3d+yfIhhs9RZV
- D513iq8u95mrc9V36UDPbyNQzAcJg3FWmmJI8dmN6j2xwrtW6CTPf5mOeXHF3mVfYtY3LSU
- 1XWntNTeBbo=
-X-QQ-GoodBg: 0
-From: Jason Wang <wangborong@cdjrlc.com>
-To: daniel@ffwll.ch
-Date: Fri, 15 Jul 2022 13:19:53 +0800
-Message-Id: <20220715051953.31424-1-wangborong@cdjrlc.com>
-X-Mailer: git-send-email 2.35.1
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2B411A6F4;
+ Fri, 15 Jul 2022 06:59:55 +0000 (UTC)
+Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru
+ [109.252.119.232])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 7DF5F6601A3B;
+ Fri, 15 Jul 2022 07:59:51 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1657868394;
+ bh=19qGkCc2cIXoMAA2hZZj9V2aaITk+ZrC7c+cT0h41YY=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=j0I0uN1LjpBGty3wxdvM2KAjGZF9ug4hQElSe1mt+S/9szx5t+H2di6ibGmGpGXst
+ wJqP/dMeGtbccnj2osoKKCrkRE6+8wLOBaVgBNOEo/GBbDPLe1bYNZC5ltalcJ/o5Y
+ YInGEtLUCKwhn9dsrLDwPfLbVrgTdCd+K+zT4ixzjjv1kPg9eoH+1wKXtpb7kJJF9P
+ HwM7g/NCi2I1Zy+ngkHWGz4hffPHdHVJYbYDCHcqqott7p3KpvlDofORSYcxIa1BJA
+ 497iacGLeX+E5VO1y9Oho9JU4Sb6lu7rfJnAuI2chzPO7V3LdR3knQC2zJYw2y3PZo
+ +kaWVIYB+SXVw==
+Message-ID: <1ce233a2-36c9-3698-59f0-c4ff902bec60@collabora.com>
+Date: Fri, 15 Jul 2022 09:59:47 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>
+References: <20220715005244.42198-1-dmitry.osipenko@collabora.com>
+ <20220715005244.42198-5-dmitry.osipenko@collabora.com>
+ <5ec9313e-8498-2838-0320-331c347ce905@amd.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <5ec9313e-8498-2838-0320-331c347ce905@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:cdjrlc.com:qybglogicsvr:qybglogicsvr6
 X-Mailman-Approved-At: Wed, 20 Jul 2022 14:07:33 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Fix comment typo
+Subject: Re: [Intel-gfx] [PATCH v1 4/6] dma-buf: Acquire wait-wound context
+ on attachment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,33 +80,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jason Wang <wangborong@cdjrlc.com>, michal.winiarski@intel.com,
- airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com, zhou1615@umn.edu
+Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ spice-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The double `wait' is duplicated in line 974, remove one.
+On 7/15/22 09:50, Christian König wrote:
+> Am 15.07.22 um 02:52 schrieb Dmitry Osipenko:
+>> Intel i915 GPU driver uses wait-wound mutex to lock multiple GEMs on the
+>> attachment to the i915 dma-buf. In order to let all drivers utilize
+>> shared
+>> wait-wound context during attachment in a general way, make dma-buf
+>> core to
+>> acquire the ww context internally for the attachment operation and update
+>> i915 driver to use the importer's ww context instead of the internal one.
+>>
+>>  From now on all dma-buf exporters shall use the importer's ww context
+>> for
+>> the attachment operation.
+>>
+>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+>> ---
+>>   drivers/dma-buf/dma-buf.c                     |  8 +++++-
+>>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  2 +-
+>>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
+>>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  6 ++---
+>>   drivers/gpu/drm/i915/i915_gem_evict.c         |  2 +-
+>>   drivers/gpu/drm/i915/i915_gem_ww.c            | 26 +++++++++++++++----
+>>   drivers/gpu/drm/i915/i915_gem_ww.h            | 15 +++++++++--
+>>   7 files changed, 47 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+>> index 0ee588276534..37545ecb845a 100644
+>> --- a/drivers/dma-buf/dma-buf.c
+>> +++ b/drivers/dma-buf/dma-buf.c
+>> @@ -807,6 +807,8 @@ static struct sg_table * __map_dma_buf(struct
+>> dma_buf_attachment *attach,
+>>    * Optionally this calls &dma_buf_ops.attach to allow
+>> device-specific attach
+>>    * functionality.
+>>    *
+>> + * Exporters shall use ww_ctx acquired by this function.
+>> + *
+>>    * Returns:
+>>    *
+>>    * A pointer to newly created &dma_buf_attachment on success, or a
+>> negative
+>> @@ -822,6 +824,7 @@ dma_buf_dynamic_attach_unlocked(struct dma_buf
+>> *dmabuf, struct device *dev,
+>>                   void *importer_priv)
+>>   {
+>>       struct dma_buf_attachment *attach;
+>> +    struct ww_acquire_ctx ww_ctx;
+>>       int ret;
+>>         if (WARN_ON(!dmabuf || !dev))
+>> @@ -841,7 +844,8 @@ dma_buf_dynamic_attach_unlocked(struct dma_buf
+>> *dmabuf, struct device *dev,
+>>       attach->importer_ops = importer_ops;
+>>       attach->importer_priv = importer_priv;
+>>   -    dma_resv_lock(dmabuf->resv, NULL);
+>> +    ww_acquire_init(&ww_ctx, &reservation_ww_class);
+>> +    dma_resv_lock(dmabuf->resv, &ww_ctx);
+> 
+> That won't work like this. The core property of a WW context is that you
+> need to unwind all the locks and re-quire them with the contended one
+> first.
+> 
+> When you statically lock the imported one here you can't do that any more.
 
-Signed-off-by: Jason Wang <wangborong@cdjrlc.com>
----
- drivers/gpu/drm/i915/selftests/i915_request.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+You're right. I felt that something is missing here, but couldn't
+notice. I'll think more about this and enable
+CONFIG_DEBUG_WW_MUTEX_SLOWPATH. Thank you!
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index c56a0c2cd2f7..ec05f578a698 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -971,7 +971,7 @@ static struct i915_vma *empty_batch(struct drm_i915_private *i915)
- 	if (err)
- 		goto err;
- 
--	/* Force the wait wait now to avoid including it in the benchmark */
-+	/* Force the wait now to avoid including it in the benchmark */
- 	err = i915_vma_sync(vma);
- 	if (err)
- 		goto err_pin;
 -- 
-2.35.1
-
+Best regards,
+Dmitry
