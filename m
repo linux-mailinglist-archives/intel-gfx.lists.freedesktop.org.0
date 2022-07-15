@@ -2,71 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6329A575C8E
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jul 2022 09:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AAF575D57
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jul 2022 10:25:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3130310FC46;
-	Fri, 15 Jul 2022 07:44:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB6FC11B93D;
+	Fri, 15 Jul 2022 08:25:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 236CD10FDD6
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 07:44:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657871049; x=1689407049;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=YKPGh4UUVAonPOE9jzAXCCgf3rEZNTrHcA22QfGdouc=;
- b=YD7c1ZLgFGpUogbCDq+sit29k2+YwkXZtHNxiU3LH2P2/BnwE8/NzASt
- xirb0nfDS7lhZ9isGYYvR7aWXdeaCDlALCSu9FrMpY0h+NRzLk131hCMi
- HLnNGQ/iMmWJInzuWj/tTFMFg+AZelVndLnsHyT+kdYduuZ+XN+u5ZZRv
- NlnccAOW4+JObDDEMrjUs12siD+6/NSVrPSxsiX1KnKyFoEWiPMiFSj8t
- Ymbo7k7c55nldUKLeOkMSSWTabRsQThCJciGc9ABemP6/RPQ/tLpKyTxO
- Ve+R+5wWvCf1+A14uVqbKz9WBYmkYJLNUm5vEt/+RjTTtzexiIiV/euY5 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="311389791"
-X-IronPort-AV: E=Sophos;i="5.92,273,1650956400"; d="scan'208";a="311389791"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2022 00:44:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,273,1650956400"; d="scan'208";a="772892000"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga005.jf.intel.com with ESMTP; 15 Jul 2022 00:44:08 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 15 Jul 2022 00:44:07 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 15 Jul 2022 00:44:07 -0700
-Received: from fmsmsx612.amr.corp.intel.com ([10.18.126.92]) by
- fmsmsx612.amr.corp.intel.com ([10.18.126.92]) with mapi id 15.01.2308.027;
- Fri, 15 Jul 2022 00:44:07 -0700
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Sharma, Swati2" <swati2.sharma@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Add debug print for scaler
- filter
-Thread-Index: AQHYkSI3yoW6Urf1sEaD4hFDsbKDyK1/Gruw
-Date: Fri, 15 Jul 2022 07:44:06 +0000
-Message-ID: <ad04a68cc2954918a7fa2caf7d505445@intel.com>
-References: <20220706102240.21414-1-swati2.sharma@intel.com>
-In-Reply-To: <20220706102240.21414-1-swati2.sharma@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-x-originating-ip: [10.108.32.68]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 52BF311B924;
+ Fri, 15 Jul 2022 08:25:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4A7CFA882E;
+ Fri, 15 Jul 2022 08:25:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add debug print for
- scaler filter
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Fri, 15 Jul 2022 08:25:13 -0000
+Message-ID: <165787351327.10565.7800489457422593135@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220714090807.2340818-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20220714090807.2340818-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Fixes_integer_overflow_or_integer_truncation_issues_in_page?=
+ =?utf-8?q?_lookups=2C_ttm_place_configuration_and_scatterlist_creation_?=
+ =?utf-8?b?KHJldjUp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,93 +42,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation (rev5)
+URL   : https://patchwork.freedesktop.org/series/104704/
+State : warning
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Sw=
-ati
-> Sharma
-> Sent: Wednesday, July 6, 2022 3:53 PM
-> To: intel-gfx@lists.freedesktop.org
-> Subject: [Intel-gfx] [PATCH] drm/i915/display: Add debug print for scaler=
- filter
->=20
-> Add debug print statement to print scaler filter property value. Since pr=
-operty can be
-> set as either default or integer scaler; its good if we can get debug pri=
-nt for the same
-> in dmesg log.
+== Summary ==
 
-Looks Good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Error: dim checkpatch failed
+50a1609cfb0b drm: Move and add a few utility macros into drm util header
+-:86: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#86: FILE: include/drm/drm_util.h:92:
++#define overflows_type(x, T) \
++	(is_type_unsigned(x) ? \
++		is_type_unsigned(T) ? \
++			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
++	: is_type_unsigned(T) ? \
++		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++		: (sizeof(x) > sizeof(T)) ? \
++			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: 0)
 
-> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 9 +++++----
-> drivers/gpu/drm/i915/display/intel_display_debugfs.c | 5 +++--
->  2 files changed, 8 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> index 4ca6e9493ff2..e9212f69c360 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> @@ -134,8 +134,8 @@ static void intel_dump_plane_state(const struct
-> intel_plane_state *plane_state)
->  		    plane->base.base.id, plane->base.name,
->  		    fb->base.id, fb->width, fb->height, &fb->format->format,
->  		    fb->modifier, str_yes_no(plane_state->uapi.visible));
-> -	drm_dbg_kms(&i915->drm, "\trotation: 0x%x, scaler: %d\n",
-> -		    plane_state->hw.rotation, plane_state->scaler_id);
-> +	drm_dbg_kms(&i915->drm, "\trotation: 0x%x, scaler: %d, scaling_filter:
-> %d\n",
-> +		    plane_state->hw.rotation, plane_state->scaler_id,
-> +plane_state->hw.scaling_filter);
->  	if (plane_state->uapi.visible)
->  		drm_dbg_kms(&i915->drm,
->  			    "\tsrc: " DRM_RECT_FP_FMT " dst: " DRM_RECT_FMT
-> "\n", @@ -262,10 +262,11 @@ void intel_crtc_state_dump(const struct
-> intel_crtc_state *pipe_config,
->=20
->  	if (DISPLAY_VER(i915) >=3D 9)
->  		drm_dbg_kms(&i915->drm,
-> -			    "num_scalers: %d, scaler_users: 0x%x, scaler_id: %d\n",
-> +			    "num_scalers: %d, scaler_users: 0x%x, scaler_id: %d,
-> +scaling_filter: %d\n",
->  			    crtc->num_scalers,
->  			    pipe_config->scaler_state.scaler_users,
-> -			    pipe_config->scaler_state.scaler_id);
-> +			    pipe_config->scaler_state.scaler_id,
-> +			    pipe_config->hw.scaling_filter);
->=20
->  	if (HAS_GMCH(i915))
->  		drm_dbg_kms(&i915->drm,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 6c3954479047..225b6bfc783c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -722,10 +722,11 @@ static void intel_scaler_info(struct seq_file *m, s=
-truct
-> intel_crtc *crtc)
->=20
->  	/* Not all platformas have a scaler */
->  	if (num_scalers) {
-> -		seq_printf(m, "\tnum_scalers=3D%d, scaler_users=3D%x scaler_id=3D%d",
-> +		seq_printf(m, "\tnum_scalers=3D%d, scaler_users=3D%x scaler_id=3D%d
-> +scaling_filter=3D%d",
->  			   num_scalers,
->  			   crtc_state->scaler_state.scaler_users,
-> -			   crtc_state->scaler_state.scaler_id);
-> +			   crtc_state->scaler_state.scaler_id,
-> +			   crtc_state->hw.scaling_filter);
->=20
->  		for (i =3D 0; i < num_scalers; i++) {
->  			const struct intel_scaler *sc =3D
-> --
-> 2.25.1
+-:86: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
+#86: FILE: include/drm/drm_util.h:92:
++#define overflows_type(x, T) \
++	(is_type_unsigned(x) ? \
++		is_type_unsigned(T) ? \
++			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
++	: is_type_unsigned(T) ? \
++		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++		: (sizeof(x) > sizeof(T)) ? \
++			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: 0)
+
+total: 0 errors, 0 warnings, 2 checks, 100 lines checked
+0ba9641f2367 drm/i915/gem: Typecheck page lookups
+-:97: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#97: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:374:
++#define i915_gem_object_page_iter_get_sg(obj, it, n, offset) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_page_iter_get_sg(obj, it, n, offset); \
++})
+
+-:113: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#113: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:386:
++#define i915_gem_object_get_sg(obj, n, offset) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_sg(obj, n, offset); \
++})
+
+-:123: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#123: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:393:
++__i915_gem_object_get_sg_dma(struct drm_i915_gem_object *obj, pgoff_t n,
++			    unsigned int *offset)
+
+-:129: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#129: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:398:
++#define i915_gem_object_get_sg_dma(obj, n, offset) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_sg_dma(obj, n, offset); \
++})
+
+-:139: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#139: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:406:
++#define i915_gem_object_get_page(obj, n) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_page(obj, n); \
++})
+
+-:149: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#149: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:414:
++#define i915_gem_object_get_dirty_page(obj, n) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_dirty_page(obj, n); \
++})
+
+-:161: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#161: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:423:
++#define i915_gem_object_get_dma_address_len(obj, n, len) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_dma_address_len(obj, n, len); \
++})
+
+-:171: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#171: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:431:
++#define i915_gem_object_get_dma_address(obj, n) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_dma_address(obj, n); \
++})
+
+total: 0 errors, 0 warnings, 8 checks, 399 lines checked
+d2f809cd1a45 drm/i915: Check for integer truncation on scatterlist creation
+-:200: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#200: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:224:
++typedef unsigned int __sg_size_t; /* see linux/scatterlist.h */
+
+-:201: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#201: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
++#define sg_alloc_table(sgt, nents, gfp) \
++	overflows_type(nents, __sg_size_t) ? -E2BIG : (sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp)
+
+-:201: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'nents' - possible side-effects?
+#201: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
++#define sg_alloc_table(sgt, nents, gfp) \
++	overflows_type(nents, __sg_size_t) ? -E2BIG : (sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp)
+
+-:202: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#202: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:226:
++	overflows_type(nents, __sg_size_t) ? -E2BIG : (sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp)
+
+-:204: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#204: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:228:
++#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
++	overflows_type(npages, __sg_size_t) ? -E2BIG : (sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, size, max_segment, gfp)
+
+-:204: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'npages' - possible side-effects?
+#204: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:228:
++#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
++	overflows_type(npages, __sg_size_t) ? -E2BIG : (sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, size, max_segment, gfp)
+
+-:205: WARNING:LONG_LINE: line length of 157 exceeds 100 columns
+#205: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:229:
++	overflows_type(npages, __sg_size_t) ? -E2BIG : (sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, size, max_segment, gfp)
+
+total: 2 errors, 3 warnings, 2 checks, 123 lines checked
+2c5f97cc1c11 drm/i915: Check for integer truncation on the configuration of ttm place
+-:60: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ptr' - possible side-effects?
+#60: FILE: drivers/gpu/drm/i915/i915_gem.h:86:
++#define safe_conversion_gem_bug_on(ptr, value) ({ \
++	safe_conversion(ptr, value) ? 1 \
++		: (({ GEM_BUG_ON(overflows_type(value, *ptr)); }), 0); \
++})
+
+-:60: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'value' - possible side-effects?
+#60: FILE: drivers/gpu/drm/i915/i915_gem.h:86:
++#define safe_conversion_gem_bug_on(ptr, value) ({ \
++	safe_conversion(ptr, value) ? 1 \
++		: (({ GEM_BUG_ON(overflows_type(value, *ptr)); }), 0); \
++})
+
+total: 0 errors, 0 warnings, 2 checks, 63 lines checked
+13338a66bb3c drm/i915: Check if the size is too big while creating shmem file
+bbdf8d27c372 drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+to add vma. The direct function that returns -ENOSPC is drm_mm_insert_node_in_range().
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+1722eb9368f1 drm/i915: Remove truncation warning for large objects
+
 
