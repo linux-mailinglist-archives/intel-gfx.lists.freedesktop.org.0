@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0179457B82E
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 16:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2FD357B818
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 16:07:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38A9811B8C8;
-	Wed, 20 Jul 2022 14:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2D8F11A8FE;
+	Wed, 20 Jul 2022 14:07:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2B411A6F4;
- Fri, 15 Jul 2022 06:59:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7000111B564;
+ Fri, 15 Jul 2022 09:31:44 +0000 (UTC)
 Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru
  [109.252.119.232])
  (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
  (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 7DF5F6601A3B;
- Fri, 15 Jul 2022 07:59:51 +0100 (BST)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 5E29866019A8;
+ Fri, 15 Jul 2022 10:31:40 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1657868394;
- bh=19qGkCc2cIXoMAA2hZZj9V2aaITk+ZrC7c+cT0h41YY=;
+ s=mail; t=1657877502;
+ bh=TWozmotf+sQwVdZNmn/06hy3nh6q5FZqNEZs2dkO0Xk=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=j0I0uN1LjpBGty3wxdvM2KAjGZF9ug4hQElSe1mt+S/9szx5t+H2di6ibGmGpGXst
- wJqP/dMeGtbccnj2osoKKCrkRE6+8wLOBaVgBNOEo/GBbDPLe1bYNZC5ltalcJ/o5Y
- YInGEtLUCKwhn9dsrLDwPfLbVrgTdCd+K+zT4ixzjjv1kPg9eoH+1wKXtpb7kJJF9P
- HwM7g/NCi2I1Zy+ngkHWGz4hffPHdHVJYbYDCHcqqott7p3KpvlDofORSYcxIa1BJA
- 497iacGLeX+E5VO1y9Oho9JU4Sb6lu7rfJnAuI2chzPO7V3LdR3knQC2zJYw2y3PZo
- +kaWVIYB+SXVw==
-Message-ID: <1ce233a2-36c9-3698-59f0-c4ff902bec60@collabora.com>
-Date: Fri, 15 Jul 2022 09:59:47 +0300
+ b=ook7FofVSeFu98kzfOW85/NvaqQGYfMlcoQwPYYEf1uM53lI6XEH5r2IfZA5D39YG
+ One7B2e3W/fD6MOKVR32mTsfa0F578/RBAeOo8/NotqqijY2/uTpe7t/xwykgVmrPt
+ +yavsYIuw7Eo6wCEeOig0kwF08jXCpcKDfKm5bf62mOtUtod68wxkNTfoOrBO2Vigr
+ jGGe7rNPzl9ucoy/rbaMWflBdm9lL83CRfG8Nh3DuvKmTusiGl7vlEzXHo8BAnin4h
+ VmXp2fNABeQZzflx/SPBJ4BlHwecx5t82vj5mWQ6sz+HwjJh2hV8TUmAiQ8RvCIpsC
+ jI9dt2CUipsuA==
+Message-ID: <5c98385b-f154-0128-6f4b-5fac89529201@collabora.com>
+Date: Fri, 15 Jul 2022 12:31:37 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
@@ -59,15 +59,15 @@ To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>
 References: <20220715005244.42198-1-dmitry.osipenko@collabora.com>
- <20220715005244.42198-5-dmitry.osipenko@collabora.com>
- <5ec9313e-8498-2838-0320-331c347ce905@amd.com>
+ <20220715005244.42198-2-dmitry.osipenko@collabora.com>
+ <43c06f53-bad8-af99-0b57-781dbf716768@amd.com>
 From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <5ec9313e-8498-2838-0320-331c347ce905@amd.com>
+In-Reply-To: <43c06f53-bad8-af99-0b57-781dbf716768@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 20 Jul 2022 14:07:33 +0000
-Subject: Re: [Intel-gfx] [PATCH v1 4/6] dma-buf: Acquire wait-wound context
- on attachment
+Subject: Re: [Intel-gfx] [PATCH v1 1/6] dma-buf: Add _unlocked postfix to
+ function names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,72 +89,27 @@ Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 7/15/22 09:50, Christian König wrote:
-> Am 15.07.22 um 02:52 schrieb Dmitry Osipenko:
->> Intel i915 GPU driver uses wait-wound mutex to lock multiple GEMs on the
->> attachment to the i915 dma-buf. In order to let all drivers utilize
->> shared
->> wait-wound context during attachment in a general way, make dma-buf
->> core to
->> acquire the ww context internally for the attachment operation and update
->> i915 driver to use the importer's ww context instead of the internal one.
->>
->>  From now on all dma-buf exporters shall use the importer's ww context
->> for
->> the attachment operation.
->>
->> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->> ---
->>   drivers/dma-buf/dma-buf.c                     |  8 +++++-
->>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  2 +-
->>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
->>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  6 ++---
->>   drivers/gpu/drm/i915/i915_gem_evict.c         |  2 +-
->>   drivers/gpu/drm/i915/i915_gem_ww.c            | 26 +++++++++++++++----
->>   drivers/gpu/drm/i915/i915_gem_ww.h            | 15 +++++++++--
->>   7 files changed, 47 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
->> index 0ee588276534..37545ecb845a 100644
->> --- a/drivers/dma-buf/dma-buf.c
->> +++ b/drivers/dma-buf/dma-buf.c
->> @@ -807,6 +807,8 @@ static struct sg_table * __map_dma_buf(struct
->> dma_buf_attachment *attach,
->>    * Optionally this calls &dma_buf_ops.attach to allow
->> device-specific attach
->>    * functionality.
->>    *
->> + * Exporters shall use ww_ctx acquired by this function.
->> + *
->>    * Returns:
->>    *
->>    * A pointer to newly created &dma_buf_attachment on success, or a
->> negative
->> @@ -822,6 +824,7 @@ dma_buf_dynamic_attach_unlocked(struct dma_buf
->> *dmabuf, struct device *dev,
->>                   void *importer_priv)
->>   {
->>       struct dma_buf_attachment *attach;
->> +    struct ww_acquire_ctx ww_ctx;
->>       int ret;
->>         if (WARN_ON(!dmabuf || !dev))
->> @@ -841,7 +844,8 @@ dma_buf_dynamic_attach_unlocked(struct dma_buf
->> *dmabuf, struct device *dev,
->>       attach->importer_ops = importer_ops;
->>       attach->importer_priv = importer_priv;
->>   -    dma_resv_lock(dmabuf->resv, NULL);
->> +    ww_acquire_init(&ww_ctx, &reservation_ww_class);
->> +    dma_resv_lock(dmabuf->resv, &ww_ctx);
+On 7/15/22 10:19, Christian König wrote:
+>> -struct sg_table *dma_buf_map_attachment(struct dma_buf_attachment
+>> *attach,
+>> -                    enum dma_data_direction direction)
+>> +struct sg_table *
+>> +dma_buf_map_attachment_unlocked(struct dma_buf_attachment *attach,
+>> +                enum dma_data_direction direction)
 > 
-> That won't work like this. The core property of a WW context is that you
-> need to unwind all the locks and re-quire them with the contended one
-> first.
+> The locking state of mapping and unmapping operations depend on if the
+> attachment is dynamic or not.
 > 
-> When you statically lock the imported one here you can't do that any more.
+> So this here is not a good idea at all since it suggests that the
+> function is always called without holding the lock.
 
-You're right. I felt that something is missing here, but couldn't
-notice. I'll think more about this and enable
-CONFIG_DEBUG_WW_MUTEX_SLOWPATH. Thank you!
+I had the same thought while was working on this patch and initially was
+thinking about adding an "unlocked" alias to dma_buf_map_attachment().
+In the end I decided that it will create even more confusion and it's
+simpler just to rename this func here since there are only two drivers
+using the dynamic mapping.
+
+Do you have suggestions how to improve it?
 
 -- 
 Best regards,
