@@ -2,43 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB935575DEB
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jul 2022 10:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51409575D8C
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jul 2022 10:38:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13C6E11AEE3;
-	Fri, 15 Jul 2022 08:54:44 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-X-Greylist: delayed 1181 seconds by postgrey-1.36 at gabe;
- Fri, 15 Jul 2022 08:54:43 UTC
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [IPv6:2a01:488:42:1000:50ed:8234::])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E9CD1125A5;
- Fri, 15 Jul 2022 08:54:43 +0000 (UTC)
-Received: from [2a02:8108:963f:de38:eca4:7d19:f9a2:22c5]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1oCGmq-0007yL-4o; Fri, 15 Jul 2022 10:35:00 +0200
-Message-ID: <40101a14-ea44-1fd9-36ab-2048df2cb0e6@leemhuis.info>
-Date: Fri, 15 Jul 2022 10:34:59 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id A544810F453;
+	Fri, 15 Jul 2022 08:38:42 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AF6610F453
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 08:38:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1657874321; x=1689410321;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=wBHYWM6mpWNsN0ZeSMCN0AUlKdZWPga+xbejXxx6jXA=;
+ b=EfqWYPPd8KGPAQ4DkOt3SzA5JPLdsuQuocVZIIKX+zQCgltBxi2a9L3p
+ ncYoMgpbvIU1JGZR26zkLDPPViVdR/Thkilmp6fyCGDBo3QvhhqIN4GYQ
+ RqntP0/YQ/+ormAfG9HKQZJKplxLJa3YEXxYo6DLRE5sYGfm2Q1Xx9dy5
+ Dh2AxKNC7XQsZuucLQvF8hb9nlXxXUWxTThwR2UXUEX3hR9pEcTMYbFBA
+ Ua8/SfM/1eU4fVd7w5Rqeu23LXgfQgPt2+jlv4hR4PsWA9FhAtW2lhGpR
+ W9f8/utbFBTD2gkdCmQ+6RhOSkWAHiGVVspBRqNNxdwkSaF/HPKzylX6p w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10408"; a="311400240"
+X-IronPort-AV: E=Sophos;i="5.92,273,1650956400"; d="scan'208";a="311400240"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2022 01:38:40 -0700
+X-IronPort-AV: E=Sophos;i="5.92,273,1650956400"; d="scan'208";a="664110910"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2022 01:38:39 -0700
+Date: Fri, 15 Jul 2022 11:39:07 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Message-ID: <YtEnq9fpkVAEohbQ@intel.com>
+References: <20220714150755.154985-1-jose.souza@intel.com>
+ <20220714150755.154985-2-jose.souza@intel.com>
+ <dd78907477a8c19da80cbb1442c0688eb915a004.camel@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: "regressions@lists.linux.dev" <regressions@lists.linux.dev>
-References: <20220412225955.1802543-1-John.C.Harrison@Intel.com>
- <20220412225955.1802543-2-John.C.Harrison@Intel.com>
- <Yli4/8OIbjyRaQAK@mdroper-desk1.amr.corp.intel.com>
- <CAPM=9txdca1VnRpp-oNLXpBc2UWq3=ceeim5+Gw4N9tAriRY6A@mail.gmail.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-In-Reply-To: <CAPM=9txdca1VnRpp-oNLXpBc2UWq3=ceeim5+Gw4N9tAriRY6A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1657875283;
- 6d4fc315; 
-X-HE-SMSGID: 1oCGmq-0007yL-4o
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Update to GuC version
- 70.1.1 #forregzbot
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dd78907477a8c19da80cbb1442c0688eb915a004.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/psr: Disable PSR before
+ disable pipe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,96 +59,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <Intel-GFX@lists.freedesktop.org>,
- dri-devel <DRI-Devel@lists.freedesktop.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[TLDR: I'm adding this regression report to the list of tracked
-regressions; all text from me you find below is based on a few templates
-paragraphs you might have encountered already already in similar form.]
+On Fri, Jul 15, 2022 at 08:33:43AM +0300, Hogander, Jouni wrote:
+> On Thu, 2022-07-14 at 08:07 -0700, José Roberto de Souza wrote:
+> > The issue here was on for_each_intel_encoder_mask_with_psr() over the
+> > new_crtc_state encoder mask, so if the CRTC was being disabled mask
+> > would be zero and it would not have any chance to disable PSR.
+> >
+> > So here doing for_each_intel_encoder_mask_with_psr() over the
+> > old_crtc_state encoder mask and then using the new_crtc_state to
+> > check if PSR needs to be disabled.
 
-Hi, this is your Linux kernel regression tracker.
+Are we sure that using old_crtc_state mask is safe here?
+Because currently we would be basically mixing a usage of 
+encoder from old_crtc_state mask with new_crtc_state.
 
-On 15.07.22 01:08, Dave Airlie wrote:
-> On Fri, 15 Apr 2022 at 10:15, Matt Roper <matthew.d.roper@intel.com> wrote:
->>
->> On Tue, Apr 12, 2022 at 03:59:55PM -0700, John.C.Harrison@Intel.com wrote:
->>> From: John Harrison <John.C.Harrison@Intel.com>
->>>
->>> The latest GuC firmware drops the context descriptor pool in favour of
->>> passing all creation data in the create H2G. It also greatly simplifies
->>> the work queue and removes the process descriptor used for multi-LRC
->>> submission. So, remove all mention of LRC and process descriptors and
->>> update the registration code accordingly.
->>>
->>> Unfortunately, the new API also removes the ability to set default
->>> values for the scheduling policies at context registration time.
->>> Instead, a follow up H2G must be sent. The individual scheduling
->>> policy update H2G commands are also dropped in favour of a single KLV
->>> based H2G. So, change the update wrappers accordingly and call this
->>> during context registration..
->>>
->>> Of course, this second H2G per registration might fail due to being
->>> backed up. The registration code has a complicated state machine to
->>> cope with the actual registration call failing. However, if that works
->>> then there is no support for unwinding if a further call should fail.
->>> Unwinding would require sending a H2G to de-register - but that can't
->>> be done because the CTB is already backed up.
->>>
->>> So instead, add a new flag to say whether the context has a pending
->>> policy update. This is set if the policy H2G fails at registration
->>> time. The submission code checks for this flag and retries the policy
->>> update if set. If that call fails, the submission path early exists
->>> with a retry error. This is something that is already supported for
->>> other reasons.
->>>
->>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>
->> Applied to drm-intel-gt-next.  Thanks for the patch and review.
->>
+If you mention a specific scenario, when this happens(i.e crtc
+is being disabled and new mask is 0) should we add a specific check 
+instructing us to use old_crtc_state mask only?
+
+Because currently you might be touching some other scenarios as
+well, that is what I'm concerned about.
+
+
+Stan
+
+> >
+> > Cc: Jouni Högander <jouni.hogander@intel.com>
+> > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_psr.c | 14 ++++++++------
+> >  1 file changed, 8 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+> > b/drivers/gpu/drm/i915/display/intel_psr.c
+> > index e6a870641cd25..98c3c8015a5c4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > @@ -1863,7 +1863,9 @@ void intel_psr_pre_plane_update(struct
+> > intel_atomic_state *state,
+> >                               struct intel_crtc *crtc)
+> >  {
+> >       struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > -     const struct intel_crtc_state *crtc_state =
+> > +     const struct intel_crtc_state *old_crtc_state =
+> > +             intel_atomic_get_old_crtc_state(state, crtc);
+> > +     const struct intel_crtc_state *new_crtc_state =
+> >               intel_atomic_get_new_crtc_state(state, crtc);
+> >       struct intel_encoder *encoder;
+> >
+> > @@ -1871,7 +1873,7 @@ void intel_psr_pre_plane_update(struct
+> > intel_atomic_state *state,
+> >               return;
+> >
+> >       for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
+> > -                                          crtc_state-
+> > >uapi.encoder_mask) {
+> > +                                          old_crtc_state-
+> > >uapi.encoder_mask) {
 > 
-> (cc'ing Linus and danvet, as a headsup, there is also a phoronix
-> article where this was discovered).
+> I would add comment here explaining why using encoder mask from
+> old_crtc_state, but using new_crtc_state inside the loop. It's up to
+> you:
 > 
-> Okay WTF.
+> Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
 > 
-> This is in no way acceptable. This needs to be fixed in 5.19-rc ASAP.
+> >               struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> >               struct intel_psr *psr = &intel_dp->psr;
+> >               bool needs_to_disable = false;
+> > @@ -1884,10 +1886,10 @@ void intel_psr_pre_plane_update(struct
+> > intel_atomic_state *state,
+> >                * - All planes will go inactive
+> >                * - Changing between PSR versions
+> >                */
+> > -             needs_to_disable |=
+> > intel_crtc_needs_modeset(crtc_state);
+> > -             needs_to_disable |= !crtc_state->has_psr;
+> > -             needs_to_disable |= !crtc_state->active_planes;
+> > -             needs_to_disable |= crtc_state->has_psr2 != psr-
+> > >psr2_enabled;
+> > +             needs_to_disable |=
+> > intel_crtc_needs_modeset(new_crtc_state);
+> > +             needs_to_disable |= !new_crtc_state->has_psr;
+> > +             needs_to_disable |= !new_crtc_state->active_planes;
+> > +             needs_to_disable |= new_crtc_state->has_psr2 != psr-
+> > >psr2_enabled;
+> >
+> >               if (psr->enabled && needs_to_disable)
+> >                       intel_psr_disable_locked(intel_dp);
 > 
-> Once hardware is released and we remove the gate flag by default, you
-> cannot just bump firmware versions blindly.
-> 
-> The kernel needs to retain compatibility with all released firmwares
-> since a device was declared supported.
-> 
-> This needs to be reverted, and then 70 should be introduced with a
-> fallback to 69 versions.
-> 
-> Very disappointing, I expect this to get dealt with v.quickly.
-
-To be sure below issue doesn't fall through the cracks unnoticed, I'm
-adding it to regzbot, my Linux kernel regression tracking bot:
-
-#regzbot ^introduced 2584b3549f4c4081
-#regzbot title
-#regzbot ignore-activity
-
-This isn't a regression? This issue or a fix for it are already
-discussed somewhere else? It was fixed already? You want to clarify when
-the regression started to happen? Or point out I got the title or
-something else totally wrong? Then just reply -- ideally with also
-telling regzbot about it, as explained here:
-https://linux-regtracking.leemhuis.info/tracked-regression/
-
-Reminder for developers: When fixing the issue, add 'Link:' tags
-pointing to the report (the mail this one replies to), as explained for
-in the Linux kernel's documentation; above webpage explains why this is
-important for tracked regressions.
-
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
-
-P.S.: As the Linux kernel's regression tracker I deal with a lot of
-reports and sometimes miss something important when writing mails like
-this. If that's the case here, don't hesitate to tell me in a public
-reply, it's in everyone's interest to set the public record straight.
