@@ -2,50 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18973576F10
-	for <lists+intel-gfx@lfdr.de>; Sat, 16 Jul 2022 16:40:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8A12576F63
+	for <lists+intel-gfx@lfdr.de>; Sat, 16 Jul 2022 16:43:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED3E010E94B;
-	Sat, 16 Jul 2022 14:36:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93DD510F74C;
+	Sat, 16 Jul 2022 14:37:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17E2F10E05A
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 20:21:16 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92F0010E05A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 20:21:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657916476; x=1689452476;
+ t=1657916488; x=1689452488;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=+x6N/1y2GPyfJ9ggeLyynjtmJvRTVjVHHbD80FkuSaA=;
- b=d8Y/XJw9SE1ZhjF4rQtFeFHrSv4BXNwx/EB7ox13ml6ckOeKPL/LFJED
- fryTS70ojJ+k0crJ9Ht76x/opF0ybDEB/0++CP/++JQF/BpA+uXOqMllA
- 68ANjwK8D8B3bx/qpKXhDRcCF37mJX2GYlu1oUhoCH5uWBR301AdBjJZW
- DNUXaDYdzZbeqPsa8EbmF9/EXEfR0V5Rr3G5zz60touRDyzmUfM4Temss
- MtazwVCmOvIWXb+HJvGvntuKK3i9RVIeE43EmsIeiYt49uIWQpGHH0SCi
- ErY7GvYSu0cXWlDqNFiryd/JNfH7E2VBIVidk3jR3QjibyaY3od/Vs5Me g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10409"; a="311560798"
-X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; d="scan'208";a="311560798"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2022 13:21:15 -0700
+ bh=hWSCqZHQ3w7AsMEk2Wq06SHmPBHp4x4FsCIMP7Pwwo8=;
+ b=R03NNfiK6kya+ROhd3ewEazSYEVT6QMxhU+k39dq++qE39h0UnDIY6Oc
+ h1K4/QkgEGnuC4Vsbxf89jox5VeFMSUmDZrxs0l2Sza2HoknQ/cWKpmj6
+ 8qSk7emPthloU1v6SRak/P/ScPRkbFxv1K2613ef0U0JzeBd+kX5eFOCT
+ ll1nX2jZqweUilLquCsjOpm4wDy3EUre5qnQArvDvIL0ClG2tWEI3xCDh
+ HIY6dIrN99APU09TpWIYXlJXfEd6P5wSWhhC3ivZT1MB1toeHAxYp9ZlP
+ V/KD0FHkJCJezGHOhZjG6EbBiShIrOYyAQ+t+aCKQavXbCtYGrTcwoGSC Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10409"; a="287033020"
+X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; d="scan'208";a="287033020"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2022 13:21:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; d="scan'208";a="686090669"
+X-IronPort-AV: E=Sophos;i="5.92,274,1650956400"; d="scan'208";a="596591168"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.161])
- by FMSMGA003.fm.intel.com with SMTP; 15 Jul 2022 13:21:14 -0700
+ by orsmga002.jf.intel.com with SMTP; 15 Jul 2022 13:21:16 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Jul 2022 23:21:13 +0300
+ Fri, 15 Jul 2022 23:21:16 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Jul 2022 23:20:42 +0300
-Message-Id: <20220715202044.11153-11-ville.syrjala@linux.intel.com>
+Date: Fri, 15 Jul 2022 23:20:43 +0300
+Message-Id: <20220715202044.11153-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220715202044.11153-1-ville.syrjala@linux.intel.com>
 References: <20220715202044.11153-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 10/12] drm/i915: Rename some VBT bits
+Subject: [Intel-gfx] [PATCH 11/12] drm/i915: WARN if a port should use VBT
+ provided vswing tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,29 +64,31 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The allow vs. block display switch bits are named rather
-inconsistently. Fix it up.
+We don't parse the VBT vswing/preemphassis tables at all currently.
+Let's WARN if a port wants to use them so we get a heads up that
+whether we really need to implement this stuff or not. My
+current stash contains no VBTs with this bit set.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index f56c869e106f..62183c6bdc10 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -553,8 +553,8 @@ struct bdb_psr {
- struct bdb_driver_features {
- 	/* Driver bits */
- 	u8 boot_dev_algorithm:1;
--	u8 block_display_switch:1;
--	u8 allow_display_switch:1;
-+	u8 allow_display_switch_dvd:1;
-+	u8 allow_display_switch_dos:1;
- 	u8 hotplug_dvo:1;
- 	u8 dual_view_zoom:1;
- 	u8 int15h_hook:1;
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 51dde5bfd956..cd86b65055ef 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2661,6 +2661,10 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
+ 		return;
+ 	}
+ 
++	drm_WARN(&i915->drm, child->use_vbt_vswing,
++		 "Port %c asks to use VBT vswing/preemph tables\n",
++		 port_name(port));
++
+ 	if (i915->vbt.ports[port]) {
+ 		drm_dbg_kms(&i915->drm,
+ 			    "More than one child device for port %c in VBT, using the first.\n",
 -- 
 2.35.1
 
