@@ -2,34 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75AAF575D57
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jul 2022 10:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37CE7575D58
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jul 2022 10:26:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB6FC11B93D;
-	Fri, 15 Jul 2022 08:25:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 594ED11B9B6;
+	Fri, 15 Jul 2022 08:26:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 52BF311B924;
- Fri, 15 Jul 2022 08:25:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4A7CFA882E;
- Fri, 15 Jul 2022 08:25:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6313711B9B3;
+ Fri, 15 Jul 2022 08:26:24 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B191C62054;
+ Fri, 15 Jul 2022 08:26:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1574CC34115;
+ Fri, 15 Jul 2022 08:26:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1657873581;
+ bh=iFolp2jzrEerpXz5e6fXs3X5/rU+qvcxywsSCPc3mvM=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Eg/kmP5xzo/enM6Exj402J70zyK1j+DLRtqwgjhGHusdYy0Mo9MVHVqpZ9P/N5ZQH
+ 4nDDJaSioBjua+9INgDucPBL8E8v7Ps0ZH7dcrQJuNPM0OEJ1k12nEbX0p4UBqZ+gy
+ EeNyFNBnBJf+PHI/TiLM+Wr8Gy94dJ4qg2k36ZqgX8Su8ebOzyJRRM5xHgX/btAHin
+ lGzs959UIzNIW28j4D9TdvAiaeL8+FV0mpOvex/7o5aHG11jaJO0S1e1vgDZzpWwKO
+ KbaLuTB5Fw/nyYnAMQePu+HL4tQ3x3KgWUF4pkiyE5z/syKxeRIsCfWoC3yLND2v6B
+ AdDfxhnfYiB9g==
+Received: from mchehab by mail.kernel.org with local (Exim 4.95)
+ (envelope-from <mchehab@kernel.org>) id 1oCGeP-005Phx-FY;
+ Fri, 15 Jul 2022 09:26:17 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: 
+Date: Fri, 15 Jul 2022 09:26:16 +0100
+Message-Id: <2378da383d043de17172d928e59da0ec423cae76.1657873550.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Fri, 15 Jul 2022 08:25:13 -0000
-Message-ID: <165787351327.10565.7800489457422593135@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220714090807.2340818-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20220714090807.2340818-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Fixes_integer_overflow_or_integer_truncation_issues_in_page?=
- =?utf-8?q?_lookups=2C_ttm_place_configuration_and_scatterlist_creation_?=
- =?utf-8?b?KHJldjUp?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH RFC] drm/i915/gt: Retry RING_HEAD reset until it
+ sticks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,163 +54,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, intel-gfx@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Chris Wilson <chris@chris-wilson.co.uk>
 
-Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation (rev5)
-URL   : https://patchwork.freedesktop.org/series/104704/
-State : warning
+On Haswell, in particular, we see an issue where resets fails because
+the engine resumes from an incorrect RING_HEAD. Since the RING_HEAD
+doesn't point to the remaining requests to re-run, but may instead point
+into the uninitialised portion of the ring, the GPU may be then fed
+invalid instructions from a privileged context, oft pushing the GPU into
+an unrecoverable hang.
 
-== Summary ==
+If at first the write doesn't succeed, try, try again.
 
-Error: dim checkpatch failed
-50a1609cfb0b drm: Move and add a few utility macros into drm util header
--:86: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
-#86: FILE: include/drm/drm_util.h:92:
-+#define overflows_type(x, T) \
-+	(is_type_unsigned(x) ? \
-+		is_type_unsigned(T) ? \
-+			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
-+			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
-+	: is_type_unsigned(T) ? \
-+		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
-+		: (sizeof(x) > sizeof(T)) ? \
-+			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
-+				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
-+			: 0)
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/5432
+Testcase: igt/i915_selftest/hangcheck
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+---
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 44 +++++++++++++------
+ drivers/gpu/drm/i915/i915_utils.h             | 10 +++++
+ 2 files changed, 40 insertions(+), 14 deletions(-)
 
--:86: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
-#86: FILE: include/drm/drm_util.h:92:
-+#define overflows_type(x, T) \
-+	(is_type_unsigned(x) ? \
-+		is_type_unsigned(T) ? \
-+			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
-+			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
-+	: is_type_unsigned(T) ? \
-+		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
-+		: (sizeof(x) > sizeof(T)) ? \
-+			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
-+				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
-+			: 0)
-
-total: 0 errors, 0 warnings, 2 checks, 100 lines checked
-0ba9641f2367 drm/i915/gem: Typecheck page lookups
--:97: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#97: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:374:
-+#define i915_gem_object_page_iter_get_sg(obj, it, n, offset) ({ \
-+	exactly_pgoff_t(n); \
-+	__i915_gem_object_page_iter_get_sg(obj, it, n, offset); \
-+})
-
--:113: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#113: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:386:
-+#define i915_gem_object_get_sg(obj, n, offset) ({ \
-+	exactly_pgoff_t(n); \
-+	__i915_gem_object_get_sg(obj, n, offset); \
-+})
-
--:123: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#123: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:393:
-+__i915_gem_object_get_sg_dma(struct drm_i915_gem_object *obj, pgoff_t n,
-+			    unsigned int *offset)
-
--:129: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#129: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:398:
-+#define i915_gem_object_get_sg_dma(obj, n, offset) ({ \
-+	exactly_pgoff_t(n); \
-+	__i915_gem_object_get_sg_dma(obj, n, offset); \
-+})
-
--:139: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#139: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:406:
-+#define i915_gem_object_get_page(obj, n) ({ \
-+	exactly_pgoff_t(n); \
-+	__i915_gem_object_get_page(obj, n); \
-+})
-
--:149: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#149: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:414:
-+#define i915_gem_object_get_dirty_page(obj, n) ({ \
-+	exactly_pgoff_t(n); \
-+	__i915_gem_object_get_dirty_page(obj, n); \
-+})
-
--:161: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#161: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:423:
-+#define i915_gem_object_get_dma_address_len(obj, n, len) ({ \
-+	exactly_pgoff_t(n); \
-+	__i915_gem_object_get_dma_address_len(obj, n, len); \
-+})
-
--:171: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#171: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:431:
-+#define i915_gem_object_get_dma_address(obj, n) ({ \
-+	exactly_pgoff_t(n); \
-+	__i915_gem_object_get_dma_address(obj, n); \
-+})
-
-total: 0 errors, 0 warnings, 8 checks, 399 lines checked
-d2f809cd1a45 drm/i915: Check for integer truncation on scatterlist creation
--:200: WARNING:NEW_TYPEDEFS: do not add new typedefs
-#200: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:224:
-+typedef unsigned int __sg_size_t; /* see linux/scatterlist.h */
-
--:201: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#201: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
-+#define sg_alloc_table(sgt, nents, gfp) \
-+	overflows_type(nents, __sg_size_t) ? -E2BIG : (sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp)
-
--:201: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'nents' - possible side-effects?
-#201: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
-+#define sg_alloc_table(sgt, nents, gfp) \
-+	overflows_type(nents, __sg_size_t) ? -E2BIG : (sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp)
-
--:202: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#202: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:226:
-+	overflows_type(nents, __sg_size_t) ? -E2BIG : (sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp)
-
--:204: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#204: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:228:
-+#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
-+	overflows_type(npages, __sg_size_t) ? -E2BIG : (sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, size, max_segment, gfp)
-
--:204: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'npages' - possible side-effects?
-#204: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:228:
-+#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
-+	overflows_type(npages, __sg_size_t) ? -E2BIG : (sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, size, max_segment, gfp)
-
--:205: WARNING:LONG_LINE: line length of 157 exceeds 100 columns
-#205: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:229:
-+	overflows_type(npages, __sg_size_t) ? -E2BIG : (sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, size, max_segment, gfp)
-
-total: 2 errors, 3 warnings, 2 checks, 123 lines checked
-2c5f97cc1c11 drm/i915: Check for integer truncation on the configuration of ttm place
--:60: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ptr' - possible side-effects?
-#60: FILE: drivers/gpu/drm/i915/i915_gem.h:86:
-+#define safe_conversion_gem_bug_on(ptr, value) ({ \
-+	safe_conversion(ptr, value) ? 1 \
-+		: (({ GEM_BUG_ON(overflows_type(value, *ptr)); }), 0); \
-+})
-
--:60: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'value' - possible side-effects?
-#60: FILE: drivers/gpu/drm/i915/i915_gem.h:86:
-+#define safe_conversion_gem_bug_on(ptr, value) ({ \
-+	safe_conversion(ptr, value) ? 1 \
-+		: (({ GEM_BUG_ON(overflows_type(value, *ptr)); }), 0); \
-+})
-
-total: 0 errors, 0 warnings, 2 checks, 63 lines checked
-13338a66bb3c drm/i915: Check if the size is too big while creating shmem file
-bbdf8d27c372 drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
--:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#11: 
-to add vma. The direct function that returns -ENOSPC is drm_mm_insert_node_in_range().
-
-total: 0 errors, 1 warnings, 0 checks, 17 lines checked
-1722eb9368f1 drm/i915: Remove truncation warning for large objects
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index d5d6f1fadcae..cc53feb1f8ed 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -190,6 +190,7 @@ static bool stop_ring(struct intel_engine_cs *engine)
+ static int xcs_resume(struct intel_engine_cs *engine)
+ {
+ 	struct intel_ring *ring = engine->legacy.ring;
++	ktime_t kt;
+ 
+ 	ENGINE_TRACE(engine, "ring:{HEAD:%04x, TAIL:%04x}\n",
+ 		     ring->head, ring->tail);
+@@ -228,9 +229,20 @@ static int xcs_resume(struct intel_engine_cs *engine)
+ 	set_pp_dir(engine);
+ 
+ 	/* First wake the ring up to an empty/idle ring */
+-	ENGINE_WRITE_FW(engine, RING_HEAD, ring->head);
++	until_timeout_ns(kt, 2 * NSEC_PER_MSEC) {
++		ENGINE_WRITE_FW(engine, RING_HEAD, ring->head);
++		if (ENGINE_READ_FW(engine, RING_HEAD) == ring->head)
++			break;
++	}
++
+ 	ENGINE_WRITE_FW(engine, RING_TAIL, ring->head);
+-	ENGINE_POSTING_READ(engine, RING_TAIL);
++	if (ENGINE_READ_FW(engine, RING_HEAD) != ENGINE_READ_FW(engine, RING_TAIL)) {
++		ENGINE_TRACE(engine, "failed to reset empty ring: [%x, %x]: %x\n",
++			     ENGINE_READ_FW(engine, RING_HEAD),
++			     ENGINE_READ_FW(engine, RING_TAIL),
++			     ring->head);
++		goto err;
++	}
+ 
+ 	ENGINE_WRITE_FW(engine, RING_CTL,
+ 			RING_CTL_SIZE(ring->size) | RING_VALID);
+@@ -239,12 +251,16 @@ static int xcs_resume(struct intel_engine_cs *engine)
+ 	if (__intel_wait_for_register_fw(engine->uncore,
+ 					 RING_CTL(engine->mmio_base),
+ 					 RING_VALID, RING_VALID,
+-					 5000, 0, NULL))
++					 5000, 0, NULL)) {
++		ENGINE_TRACE(engine, "failed to restart\n");
+ 		goto err;
++	}
+ 
+-	if (GRAPHICS_VER(engine->i915) > 2)
++	if (GRAPHICS_VER(engine->i915) > 2) {
+ 		ENGINE_WRITE_FW(engine,
+ 				RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
++		ENGINE_POSTING_READ(engine, RING_MI_MODE);
++	}
+ 
+ 	/* Now awake, let it get started */
+ 	if (ring->tail != ring->head) {
+@@ -257,16 +273,16 @@ static int xcs_resume(struct intel_engine_cs *engine)
+ 	return 0;
+ 
+ err:
+-	drm_err(&engine->i915->drm,
+-		"%s initialization failed; "
+-		"ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
+-		engine->name,
+-		ENGINE_READ(engine, RING_CTL),
+-		ENGINE_READ(engine, RING_CTL) & RING_VALID,
+-		ENGINE_READ(engine, RING_HEAD), ring->head,
+-		ENGINE_READ(engine, RING_TAIL), ring->tail,
+-		ENGINE_READ(engine, RING_START),
+-		i915_ggtt_offset(ring->vma));
++	ENGINE_TRACE(engine,
++		     "initialization failed; "
++		     "ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
++		     ENGINE_READ(engine, RING_CTL),
++		     ENGINE_READ(engine, RING_CTL) & RING_VALID,
++		     ENGINE_READ(engine, RING_HEAD), ring->head,
++		     ENGINE_READ(engine, RING_TAIL), ring->tail,
++		     ENGINE_READ(engine, RING_START),
++		     i915_ggtt_offset(ring->vma));
++	GEM_TRACE_DUMP();
+ 	return -EIO;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+index c10d68cdc3ca..717fb6b9cc15 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -256,6 +256,16 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
+ 	}
+ }
+ 
++/**
++ * until_timeout_ns - Keep retrying (busy spin) until the duration has passed
++ * @end: temporary var to be used to track the spent time
++ * @timeout_ns: Maximum timeout, in nanosseconds
++ */
++#define until_timeout_ns(end, timeout_ns) \
++	for ((end) = ktime_get() + (timeout_ns); \
++	     ktime_before(ktime_get(), (end)); \
++	     cpu_relax())
++
+ /**
+  * __wait_for - magic wait macro
+  *
+-- 
+2.36.1
 
 
