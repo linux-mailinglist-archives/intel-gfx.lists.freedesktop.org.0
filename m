@@ -1,34 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD9D57B82C
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 16:08:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3273B57B837
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 16:09:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 970B411B7EF;
-	Wed, 20 Jul 2022 14:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28B6B14A2E8;
+	Wed, 20 Jul 2022 14:09:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
+X-Greylist: delayed 495 seconds by postgrey-1.36 at gabe;
+ Sat, 16 Jul 2022 13:10:28 UTC
 Received: from smtpbg.qq.com (biz-43-154-221-58.mail.qq.com [43.154.221.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F32BF10F49E;
- Tue, 19 Jul 2022 12:11:03 +0000 (UTC)
-X-QQ-mid: bizesmtp71t1658232648tu95v5nq
-Received: from localhost.localdomain ( [171.223.96.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02AF110E00D;
+ Sat, 16 Jul 2022 13:10:28 +0000 (UTC)
+X-QQ-mid: bizesmtp85t1657976518tiba5dfa
+Received: from localhost.localdomain ( [182.132.179.58])
  by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 19 Jul 2022 20:10:46 +0800 (CST)
-X-QQ-SSF: 01000000002000F0U000B00A0000000
-X-QQ-FEAT: WKaXkSLX6oOMxAmviYlNwWMv0TGdduPbzjHTO13LpUEcMocSaLByA3yu89Ts0
- n+ccWHkn7zegKCtYtTWm5WfhHBFSmYdhZc7sgYjIHla9C5H17pGbCG7xu0sW12+8M/JGNy2
- gCQvXAjwbl+GEXJWWF9AWXe75EwPDyEFq2C8IZSAoZkbCpiwMbFkwryekJndBs7vs6iCEgr
- L02r5aiDNchyx/HpFMJx4Ks8Xsc/7qo7IJsw8k6qjAQr5xrZoCDpaouqH65tPn75su0Wg1u
- 5FeeDWlURjKll6ONUT+pbywPeT3mrdTjcxnF5BJKop6vvUqRyO9kRs6jkb3BL962brhPto3
- bsCZZaBE+44mwQWPY20ItApVIWfY3vR/HvmRTtMXL8r1+OcRMIQA7EFCcoWJ32uKHBk8efh
- TfmRjq4Y++Q=
+ id ; Sat, 16 Jul 2022 21:01:54 +0800 (CST)
+X-QQ-SSF: 01000000002000E0U000B00A0000000
+X-QQ-FEAT: ALw5QuVtm4W6g00JOOK8BZrhQ8/YnIxpxoxTCkyqD1twqMvTwDXPkyk/LihOZ
+ 75YbWFndLq03UAzR2Gt4RP5uSMGPhMjZh0jrRoQ/4Itq6WBv3Wk8ia6H7M36vsWZy4Sprps
+ ejmd09KZeNc7USdZubNra1M3WhrHjMB69R0VF/vv5PZC+JUwPFYYo63zg5v4+kPYLzHtHdB
+ bWNmKxuNfRmxFezRGvYDIAQI+9KU3Vh8cAYyIZCzkGaVkIvqF9knjMH9EeYpTf2B62rdesx
+ lM0fMtEcNt3nIuvgAiKn3jWoIh4OVAKBvpuBStAmp3IYj/Wcbg0kiSQKJjtJWEPn4lNkgAS
+ 7pQ5Q7ERRICE8xVbnv6L5NtsGFlP3UAQWBxiM+tU0zuJQEAZ69WMAj5yiwYOw==
 X-QQ-GoodBg: 0
 From: Jason Wang <wangborong@cdjrlc.com>
 To: daniel@ffwll.ch
-Date: Sat, 16 Jul 2022 12:08:45 +0800
-Message-Id: <20220716040845.32045-1-wangborong@cdjrlc.com>
+Date: Sun, 17 Jul 2022 02:44:39 +0800
+Message-Id: <20220716184439.72056-1-wangborong@cdjrlc.com>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -56,8 +57,7 @@ Cc: dri-devel@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The semicolon after a code block end symbol `}' is unneeded, remove
-it.
+The semicolon after the `}' in line 648 is unneeded.
 
 Signed-off-by: Jason Wang <wangborong@cdjrlc.com>
 ---
