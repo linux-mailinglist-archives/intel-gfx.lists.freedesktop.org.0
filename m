@@ -1,63 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA90577BBB
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 08:41:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7378577BDF
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 08:46:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0457889A5C;
-	Mon, 18 Jul 2022 06:39:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD1412AEF3;
+	Mon, 18 Jul 2022 06:46:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com
- [IPv6:2607:f8b0:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE709A9DA4;
- Mon, 18 Jul 2022 06:39:31 +0000 (UTC)
-Received: by mail-il1-x12f.google.com with SMTP id c16so4317778ils.7;
- Sun, 17 Jul 2022 23:39:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=UI797gthTzsKQz4UC9U2UIsi1BTd/WhNl6933XAQbZ4=;
- b=f43LFaj608ze6ozZk4VKeO33ZLWMOOojxLUmJ7LEeiD+4x56rjGnPebHrfk3Cho/OK
- hofvFaByKVFqNznKwkziLToWE6HdxehJVMLzhmThEvwEK2CPTsyDOZR+oEoig7yqF1Ho
- hk4FtIIZvizYVvkdbEzeMfj5Cejy86Y1fctUrGdt62G2e/+GwanKeTXqIAJoL/hJL84y
- ERtq/dRQUQGw76Q3Cn1FsT2D73SfSOaKukhDpdzq7Bi9nuUmlzvXcGm10V6WuX3y8bJ0
- D3vsv4HDU4cY/fFSa9Pq4MioSvTiKky264nmif2VFFf3Etl3Zn1x1GRgnoBQ6n14v6hA
- xdrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=UI797gthTzsKQz4UC9U2UIsi1BTd/WhNl6933XAQbZ4=;
- b=Vq++sLqoSCWanLjQqFcLnsObzWHIpY0UV+4QXmVoHpbWOKSXzfWin8TtSlmXStB3cL
- yIZov/WsgRFOxIeQ+jjo7unGZ0qSzcIJCcAAtw9rcCdhLEcggH6+PTsaE9YZb0CC6ooF
- twFJmvvUPl90GYXTvcQwRA0kBsWA8DHQwv4K3qWxAiRvo0Ub/UMlUWT1z6k7ySntYL4u
- cw7eiMAOYEXCsBWFpqScxHmtSPd96xUWMa62yxQtvTqd1y8T1vFaRxqfcJSI7ao2gJ93
- j0g5Y+EyPgS/4krckqUjx3vaWkoPr7dAWnCjHkmeoC5PYbIljXs30IYYC190uCksbrMF
- HDGQ==
-X-Gm-Message-State: AJIora8w50K7OCEPWpx79lwLd2v9OT5dWIec7hXOv0irtvIGnDyq76WH
- q+k9VyzTd2dHqK/n0apJvvU=
-X-Google-Smtp-Source: AGRyM1uU/W7sVgBywmdq4f7AYm2RGP2Prq92TcUVVy64b1LhMl2lBnCzJZwu6YempPq+3WxxY1KE7g==
-X-Received: by 2002:a05:6e02:1583:b0:2d7:a75d:888f with SMTP id
- m3-20020a056e02158300b002d7a75d888fmr12678536ilu.13.1658126371511; 
- Sun, 17 Jul 2022 23:39:31 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:39:30 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:41 -0600
-Message-Id: <20220718063641.9179-58-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E3A5B12AED7;
+ Mon, 18 Jul 2022 06:46:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DB227A7DFF;
+ Mon, 18 Jul 2022 06:46:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 41/41] nouveau-dyndbg: wip subdev refine,
- breaks on use
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jim Cromie" <jim.cromie@gmail.com>
+Date: Mon, 18 Jul 2022 06:46:14 -0000
+Message-ID: <165812677486.9318.14761366204164899663@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220718063641.9179-1-jim.cromie@gmail.com>
+In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBE?=
+ =?utf-8?q?YNDBG=3A_opt-in_class=27d_debug_for_modules=2C_use_in_drm=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,103 +40,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Change nvkm_subdev.debug to a ulong, so dyndbg can maybe use it.
+== Series Details ==
 
-Move macro decl from nv-drm.c to subdev.c, and add a struct
-ddebug_classes_bitmap_param and a module_param_cb() that creates the
-sysfs-knob.
+Series: DYNDBG: opt-in class'd debug for modules, use in drm.
+URL   : https://patchwork.freedesktop.org/series/106427/
+State : failure
 
-Finally, in nvkm_subdev_ctor(), *attempt* to set dyndbg's pointer to
-the debug address, so that dyndbg can observe the underlying debug
-value, and make enable/disable decisions based upon it.
+== Summary ==
 
-But Im not getting the ctor called, so the ptr is NULL when refd.
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/106427/revisions/1/mbox/ not applied
+Applying: dyndbg: fix static_branch manipulation
+Applying: dyndbg: fix module.dyndbg handling
+Applying: dyndbg: show both old and new in change-info
+Applying: dyndbg: reverse module walk in cat control
+Applying: dyndbg: reverse module.callsite walk in cat control
+Applying: dyndbg: use ESCAPE_SPACE for cat control
+Applying: dyndbg: let query-modname override actual module name
+Applying: dyndbg: add test_dynamic_debug module
+Applying: dyndbg: drop EXPORTed dynamic_debug_exec_queries
+Applying: dyndbg: add class_id to pr_debug callsites
+Applying: dyndbg: add __pr_debug_cls for testing
+Applying: dyndbg: add DECLARE_DYNDBG_CLASSMAP
+Applying: kernel/module: add __dyndbg_classes section
+Applying: dyndbg: add ddebug_attach_module_classes
+Applying: dyndbg: validate class FOO by checking with module
+Applying: dyndbg: add drm.debug style bitmap support
+Applying: dyndbg: test DECLARE_DYNDBG_CLASSMAP, sysfs nodes
+Applying: doc-dyndbg: describe "class CLASS_NAME" query support
+Applying: doc-dyndbg: edit dynamic-debug-howto for brevity, audience
+Applying: drm_print: condense enum drm_debug_category
+Applying: drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers.
+Applying: drm_print: interpose drm_*dbg with forwarding macros
+Applying: drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/Kconfig
+M	drivers/gpu/drm/Makefile
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/Makefile
+Auto-merging drivers/gpu/drm/Kconfig
+CONFLICT (content): Merge conflict in drivers/gpu/drm/Kconfig
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0023 drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- .../drm/nouveau/include/nvkm/core/subdev.h    |  2 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c         |  7 ------
- drivers/gpu/drm/nouveau/nvkm/core/subdev.c    | 23 +++++++++++++++++++
- 3 files changed, 24 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-index d5f6ca05d5fa..05807403fdd6 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-@@ -19,7 +19,7 @@ struct nvkm_subdev {
- 	enum nvkm_subdev_type type;
- 	int inst;
- 	char name[16];
--	u32 debug;
-+	unsigned long debug;
- 	struct list_head head;
- 
- 	void **pself;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 85b63b527877..d45c71ffc09e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -90,13 +90,6 @@ DECLARE_DYNDBG_CLASSMAP(nv_cli_debug_verbose, DD_CLASS_TYPE_VERBOSE, 10,
- 			"NV_CLI_DBG_TRACE",
- 			"NV_CLI_DBG_SPAM");
- 
--DECLARE_DYNDBG_CLASSMAP(nv_subdev_debug_verbose, DD_CLASS_TYPE_VERBOSE, 15,
--			"NV_SUBDEV_DBG_OFF",
--			"NV_SUBDEV_DBG_INFO",
--			"NV_SUBDEV_DBG_DEBUG",
--			"NV_SUBDEV_DBG_TRACE",
--			"NV_SUBDEV_DBG_SPAM");
--
- MODULE_PARM_DESC(config, "option string to pass to driver core");
- static char *nouveau_config;
- module_param_named(config, nouveau_config, charp, 0400);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/subdev.c b/drivers/gpu/drm/nouveau/nvkm/core/subdev.c
-index a74b7acb6832..227871c3a749 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/subdev.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/subdev.c
-@@ -26,6 +26,27 @@
- #include <core/option.h>
- #include <subdev/mc.h>
- 
-+#include <linux/dynamic_debug.h>
-+#include <linux/module.h>
-+
-+#define DEBUG
-+
-+DECLARE_DYNDBG_CLASSMAP(nv_subdev_debug_verbose, DD_CLASS_TYPE_VERBOSE, 15,
-+			"NV_SUBDEV_DBG_OFF",
-+			"NV_SUBDEV_DBG_INFO",
-+			"NV_SUBDEV_DBG_DEBUG",
-+			"NV_SUBDEV_DBG_TRACE",
-+			"NV_SUBDEV_DBG_SPAM");
-+
-+static struct ddebug_classes_bitmap_param nv_subdev_verbose = {
-+	.bits = NULL, // wants &_subdev->debug
-+	.flags = "p",
-+	.map = &nv_subdev_debug_verbose,
-+};
-+module_param_cb(debug_subdev, &param_ops_dyndbg_classes, &nv_subdev_verbose, 0600);
-+
-+
-+
- const char *
- nvkm_subdev_type[NVKM_SUBDEV_NR] = {
- #define NVKM_LAYOUT_ONCE(type,data,ptr,...) [type] = #ptr,
-@@ -180,6 +201,8 @@ nvkm_subdev_ctor(const struct nvkm_subdev_func *func, struct nvkm_device *device
- 	else
- 		strscpy(subdev->name, nvkm_subdev_type[type], sizeof(subdev->name));
- 	subdev->debug = nvkm_dbgopt(device->dbgopt, subdev->name);
-+	nv_subdev_verbose.bits = &subdev->debug;
-+	pr_debug("updated bitmap: %px\n", &nv_subdev_verbose.bits);
- 	list_add_tail(&subdev->head, &device->subdev);
- }
- 
--- 
-2.36.1
 
