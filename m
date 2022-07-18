@@ -1,151 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B01457796D
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 03:51:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CC4577B25
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 08:37:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49FF990213;
-	Mon, 18 Jul 2022 01:51:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21DA3A9BB9;
+	Mon, 18 Jul 2022 06:37:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BDA496DB3;
- Mon, 18 Jul 2022 01:51:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658109110; x=1689645110;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=9Yyu4FMr43ASAcf5FH1E6u8fYbMy3UjzVq6KNHl3qL8=;
- b=Go5CcwQ7yXIVQMVwPlATNguBNcgCJKHuIKHa5e1f8axKFCdw9W8DuheU
- dtCZ4WkfBWl8Rz8qodC4Q6dxyukIAQwNDYnnvir2uZXxbO6Hn9z+gKCsJ
- pLq5DbvgebDdEitTOFXSbhl4PnYITu0GMdxyldEZgT9RGdOtEGg3mEstf
- 55HSbtriZ3PUbx9srEKNoPNOJ+xFVR92N21tyalysxnpbZZDr/SbFl+Rj
- EMjqTO7ouuc0qjL8jvO8ZzsZOrdLp6QcofcZYc3mzLBfRvqhmV8tH+5DZ
- O3viKrPSGCg7x64KetR+Kdolht4E0kdlYOiX8OdgBXrL6DijrQKJl8409 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10411"; a="286847443"
-X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; d="scan'208";a="286847443"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2022 18:51:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; d="scan'208";a="773563288"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga005.jf.intel.com with ESMTP; 17 Jul 2022 18:51:49 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Sun, 17 Jul 2022 18:51:49 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Sun, 17 Jul 2022 18:51:49 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Sun, 17 Jul 2022 18:51:49 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Sun, 17 Jul 2022 18:51:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P7/nTPC9hxX4/wAYymEHcyu/tSMTZDvymalsrfQRR74QoIZJmPRUwqUCMo6gOWtOoGE7d4rf3/6X85rs/cQQuXSpAnKU1HZYUhRX7+yxSIOCPJ79RHTQQ55SDeW862Oz8F+GCR/DuqvuHf0gap8cqkz2rlGgu7739DcuKF4VN9BS3LpJVuht+Qx+6svzBmQDQmi0lTSAhN74W52qbJlzUIpUstDtRDuzYnTGF/Mmmi2IYs83C4RNXiY4JY02HzQvdd4Kkqc2MWGvnCdS9m3BHrwfcXbwsqujYA4zidAIUy24iGcoUdhMtp4lkt80wuCFfSSu75bHMXnYG2jc8bFOpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ePC4L0neWAGG83cu/YATvv+0rWvdJF4zJ+ZF6jW337Y=;
- b=EkZUPfy3S3847Q4NRwA9c5ak+hu6a+deVpk5blszP/JlkldtnEvcjXXaEmSRxB4eQa5A8hZYFQ/TLoyCyTZdW68+/fSpqbgDuuMbECKGHU2EzE/y9I3Wghzog6bI8+D+R6rmfWyNRjJ8p86zY5PInGFyCsBcId/s2sIkOgq4z/Zr6NxCO36xolnchpq/25xAKYNbAN9qs4vfLCZrrYpzj3tl82tT+DakwqyFCEGoGZe7heDIgRfOba/xhhvPfJ5xmYHDpFWRkGN13lv4WUaHb/vmcQb6GaiWqJbC9uhDirgPr29lUxZfONPIg/A9mFp+60CtL8HHNYrF8fCIl7HPLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- MN2PR11MB4495.namprd11.prod.outlook.com (2603:10b6:208:189::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.12; Mon, 18 Jul
- 2022 01:51:45 +0000
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::e8a1:cb8a:5124:2848]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::e8a1:cb8a:5124:2848%6]) with mapi id 15.20.5438.023; Mon, 18 Jul 2022
- 01:51:45 +0000
-Message-ID: <517d8b1e-a308-211e-c541-dda49a0d01a3@intel.com>
-Date: Sun, 17 Jul 2022 18:51:42 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: <intel-gfx@lists.freedesktop.org>
-References: <20220715225451.1294354-1-daniele.ceraolospurio@intel.com>
-From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20220715225451.1294354-1-daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0380.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::25) To DM4PR11MB5488.namprd11.prod.outlook.com
- (2603:10b6:5:39d::5)
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com
+ [IPv6:2607:f8b0:4864:20::130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86344A9BB4;
+ Mon, 18 Jul 2022 06:37:22 +0000 (UTC)
+Received: by mail-il1-x130.google.com with SMTP id l11so3422373ilf.11;
+ Sun, 17 Jul 2022 23:37:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=g6TIguNyt39froU0xSaD2xZ3d8WfuhzQJCEKsYjpDj0=;
+ b=BScxYFnyj3P6w0fI1W5RMYF+dZn3akYMcVQsBLnf2G59Ckzv6nDBA7O6fpUOVDzXHO
+ bs5CsP+mbp89hLAG1e/xC4eOZAIUOeFMhMZv09N+WSf+65PJ2rU0/Dj4yAaQAyJ00s6o
+ nema7iFrby2Ll0udysAWzECkuMq2Jj8Tte4hEtvf+858VlMsk80I5SenG5V3MUpskjTb
+ xh9VxKN/vN3fPD+OYPXNa+HdmnIdhhRlGAkPqgUNJxZAxQxJ0dI1wEBGDl5a3GG9A1KC
+ kpX/vNG8R6q9/fT0K9cS0Qf1KJU2P461IkQ42huaG+1Req9ZXwG79/3a0UsuM7GPPNrd
+ 6Mxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=g6TIguNyt39froU0xSaD2xZ3d8WfuhzQJCEKsYjpDj0=;
+ b=z20xdKxJ/JlMq9kVyhnaM7geovDHvB3KjGxgwq1ziAz1Lt5nZSKfR2L++JnjDDXT96
+ AHW4MEsOsmVMjSB4YxhPHtHQTn+MNAzPgksltxTi4KyaWV3OrJdyWqXui/tOLBUru9v4
+ smSgWgWMh0PMGtANPgLgFaenb8AZdpdYVE2EU5a1jKeg3iiZTadlmSDjiRLLlezoB4W2
+ Kodjm/Mf9+RAJBIukHIrlEqwXgrhVbKEX4CCBpeXTJCbbLp1ml83vf53flM1/QA0gatR
+ fuXO2QD0EO+kotNi9B40pCESJWSwSpeipUDyRhMTg/j6w2E4tPV915e3saZXuXgVaP6x
+ MQaw==
+X-Gm-Message-State: AJIora/3JQ4CxlnpHF7RsWbb7DUzL0isy+LFt1xrQ0vIyUPW/d4zeqTo
+ WsRWZi39epsdvpxvuvTTsVl4L/y3MnE=
+X-Google-Smtp-Source: AGRyM1v5ZPvFFq20b7OvEQup5sSJJIQrZeCkeBnfXrMSJ2qYSo/clxQtJrZHxGMdNNY9cZBloPVU2A==
+X-Received: by 2002:a05:6e02:1583:b0:2d7:a75d:888f with SMTP id
+ m3-20020a056e02158300b002d7a75d888fmr12676052ilu.13.1658126241597; 
+ Sun, 17 Jul 2022 23:37:21 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.37.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Jul 2022 23:37:21 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com
+Date: Mon, 18 Jul 2022 00:35:44 -0600
+Message-Id: <20220718063641.9179-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7b670497-748b-477c-cd61-08da686011ae
-X-MS-TrafficTypeDiagnostic: MN2PR11MB4495:EE_
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Taif4Y5+0pWLEjr4+ZtfEXbZc88haUwp4uudOs8k1OGS1o4hB7mumfn8LhFUCwFlRYYrvzYPqdiEbH81QhoyJ9nwdV60N18ODt0r7+JJOmwiNFdts5XWwielNEPpSfgh5C+/WJyBdwd321PiVyS4u3dKhaNViBMKzhlGGcv7DHseSTbTEbJEJaqB8Xmw67aMyXYqTIM0Z3p69X4aZREHDVT8n3q973FiCdPkZllwYH+vJsOnYttUEDOKqLiNBPdrsuP5XSbG6obojGI2KgXuJCwG+WJkVaaiubt0OncaII4bqjVfAH6b0FEc6Cm1qIO3ls3G14LU0YA/IyQQVI2chAMHyI6wn6WITC6YbEBe4DcRlH9C5F5XsjhERRvbvYPh/YGwzgK9JKXR3/fQeI7wcZhmtz/TYJiwNLmlDQXPbWCmffEHsAiF/1+ZIYvz/uSpom/9Mq5cvTSxjpfUxz+w6sxn9x2qvLJ0Y7fmZM93wkWUj7ZaRucE4I+hHf1LgV4p7pVo8a2xWqM3eG5OVHzSj2NV0zrVoW14XIbCmsK36ddFOQelEv0utI3wpoimBjosBioQWLNXbXjW8YLmQC7ULa03Oa9KnglsyNlxwIB1lLr6go5q4UNjWL/tF6XPilUuz/EoHvPntgCGlZNIuIYupjkSfujdEhpAydvon3kBm88UE5N5xzaICiljkxE+BCbowBDkarKoeGxt4dhxZMgw8I8JsBfAy1uaZoH6v2OAHLXaN2X1/t9N9L266vO8IODUUO6AfQaPPNJRzAMCNA6gm1MNeLP8LLl7+iA5QJ2FDi3UzxLxKVIKAbfeNZ8BDSJz
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(136003)(39860400002)(376002)(346002)(366004)(396003)(83380400001)(6512007)(30864003)(26005)(186003)(41300700001)(6666004)(2906002)(86362001)(6506007)(53546011)(478600001)(6486002)(966005)(2616005)(5660300002)(8936002)(31696002)(38100700002)(6916009)(54906003)(316002)(82960400001)(31686004)(36756003)(66476007)(66556008)(66946007)(4326008)(8676002)(334744004)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?akw5MUlOdUJmSE5tTkFIbWtMcVZib3lWaGFnSWxnNGdyNVozNDNwdE1TK1RR?=
- =?utf-8?B?c1JudTdVOHRTWVJ2ZkJ5dzVUMnV4Tml4bkhqRW1JWjVIdThZcXRUaW5jTFNU?=
- =?utf-8?B?UHZMbkp0TVJmRDgvSndVaXRTY2g2ZS84L2ZJUnM0Ym15V2NaWTliczhwTXVu?=
- =?utf-8?B?MjNoT2krTWlJekNiR0Z1WnFxdDF4alFPN0lnU3FJUWxJaFk5aFJiaS83WU5q?=
- =?utf-8?B?U0FFYjZHTDBTT3IraEl0UzJpUHRPdHZYc3pkL3NHeFpNbmdkdndZRGRlVmxJ?=
- =?utf-8?B?UFU1U2w1RFgxNTlITG9XSFNKY2V3VHlvcHEydWdZcVovbHlTc2RwOG1Idkt6?=
- =?utf-8?B?N3ZFeExZcW5UR1JQWUI1U2JnelF6ZmRGOGpraVNFMkJOQml5YkhzNlpMWWhj?=
- =?utf-8?B?dTh6NXdEbk5QR0ZCakE2c3JrMjBKa1hNUjFLejh0M09rMGNXSkswWWxKK05w?=
- =?utf-8?B?MkxJTis0UHNCMm9INmk2M21lY21QNy9kaStkTllEYmJvR3RTZHVzclJ0Tzdy?=
- =?utf-8?B?WGlwTE9UZy9IalBIT0M5UFRob3p2UWJEaVNKaTFPRWVxWkI2c3hqbE5XdXVN?=
- =?utf-8?B?RFBScVJkQU82MDdvN1BuU3FpS2VUUVRURUdXODAvM0h0N0t4ZWQ3c0N1dUcr?=
- =?utf-8?B?SkxtZDM2YWptM0dMUGZwbE9QakpMRi9udW5mWlVtZ3V2bzhHbzdLb1duQWZN?=
- =?utf-8?B?c3FVRVY2SlR6VzMxUGRZK2hDcTVQTi9ZaEFUbkV6OVU5M2pva3l4b1BTRFlC?=
- =?utf-8?B?NU1OczhtZ1Qyc2U5UzZhNTgvZHdXNHFuYXlyUkd4WFR0N0ZWZWxuNlI2RmxZ?=
- =?utf-8?B?ZUFCUWJaQzRsTzhFdnVEeEtQNjBaZTlzMGVMNG96RFpOdDZOU0pTS3NXL1d0?=
- =?utf-8?B?MUhEZEFkRjVIc2RvbkVDdU4wNkNQRVVycENIQ1FxdmVvNkhLdDljVHVzYVIx?=
- =?utf-8?B?TWZvZzNvNU84czM0TENFV3JXTUhvYzhKamJ2V091UVBjSEc2eThPVUIyM2s4?=
- =?utf-8?B?eUNYSkpvaXF1dE9RR0VqR2ZQWUt2QVpuK1Nzb3RMRW0xa0JWQzFZNXcxTklq?=
- =?utf-8?B?dDVDQnh4UDFKVEptU2JFdlMyRVFBRldhaDAxRnhINzM2R0RZUDlRWERZaFdJ?=
- =?utf-8?B?SjN4R2hQUjA0VXo2Wnc5N0lnSUpuUUhaOGNhczVsRlcxcTAraW5PenIvRWxw?=
- =?utf-8?B?OUxYRXNobEw5K2duR0FFN1FKbnlGVElFZEM2YWdxcSsrY1FrbUROTklJWCtR?=
- =?utf-8?B?Yjd3Z1J2Tjk5eUdLeU90Wnp1d1dLMlh5Y1J1WCtqMlR5TGhLWG1mZHdISEpa?=
- =?utf-8?B?bitDeGVIT0h0QkFKTjVtL3FnSmpNV1ZHV1VBREYwTFlNL0RiZGExYW9wenNH?=
- =?utf-8?B?SmhrUE1yMnR1c0huVStMcElEd2tycmNWVWNBQW5Bc0NnRW9iVFR0NGJONm1F?=
- =?utf-8?B?UWlqUnB5MDd2TGRBYVVCU0ZGRDBlc3Z3YitBeG15ckVoYmR5OTRqdXg3ano4?=
- =?utf-8?B?eFhWYkh3dWJkWklkMkpwN2FsTWFwMHMzWmlhdjJkeGxQUWZDZytLTkpqQThE?=
- =?utf-8?B?NzlIWktISGJaYXlYZXRDVEVXdEdDRHp3RER5UXVBV1h1dHJJRElzZytuZXdW?=
- =?utf-8?B?T0thTDErdWFvcnF3d2h6d1JvcnpDY3NmMFN4cmpnMTU0emVEWWZzM2VUR09E?=
- =?utf-8?B?ZndXczkwQWs5STRwTnFlQ1RIK09hTCtTYTR2bzBhbjE4cDFuRkJzVko1SjNE?=
- =?utf-8?B?K3pwbDFvUGRqQ3NzdlBVNENycndZMmdhaXlDVEx2VWx1dzlEUFFicGNNbFkz?=
- =?utf-8?B?K3VoSGdaaFpUZ3ZOMWhHaXpoMndIZ0pzRVd3ZjBuVTZicmFaV2RHa0xrRHB6?=
- =?utf-8?B?em9WbWFwd0VOSFNiUERiNzhVSUxrWXhOaUc0RkdscEdCbCtBWkFmVHl4KzVw?=
- =?utf-8?B?d2FZdVZEcGdzTkdaQ3d5bUlyN1RkQnFuS3RVWnNpdHBzbWMrSDBueEcvaDRM?=
- =?utf-8?B?UDl5RTVudFZ1L0haWjVWS0hoOUphT1JCMTFEenVIWWhhNXpGNm4vK0d1azBr?=
- =?utf-8?B?UTNtQk5tamFjRkltQ0RZSm5Nb2ZHMzVualVmejRONlQ2TVE2b3VZRnA2V1Ft?=
- =?utf-8?B?UTYycUoyL3F2dThabWRDTTlScDZYenVIVUo2dUs3cVRyWDlNanJQM2EwTWMx?=
- =?utf-8?B?enc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b670497-748b-477c-cd61-08da686011ae
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2022 01:51:45.0437 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DOqll161DNDEnYnC1qnVC3T1I7PAnjVlVMXM5HZGWh2qAj6DP/p9Kpg7pkNvNVhc/cpk/Z4z4zszySgO4ENeQgybNhreNcAuVlbDvsf8PZs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4495
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: support v69 in parallel to v70
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 00/41] DYNDBG: opt-in class'd debug for
+ modules, use in drm.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,884 +68,557 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, dri-devel@lists.freedesktop.org
+Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+To: jbaron@akamai.com>,gregkh@linuxfounation.org
+CC: intel-gfx@lists.freedesktop.org,nouveau@lists.freedesktop.org,dri-devel@lists.freedesktop.org
+
+Add 'typed' "class FOO" support to dynamic-debug, where 'typed' means
+either DISJOINT (like drm debug categories), or VERBOSE (like nouveau
+debug-levels).  Use it in DRM modules: core, helpers, and in drivers
+i915, amdgpu, nouveau.
+
+If a module is using class'd prdbgs (pr_debug_class, dev_dbg_class, or
+adapted drm_dbg_<category>) or similar in its code, it can "opt in" to
+allow dyndbg to manipulate those class'd prdebugs, by declaring in a
+c-file:
+
+   DYNAMIC_DEBUG_CLASSMAP_TYPE(drm_debug_classes,
+  			DD_CLASS_TYPE_DISJOINT, 0,
+                        "DRM_UT_CORE",
+                        "DRM_UT_DRIVER",
+                        "DRM_UT_KMS",
+                        "DRM_UT_PRIME",
+                        "DRM_UT_ATOMIC",
+                        "DRM_UT_VBL",
+                        "DRM_UT_STATE",
+                        "DRM_UT_LEASE",
+                        "DRM_UT_DP",
+                        "DRM_UT_DRMRES");
+			// todo: stringify __va_args inside the macro
+
+By doing this, a module tells dyndbg that it:
+
+   - is using class-ids [0..N] in prdbg callsites
+     0..N is also the numeric values of DRM_UT_CORE..DRM_UT_DRMRES
+   - wants to refer to them by class-names [0..N]
+   - is mapping those names to those class-ids
+   - expects users to enable them via >control or >parameter/knob
+
+Then, a user can enable the prdbgs by their class:
+
+   :#> echo class DRM_UT_KMS +p > /proc/dynamic_debug/control
+
+With another 3-line bitmap param declaration, wrapping that
+drm_debug_classes var in a module-param-cb:
+
+   :#> echo 0x1 > /sys/module/drm/parameters/debug
+
+and optionally:
+
+   :#> echo +DRM_UT_CORE,-DRM_UT_KMS \
+	> /sys/module/drm/parameters/debug_cats
+
+DYNAMIC_DEBUG gets:
+
+new .class_id:5 field in struct _ddebug (callsite record)
+big enough to represent drm_debug_category (after squeezing)
+defaults to 31 for all existing prdbgs
+
+classmaps (as declared in macro above) are in their own section,
+and are loaded by kernel/module, and handled by add_module,
+which attaches classmaps to their module's ddebug table.
+     
+ddebug_change() handles class FOO queries by validating theyre known
+by each module in the loop, if unknown, the whole module is skipped,
+so no changes are possible w/o a good classname.
+
+Without class FOO in a query/command, only id=31 can be changed.  This
+protects new class'd prdbgs from changes by old user queries.
+
+With this support, the module opt-in approach means that:
+
+   - modules declare classnames they like, meaningful names, DRM_UT_*
+     these are numbered [0..N]
+   - modules call pr_debug_class(N, "fmt..",...)
+     or drm_dbg(CAT, "fmt..",...) - same form.
+   - class-id space, while limited:0-30, is private to each module
+   - "class FOO" is only way to enable a class'd prdbg
+   - unrelated modules use 0..N separately, for different purposes.
+   - modules "share" classnames by separate decls (uses of macro)
+     all drm modules reuse the above declaration.
+     then they respond together to a >control
+
+4 CLASS_TYPES are defined; they split behavior on 2 factors:
+
+   1. independent bits vs related:(X<Y) bits [0-N]
+   2. input form: number/hex vs CSV-list: [+-]CLASS_NAMES
+     
+   DD_CLASS_TYPE_DISJOINT	independent bits, 0x1f input is clearest
+   DD_CLASS_TYPE_VERBOSE	(x<y), input is level, not bitvec
+   DD_CLASS_TYPE_SYMBOLIC	DISJOINT with csv-list of +-CLASS_NAMEs
+   DD_CLASS_TYPE_LEVELS		VERBOSE  with csv-list of +-CLASS_NAMEs
+
+Splitting up behavior this way is safe, and flexible:
+
+ - no bitmap-vs-level > sysknob ambiguity
+   as was case when both were accepted on same knob
+ - narrower interfaces
+   uint is uint
+ - can defer SYMBOLIC handling, but keep the enums.
+   it has no users ...
+ - can later add 2 more ENUMS allowing both inputs
+   in separate VERBOSE & DISJOINT choices
+   then authors choice if they want to accept mixed input
+ - can enumerate "wierd" relations if needed
+   DISJOINT|VERBOSE should cover everything I can forsee
+   but theres room for DD_CLASS_TYPE_STOCHASTIC (over the garage)
+
+NB: DISJOINT v RELATED cover the space; there is no semi-related.  The
+relation could differ from (x<y), but atm I can't think of another
+that makes any sensible distinction from VERBOSE.
+
+Quick review of debug logging:
+
+DRM is biggest use-case: 23 macros, issuing 10 exclusive categories of
+messages, from ~5100 callsites, across core (drm, _*helpers), and 3+
+drivers (Im working amdgpu, i915, more recently nouveau).  These mostly
+flow to drm_debug_enabled(category) for a print/no decision.
+
+nouveau has minimum direct use of the DRM.debug macros, but does use
+pr_debug (in VMM iirc), and drm_debug_enabled() in ~50 places via
+macros, and another ~50 iirc due to NOUVEAU_DEBUG_MMU=y
+
+What nouveau has most of is log-levels: there are ~800 uses of them;
+nvkm_(fatal|error|warn|info|debug|trace|spam), they all flow thru
+nvkm_printk_.  Even excluding some levels as "always-on" and not
+appropriate for dyndbg's extra resources and complexity, theres ~450
+callsites.
+
+A reported smattering of raw/adhoc debug code. all but unknown to me.
+
+Like any debug logging, they're mostly off, and should have close to
+0-off-cost.  This is what dyndbg (with/on jump-label) was made for.
+
+Bottom line: in order to unify more potential (drm,etc) use-cases,
+dyndbg needs to support both debug classification schemes:
+RELATED/VERBOSE and INDEPENDENT/DISJOINT.
+
+This is rev3. rev2 is here:
+https://lore.kernel.org/lkml/20220516225640.3102269-1-jim.cromie@gmail.com/
+
+summary of diffs:
+
+ - rebased on 5.19-rc6 to pick up kernel/module changes
+ - tracfs bits now use __vstring, __vstr_assign, from S.Rostedt
+ 
+ - 4 class-map-types - as outlined above
+   now supports VERBOSE semantics, WIP nouveau integration.
+   v2 became the DISJOINT use case
+   Lots of API-ish surface area here *RFC*
+
+ - class-maps now in section("__dyndbg_classes")
+   class FOO queries are available at earlyboot / module-load
+   drop (un)?register_classes()
+
+ - test-dynamic-debug module
+   tests the 4 CLASS-TYPES
+   good place to bikeshed / paintshop the API
+
+ - nouveau - start poking - WIP
+   NV_PRINT -> dev_dbg (creates 632 prdbgs, but not class'd)
+   VERBOSE classes declared to see how they "fit", unused yet.
+
+Summary:
+
+ - plenty of new stuff here.
+ - plenty of new API surface area.
+ - exposes CLASSNAMES to user, via control, >symbolic-sysknob
+
+More on VERBOSE:
+
+dyndbg's class scheme is names-based, so even for VERBOSE with
+numeric input, there must be a "V0" name; a name with which to turn
+off "V1".  And don't do 'pr_dbg_class(0,..)'.
+
+VERBOSE is an overlay on DISJOINT; the callback reads the input as a
+level, and computes and applies the bitmap to enforce it.  Yes it
+wastes "V0" bit.  That might matter if an author wanted many separate
+verbose-knobs with a few levels each, but that seems fairly unlikely.
+
+More importantly, it means that relative verbosity is not enforced at
+the >control input; IOW this is allowed:
+
+   :#> echo class V1 -p > /proc/dynamic_debug/control
+   :#> echo class V3 +p > /proc/dynamic_debug/control
+
+2nd line doesn't undo 1st, as it would if changed via sysfs-knob:
+
+   :#> echo 3 > /sys/module/drm/parameters/debug
+
+ISTM this is fine, the "relative" meaning is added at the interface,
+where it presents to a user.  Doing otherwise means surgery to
+ddebug_change, which seems unnecessary given an option.
+
+CLASS NAMESPACE and DRM
+
+The class namespace is flat and wide, so "V1" is a poor choice, other
+than for demonstration (as in test_dynamic_debug module).  If every
+module had a "V1", turning them all on would issue lots of unrelated
+noise.
+
+Instead, class DRM_UT_CORE has a name with a specific sub-system wide
+(ie multi-module) meaning, and can (and should) be responded to by all
+cooperating modules.
+
+For DRM, this means 4-5 duplicate uses of DEFINE_DYNDBG_CLASSMAP, from
+multiple drivers' "*_{drm,dev,main}.c" files; all of them agreeing on
+the classnames, map-type and base.  Though repetitive, it is simple,
+and consistent with the "static struct foo = {INIT_expr}" pattern used
+in the macro.  Initializing an extern sounded like a maze w/o cheese.
+
+For core, drm_print.c has an additional task; it defines and
+initializes the bitmap sysknob that converts bits to a query:
+
+  static struct ddebug_classes_bitmap_param drm_debug_bitmap = {
+       .bits = &__drm_debug,
+       .flags = "p",
+       .map = &drm_debug_classes,
+  };
+  module_param_cb(debug, &param_ops_dyndbg_classes,
+  		  &drm_debug_bitmap, 0600);
+
+then the callback converts bit-toggles on input into something like:
+
+  :#> echo class DRM_UT_KMS +p > control
+
+which enables all drm_dbg_kms() callsites in all modules that declared
+that classname as known.
+
+NB: classmaps and classes_bitmap_params are different structs.  this
+allows the former to be shared by 2 of latter, each toggling 'p' & 'T'
+flags, to control output to syslog or tracelog independently.
+
+NOUVEAU and multiple VERBOSE knobs ?
+
+One thing nouveau has that I havent yet grokked is 2|3 independent
+verbose levels, in {,cli,sub}->debug (see subdev.h).  But Ive coded
+them as 2 more macro invocations; using bases 10, 15 to avoid/respect
+the 0-9 mapping of DRM.debug categories to those class-ids.
+
+With this, the drm subsystem uses 20/31 of its class-id range, perhaps
+63 is better, despite the cumbersome 0x-64bit interface.  Note that
+the sysfs-knobs do not expose the base/offset (its an inward-facing
+.class_id offset); each sysfs-knob gets its own 0..N bitmap, the base
+maps it to the 0..30 subrange allocated (manually, via the base arg to
+macro) for this class-map.
+
+anyway, heres how `modprobe nouveau` goes with dynamic_debug.verbose=3
+
+[86512.693954] dyndbg: class[0]: module:nouveau base:15 len:5 ty:1
+[86512.693958] dyndbg:  15: 0 NV_SUBDEV_DBG_OFF		# aka V0
+[86512.693959] dyndbg:  16: 1 NV_SUBDEV_DBG_INFO
+[86512.693960] dyndbg:  17: 2 NV_SUBDEV_DBG_DEBUG
+[86512.693960] dyndbg:  18: 3 NV_SUBDEV_DBG_TRACE
+[86512.693960] dyndbg:  19: 4 NV_SUBDEV_DBG_SPAM
+[86512.693961] dyndbg: class[1]: module:nouveau base:10 len:5 ty:1
+[86512.693961] dyndbg:  10: 0 NV_CLI_DBG_OFF
+[86512.693962] dyndbg:  11: 1 NV_CLI_DBG_INFO
+[86512.693962] dyndbg:  12: 2 NV_CLI_DBG_DEBUG
+[86512.693963] dyndbg:  13: 3 NV_CLI_DBG_TRACE
+[86512.693963] dyndbg:  14: 4 NV_CLI_DBG_SPAM
+[86512.693963] dyndbg: class[2]: module:nouveau base:0 len:10 ty:0
+[86512.693964] dyndbg:  0: 0 DRM_UT_CORE
+[86512.693964] dyndbg:  1: 1 DRM_UT_DRIVER
+[86512.693965] dyndbg:  2: 2 DRM_UT_KMS
+[86512.693965] dyndbg:  3: 3 DRM_UT_PRIME
+[86512.693965] dyndbg:  4: 4 DRM_UT_ATOMIC
+[86512.693966] dyndbg:  5: 5 DRM_UT_VBL
+[86512.693966] dyndbg:  6: 6 DRM_UT_STATE
+[86512.693966] dyndbg:  7: 7 DRM_UT_LEASE
+[86512.693967] dyndbg:  8: 8 DRM_UT_DP
+[86512.693967] dyndbg:  9: 9 DRM_UT_DRMRES
+[86512.693968] dyndbg: module:nouveau attached 3 classes
+[86512.693968] dyndbg: 632 debug prints in module nouveau
+
+They are not yet wired by class; the nv-printks are using dev_dbg for
+now, so they can be enabled with standard selections (module, func,
+etc).
+
+DYNDBG API
+
+I added __pr_debug_cls to make things testable, I wanted to keep it
+private/un-api, because drm already has drm_dbg_<cat>(cat, fmt..), and
+that seemed a pretty good model to follow: enums with strong names for
+class_id constants, and same names for classes.
+
+   ie: __pr_debug_cls(DRM_UT_KMS, "Whats the Matter with KMS: %s\n", reason);
+
+But now nouveau probably wants/needs it, perhaps others too.
+
+  pr_dbg_cls / dev_dbg_cls ?  class or debug spelled out ? 
+
+MORE TESTING with DRM & TRACEFS
+
+Most dev & testing has been on virtme, with test-dynamic-debug module
+doing an api-validation-demonstration.  The test module proves
+multiple sysknobs, but cannot prove real multi-module sharing of the
+class-name space.  The DRM.debug adaptation must (and does) do that.
+
+Now Im running on real gpu/drm hw; on both an amdgpu desktop, and this
+amdgpu+nouveau laptop.  Its stable enough to type on, browse, build
+more kernels, etc.
+
+:#> uname -r
+5.18.0-f2-00038-g61d300083196
+:#> wc /proc/dynamic_debug/control 
+11554 95556 1442827 /proc/dynamic_debug/control
+:#> lsmod | grep drm
+drm_buddy              20480  1 i915
+drm_ttm_helper         16384  2 amdgpu,nouveau
+ttm                    86016  4 amdgpu,drm_ttm_helper,i915,nouveau
+drm_dp_helper         184320  3 amdgpu,i915,nouveau
+drm_kms_helper        208896  6 drm_dp_helper,amdgpu,i915,nouveau
+drm                   655360  16 gpu_sched,drm_dp_helper,drm_kms_helper,drm_buddy,amdgpu,drm_ttm_helper,i915,ttm,nouveau
+cec                    49152  2 drm_dp_helper,i915
+
+I've never turned on DRM.debug in frustration (or curiousity until
+recently); I dunno what normal traffic looks like.  So I wrote a
+script to toggle each category: on/off for 1 sec, so I could 'more'
+thru the output to see the partitioned streams.
+
+Different runs (of '10' sec of active tracing) produce between 330-3500
+lines of logging, depending upon mousing/screen activity.  Heres a bit
+of a many-window-select run: `wc trace` gives "size" of the category's stream.
+
+:#> trc_classes 
+12 /sys/kernel/tracing/trace
+doing class DRM_UT_CORE +/- T   1394 13941 141614 /sys/kernel/tracing/trace
+doing class DRM_UT_DRIVER +/- T   1396 13959 141816 /sys/kernel/tracing/trace
+doing class DRM_UT_KMS +/- T   1482 14521 148246 /sys/kernel/tracing/trace
+doing class DRM_UT_PRIME +/- T   1484 14539 148446 /sys/kernel/tracing/trace
+doing class DRM_UT_ATOMIC +/- T   2984 31658 396064 /sys/kernel/tracing/trace
+doing class DRM_UT_VBL +/- T   3411 37321 449848 /sys/kernel/tracing/trace
+doing class DRM_UT_STATE +/- T   3413 37339 450048 /sys/kernel/tracing/trace
+doing class DRM_UT_LEASE +/- T   3415 37357 450248 /sys/kernel/tracing/trace
+doing class DRM_UT_DP +/- T   3417 37375 450442 /sys/kernel/tracing/trace
+doing class DRM_UT_DRMRES +/- T   3419 37393 450644 /sys/kernel/tracing/trace
+
+and some mid-run output from a quiet run, with less repetition.
+
+            bash-96790   [006] ..... 410237.432255: tracing_mark_write: doing class DRM_UT_DRIVER +T
+            bash-96790   [006] ..... 410238.610319: tracing_mark_write: doing class DRM_UT_DRIVER -T
+            bash-96790   [006] ..... 410239.776285: tracing_mark_write: doing class DRM_UT_KMS +T
+     gnome-shell-2101    [003] ..... 410239.923029: drm_debug: [FB:98]
+  kworker/u32:10-367584  [010] ..... 410239.924627: drm_debug: Allow idle optimizations (MALL): 0
+   kworker/u32:0-364714  [008] ..... 410239.935126: drm_debug: Allow idle optimizations (MALL): 1
+     gnome-shell-2101    [003] ..... 410240.527186: drm_debug: [FB:100]
+   kworker/u32:0-364714  [008] ..... 410240.528686: drm_debug: Allow idle optimizations (MALL): 0
+  kworker/u32:10-367584  [010] ..... 410240.539378: drm_debug: Allow idle optimizations (MALL): 1
+            bash-96790   [006] ..... 410240.957921: tracing_mark_write: doing class DRM_UT_KMS -T
+            bash-96790   [006] ..... 410242.199120: tracing_mark_write: doing class DRM_UT_PRIME +T
+            bash-96790   [006] ..... 410243.301988: tracing_mark_write: doing class DRM_UT_PRIME -T
+            bash-96790   [006] ..... 410244.416400: tracing_mark_write: doing class DRM_UT_ATOMIC +T
+     gnome-shell-2101    [003] ..... 410244.653372: drm_devdbg: cat:4, (0xffff8f26c173de00:0000:06:00.0)[UNSAFE-MEMORY] Allocated atomic state 000000001f1e6cb6
+     gnome-shell-2101    [003] ..... 410244.653381: drm_devdbg: cat:4, (0xffff8f26c173de00:0000:06:00.0)[UNSAFE-MEMORY] Added [PLANE:55:plane-3] 00000000785ae904 state to 000000001f1e6cb6
+     gnome-shell-2101    [003] ..... 410244.653384: drm_devdbg: cat:4, (0xffff8f26c173de00:0000:06:00.0)[UNSAFE-MEMORY] Added [CRTC:67:crtc-0] 00000000b06ca618 state to 000000001f1e6cb6
+     gnome-shell-2101    [003] ..... 410244.653389: drm_devdbg: cat:4, (0xffff8f26c173de00:0000:06:00.0)[UNSAFE-MEMORY] Set [FB:98] for [PLANE:55:plane-3] state 00000000785ae904
+     gnome-shell-2101    [003] ..... 410244.653392: drm_devdbg: cat:4, (0xffff8f26c173de00:0000:06:00.0)[UNSAFE-MEMORY] checking 000000001f1e6cb6
+     gnome-shell-2101    [003] ..... 410244.653407: drm_devdbg: cat:4, (0xffff8f26c173de00:0000:06:00.0)[UNSAFE-MEMORY] committing 000000001f1e6cb6 nonblocking
+   kworker/u32:0-364714  [010] ..... 410244.653729: drm_debug: amdgpu_crtc id:0 crtc_state_flags: enable:1, active:1, planes_changed:1, mode_changed:0,active_changed:0,connectors_changed:0
+   kworker/u32:0-364714  [010] ..... 410244.654642: drm_debug: plane: id=3 dcc_en=0
+
+a few things to note in the trace output:
+
+. the event-name: drm_(debug|devdbg) is not very informative
+
+. drm_devdbg fmt has cat:%d, it could be the classname, but that should
+  replace event-name, not supplement it. this pertains to drm_debug too.
+
+. drm_devdbg has lots of (dev-info), that could be optional on a new flag(s)
 
 
-On 7/15/2022 3:54 PM, Daniele Ceraolo Spurio wrote:
-> This patch re-introduces support for GuC v69 in parallel to v70. As this
-> is a quick fix, v69 has been re-introduced as the single "fallback" guc
-> version in case v70 is not available on disk. All v69 specific code has
-> been labeled as such for easy identification, and the same was done for
-> all v70 functions for which there is a separate v69 version, to avoid
-> accidentally calling the wrong version via the unlabeled name.
->
-> When the fallback mode kicks in, a drm_warn message is printed in dmesg
-> to warn the user of the required update.
->
-> The plan is to follow this up with a more complex rework to allow for
-> multiple different GuC versions to be supported at the same time.
->
-> Fixes: 2584b3549f4c ("drm/i915/guc: Update to GuC version 70.1.1")
-> Link: https://lists.freedesktop.org/archives/intel-gfx/2022-July/301640.html
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Dave Airlie <airlied@redhat.com>
+If anyone wants to repeat the above with the patchset, the .rc file follows:
 
-I've sent a slightly earlier version of this patch (cosmetic changes 
-only) to trybot with an hack to change the default GuC to v80 so that 
-the fallback would kick in:
+events_3() {
+    local a=$1
+    local b=$2
+    local c=$3
+    echo $a > /sys/kernel/tracing/events/dyndbg/enable
+    # avoid drm_vblank*, its noisy
+    echo $b > /sys/kernel/tracing/events/drm/drm_debug/enable
+    echo $c > /sys/kernel/tracing/events/drm/drm_devdbg/enable
+}
 
-https://patchwork.freedesktop.org/series/106390/
+flags_class() {
+    local flgs=$1;
+    local cls=$2;
+    echo class $cls $flgs > /proc/dynamic_debug/control
+}
 
-No regression seen due to the fallback. Note that for this trybot I've 
-reduced the fallback log from drm_warn to drm_notice to avoid CI failing 
-all the tests that reload i915.
+# turn on each DRM_UT_* for 1 second each.
+# kinda shows relative traffic of each category
+# separated into blocks to get flavor of each
 
-Daniele
+drm_classes() {
+    local flgs=$1
+    [ -z $flgs ] && flgs="p"
 
-> ---
->   drivers/gpu/drm/i915/gt/intel_context_types.h |  11 +-
->   .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   3 +
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   5 +
->   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |  45 +++
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 348 +++++++++++++++---
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  57 ++-
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h      |   7 +
->   7 files changed, 419 insertions(+), 57 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> index d2d75d9c0c8d..04eacae1aca5 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> @@ -275,10 +275,17 @@ struct intel_context {
->   		u8 child_index;
->   		/** @guc: GuC specific members for parallel submission */
->   		struct {
-> -			/** @wqi_head: head pointer in work queue */
-> +			/** @wqi_head: cached head pointer in work queue */
->   			u16 wqi_head;
-> -			/** @wqi_tail: tail pointer in work queue */
-> +			/** @wqi_tail: cached tail pointer in work queue */
->   			u16 wqi_tail;
-> +			/** @wq_head: pointer to the actual head in work queue */
-> +			u32 *wq_head;
-> +			/** @wq_tail: pointer to the actual head in work queue */
-> +			u32 *wq_tail;
-> +			/** @wq_status: pointer to the status in work queue */
-> +			u32 *wq_status;
-> +
->   			/**
->   			 * @parent_page: page in context state (ce->state) used
->   			 * by parent for work queue, process descriptor
-> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> index 4ef9990ed7f8..29ef8afc8c2e 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> @@ -122,6 +122,9 @@ enum intel_guc_action {
->   	INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_DONE = 0x1002,
->   	INTEL_GUC_ACTION_SCHED_ENGINE_MODE_SET = 0x1003,
->   	INTEL_GUC_ACTION_SCHED_ENGINE_MODE_DONE = 0x1004,
-> +	INTEL_GUC_ACTION_V69_SET_CONTEXT_PRIORITY = 0x1005,
-> +	INTEL_GUC_ACTION_V69_SET_CONTEXT_EXECUTION_QUANTUM = 0x1006,
-> +	INTEL_GUC_ACTION_V69_SET_CONTEXT_PREEMPTION_TIMEOUT = 0x1007,
->   	INTEL_GUC_ACTION_CONTEXT_RESET_NOTIFICATION = 0x1008,
->   	INTEL_GUC_ACTION_ENGINE_FAILURE_NOTIFICATION = 0x1009,
->   	INTEL_GUC_ACTION_HOST2GUC_UPDATE_CONTEXT_POLICIES = 0x100B,
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index d0d99f178f2d..a7acffbf15d1 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -170,6 +170,11 @@ struct intel_guc {
->   	/** @ads_engine_usage_size: size of engine usage in the ADS */
->   	u32 ads_engine_usage_size;
->   
-> +	/** @lrc_desc_pool_v69: object allocated to hold the GuC LRC descriptor pool */
-> +	struct i915_vma *lrc_desc_pool_v69;
-> +	/** @lrc_desc_pool_vaddr_v69: contents of the GuC LRC descriptor pool */
-> +	void *lrc_desc_pool_vaddr_v69;
-> +
->   	/**
->   	 * @context_lookup: used to resolve intel_context from guc_id, if a
->   	 * context is present in this structure it is registered with the GuC
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> index b3c9a9327f76..323b055e5db9 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> @@ -204,6 +204,20 @@ struct guc_wq_item {
->   	u32 fence_id;
->   } __packed;
->   
-> +struct guc_process_desc_v69 {
-> +	u32 stage_id;
-> +	u64 db_base_addr;
-> +	u32 head;
-> +	u32 tail;
-> +	u32 error_offset;
-> +	u64 wq_base_addr;
-> +	u32 wq_size_bytes;
-> +	u32 wq_status;
-> +	u32 engine_presence;
-> +	u32 priority;
-> +	u32 reserved[36];
-> +} __packed;
-> +
->   struct guc_sched_wq_desc {
->   	u32 head;
->   	u32 tail;
-> @@ -228,6 +242,37 @@ struct guc_ctxt_registration_info {
->   };
->   #define CONTEXT_REGISTRATION_FLAG_KMD	BIT(0)
->   
-> +/* Preempt to idle on quantum expiry */
-> +#define CONTEXT_POLICY_FLAG_PREEMPT_TO_IDLE_V69	BIT(0)
-> +
-> +/*
-> + * GuC Context registration descriptor.
-> + * FIXME: This is only required to exist during context registration.
-> + * The current 1:1 between guc_lrc_desc and LRCs for the lifetime of the LRC
-> + * is not required.
-> + */
-> +struct guc_lrc_desc_v69 {
-> +	u32 hw_context_desc;
-> +	u32 slpm_perf_mode_hint;	/* SPLC v1 only */
-> +	u32 slpm_freq_hint;
-> +	u32 engine_submit_mask;		/* In logical space */
-> +	u8 engine_class;
-> +	u8 reserved0[3];
-> +	u32 priority;
-> +	u32 process_desc;
-> +	u32 wq_addr;
-> +	u32 wq_size;
-> +	u32 context_flags;		/* CONTEXT_REGISTRATION_* */
-> +	/* Time for one workload to execute. (in micro seconds) */
-> +	u32 execution_quantum;
-> +	/* Time to wait for a preemption request to complete before issuing a
-> +	 * reset. (in micro seconds).
-> +	 */
-> +	u32 preemption_timeout;
-> +	u32 policy_flags;		/* CONTEXT_POLICY_* */
-> +	u32 reserved1[19];
-> +} __packed;
-> +
->   /* 32-bit KLV structure as used by policy updates and others */
->   struct guc_klv_generic_dw_t {
->   	u32 kl;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 40f726c61e95..aa10db25cc06 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -414,12 +414,15 @@ struct sync_semaphore {
->   };
->   
->   struct parent_scratch {
-> -	struct guc_sched_wq_desc wq_desc;
-> +	union guc_descs {
-> +		struct guc_sched_wq_desc wq_desc;
-> +		struct guc_process_desc_v69 pdesc;
-> +	} descs;
->   
->   	struct sync_semaphore go;
->   	struct sync_semaphore join[MAX_ENGINE_INSTANCE + 1];
->   
-> -	u8 unused[WQ_OFFSET - sizeof(struct guc_sched_wq_desc) -
-> +	u8 unused[WQ_OFFSET - sizeof(union guc_descs) -
->   		sizeof(struct sync_semaphore) * (MAX_ENGINE_INSTANCE + 2)];
->   
->   	u32 wq[WQ_SIZE / sizeof(u32)];
-> @@ -456,17 +459,23 @@ __get_parent_scratch(struct intel_context *ce)
->   		   LRC_STATE_OFFSET) / sizeof(u32)));
->   }
->   
-> +static struct guc_process_desc_v69 *
-> +__get_process_desc_v69(struct intel_context *ce)
-> +{
-> +	struct parent_scratch *ps = __get_parent_scratch(ce);
-> +
-> +	return &ps->descs.pdesc;
-> +}
-> +
->   static struct guc_sched_wq_desc *
-> -__get_wq_desc(struct intel_context *ce)
-> +__get_wq_desc_v70(struct intel_context *ce)
->   {
->   	struct parent_scratch *ps = __get_parent_scratch(ce);
->   
-> -	return &ps->wq_desc;
-> +	return &ps->descs.wq_desc;
->   }
->   
-> -static u32 *get_wq_pointer(struct guc_sched_wq_desc *wq_desc,
-> -			   struct intel_context *ce,
-> -			   u32 wqi_size)
-> +static u32 *get_wq_pointer(struct intel_context *ce, u32 wqi_size)
->   {
->   	/*
->   	 * Check for space in work queue. Caching a value of head pointer in
-> @@ -476,7 +485,7 @@ static u32 *get_wq_pointer(struct guc_sched_wq_desc *wq_desc,
->   #define AVAILABLE_SPACE	\
->   	CIRC_SPACE(ce->parallel.guc.wqi_tail, ce->parallel.guc.wqi_head, WQ_SIZE)
->   	if (wqi_size > AVAILABLE_SPACE) {
-> -		ce->parallel.guc.wqi_head = READ_ONCE(wq_desc->head);
-> +		ce->parallel.guc.wqi_head = READ_ONCE(*ce->parallel.guc.wq_head);
->   
->   		if (wqi_size > AVAILABLE_SPACE)
->   			return NULL;
-> @@ -495,11 +504,55 @@ static inline struct intel_context *__get_context(struct intel_guc *guc, u32 id)
->   	return ce;
->   }
->   
-> +static struct guc_lrc_desc_v69 *__get_lrc_desc_v69(struct intel_guc *guc, u32 index)
-> +{
-> +	struct guc_lrc_desc_v69 *base = guc->lrc_desc_pool_vaddr_v69;
-> +
-> +	if (!base)
-> +		return NULL;
-> +
-> +	GEM_BUG_ON(index >= GUC_MAX_CONTEXT_ID);
-> +
-> +	return &base[index];
-> +}
-> +
-> +static int guc_lrc_desc_pool_create_v69(struct intel_guc *guc)
-> +{
-> +	u32 size;
-> +	int ret;
-> +
-> +	size = PAGE_ALIGN(sizeof(struct guc_lrc_desc_v69) *
-> +			  GUC_MAX_CONTEXT_ID);
-> +	ret = intel_guc_allocate_and_map_vma(guc, size, &guc->lrc_desc_pool_v69,
-> +					     (void **)&guc->lrc_desc_pool_vaddr_v69);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static void guc_lrc_desc_pool_destroy_v69(struct intel_guc *guc)
-> +{
-> +	if (!guc->lrc_desc_pool_vaddr_v69)
-> +		return;
-> +
-> +	guc->lrc_desc_pool_vaddr_v69 = NULL;
-> +	i915_vma_unpin_and_release(&guc->lrc_desc_pool_v69, I915_VMA_RELEASE_MAP);
-> +}
-> +
->   static inline bool guc_submission_initialized(struct intel_guc *guc)
->   {
->   	return guc->submission_initialized;
->   }
->   
-> +static inline void _reset_lrc_desc_v69(struct intel_guc *guc, u32 id)
-> +{
-> +	struct guc_lrc_desc_v69 *desc = __get_lrc_desc_v69(guc, id);
-> +
-> +	if (desc)
-> +		memset(desc, 0, sizeof(*desc));
-> +}
-> +
->   static inline bool ctx_id_mapped(struct intel_guc *guc, u32 id)
->   {
->   	return __get_context(guc, id);
-> @@ -526,6 +579,8 @@ static inline void clr_ctx_id_mapping(struct intel_guc *guc, u32 id)
->   	if (unlikely(!guc_submission_initialized(guc)))
->   		return;
->   
-> +	_reset_lrc_desc_v69(guc, id);
-> +
->   	/*
->   	 * xarray API doesn't have xa_erase_irqsave wrapper, so calling
->   	 * the lower level functions directly.
-> @@ -611,7 +666,7 @@ int intel_guc_wait_for_idle(struct intel_guc *guc, long timeout)
->   					      true, timeout);
->   }
->   
-> -static int guc_context_policy_init(struct intel_context *ce, bool loop);
-> +static int guc_context_policy_init_v70(struct intel_context *ce, bool loop);
->   static int try_context_registration(struct intel_context *ce, bool loop);
->   
->   static int __guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> @@ -639,7 +694,7 @@ static int __guc_add_request(struct intel_guc *guc, struct i915_request *rq)
->   	GEM_BUG_ON(context_guc_id_invalid(ce));
->   
->   	if (context_policy_required(ce)) {
-> -		err = guc_context_policy_init(ce, false);
-> +		err = guc_context_policy_init_v70(ce, false);
->   		if (err)
->   			return err;
->   	}
-> @@ -737,9 +792,7 @@ static u32 wq_space_until_wrap(struct intel_context *ce)
->   	return (WQ_SIZE - ce->parallel.guc.wqi_tail);
->   }
->   
-> -static void write_wqi(struct guc_sched_wq_desc *wq_desc,
-> -		      struct intel_context *ce,
-> -		      u32 wqi_size)
-> +static void write_wqi(struct intel_context *ce, u32 wqi_size)
->   {
->   	BUILD_BUG_ON(!is_power_of_2(WQ_SIZE));
->   
-> @@ -750,13 +803,12 @@ static void write_wqi(struct guc_sched_wq_desc *wq_desc,
->   
->   	ce->parallel.guc.wqi_tail = (ce->parallel.guc.wqi_tail + wqi_size) &
->   		(WQ_SIZE - 1);
-> -	WRITE_ONCE(wq_desc->tail, ce->parallel.guc.wqi_tail);
-> +	WRITE_ONCE(*ce->parallel.guc.wq_tail, ce->parallel.guc.wqi_tail);
->   }
->   
->   static int guc_wq_noop_append(struct intel_context *ce)
->   {
-> -	struct guc_sched_wq_desc *wq_desc = __get_wq_desc(ce);
-> -	u32 *wqi = get_wq_pointer(wq_desc, ce, wq_space_until_wrap(ce));
-> +	u32 *wqi = get_wq_pointer(ce, wq_space_until_wrap(ce));
->   	u32 len_dw = wq_space_until_wrap(ce) / sizeof(u32) - 1;
->   
->   	if (!wqi)
-> @@ -775,7 +827,6 @@ static int __guc_wq_item_append(struct i915_request *rq)
->   {
->   	struct intel_context *ce = request_to_scheduling_context(rq);
->   	struct intel_context *child;
-> -	struct guc_sched_wq_desc *wq_desc = __get_wq_desc(ce);
->   	unsigned int wqi_size = (ce->parallel.number_children + 4) *
->   		sizeof(u32);
->   	u32 *wqi;
-> @@ -795,7 +846,7 @@ static int __guc_wq_item_append(struct i915_request *rq)
->   			return ret;
->   	}
->   
-> -	wqi = get_wq_pointer(wq_desc, ce, wqi_size);
-> +	wqi = get_wq_pointer(ce, wqi_size);
->   	if (!wqi)
->   		return -EBUSY;
->   
-> @@ -810,7 +861,7 @@ static int __guc_wq_item_append(struct i915_request *rq)
->   	for_each_child(ce, child)
->   		*wqi++ = child->ring->tail / sizeof(u64);
->   
-> -	write_wqi(wq_desc, ce, wqi_size);
-> +	write_wqi(ce, wqi_size);
->   
->   	return 0;
->   }
-> @@ -1812,20 +1863,34 @@ static void reset_fail_worker_func(struct work_struct *w);
->   int intel_guc_submission_init(struct intel_guc *guc)
->   {
->   	struct intel_gt *gt = guc_to_gt(guc);
-> +	int ret;
->   
->   	if (guc->submission_initialized)
->   		return 0;
->   
-> +	if (guc->fw.major_ver_found < 70) {
-> +		ret = guc_lrc_desc_pool_create_v69(guc);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
->   	guc->submission_state.guc_ids_bitmap =
->   		bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
-> -	if (!guc->submission_state.guc_ids_bitmap)
-> -		return -ENOMEM;
-> +	if (!guc->submission_state.guc_ids_bitmap) {
-> +		ret = -ENOMEM;
-> +		goto destroy_pool;
-> +	}
->   
->   	guc->timestamp.ping_delay = (POLL_TIME_CLKS / gt->clock_frequency + 1) * HZ;
->   	guc->timestamp.shift = gpm_timestamp_shift(gt);
->   	guc->submission_initialized = true;
->   
->   	return 0;
-> +
-> +destroy_pool:
-> +	guc_lrc_desc_pool_destroy_v69(guc);
-> +
-> +	return ret;
->   }
->   
->   void intel_guc_submission_fini(struct intel_guc *guc)
-> @@ -1834,6 +1899,7 @@ void intel_guc_submission_fini(struct intel_guc *guc)
->   		return;
->   
->   	guc_flush_destroyed_contexts(guc);
-> +	guc_lrc_desc_pool_destroy_v69(guc);
->   	i915_sched_engine_put(guc->sched_engine);
->   	bitmap_free(guc->submission_state.guc_ids_bitmap);
->   	guc->submission_initialized = false;
-> @@ -2091,10 +2157,34 @@ static void unpin_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
->   }
->   
-> -static int __guc_action_register_multi_lrc(struct intel_guc *guc,
-> +static int __guc_action_register_multi_lrc_v69(struct intel_guc *guc,
->   					   struct intel_context *ce,
-> -					   struct guc_ctxt_registration_info *info,
-> +					   u32 guc_id,
-> +					   u32 offset,
->   					   bool loop)
-> +{
-> +	struct intel_context *child;
-> +	u32 action[4 + MAX_ENGINE_INSTANCE];
-> +	int len = 0;
-> +
-> +	GEM_BUG_ON(ce->parallel.number_children > MAX_ENGINE_INSTANCE);
-> +
-> +	action[len++] = INTEL_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC;
-> +	action[len++] = guc_id;
-> +	action[len++] = ce->parallel.number_children + 1;
-> +	action[len++] = offset;
-> +	for_each_child(ce, child) {
-> +		offset += sizeof(struct guc_lrc_desc_v69);
-> +		action[len++] = offset;
-> +	}
-> +
-> +	return guc_submission_send_busy_loop(guc, action, len, 0, loop);
-> +}
-> +
-> +static int __guc_action_register_multi_lrc_v70(struct intel_guc *guc,
-> +					       struct intel_context *ce,
-> +					       struct guc_ctxt_registration_info *info,
-> +					       bool loop)
->   {
->   	struct intel_context *child;
->   	u32 action[13 + (MAX_ENGINE_INSTANCE * 2)];
-> @@ -2134,9 +2224,24 @@ static int __guc_action_register_multi_lrc(struct intel_guc *guc,
->   	return guc_submission_send_busy_loop(guc, action, len, 0, loop);
->   }
->   
-> -static int __guc_action_register_context(struct intel_guc *guc,
-> -					 struct guc_ctxt_registration_info *info,
-> -					 bool loop)
-> +static int __guc_action_register_context_v69(struct intel_guc *guc,
-> +					     u32 guc_id,
-> +					     u32 offset,
-> +					     bool loop)
-> +{
-> +	u32 action[] = {
-> +		INTEL_GUC_ACTION_REGISTER_CONTEXT,
-> +		guc_id,
-> +		offset,
-> +	};
-> +
-> +	return guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
-> +					     0, loop);
-> +}
-> +
-> +static int __guc_action_register_context_v70(struct intel_guc *guc,
-> +					     struct guc_ctxt_registration_info *info,
-> +					     bool loop)
->   {
->   	u32 action[] = {
->   		INTEL_GUC_ACTION_REGISTER_CONTEXT,
-> @@ -2157,24 +2262,52 @@ static int __guc_action_register_context(struct intel_guc *guc,
->   					     0, loop);
->   }
->   
-> -static void prepare_context_registration_info(struct intel_context *ce,
-> -					      struct guc_ctxt_registration_info *info);
-> +static void prepare_context_registration_info_v69(struct intel_context *ce);
-> +static void prepare_context_registration_info_v70(struct intel_context *ce,
-> +						  struct guc_ctxt_registration_info *info);
->   
-> -static int register_context(struct intel_context *ce, bool loop)
-> +static int
-> +register_context_v69(struct intel_guc *guc, struct intel_context *ce, bool loop)
-> +{
-> +	u32 offset = intel_guc_ggtt_offset(guc, guc->lrc_desc_pool_v69) +
-> +		ce->guc_id.id * sizeof(struct guc_lrc_desc_v69);
-> +
-> +	prepare_context_registration_info_v69(ce);
-> +
-> +	if (intel_context_is_parent(ce))
-> +		return __guc_action_register_multi_lrc_v69(guc, ce, ce->guc_id.id,
-> +							   offset, loop);
-> +	else
-> +		return __guc_action_register_context_v69(guc, ce->guc_id.id,
-> +							 offset, loop);
-> +}
-> +
-> +static int
-> +register_context_v70(struct intel_guc *guc, struct intel_context *ce, bool loop)
->   {
->   	struct guc_ctxt_registration_info info;
-> +
-> +	prepare_context_registration_info_v70(ce, &info);
-> +
-> +	if (intel_context_is_parent(ce))
-> +		return __guc_action_register_multi_lrc_v70(guc, ce, &info, loop);
-> +	else
-> +		return __guc_action_register_context_v70(guc, &info, loop);
-> +}
-> +
-> +static int register_context(struct intel_context *ce, bool loop)
-> +{
->   	struct intel_guc *guc = ce_to_guc(ce);
->   	int ret;
->   
->   	GEM_BUG_ON(intel_context_is_child(ce));
->   	trace_intel_context_register(ce);
->   
-> -	prepare_context_registration_info(ce, &info);
-> -
-> -	if (intel_context_is_parent(ce))
-> -		ret = __guc_action_register_multi_lrc(guc, ce, &info, loop);
-> +	if (guc->fw.major_ver_found >= 70)
-> +		ret = register_context_v70(guc, ce, loop);
->   	else
-> -		ret = __guc_action_register_context(guc, &info, loop);
-> +		ret = register_context_v69(guc, ce, loop);
-> +
->   	if (likely(!ret)) {
->   		unsigned long flags;
->   
-> @@ -2182,7 +2315,8 @@ static int register_context(struct intel_context *ce, bool loop)
->   		set_context_registered(ce);
->   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
->   
-> -		guc_context_policy_init(ce, loop);
-> +		if (guc->fw.major_ver_found >= 70)
-> +			guc_context_policy_init_v70(ce, loop);
->   	}
->   
->   	return ret;
-> @@ -2279,7 +2413,7 @@ static int __guc_context_set_context_policies(struct intel_guc *guc,
->   					0, loop);
->   }
->   
-> -static int guc_context_policy_init(struct intel_context *ce, bool loop)
-> +static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
->   {
->   	struct intel_engine_cs *engine = ce->engine;
->   	struct intel_guc *guc = &engine->gt->uc.guc;
-> @@ -2338,6 +2472,19 @@ static int guc_context_policy_init(struct intel_context *ce, bool loop)
->   	return ret;
->   }
->   
-> +static void guc_context_policy_init_v69(struct intel_engine_cs *engine,
-> +					struct guc_lrc_desc_v69 *desc)
-> +{
-> +	desc->policy_flags = 0;
-> +
-> +	if (engine->flags & I915_ENGINE_WANT_FORCED_PREEMPTION)
-> +		desc->policy_flags |= CONTEXT_POLICY_FLAG_PREEMPT_TO_IDLE_V69;
-> +
-> +	/* NB: For both of these, zero means disabled. */
-> +	desc->execution_quantum = engine->props.timeslice_duration_ms * 1000;
-> +	desc->preemption_timeout = engine->props.preempt_timeout_ms * 1000;
-> +}
-> +
->   static u32 map_guc_prio_to_lrc_desc_prio(u8 prio)
->   {
->   	/*
-> @@ -2358,8 +2505,75 @@ static u32 map_guc_prio_to_lrc_desc_prio(u8 prio)
->   	}
->   }
->   
-> -static void prepare_context_registration_info(struct intel_context *ce,
-> -					      struct guc_ctxt_registration_info *info)
-> +static void prepare_context_registration_info_v69(struct intel_context *ce)
-> +{
-> +	struct intel_engine_cs *engine = ce->engine;
-> +	struct intel_guc *guc = &engine->gt->uc.guc;
-> +	u32 ctx_id = ce->guc_id.id;
-> +	struct guc_lrc_desc_v69 *desc;
-> +	struct intel_context *child;
-> +
-> +	GEM_BUG_ON(!engine->mask);
-> +
-> +	/*
-> +	 * Ensure LRC + CT vmas are is same region as write barrier is done
-> +	 * based on CT vma region.
-> +	 */
-> +	GEM_BUG_ON(i915_gem_object_is_lmem(guc->ct.vma->obj) !=
-> +		   i915_gem_object_is_lmem(ce->ring->vma->obj));
-> +
-> +	desc = __get_lrc_desc_v69(guc, ctx_id);
-> +	desc->engine_class = engine_class_to_guc_class(engine->class);
-> +	desc->engine_submit_mask = engine->logical_mask;
-> +	desc->hw_context_desc = ce->lrc.lrca;
-> +	desc->priority = ce->guc_state.prio;
-> +	desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
-> +	guc_context_policy_init_v69(engine, desc);
-> +
-> +	/*
-> +	 * If context is a parent, we need to register a process descriptor
-> +	 * describing a work queue and register all child contexts.
-> +	 */
-> +	if (intel_context_is_parent(ce)) {
-> +		struct guc_process_desc_v69 *pdesc;
-> +
-> +		ce->parallel.guc.wqi_tail = 0;
-> +		ce->parallel.guc.wqi_head = 0;
-> +
-> +		desc->process_desc = i915_ggtt_offset(ce->state) +
-> +			__get_parent_scratch_offset(ce);
-> +		desc->wq_addr = i915_ggtt_offset(ce->state) +
-> +			__get_wq_offset(ce);
-> +		desc->wq_size = WQ_SIZE;
-> +
-> +		pdesc = __get_process_desc_v69(ce);
-> +		memset(pdesc, 0, sizeof(*(pdesc)));
-> +		pdesc->stage_id = ce->guc_id.id;
-> +		pdesc->wq_base_addr = desc->wq_addr;
-> +		pdesc->wq_size_bytes = desc->wq_size;
-> +		pdesc->wq_status = WQ_STATUS_ACTIVE;
-> +
-> +		ce->parallel.guc.wq_head = &pdesc->head;
-> +		ce->parallel.guc.wq_tail = &pdesc->tail;
-> +		ce->parallel.guc.wq_status = &pdesc->wq_status;
-> +
-> +		for_each_child(ce, child) {
-> +			desc = __get_lrc_desc_v69(guc, child->guc_id.id);
-> +
-> +			desc->engine_class =
-> +				engine_class_to_guc_class(engine->class);
-> +			desc->hw_context_desc = child->lrc.lrca;
-> +			desc->priority = ce->guc_state.prio;
-> +			desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
-> +			guc_context_policy_init_v69(engine, desc);
-> +		}
-> +
-> +		clear_children_join_go_memory(ce);
-> +	}
-> +}
-> +
-> +static void prepare_context_registration_info_v70(struct intel_context *ce,
-> +						  struct guc_ctxt_registration_info *info)
->   {
->   	struct intel_engine_cs *engine = ce->engine;
->   	struct intel_guc *guc = &engine->gt->uc.guc;
-> @@ -2409,10 +2623,14 @@ static void prepare_context_registration_info(struct intel_context *ce,
->   		info->wq_base_hi = upper_32_bits(wq_base_offset);
->   		info->wq_size = WQ_SIZE;
->   
-> -		wq_desc = __get_wq_desc(ce);
-> +		wq_desc = __get_wq_desc_v70(ce);
->   		memset(wq_desc, 0, sizeof(*wq_desc));
->   		wq_desc->wq_status = WQ_STATUS_ACTIVE;
->   
-> +		ce->parallel.guc.wq_head = &wq_desc->head;
-> +		ce->parallel.guc.wq_tail = &wq_desc->tail;
-> +		ce->parallel.guc.wq_status = &wq_desc->wq_status;
-> +
->   		clear_children_join_go_memory(ce);
->   	}
->   }
-> @@ -2727,11 +2945,21 @@ static void __guc_context_set_preemption_timeout(struct intel_guc *guc,
->   						 u16 guc_id,
->   						 u32 preemption_timeout)
->   {
-> -	struct context_policy policy;
-> +	if (guc->fw.major_ver_found >= 70) {
-> +		struct context_policy policy;
->   
-> -	__guc_context_policy_start_klv(&policy, guc_id);
-> -	__guc_context_policy_add_preemption_timeout(&policy, preemption_timeout);
-> -	__guc_context_set_context_policies(guc, &policy, true);
-> +		__guc_context_policy_start_klv(&policy, guc_id);
-> +		__guc_context_policy_add_preemption_timeout(&policy, preemption_timeout);
-> +		__guc_context_set_context_policies(guc, &policy, true);
-> +	} else {
-> +		u32 action[] = {
-> +			INTEL_GUC_ACTION_V69_SET_CONTEXT_PREEMPTION_TIMEOUT,
-> +			guc_id,
-> +			preemption_timeout
-> +		};
-> +
-> +		intel_guc_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
-> +	}
->   }
->   
->   static void
-> @@ -2982,11 +3210,21 @@ static int guc_context_alloc(struct intel_context *ce)
->   static void __guc_context_set_prio(struct intel_guc *guc,
->   				   struct intel_context *ce)
->   {
-> -	struct context_policy policy;
-> +	if (guc->fw.major_ver_found >= 70) {
-> +		struct context_policy policy;
->   
-> -	__guc_context_policy_start_klv(&policy, ce->guc_id.id);
-> -	__guc_context_policy_add_priority(&policy, ce->guc_state.prio);
-> -	__guc_context_set_context_policies(guc, &policy, true);
-> +		__guc_context_policy_start_klv(&policy, ce->guc_id.id);
-> +		__guc_context_policy_add_priority(&policy, ce->guc_state.prio);
-> +		__guc_context_set_context_policies(guc, &policy, true);
-> +	} else {
-> +		u32 action[] = {
-> +			INTEL_GUC_ACTION_V69_SET_CONTEXT_PRIORITY,
-> +			ce->guc_id.id,
-> +			ce->guc_state.prio,
-> +		};
-> +
-> +		guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
-> +	}
->   }
->   
->   static void guc_context_set_prio(struct intel_guc *guc,
-> @@ -4496,17 +4734,19 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
->   		guc_log_context_priority(p, ce);
->   
->   		if (intel_context_is_parent(ce)) {
-> -			struct guc_sched_wq_desc *wq_desc = __get_wq_desc(ce);
->   			struct intel_context *child;
->   
->   			drm_printf(p, "\t\tNumber children: %u\n",
->   				   ce->parallel.number_children);
-> -			drm_printf(p, "\t\tWQI Head: %u\n",
-> -				   READ_ONCE(wq_desc->head));
-> -			drm_printf(p, "\t\tWQI Tail: %u\n",
-> -				   READ_ONCE(wq_desc->tail));
-> -			drm_printf(p, "\t\tWQI Status: %u\n\n",
-> -				   READ_ONCE(wq_desc->wq_status));
-> +
-> +			if (ce->parallel.guc.wq_status) {
-> +				drm_printf(p, "\t\tWQI Head: %u\n",
-> +					   READ_ONCE(*ce->parallel.guc.wq_head));
-> +				drm_printf(p, "\t\tWQI Tail: %u\n",
-> +					   READ_ONCE(*ce->parallel.guc.wq_tail));
-> +				drm_printf(p, "\t\tWQI Status: %u\n\n",
-> +					   READ_ONCE(*ce->parallel.guc.wq_status));
-> +			}
->   
->   			if (ce->engine->emit_bb_start ==
->   			    emit_bb_start_parent_no_preempt_mid_batch) {
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index 27363091e1af..210c84411406 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -70,6 +70,23 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->   	fw_def(BROXTON,      0, guc_def(bxt,  70, 1, 1)) \
->   	fw_def(SKYLAKE,      0, guc_def(skl,  70, 1, 1))
->   
-> +#define INTEL_GUC_FIRMWARE_DEFS_FALLBACK(fw_def, guc_def) \
-> +	fw_def(ALDERLAKE_P,  0, guc_def(adlp, 69, 0, 3)) \
-> +	fw_def(ALDERLAKE_S,  0, guc_def(tgl,  69, 0, 3)) \
-> +	fw_def(DG1,          0, guc_def(dg1,  69, 0, 3)) \
-> +	fw_def(ROCKETLAKE,   0, guc_def(tgl,  69, 0, 3)) \
-> +	fw_def(TIGERLAKE,    0, guc_def(tgl,  69, 0, 3)) \
-> +	fw_def(JASPERLAKE,   0, guc_def(ehl,  69, 0, 3)) \
-> +	fw_def(ELKHARTLAKE,  0, guc_def(ehl,  69, 0, 3)) \
-> +	fw_def(ICELAKE,      0, guc_def(icl,  69, 0, 3)) \
-> +	fw_def(COMETLAKE,    5, guc_def(cml,  69, 0, 3)) \
-> +	fw_def(COMETLAKE,    0, guc_def(kbl,  69, 0, 3)) \
-> +	fw_def(COFFEELAKE,   0, guc_def(kbl,  69, 0, 3)) \
-> +	fw_def(GEMINILAKE,   0, guc_def(glk,  69, 0, 3)) \
-> +	fw_def(KABYLAKE,     0, guc_def(kbl,  69, 0, 3)) \
-> +	fw_def(BROXTON,      0, guc_def(bxt,  69, 0, 3)) \
-> +	fw_def(SKYLAKE,      0, guc_def(skl,  69, 0, 3))
-> +
->   #define INTEL_HUC_FIRMWARE_DEFS(fw_def, huc_def) \
->   	fw_def(ALDERLAKE_P,  0, huc_def(tgl,  7, 9, 3)) \
->   	fw_def(ALDERLAKE_S,  0, huc_def(tgl,  7, 9, 3)) \
-> @@ -105,6 +122,7 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->   	MODULE_FIRMWARE(uc_);
->   
->   INTEL_GUC_FIRMWARE_DEFS(INTEL_UC_MODULE_FW, MAKE_GUC_FW_PATH)
-> +INTEL_GUC_FIRMWARE_DEFS_FALLBACK(INTEL_UC_MODULE_FW, MAKE_GUC_FW_PATH)
->   INTEL_HUC_FIRMWARE_DEFS(INTEL_UC_MODULE_FW, MAKE_HUC_FW_PATH)
->   
->   /* The below structs and macros are used to iterate across the list of blobs */
-> @@ -149,6 +167,9 @@ __uc_fw_auto_select(struct drm_i915_private *i915, struct intel_uc_fw *uc_fw)
->   	static const struct uc_fw_platform_requirement blobs_guc[] = {
->   		INTEL_GUC_FIRMWARE_DEFS(MAKE_FW_LIST, GUC_FW_BLOB)
->   	};
-> +	static const struct uc_fw_platform_requirement blobs_guc_fallback[] = {
-> +		INTEL_GUC_FIRMWARE_DEFS_FALLBACK(MAKE_FW_LIST, GUC_FW_BLOB)
-> +	};
->   	static const struct uc_fw_platform_requirement blobs_huc[] = {
->   		INTEL_HUC_FIRMWARE_DEFS(MAKE_FW_LIST, HUC_FW_BLOB)
->   	};
-> @@ -179,12 +200,28 @@ __uc_fw_auto_select(struct drm_i915_private *i915, struct intel_uc_fw *uc_fw)
->   		if (p == fw_blobs[i].p && rev >= fw_blobs[i].rev) {
->   			const struct uc_fw_blob *blob = &fw_blobs[i].blob;
->   			uc_fw->path = blob->path;
-> +			uc_fw->wanted_path = blob->path;
->   			uc_fw->major_ver_wanted = blob->major;
->   			uc_fw->minor_ver_wanted = blob->minor;
->   			break;
->   		}
->   	}
->   
-> +	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC) {
-> +		const struct uc_fw_platform_requirement *blobs = blobs_guc_fallback;
-> +		u32 count = ARRAY_SIZE(blobs_guc_fallback);
-> +
-> +		for (i = 0; i < count && p <= blobs[i].p; i++) {
-> +			if (p == blobs[i].p && rev >= blobs[i].rev) {
-> +				const struct uc_fw_blob *blob = &blobs[i].blob;
-> +				uc_fw->fallback.path = blob->path;
-> +				uc_fw->fallback.major_ver = blob->major;
-> +				uc_fw->fallback.minor_ver = blob->minor;
-> +				break;
-> +			}
-> +		}
-> +	}
-> +
->   	/* make sure the list is ordered as expected */
->   	if (IS_ENABLED(CONFIG_DRM_I915_SELFTEST)) {
->   		for (i = 1; i < fw_count; i++) {
-> @@ -413,6 +450,18 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   	__force_fw_fetch_failures(uc_fw, -ESTALE);
->   
->   	err = request_firmware(&fw, uc_fw->path, dev);
-> +	if (err && !intel_uc_fw_is_overridden(uc_fw) && uc_fw->fallback.path) {
-> +		err = request_firmware(&fw, uc_fw->fallback.path, dev);
-> +		if (!err) {
-> +			drm_warn(&i915->drm, "%s firmware %s not found, falling back to %s\n",
-> +					     intel_uc_fw_type_repr(uc_fw->type),
-> +					     uc_fw->wanted_path,
-> +					     uc_fw->fallback.path);
-> +			uc_fw->path = uc_fw->fallback.path;
-> +			uc_fw->major_ver_wanted = uc_fw->fallback.major_ver;
-> +			uc_fw->minor_ver_wanted = uc_fw->fallback.minor_ver;
-> +		}
-> +	}
->   	if (err)
->   		goto fail;
->   
-> @@ -822,7 +871,13 @@ size_t intel_uc_fw_copy_rsa(struct intel_uc_fw *uc_fw, void *dst, u32 max_len)
->   void intel_uc_fw_dump(const struct intel_uc_fw *uc_fw, struct drm_printer *p)
->   {
->   	drm_printf(p, "%s firmware: %s\n",
-> -		   intel_uc_fw_type_repr(uc_fw->type), uc_fw->path);
-> +		   intel_uc_fw_type_repr(uc_fw->type), uc_fw->wanted_path);
-> +	if (uc_fw->fallback.path) {
-> +		drm_printf(p, "%s firmware fallback: %s\n",
-> +			   intel_uc_fw_type_repr(uc_fw->type), uc_fw->fallback.path);
-> +		drm_printf(p, "fallback selected: %s\n",
-> +			   str_yes_no(uc_fw->path == uc_fw->fallback.path));
-> +	}
->   	drm_printf(p, "\tstatus: %s\n",
->   		   intel_uc_fw_status_repr(uc_fw->status));
->   	drm_printf(p, "\tversion: wanted %u.%u, found %u.%u\n",
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> index 4f169035f504..7aa2644400b9 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> @@ -74,6 +74,7 @@ struct intel_uc_fw {
->   		const enum intel_uc_fw_status status;
->   		enum intel_uc_fw_status __status; /* no accidental overwrites */
->   	};
-> +	const char *wanted_path;
->   	const char *path;
->   	bool user_overridden;
->   	size_t size;
-> @@ -98,6 +99,12 @@ struct intel_uc_fw {
->   	u16 major_ver_found;
->   	u16 minor_ver_found;
->   
-> +	struct {
-> +		const char *path;
-> +		u16 major_ver;
-> +		u16 minor_ver;
-> +	} fallback;
-> +
->   	u32 rsa_size;
->   	u32 ucode_size;
->   
+    #echo > /sys/kernel/tracing/trace
+    #wc /sys/kernel/tracing/trace
+
+    for cls in DRM_UT_CORE DRM_UT_DRIVER DRM_UT_KMS DRM_UT_PRIME DRM_UT_ATOMIC \
+			   DRM_UT_VBL DRM_UT_STATE DRM_UT_LEASE DRM_UT_DP \
+			   DRM_UT_DRMRES;
+    do
+	echo -n doing class $cls "  "
+
+	echo doing class $cls +$flgs
+	sleep .1
+	flags_class +$flgs $cls
+	sleep 1
+	
+	echo doing class $cls -$flgs
+	sleep .1
+	flags_class -$flgs $cls
+	sleep 1
+	
+	#wc /sys/kernel/tracing/trace
+    done
+}
+
+# like above but with T flag, and markers, trace/enable
+trc_classes() {
+    local flgs=$1
+    [ -z $flgs ] && flgs="T"
+
+    echo > /sys/kernel/tracing/trace
+    wc -l /sys/kernel/tracing/trace
+
+    events_3 1 1 1
+    for cls in DRM_UT_CORE DRM_UT_DRIVER DRM_UT_KMS DRM_UT_PRIME \
+			   DRM_UT_ATOMIC \
+			   DRM_UT_VBL DRM_UT_STATE DRM_UT_LEASE DRM_UT_DP \
+			   DRM_UT_DRMRES;
+    do
+	echo -n doing class $cls +/- $flgs "  "
+
+	echo doing class $cls +$flgs > /sys/kernel/tracing/trace_marker
+	sleep .1
+	flags_class +$flgs $cls
+	sleep 1
+	
+	echo doing class $cls -$flgs > /sys/kernel/tracing/trace_marker
+	sleep .1
+	flags_class -$flgs $cls
+	sleep 1
+	
+	wc /sys/kernel/tracing/trace
+
+    done
+    events_3 0 0 0
+}
+
+I ignored a few checkpatch warns, preferring source's spacing conventions.
+
+
+Jim Cromie (40):
+
+1st, a group of "cleanups"
+  dyndbg: fix static_branch manipulation
+  dyndbg: fix module.dyndbg handling
+  dyndbg: show both old and new in change-info
+  dyndbg: reverse module walk in cat control
+  dyndbg: reverse module.callsite walk in cat control
+  dyndbg: use ESCAPE_SPACE for cat control
+  dyndbg: let query-modname override actual module name
+  dyndbg: add test_dynamic_debug module
+  dyndbg: drop EXPORTed dynamic_debug_exec_queries
+
+class FOO support
+  dyndbg: add class_id to pr_debug callsites
+  dyndbg: add __pr_debug_cls for testing
+  dyndbg: add DECLARE_DYNDBG_CLASSMAP
+  kernel/module: add __dyndbg_classes section
+  dyndbg: add ddebug_attach_module_classes
+  dyndbg: validate class FOO by checking with module
+  dyndbg: add drm.debug style bitmap support
+  dyndbg: test DECLARE_DYNDBG_CLASSMAP, sysfs nodes
+  doc-dyndbg: describe "class CLASS_NAME" query support
+  doc-dyndbg: edit dynamic-debug-howto for brevity, audience
+
+drm.debug adaptation
+  drm_print: condense enum drm_debug_category
+  drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers.
+  drm_print: interpose drm_*dbg with forwarding macros
+  drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
+  drm-print: add drm_dbg_driver to improve namespace symmetry
+  drm-print: include dyndbg header indirectly
+  drm_print: refine drm_debug_enabled for jump-label
+  drm_print: prefer bare printk KERN_DEBUG on generic fn
+  drm_print: add _ddebug descriptor to drm_*dbg prototypes
+  nouveau: change nvkm_debug/trace to use dev_dbg POC
+
+Steven Rostedt (Google) (1):
+  tracing/events: Add __vstring() and __assign_vstr() helper macros
+
+new tracefs events:
+  dyndbg: add _DPRINTK_FLAGS_ENABLED
+  dyndbg: add _DPRINTK_FLAGS_TRACE
+  dyndbg: add write-events-to-tracefs code
+  dyndbg: add 2 trace-events: drm_{,dev}debug
+  dyndbg: add 2 more trace-events: pr_debug, dev_dbg
+  dyndbg/drm: POC add tracebits sysfs-knob
+
+nouveau-VERBOSE integration: WIP/exploratory.
+  nouveau: adapt NV_DEBUG, NV_ATOMIC to use DRM.debug
+  nouveau-dyndbg: alter DEBUG, TRACE, SPAM levels to use dyndbg
+  nouveau-dbg: add 2 verbose-classmaps for CLI, SUBDEV
+  nouveau-dbg: fixup lost prdbgs
+  nouveau-dyndbg: wip subdev refine, breaks on use
+
+
+
+.../admin-guide/dynamic-debug-howto.rst       | 252 ++++----
+ MAINTAINERS                                   |   2 +
+ drivers/gpu/drm/Kconfig                       |  12 +
+ drivers/gpu/drm/Makefile                      |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  14 +
+ drivers/gpu/drm/display/drm_dp_helper.c       |  13 +
+ drivers/gpu/drm/drm_crtc_helper.c             |  13 +
+ drivers/gpu/drm/drm_print.c                   |  83 ++-
+ drivers/gpu/drm/i915/i915_params.c            |  12 +
+ .../gpu/drm/nouveau/include/nvkm/core/debug.h |  16 +
+ .../drm/nouveau/include/nvkm/core/subdev.h    |  17 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |  20 +
+ drivers/gpu/drm/nouveau/nouveau_drv.h         |  16 +-
+ drivers/gpu/drm/nouveau/nvkm/core/subdev.c    |  23 +
+ include/asm-generic/vmlinux.lds.h             |   3 +
+ include/drm/drm_print.h                       |  85 ++-
+ include/linux/dynamic_debug.h                 | 179 +++++-
+ include/linux/trace_events.h                  |  18 +
+ include/trace/events/drm.h                    |  54 ++
+ include/trace/events/dyndbg.h                 |  74 +++
+ include/trace/stages/stage1_struct_define.h   |   3 +
+ include/trace/stages/stage2_data_offsets.h    |   3 +
+ include/trace/stages/stage4_event_fields.h    |   3 +
+ include/trace/stages/stage5_get_offsets.h     |   4 +
+ include/trace/stages/stage6_event_callback.h  |   7 +
+ kernel/module/internal.h                      |   2 +
+ kernel/module/main.c                          |  10 +-
+ lib/Kconfig.debug                             |  10 +
+ lib/Makefile                                  |   1 +
+ lib/dynamic_debug.c                           | 540 +++++++++++++++---
+ lib/test_dynamic_debug.c                      | 165 ++++++
+ 31 files changed, 1374 insertions(+), 282 deletions(-)
+ create mode 100644 include/trace/events/drm.h
+ create mode 100644 include/trace/events/dyndbg.h
+ create mode 100644 lib/test_dynamic_debug.c
+
+-- 
+2.36.1
 
