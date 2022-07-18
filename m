@@ -1,33 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1A81577BE2
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 08:46:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF1BB577C43
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 09:17:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B16B912AF3C;
-	Mon, 18 Jul 2022 06:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C262EAB314;
+	Mon, 18 Jul 2022 07:17:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 30A2012AF3C;
- Mon, 18 Jul 2022 06:46:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 281DCA7DFF;
- Mon, 18 Jul 2022 06:46:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67A07A7485;
+ Mon, 18 Jul 2022 07:17:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1658128640; x=1689664640;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=aI+ihsBtH367SHAHuG4E0Jj+622u6iud7noSoKs3V4k=;
+ b=l9rxJUrk/M+JBX3Tle5YSc8ppjjPWYFC0N40VxPq/FqZNn3H1Nfu/Yi8
+ 8X6iNdxzCX2+m2pxXqSKDn+fgRgOawfWM5sAtP9BAk0lmAtcjzENtxj4z
+ 32x39oIKtsIZoScOWh0AednS367565td6FOQctPlS+XSWDTzlb+t3kGG8
+ i4TfxD2W6T2pftzlBGAemFQkND+WIpx+AO/r46xyv5iHS8wC+5V/XLpva
+ 1+2MIxjee6gPoCqj8yJ3MvV9UAkpiJltxEfCIm3OW/ZEb6MGpS+4QiXOo
+ 5xFucd7AAkxHMdM81Xun3+kzOQSuXE90mol019UZLfIUu4g4EZAiSwbHA A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10411"; a="284910416"
+X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; d="scan'208";a="284910416"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2022 00:17:19 -0700
+X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; d="scan'208";a="655156765"
+Received: from mgrudkow-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.213.10.182])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2022 00:17:18 -0700
+Date: Mon, 18 Jul 2022 09:17:16 +0200
+From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <YtUI/B4/6Rpc5z5G@zkempczy-mobl2>
+References: <20220715111937.1245586-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jim Cromie" <jim.cromie@gmail.com>
-Date: Mon, 18 Jul 2022 06:46:46 -0000
-Message-ID: <165812680616.9323.14623644179922080942@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBE?=
- =?utf-8?q?YNDBG=3A_opt-in_class=27d_debug_for_modules=2C_use_in_drm=2E?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220715111937.1245586-1-matthew.auld@intel.com>
+Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915/gem_create: use 48b
+ addressing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,55 +58,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jul 15, 2022 at 12:19:37PM +0100, Matthew Auld wrote:
+> The object here could be very large (8G+), so make sure we allow using
+> the entire address space, to avoid sometimes hitting -ENOSPC.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6446
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
 
-Series: DYNDBG: opt-in class'd debug for modules, use in drm.
-URL   : https://patchwork.freedesktop.org/series/106427/
-State : failure
+Yes, on DG1 we've often never entered > 32b offsets.
 
-== Summary ==
+Reviewed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/106427/revisions/1/mbox/ not applied
-Applying: dyndbg: fix static_branch manipulation
-Applying: dyndbg: fix module.dyndbg handling
-Applying: dyndbg: show both old and new in change-info
-Applying: dyndbg: reverse module walk in cat control
-Applying: dyndbg: reverse module.callsite walk in cat control
-Applying: dyndbg: use ESCAPE_SPACE for cat control
-Applying: dyndbg: let query-modname override actual module name
-Applying: dyndbg: add test_dynamic_debug module
-Applying: dyndbg: drop EXPORTed dynamic_debug_exec_queries
-Applying: dyndbg: add class_id to pr_debug callsites
-Applying: dyndbg: add __pr_debug_cls for testing
-Applying: dyndbg: add DECLARE_DYNDBG_CLASSMAP
-Applying: kernel/module: add __dyndbg_classes section
-Applying: dyndbg: add ddebug_attach_module_classes
-Applying: dyndbg: validate class FOO by checking with module
-Applying: dyndbg: add drm.debug style bitmap support
-Applying: dyndbg: test DECLARE_DYNDBG_CLASSMAP, sysfs nodes
-Applying: doc-dyndbg: describe "class CLASS_NAME" query support
-Applying: doc-dyndbg: edit dynamic-debug-howto for brevity, audience
-Applying: drm_print: condense enum drm_debug_category
-Applying: drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers.
-Applying: drm_print: interpose drm_*dbg with forwarding macros
-Applying: drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/Kconfig
-M	drivers/gpu/drm/Makefile
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/Makefile
-Auto-merging drivers/gpu/drm/Kconfig
-CONFLICT (content): Merge conflict in drivers/gpu/drm/Kconfig
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0023 drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+--
+Zbigniew
 
-
+> ---
+>  tests/i915/gem_create.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/tests/i915/gem_create.c b/tests/i915/gem_create.c
+> index 1b694c6a..ff022713 100644
+> --- a/tests/i915/gem_create.c
+> +++ b/tests/i915/gem_create.c
+> @@ -538,7 +538,9 @@ static int upload(int fd, uint32_t handle)
+>  	 * for sure placed in one of requested regions.
+>  	 */
+>  	exec[0].handle = handle;
+> +	exec[0].flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
+>  	exec[1].handle = batch_create_size(fd, PAGE_SIZE);
+> +	exec[1].flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
+>  
+>  	return __gem_execbuf(fd, &execbuf);
+>  }
+> -- 
+> 2.36.1
+> 
