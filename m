@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496F9577F32
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 12:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E45C357804B
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 12:55:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0A0BAF35D;
-	Mon, 18 Jul 2022 10:02:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99C4FB00E4;
+	Mon, 18 Jul 2022 10:55:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2104EAF359;
- Mon, 18 Jul 2022 10:02:09 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32CE912A904;
+ Mon, 18 Jul 2022 10:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658138529; x=1689674529;
+ t=1658141746; x=1689677746;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=B2wjN12TEfFNvDm7sLV4307qmAXHKnTSEO3WbW2N0PA=;
- b=Fh0So5ETZCBfN+0G/CMNMjbyf2Hy4tPKgnC1rHZTFHkIDj9dT2DZw+XP
- fY/nrgtrkL5SkZGujjEsoWo1ZvnHQkhi/G8NK/qfQCQKASA5b7r0xmoiD
- qTJYehzfEv1X8/px/2xhSD5otwo5XjVQpKwKTFVnqlLz2zUSJNmXzeKvb
- vGIodPmir0cw83d2+GzsjnNF/Y5texqPIKyB24QXtmNs3T+uSBBedjfcj
- 0qX3q+5ak0LMmh8xGyoNHAUOyJ0q32qAjFA1boMv8TWZsGCkrF0Xd5ga9
- Bpe9fgdZePsj8gGkASjHqeaSwBWO5dLKOfgLAJgjYkQEzsllpbW+AB9ZG Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10411"; a="266588524"
-X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; d="scan'208";a="266588524"
+ bh=iSEcYNPvF3qcP7RuID+m3t7CywFmhLqhUlGbQTlGZJQ=;
+ b=H4++ztuXHxb9glX1RInToeopRsv17I14YrwNjBwFqKUVhMC4APxsclrW
+ KTr7oOF7sLrBVUhHtBhfY3Dptjc/J3MI56NFLbw7PimUeDoUJfhxlzTKz
+ fIiO+Yu+GUoEjV7rbb1j/5Fs0FrCz2ikLHA+j2h0BwV2/9OdR5JlLAImI
+ sQL+YZJUuwLlB81Pez8CBUXYkfpbc2Mo4s6pl63zrQWDe/UAdM0V3B5nB
+ UcrFykNV4evzPwZ5iXicuQufMUPOoFoBWpt6dmBclkQeV1D4DcPLG9luY
+ DS2X3/vYEGdprBp21LOwUrS4zhnx3ksFhf57++zLR2n0BbWpqGZ00Ez+i w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10411"; a="372498983"
+X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; d="scan'208";a="372498983"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2022 03:02:06 -0700
-X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; d="scan'208";a="723804492"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2022 03:55:44 -0700
+X-IronPort-AV: E=Sophos;i="5.92,280,1650956400"; d="scan'208";a="723819986"
 Received: from smyint-mobl1.amr.corp.intel.com (HELO [10.212.107.15])
  ([10.212.107.15])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2022 03:02:05 -0700
-Message-ID: <8b782ef1-89ca-b66f-c8ee-1466b26ce6b9@linux.intel.com>
-Date: Mon, 18 Jul 2022 11:02:03 +0100
+ 18 Jul 2022 03:55:42 -0700
+Message-ID: <284014b2-ceff-f80e-d805-f3534776306f@linux.intel.com>
+Date: Mon, 18 Jul 2022 11:55:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220715225451.1294354-1-daniele.ceraolospurio@intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20220701225055.8204-1-niranjana.vishwanathapura@intel.com>
+ <20220701225055.8204-3-niranjana.vishwanathapura@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-X-Priority: 4 (Low)
-In-Reply-To: <20220715225451.1294354-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20220701225055.8204-3-niranjana.vishwanathapura@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: support v69 in parallel to v70
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC 02/10] drm/i915/vm_bind: Bind and unbind
+ mappings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,903 +63,548 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, dri-devel@lists.freedesktop.org
+Cc: daniel.vetter@intel.com, christian.koenig@amd.com,
+ thomas.hellstrom@intel.com, paulo.r.zanoni@intel.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-Hi,
-
-On 15/07/2022 23:54, Daniele Ceraolo Spurio wrote:
-> This patch re-introduces support for GuC v69 in parallel to v70. As this
-> is a quick fix, v69 has been re-introduced as the single "fallback" guc
-> version in case v70 is not available on disk. All v69 specific code has
-> been labeled as such for easy identification, and the same was done for
-> all v70 functions for which there is a separate v69 version, to avoid
-> accidentally calling the wrong version via the unlabeled name.
+On 01/07/2022 23:50, Niranjana Vishwanathapura wrote:
+> Bind and unbind the mappings upon VM_BIND and VM_UNBIND calls.
 > 
-> When the fallback mode kicks in, a drm_warn message is printed in dmesg
-> to warn the user of the required update.
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> Signed-off-by: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> ---
+>   drivers/gpu/drm/i915/Makefile                 |   1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_create.c    |  10 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |   2 +
+>   drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h   |  38 +++
+>   .../drm/i915/gem/i915_gem_vm_bind_object.c    | 233 ++++++++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_gtt.c           |   7 +
+>   drivers/gpu/drm/i915/gt/intel_gtt.h           |   9 +
+>   drivers/gpu/drm/i915/i915_driver.c            |  11 +-
+>   drivers/gpu/drm/i915/i915_vma.c               |   7 +-
+>   drivers/gpu/drm/i915/i915_vma.h               |   2 -
+>   drivers/gpu/drm/i915/i915_vma_types.h         |   8 +
+>   11 files changed, 318 insertions(+), 10 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h
+>   create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
 > 
-> The plan is to follow this up with a more complex rework to allow for
-> multiple different GuC versions to be supported at the same time.
-> 
-> Fixes: 2584b3549f4c ("drm/i915/guc: Update to GuC version 70.1.1")
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 522ef9b4aff3..4e1627e96c6e 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -165,6 +165,7 @@ gem-y += \
+>   	gem/i915_gem_ttm_move.o \
+>   	gem/i915_gem_ttm_pm.o \
+>   	gem/i915_gem_userptr.o \
+> +	gem/i915_gem_vm_bind_object.o \
+>   	gem/i915_gem_wait.o \
+>   	gem/i915_gemfs.o
+>   i915-y += \
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> index 33673fe7ee0a..927a87e5ec59 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> @@ -15,10 +15,10 @@
+>   #include "i915_trace.h"
+>   #include "i915_user_extensions.h"
+>   
+> -static u32 object_max_page_size(struct intel_memory_region **placements,
+> -				unsigned int n_placements)
+> +u32 i915_gem_object_max_page_size(struct intel_memory_region **placements,
+> +				  unsigned int n_placements)
+>   {
+> -	u32 max_page_size = 0;
+> +	u32 max_page_size = I915_GTT_PAGE_SIZE_4K;
+>   	int i;
+>   
+>   	for (i = 0; i < n_placements; i++) {
+> @@ -28,7 +28,6 @@ static u32 object_max_page_size(struct intel_memory_region **placements,
+>   		max_page_size = max_t(u32, max_page_size, mr->min_page_size);
+>   	}
+>   
+> -	GEM_BUG_ON(!max_page_size);
+>   	return max_page_size;
+>   }
+>   
+> @@ -99,7 +98,8 @@ __i915_gem_object_create_user_ext(struct drm_i915_private *i915, u64 size,
+>   
+>   	i915_gem_flush_free_objects(i915);
+>   
+> -	size = round_up(size, object_max_page_size(placements, n_placements));
+> +	size = round_up(size, i915_gem_object_max_page_size(placements,
+> +							    n_placements));
+>   	if (size == 0)
+>   		return ERR_PTR(-EINVAL);
+>   
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> index 6f0a3ce35567..650de2224843 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -47,6 +47,8 @@ static inline bool i915_gem_object_size_2big(u64 size)
+>   }
+>   
+>   void i915_gem_init__objects(struct drm_i915_private *i915);
+> +u32 i915_gem_object_max_page_size(struct intel_memory_region **placements,
+> +				  unsigned int n_placements);
+>   
+>   void i915_objects_module_exit(void);
+>   int i915_objects_module_init(void);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h
+> new file mode 100644
+> index 000000000000..642cdb559f17
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h
+> @@ -0,0 +1,38 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2022 Intel Corporation
+> + */
+> +
+> +#ifndef __I915_GEM_VM_BIND_H
+> +#define __I915_GEM_VM_BIND_H
+> +
+> +#include "i915_drv.h"
+> +
+> +#define assert_vm_bind_held(vm)   lockdep_assert_held(&(vm)->vm_bind_lock)
+> +
+> +static inline void i915_gem_vm_bind_lock(struct i915_address_space *vm)
+> +{
+> +	mutex_lock(&vm->vm_bind_lock);
+> +}
+> +
+> +static inline int
+> +i915_gem_vm_bind_lock_interruptible(struct i915_address_space *vm)
+> +{
+> +	return mutex_lock_interruptible(&vm->vm_bind_lock);
+> +}
+> +
+> +static inline void i915_gem_vm_bind_unlock(struct i915_address_space *vm)
+> +{
+> +	mutex_unlock(&vm->vm_bind_lock);
+> +}
+> +
+> +struct i915_vma *
+> +i915_gem_vm_bind_lookup_vma(struct i915_address_space *vm, u64 va);
+> +void i915_gem_vm_bind_remove(struct i915_vma *vma, bool release_obj);
+> +int i915_gem_vm_bind_obj(struct i915_address_space *vm,
+> +			 struct drm_i915_gem_vm_bind *va,
+> +			 struct drm_file *file);
+> +int i915_gem_vm_unbind_obj(struct i915_address_space *vm,
+> +			   struct drm_i915_gem_vm_unbind *va);
+> +
+> +#endif /* __I915_GEM_VM_BIND_H */
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+> new file mode 100644
+> index 000000000000..43ceb4dcca6c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+> @@ -0,0 +1,233 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2022 Intel Corporation
+> + */
+> +
+> +#include <linux/interval_tree_generic.h>
+> +
+> +#include "gem/i915_gem_vm_bind.h"
+> +#include "gt/gen8_engine_cs.h"
+> +
+> +#include "i915_drv.h"
+> +#include "i915_gem_gtt.h"
+> +
+> +#define START(node) ((node)->start)
+> +#define LAST(node) ((node)->last)
+> +
+> +INTERVAL_TREE_DEFINE(struct i915_vma, rb, u64, __subtree_last,
+> +		     START, LAST, static inline, i915_vm_bind_it)
+> +
+> +#undef START
+> +#undef LAST
+> +
+> +/**
+> + * DOC: VM_BIND/UNBIND ioctls
+> + *
+> + * DRM_I915_GEM_VM_BIND/UNBIND ioctls allows UMD to bind/unbind GEM buffer
+> + * objects (BOs) or sections of a BOs at specified GPU virtual addresses on a
+> + * specified address space (VM). Multiple mappings can map to the same physical
+> + * pages of an object (aliasing). These mappings (also referred to as persistent
+> + * mappings) will be persistent across multiple GPU submissions (execbuf calls)
+> + * issued by the UMD, without user having to provide a list of all required
+> + * mappings during each submission (as required by older execbuf mode).
+> + *
+> + * The VM_BIND/UNBIND calls allow UMDs to request a timeline out fence for
+> + * signaling the completion of bind/unbind operation.
+> + *
+> + * VM_BIND feature is advertised to user via I915_PARAM_VM_BIND_VERSION.
+> + * User has to opt-in for VM_BIND mode of binding for an address space (VM)
+> + * during VM creation time via I915_VM_CREATE_FLAGS_USE_VM_BIND extension.
+> + *
+> + * VM_BIND/UNBIND ioctl calls executed on different CPU threads concurrently
+> + * are not ordered. Furthermore, parts of the VM_BIND/UNBIND operations can be
+> + * done asynchronously, when valid out fence is specified.
+> + *
+> + * VM_BIND locking order is as below.
+> + *
+> + * 1) Lock-A: A vm_bind mutex will protect vm_bind lists. This lock is taken in
+> + *    vm_bind/vm_unbind ioctl calls, in the execbuf path and while releasing the
+> + *    mapping.
+> + *
+> + *    In future, when GPU page faults are supported, we can potentially use a
+> + *    rwsem instead, so that multiple page fault handlers can take the read
+> + *    side lock to lookup the mapping and hence can run in parallel.
+> + *    The older execbuf mode of binding do not need this lock.
+> + *
+> + * 2) Lock-B: The object's dma-resv lock will protect i915_vma state and needs
+> + *    to be held while binding/unbinding a vma in the async worker and while
+> + *    updating dma-resv fence list of an object. Note that private BOs of a VM
+> + *    will all share a dma-resv object.
+> + *
+> + *    The future system allocator support will use the HMM prescribed locking
+> + *    instead.
+> + *
+> + * 3) Lock-C: Spinlock/s to protect some of the VM's lists like the list of
+> + *    invalidated vmas (due to eviction and userptr invalidation) etc.
+> + */
+> +
+> +struct i915_vma *
+> +i915_gem_vm_bind_lookup_vma(struct i915_address_space *vm, u64 va)
+> +{
+> +	struct i915_vma *vma, *temp;
+> +
+> +	assert_vm_bind_held(vm);
+> +
+> +	vma = i915_vm_bind_it_iter_first(&vm->va, va, va);
+> +	/* Working around compiler error, remove later */
+> +	if (vma)
+> +		temp = i915_vm_bind_it_iter_next(vma, va + vma->size, -1);
+> +	return vma;
+> +}
+> +
+> +void i915_gem_vm_bind_remove(struct i915_vma *vma, bool release_obj)
+> +{
+> +	assert_vm_bind_held(vma->vm);
+> +
+> +	if (!list_empty(&vma->vm_bind_link)) {
+> +		list_del_init(&vma->vm_bind_link);
+> +		i915_vm_bind_it_remove(vma, &vma->vm->va);
+> +
+> +		/* Release object */
+> +		if (release_obj)
+> +			i915_vma_put(vma);
+> +	}
+> +}
+> +
+> +int i915_gem_vm_unbind_obj(struct i915_address_space *vm,
+> +			   struct drm_i915_gem_vm_unbind *va)
+> +{
+> +	struct drm_i915_gem_object *obj;
+> +	struct i915_vma *vma;
+> +	int ret;
+> +
+> +	va->start = gen8_noncanonical_addr(va->start);
+> +	ret = i915_gem_vm_bind_lock_interruptible(vm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	vma = i915_gem_vm_bind_lookup_vma(vm, va->start);
+> +	if (!vma) {
+> +		ret = -ENOENT;
+> +		goto out_unlock;
+> +	}
+> +
+> +	if (vma->size != va->length)
+> +		ret = -EINVAL;
+> +	else
+> +		i915_gem_vm_bind_remove(vma, false);
+> +
+> +out_unlock:
+> +	i915_gem_vm_bind_unlock(vm);
+> +	if (ret || !vma)
+> +		return ret;
+> +
+> +	/* Destroy vma and then release object */
+> +	obj = vma->obj;
+> +	ret = i915_gem_object_lock(obj, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	i915_vma_destroy(vma);
+> +	i915_gem_object_unlock(obj);
+> +	i915_gem_object_put(obj);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct i915_vma *vm_bind_get_vma(struct i915_address_space *vm,
+> +					struct drm_i915_gem_object *obj,
+> +					struct drm_i915_gem_vm_bind *va)
+> +{
+> +	struct i915_ggtt_view view;
+> +	struct i915_vma *vma;
+> +
+> +	va->start = gen8_noncanonical_addr(va->start);
+> +	vma = i915_gem_vm_bind_lookup_vma(vm, va->start);
+> +	if (vma)
+> +		return ERR_PTR(-EEXIST);
+> +
+> +	view.type = I915_GGTT_VIEW_PARTIAL;
 
-Please check if I got this right:
-
-  * ADL-P was out of "force probe" starting from 5.17.
-  * GuC fw got bumped from v62 to v69 in 5.18.
-
-Does this mean you would also need to handle v62 to avoid regressing 
-ADL-P from 5.17 to 5.18? I couldn't figure out when ADL-P switched from 
-execlists to GuC due a bit convoluted supported/wanted/needed macros 
-etc, so not entirely sure.
-
-Secondly, my concern with the approach like in this patch is that it 
-would grow the i915 code base *if* there is no incentive to keep the 
-compatiblity breaking firware updates in check.
-
-To think about in tandem with this is the question of whether many more 
-fallback versions need to be handled, even for platforms which only use 
-GuC to load HuC? Those would also regress in the media encoding side of 
-things, even if they don't use GuC submission, right?
-
-If this is so, the approach from this patch would feel rushed in my view.
-
-There is also the question of being able to automatically load the 
-latest _compatible_ (same major version) GuC fw found on disk. Aka 
-allowing a bugfix firmware update which does not require a kernel 
-update. In theory should be possible but we don't have that implemented 
-either, right?
+One pre-requisite, which was known for "years", was to refactor the GGTT 
+view code into a generic concept. (GGTT has no place in VM BIND code.) 
+It may be just a question of renaming things, or it may end up a bit 
+more, but in any case please do include that refactor in this series.
 
 Regards,
 
 Tvrtko
 
-> Link: https://lists.freedesktop.org/archives/intel-gfx/2022-July/301640.html
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Dave Airlie <airlied@redhat.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_context_types.h |  11 +-
->   .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   3 +
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   5 +
->   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |  45 +++
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 348 +++++++++++++++---
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  57 ++-
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h      |   7 +
->   7 files changed, 419 insertions(+), 57 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> index d2d75d9c0c8d..04eacae1aca5 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> @@ -275,10 +275,17 @@ struct intel_context {
->   		u8 child_index;
->   		/** @guc: GuC specific members for parallel submission */
->   		struct {
-> -			/** @wqi_head: head pointer in work queue */
-> +			/** @wqi_head: cached head pointer in work queue */
->   			u16 wqi_head;
-> -			/** @wqi_tail: tail pointer in work queue */
-> +			/** @wqi_tail: cached tail pointer in work queue */
->   			u16 wqi_tail;
-> +			/** @wq_head: pointer to the actual head in work queue */
-> +			u32 *wq_head;
-> +			/** @wq_tail: pointer to the actual head in work queue */
-> +			u32 *wq_tail;
-> +			/** @wq_status: pointer to the status in work queue */
-> +			u32 *wq_status;
+> +	view.partial.offset = va->offset >> PAGE_SHIFT;
+> +	view.partial.size = va->length >> PAGE_SHIFT;
+> +	vma = i915_vma_instance(obj, vm, &view);
+> +	if (IS_ERR(vma))
+> +		return vma;
 > +
->   			/**
->   			 * @parent_page: page in context state (ce->state) used
->   			 * by parent for work queue, process descriptor
-> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> index 4ef9990ed7f8..29ef8afc8c2e 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> @@ -122,6 +122,9 @@ enum intel_guc_action {
->   	INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_DONE = 0x1002,
->   	INTEL_GUC_ACTION_SCHED_ENGINE_MODE_SET = 0x1003,
->   	INTEL_GUC_ACTION_SCHED_ENGINE_MODE_DONE = 0x1004,
-> +	INTEL_GUC_ACTION_V69_SET_CONTEXT_PRIORITY = 0x1005,
-> +	INTEL_GUC_ACTION_V69_SET_CONTEXT_EXECUTION_QUANTUM = 0x1006,
-> +	INTEL_GUC_ACTION_V69_SET_CONTEXT_PREEMPTION_TIMEOUT = 0x1007,
->   	INTEL_GUC_ACTION_CONTEXT_RESET_NOTIFICATION = 0x1008,
->   	INTEL_GUC_ACTION_ENGINE_FAILURE_NOTIFICATION = 0x1009,
->   	INTEL_GUC_ACTION_HOST2GUC_UPDATE_CONTEXT_POLICIES = 0x100B,
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index d0d99f178f2d..a7acffbf15d1 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -170,6 +170,11 @@ struct intel_guc {
->   	/** @ads_engine_usage_size: size of engine usage in the ADS */
->   	u32 ads_engine_usage_size;
->   
-> +	/** @lrc_desc_pool_v69: object allocated to hold the GuC LRC descriptor pool */
-> +	struct i915_vma *lrc_desc_pool_v69;
-> +	/** @lrc_desc_pool_vaddr_v69: contents of the GuC LRC descriptor pool */
-> +	void *lrc_desc_pool_vaddr_v69;
+> +	vma->start = va->start;
+> +	vma->last = va->start + va->length - 1;
 > +
->   	/**
->   	 * @context_lookup: used to resolve intel_context from guc_id, if a
->   	 * context is present in this structure it is registered with the GuC
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> index b3c9a9327f76..323b055e5db9 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> @@ -204,6 +204,20 @@ struct guc_wq_item {
->   	u32 fence_id;
->   } __packed;
->   
-> +struct guc_process_desc_v69 {
-> +	u32 stage_id;
-> +	u64 db_base_addr;
-> +	u32 head;
-> +	u32 tail;
-> +	u32 error_offset;
-> +	u64 wq_base_addr;
-> +	u32 wq_size_bytes;
-> +	u32 wq_status;
-> +	u32 engine_presence;
-> +	u32 priority;
-> +	u32 reserved[36];
-> +} __packed;
-> +
->   struct guc_sched_wq_desc {
->   	u32 head;
->   	u32 tail;
-> @@ -228,6 +242,37 @@ struct guc_ctxt_registration_info {
->   };
->   #define CONTEXT_REGISTRATION_FLAG_KMD	BIT(0)
->   
-> +/* Preempt to idle on quantum expiry */
-> +#define CONTEXT_POLICY_FLAG_PREEMPT_TO_IDLE_V69	BIT(0)
-> +
-> +/*
-> + * GuC Context registration descriptor.
-> + * FIXME: This is only required to exist during context registration.
-> + * The current 1:1 between guc_lrc_desc and LRCs for the lifetime of the LRC
-> + * is not required.
-> + */
-> +struct guc_lrc_desc_v69 {
-> +	u32 hw_context_desc;
-> +	u32 slpm_perf_mode_hint;	/* SPLC v1 only */
-> +	u32 slpm_freq_hint;
-> +	u32 engine_submit_mask;		/* In logical space */
-> +	u8 engine_class;
-> +	u8 reserved0[3];
-> +	u32 priority;
-> +	u32 process_desc;
-> +	u32 wq_addr;
-> +	u32 wq_size;
-> +	u32 context_flags;		/* CONTEXT_REGISTRATION_* */
-> +	/* Time for one workload to execute. (in micro seconds) */
-> +	u32 execution_quantum;
-> +	/* Time to wait for a preemption request to complete before issuing a
-> +	 * reset. (in micro seconds).
-> +	 */
-> +	u32 preemption_timeout;
-> +	u32 policy_flags;		/* CONTEXT_POLICY_* */
-> +	u32 reserved1[19];
-> +} __packed;
-> +
->   /* 32-bit KLV structure as used by policy updates and others */
->   struct guc_klv_generic_dw_t {
->   	u32 kl;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 40f726c61e95..aa10db25cc06 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -414,12 +414,15 @@ struct sync_semaphore {
->   };
->   
->   struct parent_scratch {
-> -	struct guc_sched_wq_desc wq_desc;
-> +	union guc_descs {
-> +		struct guc_sched_wq_desc wq_desc;
-> +		struct guc_process_desc_v69 pdesc;
-> +	} descs;
->   
->   	struct sync_semaphore go;
->   	struct sync_semaphore join[MAX_ENGINE_INSTANCE + 1];
->   
-> -	u8 unused[WQ_OFFSET - sizeof(struct guc_sched_wq_desc) -
-> +	u8 unused[WQ_OFFSET - sizeof(union guc_descs) -
->   		sizeof(struct sync_semaphore) * (MAX_ENGINE_INSTANCE + 2)];
->   
->   	u32 wq[WQ_SIZE / sizeof(u32)];
-> @@ -456,17 +459,23 @@ __get_parent_scratch(struct intel_context *ce)
->   		   LRC_STATE_OFFSET) / sizeof(u32)));
->   }
->   
-> +static struct guc_process_desc_v69 *
-> +__get_process_desc_v69(struct intel_context *ce)
-> +{
-> +	struct parent_scratch *ps = __get_parent_scratch(ce);
-> +
-> +	return &ps->descs.pdesc;
+> +	return vma;
 > +}
 > +
->   static struct guc_sched_wq_desc *
-> -__get_wq_desc(struct intel_context *ce)
-> +__get_wq_desc_v70(struct intel_context *ce)
->   {
->   	struct parent_scratch *ps = __get_parent_scratch(ce);
->   
-> -	return &ps->wq_desc;
-> +	return &ps->descs.wq_desc;
->   }
->   
-> -static u32 *get_wq_pointer(struct guc_sched_wq_desc *wq_desc,
-> -			   struct intel_context *ce,
-> -			   u32 wqi_size)
-> +static u32 *get_wq_pointer(struct intel_context *ce, u32 wqi_size)
->   {
->   	/*
->   	 * Check for space in work queue. Caching a value of head pointer in
-> @@ -476,7 +485,7 @@ static u32 *get_wq_pointer(struct guc_sched_wq_desc *wq_desc,
->   #define AVAILABLE_SPACE	\
->   	CIRC_SPACE(ce->parallel.guc.wqi_tail, ce->parallel.guc.wqi_head, WQ_SIZE)
->   	if (wqi_size > AVAILABLE_SPACE) {
-> -		ce->parallel.guc.wqi_head = READ_ONCE(wq_desc->head);
-> +		ce->parallel.guc.wqi_head = READ_ONCE(*ce->parallel.guc.wq_head);
->   
->   		if (wqi_size > AVAILABLE_SPACE)
->   			return NULL;
-> @@ -495,11 +504,55 @@ static inline struct intel_context *__get_context(struct intel_guc *guc, u32 id)
->   	return ce;
->   }
->   
-> +static struct guc_lrc_desc_v69 *__get_lrc_desc_v69(struct intel_guc *guc, u32 index)
+> +int i915_gem_vm_bind_obj(struct i915_address_space *vm,
+> +			 struct drm_i915_gem_vm_bind *va,
+> +			 struct drm_file *file)
 > +{
-> +	struct guc_lrc_desc_v69 *base = guc->lrc_desc_pool_vaddr_v69;
+> +	struct drm_i915_gem_object *obj;
+> +	struct i915_vma *vma = NULL;
+> +	struct i915_gem_ww_ctx ww;
+> +	u64 pin_flags;
+> +	int ret = 0;
 > +
-> +	if (!base)
-> +		return NULL;
+> +	if (!vm->vm_bind_mode)
+> +		return -EOPNOTSUPP;
 > +
-> +	GEM_BUG_ON(index >= GUC_MAX_CONTEXT_ID);
+> +	obj = i915_gem_object_lookup(file, va->handle);
+> +	if (!obj)
+> +		return -ENOENT;
 > +
-> +	return &base[index];
-> +}
+> +	if (!va->length ||
+> +	    !IS_ALIGNED(va->offset | va->length,
+> +			i915_gem_object_max_page_size(obj->mm.placements,
+> +						      obj->mm.n_placements)) ||
+> +	    range_overflows_t(u64, va->offset, va->length, obj->base.size)) {
+> +		ret = -EINVAL;
+> +		goto put_obj;
+> +	}
 > +
-> +static int guc_lrc_desc_pool_create_v69(struct intel_guc *guc)
-> +{
-> +	u32 size;
-> +	int ret;
-> +
-> +	size = PAGE_ALIGN(sizeof(struct guc_lrc_desc_v69) *
-> +			  GUC_MAX_CONTEXT_ID);
-> +	ret = intel_guc_allocate_and_map_vma(guc, size, &guc->lrc_desc_pool_v69,
-> +					     (void **)&guc->lrc_desc_pool_vaddr_v69);
+> +	ret = i915_gem_vm_bind_lock_interruptible(vm);
 > +	if (ret)
-> +		return ret;
+> +		goto put_obj;
 > +
-> +	return 0;
+> +	vma = vm_bind_get_vma(vm, obj, va);
+> +	if (IS_ERR(vma)) {
+> +		ret = PTR_ERR(vma);
+> +		goto unlock_vm;
+> +	}
+> +
+> +	i915_gem_ww_ctx_init(&ww, true);
+> +	pin_flags = va->start | PIN_OFFSET_FIXED | PIN_USER;
+> +retry:
+> +	ret = i915_gem_object_lock(vma->obj, &ww);
+> +	if (ret)
+> +		goto out_ww;
+> +
+> +	ret = i915_vma_pin_ww(vma, &ww, 0, 0, pin_flags);
+> +	if (ret)
+> +		goto out_ww;
+> +
+> +	/* Make it evictable */
+> +	__i915_vma_unpin(vma);
+> +
+> +	list_add_tail(&vma->vm_bind_link, &vm->vm_bound_list);
+> +	i915_vm_bind_it_insert(vma, &vm->va);
+> +
+> +	/* Hold object reference until vm_unbind */
+> +	i915_gem_object_get(vma->obj);
+> +out_ww:
+> +	if (ret == -EDEADLK) {
+> +		ret = i915_gem_ww_ctx_backoff(&ww);
+> +		if (!ret)
+> +			goto retry;
+> +	}
+> +
+> +	if (ret)
+> +		i915_vma_destroy(vma);
+> +
+> +	i915_gem_ww_ctx_fini(&ww);
+> +unlock_vm:
+> +	i915_gem_vm_bind_unlock(vm);
+> +put_obj:
+> +	i915_gem_object_put(obj);
+> +	return ret;
 > +}
-> +
-> +static void guc_lrc_desc_pool_destroy_v69(struct intel_guc *guc)
-> +{
-> +	if (!guc->lrc_desc_pool_vaddr_v69)
-> +		return;
-> +
-> +	guc->lrc_desc_pool_vaddr_v69 = NULL;
-> +	i915_vma_unpin_and_release(&guc->lrc_desc_pool_v69, I915_VMA_RELEASE_MAP);
-> +}
-> +
->   static inline bool guc_submission_initialized(struct intel_guc *guc)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> index b67831833c9a..135dc4a76724 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> @@ -176,6 +176,8 @@ int i915_vm_lock_objects(struct i915_address_space *vm,
+>   void i915_address_space_fini(struct i915_address_space *vm)
 >   {
->   	return guc->submission_initialized;
+>   	drm_mm_takedown(&vm->mm);
+> +	GEM_BUG_ON(!RB_EMPTY_ROOT(&vm->va.rb_root));
+> +	mutex_destroy(&vm->vm_bind_lock);
 >   }
 >   
-> +static inline void _reset_lrc_desc_v69(struct intel_guc *guc, u32 id)
-> +{
-> +	struct guc_lrc_desc_v69 *desc = __get_lrc_desc_v69(guc, id);
+>   /**
+> @@ -282,6 +284,11 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
+>   
+>   	INIT_LIST_HEAD(&vm->bound_list);
+>   	INIT_LIST_HEAD(&vm->unbound_list);
 > +
-> +	if (desc)
-> +		memset(desc, 0, sizeof(*desc));
-> +}
+> +	vm->va = RB_ROOT_CACHED;
+> +	INIT_LIST_HEAD(&vm->vm_bind_list);
+> +	INIT_LIST_HEAD(&vm->vm_bound_list);
+> +	mutex_init(&vm->vm_bind_lock);
+>   }
+>   
+>   void *__px_vaddr(struct drm_i915_gem_object *p)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+> index c812aa9708ae..d4a6ce65251d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+> @@ -259,6 +259,15 @@ struct i915_address_space {
+>   	 */
+>   	struct list_head unbound_list;
+>   
+> +	/**
+> +	 * List of VM_BIND objects.
+> +	 */
+> +	struct mutex vm_bind_lock;  /* Protects vm_bind lists */
+> +	struct list_head vm_bind_list;
+> +	struct list_head vm_bound_list;
+> +	/* va tree of persistent vmas */
+> +	struct rb_root_cached va;
 > +
->   static inline bool ctx_id_mapped(struct intel_guc *guc, u32 id)
+>   	/* Global GTT */
+>   	bool is_ggtt:1;
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index ccf990dfd99b..776ab7844f60 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -68,6 +68,7 @@
+>   #include "gem/i915_gem_ioctls.h"
+>   #include "gem/i915_gem_mman.h"
+>   #include "gem/i915_gem_pm.h"
+> +#include "gem/i915_gem_vm_bind.h"
+>   #include "gt/intel_gt.h"
+>   #include "gt/intel_gt_pm.h"
+>   #include "gt/intel_rc6.h"
+> @@ -1783,13 +1784,16 @@ static int i915_gem_vm_bind_ioctl(struct drm_device *dev, void *data,
 >   {
->   	return __get_context(guc, id);
-> @@ -526,6 +579,8 @@ static inline void clr_ctx_id_mapping(struct intel_guc *guc, u32 id)
->   	if (unlikely(!guc_submission_initialized(guc)))
->   		return;
->   
-> +	_reset_lrc_desc_v69(guc, id);
-> +
->   	/*
->   	 * xarray API doesn't have xa_erase_irqsave wrapper, so calling
->   	 * the lower level functions directly.
-> @@ -611,7 +666,7 @@ int intel_guc_wait_for_idle(struct intel_guc *guc, long timeout)
->   					      true, timeout);
->   }
->   
-> -static int guc_context_policy_init(struct intel_context *ce, bool loop);
-> +static int guc_context_policy_init_v70(struct intel_context *ce, bool loop);
->   static int try_context_registration(struct intel_context *ce, bool loop);
->   
->   static int __guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> @@ -639,7 +694,7 @@ static int __guc_add_request(struct intel_guc *guc, struct i915_request *rq)
->   	GEM_BUG_ON(context_guc_id_invalid(ce));
->   
->   	if (context_policy_required(ce)) {
-> -		err = guc_context_policy_init(ce, false);
-> +		err = guc_context_policy_init_v70(ce, false);
->   		if (err)
->   			return err;
->   	}
-> @@ -737,9 +792,7 @@ static u32 wq_space_until_wrap(struct intel_context *ce)
->   	return (WQ_SIZE - ce->parallel.guc.wqi_tail);
->   }
->   
-> -static void write_wqi(struct guc_sched_wq_desc *wq_desc,
-> -		      struct intel_context *ce,
-> -		      u32 wqi_size)
-> +static void write_wqi(struct intel_context *ce, u32 wqi_size)
->   {
->   	BUILD_BUG_ON(!is_power_of_2(WQ_SIZE));
->   
-> @@ -750,13 +803,12 @@ static void write_wqi(struct guc_sched_wq_desc *wq_desc,
->   
->   	ce->parallel.guc.wqi_tail = (ce->parallel.guc.wqi_tail + wqi_size) &
->   		(WQ_SIZE - 1);
-> -	WRITE_ONCE(wq_desc->tail, ce->parallel.guc.wqi_tail);
-> +	WRITE_ONCE(*ce->parallel.guc.wq_tail, ce->parallel.guc.wqi_tail);
->   }
->   
->   static int guc_wq_noop_append(struct intel_context *ce)
->   {
-> -	struct guc_sched_wq_desc *wq_desc = __get_wq_desc(ce);
-> -	u32 *wqi = get_wq_pointer(wq_desc, ce, wq_space_until_wrap(ce));
-> +	u32 *wqi = get_wq_pointer(ce, wq_space_until_wrap(ce));
->   	u32 len_dw = wq_space_until_wrap(ce) / sizeof(u32) - 1;
->   
->   	if (!wqi)
-> @@ -775,7 +827,6 @@ static int __guc_wq_item_append(struct i915_request *rq)
->   {
->   	struct intel_context *ce = request_to_scheduling_context(rq);
->   	struct intel_context *child;
-> -	struct guc_sched_wq_desc *wq_desc = __get_wq_desc(ce);
->   	unsigned int wqi_size = (ce->parallel.number_children + 4) *
->   		sizeof(u32);
->   	u32 *wqi;
-> @@ -795,7 +846,7 @@ static int __guc_wq_item_append(struct i915_request *rq)
->   			return ret;
->   	}
->   
-> -	wqi = get_wq_pointer(wq_desc, ce, wqi_size);
-> +	wqi = get_wq_pointer(ce, wqi_size);
->   	if (!wqi)
->   		return -EBUSY;
->   
-> @@ -810,7 +861,7 @@ static int __guc_wq_item_append(struct i915_request *rq)
->   	for_each_child(ce, child)
->   		*wqi++ = child->ring->tail / sizeof(u64);
->   
-> -	write_wqi(wq_desc, ce, wqi_size);
-> +	write_wqi(ce, wqi_size);
->   
->   	return 0;
->   }
-> @@ -1812,20 +1863,34 @@ static void reset_fail_worker_func(struct work_struct *w);
->   int intel_guc_submission_init(struct intel_guc *guc)
->   {
->   	struct intel_gt *gt = guc_to_gt(guc);
+>   	struct drm_i915_gem_vm_bind *args = data;
+>   	struct i915_address_space *vm;
 > +	int ret;
 >   
->   	if (guc->submission_initialized)
->   		return 0;
+>   	vm = i915_gem_vm_lookup(file->driver_priv, args->vm_id);
+>   	if (unlikely(!vm))
+>   		return -ENOENT;
 >   
-> +	if (guc->fw.major_ver_found < 70) {
-> +		ret = guc_lrc_desc_pool_create_v69(guc);
-> +		if (ret)
-> +			return ret;
-> +	}
+> +	ret = i915_gem_vm_bind_obj(vm, args, file);
 > +
->   	guc->submission_state.guc_ids_bitmap =
->   		bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
-> -	if (!guc->submission_state.guc_ids_bitmap)
-> -		return -ENOMEM;
-> +	if (!guc->submission_state.guc_ids_bitmap) {
-> +		ret = -ENOMEM;
-> +		goto destroy_pool;
-> +	}
->   
->   	guc->timestamp.ping_delay = (POLL_TIME_CLKS / gt->clock_frequency + 1) * HZ;
->   	guc->timestamp.shift = gpm_timestamp_shift(gt);
->   	guc->submission_initialized = true;
->   
->   	return 0;
-> +
-> +destroy_pool:
-> +	guc_lrc_desc_pool_destroy_v69(guc);
-> +
+>   	i915_vm_put(vm);
+> -	return -EINVAL;
 > +	return ret;
 >   }
 >   
->   void intel_guc_submission_fini(struct intel_guc *guc)
-> @@ -1834,6 +1899,7 @@ void intel_guc_submission_fini(struct intel_guc *guc)
->   		return;
+>   static int i915_gem_vm_unbind_ioctl(struct drm_device *dev, void *data,
+> @@ -1797,13 +1801,16 @@ static int i915_gem_vm_unbind_ioctl(struct drm_device *dev, void *data,
+>   {
+>   	struct drm_i915_gem_vm_unbind *args = data;
+>   	struct i915_address_space *vm;
+> +	int ret;
 >   
->   	guc_flush_destroyed_contexts(guc);
-> +	guc_lrc_desc_pool_destroy_v69(guc);
->   	i915_sched_engine_put(guc->sched_engine);
->   	bitmap_free(guc->submission_state.guc_ids_bitmap);
->   	guc->submission_initialized = false;
-> @@ -2091,10 +2157,34 @@ static void unpin_guc_id(struct intel_guc *guc, struct intel_context *ce)
->   	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+>   	vm = i915_gem_vm_lookup(file->driver_priv, args->vm_id);
+>   	if (unlikely(!vm))
+>   		return -ENOENT;
+>   
+> +	ret = i915_gem_vm_unbind_obj(vm, args);
+> +
+>   	i915_vm_put(vm);
+> -	return -EINVAL;
+> +	return ret;
 >   }
 >   
-> -static int __guc_action_register_multi_lrc(struct intel_guc *guc,
-> +static int __guc_action_register_multi_lrc_v69(struct intel_guc *guc,
->   					   struct intel_context *ce,
-> -					   struct guc_ctxt_registration_info *info,
-> +					   u32 guc_id,
-> +					   u32 offset,
->   					   bool loop)
-> +{
-> +	struct intel_context *child;
-> +	u32 action[4 + MAX_ENGINE_INSTANCE];
-> +	int len = 0;
-> +
-> +	GEM_BUG_ON(ce->parallel.number_children > MAX_ENGINE_INSTANCE);
-> +
-> +	action[len++] = INTEL_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC;
-> +	action[len++] = guc_id;
-> +	action[len++] = ce->parallel.number_children + 1;
-> +	action[len++] = offset;
-> +	for_each_child(ce, child) {
-> +		offset += sizeof(struct guc_lrc_desc_v69);
-> +		action[len++] = offset;
-> +	}
-> +
-> +	return guc_submission_send_busy_loop(guc, action, len, 0, loop);
-> +}
-> +
-> +static int __guc_action_register_multi_lrc_v70(struct intel_guc *guc,
-> +					       struct intel_context *ce,
-> +					       struct guc_ctxt_registration_info *info,
-> +					       bool loop)
+>   static const struct drm_ioctl_desc i915_ioctls[] = {
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 43339ecabd73..d324e29cef0a 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -29,6 +29,7 @@
+>   #include "display/intel_frontbuffer.h"
+>   #include "gem/i915_gem_lmem.h"
+>   #include "gem/i915_gem_tiling.h"
+> +#include "gem/i915_gem_vm_bind.h"
+>   #include "gt/intel_engine.h"
+>   #include "gt/intel_engine_heartbeat.h"
+>   #include "gt/intel_gt.h"
+> @@ -234,6 +235,7 @@ vma_create(struct drm_i915_gem_object *obj,
+>   	spin_unlock(&obj->vma.lock);
+>   	mutex_unlock(&vm->mutex);
+>   
+> +	INIT_LIST_HEAD(&vma->vm_bind_link);
+>   	return vma;
+>   
+>   err_unlock:
+> @@ -290,7 +292,6 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
 >   {
->   	struct intel_context *child;
->   	u32 action[13 + (MAX_ENGINE_INSTANCE * 2)];
-> @@ -2134,9 +2224,24 @@ static int __guc_action_register_multi_lrc(struct intel_guc *guc,
->   	return guc_submission_send_busy_loop(guc, action, len, 0, loop);
->   }
+>   	struct i915_vma *vma;
 >   
-> -static int __guc_action_register_context(struct intel_guc *guc,
-> -					 struct guc_ctxt_registration_info *info,
-> -					 bool loop)
-> +static int __guc_action_register_context_v69(struct intel_guc *guc,
-> +					     u32 guc_id,
-> +					     u32 offset,
-> +					     bool loop)
-> +{
-> +	u32 action[] = {
-> +		INTEL_GUC_ACTION_REGISTER_CONTEXT,
-> +		guc_id,
-> +		offset,
-> +	};
+> -	GEM_BUG_ON(view && !i915_is_ggtt_or_dpt(vm));
+>   	GEM_BUG_ON(!kref_read(&vm->ref));
+>   
+>   	spin_lock(&obj->vma.lock);
+> @@ -1660,6 +1661,10 @@ static void release_references(struct i915_vma *vma, bool vm_ddestroy)
+>   
+>   	spin_unlock(&obj->vma.lock);
+>   
+> +	i915_gem_vm_bind_lock(vma->vm);
+> +	i915_gem_vm_bind_remove(vma, true);
+> +	i915_gem_vm_bind_unlock(vma->vm);
 > +
-> +	return guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
-> +					     0, loop);
-> +}
-> +
-> +static int __guc_action_register_context_v70(struct intel_guc *guc,
-> +					     struct guc_ctxt_registration_info *info,
-> +					     bool loop)
+>   	spin_lock_irq(&gt->closed_lock);
+>   	__i915_vma_remove_closed(vma);
+>   	spin_unlock_irq(&gt->closed_lock);
+> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+> index 88ca0bd9c900..dcb49f79ff7e 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.h
+> +++ b/drivers/gpu/drm/i915/i915_vma.h
+> @@ -164,8 +164,6 @@ i915_vma_compare(struct i915_vma *vma,
 >   {
->   	u32 action[] = {
->   		INTEL_GUC_ACTION_REGISTER_CONTEXT,
-> @@ -2157,24 +2262,52 @@ static int __guc_action_register_context(struct intel_guc *guc,
->   					     0, loop);
->   }
+>   	ptrdiff_t cmp;
 >   
-> -static void prepare_context_registration_info(struct intel_context *ce,
-> -					      struct guc_ctxt_registration_info *info);
-> +static void prepare_context_registration_info_v69(struct intel_context *ce);
-> +static void prepare_context_registration_info_v70(struct intel_context *ce,
-> +						  struct guc_ctxt_registration_info *info);
->   
-> -static int register_context(struct intel_context *ce, bool loop)
-> +static int
-> +register_context_v69(struct intel_guc *guc, struct intel_context *ce, bool loop)
-> +{
-> +	u32 offset = intel_guc_ggtt_offset(guc, guc->lrc_desc_pool_v69) +
-> +		ce->guc_id.id * sizeof(struct guc_lrc_desc_v69);
-> +
-> +	prepare_context_registration_info_v69(ce);
-> +
-> +	if (intel_context_is_parent(ce))
-> +		return __guc_action_register_multi_lrc_v69(guc, ce, ce->guc_id.id,
-> +							   offset, loop);
-> +	else
-> +		return __guc_action_register_context_v69(guc, ce->guc_id.id,
-> +							 offset, loop);
-> +}
-> +
-> +static int
-> +register_context_v70(struct intel_guc *guc, struct intel_context *ce, bool loop)
->   {
->   	struct guc_ctxt_registration_info info;
-> +
-> +	prepare_context_registration_info_v70(ce, &info);
-> +
-> +	if (intel_context_is_parent(ce))
-> +		return __guc_action_register_multi_lrc_v70(guc, ce, &info, loop);
-> +	else
-> +		return __guc_action_register_context_v70(guc, &info, loop);
-> +}
-> +
-> +static int register_context(struct intel_context *ce, bool loop)
-> +{
->   	struct intel_guc *guc = ce_to_guc(ce);
->   	int ret;
->   
->   	GEM_BUG_ON(intel_context_is_child(ce));
->   	trace_intel_context_register(ce);
->   
-> -	prepare_context_registration_info(ce, &info);
+> -	GEM_BUG_ON(view && !i915_is_ggtt_or_dpt(vm));
 > -
-> -	if (intel_context_is_parent(ce))
-> -		ret = __guc_action_register_multi_lrc(guc, ce, &info, loop);
-> +	if (guc->fw.major_ver_found >= 70)
-> +		ret = register_context_v70(guc, ce, loop);
->   	else
-> -		ret = __guc_action_register_context(guc, &info, loop);
-> +		ret = register_context_v69(guc, ce, loop);
-> +
->   	if (likely(!ret)) {
->   		unsigned long flags;
+>   	cmp = ptrdiff(vma->vm, vm);
+>   	if (cmp)
+>   		return cmp;
+> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
+> index be6e028c3b57..b6d179bdbfa0 100644
+> --- a/drivers/gpu/drm/i915/i915_vma_types.h
+> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
+> @@ -289,6 +289,14 @@ struct i915_vma {
+>   	/** This object's place on the active/inactive lists */
+>   	struct list_head vm_link;
 >   
-> @@ -2182,7 +2315,8 @@ static int register_context(struct intel_context *ce, bool loop)
->   		set_context_registered(ce);
->   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
->   
-> -		guc_context_policy_init(ce, loop);
-> +		if (guc->fw.major_ver_found >= 70)
-> +			guc_context_policy_init_v70(ce, loop);
->   	}
->   
->   	return ret;
-> @@ -2279,7 +2413,7 @@ static int __guc_context_set_context_policies(struct intel_guc *guc,
->   					0, loop);
->   }
->   
-> -static int guc_context_policy_init(struct intel_context *ce, bool loop)
-> +static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
->   {
->   	struct intel_engine_cs *engine = ce->engine;
->   	struct intel_guc *guc = &engine->gt->uc.guc;
-> @@ -2338,6 +2472,19 @@ static int guc_context_policy_init(struct intel_context *ce, bool loop)
->   	return ret;
->   }
->   
-> +static void guc_context_policy_init_v69(struct intel_engine_cs *engine,
-> +					struct guc_lrc_desc_v69 *desc)
-> +{
-> +	desc->policy_flags = 0;
+> +	struct list_head vm_bind_link; /* Link in persistent VMA list */
 > +
-> +	if (engine->flags & I915_ENGINE_WANT_FORCED_PREEMPTION)
-> +		desc->policy_flags |= CONTEXT_POLICY_FLAG_PREEMPT_TO_IDLE_V69;
+> +	/** Interval tree structures for persistent vma */
+> +	struct rb_node rb;
+> +	u64 start;
+> +	u64 last;
+> +	u64 __subtree_last;
 > +
-> +	/* NB: For both of these, zero means disabled. */
-> +	desc->execution_quantum = engine->props.timeslice_duration_ms * 1000;
-> +	desc->preemption_timeout = engine->props.preempt_timeout_ms * 1000;
-> +}
-> +
->   static u32 map_guc_prio_to_lrc_desc_prio(u8 prio)
->   {
->   	/*
-> @@ -2358,8 +2505,75 @@ static u32 map_guc_prio_to_lrc_desc_prio(u8 prio)
->   	}
->   }
->   
-> -static void prepare_context_registration_info(struct intel_context *ce,
-> -					      struct guc_ctxt_registration_info *info)
-> +static void prepare_context_registration_info_v69(struct intel_context *ce)
-> +{
-> +	struct intel_engine_cs *engine = ce->engine;
-> +	struct intel_guc *guc = &engine->gt->uc.guc;
-> +	u32 ctx_id = ce->guc_id.id;
-> +	struct guc_lrc_desc_v69 *desc;
-> +	struct intel_context *child;
-> +
-> +	GEM_BUG_ON(!engine->mask);
-> +
-> +	/*
-> +	 * Ensure LRC + CT vmas are is same region as write barrier is done
-> +	 * based on CT vma region.
-> +	 */
-> +	GEM_BUG_ON(i915_gem_object_is_lmem(guc->ct.vma->obj) !=
-> +		   i915_gem_object_is_lmem(ce->ring->vma->obj));
-> +
-> +	desc = __get_lrc_desc_v69(guc, ctx_id);
-> +	desc->engine_class = engine_class_to_guc_class(engine->class);
-> +	desc->engine_submit_mask = engine->logical_mask;
-> +	desc->hw_context_desc = ce->lrc.lrca;
-> +	desc->priority = ce->guc_state.prio;
-> +	desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
-> +	guc_context_policy_init_v69(engine, desc);
-> +
-> +	/*
-> +	 * If context is a parent, we need to register a process descriptor
-> +	 * describing a work queue and register all child contexts.
-> +	 */
-> +	if (intel_context_is_parent(ce)) {
-> +		struct guc_process_desc_v69 *pdesc;
-> +
-> +		ce->parallel.guc.wqi_tail = 0;
-> +		ce->parallel.guc.wqi_head = 0;
-> +
-> +		desc->process_desc = i915_ggtt_offset(ce->state) +
-> +			__get_parent_scratch_offset(ce);
-> +		desc->wq_addr = i915_ggtt_offset(ce->state) +
-> +			__get_wq_offset(ce);
-> +		desc->wq_size = WQ_SIZE;
-> +
-> +		pdesc = __get_process_desc_v69(ce);
-> +		memset(pdesc, 0, sizeof(*(pdesc)));
-> +		pdesc->stage_id = ce->guc_id.id;
-> +		pdesc->wq_base_addr = desc->wq_addr;
-> +		pdesc->wq_size_bytes = desc->wq_size;
-> +		pdesc->wq_status = WQ_STATUS_ACTIVE;
-> +
-> +		ce->parallel.guc.wq_head = &pdesc->head;
-> +		ce->parallel.guc.wq_tail = &pdesc->tail;
-> +		ce->parallel.guc.wq_status = &pdesc->wq_status;
-> +
-> +		for_each_child(ce, child) {
-> +			desc = __get_lrc_desc_v69(guc, child->guc_id.id);
-> +
-> +			desc->engine_class =
-> +				engine_class_to_guc_class(engine->class);
-> +			desc->hw_context_desc = child->lrc.lrca;
-> +			desc->priority = ce->guc_state.prio;
-> +			desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
-> +			guc_context_policy_init_v69(engine, desc);
-> +		}
-> +
-> +		clear_children_join_go_memory(ce);
-> +	}
-> +}
-> +
-> +static void prepare_context_registration_info_v70(struct intel_context *ce,
-> +						  struct guc_ctxt_registration_info *info)
->   {
->   	struct intel_engine_cs *engine = ce->engine;
->   	struct intel_guc *guc = &engine->gt->uc.guc;
-> @@ -2409,10 +2623,14 @@ static void prepare_context_registration_info(struct intel_context *ce,
->   		info->wq_base_hi = upper_32_bits(wq_base_offset);
->   		info->wq_size = WQ_SIZE;
->   
-> -		wq_desc = __get_wq_desc(ce);
-> +		wq_desc = __get_wq_desc_v70(ce);
->   		memset(wq_desc, 0, sizeof(*wq_desc));
->   		wq_desc->wq_status = WQ_STATUS_ACTIVE;
->   
-> +		ce->parallel.guc.wq_head = &wq_desc->head;
-> +		ce->parallel.guc.wq_tail = &wq_desc->tail;
-> +		ce->parallel.guc.wq_status = &wq_desc->wq_status;
-> +
->   		clear_children_join_go_memory(ce);
->   	}
->   }
-> @@ -2727,11 +2945,21 @@ static void __guc_context_set_preemption_timeout(struct intel_guc *guc,
->   						 u16 guc_id,
->   						 u32 preemption_timeout)
->   {
-> -	struct context_policy policy;
-> +	if (guc->fw.major_ver_found >= 70) {
-> +		struct context_policy policy;
->   
-> -	__guc_context_policy_start_klv(&policy, guc_id);
-> -	__guc_context_policy_add_preemption_timeout(&policy, preemption_timeout);
-> -	__guc_context_set_context_policies(guc, &policy, true);
-> +		__guc_context_policy_start_klv(&policy, guc_id);
-> +		__guc_context_policy_add_preemption_timeout(&policy, preemption_timeout);
-> +		__guc_context_set_context_policies(guc, &policy, true);
-> +	} else {
-> +		u32 action[] = {
-> +			INTEL_GUC_ACTION_V69_SET_CONTEXT_PREEMPTION_TIMEOUT,
-> +			guc_id,
-> +			preemption_timeout
-> +		};
-> +
-> +		intel_guc_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
-> +	}
->   }
->   
->   static void
-> @@ -2982,11 +3210,21 @@ static int guc_context_alloc(struct intel_context *ce)
->   static void __guc_context_set_prio(struct intel_guc *guc,
->   				   struct intel_context *ce)
->   {
-> -	struct context_policy policy;
-> +	if (guc->fw.major_ver_found >= 70) {
-> +		struct context_policy policy;
->   
-> -	__guc_context_policy_start_klv(&policy, ce->guc_id.id);
-> -	__guc_context_policy_add_priority(&policy, ce->guc_state.prio);
-> -	__guc_context_set_context_policies(guc, &policy, true);
-> +		__guc_context_policy_start_klv(&policy, ce->guc_id.id);
-> +		__guc_context_policy_add_priority(&policy, ce->guc_state.prio);
-> +		__guc_context_set_context_policies(guc, &policy, true);
-> +	} else {
-> +		u32 action[] = {
-> +			INTEL_GUC_ACTION_V69_SET_CONTEXT_PRIORITY,
-> +			ce->guc_id.id,
-> +			ce->guc_state.prio,
-> +		};
-> +
-> +		guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
-> +	}
->   }
->   
->   static void guc_context_set_prio(struct intel_guc *guc,
-> @@ -4496,17 +4734,19 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
->   		guc_log_context_priority(p, ce);
->   
->   		if (intel_context_is_parent(ce)) {
-> -			struct guc_sched_wq_desc *wq_desc = __get_wq_desc(ce);
->   			struct intel_context *child;
->   
->   			drm_printf(p, "\t\tNumber children: %u\n",
->   				   ce->parallel.number_children);
-> -			drm_printf(p, "\t\tWQI Head: %u\n",
-> -				   READ_ONCE(wq_desc->head));
-> -			drm_printf(p, "\t\tWQI Tail: %u\n",
-> -				   READ_ONCE(wq_desc->tail));
-> -			drm_printf(p, "\t\tWQI Status: %u\n\n",
-> -				   READ_ONCE(wq_desc->wq_status));
-> +
-> +			if (ce->parallel.guc.wq_status) {
-> +				drm_printf(p, "\t\tWQI Head: %u\n",
-> +					   READ_ONCE(*ce->parallel.guc.wq_head));
-> +				drm_printf(p, "\t\tWQI Tail: %u\n",
-> +					   READ_ONCE(*ce->parallel.guc.wq_tail));
-> +				drm_printf(p, "\t\tWQI Status: %u\n\n",
-> +					   READ_ONCE(*ce->parallel.guc.wq_status));
-> +			}
->   
->   			if (ce->engine->emit_bb_start ==
->   			    emit_bb_start_parent_no_preempt_mid_batch) {
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index 27363091e1af..210c84411406 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -70,6 +70,23 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->   	fw_def(BROXTON,      0, guc_def(bxt,  70, 1, 1)) \
->   	fw_def(SKYLAKE,      0, guc_def(skl,  70, 1, 1))
->   
-> +#define INTEL_GUC_FIRMWARE_DEFS_FALLBACK(fw_def, guc_def) \
-> +	fw_def(ALDERLAKE_P,  0, guc_def(adlp, 69, 0, 3)) \
-> +	fw_def(ALDERLAKE_S,  0, guc_def(tgl,  69, 0, 3)) \
-> +	fw_def(DG1,          0, guc_def(dg1,  69, 0, 3)) \
-> +	fw_def(ROCKETLAKE,   0, guc_def(tgl,  69, 0, 3)) \
-> +	fw_def(TIGERLAKE,    0, guc_def(tgl,  69, 0, 3)) \
-> +	fw_def(JASPERLAKE,   0, guc_def(ehl,  69, 0, 3)) \
-> +	fw_def(ELKHARTLAKE,  0, guc_def(ehl,  69, 0, 3)) \
-> +	fw_def(ICELAKE,      0, guc_def(icl,  69, 0, 3)) \
-> +	fw_def(COMETLAKE,    5, guc_def(cml,  69, 0, 3)) \
-> +	fw_def(COMETLAKE,    0, guc_def(kbl,  69, 0, 3)) \
-> +	fw_def(COFFEELAKE,   0, guc_def(kbl,  69, 0, 3)) \
-> +	fw_def(GEMINILAKE,   0, guc_def(glk,  69, 0, 3)) \
-> +	fw_def(KABYLAKE,     0, guc_def(kbl,  69, 0, 3)) \
-> +	fw_def(BROXTON,      0, guc_def(bxt,  69, 0, 3)) \
-> +	fw_def(SKYLAKE,      0, guc_def(skl,  69, 0, 3))
-> +
->   #define INTEL_HUC_FIRMWARE_DEFS(fw_def, huc_def) \
->   	fw_def(ALDERLAKE_P,  0, huc_def(tgl,  7, 9, 3)) \
->   	fw_def(ALDERLAKE_S,  0, huc_def(tgl,  7, 9, 3)) \
-> @@ -105,6 +122,7 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->   	MODULE_FIRMWARE(uc_);
->   
->   INTEL_GUC_FIRMWARE_DEFS(INTEL_UC_MODULE_FW, MAKE_GUC_FW_PATH)
-> +INTEL_GUC_FIRMWARE_DEFS_FALLBACK(INTEL_UC_MODULE_FW, MAKE_GUC_FW_PATH)
->   INTEL_HUC_FIRMWARE_DEFS(INTEL_UC_MODULE_FW, MAKE_HUC_FW_PATH)
->   
->   /* The below structs and macros are used to iterate across the list of blobs */
-> @@ -149,6 +167,9 @@ __uc_fw_auto_select(struct drm_i915_private *i915, struct intel_uc_fw *uc_fw)
->   	static const struct uc_fw_platform_requirement blobs_guc[] = {
->   		INTEL_GUC_FIRMWARE_DEFS(MAKE_FW_LIST, GUC_FW_BLOB)
->   	};
-> +	static const struct uc_fw_platform_requirement blobs_guc_fallback[] = {
-> +		INTEL_GUC_FIRMWARE_DEFS_FALLBACK(MAKE_FW_LIST, GUC_FW_BLOB)
-> +	};
->   	static const struct uc_fw_platform_requirement blobs_huc[] = {
->   		INTEL_HUC_FIRMWARE_DEFS(MAKE_FW_LIST, HUC_FW_BLOB)
->   	};
-> @@ -179,12 +200,28 @@ __uc_fw_auto_select(struct drm_i915_private *i915, struct intel_uc_fw *uc_fw)
->   		if (p == fw_blobs[i].p && rev >= fw_blobs[i].rev) {
->   			const struct uc_fw_blob *blob = &fw_blobs[i].blob;
->   			uc_fw->path = blob->path;
-> +			uc_fw->wanted_path = blob->path;
->   			uc_fw->major_ver_wanted = blob->major;
->   			uc_fw->minor_ver_wanted = blob->minor;
->   			break;
->   		}
->   	}
->   
-> +	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC) {
-> +		const struct uc_fw_platform_requirement *blobs = blobs_guc_fallback;
-> +		u32 count = ARRAY_SIZE(blobs_guc_fallback);
-> +
-> +		for (i = 0; i < count && p <= blobs[i].p; i++) {
-> +			if (p == blobs[i].p && rev >= blobs[i].rev) {
-> +				const struct uc_fw_blob *blob = &blobs[i].blob;
-> +				uc_fw->fallback.path = blob->path;
-> +				uc_fw->fallback.major_ver = blob->major;
-> +				uc_fw->fallback.minor_ver = blob->minor;
-> +				break;
-> +			}
-> +		}
-> +	}
-> +
->   	/* make sure the list is ordered as expected */
->   	if (IS_ENABLED(CONFIG_DRM_I915_SELFTEST)) {
->   		for (i = 1; i < fw_count; i++) {
-> @@ -413,6 +450,18 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   	__force_fw_fetch_failures(uc_fw, -ESTALE);
->   
->   	err = request_firmware(&fw, uc_fw->path, dev);
-> +	if (err && !intel_uc_fw_is_overridden(uc_fw) && uc_fw->fallback.path) {
-> +		err = request_firmware(&fw, uc_fw->fallback.path, dev);
-> +		if (!err) {
-> +			drm_warn(&i915->drm, "%s firmware %s not found, falling back to %s\n",
-> +					     intel_uc_fw_type_repr(uc_fw->type),
-> +					     uc_fw->wanted_path,
-> +					     uc_fw->fallback.path);
-> +			uc_fw->path = uc_fw->fallback.path;
-> +			uc_fw->major_ver_wanted = uc_fw->fallback.major_ver;
-> +			uc_fw->minor_ver_wanted = uc_fw->fallback.minor_ver;
-> +		}
-> +	}
->   	if (err)
->   		goto fail;
->   
-> @@ -822,7 +871,13 @@ size_t intel_uc_fw_copy_rsa(struct intel_uc_fw *uc_fw, void *dst, u32 max_len)
->   void intel_uc_fw_dump(const struct intel_uc_fw *uc_fw, struct drm_printer *p)
->   {
->   	drm_printf(p, "%s firmware: %s\n",
-> -		   intel_uc_fw_type_repr(uc_fw->type), uc_fw->path);
-> +		   intel_uc_fw_type_repr(uc_fw->type), uc_fw->wanted_path);
-> +	if (uc_fw->fallback.path) {
-> +		drm_printf(p, "%s firmware fallback: %s\n",
-> +			   intel_uc_fw_type_repr(uc_fw->type), uc_fw->fallback.path);
-> +		drm_printf(p, "fallback selected: %s\n",
-> +			   str_yes_no(uc_fw->path == uc_fw->fallback.path));
-> +	}
->   	drm_printf(p, "\tstatus: %s\n",
->   		   intel_uc_fw_status_repr(uc_fw->status));
->   	drm_printf(p, "\tversion: wanted %u.%u, found %u.%u\n",
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> index 4f169035f504..7aa2644400b9 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> @@ -74,6 +74,7 @@ struct intel_uc_fw {
->   		const enum intel_uc_fw_status status;
->   		enum intel_uc_fw_status __status; /* no accidental overwrites */
->   	};
-> +	const char *wanted_path;
->   	const char *path;
->   	bool user_overridden;
->   	size_t size;
-> @@ -98,6 +99,12 @@ struct intel_uc_fw {
->   	u16 major_ver_found;
->   	u16 minor_ver_found;
->   
-> +	struct {
-> +		const char *path;
-> +		u16 major_ver;
-> +		u16 minor_ver;
-> +	} fallback;
-> +
->   	u32 rsa_size;
->   	u32 ucode_size;
->   
+>   	struct list_head obj_link; /* Link in the object's VMA list */
+>   	struct rb_node obj_node;
+>   	struct hlist_node obj_hash;
