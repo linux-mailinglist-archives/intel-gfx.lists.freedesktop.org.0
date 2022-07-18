@@ -1,50 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45205789D7
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 20:54:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B03FA578A5C
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 21:12:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50AF310EAEA;
-	Mon, 18 Jul 2022 18:54:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA73C10FB59;
+	Mon, 18 Jul 2022 19:12:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0472310EAEA
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jul 2022 18:54:30 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A04510FB59
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jul 2022 19:12:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658170471; x=1689706471;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=heFZq/xuL45QE3a3A6SPnydT12ufskQrPCZ5L/0hIe0=;
- b=PxqONu6iRBZGM6w9Lk7irvqXBl4hEidOncwVqNauKHDcuXt7PDAQWruu
- kX6CZXVysi1X3q8AQ1S9XC9lVPXAn6ez0hBqVWXOwG5zCqFC7DLiwW+fG
- GMezVwgi0b4ZJ3BsJIRVUkHpti+R6UvGUiZXcEvDzbFUd6jTQIRh7iHwX
- 6BXeV/kcneN/VF5svP9D24l+cB/htyCFN9N/CJr/vD/nZHs+7WolUaRHn
- qW9a9AhlSXeOdORdpS9fzgV24wK1Mq3kEg+JFsMSCZUq4Xp2TTE7e1M+k
- t3U8S4fp1E+qZ423fEyNZERpBmUZ4lbnG2sazoVQeYOLnegYQKIIcYFNr Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="266077657"
-X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; d="scan'208";a="266077657"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2022 11:54:20 -0700
-X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; d="scan'208";a="924457615"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2022 11:54:20 -0700
-Date: Mon, 18 Jul 2022 11:54:19 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <YtWsW+q+soTMtHgi@mdroper-desk1.amr.corp.intel.com>
-References: <20220718183424.149988-1-anusha.srivatsa@intel.com>
+ t=1658171571; x=1689707571;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2VH0h7v9QR68L6zaqXajUtzNmdB+edgB+vL2P4CHDMU=;
+ b=LWav6sDXMhhP7BkauKMWbv/lpyoQzf2OH0ZENj5szssZZ+8xt26Gk2Tn
+ AJKdnqZtKAdR6S/0jWG8X3YcfI4DiqRJZb0l4zwfPSNPSpdvDsPaBt/No
+ EA39+934ED8yUBcQ5IuQA/WgcNpL6HCIbOTQteH2e6S6db8LtFGC2UV2N
+ 0/bBqOGWFgtTmNjpf46LWJuUY/T2uZ54TV9pj5Bx7xfrDci/fE+p/lE+5
+ XIh0EzIukuyn2SoRPK3y7VNVd3xWmg5cnJa7z1RD/BiKngbJ9NozFfoAc
+ pZpxYmy1ah4XbvGmVh7t052RhJjiVXJP1SMHJxCggMrFHrn6xZmPUSAc+ Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="283867408"
+X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; d="scan'208";a="283867408"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2022 12:12:50 -0700
+X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; d="scan'208";a="624856942"
+Received: from niota-mobl1.amr.corp.intel.com (HELO anushasr-mobl7.intel.com)
+ ([10.212.212.212])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2022 12:12:49 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 Jul 2022 12:12:12 -0700
+Message-Id: <20220718191212.166141-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220718183424.149988-1-anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Pass drm_i915_private struct
- instead of gt for gen11_gu_misc_irq_handler()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Cleanup intel_phy_is_combo()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,63 +54,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 18, 2022 at 11:34:24AM -0700, Anusha Srivatsa wrote:
-> gen11_gu_misc_irq_handler() does not do anything tile specific.
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+No functional change. Cleanup the intel_phy_is_combo
+to accomodate for cases where combo phy is not available.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
-> ---
->  drivers/gpu/drm/i915/i915_irq.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index 73cebc6aa650..c304af777d58 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -2669,10 +2669,10 @@ gen11_gu_misc_irq_ack(struct intel_gt *gt, const u32 master_ctl)
->  }
->  
->  static void
-> -gen11_gu_misc_irq_handler(struct intel_gt *gt, const u32 iir)
-> +gen11_gu_misc_irq_handler(struct drm_i915_private *i915, const u32 iir)
->  {
->  	if (iir & GEN11_GU_MISC_GSE)
-> -		intel_opregion_asle_intr(gt->i915);
-> +		intel_opregion_asle_intr(i915);
->  }
->  
->  static inline u32 gen11_master_intr_disable(void __iomem * const regs)
-> @@ -2740,7 +2740,7 @@ static irqreturn_t gen11_irq_handler(int irq, void *arg)
->  
->  	gen11_master_intr_enable(regs);
->  
-> -	gen11_gu_misc_irq_handler(gt, gu_misc_iir);
-> +	gen11_gu_misc_irq_handler(i915, gu_misc_iir);
->  
->  	pmu_irq_stats(i915, IRQ_HANDLED);
->  
-> @@ -2805,7 +2805,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->  
->  	dg1_master_intr_enable(regs);
->  
-> -	gen11_gu_misc_irq_handler(gt, gu_misc_iir);
-> +	gen11_gu_misc_irq_handler(i915, gu_misc_iir);
->  
->  	pmu_irq_stats(i915, IRQ_HANDLED);
->  
-> -- 
-> 2.25.1
-> 
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a0f84cbe974f..b69208cf9a5e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2082,20 +2082,13 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
+ {
+ 	if (phy == PHY_NONE)
+ 		return false;
+-	else if (IS_DG2(dev_priv))
+-		/*
+-		 * DG2 outputs labelled as "combo PHY" in the bspec use
+-		 * SNPS PHYs with completely different programming,
+-		 * hence we always return false here.
+-		 */
+-		return false;
+ 	else if (IS_ALDERLAKE_S(dev_priv))
+ 		return phy <= PHY_E;
+ 	else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
+ 		return phy <= PHY_D;
+ 	else if (IS_JSL_EHL(dev_priv))
+ 		return phy <= PHY_C;
+-	else if (DISPLAY_VER(dev_priv) >= 11)
++	else if (IS_ALDERLAKE_P(dev_priv) || IS_DISPLAY_VER(dev_priv, 11, 12))
+ 		return phy <= PHY_B;
+ 	else
+ 		return false;
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
+2.25.1
+
