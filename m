@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF5325783A4
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 15:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E6A95783E3
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jul 2022 15:39:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6266B0F7F;
-	Mon, 18 Jul 2022 13:24:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52E0518BC95;
+	Mon, 18 Jul 2022 13:39:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D460DB0F7E;
- Mon, 18 Jul 2022 13:24:16 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E371018BC95;
+ Mon, 18 Jul 2022 13:39:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658150656; x=1689686656;
+ t=1658151562; x=1689687562;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=qqcHWk/lAUf+5mgRAPx2mVBoNbfUdleZV6DkpswyZto=;
- b=RjO7RR1VrM7epYWK2dQETnTHrxGzZXw2yDocb/Q06dlualy3qtJ7MHoH
- dzRnW9u/DmYRZHJ7aJiJ+H4NVTOVvnjsQuKND4KRvbNASYuTxEqeSLNGB
- 2KzLn11m+ntq7qfAg618AxdXd2U8313PaZg3fiYIh0LDwstCY0FBsNiDw
- yHMqYharsZOAGVSu2ECKoC4qyLbcW/v8rmkkyn87jHviW+um3fiRxxPk0
- npMDUanORgXTMOAMtLlLA06S+M0eJO+lzQqxi06MRjRpYTZg/kkdxhInV
- L+asQX7/jL6Zdeb6CWHcBqZLBGFlDG8eS/r6bTEocOXPbK++OOTVdFjeX Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10411"; a="286235290"
-X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; d="scan'208";a="286235290"
+ bh=S7SbUtL4cXYV52pGPG02yhwUZTGsc8NrJiIgLWn4W7c=;
+ b=BJWyFDRip95JHzoYbGH+0DJ5V+5dZPT5+ghBR6VSZhIV2Sqr93d4UiF8
+ vyOup5u3xyJl1hq094RnKf1auqXDBZbp9bsr+Jswxg/ViL59RW0re12G5
+ tIu2Kbh50MTIydoAUHI5BUsLFZMBjCPHTuQuWomNIHqUcwaiM9K5ET51k
+ 8O6rRKsTzUHEUvQHis3mhsen8c3evSq3G1zntgO5ygCg2jWaq8ZgpHVaK
+ GVDVmARwIuA5VxpOif4yGpmfcqlLP1FzzDj+YD2vAIRsyGoKd0PyWLw+K
+ Uml8CVijb5kJ2+pCaOq4GWWM8iuL+jl2jynAxA7Yg+SV1M08qTz86zX8E Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10411"; a="350181895"
+X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; d="scan'208";a="350181895"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2022 06:24:07 -0700
-X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; d="scan'208";a="686733003"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2022 06:39:22 -0700
+X-IronPort-AV: E=Sophos;i="5.92,281,1650956400"; d="scan'208";a="686737192"
 Received: from smyint-mobl1.amr.corp.intel.com (HELO [10.212.107.15])
  ([10.212.107.15])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2022 06:24:04 -0700
-Message-ID: <f4e26591-a680-6557-c91c-63f6061bfd2d@linux.intel.com>
-Date: Mon, 18 Jul 2022 14:24:02 +0100
+ 18 Jul 2022 06:39:19 -0700
+Message-ID: <72a40626-ee71-fffe-3816-933fbec92c4d@linux.intel.com>
+Date: Mon, 18 Jul 2022 14:39:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
 To: Mauro Carvalho Chehab <mchehab@kernel.org>
 References: <cover.1657800199.git.mchehab@kernel.org>
- <44ec6a01ef2e82184abbb075b9c8a09297fa120c.1657800199.git.mchehab@kernel.org>
+ <c0ab69f803cfe439f9218d0c0a930eae563dee83.1657800199.git.mchehab@kernel.org>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <44ec6a01ef2e82184abbb075b9c8a09297fa120c.1657800199.git.mchehab@kernel.org>
+In-Reply-To: <c0ab69f803cfe439f9218d0c0a930eae563dee83.1657800199.git.mchehab@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 03/21] drm/i915/gt: Invalidate TLB of the
- OA unit at TLB invalidations
+Subject: Re: [Intel-gfx] [PATCH v2 04/21] drm/i915/gt: Only invalidate TLBs
+ exposed to user manipulation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,10 +64,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
  David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- Chris Wilson <chris.p.wilson@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dave Airlie <airlied@redhat.com>, stable@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
+ linux-kernel@vger.kernel.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@redhat.com>,
+ stable@vger.kernel.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -75,57 +74,54 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On 14/07/2022 13:06, Mauro Carvalho Chehab wrote:
 > From: Chris Wilson <chris.p.wilson@intel.com>
 > 
-> Ensure that the TLB of the OA unit is also invalidated
-> on gen12 HW, as just invalidating the TLB of an engine is not
-> enough.
+> Don't flush TLBs when the buffer is only used in the GGTT under full
+> control of the kernel, as there's no risk of concurrent access
+> and stale access from prefetch.
+> 
+> We only need to invalidate the TLB if they are accessible by the user.
+> That helps to reduce the performance regression introduced by TLB
+> invalidate logic.
 > 
 > Cc: stable@vger.kernel.org
 > Fixes: 7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
-> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
-> Cc: Fei Yang <fei.yang@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Acked-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Do we really need or want stable and fixes on this one?
+
+What do we think the performance improvement is, given there's very 
+little in GGTT, which is not mapped via PPGTT as well?
+
+I think it is safe, but part of me would ideally not even want to think 
+about whether it is safe, if the performance improvement is 
+non-existent. Which I can't imagine how there would be?
 
 Regards,
 
 Tvrtko
 
+> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+> Cc: Fei Yang <fei.yang@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Acked-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 > ---
 > 
 > To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
 > See [PATCH v2 00/21] at: https://lore.kernel.org/all/cover.1657800199.git.mchehab@kernel.org/
 > 
->   drivers/gpu/drm/i915/gt/intel_gt.c | 10 ++++++++++
->   1 file changed, 10 insertions(+)
+>   drivers/gpu/drm/i915/i915_vma.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index c4d43da84d8e..1d84418e8676 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -11,6 +11,7 @@
->   #include "pxp/intel_pxp.h"
->   
->   #include "i915_drv.h"
-> +#include "i915_perf_oa_regs.h"
->   #include "intel_context.h"
->   #include "intel_engine_pm.h"
->   #include "intel_engine_regs.h"
-> @@ -969,6 +970,15 @@ void intel_gt_invalidate_tlbs(struct intel_gt *gt)
->   		awake |= engine->mask;
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index ef3b04c7e153..646f419b2035 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -538,7 +538,8 @@ int i915_vma_bind(struct i915_vma *vma,
+>   				   bind_flags);
 >   	}
 >   
-> +	/* Wa_2207587034:tgl,dg1,rkl,adl-s,adl-p */
-> +	if (awake &&
-> +	    (IS_TIGERLAKE(i915) ||
-> +	     IS_DG1(i915) ||
-> +	     IS_ROCKETLAKE(i915) ||
-> +	     IS_ALDERLAKE_S(i915) ||
-> +	     IS_ALDERLAKE_P(i915)))
-> +		intel_uncore_write_fw(uncore, GEN12_OA_TLB_INV_CR, 1);
-> +
->   	spin_unlock_irq(&uncore->lock);
+> -	set_bit(I915_BO_WAS_BOUND_BIT, &vma->obj->flags);
+> +	if (bind_flags & I915_VMA_LOCAL_BIND)
+> +		set_bit(I915_BO_WAS_BOUND_BIT, &vma->obj->flags);
 >   
->   	for_each_engine_masked(engine, gt, awake, tmp) {
+>   	atomic_or(bind_flags, &vma->flags);
+>   	return 0;
