@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 665D75796A8
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jul 2022 11:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C25B35796D8
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jul 2022 11:57:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 709AF14A5C8;
-	Tue, 19 Jul 2022 09:49:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85AED11BD2E;
+	Tue, 19 Jul 2022 09:57:01 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22BAB14A096;
- Tue, 19 Jul 2022 09:49:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EFBB11B92A;
+ Tue, 19 Jul 2022 09:56:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658224186; x=1689760186;
+ t=1658224619; x=1689760619;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=EgH1rgm4HVhwPAFfOniL62zgNxlhsUruveZjN4Tslbo=;
- b=EtIV9NGtlHhzdXxTj3jVb1wWtmGNRILukdsACSKIUzb3OaFezoOUCcfL
- obb5dIHgeo25o33qf8MCAKvpZ2dxMv1/l7djmwsBYZ3I7p5hF/6nmpfSa
- 0AX5CRjkDLy43ZL4jwQJsUzF6CVOW/B0JJOR25qLDdGiykFpV/9yOabv9
- g5pOEVqplgwwZCX+LWuV3tQ+yzPX8uefiuMcnn+ZzgNkqNHvw4iGZE9rz
- IsmS5EUt+ZibrzKsqzBjkBMNAH7yZrQPHR5k35zvTcOutUXBAYZVhgPuY
- VOd7dGw47ctY8zHrylP9uCYWS86qDfEYW/FSDE3ITvPxumuaJg94OmtHI g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="269473536"
-X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="269473536"
+ bh=ug1RSPJP3dXyVvhWyJLd8eK1kcXS/u3k8TcWfFrWyV4=;
+ b=Yzahm3jgCVAhGd70uWiXgQnWKzdhnDQMRy9lq4Uhccnw/4cfZv58/2Bg
+ /oFO7oezEslqGBH+AW4dmDF59GOkFvBxEOmZoiGHdi3i3cRgpRYQTSwJK
+ FZ0vqZYUVi3qsZS0Mil1TTDLE5vanZ/y1lLa0b/fsq0RuC2LBN8cLVeF5
+ zroghzcNG/QTbejEUffho3MktUgC9vxBe4nqm7f7rgaOLWz/CgDaGzdeR
+ gsnqpzyjgjRl59XaxtK6eNjCFJ29qgLMn/PsS6poeFbdk024mCbXS1ROq
+ YyUEGUvl4X0zsfsMa0XAVVyByjm+6/UqdCErUTrt/hmggiuXUoJC8nDk0 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="269474832"
+X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="269474832"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2022 02:49:45 -0700
-X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="601533810"
+ 19 Jul 2022 02:56:58 -0700
+X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="601535797"
 Received: from ssherida-mobl.ger.corp.intel.com (HELO [10.213.201.170])
  ([10.213.201.170])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2022 02:49:44 -0700
-Message-ID: <0107930e-bb8b-c7ee-c03c-7e7abf564498@linux.intel.com>
-Date: Tue, 19 Jul 2022 10:49:42 +0100
+ 19 Jul 2022 02:56:56 -0700
+Message-ID: <1f306c55-8443-72b3-a419-40f3cb85b76c@linux.intel.com>
+Date: Tue, 19 Jul 2022 10:56:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Intel-GFX@Lists.FreeDesktop.Org, Matthew Brost <matthew.brost@intel.com>
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
 References: <20220712233136.1044951-1-John.C.Harrison@Intel.com>
- <20220712233136.1044951-3-John.C.Harrison@Intel.com>
- <2f9959ae-40fe-f14d-8e70-e94f03237769@linux.intel.com>
- <4f14835e-300e-a1b7-bebb-8ecbb07ab682@intel.com>
+ <20220712233136.1044951-11-John.C.Harrison@Intel.com>
+ <3c8e8b71-1c74-c50d-7b29-29430a11eb10@linux.intel.com>
+ <e7673834-a795-8364-96d9-7075bd407ee6@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <4f14835e-300e-a1b7-bebb-8ecbb07ab682@intel.com>
+In-Reply-To: <e7673834-a795-8364-96d9-7075bd407ee6@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 02/12] drm/i915/guc: Don't call ring_is_idle
- in GuC submission
+Subject: Re: [Intel-gfx] [PATCH 10/12] drm/i915/guc: Support larger contexts
+ on newer hardware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,67 +69,37 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 19/07/2022 01:09, John Harrison wrote:
-> On 7/18/2022 05:26, Tvrtko Ursulin wrote:
+On 19/07/2022 01:13, John Harrison wrote:
+> On 7/18/2022 05:35, Tvrtko Ursulin wrote:
 >>
 >> On 13/07/2022 00:31, John.C.Harrison@Intel.com wrote:
 >>> From: Matthew Brost <matthew.brost@intel.com>
 >>>
->>> The engine registers really shouldn't be touched during GuC submission
->>> as the GuC owns the registers. Don't call ring_is_idle and tie
+>>> The GuC needs a copy of a golden context for implementing watchdog
+>>> resets (aka media resets). This context is larger on newer platforms.
+>>> So adjust the size being allocated/copied accordingly.
 >>
->> Touch being just read and it is somehow harmful?
-> The registers are meaningless when GuC is controlling the submission. 
-> The i915 driver has no knowledge of what context is or is not executing 
-> on any given engine at any given time. So reading reading the ring 
-> registers is incorrect - it can lead to bad assumptions about what state 
-> the hardware is in.
+>> What were the consequences of this being too small? Media watchdog 
+>> reset broken impacting userspace? Platforms? Do we have an IGT 
+>> testcase? Do we need a Fixes: tag? Copy stable?
+> Yes. Not sure if we have an IGT for the media watchdog. I recall writing 
+> something a long time back but I don't think it ever got merged due to 
+> push back that I don't recall right now. And no because it only affects 
+> DG2 onwards which is still forceprobed.
 
-Same is actually true with the execlists backend. The code in 
-ring_is_idle is not concerning itself with which context is running or 
-not. Just that the head/tail/ctl appear idle.
-
-Problem/motivation appears to be on a higher than simply ring registers.
-
-I am not claiming it makes sense with Guc and that it has to remain but 
-just suggesting for as a minimum clearer commit message.
-
->>> intel_engine_is_idle strictly to the engine pm.
->>
->> Strictly seems wrong - it is just ring_is_idle check that is replaced 
->> and not the whole implementation of intel_engine_is_idle.
->>
->>> Because intel_engine_is_idle tied to the engine pm, retire requests
->>> before checking intel_engines_are_idle in gt_drop_caches, and lastly
->> Why is re-ordering important? I at least can't understand it. I hope 
->> it's not working around IGT failures.
-> If requests are physically completed but not retired then they will be 
-> holding unnecessary PM references. So we need to flush those out before 
-> checking for idle.
-
-And if they are not as someone passes in DROP_RESET_ACTIVE? They will 
-not retire and code still enters intel_engines_are_idle so that has to 
-work, no? Something does not align for me still.
-
->>> increase the timeout in gt_drop_caches for the intel_engines_are_idle
->>> check.
->>
->> Same here - why?
-> @Matthew Brost - do you recall which particular tests were hitting an 
-> issue? I'm guessing gem_ctx_create? I believe that's the one that 
-> creates and destroys thousands of contexts. That is much slower with GuC 
-> (GuC communication required) than with execlists (i915 internal state 
-> change only).
-
-And if that is a logically separate change please split the patch up.
+Right, hm, I don't know if the MBD SKU promise for DG2 relies on force 
+probe removal or not. My impression certainly was that a bunch of uapi 
+we recently merged made people happy in that respect - that we satisfied 
+the commit to deliver that support with 5.19. Maybe I am wrong, or 
+perhaps to err on the side of safety you could add the right Fixes: tag 
+regardless? Pick some patch which enables GuC for DG2 if there isn't 
+anything better I guess. Or you could check with James.
 
 Regards,
 
 Tvrtko
 
-> 
 > John.
-> 
 > 
 > 
 >>
@@ -140,77 +109,46 @@ Tvrtko
 >>
 >>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 >>> ---
->>>   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 13 +++++++++++++
->>>   drivers/gpu/drm/i915/i915_debugfs.c       |  6 +++---
->>>   drivers/gpu/drm/i915/i915_drv.h           |  2 +-
->>>   3 files changed, 17 insertions(+), 4 deletions(-)
+>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 10 +++++++---
+>>>   1 file changed, 7 insertions(+), 3 deletions(-)
 >>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c 
->>> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> index 283870c659911..959a7c92e8f4d 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> @@ -1602,6 +1602,9 @@ static bool ring_is_idle(struct intel_engine_cs 
->>> *engine)
->>>   {
->>>       bool idle = true;
->>>   +    /* GuC submission shouldn't access HEAD & TAIL via MMIO */
->>> +    GEM_BUG_ON(intel_engine_uses_guc(engine));
->>> +
->>>       if (I915_SELFTEST_ONLY(!engine->mmio_base))
->>>           return true;
->>>   @@ -1668,6 +1671,16 @@ bool intel_engine_is_idle(struct 
->>> intel_engine_cs *engine)
->>>       if (!i915_sched_engine_is_empty(engine->sched_engine))
->>>           return false;
->>>   +    /*
->>> +     * We shouldn't touch engine registers with GuC submission as 
->>> the GuC
->>> +     * owns the registers. Let's tie the idle to engine pm, at worst 
->>> this
->>> +     * function sometimes will falsely report non-idle when idle 
->>> during the
->>> +     * delay to retire requests or with virtual engines and a request
->>> +     * running on another instance within the same class / submit mask.
->>> +     */
->>> +    if (intel_engine_uses_guc(engine))
->>> +        return false;
->>> +
->>>       /* Ring stopped? */
->>>       return ring_is_idle(engine);
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c 
+>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+>>> index ba7541f3ca610..74cbe8eaf5318 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+>>> @@ -464,7 +464,11 @@ static void fill_engine_enable_masks(struct 
+>>> intel_gt *gt,
 >>>   }
->>> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c 
->>> b/drivers/gpu/drm/i915/i915_debugfs.c
->>> index 94e5c29d2ee3a..ee5334840e9cb 100644
->>> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->>> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->>> @@ -654,13 +654,13 @@ gt_drop_caches(struct intel_gt *gt, u64 val)
+>>>     #define LR_HW_CONTEXT_SIZE (80 * sizeof(u32))
+>>> -#define LRC_SKIP_SIZE (LRC_PPHWSP_SZ * PAGE_SIZE + LR_HW_CONTEXT_SIZE)
+>>> +#define XEHP_LR_HW_CONTEXT_SIZE (96 * sizeof(u32))
+>>> +#define LR_HW_CONTEXT_SZ(i915) (GRAPHICS_VER_FULL(i915) >= 
+>>> IP_VER(12, 50) ? \
+>>> +                    XEHP_LR_HW_CONTEXT_SIZE : \
+>>> +                    LR_HW_CONTEXT_SIZE)
+>>> +#define LRC_SKIP_SIZE(i915) (LRC_PPHWSP_SZ * PAGE_SIZE + 
+>>> LR_HW_CONTEXT_SZ(i915))
+>>>   static int guc_prep_golden_context(struct intel_guc *guc)
 >>>   {
->>>       int ret;
->>>   +    if (val & DROP_RETIRE || val & DROP_RESET_ACTIVE)
->>> +        intel_gt_retire_requests(gt);
->>> +
->>>       if (val & DROP_RESET_ACTIVE &&
->>>           wait_for(intel_engines_are_idle(gt), 
->>> I915_IDLE_ENGINES_TIMEOUT))
->>>           intel_gt_set_wedged(gt);
->>>   -    if (val & DROP_RETIRE)
->>> -        intel_gt_retire_requests(gt);
->>> -
->>>       if (val & (DROP_IDLE | DROP_ACTIVE)) {
->>>           ret = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
->>>           if (ret)
->>> diff --git a/drivers/gpu/drm/i915/i915_drv.h 
->>> b/drivers/gpu/drm/i915/i915_drv.h
->>> index c22f29c3faa0e..53c7474dde495 100644
->>> --- a/drivers/gpu/drm/i915/i915_drv.h
->>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->>> @@ -278,7 +278,7 @@ struct i915_gem_mm {
->>>       u32 shrink_count;
->>>   };
->>>   -#define I915_IDLE_ENGINES_TIMEOUT (200) /* in ms */
->>> +#define I915_IDLE_ENGINES_TIMEOUT (500) /* in ms */
->>>     unsigned long i915_fence_context_timeout(const struct 
->>> drm_i915_private *i915,
->>>                        u64 context);
+>>>       struct intel_gt *gt = guc_to_gt(guc);
+>>> @@ -525,7 +529,7 @@ static int guc_prep_golden_context(struct 
+>>> intel_guc *guc)
+>>>            * on all engines).
+>>>            */
+>>>           ads_blob_write(guc, ads.eng_state_size[guc_class],
+>>> -                   real_size - LRC_SKIP_SIZE);
+>>> +                   real_size - LRC_SKIP_SIZE(gt->i915));
+>>>           ads_blob_write(guc, ads.golden_context_lrca[guc_class],
+>>>                      addr_ggtt);
+>>>   @@ -599,7 +603,7 @@ static void guc_init_golden_context(struct 
+>>> intel_guc *guc)
+>>>           }
+>>>             GEM_BUG_ON(ads_blob_read(guc, 
+>>> ads.eng_state_size[guc_class]) !=
+>>> -               real_size - LRC_SKIP_SIZE);
+>>> +               real_size - LRC_SKIP_SIZE(gt->i915));
+>>>           GEM_BUG_ON(ads_blob_read(guc, 
+>>> ads.golden_context_lrca[guc_class]) != addr_ggtt);
+>>>             addr_ggtt += alloc_size;
 > 
