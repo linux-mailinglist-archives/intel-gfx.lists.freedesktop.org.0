@@ -1,136 +1,142 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9301579783
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jul 2022 12:19:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 245BE579799
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jul 2022 12:25:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C15EC14B625;
-	Tue, 19 Jul 2022 10:19:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BEF614B694;
+	Tue, 19 Jul 2022 10:25:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0A614B61E;
- Tue, 19 Jul 2022 10:19:22 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E294714B694
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jul 2022 10:25:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658225962; x=1689761962;
+ t=1658226329; x=1689762329;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=iOg6vu8NuT4JVxzU9w3BE1wuRcC2zv9De6hy5NXrzAI=;
- b=If2JfR5Hcq6c0Vhu05v93Hyd6TJPnMPO/KjTKzRKyQ6nf4RczqKtCVM4
- zPQ6D6rWUXp5vSNvdeu7DryC7y7I4szm47d3xSiSdk8wj2L+BjS2+5wfO
- PajTvTXaJ/vc7DAyHrIbxfLHuoeYXqLp6GyJXVjs0p4s3xU1emp0aTsfh
- GoI1nKcWuzBKruwuvPLSitFV4b2QYivHZdbPa0unArjegnRFGQTc5UHLe
- QrVTTNaINbxG/kYSxSumtk9z0IxhZbXRXAyWnY+2bN8Pk/x+FVKqOX9Oz
- EsFUBAMdQfAkg10tav36k/tI1rV/HRmFS5zVz/daZLQZFzXB09gu39/6/ A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="266855325"
-X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="266855325"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2022 03:19:21 -0700
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=LNS7eYgO7IZxdLfyIpp2AbF85WmGOIcEoqJBVpkR6Qk=;
+ b=ITCO3P4nGuohFTHva/oSQwiTR8lDFNh1n4zZB30HruLugdzmhxaQrj4i
+ XXI7uUkGexiOwIKn80plhukXhgeXGsk+aJKMng5aG3sjLWJbsvP7XuoYK
+ epOxB/6djso4QoV6pZXSj8exwu1UaR2Q2rVjyv5w3dJcxS2ReI7FYRCCg
+ KqP5x9sPESLh5x3MK785rBfEZJyEmdQK4ZwsnMpYl65J9Bd49mSWHMAu+
+ gh1R2jL4WREQJXIrsM3a3yd4XNT7VI15yc8F4JUfwY3ua7oaEEivBT9cW
+ PwP9hKgaXX+8jLGtwBqnMl+BeTPWaSZfJPKzlGZq4/C4Ub/RmiDAwOeMM w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="348147176"
+X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="348147176"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2022 03:25:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="601543560"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga007.fm.intel.com with ESMTP; 19 Jul 2022 03:19:21 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="597611279"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga002.jf.intel.com with ESMTP; 19 Jul 2022 03:25:29 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Tue, 19 Jul 2022 03:19:21 -0700
+ 15.1.2375.28; Tue, 19 Jul 2022 03:25:28 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Tue, 19 Jul 2022 03:25:28 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Tue, 19 Jul 2022 03:19:21 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.43) by
+ 15.1.2308.27 via Frontend Transport; Tue, 19 Jul 2022 03:25:28 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
  edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Tue, 19 Jul 2022 03:19:20 -0700
+ 15.1.2308.27; Tue, 19 Jul 2022 03:25:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dzuS9Esc5c96gaYncxSf8Or+mTAHDnQGCJvSVXpON8vOQOPGMxqUguTGALnSnQe2TwnduG4rNBGAG8l6B1/c6xP2fbP5oSp1G3FzotVqCIi71lj7G8Jyt64LrmzBH6XbMd48KjYEtsRnf8Sa+M6k10j4707/doXkJoe8TYPqaRSLUzk2ywd0l6PL4J4ju1zezsqkphE9P9eujWAvD74xmPAj0hlbVIzF1ODZ8lNQkIMzY/K8E2k1Dgtc/EcN6E0Ki5k+MnP5dFIRMQj2Au/CNMHGP7EyMXRIjYJwfEA9t0TK3yX821jAT8Xbf5djJPUUkLVLCO8aPJPIViVutmtCvg==
+ b=ZWc9mVFLAkO3k09m3qiovSpVy1T3Iy+dIzoYy1fSabL5A5szx7GleTxAA4hS5qEyfGdZgA+lGQfqCbknNfInRiJ52WofYicInvbyFXXVZex7vcAKIXnJBcTzTBO8fp0+g8Bk3BKak5hPsghh/19uvVVTPsgskNF5wTmKFU1vysL2hKD1DsO9ow524A5+dG7zuHRcaSw5tzhonVBVS3/QCZ5R0bYn+9AvcnUO28TPx9idWL116WtPvmbz2b12bCMnbFK11+Soy4wSXIGfBxXXpqAisiLW6vNFrY0esmvNRGwnYp1Wj5jULLVPy9WBr9sl9ZKa8Wz+wKmgrdjej5aA1g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3YTa1oIkL8VzPEvoxGb3nphl0o8TTQIuwiG6FzPkuC4=;
- b=UFrdioNDsiv8xHAZMlcixIh6IT+HqErGz/ocSwJt/ephluHsIke4RO97aBsOEHapq4TrmVDojsdt/TDQtYTc9EPi3qg7qRwkhwKh3Z4hUOe7cLRuwVk/Hk8MiwaqJWxmzK1BWSrA4TMUsjBw2JTvWsdBfaaJiORersYJFLL7Z2+wXzkr30LWGEByAzrh1tI9+6GMItIGeYt2bwd2LSnqnA8evzW4lp4gjRUAX8L4og43I+++mCPcXrnMAIZavqCGd/LtO+NbAcRr14Mgrgyj7GeKWqCvayfSKI3NkwSsX3K2c4zttq0uMZFhAQjZNsx0+b0cW4wAymIcj3oO77NUfQ==
+ bh=OK0JdIS0aG0CfxoDyR17hpxpOV0xycr2OvZZY2mwlTM=;
+ b=m63Imx2KXNHgwISJLMNJVJ5rFOmApg0TWOwWI1MHra87gAjuFcQDMIg+vv7kj+/fSkMcQ/L8iL+Z0CMBHvUHFi31jxcloSSVvEZ7IPf4KMY+oAkYfC88tFuYr9aXEImXACVOE4egfDHl4blK6UpBd/5rNn4yKfHrLM9L4nuxY3+SD2CS3CAyzwpz63uhPnuFK4REwcqL9DiMRnlXqiFfWnZyEuxd7HZAdnpyFd/QRieVCTpTRhesLnyrj4s0yblkNE/JbBFvmknQgUUALuMarOssbTTWee4k3hsU3R/YbIIwhViXQUDAgG/IfKfwonmYv8TW5RV+bFnj9O68XOpGAg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by MN2PR11MB4014.namprd11.prod.outlook.com (2603:10b6:208:137::14)
+ by MN0PR11MB6157.namprd11.prod.outlook.com (2603:10b6:208:3cb::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Tue, 19 Jul
- 2022 10:19:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.23; Tue, 19 Jul
+ 2022 10:25:26 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::8053:3c59:9f5d:b615]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::8053:3c59:9f5d:b615%9]) with mapi id 15.20.5438.023; Tue, 19 Jul 2022
- 10:19:19 +0000
-Date: Tue, 19 Jul 2022 06:19:14 -0400
+ 10:25:26 +0000
+Date: Tue, 19 Jul 2022 06:25:20 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <YtaFIr9gGmh1V+7A@intel.com>
-References: <cover.1658192398.git.ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <YtaGkGOx4BZF3Cdm@intel.com>
+References: <20220715202044.11153-1-ville.syrjala@linux.intel.com>
+ <20220715202044.11153-2-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <cover.1658192398.git.ashutosh.dixit@intel.com>
-X-ClientProxiedBy: BYAPR01CA0063.prod.exchangelabs.com (2603:10b6:a03:94::40)
- To MN0PR11MB6059.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220715202044.11153-2-ville.syrjala@linux.intel.com>
+X-ClientProxiedBy: BY5PR03CA0012.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::22) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 44b1c745-04ce-4afb-3b72-08da697023dc
-X-MS-TrafficTypeDiagnostic: MN2PR11MB4014:EE_
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Office365-Filtering-Correlation-Id: 3e8644b9-0dd8-4991-1a97-08da6970ff10
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6157:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Flpayjt6A0fpxRpGIlVgoFP2aMi4eXCS0c0IJfCb1Hnn9zYjKRtD1vDW9lWxQeFX4tO8g9rzOQhgpVmJY/wmlmIupUF5+8MTkXI0JUd7AzRNWKTotThW8+DeNbSf0Qr8kJ7Xpy1t1rSS5naMCy742TzafK6QDYKVg+OKReG7HpEvdVLuSPZ1nZTvVyH1IUeqBSELDYvr106xDmjRPNvSM92MeBYXMNZV8yFVf8lLbGvRaIhCFbY1DBG4zRtl2gQRoVNkQh39pCjhhXeIRsgfqqd3jzYqgIvGVIkYq5jT3ZQb0e4Efg6IFgrp+Fz8YrDMs0uxxm+9Dcwno8bECQP+fhz6vLJ47Bj78tuVVh3PGrSVCQT6xA/9pYf2oWNDSu+8B6DZ+R90AnA8J9dSF8vFkg8fcVShgVmG2m6TWYcspZKzAXeVcjnCZWx8ENanzFm2B6IrkRJBJr/SR9Ujjii3O94YQtOwlB8aG+9xpHzliajHFD0UqYCL4FKBVfI0t/jOLwX/IsoRd/j9AzBuhSpNJsueC/MbmVS2iRUiWGgoVSVlbhuqStCEmF7la3mohC5fFq8gt7ecQnvOGpGNVpWQlznpPmxuAoDivFS6HPYmsI0ru7M6K6TI4f/sOlsCoyr2xV74c5ViYkbGatVdVXq7K8JuGqjQ3VdAlVaVRdP0YiHJJ1zTEI+HSNbOHnQchh1qHXNo2XWWuBCUIUxBi9391jRIwpGRotchWZAMS1yruDm4Pb640rjkd9L5JLo4vR6w8F6GOTyIqG97/ylHHi97oYaPEDOOs17vtPNY1RpAFSPT3AZKpkp4FFacL6SZrP30UX3GS58eUNyHoK65tUQ8pw==
+X-Microsoft-Antispam-Message-Info: TnZ7s7VBEltimPQeEMTtGXQlOZDEAmKIWqVB35QRMjEN6DG6iHP1EF3J612ud7VWrjmCX/4N5ZGUXfZTLUZ3cM0hQp5MtBf7hXTKsvIXAxUYYZOG23Evx5jchmmSBF+nGhSMRqEbSceUteRr4jjz63u5ZXAbcORNuzgQE7y0T66Lo0q5bEg3wjh2l/gcGDkCLqCnbo9o4p6cPdInPTxL7aUgeqLlhtwi15J0WRze2ADavcgd4F7qGdNvoCTjK2anVBfsDdY/UASrvALCfMtX87QN7NwsuTUm0LQRRaAsMLhiNnaUBFbN5DU4NtnAm517coyZyJGfHy35D7IjgqVe3Ewli5o9LIgWsTmZ4DhQXLxxUn4wPinUwe5lw71o8Nv2+RhpW5RPE6ORq9w5tYkPOxwUs4meUAFtZv4KNrdPy96YzJ+YoE/4jwHugCU01oUCF/SIK1c5RJCX+6XTUAINp/aTzWWIhXK4N5nVMSHOeN3lUn+y2MzjQO4AQgdJSvtYhVdmQycZ1SpMgiLhCU/0qo6efu77eN3VTr9UbvBGO+tS8E/dyFik36qDgbYLKx3YGxNxZ8kHB/3ZGPL6TDYmMTo1wYG9kvqwJMMlqpw/7y36HVBS8RE72w/FxGNtrKWhGCPtaiJWTbBWpPZmuOwtxQIGi3cMElJJI+dcDmHbF46kStKWVYGH3Xns2C+Q5i5RB14pmnIe3c3bsWuyL/BCNH7T/9BbCLm0Kuxwrqmw4xL7EgFBKQ89gltU/pdqhzma
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(346002)(376002)(366004)(396003)(39860400002)(136003)(38100700002)(6506007)(6512007)(26005)(966005)(8936002)(8676002)(6636002)(82960400001)(316002)(37006003)(86362001)(2906002)(41300700001)(6666004)(6486002)(66946007)(450100002)(4326008)(66476007)(186003)(107886003)(36756003)(83380400001)(5660300002)(2616005)(6862004)(44832011)(66556008)(478600001)(67856001);
+ SFS:(13230016)(136003)(376002)(39860400002)(366004)(396003)(346002)(6916009)(478600001)(6666004)(41300700001)(6506007)(6512007)(44832011)(38100700002)(26005)(6486002)(2906002)(8936002)(8676002)(66946007)(66556008)(2616005)(66476007)(316002)(30864003)(5660300002)(4326008)(82960400001)(36756003)(66574015)(83380400001)(86362001)(186003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?T3H3ogosjA50CJxPar8dOw6KthJx/sONEG6ywnxmQHQqraiTU0tRkqnOPNoK?=
- =?us-ascii?Q?G9sjgGSe1kosScpxtT2EaQB+K/WQR2YsU/d1yOJfR6sSacZ5UHs5lqlOooNa?=
- =?us-ascii?Q?95lvuHPqc7e7c8xy13JUY5zpa5x4PvYPy7vQFXPKBzgXzL9ggvPit/rPJiYT?=
- =?us-ascii?Q?gQN12pesQXgplsqabARr7fIpZDWYDS+2NEt23kWpTYmJRP4l7Zcyoe+5SDIC?=
- =?us-ascii?Q?RkHGwmP+8CWX/8ZowSu0re6H93WsZ+kVLKcTqs/AWOu5v85aYt3Jpf+9EAs9?=
- =?us-ascii?Q?p6ZIvUnAvosiDb/nhdTP8oJYMXMZMaoKfEUrxUKrml+HB1kD3litKMmM9ZKy?=
- =?us-ascii?Q?nx5CL6nP4dJ3IbtJXiy5rBy7VUDDCHp9jjA1dFWIn0FnK9RrhatndyQjVpVd?=
- =?us-ascii?Q?Uyt8rpErP3XHZXIjyPh7a7eul+MlCUrMsniGDiIihWnxSJgok9R/KU61ls0z?=
- =?us-ascii?Q?jmzYTs9RhdHV1KVzqZAsbxpqJ2uUTclvNsa4YHbd6rjRCBk5/N/pRjIRhiyf?=
- =?us-ascii?Q?weEBYsCluWQlPCLp+8v8vzGYJJwDiKW2lCzAAHXhLXkYWfr34hqVKHvSLNU3?=
- =?us-ascii?Q?GU6V3i5N2u6fqMgAY0aEEM6mV0hG67FHKoJ/0slc0mxjnwEaAKye09Swxkg2?=
- =?us-ascii?Q?idst9r3dvCHWas+yRiSKCcl4YS8JQd3cbtF+Cu0aokOrDtIkKiQWzJpNvn8f?=
- =?us-ascii?Q?U0vULtxJyAC0ZEEz8M5a2IW/j+P9f8IXIxVKzKuu7+3vEc3kN46WwgdqM/Ol?=
- =?us-ascii?Q?/paNncZy6dzP35ms63cEUOwT9LZzMuRYfGVCoCr6+oWXT928N7eI+QBBbskf?=
- =?us-ascii?Q?/wZxj1/ZBbOGsmHk6PLlnonn2Oi9k1f3i2X065sX0shUKJvPMdLMP3uz8wvy?=
- =?us-ascii?Q?sU0Q41GiAAJRmSiWBny34BffCA17QJQjX8fdlzuDai75bFg6x8YTrPLthXy+?=
- =?us-ascii?Q?PjfyaL5CEVJx7F25VcdakRJpz1x8wg2iX+M3YO7c55ZYnFnsIAG6Cry98Yeb?=
- =?us-ascii?Q?vdfcucjFkz4VO5bFfYUFMbWPRiqjff3Tdcvnjvl91oIgSeO6H8q6QPYpo2Cg?=
- =?us-ascii?Q?QVwbyS1JhgMynlF6i/PUpkP1J8M0K1VUoPT8HTpW019lAIctCNfHJN3aJnco?=
- =?us-ascii?Q?2uCvULyZ8u5gFsT7Y13nEC5s1V+RozBikSSz9xIZe6gsKSfIAWur/7IjNV/V?=
- =?us-ascii?Q?O3QzRT4W/ii7irKHi9C8rqU7b13IP85hoZIQ+lmjjyDpLgzEadVEEuQdV6ZU?=
- =?us-ascii?Q?vY0evlAxTC5c7PHya69XDLfKzArJ8RZC+uL+SmUX1wbDUUdR9qYc5e0uDY7T?=
- =?us-ascii?Q?ja5bLeIa7+4W/osZy6M+m4cDTsoV3/AaYqLAMKHVCOytksx6Th+FCeukrrha?=
- =?us-ascii?Q?+vkihjma/IpVE8pFBzFZ6H3f7TE4u7VBvwEpWc+MbZXkoHS+8tAtBaMkRWHP?=
- =?us-ascii?Q?OdrFp9s9ceHheFFDmoIoWvEjN49i1od7Ap1bYxDWwUwtf3rtWJO4QL5DD19u?=
- =?us-ascii?Q?rFf/R1Lzcvepi/gpZCZvT5I/MAzsJYr46D2TYwNuSBaB4Vr9BYpUoSTr6VLS?=
- =?us-ascii?Q?QUC7rej4PpTYcuNlTejy+UDbU+dbeEUyeXsJxNw1jyZFqHcpmYyVJdLZP/+m?=
- =?us-ascii?Q?hg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44b1c745-04ce-4afb-3b72-08da697023dc
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?16uIs7t4YBdWedU8jr7UZPvJOkF0RKxBBm1FQFVIRBnOHFRFxO8n8nyh29?=
+ =?iso-8859-1?Q?GCz6Cy9oLSo93M+DPI30kxlNRc2ebezUo4OGGeZ2WDBb0VlmY5zapq+eKo?=
+ =?iso-8859-1?Q?OBpD5aRlTiJl6UBi3gyY6VHWt9rdgx4GGuDYClGsX5AqBTez0Mz4Wb3Wdc?=
+ =?iso-8859-1?Q?dETAt+DH5kgiUhpAgP9anccH4Ej+wOf5AUhaHPZRBqk26HxkxCtHgVxrAI?=
+ =?iso-8859-1?Q?EppukZJaK0clx/DDlf7LRt7RGWNPuIv0mbOaFtm0zMnxOGvcKv80aP+OWw?=
+ =?iso-8859-1?Q?lbCIdLY+PLiOk+ZpMpWlY9aQrDpeUqbOGcIaqyDg+kgd07QLyV0Sx6txXB?=
+ =?iso-8859-1?Q?OkwGx/0D6+pVbiZDWVumLAMouvGNEI4ARhcVK8ej+vTtRjHWmsaKT4+jg3?=
+ =?iso-8859-1?Q?Q4dHfZJt7KzR+/jTBetqs6X38lmAB8qwa1Y21gFdvRkWU1Az8RKRj3Fq2d?=
+ =?iso-8859-1?Q?y1cH3wtDXMsaw3xnYSiKJVMhgqp8q5WGNLuQdwJtXehGnM2HwMSGwLzPqk?=
+ =?iso-8859-1?Q?Y0qIMbAifGGroiXidWWaN4FXghAcy3YXVDwrui2QizrNOllpa8hWGeBN+H?=
+ =?iso-8859-1?Q?PVnjorVX8e0PFl8jOtFzHNXu2j83QswP08//XlwK8z8N9SkYBwv/83Sbiu?=
+ =?iso-8859-1?Q?F6K+vIb8IRKrn/3smoXcg3yq+OBBbhB7XiCWVA6lFo+GwXGrimXyDcrD6F?=
+ =?iso-8859-1?Q?QQMsv8VPgxOUP8/Qc/Q0/YrtQsox3mBJlZpTefzeGus/ypyBRwLqN5tjhA?=
+ =?iso-8859-1?Q?jJvVRwDHZ3bpIjRgDXKoB/w/mzsb8NcGNRFE3fTotzlrKKJsEeQFPPKVEa?=
+ =?iso-8859-1?Q?1+6BYQH1y38B/fa8DZetMaHG4jolPxn3FU28mStCTGZbDg+k+1qaYirIdd?=
+ =?iso-8859-1?Q?lrj3FOqo1iJRZhpCdBiR3i83t47k0w7ryz/+9SeriiWeEn2mScluIf4RfQ?=
+ =?iso-8859-1?Q?ZxmxMyHrCrQKfE6V+yfn8tFBMHIO5dRHSDj866yuvi4DyK60sUpk6uPg8K?=
+ =?iso-8859-1?Q?770kQSxoEQGF3MR4xilLvUDbZfEkbn63RbE2RWQoudBW2WRLtpl3RNdlqh?=
+ =?iso-8859-1?Q?Xjpy+gXULnhmR7YNdicFu8+8CcC8gmUwzufmHB6vVk8TjFmYfFwvnUITR5?=
+ =?iso-8859-1?Q?PcD2h5CZW+E7A0RnjhaG51kylBOhD4tOCwe6nJp/D4+5bh+ti4CBsXW6tM?=
+ =?iso-8859-1?Q?yMnXA9Zk7AHW5oZIubRZKW8QJDkFRjiLjR/vsJiInzq2ptuuCaxOv2CRrg?=
+ =?iso-8859-1?Q?K7wS7trXWpMj9QO2XKA9Kx2RjlYlkvVxm5rrrmEDJsKTT0UB3K6Hpn1S09?=
+ =?iso-8859-1?Q?wO4s7RloxzGYVMDiuNEqwSNFxCbHMzZB80nVy412x7kTDgGvnhUOMQi7IF?=
+ =?iso-8859-1?Q?KTjmq7ceSkIAxp0IwOUdtgXAvtX86qfHIU9PDTsy3dJ+JZ6jRmzBklVZCm?=
+ =?iso-8859-1?Q?mSCxW21zAkRY2bGEy6+0RCD8PcNRa6WLlaLDPIyEtKDnxz5064FZ/PtrBI?=
+ =?iso-8859-1?Q?XfCCNNYCGXdDF/C7jy09ye+XqDrJ4Lr7DgS9TUUUArs9A7qk16zHTIcHoC?=
+ =?iso-8859-1?Q?DqfYNf4WheeuykVpku/qc9jdjA3u1uFynhQ3KH0rGN6hC5EAKqCMWP28yp?=
+ =?iso-8859-1?Q?09vn6SfcxdTBzY78wduA3Ck8fF5fjfo1uqtWtnFJ5SOMNDAs+ACZs5xw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e8644b9-0dd8-4991-1a97-08da6970ff10
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2022 10:19:18.8828 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2022 10:25:26.6582 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UoY5nKQ55rHOuaVXhozM5CfoczaAeR+4Oz8THEz06MsCuO07DDxFFHo9oRY+kutacfd4xr2nLxivXIx6/VkVcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4014
+X-MS-Exchange-CrossTenant-UserPrincipalName: NORtLcnyEvw54IarwPnqAF9IUNK/ZjbZ1R4v452dLBrCAdw1x488HLambLqJkbNj/kzV7DixegnJY+8EXgwoxg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6157
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 0/2] drm/i915/gt: Expose per gt defaults in
- sysfs
+Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915: Unify VBT version number
+ comments
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,50 +149,377 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 18, 2022 at 06:07:06PM -0700, Ashutosh Dixit wrote:
-> Create a gt/gtN/.defaults/ directory (similar to
-> engine/<engine-name>/.defaults/) to expose default parameter values for each
-> gt in sysfs. This allows userspace to restore default parameter values
-> after they may have changed.
+On Fri, Jul 15, 2022 at 11:20:33PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Patch 1: Creates the gt/gtN/.defaults/ directory
-> Patch 2: Adds per-gt RPS defaults (rps_max_freq_mhz and rps_min_freq_mhz)
-> 	 to gt/gtN/.defaults/
+> Use a more standard form for the VT version number comments.
 > 
-> An approved Level-0/oneAPI UMD pull request which consumes the exposed
-> defaults can be seen here:
-> 	https://github.com/intel/compute-runtime/pull/552
-> The UMD pull request will be merged if/after this series is merged to i915.
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 206 ++++++++++--------
+>  1 file changed, 110 insertions(+), 96 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> index 509b0a419c20..ba328d130991 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -75,6 +75,20 @@ struct bdb_header {
+>  	u16 bdb_size;
+>  } __packed;
+>  
+> +/*
+> + * BDB version number dependencies are documented as:
+> + *
+> + * <start>+
+> + *    indicates the field was introduced in version <start>
+> + *    and is still valid
+> + *
+> + * <start>-<end>
+> + *    indicates the field was introduced in version <start>
+> + *    and obsoleted in version <end>+1.
+> + *
+> + * ??? indicates the specific version number is unknown
+> + */
+> +
+>  /*
+>   * There are several types of BIOS data blocks (BDBs), each block has
+>   * an ID and size in the first 3 bytes (ID in first, size in next 2).
+> @@ -144,12 +158,12 @@ struct bdb_general_features {
+>          /* bits 3 */
+>  	u8 disable_smooth_vision:1;
+>  	u8 single_dvi:1;
+> -	u8 rotate_180:1;					/* 181 */
+> +	u8 rotate_180:1;					/* 181+ */
+>  	u8 fdi_rx_polarity_inverted:1;
+> -	u8 vbios_extended_mode:1;				/* 160 */
+> -	u8 copy_ilfp_dtd_to_sdvo_lvds_dtd:1;			/* 160 */
+> -	u8 panel_best_fit_timing:1;				/* 160 */
+> -	u8 ignore_strap_state:1;				/* 160 */
+> +	u8 vbios_extended_mode:1;				/* 160+ */
+> +	u8 copy_ilfp_dtd_to_sdvo_lvds_dtd:1;			/* 160+ */
+> +	u8 panel_best_fit_timing:1;				/* 160+ */
+> +	u8 ignore_strap_state:1;				/* 160+ */
+>  
+>          /* bits 4 */
+>  	u8 legacy_monitor_detect;
+> @@ -164,11 +178,11 @@ struct bdb_general_features {
+>  	u8 rsvd11:2; /* finish byte */
+>  
+>  	/* bits 6 */
+> -	u8 tc_hpd_retry_timeout:7; /* 242 */
+> +	u8 tc_hpd_retry_timeout:7;				/* 242+ */
+>  	u8 rsvd12:1;
+>  
+>  	/* bits 7 */
+> -	u8 afc_startup_config:2;/* 249 */
+> +	u8 afc_startup_config:2;				/* 249+ */
+>  	u8 rsvd13:6;
+>  } __packed;
+>  
+> @@ -275,27 +289,27 @@ struct bdb_general_features {
+>  #define DVO_PORT_DPC		8
+>  #define DVO_PORT_DPD		9
+>  #define DVO_PORT_DPA		10
+> -#define DVO_PORT_DPE		11				/* 193 */
+> -#define DVO_PORT_HDMIE		12				/* 193 */
+> +#define DVO_PORT_DPE		11				/* 193+ */
+> +#define DVO_PORT_HDMIE		12				/* 193+ */
+>  #define DVO_PORT_DPF		13				/* N/A */
+>  #define DVO_PORT_HDMIF		14				/* N/A */
+> -#define DVO_PORT_DPG		15				/* 217 */
+> -#define DVO_PORT_HDMIG		16				/* 217 */
+> -#define DVO_PORT_DPH		17				/* 217 */
+> -#define DVO_PORT_HDMIH		18				/* 217 */
+> -#define DVO_PORT_DPI		19				/* 217 */
+> -#define DVO_PORT_HDMII		20				/* 217 */
+> -#define DVO_PORT_MIPIA		21				/* 171 */
+> -#define DVO_PORT_MIPIB		22				/* 171 */
+> -#define DVO_PORT_MIPIC		23				/* 171 */
+> -#define DVO_PORT_MIPID		24				/* 171 */
+> +#define DVO_PORT_DPG		15				/* 217+ */
+> +#define DVO_PORT_HDMIG		16				/* 217+ */
+> +#define DVO_PORT_DPH		17				/* 217+ */
+> +#define DVO_PORT_HDMIH		18				/* 217+ */
+> +#define DVO_PORT_DPI		19				/* 217+ */
+> +#define DVO_PORT_HDMII		20				/* 217+ */
+> +#define DVO_PORT_MIPIA		21				/* 171+ */
+> +#define DVO_PORT_MIPIB		22				/* 171+ */
+> +#define DVO_PORT_MIPIC		23				/* 171+ */
+> +#define DVO_PORT_MIPID		24				/* 171+ */
+>  
+> -#define HDMI_MAX_DATA_RATE_PLATFORM	0			/* 204 */
+> -#define HDMI_MAX_DATA_RATE_297		1			/* 204 */
+> -#define HDMI_MAX_DATA_RATE_165		2			/* 204 */
+> -#define HDMI_MAX_DATA_RATE_594		3			/* 249 */
+> -#define HDMI_MAX_DATA_RATE_340		4			/* 249 */
+> -#define HDMI_MAX_DATA_RATE_300		5			/* 249 */
+> +#define HDMI_MAX_DATA_RATE_PLATFORM	0			/* 204+ */
+> +#define HDMI_MAX_DATA_RATE_297		1			/* 204+ */
+> +#define HDMI_MAX_DATA_RATE_165		2			/* 204+ */
+> +#define HDMI_MAX_DATA_RATE_594		3			/* 249+ */
+> +#define HDMI_MAX_DATA_RATE_340		4			/* 249+ */
+> +#define HDMI_MAX_DATA_RATE_300		5			/* 249+ */
+>  
+>  #define LEGACY_CHILD_DEVICE_CONFIG_SIZE		33
+>  
+> @@ -379,19 +393,19 @@ struct child_device_config {
+>  		u8  device_id[10]; /* ascii string */
+>  		struct {
+>  			u8 i2c_speed;
+> -			u8 dp_onboard_redriver;			/* 158 */
+> -			u8 dp_ondock_redriver;			/* 158 */
+> -			u8 hdmi_level_shifter_value:5;		/* 169 */
+> -			u8 hdmi_max_data_rate:3;		/* 204 */
+> -			u16 dtd_buf_ptr;			/* 161 */
+> -			u8 edidless_efp:1;			/* 161 */
+> -			u8 compression_enable:1;		/* 198 */
+> -			u8 compression_method_cps:1;		/* 198 */
+> -			u8 ganged_edp:1;			/* 202 */
+> +			u8 dp_onboard_redriver;			/* 158+ */
+> +			u8 dp_ondock_redriver;			/* 158+ */
+> +			u8 hdmi_level_shifter_value:5;		/* 158+ */
+> +			u8 hdmi_max_data_rate:3;		/* 204+ */
+> +			u16 dtd_buf_ptr;			/* 161+ */
+> +			u8 edidless_efp:1;			/* 161+ */
+> +			u8 compression_enable:1;		/* 198+ */
+> +			u8 compression_method_cps:1;		/* 198+ */
+> +			u8 ganged_edp:1;			/* 202+ */
+>  			u8 reserved0:4;
+> -			u8 compression_structure_index:4;	/* 198 */
+> +			u8 compression_structure_index:4;	/* 198+ */
+>  			u8 reserved1:4;
+> -			u8 slave_port;				/* 202 */
+> +			u8 slave_port;				/* 202+ */
+>  			u8 reserved2;
+>  		} __packed;
+>  	} __packed;
+> @@ -412,16 +426,16 @@ struct child_device_config {
+>  			u8 ddc2_pin;
+>  		} __packed;
+>  		struct {
+> -			u8 efp_routed:1;			/* 158 */
+> -			u8 lane_reversal:1;			/* 184 */
+> -			u8 lspcon:1;				/* 192 */
+> -			u8 iboost:1;				/* 196 */
+> -			u8 hpd_invert:1;			/* 196 */
+> -			u8 use_vbt_vswing:1;			/* 218 */
+> +			u8 efp_routed:1;			/* 158+ */
+> +			u8 lane_reversal:1;			/* 184+ */
+> +			u8 lspcon:1;				/* 192+ */
+> +			u8 iboost:1;				/* 196+ */
+> +			u8 hpd_invert:1;			/* 196+ */
+> +			u8 use_vbt_vswing:1;			/* 218+ */
+>  			u8 flag_reserved:2;
+> -			u8 hdmi_support:1;			/* 158 */
+> -			u8 dp_support:1;			/* 158 */
+> -			u8 tmds_support:1;			/* 158 */
+> +			u8 hdmi_support:1;			/* 158+ */
+> +			u8 dp_support:1;			/* 158+ */
+> +			u8 tmds_support:1;			/* 158+ */
+>  			u8 support_reserved:5;
+>  			u8 aux_channel;
+>  			u8 dongle_detect;
+> @@ -429,7 +443,7 @@ struct child_device_config {
+>  	} __packed;
+>  
+>  	u8 pipe_cap:2;
+> -	u8 sdvo_stall:1;					/* 158 */
+> +	u8 sdvo_stall:1;					/* 158+ */
+>  	u8 hpd_status:2;
+>  	u8 integrated_encoder:1;
+>  	u8 capabilities_reserved:2;
+> @@ -437,21 +451,21 @@ struct child_device_config {
+>  
+>  	union {
+>  		u8 dvo2_wiring;
+> -		u8 mipi_bridge_type;				/* 171 */
+> +		u8 mipi_bridge_type;				/* 171+ */
+>  	} __packed;
+>  
+>  	u16 extended_type;
+>  	u8 dvo_function;
+> -	u8 dp_usb_type_c:1;					/* 195 */
+> -	u8 tbt:1;						/* 209 */
+> -	u8 flags2_reserved:2;					/* 195 */
+> -	u8 dp_port_trace_length:4;				/* 209 */
+> -	u8 dp_gpio_index;					/* 195 */
+> -	u16 dp_gpio_pin_num;					/* 195 */
+> -	u8 dp_iboost_level:4;					/* 196 */
+> -	u8 hdmi_iboost_level:4;					/* 196 */
+> -	u8 dp_max_link_rate:3;					/* 216/230 GLK+ */
+> -	u8 dp_max_link_rate_reserved:5;				/* 216/230 */
 
-Pushed to drm-intel-gt-next. Thanks for the patches.
+any idea about this 230 and the GLK mention?
+but anyway the 216+ includes the 230, so it looks okay.
 
-> 
-> Previous discussion on these patches can be seen here:
-> 	https://patchwork.freedesktop.org/patch/484238/?series=102665&rev=4
-> 	https://patchwork.freedesktop.org/patch/483988/?series=102665&rev=3
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> 
-> Ashutosh Dixit (2):
->   drm/i915/gt: Create gt/gtN/.defaults/ for per gt sysfs defaults
->   drm/i915/gt: Expose per-gt RPS defaults in sysfs
-> 
->  drivers/gpu/drm/i915/gt/intel_gt_sysfs.c    | 10 +++---
->  drivers/gpu/drm/i915/gt/intel_gt_sysfs.h    |  6 ++++
->  drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 34 +++++++++++++++++++++
->  drivers/gpu/drm/i915/gt/intel_gt_types.h    |  9 ++++++
->  drivers/gpu/drm/i915/gt/intel_rps.c         |  2 ++
->  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 12 +++++---
->  6 files changed, 64 insertions(+), 9 deletions(-)
-> 
+for everything else I just relied on what was already in the code
+and didn't check the VBT itself, but feel free to use:
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+
+
+> +	u8 dp_usb_type_c:1;					/* 195+ */
+> +	u8 tbt:1;						/* 209+ */
+> +	u8 flags2_reserved:2;					/* 195+ */
+> +	u8 dp_port_trace_length:4;				/* 209+ */
+> +	u8 dp_gpio_index;					/* 195+ */
+> +	u16 dp_gpio_pin_num;					/* 195+ */
+> +	u8 dp_iboost_level:4;					/* 196+ */
+> +	u8 hdmi_iboost_level:4;					/* 196+ */
+> +	u8 dp_max_link_rate:3;					/* 216+ */
+> +	u8 dp_max_link_rate_reserved:5;				/* 216+ */
+>  } __packed;
+>  
+>  struct bdb_general_definitions {
+> @@ -690,18 +704,18 @@ struct bdb_edp {
+>  	u32 sdrrs_msa_timing_delay;
+>  
+>  	/* ith bit indicates enabled/disabled for (i+1)th panel */
+> -	u16 edp_s3d_feature;					/* 162 */
+> -	u16 edp_t3_optimization;				/* 165 */
+> -	u64 edp_vswing_preemph;					/* 173 */
+> -	u16 fast_link_training;					/* 182 */
+> -	u16 dpcd_600h_write_required;				/* 185 */
+> -	struct edp_pwm_delays pwm_delays[16];			/* 186 */
+> -	u16 full_link_params_provided;				/* 199 */
+> -	struct edp_full_link_params full_link_params[16];	/* 199 */
+> -	u16 apical_enable;					/* 203 */
+> -	struct edp_apical_params apical_params[16];		/* 203 */
+> -	u16 edp_fast_link_training_rate[16];			/* 224 */
+> -	u16 edp_max_port_link_rate[16];				/* 244 */
+> +	u16 edp_s3d_feature;					/* 162+ */
+> +	u16 edp_t3_optimization;				/* 165+ */
+> +	u64 edp_vswing_preemph;					/* 173+ */
+> +	u16 fast_link_training;					/* 182+ */
+> +	u16 dpcd_600h_write_required;				/* 185+ */
+> +	struct edp_pwm_delays pwm_delays[16];			/* 186+ */
+> +	u16 full_link_params_provided;				/* 199+ */
+> +	struct edp_full_link_params full_link_params[16];	/* 199+ */
+> +	u16 apical_enable;					/* 203+ */
+> +	struct edp_apical_params apical_params[16];		/* 203+ */
+> +	u16 edp_fast_link_training_rate[16];			/* 224+ */
+> +	u16 edp_max_port_link_rate[16];				/* 244+ */
+>  } __packed;
+>  
+>  /*
+> @@ -710,7 +724,7 @@ struct bdb_edp {
+>  
+>  struct bdb_lvds_options {
+>  	u8 panel_type;
+> -	u8 panel_type2;						/* 212 */
+> +	u8 panel_type2;						/* 212+ */
+>  	/* LVDS capabilities, stored in a dword */
+>  	u8 pfit_mode:2;
+>  	u8 pfit_text_mode_enhanced:1;
+> @@ -733,9 +747,9 @@ struct bdb_lvds_options {
+>  	/* LVDS backlight control type bits stored here */
+>  	u32 blt_control_type_bits;
+>  
+> -	u16 lcdvcc_s0_enable;					/* 200 */
+> -	u32 rotation;						/* 228 */
+> -	u32 position;						/* 240 */
+> +	u16 lcdvcc_s0_enable;					/* 200+ */
+> +	u32 rotation;						/* 228+ */
+> +	u32 position;						/* 240+ */
+>  } __packed;
+>  
+>  /*
+> @@ -756,7 +770,7 @@ struct lvds_lfp_data_ptr {
+>  struct bdb_lvds_lfp_data_ptrs {
+>  	u8 lvds_entries;
+>  	struct lvds_lfp_data_ptr ptr[16];
+> -	struct lvds_lfp_data_ptr_table panel_name; /* 156-163? */
+> +	struct lvds_lfp_data_ptr_table panel_name;		/* (156-163?)+ */
+>  } __packed;
+>  
+>  /*
+> @@ -808,20 +822,20 @@ struct lvds_lfp_panel_name {
+>  } __packed;
+>  
+>  struct lvds_lfp_black_border {
+> -	u8 top; /* 227 */
+> -	u8 bottom; /* 227 */
+> -	u8 left; /* 238 */
+> -	u8 right; /* 238 */
+> +	u8 top;		/* 227+ */
+> +	u8 bottom;	/* 227+ */
+> +	u8 left;	/* 238+ */
+> +	u8 right;	/* 238+ */
+>  } __packed;
+>  
+>  struct bdb_lvds_lfp_data_tail {
+> -	struct lvds_lfp_panel_name panel_name[16]; /* 156-163? */
+> -	u16 scaling_enable; /* 187 */
+> -	u8 seamless_drrs_min_refresh_rate[16]; /* 188 */
+> -	u8 pixel_overlap_count[16]; /* 208 */
+> -	struct lvds_lfp_black_border black_border[16]; /* 227 */
+> -	u16 dual_lfp_port_sync_enable; /* 231 */
+> -	u16 gpu_dithering_for_banding_artifacts; /* 245 */
+> +	struct lvds_lfp_panel_name panel_name[16];		/* (156-163?)+ */
+> +	u16 scaling_enable;					/* 187+ */
+> +	u8 seamless_drrs_min_refresh_rate[16];			/* 188+ */
+> +	u8 pixel_overlap_count[16];				/* 208+ */
+> +	struct lvds_lfp_black_border black_border[16];		/* 227+ */
+> +	u16 dual_lfp_port_sync_enable;				/* 231+ */
+> +	u16 gpu_dithering_for_banding_artifacts;		/* 245+ */
+>  } __packed;
+>  
+>  /*
+> @@ -836,7 +850,7 @@ struct lfp_backlight_data_entry {
+>  	u8 active_low_pwm:1;
+>  	u8 obsolete1:5;
+>  	u16 pwm_freq_hz;
+> -	u8 min_brightness; /* Obsolete from 234+ */
+> +	u8 min_brightness;					/* ???-233 */
+>  	u8 obsolete2;
+>  	u8 obsolete3;
+>  } __packed;
+> @@ -859,7 +873,7 @@ struct lfp_brightness_level {
+>  struct bdb_lfp_backlight_data {
+>  	u8 entry_size;
+>  	struct lfp_backlight_data_entry data[16];
+> -	u8 level[16]; /* Obsolete from 234+ */
+> +	u8 level[16];							/* ???-233 */
+>  	struct lfp_backlight_control_method backlight_control[16];
+>  	struct lfp_brightness_level brightness_level[16];		/* 234+ */
+>  	struct lfp_brightness_level brightness_min_level[16];		/* 234+ */
+> @@ -908,11 +922,11 @@ struct bdb_lfp_power {
+>  	u16 adb;
+>  	u16 lace_enabled_status;
+>  	struct aggressiveness_profile_entry aggressiveness[16];
+> -	u16 hobl; /* 232+ */
+> -	u16 vrr_feature_enabled; /* 233+ */
+> -	u16 elp; /* 247+ */
+> -	u16 opst; /* 247+ */
+> -	struct aggressiveness_profile2_entry aggressiveness2[16]; /* 247+ */
+> +	u16 hobl;							/* 232+ */
+> +	u16 vrr_feature_enabled;					/* 233+ */
+> +	u16 elp;							/* 247+ */
+> +	u16 opst;							/* 247+ */
+> +	struct aggressiveness_profile2_entry aggressiveness2[16];	/* 247+ */
+>  } __packed;
+>  
+>  /*
+> @@ -922,10 +936,10 @@ struct bdb_lfp_power {
+>  #define MAX_MIPI_CONFIGURATIONS	6
+>  
+>  struct bdb_mipi_config {
+> -	struct mipi_config config[MAX_MIPI_CONFIGURATIONS]; /* 175 */
+> -	struct mipi_pps_data pps[MAX_MIPI_CONFIGURATIONS]; /* 177 */
+> -	struct edp_pwm_delays pwm_delays[MAX_MIPI_CONFIGURATIONS]; /* 186 */
+> -	u8 pmic_i2c_bus_number[MAX_MIPI_CONFIGURATIONS]; /* 190 */
+> +	struct mipi_config config[MAX_MIPI_CONFIGURATIONS];		/* 175+ */
+> +	struct mipi_pps_data pps[MAX_MIPI_CONFIGURATIONS];		/* 177+ */
+> +	struct edp_pwm_delays pwm_delays[MAX_MIPI_CONFIGURATIONS];	/* 186+ */
+> +	u8 pmic_i2c_bus_number[MAX_MIPI_CONFIGURATIONS];		/* 190+ */
+>  } __packed;
+>  
+>  /*
 > -- 
-> 2.34.1
+> 2.35.1
 > 
