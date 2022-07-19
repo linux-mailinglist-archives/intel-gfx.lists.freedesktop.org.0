@@ -1,59 +1,136 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74FBA579764
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jul 2022 12:14:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9301579783
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jul 2022 12:19:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D99814B563;
-	Tue, 19 Jul 2022 10:14:56 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96A0514B561;
- Tue, 19 Jul 2022 10:14:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C15EC14B625;
+	Tue, 19 Jul 2022 10:19:23 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0A614B61E;
+ Tue, 19 Jul 2022 10:19:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658225694; x=1689761694;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=PqNA9KGA4dVNcnGDxzGgW/sKK+3gZ+Gh2ITt3VzXteE=;
- b=OsxeJqaIk3/7kGIlcc7Hw3+hpiGBhKDwbnfmmnUiIEok1nJHO9sCpLir
- kzn6q2JwYHsI1ThjXNUxMJOo9lWEwQTjWhm9hNtU80SRMU/+sJCq9I9S4
- v09Pkr85m6aVkW0+7HbQSNevDSvUNBYqn/HE0aqjj+y3yAxx6DWQoOPDH
- aM/ikhnwb++aMbCCoCIbUjUDU1MuZL1hvuRiQActp5FS0ZJ8gg+QbxVoM
- elY7Dfjnsd8XyR3fQWTy4aVDJYNlVIEr6+GZ5dp6Xk0rUXyfl2bqeTIg4
- Oh7E+lstblhUrl88Q1M4UME42dBfLSUf3iHXausqqutPct46uNsMuMIOh Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="287603843"
-X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="287603843"
+ t=1658225962; x=1689761962;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=iOg6vu8NuT4JVxzU9w3BE1wuRcC2zv9De6hy5NXrzAI=;
+ b=If2JfR5Hcq6c0Vhu05v93Hyd6TJPnMPO/KjTKzRKyQ6nf4RczqKtCVM4
+ zPQ6D6rWUXp5vSNvdeu7DryC7y7I4szm47d3xSiSdk8wj2L+BjS2+5wfO
+ PajTvTXaJ/vc7DAyHrIbxfLHuoeYXqLp6GyJXVjs0p4s3xU1emp0aTsfh
+ GoI1nKcWuzBKruwuvPLSitFV4b2QYivHZdbPa0unArjegnRFGQTc5UHLe
+ QrVTTNaINbxG/kYSxSumtk9z0IxhZbXRXAyWnY+2bN8Pk/x+FVKqOX9Oz
+ EsFUBAMdQfAkg10tav36k/tI1rV/HRmFS5zVz/daZLQZFzXB09gu39/6/ A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="266855325"
+X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="266855325"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2022 03:14:54 -0700
-X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="601541838"
-Received: from ssherida-mobl.ger.corp.intel.com (HELO [10.213.201.170])
- ([10.213.201.170])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2022 03:14:52 -0700
-Message-ID: <db41993e-6479-e618-1ce9-5abc51c4b72c@linux.intel.com>
-Date: Tue, 19 Jul 2022 11:14:51 +0100
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2022 03:19:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; d="scan'208";a="601543560"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga007.fm.intel.com with ESMTP; 19 Jul 2022 03:19:21 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Tue, 19 Jul 2022 03:19:21 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Tue, 19 Jul 2022 03:19:21 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.43) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Tue, 19 Jul 2022 03:19:20 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dzuS9Esc5c96gaYncxSf8Or+mTAHDnQGCJvSVXpON8vOQOPGMxqUguTGALnSnQe2TwnduG4rNBGAG8l6B1/c6xP2fbP5oSp1G3FzotVqCIi71lj7G8Jyt64LrmzBH6XbMd48KjYEtsRnf8Sa+M6k10j4707/doXkJoe8TYPqaRSLUzk2ywd0l6PL4J4ju1zezsqkphE9P9eujWAvD74xmPAj0hlbVIzF1ODZ8lNQkIMzY/K8E2k1Dgtc/EcN6E0Ki5k+MnP5dFIRMQj2Au/CNMHGP7EyMXRIjYJwfEA9t0TK3yX821jAT8Xbf5djJPUUkLVLCO8aPJPIViVutmtCvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3YTa1oIkL8VzPEvoxGb3nphl0o8TTQIuwiG6FzPkuC4=;
+ b=UFrdioNDsiv8xHAZMlcixIh6IT+HqErGz/ocSwJt/ephluHsIke4RO97aBsOEHapq4TrmVDojsdt/TDQtYTc9EPi3qg7qRwkhwKh3Z4hUOe7cLRuwVk/Hk8MiwaqJWxmzK1BWSrA4TMUsjBw2JTvWsdBfaaJiORersYJFLL7Z2+wXzkr30LWGEByAzrh1tI9+6GMItIGeYt2bwd2LSnqnA8evzW4lp4gjRUAX8L4og43I+++mCPcXrnMAIZavqCGd/LtO+NbAcRr14Mgrgyj7GeKWqCvayfSKI3NkwSsX3K2c4zttq0uMZFhAQjZNsx0+b0cW4wAymIcj3oO77NUfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by MN2PR11MB4014.namprd11.prod.outlook.com (2603:10b6:208:137::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Tue, 19 Jul
+ 2022 10:19:19 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::8053:3c59:9f5d:b615]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::8053:3c59:9f5d:b615%9]) with mapi id 15.20.5438.023; Tue, 19 Jul 2022
+ 10:19:19 +0000
+Date: Tue, 19 Jul 2022 06:19:14 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Message-ID: <YtaFIr9gGmh1V+7A@intel.com>
+References: <cover.1658192398.git.ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <cover.1658192398.git.ashutosh.dixit@intel.com>
+X-ClientProxiedBy: BYAPR01CA0063.prod.exchangelabs.com (2603:10b6:a03:94::40)
+ To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: John Harrison <john.c.harrison@intel.com>,
- Intel-GFX@Lists.FreeDesktop.Org, Matthew Brost <matthew.brost@intel.com>
-References: <20220712233136.1044951-1-John.C.Harrison@Intel.com>
- <20220712233136.1044951-3-John.C.Harrison@Intel.com>
- <2f9959ae-40fe-f14d-8e70-e94f03237769@linux.intel.com>
- <4f14835e-300e-a1b7-bebb-8ecbb07ab682@intel.com>
- <0107930e-bb8b-c7ee-c03c-7e7abf564498@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <0107930e-bb8b-c7ee-c03c-7e7abf564498@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 02/12] drm/i915/guc: Don't call ring_is_idle
- in GuC submission
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 44b1c745-04ce-4afb-3b72-08da697023dc
+X-MS-TrafficTypeDiagnostic: MN2PR11MB4014:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Flpayjt6A0fpxRpGIlVgoFP2aMi4eXCS0c0IJfCb1Hnn9zYjKRtD1vDW9lWxQeFX4tO8g9rzOQhgpVmJY/wmlmIupUF5+8MTkXI0JUd7AzRNWKTotThW8+DeNbSf0Qr8kJ7Xpy1t1rSS5naMCy742TzafK6QDYKVg+OKReG7HpEvdVLuSPZ1nZTvVyH1IUeqBSELDYvr106xDmjRPNvSM92MeBYXMNZV8yFVf8lLbGvRaIhCFbY1DBG4zRtl2gQRoVNkQh39pCjhhXeIRsgfqqd3jzYqgIvGVIkYq5jT3ZQb0e4Efg6IFgrp+Fz8YrDMs0uxxm+9Dcwno8bECQP+fhz6vLJ47Bj78tuVVh3PGrSVCQT6xA/9pYf2oWNDSu+8B6DZ+R90AnA8J9dSF8vFkg8fcVShgVmG2m6TWYcspZKzAXeVcjnCZWx8ENanzFm2B6IrkRJBJr/SR9Ujjii3O94YQtOwlB8aG+9xpHzliajHFD0UqYCL4FKBVfI0t/jOLwX/IsoRd/j9AzBuhSpNJsueC/MbmVS2iRUiWGgoVSVlbhuqStCEmF7la3mohC5fFq8gt7ecQnvOGpGNVpWQlznpPmxuAoDivFS6HPYmsI0ru7M6K6TI4f/sOlsCoyr2xV74c5ViYkbGatVdVXq7K8JuGqjQ3VdAlVaVRdP0YiHJJ1zTEI+HSNbOHnQchh1qHXNo2XWWuBCUIUxBi9391jRIwpGRotchWZAMS1yruDm4Pb640rjkd9L5JLo4vR6w8F6GOTyIqG97/ylHHi97oYaPEDOOs17vtPNY1RpAFSPT3AZKpkp4FFacL6SZrP30UX3GS58eUNyHoK65tUQ8pw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(346002)(376002)(366004)(396003)(39860400002)(136003)(38100700002)(6506007)(6512007)(26005)(966005)(8936002)(8676002)(6636002)(82960400001)(316002)(37006003)(86362001)(2906002)(41300700001)(6666004)(6486002)(66946007)(450100002)(4326008)(66476007)(186003)(107886003)(36756003)(83380400001)(5660300002)(2616005)(6862004)(44832011)(66556008)(478600001)(67856001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?T3H3ogosjA50CJxPar8dOw6KthJx/sONEG6ywnxmQHQqraiTU0tRkqnOPNoK?=
+ =?us-ascii?Q?G9sjgGSe1kosScpxtT2EaQB+K/WQR2YsU/d1yOJfR6sSacZ5UHs5lqlOooNa?=
+ =?us-ascii?Q?95lvuHPqc7e7c8xy13JUY5zpa5x4PvYPy7vQFXPKBzgXzL9ggvPit/rPJiYT?=
+ =?us-ascii?Q?gQN12pesQXgplsqabARr7fIpZDWYDS+2NEt23kWpTYmJRP4l7Zcyoe+5SDIC?=
+ =?us-ascii?Q?RkHGwmP+8CWX/8ZowSu0re6H93WsZ+kVLKcTqs/AWOu5v85aYt3Jpf+9EAs9?=
+ =?us-ascii?Q?p6ZIvUnAvosiDb/nhdTP8oJYMXMZMaoKfEUrxUKrml+HB1kD3litKMmM9ZKy?=
+ =?us-ascii?Q?nx5CL6nP4dJ3IbtJXiy5rBy7VUDDCHp9jjA1dFWIn0FnK9RrhatndyQjVpVd?=
+ =?us-ascii?Q?Uyt8rpErP3XHZXIjyPh7a7eul+MlCUrMsniGDiIihWnxSJgok9R/KU61ls0z?=
+ =?us-ascii?Q?jmzYTs9RhdHV1KVzqZAsbxpqJ2uUTclvNsa4YHbd6rjRCBk5/N/pRjIRhiyf?=
+ =?us-ascii?Q?weEBYsCluWQlPCLp+8v8vzGYJJwDiKW2lCzAAHXhLXkYWfr34hqVKHvSLNU3?=
+ =?us-ascii?Q?GU6V3i5N2u6fqMgAY0aEEM6mV0hG67FHKoJ/0slc0mxjnwEaAKye09Swxkg2?=
+ =?us-ascii?Q?idst9r3dvCHWas+yRiSKCcl4YS8JQd3cbtF+Cu0aokOrDtIkKiQWzJpNvn8f?=
+ =?us-ascii?Q?U0vULtxJyAC0ZEEz8M5a2IW/j+P9f8IXIxVKzKuu7+3vEc3kN46WwgdqM/Ol?=
+ =?us-ascii?Q?/paNncZy6dzP35ms63cEUOwT9LZzMuRYfGVCoCr6+oWXT928N7eI+QBBbskf?=
+ =?us-ascii?Q?/wZxj1/ZBbOGsmHk6PLlnonn2Oi9k1f3i2X065sX0shUKJvPMdLMP3uz8wvy?=
+ =?us-ascii?Q?sU0Q41GiAAJRmSiWBny34BffCA17QJQjX8fdlzuDai75bFg6x8YTrPLthXy+?=
+ =?us-ascii?Q?PjfyaL5CEVJx7F25VcdakRJpz1x8wg2iX+M3YO7c55ZYnFnsIAG6Cry98Yeb?=
+ =?us-ascii?Q?vdfcucjFkz4VO5bFfYUFMbWPRiqjff3Tdcvnjvl91oIgSeO6H8q6QPYpo2Cg?=
+ =?us-ascii?Q?QVwbyS1JhgMynlF6i/PUpkP1J8M0K1VUoPT8HTpW019lAIctCNfHJN3aJnco?=
+ =?us-ascii?Q?2uCvULyZ8u5gFsT7Y13nEC5s1V+RozBikSSz9xIZe6gsKSfIAWur/7IjNV/V?=
+ =?us-ascii?Q?O3QzRT4W/ii7irKHi9C8rqU7b13IP85hoZIQ+lmjjyDpLgzEadVEEuQdV6ZU?=
+ =?us-ascii?Q?vY0evlAxTC5c7PHya69XDLfKzArJ8RZC+uL+SmUX1wbDUUdR9qYc5e0uDY7T?=
+ =?us-ascii?Q?ja5bLeIa7+4W/osZy6M+m4cDTsoV3/AaYqLAMKHVCOytksx6Th+FCeukrrha?=
+ =?us-ascii?Q?+vkihjma/IpVE8pFBzFZ6H3f7TE4u7VBvwEpWc+MbZXkoHS+8tAtBaMkRWHP?=
+ =?us-ascii?Q?OdrFp9s9ceHheFFDmoIoWvEjN49i1od7Ap1bYxDWwUwtf3rtWJO4QL5DD19u?=
+ =?us-ascii?Q?rFf/R1Lzcvepi/gpZCZvT5I/MAzsJYr46D2TYwNuSBaB4Vr9BYpUoSTr6VLS?=
+ =?us-ascii?Q?QUC7rej4PpTYcuNlTejy+UDbU+dbeEUyeXsJxNw1jyZFqHcpmYyVJdLZP/+m?=
+ =?us-ascii?Q?hg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44b1c745-04ce-4afb-3b72-08da697023dc
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2022 10:19:18.8828 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UoY5nKQ55rHOuaVXhozM5CfoczaAeR+4Oz8THEz06MsCuO07DDxFFHo9oRY+kutacfd4xr2nLxivXIx6/VkVcg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4014
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 0/2] drm/i915/gt: Expose per gt defaults in
+ sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,168 +143,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Jul 18, 2022 at 06:07:06PM -0700, Ashutosh Dixit wrote:
+> Create a gt/gtN/.defaults/ directory (similar to
+> engine/<engine-name>/.defaults/) to expose default parameter values for each
+> gt in sysfs. This allows userspace to restore default parameter values
+> after they may have changed.
+> 
+> Patch 1: Creates the gt/gtN/.defaults/ directory
+> Patch 2: Adds per-gt RPS defaults (rps_max_freq_mhz and rps_min_freq_mhz)
+> 	 to gt/gtN/.defaults/
+> 
+> An approved Level-0/oneAPI UMD pull request which consumes the exposed
+> defaults can be seen here:
+> 	https://github.com/intel/compute-runtime/pull/552
+> The UMD pull request will be merged if/after this series is merged to i915.
 
-On 19/07/2022 10:49, Tvrtko Ursulin wrote:
-> 
-> On 19/07/2022 01:09, John Harrison wrote:
->> On 7/18/2022 05:26, Tvrtko Ursulin wrote:
->>>
->>> On 13/07/2022 00:31, John.C.Harrison@Intel.com wrote:
->>>> From: Matthew Brost <matthew.brost@intel.com>
->>>>
->>>> The engine registers really shouldn't be touched during GuC submission
->>>> as the GuC owns the registers. Don't call ring_is_idle and tie
->>>
->>> Touch being just read and it is somehow harmful?
->> The registers are meaningless when GuC is controlling the submission. 
->> The i915 driver has no knowledge of what context is or is not 
->> executing on any given engine at any given time. So reading reading 
->> the ring registers is incorrect - it can lead to bad assumptions about 
->> what state the hardware is in.
-> 
-> Same is actually true with the execlists backend. The code in 
-> ring_is_idle is not concerning itself with which context is running or 
-> not. Just that the head/tail/ctl appear idle.
-> 
-> Problem/motivation appears to be on a higher than simply ring registers.
-> 
-> I am not claiming it makes sense with Guc and that it has to remain but 
-> just suggesting for as a minimum clearer commit message.
-> 
->>>> intel_engine_is_idle strictly to the engine pm.
->>>
->>> Strictly seems wrong - it is just ring_is_idle check that is replaced 
->>> and not the whole implementation of intel_engine_is_idle.
->>>
->>>> Because intel_engine_is_idle tied to the engine pm, retire requests
->>>> before checking intel_engines_are_idle in gt_drop_caches, and lastly
->>> Why is re-ordering important? I at least can't understand it. I hope 
->>> it's not working around IGT failures.
->> If requests are physically completed but not retired then they will be 
->> holding unnecessary PM references. So we need to flush those out 
->> before checking for idle.
-> 
-> And if they are not as someone passes in DROP_RESET_ACTIVE? They will 
-> not retire and code still enters intel_engines_are_idle so that has to 
-> work, no? Something does not align for me still.
-
-With "not retire" I meant potentially not retire within 
-I915_IDLE_ENGINES_TIMEOUT. I guess hack happens to work for some or all 
-IGTs which use DROP_RESET_ACTIVE.
-
-Does it also mean patch would fix that problem without touching 
-intel_engine_is_idle/ring_is_idle - with just the re-ordering in 
-gt_drop_caches?
-
-Regards,
-
-Tvrtko
+Pushed to drm-intel-gt-next. Thanks for the patches.
 
 > 
->>>> increase the timeout in gt_drop_caches for the intel_engines_are_idle
->>>> check.
->>>
->>> Same here - why?
->> @Matthew Brost - do you recall which particular tests were hitting an 
->> issue? I'm guessing gem_ctx_create? I believe that's the one that 
->> creates and destroys thousands of contexts. That is much slower with 
->> GuC (GuC communication required) than with execlists (i915 internal 
->> state change only).
+> Previous discussion on these patches can be seen here:
+> 	https://patchwork.freedesktop.org/patch/484238/?series=102665&rev=4
+> 	https://patchwork.freedesktop.org/patch/483988/?series=102665&rev=3
 > 
-> And if that is a logically separate change please split the patch up.
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > 
-> Regards,
+> Ashutosh Dixit (2):
+>   drm/i915/gt: Create gt/gtN/.defaults/ for per gt sysfs defaults
+>   drm/i915/gt: Expose per-gt RPS defaults in sysfs
 > 
-> Tvrtko
+>  drivers/gpu/drm/i915/gt/intel_gt_sysfs.c    | 10 +++---
+>  drivers/gpu/drm/i915/gt/intel_gt_sysfs.h    |  6 ++++
+>  drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 34 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_gt_types.h    |  9 ++++++
+>  drivers/gpu/drm/i915/gt/intel_rps.c         |  2 ++
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 12 +++++---
+>  6 files changed, 64 insertions(+), 9 deletions(-)
 > 
->>
->> John.
->>
->>
->>
->>>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 13 +++++++++++++
->>>>   drivers/gpu/drm/i915/i915_debugfs.c       |  6 +++---
->>>>   drivers/gpu/drm/i915/i915_drv.h           |  2 +-
->>>>   3 files changed, 17 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c 
->>>> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>> index 283870c659911..959a7c92e8f4d 100644
->>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>> @@ -1602,6 +1602,9 @@ static bool ring_is_idle(struct 
->>>> intel_engine_cs *engine)
->>>>   {
->>>>       bool idle = true;
->>>>   +    /* GuC submission shouldn't access HEAD & TAIL via MMIO */
->>>> +    GEM_BUG_ON(intel_engine_uses_guc(engine));
->>>> +
->>>>       if (I915_SELFTEST_ONLY(!engine->mmio_base))
->>>>           return true;
->>>>   @@ -1668,6 +1671,16 @@ bool intel_engine_is_idle(struct 
->>>> intel_engine_cs *engine)
->>>>       if (!i915_sched_engine_is_empty(engine->sched_engine))
->>>>           return false;
->>>>   +    /*
->>>> +     * We shouldn't touch engine registers with GuC submission as 
->>>> the GuC
->>>> +     * owns the registers. Let's tie the idle to engine pm, at 
->>>> worst this
->>>> +     * function sometimes will falsely report non-idle when idle 
->>>> during the
->>>> +     * delay to retire requests or with virtual engines and a request
->>>> +     * running on another instance within the same class / submit 
->>>> mask.
->>>> +     */
->>>> +    if (intel_engine_uses_guc(engine))
->>>> +        return false;
->>>> +
->>>>       /* Ring stopped? */
->>>>       return ring_is_idle(engine);
->>>>   }
->>>> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c 
->>>> b/drivers/gpu/drm/i915/i915_debugfs.c
->>>> index 94e5c29d2ee3a..ee5334840e9cb 100644
->>>> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->>>> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->>>> @@ -654,13 +654,13 @@ gt_drop_caches(struct intel_gt *gt, u64 val)
->>>>   {
->>>>       int ret;
->>>>   +    if (val & DROP_RETIRE || val & DROP_RESET_ACTIVE)
->>>> +        intel_gt_retire_requests(gt);
->>>> +
->>>>       if (val & DROP_RESET_ACTIVE &&
->>>>           wait_for(intel_engines_are_idle(gt), 
->>>> I915_IDLE_ENGINES_TIMEOUT))
->>>>           intel_gt_set_wedged(gt);
->>>>   -    if (val & DROP_RETIRE)
->>>> -        intel_gt_retire_requests(gt);
->>>> -
->>>>       if (val & (DROP_IDLE | DROP_ACTIVE)) {
->>>>           ret = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
->>>>           if (ret)
->>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h 
->>>> b/drivers/gpu/drm/i915/i915_drv.h
->>>> index c22f29c3faa0e..53c7474dde495 100644
->>>> --- a/drivers/gpu/drm/i915/i915_drv.h
->>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->>>> @@ -278,7 +278,7 @@ struct i915_gem_mm {
->>>>       u32 shrink_count;
->>>>   };
->>>>   -#define I915_IDLE_ENGINES_TIMEOUT (200) /* in ms */
->>>> +#define I915_IDLE_ENGINES_TIMEOUT (500) /* in ms */
->>>>     unsigned long i915_fence_context_timeout(const struct 
->>>> drm_i915_private *i915,
->>>>                        u64 context);
->>
+> -- 
+> 2.34.1
+> 
