@@ -1,34 +1,121 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A53A57B304
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 10:31:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E427757B326
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 10:41:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10B8810F263;
-	Wed, 20 Jul 2022 08:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B149D112510;
+	Wed, 20 Jul 2022 08:41:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8915810F188;
- Wed, 20 Jul 2022 08:31:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 81A70AADD9;
- Wed, 20 Jul 2022 08:31:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3106899322909482734=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Date: Wed, 20 Jul 2022 08:31:32 -0000
-Message-ID: <165830589252.27269.11274670461173057399@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2074.outbound.protection.outlook.com [40.107.94.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E03D710FA68;
+ Wed, 20 Jul 2022 08:41:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=I5BJJCQy5exxjngj2eCxLuGeboJF4K9CoOl5HIZQND6rNaUKTL+IBddrdZZOpdvTltWKM/GuWufQz60u1g05dzsoqnIkLOP5CwTDuz2Qx5Vb0quHtU4f4IGlb17gqv2lxf4+p2xZCERePLfDEvgYNkzTlipWYu3J+cy1Mfq/TcvL89J2cQjQrRy8MgEJAAG1MPljm6Oc+q5mrh7FUfipTaxOCHQH70h1+EJS8X1F6ny8kGs8GnetM8WW29Xf+uxVcfTdZwOV1R6HC7GN/+nBtvsRYzB3ebFnRoKljL+LPChdXPDm3umou3LCZ6kehhx57ttD8BmPM1rQPFLudeua+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v502glMGbAy54A9VcSi4SzEjUpU0UHVEl8Kl/6PwF9Y=;
+ b=MHPxpz514y+dPtze/d/1Rxfmct1DIl8lAGe+LUj4eQFS8bwEizphHSu01Dc8ZSVbCE7oA0SpVPBvDg+r9pORYfv3EOXXUR0w+7D+45Axg44kH00T2ygcnABQUvsIQzDpEWKGCcSvDTBT0RWawVoEZtJp8joiTak0REU4WlgOhfv0fiFlM5m42V6p5UCoTC+2G7cHTMs6zQ3ZvWzF2xAqXlMl+9Y5hRDroxWJKrah4DrXr2jyIQA2/1gLkL9IoTe4gyt95IaVmD05y4KtaOFqPI3gNGm8jDoKi/ZgRWrPj8gY9yx/dEPtv+2kskDqeLSeyINnVZCXf27u0ylf1yHhJQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v502glMGbAy54A9VcSi4SzEjUpU0UHVEl8Kl/6PwF9Y=;
+ b=fjWOxL47vDJxs4YgYOXvbmHIZoCrrD1h/ejUAO7xTMOkjDK6RTCiwjHvygUhm5QTvDfWhMxrOFLayakk3dKaL6xjzmnDjHefZMXppZ3s7zcQfxDfhWMc806Ku7j5fExXkNt22rJ+Q2qAU+lfayIATg0c9h17jm6+yEzceXCaFus=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by MN2PR12MB3470.namprd12.prod.outlook.com (2603:10b6:208:d0::31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.25; Wed, 20 Jul
+ 2022 08:41:14 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::905:1701:3b51:7e39]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::905:1701:3b51:7e39%2]) with mapi id 15.20.5458.018; Wed, 20 Jul 2022
+ 08:41:14 +0000
+Message-ID: <7b80e48d-8670-6007-d6d3-aa3587e26d60@amd.com>
+Date: Wed, 20 Jul 2022 10:41:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
 References: <20220720073606.3885-1-Arunpravin.PaneerSelvam@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 In-Reply-To: <20220720073606.3885-1-Arunpravin.PaneerSelvam@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/ttm=3A_add_new_intersect_callba?=
- =?utf-8?q?ck_to_res_mgr?=
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AS9PR06CA0635.eurprd06.prod.outlook.com
+ (2603:10a6:20b:46f::7) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 18382fab-1e6e-4854-6efa-08da6a2b9afe
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3470:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lkGvKm/ezlvBeFLg+lc8irl5chQAXREJvgHLJZeJ0KH89K2GZ3pvrnxy2JZvE8JkUpFABfVHgwg593VpMzF4VFTvuKeVRqx89qmtLQEHp4OH/gkhIIcktrVgD7RV7kkKj1JCYsfRX8wclRVURdHBb70IC7Q3BJjbavJDR35fKwZa/4533vg/p8pTw1F5GghcnAJ/c3XIp3lz6ocVaWnaf3wNh/hrnfTowg73ws9jWmtdVHLDgyuunjYkgNXOv7ZRJdD4gGlgCEsKJYaCDxV2M9vGKTjVFe5xDBXXy0JI7tEMF0dT8IU3/zCOcLmjIGk1i+Tsizo7i1Ewnsde89m9KRud6ljSK438RJLZbgAnzHgzBPduRAOLkQE0rSoyTQpo6RGsjmKq4lsWCmYg2JouP2mHZbbXky4lgRLqi24wB/lDceRne5BLU5+Ooa8sjNgJjNrUagds19BLoFxxiNW6mnv+JGygiyJve1NSh6yP9pO3BQnVazgDrSvXr7tNKPyVELIK+OxVcm1NQm28qm1Dw4QBQtDPRYV7Jmd2zKLt9zWX3boeKHy/Qo1/Bg5saW0Ei4JWSSXGmyJWru3lvXc+l2LQp0bq42POkBMCwOxq2tLwIl0YPGHcE0LLmsnNQ+k1bo+btp8AYtbnDgCc5eCXPTH148kqZJX96CNFs8pMtbZpw9Bw2T4A82ueQsuu09FESKPWPRikAPvF0lxqQWOk9wLklQvCHAAXOMBwT4TC35+GvWCw5HxjgIsLc6/TgjJTxM04iHn547ia2g7Zmli+EhB2mOif3/qMUTwvvFITNxrHH0jeoghLcHe8HDiF1HSQ8wEjQFPlgUH5oj7cfqwDrA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(136003)(396003)(346002)(39860400002)(366004)(376002)(83380400001)(6512007)(6486002)(2616005)(5660300002)(8936002)(186003)(6666004)(36756003)(31686004)(41300700001)(478600001)(6506007)(66946007)(38100700002)(4326008)(66556008)(8676002)(86362001)(31696002)(2906002)(316002)(66476007)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHdVVjM0aDVWQ0lnL05MUVo5QTNtWU9HUnJBK0tVUjBLNllGdFlMWmtaaW1n?=
+ =?utf-8?B?dHJIR2E1KytmUDY4dGk1cHdrUWVCZVNZbzl1SFJNUkMwUWcxbG5CZUJxZU1s?=
+ =?utf-8?B?ZXphdWlvVFhtZDBDNndEbkZXZkVuRExTQmNDd1pCMDlyVUhPRmNUaU1xRTB5?=
+ =?utf-8?B?K3EzbTU0Tkg3eURXWXptK0RTUzNnam0zTXYya0FwcDNScGVMei81N2FNb1JE?=
+ =?utf-8?B?Qm0zU2NDblVjMVZ3eldzcjBqUWl2THFtQ0hkNGhnbENtcW40MWd1N0xwVkRE?=
+ =?utf-8?B?elQvMk9QZmdteTRlcE9XaW0wY1JqZG44Tmlnb05LektnNFE1ejF0Ym1BbFBK?=
+ =?utf-8?B?bEN3aG4zcTZ4Znd4NkptSmRUZXA2dWVsei8yRHpENVpPT2hvRXVwekp1cCtD?=
+ =?utf-8?B?ZVJFZzFocWR5eDJEQnlqcERIWFBjUDVubHAvYXdEU0xRSU45YW1lWWVWRG1z?=
+ =?utf-8?B?NG96eVluK05UU3llbGhIT3E2NWk4dnQ1Y281MGpmSnBhWks1S3NwYUdnOVpN?=
+ =?utf-8?B?Wi90VjlRTFlpakEzWWIrMllNb2gzakZWMkJEMkJnYzl5WUNReWZiOG1UZzc5?=
+ =?utf-8?B?MXdGTEVSNzgrS0JyTENYdzArSjNQY0JHY2V3U0hCKzdPRjVXWEJTY28rbXhF?=
+ =?utf-8?B?YTViZDN1dFAvSERsQXprem9WZkhXOW9WUGtnUTBtT29oZ0NhNGZZTCtvczlB?=
+ =?utf-8?B?TmY2MmlIdUFGWU1pVGEvNzBFS3V1b1hIZDNIR2Q1WXdWZVRGam1yemtNNmEx?=
+ =?utf-8?B?amE0REJtR1VLQXk5eDRFWWUyY1ZMUU5FQ2hVNjZHcDJpMERDK3d6RmkvNVZ5?=
+ =?utf-8?B?NSs3MThJMjBLTnY3Qk4yaDhWQVZObHlPdnpWaXdOVGw1N016OEJJRHRieE1j?=
+ =?utf-8?B?emlYNFo4RlJOd0dISVZJTC9HOW1MMUtKNk0zL2h4aEtybTZzMkl1aUtxVkJH?=
+ =?utf-8?B?TStzc2lqKzU3eUtITTU2ZWx2YWFGTnJzaTlINE1ESnFOTDJhL1NKdGdYWmc0?=
+ =?utf-8?B?QW1FSWJNVytCVlpNRzBuV3Z1QXl2N3NIWG5Sdm1jVEo1VFBPSVpFempjTDBK?=
+ =?utf-8?B?WWdZVHFOQzljenpZbWZzaDFDTjVGRmw3M0lsNm10NXd2UW10MzEzbWhDMHAw?=
+ =?utf-8?B?U1hHUlRkcWNMcnE4aVN2OEt2NklucEtDRkJqL2x6QzlkRy92eUY3Wlk0WlF0?=
+ =?utf-8?B?bmMrbWwwb3J5WnZSUk1uL2U5aFVsdk9BNDFFVWw1dEs4UWxaZm1JeGJMN1Y2?=
+ =?utf-8?B?ckRvVEJpRTV1VXJhV1BQbzVzcjBGRkZVVGIxeUN4TEwxSXByWHZIaE5Xb0Rn?=
+ =?utf-8?B?Z2hLQ2N3WUVOQkRqSHlGbGxKVEprMFFZWlA2ak8zcnI1MjEwL1FKRTN2TEg0?=
+ =?utf-8?B?NzF3aHFHTUtLOCs1NDY0ajV6a0IrV2Rqd1dUNFlQSXRDWFUraGR0VGhhZXNZ?=
+ =?utf-8?B?THVFT1dFZEViL1FHM3ZWUFNmU3ZUMmM4VXZoOWtrclpONWhaKzlHMzJGUnY3?=
+ =?utf-8?B?TG8rSDd3SHNqcDdrWWxlWGRzMG9RcFRPR0Y0NStjZzhqckNKNHhrYnl0dU1u?=
+ =?utf-8?B?TlJhd0x4Qnl4UHNxSUhvbi9sZERYd2s1bllIOW1KN3pIUG9wT05tcWpPZHZE?=
+ =?utf-8?B?M3F3b2Y3cGY3YUtUWmp1ZUt4MXNSZk4vR1JXeEhkbEZGRmNCWldkcnlxR1RB?=
+ =?utf-8?B?dHNaMm1SUE9XWWsvbm9HVE5PS0Rzak1paEZWSm95ZEY0SVpLb0xZemNWMjU0?=
+ =?utf-8?B?dy9vTEtFSTdZclcwVCs4aHF5aUU4SlpmOHFlL1VqeFRjenJCN0UwVGZxaEJF?=
+ =?utf-8?B?d1lrZUk5NVdWSDNBSk50U0hXYjErUCtRdEh4Y2tIZFBlWXpFMkg2RSsyRjlp?=
+ =?utf-8?B?V0MydzhsQWZRVUtFbXZJSmUwK0dLUUg4VzhtcFZBb1BHK2tLUlliMGZpRm9w?=
+ =?utf-8?B?Zi9hQVE4cVVua0JoRHl4RVpreit0R2VoOG80UTV4aW1aVHp1alU0MUo0Z1Q3?=
+ =?utf-8?B?NmtYM1BLQlh3eHhEeDk1UFlIazJlc1pnaEZtbHZvdXRTNE1Sb2NmeGpsZTU3?=
+ =?utf-8?B?ZGlrRGlxalNFZW4zSWRGZVhMQThHVXZJVmRJMFJxWERIMXJLT3g5V3p2TStm?=
+ =?utf-8?B?M2VFWEVESlV0RkhHQUVYbDM4NE5FRllsVUpacXJjUW15NGNTdENQbzJsUTBM?=
+ =?utf-8?Q?HRanJXj+MY3BakaSpMif26VR9wzS7OvJdb/L/hyrh5+7?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18382fab-1e6e-4854-6efa-08da6a2b9afe
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2022 08:41:14.4256 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FMxjAW7qnMfxTLqiuB4xx27EgvqP4Ru8uWAxKKGTMkQ5GaA0S2uo4WSEWwP2fX3p
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3470
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/ttm: add new intersect callback to
+ res mgr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,265 +128,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3106899322909482734==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Am 20.07.22 um 09:36 schrieb Arunpravin Paneer Selvam:
+> - This allows the resource manager to handle intersection
+>    of placement and resources.
+>
+> - Add callback function to amdgpu driver module fetching
+>    start offset from buddy allocator.
 
-== Series Details ==
+Probably better to only add the callback and ttm_resource_intersect() 
+wrapper function in this patch and then move the amdgpu and 
+ttm_range_manager changes to separate patches.
 
-Series: series starting with [1/4] drm/ttm: add new intersect callback to res mgr
-URL   : https://patchwork.freedesktop.org/series/106516/
-State : success
+Apart from that looks good to me.
 
-== Summary ==
+Regards,
+Christian.
 
-CI Bug Log - changes from CI_DRM_11928 -> Patchwork_106516v1
-====================================================
+>
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c  | 19 +++++++++++
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 33 ++++++++++++++++++++
+>   drivers/gpu/drm/ttm/ttm_range_manager.c      | 17 ++++++++++
+>   drivers/gpu/drm/ttm/ttm_resource.c           | 28 +++++++++++++++++
+>   include/drm/ttm/ttm_resource.h               | 20 ++++++++++++
+>   5 files changed, 117 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> index 8c6b2284cf56..727c80134aa6 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> @@ -204,6 +204,24 @@ void amdgpu_gtt_mgr_recover(struct amdgpu_gtt_mgr *mgr)
+>   	amdgpu_gart_invalidate_tlb(adev);
+>   }
+>   
+> +/**
+> + * amdgpu_gtt_mgr_intersect - test for intersection
+> + *
+> + * @man: Our manager object
+> + * @res: The resource to test
+> + * @place: The place for the new allocation
+> + * @size: The size of the new allocation
+> + *
+> + * Simplified intersection test, only interesting if we need GART or not.
+> + */
+> +static bool amdgpu_gtt_mgr_intersect(struct ttm_resource_manager *man,
+> +				     struct ttm_resource *res,
+> +				     const struct ttm_place *place,
+> +				     size_t size)
+> +{
+> +	return !place->lpfn || amdgpu_gtt_mgr_has_gart_addr(res);
+> +}
+> +
+>   /**
+>    * amdgpu_gtt_mgr_debug - dump VRAM table
+>    *
+> @@ -225,6 +243,7 @@ static void amdgpu_gtt_mgr_debug(struct ttm_resource_manager *man,
+>   static const struct ttm_resource_manager_func amdgpu_gtt_mgr_func = {
+>   	.alloc = amdgpu_gtt_mgr_new,
+>   	.free = amdgpu_gtt_mgr_del,
+> +	.intersect = amdgpu_gtt_mgr_intersect,
+>   	.debug = amdgpu_gtt_mgr_debug
+>   };
+>   
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> index 28ec5f8ac1c1..ed0d10fe0b88 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> @@ -720,6 +720,38 @@ uint64_t amdgpu_vram_mgr_vis_usage(struct amdgpu_vram_mgr *mgr)
+>   	return atomic64_read(&mgr->vis_usage);
+>   }
+>   
+> +/**
+> + * amdgpu_vram_mgr_intersect - test each drm buddy block for intersection
+> + *
+> + * @man: TTM memory type manager
+> + * @res: The resource to test
+> + * @place: The place to test against
+> + * @size: Size of the new allocation
+> + *
+> + * Test each drm buddy block for intersection for eviction decision.
+> + */
+> +static bool amdgpu_vram_mgr_intersect(struct ttm_resource_manager *man,
+> +				      struct ttm_resource *res,
+> +				      const struct ttm_place *place,
+> +				      size_t size)
+> +{
+> +	struct amdgpu_vram_mgr_resource *mgr = to_amdgpu_vram_mgr_resource(res);
+> +	struct list_head *list = &mgr->blocks;
+> +	struct drm_buddy_block *block;
+> +	u32 num_pages = PFN_UP(size);
+> +	u32 start;
+> +
+> +	/* Check each drm buddy block individually */
+> +	list_for_each_entry(block, list, link) {
+> +		start = amdgpu_vram_mgr_block_start(block) >> PAGE_SHIFT;
+> +		if (start < place->fpfn ||
+> +		    (place->lpfn && (start + num_pages) > place->lpfn))
+> +			return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>   /**
+>    * amdgpu_vram_mgr_debug - dump VRAM table
+>    *
+> @@ -753,6 +785,7 @@ static void amdgpu_vram_mgr_debug(struct ttm_resource_manager *man,
+>   static const struct ttm_resource_manager_func amdgpu_vram_mgr_func = {
+>   	.alloc	= amdgpu_vram_mgr_new,
+>   	.free	= amdgpu_vram_mgr_del,
+> +	.intersect = amdgpu_vram_mgr_intersect,
+>   	.debug	= amdgpu_vram_mgr_debug
+>   };
+>   
+> diff --git a/drivers/gpu/drm/ttm/ttm_range_manager.c b/drivers/gpu/drm/ttm/ttm_range_manager.c
+> index d91666721dc6..bf5de1978ead 100644
+> --- a/drivers/gpu/drm/ttm/ttm_range_manager.c
+> +++ b/drivers/gpu/drm/ttm/ttm_range_manager.c
+> @@ -113,6 +113,22 @@ static void ttm_range_man_free(struct ttm_resource_manager *man,
+>   	kfree(node);
+>   }
+>   
+> +static bool ttm_range_man_intersect(struct ttm_resource_manager *man,
+> +				    struct ttm_resource *res,
+> +				    const struct ttm_place *place,
+> +				    size_t size)
+> +{
+> +	struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
+> +	u32 num_pages = PFN_UP(size);
+> +
+> +	/* Don't evict BOs outside of the requested placement range */
+> +	if (place->fpfn >= (node->start + num_pages) ||
+> +	    (place->lpfn && place->lpfn <= node->start))
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+>   static void ttm_range_man_debug(struct ttm_resource_manager *man,
+>   				struct drm_printer *printer)
+>   {
+> @@ -126,6 +142,7 @@ static void ttm_range_man_debug(struct ttm_resource_manager *man,
+>   static const struct ttm_resource_manager_func ttm_range_manager_func = {
+>   	.alloc = ttm_range_man_alloc,
+>   	.free = ttm_range_man_free,
+> +	.intersect = ttm_range_man_intersect,
+>   	.debug = ttm_range_man_debug
+>   };
+>   
+> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+> index 20f9adcc3235..84c21f92b422 100644
+> --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> @@ -253,6 +253,34 @@ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
+>   }
+>   EXPORT_SYMBOL(ttm_resource_free);
+>   
+> +/**
+> + * ttm_resource_intersect - test for intersection
+> + *
+> + * @bdev: TTM device structure
+> + * @res: The resource to test
+> + * @place: The placement to test
+> + * @size: How many bytes the new allocation needs.
+> + *
+> + * Test if @res intersects with @place and @size. Used for testing if evictions
+> + * are valueable or not.
+> + */
+> +bool ttm_resource_intersect(struct ttm_device *bdev,
+> +			    struct ttm_resource *res,
+> +			    const struct ttm_place *place,
+> +			    size_t size)
+> +{
+> +	struct ttm_resource_manager *man;
+> +
+> +	if (!res)
+> +		return false;
+> +
+> +	man = ttm_manager_type(bdev, res->mem_type);
+> +	if (!place || !man->func->intersect)
+> +		return true;
+> +
+> +	return man->func->intersect(man, res, place, size);
+> +}
+> +
+>   static bool ttm_resource_places_compat(struct ttm_resource *res,
+>   				       const struct ttm_place *places,
+>   				       unsigned num_placement)
+> diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+> index ca89a48c2460..3f3ab2a8a69e 100644
+> --- a/include/drm/ttm/ttm_resource.h
+> +++ b/include/drm/ttm/ttm_resource.h
+> @@ -88,6 +88,22 @@ struct ttm_resource_manager_func {
+>   	void (*free)(struct ttm_resource_manager *man,
+>   		     struct ttm_resource *res);
+>   
+> +	/**
+> +	 * struct ttm_resource_manager_func member intersect
+> +	 *
+> +	 * @man: Pointer to a memory type manager.
+> +	 * @res: Pointer to a struct ttm_resource to be checked.
+> +	 * @place: Placement to check against.
+> +	 * @size: Size of the check.
+> +	 *
+> +	 * Test if @res intersects with @place + @size. Used to judge if
+> +	 * evictions are valueable or not.
+> +	 */
+> +	bool (*intersect)(struct ttm_resource_manager *man,
+> +			  struct ttm_resource *res,
+> +			  const struct ttm_place *place,
+> +			  size_t size);
+> +
+>   	/**
+>   	 * struct ttm_resource_manager_func member debug
+>   	 *
+> @@ -329,6 +345,10 @@ int ttm_resource_alloc(struct ttm_buffer_object *bo,
+>   		       const struct ttm_place *place,
+>   		       struct ttm_resource **res);
+>   void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res);
+> +bool ttm_resource_intersect(struct ttm_device *bdev,
+> +			    struct ttm_resource *res,
+> +			    const struct ttm_place *place,
+> +			    size_t size);
+>   bool ttm_resource_compat(struct ttm_resource *res,
+>   			 struct ttm_placement *placement);
+>   void ttm_resource_set_bo(struct ttm_resource *res,
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/index.html
-
-Participating hosts (37 -> 38)
-------------------------------
-
-  Additional (3): bat-dg2-8 bat-adlm-1 bat-jsl-1 
-  Missing    (2): fi-ilk-650 fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_106516v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2] ([i915#146])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-blb-e6850:       NOTRUN -> [SKIP][3] ([fdo#109271])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-dg2-9}:        [DMESG-WARN][4] ([i915#5763]) -> [PASS][5] +7 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/bat-dg2-9/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/bat-dg2-9/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][6] ([i915#4528]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [FAIL][8] ([i915#6298]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-cfl-8109u:       [DMESG-WARN][10] ([i915#62]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cfl-8109u:       [DMESG-WARN][12] ([i915#62]) -> [DMESG-FAIL][13] ([i915#62])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3003]: https://gitlab.freedesktop.org/drm/intel/issues/3003
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
-  [i915#5134]: https://gitlab.freedesktop.org/drm/intel/issues/5134
-  [i915#5174]: https://gitlab.freedesktop.org/drm/intel/issues/5174
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5763]: https://gitlab.freedesktop.org/drm/intel/issues/5763
-  [i915#5903]: https://gitlab.freedesktop.org/drm/intel/issues/5903
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11928 -> Patchwork_106516v1
-
-  CI-20190529: 20190529
-  CI_DRM_11928: 8aa8753730556013fd562e01965e5dd571ae55ea @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6593: 6ac554e19b3bb4232877367911e9185e5d35296f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_106516v1: 8aa8753730556013fd562e01965e5dd571ae55ea @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-78a7e938a495 drm/ttm: Switch to using the new intersect callback
-47cecf53dd35 drm/nouveau: Add intersect callback function
-6b1280200739 drm/i915: Add intersect callback function
-945ba7dc0726 drm/ttm: add new intersect callback to res mgr
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/index.html
-
---===============3106899322909482734==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/ttm: add new intersect callback to res mgr</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106516/">https://patchwork.freedesktop.org/series/106516/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11928 -&gt; Patchwork_106516v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 38)</h2>
-<p>Additional (3): bat-dg2-8 bat-adlm-1 bat-jsl-1 <br />
-  Missing    (2): fi-ilk-650 fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_106516v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/bat-dg2-9/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5763">i915#5763</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/bat-dg2-9/igt@i915_selftest@live@hangcheck.html">PASS</a> +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-cfl-8109u/igt@kms_force_connector_basic@prune-stale-modes.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11928/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106516v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11928 -&gt; Patchwork_106516v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11928: 8aa8753730556013fd562e01965e5dd571ae55ea @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6593: 6ac554e19b3bb4232877367911e9185e5d35296f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_106516v1: 8aa8753730556013fd562e01965e5dd571ae55ea @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>78a7e938a495 drm/ttm: Switch to using the new intersect callback<br />
-47cecf53dd35 drm/nouveau: Add intersect callback function<br />
-6b1280200739 drm/i915: Add intersect callback function<br />
-945ba7dc0726 drm/ttm: add new intersect callback to res mgr</p>
-
-</body>
-</html>
-
---===============3106899322909482734==--
