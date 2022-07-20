@@ -1,61 +1,152 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAEE157B2A1
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 10:16:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1956157B2B2
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 10:19:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E612D112927;
-	Wed, 20 Jul 2022 08:16:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAA3918A334;
+	Wed, 20 Jul 2022 08:19:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83FEE112243
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jul 2022 08:16:12 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 753A418A334
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jul 2022 08:19:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658304972; x=1689840972;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=gibb2kVq+spkEuYjXHH3MSD/0VMhjT2twFURezlUt7Y=;
- b=SQ7NSJpRAYgW34i47YwaszOkBJKwr9gigSVkBEZ1N16obbdLHQDhRURV
- A+nBug6z+hzHBktj7Z6SseX1TjaztTP7HCOv2xr0ORIzpWDrXAB/hk5rh
- lJ0KE2gIgu+a6J8Wa+DOG+6t3315gqWueUEBYrZ5GXjHdeeuwKcctPXm0
- ZVamUa+c10iq8HhQMG8adZ1IhBE8DrmyCmnZozG6pKAJdIv49559JA9YQ
- 3fQRl3YTGxkvhjhQ5S0YE3v8U4WJHefYd97r3aDtGCookxO3o5942GDgN
- p439rR2RItRVAxu7oxrc8KhAhD0UewSZfct3zw3wrTCjaAhbkmI4tPB5V A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10413"; a="287870618"
-X-IronPort-AV: E=Sophos;i="5.92,286,1650956400"; d="scan'208";a="287870618"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2022 01:14:41 -0700
-X-IronPort-AV: E=Sophos;i="5.92,286,1650956400"; d="scan'208";a="630678853"
-Received: from spmccann-mobl.ger.corp.intel.com (HELO [10.213.200.99])
- ([10.213.200.99])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2022 01:14:40 -0700
-Message-ID: <7ffd1214-e2ad-75ce-2234-a619396fe569@linux.intel.com>
-Date: Wed, 20 Jul 2022 09:14:38 +0100
-MIME-Version: 1.0
+ t=1658305167; x=1689841167;
+ h=message-id:date:subject:from:to:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=haKuPx9rSGsEZaya4CsDzkqXmUf5Kdfims/wO26FlhI=;
+ b=L7pIqJkXAvXX083pzOE7Q3jki85+QS3xG3OVpkS9bJDPEbXy6+ROxTPO
+ k60HMi69Rnr0/1MRaTusOmA3zkvnUzWMa/jcoKsnGZ1VT1JY9aLjlzGYR
+ Nca8pwlACXA0HZ4yYS/jvVmQh9GkNRPDZdOcIA0EAXj3U5AuFh+Y1maeb
+ YJgoudQyKNeWXB3d3ahGqsJ0DaVwe8PT14jf9KlusYrcEdvx6MFo6QCyG
+ 7ZKZ/8hfk/mlbRLk7q8eIOlWOPDFFG39Yge/Ww8IypSq5sGND6p74k5W7
+ yw0hra5uCla6q3j/oYPcODD+q9nom0ouw3MH3Ff+7W3JKa1FaeluT4U9l g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10413"; a="286724364"
+X-IronPort-AV: E=Sophos;i="5.92,286,1650956400"; d="scan'208";a="286724364"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2022 01:19:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,286,1650956400"; d="scan'208";a="925136412"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga005.fm.intel.com with ESMTP; 20 Jul 2022 01:19:27 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Wed, 20 Jul 2022 01:19:26 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 20 Jul 2022 01:19:26 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28 via Frontend Transport; Wed, 20 Jul 2022 01:19:26 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.173)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Wed, 20 Jul 2022 01:19:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EKXFNLbpgxPK6GSlRtr/nW0qBss+KSmpFcfdKRD72EVKdMQqxHPbGiCmbrvYCvZjJVBiuXak6gaecX1DcfIwlFwsR/HLCS72rQZLEDMdsWQlVZb9HpvS8E0a9889X7k3si2MEq5b7iWK8PY27QpJNEGkOrheFbjA++/S/EFZ05zi/I4hL3Nyt+GYwOkVieduMX9CO6mE7lZBuseBcbhQ6w5E8X/Dv0B4pbLztQMP0+mGTMReTRCO9T0Gj+PrpXBN40ddKec9FnE4f9Tf637ATatw+JM1nRYMUxfIjv7MNSO9fDQI334bBKitCAQy1HQ5yI5ehAP4lQSlS2wsHKZk1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ww01rQXp853brBQV4+zZO85Q4NGoGX+s+Xt+h0gbz2M=;
+ b=eNA14197pqWpInrLMN5+WeU6DCujlHF7JGrO89oWAO6EzDZSTPBIQqRPE4fHDHWcJgtVs+DNfoJk3z8mPIcdsXWzcv07ZNcdRzi31jAppmRcmyF8tD1Oum5Lyc+UzPZ9hCN3afpYFVkb1hfdZBMB46+LUGPzq+tOihHhBLiRrjiGiVkpXELrS8eq1ofK2SnGPNwH58+T45WncJYvMUeZ9z/VmBayi7J6jhBIVoQlgJvgAzeAfRLRuhdrP/qi+fFN9fOf2hwImGEEolQPrr3Cd+x2h/YJYHNikG+NU5pnCC5qERCM+ae0ReKUzALn2901GEdLBUdcjsdZJxXiD3O7Hw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM5PR11MB1562.namprd11.prod.outlook.com (2603:10b6:4:6::15) by
+ BN6PR1101MB2195.namprd11.prod.outlook.com (2603:10b6:405:5a::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Wed, 20 Jul
+ 2022 08:19:23 +0000
+Received: from DM5PR11MB1562.namprd11.prod.outlook.com
+ ([fe80::2976:e41b:6b80:173f]) by DM5PR11MB1562.namprd11.prod.outlook.com
+ ([fe80::2976:e41b:6b80:173f%3]) with mapi id 15.20.5438.023; Wed, 20 Jul 2022
+ 08:19:23 +0000
+Message-ID: <ef543323-4341-77d8-d0b1-059331cf3ca4@intel.com>
+Date: Wed, 20 Jul 2022 11:19:18 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
+ Firefox/91.0 Thunderbird/91.11.0
 Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <5535d98d0c1f1fa22e6ca6e8973a05e58a097944.1656622601.git.stuart.summers@intel.com>
- <Yr47xCs/JmhX9X7H@unerlige-desk>
- <cbfb9255-bd95-87c7-aa9d-e3af56dffd76@linux.intel.com>
- <81c381a50536d23ec0922874e13df5e67ffcc3d7.camel@intel.com>
- <894bdfcb-c3c7-96ce-5ddc-a084ef04179d@linux.intel.com>
- <Ys3hvrtRHPw/15nT@orsosgc001.jf.intel.com>
- <3ac56c34-85d8-bd06-e32a-fb341888f346@linux.intel.com>
- <YtdKsIDWPLaHBKKs@orsosgc001.jf.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YtdKsIDWPLaHBKKs@orsosgc001.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+References: <20220630083508.223348-1-lionel.g.landwerlin@intel.com>
+ <6bbebede-8e13-6e5c-75df-0e19c0bd51f0@intel.com>
+In-Reply-To: <6bbebede-8e13-6e5c-75df-0e19c0bd51f0@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix NPD in PMU during driver
- teardown
+X-ClientProxiedBy: AM6P191CA0042.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:209:7f::19) To DM5PR11MB1562.namprd11.prod.outlook.com
+ (2603:10b6:4:6::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 41423676-57bd-4aa3-bdef-08da6a288d4f
+X-MS-TrafficTypeDiagnostic: BN6PR1101MB2195:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: alDhOJN8vNdeVIPhEQfpKTSOcLZPd8p6ke+3A4auL/Zfs7QmGdTJHAMvJtgur9RabsnYk14sBEpQJSnmBRupQsn31qTNSWwXtsChyUsHaejsFKU94IzQPiG03aZgYgGXZIwYXjbiQq3RDf1nQxgzcagBna6yLb8zeDOvVU/ahQ5Ueg76Wl1Y/R0uAjOuwZGKJ6B24RMpikAtt6cbnLskI14uKcXJFVasufy7qb3qDYAGjWMY4JjDo5rTg+j6UNNUQUwy+gkPo7nZn9Dhmvi7akZl8EBGrIsAU8vpbbpjf+tFr/Lkj+Nmz+xagPYMSnmrX+YV9dVGOtedt8MuUNiPW4P62nQPa99Z6cw0HpWl64w6G4lXCDJu60f8ZaZDSnJ0I8OjWJ/pjY8ijoIGoIxDOkRnjym53WNkg8s/2Z9P0fGgJnVexxhDxeutVj6KJuBtblIqhImjbgN5KS6Ludlhba6d6o2Odb8jcE5IeEaOcsRMqdJ9BgJlPj15pQ7k2j2cJsY9AmVDCKOBWSlDDI07qeiLGbQX8wm5/76rOWjJTk3fjgUmaUbZSJBYnd5WtyG0ikAbWXgONcuNWTT0EqW6XdpmiVmUDqNU4Fa1wNdHyv/S1PZBrlOK9tbtmtP5oSetrUVB69UrFPkoNFeY9kFzimrLPDaxyu+uw8cLXrb27wM+B5XBheGJWtSFpyHywjiO48cwO0EZMKRy0yqyKGEWOFTYpLEsnvzN0rWfGoG930Qi+AFFwqDRz7qvUYbuDaq/3kD9CyBQcMafUMZLvPqm5TBWYv6CxFYjxRlWKk+FaUPTLgIespCpwKaA9wXj68pILs75ugxno5k/hI11HBd9oQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR11MB1562.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(376002)(136003)(346002)(396003)(39860400002)(366004)(66476007)(86362001)(6666004)(6486002)(31696002)(66946007)(8936002)(41300700001)(66556008)(8676002)(2906002)(478600001)(5660300002)(186003)(31686004)(36756003)(6916009)(316002)(26005)(82960400001)(53546011)(6512007)(38100700002)(2616005)(6506007)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cEowVnJ1UnJBTlB1SFMzMTJhMnhmV3RDeG9IQWpHRW9QUEM5WnFPMWN3TWdy?=
+ =?utf-8?B?aHNZVWNoYWEwbkFnbVZCbDdRaUNhcGRqTUdwNzdldVBXZXQvUU8xd2xDQnFn?=
+ =?utf-8?B?V29Mc0RNNzh4QzJOZjcyNjU0TEx3WDlhS250M1lPbjY2djMwWGtGUGtoSXd0?=
+ =?utf-8?B?V3VjejZwbkRyTTNoWmd6QlM2V3MzMitxYks4MnByYlhCWDU3ZVRlNllzVFk5?=
+ =?utf-8?B?eGJkNkhMMHgyQkxCYWlDK01RZVIzeGNQenhWQ1FrTG1sUWdTMVB5WlR3TTBn?=
+ =?utf-8?B?ZzZ0dkJMeEduSlJnSmE2YTM5TnlXbzZIeTdJQXFUWGIrUlFiM0JZb0ZQaktt?=
+ =?utf-8?B?bFBGV2NUZWpZb1E0NUsrL0ZMejRkRlczdEo4WnAvOTM4MHgzNEtmZlp2STAy?=
+ =?utf-8?B?bDJvUklma1dRR0xRMUNMclJYK3crZ0poS09KQXhnYldjcG52YXh6MmVWSi85?=
+ =?utf-8?B?VWNLeVEwelNVM1c5b0NQaUU2Uk04bk9pMzYxYmc3RVZ1d3Q4cUhucXlMVHRY?=
+ =?utf-8?B?cjZ1YmJTM0dRRE9WT2dFZnEyS3d4RWRsdGZZd0pJVVo5YzFRWUpVbG5leEFY?=
+ =?utf-8?B?NlBPUXB3Z09mMkZaTFEwOFl6OE5BWFNVQ1drOTF5OWlPbjY1bVIzaXorNEt3?=
+ =?utf-8?B?bkM5azRRZGtBZ0JVaFIxT2liL2E0MVlnT3NYeGxDdUhPNWgza0pyWEpiN0hz?=
+ =?utf-8?B?WDJ2SVpqK2xWOXFwZ0ZqVDNaM2xPOFNsVnpEOE1xNVZKbE9ENnZNaTh3SU9Y?=
+ =?utf-8?B?Q3FqelhzZy82NUYvYk1pZTA1MktTZ2dFSG1kTGFyUDVub2lSMUlMaXpLZXo3?=
+ =?utf-8?B?cjhFSG5IMlIxenNzSEdnbzBUeU9FMkFodHNocHRHVU1Bc3hCUEMzbXhHU3JF?=
+ =?utf-8?B?aDlYQzZvN2N5MVpjNEZNSFZyeEdlbjBOS09xbW1qSmFhUFJVSDNiYTdjRmhv?=
+ =?utf-8?B?YkNGMTdsVTZiaEFUUHUzWnRvdXpncXp5MGgwMXpUZTVndGt6dE9jeEdORjVz?=
+ =?utf-8?B?OGZuS3ZHUmZvV3F4dHBTRGovY1dzZ045ZncrYU4rVGZzU3ZDNWRQdmJ2bGVI?=
+ =?utf-8?B?azRjU04vMVJsZXBUY3M1aWZPbDFBZWFBT0N4TEhBQ1ZRMTc5ejNVRmpabEIw?=
+ =?utf-8?B?Z25yMkZTdWdDbk5rU0xKa2NVeHFEc2V2a0I3WHpBbW1tWWJoU1lneXRmTlQv?=
+ =?utf-8?B?TTQyTk1oU1FnYXdFeHlVVXZWdEtIOVRpNVRhOHlvd1U2QWhGYnZuUzI2NFJB?=
+ =?utf-8?B?N1JaQlhvTHhJQS9wNUl4UVJaSXFRTWsrYW55emdoVnk0cGdpZ2MxVXN6ZnNY?=
+ =?utf-8?B?Q01GMXUyN3BSSEl4Nmp2ZFlyaTk2cFliTkNNRXcyaW1BM2lHdjR6Q0JHWHh0?=
+ =?utf-8?B?UU11OHF5Y0hSM1R3QkR5Ly9KSTVtTGFncXFMOXcrSVNPTTBueUFtbDczSFcv?=
+ =?utf-8?B?dGF2VHdyYXdIejVFTVBaaGRid0IwRUVXWlBkb2xYRW50TUhTcEJZV0NsQmZ0?=
+ =?utf-8?B?dzVCZFFiR0JJaVY1MTllZ0d3djZmc1JETklMdWNPc0hDa3ArS0c4Wmcvdm1z?=
+ =?utf-8?B?KzRueHhyZFFGSWZCZEwvUUJVZHJBSmNTa1B1eXh4bFdnWWx4UUdML25KN0dS?=
+ =?utf-8?B?OS9yZmFDcURkV0MzU0RUcWtNNEt0RUFnWXdZOGMxRTU2Sk9ESHFMMllVK1RM?=
+ =?utf-8?B?dDRVTENKOTNHVGNNTXZ5aEdQUlBUWFNEZEFQcC9UcmRqdVluU1hZQ01BRFZz?=
+ =?utf-8?B?eE1kMndzeTVJakw2L2dkNEdRN0RGUEtYOENaNmpqcjhjUFkrSGx5SEw3Nm5H?=
+ =?utf-8?B?N2MyTnluR2szNnhMM2lQNjF2bWVZOUUvWWNHTU51K3dxZnpvVjZ4OXN6Tmps?=
+ =?utf-8?B?bE96WkQ2bmIwQkNIOVpkRDl0VFRvVjdnNEtyMytJSG1nS3ljK2N1azZjalVz?=
+ =?utf-8?B?UGdtODdBRnlYOFIvenVWTFMyVW56MDlmdnluQmFUV3doczZtYTFodDkrWEdp?=
+ =?utf-8?B?TXlMUVBpOERqYzlEWnRwSWpEb3ZYS29QWTZiRWdrQ2VPSzJkelRGVXJLYWxp?=
+ =?utf-8?B?b1lOYWpabUN5NE9BbUtLcGhFdlVxOXZiQ1NkSldNVFRScFhYbVAvUE85bmF5?=
+ =?utf-8?B?U1drUXB4U3dXYW1mS2t4MWNsSWtVdmIwNEx0K2xBd1k3YXhsUHcxNEtQdkRX?=
+ =?utf-8?B?MlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41423676-57bd-4aa3-bdef-08da6a288d4f
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1562.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2022 08:19:23.0739 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: h3QLocJF4URnIpA0sYDYQgYj5P+MYGbF3NC6es4T1R5VTuVlwdPvh2SqeHH7R+LWHUREwrxYcCBKUnFjJhatOOHpwx7LB7BizxUSGAsOp0o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1101MB2195
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/dg2: Add performance workaround
+ 18019455067
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,233 +159,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Ping?
 
-On 20/07/2022 01:22, Umesh Nerlige Ramappa wrote:
-> On Tue, Jul 19, 2022 at 10:00:01AM +0100, Tvrtko Ursulin wrote:
+On 11/07/2022 14:30, Lionel Landwerlin wrote:
+> Ping?
+>
+> On 30/06/2022 11:35, Lionel Landwerlin wrote:
+>> The recommended number of stackIDs for Ray Tracing subsystem is 512
+>> rather than 2048 (default HW programming).
 >>
->> On 12/07/2022 22:03, Umesh Nerlige Ramappa wrote:
->>> On Mon, Jul 04, 2022 at 09:31:55AM +0100, Tvrtko Ursulin wrote:
->>>>
->>>> On 01/07/2022 15:54, Summers, Stuart wrote:
->>>>> On Fri, 2022-07-01 at 09:37 +0100, Tvrtko Ursulin wrote:
->>>>>> On 01/07/2022 01:11, Umesh Nerlige Ramappa wrote:
->>>>>>> On Thu, Jun 30, 2022 at 09:00:28PM +0000, Stuart Summers wrote:
->>>>>>>> In the driver teardown, we are unregistering the gt prior
->>>>>>>> to unregistering the PMU. This means there is a small window
->>>>>>>> of time in which the application can request metrics from the
->>>>>>>> PMU, some of which are calling into the uapi engines list,
->>>>>>>> while the engines are not available. In this case we can
->>>>>>>> see null pointer dereferences.
->>>>>>>>
->>>>>>>> Fix this ordering in both the driver load and unload sequences.
->>>>>>>>
->>>>>>>> Additionally add a check for engine presence to prevent this
->>>>>>>> NPD in the event this ordering is accidentally reversed. Print
->>>>>>>> a debug message indicating when they aren't available.
->>>>>>>>
->>>>>>>> v1: Actually address the driver load/unload ordering issue
->>>>>>>>
->>>>>>>> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
->>>>>>>> ---
->>>>>>>
->>>>>>> I thought this is likely happening because intel_gpu_top is running
->>>>>>> in
->>>>>>> the background when i915 is unloaded. I tried a quick repro, I
->>>>>>> don't see
->>>>>>> the unload succeed ("fatal module in use", not sure if this was a
->>>>>>> partial unload), but when I try to kill intel_gpu_top, I get an
->>>>>>> NPD.
->>>>>>> This is in the event disable path - i915_pmu_event_stop ->
->>>>>>> i915_pmu_disable.
->>>>>>
->>>>>> So i915 failed to unload (as expected - with perf events open we
->>>>>> elevate
->>>>>> the module ref count via i915_pmu_event_init -> drm_dev_get), then
->>>>>> you
->>>>>> quit intel_gpu_top and get NPD? On the engine lookup? With the
->>>>>> re-ordered init/fini sequence as from this patch?
->>>>>>
->>>>>> With elevated module count there shouldn't be any unloading happening
->>>>>> so
->>>>>> I am intrigued.
->>>>>>
->>>>>>> It's likely that you are seeing a different path (unload) leading
->>>>>>> to the
->>>>>>> same issue.
->>>>>>>
->>>>>>> I think in i915_pmu_disable/disable should be aware of event-
->>>>>>>> hw.state
->>>>>>> and or pmu->closed states before accessing the event. Maybe like,
->>>>>>>
->>>>>>> if (event->hw.state != PERF_HES_STOPPED && is_engine_event(event))
->>>>>>> {
->>>>>>>
->>>>>>> @Tvrtko, wondering if this case is tested by igt@perf
->>>>>>> _pmu@module-unload.
->>>>>>
->>>>>> A bit yes. From what Stuart wrote it seems the test would need to be
->>>>>> extended to cover the case where PMU is getting opened while module
->>>>>> unload is in progress.
->>>>>>
->>>>>> But the NPD you saw is for the moment confusing so I don't know what
->>>>>> is
->>>>>> happening.
->>>>>>
->>>>>>> I am not clear if we should use event->hw.state or pmu->closed here
->>>>>>> and
->>>>>>> if/how they are related. IMO, for this issue, the engine check is
->>>>>>> good
->>>>>>> enough too, so we don't really need the pmu state checks.
->>>>>>> Thoughts?
->>>>>>
->>>>>> Engine check at the moment feels like papering.
->>>>>>
->>>>>> Indeed as you say I think the pmu->closed might be the solution.
->>>>>> Perhaps
->>>>>> the race is as mentioned above. PMU open happening in parallel to
->>>>>> unload..
->>>>>>
->>>>>> If the sequence of events userspace triggers is:
->>>>>>
->>>>>>    i915_pmu_event_init
->>>>>>    i915_pmu_event_start
->>>>>>    i915_pmu_enable
->>>>>>    i915_pmu_event_read
->>>>>>
->>>>>> I guess pmu->closed can get set halfway in i915_pmu_event_init. What
->>>>>> would be the effect of that.. We'd try to get a module reference
->>>>>> while
->>>>>> in the process of unloading. Which is probably very bad.. So possibly
->>>>>> a
->>>>>> final check on pmu->close is needed there. Ho hum.. can it be made
->>>>>> safe
->>>>>> is the question.
->>>>>>
->>>>>> It doesn't explain the NPD on Ctrl-C though.. intel_gpu_top keeps
->>>>>> the
->>>>>> evens open all the time. So I think more info needed, for me at
->>>>>> least.
->>>>>
->>>>> So one thing here is this doesn't have to do with module unload, but
->>>>> module unbind specifically (while perf is open). I don't know if the
->>>>> NPD from Umesh is the same as what we're seeing here. I'd really like
->>>>> to separate these unless you know for sure that's related. Also it
->>>>> would be interesting to know if this patch fixes your issue as well.
->>>>>
->>>>> I still think the re-ordering in i915_driver.c should be enough and we
->>>>> shouldn't need to check pmu->closed. The unregister should be 
->>>>> enough to
->>>>> ensure the perf tools are notified that new events aren't allowed, and
->>>>> at that time the engine structures are still intact. And even if for
->>>>> some reason the perf code still calls in to our function pointers, we
->>>>> have these engine checks as a failsafe.
->>>>>
->>>>> I'm by the way uploading one more version here with a drm_WARN_ONCE
->>>>> instead of the debug print.
->>>>
->>>> Problem is I am not a fan of papering so lets get to the bottom of 
->>>> the issue first. (In the meantime simple patch to re-order driver 
->>>> fini is okay since that seems obvious enough, I tnink.)
->>>>
->>>> We need to see call traces from any oopses and try to extend 
->>>> perf_pmu to catch them. And we need to understand the problem, if it 
->>>> is a real problem, which I laid out last week about race between 
->>>> module unload and elevating the module use count from our perf event 
->>>> init.
->>>>
->>>> Without understanding the details of possible failure mode flows we 
->>>> don't know how much the papering with engine checks solves and how 
->>>> much it leaves broken.
->>>>
->>>> If you guys are too busy to tackle that I'll put it onto myself, but 
->>>> help would certainly be appreciated.
->>>
->>> Looks like Stuart/Chris are pointing towards the unbind as an issue.
->>>
->>> I ran this sequence and only the modprobe showed an error (FATAL: ... 
->>> still in use). What happens with the unbind. Should pmu also handle 
->>> the unbind somehow?
->>>
->>> - run intel_gpu_top
->>> - unbind
->>> - modprobe -r i915
->>> - kill intel_gpu_top.
+>> v2: Move the programming to dg2_ctx_gt_tuning_init() (Lucas)
 >>
->> And it crashes or survives in this scenario?
-> 
-> hangs on adlp, haven't been able to get the serial logs
-> 
+>> v3: Move programming to general_render_compute_wa_init() (Matt)
 >>
->> Module still in use here would be expected since intel_gpu_top is 
->> holding a module reference.
+>> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 4 ++++
+>>   drivers/gpu/drm/i915/gt/intel_workarounds.c | 9 +++++++++
+>>   2 files changed, 13 insertions(+)
 >>
->> And pmu->closed should be set at the unbind step via i915_pci_remove 
->> -> i915_driver_unregister -> i915_pmu_unregister.
-> 
-> After unbind,
-> kill intel_gpu_top -> i915_pmu_event_del -> i915_pmu_event_stop -> 
-> i915_pmu_disable -> likely HANGs when dereferencing engine.
-> 
-> Can we can short circuit i915_pmu_disable with
-> if (pmu->closed)
->      return;
-> 
-> since this function is also adjusting pmu->enable_count. Does it matter 
-> after pmu is closed?
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h 
+>> b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>> index 07ef111947b8c..12fc87b957425 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>> @@ -1112,6 +1112,10 @@
+>>   #define   GEN12_PUSH_CONST_DEREF_HOLD_DIS    REG_BIT(8)
+>>     #define RT_CTRL                    _MMIO(0xe530)
+>> +#define   RT_CTRL_NUMBER_OF_STACKIDS_MASK    REG_GENMASK(6, 5)
+>> +#define   NUMBER_OF_STACKIDS_512        2
+>> +#define   NUMBER_OF_STACKIDS_1024        1
+>> +#define   NUMBER_OF_STACKIDS_2048        0
+>>   #define   DIS_NULL_QUERY            REG_BIT(10)
+>>     #define EU_PERF_CNTL1                _MMIO(0xe558)
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c 
+>> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> index 3213c593a55f4..ea674e456cd76 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> @@ -2737,6 +2737,15 @@ general_render_compute_wa_init(struct 
+>> intel_engine_cs *engine, struct i915_wa_li
+>>           wa_write_or(wal, VDBX_MOD_CTRL, FORCE_MISS_FTLB);
+>>           wa_write_or(wal, VEBX_MOD_CTRL, FORCE_MISS_FTLB);
+>>       }
+>> +
+>> +    if (IS_DG2(i915)) {
+>> +        /* Performance tuning for Ray-tracing */
+>> +        wa_write_clr_set(wal,
+>> +                 RT_CTRL,
+>> +                 RT_CTRL_NUMBER_OF_STACKIDS_MASK,
+>> + REG_FIELD_PREP(RT_CTRL_NUMBER_OF_STACKIDS_MASK,
+>> +                        NUMBER_OF_STACKIDS_512));
+>> +    }
+>>   }
+>>     static void
+>
+>
 
-Erm yes.. this sounds obvious now but why I did not put a pmu->closed check in i915_pmu_event_stop, since read and start/init have it!? Was it a simple oversight or something more I can't remember.
-
-Try like this maybe:
-
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 958b37123bf1..2399adf92cc0 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -760,9 +760,13 @@ static void i915_pmu_event_start(struct perf_event *event, int flags)
-  
-  static void i915_pmu_event_stop(struct perf_event *event, int flags)
-  {
-+       if (pmu->closed)
-+               goto out;
-+
-         if (flags & PERF_EF_UPDATE)
-                 i915_pmu_event_read(event);
-         i915_pmu_disable(event);
-+out:
-         event->hw.state = PERF_HES_STOPPED;
-  }
-  
-
-Fixes: b00bccb3f0bb ("drm/i915/pmu: Handle PCI unbind")
-
-Enable count handling in i915_pmu_disable should not matter since the i915_pmu_unregister would have already been executed by this point so all we need to ensure is that pmu->closed is not use after free. And since open event hold the DRM device reference I think that is fine.
-
-Regards,
-
-Tvrtko
-
-> 
-> Umesh
-> 
-> 
->>
->> We also need to try a stress test with two threads:
->>
->>     Thread A        Thread B
->>     -----------        -----------
->>     loop:            loop:
->>       open pmu event      rmmod
->>       close pmu event      insmod
->>
->> To see if it can hit a problem with drm_dev_get from 
->> i915_pmu_event_init being called at a bad moment relative to module 
->> unload. Maybe I am confused but that seems a possibility and a serious 
->> problem currently.
->>
->> Regards,
->>
->> Tvrtko
