@@ -2,57 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07BD057BEF3
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 22:08:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FBB357BEFA
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jul 2022 22:08:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE1C011B2B8;
-	Wed, 20 Jul 2022 20:07:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4DE111B4E3;
+	Wed, 20 Jul 2022 20:08:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E37011B2B8
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jul 2022 20:07:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658347676; x=1689883676;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Ykhut96gXBTQE6kOskM2rCdFAuAjDxacOYlzyyL5qJ4=;
- b=Q9zyiNDo5QPgSX3nyQo8WqM8U+8DJ17LWx02ejx/h+zHuFWqvE9Vfj+l
- 7Vk1INx+hsiNnabbo8K+OxchsHEh/IxcHOXD4dzN54s+X5Jk0sMxflBv6
- pA7qi+gSWZRis5jys8wUA+qdX71ghEp6kd1X5MjAkGmiB+tTIhsJQ0PAo
- AbzF/mAa67GK4mLSkHo/7hVeMYFJ4chmy/pf/k7N5WyatCtsY9QLF/uLu
- OT8i7laK0McP/NMj88L0Ge62tmHExFCe/QyWRlhR+sNomgQ6LeQ4xU1mf
- N91Lw6G4UElv/I8WFL/isFT5k7aYHIFVm9rtUnjLAT3sJWv9upbqsd/t+ Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="284430821"
-X-IronPort-AV: E=Sophos;i="5.92,287,1650956400"; d="scan'208";a="284430821"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2022 13:07:55 -0700
-X-IronPort-AV: E=Sophos;i="5.92,287,1650956400"; d="scan'208";a="595362107"
-Received: from orsosgc001.jf.intel.com ([10.165.21.135])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2022 13:07:55 -0700
-Date: Wed, 20 Jul 2022 13:07:55 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Ythgm5MI+HTktBOd@orsosgc001.jf.intel.com>
-References: <5535d98d0c1f1fa22e6ca6e8973a05e58a097944.1656622601.git.stuart.summers@intel.com>
- <Yr47xCs/JmhX9X7H@unerlige-desk>
- <cbfb9255-bd95-87c7-aa9d-e3af56dffd76@linux.intel.com>
- <81c381a50536d23ec0922874e13df5e67ffcc3d7.camel@intel.com>
- <894bdfcb-c3c7-96ce-5ddc-a084ef04179d@linux.intel.com>
- <Ys3hvrtRHPw/15nT@orsosgc001.jf.intel.com>
- <3ac56c34-85d8-bd06-e32a-fb341888f346@linux.intel.com>
- <YtdKsIDWPLaHBKKs@orsosgc001.jf.intel.com>
- <7ffd1214-e2ad-75ce-2234-a619396fe569@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2071.outbound.protection.outlook.com [40.107.243.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0BB11B4E3;
+ Wed, 20 Jul 2022 20:08:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=h7Vv1tHoh8XNfOkcW2qPnQ2GhdNEKsYx3Gy6duOarqMG8rE4bksOR27aELOzoKTfWZh16ypW4JnvU2PNbXadN9XarkyvaVvb1OHqmyj5Lwvauh+vPXzZZlld7fHBBOJGNzIXY7704c+GX/V/0utRMPdgWzaUO4eXCJo9xsyad1DkD5oheOZQjFcMNOYbMoe90mBe2RIn+i7iq7xpye64iNWBiaZl2RHB2pSq7zgBbCy5AEE/brmr4EgyBCTD1Crjt5HeAHXSEk3hQoQ9KqB/Pi1xW6hOLdVJbybK8yHnRANomD2uTdx+p7AnlgHpTsQCJEhJewVgcMb/Oyn6zr9yaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uFIV/uobVcUsxlqWI/QapcqAfKZu+w2VoltTiRmWEuU=;
+ b=b/zNR3VeaxC/rjRF1MXukl3kHZ1v8pua346nG+LKAjqvJ3rxeJuuIh3RvcYdFG9k7tuuZT9k9osrUrWExQtiJTy8L6hIt6gxabXn/hA8W1Y+K5iEJcDpI+3nRaO3rL/vSbsuBWIjPEy3hvd+RNKi0mAsK8XnFpkOU+8CmCCqWzGtqk58s6/12XeRkSr0/Clsres67AydM6b+0WapsD/qTBc+zDgPe0OYKxzR4NltKMm5ktwA/yCvsu2mHEntVcpLkTq2zo8ZAIMJsrMcFIpnYzVUXFcXLrC+V4Z2sPAHKtjLZgdMxEq8E4nxeA4eiFtS6Xu8rN87MPpaYCEFsyhDIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uFIV/uobVcUsxlqWI/QapcqAfKZu+w2VoltTiRmWEuU=;
+ b=D8WjuBh6ZGgKl1mZndxxpKc84EJIpcI4CNnoJH47MrzIVXF+85zd5vdBwioiJiZ7VKFK7IS3FmmIX84Pu872+1BW65aFY2tr9tqaWFz7P+AQtCr37wvlp32KX0wD8AHKV0yZpeTM1JVyqL8ipkMXtXajaSU9UMPquIeANRZ5XAN8Cn/FaDAZGIRrI/mCFtWmJayYlwY1ReRym8MkCT5ghiCwC/A90Og35pZV5DMhN/4ouuFXywtJOxW9meykusznPJfqUBjkId/0KkmwRhrfZtNAuNgd6lltpfVPkdvKp06nY+qh53cvNfO34qFu8R9VlypHZo+eR6pZLUJ8RP9OrA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
+ by MN2PR12MB4783.namprd12.prod.outlook.com (2603:10b6:208:3e::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.21; Wed, 20 Jul
+ 2022 20:08:31 +0000
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ac35:7c4b:3282:abfb]) by MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ac35:7c4b:3282:abfb%3]) with mapi id 15.20.5458.018; Wed, 20 Jul 2022
+ 20:08:31 +0000
+Date: Wed, 20 Jul 2022 17:08:29 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Message-ID: <20220720200829.GW4609@nvidia.com>
+References: <0-v4-681e038e30fd+78-vfio_unmap_notif_jgg@nvidia.com>
+ <1-v4-681e038e30fd+78-vfio_unmap_notif_jgg@nvidia.com>
+ <20220720134113.4225f9d6.alex.williamson@redhat.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7ffd1214-e2ad-75ce-2234-a619396fe569@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix NPD in PMU during driver
- teardown
+In-Reply-To: <20220720134113.4225f9d6.alex.williamson@redhat.com>
+X-ClientProxiedBy: BL1PR13CA0265.namprd13.prod.outlook.com
+ (2603:10b6:208:2ba::30) To MN2PR12MB4192.namprd12.prod.outlook.com
+ (2603:10b6:208:1d5::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 63e8c680-5a38-4349-e819-08da6a8b9e08
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4783:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vpu+Cv5x5vqm8Yu+AgAkuOYAaP+lqB2Yvn0rnogh/qQ4ARw5NbRoZ60m4/ScyfLz2i02aOgJ/utDeLeK/YCWutct4m/4eVz4F3cCNHw1wEBCuPbpupclDFYHbv1lrDdru+WhuS1caatLg/6TPpzUQyw3WL2tJRgW7msaEwEZcjpnOGa2fJc5afuhjHPir9qXlZMnDdxwDeDCvYUl3rVyrn8hnTEa5xnW8mbDxZHeqnKGb8nUJv3BOE6lP8HgREtw7qPsYsyWn70Oa9tNILgy1crZJfBV+3OcdnF4RIjsjKkIUyKDWsLxSKcaEt6CuwLUgHI7UZvTxLj8HCwya4VgInWYrGUbADDnOchvzX8iRFEs+oZts1uuFzApupnM4IYTycMJUczfhOHVr2WstlECoa/0FJem42Wj+nB4B6lrJDLxiPNN7G0N3xgIxTlj7B24Drb/oVkqzBC0Wu06TtgCvgfAI4dvo8U0UtQFa32c1zsdflQ1/m1a/g4H0xaEtimn8Ttuv21JoOFXNQPMsbcF4PqZpnLbP4WzAa3oROSBEKgJ3rxDj9jVBna2gs2JAPRuvpUIPqFYph7cJNcXJ1fhpHYTQmq+xKA0+qvH/YPTglR1VqOxCNjXUxgPyAI2De+jcYRNnsUcjVLefH4Ov/sWKjFETvb4vRTgXiqB4U3nIXdDnXMaEFR9o7NZ6b4nxi5xlgI8Ku6Beuq6z6sMEtxPJm78Zx7dTjMF9scFlz41yJI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(376002)(366004)(346002)(136003)(39860400002)(396003)(5660300002)(8936002)(7416002)(7406005)(33656002)(2906002)(478600001)(26005)(86362001)(6506007)(6512007)(6486002)(8676002)(107886003)(2616005)(1076003)(186003)(38100700002)(83380400001)(41300700001)(66556008)(6916009)(4326008)(54906003)(36756003)(66476007)(316002)(66946007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?m5O4tfz8WmT8mit0zKYsuq1NArr8EDAaGnEAW75ZquZisT8K52BgYjwek6vo?=
+ =?us-ascii?Q?R5vR9Q24ad4Thkc+b644rL1mlymfWiv3uGB/P9i5eddDBS+npuIH0H6K8x0p?=
+ =?us-ascii?Q?Y4aBo8MbYxcytmqPkqEGtEqqDXL5li+V1a+xNXPqFgt9yYPE9EoVFYkfYcdj?=
+ =?us-ascii?Q?Busv6FT12zAWSMgL3ryrWW6M9jEIp16pac68PJhuIexkTlITruPqzwlihuIG?=
+ =?us-ascii?Q?94ifwlZppWwlvqMb77KEh/IoZytAaQJMBPSWSoZW2CwLZzrA2D6w6Ex98H3G?=
+ =?us-ascii?Q?/7wb6O8PMcsKmBt3RV2svB6eN16FsMbFg6IHLDHY3Uxpn/m0BvgqHXcBaOB2?=
+ =?us-ascii?Q?nlT0A92rijjEEoR81XRIeGSo26IDu4gDzDW7CWMwtiC5NryqFkVK/ea8Vjd7?=
+ =?us-ascii?Q?MBvjGk3FELJC85Rh+vs3ccvQyk+olOetUhNnxZYV0qBtcnsn03UfazMt9mmu?=
+ =?us-ascii?Q?j8Uye+7HYzwTeSjDZrn4bBN2WK7gVWO8rIfwdxHd5OVbA2i80FRrDUM0XOmF?=
+ =?us-ascii?Q?84891zJs5nwVj1DzJno4El/JrluxCFUqHKZ3TiksaU9MSTNNqOkSiLhkv+ZH?=
+ =?us-ascii?Q?la4i9P9ZPgIdVWgGBtJHT+pBZU8/JDs1bp+CkMuNSSQMCUyZsj1zS1I4vZYR?=
+ =?us-ascii?Q?U6cuxCY+HcepkMMA556rU/3wS2LB7s/Idv0w17V9Cu1K5PectQ1j9ssVwHPj?=
+ =?us-ascii?Q?cqamtNPopKkfQMmjY4LMVtd87rFhSB7rIhXIawp8k1H4W97hcIWw8SliWSbG?=
+ =?us-ascii?Q?sQ8Nzu/HZfq98lpYV6t+2KfkeCtUhA8Sv4OGxXIvOR1JLpsNDa5QgthXjEMY?=
+ =?us-ascii?Q?x95gleeci8S78HIDkmsRIFDbFZJXdKs24MdbwO2cxkWIQI5SNb99UcR4g0Ve?=
+ =?us-ascii?Q?hubtUpMQ7+P94boHgJQxjzKeMSQgAD+POkDPWGIMmCJde77gm6l4JyqBnn9o?=
+ =?us-ascii?Q?LtOTAkXLNPsQD+OGRiGll4TpFUuqEC1hFZq7wiqwcFtMYXvmE0cnD8yOSUxb?=
+ =?us-ascii?Q?BPj4K/dSpEgIEyFnsYq98QddT0km3g0/MVUmzb4MCbs6xaQ5RWCdSZd0vEY3?=
+ =?us-ascii?Q?rNWSVZVpt7hF/sfFZuSo8aY9a3/dhjUPYC2xYmS9gXl0mzdr+6n10lWOiLYG?=
+ =?us-ascii?Q?kT/bYokelZM51R7VRQWW0sFZdbOCeUx/ONGeDEydMB+eca7mjKecPe8ofeRl?=
+ =?us-ascii?Q?CX8J9vqB6xbpvdGKi3qKvOcn40/dnW+s5QQUNcsOXU5rovuq3r2drFFAnk8q?=
+ =?us-ascii?Q?DlPrUZSeUPe91O3TY7QZRMOj/bwS4H6cwZbLZ7Y67Co3c2igEOzLCrcNsleA?=
+ =?us-ascii?Q?s5L+XrBeNCnNuxaNB0t4uUCAYG1CxrhOPpNq8P1LlVp+yNQPj6od4hrGfKoF?=
+ =?us-ascii?Q?3PVtA1BNHa1bAe4FryQK0l6jvF3qP2C1xD2KvaQ5ln5vU9M9kYSMNmtilEgb?=
+ =?us-ascii?Q?ojdjr5PUhVJHK6vSxHXD0s/JkesS08/qjryWgk7IHPgkzS2qS4Y55MffYOR3?=
+ =?us-ascii?Q?Iw9QlN4XkximTZuTTsS+2ZImVwQNvgXofpzQl+9tjtXMqwBOdgAkoPCyQerq?=
+ =?us-ascii?Q?z2s1DjBByfthAT2on6Fm+gqEWIr7FjZyGU2ALPBL?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63e8c680-5a38-4349-e819-08da6a8b9e08
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2022 20:08:31.2135 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: e9MiieropZOiHFi/DBbO/QgDICEon2BdheESMjxTfFqHvMd2zqkxDJayXqLFJ76T
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4783
+Subject: Re: [Intel-gfx] [PATCH v4 1/2] vfio: Replace the DMA unmapping
+ notifier with a callback
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,244 +116,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: kvm@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, Christoph Hellwig <hch@lst.de>,
+ linux-s390@vger.kernel.org, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Halil Pasic <pasic@linux.ibm.com>, Nicolin Chen <nicolinc@nvidia.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Tony Krowiak <akrowiak@linux.ibm.com>,
+ Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Jason Herne <jjherne@linux.ibm.com>, Cornelia Huck <cohuck@redhat.com>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 20, 2022 at 09:14:38AM +0100, Tvrtko Ursulin wrote:
->
->On 20/07/2022 01:22, Umesh Nerlige Ramappa wrote:
->>On Tue, Jul 19, 2022 at 10:00:01AM +0100, Tvrtko Ursulin wrote:
->>>
->>>On 12/07/2022 22:03, Umesh Nerlige Ramappa wrote:
->>>>On Mon, Jul 04, 2022 at 09:31:55AM +0100, Tvrtko Ursulin wrote:
->>>>>
->>>>>On 01/07/2022 15:54, Summers, Stuart wrote:
->>>>>>On Fri, 2022-07-01 at 09:37 +0100, Tvrtko Ursulin wrote:
->>>>>>>On 01/07/2022 01:11, Umesh Nerlige Ramappa wrote:
->>>>>>>>On Thu, Jun 30, 2022 at 09:00:28PM +0000, Stuart Summers wrote:
->>>>>>>>>In the driver teardown, we are unregistering the gt prior
->>>>>>>>>to unregistering the PMU. This means there is a small window
->>>>>>>>>of time in which the application can request metrics from the
->>>>>>>>>PMU, some of which are calling into the uapi engines list,
->>>>>>>>>while the engines are not available. In this case we can
->>>>>>>>>see null pointer dereferences.
->>>>>>>>>
->>>>>>>>>Fix this ordering in both the driver load and unload sequences.
->>>>>>>>>
->>>>>>>>>Additionally add a check for engine presence to prevent this
->>>>>>>>>NPD in the event this ordering is accidentally reversed. Print
->>>>>>>>>a debug message indicating when they aren't available.
->>>>>>>>>
->>>>>>>>>v1: Actually address the driver load/unload ordering issue
->>>>>>>>>
->>>>>>>>>Signed-off-by: Stuart Summers <stuart.summers@intel.com>
->>>>>>>>>---
->>>>>>>>
->>>>>>>>I thought this is likely happening because intel_gpu_top is running
->>>>>>>>in
->>>>>>>>the background when i915 is unloaded. I tried a quick repro, I
->>>>>>>>don't see
->>>>>>>>the unload succeed ("fatal module in use", not sure if this was a
->>>>>>>>partial unload), but when I try to kill intel_gpu_top, I get an
->>>>>>>>NPD.
->>>>>>>>This is in the event disable path - i915_pmu_event_stop ->
->>>>>>>>i915_pmu_disable.
->>>>>>>
->>>>>>>So i915 failed to unload (as expected - with perf events open we
->>>>>>>elevate
->>>>>>>the module ref count via i915_pmu_event_init -> drm_dev_get), then
->>>>>>>you
->>>>>>>quit intel_gpu_top and get NPD? On the engine lookup? With the
->>>>>>>re-ordered init/fini sequence as from this patch?
->>>>>>>
->>>>>>>With elevated module count there shouldn't be any unloading happening
->>>>>>>so
->>>>>>>I am intrigued.
->>>>>>>
->>>>>>>>It's likely that you are seeing a different path (unload) leading
->>>>>>>>to the
->>>>>>>>same issue.
->>>>>>>>
->>>>>>>>I think in i915_pmu_disable/disable should be aware of event-
->>>>>>>>>hw.state
->>>>>>>>and or pmu->closed states before accessing the event. Maybe like,
->>>>>>>>
->>>>>>>>if (event->hw.state != PERF_HES_STOPPED && is_engine_event(event))
->>>>>>>>{
->>>>>>>>
->>>>>>>>@Tvrtko, wondering if this case is tested by igt@perf
->>>>>>>>_pmu@module-unload.
->>>>>>>
->>>>>>>A bit yes. From what Stuart wrote it seems the test would need to be
->>>>>>>extended to cover the case where PMU is getting opened while module
->>>>>>>unload is in progress.
->>>>>>>
->>>>>>>But the NPD you saw is for the moment confusing so I don't know what
->>>>>>>is
->>>>>>>happening.
->>>>>>>
->>>>>>>>I am not clear if we should use event->hw.state or pmu->closed here
->>>>>>>>and
->>>>>>>>if/how they are related. IMO, for this issue, the engine check is
->>>>>>>>good
->>>>>>>>enough too, so we don't really need the pmu state checks.
->>>>>>>>Thoughts?
->>>>>>>
->>>>>>>Engine check at the moment feels like papering.
->>>>>>>
->>>>>>>Indeed as you say I think the pmu->closed might be the solution.
->>>>>>>Perhaps
->>>>>>>the race is as mentioned above. PMU open happening in parallel to
->>>>>>>unload..
->>>>>>>
->>>>>>>If the sequence of events userspace triggers is:
->>>>>>>
->>>>>>>   i915_pmu_event_init
->>>>>>>   i915_pmu_event_start
->>>>>>>   i915_pmu_enable
->>>>>>>   i915_pmu_event_read
->>>>>>>
->>>>>>>I guess pmu->closed can get set halfway in i915_pmu_event_init. What
->>>>>>>would be the effect of that.. We'd try to get a module reference
->>>>>>>while
->>>>>>>in the process of unloading. Which is probably very bad.. So possibly
->>>>>>>a
->>>>>>>final check on pmu->close is needed there. Ho hum.. can it be made
->>>>>>>safe
->>>>>>>is the question.
->>>>>>>
->>>>>>>It doesn't explain the NPD on Ctrl-C though.. intel_gpu_top keeps
->>>>>>>the
->>>>>>>evens open all the time. So I think more info needed, for me at
->>>>>>>least.
->>>>>>
->>>>>>So one thing here is this doesn't have to do with module unload, but
->>>>>>module unbind specifically (while perf is open). I don't know if the
->>>>>>NPD from Umesh is the same as what we're seeing here. I'd really like
->>>>>>to separate these unless you know for sure that's related. Also it
->>>>>>would be interesting to know if this patch fixes your issue as well.
->>>>>>
->>>>>>I still think the re-ordering in i915_driver.c should be enough and we
->>>>>>shouldn't need to check pmu->closed. The unregister should 
->>>>>>be enough to
->>>>>>ensure the perf tools are notified that new events aren't allowed, and
->>>>>>at that time the engine structures are still intact. And even if for
->>>>>>some reason the perf code still calls in to our function pointers, we
->>>>>>have these engine checks as a failsafe.
->>>>>>
->>>>>>I'm by the way uploading one more version here with a drm_WARN_ONCE
->>>>>>instead of the debug print.
->>>>>
->>>>>Problem is I am not a fan of papering so lets get to the 
->>>>>bottom of the issue first. (In the meantime simple patch to 
->>>>>re-order driver fini is okay since that seems obvious enough, 
->>>>>I tnink.)
->>>>>
->>>>>We need to see call traces from any oopses and try to extend 
->>>>>perf_pmu to catch them. And we need to understand the problem, 
->>>>>if it is a real problem, which I laid out last week about race 
->>>>>between module unload and elevating the module use count from 
->>>>>our perf event init.
->>>>>
->>>>>Without understanding the details of possible failure mode 
->>>>>flows we don't know how much the papering with engine checks 
->>>>>solves and how much it leaves broken.
->>>>>
->>>>>If you guys are too busy to tackle that I'll put it onto 
->>>>>myself, but help would certainly be appreciated.
->>>>
->>>>Looks like Stuart/Chris are pointing towards the unbind as an issue.
->>>>
->>>>I ran this sequence and only the modprobe showed an error 
->>>>(FATAL: ... still in use). What happens with the unbind. Should 
->>>>pmu also handle the unbind somehow?
->>>>
->>>>- run intel_gpu_top
->>>>- unbind
->>>>- modprobe -r i915
->>>>- kill intel_gpu_top.
->>>
->>>And it crashes or survives in this scenario?
->>
->>hangs on adlp, haven't been able to get the serial logs
->>
->>>
->>>Module still in use here would be expected since intel_gpu_top is 
->>>holding a module reference.
->>>
->>>And pmu->closed should be set at the unbind step via 
->>>i915_pci_remove -> i915_driver_unregister -> i915_pmu_unregister.
->>
->>After unbind,
->>kill intel_gpu_top -> i915_pmu_event_del -> i915_pmu_event_stop -> 
->>i915_pmu_disable -> likely HANGs when dereferencing engine.
->>
->>Can we can short circuit i915_pmu_disable with
->>if (pmu->closed)
->>     return;
->>
->>since this function is also adjusting pmu->enable_count. Does it 
->>matter after pmu is closed?
->
->Erm yes.. this sounds obvious now but why I did not put a pmu->closed check in i915_pmu_event_stop, since read and start/init have it!? Was it a simple oversight or something more I can't remember.
->
->Try like this maybe:
->
->diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
->index 958b37123bf1..2399adf92cc0 100644
->--- a/drivers/gpu/drm/i915/i915_pmu.c
->+++ b/drivers/gpu/drm/i915/i915_pmu.c
->@@ -760,9 +760,13 @@ static void i915_pmu_event_start(struct perf_event *event, int flags)
-> static void i915_pmu_event_stop(struct perf_event *event, int flags)
-> {
->+       if (pmu->closed)
->+               goto out;
->+
->        if (flags & PERF_EF_UPDATE)
->                i915_pmu_event_read(event);
->        i915_pmu_disable(event);
->+out:
->        event->hw.state = PERF_HES_STOPPED;
-> }
->
->Fixes: b00bccb3f0bb ("drm/i915/pmu: Handle PCI unbind")
+On Wed, Jul 20, 2022 at 01:41:13PM -0600, Alex Williamson wrote:
+ 
+> ie. we don't need the gfn, we only need the iova.
 
-that works. I don't see a hang with the above sequence on ADLP. Do you 
-want to post/merge this?
+Right, that makes sense
+ 
+> However then I start to wonder why we're passing in 1 for the number of
+> pages because this previously notifier, now callback is called for the
+> entire vfio_dma range when we find any pinned pages.  
 
-Also what about Stuart's changes in this series. At a minimum, I would 
-keep the engine checks in i915_pmu_disable (rev1)? I am not sure the 
-reorder of pmu/gt registrations is needed though.
+Well, it is doing this because it only ever pins one page.
 
-Thanks,
-Umesh
+The drivers are confused about what the contract is. vfio is calling
+the notifier with the entire IOVA range that is being unmapped and the
+drivers are expecting to receive notifications only for the IOVA they
+have actually pinned.
 
->
->Enable count handling in i915_pmu_disable should not matter since the i915_pmu_unregister would have already been executed by this point so all we need to ensure is that pmu->closed is not use after free. And since open event hold the DRM device reference I think that is fine.
->
->Regards,
->
->Tvrtko
->
->>
->>Umesh
->>
->>
->>>
->>>We also need to try a stress test with two threads:
->>>
->>>    Thread A        Thread B
->>>    -----------        -----------
->>>    loop:            loop:
->>>      open pmu event      rmmod
->>>      close pmu event      insmod
->>>
->>>To see if it can hit a problem with drm_dev_get from 
->>>i915_pmu_event_init being called at a bad moment relative to 
->>>module unload. Maybe I am confused but that seems a possibility 
->>>and a serious problem currently.
->>>
->>>Regards,
->>>
->>>Tvrtko
+> Should ap and ccw implementations of .dma_unmap just be replaced with a
+> BUG_ON(1)?
+
+The point of these callbacks is to halt concurrent DMA, and ccw does
+that today. It looks like AP is missing a call to ap_aqic(), so it is
+probably double wrong.
+
+What I'd suggest is adding a WARN_ON that the dma->pfn_list is not
+empty and leave these functions alone.
+
+Most likely AP should be fixed to call vfio_ap_irq_disable() and to
+check the q->saved_pfn against the IOVA.
+
+But I'm inclined to leave this as-is for this series given we are at
+rc7.
+
+Jason
