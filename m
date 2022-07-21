@@ -1,74 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 029A957C6F7
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 10:56:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B087257C77F
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 11:24:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63176112B82;
-	Thu, 21 Jul 2022 08:56:00 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com
- [66.111.4.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAC4B8A0B4;
- Thu, 21 Jul 2022 08:55:57 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailout.nyi.internal (Postfix) with ESMTP id 3D9B75C00CE;
- Thu, 21 Jul 2022 04:55:54 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute2.internal (MEProxy); Thu, 21 Jul 2022 04:55:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:message-id
- :mime-version:reply-to:sender:subject:subject:to:to; s=fm2; t=
- 1658393754; x=1658480154; bh=x2QLaDW1A7LN307zRDJlQJ22UL9Q5VqHQVE
- nUYylB2w=; b=XMRHkhtDps8QXaSamyC/FUiNoj3odfUX/3bSN/1e3LLvRErSMPS
- YoUYVe+h8i/IYCrm3Xkd6Kp6dl802bOH2Hts76aixnyF9dUhtdDJhg/r1qIQ2ZAa
- ygOGRJydHGYxLvnfXGQsAUI24xYq1vZ53k1xe+tg5+r7j0KDDYged9zVqF6nTaq1
- 2rU/ggj1YXhkSwBDrkvXN6tYCXrACV1Swq4gaHqAFgwKuTYT2CfUoOFUpRew0SwH
- T6qNNUa3pkXQ/0LXwBUz8JLyd+ZU4Jih210A4Zock+PxFe2XAl9FsBl5OlemGpEi
- 1F8mqxuva36E4FNpOREWvnh1B7Xc/g04dXA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:message-id:mime-version
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1658393754; x=
- 1658480154; bh=x2QLaDW1A7LN307zRDJlQJ22UL9Q5VqHQVEnUYylB2w=; b=d
- EKiOcDnSOppvtA0xQ2i+W6WFN5sVd18+ojhtHse78rRohfQ9b1XaDp2sFfxajWjr
- DkD3YQbBH4NNnb0beE7dcg3jaPkcmaDj3sQzkVLM+JOhtRWT/TOftAg/VAZV6/rZ
- sJrQHsEfBSjXihGKcJslbfMwVasAKoNTfQ4h+xyG6kdMoYVHMnhEYNTiBtLX2mpJ
- 8lfe6V+363I1eJ0JW3jVU7AVIrOGdMmMIVoEMXkXbhNDeLxRBrFXXV/0wPbFXdcX
- VUnP7F/ChEOW/8clvpBizUQ6eTqsXgJi/+oXQrXDa896WSb0VkHi/pZwdtM1kEkN
- HDxxOvGy77VMZVwMF51Jg==
-X-ME-Sender: <xms:mBTZYlU1ChJomYPm9vjx95sndZADNU4ygOHfrr2v5XZw_4-uBdweyw>
- <xme:mBTZYlkvlQJB2dYr3EAShNFyB2_Gb4vRGc53DU3zeURGZJHVoQbYN8zo-2F89bxma
- kdwMbq3wulLhbO-Kkc>
-X-ME-Received: <xmr:mBTZYhZ3e-37pDadkFair957Pr1lwjkQ-0UErexefz7koBJ_yGb1H4UHVekurMi21DYCLZLUmWNxjN6xBZpQ5oZ8OJaqkOnTM6D7OWs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudelledgudduucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkgggtugesghdtreertddtudenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
- gvrhhnpeekheejgeeuhfethffgheekhedufeduhfejgfehffekudefgedugffhkeefhfev
- vdenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
- hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
- thgvtghh
-X-ME-Proxy: <xmx:mBTZYoXkuivqnS6y2h2Ittu7oEoRwaG8dUtbCAy8GuLpbKJUgUdErQ>
- <xmx:mBTZYvmOwsS0GHLw_7sKfn15fSsn4PMhzpU1akIObCKzUfxuwlxkqQ>
- <xmx:mBTZYlcyvc_VAW5K9bz6QUq-LVWLFTiXQwbTO9n-JFdxbyYjARsYkA>
- <xmx:mhTZYofRvjP13Q08LfLEwxiAOu9k64YB5ly4RfyhoZb5ulBCY2Jq8w>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 21 Jul 2022 04:55:52 -0400 (EDT)
-Date: Thu, 21 Jul 2022 10:55:50 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20220721085550.hrwbukj34y56rzva@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FBAC8BE06;
+	Thu, 21 Jul 2022 09:24:06 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09E828BE04;
+ Thu, 21 Jul 2022 09:24:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1658395445; x=1689931445;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=asB97FmHb10f8EOLTc6igUbnECSIOxz5G7w0Nyaij+U=;
+ b=mxCz+OvhnnlWtd1b4bacd6Fyzv7A403rQQMpvE8KwWnXQENSKOJACNXv
+ Gx5jv2IiVwYLdciMQu3kz8PYotX0iMQeXsf+gEsdmfTAtyVOJjeJjtjPP
+ oC1o5N18401dyhOtTlHjQDR25vAwjLgYeRZ1P1s4dPigSQDDh55M/IEZ0
+ 1JxHjsJjIeOhztNvu9wpgZK6ShNiRNN9ZAzJ37nxOAwgiYDxajkEKz5rn
+ JWZ5COtTAKVzNRbBY0cYVFT2UJKajq8zt0Uycx9uuA8DS2f7wy+aeD0Mm
+ Gzy854JlV9gd7Kpii3cM9yjerQVVc/MO6iL2VQeBAgc+rFEy3IHQ5kYcx Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="284555099"
+X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="284555099"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2022 02:24:04 -0700
+X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="740611270"
+Received: from gpreetix-mobl1.amr.corp.intel.com (HELO [10.209.165.170])
+ ([10.209.165.170])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2022 02:24:03 -0700
+Message-ID: <e566ff59-68ce-c712-1619-da64c917c70a@linux.intel.com>
+Date: Thu, 21 Jul 2022 10:24:02 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="zrmldompvljf74bg"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+References: <20220712233136.1044951-1-John.C.Harrison@Intel.com>
+ <20220712233136.1044951-2-John.C.Harrison@Intel.com>
+ <d1cfac14-4c01-ce53-586f-01f8998bbab4@linux.intel.com>
+ <c86064c9-cbcc-cdc5-0654-0493c8d3d444@intel.com>
+ <0337c3d4-811e-1f5a-fe26-f0e8068497b8@linux.intel.com>
+ <ce12b1df-8845-64d6-4fcd-e2e650c3bf34@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ce12b1df-8845-64d6-4fcd-e2e650c3bf34@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915: Remove bogus GEM_BUG_ON in
+ unpark
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,74 +66,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---zrmldompvljf74bg
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi Daniel, Dave,
+On 21/07/2022 01:54, John Harrison wrote:
+> On 7/19/2022 02:42, Tvrtko Ursulin wrote:
+>> On 19/07/2022 01:05, John Harrison wrote:
+>>> On 7/18/2022 05:15, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 13/07/2022 00:31, John.C.Harrison@Intel.com wrote:
+>>>>> From: Matthew Brost <matthew.brost@intel.com>
+>>>>>
+>>>>> Remove bogus GEM_BUG_ON which compared kernel context timeline 
+>>>>> seqno to
+>>>>> seqno in memory on engine PM unpark. If a GT reset occurred these 
+>>>>> values
+>>>>> might not match as a kernel context could be skipped. This bug was
+>>>>> hidden by always switching to a kernel context on park (execlists
+>>>>> requirement).
+>>>>
+>>>> Reset of the kernel context? Under which circumstances does that 
+>>>> happen?
+>>> As per description, the issue is with full GT reset.
+>>>
+>>>>
+>>>> It is unclear if the claim is this to be a general problem or the 
+>>>> assert is only invalid with the GuC. Lack of a CI reported issue 
+>>>> suggests it is not a generic problem?
+>>> Currently it is not an issue because we always switch to the kernel 
+>>> context because that's how execlists works and the entire driver is 
+>>> fundamentally based on execlist operation. When we stop using the 
+>>> kernel context as a (non-functional) barrier when using GuC 
+>>> submission, then you would see an issue without this fix.
 
-Here's this week drm-misc-fixes PR
+Let me pick this point to try again - I am simply asking for a clear 
+description of steps which lead to the problem, instead of, what I find 
+are, generic and hard to penetrate statements of invalid assumptions etc.
 
-Maxime
+I picked this spot because of this: "When we stop using the kernel 
+context as a (non-functional) barrier when using GuC submission, then 
+you would see an issue without this fix."
 
-drm-misc-fixes-2022-07-21:
-A scheduling-while-atomic fix for drm/scheduler, a locking fix for TTM,
-a typo fix for panel-edp and a resource removal fix for imx/dcss
-The following changes since commit 925b6e59138cefa47275c67891c65d48d3266d57:
+I point to 363324292710 ("drm/i915/guc: Don't call 
+switch_to_kernel_context with GuC submission"). Hence it is not when but 
+it already happened. Which in my mind then does not compute - I can't 
+grok the explanation which appears to fall over on the first claim.
 
-  Revert "drm/amdgpu: add drm buddy support to amdgpu" (2022-07-08 14:24:30=
- +0200)
+Or perhaps the bug on is already firing today on every GuC enabled 
+machine in the CI? In which case there is a Fixes: link to be added?
 
-are available in the Git repository at:
+I have asked about, if we have 363324292710, and if this patch is 
+removing the seqno bug on, why it is not removing something more in 
+__engine_unpark, gated on "is guc"? Like ss there a point to sanitizing 
+the context which wasn't lost, because it wasn't used to park the engine 
+with?
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-07-21
+Or if the problem can't be hit with execlists (in case reset claim from 
+the commit message misleading), why shouldn't the bug on be changed to 
+contain the !guc condition instead of being remove?
 
-for you to fetch changes up to 02c87df2480ac855d88ee308ce3fa857d9bd55a8:
+I am simply asking for a clear explanation of the conditions and steps 
+which lead to the bug on incorrectly firing. It doesn't have to be long 
+text or anything like that, just clear so we can close this and move on.
 
-  drm/imx/dcss: Add missing of_node_put() in fail path (2022-07-20 10:12:15=
- +0300)
+Regards,
 
-----------------------------------------------------------------
-A scheduling-while-atomic fix for drm/scheduler, a locking fix for TTM,
-a typo fix for panel-edp and a resource removal fix for imx/dcss
+Tvrtko
 
-----------------------------------------------------------------
-Christian K=F6nig (1):
-      drm/ttm: fix locking in vmap/vunmap TTM GEM helpers
-
-Dmitry Osipenko (1):
-      drm/scheduler: Don't kill jobs in interrupt context
-
-Liang He (1):
-      drm/imx/dcss: Add missing of_node_put() in fail path
-
-N=EDcolas F. R. A. Prado (1):
-      drm/panel-edp: Fix variable typo when saving hpd absent delay from DT
-
- drivers/gpu/drm/drm_gem_ttm_helper.c     | 9 ++++++++-
- drivers/gpu/drm/imx/dcss/dcss-dev.c      | 3 +++
- drivers/gpu/drm/panel/panel-edp.c        | 2 +-
- drivers/gpu/drm/scheduler/sched_entity.c | 6 +++---
- include/drm/gpu_scheduler.h              | 4 ++--
- 5 files changed, 17 insertions(+), 7 deletions(-)
-
---zrmldompvljf74bg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYtkUlgAKCRDj7w1vZxhR
-xXjDAP9m3ymjq8EktYQeyc7sfn5+fJ7cqjTLP7oD8YVcnclSZQD/eInD3Y5FfCHe
-YZoAJZJXwtwMP6lXHHsvYX/s1ZnrrAE=
-=LGcA
------END PGP SIGNATURE-----
-
---zrmldompvljf74bg--
+>>
+>> Issue is with GuC, GuC and full reset, or with full reset regardless 
+>> of the backend?
+> The issue is with code making invalid assumptions. The assumption is 
+> currently not failing because the execlist backend requires the use of a 
+> barrier context for a bunch of operations. The GuC backend does not 
+> require this. In fact, the barrier context does not function as a 
+> barrier when the scheduler is external to i915. Hence the desire to 
+> remove the use of the barrier context from generic i915 operation and 
+> make it only used when in execlist mode. At that point, the invalid 
+> assumption will no longer work and the BUG will fire.
+> 
+>>
+>> If issue is only with GuC patch should have drm/i915/guc prefix as 
+>> minimum. But if it actually only becomes a problem when GuC backend 
+>> stops parking with the kernel context when I think the whole unpark 
+>> code should be refactored in a cleaner way than just removing the one 
+>> assert. Otherwise what is the point of leaving everything else in there?
+>>
+>> Or if the issue is backend agnostic, *if* full reset happens to hit 
+>> during parking, then it is different. Wouldn't that be a race with 
+>> parking and reset which probably shouldn't happen to start with.
+>>
+> The issue is neither with GuC nor with resets, GT or otherwise. The 
+> issue is with generic i915 code making assumptions about backend 
+> implementations that are only correct for the execlist implementation.
+> 
+> John.
+> 
+> 
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>
+>>> John.
+>>>
+>>>
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>>
+>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/i915/gt/intel_engine_pm.c | 2 --
+>>>>>   1 file changed, 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c 
+>>>>> b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>>> index b0a4a2dbe3ee9..fb3e1599d04ec 100644
+>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>>> @@ -68,8 +68,6 @@ static int __engine_unpark(struct intel_wakeref *wf)
+>>>>>                ce->timeline->seqno,
+>>>>>                READ_ONCE(*ce->timeline->hwsp_seqno),
+>>>>>                ce->ring->emit);
+>>>>> -        GEM_BUG_ON(ce->timeline->seqno !=
+>>>>> -               READ_ONCE(*ce->timeline->hwsp_seqno));
+>>>>>       }
+>>>>>         if (engine->unpark)
+>>>
+> 
