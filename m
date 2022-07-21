@@ -2,153 +2,146 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4685057C9C3
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 13:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20E3457CA92
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 14:21:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B0838F883;
-	Thu, 21 Jul 2022 11:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3B6914AF0D;
+	Thu, 21 Jul 2022 12:21:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E77B48F887
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jul 2022 11:32:16 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 058C914A673
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jul 2022 12:21:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658403136; x=1689939136;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=iFULFBxFjBa760YX8sc3T6zqcWQAvyTsb9oZbEEc/Eg=;
- b=gzGjD0TvkLL+pjB0uZH2bHIEhQDekcaejWCYgpZNrfU83m5ZQyU+qvmf
- rWb9F2izbuczpWAcYlQWltwh14Ci6a9gKfTFtZkiX0T1ueKoFAm067joL
- gz+2IKx0DoLZWE9odDx7synsQU9BCAzWpdIRxCiJzeWb6i/v2R1sx8veF
- o3w5JAZL0cw5oTisR5DMcKGS4QAaFA0bXvPQDTH1bdViXJEw96ujB2TCH
- HdwQ3sNXo/LDSFOTlFDMcV7vpHOa46qs+3qRR6yPue8TtX7CuBScRzobp
- MalZYogsil3oESNi1zH25XIBePGw8NMxYIi1P6VbxDvkurN/ddN/U9jT1 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="285783077"
-X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="285783077"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2022 04:32:16 -0700
+ t=1658406097; x=1689942097;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=6OiSxbW/2wv4IIgjWBBfDWeukDEopr8PbPpKZ7r4ne0=;
+ b=f+9e2AsojphjqXcv8AsCrtnYXlJJZ6q+Jd/TBu071pk5I35wFFeOEyYV
+ 7Xmu652CUN8J0y5Wnbzj6pglK/GSbXQdtzQoEhcG2mc6+GwRW+fDfP/IU
+ xtSQfgUjXCnp8nxnXJNMAX8gny7Rm7J6zTJlbzH7z36xE8Z6nTwo9DSwS
+ XncCyieDrAblS8trqPXj5fUG3ENjksoWKEBQh56dBvHwIaBcRR5JCi2sM
+ MMSfY87uboEa661/z78Y8K4MmTxq8nx0RwLfmtbAoRrCl+e2OlD4efutc
+ b8VRc/jJoFGSXnpM7tnj+LZw1uNvM8SO3R7LiKeiFz04D6fKLLe3ck5Ru w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="266805143"
+X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="266805143"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2022 05:21:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="656705632"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga008.fm.intel.com with ESMTP; 21 Jul 2022 04:32:16 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="740657612"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+ by fmsmga001.fm.intel.com with ESMTP; 21 Jul 2022 05:21:36 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Thu, 21 Jul 2022 04:32:16 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ 15.1.2375.28; Thu, 21 Jul 2022 05:21:36 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Thu, 21 Jul 2022 04:32:15 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28 via Frontend Transport; Thu, 21 Jul 2022 04:32:15 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.175)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2375.28 via Frontend Transport; Thu, 21 Jul 2022 05:21:36 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Thu, 21 Jul 2022 04:32:15 -0700
+ 15.1.2308.27; Thu, 21 Jul 2022 05:21:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T2PG95hOz/z0LSRaaJtY2OUseAY5nmx9NxHBK9ndUP8rrVMEjOFp/cIL5sXuXFbmbShuJHF9aWxd+SjZBO3eEoqz1iSFlstlqjl/R3V0Ik27v3c8dV7BFGECiepFvcl59g1W8cv7qX0NxMvq7HzOG4hIyrRYGGmEYLnw9TViqlXldiF0wwNs22Rwudx6mXsYMmj9xOnf8BhzvsI3LX8t3Dad+0E+DrU3Z8IglYK+nB/ZydxHot4/YxhAvHAf/eCsa/2xelxsxINd7dIxLMCpSWHwGRDK/2KtTNpv/aXET8m4n2e7Vp/2ET2fuuRnq9v9nPsgMsH9Uy6wM79/5cMo5w==
+ b=Hu9GKuUosVdvKZ8leKfYdzBhNx3iOMuGEjWLi5EbPgZU/fw44rFNECKWJcq4oL7IkFqNY3fgW/1ZxS62NUfy9eg4gnROPIBaNawjtnifHgVxXMmeBFgq/5ZK8JjSnq7ZO5A0Tx5IVKBaZDgjU3FAYqOlg4rtFx5bWpkyJcsSpgOu8y7FVBQI/S/bgYBzIFnOz6jBVaHpexw7x2WKkZCu3rSlsWCwZG6Knb7rNFPXw0shCGY1MZZ/ggQWPV0R7xdlr9vXyK5ccPg7kQP6Md6dMNH9dOZq7Rvw6wpiW9WtEwkIbatFxw3GuBCABQ6mNuxvGNap57r5cAQBvaIsB2BxdQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gMFcNnHPm7pPpyyK33vOX0u6P7OiiDD2pI3amLYXFHY=;
- b=dJD15GchzUtv4OpBIPIamfP85TRlXwaekXkH+bLkSdVuDlYeDJcod4bNOQnpHJg9TNdnkAcvkecbs84ETv7RlU4rCK7eBDOGjMQ8Qpx3dym/eUxyD3dXmycNnkl9858I3Qk1AMY1yc+Ax/Pw70pQ3JbkXajN70BTHURXmy4SFw0iTORb8ESwsuu+8mO8bdp54SieIj7xPWuhw9eP9PAEUC+aolTgb0gx/LZHhBsbNcE4VMw4Lo4BhQZ4BZF71iZrQeH+tyjC8/vgtvLqdOT9GBb1MY7+ncGYPrkY/fJq0Np1a4UtQs891oSX3BXqxwLprSdkrXcIwmR570658O3tfQ==
+ bh=o+/TBiUGnWBgkYgpnEM95yW6QT0KpQffBdIWxt4QQ/M=;
+ b=Vv1kuuE+VurTDZBg74QCD3vx86t4Jiurf28U7g3YSpxFDEqODNTbnsNKaNbVYOMDA4/n46yX/7RZPZIt5SaUU2FMf4X4LBTOpv4bhONe0XJNcpU1lXoScJkKOgQYPiH2o54OSx9qZJyycW4JyeuR78EdQNdL5Yj6b9wUJYh0qk5XQhXP1UXAWJTNfQkE66N7gUxZPXUuO7PQuEifSA3RMK3G+WbQURLKEbW5pTmv9T02Ob3LFsjGZacCIczASojPuDbgPVt09XgS5qtccWit0sba1H/dN4bm/1RBH+2cP1rjAxTQ9/r6X3ItT+a3Y/we5Xji7K/zzlqW8x9xBuK8Yg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5248.namprd11.prod.outlook.com (2603:10b6:5:38b::7) by
- DM6PR11MB2812.namprd11.prod.outlook.com (2603:10b6:5:c4::24) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5438.20; Thu, 21 Jul 2022 11:32:13 +0000
-Received: from DM4PR11MB5248.namprd11.prod.outlook.com
- ([fe80::1d6a:825d:5ca3:34f7]) by DM4PR11MB5248.namprd11.prod.outlook.com
- ([fe80::1d6a:825d:5ca3:34f7%6]) with mapi id 15.20.5458.018; Thu, 21 Jul 2022
- 11:32:13 +0000
-From: "Tangudu, Tilak" <tilak.tangudu@intel.com>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>, "Ewins, Jon"
- <jon.ewins@intel.com>, "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>,
- "Roper, Matthew D" <matthew.d.roper@intel.com>, "Wilson, Chris P"
- <chris.p.wilson@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>, "Gupta,
- saurabhg" <saurabhg.gupta@intel.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>, "Nilawar, Badal" <badal.nilawar@intel.com>, "Deak,
- Imre" <imre.deak@intel.com>, "Iddamsetty, Aravind"
- <aravind.iddamsetty@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 6/8] drm/i915/rpm: d3cold Policy
-Thread-Index: AQHYnOcMWNabWVwZt0CSxR4/bqyrDK2IsJAAgAAARgA=
-Date: Thu, 21 Jul 2022 11:32:13 +0000
-Message-ID: <DM4PR11MB52480802064C6864BCDE63B3E2919@DM4PR11MB5248.namprd11.prod.outlook.com>
-References: <20220721095955.3986943-1-tilak.tangudu@intel.com>
- <20220721095955.3986943-7-tilak.tangudu@intel.com>
- <CY5PR11MB62115D47EC5757DE9863DD0495919@CY5PR11MB6211.namprd11.prod.outlook.com>
-In-Reply-To: <CY5PR11MB62115D47EC5757DE9863DD0495919@CY5PR11MB6211.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-dlp-product: dlpe-windows
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 02604ce4-e43d-4e26-69ce-08da6b0ca870
-x-ms-traffictypediagnostic: DM6PR11MB2812:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: opM06ZrlDYQjfazbpsma5vLfJ4QsHZELb5vGmeAK6YqpstBIk+oCmvsrK2YactQCG7UhrgWYn+Dvayn2UyFxE8Sgv9BGZFOh5MppG5LGnjfIZqV3eEQOlEWKI+Re3R2x4p+4YuwTB4gQ+YqVgmiFKeODdmMdllYSTKyZIYreqckxv4affRzJKlHdVgnxTxaZHCFKN+qc/Trgv3xn9X/a2bbcS9gC/zWGdN365lFfdb8xANqp77AJ6KCgVyc+K/te3dR6oyX8ceKV6TSzMw7OH2IWZhWqa5TArvU2uG+Zx37MuOfsD4naC7RAeIcQ6usVyta3CkTYg/5ECd3tmpr3Joh8I8SgQzhjWWOr18SvRXiW6+heT3vOy/L0mRyv6+qOpfG0J7xJaqwDu0Ui14FuNnte9fvW3lTJYzvqFwvaaTWeBuVpxPmQ4YmSo/db1L/EhdLLwXKmyBdO7+y8T5a8jBOUxuPqLwRoONxALpUKBwZaSQHkiuChkvXmzEtFg24LuMIo9xdoUzc53Da4XPBNpYI6Wc8YxFORhhx7mkyCJhv7mGfY/eAlOuFlsY4AgeqojOm0j/w7TPuUXB7I7Z24frFBv3sZkaKLMYHYJm5NWKVPKskPI0vthHStBJk3VgJ+g/xrwSU78WGkI2C5jjWmXw7K8t+VnXMGqKPQuCHW6neC13cZOtyjZltCNSKAjNk0nFJnr6L705Qcnv8yY9EwaClb7Z4raMyHszVckyzcRvkE7thNWEq0iqTpogggLIAlm+Vd4y+kThkmHNOgYJXuPJlHfICzMtTzzGB7tbyT9+jW42x0nwmVARFGgv/4mrz7XAtA4TGvTMyg5NjSUG/MO+P0Nk2RWD0TlWTGVPHOdV6erS9rjwIT3A/bYlhW0Ycu
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5248.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(376002)(136003)(346002)(39860400002)(366004)(396003)(921005)(71200400001)(82960400001)(2906002)(55236004)(478600001)(83380400001)(38070700005)(9686003)(186003)(26005)(66446008)(7696005)(86362001)(6506007)(316002)(53546011)(41300700001)(38100700002)(64756008)(66476007)(76116006)(110136005)(8936002)(8676002)(66556008)(55016003)(33656002)(122000001)(52536014)(66946007)(5660300002)(42413004)(32563001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?qsmHZkCbJgErl8YycIie8IDwmnzdR1QgrMKPQH36IorL+BWcHF95vjjSVupQ?=
- =?us-ascii?Q?GtGkEyyPLwZLEmxkcI5iJKJsQluOS8Fm0CjGDCMESHJ274vsbrv+/6xB1nkf?=
- =?us-ascii?Q?xvqu6VOeefPbSsuIPh/PY6D+UM2jDjipqrPUGYYmBf0kMeg/7FGPHXkFpINU?=
- =?us-ascii?Q?2yAykA3DqQDEQcAI6Oaz805vxUOoRkbGA1ylIE4vObv02Fc+TAuFWUw+JlZK?=
- =?us-ascii?Q?CIuUtMPlWEQqY0hapaKyTeM91sZHiywitBdLwzs9BfElrNGU/s14gAxrXytp?=
- =?us-ascii?Q?72jtjzAVkkCHnzIoOdXNeZkTyyO4gmngt50ZixSFRmXwqkqOc59rnfs61qRp?=
- =?us-ascii?Q?M0GPqbIBcQNO8f1RQRAOiqZuYFAq0/YA0rGAOF1fgdlPve8fZI2oztdW0VlC?=
- =?us-ascii?Q?X7BR4uBzCYXU+5UYIOkbcfCDN/hf/U9gkh78Zl/1vKT6ygOeASKWeqXm4b4i?=
- =?us-ascii?Q?IEdAn+NM3luYwX+Celal31CL2a6ESt3WJ/O12BLFBf0f4hAhD0z1PqHGqjk1?=
- =?us-ascii?Q?Wm9VnzHbMgY0sTRNckH8zq7fgvK9U7QYVfnhD9svPvo5vLq8YMxZh5o1jOxF?=
- =?us-ascii?Q?Qd7zOEZvma7MBPx3R4XN36lkZXO/qTZ2JL5PYaGEsXzec2bzB7PyIxpf5nxY?=
- =?us-ascii?Q?YrkAw00qXqpaQfK1JLUvRgrRAZkFK5MPdQNvH/VZ22mbCPBE+61T+9FczPmP?=
- =?us-ascii?Q?JEMOp5mQVMDkZgvnXpKJSMpjjMIX9Tr2BRBQkY3KBrTjGH4eNLctqjiK/qKI?=
- =?us-ascii?Q?gBV7BdRtJhg+ji6IGIfy1QWFr8w0Ew4dUyjLtdgw/mtSQ+DD1cs94hUjntef?=
- =?us-ascii?Q?qtWdy5drOjwQnhTQfcwQdEwh5tAdwfJuvFcQDg/LQPAPYXzi0zFfiz6GbDJL?=
- =?us-ascii?Q?++qZLbI4UzpsIPkYXrDOBpnavDTqY12ABvCBigcaB/SIk89Sr436OPdTv2SZ?=
- =?us-ascii?Q?7OtCfK1aQZyb4Q31U3bu23cnJHJPhaO5tJKGke0EejMQgNttA/ZGVY80jIyx?=
- =?us-ascii?Q?c0NLfIdKyyRo+VqDZnQD4EDVz85/j9LrcSjHbFPCIVbtgxW4/q65xzMYzEQ6?=
- =?us-ascii?Q?aGKgfbYxUkzWeuktjb5+AeMM9lGwQApPmTQTRshHbyBAZVpDs6j+ko8KyT1i?=
- =?us-ascii?Q?ic46eyBn5WjyaWAZcoI3a7iG1Xxfhnmup0RBuK4WVKSN8MRaMlsLAQmykQz9?=
- =?us-ascii?Q?UTeAaB1HbD1amyKcbmqQa0ts/U/vdlOZpKdre0Lu+besIe5AUk5xYs9jmLc6?=
- =?us-ascii?Q?jHmUQ36W5eESU3RjK8tGXYrtXJ8z5HHN89vHIDsZPfkjOpe9wHpBMNrL1+fV?=
- =?us-ascii?Q?qw8bNBMi/0K502jBw/C7SocEJvAgmbu04jGnDfW5givfCUogVVYgWhwEUGeE?=
- =?us-ascii?Q?ITyPBfYns0AFnuBfaHpotZBg5IvNne7Y8NRm8vfmI8O33WOnEfsvmjRDHSsy?=
- =?us-ascii?Q?z4YLM3YlnvmdXrvwS0jYSch8dB1UxCZFfbSO2uFoNZ3IMZHR6pytiCLBM9Oo?=
- =?us-ascii?Q?KhIlYhfOOxx/M4dYoj0bJ5w/fAIHmy6IRvmadzEh6qCaLKLAhpjDMOTXgGhy?=
- =?us-ascii?Q?HgdvC5YP+saigFIIwRQ6vQHFhjbco+7AT9iCxi7G?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from BL0PR11MB2961.namprd11.prod.outlook.com (2603:10b6:208:76::23)
+ by SA1PR11MB5802.namprd11.prod.outlook.com (2603:10b6:806:235::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.23; Thu, 21 Jul
+ 2022 12:21:34 +0000
+Received: from BL0PR11MB2961.namprd11.prod.outlook.com
+ ([fe80::71c4:bbd3:4a5a:ad1f]) by BL0PR11MB2961.namprd11.prod.outlook.com
+ ([fe80::71c4:bbd3:4a5a:ad1f%4]) with mapi id 15.20.5438.024; Thu, 21 Jul 2022
+ 12:21:33 +0000
+Message-ID: <68b2ab4a-b671-d3ff-43cf-5abfc2cf00ef@intel.com>
+Date: Thu, 21 Jul 2022 14:21:29 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, <intel-gfx@lists.freedesktop.org>
+References: <20220720122321.18270-1-nirmoy.das@intel.com>
+ <31613498-5b96-766a-f9e8-8a73f0022089@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@intel.com>
+In-Reply-To: <31613498-5b96-766a-f9e8-8a73f0022089@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: LO4P123CA0628.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:294::6) To BL0PR11MB2961.namprd11.prod.outlook.com
+ (2603:10b6:208:76::23)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: dc594a20-7175-456e-5086-08da6b138c72
+X-MS-TrafficTypeDiagnostic: SA1PR11MB5802:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: u4KxyktHpRA2KsNJuI5zU8aw8eYxpPpfmPGtWxneZ3aCAqADouDSeAOVd2kwprRpsBVlfEfLAm/fkn+VY2LOHGkcB91Vs6csyvoZjgZan82pDl2U8T6xuZKwM1vDgjPQnB2K2vLAaQ8at2RrManavaFyenj5RIktpO4wBSWstuDOPpgQHBoH9g8uBO27vntMnNSqVQmKO4lj9vQtlhpRG5vnYyubRjPOk9R0eUPoWsw1hM52j+OCgOUZnaJ7V0oLrleIcLEq++DQWh6gaqDZgf2Er9B2uPHqj57vDEleLW/7U2m8kQRZHT+V7mCDfdTCfYJminFoyGGgnxwtRchZyW+OrNINzTPuQ40Pamp3QY9PkPhO31Z2+ULZAgwkW/59Ka9/DVJCKzRYH+Yk0Cy1q0r1b/FouPHdkex1/mMoUuX6XcaSFvH36D5kY4lh5GUWVydXpGWH0WXjsEvRzaMKwiwGx13SZn15HxU2bfst4eWQwTSvqB9PxWCzi2NHAUvaAHE1cX9R02cNfVmY+7RznnS94IL3K+yBXlcTtV1W6Oz7bt6NDqdFymXZG+bZJcc0RUzCgTwslDLajdyLAXpdyzZpNsyaZGpBkgoAlWijUcPgrHaG8igrc64oscGW6CoNy8hN+5voJDj2v92AH/zalfuZenyHf7Iyc9cSn8HKNXXMoCnSciDj2acnneOnO0Rboz96KgaX1HcyYI1uy9y6GZMNvSNAS8Gsr10fGoUN9Z9Cm3oCXB8PU78BWlbKWOjl9klogDxRIskdDhucWUJzGA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR11MB2961.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(396003)(366004)(346002)(376002)(39860400002)(136003)(26005)(66556008)(38100700002)(966005)(6506007)(31696002)(86362001)(2616005)(4326008)(5660300002)(66476007)(8936002)(53546011)(66946007)(316002)(83380400001)(36756003)(41300700001)(82960400001)(107886003)(8676002)(186003)(2906002)(6486002)(478600001)(31686004)(6512007)(6666004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RldQVnVKRnpzSmpxRW8rR25uUStRWngzOUdNOEFlbGR0cXNad3dMNTVpOFNJ?=
+ =?utf-8?B?NHgyMGdNRGliaWlvcHlBeVFwUi93aUVQMjJUV001S0xzRzRIVEtaREN0YUow?=
+ =?utf-8?B?QUJhS01TdERvQ0t5UUVTQTRuM25LV09aUkpndkN6QWpiK2ttVFZRcDlWdTRR?=
+ =?utf-8?B?b1g5ZVBNYW1sT1pJbEMyVWJPcjlJOFB5TVZDRW8vcGJ4U0R2Zm9LTkcxUTRj?=
+ =?utf-8?B?RHRRakRLMmJRdlpqRWR5WDd5T3VJRklYUlkvNk1aRys3ekFsOHZqWS80TGxC?=
+ =?utf-8?B?dERGRldXL1dzM1g0Si8vajJtSFFrR1ZJSGs0Y1FWSFhzZGlXTVkzY0ZHYXJx?=
+ =?utf-8?B?N2RRY0NiNzdxTHk3R2ZZd3N1S0N6dGdiM3IvZ0ZhSTZBYVNxMzZ0SXRmVERQ?=
+ =?utf-8?B?aVRScjJWRGpBTFVvZzZqcGhTS1NnUGpCdDl6NmVwenRiekw0a0J5RTZYK0wx?=
+ =?utf-8?B?ZWNnM29HOElDdmhBOFZPWHBqNUNuZmNUaytPWVVDOFpPL2lKR0ZzV2x1dy9v?=
+ =?utf-8?B?MEFkaEZhNVcwZGRGU3RSNEZWNERQYzRTT1ZZWTEvRitud1B1aXRhalNvZnAw?=
+ =?utf-8?B?NUozbDNjQmhaS0xyVlNkWkVwenNSRmcyT2xncXA1Rmx3NzlwYnpVL0RJc3FJ?=
+ =?utf-8?B?ak0wdlM1SWYvbmRtcmgvSHBRSENQckxSOVR3REtBWXg3czQxWnVyWnFvSEFn?=
+ =?utf-8?B?bjJEYnVIckY2Ym1tSUJYcWdXR01DeXJwd0J5L3QzMnBNeiszRHE3b24reVcv?=
+ =?utf-8?B?eXdCVlhPVlF0eDV4Um9TRjhrMkJVTy81QjZ5VVVrVGRiWElzNER4WkYxbnZy?=
+ =?utf-8?B?Y3NHYjBBbGhZb1BBNzYzNWI0VlpFTFN0d3ZUNXEyWWM4RVFKeCtuTERtZ2I2?=
+ =?utf-8?B?MGlUUDk5MDZZcnArbFo5bWNxYjZKZ2RoQU5Bbmx4aDlZNlQ1T3NGay84WFZI?=
+ =?utf-8?B?TkJKWVlwTHIwK3lWUHlML0I2cldVcUQ2SzZUY1BwUzIzODRhNDNhUkFTbnQx?=
+ =?utf-8?B?M1J3cS8rSnQxVk4xZTBIWUFONjh5U296dGhkMGptOWxuNFhyMHR1MGFtaGJY?=
+ =?utf-8?B?d1VXNWZ3cmszR0h4OGdoeUxxaDl1cU1Wc0JSS3pCOGY0VUpnZXQ5UWw0aUxp?=
+ =?utf-8?B?SU1jTGxDckJvQ0lNMC9PTFB0NkpDU0l6MDAwNTZjSEJtaFZrQldOaWM1T2VF?=
+ =?utf-8?B?RWdPOTR0TU9BYURCQ09jbXRVS1l6aFl5Rmo1ZitUTTJDSDVrT0tSZkR1L21L?=
+ =?utf-8?B?YldKV2pGRU9YUkpYbGZVbm1JcUYxcmJFL1FMLytidHdZaHVCNjlCZ0VaSDdT?=
+ =?utf-8?B?aHF6YzBBVSthSFNqTTZ1WXI1M3M0aWZEa01ZZWFsU0RTWVdhWFFrb3l3Q25N?=
+ =?utf-8?B?S2FpRi9Wb09QQTEySnNYM2x1NnV0UGRoRGQ1UUJ3ODQ2M2NEQXdaWDNhSXZV?=
+ =?utf-8?B?SEczekpyd3hNSDNSV1BLOEc3RFhhTVhORzhxdzRqSlVqYXM5cTZ5Tm0xQ0U0?=
+ =?utf-8?B?V3ZWOHh3VXk2UFJsNFBIeTlwTkhyODErRWsreWNJMjdzRzRFWHZWbmxnVWJM?=
+ =?utf-8?B?RUtFdVFvTXF3OGdhWll5dktjLzd4T05sM1RVYnh3cU9LdDJ5dG5GZHZ5ZFJN?=
+ =?utf-8?B?OFcwNTBnQ0h6NlJ4RGpXK2VaOU9mbUFrR05tVG5RNDBYUzIxZzFHQjhLbmZJ?=
+ =?utf-8?B?TXZ1Mkk5czRjNThiemtISGdQMy85WEhEd3lhTEdxSlRva3Y1Z2ExeEFGWlNl?=
+ =?utf-8?B?ZTUvWnAxNjNFR0NwbEtRRjJsOU1XNmhTNG9aZG1WaW1HYncwVWRQQmlBd2Fh?=
+ =?utf-8?B?ZVkxRVY1RWw1aHQwVHZMamthcGFGc2tPVDFCT3IwME1OSTRxT0x1L0I0YklQ?=
+ =?utf-8?B?M094M1dzWW1Db0ZvdWRNd2ZBVERZWVFBQnpZMElidXRKSWZWd25MVUJEekNj?=
+ =?utf-8?B?d1NRbHh5a0ZncjVjditkZGRrMUl2OFdsd21jZzlOMXFvd1EzTmR0dWU0TWZz?=
+ =?utf-8?B?NTEwVHh2dGVNTzRrdjJRdnpCUE1Ia2FvMlVIazkrMjhrQ29TYWo4VTcrb2p1?=
+ =?utf-8?B?YVdRVWdETTBaUUlUekxJZENUQkZ3MzJlTVFyMHBDN3p0VHlhZ1BaOThnQVlS?=
+ =?utf-8?Q?+OuTNFP8Hr6l8HHrStpKKHqIU?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc594a20-7175-456e-5086-08da6b138c72
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR11MB2961.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5248.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02604ce4-e43d-4e26-69ce-08da6b0ca870
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jul 2022 11:32:13.5440 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Th8xKBl3B5reGUF8dWxawjlE1IOB44AHtmP8v8MTSWyjLJnZJYqEu+lPBhf9iq9xdE9eFenCkej82ROyZKan9Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2812
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2022 12:21:33.3386 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aY3PZmn1r+By+wNb5fQeOxVEHlEWM9ZoWH0MG59fKJrJTidtprMPi/c7nRAfoIu5nrqlVx+3o2tUGQYH858+ng==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5802
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915/rpm: d3cold Policy
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Suppress oom warning for shmemfs
+ object allocation failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,228 +154,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: chris.p.wilson@intel.com, andrzej.hajda@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 7/21/2022 11:49 AM, Matthew Auld wrote:
+> On 20/07/2022 13:23, Nirmoy Das wrote:
+>> From: Chris Wilson <chris@chris-wilson.co.uk>
+>>
+>> We report object allocation failures to userspace with ENOMEM, yet we
+>> still show the memory warning after failing to shrink device allocated
+>> pages. While this warning is similar to other system page allocation
+>> failures, it is superfluous to the ENOMEM provided directly to
+>> userspace.
+>>
+>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4936
+>
+> Is it not possible that this triggers OOM warning when calling 
+> sg_alloc_table() or similar?
 
-> -----Original Message-----
-> From: Gupta, Anshuman <anshuman.gupta@intel.com>
-> Sent: Thursday, July 21, 2022 5:00 PM
-> To: Tangudu, Tilak <tilak.tangudu@intel.com>; Ewins, Jon
-> <jon.ewins@intel.com>; Belgaumkar, Vinay <vinay.belgaumkar@intel.com>;
-> Roper, Matthew D <matthew.d.roper@intel.com>; Wilson, Chris P
-> <chris.p.wilson@intel.com>; Nikula, Jani <jani.nikula@intel.com>; Gupta,
-> saurabhg <saurabhg.gupta@intel.com>; Vivi, Rodrigo
-> <rodrigo.vivi@intel.com>; Nilawar, Badal <badal.nilawar@intel.com>; Deak,
-> Imre <imre.deak@intel.com>; Iddamsetty, Aravind
-> <aravind.iddamsetty@intel.com>; intel-gfx@lists.freedesktop.org
-> Subject: RE: [PATCH 6/8] drm/i915/rpm: d3cold Policy
->=20
->=20
->=20
-> > -----Original Message-----
-> > From: Tangudu, Tilak <tilak.tangudu@intel.com>
-> > Sent: Thursday, July 21, 2022 3:30 PM
-> > To: Ewins, Jon <jon.ewins@intel.com>; Belgaumkar, Vinay
-> > <vinay.belgaumkar@intel.com>; Roper, Matthew D
-> > <matthew.d.roper@intel.com>; Wilson, Chris P
-> > <chris.p.wilson@intel.com>; Nikula, Jani <jani.nikula@intel.com>;
-> > Gupta, saurabhg <saurabhg.gupta@intel.com>; Vivi, Rodrigo
-> > <rodrigo.vivi@intel.com>; Gupta, Anshuman
-> <anshuman.gupta@intel.com>;
-> > Nilawar, Badal <badal.nilawar@intel.com>; Tangudu, Tilak
-> > <tilak.tangudu@intel.com>; Deak, Imre <imre.deak@intel.com>;
-> > Iddamsetty, Aravind <aravind.iddamsetty@intel.com>;
-> > intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH 6/8] drm/i915/rpm: d3cold Policy
-> >
-> > From: Tilak Tangudu <tilak.tangudu@intel.com>
-> Please don't change the authorship of patch.
-I have not changed and at the same time I missed to add author explicitly=20
-I will make a note of it
 
-> >
-> > Add d3cold_sr_lmem_threshold modparam to choose between d3cold-off
-> > zero watt and  d3hot/d3cold-VRAM Self Refresh.
-> > i915 requires to evict the lmem objects to smem in order to support d3c=
-old-
-> Off.
-> > if platform does not supports vram_sr feature then fall back to d3hot
-> > by disabling d3cold to avoid the rpm suspend/resume latency.
-> > Extend the d3cold_sr_lmem_threshold modparam to debugfs i915_params
-> so
-> > that, it can be used by igt test.
-> >
-> > If gfx root port is not capable of sending PME from d3cold or doesn't
-> > have _PR3 power resources then only d3hot state can be supported.
-> >
-> > Adding intel_pm_prepare_targeted_d3_state() to choose the correct
-> > target d3 state and cache it to intel_runtime_pm structure, it can be
-> > used in rpm suspend/resume callback accordingly.
-> >
-> > v2: lmem->avail stopped tracking lmem usage since ttm is introduced,
-> > so removed lmem->avail usage in policy.
-> > FIXME here, lmem usage is not added, need to be added by using query
-> > functions.
-> > FIXME, Forcing the policy to enter D3COLD_OFF for validation purpose.
-> >
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_driver.c      |  6 +++++
-> >  drivers/gpu/drm/i915/i915_params.c      |  5 ++++
-> >  drivers/gpu/drm/i915/i915_params.h      |  1 +
-> >  drivers/gpu/drm/i915/intel_pm.c         | 35 +++++++++++++++++++++++++
-> >  drivers/gpu/drm/i915/intel_pm.h         |  1 +
-> >  drivers/gpu/drm/i915/intel_runtime_pm.h |  7 +++++
-> >  6 files changed, 55 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_driver.c
-> > b/drivers/gpu/drm/i915/i915_driver.c
-> > index 4c36554567fd..2b2e9563f149 100644
-> > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > @@ -1581,6 +1581,12 @@ static int intel_runtime_idle(struct device *kde=
-v)
-> >  	struct drm_i915_private *i915 =3D kdev_to_i915(kdev);
-> >  	int ret =3D 1;
-> >
-> > +	disable_rpm_wakeref_asserts(&i915->runtime_pm);
-> > +	ret =3D intel_pm_prepare_targeted_d3_state(i915);
-> > +	if (!ret)
-> > +		ret =3D 1;
-> > +
-> > +	enable_rpm_wakeref_asserts(&i915->runtime_pm);
-> >  	pm_runtime_mark_last_busy(kdev);
-> >  	pm_runtime_autosuspend(kdev);
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_params.c
-> > b/drivers/gpu/drm/i915/i915_params.c
-> > index 6fc475a5db61..4603f5c2ed77 100644
-> > --- a/drivers/gpu/drm/i915/i915_params.c
-> > +++ b/drivers/gpu/drm/i915/i915_params.c
-> > @@ -197,6 +197,11 @@ i915_param_named(enable_gvt, bool, 0400,
-> >  	"Enable support for Intel GVT-g graphics virtualization host
-> > support(default:false)");  #endif
-> >
-> > +i915_param_named_unsafe(d3cold_sr_lmem_threshold, int, 0600,
-> > +	"Enable VRAM Self refresh when size of lmem is greater to this
-> > threshold. "
-> > +	"If VRAM Self Refresh is not available then fall back to d3cold. "
-> > +	"It helps to optimize the suspend/resume latecy. (default: 300mb)");
-> > +
-> >  #if CONFIG_DRM_I915_REQUEST_TIMEOUT
-> >  i915_param_named_unsafe(request_timeout_ms, uint, 0600,
-> >  			"Default request/fence/batch buffer expiration
-> timeout."); diff
-> > --git a/drivers/gpu/drm/i915/i915_params.h
-> > b/drivers/gpu/drm/i915/i915_params.h
-> > index 2733cb6cfe09..1a86711038da 100644
-> > --- a/drivers/gpu/drm/i915/i915_params.h
-> > +++ b/drivers/gpu/drm/i915/i915_params.h
-> > @@ -75,6 +75,7 @@ struct drm_printer;
-> >  	param(unsigned int, request_timeout_ms,
-> > CONFIG_DRM_I915_REQUEST_TIMEOUT,
-> CONFIG_DRM_I915_REQUEST_TIMEOUT ?
-> > 0600 : 0) \
-> >  	param(unsigned int, lmem_size, 0, 0400) \
-> >  	param(unsigned int, lmem_bar_size, 0, 0400) \
-> > +	param(int, d3cold_sr_lmem_threshold, 300, 0600) \
-> >  	/* leave bools at the end to not create holes */ \
-> >  	param(bool, enable_hangcheck, true, 0600) \
-> >  	param(bool, load_detect_test, false, 0600) \ diff --git
-> > a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> > index f06babdb3a8c..20b0638ecd5c 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -8287,6 +8287,41 @@ void intel_pm_setup(struct drm_i915_private
-> > *dev_priv)
-> >  	atomic_set(&dev_priv->runtime_pm.wakeref_count, 0);  }
-> >
-> > +int intel_pm_prepare_targeted_d3_state(struct drm_i915_private *i915) =
-{
-> > +	struct intel_runtime_pm *rpm =3D &i915->runtime_pm;
-> > +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
-> > +	u64 lmem_used =3D 0;
-> > +	struct pci_dev *root_pdev;
-> > +	int ret =3D 0;
-> > +
-> > +	/* igfx will return from here */
-> > +	root_pdev =3D pcie_find_root_port(pdev);
-> > +	if (!root_pdev)
-> > +		return ret;
-> > +
-> > +	/* D3Cold requires PME capability and _PR3 power resource */
-> > +	if (!pci_pme_capable(root_pdev, PCI_D3cold) ||
-> > !pci_pr3_present(root_pdev))
-> > +		return ret;
-> > +
-> > +	/* FXME query the LMEM usage and fill lmem_used */
-> > +	/* Trigger D3COLD_OFF always to validate with all tests */
-> > +	if (lmem_used < i915->params.d3cold_sr_lmem_threshold  * 1024 *
-> > 1024) {
-> > +		rpm->d3_state =3D INTEL_D3COLD_OFF;
-> > +		drm_dbg(&i915->drm, "Prepared for D3Cold off\n");
-> > +	} else {
-> > +		/* Disable D3Cold to reduce the eviction latency */
-> > +		rpm->d3_state =3D INTEL_D3HOT;
-> > +	}
-> > +
-> > +	if (rpm->d3_state =3D=3D INTEL_D3HOT)
-> > +		pci_d3cold_disable(root_pdev);
-> > +	else
-> > +		pci_d3cold_enable(root_pdev);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >  static struct intel_global_state *intel_dbuf_duplicate_state(struct
-> > intel_global_obj *obj)  {
-> >  	struct intel_dbuf_state *dbuf_state; diff --git
-> > a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
-> > index 945503ae493e..7827b0c1a2f3 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.h
-> > +++ b/drivers/gpu/drm/i915/intel_pm.h
-> > @@ -31,6 +31,7 @@ int ilk_wm_max_level(const struct drm_i915_private
-> > *dev_priv);  void intel_init_pm(struct drm_i915_private *dev_priv);
-> > void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv);
-> > void intel_pm_setup(struct drm_i915_private *dev_priv);
-> > +int intel_pm_prepare_targeted_d3_state(struct drm_i915_private
-> > +*i915);
-> >  void g4x_wm_get_hw_state(struct drm_i915_private *dev_priv);  void
-> > vlv_wm_get_hw_state(struct drm_i915_private *dev_priv);  void
-> > ilk_wm_get_hw_state(struct drm_i915_private *dev_priv); diff --git
-> > a/drivers/gpu/drm/i915/intel_runtime_pm.h
-> > b/drivers/gpu/drm/i915/intel_runtime_pm.h
-> > index 99418c3a934a..568559b71b70 100644
-> > --- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-> > +++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-> > @@ -22,6 +22,12 @@ enum i915_drm_suspend_mode {
-> >  	I915_DRM_SUSPEND_HIBERNATE,
-> >  };
-> >
-> > +enum intel_gfx_d3_state {
-> > +	INTEL_D3HOT,
-> > +	INTEL_D3COLD_OFF,
-> > +	INTEL_D3COLD_VRAM_SR,
-> > +};
-> > +
-> >  /*
-> >   * This struct helps tracking the state needed for runtime PM, which p=
-uts
-> the
-> >   * device in PCI D3 state. Notice that when this happens, nothing on
-> > the @@ -
-> > 52,6 +58,7 @@ struct intel_runtime_pm {
-> >  	bool suspended;
-> >  	bool irqs_enabled;
-> >  	bool no_wakeref_tracking;
-> > +	enum intel_gfx_d3_state d3_state;
-> >
-> >  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-> >  	/*
-> > --
-> > 2.25.1
+I haven't observed any after running the test for a while but I think it 
+might be possible, Do you think I should add __GFP_NOWARN for that too ?
 
+
+Nirmoy
+
+
+> I guess shmem_read_mapping_page_gfp() is the most likely spot where 
+> this triggers OOM, but that doesn't have to be the case?
+>
+>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+>> index 4eed3dd90ba8..4466173e1bcc 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+>> @@ -137,7 +137,7 @@ int shmem_sg_alloc_table(struct drm_i915_private 
+>> *i915, struct sg_table *st,
+>>                    * trigger the out-of-memory killer and for
+>>                    * this we want __GFP_RETRY_MAYFAIL.
+>>                    */
+>> -                gfp |= __GFP_RETRY_MAYFAIL;
+>> +                gfp |= __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
+>>               }
+>>           } while (1);
