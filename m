@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AEEB57C806
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 11:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E6357C807
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 11:48:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91A158CFA0;
-	Thu, 21 Jul 2022 09:48:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E7598CF9F;
+	Thu, 21 Jul 2022 09:48:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82DCE8CFA0
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jul 2022 09:48:23 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A92D8CF9F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jul 2022 09:48:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658396903; x=1689932903;
+ t=1658396907; x=1689932907;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=B40sf06Askigx4Z2lI9R5+ITH2/OhAnqkSTTrq2XSwY=;
- b=hXycSZgAN4/CAfK4eqPhhqUqmviYWx6hQfKDwQQI7Yh3hG/NjZMRQcwq
- JH2APVteEVhiu5QrZY1JRNUB4V0WK+cgUTCGQ2dwPqUW4xsF6lH9dVDnG
- ESjMJwHzwT5e/GYthxeIWSx+MjPfoa3ra10vzLTjawi7Jdd/7F7p6Y4CY
- lNhK0DQVIfrQnUnv3frlyWlps0d9pd7iv8/sGGjR5i6fHItHEJ28z+UzL
- /7hB+yTgeMe2pJjIC3gP8iSRu1MP7SeC54Ec7Wg8SlSZD5oQ2roXgLON/
- O/x5P8JGuJenXA7iklQwaISpMjgMfRVWRwJw/ZG4rj9GeqxK65xRTIbh1 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="288167864"
-X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="288167864"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2022 02:48:22 -0700
+ bh=VdJ6K7k/xW4RcAwlmlrivHr2oUUMbE7fplEiyrNdf30=;
+ b=KpHQ1m5Zn5tPRN6S2YFgGGWuOAJFE1Cz6OpON/A+iqfvnJrbpa7DRNVW
+ Ff1JVMswXPG7aUMKjAbE8EkON4/xXWsIJiNJ2w/rW+mlOq3jRVo+FTpDV
+ f7qyFD7q2935/hjuuOsP3P4kY9PUIxjHlcXwdhLiazbl+ZskNJ8k6gjbU
+ 1lkJKToFKVL/+PIQ6XoSS9voN+G8yuL0XShHAgT3wXVHXGPDoiL+BAPOm
+ Kzl029nq5Ux/oLbGz9sKNQ5ouZBipX/zzR6Q+Og8UA6/65LQn6rpwbknK
+ CKx1b2vHINAwOkcfHmECK7Rtqu4CgRKOMUkbQqtNHdAlB+xWmnMvAyUzJ w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="350991717"
+X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="350991717"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2022 02:48:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="687846973"
+X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="701213017"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by FMSMGA003.fm.intel.com with ESMTP; 21 Jul 2022 02:48:20 -0700
+ by fmsmga002.fm.intel.com with ESMTP; 21 Jul 2022 02:48:23 -0700
 Received: from intel.com (tttangud-desk.iind.intel.com [10.145.144.118])
  by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 26L9ltwX026833; Thu, 21 Jul 2022 10:48:16 +0100
+ 26L9ltwY026833; Thu, 21 Jul 2022 10:48:20 +0100
 From: tilak.tangudu@intel.com
 To: jon.ewins@intel.com, vinay.belgaumkar@intel.com, matthew.d.roper@intel.com,
  chris.p.wilson@intel.com, jani.nikula@intel.com,
@@ -43,14 +43,15 @@ To: jon.ewins@intel.com, vinay.belgaumkar@intel.com, matthew.d.roper@intel.com,
  Anshuman.Gupta@intel.com, badal.nilawar@intel.com,
  tilak.tangudu@intel.com, imre.deak@intel.com,
  aravind.iddamsetty@intel.com, intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Jul 2022 15:29:53 +0530
-Message-Id: <20220721095955.3986943-7-tilak.tangudu@intel.com>
+Date: Thu, 21 Jul 2022 15:29:54 +0530
+Message-Id: <20220721095955.3986943-8-tilak.tangudu@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220721095955.3986943-1-tilak.tangudu@intel.com>
 References: <20220721095955.3986943-1-tilak.tangudu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/8] drm/i915/rpm: d3cold Policy
+Subject: [Intel-gfx] [PATCH 7/8] drm/i915: Add i915_save/load_pci_state
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,173 +67,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tilak Tangudu <tilak.tangudu@intel.com>
+From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 
-Add d3cold_sr_lmem_threshold modparam to choose between
-d3cold-off zero watt and  d3hot/d3cold-VRAM Self Refresh.
-i915 requires to evict the lmem objects to smem in order to
-support d3cold-Off. if platform does not supports vram_sr
-feature then fall back to d3hot by disabling d3cold to
-avoid the rpm suspend/resume latency.
-Extend the d3cold_sr_lmem_threshold modparam to debugfs
-i915_params so that, it can be used by igt test.
+Add i915_save/load_pci_state helpers which saves
+pci config state and restores the saved state.
 
-If gfx root port is not capable of sending PME from d3cold
-or doesn't have _PR3 power resources then only d3hot state
-can be supported.
-
-Adding intel_pm_prepare_targeted_d3_state() to choose the
-correct target d3 state and cache it to intel_runtime_pm
-structure, it can be used in rpm suspend/resume callback
-accordingly.
-
-v2: lmem->avail stopped tracking lmem usage since ttm is
-introduced, so removed lmem->avail usage in policy.
-FIXME here, lmem usage is not added, need to be added
-by using query functions.
-FIXME, Forcing the policy to enter D3COLD_OFF for
-validation purpose.
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Signed-off-by: Aravind Iddamsetty  <aravind.iddamsetty@intel.com>
 Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c      |  6 +++++
- drivers/gpu/drm/i915/i915_params.c      |  5 ++++
- drivers/gpu/drm/i915/i915_params.h      |  1 +
- drivers/gpu/drm/i915/intel_pm.c         | 35 +++++++++++++++++++++++++
- drivers/gpu/drm/i915/intel_pm.h         |  1 +
- drivers/gpu/drm/i915/intel_runtime_pm.h |  7 +++++
- 6 files changed, 55 insertions(+)
+ drivers/gpu/drm/i915/i915_driver.c | 34 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_driver.h |  2 ++
+ drivers/gpu/drm/i915/i915_drv.h    |  1 +
+ 3 files changed, 37 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 4c36554567fd..2b2e9563f149 100644
+index 2b2e9563f149..3697ecb2c138 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1581,6 +1581,12 @@ static int intel_runtime_idle(struct device *kdev)
- 	struct drm_i915_private *i915 = kdev_to_i915(kdev);
- 	int ret = 1;
+@@ -105,6 +105,40 @@ static const char irst_name[] = "INT3392";
  
-+	disable_rpm_wakeref_asserts(&i915->runtime_pm);
-+	ret = intel_pm_prepare_targeted_d3_state(i915);
-+	if (!ret)
-+		ret = 1;
-+
-+	enable_rpm_wakeref_asserts(&i915->runtime_pm);
- 	pm_runtime_mark_last_busy(kdev);
- 	pm_runtime_autosuspend(kdev);
+ static const struct drm_driver i915_drm_driver;
  
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 6fc475a5db61..4603f5c2ed77 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -197,6 +197,11 @@ i915_param_named(enable_gvt, bool, 0400,
- 	"Enable support for Intel GVT-g graphics virtualization host support(default:false)");
- #endif
- 
-+i915_param_named_unsafe(d3cold_sr_lmem_threshold, int, 0600,
-+	"Enable VRAM Self refresh when size of lmem is greater to this threshold. "
-+	"If VRAM Self Refresh is not available then fall back to d3cold. "
-+	"It helps to optimize the suspend/resume latecy. (default: 300mb)");
-+
- #if CONFIG_DRM_I915_REQUEST_TIMEOUT
- i915_param_named_unsafe(request_timeout_ms, uint, 0600,
- 			"Default request/fence/batch buffer expiration timeout.");
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 2733cb6cfe09..1a86711038da 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -75,6 +75,7 @@ struct drm_printer;
- 	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
- 	param(unsigned int, lmem_size, 0, 0400) \
- 	param(unsigned int, lmem_bar_size, 0, 0400) \
-+	param(int, d3cold_sr_lmem_threshold, 300, 0600) \
- 	/* leave bools at the end to not create holes */ \
- 	param(bool, enable_hangcheck, true, 0600) \
- 	param(bool, load_detect_test, false, 0600) \
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index f06babdb3a8c..20b0638ecd5c 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -8287,6 +8287,41 @@ void intel_pm_setup(struct drm_i915_private *dev_priv)
- 	atomic_set(&dev_priv->runtime_pm.wakeref_count, 0);
- }
- 
-+int intel_pm_prepare_targeted_d3_state(struct drm_i915_private *i915)
++bool i915_save_pci_state(struct pci_dev *pdev)
 +{
-+	struct intel_runtime_pm *rpm = &i915->runtime_pm;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	u64 lmem_used = 0;
-+	struct pci_dev *root_pdev;
-+	int ret = 0;
++	struct drm_i915_private *i915 = pci_get_drvdata(pdev);
 +
-+	/* igfx will return from here */
-+	root_pdev = pcie_find_root_port(pdev);
-+	if (!root_pdev)
-+		return ret;
++	if (pci_save_state(pdev))
++		return false;
 +
-+	/* D3Cold requires PME capability and _PR3 power resource */
-+	if (!pci_pme_capable(root_pdev, PCI_D3cold) || !pci_pr3_present(root_pdev))
-+		return ret;
++	kfree(i915->pci_state);
 +
-+	/* FXME query the LMEM usage and fill lmem_used */
-+	/* Trigger D3COLD_OFF always to validate with all tests */
-+	if (lmem_used < i915->params.d3cold_sr_lmem_threshold  * 1024 * 1024) {
-+		rpm->d3_state = INTEL_D3COLD_OFF;
-+		drm_dbg(&i915->drm, "Prepared for D3Cold off\n");
-+	} else {
-+		/* Disable D3Cold to reduce the eviction latency */
-+		rpm->d3_state = INTEL_D3HOT;
++	i915->pci_state = pci_store_saved_state(pdev);
++
++	if (!i915->pci_state) {
++		drm_err(&i915->drm, "Failed to store PCI saved state\n");
++		return false;
 +	}
 +
-+	if (rpm->d3_state == INTEL_D3HOT)
-+		pci_d3cold_disable(root_pdev);
-+	else
-+		pci_d3cold_enable(root_pdev);
-+
-+	return ret;
++	return true;
 +}
 +
- static struct intel_global_state *intel_dbuf_duplicate_state(struct intel_global_obj *obj)
++void i915_load_pci_state(struct pci_dev *pdev)
++{
++	struct drm_i915_private *i915 = pci_get_drvdata(pdev);
++	int ret;
++
++	if (!i915->pci_state)
++		return;
++
++	ret = pci_load_saved_state(pdev, i915->pci_state);
++	if (!ret) {
++		pci_restore_state(pdev);
++	} else {
++		drm_warn(&i915->drm, "Failed to load PCI state, err:%d\n", ret);
++	}
++}
+ static int i915_get_bridge_dev(struct drm_i915_private *dev_priv)
  {
- 	struct intel_dbuf_state *dbuf_state;
-diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
-index 945503ae493e..7827b0c1a2f3 100644
---- a/drivers/gpu/drm/i915/intel_pm.h
-+++ b/drivers/gpu/drm/i915/intel_pm.h
-@@ -31,6 +31,7 @@ int ilk_wm_max_level(const struct drm_i915_private *dev_priv);
- void intel_init_pm(struct drm_i915_private *dev_priv);
- void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv);
- void intel_pm_setup(struct drm_i915_private *dev_priv);
-+int intel_pm_prepare_targeted_d3_state(struct drm_i915_private *i915);
- void g4x_wm_get_hw_state(struct drm_i915_private *dev_priv);
- void vlv_wm_get_hw_state(struct drm_i915_private *dev_priv);
- void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv);
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
-index 99418c3a934a..568559b71b70 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-@@ -22,6 +22,12 @@ enum i915_drm_suspend_mode {
- 	I915_DRM_SUSPEND_HIBERNATE,
+ 	int domain = pci_domain_nr(to_pci_dev(dev_priv->drm.dev)->bus);
+diff --git a/drivers/gpu/drm/i915/i915_driver.h b/drivers/gpu/drm/i915/i915_driver.h
+index 44ec543d92cb..fb19db69bc3f 100644
+--- a/drivers/gpu/drm/i915/i915_driver.h
++++ b/drivers/gpu/drm/i915/i915_driver.h
+@@ -26,6 +26,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915);
+ 
+ int i915_driver_resume_switcheroo(struct drm_i915_private *i915);
+ int i915_driver_suspend_switcheroo(struct drm_i915_private *i915, pm_message_t state);
++bool i915_save_pci_state(struct pci_dev *pdev);
++void i915_load_pci_state(struct pci_dev *pdev);
+ 
+ void
+ i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index d25647be25d1..c30ac9219b7f 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -777,6 +777,7 @@ struct drm_i915_private {
+ 	 * NOTE: This is the dri1/ums dungeon, don't add stuff here. Your patch
+ 	 * will be rejected. Instead look for a better place.
+ 	 */
++	struct pci_saved_state *pci_state;
  };
  
-+enum intel_gfx_d3_state {
-+	INTEL_D3HOT,
-+	INTEL_D3COLD_OFF,
-+	INTEL_D3COLD_VRAM_SR,
-+};
-+
- /*
-  * This struct helps tracking the state needed for runtime PM, which puts the
-  * device in PCI D3 state. Notice that when this happens, nothing on the
-@@ -52,6 +58,7 @@ struct intel_runtime_pm {
- 	bool suspended;
- 	bool irqs_enabled;
- 	bool no_wakeref_tracking;
-+	enum intel_gfx_d3_state d3_state;
- 
- #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
- 	/*
+ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
 -- 
 2.25.1
 
