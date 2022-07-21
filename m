@@ -1,80 +1,152 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B1B57C072
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 01:05:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D7857C1C2
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 02:55:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E4D418B113;
-	Wed, 20 Jul 2022 23:05:04 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 247A918B10C
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jul 2022 23:05:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1658358301;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=zg6tKh24AWnTu20bQJOGXj28spsKAAV7siHCBMGPsbs=;
- b=AcYOeD8t+ZniHHUjNPOR3CSqdjTcms8uCNVY+uO7RE6ENMgyKkR6Wn9yUVP7h/ZzTp9LaR
- 0++AnwAQAeyxVWHD9qv4NIpDXQRtd6anQqihoaV0HaN5DPbCpNj8Ksogr+TmIGT0X5rafO
- U6MwvyLZhMsNc3QgIG3xZ8R18nyAgVw=
-Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
- [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-628-7Pq6p403O7OXBxO9N3Emfw-1; Wed, 20 Jul 2022 19:05:00 -0400
-X-MC-Unique: 7Pq6p403O7OXBxO9N3Emfw-1
-Received: by mail-il1-f199.google.com with SMTP id
- n13-20020a056e021bad00b002dc0580da61so12209267ili.21
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jul 2022 16:05:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:organization:mime-version:content-transfer-encoding;
- bh=zg6tKh24AWnTu20bQJOGXj28spsKAAV7siHCBMGPsbs=;
- b=vO+zh7+NLLFME7EcAp3J62QuNCJfTXCH8Zt6ou2GihA+Yt1hgXRMg9w2qPtyqXneUu
- FCEiIaKvS1U9OA9nLyu9MXV9U0pyWVXdJfgk0VWQ0gDxlFuH8mG9vm5Roou1IqyvThNs
- afClbfOlo536TFIjGJLEJzPAxmZldpAiO/S8ixAK32CFOkr9/H6eVEVUuIeIjPOBOHI7
- 2UvPfAPSGB3BtD+dNg8sR6wY9pjRPL2mGKreftGb2WX8PFUyrsOhXoihi++rn1AIeM5B
- qaCDj5fUPvlY2Hr6vQCw3JNWnARi9cxuj+tb0saphMQ6r1p2QmiJ73WAR39txilpVLVA
- 8+jQ==
-X-Gm-Message-State: AJIora+LRsCESlbCw7Bd+9JGfZv/Emr+LcNrI+rh7IqZjUODagmqXkCr
- XW4ovAjL+rW36OeOzCKEc0d+ex2qLzAvWeEPhpMcX7TvuSt6xSk/9INAKRrkP8qKutlrZelFwin
- QTGbZZ68jf7oFN1n59bOBLtjJVeso
-X-Received: by 2002:a92:d64d:0:b0:2dc:e337:58ab with SMTP id
- x13-20020a92d64d000000b002dce33758abmr8883696ilp.85.1658358300016; 
- Wed, 20 Jul 2022 16:05:00 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1sQXCea5IlpPt4z3PoQC/VJ/h3ZRlmifntgfmb+p+6Hl0NlKR1GQe1eKRx6WPGYdv4/I+TsDA==
-X-Received: by 2002:a92:d64d:0:b0:2dc:e337:58ab with SMTP id
- x13-20020a92d64d000000b002dce33758abmr8883682ilp.85.1658358299767; 
- Wed, 20 Jul 2022 16:04:59 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- n24-20020a056638111800b0034195de93b3sm92309jal.51.2022.07.20.16.04.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 Jul 2022 16:04:59 -0700 (PDT)
-Date: Wed, 20 Jul 2022 17:04:57 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20220720170457.39cda0d0.alex.williamson@redhat.com>
-In-Reply-To: <20220720200829.GW4609@nvidia.com>
-References: <0-v4-681e038e30fd+78-vfio_unmap_notif_jgg@nvidia.com>
- <1-v4-681e038e30fd+78-vfio_unmap_notif_jgg@nvidia.com>
- <20220720134113.4225f9d6.alex.williamson@redhat.com>
- <20220720200829.GW4609@nvidia.com>
-Organization: Red Hat
+	by gabe.freedesktop.org (Postfix) with ESMTP id 605B62B5C0;
+	Thu, 21 Jul 2022 00:54:58 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09EB72B5C0;
+ Thu, 21 Jul 2022 00:54:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1658364897; x=1689900897;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=0Uc33w13Fw5EBugjLyy67IoJnBgXbzpyayA7AC8kiIg=;
+ b=ZDjIiWhuDw6v0UGlchHtUCqQoqAKffWIeaR0KDEx7mV3SdR2oRFMfhpQ
+ yFxNPhB7Uyiw2kF4UPoOGsYm1uJBfxlKeKrezI7lO0RYQfkDkMczs8jfq
+ W691p2rPw7NXSfHqZ0u3bWqsiXNc4GxpQW5Id/BazznHIEH+qiN64SEtR
+ 9y4K9Wy+gqKuoQ2oYCYTWlLm7jzptjSUgk2m/kE45gXU/OlFrB/wcKmUR
+ wi7Q8T/3io0V3LrGGVboy7miEWDGyQGnBNmAZQeB2wXhyqoaJT5jNtP3H
+ 8Cqw6EFxwgXtZ5XueHDIvMZyWCabIzjxl1XvLnUa9A+NT2jZ4zdsIRPcP Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="273763840"
+X-IronPort-AV: E=Sophos;i="5.92,287,1650956400"; d="scan'208";a="273763840"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2022 17:54:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,287,1650956400"; d="scan'208";a="598276360"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga002.jf.intel.com with ESMTP; 20 Jul 2022 17:54:56 -0700
+Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Wed, 20 Jul 2022 17:54:55 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28 via Frontend Transport; Wed, 20 Jul 2022 17:54:55 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.176)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Wed, 20 Jul 2022 17:54:55 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DBQdZX/D4VD5TAazrj0h+UijNCCzUfm9CMkM/McU+heNJXFVQmnWoWPmyXd6R7wAIdue+DqNAeYYpR4ePV6Yzs3a5Gk8U786ATLzrKzezuNPpOfuqMNJJLLVt9sU3OIWfNkpg3PXbOljiquEdUMl2veB78MfdFP5/IezaxNkehMRBtqpNP7ojdGMJgyZH045a4yEEcoaGazsi3M7yx3oSFtNL6rgoDYBCpBYBptLc5iYwf5WAB2GY2iU06tjrlHHw5sNUHF9EdHJ0b4FKOsGr9G/escqr8DaDz2Tn6iQ28ftIx5b+UP2thvtltH/8AKP8b6dKkPXdoqZlMLJJNKUzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cuXvpCpy3Fsm2q26H2tEE0PAZ18u+4mAiYhLobEYr3M=;
+ b=NBMLY+7LMWi2Mai3K4SYBnga40aKRbiYn0mSuhbPwMPm7/AIRSE4aYF1bZnkvupGXfXmsMJBV3psIh6gls4AJkwSCvDYc0LwShfE2VNesM8ptaPnTLlmfNcN5bhogmJPPecRoR5SC+4N1XQDwooUVUGUJp7q3zSTPp7RV+4xJgxMiaRxnSgo8eRCM2GWYbzVBPBTGpcKrSeAsetfny/JzbL1MgxU1piWRqmSW5bUhmCehh+p0mhk2TwRSw7y9h4XG4P1aM5sdwDkFaEQC/3/r4ze+Qd8P8jqqGLSvXDdbqMyjNQPY3wqka4seuVIHvInV7u9MieVvUgCQymudn6FAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by MN2PR11MB4678.namprd11.prod.outlook.com (2603:10b6:208:264::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.20; Thu, 21 Jul
+ 2022 00:54:54 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::516d:4bc0:8e7b:9a12]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::516d:4bc0:8e7b:9a12%6]) with mapi id 15.20.5438.023; Thu, 21 Jul 2022
+ 00:54:54 +0000
+Message-ID: <ce12b1df-8845-64d6-4fcd-e2e650c3bf34@intel.com>
+Date: Wed, 20 Jul 2022 17:54:51 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.11.0
+Content-Language: en-GB
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20220712233136.1044951-1-John.C.Harrison@Intel.com>
+ <20220712233136.1044951-2-John.C.Harrison@Intel.com>
+ <d1cfac14-4c01-ce53-586f-01f8998bbab4@linux.intel.com>
+ <c86064c9-cbcc-cdc5-0654-0493c8d3d444@intel.com>
+ <0337c3d4-811e-1f5a-fe26-f0e8068497b8@linux.intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <0337c3d4-811e-1f5a-fe26-f0e8068497b8@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0166.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::21) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=alex.williamson@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4 1/2] vfio: Replace the DMA unmapping
- notifier with a callback
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2f04f701-ae8c-4621-2bf7-08da6ab39fd2
+X-MS-TrafficTypeDiagnostic: MN2PR11MB4678:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZdEb+wDjMMA8b/Bd1w42N3j8LU/Lmwh8LR3eO0B7RDD2zNfvz3xPYywUh7Xuhh7ATyNmJ9tDDH1jl9UvrMtqIChoYZJOmKh6KlLF0Kv/9IGH6LuipjVJBALlKtyvxhD2JCinMxumBcPXTInTVcas7n/CzpFm0iBJJJK0wOvMdjZqBnEz5PWVCLkmdjVXZrN3WZedkgIex8crXcvxRb0okFCwAlFemYmBHOsjJcW8oGFTHVZzMgc6flgF41NKyhX9R/jm6Plb0ND797+C9YRp7Nup9HD8jc1hk9D00oEGKl3yco2dNRmnOrB/WGo5mxxDr7zh2JlbqkbnqzxaZ+pED1g2LyEILE7nsU/eCjKY8TITT4vYc153bdVcmewJfYaYuX11+ASYI3Ws3kB2AnARH3Po9GvtvgywAYtbP/hR5Z0KUzwrzJLPMh3JVUnDWaGrcIeS5GQQIgAfQCJZ4WZDAquWEe2FcnlPmusIL3fq2iaR9IZaaGPEZwm7NdKfne13wLkx/Eq/z+hisMg0sjOuNEZUe/M550USAQT0V2TigML0uJ/MV/UVUQa2f30tVvyP9eIKwWfs+Z7+Vw+m83tbWKjr1weMJJs04yFS4UaTXVl9b7EKNPcoB2x6/rbEZTdxpejAe+yGS8kMjI30f2YyuQSIjkD6Ibc6rIfFRqBj0gRGFxU947yO5O7RBegf0SbGEIeNOV5+MpnR0jtZqjF8v5IEWbQ3sSWsCu4GBT+bmOcTJLHWay7o9D3ZZIpnpeNBPwfLtqPYc1ffYanCsDZuOVzwAs5G0kz42gnmj0+A5O5wQ2kL1CUIM4Thdb3RQG8JBpzVngq5c+eatyD3dBelFw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(39860400002)(376002)(136003)(396003)(366004)(346002)(316002)(8936002)(8676002)(38100700002)(66946007)(4326008)(53546011)(31686004)(31696002)(86362001)(5660300002)(82960400001)(83380400001)(6666004)(6506007)(66556008)(66476007)(41300700001)(2616005)(2906002)(26005)(6486002)(186003)(478600001)(6512007)(36756003)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WkZwQzhrb3VhajRUcVhRcE01eDc0VVkzL0ZISHdwRmNyTGNzcDQ4QkJaZ1Ew?=
+ =?utf-8?B?Zk1OVkhFSi9oOE9yUndmc0Q0eUtsbWJFbDBad0ZGY1VXeEtZcWVjak4vY3dI?=
+ =?utf-8?B?OVhiRGJHWjFDWUMyOTduNkFSNlBOMVNreWRNNFJrZE1CVHV5TE51K1V4dGxR?=
+ =?utf-8?B?QkxVM3FZMm56SllqMnhRRjdqcWYzL0NlenB3UWx3cS8xVTl5QnhmcEYrQURT?=
+ =?utf-8?B?U0hQZHl4blo2QVQ2RjVOYmZVNTlqeUJRTkZQbytCQldiR1V6dmlyT1p6U3Jk?=
+ =?utf-8?B?a2hrUkFCZnkvbnZJYzIxZGtReExKTnM1YkthY0NXV0xyWFRzcjFHazk2dGhE?=
+ =?utf-8?B?VmRUQ2Rub3VpcVVQcWV1QkJJSFVjcG9CU3gxSmZuTUY4bENxUDZTZVk1WUFO?=
+ =?utf-8?B?MkZibHgwK1hnMXdBRk1hTEE2aldEUTBVU2swUCtVRmoyOFIzbTNPMk1EazBT?=
+ =?utf-8?B?REV2R0tlTkt4YitGRFk0dkp6TldXZVRhTHFvRFZtZHB5Q1FMTzBnNmVGWHJH?=
+ =?utf-8?B?VmxqVytvUnFyYzBJMWhBdGZpdkgraCtEakxKVFU0ZHN1MlFIcm5WRWJYRkZM?=
+ =?utf-8?B?SVErRWRpeDM0QzBNWUo1ZFFyejR5R1FXdmRLNUVJZFJqV2xUcGc3RXV1ejVD?=
+ =?utf-8?B?UHBrOTh2cVhxSGtpWnBKYjdROEVjcUJmYXVEemRhY0twTEdhU1lHanc5Ymd5?=
+ =?utf-8?B?bnVlSGt2TTByUk5RWkRkTEhHcFRkZDN1Qjh0L041ZFhGMEtCdHVxVnVuTEdL?=
+ =?utf-8?B?YWNXdkM1YTQ4TVByU05YeGJzWnB6YjRZamlRNE9aazJWazJkaVUxR2hXMGMv?=
+ =?utf-8?B?SDNnbzVHY0RHTlZTUnpzNjZ0THpLWGIzbkV3SW42b3JWMVE5aWRwcFVXcnFP?=
+ =?utf-8?B?ZWdCakVoSW43ZkRZakJnT2k0Q25XKzAzanRVbElIaEhnM1E2aTZLVmNicEhX?=
+ =?utf-8?B?RVNWYXFOQkI3ZE9tcGJwSjU5OHBGK3FmWnlYNDFrZlU0M2NJRjZTbTcvUTNC?=
+ =?utf-8?B?NG5yZ3VTZjJGNzJIMGhzaGI1RGYxZHF2UzFSNlhTVlR2N1VrK3NOMk5MaTR5?=
+ =?utf-8?B?QTk0V0hKbWo3UWpyaDBrVWJZVXZVc080Y2RVU3VYTU9NVzI0ODdFMkpENWdZ?=
+ =?utf-8?B?cHQxaGIxWk9ZVHRVYjQrWmJDWDAyWFRNeTQ1YVhDL25HcloxNVFSWHJQOGwv?=
+ =?utf-8?B?QWpXeTdHVW45aklwUno1S3BMamFoenlHQnRjQVNDa1Q3dlF4bjB2U0ZzSkxi?=
+ =?utf-8?B?M0k5N3RpSWhWajByMVpleFVKVlFRVUJqTEtIcW9uUnFmVHlicVA0QkRGTHc5?=
+ =?utf-8?B?VnlUVm80ZDcwYXdlNG1JWitta0JGUmt0L1F3ZzFRVDhXdTBOUTFudjUrR3E4?=
+ =?utf-8?B?NExNYytRcUczSEtNdGZNdGtTQ1NmTDlvMm1DYzNmdE0xTllqQnM4eFdDMHl5?=
+ =?utf-8?B?dVp2MEdPeE93UDAzUDJUZVVjZmdvMHM4LzdYajN1YjQvVGtaZ2c0U09zMXFr?=
+ =?utf-8?B?Z29rMkhwLzE3eVlmQkkyb25mY2t4UEc0eWQweGU5b3FreXBic0tMRjBLN0JY?=
+ =?utf-8?B?TkJZbkhJUmR1N1JseVJWSUpWV0pVdE52WWtYb1lQNEkwQ093eXRmZi9SZXNk?=
+ =?utf-8?B?VExrTjlaQ1ZyNnVJMGpLQU1iTHA5ZEVvZjZZUENZUE5TRHpHTTIzOXF2NXpm?=
+ =?utf-8?B?MGo2R0JpMWlyc0ZWNURoUEUrWjh0Z0p3M0VPUmM2dDI2WkYvUHF5UzFuYWZj?=
+ =?utf-8?B?cnlLVndBWE16QkhiT2gweVJKUEtYSFVzYk10Yk5aMHJwd2lpUlZuZlBoeEk0?=
+ =?utf-8?B?UnFuU3BHa0s1UkREaWFCbE5FRDY2bXBqR3MzRWNhQ3ZyTGs4WG4wRUVTUjd2?=
+ =?utf-8?B?TS9aOXZpQkk1b0UzMHZ0MTY5SlVJQnpWdFp0ai9RWWdsL3ZMZVNtaStYNm4v?=
+ =?utf-8?B?dm5jL3FpODQ2ekZRNS8xUVJHK2t6OFk5ZDlrcEMvc3JEZEhCQjdqV21Senk5?=
+ =?utf-8?B?V1BmYmZZN0ZRaFJPc3MzVThBbEFrQUVKcVYrV3Ira01UWDFzYzY1a0NFVWRB?=
+ =?utf-8?B?QUkzV0YzZmRzaTVjWWpYOCtDOGo0Z3VqemhNaHFuT1grU2hKS0dJU0V6WWQw?=
+ =?utf-8?B?SkxyWkVicWFOQ3o4S29YSVdSMnB6dExKZ2dVanNQRFlvVDJVaU5jcFdDUWRI?=
+ =?utf-8?B?b0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f04f701-ae8c-4621-2bf7-08da6ab39fd2
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2022 00:54:54.1106 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RKwjVK3SRuiE5eymxbmpr46guXXrEAZ0Dmc2Njo9WDm0bnEQgh02FgJvlZ8seMorLIjjlt+wzyjLefBTF3sUD2cmm1RvbX+ZJJpbHtPYdo8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4678
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915: Remove bogus GEM_BUG_ON in
+ unpark
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,89 +159,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, Vineeth Vijayan <vneethv@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, Christoph Hellwig <hch@lst.de>,
- linux-s390@vger.kernel.org, Matthew Rosato <mjrosato@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>, Nicolin Chen <nicolinc@nvidia.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Tony Krowiak <akrowiak@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Jason Herne <jjherne@linux.ibm.com>, Cornelia Huck <cohuck@redhat.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 20 Jul 2022 17:08:29 -0300
-Jason Gunthorpe <jgg@nvidia.com> wrote:
 
-> On Wed, Jul 20, 2022 at 01:41:13PM -0600, Alex Williamson wrote:
->  
-> > ie. we don't need the gfn, we only need the iova.  
-> 
-> Right, that makes sense
->  
-> > However then I start to wonder why we're passing in 1 for the number of
-> > pages because this previously notifier, now callback is called for the
-> > entire vfio_dma range when we find any pinned pages.    
-> 
-> Well, it is doing this because it only ever pins one page.
 
-Of course that page is not necessarily the page it unpins given the
-contract misunderstanding below.
- 
-> The drivers are confused about what the contract is. vfio is calling
-> the notifier with the entire IOVA range that is being unmapped and the
-> drivers are expecting to receive notifications only for the IOVA they
-> have actually pinned.
-> 
-> > Should ap and ccw implementations of .dma_unmap just be replaced with a
-> > BUG_ON(1)?  
-> 
-> The point of these callbacks is to halt concurrent DMA, and ccw does
-> that today.
+On 7/19/2022 02:42, Tvrtko Ursulin wrote:
+>
+> On 19/07/2022 01:05, John Harrison wrote:
+>> On 7/18/2022 05:15, Tvrtko Ursulin wrote:
+>>>
+>>> On 13/07/2022 00:31, John.C.Harrison@Intel.com wrote:
+>>>> From: Matthew Brost <matthew.brost@intel.com>
+>>>>
+>>>> Remove bogus GEM_BUG_ON which compared kernel context timeline 
+>>>> seqno to
+>>>> seqno in memory on engine PM unpark. If a GT reset occurred these 
+>>>> values
+>>>> might not match as a kernel context could be skipped. This bug was
+>>>> hidden by always switching to a kernel context on park (execlists
+>>>> requirement).
+>>>
+>>> Reset of the kernel context? Under which circumstances does that 
+>>> happen?
+>> As per description, the issue is with full GT reset.
+>>
+>>>
+>>> It is unclear if the claim is this to be a general problem or the 
+>>> assert is only invalid with the GuC. Lack of a CI reported issue 
+>>> suggests it is not a generic problem?
+>> Currently it is not an issue because we always switch to the kernel 
+>> context because that's how execlists works and the entire driver is 
+>> fundamentally based on execlist operation. When we stop using the 
+>> kernel context as a (non-functional) barrier when using GuC 
+>> submission, then you would see an issue without this fix.
+>
+> Issue is with GuC, GuC and full reset, or with full reset regardless 
+> of the backend?
+The issue is with code making invalid assumptions. The assumption is 
+currently not failing because the execlist backend requires the use of a 
+barrier context for a bunch of operations. The GuC backend does not 
+require this. In fact, the barrier context does not function as a 
+barrier when the scheduler is external to i915. Hence the desire to 
+remove the use of the barrier context from generic i915 operation and 
+make it only used when in execlist mode. At that point, the invalid 
+assumption will no longer work and the BUG will fire.
 
-ccw essentially only checks whether the starting iova of the unmap is
-currently mapped.  If not it does nothing, if it is it tries to reset
-the device and unpin everything.  Chances are the first iova is not the
-one pinned, so we don't end up removing the pinned page and type1 will
-eventually BUG_ON after a few tries.
+>
+> If issue is only with GuC patch should have drm/i915/guc prefix as 
+> minimum. But if it actually only becomes a problem when GuC backend 
+> stops parking with the kernel context when I think the whole unpark 
+> code should be refactored in a cleaner way than just removing the one 
+> assert. Otherwise what is the point of leaving everything else in there?
+>
+> Or if the issue is backend agnostic, *if* full reset happens to hit 
+> during parking, then it is different. Wouldn't that be a race with 
+> parking and reset which probably shouldn't happen to start with.
+>
+The issue is neither with GuC nor with resets, GT or otherwise. The 
+issue is with generic i915 code making assumptions about backend 
+implementations that are only correct for the execlist implementation.
 
-> It looks like AP is missing a call to ap_aqic(), so it is
-> probably double wrong.
+John.
 
-Thankfully the type1 unpinning path can't be tricked into unpinning
-something that wasn't pinned, so chances are the unpin call does
-nothing, with a small risk that it unpins another driver's pinned page,
-which might not yet have been notified and could still be using the
-page.  In the end, if ap did have a page pinned in the range, we'll hit
-the same BUG_ON as above.
 
-> What I'd suggest is adding a WARN_ON that the dma->pfn_list is not
-> empty and leave these functions alone.
-
-The BUG_ON still exists in type1.
-
-Eric, Matt, Tony, Halil, JasonH, any quick fixes here?  ccw looks like
-it would be pretty straightforward to test against a range rather than
-a single iova.
- 
-> Most likely AP should be fixed to call vfio_ap_irq_disable() and to
-> check the q->saved_pfn against the IOVA.
-
-Right, the q->saved_iova, perhaps calling vfio_ap_irq_disable() on
-finding a matching queue.
-
-> But I'm inclined to leave this as-is for this series given we are at
-> rc7.
-
-On the grounds that it's no worse, maybe, but given the changes
-around this code hopefully we can submit fixes patches to stable if the
-backport isn't obvious and the BUG_ON in type1 is reachable.  Thanks,
-
-Alex
+> Regards,
+>
+> Tvrtko
+>
+>>
+>> John.
+>>
+>>
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/gt/intel_engine_pm.c | 2 --
+>>>>   1 file changed, 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c 
+>>>> b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>> index b0a4a2dbe3ee9..fb3e1599d04ec 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>> @@ -68,8 +68,6 @@ static int __engine_unpark(struct intel_wakeref *wf)
+>>>>                ce->timeline->seqno,
+>>>>                READ_ONCE(*ce->timeline->hwsp_seqno),
+>>>>                ce->ring->emit);
+>>>> -        GEM_BUG_ON(ce->timeline->seqno !=
+>>>> -               READ_ONCE(*ce->timeline->hwsp_seqno));
+>>>>       }
+>>>>         if (engine->unpark)
+>>
 
