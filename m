@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D4357C802
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 11:48:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F24C57C803
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jul 2022 11:48:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05F468BFEB;
-	Thu, 21 Jul 2022 09:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B4558BD14;
+	Thu, 21 Jul 2022 09:48:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04A7D8CF56
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jul 2022 09:48:16 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C06598BFC3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jul 2022 09:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658396897; x=1689932897;
+ t=1658396899; x=1689932899;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=1oxXVLUF+PB+Ut1WNMnAOB66cPPwo7muQSsiIpcsAQo=;
- b=IIfVH1HTKlXcUNNlvtfxt2rSV13XOjwJINYZ3HY7ZOvQP11SRtJy7IPb
- QY0gPaMzJVewGru6naXVGX6vXdfK6mrTimV6f6JxJqfsE6lscYP8ctPpW
- msIiCIDwt2st2t56zrLzLnASb+jVD2QlGKGHCBX0hiErOJCPKumhHdenR
- UJ7KW9xuuK9e7QFuIGqOqMDS3W/qxyHo8L3H/ujIi1oOcZaUnrlcUCTQy
- EKdFG+tdsh5jnpe4ix/giRAWxvHNEd5ZhhvDyaaCmSTJlOvrfEspbPYrL
- bIXKT17jN7YjmmMehMWuvMyMdmTszUa6+bfY9vm+e56t9dqvx9Us87Gt1 Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="287752214"
-X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="287752214"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2022 02:48:16 -0700
+ bh=BL9VeBf/caHn0UbibU5ncINZvLy2PWzEo1J47ZX3dHo=;
+ b=ZovWzc1ut9GwQYDI1qT2B2pFQZwrDqrWGrl/H8rCGvXpxJdj4yeQ3yu5
+ VViHQR/RP+QZeeJ1XqO3qhvy+UvEVIGjLsgBIZ9Dk+u7rsgZsZGOJJR2t
+ AY9qaydq3IUANpWt5pxSp//8hBCA7aKsv2APe3zJ0ZyyZiKVfxF+ZydGK
+ zQbmXJRRGcIWrRRG0qvfuImm7/ih6nAkQtRNsQk9sfAFEoHa3vYyAljBu
+ 7L1cCXY1DIvjGG37G2p+/9EQ9Fs/E/Cpk3FEbKYy7n9IumL8fwo5aYGCt
+ //19S2Rzm3DYegW2BNcIqpWyXlJsgZYLHB8F/PiIUQqHszV0FkDz4A+Z8 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="287011195"
+X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="287011195"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2022 02:48:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="602260719"
+X-IronPort-AV: E=Sophos;i="5.92,289,1650956400"; d="scan'208";a="701212997"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga007.fm.intel.com with ESMTP; 21 Jul 2022 02:48:13 -0700
+ by fmsmga002.fm.intel.com with ESMTP; 21 Jul 2022 02:48:16 -0700
 Received: from intel.com (tttangud-desk.iind.intel.com [10.145.144.118])
  by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 26L9ltwV026833; Thu, 21 Jul 2022 10:48:09 +0100
+ 26L9ltwW026833; Thu, 21 Jul 2022 10:48:13 +0100
 From: tilak.tangudu@intel.com
 To: jon.ewins@intel.com, vinay.belgaumkar@intel.com, matthew.d.roper@intel.com,
  chris.p.wilson@intel.com, jani.nikula@intel.com,
@@ -43,14 +43,14 @@ To: jon.ewins@intel.com, vinay.belgaumkar@intel.com, matthew.d.roper@intel.com,
  Anshuman.Gupta@intel.com, badal.nilawar@intel.com,
  tilak.tangudu@intel.com, imre.deak@intel.com,
  aravind.iddamsetty@intel.com, intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Jul 2022 15:29:51 +0530
-Message-Id: <20220721095955.3986943-5-tilak.tangudu@intel.com>
+Date: Thu, 21 Jul 2022 15:29:52 +0530
+Message-Id: <20220721095955.3986943-6-tilak.tangudu@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220721095955.3986943-1-tilak.tangudu@intel.com>
 References: <20220721095955.3986943-1-tilak.tangudu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/8] drm/i915: sanitize dc state in rpm resume
+Subject: [Intel-gfx] [PATCH 5/8] Drm/i915/rpm: Add intel_runtime_idle
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,33 +66,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tilak Tangudu <tilak.tangudu@intel.com>
+From: Anshuman Gupta <anshuman.gupta@intel.com>
 
-During runtime resume the display init sequence is called via
-intel_display_power_resume() -> icl_display_core_init()
-which should restore the display HW state. For restoring the DC9 enabled
-state in DC_STATE_EN, gen9_sanitize_dc_state() should be called on the
- runtime resume path too to avoid the
+Adding intel_runtime_idle (runtime_idle callback) to prepare the
+tageted D3 state.
 
-[  513.818190] i915 0000:03:00.0: [drm] *ERROR DC state mismatch (0x8 -> 0x0)*
+Since we have introduced i915 runtime_idle callback.
+It need to be warranted that Runtime PM Core invokes runtime_idle
+callback when runtime usages count becomes zero. That requires
+to use pm_runtime_put instead of pm_runtime_put_autosuspend.
 
-Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Chris Wilson <chris.p.wilson@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/i915_driver.c      | 12 ++++++++++++
+ drivers/gpu/drm/i915/intel_runtime_pm.c |  3 +--
+ 2 files changed, 13 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 589af257edeb..799f84d3eed6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -2229,6 +2229,7 @@ void intel_display_power_suspend(struct drm_i915_private *i915)
- void intel_display_power_resume(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index deb8a8b76965..4c36554567fd 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1576,6 +1576,17 @@ static int i915_pm_restore(struct device *kdev)
+ 	return i915_pm_resume(kdev);
+ }
+ 
++static int intel_runtime_idle(struct device *kdev)
++{
++	struct drm_i915_private *i915 = kdev_to_i915(kdev);
++	int ret = 1;
++
++	pm_runtime_mark_last_busy(kdev);
++	pm_runtime_autosuspend(kdev);
++
++	return ret;
++}
++
+ static int intel_runtime_suspend(struct device *kdev)
  {
- 	if (DISPLAY_VER(i915) >= 11) {
-+		gen9_sanitize_dc_state(i915);
- 		bxt_disable_dc9(i915);
- 		icl_display_core_init(i915, true);
- 		if (intel_dmc_has_payload(i915)) {
+ 	struct drm_i915_private *dev_priv = kdev_to_i915(kdev);
+@@ -1752,6 +1763,7 @@ const struct dev_pm_ops i915_pm_ops = {
+ 	.restore = i915_pm_restore,
+ 
+ 	/* S0ix (via runtime suspend) event handlers */
++	.runtime_idle = intel_runtime_idle,
+ 	.runtime_suspend = intel_runtime_suspend,
+ 	.runtime_resume = intel_runtime_resume,
+ };
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index 704beeeb560b..1c3ed0c29330 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -513,8 +513,7 @@ static void __intel_runtime_pm_put(struct intel_runtime_pm *rpm,
+ 
+ 	intel_runtime_pm_release(rpm, wakelock);
+ 
+-	pm_runtime_mark_last_busy(kdev);
+-	pm_runtime_put_autosuspend(kdev);
++	pm_runtime_put(kdev);
+ }
+ 
+ /**
 -- 
 2.25.1
 
