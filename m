@@ -2,49 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC17E57DA94
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jul 2022 09:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A02EA57DB65
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jul 2022 09:40:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A905610E2B6;
-	Fri, 22 Jul 2022 07:03:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B375610EAC7;
+	Fri, 22 Jul 2022 07:40:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDFD610E032
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jul 2022 07:03:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658473435; x=1690009435;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yUB4TeBkEEZ4AtAjbEqnajgPq0kv/qIwCjaO06FlYq4=;
- b=Ml1SF8ZDliUfMvYBHVjuobOmSn/U9chaeZUOto8xmwtiI4JepVOJjOzh
- YyonCdkyc2Tm3MFaUl55tBbTwUtZDvcJEHJhe9fvqPf5CJgj+Y+V8Q4cG
- puMTuQjxNWEr/CgnrfRNcqXygIj62J0bpOrS9guq6BOXk2lE1Z9CwBCnd
- 88gfILGRct0zYzOTLq9KIrsmyoXyH7HT6aoObFeplKkyrEVVxM4BNgOM+
- eObDxylHYDOSIu8SJSZdfJvImmsU6yXDv90/XJ+A1C+0/FxByjCTUjTl3
- oTWLi6Udd+g1yTfk5N60FuXcU63vOjc93fUG7xLOOxdyl62pV9BtgFbWn A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10415"; a="348955746"
-X-IronPort-AV: E=Sophos;i="5.93,185,1654585200"; d="scan'208";a="348955746"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2022 00:03:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,185,1654585200"; d="scan'208";a="598753462"
-Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.78])
- by orsmga002.jf.intel.com with ESMTP; 22 Jul 2022 00:03:49 -0700
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Jul 2022 15:03:43 +0800
-Message-Id: <20220722070343.10654-1-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220713092702.28946-1-shawn.c.lee@intel.com>
-References: <20220713092702.28946-1-shawn.c.lee@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D61FB10EA35;
+ Fri, 22 Jul 2022 07:40:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CC759A66C8;
+ Fri, 22 Jul 2022 07:40:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [v2] drm/i915/display: clear plane color ctl setting
- when turn full plane off
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Fri, 22 Jul 2022 07:40:31 -0000
+Message-ID: <165847563180.29542.12812836013155953613@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220719140424.430572-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20220719140424.430572-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Fixes_integer_overflow_or_integer_truncation_issues_in_page?=
+ =?utf-8?q?_lookups=2C_ttm_place_configuration_and_scatterlist_creation_?=
+ =?utf-8?b?KHJldjkp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,48 +42,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: William Tseng <william.tseng@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Customer report abnormal display output while switch eDP off sometimes.
-In current display disable flow, plane will be off at first. Then turn
-eDP off and disable HW pipe line. We found the abnormal pixel comes
-after turn plane off. Clear plane color ctl register when driver disable
-plane can solve this symptom.
+== Series Details ==
 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Shankar Uma <uma.shankar@intel.com>
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Cc: William Tseng <william.tseng@intel.com>
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
- 1 file changed, 3 insertions(+)
+Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation (rev9)
+URL   : https://patchwork.freedesktop.org/series/104704/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index caa03324a733..90977cfb7ebb 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -620,6 +620,8 @@ skl_plane_disable_arm(struct intel_plane *plane,
- 
- 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
- 	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), 0);
-+	if (DISPLAY_VER(dev_priv) >= 10)
-+		intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id), 0);
- }
- 
- static void
-@@ -638,6 +640,7 @@ icl_plane_disable_arm(struct intel_plane *plane,
- 	intel_psr2_disable_plane_sel_fetch(plane, crtc_state);
- 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
- 	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), 0);
-+	intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id), 0);
- }
- 
- static bool
--- 
-2.17.1
+== Summary ==
+
+Error: dim checkpatch failed
+44e2cc835627 drm: Move and add a few utility macros into drm util header
+-:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#87: FILE: include/drm/drm_util.h:92:
++#define overflows_type(x, T) \
++	(is_type_unsigned(x) ? \
++		is_type_unsigned(T) ? \
++			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
++	: is_type_unsigned(T) ? \
++		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++		: (sizeof(x) > sizeof(T)) ? \
++			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: 0)
+
+-:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
+#87: FILE: include/drm/drm_util.h:92:
++#define overflows_type(x, T) \
++	(is_type_unsigned(x) ? \
++		is_type_unsigned(T) ? \
++			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
++	: is_type_unsigned(T) ? \
++		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++		: (sizeof(x) > sizeof(T)) ? \
++			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: 0)
+
+total: 0 errors, 0 warnings, 2 checks, 100 lines checked
+e219ba46ca5e drm/i915/gem: Typecheck page lookups
+-:138: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#138: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:413:
++#define i915_gem_object_page_iter_get_sg(obj, it, n, offset) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_page_iter_get_sg(obj, it, n, offset); \
++})
+
+-:187: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#187: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:458:
++#define i915_gem_object_get_sg(obj, n, offset) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_sg(obj, n, offset); \
++})
+
+-:215: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#215: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:483:
++__i915_gem_object_get_sg_dma(struct drm_i915_gem_object *obj, pgoff_t n,
++			    unsigned int *offset)
+
+-:236: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#236: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:503:
++#define i915_gem_object_get_sg_dma(obj, n, offset) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_sg_dma(obj, n, offset); \
++})
+
+-:274: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#274: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:539:
++#define i915_gem_object_get_page(obj, n) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_page(obj, n); \
++})
+
+-:311: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#311: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:574:
++#define i915_gem_object_get_dirty_page(obj, n) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_dirty_page(obj, n); \
++})
+
+-:352: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#352: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:612:
++#define i915_gem_object_get_dma_address_len(obj, n, len) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_dma_address_len(obj, n, len); \
++})
+
+-:389: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#389: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:647:
++#define i915_gem_object_get_dma_address(obj, n) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_dma_address(obj, n); \
++})
+
+total: 0 errors, 0 warnings, 8 checks, 616 lines checked
+dda8e4426966 drm/i915: Check for integer truncation on scatterlist creation
+-:200: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#200: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:224:
++typedef unsigned int __sg_size_t; /* see linux/scatterlist.h */
+
+-:201: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#201: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
++#define sg_alloc_table(sgt, nents, gfp) \
++	overflows_type(nents, __sg_size_t) ? -E2BIG : (sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp)
+
+-:201: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'nents' - possible side-effects?
+#201: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
++#define sg_alloc_table(sgt, nents, gfp) \
++	overflows_type(nents, __sg_size_t) ? -E2BIG : (sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp)
+
+-:202: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#202: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:226:
++	overflows_type(nents, __sg_size_t) ? -E2BIG : (sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp)
+
+-:204: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#204: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:228:
++#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
++	overflows_type(npages, __sg_size_t) ? -E2BIG : (sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, size, max_segment, gfp)
+
+-:204: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'npages' - possible side-effects?
+#204: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:228:
++#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
++	overflows_type(npages, __sg_size_t) ? -E2BIG : (sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, size, max_segment, gfp)
+
+-:205: WARNING:LONG_LINE: line length of 157 exceeds 100 columns
+#205: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:229:
++	overflows_type(npages, __sg_size_t) ? -E2BIG : (sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, size, max_segment, gfp)
+
+total: 2 errors, 3 warnings, 2 checks, 123 lines checked
+f4fa7960d214 drm/i915: Check for integer truncation on the configuration of ttm place
+-:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ptr' - possible side-effects?
+#63: FILE: drivers/gpu/drm/i915/i915_gem.h:86:
++#define safe_conversion_gem_bug_on(ptr, value) !({ \
++	safe_conversion(ptr, value) ? 0 \
++		: (({ GEM_BUG_ON(overflows_type(value, *ptr)); }), 1); \
++})
+
+-:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'value' - possible side-effects?
+#63: FILE: drivers/gpu/drm/i915/i915_gem.h:86:
++#define safe_conversion_gem_bug_on(ptr, value) !({ \
++	safe_conversion(ptr, value) ? 0 \
++		: (({ GEM_BUG_ON(overflows_type(value, *ptr)); }), 1); \
++})
+
+total: 0 errors, 0 warnings, 2 checks, 63 lines checked
+27ebc00e000e drm/i915: Check if the size is too big while creating shmem file
+ceed0c581a2a drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+to add vma. The direct function that returns -ENOSPC is drm_mm_insert_node_in_range().
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+5068d1b558b3 drm/i915: Remove truncation warning for large objects
+
 
