@@ -1,135 +1,85 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3710E589D08
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:50:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2263A589CDC
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:39:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 234FB10F497;
-	Thu,  4 Aug 2022 13:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8FB911ACFB;
+	Thu,  4 Aug 2022 13:38:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2051.outbound.protection.outlook.com [40.107.223.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6A3118BE8F;
- Thu, 21 Jul 2022 21:30:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ka8WdyI+eJ0q7ORHFdR128nRj5D298tZK+Jhl12pAJF7QzGDU5YDYNLaZ8jZpE+ghRnXgm1Cz695RYSSt1KzJfXof+YS7JGNW3URqg6E3bjSuAlE7pFvDoHnVOEkJRVfGJXD0tHn2Mrwe5lSmxvU8okK7HZ24ROev266DCspqnHtqRVKVXYAFT6c1qOpODKodY8JgWwKYakLrIgY4IFRvHYIPaWrBb90TJQDmX45gJSFJqzrCxl4VWosbOfF/l57g9A/S1Bvmlr1QNU3Vf0xVywivtZTMC9nNV+wkqvW4OMB1W9hRNbmZYffxXIorr5D3oad0/3ZOrRO5xancAyAdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X+FA4NbIgKPhRa9ACnIqMnuvv17qvKqyb1ljimlsKf4=;
- b=XAm/g+lSr0sCKXAlEmSvIGCCgsiAs5AgDtr6laQiiNSenQhlEvowOBAuSjKN4xQIRyP3F0MrF9xSm+mjQTOKjJayDtL8UNxfWieSldv/m39gRdlccZk5yGTAnhKowWeQcZi3fUs9nLTp4guXbTpvC6ZdpmASOep2HrC04+Nz8MI24DCSb9BdYq7YbpJiiAZ6/fKFXQVwn0Ak3f8i74u7QBruq4vI6Rgrp6DM13ruWi+WOG1IA5fvMEQqDLRZ6xOuTujx1Dvps0G9RECmpVfWUhUKVncbrjf71RaBGdOsKtURzpbW8ZjL6iov/m0UywdP9SiYCvBx0yUGYHQMrI0gjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X+FA4NbIgKPhRa9ACnIqMnuvv17qvKqyb1ljimlsKf4=;
- b=Th5Z1UF24AxjacA6HGQgRG1+touWpY0yKzSG9yt4WMLlClE8h6JpEACUFXIb+Cl1QqKKA9XDsc26qIOffjlArqqvSQGf7c6LyvsE2kxtkYpxP5QqSi5ptKPC/dIvFcRcxl+rTb7IqyFGHXlR5v1Hnkl88wSSIWh+8ef4cs7Z+bXFVIInpfW8imQxO6n3HakzN31beM2Y0bwhk4wNVcEnG6w+AMd6b9z4UcI91jdJhlxnhMlxPHpOkLmzi8LfsxrD5/+zpF36D4MN/LGVWlOAS1uXRaxXUoGNaKzD9LAtfk0W+V/g6hFg02RXgrFCcYpcP3HpyWElKsAEImb7ZOWeTw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM6PR12MB2763.namprd12.prod.outlook.com (2603:10b6:5:48::16) by
- DM5PR1201MB0044.namprd12.prod.outlook.com (2603:10b6:4:54::10) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5438.20; Thu, 21 Jul 2022 21:30:35 +0000
-Received: from DM6PR12MB2763.namprd12.prod.outlook.com
- ([fe80::d043:c95a:cf42:cff4]) by DM6PR12MB2763.namprd12.prod.outlook.com
- ([fe80::d043:c95a:cf42:cff4%7]) with mapi id 15.20.5438.023; Thu, 21 Jul 2022
- 21:30:35 +0000
-Message-ID: <20e4ffcf-2a3a-e671-5f98-1602b78df3cb@nvidia.com>
-Date: Thu, 21 Jul 2022 16:30:28 -0500
+X-Greylist: delayed 2713 seconds by postgrey-1.36 at gabe;
+ Fri, 22 Jul 2022 21:09:00 UTC
+Received: from mx0a-00190b01.pphosted.com (mx0a-00190b01.pphosted.com
+ [IPv6:2620:100:9001:583::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 193AE939F0;
+ Fri, 22 Jul 2022 21:08:59 +0000 (UTC)
+Received: from pps.filterd (m0050093.ppops.net [127.0.0.1])
+ by m0050093.ppops.net-00190b01. (8.17.1.5/8.17.1.5) with ESMTP id
+ 26MKJalr029775; Fri, 22 Jul 2022 21:23:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
+ h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=jan2016.eng;
+ bh=+1AONTHeZKujAZlWUT0X+IkeKoRkI9kd867PknMVwg0=;
+ b=EdVF8ZamAx9aTHgv1RBz/dVtJJ9wZvCxs2+SimSTrJOTl3iz4UJ83aSjs62HDnxEjxhU
+ e4ItfkliZKeHTJ6jFvcitACPKia3q/PAJzLex92rWd1wktsCv/oZWFF9LsyNNCUWITBA
+ 5KfLICK3rOQIHgnfpznD2heBjmEvFL7Aw3++hZbIGiVH7BEhg/Tlsb4eOB3DoE470iAF
+ sU/rWx5E41QASKF00nyASFKiLUwA1Yzqrv8qopECzyX9dc6TdsbNtQVJ15APQhdQLP+r
+ KlD0s/qdGJltf7zMqZ4JQakIiTzmNz5w+azl+VuvcLU0uWxZyZphLaDnDMxZ7fFKydFn Zg== 
+Received: from prod-mail-ppoint4
+ (a72-247-45-32.deploy.static.akamaitechnologies.com [72.247.45.32] (may be
+ forged))
+ by m0050093.ppops.net-00190b01. (PPS) with ESMTPS id 3hg0j46nf4-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 22 Jul 2022 21:23:42 +0100
+Received: from pps.filterd (prod-mail-ppoint4.akamai.com [127.0.0.1])
+ by prod-mail-ppoint4.akamai.com (8.17.1.5/8.17.1.5) with ESMTP id
+ 26MIt3Uk020881; Fri, 22 Jul 2022 16:23:41 -0400
+Received: from prod-mail-relay18.dfw02.corp.akamai.com ([172.27.165.172])
+ by prod-mail-ppoint4.akamai.com (PPS) with ESMTP id 3hbrptdm45-1;
+ Fri, 22 Jul 2022 16:23:41 -0400
+Received: from [0.0.0.0] (unknown [172.27.119.138])
+ by prod-mail-relay18.dfw02.corp.akamai.com (Postfix) with ESMTP id 98D7716E;
+ Fri, 22 Jul 2022 20:23:40 +0000 (GMT)
+Message-ID: <9e34b45f-c091-223b-58ac-107cfbebd92c@akamai.com>
+Date: Fri, 22 Jul 2022 16:23:40 -0400
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
 Content-Language: en-US
-From: Daniel Dadap <ddadap@nvidia.com>
-To: Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Xinhui <Xinhui.Pan@amd.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
- Andy Shevchenko <andy@kernel.org>
-References: <20220712193910.439171-1-hdegoede@redhat.com>
- <20220712193910.439171-2-hdegoede@redhat.com>
- <641cb059-48f5-5f05-5ec2-610f1215391c@nvidia.com>
-In-Reply-To: <641cb059-48f5-5f05-5ec2-610f1215391c@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SA9PR13CA0045.namprd13.prod.outlook.com
- (2603:10b6:806:22::20) To DM6PR12MB2763.namprd12.prod.outlook.com
- (2603:10b6:5:48::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ed02d4d0-c4a3-436c-0431-08da6b603f59
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0044:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PTQWCJpB01f8jXqdP39gQwyDNpZHyqU3+V28vShBuwRVX9r7kDaEq3yRMZUIy/ze0o1zzYgZ/tvg78K2mNRLvqzJv4S7iSEJcECr9KPsq0PCtx5tuQtlCU8i4ulcpvX5DNL+6xXh4a10VeSPyADvPeFV6pbA+ih+cOfgcqjvlYsgTJwa7c2snGMDo3TDB8oppugJ3x6k5wouysC9Yom21Uz5OWxHJxVLyL5cYfD9v+V9tZigfP2lu7uRcnjV87O0+KZ0KSr4ELB0RHrDgRvP1GPD/sG+1G15ZJRlXngYMoNyl9vBBmfHC+5WGrjql+eqE271D44YG3gC9sfstRH9USell0tMR7MSUTrfPdQ6KbDgKgkluqIIpbGCfl5jDHdjX7t8mGH+INFzLmD+dQyfVc6U6e7p7QVeWBae33C86577cp07yoofrcfzAsJeQOoi9iJqQNs3DVIIAJuVpe47D4ioVfa27a9YBQ+FJTmOwNeeUKqvMdsbYR/UuyXFy0iMC35rl6cOBezIXvwGgPxFvxNee4aSE1h8GHMlwdUe1XXLmHLViBVM+LDvWVCqik//LdlV4XYwbAhWw9bojPzQiB2JPaZ9AQnIlc97iJZ3Gc3cuCg+iozXN1lw+3mGBb9XbiIz6UYGsOXEpfpnFL1KaHmYlXfjAdASX52Ofy2EO29++FqowV8w9Ge9vt7sIRWugswlwlkHQM5wiYtjE3nJXUAJW0ZAG1uE1aqJybZUj7EPUtT6q/EveZvXGQry10AjTpQbhsic0gcGN8WVCyOfKC/YlUjkKgTNYctRNvteCv9KN1nIeKDHOlmqSZBPyO54KKWrlgB99Wejtvm4jZcCScnMyLMS4KrxPMoy2O5po3o=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2763.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(39860400002)(366004)(346002)(136003)(376002)(53546011)(8676002)(6666004)(6486002)(83380400001)(66946007)(41300700001)(26005)(66476007)(31696002)(86362001)(2906002)(186003)(8936002)(66556008)(478600001)(6506007)(6512007)(2616005)(54906003)(7416002)(36756003)(5660300002)(31686004)(316002)(4326008)(110136005)(38100700002)(921005)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aElvbGNjTmYzVlVZb0sveC9Vd0N4OHFSWFpwOHAwS01zRHlTMG1VV1ZtRU8w?=
- =?utf-8?B?KzRxbGxmcFVsZk9XUWhqRnpmTDFUWEZnZVpIM2xNSHdpalZnREdWeERicEJt?=
- =?utf-8?B?QlA4UEtya0lSc0RvcVdSSXYxVExTOE4yWENNajVjT1pNTUZHYjROdmpvcUtM?=
- =?utf-8?B?c21FSDJlL1c0bzh6L1ozYkJGQVBMekdvNno4UmpLeFUrcTFkTzJzSzR2V3hE?=
- =?utf-8?B?SXl3NzRzN09lai9DWWlwWk9LVHIxYlRJNWlSQUFhL1NBYmovakh6RysrZThu?=
- =?utf-8?B?U2JvWmpraDNQa3YyRCt2NnZsekYxaDlsVUhxTldIZ3pNdVYvVlJMekpqdGJw?=
- =?utf-8?B?QWFLSlpzTzByZjVWZUJubms2SFpVTnBGYkExU1g4d1pWcVNhVFppbzU5Rkht?=
- =?utf-8?B?SzhldWZaUmtVUlQzUTNubk9GNTdMcEtEOFpXZlZEbDd3blFpZ1JRSUZETVRh?=
- =?utf-8?B?L0FQNUtqRlAwN3V3M1ZVTUtlYk5QbjZTVGFCRUFGeWtLRm1lYkhqbGhySE43?=
- =?utf-8?B?ZVdwSUQ0aklsQWVNbnV1Wlp0NGVxSXNjbkdBYS9BdXFDVTNQMTJyZFV1VU4z?=
- =?utf-8?B?cllGS1ZqNlRicE1NZTVpbmM1QWZqZm15TEdqK1JYT3RFajdMK2duc2VsYTNt?=
- =?utf-8?B?TTlBT1Y3UHZpRE4zR3AyU2RHR1EybkJiTzR3UWUycjVuM0tkbGlDYWNwSmdQ?=
- =?utf-8?B?VVhPNW9OSmppbm1aTitLUngySmcycHh4T3lEVGx6MHpXaUtBVm5mRG5wRnN0?=
- =?utf-8?B?cmNlUjZtS0svdVZPc2dQZDA1bVdUa29naWg2eGkzc0p6clFCcXJiU2x4K2tG?=
- =?utf-8?B?dDIvYzZSdWZJa3YvZEI5dE9JcEp3eGxrSG0vYjJVSWJqUE96bWd5d3lQRVpP?=
- =?utf-8?B?a3dSb2hGYTlUWXdXOHpZeWxOeFN1QUVQcUE2bHdvVlFFdkhkRG9IK1lvYjhh?=
- =?utf-8?B?NGRmVGpheTlPTGhheFZBMXlMU3YwamZoZ0RuQTFlcUd1TExhL0RONFpiKzBn?=
- =?utf-8?B?N0pKNHhrWVFhcjFwZlI2cnoxbjBtbkNWOXYwSUx3amdxTjlEMHRkVlJQNDJv?=
- =?utf-8?B?aWVQMkZwRFJDSmxOMTBFL041RVh4WlNCOEFPU2pSK2txb2doZnNsem00KzB1?=
- =?utf-8?B?QzJjWkR3cGZsRk92cnE0VUZWS00xeHE3ckt1L1lIQmI5UnNLeXp6QjJoOEZN?=
- =?utf-8?B?MmIwMFNYYThSMGgyU3BzeCtqL2l1b0pDS2xKMzBtTlIybjVOaTd3Tm5oZlRT?=
- =?utf-8?B?QzljdG5EL3pkV1RQajNNaVdlRVVDTVhKc3l0N0FjZnZqTlJleVFmek5iVjk3?=
- =?utf-8?B?QmFmclllNzNIK1VodXhKT200TDBoZ05Vb2x4dTd4OE5Qa1J4ZjlNdWVxbGlZ?=
- =?utf-8?B?OGNoMGpZanQvOHJPNm4xcWlhSFYzZWh6WGJDVWZLMjFjZTI3b0dPYXEzU01l?=
- =?utf-8?B?dTR3TTZiVWdCL0haNmwrTXRlTFpHek45V1RXRlAzOWlrNms5NzJ0aHVWelhH?=
- =?utf-8?B?MFpqcWZyOUJwZ0xWRFdjUURJQTl5RmR1bW1YbWhoZ0JKRjdyaCtTQnBldXpw?=
- =?utf-8?B?ZVJmUmlyS2NMTDBvUHdhc3AxNE5sNjg1cVNMNDlkVGtPQ3BmRWRrQzlyZzBE?=
- =?utf-8?B?a09lLzkxeS8zR25CR0Z1NHRlWHdnQlJLOXovQ0pteXV4cm1ON3A0c2Z5YWpl?=
- =?utf-8?B?cGpDZjZHYUNxcnZ4MnNHeWE0SjRMYkJjMTFOQmdLT1dqNHNqVUdHMUxCNThq?=
- =?utf-8?B?YVlpRERnbEJNMmdDb2pnQXhxTE1UTnJpamxHOXQ0MCtSdVBubjBQaTNjRmxQ?=
- =?utf-8?B?RTIwUnp6YzZZT21OMjJhY0Y0OTg1bDNQR1lrelVTZDc4VFphcHhKOW1GdlJw?=
- =?utf-8?B?eWVtRXdsSlZDRnRhaVJob3FLRVVLYmcrS3F0ZG4xYnBYUGtUcnkwMzZyV2xN?=
- =?utf-8?B?akVNSkI4TldGMmVvVHAxTWZ4SHNHNDVyd2hDVmpDY1BiOU9DNGxYWkg1ZHBw?=
- =?utf-8?B?Nk1ZTmk1MHJWajh6bkhHOEJEbk9YNktPdDlTeVF1M1B3dVVPeHhwVUFvb1Rj?=
- =?utf-8?B?TFhsTFNzUHE1dWg5MVBYZENKYlAxT210elV1OUxYQ2xYZG55VHBuNFY5dlNt?=
- =?utf-8?Q?5OCn+Uum5zQ8bYoUJ8P5bMZT5?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed02d4d0-c4a3-436c-0431-08da6b603f59
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2763.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2022 21:30:35.2364 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rAHuWVl8VvsyWDzeBo/u06ShMNXTTBe9Skq/+gN2WCIzke1HLtQkPJai3/2a4djBDhzAM2Zf1IeCxUNeWJECHA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0044
+To: Jim Cromie <jim.cromie@gmail.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, gregkh@linuxfoundation.org,
+ daniel.vetter@ffwll.ch, seanpaul@chromium.org, robdclark@gmail.com
+References: <20220720153233.144129-1-jim.cromie@gmail.com>
+ <20220720153233.144129-13-jim.cromie@gmail.com>
+From: Jason Baron <jbaron@akamai.com>
+In-Reply-To: <20220720153233.144129-13-jim.cromie@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-22_06,2022-07-21_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ mlxlogscore=999
+ phishscore=0 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2206140000 definitions=main-2207220083
+X-Proofpoint-ORIG-GUID: iVW3af7nY-wh7IXZ-qsYpdTMGZ_K4vj0
+X-Proofpoint-GUID: iVW3af7nY-wh7IXZ-qsYpdTMGZ_K4vj0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-22_06,2022-07-21_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
+ bulkscore=0 adultscore=0
+ impostorscore=0 mlxscore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 clxscore=1011 suspectscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
+ definitions=main-2207220083
 X-Mailman-Approved-At: Thu, 04 Aug 2022 13:37:57 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 01/29] ACPI: video: Add
- acpi_video_backlight_use_native() helper
+Subject: Re: [Intel-gfx] [PATCH v4 12/41] dyndbg: add DECLARE_DYNDBG_CLASSMAP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,194 +92,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Len Brown <lenb@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 7/21/22 16:24, Daniel Dadap wrote:
->
-> On 7/12/22 14:38, Hans de Goede wrote:
->> ATM on x86 laptops where we want userspace to use the acpi_video 
->> backlight
->> device we often register both the GPU's native backlight device and
->> acpi_video's firmware acpi_video# backlight device. This relies on
->> userspace preferring firmware type backlight devices over native 
->> ones, but
->> registering 2 backlight devices for a single display really is 
->> undesirable.
->>
->> On x86 laptops where the native GPU backlight device should be used,
->> the registering of other backlight devices is avoided by their drivers
->> using acpi_video_get_backlight_type() and only registering their 
->> backlight
->> if the return value matches their type.
->>
->> acpi_video_get_backlight_type() uses
->> backlight_device_get_by_type(BACKLIGHT_RAW) to determine if a native
->> driver is available and will never return native if this returns
->> false. This means that the GPU's native backlight registering code
->> cannot just call acpi_video_get_backlight_type() to determine if it
->> should register its backlight, since acpi_video_get_backlight_type() 
->> will
->> never return native until the native backlight has already registered.
->>
->> To fix this add a new internal native function parameter to
->> acpi_video_get_backlight_type(), which when set to true will make
->> acpi_video_get_backlight_type() behave as if a native backlight has
->> already been registered.
->>
->> And add a new acpi_video_backlight_use_native() helper, which sets this
->> to true, for use in native GPU backlight code.
->>
->> Changes in v2:
->> - Replace adding a native parameter to 
->> acpi_video_get_backlight_type() with
->>    adding a new acpi_video_backlight_use_native() helper.
->>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> ---
->>   drivers/acpi/video_detect.c | 24 ++++++++++++++++++++----
->>   include/acpi/video.h        |  5 +++++
->>   2 files changed, 25 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
->> index becc198e4c22..4346c990022d 100644
->> --- a/drivers/acpi/video_detect.c
->> +++ b/drivers/acpi/video_detect.c
->> @@ -17,8 +17,9 @@
->>    * Otherwise vendor specific drivers like thinkpad_acpi, asus-laptop,
->>    * sony_acpi,... can take care about backlight brightness.
->>    *
->> - * Backlight drivers can use acpi_video_get_backlight_type() to 
->> determine
->> - * which driver should handle the backlight.
->> + * Backlight drivers can use acpi_video_get_backlight_type() to 
->> determine which
->> + * driver should handle the backlight. RAW/GPU-driver backlight 
->> drivers must
->> + * use the acpi_video_backlight_use_native() helper for this.
->>    *
->>    * If CONFIG_ACPI_VIDEO is neither set as "compiled in" (y) nor as 
->> a module (m)
->>    * this file will not be compiled and 
->> acpi_video_get_backlight_type() will
->> @@ -548,9 +549,10 @@ static int acpi_video_backlight_notify(struct 
->> notifier_block *nb,
->>    * Arguably the native on win8 check should be done first, but that 
->> would
->>    * be a behavior change, which may causes issues.
->>    */
->> -enum acpi_backlight_type acpi_video_get_backlight_type(void)
->> +static enum acpi_backlight_type __acpi_video_get_backlight_type(bool 
->> native)
->>   {
->>       static DEFINE_MUTEX(init_mutex);
->> +    static bool native_available;
->>       static bool init_done;
->>       static long video_caps;
->>   @@ -570,6 +572,8 @@ enum acpi_backlight_type 
->> acpi_video_get_backlight_type(void)
->>               backlight_notifier_registered = true;
->>           init_done = true;
->>       }
->> +    if (native)
->> +        native_available = true;
->>       mutex_unlock(&init_mutex);
->>         if (acpi_backlight_cmdline != acpi_backlight_undef)
->> @@ -581,13 +585,25 @@ enum acpi_backlight_type 
->> acpi_video_get_backlight_type(void)
->>       if (!(video_caps & ACPI_VIDEO_BACKLIGHT))
->>           return acpi_backlight_vendor;
->>   -    if (acpi_osi_is_win8() && 
->> backlight_device_get_by_type(BACKLIGHT_RAW))
->> +    if (acpi_osi_is_win8() &&
->> +        (native_available || 
->> backlight_device_get_by_type(BACKLIGHT_RAW)))
->>           return acpi_backlight_native;
->>         return acpi_backlight_video;
->
->
-> So I ran into a minor problem when testing the NVIDIA proprietary 
-> driver against this change set, after checking 
-> acpi_video_backlight_use_native() before registering the NVIDIA 
-> proprietary driver's backlight handler. Namely, for the case where a 
-> user installs the NVIDIA proprietary driver after the video.ko has 
-> already registered its backlight handler, we end up with both the 
-> firmware and native handlers registered simultaneously, since the ACPI 
-> video driver no longer unregisters its backlight handler. In this 
-> state, desktop environments end up preferring the registered but 
-> non-functional firmware handler from video.ko. (Manually twiddling the 
-> sysfs interface for the native NVIDIA handler works fine.) When 
-> rebooting the system after installing the NVIDIA proprietary driver, 
-> it is able to register its native handler before the delayed work to 
-> register the ACPI video backlight handler fires, so we end up with 
-> only one (native) handler, and userspace is happy.
->
-> Maybe this will be moot later on, when the existing sysfs interface is 
-> deprecated, and it probably isn't a huge deal, since a reboot fixes 
-> things (I imagine installing an in-tree DRM/KMS driver on an already 
-> running kernel isn't really a thing, which is why this isn't a problem 
-> with the in-tree drivers), but would it make sense to unregister the 
-> ACPI video backlight handler here before returning 
-> acpi_backlight_native? That way, we'll briefly end up with zero 
-> backlight handlers rather than briefly ending up with two of them. Not 
-> sure if that's really any better, though.
->
 
-Thinking about this a little more, maybe it's better not to overly 
-complicate things, and just assert that users of the NVIDIA proprietary 
-driver will need to reboot after installation in order to get the 
-backlight working, at least until we get further along in this effort 
-and the backlight interface transitions to the DRM connector property 
-you have proposed.
+On 7/20/22 11:32, Jim Cromie wrote:
+> DECLARE_DYNDBG_CLASSMAP lets modules declare a set of classnames, this
+> opt-in authorizes dyndbg to allow enabling of prdbgs by their class:
+> 
+>    :#> echo class DRM_UT_KMS +p > /proc/dynamic_debug/control
+> 
+> This is just the setup; following commits deliver.
+> 
+> The macro declares and initializes a static struct ddebug_class_map:
+> 
+>  - maps approved class-names to class_ids used in module,
+>    by array order. forex: DRM_UT_*
+>  - class-name vals allow validation of "class FOO" queries
+>    using macro is opt-in
+>  - enum class_map_type - determines interface, behavior
+> 
+> Each module has its own .class_id space, and only known class-names
+> will be authorized for a manipulation.  Only DRM stuff should know this:
+> 
+>   :#> echo class DRM_UT_CORE +p > control	# across all modules
+> 
+> pr_debugs (with default class_id) are still controllable as before.
+> 
+> DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, classes...) is::
+> 
+>  _var: name of the static struct var. user passes to module_param_cb()
+>        if they want a sysfs node. (ive only done it this way).
+> 
+>  _maptype: this is hard-coded to DD_CLASS_TYPE_DISJOINT for now.
+> 
+>  _base: usually 0, it allows splitting 31 classes into subranges, so
+>  	that multiple classes / sysfs-nodes can share the module's
+>  	class-id space.
+> 
+>  classes: list of class_name strings, these are mapped to class-ids
+>  	  starting at _base.  This class-names list must have a
+>  	  corresponding ENUM, with SYMBOLS that match the literals,
+>  	  and 1st enum val = _base.
+> 
+> enum class_map_type has 4 values, on 2 factors::
+> 
+>  - classes are disjoint/independent vs relative/x<y/verbosity.
+>    disjoint is basis, verbosity by overlay.
+> 
+>  - input NUMBERS vs [+-]CLASS_NAMES
+>    uints, ideally hex.  vs  +DRM_UT_CORE,-DRM_UT_KMS
+> 
+
+Could the naming here directly reflect the 2 factors? At least for me
+I think it's more readable. So something like:
 
 
->
->>   }
->> +
->> +enum acpi_backlight_type acpi_video_get_backlight_type(void)
->> +{
->> +    return __acpi_video_get_backlight_type(false);
->> +}
->>   EXPORT_SYMBOL(acpi_video_get_backlight_type);
->>   +bool acpi_video_backlight_use_native(void)
->> +{
->> +    return __acpi_video_get_backlight_type(true) == 
->> acpi_backlight_native;
->> +}
->> +EXPORT_SYMBOL(acpi_video_backlight_use_native);
->> +
->>   /*
->>    * Set the preferred backlight interface type based on DMI info.
->>    * This function allows DMI blacklists to be implemented by external
->> diff --git a/include/acpi/video.h b/include/acpi/video.h
->> index db8548ff03ce..4705e339c252 100644
->> --- a/include/acpi/video.h
->> +++ b/include/acpi/video.h
->> @@ -56,6 +56,7 @@ extern void acpi_video_unregister(void);
->>   extern int acpi_video_get_edid(struct acpi_device *device, int type,
->>                      int device_id, void **edid);
->>   extern enum acpi_backlight_type acpi_video_get_backlight_type(void);
->> +extern bool acpi_video_backlight_use_native(void);
->>   extern void acpi_video_set_dmi_backlight_type(enum 
->> acpi_backlight_type type);
->>   /*
->>    * Note: The value returned by 
->> acpi_video_handles_brightness_key_presses()
->> @@ -77,6 +78,10 @@ static inline enum acpi_backlight_type 
->> acpi_video_get_backlight_type(void)
->>   {
->>       return acpi_backlight_vendor;
->>   }
->> +static inline bool acpi_video_backlight_use_native(void)
->> +{
->> +    return true;
->> +}
->>   static inline void acpi_video_set_dmi_backlight_type(enum 
->> acpi_backlight_type type)
->>   {
->>   }
+> DD_CLASS_TYPE_DISJOINT: classes are separate, one per bit.
+>    expecting hex input. basis for others.
+
+DD_CLASS_TYPE_DISJOINT_NUM
+
+> 
+> DD_CLASS_TYPE_SYMBOLIC: input is a CSV of [+-]CLASS_NAMES,
+>    classes are independent, like DISJOINT
+> 
+
+DD_CLASS_TYPE_DISJOINT_NAME
+
+> DD_CLASS_TYPE_VERBOSE: input is numeric level, 0-N.
+>    0 implies silence. use printk to break that.
+>    relative levels applied on bitmaps.
+> 
+
+DD_CLASS_TYPE_LEVEL_NUM
+
+> DD_CLASS_TYPE_LEVELS: input is a CSV of [+-]CLASS_NAMES,
+>    names like: ERR,WARNING,NOTICE,INFO,DEBUG
+>    avoiding EMERG,ALERT,CRIT,ERR - no point.
+> 
+
+DD_CLASS_TYPE_LEVEL_NAME
+
+> NOTES:
+> 
+> The macro places the initialized struct ddebug_class_map into the
+> __dyndbg_classes section.  That draws a 'orphan' warning which we
+> handle in next commit.  The struct attributes are necessary:
+> __aligned(8) stopped null-ptr derefs (why?), __used is needed by drm
+> drivers, which declare class-maps, but don't also declare a
+> sysfs-param, and thus dont ref the classmap; __used insures that the
+> linkage is made, then the class-map is found at load-time.
+> 
+> While its possible to handle both NAMES and NUMBERS in the same
+> sys-interface, there is ambiguity to avoid, by disallowing them
+> together.  Later, if ambiguities are resolved, 2 new enums can permit
+> both inputs, on verbose & independent types separately, and authors
+> can select the interface they like.
+> 
+> RFC:
+> 
+> My plan is to implement LEVELS in the callbacks, outside of
+> ddebug_exec_query(), which for simplicity will treat the CLASSES in
+> the map as disjoint.  This should handle most situations.
+> 
+> The callbacks can see map-type, and apply ++/-- loops (or bitops) to
+> force the relative meanings across the class-bitmap.
+> 
+> That leaves 2 issues:
+> 
+> 1. doing LEVELs in callbacks means that the native >control interface
+> doesn't enforce the LEVELS relationship, so you could confusingly have
+> V3 enabled, but V1 disabled.  OTOH, the control iface already allows
+> infinite variety in the underlying callsites, despite the veneer of
+> uniformity suggested by the bitmap overlay, and LEVELS over that.
+> 
+> 2. All dyndbg >control reduces to a query/command, includes +/-, which
+> is at-root a kernel patching operation with +/- semantics.  And the
+> symbolic sys-node handling exposes it to the user:
+> 
+> Consider whether these are/should-be 'exactly' the same:
+> 
+>    # force both 2 "half-duplex" relations
+>    echo +V3,-V4 > /sys/module/test_dynamic_debug/p_VX
+> 
+>    # should these both do the same ?
+>    echo +V3 > /sys/module/test_dynamic_debug/p_VX
+>    echo -V4 > /sys/module/test_dynamic_debug/p_VX
+> 
+> IOW, half relations are suggested by the +/-, and enum control of
+> individual behaviors leaves some room for this, especially wrt
+> handling [+-]SYMBOLIC inputs from the user.
+> 
+> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> ---
+>  include/linux/dynamic_debug.h | 55 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+> 
+> diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
+> index 0f7ad6cecf05..84e97cd0e8c4 100644
+> --- a/include/linux/dynamic_debug.h
+> +++ b/include/linux/dynamic_debug.h
+> @@ -56,7 +56,62 @@ struct _ddebug {
+>  #endif
+>  } __attribute__((aligned(8)));
+>  
+> +enum class_map_type {
+> +	DD_CLASS_TYPE_DISJOINT,
+> +	/**
+> +	 * DD_CLASS_TYPE_DISJOINT: classes are independent, one per bit.
+> +	 * expecting hex input. basis for others.
+> +	 */
+> +	DD_CLASS_TYPE_VERBOSE,
+> +	/**
+> +	 * DD_CLASS_TYPE_VERBOSE: input is numeric level, 0-N.
+> +	 * 0 should be silent, use printk to break that.
+> +	 * (x<y) relationship on bitpos
+> +	 */
+> +	DD_CLASS_TYPE_SYMBOLIC,
+> +	/**
+> +	 * DD_CLASS_TYPE_SYMBOLIC: input is a CSV of [+-]CLASS_NAMES,
+> +	 * classes are independent, like DISJOINT
+> +	 */
+> +	DD_CLASS_TYPE_LEVELS,
+> +	/**
+> +	 * DD_CLASS_TYPE_LEVELS: input is a CSV of [+-]CLASS_NAMES,
+> +	 * intended for names like: ERR,WARNING,NOTICE,INFO,DEBUG
+> +	 * avoid ? EMERG,ALERT,CRIT,ERR,WARNING ??
+> +	 */
+> +};
+> +
+> +struct ddebug_class_map {
+> +	struct list_head link;
+> +	struct module *mod;
+> +	const char *mod_name;	/* needed for builtins */
+> +	const char **class_names;
+> +	const int length;
+> +	const int base;		/* index of 1st .class_id, allows split/shared space */
+> +	enum class_map_type map_type;
+> +};
+> +
+> +/**
+> + * DECLARE_DYNDBG_CLASSMAP - declare classnames known by a module
+> + * @_var:   a struct ddebug_class_map, passed to module_param_cb
+> + * @_type:  enum class_map_type, chooses bits/verbose, numeric/symbolic
+> + * @_base:  offset of 1st class-name. splits .class_id space
+> + * @classes: class-names used to control class'd prdbgs
+> + */
+> +#define DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, ...)		\
+> +	static const char *_var##_classnames[] = { __VA_ARGS__ };	\
+> +	static struct ddebug_class_map __aligned(8) __used		\
+> +		__section("__dyndbg_classes") _var = {			\
+> +		.mod = THIS_MODULE,					\
+> +		.mod_name = KBUILD_MODNAME,				\
+> +		.base = _base,						\
+> +		.map_type = _maptype,					\
+> +		.length = NUM_TYPE_ARGS(char*, __VA_ARGS__),		\
+> +		.class_names = _var##_classnames,			\
+> +	}
+>  
+> +#define NUM_TYPE_ARGS(eltype, ...)				\
+> +	(sizeof((eltype[]) {__VA_ARGS__}) / sizeof(eltype))
+>  
+>  #if defined(CONFIG_DYNAMIC_DEBUG_CORE)
+>  
