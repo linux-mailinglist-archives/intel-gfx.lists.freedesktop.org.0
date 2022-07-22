@@ -1,53 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9107B57E1AC
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jul 2022 14:52:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0415657E211
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jul 2022 15:08:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A9FC9018C;
-	Fri, 22 Jul 2022 12:52:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B0B68ED6C;
+	Fri, 22 Jul 2022 13:08:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07A0D10EAE8;
- Fri, 22 Jul 2022 12:52:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658494332; x=1690030332;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BOmXzertM2j/5vD9o/un378VqgQtNa8qsUztsPD0aoI=;
- b=C1pNgRQU++30IX6pO4cFUfOCU6Zk5G9xyxnK2F9uM6xxo55RUO97Ct0V
- OwBE5PCBvIYpWPa/tf+gMnEdU4ndas4iVO8KOOc5/lc14CzbR+Qhyxedq
- alKUE87WvUhkTGeh52MmaiQtCXmWQsF+T+NK/tRiOqUKfi6J4NkL5j6TC
- HZISsuU92YWQSZ5aOq8DQHSGRZUgbssiBN56FPV/ayKTIaf9Nf/ftYaW3
- GquM0Zll2Y9hfPHizzdrzjoxZKSJkm+OOFbI7gcgN0v6HO4/OWLsAxH2S
- hkoNp0zV+SsWCHBVNXSKCZaCBT+1rqju8zysiJCBN+GiGpJruf5dqJxvU A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10415"; a="288061206"
-X-IronPort-AV: E=Sophos;i="5.93,185,1654585200"; d="scan'208";a="288061206"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2022 05:52:11 -0700
-X-IronPort-AV: E=Sophos;i="5.93,185,1654585200"; d="scan'208";a="626550977"
-Received: from lab-ah.igk.intel.com ([10.91.215.196])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2022 05:52:09 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>
-Date: Fri, 22 Jul 2022 14:51:43 +0200
-Message-Id: <20220722125143.1604709-5-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220722125143.1604709-1-andrzej.hajda@intel.com>
-References: <20220722125143.1604709-1-andrzej.hajda@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C5C6A8EA54;
+ Fri, 22 Jul 2022 13:08:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BC090AA0EB;
+ Fri, 22 Jul 2022 13:08:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 4/4] drm/i915/fbdev: do not create fbdev if
- HPD is suspended
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Fri, 22 Jul 2022 13:08:46 -0000
+Message-ID: <165849532673.29543.18221291738343833852@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220722125143.1604709-1-andrzej.hajda@intel.com>
+In-Reply-To: <20220722125143.1604709-1-andrzej.hajda@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/display=3A_stop_HPD_workers_before_display_driver_unre?=
+ =?utf-8?q?gister_=28rev12=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,36 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In case of deferred FB setup core can try to create new
-framebuffer. Disallow it if hpd_suspended flag is set.
+== Series Details ==
 
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbdev.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Series: drm/i915/display: stop HPD workers before display driver unregister (rev12)
+URL   : https://patchwork.freedesktop.org/series/105557/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 94ddc0f34fde64..fb8dbd532b9e05 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -210,6 +210,12 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 	struct drm_i915_gem_object *obj;
- 	int ret;
- 
-+	mutex_lock(&ifbdev->hpd_lock);
-+	ret = ifbdev->hpd_suspended ? -EAGAIN : 0;
-+	mutex_unlock(&ifbdev->hpd_lock);
-+	if (ret)
-+		return ret;
-+
- 	if (intel_fb &&
- 	    (sizes->fb_width > intel_fb->base.width ||
- 	     sizes->fb_height > intel_fb->base.height)) {
--- 
-2.25.1
+== Summary ==
+
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
