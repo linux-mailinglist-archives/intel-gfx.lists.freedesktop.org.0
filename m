@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 230FC57E144
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jul 2022 14:07:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2358057E1A4
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jul 2022 14:52:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73C8D910FB;
-	Fri, 22 Jul 2022 12:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6BE88B65F;
+	Fri, 22 Jul 2022 12:52:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A591F908CD;
- Fri, 22 Jul 2022 12:07:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BC5210F21D;
+ Fri, 22 Jul 2022 12:52:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658491648; x=1690027648;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7csoj11Ngte1VsV9j1GfxOWnYiT9h3Gecw0LVntMgDk=;
- b=mb3+C2IqsNWuRPn4vI7jYCGCjcYmZtyW3jtLMKA9qYd5YBtdwD3ltQPC
- P3DHdyjimB9VNMPpJMfv852D4UB5qfOphez5zfZZWhrEQVESyV9pOa1/y
- gOEdTZ2JaEJ9dVdoPoCB20mQgRapXQ4gwE9KaIzw6IRO2vLW8M2LmV/zE
- eburlZkIcp9Z6wUwUW9mmTUQLNXUpUbAGXufDWSCfd8gqOdF8D7USuakd
- Ol6eQgfNH2fNhPhGTJiidZ9YdiXXjFSb8Nsm9fp+JED1L+ytke/svgcRj
- mK9++c14UBdzVU0sxWDZ00of2d1Wdu7WhNB1xUsczhBJLyTh+k2h470hQ A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10415"; a="288055103"
-X-IronPort-AV: E=Sophos;i="5.93,185,1654585200"; d="scan'208";a="288055103"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ t=1658494322; x=1690030322;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vKrl0Fsvd04rG5nmRB30PTFx42faZGSkamjPLOr0csU=;
+ b=YN9HJ6e5OKOj3tDJGFr67GT2zHn6fqX7bpbo7LaH3M5f+nUR5VjUUuKh
+ /7E1sfDmiTC3BUYJdyEsZmoUlNo9hpbZ8kD6R3piLUDve8RC5AQF44AM1
+ S0AE7vrLzITSQ/2OjA1mD72u+fLp1tyx9FRTMbzDY98eSeZlx/QiZoaGH
+ AwTeEueWTtUni8b7ystMR4pPGsPeyZo2ifHDQWKAOYbttPPaInDc2RVFi
+ qnM9uLl0IeygA7uf05TIQktmE8MLxa6emuVb6hs4FuGiGRKus0lrUk5Kf
+ xgRgNTCtaOog6zK50MrWeud/k5r34kINFDrYLlsvi7GB20ega2PENtzXf g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10415"; a="288061157"
+X-IronPort-AV: E=Sophos;i="5.93,185,1654585200"; d="scan'208";a="288061157"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2022 05:07:28 -0700
-X-IronPort-AV: E=Sophos;i="5.93,185,1654585200"; d="scan'208";a="657191932"
-Received: from dstoll-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.44.132])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2022 05:07:22 -0700
-Date: Fri, 22 Jul 2022 14:07:22 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Message-ID: <YtqS+kfQDgFIPfmB@alfio.lan>
-References: <cover.1657800199.git.mchehab@kernel.org>
- <d9cbb37b472084a6a05f6fc8c2e802b122de08e8.1657800199.git.mchehab@kernel.org>
+ 22 Jul 2022 05:52:01 -0700
+X-IronPort-AV: E=Sophos;i="5.93,185,1654585200"; d="scan'208";a="626550915"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2022 05:51:59 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Arun R Murthy <arun.r.murthy@intel.com>
+Date: Fri, 22 Jul 2022 14:51:39 +0200
+Message-Id: <20220722125143.1604709-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d9cbb37b472084a6a05f6fc8c2e802b122de08e8.1657800199.git.mchehab@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH v2 08/21] drm/i915/gt: Move TLB invalidation
- to its own file
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v6 0/4] drm/i915/display: stop HPD workers
+ before display driver unregister
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,31 +58,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Tomas Winkler <tomas.winkler@intel.com>,
- Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-kernel@vger.kernel.org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mauro,
+Hi Jani, Ville, Arun,
 
-On Thu, Jul 14, 2022 at 01:06:13PM +0100, Mauro Carvalho Chehab wrote:
-> From: Chris Wilson <chris.p.wilson@intel.com>
-> 
-> Prepare for supporting more TLB invalidation scenarios by moving
-> the current MMIO invalidation to its own file.
-> 
-> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
-> Cc: Fei Yang <fei.yang@intel.com>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+This patchset is replacement of patch
+"drm/i915/display: disable HPD workers before display driver unregister" [1].
+Ive decided to split patch into two parts - fbdev and MST, there are different
+issues.
+Ive also dropped shutdown path, as it has slightly different requirements,
+and more importantly I am not able to test properly.
 
-Just a copy paste, I checked line by line and it looked all
-correct:
+v2 (thx Arun for review):
+  - reword of commit message (Arun)
+  - intel_fbdev_hpd_set_suspend replaced with intel_fbdev_set_suspend (Arun)
+v3:
+  - new patch adding suspended flag, to handle
+    https://gitlab.freedesktop.org/drm/intel/-/issues/5950
+v4:
+  - check suspend flag also in i915_digport_work_func
+v5:
+  - added patch blocking FB creation in case HPD is supended,
+  - added R-B from Arun to patch 3, thx
+v6:
+  - finally, after getting direct access to bat-rpls-2, I have found the source of last WARN,
+    intel_fbdev_hpd_set_suspend was not called in case of deferred setup, fixed in patch 2.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+[1]: https://patchwork.freedesktop.org/series/103811/
 
-Thanks,
-Andi
+Regards
+Andrzej
+
+
+Andrzej Hajda (4):
+  drm/i915/hpd: postpone HPD cancel work after last user suspension
+  drm/i915/fbdev: suspend HPD before fbdev unregistration
+  drm/i915/display: add hotplug.suspended flag
+  drm/i915/fbdev: do not create fbdev if HPD is suspended
+
+ drivers/gpu/drm/i915/display/intel_display.c |  3 +++
+ drivers/gpu/drm/i915/display/intel_fbdev.c   | 12 ++++++++++--
+ drivers/gpu/drm/i915/display/intel_hotplug.c | 11 ++++++++++-
+ drivers/gpu/drm/i915/display/intel_hotplug.h |  2 +-
+ drivers/gpu/drm/i915/i915_driver.c           |  4 ++--
+ drivers/gpu/drm/i915/i915_drv.h              |  2 ++
+ drivers/gpu/drm/i915/i915_irq.c              |  1 -
+ 7 files changed, 28 insertions(+), 7 deletions(-)
+
+-- 
+2.25.1
+
