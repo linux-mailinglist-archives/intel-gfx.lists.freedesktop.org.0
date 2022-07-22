@@ -1,85 +1,99 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9845F589CF5
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:41:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32E99589CF0
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:41:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71EEC98A99;
-	Thu,  4 Aug 2022 13:40:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5841898C02;
+	Thu,  4 Aug 2022 13:39:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1558 seconds by postgrey-1.36 at gabe;
- Fri, 22 Jul 2022 20:59:38 UTC
-Received: from mx0b-00190b01.pphosted.com (mx0b-00190b01.pphosted.com
- [IPv6:2620:100:9005:57f::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89EF293E25;
- Fri, 22 Jul 2022 20:59:38 +0000 (UTC)
-Received: from pps.filterd (m0122331.ppops.net [127.0.0.1])
- by mx0b-00190b01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26MIdbb0018685;
- Fri, 22 Jul 2022 21:33:37 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
- h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=jan2016.eng;
- bh=udXU8D0Z2aQFMw0LUJ7bIRsvZaLQ4wY57qalx4u18LI=;
- b=jeOu7RaIihegx8DjZBAhZBMIgJZfKL3F1xC9xnxMN5ob/HX7E+eLGFONqQi+8CYZ+NWG
- 3OJh6RDBvjE/+JttgNX6oSFmHFB0eDxcZkOeDuoLdOTFtRPHl3I0aAJlDVZijE2nEr0e
- /kSBR3yzyrkXS1R8DDGMAQ7el8ppaHDcH7rZN3m4PO2fBvHdjVUEhc6v1uiSZjdA1/NH
- h3Dha4O1bn+HLSh5STK1oKNvw7+nRm5/589LWZ952f7gfXwWrCptXmt4PsXaRbnrOaiu
- TauGa2iwU+t33HnWAi2Q0MyZ5OkJ7GSCrdaWpbYYjJp/aXFJuJAOxHTgQTSyRARxMTlA Rw== 
-Received: from prod-mail-ppoint5 (prod-mail-ppoint5.akamai.com [184.51.33.60]
- (may be forged))
- by mx0b-00190b01.pphosted.com (PPS) with ESMTPS id 3hg1c7daxn-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 22 Jul 2022 21:33:37 +0100
-Received: from pps.filterd (prod-mail-ppoint5.akamai.com [127.0.0.1])
- by prod-mail-ppoint5.akamai.com (8.17.1.5/8.17.1.5) with ESMTP id
- 26MIliWb007780; Fri, 22 Jul 2022 13:33:36 -0700
-Received: from prod-mail-relay10.akamai.com ([172.27.118.251])
- by prod-mail-ppoint5.akamai.com (PPS) with ESMTP id 3hbuab0nw9-1;
- Fri, 22 Jul 2022 13:33:36 -0700
-Received: from [0.0.0.0] (prod-ssh-gw01.bos01.corp.akamai.com [172.27.119.138])
- by prod-mail-relay10.akamai.com (Postfix) with ESMTP id 977AC50EF8;
- Fri, 22 Jul 2022 20:33:35 +0000 (GMT)
-Message-ID: <715fa561-703f-0ac7-8a88-859ee60bcb4c@akamai.com>
-Date: Fri, 22 Jul 2022 16:33:35 -0400
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2048.outbound.protection.outlook.com [40.107.102.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E27A218AF46;
+ Fri, 22 Jul 2022 23:12:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BxogtJNhAE6uh6SW4KJHeUYwAAexYJABA7qesFTosEmsqn3ZNXeE5L6KF5vbc4c7+XtLPDS+Rex2iGDsIOPPqgFpI2AEOGm2s9Aw+XSjPUX9cLKWIo0ZdtKZB1NLeqlhbGxpieex6GqosPi6mjADKsWqpuEIs2u5CDD465rpRuj1L3uuQLanQ5G9JoHyA3PGkg9VekDRCoH8f+N1Y70gL3mRixspSACHfRQoeX+c6gETiiTS25atULW+TJIYWBSF2dayvEFHcmyh7Rz2Zl3aw8kWCRlXYAj9GRfHxpYMM7/YXcsi5bSsUhIo++wMxmMtjvxPngnJAranJhA18fncpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JlXGPBfy12P50MGHfQ5rFXzF/WEhtQSzLJPTTS4+JDI=;
+ b=LD1L1yvIrdDFanNvQvNiC7VB8DmZmeK3lvz98Tqd44F0NvdX+YEkCXK0s+fEUODahKNlDoURvD9HpJhfwvX7voFLrqOyW+2yNxiIGE0mgjC0s4NiRLGJrhsGM1bPkDRgzS6U/IBo7YGyN4rCbCnp0kevtk5L0hU9+kszEBp+WmFtBHzu86KX9daRaOK/xexUnNim7YjzYu8duA5NTEak/UosxL23QYuk1XC6qDFoj10mOT0lY7/Y7jleyIribxdqmz46h+5w2EinAeFDJCZhesdmAJQN9rhMnmEiIocg/yb7JgNc4vn1fmvx194E2Xe3s0DOM6YafDxvXACvnICd1w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.238) smtp.rcpttodomain=linux.ibm.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JlXGPBfy12P50MGHfQ5rFXzF/WEhtQSzLJPTTS4+JDI=;
+ b=tXpGvtVvnZqUgRXqpoV/8f7F4DQHDlsGCXnTTyIqxaDwSH3P5MMYFXXkPeVXHpyMz93U3uY3ByREb5RY9+h9E5RuMVENu1b4jilhP39cCRKplASvseOHxwmDbgQyYiwmuAHYfS7N5JygIS4T9zco4LPhcjqpn5fxsWLwHJbWGSfFkGmJXXHIYuDqiiUTpB7axcg3zGFAxysnl0ppOt8Snd1sjCgiu8SlVhvNV+A1OZCBBFSdQ3rJHK4ECMlQ+xMdnzATb96pY3IoTwRHVKvjbjvXRdtIWcksc1xgkmP7DSl05gh4N4JyOE5rWsRl0RB2GLnPb1d1oLlrTu+auw/ObA==
+Received: from BN8PR04CA0025.namprd04.prod.outlook.com (2603:10b6:408:70::38)
+ by BL0PR12MB4739.namprd12.prod.outlook.com (2603:10b6:208:81::29)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.22; Fri, 22 Jul
+ 2022 23:12:25 +0000
+Received: from BN8NAM11FT015.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:70:cafe::b) by BN8PR04CA0025.outlook.office365.com
+ (2603:10b6:408:70::38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.21 via Frontend
+ Transport; Fri, 22 Jul 2022 23:12:25 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.238)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.238 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.238; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (12.22.5.238) by
+ BN8NAM11FT015.mail.protection.outlook.com (10.13.176.90) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5458.17 via Frontend Transport; Fri, 22 Jul 2022 23:12:25 +0000
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by DRHQMAIL105.nvidia.com
+ (10.27.9.14) with Microsoft SMTP Server (TLS) id 15.0.1497.32;
+ Fri, 22 Jul 2022 23:12:24 +0000
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail202.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Fri, 22 Jul
+ 2022 16:12:23 -0700
+Received: from Asurada-Nvidia (10.127.8.10) by mail.nvidia.com (10.129.68.7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26 via Frontend
+ Transport; Fri, 22 Jul 2022 16:12:21 -0700
+Date: Fri, 22 Jul 2022 16:12:19 -0700
+From: Nicolin Chen <nicolinc@nvidia.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Message-ID: <Ytsu07eGHS9B7HY8@Asurada-Nvidia>
+References: <20220708224427.1245-1-nicolinc@nvidia.com>
+ <20220722161129.21059262.alex.williamson@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Jim Cromie <jim.cromie@gmail.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, gregkh@linuxfoundation.org,
- daniel.vetter@ffwll.ch, seanpaul@chromium.org, robdclark@gmail.com
-References: <20220720153233.144129-1-jim.cromie@gmail.com>
- <20220720153233.144129-17-jim.cromie@gmail.com>
-From: Jason Baron <jbaron@akamai.com>
-In-Reply-To: <20220720153233.144129-17-jim.cromie@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-22_06,2022-07-21_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- adultscore=0 phishscore=0
- mlxlogscore=999 spamscore=0 malwarescore=0 suspectscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
- definitions=main-2207220083
-X-Proofpoint-GUID: Q9wNIqphRBmBMUXO-vHHRUYmFprSwp19
-X-Proofpoint-ORIG-GUID: Q9wNIqphRBmBMUXO-vHHRUYmFprSwp19
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-22_06,2022-07-21_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
- lowpriorityscore=0 spamscore=0
- priorityscore=1501 malwarescore=0 phishscore=0 suspectscore=0 adultscore=0
- bulkscore=0 mlxscore=0 mlxlogscore=999 clxscore=1015 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
- definitions=main-2207220083
-X-Mailman-Approved-At: Thu, 04 Aug 2022 13:37:57 +0000
-Subject: Re: [Intel-gfx] [PATCH v4 16/41] dyndbg: add drm.debug style bitmap
- support
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220722161129.21059262.alex.williamson@redhat.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 337f5923-56c2-41af-22b1-08da6c37a3f2
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4739:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: AwhvnXYv5XCXcN7a0URN8Kg6sEoc2euHi0V+kG9pN2hkvl93anJzFkG7KZKYjlLOOWcveeZelupQN1sTHLHuWL5CCdqHARIM6SRDI4eI2JD030L68OY+gYYd8RIqsyC2RbEDNikN1yz0RnRkXdUkesV/YA99ZNv8SUqQUCUu6UQIPPbeGPj3PjuTPj84V0HcTZJX0fgN3mg4X/2y+xCj2RJRPWUAEh4ggE0YJ44lFWsO1q2q536K0C0AiYFfIWD9En8Sa0TH4540Bj2OZk91LfMPCAfB0Zs6cv2IucCMIDhb38wK5QK6tC4/shIlxIjhwVw9yjxzcOEwa835zGXyTxSDLhrl9lzodfiTUXtotZVOuFfO963IQL157fYGxx/VrfnDtggIXUDYm6saD7v/MQwP/pkmrnOrtCK74i8rQI0Td2JFpMW+f4Hb+eOeMeSwzbfZWpLckp8IuJudhs0hGfz6SIbAmKiE2vTb7etmvPjFh2Z38SGZIsN4NpFbcoW+21ElFLrpNwGryzFeCJd9uaKbHO5RWbuo6tie3fJeC8KM8QIBlCsBdvlXWsPQGiovjVcdlVFcqP28EAtb+UFOO2IyrdgNAnUH/DBYRQX/R6HggilsqJ8q+lKKB8yQQPFTl3ZAUF3oyBl25ttQgjBp2BijEf9tpMZJhTuSJd8SlGdL28X+xD+BUMQRm6EO86n871NuijNIv+c3R4POON1cq55+jbvYSOMQBgL0pt0/j11VhMCZ1Uf3AEzBWihjfRx2IWjdiVYjA+SumR0We6HcyLBLlz5sAXk5gqA2400FvJ0P25+6LD6is71uTIIVZQ6ThvGUpT9Bh6KFJe96p0UE2w==
+X-Forefront-Antispam-Report: CIP:12.22.5.238; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:InfoNoRecords; CAT:NONE;
+ SFS:(13230016)(4636009)(376002)(136003)(39860400002)(346002)(396003)(36840700001)(40470700004)(46966006)(82310400005)(40460700003)(33716001)(86362001)(7416002)(81166007)(82740400003)(7406005)(478600001)(8936002)(316002)(36860700001)(356005)(70206006)(47076005)(4326008)(9686003)(8676002)(426003)(186003)(83380400001)(5660300002)(55016003)(70586007)(40480700001)(6916009)(54906003)(2906002)(41300700001)(26005)(336012)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2022 23:12:25.4027 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 337f5923-56c2-41af-22b1-08da6c37a3f2
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[12.22.5.238];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT015.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4739
+X-Mailman-Approved-At: Thu, 04 Aug 2022 13:37:56 +0000
+Subject: Re: [Intel-gfx] [PATCH v3 00/10] Update vfio_pin/unpin_pages API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,352 +106,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: mjrosato@linux.ibm.com, linux-doc@vger.kernel.org, airlied@linux.ie,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kwankhede@nvidia.com, terrence.xu@intel.com, vneethv@linux.ibm.com,
+ agordeev@linux.ibm.com, hch@infradead.org, kvm@vger.kernel.org, corbet@lwn.net,
+ pasic@linux.ibm.com, jgg@nvidia.com, borntraeger@linux.ibm.com,
+ intel-gfx@lists.freedesktop.org, jjherne@linux.ibm.com, farman@linux.ibm.com,
+ jchrist@linux.ibm.com, gor@linux.ibm.com, linux-s390@vger.kernel.org,
+ hca@linux.ibm.com, freude@linux.ibm.com, rodrigo.vivi@intel.com,
+ intel-gvt-dev@lists.freedesktop.org, akrowiak@linux.ibm.com, cohuck@redhat.com,
+ oberpar@linux.ibm.com, svens@linux.ibm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Jul 22, 2022 at 04:11:29PM -0600, Alex Williamson wrote:
 
+> GVT-g explodes for me with this series on my Broadwell test system,
+> continuously spewing the following:
 
-On 7/20/22 11:32, Jim Cromie wrote:
-> Add kernel_param_ops and callbacks to apply a class-map to a
-> sysfs-node, which then can control classes defined in that class-map.
-> This supports uses like:
-> 
->   echo 0x3 > /sys/module/drm/parameters/debug
-> 
-> IE add these:
-> 
->  - int param_set_dyndbg_classes()
->  - int param_get_dyndbg_classes()
->  - struct kernel_param_ops param_ops_dyndbg_classes
-> 
-> Following the model of kernel/params.c STANDARD_PARAM_DEFS, these are
-> non-static and exported.  This might be unnecessary here.
-> 
-> get/set use an augmented kernel_param; the arg refs a new struct
-> ddebug_classes_bitmap_param, initialized by DYNAMIC_DEBUG_CLASSBITS
-> macro, which contains:
-> 
-> BITS: a pointer to the user module's ulong holding the bits/state.  By
-> ref'g the client's bit-state _var, we coordinate with existing code
-> (such as drm_debug_enabled) which uses the _var, so it works
-> unchanged, even as the foundation is switched out underneath it..
-> Using a ulong allows use of BIT() etc.
-> 
-> FLAGS: dyndbg.flags toggled by changes to bitmap. Usually just "p".
-> 
-> MAP: a pointer to struct ddebug_classes_map, which maps those
-> class-names to .class_ids 0..N that the module is using.  This
-> class-map is declared & initialized by DEFINE_DYNDBG_CLASSMAP.
-> 
-> map-type: add support here for DD_CLASS_DISJOINT, DD_CLASS_VERBOSE.
-> 
-> These 2 class-types both expect an integer; _DISJOINT treats input
-> like a bit-vector (ala drm.debug), and sets each bit accordingly.
-> 
-> _VERBOSE treats input like a bit-pos:N, then sets bits(0..N)=1, and
-> bits(N+1..max)=0.  This applies (bit<N) semantics on top of disjoint
-> bits.
-> 
-> cases DD_CLASS_SYMBOLIC, DD_CLASS_LEVELS are included for the complete
-> picture, with commented out call to a following commit.
-> 
-> NOTES:
-> 
-> this now includes SYMBOLIC/LEVELS support, too tedious to keep
-> separate thru all the tweaking.
-> 
-> get-param undoes the bit-pos -> bitmap transform that set-param does
-> on VERBOSE inputs, this gives the read-what-was-written property.
-> 
-> _VERBOSE is overlay on _DISJOINT:
-> 
-> verbose-maps still need class-names, even though theyre not usable at
-> the sysfs interface (unlike with _SYMBOLIC/_LEVELS).
-> 
->  - It must have a "V0" name,
->    something below "V1" to turn "V1" off.
->    __pr_debug_cls(V0,..) is printk, don't do that.
-> 
->  - "class names" is required at the >control interface.
->  - relative levels are not enforced at >control
-> 
-> IOW this is possible, and maybe confusing:
-> 
->   echo class V3 +p > control
->   echo class V1 -p > control
-> 
-> IMO thats ok, relative verbosity is an interface property.
-> 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
-> . drop kp->mod->name as unneeded (build-dependent) <lkp>
-> ---
->  include/linux/dynamic_debug.h |  18 ++++
->  lib/dynamic_debug.c           | 193 ++++++++++++++++++++++++++++++++++
->  2 files changed, 211 insertions(+)
-> 
-> diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
-> index f57076e02767..b50bdd5c8184 100644
-> --- a/include/linux/dynamic_debug.h
-> +++ b/include/linux/dynamic_debug.h
-> @@ -113,6 +113,12 @@ struct ddebug_class_map {
->  #define NUM_TYPE_ARGS(eltype, ...)				\
->  	(sizeof((eltype[]) {__VA_ARGS__}) / sizeof(eltype))
->  
-> +struct ddebug_classes_bitmap_param {
-> +	unsigned long *bits;
-> +	char flags[8];
-> +	const struct ddebug_class_map *map;
-> +};
-> +
->  #if defined(CONFIG_DYNAMIC_DEBUG_CORE)
->  
->  int ddebug_add_module(struct _ddebug *tab, unsigned int num_debugs,
-> @@ -274,6 +280,10 @@ void __dynamic_ibdev_dbg(struct _ddebug *descriptor,
->  				   KERN_DEBUG, prefix_str, prefix_type,	\
->  				   rowsize, groupsize, buf, len, ascii)
->  
-> +struct kernel_param;
-> +int param_set_dyndbg_classes(const char *instr, const struct kernel_param *kp);
-> +int param_get_dyndbg_classes(char *buffer, const struct kernel_param *kp);
-> +
->  /* for test only, generally expect drm.debug style macro wrappers */
->  #define __pr_debug_cls(cls, fmt, ...) do {			\
->  	BUILD_BUG_ON_MSG(!__builtin_constant_p(cls),		\
-> @@ -322,6 +332,14 @@ static inline int ddebug_dyndbg_module_param_cb(char *param, char *val,
->  				rowsize, groupsize, buf, len, ascii);	\
->  	} while (0)
->  
-> +struct kernel_param;
-> +static inline int param_set_dyndbg_classes(const char *instr, const struct kernel_param *kp)
-> +{ return 0; }
-> +static inline int param_get_dyndbg_classes(char *buffer, const struct kernel_param *kp)
-> +{ return 0; }
-> +
->  #endif /* !CONFIG_DYNAMIC_DEBUG_CORE */
->  
-> +extern const struct kernel_param_ops param_ops_dyndbg_classes;
-> +
->  #endif
-> diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-> index 4c27bbe5187e..dd27dc514aa3 100644
-> --- a/lib/dynamic_debug.c
-> +++ b/lib/dynamic_debug.c
-> @@ -596,6 +596,199 @@ static int ddebug_exec_queries(char *query, const char *modname)
->  	return nfound;
->  }
->  
-> +static int ddebug_apply_class_bitmap(const struct ddebug_classes_bitmap_param *dcp,
-> +				     unsigned long inbits)
-> +{
-> +#define QUERY_SIZE 128
-> +	char query[QUERY_SIZE];
-> +	const struct ddebug_class_map *map = dcp->map;
-> +	int matches = 0;
-> +	int bi, ct;
-> +
-> +	v2pr_info("in: 0x%lx on: 0x%lx\n", inbits, *dcp->bits);
-> +
-> +	for (bi = 0; bi < map->length; bi++) {
-> +		if (test_bit(bi, &inbits) == test_bit(bi, dcp->bits))
-> +			continue;
-> +
-> +		snprintf(query, QUERY_SIZE, "class %s %c%s", map->class_names[bi],
-> +			 test_bit(bi, &inbits) ? '+' : '-', dcp->flags);
-> +
-> +		ct = ddebug_exec_queries(query, NULL);
-> +		matches += ct;
-> +
-> +		v2pr_info("bit_%d: %d matches on class: %s -> 0x%lx\n", bi,
-> +			  ct, map->class_names[bi], inbits);
-> +	}
-> +	return matches;
-> +}
-> +
-> +/* support for [+-] symbolic-name boolean list */
-> +static int param_set_dyndbg_class_strings(const char *instr, const struct kernel_param *kp)
-> +{
-> +	const struct ddebug_classes_bitmap_param *dcp = kp->arg;
-> +	const struct ddebug_class_map *map = dcp->map;
-> +	unsigned long inbits;
-> +	int idx, totct = 0;
-> +	bool wanted;
-> +	char *cls, *p;
-> +
-> +	cls = kstrdup(instr, GFP_KERNEL);
-> +	p = strchr(cls, '\n');
-> +	if (p)
-> +		*p = '\0';
-> +
-> +	vpr_info("\"%s\" > %s\n", cls, kp->name);
-> +	inbits = *dcp->bits;
-> +
-> +	for (; cls; cls = p) {
-> +		p = strchr(cls, ',');
-> +		if (p)
-> +			*p++ = '\0';
-> +
-> +		if (*cls == '-') {
-> +			wanted = false;
-> +			cls++;
-> +		} else {
-> +			wanted = true;
-> +			if (*cls == '+')
-> +				cls++;
-> +		}
-> +		idx = match_string(map->class_names, map->length, cls);
-> +		if (idx < 0) {
-> +			pr_err("%s unknown to %s\n", cls, kp->name);
-> +			continue;
-> +		}
-> +
-> +		switch (map->map_type) {
-> +		case DD_CLASS_TYPE_SYMBOLIC:
-> +			if (test_bit(idx, &inbits) == wanted) {
-> +				v3pr_info("no change on %s\n", cls);
-> +				continue;
-> +			}
-> +			inbits ^= BIT(idx);
+Thank you for running additional tests.
 
-Didn't test this out but the code here confused me. In this case the bit at idx
-in inbits doesn't match. But you are doing an exclusive OR here. So doesn't that
-always set it? Shouldn't it be cleared if wanted is false?
+> [   47.348778] WARNING: CPU: 3 PID: 501 at drivers/vfio/vfio_iommu_type1.c:978 vfio_iommu_type1_unpin_pages+0x7b/0x100 [vfio_iommu_type1]
+ 
+> Line 978 is the WARN_ON(i != npage) line.  For the cases where we don't
+> find a matching vfio_dma, I'm seeing addresses that look maybe like
+> we're shifting  a value that's already an iova by PAGE_SHIFT somewhere.
 
+Hmm..I don't understand the PAGE_SHIFT part. Do you mind clarifying?
 
-> +			break;
-> +		case DD_CLASS_TYPE_LEVELS:
-> +			/* bitmask must respect classmap ranges, this does not */
-> +			inbits = (1 << (idx + wanted));
+And GVT code initiated an unpin request from gvt_unpin_guest_pag()
+that is currently unpinning one page at a time on a contiguous IOVA
+range, prior to this series. After this series, it leaves the per-
+page routine to the internal loop of vfio_iommu_type1_unpin_pages(),
+which is supposed to do the same.
 
-This line also confused me - below in DD_CLASS_TYPE_VERBOSE: case you use the
-CLASSMAP_BITMASK() which will set all the 'levels' below. So I was expecting
-that here as well as this is the symbolic level case. I think I'm missing
-something...
+So, either resulted from the npage input being wrong or some other
+factor weighed in that invoked a vfio_remove_dma on those iovas?
 
-> +			break;
-> +		default:
-> +			pr_err("illegal map-type value %d\n", map->map_type);
-> +		}
-> +		v2pr_info("%s: bit %d: %s\n", kp->name, idx, map->class_names[idx]);
-> +		totct += ddebug_apply_class_bitmap(dcp, inbits);
-> +	}
-> +	kfree(cls);
-> +	*dcp->bits = inbits;
-> +	vpr_info("total matches: %d\n", totct);
-> +	return 0;
-> +}
-> +
-> +#define CLASSMAP_BITMASK(width) ((1UL << (width)) - 1)
-> +
-> +/**
-> + * param_set_dyndbg_classes - bits => categories >control setter
-> + * @instr: string echo>d to sysfs
-> + * @kp:    kp->arg has state: bits, map
-> + *
-> + * Enable/disable prdbgs by their "category", as given in the
-> + * arguments to DYNAMIC_DEBUG_CLASSES.
-> + *
-> + * Returns: 0 or <0 if error.
-> + */
-> +int param_set_dyndbg_classes(const char *instr, const struct kernel_param *kp)
-> +{
-> +	const struct ddebug_classes_bitmap_param *dcp = kp->arg;
-> +	const struct ddebug_class_map *map = dcp->map;
-> +	unsigned long inrep;
-> +	int rc, totct = 0;
-> +
-> +	switch (map->map_type) {
-> +
-> +	case DD_CLASS_TYPE_SYMBOLIC:
-> +	case DD_CLASS_TYPE_LEVELS:
-> +		/* CSV list of [+-]classnames */
-> +		return param_set_dyndbg_class_strings(instr, kp);
-> +
-> +	case DD_CLASS_TYPE_DISJOINT:
-> +	case DD_CLASS_TYPE_VERBOSE:
-> +		/* numeric input */
-> +		rc = kstrtoul(instr, 0, &inrep);
-> +		if (rc) {
-> +			pr_err("expecting numeric input: %s > %s\n", instr, kp->name);
-> +			return -EINVAL;
-> +		}
-> +		break;
-> +	default:
-> +		pr_err("%s: bad map type: %d\n", kp->name, map->map_type);
-> +		return -EINVAL;
-> +	}
-> +
-> +	switch (map->map_type) {
-
-The second switch here on the same thing as above reads a bit a bit funny to me. Maybe
-the below can be moved into the first switch block? I guess the 'kstrtoul()' call is
-common, so I guess you could add an if (DD_CLASS_TYPE_DISJOINT) else {} above. This
-is a bit of style nitpick I guess.
-
-> +	case DD_CLASS_TYPE_DISJOINT:
-> +		/* expect bits. mask and warn if too many */
-> +		if (inrep & ~CLASSMAP_BITMASK(map->length)) {
-> +			pr_warn("%s: input: 0x%lx exceeds mask: 0x%lx, masking\n",
-> +				kp->name, inrep, CLASSMAP_BITMASK(map->length));
-> +			inrep &= CLASSMAP_BITMASK(map->length);
-> +		}
-> +		break;
-> +	case DD_CLASS_TYPE_VERBOSE:
-> +		/* input is bitpos, of highest verbosity enabled */
-> +		if (inrep > map->length) {
-> +			pr_warn("%s: verbosity:%ld exceeds range:%d, clamping\n",
-> +				kp->name, inrep, map->length);
-> +			inrep = map->length;
-> +		}
-> +		v2pr_info("VERBOSE: %ld > %s\n", inrep, kp->name);
-> +		inrep = CLASSMAP_BITMASK(inrep + 1);
-> +		break;
-> +	default:
-> +		pr_warn("%s: bad map type: %d\n", kp->name, map->map_type);
-> +	}
-> +	totct += ddebug_apply_class_bitmap(dcp, inrep);
-> +	*dcp->bits = inrep;
-> +
-> +	vpr_info("%s: total matches: %d\n", kp->name, totct);
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(param_set_dyndbg_classes);
-> +
-> +/**
-> + * param_get_dyndbg_classes - classes reader
-> + * @buffer: string description of controlled bits -> classes
-> + * @kp:     kp->arg has state: bits, map
-> + *
-> + * Reads last written bits, underlying prdbg state may have changed since.
-> + * Returns: #chars written or <0 on error
-> + */
-> +int param_get_dyndbg_classes(char *buffer, const struct kernel_param *kp)
-> +{
-> +	const struct ddebug_classes_bitmap_param *dcp = kp->arg;
-> +	const struct ddebug_class_map *map = dcp->map;
-> +	unsigned long val = *dcp->bits;
-> +
-> +	switch (map->map_type) {
-> +	case DD_CLASS_TYPE_SYMBOLIC:
-> +	case DD_CLASS_TYPE_DISJOINT:
-> +	case DD_CLASS_TYPE_LEVELS:
-> +		return scnprintf(buffer, PAGE_SIZE, "0x%lx\n", val);
-> +	case DD_CLASS_TYPE_VERBOSE:
-> +		/* convert internal bits to a level */
-> +		return scnprintf(buffer, PAGE_SIZE, "%lu\n",
-> +				 find_first_zero_bit(&val, map->length) - 1);
-> +	default:
-> +		return -1;
-> +	}
-> +}
-> +EXPORT_SYMBOL(param_get_dyndbg_classes);
-> +
-> +const struct kernel_param_ops param_ops_dyndbg_classes = {
-> +	.set = param_set_dyndbg_classes,
-> +	.get = param_get_dyndbg_classes,
-> +};
-> +EXPORT_SYMBOL(param_ops_dyndbg_classes);
-> +
->  #define PREFIX_SIZE 64
->  
->  static int remaining(int wrote)
+Thanks
+Nic
