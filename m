@@ -2,50 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D20A57FC5E
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jul 2022 11:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E72A57FCA6
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jul 2022 11:45:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7D3010E5B2;
-	Mon, 25 Jul 2022 09:26:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60B87932D3;
+	Mon, 25 Jul 2022 09:45:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4058110EBF8;
- Mon, 25 Jul 2022 09:26:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658741198; x=1690277198;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fuLVuQn0JDB52+ACVwR20WUCsmorsWOPBStVotKwP44=;
- b=Ut/0r4fD+tyUuqERBEfz/d+/NSeb0x3Czny6i0IwdlPieE82celRku3Z
- FZmp76YFZk0BmY+lu/03H5vdxhJO+QvEfDwLlMhH+P9VybWsEP8Pj+xUb
- xARxvkQc9hVG7ePP7TPs+0Dqs2V1GMkKuhhidw7gII2ov4tU7VFfFhcDt
- Uvv04Tamf4IswfmpoJNI1MXa9UMBO4tWi5xQFVHvylpP1p2vfiU8M82iH
- liCKEb8URH82yosAFPk0Tykz/TmpLH20WkuAW37OU5GBn6taCzZuixTIU
- oin3nFfm8SCWE0f1jwTgimiQ05ofVaXpU6H5HZuN1j+izG3rN6+uWcABa Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10418"; a="268047840"
-X-IronPort-AV: E=Sophos;i="5.93,192,1654585200"; d="scan'208";a="268047840"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2022 02:26:37 -0700
-X-IronPort-AV: E=Sophos;i="5.93,192,1654585200"; d="scan'208";a="926823873"
-Received: from abaruah-mobl.gar.corp.intel.com (HELO hades.ger.corp.intel.com)
- ([10.249.37.11])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2022 02:26:35 -0700
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Jul 2022 12:25:28 +0300
-Message-Id: <20220725092528.1281487-8-gwan-gyeong.mun@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220725092528.1281487-1-gwan-gyeong.mun@intel.com>
-References: <20220725092528.1281487-1-gwan-gyeong.mun@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 826BC932D3;
+ Mon, 25 Jul 2022 09:45:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79D22A0169;
+ Mon, 25 Jul 2022 09:45:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 7/7] drm/i915: Remove truncation warning for
- large objects
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Mon, 25 Jul 2022 09:45:24 -0000
+Message-ID: <165874232447.20161.12767342000857293976@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220725092528.1281487-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20220725092528.1281487-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Fixes_integer_overflow_or_integer_truncation_issues_in_page_loo?=
+ =?utf-8?q?kups=2C_ttm_place_configuration_and_scatterlist_creation_=28rev?=
+ =?utf-8?b?MTAp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,64 +42,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, jani.nikula@intel.com,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk, airlied@linux.ie,
- matthew.auld@intel.com, mchehab@kernel.org, nirmoy.das@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
+== Series Details ==
 
-Having addressed the issues surrounding incorrect types for local
-variables and potential integer truncation in using the scatterlist API,
-we have closed all the loop holes we had previously identified with
-dangerously large object creation. As such, we can eliminate the warning
-put in place to remind us to complete the review.
+Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation (rev10)
+URL   : https://patchwork.freedesktop.org/series/104704/
+State : warning
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Testcase: igt@gem_create@create-massive
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4991
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.h | 15 ---------------
- 1 file changed, 15 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 0cf31adbfd41..dd2762da332f 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -20,25 +20,10 @@
- 
- enum intel_region_id;
- 
--/*
-- * XXX: There is a prevalence of the assumption that we fit the
-- * object's page count inside a 32bit _signed_ variable. Let's document
-- * this and catch if we ever need to fix it. In the meantime, if you do
-- * spot such a local variable, please consider fixing!
-- *
-- * We can check for invalidly typed locals with typecheck(), see for example
-- * i915_gem_object_get_sg().
-- */
--#define GEM_CHECK_SIZE_OVERFLOW(sz) \
--	GEM_WARN_ON((sz) >> PAGE_SHIFT > INT_MAX)
--
- static inline bool i915_gem_object_size_2big(u64 size)
- {
- 	struct drm_i915_gem_object *obj;
- 
--	if (GEM_CHECK_SIZE_OVERFLOW(size))
--		return true;
--
- 	if (overflows_type(size, obj->base.size))
- 		return true;
- 
--- 
-2.34.1
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
