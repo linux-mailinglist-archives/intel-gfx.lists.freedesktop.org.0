@@ -2,58 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E98DD57FE4D
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jul 2022 13:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 766B257FE74
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jul 2022 13:36:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 941B9964D7;
-	Mon, 25 Jul 2022 11:24:18 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C21A5964D7;
- Mon, 25 Jul 2022 11:24:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24F9A2B006;
+	Mon, 25 Jul 2022 11:36:28 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F1CB12AD22;
+ Mon, 25 Jul 2022 11:36:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658748257; x=1690284257;
+ t=1658748986; x=1690284986;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=hxIIKtWWLY+g98mCDhry8GjuEMAFfrgiZPbSW5A6z0Y=;
- b=miZvZBF+Pepej7BYsZGvlMd8NQIagmwO9Cah6EbvUeSSytxrUtdk+mO5
- GKw3BJvROVNcJcH3rvFeelwDwfXRHtssrv5+0kVAXVVTyJExgaZsE5vb+
- BWkQYLm8QDsojOzcchLDTKCfJtDe5rH+dx/NLzSXbUeV5+lN01LkEIufK
- 572yqOd5wdp4lJiu0ZPojGMnfDShUZXYEk31/3CGo7e3IShBhRAhcFQXN
- HG055stMEQenz8gWEpgPv+J7fcy9fDupPsBp7O5J9ElSQtLYwBXTiOaxZ
- NMbUs+JIz0IyHryI/iqias21UdlFsUikWfbjt8zLaORCPIUakdtvte5cQ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10418"; a="288433456"
-X-IronPort-AV: E=Sophos;i="5.93,192,1654585200"; d="scan'208";a="288433456"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2022 04:24:17 -0700
-X-IronPort-AV: E=Sophos;i="5.93,192,1654585200"; d="scan'208";a="575016126"
-Received: from ngobrien-mobl1.ger.corp.intel.com (HELO [10.213.204.5])
- ([10.213.204.5])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2022 04:24:16 -0700
-Message-ID: <3d04906d-87de-1c5b-5139-d32bdbcabc28@linux.intel.com>
-Date: Mon, 25 Jul 2022 12:24:14 +0100
+ bh=Jxxs1H9rP4afu7bcj0w3169eD78mP8ayIdGSgYrz6LA=;
+ b=d6sDovnd4lTEYG/ItvJZ8h+sf/yN3bYHdJdxO896tjek0Cccpj/htUJw
+ D9HiUxqGxZftTZVghMy16pqXMv3jP8HFrG1r7KMVBjV0RNoHs+UKErWP2
+ FXNn1JvSFbyOdCNuwVdK4EIkxjsIu9/1xWYDQawYCufF/PJUqd4GdQX7Y
+ sllSmwuwSZkxytich4jq4F5u+5o5Hl4G9700cKr9YdNIzJy0pd+KLfHwg
+ Xu7rnxnWDsHoLtkx4fFbRlEJ4PdCoMUoXbxtEuvHbdboFrl4cx64JRwkj
+ UlNc04qk685Lffl44XaHyOrO2fkrRfkfcAPC+rNb7Faf9n2cNbByNmZau A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10418"; a="270711981"
+X-IronPort-AV: E=Sophos;i="5.93,192,1654585200"; d="scan'208";a="270711981"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2022 04:36:25 -0700
+X-IronPort-AV: E=Sophos;i="5.93,192,1654585200"; d="scan'208";a="632327858"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.13.24])
+ ([10.213.13.24])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2022 04:36:19 -0700
+Message-ID: <9c20e45e-1b51-68b9-7a23-a651ac59a2f7@intel.com>
+Date: Mon, 25 Jul 2022 13:36:16 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.11.0
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220712233136.1044951-1-John.C.Harrison@Intel.com>
- <20220712233136.1044951-11-John.C.Harrison@Intel.com>
- <3c8e8b71-1c74-c50d-7b29-29430a11eb10@linux.intel.com>
- <e7673834-a795-8364-96d9-7075bd407ee6@intel.com>
- <1f306c55-8443-72b3-a419-40f3cb85b76c@linux.intel.com>
- <25f0f1b0-2eb0-4a52-a105-17a82354284c@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <25f0f1b0-2eb0-4a52-a105-17a82354284c@intel.com>
+To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220725092528.1281487-1-gwan-gyeong.mun@intel.com>
+ <20220725092528.1281487-2-gwan-gyeong.mun@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220725092528.1281487-2-gwan-gyeong.mun@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 10/12] drm/i915/guc: Support larger contexts
- on newer hardware
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v5 1/7] drm: Move and add a few utility
+ macros into drm util header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,56 +64,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: thomas.hellstrom@linux.intel.com, jani.nikula@intel.com,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk, airlied@linux.ie,
+ matthew.auld@intel.com, mchehab@kernel.org, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 25.07.2022 11:25, Gwan-gyeong Mun wrote:
+> It moves overflows_type utility macro into drm util header from i915_utils
+> header. The overflows_type can be used to catch the truncation between data
+> types. And it adds safe_conversion() macro which performs a type conversion
+> (cast) of an source value into a new variable, checking that the
+> destination is large enough to hold the source value.
+> And it adds exact_type and exactly_pgoff_t macro to catch type mis-match
+> while compiling.
+> 
+> v3: Add is_type_unsigned() macro (Mauro)
+>      Modify overflows_type() macro to consider signed data types (Mauro)
+>      Fix the problem that safe_conversion() macro always returns true
+> v4: Fix kernel-doc markups
+> 
+> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> ---
+>   drivers/gpu/drm/i915/i915_utils.h |  5 +-
+>   include/drm/drm_util.h            | 77 +++++++++++++++++++++++++++++++
+>   2 files changed, 78 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+> index c10d68cdc3ca..345e5b2dc1cd 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
+> @@ -32,6 +32,7 @@
+>   #include <linux/types.h>
+>   #include <linux/workqueue.h>
+>   #include <linux/sched/clock.h>
+> +#include <drm/drm_util.h>
+>   
+>   #ifdef CONFIG_X86
+>   #include <asm/hypervisor.h>
+> @@ -111,10 +112,6 @@ bool i915_error_injected(void);
+>   #define range_overflows_end_t(type, start, size, max) \
+>   	range_overflows_end((type)(start), (type)(size), (type)(max))
+>   
+> -/* Note we don't consider signbits :| */
+> -#define overflows_type(x, T) \
+> -	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
+> -
+>   #define ptr_mask_bits(ptr, n) ({					\
+>   	unsigned long __v = (unsigned long)(ptr);			\
+>   	(typeof(ptr))(__v & -BIT(n));					\
+> diff --git a/include/drm/drm_util.h b/include/drm/drm_util.h
+> index 79952d8c4bba..1de9ee5704fa 100644
+> --- a/include/drm/drm_util.h
+> +++ b/include/drm/drm_util.h
+> @@ -62,6 +62,83 @@
+>    */
+>   #define for_each_if(condition) if (!(condition)) {} else
+>   
+> +/**
+> + * is_type_unsigned - helper for checking data type which is an unsigned data
+> + * type or not
+> + * @x: The data type to check
+> + *
+> + * Returns:
+> + * True if the data type is an unsigned data type, false otherwise.
+> + */
+> +#define is_type_unsigned(x) ((typeof(x))-1 >= (typeof(x))0)
+> +
+> +/**
+> + * overflows_type - helper for checking the truncation between data types
+> + * @x: Source for overflow type comparison
+> + * @T: Destination for overflow type comparison
+> + *
+> + * It compares the values and size of each data type between the first and
+> + * second argument to check whether truncation can occur when assigning the
+> + * first argument to the variable of the second argument.
+> + * Source and Destination can be used with or without sign bit.
+> + * Composite data structures such as union and structure are not considered.
+> + * Enum data types are not considered.
+> + * Floating point data types are not considered.
+> + *
+> + * Returns:
+> + * True if truncation can occur, false otherwise.
+> + */
+> +
+> +#define overflows_type(x, T) \
+> +	(is_type_unsigned(x) ? \
+> +		is_type_unsigned(T) ? \
+> +			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+> +			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
+> +	: is_type_unsigned(T) ? \
+> +		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+> +		: (sizeof(x) > sizeof(T)) ? \
+> +			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+> +				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+> +			: 0)
 
-On 22/07/2022 20:32, John Harrison wrote:
-> On 7/19/2022 02:56, Tvrtko Ursulin wrote:
->> On 19/07/2022 01:13, John Harrison wrote:
->>> On 7/18/2022 05:35, Tvrtko Ursulin wrote:
->>>>
->>>> On 13/07/2022 00:31, John.C.Harrison@Intel.com wrote:
->>>>> From: Matthew Brost <matthew.brost@intel.com>
->>>>>
->>>>> The GuC needs a copy of a golden context for implementing watchdog
->>>>> resets (aka media resets). This context is larger on newer platforms.
->>>>> So adjust the size being allocated/copied accordingly.
->>>>
->>>> What were the consequences of this being too small? Media watchdog 
->>>> reset broken impacting userspace? Platforms? Do we have an IGT 
->>>> testcase? Do we need a Fixes: tag? Copy stable?
->>> Yes. Not sure if we have an IGT for the media watchdog. I recall 
->>> writing something a long time back but I don't think it ever got 
->>> merged due to push back that I don't recall right now. And no because 
->>> it only affects DG2 onwards which is still forceprobed.
->>
->> Right, hm, I don't know if the MBD SKU promise for DG2 relies on force 
->> probe removal or not. My impression certainly was that a bunch of uapi 
->> we recently merged made people happy in that respect - that we 
->> satisfied the commit to deliver that support with 5.19. Maybe I am 
->> wrong, or perhaps to err on the side of safety you could add the right 
->> Fixes: tag regardless? Pick some patch which enables GuC for DG2 if 
->> there isn't anything better I guess. Or you could check with James.
-> Adding "Fixes: random patch that is actually irrelevant" seems like the 
-> wrong thing to do. This is not a bug fix. It is new platform support. 
-> And it is not the only thing required to support that new platform that 
-> is not currently in 5.19. E.g. DG2 requires at least GuC v70.4.2 to 
-> support some hardware w/a's. The guidance for that was to not add Fixes 
-> tags but to send a manual pull request once everything is ready.
 
-All I know is that some people were really interested(*) that 5.19 
-contains everything needed for DG2. Hence I suggested to err on the side 
-of safety, or at least check with folks.
+It became quite big and hard to read. I wonder if we could not just 
+check the effects of the conversion, sth like:
+#define overflows_type(x, T) ((T)(x) != (x))
 
-Bottom line is, if you want this fix to be in 5.19, or even 5.20, you 
-should add a Fixes: tag. Otherwise it will be in 5.21 at the earliest. 
-Your call, I only tried to be helpful and avoid another failure.
+Regards
+Andrzej
 
-Regards,
 
-Tvrtko
+> +
+> +/**
+> + * exact_type - break compile if source type and destination value's type are
+> + * not the same
+> + * @T: Source type
+> + * @n: Destination value
+> + *
+> + * It is a helper macro for a poor man's -Wconversion: only allow variables of
+> + * an exact type. It determines whether the source type and destination value's
+> + * type are the same while compiling, and it breaks compile if two types are
+> + * not the same
+> + */
+> +#define exact_type(T, n) \
+> +	BUILD_BUG_ON(!__builtin_constant_p(n) && !__builtin_types_compatible_p(T, typeof(n)))
+> +
+> +/**
+> + * exactly_pgoff_t - helper to check if the type of a value is pgoff_t
+> + * @n: value to compare pgoff_t type
+> + *
+> + * It breaks compile if the argument value's type is not pgoff_t type.
+> + */
+> +#define exactly_pgoff_t(n) exact_type(pgoff_t, n)
+> +
+> +/**
+> + * safe_conversion - perform a type conversion (cast) of an source value into
+> + * a new variable, checking that the destination is large enough to hold the
+> + * source value.
+> + * @ptr: Destination pointer address
+> + * @value: Source value
+> + *
+> + * Returns:
+> + * If the value would overflow the destination, it returns false.
+> + */
+> +#define safe_conversion(ptr, value) ({ \
+> +	typeof(value) __v = (value); \
+> +	typeof(ptr) __ptr = (ptr); \
+> +	overflows_type(__v, *__ptr) ? 0 : ((*__ptr = (typeof(*__ptr))__v), 1); \
+> +})
+> +
+>   /**
+>    * drm_can_sleep - returns true if currently okay to sleep
+>    *
 
-*) To the point of actively pining the maintainers to ensure patches do 
-not miss the merge window.
