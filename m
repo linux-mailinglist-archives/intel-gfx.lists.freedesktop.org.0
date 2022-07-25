@@ -2,76 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1534580644
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jul 2022 23:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D0B5807CD
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jul 2022 00:51:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA128F590;
-	Mon, 25 Jul 2022 21:18:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 830FE10E07D;
+	Mon, 25 Jul 2022 22:51:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF498F555
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 21:18:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1658783882;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=2NWyiHW5I2/geA1CEWbRzyNY6UqPET26DY1+YZLfRCI=;
- b=Z2rhhlgSwfwBG30boBU0JYzq/Eg/Deh8L3MyJBcn2x1v3Nl9J06L1p5dYuq0sJRujImVYR
- g34Oc6aBGSdEgTDkMyLPjbQgdrJHZl+zk6yZ6nxvzRWHG+KkAmnymgZUjY+ByuAoIYyht4
- ogIsp6h/eH0sr2FHKOvHSCNFykFZkr8=
-Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
- [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-163-acO9b-ljNm21L1psqnLS3Q-1; Mon, 25 Jul 2022 17:17:59 -0400
-X-MC-Unique: acO9b-ljNm21L1psqnLS3Q-1
-Received: by mail-il1-f199.google.com with SMTP id
- h30-20020a056e021d9e00b002dd1fb66384so5992271ila.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 14:17:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:organization:mime-version:content-transfer-encoding;
- bh=2NWyiHW5I2/geA1CEWbRzyNY6UqPET26DY1+YZLfRCI=;
- b=LFw9RwJye6rzwE9vUvLhfQOo4UuV4PhPlREkzh8hHSNh0mjBPIfngoMtUgB6E8+bSX
- 1bhe0WCMzyD44TGnfisYLU/C9ALPzJ91Zu8D+1frLBbDsEgXIBunT2kVESRBQ8JTwrKL
- k0xAhywemBHlkEGNi5w/EjyNpIJXInLPqdrlSauRHRJfrPN5fXmu99F8iTm2V3ABOLy9
- ANQzKSlIUY4UvpkbEPHCL61Ib76nTWDUKB6fuoQQ+eEoKu42lQwK1pxBrbjGHN5qoUNI
- qtafz1R2BU9apwXlCaqwu1ny5mT+kzVxGkeBv8qertQ9cIU+Y+KArrYP5NqIFPR39rLH
- zT/Q==
-X-Gm-Message-State: AJIora+2DIksozUDIOxOTReFTXVRYKfe/h8Gb3f+ntgcxujaNqHs5Cld
- LEAG7rqBaYCR/c1/Vt0lE+9CS1+2ub2YxvG1DG9BK/f8uejQkTItjL46/fhqFGCUUiMkfHI+846
- /L0F7kyeJa51oJZ91GEmzaL5uXLTg
-X-Received: by 2002:a05:6e02:148c:b0:2dc:38ae:5c6a with SMTP id
- n12-20020a056e02148c00b002dc38ae5c6amr5550204ilk.115.1658783878650; 
- Mon, 25 Jul 2022 14:17:58 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1uXwuWmhW15O2ymdEn2whv1cs+NjXgAHFLetXDjRt4kzq/rgyjNkTHVfDxBgkGk5gC+VO8tdQ==
-X-Received: by 2002:a05:6e02:148c:b0:2dc:38ae:5c6a with SMTP id
- n12-20020a056e02148c00b002dc38ae5c6amr5550196ilk.115.1658783878367; 
- Mon, 25 Jul 2022 14:17:58 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- h76-20020a6bb74f000000b0067baeb55e65sm6614546iof.38.2022.07.25.14.17.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 25 Jul 2022 14:17:58 -0700 (PDT)
-Date: Mon, 25 Jul 2022 15:17:55 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Nicolin Chen <nicolinc@nvidia.com>
-Message-ID: <20220725151755.12d53f2e.alex.williamson@redhat.com>
-In-Reply-To: <20220723020256.30081-1-nicolinc@nvidia.com>
-References: <20220723020256.30081-1-nicolinc@nvidia.com>
-Organization: Red Hat
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF0CA10E737
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 22:51:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1658789467; x=1690325467;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YBOUhZ8g0yvHEtOX6cHnO/IfYF2PhzXQeLr3Gr5zMsU=;
+ b=jBTEf5PjGJFWDryFiXOrDycTXPj26c6sL4DfyHKvvNx3t/UD5wZoyV7a
+ 8oagnQ3G9dAp9A/6Xc3yKy9CL8vkBv7fhrpjNlezRWwq8wXmOazXujJdr
+ wnfzVUi9wJV9BMhpsOcx7Cb0Fy6Zt5VzDHFbTlXAHtMiJC7IxP8t1tAav
+ rHEeGxPkSYmrNAAcPcr0IDoe9nLl1ZKAlj+a1I9pXCccCyyOV+PzJmeHw
+ DRiXiGzwFtVY8TfXTb/0QRFj1vHQcRwEKpYQ100kvwdvcMzqn2wXleHhp
+ SxW7OHmcVSt5fReGM6WwgqWO4c45kUr67VA2UGmqudBOVY/UaDcnC3Pd0 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10419"; a="288568942"
+X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; d="scan'208";a="288568942"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2022 15:51:06 -0700
+X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; d="scan'208";a="550163886"
+Received: from hossain3-mobl.amr.corp.intel.com (HELO
+ anushasr-mobl7.intel.com) ([10.209.118.188])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2022 15:51:05 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 25 Jul 2022 15:50:28 -0700
+Message-Id: <20220725225028.98612-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=alex.williamson@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4 00/10] cover-letter: Update
- vfio_pin/unpin_pages API
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Cleanup intel_phy_is_combo()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,97 +54,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, linux-doc@vger.kernel.org, airlied@linux.ie,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kwankhede@nvidia.com, terrence.xu@intel.com, vneethv@linux.ibm.com,
- agordeev@linux.ibm.com, hch@infradead.org, kvm@vger.kernel.org, corbet@lwn.net,
- pasic@linux.ibm.com, jgg@nvidia.com, borntraeger@linux.ibm.com,
- intel-gfx@lists.freedesktop.org, jjherne@linux.ibm.com, farman@linux.ibm.com,
- jchrist@linux.ibm.com, gor@linux.ibm.com, linux-s390@vger.kernel.org,
- hca@linux.ibm.com, freude@linux.ibm.com, rodrigo.vivi@intel.com,
- intel-gvt-dev@lists.freedesktop.org, akrowiak@linux.ibm.com, cohuck@redhat.com,
- oberpar@linux.ibm.com, svens@linux.ibm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 22 Jul 2022 19:02:46 -0700
-Nicolin Chen <nicolinc@nvidia.com> wrote:
+Cleanup the intel_phy_is_combo
+to accommodate for cases where combo phy is not available.
 
-> This is a preparatory series for IOMMUFD v2 patches. It prepares for
-> replacing vfio_iommu_type1 implementations of vfio_pin/unpin_pages()
-> with IOMMUFD version.
-> 
-> There's a gap between these two versions: the vfio_iommu_type1 version
-> inputs a non-contiguous PFN list and outputs another PFN list for the
-> pinned physical page list, while the IOMMUFD version only supports a
-> contiguous address input by accepting the starting IO virtual address
-> of a set of pages to pin and by outputting to a physical page list.
-> 
-> The nature of existing callers mostly aligns with the IOMMUFD version,
-> except s390's vfio_ccw_cp code where some additional change is needed
-> along with this series. Overall, updating to "iova" and "phys_page"
-> does improve the caller side to some extent.
-> 
-> Also fix a misuse of physical address and virtual address in the s390's
-> crypto code. And update the input naming at the adjacent vfio_dma_rw().
-> 
-> This is on github:
-> https://github.com/nicolinc/iommufd/commits/vfio_pin_pages-v4
-> 
-> Terrence has tested this series on i915; Eric has tested on s390.
-> 
-> Thanks!
-> 
-> Changelog
-> v4:
->  * Dropped double-shifting at two gvt_unpin_guest_page calls, fixing
->    a bug that's discovered by Alex
->  * Added Reviewed-by from Anthony Krowiak
->  * Rebased on top of linux-vfio's next
-> v3: https://lore.kernel.org/kvm/20220708224427.1245-1-nicolinc@nvidia.com/
->  * Added a patch to replace roundup with DIV_ROUND_UP in i915 gvt
->  * Dropped the "driver->ops->unpin_pages" and NULL checks in PATCH-1
->  * Changed to use WARN_ON and separate into lines in PATCH-1
->  * Replaced "guest" words with "user" and fix typo in PATCH-5
->  * Updated commit log of PATCH-1, PATCH-6, and PATCH-10
->  * Added Reviewed/Acked-by from Christoph, Jason, Kirti, Kevin and Eric
->  * Added Tested-by from Terrence (i915) and Eric (s390)
-> v2: https://lore.kernel.org/kvm/20220706062759.24946-1-nicolinc@nvidia.com/
->  * Added a patch to make vfio_unpin_pages return void
->  * Added two patches to remove PFN list from two s390 callers
->  * Renamed "phys_page" parameter to "pages" for vfio_pin_pages
->  * Updated commit log of kmap_local_page() patch
->  * Added Harald's "Reviewed-by" to pa_ind patch
->  * Rebased on top of Alex's extern removal path
-> v1: https://lore.kernel.org/kvm/20220616235212.15185-1-nicolinc@nvidia.com/
-> 
-> Nicolin Chen (10):
->   vfio: Make vfio_unpin_pages() return void
->   drm/i915/gvt: Replace roundup with DIV_ROUND_UP
->   vfio/ap: Pass in physical address of ind to ap_aqic()
->   vfio/ccw: Only pass in contiguous pages
->   vfio: Pass in starting IOVA to vfio_pin/unpin_pages API
->   vfio/ap: Change saved_pfn to saved_iova
->   vfio/ccw: Change pa_pfn list to pa_iova list
->   vfio: Rename user_iova of vfio_dma_rw()
->   vfio/ccw: Add kmap_local_page() for memcpy
->   vfio: Replace phys_pfn with pages for vfio_pin_pages()
-> 
->  .../driver-api/vfio-mediated-device.rst       |   6 +-
->  arch/s390/include/asm/ap.h                    |   6 +-
->  drivers/gpu/drm/i915/gvt/kvmgt.c              |  45 ++--
->  drivers/s390/cio/vfio_ccw_cp.c                | 195 +++++++++++-------
->  drivers/s390/crypto/ap_queue.c                |   2 +-
->  drivers/s390/crypto/vfio_ap_ops.c             |  54 +++--
->  drivers/s390/crypto/vfio_ap_private.h         |   4 +-
->  drivers/vfio/vfio.c                           |  54 ++---
->  drivers/vfio/vfio.h                           |   8 +-
->  drivers/vfio/vfio_iommu_type1.c               |  45 ++--
->  include/linux/vfio.h                          |   9 +-
->  11 files changed, 213 insertions(+), 215 deletions(-)
-> 
+v2: retain comment that explains DG2 returning false from
+intel_phy_is_combo() (Arun)
 
-Applied to vfio next branch for v5.20.  Thanks,
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
-Alex
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a0f84cbe974f..b9d0be7753a8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2082,22 +2082,20 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
+ {
+ 	if (phy == PHY_NONE)
+ 		return false;
+-	else if (IS_DG2(dev_priv))
+-		/*
+-		 * DG2 outputs labelled as "combo PHY" in the bspec use
+-		 * SNPS PHYs with completely different programming,
+-		 * hence we always return false here.
+-		 */
+-		return false;
+ 	else if (IS_ALDERLAKE_S(dev_priv))
+ 		return phy <= PHY_E;
+ 	else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
+ 		return phy <= PHY_D;
+ 	else if (IS_JSL_EHL(dev_priv))
+ 		return phy <= PHY_C;
+-	else if (DISPLAY_VER(dev_priv) >= 11)
++	else if (IS_ALDERLAKE_P(dev_priv) || IS_DISPLAY_VER(dev_priv, 11, 12))
+ 		return phy <= PHY_B;
+ 	else
++		/*
++		 * DG2 outputs labelled as "combo PHY" in the bspec use
++		 * SNPS PHYs with completely different programming,
++		 * hence we always return false here.
++		 */
+ 		return false;
+ }
+ 
+-- 
+2.25.1
 
