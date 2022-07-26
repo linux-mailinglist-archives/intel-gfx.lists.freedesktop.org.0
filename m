@@ -1,50 +1,150 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825B95815AC
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jul 2022 16:48:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256175815B4
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jul 2022 16:50:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 916D58FE77;
-	Tue, 26 Jul 2022 14:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F4C090350;
+	Tue, 26 Jul 2022 14:50:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC6058FE2E
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jul 2022 14:48:54 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52D3290386
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jul 2022 14:50:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658846934; x=1690382934;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vGaMFq3QvhGSpH2A+Xk5acyMe70kg91ZPHcmkEPCo7M=;
- b=nVaH4YRSmGP+qn8zTlZemTYoqKhv9d/++QJDTHOSgqbaT/PgxnesPRrj
- MAaSx0ohKp6F+DW/85uG0496seG6zNwZfHnuz8UcYu5rLZxzdQIkaQOm0
- m7AWcl1T4ZOLU2JwcPV7D+fsXi4LAASr3GfyyLSKlin+EDELnKeKU0VDx
- nX3MHp1m5y8mg/vXzoLQBNLvLN1Ml/T/3PeGJ8U8hCA8nwSeVTNzQUqqM
- tA1C3vBZIrx4w09s2RJ0fv87hzGEdWTB7dalwboIgNre9Q1xPf3L106+N
- w9YJEUZ23iZ4eWaWhHahzWxK+R60HybboUFK4+o2lFEKgkgJecM7XwAPv A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10420"; a="267737471"
-X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; d="scan'208";a="267737471"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2022 07:48:54 -0700
-X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; d="scan'208";a="658718685"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2022 07:48:53 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jul 2022 16:48:44 +0200
-Message-Id: <20220726144844.18429-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.35.1
+ t=1658847005; x=1690383005;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=T5VlQr+pepH5MtKQZVduJHCfUpIfocDAQ86zK+CKwo8=;
+ b=YPpWZec5guRsQB+1eLWjGg5N1IktxFkynNbFGZ+K4nG8JnKoaSYO+qhP
+ oszGmwJ+kssQ2UKS2q0YmqhZqrk092Wfe0uX9gbkOfLWNha5rg+19eHQT
+ W1k2nwfgR1Di81JKymKb37HRpH3HJhZrZXHiuVlQS2ey1U3sIL0/w39Ig
+ gT3GBVpvcRW2SvO2MeyHB9yt+Ky9MvGFLz380uN+ReCLf3iPG4NP3hAWX
+ Fq7CXOxQL2LKv3zDdUCKqQ1ctifcf4ok+QELZWRA+cq1mJVVmkZEOrjca
+ iVZ6nQGys8HW0nteXsY1NUIipENDO3Cb5KS0R0139Cxn0X4QjfSfympX/ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10420"; a="351964661"
+X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; d="scan'208";a="351964661"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2022 07:50:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; d="scan'208";a="632785990"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga001.jf.intel.com with ESMTP; 26 Jul 2022 07:50:04 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Tue, 26 Jul 2022 07:50:04 -0700
+Received: from fmsmsx605.amr.corp.intel.com (10.18.126.85) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Tue, 26 Jul 2022 07:50:03 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28 via Frontend Transport; Tue, 26 Jul 2022 07:50:03 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.28; Tue, 26 Jul 2022 07:50:03 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U/Jn6dbBZlCmquhiSxci7QXtKAKCsJj5w7Yzogno5Mz//DGbNaopw4q+QamvIMTm3ZxQyJZrrqx8BDv5P18oivqzeqCLcxan6bV1MOQfM3onmrlLebAoGKFb9jR4EgKZsonPWl8zt89JDBw4qKKo1NjAQDrK0i0jV3BxHoI+PEo2PdTJMq5yC6MUZ9br50lNjA9tUaMF5ihZieQLQrSx51T+vj/iyn1NMj0RTRsvt2eUQWtd+sZRlwR8fHREsB4rwVMWGWoQNkE6/izKVzfDFnWt44NJ11t3NALGC0DXwIk83a3Gmud4ccvUyFcmzsBeHpsjVoD9FlubuxnTPHYj0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fatsTXMTmtjD2fi/H/wik1gPx243IYfJtZzmpfttvg4=;
+ b=fp+0ENocvRQd2hOwbQaKuCrGI4su7qLgeIohp8kHXu2nRotoq+Hn8xoXyCeQ12slqsLE+m8AouPHhHizOyxEHB1RWGbbEIZg8AhLeDVB6hLGrqLvP7dK7QZPNFg3Kc8VqlZ4wz9O0sSN1WpYsU4blZ/mq9GjBoeAcPRNOfGdGio4Fe7agOllot+BDZYbsK+WsoNqIr7wv2rlq1wGCHFPQtHsPPDVh/W+DFEwOBPsUu1Q88PhaO9g0N+L3RgIBE9zJhg6UHZeQU+49j8HzaYyvP588Pg7IUk+tnvmJxmLVNembMJVL1/wucdt79i8ULhtQ3WQFCx4LbNqnEmbQGpFhw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL0PR11MB2961.namprd11.prod.outlook.com (2603:10b6:208:76::23)
+ by MWHPR11MB1774.namprd11.prod.outlook.com (2603:10b6:300:10a::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19; Tue, 26 Jul
+ 2022 14:49:56 +0000
+Received: from BL0PR11MB2961.namprd11.prod.outlook.com
+ ([fe80::3d0f:2102:5483:18e]) by BL0PR11MB2961.namprd11.prod.outlook.com
+ ([fe80::3d0f:2102:5483:18e%5]) with mapi id 15.20.5458.025; Tue, 26 Jul 2022
+ 14:49:55 +0000
+Message-ID: <5166fd90-7f37-0198-4222-cb7a7286753c@intel.com>
+Date: Tue, 26 Jul 2022 16:49:51 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+From: "Das, Nirmoy" <nirmoy.das@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+References: <20220726144714.18251-1-nirmoy.das@intel.com>
+In-Reply-To: <20220726144714.18251-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P265CA0135.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:2c4::10) To BL0PR11MB2961.namprd11.prod.outlook.com
+ (2603:10b6:208:76::23)
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Remove shared locking on freeing
- objects
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 65093d67-fdb9-4de0-62ed-08da6f161ab2
+X-MS-TrafficTypeDiagnostic: MWHPR11MB1774:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZJOy6TdStVAEpMgfsDiDBNAcU/iT6XYReWgbUN/JqUn55UGHmgYH94jw2tqKMKJ97M6wBtH/Z/ShyMTTe6kFFIGh5dMuPTUmFRpBGsKNr7og2728WS163qqOSvUV0tAVFGGQCpQhemmbTLB9XMpwt589caWQSzTINZnLWfEFOO1g5uk1jruEMmzgcXTUrhurCOE0IXqZ8/rp23xVhsleATGRgNL/2R5VO/w1uIgKUm/6+4fUQXbBG22FNR5KnVlPYR10yv6ZHriwT600uaXMWQurFMk4cESf9RalDD0Irow17iz0nE6rYMN2cFkMW/459oqTnUGVctEBkw48oqSFhZ7G8RJXQcyYoP5u3pEQOTF0hneryUf5lq1aRpeQGBAtKPcTkkq+zm2Jr5DoWw9f8mErkiJKgwFqko59PUMBMeg6tCkx5CZBjB7u3wCnnjeNJbDxV2KSqNUW240vFDpBvi6HOGDncXLf3ztcChct/mCIPzwMjGhgKqny7sMCbP1NOyNV+9toqkDYQ7LnRY5uGVlQSCm3vKGnROAEMQXsto89AzmH0gvviXScZFVFHZkw8OoKevpgmz/uyAaPi2p9vmPrHtdonJahgXIPhceAk0OgnRhbOgyTjYG2jBCihGsaS31VgUYXMJzAwL5DdFpZbWnRDtldgCvkXf+OZKoFRbyjnoQznsfsUzV3QkWlPqqdfB+laVVuJLMpF2f4CZmW7OicaWQOjPZPFe+1Qu/cAVw3Z1cPTnJDxzmOCz1vtQ04lL03lhMDXLaOiB4GkxMLng==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR11MB2961.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(346002)(396003)(39860400002)(366004)(136003)(376002)(186003)(83380400001)(2616005)(107886003)(36756003)(38100700002)(2906002)(6916009)(31696002)(316002)(5660300002)(8676002)(4326008)(8936002)(966005)(66556008)(82960400001)(31686004)(41300700001)(478600001)(53546011)(86362001)(6506007)(26005)(6666004)(6512007)(66946007)(66476007)(6486002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3N2UHN6NzdJUnNRV2VFZGxCT0taMngrWUZ0eFlKUER4eGl6QllmVmdTZjF0?=
+ =?utf-8?B?UkFIS0w3aGtiQVlQT00waFhoWUhjZVRoUW9tM0N5TjRtZFhkWmtRTlI5Qjl3?=
+ =?utf-8?B?eUpIbS9XTTZpVkR3TVM0ai8rMy95bGNjRHl2NzdqVjdXRjNUVUtWRDVmNTRM?=
+ =?utf-8?B?Ni95aVFtSldsd29DS3F0TWlQQisrSjIxa1FLNFFTdEphK2dOV2lTTW1RYWxL?=
+ =?utf-8?B?SklEdXJmTjBST1FISGdWRHFqdU8yTjEyaDNUek5WMEtub1pHMkFsMVlZMmI2?=
+ =?utf-8?B?bEhROVFibzYwSEZSamhZcFBqclRldDlZVHpMMFEzOUwzZzZLZVZ6bnEySzFx?=
+ =?utf-8?B?VWdSZitiTkxmbFRhOWVhYmRIZWI2NVp1ejFrTEdhZzNZMlJhUnNHR0s4R1R5?=
+ =?utf-8?B?ZnRyZ0VOeHV6NExacjc3MnZ5dCtZRTVKTWRQbjBmaHJ2TFlaczdrbnhpNzRp?=
+ =?utf-8?B?STlKblVBQmM1V0c4eFVNN2VtMXBtR2NjM0FrcnZWVGdFZFY5L3ZuUE1JSVhG?=
+ =?utf-8?B?ZnNBaDI0UGVoUkc3cDZiaWdWcEd1dVZXVnY0UzJ1S0pxanhhc0VXQ2k0OFZQ?=
+ =?utf-8?B?MWhiN1NlWVdyazFXSHlKeVdycTJuWHI5ZGZZd25TYXM0cnh0cE15aTRoN25G?=
+ =?utf-8?B?bFR3UURqQUY3dlM0c0wrMzZlUlJUUlBqUWpjY051L1NsM0dYb3VJN0Nhdjdj?=
+ =?utf-8?B?b2t1Q1h2RkV0SnNrSXNHN1Yvd1RlNXZ3TnhHR2ZkLzF1NGtyWG9zU1RwZnRa?=
+ =?utf-8?B?cFJkOU51QU5HdXBYc01UekF4YzRFSnpMOVlWbWgzenJoSjRMMG8rbUlJU1pP?=
+ =?utf-8?B?TzJibEFYZ0VLK2tSMG13N3BLZzROUHJiVTMyRnU0K0psc3ZrbGt3cnFMb29G?=
+ =?utf-8?B?OTlpZmppTFA5RC9GeDJNQXE2My9nWUJiYVNGNUU3dUdQTmVBWGlZUUswSk1M?=
+ =?utf-8?B?Um92UmNOQVZuU2JiUStqdStrblpCaitzaEwzM2lJcFFWMUo3VVlCUzFFOWh3?=
+ =?utf-8?B?SlNUZ0xLcXFNVEdHY0pGMmI5OUNSdVpRNXBvNTlVbzNLbzhHbmowbUNydGxZ?=
+ =?utf-8?B?a0ZTMFdZdkJsVFVKWW0vTkp6cEFvcHFrMGdMSUdJVktXN3I5MWFHSGtFM0RJ?=
+ =?utf-8?B?OFRLTCtJWE5HWVpqNFA3SVRXc2JnV3NDQmJsVWhvWnk2Q3NYYUJVWVgybWp4?=
+ =?utf-8?B?c2JyUEsyekNwQlhaaDVVV3ljSGNwbUY4QzE1b05PbmNZMy9vbFkwV0xnRzhx?=
+ =?utf-8?B?Z2pXUnFsU1BwOUIyaUJ5WHdidFByYWp5VVk2QXdUb2J0MVBZVkdNRTdsZGZ1?=
+ =?utf-8?B?VmdqRG9acXFxaXRMdjRJZFhYc3VEbWkzV3c4czRzV25POWFZcm9QbFpPeUdI?=
+ =?utf-8?B?N1R0V0U2K1B0Qm9TWXZEZlBCeXY0NVVuYy80YVRLR1hEU0hjazBOMHRHR3BC?=
+ =?utf-8?B?QzFPWk05bEcrSWFkNXdNTXhkSjhnaWt1UTRGMDVPOW9YNzRMRzN4TVplOWQ1?=
+ =?utf-8?B?d21hb2g4ZXBIdUsrU1JPZkFESHdUaTJtTktMSEt4aDZ4M2NKeEdDNVpGajFV?=
+ =?utf-8?B?TWlVWHcwYXVPMG1IeFB1NG9sQUxISW1XN0d4SEppMHlXNmpqeWJteDBxZzhj?=
+ =?utf-8?B?eTRscEo2NWhYQmxwNDBYcGJvWFQzc05Yc3JOVUFoeVJ1bDJ6QjByNENUem00?=
+ =?utf-8?B?V0N4OXUyZkxSelRheGswbkljdFA4Y0ZGcTVQVGtaaHhPNXZBQmt5WlBqUzVL?=
+ =?utf-8?B?Tm1XUmJPMFovM3JxTDBzQ0dMY2h4M1pUSkJnR2U1WERvVlJzUGlVbVVVaTRI?=
+ =?utf-8?B?V3hYb09vd2FFVDRRcGNBa3pNeE1lTmI2NWowcXVldHhhaGdIcThYaWxpam9R?=
+ =?utf-8?B?cjYxdTFORTRuQ0Z1UVk5TWMvekVXQnZoZEZGU2dTN3loZXFpWi9wa21JQU9O?=
+ =?utf-8?B?L3E0c1JwcXNLTlpvb2xDaUsxU1FvVjM0bnQrWCtqOWkxUVJTbndDN0tPaHoy?=
+ =?utf-8?B?d3RIVXBqaFpoQ2lmQThCZ0l1ZzFxWDZLTTlRcGJFM2FCcENzbWxKWUYvWi9r?=
+ =?utf-8?B?MnlNdDdnenpGZXpDalNUVmtjVWFRUk5lbjJ3TnI1SFR0NFpoY1BZNEhjNGls?=
+ =?utf-8?Q?zZDMhxYqtG+rpUXqE2g5zxAQ4?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65093d67-fdb9-4de0-62ed-08da6f161ab2
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR11MB2961.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2022 14:49:55.7489 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: s5roBMq/Ap2iq0l/S6UxEDWhnzfOtiG75MYCyYVlsqulLqIjv+5zVhvlp4ZNxQISgS9eEsgQQ1GMpzj1bEncZA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1774
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Suppress oom warning for shmemfs
+ object allocation failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,102 +161,37 @@ Cc: matthew.auld@intel.com, chris.p.wilson@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Please ignore this one.
 
-The obj->base.resv may be shared across many objects, some of which may
-still be live and locked, preventing objects from being freed
-indefintely. We could individualise the lock during the free, or rely on
-a freed object having no contention and being able to immediately free
-th pages it owns.
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/6469
-Fixes: be7612fd6665 ("drm/i915: Require object lock when freeing pages during destruction")
-Fixes: 6cb12fbda1c2 ("drm/i915: Use trylock instead of blocking lock for __i915_gem_free_objects.")
-Cc: <stable@vger.kernel.org> # v5.17+
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.c | 16 ++++------------
- drivers/gpu/drm/i915/i915_drv.h            |  4 ++--
- 2 files changed, 6 insertions(+), 14 deletions(-)
+Nirmoy
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index ccec4055fde3..389e9f157ca5 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -268,7 +268,7 @@ static void __i915_gem_object_free_mmaps(struct drm_i915_gem_object *obj)
-  */
- void __i915_gem_object_pages_fini(struct drm_i915_gem_object *obj)
- {
--	assert_object_held(obj);
-+	assert_object_held_shared(obj);
- 
- 	if (!list_empty(&obj->vma.list)) {
- 		struct i915_vma *vma;
-@@ -331,15 +331,7 @@ static void __i915_gem_free_objects(struct drm_i915_private *i915,
- 			continue;
- 		}
- 
--		if (!i915_gem_object_trylock(obj, NULL)) {
--			/* busy, toss it back to the pile */
--			if (llist_add(&obj->freed, &i915->mm.free_list))
--				queue_delayed_work(i915->wq, &i915->mm.free_work, msecs_to_jiffies(10));
--			continue;
--		}
--
- 		__i915_gem_object_pages_fini(obj);
--		i915_gem_object_unlock(obj);
- 		__i915_gem_free_object(obj);
- 
- 		/* But keep the pointer alive for RCU-protected lookups */
-@@ -359,7 +351,7 @@ void i915_gem_flush_free_objects(struct drm_i915_private *i915)
- static void __i915_gem_free_work(struct work_struct *work)
- {
- 	struct drm_i915_private *i915 =
--		container_of(work, struct drm_i915_private, mm.free_work.work);
-+		container_of(work, struct drm_i915_private, mm.free_work);
- 
- 	i915_gem_flush_free_objects(i915);
- }
-@@ -391,7 +383,7 @@ static void i915_gem_free_object(struct drm_gem_object *gem_obj)
- 	 */
- 
- 	if (llist_add(&obj->freed, &i915->mm.free_list))
--		queue_delayed_work(i915->wq, &i915->mm.free_work, 0);
-+		queue_work(i915->wq, &i915->mm.free_work);
- }
- 
- void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
-@@ -745,7 +737,7 @@ bool i915_gem_object_needs_ccs_pages(struct drm_i915_gem_object *obj)
- 
- void i915_gem_init__objects(struct drm_i915_private *i915)
- {
--	INIT_DELAYED_WORK(&i915->mm.free_work, __i915_gem_free_work);
-+	INIT_WORK(&i915->mm.free_work, __i915_gem_free_work);
- }
- 
- void i915_objects_module_exit(void)
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index d25647be25d1..086bbe8945d6 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -247,7 +247,7 @@ struct i915_gem_mm {
- 	 * List of objects which are pending destruction.
- 	 */
- 	struct llist_head free_list;
--	struct delayed_work free_work;
-+	struct work_struct free_work;
- 	/**
- 	 * Count of objects pending destructions. Used to skip needlessly
- 	 * waiting on an RCU barrier if no objects are waiting to be freed.
-@@ -1378,7 +1378,7 @@ static inline void i915_gem_drain_freed_objects(struct drm_i915_private *i915)
- 	 * armed the work again.
- 	 */
- 	while (atomic_read(&i915->mm.free_count)) {
--		flush_delayed_work(&i915->mm.free_work);
-+		flush_work(&i915->mm.free_work);
- 		flush_delayed_work(&i915->bdev.wq);
- 		rcu_barrier();
- 	}
--- 
-2.35.1
-
+On 7/26/2022 4:47 PM, Nirmoy Das wrote:
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+>
+> We report object allocation failures to userspace with ENOMEM, yet we
+> still show the memory warning after failing to shrink device allocated
+> pages. While this warning is similar to other system page allocation
+> failures, it is superfluous to the ENOMEM provided directly to
+> userspace.
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4936
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index 4eed3dd90ba8..4466173e1bcc 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -137,7 +137,7 @@ int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
+>   				 * trigger the out-of-memory killer and for
+>   				 * this we want __GFP_RETRY_MAYFAIL.
+>   				 */
+> -				gfp |= __GFP_RETRY_MAYFAIL;
+> +				gfp |= __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
+>   			}
+>   		} while (1);
+>   
