@@ -1,71 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6979D589CF6
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:41:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6CB7589D02
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:45:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 294A198D8C;
-	Thu,  4 Aug 2022 13:40:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32F7110E94C;
+	Thu,  4 Aug 2022 13:45:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
- [IPv6:2607:f8b0:4864:20::102d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 799DDC0C09
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 16:08:27 +0000 (UTC)
-Received: by mail-pj1-x102d.google.com with SMTP id
- l14-20020a17090a72ce00b001f20ed3c55dso10692220pjk.5
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 09:08:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=FjmoqdU5kj6rAICx3+QzM5MmmkfRNlf/iMQ4fGtplDA=;
- b=qPSXGfwvhrycsBQOp8iY52tnh1KgXSyBQB+dY2Cc2tVNhSXPKkg6St7J8kQhqlxsEa
- 03/RDkLPFIsTansQAXIAeanSealDnebMm5Rkdeor7AxexibjsXRGN73FxGe+80khHHPT
- v8xnWy3f4sCauZhKga5d0yRHZMfto0sAsNxbMkAfxHPvxIQ0QMx7qXI5Yd72cemfFpCD
- ub1xtP7DT0g4876OlkgQbiBkH+IA9KU4VYPyvaX+x4qSh+CKsdH1qu+6TICYYOcHbB97
- U52lm5UEl9xUZTAXBGfNfpUs+Njp6xwD/4d+nSIA1+bpzWLsFtNt7MCE6xDG67zmiVWT
- cQ2g==
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 168798B5FC;
+ Tue, 26 Jul 2022 13:16:56 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id v17so1171237wrr.10;
+ Tue, 26 Jul 2022 06:16:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Duf9LNn9G+2SxZbSGdM9LaiaWUfM9ULAz6lC3vIn2Ww=;
+ b=O0nWXBcRZRg9NMM5pVwln7f7CutSP5ljI6MDNHGsSg4V4kZMp6DqJAI+1T04VHrlDA
+ Z7UYCiPID76oZOvAw5uKWf1R/oRb5OcrKZfm14qHQC4Hj4KMQRfUlKdSvz/UaWTfFOWS
+ MOdF8J2wFUv1zEZ6Xv5JY51HNSuS81S5lf3VvpuCWyzixwSCgGthghcAdfTbzx8uwvI9
+ 3x7JTbeOTt3EF9VvIQ1TWiaiYG3h2xC09KuI4V2nPnMq23dgZTymF+m+OS3NaaXGipfl
+ 1y33AnMWL0I3kTda9zTWVHt7jLqvMT2loEo2vEsS0Ytk3ga1seCAqPsToJ4XVqc43em8
+ Nv+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=FjmoqdU5kj6rAICx3+QzM5MmmkfRNlf/iMQ4fGtplDA=;
- b=I6KgNLlfx44WA2tTj9oO9/agkN1IDxbly5SEuQ5x9eVN5vZJc5OvgF0Md9H6pMgg11
- 1A30iyR1Jp8jchLoK85m/uvfGGl8EYV+PlHKI084T6f70TJPkMN5Pb/xZXLal6Afuzmv
- qNhYjkmCe9twwijd91DetyWyR4hqPEWz+ScoS+aBAqZ15bpNEvnDR7M6kcOYOlIpUSbH
- sQTkjKu1QCutPp3pGeIG+bgWa1NS9L5zJB6r6wX+PWsi1d+RPrlxZ/uXPMSZ3LUUHrDb
- RA3QuW5uw/msnxfiRljkkXoH5E0lsqxMYoBoedfNNSNgLL6CO0AP8aJzr3VTUDjXxNZ+
- rVng==
-X-Gm-Message-State: AJIora+5b1J4jZ94qhyjBmY9THTgRNflDG6Y8ku3Q/WYUPppzUUxi1Vy
- 4oIWhwwI/pjevM7qAEI//sZGPw==
-X-Google-Smtp-Source: AGRyM1unzHQqb8zVBUKEs6rrq19O/McmbA2bTcyfP51716abdNtaluRuKhI7j88I4xjSdpuIYIqcpg==
-X-Received: by 2002:a17:90b:4a12:b0:1ef:a8bb:b475 with SMTP id
- kk18-20020a17090b4a1200b001efa8bbb475mr15047889pjb.124.1658765306524; 
- Mon, 25 Jul 2022 09:08:26 -0700 (PDT)
-Received: from google.com (123.65.230.35.bc.googleusercontent.com.
- [35.230.65.123]) by smtp.gmail.com with ESMTPSA id
- e7-20020a17090301c700b0016bf2dc1724sm9463154plh.247.2022.07.25.09.08.25
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Duf9LNn9G+2SxZbSGdM9LaiaWUfM9ULAz6lC3vIn2Ww=;
+ b=0Rc8Dx0P6pvt8Upg3rcR+j86gw7JwLsab3jhr3vf+0yjeQ54zBhoSvIEN6q/scsDL9
+ aGuhpS1Z2lk7NutwpzMrh9lM5bbrzM1Cmv6u8HGClMZ7nO4EQjZEmgvig7iA9bizaajH
+ k8350o1kcTWfSq9UMv2SU6rkp64yGTJ1iPfJK2myqJOjUMBnH7m55oYhoHyb6TSlncks
+ nTbRFe01UF8Ce69e/SQVitvgmkhehSQelVdL0MIvaYkeo+8IzW3w8yokZAK4Zgr6oCTy
+ ST4sfWHkVJosI3wXN4M1WKvCEKqoNlgSlmRMStuAw8rISDwOgJXJQFBf5RLgHGmV5Rhb
+ AMmw==
+X-Gm-Message-State: AJIora/WwPaAoIcSR+WFmROCynWZCrvnbwSiZn1FjX16uR+vw8q6cAVN
+ PAYAMsmtEEjFSO9v4jsfEMA=
+X-Google-Smtp-Source: AGRyM1u/y0Lpgy3onUxB/fFhSH4nTKydssx+mfUucmbARsinAuebYkKCLc8L7oHivhtbm4ywR7V/zQ==
+X-Received: by 2002:adf:f452:0:b0:21e:86ac:cd74 with SMTP id
+ f18-20020adff452000000b0021e86accd74mr7280992wrp.194.1658841414530; 
+ Tue, 26 Jul 2022 06:16:54 -0700 (PDT)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ az14-20020adfe18e000000b0021e529efa60sm9052731wrb.1.2022.07.26.06.16.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 25 Jul 2022 09:08:25 -0700 (PDT)
-Date: Mon, 25 Jul 2022 16:08:21 +0000
-From: Sean Christopherson <seanjc@google.com>
-To: Maxim Levitsky <mlevitsk@redhat.com>
-Message-ID: <Yt6/9V0S9of7dueW@google.com>
-References: <20220427200314.276673-1-mlevitsk@redhat.com>
- <20220427200314.276673-5-mlevitsk@redhat.com>
- <YoZyWOh4NPA0uN5J@google.com>
- <5ed0d0e5a88bbee2f95d794dbbeb1ad16789f319.camel@redhat.com>
- <c22a18631c2067871b9ed8a9246ad58fa1ab8947.camel@redhat.com>
+ Tue, 26 Jul 2022 06:16:53 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Tue, 26 Jul 2022 14:16:52 +0100
+Message-Id: <20220726131652.46462-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c22a18631c2067871b9ed8a9246ad58fa1ab8947.camel@redhat.com>
 X-Mailman-Approved-At: Thu, 04 Aug 2022 13:37:57 +0000
-Subject: Re: [Intel-gfx] [RFC PATCH v3 04/19] KVM: x86: mmu: allow to enable
- write tracking externally
+Subject: [Intel-gfx] [PATCH][next] drm/i915/gt: remove redundant pointer sseu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,58 +77,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Dave Hansen <dave.hansen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, "H. Peter Anvin" <hpa@zytor.com>,
- Brijesh Singh <brijesh.singh@amd.com>, Joerg Roedel <joro@8bytes.org>,
- x86@kernel.org, Ingo Molnar <mingo@redhat.com>,
- Tom Lendacky <thomas.lendacky@amd.com>, intel-gfx@lists.freedesktop.org,
- Borislav Petkov <bp@alien8.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
- Jim Mattson <jmattson@google.com>, linux-kernel@vger.kernel.org,
- Paolo Bonzini <pbonzini@redhat.com>, Vitaly Kuznetsov <vkuznets@redhat.com>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 20, 2022, Maxim Levitsky wrote:
-> On Sun, 2022-05-22 at 13:22 +0300, Maxim Levitsky wrote:
-> > On Thu, 2022-05-19 at 16:37 +0000, Sean Christopherson wrote:
-> > > On Wed, Apr 27, 2022, Maxim Levitsky wrote:
-> > > > @@ -5753,6 +5752,10 @@ int kvm_mmu_init_vm(struct kvm *kvm)
-> Now for nested AVIC, this is what I would like to do:
->  
-> - just like mmu, I prefer to register the write tracking notifier, when the
->   VM is created.
->
-> - just like mmu, write tracking should only be enabled when nested AVIC is
->   actually used first time, so that write tracking is not always enabled when
->   you just boot a VM with nested avic supported, since the VM might not use
->   nested at all.
->  
-> Thus I either need to use the __kvm_page_track_register_notifier too for AVIC
-> (and thus need to export it) or I need to have a boolean
-> (nested_avic_was_used_once) and register the write tracking notifier only
-> when false and do it not on VM creation but on first attempt to use nested
-> AVIC.
->  
-> Do you think this is worth it? I mean there is some value of registering the
-> notifier only when needed (this way it is not called for nothing) but it does
-> complicate things a bit.
+Pointer sseu is being assigned a value that is never read. The pointer
+is redundant and can be removed. Cleans up clang scan warning:
 
-Compared to everything else that you're doing in the nested AVIC code, refcounting
-the shared kvm_page_track_notifier_node object is a trivial amount of complexity.
+drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:300:2: warning: Value stored
+to 'sseu' is never read [deadcode.DeadStores]
 
-And on that topic, do you have performance numbers to justify using a single
-shared node?  E.g. if every table instance has its own notifier, then no additional
-refcounting is needed.  It's not obvious that a shared node will provide better
-performance, e.g. if there are only a handful of AVIC tables being shadowed, then
-a linear walk of all nodes is likely fast enough, and doesn't bring the risk of
-a write potentially being stalled due to having to acquire a VM-scoped mutex.
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-> I can also stash this boolean (like 'bool registered;') into the 'struct
-> kvm_page_track_notifier_node',  and thus allow the
-> kvm_page_track_register_notifier to be called more that once -  then I can
-> also get rid of __kvm_page_track_register_notifier. 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+index 75257bd20ff0..c0578194ab16 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+@@ -286,7 +286,6 @@ guc_capture_alloc_steered_lists_xe_lpd(struct intel_guc *guc,
+ 	const struct __guc_mmio_reg_descr_group *list;
+ 	struct __guc_mmio_reg_descr_group *extlists;
+ 	struct __guc_mmio_reg_descr *extarray;
+-	struct sseu_dev_info *sseu;
+ 
+ 	/* In XE_LPD we only have steered registers for the render-class */
+ 	list = guc_capture_get_one_list(lists, GUC_CAPTURE_LIST_INDEX_PF,
+@@ -297,7 +296,6 @@ guc_capture_alloc_steered_lists_xe_lpd(struct intel_guc *guc,
+ 
+ 	num_steer_regs = ARRAY_SIZE(xe_extregs);
+ 
+-	sseu = &gt->info.sseu;
+ 	for_each_ss_steering(iter, gt, slice, subslice)
+ 		num_tot_regs += num_steer_regs;
+ 
+-- 
+2.35.3
 
-No, allowing redundant registration without proper refcounting leads to pain,
-e.g. X registers, Y registers, X unregisters, kaboom.
