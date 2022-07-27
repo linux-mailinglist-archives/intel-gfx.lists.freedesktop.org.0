@@ -2,47 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FC33582C3A
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jul 2022 18:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96ABD582C53
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jul 2022 18:45:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14FF0B5B94;
-	Wed, 27 Jul 2022 16:43:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16F6CBBD1D;
+	Wed, 27 Jul 2022 16:45:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F029B5B94;
- Wed, 27 Jul 2022 16:43:57 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EBF1BBBFC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jul 2022 16:45:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658940237; x=1690476237;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1658940328; x=1690476328;
+ h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=2g7po6ocbadXtIwdXSQssZ2yJ0/Dj5FZEJfmxaCWx2k=;
- b=Ae0hnMJrfiuUKZDI4WtVXx8vPHihs8K2VIvRNToyPgIPCOHo6KjiE2Ly
- A2R+fpDYiFiQ1aY+SR2bR56S4e+xFedAPA2aonskPf5ROmXo1j9ZnCd40
- JlM2/DKpRRVCArG9TkpqqxygHBKdu9VVKaowdMtVlPDY4RRgd/GhWpkXj
- t+2lx9ThaAw08ik94vMTbXhj2JLUQb0LBjW5JseBWc1AOuQjDq3NO3I4z
- kDcrY9MUY+nXmKUjN24sMYpRZxJZOc2dk12UvXeVYvfZxNAeQv+piitDi
- Vj/yyfOAdIsCt4hgGwXmi3d0BL/XZm3okKVLxbVP+OrldggDFGGSYNDWW A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="352281867"
-X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="352281867"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2022 09:43:57 -0700
-X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="576061740"
-Received: from pmcquill-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.213.217.165])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2022 09:43:55 -0700
-From: Matthew Auld <matthew.auld@intel.com>
+ bh=8RJMOiTc24Qjyn5oVovcawuo6uvfhuQq08wyflJUuCI=;
+ b=jS7OgMzoSzUpRb1DFoG/59jLuXuesox95/+TVV/OZEalPXlYTCtCur6G
+ vfdqYhikHCHCfP7vXFjV7lEV1ndLIcZFop5D3wD5PdfbPWEdp+7/kV4tr
+ uY0diM/LOBT4yvv4QJraeKZGL+54wtkt5NOp60MKe25CRZ4x/ePwnsIQG
+ PBLAGVzMlsIajI7Kzu/luZUVjfJD2nbvV6UyRsSlmEpxR9vBPuaXtzeov
+ Yo2l2emaCgNQlhtmMIe2hsAd1B41p00/b3u6GhU93XiJqwRpI8aPJBPfC
+ xUUniCOoX5grt6mJsG3J2O+e3TD7lTkoMHnQv4vPoSW2rgHZDLmvuH+r2 Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="271325472"
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="271325472"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2022 09:45:27 -0700
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="633271824"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2022 09:45:26 -0700
+From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jul 2022 17:43:46 +0100
-Message-Id: <20220727164346.282407-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.37.1
+Date: Wed, 27 Jul 2022 19:45:22 +0300
+Message-Id: <20220727164523.1621361-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/ttm: don't leak the ccs state
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/d12+: Disable DMC handlers during
+ loading/disabling the firmware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,71 +54,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The kernel only manages the ccs state with lmem-only objects, however
-the kernel should still take care not to leak the CCS state from the
-previous user.
+Disable the DMC event handlers before loading the firmware and after
+uninitializing the display, to make sure the firmware is inactive. This
+matches the Bspec "Sequences for Display C5 and C6" page for GEN12+.
 
-Fixes: 48760ffe923a ("drm/i915/gt: Clear compress metadata for Flat-ccs objects")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Ramalingam C <ramalingam.c@intel.com>
+Add a TODO comment for doing the same on pre-GEN12 platforms.
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_migrate.c | 23 ++++++++++++++++++++++-
- 1 file changed, 22 insertions(+), 1 deletion(-)
+ .../drm/i915/display/intel_display_power.c    |  3 ++
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 52 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  1 +
+ 3 files changed, 50 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index a69b244f14d0..9a0814422ba4 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -708,7 +708,7 @@ intel_context_migrate_copy(struct intel_context *ce,
- 	u8 src_access, dst_access;
- 	struct i915_request *rq;
- 	int src_sz, dst_sz;
--	bool ccs_is_src;
-+	bool ccs_is_src, overwrite_ccs;
- 	int err;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 589af257edebc..22f65a9968c6a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1433,6 +1433,7 @@ static void skl_display_core_uninit(struct drm_i915_private *dev_priv)
+ 		return;
  
- 	GEM_BUG_ON(ce->vm != ce->engine->gt->migrate.context->vm);
-@@ -749,6 +749,8 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			get_ccs_sg_sgt(&it_ccs, bytes_to_cpy);
+ 	gen9_disable_dc_states(dev_priv);
++	/* TODO: disable DMC program */
+ 
+ 	gen9_dbuf_disable(dev_priv);
+ 
+@@ -1500,6 +1501,7 @@ static void bxt_display_core_uninit(struct drm_i915_private *dev_priv)
+ 		return;
+ 
+ 	gen9_disable_dc_states(dev_priv);
++	/* TODO: disable DMC program */
+ 
+ 	gen9_dbuf_disable(dev_priv);
+ 
+@@ -1675,6 +1677,7 @@ static void icl_display_core_uninit(struct drm_i915_private *dev_priv)
+ 		return;
+ 
+ 	gen9_disable_dc_states(dev_priv);
++	intel_dmc_disable_program(dev_priv);
+ 
+ 	/* 1. Disable all display engine functions -> aready done */
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index fa9ef591b8853..9ae62bb1184d5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -277,6 +277,17 @@ static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
+ 	intel_de_posting_read(dev_priv, DC_STATE_DEBUG);
+ }
+ 
++static void disable_event_handler(struct drm_i915_private *i915,
++				  i915_reg_t ctl_reg, i915_reg_t htp_reg)
++{
++	intel_de_write(i915, ctl_reg,
++		       REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
++				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
++		       REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
++				      DMC_EVT_CTL_EVENT_ID_FALSE));
++	intel_de_write(i915, htp_reg, 0);
++}
++
+ static void
+ disable_flip_queue_event(struct drm_i915_private *i915,
+ 			 i915_reg_t ctl_reg, i915_reg_t htp_reg)
+@@ -299,12 +310,7 @@ disable_flip_queue_event(struct drm_i915_private *i915,
+ 		return;
  	}
  
-+	overwrite_ccs = HAS_FLAT_CCS(i915) && !ccs_bytes_to_cpy && dst_is_lmem;
-+
- 	src_offset = 0;
- 	dst_offset = CHUNK_SZ;
- 	if (HAS_64K_PAGES(ce->engine->i915)) {
-@@ -852,6 +854,25 @@ intel_context_migrate_copy(struct intel_context *ce,
- 			if (err)
- 				goto out_rq;
- 			ccs_bytes_to_cpy -= ccs_sz;
-+		} else if (overwrite_ccs) {
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
-+
-+			/*
-+			 * While we can't always restore/manage the CCS state,
-+			 * we still need to ensure we don't leak the CCS state
-+			 * from the previous user, so make sure we overwrite it
-+			 * with something.
-+			 */
-+			err = emit_copy_ccs(rq, dst_offset, INDIRECT_ACCESS,
-+					    dst_offset, DIRECT_ACCESS, len);
-+			if (err)
-+				goto out_rq;
-+
-+			err = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+			if (err)
-+				goto out_rq;
- 		}
+-	intel_de_write(i915, ctl_reg,
+-		       REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
+-				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
+-		       REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
+-				      DMC_EVT_CTL_EVENT_ID_FALSE));
+-	intel_de_write(i915, htp_reg, 0);
++	disable_event_handler(i915, ctl_reg, htp_reg);
+ }
  
- 		/* Arbitration is re-enabled between requests. */
+ static bool
+@@ -356,6 +362,23 @@ disable_all_flip_queue_events(struct drm_i915_private *i915)
+ 	}
+ }
+ 
++static void disable_all_event_handlers(struct drm_i915_private *i915)
++{
++	int id;
++
++	for (id = DMC_FW_MAIN; id < DMC_FW_MAX; id++) {
++		int handler;
++
++		if (!has_dmc_id_fw(i915, id))
++			continue;
++
++		for (handler = 0; handler < 8; handler++)
++			disable_event_handler(i915,
++					      DMC_EVT_CTL(i915, id, handler),
++					      DMC_EVT_HTP(i915, id, handler));
++	}
++}
++
+ /**
+  * intel_dmc_load_program() - write the firmware from memory to register.
+  * @dev_priv: i915 drm device.
+@@ -372,6 +395,8 @@ void intel_dmc_load_program(struct drm_i915_private *dev_priv)
+ 	if (!intel_dmc_has_payload(dev_priv))
+ 		return;
+ 
++	disable_all_event_handlers(dev_priv);
++
+ 	assert_rpm_wakelock_held(&dev_priv->runtime_pm);
+ 
+ 	preempt_disable();
+@@ -405,6 +430,21 @@ void intel_dmc_load_program(struct drm_i915_private *dev_priv)
+ 	disable_all_flip_queue_events(dev_priv);
+ }
+ 
++/**
++ * intel_dmc_disable_program() - disable the firmware
++ * @dev_priv: i915 drm device
++ *
++ * Disable all event handlers in the firmware, making sure the firmware is
++ * inactive after the display is uninitialized.
++ */
++void intel_dmc_disable_program(struct drm_i915_private *i915)
++{
++	if (!intel_dmc_has_payload(i915))
++		return;
++
++	disable_all_event_handlers(i915);
++}
++
+ void assert_dmc_loaded(struct drm_i915_private *i915)
+ {
+ 	drm_WARN_ONCE(&i915->drm,
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+index 41091aee3b47b..67e03315ef999 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+@@ -47,6 +47,7 @@ struct intel_dmc {
+ 
+ void intel_dmc_ucode_init(struct drm_i915_private *i915);
+ void intel_dmc_load_program(struct drm_i915_private *i915);
++void intel_dmc_disable_program(struct drm_i915_private *i915);
+ void intel_dmc_ucode_fini(struct drm_i915_private *i915);
+ void intel_dmc_ucode_suspend(struct drm_i915_private *i915);
+ void intel_dmc_ucode_resume(struct drm_i915_private *i915);
 -- 
-2.37.1
+2.34.1
 
