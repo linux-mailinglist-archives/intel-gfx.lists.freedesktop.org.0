@@ -1,49 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3543D582C54
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jul 2022 18:45:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D35582D85
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jul 2022 18:59:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA559BC267;
-	Wed, 27 Jul 2022 16:45:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C14712A713;
+	Wed, 27 Jul 2022 16:58:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72A22BBBFC
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jul 2022 16:45:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E79E38A322
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jul 2022 16:58:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658940328; x=1690476328;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=cIr34vlKPG+Sa7iYWNFXWrGQLmmLQSUr+IX6+xFlPKE=;
- b=JaSOC5+nldCPizA65BW+tgQ4KbQuOcgrZbUDySfsZd/NKxvBeezibk4P
- BsHEl+BIVqcjE6aXtoll9sS8tXXmW49LqItkZ+TYrXl5HjwZF9apvrZ2u
- iGVAAOUOaXx/IIq6RyNmBuAb/a9qgpTFuMTPutWhlumx1obl//V1uauIY
- OJ23UEftLmYng3jqiA76Jl/CB6jUsUO+zxnpxjEa3rnctquyPIT1U9hBF
- AnQouxZyEbh9MX0nFlTbz8u3svPdjdgBKXFpN11eGEoW3/poikLiAzPF8
- Cb4yuRJDOhwS89HBEJdV3yurUZYsHCkwnpGBX3HppahF8ReHllepuPDns Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="271325475"
-X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="271325475"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ t=1658941118; x=1690477118;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=jNERCeymOTev8xa4/d0t2TS05ReZFTde8sVMjJvDkI0=;
+ b=C3xiSVarsZEH1AyxdnZTRHH7+hZj79a/+UkrxWpilJyS950bD7ML+0sb
+ P3zXVI31cG8tQ6HhEL7GYEfjT35+URwA2hfBaRpduJygNAfpu6nYGAIUt
+ nN3g9pDYyW5HVEON81Fb7pdWkd9PXuzl/B81rMYtmhhme2IMJQ0xxf2Jg
+ vhuUM0/M7RBgFC1NtKpbk2GwgFN8BRTf3nTfVZ+p1mJ1cdwfmJaGTsuUW
+ onS3A7R11v37nP4ii7rwtwpLFxdZE4CkSnoflX5lazP4r8u605Ubhhd0C
+ d6JUffTR7V87tSGJ5Lpe+iL/FVfikuHHfZXXgMGJT6A8+9StDrEI9bl9D w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="271328259"
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="271328259"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2022 09:45:28 -0700
-X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="633271841"
-Received: from ideak-desk.fi.intel.com ([10.237.72.175])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2022 09:45:27 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jul 2022 19:45:23 +0300
-Message-Id: <20220727164523.1621361-2-imre.deak@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220727164523.1621361-1-imre.deak@intel.com>
-References: <20220727164523.1621361-1-imre.deak@intel.com>
+ 27 Jul 2022 09:58:37 -0700
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="703385604"
+Received: from pmcquill-mobl.ger.corp.intel.com (HELO [10.213.217.165])
+ ([10.213.217.165])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2022 09:58:36 -0700
+Message-ID: <1a2bdeb9-b0a4-e620-f106-b0df7a691241@intel.com>
+Date: Wed, 27 Jul 2022 17:58:34 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/d13: Add Wa_16015201720 disabling
- clock gating for PIPEDMC-A/B
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.11.0
+Content-Language: en-GB
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220726083212.24071-1-nirmoy.das@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220726083212.24071-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: disable pci resize on 32-bit
+ machine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,56 +60,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: priyanka.dandamudi@intel.com, naresh.kamboju@linaro.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a workaround making sure that PIPEDMC-A/B is enabled when the
-firmware needs these on D13 platforms to save/restore the registers
-backed by the PW_1 and PW_A power wells.
+On 26/07/2022 09:32, Nirmoy Das wrote:
+> PCI bar resize only works with 64 bit BAR so disable
+> this on 32-bit machine.
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.c | 8 ++++++++
- drivers/gpu/drm/i915/i915_reg.h                    | 7 +++++++
- 2 files changed, 15 insertions(+)
+Maybe also mention somewhere that this is just to fix a compiler warning 
+with the 0x100000000ull being out-of-range with resource_size_t on 32bit?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 22f65a9968c6a..13aaa3247a5a8 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1615,6 +1615,14 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
- 		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D, 0,
- 			     PCH_DPMGUNIT_CLOCK_GATE_DISABLE);
- 
-+	/* Wa_16015201720:adl-p,dg2 */
-+	if (DISPLAY_VER(dev_priv) == 13) {
-+		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL_EXT(PIPE_A),
-+			     0, PIPEDMC_GATING_DIS);
-+		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL_EXT(PIPE_B),
-+			     0, PIPEDMC_GATING_DIS);
-+	}
-+
- 	/* 1. Enable PCH reset handshake. */
- 	intel_pch_reset_handshake(dev_priv, !HAS_PCH_NOP(dev_priv));
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 3168d7007e101..bf5c39d9f9530 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1916,6 +1916,13 @@
- #define CLKGATE_DIS_PSL(pipe) \
- 	_MMIO_PIPE(pipe, _CLKGATE_DIS_PSL_A, _CLKGATE_DIS_PSL_B)
- 
-+#define _CLKGATE_DIS_PSL_EXT_A		0x4654C
-+#define _CLKGATE_DIS_PSL_EXT_B		0x46550
-+#define   PIPEDMC_GATING_DIS		REG_BIT(12)
-+
-+#define CLKGATE_DIS_PSL_EXT(pipe) \
-+	_MMIO_PIPE(pipe, _CLKGATE_DIS_PSL_EXT_A, _CLKGATE_DIS_PSL_EXT_B)
-+
- /*
-  * Display engine regs
-  */
--- 
-2.34.1
+Acked-by: Matthew Auld <matthew.auld@intel.com>
 
+> 
+> Fixes: a91d1a17cd341 ("drm/i915: Add support for LMEM PCIe resizable bar")
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_region_lmem.c | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> index 6e90032e12e9..aa6aed837194 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> @@ -15,6 +15,7 @@
+>   #include "gt/intel_gt_mcr.h"
+>   #include "gt/intel_gt_regs.h"
+>   
+> +#ifdef CONFIG_64BIT
+>   static void _release_bars(struct pci_dev *pdev)
+>   {
+>   	int resno;
+> @@ -111,6 +112,9 @@ static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t
+>   	pci_assign_unassigned_bus_resources(pdev->bus);
+>   	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
+>   }
+> +#else
+> +static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource_size_t lmem_size) {}
+> +#endif
+>   
+>   static int
+>   region_lmem_release(struct intel_memory_region *mem)
