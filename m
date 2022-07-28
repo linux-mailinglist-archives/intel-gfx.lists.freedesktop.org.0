@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED0E9583652
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jul 2022 03:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B8AF58366D
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jul 2022 03:38:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3217010E28F;
-	Thu, 28 Jul 2022 01:34:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24A8910E21B;
+	Thu, 28 Jul 2022 01:38:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 077AE10EC9F
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jul 2022 01:34:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78C5310EBC5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jul 2022 01:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1658972080; x=1690508080;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qr+HVqSiyghPYGbvsw6FCZsfinNUy3W4c/bsMIMTU4A=;
- b=EYMV416F8068ITqB2N8FE6zoopx+eY1ufxNoXqeex82gYuNTflrfzlCT
- /ZOdy+cElgG5yoQ7d+uKEA2Qh3XR8eZgJ1M+ECqQLWa9K4jUtFgaSyMyy
- rHR5coYfeLqCikuaKixTFjtRiptMGuFVlXJUe7t59ehVn3GWI/vkn00Ql
- igTfIhuQSw32EBYpEqGn+jR5snWEJwxoSVaICyDWKIHJ0LKv12Bc2wy/O
- sCYFuntNUb5NzMnKLnOZm5KeZggzZQHFqAzXIrTy1b6Bee3jLDIbgZBUC
- EavnzwmJPN7OA3T28gk3EPAXYhhfMH89UF/7psDSM1hnk3kLDNwqBvmij w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="374693654"
-X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="374693654"
+ bh=omI5brQ0gUJnZYrXRJ38q/CoNZUctSbCPPOl5vJwBcI=;
+ b=TjWGAFpEqmTai2nHNaFZ/YupPmVmf7zqXykq8hmWbyTqpn44ssBDgc7t
+ cjWfXeoifY9Af4634+wPsWSqbwEBRgKIfvbkNuVicCncStzTNfNpKRUpO
+ 8Z+ymDvJBVlAFHfERNpv+5TfailnthJikcifCfY02x7u07O9NmsT4RI2T
+ Gx6ZX7Oe2qMVwVWpRl0lcvQd8qvdTieTb6WSf/5hVHWjsttd9Ux9wFtIq
+ jeqfb2ig/6N22y/DpRCko+X4N8S1GWX+WG8g88jk6p7xJFREcWlFR5amd
+ V0grg+LY8QsLALdk85bxAQw7geAdLxngeamnIQxswt/lIilkzP/trPk9Z g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="374693655"
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="374693655"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jul 2022 18:34:39 -0700
-X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="659456976"
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="659456983"
 Received: from invictus.jf.intel.com ([10.165.21.205])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jul 2022 18:34:39 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jul 2022 18:34:03 -0700
-Message-Id: <20220728013420.3750388-7-radhakrishna.sripada@intel.com>
+Date: Wed, 27 Jul 2022 18:34:04 -0700
+Message-Id: <20220728013420.3750388-8-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220728013420.3750388-1-radhakrishna.sripada@intel.com>
 References: <20220728013420.3750388-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 06/23] drm/i915/mtl: Add PCH support
+Subject: [Intel-gfx] [PATCH 07/23] drm/i915/mtl: Add gmbus and gpio support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,72 +58,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support for Meteorpoint(MTP) PCH used with Meteorlake.
+Add tables to map the GMBUS pin pairs to GPIO registers and port to DDC.
+From spec we have registers GPIO_CTL[1-5] mapped to combo phys and
+GPIO_CTL[9-14] are mapped to TC ports.
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+BSpec: 49306
+
+Original Author: Brian J Lovin
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/intel_pch.c | 9 ++++++++-
- drivers/gpu/drm/i915/intel_pch.h | 4 ++++
- 2 files changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_gmbus.c | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_gmbus.h |  1 +
+ 2 files changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-index 0fec25be146a..ba9843cb1b13 100644
---- a/drivers/gpu/drm/i915/intel_pch.c
-+++ b/drivers/gpu/drm/i915/intel_pch.c
-@@ -138,6 +138,11 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
- 		drm_WARN_ON(&dev_priv->drm, !IS_ALDERLAKE_S(dev_priv) &&
- 			    !IS_ALDERLAKE_P(dev_priv));
- 		return PCH_ADP;
-+	case INTEL_PCH_MTP_DEVICE_ID_TYPE:
-+	case INTEL_PCH_MTP2_DEVICE_ID_TYPE:
-+		drm_dbg_kms(&dev_priv->drm, "Found Meteor Lake PCH\n");
-+		drm_WARN_ON(&dev_priv->drm, !IS_METEORLAKE(dev_priv));
-+		return PCH_MTP;
- 	default:
- 		return PCH_NONE;
- 	}
-@@ -166,7 +171,9 @@ intel_virt_detect_pch(const struct drm_i915_private *dev_priv,
- 	 * make an educated guess as to which PCH is really there.
- 	 */
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index a6ba7fb72339..542b8b2654be 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -116,6 +116,20 @@ static const struct gmbus_pin gmbus_pins_dg2[] = {
+ 	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIOJ },
+ };
  
--	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
-+	if (IS_METEORLAKE(dev_priv))
-+		id = INTEL_PCH_MTP_DEVICE_ID_TYPE;
-+	else if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
- 		id = INTEL_PCH_ADP_DEVICE_ID_TYPE;
- 	else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
- 		id = INTEL_PCH_TGP_DEVICE_ID_TYPE;
-diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/intel_pch.h
-index 7c8ce9781d1a..32aff5a70d04 100644
---- a/drivers/gpu/drm/i915/intel_pch.h
-+++ b/drivers/gpu/drm/i915/intel_pch.h
-@@ -25,6 +25,7 @@ enum intel_pch {
- 	PCH_ICP,	/* Ice Lake/Jasper Lake PCH */
- 	PCH_TGP,	/* Tiger Lake/Mule Creek Canyon PCH */
- 	PCH_ADP,	/* Alder Lake PCH */
-+	PCH_MTP,	/* Meteor Lake PCH */
- 
- 	/* Fake PCHs, functionality handled on the same PCI dev */
- 	PCH_DG1 = 1024,
-@@ -57,12 +58,15 @@ enum intel_pch {
- #define INTEL_PCH_ADP2_DEVICE_ID_TYPE		0x5180
- #define INTEL_PCH_ADP3_DEVICE_ID_TYPE		0x7A00
- #define INTEL_PCH_ADP4_DEVICE_ID_TYPE		0x5480
-+#define INTEL_PCH_MTP_DEVICE_ID_TYPE		0x7E00
-+#define INTEL_PCH_MTP2_DEVICE_ID_TYPE		0xAE00
- #define INTEL_PCH_P2X_DEVICE_ID_TYPE		0x7100
- #define INTEL_PCH_P3X_DEVICE_ID_TYPE		0x7000
- #define INTEL_PCH_QEMU_DEVICE_ID_TYPE		0x2900 /* qemu q35 has 2918 */
- 
- #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
- #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
-+#define HAS_PCH_MTP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MTP)
- #define HAS_PCH_DG2(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG2)
- #define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
- #define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG1)
++static const struct gmbus_pin gmbus_pins_mtp[] = {
++	[GMBUS_PIN_1_BXT] = { "dpa", GPIOB },
++	[GMBUS_PIN_2_BXT] = { "dpb", GPIOC },
++	[GMBUS_PIN_3_BXT] = { "dpc", GPIOD },
++	[GMBUS_PIN_4_CNP] = { "dpd", GPIOE },
++	[GMBUS_PIN_5_MTP] = { "dpe", GPIOF },
++	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIOJ },
++	[GMBUS_PIN_10_TC2_ICP] = { "tc2", GPIOK },
++	[GMBUS_PIN_11_TC3_ICP] = { "tc3", GPIOL },
++	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIOM },
++	[GMBUS_PIN_13_TC5_TGP] = { "tc5", GPION },
++	[GMBUS_PIN_14_TC6_TGP] = { "tc6", GPIOO },
++};
++
+ static const struct gmbus_pin *get_gmbus_pin(struct drm_i915_private *i915,
+ 					     unsigned int pin)
+ {
+@@ -128,6 +142,9 @@ static const struct gmbus_pin *get_gmbus_pin(struct drm_i915_private *i915,
+ 	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG1) {
+ 		pins = gmbus_pins_dg1;
+ 		size = ARRAY_SIZE(gmbus_pins_dg1);
++	} else if (INTEL_PCH_TYPE(i915) >= PCH_MTP) {
++		pins = gmbus_pins_mtp;
++		size = ARRAY_SIZE(gmbus_pins_mtp);
+ 	} else if (INTEL_PCH_TYPE(i915) >= PCH_ICP) {
+ 		pins = gmbus_pins_icp;
+ 		size = ARRAY_SIZE(gmbus_pins_icp);
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.h b/drivers/gpu/drm/i915/display/intel_gmbus.h
+index 8edc2e99cf53..20f704bd4e70 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.h
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.h
+@@ -24,6 +24,7 @@ struct i2c_adapter;
+ #define GMBUS_PIN_2_BXT		2
+ #define GMBUS_PIN_3_BXT		3
+ #define GMBUS_PIN_4_CNP		4
++#define GMBUS_PIN_5_MTP		5
+ #define GMBUS_PIN_9_TC1_ICP	9
+ #define GMBUS_PIN_10_TC2_ICP	10
+ #define GMBUS_PIN_11_TC3_ICP	11
 -- 
 2.25.1
 
