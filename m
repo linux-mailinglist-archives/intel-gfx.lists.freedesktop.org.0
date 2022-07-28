@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B87F3583661
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jul 2022 03:35:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82819583657
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jul 2022 03:35:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4954210E867;
-	Thu, 28 Jul 2022 01:35:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B18D710E60F;
+	Thu, 28 Jul 2022 01:34:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B447810E0B7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9713910E448
  for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jul 2022 01:34:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1658972084; x=1690508084;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vlR8SoUAkmPD0jbMhnBrm6wqmzcea/BQ7PkWQPMOTmU=;
- b=IUx5zdATJLRhJDU2iFmPLpsVRteJ+Z5vaNodGumxGASvp3c6X6qoHLcu
- HUPBPFTv5c08QidpN3jfPzDjK2jkdsUI95nQEspH+aFau7OpVfSevm/Oe
- Ur0hmd8rD0nN8m2JmyF/yJ7JLV9TgJwa0+PQClw0KHuFe6sOCLZNQXGri
- WOmmglFc6NaCQ1dC0my6ceXmA950Oai/7brKemUa0pWxR7Wqbxq0emeYb
- vUPbQomkmL3TeQCs6IcQNsq4JORugalyQpSjYGtrDtzjzN4FFC7mCUIVF
- nHi/7GYatkX6WsJNCcFC+7g8ea5IekeCPnA47NtaKA4UOD/9XusuALai6 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="285937891"
-X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="285937891"
+ bh=suhis+qSURJODlnMBFqg/P0bBMYjCFA2jXa0ewQVMjw=;
+ b=H7k2X/eCn+UYs5UKDUDLjlu6UFcZUzK9Jz/rr7gerEw8bzOG/PhgNFBs
+ ApzinUJLEl5jcgPbRZabZ4uB+CZYUwy/i7aKmKRhZqacH0F7FNrEdF8/E
+ LEIcORez3Sn1AD6mHsY18dT19/o2aIS6lEPQLjPv262d4BcZfaqN/PK9x
+ gnYWq3+28iIIkC0CWpWtuTMJb0QBL2+BRPJRa9EY7oeRE17ogTwrijgBu
+ bzL1SkerwLg72p71q+wpdczopTPC9eiv4WJgYZEqIBIdeCzdiSrFPamir
+ hqw6ak1JlOKjLPRMYP4pRm17EDdMpTfQaMGolqlnC4ihRtCPeFTkolaVw Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="285937890"
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="285937890"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jul 2022 18:34:43 -0700
-X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="659457058"
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="659457063"
 Received: from invictus.jf.intel.com ([10.165.21.205])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jul 2022 18:34:42 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jul 2022 18:34:17 -0700
-Message-Id: <20220728013420.3750388-21-radhakrishna.sripada@intel.com>
+Date: Wed, 27 Jul 2022 18:34:18 -0700
+Message-Id: <20220728013420.3750388-22-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220728013420.3750388-1-radhakrishna.sripada@intel.com>
 References: <20220728013420.3750388-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 20/23] drm/i915/dmc: Load DMC on MTL
+Subject: [Intel-gfx] [PATCH 21/23] drm/i915/dmc: MTL DMC debugfs entries
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,44 +58,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
-Adding support to load DMC v2.08 on MTL.
+MTL needs both Pipe A and Pipe B DMC to be loaded
+along with Main DMC. Patch also adds
+DMC debug register for MTL.
 
-Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
+BSpec: 49788
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index fa9ef591b885..9c4f442fa407 100644
+index 9c4f442fa407..2fabb2760474 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -52,6 +52,11 @@
+@@ -1005,7 +1005,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+ 	seq_printf(m, "Pipe A fw loaded: %s\n",
+ 		   str_yes_no(dmc->dmc_info[DMC_FW_PIPEA].payload));
+ 	seq_printf(m, "Pipe B fw support: %s\n",
+-		   str_yes_no(IS_ALDERLAKE_P(i915)));
++		   str_yes_no(DISPLAY_VER(i915) >= 13));
+ 	seq_printf(m, "Pipe B fw loaded: %s\n",
+ 		   str_yes_no(dmc->dmc_info[DMC_FW_PIPEB].payload));
  
- #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
- 
-+#define MTL_DMC_PATH			DMC_PATH(mtl, 2, 08)
-+#define MTL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 8)
-+#define MTL_DMC_MAX_FW_SIZE		0x10000
-+MODULE_FIRMWARE(MTL_DMC_PATH);
-+
- #define DG2_DMC_PATH			DMC_PATH(dg2, 2, 06)
- #define DG2_DMC_VERSION_REQUIRED	DMC_VERSION(2, 06)
- MODULE_FIRMWARE(DG2_DMC_PATH);
-@@ -827,7 +832,11 @@ void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
- 	 */
- 	intel_dmc_runtime_pm_get(dev_priv);
- 
--	if (IS_DG2(dev_priv)) {
-+	if (IS_METEORLAKE(dev_priv)) {
-+		dmc->fw_path = MTL_DMC_PATH;
-+		dmc->required_version = MTL_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = MTL_DMC_MAX_FW_SIZE;
-+	} else if (IS_DG2(dev_priv)) {
- 		dmc->fw_path = DG2_DMC_PATH;
- 		dmc->required_version = DG2_DMC_VERSION_REQUIRED;
- 		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
+@@ -1029,9 +1029,9 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+ 		 * reg for DC3CO debugging and validation,
+ 		 * but TGL DMC f/w is using DMC_DEBUG3 reg for DC3CO counter.
+ 		 */
+-		seq_printf(m, "DC3CO count: %d\n",
+-			   intel_de_read(i915, IS_DGFX(i915) ?
+-					 DG1_DMC_DEBUG3 : TGL_DMC_DEBUG3));
++		seq_printf(m, "DC3CO count: %d\n", intel_de_read(i915,
++			   (IS_DGFX(i915) || DISPLAY_VER(i915) >= 14) ?
++			    DG1_DMC_DEBUG3 : TGL_DMC_DEBUG3));
+ 	} else {
+ 		dc5_reg = IS_BROXTON(i915) ? BXT_DMC_DC3_DC5_COUNT :
+ 			SKL_DMC_DC3_DC5_COUNT;
 -- 
 2.25.1
 
