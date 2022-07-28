@@ -1,148 +1,92 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020BE58408B
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jul 2022 16:07:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53B1F584166
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jul 2022 16:34:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E04510E574;
-	Thu, 28 Jul 2022 14:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E05D112768;
+	Thu, 28 Jul 2022 14:34:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54DDF10E6D5
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jul 2022 14:07:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659017220; x=1690553220;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=+6E7YTSiFb4AyvKo1gOrwM5jrQiFWwQABBIDftnLAdo=;
- b=UlVzhBLJV3xapkn64MByYQCE4KTrx9d9THOyqz+TuhQir0+Bqo9usxfg
- UeAqjJRGEfeQqdINwt+wyZY9T/67NEUicboGn3fotg+OtX+Y/ZJCeFjkD
- 5yRl3syPGUKuhAtG7YXp4WaucfeIYtUwT/uy/c611Gcm8BgDwK9gpeTOC
- TiFRTiGav00L+Omh0VPDXU6DYYoKncNNWM5j0TVYcEFC/sUHC1BAcNoY2
- W8UMly2gpG2E06iFHbjYVk2oTNUZthUi5yowCfH3SBEDpr23GH0qDJeIj
- as0fBoqjZge9qxKFYPLMottd26gB3jEqhgt/0CdL6+JBGvgPKCfNVHI9X Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="287273030"
-X-IronPort-AV: E=Sophos;i="5.93,198,1654585200"; d="scan'208";a="287273030"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2022 07:06:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,198,1654585200"; d="scan'208";a="777149449"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga005.jf.intel.com with ESMTP; 28 Jul 2022 07:06:58 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Thu, 28 Jul 2022 07:06:57 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Thu, 28 Jul 2022 07:06:57 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28 via Frontend Transport; Thu, 28 Jul 2022 07:06:57 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.44) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.28; Thu, 28 Jul 2022 07:06:57 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2070.outbound.protection.outlook.com [40.107.212.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04ABF10E781;
+ Thu, 28 Jul 2022 14:34:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JuHHPWNe/0plglDNpnnLy/kEyq6mU7wih8Loa+fX6N95ysjVf/Y2vtITuOEdJIo8swbbTs8UxdSK/JnslvraTqbRg9l2gvr77SjqkkqlnXbahTjln/Y+I8HgNgGIVKYJLQ76EMaVxilujtjmGeKeqeqPz9g2twlx9890KjsHGFWADYiEKIA8oXdb3UIb+QZddXCcaFXy/+HBZznnhB4X4zamtsvevvnaq79ShFgYHG9mleTlp1theLH1nrjz2O/72W3nQ3VlSMDJyE/cekNmgkrTYUTMqP8XQdszPpma33PQH7gosJTNaXSOp4ZYo+4UrUWfuTb2pdYA0F+Fkr71yQ==
+ b=R+tVvqFWD3dEd8GHQOI8ATnI6tj118zD6ljOa3UtEUR/416W/CeDPq1MJwmwYkQ58dPix0UFHsyV9CXB0q+0g9ljqT3eIqDNlNjQk2rVP4C2I9DeHv/I4OXS4bGnaariPiCvNrXZ7qzUHB+l1tBlTEwvJcjVMwsM4dtjcpa9I+P5TNvAjd5kw8rz0c0I4KZojLEvmYDNDIqWCHjAQy2DeZzp6Nt5S1o/G0jkQo3VM3MFCu/kFL1mtxtvenULIY9xeUziHBxhFBbnR8m2kH4EjbQbKOu+8IBI32icPosOKPzeDgjP76j7boMRnXLhkosYvj+fl/UEIkWEw46cIiW5Vw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nj8kwPsA8XqCuPSY9qgQoBlkjGLowmjEDtXHFiiJqI0=;
- b=E0HfnRLI/u2xca1aGv20C6qmadjzEmxfEam83iQvtH4o0VsQ6YmY470Mnevo6JICdy5ce4SIP5uf5386Zm+LKyGvrhZhnKu4IOIXzKu+J1eNjUZhtVTuKPDTw3XLJ0HlX5gREWrFV84uwW+iRGkG4mhO08mc/ubaIi6A06crmLWJADkJHl2/nRAJtTYZQrLFoFqQxxu/ThCs2jVc4dVLr15gPbFjCIy9vPdnEd0b170ERka1qOp6W8jC3mCoQfVCzFFnS/dEBv9+uth857SQqZOAY2G0HnvpgsBGqxR9/cZUgDwiFWMDL8D4wq8f735M70f3viUClxKGBSRGOp4IHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- MN2PR11MB3662.namprd11.prod.outlook.com (2603:10b6:208:ee::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5458.19; Thu, 28 Jul 2022 14:06:39 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::f866:137e:cb07:5adf]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::f866:137e:cb07:5adf%6]) with mapi id 15.20.5482.010; Thu, 28 Jul 2022
- 14:06:39 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v2 1/2] drm/i915/d12+: Disable DMC handlers
- during loading/disabling the firmware
-Thread-Index: AQHYolog7thfNuWMUE2xoeyDLRwMKq2T0ZLg
-Date: Thu, 28 Jul 2022 14:06:39 +0000
-Message-ID: <DM4PR11MB636090D788C91B09AD9D7EF0F4969@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20220727164523.1621361-1-imre.deak@intel.com>
- <20220728081440.1676857-1-imre.deak@intel.com>
-In-Reply-To: <20220728081440.1676857-1-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5817baf4-1952-4f70-dd37-08da70a26444
-x-ms-traffictypediagnostic: MN2PR11MB3662:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 89+j0Qjjob64ELuGzJ4PQFsbvRy5Pw2NFsOl9CGfjPIrO764TbNTY8A44TCe/qa+M/I+wGLtEm9U2uZ/YItjz9Tgb8MHjIDsjsOKn1qUZDcfVa5U4lptApLi8kkbrRQSk/L5JB5DYoXI2fnCwghI3d29HN8X1BSsz0ZVOzyhiZuLvdlxzorSq1Pjm7GAmSXmVNj1BVzdn80JfwuNz94wyyizku5xx1UfG5FD9bcbffPr2umvKjxk2m0dRjDXQtIKU6jV4v5PK9rNrSq22FT3CF9AmJMMOIvhnMh1+RQKmbavY/6c3l7M2QER2zcuGQH2EPK88kolpafOM3bycPj84rI6TTL3QZ7pm+MkW05+OvDbGWTECVs/8lY6KZONrRgskJWMi2CNKE2dTlwx/9igKg+oWGAdA5AUMO0+EnhRTZSEryVe2+EVEAbbDhcyoynotym7rvmQ6SxUevWwswIQ9zZXuVoYGv7xfTVYEYEsUukwWnj14Hy4s8eG1s1Lyz807lut3MPqdIeLHq1+TEzGOJG43Yo0nAag2l/NEGK39ZLqYlz9AIk6qsZi8xKUS3HG1G/p1PEsafTiQPLAmx9ByPkG5hCQFNLbvHnwEDXR2AaSQBRsuMIU5Owm9ng10MkOp5yT+Z1On9UNGSWfiddEgH0reM7CKBBi0yAe2+r/tzkCTY7j9OXmq50j7anfffet42BNbrLFRbRRKnXm1xXOWqbfCZcV3erBTBO85SKDhYHGCEGR0fD+j5jnn0naVc05Gw31gKZwM3AbdjS1TUZojtmxMjsagosmoF4TLEiUI+0=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(39860400002)(376002)(366004)(346002)(396003)(136003)(52536014)(8936002)(478600001)(86362001)(186003)(33656002)(53546011)(5660300002)(2906002)(9686003)(26005)(6506007)(38100700002)(41300700001)(7696005)(122000001)(38070700005)(82960400001)(83380400001)(55016003)(66946007)(66556008)(71200400001)(8676002)(76116006)(66476007)(64756008)(66446008)(110136005)(316002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JiLRjtdAotwrxkoI/40khYNTTumrtMiNG7qvT/o/NrKpFzMr73OT1Z39VKXa?=
- =?us-ascii?Q?NdHLhzN8f6dczC1Tb5WKX/RaTc1jxS4KZ1iyQcH/x1T3YHOo56zben/QiWhv?=
- =?us-ascii?Q?I2vBJ4X6C/9eCZXz6KkcrY85mYL1GpLHdPh/apMo3cQ4IDSML8JQx/0BpUxk?=
- =?us-ascii?Q?idqTrWu0EaREx2v6hU+Zlzqwblk9ibHDmTmvsXeAEkBzIKNchqGmKAbUm1yO?=
- =?us-ascii?Q?ZUuw+ZpLIcxOVLkeSVkbTB6ATjWTyiTEhYHtWbdbSwM8QDbN6dFTqmzCcEP+?=
- =?us-ascii?Q?G7li0nR3I1cNzWAhLpvy+4jK0goHkvl22MGU1SbjusCjrfncAqSSAFHMrKxc?=
- =?us-ascii?Q?2wV9DhvZ+Q3Vi1fy7B2C8+pRWQmMNBhCzPz7FxXTh/xzckgtKaq2e2Wt6mZ1?=
- =?us-ascii?Q?j/oFev8hgz1NOJekYpN6/BCzJdM/ZQG0CvkSPCspPKjf7RTFe/38eidRp7BA?=
- =?us-ascii?Q?sNuM/3JKdMQcyYDFh2tJlvpIW2rmvyMoSzdS5zsS/h+Y2/JdCHorWmPHrHhV?=
- =?us-ascii?Q?3QWwVjwo2fRpmTqUi1KrfquBdq4qVNrrMRMhPxmTx76Mfmb7So37U2M/m9ep?=
- =?us-ascii?Q?8DAYnu4+lVH/vU48hCCsPNXRKXCN2njSMTZ+fqBY7pjdCxEK/6hM7vBEp8oA?=
- =?us-ascii?Q?bzHLgnY9ROBoQO1+Fxce/Yu5DuCMP9uKpFLhnZLygdAq4OIlus/n5tpENPNj?=
- =?us-ascii?Q?MLjk2Aw9et+AYSgDca3hLBef9NoKHbd5oJ0ccQ0/fbi77oA+p1/KFwxUDZdu?=
- =?us-ascii?Q?LAti2bxn3EV8W0NJu3bbqTBu0d914mRY5cexZGqHIuEBcrfVoMEdhpMbfa19?=
- =?us-ascii?Q?CLM2kqS0nutQzWyFC4XaUnQrbXvo9RqUJO2iYHEmqyKYefG5lXCWwopwzEYf?=
- =?us-ascii?Q?AOEPKPKzHhuTNznV2GbgyTG/TfNKi2wlOSPBTla37Eh7bOhdNqGx6FbNT1wN?=
- =?us-ascii?Q?he2DL/mrQLJSOZpEjP0vViZAJYNdtyWvIElZlVGTzEaNvv5IE4qjUv3o9dvM?=
- =?us-ascii?Q?vZwlbbdnEd3y9s4ZwpwDqvwHuJotEvjG2YiX5JEzPPLPvQLNGIcr+BLd/TwH?=
- =?us-ascii?Q?dSfVNtFq8rjcT4mMEnqXWGGDuasHW4g6YIznxJ2K9JUnJRbqTjEKGUGye9Ap?=
- =?us-ascii?Q?LEzAHTmlDLBdkyRoi13jd5MTvcZHO0WVKweZ+klQZWBuv0dCl23AdWKNPiuz?=
- =?us-ascii?Q?VZcCBECfnl7q1I1gMCtRYQbpcGb75AxgigNKiI+pWuCBNoNkG0lFnGI2XqfG?=
- =?us-ascii?Q?1+Q1sCkBUujvL4a2qtT7aYPGokC2NqAUp+IBycgVfNvFj65jfsQAML0y+Yts?=
- =?us-ascii?Q?1TQoT7WTaYSvn3S8mvo2T3ZmTayYfqpjLLLnmEXgwdkfTCkwI4py1iRBtiC4?=
- =?us-ascii?Q?peFuswFuhEM73jYIvGMyqW37LAhlhDwMmZht8VdxLJ9gA6DHW5GImoAII8Ee?=
- =?us-ascii?Q?tIS+ZyXkUSqwomnDgvyOD/Qsn540l5p14mhn3i2QG5Y8CI5xXrsn4cMqp+RP?=
- =?us-ascii?Q?KVMfVAZbwt4MVXbnZna8fzN2ikz+TR/4e3YNIDX7tYWd4u2WI2ViFuSb8dUw?=
- =?us-ascii?Q?/q2DbI1uagOQlCKsSIttfT3FO+W4wHwuipyCjjAc?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ bh=dlvW04LQgrybyj2m5z+qWZff1BtVdMwo9M8tIcJxNq0=;
+ b=Ixquwf8c/59kxZ/KUp8aAv6AAXHQvgS/DbjAo3xVv2WZBNHGYy8jDBnbPVbYJlKOVp7iI7sw+4yRtYCHXSaNYOvdWpzCu/z8ZLg710kQdyR3y6vZ97qZqusfFgR3OAzcuM7GfVncWK8KgJ4QGRENCWJv1pRkWdRVvRNGXgPOTu9qCI6sNbvTF5/9BRc2eKTppmvPgcH9rsmDCymOXarWuYLv3Px95ll/u8+NPX5OD7/N6vgg/LRILcGHPgnF+RF2W9ydAuPdZV4zUJWTsnnlSBfzKkGit/zLoZV2Slw9O7BazbzGRujhxAw5pDuykYSUCl7Eg8OI8hRz7wChFOBceg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dlvW04LQgrybyj2m5z+qWZff1BtVdMwo9M8tIcJxNq0=;
+ b=HoJ/N06+eYwkMAI/PhwqD5bZIX+9JX4u3QmtiheDTMMbE1Jd2S9lWr3Ct087HLdpqW/cAAMbMaeoBJCsODavMSqLFFr2I8qRnHgm2QsnYH5FMFz44uYjwPtQWpTBA+qNUV4D4yBKegY6LkhcyMsAQ3wvtvseNRJdiypJF+AI4/U=
+Received: from MW4PR03CA0122.namprd03.prod.outlook.com (2603:10b6:303:8c::7)
+ by DM5PR12MB2373.namprd12.prod.outlook.com (2603:10b6:4:b1::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.23; Thu, 28 Jul
+ 2022 14:34:18 +0000
+Received: from CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8c:cafe::d4) by MW4PR03CA0122.outlook.office365.com
+ (2603:10b6:303:8c::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19 via Frontend
+ Transport; Thu, 28 Jul 2022 14:34:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT060.mail.protection.outlook.com (10.13.175.132) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5482.10 via Frontend Transport; Thu, 28 Jul 2022 14:34:18 +0000
+Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Thu, 28 Jul 2022 09:34:09 -0500
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Date: Thu, 28 Jul 2022 07:33:10 -0700
+Message-ID: <20220728143315.968590-1-Arunpravin.PaneerSelvam@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5817baf4-1952-4f70-dd37-08da70a26444
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2022 14:06:39.5124 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2zoBU6OeyZDHSmKv6SG8IFIiAeJdD8QqV/XZ+MrjPm3sCwnQksPcNpZHcSnoGBuEBhKBL49ljqhY+cPFoXHL3Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB3662
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/d12+: Disable DMC handlers
- during loading/disabling the firmware
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3b0e630b-e3c8-4221-c5e7-08da70a6410e
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2373:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ax7XOsiBj/nbIV63V+4TC1f8wh5zGh8qfCm7YT6Y0yoUlZHpzLfRW2CTaFIVSvTz6DhVx7HFjd97A56tE/5+CkdEnR5Ng31wYn7sOqZeLNcRhCZ2N6iSfts29AuUSOpf1eZtsmMThYZg1O9Cq0XtxkAiqMDNloKvYcftVsk5cO30JIoUBlSRpO87s3W5Ec/G2h7geien3JOtYhrPgD45FG27I9MsfFpHQF04y+wq719LNM4vUdNDGqrdNL/NCT9QqBe2uLTmD9Ib+OH36yRlKKR/Nt/QhNoxuMzlIF2b+OyKEVBJX2iX6c3gITP3bv+2mxoVJ/aS4ucBq0lb1b/oCw6IF06rYoUevhWolf3vjKhs2uUlU4EbOcqc3ss/I0LFUHCugphwG2r4w6iPReFkQG1JMvDE/GPhUVfhs9GN+8OaT+uJltHwQEM9M+5QJaogJsbf02F2dPkxfKnGtZSQg/Gm5DisNbdp65UrteIs/eUIWPe7AqkmyNvDoa7a5wOVaGSPI09OQVxMp87ooVPF8AlkRkI9C2Mifa0X/AwKVI6UdV0829AuceXcvO/28esxyj+aHvCOrs1KaDt5VoMQAue+tBB4IDaeAW6MrU17od7bTIiYNR4NXrQw386dhjTTImZAFjQeBpQP2BgjvCoxf/kG16JrCVmJaTSWFJh2BkkfTm4v46ZdE99tXaXp8lJm2QeGMEyRLxNUlThWNuYHyNn7xK/O3h5YroiIDYWntTIV+GZ96J82kjWP5YX0cff3SaImhc/Ou9tHrZvwZ0SBniFtJG7ZHKD5DYqpbdni+GJCKiV/hz8NnEu3kg8SpQbxDweo3K23ZZckp0kM79E7XQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(39860400002)(346002)(136003)(396003)(376002)(46966006)(36840700001)(40470700004)(6666004)(336012)(110136005)(316002)(36860700001)(26005)(41300700001)(40460700003)(16526019)(70586007)(47076005)(2906002)(1076003)(8676002)(70206006)(54906003)(81166007)(86362001)(36756003)(478600001)(40480700001)(426003)(7696005)(82310400005)(356005)(82740400003)(186003)(5660300002)(4326008)(2616005)(8936002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2022 14:34:18.2997 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b0e630b-e3c8-4221-c5e7-08da70a6410e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2373
+Subject: [Intel-gfx] [PATCH v3 1/6] drm/ttm: Add new callbacks to ttm res mgr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,202 +99,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alexander.deucher@amd.com,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ luben.tuikov@amd.com, christian.koenig@amd.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We are adding two new callbacks to ttm resource manager
+function to handle intersection and compatibility of
+placement and resources.
 
+v2: move the amdgpu and ttm_range_manager changes to
+    separate patches (Christian)
+v3: rename "intersect" to "intersects" (Matthew)
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Im=
-re Deak
-> Sent: Thursday, July 28, 2022 1:45 PM
-> To: intel-gfx@lists.freedesktop.org
-> Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/d12+: Disable DMC handlers d=
-uring
-> loading/disabling the firmware
->=20
-> Disable the DMC event handlers before loading the firmware and after unin=
-itializing
-> the display, to make sure the firmware is inactive. This matches the Bspe=
-c
-> "Sequences for Display C5 and C6" page for GEN12+.
->=20
-> Add a TODO comment for doing the same on pre-GEN12 platforms.
->=20
-> v2:
-> - Add a macro for the number of event handlers.
-> - Disable the event handlers only on GEN12+.
-> - s/dev_priv/i915/ in docbook comment.
+Signed-off-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+---
+ drivers/gpu/drm/ttm/ttm_resource.c | 59 ++++++++++++++++++++++++++++++
+ include/drm/ttm/ttm_resource.h     | 39 ++++++++++++++++++++
+ 2 files changed, 98 insertions(+)
 
-Looks Good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../drm/i915/display/intel_display_power.c    |  3 +
->  drivers/gpu/drm/i915/display/intel_dmc.c      | 56 +++++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_dmc.h      |  1 +
->  drivers/gpu/drm/i915/display/intel_dmc_regs.h |  2 +
->  4 files changed, 56 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 589af257edebc..22f65a9968c6a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -1433,6 +1433,7 @@ static void skl_display_core_uninit(struct
-> drm_i915_private *dev_priv)
->  		return;
->=20
->  	gen9_disable_dc_states(dev_priv);
-> +	/* TODO: disable DMC program */
->=20
->  	gen9_dbuf_disable(dev_priv);
->=20
-> @@ -1500,6 +1501,7 @@ static void bxt_display_core_uninit(struct
-> drm_i915_private *dev_priv)
->  		return;
->=20
->  	gen9_disable_dc_states(dev_priv);
-> +	/* TODO: disable DMC program */
->=20
->  	gen9_dbuf_disable(dev_priv);
->=20
-> @@ -1675,6 +1677,7 @@ static void icl_display_core_uninit(struct
-> drm_i915_private *dev_priv)
->  		return;
->=20
->  	gen9_disable_dc_states(dev_priv);
-> +	intel_dmc_disable_program(dev_priv);
->=20
->  	/* 1. Disable all display engine functions -> aready done */
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
-> b/drivers/gpu/drm/i915/display/intel_dmc.c
-> index fa9ef591b8853..f73205d1f3164 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -277,6 +277,17 @@ static void gen9_set_dc_state_debugmask(struct
-> drm_i915_private *dev_priv)
->  	intel_de_posting_read(dev_priv, DC_STATE_DEBUG);  }
->=20
-> +static void disable_event_handler(struct drm_i915_private *i915,
-> +				  i915_reg_t ctl_reg, i915_reg_t htp_reg) {
-> +	intel_de_write(i915, ctl_reg,
-> +		       REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
-> +				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
-> +		       REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
-> +				      DMC_EVT_CTL_EVENT_ID_FALSE));
-> +	intel_de_write(i915, htp_reg, 0);
-> +}
-> +
->  static void
->  disable_flip_queue_event(struct drm_i915_private *i915,
->  			 i915_reg_t ctl_reg, i915_reg_t htp_reg) @@ -299,12
-> +310,7 @@ disable_flip_queue_event(struct drm_i915_private *i915,
->  		return;
->  	}
->=20
-> -	intel_de_write(i915, ctl_reg,
-> -		       REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
-> -				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
-> -		       REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
-> -				      DMC_EVT_CTL_EVENT_ID_FALSE));
-> -	intel_de_write(i915, htp_reg, 0);
-> +	disable_event_handler(i915, ctl_reg, htp_reg);
->  }
->=20
->  static bool
-> @@ -356,6 +362,27 @@ disable_all_flip_queue_events(struct drm_i915_privat=
-e
-> *i915)
->  	}
->  }
->=20
-> +static void disable_all_event_handlers(struct drm_i915_private *i915) {
-> +	int id;
-> +
-> +	/* TODO: disable the event handlers on pre-GEN12 platforms as well */
-> +	if (DISPLAY_VER(i915) < 12)
-> +		return;
-> +
-> +	for (id =3D DMC_FW_MAIN; id < DMC_FW_MAX; id++) {
-> +		int handler;
-> +
-> +		if (!has_dmc_id_fw(i915, id))
-> +			continue;
-> +
-> +		for (handler =3D 0; handler < DMC_EVENT_HANDLER_COUNT_GEN12;
-> handler++)
-> +			disable_event_handler(i915,
-> +					      DMC_EVT_CTL(i915, id, handler),
-> +					      DMC_EVT_HTP(i915, id, handler));
-> +	}
-> +}
-> +
->  /**
->   * intel_dmc_load_program() - write the firmware from memory to register=
-.
->   * @dev_priv: i915 drm device.
-> @@ -372,6 +399,8 @@ void intel_dmc_load_program(struct drm_i915_private
-> *dev_priv)
->  	if (!intel_dmc_has_payload(dev_priv))
->  		return;
->=20
-> +	disable_all_event_handlers(dev_priv);
-> +
->  	assert_rpm_wakelock_held(&dev_priv->runtime_pm);
->=20
->  	preempt_disable();
-> @@ -405,6 +434,21 @@ void intel_dmc_load_program(struct drm_i915_private
-> *dev_priv)
->  	disable_all_flip_queue_events(dev_priv);
->  }
->=20
-> +/**
-> + * intel_dmc_disable_program() - disable the firmware
-> + * @i915: i915 drm device
-> + *
-> + * Disable all event handlers in the firmware, making sure the firmware
-> +is
-> + * inactive after the display is uninitialized.
-> + */
-> +void intel_dmc_disable_program(struct drm_i915_private *i915) {
-> +	if (!intel_dmc_has_payload(i915))
-> +		return;
-> +
-> +	disable_all_event_handlers(i915);
-> +}
-> +
->  void assert_dmc_loaded(struct drm_i915_private *i915)  {
->  	drm_WARN_ONCE(&i915->drm,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h
-> b/drivers/gpu/drm/i915/display/intel_dmc.h
-> index 41091aee3b47b..67e03315ef999 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-> @@ -47,6 +47,7 @@ struct intel_dmc {
->=20
->  void intel_dmc_ucode_init(struct drm_i915_private *i915);  void
-> intel_dmc_load_program(struct drm_i915_private *i915);
-> +void intel_dmc_disable_program(struct drm_i915_private *i915);
->  void intel_dmc_ucode_fini(struct drm_i915_private *i915);  void
-> intel_dmc_ucode_suspend(struct drm_i915_private *i915);  void
-> intel_dmc_ucode_resume(struct drm_i915_private *i915); diff --git
-> a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> index 238620b559662..5e5e41644ddfd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> @@ -28,6 +28,8 @@
->  #define _DMC_REG(i915, dmc_id, reg) \
->  	((reg) - __DMC_REG_MMIO_BASE + _DMC_REG_MMIO_BASE(i915, dmc_id))
->=20
-> +#define DMC_EVENT_HANDLER_COUNT_GEN12	8
-> +
->  #define _DMC_EVT_HTP_0			0x8f004
->=20
->  #define DMC_EVT_HTP(i915, dmc_id, handler) \
-> --
-> 2.34.1
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 20f9adcc3235..84a6fe9e976e 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -253,6 +253,65 @@ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
+ }
+ EXPORT_SYMBOL(ttm_resource_free);
+ 
++/**
++ * ttm_resource_intersect - test for intersection
++ *
++ * @bdev: TTM device structure
++ * @res: The resource to test
++ * @place: The placement to test
++ * @size: How many bytes the new allocation needs.
++ *
++ * Test if @res intersects with @place and @size. Used for testing if evictions
++ * are valueable or not.
++ *
++ * Returns true if the res placement intersects with @place and @size.
++ */
++bool ttm_resource_intersect(struct ttm_device *bdev,
++			    struct ttm_resource *res,
++			    const struct ttm_place *place,
++			    size_t size)
++{
++	struct ttm_resource_manager *man;
++
++	if (!res)
++		return false;
++
++	man = ttm_manager_type(bdev, res->mem_type);
++	if (!place || !man->func->intersects)
++		return true;
++
++	return man->func->intersects(man, res, place, size);
++}
++
++/**
++ * ttm_resource_compatible - test for compatibility
++ *
++ * @bdev: TTM device structure
++ * @res: The resource to test
++ * @place: The placement to test
++ * @size: How many bytes the new allocation needs.
++ *
++ * Test if @res compatible with @place and @size.
++ *
++ * Returns true if the res placement compatible with @place and @size.
++ */
++bool ttm_resource_compatible(struct ttm_device *bdev,
++			     struct ttm_resource *res,
++			     const struct ttm_place *place,
++			     size_t size)
++{
++	struct ttm_resource_manager *man;
++
++	if (!res)
++		return false;
++
++	man = ttm_manager_type(bdev, res->mem_type);
++	if (!place || !man->func->compatible)
++		return true;
++
++	return man->func->compatible(man, res, place, size);
++}
++
+ static bool ttm_resource_places_compat(struct ttm_resource *res,
+ 				       const struct ttm_place *places,
+ 				       unsigned num_placement)
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index ca89a48c2460..93c0ac338be8 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -88,6 +88,37 @@ struct ttm_resource_manager_func {
+ 	void (*free)(struct ttm_resource_manager *man,
+ 		     struct ttm_resource *res);
+ 
++	/**
++	 * struct ttm_resource_manager_func member intersect
++	 *
++	 * @man: Pointer to a memory type manager.
++	 * @res: Pointer to a struct ttm_resource to be checked.
++	 * @place: Placement to check against.
++	 * @size: Size of the check.
++	 *
++	 * Test if @res intersects with @place + @size. Used to judge if
++	 * evictions are valueable or not.
++	 */
++	bool (*intersects)(struct ttm_resource_manager *man,
++			   struct ttm_resource *res,
++			   const struct ttm_place *place,
++			   size_t size);
++
++	/**
++	 * struct ttm_resource_manager_func member compatible
++	 *
++	 * @man: Pointer to a memory type manager.
++	 * @res: Pointer to a struct ttm_resource to be checked.
++	 * @place: Placement to check against.
++	 * @size: Size of the check.
++	 *
++	 * Test if @res compatible with @place + @size.
++	 */
++	bool (*compatible)(struct ttm_resource_manager *man,
++			   struct ttm_resource *res,
++			   const struct ttm_place *place,
++			   size_t size);
++
+ 	/**
+ 	 * struct ttm_resource_manager_func member debug
+ 	 *
+@@ -329,6 +360,14 @@ int ttm_resource_alloc(struct ttm_buffer_object *bo,
+ 		       const struct ttm_place *place,
+ 		       struct ttm_resource **res);
+ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res);
++bool ttm_resource_intersect(struct ttm_device *bdev,
++			    struct ttm_resource *res,
++			    const struct ttm_place *place,
++			    size_t size);
++bool ttm_resource_compatible(struct ttm_device *bdev,
++			     struct ttm_resource *res,
++			     const struct ttm_place *place,
++			     size_t size);
+ bool ttm_resource_compat(struct ttm_resource *res,
+ 			 struct ttm_placement *placement);
+ void ttm_resource_set_bo(struct ttm_resource *res,
+-- 
+2.25.1
 
