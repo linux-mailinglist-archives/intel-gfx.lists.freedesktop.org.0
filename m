@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4686583707
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jul 2022 04:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68F24583713
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jul 2022 04:43:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4888C947A;
-	Thu, 28 Jul 2022 02:37:25 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 06926C860E;
- Thu, 28 Jul 2022 02:37:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 027BBA77A5;
- Thu, 28 Jul 2022 02:37:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id F330D10E070;
+	Thu, 28 Jul 2022 02:42:28 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E942B10E086;
+ Thu, 28 Jul 2022 02:42:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1658976147; x=1690512147;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Kim/TCnvqinL0satPqUcBFQGiKxwVdlBuxIIltjTke8=;
+ b=kIb1He09+3i/rL9ZgIUozNTw4ZouGCMj0IXJ0z5K4wgpiECsXEKkKRUy
+ K/wcJ7crLpmARJUleE14D7K1+pGsf6ukWDmX+nuHX1dgslGnNRVhG4BRs
+ 2lBEfE5kQQeqIqqxgWFITpunjzS9F4RAUlUXzglS3neJ646m6nCnJKf2H
+ aYwZX3D+X4HQIXsuxzgMd3gWxrSAMPPSRPawEKEF5QSPcpJPeOkguMfeS
+ e7HfzomTOPOdPwgHT3ume4zLYMgS+xjLnkdHEk+nHZdVK0cgLsTBiMDjh
+ UR3hRN3eO8P7/pw2u2ENphqcg41rHIHyIIzortsuTkU3oBNZhDgP+OuLZ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="271443538"
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="271443538"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2022 19:42:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; d="scan'208";a="690096036"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by FMSMGA003.fm.intel.com with ESMTP; 27 Jul 2022 19:42:25 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Wed, 27 Jul 2022 19:42:19 -0700
+Message-Id: <20220728024225.2363663-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Date: Thu, 28 Jul 2022 02:37:08 -0000
-Message-ID: <165897582800.21236.7038346866134901979@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220728022028.2190627-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20220728022028.2190627-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Fixes_and_improvements_to_GuC_logging_and_error_capture?=
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/6] Random assortment of (mostly) GuC related
+ patches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +57,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Series: Fixes and improvements to GuC logging and error capture
-URL   : https://patchwork.freedesktop.org/series/106789/
-State : warning
+Pushing a bunch of patches which had gotten forgotten about.
 
-== Summary ==
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
 
+John Harrison (2):
+  drm/i915/selftest: Cope with not having an RCS engine
+  drm/i915/guc: Don't abort on CTB_UNUSED status
+
+Matthew Brost (2):
+  drm/i915/guc: Fix issues with live_preempt_cancel
+  drm/i915/guc: Support larger contexts on newer hardware
+
+Michał Winiarski (1):
+  drm/i915/guc: Route semaphores to GuC for Gen12+
+
+Rahul Kumar Singh (1):
+  drm/i915/guc: Add selftest for a hung GuC
+
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |  16 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  12 +-
+ .../gt/uc/abi/guc_communication_ctb_abi.h     |   8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  10 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  18 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h    |   4 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  15 ++
+ .../drm/i915/gt/uc/selftest_guc_hangcheck.c   | 159 ++++++++++++++++++
+ .../drm/i915/selftests/i915_live_selftests.h  |   1 +
+ 9 files changed, 227 insertions(+), 16 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
+
+-- 
+2.37.1
 
