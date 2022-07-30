@@ -2,69 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6CB7589D02
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 002B3589D04
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:45:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32F7110E94C;
-	Thu,  4 Aug 2022 13:45:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6810E98BEC;
+	Thu,  4 Aug 2022 13:45:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 168798B5FC;
- Tue, 26 Jul 2022 13:16:56 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id v17so1171237wrr.10;
- Tue, 26 Jul 2022 06:16:55 -0700 (PDT)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com
+ [IPv6:2a00:1450:4864:20::333])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC97410E0D6;
+ Sat, 30 Jul 2022 12:23:45 +0000 (UTC)
+Received: by mail-wm1-x333.google.com with SMTP id c22so3710462wmr.2;
+ Sat, 30 Jul 2022 05:23:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=Duf9LNn9G+2SxZbSGdM9LaiaWUfM9ULAz6lC3vIn2Ww=;
- b=O0nWXBcRZRg9NMM5pVwln7f7CutSP5ljI6MDNHGsSg4V4kZMp6DqJAI+1T04VHrlDA
- Z7UYCiPID76oZOvAw5uKWf1R/oRb5OcrKZfm14qHQC4Hj4KMQRfUlKdSvz/UaWTfFOWS
- MOdF8J2wFUv1zEZ6Xv5JY51HNSuS81S5lf3VvpuCWyzixwSCgGthghcAdfTbzx8uwvI9
- 3x7JTbeOTt3EF9VvIQ1TWiaiYG3h2xC09KuI4V2nPnMq23dgZTymF+m+OS3NaaXGipfl
- 1y33AnMWL0I3kTda9zTWVHt7jLqvMT2loEo2vEsS0Ytk3ga1seCAqPsToJ4XVqc43em8
- Nv+w==
+ bh=7n8cZxwCZn/Qw/quWKlWrtEv2JQBFb0Bs9/SBswkjjY=;
+ b=kNlJPZ4C4juqjPRrEkoxhK2y+7GMOURfI+mffO0a1obz+7dg2pk7FvJd5E7p+qnGei
+ hmkZbHIwnKxfK2Xf+KfHSlvlm+FP8xCUIyQmIQwuaP6fEg4Qu1Ad0ypc8lut/r5VnOmL
+ c7wi3e0r3X+UZtcIScKBr+vF1x7L7kZbYY/i2k/78JMcH29Z82lKo0XuMB6u219uB0YW
+ yR18wc8ySnNVF0CyIB76DdGv+ir9eYhpBUhDwJqcZaf1nEbucBRIgDTK1zVV/9APRNeL
+ M4jZz5zFj4/8LTpHpu99pthjS8zxEoityxtdJJovfD+ebA+s1vPaeJsJ4YCnGSwecl06
+ nsbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=Duf9LNn9G+2SxZbSGdM9LaiaWUfM9ULAz6lC3vIn2Ww=;
- b=0Rc8Dx0P6pvt8Upg3rcR+j86gw7JwLsab3jhr3vf+0yjeQ54zBhoSvIEN6q/scsDL9
- aGuhpS1Z2lk7NutwpzMrh9lM5bbrzM1Cmv6u8HGClMZ7nO4EQjZEmgvig7iA9bizaajH
- k8350o1kcTWfSq9UMv2SU6rkp64yGTJ1iPfJK2myqJOjUMBnH7m55oYhoHyb6TSlncks
- nTbRFe01UF8Ce69e/SQVitvgmkhehSQelVdL0MIvaYkeo+8IzW3w8yokZAK4Zgr6oCTy
- ST4sfWHkVJosI3wXN4M1WKvCEKqoNlgSlmRMStuAw8rISDwOgJXJQFBf5RLgHGmV5Rhb
- AMmw==
-X-Gm-Message-State: AJIora/WwPaAoIcSR+WFmROCynWZCrvnbwSiZn1FjX16uR+vw8q6cAVN
- PAYAMsmtEEjFSO9v4jsfEMA=
-X-Google-Smtp-Source: AGRyM1u/y0Lpgy3onUxB/fFhSH4nTKydssx+mfUucmbARsinAuebYkKCLc8L7oHivhtbm4ywR7V/zQ==
-X-Received: by 2002:adf:f452:0:b0:21e:86ac:cd74 with SMTP id
- f18-20020adff452000000b0021e86accd74mr7280992wrp.194.1658841414530; 
- Tue, 26 Jul 2022 06:16:54 -0700 (PDT)
+ bh=7n8cZxwCZn/Qw/quWKlWrtEv2JQBFb0Bs9/SBswkjjY=;
+ b=glgBkcyTqM2T1ESEKWtZeN3dzvaibRitEyWt0eDJMkITFEdtJ4YNCH+xdZO+kYbMmD
+ 5t2uWfjRF83t0gQKopgpn+Ligl+/bhjY5wm/wkRVrVTw6RChFvzl+vH/Zp/ZWkU16JBu
+ J314VrthMs/Y6cAG3I/inKTpV5C2zcaICCEjck2zDHhh1C5Km+zEyx2XSjW1NZ8NT5DE
+ eU8y/T765446eYuOyPB6fKfCOKAnRgw4d0B4VZTElkwbt37g3aVF3id47ionj1a15r/L
+ PdCaTtkqV/0qGboao83PpUXJsCbsdzRRgfLzqaLpowiO0pNIus42NX5+AXACtXeZQBSo
+ Kv2g==
+X-Gm-Message-State: AJIora+nIxqSo2FqfexP1F1th723RK6BNb3zN7qNxEpBNopYUdAVEk18
+ cAbhOdt2FLtlOIGcD3wXdwc=
+X-Google-Smtp-Source: AGRyM1vl7vLOjBRgfGQHvyC5ORaV/PWltLK0HQ9/OQugol//U+WpHbNX1iiBt9i49ReIbryqQFgRSg==
+X-Received: by 2002:a1c:f001:0:b0:3a3:7de3:1de8 with SMTP id
+ a1-20020a1cf001000000b003a37de31de8mr5712393wmb.119.1659183824148; 
+ Sat, 30 Jul 2022 05:23:44 -0700 (PDT)
 Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
  [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
- az14-20020adfe18e000000b0021e529efa60sm9052731wrb.1.2022.07.26.06.16.53
+ bp20-20020a5d5a94000000b002205a6aec0asm1132032wrb.86.2022.07.30.05.23.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 26 Jul 2022 06:16:53 -0700 (PDT)
+ Sat, 30 Jul 2022 05:23:43 -0700 (PDT)
 From: Colin Ian King <colin.i.king@gmail.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Date: Tue, 26 Jul 2022 14:16:52 +0100
-Message-Id: <20220726131652.46462-1-colin.i.king@gmail.com>
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Date: Sat, 30 Jul 2022 13:23:42 +0100
+Message-Id: <20220730122342.146475-1-colin.i.king@gmail.com>
 X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 04 Aug 2022 13:37:57 +0000
-Subject: [Intel-gfx] [PATCH][next] drm/i915/gt: remove redundant pointer sseu
+Subject: [Intel-gfx] [PATCH] drm/i915/userptr: remove redundation assignment
+ to variable ret
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,37 +79,33 @@ Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pointer sseu is being assigned a value that is never read. The pointer
-is redundant and can be removed. Cleans up clang scan warning:
+Variable ret is assigned a value that is never read; it is either
+being re-assigned during the following while-loop or after the loop.
+The assignmnt is redundant and can be removed.
 
-drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:300:2: warning: Value stored
-to 'sseu' is never read [deadcode.DeadStores]
+Cleans up clang scan build warning:
+drivers/gpu/drm/i915/gem/i915_gem_userptr.c:295:11: warning: Although
+the value stored to 'ret' is used in the enclosing expression, the
+value is never actually read from 'ret' [deadcode.DeadStores]
 
 Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-index 75257bd20ff0..c0578194ab16 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-@@ -286,7 +286,6 @@ guc_capture_alloc_steered_lists_xe_lpd(struct intel_guc *guc,
- 	const struct __guc_mmio_reg_descr_group *list;
- 	struct __guc_mmio_reg_descr_group *extlists;
- 	struct __guc_mmio_reg_descr *extarray;
--	struct sseu_dev_info *sseu;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+index 8423df021b71..075aef875a07 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+@@ -292,7 +292,7 @@ int i915_gem_object_userptr_submit_init(struct drm_i915_gem_object *obj)
+ 	if (!i915_gem_object_is_readonly(obj))
+ 		gup_flags |= FOLL_WRITE;
  
- 	/* In XE_LPD we only have steered registers for the render-class */
- 	list = guc_capture_get_one_list(lists, GUC_CAPTURE_LIST_INDEX_PF,
-@@ -297,7 +296,6 @@ guc_capture_alloc_steered_lists_xe_lpd(struct intel_guc *guc,
- 
- 	num_steer_regs = ARRAY_SIZE(xe_extregs);
- 
--	sseu = &gt->info.sseu;
- 	for_each_ss_steering(iter, gt, slice, subslice)
- 		num_tot_regs += num_steer_regs;
- 
+-	pinned = ret = 0;
++	pinned = 0;
+ 	while (pinned < num_pages) {
+ 		ret = pin_user_pages_fast(obj->userptr.ptr + pinned * PAGE_SIZE,
+ 					  num_pages - pinned, gup_flags,
 -- 
 2.35.3
 
