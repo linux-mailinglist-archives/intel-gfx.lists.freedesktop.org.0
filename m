@@ -1,41 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453BA586C98
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Aug 2022 16:10:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9759D586D7F
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Aug 2022 17:16:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF13C8209;
-	Mon,  1 Aug 2022 14:07:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 650DF8E5D8;
+	Mon,  1 Aug 2022 15:16:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2D2DC36B1
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Aug 2022 13:57:26 +0000 (UTC)
-Date: Mon, 01 Aug 2022 13:57:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail3; t=1659362245; x=1659621445;
- bh=CKEKf6HDLS3v8SpbpDmxZCdKCHfbzn+5GXwgaeYpDIY=;
- h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
- References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
- Feedback-ID:Message-ID;
- b=WWIJ2W/4l5E738y2qowpW3CvKf78ejuUoqSkTv4+8AgHa9yxe2oNlUeKnlfZvidSK
- 8O6BzBzAsiIljgbxHEi/1LO/lbPj8DZDX98H1lyNNMX9y7uWbtSLGGepm7fXIQlC1b
- sSLqeNR/ISt99Q1pf4ElL3JeLeHJWoureGztiSEyOvta4/62rH8vqyAYdezDXUA3gX
- 8GwgpDCOEuZOQm+bHRXsIn6yDiYliS6c3Fv5phuHaT6FHweLKysHPApOMyXlzPNGV1
- BG1vw5aCy0UnsBaxy0FzbM9mOhVy4EQnqXzWm4yMzFO2MCVWWq/Brp22gs/+dlaNH3
- WdRbLJC/YVhsw==
-To: Imre Deak <imre.deak@intel.com>
-From: Simon Ser <contact@emersion.fr>
-Message-ID: <o3jSEcvDEw1afwzuUMylF9fY-EM-Kz5wHJVoktY8yNal0kEyLHa44nNBP1OTb4emiqyTuwxSVeiT52eYgSXYwGHmaGMiI60hDYJOOhS8Q-8=@emersion.fr>
-In-Reply-To: <20220801135259.3039679-1-imre.deak@intel.com>
-References: <20220801135259.3039679-1-imre.deak@intel.com>
-Feedback-ID: 1358184:user:proton
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/amd/display: Fix merge conflict
- resolution in amdgpu_dm_plane.c
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C89348F3B6
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Aug 2022 15:16:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1659366981; x=1690902981;
+ h=from:to:cc:subject:date:message-id;
+ bh=GrvNYL8Vu3e96CFmCE+JH45uH44ezu1z6dRO9CKx1zk=;
+ b=YDSG2nYuF9IEyblisoqPyHXXDaTtD1VUFUlNwURJ/IAWYMvKlzELvX1U
+ sHjNX3t1S6ZhMHHw1pYOZWA4QMi7qbHzFfPvcwDev4sLW6KciHkhLvJIk
+ Z5MJuGOW4OXkP1vgKuf0KwNOF3Y/n2/I3SYQUgCA5Cqlsz6v5CGXQKv1i
+ epMPbw3RtzJbWaBJl5bKqp9G/O0JKqJsTIC9l7oKwuesacnOxK/bCXEVd
+ oniTpJ8KFb0RGt8UNY6BU57dR4/+eQZbKRNaI3UQrQASDU7J8lN6T65Cj
+ OXylBskvPdr/8goAhYACvaEdFvGVare0PaPzpe7x0SyFsFVn8amMjBCSG w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10426"; a="375471000"
+X-IronPort-AV: E=Sophos;i="5.93,208,1654585200"; d="scan'208";a="375471000"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2022 08:16:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,208,1654585200"; d="scan'208";a="744293352"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.78])
+ by fmsmga001.fm.intel.com with ESMTP; 01 Aug 2022 08:16:20 -0700
+From: Lee Shawn C <shawn.c.lee@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  1 Aug 2022 23:16:16 +0800
+Message-Id: <20220801151616.12644-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915/display: clear plane color control
+ register when turn plane off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,59 +51,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
-Cc: intel-gfx@lists.freedesktop.org,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Acked-by: Simon Ser <contact@emersion.fr>
+Customer report abnormal display output while switch eDP off sometimes.
+In current display disable flow, plane will be off at first. Then turn
+eDP off and disable HW pipe line. We found the abnormal pixel comes
+after turn plane off. Clear plane color ctl register when driver disable
+plane can solve this symptom.
 
-CC amd-gfx
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-On Monday, August 1st, 2022 at 15:52, Imre Deak <imre.deak@intel.com> wrote=
-:
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index caa03324a733..90977cfb7ebb 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -620,6 +620,8 @@ skl_plane_disable_arm(struct intel_plane *plane,
+ 
+ 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
+ 	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), 0);
++	if (DISPLAY_VER(dev_priv) >= 10)
++		intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id), 0);
+ }
+ 
+ static void
+@@ -638,6 +640,7 @@ icl_plane_disable_arm(struct intel_plane *plane,
+ 	intel_psr2_disable_plane_sel_fetch(plane, crtc_state);
+ 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
+ 	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), 0);
++	intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id), 0);
+ }
+ 
+ static bool
+-- 
+2.17.1
 
-> The API change introduced in
->
-> commit 30c637151cfa ("drm/plane-helper: Export individual helpers")
->
-> was missed in the conflict resolution of
->
-> commit d93a13bd75b9 ("Merge remote-tracking branch 'drm-misc/drm-misc-nex=
-t' into drm-tip")
->
-> fix this up.
->
-> Fixes: d93a13bd75b9 ("Merge remote-tracking branch 'drm-misc/drm-misc-nex=
-t' into drm-tip")
-> Cc: Simon Ser contact@emersion.fr
->
-> Cc: Thomas Zimmermann tzimmermann@suse.de
->
-> Acked-by: Thomas Zimmermann tzimmermann@suse.de
->
-> Signed-off-by: Imre Deak imre.deak@intel.com
->
-> ---
-> drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/dr=
-ivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> index 8cd25b2ea0dca..5eb5d31e591de 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> @@ -1562,7 +1562,7 @@ int dm_drm_plane_get_property(struct drm_plane *pla=
-ne,
-> static const struct drm_plane_funcs dm_plane_funcs =3D {
-> .update_plane =3D drm_atomic_helper_update_plane,
-> .disable_plane =3D drm_atomic_helper_disable_plane,
-> - .destroy =3D drm_primary_helper_destroy,
-> + .destroy =3D drm_plane_helper_destroy,
-> .reset =3D dm_drm_plane_reset,
-> .atomic_duplicate_state =3D dm_drm_plane_duplicate_state,
-> .atomic_destroy_state =3D dm_drm_plane_destroy_state,
-> --
-> 2.37.1
