@@ -1,49 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00F6A586F8E
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Aug 2022 19:29:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4065E587012
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Aug 2022 20:02:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5AF592984;
-	Mon,  1 Aug 2022 17:28:57 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6C648AD1B;
- Mon,  1 Aug 2022 17:28:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B72BA9283D;
+	Mon,  1 Aug 2022 18:02:37 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04EA997AD0
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Aug 2022 18:02:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659374930; x=1690910930;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=M74AuQ4AL6LJpGzX0ABXJ3owg2Ahbx+/x9efdgIpSA8=;
- b=jR9n/PXIVN9nXetGjNVjyGQfafERMPVP4egQfkvvi3zyyGLixekDZrku
- mWGn1FIHRQ1oZ9my/hR9Yf6mRAkJqPTeLk+8GbnarFefTNotakkGNgWUs
- SstYkurOqTwZNC8lphc119q69C1uOaux1oLzPhNFfRBHW08RVbBthJP2w
- gkZhYdUAvdL5SU4SHKCLVOCNMBXSWBfAjrnS4KLlQAYC8Yep8HBq0rTv1
- OwGvkWUUQ92AZA8iZmnV/GHuYq3Iy1iBVpRlDXTzE8TBDPHjKi6ODkHQM
- QPXZM6UX9Rh/cvg7YEdrT4YYnLv7Y6maE8Oc9TrAnzPu6wRyet5C0xBQq w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10426"; a="289976639"
-X-IronPort-AV: E=Sophos;i="5.93,208,1654585200"; d="scan'208";a="289976639"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2022 10:28:48 -0700
-X-IronPort-AV: E=Sophos;i="5.93,208,1654585200"; d="scan'208";a="552590557"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2022 10:28:48 -0700
-Date: Mon, 1 Aug 2022 10:28:29 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: John.C.Harrison@Intel.com
-Message-ID: <20220801172829.GJ14039@nvishwa1-DESK>
-References: <20220728230722.2749701-1-John.C.Harrison@Intel.com>
+ t=1659376953; x=1690912953;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rMJTjhWhjcwMpGiWJTcqI2BLuTxW2Bf3ao0fLxFtcD0=;
+ b=kY+UmhariIGL2NrO//RBPeyKSRmJFDLmsy38tn1ev8O4CjAtJ0MD3rc0
+ bPKIydjUj2O7k/03haUiauI8L5pO4G3TqPOEn33NakBN/xggJumf9wxN1
+ hFTJYCWjJEwiObF7YEJy5CpqF8Nya4GVpAM3EzbUb5a4SBKpaHwLVoxVs
+ JtqA4Ky7vxBrWMzRpFaxravxcgErnnlYRLYocIBWaXOIfp2SniXcET9gy
+ kvBxb+ifRlMCiwVwAFa/eQQrucvWfHiAdmkh7Ryh5MG6JuZ20DrBad/4y
+ q/IDHSQokO6g/Pm+iFguQoVPLQG/VGK/Qi8wsyxCdla9PTklVMF+lLO4Z Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10426"; a="272255411"
+X-IronPort-AV: E=Sophos;i="5.93,208,1654585200"; d="scan'208";a="272255411"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2022 11:02:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,208,1654585200"; d="scan'208";a="634984824"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by orsmga001.jf.intel.com with ESMTP; 01 Aug 2022 11:02:29 -0700
+From: John.C.Harrison@Intel.com
+To: linux-firmware@kernel.org
+Date: Mon,  1 Aug 2022 11:02:29 -0700
+Message-Id: <20220801180229.3824606-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220728230722.2749701-1-John.C.Harrison@Intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 0/1] Move DG2 to GuC v70.4.1
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] PR for new GuC v70.4.1 for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,33 +53,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@Lists.FreeDesktop.Org, DRI-Devel@Lists.FreeDesktop.Org
+Cc: jwboyer@kernel.org, intel-gfx@lists.freedesktop.org, kyle@kernel.org,
+ ben@decadent.org.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 28, 2022 at 04:07:21PM -0700, John.C.Harrison@Intel.com wrote:
->From: John Harrison <John.C.Harrison@Intel.com>
->
->The latest GuC release contains a bunch of fixes for DG2. Start using
->it.
->
->Note that some of these fixes require i915 side support which will
->follow in separate patches.
+The following changes since commit 150864a4d73e8c448eb1e2c68e65f07635fe1a66:
 
-So, this patch series has a dependency on those i915 fixes required?
+  amdgpu partially revert "amdgpu: update beige goby to release 22.20" (2022-07-25 14:16:04 -0400)
 
-Niranjana
+are available in the Git repository at:
 
->
->Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->
->
->John Harrison (1):
->  drm/i915/dg2: Update DG2 to GuC v70.4.1
->
-> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->
->-- 
->2.37.1
->
+  git://anongit.freedesktop.org/drm/drm-firmware dg2_guc_v70.4.1
+
+for you to fetch changes up to a4235e0aa4d4753119fd81f582eef84addf3f4a1:
+
+  i915: Add GuC v70.4.1 for DG2 (2022-07-27 18:03:49 -0700)
+
+----------------------------------------------------------------
+John Harrison (1):
+      i915: Add GuC v70.4.1 for DG2
+
+ WHENCE                  |   3 +++
+ i915/dg2_guc_70.4.1.bin | Bin 0 -> 369600 bytes
+ 2 files changed, 3 insertions(+)
+ create mode 100644 i915/dg2_guc_70.4.1.bin
