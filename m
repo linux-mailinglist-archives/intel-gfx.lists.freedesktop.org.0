@@ -1,60 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8EF3586E1B
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Aug 2022 17:54:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18615586F56
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Aug 2022 19:13:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC6D612A9E1;
-	Mon,  1 Aug 2022 15:54:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D35B212A36B;
+	Mon,  1 Aug 2022 17:12:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3F87112370
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Aug 2022 15:54:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1659369249;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=bDrzxcK/hdqF7u8DnUOKQqM/ecXSwkQXnfqic59uxkQ=;
- b=eRu6D8FNVxFBjPEbx8Iu0l1FnY9tt/pb7feJ/RRLY3BO0RvhqErknnYp5nKVRmUr/HeAeg
- jik5nUBgFwAS8rzY5hModn06zbh7oOHrEbioTd50Cf4b5Jb2l/uMwMb+eb4fE2MGTIdFDw
- tqP19ebU69hIfmtRKgsJHbDYlQRMcTc=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-102-9GoOoRyOOP-3kn0drtBscw-1; Mon, 01 Aug 2022 11:54:06 -0400
-X-MC-Unique: 9GoOoRyOOP-3kn0drtBscw-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
- [10.11.54.2])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id AF7D4101A586;
- Mon,  1 Aug 2022 15:54:05 +0000 (UTC)
-Received: from starship (unknown [10.40.194.242])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 7D3AB40E80F4;
- Mon,  1 Aug 2022 15:53:59 +0000 (UTC)
-Message-ID: <ad3a01ffe9c6f7fa40a4b51ac88d8fad56606435.camel@redhat.com>
-From: Maxim Levitsky <mlevitsk@redhat.com>
-To: Sean Christopherson <seanjc@google.com>
-Date: Mon, 01 Aug 2022 18:53:58 +0300
-In-Reply-To: <7c4cf32dca42ab84bdb427a9e4862dbf5509f961.camel@redhat.com>
-References: <20220427200314.276673-1-mlevitsk@redhat.com>
- <20220427200314.276673-5-mlevitsk@redhat.com> <YoZyWOh4NPA0uN5J@google.com>
- <5ed0d0e5a88bbee2f95d794dbbeb1ad16789f319.camel@redhat.com>
- <c22a18631c2067871b9ed8a9246ad58fa1ab8947.camel@redhat.com>
- <Yt6/9V0S9of7dueW@google.com>
- <7c4cf32dca42ab84bdb427a9e4862dbf5509f961.camel@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-2.fc32) 
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0988612A21B;
+ Mon,  1 Aug 2022 17:12:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1659373938; x=1690909938;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=DFXStBY5eMGiDbcr0wAufBmc0V3fo8FmbFKEExuiPpw=;
+ b=J0v5LqL1qMl8OGh2UH2whti+UMn8mQtDiZqEmPTxnOJClP6InlNQoB0l
+ m+NVgC85pUSYyByTV5TwAB0eCubqYCUu0ACA94HiGoxlwH7SwfH+c0YPk
+ h+O8hghCtISToLynElxduMTjzlf8JIHn60jT3JALL4jLHYIGAcahTMLAL
+ +6KLqagDzFhr56n5FbDv/Q9TkWPK3NGLowRf5tL4UqJN+Al23xWRTzyUp
+ hoojGXOQyBDcyCWPcVfjjn5S67XWETkQxsPrVgwGbmRSvvoxP2wiWThBR
+ 8oXsDwygtWX8vvo0OseHhErI+kGNt+u+ETCrntumU7g0+xIyP/YQPx6BS Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10426"; a="375501973"
+X-IronPort-AV: E=Sophos;i="5.93,208,1654585200"; d="scan'208";a="375501973"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2022 10:12:16 -0700
+X-IronPort-AV: E=Sophos;i="5.93,208,1654585200"; d="scan'208";a="929632376"
+Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2022 10:12:16 -0700
+Date: Mon, 1 Aug 2022 10:11:53 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Colin Ian King <colin.i.king@gmail.com>
+Message-ID: <20220801171153.GI14039@nvishwa1-DESK>
+References: <20220730122342.146475-1-colin.i.king@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.84 on 10.11.54.2
-Subject: Re: [Intel-gfx] [RFC PATCH v3 04/19] KVM: x86: mmu: allow to enable
- write tracking externally
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20220730122342.146475-1-colin.i.king@gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/userptr: remove redundation
+ assignment to variable ret
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,116 +57,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Dave Hansen <dave.hansen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, "H. Peter Anvin" <hpa@zytor.com>,
- Brijesh Singh <brijesh.singh@amd.com>, Joerg Roedel <joro@8bytes.org>,
- x86@kernel.org, Ingo Molnar <mingo@redhat.com>,
- Tom Lendacky <thomas.lendacky@amd.com>, intel-gfx@lists.freedesktop.org,
- Borislav Petkov <bp@alien8.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, intel-gvt-dev@lists.freedesktop.org,
- Jim Mattson <jmattson@google.com>, linux-kernel@vger.kernel.org,
- Paolo Bonzini <pbonzini@redhat.com>, Vitaly Kuznetsov <vkuznets@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2022-07-28 at 10:46 +0300, Maxim Levitsky wrote:
-> On Mon, 2022-07-25 at 16:08 +0000, Sean Christopherson wrote:
-> > On Wed, Jul 20, 2022, Maxim Levitsky wrote:
-> > > On Sun, 2022-05-22 at 13:22 +0300, Maxim Levitsky wrote:
-> > > > On Thu, 2022-05-19 at 16:37 +0000, Sean Christopherson wrote:
-> > > > > On Wed, Apr 27, 2022, Maxim Levitsky wrote:
-> > > > > > @@ -5753,6 +5752,10 @@ int kvm_mmu_init_vm(struct kvm *kvm)
-> > > Now for nested AVIC, this is what I would like to do:
-> > >  
-> > > - just like mmu, I prefer to register the write tracking notifier, when the
-> > >   VM is created.
-> > > 
-> > > - just like mmu, write tracking should only be enabled when nested AVIC is
-> > >   actually used first time, so that write tracking is not always enabled when
-> > >   you just boot a VM with nested avic supported, since the VM might not use
-> > >   nested at all.
-> > >  
-> > > Thus I either need to use the __kvm_page_track_register_notifier too for AVIC
-> > > (and thus need to export it) or I need to have a boolean
-> > > (nested_avic_was_used_once) and register the write tracking notifier only
-> > > when false and do it not on VM creation but on first attempt to use nested
-> > > AVIC.
-> > >  
-> > > Do you think this is worth it? I mean there is some value of registering the
-> > > notifier only when needed (this way it is not called for nothing) but it does
-> > > complicate things a bit.
-> > 
-> > Compared to everything else that you're doing in the nested AVIC code, refcounting
-> > the shared kvm_page_track_notifier_node object is a trivial amount of complexity.
-> Makes sense.
-> 
-> > And on that topic, do you have performance numbers to justify using a single
-> > shared node?  E.g. if every table instance has its own notifier, then no additional
-> > refcounting is needed. 
-> 
-> The thing is that KVM goes over the list of notifiers and calls them for every write from the emulator
-> in fact even just for mmio write, and when you enable write tracking on a page,
-> you just write protect the page and add a mark in the page track array, which is roughly 
-> 
-> 'don't install spte, don't install mmio spte, but just emulate the page fault if it hits this page'
-> 
-> So adding more than a bare minimum to this list, seems just a bit wrong.
-> 
-> 
-> >  It's not obvious that a shared node will provide better
-> > performance, e.g. if there are only a handful of AVIC tables being shadowed, then
-> > a linear walk of all nodes is likely fast enough, and doesn't bring the risk of
-> > a write potentially being stalled due to having to acquire a VM-scoped mutex.
-> 
-> The thing is that if I register multiple notifiers, they all will be called anyway,
-> but yes I can use container_of, and discover which table the notifier belongs to,
-> instead of having a hash table where I lookup the GFN of the fault.
-> 
-> The above means practically that all the shadow physid tables will be in a linear
-> list of notifiers, so I could indeed avoid per vm mutex on the write tracking,
-> however for simplicity I probably will still need it because I do modify the page,
-> and having per physid table mutex complicates things.
-> 
-> Currently in my code the locking is very simple and somewhat dumb, but the performance
-> is very good because the code isn't executed often, most of the time the AVIC hardware
-> works alone without any VM exits.
-> 
-> Once the code is accepted upstream, it's one of the things that can be improved.
-> 
-> 
-> Note though that I still need a hash table and a mutex because on each VM entry,
-> the guest can use a different physid table, so I need to lookup it, and create it,
-> if not found, which would require read/write of the hash table and thus a mutex.
-> 
-> 
-> 
-> > > I can also stash this boolean (like 'bool registered;') into the 'struct
-> > > kvm_page_track_notifier_node',  and thus allow the
-> > > kvm_page_track_register_notifier to be called more that once -  then I can
-> > > also get rid of __kvm_page_track_register_notifier. 
-> > 
-> > No, allowing redundant registration without proper refcounting leads to pain,
-> > e.g. X registers, Y registers, X unregisters, kaboom.
-> > 
-> 
-> True, but then what about adding a refcount to 'struct kvm_page_track_notifier_node'
-> instead of a boolean, and allowing redundant registration? 
-> Probably not worth it, in which case I am OK to add a refcount to my avic code.
-> 
-> Or maybe just scrap the whole thing and just leave registration and activation of the
-> write tracking as two separate things? Honestly now that looks like the most clean
-> solution.
+On Sat, Jul 30, 2022 at 01:23:42PM +0100, Colin Ian King wrote:
+>Variable ret is assigned a value that is never read; it is either
+>being re-assigned during the following while-loop or after the loop.
+>The assignmnt is redundant and can be removed.
+>
+>Cleans up clang scan build warning:
+>drivers/gpu/drm/i915/gem/i915_gem_userptr.c:295:11: warning: Although
+>the value stored to 'ret' is used in the enclosing expression, the
+>value is never actually read from 'ret' [deadcode.DeadStores]
+>
+>Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+>---
+> drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+>index 8423df021b71..075aef875a07 100644
+>--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+>+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+>@@ -292,7 +292,7 @@ int i915_gem_object_userptr_submit_init(struct drm_i915_gem_object *obj)
+> 	if (!i915_gem_object_is_readonly(obj))
+> 		gup_flags |= FOLL_WRITE;
+>
+>-	pinned = ret = 0;
+>+	pinned = 0;
+> 	while (pinned < num_pages) {
+> 		ret = pin_user_pages_fast(obj->userptr.ptr + pinned * PAGE_SIZE,
+> 					  num_pages - pinned, gup_flags,
 
+LGTM.
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
-Kind ping on this. Do you still want me to enable write tracking on the notifier registeration,
-or scrap the idea?
-
-
-Best regards,
-	Maxim Levitsky
-> 
-> Best regards,
-> 	Maxim Levitsky
-
-
+>-- 
+>2.35.3
+>
