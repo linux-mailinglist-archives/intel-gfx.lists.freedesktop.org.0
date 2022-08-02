@@ -1,33 +1,97 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98EB1587B7B
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Aug 2022 13:20:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31728587BA2
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Aug 2022 13:31:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EFFA10ED16;
-	Tue,  2 Aug 2022 11:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C1B310EB78;
+	Tue,  2 Aug 2022 11:31:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 52A4410EB78;
- Tue,  2 Aug 2022 11:20:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F665A00FD;
- Tue,  2 Aug 2022 11:20:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1090110EC5C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Aug 2022 11:31:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1659439905;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=FxqPiRlh1yMkKL/E8jj94PNhXHLVuyAe9c6skMkF0Wc=;
+ b=RJvZ8ZYLK/nE0NFxFyz8saYNBzmPHZA4R6AFhZrjWRGqxXxtbIGtDvGMuIM1gxjigtGF7l
+ IBrnGUVUf4GM7yIwG/BEwjtXixsgYvD584FhfaJDddKc5TPoXrHTd/7VwS+erNYbUByVye
+ 8L4lrSYE98oxjHRNzBZXnRFJ736Z+b8=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-632-hfbHaAQ0MWaQXsRh2g3T7Q-1; Tue, 02 Aug 2022 07:31:44 -0400
+X-MC-Unique: hfbHaAQ0MWaQXsRh2g3T7Q-1
+Received: by mail-ej1-f70.google.com with SMTP id
+ sd24-20020a1709076e1800b0072b582293c2so4038282ejc.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 02 Aug 2022 04:31:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=FxqPiRlh1yMkKL/E8jj94PNhXHLVuyAe9c6skMkF0Wc=;
+ b=ElgxhXk6isQlcHIMlGBXzqjeG0o3znELUMxNt0exIxJy0k1nscZcz7N1xIXPgUtCFe
+ WBvxdxbefVsuI9wUVjM92DqP5eZ8uJPY3NqNnbNu62t2nkDHesXn7F9P6Swz1II2nICT
+ ufTIv/V0M0Ta301AneDW1dBFcTH87EEKpjb6psbfmmTnflnWn7YKSCC3eDgYEBZHFWUH
+ /gOwMpdw94IOoaP5NQ9q2CJDtELVMb/G2OzUzaWsxgFgzdz/dYsMxFMduyQwO4fgRb4H
+ Lk1EfX8VvKVveqkaXKvYGNFBJg/Zd4n6nFQFistuZmlj/zhbNMBXPbPUVcU/skYbyExn
+ Q9hA==
+X-Gm-Message-State: AJIora9Vs6JZrmHSeWhzzhsAIL1Sf2HVOWKiud/ofec9eQnsEmUcYYxc
+ boc5+OX285TeQhGg49O43Z1kuDPKo2VSj5L37bU+xEU+lKlM8uROfJvQ6El6O1b9I5AfKwWmffv
+ g+dYWGwdANlhm7vh1M8v442eyMBhf
+X-Received: by 2002:a05:6402:3693:b0:43d:1a40:21fd with SMTP id
+ ej19-20020a056402369300b0043d1a4021fdmr19623027edb.206.1659439902877; 
+ Tue, 02 Aug 2022 04:31:42 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1tNxpGaKCMx+igbAw2yE0EpAVqV6AkR7oivw+9P3IiykmsJcYsdcyEeEWSy1/fVO3/cp3fmOg==
+X-Received: by 2002:a05:6402:3693:b0:43d:1a40:21fd with SMTP id
+ ej19-20020a056402369300b0043d1a4021fdmr19622969edb.206.1659439902460; 
+ Tue, 02 Aug 2022 04:31:42 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
+ (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
+ by smtp.gmail.com with ESMTPSA id
+ s4-20020a056402036400b0043cbdb16fbbsm8116245edw.24.2022.08.02.04.31.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 02 Aug 2022 04:31:41 -0700 (PDT)
+Message-ID: <331ebd23-d2a4-bb33-5462-b9bd3284ab69@redhat.com>
+Date: Tue, 2 Aug 2022 13:31:41 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+To: Daniel Dadap <ddadap@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Xinhui <Xinhui.Pan@amd.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>
+References: <20220712193910.439171-1-hdegoede@redhat.com>
+ <20220712193910.439171-2-hdegoede@redhat.com>
+ <641cb059-48f5-5f05-5ec2-610f1215391c@nvidia.com>
+ <20e4ffcf-2a3a-e671-5f98-1602b78df3cb@nvidia.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20e4ffcf-2a3a-e671-5f98-1602b78df3cb@nvidia.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Tue, 02 Aug 2022 11:20:16 -0000
-Message-ID: <165943921623.13190.13526915306419113296@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220802105228.3356260-1-suraj.kandpal@intel.com>
-In-Reply-To: <20220802105228.3356260-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBF?=
- =?utf-8?q?nabling_Pipewriteback?=
+Subject: Re: [Intel-gfx] [PATCH v2 01/29] ACPI: video: Add
+ acpi_video_backlight_use_native() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,47 +104,231 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Len Brown <lenb@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Daniel,
 
-Series: Enabling Pipewriteback
-URL   : https://patchwork.freedesktop.org/series/106902/
-State : failure
+On 7/21/22 23:30, Daniel Dadap wrote:
+> 
+> On 7/21/22 16:24, Daniel Dadap wrote:
+>>
+>> On 7/12/22 14:38, Hans de Goede wrote:
+>>> ATM on x86 laptops where we want userspace to use the acpi_video backlight
+>>> device we often register both the GPU's native backlight device and
+>>> acpi_video's firmware acpi_video# backlight device. This relies on
+>>> userspace preferring firmware type backlight devices over native ones, but
+>>> registering 2 backlight devices for a single display really is undesirable.
+>>>
+>>> On x86 laptops where the native GPU backlight device should be used,
+>>> the registering of other backlight devices is avoided by their drivers
+>>> using acpi_video_get_backlight_type() and only registering their backlight
+>>> if the return value matches their type.
+>>>
+>>> acpi_video_get_backlight_type() uses
+>>> backlight_device_get_by_type(BACKLIGHT_RAW) to determine if a native
+>>> driver is available and will never return native if this returns
+>>> false. This means that the GPU's native backlight registering code
+>>> cannot just call acpi_video_get_backlight_type() to determine if it
+>>> should register its backlight, since acpi_video_get_backlight_type() will
+>>> never return native until the native backlight has already registered.
+>>>
+>>> To fix this add a new internal native function parameter to
+>>> acpi_video_get_backlight_type(), which when set to true will make
+>>> acpi_video_get_backlight_type() behave as if a native backlight has
+>>> already been registered.
+>>>
+>>> And add a new acpi_video_backlight_use_native() helper, which sets this
+>>> to true, for use in native GPU backlight code.
+>>>
+>>> Changes in v2:
+>>> - Replace adding a native parameter to acpi_video_get_backlight_type() with
+>>>    adding a new acpi_video_backlight_use_native() helper.
+>>>
+>>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>>> ---
+>>>   drivers/acpi/video_detect.c | 24 ++++++++++++++++++++----
+>>>   include/acpi/video.h        |  5 +++++
+>>>   2 files changed, 25 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
+>>> index becc198e4c22..4346c990022d 100644
+>>> --- a/drivers/acpi/video_detect.c
+>>> +++ b/drivers/acpi/video_detect.c
+>>> @@ -17,8 +17,9 @@
+>>>    * Otherwise vendor specific drivers like thinkpad_acpi, asus-laptop,
+>>>    * sony_acpi,... can take care about backlight brightness.
+>>>    *
+>>> - * Backlight drivers can use acpi_video_get_backlight_type() to determine
+>>> - * which driver should handle the backlight.
+>>> + * Backlight drivers can use acpi_video_get_backlight_type() to determine which
+>>> + * driver should handle the backlight. RAW/GPU-driver backlight drivers must
+>>> + * use the acpi_video_backlight_use_native() helper for this.
+>>>    *
+>>>    * If CONFIG_ACPI_VIDEO is neither set as "compiled in" (y) nor as a module (m)
+>>>    * this file will not be compiled and acpi_video_get_backlight_type() will
+>>> @@ -548,9 +549,10 @@ static int acpi_video_backlight_notify(struct notifier_block *nb,
+>>>    * Arguably the native on win8 check should be done first, but that would
+>>>    * be a behavior change, which may causes issues.
+>>>    */
+>>> -enum acpi_backlight_type acpi_video_get_backlight_type(void)
+>>> +static enum acpi_backlight_type __acpi_video_get_backlight_type(bool native)
+>>>   {
+>>>       static DEFINE_MUTEX(init_mutex);
+>>> +    static bool native_available;
+>>>       static bool init_done;
+>>>       static long video_caps;
+>>>   @@ -570,6 +572,8 @@ enum acpi_backlight_type acpi_video_get_backlight_type(void)
+>>>               backlight_notifier_registered = true;
+>>>           init_done = true;
+>>>       }
+>>> +    if (native)
+>>> +        native_available = true;
+>>>       mutex_unlock(&init_mutex);
+>>>         if (acpi_backlight_cmdline != acpi_backlight_undef)
+>>> @@ -581,13 +585,25 @@ enum acpi_backlight_type acpi_video_get_backlight_type(void)
+>>>       if (!(video_caps & ACPI_VIDEO_BACKLIGHT))
+>>>           return acpi_backlight_vendor;
+>>>   -    if (acpi_osi_is_win8() && backlight_device_get_by_type(BACKLIGHT_RAW))
+>>> +    if (acpi_osi_is_win8() &&
+>>> +        (native_available || backlight_device_get_by_type(BACKLIGHT_RAW)))
+>>>           return acpi_backlight_native;
+>>>         return acpi_backlight_video;
+>>
+>>
+>> So I ran into a minor problem when testing the NVIDIA proprietary driver against this change set, after checking acpi_video_backlight_use_native() before registering the NVIDIA proprietary driver's backlight handler. Namely, for the case where a user installs the NVIDIA proprietary driver after the video.ko has already registered its backlight handler, we end up with both the firmware and native handlers registered simultaneously, since the ACPI video driver no longer unregisters its backlight handler. In this state, desktop environments end up preferring the registered but non-functional firmware handler from video.ko. (Manually twiddling the sysfs interface for the native NVIDIA handler works fine.) When rebooting the system after installing the NVIDIA proprietary driver, it is able to register its native handler before the delayed work to register the ACPI video backlight handler fires, so we end up with only one (native) handler, and userspace is happy.
+>>
+>> Maybe this will be moot later on, when the existing sysfs interface is deprecated, and it probably isn't a huge deal, since a reboot fixes things (I imagine installing an in-tree DRM/KMS driver on an already running kernel isn't really a thing, which is why this isn't a problem with the in-tree drivers), but would it make sense to unregister the ACPI video backlight handler here before returning acpi_backlight_native? That way, we'll briefly end up with zero backlight handlers rather than briefly ending up with two of them. Not sure if that's really any better, though.
+>>
+> 
+> Thinking about this a little more, maybe it's better not to overly complicate things, and just assert that users of the NVIDIA proprietary driver will need to reboot after installation in order to get the backlight working, at least until we get further along in this effort and the backlight interface transitions to the DRM connector property you have proposed.
 
-== Summary ==
+Right, this series stops unregistering the acpi_video# /sys/class/backlight
+devices because the idea is to never register them in the first place.
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_wd.o
-drivers/gpu/drm/i915/display/intel_wd.c:352:6: error: no previous prototype for ‘intel_wd_connector_init’ [-Werror=missing-prototypes]
- void intel_wd_connector_init(struct intel_wd *intel_wd)
-      ^~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/display/intel_wd.c:426:6: error: no previous prototype for ‘intel_wd_writeback_complete’ [-Werror=missing-prototypes]
- void intel_wd_writeback_complete(struct intel_wd *intel_wd,
-      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/display/intel_wd.c:434:5: error: no previous prototype for ‘intel_wd_setup_transcoder’ [-Werror=missing-prototypes]
- int intel_wd_setup_transcoder(struct intel_wd *intel_wd,
-     ^~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/display/intel_wd.c:590:5: error: no previous prototype for ‘intel_wd_capture’ [-Werror=missing-prototypes]
- int intel_wd_capture(struct intel_wd *intel_wd,
-     ^~~~~~~~~~~~~~~~
-cc1: all warnings being treated as errors
-scripts/Makefile.build:249: recipe for target 'drivers/gpu/drm/i915/display/intel_wd.o' failed
-make[4]: *** [drivers/gpu/drm/i915/display/intel_wd.o] Error 1
-scripts/Makefile.build:466: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:466: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:466: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1843: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+Registering them in the first place causes 2 problems:
 
+1. It causes userspace to see udev events for the register + unregister
+and by the time the systemd backlight level save/restore helper runs
+from udev the unregister has already happened and it logs ugly errors.
+More in general this kinda racy behavior just is ugly.
+
+2. On some hw merely registering the backlight device, which I think
+at least tries to retrieve the current level through ACPI, is causing
+issues. So now we have DMI quirks to force the native backlight on
+some devices, even though the heuristics also say native eventually,
+just to avoid the race. Avoiding the add + remove dance allows
+us to drop a bunch of quirks and likely also fixes issues on other
+devices which we don't yet know need the quirk.
+
+
+So this patch-set changes the acpi_video.c code to no longer register
+the acpi_video# backlight devices at init time *at all*. Instead native
+drivers are supposed to now call acpi_video_register_backlight()
+when they have found an internal panel. But to avoid this causing
+the acpi_video# backlight devices to not show up at all in some
+cases (e.g. native kms drivers blacklisted) the acpi_video code
+also calls acpi_video_register_backlight() itself after 8 seconds.
+
+I believe this is what you are hitting, the 8 seconds have passed
+before the nvidia driver calls acpi_video_backlight_use_native(),
+so the acpi_video# backlight devices have registered (and no longer
+go away).
+
+This is not only a problem when installing the nvidia binary driver
+for the first time. It can also be a problem if the binary driver
+is not in the initrd and leaving the initrd takes longer then
+8 seconds, say because of a diskcrypt password. So I believe that
+this really can be a problem with the nvidia binary driver.
+
+But I think this is easy to fix. We could make the 8 second
+delay configurable by replacing the ACPI_VIDEO_REGISTER_BACKLIGHT_DELAY
+define with a module-parameter; and we could make "0" as value mean
+that acpi_video.c will never call acpi_video_register_backlight()
+itself.
+
+Since the various (also counting distor packaging) nvidia binary
+driver installers already all modify the kernel commandline to
+blacklist nouveau, then the installers can just also pass this
+parameter and then acpi_video.c will never register the acpi_video#.
+
+This does mean that the nvidia binary driver then must call
+acpi_video_register_backlight() when an internal panel is found.
+
+Note the current patches to amdgpu/nouveau skip the calling of
+acpi_video_register_backlight() when
+the acpi_video_backlight_use_native() call returns true and they
+have registered their own backlight. But calling it always is ok
+*as long as the driver is driving the laptops internal panel* !
+
+acpi_video_register_backlight() contains:
+
+       if (acpi_video_get_backlight_type() != acpi_backlight_video)
+                return 0;
+
+So calling it when a native backlight has already been registered
+is a no-op.
+
+Please let me know if the proposed solution works for you and
+if you want me to make ACPI_VIDEO_REGISTER_BACKLIGHT_DELAY a
+module-option for the next version.
+
+Regards,
+
+Hans
+
+
+p.s.
+
+I think that eventually I might even try to make the new
+module-param default to 0 / default to not having acpi_video.c
+do the registering itself ever and see how that goes...
+
+
+
+
+>>>   }
+>>> +
+>>> +enum acpi_backlight_type acpi_video_get_backlight_type(void)
+>>> +{
+>>> +    return __acpi_video_get_backlight_type(false);
+>>> +}
+>>>   EXPORT_SYMBOL(acpi_video_get_backlight_type);
+>>>   +bool acpi_video_backlight_use_native(void)
+>>> +{
+>>> +    return __acpi_video_get_backlight_type(true) == acpi_backlight_native;
+>>> +}
+>>> +EXPORT_SYMBOL(acpi_video_backlight_use_native);
+>>> +
+>>>   /*
+>>>    * Set the preferred backlight interface type based on DMI info.
+>>>    * This function allows DMI blacklists to be implemented by external
+>>> diff --git a/include/acpi/video.h b/include/acpi/video.h
+>>> index db8548ff03ce..4705e339c252 100644
+>>> --- a/include/acpi/video.h
+>>> +++ b/include/acpi/video.h
+>>> @@ -56,6 +56,7 @@ extern void acpi_video_unregister(void);
+>>>   extern int acpi_video_get_edid(struct acpi_device *device, int type,
+>>>                      int device_id, void **edid);
+>>>   extern enum acpi_backlight_type acpi_video_get_backlight_type(void);
+>>> +extern bool acpi_video_backlight_use_native(void);
+>>>   extern void acpi_video_set_dmi_backlight_type(enum acpi_backlight_type type);
+>>>   /*
+>>>    * Note: The value returned by acpi_video_handles_brightness_key_presses()
+>>> @@ -77,6 +78,10 @@ static inline enum acpi_backlight_type acpi_video_get_backlight_type(void)
+>>>   {
+>>>       return acpi_backlight_vendor;
+>>>   }
+>>> +static inline bool acpi_video_backlight_use_native(void)
+>>> +{
+>>> +    return true;
+>>> +}
+>>>   static inline void acpi_video_set_dmi_backlight_type(enum acpi_backlight_type type)
+>>>   {
+>>>   }
+> 
 
