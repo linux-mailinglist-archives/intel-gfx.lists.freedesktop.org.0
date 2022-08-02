@@ -2,136 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6894E589CE5
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:39:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96FA9589CF9
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 15:42:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D46EB98D24;
-	Thu,  4 Aug 2022 13:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 217C498DA6;
+	Thu,  4 Aug 2022 13:40:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2052.outbound.protection.outlook.com [40.107.244.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D128A91C33;
- Tue,  2 Aug 2022 16:49:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XUata67gSHaGPRoxjjeTm8mRBhb/9NM0svcE01lp+TF60jQVkgsJJIzZShYmV/iXODfpAVMKcwJVgk2QCoSLw8++cDlf+m/3k5cQyH691ua/ylIpYA4TBN48E+xxRSOw5UEwfnIk5ywlGrmg5/hlEI3aiqGmc2riSCP7PRBCgxG18dJzybYS61EOTb9BM8ZeYDjj7bPX9Hyysa3DK0sKuoH4CjXazL/Spk4hqwYN3PY2KOZPpaVnCctBTEW5IqXjMW3TbECrD7cFuJJs8xk7nAtARYA8GRYkZ04kvhXJArmUnjM5QAXI6rdeLBniyQTgrQPCdjLc6exWQarR9ptoMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=diCJJRpSjE6HZCLBpSbHRMI2iUZ77Sss/ktXaBchjnA=;
- b=cZ50FKY+DQL/mgNYbCATogBiHb/AACdezK7KqekhlS3ACqqTpA34Tptt2ykxYX/84A6Gplf+b6MA++94MjYdvycOIEUyNlTyUmMqA5lXfywwteQkBAa7uDCm39G6Gjw0+qNXcLZegjKGx6OkYrcUXhaa0rRjSo9U58MPiiXio7YOBjvswBtvv41d9DAjmWJrXBeWMt+wpao8J6VQUSyD/2ZOT03tIj9lywynGH2QEfwTSy+OYocEXwvgSYdwZpRz8oqlrhWxGh2hB4WGEqfXB5htvaH2CCCQlhpbxi75D0D4MeddcMJjcpxekEyHx4Il/BcN/WU2c0mSnKstF0w9rQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=diCJJRpSjE6HZCLBpSbHRMI2iUZ77Sss/ktXaBchjnA=;
- b=e263jZDmL+Ct39zO8QTsmNh9QR1ivaFXuzZD9/BF2YhMI0fYTnjarCq1w2a5p+5K+j9DoO52uzGp6SAoQgssNcHgwLXcrBd4TXqiCJ8l7ZvVg1SMxyq87IdMEn5AZO6E8iLcTOduBFbSr+RDcyd1mK09EN48QPz50Dm71cme0naWMdIzUvcnquzLdfQ599EWPcXs9tzjH4s8gBzH5vvKge71WUupWF0a/fgoInsx/gjIPYWgF52TBSIE/pc5Zn2GDD99WxsAFwo++WDnJTMgXPXbTAyvRAVahmCGKHXp9cJ5xpH3uDO5n0EVYq4F5Y7RBIetR6SYXQmjMRClFHR1Ig==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM6PR12MB2763.namprd12.prod.outlook.com (2603:10b6:5:48::16) by
- BY5PR12MB4902.namprd12.prod.outlook.com (2603:10b6:a03:1dd::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5482.12; Tue, 2 Aug 2022 16:49:41 +0000
-Received: from DM6PR12MB2763.namprd12.prod.outlook.com
- ([fe80::6012:2e0d:2697:8b02]) by DM6PR12MB2763.namprd12.prod.outlook.com
- ([fe80::6012:2e0d:2697:8b02%3]) with mapi id 15.20.5482.016; Tue, 2 Aug 2022
- 16:49:41 +0000
-Message-ID: <5cfb26a2-ec7b-578e-dc01-79776dc7e0c9@nvidia.com>
-Date: Tue, 2 Aug 2022 11:49:36 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Content-Language: en-US
-To: Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Xinhui <Xinhui.Pan@amd.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
- Andy Shevchenko <andy@kernel.org>
-References: <20220712193910.439171-1-hdegoede@redhat.com>
- <20220712193910.439171-2-hdegoede@redhat.com>
- <641cb059-48f5-5f05-5ec2-610f1215391c@nvidia.com>
- <20e4ffcf-2a3a-e671-5f98-1602b78df3cb@nvidia.com>
- <331ebd23-d2a4-bb33-5462-b9bd3284ab69@redhat.com>
-From: Daniel Dadap <ddadap@nvidia.com>
-In-Reply-To: <331ebd23-d2a4-bb33-5462-b9bd3284ab69@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DS7PR03CA0123.namprd03.prod.outlook.com
- (2603:10b6:5:3b4::8) To DM6PR12MB2763.namprd12.prod.outlook.com
- (2603:10b6:5:48::16)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
+ [IPv6:2a00:1450:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D603592588
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Aug 2022 16:53:29 +0000 (UTC)
+Received: by mail-ej1-x635.google.com with SMTP id k26so11294292ejx.5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 02 Aug 2022 09:53:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9lhx0tATAsODf3BSCvUwVT2zXdDn0t7qK5A4Uq+v30k=;
+ b=asZsXVsTjILsFsFhDn73E4hutUOqqOhiKO7rKxhhO/ETj7dcF8rip3zP5zoel7PK/i
+ wejqExt0c3z0SMYUyhZxSke/NsBqw1DhPqtaNureiQyHXISNlovrs49emq5gBx4QgISe
+ yDRD4rdNGTDHwhUd6Db+ZKD88DBx0rH1YF+LJd7B8M/gXOUr9XHFjuSZYfcein9FqA57
+ GDXxmBhVYC925NULeaNyEljqauf7qXkEYb3yN/Bcn6lOg+vhopO0eOLAud1t22+zWNVV
+ vz+Twg6JjuyhphQh4WsXEK1smk0kNTxS5C887MIinwW8dkQ8g/ezTY/P6KUrYMwgnUeZ
+ t5BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9lhx0tATAsODf3BSCvUwVT2zXdDn0t7qK5A4Uq+v30k=;
+ b=J1Hs4TKDsdsPZtp6K0+83F+jEQHUBamwzpi2qm1gMwdEGiSobycEN/g3a4fokVhRm2
+ wJnsrWjt2grn2HozCQr/mQl9tVvG/c5tL5SFbWMO4MkAK5150NsAbIxUgE4Kv1TIfQkw
+ hxL3MMaBtgblBQXcO0fWjVGCcGHv1uebeWNFZEbZtWjdlBxs2cA8MuVocC7vlQUO7A1a
+ ILeHpn6K0/HGGzUPXX/YwzgdYZCuedFtf+2g+Wse+6O4SS2phOBZTxKp1z1Hyj8MLCes
+ rmWeRDi4tR9RiGV0aS1/u9oCLhykUMba6oa7MkC9++mhA/YgUIK6ymsr9l7Dsu+MGGlc
+ eVuA==
+X-Gm-Message-State: AJIora/Me+XhV9eHSJ9HDpBTLwsZdtlQ855g8lG8hPgl5FyILRbmANdD
+ RWBky8PlQB6WYcC08ldMJq7FqoZIDafMYqFL4W/g8puIMyM=
+X-Google-Smtp-Source: AGRyM1uDcT/dG6Idzpdr5qx6v3QtEv7bxAk3erA4WOM/3Vx0vjUIhd9YemZbncpCbqOJ33wpm+cs/LdcdsrhvALrt7I=
+X-Received: by 2002:a17:907:2d93:b0:72b:60a0:6b2e with SMTP id
+ gt19-20020a1709072d9300b0072b60a06b2emr17226957ejc.487.1659459207905; Tue, 02
+ Aug 2022 09:53:27 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 420bb7ab-aace-4e72-23a9-08da74a6febc
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4902:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZIzS6OwGacw2P3UWKCxovTQNOhNiELjnpaqBVaXWouIfhAgiUvhJHPUpR/DuVab9HaQTR8x9Y/jl5Jl+Q8Szehtwko/zc4yGAUSfjg4IDOBbNfUpLXLThpc17DOQZCjM0mjd4b9+Un7783LNTAmSeFUFnn19bFTiwiDIQD4FoLQFqaohAxot0ONszof9vJ02MGlmCeM3cBpNAbLNHh8nZ3P3S916epbh15ME6zQeO3X/AaJ/XAVUrjxjKx5gb3qvXxN11QYSHozkmHVAt71pw1nBVQl2+5MxrBZGcev9FA91p94UiKpKB2JDmnY15VnS8NLKWc7zEWA0H2c4b2Kw0ePffQOAAwZhdkmp2E096MsmiwpBjLvYmx106eI+x1D0S6PTHZ3gXBCyMaNZfIbfU3qNEyXhAl6kC6wLT4aiJFYJPnQ3niJVKA7ldmqiEXDOib8QcUsh0hWXoa3SPw2Cfm0TppnWAI0zhLu+bjX6XEeu+95qTO46YI6sXJRlZ+3l0+z9w3hkYQ3rUu5rK5dA/VJI/G54IfUXeQUVymTcfPsnFIPQke7AqF8R+EX1/U+gjCHEff+Uc3O2PWEqI3DCNpqH3nqASPFBeHheRPPuyE2XRbNnPY4Ih0EgF1lZfu/4HzSY6tZV1Ya/rsl9WFTXA51b/R7WMxfK9gIjNLcSAzhK7G590KIjInquue+IvtCFWRYEVP1Zg+SnqLtFG1wkcQuyr/4pyPG9/WCU/23IHEhKvLOfx5E+aHYrEWJCRUsOBEVejkapGC0QUAr4UyA38WoyoFor9i4K/VwahMJBHVU4fK2ohhFbjIuoOOcdDTkP3etUQ1GUmCld6C1ggFxgsRjVjztFnsbJgV7LmIANqJs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2763.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(376002)(346002)(136003)(396003)(366004)(39860400002)(26005)(53546011)(6512007)(86362001)(41300700001)(6666004)(6506007)(110136005)(31696002)(54906003)(316002)(478600001)(6486002)(38100700002)(921005)(2616005)(83380400001)(186003)(7416002)(30864003)(5660300002)(4326008)(31686004)(66556008)(8676002)(36756003)(66946007)(8936002)(66476007)(2906002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?STFFbVoyZlIrYzB4NTdvK0dFeFNURkVLcmNBNWd3YkIzQ3YvZ2Z5Rmd6Q09y?=
- =?utf-8?B?R0k3MEdYeXBiNVpVQ0sxVGhSMjd1QnJ5YlVGaGl2N3RmRnBQSU1YaHI3dXJm?=
- =?utf-8?B?M2swSEZIdEU3YzZyWCs2QmJLMytFOVJUZ3NYSnBYUHJtMUJMRUZVTTMwOU1O?=
- =?utf-8?B?ZEV1T2NUbUJaZ3Q1N0pZWFVpREIrSFd3cEZQbTNOL24wdVkxb2E0VHBuVlZy?=
- =?utf-8?B?a29vWnJTblZyZzdZUTgyMHRjT1RTalJTMXAvWXJlNC9pMEJRMWd3S3BkR0dF?=
- =?utf-8?B?Mmp3WE9RM3NNWk1UMDFoUVBxSzZqTGdsOFhCbzZIaitHbkQ5dWlXbUFhcEJq?=
- =?utf-8?B?QlgyL01jT0hKUGM5NnZmUXJ4bjRKUGRBZUMvVEliSnFrdUlOQk13MFR4aHdj?=
- =?utf-8?B?MzViNHQrak14eUZkckpBb3NaWUorRjlYYjlzK1hkQzVWL2VpUE95bWtscCti?=
- =?utf-8?B?U3VSbUtvQ0J5RGk3Wk00cHNyU01zZVBwblc2dHBGeWFrYlhtZlhXZlJMRXNx?=
- =?utf-8?B?dStEZ0FVRkVFV2Rhak5TUmlpcURWbFNYQkRJTngxMHpkOEtSNGMzWTFjREhD?=
- =?utf-8?B?WVM3V0V4WjlxWjloVjI2TlkzZDdSRzdIZ3U1Qm50VjlrRVN0Vk5PZU1MT29W?=
- =?utf-8?B?SlErakN4OFYvUlJsYUh0Uzh1UEt1WHgyVGNKaHczaWh2ZjdQUDJkTTdTVDNT?=
- =?utf-8?B?Ukt3amlGR0M5L1BoOWhjYk9RMk5aemNkVjBjWTgvVXdsWENmNFFGbUJTZko0?=
- =?utf-8?B?eHEwdGY4MmhrQUhLMTIyWXM1dXVRL1EvYnRZTElSVUVJSWJkSjdQTkhvT1R0?=
- =?utf-8?B?WmtoSFBreWRRMFdMZGFFMGFKUHlzRDRaSERHcUdpRkNyR0xRVmViWk8xdnhE?=
- =?utf-8?B?dEZGcllOcVErL3gzbUQ2WnNPeW1OZnZ4SHVNZmtSMnVJQ0lSdzdJOWxvNVVG?=
- =?utf-8?B?LzhIcmVnZ3RoTUxuVFl4b0hxSVhxRHVpeFUvZGx3UjhMU0JHVjdUTGE4UGVk?=
- =?utf-8?B?ODZob2RxZEI5amV0WmMzQ282OWpwTHRJNzlOTktKQWZUK0g0SmJqZkV3cU9l?=
- =?utf-8?B?M0ZlclRWdC9kVnh6MFVIWjhrRlArRTFFNm9abm5GYU5zMlA2emZSZ2JIbnVW?=
- =?utf-8?B?TEZZNGVqQTVQaGR6d1NFWTlWZjh5ZUtuZklkQlJNejkwZkwvcTdEQjk3STVK?=
- =?utf-8?B?aGt1Umx0WlJ1RWJSRURoYklKeWFJQ29ya1FTZ1lCbW5ONW5lMlB1WEtDSkRa?=
- =?utf-8?B?L3hiOGhMajV2bTVLWUs2c2NyZTU2R0pVY3FxZ29oRUljRGhaQ3hhY21jYTVw?=
- =?utf-8?B?MTZrZFpjcTc2dnNPMTZFVHNlNmYwRWNyQWNpM3VrL0JsVVlSeUo1MkxLSFUy?=
- =?utf-8?B?aVhrUXJzbGNJempWQzh1amNVRVB4V3pNQUNIeFlmWW82djA4R0cwdDdBM1lG?=
- =?utf-8?B?U1JQSi82cG03RHc1RGE1cHFjWXlkeEtTKytuaGVQNU4yQ3V5OCtlYmZYUVM0?=
- =?utf-8?B?QXhBVUN3Qm9yTHNneUMxUzR2Tyt6VFdlNU5ncnA4WmI3bTMxWUtjaGVESEoy?=
- =?utf-8?B?OC9HR3U2Vjdaa1U3ODVQOGMvbXc3M1ZhRDh4TE5LaURnMGVZaHd2YlJHUWVV?=
- =?utf-8?B?M0Z1ajYrTXNoMHZEY3V2OEd3U3Avdm53Um8rOFNzdVhJaDUvNVhwY2FKQisw?=
- =?utf-8?B?RHFMNGNTdDhEVDdTczRnUnVJcDlYUS9aY3RNUHVnUUpxS2R6c0EyL3g5ODVn?=
- =?utf-8?B?SlpTQVM1ZVQwbkJZdXIvOXJOVU9tMEJuVUZZMkczeCtKcHJBbXI2UUUzTnJR?=
- =?utf-8?B?Y2poOXUxRGRnTmgrZXlPeE0vcDBwcmxiQzU4cCswOXhVOTRCY0xNcElEWHJ6?=
- =?utf-8?B?V3FDSFpNWlhtWHV6UUwzWHN1RDVVa2FtbEVtZmlJMjBZMkhiZUxCWTR4cC9r?=
- =?utf-8?B?Qy95MkorZE51Ym9DaXU0NVBRenVKZFM2VmZKeW9rUGxZa1VJSzQzYS9RTVpr?=
- =?utf-8?B?NEdsQlRTSXZXc0tUWCtnMDNIbU9ISHFpVnVwRUlxVWhaVDVXQ0lGejFFUEtM?=
- =?utf-8?B?S2ZhVGpLV0xURmJrTnJvaVYvUER4T1pmU0RRNWJNMDNSKzV6WXgzYlh5Qnox?=
- =?utf-8?Q?iXwgkBBCviPtvoyJ/PxIDOIus?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 420bb7ab-aace-4e72-23a9-08da74a6febc
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2763.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2022 16:49:41.5513 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OpHMoa7ZCB9bhGKUu6n8li3ytbnz8WoK/iOWcH+XI44PJGOHQfqmdw5nNg5sEFujQuoOZziyW4BT5Tk4qxelmg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4902
+References: <20220728013420.3750388-1-radhakrishna.sripada@intel.com>
+ <20220728013420.3750388-16-radhakrishna.sripada@intel.com>
+In-Reply-To: <20220728013420.3750388-16-radhakrishna.sripada@intel.com>
+From: Caz Yokoyama <cazyokoyama@gmail.com>
+Date: Tue, 2 Aug 2022 09:53:16 -0700
+Message-ID: <CABhNg0hbA_j8DHbk2_XGe1GncYJigWT3qLjFhzr4QucMQiYcAg@mail.gmail.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Content-Type: multipart/alternative; boundary="0000000000009b47e005e544f471"
 X-Mailman-Approved-At: Thu, 04 Aug 2022 13:37:57 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 01/29] ACPI: video: Add
- acpi_video_backlight_use_native() helper
+Subject: Re: [Intel-gfx] [PATCH 15/23] drm/i915/mtl: Obtain SAGV values from
+ MMIO instead of GT pcode mailbox
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,286 +65,623 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Len Brown <lenb@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 8/2/22 06:31, Hans de Goede wrote:
-> Hi Daniel,
+--0000000000009b47e005e544f471
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jul 27, 2022 at 6:34 PM Radhakrishna Sripada <
+radhakrishna.sripada@intel.com> wrote:
+
+> From Meteorlake, Latency Level, SAGV bloack time are read from
+> LATENCY_SAGV register instead of the GT driver pcode mailbox. DDR type
+> and QGV information are also tob read from Mem SS registers.
 >
-> On 7/21/22 23:30, Daniel Dadap wrote:
->> On 7/21/22 16:24, Daniel Dadap wrote:
->>> On 7/12/22 14:38, Hans de Goede wrote:
->>>> ATM on x86 laptops where we want userspace to use the acpi_video backlight
->>>> device we often register both the GPU's native backlight device and
->>>> acpi_video's firmware acpi_video# backlight device. This relies on
->>>> userspace preferring firmware type backlight devices over native ones, but
->>>> registering 2 backlight devices for a single display really is undesirable.
->>>>
->>>> On x86 laptops where the native GPU backlight device should be used,
->>>> the registering of other backlight devices is avoided by their drivers
->>>> using acpi_video_get_backlight_type() and only registering their backlight
->>>> if the return value matches their type.
->>>>
->>>> acpi_video_get_backlight_type() uses
->>>> backlight_device_get_by_type(BACKLIGHT_RAW) to determine if a native
->>>> driver is available and will never return native if this returns
->>>> false. This means that the GPU's native backlight registering code
->>>> cannot just call acpi_video_get_backlight_type() to determine if it
->>>> should register its backlight, since acpi_video_get_backlight_type() will
->>>> never return native until the native backlight has already registered.
->>>>
->>>> To fix this add a new internal native function parameter to
->>>> acpi_video_get_backlight_type(), which when set to true will make
->>>> acpi_video_get_backlight_type() behave as if a native backlight has
->>>> already been registered.
->>>>
->>>> And add a new acpi_video_backlight_use_native() helper, which sets this
->>>> to true, for use in native GPU backlight code.
->>>>
->>>> Changes in v2:
->>>> - Replace adding a native parameter to acpi_video_get_backlight_type() with
->>>>     adding a new acpi_video_backlight_use_native() helper.
->>>>
->>>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->>>> ---
->>>>    drivers/acpi/video_detect.c | 24 ++++++++++++++++++++----
->>>>    include/acpi/video.h        |  5 +++++
->>>>    2 files changed, 25 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
->>>> index becc198e4c22..4346c990022d 100644
->>>> --- a/drivers/acpi/video_detect.c
->>>> +++ b/drivers/acpi/video_detect.c
->>>> @@ -17,8 +17,9 @@
->>>>     * Otherwise vendor specific drivers like thinkpad_acpi, asus-laptop,
->>>>     * sony_acpi,... can take care about backlight brightness.
->>>>     *
->>>> - * Backlight drivers can use acpi_video_get_backlight_type() to determine
->>>> - * which driver should handle the backlight.
->>>> + * Backlight drivers can use acpi_video_get_backlight_type() to determine which
->>>> + * driver should handle the backlight. RAW/GPU-driver backlight drivers must
->>>> + * use the acpi_video_backlight_use_native() helper for this.
->>>>     *
->>>>     * If CONFIG_ACPI_VIDEO is neither set as "compiled in" (y) nor as a module (m)
->>>>     * this file will not be compiled and acpi_video_get_backlight_type() will
->>>> @@ -548,9 +549,10 @@ static int acpi_video_backlight_notify(struct notifier_block *nb,
->>>>     * Arguably the native on win8 check should be done first, but that would
->>>>     * be a behavior change, which may causes issues.
->>>>     */
->>>> -enum acpi_backlight_type acpi_video_get_backlight_type(void)
->>>> +static enum acpi_backlight_type __acpi_video_get_backlight_type(bool native)
->>>>    {
->>>>        static DEFINE_MUTEX(init_mutex);
->>>> +    static bool native_available;
->>>>        static bool init_done;
->>>>        static long video_caps;
->>>>    @@ -570,6 +572,8 @@ enum acpi_backlight_type acpi_video_get_backlight_type(void)
->>>>                backlight_notifier_registered = true;
->>>>            init_done = true;
->>>>        }
->>>> +    if (native)
->>>> +        native_available = true;
->>>>        mutex_unlock(&init_mutex);
->>>>          if (acpi_backlight_cmdline != acpi_backlight_undef)
->>>> @@ -581,13 +585,25 @@ enum acpi_backlight_type acpi_video_get_backlight_type(void)
->>>>        if (!(video_caps & ACPI_VIDEO_BACKLIGHT))
->>>>            return acpi_backlight_vendor;
->>>>    -    if (acpi_osi_is_win8() && backlight_device_get_by_type(BACKLIGHT_RAW))
->>>> +    if (acpi_osi_is_win8() &&
->>>> +        (native_available || backlight_device_get_by_type(BACKLIGHT_RAW)))
->>>>            return acpi_backlight_native;
->>>>          return acpi_backlight_video;
->>>
->>> So I ran into a minor problem when testing the NVIDIA proprietary driver against this change set, after checking acpi_video_backlight_use_native() before registering the NVIDIA proprietary driver's backlight handler. Namely, for the case where a user installs the NVIDIA proprietary driver after the video.ko has already registered its backlight handler, we end up with both the firmware and native handlers registered simultaneously, since the ACPI video driver no longer unregisters its backlight handler. In this state, desktop environments end up preferring the registered but non-functional firmware handler from video.ko. (Manually twiddling the sysfs interface for the native NVIDIA handler works fine.) When rebooting the system after installing the NVIDIA proprietary driver, it is able to register its native handler before the delayed work to register the ACPI video backlight handler fires, so we end up with only one (native) handler, and userspace is happy.
->>>
->>> Maybe this will be moot later on, when the existing sysfs interface is deprecated, and it probably isn't a huge deal, since a reboot fixes things (I imagine installing an in-tree DRM/KMS driver on an already running kernel isn't really a thing, which is why this isn't a problem with the in-tree drivers), but would it make sense to unregister the ACPI video backlight handler here before returning acpi_backlight_native? That way, we'll briefly end up with zero backlight handlers rather than briefly ending up with two of them. Not sure if that's really any better, though.
->>>
->> Thinking about this a little more, maybe it's better not to overly complicate things, and just assert that users of the NVIDIA proprietary driver will need to reboot after installation in order to get the backlight working, at least until we get further along in this effort and the backlight interface transitions to the DRM connector property you have proposed.
-> Right, this series stops unregistering the acpi_video# /sys/class/backlight
-> devices because the idea is to never register them in the first place.
+> Bspec: 49324, 64636
 >
-> Registering them in the first place causes 2 problems:
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Original Author: Caz Yokoyama
+> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 49 +++++++++++++++++++------
+>  drivers/gpu/drm/i915/display/intel_bw.h |  9 +++++
+>  drivers/gpu/drm/i915/i915_reg.h         | 16 ++++++++
+>  drivers/gpu/drm/i915/intel_dram.c       | 41 ++++++++++++++++++++-
+>  drivers/gpu/drm/i915/intel_pm.c         |  8 +++-
+>  5 files changed, 110 insertions(+), 13 deletions(-)
 >
-> 1. It causes userspace to see udev events for the register + unregister
-> and by the time the systemd backlight level save/restore helper runs
-> from udev the unregister has already happened and it logs ugly errors.
-> More in general this kinda racy behavior just is ugly.
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c
+> b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 79269d2c476b..8bbf47da1716 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -15,11 +15,6 @@
+>  #include "intel_pcode.h"
+>  #include "intel_pm.h"
 >
-> 2. On some hw merely registering the backlight device, which I think
-> at least tries to retrieve the current level through ACPI, is causing
-> issues. So now we have DMI quirks to force the native backlight on
-> some devices, even though the heuristics also say native eventually,
-> just to avoid the race. Avoiding the add + remove dance allows
-> us to drop a bunch of quirks and likely also fixes issues on other
-> devices which we don't yet know need the quirk.
-
-
-Yes, those sound like good reasons to avoid registering the ACPI video 
-backlight driver wherever possible.
-
-
-> So this patch-set changes the acpi_video.c code to no longer register
-> the acpi_video# backlight devices at init time *at all*. Instead native
-> drivers are supposed to now call acpi_video_register_backlight()
-> when they have found an internal panel. But to avoid this causing
-> the acpi_video# backlight devices to not show up at all in some
-> cases (e.g. native kms drivers blacklisted) the acpi_video code
-> also calls acpi_video_register_backlight() itself after 8 seconds.
+> -/* Parameters for Qclk Geyserville (QGV) */
+> -struct intel_qgv_point {
+> -       u16 dclk, t_rp, t_rdpre, t_rc, t_ras, t_rcd;
+> -};
+> -
+>  struct intel_psf_gv_point {
+>         u8 clk; /* clock in multiples of 16.6666 MHz */
+>  };
+> @@ -137,6 +132,42 @@ int icl_pcode_restrict_qgv_points(struct
+> drm_i915_private *dev_priv,
+>         return 0;
+>  }
 >
-> I believe this is what you are hitting, the 8 seconds have passed
-> before the nvidia driver calls acpi_video_backlight_use_native(),
-> so the acpi_video# backlight devices have registered (and no longer
-> go away).
+> +static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
 >
-> This is not only a problem when installing the nvidia binary driver
-> for the first time. It can also be a problem if the binary driver
-> is not in the initrd and leaving the initrd takes longer then
-> 8 seconds, say because of a diskcrypt password. So I believe that
-> this really can be a problem with the nvidia binary driver.
+No need to return value. i.e.
 
+static void
+mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
+-caz
 
-Hmm. I hadn't considered the case of the binary driver being absent from 
-the initrd, and the possibility of the transition out of the initrd 
-happening after the timeout. Yes, this is a bigger problem than the 
-"only after first installing the driver" scenario I ran into.
-
-
-> But I think this is easy to fix. We could make the 8 second
-> delay configurable by replacing the ACPI_VIDEO_REGISTER_BACKLIGHT_DELAY
-> define with a module-parameter; and we could make "0" as value mean
-> that acpi_video.c will never call acpi_video_register_backlight()
-> itself.
++                                  struct intel_qgv_point *sp, int point)
+> +{
+> +       u32 val, val2;
+> +       u16 dclk;
+> +
+> +       val =3D intel_uncore_read(&dev_priv->uncore,
+> +                               MTL_MEM_SS_INFO_QGV_POINT(point, 0));
+> +       val2 =3D intel_uncore_read(&dev_priv->uncore,
+> +                                MTL_MEM_SS_INFO_QGV_POINT(point, 1));
+> +       dclk =3D REG_FIELD_GET(MTL_DCLK_MASK, val);
+> +       sp->dclk =3D DIV_ROUND_UP((16667 * dclk) +  500, 1000);
+> +       sp->t_rp =3D REG_FIELD_GET(MTL_TRP_MASK, val);
+> +       sp->t_rcd =3D REG_FIELD_GET(MTL_TRCD_MASK, val);
+> +
+> +       sp->t_rdpre =3D REG_FIELD_GET(MTL_TRDPRE_MASK, val2);
+> +       sp->t_ras =3D REG_FIELD_GET(MTL_TRAS_MASK, val2);
+> +
+> +       sp->t_rc =3D sp->t_rp + sp->t_ras;
+> +
+> +       return 0;
+> +}
+> +
+> +int
+> +intel_read_qgv_point_info(struct drm_i915_private *dev_priv,
+> +                         struct intel_qgv_point *sp,
+> +                         int point)
+> +{
+> +       if (DISPLAY_VER(dev_priv) >=3D 14)
+> +               return mtl_read_qgv_point_info(dev_priv, sp, point);
+> +       else if (IS_DG1(dev_priv))
+> +               return dg1_mchbar_read_qgv_point_info(dev_priv, sp, point=
+);
+> +       else
+> +               return icl_pcode_read_qgv_point_info(dev_priv, sp, point)=
+;
+> +}
+> +
+>  static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>                               struct intel_qgv_info *qi,
+>                               bool is_y_tile)
+> @@ -193,11 +224,7 @@ static int icl_get_qgv_points(struct drm_i915_privat=
+e
+> *dev_priv,
+>         for (i =3D 0; i < qi->num_points; i++) {
+>                 struct intel_qgv_point *sp =3D &qi->points[i];
 >
-> Since the various (also counting distor packaging) nvidia binary
-> driver installers already all modify the kernel commandline to
-> blacklist nouveau, then the installers can just also pass this
-> parameter and then acpi_video.c will never register the acpi_video#.
-
-
-This sounds like a reasonable compromise, but I worry that it may be 
-difficult to determine whether a system definitely doesn't need the ACPI 
-video backlight driver. On the other hand, the last system that I recall 
-personally seeing that did use the ACPI video backlight driver was a 
-little over 10 years ago, so it's possible that there are no systems 
-which use that driver which are supported by current versions of the 
-NVIDIA proprietary driver. I'll have to do some research to determine 
-what types of systems actually used video.ko's backlight driver, unless 
-you happen to know already.
-
-
-> This does mean that the nvidia binary driver then must call
-> acpi_video_register_backlight() when an internal panel is found.
+> -               if (IS_DG1(dev_priv))
+> -                       ret =3D dg1_mchbar_read_qgv_point_info(dev_priv, =
+sp,
+> i);
+> -               else
+> -                       ret =3D icl_pcode_read_qgv_point_info(dev_priv, s=
+p,
+> i);
+> -
+> +               ret =3D intel_read_qgv_point_info(dev_priv, sp, i);
+>                 if (ret)
+>                         return ret;
 >
-> Note the current patches to amdgpu/nouveau skip the calling of
-> acpi_video_register_backlight() when
-> the acpi_video_backlight_use_native() call returns true and they
-> have registered their own backlight. But calling it always is ok
-> *as long as the driver is driving the laptops internal panel* !
+> @@ -560,7 +587,7 @@ void intel_bw_init_hw(struct drm_i915_private
+> *dev_priv)
 >
-> acpi_video_register_backlight() contains:
+>         if (IS_DG2(dev_priv))
+>                 dg2_get_bw_info(dev_priv);
+> -       else if (IS_ALDERLAKE_P(dev_priv))
+> +       else if (DISPLAY_VER(dev_priv) >=3D 13 || IS_ALDERLAKE_P(dev_priv=
+))
+>                 tgl_get_bw_info(dev_priv, &adlp_sa_info);
+>         else if (IS_ALDERLAKE_S(dev_priv))
+>                 tgl_get_bw_info(dev_priv, &adls_sa_info);
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h
+> b/drivers/gpu/drm/i915/display/intel_bw.h
+> index cb7ee3a24a58..b4c6665b0cf0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> @@ -46,6 +46,11 @@ struct intel_bw_state {
+>         u8 num_active_planes[I915_MAX_PIPES];
+>  };
 >
->         if (acpi_video_get_backlight_type() != acpi_backlight_video)
->                  return 0;
+> +/* Parameters for Qclk Geyserville (QGV) */
+> +struct intel_qgv_point {
+> +       u16 dclk, t_rp, t_rdpre, t_rc, t_ras, t_rcd;
+> +};
+> +
+>  #define to_intel_bw_state(x) container_of((x), struct intel_bw_state,
+> base)
 >
-> So calling it when a native backlight has already been registered
-> is a no-op.
-
-
-The NVIDIA proprietary driver will already know when it has registered 
-its own backlight handler, so there probably isn't any need to always 
-call it when driving an internal panel. I'll have to double-check to see 
-if we have already determined whether a panel is connected before 
-registering the backlight handler: I am pretty certain that is the case.
-
-One further potential difficulty that I anticipate is that not all 
-dynamic mux systems use the EC backlight driver (or a similar, 
-GPU-agnostic driver), and rather have whichever GPU happens to be 
-connected at the time be responsible for the backlight. I had initially 
-thought that supporting the EC backlight interface was a requirement for 
-OEMs to implement dynamic mux support, but I recently learned this is 
-not true in all cases. On Windows, this requires coordinating the 
-backlight controls of the two GPU drivers across a mux switch, to load 
-the state of the switched-away-from GPU and set it on the switched-to 
-GPU. I imagine for these systems we may need to do some similar 
-save/restore, probably managed by vga-switcheroo, but it would require 
-having both GPU drivers register their own native backlight handlers 
-(and possibly while one of them is not connected to the panel).
-
-Dynamic mux switching isn't actually supported on Linux, yet, so we 
-should be able to kick this particular can a little further down the 
-road, but in the meantime we should probably start planning for how best 
-to handle this sort of system under the "only one backlight handler per 
-panel" model. Maybe the vga-switcheroo handler can register its own 
-backlight handler, that then negotiates the actual backlight settings 
-between the relevant GPU drivers, possibly through a new vga-switcheroo 
-client callback. I'll have to think about this a bit more.
-
-
-> Please let me know if the proposed solution works for you and
-> if you want me to make ACPI_VIDEO_REGISTER_BACKLIGHT_DELAY a
-> module-option for the next version.
-
-
-I do think it should be workable, apart from the concern I mentioned 
-above about knowing when to set the module option to disable the ACPI 
-video backlight driver. I'll need to get a better understanding of 
-exactly which systems actually use that driver.
-
-
-> Regards,
+>  struct intel_bw_state *
+> @@ -69,4 +74,8 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state
+> *state,
+>  int intel_bw_min_cdclk(struct drm_i915_private *i915,
+>                        const struct intel_bw_state *bw_state);
 >
-> Hans
+> +int intel_read_qgv_point_info(struct drm_i915_private *dev_priv,
+> +                             struct intel_qgv_point *sp,
+> +                             int point);
+> +
+>  #endif /* __INTEL_BW_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> b/drivers/gpu/drm/i915/i915_reg.h
+> index 23b50d671550..d37607109398 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -8761,4 +8761,20 @@ enum skl_power_gate {
+>  #define  MTL_LATENCY_LEVEL0_2_4_MASK   REG_GENMASK(12, 0)
+>  #define  MTL_LATENCY_LEVEL1_3_5_MASK   REG_GENMASK(28, 16)
+>
+> +#define MTL_LATENCY_SAGV               _MMIO(0x4578c)
+> +#define  MTL_LATENCY_QCLK_SAGV         REG_GENMASK(12, 0)
+> +
+> +#define MTL_MEM_SS_INFO_GLOBAL                 _MMIO(0x45700)
+> +#define  MTL_DDR_TYPE_MASK                     REG_GENMASK(3, 0)
+> +#define  MTL_N_OF_POPULATED_CH_MASK            REG_GENMASK(7, 4)
+> +#define  MTL_N_OF_ENABLED_QGV_POINTS_MASK      REG_GENMASK(11, 8)
+> +
+> +#define MTL_MEM_SS_INFO_QGV_POINT(point, bitgroup) \
+> +        _MMIO(0x45710 + ((point) * 2 + (bitgroup)) * sizeof(u32))
+> +#define  MTL_TRDPRE_MASK               REG_GENMASK(7, 0)
+> +#define  MTL_TRAS_MASK                 REG_GENMASK(16, 8)
+> +#define  MTL_DCLK_MASK                 REG_GENMASK(15, 0)
+> +#define  MTL_TRP_MASK                  REG_GENMASK(23, 16)
+> +#define  MTL_TRCD_MASK                 REG_GENMASK(31, 24)
+> +
+>  #endif /* _I915_REG_H_ */
+> diff --git a/drivers/gpu/drm/i915/intel_dram.c
+> b/drivers/gpu/drm/i915/intel_dram.c
+> index 437447119770..2403ccd52c74 100644
+> --- a/drivers/gpu/drm/i915/intel_dram.c
+> +++ b/drivers/gpu/drm/i915/intel_dram.c
+> @@ -466,6 +466,43 @@ static int gen12_get_dram_info(struct
+> drm_i915_private *i915)
+>         return icl_pcode_read_mem_global_info(i915);
+>  }
+>
+> +static int xelpdp_get_dram_info(struct drm_i915_private *i915)
+> +{
+> +       u32 val =3D intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOB=
+AL);
+> +       struct dram_info *dram_info =3D &i915->dram_info;
+> +
+> +       val =3D REG_FIELD_GET(MTL_DDR_TYPE_MASK, val);
+> +       switch (val) {
+> +       case 0:
+> +               dram_info->type =3D INTEL_DRAM_DDR4;
+> +               break;
+> +       case 1:
+> +               dram_info->type =3D INTEL_DRAM_DDR5;
+> +               break;
+> +       case 2:
+> +               dram_info->type =3D INTEL_DRAM_LPDDR5;
+> +               break;
+> +       case 3:
+> +               dram_info->type =3D INTEL_DRAM_LPDDR4;
+> +               break;
+> +       case 4:
+> +               dram_info->type =3D INTEL_DRAM_DDR3;
+> +               break;
+> +       case 5:
+> +               dram_info->type =3D INTEL_DRAM_LPDDR3;
+> +               break;
+> +       default:
+> +               MISSING_CASE(val);
+> +               return -EINVAL;
+> +       }
+> +
+> +       dram_info->num_channels =3D
+> REG_FIELD_GET(MTL_N_OF_POPULATED_CH_MASK, val);
+> +       dram_info->num_qgv_points =3D
+> REG_FIELD_GET(MTL_N_OF_ENABLED_QGV_POINTS_MASK, val);
+> +       /* PSF GV points not supported in D14+ */
+> +
+> +       return 0;
+> +}
+> +
+>  void intel_dram_detect(struct drm_i915_private *i915)
+>  {
+>         struct dram_info *dram_info =3D &i915->dram_info;
+> @@ -480,7 +517,9 @@ void intel_dram_detect(struct drm_i915_private *i915)
+>          */
+>         dram_info->wm_lv_0_adjust_needed =3D !IS_GEN9_LP(i915);
+>
+> -       if (GRAPHICS_VER(i915) >=3D 12)
+> +       if (DISPLAY_VER(i915) >=3D 14)
+> +               ret =3D xelpdp_get_dram_info(i915);
+> +       else if (GRAPHICS_VER(i915) >=3D 12)
+>                 ret =3D gen12_get_dram_info(i915);
+>         else if (GRAPHICS_VER(i915) >=3D 11)
+>                 ret =3D gen11_get_dram_info(i915);
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c
+> b/drivers/gpu/drm/i915/intel_pm.c
+> index fac565d23d57..f71b3b8b590c 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3698,7 +3698,13 @@ intel_has_sagv(struct drm_i915_private *dev_priv)
+>  static u32
+>  intel_sagv_block_time(struct drm_i915_private *dev_priv)
+>  {
+> -       if (DISPLAY_VER(dev_priv) >=3D 12) {
+> +       if (DISPLAY_VER(dev_priv) >=3D 14) {
+> +               u32 val;
+> +
+> +               val =3D intel_uncore_read(&dev_priv->uncore,
+> MTL_LATENCY_SAGV);
+> +
+> +               return REG_FIELD_GET(MTL_LATENCY_QCLK_SAGV, val);
+> +       } else if (DISPLAY_VER(dev_priv) >=3D 12) {
+>                 u32 val =3D 0;
+>                 int ret;
+>
+> --
+> 2.25.1
 >
 >
-> p.s.
->
-> I think that eventually I might even try to make the new
-> module-param default to 0 / default to not having acpi_video.c
-> do the registering itself ever and see how that goes...
 
-Would the GPU drivers then be responsible for calling acpi_video_register_backlight() again? My understanding was that part of the intention here was to make that no longer necessary.
+--=20
+-caz, caz at caztech dot com, 503-six one zero - five six nine nine(m)
 
+--0000000000009b47e005e544f471
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 27, 2022 at 6:34 PM Radha=
+krishna Sripada &lt;<a href=3D"mailto:radhakrishna.sripada@intel.com">radha=
+krishna.sripada@intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex">From Meteorlake, Latency Level, SAGV bloack time a=
+re read from<br>
+LATENCY_SAGV register instead of the GT driver pcode mailbox. DDR type<br>
+and QGV information are also tob read from Mem SS registers.<br>
+<br>
+Bspec: 49324, 64636<br>
+<br>
+Cc: Matt Roper &lt;<a href=3D"mailto:matthew.d.roper@intel.com" target=3D"_=
+blank">matthew.d.roper@intel.com</a>&gt;<br>
+Original Author: Caz Yokoyama<br>
+Signed-off-by: Jos=C3=A9 Roberto de Souza &lt;<a href=3D"mailto:jose.souza@=
+intel.com" target=3D"_blank">jose.souza@intel.com</a>&gt;<br>
+Signed-off-by: Radhakrishna Sripada &lt;<a href=3D"mailto:radhakrishna.srip=
+ada@intel.com" target=3D"_blank">radhakrishna.sripada@intel.com</a>&gt;<br>
+---<br>
+=C2=A0drivers/gpu/drm/i915/display/intel_bw.c | 49 +++++++++++++++++++-----=
+-<br>
+=C2=A0drivers/gpu/drm/i915/display/intel_bw.h |=C2=A0 9 +++++<br>
+=C2=A0drivers/gpu/drm/i915/i915_reg.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 16=
+ ++++++++<br>
+=C2=A0drivers/gpu/drm/i915/intel_dram.c=C2=A0 =C2=A0 =C2=A0 =C2=A0| 41 ++++=
+++++++++++++++++-<br>
+=C2=A0drivers/gpu/drm/i915/intel_pm.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=
+=A0 8 +++-<br>
+=C2=A05 files changed, 110 insertions(+), 13 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915=
+/display/intel_bw.c<br>
+index 79269d2c476b..8bbf47da1716 100644<br>
+--- a/drivers/gpu/drm/i915/display/intel_bw.c<br>
++++ b/drivers/gpu/drm/i915/display/intel_bw.c<br>
+@@ -15,11 +15,6 @@<br>
+=C2=A0#include &quot;intel_pcode.h&quot;<br>
+=C2=A0#include &quot;intel_pm.h&quot;<br>
+<br>
+-/* Parameters for Qclk Geyserville (QGV) */<br>
+-struct intel_qgv_point {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0u16 dclk, t_rp, t_rdpre, t_rc, t_ras, t_rcd;<br=
 >
->>>>    }
->>>> +
->>>> +enum acpi_backlight_type acpi_video_get_backlight_type(void)
->>>> +{
->>>> +    return __acpi_video_get_backlight_type(false);
->>>> +}
->>>>    EXPORT_SYMBOL(acpi_video_get_backlight_type);
->>>>    +bool acpi_video_backlight_use_native(void)
->>>> +{
->>>> +    return __acpi_video_get_backlight_type(true) == acpi_backlight_native;
->>>> +}
->>>> +EXPORT_SYMBOL(acpi_video_backlight_use_native);
->>>> +
->>>>    /*
->>>>     * Set the preferred backlight interface type based on DMI info.
->>>>     * This function allows DMI blacklists to be implemented by external
->>>> diff --git a/include/acpi/video.h b/include/acpi/video.h
->>>> index db8548ff03ce..4705e339c252 100644
->>>> --- a/include/acpi/video.h
->>>> +++ b/include/acpi/video.h
->>>> @@ -56,6 +56,7 @@ extern void acpi_video_unregister(void);
->>>>    extern int acpi_video_get_edid(struct acpi_device *device, int type,
->>>>                       int device_id, void **edid);
->>>>    extern enum acpi_backlight_type acpi_video_get_backlight_type(void);
->>>> +extern bool acpi_video_backlight_use_native(void);
->>>>    extern void acpi_video_set_dmi_backlight_type(enum acpi_backlight_type type);
->>>>    /*
->>>>     * Note: The value returned by acpi_video_handles_brightness_key_presses()
->>>> @@ -77,6 +78,10 @@ static inline enum acpi_backlight_type acpi_video_get_backlight_type(void)
->>>>    {
->>>>        return acpi_backlight_vendor;
->>>>    }
->>>> +static inline bool acpi_video_backlight_use_native(void)
->>>> +{
->>>> +    return true;
->>>> +}
->>>>    static inline void acpi_video_set_dmi_backlight_type(enum acpi_backlight_type type)
->>>>    {
->>>>    }
+-};<br>
+-<br>
+=C2=A0struct intel_psf_gv_point {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 u8 clk; /* clock in multiples of 16.6666 MHz */=
+<br>
+=C2=A0};<br>
+@@ -137,6 +132,42 @@ int icl_pcode_restrict_qgv_points(struct drm_i915_priv=
+ate *dev_priv,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 return 0;<br>
+=C2=A0}<br>
+<br>
++static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,<br><=
+/blockquote><div>No need to return value. i.e.</div><div><br></div><div>sta=
+tic void</div><div>mtl_read_qgv_point_info(struct drm_i915_private *dev_pri=
+v,</div><div>-caz</div><div><br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct intel_qgv_point *sp, i=
+nt point)<br>
++{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0u32 val, val2;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0u16 dclk;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0val =3D intel_uncore_read(&amp;dev_priv-&gt;unc=
+ore,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0MTL_MEM_SS_INFO_QGV_POINT(point, 0));=
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0val2 =3D intel_uncore_read(&amp;dev_priv-&gt;un=
+core,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 MTL_MEM_SS_INFO_QGV_POINT(point, 1))=
+;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0dclk =3D REG_FIELD_GET(MTL_DCLK_MASK, val);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0sp-&gt;dclk =3D DIV_ROUND_UP((16667 * dclk) +=
+=C2=A0 500, 1000);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0sp-&gt;t_rp =3D REG_FIELD_GET(MTL_TRP_MASK, val=
+);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0sp-&gt;t_rcd =3D REG_FIELD_GET(MTL_TRCD_MASK, v=
+al);<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0sp-&gt;t_rdpre =3D REG_FIELD_GET(MTL_TRDPRE_MAS=
+K, val2);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0sp-&gt;t_ras =3D REG_FIELD_GET(MTL_TRAS_MASK, v=
+al2);<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0sp-&gt;t_rc =3D sp-&gt;t_rp + sp-&gt;t_ras;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<br>
++}<br>
++<br>
++int<br>
++intel_read_qgv_point_info(struct drm_i915_private *dev_priv,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0struct intel_qgv_point *sp,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0int point)<br>
++{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if (DISPLAY_VER(dev_priv) &gt;=3D 14)<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return mtl_read_qgv=
+_point_info(dev_priv, sp, point);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0else if (IS_DG1(dev_priv))<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return dg1_mchbar_r=
+ead_qgv_point_info(dev_priv, sp, point);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0else<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return icl_pcode_re=
+ad_qgv_point_info(dev_priv, sp, point);<br>
++}<br>
++<br>
+=C2=A0static int icl_get_qgv_points(struct drm_i915_private *dev_priv,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct intel_qgv_info *qi,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bool is_y_tile)<br>
+@@ -193,11 +224,7 @@ static int icl_get_qgv_points(struct drm_i915_private =
+*dev_priv,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 for (i =3D 0; i &lt; qi-&gt;num_points; i++) {<=
+br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct intel_qgv_po=
+int *sp =3D &amp;qi-&gt;points[i];<br>
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (IS_DG1(dev_priv=
+))<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0ret =3D dg1_mchbar_read_qgv_point_info(dev_priv, sp, i);<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0else<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0ret =3D icl_pcode_read_qgv_point_info(dev_priv, sp, i);<br>
+-<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D intel_read_=
+qgv_point_info(dev_priv, sp, i);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (ret)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 return ret;<br>
+<br>
+@@ -560,7 +587,7 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv=
+)<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (IS_DG2(dev_priv))<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 dg2_get_bw_info(dev=
+_priv);<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0else if (IS_ALDERLAKE_P(dev_priv))<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0else if (DISPLAY_VER(dev_priv) &gt;=3D 13 || IS=
+_ALDERLAKE_P(dev_priv))<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tgl_get_bw_info(dev=
+_priv, &amp;adlp_sa_info);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 else if (IS_ALDERLAKE_S(dev_priv))<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tgl_get_bw_info(dev=
+_priv, &amp;adls_sa_info);<br>
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915=
+/display/intel_bw.h<br>
+index cb7ee3a24a58..b4c6665b0cf0 100644<br>
+--- a/drivers/gpu/drm/i915/display/intel_bw.h<br>
++++ b/drivers/gpu/drm/i915/display/intel_bw.h<br>
+@@ -46,6 +46,11 @@ struct intel_bw_state {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 u8 num_active_planes[I915_MAX_PIPES];<br>
+=C2=A0};<br>
+<br>
++/* Parameters for Qclk Geyserville (QGV) */<br>
++struct intel_qgv_point {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0u16 dclk, t_rp, t_rdpre, t_rc, t_ras, t_rcd;<br=
+>
++};<br>
++<br>
+=C2=A0#define to_intel_bw_state(x) container_of((x), struct intel_bw_state,=
+ base)<br>
+<br>
+=C2=A0struct intel_bw_state *<br>
+@@ -69,4 +74,8 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *st=
+ate,<br>
+=C2=A0int intel_bw_min_cdclk(struct drm_i915_private *i915,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0const struct intel_bw_state *bw_state);<br>
+<br>
++int intel_read_qgv_point_info(struct drm_i915_private *dev_priv,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct intel_qgv_point *sp,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int point);<br>
++<br>
+=C2=A0#endif /* __INTEL_BW_H__ */<br>
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_re=
+g.h<br>
+index 23b50d671550..d37607109398 100644<br>
+--- a/drivers/gpu/drm/i915/i915_reg.h<br>
++++ b/drivers/gpu/drm/i915/i915_reg.h<br>
+@@ -8761,4 +8761,20 @@ enum skl_power_gate {<br>
+=C2=A0#define=C2=A0 MTL_LATENCY_LEVEL0_2_4_MASK=C2=A0 =C2=A0REG_GENMASK(12,=
+ 0)<br>
+=C2=A0#define=C2=A0 MTL_LATENCY_LEVEL1_3_5_MASK=C2=A0 =C2=A0REG_GENMASK(28,=
+ 16)<br>
+<br>
++#define MTL_LATENCY_SAGV=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0_MMIO(0x4578c)<br>
++#define=C2=A0 MTL_LATENCY_QCLK_SAGV=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0REG_G=
+ENMASK(12, 0)<br>
++<br>
++#define MTL_MEM_SS_INFO_GLOBAL=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0_MMIO(0x45700)<br>
++#define=C2=A0 MTL_DDR_TYPE_MASK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0REG_GENMASK(3, 0)<br>
++#define=C2=A0 MTL_N_OF_POPULATED_CH_MASK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 REG_GENMASK(7, 4)<br>
++#define=C2=A0 MTL_N_OF_ENABLED_QGV_POINTS_MASK=C2=A0 =C2=A0 =C2=A0 REG_GEN=
+MASK(11, 8)<br>
++<br>
++#define MTL_MEM_SS_INFO_QGV_POINT(point, bitgroup) \<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 _MMIO(0x45710 + ((point) * 2 + (bitgroup)) * s=
+izeof(u32))<br>
++#define=C2=A0 MTL_TRDPRE_MASK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0REG_GENMASK(7, 0)<br>
++#define=C2=A0 MTL_TRAS_MASK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0REG_GENMASK(16, 8)<br>
++#define=C2=A0 MTL_DCLK_MASK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0REG_GENMASK(15, 0)<br>
++#define=C2=A0 MTL_TRP_MASK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 REG_GENMASK(23, 16)<br>
++#define=C2=A0 MTL_TRCD_MASK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0REG_GENMASK(31, 24)<br>
++<br>
+=C2=A0#endif /* _I915_REG_H_ */<br>
+diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel=
+_dram.c<br>
+index 437447119770..2403ccd52c74 100644<br>
+--- a/drivers/gpu/drm/i915/intel_dram.c<br>
++++ b/drivers/gpu/drm/i915/intel_dram.c<br>
+@@ -466,6 +466,43 @@ static int gen12_get_dram_info(struct drm_i915_private=
+ *i915)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 return icl_pcode_read_mem_global_info(i915);<br=
+>
+=C2=A0}<br>
+<br>
++static int xelpdp_get_dram_info(struct drm_i915_private *i915)<br>
++{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0u32 val =3D intel_uncore_read(&amp;i915-&gt;unc=
+ore, MTL_MEM_SS_INFO_GLOBAL);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0struct dram_info *dram_info =3D &amp;i915-&gt;d=
+ram_info;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0val =3D REG_FIELD_GET(MTL_DDR_TYPE_MASK, val);<=
+br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (val) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case 0:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dram_info-&gt;type =
+=3D INTEL_DRAM_DDR4;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case 1:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dram_info-&gt;type =
+=3D INTEL_DRAM_DDR5;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case 2:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dram_info-&gt;type =
+=3D INTEL_DRAM_LPDDR5;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case 3:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dram_info-&gt;type =
+=3D INTEL_DRAM_LPDDR4;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case 4:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dram_info-&gt;type =
+=3D INTEL_DRAM_DDR3;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0case 5:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dram_info-&gt;type =
+=3D INTEL_DRAM_LPDDR3;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0MISSING_CASE(val);<=
+br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -EINVAL;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0dram_info-&gt;num_channels =3D REG_FIELD_GET(MT=
+L_N_OF_POPULATED_CH_MASK, val);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0dram_info-&gt;num_qgv_points =3D REG_FIELD_GET(=
+MTL_N_OF_ENABLED_QGV_POINTS_MASK, val);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0/* PSF GV points not supported in D14+ */<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<br>
++}<br>
++<br>
+=C2=A0void intel_dram_detect(struct drm_i915_private *i915)<br>
+=C2=A0{<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct dram_info *dram_info =3D &amp;i915-&gt;d=
+ram_info;<br>
+@@ -480,7 +517,9 @@ void intel_dram_detect(struct drm_i915_private *i915)<b=
+r>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*/<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 dram_info-&gt;wm_lv_0_adjust_needed =3D !IS_GEN=
+9_LP(i915);<br>
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0if (GRAPHICS_VER(i915) &gt;=3D 12)<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if (DISPLAY_VER(i915) &gt;=3D 14)<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D xelpdp_get_=
+dram_info(i915);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0else if (GRAPHICS_VER(i915) &gt;=3D 12)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ret =3D gen12_get_d=
+ram_info(i915);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 else if (GRAPHICS_VER(i915) &gt;=3D 11)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ret =3D gen11_get_d=
+ram_info(i915);<br>
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_p=
+m.c<br>
+index fac565d23d57..f71b3b8b590c 100644<br>
+--- a/drivers/gpu/drm/i915/intel_pm.c<br>
++++ b/drivers/gpu/drm/i915/intel_pm.c<br>
+@@ -3698,7 +3698,13 @@ intel_has_sagv(struct drm_i915_private *dev_priv)<br=
+>
+=C2=A0static u32<br>
+=C2=A0intel_sagv_block_time(struct drm_i915_private *dev_priv)<br>
+=C2=A0{<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0if (DISPLAY_VER(dev_priv) &gt;=3D 12) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if (DISPLAY_VER(dev_priv) &gt;=3D 14) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u32 val;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0val =3D intel_uncor=
+e_read(&amp;dev_priv-&gt;uncore, MTL_LATENCY_SAGV);<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return REG_FIELD_GE=
+T(MTL_LATENCY_QCLK_SAGV, val);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0} else if (DISPLAY_VER(dev_priv) &gt;=3D 12) {<=
+br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 u32 val =3D 0;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 int ret;<br>
+<br>
+-- <br>
+2.25.1<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div=
+ dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div>-caz, caz at =
+caztech dot com, 503-six one zero - five six nine nine(m)<br></div></div></=
+div></div></div></div></div></div></div></div></div></div>
+
+--0000000000009b47e005e544f471--
