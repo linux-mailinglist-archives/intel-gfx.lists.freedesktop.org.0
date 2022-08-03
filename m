@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E50E1588E52
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 16:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 197E1588E57
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 16:16:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A97018BDAB;
-	Wed,  3 Aug 2022 14:14:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A6742B673;
+	Wed,  3 Aug 2022 14:15:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3F6314BB41;
- Wed,  3 Aug 2022 14:13:50 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2803C2B512
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Aug 2022 14:15:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659536031; x=1691072031;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=BsKJWJU6OZj2+68nG5xGQnbTAWykYOp6ZiGKI8pwOXQ=;
- b=YkmaxmEaNO8656A7WDqseWA9/I774sWuf1+ZdyMu6DW693L3QS2cCsx8
- T2kxbfJCqPoofWFHeSI7pZnfoGcAVqrF9ipj3M2r7v+G3qGQdUGmG8Bsw
- o1EU0MkEJiIY72MBD75jwnn5uvsEQfI7Ohg7XYOpf6ddvJIuQB79pHnFf
- uzNToolN2p3/ZO5dILu4OnNqePy/fJCxNrlIt9jUIBkk4rZB65dUi6GcS
- fvtwDp6cVT6a2d0Dp7tHlQsJfCDPg5i94RzqpDst5fiwuZLSnV20qviGh
- N7Fn+n/OlY3DPpz1SS+db3SlvoqtL8sdhPNbSg71zJGBJ4IpTsKVTlt4X g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="288436920"
-X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="288436920"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2022 07:13:49 -0700
-X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="631163538"
+ t=1659536136; x=1691072136;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=AkcW4HhOQqJbhnhs937PGc3B9P1ji7dOS7UX8NBxEUs=;
+ b=AOsqnBQs+wK+ti547leYOWQUveqC/O7cjZeMUp7ECnLTz4g2iwVIEmxf
+ baNHHHiiLvgL5oh7nv6l45/NpzkeQ3Iyu1c3QWf1SVNtcS4uGD+8miKLg
+ b5quQ8V4s9voLoE0W4zDLPkswQsXElQCcOTgtKGCWl+bqFrAvf1p9EHWP
+ qdTY8SdrwiaF2j9CV8FDrygxIATyVTPq7MZHHknf3jGoC3L4xCE38wEnz
+ pU18QrRg0lXPhAvWHq05AFeq8hvcVfP4Hq8hwxm+a+kC/+6FZuEPUDPa6
+ Ia5dW8M8RkpDhA5EzGVga5AsIsE+Hd4N3X/aM4EOMzP75mUHR9nmF/xO1 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="351394663"
+X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="351394663"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2022 07:15:34 -0700
+X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="578661326"
 Received: from ns1-mobl.gar.corp.intel.com (HELO localhost) ([10.252.59.244])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2022 07:13:45 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+ by orsmga006-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2022 07:15:33 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220725092528.1281487-5-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20220726072300.3950338-1-ankit.k.nautiyal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220725092528.1281487-1-gwan-gyeong.mun@intel.com>
- <20220725092528.1281487-5-gwan-gyeong.mun@intel.com>
-Date: Wed, 03 Aug 2022 17:13:43 +0300
-Message-ID: <8735edquso.fsf@intel.com>
+References: <20220726072300.3950338-1-ankit.k.nautiyal@intel.com>
+Date: Wed, 03 Aug 2022 17:15:31 +0300
+Message-ID: <87zgglpg58.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v5 4/7] drm/i915: Check for integer
- truncation on the configuration of ttm place
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Check for Low voltage IO only
+ for eDP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,147 +56,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, airlied@linux.ie,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- matthew.auld@intel.com, mchehab@kernel.org, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 25 Jul 2022, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
-> There is an impedance mismatch between the first/last valid page
-> frame number of ttm place in unsigned and our memory/page accounting in
-> unsigned long.
-> As the object size is under the control of userspace, we have to be prude=
-nt
-> and catch the conversion errors.
-> To catch the implicit truncation as we switch from unsigned long to
-> unsigned, we use overflows_type check and report E2BIG or overflow_type
-> prior to the operation.
+On Tue, 26 Jul 2022, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> The low voltage sku check can be ignored as OEMs need to consider that
+> when designing the board and then put any limits in VBT.
 >
-> v3: Not to change execution inside a macro. (Mauro)
->     Add safe_conversion_gem_bug_on() macro and remove temporal
->     SAFE_CONVERSION() macro.
+> Due to this check many DP sink that can be run with higher link rate,
+> are run at lower link rate, thereby pruning the resolutions that are
+> intended to be working as per bspec.
 >
-> v4: Fix unhandled GEM_BUG_ON() macro call from safe_conversion_gem_bug_on=
-()
->
-> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-> Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Reported-by: kernel test robot <lkp@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c |  6 +++---
->  drivers/gpu/drm/i915/i915_gem.h         |  4 ++++
->  drivers/gpu/drm/i915/intel_region_ttm.c | 20 +++++++++++++++++---
->  3 files changed, 24 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i9=
-15/gem/i915_gem_ttm.c
-> index 9f2be1892b6c..88f2887627dc 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -140,14 +140,14 @@ i915_ttm_place_from_region(const struct intel_memor=
-y_region *mr,
->  	if (flags & I915_BO_ALLOC_CONTIGUOUS)
->  		place->flags |=3D TTM_PL_FLAG_CONTIGUOUS;
->  	if (offset !=3D I915_BO_INVALID_OFFSET) {
-> -		place->fpfn =3D offset >> PAGE_SHIFT;
-> -		place->lpfn =3D place->fpfn + (size >> PAGE_SHIFT);
-> +		safe_conversion_gem_bug_on(&place->fpfn, offset >> PAGE_SHIFT);
-> +		safe_conversion_gem_bug_on(&place->lpfn, place->fpfn + (size >> PAGE_S=
-HIFT));
+> However, some eDP panels are getting issues [1] with higher link rate.
+> So keep the low voltage check for eDP, but ignore for DP sinks.
 
-So the natural thing would be to have and use two orthogonal helpers, a
-safe_conversion predicate and a warn:
-
-	GEM_BUG_ON(!safe_conversion(...));
-
-or even:
-
-	if (GEM_BUG_ON(!safe_conversion(...)))
-		/* ... */
-
-But GEM_BUG_ON() is surprising and does not follow the same pattern as
-WARN_ON/BUG_ON. *sigh*
+What's the root cause? This seems like guess work.
 
 BR,
 Jani.
 
 
->  	} else if (mr->io_size && mr->io_size < mr->total) {
->  		if (flags & I915_BO_ALLOC_GPU_ONLY) {
->  			place->flags |=3D TTM_PL_FLAG_TOPDOWN;
->  		} else {
->  			place->fpfn =3D 0;
-> -			place->lpfn =3D mr->io_size >> PAGE_SHIFT;
-> +			safe_conversion_gem_bug_on(&place->lpfn, mr->io_size >> PAGE_SHIFT);
->  		}
->  	}
->  }
-> diff --git a/drivers/gpu/drm/i915/i915_gem.h b/drivers/gpu/drm/i915/i915_=
-gem.h
-> index 68d8d52bd541..327dacedd5d1 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.h
-> +++ b/drivers/gpu/drm/i915/i915_gem.h
-> @@ -83,5 +83,9 @@ struct drm_i915_private;
->  #endif
->=20=20
->  #define I915_GEM_IDLE_TIMEOUT (HZ / 5)
-> +#define safe_conversion_gem_bug_on(ptr, value) !({ \
-> +	safe_conversion(ptr, value) ? 0 \
-> +		: (({ GEM_BUG_ON(overflows_type(value, *ptr)); }), 1); \
-> +})
->=20=20
->  #endif /* __I915_GEM_H__ */
-> diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c b/drivers/gpu/drm/i9=
-15/intel_region_ttm.c
-> index 575d67bc6ffe..f0d143948725 100644
-> --- a/drivers/gpu/drm/i915/intel_region_ttm.c
-> +++ b/drivers/gpu/drm/i915/intel_region_ttm.c
-> @@ -209,14 +209,26 @@ intel_region_ttm_resource_alloc(struct intel_memory=
-_region *mem,
->  	if (flags & I915_BO_ALLOC_CONTIGUOUS)
->  		place.flags |=3D TTM_PL_FLAG_CONTIGUOUS;
->  	if (offset !=3D I915_BO_INVALID_OFFSET) {
-> -		place.fpfn =3D offset >> PAGE_SHIFT;
-> -		place.lpfn =3D place.fpfn + (size >> PAGE_SHIFT);
-> +		if (!safe_conversion_gem_bug_on(&place.fpfn,
-> +						offset >> PAGE_SHIFT)) {
-> +			ret =3D -E2BIG;
-> +			goto out;
-> +		}
-> +		if (!safe_conversion_gem_bug_on(&place.lpfn,
-> +						place.fpfn + (size >> PAGE_SHIFT))) {
-> +			ret =3D -E2BIG;
-> +			goto out;
-> +		}
->  	} else if (mem->io_size && mem->io_size < mem->total) {
->  		if (flags & I915_BO_ALLOC_GPU_ONLY) {
->  			place.flags |=3D TTM_PL_FLAG_TOPDOWN;
->  		} else {
->  			place.fpfn =3D 0;
-> -			place.lpfn =3D mem->io_size >> PAGE_SHIFT;
-> +			if (!safe_conversion_gem_bug_on(&place.lpfn,
-> +							mem->io_size >> PAGE_SHIFT)) {
-> +				ret =3D -E2BIG;
-> +				goto out;
-> +			}
->  		}
->  	}
->=20=20
-> @@ -224,6 +236,8 @@ intel_region_ttm_resource_alloc(struct intel_memory_r=
-egion *mem,
->  	mock_bo.bdev =3D &mem->i915->bdev;
->=20=20
->  	ret =3D man->func->alloc(man, &mock_bo, &place, &res);
-> +
-> +out:
->  	if (ret =3D=3D -ENOSPC)
->  		ret =3D -ENXIO;
->  	if (!ret)
+> [1] https://gitlab.freedesktop.org/drm/intel/-/issues/6205
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5272
+>
+> v2: Added comment about eDP HBR2 restriction for JSL/EHL (Arun).
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 32292c0be2bd..e50bba14e8c5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -405,7 +405,8 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
+>  	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+>  
+>  	if (intel_phy_is_combo(dev_priv, phy) &&
+> -	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(intel_dp)))
+> +	    intel_dp_is_edp(intel_dp) &&
+> +	    is_low_voltage_sku(dev_priv, phy))
+>  		return 540000;
+>  
+>  	return 810000;
+> @@ -413,11 +414,8 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
+>  
+>  static int ehl_max_source_rate(struct intel_dp *intel_dp)
+>  {
+> -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> -	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+> -	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+> -
+> -	if (intel_dp_is_edp(intel_dp) || is_low_voltage_sku(dev_priv, phy))
+> +	/* For JSL/EHL, eDP supports only HBR2 5.4 (SOC PHY restriction) */
+> +	if (intel_dp_is_edp(intel_dp))
+>  		return 540000;
+>  
+>  	return 810000;
+> @@ -429,7 +427,9 @@ static int dg1_max_source_rate(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>  	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
+>  
+> -	if (intel_phy_is_combo(i915, phy) && is_low_voltage_sku(i915, phy))
+> +	if (intel_phy_is_combo(i915, phy) &&
+> +	    intel_dp_is_edp(intel_dp) &&
+> +	    is_low_voltage_sku(i915, phy))
+>  		return 540000;
+>  
+>  	return 810000;
 
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
