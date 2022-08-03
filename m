@@ -2,120 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3DF0588E9F
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 16:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74914588EC3
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 16:38:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB4F11BCF3;
-	Wed,  3 Aug 2022 14:24:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D03011ADF8;
+	Wed,  3 Aug 2022 14:38:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam07on2086.outbound.protection.outlook.com [40.107.212.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 784A618A308;
- Wed,  3 Aug 2022 14:24:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T4BgL5aqF+ua/GAL6nCZZNmjPZPbt5IjMvW48/QzXshoiplQVEGLlWQdQclcY+53hQXB0T5PTg9V6x/yMki9zDOjaMphKX9xa+gbD2chFF8RGEJ1xSNkYPGHzc7tiJ5WYtxV9uR5XziUxJnXbKRoZSFrBj3n2ZqntIu8sESJFm4ML5+0lDCB8FhAzwqmcwxziGhIWMIdTJYoUUXc91BkD9fOFNiW7+h0a8GJGgyz8NhpcH9nLVNzjDtXVwONLEQiWBFm5b7SYrNL9el/GDD8mdbdKRPEr50vdBujndqNWR1+p1nsgwr1OVgxad7hHLVunAYrwJEvhj7hvFEo7MFBQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZOpldH8Dsk70eWXGOIgr/RLkxkmuXbFf+WKR4AVpPTo=;
- b=nPzwfS0sWnzWoz7+4JT65UvlQ0Ir/2N+L1xVcjIZFlm/R6jLE7+d3KcgzAHHGzvugukMrY3g2BkvyASBo746N3AslushNnOmYv/EOE4olhiiWxuBOvEpCx/+6+93IiaP9IVnb7FgNTjzfH+mPbqFTLXMebSUcDi1cu2wHjfRLKhyWtbf2I1wcN5/9UgNDsenKCN87ohxtpPAwVBEtS9fXwB16cK0Vxup1zIZ3bBUd4s2AskxDuKNGhsu0Z4pO5Z3eqrA32srQOb53alb1YAiPqmOOBMJsJAp9eFzlzHRVWiAOhBwaXJRV1Mjoxdi/cufGAqeABzPB83Mv8XLzAdAVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZOpldH8Dsk70eWXGOIgr/RLkxkmuXbFf+WKR4AVpPTo=;
- b=XuKdLxF0dbuDaBfAn/kFh24esLqwAhdDwSkuoBAwDXb7KIjNf83+7eqTVpK8gWpRsfASP4Rc+Zq6Uwbwu4hAmmL5BY/wk0ZQXuTIIHm/Gf1tzc1P5OBY1EuGTkigOiFWlXsgQ7uAOC4pRCQKZZSlRz+05TevaIcjrEuOkhEoAz8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB2941.namprd12.prod.outlook.com (2603:10b6:208:a9::12)
- by MW3PR12MB4506.namprd12.prod.outlook.com (2603:10b6:303:53::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.12; Wed, 3 Aug
- 2022 14:24:05 +0000
-Received: from MN2PR12MB2941.namprd12.prod.outlook.com
- ([fe80::d122:1dae:8445:2e43]) by MN2PR12MB2941.namprd12.prod.outlook.com
- ([fe80::d122:1dae:8445:2e43%7]) with mapi id 15.20.5482.016; Wed, 3 Aug 2022
- 14:24:05 +0000
-Message-ID: <b366361c-1626-6df2-4a47-66d94ebfc682@amd.com>
-Date: Wed, 3 Aug 2022 10:24:03 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: imre.deak@intel.com
-References: <20220801135259.3039679-1-imre.deak@intel.com>
- <20220801135259.3039679-2-imre.deak@intel.com>
- <8a3f1d72-5995-5db3-e550-8c532024c304@amd.com>
- <Yups9fP/V9hAnAFk@ideak-desk.fi.intel.com>
-From: Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>
-In-Reply-To: <Yups9fP/V9hAnAFk@ideak-desk.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL1PR13CA0001.namprd13.prod.outlook.com
- (2603:10b6:208:256::6) To MN2PR12MB2941.namprd12.prod.outlook.com
- (2603:10b6:208:a9::12)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66C1F18AD62;
+ Wed,  3 Aug 2022 14:38:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1659537510; x=1691073510;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Nqb1+yngeq8ZEFyCg5LpDQx7nLAZOIN90304dKJVByY=;
+ b=X8DnD+9wx0LI/TuWKqP1y/qyOP9sVyMd/XeMjTqFOqq2cAY2oNKqJCgm
+ scyHRom6IwN4+7ugB3Um0tCJonPzjFBK8ktbyfmXSr7JX/MM4zrSqYtg0
+ E1Ss8fEFDaafl8Hhz0m/Z8gT0LFSp03c2crbnL2XCG7P/NY0tsf3khhRl
+ 0uaiAbcARpJc/3CJZmCxATZN+VgJvU1M8KmbN7pXwGgOhpIEpv18H9J9R
+ 3ft1McSxGUlbqeYoc61ZYEY0mubZM4Sxb8h6EvCDUpYQO45tqGf4vAEeP
+ fp4cbcHjfUps7KKHu3C50VVORizR0gz2yR1qHeYquyVxy0Jx4jQPRq7DE w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="276602097"
+X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="276602097"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2022 07:38:29 -0700
+X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="662107380"
+Received: from ns1-mobl.gar.corp.intel.com (HELO localhost) ([10.252.59.244])
+ by fmsmga008-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2022 07:38:27 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Piorkowski, Piotr" <piotr.piorkowski@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20220803085829.1466903-2-piotr.piorkowski@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220803075549.1464461-1-piotr.piorkowski@intel.com>
+ <20220803085829.1466903-2-piotr.piorkowski@intel.com>
+Date: Wed, 03 Aug 2022 17:38:24 +0300
+Message-ID: <87r11xpf33.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d65b94ff-668c-48e7-bb6c-08da755bd1e6
-X-MS-TrafficTypeDiagnostic: MW3PR12MB4506:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ocYynRCYpGCAQ52e4C7NYkCxZgLhsSo16YX6W4W2qXVAdTUfllVGANCasrAPZ5XhbjKg3VF+i2iWTNSVCJvwQKy+1zI+r5yZvIP06Sb2GWxcoevh5Xk7M5aQ/aIacTg/ZB+IlKJ/cKL7w4ZoHdCcmrZLqI6rJcXqKmRzEElpZz/bU5Oj0xeGa0lZuUP47rS6InZH1MBFE4/yvuk+3ndqaGbSt013hMkLOc9O56jkorNn3M4HPAoCDIQwW5Ehsi9ByzuEGaT5bC8aKxT0MuXgW2CwLm8IxeBxN+AmD8mmIFKzTgabMkRAom6clYzllUKdpI2z2inyBG6zgDBq2MIhbYcejM0gcJ1YxRKpw5j8AU2IiA8nQHfz1Tl951pRGkuqXLqJcYkbbJbBU+8rZMo43JU1vX7OgheSH1PDSzVTG3KuMXcodcr+VX6dAVtgA1UkIgG9ae2taPSazRS6n3F1oknABx70Q2Keg/q9nUFRUNh4SW/VVY6jM3W9KEB5V3e5ywHOKeiPM17g2NrInHiVazgM+J36y3BfW3l8QLxoT0L1Muj24zjrZMs3JJcqSqm55njJNbO2OXpRwM8G97BdxXcSKm7i0vUQgHMlMg7HxKy5flMwAlLakPARnv+4HC2S79ae3sIel58Mg4n0xORTyW6zT9ZIJbc+K/5daw/tLqLQuTj4Qwu5b75B46rPMxsgIODju92WAs5NveqDuKbSIu16l5nLpxnjnzTycjsJv/dxosHOLhiuHtV8OQWKmVZuO36xkGLfbCEiv7Aq+P0n8uMenvYg/lRppJixnLFJNX3xQ5nYb7ZbH0NrYCZ17U7v/I5pmkbc0XophxPaMsS2TAh5zq7F3VvyxZtzlxQZ9iY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB2941.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(376002)(39860400002)(396003)(136003)(366004)(86362001)(83380400001)(186003)(31696002)(26005)(53546011)(6506007)(31686004)(6512007)(2906002)(41300700001)(38100700002)(66946007)(316002)(54906003)(966005)(6486002)(66556008)(4326008)(8676002)(2616005)(36756003)(66476007)(8936002)(478600001)(5660300002)(6916009)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UUZmL1A4SGdsWExwUDUxZGFjL0RpS1pGcGRDSXRQRytWM3RGaE40R3MzWmpU?=
- =?utf-8?B?NFNGdDYzTU44YlhXbjAyZ3FVdzlTR2x3WjlLekFEMmQ0dGdIczZDZVU3cStZ?=
- =?utf-8?B?M3NINC9jZmlHaXZKR3FqaGtDWkxDZklSUmdmdFk0SUlTWEhOZmloN2drb09Y?=
- =?utf-8?B?RjZ4R2syc3NydlBhL0VTV2p6ZzVYY3ZnNFU3K0xzUVpjSlYzUEVtc2hKVENJ?=
- =?utf-8?B?OFlzUmVWZnFscm5kTGxiRHJpUXF6YWJSTXVJaTdaamZPd3FBU1A4UTJXV244?=
- =?utf-8?B?R3FyTkFMN0w5bWdabER0bkJtb1pLUlJMQmMxTTI4dTZHSVRzNXkwdkptUnhT?=
- =?utf-8?B?VjlZMU9zcVU2dmpiQisvd3RNbmNSV1FTNUpUZGxXYlhSZG51SFI3UG80clZs?=
- =?utf-8?B?Y2NKbG5MMi9SR1VsUG93dWZHeHcweXVsTXIrRWRHcVJLMGJ2cjRBS0c3RVgz?=
- =?utf-8?B?bXB6UTZNL3g3QWxHdWUwa1dBUG03eDhKQ3Y4dzhMQWlPNS9SeDB1eDdxSW9Z?=
- =?utf-8?B?VFFVYjVUTjBsSlFEQmVBb3FXUW0ybUNqSytueFJjVkhrdmdpVHlZYTFtQWRS?=
- =?utf-8?B?QkFBdU42UjZOTkJHR1hqWGZTS3p3Y0dwVkJla1Rid2NYOStLOTVHN3drVnhR?=
- =?utf-8?B?S3IyUTZBN0w1UUNBRjE2eFB2RXh6cTY1L2pyM0xvb3dQa0ZVOXdBUStQVDR2?=
- =?utf-8?B?TWpHajA2ZnpOUHdNY3JaNVhTREVaYnZ6bC9qUDlEZWZYb3J6MVBKN3p1dWFh?=
- =?utf-8?B?WXpQTUtDUGhnMysyenNyS1JNVXVSanZtRXNnMFhxTFM4Y1o4Ujcxai9OY1hY?=
- =?utf-8?B?NTlMR1FIMTVsWXFhcXZBWElPYmt2TWNod1pzL3hLeStaMU1kRVhPaFdsMGRa?=
- =?utf-8?B?SkhLSVovNHZFV3o3N2hXKzdtMWlscitVekI5em1iczUzRngwajNKQWJxUVZw?=
- =?utf-8?B?M1VOdkUrWXZEYzdqeDNhUDdrZUdCL0JydHdsMTNSUld0VHJYZlhMZTF5bXBM?=
- =?utf-8?B?MHBSSlNidU11L2NQQTQwbjJXdTUyalRnb0ZRZjQ1UzRzOXFnNjBCR1dYTXVH?=
- =?utf-8?B?Zlc1aFp2Z3hoeWtrSUpqeGxtR1FRejNLVEx6MWFUYVd4bTFRcW9JNXVnaFRU?=
- =?utf-8?B?ZFpIWmVOaG9IUEx3Z3FZSEUrRXR0RFZTYXpUNXpXaVJVVlV6OVptWFhnRHM2?=
- =?utf-8?B?TlRZQlZ5WlF6MUxXN05KZzVLOU9qYmsrWkdISmxpbEFrQTd1U2VndkY4NGhR?=
- =?utf-8?B?QlRuU0VKVGdWRTdlOWZNMEo0NFVrbkZGZnBqSytWenA2cU5sMEIrMDNlZEpB?=
- =?utf-8?B?czdmMnlpb2JIY1FQbTFLZmdWK2NQRVkzMHBxRGg0czhtZVBEVG5tcERiL21Q?=
- =?utf-8?B?OTdpYzlZVzhLaDByS1djSTRac2dZazNOT3hLMWFRSTFhMjBFUk9pUzhIM05D?=
- =?utf-8?B?TEF2MWpJYUloRGt5TGxuQmtFZ0NYYVlhTVd3Y2owbTBPSzVRZ1h6RXoxaGJX?=
- =?utf-8?B?R2JKMUdVb3phdTk5M094a1phb2krRzkzcGFOS0lvOGs5ZEt0TmJRMzFVQ2s3?=
- =?utf-8?B?K1lYU29Zbm00Y1Rpa0grVjVKR09PY1pPT1lxbDNwM1pzS0JGY2c5TDBIbE9G?=
- =?utf-8?B?M3hpSERQbHlFcERDUHgrcUI5eGxVVnZ1WUdxV2RMWGxyN0M3S25kT0R5dzha?=
- =?utf-8?B?VE1tditvbHhEZHdrM2lndW4rZWFIeTRMYjNNcEx1VE00KzJuMElVOStaaDQ2?=
- =?utf-8?B?MDJvVXZ6ZzNzMkpNYkZUcC9vSlJhZnFIL2cyRWxjV1FIWHg1R3hjTXZtaUxx?=
- =?utf-8?B?VHJZSmFXbE0vWmZuU01nSzVaVFlCdWxvVnpMc1BoZGtzc1RWUUVHa3VxS1ls?=
- =?utf-8?B?ZmdUT3NINTZQUUpYNEhIMWZSYkhPblBJNzFGNis5MEhwTGxWa1JCYjcxcUZY?=
- =?utf-8?B?ejFtdFlWcmlPS1F1ajNyOHNoTE9BQXZ2M2ExV0g0UVFvQUQ4a3J3NTJ2akIv?=
- =?utf-8?B?WS81WEMwc2ovM3ZHNnVYb2ZlTHgrQ2NwTlI2QUVaSHpiV0IzTWd3elptRXh0?=
- =?utf-8?B?eXdPam8yd2krMVN2MXdidFIvM3hnZFlwNytrUTNDanRRaU5KZmpmNnJtcEdu?=
- =?utf-8?Q?lYpPEzt20TDYGiTCImk2RwEfG?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d65b94ff-668c-48e7-bb6c-08da755bd1e6
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB2941.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2022 14:24:05.2410 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DlQvUlUbeSRWisN7p3KdeDza8C4RxLyybR7t/H9J2uqm4aM4pm2SAEHEM2r7OZeOSjYwvcviAj2foLjxNjX+0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4506
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/amd/display: Fix 'no previous
- prototype' compiler warns in amdgpu_dm_plane.c
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: Use of BARs names instead
+ of numbers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,68 +59,284 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Liu <HaoPing.Liu@amd.com>, intel-gfx@lists.freedesktop.org,
- Harry Wentland <Harry.Wentland@amd.com>, dri-devel@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 03 Aug 2022, "Piorkowski, Piotr" <piotr.piorkowski@intel.com> wrote:
+> From: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
+>
+> At the moment, when we refer to some PCI BAR we use the number of
+> this BAR in the code. The meaning of BARs between different platforms
+> may be different. Therefore, in order to organize the code,
+> let's start using defined names instead of numbers.
+>
+> v2: Add lost header in cfg_space.c
 
+I could bikeshed the macro names for bars, but meh. This is an
+improvement.
 
-On 2022-08-03 08:41, Imre Deak wrote:
-> On Tue, Aug 02, 2022 at 12:57:24PM -0400, Rodrigo Siqueira Jordao wrote:
->>
->>
->> On 2022-08-01 09:52, Imre Deak wrote:
->>> Fix compiler warnings like the following triggered by
->>> '-Wmissing-prototypes':
->>>
->>>     CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_plane.o
->>> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_plane.c:83:31: warning: no previous prototype for â€˜amd_get_format_infoâ€™ [-Wmissing-prototypes]
->>
->> I see "â€˜" around "amd_get_format_info"; I'm not sure if my email client
->> adds that or if there is something wrong in the commit message.
-> 
-> Yes, it's a copy-paste from
-> http://gfx-ci.fi.intel.com/archive/deploy/CI_DRM_11953/build_failure.log>> should be 'amd_get_format_info' and can be fixed while applying the
-> patch.
-> 
->> With the commit message change:
->>
->> Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> 
-> Thanks for the review. Could this and patch 3/3 be merged via the amd
-> tree?
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Sure,
-Patch 2 and 3 applied to amd-staging-drm-next.
+>
+> Signed-off-by: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_lpe_audio.c |  5 +++--
+>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c     |  7 ++++---
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c           |  9 +++++----
+>  drivers/gpu/drm/i915/gt/intel_gt.c             |  3 ++-
+>  drivers/gpu/drm/i915/gt/intel_region_lmem.c    | 13 ++++++-------
+>  drivers/gpu/drm/i915/gvt/cfg_space.c           |  5 +++--
+>  drivers/gpu/drm/i915/intel_pci_config.h        |  7 +++++++
+>  7 files changed, 30 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu=
+/drm/i915/display/intel_lpe_audio.c
+> index 4970bf146c4a..1e18696aaecf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+> @@ -73,6 +73,7 @@
+>  #include "i915_drv.h"
+>  #include "intel_de.h"
+>  #include "intel_lpe_audio.h"
+> +#include "intel_pci_config.h"
+>=20=20
+>  #define HAS_LPE_AUDIO(dev_priv) ((dev_priv)->audio.lpe.platdev !=3D NULL)
+>=20=20
+> @@ -100,9 +101,9 @@ lpe_audio_platdev_create(struct drm_i915_private *dev=
+_priv)
+>  	rsc[0].flags    =3D IORESOURCE_IRQ;
+>  	rsc[0].name     =3D "hdmi-lpe-audio-irq";
+>=20=20
+> -	rsc[1].start    =3D pci_resource_start(pdev, 0) +
+> +	rsc[1].start    =3D pci_resource_start(pdev, GTTMMADR_BAR) +
+>  		I915_HDMI_LPE_AUDIO_BASE;
+> -	rsc[1].end      =3D pci_resource_start(pdev, 0) +
+> +	rsc[1].end      =3D pci_resource_start(pdev, GTTMMADR_BAR) +
+>  		I915_HDMI_LPE_AUDIO_BASE + I915_HDMI_LPE_AUDIO_SIZE - 1;
+>  	rsc[1].flags    =3D IORESOURCE_MEM;
+>  	rsc[1].name     =3D "hdmi-lpe-audio-mmio";
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm=
+/i915/gem/i915_gem_stolen.c
+> index 166d0a4b9e8c..c369cfd185bc 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> @@ -22,6 +22,7 @@
+>  #include "i915_utils.h"
+>  #include "i915_vgpu.h"
+>  #include "intel_mchbar_regs.h"
+> +#include "intel_pci_config.h"
+>=20=20
+>  /*
+>   * The BIOS typically reserves some of the system's memory for the exclu=
+sive
+> @@ -830,7 +831,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i=
+915, u16 type,
+>  	/* Use DSM base address instead for stolen memory */
+>  	dsm_base =3D intel_uncore_read64(uncore, GEN12_DSMBASE);
+>  	if (IS_DG1(uncore->i915)) {
+> -		lmem_size =3D pci_resource_len(pdev, 2);
+> +		lmem_size =3D pci_resource_len(pdev, GEN12_LMEM_BAR);
+>  		if (WARN_ON(lmem_size < dsm_base))
+>  			return ERR_PTR(-ENODEV);
+>  	} else {
+> @@ -842,11 +843,11 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private =
+*i915, u16 type,
+>  	}
+>=20=20
+>  	dsm_size =3D lmem_size - dsm_base;
+> -	if (pci_resource_len(pdev, 2) < lmem_size) {
+> +	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
+>  		io_start =3D 0;
+>  		io_size =3D 0;
+>  	} else {
+> -		io_start =3D pci_resource_start(pdev, 2) + dsm_base;
+> +		io_start =3D pci_resource_start(pdev, GEN12_LMEM_BAR) + dsm_base;
+>  		io_size =3D dsm_size;
+>  	}
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/=
+gt/intel_ggtt.c
+> index 15a915bb4088..8214e07a0f5b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -16,6 +16,7 @@
+>  #include "intel_ggtt_gmch.h"
+>  #include "intel_gt.h"
+>  #include "intel_gt_regs.h"
+> +#include "intel_pci_config.h"
+>  #include "i915_drv.h"
+>  #include "i915_scatterlist.h"
+>  #include "i915_utils.h"
+> @@ -869,8 +870,8 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, =
+u64 size)
+>  	u32 pte_flags;
+>  	int ret;
+>=20=20
+> -	GEM_WARN_ON(pci_resource_len(pdev, 0) !=3D gen6_gttmmadr_size(i915));
+> -	phys_addr =3D pci_resource_start(pdev, 0) + gen6_gttadr_offset(i915);
+> +	GEM_WARN_ON(pci_resource_len(pdev, GTTMMADR_BAR) !=3D gen6_gttmmadr_siz=
+e(i915));
+> +	phys_addr =3D pci_resource_start(pdev, GTTMMADR_BAR) + gen6_gttadr_offs=
+et(i915);
+>=20=20
+>  	/*
+>  	 * On BXT+/ICL+ writes larger than 64 bit to the GTT pagetable range
+> @@ -930,7 +931,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+>  	u16 snb_gmch_ctl;
+>=20=20
+>  	if (!HAS_LMEM(i915)) {
+> -		ggtt->gmadr =3D pci_resource(pdev, 2);
+> +		ggtt->gmadr =3D pci_resource(pdev, GTT_APERTURE_BAR);
+>  		ggtt->mappable_end =3D resource_size(&ggtt->gmadr);
+>  	}
+>=20=20
+> @@ -1084,7 +1085,7 @@ static int gen6_gmch_probe(struct i915_ggtt *ggtt)
+>  	unsigned int size;
+>  	u16 snb_gmch_ctl;
+>=20=20
+> -	ggtt->gmadr =3D pci_resource(pdev, 2);
+> +	ggtt->gmadr =3D pci_resource(pdev, GTT_APERTURE_BAR);
+>  	ggtt->mappable_end =3D resource_size(&ggtt->gmadr);
+>=20=20
+>  	/*
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt=
+/intel_gt.c
+> index f435e06125aa..e4bac2431e41 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -26,6 +26,7 @@
+>  #include "intel_gt_requests.h"
+>  #include "intel_migrate.h"
+>  #include "intel_mocs.h"
+> +#include "intel_pci_config.h"
+>  #include "intel_pm.h"
+>  #include "intel_rc6.h"
+>  #include "intel_renderstate.h"
+> @@ -830,7 +831,7 @@ int intel_gt_probe_all(struct drm_i915_private *i915)
+>  	unsigned int mmio_bar;
+>  	int ret;
+>=20=20
+> -	mmio_bar =3D GRAPHICS_VER(i915) =3D=3D 2 ? 1 : 0;
+> +	mmio_bar =3D GRAPHICS_VER(i915) =3D=3D 2 ? GEN2_GTTMMADR_BAR : GTTMMADR=
+_BAR;
+>  	phys_addr =3D pci_resource_start(pdev, mmio_bar);
+>=20=20
+>  	/*
+> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/dr=
+m/i915/gt/intel_region_lmem.c
+> index aa6aed837194..1e79d3c8b126 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> @@ -6,6 +6,7 @@
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+>  #include "intel_memory_region.h"
+> +#include "intel_pci_config.h"
+>  #include "intel_region_lmem.h"
+>  #include "intel_region_ttm.h"
+>  #include "gem/i915_gem_lmem.h"
+> @@ -45,7 +46,6 @@ _resize_bar(struct drm_i915_private *i915, int resno, r=
+esource_size_t size)
+>  	drm_info(&i915->drm, "BAR%d resized to %dM\n", resno, 1 << bar_size);
+>  }
+>=20=20
+> -#define LMEM_BAR_NUM 2
+>  static void i915_resize_lmem_bar(struct drm_i915_private *i915, resource=
+_size_t lmem_size)
+>  {
+>  	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> @@ -56,15 +56,14 @@ static void i915_resize_lmem_bar(struct drm_i915_priv=
+ate *i915, resource_size_t
+>  	u32 pci_cmd;
+>  	int i;
+>=20=20
+> -	current_size =3D roundup_pow_of_two(pci_resource_len(pdev, LMEM_BAR_NUM=
+));
+> +	current_size =3D roundup_pow_of_two(pci_resource_len(pdev, GEN12_LMEM_B=
+AR));
+>=20=20
+>  	if (i915->params.lmem_bar_size) {
+>  		u32 bar_sizes;
+>=20=20
+>  		rebar_size =3D i915->params.lmem_bar_size *
+>  			(resource_size_t)SZ_1M;
+> -		bar_sizes =3D pci_rebar_get_possible_sizes(pdev,
+> -							 LMEM_BAR_NUM);
+> +		bar_sizes =3D pci_rebar_get_possible_sizes(pdev, GEN12_LMEM_BAR);
+>=20=20
+>  		if (rebar_size =3D=3D current_size)
+>  			return;
+> @@ -107,7 +106,7 @@ static void i915_resize_lmem_bar(struct drm_i915_priv=
+ate *i915, resource_size_t
+>  	pci_write_config_dword(pdev, PCI_COMMAND,
+>  			       pci_cmd & ~PCI_COMMAND_MEMORY);
+>=20=20
+> -	_resize_bar(i915, LMEM_BAR_NUM, rebar_size);
+> +	_resize_bar(i915, GEN12_LMEM_BAR, rebar_size);
+>=20=20
+>  	pci_assign_unassigned_bus_resources(pdev->bus);
+>  	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
+> @@ -236,8 +235,8 @@ static struct intel_memory_region *setup_lmem(struct =
+intel_gt *gt)
+>  				  mul_u32_u32(i915->params.lmem_size, SZ_1M));
+>  	}
+>=20=20
+> -	io_start =3D pci_resource_start(pdev, 2);
+> -	io_size =3D min(pci_resource_len(pdev, 2), lmem_size);
+> +	io_start =3D pci_resource_start(pdev, GEN12_LMEM_BAR);
+> +	io_size =3D min(pci_resource_len(pdev, GEN12_LMEM_BAR), lmem_size);
+>  	if (!io_size)
+>  		return ERR_PTR(-EIO);
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/gvt/cfg_space.c b/drivers/gpu/drm/i915/=
+gvt/cfg_space.c
+> index dad3a6054335..eef3bba8a41b 100644
+> --- a/drivers/gpu/drm/i915/gvt/cfg_space.c
+> +++ b/drivers/gpu/drm/i915/gvt/cfg_space.c
+> @@ -33,6 +33,7 @@
+>=20=20
+>  #include "i915_drv.h"
+>  #include "gvt.h"
+> +#include "intel_pci_config.h"
+>=20=20
+>  enum {
+>  	INTEL_GVT_PCI_BAR_GTTMMIO =3D 0,
+> @@ -353,9 +354,9 @@ void intel_vgpu_init_cfg_space(struct intel_vgpu *vgp=
+u,
+>  	memset(vgpu_cfg_space(vgpu) + INTEL_GVT_PCI_OPREGION, 0, 4);
+>=20=20
+>  	vgpu->cfg_space.bar[INTEL_GVT_PCI_BAR_GTTMMIO].size =3D
+> -		pci_resource_len(pdev, 0);
+> +		pci_resource_len(pdev, GTTMMADR_BAR);
+>  	vgpu->cfg_space.bar[INTEL_GVT_PCI_BAR_APERTURE].size =3D
+> -		pci_resource_len(pdev, 2);
+> +		pci_resource_len(pdev, GTT_APERTURE_BAR);
+>=20=20
+>  	memset(vgpu_cfg_space(vgpu) + PCI_ROM_ADDRESS, 0, 4);
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/intel_pci_config.h b/drivers/gpu/drm/i9=
+15/intel_pci_config.h
+> index 12cd9d4f23de..4977a524ce6f 100644
+> --- a/drivers/gpu/drm/i915/intel_pci_config.h
+> +++ b/drivers/gpu/drm/i915/intel_pci_config.h
+> @@ -6,6 +6,13 @@
+>  #ifndef __INTEL_PCI_CONFIG_H__
+>  #define __INTEL_PCI_CONFIG_H__
+>=20=20
+> +/* PCI BARs */
+> +#define GTTMMADR_BAR				0
+> +#define GEN2_GTTMMADR_BAR			1
+> +#define GFXMEM_BAR				2
+> +#define GTT_APERTURE_BAR			GFXMEM_BAR
+> +#define GEN12_LMEM_BAR				GFXMEM_BAR
+> +
+>  /* BSM in include/drm/i915_drm.h */
+>=20=20
+>  #define MCHBAR_I915				0x44
 
-Thanks
-Siqueira
-
-> 
->>
->>>    const struct drm_format_info *amd_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
->>>
->>> Fixes: 5d945cbcd4b1 ("drm/amd/display: Create a file dedicated to planes")
->>> Cc: Harry Wentland <Harry.Wentland@amd.com>
->>> Cc: Alan Liu <HaoPing.Liu@amd.com>
->>> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
->>> Signed-off-by: Imre Deak <imre.deak@intel.com>
->>> ---
->>>    drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 1 +
->>>    1 file changed, 1 insertion(+)
->>>
->>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
->>> index 5eb5d31e591de..da3b086b0d6ef 100644
->>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
->>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
->>> @@ -33,6 +33,7 @@
->>>    #include "amdgpu.h"
->>>    #include "dal_asic_id.h"
->>>    #include "amdgpu_display.h"
->>> +#include "amdgpu_dm_plane.h"
->>>    #include "amdgpu_dm_trace.h"
->>>    #include "gc/gc_11_0_0_offset.h"
->>>    #include "gc/gc_11_0_0_sh_mask.h"
->>
-
+--=20
+Jani Nikula, Intel Open Source Graphics Center
