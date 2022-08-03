@@ -2,50 +2,120 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DE80588E97
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 16:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3DF0588E9F
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 16:24:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92F742BAB2;
-	Wed,  3 Aug 2022 14:23:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB4F11BCF3;
+	Wed,  3 Aug 2022 14:24:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B6BD11A93B
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Aug 2022 14:22:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659536573; x=1691072573;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rYrQy4y4bokIHveQ9fWYQIsNcbGHI6CWRpnfF/kaQ8M=;
- b=iIwmv/kj244BnqO7InaQVM+taUAgYbc+bGq1B5QZ7pHPgnrJ7nSpuajK
- OC/uG/3zaGNfCRt47uQBcFx1qUUClx9SQnadJLwsATYoaAYiwnskQEZla
- 4KWMV9UOMH5FGJZYM+q+MrZZhuSQbq0fvPTasd3Bgb6s8lQACPRutuyWZ
- rDX33Ggk3WX/7UIGkkyC70nrsBVr5TYUx86iRuMQHU1BRvBaLdtgzGaK2
- tdHezuSUsIWkdg+tHIAO+OXwBNoPSHwGO3twiYcaw9Tl0C5Jnfmrf72LZ
- FnFxHzI3WeytyuARY4O4WY5j9ZSzTnVT2UQsqm1B1k5f5cDudckpdOd7p Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="270063400"
-X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="270063400"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2022 07:22:52 -0700
-X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="662102581"
-Received: from ns1-mobl.gar.corp.intel.com (HELO localhost) ([10.252.59.244])
- by fmsmga008-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2022 07:22:50 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Adrian Larumbe <adrian.larumbe@collabora.com>, daniel@ffwll.ch,
- thomas.hellstrom@linux.intel.com, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220802165155.165576-7-adrian.larumbe@collabora.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220802165155.165576-1-adrian.larumbe@collabora.com>
- <20220802165155.165576-7-adrian.larumbe@collabora.com>
-Date: Wed, 03 Aug 2022 17:22:48 +0300
-Message-ID: <87wnbppft3.fsf@intel.com>
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2086.outbound.protection.outlook.com [40.107.212.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 784A618A308;
+ Wed,  3 Aug 2022 14:24:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=T4BgL5aqF+ua/GAL6nCZZNmjPZPbt5IjMvW48/QzXshoiplQVEGLlWQdQclcY+53hQXB0T5PTg9V6x/yMki9zDOjaMphKX9xa+gbD2chFF8RGEJ1xSNkYPGHzc7tiJ5WYtxV9uR5XziUxJnXbKRoZSFrBj3n2ZqntIu8sESJFm4ML5+0lDCB8FhAzwqmcwxziGhIWMIdTJYoUUXc91BkD9fOFNiW7+h0a8GJGgyz8NhpcH9nLVNzjDtXVwONLEQiWBFm5b7SYrNL9el/GDD8mdbdKRPEr50vdBujndqNWR1+p1nsgwr1OVgxad7hHLVunAYrwJEvhj7hvFEo7MFBQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZOpldH8Dsk70eWXGOIgr/RLkxkmuXbFf+WKR4AVpPTo=;
+ b=nPzwfS0sWnzWoz7+4JT65UvlQ0Ir/2N+L1xVcjIZFlm/R6jLE7+d3KcgzAHHGzvugukMrY3g2BkvyASBo746N3AslushNnOmYv/EOE4olhiiWxuBOvEpCx/+6+93IiaP9IVnb7FgNTjzfH+mPbqFTLXMebSUcDi1cu2wHjfRLKhyWtbf2I1wcN5/9UgNDsenKCN87ohxtpPAwVBEtS9fXwB16cK0Vxup1zIZ3bBUd4s2AskxDuKNGhsu0Z4pO5Z3eqrA32srQOb53alb1YAiPqmOOBMJsJAp9eFzlzHRVWiAOhBwaXJRV1Mjoxdi/cufGAqeABzPB83Mv8XLzAdAVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZOpldH8Dsk70eWXGOIgr/RLkxkmuXbFf+WKR4AVpPTo=;
+ b=XuKdLxF0dbuDaBfAn/kFh24esLqwAhdDwSkuoBAwDXb7KIjNf83+7eqTVpK8gWpRsfASP4Rc+Zq6Uwbwu4hAmmL5BY/wk0ZQXuTIIHm/Gf1tzc1P5OBY1EuGTkigOiFWlXsgQ7uAOC4pRCQKZZSlRz+05TevaIcjrEuOkhEoAz8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB2941.namprd12.prod.outlook.com (2603:10b6:208:a9::12)
+ by MW3PR12MB4506.namprd12.prod.outlook.com (2603:10b6:303:53::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.12; Wed, 3 Aug
+ 2022 14:24:05 +0000
+Received: from MN2PR12MB2941.namprd12.prod.outlook.com
+ ([fe80::d122:1dae:8445:2e43]) by MN2PR12MB2941.namprd12.prod.outlook.com
+ ([fe80::d122:1dae:8445:2e43%7]) with mapi id 15.20.5482.016; Wed, 3 Aug 2022
+ 14:24:05 +0000
+Message-ID: <b366361c-1626-6df2-4a47-66d94ebfc682@amd.com>
+Date: Wed, 3 Aug 2022 10:24:03 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: imre.deak@intel.com
+References: <20220801135259.3039679-1-imre.deak@intel.com>
+ <20220801135259.3039679-2-imre.deak@intel.com>
+ <8a3f1d72-5995-5db3-e550-8c532024c304@amd.com>
+ <Yups9fP/V9hAnAFk@ideak-desk.fi.intel.com>
+From: Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>
+In-Reply-To: <Yups9fP/V9hAnAFk@ideak-desk.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BL1PR13CA0001.namprd13.prod.outlook.com
+ (2603:10b6:208:256::6) To MN2PR12MB2941.namprd12.prod.outlook.com
+ (2603:10b6:208:a9::12)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915: Add module param for enabling
- TTM in sysmem region
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d65b94ff-668c-48e7-bb6c-08da755bd1e6
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4506:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ocYynRCYpGCAQ52e4C7NYkCxZgLhsSo16YX6W4W2qXVAdTUfllVGANCasrAPZ5XhbjKg3VF+i2iWTNSVCJvwQKy+1zI+r5yZvIP06Sb2GWxcoevh5Xk7M5aQ/aIacTg/ZB+IlKJ/cKL7w4ZoHdCcmrZLqI6rJcXqKmRzEElpZz/bU5Oj0xeGa0lZuUP47rS6InZH1MBFE4/yvuk+3ndqaGbSt013hMkLOc9O56jkorNn3M4HPAoCDIQwW5Ehsi9ByzuEGaT5bC8aKxT0MuXgW2CwLm8IxeBxN+AmD8mmIFKzTgabMkRAom6clYzllUKdpI2z2inyBG6zgDBq2MIhbYcejM0gcJ1YxRKpw5j8AU2IiA8nQHfz1Tl951pRGkuqXLqJcYkbbJbBU+8rZMo43JU1vX7OgheSH1PDSzVTG3KuMXcodcr+VX6dAVtgA1UkIgG9ae2taPSazRS6n3F1oknABx70Q2Keg/q9nUFRUNh4SW/VVY6jM3W9KEB5V3e5ywHOKeiPM17g2NrInHiVazgM+J36y3BfW3l8QLxoT0L1Muj24zjrZMs3JJcqSqm55njJNbO2OXpRwM8G97BdxXcSKm7i0vUQgHMlMg7HxKy5flMwAlLakPARnv+4HC2S79ae3sIel58Mg4n0xORTyW6zT9ZIJbc+K/5daw/tLqLQuTj4Qwu5b75B46rPMxsgIODju92WAs5NveqDuKbSIu16l5nLpxnjnzTycjsJv/dxosHOLhiuHtV8OQWKmVZuO36xkGLfbCEiv7Aq+P0n8uMenvYg/lRppJixnLFJNX3xQ5nYb7ZbH0NrYCZ17U7v/I5pmkbc0XophxPaMsS2TAh5zq7F3VvyxZtzlxQZ9iY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB2941.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(346002)(376002)(39860400002)(396003)(136003)(366004)(86362001)(83380400001)(186003)(31696002)(26005)(53546011)(6506007)(31686004)(6512007)(2906002)(41300700001)(38100700002)(66946007)(316002)(54906003)(966005)(6486002)(66556008)(4326008)(8676002)(2616005)(36756003)(66476007)(8936002)(478600001)(5660300002)(6916009)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UUZmL1A4SGdsWExwUDUxZGFjL0RpS1pGcGRDSXRQRytWM3RGaE40R3MzWmpU?=
+ =?utf-8?B?NFNGdDYzTU44YlhXbjAyZ3FVdzlTR2x3WjlLekFEMmQ0dGdIczZDZVU3cStZ?=
+ =?utf-8?B?M3NINC9jZmlHaXZKR3FqaGtDWkxDZklSUmdmdFk0SUlTWEhOZmloN2drb09Y?=
+ =?utf-8?B?RjZ4R2syc3NydlBhL0VTV2p6ZzVYY3ZnNFU3K0xzUVpjSlYzUEVtc2hKVENJ?=
+ =?utf-8?B?OFlzUmVWZnFscm5kTGxiRHJpUXF6YWJSTXVJaTdaamZPd3FBU1A4UTJXV244?=
+ =?utf-8?B?R3FyTkFMN0w5bWdabER0bkJtb1pLUlJMQmMxTTI4dTZHSVRzNXkwdkptUnhT?=
+ =?utf-8?B?VjlZMU9zcVU2dmpiQisvd3RNbmNSV1FTNUpUZGxXYlhSZG51SFI3UG80clZs?=
+ =?utf-8?B?Y2NKbG5MMi9SR1VsUG93dWZHeHcweXVsTXIrRWRHcVJLMGJ2cjRBS0c3RVgz?=
+ =?utf-8?B?bXB6UTZNL3g3QWxHdWUwa1dBUG03eDhKQ3Y4dzhMQWlPNS9SeDB1eDdxSW9Z?=
+ =?utf-8?B?VFFVYjVUTjBsSlFEQmVBb3FXUW0ybUNqSytueFJjVkhrdmdpVHlZYTFtQWRS?=
+ =?utf-8?B?QkFBdU42UjZOTkJHR1hqWGZTS3p3Y0dwVkJla1Rid2NYOStLOTVHN3drVnhR?=
+ =?utf-8?B?S3IyUTZBN0w1UUNBRjE2eFB2RXh6cTY1L2pyM0xvb3dQa0ZVOXdBUStQVDR2?=
+ =?utf-8?B?TWpHajA2ZnpOUHdNY3JaNVhTREVaYnZ6bC9qUDlEZWZYb3J6MVBKN3p1dWFh?=
+ =?utf-8?B?WXpQTUtDUGhnMysyenNyS1JNVXVSanZtRXNnMFhxTFM4Y1o4Ujcxai9OY1hY?=
+ =?utf-8?B?NTlMR1FIMTVsWXFhcXZBWElPYmt2TWNod1pzL3hLeStaMU1kRVhPaFdsMGRa?=
+ =?utf-8?B?SkhLSVovNHZFV3o3N2hXKzdtMWlscitVekI5em1iczUzRngwajNKQWJxUVZw?=
+ =?utf-8?B?M1VOdkUrWXZEYzdqeDNhUDdrZUdCL0JydHdsMTNSUld0VHJYZlhMZTF5bXBM?=
+ =?utf-8?B?MHBSSlNidU11L2NQQTQwbjJXdTUyalRnb0ZRZjQ1UzRzOXFnNjBCR1dYTXVH?=
+ =?utf-8?B?Zlc1aFp2Z3hoeWtrSUpqeGxtR1FRejNLVEx6MWFUYVd4bTFRcW9JNXVnaFRU?=
+ =?utf-8?B?ZFpIWmVOaG9IUEx3Z3FZSEUrRXR0RFZTYXpUNXpXaVJVVlV6OVptWFhnRHM2?=
+ =?utf-8?B?TlRZQlZ5WlF6MUxXN05KZzVLOU9qYmsrWkdISmxpbEFrQTd1U2VndkY4NGhR?=
+ =?utf-8?B?QlRuU0VKVGdWRTdlOWZNMEo0NFVrbkZGZnBqSytWenA2cU5sMEIrMDNlZEpB?=
+ =?utf-8?B?czdmMnlpb2JIY1FQbTFLZmdWK2NQRVkzMHBxRGg0czhtZVBEVG5tcERiL21Q?=
+ =?utf-8?B?OTdpYzlZVzhLaDByS1djSTRac2dZazNOT3hLMWFRSTFhMjBFUk9pUzhIM05D?=
+ =?utf-8?B?TEF2MWpJYUloRGt5TGxuQmtFZ0NYYVlhTVd3Y2owbTBPSzVRZ1h6RXoxaGJX?=
+ =?utf-8?B?R2JKMUdVb3phdTk5M094a1phb2krRzkzcGFOS0lvOGs5ZEt0TmJRMzFVQ2s3?=
+ =?utf-8?B?K1lYU29Zbm00Y1Rpa0grVjVKR09PY1pPT1lxbDNwM1pzS0JGY2c5TDBIbE9G?=
+ =?utf-8?B?M3hpSERQbHlFcERDUHgrcUI5eGxVVnZ1WUdxV2RMWGxyN0M3S25kT0R5dzha?=
+ =?utf-8?B?VE1tditvbHhEZHdrM2lndW4rZWFIeTRMYjNNcEx1VE00KzJuMElVOStaaDQ2?=
+ =?utf-8?B?MDJvVXZ6ZzNzMkpNYkZUcC9vSlJhZnFIL2cyRWxjV1FIWHg1R3hjTXZtaUxx?=
+ =?utf-8?B?VHJZSmFXbE0vWmZuU01nSzVaVFlCdWxvVnpMc1BoZGtzc1RWUUVHa3VxS1ls?=
+ =?utf-8?B?ZmdUT3NINTZQUUpYNEhIMWZSYkhPblBJNzFGNis5MEhwTGxWa1JCYjcxcUZY?=
+ =?utf-8?B?ejFtdFlWcmlPS1F1ajNyOHNoTE9BQXZ2M2ExV0g0UVFvQUQ4a3J3NTJ2akIv?=
+ =?utf-8?B?WS81WEMwc2ovM3ZHNnVYb2ZlTHgrQ2NwTlI2QUVaSHpiV0IzTWd3elptRXh0?=
+ =?utf-8?B?eXdPam8yd2krMVN2MXdidFIvM3hnZFlwNytrUTNDanRRaU5KZmpmNnJtcEdu?=
+ =?utf-8?Q?lYpPEzt20TDYGiTCImk2RwEfG?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d65b94ff-668c-48e7-bb6c-08da755bd1e6
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB2941.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2022 14:24:05.2410 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DlQvUlUbeSRWisN7p3KdeDza8C4RxLyybR7t/H9J2uqm4aM4pm2SAEHEM2r7OZeOSjYwvcviAj2foLjxNjX+0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4506
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/amd/display: Fix 'no previous
+ prototype' compiler warns in amdgpu_dm_plane.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,63 +128,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: adrian.larumbe@collabora.com
+Cc: Alan Liu <HaoPing.Liu@amd.com>, intel-gfx@lists.freedesktop.org,
+ Harry Wentland <Harry.Wentland@amd.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 02 Aug 2022, Adrian Larumbe <adrian.larumbe@collabora.com> wrote:
-> Introduces a new module parameter, 'use_pool_alloc', which defaults to
-> 'false'. Its goal is to make the driver fall back on TTM for setting up
-> the system memory region, so that object allocation will be done through
-> the TTM subsystem rather than shmem objects.
->
-> This commit only brings in the new kernel module param, which will be
-> used by successive commits.
->
-> Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
-> ---
->  drivers/gpu/drm/i915/i915_params.c | 6 ++++++
->  drivers/gpu/drm/i915/i915_params.h | 3 ++-
->  2 files changed, 8 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> index 6fc475a5db61..1af11f030ab1 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -207,6 +207,12 @@ i915_param_named_unsafe(lmem_size, uint, 0400,
->  i915_param_named_unsafe(lmem_bar_size, uint, 0400,
->  			"Set the lmem bar size(in MiB).");
->  
-> +i915_param_named_unsafe(use_pool_alloc, bool, 0600,
 
-Do you expect to be able to change this runtime? Or the device specific
-debugfs parameter knob?
 
-> +	"Force the driver to use TTM's pool allocator API for smem objects. "
-> +	"This will cause TTM to take over BO allocation even in integrated platforms. "
-> +	"(default: false)");
-> +
-> +
+On 2022-08-03 08:41, Imre Deak wrote:
+> On Tue, Aug 02, 2022 at 12:57:24PM -0400, Rodrigo Siqueira Jordao wrote:
+>>
+>>
+>> On 2022-08-01 09:52, Imre Deak wrote:
+>>> Fix compiler warnings like the following triggered by
+>>> '-Wmissing-prototypes':
+>>>
+>>>     CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_plane.o
+>>> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_plane.c:83:31: warning: no previous prototype for â€˜amd_get_format_infoâ€™ [-Wmissing-prototypes]
+>>
+>> I see "â€˜" around "amd_get_format_info"; I'm not sure if my email client
+>> adds that or if there is something wrong in the commit message.
+> 
+> Yes, it's a copy-paste from
+> http://gfx-ci.fi.intel.com/archive/deploy/CI_DRM_11953/build_failure.log>> should be 'amd_get_format_info' and can be fixed while applying the
+> patch.
+> 
+>> With the commit message change:
+>>
+>> Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> 
+> Thanks for the review. Could this and patch 3/3 be merged via the amd
+> tree?
 
-Superfluous newline.
+Sure,
+Patch 2 and 3 applied to amd-staging-drm-next.
 
->  static __always_inline void _print_param(struct drm_printer *p,
->  					 const char *name,
->  					 const char *type,
-> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-> index 2733cb6cfe09..992ee2a4947d 100644
-> --- a/drivers/gpu/drm/i915/i915_params.h
-> +++ b/drivers/gpu/drm/i915/i915_params.h
-> @@ -84,7 +84,8 @@ struct drm_printer;
->  	param(bool, verbose_state_checks, true, 0) \
->  	param(bool, nuclear_pageflip, false, 0400) \
->  	param(bool, enable_dp_mst, true, 0600) \
-> -	param(bool, enable_gvt, false, IS_ENABLED(CONFIG_DRM_I915_GVT) ? 0400 : 0)
-> +	param(bool, enable_gvt, false, IS_ENABLED(CONFIG_DRM_I915_GVT) ? 0400 : 0) \
-> +	param(bool, use_pool_alloc, false, 0600)
->  
->  #define MEMBER(T, member, ...) T member;
->  struct i915_params {
+Thanks
+Siqueira
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> 
+>>
+>>>    const struct drm_format_info *amd_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+>>>
+>>> Fixes: 5d945cbcd4b1 ("drm/amd/display: Create a file dedicated to planes")
+>>> Cc: Harry Wentland <Harry.Wentland@amd.com>
+>>> Cc: Alan Liu <HaoPing.Liu@amd.com>
+>>> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+>>> Signed-off-by: Imre Deak <imre.deak@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 1 +
+>>>    1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+>>> index 5eb5d31e591de..da3b086b0d6ef 100644
+>>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+>>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+>>> @@ -33,6 +33,7 @@
+>>>    #include "amdgpu.h"
+>>>    #include "dal_asic_id.h"
+>>>    #include "amdgpu_display.h"
+>>> +#include "amdgpu_dm_plane.h"
+>>>    #include "amdgpu_dm_trace.h"
+>>>    #include "gc/gc_11_0_0_offset.h"
+>>>    #include "gc/gc_11_0_0_sh_mask.h"
+>>
+
