@@ -1,49 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6A72588A28
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 12:10:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB124588C4F
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 14:42:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B17518AE82;
-	Wed,  3 Aug 2022 10:10:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5719118BE34;
+	Wed,  3 Aug 2022 12:41:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAF2E10E5F3
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Aug 2022 10:09:49 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B678C18BD8D;
+ Wed,  3 Aug 2022 12:41:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659521389; x=1691057389;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bcO/tm7+vfvMsxoaNZKd/aKlpbCn0xhesxg7OT1D3Xc=;
- b=AYsKlfmS2sSeeDc9ACS6zY/O1OWbZRfvghtMLvgtGabdf62VYA4n02b5
- 9bv+wGjKcpu+9ktn4HOa7ubQ72rrmTP+MIQcLyXl82dv45M4T1zRaHHPP
- AuzJR5j2YHbd/BBrg0KTyo+ZJ5Y2QUSL/ZZXn274c9VG7WQFnmw3Jb8pC
- 3z66zuNeyzGJEqi3K81Rcm8tcyUOB8wxMkpveKMkT6TeebOL+gQT5UDwc
- YC7D5RgTwS3ldPz8+aeT93rMT2CnprCjv4lpeav8fRlgCmsi3HtvPo9L1
- ApbJCuIIJN8Ztz/sOwWR5kBL646ADWi7HXYQURUBNewopzVnxRPtGYzrn g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10427"; a="315494011"
-X-IronPort-AV: E=Sophos;i="5.93,213,1654585200"; d="scan'208";a="315494011"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2022 03:09:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,213,1654585200"; d="scan'208";a="578587238"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orsmga006.jf.intel.com with ESMTP; 03 Aug 2022 03:09:47 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  3 Aug 2022 15:39:36 +0530
-Message-Id: <20220803100936.2955769-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220803082010.2952698-1-arun.r.murthy@intel.com>
-References: <20220803082010.2952698-1-arun.r.murthy@intel.com>
+ t=1659530492; x=1691066492;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=goprZSn6thQOij1x7VYuqtlLo2vuJTocmYUku8HQm9c=;
+ b=Z8z0DQXXx4Q2GK7KWZ65+wQ/L1qbYLWAqDFZL1E1lt6ZYF2ti6nOl7As
+ pggAZFQ/4QUo2DvCE1gutxMRcjUqR4Mu2PFmr2yjxz0tu5xQ7zbnuXycC
+ 0ZnovxnI4/W7xIGVZqZ22OTin2RjyenJ1jPsAr/lJb1PpqWaJw8OJqulG
+ eAiL1BicOFPKuTdzfwFBQzRbN9+1OgN3+4Fry927c5L2sKKTr3ScXf83w
+ nsB7NL1uyPtWR+FZYobaO4MQZZ6GcwGgxhzG0xUdt9bGE9sw5lYNmjSyo
+ ZcxN86Gh3v41pcTeI9TuSxAxPLJPKTmkq6Q1EouhS9TyLEWpglL95H6yf Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10427"; a="289671705"
+X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="289671705"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2022 05:41:31 -0700
+X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="631133157"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2022 05:41:28 -0700
+Date: Wed, 3 Aug 2022 15:41:25 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>
+Message-ID: <Yups9fP/V9hAnAFk@ideak-desk.fi.intel.com>
+References: <20220801135259.3039679-1-imre.deak@intel.com>
+ <20220801135259.3039679-2-imre.deak@intel.com>
+ <8a3f1d72-5995-5db3-e550-8c532024c304@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCHv3] drm/i915/display: add support for dual panel
- backlight
+In-Reply-To: <8a3f1d72-5995-5db3-e550-8c532024c304@amd.com>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/amd/display: Fix 'no previous
+ prototype' compiler warns in amdgpu_dm_plane.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,72 +59,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: imre.deak@intel.com
+Cc: Alan Liu <HaoPing.Liu@amd.com>, intel-gfx@lists.freedesktop.org,
+ Harry Wentland <Harry.Wentland@amd.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The patch with commit 20f85ef89d94 ("drm/i915/backlight: use unique
-backlight device names") already adds support for dual panel backlight
-but with error prints. Since the patch tried to create the backlight
-device with the same name and upon failure will try with a different
-name it leads to failure logs in dmesg inturn getting caught by CI.
+On Tue, Aug 02, 2022 at 12:57:24PM -0400, Rodrigo Siqueira Jordao wrote:
+> 
+> 
+> On 2022-08-01 09:52, Imre Deak wrote:
+> > Fix compiler warnings like the following triggered by
+> > '-Wmissing-prototypes':
+> > 
+> >    CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_plane.o
+> > drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_plane.c:83:31: warning: no previous prototype for â€˜amd_get_format_infoâ€™ [-Wmissing-prototypes]
+> 
+> I see "â€˜" around "amd_get_format_info"; I'm not sure if my email client
+> adds that or if there is something wrong in the commit message.
 
-This patch alternately will check if the backlight class of same name
-exists, will use a different name.
+Yes, it's a copy-paste from
+http://gfx-ci.fi.intel.com/archive/deploy/CI_DRM_11953/build_failure.log
+should be 'amd_get_format_info' and can be fixed while applying the
+patch.
 
-v2: reworked on top of the patch commit 20f85ef89d94
-("drm/i915/backlight: use unique backlight device names")
-v3: fixed the ref count leak(Jani N)
+> With the commit message change:
+> 
+> Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- .../gpu/drm/i915/display/intel_backlight.c    | 27 +++++++++----------
- 1 file changed, 13 insertions(+), 14 deletions(-)
+Thanks for the review. Could this and patch 3/3 be merged via the amd
+tree?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index 110fc98ec280..0f93b2ba907b 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -971,26 +971,25 @@ int intel_backlight_device_register(struct intel_connector *connector)
- 	if (!name)
- 		return -ENOMEM;
- 
--	bd = backlight_device_register(name, connector->base.kdev, connector,
--				       &intel_backlight_device_ops, &props);
--
--	/*
--	 * Using the same name independent of the drm device or connector
--	 * prevents registration of multiple backlight devices in the
--	 * driver. However, we need to use the default name for backward
--	 * compatibility. Use unique names for subsequent backlight devices as a
--	 * fallback when the default name already exists.
--	 */
--	if (IS_ERR(bd) && PTR_ERR(bd) == -EEXIST) {
-+	bd = backlight_device_get_by_name(name);
-+	if (bd) {
-+		put_device(&bd->dev);
-+		/*
-+		 * Using the same name independent of the drm device or connector
-+		 * prevents registration of multiple backlight devices in the
-+		 * driver. However, we need to use the default name for backward
-+		 * compatibility. Use unique names for subsequent backlight devices as a
-+		 * fallback when the default name already exists.
-+		 */
-+		kfree(bd);
- 		kfree(name);
- 		name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
- 				 i915->drm.primary->index, connector->base.name);
- 		if (!name)
- 			return -ENOMEM;
--
--		bd = backlight_device_register(name, connector->base.kdev, connector,
--					       &intel_backlight_device_ops, &props);
- 	}
-+	bd = backlight_device_register(name, connector->base.kdev, connector,
-+				       &intel_backlight_device_ops, &props);
- 
- 	if (IS_ERR(bd)) {
- 		drm_err(&i915->drm,
--- 
-2.25.1
-
+> 
+> >   const struct drm_format_info *amd_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+> > 
+> > Fixes: 5d945cbcd4b1 ("drm/amd/display: Create a file dedicated to planes")
+> > Cc: Harry Wentland <Harry.Wentland@amd.com>
+> > Cc: Alan Liu <HaoPing.Liu@amd.com>
+> > Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 1 +
+> >   1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> > index 5eb5d31e591de..da3b086b0d6ef 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> > @@ -33,6 +33,7 @@
+> >   #include "amdgpu.h"
+> >   #include "dal_asic_id.h"
+> >   #include "amdgpu_display.h"
+> > +#include "amdgpu_dm_plane.h"
+> >   #include "amdgpu_dm_trace.h"
+> >   #include "gc/gc_11_0_0_offset.h"
+> >   #include "gc/gc_11_0_0_sh_mask.h"
+> 
