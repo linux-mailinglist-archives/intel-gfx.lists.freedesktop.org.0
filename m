@@ -1,154 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A964588526
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 02:30:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 964095886C4
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 07:33:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 296E911B59A;
-	Wed,  3 Aug 2022 00:30:06 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00A8F12A7DD;
- Wed,  3 Aug 2022 00:29:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DE6C10FD37;
+	Wed,  3 Aug 2022 05:32:54 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66CC7112158
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Aug 2022 05:32:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659486592; x=1691022592;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=8UgWdUtmmVtFdQQl0mydMTSYRCNU10ZyUdBO3ubQmkM=;
- b=FSVtvG4Afu/jj7QiD7DK1i/M4lUvdHdBPgkbMZWewMqoHldGkWWY01dY
- hnqSpbC7Ac9CXZhyEzETVMf33XN85xfkK5azG2Sz81ekGvlXaE+zHkoux
- NCRdhRD8Hzm0/gDrJLVSDbJsN96DtOEU+uf0X9EpMiVQV5IiUJiXO+CS9
- FVXXKlnuFme9id7nmV6//BE74fV8r4/dRMfscp39XduzSy48WwV+pzteP
- jLiVa9dVMxE5zW8XLo8qQtRAbIrWawOB4/7sfR/WtXXEKC7dxGmO61TmT
- 5fzVXDrMAdF0AGEcXuivDcTfBle6PU02D0NnswQB42r8lPCeHPsdxV6PR A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10427"; a="289560873"
-X-IronPort-AV: E=Sophos;i="5.93,212,1654585200"; d="scan'208";a="289560873"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2022 17:29:50 -0700
+ t=1659504764; x=1691040764;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CHyipdAhVSjd8GeAWsLzB+trXww9qOuujf6Qxq5GwQU=;
+ b=lvpaaGyp+v8M8WdZR3MS5uDws0I2HvPDmSxjpSsZqtqSKGv1PFA8CZkA
+ rflgH3lno5WKTkQlu6SoRYhD9sB0fZMMSysYXH8wkjZB8/aOF8PyjlMtW
+ OHl+ZMxElukgemJpSe756D34QX3oUj8Ky3bFF4kgkAM5EXQJk4VcQbCq1
+ jIPfJO+EANtAhwzpQMKmfcf5d9xxHADaBZlGq2vcM7eSiRvRWGLmWtU8f
+ DuSwX3pd4Ya70RInfiOcqD9Mz8eITT9xbIXE6vwrg8hQ0tiTf4ZwL2g46
+ l5foro8wcFMF8EvuXcvVYZO1C7L+faukFQJf+06M+Zs9yYptWMiwmwl4w A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10427"; a="351299727"
+X-IronPort-AV: E=Sophos;i="5.93,213,1654585200"; d="scan'208";a="351299727"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2022 22:32:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,212,1654585200"; d="scan'208";a="602631889"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga002.jf.intel.com with ESMTP; 02 Aug 2022 17:29:50 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Tue, 2 Aug 2022 17:29:50 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Tue, 2 Aug 2022 17:29:49 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28 via Frontend Transport; Tue, 2 Aug 2022 17:29:49 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.28; Tue, 2 Aug 2022 17:29:49 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YYdAAJRhzaeFFMqxDNzz3uVgmoGqc/XwF6FkTUWW0qahxRh1IrysrSudRzNlyWao8VBKmZsHJwmtvygo10Yy6qXBY5APoGneLFNBlvylyZVX7WEuBCzaKDmgEf84plwR46a37IAjEWXxgUj/r2FknrfWezKAlsSufo2YBEXxElUd/uQNSKMnlblumpBn3uzVgAI66O1x7uBlNuOp+gki4P/2UIDG9LpfSuz5MkPtyPDEUZARfHBIMgAw0bz0OJ/ujxotEpUQzfozI8Ipi2Z617zlB1FVecUl+0+OURw8nHKfmFaQXUrn4D9FwNTh+OGqH9MtaoikijQFOxs7EP1vcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jUrBczy3ZGMWIq09y84v5E6EAb1GTMeimHPCaK7sttw=;
- b=bXr8SEbxXQmfSF8Rzk7ici2yWSpTboUzzqSf4Ju1j55+np9PKIRc3BjY3if5pvTY4ezOkVtBGlghk/NwpzLsGNH37eZsBcpWqEhFI+PEP/SGkrMh/N6U1NmtN6VAsEEZmJygpLrqOKp+9FJ2o8K02oyBcATQxfNqOFsNLCVA+sBLaYJZVzwimb957+rEIYL/arIzRVcGqnnzZhdpV5TNHjxGTBdEWmJmuWPrpstIVPJxILyFZnKs1J6hf/Tx0I9ZDzzgJZStoMBYJD6FayAnO6fFuThXL3Pf7wTa4yUC9LyDsiloSuOWcqyMCH0LG2s9lYa078mY7YQBi3ZGcLVYig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by SA2PR11MB5180.namprd11.prod.outlook.com (2603:10b6:806:fb::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.11; Wed, 3 Aug
- 2022 00:29:47 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::516d:4bc0:8e7b:9a12]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::516d:4bc0:8e7b:9a12%6]) with mapi id 15.20.5482.016; Wed, 3 Aug 2022
- 00:29:47 +0000
-Message-ID: <064d5fbe-0496-65e2-a0f9-0341a0a6079b@intel.com>
-Date: Tue, 2 Aug 2022 17:29:44 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.11.0
-Content-Language: en-GB
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "Intel-GFX@Lists.FreeDesktop.Org" <Intel-GFX@Lists.FreeDesktop.Org>
-References: <20220728022028.2190627-1-John.C.Harrison@Intel.com>
- <20220728022028.2190627-2-John.C.Harrison@Intel.com>
- <e8e5eaf585a38dc0af79236b83d52d51c47e3e25.camel@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <e8e5eaf585a38dc0af79236b83d52d51c47e3e25.camel@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY3PR05CA0013.namprd05.prod.outlook.com
- (2603:10b6:a03:254::18) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+X-IronPort-AV: E=Sophos;i="5.93,213,1654585200"; d="scan'208";a="670724414"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmsmga004.fm.intel.com with ESMTP; 02 Aug 2022 22:32:41 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  3 Aug 2022 10:59:44 +0530
+Message-Id: <20220803052944.28069-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0ceff1fd-5afb-47f3-62c8-08da74e74513
-X-MS-TrafficTypeDiagnostic: SA2PR11MB5180:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 98RM9xJbOvEaMAKTPVw+3Y17zD8L3FJmfanb4922CYh4neflJviUI3q1jsyHJAzhjF/oJEvYZkduJr8PoCQsfhQ8gbDjNrWbio6NtiZPetLIXYyTKwwAzEUuiUJKVTG1ohbqv3vnHevS6cBJhqdIBn2ER7g55YhVqEphEbGsoV+bDp6pGrEobUWEida6YktxudZe35wewMACghI0+gZpCJJ1yILLqsLTYtm5Sz2Ia4lkzJ4HbAtBQq+50pOg2DY58TmYyfGtTZ2v5J/A9HNxoQFWRVwIge9afT1wxu8VlgVTKmW1hjHkwYh7lhx6CT751nVuSMFT5/GlDiqP17t4+WyEOCSRgHOdnfV9u7Tiwl8jvNHm3xOkOqw0P6RjVljFCzncyy/O6gSFpUlN5+RMNP9vJ8f1i+yf5Z5iLSkIEXPEsPTLvDStIDjfIaoYUGjOs9jYYOAJ4mfThpWq9r9ITRc6PIU7iJ6Ta9ISR9Jn97JsWWiByX4fi4zWn1BXSJBoldYHqCHnr2zES0+75tMfXZcSmwa9GgvrW5R2FrQK9IzPMNK8updHDsNOQFXTOeVq4MaRE3MuxLAY17yHZ3Sw/3BG0HLL05OxLfQTXEPMNU10Il3gJiSulX+j1hcNy2F434iFXHiOwXuFFg0Oe1ffDDNDY/tsqbL7Ktq6nVzubT/18zLI61beFI/nsNaq2mixJz8oZrPFCuA33qBV6VK7p8VHCtNIghV1lCyclNZa9fhpOUzubqp9Gn1txE/JgvcgDwUW43YhtgaVgHIvn9LVpPaJev4on0rGgrgMbH5lzS1akKssTuNrEuzBGhfIn5qwlfC4jq9rcdRVEi/z/p9VGg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(396003)(346002)(366004)(376002)(39860400002)(136003)(6506007)(31696002)(6666004)(6512007)(53546011)(26005)(41300700001)(316002)(478600001)(54906003)(110136005)(86362001)(6486002)(82960400001)(38100700002)(2616005)(186003)(107886003)(83380400001)(450100002)(2906002)(66556008)(36756003)(8936002)(4326008)(66476007)(66946007)(31686004)(8676002)(5660300002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?enNIYWQzL2FDdy9mVUp0MXl5ZWo3U0Y5UnlQQ1ZUajQzbUkxZjJmTzFxYk81?=
- =?utf-8?B?MC9rdXRuQVZZdVN5SHpiNFJ1Q1lEbG1BL1A1SlJUSTEzVlFxRGNGaGoybnZP?=
- =?utf-8?B?NDU1T05jaHd0STlnVjNlNllTNzhXZEg5WEswMnNoQ2R3Nnk2dXVaV2w1K294?=
- =?utf-8?B?TFJhYXlpRGJZanRaRndVRlB5VFp0dXJrTUxKSFQzemJ4SXk5UzNhb25jWUlx?=
- =?utf-8?B?UGVqaXNVQ2l3ZkJNdkxuUG9hWk05SjlqL0FuTWwzRW9SZ0Uzb2NZY1UySTds?=
- =?utf-8?B?TzRuYkhkU3dJU0hKZDBna2dHenhXaWRCakNmdGYyc21zeEFVYUhza2hvWGdu?=
- =?utf-8?B?RXpYN0Nad0NBakVLUnNGcDVTRVZLMUhkUW9VY0I5VGx6d09ZRlRsUnRYM0Fk?=
- =?utf-8?B?ZkZwK1RsNFN6dVlWSzRIVkpDcEZRdzR3bnhJTnFXUUMrV3NvWURQZVd6SjE5?=
- =?utf-8?B?czVSRmxGVDVWUGh3WTdXZUhvY01hcjNsVzhsdDVHV1pFaWh4V3BwakNmdEUr?=
- =?utf-8?B?S3FIdnF0L2M0cm84TU5ibEdBWnJMY2lDcWtGUFh0T3NsUmRwNStVazJkOFpr?=
- =?utf-8?B?Ym1pMDFqTlE0MG5rWmNaTXpVZDdKQll0NlU3UFVkV1pqc0JZb3VtcnA0L05s?=
- =?utf-8?B?bVlCY0xTTmJFQzdQNjdMcXUvVmJtSzAvcnZLTWVrRGlrdEhScGw2enVDYTF0?=
- =?utf-8?B?Q0lUMlpubE4zY2lSTndLOU5EY1lRQUc0VVc2ejF5RWtabFRlK2ExczVLZWxH?=
- =?utf-8?B?U2RvcWJNelhORFZDTDRZNkl4RnVNYWhBNDRVNmIzV0NjUkFGRE1WdTAzeHlH?=
- =?utf-8?B?ZUgyMmk4cjdxSGlUOGswRlRCSlRTNmVwNC9UYmRZUFBrcERpRngrd2ZNRzNz?=
- =?utf-8?B?dGhpNkMyM2s0S0taeU9sUGdmMlNOcDlXYkFpMkZkNEJCbXpVVkhuU0hhbjVJ?=
- =?utf-8?B?NDBkc041TGsrOTMzWjZMSk9LWDc4VFFsbDBzMVZiSzRwZ3JqQjBQU0ZORlNz?=
- =?utf-8?B?anVyNzhlTEh0bmJPam5hMDVwQ1hTR1hXZFlFU3YzSFhSTkEvTFZRTTVxT0JV?=
- =?utf-8?B?V2t4YnUzUS84R2p2WDZHV2IrVklMOG1LMHpMZzFxV0pHMDR4Sy9tT09MQVdG?=
- =?utf-8?B?bTNKSGg4SmxtUWpOay93NmFnb1Z1dnBaQWNLdW12a01CYzFRaW0zeVlhalpj?=
- =?utf-8?B?NWd3NU9wMGh4UzdCR1dxc1VuaG1nSTVzZlFkYndnNE9JRXN0MWJvM0V5YkMw?=
- =?utf-8?B?a2NBWjE5ZkszOHNqSVN3TmVQdkFVOVVhMmV6MzNLNEx4bVNiVmF4MWtEM1RC?=
- =?utf-8?B?cHhDWEZ6T0FYYWlxRWUyOXpxaVZLTmR3ZzNaUDZrcmxLc0FJYTdrZE9kWlhZ?=
- =?utf-8?B?TGlibU1qa25Eazk4THdRdTN3cmlnb21nOEsxTk5wQm9OSCtvSlYwL20wZ0FD?=
- =?utf-8?B?d1RJQ0pmdzlTclRIRFpQVmRGa2FWMlpBa2tTc0NadjVObjBPTVF0ejRZbzNx?=
- =?utf-8?B?VmNCTzJTRW56N1laUHh4V01kcHU2SVJ0S2hGMEQ5SUVTUFp6S1FIVGF3TGJS?=
- =?utf-8?B?ZHJJcUJXWU14blpSWjJuMUpxR2VwZkI2eHRnYzV1M3V2alVsVmhEcEw5dnlM?=
- =?utf-8?B?alpSREJNZjdOUHZxeUZTLzF1VFRTWjdBRWgxS1V2N3RqM3l1d094ek53WmVy?=
- =?utf-8?B?QU9OMllnVVJJNVlxM1FScGc0NU5qV2QvMjkvR0hZMXdvRHFTWE5PSi9hZEVr?=
- =?utf-8?B?MWVxK002Q3NNWkJUY2kva0xzdlcvUDJ3aStQeFB6WksxQnNSdXNEbjJLZGRK?=
- =?utf-8?B?cVVxZ1NpejZpbm1adDJ6b3RRSG1WZjBveXJNRk5BMXRYZ3dCSG9iZk10UG5S?=
- =?utf-8?B?R2pkVkRQSmNVdzg5UHc0MHRSWDlEUU56bklEVkVPTVoySm82R2R5cHJ2TmlW?=
- =?utf-8?B?cW11N2FSamZMbW5WMVNIYkx6aWVheEVxRWpuKzg0T0czYmJYZGd6a2JrL1lh?=
- =?utf-8?B?OVAzRXNRV3VyT0Zyd0hiWGY3aitTdWQvU3JKM3ZaT0tHbjRDc1FCeW9sd1Nz?=
- =?utf-8?B?RU5Ja0dYWDk0Y0dQTHlTdW1hRUIwNFF2SlZiSnUveUd6bGVKRCt5Z082dGM0?=
- =?utf-8?B?RE8xUi8rUVZRc1I0UnpDSmgvNmE3NGtLMGtjTkp1YktLODBDRjM4Z3J5Z0x3?=
- =?utf-8?B?NWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ceff1fd-5afb-47f3-62c8-08da74e74513
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2022 00:29:47.2918 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BfxZOeXKPah7HmuOQzDQ+r+k7p7O+4VNGvuiOtpASqMqlHt+B0F8+bxV+Syg0CduBcy3WHIvht6FayDFbty1wnFtUsyzkANLxuXZ23okYbM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5180
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/guc: Add a helper for log
- buffer size
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/pps: added get_pps_idx() hook as part
+ of pps_get_register() cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,107 +54,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRI-Devel@Lists.FreeDesktop.Org" <DRI-Devel@Lists.FreeDesktop.Org>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 8/2/2022 10:37, Teres Alexis, Alan Previn wrote:
-> Something minor in comments, so conditional R-B (please fix on the way in or reply to correct me):
->
-> Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
->
-> On Wed, 2022-07-27 at 19:20 -0700, Harrison, John C wrote:
->> From: Alan Previn <alan.previn.teres.alexis@intel.com>
->>
->> Add a helper to get GuC log buffer size.
->>
->> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
->> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 49 ++++++++++++----------
->>   1 file changed, 27 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
->> index 25b2d7ce6640d..492bbf419d4df 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
->> @@ -15,6 +15,32 @@
->>   
->>   static void guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log);
->>   
->> +static u32 intel_guc_log_size(struct intel_guc_log *log)
->> +{
->> +	/*
->> +	 *  GuC Log buffer Layout:
->> +	 *
->> +	 *  NB: Ordering must follow "enum guc_log_buffer_type".
->> +	 *
->> +	 *  +===============================+ 00B
->> +	 *  |      Debug state header       |
->> +	 *  +-------------------------------+ 32B
->>
-> Something we might have missed in prior updates but i think the bufer state is now 36 bytes long no? (9 dwords).
-Good catch. Yes, an extra word was added some while back.
+To support dual LFP two instances of pps added from display gen12 onwards.
+Few older platform like VLV also has dual pps support but handling is
+different. So added separate hook get_pps_idx() to formulate which pps
+instance to used for a soecific LFP on a specific platform.
 
-John.
+Simplified pps_get_register() which use get_pps_idx() hook to derive the
+pps instance and get_pps_idx() will be initialized at pps_init().
 
->
->
->> +	 *  |    Crash dump state header    |
->> +	 *  +-------------------------------+ 64B
->> +	 *  |     Capture state header      |
->> +	 *  +-------------------------------+ 96B
->> +	 *  |                               |
->> +	 *  +===============================+ PAGE_SIZE (4KB)
->> +	 *  |          Debug logs           |
->> +	 *  +===============================+ + DEBUG_SIZE
->> +	 *  |        Crash Dump logs        |
->> +	 *  +===============================+ + CRASH_SIZE
->> +	 *  |         Capture logs          |
->> +	 *  +===============================+ + CAPTURE_SIZE
->> +	 */
->> +	return PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE + CAPTURE_BUFFER_SIZE;
->> +}
->> +
->>   /**
->>    * DOC: GuC firmware log
->>    *
->> @@ -461,32 +487,11 @@ int intel_guc_log_create(struct intel_guc_log *log)
->>   
->>   	GEM_BUG_ON(log->vma);
->>   
->> -	/*
->> -	 *  GuC Log buffer Layout
->> -	 * (this ordering must follow "enum guc_log_buffer_type" definition)
->> -	 *
->> -	 *  +===============================+ 00B
->> -	 *  |      Debug state header       |
->> -	 *  +-------------------------------+ 32B
->> -	 *  |    Crash dump state header    |
->> -	 *  +-------------------------------+ 64B
->> -	 *  |     Capture state header      |
->> -	 *  +-------------------------------+ 96B
->> -	 *  |                               |
->> -	 *  +===============================+ PAGE_SIZE (4KB)
->> -	 *  |          Debug logs           |
->> -	 *  +===============================+ + DEBUG_SIZE
->> -	 *  |        Crash Dump logs        |
->> -	 *  +===============================+ + CRASH_SIZE
->> -	 *  |         Capture logs          |
->> -	 *  +===============================+ + CAPTURE_SIZE
->> -	 */
->>   	if (intel_guc_capture_output_min_size_est(guc) > CAPTURE_BUFFER_SIZE)
->>   		DRM_WARN("GuC log buffer for state_capture maybe too small. %d < %d\n",
->>   			 CAPTURE_BUFFER_SIZE, intel_guc_capture_output_min_size_est(guc));
->>   
->> -	guc_log_size = PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE +
->> -		       CAPTURE_BUFFER_SIZE;
->> +	guc_log_size = intel_guc_log_size(log);
->>   
->>   	vma = intel_guc_allocate_vma(guc, guc_log_size);
->>   	if (IS_ERR(vma)) {
->> -- 
->> 2.37.1
->>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c     |  5 ++++
+ drivers/gpu/drm/i915/display/intel_bios.h     |  1 +
+ .../drm/i915/display/intel_display_types.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_pps.c      | 25 ++++++++++++++-----
+ 4 files changed, 27 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 51dde5bfd956..42315615a728 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -611,6 +611,11 @@ static int opregion_get_panel_type(struct drm_i915_private *i915,
+ 	return intel_opregion_get_panel_type(i915);
+ }
+ 
++bool intel_bios_is_lfp2(struct intel_encoder *encoder)
++{
++	return encoder->devdata && encoder->devdata->child.handle == DEVICE_HANDLE_LFP2;
++}
++
+ static int vbt_get_panel_type(struct drm_i915_private *i915,
+ 			      const struct intel_bios_encoder_data *devdata,
+ 			      const struct edid *edid)
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index e47582b0de0a..aea72a87ea2c 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -251,6 +251,7 @@ bool intel_bios_is_lspcon_present(const struct drm_i915_private *i915,
+ 				  enum port port);
+ bool intel_bios_is_lane_reversal_needed(const struct drm_i915_private *i915,
+ 					enum port port);
++bool intel_bios_is_lfp2(struct intel_encoder *encoder);
+ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *dev_priv, enum port port);
+ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
+ 			       struct intel_crtc_state *crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 0da9b208d56e..95f71a572b07 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1723,6 +1723,8 @@ struct intel_dp {
+ 
+ 	/* When we last wrote the OUI for eDP */
+ 	unsigned long last_oui_write;
++
++	int (*get_pps_idx)(struct intel_dp *intel_dp);
+ };
+ 
+ enum lspcon_vendor {
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 1b21a341962f..c9cdb302d318 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -231,6 +231,17 @@ bxt_power_sequencer_idx(struct intel_dp *intel_dp)
+ 	return backlight_controller;
+ }
+ 
++static int
++gen12_power_sequencer_idx(struct intel_dp *intel_dp)
++{
++	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
++
++	if (intel_bios_is_lfp2(encoder))
++		return 1;
++
++	return 0;
++}
++
+ typedef bool (*vlv_pipe_check)(struct drm_i915_private *dev_priv,
+ 			       enum pipe pipe);
+ 
+@@ -361,15 +372,10 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
+ 				    struct pps_registers *regs)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+-	int pps_idx = 0;
++	int pps_idx = intel_dp->get_pps_idx(intel_dp);
+ 
+ 	memset(regs, 0, sizeof(*regs));
+ 
+-	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+-		pps_idx = bxt_power_sequencer_idx(intel_dp);
+-	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+-		pps_idx = vlv_power_sequencer_pipe(intel_dp);
+-
+ 	regs->pp_ctrl = PP_CONTROL(pps_idx);
+ 	regs->pp_stat = PP_STATUS(pps_idx);
+ 	regs->pp_on = PP_ON_DELAYS(pps_idx);
+@@ -1431,6 +1437,13 @@ void intel_pps_init(struct intel_dp *intel_dp)
+ 	intel_dp->pps.initializing = true;
+ 	INIT_DELAYED_WORK(&intel_dp->pps.panel_vdd_work, edp_panel_vdd_work);
+ 
++	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
++		intel_dp->get_pps_idx = bxt_power_sequencer_idx;
++	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++		intel_dp->get_pps_idx = vlv_power_sequencer_pipe;
++	else if (DISPLAY_VER(i915) >= 12)
++		intel_dp->get_pps_idx = gen12_power_sequencer_idx;
++
+ 	pps_init_timestamps(intel_dp);
+ 
+ 	with_intel_pps_lock(intel_dp, wakeref) {
+-- 
+2.29.0
 
