@@ -1,83 +1,137 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 615F0589331
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 22:28:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39821589342
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Aug 2022 22:31:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A911118B52A;
-	Wed,  3 Aug 2022 20:28:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4969E10EA47;
+	Wed,  3 Aug 2022 20:31:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F67118AA07
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Aug 2022 20:27:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1659558476;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=oVq6qfh71Z4eyfH2Jr7IUkThH+5zHyp5mI30K20IkZo=;
- b=RCWuYes8YlKC3Edz4Y9HXW/tUad8qH59UFhrTvnNoAiJyZ35WEmr8z59XXedH63AMwO24t
- yUvFClOrNlRoievoQ2VOz9GGN0+33b1i/tH/qs6o687lQkCqaneNjRtwhWaKjAoJU5lgoc
- HBY3Xx6wqhXhtL5GmDXwO+l8JmmxY5Y=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-542-CulzpHg6Ow6EPzPJy6kEXg-1; Wed, 03 Aug 2022 16:27:55 -0400
-X-MC-Unique: CulzpHg6Ow6EPzPJy6kEXg-1
-Received: by mail-qk1-f197.google.com with SMTP id
- bp40-20020a05620a45a800b006b87633579fso11047690qkb.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 03 Aug 2022 13:27:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=oVq6qfh71Z4eyfH2Jr7IUkThH+5zHyp5mI30K20IkZo=;
- b=lGSkKR6l57j1c9KSu59sK/DHJITQTzTo8wiV0LopJOTZ/cCAWTpPhYxrc5/Rb1BuK/
- W9OHERxfKFTg/qCxbfsOBwfg+nAT3Re9FJCy/1gDCVgrI8+36uBRKjIxQ5uCOLuvWTDo
- 50ASg/DcQedjBecDchEVaKtJS3kz2yvsieuSpC+Jba0452iD7eZoNdjJYA49TAa5K45X
- SBvrWwtKm9fXU2PbsfDq2Ytv5O6BqNquyNONlmxLz+rDRgIsN4KWf1g9elZ8N3tluPBK
- pvXPKAGHRfp+fDN/Cq0tjytnDN09V9hVUW16/D8z/zZHf/higPcki/U0vsvYDWGrAJDd
- RJbQ==
-X-Gm-Message-State: AJIora/ReVYv+QEH28tNB8Vzpyy282k4K0BIVggWYFJ3iyDIEAk0YLmd
- EU5VeT/zJisVaeDmSoEpg85qLUAkC/UvmCFz60BlVYNAum/L+9r3hytfXf/s962JT6YCcfJvNpM
- XkqlwuOTNGgoB8LXWXF1PP/LAq+x5
-X-Received: by 2002:a05:620a:1a20:b0:6b5:fb66:c0ed with SMTP id
- bk32-20020a05620a1a2000b006b5fb66c0edmr20320477qkb.582.1659558475279; 
- Wed, 03 Aug 2022 13:27:55 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1sYkLbaReZU3W97WVBuS4zUUlBeI7W8a0WinyCLm13NPrWmXKMpW3LlStpLdb0upC3LPX+pRA==
-X-Received: by 2002:a05:620a:1a20:b0:6b5:fb66:c0ed with SMTP id
- bk32-20020a05620a1a2000b006b5fb66c0edmr20320447qkb.582.1659558474989; 
- Wed, 03 Aug 2022 13:27:54 -0700 (PDT)
-Received: from [192.168.8.138] (pool-100-0-245-4.bstnma.fios.verizon.net.
- [100.0.245.4]) by smtp.gmail.com with ESMTPSA id
- r4-20020ae9d604000000b006b614fe291bsm12931459qkk.28.2022.08.03.13.27.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Aug 2022 13:27:54 -0700 (PDT)
-Message-ID: <848f35a693b26bfd15b3c6539eacd3e313dcd3a7.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: "Lin, Wayne" <Wayne.Lin@amd.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
- <nouveau@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Date: Wed, 03 Aug 2022 16:27:51 -0400
-In-Reply-To: <CO6PR12MB5489BAFF2DDCD67F8BDCD827FC819@CO6PR12MB5489.namprd12.prod.outlook.com>
-References: <20220607192933.1333228-1-lyude@redhat.com>
- <20220607192933.1333228-19-lyude@redhat.com>
- <CO6PR12MB5489BAFF2DDCD67F8BDCD827FC819@CO6PR12MB5489.namprd12.prod.outlook.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD99610E840
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Aug 2022 20:31:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1659558686; x=1691094686;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=mhQF3UV50A144MDGlRbxXchmu8jM9UfkzjtJglfsb2M=;
+ b=lFdggagoxo9qHsE9jOKS/pXOAO7ngEjjqMJ/pg98hSsLgB7+0noUx7iG
+ 9n6cXSndKA2TiQNEKEcWBEpQeNOxFDVsrtuyOn21lPw4vsk5Tb2f1IODk
+ JpPa/Z9BqlxWhni9BdLmCTnxOuxhHdT/JGGkiapMFByZBXAUYWiaT/9WN
+ FAPf5W1DaFa28q4EnAQ8YeuqTik6lV3g0Ohae++SXXdlxc6wrqNX1z9Gi
+ WIVov58pGXY5e5iPVjzCgxlUwXEFFuRfPjVKSyU7gkXh0ojYpwBbWPuH2
+ NUxlfv2Ag25AlHT9BsUc77mDGtmLbYvFHJ1KF8rdfJzyuf7evg9WOzDqO Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="269544100"
+X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="269544100"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2022 13:31:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,214,1654585200"; d="scan'208";a="930524070"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga005.fm.intel.com with ESMTP; 03 Aug 2022 13:31:25 -0700
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Wed, 3 Aug 2022 13:31:25 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28 via Frontend Transport; Wed, 3 Aug 2022 13:31:25 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.28; Wed, 3 Aug 2022 13:31:21 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DdH9fyB2WpnK0G86Y3Ey6WWpWx+t7oZjc7SKdR5kJ1oeEiqknZStjiEMLdAJ1lqDE9WVfmCCT1la3TDBPkkk9Az2Zn3+0Slyag+IZkttejSod4Va6bdg/IF1lQlkyXmFCS7A3Gbn1h4765dJSujT452lkcg2wcS2zCa5bPGKKpN2Q752OGZaelcc8cJUe4vc4vhmfv7seyuordlqsHkhRHGW0RHivCiJw1PGHJLAQK8rnsbIxtpUaqWMzxPolmGolgY0a31C7pMwPSUjToZwSxITKD5vvIdJdbSERTWHcfuGlx4uQgmwvp3tLFP+5ZBBGMG+Ls7mZSCanPVXhCqx4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GKTiA2dAEci3L4wJAKkVr7mjeeVxwJjnHqLHQHqa6zM=;
+ b=kyWBL0LdWT8Jrz7wKhXIgnBF5Op6eUpCZXvztRQpv+RXyUfMlJlj9vnT+C+rSfFYP0f5uW8CkPP5HY3JNc6p6VkyvaCKwaEMi7p1PCJ9ybFFlBRrjJF5Ph8QVYThjiK64EzEm0RTRLOp46ui4Wijlr8VkzBUjBLwKHfqg7TFCHSzS1Vc5uNeC/Jg4KT8aowwGn7ENF7Omq/ly+O5bKMSBvh74hkF+0dtpw/CHfbaNwz5I4McI3qyAeBHdkDGRzwEfu1aEfdR/9INM2Di1473DyxDeWXv19uwaqj3/X/VtZKXdTPceUpfTXpHsvzayXw1MNIdLanQ6ocWVVqikZxAKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by MWHPR11MB1776.namprd11.prod.outlook.com (2603:10b6:300:110::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.12; Wed, 3 Aug
+ 2022 20:31:19 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a968:40aa:6163:5c79]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a968:40aa:6163:5c79%6]) with mapi id 15.20.5504.014; Wed, 3 Aug 2022
+ 20:31:19 +0000
+Date: Wed, 3 Aug 2022 16:31:13 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <tilak.tangudu@intel.com>
+Message-ID: <YurbEfhNA53uoNlk@intel.com>
+References: <20220721095955.3986943-1-tilak.tangudu@intel.com>
+ <20220721095955.3986943-2-tilak.tangudu@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220721095955.3986943-2-tilak.tangudu@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0139.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::24) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RESEND RFC 18/18] drm/display/dp_mst: Move all
- payload info into the atomic state
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7f9fb4ca-6e2b-4571-88c6-08da758f1f24
+X-MS-TrafficTypeDiagnostic: MWHPR11MB1776:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3xlPKm1yyxSJgZnEL0baFyumLOwpPPM6lGEYEjtFite3Danv/9shZuS5XE2MIVAsS0puS5H10jQe5Pqny4wlRx6oE946zX5Rlaf6FFtjkcGwV9nQvAKaIyHsgLeIwLHmFavEciY98kC3714MCnZNgLHjuneQwDxUdSIZ0fpM2PKFzjzlNk/ysjthS4fce2QxgjDvCueqr8fzJaF53hKIn9+8Gl0thjBtSpmBgXnQxbSM87kQF7ifNsRRIBOEXqZhUTIFxUbyYtmsebH67h8FIHZJWeVoROHMdHbkqp/U0UM2Lj9YmKbVf4w2lK43k7cYsqZOTDtGzWwItaQGz2+v7cMMuBJsRf1QrlBvIDaEPo/Nb408HF1uMH1FoYAh16+ooITU9II9bKqImoW4ZJJRkncgrVJANV8ww8WomhXebzaL6nLrkkWuaykvL/75r4Y3IjB87OOwhjeIQFWReQl1O4zEECyHnCyZKWQMbxW58k+tXhdDntdsRBDxRioQvbpL92vnMjciX6BAlE71CYUo/KfXnj03cc/+kt/Dq6b8QZAkfPNfUvXZV9FfwbkzctEh+KER/Q5AP16ACBZ8b4g4Dniavn90DCD/So7ei7is0wRZuLf1udUW1C+bmdZIDwe2LqX6xvPFwNB+3unJaQHpIi4HexMd2X2VyJj+bsAlZIXXQX0FFBUnl1qFsKIPyEcMn4qgl22G/xG9LubU7YA/478viqwgfXgtdwvqgpcweaE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(346002)(396003)(376002)(136003)(39860400002)(366004)(6512007)(41300700001)(26005)(86362001)(6666004)(6636002)(6506007)(316002)(478600001)(6486002)(37006003)(38100700002)(82960400001)(2616005)(186003)(83380400001)(5660300002)(2906002)(66556008)(36756003)(4326008)(66946007)(44832011)(8676002)(66476007)(34206002)(8936002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Eptqr58kPCtngAyI7hWS0u1YSzZ8dyoixNxYJKsfzE4KmvUc1uckR4w1psyu?=
+ =?us-ascii?Q?cQ3C46x3Vs293hNgnKzXaLsFeTeNK/+6c2Z7hRceukpeOl5Lu7z1FSz7W658?=
+ =?us-ascii?Q?eiRK8s5SIQegn9o9ipP3AfxNmzgAqZbM2IJyLIpKVDWX1zHoV8BaXuhDr4dI?=
+ =?us-ascii?Q?F9wP5aashglhzI91FtYEuRyxZpDnh/jP4XCVtYOA3ENTaBNgdGGQ8Tr17TC8?=
+ =?us-ascii?Q?CRgNL8qCNWf5527ToE3iutOkqkuoQ7ozDIFP9MeikaORQmcgQLU7nwGdaw6c?=
+ =?us-ascii?Q?l4+IOE9hd9Wg46C/McSg2IxVyLduC4IoP2YHZiZUEoMf/vRN/m4oW/iHjLo8?=
+ =?us-ascii?Q?OOYCLQclXioZSpsR+NwxuCHpSs5HbJa0zVQ3JBt8JVd2f9ZwJsVNgabfVsAp?=
+ =?us-ascii?Q?zGSVlU9wdzaZPfuopxq6iTM1AwsBmtRF8RqDSw7D5CYRfhJRBUvPoXXnyS6T?=
+ =?us-ascii?Q?m1ErIz32QBzPxeRmtXvwnCjIMiW/VGy0FrrvwLK8eL1Cc7TpoSncCdF7QxZc?=
+ =?us-ascii?Q?PDV067me+m45lwhX85ahCv1m+GMFSCJt24tMW/XyJhDsneHbdzBPMNuLARpY?=
+ =?us-ascii?Q?MlAawBQEIUMqva0CayxwaW0TC0QZsf8dD+oMd0KfdTbhUhbBV1xAlMtqE01n?=
+ =?us-ascii?Q?rxLlU6Ek4ibKVPeXxHzXqoXeretHfF9cRK1oppyq2prhgdmxxFtQa9bHObxI?=
+ =?us-ascii?Q?Vugp2hrejDbASCCs4V3EBroewsKnOhYqewMP0npweVLRBtJjzAuUUblOKMXP?=
+ =?us-ascii?Q?nhmMajT1v+0KfoxqbGCI82bF1maD6HI94LQhuvUtMt7sPZ7SGn5ydIUNE/NC?=
+ =?us-ascii?Q?0HIE3FbEYr0VuebYNG3Eq0xw2vLsni216wzmdukKg4580cVo9SR6yJ83E7ab?=
+ =?us-ascii?Q?KAYDZe9ym5/aTMjoe3AVUy1GG+s+9iRZu2yIu8En1fYReCr9Rb9ba+Q9Wbmj?=
+ =?us-ascii?Q?oBA/6ozHc7sFHyaCZYvHS8/ZaOIGRSZYtcc+RCDJWq3fAqOZGsNVq2CHseHN?=
+ =?us-ascii?Q?yYcBas4dn0eWguz1bPdJBe+AnhRESdMycsYpOcUUxYxz7KasGa9RlpZp+5cO?=
+ =?us-ascii?Q?lC0BkYkBQV3iZwtj9D2cuotnHaphSvGyJwTIDEglGMi9d0cF/gxhUyazM9pq?=
+ =?us-ascii?Q?xD58B72GNN7/7EgXGax03X817u3AnQqQqxYQVqAWNBLFl3czRMugF3dOXc+t?=
+ =?us-ascii?Q?tvabnJppS6qJG/tmv+H8jy+8pPXffaXpTjOXQyQB6Dq5ufdDlMKt0fY9vIE/?=
+ =?us-ascii?Q?U2IhhEHUYofpVJxVDqSh/qLJgcC7a5xfbiuvOWprQ3Wy5W9H6IpkMTIMGnJF?=
+ =?us-ascii?Q?w2AddFAsw7w2VNyFWpLinDY2J1qY8SCMzeE2Y1bnAcuhKkn09xrUBeQRn/yK?=
+ =?us-ascii?Q?6iatlviuR/IvghGmpkQ9FKtk3yif4oJJKuGIif31MIjVhiICsMdgY9olGF/l?=
+ =?us-ascii?Q?EPysE/8TeIiimDM0DSK73Dm4PKGY8MYs7VJkyLB+Z68122SLx5Z7yV3AKYhj?=
+ =?us-ascii?Q?f9LHQrIUP2ZkV95xAKBGDm/toLOP4gw51grK4I5XuP45hR68XdGFlldn4IJ4?=
+ =?us-ascii?Q?wnk2s4aYu+GhNCoO/nALUvdOmF7Nkfm/enlHwIoqOCvBur1urip3KEK2ZBLv?=
+ =?us-ascii?Q?RQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f9fb4ca-6e2b-4571-88c6-08da758f1f24
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2022 20:31:19.2587 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mDzwE0LwS90Bi0L4XbOvhG65XN0z3VH1BUQQQdKKnbhHDcciMPbovZw+A+OQ/Wumv23+PwfW7WLrwIYLaI+L1Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1776
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915: Added is_intel_rpm_allowed
+ helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,71 +144,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chen, Ian" <Ian.Chen@amd.com>, Karol Herbst <kherbst@redhat.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- open list <linux-kernel@vger.kernel.org>, "Lei, Jun" <Jun.Lei@amd.com>, "Lakha,
- Bhawanpreet" <Bhawanpreet.Lakha@amd.com>, "Siqueira,
- Rodrigo" <Rodrigo.Siqueira@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>, "Li, 
- Sun peng \(Leo\)" <Sunpeng.Li@amd.com>, "Zuo, Jerry" <Jerry.Zuo@amd.com>, "Shih,
- Jude" <Jude.Shih@amd.com>, Ben Skeggs <bskeggs@redhat.com>, "Strauss,
- Michael" <Michael.Strauss@amd.com>, "Wentland, Harry" <Harry.Wentland@amd.com>,
- Juston Li <juston.li@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@intel.com>,
- "open list:INTEL DRM DRIVERS" <intel-gfx@lists.freedesktop.org>,
- Luo Jiaxing <luojiaxing@huawei.com>, "Liu, Wenjing" <Wenjing.Liu@amd.com>, "Wu,
- Hersen" <hersenxs.wu@amd.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, "Ma,
- Leo" <Hanghong.Ma@amd.com>, Mikita Lipski <mikita.lipski@amd.com>,
- He Ying <heying24@huawei.com>, Simon Ser <contact@emersion.fr>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, "Li, Roman" <Roman.Li@amd.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>, Sean Paul <seanpaul@chromium.org>,
- Colin Ian King <colin.king@intel.com>, "Kazlauskas, 
- Nicholas" <Nicholas.Kazlauskas@amd.com>, Fernando Ramos <greenfoo@u92.eu>
+Cc: jani.nikula@intel.com, chris.p.wilson@intel.com, saurabhg.gupta@intel.com,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2022-07-05 at 09:10 +0000, Lin, Wayne wrote:
-> > +struct drm_dp_mst_port;
-> > +
-> >   /* DP MST stream allocation (payload bandwidth number) */
-> >   struct dc_dp_mst_stream_allocation {
-> >    uint8_t vcp_id;
-> >    /* number of slots required for the DP stream in
-> >    * transport packet */
-> >    uint8_t slot_count;
-> > + /* The MST port this is on, this is used to associate DC MST payloads
-> > with their
-> > + * respective DRM payloads allocations, and can be ignored on non-
-> > Linux.
-> > + */
+On Thu, Jul 21, 2022 at 03:29:48PM +0530, tilak.tangudu@intel.com wrote:
+> From: Tilak Tangudu <tilak.tangudu@intel.com>
 > 
-> Is it necessary for adding this new member? Since this is for setting the DC
-> HW and not relating to drm.
+> Added is_intel_rpm_allowed function to query the runtime_pm
+> status and disllow during suspending and resuming.
 
-I don't entirely know, honestly. The reasons I did it:
+> 
+> v2: Return -2 if runtime pm is not allowed in runtime_pm_get
+> and skip wakeref release in runtime_pm_put if wakeref value
+> is -2. - Jani N
 
- * Mapping things from DRM to DC and from DC to DRM is really confusing for
-   outside contributors like myself, so it wasn't even really clear to me if
-   there was another way to reconstruct the DRM context from the spots where
-   we call from DC up to DM (not a typo, see next point).
- * These DC structs for MST are already layer mixing as far as I can tell,
-   just not in an immediately obvious way. While this struct itself is for DC,
-   there's multiple spots where we pass the DC payload structs down from DM to
-   DC, then pass them back up from DC to DM and have to figure out how to
-   reconstruct the DRM context that we actually need to use the MST helpers
-   from that. So, that kind of further complicates the confusion of where
-   layers should be separated.
- * As far as I'm aware with C there shouldn't be any issue with adding a
-   pointer to a struct whose contents are undefined. IMHO, this is also
-   preferable to just using void* because then at least you get some hint as
-   to the actual type of the data and avoid the possibility of casting it to
-   the wrong type. So tl;dr, on any platform even outside of Linux with a
-   reasonably compliant compiler this should still build just fine. It'll even
-   give you the added bonus of warning people if they try to access the
-   contents of this member in DC on non-Linux platforms. If void* is preferred
-   though I'm fine with switching it to that.
+Should we have some defines instead of the -#s?
 
--- 
-Cheers, Lyude Paul (she/her) Software Engineer at Red Hat
+> Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_runtime_pm.c | 23 ++++++++++++++++++++++-
+>  drivers/gpu/drm/i915/intel_runtime_pm.h |  1 +
+>  2 files changed, 23 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index 6ed5786bcd29..704beeeb560b 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -113,7 +113,7 @@ static void untrack_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm,
+>  	unsigned long flags, n;
+>  	bool found = false;
+>  
+> -	if (unlikely(stack == -1))
+> +	if (unlikely(stack == -1) || unlikely(stack == -2))
+>  		return;
+>  
+>  	spin_lock_irqsave(&rpm->debug.lock, flags);
+> @@ -320,6 +320,21 @@ untrack_all_intel_runtime_pm_wakerefs(struct intel_runtime_pm *rpm)
+>  }
+>  
+>  #endif
+> +static int intel_runtime_pm_status(struct intel_runtime_pm *rpm)
+> +{
+> +	return rpm->kdev->power.runtime_status;
+> +}
+> +
+> +bool is_intel_rpm_allowed(struct intel_runtime_pm *rpm)
 
+why not static?
+
+> +{
+> +	int rpm_status;
+> +
+> +	rpm_status = intel_runtime_pm_status(rpm);
+> +	if (rpm_status == RPM_RESUMING
+
+I don't have a good feeling about this. If we are resuming we shouldn't
+grab extra references... This seems a workaround for the lock mess.
+
+> || rpm_status == RPM_SUSPENDING)
+
+and when we are suspending and we call this function is because we need
+to wake up, no?!
+
+> +		return false;
+> +	else
+> +		return true;
+> +}
+>  
+>  static void
+>  intel_runtime_pm_acquire(struct intel_runtime_pm *rpm, bool wakelock)
+> @@ -354,6 +369,9 @@ static intel_wakeref_t __intel_runtime_pm_get(struct intel_runtime_pm *rpm,
+>  						     runtime_pm);
+>  	int ret;
+>  
+> +	if (!is_intel_rpm_allowed(rpm))
+> +		return -2;
+> +
+>  	ret = pm_runtime_get_sync(rpm->kdev);
+>  	drm_WARN_ONCE(&i915->drm, ret < 0,
+>  		      "pm_runtime_get_sync() failed: %d\n", ret);
+> @@ -490,6 +508,9 @@ static void __intel_runtime_pm_put(struct intel_runtime_pm *rpm,
+>  
+>  	untrack_intel_runtime_pm_wakeref(rpm, wref);
+>  
+> +	if (wref == -2)
+> +		return;
+> +
+>  	intel_runtime_pm_release(rpm, wakelock);
+>  
+>  	pm_runtime_mark_last_busy(kdev);
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
+> index d9160e3ff4af..99418c3a934a 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
+> @@ -173,6 +173,7 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm);
+>  void intel_runtime_pm_enable(struct intel_runtime_pm *rpm);
+>  void intel_runtime_pm_disable(struct intel_runtime_pm *rpm);
+>  void intel_runtime_pm_driver_release(struct intel_runtime_pm *rpm);
+> +bool is_intel_rpm_allowed(struct intel_runtime_pm *rpm);
+
+if really need to export please follow the naming convention.\
+
+>  
+>  intel_wakeref_t intel_runtime_pm_get(struct intel_runtime_pm *rpm);
+>  intel_wakeref_t intel_runtime_pm_get_if_in_use(struct intel_runtime_pm *rpm);
+> -- 
+> 2.25.1
+> 
