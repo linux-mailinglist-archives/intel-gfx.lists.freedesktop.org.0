@@ -1,54 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16581589A2A
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 11:55:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5C5B589A38
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 11:59:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90D7493972;
-	Thu,  4 Aug 2022 09:55:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95D61112334;
+	Thu,  4 Aug 2022 09:58:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B790693974;
- Thu,  4 Aug 2022 09:54:59 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D656193A8D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Aug 2022 09:58:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659606899; x=1691142899;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=5RIWFKoSAkEGflgC6RNjV8O9/LB7SOFSrF3/QfRUi4I=;
- b=LdRi81IUPTKOHZ8w9Z/pGnzYYJGF+uxMNJBbgwRE1kEdvzK2VMN++uj0
- Bdj/S7uO74CsuvSOzktmwmw5ePABPRWIRiosYP6Q8CyxS7Am79gOc5qWl
- T3Wxx2VWbi8jP+GeKfptc/zylYCXAlawqallbPsEirpnyyrHtpS/wpj8T
- +/X7crhr9xP5BH9rtwfw1JZHE85EDgsRaicdJoajR8yKaA5Kpwf3QiNKT
- T0CC0+YjhxVZyN6jnwKeQyJrXiHppso5AMIVAqflEo7+4ldpDsCx/hx4h
- ekEkrjrzro35DXjRZn2crxUBr6TuSnSo2BQHjYi170N2DvV8nCbJab2g8 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="291113927"
-X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="291113927"
+ t=1659607120; x=1691143120;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NJpgl1we6Sl7/jwOei9J1uGX3JIr3I8i2E6Jicw4F0w=;
+ b=hNcO2Jfj5ExD3MdVNlDTME1QI22GS4YXDJJHM7cdgXGk9lIfsKE36eOw
+ PWn6xxXLzj47OdgI51l6aiCcmzvxwYjM9udaGYToCUS6YJfWr6IBfTLL1
+ KS8aVDKaPoa8bCfNEqgX1/Eziw7ZZsCkjAID4uVjFrDAnxQrjQIX0LBSo
+ jHeKs1fslFN9FDGnvw5U9q3gcbYmwlDuL/ug7NSxdVvxcmanE8vaLG9x8
+ AbslNoTXiwQCsj340ibItBrdu0vuVZyI1L4mCjDWB59SniYMO9nbYG082
+ 2i+a+8maoEypua7wIy8J/Et/nc8NUcWLsVqbiAA84lK7JBKZTvt9rNycu A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="287457429"
+X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="287457429"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2022 02:54:48 -0700
-X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="662470867"
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2022 02:58:39 -0700
+X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="662471775"
 Received: from wujunyox-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.59.120])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2022 02:54:44 -0700
+ 04 Aug 2022 02:58:38 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-In-Reply-To: <20220719095700.14923-3-jouni.hogander@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220719095700.14923-1-jouni.hogander@intel.com>
- <20220719095700.14923-3-jouni.hogander@intel.com>
-Date: Thu, 04 Aug 2022 12:54:42 +0300
-Message-ID: <877d3opc4d.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  4 Aug 2022 12:58:33 +0300
+Message-Id: <cover.1659607033.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3 2/3] drm/amdgpu_dm: Rely on split out
- luminance calculation function
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] drm/i915/hdcp: register cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,111 +55,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Roman Li <roman.li@amd.com>,
- Harry Wentland <harry.wentland@amd.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 19 Jul 2022, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Luminance range calculation was split out into drm_edid.c and is now
-> part of edid parsing. Rely on values calculated during edid parsing and
-> use these for caps->aux_max_input_signal and caps->aux_min_input_signal.
+Posting some cleanups I had written earlier.
 
-Harry, I'll merge patches 1 & 3 in this series through drm-misc-next,
-because I think they're good to go, and fix stuff in i915.
+Jani Nikula (2):
+  drm/i915/hdcp: split out hdcp registers to a separate file
+  drm/i915/hdcp: replace BIT() with REG_BIT() in register definitions
 
-Can I get your rb/ack to merge this patch as well, or do you want to
-take this later via your tree?
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |   1 +
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |   1 +
+ .../gpu/drm/i915/display/intel_hdcp_regs.h    | 270 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 259 -----------------
+ 5 files changed, 273 insertions(+), 259 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_hdcp_regs.h
 
-BR,
-Jani.
+-- 
+2.30.2
 
-
->
-> v2: Use values calculated during edid parsing
->
-> Cc: Roman Li <roman.li@amd.com>
-> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Mika Kahola <mika.kahola@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 35 +++----------------
->  1 file changed, 4 insertions(+), 31 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 3e83fed540e8..eb7abdeb8653 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -2903,15 +2903,12 @@ static struct drm_mode_config_helper_funcs amdgpu=
-_dm_mode_config_helperfuncs =3D {
->=20=20
->  static void update_connector_ext_caps(struct amdgpu_dm_connector *aconne=
-ctor)
->  {
-> -	u32 max_avg, min_cll, max, min, q, r;
->  	struct amdgpu_dm_backlight_caps *caps;
->  	struct amdgpu_display_manager *dm;
->  	struct drm_connector *conn_base;
->  	struct amdgpu_device *adev;
->  	struct dc_link *link =3D NULL;
-> -	static const u8 pre_computed_values[] =3D {
-> -		50, 51, 52, 53, 55, 56, 57, 58, 59, 61, 62, 63, 65, 66, 68, 69,
-> -		71, 72, 74, 75, 77, 79, 81, 82, 84, 86, 88, 90, 92, 94, 96, 98};
-> +	struct drm_luminance_range_info *luminance_range;
->  	int i;
->=20=20
->  	if (!aconnector || !aconnector->dc_link)
-> @@ -2933,8 +2930,6 @@ static void update_connector_ext_caps(struct amdgpu=
-_dm_connector *aconnector)
->  	caps =3D &dm->backlight_caps[i];
->  	caps->ext_caps =3D &aconnector->dc_link->dpcd_sink_ext_caps;
->  	caps->aux_support =3D false;
-> -	max_avg =3D conn_base->hdr_sink_metadata.hdmi_type1.max_fall;
-> -	min_cll =3D conn_base->hdr_sink_metadata.hdmi_type1.min_cll;
->=20=20
->  	if (caps->ext_caps->bits.oled =3D=3D 1 /*||
->  	    caps->ext_caps->bits.sdr_aux_backlight_control =3D=3D 1 ||
-> @@ -2946,31 +2941,9 @@ static void update_connector_ext_caps(struct amdgp=
-u_dm_connector *aconnector)
->  	else if (amdgpu_backlight =3D=3D 1)
->  		caps->aux_support =3D true;
->=20=20
-> -	/* From the specification (CTA-861-G), for calculating the maximum
-> -	 * luminance we need to use:
-> -	 *	Luminance =3D 50*2**(CV/32)
-> -	 * Where CV is a one-byte value.
-> -	 * For calculating this expression we may need float point precision;
-> -	 * to avoid this complexity level, we take advantage that CV is divided
-> -	 * by a constant. From the Euclids division algorithm, we know that CV
-> -	 * can be written as: CV =3D 32*q + r. Next, we replace CV in the
-> -	 * Luminance expression and get 50*(2**q)*(2**(r/32)), hence we just
-> -	 * need to pre-compute the value of r/32. For pre-computing the values
-> -	 * We just used the following Ruby line:
-> -	 *	(0...32).each {|cv| puts (50*2**(cv/32.0)).round}
-> -	 * The results of the above expressions can be verified at
-> -	 * pre_computed_values.
-> -	 */
-> -	q =3D max_avg >> 5;
-> -	r =3D max_avg % 32;
-> -	max =3D (1 << q) * pre_computed_values[r];
-> -
-> -	// min luminance: maxLum * (CV/255)^2 / 100
-> -	q =3D DIV_ROUND_CLOSEST(min_cll, 255);
-> -	min =3D max * DIV_ROUND_CLOSEST((q * q), 100);
-> -
-> -	caps->aux_max_input_signal =3D max;
-> -	caps->aux_min_input_signal =3D min;
-> +	luminance_range =3D &conn_base->display_info.luminance_range;
-> +	caps->aux_min_input_signal =3D luminance_range->min_luminance;
-> +	caps->aux_max_input_signal =3D luminance_range->max_luminance;
->  }
->=20=20
->  void amdgpu_dm_update_connector_after_detect(
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
