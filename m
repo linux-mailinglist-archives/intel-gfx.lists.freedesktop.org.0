@@ -1,53 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93F99589849
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 09:24:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBFEF58984D
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 09:25:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B34148F790;
-	Thu,  4 Aug 2022 07:24:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FACC8F810;
+	Thu,  4 Aug 2022 07:25:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C6448F78B;
- Thu,  4 Aug 2022 07:24:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CC988F813
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Aug 2022 07:25:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659597870; x=1691133870;
- h=date:from:to:cc:subject:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XFXZ6nPS/wW61CR4TyXoN1VHQPghXBw2a0IwCOPSs/A=;
- b=cSoZ0f3v1mDNE79CnTZajoMmbQ5mhkNSAxfl27SZZsIuJoqqy2t8kPox
- NX9MKybbp+TDlcO3qIPmIaB8lFUwnmyLUXDbq63Leo8yu9gPbfgkGW/uu
- //6qOjdWspPvrlklQ+s/BmnLCggCU+0TQ0uXyuXQ3sy/8R+8ny+OmuuHr
- aAaK/yJ0sCVYfPtWJDIR+Cfri4J4Wwa9fT+xb2wYnAEhMJWOMsygReIA+
- ceeTAJlGgxfMF3EbldGZ6XwpHYx1VyHROcaKerMaMLQE6H9oYHSEQAz4E
- sbCxIQtvfEG/HWQwGHPe04NoBhVXvZa0bs0a/PAZ2HPXgoU96o6TV7rbQ A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="376161345"
-X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="376161345"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ t=1659597925; x=1691133925;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=OtceKePjyExUblWiRUqT9Pr8Jrl56ZEdUQB5Ycr5MHo=;
+ b=UqvuiIJYgNJsmc/j8nb3r1/2m8h6KE0pyDEkoq4Z0dauzNxHdQ/4xzRZ
+ V6RUSwgxeGI4cVAronSnuZYw2ceShgpGjZm0tpJUPIKgqflOeV28SsdXK
+ x/7LR22M+ZR+mGNNs11OrrXV/KbRL3LuNhTfDjN2hK80rmLcXjz3OuIZw
+ BAanwx+SIu3/ch3WnaBtTSno8qN6gHGMbfI9PHoO8jskDL+NBKWYg4gbq
+ tEB77Xq0WozFtKDb69gX34kaHwjRFCcYxT4sBQCWgNN3orjuVLrJLfrgb
+ FoGWvSkfC3Td773gMA1XJUGon04UMzgg++dY51+G3gWPx4IApV1h6Z8mb Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="376161486"
+X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="376161486"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2022 00:24:29 -0700
-X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="662415569"
-Received: from maurocar-mobl2.ger.corp.intel.com (HELO maurocar-mobl2)
- ([10.252.62.103])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2022 00:24:26 -0700
-Date: Thu, 4 Aug 2022 09:24:24 +0200
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Message-ID: <20220804092424.6a7f1772@maurocar-mobl2>
-In-Reply-To: <20220802223042.GL14039@nvishwa1-DESK>
-References: <cover.1659077372.git.mchehab@kernel.org>
- <ebb5f34f223626038f241fdf00a0dcfd33a19606.1659077372.git.mchehab@kernel.org>
- <20220802223042.GL14039@nvishwa1-DESK>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+ 04 Aug 2022 00:25:15 -0700
+X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="603119252"
+Received: from fzoltan-mobl1.ger.corp.intel.com (HELO [10.213.220.160])
+ ([10.213.220.160])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2022 00:25:14 -0700
+Message-ID: <132591c2-4fff-1dfd-a9d8-a9fbca740641@linux.intel.com>
+Date: Thu, 4 Aug 2022 08:25:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/gt: document TLB cache
- invalidation functions
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <20220616221347.27621-1-umesh.nerlige.ramappa@intel.com>
+ <a0c37ef9-9cde-883e-306d-11f520e273ef@linux.intel.com>
+ <YuDUyca6f26zv5SE@orsosgc001.jf.intel.com>
+ <e09ba5f4-c7f7-68a6-1ccc-df5229952f89@linux.intel.com>
+ <YugjMdjh9AFZfybF@orsosgc001.jf.intel.com>
+ <2c5ac8d8-cedc-e7bc-58cd-de088a8b4355@linux.intel.com>
+ <Yum1hZcmdWI00WZu@orsosgc001.jf.intel.com>
+ <YusfJkzc0yaauGgs@orsosgc001.jf.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <YusfJkzc0yaauGgs@orsosgc001.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] i915/pmu: Wire GuC backend to per-client
+ busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,275 +68,370 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Jonathan Corbet <corbet@lwn.net>, linux-kernel@vger.kernel.org,
- Chris Wilson <chris.p.wilson@intel.com>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2 Aug 2022 15:30:44 -0700
-Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com> wrote:
 
-> On Fri, Jul 29, 2022 at 09:03:55AM +0200, Mauro Carvalho Chehab wrote:
-> >Add a description for the TLB cache invalidation algorithm and for
-> >the related kAPI functions.
-> >
-> >Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >---
-> >
-> >To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
-> >See [PATCH v2 0/2] at: https://lore.kernel.org/all/cover.1659077372.git.mchehab@kernel.org/
-> >
-> > Documentation/gpu/i915.rst          |   7 ++
-> > drivers/gpu/drm/i915/gt/intel_tlb.c |  25 +++++++
-> > drivers/gpu/drm/i915/gt/intel_tlb.h | 101 ++++++++++++++++++++++++++++
-> > 3 files changed, 133 insertions(+)
-> >
-> >diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-> >index 4e59db1cfb00..46911fdd79e8 100644
-> >--- a/Documentation/gpu/i915.rst
-> >+++ b/Documentation/gpu/i915.rst
-> >@@ -58,6 +58,13 @@ Intel GVT-g Host Support(vGPU device model)
-> > .. kernel-doc:: drivers/gpu/drm/i915/intel_gvt.c
-> >    :internal:
-> >
-> >+TLB cache invalidation
-> >+----------------------
-> >+
-> >+.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_tlb.h
-> >+
-> >+.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_tlb.c
-> >+
-> > Workarounds
-> > -----------
-> >
-> >diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.c b/drivers/gpu/drm/i915/gt/intel_tlb.c
-> >index af8cae979489..4873b7ecc015 100644
-> >--- a/drivers/gpu/drm/i915/gt/intel_tlb.c
-> >+++ b/drivers/gpu/drm/i915/gt/intel_tlb.c
-> >@@ -145,6 +145,18 @@ static void mmio_invalidate_full(struct intel_gt *gt)
-> > 	intel_uncore_forcewake_put_delayed(uncore, FORCEWAKE_ALL);
-> > }
-> >
-> >+/**
-> >+ * intel_gt_invalidate_tlb_full - do full TLB cache invalidation
-> >+ * @gt: GT structure
-> >+ * @seqno: sequence number
-> >+ *
-> >+ * Do a full TLB cache invalidation if the @seqno is bigger than the last
-> >+ * full TLB cache invalidation.
-> >+ *
-> >+ * Note:
-> >+ * The TLB cache invalidation logic depends on GEN-specific registers.
-> >+ * It currently supports MMIO-based TLB flush for GEN8 to GEN12.
-> >+ */
-> > void intel_gt_invalidate_tlb_full(struct intel_gt *gt, u32 seqno)
-> > {
-> > 	intel_wakeref_t wakeref;
-> >@@ -171,12 +183,25 @@ void intel_gt_invalidate_tlb_full(struct intel_gt *gt, u32 seqno)
-> > 	}
-> > }
-> >
-> >+/**
-> >+ * intel_gt_init_tlb - initialize TLB-specific vars
-> >+ * @gt: GT structure
-> >+ *
-> >+ * TLB cache invalidation logic internally uses some resources that require
-> >+ * initialization. Should be called before doing any TLB cache invalidation.
-> >+ */
-> > void intel_gt_init_tlb(struct intel_gt *gt)
-> > {
-> > 	mutex_init(&gt->tlb.invalidate_lock);
-> > 	seqcount_mutex_init(&gt->tlb.seqno, &gt->tlb.invalidate_lock);
-> > }
-> >
-> >+/**
-> >+ * intel_gt_fini_tlb - initialize TLB-specific vars  
+On 04/08/2022 02:21, Umesh Nerlige Ramappa wrote:
+> On Tue, Aug 02, 2022 at 04:38:45PM -0700, Umesh Nerlige Ramappa wrote:
+>> On Tue, Aug 02, 2022 at 09:41:38AM +0100, Tvrtko Ursulin wrote:
+>>>
+>>> On 01/08/2022 20:02, Umesh Nerlige Ramappa wrote:
+>>>> On Wed, Jul 27, 2022 at 09:48:18AM +0100, Tvrtko Ursulin wrote:
+>>>>>
+>>>>> On 27/07/2022 07:01, Umesh Nerlige Ramappa wrote:
+>>>>>> On Fri, Jun 17, 2022 at 09:00:06AM +0100, Tvrtko Ursulin wrote:
+>>>>>>>
+>>>>>>> On 16/06/2022 23:13, Nerlige Ramappa, Umesh wrote:
+>>>>>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>>>>>
+>>>>>>>> GuC provides engine_id and last_switch_in ticks for an active 
+>>>>>>>> context in
+>>>>>>>> the pphwsp. The context image provides a 32 bit total ticks 
+>>>>>>>> which is the
+>>>>>>>> accumulated by the context (a.k.a. context[CTX_TIMESTAMP]). This
+>>>>>>>> information is used to calculate the context busyness as follows:
+>>>>>>>>
+>>>>>>>> If the engine_id is valid, then busyness is the sum of 
+>>>>>>>> accumulated total
+>>>>>>>> ticks and active ticks. Active ticks is calculated with current 
+>>>>>>>> gt time
+>>>>>>>> as reference.
+>>>>>>>>
+>>>>>>>> If engine_id is invalid, busyness is equal to accumulated total 
+>>>>>>>> ticks.
+>>>>>>>>
+>>>>>>>> Since KMD (CPU) retrieves busyness data from 2 sources - GPU and 
+>>>>>>>> GuC, a
+>>>>>>>> potential race was highlighted in an earlier review that can 
+>>>>>>>> lead to
+>>>>>>>> double accounting of busyness. While the solution to this is a wip,
+>>>>>>>> busyness is still usable for platforms running GuC submission.
+>>>>>>>>
+>>>>>>>> v2: (Tvrtko)
+>>>>>>>> - Use COPS_RUNTIME_ACTIVE_TOTAL
+>>>>>>>> - Add code comment for the race
+>>>>>>>> - Undo local variables initializations
+>>>>>>>>
+>>>>>>>> v3:
+>>>>>>>> - Add support for virtual engines based on
+>>>>>>>>   https://patchwork.freedesktop.org/series/105227/
+>>>>>>>>
+>>>>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>>>>>>> Signed-off-by: Umesh Nerlige Ramappa 
+>>>>>>>> <umesh.nerlige.ramappa@intel.com>
+>>>>>>>> ---
+>>>>>>>>  drivers/gpu/drm/i915/gt/intel_context.c       | 12 +++-
+>>>>>>>>  drivers/gpu/drm/i915/gt/intel_context.h       |  6 +-
+>>>>>>>>  drivers/gpu/drm/i915/gt/intel_context_types.h |  6 ++
+>>>>>>>>  drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |  5 ++
+>>>>>>>>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 65 
+>>>>>>>> ++++++++++++++++++-
+>>>>>>>>  drivers/gpu/drm/i915/i915_drm_client.c        |  6 +-
+>>>>>>>>  6 files changed, 89 insertions(+), 11 deletions(-)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c 
+>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_context.c
+>>>>>>>> index 4070cb5711d8..4a84146710e0 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+>>>>>>>> @@ -576,16 +576,24 @@ void 
+>>>>>>>> intel_context_bind_parent_child(struct intel_context *parent,
+>>>>>>>>      child->parallel.parent = parent;
+>>>>>>>>  }
+>>>>>>>> -u64 intel_context_get_total_runtime_ns(const struct 
+>>>>>>>> intel_context *ce)
+>>>>>>>> +u64 intel_context_get_total_runtime_ns(struct intel_context *ce)
+>>>>>>>>  {
+>>>>>>>>      u64 total, active;
+>>>>>>>> +    if (ce->ops->update_stats)
+>>>>>>>> +        ce->ops->update_stats(ce);
+>>>>>>>> +
+>>>>>>>>      total = ce->stats.runtime.total;
+>>>>>>>>      if (ce->ops->flags & COPS_RUNTIME_CYCLES)
+>>>>>>>>          total *= ce->engine->gt->clock_period_ns;
+>>>>>>>>      active = READ_ONCE(ce->stats.active);
+>>>>>>>> -    if (active)
+>>>>>>>> +    /*
+>>>>>>>> +     * When COPS_RUNTIME_ACTIVE_TOTAL is set for ce->cops, the 
+>>>>>>>> backend
+>>>>>>>> +     * already provides the total active time of the context, 
+>>>>>>>> so skip this
+>>>>>>>> +     * calculation when this flag is set.
+>>>>>>>> +     */
+>>>>>>>> +    if (active && !(ce->ops->flags & COPS_RUNTIME_ACTIVE_TOTAL))
+>>>>>>>>          active = intel_context_clock() - active;
+>>>>>>>>      return total + active;
+>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h 
+>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_context.h
+>>>>>>>> index b7d3214d2cdd..5fc7c19ab29b 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+>>>>>>>> @@ -56,7 +56,7 @@ static inline bool 
+>>>>>>>> intel_context_is_parent(struct intel_context *ce)
+>>>>>>>>      return !!ce->parallel.number_children;
+>>>>>>>>  }
+>>>>>>>> -static inline bool intel_context_is_pinned(struct intel_context 
+>>>>>>>> *ce);
+>>>>>>>> +static inline bool intel_context_is_pinned(const struct 
+>>>>>>>> intel_context *ce);
+>>>>>>>>  static inline struct intel_context *
+>>>>>>>>  intel_context_to_parent(struct intel_context *ce)
+>>>>>>>> @@ -116,7 +116,7 @@ static inline int 
+>>>>>>>> intel_context_lock_pinned(struct intel_context *ce)
+>>>>>>>>   * Returns: true if the context is currently pinned for use by 
+>>>>>>>> the GPU.
+>>>>>>>>   */
+>>>>>>>>  static inline bool
+>>>>>>>> -intel_context_is_pinned(struct intel_context *ce)
+>>>>>>>> +intel_context_is_pinned(const struct intel_context *ce)
+>>>>>>>>  {
+>>>>>>>>      return atomic_read(&ce->pin_count);
+>>>>>>>>  }
+>>>>>>>> @@ -351,7 +351,7 @@ intel_context_clear_nopreempt(struct 
+>>>>>>>> intel_context *ce)
+>>>>>>>>      clear_bit(CONTEXT_NOPREEMPT, &ce->flags);
+>>>>>>>>  }
+>>>>>>>> -u64 intel_context_get_total_runtime_ns(const struct 
+>>>>>>>> intel_context *ce);
+>>>>>>>> +u64 intel_context_get_total_runtime_ns(struct intel_context *ce);
+>>>>>>>>  u64 intel_context_get_avg_runtime_ns(struct intel_context *ce);
+>>>>>>>>  static inline u64 intel_context_clock(void)
+>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h 
+>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_context_types.h
+>>>>>>>> index 09f82545789f..797bb4242c18 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+>>>>>>>> @@ -38,6 +38,9 @@ struct intel_context_ops {
+>>>>>>>>  #define COPS_RUNTIME_CYCLES_BIT 1
+>>>>>>>>  #define COPS_RUNTIME_CYCLES BIT(COPS_RUNTIME_CYCLES_BIT)
+>>>>>>>> +#define COPS_RUNTIME_ACTIVE_TOTAL_BIT 2
+>>>>>>>> +#define COPS_RUNTIME_ACTIVE_TOTAL 
+>>>>>>>> BIT(COPS_RUNTIME_ACTIVE_TOTAL_BIT)
+>>>>>>>> +
+>>>>>>>>      int (*alloc)(struct intel_context *ce);
+>>>>>>>>      void (*ban)(struct intel_context *ce, struct i915_request 
+>>>>>>>> *rq);
+>>>>>>>> @@ -55,6 +58,8 @@ struct intel_context_ops {
+>>>>>>>>      void (*sched_disable)(struct intel_context *ce);
+>>>>>>>> +    void (*update_stats)(struct intel_context *ce);
+>>>>>>>> +
+>>>>>>>>      void (*reset)(struct intel_context *ce);
+>>>>>>>>      void (*destroy)(struct kref *kref);
+>>>>>>>> @@ -146,6 +151,7 @@ struct intel_context {
+>>>>>>>>              struct ewma_runtime avg;
+>>>>>>>>              u64 total;
+>>>>>>>>              u32 last;
+>>>>>>>> +            u64 start_gt_clk;
+>>>>>>>>              I915_SELFTEST_DECLARE(u32 num_underflow);
+>>>>>>>>              I915_SELFTEST_DECLARE(u32 max_underflow);
+>>>>>>>>          } runtime;
+>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h 
+>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+>>>>>>>> index b3c9a9327f76..6231ad03e4eb 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+>>>>>>>> @@ -196,6 +196,11 @@ static inline u8 
+>>>>>>>> guc_class_to_engine_class(u8 guc_class)
+>>>>>>>>      return guc_class_engine_class_map[guc_class];
+>>>>>>>>  }
+>>>>>>>> +/* Per context engine usage stats: */
+>>>>>>>> +#define PPHWSP_GUC_CONTEXT_USAGE_STAMP_LO    (0x500 / sizeof(u32))
+>>>>>>>> +#define PPHWSP_GUC_CONTEXT_USAGE_STAMP_HI 
+>>>>>>>> (PPHWSP_GUC_CONTEXT_USAGE_STAMP_LO + 1)
+>>>>>>>> +#define PPHWSP_GUC_CONTEXT_USAGE_ENGINE_ID 
+>>>>>>>> (PPHWSP_GUC_CONTEXT_USAGE_STAMP_HI + 1)
+>>>>>>>> +
+>>>>>>>>  /* Work item for submitting workloads into work queue of GuC. */
+>>>>>>>>  struct guc_wq_item {
+>>>>>>>>      u32 header;
+>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>> index 5a1dfacf24ea..cbf3cbb983ce 100644
+>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>> @@ -378,7 +378,7 @@ static inline void 
+>>>>>>>> set_context_guc_id_invalid(struct intel_context *ce)
+>>>>>>>>      ce->guc_id.id = GUC_INVALID_CONTEXT_ID;
+>>>>>>>>  }
+>>>>>>>> -static inline struct intel_guc *ce_to_guc(struct intel_context 
+>>>>>>>> *ce)
+>>>>>>>> +static inline struct intel_guc *ce_to_guc(const struct 
+>>>>>>>> intel_context *ce)
+>>>>>>>>  {
+>>>>>>>>      return &ce->engine->gt->uc.guc;
+>>>>>>>>  }
+>>>>>>>> @@ -1323,13 +1323,16 @@ static void 
+>>>>>>>> __update_guc_busyness_stats(struct intel_guc *guc)
+>>>>>>>>      spin_unlock_irqrestore(&guc->timestamp.lock, flags);
+>>>>>>>>  }
+>>>>>>>> +static void __guc_context_update_clks(struct intel_context *ce);
+>>>>>>>>  static void guc_timestamp_ping(struct work_struct *wrk)
+>>>>>>>>  {
+>>>>>>>>      struct intel_guc *guc = container_of(wrk, typeof(*guc),
+>>>>>>>>                           timestamp.work.work);
+>>>>>>>>      struct intel_uc *uc = container_of(guc, typeof(*uc), guc);
+>>>>>>>>      struct intel_gt *gt = guc_to_gt(guc);
+>>>>>>>> +    struct intel_context *ce;
+>>>>>>>>      intel_wakeref_t wakeref;
+>>>>>>>> +    unsigned long index;
+>>>>>>>>      int srcu, ret;
+>>>>>>>>      /*
+>>>>>>>> @@ -1343,6 +1346,10 @@ static void guc_timestamp_ping(struct 
+>>>>>>>> work_struct *wrk)
+>>>>>>>>      with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref)
+>>>>>>>>          __update_guc_busyness_stats(guc);
+>>>>>>>> +    /* adjust context stats for overflow */
+>>>>>>>> +    xa_for_each(&guc->context_lookup, index, ce)
+>>>>>>>> +        __guc_context_update_clks(ce);
+>>>>>>>> +
+>>>>>>>>      intel_gt_reset_unlock(gt, srcu);
+>>>>>>>>      mod_delayed_work(system_highpri_wq, &guc->timestamp.work,
+>>>>>>>> @@ -1405,6 +1412,56 @@ void intel_guc_busyness_unpark(struct 
+>>>>>>>> intel_gt *gt)
+>>>>>>>>               guc->timestamp.ping_delay);
+>>>>>>>>  }
+>>>>>>>> +static void __guc_context_update_clks(struct intel_context *ce)
+>>>>>>>> +{
+>>>>>>>> +    struct intel_guc *guc = ce_to_guc(ce);
+>>>>>>>> +    struct intel_gt *gt = ce->engine->gt;
+>>>>>>>> +    u32 *pphwsp, last_switch, engine_id;
+>>>>>>>> +    u64 start_gt_clk, active;
+>>>>>>>> +    unsigned long flags;
+>>>>>>>> +    ktime_t unused;
+>>>>>>>> +
+>>>>>>>> +    spin_lock_irqsave(&guc->timestamp.lock, flags);
+>>>>>>>> +
+>>>>>>>> +    /*
+>>>>>>>> +     * GPU updates ce->lrc_reg_state[CTX_TIMESTAMP] when 
+>>>>>>>> context is switched
+>>>>>>>> +     * out, however GuC updates PPHWSP offsets below. Hence KMD 
+>>>>>>>> (CPU)
+>>>>>>>> +     * relies on GuC and GPU for busyness calculations. Due to 
+>>>>>>>> this, A
+>>>>>>>> +     * potential race was highlighted in an earlier review that 
+>>>>>>>> can lead to
+>>>>>>>> +     * double accounting of busyness. While the solution to 
+>>>>>>>> this is a wip,
+>>>>>>>> +     * busyness is still usable for platforms running GuC 
+>>>>>>>> submission.
+>>>>>>>> +     */
+>>>>>>>> +    pphwsp = ((void *)ce->lrc_reg_state) - LRC_STATE_OFFSET;
+>>>>>>>> +    last_switch = 
+>>>>>>>> READ_ONCE(pphwsp[PPHWSP_GUC_CONTEXT_USAGE_STAMP_LO]);
+>>>>>>>> +    engine_id = 
+>>>>>>>> READ_ONCE(pphwsp[PPHWSP_GUC_CONTEXT_USAGE_ENGINE_ID]);
+>>>>>>>> +
+>>>>>>>> +    guc_update_pm_timestamp(guc, &unused);
+>>>>>>>> +
+>>>>>>>> +    if (engine_id != 0xffffffff && last_switch) {
+>>>>>>>> +        start_gt_clk = READ_ONCE(ce->stats.runtime.start_gt_clk);
+>>>>>>>> +        __extend_last_switch(guc, &start_gt_clk, last_switch);
+>>>>>>>> +        active = intel_gt_clock_interval_to_ns(gt, 
+>>>>>>>> guc->timestamp.gt_stamp - start_gt_clk);
+>>>>>>>> +        WRITE_ONCE(ce->stats.runtime.start_gt_clk, start_gt_clk);
+>>>>>>>> +        WRITE_ONCE(ce->stats.active, active);
+>>>>>>>> +    } else {
+>>>>>>>> +        lrc_update_runtime(ce);
+>>>>>>>> +    }
+>>>>>>>> +
+>>>>>>>> +    spin_unlock_irqrestore(&guc->timestamp.lock, flags);
+>>>>>>>> +}
+>>>>>>>> +
+>>>>>>>> +static void guc_context_update_stats(struct intel_context *ce)
+>>>>>>>> +{
+>>>>>>>> +    if (!intel_context_pin_if_active(ce)) {
+>>>>>>>> +        WRITE_ONCE(ce->stats.runtime.start_gt_clk, 0);
+>>>>>>>> +        WRITE_ONCE(ce->stats.active, 0);
+>>>>>>>> +        return;
+>>>>>>>> +    }
+>>>>>>>> +
+>>>>>>>> +    __guc_context_update_clks(ce);
+>>>>>>>> +    intel_context_unpin(ce);
+>>>>>>>> +}
+>>>>>>>> +
+>>>>>>>>  static inline bool
+>>>>>>>>  submission_disabled(struct intel_guc *guc)
+>>>>>>>>  {
+>>>>>>>> @@ -2585,6 +2642,7 @@ static void guc_context_unpin(struct 
+>>>>>>>> intel_context *ce)
+>>>>>>>>  {
+>>>>>>>>      struct intel_guc *guc = ce_to_guc(ce);
+>>>>>>>> +    lrc_update_runtime(ce);
+>>>>>>>>      unpin_guc_id(guc, ce);
+>>>>>>>>      lrc_unpin(ce);
+>>>>>>>> @@ -3183,6 +3241,7 @@ static void remove_from_context(struct 
+>>>>>>>> i915_request *rq)
+>>>>>>>>  }
+>>>>>>>>  static const struct intel_context_ops guc_context_ops = {
+>>>>>>>> +    .flags = COPS_RUNTIME_CYCLES | COPS_RUNTIME_ACTIVE_TOTAL,
+>>>>>>>>      .alloc = guc_context_alloc,
+>>>>>>>>      .pre_pin = guc_context_pre_pin,
+>>>>>>>> @@ -3199,6 +3258,8 @@ static const struct intel_context_ops 
+>>>>>>>> guc_context_ops = {
+>>>>>>>>      .sched_disable = guc_context_sched_disable,
+>>>>>>>> +    .update_stats = guc_context_update_stats,
+>>>>>>>> +
+>>>>>>>>      .reset = lrc_reset,
+>>>>>>>>      .destroy = guc_context_destroy,
+>>>>>>>> @@ -3432,6 +3493,7 @@ static int 
+>>>>>>>> guc_virtual_context_alloc(struct intel_context *ce)
+>>>>>>>>  }
+>>>>>>>>  static const struct intel_context_ops virtual_guc_context_ops = {
+>>>>>>>> +    .flags = COPS_RUNTIME_CYCLES | COPS_RUNTIME_ACTIVE_TOTAL,
+>>>>>>>>      .alloc = guc_virtual_context_alloc,
+>>>>>>>>      .pre_pin = guc_virtual_context_pre_pin,
+>>>>>>>> @@ -3447,6 +3509,7 @@ static const struct intel_context_ops 
+>>>>>>>> virtual_guc_context_ops = {
+>>>>>>>>      .exit = guc_virtual_context_exit,
+>>>>>>>>      .sched_disable = guc_context_sched_disable,
+>>>>>>>> +    .update_stats = guc_context_update_stats,
+>>>>>>>
+>>>>>>> There are also virtual_parent_context_ops and 
+>>>>>>> virtual_child_context_ops - which means more test coverage is 
+>>>>>>> needed..
+>>>>>>
+>>>>>> Trying to come back to this... The 
+>>>>>> virtual_parent_context_ops/virtual_child_context_ops are used for 
+>>>>>> parallel engines. GuC would only update the pphwsp of the parent 
+>>>>>> context with the last_switched_in_time.
+>>>>>>
+>>>>>> In general, how should I report the busyness for a parallel engine?
+>>>>>>
+>>>>>> I would think it is busyness reported by parent context multiplied 
+>>>>>> by width.
+>>>>>
+>>>>> That could a reasonable approximation but I can't say for certain. 
+>>>>> Depends on the GuC scheduler implementation a bit. Like is anything 
+>>>>> preventing child contexts from finishing their useful work ahead of 
+>>>>> the parent context, or they are always strictly scheduled as one 
+>>>>> entity and child engines are blocked from taking other workloads 
+>>>>> until the parent is scheduled out?
+>>>>
+>>>> Correct, if a child finishes the work before parent/siblings for 
+>>>> some reason, it cannot take up other work until all siblings are done.
+>>>
+>>> The only problem is that I guess one day that assumption might break 
+>>> and we will "never" now. If you have some spare time it would be best 
+>>> to add an IGT to verify this assumption, or at least put that work as 
+>>> TODO in the backlog?
+>>
+>> I added some tests to IGT for parallel engine, but something is 
+>> missing in the way I am submitting the batches to the parallel engine. 
+>> I see some hangs, haven't had a chance to debug that. Will try to get 
+>> to it and then post the updated i915 patches.
 > 
-> Free TLB-specific vars
-
-OK.
-
+> I think I may have to do the parallel engine testing later. Do you think 
+> this patch alone is good enough for now? It does not enable context 
+> busyness for parallel execution (which is just adding this 
+> COPS_RUNTIME_CYCLES | COPS_RUNTIME_ACTIVE_TOTAL in the parent/child 
+> context ops)
 > 
-> >+ * @gt: GT structure
-> >+ *
-> >+ * Frees any resources needed by TLB cache invalidation logic.
-> >+ */
-> > void intel_gt_fini_tlb(struct intel_gt *gt)
-> > {
-> > 	mutex_destroy(&gt->tlb.invalidate_lock);
-> >diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.h b/drivers/gpu/drm/i915/gt/intel_tlb.h
-> >index 46ce25bf5afe..dca70c33bd61 100644
-> >--- a/drivers/gpu/drm/i915/gt/intel_tlb.h
-> >+++ b/drivers/gpu/drm/i915/gt/intel_tlb.h
-> >@@ -11,16 +11,117 @@
-> >
-> > #include "intel_gt_types.h"
-> >
-> >+/**
-> >+ * DOC: TLB cache invalidation logic
-> >+ *
-> >+ * The way the current algorithm works is that a struct drm_i915_gem_object can
-> >+ * be created on any order. At unbind/evict time, the object is warranted that
-> >+ * it won't be used anymore. So, a sequence number provided by
-> >+ * intel_gt_next_invalidate_tlb_full() is stored on it. This can happen either
-> >+ * at __vma_put_pages() - for VMA sync unbind, or at ppgtt_unbind_vma() - for
-> >+ * VMA async VMA bind.
-> >+ *
-> >+ * At __i915_gem_object_unset_pages(), intel_gt_invalidate_tlb_full() is called,
-> >+ * where it checks if the sequence number of the object was already invalidated
-> >+ * or not. If not, it flushes the TLB and increments the sequence number::
-> >+ *
-> >+ *   void intel_gt_invalidate_tlb_full(struct intel_gt *gt, u32 seqno)
-> >+ *   {
-> >+ *   ...
-> >+ * 	with_intel_gt_pm_if_awake(gt, wakeref) {
-> >+ * 		mutex_lock(&gt->tlb.invalidate_lock);
-> >+ * 		if (tlb_seqno_passed(gt, seqno))
-> >+ * 				goto unlock;
-> >+ *
-> >+ * 		// Some code to do TLB invalidation
-> >+ *   ...
-> >+ *
-> >+ * 		write_seqcount_invalidate(&gt->tlb.seqno); // increment seqno
-> >+ * 		mutex_lock(&gt->tlb.invalidate_lock);
-> >+ *      }
-> >+ *
-> >+ * So, let's say the current seqno is 2 and 3 new objects were created,
-> >+ * on this order::
-> >+ *
-> >+ * 	obj1
-> >+ * 	obj2
-> >+ * 	obj3
-> >+ *
-> >+ * They can be unbind/evict on a different order. At unbind/evict time,
-> >+ * the mm.tlb will be stamped with the sequence number, using the number
-> >+ * from the last TLB flush, plus 1.  
-> 
-> I am trying to get my head around the below function.
-> 
-> void vma_invalidate_tlb(struct i915_address_space *vm, u32 tlb)
-> {
->         WRITE_ONCE(tlb, intel_gt_next_invalidate_tlb_full(vm->gt));
-> }
-> 
-> Though we pass obj->mm.tlb for 'tlb' while calling this function,
-> aren't we writing to local 'tlb' variable here instead of obj->mm.tlb?
+> If so, okay to post a rebased version?
 
-It should be passing a pointer. I wrote such fix after a review,
-but somehow it ended getting lost. I'll send the fix at v3.
+I think so. Just please file a jira for the outstanding work.
 
-> >+ *
-> >+ * Different threads may be used on unbind/evict and/or unset pages.
-> >+ * As the logic at void intel_gt_invalidate_tlb_full() is protected by a mutex,  
-> 
-> May be we can skip 'void' and just keep function name here.
+Thanks,
 
-Sure.
-
-> >+ * for simplicity, let's consider just two threads:
-> >+ *
-> >+ * +-------------------+-------------------------+---------------------------------+
-> >+ * | sequence number   | Thread 0                | Thread 1                        +
-> >+ * +===================+=========================+=================================+
-> >+ * | seqno=2           |                         |                                 |
-> >+ * |                   +-------------------------+---------------------------------+
-> >+ * |                   | unbind/evict obj3.      |                                 |
-> >+ * |                   |                         |                                 |
-> >+ * |                   | obj3.mm.tlb = seqno | 1 |                                 |
-> >+ * |                   | // obj3.mm.tlb = 3      |                                 |
-> >+ * |                   +-------------------------+---------------------------------+
-> >+ * |                   | unbind/evict obj1.      |                                 |
-> >+ * |                   |                         |                                 |
-> >+ * |                   | obj1.mm.tlb = seqno | 1 |                                 |
-> >+ * |                   | // obj1.mm.tlb = 3      |                                 |
-> >+ * |                   +-------------------------+---------------------------------+
-> >+ * |                   |                         | __i915_gem_object_unset_pages() |
-> >+ * |                   |                         | called for obj3 => TLB flush    |
-> >+ * |                   |                         | invalidating both obj1 and obj2.|
-> >+ * |                   |                         |                                 |
-> >+ * |                   |                         | seqno += 2                      |
-> >+ * +-------------------+-------------------------+---------------------------------+
-> >+ * | seqno=4           |                         |                                 |
-> >+ * |                   +-------------------------+---------------------------------+
-> >+ * |                   | unbind/evict obj2.      |                                 |
-> >+ * |                   |                         |                                 |
-> >+ * |                   | obj2.mm.tlb = seqno | 1 |                                 |
-> >+ * |                   | // obj2.mm.tlb = 5      |                                 |
-> >+ * |                   +-------------------------+---------------------------------+
-> >+ * |                   |                         | __i915_gem_object_unset_pages() |
-> >+ * |                   |                         | called for obj1, don't flush    |
-> >+ * |                   |                         | as past flush invalidated obj1. |
-> >+ * |                   +-------------------------+---------------------------------+
-> >+ * |                   |                         | __i915_gem_object_unset_pages() |
-> >+ * |                   |                         | called for obj2 => TLB flush.   |
-> >+ * |                   |                         | invalidating obj2.              |
-> >+ * |                   |                         |                                 |
-> >+ * |                   |                         | seqno += 2                      |
-> >+ * +-------------------+-------------------------+---------------------------------+
-> >+ * | seqno=6           |                         |                                 |
-> >+ * +-------------------+-------------------------+---------------------------------+
-> >+ */
-> >+
-> > void intel_gt_invalidate_tlb_full(struct intel_gt *gt, u32 seqno);
-> >
-> > void intel_gt_init_tlb(struct intel_gt *gt);
-> > void intel_gt_fini_tlb(struct intel_gt *gt);
-> >
-> >+/**
-> >+ * intel_gt_tlb_seqno - Returns the current TLB invlidation sequence number
-> >+ *  
-> 
-> Probably this empty comment line needs to be removed before the parameter
-> description below?
-
-Kernel-doc actually accepts both with or without a blank line. My
-personal preference is to place a blank line, because sometimes the
-function description plus function name is bigger than one line.
-So, it is usually clearer when adding a blank line than doing
-something like this (perfectly valid kerneldoc markup):
-
-	/**
-	 * long_function_name_foo - Lorem ipsum dolor sit amet, consectetur
-	 * adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
-	 * @bar: some parameter
-	 *  ...
-
-But yeah, kernel-doc documentation example doesn't have a blank
-line. So, I'll drop it.
-
-> 
-> >+ * @gt: GT structure
-> >+ *
-> >+ * There's no need to lock while calling it, as seqprop_sequence is thread-safe
-> >+ */
-> > static inline u32 intel_gt_tlb_seqno(const struct intel_gt *gt)
-> > {
-> > 	return seqprop_sequence(&gt->tlb.seqno);
-> > }
-> >
-> >+/**
-> >+ * intel_gt_next_invalidate_tlb_full - Returns the next TLB full invalidation
-> >+ *	sequence number
-> >+ *  
-> 
-> Same here.
-> 
-> -Niranjana
-> 
-> >+ * @gt: GT structure
-> >+ *
-> >+ * There's no need to lock while calling it, as seqprop_sequence is thread-safe
-> >+ */
-> > static inline u32 intel_gt_next_invalidate_tlb_full(const struct intel_gt *gt)
-> > {
-> > 	return intel_gt_tlb_seqno(gt) | 1;
-> >-- 
-> >2.36.1
-> >  
-
-Thanks!
-Mauro
+Tvrtko
