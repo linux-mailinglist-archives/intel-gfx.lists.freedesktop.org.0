@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5C50589A8C
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 12:48:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C91589A8D
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 12:48:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF68B9549A;
-	Thu,  4 Aug 2022 10:47:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9F17954ED;
+	Thu,  4 Aug 2022 10:48:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 513A795477;
- Thu,  4 Aug 2022 10:47:46 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EC9878BB57;
+ Thu,  4 Aug 2022 10:47:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 35BF2AA0EA;
- Thu,  4 Aug 2022 10:47:46 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DC82DAA0EA;
+ Thu,  4 Aug 2022 10:47:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 04 Aug 2022 10:47:46 -0000
-Message-ID: <165961006619.14885.17735151124047035943@emeril.freedesktop.org>
+Date: Thu, 04 Aug 2022 10:47:48 -0000
+Message-ID: <165961006890.14888.2391733389554900824@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <cover.1659607033.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1659607033.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/hdcp=3A_register_cleanup?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/hdcp=3A_register_cleanup?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,17 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-ba366d332f4c drm/i915/hdcp: split out hdcp registers to a separate file
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:36: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#36: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 556 lines checked
-41c107fcd634 drm/i915/hdcp: replace BIT() with REG_BIT() in register definitions
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
