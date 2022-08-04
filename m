@@ -1,55 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6074858992C
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 10:18:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B865458994C
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Aug 2022 10:30:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B41E8F24E;
-	Thu,  4 Aug 2022 08:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94EA990E96;
+	Thu,  4 Aug 2022 08:29:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E86AE8F24E;
- Thu,  4 Aug 2022 08:18:08 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81B1B913F7
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Aug 2022 08:29:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659601088; x=1691137088;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yQan3K3MzfFlco62xGlbqgCcc6m4f4EY80JPF0pTQKo=;
- b=iPy+FLyUQp9FK3McfCq60svqU05OWF6uXIdHc4GdrFRwTWLodkT02whN
- mhjsxqdZCY22mwQvcK2BcarP7KWeX4HB04wWVCaOm919qALCSRzpGQ1sH
- gPSjgjelpXF4irhjr7I2GUe1vIwh4OqsBf+FVf1xfrDNT/c59318F1Jt2
- WJLO6Oj5CT2Yo3Ebc/d+f55o8Dv8uJYcDUgcR5Le2sN/lCiN/GlcU0rlf
- bOrs+71geb8Z3EqLb+45HUOMi/HtCoN0HGiB/U3CY33P4zXfInlsPz2JF
- gbRLxelBK9xTl9UtNOEAeCfrXXNHi1OuBiUb/EsTVOHAO4oArpJWVeGHu w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="270253082"
-X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="270253082"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2022 01:18:07 -0700
-X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="603135791"
-Received: from fzoltan-mobl1.ger.corp.intel.com (HELO [10.213.220.160])
- ([10.213.220.160])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2022 01:18:03 -0700
-Message-ID: <aa323022-f54c-23e2-92b9-87191209177e@linux.intel.com>
-Date: Thu, 4 Aug 2022 09:18:01 +0100
+ t=1659601777; x=1691137777;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Vw2Sr2KAjXy3J0uPiGdOkb5HnVqaFOY1OLLYxv9QQLQ=;
+ b=HCQrroSJSz5kMwhBpqCv67jAk8FQs8FSUjcQWmXF9QLRhwtgGwdHVEpZ
+ T6jv9BbjfyP5OZ6WHY8wYH8wsDO9AZBzojyzag38lP36LdaxgBbepmfdu
+ OBYlcXYQbqNquM5S62Je5/b73OA83j8tXHQoI69xd7FcaeJcq7RbXqx9U
+ Z/lJpmYPROmEKy62oFsUvU2YTJZe9O8MC5X4Yhj9ReLrlu1hT7plW3TBK
+ PjYaIkgz6z1miaJWKbNU/iWK8xjPJ1YHRdaIVQO2fYFdNjw7uTaC6AyQR
+ S4PyRqqA56TbS9eNj6AfJx2bz8jsEPdMxBAIG7Phvs2JK56tLSR0QmBl9 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="276793137"
+X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="276793137"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2022 01:29:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="636010224"
+Received: from kandpal.iind.intel.com ([10.190.239.32])
+ by orsmga001.jf.intel.com with ESMTP; 04 Aug 2022 01:29:33 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  4 Aug 2022 13:58:38 +0530
+Message-Id: <20220804082840.3468949-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <cover.1659598090.git.mchehab@kernel.org>
- <f9550e6bacea10131ff40dd8981b69eb9251cdcd.1659598090.git.mchehab@kernel.org>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <f9550e6bacea10131ff40dd8981b69eb9251cdcd.1659598090.git.mchehab@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm/i915: pass a pointer for tlb
- seqno at vma_invalidate_tlb()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/2] Enabling Pipewriteback
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,94 +53,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Michael Cheng <michael.cheng@intel.com>, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- linux-kernel@vger.kernel.org, Chris Wilson <chris.p.wilson@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+A patch series was floated in the drm mailing list which aimed to change
+the drm_connector and drm_encoder fields to pointer in the
+drm_connector_writeback structure, this received a huge pushback from
+the community but since i915 expects each connector present in the
+drm_device list to be a intel_connector but drm_writeback framework
+makes us have a connector which cannot be embedded in an intel_connector
+structure.
+[1] https://patchwork.kernel.org/project/dri-devel/patch/20220202081702.22119-1-suraj.kandpal@intel.com/
+[2] https://patchwork.kernel.org/project/dri-devel/patch/20220202085429.22261-6-suraj.kandpal@intel.com/
+Since no one had an issue with encoder field being changed into a
+pointer it was decided to break the connector and encoder pointer
+changes into two different series.The encoder field changes is
+currently being worked upon by Abhinav Kumar and the changes have been
+merged.
+[3]https://patchwork.kernel.org/project/dri-devel/list/?series=633565
+Going forward we use a drm_connector which is not embedded in
+intel_connector. 
+We also create a intel_encoder to avoid changes to many
+iterators but no intel_connector. We also changed all iterators that
+go through connectors and add a check to only cast connectors which are
+not writeback connectors.
 
-On 04/08/2022 08:37, Mauro Carvalho Chehab wrote:
-> WRITE_ONCE() should happen at the original var, not on a local
-> copy of it.
-> 
-> Fixes: 5d36acb7198b ("drm/i915/gt: Batch TLB invalidations")
+v2-----------
+changes to fix build errors.
 
-Cc: stable I think, since the above one was. So both hit 5.21 (or 6.1) 
-together.
+v3----------
+changes to fix BAT errors.
 
-Regards,
+Suraj Kandpal (2):
+  drm/i915: Define WD trancoder for i915
+  drm/i915: Enabling WD Transcoder
 
-Tvrtko
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_acpi.c     |   1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   3 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   1 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  63 +-
+ drivers/gpu/drm/i915/display/intel_display.h  |  21 +-
+ .../drm/i915/display/intel_display_debugfs.c  |  14 +-
+ .../drm/i915/display/intel_display_types.h    |  30 +
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   6 +
+ .../drm/i915/display/intel_modeset_setup.c    |  67 +-
+ .../drm/i915/display/intel_modeset_verify.c   |  18 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |   3 +
+ .../gpu/drm/i915/display/intel_wb_connector.h |  20 +
+ drivers/gpu/drm/i915/display/intel_wd.c       | 733 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_wd.h       |  76 ++
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ drivers/gpu/drm/i915/i915_irq.c               |   8 +-
+ drivers/gpu/drm/i915/i915_pci.c               |   7 +-
+ drivers/gpu/drm/i915/i915_reg.h               | 139 ++++
+ 20 files changed, 1192 insertions(+), 27 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_wb_connector.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_wd.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_wd.h
 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> ---
-> 
-> To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
-> See [PATCH v3 0/3] at: https://lore.kernel.org/all/cover.1659598090.git.mchehab@kernel.org/
-> 
->   drivers/gpu/drm/i915/gt/intel_ppgtt.c | 2 +-
->   drivers/gpu/drm/i915/i915_vma.c       | 6 +++---
->   drivers/gpu/drm/i915/i915_vma.h       | 2 +-
->   3 files changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-> index 2da6c82a8bd2..6ee8d1127016 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-> @@ -211,7 +211,7 @@ void ppgtt_unbind_vma(struct i915_address_space *vm,
->   
->   	vm->clear_range(vm, vma_res->start, vma_res->vma_size);
->   	if (vma_res->tlb)
-> -		vma_invalidate_tlb(vm, *vma_res->tlb);
-> +		vma_invalidate_tlb(vm, vma_res->tlb);
->   }
->   
->   static unsigned long pd_count(u64 size, int shift)
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 84a9ccbc5fc5..260371716490 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1308,7 +1308,7 @@ I915_SELFTEST_EXPORT int i915_vma_get_pages(struct i915_vma *vma)
->   	return err;
->   }
->   
-> -void vma_invalidate_tlb(struct i915_address_space *vm, u32 tlb)
-> +void vma_invalidate_tlb(struct i915_address_space *vm, u32 *tlb)
->   {
->   	/*
->   	 * Before we release the pages that were bound by this vma, we
-> @@ -1318,7 +1318,7 @@ void vma_invalidate_tlb(struct i915_address_space *vm, u32 tlb)
->   	 * the most recent TLB invalidation seqno, and if we have not yet
->   	 * flushed the TLBs upon release, perform a full invalidation.
->   	 */
-> -	WRITE_ONCE(tlb, intel_gt_next_invalidate_tlb_full(vm->gt));
-> +	WRITE_ONCE(*tlb, intel_gt_next_invalidate_tlb_full(vm->gt));
->   }
->   
->   static void __vma_put_pages(struct i915_vma *vma, unsigned int count)
-> @@ -1971,7 +1971,7 @@ struct dma_fence *__i915_vma_evict(struct i915_vma *vma, bool async)
->   			dma_fence_put(unbind_fence);
->   			unbind_fence = NULL;
->   		}
-> -		vma_invalidate_tlb(vma->vm, vma->obj->mm.tlb);
-> +		vma_invalidate_tlb(vma->vm, &vma->obj->mm.tlb);
->   	}
->   
->   	/*
-> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> index 5048eed536da..33a58f605d75 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.h
-> +++ b/drivers/gpu/drm/i915/i915_vma.h
-> @@ -213,7 +213,7 @@ bool i915_vma_misplaced(const struct i915_vma *vma,
->   			u64 size, u64 alignment, u64 flags);
->   void __i915_vma_set_map_and_fenceable(struct i915_vma *vma);
->   void i915_vma_revoke_mmap(struct i915_vma *vma);
-> -void vma_invalidate_tlb(struct i915_address_space *vm, u32 tlb);
-> +void vma_invalidate_tlb(struct i915_address_space *vm, u32 *tlb);
->   struct dma_fence *__i915_vma_evict(struct i915_vma *vma, bool async);
->   int __i915_vma_unbind(struct i915_vma *vma);
->   int __must_check i915_vma_unbind(struct i915_vma *vma);
+-- 
+2.37.0
+
