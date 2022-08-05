@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF5F258A993
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 12:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3B358A9A7
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 12:48:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77E87B426F;
-	Fri,  5 Aug 2022 10:22:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE056B39F4;
+	Fri,  5 Aug 2022 10:45:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BCD514B9C8;
- Fri,  5 Aug 2022 10:13:47 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0B3AB4873;
+ Fri,  5 Aug 2022 10:30:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659694427; x=1691230427;
- h=from:to:cc:subject:date:message-id:in-reply-to:
+ t=1659695427; x=1691231427;
+ h=date:from:to:cc:subject:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=y2qcFNSZBKBBtV0jtnQ7wtTDeohfTyPNXKS+okFkS+E=;
- b=i5dK1gnOrya8omZ2SbRuOkq20Wuo5OlMmoXnJEZAM3IX123Zfyr89K4m
- JlzfM35Uw6dXmPAWltzJF91/tt5FskJSyNvZA8kF+67mCVbmV02NG3QC0
- 9x1L9eeNis3YgSqoSXVB61Ba9mqjda77GjOYwFc5ivJ3mBu+qSO0PdBP4
- I8HYmCjywyuy7bnQivLBCuXl0UA2a6CsRLAhQ0ry183HwPY947Q0BibeV
- VNzlkntz2WV0xtEQbKOM726AuUOP5KMQPdUihFhuVDS2bnoU+8hf10s4f
- UQpuqn388joe8dZAwgOjywfLUEuqIOEdldni0nP/cc3qi6plns2ifqOlP g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10429"; a="269942001"
-X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="269942001"
+ bh=Wl1d0jKvHZGC5Yd449Qnm7zhaueS05JbKcyoWYVXVmY=;
+ b=HMM4ps661GFlURSPFgKMcn2LjgOIkLHQS2PrxrDEXH6QgsYkDqq9z2Lt
+ azPit5PFP3xWXnjRtC+U58N2MXlasIbVDexmjxNfL1KcTiop85soGWlNE
+ m4AdzMOXb2ACqLHGc3wZSCnvbkfyWcBG/j94tGDI0L7k/2RAUXV8EBLrK
+ 8tof7D8ZWYAzXcZ/GQDsUaw0SMjWudTOH7enYZ/ZOjG6kPmrSnejJ27EO
+ 8GgrGcPiJCgZa52ITffMq6ZTaCveIFsBOx7UYwkes8hJw6R9sKxWtanBv
+ /sMaxzXQQbj/2tNwK1mUQq549a3snOEF+wFMBH++VXAM3amozHJeFlO21 w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10429"; a="351883941"
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="351883941"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2022 03:13:46 -0700
-X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="631964182"
-Received: from jevargas-mobl3.amr.corp.intel.com (HELO localhost)
- ([10.252.32.116])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2022 03:30:25 -0700
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="631968756"
+Received: from maurocar-mobl2.ger.corp.intel.com (HELO maurocar-mobl2)
+ ([10.252.33.203])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2022 03:13:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Aug 2022 13:13:34 +0300
-Message-Id: <20220805101334.925995-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220805101334.925995-1-jani.nikula@intel.com>
-References: <20220805101334.925995-1-jani.nikula@intel.com>
+ 05 Aug 2022 03:30:22 -0700
+Date: Fri, 5 Aug 2022 12:30:18 +0200
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20220805123018.1143f2c3@maurocar-mobl2>
+In-Reply-To: <7156b3bd-69d7-de53-dd2b-96e82a8cf0f7@linux.intel.com>
+References: <cover.1659598090.git.mchehab@kernel.org>
+ <cc68d62a1979ea859b447b94413e100472331f57.1659598090.git.mchehab@kernel.org>
+ <0698c5a5-3bf2-daa4-e10e-2715f9b0d080@infradead.org>
+ <Yuzd9Ysc3BDQHuSW@alfio.lan>
+ <7156b3bd-69d7-de53-dd2b-96e82a8cf0f7@linux.intel.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 2/2] drm/i915/bios: convert intel_bios_init_panel()
- to drm_edid
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/i915/gt: document TLB cache
+ invalidation functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,157 +62,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, dri-devel@lists.freedesktop.org
+Cc: Chris Wilson <chris.p.wilson@intel.com>, Jonathan Corbet <corbet@lwn.net>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Randy Dunlap <rdunlap@infradead.org>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Try to use struct drm_edid where possible, even if having to fall back
-to looking into struct edid down low via drm_edid_raw().
+On Fri, 5 Aug 2022 10:24:25 +0100
+Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
 
-v2: Rebase
+> On 05/08/2022 10:08, Andi Shyti wrote:
+> > Hi Randy,
+> >   
+> >>> +/**
+> >>> + * intel_gt_invalidate_tlb_full - do full TLB cache invalidation
+> >>> + * @gt: GT structure  
+> >>
+> >> In multiple places (here and below) it would be nice to know what a
+> >> GT structure is. I looked thru multiple C and header files yesterday
+> >> and didn't find any comments about it.
+> >>
+> >> Just saying that @gt is a GT structure isn't very helpful, other
+> >> than making kernel-doc shut up.  
+> > 
+> > the 'gt' belongs to the drivers/gpu/drm/i915/gt/ subsystem and
+> > it's widely used a throughout i915.
+> > 
+> > I think it's inappropriate to describe it just here. On the other
+> > hand I agree that a better documentation is required for the GT
+> > itself where other parts can point to.  
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 19 ++++++++++---------
- drivers/gpu/drm/i915/display/intel_bios.h |  4 ++--
- drivers/gpu/drm/i915/display/intel_dp.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_lvds.c |  2 +-
- 4 files changed, 14 insertions(+), 13 deletions(-)
+GT is actually a well-understood term for GPU developers. It is an alias
+for:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 51dde5bfd956..2fa296d8e69d 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -606,14 +606,14 @@ get_lfp_data_tail(const struct bdb_lvds_lfp_data *data,
- 
- static int opregion_get_panel_type(struct drm_i915_private *i915,
- 				   const struct intel_bios_encoder_data *devdata,
--				   const struct edid *edid)
-+				   const struct drm_edid *drm_edid)
- {
- 	return intel_opregion_get_panel_type(i915);
- }
- 
- static int vbt_get_panel_type(struct drm_i915_private *i915,
- 			      const struct intel_bios_encoder_data *devdata,
--			      const struct edid *edid)
-+			      const struct drm_edid *drm_edid)
- {
- 	const struct bdb_lvds_options *lvds_options;
- 
-@@ -638,12 +638,13 @@ static int vbt_get_panel_type(struct drm_i915_private *i915,
- 
- static int pnpid_get_panel_type(struct drm_i915_private *i915,
- 				const struct intel_bios_encoder_data *devdata,
--				const struct edid *edid)
-+				const struct drm_edid *drm_edid)
- {
- 	const struct bdb_lvds_lfp_data *data;
- 	const struct bdb_lvds_lfp_data_ptrs *ptrs;
- 	const struct lvds_pnp_id *edid_id;
- 	struct lvds_pnp_id edid_id_nodate;
-+	const struct edid *edid = drm_edid_raw(drm_edid); /* FIXME */
- 	int i, best = -1;
- 
- 	if (!edid)
-@@ -685,7 +686,7 @@ static int pnpid_get_panel_type(struct drm_i915_private *i915,
- 
- static int fallback_get_panel_type(struct drm_i915_private *i915,
- 				   const struct intel_bios_encoder_data *devdata,
--				   const struct edid *edid)
-+				   const struct drm_edid *drm_edid)
- {
- 	return 0;
- }
-@@ -699,13 +700,13 @@ enum panel_type {
- 
- static int get_panel_type(struct drm_i915_private *i915,
- 			  const struct intel_bios_encoder_data *devdata,
--			  const struct edid *edid)
-+			  const struct drm_edid *drm_edid)
- {
- 	struct {
- 		const char *name;
- 		int (*get_panel_type)(struct drm_i915_private *i915,
- 				      const struct intel_bios_encoder_data *devdata,
--				      const struct edid *edid);
-+				      const struct drm_edid *drm_edid);
- 		int panel_type;
- 	} panel_types[] = {
- 		[PANEL_TYPE_OPREGION] = {
-@@ -728,7 +729,7 @@ static int get_panel_type(struct drm_i915_private *i915,
- 	int i;
- 
- 	for (i = 0; i < ARRAY_SIZE(panel_types); i++) {
--		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, devdata, edid);
-+		panel_types[i].panel_type = panel_types[i].get_panel_type(i915, devdata, drm_edid);
- 
- 		drm_WARN_ON(&i915->drm, panel_types[i].panel_type > 0xf &&
- 			    panel_types[i].panel_type != 0xff);
-@@ -3144,11 +3145,11 @@ void intel_bios_init(struct drm_i915_private *i915)
- void intel_bios_init_panel(struct drm_i915_private *i915,
- 			   struct intel_panel *panel,
- 			   const struct intel_bios_encoder_data *devdata,
--			   const struct edid *edid)
-+			   const struct drm_edid *drm_edid)
- {
- 	init_vbt_panel_defaults(panel);
- 
--	panel->vbt.panel_type = get_panel_type(i915, devdata, edid);
-+	panel->vbt.panel_type = get_panel_type(i915, devdata, drm_edid);
- 
- 	parse_panel_options(i915, panel);
- 	parse_generic_dtd(i915, panel);
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index e47582b0de0a..defea578a768 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -32,8 +32,8 @@
- 
- #include <linux/types.h>
- 
-+struct drm_edid;
- struct drm_i915_private;
--struct edid;
- struct intel_bios_encoder_data;
- struct intel_crtc_state;
- struct intel_encoder;
-@@ -235,7 +235,7 @@ void intel_bios_init(struct drm_i915_private *dev_priv);
- void intel_bios_init_panel(struct drm_i915_private *dev_priv,
- 			   struct intel_panel *panel,
- 			   const struct intel_bios_encoder_data *devdata,
--			   const struct edid *edid);
-+			   const struct drm_edid *drm_edid);
- void intel_bios_fini_panel(struct intel_panel *panel);
- void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
- bool intel_bios_is_valid_vbt(const void *buf, size_t size);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 8a3b2dbebe04..f9633fc90e10 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5265,7 +5265,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	intel_connector->edid = drm_edid;
- 
- 	intel_bios_init_panel(dev_priv, &intel_connector->panel, encoder->devdata,
--			      IS_ERR_OR_NULL(drm_edid) ? NULL : drm_edid_raw(drm_edid));
-+			      IS_ERR(drm_edid) ? NULL : drm_edid);
- 
- 	intel_panel_add_edid_fixed_modes(intel_connector,
- 					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE,
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 98c07fd3bd3e..1f578a8ea919 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -973,7 +973,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	intel_connector->edid = drm_edid;
- 
- 	intel_bios_init_panel(dev_priv, &intel_connector->panel, NULL,
--			      IS_ERR_OR_NULL(drm_edid) ? NULL : drm_edid_raw(drm_edid));
-+			      IS_ERR(drm_edid) ? NULL : drm_edid);
- 
- 	/* Try EDID first */
- 	intel_panel_add_edid_fixed_modes(intel_connector,
--- 
-2.30.2
+	https://en.wikipedia.org/wiki/Intel_Graphics_Technology
 
+It is basically the "core" of the GPU, where the engine units sit.
+
+I agree with Andi: terms like this should likely be defined on a glossary
+at i915.rst file.
+
+> Yeah agreed there is no point of copy pasting some explanation all over 
+> the place. Could we just do s/GT structure/struct intel_gt/, or "pointer 
+> to struct intel_gt to operate on", would that be good enough?
+
+IMO, it won't make any difference. kerneldoc already says that the
+parameter has struct intel_gt type on its output:
+
+	.. c:function:: void intel_gt_fini_tlb (struct intel_gt *gt)
+
+	   free TLB-specific vars
+
+	**Parameters**
+
+	``struct intel_gt *gt``
+	  GT structure
+	
+	**Description**
+
+	Frees any resources needed by TLB cache invalidation logic.
+
+This struct somewhat is similar to struct device. This is a container
+struct that has the common data needed to control the GT hardware.
+
+Almost all functions that work with GT needs it. There's not much sense
+to describe it everywhere. What makes sense is to have struct intel_gt
+documented at intel_gt_types.h, letting the build system to generate 
+hiperlinks to it.
+
+This is easier said than done...
+
+Regards,
+Mauro
