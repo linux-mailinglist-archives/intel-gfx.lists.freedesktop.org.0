@@ -1,56 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605D858A87F
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 11:09:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3050E58A8CE
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 11:31:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5E998B265;
-	Fri,  5 Aug 2022 09:09:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73BF1B26E5;
+	Fri,  5 Aug 2022 09:25:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BDC510E3C3;
- Fri,  5 Aug 2022 09:08:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659690529; x=1691226529;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=HcwH7rBY8c9G5DxpGNSvCKWHB22AViIT69knXHJMmAw=;
- b=GXaKM9iruNLc1EMGzDXitVupLYPkQr1gvbjdaLhtJl/+B5l4CwrfthMg
- GbaV4wvS44VqRp4T2Q+eWlRFVtWc/e2UZXtKUSC71OtoZ1MjD9HirKZVb
- QUgKoO2fUl9bVyJUdrnUcjapwsJfWx3ujGMgbjTVua4e05vaMi4jHEJ7S
- EIadZLO+LCU9BPgBoJJX2NVtJl4xyzKkRpZPb/WXXuSUgVnu9sBOg4m3W
- JY3m3BKp18gzY41p/oX/yijZ8deiEgf6Du01OfcYwTP1BvruYsLio63w1
- YjxbV+LCFPoO7IMNBtNWlNvOjvlqPHrzav1JHjN+2p9RYZ9cQ5cagcYp/ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10429"; a="287721249"
-X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="287721249"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2022 02:08:47 -0700
-X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="554047600"
-Received: from namitaga-mobl.ger.corp.intel.com (HELO [10.213.224.55])
- ([10.213.224.55])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2022 02:08:45 -0700
-Message-ID: <3a0ef983-6774-7de4-a2e5-0424e215460d@intel.com>
-Date: Fri, 5 Aug 2022 10:08:43 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 05085B1E0F;
+ Fri,  5 Aug 2022 09:20:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F1831AADD9;
+ Fri,  5 Aug 2022 09:20:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8230344863519512876=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.12.0
-Content-Language: en-GB
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-References: <20220804085952.6137-1-Arunpravin.PaneerSelvam@amd.com>
- <20220804085952.6137-4-Arunpravin.PaneerSelvam@amd.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20220804085952.6137-4-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v4 4/6] drm/i915: Implement
- intersect/compatible functions
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 05 Aug 2022 09:20:11 -0000
+Message-ID: <165969121195.21184.8772111355969700440@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1659607033.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1659607033.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_register_cleanup_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,176 +40,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, luben.tuikov@amd.com, christian.koenig@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 04/08/2022 09:59, Arunpravin Paneer Selvam wrote:
-> Implemented a new intersect and compatible callback function
-> fetching start offset from drm buddy allocator.
-> 
-> v3: move the bits that are specific to buddy_man (Matthew)
-> v4: consider the block size /range (Matthew)
-> 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 41 +----------
->   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 73 +++++++++++++++++++
->   2 files changed, 74 insertions(+), 40 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index 70e2ed4e99df..bf5fd6886ca0 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -379,7 +379,6 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
->   				       const struct ttm_place *place)
->   {
->   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
-> -	struct ttm_resource *res = bo->resource;
->   
->   	if (!obj)
->   		return false;
-> @@ -396,45 +395,7 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
->   	if (!i915_gem_object_evictable(obj))
->   		return false;
->   
-> -	switch (res->mem_type) {
-> -	case I915_PL_LMEM0: {
-> -		struct ttm_resource_manager *man =
-> -			ttm_manager_type(bo->bdev, res->mem_type);
-> -		struct i915_ttm_buddy_resource *bman_res =
-> -			to_ttm_buddy_resource(res);
-> -		struct drm_buddy *mm = bman_res->mm;
-> -		struct drm_buddy_block *block;
-> -
-> -		if (!place->fpfn && !place->lpfn)
-> -			return true;
-> -
-> -		GEM_BUG_ON(!place->lpfn);
-> -
-> -		/*
-> -		 * If we just want something mappable then we can quickly check
-> -		 * if the current victim resource is using any of the CPU
-> -		 * visible portion.
-> -		 */
-> -		if (!place->fpfn &&
-> -		    place->lpfn == i915_ttm_buddy_man_visible_size(man))
-> -			return bman_res->used_visible_size > 0;
-> -
-> -		/* Real range allocation */
-> -		list_for_each_entry(block, &bman_res->blocks, link) {
-> -			unsigned long fpfn =
-> -				drm_buddy_block_offset(block) >> PAGE_SHIFT;
-> -			unsigned long lpfn = fpfn +
-> -				(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
-> -
-> -			if (place->fpfn < lpfn && place->lpfn > fpfn)
-> -				return true;
-> -		}
-> -		return false;
-> -	} default:
-> -		break;
-> -	}
-> -
-> -	return true;
-> +	return ttm_bo_eviction_valuable(bo, place);
->   }
->   
->   static void i915_ttm_evict_flags(struct ttm_buffer_object *bo,
-> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> index a5109548abc0..9def01d5f368 100644
-> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> @@ -178,6 +178,77 @@ static void i915_ttm_buddy_man_free(struct ttm_resource_manager *man,
->   	kfree(bman_res);
->   }
->   
-> +static bool i915_ttm_buddy_man_intersects(struct ttm_resource_manager *man,
-> +					  struct ttm_resource *res,
-> +					  const struct ttm_place *place,
-> +					  size_t size)
-> +{
-> +	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
-> +	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
-> +	struct drm_buddy *mm = &bman->mm;
-> +	struct drm_buddy_block *block;
-> +
-> +	if (!place->fpfn && !place->lpfn)
-> +		return true;
-> +
-> +	GEM_BUG_ON(!place->lpfn);
-> +
-> +	/*
-> +	 * If we just want something mappable then we can quickly check
-> +	 * if the current victim resource is using any of the CP
+--===============8230344863519512876==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Nit: s/CP/CPU/
+== Series Details ==
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Series: drm/i915/hdcp: register cleanup (rev3)
+URL   : https://patchwork.freedesktop.org/series/106964/
+State : success
 
-> +	 * visible portion.
-> +	 */
-> +	if (!place->fpfn &&
-> +	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
-> +		return bman_res->used_visible_size > 0;
-> +
-> +	/* Check each drm buddy block individually */
-> +	list_for_each_entry(block, &bman_res->blocks, link) {
-> +		unsigned long fpfn =
-> +			drm_buddy_block_offset(block) >> PAGE_SHIFT;
-> +		unsigned long lpfn = fpfn +
-> +			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
-> +
-> +		if (place->fpfn < lpfn && place->lpfn > fpfn)
-> +			return true;
-> +	}
-> +
-> +	return false;
-> +}
-> +
-> +static bool i915_ttm_buddy_man_compatible(struct ttm_resource_manager *man,
-> +					  struct ttm_resource *res,
-> +					  const struct ttm_place *place,
-> +					  size_t size)
-> +{
-> +	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
-> +	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
-> +	struct drm_buddy *mm = &bman->mm;
-> +	struct drm_buddy_block *block;
-> +
-> +	if (!place->fpfn && !place->lpfn)
-> +		return true;
-> +
-> +	GEM_BUG_ON(!place->lpfn);
-> +
-> +	if (!place->fpfn &&
-> +	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
-> +		return bman_res->used_visible_size == res->num_pages;
-> +
-> +	/* Check each drm buddy block individually */
-> +	list_for_each_entry(block, &bman_res->blocks, link) {
-> +		unsigned long fpfn =
-> +			drm_buddy_block_offset(block) >> PAGE_SHIFT;
-> +		unsigned long lpfn = fpfn +
-> +			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
-> +
-> +		if (fpfn < place->fpfn || lpfn > place->lpfn)
-> +			return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
->   static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
->   				     struct drm_printer *printer)
->   {
-> @@ -205,6 +276,8 @@ static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
->   static const struct ttm_resource_manager_func i915_ttm_buddy_manager_func = {
->   	.alloc = i915_ttm_buddy_man_alloc,
->   	.free = i915_ttm_buddy_man_free,
-> +	.intersects = i915_ttm_buddy_man_intersects,
-> +	.compatible = i915_ttm_buddy_man_compatible,
->   	.debug = i915_ttm_buddy_man_debug,
->   };
->   
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11970 -> Patchwork_106964v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/index.html
+
+Participating hosts (43 -> 29)
+------------------------------
+
+  Missing    (14): fi-bdw-samus bat-dg1-6 bat-dg1-5 bat-dg2-8 fi-skl-guc bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-jsl-3 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_106964v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#111827])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/fi-bdw-5557u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-skl-6700k2:      [DMESG-FAIL][2] ([i915#5334]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11970/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-ehl-2}:         [INCOMPLETE][4] ([i915#5153] / [i915#6106]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11970/fi-ehl-2/igt@i915_selftest@live@hangcheck.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/fi-ehl-2/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-bdw-5557u:       [INCOMPLETE][6] ([i915#146]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11970/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6106]: https://gitlab.freedesktop.org/drm/intel/issues/6106
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11970 -> Patchwork_106964v3
+
+  CI-20190529: 20190529
+  CI_DRM_11970: 1d7aa8092dbbaef7c6a81903e0432f5b90da4d63 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6613: 209230467200f2fa63a6f71fe6299996470dd813 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_106964v3: 1d7aa8092dbbaef7c6a81903e0432f5b90da4d63 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+d3892ea96767 drm/i915/hdcp: replace BIT() with REG_BIT() in register definitions
+ab5112d18446 drm/i915/hdcp: split out hdcp registers to a separate file
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/index.html
+
+--===============8230344863519512876==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdcp: register cleanup (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106964/">https://patchwork.freedesktop.org/series/106964/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11970 -&gt; Patchwork_106964v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/index.html</p>
+<h2>Participating hosts (43 -&gt; 29)</h2>
+<p>Missing    (14): fi-bdw-samus bat-dg1-6 bat-dg1-5 bat-dg2-8 fi-skl-guc bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 bat-jsl-3 bat-rplp-1 bat-rpls-1 bat-rpls-2 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_106964v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/fi-bdw-5557u/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11970/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11970/fi-ehl-2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5153">i915#5153</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6106">i915#6106</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/fi-ehl-2/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11970/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106964v3/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11970 -&gt; Patchwork_106964v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11970: 1d7aa8092dbbaef7c6a81903e0432f5b90da4d63 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6613: 209230467200f2fa63a6f71fe6299996470dd813 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_106964v3: 1d7aa8092dbbaef7c6a81903e0432f5b90da4d63 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>d3892ea96767 drm/i915/hdcp: replace BIT() with REG_BIT() in register definitions<br />
+ab5112d18446 drm/i915/hdcp: split out hdcp registers to a separate file</p>
+
+</body>
+</html>
+
+--===============8230344863519512876==--
