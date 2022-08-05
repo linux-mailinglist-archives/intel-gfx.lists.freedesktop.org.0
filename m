@@ -1,50 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A07F58AB8F
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 15:26:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E149158AC64
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 16:28:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C037AB02F0;
-	Fri,  5 Aug 2022 13:24:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EECC1B62E0;
+	Fri,  5 Aug 2022 14:27:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09E90B0759;
- Fri,  5 Aug 2022 13:23:51 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70B5C90F3D;
+ Fri,  5 Aug 2022 14:27:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659705831; x=1691241831;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=i8Xlc0juAwGuI6eFKNzmyh10cOrkYBzLlOnGwbrJtzk=;
- b=j3CYHgI4lpJRrb2VDQtSW+d4GaXKxFjTRH3P+tLUcFoeQgH1gFQxa5+G
- LUeGLmVxg11UVQtmZWCN2eR+u0PDS8FjRNB9EM3rs83TCiFC11u2SW15Y
- b7PVbr3Nf8AK8EAR18zQ7qy6/dU2Y8cLBaAFhVi4d7aS0whSmdRDmb069
- jpIm/trYe/b75lD0Y3Z783i/GBvmY7AjZGtwI+S3xLY35PGuHHJP9GION
- savMYdwDjYNiQTA7EU72FBPS3iqgLz4JLqB7r0JSzi0duoTezEm5J8trQ
- nWdqYNJog6WCW3q9Qdhw7lgo9EVYeTe50IxnTt7sZ2k0oskfGy+lOD5zU A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10430"; a="316089237"
-X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="316089237"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2022 06:23:50 -0700
-X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="579497677"
-Received: from namitaga-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.213.224.55])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2022 06:23:49 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Aug 2022 14:22:40 +0100
-Message-Id: <20220805132240.442747-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220805132240.442747-1-matthew.auld@intel.com>
-References: <20220805132240.442747-1-matthew.auld@intel.com>
+ t=1659709661; x=1691245661;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6GEOCn/sZYHJkejV3tFNB7GfcnQMEHdpX5Y27y0A0dU=;
+ b=oBUEgtZgVHn5Z6jgsLYPWTXV7nwYh3aD2o6c1+JawQz70vEnDOirhk9h
+ xsDHdtmu47vgjJUcwr/yJlI7HZ5q19WjmlRPDUkmzNOK/bGz7sLLenn2H
+ 2jPDp7pcdxoM+IDGWeG1+/GM+MxF1Hdlfnga2juuUfS2ZzSvDNhqdup3+
+ UJlOkIh1iD3ASJifyknS9sNgvenJKSuZ/2O/eGw0B36SnHXFMiDBR5Kp7
+ SoPzT8njiYVMG153x/tML27yKLxZLDUyY8gAvD4HePhpr9oh9o2hQzEmR
+ 76s/gjau6Scbw9cv0CNB19QZnuR+UIYFZpqnt8OEHiDHNB3W1M2rmruMZ w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10430"; a="277131195"
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="277131195"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2022 07:27:39 -0700
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="600375524"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com (HELO
+ jkrzyszt-mobl1.intranet) ([10.213.19.138])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2022 07:27:37 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Fri,  5 Aug 2022 16:27:14 +0200
+Message-Id: <20220805142716.185077-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/ttm: fix CCS handling
+Subject: [Intel-gfx] [PATCH i-g-t 1/3] tests/gem_exec_fence: Fix wrong
+ engine checked for store_dword capability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,130 +55,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Crucible + recent Mesa seems to sometimes hit:
+Commit ed7c8cfb67e3 ("tests/i915/gem_exec_fence: Add
+__for_each_physical_engine to utilize all engines."), while replacing
+depraciated for_each_physical_engine(e, fd) loop with
+__for_each_physical_engine(fd, e2) and gem_can_store_dword() inside that
+loop with gem_class_can_store_dword(), didn't switch to e2 consequently --
+eb_ring(e) argument of gem_can_store_dword() was replaced with e->class
+passed to gem_class_can_store_dword() instead of e2->class.  As a result,
+a batch that stores dword is now submitted to all engines, also those that
+don't support that operation.  Fix it.
 
-GEM_BUG_ON(num_ccs_blks > NUM_CCS_BLKS_PER_XFER)
-
-And it looks like we can also trigger this with gem_lmem_swapping, if we
-modify the test to use slightly larger object sizes.
-
-Looking closer it looks like we have the following issues in
-migrate_copy():
-
-  - We are using plain integer in various places, which we can easily overflow
-    with a large object.
-
-  - We pass the entire object size (when the src is lmem) into
-    emit_pte() and then try to copy it, which doesn't work, since we
-    only have a few fixed sized windows in which to map the pages and
-    perform the copy. With an object > 8M we therefore aren't properly
-    copying the pages. And then with an object > 64M we trigger the
-    GEM_BUG_ON(num_ccs_blks > NUM_CCS_BLKS_PER_XFER).
-
-So it looks like our copy handling for any object > 8M (which is our
-CHUNK_SZ) is currently broken on DG2.
-
-Fixes: da0595ae91da ("drm/i915/migrate: Evict and restore the flatccs capable lmem obj")
-Testcase: igt@gem_lmem_swapping@basic-big
-Testcase: igt@gem_lmem_swapping@verify-ccs-big
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Ramalingam C <ramalingam.c@intel.com>
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_migrate.c | 44 ++++++++++++-------------
- 1 file changed, 21 insertions(+), 23 deletions(-)
+ tests/i915/gem_exec_fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 1bbed7aa436a..aaaf1906026c 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -609,9 +609,9 @@ static int emit_copy(struct i915_request *rq,
- 	return 0;
- }
+diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
+index 7ff7614dad..048870053a 100644
+--- a/tests/i915/gem_exec_fence.c
++++ b/tests/i915/gem_exec_fence.c
+@@ -331,7 +331,7 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
  
--static int scatter_list_length(struct scatterlist *sg)
-+static u64 scatter_list_length(struct scatterlist *sg)
- {
--	int len = 0;
-+	u64 len = 0;
+ 	i = 0;
+ 	for_each_ctx_engine(fd, ctx, e2) {
+-		if (!gem_class_can_store_dword(fd, e->class))
++		if (!gem_class_can_store_dword(fd, e2->class))
+ 			continue;
  
- 	while (sg && sg_dma_len(sg)) {
- 		len += sg_dma_len(sg);
-@@ -621,28 +621,26 @@ static int scatter_list_length(struct scatterlist *sg)
- 	return len;
- }
- 
--static void
-+static int
- calculate_chunk_sz(struct drm_i915_private *i915, bool src_is_lmem,
--		   int *src_sz, u32 bytes_to_cpy, u32 ccs_bytes_to_cpy)
-+		   u64 bytes_to_cpy, u64 ccs_bytes_to_cpy)
- {
--	if (ccs_bytes_to_cpy) {
--		if (!src_is_lmem)
--			/*
--			 * When CHUNK_SZ is passed all the pages upto CHUNK_SZ
--			 * will be taken for the blt. in Flat-ccs supported
--			 * platform Smem obj will have more pages than required
--			 * for main meory hence limit it to the required size
--			 * for main memory
--			 */
--			*src_sz = min_t(int, bytes_to_cpy, CHUNK_SZ);
--	} else { /* ccs handling is not required */
--		*src_sz = CHUNK_SZ;
--	}
-+	if (ccs_bytes_to_cpy && !src_is_lmem)
-+		/*
-+		 * When CHUNK_SZ is passed all the pages upto CHUNK_SZ
-+		 * will be taken for the blt. in Flat-ccs supported
-+		 * platform Smem obj will have more pages than required
-+		 * for main meory hence limit it to the required size
-+		 * for main memory
-+		 */
-+		return min_t(u64, bytes_to_cpy, CHUNK_SZ);
-+	else
-+		return CHUNK_SZ;
- }
- 
--static void get_ccs_sg_sgt(struct sgt_dma *it, u32 bytes_to_cpy)
-+static void get_ccs_sg_sgt(struct sgt_dma *it, u64 bytes_to_cpy)
- {
--	u32 len;
-+	u64 len;
- 
- 	do {
- 		GEM_BUG_ON(!it->sg || !sg_dma_len(it->sg));
-@@ -673,12 +671,12 @@ intel_context_migrate_copy(struct intel_context *ce,
- {
- 	struct sgt_dma it_src = sg_sgt(src), it_dst = sg_sgt(dst), it_ccs;
- 	struct drm_i915_private *i915 = ce->engine->i915;
--	u32 ccs_bytes_to_cpy = 0, bytes_to_cpy;
-+	u64 ccs_bytes_to_cpy = 0, bytes_to_cpy;
- 	enum i915_cache_level ccs_cache_level;
- 	u32 src_offset, dst_offset;
- 	u8 src_access, dst_access;
- 	struct i915_request *rq;
--	int src_sz, dst_sz;
-+	u64 src_sz, dst_sz;
- 	bool ccs_is_src, overwrite_ccs;
- 	int err;
- 
-@@ -761,8 +759,8 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
--		calculate_chunk_sz(i915, src_is_lmem, &src_sz,
--				   bytes_to_cpy, ccs_bytes_to_cpy);
-+		src_sz = calculate_chunk_sz(i915, src_is_lmem,
-+					    bytes_to_cpy, ccs_bytes_to_cpy);
- 
- 		len = emit_pte(rq, &it_src, src_cache_level, src_is_lmem,
- 			       src_offset, src_sz);
+ 		if (flags & NONBLOCK) {
 -- 
-2.37.1
+2.25.1
 
