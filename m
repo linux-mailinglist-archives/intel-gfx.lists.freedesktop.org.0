@@ -1,55 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0AB58ABD1
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 15:52:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39FF458AB9A
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 15:27:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59752B58B2;
-	Fri,  5 Aug 2022 13:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18F06B00EB;
+	Fri,  5 Aug 2022 13:24:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2261 seconds by postgrey-1.36 at gabe;
- Fri, 05 Aug 2022 13:51:59 UTC
-Received: from www262.sakura.ne.jp (www262.sakura.ne.jp [202.181.97.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB8218B7A7
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Aug 2022 13:51:59 +0000 (UTC)
-Received: from fsav117.sakura.ne.jp (fsav117.sakura.ne.jp [27.133.134.244])
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 275DE8AC068870;
- Fri, 5 Aug 2022 22:14:08 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Received: from www262.sakura.ne.jp (202.181.97.72)
- by fsav117.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav117.sakura.ne.jp);
- Fri, 05 Aug 2022 22:14:08 +0900 (JST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav117.sakura.ne.jp)
-Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
- (authenticated bits=0)
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 275DE7M4068866
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
- Fri, 5 Aug 2022 22:14:08 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Message-ID: <4debe93c-5bfd-dd3b-f532-92df21c37713@I-love.SAKURA.ne.jp>
-Date: Fri, 5 Aug 2022 22:14:05 +0900
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11FD9B04BC;
+ Fri,  5 Aug 2022 13:23:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1659705830; x=1691241830;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Mi4O+OVOGbpBfWqRUDxCGwRvU18sBzxwy2R7o7uzqOE=;
+ b=K3j+jofGQyCTSX2i2bDiLSnQMa3mbjJ7K0yb1hwPzYHFhIJEL0gP4ETc
+ pRyHs8/zheelIPa2ezQKOzYc3tUScRmR1eOmwpsUw2rH7T3Dt3pDz5yvM
+ brBTm2oFR89fkg+OTIzmke3oQyZcKDpdnjGS8hjLGURTKo4P6z3g7iuuH
+ PpPAvTGBUicbW25mcsDIOyINKBfDPSeiIux1LnsfjGs+PLIeNrH3u6Q7e
+ pmE/Q6T4fzzAMes/bEhiTguFUN4X9/QsCM463LjvwFy8SWUbhBGBDhmEK
+ QatRGJ0KfwVGLasZzURFs0sSS11CRV8oUDBLnThKLYKlrlQ76VDdf6bAn w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10430"; a="316089232"
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="316089232"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2022 06:23:49 -0700
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="579497665"
+Received: from namitaga-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.213.224.55])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2022 06:23:47 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  5 Aug 2022 14:22:39 +0100
+Message-Id: <20220805132240.442747-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.0
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <bdf23a1c-0d89-c395-4a7a-2840ce5f639a@I-love.SAKURA.ne.jp>
- <98c6d61e-0c0f-e385-6100-6b7ebe6874b1@linux.intel.com>
- <c379bbe5-a416-7757-b0e3-1b767bb5a775@I-love.SAKURA.ne.jp>
- <703244a5-f2c9-adfb-892f-dd2353cf384e@linux.intel.com>
- <f15c7336-10fd-cd86-a95f-aec99154319b@I-love.SAKURA.ne.jp>
- <b21d9f1e-65e3-8f2f-a5c3-04bf866823e3@linux.intel.com>
-From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-In-Reply-To: <b21d9f1e-65e3-8f2f-a5c3-04bf866823e3@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] How to convert drivers/gpu/drm/i915/ to use local
- workqueue?
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/ttm: remove
+ calc_ctrl_surf_instr_size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,23 +56,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022/06/30 22:09, Tvrtko Ursulin wrote:
->>> On the i915 specifics, the caller in drivers/gpu/drm/i915/gt/selftest_execlists.c
->>> I am pretty sure can be removed. It is synchronized with the error capture side of
->>> things which is not required for the test to work.
->>>
->>> I can send a patch for that or you can, as you prefer?
->>
->> OK. Please send a patch for that, for that patch will go linux-next.git tree via
->> a tree for gpu/drm/i915 driver.
-> 
-> Patch sent. If I am right the easiest solution was just to remove the flush.
-> If I was wrong though I'll need to create a dedicated wq so we will see what
-> our automated CI will say.
+We only ever need to emit one ccs block copy command.
 
-How was the result?
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_migrate.c | 35 +++----------------------
+ 1 file changed, 3 insertions(+), 32 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+index 9a0814422ba4..1bbed7aa436a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_migrate.c
++++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+@@ -511,44 +511,16 @@ static inline u32 *i915_flush_dw(u32 *cmd, u32 flags)
+ 	return cmd;
+ }
+ 
+-static u32 calc_ctrl_surf_instr_size(struct drm_i915_private *i915, int size)
+-{
+-	u32 num_cmds, num_blks, total_size;
+-
+-	if (!GET_CCS_BYTES(i915, size))
+-		return 0;
+-
+-	/*
+-	 * XY_CTRL_SURF_COPY_BLT transfers CCS in 256 byte
+-	 * blocks. one XY_CTRL_SURF_COPY_BLT command can
+-	 * transfer upto 1024 blocks.
+-	 */
+-	num_blks = DIV_ROUND_UP(GET_CCS_BYTES(i915, size),
+-				NUM_CCS_BYTES_PER_BLOCK);
+-	num_cmds = DIV_ROUND_UP(num_blks, NUM_CCS_BLKS_PER_XFER);
+-	total_size = XY_CTRL_SURF_INSTR_SIZE * num_cmds;
+-
+-	/*
+-	 * Adding a flush before and after XY_CTRL_SURF_COPY_BLT
+-	 */
+-	total_size += 2 * MI_FLUSH_DW_SIZE;
+-
+-	return total_size;
+-}
+-
+ static int emit_copy_ccs(struct i915_request *rq,
+ 			 u32 dst_offset, u8 dst_access,
+ 			 u32 src_offset, u8 src_access, int size)
+ {
+ 	struct drm_i915_private *i915 = rq->engine->i915;
+ 	int mocs = rq->engine->gt->mocs.uc_index << 1;
+-	u32 num_ccs_blks, ccs_ring_size;
++	u32 num_ccs_blks;
+ 	u32 *cs;
+ 
+-	ccs_ring_size = calc_ctrl_surf_instr_size(i915, size);
+-	WARN_ON(!ccs_ring_size);
+-
+-	cs = intel_ring_begin(rq, round_up(ccs_ring_size, 2));
++	cs = intel_ring_begin(rq, 12);
+ 	if (IS_ERR(cs))
+ 		return PTR_ERR(cs);
+ 
+@@ -583,8 +555,7 @@ static int emit_copy_ccs(struct i915_request *rq,
+ 		FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, mocs);
+ 
+ 	cs = i915_flush_dw(cs, MI_FLUSH_DW_LLC | MI_FLUSH_DW_CCS);
+-	if (ccs_ring_size & 1)
+-		*cs++ = MI_NOOP;
++	*cs++ = MI_NOOP;
+ 
+ 	intel_ring_advance(rq, cs);
+ 
+-- 
+2.37.1
 
