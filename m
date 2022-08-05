@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1627A58A84B
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 10:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E70358A875
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Aug 2022 11:01:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE23AB0BAF;
-	Fri,  5 Aug 2022 08:47:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1272B159E;
+	Fri,  5 Aug 2022 09:01:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6357B0DA3;
- Fri,  5 Aug 2022 08:47:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659689226; x=1691225226;
- h=date:from:to:cc:subject:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P2RYTSUTYhGd2GktSZ+m/j6HRfqcYiYAeUxGx7xguRQ=;
- b=NAM6Ga7BMLqg823ve5Xos76+x6PEWJ6+56bjyv/I4E1yXKsqcNjBt3Ib
- gg7AJgp4p2LzlTb5H6KcZ3d8SveXJ/TIgja5zC2jwtyE9eHU5Dgz+1YBE
- DPOmNgMAPTPCvYcAf7/L++utqq8gWVAxurtB+/nxK9ftR++39QcSCceWR
- oNAQgSUD+C7lcbtlTwSD9UjrYvFvjhDrVWEksKq91EizboPfUOMiM2Cv2
- mOMHEmZX/ESAEa6VQaepoe3ukw7Wb8foJ0CISw/ukwwwayk3dDgLY1CqC
- 5oBpdiUQFzegnreBK3ZMHf3XrMIu+vXgmnWrPZuJzUAbGsfWkkUXeC215 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10429"; a="277076799"
-X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="277076799"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2022 01:47:05 -0700
-X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="662909092"
-Received: from maurocar-mobl2.ger.corp.intel.com (HELO maurocar-mobl2)
- ([10.252.33.203])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2022 01:47:02 -0700
-Date: Fri, 5 Aug 2022 10:46:57 +0200
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <20220805104642.0f0e1410@maurocar-mobl2>
-In-Reply-To: <YuwC0s6khQsun32+@intel.com>
-References: <YuwC0s6khQsun32+@intel.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EE3DC14AF13;
+ Fri,  5 Aug 2022 09:01:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DB861A9932;
+ Fri,  5 Aug 2022 09:01:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PULL] drm-intel-next-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 05 Aug 2022 09:01:22 -0000
+Message-ID: <165969008287.21184.15583395352525415039@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1659607033.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1659607033.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/hdcp=3A_register_cleanup_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,57 +40,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Andi Shyti <andi.shyti@intel.com>, Dave Airlie <airlied@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
+== Series Details ==
 
-On Thu, 4 Aug 2022 13:33:06 -0400
-Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+Series: drm/i915/hdcp: register cleanup (rev3)
+URL   : https://patchwork.freedesktop.org/series/106964/
+State : warning
 
-> Hi Dave and Daniel,
-> 
-> Here goes drm-intel-next-fixes-2022-08-04:
-> 
-> - disable pci resize on 32-bit systems (Nirmoy)
-> - don't leak the ccs state (Matt)
-> - TLB invalidation fixes (Chris)
-> 
-> Thanks,
-> Rodrigo.
-> 
-> The following changes since commit 2bc7ea71a73747a77e7f83bc085b0d2393235410:
-> 
->   Merge tag 'topic/nouveau-misc-2022-07-27' of git://anongit.freedesktop.org/drm/drm into drm-next (2022-07-27 11:34:07 +1000)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2022-08-04
-> 
-> for you to fetch changes up to e57b9369e0c6f60155027e120fafd4b57e385b71:
-> 
->   drm/i915/gt: Batch TLB invalidations (2022-08-01 09:48:06 -0400)
-> 
-> ----------------------------------------------------------------
-> - disable pci resize on 32-bit systems (Nirmoy)
-> - don't leak the ccs state (Matt)
-> - TLB invalidation fixes (Chris)
-> 
-> ----------------------------------------------------------------
-> Chris Wilson (4):
->       drm/i915/gt: Ignore TLB invalidations on idle engines
->       drm/i915/gt: Invalidate TLB of the OA unit at TLB invalidations
->       drm/i915/gt: Skip TLB invalidations once wedged
+== Summary ==
 
->       drm/i915/gt: Batch TLB invalidations
-This patch actually adds a regression due to a silly mistake. 
-The fix is here:
+Error: dim checkpatch failed
+d17261c0cd1c drm/i915/hdcp: split out hdcp registers to a separate file
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:36: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#36: 
+new file mode 100644
 
-	https://patchwork.freedesktop.org/patch/496249/?series=106805&rev=4
+total: 0 errors, 1 warnings, 0 checks, 556 lines checked
+83599206d592 drm/i915/hdcp: replace BIT() with REG_BIT() in register definitions
 
-Regards,
-Mauro
+
