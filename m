@@ -2,49 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE73E58C68D
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Aug 2022 12:36:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BD7B58C78E
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Aug 2022 13:33:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04BC62AAF5;
-	Mon,  8 Aug 2022 10:36:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6904498F84;
+	Mon,  8 Aug 2022 11:30:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F1888A3F8
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Aug 2022 10:36:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659954975; x=1691490975;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zGwEKB3HRJUfVsC+7FQcM66KV7+3yY03zVD3yNpDUxM=;
- b=dTuIh1Ej8QKQ8M86UKj1kh7x/fPRsadHN5Qfd2hAJL6aWgFHgzHzhrrz
- Hzz7ZZJF0HdS2Ojs4Amom64oJEKM3qqTxPnddAEx8+egU11EC5DkjKF5k
- BNnR5Z7tow3yR7OsjEqopkFDViXgHccqoTQaoYUUj147nyxC4xtui2+2R
- 1HHZzi6WxicC6et86iTjsrtYLezWC6ruNVLfY5lW64IOOcqBxfBbHUMHK
- /qfmLLzC2IHw8feRwiM8eA12oA8mGSKHIlaEhO7aGPXRU7c25zzqUNjgm
- FWVy82oq766ojQuK9a0IYlaYH+OB7sgOLnGHqgd+yfOdM4SNmiVwwoqe+ w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10432"; a="354559022"
-X-IronPort-AV: E=Sophos;i="5.93,222,1654585200"; d="scan'208";a="354559022"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2022 03:36:15 -0700
-X-IronPort-AV: E=Sophos;i="5.93,222,1654585200"; d="scan'208";a="632839293"
-Received: from srr4-3-linux-105-anshuma1.iind.intel.com ([10.223.74.179])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2022 03:36:12 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Aug 2022 16:05:55 +0530
-Message-Id: <20220808103555.345-2-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20220808103555.345-1-anshuman.gupta@intel.com>
-References: <20220808103555.345-1-anshuman.gupta@intel.com>
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
+ [IPv6:2a00:1450:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9A7A976A5;
+ Mon,  8 Aug 2022 11:28:33 +0000 (UTC)
+Received: by mail-ej1-x62e.google.com with SMTP id kb8so16032064ejc.4;
+ Mon, 08 Aug 2022 04:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc; bh=n0CAi9pds/V29zU7AxtYcUqo8kNQ6o6h5I9nksSIB5Y=;
+ b=HmkiaYhVXxCh5T3W/Qn+x6LgKPShRn8pVmCHUrPiSCVUMXMBfnED+x+EFXeTwWzRa4
+ o3r7x9SmZ5EBRF5k6bT24SrDXnSMX+w/n01eLZuGBTmke5oOynXYUbHusFvF//Xw8Ovi
+ LIWXA4tE95IbPz6ZR8WWhOtykJv0uBeNCoOFcbH0j+DBr4CwHCoMw7QA8tT0TjKGabGf
+ eYsTT2BmAIzM6idnMJYNr93nhSc+yNe2fsKnHM12W4kExPp5I0nL2G7IQq7HcuzESwjy
+ UMDRL/HPxJmKwSZVmiX1WlmVLGiX9yzzwSDI+xWdGTGBXQVBYlhJzKHw+ZUF9rJlQqAl
+ kgOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc;
+ bh=n0CAi9pds/V29zU7AxtYcUqo8kNQ6o6h5I9nksSIB5Y=;
+ b=2TslTLzEEuoh6XKLSX/tE5Mrs54vvjtoGfo5ztSlDAju23RSJVMHz+Xd1E96rs6pOB
+ 7e68OW0JpEUDfizgDSenVo7sMJa8W2KCeADjFkppRnkt5Ges50CFCF4tEkkSbd6N+oYM
+ SWt6gw5XxGx/x2G/WGDFdtsqGufd9HviencmS1ZZp3Opnt+NA3b1LPj2theQq3kP0CCk
+ VrL0w86d7j/Cmbne2n/7OWBm+yn7vHRwb5nJQM5h41qjowblNO6b6SBGw53TvAdg6KjX
+ 3Z90ZxDAB2kjyGsgZ7ygGrOzYmVYjelp5tNufahC4EGLNOXLPOMZaNIZLw7yttudeELi
+ jmoA==
+X-Gm-Message-State: ACgBeo21Bzmr8EZ81088wvZ+wdMuJxb08GiEtf2qJMU1f+WHABCW0fYp
+ UD1+iXvE2JrS7AC68hnpZD4NMWUSi+0=
+X-Google-Smtp-Source: AA6agR5CCGvOrNmkJeoroYuKc9EmH2tKz1aTOPz9R2NZDdpsd21ivvCte1eExyenis8aYhJYZm5uxQ==
+X-Received: by 2002:a17:907:6d23:b0:731:147f:9e32 with SMTP id
+ sa35-20020a1709076d2300b00731147f9e32mr8609326ejc.280.1659958112105; 
+ Mon, 08 Aug 2022 04:28:32 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:2de9:6498:3b4e:7aeb?
+ ([2a02:908:1256:79a0:2de9:6498:3b4e:7aeb])
+ by smtp.gmail.com with ESMTPSA id
+ bd9-20020a056402206900b0043bbf79b3ebsm4479485edb.54.2022.08.08.04.28.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 08 Aug 2022 04:28:31 -0700 (PDT)
+Message-ID: <c6fdc73d-8877-b261-6e46-0094d4bb4527@gmail.com>
+Date: Mon, 8 Aug 2022 13:28:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+References: <20220725114240.4844-1-Arunpravin.PaneerSelvam@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20220725114240.4844-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 1/1] drm/i915/dgfx: Avoid parent bridge rpm on
- mmap mappings
+Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/ttm: Add new callbacks to ttm
+ res mgr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,153 +77,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel@ffwll.ch, chris.p.wilson@intel.com, rodrigo.vivi@intel.com
+Cc: alexander.deucher@amd.com, luben.tuikov@amd.com, christian.koenig@amd.com,
+ matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As per PCIe Spec Section 5.3,
-When a Type 1 Function associated with a Switch/Root
-Port (a “virtual bridge”) is in a non-D0 power state,
-it will emulate the behavior of a conventional PCI bridge
-in its handling of Memory, I/O, and Configuration
-Requests and Completions. All Memory and I/O requests
-flowing Downstream are terminated as Unsupported Requests.
+Am 25.07.22 um 13:42 schrieb Arunpravin Paneer Selvam:
+> We are adding two new callbacks to ttm resource manager
+> function to handle intersection and compatibility of
+> placement and resources.
+>
+> v2: move the amdgpu and ttm_range_manager changes to
+>      separate patches (Christian)
+>
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_resource.c | 59 ++++++++++++++++++++++++++++++
+>   include/drm/ttm/ttm_resource.h     | 39 ++++++++++++++++++++
+>   2 files changed, 98 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+> index 20f9adcc3235..4cd31d24c3e7 100644
+> --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> @@ -253,6 +253,65 @@ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
+>   }
+>   EXPORT_SYMBOL(ttm_resource_free);
+>   
+> +/**
+> + * ttm_resource_intersect - test for intersection
+> + *
+> + * @bdev: TTM device structure
+> + * @res: The resource to test
+> + * @place: The placement to test
+> + * @size: How many bytes the new allocation needs.
+> + *
+> + * Test if @res intersects with @place and @size. Used for testing if evictions
+> + * are valueable or not.
+> + *
+> + * Returns true if the res placement intersects with @place and @size.
+> + */
+> +bool ttm_resource_intersect(struct ttm_device *bdev,
+> +			    struct ttm_resource *res,
+> +			    const struct ttm_place *place,
+> +			    size_t size)
+> +{
+> +	struct ttm_resource_manager *man;
+> +
+> +	if (!res)
+> +		return false;
+> +
+> +	man = ttm_manager_type(bdev, res->mem_type);
+> +	if (!place || !man->func->intersect)
+> +		return true;
+> +
+> +	return man->func->intersect(man, res, place, size);
+> +}
+> +
+> +/**
+> + * ttm_resource_compatible - test for compatibility
+> + *
+> + * @bdev: TTM device structure
+> + * @res: The resource to test
+> + * @place: The placement to test
+> + * @size: How many bytes the new allocation needs.
+> + *
+> + * Test if @res compatible with @place and @size.
+> + *
+> + * Returns true if the res placement compatible with @place and @size.
+> + */
+> +bool ttm_resource_compatible(struct ttm_device *bdev,
+> +			     struct ttm_resource *res,
+> +			     const struct ttm_place *place,
+> +			     size_t size)
+> +{
+> +	struct ttm_resource_manager *man;
+> +
+> +	if (!res)
+> +		return false;
+> +
+> +	man = ttm_manager_type(bdev, res->mem_type);
+> +	if (!place || !man->func->compatible)
 
-Due to above limitations when Intel DGFX Cards graphics
-PCI func's upstream bridge(referred as VSP) enters to D3,
-all mmap memory mapping associated with lmem objects
-reads 0xff, therefore avoiding VSP runtime suspend
-accordingly.
+Well that !place is probably misplaced here.
 
-This will make sure that user can read valid data from lmem,
-while DGFX Card graphics PCI func is in D3 state.
+When no placement is given then that's either illegal or the resource is 
+never compatible.
 
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 11 ++++++++
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c  |  8 ++++++
- drivers/gpu/drm/i915/intel_runtime_pm.c  | 35 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/intel_runtime_pm.h  |  2 ++
- 4 files changed, 56 insertions(+)
+Maybe move that check up to the !res if and return false.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index 0c5c43852e24..968bed5b56d3 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -845,6 +845,10 @@ static void vm_open(struct vm_area_struct *vma)
- 	struct drm_i915_gem_object *obj = mmo->obj;
- 
- 	GEM_BUG_ON(!obj);
-+
-+	if (i915_gem_object_is_lmem(obj))
-+		intel_runtime_pm_get_vsp(to_i915(obj->base.dev));
-+
- 	i915_gem_object_get(obj);
- }
- 
-@@ -854,6 +858,10 @@ static void vm_close(struct vm_area_struct *vma)
- 	struct drm_i915_gem_object *obj = mmo->obj;
- 
- 	GEM_BUG_ON(!obj);
-+
-+	if (i915_gem_object_is_lmem(obj))
-+		intel_runtime_pm_put_vsp(to_i915(obj->base.dev));
-+
- 	i915_gem_object_put(obj);
- }
- 
-@@ -972,6 +980,9 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
- 		return PTR_ERR(anon);
- 	}
- 
-+	if (i915_gem_object_is_lmem(obj))
-+		intel_runtime_pm_get_vsp(to_i915(obj->base.dev));
-+
- 	vma->vm_flags |= VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_IO;
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 5a5cf332d8a5..bcacd95fdbc1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -1101,6 +1101,10 @@ static void ttm_vm_open(struct vm_area_struct *vma)
- 		i915_ttm_to_gem(vma->vm_private_data);
- 
- 	GEM_BUG_ON(!obj);
-+
-+	if (i915_gem_object_is_lmem(obj))
-+		intel_runtime_pm_get_vsp(to_i915(obj->base.dev));
-+
- 	i915_gem_object_get(obj);
- }
- 
-@@ -1110,6 +1114,10 @@ static void ttm_vm_close(struct vm_area_struct *vma)
- 		i915_ttm_to_gem(vma->vm_private_data);
- 
- 	GEM_BUG_ON(!obj);
-+
-+	if (i915_gem_object_is_lmem(obj))
-+		intel_runtime_pm_put_vsp(to_i915(obj->base.dev));
-+
- 	i915_gem_object_put(obj);
- }
- 
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index 6ed5786bcd29..a5557918674f 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -646,3 +646,38 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm)
- 
- 	init_intel_runtime_pm_wakeref(rpm);
- }
-+
-+void intel_runtime_pm_get_vsp(struct drm_i915_private *i915)
-+{
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev), *vsp;
-+
-+	if (!IS_DGFX(i915))
-+		return;
-+
-+	vsp = pci_upstream_bridge(pdev);
-+	if (!vsp) {
-+		drm_err(&i915->drm, "Failed to get the PCI upstream bridge\n");
-+		return;
-+	}
-+
-+	pci_dbg(vsp, "get runtime usage count\n");
-+	pm_runtime_get_sync(&vsp->dev);
-+}
-+
-+void intel_runtime_pm_put_vsp(struct drm_i915_private *i915)
-+{
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev), *vsp;
-+
-+	if (!IS_DGFX(i915))
-+		return;
-+
-+	vsp = pci_upstream_bridge(pdev);
-+	if (!vsp) {
-+		drm_err(&i915->drm, "Failed to get the PCI upstream bridge\n");
-+		return;
-+	}
-+
-+	pci_dbg(vsp, "put runtime usage count\n");
-+	pm_runtime_mark_last_busy(&vsp->dev);
-+	pm_runtime_put(&vsp->dev);
-+}
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
-index d9160e3ff4af..b86843bf4f5d 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-@@ -173,6 +173,8 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm);
- void intel_runtime_pm_enable(struct intel_runtime_pm *rpm);
- void intel_runtime_pm_disable(struct intel_runtime_pm *rpm);
- void intel_runtime_pm_driver_release(struct intel_runtime_pm *rpm);
-+void intel_runtime_pm_get_vsp(struct drm_i915_private *i915);
-+void intel_runtime_pm_put_vsp(struct drm_i915_private *i915);
- 
- intel_wakeref_t intel_runtime_pm_get(struct intel_runtime_pm *rpm);
- intel_wakeref_t intel_runtime_pm_get_if_in_use(struct intel_runtime_pm *rpm);
--- 
-2.26.2
+> +		return true;
+> +
+> +	return man->func->compatible(man, res, place, size);
+> +}
+> +
+>   static bool ttm_resource_places_compat(struct ttm_resource *res,
+>   				       const struct ttm_place *places,
+>   				       unsigned num_placement)
+> diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+> index ca89a48c2460..68042e165c40 100644
+> --- a/include/drm/ttm/ttm_resource.h
+> +++ b/include/drm/ttm/ttm_resource.h
+> @@ -88,6 +88,37 @@ struct ttm_resource_manager_func {
+>   	void (*free)(struct ttm_resource_manager *man,
+>   		     struct ttm_resource *res);
+>   
+> +	/**
+> +	 * struct ttm_resource_manager_func member intersect
+> +	 *
+> +	 * @man: Pointer to a memory type manager.
+> +	 * @res: Pointer to a struct ttm_resource to be checked.
+> +	 * @place: Placement to check against.
+> +	 * @size: Size of the check.
+> +	 *
+> +	 * Test if @res intersects with @place + @size. Used to judge if
+> +	 * evictions are valueable or not.
+> +	 */
+> +	bool (*intersect)(struct ttm_resource_manager *man,
+> +			  struct ttm_resource *res,
+> +			  const struct ttm_place *place,
+> +			  size_t size);
+> +
+> +	/**
+> +	 * struct ttm_resource_manager_func member compatible
+> +	 *
+> +	 * @man: Pointer to a memory type manager.
+> +	 * @res: Pointer to a struct ttm_resource to be checked.
+> +	 * @place: Placement to check against.
+> +	 * @size: Size of the check.
+> +	 *
+> +	 * Test if @res compatible with @place + @size.
+
+"Used to check of the need to move the backing store or not."
+
+Apart from that looks good to me.
+
+Regards,
+Christian.
+
+> +	 */
+> +	bool (*compatible)(struct ttm_resource_manager *man,
+> +			   struct ttm_resource *res,
+> +			   const struct ttm_place *place,
+> +			   size_t size);
+> +
+>   	/**
+>   	 * struct ttm_resource_manager_func member debug
+>   	 *
+> @@ -329,6 +360,14 @@ int ttm_resource_alloc(struct ttm_buffer_object *bo,
+>   		       const struct ttm_place *place,
+>   		       struct ttm_resource **res);
+>   void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res);
+> +bool ttm_resource_intersect(struct ttm_device *bdev,
+> +			    struct ttm_resource *res,
+> +			    const struct ttm_place *place,
+> +			    size_t size);
+> +bool ttm_resource_compatible(struct ttm_device *bdev,
+> +			     struct ttm_resource *res,
+> +			     const struct ttm_place *place,
+> +			     size_t size);
+>   bool ttm_resource_compat(struct ttm_resource *res,
+>   			 struct ttm_placement *placement);
+>   void ttm_resource_set_bo(struct ttm_resource *res,
 
