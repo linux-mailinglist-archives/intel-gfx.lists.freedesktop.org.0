@@ -2,140 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9288558CF16
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Aug 2022 22:27:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B7358CF19
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Aug 2022 22:27:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53D5E10F1A8;
-	Mon,  8 Aug 2022 20:27:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D18CF11A1D1;
+	Mon,  8 Aug 2022 20:27:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13B26112655
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Aug 2022 20:27:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659990421; x=1691526421;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=EsND21GMQwM1pBTEbmuJZiEFGiJ53HVyFALkQiv8UT4=;
- b=WlqeagDmLyhZRhokKjmROx2Sy+K+6B4Y/Za1k/gSEwqgILc6JWTjWUwn
- 0XAC6W62l6RMEHSSmJj6Vln1F3OFrW/PkiONnKnfqPoilliBdnzXSL+Qr
- QNNfCFxzSYNruXIXqZsRaK2cyZufHYmZUl0zQQ01A/EAXD2iEbOx7fwJO
- 08+CDUz/NAKTpsUQu+VAcD1bcBUmrJKC7GgaUtGTnDQNLVQslzFod2zqJ
- ysN2nRjDILe6kV4UJyYn8YGSoTq+x77fpB6SjaUfT1k6eYWCxL+PHEo9F
- STyJjcHah+uhYjGeS1a/KjkVuAWMaArMO/vOgsxPK7ZZGkegHWDhnr96/ Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10433"; a="288249875"
-X-IronPort-AV: E=Sophos;i="5.93,222,1654585200"; d="scan'208";a="288249875"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2022 13:27:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,222,1654585200"; d="scan'208";a="780621647"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga005.jf.intel.com with ESMTP; 08 Aug 2022 13:27:00 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Mon, 8 Aug 2022 13:26:59 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Mon, 8 Aug 2022 13:26:59 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28 via Frontend Transport; Mon, 8 Aug 2022 13:26:59 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.28; Mon, 8 Aug 2022 13:26:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZvrqGsvJjIKR2OkYzrF1gtFV6tuv3X1ct9Ho8/VPJjY9PR4GBo7KpAYLb4P1oMzUng/VKomBIPo2Gmv2rd9BzYWzn8gJQysWCTnxoxhLPcyjd7JixzTuuhq0wC+L1YyodOxdKEMgFCz+wzajitIKelVN9Q/zCoJotk33SQoWc0Pcdr+o6axGMrSeYayuoW7NfTL5CP3deW6IOWuFt8doX66P6l6dxFa5bJqjYwrKZHHaYo16elv78cDnUJL4RLVTdGiCNPhl1C+E0cupsD6Npoqz4nq6rBGy6JzQaUfL5htlymL1gNc6P2479GRHWSZm35mX2a7ONb0FLeViF8vwUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U/ksKhWXFfkele1atKYQiqkvZNqU9qC5zRJlSSsJOYg=;
- b=Td6RtpK9uaglr3J4LFpqkLE3gwNmm/7WqWPpOA/NHmgVqAGsM5s/7PbibTLCzcJ2nCX65K+eWPDU09zjg7enA4t1E9/1HqlAarTxkhXMSuOiojoiK1KQP/3dYYQ/n9e5HkoWJX1WUFIVSIV7ifFMR5F20sHpJCQPQj9kmBu4DRayn1I0N/e/MED3UkPCzF7dQEkKmqVgFzirsmjkppg0e3dTZxX36bNZ1J3YixI0zYZRsBpdcX8jsb7EZ8wqAH2LJZRwTDZA4dCaHv99tK8f78997MfJPESSTbUQW/j9OXNucTIatjZTY7TKtizVw5oO6RxVb+JFpPaGh3v94HuyCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com (2603:10b6:301:11::11)
- by BY5PR11MB3880.namprd11.prod.outlook.com (2603:10b6:a03:184::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Mon, 8 Aug
- 2022 20:26:55 +0000
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::ecc9:50cb:5951:2514]) by MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::ecc9:50cb:5951:2514%11]) with mapi id 15.20.5504.020; Mon, 8 Aug 2022
- 20:26:55 +0000
-Date: Mon, 8 Aug 2022 13:26:52 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Message-ID: <YvFxjNxVQxSmRHOH@mdroper-desk1.amr.corp.intel.com>
-References: <20220805155959.1983584-1-piotr.piorkowski@intel.com>
- <165972129824.21185.15994720755028174389@emeril.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <165972129824.21185.15994720755028174389@emeril.freedesktop.org>
-X-ClientProxiedBy: BYAPR01CA0025.prod.exchangelabs.com (2603:10b6:a02:80::38)
- To MWHPR11MB1632.namprd11.prod.outlook.com
- (2603:10b6:301:11::11)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AC40112655
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Aug 2022 20:27:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1659990437;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=0Qp5AM4XVaPe/EBBC2evVCwqqCv3S2jup+FrmZdbJPc=;
+ b=AbcmbE9CaXGFMLdLFH2r/iILr3pOtpoHcTpjTSlEtjdumC0uDddScD6RqB228Womv4sL7/
+ NPeINIeBHCEhkcncPHZEZcm4ppaKywHzI3BVTJEWAFt6oxawQfyJ4ctEQE7cPRocaviMNh
+ nA+3c0uvjdIE0+J2IAgDe49KSg08tak=
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
+ [209.85.166.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-527-LXDopuC0M1-i6s6R6EwSMA-1; Mon, 08 Aug 2022 16:27:16 -0400
+X-MC-Unique: LXDopuC0M1-i6s6R6EwSMA-1
+Received: by mail-io1-f69.google.com with SMTP id
+ f4-20020a5d8784000000b00684f917b026so1009968ion.12
+ for <intel-gfx@lists.freedesktop.org>; Mon, 08 Aug 2022 13:27:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:organization:references
+ :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
+ :from:to:cc;
+ bh=0Qp5AM4XVaPe/EBBC2evVCwqqCv3S2jup+FrmZdbJPc=;
+ b=MGumRksgY13xlSubGmn8GYPc/to1R3djMtYeJKOC77yTGxNIweVqK7OzrjEgEykZhy
+ BwaMfSn26UGzTOwa6weu09cNQCZlMueR4HvHs9ydJ4yo00cQF2KHm22cbDqsktVS98Pd
+ +gHrCzqOLAk1AJl0AxWVFOtYd+Z/nf6XyH79RARQCWgXZlPJY7bgG34nlbG0d6VZfIPm
+ uxqOFvEPbA6zZoF8FykKww1yw4it/KZafdwW3QlZlKI4jjDL4DAjG7/CxVYo5pJxaTIT
+ j6Uq1IycyWpxhNqx0HK83hEk65UfuojOnYAq+2A1iqjU6AuBO9zmfwP+sDFD8uyB6utD
+ jfYA==
+X-Gm-Message-State: ACgBeo3nwSO5yv/4KLH1etcjKuVFOJ7+6ij/8ROiMg7Qlxb2bcQiK+Z4
+ kbJw3Pv9qniRHczQHRhdgwHvDysWnfT+DAeaLgyr7WNrhRoH6zOp8KitvqGTJk5z+rW/Vn63rKm
+ Smjkef58mDp0PYZqJebGwvn3Clm7Q
+X-Received: by 2002:a05:6e02:1091:b0:2dd:f304:5a50 with SMTP id
+ r17-20020a056e02109100b002ddf3045a50mr9034209ilj.146.1659990434671; 
+ Mon, 08 Aug 2022 13:27:14 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4Gaui8ymkiPVLMaq6QF40dDHROTa/RWHRYWbJX4otUgVWItDO99iOsHXAQySvfwQD8L8xi6Q==
+X-Received: by 2002:a05:6e02:1091:b0:2dd:f304:5a50 with SMTP id
+ r17-20020a056e02109100b002ddf3045a50mr9034200ilj.146.1659990434384; 
+ Mon, 08 Aug 2022 13:27:14 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ m3-20020a02a143000000b0034278894fccsm5517418jah.90.2022.08.08.13.27.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 08 Aug 2022 13:27:14 -0700 (PDT)
+Date: Mon, 8 Aug 2022 14:27:11 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Zhi Wang <zhi.wang.linux@gmail.com>
+Message-ID: <20220808142711.02d16782.alex.williamson@redhat.com>
+In-Reply-To: <20220407071945.72148-2-zhi.a.wang@intel.com>
+References: <20220407071945.72148-1-zhi.a.wang@intel.com>
+ <20220407071945.72148-2-zhi.a.wang@intel.com>
+Organization: Red Hat
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c13f799a-a097-4191-e2be-08da797c55fe
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3880:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ynCQ/4SrwjF1q9CMyk6aO5nmz7VS1iTkQ5ixqHdaPudDmg5HzXzcKbuM6jtakfJjAUvnsYOGUj1aw1vNC6DeVOV6TYVH8+Zme5XninjBrgxeSMn1+jyWlq0f579aXBn8XR5tBIwd/tI6OlfTWA9Uq/qlO7vfityCfcaL+4yGk33PIbg8/gVFlkuwvRrMrxEVgLv7BbHuAsAvGAXnTaeBCdSHbNVRqGRMEjxwHDFr7soDVd5DKDUOysfw0oU6DF5Sqctn6gWpBDoqyUcuQSlvV2ACt7ohSng4dawPvspHW+uExd5DGzCGnDjufYAHHEXNzBua+cRMyKGZR+bILOueHt3i++FVSNDAH3Klusei9tz5JxjIEgmi99ktAq5f+6x9lLPkBWzpAZ9FmvbuwsFAqYm3MrOP4Kn4/WYFAbJ2j2onZzsUpqCgvsll7/dRx4eBMYb+QKauNGJl6DThXqGqNVY/1a10SiFufd6bp7jSV/+PQC1aLWhpSU68MDygzkdUoseyIyJ+ImFwu1hyWn9dGBlWnUMlSRs7YzRY6hbJQhqR2Wzo1hSYMYQkTaTknQXerj0dcwllAAKTJvjjlG5NFV8Q9M26ttDUpRaLdVGhBAX62VX35WXIzwtLaJWuEuaLPvSmaDNksz5G3ifNrJy+F8EcVRPCzn4brcILYH1yL9EqLAuQBqLwgQcTFxa6rSBI7mSsM8IiNiqkC6mWDPaETKjV2mMiUGyNGQ0t9Y9koVDYSnAoxuhxuz7Ha7Gpxh4m7hHmYMPm5LrWvEEZYRHluwrnSb/2NskjS5TCS2eohMOcjAOP7IGFIU3mi4Q0gnHs
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1632.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(376002)(136003)(366004)(39860400002)(346002)(396003)(84040400005)(186003)(5660300002)(107886003)(478600001)(6486002)(966005)(66946007)(6506007)(26005)(6512007)(86362001)(66556008)(6666004)(66476007)(41300700001)(82960400001)(83380400001)(2906002)(54906003)(4326008)(8936002)(316002)(6916009)(38100700002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?22CrAXfgd7FeTdjXPdcSRt094OOBqR/Q6BRIMyWPLMLsGSvAOisCrjuIMDMr?=
- =?us-ascii?Q?05Gv7/n7dCkT/RX4aQnplSZjLaSNZ0W9C6dJ0jxnDNBd/UrDpwIc07+NAe46?=
- =?us-ascii?Q?0FGbVMd3EvSWcOJw0Fl9CT5NobvgjUwPp0/X5IwQPcKVk+tw5gYHKXgy4D8+?=
- =?us-ascii?Q?AGPjfmrTYkfmg6QGBw9FipzgkmuExxFhba2pdv55TorCwxTUCDDO5OaID/5K?=
- =?us-ascii?Q?HG9pnApDtSzEL6lz2G1VP6OmGlAq+UEEi/0/S/hbLx4aUnnICIx+gqR9rX0T?=
- =?us-ascii?Q?slQrn6H8oJpTOrvE2ZS1540OvskgyxlQq28jTC01hGt/tDNjkH3z/9mlGaOO?=
- =?us-ascii?Q?Un/NdtImohNMIAxG5v+RnpujbJUCiGpk/MTWXiRdG/U8Pfk8F2d/eJtQAWDL?=
- =?us-ascii?Q?J5UU3+QyNQ7IOLypjVn8mcyWsiKP+MiGSnoMyb3X4s3Tn1tVB7UBiR7QgMKz?=
- =?us-ascii?Q?Fb9DsqEuKnEYiNT1lD79F8MLCA5idV++f6DmaLEQt9ZBYl45A0numEy3RXdN?=
- =?us-ascii?Q?oWk0qMuKTVC2VYlqoeh/m2wNmXXFnAZVJfQbod87lG27B2f8DA9iJQNCryU3?=
- =?us-ascii?Q?N0GPvM9Pq753vPPXM+TKJQMXNyLA5USZAkfj2An/SZekJKO7z9jzNsWjnMhW?=
- =?us-ascii?Q?8nuixxMMGTLVqr91e2U3Jz1rtDzQQf4x9YvND1AaTjYFDbptEo5aqSGsTpZS?=
- =?us-ascii?Q?YjhJ2xFYe+Or+B/KftJMLCCFG/SD2OL3B/Zy5g1/sYDoeRepcG0fw1qgwJjk?=
- =?us-ascii?Q?xGWz5ic6g0XnEWUQCJD3yjAEEIhBPkEy/PIGrfvbvooUOYElk5hAnPri4hyV?=
- =?us-ascii?Q?MYDvjStP2XOzonCADNLzF92xMbltd7gykA4HdwfpcMqv0m6Pjoc4d3Y/Kw/Z?=
- =?us-ascii?Q?3fYKcRJOfrPGyN0JFrUoNegzDcNWEm8omGnzxsySAClXaFOSqwB0lOSDKggQ?=
- =?us-ascii?Q?2uu38Dkv1/WS+HtQVi18VRquabYpjfWWMqGsugmFOHC5omE4Rv0gxJ4W+9yG?=
- =?us-ascii?Q?CiQrloyo8ITwRfNKPIcsgScuyQzzIvSlNyalGzdsh3nsO45RDYcLPm0QoosH?=
- =?us-ascii?Q?KoEySyh0WCoNu7sdECKITvCgnL4I0saTYJ+Z+9YLoPQjgTmfpuxgH8EPk42H?=
- =?us-ascii?Q?75Qk2U/Mtm2NabxT143kxHvMx2rkMGhcJGpfXnv8PWxPi89/ZzX3A9AI4QnX?=
- =?us-ascii?Q?CbuPj9izugXKWyAjnezDaRKFYQsU+AfdqQdzCavi/qQBw9faKipY3hR5WUHr?=
- =?us-ascii?Q?F+7/5m5zjr0wU4FKvzozykZvQKCG4jHgAtITE6pqOMJtlVWZQLdhg4FF3+BO?=
- =?us-ascii?Q?BnVMDD+TkA6AY/zog9u1kChZRIHzWZnQJVhUpTjDhtd27krl6cz6EBDoPFfB?=
- =?us-ascii?Q?OScBlpJjJWcA+eOkkHL8o52TEcXOMFDSRJMYGAVh7Sa7vLdcZC4XXuX0ZJ29?=
- =?us-ascii?Q?1TNc9dblOzOWvx3kG9UvOPnqqFj836cCmYNHnDhvxcdKexFZnPTmS2JRm+0B?=
- =?us-ascii?Q?ON/5gMLDxxyU17VD3LF5JWGUMGPgGRBHU31vTvEyaKjiq4j89MvkONhP3Sf8?=
- =?us-ascii?Q?dCfKHdD+/PRL6cAYet06ebvapoZlyVlwpNbhwk0gehSeAHLoEV5I5JPu8RgK?=
- =?us-ascii?Q?OA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c13f799a-a097-4191-e2be-08da797c55fe
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1632.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2022 20:26:55.3582 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 15gjBp+p1deNdEzh3Cchj3InwU42ZdUvNC0R+ixu4GmTZvVpDo2O5A+MF1mUxgW2VzrEvtBXUFzPIeHZgvVWXz0tIb56yt7fDihfJhiyFMc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB3880
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogIGZhaWx1cmUgZm9yIFNh?=
- =?utf-8?q?nitycheck_PCI_BARs_=28rev2=29?=
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v9 1/3] i915/gvt: Separate the MMIO tracking
+ table from GVT-g
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,175 +84,230 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+Cc: Zhi Wang <zhi.a.wang@gmail.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Vivi Rodrigo <rodrigo.vivi@intel.com>,
+ intel-gvt-dev@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 05, 2022 at 05:41:38PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: Sanitycheck PCI BARs (rev2)
-> URL   : https://patchwork.freedesktop.org/series/106927/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_11971 -> Patchwork_106927v2
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_106927v2 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_106927v2, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/index.html
-> 
-> Participating hosts (43 -> 41)
-> ------------------------------
-> 
->   Missing    (2): bat-dg2-8 fi-bdw-samus 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_106927v2:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@i915_selftest@live@guc_hang:
->     - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/fi-cfl-8109u/igt@i915_selftest@live@guc_hang.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/fi-cfl-8109u/igt@i915_selftest@live@guc_hang.html
+On Thu,  7 Apr 2022 03:19:43 -0400
+Zhi Wang <zhi.wang.linux@gmail.com> wrote:
 
-<7> [377.940383] i915 0000:00:02.0: [drm:lspcon_init [i915]] No LSPCON detected, found unknown
-<3> [377.940571] i915 0000:00:02.0: [drm] *ERROR* Failed to probe lspcon
+> From: Zhi Wang <zhi.a.wang@gmail.com>
+> 
+> To support the new mdev interfaces and the re-factor patches from
+> Christoph, which moves the GVT-g code into a dedicated module, the GVT-g
+> MMIO tracking table needs to be separated from GVT-g.
+> 
 
-This wouldn't be caused by Piotr's patches.  It looks like this is
-pre-existing bug https://gitlab.freedesktop.org/drm/intel/-/issues/5904
+Since this commit I'm unable to make use of GVT-g on a Xeon W-1290 IGD.
+The following in dmesg is the first sign of trouble:
 
-@Lakshmi, can you help check the filter and re-report the CI results so
-that CI shards testing of Piotr's series can continue?
+------------[ cut here ]------------
+assign a handler to a non-tracked mmio 4ab8
+WARNING: CPU: 16 PID: 504 at drivers/gpu/drm/i915/gvt/handlers.c:123 setup_mmio_info.constprop.0+0xd1/0xf0 [i915]
+ixgbe 0000:02:00.0: 31.504 Gb/s available PCIe bandwidth (8.0 GT/s PCIe x4 link)
+Modules linked in: nouveau(+) i915(+) mdev vfio_iommu_type1 vfio prime_numbers intel_gtt ast drm_buddy mxm_wmi drm_dp_helper drm_vram_helper drm_ttm_helper drm_kms_helper sd_mod t10_pi syscopyarea sysfillrect sysimgblt sg fb_sys_fops cec ttm crct10dif_pclmul drm ixgbe(+) crc32_pclmul igb crc32c_intel ahci e1000e libahci mdio libata ghash_clmulni_intel i2c_algo_bit dca wmi video pinctrl_cannonlake rndis_host cdc_ether usbnet mii dm_mirror dm_region_hash dm_log dm_mod fuse
+ixgbe 0000:02:00.0: MAC: 4, PHY: 0, PBA No: 020C08-0F8
+CPU: 16 PID: 504 Comm: systemd-udevd Not tainted 5.18.0-rc1+ #16
+ixgbe 0000:02:00.0: 3c:ec:ef:27:ef:0e
+Hardware name: Supermicro Super Server/X12SCZ-F, BIOS 1.0 06/16/2020
+RIP: 0010:setup_mmio_info.constprop.0+0xd1/0xf0 [i915]
+Code: 83 c6 04 81 ef e4 e6 dd 78 39 f5 77 a2 31 c0 48 83 c4 08 5b 5d 41 5c 41 5d 41 5e 41 5f c3 48 c7 c7 d8 c1 07 c1 e8 fe 83 cc c9 <0f> 0b 48 83 c4 08 b8 ed ff ff ff 5b 5d 41 5c 41 5d 41 5e 41 5f c3
+RSP: 0018:ffffa2014090fa28 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: ffff934754a38000 RCX: 0000000000000000
+RDX: ffff9346ce42c740 RSI: ffff9346ce41fca0 RDI: ffff9346ce41fca0
+RBP: 0000000000004abc R08: 0000000000000000 R09: 00000000ffff7fff
+R10: ffffa2014090f868 R11: ffffffff8bfe65e8 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000008 R15: 0000000000000000
+FS:  00007f345634d540(0000) GS:ffff9346ce400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000562eacfa8980 CR3: 0000002058ac0001 CR4: 00000000007706e0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ init_skl_mmio_info+0x1532/0x15a0 [i915]
+ intel_gvt_setup_mmio_info+0x1aa/0x240 [i915]
+ ? gen9_dbuf_ctl_mmio_write+0x40/0x40 [i915]
+ intel_gvt_init_device+0x106/0x300 [i915]
+ intel_gvt_init+0x41/0xa0 [i915]
+ i915_driver_hw_probe+0x2b2/0x340 [i915]
+ i915_driver_probe+0x1fd/0x570 [i915]
+ ? drm_privacy_screen_get+0x15f/0x190 [drm]
+ i915_pci_probe+0x56/0x1e0 [i915]
+ local_pci_probe+0x42/0x80
+ pci_call_probe+0x56/0x160
+ pci_device_probe+0x75/0xf0
+ ? driver_sysfs_add+0x6f/0xd0
+ really_probe+0x199/0x380
+ixgbe 0000:02:00.0: Intel(R) 10 Gigabit Network Connection
+ __driver_probe_device+0xfe/0x180
+ driver_probe_device+0x1e/0x90
+ __driver_attach+0xc0/0x1c0
+ ? __device_attach_driver+0xe0/0xe0
+ ? __device_attach_driver+0xe0/0xe0
+ bus_for_each_dev+0x75/0xc0
+ bus_add_driver+0x149/0x1e0
+ driver_register+0x8f/0xe0
+ i915_init+0x1d/0x7c [i915]
+ ? 0xffffffffc0768000
+ do_one_initcall+0x41/0x200
+ ? kmem_cache_alloc_trace+0x174/0x2f0
+ do_init_module+0x4c/0x250
+ __do_sys_finit_module+0xb4/0x120
+ do_syscall_64+0x59/0x80
+ ? syscall_exit_to_user_mode+0x12/0x30
+ ? do_syscall_64+0x69/0x80
+ ? do_syscall_64+0x69/0x80
+ ? do_syscall_64+0x69/0x80
+ ? sysvec_call_function+0x3c/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f3456e5a3ed
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 03 aa 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fff4df686b8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 0000562eacf62920 RCX: 00007f3456e5a3ed
+RDX: 0000000000000000 RSI: 0000562eacf886b0 RDI: 000000000000001a
+RBP: 0000000000020000 R08: 0000000000000000 R09: 0000000000000002
+R10: 000000000000001a R11: 0000000000000246 R12: 0000562eacf886b0
+R13: 0000562eacf627c0 R14: 0000000000000000 R15: 0000562eacf8d2d0
+ </TASK>
+---[ end trace 0000000000000000 ]---
 
-Thanks.
 
+> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+> index 520a7e1942f3..9bd3c15bfab6 100644
+> --- a/drivers/gpu/drm/i915/gvt/handlers.c
+> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
+...
+> @@ -3440,7 +2729,6 @@ static int init_skl_mmio_info(struct intel_gvt *gvt)
+>  		 NULL, NULL);
+>  
+>  	MMIO_DFH(GAMT_CHKN_BIT_REG, D_KBL | D_CFL, F_CMD_ACCESS, NULL, NULL);
+> -	MMIO_D(GEN9_CTX_PREEMPT_REG, D_SKL_PLUS & ~D_BXT);
+>  	MMIO_DFH(_MMIO(0xe4cc), D_BDW_PLUS, F_CMD_ACCESS, NULL, NULL);
+>  
+>  	return 0;
 
-Matt
+I tracked this to the above code segment, where the untouched line
+provides this mmio address:
 
-> 
->   
-> #### Suppressed ####
-> 
->   The following results come from untrusted machines, tests, or statuses.
->   They do not affect the overall result.
-> 
->   * igt@i915_module_load@load:
->     - {bat-dg2-10}:       [PASS][3] -> [DMESG-WARN][4]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/bat-dg2-10/igt@i915_module_load@load.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/bat-dg2-10/igt@i915_module_load@load.html
-> 
->   
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_106927v2 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@i915_pm_rpm@module-reload:
->     - fi-cfl-8109u:       [PASS][5] -> [DMESG-FAIL][6] ([i915#62])
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
-> 
->   * igt@i915_selftest@live@late_gt_pm:
->     - fi-cfl-8109u:       [PASS][7] -> [DMESG-WARN][8] ([i915#5904]) +29 similar issues
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
-> 
->   * igt@i915_suspend@basic-s2idle-without-i915:
->     - fi-cfl-8109u:       [PASS][9] -> [DMESG-WARN][10] ([i915#5904] / [i915#62])
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
-> 
->   * igt@i915_suspend@basic-s3-without-i915:
->     - fi-bdw-5557u:       [PASS][11] -> [INCOMPLETE][12] ([i915#146])
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-> 
->   * igt@kms_frontbuffer_tracking@basic:
->     - fi-cfl-8109u:       [PASS][13] -> [DMESG-WARN][14] ([i915#62]) +12 similar issues
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@gem_exec_suspend@basic-s0@smem:
->     - {bat-rplp-1}:       [DMESG-WARN][15] ([i915#2867]) -> [PASS][16]
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-> 
->   * igt@i915_selftest@live@slpc:
->     - {bat-rpls-1}:       [DMESG-FAIL][17] ([i915#6367]) -> [PASS][18]
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/bat-rpls-1/igt@i915_selftest@live@slpc.html
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/bat-rpls-1/igt@i915_selftest@live@slpc.html
-> 
->   
-> #### Warnings ####
-> 
->   * igt@i915_selftest@live@hangcheck:
->     - bat-dg1-5:          [DMESG-FAIL][19] ([i915#4957]) -> [DMESG-FAIL][20] ([i915#4494] / [i915#4957])
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
->     - bat-dg1-6:          [DMESG-FAIL][21] ([i915#4494] / [i915#4957]) -> [DMESG-FAIL][22] ([i915#4957])
->    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11971/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
->    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-> 
->   
->   {name}: This element is suppressed. This means it is ignored when computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
->   [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
->   [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
->   [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
->   [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
->   [i915#5904]: https://gitlab.freedesktop.org/drm/intel/issues/5904
->   [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
->   [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_11971 -> Patchwork_106927v2
-> 
->   CI-20190529: 20190529
->   CI_DRM_11971: 2bdae66c9988dd0f07633629c0a85383cfc05940 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_6614: fbb4a4058b8f4119a079b2fda5c94aaacd850a78 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_106927v2: 2bdae66c9988dd0f07633629c0a85383cfc05940 @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> 
-> ### Linux commits
-> 
-> 4e46a15b7ddf drm/i915: Sanitycheck PCI BARs
-> 79faae70c394 drm/i915: Use of BARs names instead of numbers
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106927v2/index.html
+#define GAMT_CHKN_BIT_REG                       _MMIO(0x4ab8)
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
+If I comment out setup of this register, GVT-g appears to initialize
+and I can list available mdev types.  I haven't tried assignment of the
+resulting device to a VM yet.  I do however get lots of spew about
+unclaimed reads:
+
+i915 0000:00:02.0: Unclaimed read from register 0x7257c
+i915 0000:00:02.0: Unclaimed read from register 0x60110
+i915 0000:00:02.0: Unclaimed read from register 0x6f03c
+i915 0000:00:02.0: Unclaimed read from register 0x6003c
+i915 0000:00:02.0: Unclaimed read from register 0x61038
+i915 0000:00:02.0: Unclaimed read from register 0x45104
+i915 0000:00:02.0: Unclaimed read from register 0x70428
+i915 0000:00:02.0: Unclaimed read from register 0x68884
+i915 0000:00:02.0: Unclaimed read from register 0x7f040
+i915 0000:00:02.0: Unclaimed read from register 0x4510c
+i915 0000:00:02.0: Unclaimed read from register 0x6203c
+i915 0000:00:02.0: Unclaimed read from register 0x70430
+i915 0000:00:02.0: Unclaimed read from register 0x704c0
+i915 0000:00:02.0: Unclaimed read from register 0x7142c
+i915 0000:00:02.0: Unclaimed read from register 0x72428
+i915 0000:00:02.0: Unclaimed read from register 0x6f04c
+i915 0000:00:02.0: Unclaimed read from register 0x6004c
+i915 0000:00:02.0: Unclaimed read from register 0x61048
+i915 0000:00:02.0: Unclaimed read from register 0x68070
+i915 0000:00:02.0: Unclaimed read from register 0x71284
+i915 0000:00:02.0: Unclaimed read from register 0x70438
+i915 0000:00:02.0: Unclaimed read from register 0x71434
+i915 0000:00:02.0: Unclaimed read from register 0x714c4
+i915 0000:00:02.0: Unclaimed read from register 0x72430
+i915 0000:00:02.0: Unclaimed read from register 0x724c0
+i915 0000:00:02.0: Unclaimed read from register 0x6204c
+i915 0000:00:02.0: Unclaimed read from register 0x69074
+i915 0000:00:02.0: Unclaimed read from register 0x64044
+i915 0000:00:02.0: Unclaimed read from register 0x7143c
+i915 0000:00:02.0: Unclaimed read from register 0x72438
+i915 0000:00:02.0: Unclaimed read from register 0x46508
+i915 0000:00:02.0: Unclaimed read from register 0x69270
+i915 0000:00:02.0: Unclaimed read from register 0x45124
+i915 0000:00:02.0: Unclaimed read from register 0x68080
+i915 0000:00:02.0: Unclaimed read from register 0x61208
+i915 0000:00:02.0: Unclaimed read from register 0x45200
+i915 0000:00:02.0: Unclaimed read from register 0x69084
+i915 0000:00:02.0: Unclaimed read from register 0x6f020
+i915 0000:00:02.0: Unclaimed read from register 0x60020
+i915 0000:00:02.0: Unclaimed read from register 0x42020
+i915 0000:00:02.0: Unclaimed read from register 0x69280
+i915 0000:00:02.0: Unclaimed read from register 0x71184
+i915 0000:00:02.0: Unclaimed read from register 0x68090
+i915 0000:00:02.0: Unclaimed read from register 0x7f024
+i915 0000:00:02.0: Unclaimed read from register 0x70024
+i915 0000:00:02.0: Unclaimed read from register 0x70578
+i915 0000:00:02.0: Unclaimed read from register 0x43218
+i915 0000:00:02.0: Unclaimed read from register 0x62020
+i915 0000:00:02.0: Unclaimed read from register 0x68870
+i915 0000:00:02.0: Unclaimed read from register 0x7157c
+i915 0000:00:02.0: Unclaimed read from register 0x72024
+i915 0000:00:02.0: Unclaimed read from register 0x72578
+i915 0000:00:02.0: Unclaimed read from register 0x46020
+i915 0000:00:02.0: Unclaimed read from register 0x6f038
+i915 0000:00:02.0: Unclaimed read from register 0x60038
+i915 0000:00:02.0: Unclaimed read from register 0x45100
+i915 0000:00:02.0: Unclaimed read from register 0x44030
+i915 0000:00:02.0: Unclaimed read from register 0x68880
+i915 0000:00:02.0: Unclaimed read from register 0x61110
+i915 0000:00:02.0: Unclaimed read from register 0x6103c
+i915 0000:00:02.0: Unclaimed read from register 0x45108
+i915 0000:00:02.0: Unclaimed read from register 0x62038
+i915 0000:00:02.0: Unclaimed read from register 0x6e554
+i915 0000:00:02.0: Unclaimed read from register 0x7042c
+i915 0000:00:02.0: Unclaimed read from register 0x71428
+i915 0000:00:02.0: Unclaimed read from register 0x48800
+i915 0000:00:02.0: Unclaimed read from register 0x7f044
+i915 0000:00:02.0: Unclaimed read from register 0x6f048
+i915 0000:00:02.0: Unclaimed read from register 0x60048
+i915 0000:00:02.0: Unclaimed read from register 0x48268
+i915 0000:00:02.0: Unclaimed read from register 0x45110
+i915 0000:00:02.0: Unclaimed read from register 0x70284
+i915 0000:00:02.0: Unclaimed read from register 0x7f000
+i915 0000:00:02.0: Unclaimed read from register 0x70434
+i915 0000:00:02.0: Unclaimed read from register 0x704c4
+i915 0000:00:02.0: Unclaimed read from register 0x71430
+i915 0000:00:02.0: Unclaimed read from register 0x714c0
+i915 0000:00:02.0: Unclaimed read from register 0x44040
+i915 0000:00:02.0: Unclaimed read from register 0x7242c
+i915 0000:00:02.0: Unclaimed read from register 0x68890
+i915 0000:00:02.0: Unclaimed read from register 0x42004
+i915 0000:00:02.0: Unclaimed read from register 0x6104c
+i915 0000:00:02.0: Unclaimed read from register 0x62048
+i915 0000:00:02.0: Unclaimed read from register 0x68074
+i915 0000:00:02.0: Unclaimed read from register 0x69070
+i915 0000:00:02.0: Unclaimed read from register 0x7043c
+i915 0000:00:02.0: Unclaimed read from register 0x72284
+i915 0000:00:02.0: Unclaimed read from register 0x71438
+i915 0000:00:02.0: Unclaimed read from register 0x72434
+i915 0000:00:02.0: Unclaimed read from register 0x724c4
+i915 0000:00:02.0: Unclaimed read from register 0x45120
+i915 0000:00:02.0: Unclaimed read from register 0x7243c
+i915 0000:00:02.0: Unclaimed read from register 0x42014
+i915 0000:00:02.0: Unclaimed read from register 0x69274
+i915 0000:00:02.0: Unclaimed read from register 0x45128
+i915 0000:00:02.0: Unclaimed read from register 0x68084
+i915 0000:00:02.0: Unclaimed read from register 0x6120c
+i915 0000:00:02.0: Unclaimed read from register 0x69080
+i915 0000:00:02.0: Unclaimed read from register 0x70184
+i915 0000:00:02.0: Unclaimed read from register 0x43408
+i915 0000:00:02.0: Unclaimed read from register 0x61020
+i915 0000:00:02.0: Unclaimed read from register 0x72184
+i915 0000:00:02.0: Unclaimed read from register 0x69090
+i915 0000:00:02.0: Unclaimed read from register 0x7057c
+i915 0000:00:02.0: Unclaimed read from register 0x71024
+i915 0000:00:02.0: Unclaimed read from register 0x71578
+i915 0000:00:02.0: Unclaimed read from register 0x68874
+
+This looks like a regression in v5.19 to me.  Thanks,
+
+Alex
+
