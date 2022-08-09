@@ -2,94 +2,139 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9937B58D677
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Aug 2022 11:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0939E58D6CD
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Aug 2022 11:52:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C390A908CE;
-	Tue,  9 Aug 2022 09:24:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6B7A8BFA4;
+	Tue,  9 Aug 2022 09:52:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2088.outbound.protection.outlook.com [40.107.237.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50F51907B3;
- Tue,  9 Aug 2022 09:23:43 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48EEFCD9A8;
+ Tue,  9 Aug 2022 09:51:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1660038714; x=1691574714;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=kt6cq13tn3IzGFwp71JWjb3cIJw/uUPieHkxbYEFa5Y=;
+ b=KXxYpOJp78d9ITkpCurJ3PLjiKBVqlwNcM6ozVEOMLOMEI0otzlmeJLn
+ xKniYuEzY534/9WJ24x7aA9Qsbyo+WVyJXNM+kWSLZ+XFnUzgfDAlOWYU
+ kH6NuDy9/o0IjUOmaTwADyOVn7pOz72iJfWG/z9XTOKSxQDPN3y1U3Kb5
+ ZI66/D4EwT38N8iMxZwi9kYChNapOeC9lakcU0qpemK5vTcvsePaUIHOP
+ s6H41UemlKi4tg58Br1YLpYPfaYVpX4zxSHvb5xeiQCtJmMsRraw9Y3AL
+ wC8O1NABljTB9rmkh3y9RL4QuqSGooc7A+8FwciiC5VL7YUlgpYABL0ci g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10433"; a="277733234"
+X-IronPort-AV: E=Sophos;i="5.93,224,1654585200"; d="scan'208";a="277733234"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2022 02:51:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,224,1654585200"; d="scan'208";a="672829572"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga004.fm.intel.com with ESMTP; 09 Aug 2022 02:51:53 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Tue, 9 Aug 2022 02:51:52 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Tue, 9 Aug 2022 02:51:52 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28 via Frontend Transport; Tue, 9 Aug 2022 02:51:52 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.46) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.28; Tue, 9 Aug 2022 02:51:51 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SoJzepwrHEQ3RQeyR9nmJzAMNOrLA23gPf6m6Bkwe/ZmjQBcZCtdQEkO9/E7izJ5ywaYR7KwWUHCCPV9GNhr6yPeZ3M38YsRA+qphkunHhYHzlEeDDtfH4aYslnWJLS1D2kRCVnBbJQPEikmjsU43sYx2bHv3xoWkrUA/haS9zwIM+NKDzj5BP/xz3hpB5SzAwu6b+yV95ILOeqTbZ+TKjmUsZ/v6fmgq64DqDtL3pz993xGRUhshSWKyTQjwF7DZphZoes23bFLFh+s/n0Ydk7xkXbXgQajOxfm974CFX93iqO9s4PziMw/52nIY/OVkSWOVJ5DG0cBsN9dCKIoCA==
+ b=AfiU9I9VA+R1IwB7s9fDfrKRVBxAlaR/qCkUCt+pCqBE8JPgDrmYD7uMDBuonRRuikxl/0nMPUzisbjc3vTS+NgyvoRK0PUI5v5u3e5xYtZj4k4QWsp2gulBqb6Y4nyGqgkyZWQYOIZCw/ycOd9r0Kd+yxd1jMzwc+BQVFxTJIGjx1lInW42LdpWOwMw+SvkKI5+6n91Xu81a5zsT3pwHa2dwOvSTm8PhlZSh4IlV1u2BP02UFXcobokbClHwY63LPs1uh5pNfiWMioPzNNb1xD//yk1yOJc/GJYWR9fA64v2/Z5J3M+Yp1k3aZoN/4vpO/1baVb8icPH6Ejt2RBbA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hQi5HdAfqk9e3uellmQXB3kBOwi/n5rmJXrEPF94U0Y=;
- b=CQ/ldPhH3pLjOWBLqxCR1HZf0EYanAvM24AwrjIPEFwY4fOA3FiHSlrH3IA/6F7S8NFd3t64pzFX+Oub8OcFnIVYG1aoyiHcTUgiCX2pclaxke6f3BmpoJH8QrDqcJzplaDoBdEIX02AmIFcdFRbEzPTUhSXXWFs4xGcThzftCMiqogEyvJPDpeiSUXYbFt9PMRA50ZH/wrgjUAJw0rlAq92I9BPYpwcjhXDHPIvOw12axhCt2sXqm+P7PiCMxum2kLqFJ49/CQM3bjnaA56ujA8jC5Fke6Uo5TuVsuT6fahfF5iwRwhVOhBSDnHfONWZNwd9FwHokyLZni/10ERjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hQi5HdAfqk9e3uellmQXB3kBOwi/n5rmJXrEPF94U0Y=;
- b=YX7Vx9YKQH/jeanh0phrY7kckTn/JZjZYA3Mw/i8EEMKpAMhVXUOojeUCGuUQ9s4+SSerx8LRnDjHm5yR+m8C/evzHHOBBA3qebKFKhg/y7DJ6Ya/UqfV1qPXkqoNXAo/+Bgh0QmFXYEGIoQY6Xvw31gqGIFU/BFReLMEangMR8=
-Received: from MW4PR04CA0332.namprd04.prod.outlook.com (2603:10b6:303:8a::7)
- by BN8PR12MB2897.namprd12.prod.outlook.com (2603:10b6:408:99::25) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=YZuw1VauFFINJw5GAGRhEAL6OV+G/oy1MT3Bh+V3xpY=;
+ b=oM/ojxcH2q1gX5b09VLRe6b6a3/WBQHxYsTykXFlf7tzStOggEzcFf309hf+ePckQoUq9p05NIVZPkq5BTtsmCHMvhKDI2yQfkcfJSJwJxRXvQqLsdQei1P3Ky+GnbCmySP8P97YWp933fMn06XfUHCbjyULQWdlq6BJH84S+31sViLqGdTZOTllU3fmruZ57JHbjHs/2ExhQWT2xVI2av1E8S2w6Q2Yhqxm3rV+unpA2KOdAXhGjH+eByTwmSEF0OCvy6/3U2FeI9TQYqTU0yjg3o+dok0LMoHFM1pO2RbABhwRlmPdZcpyNRXJt5+y/ame2ZMOuFQl9HWFv4NPJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by SJ0PR11MB4958.namprd11.prod.outlook.com (2603:10b6:a03:2ae::24)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Tue, 9 Aug
- 2022 09:23:38 +0000
-Received: from CO1NAM11FT042.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8a:cafe::4c) by MW4PR04CA0332.outlook.office365.com
- (2603:10b6:303:8a::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.20 via Frontend
- Transport; Tue, 9 Aug 2022 09:23:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT042.mail.protection.outlook.com (10.13.174.250) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5504.14 via Frontend Transport; Tue, 9 Aug 2022 09:23:37 +0000
-Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Tue, 9 Aug 2022 04:23:32 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Tue, 9 Aug 2022 02:22:30 -0700
-Message-ID: <20220809092230.2808-6-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220809092230.2808-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20220809092230.2808-1-Arunpravin.PaneerSelvam@amd.com>
+ 2022 09:51:44 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a968:40aa:6163:5c79]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::a968:40aa:6163:5c79%6]) with mapi id 15.20.5504.014; Tue, 9 Aug 2022
+ 09:51:44 +0000
+Date: Tue, 9 Aug 2022 05:51:39 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+Message-ID: <YvIuKw8KY6xMi0Fj@intel.com>
+References: <cover.1657699522.git.mchehab@kernel.org>
+ <0fac471eb7f6d365e9a7544071114292e08aa5ad.1657699522.git.mchehab@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0fac471eb7f6d365e9a7544071114292e08aa5ad.1657699522.git.mchehab@kernel.org>
+X-ClientProxiedBy: BYAPR04CA0002.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::15) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 51edffe3-f0b0-4c10-a44c-08da79e8d768
-X-MS-TrafficTypeDiagnostic: BN8PR12MB2897:EE_
+X-MS-Office365-Filtering-Correlation-Id: 927c4fc6-c943-40c3-72a4-08da79ecc43b
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4958:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YkorguVr2yeIFlvH8ggTt/VgulBHAvVeqzPyz0DDPD6hthBwnF5tvP0bRs38HUPwvtNUYdfIgxicKd4Juo26pXloZmLKYMSJ/lt6PyxCnFTH7H85+UvlIJgK4RqQyzhOwCRE1mtmPr4Bvjnv4wmM14cT0pvt7cGfTen3D6CCs7vIzVn4HElVj5/EwhqiK3+PQ6ctddXVZx+r5Q4MfAZ6lAlaKqkx9YFlURjLoLGR1P8i9dSba+SicfJ3+fJ3I3N3mL3ovUIJIPQFYomn6+BwYeOutMDzLrsq8V+aO6C1OOAJAGSeo5Ghyii8j3SfpxL6RTCGkN/fK7tMMyGSlXafIxbPk1HOFXX0ehp/idKtYocBy7QKC6CBSJaGItPF7+TCVOlEmEbMHkgjiwugzyA63FaemlLHVGw5kIuMmDmgjfiK/sldWXQ21zZuzpXl9v7tiD2Prhxl756rVyzaS4ubr5M1N1Q9mA+cTEIFthMUuBjmR3n8VnU+dvHOPkeQsW8Sf1YutDY+izl5SUSmJaqlwQV/7wlv1Da/EHfO2SF81BnQhf+RlT6zIUsOVyloOHVpzuPMgAmUeXR+0mF698BletVCRUpYPFjFJlQ1VKb+WaSh3EIr9OR2EvsdTwCYCiK9bcgn4VDWB3Ub5OjcKhiVj2FuXQDy7OyoNHxXODxO78xzSGsoLl1jqLU15LDDE4EZNIPs732tFEMXeIDMmtegU8bp/RfDDx/+9sLKrv1XGX674aFmlrxxD1HTJU4sZis1rP1MEpA0wux/BAdqggL956zcV8m9r2tLzb93B96MPUh1M41B2JIRKi+q7Ey5Y2BQ8G1c2+TS06ccssJBh/GeGQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(376002)(136003)(346002)(39860400002)(396003)(40470700004)(36840700001)(46966006)(70206006)(70586007)(40480700001)(82740400003)(2906002)(81166007)(5660300002)(356005)(8936002)(8676002)(4326008)(478600001)(83380400001)(66574015)(7696005)(47076005)(16526019)(336012)(2616005)(426003)(186003)(26005)(1076003)(36860700001)(41300700001)(54906003)(110136005)(316002)(86362001)(82310400005)(36756003)(40460700003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2022 09:23:37.7960 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51edffe3-f0b0-4c10-a44c-08da79e8d768
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT042.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2897
-Subject: [Intel-gfx] [PATCH v5 6/6] drm/ttm: Switch to using the new res
- callback
+X-Microsoft-Antispam-Message-Info: F4P3cuLI1EHZp76K5d9gTqiIGHgp75ez2GfpuSyAv9r9hNRaU8YMgTnbjt7djTyXDP+7PrM68qyCbOSM6jIXSYBS9F/ed3ljQbkeI7H3wfO+by1RqRLLLEq6hvBJQ8X0CubSlXdGWgT8obBk3KWadIdbV8M+E8Kl9ogEu+jfVguTWQbho8iKXPDVHNP6ny0Pa60PiKbWLacAWDLL9z3DEclMU6FZlFyKqS3gTVc3xsQjgnXSsn9M+F+QEGbgA4UQqTjybZC1WV8w+6nLfavfoW5SMbU/W+dd3QXYcbss6Z18q4Gf0ticSkvMBaeBE/M+d9kkuo6HthKHgRSJFDxTrpoVU1mG9TA2iv7/8/B8Z1uLWbPCoXrUoeXuCsGFUE26P5CHwai6hDvmQFlXfAJV+M6m/4XcZvtopDrBTMudWQLyByijUr5p4h8w6Ywg1Zxm6y1T21If75vFjkNEn4/uHY88XHLl30PXpmOSSmEsCoSKDrxSY8b41Ga/YZpjk1mTKlW0uemQt2H/mHN/7SNTrl+owoAIIHVjVzMNb+XeS3R7EcOXAZPRDLCebrqpAdmtrFUI+Xqphs2vLXkeF/+BVLxjbbOpZrpG02Cs/Nv4BWW11dlyYGv9F9sjtCnKEPYSig/bn/DksZ0NhlbLYBh9IOAsKPLxuffDX4SwrBhxFo/mAGAPM0JJfmHnXZf8+LilqGtOKmoqsWT5/SChV9iDXbIsW1qHgi4oWQz8FxV4NNbLu1k7KMMVIdS7EMMEp2foTmjZhdVoGVmJULMFy9BH7Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(39860400002)(396003)(136003)(376002)(366004)(346002)(36756003)(26005)(6512007)(6506007)(41300700001)(38100700002)(6666004)(966005)(6486002)(478600001)(83380400001)(86362001)(186003)(2616005)(82960400001)(8936002)(8676002)(2906002)(4326008)(66476007)(44832011)(66946007)(316002)(5660300002)(66556008)(6916009);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6g3y7KgYCU5+ibuFneTgwJHlHf8wJsTEO94kaxQqWr9uMR7cN/uMq/0c5Xkr?=
+ =?us-ascii?Q?Df0eEvo3DglG98pgMr/5R+RlzWFGAEs9rURBzqr0zBxNG3Yhk7I1sU8eukrV?=
+ =?us-ascii?Q?ad/VVzWh2bZKZSMDNH58aJVohK9kaOvQRxCFDqVJe/CtxkzETZ2C1rWniz51?=
+ =?us-ascii?Q?/BOwriwsv5fPePfZHYxFgI8Msz6SEqXGvo4liB8bsnwQw3jUzWtmIauRIw+t?=
+ =?us-ascii?Q?RccuiXYbMKyG3WnJC8xK607kn7tIfj96HWShicM1v2vNCZuef81S7ijDT7Aj?=
+ =?us-ascii?Q?mO/CeUoQwYSZQRmG/J+sZpHqNgMGGLsM1fAhpLirnqeafmr33dqB2e3Z0yTf?=
+ =?us-ascii?Q?tBIfx3KsBneCv4v6dbwBgiW2RMniW8lE8FgXaaXSmCMboXZbqNUJwWblw+aj?=
+ =?us-ascii?Q?xHIILKxojSr257tmgMRW1yRTYGG7LblixJFPAzhv4+pz+3Rlj6NdAAqtPRy/?=
+ =?us-ascii?Q?XZfN1AH3d1j1W22M/E9fJ3PGDNSjEFArsiC9vccwDAFNnONqMA7DOybLFvHb?=
+ =?us-ascii?Q?xjnU3I4Dl3Gzwt0oxUL3NFlsjYYE+iuJgexWp0VtvCtHyTORR+jzBLt0pUz4?=
+ =?us-ascii?Q?0lAhb49i4HbtICK/AzbdvLyvW4H00YurMW62Uosu9rW6EKd9N6iC6wWxElz0?=
+ =?us-ascii?Q?XPm7M/B9mNpnbRLuk3Bz/IpLc+4EWv4eYBycC6Qu6l6kzUIuLMlndb9TZK9F?=
+ =?us-ascii?Q?ySPJkgChi0p2gam26SJmreTNicHWmnHjPGvtPgZb1o/OVwkrcREepJYn4VMB?=
+ =?us-ascii?Q?54Pr7Ls86xcna0rw7C4tJ1nXII8Urzli0CW70QGVzovlJ2gFmClh9nlzDZOU?=
+ =?us-ascii?Q?Jnr9actryTDplV3sSIKoFpALR1R6Vk1oM7VH3YNTSWtuAjDrMLxC1CJkJJMd?=
+ =?us-ascii?Q?fMxRyXfjazCjJdX+Id510R4jal5sXKUX3ruH3UatMqZHwabPlVXkZ0sPQc/u?=
+ =?us-ascii?Q?GIPF8Vs4q9AdiumFCYS5VyKvllQLN33Uu1RtP9Zsuy2DXk0PhVQdRBp1wUaM?=
+ =?us-ascii?Q?D9F4Glp0mgXxLzAypTAgoyWEXKDdh70BaoxD9JT7e8Zo8YwMv/X/AEsMJFuJ?=
+ =?us-ascii?Q?j7Ya6gTOImKVCxfA6m9T1RGwkl9IEw5UPXvZ4S9eq5QN4oPOstB39WvPNOtZ?=
+ =?us-ascii?Q?dl4fw2RGYvsMCb4hcBi8XPxhZBa/pKDq2DF0qxf91/5kYRwEF7f8dfOHeTI6?=
+ =?us-ascii?Q?QmXHV8ACtaP1yWlQzpBMXJkGjElIBXi1HiuqUaHoZQSV1ik/cxIqq1qluwpz?=
+ =?us-ascii?Q?whRHyYjis9MGIBMYkctjMtMNABAmGUAzdLJnAoRsYn/IgnnIG6meWo43HCRp?=
+ =?us-ascii?Q?wyrb8xXfGRPCJJSMN1jsSdU42ocPf239HFLyugEodtrArhK32JXuNh0L3JXz?=
+ =?us-ascii?Q?JIngGkCp6qATzndlWxcWac3wURuUyhacu7ZXAPWZYc61+FsoP6X2xPVr7rKr?=
+ =?us-ascii?Q?8II3gJUWV5l597QtEYkqs1p8RUIUKvGwkzTw5G5CYrzlNEI70XmAkxozIvHo?=
+ =?us-ascii?Q?bP5Dw80GtioWHAfJmlneANum1cMwxlC9/QKeomXQidYgwqu/Q8IfE6LTwTrZ?=
+ =?us-ascii?Q?N1GZdUEZgoHo8OMvGlog0Zb95gx+bsDjMdP2Aie+NfWpIqyYwxCMB0PYgiSy?=
+ =?us-ascii?Q?bw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 927c4fc6-c943-40c3-72a4-08da79ecc43b
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2022 09:51:44.3286 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Lxk7t9k5L5TKtX4gxNyHvBNpwdjkNF/6Xqee/9TXXcCrO9g6NLaZ4ODOoLszLcNiEJY7Ui6S9Lv/5liloqekBg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4958
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 15/39] drm/i915:
+ intel_dp_link_training.c: fix kernel-doc markup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,146 +147,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- luben.tuikov@amd.com, christian.koenig@amd.com, matthew.auld@intel.com
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Apply new intersect and compatible callback instead
-of having a generic placement range verfications.
+On Wed, Jul 13, 2022 at 09:12:03AM +0100, Mauro Carvalho Chehab wrote:
+> The return code table is not properly marked, causing warnings
+> and being badly parsed by Sphinx:
+> 
+>     Documentation/gpu/i915:130: ./drivers/gpu/drm/i915/display/intel_dp_link_training.c:183: WARNING: Block quote ends without a blank line; unexpected unindent.
+>     Documentation/gpu/i915:130: ./drivers/gpu/drm/i915/display/intel_dp_link_training.c:186: WARNING: Definition list ends without a blank line; unexpected unindent.
+> 
+> Use table markups to fix it.
 
-v2: Added a separate callback for compatiblilty
-    checks (Christian)
+cool, I didn't know that
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 45 +++++++------------------
- drivers/gpu/drm/ttm/ttm_bo.c            |  9 +++--
- drivers/gpu/drm/ttm/ttm_resource.c      |  5 +--
- 3 files changed, 20 insertions(+), 39 deletions(-)
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 170935c294f5..7d25a10395c0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1328,11 +1328,12 @@ uint64_t amdgpu_ttm_tt_pte_flags(struct amdgpu_device *adev, struct ttm_tt *ttm,
- static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
- 					    const struct ttm_place *place)
- {
--	unsigned long num_pages = bo->resource->num_pages;
- 	struct dma_resv_iter resv_cursor;
--	struct amdgpu_res_cursor cursor;
- 	struct dma_fence *f;
- 
-+	if (!amdgpu_bo_is_amdgpu_bo(bo))
-+		return ttm_bo_eviction_valuable(bo, place);
-+
- 	/* Swapout? */
- 	if (bo->resource->mem_type == TTM_PL_SYSTEM)
- 		return true;
-@@ -1351,40 +1352,20 @@ static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
- 			return false;
- 	}
- 
--	switch (bo->resource->mem_type) {
--	case AMDGPU_PL_PREEMPT:
--		/* Preemptible BOs don't own system resources managed by the
--		 * driver (pages, VRAM, GART space). They point to resources
--		 * owned by someone else (e.g. pageable memory in user mode
--		 * or a DMABuf). They are used in a preemptible context so we
--		 * can guarantee no deadlocks and good QoS in case of MMU
--		 * notifiers or DMABuf move notifiers from the resource owner.
--		 */
-+	/* Preemptible BOs don't own system resources managed by the
-+	 * driver (pages, VRAM, GART space). They point to resources
-+	 * owned by someone else (e.g. pageable memory in user mode
-+	 * or a DMABuf). They are used in a preemptible context so we
-+	 * can guarantee no deadlocks and good QoS in case of MMU
-+	 * notifiers or DMABuf move notifiers from the resource owner.
-+	 */
-+	if (bo->resource->mem_type == AMDGPU_PL_PREEMPT)
- 		return false;
--	case TTM_PL_TT:
--		if (amdgpu_bo_is_amdgpu_bo(bo) &&
--		    amdgpu_bo_encrypted(ttm_to_amdgpu_bo(bo)))
--			return false;
--		return true;
- 
--	case TTM_PL_VRAM:
--		/* Check each drm MM node individually */
--		amdgpu_res_first(bo->resource, 0, (u64)num_pages << PAGE_SHIFT,
--				 &cursor);
--		while (cursor.remaining) {
--			if (place->fpfn < PFN_DOWN(cursor.start + cursor.size)
--			    && !(place->lpfn &&
--				 place->lpfn <= PFN_DOWN(cursor.start)))
--				return true;
--
--			amdgpu_res_next(&cursor, cursor.size);
--		}
-+	if (bo->resource->mem_type == TTM_PL_TT &&
-+	    amdgpu_bo_encrypted(ttm_to_amdgpu_bo(bo)))
- 		return false;
- 
--	default:
--		break;
--	}
--
- 	return ttm_bo_eviction_valuable(bo, place);
- }
- 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index c1bd006a5525..f066e8124c50 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -518,6 +518,9 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
- bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
- 			      const struct ttm_place *place)
- {
-+	struct ttm_resource *res = bo->resource;
-+	struct ttm_device *bdev = bo->bdev;
-+
- 	dma_resv_assert_held(bo->base.resv);
- 	if (bo->resource->mem_type == TTM_PL_SYSTEM)
- 		return true;
-@@ -525,11 +528,7 @@ bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
- 	/* Don't evict this BO if it's outside of the
- 	 * requested placement range
- 	 */
--	if (place->fpfn >= (bo->resource->start + bo->resource->num_pages) ||
--	    (place->lpfn && place->lpfn <= bo->resource->start))
--		return false;
--
--	return true;
-+	return ttm_resource_intersects(bdev, res, place, bo->base.size);
- }
- EXPORT_SYMBOL(ttm_bo_eviction_valuable);
- 
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index ea67976f1f60..a729c32a1e48 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -316,6 +316,8 @@ static bool ttm_resource_places_compat(struct ttm_resource *res,
- 				       const struct ttm_place *places,
- 				       unsigned num_placement)
- {
-+	struct ttm_buffer_object *bo = res->bo;
-+	struct ttm_device *bdev = bo->bdev;
- 	unsigned i;
- 
- 	if (res->placement & TTM_PL_FLAG_TEMPORARY)
-@@ -324,8 +326,7 @@ static bool ttm_resource_places_compat(struct ttm_resource *res,
- 	for (i = 0; i < num_placement; i++) {
- 		const struct ttm_place *heap = &places[i];
- 
--		if (res->start < heap->fpfn || (heap->lpfn &&
--		    (res->start + res->num_pages) > heap->lpfn))
-+		if (!ttm_resource_compatible(bdev, res, heap, bo->base.size))
- 			continue;
- 
- 		if ((res->mem_type == heap->mem_type) &&
--- 
-2.25.1
 
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> ---
+> 
+> To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
+> See [PATCH v2 00/39] at: https://lore.kernel.org/all/cover.1657699522.git.mchehab@kernel.org/
+> 
+>  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 9feaf1a589f3..23a269fcf6ca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -177,12 +177,14 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
+>   * transparent mode link training mode.
+>   *
+>   * Returns:
+> + * ====  =====================================================================
+>   *   >0  if LTTPRs were detected and the non-transparent LT mode was set. The
+>   *       DPRX capabilities are read out.
+>   *    0  if no LTTPRs or more than 8 LTTPRs were detected or in case of a
+>   *       detection failure and the transparent LT mode was set. The DPRX
+>   *       capabilities are read out.
+>   *   <0  Reading out the DPRX capabilities failed.
+> + * ====  =====================================================================
+>   */
+>  int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
+>  {
+> -- 
+> 2.36.1
+> 
