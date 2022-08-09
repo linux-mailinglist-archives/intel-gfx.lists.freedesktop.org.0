@@ -1,32 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B4BF58DF78
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Aug 2022 20:55:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF77358E379
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 01:01:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 018D2C047D;
-	Tue,  9 Aug 2022 18:54:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 330F6A2D19;
+	Tue,  9 Aug 2022 23:00:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7670214A5FE;
- Tue,  9 Aug 2022 18:54:07 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id A225E68AA6; Tue,  9 Aug 2022 20:54:03 +0200 (CEST)
-Date: Tue, 9 Aug 2022 20:54:03 +0200
-From: "hch@lst.de" <hch@lst.de>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20220809185403.GB15307@lst.de>
-References: <20220726153935.2272777-1-bob.beckett@collabora.com>
- <1160a7c31084ab2259088e4bfe88b41ad61c2bcc.camel@intel.com>
- <db9f787e-c3e4-d353-da57-80cb7a135d86@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <db9f787e-c3e4-d353-da57-80cb7a135d86@linux.intel.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: stop using swiotlb
+Received: from mail-pj1-x1049.google.com (mail-pj1-x1049.google.com
+ [IPv6:2607:f8b0:4864:20::1049])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4147CA7826
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Aug 2022 22:58:56 +0000 (UTC)
+Received: by mail-pj1-x1049.google.com with SMTP id
+ f16-20020a17090a4a9000b001f234757bbbso6465616pjh.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 09 Aug 2022 15:58:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=cc:to:from:subject:mime-version:message-id:date:from:to:cc;
+ bh=/CE3AXejp62eOWrTktdD913X8Qp/d7aPq3QFRtMtXfw=;
+ b=gzBY8Fzyj/bCVq1l0G0BhG/pWs1LITpkXXH3kDhRbYKSWN6Lz12jvneKT5yRM/2urf
+ 6ZvlhM4HvRcKmO4O+zJ7GLlnpoPrhlJTFZhEoF7d/kyWx0wRPj2bxumHn4q4XB7J0R3K
+ IwzBjoqqi+IznAxufCqrdbjUxTtuHwOZRY3TqZ6gxR5qWgof73k1a78Qr7/rXZWhgysG
+ aUpY1cQ1YJ3GuJ1YziZzWljipCCUNEd6UZOw2Ss3dkWDmr3w9pxEnYu15x4RGqCMsdce
+ YybsR3Z8n9vwxjHZVduZEARZgrq22MQhwlUN8PLPpUG2AtWP2pXiCT6azbQXfAeWDbC9
+ 3+Nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:from:subject:mime-version:message-id:date:x-gm-message-state
+ :from:to:cc;
+ bh=/CE3AXejp62eOWrTktdD913X8Qp/d7aPq3QFRtMtXfw=;
+ b=Yrzb60MllDDNdJQZsh7j0qV/y7waLhA4VrAPYyoybxOopdDu7vobCQ8kPId/z+D8CB
+ TtrS/s+WA0pNgHXLIOykHRg1B/GLK/8yPcFxfBidge68wU8hsy/3Mz9c6o4/kFopsF+2
+ Fq9yjRDEw+Xk1TzZwyHesybehPZ0cdlqGolLEiaSSnPM923tbo/dsOy1+DVMTreyDUmV
+ 2bRu92Mb0/1N47YzmQaFcLhx7AxyWBx6grFr6iy9juCqZWSweP3+363Tzx+ivR0orFkP
+ HvPQXp5lR3Loa6AkVfeAaoAU3ba3hb1IfEYegjrqL6SWfRUs7CZup3Pfjcx23UIW9MWL
+ B6sQ==
+X-Gm-Message-State: ACgBeo3AyJu/iemR+jC715tfbRT3BnHzL+tMP871wIx5Y6ORzqv1eV2q
+ VkSrt6pyXkrVrWvaxwox4TMnWkW0Xkvml7aJOwekASq1gB+VFmAW0Cmo5M/cDT95DIXhTqbPjBt
+ xHya8nUQy7zbGy22fr1riHQGr1dGvugD2XcePcscw+wyFvRovIdNXskAqALJQ0yNzXxNz5SP+xA
+ wJ68I=
+X-Google-Smtp-Source: AA6agR6j5oPKaffWznJeQjZC7lgYLRFXTdLxaOmxsWFaVa11rRSwewI4/qKdUGJR+bJAX7GTydE8jhp8FCb0/A==
+X-Received: from justonli.c.googlers.com
+ ([fda3:e722:ac3:cc00:7f:e700:c0a8:c7d])
+ (user=justonli job=sendgmr) by 2002:a17:90b:4b07:b0:1f5:37d3:fb40 with SMTP
+ id lx7-20020a17090b4b0700b001f537d3fb40mr690289pjb.12.1660085935368; Tue, 09
+ Aug 2022 15:58:55 -0700 (PDT)
+Date: Tue,  9 Aug 2022 22:57:00 +0000
+Message-Id: <20220809225700.2002634-1-justonli@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.37.1.559.g78731f0fdb-goog
+From: Juston Li <justonli@google.com>
+To: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Subject: [Intel-gfx] [PATCH] drm/i915/pxp: don't start pxp without mei_pxp
+ bind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,27 +67,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "airlied@linux.ie" <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Hellstrom,
- Thomas" <thomas.hellstrom@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "kernel@collabora.com" <kernel@collabora.com>, "hch@lst.de" <hch@lst.de>,
- "Auld, Matthew" <matthew.auld@intel.com>
+Cc: alan.previn.teres.alexis@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 09, 2022 at 12:36:50PM +0100, Tvrtko Ursulin wrote:
->
-> Digging through git history at least running as Xen dom0 looks to have been 
-> impacted, but commits such as abb0deacb5a6 ("drm/i915: Fallback to single 
-> PAGE_SIZE segments for DMA remapping") are older and suggest problem was 
-> generic. 1625e7e549c5 ("drm/i915: make compact dma scatter lists creation 
-> work with SWIOTLB backend.") as well. So it looks it did work behind 
-> swiotlb despite those missing calls you highlighted.
+pxp will not start correctly until after mei_pxp bind completes and
+intel_pxp_init_hw() is called.
 
-Hmm.  xen-swiotlb bounce buffers as soon as any single mapping that
-straddles a Xen page size boundary.  Could the magic value there
-somehow made all mappings small enough to just avoid bounce buffering
-for Xen by more or less accident?
+Signed-off-by: Juston Li <justonli@google.com>
+---
+ drivers/gpu/drm/i915/pxp/intel_pxp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+index 15311eaed848..3ef9e4e1870b 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -184,7 +184,7 @@ int intel_pxp_start(struct intel_pxp *pxp)
+ {
+ 	int ret = 0;
+ 
+-	if (!intel_pxp_is_enabled(pxp))
++	if (!intel_pxp_is_enabled(pxp) || !pxp->pxp_component_added)
+ 		return -ENODEV;
+ 
+ 	mutex_lock(&pxp->arb_mutex);
+-- 
+2.37.1.559.g78731f0fdb-goog
+
