@@ -2,33 +2,121 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D14458D3EE
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Aug 2022 08:39:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F25FE58D552
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Aug 2022 10:27:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09149C7EC5;
-	Tue,  9 Aug 2022 06:39:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFA8DCB6E9;
+	Tue,  9 Aug 2022 08:27:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5BEF78DE32;
- Tue,  9 Aug 2022 06:39:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2F1EBA9932;
- Tue,  9 Aug 2022 06:39:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0456614806314687742=="
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2044.outbound.protection.outlook.com [40.107.237.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBAC9CB6B4;
+ Tue,  9 Aug 2022 08:26:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xml2weWBSXi8AqOzUkYHHuOzxzHIWUWFHHKzW/+E1h2G+VeTtJ8og+z9kp8QZToHeZHxAkCZPEy3qRA0AjPx4/bdXwyggHEu8I834bwuf5vptXKN7lHk1Lyyi4YGmtUWrAyRYGeHPDio0Rg05FghUBHAKshtquTe/XJc1KnSdqBbmPt0ebvHGN+rnzR1WMCptg41lQoa2vx31PjAecVTJSFbh/svai1pdTRs5oxhmEtTsO6rcQFqWppzhhgH7aAtHwYY/g2EwYYIIoevDqkNav42uXHlWuYGvTxo7uqDsf0fTsishEEcFDMDMvpTH/8siJtzo+8a+q9LdY15hGSsVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uSG/xG8nN2tqkfCUWkQbAHPc4qL0mss6vSMbOIPMF7U=;
+ b=bhwJgYePFsGttNq/ZgiLcP8OZ7x3GCv+ciHh+WZZMXn7CDPWbPIwz2l/A2wdnu/6BjWDaX9grrYKAB0crRLl80ZdM5dtgxCudxs/vvf1YmcvuY+s8QpCKgs1FWSpvrycDFygxrZjsC6IlLUDLWpA4qljcM8+O86cskRbjs1SROutOeX/n2RzRoCEQnDBtY4u0J3fHsgoGUAV/P9Zg440mt5FAwvs1GA0S8aHtVH5Vfah7/pRNHeKSqdJM3PyCUDB6iB1FNQXC57aSQTKnRtE2WTXH0/mncb1qDAH2+hFGVUpDP1PRQdlxhT34wu1CixwAgqks7tG+RLEseGKB6mgLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uSG/xG8nN2tqkfCUWkQbAHPc4qL0mss6vSMbOIPMF7U=;
+ b=mFlOoaU1/+Lwz2dWDF7W5lHByfUpi1fIjLGokupCxEGGn7evKtuh8trLlJ53xgx5ooiPpeWNd73oMlRRJx8Y10tlDoLRqK7BpNb5l4a7pgH81QrG/gusNxI7hdiLkzKs6DSh/Ccz5ErHHy0ZJgfSC3/79z3kFN+VGT87URxvc2A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
+ by BN8PR12MB2897.namprd12.prod.outlook.com (2603:10b6:408:99::25)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Tue, 9 Aug
+ 2022 08:26:46 +0000
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::a1d8:6a71:213b:6e14]) by MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::a1d8:6a71:213b:6e14%9]) with mapi id 15.20.5504.020; Tue, 9 Aug 2022
+ 08:26:46 +0000
+Message-ID: <9d08224f-b1d6-fee6-4536-5ad34dc7773e@amd.com>
+Date: Tue, 9 Aug 2022 13:56:36 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+References: <20220725114240.4844-1-Arunpravin.PaneerSelvam@amd.com>
+ <20220725114240.4844-2-Arunpravin.PaneerSelvam@amd.com>
+ <8398d805-a749-dac6-9bf8-6f93935dd2ec@gmail.com>
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <8398d805-a749-dac6-9bf8-6f93935dd2ec@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN3PR01CA0079.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:9a::19) To MN2PR12MB4342.namprd12.prod.outlook.com
+ (2603:10b6:208:264::7)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Tue, 09 Aug 2022 06:39:10 -0000
-Message-ID: <166002715016.12843.4644004924599187624@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220802153103.26653-1-shawn.c.lee@intel.com>
-In-Reply-To: <20220802153103.26653-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_avoid_abnormal_pixel_output_when_turn_eDP_disp?=
- =?utf-8?q?lay_off_=28rev2=29?=
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 22312ffd-74c1-4e89-91a7-08da79e0e5ef
+X-MS-TrafficTypeDiagnostic: BN8PR12MB2897:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: renoYPX6i/ygLQgOtdIuWonOheGA9IhkQ/uW+Z3zkVqj+tSMnh7wrOvH+2LOdfTWLcZOvHZubKznLsBm3A9WlRs7qiX9XIpnpP+Iuimt2KyheKwnN2EimzsdqgFFJCF2o/ieAXiruIUPdGlJUkYhoaA96rzZz2YkEjbdH1dYuhIEyTcKilt7DDK8wCl24HhYH79257rhmZg6VNgVq3QdWDvsMuLwFjN3c/64qNKWcx+5Euhe/4q5Amo3OU7UeZ7tfF5RqQi9ByIw0J0utiNhYP0udjmjw3XGKJf4eHDF/t7eZj9Wh/KoTMHtbfjMeHJpYjDJHXrunUUovkvLIXOOZ2Wrdp3GZrjqI7RtA+q2+Aatwgg2mxS9tsrJKgL2AnlFwDo0nwTB4qsKTkaXzuMySKBPINOvbHRjlVxBg/NWln040igUIbpWQ9++kp5SCz4OtP53KpylXFZl0Y0qmoceYFKaK6qAMYgHv8MUk1OMybUy35UyTF4v0aRV6qj/uV2kp3dT1mps+T1TIq0UdX9FK0mRnPOtQnAH7U72Wa3juXYJmL39y+9+7EoU7IOzluFidzTLLdHAs9c/ucSIYY+UeQzpwMAQOKWO4glODkFxzEuqeJqF9F8ar4PM4qyZvqkwwmVM/PdMI8SCgRTz3qM5lVpMGhnHovVlxYYf/v0661z+Dj9dnWosvwqF7ZYIRt5hlYlb5KEKYc8tbLNAFH5oK/dTqk1PdanM+4XiZryinWrnUA+ss/3t/aSKJCqiwNJQU7LPQMNllcKto/ZEROQBRIBktgrcVU0tQ/yaHAUzwmzuyt/QcpNQx97qYbgxDh8v9uoVKfEakS5X45mDZOcdTA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(39860400002)(366004)(376002)(346002)(136003)(41300700001)(316002)(6512007)(6506007)(6666004)(2616005)(186003)(26005)(53546011)(31696002)(36756003)(31686004)(86362001)(38100700002)(66556008)(66476007)(66946007)(478600001)(6486002)(83380400001)(5660300002)(2906002)(8936002)(8676002)(4326008)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1VUUXpyWjZUOWR6RTNRMXQ3ZlU4VGR4ZFRQaFl1T24xMGtsNDdnNFAyU1dP?=
+ =?utf-8?B?VmN4V3JuYkVjcElON1lPTDVEZHkxeHJBVStHaFNqWFVoM0kvZTBmR0gyMUw5?=
+ =?utf-8?B?a3RHOC9MSldwZWRzY1FNckhQVWlHVlJ5WGQ0QWo3MXhscWdrcnd0ZDN4UVNF?=
+ =?utf-8?B?cTR2YUprWk1waVV0NUU0c1NYaFNUdUlzNFNTSEVGN0FXaHFkQ1kvMVlxUDh0?=
+ =?utf-8?B?UlpHL21IdnhxOW1vZHhWYUQ1VjVHQ2xMVkZ3ME5yS0xNYmxUNWdCK2ZzZi85?=
+ =?utf-8?B?cWVLZm9Id0x5ekJDOWI1UlF4VVlXMmNLTVJJamt6WWtOMkNNSnBxd3BBOEYr?=
+ =?utf-8?B?a0dudHROWU44cHk1aFBrNkhtbDBrT3BoYUFxQTl6V0U0RDNOUXZ3SDVyWTdV?=
+ =?utf-8?B?NDNwT0RsaXdncS8wYlRnekFTQWJLMmlGTHgwNGFvdUsvUEVvMmhpd1F2WmpJ?=
+ =?utf-8?B?c09hNHRHZ0R3MXFYdENpZExzQWs5dm4yOWgyZFNOeEZIUlByUFlrYU8wVWUw?=
+ =?utf-8?B?Q0VMNjF0ZmZSNEZFUDBqTWkxNFBLRmlHazVEVS9jY2RDeDkrNENzakhubVpU?=
+ =?utf-8?B?SGphcnM2SVM5c0t1UHprTnVER3ZUem45QjZxeHBjTkhFWHRiU2p2SGE3YSt3?=
+ =?utf-8?B?eVcrL3B3c2tEN0RwbzNrZTFCVy9FRnI3UHJKTEdkaDRSbFRnVGxlYmN6MS9M?=
+ =?utf-8?B?bFRyT2s4SlFyZ21GQlVnZ0VuWGszcDlidTZaTHhabGRUaXhlbk82ME1zOHg4?=
+ =?utf-8?B?MzdIdGdIV0ZiMUw3SjB4VUlwNW9TMTZaUEhxeVRMdGFuZnN5Vk9YdEhXN1cv?=
+ =?utf-8?B?M0gyRXExbVFocnU1MHBwdmxHdWNlUk5GQTRMWnhWRG8rb0lEUzBzT0pZOWhh?=
+ =?utf-8?B?MTRSTGdLakw4YnlLVG5PaFRseVNqNzB6V2ZRNUlaSklKS1FWcnRFQnVETWx5?=
+ =?utf-8?B?Q1pmUmpYZ1hYNGVWQXJGeFV1YzJPR2IwWXQvYlVPMlo4QzY1VE5FZGFwb3Iy?=
+ =?utf-8?B?VkRIRGI5RGdab2x4MGNEWDVrTElhMU1YTm4yOFRBVGdjS0tjcHpqdnhwMy81?=
+ =?utf-8?B?eDg5dWZTdDFQWnp3VjdLY0RHdmJldDZnU2duWnM1c2didis3V29MK0lHMjhn?=
+ =?utf-8?B?MHlYcENuWXZ1V0lPc1EzTUJWaWRqTVgvYmZpTUIzMjFTRlg5WmJ3Q1ZLa1V5?=
+ =?utf-8?B?NkJPZDY4ZlBORkRmeTl1V0kvOXF6MGx5bHBzZkMyWk5ZRzhRQkQ3U3ZOT3Ba?=
+ =?utf-8?B?cGNtQk1OOWYremR2dWRTSi9PeS96WUhjT3M2VWJzTEUvbVM2ZmZrdGtDaUdT?=
+ =?utf-8?B?YWhEYzhrVFcyZjJBZ1hnaTIxbTlMcytoblpsVk51Um5BRllEcnd0LzQ5Vzhi?=
+ =?utf-8?B?Vzg5TUs5REtLL1BlYW1SUUpyWmxJeVAyWC9TUEdoTmV2ZE9MWm13UWlzMlA3?=
+ =?utf-8?B?NlFTR1ZibUs2UU1GclQ3d1pWdnF1bGEzdnFCQlZneFl1c2c2c0VseHNXbGdG?=
+ =?utf-8?B?eFROanc5b3FHSUlFYWMxT2ZCR1J3OEIyTUY3dHJER2g4LzFXWmI3ZGRCb25L?=
+ =?utf-8?B?anZ5QmpXQ1lyNElIeDZUbGw4RStURENjQlIvK3JyS2hLRnBvT2pPNktqQ3Rt?=
+ =?utf-8?B?RFdYOFFrQUl1NkhwVjZid0JZWGxFTCtuclF3OGw5di9EWnlnRWFkdGFrZ2xY?=
+ =?utf-8?B?UTBqYkFEd1lNQTdjSTEyVndNV3ptWmRzSlFvY0dZcWNlREhGa0dadi9oSDBC?=
+ =?utf-8?B?SldVZDhzRW5VR1dnS0VKWjFydFhuS3VRTVI2QTJmWS8zWGtYZndsWTZYQ21m?=
+ =?utf-8?B?Q25JNTQ4VUdBajJXSWhvTmMvc1J4dlBIOUxrMm94bUhpYTNtN0l1VTNIUyto?=
+ =?utf-8?B?dlFhVk1LVWNYNVRtVnVSaXIrWnJleXFwRFAvYnFIMjlYZUpUQU95S1B6VE5r?=
+ =?utf-8?B?bzZUay9YTnlvbjNZdTNkRmJZWS9GVDNIcWdiM00wSmJUVlNYOXpBRDNCT1dw?=
+ =?utf-8?B?UUxSbkVUa1dNL3MyVmp2Zlg5U0VRWHFoWGVucThzTU9NQTMyM1A5WXgwVXp0?=
+ =?utf-8?B?clhBNmhtMDA4NW9TVHdWUXhPTWxFZmhPZFVneFdWa2owZGoxb3NkSkIyT1h0?=
+ =?utf-8?Q?K/Wl/XaETFYy3ohsB7V+mWigg?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22312ffd-74c1-4e89-91a7-08da79e0e5ef
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2022 08:26:46.6476 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: USt5vpJrVwW+bU5CKw9OSzTf1bAhmkLrIjyE2cvJ8gUFMh+KcwWWe6l+YvmM62be/u2YNlGPzAss+Daod5LRvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2897
+Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/ttm: Implement
+ intersect/compatible functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,419 +129,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, luben.tuikov@amd.com, christian.koenig@amd.com,
+ matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0456614806314687742==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/display: avoid abnormal pixel output when turn eDP display off (rev2)
-URL   : https://patchwork.freedesktop.org/series/106910/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11975 -> Patchwork_106910v2
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_106910v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_106910v2, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/index.html
-
-Participating hosts (42 -> 38)
-------------------------------
-
-  Missing    (4): fi-kbl-soraka bat-rpls-2 fi-bdw-samus bat-adlp-4 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_106910v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions:
-    - fi-adl-ddr5:        [PASS][1] -> [DMESG-WARN][2] +4 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-adl-ddr5/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-adl-ddr5/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-    - fi-cfl-8109u:       [PASS][3] -> [DMESG-WARN][4] +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-cfl-8109u/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-cfl-8109u/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-    - fi-apl-guc:         [PASS][5] -> [DMESG-WARN][6] +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-apl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-apl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-    - fi-rkl-guc:         [PASS][7] -> [DMESG-WARN][8] +3 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-rkl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-rkl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-    - fi-cfl-8700k:       [PASS][9] -> [DMESG-WARN][10] +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-cfl-8700k/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-cfl-8700k/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions:
-    - fi-cfl-guc:         [PASS][11] -> [DMESG-WARN][12] +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-cfl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-cfl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions.html
-
-  * igt@kms_flip@basic-plain-flip@c-hdmi-a2:
-    - bat-dg1-6:          [PASS][13] -> [DMESG-WARN][14] +55 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg1-6/igt@kms_flip@basic-plain-flip@c-hdmi-a2.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg1-6/igt@kms_flip@basic-plain-flip@c-hdmi-a2.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_module_load@load:
-    - {bat-dg2-10}:       [PASS][15] -> [DMESG-WARN][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg2-10/igt@i915_module_load@load.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg2-10/igt@i915_module_load@load.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions:
-    - {fi-ehl-2}:         [PASS][17] -> [DMESG-WARN][18] +4 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-ehl-2/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-ehl-2/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions:
-    - {bat-rplp-1}:       [PASS][19] -> [DMESG-WARN][20] +3 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-rplp-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-rplp-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:
-    - {fi-jsl-1}:         [PASS][21] -> [DMESG-WARN][22] +4 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@b-edp1:
-    - {bat-jsl-3}:        [PASS][23] -> [DMESG-WARN][24] +34 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-jsl-3/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-jsl-3/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - {bat-jsl-1}:        [PASS][25] -> [DMESG-WARN][26] +33 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-jsl-1/igt@kms_force_connector_basic@force-connector-state.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-jsl-1/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - {bat-dg2-9}:        [PASS][27] -> [INCOMPLETE][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg2-9/igt@kms_frontbuffer_tracking@basic.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg2-9/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1:
-    - {bat-jsl-3}:        [PASS][29] -> [DMESG-FAIL][30] +11 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-jsl-3/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-jsl-3/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1.html
-
-  * igt@kms_pipe_crc_basic@read-crc@pipe-b-edp-1:
-    - {bat-jsl-1}:        [PASS][31] -> [DMESG-FAIL][32] +11 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-jsl-1/igt@kms_pipe_crc_basic@read-crc@pipe-b-edp-1.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-jsl-1/igt@kms_pipe_crc_basic@read-crc@pipe-b-edp-1.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3:
-    - {bat-dg2-9}:        [PASS][33] -> [DMESG-WARN][34] +4 similar issues
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_106910v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-5:          [PASS][35] -> [INCOMPLETE][36] ([i915#4418])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [PASS][37] -> [DMESG-FAIL][38] ([i915#4528])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions:
-    - fi-skl-6600u:       [PASS][39] -> [DMESG-WARN][40] ([i915#118]) +4 similar issues
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-glk-j4005:       [PASS][41] -> [DMESG-WARN][42] ([i915#118]) +3 similar issues
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-glk-j4005/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-skl-6700k2:      [PASS][43] -> [DMESG-WARN][44] ([i915#118]) +4 similar issues
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-skl-6700k2/igt@kms_frontbuffer_tracking@basic.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-skl-6700k2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {bat-adlm-1}:       [DMESG-WARN][45] ([i915#2867]) -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-adlm-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-adlm-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3003]: https://gitlab.freedesktop.org/drm/intel/issues/3003
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5087]: https://gitlab.freedesktop.org/drm/intel/issues/5087
-  [i915#5828]: https://gitlab.freedesktop.org/drm/intel/issues/5828
-  [i915#5954]: https://gitlab.freedesktop.org/drm/intel/issues/5954
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
 
 
-Build changes
--------------
+On 8/8/2022 5:00 PM, Christian König wrote:
+>
+>
+> Am 25.07.22 um 13:42 schrieb Arunpravin Paneer Selvam:
+>> Implemented a new intersect and compatible callback functions
+>> to ttm range manager fetching start offset from drm mm range
+>> allocator.
+>>
+>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>> Signed-off-by: Arunpravin Paneer Selvam 
+>> <Arunpravin.PaneerSelvam@amd.com>
+>> ---
+>>   drivers/gpu/drm/ttm/ttm_range_manager.c | 33 +++++++++++++++++++++++++
+>>   1 file changed, 33 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/ttm/ttm_range_manager.c 
+>> b/drivers/gpu/drm/ttm/ttm_range_manager.c
+>> index d91666721dc6..12b8d9b36fe6 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_range_manager.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_range_manager.c
+>> @@ -113,6 +113,37 @@ static void ttm_range_man_free(struct 
+>> ttm_resource_manager *man,
+>>       kfree(node);
+>>   }
+>>   +static bool ttm_range_man_intersect(struct ttm_resource_manager *man,
+>> +                    struct ttm_resource *res,
+>> +                    const struct ttm_place *place,
+>> +                    size_t size)
+>> +{
+>> +    struct drm_mm_node *node = 
+>> &to_ttm_range_mgr_node(res)->mm_nodes[0];
+>> +    u32 num_pages = PFN_UP(size);
+>> +
+>> +    /* Don't evict BOs outside of the requested placement range */
+>> +    if (place->fpfn >= (node->start + num_pages) ||
+>> +        (place->lpfn && place->lpfn <= node->start))
+>> +        return false;
+>> +
+>> +    return true;
+>> +}
+>> +
+>> +static bool ttm_range_man_compatible(struct ttm_resource_manager *man,
+>> +                     struct ttm_resource *res,
+>> +                     const struct ttm_place *place,
+>> +                     size_t size)
+>> +{
+>> +    struct drm_mm_node *node = 
+>> &to_ttm_range_mgr_node(res)->mm_nodes[0];
+>> +    u32 num_pages = PFN_UP(size);
+>> +
+>> +    if (node->start < place->fpfn ||
+>
+> This should probably be "<=".
+We are checking the false condition here, if node->start == place->fpfn, 
+then the node->start
+value is compatible with place->fpfn, therefore, we don't return false.
 
-  * Linux: CI_DRM_11975 -> Patchwork_106910v2
+Thanks,
+Arun
+>
+> Regards,
+> Christian.
+>
+>> +        (place->lpfn && (node->start + num_pages) > place->lpfn))
+>> +        return false;
+>> +
+>> +    return true;
+>> +}
+>> +
+>>   static void ttm_range_man_debug(struct ttm_resource_manager *man,
+>>                   struct drm_printer *printer)
+>>   {
+>> @@ -126,6 +157,8 @@ static void ttm_range_man_debug(struct 
+>> ttm_resource_manager *man,
+>>   static const struct ttm_resource_manager_func 
+>> ttm_range_manager_func = {
+>>       .alloc = ttm_range_man_alloc,
+>>       .free = ttm_range_man_free,
+>> +    .intersect = ttm_range_man_intersect,
+>> +    .compatible = ttm_range_man_compatible,
+>>       .debug = ttm_range_man_debug
+>>   };
+>
 
-  CI-20190529: 20190529
-  CI_DRM_11975: 5b5ad12f8d971a9feeb54a3f3d58b48de8978ad2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6617: 22fa5ae83a8854f32e28b2c2a8581f4e36f78288 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_106910v2: 5b5ad12f8d971a9feeb54a3f3d58b48de8978ad2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c7751012c403 drm/i915/display: avoid abnormal pixel output when turn eDP display off
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/index.html
-
---===============0456614806314687742==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: avoid abnormal pixel output when turn eDP display off (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106910/">https://patchwork.freedesktop.org/series/106910/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11975 -&gt; Patchwork_106910v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_106910v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_106910v2, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/index.html</p>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Missing    (4): fi-kbl-soraka bat-rpls-2 fi-bdw-samus bat-adlp-4 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_106910v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions:</p>
-<ul>
-<li>
-<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-adl-ddr5/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-adl-ddr5/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">DMESG-WARN</a> +4 similar issues</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-cfl-8109u/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-cfl-8109u/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">DMESG-WARN</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-apl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-apl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">DMESG-WARN</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-rkl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-rkl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">DMESG-WARN</a> +3 similar issues</p>
-</li>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-cfl-8700k/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-cfl-8700k/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">DMESG-WARN</a> +3 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-cfl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-cfl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions.html">DMESG-WARN</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@c-hdmi-a2:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg1-6/igt@kms_flip@basic-plain-flip@c-hdmi-a2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg1-6/igt@kms_flip@basic-plain-flip@c-hdmi-a2.html">DMESG-WARN</a> +55 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>{bat-dg2-10}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg2-10/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg2-10/igt@i915_module_load@load.html">DMESG-WARN</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions:</p>
-<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-ehl-2/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-ehl-2/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">DMESG-WARN</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-rplp-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-rplp-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions.html">DMESG-WARN</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-jsl-1/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">DMESG-WARN</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-edp1:</p>
-<ul>
-<li>{bat-jsl-3}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-jsl-3/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-jsl-3/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html">DMESG-WARN</a> +34 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-jsl-1/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-jsl-1/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> +33 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg2-9/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg2-9/igt@kms_frontbuffer_tracking@basic.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1:</p>
-<ul>
-<li>{bat-jsl-3}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-jsl-3/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-jsl-3/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-edp-1.html">DMESG-FAIL</a> +11 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc@pipe-b-edp-1:</p>
-<ul>
-<li>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-jsl-1/igt@kms_pipe_crc_basic@read-crc@pipe-b-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-jsl-1/igt@kms_pipe_crc_basic@read-crc@pipe-b-edp-1.html">DMESG-FAIL</a> +11 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3:</p>
-<ul>
-<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html">DMESG-WARN</a> +4 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_106910v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor@atomic-transitions.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-glk-j4005/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-flip-before-cursor@atomic-transitions-varying-size.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/fi-skl-6700k2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/fi-skl-6700k2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a>) +4 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11975/bat-adlm-1/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106910v2/bat-adlm-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11975 -&gt; Patchwork_106910v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11975: 5b5ad12f8d971a9feeb54a3f3d58b48de8978ad2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6617: 22fa5ae83a8854f32e28b2c2a8581f4e36f78288 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_106910v2: 5b5ad12f8d971a9feeb54a3f3d58b48de8978ad2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c7751012c403 drm/i915/display: avoid abnormal pixel output when turn eDP display off</p>
-
-</body>
-</html>
-
---===============0456614806314687742==--
