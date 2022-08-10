@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AAA458ED02
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 15:21:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A4F358ECFE
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 15:20:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F21E3B0DAB;
-	Wed, 10 Aug 2022 13:19:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8774B0A40;
+	Wed, 10 Aug 2022 13:19:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE018F2C9
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 13:19:11 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B80BB05EF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 13:19:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660137551; x=1691673551;
+ t=1660137555; x=1691673555;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RCT+8nw6lQBXkmylMqGlyo1AhZuKhSJZ8j72DPKq/fg=;
- b=eOEf449RlWGDHxbMl7hjnRc5udkUDh0bS4aJxcmQgDYdqpKEwpAzd2NL
- r8F21LM8xQ7eZOe37tpdbiFgpC0TIVFzeX6qMfGLOhYVWWAT5n0J07oaD
- LVsmpCdG/lUBhbQmWrzT9pKr1xiBku5SxdLuOq6lHUCxLFJ3Lmk28wT6e
- IpprMKqYp3vBmNLYp41i0UF04iWWMfj9C5Fm1khIVj2TBl2X2UL05SH1O
- Ax140g5xPJoW0ng4LGVHEe7aDLNMycEE0diPRdP4Tb6suVsztwWOq4joj
- lnY9Fld/LGu0brwbF5priZTxHHxqDYZOf0OMTnZ/BRJqpbAw2a5pts9Fr Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10435"; a="289832819"
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="289832819"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 06:19:10 -0700
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="605140280"
+ bh=EF+nzwLBzbp/P1tCd/pcAmOrwW66WpETteg+IMjhjmE=;
+ b=KkORyGaJz4+GFdfMXpx2CmRZgAkv9y0cD6bxtfBOZJmu3cDp/yxrowX/
+ +PYQzizcU/4B6KqtiPa+n3r1WAyQEPRZpILTL0yAnnba/OM5kAT5utJXu
+ 8sbT146+iOszXSuncF+rVILhQ9++EDjMmV+Lj6mVoGGNE7jUws8iI1Isx
+ wrqzpbVu3KalUknnZjJfj7psacjml6U+um6aTiVCEepFRR+wgqVcYhxdh
+ MNeyAwVv/b+HtWYDfsxsjr6M+Zbi2/SMV60PECMtC9W1LbrV+cnS+oIZ0
+ vE/6gOJc5PhNitjX0Q+vePAWCiqM9+tNR8E9LsEZOaxQZY8WF6eAfx5ix Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10435"; a="292331646"
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="292331646"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 06:19:14 -0700
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="731491295"
 Received: from iefimov-mobl1.ccr.corp.intel.com (HELO localhost)
  ([10.252.49.172])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 06:19:08 -0700
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 06:19:13 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Aug 2022 16:18:16 +0300
-Message-Id: <6d878fe45937867653d001618ac292095f603a11.1660137416.git.jani.nikula@intel.com>
+Date: Wed, 10 Aug 2022 16:18:17 +0300
+Message-Id: <ded81a41a5a305f89eda7cde15a873183fdec073.1660137416.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1660137416.git.jani.nikula@intel.com>
 References: <cover.1660137416.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 12/15] drm/i915: move has_dmc to runtime info
+Subject: [Intel-gfx] [PATCH v2 13/15] drm/i915: move has_dsc to runtime info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,94 +65,85 @@ If it's	modified runtime, it's runtime info.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h          | 2 +-
- drivers/gpu/drm/i915/i915_pci.c          | 6 +++---
- drivers/gpu/drm/i915/intel_device_info.c | 3 ++-
- drivers/gpu/drm/i915/intel_device_info.h | 2 +-
- 4 files changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 2 +-
+ drivers/gpu/drm/i915/i915_pci.c           | 4 ++--
+ drivers/gpu/drm/i915/intel_device_info.c  | 3 ++-
+ drivers/gpu/drm/i915/intel_device_info.h  | 2 +-
+ 4 files changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 231bdb4dfa22..4c0104d84c1b 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1272,7 +1272,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 43e1bbc1e303..bb5c5fa3f157 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -344,7 +344,7 @@ bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state)
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
  
- #define HAS_RPS(dev_priv)	(INTEL_INFO(dev_priv)->has_rps)
+-	if (!INTEL_INFO(i915)->display.has_dsc)
++	if (!RUNTIME_INFO(i915)->has_dsc)
+ 		return false;
  
--#define HAS_DMC(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dmc)
-+#define HAS_DMC(dev_priv)	(RUNTIME_INFO(dev_priv)->has_dmc)
- 
- #define HAS_HECI_PXP(dev_priv) \
- 	(INTEL_INFO(dev_priv)->has_heci_pxp)
+ 	if (DISPLAY_VER(i915) >= 12)
 diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 9088e1da2872..3cbab3ead2ab 100644
+index 3cbab3ead2ab..a8f29a98e208 100644
 --- a/drivers/gpu/drm/i915/i915_pci.c
 +++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -654,7 +654,7 @@ static const struct intel_device_info chv_info = {
- 	GEN8_FEATURES, \
- 	GEN(9), \
- 	GEN9_DEFAULT_PAGE_SIZES, \
--	.display.has_dmc = 1, \
-+	.__runtime.has_dmc = 1, \
- 	.has_gt_uc = 1, \
- 	.__runtime.has_hdcp = 1, \
- 	.display.has_ipc = 1, \
-@@ -712,7 +712,7 @@ static const struct intel_device_info skl_gt4_info = {
- 	.display.has_psr = 1, \
- 	.display.has_psr_hw_tracking = 1, \
- 	.has_runtime_pm = 1, \
--	.display.has_dmc = 1, \
-+	.__runtime.has_dmc = 1, \
- 	.has_rc6 = 1, \
- 	.has_rps = true, \
- 	.display.has_dp_mst = 1, \
-@@ -952,7 +952,7 @@ static const struct intel_device_info adl_s_info = {
- 	.display.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
- 		BIT(DBUF_S4),							\
- 	.display.has_ddi = 1,							\
--	.display.has_dmc = 1,							\
-+	.__runtime.has_dmc = 1,							\
+@@ -833,7 +833,7 @@ static const struct intel_device_info cml_gt2_info = {
+ 	ICL_COLORS, \
+ 	.display.dbuf.size = 2048, \
+ 	.display.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
+-	.display.has_dsc = 1, \
++	.__runtime.has_dsc = 1, \
+ 	.has_coherent_ggtt = false, \
+ 	.has_logical_ring_elsq = 1
+ 
+@@ -955,7 +955,7 @@ static const struct intel_device_info adl_s_info = {
+ 	.__runtime.has_dmc = 1,							\
  	.display.has_dp_mst = 1,						\
  	.display.has_dsb = 1,							\
- 	.display.has_dsc = 1,							\
+-	.display.has_dsc = 1,							\
++	.__runtime.has_dsc = 1,							\
+ 	.__runtime.fbc_mask = BIT(INTEL_FBC_A),					\
+ 	.display.has_fpga_dbg = 1,						\
+ 	.__runtime.has_hdcp = 1,						\
 diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index c5367b8344be..b0b37e98b112 100644
+index b0b37e98b112..0a1f97b35f2b 100644
 --- a/drivers/gpu/drm/i915/intel_device_info.c
 +++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -127,6 +127,7 @@ void intel_device_info_print(const struct intel_device_info *info,
- #undef PRINT_FLAG
+@@ -128,6 +128,7 @@ void intel_device_info_print(const struct intel_device_info *info,
  
  	drm_printf(p, "has_hdcp: %s\n", str_yes_no(runtime->has_hdcp));
-+	drm_printf(p, "has_dmc: %s\n", str_yes_no(runtime->has_dmc));
+ 	drm_printf(p, "has_dmc: %s\n", str_yes_no(runtime->has_dmc));
++	drm_printf(p, "has_dsc: %s\n", str_yes_no(runtime->has_dsc));
  
  	drm_printf(p, "rawclk rate: %u kHz\n", runtime->rawclk_freq);
  }
-@@ -403,7 +404,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
- 			runtime->fbc_mask = 0;
- 
- 		if (DISPLAY_VER(dev_priv) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
--			info->display.has_dmc = 0;
-+			runtime->has_dmc = 0;
+@@ -408,7 +409,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
  
  		if (DISPLAY_VER(dev_priv) >= 10 &&
  		    (dfsm & GLK_DFSM_DISPLAY_DSC_DISABLE))
+-			info->display.has_dsc = 0;
++			runtime->has_dsc = 0;
+ 	}
+ 
+ 	if (GRAPHICS_VER(dev_priv) == 6 && i915_vtd_active(dev_priv)) {
 diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 7ac24bfbf3ea..d94fc4ee3805 100644
+index d94fc4ee3805..0e02b48121f5 100644
 --- a/drivers/gpu/drm/i915/intel_device_info.h
 +++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -178,7 +178,6 @@ enum intel_ppgtt_type {
- 	/* Keep in alphabetical order */ \
- 	func(cursor_needs_physical); \
- 	func(has_cdclk_crawl); \
--	func(has_dmc); \
+@@ -181,7 +181,6 @@ enum intel_ppgtt_type {
  	func(has_ddi); \
  	func(has_dp_mst); \
  	func(has_dsb); \
+-	func(has_dsc); \
+ 	func(has_fpga_dbg); \
+ 	func(has_gmch); \
+ 	func(has_hotplug); \
 @@ -241,6 +240,7 @@ struct intel_runtime_info {
- 		u8 fbc_mask;
  
  		bool has_hdcp;
-+		bool has_dmc;
+ 		bool has_dmc;
++		bool has_dsc;
  	};
  };
  
