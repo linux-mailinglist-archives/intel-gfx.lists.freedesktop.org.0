@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9772B58ECF1
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 15:19:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D9D058ECF0
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 15:19:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6600BB09C5;
-	Wed, 10 Aug 2022 13:19:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 525CA8D1E8;
+	Wed, 10 Aug 2022 13:18:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59D06B1779
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 13:18:51 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25611B0E52
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 13:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660137532; x=1691673532;
+ t=1660137528; x=1691673528;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GNfKAehsqTEJGD4FxsztNI4/4lCM6V8d/CKjIRIwTAc=;
- b=RLk+3dQ8zhRL3SjSxkAI4gmt0G7koGE2Pyii0ADiut5d5F6iedbZfpi8
- NtmmHodlk9RouBKxLIUDwbJEJtkcUt1CbtuXHNcEgG9YC+ELzz7KJvDAx
- n4pczxB08liZUriIAqXyDwht0QPzyFqh61eY3aCu6Qqxkkr+6Bw80rAYP
- oLaXnWML/9BXkwnZrkIz6sfcKyk0O/vA80+3uzA31f1ehnaB6BMSV1QuT
- 04Eajfbl/Ui+fL2p0iG42WsOPdO/r5SjFp0F6jajhysqtqrTtdJjFG3bq
- ZS004gOPK31PVzTSsGrDkZZxvgZR5jCH0vGF7ZdVGLm5SO5GebXERtRmU A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10435"; a="291079380"
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="291079380"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 06:18:43 -0700
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="581229057"
+ bh=QpMvGbmOkdfVajymtZtInKU6zQ9YBZvpzVUoj/WqGy0=;
+ b=K2NA3/9syOkz1t2PJPVST5u3rhNHNdmVogvHFlUoF0QBIYJgVJEG0ixQ
+ YpbE385fhYTLhw9wo/0PlYiUe+hRVkdsbAYWReauRuGLhZsu/togv/mBn
+ BAVw0E5IbvZA7Y8ZJ3QhqLSwvuSsHEI7hxPnYxNPKtXM42loEvcqx0UOy
+ kzlsH353KA0px/YGpx02o7L7ICYu+POY6AdTYnP7R7S/ip2FLj63mu6+3
+ xIFokOO2Rnxpz3Ph6jluBT8uixIibKj0vBqVKlcLd2e6hiMSidOeGt7HZ
+ NZM2xsT5r46qFdo8bIczE//JGo7RJuI5UqEq36sP6zxDjfnDjVAw/+a6T A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10435"; a="270853713"
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="270853713"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 06:18:47 -0700
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="673284160"
 Received: from iefimov-mobl1.ccr.corp.intel.com (HELO localhost)
  ([10.252.49.172])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 06:18:42 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 06:18:46 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Aug 2022 16:18:09 +0300
-Message-Id: <f78cf5b5935e15d7052466159b966e66a4731804.1660137416.git.jani.nikula@intel.com>
+Date: Wed, 10 Aug 2022 16:18:10 +0300
+Message-Id: <d26a782bf009be62e801adbe29814063a675e75f.1660137416.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1660137416.git.jani.nikula@intel.com>
 References: <cover.1660137416.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 05/15] drm/i915: move page_sizes to runtime
- info
+Subject: [Intel-gfx] [PATCH v2 06/15] drm/i915: move ppgtt_type and
+ ppgtt_size to runtime info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,221 +66,219 @@ If it's	modified runtime, it's runtime info.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_pages.c      |  2 +-
- .../gpu/drm/i915/gem/selftests/huge_pages.c    | 14 +++++++-------
- drivers/gpu/drm/i915/i915_drv.h                |  2 +-
- drivers/gpu/drm/i915/i915_gem.c                |  3 +--
- drivers/gpu/drm/i915/i915_pci.c                | 18 +++++++++---------
- drivers/gpu/drm/i915/intel_device_info.c       |  2 +-
- drivers/gpu/drm/i915/intel_device_info.h       |  4 ++--
- .../gpu/drm/i915/selftests/mock_gem_device.c   |  2 +-
- 8 files changed, 23 insertions(+), 24 deletions(-)
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |  4 +--
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  2 +-
+ drivers/gpu/drm/i915/i915_pci.c               | 36 +++++++++----------
+ drivers/gpu/drm/i915/intel_device_info.c      |  6 ++--
+ drivers/gpu/drm/i915/intel_device_info.h      |  6 ++--
+ 6 files changed, 28 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 8357dbdcab5c..458e4f9c05f4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -20,7 +20,7 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
- 				 unsigned int sg_page_sizes)
- {
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
--	unsigned long supported = INTEL_INFO(i915)->page_sizes;
-+	unsigned long supported = RUNTIME_INFO(i915)->page_sizes;
- 	bool shrinkable;
- 	int i;
- 
 diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index 72ce2c9f42fd..8fcffd16bed6 100644
+index 8fcffd16bed6..c570cf780079 100644
 --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
 +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -358,7 +358,7 @@ fake_huge_pages_object(struct drm_i915_private *i915, u64 size, bool single)
- static int igt_check_page_sizes(struct i915_vma *vma)
- {
- 	struct drm_i915_private *i915 = vma->vm->i915;
--	unsigned int supported = INTEL_INFO(i915)->page_sizes;
-+	unsigned int supported = RUNTIME_INFO(i915)->page_sizes;
- 	struct drm_i915_gem_object *obj = vma->obj;
- 	int err;
+@@ -1764,8 +1764,8 @@ int i915_gem_huge_page_mock_selftests(void)
+ 		return -ENOMEM;
  
-@@ -419,7 +419,7 @@ static int igt_mock_exhaust_device_supported_pages(void *arg)
- {
- 	struct i915_ppgtt *ppgtt = arg;
- 	struct drm_i915_private *i915 = ppgtt->vm.i915;
--	unsigned int saved_mask = INTEL_INFO(i915)->page_sizes;
-+	unsigned int saved_mask = RUNTIME_INFO(i915)->page_sizes;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
- 	int i, j, single;
-@@ -438,7 +438,7 @@ static int igt_mock_exhaust_device_supported_pages(void *arg)
- 				combination |= page_sizes[j];
- 		}
+ 	/* Pretend to be a device which supports the 48b PPGTT */
+-	mkwrite_device_info(dev_priv)->ppgtt_type = INTEL_PPGTT_FULL;
+-	mkwrite_device_info(dev_priv)->ppgtt_size = 48;
++	RUNTIME_INFO(dev_priv)->ppgtt_type = INTEL_PPGTT_FULL;
++	RUNTIME_INFO(dev_priv)->ppgtt_size = 48;
  
--		mkwrite_device_info(i915)->page_sizes = combination;
-+		RUNTIME_INFO(i915)->page_sizes = combination;
+ 	ppgtt = i915_ppgtt_create(to_gt(dev_priv), 0);
+ 	if (IS_ERR(ppgtt)) {
+diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+index 6ee8d1127016..7ecfa672f738 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+@@ -312,7 +312,7 @@ void ppgtt_init(struct i915_ppgtt *ppgtt, struct intel_gt *gt,
+ 	ppgtt->vm.gt = gt;
+ 	ppgtt->vm.i915 = i915;
+ 	ppgtt->vm.dma = i915->drm.dev;
+-	ppgtt->vm.total = BIT_ULL(INTEL_INFO(i915)->ppgtt_size);
++	ppgtt->vm.total = BIT_ULL(RUNTIME_INFO(i915)->ppgtt_size);
+ 	ppgtt->vm.lmem_pt_obj_flags = lmem_pt_obj_flags;
  
- 		for (single = 0; single <= 1; ++single) {
- 			obj = fake_huge_pages_object(i915, combination, !!single);
-@@ -485,7 +485,7 @@ static int igt_mock_exhaust_device_supported_pages(void *arg)
- out_put:
- 	i915_gem_object_put(obj);
- out_device:
--	mkwrite_device_info(i915)->page_sizes = saved_mask;
-+	RUNTIME_INFO(i915)->page_sizes = saved_mask;
- 
- 	return err;
- }
-@@ -495,7 +495,7 @@ static int igt_mock_memory_region_huge_pages(void *arg)
- 	const unsigned int flags[] = { 0, I915_BO_ALLOC_CONTIGUOUS };
- 	struct i915_ppgtt *ppgtt = arg;
- 	struct drm_i915_private *i915 = ppgtt->vm.i915;
--	unsigned long supported = INTEL_INFO(i915)->page_sizes;
-+	unsigned long supported = RUNTIME_INFO(i915)->page_sizes;
- 	struct intel_memory_region *mem;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
-@@ -573,7 +573,7 @@ static int igt_mock_ppgtt_misaligned_dma(void *arg)
- {
- 	struct i915_ppgtt *ppgtt = arg;
- 	struct drm_i915_private *i915 = ppgtt->vm.i915;
--	unsigned long supported = INTEL_INFO(i915)->page_sizes;
-+	unsigned long supported = RUNTIME_INFO(i915)->page_sizes;
- 	struct drm_i915_gem_object *obj;
- 	int bit;
- 	int err;
-@@ -1390,7 +1390,7 @@ static int igt_ppgtt_smoke_huge(void *arg)
- static int igt_ppgtt_sanity_check(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
--	unsigned int supported = INTEL_INFO(i915)->page_sizes;
-+	unsigned int supported = RUNTIME_INFO(i915)->page_sizes;
- 	struct {
- 		igt_create_fn fn;
- 		unsigned int flags;
+ 	dma_resv_init(&ppgtt->vm._resv);
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index a9b2e51b4339..24ea9b90e09b 100644
+index 24ea9b90e09b..bc3f0ad8a504 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1218,7 +1218,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+@@ -1210,7 +1210,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
  
- #define HAS_PAGE_SIZES(dev_priv, sizes) ({ \
- 	GEM_BUG_ON((sizes) == 0); \
--	((sizes) & ~INTEL_INFO(dev_priv)->page_sizes) == 0; \
-+	((sizes) & ~RUNTIME_INFO(dev_priv)->page_sizes) == 0; \
- })
+ #define HAS_EXECLISTS(dev_priv) HAS_LOGICAL_RING_CONTEXTS(dev_priv)
  
- #define HAS_OVERLAY(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_overlay)
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 702e5b89be22..4b76051312dd 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1091,8 +1091,7 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
- 
- 	/* We need to fallback to 4K pages if host doesn't support huge gtt. */
- 	if (intel_vgpu_active(dev_priv) && !intel_vgpu_has_huge_gtt(dev_priv))
--		mkwrite_device_info(dev_priv)->page_sizes =
--			I915_GTT_PAGE_SIZE_4K;
-+		RUNTIME_INFO(dev_priv)->page_sizes = I915_GTT_PAGE_SIZE_4K;
- 
- 	ret = i915_gem_init_userptr(dev_priv);
- 	if (ret)
+-#define INTEL_PPGTT(dev_priv) (INTEL_INFO(dev_priv)->ppgtt_type)
++#define INTEL_PPGTT(dev_priv) (RUNTIME_INFO(dev_priv)->ppgtt_type)
+ #define HAS_PPGTT(dev_priv) \
+ 	(INTEL_PPGTT(dev_priv) != INTEL_PPGTT_NONE)
+ #define HAS_FULL_PPGTT(dev_priv) \
 diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 5c2a32ffe9e3..57694f034303 100644
+index 57694f034303..33e6ef6f802f 100644
 --- a/drivers/gpu/drm/i915/i915_pci.c
 +++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -160,7 +160,7 @@
- /* Keep in gen based order, and chronological order within a gen */
+@@ -421,8 +421,8 @@ static const struct intel_device_info ilk_m_info = {
+ 	.has_rc6p = 1, \
+ 	.has_rps = true, \
+ 	.dma_mask_size = 40, \
+-	.ppgtt_type = INTEL_PPGTT_ALIASING, \
+-	.ppgtt_size = 31, \
++	.__runtime.ppgtt_type = INTEL_PPGTT_ALIASING, \
++	.__runtime.ppgtt_size = 31, \
+ 	I9XX_PIPE_OFFSETS, \
+ 	I9XX_CURSOR_OFFSETS, \
+ 	ILK_COLORS, \
+@@ -474,8 +474,8 @@ static const struct intel_device_info snb_m_gt2_info = {
+ 	.has_reset_engine = true, \
+ 	.has_rps = true, \
+ 	.dma_mask_size = 40, \
+-	.ppgtt_type = INTEL_PPGTT_ALIASING, \
+-	.ppgtt_size = 31, \
++	.__runtime.ppgtt_type = INTEL_PPGTT_ALIASING, \
++	.__runtime.ppgtt_size = 31, \
+ 	IVB_PIPE_OFFSETS, \
+ 	IVB_CURSOR_OFFSETS, \
+ 	IVB_COLORS, \
+@@ -535,8 +535,8 @@ static const struct intel_device_info vlv_info = {
+ 	.display.has_gmch = 1,
+ 	.display.has_hotplug = 1,
+ 	.dma_mask_size = 40,
+-	.ppgtt_type = INTEL_PPGTT_ALIASING,
+-	.ppgtt_size = 31,
++	.__runtime.ppgtt_type = INTEL_PPGTT_ALIASING,
++	.__runtime.ppgtt_size = 31,
+ 	.has_snoop = true,
+ 	.has_coherent_ggtt = false,
+ 	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0),
+@@ -585,8 +585,8 @@ static const struct intel_device_info hsw_gt3_info = {
+ 	GEN(8), \
+ 	.has_logical_ring_contexts = 1, \
+ 	.dma_mask_size = 39, \
+-	.ppgtt_type = INTEL_PPGTT_FULL, \
+-	.ppgtt_size = 48, \
++	.__runtime.ppgtt_type = INTEL_PPGTT_FULL, \
++	.__runtime.ppgtt_size = 48, \
+ 	.has_64bit_reloc = 1
  
- #define GEN_DEFAULT_PAGE_SIZES \
--	.page_sizes = I915_GTT_PAGE_SIZE_4K
-+	.__runtime.page_sizes = I915_GTT_PAGE_SIZE_4K
- 
- #define GEN_DEFAULT_REGIONS \
- 	.memory_regions = REGION_SMEM | REGION_STOLEN_SMEM
-@@ -647,8 +647,8 @@ static const struct intel_device_info chv_info = {
+ #define BDW_PLATFORM \
+@@ -633,8 +633,8 @@ static const struct intel_device_info chv_info = {
+ 	.has_logical_ring_contexts = 1,
+ 	.display.has_gmch = 1,
+ 	.dma_mask_size = 39,
+-	.ppgtt_type = INTEL_PPGTT_FULL,
+-	.ppgtt_size = 32,
++	.__runtime.ppgtt_type = INTEL_PPGTT_FULL,
++	.__runtime.ppgtt_size = 32,
+ 	.has_reset_engine = 1,
+ 	.has_snoop = true,
+ 	.has_coherent_ggtt = false,
+@@ -719,8 +719,8 @@ static const struct intel_device_info skl_gt4_info = {
+ 	.has_logical_ring_contexts = 1, \
+ 	.has_gt_uc = 1, \
+ 	.dma_mask_size = 39, \
+-	.ppgtt_type = INTEL_PPGTT_FULL, \
+-	.ppgtt_size = 48, \
++	.__runtime.ppgtt_type = INTEL_PPGTT_FULL, \
++	.__runtime.ppgtt_size = 48, \
+ 	.has_reset_engine = 1, \
+ 	.has_snoop = true, \
+ 	.has_coherent_ggtt = false, \
+@@ -848,14 +848,14 @@ static const struct intel_device_info ehl_info = {
+ 	GEN11_FEATURES,
+ 	PLATFORM(INTEL_ELKHARTLAKE),
+ 	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0),
+-	.ppgtt_size = 36,
++	.__runtime.ppgtt_size = 36,
  };
  
- #define GEN9_DEFAULT_PAGE_SIZES \
--	.page_sizes = I915_GTT_PAGE_SIZE_4K | \
--		      I915_GTT_PAGE_SIZE_64K
-+	.__runtime.page_sizes = I915_GTT_PAGE_SIZE_4K | \
-+		I915_GTT_PAGE_SIZE_64K
- 
- #define GEN9_FEATURES \
- 	GEN8_FEATURES, \
-@@ -802,9 +802,9 @@ static const struct intel_device_info cml_gt2_info = {
+ static const struct intel_device_info jsl_info = {
+ 	GEN11_FEATURES,
+ 	PLATFORM(INTEL_JASPERLAKE),
+ 	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0),
+-	.ppgtt_size = 36,
++	.__runtime.ppgtt_size = 36,
  };
  
- #define GEN11_DEFAULT_PAGE_SIZES \
--	.page_sizes = I915_GTT_PAGE_SIZE_4K | \
--		      I915_GTT_PAGE_SIZE_64K | \
--		      I915_GTT_PAGE_SIZE_2M
-+	.__runtime.page_sizes = I915_GTT_PAGE_SIZE_4K | \
-+		I915_GTT_PAGE_SIZE_64K |		\
-+		I915_GTT_PAGE_SIZE_2M
+ #define GEN12_FEATURES \
+@@ -927,7 +927,7 @@ static const struct intel_device_info dg1_info = {
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) |
+ 		BIT(VCS0) | BIT(VCS2),
+ 	/* Wa_16011227922 */
+-	.ppgtt_size = 47,
++	.__runtime.ppgtt_size = 47,
+ };
  
- #define GEN11_FEATURES \
- 	GEN9_FEATURES, \
-@@ -1001,9 +1001,9 @@ static const struct intel_device_info adl_p_info = {
- #undef GEN
+ static const struct intel_device_info adl_s_info = {
+@@ -994,7 +994,7 @@ static const struct intel_device_info adl_p_info = {
+ 	.display.has_psr_hw_tracking = 0,
+ 	.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+-	.ppgtt_size = 48,
++	.__runtime.ppgtt_size = 48,
+ 	.dma_mask_size = 39,
+ };
  
- #define XE_HP_PAGE_SIZES \
--	.page_sizes = I915_GTT_PAGE_SIZE_4K | \
--		      I915_GTT_PAGE_SIZE_64K | \
--		      I915_GTT_PAGE_SIZE_2M
-+	.__runtime.page_sizes = I915_GTT_PAGE_SIZE_4K | \
-+		I915_GTT_PAGE_SIZE_64K |		\
-+		I915_GTT_PAGE_SIZE_2M
+@@ -1023,8 +1023,8 @@ static const struct intel_device_info adl_p_info = {
+ 	.has_reset_engine = 1, \
+ 	.has_rps = 1, \
+ 	.has_runtime_pm = 1, \
+-	.ppgtt_size = 48, \
+-	.ppgtt_type = INTEL_PPGTT_FULL
++	.__runtime.ppgtt_size = 48, \
++	.__runtime.ppgtt_type = INTEL_PPGTT_FULL
  
- #define XE_HP_FEATURES \
- 	.__runtime.graphics.ver = 12, \
+ #define XE_HPM_FEATURES \
+ 	.media.ver = 12, \
 diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index e3227421713a..ec9c8e9613cb 100644
+index ec9c8e9613cb..0efbd8f5fe0e 100644
 --- a/drivers/gpu/drm/i915/intel_device_info.c
 +++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -110,7 +110,7 @@ void intel_device_info_print(const struct intel_device_info *info,
- 
- 	drm_printf(p, "gt: %d\n", info->gt);
+@@ -112,8 +112,8 @@ void intel_device_info_print(const struct intel_device_info *info,
  	drm_printf(p, "memory-regions: %x\n", info->memory_regions);
--	drm_printf(p, "page-sizes: %x\n", info->page_sizes);
-+	drm_printf(p, "page-sizes: %x\n", runtime->page_sizes);
+ 	drm_printf(p, "page-sizes: %x\n", runtime->page_sizes);
  	drm_printf(p, "platform: %s\n", intel_platform_name(info->platform));
- 	drm_printf(p, "ppgtt-size: %d\n", info->ppgtt_size);
- 	drm_printf(p, "ppgtt-type: %d\n", info->ppgtt_type);
+-	drm_printf(p, "ppgtt-size: %d\n", info->ppgtt_size);
+-	drm_printf(p, "ppgtt-type: %d\n", info->ppgtt_type);
++	drm_printf(p, "ppgtt-size: %d\n", runtime->ppgtt_size);
++	drm_printf(p, "ppgtt-type: %d\n", runtime->ppgtt_type);
+ 	drm_printf(p, "dma_mask_size: %u\n", info->dma_mask_size);
+ 
+ #define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->name))
+@@ -409,7 +409,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 	if (GRAPHICS_VER(dev_priv) == 6 && i915_vtd_active(dev_priv)) {
+ 		drm_info(&dev_priv->drm,
+ 			 "Disabling ppGTT for VT-d support\n");
+-		info->ppgtt_type = INTEL_PPGTT_NONE;
++		runtime->ppgtt_type = INTEL_PPGTT_NONE;
+ 	}
+ 
+ 	runtime->rawclk_freq = intel_read_rawclk(dev_priv);
 diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index a9fbc008a517..324dddeb9ada 100644
+index 324dddeb9ada..d18887890e4c 100644
 --- a/drivers/gpu/drm/i915/intel_device_info.h
 +++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -221,6 +221,8 @@ struct intel_runtime_info {
+@@ -223,6 +223,9 @@ struct intel_runtime_info {
  
- 	struct intel_step_info step;
+ 	unsigned int page_sizes; /* page sizes supported by the HW */
  
-+	unsigned int page_sizes; /* page sizes supported by the HW */
++	enum intel_ppgtt_type ppgtt_type;
++	unsigned int ppgtt_size; /* log2, e.g. 31/32/48 bits */
 +
  	/* display */
  	struct {
  		u8 num_sprites[I915_MAX_PIPES];
-@@ -242,8 +244,6 @@ struct intel_device_info {
- 	enum intel_ppgtt_type ppgtt_type;
- 	unsigned int ppgtt_size; /* log2, e.g. 31/32/48 bits */
+@@ -241,9 +244,6 @@ struct intel_device_info {
  
--	unsigned int page_sizes; /* page sizes supported by the HW */
+ 	unsigned int dma_mask_size; /* available DMA address bits */
+ 
+-	enum intel_ppgtt_type ppgtt_type;
+-	unsigned int ppgtt_size; /* log2, e.g. 31/32/48 bits */
 -
  	u32 memory_regions; /* regions supported by the HW */
  
  	u8 gt; /* GT number, 0 if undefined */
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index 86456744431b..b23f11d24b97 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -174,7 +174,7 @@ struct drm_i915_private *mock_gem_device(void)
- 
- 	RUNTIME_INFO(i915)->graphics.ver = -1;
- 
--	mkwrite_device_info(i915)->page_sizes =
-+	RUNTIME_INFO(i915)->page_sizes =
- 		I915_GTT_PAGE_SIZE_4K |
- 		I915_GTT_PAGE_SIZE_64K |
- 		I915_GTT_PAGE_SIZE_2M;
 -- 
 2.34.1
 
