@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5154C58EB4F
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 13:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 255F058EC10
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 14:35:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFAF912B4FE;
-	Wed, 10 Aug 2022 11:31:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9738914AA20;
+	Wed, 10 Aug 2022 12:35:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35AA1B32A0;
- Wed, 10 Aug 2022 11:31:27 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E91868AB00
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 12:35:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660131087; x=1691667087;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=+78Ttx6OLArS8x5+jcnkqDyXrHhsIj/SQeymACcvYBo=;
- b=Ma9QECE6WjyQzULmx2kKbZSyko64ePfYlMf9caZdl2PowgLBJDzp4qtt
- AjfEDh3qfu8TDUKLQAFnTEez6Q2tHuiuhzPh34Lx2KvTHuoR0/uUerKsG
- +zK1Vaeg7lidVuW65FX3VedacdrKR7FBKs6R08Osl55T9v2fTDoXzY1P7
- Asi20+A7P8d6eaTH5fabRL8TPYOqeHOF7DIMKZl3RQsaZXJhnxuqjZZrN
- 9J8GehRA06dSsja74IbSdbYg2Picr5yYAeWcG938fOeZWr5nAdsjwewM6
- da6UWuzpjzPCFEEkvhSvhffHD/vNDCYsoQehPDsCSp7htgHEovK2nYfzZ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10434"; a="377351385"
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="377351385"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 04:31:26 -0700
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="664858635"
-Received: from iefimov-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.49.172])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 04:31:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, "Piorkowski, Piotr"
- <piotr.piorkowski@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <429ca486-6b75-5565-e18a-45a7afa3dd8d@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220805155959.1983584-1-piotr.piorkowski@intel.com>
- <20220805155959.1983584-2-piotr.piorkowski@intel.com>
- <429ca486-6b75-5565-e18a-45a7afa3dd8d@intel.com>
-Date: Wed, 10 Aug 2022 14:31:22 +0300
-Message-ID: <87y1vwtjw5.fsf@intel.com>
+ t=1660134901; x=1691670901;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=6TK3oLgW6/JIU6JmNhxP5vkscTzoryvofRYUWyiJvBA=;
+ b=FC3CP1EzrxwSxuQrKM6KA9Kqq+QvmjQJPSoOC5NOjPOiDYQV+yqYdO0y
+ qxZaVFnYZ2ariBbfOuDhPfHnaIQ9O+HqsM6vqdnBPy2eJ9klcXsvDqd7i
+ cnLszbMoKy1rBEu7q+adzq4AaL3WTPNQfj/WyCBrN/BfF05tsrdD+aSvW
+ iL6SlE/zsHbbcsLLqI9bF/wEsyyfMjHePPNoL6w/RzWI9ak0V/RtJkYHC
+ wcQd3tqxO9KG0ZiyGPc8RWb+l8JUVtGTW3XQdUsQroG724pjokY9bhWBK
+ nF5fRfVmnqVGK0uiR1jn3HnFIYRC0nIPHO/O1Tl+3mqA9i1Jq8OyOQfFU g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10434"; a="292323173"
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="292323173"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 05:35:00 -0700
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="555716934"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 05:34:58 -0700
+Date: Wed, 10 Aug 2022 15:34:55 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Message-ID: <YvOl77u2X219NvpF@ideak-desk.fi.intel.com>
+References: <20220808103054.3586074-1-imre.deak@intel.com>
+ <DM6PR11MB3177D66964271F836828FC47BA659@DM6PR11MB3177.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm/i915: Use of BARs names instead
- of numbers
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM6PR11MB3177D66964271F836828FC47BA659@DM6PR11MB3177.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/d13: Fix unclaimed accesses while
+ loading PIPEDMC-C/D
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,32 +57,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 10 Aug 2022, Andrzej Hajda <andrzej.hajda@intel.com> wrote:
-> On 05.08.2022 17:59, Piorkowski, Piotr wrote:
->> +/* PCI BARs */
->> +#define GTTMMADR_BAR				0
->> +#define GEN2_GTTMMADR_BAR			1
->> +#define GFXMEM_BAR				2
->> +#define GTT_APERTURE_BAR			GFXMEM_BAR
->> +#define GEN12_LMEM_BAR				GFXMEM_BAR
->
-> In INTEL_GVT_PCI_BAR_GTTMMIO we have BAR in prefix, here in suffix.
-> I am not sure which onel is better, just pointing out slight incosistency.
+On Wed, Aug 10, 2022 at 06:48:24AM +0300, Murthy, Arun R wrote:
+> [...]
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > index 00e18a4a5a5a4..6c35212c36256 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > @@ -383,6 +383,30 @@ static void disable_all_event_handlers(struct
+> > drm_i915_private *i915)
+> >       }
+> >  }
+> >
+> > +static void pipedmc_clock_gating_wa(struct drm_i915_private *i915, bool
+> > +enable) {
+> > +     enum pipe pipe;
+> > +
+> > +     if (DISPLAY_VER(i915) != 13)
+> > +             return;
+> > +
+> This function will be called from bxt_display_core_init() as well.
 
-Thought about it too, but decided this one's trivial to change if
-needed. The main change is switching to macros.
+Yes, this function is called whenever the DMC firmware needs to be
+loaded and initialized/uninitialized. 
 
-> Anyway:
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Do we need this WA for bxt as well?
 
-Thanks, though I already pushed this. :)
+The above display version check makes sure that the WA is only applied
+on relevant platforms. For BXT DISPLAY_VER()==9 (for GLK it's 10), for
+DG2/ADLP DISPLAY_VER()=13.
 
-BR,
-Jani.
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+--Imre
