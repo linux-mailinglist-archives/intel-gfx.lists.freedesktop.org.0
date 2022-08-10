@@ -2,154 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9968858E8B0
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 10:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A4458E920
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 10:57:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35107F0EE5;
-	Wed, 10 Aug 2022 08:25:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61D3AAD2F3;
+	Wed, 10 Aug 2022 08:56:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C165AF0DE5;
- Wed, 10 Aug 2022 08:25:25 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6862818B894
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 08:56:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660119926; x=1691655926;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=Ve7cS8CpyN8ZCVL+cLVslfr9XkvLlU/7Nuu+VZVCX98=;
- b=j1+OB8dIt1mUwP7qQbjjRxGzBRsbjQMZRKhP4VQDXmJxw5uQWpplxmgH
- 3oWuG7WzQUbXz4Uu1zjXOiHekN+QyhGWXiz1KCJR0uTkf6Klx6YvB1svM
- iVgg5FN/Tc+B2+jTgI8ZANm0/trLRWmNykqYsZd07OBfDUyp9lcxMqwrB
- SOJhmCXHCVkvN23H7OwM+mCsJuLTlQvURR7mK5cmyiKi+aWks3vZXS51v
- ufjmxx2a8a+LWu6jxe4zRtSAJAoNKcOTHGEP7A3PogHZPYlQy06Burbml
- G4oFcES2Fg1TuCI23ahiModVvNKAq3SFW5bMTeWskOu+HIRywTBYlbi2u Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10434"; a="274082357"
-X-IronPort-AV: E=Sophos;i="5.93,226,1654585200"; d="scan'208";a="274082357"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 01:25:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,226,1654585200"; d="scan'208";a="694440058"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by FMSMGA003.fm.intel.com with ESMTP; 10 Aug 2022 01:25:18 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Wed, 10 Aug 2022 01:25:18 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Wed, 10 Aug 2022 01:25:18 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28 via Frontend Transport; Wed, 10 Aug 2022 01:25:18 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.176)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.28; Wed, 10 Aug 2022 01:25:16 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WavuKxu3a3DZQbeFLJ+l5vkuAFpQrdB1jZqn/MFn5/9Zyk0yL1sF3pTe3NCB1omJGSWsxy+vso22xDqb/ZVkITJ1YBUjeGR+fd6+izFLqoWxGpizhvdD7fUCJ1vkrQmvrXq6M94knCor6lV7XUVa0mkC2Mne5BX4R9Y6kjsP9A4LVJ2wpcB92REjnZ/cDYh2cDg9UwaYq5fGQ1v0c88o8+AmGLymeivcKocwpPQILipNhQTU/6im25bRdQgR4Rk0rNqL8x3UMkOpDuK+QLmYnpY0TUWjJqe5B2nx8t+AUos8ULPZZT3d4Ruq7wuM9JLpDbC8vqrDBWnaSjoyAGk35A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ve7cS8CpyN8ZCVL+cLVslfr9XkvLlU/7Nuu+VZVCX98=;
- b=n4lQzXdBadM2PoAskAKvdNnQYR+fnRcKNP3GYGo0HSffqHXS+PHpPbPSaK0NMoSY+z7Hxm4A38v8K/Q/KHR3CxkbR6maf5Wyozk+jvcminD1h4gh5b6YK07FHhhLHuuNLgIkYfvTdL7SGvg8kMyncW+G+4CTk/9Sf9odqq0XgXJizUb/WpbDV4tGb0I7q6FLCXS1Jq0JPokNkp2Nq6Ns21JARI/teid7xLDvTYOs6N6KKYZsjk0BrNh+enfVvNYSJoEhUYk6BqFyxXg16scEm8MBjw6uDX6JziBEBItnlTdpsgJGVvm8s2Vv+E3purXETgA9pSsQAyyPrkKkBrH1Hg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CO1PR11MB4962.namprd11.prod.outlook.com (2603:10b6:303:99::23)
- by DM6PR11MB3691.namprd11.prod.outlook.com (2603:10b6:5:146::33) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Wed, 10 Aug
- 2022 08:25:14 +0000
-Received: from CO1PR11MB4962.namprd11.prod.outlook.com
- ([fe80::cccd:5d3b:faca:5ebb]) by CO1PR11MB4962.namprd11.prod.outlook.com
- ([fe80::cccd:5d3b:faca:5ebb%7]) with mapi id 15.20.5504.021; Wed, 10 Aug 2022
- 08:25:13 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 2/2] drm/i915: Add DSC support to MST path
-Thread-Index: AQHYTcCt4y1n9vQW+k+xzfYHCH8enK2oiekA
-Date: Wed, 10 Aug 2022 08:25:13 +0000
-Message-ID: <313ee0933a911ba14381ef55f7776a424a849191.camel@intel.com>
-References: <20220411162518.9352-1-stanislav.lisovskiy@intel.com>
- <20220411162518.9352-3-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20220411162518.9352-3-stanislav.lisovskiy@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.36.5-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fdf71014-c74b-4486-94c0-08da7aa9d93d
-x-ms-traffictypediagnostic: DM6PR11MB3691:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Fsfb7Pux4x445sNgAzDk9uohAgYANH5jmmlL4QYHVo7x089/PBvsbvLEqPkIY78xPZ9D8704c1MSHT2RRD8dUVN257Atpetx8/hU7Pf6WLiSRcYt6/+V2s9rAoY2zvT3AVJbDfbi+LLoPjkqqNbz+73keaUoc4YgwF3kZAL37UUg/lSPT2uhun8ow6rECQkn4vOMdQgLx1Jw916aMcFrEtzs8MglSx+Uc+Lqa+x5HyZgFp69T1xZ2VS+dLe+D3L4CmR9/lB3ONDtI8CWBfrKHYYyc0gU6qjDdKrbgrjje5EYwFPKpFjQCCXhrXORb4aPobc5/kez3t1q7zI1mqiEGnHsqTfCyVvgc0FrmOcIYzPddZ2JFV1+4v4xK00I6AAMAWpEUzkpqqn78EVj7KPu8RYS/omFC5c8jAbwGs31LMZwRS0j+LskeCIhsLVUWf3GnVVM28viccvRYoXU/rfurKKjZA5pg3+Ae6/JOx45tcK25p4NEtjkBxPrK94NYFHuNMfWYpTCqBaUoXAqEnrk7r3/dunW+sQYH6IlaSXE2fJzFBq5nLUyDNTSmtvWFm2NyBENo2ugvRZr+uOAKUEAL0w11nPvPYATyKLVAoHQdLFY11YA1u4i0dCJLOosjVNH2gf8WByAEJJsWGS303ScndCC1LVOEakW6P7XgCjR5DDvWdEpatR5aADMMA6+jWhAcvOLU4YnclOz+UDyypy887N7pPPaqzTwzym3uTbKPslOxVUthL/2MDdPwo7ykKlax1hrNPy9ZTbr2UF5ytg1ZGckFI+ozeyaMpyGyZQ9q9M=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4962.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(346002)(136003)(39860400002)(376002)(366004)(396003)(107886003)(2616005)(38100700002)(26005)(6512007)(6506007)(82960400001)(478600001)(41300700001)(5660300002)(8936002)(36756003)(2906002)(30864003)(66476007)(316002)(86362001)(54906003)(8676002)(4326008)(66446008)(6486002)(110136005)(71200400001)(66946007)(76116006)(66556008)(450100002)(91956017)(66574015)(186003)(122000001)(38070700005)(64756008)(83380400001)(579004);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Z3FXeTYrLzAwZGROU3RPOTl3cmxVTWFLd0R2UUhJUlR0WU5iaW8ycWM0WWxT?=
- =?utf-8?B?Uk9FOU1kMExsSndmT1V2empMbzFCR3RyMFZBYVlxYXpNZ05HRVk1aVBKeUNC?=
- =?utf-8?B?dVg3ditaNnNtNTlRempTSzZsNG53K1EvTnhvMXhQOGVyYU04Z1lTVjQ4Q2sz?=
- =?utf-8?B?MEFBUzR3Y3UyRUNLRUNrWDg1emU5ZGdMeUxvdElDWHVwZ2ozVmdMR2p1ZkZt?=
- =?utf-8?B?ZGxjeFE2T2JGU1V1ZDVjekVDSk1qd3dDZkJyYzd3YzkzVS9hQ1pLMjY4K1Q3?=
- =?utf-8?B?NjErOVpzQWJkZEI3V2w4dUFEUGMrdml0N1lOcDFBeFRSYzRuVzkzMVFGTGpv?=
- =?utf-8?B?emU0dXlGd2VycEFhMXZacVpHaXk5SGswM1NaK2JmekQrL3FZNUx6Z2xzaVRF?=
- =?utf-8?B?N0FiM3NrRXlQb05CN1dMdWU0SUI2bGg1VGRQazVRUWhmdVF1M3BZMjltSk5q?=
- =?utf-8?B?bkFtN0h2bUhjaXl0bzJKRlZ4cEJWaml1MWRaTkU1NVV1dEhYMUpXYU5ra1Nw?=
- =?utf-8?B?dGRDSGNnd3N4NG1rR0tOb2Q0UzEvdEN0T0thWWdlNXRmUUVIZEZhcElaNmxC?=
- =?utf-8?B?dnNYK2ZpMm1BNFhKQ2YzRTFKR0JFT0pjcGZtQm00SG5aM2xIdHY0clBUUE15?=
- =?utf-8?B?V1ZmY09yckdoNGxzT1BFeWpmNzB1MjM3Y3ZLQnR0ZWYvTUJnbG9JNGlJT3V0?=
- =?utf-8?B?OWZsVnY4UTc4YXl2UHJlUS9xa3RGTGFPbHVleUUxcXUyUlJKTm1kRXBIMi9C?=
- =?utf-8?B?TStFSjJjQmUvL0Z1L2tsMGpXNGpFM2hpM1VWUHdBclk3eXNSSGc0dmcyOHZw?=
- =?utf-8?B?ZXdKZWJvREszUEEvS1F4NjVWWFRhTHp2QjRoNWtpbzFQRmRpL0hnTUZ1eE9j?=
- =?utf-8?B?OFl2Z1NJVXpoeE1tV2VoT3dJZmRLTmR1TGk1OTdBQUVIV1QyeWkxcWhKL0dt?=
- =?utf-8?B?YjlWMVo4b2FRaDRDL1o3TzB1bFpBblpPMjVTenFYcVZ4SHFQdEM5SGdOSW9E?=
- =?utf-8?B?YldpM1E3SGN3akpvbk1Ga3dSMVlyRHBrckllWlE0N0JtZGhZa2IvK1pIa1RU?=
- =?utf-8?B?UFJLVkZ4REpBVEdVZDkvUWVmL09BRnV5bWtPTVVYckxaY0xSYWtHYm9EM2lO?=
- =?utf-8?B?bSt5SHIrL0VISzF2ODZnY1R3WmlrNE12QWVFSGdJVUFQYnlFczZHMnRuNjly?=
- =?utf-8?B?M0tCQndpNEV3NDU1aTROYWRYcG1BVE4zSXpVWG84RzRZbjA5UCtPZzFvMS9r?=
- =?utf-8?B?cnhJTURVckFFcG8zdXg5OHZqTnJjUUlacXY3cnZEcmwrSjFkYXhQUEx1QXZG?=
- =?utf-8?B?SEtaSXFad0JLTWpQQUhOWGxvQzhhTHMwZUg5QVhDYU5KVkw1TzdyeCtLd2l4?=
- =?utf-8?B?ZDBROTBKTHJjOEZBU3dlcFRpZkJOL0hIcnpZcVZnWExQamw2bEY4YkRVRFpO?=
- =?utf-8?B?YWFNdmlVVzVRQVhVZTdIaWVVcElMRGt4OXdZRDJaL3RNZXZKczZsRlExVjVz?=
- =?utf-8?B?REY1c21SYlJxUzc3L2VyQkh1enU2VUNsNkFkc2dZWURZK296MGhsWURXS2NS?=
- =?utf-8?B?OGI5RzQ1L0xaQjF2cVRFVElIQUp6ZTYwVktubHhVYmYySmY0b3cvWG5WSnpl?=
- =?utf-8?B?S0d4WS9kR3JIZ2VhbzhlcitteExTRC9iOXlQbWszRGpFQitia01KeW14N1Jl?=
- =?utf-8?B?d1dZQk9WVTltY0VZY1VYRlhoM1pqb2VpY0UxdlVjTTVFby9FRmFZOEtCS0Uz?=
- =?utf-8?B?YStFalMxY3YwblhvTW9lR2hsL0FTcXkxY3hJd1RrMEVlVHBNbkN5blJweW94?=
- =?utf-8?B?WVJMbW5Id29lc3BuNnJnK0xJRkUwUGhNekRraTZ2aHBqSTdQMXJFRzI0Qktv?=
- =?utf-8?B?ckdtTkExSHl4aERySE42STlNQW11Q3lpUlV6VURQd1ZLOE9nTzYrZWVkNFkv?=
- =?utf-8?B?QzdqZ3M2dUwxcklRYW40ZEIxQ0xBd2hZZWFiQUtuclRKemFnMVFnd3ROY1ZP?=
- =?utf-8?B?QURkVWpUV2dSWWIxK3lmVEo5SThOTHF1djFncnRYSkp0OVdHNC91ZWZ2TUVk?=
- =?utf-8?B?UHFCVjhpY3J3YlZJdENtblRiWDlvd0NRVldVYmUrZXg2WmxNTFBwWURLWVM0?=
- =?utf-8?B?WGlvaTV3S2EwRzhnNlpkQm04YktUR2ovZ0R6akFWM1pmTWhjeEo4bWtPVk9h?=
- =?utf-8?Q?O+l91/vPoiH3veczOqp9zXg=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <39FFB00B08F1C541AA8150C183AB15A5@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ t=1660121802; x=1691657802;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=RoVKFTVAckoIvOm9SIDpNqQ47QiX2AH1SMI+bNqKy6A=;
+ b=ldhLiFOvsJzEWtflwnOqXBav37JuLf14jx8K1VntQHGrb5KFr2gZafgY
+ 4tuQEHJ0R37MV48TCXT8rzfVMJDJqfekUQrJncz9EkoHneWncgZk57Vbm
+ Gu88Jvv2HFd8IIUAD+RCInXUvJSRPoTcqAB3J/seghD+xrhIibDrMcBoJ
+ OZ8MR3ZFqA9tPcUO+pL+5ly8KbcyiPaZAYyKN/52tJRMKnmFPp/UJIh+o
+ Ql+DxUt/QGdEjnpFRTWVvhslIhxXm9S9mGHIJQsuZmEi5T34C0NE7M6h5
+ 7ByLZGeGc0gbVf8e+1CDTDAFvSrMCD1Kn6KZ3pcCltS9g5BtUSrNQYBKS g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10434"; a="352768859"
+X-IronPort-AV: E=Sophos;i="5.93,226,1654585200"; d="scan'208";a="352768859"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 01:56:41 -0700
+X-IronPort-AV: E=Sophos;i="5.93,226,1654585200"; d="scan'208";a="664811855"
+Received: from tsanates-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.129])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 01:56:38 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220804082840.3468949-3-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220804082840.3468949-1-suraj.kandpal@intel.com>
+ <20220804082840.3468949-3-suraj.kandpal@intel.com>
+Date: Wed, 10 Aug 2022 11:56:36 +0300
+Message-ID: <87k07g8ojf.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4962.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fdf71014-c74b-4486-94c0-08da7aa9d93d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Aug 2022 08:25:13.8943 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: w/WDVXoHTUuGojVOljQNbZQcIbwkOKBDQu8k/XDwR9tu0lArPrO7yGRnqq8fgyqZdKBGHZPpJFKJxK5Kkmirsyvx5GeI7PlFLi+vS3SQX/k=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3691
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Add DSC support to MST path
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915: Enabling WD Transcoder
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,289 +58,1773 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgU3RhbiwNCg0KUGxlYXNlIGZpbmQgbXkgY29tbWVudHMgaW5saW5lDQoNCg0KT24gTW9uLCAy
-MDIyLTA0LTExIGF0IDE5OjI1ICswMzAwLCBTdGFuaXNsYXYgTGlzb3Zza2l5IHdyb3RlOg0KPiBX
-aGVuZXZlciB3ZSBhcmUgbm90IGFibGUgdG8gZ2V0IGVub3VnaCB0aW1lc2xvdHMNCj4gZm9yIHJl
-cXVpcmVkIFBCTiwgbGV0J3MgdHJ5IHRvIGFsbG9jYXRlIHRob3NlDQo+IHVzaW5nIERTQywganVz
-dCBzYW1lIHdheSBhcyB3ZSBkbyBmb3IgU1NULg0KPiANCj4gdjI6IFJlbW92ZWQgaW50ZWxfZHBf
-bXN0X2RzY19jb21wdXRlX2NvbmZpZyBhbmQgcmVmYWN0b3JlZA0KPiAgICAgaW50ZWxfZHBfZHNj
-X2NvbXB1dGVfY29uZmlnIHRvIHN1cHBvcnQgdGltZXNsb3RzIGFzIGENCj4gICAgIHBhcmFtZXRl
-cihWaWxsZSBTeXJqw6Rsw6QpDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBTdGFuaXNsYXYgTGlzb3Zz
-a2l5IDxzdGFuaXNsYXYubGlzb3Zza2l5QGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgICAgIHwgIDc1ICsrKysrLS0tLS0NCj4gIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaCAgICAgfCAgMTcgKysrDQo+ICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIHwgMTQzICsrKysrKysr
-KysrKysrKysrKysrDQo+ICAzIGZpbGVzIGNoYW5nZWQsIDE5MSBpbnNlcnRpb25zKCspLCA0NCBk
-ZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RwLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMN
-Cj4gaW5kZXggOTcyYzllZDQ2ODI5Li5mNTQ3N2YxYmY2MjIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gQEAgLTExNCw3ICsxMTQsNiBAQCBib29sIGlu
-dGVsX2RwX2lzX2VkcChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQ0KPiAgfQ0KPiAgDQo+ICBz
-dGF0aWMgdm9pZCBpbnRlbF9kcF91bnNldF9lZGlkKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAp
-Ow0KPiAtc3RhdGljIGludCBpbnRlbF9kcF9kc2NfY29tcHV0ZV9icHAoc3RydWN0IGludGVsX2Rw
-ICppbnRlbF9kcCwgdTggZHNjX21heF9icGMpOw0KPiAgDQo+ICAvKiBJcyBsaW5rIHJhdGUgVUhC
-UiBhbmQgdGh1cyAxMjhiLzEzMmI/ICovDQo+ICBib29sIGludGVsX2RwX2lzX3VoYnIoY29uc3Qg
-c3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+IEBAIC02NDAsMTEgKzYzOSwx
-MiBAQCBzbWFsbF9qb2luZXJfcmFtX3NpemVfYml0cyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSkNCj4gIAkJcmV0dXJuIDYxNDQgKiA4Ow0KPiAgfQ0KPiAgDQo+IC1zdGF0aWMgdTE2IGlu
-dGVsX2RwX2RzY19nZXRfb3V0cHV0X2JwcChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwN
-Cj4gLQkJCQkgICAgICAgdTMyIGxpbmtfY2xvY2ssIHUzMiBsYW5lX2NvdW50LA0KPiAtCQkJCSAg
-ICAgICB1MzIgbW9kZV9jbG9jaywgdTMyIG1vZGVfaGRpc3BsYXksDQo+IC0JCQkJICAgICAgIGJv
-b2wgYmlnam9pbmVyLA0KPiAtCQkJCSAgICAgICB1MzIgcGlwZV9icHApDQo+ICt1MTYgaW50ZWxf
-ZHBfZHNjX2dldF9vdXRwdXRfYnBwKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LA0KPiAr
-CQkJCXUzMiBsaW5rX2Nsb2NrLCB1MzIgbGFuZV9jb3VudCwNCj4gKwkJCQl1MzIgbW9kZV9jbG9j
-aywgdTMyIG1vZGVfaGRpc3BsYXksDQo+ICsJCQkJYm9vbCBiaWdqb2luZXIsDQo+ICsJCQkJdTMy
-IHBpcGVfYnBwLA0KPiArCQkJCXUzMiB0aW1lc2xvdHMpDQo+ICB7DQo+ICAJdTMyIGJpdHNfcGVy
-X3BpeGVsLCBtYXhfYnBwX3NtYWxsX2pvaW5lcl9yYW07DQo+ICAJaW50IGk7DQo+IEBAIC02NTYs
-NyArNjU2LDcgQEAgc3RhdGljIHUxNiBpbnRlbF9kcF9kc2NfZ2V0X291dHB1dF9icHAoc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsDQo+ICAJICogZm9yIE1TVCAtPiBUaW1lU2xvdHNQZXJN
-VFAgaGFzIHRvIGJlIGNhbGN1bGF0ZWQNCj4gIAkgKi8NCj4gIAliaXRzX3Blcl9waXhlbCA9IChs
-aW5rX2Nsb2NrICogbGFuZV9jb3VudCAqIDgpIC8NCj4gLQkJCSBpbnRlbF9kcF9tb2RlX3RvX2Zl
-Y19jbG9jayhtb2RlX2Nsb2NrKTsNCj4gKwkJCSAoaW50ZWxfZHBfbW9kZV90b19mZWNfY2xvY2so
-bW9kZV9jbG9jaykgKiB0aW1lc2xvdHMpOw0KPiAgCWRybV9kYmdfa21zKCZpOTE1LT5kcm0sICJN
-YXggbGluayBicHA6ICV1XG4iLCBiaXRzX3Blcl9waXhlbCk7DQo+ICANCj4gIAkvKiBTbWFsbCBK
-b2luZXIgQ2hlY2s6IG91dHB1dCBicHAgPD0gam9pbmVyIFJBTSAoYml0cykgLyBIb3Jpei4gd2lk
-dGggKi8NCj4gQEAgLTcxMCw5ICs3MTAsOSBAQCBzdGF0aWMgdTE2IGludGVsX2RwX2RzY19nZXRf
-b3V0cHV0X2JwcChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gIAlyZXR1cm4gYml0
-c19wZXJfcGl4ZWwgPDwgNDsNCj4gIH0NCj4gIA0KPiAtc3RhdGljIHU4IGludGVsX2RwX2RzY19n
-ZXRfc2xpY2VfY291bnQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gLQkJCQkgICAgICAg
-aW50IG1vZGVfY2xvY2ssIGludCBtb2RlX2hkaXNwbGF5LA0KPiAtCQkJCSAgICAgICBib29sIGJp
-Z2pvaW5lcikNCj4gK3U4IGludGVsX2RwX2RzY19nZXRfc2xpY2VfY291bnQoc3RydWN0IGludGVs
-X2RwICppbnRlbF9kcCwNCj4gKwkJCQlpbnQgbW9kZV9jbG9jaywgaW50IG1vZGVfaGRpc3BsYXks
-DQo+ICsJCQkJYm9vbCBiaWdqb2luZXIpDQo+ICB7DQo+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmk5MTUgPSBkcF90b19pOTE1KGludGVsX2RwKTsNCj4gIAl1OCBtaW5fc2xpY2VfY291bnQs
-IGk7DQo+IEBAIC05MTksOCArOTE5LDggQEAgaW50ZWxfZHBfbW9kZV92YWxpZF9kb3duc3RyZWFt
-KHN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmNvbm5lY3RvciwNCj4gIAlyZXR1cm4gTU9ERV9PSzsN
-Cj4gIH0NCj4gIA0KPiAtc3RhdGljIGJvb2wgaW50ZWxfZHBfbmVlZF9iaWdqb2luZXIoc3RydWN0
-IGludGVsX2RwICppbnRlbF9kcCwNCj4gLQkJCQkgICAgaW50IGhkaXNwbGF5LCBpbnQgY2xvY2sp
-DQo+ICtib29sIGludGVsX2RwX25lZWRfYmlnam9pbmVyKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxf
-ZHAsDQo+ICsJCQkgICAgIGludCBoZGlzcGxheSwgaW50IGNsb2NrKQ0KPiAgew0KPiAgCXN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7DQo+ICANCj4g
-QEAgLTEwMDcsNyArMTAwNyw3IEBAIGludGVsX2RwX21vZGVfdmFsaWQoc3RydWN0IGRybV9jb25u
-ZWN0b3IgKl9jb25uZWN0b3IsDQo+ICAJCQkJCQkJICAgIHRhcmdldF9jbG9jaywNCj4gIAkJCQkJ
-CQkgICAgbW9kZS0+aGRpc3BsYXksDQo+ICAJCQkJCQkJICAgIGJpZ2pvaW5lciwNCj4gLQkJCQkJ
-CQkgICAgcGlwZV9icHApID4+IDQ7DQo+ICsJCQkJCQkJICAgIHBpcGVfYnBwLCAxKSA+PiA0Ow0K
-PiAgCQkJZHNjX3NsaWNlX2NvdW50ID0NCj4gIAkJCQlpbnRlbF9kcF9kc2NfZ2V0X3NsaWNlX2Nv
-dW50KGludGVsX2RwLA0KPiAgCQkJCQkJCSAgICAgdGFyZ2V0X2Nsb2NrLA0KPiBAQCAtMTMxMSw3
-ICsxMzExLDcgQEAgaW50ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZpZ193aWRlKHN0cnVjdCBpbnRl
-bF9kcCAqaW50ZWxfZHAsDQo+ICAJcmV0dXJuIC1FSU5WQUw7DQo+ICB9DQo+ICANCj4gLXN0YXRp
-YyBpbnQgaW50ZWxfZHBfZHNjX2NvbXB1dGVfYnBwKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAs
-IHU4IG1heF9yZXFfYnBjKQ0KPiAraW50IGludGVsX2RwX2RzY19jb21wdXRlX2JwcChzdHJ1Y3Qg
-aW50ZWxfZHAgKmludGVsX2RwLCB1OCBtYXhfcmVxX2JwYykNCj4gIHsNCj4gIAlzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOw0KPiAgCWludCBpLCBu
-dW1fYnBjOw0KPiBAQCAtMTQwMSwxMCArMTQwMSwxMSBAQCBzdGF0aWMgaW50IGludGVsX2RwX2Rz
-Y19jb21wdXRlX3BhcmFtcyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gIAlyZXR1
-cm4gZHJtX2RzY19jb21wdXRlX3JjX3BhcmFtZXRlcnModmRzY19jZmcpOw0KPiAgfQ0KPiAgDQo+
-IC1zdGF0aWMgaW50IGludGVsX2RwX2RzY19jb21wdXRlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZHAg
-KmludGVsX2RwLA0KPiAtCQkJCSAgICAgICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9j
-b25maWcsDQo+IC0JCQkJICAgICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0
-YXRlLA0KPiAtCQkJCSAgICAgICBzdHJ1Y3QgbGlua19jb25maWdfbGltaXRzICpsaW1pdHMpDQo+
-ICtpbnQgaW50ZWxfZHBfZHNjX2NvbXB1dGVfY29uZmlnKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxf
-ZHAsDQo+ICsJCQkJc3RydWN0IGludGVsX2NydGNfc3RhdGUgKnBpcGVfY29uZmlnLA0KPiArCQkJ
-CXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlLA0KPiArCQkJCXN0cnVjdCBs
-aW5rX2NvbmZpZ19saW1pdHMgKmxpbWl0cywNCj4gKwkJCQlpbnQgdGltZXNsb3RzKQ0KPiAgew0K
-PiAgCXN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0gZHBfdG9fZGlnX3BvcnQo
-aW50ZWxfZHApOw0KPiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5
-MTUoZGlnX3BvcnQtPmJhc2UuYmFzZS5kZXYpOw0KPiBAQCAtMTQ1NSw3ICsxNDU2LDggQEAgc3Rh
-dGljIGludCBpbnRlbF9kcF9kc2NfY29tcHV0ZV9jb25maWcoc3RydWN0IGludGVsX2RwICppbnRl
-bF9kcCwNCj4gIAkJCQkJCSAgICBhZGp1c3RlZF9tb2RlLT5jcnRjX2Nsb2NrLA0KPiAgCQkJCQkJ
-ICAgIGFkanVzdGVkX21vZGUtPmNydGNfaGRpc3BsYXksDQo+ICAJCQkJCQkgICAgcGlwZV9jb25m
-aWctPmJpZ2pvaW5lcl9waXBlcywNCj4gLQkJCQkJCSAgICBwaXBlX2JwcCk7DQo+ICsJCQkJCQkg
-ICAgcGlwZV9icHAsDQo+ICsJCQkJCQkgICAgdGltZXNsb3RzKTsNCj4gIAkJZHNjX2RwX3NsaWNl
-X2NvdW50ID0NCj4gIAkJCWludGVsX2RwX2RzY19nZXRfc2xpY2VfY291bnQoaW50ZWxfZHAsDQo+
-ICAJCQkJCQkgICAgIGFkanVzdGVkX21vZGUtPmNydGNfY2xvY2ssDQo+IEBAIC0xNDY3LDQxICsx
-NDY5LDI2IEBAIHN0YXRpYyBpbnQgaW50ZWxfZHBfZHNjX2NvbXB1dGVfY29uZmlnKHN0cnVjdCBp
-bnRlbF9kcCAqaW50ZWxfZHAsDQo+ICAJCQlyZXR1cm4gLUVJTlZBTDsNCj4gIAkJfQ0KPiAgCQlw
-aXBlX2NvbmZpZy0+ZHNjLmNvbXByZXNzZWRfYnBwID0gbWluX3QodTE2LA0KPiAtCQkJCQkJCSAg
-ICAgICBkc2NfbWF4X291dHB1dF9icHAgPj4gNCwNCj4gLQkJCQkJCQkgICAgICAgcGlwZV9jb25m
-aWctPnBpcGVfYnBwKTsNCj4gKwkJCQkJCQlkc2NfbWF4X291dHB1dF9icHAgPj4gNCwNCj4gKwkJ
-CQkJCQlwaXBlX2NvbmZpZy0+cGlwZV9icHApOw0KPiAgCQlwaXBlX2NvbmZpZy0+ZHNjLnNsaWNl
-X2NvdW50ID0gZHNjX2RwX3NsaWNlX2NvdW50Ow0KPiArCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYt
-PmRybSwgIkRTQzogY29tcHJlc3NlZCBicHAgJWQgc2xpY2UgY291bnQgJWRcbiIsDQo+ICsJCQkg
-ICAgcGlwZV9jb25maWctPmRzYy5jb21wcmVzc2VkX2JwcCwNCj4gKwkJCSAgICBwaXBlX2NvbmZp
-Zy0+ZHNjLnNsaWNlX2NvdW50KTsNCj4gIAl9DQo+IC0NCj4gLQkvKiBBcyBvZiB0b2RheSB3ZSBz
-dXBwb3J0IERTQyBmb3Igb25seSBSR0IgKi8NCj4gLQlpZiAoaW50ZWxfZHAtPmZvcmNlX2RzY19i
-cHApIHsNCj4gLQkJaWYgKGludGVsX2RwLT5mb3JjZV9kc2NfYnBwID49IDggJiYNCj4gLQkJICAg
-IGludGVsX2RwLT5mb3JjZV9kc2NfYnBwIDwgcGlwZV9icHApIHsNCj4gLQkJCWRybV9kYmdfa21z
-KCZkZXZfcHJpdi0+ZHJtLA0KPiAtCQkJCSAgICAiRFNDIEJQUCBmb3JjZWQgdG8gJWQiLA0KPiAt
-CQkJCSAgICBpbnRlbF9kcC0+Zm9yY2VfZHNjX2JwcCk7DQo+IC0JCQlwaXBlX2NvbmZpZy0+ZHNj
-LmNvbXByZXNzZWRfYnBwID0NCj4gLQkJCQkJCWludGVsX2RwLT5mb3JjZV9kc2NfYnBwOw0KPiAt
-CQl9IGVsc2Ugew0KPiAtCQkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sDQo+IC0JCQkJICAg
-ICJJbnZhbGlkIERTQyBCUFAgJWQiLA0KPiAtCQkJCSAgICBpbnRlbF9kcC0+Zm9yY2VfZHNjX2Jw
-cCk7DQo+IC0JCX0NCj4gLQl9DQo+IC0NCj4gIAkvKg0KPiAgCSAqIFZEU0MgZW5naW5lIG9wZXJh
-dGVzIGF0IDEgUGl4ZWwgcGVyIGNsb2NrLCBzbyBpZiBwZWFrIHBpeGVsIHJhdGUNCj4gIAkgKiBp
-cyBncmVhdGVyIHRoYW4gdGhlIG1heGltdW0gQ2RjbG9jayBhbmQgaWYgc2xpY2UgY291bnQgaXMg
-ZXZlbg0KPiAgCSAqIHRoZW4gd2UgbmVlZCB0byB1c2UgMiBWRFNDIGluc3RhbmNlcy4NCj4gIAkg
-Ki8NCj4gLQlpZiAoYWRqdXN0ZWRfbW9kZS0+Y3J0Y19jbG9jayA+IGRldl9wcml2LT5tYXhfY2Rj
-bGtfZnJlcSB8fA0KPiAtCSAgICBwaXBlX2NvbmZpZy0+Ymlnam9pbmVyX3BpcGVzKSB7DQo+IC0J
-CWlmIChwaXBlX2NvbmZpZy0+ZHNjLnNsaWNlX2NvdW50IDwgMikgew0KPiArCWlmIChhZGp1c3Rl
-ZF9tb2RlLT5jcnRjX2Nsb2NrID4gZGV2X3ByaXYtPm1heF9jZGNsa19mcmVxKSB7DQo+ICsJCWlm
-IChwaXBlX2NvbmZpZy0+ZHNjLnNsaWNlX2NvdW50ID4gMSkgew0KPiArCQkJcGlwZV9jb25maWct
-PmRzYy5kc2Nfc3BsaXQgPSB0cnVlOw0KPiArCQl9IGVsc2Ugew0KPiAgCQkJZHJtX2RiZ19rbXMo
-JmRldl9wcml2LT5kcm0sDQo+ICAJCQkJICAgICJDYW5ub3Qgc3BsaXQgc3RyZWFtIHRvIHVzZSAy
-IFZEU0MgaW5zdGFuY2VzXG4iKTsNCj4gIAkJCXJldHVybiAtRUlOVkFMOw0KPiAgCQl9DQo+IC0N
-Cj4gLQkJcGlwZV9jb25maWctPmRzYy5kc2Nfc3BsaXQgPSB0cnVlOw0KPiAgCX0NCj4gIA0KPiAg
-CXJldCA9IGludGVsX2RwX2RzY19jb21wdXRlX3BhcmFtcygmZGlnX3BvcnQtPmJhc2UsIHBpcGVf
-Y29uZmlnKTsNCj4gQEAgLTE1OTAsNyArMTU3Nyw3IEBAIGludGVsX2RwX2NvbXB1dGVfbGlua19j
-b25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICAJCQkgICAgc3RyX3llc19u
-byhyZXQpLCBzdHJfeWVzX25vKGpvaW5lcl9uZWVkc19kc2MpLA0KPiAgCQkJICAgIHN0cl95ZXNf
-bm8oaW50ZWxfZHAtPmZvcmNlX2RzY19lbikpOw0KPiAgCQlyZXQgPSBpbnRlbF9kcF9kc2NfY29t
-cHV0ZV9jb25maWcoaW50ZWxfZHAsIHBpcGVfY29uZmlnLA0KPiAtCQkJCQkJICBjb25uX3N0YXRl
-LCAmbGltaXRzKTsNCj4gKwkJCQkJCSAgY29ubl9zdGF0ZSwgJmxpbWl0cywgMSk7DQo+ICAJCWlm
-IChyZXQgPCAwKQ0KPiAgCQkJcmV0dXJuIHJldDsNCj4gIAl9DQo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RwLmgNCj4gaW5kZXggZDQ1N2UxN2JkYzU3Li40YzBhZDMxNThlZTcg
-MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaA0K
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmgNCj4gQEAgLTU1
-LDYgKzU1LDExIEBAIHZvaWQgaW50ZWxfZHBfZW5jb2Rlcl9mbHVzaF93b3JrKHN0cnVjdCBkcm1f
-ZW5jb2RlciAqZW5jb2Rlcik7DQo+ICBpbnQgaW50ZWxfZHBfY29tcHV0ZV9jb25maWcoc3RydWN0
-IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICAJCQkgICAgc3RydWN0IGludGVsX2NydGNfc3Rh
-dGUgKnBpcGVfY29uZmlnLA0KPiAgCQkJICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpj
-b25uX3N0YXRlKTsNCj4gK2ludCBpbnRlbF9kcF9kc2NfY29tcHV0ZV9jb25maWcoc3RydWN0IGlu
-dGVsX2RwICppbnRlbF9kcCwNCj4gKwkJCQlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9j
-b25maWcsDQo+ICsJCQkJc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNvbm5fc3RhdGUsDQo+
-ICsJCQkJc3RydWN0IGxpbmtfY29uZmlnX2xpbWl0cyAqbGltaXRzLA0KPiArCQkJCWludCB0aW1l
-c2xvdHMpOw0KPiAgYm9vbCBpbnRlbF9kcF9pc19lZHAoc3RydWN0IGludGVsX2RwICppbnRlbF9k
-cCk7DQo+ICBib29sIGludGVsX2RwX2lzX3VoYnIoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3Rh
-dGUgKmNydGNfc3RhdGUpOw0KPiAgYm9vbCBpbnRlbF9kcF9pc19wb3J0X2VkcChzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGVudW0gcG9ydCBwb3J0KTsNCj4gQEAgLTk0LDYgKzk5
-LDE4IEBAIHZvaWQgaW50ZWxfcmVhZF9kcF9zZHAoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29k
-ZXIsDQo+ICAJCSAgICAgICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwNCj4g
-IAkJICAgICAgIHVuc2lnbmVkIGludCB0eXBlKTsNCj4gIGJvb2wgaW50ZWxfZGlnaXRhbF9wb3J0
-X2Nvbm5lY3RlZChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2Rlcik7DQo+ICtpbnQgaW50ZWxf
-ZHBfZHNjX2NvbXB1dGVfYnBwKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsIHU4IGRzY19tYXhf
-YnBjKTsNCj4gK3UxNiBpbnRlbF9kcF9kc2NfZ2V0X291dHB1dF9icHAoc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmk5MTUsDQo+ICsJCQkJdTMyIGxpbmtfY2xvY2ssIHUzMiBsYW5lX2NvdW50LA0K
-PiArCQkJCXUzMiBtb2RlX2Nsb2NrLCB1MzIgbW9kZV9oZGlzcGxheSwNCj4gKwkJCQlib29sIGJp
-Z2pvaW5lciwNCj4gKwkJCQl1MzIgcGlwZV9icHAsDQo+ICsJCQkJdTMyIHRpbWVzbG90cyk7DQo+
-ICt1OCBpbnRlbF9kcF9kc2NfZ2V0X3NsaWNlX2NvdW50KHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxf
-ZHAsDQo+ICsJCQkJaW50IG1vZGVfY2xvY2ssIGludCBtb2RlX2hkaXNwbGF5LA0KPiArCQkJCWJv
-b2wgYmlnam9pbmVyKTsNCj4gK2Jvb2wgaW50ZWxfZHBfbmVlZF9iaWdqb2luZXIoc3RydWN0IGlu
-dGVsX2RwICppbnRlbF9kcCwNCj4gKwkJCSAgICAgaW50IGhkaXNwbGF5LCBpbnQgY2xvY2spOw0K
-PiAgDQo+ICBzdGF0aWMgaW5saW5lIHVuc2lnbmVkIGludCBpbnRlbF9kcF91bnVzZWRfbGFuZV9t
-YXNrKGludCBsYW5lX2NvdW50KQ0KPiAgew0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZHBfbXN0LmMNCj4gaW5kZXggMDYxYjI3N2U1Y2U3Li41NTBmY2QzODA0ODcg
-MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0
-LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0K
-PiBAQCAtOTksNiArOTksODIgQEAgc3RhdGljIGludCBpbnRlbF9kcF9tc3RfY29tcHV0ZV9saW5r
-X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gIAlyZXR1cm4gMDsNCj4g
-IH0NCj4gIA0KPiArc3RhdGljIGludCBpbnRlbF9kcF9kc2NfbXN0X2NvbXB1dGVfbGlua19jb25m
-aWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICsJCQkJCQlzdHJ1Y3QgaW50ZWxf
-Y3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwNCj4gKwkJCQkJCXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0
-YXRlICpjb25uX3N0YXRlLA0KPiArCQkJCQkJc3RydWN0IGxpbmtfY29uZmlnX2xpbWl0cyAqbGlt
-aXRzKQ0KPiArew0KPiArCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSA9IGNydGNfc3Rh
-dGUtPnVhcGkuc3RhdGU7DQo+ICsJc3RydWN0IGludGVsX2RwX21zdF9lbmNvZGVyICppbnRlbF9t
-c3QgPSBlbmNfdG9fbXN0KGVuY29kZXIpOw0KPiArCXN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAg
-PSAmaW50ZWxfbXN0LT5wcmltYXJ5LT5kcDsNCj4gKwlzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpj
-b25uZWN0b3IgPQ0KPiArCQl0b19pbnRlbF9jb25uZWN0b3IoY29ubl9zdGF0ZS0+Y29ubmVjdG9y
-KTsNCj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoY29ubmVjdG9y
-LT5iYXNlLmRldik7DQo+ICsJY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKmFkanVzdGVk
-X21vZGUgPQ0KPiArCQkmY3J0Y19zdGF0ZS0+aHcuYWRqdXN0ZWRfbW9kZTsNCj4gKwlib29sIGNv
-bnN0YW50X24gPSBkcm1fZHBfaGFzX3F1aXJrKCZpbnRlbF9kcC0+ZGVzYywNCj4gKwkJCQkJICAg
-RFBfRFBDRF9RVUlSS19DT05TVEFOVF9OKTsNCj4gKwlpbnQgYnBwLCBzbG90cyA9IC1FSU5WQUw7
-DQo+ICsJaW50IGksIG51bV9icGM7DQo+ICsJdTggZHNjX2JwY1szXSA9IHswfTsNCj4gKwlpbnQg
-bWluX2JwcCwgbWF4X2JwcDsNCj4gKwl1OCBkc2NfbWF4X2JwYzsNCj4gKw0KPiArCWNydGNfc3Rh
-dGUtPmxhbmVfY291bnQgPSBsaW1pdHMtPm1heF9sYW5lX2NvdW50Ow0KPiArCWNydGNfc3RhdGUt
-PnBvcnRfY2xvY2sgPSBsaW1pdHMtPm1heF9yYXRlOw0KPiArDQo+ICsJLyogTWF4IERTQyBJbnB1
-dCBCUEMgZm9yIElDTCBpcyAxMCBhbmQgZm9yIFRHTCsgaXMgMTIgKi8NCj4gKwlpZiAoRElTUExB
-WV9WRVIoaTkxNSkgPj0gMTIpDQo+ICsJCWRzY19tYXhfYnBjID0gbWluX3QodTgsIDEyLCBjb25u
-X3N0YXRlLT5tYXhfcmVxdWVzdGVkX2JwYyk7DQo+ICsJZWxzZQ0KPiArCQlkc2NfbWF4X2JwYyA9
-IG1pbl90KHU4LCAxMCwgY29ubl9zdGF0ZS0+bWF4X3JlcXVlc3RlZF9icGMpOw0KPiArDQo+ICsJ
-bWF4X2JwcCA9IG1pbl90KHU4LCBkc2NfbWF4X2JwYyAqIDMsIGxpbWl0cy0+bWF4X2JwcCk7DQo+
-ICsJbWluX2JwcCA9IGxpbWl0cy0+bWluX2JwcDsNCj4gKw0KPiArCW51bV9icGMgPSBkcm1fZHBf
-ZHNjX3Npbmtfc3VwcG9ydGVkX2lucHV0X2JwY3MoaW50ZWxfZHAtPmRzY19kcGNkLA0KPiArCQkJ
-CQkJICAgICAgIGRzY19icGMpOw0KPiArCWZvciAoaSA9IDA7IGkgPCBudW1fYnBjOyBpKyspIHsN
-Cj4gKwkJaWYgKG1heF9icHAgPj0gZHNjX2JwY1tpXSAqIDMpDQo+ICsJCQlpZiAobWluX2JwcCA+
-IGRzY19icGNbaV0gKiAzKQ0KPiArCQkJCW1pbl9icHAgPSBkc2NfYnBjW2ldICogMzsNCj4gKwl9
-DQo+ICsJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgIkRTQyBTaW5rIHN1cHBvcnRlZCBtaW4gYnBw
-ICVkIG1heCBicHAgJWRcbiIsDQo+ICsJCSAgICBtaW5fYnBwLCBtYXhfYnBwKTsNCj4gKwlmb3Ig
-KGJwcCA9IG1heF9icHA7IGJwcCA+PSBtaW5fYnBwOyBicHAgLT0gMiAqIDMpIHsNCj4gKwkJY3J0
-Y19zdGF0ZS0+cGJuID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoYWRqdXN0ZWRfbW9kZS0+Y3J0Y19j
-bG9jaywNCj4gKwkJCQkJCSAgICAgICBicHAgPDwgNCwNCj4gKwkJCQkJCSAgICAgICB0cnVlKTsN
-Cj4gKw0KPiArCQlzbG90cyA9IGRybV9kcF9hdG9taWNfZmluZF92Y3BpX3Nsb3RzKHN0YXRlLCAm
-aW50ZWxfZHAtPm1zdF9tZ3IsDQo+ICsJCQkJCQkgICAgICBjb25uZWN0b3ItPnBvcnQsDQo+ICsJ
-CQkJCQkgICAgICBjcnRjX3N0YXRlLT5wYm4sIDApOw0KPiArDQo+ICsJCWRybV9kYmdfa21zKCZp
-OTE1LT5kcm0sICJUcnlpbmcgYnBwICVkIGdvdCAlZCBwYm4gJWQgc2xvdHNcbiIsDQo+ICsJCQkg
-ICAgYnBwLCBjcnRjX3N0YXRlLT5wYm4sIHNsb3RzKTsNCj4gKw0KPiArCQlpZiAoc2xvdHMgPT0g
-LUVERUFETEspDQo+ICsJCQlyZXR1cm4gc2xvdHM7DQo+ICsJCWlmIChzbG90cyA+PSAwKQ0KPiAr
-CQkJYnJlYWs7DQo+ICsJfQ0KPiArDQo+ICsJaWYgKHNsb3RzIDwgMCkgew0KPiArCQlkcm1fZGJn
-X2ttcygmaTkxNS0+ZHJtLCAiZmFpbGVkIGZpbmRpbmcgdmNwaSBzbG90czolZFxuIiwNCj4gKwkJ
-CSAgICBzbG90cyk7DQo+ICsJCXJldHVybiBzbG90czsNCj4gKwl9DQo+ICsNCj4gKwlpbnRlbF9s
-aW5rX2NvbXB1dGVfbV9uKGNydGNfc3RhdGUtPnBpcGVfYnBwLA0KPiArCQkJICAgICAgIGNydGNf
-c3RhdGUtPmxhbmVfY291bnQsDQo+ICsJCQkgICAgICAgYWRqdXN0ZWRfbW9kZS0+Y3J0Y19jbG9j
-aywNCj4gKwkJCSAgICAgICBjcnRjX3N0YXRlLT5wb3J0X2Nsb2NrLA0KPiArCQkJICAgICAgICZj
-cnRjX3N0YXRlLT5kcF9tX24sDQo+ICsJCQkgICAgICAgY29uc3RhbnRfbiwgY3J0Y19zdGF0ZS0+
-ZmVjX2VuYWJsZSk7DQo+ICsJY3J0Y19zdGF0ZS0+ZHBfbV9uLnR1ID0gc2xvdHM7DQo+ICsNCj4g
-KwlyZXR1cm4gMDsNCj4gK30NCj4gIHN0YXRpYyBpbnQgaW50ZWxfZHBfbXN0X3VwZGF0ZV9zbG90
-cyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gIAkJCQkgICAgIHN0cnVjdCBpbnRl
-bF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLA0KPiAgCQkJCSAgICAgc3RydWN0IGRybV9jb25uZWN0
-b3Jfc3RhdGUgKmNvbm5fc3RhdGUpDQo+IEBAIC0xNzUsNiArMjUxLDI3IEBAIHN0YXRpYyBpbnQg
-aW50ZWxfZHBfbXN0X2NvbXB1dGVfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVy
-LA0KPiAgDQo+ICAJcmV0ID0gaW50ZWxfZHBfbXN0X2NvbXB1dGVfbGlua19jb25maWcoZW5jb2Rl
-ciwgcGlwZV9jb25maWcsDQo+ICAJCQkJCSAgICAgICBjb25uX3N0YXRlLCAmbGltaXRzKTsNCg0K
-QXQgdGhpcyBwb2ludCBpdCBsb29rcyBsaWtlIGl0IGRvZXNudCBjaGVjayBhbnkgYXZhaWxhYmxl
-IGJhbmR3aWR0aCBsaW1pdGF0aW9uIQ0KaW50ZWxfZHBfbXN0X2NvbXB1dGVfbGlua19jb25maWco
-KSBjYWxscyBkcm1fZHBfYXRvbWljX2ZpbmRfdmNwaV9zbG90cygpIHdoaWNoIGlzIHRoZSBiYXNp
-cyBvZiB0aGUNCmJlbG93IGxvZ2ljIHRvIGRlY2lkZSB3aGV0aGVyIHRvIHVzZSBEU0MuIEJ1dCBk
-cm1fZHBfYXRvbWljX2ZpbmRfdmNwaV9zbG90cygpIGRvZXNuJ3QgY2hlY2sgYW55IGJ3DQpsaW1p
-dHMuIFRoZSBkZXNjcmlwdGlvbiBvZiB0aGlzIGZ1bmN0aW9uIHNheXMgIkFsbG9jYXRpb25zIHNl
-dCBieSB0aGlzIGZ1bmN0aW9uIGFyZSBub3QgY2hlY2tlZA0KYWdhaW5zdCB0aGUgYmFuZHdpZHRo
-IHJlc3RyYWludHMgb2YgQG1nciB1bnRpbCB0aGUgZHJpdmVyIGNhbGxzIGRybV9kcF9tc3RfYXRv
-bWljX2NoZWNrKCkuIg0KDQpUaGUgVkNQSSBzbG90IGNoZWNrIG9ubHkgaGFwcGVucyBpbiBkcm1f
-ZHBfbXN0X2F0b21pY19jaGVjaygpIHdoaWNoIGlzIGNhbGxlZA0KZnJvbSBpbnRlbF9hdG9taWNf
-Y2hlY2soKSANCg0KU28gbG9va3MgbGlrZSB3ZSBtaWdodCBuZWVkIHRvIHVwZGF0ZSB0aGlzIGxv
-Z2ljIHRvIGZpbmQgYSBwcm9wZXIgcGxhY2UgZm9yIHRoaXMgRFNDIGVuYWJsZS9kaXNhYmxlDQpk
-ZWNpc2lvbiENCg0KPiArDQo+ICsJaWYgKHJldCA9PSAtRURFQURMSykNCj4gKwkJcmV0dXJuIHJl
-dDsNCj4gKw0KPiArCS8qIGVuYWJsZSBjb21wcmVzc2lvbiBpZiB0aGUgbW9kZSBkb2Vzbid0IGZp
-dCBhdmFpbGFibGUgQlcgKi8NCj4gKwlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwgIkZvcmNl
-IERTQyBlbiA9ICVkXG4iLCBpbnRlbF9kcC0+Zm9yY2VfZHNjX2VuKTsNCj4gKwlpZiAocmV0IHx8
-IGludGVsX2RwLT5mb3JjZV9kc2NfZW4pIHsNCj4gKwkJLyoNCj4gKwkJICogVHJ5IHRvIGdldCBh
-dCBsZWFzdCBzb21lIHRpbWVzbG90cyBhbmQgdGhlbiBzZWUsIGlmDQo+ICsJCSAqIHdlIGNhbiBm
-aXQgdGhlcmUgd2l0aCBEU0MuDQo+ICsJCSAqLw0KPiArCQlyZXQgPSBpbnRlbF9kcF9kc2NfbXN0
-X2NvbXB1dGVfbGlua19jb25maWcoZW5jb2RlciwgcGlwZV9jb25maWcsDQo+ICsJCQkJCQkJICAg
-Y29ubl9zdGF0ZSwgJmxpbWl0cyk7DQo+ICsJCWlmIChyZXQgPCAwKQ0KPiArCQkJcmV0dXJuIHJl
-dDsNCj4gKw0KPiArCQlyZXQgPSBpbnRlbF9kcF9kc2NfY29tcHV0ZV9jb25maWcoaW50ZWxfZHAs
-IHBpcGVfY29uZmlnLA0KPiArCQkJCQkJICBjb25uX3N0YXRlLCAmbGltaXRzLA0KPiArCQkJCQkJ
-ICBwaXBlX2NvbmZpZy0+ZHBfbV9uLnR1KTsNCj4gKwl9DQo+ICsNCj4gIAlpZiAocmV0KQ0KPiAg
-CQlyZXR1cm4gcmV0Ow0KPiAgDQo+IEBAIC03MTMsNiArODEwLDEwIEBAIGludGVsX2RwX21zdF9t
-b2RlX3ZhbGlkX2N0eChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLA0KPiAgCWludCBt
-YXhfZG90Y2xrID0gdG9faTkxNShjb25uZWN0b3ItPmRldiktPm1heF9kb3RjbGtfZnJlcTsNCj4g
-IAlpbnQgbWF4X3JhdGUsIG1vZGVfcmF0ZSwgbWF4X2xhbmVzLCBtYXhfbGlua19jbG9jazsNCj4g
-IAlpbnQgcmV0Ow0KPiArCWJvb2wgZHNjID0gZmFsc2UsIGJpZ2pvaW5lciA9IGZhbHNlOw0KPiAr
-CXUxNiBkc2NfbWF4X291dHB1dF9icHAgPSAwOw0KPiArCXU4IGRzY19zbGljZV9jb3VudCA9IDA7
-DQo+ICsJaW50IHRhcmdldF9jbG9jayA9IG1vZGUtPmNsb2NrOw0KPiAgDQo+ICAJaWYgKGRybV9j
-b25uZWN0b3JfaXNfdW5yZWdpc3RlcmVkKGNvbm5lY3RvcikpIHsNCj4gIAkJKnN0YXR1cyA9IE1P
-REVfRVJST1I7DQo+IEBAIC03NTAsNiArODUxLDQ4IEBAIGludGVsX2RwX21zdF9tb2RlX3ZhbGlk
-X2N0eChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLA0KPiAgCQlyZXR1cm4gMDsNCj4g
-IAl9DQo+ICANCj4gKwlpZiAoaW50ZWxfZHBfbmVlZF9iaWdqb2luZXIoaW50ZWxfZHAsIG1vZGUt
-PmhkaXNwbGF5LCB0YXJnZXRfY2xvY2spKSB7DQo+ICsJCWJpZ2pvaW5lciA9IHRydWU7DQo+ICsJ
-CW1heF9kb3RjbGsgKj0gMjsNCj4gKwl9DQo+ICsNCj4gKwlpZiAoRElTUExBWV9WRVIoZGV2X3By
-aXYpID49IDEwICYmDQo+ICsJICAgIGRybV9kcF9zaW5rX3N1cHBvcnRzX2RzYyhpbnRlbF9kcC0+
-ZHNjX2RwY2QpKSB7DQo+ICsJCS8qDQo+ICsJCSAqIFRCRCBwYXNzIHRoZSBjb25uZWN0b3IgQlBD
-LA0KPiArCQkgKiBmb3Igbm93IFU4X01BWCBzbyB0aGF0IG1heCBCUEMgb24gdGhhdCBwbGF0Zm9y
-bSB3b3VsZCBiZSBwaWNrZWQNCj4gKwkJICovDQo+ICsJCWludCBwaXBlX2JwcCA9IGludGVsX2Rw
-X2RzY19jb21wdXRlX2JwcChpbnRlbF9kcCwgVThfTUFYKTsNCj4gKw0KPiArCQlpZiAoZHJtX2Rw
-X3Npbmtfc3VwcG9ydHNfZmVjKGludGVsX2RwLT5mZWNfY2FwYWJsZSkpIHsNCj4gKwkJCWRzY19t
-YXhfb3V0cHV0X2JwcCA9DQo+ICsJCQkJaW50ZWxfZHBfZHNjX2dldF9vdXRwdXRfYnBwKGRldl9w
-cml2LA0KPiArCQkJCQkJCSAgICBtYXhfbGlua19jbG9jaywNCj4gKwkJCQkJCQkgICAgbWF4X2xh
-bmVzLA0KPiArCQkJCQkJCSAgICB0YXJnZXRfY2xvY2ssDQo+ICsJCQkJCQkJICAgIG1vZGUtPmhk
-aXNwbGF5LA0KPiArCQkJCQkJCSAgICBiaWdqb2luZXIsDQo+ICsJCQkJCQkJICAgIHBpcGVfYnBw
-LCAxKSA+PiA0Ow0KPiArCQkJZHNjX3NsaWNlX2NvdW50ID0NCj4gKwkJCQlpbnRlbF9kcF9kc2Nf
-Z2V0X3NsaWNlX2NvdW50KGludGVsX2RwLA0KPiArCQkJCQkJCSAgICAgdGFyZ2V0X2Nsb2NrLA0K
-PiArCQkJCQkJCSAgICAgbW9kZS0+aGRpc3BsYXksDQo+ICsJCQkJCQkJICAgICBiaWdqb2luZXIp
-Ow0KPiArCQl9DQo+ICsNCj4gKwkJZHNjID0gZHNjX21heF9vdXRwdXRfYnBwICYmIGRzY19zbGlj
-ZV9jb3VudDsNCj4gKwl9DQo+ICsNCj4gKwkvKg0KPiArCSAqIEJpZyBqb2luZXIgY29uZmlndXJh
-dGlvbiBuZWVkcyBEU0MgZm9yIFRHTCB3aGljaCBpcyBub3QgdHJ1ZSBmb3INCj4gKwkgKiBYRV9M
-UEQgd2hlcmUgdW5jb21wcmVzc2VkIGpvaW5lciBpcyBzdXBwb3J0ZWQuDQo+ICsJICovDQo+ICsJ
-aWYgKERJU1BMQVlfVkVSKGRldl9wcml2KSA8IDEzICYmIGJpZ2pvaW5lciAmJiAhZHNjKQ0KPiAr
-CQlyZXR1cm4gTU9ERV9DTE9DS19ISUdIOw0KPiArDQo+ICsJaWYgKG1vZGVfcmF0ZSA+IG1heF9y
-YXRlICYmICFkc2MpDQo+ICsJCXJldHVybiBNT0RFX0NMT0NLX0hJR0g7DQo+ICsNCj4gIAkqc3Rh
-dHVzID0gaW50ZWxfbW9kZV92YWxpZF9tYXhfcGxhbmVfc2l6ZShkZXZfcHJpdiwgbW9kZSwgZmFs
-c2UpOw0KPiAgCXJldHVybiAwOw0KPiAgfQ0K
+On Thu, 04 Aug 2022, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Adding support for writeback transcoder to start capturing frames using
+> interrupt mechanism
+
+Basically this changes the assumption that all drm_connectors in i915
+are embedded within intel_connectors. That needs to be a separate prep
+patch, actually several patches, without the actual writeback
+implementation.
+
+Some random comments inline. It's not so much about the writeback
+implementation details, but about the overall stuff, with a bunch of
+nitpicking about other details.
+
+BR,
+Jani.
+
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>  drivers/gpu/drm/i915/display/intel_acpi.c     |   1 +
+>  drivers/gpu/drm/i915/display/intel_crtc.c     |   3 +
+>  .../drm/i915/display/intel_crtc_state_dump.c  |   1 +
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +
+>  drivers/gpu/drm/i915/display/intel_display.c  |  63 +-
+>  drivers/gpu/drm/i915/display/intel_display.h  |  15 +-
+>  .../drm/i915/display/intel_display_debugfs.c  |  14 +-
+>  .../drm/i915/display/intel_display_types.h    |  29 +
+>  drivers/gpu/drm/i915/display/intel_dpll.c     |   6 +
+>  .../drm/i915/display/intel_modeset_setup.c    |  67 +-
+>  .../drm/i915/display/intel_modeset_verify.c   |  18 +-
+>  drivers/gpu/drm/i915/display/intel_opregion.c |   3 +
+>  .../gpu/drm/i915/display/intel_wb_connector.h |  20 +
+>  drivers/gpu/drm/i915/display/intel_wd.c       | 733 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_wd.h       |  76 ++
+>  drivers/gpu/drm/i915/i915_drv.h               |   2 +
+>  drivers/gpu/drm/i915/i915_irq.c               |   8 +-
+>  drivers/gpu/drm/i915/i915_pci.c               |   7 +-
+>  19 files changed, 1046 insertions(+), 27 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_wb_connector.h
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_wd.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_wd.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 522ef9b4aff3..ec63ed16c250 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -302,6 +302,7 @@ i915-y +=3D \
+>  	display/intel_tv.o \
+>  	display/intel_vdsc.o \
+>  	display/intel_vrr.o \
+> +	display/intel_wd.o \
+>  	display/vlv_dsi.o \
+>  	display/vlv_dsi_pll.o
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/=
+i915/display/intel_acpi.c
+> index e78430001f07..ae08db164f73 100644
+> --- a/drivers/gpu/drm/i915/display/intel_acpi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
+> @@ -247,6 +247,7 @@ static u32 acpi_display_type(struct intel_connector *=
+connector)
+>  	case DRM_MODE_CONNECTOR_LVDS:
+>  	case DRM_MODE_CONNECTOR_eDP:
+>  	case DRM_MODE_CONNECTOR_DSI:
+> +	case DRM_MODE_CONNECTOR_WRITEBACK:
+>  		display_type =3D ACPI_DISPLAY_TYPE_INTERNAL_DIGITAL;
+>  		break;
+>  	case DRM_MODE_CONNECTOR_Unknown:
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
+i915/display/intel_crtc.c
+> index 4442aa355f86..f9fa612ac991 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -512,6 +512,9 @@ void intel_pipe_update_start(struct intel_crtc_state =
+*new_crtc_state)
+>  	if (min <=3D 0 || max <=3D 0)
+>  		goto irq_disable;
+>=20=20
+> +	if (new_crtc_state->output_types & BIT(INTEL_OUTPUT_WD))
+> +		goto irq_disable;
+> +
+>  	if (drm_WARN_ON(&dev_priv->drm, drm_crtc_vblank_get(&crtc->base)))
+>  		goto irq_disable;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drive=
+rs/gpu/drm/i915/display/intel_crtc_state_dump.c
+> index e9212f69c360..f49630d95d6a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> @@ -71,6 +71,7 @@ static const char * const output_type_str[] =3D {
+>  	OUTPUT_TYPE(DSI),
+>  	OUTPUT_TYPE(DDI),
+>  	OUTPUT_TYPE(DP_MST),
+> +	OUTPUT_TYPE(WD)
+
+Please keep the comma at the end so whatever gets added next doesn't
+need to add it.
+
+>  };
+>=20=20
+>  #undef OUTPUT_TYPE
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index a4c8493f3ce7..1360406ca531 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -1974,6 +1974,12 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct=
+ intel_encoder *encoder)
+>  	 */
+>  	if (encoder->type =3D=3D INTEL_OUTPUT_DP_MST)
+>  		return;
+> +	/*
+> +	 * WD transcoder is a virtual encoder hence sanization
+> +	 * is not required for it
+> +	 */
+> +	if (encoder->type =3D=3D INTEL_OUTPUT_WD)
+> +		return;
+>=20=20
+>  	if (!encoder->base.crtc && intel_encoder_is_dp(encoder)) {
+>  		u8 pipe_mask;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index a0f84cbe974f..90b41b49e1d7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -116,6 +116,7 @@
+>  #include "intel_sprite.h"
+>  #include "intel_tc.h"
+>  #include "intel_vga.h"
+> +#include "intel_wd.h"
+>  #include "i9xx_plane.h"
+>  #include "skl_scaler.h"
+>  #include "skl_universal_plane.h"
+> @@ -1507,6 +1508,9 @@ static void intel_encoders_update_prepare(struct in=
+tel_atomic_state *state)
+>  		struct intel_encoder *encoder;
+>  		struct intel_crtc *crtc;
+>=20=20
+> +		if (connector->connector_type =3D=3D DRM_MODE_CONNECTOR_WRITEBACK)
+> +			continue;
+> +
+>  		if (!intel_connector_needs_modeset(state, connector))
+>  			continue;
+>=20=20
+> @@ -1536,6 +1540,9 @@ static void intel_encoders_update_complete(struct i=
+ntel_atomic_state *state)
+>  		struct intel_encoder *encoder;
+>  		struct intel_crtc *crtc;
+>=20=20
+> +		if (connector->connector_type =3D=3D DRM_MODE_CONNECTOR_WRITEBACK)
+> +			continue;
+> +
+>  		if (!intel_connector_needs_modeset(state, connector))
+>  			continue;
+>=20=20
+> @@ -1550,6 +1557,39 @@ static void intel_encoders_update_complete(struct =
+intel_atomic_state *state)
+>  	}
+>  }
+>=20=20
+> +static void intel_queue_writeback_job(struct intel_atomic_state *state,
+> +		struct intel_crtc *intel_crtc, struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_connector_state *new_conn_state;
+> +	struct drm_connector *connector;
+> +	struct drm_writeback_connector *wb_conn;
+> +	int i;
+> +
+> +	for_each_new_connector_in_state(&state->base, connector, new_conn_state,
+> +					i) {
+> +		if (!new_conn_state->writeback_job)
+> +			continue;
+> +
+> +		wb_conn =3D drm_connector_to_writeback(connector);
+> +		drm_writeback_queue_job(wb_conn, new_conn_state);
+> +	}
+> +}
+> +
+> +static void intel_find_writeback_connector(struct intel_atomic_state *st=
+ate,
+> +		struct intel_crtc *intel_crtc, struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_connector_state *new_conn_state;
+> +	struct drm_connector *connector;
+> +	int i;
+> +
+> +	for_each_new_connector_in_state(&state->base, connector, new_conn_state,
+> +					i) {
+> +		if (connector->connector_type !=3D DRM_MODE_CONNECTOR_WRITEBACK)
+> +			continue;
+> +		intel_wd_enable_capture(crtc_state, new_conn_state);
+
+It's surprising that a function named "find connector" enables capture.
+
+> +	}
+> +}
+> +
+>  static void intel_encoders_pre_pll_enable(struct intel_atomic_state *sta=
+te,
+>  					  struct intel_crtc *crtc)
+>  {
+> @@ -1650,8 +1690,12 @@ static void intel_encoders_post_disable(struct int=
+el_atomic_state *state,
+>  	int i;
+>=20=20
+>  	for_each_old_connector_in_state(&state->base, conn, old_conn_state, i) {
+> -		struct intel_encoder *encoder =3D
+> -			to_intel_encoder(old_conn_state->best_encoder);
+> +		struct intel_encoder *encoder;
+> +
+> +		if (conn->connector_type =3D=3D DRM_MODE_CONNECTOR_WRITEBACK)
+> +			continue;
+> +
+> +		encoder =3D to_intel_encoder(old_conn_state->best_encoder);
+>=20=20
+>  		if (old_conn_state->crtc !=3D &crtc->base)
+>  			continue;
+> @@ -1928,7 +1972,8 @@ static void hsw_crtc_enable(struct intel_atomic_sta=
+te *state,
+>  		bdw_set_pipemisc(new_crtc_state);
+>=20=20
+>  	if (!intel_crtc_is_bigjoiner_slave(new_crtc_state) &&
+> -	    !transcoder_is_dsi(cpu_transcoder))
+> +	    !transcoder_is_dsi(cpu_transcoder) &&
+> +	    !transcoder_is_wd(cpu_transcoder))
+>  		hsw_configure_cpu_transcoder(new_crtc_state);
+>=20=20
+>  	crtc->active =3D true;
+> @@ -7578,6 +7623,10 @@ static void intel_atomic_commit_tail(struct intel_=
+atomic_state *state)
+>  		}
+>  	}
+>=20=20
+> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> +		intel_wd_set_vblank_event(crtc, new_crtc_state);
+> +	}
+> +
+
+Shouldn't this happen in a wd encoder hook?
+
+>  	intel_encoders_update_prepare(state);
+>=20=20
+>  	intel_dbuf_pre_plane_update(state);
+> @@ -7598,6 +7647,13 @@ static void intel_atomic_commit_tail(struct intel_=
+atomic_state *state)
+>=20=20
+>  	intel_wait_for_vblank_workers(state);
+>=20=20
+> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> +		if (!(new_crtc_state->output_types & BIT(INTEL_OUTPUT_WD)))
+> +			continue;
+> +		intel_queue_writeback_job(state, crtc, new_crtc_state);
+> +		intel_find_writeback_connector(state, crtc, new_crtc_state);
+> +	}
+
+Shouldn't this happen in a wd encoder hook?
+
+> +
+>  	/* FIXME: We should call drm_atomic_helper_commit_hw_done() here
+>  	 * already, but still need the state for the delayed optimization. To
+>  	 * fix this:
+> @@ -7968,6 +8024,7 @@ static void intel_setup_outputs(struct drm_i915_pri=
+vate *dev_priv)
+>  		intel_ddi_init(dev_priv, PORT_TC1);
+>  		intel_ddi_init(dev_priv, PORT_TC2);
+>  	} else if (DISPLAY_VER(dev_priv) >=3D 12) {
+> +		intel_wd_init(dev_priv, TRANSCODER_WD_0);
+>  		intel_ddi_init(dev_priv, PORT_A);
+>  		intel_ddi_init(dev_priv, PORT_B);
+>  		intel_ddi_init(dev_priv, PORT_TC1);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index 4e9f22954a41..b6987f57b032 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -52,6 +52,7 @@ struct intel_crtc_state;
+>  struct intel_digital_port;
+>  struct intel_dp;
+>  struct intel_encoder;
+> +struct intel_connector;
+>  struct intel_initial_plane_config;
+>  struct intel_load_detect_pipe;
+>  struct intel_plane;
+> @@ -157,6 +158,11 @@ static inline bool transcoder_is_dsi(enum transcoder=
+ transcoder)
+>  	return transcoder =3D=3D TRANSCODER_DSI_A || transcoder =3D=3D TRANSCOD=
+ER_DSI_C;
+>  }
+>=20=20
+> +static inline bool transcoder_is_wd(enum transcoder transcoder)
+> +{
+> +	return transcoder =3D=3D TRANSCODER_WD_0 || transcoder =3D=3D TRANSCODE=
+R_WD_1;
+> +}
+> +
+>  /*
+>   * Global legacy plane identifier. Valid only for primary/sprite
+>   * planes on pre-g4x, and only for primary planes on g4x-bdw.
+> @@ -469,15 +475,16 @@ enum hpd_pin {
+>  		for_each_if(intel_encoder_can_psr(intel_encoder))
+>=20=20
+>  #define for_each_intel_connector_iter(intel_connector, iter) \
+> -	while ((intel_connector =3D to_intel_connector(drm_connector_list_iter_=
+next(iter))))
+> +	while ((intel_connector =3D intel_connector_list_iter_next(iter)))
+>=20=20
+>  #define for_each_encoder_on_crtc(dev, __crtc, intel_encoder) \
+>  	list_for_each_entry((intel_encoder), &(dev)->mode_config.encoder_list, =
+base.head) \
+>  		for_each_if((intel_encoder)->base.crtc =3D=3D (__crtc))
+>=20=20
+> -#define for_each_connector_on_encoder(dev, __encoder, intel_connector) \
+> -	list_for_each_entry((intel_connector), &(dev)->mode_config.connector_li=
+st, base.head) \
+> -		for_each_if((intel_connector)->base.encoder =3D=3D (__encoder))
+> +#define for_each_connector_on_encoder(dev, __encoder, drm_connector) \
+> +	list_for_each_entry((drm_connector), &(dev)->mode_config.connector_list=
+, head) \
+> +		for_each_if(drm_connector->connector_type !=3D DRM_MODE_CONNECTOR_WRIT=
+EBACK &&	\
+> +			(to_intel_connector(drm_connector))->base.encoder =3D=3D (__encoder))
+
+There's only one user for this. Maybe open code that and convert to use
+connector iterators.
+
+>=20=20
+>  #define for_each_old_intel_plane_in_state(__state, plane, old_plane_stat=
+e, __i) \
+>  	for ((__i) =3D 0; \
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
+rs/gpu/drm/i915/display/intel_display_debugfs.c
+> index 225b6bfc783c..3e11cc6228d4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -547,7 +547,7 @@ static void intel_hdmi_info(struct seq_file *m,
+>  static void intel_connector_info(struct seq_file *m,
+>  				 struct drm_connector *connector)
+>  {
+> -	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
+r);
+> +	struct intel_connector *intel_connector;
+>  	const struct drm_connector_state *conn_state =3D connector->state;
+>  	struct intel_encoder *encoder =3D
+>  		to_intel_encoder(conn_state->best_encoder);
+> @@ -570,6 +570,9 @@ static void intel_connector_info(struct seq_file *m,
+>  	if (!encoder)
+>  		return;
+>=20=20
+> +	if (connector->connector_type !=3D DRM_MODE_CONNECTOR_WRITEBACK)
+> +		intel_connector =3D to_intel_connector(connector);
+> +
+
+We have a lot of this copy-pasted everywhere. I'm wondering if it would
+be better to have to_intel_connector() return NULL for writeback.
+
+For one thing, if we miss the check somewhere, we'll fail loud with a
+null pointer dereference instead of silently casting a
+drm_writeback_connector to intel_connector, possibly corrupting the data
+and causing subtle and hard to track bugs.
+
+And for another, we can just do an if (!intel_connector) instead of the
+tedious connector_type checks.
+
+>  	switch (connector->connector_type) {
+>  	case DRM_MODE_CONNECTOR_DisplayPort:
+>  	case DRM_MODE_CONNECTOR_eDP:
+> @@ -587,12 +590,15 @@ static void intel_connector_info(struct seq_file *m,
+>  		break;
+>  	}
+>=20=20
+> -	seq_puts(m, "\tHDCP version: ");
+> -	intel_hdcp_info(m, intel_connector);
+> +	if (connector->connector_type !=3D DRM_MODE_CONNECTOR_WRITEBACK) {
+> +		seq_puts(m, "\tHDCP version: ");
+> +		intel_hdcp_info(m, intel_connector);
+> +	}
+>=20=20
+>  	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
+>=20=20
+> -	intel_panel_info(m, intel_connector);
+> +	if (connector->connector_type !=3D DRM_MODE_CONNECTOR_WRITEBACK)
+> +		intel_panel_info(m, intel_connector);
+>=20=20
+>  	seq_printf(m, "\tmodes:\n");
+>  	list_for_each_entry(mode, &connector->modes, head)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 0e94bd430bcb..289908a88cc3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -44,6 +44,7 @@
+>  #include <drm/drm_vblank.h>
+>  #include <drm/drm_vblank_work.h>
+>  #include <drm/i915_mei_hdcp_interface.h>
+> +#include <drm/drm_writeback.h>
+>  #include <media/cec-notifier.h>
+>=20=20
+>  #include "i915_vma.h"
+> @@ -1370,6 +1371,11 @@ struct intel_crtc {
+>  	bool cpu_fifo_underrun_disabled;
+>  	bool pch_fifo_underrun_disabled;
+>=20=20
+> +	struct {
+> +		struct drm_pending_vblank_event *e;
+> +		atomic_t work_busy;
+> +		wait_queue_head_t wd_wait;
+> +	} wd;
+>  	/* per-pipe watermark state */
+>  	struct {
+>  		/* watermarks currently being used  */
+> @@ -1498,6 +1504,7 @@ struct cxsr_latency {
+>  #define to_intel_crtc(x) container_of(x, struct intel_crtc, base)
+>  #define to_intel_crtc_state(x) container_of(x, struct intel_crtc_state, =
+uapi)
+>  #define to_intel_connector(x) container_of(x, struct intel_connector, ba=
+se)
+> +#define to_intel_wb_connector(x) container_of(x, struct intel_wb_connect=
+or, base)
+>  #define to_intel_encoder(x) container_of(x, struct intel_encoder, base)
+>  #define to_intel_framebuffer(x) container_of(x, struct intel_framebuffer=
+, base)
+>  #define to_intel_plane(x) container_of(x, struct intel_plane, base)
+> @@ -2068,4 +2075,26 @@ to_intel_frontbuffer(struct drm_framebuffer *fb)
+>  	return fb ? to_intel_framebuffer(fb)->frontbuffer : NULL;
+>  }
+>=20=20
+> +static inline struct intel_connector *
+> +intel_connector_list_iter_next(struct drm_connector_list_iter *iter)
+> +{
+> +	struct drm_connector *connector;
+> +	bool flag =3D true;
+> +	/*
+> +	 * Skipping connector that are Writeback connector as they will
+> +	 * not be embedded in intel connector
+> +	 */
+> +	while (flag) {
+> +		connector =3D drm_connector_list_iter_next(iter);
+> +		if (connector && connector->connector_type =3D=3D DRM_MODE_CONNECTOR_W=
+RITEBACK)
+> +			continue;
+> +
+> +		flag =3D false;
+> +
+> +		if (connector)
+> +			return to_intel_connector(connector);
+> +
+> +	}
+> +	return NULL;
+
+The above could be written simply as:
+
+	drm_for_each_connector_iter(connector, iter) {
+		if (connector->connector_type =3D=3D DRM_MODE_CONNECTOR_WRITEBACK)
+			continue;
+
+		return to_intel_connector(connector);
+	}
+
+	return NULL;
+
+or, if to_intel_connector() does the writeback check as I suggested earlier:
+
+	drm_for_each_connector_iter(connector, iter) {
+		struct intel_connector *intel_connector =3D to_intel_connector(connector);
+
+		if (intel_connector)
+			return intel_connector;
+	}
+
+	return NULL;
+
+The latter is actually a neat prep change since it doesn't even mention
+writeback.
+
+> +}
+
+Blank line here.
+
+>  #endif /*  __INTEL_DISPLAY_TYPES_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/=
+i915/display/intel_dpll.c
+> index 5262f16b45ac..82bb8e170197 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -939,6 +939,9 @@ static int hsw_crtc_compute_clock(struct intel_atomic=
+_state *state,
+>  	struct intel_encoder *encoder =3D
+>  		intel_get_crtc_new_encoder(state, crtc_state);
+>=20=20
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_WD))
+> +		return 0;
+> +
+>  	if (DISPLAY_VER(dev_priv) < 11 &&
+>  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
+>  		return 0;
+> @@ -955,6 +958,9 @@ static int hsw_crtc_get_shared_dpll(struct intel_atom=
+ic_state *state,
+>  	struct intel_encoder *encoder =3D
+>  		intel_get_crtc_new_encoder(state, crtc_state);
+>=20=20
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_WD))
+> +		return 0;
+> +
+>  	if (DISPLAY_VER(dev_priv) < 11 &&
+>  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
+>  		return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers=
+/gpu/drm/i915/display/intel_modeset_setup.c
+> index f0e04d3904c6..f6c85614842a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> @@ -23,6 +23,7 @@
+>  #include "intel_modeset_setup.h"
+>  #include "intel_pch_display.h"
+>  #include "intel_pm.h"
+> +#include "intel_wd.h"
+>=20=20
+>  static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+>  					struct drm_modeset_acquire_ctx *ctx)
+> @@ -110,17 +111,17 @@ static void intel_crtc_disable_noatomic(struct inte=
+l_crtc *crtc,
+>=20=20
+>  static void intel_modeset_update_connector_atomic_state(struct drm_i915_=
+private *i915)
+>  {
+> -	struct intel_connector *connector;
+> +	struct drm_connector *drm_conn;
+>  	struct drm_connector_list_iter conn_iter;
+>=20=20
+>  	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+> -	for_each_intel_connector_iter(connector, &conn_iter) {
+> -		struct drm_connector_state *conn_state =3D connector->base.state;
+> +	drm_for_each_connector_iter(drm_conn, &conn_iter) {
+> +		struct drm_connector_state *conn_state =3D drm_conn->state;
+>  		struct intel_encoder *encoder =3D
+> -			to_intel_encoder(connector->base.encoder);
+> +			to_intel_encoder(drm_conn->encoder);
+>=20=20
+>  		if (conn_state->crtc)
+> -			drm_connector_put(&connector->base);
+> +			drm_connector_put(drm_conn);
+>=20=20
+>  		if (encoder) {
+>  			struct intel_crtc *crtc =3D
+> @@ -132,7 +133,7 @@ static void intel_modeset_update_connector_atomic_sta=
+te(struct drm_i915_private
+>  			conn_state->crtc =3D &crtc->base;
+>  			conn_state->max_bpc =3D (crtc_state->pipe_bpp ?: 24) / 3;
+>=20=20
+> -			drm_connector_get(&connector->base);
+> +			drm_connector_get(drm_conn);
+>  		} else {
+>  			conn_state->best_encoder =3D NULL;
+>  			conn_state->crtc =3D NULL;
+> @@ -205,10 +206,10 @@ static bool intel_crtc_has_encoders(struct intel_cr=
+tc *crtc)
+>  static struct intel_connector *intel_encoder_find_connector(struct intel=
+_encoder *encoder)
+>  {
+>  	struct drm_device *dev =3D encoder->base.dev;
+> -	struct intel_connector *connector;
+> +	struct drm_connector *drm_connector;
+>=20=20
+> -	for_each_connector_on_encoder(dev, &encoder->base, connector)
+> -		return connector;
+> +	for_each_connector_on_encoder(dev, &encoder->base, drm_connector)
+> +		return to_intel_connector(drm_connector);
+
+Yeah this should just be rewritten to ditch
+for_each_connector_on_encoder().
+
+>=20=20
+>  	return NULL;
+>  }
+> @@ -422,6 +423,8 @@ static void intel_modeset_readout_hw_state(struct drm=
+_i915_private *i915)
+>  	struct intel_crtc *crtc;
+>  	struct intel_encoder *encoder;
+>  	struct intel_connector *connector;
+> +	struct drm_connector *drm_conn;
+> +	struct drm_encoder *drm_enc;
+
+We never use "drm_conn" or "drm_enc" anywhere, let's not start now.
+
+These are the combos generally in use, from most preferred to least
+preferred:
+
+struct drm_encoder *_encoder;
+struct intel_encoder *encoder
+
+struct drm_encoder *encoder;
+struct intel_encoder *intel_encoder
+
+struct drm_encoder *drm_encoder;
+struct intel_encoder *encoder
+
+Similarly for connector. Ditto everywhere.
+
+>  	struct drm_connector_list_iter conn_iter;
+>  	u8 active_pipes =3D 0;
+>=20=20
+> @@ -503,8 +506,7 @@ static void intel_modeset_readout_hw_state(struct drm=
+_i915_private *i915)
+>  			struct intel_crtc_state *crtc_state;
+>  			struct intel_crtc *crtc;
+>=20=20
+> -			connector->base.dpms =3D DRM_MODE_DPMS_ON;
+> -
+> +			connector->base.dpms =3D DRM_MODE_DPMS_OFF;
+
+Huh?
+
+>  			encoder =3D intel_attached_encoder(connector);
+>  			connector->base.encoder =3D &encoder->base;
+>=20=20
+> @@ -533,6 +535,49 @@ static void intel_modeset_readout_hw_state(struct dr=
+m_i915_private *i915)
+>  	}
+>  	drm_connector_list_iter_end(&conn_iter);
+>=20=20
+> +	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+> +	drm_for_each_connector_iter(drm_conn, &conn_iter) {
+> +		if (drm_conn->connector_type =3D=3D DRM_MODE_CONNECTOR_WRITEBACK) {
+> +			struct intel_crtc_state *crtc_state;
+> +			struct drm_writeback_connector *wb_conn =3D
+> +						drm_connector_to_writeback(drm_conn);
+> +			struct intel_wd *intel_wd =3D wb_conn_to_intel_wd(wb_conn);
+> +			struct intel_crtc *crtc;
+> +
+> +			pipe =3D 0;
+> +			drm_enc =3D &intel_wd->base.base;
+> +			drm_conn->encoder =3D drm_enc;
+> +			encoder =3D to_intel_encoder(drm_enc);
+> +			if (encoder->get_hw_state(encoder, &pipe)) {
+> +				drm_conn->dpms =3D DRM_MODE_DPMS_ON;
+> +
+> +				crtc =3D to_intel_crtc(drm_enc->crtc);
+> +				crtc_state =3D crtc ? to_intel_crtc_state(crtc->base.state) : NULL;
+> +
+> +				if (crtc_state && crtc_state->hw.active) {
+> +					/*
+> +					 * This has to be done during hardware readout
+> +					 * because anything calling .crtc_disable may
+> +					 * rely on the connector_mask being accurate.
+> +					 */
+> +					crtc_state->uapi.connector_mask |=3D
+> +						drm_connector_mask(&connector->base);
+> +					crtc_state->uapi.encoder_mask |=3D
+> +						drm_encoder_mask(&encoder->base);
+> +				}
+> +			} else {
+> +				drm_conn->dpms =3D DRM_MODE_DPMS_OFF;
+> +				drm_conn->encoder =3D NULL;
+> +			}
+> +			drm_dbg_kms(&i915->drm,
+> +					"[CONNECTOR:%d:%s] hw state readout: %s\n",
+> +					drm_conn->base.id, drm_conn->name,
+> +					str_enabled_disabled(drm_conn->encoder));
+> +		}
+> +	}
+> +	drm_connector_list_iter_end(&conn_iter);
+
+Surprised to see a dedicated loop for writeback.
+
+> +
+> +
+
+Superfluous double newline.
+
+>  	for_each_intel_crtc(&i915->drm, crtc) {
+>  		struct intel_bw_state *bw_state =3D
+>  			to_intel_bw_state(i915->bw_obj.state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/driver=
+s/gpu/drm/i915/display/intel_modeset_verify.c
+> index a91586d77cb6..4a3d04f14ef7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> @@ -25,11 +25,17 @@
+>  static void intel_connector_verify_state(struct intel_crtc_state *crtc_s=
+tate,
+>  					 struct drm_connector_state *conn_state)
+>  {
+> -	struct intel_connector *connector =3D to_intel_connector(conn_state->co=
+nnector);
+> -	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+> +	struct drm_connector *drm_conn =3D conn_state->connector;
+> +	struct intel_connector *connector;
+> +	struct drm_i915_private *i915 =3D to_i915(drm_conn->dev);
+>=20=20
+>  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s]\n",
+> -		    connector->base.base.id, connector->base.name);
+> +		    drm_conn->base.id, drm_conn->name);
+> +
+> +	if (drm_conn->connector_type =3D=3D DRM_MODE_CONNECTOR_WRITEBACK)
+> +		return;
+> +
+> +	connector =3D to_intel_connector(drm_conn);
+>=20=20
+>  	if (connector->get_hw_state(connector)) {
+>  		struct intel_encoder *encoder =3D intel_attached_encoder(connector);
+> @@ -119,6 +125,9 @@ verify_encoder_state(struct drm_i915_private *dev_pri=
+v, struct intel_atomic_stat
+>  			    encoder->base.base.id,
+>  			    encoder->base.name);
+>=20=20
+> +		if (encoder->type =3D=3D INTEL_OUTPUT_WD)
+> +			continue;
+> +
+>  		for_each_oldnew_connector_in_state(&state->base, connector, old_conn_s=
+tate,
+>  						   new_conn_state, i) {
+>  			if (old_conn_state->best_encoder =3D=3D &encoder->base)
+> @@ -177,6 +186,9 @@ verify_crtc_state(struct intel_crtc *crtc,
+>=20=20
+>  	intel_crtc_get_pipe_config(pipe_config);
+>=20=20
+> +	if (new_crtc_state->output_types & BIT(INTEL_OUTPUT_WD))
+> +		return;
+> +
+>  	/* we keep both pipes enabled on 830 */
+>  	if (IS_I830(dev_priv) && pipe_config->hw.active)
+>  		pipe_config->hw.active =3D new_crtc_state->hw.active;
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/=
+drm/i915/display/intel_opregion.c
+> index 1c0c745c142d..73a5a12e2c48 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+> @@ -374,6 +374,9 @@ int intel_opregion_notify_encoder(struct intel_encode=
+r *intel_encoder,
+>  	if (ret)
+>  		return ret;
+>=20=20
+> +	if (intel_encoder->type =3D=3D INTEL_OUTPUT_WD)
+> +		return 0;
+> +
+>  	if (intel_encoder->type =3D=3D INTEL_OUTPUT_DSI)
+>  		port =3D 0;
+>  	else
+> diff --git a/drivers/gpu/drm/i915/display/intel_wb_connector.h b/drivers/=
+gpu/drm/i915/display/intel_wb_connector.h
+> new file mode 100644
+> index 000000000000..8063a9273bc7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_wb_connector.h
+> @@ -0,0 +1,20 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2020 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_WB_CONNECTOR_H__
+> +#define __INTEL_WB_CONNECTOR_H__
+> +
+> +#include "intel_display.h"
+> +
+> +struct intel_wb_connector *intel_wb_connector_alloc(void);
+> +void intel_wb_connector_free(struct intel_wb_connector *connector);
+> +void intel_wb_connector_destroy(struct drm_connector *connector);
+> +bool intel_wb_connector_get_hw_state(struct intel_wb_connector *connecto=
+r);
+> +enum pipe intel_wb_connector_get_pipe(struct intel_wb_connector *connect=
+or);
+> +void intel_wb_connector_attach_encoder(struct intel_wb_connector *connec=
+tor,
+> +					struct intel_encoder *encoder);
+> +
+> +#endif /* __INTEL_WB_CONNECTOR_H__ */
+> +
+> diff --git a/drivers/gpu/drm/i915/display/intel_wd.c b/drivers/gpu/drm/i9=
+15/display/intel_wd.c
+> new file mode 100644
+> index 000000000000..7c9c83038de1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_wd.c
+> @@ -0,0 +1,733 @@
+> +// SPDX-License-Identifier: GPL-2.0
+
+MIT.
+
+> +/*
+> + * Copyright =C2=A9 2021 Intel Corporation
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining=
+ a
+> + * copy of this software and associated documentation files (the "Softwa=
+re"),
+> + * to deal in the Software without restriction, including without limita=
+tion
+> + * the rights to use, copy, modify, merge, publish, distribute, sublicen=
+se,
+> + * and/or sell copies of the Software, and to permit persons to whom the
+> + * Software is furnished to do so, subject to the following conditions:
+> + *
+> + * The above copyright notice and this permission notice (including the =
+next
+> + * paragraph) shall be included in all copies or substantial portions of=
+ the
+> + * Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
+SS OR
+> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILI=
+TY,
+> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SH=
+ALL
+> + * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR =
+OTHER
+> + * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISI=
+NG
+> + * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER D=
+EALINGS
+> + * IN THE SOFTWARE.
+
+Not needed when SPDX is used.
+
+> + *
+> + * Authors:
+> + *	Suraj Kandpal <suraj.kandpal@intel.com>
+> + *	Arun Murthy <arun.r.murthy@intel.com>
+
+Please consider not adding authors lists. They'll get outdated, the
+up-to-date info is available in git log/blame, they create a false sense
+of ownership in shared code, they create a constant problem of deciding
+when to add authorship line and when to accept/reject additions to
+authors.
+
+I still seem to have authors lines in two files, from before I changed
+my mind about this, but based on my contributious I (and many others)
+could justify adding authors to nearly all the files under display/ and
+elsewhere. Yet we have authors lines from people who haven't contributed
+in 10 years and their original contributions have been rewritten many
+times over. IMHO there's just no point in authors lists in code.
+
+> + *
+> + */
+> +
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_fourcc.h>
+> +
+> +#include "intel_atomic.h"
+> +#include "intel_connector.h"
+> +#include "intel_wd.h"
+> +#include "intel_fb_pin.h"
+> +#include "intel_de.h"
+> +
+> +enum {
+> +	WD_CAPTURE_4_PIX,
+> +	WD_CAPTURE_2_PIX,
+> +} wd_capture_format;
+> +
+> +static struct drm_writeback_job
+> +*intel_get_writeback_job_from_queue(struct intel_wd *intel_wd)
+> +{
+> +	struct drm_writeback_job *job;
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_wd->base.base.dev);
+
+All new code should name this struct drm_i915_private *i915. Ditto everywhe=
+re.
+
+> +	struct drm_writeback_connector *wb_conn =3D
+> +		&intel_wd->wb_conn;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&wb_conn->job_lock, flags);
+> +	job =3D list_first_entry_or_null(&wb_conn->job_queue,
+> +			struct drm_writeback_job,
+> +			list_entry);
+> +	spin_unlock_irqrestore(&wb_conn->job_lock, flags);
+> +	if (job =3D=3D NULL) {
+> +		drm_dbg_kms(&dev_priv->drm, "job queue is empty\n");
+> +		return NULL;
+> +	}
+> +
+> +	return job;
+> +}
+> +
+> +/*Check with Spec*/
+> +static const u32 wb_fmts[] =3D {
+> +		DRM_FORMAT_YUV444,
+> +		DRM_FORMAT_XYUV8888,
+> +		DRM_FORMAT_XBGR8888,
+> +		DRM_FORMAT_XRGB8888,
+> +		DRM_FORMAT_Y410,
+> +		DRM_FORMAT_YUV422,
+> +		DRM_FORMAT_XBGR2101010,
+> +		DRM_FORMAT_RGB565,
+
+Indentation. Please see checkpatch.
+
+> +
+> +};
+> +
+> +static int intel_wd_get_format(int pixel_format)
+> +{
+> +	int wd_format =3D -EINVAL;
+> +
+> +	switch (pixel_format) {
+> +	case DRM_FORMAT_XBGR8888:
+> +	case DRM_FORMAT_XRGB8888:
+> +	case DRM_FORMAT_XBGR2101010:
+> +	case DRM_FORMAT_XYUV8888:
+> +	case DRM_FORMAT_YUV444:
+> +		wd_format =3D WD_CAPTURE_4_PIX;
+> +		break;
+> +	case DRM_FORMAT_YUV422:
+> +	case DRM_FORMAT_RGB565:
+> +		wd_format =3D WD_CAPTURE_2_PIX;
+> +		break;
+> +	default:
+> +		DRM_ERROR("unsupported pixel format %x!\n",
+> +			pixel_format);
+> +	}
+> +
+> +	return wd_format;
+> +}
+> +
+> +static int intel_wd_verify_pix_format(int format)
+> +{
+> +	const struct drm_format_info *info =3D drm_format_info(format);
+> +	int pix_format =3D info->format;
+> +	int i =3D 0;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(wb_fmts); i++)
+> +		if (pix_format =3D=3D wb_fmts[i])
+> +			return 0;
+> +
+> +	return 1;
+> +}
+> +
+> +static u32 intel_wd_get_stride(const struct intel_crtc_state *crtc_state,
+> +			int format)
+> +{
+> +	const struct drm_format_info *info =3D drm_format_info(format);
+> +	int wd_format;
+> +	int hactive, pixel_size;
+> +
+> +	wd_format =3D intel_wd_get_format(info->format);
+> +
+> +	switch (wd_format) {
+> +	case WD_CAPTURE_4_PIX:
+> +		pixel_size =3D 4;
+> +		break;
+> +	case WD_CAPTURE_2_PIX:
+> +		pixel_size =3D 2;
+> +		break;
+> +	default:
+> +		pixel_size =3D 1;
+> +		break;
+> +	}
+> +
+> +	hactive =3D crtc_state->hw.adjusted_mode.crtc_hdisplay;
+> +
+> +	return DIV_ROUND_UP(hactive * pixel_size, 64);
+> +}
+> +
+> +static int intel_wd_pin_fb(struct intel_wd *intel_wd,
+> +			struct drm_framebuffer *fb)
+> +{
+> +	const struct i915_ggtt_view view =3D {
+> +		.type =3D I915_GGTT_VIEW_NORMAL,
+> +		};
+
+Indentation.=20
+
+> +	struct i915_vma *vma;
+> +
+> +	vma =3D intel_pin_and_fence_fb_obj(fb, false, &view, false,
+> +			&intel_wd->flags);
+> +
+> +	if (IS_ERR(vma))
+> +		return PTR_ERR(vma);
+> +
+> +	intel_wd->vma =3D vma;
+> +	return 0;
+> +}
+> +
+> +static void intel_configure_slicing_strategy(struct drm_i915_private *de=
+v_priv,
+> +		struct intel_wd *intel_wd, u32 *tmp)
+> +{
+> +	*tmp &=3D ~WD_STRAT_MASK;
+> +	if (intel_wd->slicing_strategy =3D=3D 1)
+> +		*tmp |=3D WD_SLICING_STRAT_1_1;
+> +	else if (intel_wd->slicing_strategy =3D=3D 2)
+> +		*tmp |=3D WD_SLICING_STRAT_2_1;
+> +	else if (intel_wd->slicing_strategy =3D=3D 3)
+> +		*tmp |=3D WD_SLICING_STRAT_4_1;
+> +	else if (intel_wd->slicing_strategy =3D=3D 4)
+> +		*tmp |=3D WD_SLICING_STRAT_8_1;
+> +
+> +	intel_de_write(dev_priv, WD_STREAMCAP_CTL(intel_wd->trans),
+> +			*tmp);
+> +
+> +}
+> +
+> +static enum drm_mode_status
+> +intel_wd_mode_valid(struct drm_connector *connector,
+> +		struct drm_display_mode *mode)
+> +{
+> +	drm_dbg_kms(connector->dev, ":");
+> +	return MODE_OK;
+> +}
+> +
+> +static int intel_wd_get_modes(struct drm_connector *connector)
+> +{
+> +	return 0;
+> +}
+> +
+> +static void intel_wd_get_config(struct intel_encoder *encoder,
+> +		struct intel_crtc_state *pipe_config)
+> +{
+> +	struct intel_crtc *intel_crtc =3D
+> +		to_intel_crtc(pipe_config->uapi.crtc);
+> +
+> +	if (intel_crtc) {
+> +		memcpy(pipe_config, intel_crtc->config,
+> +			sizeof(*pipe_config));
+> +		pipe_config->output_types |=3D BIT(INTEL_OUTPUT_WD);
+> +	}
+> +
+> +}
+> +
+> +static int intel_wd_compute_config(struct intel_encoder *encoder,
+> +			struct intel_crtc_state *pipe_config,
+> +			struct drm_connector_state *conn_state)
+> +{
+> +	struct intel_wd *intel_wd =3D enc_to_intel_wd(encoder);
+> +	struct drm_writeback_job *job;
+> +
+> +	job =3D intel_get_writeback_job_from_queue(intel_wd);
+> +	if (job || conn_state->writeback_job) {
+> +		intel_wd->wd_crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
+> +		return 0;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void intel_wd_get_power_domains(struct intel_encoder *encoder,
+> +			struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	struct intel_wd *intel_wd =3D enc_to_intel_wd(encoder);
+> +	intel_wakeref_t wakeref;
+> +
+> +	wakeref =3D intel_display_power_get(dev_priv,
+> +				encoder->power_domain);
+> +
+> +	intel_wd->io_wakeref[0] =3D wakeref;
+> +}
+> +
+> +static bool intel_wd_get_hw_state(struct intel_encoder *encoder,
+> +		enum pipe *pipe)
+> +{
+> +	bool ret =3D false;
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	struct intel_wd *intel_wd =3D enc_to_intel_wd(encoder);
+> +	struct intel_crtc *wd_crtc =3D intel_wd->wd_crtc;
+> +	intel_wakeref_t wakeref;
+> +	u32 tmp;
+> +
+> +	if (wd_crtc)
+> +		return false;
+> +
+> +	wakeref =3D intel_display_power_get_if_enabled(dev_priv,
+> +				encoder->power_domain);
+> +
+> +	if (!wakeref)
+> +		goto out;
+> +
+> +	tmp =3D intel_de_read(dev_priv, PIPECONF(intel_wd->trans));
+> +	ret =3D tmp & WD_TRANS_ACTIVE;
+> +
+> +	if (ret) {
+> +		*pipe =3D wd_crtc->pipe;
+> +		return true;
+> +	}
+> +
+> +out:
+> +	intel_display_power_put(dev_priv, encoder->power_domain, wakeref);
+> +	return false;
+> +
+> +}
+> +
+> +static int intel_wd_encoder_atomic_check(struct drm_encoder *encoder,
+> +				    struct drm_crtc_state *crtc_st,
+> +				    struct drm_connector_state *conn_st)
+> +{
+> +	/* Check for the format and buffers and property validity */
+> +	struct drm_framebuffer *fb;
+> +	struct drm_writeback_job *job =3D conn_st->writeback_job;
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->dev);
+> +	const struct drm_display_mode *mode =3D &crtc_st->mode;
+> +	int ret;
+> +
+> +	drm_dbg_kms(&dev_priv->drm, "\n");
+> +
+> +	if (!job) {
+> +		drm_dbg_kms(&dev_priv->drm, "No writeback job created returning\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	fb =3D job->fb;
+> +
+> +	if (!fb) {
+> +		drm_dbg_kms(&dev_priv->drm, "Invalid framebuffer\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (fb->width !=3D mode->hdisplay || fb->height !=3D mode->vdisplay) {
+> +		drm_dbg_kms(&dev_priv->drm, "Invalid framebuffer size %ux%u\n",
+> +				fb->width, fb->height);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret =3D intel_wd_verify_pix_format(fb->format->format);
+> +
+> +	if (ret) {
+> +		drm_dbg_kms(&dev_priv->drm, "Unsupported framebuffer format %08x\n",
+> +				fb->format->format);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +
+> +static const struct drm_encoder_helper_funcs wd_encoder_helper_funcs =3D=
+ {
+> +	.atomic_check =3D intel_wd_encoder_atomic_check,
+> +};
+> +
+> +static void intel_wd_connector_destroy(struct drm_connector *connector)
+> +{
+> +	drm_dbg_kms(connector->dev, "\n");
+> +	drm_connector_cleanup(connector);
+> +	kfree(connector);
+> +}
+> +
+> +static enum drm_connector_status
+> +intel_wb_connector_detect(struct drm_connector *connector, bool force)
+> +{
+> +	return connector_status_connected;
+> +}
+> +
+> +static const struct drm_connector_funcs wd_connector_funcs =3D {
+> +	.detect =3D intel_wb_connector_detect,
+> +	.reset =3D drm_atomic_helper_connector_reset,
+> +	.destroy =3D intel_wd_connector_destroy,
+> +	.fill_modes =3D drm_helper_probe_single_connector_modes,
+> +	.atomic_destroy_state =3D drm_atomic_helper_connector_destroy_state,
+> +	.atomic_duplicate_state =3D drm_atomic_helper_connector_duplicate_state,
+> +};
+> +
+> +static const struct drm_connector_helper_funcs wd_connector_helper_funcs=
+ =3D {
+> +	.get_modes =3D intel_wd_get_modes,
+> +	.mode_valid =3D intel_wd_mode_valid,
+> +};
+> +
+> +static const struct drm_encoder_funcs drm_writeback_encoder_funcs =3D {
+> +	.destroy =3D drm_encoder_cleanup,
+> +};
+> +
+> +static bool intel_fastset_dis(struct intel_encoder *encoder,
+> +		struct intel_crtc_state *pipe_config)
+> +{
+> +	pipe_config->uapi.mode_changed =3D true;
+> +	return false;
+> +}
+> +
+> +static void intel_wd_connector_init(struct intel_wd *intel_wd)
+> +{
+> +	drm_atomic_helper_connector_reset(&intel_wd->wb_conn.base);
+> +}
+> +
+> +void intel_wd_init(struct drm_i915_private *dev_priv, enum transcoder tr=
+ans)
+> +{
+> +	struct intel_wd *intel_wd;
+> +	struct intel_encoder *encoder;
+> +	struct drm_writeback_connector *wb_conn;
+> +	int n_formats =3D ARRAY_SIZE(wb_fmts);
+> +	struct drm_encoder *drm_enc;
+> +	int err, ret;
+> +
+> +	intel_wd =3D kzalloc(sizeof(*intel_wd), GFP_KERNEL);
+> +
+> +	if (!intel_wd)
+> +		return;
+> +
+> +	intel_wd_connector_init(intel_wd);
+> +	encoder =3D &intel_wd->base;
+> +	drm_enc =3D &encoder->base;
+> +	wb_conn =3D &intel_wd->wb_conn;
+> +	intel_wd->trans =3D trans;
+> +	intel_wd->triggered_cap_mode =3D 1;
+> +	intel_wd->frame_num =3D 1;
+> +	intel_wd->slicing_strategy =3D 1;
+> +	encoder->get_config =3D intel_wd_get_config;
+> +	encoder->compute_config =3D intel_wd_compute_config;
+> +	encoder->get_hw_state =3D intel_wd_get_hw_state;
+> +	encoder->type =3D INTEL_OUTPUT_WD;
+> +	encoder->cloneable =3D 0;
+> +	encoder->pipe_mask =3D BIT(PIPE_B);
+> +	encoder->power_domain =3D POWER_DOMAIN_TRANSCODER_B;
+> +	encoder->get_power_domains =3D intel_wd_get_power_domains;
+> +	encoder->initial_fastset_check =3D intel_fastset_dis;
+> +
+> +	drm_encoder_helper_add(drm_enc,
+> +			&wd_encoder_helper_funcs);
+> +
+> +	drm_enc->possible_crtcs =3D BIT(PIPE_B);
+> +
+> +	ret =3D drm_encoder_init(&dev_priv->drm, drm_enc,
+> +			       &drm_writeback_encoder_funcs,
+> +			       DRM_MODE_ENCODER_VIRTUAL, NULL);
+> +
+> +	if (ret) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +		"Writeback drm_encoder init Failed: %d\n",
+> +			ret);
+> +		goto cleanup;
+> +	}
+> +
+> +	err =3D drm_writeback_connector_init_with_encoder(&dev_priv->drm,
+> +		wb_conn, drm_enc, &wd_connector_funcs,
+> +		wb_fmts, n_formats);
+> +
+> +	if (err !=3D 0) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +		"drm_writeback_connector_init: Failed: %d\n",
+> +			err);
+> +		goto cleanup;
+> +	}
+> +
+> +	wb_conn->base.encoder =3D drm_enc;
+> +	drm_connector_helper_add(&wb_conn->base, &wd_connector_helper_funcs);
+> +	wb_conn->base.status =3D connector_status_connected;
+> +	return;
+> +
+> +cleanup:
+> +	kfree(intel_wd);
+> +	return;
+> +}
+> +
+> +static void intel_wd_writeback_complete(struct intel_wd *intel_wd,
+> +	struct drm_writeback_job *job, int status)
+> +{
+> +	struct drm_writeback_connector *wb_conn =3D
+> +		&intel_wd->wb_conn;
+> +	drm_writeback_signal_completion(wb_conn, status);
+> +}
+> +
+> +static int intel_wd_setup_transcoder(struct intel_wd *intel_wd,
+> +		struct intel_crtc_state *pipe_config,
+> +		struct drm_connector_state *conn_state,
+> +		struct drm_writeback_job *job)
+> +{
+> +	struct intel_crtc *intel_crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
+> +	enum pipe pipe =3D intel_crtc->pipe;
+> +	struct drm_framebuffer *fb;
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_crtc->base.dev);
+> +	struct drm_gem_object *wd_fb_obj;
+> +	int ret;
+> +	u32 stride, tmp;
+> +	u16 hactive, vactive;
+> +
+> +	fb =3D job->fb;
+> +	wd_fb_obj =3D fb->obj[0];
+> +	if (!wd_fb_obj) {
+> +		drm_dbg_kms(&dev_priv->drm, "No framebuffer gem object created\n");
+> +		return -1;
+> +	}
+> +	ret =3D intel_wd_pin_fb(intel_wd, fb);
+> +	drm_WARN_ON(&dev_priv->drm, ret !=3D 0);
+> +
+> +	/*Write stride and surface registers in that particular order*/
+> +	stride =3D intel_wd_get_stride(pipe_config, fb->format->format);
+> +
+> +	tmp =3D intel_de_read(dev_priv, WD_STRIDE(intel_wd->trans));
+> +	tmp &=3D ~WD_STRIDE_MASK;
+> +	tmp |=3D (stride << WD_STRIDE_SHIFT);
+> +
+> +	intel_de_write(dev_priv, WD_STRIDE(intel_wd->trans), tmp);
+> +
+> +	tmp =3D intel_de_read(dev_priv, WD_SURF(intel_wd->trans));
+> +
+> +	intel_de_write(dev_priv, WD_SURF(intel_wd->trans),
+> +			i915_ggtt_offset(intel_wd->vma));
+> +
+> +	tmp =3D intel_de_read_fw(dev_priv, WD_IIR(intel_wd->trans));
+> +	intel_de_write_fw(dev_priv, WD_IIR(intel_wd->trans), tmp);
+> +
+> +	tmp =3D ~(WD_GTT_FAULT_INT|WD_WRITE_COMPLETE_INT|WD_FRAME_COMPLETE_INT|
+> +			WD_VBLANK_INT|WD_OVERRUN_INT|WD_CAPTURING_INT);
+> +	intel_de_write_fw(dev_priv, WD_IMR(intel_wd->trans), tmp);
+> +
+> +	if (intel_wd->stream_cap) {
+> +		tmp =3D intel_de_read(dev_priv,
+> +				WD_STREAMCAP_CTL(intel_wd->trans));
+> +		tmp |=3D WD_STREAM_CAP_MODE_EN;
+> +		intel_configure_slicing_strategy(dev_priv, intel_wd, &tmp);
+> +	}
+> +
+> +	hactive =3D pipe_config->uapi.mode.hdisplay;
+> +	vactive =3D pipe_config->uapi.mode.vdisplay;
+> +	tmp =3D intel_de_read(dev_priv, HTOTAL(intel_wd->trans));
+> +	tmp =3D intel_de_read(dev_priv, VTOTAL(intel_wd->trans));
+> +
+> +	/* minimum hactive as per bspec: 64 pixels*/
+> +	if (hactive < 64)
+> +		drm_err(&dev_priv->drm, "hactive is less then 64 pixels\n");
+> +
+> +	intel_de_write(dev_priv, HTOTAL(intel_wd->trans), hactive - 1);
+> +	intel_de_write(dev_priv, VTOTAL(intel_wd->trans), vactive - 1);
+> +
+> +	tmp =3D intel_de_read(dev_priv, WD_TRANS_FUNC_CTL(intel_wd->trans));
+> +	/* select pixel format */
+> +	tmp &=3D ~WD_PIX_FMT_MASK;
+> +
+> +	switch (fb->format->format) {
+> +	default:
+> +	fallthrough;
+> +	case DRM_FORMAT_YUYV:
+> +		tmp |=3D WD_PIX_FMT_YUYV;
+> +		break;
+> +	case DRM_FORMAT_XYUV8888:
+> +		tmp |=3D WD_PIX_FMT_XYUV8888;
+> +		break;
+> +	case DRM_FORMAT_XBGR8888:
+> +	case DRM_FORMAT_XRGB8888:
+> +		tmp |=3D WD_PIX_FMT_XBGR8888;
+> +		break;
+> +	case DRM_FORMAT_Y410:
+> +		tmp |=3D WD_PIX_FMT_Y410;
+> +		break;
+> +	case DRM_FORMAT_YUV422:
+> +		tmp |=3D WD_PIX_FMT_YUV422;
+> +		break;
+> +	case DRM_FORMAT_XBGR2101010:
+> +		tmp |=3D WD_PIX_FMT_XBGR2101010;
+> +		break;
+> +	case DRM_FORMAT_RGB565:
+> +		tmp |=3D WD_PIX_FMT_RGB565;
+> +		break;
+> +	}
+> +
+> +	if (intel_wd->triggered_cap_mode)
+> +		tmp |=3D WD_TRIGGERED_CAP_MODE_ENABLE;
+> +
+> +	if (intel_wd->stream_cap)
+> +		tmp |=3D WD_CTL_POINTER_DTDH;
+> +
+> +	/*select input pipe*/
+> +	tmp &=3D ~WD_INPUT_SELECT_MASK;
+> +	switch (pipe) {
+> +	default:
+> +		fallthrough;
+> +	case PIPE_A:
+> +		tmp |=3D WD_INPUT_PIPE_A;
+> +		break;
+> +	case PIPE_B:
+> +		tmp |=3D WD_INPUT_PIPE_B;
+> +		break;
+> +	case PIPE_C:
+> +		tmp |=3D WD_INPUT_PIPE_C;
+> +		break;
+> +	case PIPE_D:
+> +		tmp |=3D WD_INPUT_PIPE_D;
+> +		break;
+> +	}
+> +
+> +	/* enable DDI buffer */
+> +	if (!(tmp & TRANS_WD_FUNC_ENABLE))
+> +		tmp |=3D TRANS_WD_FUNC_ENABLE;
+> +
+> +	intel_de_write(dev_priv, WD_TRANS_FUNC_CTL(intel_wd->trans), tmp);
+> +
+> +	tmp =3D intel_de_read(dev_priv, PIPECONF(intel_wd->trans));
+> +	ret =3D tmp & WD_TRANS_ACTIVE;
+> +
+> +	if (!ret) {
+> +		/*enable the transcoder	*/
+> +		tmp =3D intel_de_read(dev_priv, PIPECONF(intel_wd->trans));
+> +		tmp |=3D WD_TRANS_ENABLE;
+> +		intel_de_write(dev_priv, PIPECONF(intel_wd->trans), tmp);
+> +
+> +		/* wait for transcoder to be enabled */
+> +		if (intel_de_wait_for_set(dev_priv, PIPECONF(intel_wd->trans),
+> +				WD_TRANS_ACTIVE, 10))
+> +			drm_err(&dev_priv->drm, "WD transcoder could not be enabled\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void intel_wd_disable_capture(struct intel_wd *intel_wd)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_wd->base.base.dev);
+> +	u32 tmp;
+> +
+> +	intel_de_write_fw(dev_priv, WD_IMR(intel_wd->trans), 0xFF);
+> +	tmp =3D intel_de_read(dev_priv, PIPECONF(intel_wd->trans));
+> +	tmp &=3D WD_TRANS_DISABLE;
+> +	intel_de_write(dev_priv, PIPECONF(intel_wd->trans), tmp);
+> +	tmp =3D intel_de_read(dev_priv, WD_TRANS_FUNC_CTL(intel_wd->trans));
+> +	tmp |=3D ~TRANS_WD_FUNC_ENABLE;
+> +}
+> +
+> +static int intel_wd_capture(struct intel_wd *intel_wd,
+> +		struct intel_crtc_state *pipe_config,
+> +		struct drm_connector_state *conn_state,
+> +		struct drm_writeback_job *job)
+> +{
+> +	u32 tmp;
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_wd->base.base.dev);
+> +	int ret =3D 0, status =3D 0;
+> +	struct intel_crtc *wd_crtc =3D intel_wd->wd_crtc;
+> +	unsigned long flags;
+> +
+> +	if (!job->out_fence)
+> +		drm_dbg_kms(&dev_priv->drm, "Not able to get out_fence for job\n");
+> +
+> +	ret =3D intel_wd_setup_transcoder(intel_wd, pipe_config,
+> +		conn_state, job);
+> +
+> +	if (ret < 0) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +		"WD transcoder setup not completed aborting capture\n");
+> +		return -1;
+> +	}
+> +
+> +	if (wd_crtc =3D=3D NULL) {
+> +		DRM_ERROR("CRTC not attached\n");
+
+drm_err() please. Ditto everywhere.
+
+> +		return -1;
+> +	}
+> +
+> +	tmp =3D intel_de_read_fw(dev_priv,
+> +			WD_TRANS_FUNC_CTL(intel_wd->trans));
+> +	tmp |=3D START_TRIGGER_FRAME;
+> +	tmp &=3D ~WD_FRAME_NUMBER_MASK;
+> +	tmp |=3D intel_wd->frame_num;
+> +	intel_de_write_fw(dev_priv,
+> +			WD_TRANS_FUNC_CTL(intel_wd->trans), tmp);
+> +
+> +	if (!intel_de_wait_for_set(dev_priv, WD_IIR(intel_wd->trans),
+> +				WD_FRAME_COMPLETE_INT, 100)){
+> +		drm_dbg_kms(&dev_priv->drm, "frame captured\n");
+> +		status =3D 0;
+> +	} else {
+> +		drm_dbg_kms(&dev_priv->drm, "frame not captured triggering stop frame\=
+n");
+> +		tmp =3D intel_de_read(dev_priv,
+> +				WD_TRANS_FUNC_CTL(intel_wd->trans));
+> +		tmp |=3D STOP_TRIGGER_FRAME;
+> +		intel_de_write(dev_priv,
+> +				WD_TRANS_FUNC_CTL(intel_wd->trans), tmp);
+> +		status =3D -1;
+> +	}
+> +
+> +	intel_de_write(dev_priv, WD_IIR(intel_wd->trans), tmp);
+> +	intel_wd_writeback_complete(intel_wd, job, status);
+> +	if (intel_get_writeback_job_from_queue(intel_wd) =3D=3D NULL)
+> +		intel_wd_disable_capture(intel_wd);
+> +	if (wd_crtc->wd.e) {
+> +		spin_lock_irqsave(&dev_priv->drm.event_lock, flags);
+> +		drm_dbg_kms(&dev_priv->drm, "send %p\n", wd_crtc->wd.e);
+> +		drm_crtc_send_vblank_event(&wd_crtc->base,
+> +					wd_crtc->wd.e);
+> +		spin_unlock_irqrestore(&dev_priv->drm.event_lock, flags);
+> +		wd_crtc->wd.e =3D NULL;
+> +	} else {
+> +		DRM_ERROR("Event NULL! %p, %p\n", &dev_priv->drm,
+> +			wd_crtc);
+> +	}
+> +	return 0;
+> +
+> +}
+> +
+> +void intel_wd_enable_capture(struct intel_crtc_state *pipe_config,
+> +		struct drm_connector_state *conn_state)
+
+Feels like this should be an encoder hook, called like for any encoder.
+
+> +{
+> +	struct drm_i915_private *i915 =3D
+> +		to_i915(conn_state->connector->dev);
+> +	struct drm_writeback_connector *wb_conn =3D
+> +		drm_connector_to_writeback(conn_state->connector);
+> +	struct intel_wd *intel_wd =3D wb_conn_to_intel_wd(wb_conn);
+> +	struct drm_writeback_job *job;
+> +
+> +	job =3D intel_get_writeback_job_from_queue(intel_wd);
+> +	if (job =3D=3D NULL) {
+> +		drm_dbg_kms(&i915->drm,
+> +			"job queue is empty not capturing any frame\n");
+> +		return;
+> +	}
+> +
+> +	intel_wd_capture(intel_wd, pipe_config,
+> +			conn_state, job);
+> +	intel_wd->frame_num +=3D 1;
+> +
+> +}
+> +
+> +void intel_wd_set_vblank_event(struct intel_crtc *intel_crtc,
+> +			struct intel_crtc_state *intel_crtc_state)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_crtc->base.dev);
+> +	struct drm_crtc_state *state =3D &intel_crtc_state->uapi;
+> +	struct intel_encoder *encoder;
+> +	struct intel_wd *intel_wd;
+> +
+> +	for_each_intel_encoder(&dev_priv->drm, encoder) {
+> +
+> +		if (encoder->type !=3D INTEL_OUTPUT_WD)
+> +			continue;
+> +
+> +		intel_wd =3D enc_to_intel_wd(encoder);
+> +
+> +		if (!intel_wd->wd_crtc)
+> +			return;
+> +	}
+> +
+> +	if (intel_crtc =3D=3D intel_wd->wd_crtc) {
+> +		intel_crtc->wd.e =3D state->event;
+> +		state->event =3D NULL;
+> +	}
+> +}
+> +void intel_wd_handle_isr(struct drm_i915_private *dev_priv)
+> +{
+> +	u32 iir_value =3D 0;
+> +	struct intel_encoder *encoder;
+> +	struct intel_wd *intel_wd;
+> +
+> +	iir_value =3D intel_de_read(dev_priv, WD_IIR(TRANSCODER_WD_0));
+> +	drm_dbg_kms(&dev_priv->drm, "\n");
+> +
+> +	for_each_intel_encoder(&dev_priv->drm, encoder) {
+> +
+> +		if (encoder->type =3D=3D INTEL_OUTPUT_WD)
+> +			continue;
+> +
+> +		intel_wd =3D enc_to_intel_wd(encoder);
+> +
+> +		if (!intel_wd->wd_crtc) {
+> +			DRM_ERROR("NO CRTC attached with WD\n");
+> +			goto clear_iir;
+> +		}
+> +	}
+> +
+> +	if (iir_value & WD_FRAME_COMPLETE_INT)
+> +		return;
+> +
+> +clear_iir:
+> +	intel_de_write(dev_priv, WD_IIR(TRANSCODER_WD_0), iir_value);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_wd.h b/drivers/gpu/drm/i9=
+15/display/intel_wd.h
+> new file mode 100644
+> index 000000000000..f16b9b2d78d8
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_wd.h
+> @@ -0,0 +1,76 @@
+> +/* SPDX-License-Identifier: GPL-2.0
+
+MIT.
+
+> + * Copyright =C2=A9 2021 Intel Corporation
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining=
+ a
+> + * copy of this software and associated documentation files (the "Softwa=
+re"),
+> + * to deal in the Software without restriction, including without limita=
+tion
+> + * the rights to use, copy, modify, merge, publish, distribute, sublicen=
+se,
+> + * and/or sell copies of the Software, and to permit persons to whom the
+> + * Software is furnished to do so, subject to the following conditions:
+> + *
+> + * The above copyright notice and this permission notice (including the =
+next
+> + * paragraph) shall be included in all copies or substantial portions of=
+ the
+> + * Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
+SS OR
+> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILI=
+TY,
+> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SH=
+ALL
+> + * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR =
+OTHER
+> + * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISI=
+NG
+> + * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+> + * DEALINGS IN THE SOFTWARE.
+
+Unnecessary.
+
+> + *
+> + * Author :
+> + *	Suraj Kandpal<suraj.kandpal@intel.com>
+> + *	Arun Murthy<arun.r.murthy@intel.com>
+
+See what I said above about authors.
+
+> + */
+> +
+> +#ifndef _INTEL_WD_H
+> +#define _INTEL_WD_H
+> +
+> +#include <drm/drm_crtc.h>
+
+Unnecessary AFAICT.
+
+Please use forward declarations instead of includes in headers as much
+as possible.
+
+> +
+> +#include "intel_display_types.h"
+> +
+> +#define I915_MAX_WD_TANSCODERS 2
+> +
+> +struct intel_wd {
+> +	struct intel_encoder base;
+> +	struct drm_writeback_connector wb_conn;
+> +	struct intel_crtc *wd_crtc;
+> +	intel_wakeref_t io_wakeref[I915_MAX_WD_TANSCODERS];
+> +	//struct intel_connector *attached_connector;
+> +	enum transcoder trans;
+> +	struct i915_vma *vma;
+> +	unsigned long flags;
+> +	struct drm_writeback_job *job;
+> +	int triggered_cap_mode;
+> +	int frame_num;
+> +	bool stream_cap;
+> +	bool start_capture;
+> +	int slicing_strategy;
+> +};
+> +
+> +struct intel_wd_clk_vals {
+> +	u32 cdclk;
+> +	u16 link_m;
+> +	u16 link_n;
+> +};
+
+Unused.
+
+> +
+> +static inline struct intel_wd *enc_to_intel_wd(struct intel_encoder *enc=
+oder)
+> +{
+> +	return container_of(&encoder->base, struct intel_wd, base.base);
+> +}
+> +
+> +static inline struct intel_wd *wb_conn_to_intel_wd(struct drm_writeback_=
+connector *wb_conn)
+> +{
+> +	return container_of(wb_conn, struct intel_wd, wb_conn);
+> +}
+> +
+> +void intel_wd_init(struct drm_i915_private *dev_priv, enum transcoder tr=
+ans);
+> +void intel_wd_enable_capture(struct intel_crtc_state *pipe_config,
+> +			struct drm_connector_state *conn_state);
+> +void intel_wd_handle_isr(struct drm_i915_private *dev_priv);
+> +void intel_wd_set_vblank_event(struct intel_crtc *crtc,
+> +			struct intel_crtc_state *state);
+> +#endif/* _INTEL_WD_H */
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index d25647be25d1..30dc97785392 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -35,6 +35,8 @@
+>  #include <linux/pm_qos.h>
+>=20=20
+>  #include <drm/drm_connector.h>
+> +#include <drm/drm_writeback.h>
+> +#include <drm/i915_mei_hdcp_interface.h>
+
+Unnecessary.
+
+>  #include <drm/ttm/ttm_device.h>
+>=20=20
+>  #include "display/intel_cdclk.h"
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index 73cebc6aa650..95a6a8f7a911 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -42,6 +42,7 @@
+>  #include "display/intel_hotplug.h"
+>  #include "display/intel_lpe_audio.h"
+>  #include "display/intel_psr.h"
+> +#include "display/intel_wd.h"
+>=20=20
+>  #include "gt/intel_breadcrumbs.h"
+>  #include "gt/intel_gt.h"
+> @@ -2342,6 +2343,11 @@ gen8_de_misc_irq_handler(struct drm_i915_private *=
+dev_priv, u32 iir)
+>  		found =3D true;
+>  	}
+>=20=20
+> +	if (iir & GEN8_DE_MISC_WD0) {
+> +		intel_wd_handle_isr(dev_priv);
+> +		found =3D true;
+> +	}
+> +
+>  	if (iir & GEN8_DE_EDP_PSR) {
+>  		struct intel_encoder *encoder;
+>  		u32 psr_iir;
+> @@ -3767,7 +3773,7 @@ static void gen8_de_irq_postinstall(struct drm_i915=
+_private *dev_priv)
+>  	u32 de_pipe_enables;
+>  	u32 de_port_masked =3D gen8_de_port_aux_mask(dev_priv);
+>  	u32 de_port_enables;
+> -	u32 de_misc_masked =3D GEN8_DE_EDP_PSR;
+> +	u32 de_misc_masked =3D GEN8_DE_EDP_PSR | GEN8_DE_MISC_WD0;
+>  	u32 trans_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+>  		BIT(TRANSCODER_C) | BIT(TRANSCODER_D);
+>  	enum pipe pipe;
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
+pci.c
+> index aacc10f2e73f..bf4f1a7968c5 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -864,7 +864,8 @@ static const struct intel_device_info jsl_info =3D {
+>  	.display.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PI=
+PE_D), \
+>  	.display.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B) =
+| \
+>  		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
+> -		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
+> +		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1)| \
+> +		BIT(TRANSCODER_WD_0), \
+>  	.display.pipe_offsets =3D { \
+>  		[TRANSCODER_A] =3D PIPE_A_OFFSET, \
+>  		[TRANSCODER_B] =3D PIPE_B_OFFSET, \
+> @@ -872,6 +873,8 @@ static const struct intel_device_info jsl_info =3D {
+>  		[TRANSCODER_D] =3D PIPE_D_OFFSET, \
+>  		[TRANSCODER_DSI_0] =3D PIPE_DSI0_OFFSET, \
+>  		[TRANSCODER_DSI_1] =3D PIPE_DSI1_OFFSET, \
+> +		[TRANSCODER_WD_0] =3D PIPE_WD0_OFFSET, \
+> +		[TRANSCODER_WD_1] =3D PIPE_WD1_OFFSET, \
+>  	}, \
+>  	.display.trans_offsets =3D { \
+>  		[TRANSCODER_A] =3D TRANSCODER_A_OFFSET, \
+> @@ -880,6 +883,8 @@ static const struct intel_device_info jsl_info =3D {
+>  		[TRANSCODER_D] =3D TRANSCODER_D_OFFSET, \
+>  		[TRANSCODER_DSI_0] =3D TRANSCODER_DSI0_OFFSET, \
+>  		[TRANSCODER_DSI_1] =3D TRANSCODER_DSI1_OFFSET, \
+> +		[TRANSCODER_WD_0] =3D TRANSCODER_WD0_OFFSET, \
+> +		[TRANSCODER_WD_1] =3D TRANSCODER_WD1_OFFSET, \
+>  	}, \
+>  	TGL_CURSOR_OFFSETS, \
+>  	.has_global_mocs =3D 1, \
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
