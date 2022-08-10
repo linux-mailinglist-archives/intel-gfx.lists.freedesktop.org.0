@@ -2,41 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C7CF58F01C
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 18:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5842258F01D
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 18:10:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABA0791188;
-	Wed, 10 Aug 2022 16:10:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE0B8EB5D;
+	Wed, 10 Aug 2022 16:10:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8CBF8F549
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 16:09:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=t4MwVAfwkCB4EmT15HXtvuXRXMl6148oIcwvT5rWzH0=; b=kPMJXR6bwoyVWhfo3Q7xsHuiDo
- cu8JJgUYOjq7g3kEB5WIsh9x6nbEmYe6xEiLqmEL/GcqqRT1KRBcbdOcD0IQPc5DO2tLg0tFutO+n
- 8jox7enRkWZGz1Xnf4MdfmCJVKzOq4mRpK+VYzdXJtVVQ2H5CJunExT5O4E0myfZ+CxWP/zb3jxwf
- fL8YjQ0IgMU+fDDCUbm8haoViYTGXvq78yp/5MjQ83XkXd+yz1/IUPk57t1LVhRD+3Rg2jNOETaC9
- Ua4TR8OXpDgLDsK0RXLQ6P9pLjXNifHs7hjH82RRbDD5IkjPI/38kLQtkqWzOwtuL6KxX+LEQ+h8d
- +RocqkeA==;
-Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1oLoH3-00Gzln-Lb; Wed, 10 Aug 2022 16:09:37 +0000
-Date: Wed, 10 Aug 2022 17:09:37 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: Hugh Dickins <hughd@google.com>
-Message-ID: <YvPYQeMjfyruTeGe@casper.infradead.org>
-References: <584ae788-05e3-5824-8c85-cbb833677850@redhat.com>
- <f0dd80b2-97e1-c320-8517-7ebdb027f58a@redhat.com>
- <4a204620-7639-c844-455-10e55b372bcf@google.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2AC4411BA19;
+ Wed, 10 Aug 2022 16:10:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 20983AADDB;
+ Wed, 10 Aug 2022 16:10:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4a204620-7639-c844-455-10e55b372bcf@google.com>
-Subject: Re: [Intel-gfx] i915: crash with 5.19-rc2
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 10 Aug 2022 16:10:00 -0000
+Message-ID: <166014780010.12359.2755224595221755930@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1660137416.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1660137416.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_stop_modifying_=22const=22_device_info_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,25 +41,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk,
- LKML <linux-kernel@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
- Zdenek Kabelac <zkabelac@redhat.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 10, 2022 at 08:55:32AM -0700, Hugh Dickins wrote:
-> This is not a bug in zram or i915, but what Matthew fixes in
-> https://lore.kernel.org/lkml/20220730042518.1264767-1-willy@infradead.org/
+== Series Details ==
 
-Thanks for tracking that down, Hugh.  Nice to know it's a crash rather
-than a data corruption.  The fix is in Andrew's tree, so I think it's
-already destined for upstream soon.
+Series: drm/i915: stop modifying "const" device info (rev2)
+URL   : https://patchwork.freedesktop.org/series/105358/
+State : warning
 
-Andrew, I have two fixes that I don't see in your tree:
+== Summary ==
 
-https://lore.kernel.org/linux-mm/20220808193430.3378317-2-willy@infradead.org/T/#u
-https://lore.kernel.org/linux-mm/20220808193430.3378317-4-willy@infradead.org/T/#u
+Error: dim checkpatch failed
+8b6f98985b8e drm/i915: combine device info printing into one
+9a6f5a0b06ee drm/i915: add initial runtime info into device info
+-:50: WARNING:REPEATED_WORD: Possible repeated word: 'into'
+#50: FILE: drivers/gpu/drm/i915/intel_device_info.h:208:
++	 * Platform mask is used for optimizing or-ed IS_PLATFORM calls into
++	 * into single runtime conditionals, and also to provide groundwork
 
-The first is of minor importance, the second I believe Hugh has hit in
-his testing.
+total: 0 errors, 1 warnings, 0 checks, 75 lines checked
+eff9cb7472ab drm/i915: move graphics.ver and graphics.rel to runtime info
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#25: FILE: drivers/gpu/drm/i915/i915_drv.h:860:
++#define GRAPHICS_VER_FULL(i915)		IP_VER(RUNTIME_INFO(i915)->graphics.ver, \
++					       RUNTIME_INFO(i915)->graphics.rel)
+
+-:97: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#97: FILE: drivers/gpu/drm/i915/i915_pci.c:1282:
++	int gttmmaddr_bar = intel_info->__runtime.graphics.ver == 2 ? GEN2_GTTMMADR_BAR : GTTMMADR_BAR;
+
+total: 0 errors, 1 warnings, 1 checks, 110 lines checked
+c91b0751436c drm/i915: move fbc_mask to runtime info
+60defce05855 drm/i915: move page_sizes to runtime info
+ebde9ea8aa1b drm/i915: move ppgtt_type and ppgtt_size to runtime info
+1e95268eb1b7 drm/i915: move has_pooled_eu to runtime info
+cb5008f15cdc drm/i915: move memory_regions to runtime info
+e4e72f502374 drm/i915: move platform_engine_mask to runtime info
+95b5e00b267b drm/i915: move pipe_mask and cpu_transcoder_mask to runtime info
+-:29: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#29: FILE: drivers/gpu/drm/i915/display/intel_display.h:386:
++		for_each_if (RUNTIME_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
+
+-:42: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#42: FILE: drivers/gpu/drm/i915/i915_drv.h:1267:
++#define HAS_TRANSCODER(dev_priv, trans)	 ((RUNTIME_INFO(dev_priv)->cpu_transcoder_mask & BIT(trans)) != 0)
+
+-:135: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#135: FILE: drivers/gpu/drm/i915/i915_pci.c:465:
++	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C), \
+
+total: 0 errors, 3 warnings, 0 checks, 285 lines checked
+4d4a584c9236 drm/i915: move has_hdcp to runtime info
+3bf8d186903e drm/i915: move has_dmc to runtime info
+0f1ae80e426f drm/i915: move has_dsc to runtime info
+45006d03e664 drm/i915: stop resetting display info to zero for no display
+b596999522ef drm/i915: make device info a pointer to static const data
+-:58: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__i915' may be better as '(__i915)' to avoid precedence issues
+#58: FILE: drivers/gpu/drm/i915/i915_drv.h:851:
++#define INTEL_INFO(__i915)	(__i915->__info)
+
+total: 0 errors, 0 warnings, 1 checks, 49 lines checked
+
 
