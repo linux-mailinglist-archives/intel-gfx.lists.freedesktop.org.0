@@ -2,32 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83B9D58E3DD
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 01:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F4458E42D
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 02:43:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC1ACB87E7;
-	Tue,  9 Aug 2022 23:51:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC7EDDF81A;
+	Wed, 10 Aug 2022 00:43:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7C0E9DE0E1;
- Tue,  9 Aug 2022 23:51:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6C49BA7E03;
- Tue,  9 Aug 2022 23:51:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6001699144402057757=="
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF40BDF7E6;
+ Wed, 10 Aug 2022 00:43:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1660092213; x=1691628213;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9D74/qZCe/VWsjW3YltQLfgj6t+AO7P4OXWI1xp7RvM=;
+ b=i36Uj2lwuD1FpBfLg5+Mk0r8GvItdXyzOrSEBHsPuiU6IFrVkeQUhc7W
+ 0LFa5+1CIebh2oEcyVjL4kDUdQVGQK4dpRwlWfrwZ2PfCj90tLuADPjZd
+ tv1g1LWRowsRRMon2QodtgrlWFpxWq+7FBXJlql9VEi0iisdOrUffFiZi
+ V8+fnRoZwMlQKOpbdBCOGI0jCMAY3t89BRjvhXzY5H+ym5/c8NDxg+Myo
+ umbXuRKAoWH2cab/v1zAdRgwvpjQD4hGW1LU3CM05+cNOwIBPRsPZOw3q
+ 8Y8JlUO61LtS1x5CEGT2wPe9aqCyk0yCP9G9MlqjqRd3oLEbDk/MpPVPo A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10434"; a="271351301"
+X-IronPort-AV: E=Sophos;i="5.93,225,1654585200"; d="scan'208";a="271351301"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2022 17:43:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,225,1654585200"; d="scan'208";a="581021751"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by orsmga006.jf.intel.com with ESMTP; 09 Aug 2022 17:43:31 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue,  9 Aug 2022 17:03:06 -0700
+Message-Id: <20220810000306.5476-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juston Li" <justonli@google.com>
-Date: Tue, 09 Aug 2022 23:51:29 -0000
-Message-ID: <166008908941.12845.4631289189926478246@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220809225700.2002634-1-justonli@google.com>
-In-Reply-To: <20220809225700.2002634-1-justonli@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/pxp=3A_don=27t_start_pxp_without_mei=5Fpxp_bind?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Allow SLPC to use efficient
+ frequency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,184 +55,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6001699144402057757==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Host Turbo operates at efficient frequency when GT is not idle unless
+the user or workload has forced it to a higher level. Replicate the same
+behavior in SLPC by allowing the algorithm to use efficient frequency.
+We had disabled it during boot due to concerns that it might break
+kernel ABI for min frequency. However, this is not the case, since
+SLPC will still abide by the (min,max) range limits and pcode forces
+frequency to 0 anyways when GT is in C6.
 
-== Series Details ==
+We also see much better perf numbers with benchmarks like glmark2 with
+efficient frequency usage enabled.
 
-Series: drm/i915/pxp: don't start pxp without mei_pxp bind
-URL   : https://patchwork.freedesktop.org/series/107099/
-State : success
+Fixes: 025cb07bebfa ("drm/i915/guc/slpc: Cache platform frequency limits")
 
-== Summary ==
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 52 ---------------------
+ 1 file changed, 52 deletions(-)
 
-CI Bug Log - changes from CI_DRM_11977 -> Patchwork_107099v1
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index e1fa1f32f29e..4b824da3048a 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -137,17 +137,6 @@ static int guc_action_slpc_set_param(struct intel_guc *guc, u8 id, u32 value)
+ 	return ret > 0 ? -EPROTO : ret;
+ }
+ 
+-static int guc_action_slpc_unset_param(struct intel_guc *guc, u8 id)
+-{
+-	u32 request[] = {
+-		GUC_ACTION_HOST2GUC_PC_SLPC_REQUEST,
+-		SLPC_EVENT(SLPC_EVENT_PARAMETER_UNSET, 1),
+-		id,
+-	};
+-
+-	return intel_guc_send(guc, request, ARRAY_SIZE(request));
+-}
+-
+ static bool slpc_is_running(struct intel_guc_slpc *slpc)
+ {
+ 	return slpc_get_state(slpc) == SLPC_GLOBAL_STATE_RUNNING;
+@@ -201,16 +190,6 @@ static int slpc_set_param(struct intel_guc_slpc *slpc, u8 id, u32 value)
+ 	return ret;
+ }
+ 
+-static int slpc_unset_param(struct intel_guc_slpc *slpc,
+-			    u8 id)
+-{
+-	struct intel_guc *guc = slpc_to_guc(slpc);
+-
+-	GEM_BUG_ON(id >= SLPC_MAX_PARAM);
+-
+-	return guc_action_slpc_unset_param(guc, id);
+-}
+-
+ static int slpc_force_min_freq(struct intel_guc_slpc *slpc, u32 freq)
+ {
+ 	struct drm_i915_private *i915 = slpc_to_i915(slpc);
+@@ -597,29 +576,6 @@ static int slpc_set_softlimits(struct intel_guc_slpc *slpc)
+ 	return 0;
+ }
+ 
+-static int slpc_ignore_eff_freq(struct intel_guc_slpc *slpc, bool ignore)
+-{
+-	int ret = 0;
+-
+-	if (ignore) {
+-		ret = slpc_set_param(slpc,
+-				     SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
+-				     ignore);
+-		if (!ret)
+-			return slpc_set_param(slpc,
+-					      SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+-					      slpc->min_freq);
+-	} else {
+-		ret = slpc_unset_param(slpc,
+-				       SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY);
+-		if (!ret)
+-			return slpc_unset_param(slpc,
+-						SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ);
+-	}
+-
+-	return ret;
+-}
+-
+ static int slpc_use_fused_rp0(struct intel_guc_slpc *slpc)
+ {
+ 	/* Force SLPC to used platform rp0 */
+@@ -679,14 +635,6 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+ 
+ 	slpc_get_rp_values(slpc);
+ 
+-	/* Ignore efficient freq and set min to platform min */
+-	ret = slpc_ignore_eff_freq(slpc, true);
+-	if (unlikely(ret)) {
+-		i915_probe_error(i915, "Failed to set SLPC min to RPn (%pe)\n",
+-				 ERR_PTR(ret));
+-		return ret;
+-	}
+-
+ 	/* Set SLPC max limit to RP0 */
+ 	ret = slpc_use_fused_rp0(slpc);
+ 	if (unlikely(ret)) {
+-- 
+2.35.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/index.html
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_107099v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bdw-gvtdvm:      [PASS][1] -> [INCOMPLETE][2] ([i915#2940])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11977/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [PASS][3] -> [DMESG-FAIL][4] ([i915#4528])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11977/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@runner@aborted:
-    - fi-bdw-gvtdvm:      NOTRUN -> [FAIL][5] ([i915#4312])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/fi-bdw-gvtdvm/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-adlm-1}:       [DMESG-WARN][6] ([i915#2867]) -> [PASS][7] +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11977/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6471]: https://gitlab.freedesktop.org/drm/intel/issues/6471
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11977 -> Patchwork_107099v1
-
-  CI-20190529: 20190529
-  CI_DRM_11977: 71776a3cc166e6400e713acdd2b03094120e1baa @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6619: ec2ab8e3a151ce05bd2726319c528c2ab99e8a96 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_107099v1: 71776a3cc166e6400e713acdd2b03094120e1baa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-6cf2a4a7703f drm/i915/pxp: don't start pxp without mei_pxp bind
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/index.html
-
---===============6001699144402057757==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/pxp: don&#39;t start pxp without mei_pxp bind</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107099/">https://patchwork.freedesktop.org/series/107099/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11977 -&gt; Patchwork_107099v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_107099v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11977/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11977/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/fi-bdw-gvtdvm/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0@smem:<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11977/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v1/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11977 -&gt; Patchwork_107099v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11977: 71776a3cc166e6400e713acdd2b03094120e1baa @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6619: ec2ab8e3a151ce05bd2726319c528c2ab99e8a96 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_107099v1: 71776a3cc166e6400e713acdd2b03094120e1baa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>6cf2a4a7703f drm/i915/pxp: don't start pxp without mei_pxp bind</p>
-
-</body>
-</html>
-
---===============6001699144402057757==--
