@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF01A58ECF8
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 15:20:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 045A558ED03
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 15:22:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F05D12BFF1;
-	Wed, 10 Aug 2022 13:19:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2E6314A953;
+	Wed, 10 Aug 2022 13:20:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43AF7B1C9C
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 13:18:57 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA8269BC1A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 13:18:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660137537; x=1691673537;
+ t=1660137540; x=1691673540;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pHI1WcKQYyXyh4FwjO8fz10BKjJjXlOVjMSqUat0vZ0=;
- b=UEQ+f0jDTD7ewP9Rjhdbs77cyxkKG1+xvlR6WZDXx0EeXon961uq5eDD
- zws4g8Uk38KMp+DLyE4yPNzCu97bczJy+Pf3uBh6ovv6pKgKQDshdh81B
- uNXst+u/dtFygb6QSzEewRjyhVTwBWSh5Ly1YCWcmOWEIxQe80MZZWZHi
- tAZ/zEIwAdW+Q8IJ3swNebyp1PONzYvmeqiork+McrWClW1U07FU618Hd
- GPqax8rIRvKoR55cZCCXyF5sv8kVErfTMilkLef4gwAbRuwHAPd+GGkvH
- f5dn9WdeJOdTw+HaYChN1Sw86cidkQcxhbp5qU1MCtYJ8BfA493CaNOhc g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10435"; a="355079192"
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="355079192"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 06:18:55 -0700
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="747425797"
+ bh=J4bncqXPCEGpn9NPOSc8cvmq/3odcYCtZuLo1wFrPLI=;
+ b=nMY7T7oVErAtCZ0bkxAE/QtLxPdCZ557zwsA9CFlEhq2TcgPAUvKKWej
+ 9JFqBRsWxs8R21n3fJM48gVW3n6zEby4PLXpIkRtTmEK4R9ohEPQp0Msy
+ x32p0FrebUy4X+YYBiBdP3uW2Dm+rHahhxFdCjReEQ9T8pMpZ+OveH6aC
+ hpFCRSAsAAHee52C3lUvbkUhBz2V12bI3nNCS1H5/X6flXbNFaZKgmtut
+ tvEfVDxkW2mQnxc1rjjuWit/f7ov6cv+yZKla/6+eIa6LMcjhMW1/pv+L
+ gnfanoQ9NxmM8YsbdlrOEvu+mecZ9YBQty0FBTntJEbfOzCfNaD0NZLuF w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10435"; a="352812933"
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="352812933"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 06:18:58 -0700
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="694518295"
 Received: from iefimov-mobl1.ccr.corp.intel.com (HELO localhost)
  ([10.252.49.172])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 06:18:53 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 06:18:57 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Aug 2022 16:18:12 +0300
-Message-Id: <b6e088f7568e538490970423346639c4e46fc0d5.1660137416.git.jani.nikula@intel.com>
+Date: Wed, 10 Aug 2022 16:18:13 +0300
+Message-Id: <f4ac2103a3bf145e8b387a395f05d778a8ad407b.1660137416.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1660137416.git.jani.nikula@intel.com>
 References: <cover.1660137416.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 08/15] drm/i915: move memory_regions to
+Subject: [Intel-gfx] [PATCH v2 09/15] drm/i915: move platform_engine_mask to
  runtime info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,105 +69,337 @@ fixed, we wouldn't have to do this.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h                  | 2 +-
- drivers/gpu/drm/i915/i915_pci.c                  | 6 +++---
- drivers/gpu/drm/i915/intel_device_info.c         | 2 +-
- drivers/gpu/drm/i915/intel_device_info.h         | 4 ++--
- drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 +-
- 5 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+ drivers/gpu/drm/i915/i915_pci.c               | 58 +++++++++----------
+ drivers/gpu/drm/i915/intel_device_info.h      |  4 +-
+ drivers/gpu/drm/i915/intel_uncore.c           |  2 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 +-
+ 5 files changed, 34 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 56d35aa5d023..16728234462f 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1302,7 +1302,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 37fa813af766..ca483984d780 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -736,7 +736,7 @@ static intel_engine_mask_t init_engine_mask(struct intel_gt *gt)
+ 	u16 vdbox_mask;
+ 	u16 vebox_mask;
  
- #define HAS_IPC(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ipc)
+-	info->engine_mask = INTEL_INFO(i915)->platform_engine_mask;
++	info->engine_mask = RUNTIME_INFO(i915)->platform_engine_mask;
  
--#define HAS_REGION(i915, i) (INTEL_INFO(i915)->memory_regions & (i))
-+#define HAS_REGION(i915, i) (RUNTIME_INFO(i915)->memory_regions & (i))
- #define HAS_LMEM(i915) HAS_REGION(i915, REGION_LMEM)
- 
- /*
+ 	if (GRAPHICS_VER(i915) < 11)
+ 		return info->engine_mask;
 diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 33e6ef6f802f..80799229f725 100644
+index 80799229f725..a8878db550cd 100644
 --- a/drivers/gpu/drm/i915/i915_pci.c
 +++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -163,7 +163,7 @@
- 	.__runtime.page_sizes = I915_GTT_PAGE_SIZE_4K
- 
- #define GEN_DEFAULT_REGIONS \
--	.memory_regions = REGION_SMEM | REGION_STOLEN_SMEM
-+	.__runtime.memory_regions = REGION_SMEM | REGION_STOLEN_SMEM
- 
- #define I830_FEATURES \
- 	GEN(2), \
-@@ -909,7 +909,7 @@ static const struct intel_device_info rkl_info = {
+@@ -178,7 +178,7 @@
+ 	.has_3d_pipeline = 1, \
+ 	.hws_needs_physical = 1, \
+ 	.unfenced_needs_alignment = 1, \
+-	.platform_engine_mask = BIT(RCS0), \
++	.__runtime.platform_engine_mask = BIT(RCS0), \
+ 	.has_snoop = true, \
+ 	.has_coherent_ggtt = false, \
+ 	.dma_mask_size = 32, \
+@@ -199,7 +199,7 @@
+ 	.gpu_reset_clobbers_display = true, \
+ 	.hws_needs_physical = 1, \
+ 	.unfenced_needs_alignment = 1, \
+-	.platform_engine_mask = BIT(RCS0), \
++	.__runtime.platform_engine_mask = BIT(RCS0), \
+ 	.has_snoop = true, \
+ 	.has_coherent_ggtt = false, \
+ 	.dma_mask_size = 32, \
+@@ -237,7 +237,7 @@ static const struct intel_device_info i865g_info = {
+ 	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+ 	.display.has_gmch = 1, \
+ 	.gpu_reset_clobbers_display = true, \
+-	.platform_engine_mask = BIT(RCS0), \
++	.__runtime.platform_engine_mask = BIT(RCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_snoop = true, \
+ 	.has_coherent_ggtt = true, \
+@@ -329,7 +329,7 @@ static const struct intel_device_info pnv_m_info = {
+ 	.display.has_hotplug = 1, \
+ 	.display.has_gmch = 1, \
+ 	.gpu_reset_clobbers_display = true, \
+-	.platform_engine_mask = BIT(RCS0), \
++	.__runtime.platform_engine_mask = BIT(RCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_snoop = true, \
+ 	.has_coherent_ggtt = true, \
+@@ -362,7 +362,7 @@ static const struct intel_device_info i965gm_info = {
+ static const struct intel_device_info g45_info = {
+ 	GEN4_FEATURES,
+ 	PLATFORM(INTEL_G45),
+-	.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
+ 	.gpu_reset_clobbers_display = false,
  };
  
- #define DGFX_FEATURES \
--	.memory_regions = REGION_SMEM | REGION_LMEM | REGION_STOLEN_LMEM, \
-+	.__runtime.memory_regions = REGION_SMEM | REGION_LMEM | REGION_STOLEN_LMEM, \
- 	.has_llc = 0, \
- 	.has_pxp = 0, \
- 	.has_snoop = 1, \
-@@ -1128,7 +1128,7 @@ static const struct intel_device_info mtl_info = {
+@@ -372,7 +372,7 @@ static const struct intel_device_info gm45_info = {
+ 	.is_mobile = 1,
+ 	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+ 	.display.supports_tv = 1,
+-	.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
+ 	.gpu_reset_clobbers_display = false,
+ };
+ 
+@@ -381,7 +381,7 @@ static const struct intel_device_info gm45_info = {
+ 	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+ 	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+ 	.display.has_hotplug = 1, \
+-	.platform_engine_mask = BIT(RCS0) | BIT(VCS0), \
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_snoop = true, \
+ 	.has_coherent_ggtt = true, \
+@@ -413,7 +413,7 @@ static const struct intel_device_info ilk_m_info = {
+ 	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+ 	.display.has_hotplug = 1, \
+ 	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
+-	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_coherent_ggtt = true, \
+ 	.has_llc = 1, \
+@@ -465,7 +465,7 @@ static const struct intel_device_info snb_m_gt2_info = {
+ 	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C), \
+ 	.display.has_hotplug = 1, \
+ 	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
+-	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_coherent_ggtt = true, \
+ 	.has_llc = 1, \
+@@ -539,7 +539,7 @@ static const struct intel_device_info vlv_info = {
+ 	.__runtime.ppgtt_size = 31,
+ 	.has_snoop = true,
+ 	.has_coherent_ggtt = false,
+-	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0),
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0),
+ 	.display.mmio_offset = VLV_DISPLAY_BASE,
+ 	I9XX_PIPE_OFFSETS,
+ 	I9XX_CURSOR_OFFSETS,
+@@ -550,7 +550,7 @@ static const struct intel_device_info vlv_info = {
+ 
+ #define G75_FEATURES  \
+ 	GEN7_FEATURES, \
+-	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
+ 	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+ 		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
+ 	.display.has_ddi = 1, \
+@@ -614,7 +614,7 @@ static const struct intel_device_info bdw_rsvd_info = {
+ static const struct intel_device_info bdw_gt3_info = {
+ 	BDW_PLATFORM,
+ 	.gt = 3,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS1),
+ };
+ 
+@@ -625,7 +625,7 @@ static const struct intel_device_info chv_info = {
+ 	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
+ 	.display.has_hotplug = 1,
+ 	.is_lp = 1,
+-	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0),
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0),
+ 	.has_64bit_reloc = 1,
+ 	.has_runtime_pm = 1,
+ 	.has_rc6 = 1,
+@@ -679,7 +679,7 @@ static const struct intel_device_info skl_gt2_info = {
+ 
+ #define SKL_GT3_PLUS_PLATFORM \
+ 	SKL_PLATFORM, \
+-	.platform_engine_mask = \
++	.__runtime.platform_engine_mask = \
+ 		BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS1)
+ 
+ 
+@@ -698,7 +698,7 @@ static const struct intel_device_info skl_gt4_info = {
+ 	.is_lp = 1, \
+ 	.display.dbuf.slice_mask = BIT(DBUF_S1), \
+ 	.display.has_hotplug = 1, \
+-	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
+ 	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
+ 	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+ 		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
+@@ -762,7 +762,7 @@ static const struct intel_device_info kbl_gt2_info = {
+ static const struct intel_device_info kbl_gt3_info = {
+ 	KBL_PLATFORM,
+ 	.gt = 3,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS1),
+ };
+ 
+@@ -783,7 +783,7 @@ static const struct intel_device_info cfl_gt2_info = {
+ static const struct intel_device_info cfl_gt3_info = {
+ 	CFL_PLATFORM,
+ 	.gt = 3,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS1),
+ };
+ 
+@@ -840,21 +840,21 @@ static const struct intel_device_info cml_gt2_info = {
+ static const struct intel_device_info icl_info = {
+ 	GEN11_FEATURES,
+ 	PLATFORM(INTEL_ICELAKE),
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+ };
+ 
+ static const struct intel_device_info ehl_info = {
+ 	GEN11_FEATURES,
+ 	PLATFORM(INTEL_ELKHARTLAKE),
+-	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0),
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0),
+ 	.__runtime.ppgtt_size = 36,
+ };
+ 
+ static const struct intel_device_info jsl_info = {
+ 	GEN11_FEATURES,
+ 	PLATFORM(INTEL_JASPERLAKE),
+-	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0),
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0),
+ 	.__runtime.ppgtt_size = 36,
+ };
+ 
+@@ -891,7 +891,7 @@ static const struct intel_device_info tgl_info = {
+ 	GEN12_FEATURES,
+ 	PLATFORM(INTEL_TIGERLAKE),
  	.display.has_modular_fia = 1,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+ };
+ 
+@@ -904,7 +904,7 @@ static const struct intel_device_info rkl_info = {
+ 		BIT(TRANSCODER_C),
+ 	.display.has_hti = 1,
+ 	.display.has_psr_hw_tracking = 0,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0),
+ };
+ 
+@@ -923,7 +923,7 @@ static const struct intel_device_info dg1_info = {
+ 	PLATFORM(INTEL_DG1),
+ 	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+ 	.require_force_probe = 1,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) |
+ 		BIT(VCS0) | BIT(VCS2),
+ 	/* Wa_16011227922 */
+@@ -936,7 +936,7 @@ static const struct intel_device_info adl_s_info = {
+ 	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+ 	.display.has_hti = 1,
+ 	.display.has_psr_hw_tracking = 0,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+ 	.dma_mask_size = 39,
+ };
+@@ -992,7 +992,7 @@ static const struct intel_device_info adl_p_info = {
+ 	.display.has_cdclk_crawl = 1,
+ 	.display.has_modular_fia = 1,
+ 	.display.has_psr_hw_tracking = 0,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+ 	.__runtime.ppgtt_size = 48,
+ 	.dma_mask_size = 39,
+@@ -1040,7 +1040,7 @@ static const struct intel_device_info xehpsdv_info = {
+ 	.has_64k_pages = 1,
+ 	.needs_compact_pt = 1,
+ 	.has_media_ratio_mode = 1,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) |
+ 		BIT(VECS0) | BIT(VECS1) | BIT(VECS2) | BIT(VECS3) |
+ 		BIT(VCS0) | BIT(VCS1) | BIT(VCS2) | BIT(VCS3) |
+@@ -1062,7 +1062,7 @@ static const struct intel_device_info xehpsdv_info = {
+ 	.has_heci_pxp = 1, \
+ 	.needs_compact_pt = 1, \
+ 	.has_media_ratio_mode = 1, \
+-	.platform_engine_mask = \
++	.__runtime.platform_engine_mask = \
+ 		BIT(RCS0) | BIT(BCS0) | \
+ 		BIT(VECS0) | BIT(VECS1) | \
+ 		BIT(VCS0) | BIT(VCS2) | \
+@@ -1101,7 +1101,7 @@ static const struct intel_device_info pvc_info = {
+ 	PLATFORM(INTEL_PONTEVECCHIO),
+ 	.display = { 0 },
+ 	.has_flat_ccs = 0,
+-	.platform_engine_mask =
++	.__runtime.platform_engine_mask =
+ 		BIT(BCS0) |
+ 		BIT(VCS0) |
+ 		BIT(CCS0) | BIT(CCS1) | BIT(CCS2) | BIT(CCS3),
+@@ -1129,7 +1129,7 @@ static const struct intel_device_info mtl_info = {
  	.has_flat_ccs = 0,
  	.has_snoop = 1,
--	.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
-+	.__runtime.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
- 	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
+ 	.__runtime.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
+-	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
++	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
  	.require_force_probe = 1,
  };
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 21a6ccd7c407..bb16b0ec4ed2 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -109,7 +109,7 @@ void intel_device_info_print(const struct intel_device_info *info,
- 		drm_printf(p, "display version: %u\n", info->display.ver);
  
- 	drm_printf(p, "gt: %d\n", info->gt);
--	drm_printf(p, "memory-regions: %x\n", info->memory_regions);
-+	drm_printf(p, "memory-regions: %x\n", runtime->memory_regions);
- 	drm_printf(p, "page-sizes: %x\n", runtime->page_sizes);
- 	drm_printf(p, "platform: %s\n", intel_platform_name(info->platform));
- 	drm_printf(p, "ppgtt-size: %d\n", runtime->ppgtt_size);
 diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index fc1bee6bb185..1fd6e6e72680 100644
+index 1fd6e6e72680..2084f568f7ea 100644
 --- a/drivers/gpu/drm/i915/intel_device_info.h
 +++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -225,6 +225,8 @@ struct intel_runtime_info {
- 	enum intel_ppgtt_type ppgtt_type;
- 	unsigned int ppgtt_size; /* log2, e.g. 31/32/48 bits */
+@@ -216,6 +216,8 @@ struct intel_runtime_info {
  
-+	u32 memory_regions; /* regions supported by the HW */
+ 	u16 device_id;
+ 
++	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
 +
- 	bool has_pooled_eu;
+ 	u32 rawclk_freq;
  
- 	/* display */
-@@ -245,8 +247,6 @@ struct intel_device_info {
+ 	struct intel_step_info step;
+@@ -241,8 +243,6 @@ struct intel_runtime_info {
+ struct intel_device_info {
+ 	struct ip_version media;
+ 
+-	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
+-
+ 	enum intel_platform platform;
  
  	unsigned int dma_mask_size; /* available DMA address bits */
+diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+index a852c471d1b3..c96b5c762ae6 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.c
++++ b/drivers/gpu/drm/i915/intel_uncore.c
+@@ -2067,7 +2067,7 @@ static int intel_uncore_fw_domains_init(struct intel_uncore *uncore)
  
--	u32 memory_regions; /* regions supported by the HW */
--
- 	u8 gt; /* GT number, 0 if undefined */
+ 	if (GRAPHICS_VER(i915) >= 11) {
+ 		/* we'll prune the domains of missing engines later */
+-		intel_engine_mask_t emask = INTEL_INFO(i915)->platform_engine_mask;
++		intel_engine_mask_t emask = RUNTIME_INFO(i915)->platform_engine_mask;
+ 		int i;
  
- #define DEFINE_FLAG(name) u8 name:1
+ 		uncore->fw_get_funcs = &uncore_get_fallback;
 diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index b23f11d24b97..2fc3472c414b 100644
+index 2fc3472c414b..f5904e659ef2 100644
 --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
 +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -179,7 +179,7 @@ struct drm_i915_private *mock_gem_device(void)
- 		I915_GTT_PAGE_SIZE_64K |
- 		I915_GTT_PAGE_SIZE_2M;
+@@ -209,7 +209,7 @@ struct drm_i915_private *mock_gem_device(void)
+ 	mock_init_ggtt(to_gt(i915));
+ 	to_gt(i915)->vm = i915_vm_get(&to_gt(i915)->ggtt->vm);
  
--	mkwrite_device_info(i915)->memory_regions = REGION_SMEM;
-+	RUNTIME_INFO(i915)->memory_regions = REGION_SMEM;
- 	intel_memory_regions_hw_probe(i915);
+-	mkwrite_device_info(i915)->platform_engine_mask = BIT(0);
++	RUNTIME_INFO(i915)->platform_engine_mask = BIT(0);
+ 	to_gt(i915)->info.engine_mask = BIT(0);
  
- 	spin_lock_init(&i915->gpu_error.lock);
+ 	to_gt(i915)->engine[RCS0] = mock_engine(i915, "mock", RCS0);
 -- 
 2.34.1
 
