@@ -2,52 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDB0C58EB0E
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 13:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7623458EB31
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Aug 2022 13:22:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B811AB1944;
-	Wed, 10 Aug 2022 11:14:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AB9EB1B99;
+	Wed, 10 Aug 2022 11:21:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D53EB2A16
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 11:14:13 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF2C9113F38
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Aug 2022 11:21:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660130054; x=1691666054;
+ t=1660130491; x=1691666491;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=Gh1pPbCtDS3ipEZYgdlUgvqSQhwRkdlsHfVtUYir1A4=;
- b=X6gzc4aU0xLoQGRez8IUNdrhhBwt8z3/ALIOcZ//S5I3XLQnqjlqqqKC
- f2rrD9Sib/ajN4dIYd9wIio3sqs+1Tdwca+MK4Ux7LBwCfNoC0nt3MaEX
- vgZZTUn6DvxwXy8LpvhuVI2rRrbajU7gBIemRYgBykgazxARcMV54/6TS
- Ldzob7WEd4TrYrT337pG+DdIxN1QFoP25R6lvNzSdBr/Nvu+sD0z5Aj1s
- pH3APwzGCEc0c1zRdgRTM74tkWatdDZxgaJ5CSl3RHzaZmFHvRzAqrT2R
- RBPKJfczDcOt+q6OabPZYViBxVb7xXF1locMPxLJ+JqCj3a7vgdonc64x g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10434"; a="277996935"
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="277996935"
+ mime-version; bh=xjcd16jc67qOC8DTgj8+5F1thByaww7j1zoGnJeT33E=;
+ b=D4N8lQOPcu4v7skqu55v0kHdyX2GblkhMWiPqop3n7hBFgy0ChWOYLTF
+ JVsRsgDL5xqqsIO6w5QZLZ1dMorAn7PAXHyakRC30wWpcoMmw/ODwESg3
+ VsuPx8rddgqkifGBRrcMY5GDuz0hQwB+4bO5yG7gWTxukwF91Bc+ChHcJ
+ T3fHJsVl3WOzBbYsOuCdT6ILQoo7iCIrmA24qBdHbHaMIjfs+JystOgWF
+ u+Ch3UU6g+rVYoGZBtY2n1M+33b4nif03niuvctgD/mFDO/G4V748KTaL
+ AzzV16UNIvQyhi4w/0pbFtFK7FqQT2KniYOIuwMsFgNJUNAz/ThLTAMSo w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10434"; a="270833288"
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="270833288"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 04:14:12 -0700
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="664854337"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 04:21:31 -0700
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; d="scan'208";a="664856329"
 Received: from iefimov-mobl1.ccr.corp.intel.com (HELO localhost)
  ([10.252.49.172])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 04:14:11 -0700
+ 10 Aug 2022 04:21:30 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220728013420.3750388-16-radhakrishna.sripada@intel.com>
+In-Reply-To: <20220728013420.3750388-23-radhakrishna.sripada@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220728013420.3750388-1-radhakrishna.sripada@intel.com>
- <20220728013420.3750388-16-radhakrishna.sripada@intel.com>
-Date: Wed, 10 Aug 2022 14:14:09 +0300
-Message-ID: <874jykuz9a.fsf@intel.com>
+ <20220728013420.3750388-23-radhakrishna.sripada@intel.com>
+Date: Wed, 10 Aug 2022 14:21:27 +0300
+Message-ID: <871qtouyx4.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 15/23] drm/i915/mtl: Obtain SAGV values from
- MMIO instead of GT pcode mailbox
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 22/23] drm/i915/mtl: Update CHICKEN_TRANS*
+ register addresses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,256 +61,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 27 Jul 2022, Radhakrishna Sripada <radhakrishna.sripada@intel.com> =
-wrote:
-> From Meteorlake, Latency Level, SAGV bloack time are read from
-> LATENCY_SAGV register instead of the GT driver pcode mailbox. DDR type
-> and QGV information are also tob read from Mem SS registers.
+On Wed, 27 Jul 2022, Radhakrishna Sripada <radhakrishna.sripada@intel.com> wrote:
+> From: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
 >
-> Bspec: 49324, 64636
+> In Display version 14, Transcoder Chicken Registers are moved from DPRZ to DRPOS
+> to reduce register signal crossings for Unit Interface Optimization.
 >
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Original Author: Caz Yokoyama
-> Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> This patch modifies the CHICKEN_TRANS macro to add a DISPLAY_VER check for
+> calculating the correct platform offsets.
+>
+> (And also updates existing CHICKEN_TRANS occurrences to the new definition)
+>
+> Bspec: 34387, 50054
+> Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 49 +++++++++++++++++++------
->  drivers/gpu/drm/i915/display/intel_bw.h |  9 +++++
->  drivers/gpu/drm/i915/i915_reg.h         | 16 ++++++++
->  drivers/gpu/drm/i915/intel_dram.c       | 41 ++++++++++++++++++++-
->  drivers/gpu/drm/i915/intel_pm.c         |  8 +++-
->  5 files changed, 110 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c     |  2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c |  7 +++---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c  |  2 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c     |  6 +++--
+>  drivers/gpu/drm/i915/i915_reg.h              | 25 +++++++++++++++-----
+>  5 files changed, 29 insertions(+), 13 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i9=
-15/display/intel_bw.c
-> index 79269d2c476b..8bbf47da1716 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -15,11 +15,6 @@
->  #include "intel_pcode.h"
->  #include "intel_pm.h"
->=20=20
-> -/* Parameters for Qclk Geyserville (QGV) */
-> -struct intel_qgv_point {
-> -	u16 dclk, t_rp, t_rdpre, t_rc, t_ras, t_rcd;
-> -};
-> -
->  struct intel_psf_gv_point {
->  	u8 clk; /* clock in multiples of 16.6666 MHz */
->  };
-> @@ -137,6 +132,42 @@ int icl_pcode_restrict_qgv_points(struct drm_i915_pr=
-ivate *dev_priv,
->  	return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index a4c8493f3ce7..26c99bfa5ec6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2854,7 +2854,7 @@ gen9_chicken_trans_reg_by_port(struct drm_i915_private *dev_priv,
+>  	if (drm_WARN_ON(&dev_priv->drm, port < PORT_A || port > PORT_E))
+>  		port = PORT_A;
+>  
+> -	return CHICKEN_TRANS(trans[port]);
+> +	return CHICKEN_TRANS(dev_priv, trans[port]);
 >  }
->=20=20
-> +static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
-> +				   struct intel_qgv_point *sp, int point)
-> +{
-> +	u32 val, val2;
-> +	u16 dclk;
+>  
+>  static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index bf170bd83ef7..9e6809d11b02 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -620,7 +620,7 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
+>  		val &= ~PIPECONF_ENABLE;
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 12)
+> -		intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder),
+> +		intel_de_rmw(dev_priv, CHICKEN_TRANS(dev_priv, cpu_transcoder),
+>  			     FECSTALL_DIS_DPTSTREAM_DPTTG, 0);
+>  
+>  	intel_de_write(dev_priv, reg, val);
+> @@ -1839,7 +1839,7 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> -	i915_reg_t reg = CHICKEN_TRANS(crtc_state->cpu_transcoder);
+> +	i915_reg_t reg = CHICKEN_TRANS(dev_priv, crtc_state->cpu_transcoder);
+>  	u32 val;
+>  
+>  	val = intel_de_read(dev_priv, reg);
+> @@ -4127,7 +4127,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+>  	}
+>  
+>  	if (!transcoder_is_dsi(pipe_config->cpu_transcoder)) {
+> -		tmp = intel_de_read(dev_priv, CHICKEN_TRANS(pipe_config->cpu_transcoder));
+> +		tmp = intel_de_read(dev_priv,
+> +				    CHICKEN_TRANS(dev_priv, pipe_config->cpu_transcoder));
+>  
+>  		pipe_config->framestart_delay = REG_FIELD_GET(HSW_FRAME_START_DELAY_MASK, tmp) + 1;
+>  	} else {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 14d2a64193b2..9c2c032c051c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -591,7 +591,7 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+>  	drm_dp_update_payload_part2(&intel_dp->mst_mgr);
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 12 && pipe_config->fec_enable)
+> -		intel_de_rmw(dev_priv, CHICKEN_TRANS(trans), 0,
+> +		intel_de_rmw(dev_priv, CHICKEN_TRANS(dev_priv, trans), 0,
+>  			     FECSTALL_DIS_DPTSTREAM_DPTTG);
+>  
+>  	intel_enable_transcoder(pipe_config);
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 98c3c8015a5c..532d5592c61e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1139,7 +1139,8 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+>  
+>  	if (intel_dp->psr.psr2_enabled) {
+>  		if (DISPLAY_VER(dev_priv) == 9)
+> -			intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
+> +			intel_de_rmw(dev_priv,
+> +				     CHICKEN_TRANS(dev_priv, cpu_transcoder), 0,
+>  				     PSR2_VSC_ENABLE_PROG_HEADER |
+>  				     PSR2_ADD_VERTICAL_LINE_COUNT);
+>  
+> @@ -1149,7 +1150,8 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+>  		 * cause issues if non-supported panels are used.
+>  		 */
+>  		if (IS_ALDERLAKE_P(dev_priv))
+> -			intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
+> +			intel_de_rmw(dev_priv,
+> +				     CHICKEN_TRANS(dev_priv, cpu_transcoder), 0,
+>  				     ADLP_1_BASED_X_GRANULARITY);
+>  
+>  		/* Wa_16011168373:adl-p */
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 2f9cbdd068e8..3e7dd389ba5b 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -5885,17 +5885,30 @@
+>  #define  SKL_PLANE1_STRETCH_MAX_X1	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 3)
+>  #define CHICKEN_PIPESL_1(pipe) _MMIO_PIPE(pipe, _CHICKEN_PIPESL_1_A, _CHICKEN_PIPESL_1_B)
+>  
+> +#define _MTL_CHICKEN_TRANS_A	0x604e0
+> +#define _MTL_CHICKEN_TRANS_B	0x614e0
+> +#define _MTL_CHICKEN_TRANS_C	0x624e0
+> +#define _MTL_CHICKEN_TRANS_D	0x634e0
 > +
-> +	val =3D intel_uncore_read(&dev_priv->uncore,
-> +				MTL_MEM_SS_INFO_QGV_POINT(point, 0));
-> +	val2 =3D intel_uncore_read(&dev_priv->uncore,
-> +				 MTL_MEM_SS_INFO_QGV_POINT(point, 1));
-> +	dclk =3D REG_FIELD_GET(MTL_DCLK_MASK, val);
-> +	sp->dclk =3D DIV_ROUND_UP((16667 * dclk) +  500, 1000);
-> +	sp->t_rp =3D REG_FIELD_GET(MTL_TRP_MASK, val);
-> +	sp->t_rcd =3D REG_FIELD_GET(MTL_TRCD_MASK, val);
+>  #define _CHICKEN_TRANS_A	0x420c0
+>  #define _CHICKEN_TRANS_B	0x420c4
+>  #define _CHICKEN_TRANS_C	0x420c8
+>  #define _CHICKEN_TRANS_EDP	0x420cc
+>  #define _CHICKEN_TRANS_D	0x420d8
+> -#define CHICKEN_TRANS(trans)	_MMIO(_PICK((trans), \
+> -					    [TRANSCODER_EDP] = _CHICKEN_TRANS_EDP, \
+> -					    [TRANSCODER_A] = _CHICKEN_TRANS_A, \
+> -					    [TRANSCODER_B] = _CHICKEN_TRANS_B, \
+> -					    [TRANSCODER_C] = _CHICKEN_TRANS_C, \
+> -					    [TRANSCODER_D] = _CHICKEN_TRANS_D))
 > +
-> +	sp->t_rdpre =3D REG_FIELD_GET(MTL_TRDPRE_MASK, val2);
-> +	sp->t_ras =3D REG_FIELD_GET(MTL_TRAS_MASK, val2);
-> +
-> +	sp->t_rc =3D sp->t_rp + sp->t_ras;
-> +
-> +	return 0;
-> +}
-> +
-> +int
-> +intel_read_qgv_point_info(struct drm_i915_private *dev_priv,
-> +			  struct intel_qgv_point *sp,
-> +			  int point)
-> +{
-> +	if (DISPLAY_VER(dev_priv) >=3D 14)
-> +		return mtl_read_qgv_point_info(dev_priv, sp, point);
-> +	else if (IS_DG1(dev_priv))
-> +		return dg1_mchbar_read_qgv_point_info(dev_priv, sp, point);
-> +	else
-> +		return icl_pcode_read_qgv_point_info(dev_priv, sp, point);
-> +}
-> +
->  static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
->  			      struct intel_qgv_info *qi,
->  			      bool is_y_tile)
-> @@ -193,11 +224,7 @@ static int icl_get_qgv_points(struct drm_i915_privat=
-e *dev_priv,
->  	for (i =3D 0; i < qi->num_points; i++) {
->  		struct intel_qgv_point *sp =3D &qi->points[i];
->=20=20
-> -		if (IS_DG1(dev_priv))
-> -			ret =3D dg1_mchbar_read_qgv_point_info(dev_priv, sp, i);
-> -		else
-> -			ret =3D icl_pcode_read_qgv_point_info(dev_priv, sp, i);
-> -
-> +		ret =3D intel_read_qgv_point_info(dev_priv, sp, i);
->  		if (ret)
->  			return ret;
->=20=20
-> @@ -560,7 +587,7 @@ void intel_bw_init_hw(struct drm_i915_private *dev_pr=
-iv)
->=20=20
->  	if (IS_DG2(dev_priv))
->  		dg2_get_bw_info(dev_priv);
-> -	else if (IS_ALDERLAKE_P(dev_priv))
-> +	else if (DISPLAY_VER(dev_priv) >=3D 13 || IS_ALDERLAKE_P(dev_priv))
->  		tgl_get_bw_info(dev_priv, &adlp_sa_info);
->  	else if (IS_ALDERLAKE_S(dev_priv))
->  		tgl_get_bw_info(dev_priv, &adls_sa_info);
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i9=
-15/display/intel_bw.h
-> index cb7ee3a24a58..b4c6665b0cf0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.h
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> @@ -46,6 +46,11 @@ struct intel_bw_state {
->  	u8 num_active_planes[I915_MAX_PIPES];
->  };
->=20=20
-> +/* Parameters for Qclk Geyserville (QGV) */
-> +struct intel_qgv_point {
-> +	u16 dclk, t_rp, t_rdpre, t_rc, t_ras, t_rcd;
-> +};
+> +#define  CHICKEN_TRANS(dev_priv, trans) ((DISPLAY_VER(dev_priv) >= 14) ? \
 
-Who needs this outside of intel_bw.h?
+This would be the first such display version check in i915_reg.h. We
+have a few platform checks, yes, but generally no.
 
-> +
->  #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, ba=
-se)
->=20=20
->  struct intel_bw_state *
-> @@ -69,4 +74,8 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *=
-state,
->  int intel_bw_min_cdclk(struct drm_i915_private *i915,
->  		       const struct intel_bw_state *bw_state);
->=20=20
-> +int intel_read_qgv_point_info(struct drm_i915_private *dev_priv,
-> +			      struct intel_qgv_point *sp,
-> +			      int point);
-
-AFAICT nobody calls this outside of intel_bw.h.
+*Maybe* we'll want to do something like this at some point, but right
+now, I think I'd go for adding a separate MTL_CHICKEN_TRANS() and using
+that where appropriate.
 
 BR,
 Jani.
 
-> +
->  #endif /* __INTEL_BW_H__ */
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 23b50d671550..d37607109398 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -8761,4 +8761,20 @@ enum skl_power_gate {
->  #define  MTL_LATENCY_LEVEL0_2_4_MASK	REG_GENMASK(12, 0)
->  #define  MTL_LATENCY_LEVEL1_3_5_MASK	REG_GENMASK(28, 16)
->=20=20
-> +#define MTL_LATENCY_SAGV		_MMIO(0x4578c)
-> +#define  MTL_LATENCY_QCLK_SAGV		REG_GENMASK(12, 0)
-> +
-> +#define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
-> +#define  MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
-> +#define  MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
-> +#define  MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
-> +
-> +#define MTL_MEM_SS_INFO_QGV_POINT(point, bitgroup) \
-> +	 _MMIO(0x45710 + ((point) * 2 + (bitgroup)) * sizeof(u32))
-> +#define  MTL_TRDPRE_MASK		REG_GENMASK(7, 0)
-> +#define  MTL_TRAS_MASK			REG_GENMASK(16, 8)
-> +#define  MTL_DCLK_MASK			REG_GENMASK(15, 0)
-> +#define  MTL_TRP_MASK			REG_GENMASK(23, 16)
-> +#define  MTL_TRCD_MASK			REG_GENMASK(31, 24)
-> +
->  #endif /* _I915_REG_H_ */
-> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/int=
-el_dram.c
-> index 437447119770..2403ccd52c74 100644
-> --- a/drivers/gpu/drm/i915/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/intel_dram.c
-> @@ -466,6 +466,43 @@ static int gen12_get_dram_info(struct drm_i915_priva=
-te *i915)
->  	return icl_pcode_read_mem_global_info(i915);
->  }
->=20=20
-> +static int xelpdp_get_dram_info(struct drm_i915_private *i915)
-> +{
-> +	u32 val =3D intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOBAL);
-> +	struct dram_info *dram_info =3D &i915->dram_info;
-> +
-> +	val =3D REG_FIELD_GET(MTL_DDR_TYPE_MASK, val);
-> +	switch (val) {
-> +	case 0:
-> +		dram_info->type =3D INTEL_DRAM_DDR4;
-> +		break;
-> +	case 1:
-> +		dram_info->type =3D INTEL_DRAM_DDR5;
-> +		break;
-> +	case 2:
-> +		dram_info->type =3D INTEL_DRAM_LPDDR5;
-> +		break;
-> +	case 3:
-> +		dram_info->type =3D INTEL_DRAM_LPDDR4;
-> +		break;
-> +	case 4:
-> +		dram_info->type =3D INTEL_DRAM_DDR3;
-> +		break;
-> +	case 5:
-> +		dram_info->type =3D INTEL_DRAM_LPDDR3;
-> +		break;
-> +	default:
-> +		MISSING_CASE(val);
-> +		return -EINVAL;
-> +	}
-> +
-> +	dram_info->num_channels =3D REG_FIELD_GET(MTL_N_OF_POPULATED_CH_MASK, v=
-al);
-> +	dram_info->num_qgv_points =3D REG_FIELD_GET(MTL_N_OF_ENABLED_QGV_POINTS=
-_MASK, val);
-> +	/* PSF GV points not supported in D14+ */
-> +
-> +	return 0;
-> +}
-> +
->  void intel_dram_detect(struct drm_i915_private *i915)
->  {
->  	struct dram_info *dram_info =3D &i915->dram_info;
-> @@ -480,7 +517,9 @@ void intel_dram_detect(struct drm_i915_private *i915)
->  	 */
->  	dram_info->wm_lv_0_adjust_needed =3D !IS_GEN9_LP(i915);
->=20=20
-> -	if (GRAPHICS_VER(i915) >=3D 12)
-> +	if (DISPLAY_VER(i915) >=3D 14)
-> +		ret =3D xelpdp_get_dram_info(i915);
-> +	else if (GRAPHICS_VER(i915) >=3D 12)
->  		ret =3D gen12_get_dram_info(i915);
->  	else if (GRAPHICS_VER(i915) >=3D 11)
->  		ret =3D gen11_get_dram_info(i915);
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index fac565d23d57..f71b3b8b590c 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3698,7 +3698,13 @@ intel_has_sagv(struct drm_i915_private *dev_priv)
->  static u32
->  intel_sagv_block_time(struct drm_i915_private *dev_priv)
->  {
-> -	if (DISPLAY_VER(dev_priv) >=3D 12) {
-> +	if (DISPLAY_VER(dev_priv) >=3D 14) {
-> +		u32 val;
-> +
-> +		val =3D intel_uncore_read(&dev_priv->uncore, MTL_LATENCY_SAGV);
-> +
-> +		return REG_FIELD_GET(MTL_LATENCY_QCLK_SAGV, val);
-> +	} else if (DISPLAY_VER(dev_priv) >=3D 12) {
->  		u32 val =3D 0;
->  		int ret;
 
---=20
+> +					    _MMIO(_PICK((trans), \
+> +						[TRANSCODER_A] = _MTL_CHICKEN_TRANS_A, \
+> +						[TRANSCODER_B] = _MTL_CHICKEN_TRANS_B, \
+> +						[TRANSCODER_C] = _MTL_CHICKEN_TRANS_C, \
+> +						[TRANSCODER_D] = _MTL_CHICKEN_TRANS_D)) : \
+> +					    _MMIO(_PICK((trans), \
+> +						[TRANSCODER_EDP] = _CHICKEN_TRANS_EDP, \
+> +						[TRANSCODER_A] = _CHICKEN_TRANS_A, \
+> +						[TRANSCODER_B] = _CHICKEN_TRANS_B, \
+> +						[TRANSCODER_C] = _CHICKEN_TRANS_C, \
+> +						[TRANSCODER_D] = _CHICKEN_TRANS_D)))
+> +
+>  #define  HSW_FRAME_START_DELAY_MASK	REG_GENMASK(28, 27)
+>  #define  HSW_FRAME_START_DELAY(x)	REG_FIELD_PREP(HSW_FRAME_START_DELAY_MASK, x)
+>  #define  VSC_DATA_SEL_SOFTWARE_CONTROL	REG_BIT(25) /* GLK */
+
+-- 
 Jani Nikula, Intel Open Source Graphics Center
