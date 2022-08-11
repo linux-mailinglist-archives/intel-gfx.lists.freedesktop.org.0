@@ -2,49 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3937359062F
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 20:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 744915906E2
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 21:13:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B021F11B3A6;
-	Thu, 11 Aug 2022 18:09:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 297F911A7A0;
+	Thu, 11 Aug 2022 19:12:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54DFD14A91A;
- Thu, 11 Aug 2022 18:09:19 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F055112435;
+ Thu, 11 Aug 2022 19:12:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660241359; x=1691777359;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ucgrEvIJ3CB2H2h68uHhBlgS+0ZIqt5p3WEUGYt7+v4=;
- b=GYotEF33tcl6LZLATb1ODPDJffQgaKeI8xPvXln8Xm68OWTmYDEMjnvl
- dEyw7GJ9D8NBRtx1y6ZcMBH6o0Guc2ww7S0xKYrfxiy48jhYLCsbO0ApI
- quyEpH+aU6eISIEQOzVwGAfOUGu9ePJ1olmOY7DWYWUikkLTKodg2ECZ0
- 9zCcYqkvY/2AfwNNxnrRtJ7dXZfUkiVPBl4oOuBrAjLVPUrDxKeyfPK97
- EETgoJhMAmRIWq/DAMASiHN+oFWclHQPaPhMVj2MLPXk26r5Vzm9bFVXI
- 2HbUtkbvTJ1jvCPoP0/cnOZoGSibTHCfljZa5Aynn18ocjdAp7lVLU2yH g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="292686270"
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="292686270"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 11:09:18 -0700
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="634337169"
-Received: from mdnavare-mobl1.jf.intel.com ([10.165.21.211])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 11:09:18 -0700
-Date: Thu, 11 Aug 2022 11:11:39 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20220811181139.GA660634@mdnavare-mobl1.jf.intel.com>
-References: <20220810081753.12075-1-stanislav.lisovskiy@intel.com>
- <419bcc405fa4b298acb3f167316217bcca9f7c07.camel@redhat.com>
- <YvSvDpq35CxfbnRJ@intel.com>
+ t=1660245170; x=1691781170;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=8iSsT7EaFc8R1veWXmJB833B+GYxD0O/KxflnS0rOwg=;
+ b=goM9VrtDXFLjI8YAxYh9IJg69lRGWZeZXPAJ0NMf/ZO9P+d+6Az1qH6Q
+ zux6C+5XwriHnOSfYFv0tjjtJ7m6jFAWUqjW2W8yWqFUCHj9qH1Pvwmnj
+ CkpkJpB+ybGvClVQ4z6ojEUpc1gV+Qb3pLgR7OtuVqcA/LPTll82L2Csw
+ UVoZozMWxiYy/fgeLMlBGAGY2UlwUiwq4coTtIedKAnidagKK4+UfA0zu
+ pwv+ereGXk7lYEa7Y8hEimGDfaAv3tYElcqeXgW5KDO3ouFAriYPjDm97
+ CNr5fQhXrwRKJlQev/E5CMXngLX7uw6DN73tYxgB52CzVZN6KTTT8GqVY A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="289008559"
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="289008559"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 12:12:49 -0700
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="665509406"
+Received: from gdogaru-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.102])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 12:12:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>, Gwan-gyeong Mun
+ <gwan-gyeong.mun@intel.com>
+In-Reply-To: <YvUuh2Ua7nuRNfr7@phenom.ffwll.local>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220719140424.430572-1-gwan-gyeong.mun@intel.com>
+ <20220719140424.430572-2-gwan-gyeong.mun@intel.com>
+ <YvUuh2Ua7nuRNfr7@phenom.ffwll.local>
+Date: Thu, 11 Aug 2022 22:12:43 +0300
+Message-ID: <87fsi2tx04.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YvSvDpq35CxfbnRJ@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 0/2] Add DP MST DSC support to i915
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v4 1/7] drm: Move and add a few utility
+ macros into drm util header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,68 +61,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, airlied@linux.ie,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, matthew.auld@intel.com, daniel@ffwll.ch,
+ mchehab@kernel.org, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 11, 2022 at 10:33:51AM +0300, Lisovskiy, Stanislav wrote:
-> On Wed, Aug 10, 2022 at 04:02:08PM -0400, Lyude Paul wrote:
-> > Btw, what's the plan for this? Figured I'd ask since I noticed this on the ML,
-> > nd I'm now finishing up getting the atomic only MST patches I've been working
-> > on merged :)
-> 
-> Current plan is that I need to fix this, as current implementation doesn't
-> seem to work because of my wrong assumption that drm_dp_mst_find_vcpi_slots
-> will fail if no slots are available and then we can fallback to DSC.
-> 
-> In reality that function can return whatever bogus value it wants, like
-> 71 slots, while you have only 63 available. The real check is done in
-> drm_dp_mst_atomic_check, which would of course reject that configuration,
-> however by that moment its going to be too late for swithcing to DSC.
-> 
-> So looke like I will have to move that check at least partly to where DSC/no DSC decision is done. However if there are multiple displays we get
-> another problem, lets say we have 2 displays requiring 40 vcpi slots each in DSC
-> mode with certain input bpp.
-> We have now either option to reject the whole config or go back and try with
-> another bpp to check if we can reduce amount of slots.
-> Because by default we choose the first one which fits, however by the time when 
-> compute_config is called, we still don't have all config computed, which might
-> lead to that last crtc can either run our of vcpi slots or we will have to 
-> go back and try recalculating with higher compression ratio.
-> 
-> My other question was that DSC was supposed to be "visually" lossless, wondering
-> why we are still trying with different bpps? Could have just set highest
-> compression ratio right away.
+On Thu, 11 Aug 2022, Daniel Vetter <daniel@ffwll.ch> wrote:
+> On Tue, Jul 19, 2022 at 05:04:18PM +0300, Gwan-gyeong Mun wrote:
+>> It moves overflows_type utility macro into drm util header from i915_uti=
+ls
+>> header. The overflows_type can be used to catch the truncation between d=
+ata
+>> types. And it adds safe_conversion() macro which performs a type convers=
+ion
+>> (cast) of an source value into a new variable, checking that the
+>> destination is large enough to hold the source value.
+>> And it adds exact_type and exactly_pgoff_t macro to catch type mis-match
+>> while compiling.
+>>=20
+>> v3: Add is_type_unsigned() macro (Mauro)
+>>     Modify overflows_type() macro to consider signed data types (Mauro)
+>>     Fix the problem that safe_conversion() macro always returns true
+>> v4: Fix kernel-doc markups
+>>=20
+>> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+>> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Nirmoy Das <nirmoy.das@intel.com>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+>> ---
+>>  drivers/gpu/drm/i915/i915_utils.h |  5 +-
+>>  include/drm/drm_util.h            | 77 +++++++++++++++++++++++++++++++
+>
+> It's nice that there's less random piling into i915_utils.h, but pushing
+> them into drm_util.h isn't really better. These should all be in
+> include/linux/ somewhere, so that we have as consistent code as possible.
+>
+> drm_util.h should only be a fallback if we get nacks for a more general
+> place and still think it's the right thing to do.
+>
+> i915_util.h has frankyl gone completely bonkers and should die.
 
-We do want to still maintain as high pic quality as possible. So we try
-to find out the min compression ration that will make the mode fit into
-the available link BW.
+Agreed [1].
 
-Manasi
+BR,
+Jani.
 
-> 
-> So need to sort this out first before floating new series.
-> 
-> Stan
-> 
-> > 
-> > On Wed, 2022-08-10 at 11:17 +0300, Stanislav Lisovskiy wrote:
-> > > Currently we have only DSC support for DP SST.
-> > > 
-> > > Stanislav Lisovskiy (2):
-> > >   drm: Add missing DP DSC extended capability definitions.
-> > >   drm/i915: Add DSC support to MST path
-> > > 
-> > >  drivers/gpu/drm/i915/display/intel_dp.c     |  76 +++++-----
-> > >  drivers/gpu/drm/i915/display/intel_dp.h     |  17 +++
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 145 ++++++++++++++++++++
-> > >  include/drm/display/drm_dp.h                |  10 +-
-> > >  4 files changed, 203 insertions(+), 45 deletions(-)
-> > > 
-> > 
-> > -- 
-> > Cheers,
-> >  Lyude Paul (she/her)
-> >  Software Engineer at Red Hat
-> > 
+
+[1] https://lore.kernel.org/r/875yj9qv62.fsf@intel.com
+
+
+> -Daniel
+>
+>>  2 files changed, 78 insertions(+), 4 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i9=
+15_utils.h
+>> index c10d68cdc3ca..345e5b2dc1cd 100644
+>> --- a/drivers/gpu/drm/i915/i915_utils.h
+>> +++ b/drivers/gpu/drm/i915/i915_utils.h
+>> @@ -32,6 +32,7 @@
+>>  #include <linux/types.h>
+>>  #include <linux/workqueue.h>
+>>  #include <linux/sched/clock.h>
+>> +#include <drm/drm_util.h>
+>>=20=20
+>>  #ifdef CONFIG_X86
+>>  #include <asm/hypervisor.h>
+>> @@ -111,10 +112,6 @@ bool i915_error_injected(void);
+>>  #define range_overflows_end_t(type, start, size, max) \
+>>  	range_overflows_end((type)(start), (type)(size), (type)(max))
+>>=20=20
+>> -/* Note we don't consider signbits :| */
+>> -#define overflows_type(x, T) \
+>> -	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
+>> -
+>>  #define ptr_mask_bits(ptr, n) ({					\
+>>  	unsigned long __v =3D (unsigned long)(ptr);			\
+>>  	(typeof(ptr))(__v & -BIT(n));					\
+>> diff --git a/include/drm/drm_util.h b/include/drm/drm_util.h
+>> index 79952d8c4bba..1de9ee5704fa 100644
+>> --- a/include/drm/drm_util.h
+>> +++ b/include/drm/drm_util.h
+>> @@ -62,6 +62,83 @@
+>>   */
+>>  #define for_each_if(condition) if (!(condition)) {} else
+>>=20=20
+>> +/**
+>> + * is_type_unsigned - helper for checking data type which is an unsigne=
+d data
+>> + * type or not
+>> + * @x: The data type to check
+>> + *
+>> + * Returns:
+>> + * True if the data type is an unsigned data type, false otherwise.
+>> + */
+>> +#define is_type_unsigned(x) ((typeof(x))-1 >=3D (typeof(x))0)
+>> +
+>> +/**
+>> + * overflows_type - helper for checking the truncation between data typ=
+es
+>> + * @x: Source for overflow type comparison
+>> + * @T: Destination for overflow type comparison
+>> + *
+>> + * It compares the values and size of each data type between the first =
+and
+>> + * second argument to check whether truncation can occur when assigning=
+ the
+>> + * first argument to the variable of the second argument.
+>> + * Source and Destination can be used with or without sign bit.
+>> + * Composite data structures such as union and structure are not consid=
+ered.
+>> + * Enum data types are not considered.
+>> + * Floating point data types are not considered.
+>> + *
+>> + * Returns:
+>> + * True if truncation can occur, false otherwise.
+>> + */
+>> +
+>> +#define overflows_type(x, T) \
+>> +	(is_type_unsigned(x) ? \
+>> +		is_type_unsigned(T) ? \
+>> +			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>> +			: (sizeof(x) >=3D sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : =
+0 \
+>> +	: is_type_unsigned(T) ? \
+>> +		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? =
+1 : 0 \
+>> +		: (sizeof(x) > sizeof(T)) ? \
+>> +			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>> +				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>> +			: 0)
+>> +
+>> +/**
+>> + * exact_type - break compile if source type and destination value's ty=
+pe are
+>> + * not the same
+>> + * @T: Source type
+>> + * @n: Destination value
+>> + *
+>> + * It is a helper macro for a poor man's -Wconversion: only allow varia=
+bles of
+>> + * an exact type. It determines whether the source type and destination=
+ value's
+>> + * type are the same while compiling, and it breaks compile if two type=
+s are
+>> + * not the same
+>> + */
+>> +#define exact_type(T, n) \
+>> +	BUILD_BUG_ON(!__builtin_constant_p(n) && !__builtin_types_compatible_p=
+(T, typeof(n)))
+>> +
+>> +/**
+>> + * exactly_pgoff_t - helper to check if the type of a value is pgoff_t
+>> + * @n: value to compare pgoff_t type
+>> + *
+>> + * It breaks compile if the argument value's type is not pgoff_t type.
+>> + */
+>> +#define exactly_pgoff_t(n) exact_type(pgoff_t, n)
+>> +
+>> +/**
+>> + * safe_conversion - perform a type conversion (cast) of an source valu=
+e into
+>> + * a new variable, checking that the destination is large enough to hol=
+d the
+>> + * source value.
+>> + * @ptr: Destination pointer address
+>> + * @value: Source value
+>> + *
+>> + * Returns:
+>> + * If the value would overflow the destination, it returns false.
+>> + */
+>> +#define safe_conversion(ptr, value) ({ \
+>> +	typeof(value) __v =3D (value); \
+>> +	typeof(ptr) __ptr =3D (ptr); \
+>> +	overflows_type(__v, *__ptr) ? 0 : ((*__ptr =3D (typeof(*__ptr))__v), 1=
+); \
+>> +})
+>> +
+>>  /**
+>>   * drm_can_sleep - returns true if currently okay to sleep
+>>   *
+>> --=20
+>> 2.34.1
+>>=20
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
