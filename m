@@ -2,50 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B14EE58FEF8
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 17:14:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F8F458FEF5
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 17:14:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D1EAB3D57;
-	Thu, 11 Aug 2022 15:14:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B885B3D06;
+	Thu, 11 Aug 2022 15:14:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F0D8B3D94
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 15:13:43 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8241B3D4D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 15:14:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660230823; x=1691766823;
+ t=1660230844; x=1691766844;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=G+HfbAR7iwwDin0fzQMC24xIR5GeDa3z2gqnl2UnEpk=;
- b=lbBa05/YJTMmULy+8C+XxYNcFAi70zpCbe1Cy5EKtNSTVNVbWUkEquXO
- j3XwYplIeplaZtbyukzE19tvOvBq60A5ELAqo/qSSuP4BWaKf6gGmhTEN
- NdDsyiFsE/M+DB/4rReTCJlaGajJNcIMmtAJ4tQwkLP0H3IURj7jZ7K2b
- 2YYTmzkCqNnNpR3l44o1cOcRTYhte9HOPKkAjNyHflt66jo3uCBOUFjzG
- H2/+XiHriuzZ5bUwUdKI+2FL/6uXOlfgEzEwE2DyVYzUmHUA0C0Vj4rdT
- Ql3wcwO74WhazWFH8y/x3qfZvG8q9kn80JYvJExIrhEtV/frrP2wvJk1r Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="377663229"
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="377663229"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 08:09:05 -0700
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="556158581"
+ bh=5zqOMGhjn3oRQaEleEJnT+zgvdvAXZEqrgAk4C8xsjA=;
+ b=Y6TljryC1/69yqBVrubnGlrk8+R3Le/SF+ASR6XLUNHGwlgRNbkvbP5Y
+ r/qdPiDfJSE3KluW3nJeU6pM+gTW888hoPWunlc11HGksAmFuVHFtXwCy
+ LVBjebdglkFJPc6CaWVg1PEDuTnW8Hy/ZtUUecTBhBs9yX+I6zN1T3Jo4
+ N8C8RJOi0a0g6uHBe1rdiEimdosUmrtDTWXyAnpINor3n3Zrx0RfannLl
+ BFZmAdkWcQDHexcWkqe/DkPuMmpMKYH907uHGTFl5Z573iQfKh9fak1+H
+ jDCYe6VPHbiZIOi2pcHeSQ9tFOO+paD9CHOnw7WdQ5R62t3QveaB3s3es g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="291373099"
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="291373099"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 08:09:09 -0700
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="673727273"
 Received: from gdogaru-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.48.102])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 08:09:03 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 08:09:07 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Aug 2022 18:07:25 +0300
-Message-Id: <d199c48526935fed374f745a98953d5f49a1c22b.1660230121.git.jani.nikula@intel.com>
+Date: Thu, 11 Aug 2022 18:07:26 +0300
+Message-Id: <d887c72572001932c4d77c8243e99bd1ca09127c.1660230121.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1660230121.git.jani.nikula@intel.com>
 References: <cover.1660230121.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 14/39] drm/i915: move and group fbdev under
- display.fbdev
+Subject: [Intel-gfx] [PATCH 15/39] drm/i915: move wm to display.wm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,194 +63,696 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Move display related members under drm_i915_private display sub-struct.
 
+It's a bit arbitrary when to define a named struct for grouping, but
+clearly intel_wm is big enough to warrant a separate definition.
+
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_core.h |  8 ++++++
- .../drm/i915/display/intel_display_debugfs.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 26 +++++++++----------
- drivers/gpu/drm/i915/i915_drv.h               |  5 ----
- 4 files changed, 22 insertions(+), 19 deletions(-)
+ .../gpu/drm/i915/display/intel_display_core.h |  38 ++++
+ .../drm/i915/display/intel_display_debugfs.c  |  24 +--
+ drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  37 ----
+ drivers/gpu/drm/i915/intel_pm.c               | 166 +++++++++---------
+ 5 files changed, 134 insertions(+), 133 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index f12ff36fef07..71434a922695 100644
+index 71434a922695..c2a79e487ee9 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -9,6 +9,7 @@
- #include <linux/mutex.h>
- #include <linux/types.h>
- #include <linux/wait.h>
-+#include <linux/workqueue.h>
- 
- #include "intel_display.h"
+@@ -15,6 +15,7 @@
  #include "intel_dmc.h"
-@@ -26,6 +27,7 @@ struct intel_crtc;
- struct intel_crtc_state;
- struct intel_dpll_funcs;
- struct intel_dpll_mgr;
-+struct intel_fbdev;
- struct intel_fdi_funcs;
- struct intel_hotplug_funcs;
- struct intel_initial_plane_config;
-@@ -130,6 +132,12 @@ struct intel_display {
- 	} funcs;
+ #include "intel_dpll_mgr.h"
+ #include "intel_gmbus.h"
++#include "intel_pm_types.h"
  
- 	/* Grouping using anonymous structs. Keep sorted. */
-+	struct {
-+		/* list of fbdev register on this device */
-+		struct intel_fbdev *fbdev;
-+		struct work_struct suspend_work;
-+	} fbdev;
+ struct drm_i915_private;
+ struct i915_audio_component;
+@@ -100,6 +101,42 @@ struct intel_dpll {
+ 	} ref_clks;
+ };
+ 
++struct intel_wm {
++	/*
++	 * Raw watermark latency values:
++	 * in 0.1us units for WM0,
++	 * in 0.5us units for WM1+.
++	 */
++	/* primary */
++	u16 pri_latency[5];
++	/* sprite */
++	u16 spr_latency[5];
++	/* cursor */
++	u16 cur_latency[5];
++	/*
++	 * Raw watermark memory latency values
++	 * for SKL for all 8 levels
++	 * in 1us units.
++	 */
++	u16 skl_latency[8];
 +
++	/* current hardware state */
++	union {
++		struct ilk_wm_values hw;
++		struct vlv_wm_values vlv;
++		struct g4x_wm_values g4x;
++	};
++
++	u8 max_level;
++
++	/*
++	 * Should be held around atomic WM register writing; also
++	 * protects * intel_crtc->wm.active and
++	 * crtc_state->wm.need_postvbl_update.
++	 */
++	struct mutex wm_mutex;
++};
++
+ struct intel_display {
+ 	/* Display functions */
  	struct {
- 		/*
- 		 * Base address of where the gmbus and gpio blocks are located
+@@ -167,6 +204,7 @@ struct intel_display {
+ 	struct intel_audio audio;
+ 	struct intel_dmc dmc;
+ 	struct intel_dpll dpll;
++	struct intel_wm wm;
+ };
+ 
+ #endif /* __INTEL_DISPLAY_CORE_H__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 7994f78b889a..e568590faa82 100644
+index e568590faa82..395facf6c1aa 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -129,7 +129,7 @@ static int i915_gem_framebuffer_info(struct seq_file *m, void *data)
- 	struct drm_framebuffer *drm_fb;
+@@ -1428,9 +1428,9 @@ static int pri_wm_latency_show(struct seq_file *m, void *data)
+ 	const u16 *latencies;
  
- #ifdef CONFIG_DRM_FBDEV_EMULATION
--	fbdev_fb = intel_fbdev_framebuffer(dev_priv->fbdev);
-+	fbdev_fb = intel_fbdev_framebuffer(dev_priv->display.fbdev.fbdev);
- 	if (fbdev_fb) {
- 		seq_printf(m, "fbcon size: %d x %d, depth %d, %d bpp, modifier 0x%llx, refcount %d, obj ",
- 			   fbdev_fb->base.width,
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 221336178991..c08ff6a5c2e9 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -500,7 +500,7 @@ static void intel_fbdev_suspend_worker(struct work_struct *work)
- {
- 	intel_fbdev_set_suspend(&container_of(work,
- 					      struct drm_i915_private,
--					      fbdev_suspend_work)->drm,
-+					      display.fbdev.suspend_work)->drm,
- 				FBINFO_STATE_RUNNING,
- 				true);
+ 	if (DISPLAY_VER(dev_priv) >= 9)
+-		latencies = dev_priv->wm.skl_latency;
++		latencies = dev_priv->display.wm.skl_latency;
+ 	else
+-		latencies = dev_priv->wm.pri_latency;
++		latencies = dev_priv->display.wm.pri_latency;
+ 
+ 	wm_latency_show(m, latencies);
+ 
+@@ -1443,9 +1443,9 @@ static int spr_wm_latency_show(struct seq_file *m, void *data)
+ 	const u16 *latencies;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 9)
+-		latencies = dev_priv->wm.skl_latency;
++		latencies = dev_priv->display.wm.skl_latency;
+ 	else
+-		latencies = dev_priv->wm.spr_latency;
++		latencies = dev_priv->display.wm.spr_latency;
+ 
+ 	wm_latency_show(m, latencies);
+ 
+@@ -1458,9 +1458,9 @@ static int cur_wm_latency_show(struct seq_file *m, void *data)
+ 	const u16 *latencies;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 9)
+-		latencies = dev_priv->wm.skl_latency;
++		latencies = dev_priv->display.wm.skl_latency;
+ 	else
+-		latencies = dev_priv->wm.cur_latency;
++		latencies = dev_priv->display.wm.cur_latency;
+ 
+ 	wm_latency_show(m, latencies);
+ 
+@@ -1551,9 +1551,9 @@ static ssize_t pri_wm_latency_write(struct file *file, const char __user *ubuf,
+ 	u16 *latencies;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 9)
+-		latencies = dev_priv->wm.skl_latency;
++		latencies = dev_priv->display.wm.skl_latency;
+ 	else
+-		latencies = dev_priv->wm.pri_latency;
++		latencies = dev_priv->display.wm.pri_latency;
+ 
+ 	return wm_latency_write(file, ubuf, len, offp, latencies);
  }
-@@ -530,8 +530,8 @@ int intel_fbdev_init(struct drm_device *dev)
- 		return ret;
- 	}
+@@ -1566,9 +1566,9 @@ static ssize_t spr_wm_latency_write(struct file *file, const char __user *ubuf,
+ 	u16 *latencies;
  
--	dev_priv->fbdev = ifbdev;
--	INIT_WORK(&dev_priv->fbdev_suspend_work, intel_fbdev_suspend_worker);
-+	dev_priv->display.fbdev.fbdev = ifbdev;
-+	INIT_WORK(&dev_priv->display.fbdev.suspend_work, intel_fbdev_suspend_worker);
+ 	if (DISPLAY_VER(dev_priv) >= 9)
+-		latencies = dev_priv->wm.skl_latency;
++		latencies = dev_priv->display.wm.skl_latency;
+ 	else
+-		latencies = dev_priv->wm.spr_latency;
++		latencies = dev_priv->display.wm.spr_latency;
  
- 	return 0;
+ 	return wm_latency_write(file, ubuf, len, offp, latencies);
  }
-@@ -548,7 +548,7 @@ static void intel_fbdev_initial_config(void *data, async_cookie_t cookie)
+@@ -1581,9 +1581,9 @@ static ssize_t cur_wm_latency_write(struct file *file, const char __user *ubuf,
+ 	u16 *latencies;
  
- void intel_fbdev_initial_config_async(struct drm_device *dev)
- {
--	struct intel_fbdev *ifbdev = to_i915(dev)->fbdev;
-+	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
+ 	if (DISPLAY_VER(dev_priv) >= 9)
+-		latencies = dev_priv->wm.skl_latency;
++		latencies = dev_priv->display.wm.skl_latency;
+ 	else
+-		latencies = dev_priv->wm.cur_latency;
++		latencies = dev_priv->display.wm.cur_latency;
  
- 	if (!ifbdev)
- 		return;
-@@ -568,12 +568,12 @@ static void intel_fbdev_sync(struct intel_fbdev *ifbdev)
+ 	return wm_latency_write(file, ubuf, len, offp, latencies);
+ }
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 0d3993e51138..f6841c1e5f0f 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -336,7 +336,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	cpu_latency_qos_add_request(&dev_priv->sb_qos, PM_QOS_DEFAULT_VALUE);
  
- void intel_fbdev_unregister(struct drm_i915_private *dev_priv)
- {
--	struct intel_fbdev *ifbdev = dev_priv->fbdev;
-+	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+ 	mutex_init(&dev_priv->display.audio.mutex);
+-	mutex_init(&dev_priv->wm.wm_mutex);
++	mutex_init(&dev_priv->display.wm.wm_mutex);
+ 	mutex_init(&dev_priv->display.pps.mutex);
+ 	mutex_init(&dev_priv->hdcp_comp_mutex);
  
- 	if (!ifbdev)
- 		return;
- 
--	cancel_work_sync(&dev_priv->fbdev_suspend_work);
-+	cancel_work_sync(&dev_priv->display.fbdev.suspend_work);
- 	if (!current_is_async())
- 		intel_fbdev_sync(ifbdev);
- 
-@@ -582,7 +582,7 @@ void intel_fbdev_unregister(struct drm_i915_private *dev_priv)
- 
- void intel_fbdev_fini(struct drm_i915_private *dev_priv)
- {
--	struct intel_fbdev *ifbdev = fetch_and_zero(&dev_priv->fbdev);
-+	struct intel_fbdev *ifbdev = fetch_and_zero(&dev_priv->display.fbdev.fbdev);
- 
- 	if (!ifbdev)
- 		return;
-@@ -596,7 +596,7 @@ void intel_fbdev_fini(struct drm_i915_private *dev_priv)
-  */
- static void intel_fbdev_hpd_set_suspend(struct drm_i915_private *i915, int state)
- {
--	struct intel_fbdev *ifbdev = i915->fbdev;
-+	struct intel_fbdev *ifbdev = i915->display.fbdev.fbdev;
- 	bool send_hpd = false;
- 
- 	mutex_lock(&ifbdev->hpd_lock);
-@@ -614,7 +614,7 @@ static void intel_fbdev_hpd_set_suspend(struct drm_i915_private *i915, int state
- void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct intel_fbdev *ifbdev = dev_priv->fbdev;
-+	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
- 	struct fb_info *info;
- 
- 	if (!ifbdev || !ifbdev->vma)
-@@ -631,7 +631,7 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- 		 * ourselves, so only flush outstanding work upon suspend!
- 		 */
- 		if (state != FBINFO_STATE_RUNNING)
--			flush_work(&dev_priv->fbdev_suspend_work);
-+			flush_work(&dev_priv->display.fbdev.suspend_work);
- 
- 		console_lock();
- 	} else {
-@@ -645,7 +645,7 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- 			/* Don't block our own workqueue as this can
- 			 * be run in parallel with other i915.ko tasks.
- 			 */
--			schedule_work(&dev_priv->fbdev_suspend_work);
-+			schedule_work(&dev_priv->display.fbdev.suspend_work);
- 			return;
- 		}
- 	}
-@@ -666,7 +666,7 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- 
- void intel_fbdev_output_poll_changed(struct drm_device *dev)
- {
--	struct intel_fbdev *ifbdev = to_i915(dev)->fbdev;
-+	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
- 	bool send_hpd;
- 
- 	if (!ifbdev)
-@@ -685,7 +685,7 @@ void intel_fbdev_output_poll_changed(struct drm_device *dev)
- 
- void intel_fbdev_restore_mode(struct drm_device *dev)
- {
--	struct intel_fbdev *ifbdev = to_i915(dev)->fbdev;
-+	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
- 
- 	if (!ifbdev)
- 		return;
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 482a8c0d5a10..f1e47090c01e 100644
+index f1e47090c01e..9ee08e80f0aa 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -82,7 +82,6 @@ struct intel_cdclk_vals;
- struct intel_connector;
- struct intel_dp;
- struct intel_encoder;
--struct intel_fbdev;
- struct intel_limit;
- struct intel_overlay;
- struct intel_overlay_error_state;
-@@ -474,10 +473,6 @@ struct drm_i915_private {
+@@ -68,7 +68,6 @@
+ #include "intel_device_info.h"
+ #include "intel_memory_region.h"
+ #include "intel_pch.h"
+-#include "intel_pm_types.h"
+ #include "intel_runtime_pm.h"
+ #include "intel_step.h"
+ #include "intel_uncore.h"
+@@ -501,42 +500,6 @@ struct drm_i915_private {
  
- 	struct i915_gpu_error gpu_error;
+ 	u32 sagv_block_time_us;
  
--	/* list of fbdev register on this device */
--	struct intel_fbdev *fbdev;
--	struct work_struct fbdev_suspend_work;
+-	struct {
+-		/*
+-		 * Raw watermark latency values:
+-		 * in 0.1us units for WM0,
+-		 * in 0.5us units for WM1+.
+-		 */
+-		/* primary */
+-		u16 pri_latency[5];
+-		/* sprite */
+-		u16 spr_latency[5];
+-		/* cursor */
+-		u16 cur_latency[5];
+-		/*
+-		 * Raw watermark memory latency values
+-		 * for SKL for all 8 levels
+-		 * in 1us units.
+-		 */
+-		u16 skl_latency[8];
 -
- 	struct drm_property *broadcast_rgb_property;
- 	struct drm_property *force_audio_property;
+-		/* current hardware state */
+-		union {
+-			struct ilk_wm_values hw;
+-			struct vlv_wm_values vlv;
+-			struct g4x_wm_values g4x;
+-		};
+-
+-		u8 max_level;
+-
+-		/*
+-		 * Should be held around atomic WM register writing; also
+-		 * protects * intel_crtc->wm.active and
+-		 * crtc_state->wm.need_postvbl_update.
+-		 */
+-		struct mutex wm_mutex;
+-	} wm;
+-
+ 	struct dram_info {
+ 		bool wm_lv_0_adjust_needed;
+ 		u8 num_channels;
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 5febe91e44a0..14134e57034e 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -468,13 +468,13 @@ bool intel_set_memory_cxsr(struct drm_i915_private *dev_priv, bool enable)
+ {
+ 	bool ret;
  
+-	mutex_lock(&dev_priv->wm.wm_mutex);
++	mutex_lock(&dev_priv->display.wm.wm_mutex);
+ 	ret = _intel_set_memory_cxsr(dev_priv, enable);
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+-		dev_priv->wm.vlv.cxsr = enable;
++		dev_priv->display.wm.vlv.cxsr = enable;
+ 	else if (IS_G4X(dev_priv))
+-		dev_priv->wm.g4x.cxsr = enable;
+-	mutex_unlock(&dev_priv->wm.wm_mutex);
++		dev_priv->display.wm.g4x.cxsr = enable;
++	mutex_unlock(&dev_priv->display.wm.wm_mutex);
+ 
+ 	return ret;
+ }
+@@ -834,7 +834,7 @@ static bool is_enabling(int old, int new, int threshold)
+ 
+ static int intel_wm_num_levels(struct drm_i915_private *dev_priv)
+ {
+-	return dev_priv->wm.max_level + 1;
++	return dev_priv->display.wm.max_level + 1;
+ }
+ 
+ static bool intel_wm_plane_visible(const struct intel_crtc_state *crtc_state,
+@@ -1093,11 +1093,11 @@ static void vlv_write_wm_values(struct drm_i915_private *dev_priv,
+ static void g4x_setup_wm_latency(struct drm_i915_private *dev_priv)
+ {
+ 	/* all latencies in usec */
+-	dev_priv->wm.pri_latency[G4X_WM_LEVEL_NORMAL] = 5;
+-	dev_priv->wm.pri_latency[G4X_WM_LEVEL_SR] = 12;
+-	dev_priv->wm.pri_latency[G4X_WM_LEVEL_HPLL] = 35;
++	dev_priv->display.wm.pri_latency[G4X_WM_LEVEL_NORMAL] = 5;
++	dev_priv->display.wm.pri_latency[G4X_WM_LEVEL_SR] = 12;
++	dev_priv->display.wm.pri_latency[G4X_WM_LEVEL_HPLL] = 35;
+ 
+-	dev_priv->wm.max_level = G4X_WM_LEVEL_HPLL;
++	dev_priv->display.wm.max_level = G4X_WM_LEVEL_HPLL;
+ }
+ 
+ static int g4x_plane_fifo_size(enum plane_id plane_id, int level)
+@@ -1150,7 +1150,7 @@ static u16 g4x_compute_wm(const struct intel_crtc_state *crtc_state,
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	const struct drm_display_mode *pipe_mode =
+ 		&crtc_state->hw.pipe_mode;
+-	unsigned int latency = dev_priv->wm.pri_latency[level] * 10;
++	unsigned int latency = dev_priv->display.wm.pri_latency[level] * 10;
+ 	unsigned int pixel_rate, htotal, cpp, width, wm;
+ 
+ 	if (latency == 0)
+@@ -1324,7 +1324,7 @@ static bool g4x_raw_crtc_wm_is_valid(const struct intel_crtc_state *crtc_state,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+ 
+-	if (level > dev_priv->wm.max_level)
++	if (level > dev_priv->display.wm.max_level)
+ 		return false;
+ 
+ 	return g4x_raw_plane_wm_is_valid(crtc_state, PLANE_PRIMARY, level) &&
+@@ -1583,7 +1583,7 @@ static void g4x_merge_wm(struct drm_i915_private *dev_priv,
+ 
+ static void g4x_program_watermarks(struct drm_i915_private *dev_priv)
+ {
+-	struct g4x_wm_values *old_wm = &dev_priv->wm.g4x;
++	struct g4x_wm_values *old_wm = &dev_priv->display.wm.g4x;
+ 	struct g4x_wm_values new_wm = {};
+ 
+ 	g4x_merge_wm(dev_priv, &new_wm);
+@@ -1609,10 +1609,10 @@ static void g4x_initial_watermarks(struct intel_atomic_state *state,
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 
+-	mutex_lock(&dev_priv->wm.wm_mutex);
++	mutex_lock(&dev_priv->display.wm.wm_mutex);
+ 	crtc->wm.active.g4x = crtc_state->wm.g4x.intermediate;
+ 	g4x_program_watermarks(dev_priv);
+-	mutex_unlock(&dev_priv->wm.wm_mutex);
++	mutex_unlock(&dev_priv->display.wm.wm_mutex);
+ }
+ 
+ static void g4x_optimize_watermarks(struct intel_atomic_state *state,
+@@ -1625,10 +1625,10 @@ static void g4x_optimize_watermarks(struct intel_atomic_state *state,
+ 	if (!crtc_state->wm.need_postvbl_update)
+ 		return;
+ 
+-	mutex_lock(&dev_priv->wm.wm_mutex);
++	mutex_lock(&dev_priv->display.wm.wm_mutex);
+ 	crtc->wm.active.g4x = crtc_state->wm.g4x.optimal;
+ 	g4x_program_watermarks(dev_priv);
+-	mutex_unlock(&dev_priv->wm.wm_mutex);
++	mutex_unlock(&dev_priv->display.wm.wm_mutex);
+ }
+ 
+ /* latency must be in 0.1us units. */
+@@ -1650,15 +1650,15 @@ static unsigned int vlv_wm_method2(unsigned int pixel_rate,
+ static void vlv_setup_wm_latency(struct drm_i915_private *dev_priv)
+ {
+ 	/* all latencies in usec */
+-	dev_priv->wm.pri_latency[VLV_WM_LEVEL_PM2] = 3;
++	dev_priv->display.wm.pri_latency[VLV_WM_LEVEL_PM2] = 3;
+ 
+-	dev_priv->wm.max_level = VLV_WM_LEVEL_PM2;
++	dev_priv->display.wm.max_level = VLV_WM_LEVEL_PM2;
+ 
+ 	if (IS_CHERRYVIEW(dev_priv)) {
+-		dev_priv->wm.pri_latency[VLV_WM_LEVEL_PM5] = 12;
+-		dev_priv->wm.pri_latency[VLV_WM_LEVEL_DDR_DVFS] = 33;
++		dev_priv->display.wm.pri_latency[VLV_WM_LEVEL_PM5] = 12;
++		dev_priv->display.wm.pri_latency[VLV_WM_LEVEL_DDR_DVFS] = 33;
+ 
+-		dev_priv->wm.max_level = VLV_WM_LEVEL_DDR_DVFS;
++		dev_priv->display.wm.max_level = VLV_WM_LEVEL_DDR_DVFS;
+ 	}
+ }
+ 
+@@ -1672,7 +1672,7 @@ static u16 vlv_compute_wm_level(const struct intel_crtc_state *crtc_state,
+ 		&crtc_state->hw.pipe_mode;
+ 	unsigned int pixel_rate, htotal, cpp, width, wm;
+ 
+-	if (dev_priv->wm.pri_latency[level] == 0)
++	if (dev_priv->display.wm.pri_latency[level] == 0)
+ 		return USHRT_MAX;
+ 
+ 	if (!intel_wm_plane_visible(crtc_state, plane_state))
+@@ -1693,7 +1693,7 @@ static u16 vlv_compute_wm_level(const struct intel_crtc_state *crtc_state,
+ 		wm = 63;
+ 	} else {
+ 		wm = vlv_wm_method2(pixel_rate, htotal, width, cpp,
+-				    dev_priv->wm.pri_latency[level] * 10);
++				    dev_priv->display.wm.pri_latency[level] * 10);
+ 	}
+ 
+ 	return min_t(unsigned int, wm, USHRT_MAX);
+@@ -2158,7 +2158,7 @@ static void vlv_merge_wm(struct drm_i915_private *dev_priv,
+ 	struct intel_crtc *crtc;
+ 	int num_active_pipes = 0;
+ 
+-	wm->level = dev_priv->wm.max_level;
++	wm->level = dev_priv->display.wm.max_level;
+ 	wm->cxsr = true;
+ 
+ 	for_each_intel_crtc(&dev_priv->drm, crtc) {
+@@ -2197,7 +2197,7 @@ static void vlv_merge_wm(struct drm_i915_private *dev_priv,
+ 
+ static void vlv_program_watermarks(struct drm_i915_private *dev_priv)
+ {
+-	struct vlv_wm_values *old_wm = &dev_priv->wm.vlv;
++	struct vlv_wm_values *old_wm = &dev_priv->display.wm.vlv;
+ 	struct vlv_wm_values new_wm = {};
+ 
+ 	vlv_merge_wm(dev_priv, &new_wm);
+@@ -2235,10 +2235,10 @@ static void vlv_initial_watermarks(struct intel_atomic_state *state,
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 
+-	mutex_lock(&dev_priv->wm.wm_mutex);
++	mutex_lock(&dev_priv->display.wm.wm_mutex);
+ 	crtc->wm.active.vlv = crtc_state->wm.vlv.intermediate;
+ 	vlv_program_watermarks(dev_priv);
+-	mutex_unlock(&dev_priv->wm.wm_mutex);
++	mutex_unlock(&dev_priv->display.wm.wm_mutex);
+ }
+ 
+ static void vlv_optimize_watermarks(struct intel_atomic_state *state,
+@@ -2251,10 +2251,10 @@ static void vlv_optimize_watermarks(struct intel_atomic_state *state,
+ 	if (!crtc_state->wm.need_postvbl_update)
+ 		return;
+ 
+-	mutex_lock(&dev_priv->wm.wm_mutex);
++	mutex_lock(&dev_priv->display.wm.wm_mutex);
+ 	crtc->wm.active.vlv = crtc_state->wm.vlv.optimal;
+ 	vlv_program_watermarks(dev_priv);
+-	mutex_unlock(&dev_priv->wm.wm_mutex);
++	mutex_unlock(&dev_priv->display.wm.wm_mutex);
+ }
+ 
+ static void i965_update_wm(struct drm_i915_private *dev_priv)
+@@ -2835,9 +2835,9 @@ static void ilk_compute_wm_level(const struct drm_i915_private *dev_priv,
+ 				 const struct intel_plane_state *curstate,
+ 				 struct intel_wm_level *result)
+ {
+-	u16 pri_latency = dev_priv->wm.pri_latency[level];
+-	u16 spr_latency = dev_priv->wm.spr_latency[level];
+-	u16 cur_latency = dev_priv->wm.cur_latency[level];
++	u16 pri_latency = dev_priv->display.wm.pri_latency[level];
++	u16 spr_latency = dev_priv->display.wm.spr_latency[level];
++	u16 cur_latency = dev_priv->display.wm.cur_latency[level];
+ 
+ 	/* WM1+ latency values stored in 0.5us units */
+ 	if (level > 0) {
+@@ -3061,18 +3061,18 @@ static void snb_wm_latency_quirk(struct drm_i915_private *dev_priv)
+ 	 * The BIOS provided WM memory latency values are often
+ 	 * inadequate for high resolution displays. Adjust them.
+ 	 */
+-	changed = ilk_increase_wm_latency(dev_priv, dev_priv->wm.pri_latency, 12);
+-	changed |= ilk_increase_wm_latency(dev_priv, dev_priv->wm.spr_latency, 12);
+-	changed |= ilk_increase_wm_latency(dev_priv, dev_priv->wm.cur_latency, 12);
++	changed = ilk_increase_wm_latency(dev_priv, dev_priv->display.wm.pri_latency, 12);
++	changed |= ilk_increase_wm_latency(dev_priv, dev_priv->display.wm.spr_latency, 12);
++	changed |= ilk_increase_wm_latency(dev_priv, dev_priv->display.wm.cur_latency, 12);
+ 
+ 	if (!changed)
+ 		return;
+ 
+ 	drm_dbg_kms(&dev_priv->drm,
+ 		    "WM latency values increased to avoid potential underruns\n");
+-	intel_print_wm_latency(dev_priv, "Primary", dev_priv->wm.pri_latency);
+-	intel_print_wm_latency(dev_priv, "Sprite", dev_priv->wm.spr_latency);
+-	intel_print_wm_latency(dev_priv, "Cursor", dev_priv->wm.cur_latency);
++	intel_print_wm_latency(dev_priv, "Primary", dev_priv->display.wm.pri_latency);
++	intel_print_wm_latency(dev_priv, "Sprite", dev_priv->display.wm.spr_latency);
++	intel_print_wm_latency(dev_priv, "Cursor", dev_priv->display.wm.cur_latency);
+ }
+ 
+ static void snb_wm_lp3_irq_quirk(struct drm_i915_private *dev_priv)
+@@ -3088,37 +3088,37 @@ static void snb_wm_lp3_irq_quirk(struct drm_i915_private *dev_priv)
+ 	 * interrupts only. To play it safe we disable LP3
+ 	 * watermarks entirely.
+ 	 */
+-	if (dev_priv->wm.pri_latency[3] == 0 &&
+-	    dev_priv->wm.spr_latency[3] == 0 &&
+-	    dev_priv->wm.cur_latency[3] == 0)
++	if (dev_priv->display.wm.pri_latency[3] == 0 &&
++	    dev_priv->display.wm.spr_latency[3] == 0 &&
++	    dev_priv->display.wm.cur_latency[3] == 0)
+ 		return;
+ 
+-	dev_priv->wm.pri_latency[3] = 0;
+-	dev_priv->wm.spr_latency[3] = 0;
+-	dev_priv->wm.cur_latency[3] = 0;
++	dev_priv->display.wm.pri_latency[3] = 0;
++	dev_priv->display.wm.spr_latency[3] = 0;
++	dev_priv->display.wm.cur_latency[3] = 0;
+ 
+ 	drm_dbg_kms(&dev_priv->drm,
+ 		    "LP3 watermarks disabled due to potential for lost interrupts\n");
+-	intel_print_wm_latency(dev_priv, "Primary", dev_priv->wm.pri_latency);
+-	intel_print_wm_latency(dev_priv, "Sprite", dev_priv->wm.spr_latency);
+-	intel_print_wm_latency(dev_priv, "Cursor", dev_priv->wm.cur_latency);
++	intel_print_wm_latency(dev_priv, "Primary", dev_priv->display.wm.pri_latency);
++	intel_print_wm_latency(dev_priv, "Sprite", dev_priv->display.wm.spr_latency);
++	intel_print_wm_latency(dev_priv, "Cursor", dev_priv->display.wm.cur_latency);
+ }
+ 
+ static void ilk_setup_wm_latency(struct drm_i915_private *dev_priv)
+ {
+-	intel_read_wm_latency(dev_priv, dev_priv->wm.pri_latency);
++	intel_read_wm_latency(dev_priv, dev_priv->display.wm.pri_latency);
+ 
+-	memcpy(dev_priv->wm.spr_latency, dev_priv->wm.pri_latency,
+-	       sizeof(dev_priv->wm.pri_latency));
+-	memcpy(dev_priv->wm.cur_latency, dev_priv->wm.pri_latency,
+-	       sizeof(dev_priv->wm.pri_latency));
++	memcpy(dev_priv->display.wm.spr_latency, dev_priv->display.wm.pri_latency,
++	       sizeof(dev_priv->display.wm.pri_latency));
++	memcpy(dev_priv->display.wm.cur_latency, dev_priv->display.wm.pri_latency,
++	       sizeof(dev_priv->display.wm.pri_latency));
+ 
+-	intel_fixup_spr_wm_latency(dev_priv, dev_priv->wm.spr_latency);
+-	intel_fixup_cur_wm_latency(dev_priv, dev_priv->wm.cur_latency);
++	intel_fixup_spr_wm_latency(dev_priv, dev_priv->display.wm.spr_latency);
++	intel_fixup_cur_wm_latency(dev_priv, dev_priv->display.wm.cur_latency);
+ 
+-	intel_print_wm_latency(dev_priv, "Primary", dev_priv->wm.pri_latency);
+-	intel_print_wm_latency(dev_priv, "Sprite", dev_priv->wm.spr_latency);
+-	intel_print_wm_latency(dev_priv, "Cursor", dev_priv->wm.cur_latency);
++	intel_print_wm_latency(dev_priv, "Primary", dev_priv->display.wm.pri_latency);
++	intel_print_wm_latency(dev_priv, "Sprite", dev_priv->display.wm.spr_latency);
++	intel_print_wm_latency(dev_priv, "Cursor", dev_priv->display.wm.cur_latency);
+ 
+ 	if (DISPLAY_VER(dev_priv) == 6) {
+ 		snb_wm_latency_quirk(dev_priv);
+@@ -3128,8 +3128,8 @@ static void ilk_setup_wm_latency(struct drm_i915_private *dev_priv)
+ 
+ static void skl_setup_wm_latency(struct drm_i915_private *dev_priv)
+ {
+-	intel_read_wm_latency(dev_priv, dev_priv->wm.skl_latency);
+-	intel_print_wm_latency(dev_priv, "Gen9 Plane", dev_priv->wm.skl_latency);
++	intel_read_wm_latency(dev_priv, dev_priv->display.wm.skl_latency);
++	intel_print_wm_latency(dev_priv, "Gen9 Plane", dev_priv->display.wm.skl_latency);
+ }
+ 
+ static bool ilk_validate_pipe_wm(const struct drm_i915_private *dev_priv,
+@@ -3386,7 +3386,7 @@ static unsigned int ilk_wm_lp_latency(struct drm_i915_private *dev_priv,
+ 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
+ 		return 2 * level;
+ 	else
+-		return dev_priv->wm.pri_latency[level];
++		return dev_priv->display.wm.pri_latency[level];
+ }
+ 
+ static void ilk_compute_wm_results(struct drm_i915_private *dev_priv,
+@@ -3538,7 +3538,7 @@ static unsigned int ilk_compute_wm_dirty(struct drm_i915_private *dev_priv,
+ static bool _ilk_disable_lp_wm(struct drm_i915_private *dev_priv,
+ 			       unsigned int dirty)
+ {
+-	struct ilk_wm_values *previous = &dev_priv->wm.hw;
++	struct ilk_wm_values *previous = &dev_priv->display.wm.hw;
+ 	bool changed = false;
+ 
+ 	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] & WM_LP_ENABLE) {
+@@ -3572,7 +3572,7 @@ static bool _ilk_disable_lp_wm(struct drm_i915_private *dev_priv,
+ static void ilk_write_wm_values(struct drm_i915_private *dev_priv,
+ 				struct ilk_wm_values *results)
+ {
+-	struct ilk_wm_values *previous = &dev_priv->wm.hw;
++	struct ilk_wm_values *previous = &dev_priv->display.wm.hw;
+ 	unsigned int dirty;
+ 	u32 val;
+ 
+@@ -3634,7 +3634,7 @@ static void ilk_write_wm_values(struct drm_i915_private *dev_priv,
+ 	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] != results->wm_lp[2])
+ 		intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, results->wm_lp[2]);
+ 
+-	dev_priv->wm.hw = *results;
++	dev_priv->display.wm.hw = *results;
+ }
+ 
+ bool ilk_disable_lp_wm(struct drm_i915_private *dev_priv)
+@@ -4321,7 +4321,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
+ 	drm_WARN_ON(&dev_priv->drm, ret);
+ 
+ 	for (level = 0; level <= max_level; level++) {
+-		unsigned int latency = dev_priv->wm.skl_latency[level];
++		unsigned int latency = dev_priv->display.wm.skl_latency[level];
+ 
+ 		skl_compute_plane_wm(crtc_state, plane, level, latency, &wp, &wm, &wm);
+ 		if (wm.min_ddb_alloc == U16_MAX)
+@@ -5576,7 +5576,7 @@ skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
+ 
+ 	for (level = 0; level <= max_level; level++) {
+ 		struct skl_wm_level *result = &levels[level];
+-		unsigned int latency = dev_priv->wm.skl_latency[level];
++		unsigned int latency = dev_priv->display.wm.skl_latency[level];
+ 
+ 		skl_compute_plane_wm(crtc_state, plane, level, latency,
+ 				     wm_params, result_prev, result);
+@@ -5596,7 +5596,7 @@ static void tgl_compute_sagv_wm(const struct intel_crtc_state *crtc_state,
+ 	unsigned int latency = 0;
+ 
+ 	if (dev_priv->sagv_block_time_us)
+-		latency = dev_priv->sagv_block_time_us + dev_priv->wm.skl_latency[0];
++		latency = dev_priv->sagv_block_time_us + dev_priv->display.wm.skl_latency[0];
+ 
+ 	skl_compute_plane_wm(crtc_state, plane, 0, latency,
+ 			     wm_params, &levels[0],
+@@ -6458,10 +6458,10 @@ static void ilk_initial_watermarks(struct intel_atomic_state *state,
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 
+-	mutex_lock(&dev_priv->wm.wm_mutex);
++	mutex_lock(&dev_priv->display.wm.wm_mutex);
+ 	crtc->wm.active.ilk = crtc_state->wm.ilk.intermediate;
+ 	ilk_program_watermarks(dev_priv);
+-	mutex_unlock(&dev_priv->wm.wm_mutex);
++	mutex_unlock(&dev_priv->display.wm.wm_mutex);
+ }
+ 
+ static void ilk_optimize_watermarks(struct intel_atomic_state *state,
+@@ -6474,10 +6474,10 @@ static void ilk_optimize_watermarks(struct intel_atomic_state *state,
+ 	if (!crtc_state->wm.need_postvbl_update)
+ 		return;
+ 
+-	mutex_lock(&dev_priv->wm.wm_mutex);
++	mutex_lock(&dev_priv->display.wm.wm_mutex);
+ 	crtc->wm.active.ilk = crtc_state->wm.ilk.optimal;
+ 	ilk_program_watermarks(dev_priv);
+-	mutex_unlock(&dev_priv->wm.wm_mutex);
++	mutex_unlock(&dev_priv->display.wm.wm_mutex);
+ }
+ 
+ static void skl_wm_level_from_reg_val(u32 val, struct skl_wm_level *level)
+@@ -6677,7 +6677,7 @@ static void ilk_pipe_wm_get_hw_state(struct intel_crtc *crtc)
+ {
+ 	struct drm_device *dev = crtc->base.dev;
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+-	struct ilk_wm_values *hw = &dev_priv->wm.hw;
++	struct ilk_wm_values *hw = &dev_priv->display.wm.hw;
+ 	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
+ 	struct intel_pipe_wm *active = &crtc_state->wm.ilk.optimal;
+ 	enum pipe pipe = crtc->pipe;
+@@ -6825,7 +6825,7 @@ static void vlv_read_wm_values(struct drm_i915_private *dev_priv,
+ 
+ void g4x_wm_get_hw_state(struct drm_i915_private *dev_priv)
+ {
+-	struct g4x_wm_values *wm = &dev_priv->wm.g4x;
++	struct g4x_wm_values *wm = &dev_priv->display.wm.g4x;
+ 	struct intel_crtc *crtc;
+ 
+ 	g4x_read_wm_values(dev_priv, wm);
+@@ -6919,7 +6919,7 @@ void g4x_wm_sanitize(struct drm_i915_private *dev_priv)
+ 	struct intel_plane *plane;
+ 	struct intel_crtc *crtc;
+ 
+-	mutex_lock(&dev_priv->wm.wm_mutex);
++	mutex_lock(&dev_priv->display.wm.wm_mutex);
+ 
+ 	for_each_intel_plane(&dev_priv->drm, plane) {
+ 		struct intel_crtc *crtc =
+@@ -6967,12 +6967,12 @@ void g4x_wm_sanitize(struct drm_i915_private *dev_priv)
+ 
+ 	g4x_program_watermarks(dev_priv);
+ 
+-	mutex_unlock(&dev_priv->wm.wm_mutex);
++	mutex_unlock(&dev_priv->display.wm.wm_mutex);
+ }
+ 
+ void vlv_wm_get_hw_state(struct drm_i915_private *dev_priv)
+ {
+-	struct vlv_wm_values *wm = &dev_priv->wm.vlv;
++	struct vlv_wm_values *wm = &dev_priv->display.wm.vlv;
+ 	struct intel_crtc *crtc;
+ 	u32 val;
+ 
+@@ -7006,7 +7006,7 @@ void vlv_wm_get_hw_state(struct drm_i915_private *dev_priv)
+ 			drm_dbg_kms(&dev_priv->drm,
+ 				    "Punit not acking DDR DVFS request, "
+ 				    "assuming DDR DVFS is disabled\n");
+-			dev_priv->wm.max_level = VLV_WM_LEVEL_PM5;
++			dev_priv->display.wm.max_level = VLV_WM_LEVEL_PM5;
+ 		} else {
+ 			val = vlv_punit_read(dev_priv, PUNIT_REG_DDR_SETUP2);
+ 			if ((val & FORCE_DDR_HIGH_FREQ) == 0)
+@@ -7075,7 +7075,7 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_priv)
+ 	struct intel_plane *plane;
+ 	struct intel_crtc *crtc;
+ 
+-	mutex_lock(&dev_priv->wm.wm_mutex);
++	mutex_lock(&dev_priv->display.wm.wm_mutex);
+ 
+ 	for_each_intel_plane(&dev_priv->drm, plane) {
+ 		struct intel_crtc *crtc =
+@@ -7116,7 +7116,7 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_priv)
+ 
+ 	vlv_program_watermarks(dev_priv);
+ 
+-	mutex_unlock(&dev_priv->wm.wm_mutex);
++	mutex_unlock(&dev_priv->display.wm.wm_mutex);
+ }
+ 
+ /*
+@@ -7137,7 +7137,7 @@ static void ilk_init_lp_watermarks(struct drm_i915_private *dev_priv)
+ 
+ void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
+ {
+-	struct ilk_wm_values *hw = &dev_priv->wm.hw;
++	struct ilk_wm_values *hw = &dev_priv->display.wm.hw;
+ 	struct intel_crtc *crtc;
+ 
+ 	ilk_init_lp_watermarks(dev_priv);
+@@ -8231,10 +8231,10 @@ void intel_init_pm(struct drm_i915_private *dev_priv)
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+ 		ilk_setup_wm_latency(dev_priv);
+ 
+-		if ((DISPLAY_VER(dev_priv) == 5 && dev_priv->wm.pri_latency[1] &&
+-		     dev_priv->wm.spr_latency[1] && dev_priv->wm.cur_latency[1]) ||
+-		    (DISPLAY_VER(dev_priv) != 5 && dev_priv->wm.pri_latency[0] &&
+-		     dev_priv->wm.spr_latency[0] && dev_priv->wm.cur_latency[0])) {
++		if ((DISPLAY_VER(dev_priv) == 5 && dev_priv->display.wm.pri_latency[1] &&
++		     dev_priv->display.wm.spr_latency[1] && dev_priv->display.wm.cur_latency[1]) ||
++		    (DISPLAY_VER(dev_priv) != 5 && dev_priv->display.wm.pri_latency[0] &&
++		     dev_priv->display.wm.spr_latency[0] && dev_priv->display.wm.cur_latency[0])) {
+ 			dev_priv->display.funcs.wm = &ilk_wm_funcs;
+ 		} else {
+ 			drm_dbg_kms(&dev_priv->drm,
 -- 
 2.34.1
 
