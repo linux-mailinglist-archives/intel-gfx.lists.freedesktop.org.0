@@ -1,49 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 555E958F724
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 07:01:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A61058F752
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 07:39:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1427A116F;
-	Thu, 11 Aug 2022 05:00:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD1F514B1B2;
+	Thu, 11 Aug 2022 05:39:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2361DA1184
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 05:00:29 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE11F12A61A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 05:39:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660194029; x=1691730029;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qnvaoTUMoOqUlGkaHukknlPyZe/BCIMzFBNHjJBktWY=;
- b=Mg/Vakt2K6dkgLP6aeCuyAY8sQkIJiKJSrnIm3cTwZ6iB1olfW1wtsPt
- xvfwg+FajSaL1YktrbF6TBZXGahVGxuWvbwNn2th8FpeOtGygcNRWpUsF
- AzG2a1ZJY+3IUPn3idWSduQsP+Qo6uDoNrcdxjAsFgo5pvm+/UxsZpNUt
- 41Om8IsQX85eAFkEm/1aJkuiWvXDm/0rzgEGyAt+kkduShMUuhFu9fGnv
- 35OXf8HXCBKfX1DdPW7kFoQtSPOyTOShtG+WTI+/rcqO5QCnci3JWXdFe
- R+ShILrcGJNSWK5hl0E5zwQiLgLp0jVYkl50hnMWDHz7Amr69S17ros96 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10435"; a="291257765"
-X-IronPort-AV: E=Sophos;i="5.93,228,1654585200"; d="scan'208";a="291257765"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 22:00:26 -0700
-X-IronPort-AV: E=Sophos;i="5.93,228,1654585200"; d="scan'208";a="673553215"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2022 22:00:24 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+ t=1660196342; x=1691732342;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/AamZfe+hwVAp/MT3Br5NO8EtbwnQdeLHzs2uflINn8=;
+ b=Wc6anQvL9JL36OE+qz2HUr2IEHmAZ86JO+kdEhEkwXCsOlj0mnmQ7tz9
+ aWHhqxNPUGF3TB+33iKZcdGTLMevjm1NxKzh9uBGm0BA9sowhJInlV+Pf
+ QXlZIJfOq27SQbZCvVBf2A6mrkWXb6TNBq5WsMUXdJzldICo9We2Mus2F
+ SOqh2/Fjn5EdhUO8tON9GS76mzRgj1hEB74NTpWtDrQ1DesVIaA0SYopO
+ gT9SmLgrsmFSGvsqLBRIdqUYi4Jof/oIVOVaBH0DUGgkp5QFWjwkRtc5d
+ aycTFTlcJACsjhMyIy5o8vXO4gcAtfXc1/p+OIi+hTp8DmWXuJV5GEdsA Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10435"; a="292521473"
+X-IronPort-AV: E=Sophos;i="5.93,228,1654585200"; d="scan'208";a="292521473"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2022 22:39:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,228,1654585200"; d="scan'208";a="665219565"
+Received: from sagar-optiplex-5060.iind.intel.com ([10.145.162.76])
+ by fmsmga008.fm.intel.com with ESMTP; 10 Aug 2022 22:39:00 -0700
+From: S A Muqthyar Ahmed <syed.abdul.muqthyar.ahmed@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Aug 2022 10:29:45 +0530
-Message-Id: <20220811045945.2113431-5-ankit.k.nautiyal@intel.com>
+Date: Thu, 11 Aug 2022 11:09:47 +0530
+Message-Id: <20220811053947.3251999-1-syed.abdul.muqthyar.ahmed@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220811045945.2113431-1-ankit.k.nautiyal@intel.com>
-References: <20220811045945.2113431-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/edid: Avoid multiple log lines for
- HFVSDB parsing
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gem: reschedule relocations to
+ avoid timeouts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,77 +54,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: maarten.lankhorst@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Replace multiple log lines with a single log line at the end of
-parsing HF-VSDB. Also use drm_dbg_kms instead of DRM_DBG_KMS, and
-add log for DSC1.2 support.
+Platforms with greater system memory will need to relocate more entries.
+It may lead to soft hangs.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Adding cond_resched() for rescheduling process to avoid timeouts.
+
+Suggested-by: Chris Wilson <chris.p.wilson@intel.com>
+Signed-off-by: S A Muqthyar Ahmed <syed.abdul.muqthyar.ahmed@intel.com>
 ---
- drivers/gpu/drm/drm_edid.c | 21 +++++++++++++--------
- 1 file changed, 13 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index c9c3a9c8fa26..7a319d570297 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -5781,6 +5781,9 @@ static void drm_parse_hdmi_forum_scds(struct drm_connector *connector,
- 	struct drm_display_info *display = &connector->display_info;
- 	struct drm_hdmi_info *hdmi = &display->hdmi;
- 	struct drm_hdmi_dsc_cap *hdmi_dsc = &hdmi->dsc_cap;
-+	u32 max_tmds_clock = 0;
-+	u8 max_frl_rate = 0;
-+	bool dsc_support = false;
- 
- 	display->has_hdmi_infoframe = true;
- 
-@@ -5800,14 +5803,13 @@ static void drm_parse_hdmi_forum_scds(struct drm_connector *connector,
- 	 */
- 
- 	if (hf_scds[5]) {
--		/* max clock is 5000 KHz times block value */
--		u32 max_tmds_clock = hf_scds[5] * 5000;
- 		struct drm_scdc *scdc = &hdmi->scdc;
- 
-+		/* max clock is 5000 KHz times block value */
-+		max_tmds_clock = hf_scds[5] * 5000;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index b7b2c14fd9e15e..25ab4b9e20049e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1551,6 +1551,11 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 			}
+ 		} while (r++, --count);
+ 		urelocs += ARRAY_SIZE(stack);
 +
- 		if (max_tmds_clock > 340000) {
- 			display->max_tmds_clock = max_tmds_clock;
--			DRM_DEBUG_KMS("HF-VSDB: max TMDS clock %d kHz\n",
--				display->max_tmds_clock);
++		if (need_resched()) {
++			reloc_cache_reset(&eb->reloc_cache, eb);
++			cond_resched();
++		}
+ 	} while (remain);
+ out:
+ 	reloc_cache_reset(&eb->reloc_cache, eb);
+@@ -1564,18 +1569,19 @@ eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 	struct drm_i915_gem_relocation_entry *relocs =
+ 		u64_to_ptr(typeof(*relocs), entry->relocs_ptr);
+ 	unsigned int i;
+-	int err;
++	int err = 0;
+ 
+-	for (i = 0; i < entry->relocation_count; i++) {
++	for (i = 0; !err && i < entry->relocation_count; i++) {
+ 		u64 offset = eb_relocate_entry(eb, ev, &relocs[i]);
+ 
+-		if ((s64)offset < 0) {
++		if ((s64)offset < 0)
+ 			err = (int)offset;
+-			goto err;
++
++		if (need_resched()) {
++			reloc_cache_reset(&eb->reloc_cache, eb);
++			cond_resched();
  		}
- 
- 		if (scdc->supported) {
-@@ -5820,9 +5822,6 @@ static void drm_parse_hdmi_forum_scds(struct drm_connector *connector,
  	}
- 
- 	if (hf_scds[7]) {
--		u8 max_frl_rate;
--
--		DRM_DEBUG_KMS("hdmi_21 sink detected. parsing edid\n");
- 		max_frl_rate = (hf_scds[7] & DRM_EDID_MAX_FRL_RATE_MASK) >> 4;
- 		drm_get_max_frl_rate(max_frl_rate, &hdmi->max_lanes,
- 				     &hdmi->max_frl_rate_per_lane);
-@@ -5830,8 +5829,14 @@ static void drm_parse_hdmi_forum_scds(struct drm_connector *connector,
- 
- 	drm_parse_ycbcr420_deep_color_info(connector, hf_scds);
- 
--	if (cea_db_payload_len(hf_scds) >= 11 && hf_scds[11])
-+	if (cea_db_payload_len(hf_scds) >= 11 && hf_scds[11]) {
- 		drm_parse_dsc_info(hdmi_dsc, hf_scds);
-+		dsc_support = true;
-+	}
-+
-+	drm_dbg_kms(connector->dev,
-+		    "HF-VSDB: max TMDS clock:%d Khz, HDMI2.1 support:%s, DSC1.2 support:%s\n",
-+		    max_tmds_clock, max_frl_rate ? "yes" : "no", dsc_support ? "yes" : "no");
+-	err = 0;
+-err:
+ 	reloc_cache_reset(&eb->reloc_cache, eb);
+ 	return err;
  }
- 
- static void drm_parse_hdmi_deep_color_info(struct drm_connector *connector,
 -- 
 2.25.1
 
