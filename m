@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F5E58FEFA
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 17:14:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F61158FF01
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 17:15:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D368B3DC2;
-	Thu, 11 Aug 2022 15:14:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D110B3D68;
+	Thu, 11 Aug 2022 15:14:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29F20B3DB8
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 15:14:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA4A2B3DBD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 15:14:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660230865; x=1691766865;
+ t=1660230867; x=1691766867;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yj/Ee5OAmTuLfAEkUEmLBEOcZDFRCAlgvoM0qKCBPgs=;
- b=ND5uTBuMWEoVVKLGyJXX/NXolEdLXWZIMJGYBJSpALvAyhHA4ZIuxjQs
- nMu+igFS4yhMqzT36atfmGvgFBPWBqlM1jgYx+sjFy6SIyLukwvxHQYoy
- l6TeYggLLFoONhvOyw2svaeU9VvL9blFGwZljzAxqQT0/b9U8S8GtwSUy
- 3CzZb1Fz6AtFDGPuqKfcqFvhCj3Ol1fpD7dd731uMzZ+Ti/r//LW+NRKh
- bcLwsektKakflva3TW0V1fV1qnWg+xCZVu86Uy1lzJqCiHEpySjzLKASU
- oRWABxiMUjnv4P2LOjyGvWvqkfYTayZJqU7QWjkzJktIw88gofl/9AwiV w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="291373265"
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="291373265"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ bh=1nYDk6yxMvcUuR17SqNWH6Y8nlS5VFBWsEF1IVy4ZDc=;
+ b=Zskv5cnt4pSpIDevwVpdehuUrhudU4bfae3ZzmLqtJCTTAUhAEE+ofah
+ yZMBjm3+E841PpwKCnlpF0dzw0oYjyV7aC3706WClObvGLaKW4HGMQ2W/
+ eds/seLHHofjHVtAmj+vVduiND1e8uYyxsXnuj55iYk1yFIeb3+Otfhl8
+ ozrhECzqVazz6lOoiIlF6Y+QD9EyTUgIoX06gbxY5ZFODC/On62DqUBK5
+ 4bXOroNHrvfbPId45I78upg56hXrDNWKeSybN1lI712xu0iysgbj2poTh
+ cqEBvjpgk+JEEOTKc/G3Nvzu3SqaMkQ/Jxrc2aGK80pwRAdIc7LKVZW1W Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="291373302"
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="291373302"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 08:09:28 -0700
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="694923475"
+ 11 Aug 2022 08:09:32 -0700
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="605575959"
 Received: from gdogaru-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.48.102])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 08:09:26 -0700
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 08:09:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Aug 2022 18:07:30 +0300
-Message-Id: <d5c0376475b3aacba392a243df00416dda32ec5e.1660230121.git.jani.nikula@intel.com>
+Date: Thu, 11 Aug 2022 18:07:31 +0300
+Message-Id: <b7162639d0f645946a8e62299ef736a7ba3d8cc4.1660230121.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1660230121.git.jani.nikula@intel.com>
 References: <cover.1660230121.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 19/39] drm/i915: move and group sagv under
- display.sagv
+Subject: [Intel-gfx] [PATCH 20/39] drm/i915: move and group max_bw and
+ bw_obj under display.bw
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,216 +66,290 @@ Move display related members under drm_i915_private display sub-struct.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c       | 10 ++---
- .../gpu/drm/i915/display/intel_display_core.h | 11 ++++++
- drivers/gpu/drm/i915/i915_drv.h               |  9 -----
- drivers/gpu/drm/i915/intel_pm.c               | 38 +++++++++----------
- 4 files changed, 35 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c       | 42 +++++++++----------
+ .../gpu/drm/i915/display/intel_display_core.h | 21 ++++++++++
+ .../drm/i915/display/intel_modeset_setup.c    |  4 +-
+ drivers/gpu/drm/i915/i915_drv.h               | 19 ---------
+ 4 files changed, 44 insertions(+), 42 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 79269d2c476b..4e60ad847eb0 100644
+index 4e60ad847eb0..3eb281f2cd5e 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -346,9 +346,9 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
- 	 * as it will fail and pointless anyway.
- 	 */
- 	if (qi.num_points == 1)
--		dev_priv->sagv_status = I915_SAGV_NOT_CONTROLLED;
-+		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
- 	else
--		dev_priv->sagv_status = I915_SAGV_ENABLED;
-+		dev_priv->display.sagv.status = I915_SAGV_ENABLED;
+@@ -292,7 +292,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	int ipqdepth, ipqdepthpch = 16;
+ 	int dclk_max;
+ 	int maxdebw;
+-	int num_groups = ARRAY_SIZE(dev_priv->max_bw);
++	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
+ 	int i, ret;
  
- 	return 0;
- }
-@@ -456,9 +456,9 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
- 	 * as it will fail and pointless anyway.
- 	 */
- 	if (qi.num_points == 1)
--		dev_priv->sagv_status = I915_SAGV_NOT_CONTROLLED;
-+		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
- 	else
--		dev_priv->sagv_status = I915_SAGV_ENABLED;
-+		dev_priv->display.sagv.status = I915_SAGV_ENABLED;
+ 	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+@@ -308,7 +308,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
  
- 	return 0;
- }
-@@ -485,7 +485,7 @@ static void dg2_get_bw_info(struct drm_i915_private *i915)
- 		bi->deratedbw[0] = deratedbw;
- 	}
+ 	for (i = 0; i < num_groups; i++) {
+-		struct intel_bw_info *bi = &dev_priv->max_bw[i];
++		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
+ 		int clpchgroup;
+ 		int j;
  
--	i915->sagv_status = I915_SAGV_NOT_CONTROLLED;
-+	i915->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
- }
+@@ -363,7 +363,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	int dclk_max;
+ 	int maxdebw, peakbw;
+ 	int clperchgroup;
+-	int num_groups = ARRAY_SIZE(dev_priv->max_bw);
++	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
+ 	int i, ret;
  
- static unsigned int icl_max_bw(struct drm_i915_private *dev_priv,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index a5cd3a3d440e..ab68c8799d1c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -249,6 +249,17 @@ struct intel_display {
- 		struct mutex mutex;
- 	} pps;
+ 	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+@@ -399,13 +399,13 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	clperchgroup = 4 * DIV_ROUND_UP(8, num_channels) * qi.deinterleave;
  
-+	struct {
-+		enum {
-+			I915_SAGV_UNKNOWN = 0,
-+			I915_SAGV_DISABLED,
-+			I915_SAGV_ENABLED,
-+			I915_SAGV_NOT_CONTROLLED
-+		} status;
-+
-+		u32 block_time_us;
-+	} sagv;
-+
- 	/* Grouping using named structs. Keep sorted. */
- 	struct intel_audio audio;
- 	struct intel_dmc dmc;
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 3637ee4ca088..daa6266ef127 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -447,15 +447,6 @@ struct drm_i915_private {
- 	struct i915_suspend_saved_registers regfile;
- 	struct vlv_s0ix_state *vlv_s0ix_state;
+ 	for (i = 0; i < num_groups; i++) {
+-		struct intel_bw_info *bi = &dev_priv->max_bw[i];
++		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
+ 		struct intel_bw_info *bi_next;
+ 		int clpchgroup;
+ 		int j;
  
--	enum {
--		I915_SAGV_UNKNOWN = 0,
--		I915_SAGV_DISABLED,
--		I915_SAGV_ENABLED,
--		I915_SAGV_NOT_CONTROLLED
--	} sagv_status;
--
--	u32 sagv_block_time_us;
--
- 	struct dram_info {
- 		bool wm_lv_0_adjust_needed;
- 		u8 num_channels;
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 14134e57034e..f72481e85ebd 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -3669,7 +3669,7 @@ static bool
- intel_has_sagv(struct drm_i915_private *dev_priv)
+ 		if (i < num_groups - 1)
+-			bi_next = &dev_priv->max_bw[i + 1];
++			bi_next = &dev_priv->display.bw.max[i + 1];
+ 
+ 		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
+ 
+@@ -466,7 +466,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ static void dg2_get_bw_info(struct drm_i915_private *i915)
  {
- 	return DISPLAY_VER(dev_priv) >= 9 && !IS_LP(dev_priv) &&
--		dev_priv->sagv_status != I915_SAGV_NOT_CONTROLLED;
-+		dev_priv->display.sagv.status != I915_SAGV_NOT_CONTROLLED;
- }
- 
- static u32
-@@ -3700,7 +3700,7 @@ intel_sagv_block_time(struct drm_i915_private *dev_priv)
- static void intel_sagv_init(struct drm_i915_private *i915)
- {
- 	if (!intel_has_sagv(i915))
--		i915->sagv_status = I915_SAGV_NOT_CONTROLLED;
-+		i915->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
+ 	unsigned int deratedbw = IS_DG2_G11(i915) ? 38000 : 50000;
+-	int num_groups = ARRAY_SIZE(i915->max_bw);
++	int num_groups = ARRAY_SIZE(i915->display.bw.max);
+ 	int i;
  
  	/*
- 	 * Probe to see if we have working SAGV control.
-@@ -3709,21 +3709,21 @@ static void intel_sagv_init(struct drm_i915_private *i915)
- 	if (DISPLAY_VER(i915) < 11)
- 		skl_sagv_disable(i915);
- 
--	drm_WARN_ON(&i915->drm, i915->sagv_status == I915_SAGV_UNKNOWN);
-+	drm_WARN_ON(&i915->drm, i915->display.sagv.status == I915_SAGV_UNKNOWN);
- 
--	i915->sagv_block_time_us = intel_sagv_block_time(i915);
-+	i915->display.sagv.block_time_us = intel_sagv_block_time(i915);
- 
- 	drm_dbg_kms(&i915->drm, "SAGV supported: %s, original SAGV block time: %u us\n",
--		    str_yes_no(intel_has_sagv(i915)), i915->sagv_block_time_us);
-+		    str_yes_no(intel_has_sagv(i915)), i915->display.sagv.block_time_us);
- 
- 	/* avoid overflow when adding with wm0 latency/etc. */
--	if (drm_WARN(&i915->drm, i915->sagv_block_time_us > U16_MAX,
-+	if (drm_WARN(&i915->drm, i915->display.sagv.block_time_us > U16_MAX,
- 		     "Excessive SAGV block time %u, ignoring\n",
--		     i915->sagv_block_time_us))
--		i915->sagv_block_time_us = 0;
-+		     i915->display.sagv.block_time_us))
-+		i915->display.sagv.block_time_us = 0;
- 
- 	if (!intel_has_sagv(i915))
--		i915->sagv_block_time_us = 0;
-+		i915->display.sagv.block_time_us = 0;
- }
- 
- /*
-@@ -3744,7 +3744,7 @@ static void skl_sagv_enable(struct drm_i915_private *dev_priv)
- 	if (!intel_has_sagv(dev_priv))
- 		return;
- 
--	if (dev_priv->sagv_status == I915_SAGV_ENABLED)
-+	if (dev_priv->display.sagv.status == I915_SAGV_ENABLED)
- 		return;
- 
- 	drm_dbg_kms(&dev_priv->drm, "Enabling SAGV\n");
-@@ -3759,14 +3759,14 @@ static void skl_sagv_enable(struct drm_i915_private *dev_priv)
+@@ -477,7 +477,7 @@ static void dg2_get_bw_info(struct drm_i915_private *i915)
+ 	 * whereas DG2-G11 platforms have 38 GB/s.
  	 */
- 	if (IS_SKYLAKE(dev_priv) && ret == -ENXIO) {
- 		drm_dbg(&dev_priv->drm, "No SAGV found on system, ignoring\n");
--		dev_priv->sagv_status = I915_SAGV_NOT_CONTROLLED;
-+		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
- 		return;
- 	} else if (ret < 0) {
- 		drm_err(&dev_priv->drm, "Failed to enable SAGV\n");
- 		return;
+ 	for (i = 0; i < num_groups; i++) {
+-		struct intel_bw_info *bi = &i915->max_bw[i];
++		struct intel_bw_info *bi = &i915->display.bw.max[i];
+ 
+ 		bi->num_planes = 1;
+ 		/* Need only one dummy QGV point per group */
+@@ -498,9 +498,9 @@ static unsigned int icl_max_bw(struct drm_i915_private *dev_priv,
+ 	 */
+ 	num_planes = max(1, num_planes);
+ 
+-	for (i = 0; i < ARRAY_SIZE(dev_priv->max_bw); i++) {
++	for (i = 0; i < ARRAY_SIZE(dev_priv->display.bw.max); i++) {
+ 		const struct intel_bw_info *bi =
+-			&dev_priv->max_bw[i];
++			&dev_priv->display.bw.max[i];
+ 
+ 		/*
+ 		 * Pcode will not expose all QGV points when
+@@ -526,9 +526,9 @@ static unsigned int tgl_max_bw(struct drm_i915_private *dev_priv,
+ 	 */
+ 	num_planes = max(1, num_planes);
+ 
+-	for (i = ARRAY_SIZE(dev_priv->max_bw) - 1; i >= 0; i--) {
++	for (i = ARRAY_SIZE(dev_priv->display.bw.max) - 1; i >= 0; i--) {
+ 		const struct intel_bw_info *bi =
+-			&dev_priv->max_bw[i];
++			&dev_priv->display.bw.max[i];
+ 
+ 		/*
+ 		 * Pcode will not expose all QGV points when
+@@ -541,14 +541,14 @@ static unsigned int tgl_max_bw(struct drm_i915_private *dev_priv,
+ 			return bi->deratedbw[qgv_point];
  	}
  
--	dev_priv->sagv_status = I915_SAGV_ENABLED;
-+	dev_priv->display.sagv.status = I915_SAGV_ENABLED;
+-	return dev_priv->max_bw[0].deratedbw[qgv_point];
++	return dev_priv->display.bw.max[0].deratedbw[qgv_point];
  }
  
- static void skl_sagv_disable(struct drm_i915_private *dev_priv)
-@@ -3776,7 +3776,7 @@ static void skl_sagv_disable(struct drm_i915_private *dev_priv)
- 	if (!intel_has_sagv(dev_priv))
- 		return;
+ static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
+ 			       int psf_gv_point)
+ {
+ 	const struct intel_bw_info *bi =
+-			&dev_priv->max_bw[0];
++			&dev_priv->display.bw.max[0];
  
--	if (dev_priv->sagv_status == I915_SAGV_DISABLED)
-+	if (dev_priv->display.sagv.status == I915_SAGV_DISABLED)
- 		return;
+ 	return bi->psf_bw[psf_gv_point];
+ }
+@@ -667,7 +667,7 @@ intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_global_state *bw_state;
  
- 	drm_dbg_kms(&dev_priv->drm, "Disabling SAGV\n");
-@@ -3791,14 +3791,14 @@ static void skl_sagv_disable(struct drm_i915_private *dev_priv)
- 	 */
- 	if (IS_SKYLAKE(dev_priv) && ret == -ENXIO) {
- 		drm_dbg(&dev_priv->drm, "No SAGV found on system, ignoring\n");
--		dev_priv->sagv_status = I915_SAGV_NOT_CONTROLLED;
-+		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
- 		return;
- 	} else if (ret < 0) {
- 		drm_err(&dev_priv->drm, "Failed to disable SAGV (%d)\n", ret);
- 		return;
- 	}
+-	bw_state = intel_atomic_get_old_global_obj_state(state, &dev_priv->bw_obj);
++	bw_state = intel_atomic_get_old_global_obj_state(state, &dev_priv->display.bw.obj);
  
--	dev_priv->sagv_status = I915_SAGV_DISABLED;
-+	dev_priv->display.sagv.status = I915_SAGV_DISABLED;
+ 	return to_intel_bw_state(bw_state);
+ }
+@@ -678,7 +678,7 @@ intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_global_state *bw_state;
+ 
+-	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->bw_obj);
++	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->display.bw.obj);
+ 
+ 	return to_intel_bw_state(bw_state);
+ }
+@@ -689,7 +689,7 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_global_state *bw_state;
+ 
+-	bw_state = intel_atomic_get_global_obj_state(state, &dev_priv->bw_obj);
++	bw_state = intel_atomic_get_global_obj_state(state, &dev_priv->display.bw.obj);
+ 	if (IS_ERR(bw_state))
+ 		return ERR_CAST(bw_state);
+ 
+@@ -896,8 +896,8 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+ 
+ static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
+ {
+-	unsigned int num_psf_gv_points = i915->max_bw[0].num_psf_gv_points;
+-	unsigned int num_qgv_points = i915->max_bw[0].num_qgv_points;
++	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
++	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+ 	u16 qgv_points = 0, psf_points = 0;
+ 
+ 	/*
+@@ -970,8 +970,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	int i, ret;
+ 	u16 qgv_points = 0, psf_points = 0;
+ 	unsigned int max_bw_point = 0, max_bw = 0;
+-	unsigned int num_qgv_points = dev_priv->max_bw[0].num_qgv_points;
+-	unsigned int num_psf_gv_points = dev_priv->max_bw[0].num_psf_gv_points;
++	unsigned int num_qgv_points = dev_priv->display.bw.max[0].num_qgv_points;
++	unsigned int num_psf_gv_points = dev_priv->display.bw.max[0].num_psf_gv_points;
+ 	bool changed = false;
+ 
+ 	/* FIXME earlier gens need some checks too */
+@@ -1126,7 +1126,7 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
+ 	if (!state)
+ 		return -ENOMEM;
+ 
+-	intel_atomic_global_obj_init(dev_priv, &dev_priv->bw_obj,
++	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.bw.obj,
+ 				     &state->base, &intel_bw_funcs);
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index ab68c8799d1c..65c3394d2e7f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -14,6 +14,7 @@
+ #include "intel_display.h"
+ #include "intel_dmc.h"
+ #include "intel_dpll_mgr.h"
++#include "intel_global_state.h"
+ #include "intel_gmbus.h"
+ #include "intel_pm_types.h"
+ 
+@@ -35,6 +36,12 @@ struct intel_hotplug_funcs;
+ struct intel_initial_plane_config;
+ struct intel_overlay;
+ 
++/* Amount of SAGV/QGV points, BSpec precisely defines this */
++#define I915_NUM_QGV_POINTS 8
++
++/* Amount of PSF GV points, BSpec precisely defines this */
++#define I915_NUM_PSF_GV_POINTS 3
++
+ struct intel_display_funcs {
+ 	/* Returns the active state of the crtc, and if the crtc is active,
+ 	 * fills out the pipe-config with the hw state. */
+@@ -210,6 +217,20 @@ struct intel_display {
+ 	} funcs;
+ 
+ 	/* Grouping using anonymous structs. Keep sorted. */
++	struct {
++		struct intel_global_obj obj;
++
++		struct intel_bw_info {
++			/* for each QGV point */
++			unsigned int deratedbw[I915_NUM_QGV_POINTS];
++			/* for each PSF GV point */
++			unsigned int psf_bw[I915_NUM_PSF_GV_POINTS];
++			u8 num_qgv_points;
++			u8 num_psf_gv_points;
++			u8 num_planes;
++		} max[6];
++	} bw;
++
+ 	struct {
+ 		/* list of fbdev register on this device */
+ 		struct intel_fbdev *fbdev;
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index e0d5c58c2037..e0a6ea61227e 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -30,7 +30,7 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+ 	struct intel_encoder *encoder;
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	struct intel_bw_state *bw_state =
+-		to_intel_bw_state(i915->bw_obj.state);
++		to_intel_bw_state(i915->display.bw.obj.state);
+ 	struct intel_cdclk_state *cdclk_state =
+ 		to_intel_cdclk_state(i915->cdclk.obj.state);
+ 	struct intel_dbuf_state *dbuf_state =
+@@ -535,7 +535,7 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 
+ 	for_each_intel_crtc(&i915->drm, crtc) {
+ 		struct intel_bw_state *bw_state =
+-			to_intel_bw_state(i915->bw_obj.state);
++			to_intel_bw_state(i915->display.bw.obj.state);
+ 		struct intel_crtc_state *crtc_state =
+ 			to_intel_crtc_state(crtc->base.state);
+ 		struct intel_plane *plane;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index daa6266ef127..645eafa53a8f 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -44,7 +44,6 @@
+ #include "display/intel_dsb.h"
+ #include "display/intel_fbc.h"
+ #include "display/intel_frontbuffer.h"
+-#include "display/intel_global_state.h"
+ #include "display/intel_opregion.h"
+ 
+ #include "gem/i915_gem_context_types.h"
+@@ -202,14 +201,8 @@ i915_fence_timeout(const struct drm_i915_private *i915)
+ 	return i915_fence_context_timeout(i915, U64_MAX);
  }
  
- static void skl_sagv_pre_plane_update(struct intel_atomic_state *state)
-@@ -5560,8 +5560,8 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
- 	result->min_ddb_alloc = max(min_ddb_alloc, blocks) + 1;
- 	result->enable = true;
+-/* Amount of SAGV/QGV points, BSpec precisely defines this */
+-#define I915_NUM_QGV_POINTS 8
+-
+ #define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
  
--	if (DISPLAY_VER(dev_priv) < 12 && dev_priv->sagv_block_time_us)
--		result->can_sagv = latency >= dev_priv->sagv_block_time_us;
-+	if (DISPLAY_VER(dev_priv) < 12 && dev_priv->display.sagv.block_time_us)
-+		result->can_sagv = latency >= dev_priv->display.sagv.block_time_us;
- }
+-/* Amount of PSF GV points, BSpec precisely defines this */
+-#define I915_NUM_PSF_GV_POINTS 3
+-
+ struct intel_vbt_data {
+ 	/* bdb version */
+ 	u16 version;
+@@ -464,18 +457,6 @@ struct drm_i915_private {
+ 		u8 num_psf_gv_points;
+ 	} dram_info;
  
- static void
-@@ -5595,8 +5595,8 @@ static void tgl_compute_sagv_wm(const struct intel_crtc_state *crtc_state,
- 	struct skl_wm_level *levels = plane_wm->wm;
- 	unsigned int latency = 0;
+-	struct intel_bw_info {
+-		/* for each QGV point */
+-		unsigned int deratedbw[I915_NUM_QGV_POINTS];
+-		/* for each PSF GV point */
+-		unsigned int psf_bw[I915_NUM_PSF_GV_POINTS];
+-		u8 num_qgv_points;
+-		u8 num_psf_gv_points;
+-		u8 num_planes;
+-	} max_bw[6];
+-
+-	struct intel_global_obj bw_obj;
+-
+ 	struct intel_runtime_pm runtime_pm;
  
--	if (dev_priv->sagv_block_time_us)
--		latency = dev_priv->sagv_block_time_us + dev_priv->display.wm.skl_latency[0];
-+	if (dev_priv->display.sagv.block_time_us)
-+		latency = dev_priv->display.sagv.block_time_us + dev_priv->display.wm.skl_latency[0];
- 
- 	skl_compute_plane_wm(crtc_state, plane, 0, latency,
- 			     wm_params, &levels[0],
+ 	struct i915_perf perf;
 -- 
 2.34.1
 
