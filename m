@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C475D58FF15
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 17:17:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CF7D58FF1E
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 17:17:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CAFB10F33C;
-	Thu, 11 Aug 2022 15:17:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EAF3B3C4F;
+	Thu, 11 Aug 2022 15:17:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 247B9B3E6C
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 15:16:42 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C30A7B3C39
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 15:16:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660231002; x=1691767002;
+ t=1660231003; x=1691767003;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5YMxYjp74ZT1kJsoMYnk2eypomlyYNBh2Vu0eRV8Xf8=;
- b=aN5FhUWKIlVbQ5VzO5QzAG2fJGxL2BH4GUEcjr9dUCLzO8ZCihR89CWJ
- 37BN590olBbHXLN8bvueJpd0+i14JLiJVTT1qgNqgln/VaBp58Xfp5Xkc
- lEP3KCCWWZjyxHlYaLggVxzuRyCZVpvBjcnysR997ppKCf1+yieD1jaKK
- hkR+Nc65DqDSpmlDa/rLUL3U03HGMjSxUJ4YjlqNAaLp1VeHJcKitBTpY
- zKbuBKhYpF/ZvmWKhe71p8Vve6mMc1bLBaYU8ANNDEIJinhVqpvEHTCcF
- ZZlKtZJ+in8wt3f0CoqIhNF/DmdTSEaeUlqD/acB11oD0eUgncnNr0B5g A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="292167804"
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="292167804"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 08:10:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="581703226"
+ bh=MvSaRABcfAkewG7QTzJtjdafwg5Uguf0iQae4BAuw+o=;
+ b=fowHrXclU/o5a0TvYi5+g+e36DHgbAILFMynii3qEVJiFlpHsYGzkzNg
+ wS0v4yLaOlG8hTVxOPNFRWOYSEmkMpSV262gC4n8Pp5vRkMcCDn5J/7tJ
+ gdScJwaCheBqcdEIBp6H9y+OzvDvmU1eawJCuq2EEWQLJMRBz7G+miFNZ
+ a8Nnl5kFzBJx9ZCH9pyRPwUns9DppFWVi42QrsW9cyocGwZB6fjDnNhgx
+ mgpPDK63nGhmsR/mN7nvgWtAbDyV889xkUmjXamTvWkbPIfbzAVg2LLCo
+ 8d5j/iix9qUlB0ZbmyPethH/VEzWr2DEwQGwm5OEW8JdrkzMGepqXbTWP w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="278320362"
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="278320362"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 08:10:58 -0700
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="665413348"
 Received: from gdogaru-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.48.102])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 08:10:51 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 08:10:56 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Aug 2022 18:07:49 +0300
-Message-Id: <cd0230c82ac6e5976cb0cad07e874b5cf58112b8.1660230121.git.jani.nikula@intel.com>
+Date: Thu, 11 Aug 2022 18:07:50 +0300
+Message-Id: <218604faf636e176c3668f35e08f95b65c110d99.1660230121.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1660230121.git.jani.nikula@intel.com>
 References: <cover.1660230121.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 38/39] drm/i915: move atomic_helper under
- display sub-struct
+Subject: [Intel-gfx] [PATCH 39/39] drm/i915: move and group properties under
+ display.properties
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,108 +62,123 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move display related members under drm_i915_private display sub-struct.
-
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c      | 14 +++++++-------
- drivers/gpu/drm/i915/display/intel_display_core.h |  6 ++++++
- drivers/gpu/drm/i915/i915_drv.h                   |  5 -----
- 3 files changed, 13 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_atomic.c       | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_connector.c    | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_display_core.h | 6 ++++++
+ drivers/gpu/drm/i915/i915_drv.h                   | 3 ---
+ 4 files changed, 14 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f80c7797176d..818f8ea52156 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7409,7 +7409,7 @@ static void intel_atomic_helper_free_state(struct drm_i915_private *dev_priv)
- 	struct intel_atomic_state *state, *next;
- 	struct llist_node *freed;
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+index b94973b5633f..18f0a5ae3bac 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+@@ -62,9 +62,9 @@ int intel_digital_connector_atomic_get_property(struct drm_connector *connector,
+ 	struct intel_digital_connector_state *intel_conn_state =
+ 		to_intel_digital_connector_state(state);
  
--	freed = llist_del_all(&dev_priv->atomic_helper.free_list);
-+	freed = llist_del_all(&dev_priv->display.atomic_helper.free_list);
- 	llist_for_each_entry_safe(state, next, freed, freed)
- 		drm_atomic_state_put(&state->base);
+-	if (property == dev_priv->force_audio_property)
++	if (property == dev_priv->display.properties.force_audio)
+ 		*val = intel_conn_state->force_audio;
+-	else if (property == dev_priv->broadcast_rgb_property)
++	else if (property == dev_priv->display.properties.broadcast_rgb)
+ 		*val = intel_conn_state->broadcast_rgb;
+ 	else {
+ 		drm_dbg_atomic(&dev_priv->drm,
+@@ -95,12 +95,12 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
+ 	struct intel_digital_connector_state *intel_conn_state =
+ 		to_intel_digital_connector_state(state);
+ 
+-	if (property == dev_priv->force_audio_property) {
++	if (property == dev_priv->display.properties.force_audio) {
+ 		intel_conn_state->force_audio = val;
+ 		return 0;
+ 	}
+ 
+-	if (property == dev_priv->broadcast_rgb_property) {
++	if (property == dev_priv->display.properties.broadcast_rgb) {
+ 		intel_conn_state->broadcast_rgb = val;
+ 		return 0;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
+index 1dcc268927a2..6d5cbeb8df4d 100644
+--- a/drivers/gpu/drm/i915/display/intel_connector.c
++++ b/drivers/gpu/drm/i915/display/intel_connector.c
+@@ -229,7 +229,7 @@ intel_attach_force_audio_property(struct drm_connector *connector)
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct drm_property *prop;
+ 
+-	prop = dev_priv->force_audio_property;
++	prop = dev_priv->display.properties.force_audio;
+ 	if (prop == NULL) {
+ 		prop = drm_property_create_enum(dev, 0,
+ 					   "audio",
+@@ -238,7 +238,7 @@ intel_attach_force_audio_property(struct drm_connector *connector)
+ 		if (prop == NULL)
+ 			return;
+ 
+-		dev_priv->force_audio_property = prop;
++		dev_priv->display.properties.force_audio = prop;
+ 	}
+ 	drm_object_attach_property(&connector->base, prop, 0);
  }
-@@ -7417,7 +7417,7 @@ static void intel_atomic_helper_free_state(struct drm_i915_private *dev_priv)
- static void intel_atomic_helper_free_state_worker(struct work_struct *work)
- {
- 	struct drm_i915_private *dev_priv =
--		container_of(work, typeof(*dev_priv), atomic_helper.free_work);
-+		container_of(work, typeof(*dev_priv), display.atomic_helper.free_work);
+@@ -256,7 +256,7 @@ intel_attach_broadcast_rgb_property(struct drm_connector *connector)
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct drm_property *prop;
  
- 	intel_atomic_helper_free_state(dev_priv);
- }
-@@ -7709,7 +7709,7 @@ intel_atomic_commit_ready(struct i915_sw_fence *fence,
- 	case FENCE_FREE:
- 		{
- 			struct intel_atomic_helper *helper =
--				&to_i915(state->base.dev)->atomic_helper;
-+				&to_i915(state->base.dev)->display.atomic_helper;
+-	prop = dev_priv->broadcast_rgb_property;
++	prop = dev_priv->display.properties.broadcast_rgb;
+ 	if (prop == NULL) {
+ 		prop = drm_property_create_enum(dev, DRM_MODE_PROP_ENUM,
+ 					   "Broadcast RGB",
+@@ -265,7 +265,7 @@ intel_attach_broadcast_rgb_property(struct drm_connector *connector)
+ 		if (prop == NULL)
+ 			return;
  
- 			if (llist_add(&state->freed, &helper->free_list))
- 				schedule_work(&helper->free_work);
-@@ -8699,8 +8699,8 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
- 	if (ret)
- 		goto cleanup_vga_client_pw_domain_dmc;
+-		dev_priv->broadcast_rgb_property = prop;
++		dev_priv->display.properties.broadcast_rgb = prop;
+ 	}
  
--	init_llist_head(&i915->atomic_helper.free_list);
--	INIT_WORK(&i915->atomic_helper.free_work,
-+	init_llist_head(&i915->display.atomic_helper.free_list);
-+	INIT_WORK(&i915->display.atomic_helper.free_work,
- 		  intel_atomic_helper_free_state_worker);
- 
- 	intel_init_quirks(i915);
-@@ -8993,8 +8993,8 @@ void intel_modeset_driver_remove(struct drm_i915_private *i915)
- 	flush_workqueue(i915->display.wq.flip);
- 	flush_workqueue(i915->display.wq.modeset);
- 
--	flush_work(&i915->atomic_helper.free_work);
--	drm_WARN_ON(&i915->drm, !llist_empty(&i915->atomic_helper.free_list));
-+	flush_work(&i915->display.atomic_helper.free_work);
-+	drm_WARN_ON(&i915->drm, !llist_empty(&i915->display.atomic_helper.free_list));
- }
- 
- /* part #2: call after irq uninstall */
+ 	drm_object_attach_property(&connector->base, prop, 0);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 252da61f2c6a..a753f6d66714 100644
+index a753f6d66714..41ebdbd741c0 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -7,6 +7,7 @@
- #define __INTEL_DISPLAY_CORE_H__
+@@ -27,6 +27,7 @@
+ #include "intel_pm_types.h"
  
- #include <linux/list.h>
-+#include <linux/llist.h>
- #include <linux/mutex.h>
- #include <linux/types.h>
- #include <linux/wait.h>
-@@ -270,6 +271,11 @@ struct intel_display {
- 	} funcs;
+ struct drm_i915_private;
++struct drm_property;
+ struct i915_audio_component;
+ struct i915_hdcp_comp_master;
+ struct intel_atomic_state;
+@@ -373,6 +374,11 @@ struct intel_display {
+ 		struct mutex mutex;
+ 	} pps;
  
- 	/* Grouping using anonymous structs. Keep sorted. */
-+	struct intel_atomic_helper {
-+		struct llist_head free_list;
-+		struct work_struct free_work;
-+	} atomic_helper;
++	struct {
++		struct drm_property *broadcast_rgb;
++		struct drm_property *force_audio;
++	} properties;
 +
  	struct {
- 		/* backlight registers and fields in struct intel_panel */
- 		struct mutex lock;
+ 		unsigned long mask;
+ 	} quirks;
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index e529a9575a66..1bf7b13fdeda 100644
+index 1bf7b13fdeda..ca97437f0e44 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -297,11 +297,6 @@ struct drm_i915_private {
+@@ -317,9 +317,6 @@ struct drm_i915_private {
  
- 	struct list_head global_obj_list;
+ 	struct i915_gpu_error gpu_error;
  
--	struct intel_atomic_helper {
--		struct llist_head free_list;
--		struct work_struct free_work;
--	} atomic_helper;
+-	struct drm_property *broadcast_rgb_property;
+-	struct drm_property *force_audio_property;
 -
- 	bool mchbar_need_disable;
- 
- 	struct intel_l3_parity l3_parity;
+ 	/*
+ 	 * Shadows for CHV DPLL_MD regs to keep the state
+ 	 * checker somewhat working in the presence hardware
 -- 
 2.34.1
 
