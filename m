@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E714A58FEE0
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 17:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6396258FEEB
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Aug 2022 17:13:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4932B3CED;
-	Thu, 11 Aug 2022 15:12:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E18B3D3F;
+	Thu, 11 Aug 2022 15:13:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B042BB3CE2
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 15:12:13 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 416D3B3D36
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 15:12:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660230733; x=1691766733;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Z2msEcl5+n9Ej0uisuS92GK/U1nWyNhcGUDi5nW+zPM=;
- b=iQDK8rzMK1vP6Qtn62bIwUCNlS4jHwL2fK+yMkW+eD15apiYzC04XpPU
- NP0JSq1B+SpPr0xmrOtTU9QxQ9VFm5YTHoJlO6iTiMVGBE4E5c7304hyQ
- vf1nGE2J+GSn23Y8M14NfObdKJTqPpGEd9yOO7yVxw8QkcBhCCPXPrhft
- X+MXwZefkM8rjivIVjdwyh82DeIq85LbmTqex9OLX/M0xRDLAGn2xGm7h
- NDX9s03/baJzzVpt0yDiL5qJ4wEwKPf/vlvlUM/G8jc0zXxpH9t3cav+k
- gnk3gb2GLjlBtr3VpTeOD2nFrxeTjE+0add9x+05bHrLslZXrQhVDGZd3 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="274427609"
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="274427609"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 08:07:56 -0700
-X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="665410755"
+ t=1660230773; x=1691766773;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=V8gZwOR3DP6+yJoI3gsr/LKltqojs/yhmPonJdXEOhA=;
+ b=cYj/oQCkwSHMC4cHpAMp6MO6z9ApygvDGQ6IIvZyC5cxMa0TzF6meQr2
+ sgFJX+oI6hy8N1voTeXqnzA2UWXS3LB35RaEw7WB46NlBF0Ef8tNOUlZ5
+ +syvW4jYXJWDcqyyInu4dIzNkxVCXV9iGpHVCaRNcDDzv6Zug5DQydYmc
+ Pt22NcGf9Nh0AjWNtZlVgjLdZLUJPOFTqr2zW79kBTt1aBQXOcETaBBji
+ fw3TroqUsZcgN6PxZE3iTRizYoOorZjc91SFPB4k3u3BDE+wqFiz4eXLU
+ h6B90ys2GLwrjlQpZtFAa1/bTOIQoetun9omqOW9cVKnMgTxREoDTws3j w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="355375895"
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="355375895"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 08:08:02 -0700
+X-IronPort-AV: E=Sophos;i="5.93,230,1654585200"; d="scan'208";a="634257659"
 Received: from gdogaru-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.48.102])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 08:07:54 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 08:08:00 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Aug 2022 18:07:11 +0300
-Message-Id: <cover.1660230121.git.jani.nikula@intel.com>
+Date: Thu, 11 Aug 2022 18:07:12 +0300
+Message-Id: <a5641ef131cf70d404b5344eb8c3cd1688fdaae6.1660230121.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1660230121.git.jani.nikula@intel.com>
+References: <cover.1660230121.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 00/39] drm/i915: add display sub-struct to
+Subject: [Intel-gfx] [PATCH 01/39] drm/i915: add display sub-struct to
  drm_i915_private
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,135 +63,262 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add display sub-struct to drm_i915_private, and start moving display
-related members there.
+In another long-overdue cleanup, add a display sub-struct to
+drm_i915_private, and start moving display related members there. Start
+with display funcs that need a rename anyway to not collide with the new
+display member.
 
-This doesn't help with build dependencies yet, but adds a lot of clarity
-in organizing the display data, and who accesses display data and where.
+Add a new header under display/ for defining struct intel_display.
 
-This is a beginning, there are still stragglers, but need to start
-sending the patches instead of accumulating tons more.
+Rename struct drm_i915_display_funcs to intel_display_funcs while at it.
 
-BR,
-Jani.
-
-
-Jani Nikula (39):
-  drm/i915: add display sub-struct to drm_i915_private
-  drm/i915: move cdclk_funcs to display.funcs
-  drm/i915: move dpll_funcs to display.funcs
-  drm/i915: move hotplug_funcs to display.funcs
-  drm/i915: move clock_gating_funcs to display.funcs
-  drm/i915: move wm_disp funcs to display.funcs
-  drm/i915: move fdi_funcs to display.funcs
-  drm/i915: move color_funcs to display.funcs
-  drm/i915: move and group gmbus members under display.gmbus
-  drm/i915: move and group pps members under display.pps
-  drm/i915: move dmc to display.dmc
-  drm/i915: move and split audio under display.audio and display.funcs
-  drm/i915: move dpll under display.dpll
-  drm/i915: move and group fbdev under display.fbdev
-  drm/i915: move wm to display.wm
-  drm/i915: move and group hdcp under display.hdcp
-  drm/i915: move hotplug to display.hotplug
-  drm/i915: move overlay to display.overlay
-  drm/i915: move and group sagv under display.sagv
-  drm/i915: move and group max_bw and bw_obj under display.bw
-  drm/i915: move opregion to display.opregion
-  drm/i915: move and group cdclk under display.cdclk
-  drm/i915: move backlight to display.backlight
-  drm/i915: move mipi_mmio_base to display.dsi
-  drm/i915: move vbt to display.vbt
-  drm/i915: move fbc to display.fbc
-  drm/i915/vrr: drop window2_delay member from i915
-  drm/i915: move and group power related members under display.power
-  drm/i915: move and group fdi members under display.fdi
-  drm/i915: move fb_tracking under display sub-struct
-  drm/i915: move INTEL_FRONTBUFFER_* macros to intel_frontbuffer.h
-  drm/i915: move dbuf under display sub-struct
-  drm/i915: move and group modeset_wq and flip_wq under display.wq
-  drm/i915: split gem quirks from display quirks
-  drm/i915/quirks: abstract checking for display quirks
-  drm/i915/quirks: abstract quirks further by making quirk ids an enum
-  drm/i915: move quirks under display sub-struct
-  drm/i915: move atomic_helper under display sub-struct
-  drm/i915: move and group properties under display.properties
-
- drivers/gpu/drm/i915/display/g4x_dp.c         |   4 +-
- drivers/gpu/drm/i915/display/hsw_ips.c        |   2 +-
- drivers/gpu/drm/i915/display/i9xx_plane.c     |   2 +-
- drivers/gpu/drm/i915/display/icl_dsi.c        |  12 +-
- drivers/gpu/drm/i915/display/intel_atomic.c   |   8 +-
- drivers/gpu/drm/i915/display/intel_audio.c    | 102 ++---
- .../gpu/drm/i915/display/intel_backlight.c    |  39 +-
- drivers/gpu/drm/i915/display/intel_bios.c     | 214 ++++-----
- drivers/gpu/drm/i915/display/intel_bw.c       |  52 +--
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 282 ++++++------
- drivers/gpu/drm/i915/display/intel_cdclk.h    |   4 +-
- drivers/gpu/drm/i915/display/intel_color.c    |  34 +-
- .../gpu/drm/i915/display/intel_connector.c    |   8 +-
- drivers/gpu/drm/i915/display/intel_crt.c      |   6 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  33 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 124 +++---
- .../gpu/drm/i915/display/intel_display_core.h | 418 ++++++++++++++++++
- .../drm/i915/display/intel_display_debugfs.c  |  60 +--
- .../drm/i915/display/intel_display_power.c    | 138 +++---
- .../i915/display/intel_display_power_map.c    |   4 +-
- .../i915/display/intel_display_power_well.c   |  78 ++--
- .../i915/display/intel_display_power_well.h   |  12 +-
- drivers/gpu/drm/i915/display/intel_dmc.c      |  52 +--
- drivers/gpu/drm/i915/display/intel_dp.c       |  13 +-
- drivers/gpu/drm/i915/display/intel_dp_aux.c   |   4 +-
- drivers/gpu/drm/i915/display/intel_dpio_phy.c |   2 +-
- drivers/gpu/drm/i915/display/intel_dpll.c     |  38 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 130 +++---
- drivers/gpu/drm/i915/display/intel_dsi.c      |   2 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      |   6 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  26 +-
- drivers/gpu/drm/i915/display/intel_fdi.c      |  18 +-
- .../gpu/drm/i915/display/intel_frontbuffer.c  |  56 +--
- .../gpu/drm/i915/display/intel_frontbuffer.h  |  18 +
- drivers/gpu/drm/i915/display/intel_gmbus.c    |  46 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 134 +++---
- drivers/gpu/drm/i915/display/intel_hotplug.c  | 116 ++---
- .../gpu/drm/i915/display/intel_lpe_audio.c    |  42 +-
- drivers/gpu/drm/i915/display/intel_lvds.c     |   4 +-
- .../drm/i915/display/intel_modeset_setup.c    |  14 +-
- drivers/gpu/drm/i915/display/intel_opregion.c |  42 +-
- drivers/gpu/drm/i915/display/intel_overlay.c  |  12 +-
- drivers/gpu/drm/i915/display/intel_panel.c    |   5 +-
- .../gpu/drm/i915/display/intel_pch_refclk.c   |   4 +-
- .../drm/i915/display/intel_plane_initial.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_pps.c      |  51 +--
- drivers/gpu/drm/i915/display/intel_psr.c      |   2 +-
- drivers/gpu/drm/i915/display/intel_quirks.c   |  22 +-
- drivers/gpu/drm/i915/display/intel_quirks.h   |  14 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |  18 +-
- drivers/gpu/drm/i915/display/intel_tc.c       |   4 +-
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |   8 +-
- drivers/gpu/drm/i915/display/intel_vrr.c      |  14 +-
- .../drm/i915/display/skl_universal_plane.c    |   2 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c        |   4 +-
- drivers/gpu/drm/i915/display/vlv_dsi_regs.h   | 188 ++++----
- drivers/gpu/drm/i915/gem/i915_gem_pages.c     |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |   4 +-
- .../i915/gem/selftests/i915_gem_client_blt.c  |   2 +-
- .../drm/i915/gem/selftests/i915_gem_mman.c    |   4 +-
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |   2 +-
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |   4 +-
- drivers/gpu/drm/i915/gvt/handlers.c           |   4 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |   4 +-
- drivers/gpu/drm/i915/i915_driver.c            |  16 +-
- drivers/gpu/drm/i915/i915_drv.h               | 411 +----------------
- drivers/gpu/drm/i915/i915_gem.c               |   4 +-
- drivers/gpu/drm/i915/i915_getparam.c          |   2 +-
- drivers/gpu/drm/i915/i915_irq.c               |  78 ++--
- drivers/gpu/drm/i915/i915_reg.h               |  16 +-
- drivers/gpu/drm/i915/intel_pm.c               | 318 ++++++-------
- drivers/gpu/drm/i915/intel_pm.h               |   4 +-
- 72 files changed, 1853 insertions(+), 1771 deletions(-)
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c  | 28 +++++++-------
+ .../gpu/drm/i915/display/intel_display_core.h | 38 +++++++++++++++++++
+ .../drm/i915/display/intel_modeset_setup.c    |  2 +-
+ .../drm/i915/display/intel_plane_initial.c    |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h               | 21 ++--------
+ 5 files changed, 57 insertions(+), 34 deletions(-)
  create mode 100644 drivers/gpu/drm/i915/display/intel_display_core.h
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f143adefdf38..24ab1501beea 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4144,7 +4144,7 @@ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state)
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 
+-	if (!i915->display->get_pipe_config(crtc, crtc_state))
++	if (!i915->display.funcs.crtc->get_pipe_config(crtc, crtc_state))
+ 		return false;
+ 
+ 	crtc_state->hw.active = true;
+@@ -7119,7 +7119,7 @@ static void intel_enable_crtc(struct intel_atomic_state *state,
+ 
+ 	intel_crtc_update_active_timings(new_crtc_state);
+ 
+-	dev_priv->display->crtc_enable(state, crtc);
++	dev_priv->display.funcs.crtc->crtc_enable(state, crtc);
+ 
+ 	if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
+ 		return;
+@@ -7198,7 +7198,7 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
+ 	 */
+ 	intel_crtc_disable_pipe_crc(crtc);
+ 
+-	dev_priv->display->crtc_disable(state, crtc);
++	dev_priv->display.funcs.crtc->crtc_disable(state, crtc);
+ 	crtc->active = false;
+ 	intel_fbc_disable(crtc);
+ 	intel_disable_shared_dpll(old_crtc_state);
+@@ -7586,7 +7586,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 	}
+ 
+ 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+-	dev_priv->display->commit_modeset_enables(state);
++	dev_priv->display.funcs.crtc->commit_modeset_enables(state);
+ 
+ 	intel_encoders_update_complete(state);
+ 
+@@ -8317,7 +8317,7 @@ static const struct drm_mode_config_funcs intel_mode_funcs = {
+ 	.atomic_state_free = intel_atomic_state_free,
+ };
+ 
+-static const struct drm_i915_display_funcs skl_display_funcs = {
++static const struct intel_display_funcs skl_display_funcs = {
+ 	.get_pipe_config = hsw_get_pipe_config,
+ 	.crtc_enable = hsw_crtc_enable,
+ 	.crtc_disable = hsw_crtc_disable,
+@@ -8325,7 +8325,7 @@ static const struct drm_i915_display_funcs skl_display_funcs = {
+ 	.get_initial_plane_config = skl_get_initial_plane_config,
+ };
+ 
+-static const struct drm_i915_display_funcs ddi_display_funcs = {
++static const struct intel_display_funcs ddi_display_funcs = {
+ 	.get_pipe_config = hsw_get_pipe_config,
+ 	.crtc_enable = hsw_crtc_enable,
+ 	.crtc_disable = hsw_crtc_disable,
+@@ -8333,7 +8333,7 @@ static const struct drm_i915_display_funcs ddi_display_funcs = {
+ 	.get_initial_plane_config = i9xx_get_initial_plane_config,
+ };
+ 
+-static const struct drm_i915_display_funcs pch_split_display_funcs = {
++static const struct intel_display_funcs pch_split_display_funcs = {
+ 	.get_pipe_config = ilk_get_pipe_config,
+ 	.crtc_enable = ilk_crtc_enable,
+ 	.crtc_disable = ilk_crtc_disable,
+@@ -8341,7 +8341,7 @@ static const struct drm_i915_display_funcs pch_split_display_funcs = {
+ 	.get_initial_plane_config = i9xx_get_initial_plane_config,
+ };
+ 
+-static const struct drm_i915_display_funcs vlv_display_funcs = {
++static const struct intel_display_funcs vlv_display_funcs = {
+ 	.get_pipe_config = i9xx_get_pipe_config,
+ 	.crtc_enable = valleyview_crtc_enable,
+ 	.crtc_disable = i9xx_crtc_disable,
+@@ -8349,7 +8349,7 @@ static const struct drm_i915_display_funcs vlv_display_funcs = {
+ 	.get_initial_plane_config = i9xx_get_initial_plane_config,
+ };
+ 
+-static const struct drm_i915_display_funcs i9xx_display_funcs = {
++static const struct intel_display_funcs i9xx_display_funcs = {
+ 	.get_pipe_config = i9xx_get_pipe_config,
+ 	.crtc_enable = i9xx_crtc_enable,
+ 	.crtc_disable = i9xx_crtc_disable,
+@@ -8372,16 +8372,16 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
+ 	intel_dpll_init_clock_hook(dev_priv);
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 9) {
+-		dev_priv->display = &skl_display_funcs;
++		dev_priv->display.funcs.crtc = &skl_display_funcs;
+ 	} else if (HAS_DDI(dev_priv)) {
+-		dev_priv->display = &ddi_display_funcs;
++		dev_priv->display.funcs.crtc = &ddi_display_funcs;
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+-		dev_priv->display = &pch_split_display_funcs;
++		dev_priv->display.funcs.crtc = &pch_split_display_funcs;
+ 	} else if (IS_CHERRYVIEW(dev_priv) ||
+ 		   IS_VALLEYVIEW(dev_priv)) {
+-		dev_priv->display = &vlv_display_funcs;
++		dev_priv->display.funcs.crtc = &vlv_display_funcs;
+ 	} else {
+-		dev_priv->display = &i9xx_display_funcs;
++		dev_priv->display.funcs.crtc = &i9xx_display_funcs;
+ 	}
+ 
+ 	intel_fdi_init_hook(dev_priv);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+new file mode 100644
+index 000000000000..aafe548875cc
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -0,0 +1,38 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#ifndef __INTEL_DISPLAY_CORE_H__
++#define __INTEL_DISPLAY_CORE_H__
++
++#include <linux/types.h>
++
++struct intel_atomic_state;
++struct intel_crtc;
++struct intel_crtc_state;
++struct intel_initial_plane_config;
++
++struct intel_display_funcs {
++	/* Returns the active state of the crtc, and if the crtc is active,
++	 * fills out the pipe-config with the hw state. */
++	bool (*get_pipe_config)(struct intel_crtc *,
++				struct intel_crtc_state *);
++	void (*get_initial_plane_config)(struct intel_crtc *,
++					 struct intel_initial_plane_config *);
++	void (*crtc_enable)(struct intel_atomic_state *state,
++			    struct intel_crtc *crtc);
++	void (*crtc_disable)(struct intel_atomic_state *state,
++			     struct intel_crtc *crtc);
++	void (*commit_modeset_enables)(struct intel_atomic_state *state);
++};
++
++struct intel_display {
++	/* Display functions */
++	struct {
++		/* Top level crtc-ish functions */
++		const struct intel_display_funcs *crtc;
++	} funcs;
++};
++
++#endif /* __INTEL_DISPLAY_CORE_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index f0e04d3904c6..e0d5c58c2037 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -70,7 +70,7 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+ 
+ 	drm_WARN_ON(&i915->drm, IS_ERR(temp_crtc_state) || ret);
+ 
+-	i915->display->crtc_disable(to_intel_atomic_state(state), crtc);
++	i915->display.funcs.crtc->crtc_disable(to_intel_atomic_state(state), crtc);
+ 
+ 	drm_atomic_state_put(state);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+index d10f27d0b7b0..10e10ffdc13c 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+@@ -311,7 +311,7 @@ void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
+ 	 * can even allow for smooth boot transitions if the BIOS
+ 	 * fb is large enough for the active pipe configuration.
+ 	 */
+-	dev_priv->display->get_initial_plane_config(crtc, &plane_config);
++	dev_priv->display.funcs.crtc->get_initial_plane_config(crtc, &plane_config);
+ 
+ 	/*
+ 	 * If the fb is shared between multiple heads, we'll
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 086bbe8945d6..3df38531a54b 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -39,6 +39,7 @@
+ 
+ #include "display/intel_cdclk.h"
+ #include "display/intel_display.h"
++#include "display/intel_display_core.h"
+ #include "display/intel_display_power.h"
+ #include "display/intel_dmc.h"
+ #include "display/intel_dpll_mgr.h"
+@@ -96,7 +97,6 @@ struct intel_fbdev;
+ struct intel_fdi_funcs;
+ struct intel_gmbus;
+ struct intel_hotplug_funcs;
+-struct intel_initial_plane_config;
+ struct intel_limit;
+ struct intel_overlay;
+ struct intel_overlay_error_state;
+@@ -177,20 +177,6 @@ struct drm_i915_wm_disp_funcs {
+ 	int (*compute_global_watermarks)(struct intel_atomic_state *state);
+ };
+ 
+-struct drm_i915_display_funcs {
+-	/* Returns the active state of the crtc, and if the crtc is active,
+-	 * fills out the pipe-config with the hw state. */
+-	bool (*get_pipe_config)(struct intel_crtc *,
+-				struct intel_crtc_state *);
+-	void (*get_initial_plane_config)(struct intel_crtc *,
+-					 struct intel_initial_plane_config *);
+-	void (*crtc_enable)(struct intel_atomic_state *state,
+-			    struct intel_crtc *crtc);
+-	void (*crtc_disable)(struct intel_atomic_state *state,
+-			     struct intel_crtc *crtc);
+-	void (*commit_modeset_enables)(struct intel_atomic_state *state);
+-};
+-
+ #define I915_COLOR_UNEVICTABLE (-1) /* a non-vma sharing the address space */
+ 
+ #define QUIRK_LVDS_SSC_DISABLE (1<<1)
+@@ -374,6 +360,8 @@ struct intel_audio_private {
+ struct drm_i915_private {
+ 	struct drm_device drm;
+ 
++	struct intel_display display;
++
+ 	/* FIXME: Device release actions should all be moved to drmm_ */
+ 	bool do_release;
+ 
+@@ -532,9 +520,6 @@ struct drm_i915_private {
+ 	/* display pll funcs */
+ 	const struct intel_dpll_funcs *dpll_funcs;
+ 
+-	/* Display functions */
+-	const struct drm_i915_display_funcs *display;
+-
+ 	/* Display internal color functions */
+ 	const struct intel_color_funcs *color_funcs;
+ 
 -- 
 2.34.1
 
