@@ -1,39 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2700B592FA5
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Aug 2022 15:18:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89D9C592FA7
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Aug 2022 15:18:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DC4BBAF21;
-	Mon, 15 Aug 2022 13:18:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1907C6718;
+	Mon, 15 Aug 2022 13:18:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bg5.exmail.qq.com (bg4.exmail.qq.com [43.154.221.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7450B45F8;
- Thu, 11 Aug 2022 15:40:55 +0000 (UTC)
-X-QQ-mid: bizesmtp84t1660232445tagimrxj
-Received: from localhost.localdomain ( [110.188.55.240])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Thu, 11 Aug 2022 23:40:38 +0800 (CST)
-X-QQ-SSF: 0100000000200080H000B00A0000000
-X-QQ-FEAT: CR3LFp2JE4k+qoMOMkngQMFfaswYNNllHQQVEKKmAclLFKgIFdLtvLu3tIlt1
- swnJmVUFjT65gS14WkrxESJiYdzgD0WBRbkbZIw6fD3fMgFoPIeRY9kY9VQGULZ49sVcLKn
- H4dCXS8CVx/djqhj08RJDrZ3nCRPWkKidfKce7P0IvzBfCbeaMTPhLxq9h1oWZxCHlAWBVe
- Y3aJ4OiNN8od0hgN17aby6xXDTdJDgK1gsBhLYPypfjn74p3iSEC37Uvv6dLMxKFwxm6G8/
- w8X/ejb/u/wpnq+8C1qeYiCI9BkXdv6fSpcmQcwuDga02/mXdM4wfZDZwq/hlnOW/pt6O/2
- X/XBaEdM7cKPIo8L+LUY3ZS0gsxwFp4NeDDE5rm0XO6hGEa0jtlK6X81ilo2ln421RVnk5x
-X-QQ-GoodBg: 0
-From: min tang <tangmin@cdjrlc.com>
-To: airlied@linux.ie,
-	daniel@ffwll.ch
-Date: Thu, 11 Aug 2022 23:40:27 +0800
-Message-Id: <20220811154027.13255-1-tangmin@cdjrlc.com>
-X-Mailer: git-send-email 2.17.1
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:cdjrlc.com:qybglogicsvr:qybglogicsvr6
-X-Mailman-Approved-At: Mon, 15 Aug 2022 13:18:11 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix comment typo
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B016094F71;
+ Fri, 12 Aug 2022 11:46:27 +0000 (UTC)
+Received: from [192.168.2.145] (unknown [109.252.119.13])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id BD19E66016F2;
+ Fri, 12 Aug 2022 12:46:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1660304786;
+ bh=C5rdDWAQ0gULbYpYsWO6A2mmdZ/uxYEqrEknr4MoOf8=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=f3cXPfNXtZHtoSYE1rfxtQ30MUhUVhGrG/NArO1c7kQB8/Xy+FmlqaaOTXT5gVdlP
+ JQXrT9UtGLSc+oBaf/E/efq95t8eHa3wW8rsdseitQlUvtaI4DwUh/ptuZTZ+7D4oa
+ 7gYb8ygLDMwAttTQiJt/HYS3piyRQe36Z1IpIZJqOFl16YT77Eqw1UGF1vppI4t/Vf
+ GlTMr5So6lTOFJQj6bSYwIN6RamDBXBlbOMkDkPHaJHbuvpX0ALyNVMapf4xI3a4LC
+ uDEbP9wEVI4gkRbHJNZkFWXDO04u0wVdnPFCF2dEImetIe9dBjI0qKFkC2Wjrvs/O9
+ MpZiQvPIhyRKg==
+Message-ID: <b7bc8c98-d613-a50d-454c-06ca76d707e1@collabora.com>
+Date: Fri, 12 Aug 2022 14:46:20 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20220725151839.31622-1-dmitry.osipenko@collabora.com>
+ <20220725151839.31622-4-dmitry.osipenko@collabora.com>
+ <6c8bded9-1809-608f-749a-5ee28b852d32@gmail.com>
+ <562fbacf-3673-ff3c-23a1-124284b4456c@collabora.com>
+ <87724722-b9f3-a016-c25c-4b0415f2c37f@amd.com>
+ <0863cafa-c252-e194-3d23-ef640941e36e@collabora.com>
+ <93484389-1f79-b364-700f-60769fc5f8a5@gmail.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <93484389-1f79-b364-700f-60769fc5f8a5@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 15 Aug 2022 13:18:12 +0000
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH v2 3/5] dma-buf: Move all
+ dma-bufs to dynamic locking specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,32 +64,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: min tang <tangmin@cdjrlc.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Cc: Daniel Almeida <daniel.almeida@collabora.com>,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, Sumit Semwal <sumit.semwal@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-rdma@vger.kernel.org,
+ Daniel Stone <daniel@fooishbar.org>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ spice-devel@lists.freedesktop.org, Chia-I Wu <olvaffe@gmail.com>,
+ linux-media@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, David Airlie <airlied@linux.ie>,
+ amd-gfx@lists.freedesktop.org, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The double `for' is duplicated in line 2537, remove one.
+On 8/12/22 14:34, Christian König wrote:
+> 
+> 
+> Am 10.08.22 um 20:53 schrieb Dmitry Osipenko:
+>> On 8/10/22 21:25, Christian König wrote:
+>>> Am 10.08.22 um 19:49 schrieb Dmitry Osipenko:
+>>>> On 8/10/22 14:30, Christian König wrote:
+>>>>> Am 25.07.22 um 17:18 schrieb Dmitry Osipenko:
+>>>>>> This patch moves the non-dynamic dma-buf users over to the dynamic
+>>>>>> locking specification. The strict locking convention prevents
+>>>>>> deadlock
+>>>>>> situation for dma-buf importers and exporters.
+>>>>>>
+>>>>>> Previously the "unlocked" versions of the dma-buf API functions
+>>>>>> weren't
+>>>>>> taking the reservation lock and this patch makes them to take the
+>>>>>> lock.
+>>>>>>
+>>>>>> Intel and AMD GPU drivers already were mapping imported dma-bufs
+>>>>>> under
+>>>>>> the held lock, hence the "locked" variant of the functions are added
+>>>>>> for them and the drivers are updated to use the "locked" versions.
+>>>>> In general "Yes, please", but that won't be that easy.
+>>>>>
+>>>>> You not only need to change amdgpu and i915, but all drivers
+>>>>> implementing the map_dma_buf(), unmap_dma_buf() callbacks.
+>>>>>
+>>>>> Auditing all that code is a huge bunch of work.
+>>>> Hm, neither of drivers take the resv lock in map_dma_buf/unmap_dma_buf.
+>>>> It's easy to audit them all and I did it. So either I'm missing
+>>>> something or it doesn't take much time to check them all. Am I really
+>>>> missing something?
+>>> Ok, so this is only changing map/unmap now?
+>> It also vmap/vunmap and attach/detach: In the previous patch I added the
+>> _unlocked postfix to the func names and in this patch I made them all to
+>> actually take the lock.
+> 
+> 
+> Take your patch "[PATCH v2 2/5] drm/gem: Take reservation lock for
+> vmap/vunmap operations" as a blueprint on how to approach it.
+> 
+> E.g. one callback at a time and then document the result in the end.
 
-Signed-off-by: min tang <tangmin@cdjrlc.com>
----
- drivers/gpu/drm/i915/i915_reg.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Yeah, I'll do it for v3. I'm vaguely recalling that there was a problem
+when I wanted to split this patch in the past, but don't remember what
+it was.. maybe that problem is gone now, will see :)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 9ccb67eec1bd..617a33e4bbb6 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2534,7 +2534,7 @@
-  * HDMI/DP bits are g4x+
-  *
-  * WARNING: Bspec for hpd status bits on gen4 seems to be completely confused.
-- * Please check the detailed lore in the commit message for for experimental
-+ * Please check the detailed lore in the commit message for experimental
-  * evidence.
-  */
- /* Bspec says GM45 should match G4X/VLV/CHV, but reality disagrees */
 -- 
-2.17.1
-
+Best regards,
+Dmitry
