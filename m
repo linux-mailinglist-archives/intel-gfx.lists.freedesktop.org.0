@@ -2,77 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BCEE59FE45
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 17:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F048D59FE46
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 17:26:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C96F10E6B3;
-	Wed, 24 Aug 2022 15:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EABA10E838;
+	Wed, 24 Aug 2022 15:26:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 061D62B9EC;
- Thu, 11 Aug 2022 15:30:54 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id l22so21752936wrz.7;
- Thu, 11 Aug 2022 08:30:53 -0700 (PDT)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88C068D535
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Aug 2022 21:24:14 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id j8so3998771ejx.9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Aug 2022 14:24:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc;
- bh=qZtGOXbRC+1H6SPLMpuq1SgPyHU7zMutv39GohgMBvo=;
- b=kHDbzD7P9eGWeR5QgJz8o1M4lnlOV+24zL4PIkoKaISN137ifaBEtwvYZGOrdPMJ1W
- 6cHV0oSmCKFcNNk0vpWxMajyRH6PYZfHGLxbZa6xz0nQ0PXYtFjJjeq4xbJ9n4t/PUbL
- m5WN1x1jV/pmiObU1mVXl4tO198NP8iOeBji/RR6eJUItHUSMiYtAhPQHerKaSrbAzxn
- n7RuZbkyl7A9sc/63XXdJd5sjQkdpw5IakaHG8aepNjjhcwZFSbPg1/73XwhReevGlY8
- 71gjrAj4jM4uDDj5iU3EAQ3hK34JOnyjeJLo0cTpTUI0OAWpe36RaEDXeM0oEZJKjmXJ
- UkZg==
+ h=mime-version:user-agent:content-transfer-encoding:date:to:from
+ :subject:message-id:from:to:cc;
+ bh=6sLlVa5bv9fddso3aGZXeVZ815lIACQU4NMr1Arbw3I=;
+ b=lEdQfwoArxfCfMAR18cTK/A5mRqpYXHouEGdAeFgaZHI5J+0clpLhoGdGjAV3iTOtY
+ pI/d9J2GW9q06oUIU742rxvN0COvVArLEQfU00WEymfvyEYFWhCLLpDUevpr1yTrLPQg
+ dYvD36O1VSE0SBj/iUEllEX8oLfVKDrj5XJxzVEBr7I2fbLYG6Xo7Q+IHXVPRg0r90ZR
+ m+UPWB8qPo/Mp6HsDXvRIFwJ1Cdo3ULIa/++631BpCO2bmiWw18HCRktpM9Oznq2uuWT
+ eVULc8Sm9tnqGhRfm7fvANvN/+RQqdVmvUAGbUQDZ7qwJUw5gz2pvsIIIR/3noHSGbDS
+ JK+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
- bh=qZtGOXbRC+1H6SPLMpuq1SgPyHU7zMutv39GohgMBvo=;
- b=ewRI/9KepZoL5cea8Mgc0qsMmwJo328CZD1BOLlGvw92PuswLk9mTRhG8C90GpCE6P
- RLP5RFK0gFCEndMcuu3TjYq2A17uEga1INam8+foqxbfV4ax3b5XK0OA5DbywpakoYtx
- MwQS89p2ED8cd8MX66rlZi9hHfidqlXTh+1JxM/N4hA1fiuSiCVDLOBDAl1qmVQxryNL
- jDGL0NSrt377Yrkk0+Q/Gz24xVIeHtomr7ZlbJQvUSKogRuhiqofJxUHLGp8z3lM6heY
- NxF+TtLXY09jz5nKpMrawkXN7ZYWzS27v9whi3FswTpnMmqPF61Y/S5iGkDzekcFhl/0
- 6eiQ==
-X-Gm-Message-State: ACgBeo3Bg/DznQ/eFmHXG9t1G8wv1mWfLkJk5sv8PwtiGDKKydl10MEE
- bS7DIO7aXe2ODgBO8alAdiKyIQvuiVjb8A==
-X-Google-Smtp-Source: AA6agR5a9kzgqtDr+SyVjmXoGK7TQ3C9s6/ZzMuJhHCJyK48sU4+XUw9zEtEFNtg3FIup6WEqH0qNg==
-X-Received: by 2002:a5d:52cb:0:b0:21a:3cc5:f5f4 with SMTP id
- r11-20020a5d52cb000000b0021a3cc5f5f4mr20771696wrv.367.1660231853386; 
- Thu, 11 Aug 2022 08:30:53 -0700 (PDT)
-Received: from localhost.localdomain
- (host-79-27-108-198.retail.telecomitalia.it. [79.27.108.198])
- by smtp.gmail.com with ESMTPSA id
- m7-20020a056000008700b00222ed7ea203sm9805502wrx.100.2022.08.11.08.30.50
+ h=mime-version:user-agent:content-transfer-encoding:date:to:from
+ :subject:message-id:x-gm-message-state:from:to:cc;
+ bh=6sLlVa5bv9fddso3aGZXeVZ815lIACQU4NMr1Arbw3I=;
+ b=RvouHHmjqQDXW2Eeh9YLVLLUK3oF5YDUV0zW9eUG+6uo8cH46pK6rbrS+nHE1ncLRB
+ ci2ebFd+bG11K5xDq5GB5StA2u+ZIJ8QLNjhxnh2da3qwrOBcqwgban0s/wzEkelg5u1
+ 4vsapxMrcLYOA1ZE+IX+Nu8mu36YBZBwnNBQLT2P7y41ndRtZjXX95Gj+s0G8+qQyhER
+ Tx5WTBEqfnWMJySLvrKCItvPkKCtuinighqkb6CxqK6yf3lhgSs/hbpZw9Cw3cstU3Vo
+ Huer0MBBAS1C9ymMx3eVcVXXtTDI+MmpYG2CCmBBqrWcdwtquOwNgSiYJ5ZI1o+a0zT1
+ jCpQ==
+X-Gm-Message-State: ACgBeo252vI6BDtCOXwndveLvghVKuNWx+xVjSaiDf9jKso/GB+GyKxE
+ RxQrNIFhJsryUgFSJ+c4Cki0P3Le28k=
+X-Google-Smtp-Source: AA6agR6FyVpEWJ9cff6A2kT9fDL3qtYQtOu1Nxl3xr2q87+yuRn8onOCdC3hdlK7y5iXl0qCa6rF3g==
+X-Received: by 2002:a17:907:a068:b0:731:366a:6005 with SMTP id
+ ia8-20020a170907a06800b00731366a6005mr3856039ejc.344.1660339452881; 
+ Fri, 12 Aug 2022 14:24:12 -0700 (PDT)
+Received: from [192.168.11.137] (188-143-71-136.pool.digikabel.hu.
+ [188.143.71.136]) by smtp.gmail.com with ESMTPSA id
+ ky21-20020a170907779500b00730453877b1sm1176197ejc.217.2022.08.12.14.24.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Aug 2022 08:30:52 -0700 (PDT)
-From: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- John Harrison <John.C.Harrison@Intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Ira Weiny <ira.weiny@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Thu, 11 Aug 2022 17:30:40 +0200
-Message-Id: <20220811153041.12795-3-fmdefrancesco@gmail.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220811153041.12795-1-fmdefrancesco@gmail.com>
-References: <20220811153041.12795-1-fmdefrancesco@gmail.com>
+ Fri, 12 Aug 2022 14:24:12 -0700 (PDT)
+Message-ID: <4e478787ecbee62b8c2d420df895f5a8b531eb6b.camel@gmail.com>
+From: =?ISO-8859-1?Q?Baltaz=E1r?= Radics <baltazar.radics@gmail.com>
+To: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Date: Fri, 12 Aug 2022 23:24:11 +0200
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 15 Aug 2022 13:18:12 +0000
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/gt: Replace kmap() with
- kmap_local_page()
+Subject: [Intel-gfx] Intel gpu memory corruption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,100 +69,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-kmap() is being deprecated in favor of kmap_local_page().
+Hello!
 
-There are two main problems with kmap(): (1) It comes with an overhead as
-mapping space is restricted and protected by a global lock for
-synchronization and (2) it also requires global TLB invalidation when the
-kmap’s pool wraps and it might block when the mapping space is fully
-utilized until a slot becomes available.
+My laptop (ThinkPad T460) seems to have a memory corruption issue that
+only occures when the gpu is in use (it has `Intel Corporation Skylake
+GT2 [HD Graphics 520] (rev 07)` as reported by lspci).
 
-With kmap_local_page() the mappings are per thread, CPU local, can take
-page faults, and can be called from any context (including interrupts).
-It is faster than kmap() in kernels with HIGHMEM enabled. Furthermore,
-the tasks can be preempted and, when they are scheduled to run again, the
-kernel virtual addresses are restored and are still valid.
+I haven't been able to reproduce the corruption with standard memory
+testing utilities like lenovo's builtin hardware diagnostic tool,
+memtest86+, or even the user-space program memtester when it's the only
+thing running.
 
-Since its use in i915/gt is safe everywhere, it should be preferred.
+However, running memtester alongside vkmark for example can reproduce
+it quite consistently. It will always be a single address for a given
+instance of memtester, but looking into /proc/[pid]/pagemap revealed
+that seemingly it's always the same hardware address.
 
-Therefore, replace kmap() with kmap_local_page() in i915/gt
+With this information, I think I managed to stop it from happening by
+appending `memmap=3D4K$0x1F9D7C000` to my kernel commandline to stop that
+address from being allocated. Since then I haven't been able to catch
+it with memtester, but I did have a crash that kinda resembled the ones
+I had earlier. Many processes segfaulted and I had some `Bad swap file
+entry` errors in my dmesg.
 
-Suggested-by: Ira Weiny <ira.weiny@intel.com>
-Signed-off-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
----
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c |  4 ++--
- drivers/gpu/drm/i915/gt/shmem_utils.c        | 11 ++++-------
- 2 files changed, 6 insertions(+), 9 deletions(-)
+I haven't been able to do testing on other OSes yet, but since none of
+the regular memtests have found any issues, I'm fairly certain this is
+not a hardware issue with my ram. Could still be a hardware issue with
+the gpu itself, but for now I'm guessing this is a gpu driver bug.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-index 6ebda3d65086..21d8ce40b897 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-@@ -747,7 +747,7 @@ static void swizzle_page(struct page *page)
- 	char *vaddr;
- 	int i;
- 
--	vaddr = kmap(page);
-+	vaddr = kmap_local_page(page);
- 
- 	for (i = 0; i < PAGE_SIZE; i += 128) {
- 		memcpy(temp, &vaddr[i], 64);
-@@ -755,7 +755,7 @@ static void swizzle_page(struct page *page)
- 		memcpy(&vaddr[i + 64], temp, 64);
- 	}
- 
--	kunmap(page);
-+	kunmap_local(vaddr);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
-index 402f085f3a02..48edbb8a33e5 100644
---- a/drivers/gpu/drm/i915/gt/shmem_utils.c
-+++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
-@@ -98,22 +98,19 @@ static int __shmem_rw(struct file *file, loff_t off,
- 		unsigned int this =
- 			min_t(size_t, PAGE_SIZE - offset_in_page(off), len);
- 		struct page *page;
--		void *vaddr;
- 
- 		page = shmem_read_mapping_page_gfp(file->f_mapping, pfn,
- 						   GFP_KERNEL);
- 		if (IS_ERR(page))
- 			return PTR_ERR(page);
- 
--		vaddr = kmap(page);
- 		if (write) {
--			memcpy(vaddr + offset_in_page(off), ptr, this);
-+			memcpy_to_page(page, offset_in_page(off), ptr, this);
- 			set_page_dirty(page);
- 		} else {
--			memcpy(ptr, vaddr + offset_in_page(off), this);
-+			memcpy_from_page(ptr, page, offset_in_page(off), this);
- 		}
- 		mark_page_accessed(page);
--		kunmap(page);
- 		put_page(page);
- 
- 		len -= this;
-@@ -140,11 +137,11 @@ int shmem_read_to_iosys_map(struct file *file, loff_t off,
- 		if (IS_ERR(page))
- 			return PTR_ERR(page);
- 
--		vaddr = kmap(page);
-+		vaddr = kmap_local_page(page);
- 		iosys_map_memcpy_to(map, map_off, vaddr + offset_in_page(off),
- 				    this);
- 		mark_page_accessed(page);
--		kunmap(page);
-+		kunmap_local(vaddr);
- 		put_page(page);
- 
- 		len -= this;
--- 
-2.37.1
+Is there anything else I can test to confirm that this is i915's fault,
+and if so, anything I can do to help track down the bug?
 
+Thanks!
