@@ -1,45 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B38590BC0
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Aug 2022 08:04:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E44DF590C0A
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Aug 2022 08:40:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA9E7A348D;
-	Fri, 12 Aug 2022 06:04:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0455718BCC9;
+	Fri, 12 Aug 2022 06:40:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFEC8A306F;
- Fri, 12 Aug 2022 06:03:52 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 1C3606173F;
- Fri, 12 Aug 2022 06:03:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C92C433D6;
- Fri, 12 Aug 2022 06:03:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1660284229;
- bh=TcpkxNLDwa143ZU3Y00QybKC5IjhDquFERYw7okxaeo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=WQQHeVF7BdL2rNB1+B0q9GiyDuPMCFPh3j7XxDgJVevz5ZKQElZxbdogISLhpNrJ+
- Ubo+bTcuLzd5gLM9Vxea9vnaFWYNpJYDQ30+UhqFkZEbg4hcSxvPtww74RnSn0KX1w
- 1OClOT7CtRUeNXRN1IFWZ1mm/9hi2htv6+wP01MY=
-Date: Fri, 12 Aug 2022 08:03:47 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <YvXtQ7/FJFSVXlGU@kroah.com>
-References: <20220720153233.144129-1-jim.cromie@gmail.com>
- <CAJfuBxxPRj-u5S45pPfAEaE46ji0--MTVxryEAUPe1+1c1jgEw@mail.gmail.com>
- <17628790-3905-460d-8734-981cfa8e7e51@akamai.com>
- <YvUz2Nk6YHl+jVwR@phenom.ffwll.local>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71A1AA1ED1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Aug 2022 06:40:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1660286410; x=1691822410;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=b/SxglGLS7a4VbJtU6VNEbU9WVmMEs/GubgiIGg/Xpw=;
+ b=T0/ZvVja8B/OkaFgXvQ+FdKG65Cpren015mLCshAIzs/CQu/sFuFMr1D
+ fuwe4bBgCxHlIviSJ7YZSKdkS0Ky35sDMYJ6OCRpc604eKmuX4SZyk0mm
+ Gls2PapNfZbt8E+rp0VmNr8kFL46H5hVkbEI4Bw7UdiLpLNFNMNFH0l0m
+ OR39GkpKgABWHb21sPGGQQq6EoGQrJCXDI2HrnRgq60B9agYe4RY4zKRL
+ empgfZ/lFOML4TzFK7y0UyGUhB33rZ/cr+Dhoq3Oo/Ti1y3iLPFkx1gwb
+ 8YH7ChgpUiYCLW41MEWb/vmMj07jtY4Iz3txc6lP0tUu5ZY9ukVEQH5z8 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="289105099"
+X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="289105099"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 23:40:09 -0700
+X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="634537191"
+Received: from ebrazil-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.252.37.174])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 23:40:08 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <DM6PR11MB3177A81A3B4B3DA89C3EC833BA679@DM6PR11MB3177.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1660230121.git.jani.nikula@intel.com>
+ <a5641ef131cf70d404b5344eb8c3cd1688fdaae6.1660230121.git.jani.nikula@intel.com>
+ <DM6PR11MB3177A81A3B4B3DA89C3EC833BA679@DM6PR11MB3177.namprd11.prod.outlook.com>
+Date: Fri, 12 Aug 2022 09:40:05 +0300
+Message-ID: <87bksqt16i.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YvUz2Nk6YHl+jVwR@phenom.ffwll.local>
-Subject: Re: [Intel-gfx] [PATCH v4 00/41] DYNDBG: opt-in class'd debug for
- modules, use in drm.
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 01/39] drm/i915: add display sub-struct to
+ drm_i915_private
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,60 +61,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jim.cromie@gmail.com, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Jason Baron <jbaron@akamai.com>, Sean Paul <seanpaul@chromium.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gvt-dev@lists.freedesktop.org
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 11, 2022 at 06:52:40PM +0200, Daniel Vetter wrote:
-> On Wed, Aug 03, 2022 at 04:13:05PM -0400, Jason Baron wrote:
-> > 
-> > 
-> > On 8/3/22 15:56, jim.cromie@gmail.com wrote:
-> > > On Wed, Jul 20, 2022 at 9:32 AM Jim Cromie <jim.cromie@gmail.com> wrote:
-> > >>
-> > > 
-> > >> Hi Jason, Greg, DRM-folk,
-> > >>
-> > >> This adds 'typed' "class FOO" support to dynamic-debug, where 'typed'
-> > >> means either DISJOINT (like drm debug categories), or VERBOSE (like
-> > >> nouveau debug-levels).  Use it in DRM modules: core, helpers, and in
-> > >> drivers i915, amdgpu, nouveau.
-> > >>
-> > > 
-> > > This revision fell over, on a conflict with something in drm-MUMBLE
-> > > 
-> > > Error: patch https://urldefense.com/v3/__https://patchwork.freedesktop.org/api/1.0/series/106427/revisions/2/mbox/__;!!GjvTz_vk!UCPl5Uf32cDVwwysMTfaLwoGLWomargFXuR8HjBA3xsUOjxXHXC5hneAkP4iWK91yc-LjjJxWW89-51Z$ 
-> > > not applied
-> > > Applying: dyndbg: fix static_branch manipulation
-> > > Applying: dyndbg: fix module.dyndbg handling
-> > > Applying: dyndbg: show both old and new in change-info
-> > > Applying: dyndbg: reverse module walk in cat control
-> > > Applying: dyndbg: reverse module.callsite walk in cat control
-> > > Applying: dyndbg: use ESCAPE_SPACE for cat control
-> > > Applying: dyndbg: let query-modname override actual module name
-> > > Applying: dyndbg: add test_dynamic_debug module
-> > > Applying: dyndbg: drop EXPORTed dynamic_debug_exec_queries
-> > > 
-> > > Jason,
-> > > those above are decent maintenance patches, particularly the drop export.
-> > > It would be nice to trim this unused api this cycle.
-> > 
-> > Hi Jim,
-> > 
-> > Agreed - I was thinking the same thing. Feel free to add
-> > Acked-by: Jason Baron <jbaron@akamai.com> to those first 9.
-> 
-> Does Greg KH usually pick up dyndbg patches or someone else or do I need
-> to do something? Would be great to get some movement here since -rc1 goes
-> out and merging will restart next week.
+On Fri, 12 Aug 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+>> @@ -0,0 +1,38 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright =C2=A9 2022 Intel Corporation
+>> + */
+>> +
+>> +#ifndef __INTEL_DISPLAY_CORE_H__
+>> +#define __INTEL_DISPLAY_CORE_H__
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +struct intel_atomic_state;
+>> +struct intel_crtc;
+>> +struct intel_crtc_state;
+>> +struct intel_initial_plane_config;
+>> +
+>> +struct intel_display_funcs {
+>> +     /* Returns the active state of the crtc, and if the crtc is active,
+>> +      * fills out the pipe-config with the hw state. */
+> Can this be changed to multi-line commenting style.
 
-Yes, I can take these into my tree after -rc1 is out.
+Yeah.
 
-thanks,
+> /*
+>  *
+>  */
+>> +     bool (*get_pipe_config)(struct intel_crtc *,
+>> +                             struct intel_crtc_state *);
+>> +     void (*get_initial_plane_config)(struct intel_crtc *,
+>> +                                      struct intel_initial_plane_config=
+ *);
+>> +     void (*crtc_enable)(struct intel_atomic_state *state,
+>> +                         struct intel_crtc *crtc);
+>> +     void (*crtc_disable)(struct intel_atomic_state *state,
+>> +                          struct intel_crtc *crtc);
+>> +     void (*commit_modeset_enables)(struct intel_atomic_state *state);
+>
+> Can this be changed to something meaningful word, something like update_m=
+odeset()
 
-greg k-h
+It's already borderline doing too much in one patch to rename the
+struct, and definitely too much to rename the hook. Maybe in another
+patch.
+
+BR,
+Jani.
+
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
