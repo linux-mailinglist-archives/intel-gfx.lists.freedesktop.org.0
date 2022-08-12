@@ -1,48 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3CED590E80
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Aug 2022 11:54:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C79590E82
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Aug 2022 11:55:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB675905EF;
-	Fri, 12 Aug 2022 09:54:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90DB6AB4FF;
+	Fri, 12 Aug 2022 09:54:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97093905EF;
- Fri, 12 Aug 2022 09:54:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 812E298CD9;
+ Fri, 12 Aug 2022 09:54:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660298044; x=1691834044;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=h1Lv1FkCTrVQ5bAD+XXqpaazyTn8gMGQvZSV42JgBYA=;
- b=N1YVU1Qt5f49B8rtedOXjAgbWJJzmvsVGO5L7hg40yDVDaLZp7DX2qlA
- s9qYUQH1RqHYV0IhhSVVCQ2r0gtB6zlQFqwVNO1JwIG7zW+3v2J3Hl+5z
- rr2Vbmu6sScuuzveYQUpwugWmCe8u254O8JEgsXow5Y0J6KTFVIMK6WUA
- PQfqonwDAnDDPdztaKzcLpZesGausPX6lTb3zk9U5iu+m0i9PSibBpukY
- cUOUxnP7eF40Si8P411J/Iug7ff4a2FC6eM+SxQUplOw7FGM2BkBjkcYC
- P0Onvyd0M/9zzU79PE457wHmYO4M9djf2b8A0fbg55sLiuEUa1Ro3ZWk8 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="292359342"
-X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="292359342"
+ t=1660298047; x=1691834047;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=olE+kcSLMFIzY0K6/Tm3ZPC6nm8PiVyXuhkfNx+snNY=;
+ b=XTXH/LpEkcjBe5R41TnqDdLgqiD7RrLWkX1dt9+4aYCXhsoXwskbPWwe
+ 0AtJXpdOTfdA/mDxPj6aD/+YIXZZl7JUG3ysNAAA+PPKJso1nd1/om8F+
+ M9efx7dKKSz9h2UTcHJj+Nt//SlrUBeVHHDj4ss8ZwzyufGKg3E/+f6MN
+ lCVy5ytjqjQZpPiqkrtxiZJ506ooSi1oAHfz0HklnsxpGGAR+I1+Wgz0R
+ 8psGDhm954o4Q6oDCt+BJtPWicbZBhXdG6rK9acpBoJlmoO9Duob3QH+c
+ nu9hpy0TZGtVWv5Of2+ClZOnVhpUMt8Lapb3Kt8wzJNlbmZ2B7+at+7KV w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="292359349"
+X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="292359349"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2022 02:54:03 -0700
-X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="634588833"
+ 12 Aug 2022 02:54:07 -0700
+X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="634588848"
 Received: from jkrzyszt-mobl1.ger.corp.intel.com (HELO jkrzyszt-mobl1.lan)
  ([10.213.22.182])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2022 02:54:00 -0700
+ 12 Aug 2022 02:54:03 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri, 12 Aug 2022 11:53:44 +0200
-Message-Id: <20220812095346.45379-1-janusz.krzysztofik@linux.intel.com>
+Date: Fri, 12 Aug 2022 11:53:45 +0200
+Message-Id: <20220812095346.45379-2-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220812095346.45379-1-janusz.krzysztofik@linux.intel.com>
+References: <20220812095346.45379-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 1/3] tests/gem_exec_fence: Fix wrong
- engine checked for store_dword capability
+Subject: [Intel-gfx] [PATCH i-g-t v2 2/3] tests/gem_exec_fence: Exclude 0
+ from use in store batches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,35 +62,64 @@ Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit ed7c8cfb67e3 ("tests/i915/gem_exec_fence: Add
-__for_each_physical_engine to utilize all engines."), while replacing
-depraciated for_each_physical_engine(e, fd) loop with
-__for_each_physical_engine(fd, e2) and gem_can_store_dword() inside that
-loop with gem_class_can_store_dword(), didn't switch to e2 consequently --
-eb_ring(e) argument of gem_can_store_dword() was replaced with e->class
-passed to gem_class_can_store_dword() instead of e2->class.  As a result,
-a batch that stores dword is now submitted to all engines, also those that
-don't support that operation.  Fix it.
+When i = 0, condition out[i] == i will be true even if a batch supposed
+to store i in out[i] fails.  Don't use i = 0 in batches that store values
+in out[i].
+
+v2: still check for out[0] == 0 (Chris)
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
 ---
- tests/i915/gem_exec_fence.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests/i915/gem_exec_fence.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
 diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
-index 7ff7614dad..048870053a 100644
+index 048870053a..78d83460f7 100644
 --- a/tests/i915/gem_exec_fence.c
 +++ b/tests/i915/gem_exec_fence.c
-@@ -331,7 +331,7 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
- 
- 	i = 0;
- 	for_each_ctx_engine(fd, ctx, e2) {
--		if (!gem_class_can_store_dword(fd, e->class))
-+		if (!gem_class_can_store_dword(fd, e2->class))
+@@ -334,6 +334,8 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
+ 		if (!gem_class_can_store_dword(fd, e2->class))
  			continue;
  
++		i++;
++
  		if (flags & NONBLOCK) {
+ 			igt_store_word(fd, ahnd, ctx, e2, spin->out_fence,
+ 				       scratch, scratch_offset, i, i);
+@@ -345,8 +347,6 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
+ 				put_ahnd(ahnd);
+ 			}
+ 		}
+-
+-		i++;
+ 	}
+ 
+ 	igt_spin_busywait_until_started(spin);
+@@ -356,7 +356,7 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
+ 	if ((flags & HANG) == 0) {
+ 		/* Check for invalidly completing the task early */
+ 		igt_assert(fence_busy(spin->out_fence));
+-		for (int n = 0; n < i; n++)
++		for (int n = 0; n <= i; n++)
+ 			igt_assert_eq_u32(out[n], 0);
+ 
+ 		igt_spin_end(spin);
+@@ -366,8 +366,11 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
+ 
+ 	gem_set_domain(fd, scratch, I915_GEM_DOMAIN_GTT, 0);
+ 	igt_assert(!fence_busy(spin->out_fence));
+-	while ((flags & HANG) == 0 && i--)
+-		igt_assert_eq_u32(out[i], i);
++	if ((flags & HANG) == 0) {
++		do
++			igt_assert_eq_u32(out[i], i);
++		while (i--);
++	}
+ 	munmap(out, 4096);
+ 
+ 	igt_spin_free(fd, spin);
 -- 
 2.25.1
 
