@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B8D0590C0E
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Aug 2022 08:43:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4D5C590C14
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Aug 2022 08:45:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8148B9B7AB;
-	Fri, 12 Aug 2022 06:43:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55446A3C2C;
+	Fri, 12 Aug 2022 06:45:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E042997CD
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Aug 2022 06:43:36 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59A79B6BF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Aug 2022 06:45:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660286616; x=1691822616;
+ t=1660286736; x=1691822736;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=zOeWzjB7kCV5D47/3Nvbz6M1e29x3RVFl62C1MNmvQ4=;
- b=Qv/M+3sf60d1+r6+QCk3gf6SL/9Ej1UvIM7smpMLjeyiNOytZTq8OI8N
- o9TLJ+BqS6QXnFeiLNPnB1GUEqRL8zlcpvcTiIsc87zC/JZlQAnn7pP3W
- 4B7bDQ1t17R1AdcGIb4/yGO/fn5yCBh297lm0BQe9UC50mISkTtBLv4v+
- 7GBcYg0MHNMvqyWYDfGyTgIGDbWrsheZad3Uh5zcobxPHwawvVlvTsN57
- AQFFBz5TtozChwVDRbSrucc6hlGfAMekcVA4cTBw3jOiU6JOZ2gMzwskE
- DiST0UiL/tjHuAg5ka7u+KzdMFmT0b/KWpoRM8CAmlwNeWhRlXQoesXY9 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="291535616"
-X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="291535616"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 23:43:36 -0700
-X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="665708849"
+ bh=sbia2Fjida0BU1r3v4PB7v1dD2lKOqbKLLAcdidI+Bg=;
+ b=b7lNTOcBj/GKfxEP4n7MgBMl+MEY0WyFyWslmKwXxSMpueRQFy7IEjib
+ oZ+9/WgTiBGl7Ibzm6SH17KIMqDJg9WBCpYD15FLzu3tL6ZduNwKztYqm
+ vQU904G/KvYRNqUNwva8ItipDG0Lcq1/HzE0DRGVVzFPgDco/ICnkdui4
+ zVFSYZbjRfTBlZWO3Ai/cMo+XcPWeDc6uLznWwiYNP7Qup0DDq4s3LmT7
+ jl/jJSSqxUUsXlyosTFvnGmeTyu9cWmD7YciHGjgWLUo8CACWqRzLKrPG
+ e/RwoLjBFmSQ6A9/q3XvGhfLU/ScBPJuXWkvwH5mETVuXhRFY7aeCWT/w g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="377827340"
+X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="377827340"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 23:45:35 -0700
+X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="634538276"
 Received: from ebrazil-mobl1.amr.corp.intel.com (HELO localhost)
  ([10.252.37.174])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2022 23:43:34 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2022 23:45:34 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <DM6PR11MB3177C4C0D0790E1A46F90116BA679@DM6PR11MB3177.namprd11.prod.outlook.com>
+In-Reply-To: <DM6PR11MB3177E362FAC572AB8DB40F5BBA679@DM6PR11MB3177.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1660230121.git.jani.nikula@intel.com>
- <835133f5ef41aa58f8fbbc7e1c86ed2efd5de694.1660230121.git.jani.nikula@intel.com>
- <DM6PR11MB3177C4C0D0790E1A46F90116BA679@DM6PR11MB3177.namprd11.prod.outlook.com>
-Date: Fri, 12 Aug 2022 09:43:32 +0300
-Message-ID: <878rnut10r.fsf@intel.com>
+ <664ed8395a6028e654cbc2251605e967a9d46289.1660230121.git.jani.nikula@intel.com>
+ <DM6PR11MB3177E362FAC572AB8DB40F5BBA679@DM6PR11MB3177.namprd11.prod.outlook.com>
+Date: Fri, 12 Aug 2022 09:45:31 +0300
+Message-ID: <875yiyt0xg.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 02/39] drm/i915: move cdclk_funcs to
+Subject: Re: [Intel-gfx] [PATCH 04/39] drm/i915: move hotplug_funcs to
  display.funcs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,38 +65,36 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Fri, 12 Aug 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h
->> b/drivers/gpu/drm/i915/display/intel_display_core.h
->> index aafe548875cc..74e4ae0609b9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
->> @@ -9,6 +9,7 @@
->>  #include <linux/types.h>
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani
+>> Nikula
+>> Sent: Thursday, August 11, 2022 8:37 PM
+>> To: intel-gfx@lists.freedesktop.org
+>> Cc: Nikula, Jani <jani.nikula@intel.com>; De Marchi, Lucas
+>> <lucas.demarchi@intel.com>
+>> Subject: [Intel-gfx] [PATCH 04/39] drm/i915: move hotplug_funcs to
+>> display.funcs
 >>
->>  struct intel_atomic_state;
->> +struct intel_cdclk_funcs;
->>  struct intel_crtc;
->>  struct intel_crtc_state;
->>  struct intel_initial_plane_config;
->> @@ -32,6 +33,9 @@ struct intel_display {
->>       struct {
->>               /* Top level crtc-ish functions */
->>               const struct intel_display_funcs *crtc;
->> +
->> +             /* Display CDCLK functions */
->> +             const struct intel_cdclk_funcs *cdclk;
->
-> Like having intel_cdclk_funcs *cdclk, will intel_display_funcs
-> *display makes more sense and maintaining same terminology across the
-> driver.
+>> Move display related members under drm_i915_private display sub-struct.
+>>
+> The commit msg becomes same for the patches. Can it be more precise as
+> to move all hotplug related struct under display sub-struct?
 
-I was considering renaming it struct intel_crtc_funcs but it's not all
-crtc either. But display is both too generic (these are *all* display
-functions) and has a tautology (display.funcs.display). Dunno.
+Yeah, just copy-pasted for now.
 
 BR,
 Jani.
 
+
+>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+> Upon adding proper commit msg
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
