@@ -2,46 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B8D5591058
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Aug 2022 13:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91A9D591022
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Aug 2022 13:34:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70F99A7FD9;
-	Fri, 12 Aug 2022 11:49:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DD6F90BE8;
+	Fri, 12 Aug 2022 11:34:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F1D8A5E66
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Aug 2022 11:49:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660304962; x=1691840962;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VrDAEdG4EdCE3sU/T76WaHmhpxgEG7UrxBmAvlHaNAQ=;
- b=B3/W8ITCB8s41Epk3pez3sWpJfXhM/zUquFCXANrIIVzjOpH8an/i8bV
- 7O3nTamYdfu6l46FisZoixa6rFDTW/IEipUEj4mkGZ5BeU/LUzQsNzZgD
- CsrzLONNbCnbJ1279Dzkptah1+bN9xrG+ml/IZmJ613KRJFbK0DNJoZ8v
- Uj/UHxxsZfD6mFbh7vBO+6hv/EQ7ONxmEnxvzhtOnRv/YueLRZtSMoRvg
- qTWHBwoyIx9R8CqzYSecI9+b5axBUWq1pklCjAp38MZKjngck41UKX5GA
- 1AtOf3I3h6njIkv4hJt3jDNYgRZX9J1jJyGKEjlpLl9Jruilnjvn2GnRy g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="278530141"
-X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="278530141"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2022 04:49:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="933693555"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmsmga005.fm.intel.com with ESMTP; 12 Aug 2022 04:49:20 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Aug 2022 10:17:24 +0530
-Message-Id: <20220812044724.12131-1-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6439B8E930;
+ Fri, 12 Aug 2022 11:34:07 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id w19so1542929ejc.7;
+ Fri, 12 Aug 2022 04:34:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc; bh=2maBmCwKBmigg6muaEXXhf/Ng5GHmKY483ELQvBK7bw=;
+ b=WzmVA6wJmViKgJcjJ28fwTes4+4nkLVN3Mx6n7aAByQjaF1kqlO8c/DkZzzNbQ5PMJ
+ Q6QRifhtEywKPW0BRycraqPgJbNNV4Fkr0BDi9NwSjofj+/eExHcmIHXfmWBqj8nEM+V
+ SJ6yUML0yO8yFd9lLsoNczBtQtybcTMT4WUr1ptuUKBS3/Rda9YC3hjAtXIBeNWzrfQv
+ 8awekeP8HdFvSg9RwEt6hfJjxWj4IHX4MucvbIt4QDscDPd/6Xe/c8eYLuCx5yo9ewIX
+ pCKNLJxEdZn4+tUGCfNxm+c1cgbj7a+b8mhWZ+qT9Wu2+c+9oyIWqC1lkYhae0HgqZSg
+ TC0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc;
+ bh=2maBmCwKBmigg6muaEXXhf/Ng5GHmKY483ELQvBK7bw=;
+ b=A7jY1idAC9750ssqeo5YGLPUPliyyYsxUykEwxWLUbo/yM5idnWAdlQKI6F8/UB9OX
+ yYJzaOqA6P4Wvq2p91JTHmqKW46zB/BFnrY4ZYHdws229czIA7+17yKlHGA3LRtk67Zv
+ eBL1CR8Sp9Nu3OLYBi0IfwW7vyQXpyWzONFIj5D+Z2pZz5aX5Wau2PuOOLdmHa9qfcfH
+ 0wTchpegQ2MsFmDlKjxIDUWBUD7dg6Zd6S2y+7wI0y3zLmUrhJdcJICmGz64CoS+blAQ
+ ltMQHTicMn/GYM/KhFl/rNyzl/dad/D9UH5F5hnSrmAUnFOn13RaSm9LBKa7V7os0tAD
+ /tJQ==
+X-Gm-Message-State: ACgBeo32I73lBrsanLs6dWfKYaNrYnXD77/TNhY/plcN5jVnbEkWvIsR
+ xTyv59uOSY2eknBm1KUOeQ0=
+X-Google-Smtp-Source: AA6agR7yLrz2JyTe8JHAoaW31lDloNP6q9ah/gkL0Xj0JLrU44S+nATJXnQ7Xvnv8KPuB3tTB73pJw==
+X-Received: by 2002:a17:906:eeca:b0:730:6880:c397 with SMTP id
+ wu10-20020a170906eeca00b007306880c397mr2352637ejb.593.1660304045907; 
+ Fri, 12 Aug 2022 04:34:05 -0700 (PDT)
+Received: from [192.168.178.21] (p57b0bd9f.dip0.t-ipconnect.de.
+ [87.176.189.159]) by smtp.gmail.com with ESMTPSA id
+ jj23-20020a170907985700b0073151ce7726sm696022ejc.100.2022.08.12.04.34.03
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 12 Aug 2022 04:34:05 -0700 (PDT)
+Message-ID: <93484389-1f79-b364-700f-60769fc5f8a5@gmail.com>
+Date: Fri, 12 Aug 2022 13:34:02 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20220725151839.31622-1-dmitry.osipenko@collabora.com>
+ <20220725151839.31622-4-dmitry.osipenko@collabora.com>
+ <6c8bded9-1809-608f-749a-5ee28b852d32@gmail.com>
+ <562fbacf-3673-ff3c-23a1-124284b4456c@collabora.com>
+ <87724722-b9f3-a016-c25c-4b0415f2c37f@amd.com>
+ <0863cafa-c252-e194-3d23-ef640941e36e@collabora.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <0863cafa-c252-e194-3d23-ef640941e36e@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Fix warning callstack for
- imbalance wakeref
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH v2 3/5] dma-buf: Move all
+ dma-bufs to dynamic locking specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,47 +80,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: Daniel Almeida <daniel.almeida@collabora.com>,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, Sumit Semwal <sumit.semwal@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-rdma@vger.kernel.org,
+ Daniel Stone <daniel@fooishbar.org>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ spice-devel@lists.freedesktop.org, Chia-I Wu <olvaffe@gmail.com>,
+ linux-media@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, David Airlie <airlied@linux.ie>,
+ amd-gfx@lists.freedesktop.org, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While executing i915_selftest, wakeref imbalance warning is seen
-with i915_selftest failure.
 
-When device is already suspended, wakeref is acquired by
-disable_rpm_wakeref_asserts and rpm ownership is transferred back
-to core. During this case wakeref_count will not be zero.
-Once driver is unregistered, this wakeref is released with
-enable_rpm_wakeref_asserts and balancing wakeref_count acquired
-by driver.
 
-This patch will fix the warning callstack by adding check if device
-is already suspended and rpm ownership transfer is going on.
+Am 10.08.22 um 20:53 schrieb Dmitry Osipenko:
+> On 8/10/22 21:25, Christian König wrote:
+>> Am 10.08.22 um 19:49 schrieb Dmitry Osipenko:
+>>> On 8/10/22 14:30, Christian König wrote:
+>>>> Am 25.07.22 um 17:18 schrieb Dmitry Osipenko:
+>>>>> This patch moves the non-dynamic dma-buf users over to the dynamic
+>>>>> locking specification. The strict locking convention prevents deadlock
+>>>>> situation for dma-buf importers and exporters.
+>>>>>
+>>>>> Previously the "unlocked" versions of the dma-buf API functions weren't
+>>>>> taking the reservation lock and this patch makes them to take the lock.
+>>>>>
+>>>>> Intel and AMD GPU drivers already were mapping imported dma-bufs under
+>>>>> the held lock, hence the "locked" variant of the functions are added
+>>>>> for them and the drivers are updated to use the "locked" versions.
+>>>> In general "Yes, please", but that won't be that easy.
+>>>>
+>>>> You not only need to change amdgpu and i915, but all drivers
+>>>> implementing the map_dma_buf(), unmap_dma_buf() callbacks.
+>>>>
+>>>> Auditing all that code is a huge bunch of work.
+>>> Hm, neither of drivers take the resv lock in map_dma_buf/unmap_dma_buf.
+>>> It's easy to audit them all and I did it. So either I'm missing
+>>> something or it doesn't take much time to check them all. Am I really
+>>> missing something?
+>> Ok, so this is only changing map/unmap now?
+> It also vmap/vunmap and attach/detach: In the previous patch I added the
+> _unlocked postfix to the func names and in this patch I made them all to
+> actually take the lock.
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index deb8a8b76965..6530a8680cfd 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1670,7 +1670,13 @@ static int intel_runtime_resume(struct device *kdev)
- 
- 	drm_dbg(&dev_priv->drm, "Resuming device\n");
- 
--	drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm->wakeref_count));
-+	/*
-+	 * When device is already suspended, Wakeref is acquired by disable_rpm_wakeref_asserts
-+	 * and rpm ownership is transferred back to core. During this case wakeref_count will
-+	 * not be zero. Once driver is unregistered, this wakeref is released with
-+	 * enable_rpm_wakeref_asserts and balancing wakeref_count acquired by driver.
-+	 */
-+	drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm->wakeref_count) && !rpm->suspended);
- 	disable_rpm_wakeref_asserts(rpm);
- 
- 	intel_opregion_notify_adapter(dev_priv, PCI_D0);
--- 
-2.25.1
+Take your patch "[PATCH v2 2/5] drm/gem: Take reservation lock for 
+vmap/vunmap operations" as a blueprint on how to approach it.
+
+E.g. one callback at a time and then document the result in the end.
+
+Regards,
+Christian.
+
+>
+>> In this case please separate this from the documentation change.
+> I'll factor out the doc in the v3.
+>
+>> I would also drop the _locked postfix from the function name, just
+>> having _unlocked on all functions which are supposed to be called with
+>> the lock held should be sufficient.
+> Noted for the v3.
+>
+>> Thanks for looking into this,
+>> Christian.
+> Thank you for the review.
+>
 
