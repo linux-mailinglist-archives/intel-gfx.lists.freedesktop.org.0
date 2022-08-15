@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EDA5592AE4
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Aug 2022 10:09:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27A57592AFF
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Aug 2022 10:36:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13E5AB2F3F;
-	Mon, 15 Aug 2022 08:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 759071139A2;
+	Mon, 15 Aug 2022 08:36:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97836B2E76
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Aug 2022 08:09:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660550953; x=1692086953;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8cPweaIKbczeO8p43uX8yjUXP+L9AAzpWiDTF2l5h6I=;
- b=IrxQLVeOMDUarHrS0XTjmx+9gWQfzJcz5ZELewUbIltXRUaDP+TiE1R+
- IC8sS4hdJw38jiQP6TUnNUZ0It2ZQnC21qIwICTz1hXt414Y5CbglVIJU
- Ns72jlgI9Sp9CJXosLVCtgED6e4mKr5rhuoUGXs8oK5XcPjkZHbPqe7B0
- DR6nppU4pIR92ruho9pap3DNfZ9SRyHjHZcHx27fZ/undosyYZM9JBzNy
- iKHgM05lw+m0oQebmLCefoQSOXWNQiQ5OcUY76IgxN4k0M5UVzxc6ARVt
- pNELn4kC2VKzQgYkbv8IVQyW7UIrzoESl7jLRQosPijCPbVr1IcDwjrqp Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10439"; a="353657099"
-X-IronPort-AV: E=Sophos;i="5.93,237,1654585200"; d="scan'208";a="353657099"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2022 01:09:12 -0700
-X-IronPort-AV: E=Sophos;i="5.93,237,1654585200"; d="scan'208";a="635396146"
-Received: from abelova-mobl2.ccr.corp.intel.com (HELO localhost)
- ([10.252.50.172])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2022 01:09:10 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Aug 2022 11:09:07 +0300
-Message-Id: <20220815080907.3229449-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5E2D212A1C7;
+ Mon, 15 Aug 2022 08:36:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5755CA882E;
+ Mon, 15 Aug 2022 08:36:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/utils: remove unused KBps/MBps/GBps
- macros
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 15 Aug 2022 08:36:14 -0000
+Message-ID: <166055257432.13798.4484073240166256728@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220815080907.3229449-1-jani.nikula@intel.com>
+In-Reply-To: <20220815080907.3229449-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/utils=3A_remove_unused_KBps/MBps/GBps_macros?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,33 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove unused macros. If needed again, such macros belong in
-<linux/units.h>.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_utils.h | 4 ----
- 1 file changed, 4 deletions(-)
+Series: drm/i915/utils: remove unused KBps/MBps/GBps macros
+URL   : https://patchwork.freedesktop.org/series/107264/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index c10d68cdc3ca..6c14d13364bf 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -360,10 +360,6 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
- #define KHz(x) (1000 * (x))
- #define MHz(x) KHz(1000 * (x))
- 
--#define KBps(x) (1000 * (x))
--#define MBps(x) KBps(1000 * (x))
--#define GBps(x) ((u64)1000 * MBps((x)))
--
- void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint);
- static inline void __add_taint_for_CI(unsigned int taint)
- {
--- 
-2.34.1
+== Summary ==
+
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
