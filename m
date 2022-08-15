@@ -1,53 +1,87 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6953F59D6B8
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 11:46:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A4E259DAC8
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 13:00:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC31BA5B05;
-	Tue, 23 Aug 2022 09:46:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B87810FC57;
+	Tue, 23 Aug 2022 11:00:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CABC32A6A2
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 09:46:20 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F451113FFB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 10:59:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661247980; x=1692783980;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=oSsmU/PF6SYlZFJsqIIN3yI9ywn2/2ohtN+19RBG1Xo=;
- b=hh/VYnobOGqLbTfF5OP4hUIUnoqz3hzUTIOBIhU+QD9YPYXNxjwgAkJ3
- Ezk+hU4WXsnqolxykONvsTCr8LgKUdgambS/qUyivrasDBEZYFv0xniwN
- +l2WGaS7b/N+Gzbe5nfUi1xBeTnH689QKRtm9NsfFEtoLEUqLNSy0+y31
- O+tOiUiaqz87C/21ZGcnmNInhIOogkgvSmi/0pwnF1eWAjwgSjJky6vyz
- VS8E0FK1mOH71fUPMvY7hhDuVpwfkf6pQhQB3YZ5pDG9j9//pFlbVm5d5
- MrgSF5RFaJvfdV1GooSrDg+Syc9sGGt/cUDBq5qTrDdXl+WJCMUVDjmza Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="294925922"
-X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="294925922"
+ t=1661252378; x=1692788378;
+ h=resent-to:resent-from:resent-date:resent-message-id:
+ mime-version:from:to:cc:subject:date:message-id:
+ in-reply-to:references:content-transfer-encoding;
+ bh=kapcHkyC7y8mqS6moYZhKb0+WSlqVlr1MfjZzuO61OE=;
+ b=VmGaO27K7p27/IsWx9OhuezPIYpbvlZhJjZXW/t2LFAg+SfWs+qNrtYL
+ npp1zYH6lvEpXNvTu6gj9/YNJGsFxSkBiZPOv5mjh5SAZRrQmiMTG65gn
+ Q054R7WlA6j4sm9HA3EndFSCyQQIXu4Jp4JTmq9VLGKJxKdpoRNc3etIA
+ HAq/H4ZHD27+SzYLzbE8wJoKoj7IR88+Ff2DmEFWmqWnTmU3wt3A5H+NH
+ HfVuc5FJFFChFdCly4OM9wivKwW5uajTej7hcQarC7UaBaqw/AM8XsHQq
+ TX9hwOTLxsYxtdRjojj55wlARZq+rFtM1CpXWzL/w3x644uFL02H1stRT w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="291215979"
+X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="291215979"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 02:46:19 -0700
-X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="669956026"
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2022 03:59:24 -0700
+X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="669980585"
 Received: from obeltran-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.51.100])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 02:46:17 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <50a6d108-4518-c30e-5096-3ee921c75606@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220818193901.2974625-1-badal.nilawar@intel.com>
- <20220818193901.2974625-2-badal.nilawar@intel.com>
- <87ilmoo707.fsf@intel.com>
- <50a6d108-4518-c30e-5096-3ee921c75606@intel.com>
-Date: Tue, 23 Aug 2022 12:46:14 +0300
-Message-ID: <8735dnmgwp.fsf@intel.com>
+ 23 Aug 2022 03:59:23 -0700
+Resent-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7,
+ 02160 Espoo
+Resent-To: intel-gfx@lists.freedesktop.org
+Resent-From: Jani Nikula <jani.nikula@intel.com>
+Resent-Date: Tue, 23 Aug 2022 13:59:21 +0300
+Resent-Message-ID: <87o7wbkyye.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/hwmon: Add HWMON infrastructure
+Received: from outlook.iglb.intel.com [10.22.254.45]
+ by jnikula-mobl4.ger.corp.intel.com with IMAP (fetchmail-6.4.29)
+ for <jani@localhost> (single-drop); Mon, 15 Aug 2022 11:59:09 +0300 (EEST)
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28 via Mailbox Transport; Mon, 15 Aug 2022 01:58:50 -0700
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Mon, 15 Aug 2022 01:58:49 -0700
+Received: from orsmga006.jf.intel.com (10.7.209.51) by
+ fmsmsx608.amr.corp.intel.com (10.18.84.218) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28 via Frontend Transport; Mon, 15 Aug 2022 01:58:49 -0700
+X-IronPort-AV: E=Sophos;i="5.93,238,1654585200"; d="scan'208";a="582813735"
+Received: from abelova-mobl2.ccr.corp.intel.com (HELO localhost)
+ ([10.252.50.172])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2022 01:58:47 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: <dri-devel@lists.freedesktop.org>
+Date: Mon, 15 Aug 2022 11:58:35 +0300
+Message-ID: <2d6a66eee3f45183d1b1351bfd667447e9a82129.1660553850.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1660553850.git.jani.nikula@intel.com>
+References: <cover.1660553850.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+X-MS-Exchange-Organization-Network-Message-Id: b3a0d48d-5a33-4d73-5606-08da7e9c5eb7
+X-MS-Exchange-Organization-AuthSource: fmsmsx608.amr.corp.intel.com
+X-MS-Exchange-Organization-AuthAs: Internal
+X-MS-Exchange-Organization-AuthMechanism: 10
+X-MS-Exchange-Organization-AVStamp-Enterprise: 1.0
+X-MS-Exchange-Organization-SCL: -1
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:00.6161272
+X-MS-Exchange-Processed-By-BccFoldering: 15.01.2375.028
+Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/dp: use drm_dp_phy_name() for
+ logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,368 +94,322 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, linux@roeck-us.net
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 23 Aug 2022, "Nilawar, Badal" <badal.nilawar@intel.com> wrote:
-> On 19-08-2022 16:05, Jani Nikula wrote:
->> On Fri, 19 Aug 2022, Badal Nilawar <badal.nilawar@intel.com> wrote:
->>> From: Dale B Stimson <dale.b.stimson@intel.com>
->>>
->>> The i915 HWMON module will be used to expose voltage, power and energy
->>> values for dGfx. Here we set up i915 hwmon infrastructure including i915
->>> hwmon registration, basic data structures and functions.
->>>
->>> v2:
->>>    - Create HWMON infra patch (Ashutosh)
->>>    - Fixed review comments (Jani)
->>>    - Remove "select HWMON" from i915/Kconfig (Jani)
->>> v3: Use hwm_ prefix for static functions (Ashutosh)
->>> v4: s/#ifdef CONFIG_HWMON/#if IS_REACHABLE(CONFIG_HWMON)/ since the for=
-mer
->>>      doesn't work if hwmon is compiled as a module (Guenter)
->>=20
->> Is this really what we want to do?
->>=20
->> In my books, it's a misconfiguration to have CONFIG_HWMON=3Dm with
->> CONFIG_DRM_I915=3Dy. That's really the problematic combo, not just
->> CONFIG_HWMON=3Dm, right? Why do we allow it at the kconfig level, and th=
-en
->> have ugly hacks around it at the code level? Especially as
->> CONFIG_DRM_I915=3Dy should really be thought of as a corner case.
->>=20
->> So why not do this in i915 Kconfig:
->>=20
->> config DRM_I915
->> 	...
->> 	depends on HWMON || HWMON=3Dn
-> With this change I am getting recursive dependancy error when I run make=
-=20
-> oldconfig
->
-> badal@bnilawar-desk1:~/workspace/wp3/drm-tip$ make oldconfig
->    HOSTCC  scripts/basic/fixdep
->    HOSTCC  scripts/kconfig/conf.o
->    HOSTCC  scripts/kconfig/confdata.o
->    HOSTCC  scripts/kconfig/expr.o
->    LEX     scripts/kconfig/lexer.lex.c
->    YACC    scripts/kconfig/parser.tab.[ch]
->    HOSTCC  scripts/kconfig/lexer.lex.o
->    HOSTCC  scripts/kconfig/menu.o
->    HOSTCC  scripts/kconfig/parser.tab.o
->    HOSTCC  scripts/kconfig/preprocess.o
->    HOSTCC  scripts/kconfig/symbol.o
->    HOSTCC  scripts/kconfig/util.o
->    HOSTLD  scripts/kconfig/conf
-> drivers/gpu/drm/i915/Kconfig:2:error: recursive dependency detected!
-> drivers/gpu/drm/i915/Kconfig:2: symbol DRM_I915 depends on HWMON
-> drivers/hwmon/Kconfig:6:        symbol HWMON is selected by EEEPC_LAPTOP
-> drivers/platform/x86/Kconfig:332:       symbol EEEPC_LAPTOP depends on IN=
-PUT
-> drivers/input/Kconfig:8:        symbol INPUT is selected by DRM_I915
-> For a resolution refer to Documentation/kbuild/kconfig-language.rst
-> subsection "Kconfig recursive dependency limitations"
+Drop the local intel_dp_phy_name() function, and replace with
+drm_dp_phy_name(). This lets us drop a number of local buffers.
 
-*sigh*
+v2: Rebase
 
-  Note:
-	select should be used with care. select will force
-	a symbol to a value without visiting the dependencies.
-	By abusing select you are able to select a symbol FOO even
-	if FOO depends on BAR that is not set.
-	In general use select only for non-visible symbols
-	(no prompts anywhere) and for symbols with no dependencies.
-	That will limit the usefulness but on the other hand avoid
-	the illegal configurations all over.
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> # v1
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../drm/i915/display/intel_dp_link_training.c | 83 ++++++++-----------
+ 1 file changed, 36 insertions(+), 47 deletions(-)
 
-One day someone's going to need to fix menuconfig to first start
-complaining about selecting stuff that shouldn't be selected, and then
-eventually refusing to select stuff that shouldn't be selected. This is
-an endless whack-a-mole, preventing people from adding reasonable
-dependencies.
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 9feaf1a589f3..abe32fe3f744 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -37,17 +37,6 @@ static void intel_dp_reset_lttpr_count(struct intel_dp *intel_dp)
+ 				    DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV] = 0;
+ }
+ 
+-static const char *intel_dp_phy_name(enum drm_dp_phy dp_phy,
+-				     char *buf, size_t buf_size)
+-{
+-	if (dp_phy == DP_PHY_DPRX)
+-		snprintf(buf, buf_size, "DPRX");
+-	else
+-		snprintf(buf, buf_size, "LTTPR %d", dp_phy - DP_PHY_LTTPR1 + 1);
+-
+-	return buf;
+-}
+-
+ static u8 *intel_dp_lttpr_phy_caps(struct intel_dp *intel_dp,
+ 				   enum drm_dp_phy dp_phy)
+ {
+@@ -60,20 +49,19 @@ static void intel_dp_read_lttpr_phy_caps(struct intel_dp *intel_dp,
+ {
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	u8 *phy_caps = intel_dp_lttpr_phy_caps(intel_dp, dp_phy);
+-	char phy_name[10];
+-
+-	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
+ 
+ 	if (drm_dp_read_lttpr_phy_caps(&intel_dp->aux, dpcd, dp_phy, phy_caps) < 0) {
+ 		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+ 			    "[ENCODER:%d:%s][%s] failed to read the PHY caps\n",
+-			    encoder->base.base.id, encoder->base.name, phy_name);
++			    encoder->base.base.id, encoder->base.name,
++			    drm_dp_phy_name(dp_phy));
+ 		return;
+ 	}
+ 
+ 	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+ 		    "[ENCODER:%d:%s][%s] PHY capabilities: %*ph\n",
+-		    encoder->base.base.id, encoder->base.name, phy_name,
++		    encoder->base.base.id, encoder->base.name,
++		    drm_dp_phy_name(dp_phy),
+ 		    (int)sizeof(intel_dp->lttpr_phy_caps[0]),
+ 		    phy_caps);
+ }
+@@ -423,14 +411,13 @@ intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+ {
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	char phy_name[10];
+ 	int lane;
+ 
+ 	if (intel_dp_is_uhbr(crtc_state)) {
+ 		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
+ 			    "TX FFE request: " TRAIN_REQ_FMT "\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    crtc_state->lane_count,
+ 			    TRAIN_REQ_TX_FFE_ARGS(link_status));
+ 	} else {
+@@ -438,7 +425,7 @@ intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+ 			    "vswing request: " TRAIN_REQ_FMT ", "
+ 			    "pre-emphasis request: " TRAIN_REQ_FMT "\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    crtc_state->lane_count,
+ 			    TRAIN_REQ_VSWING_ARGS(link_status),
+ 			    TRAIN_REQ_PREEMPH_ARGS(link_status));
+@@ -503,13 +490,12 @@ intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	u8 train_pat = intel_dp_training_pattern_symbol(dp_train_pat);
+-	char phy_name[10];
+ 
+ 	if (train_pat != DP_TRAINING_PATTERN_DISABLE)
+ 		drm_dbg_kms(&i915->drm,
+ 			    "[ENCODER:%d:%s][%s] Using DP training pattern TPS%c\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    dp_training_pattern_name(train_pat));
+ 
+ 	intel_dp->set_link_train(intel_dp, crtc_state, dp_train_pat);
+@@ -546,13 +532,12 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+ {
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	char phy_name[10];
+ 
+ 	if (intel_dp_is_uhbr(crtc_state)) {
+ 		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
+ 			    "TX FFE presets: " TRAIN_SET_FMT "\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    crtc_state->lane_count,
+ 			    TRAIN_SET_TX_FFE_ARGS(intel_dp->train_set));
+ 	} else {
+@@ -560,7 +545,7 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+ 			    "vswing levels: " TRAIN_SET_FMT ", "
+ 			    "pre-emphasis levels: " TRAIN_SET_FMT "\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    crtc_state->lane_count,
+ 			    TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
+ 			    TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
+@@ -732,12 +717,11 @@ intel_dp_dump_link_status(struct intel_dp *intel_dp, enum drm_dp_phy dp_phy,
+ {
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	char phy_name[10];
+ 
+ 	drm_dbg_kms(&i915->drm,
+ 		    "[ENCODER:%d:%s][%s] ln0_1:0x%x ln2_3:0x%x align:0x%x sink:0x%x adj_req0_1:0x%x adj_req2_3:0x%x\n",
+ 		    encoder->base.base.id, encoder->base.name,
+-		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++		    drm_dp_phy_name(dp_phy),
+ 		    link_status[0], link_status[1], link_status[2],
+ 		    link_status[3], link_status[4], link_status[5]);
+ }
+@@ -757,21 +741,19 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 	int voltage_tries, cr_tries, max_cr_tries;
+ 	u8 link_status[DP_LINK_STATUS_SIZE];
+ 	bool max_vswing_reached = false;
+-	char phy_name[10];
+ 	int delay_us;
+ 
+ 	delay_us = drm_dp_read_clock_recovery_delay(&intel_dp->aux,
+ 						    intel_dp->dpcd, dp_phy,
+ 						    intel_dp_is_uhbr(crtc_state));
+ 
+-	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
+-
+ 	/* clock recovery */
+ 	if (!intel_dp_reset_link_train(intel_dp, crtc_state, dp_phy,
+ 				       DP_TRAINING_PATTERN_1 |
+ 				       DP_LINK_SCRAMBLING_DISABLE)) {
+ 		drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to enable link training\n",
+-			encoder->base.base.id, encoder->base.name, phy_name);
++			encoder->base.base.id, encoder->base.name,
++			drm_dp_phy_name(dp_phy));
+ 		return false;
+ 	}
+ 
+@@ -795,14 +777,16 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
+ 						     link_status) < 0) {
+ 			drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to get link status\n",
+-				encoder->base.base.id, encoder->base.name, phy_name);
++				encoder->base.base.id, encoder->base.name,
++				drm_dp_phy_name(dp_phy));
+ 			return false;
+ 		}
+ 
+ 		if (drm_dp_clock_recovery_ok(link_status, crtc_state->lane_count)) {
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Clock recovery OK\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			return true;
+ 		}
+ 
+@@ -810,7 +794,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Same voltage tried 5 times\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			return false;
+ 		}
+ 
+@@ -818,7 +803,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Max Voltage Swing reached\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			return false;
+ 		}
+ 
+@@ -828,7 +814,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
+ 			drm_err(&i915->drm,
+ 				"[ENCODER:%d:%s][%s] Failed to update link training\n",
+-				encoder->base.base.id, encoder->base.name, phy_name);
++				encoder->base.base.id, encoder->base.name,
++				drm_dp_phy_name(dp_phy));
+ 			return false;
+ 		}
+ 
+@@ -846,7 +833,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 	intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
+ 	drm_err(&i915->drm,
+ 		"[ENCODER:%d:%s][%s] Failed clock recovery %d times, giving up!\n",
+-		encoder->base.base.id, encoder->base.name, phy_name, max_cr_tries);
++		encoder->base.base.id, encoder->base.name,
++		drm_dp_phy_name(dp_phy), max_cr_tries);
+ 
+ 	return false;
+ }
+@@ -924,15 +912,12 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 	u32 training_pattern;
+ 	u8 link_status[DP_LINK_STATUS_SIZE];
+ 	bool channel_eq = false;
+-	char phy_name[10];
+ 	int delay_us;
+ 
+ 	delay_us = drm_dp_read_channel_eq_delay(&intel_dp->aux,
+ 						intel_dp->dpcd, dp_phy,
+ 						intel_dp_is_uhbr(crtc_state));
+ 
+-	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
+-
+ 	training_pattern = intel_dp_training_pattern(intel_dp, crtc_state, dp_phy);
+ 	/* Scrambling is disabled for TPS2/3 and enabled for TPS4 */
+ 	if (training_pattern != DP_TRAINING_PATTERN_4)
+@@ -944,7 +929,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 		drm_err(&i915->drm,
+ 			"[ENCODER:%d:%s][%s] Failed to start channel equalization\n",
+ 			encoder->base.base.id, encoder->base.name,
+-			phy_name);
++			drm_dp_phy_name(dp_phy));
+ 		return false;
+ 	}
+ 
+@@ -955,7 +940,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 						     link_status) < 0) {
+ 			drm_err(&i915->drm,
+ 				"[ENCODER:%d:%s][%s] Failed to get link status\n",
+-				encoder->base.base.id, encoder->base.name, phy_name);
++				encoder->base.base.id, encoder->base.name,
++				drm_dp_phy_name(dp_phy));
+ 			break;
+ 		}
+ 
+@@ -966,7 +952,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Clock recovery check failed, cannot "
+ 				    "continue channel equalization\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			break;
+ 		}
+ 
+@@ -975,7 +962,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 			channel_eq = true;
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Channel EQ done. DP Training successful\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			break;
+ 		}
+ 
+@@ -985,7 +973,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
+ 			drm_err(&i915->drm,
+ 				"[ENCODER:%d:%s][%s] Failed to update link training\n",
+-				encoder->base.base.id, encoder->base.name, phy_name);
++				encoder->base.base.id, encoder->base.name,
++				drm_dp_phy_name(dp_phy));
+ 			break;
+ 		}
+ 	}
+@@ -995,7 +984,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 		intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
+ 		drm_dbg_kms(&i915->drm,
+ 			    "[ENCODER:%d:%s][%s] Channel equalization failed 5 times\n",
+-			    encoder->base.base.id, encoder->base.name, phy_name);
++			    encoder->base.base.id, encoder->base.name,
++			    drm_dp_phy_name(dp_phy));
+ 	}
+ 
+ 	return channel_eq;
+@@ -1070,7 +1060,6 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
+ {
+ 	struct intel_connector *connector = intel_dp->attached_connector;
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+-	char phy_name[10];
+ 	bool ret = false;
+ 
+ 	if (!intel_dp_link_training_clock_recovery(intel_dp, crtc_state, dp_phy))
+@@ -1086,7 +1075,7 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
+ 		    "[CONNECTOR:%d:%s][ENCODER:%d:%s][%s] Link Training %s at link rate = %d, lane count = %d\n",
+ 		    connector->base.base.id, connector->base.name,
+ 		    encoder->base.base.id, encoder->base.name,
+-		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++		    drm_dp_phy_name(dp_phy),
+ 		    ret ? "passed" : "failed",
+ 		    crtc_state->port_clock, crtc_state->lane_count);
+ 
+-- 
+2.34.1
 
-BR,
-Jani.
-
-
->
-> make[1]: *** [scripts/kconfig/Makefile:77: oldconfig] Error 1
-> make: *** [Makefile:632: oldconfig] Error 2
->
->
->>=20
->> Which rejects the CONFIG_HWMON=3Dm && CONFIG_DRM_I915=3Dy combo.
->>=20
->>>
->>> Cc: Guenter Roeck <linux@roeck-us.net>
->>> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
->>> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
->>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/Makefile      |   3 +
->>>   drivers/gpu/drm/i915/i915_driver.c |   7 ++
->>>   drivers/gpu/drm/i915/i915_drv.h    |   2 +
->>>   drivers/gpu/drm/i915/i915_hwmon.c  | 135 +++++++++++++++++++++++++++++
->>>   drivers/gpu/drm/i915/i915_hwmon.h  |  20 +++++
->>>   5 files changed, 167 insertions(+)
->>>   create mode 100644 drivers/gpu/drm/i915/i915_hwmon.c
->>>   create mode 100644 drivers/gpu/drm/i915/i915_hwmon.h
->>>
->>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makef=
-ile
->>> index 522ef9b4aff3..2b235f747490 100644
->>> --- a/drivers/gpu/drm/i915/Makefile
->>> +++ b/drivers/gpu/drm/i915/Makefile
->>> @@ -208,6 +208,9 @@ i915-y +=3D gt/uc/intel_uc.o \
->>>   # graphics system controller (GSC) support
->>>   i915-y +=3D gt/intel_gsc.o
->>>=20=20=20
->>> +# graphics hardware monitoring (HWMON) support
->>> +i915-$(CONFIG_HWMON) +=3D i915_hwmon.o
->>=20
->> Moreover, this builds i915_hwmon.o as part of i915.ko (or kernel as it's
->> builtin) even if we can't use it!
-> For CONFIG_HWMON=3Dm && CONFIG_DRM_I915=3Dy combo i915_hwmon.o didn't get=
-=20
-> build. It is only getting build for below combos
-> CONFIG_HWMON=3Dm && CONFIG_DRM_I915=3Dy
-> CONFIG_HWMON=3Dm && CONFIG_DRM_I915=3Dm
-> CONFIG_HWMON=3Dy && CONFIG_DRM_I915=3Dm
->
-> Regards,
-> Badal
->>=20
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->>> +
->>>   # modesetting core code
->>>   i915-y +=3D \
->>>   	display/hsw_ips.o \
->>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/=
-i915_driver.c
->>> index deb8a8b76965..62340cd01dde 100644
->>> --- a/drivers/gpu/drm/i915/i915_driver.c
->>> +++ b/drivers/gpu/drm/i915/i915_driver.c
->>> @@ -80,6 +80,7 @@
->>>   #include "i915_drm_client.h"
->>>   #include "i915_drv.h"
->>>   #include "i915_getparam.h"
->>> +#include "i915_hwmon.h"
->>>   #include "i915_ioc32.h"
->>>   #include "i915_ioctl.h"
->>>   #include "i915_irq.h"
->>> @@ -736,6 +737,9 @@ static void i915_driver_register(struct drm_i915_pr=
-ivate *dev_priv)
->>>=20=20=20
->>>   	intel_gt_driver_register(to_gt(dev_priv));
->>>=20=20=20
->>> +#if IS_REACHABLE(CONFIG_HWMON)
->>> +	i915_hwmon_register(dev_priv);
->>> +#endif
->>>   	intel_display_driver_register(dev_priv);
->>>=20=20=20
->>>   	intel_power_domains_enable(dev_priv);
->>> @@ -762,6 +766,9 @@ static void i915_driver_unregister(struct drm_i915_=
-private *dev_priv)
->>>=20=20=20
->>>   	intel_display_driver_unregister(dev_priv);
->>>=20=20=20
->>> +#if IS_REACHABLE(CONFIG_HWMON)
->>> +	i915_hwmon_unregister(dev_priv);
->>> +#endif
->>>   	intel_gt_driver_unregister(to_gt(dev_priv));
->>>=20=20=20
->>>   	i915_perf_unregister(dev_priv);
->>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i91=
-5_drv.h
->>> index 086bbe8945d6..d437d588dec9 100644
->>> --- a/drivers/gpu/drm/i915/i915_drv.h
->>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->>> @@ -705,6 +705,8 @@ struct drm_i915_private {
->>>=20=20=20
->>>   	struct i915_perf perf;
->>>=20=20=20
->>> +	struct i915_hwmon *hwmon;
->>> +
->>>   	/* Abstract the submission mechanism (legacy ringbuffer or execlists=
-) away */
->>>   	struct intel_gt gt0;
->>>=20=20=20
->>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i=
-915_hwmon.c
->>> new file mode 100644
->>> index 000000000000..5b80a0f024f0
->>> --- /dev/null
->>> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
->>> @@ -0,0 +1,135 @@
->>> +// SPDX-License-Identifier: MIT
->>> +/*
->>> + * Copyright =C2=A9 2022 Intel Corporation
->>> + */
->>> +
->>> +#include <linux/hwmon.h>
->>> +#include <linux/hwmon-sysfs.h>
->>> +#include <linux/types.h>
->>> +
->>> +#include "i915_drv.h"
->>> +#include "i915_hwmon.h"
->>> +#include "intel_mchbar_regs.h"
->>> +
->>> +struct hwm_reg {
->>> +};
->>> +
->>> +struct hwm_drvdata {
->>> +	struct i915_hwmon *hwmon;
->>> +	struct intel_uncore *uncore;
->>> +	struct device *hwmon_dev;
->>> +	char name[12];
->>> +};
->>> +
->>> +struct i915_hwmon {
->>> +	struct hwm_drvdata ddat;
->>> +	struct mutex hwmon_lock;		/* counter overflow logic and rmw */
->>> +	struct hwm_reg rg;
->>> +};
->>> +
->>> +static const struct hwmon_channel_info *hwm_info[] =3D {
->>> +	NULL
->>> +};
->>> +
->>> +static umode_t
->>> +hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
->>> +	       u32 attr, int channel)
->>> +{
->>> +	switch (type) {
->>> +	default:
->>> +		return 0;
->>> +	}
->>> +}
->>> +
->>> +static int
->>> +hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
->>> +	 int channel, long *val)
->>> +{
->>> +	switch (type) {
->>> +	default:
->>> +		return -EOPNOTSUPP;
->>> +	}
->>> +}
->>> +
->>> +static int
->>> +hwm_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
->>> +	  int channel, long val)
->>> +{
->>> +	switch (type) {
->>> +	default:
->>> +		return -EOPNOTSUPP;
->>> +	}
->>> +}
->>> +
->>> +static const struct hwmon_ops hwm_ops =3D {
->>> +	.is_visible =3D hwm_is_visible,
->>> +	.read =3D hwm_read,
->>> +	.write =3D hwm_write,
->>> +};
->>> +
->>> +static const struct hwmon_chip_info hwm_chip_info =3D {
->>> +	.ops =3D &hwm_ops,
->>> +	.info =3D hwm_info,
->>> +};
->>> +
->>> +static void
->>> +hwm_get_preregistration_info(struct drm_i915_private *i915)
->>> +{
->>> +}
->>> +
->>> +void i915_hwmon_register(struct drm_i915_private *i915)
->>> +{
->>> +	struct device *dev =3D i915->drm.dev;
->>> +	struct i915_hwmon *hwmon;
->>> +	struct device *hwmon_dev;
->>> +	struct hwm_drvdata *ddat;
->>> +
->>> +	/* hwmon is available only for dGfx */
->>> +	if (!IS_DGFX(i915))
->>> +		return;
->>> +
->>> +	hwmon =3D kzalloc(sizeof(*hwmon), GFP_KERNEL);
->>> +	if (!hwmon)
->>> +		return;
->>> +
->>> +	i915->hwmon =3D hwmon;
->>> +	mutex_init(&hwmon->hwmon_lock);
->>> +	ddat =3D &hwmon->ddat;
->>> +
->>> +	ddat->hwmon =3D hwmon;
->>> +	ddat->uncore =3D &i915->uncore;
->>> +	snprintf(ddat->name, sizeof(ddat->name), "i915");
->>> +
->>> +	hwm_get_preregistration_info(i915);
->>> +
->>> +	/*  hwmon_dev points to device hwmon<i> */
->>> +	hwmon_dev =3D hwmon_device_register_with_info(dev, ddat->name,
->>> +						    ddat,
->>> +						    &hwm_chip_info,
->>> +						    NULL);
->>> +	if (IS_ERR(hwmon_dev)) {
->>> +		mutex_destroy(&hwmon->hwmon_lock);
->>> +		i915->hwmon =3D NULL;
->>> +		kfree(hwmon);
->>> +		return;
->>> +	}
->>> +
->>> +	ddat->hwmon_dev =3D hwmon_dev;
->>> +}
->>> +
->>> +void i915_hwmon_unregister(struct drm_i915_private *i915)
->>> +{
->>> +	struct i915_hwmon *hwmon;
->>> +	struct hwm_drvdata *ddat;
->>> +
->>> +	hwmon =3D fetch_and_zero(&i915->hwmon);
->>> +	if (!hwmon)
->>> +		return;
->>> +
->>> +	ddat =3D &hwmon->ddat;
->>> +	if (ddat->hwmon_dev)
->>> +		hwmon_device_unregister(ddat->hwmon_dev);
->>> +
->>> +	mutex_destroy(&hwmon->hwmon_lock);
->>> +	kfree(hwmon);
->>> +}
->>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.h b/drivers/gpu/drm/i915/i=
-915_hwmon.h
->>> new file mode 100644
->>> index 000000000000..921ae76099d3
->>> --- /dev/null
->>> +++ b/drivers/gpu/drm/i915/i915_hwmon.h
->>> @@ -0,0 +1,20 @@
->>> +/* SPDX-License-Identifier: MIT */
->>> +
->>> +/*
->>> + * Copyright =C2=A9 2022 Intel Corporation
->>> + */
->>> +
->>> +#ifndef __I915_HWMON_H__
->>> +#define __I915_HWMON_H__
->>> +
->>> +#include <linux/device.h>
->>> +#include <linux/mutex.h>
->>> +#include <linux/types.h>
->>> +#include "i915_reg.h"
->>> +
->>> +struct drm_i915_private;
->>> +
->>> +void i915_hwmon_register(struct drm_i915_private *i915);
->>> +void i915_hwmon_unregister(struct drm_i915_private *i915);
->>> +
->>> +#endif /* __I915_HWMON_H__ */
->>=20
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
