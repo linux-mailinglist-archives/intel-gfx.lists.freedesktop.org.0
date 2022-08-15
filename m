@@ -2,46 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CFFB59FF8A
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 18:33:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E602459FFB5
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 18:44:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67112BB692;
-	Wed, 24 Aug 2022 16:33:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A7F7BBF33;
+	Wed, 24 Aug 2022 16:43:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB39F10FB1C
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Aug 2022 04:30:37 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C2A091AD1;
+ Mon, 15 Aug 2022 08:58:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660537837; x=1692073837;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Ygm0DrDPdNqD0I5hFc8UL3P/bBwLvRWU+wxHC8JodIA=;
- b=iwYBFR0Uz/WezTKx1OCpImqH7BPAvdIkfFC8jpGxaIB1QvtM4LzoeaM8
- ckigAVO33oZM7QqopC3ENGuxtIPW1BXeP7T4/t9bvyVTPfbCfkIY1pKMJ
- 9cHOA1w+SB8Gk1kLTVegcX6VyB/BwEhr45Kar6aB4cIVA08VrJKOLdxy9
- l8FOKDGyIfEJecvp2gTIdrBbp0sXUddkqTa9KXbWZ+P9mF83fg06Nihi5
- gDoruuJtS8prIwVPO9O24BhNV5djthqkBDxlEsspusTdgEImNgA9XQo8S
- fKzfmnInhVwCLs7BtkKkO7SplNvzFN8En+Ct4bQd4rkcVtbjOAbJ8CD23 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10439"; a="274943007"
-X-IronPort-AV: E=Sophos;i="5.93,237,1654585200"; d="scan'208";a="274943007"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2022 21:30:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,237,1654585200"; d="scan'208";a="582752632"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by orsmga006.jf.intel.com with ESMTP; 14 Aug 2022 21:30:36 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun, 14 Aug 2022 21:31:55 -0700
-Message-Id: <20220815043157.1506623-1-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.25.1
+ t=1660553925; x=1692089925;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+QXcJIOXR1vrrsHnPhx+seBgBDzNwvg86mSKHqQu/lE=;
+ b=FEYoDqpdYXC1YQQf4vsTwm5iZWBTO9v9nUgtP6ftu4T6xzSMOBfWrDPg
+ E+CthL+K6ksl/mWAo2APcnJLUhQu5BXZ1iifxM1FyfHZaBP8sLHQfyfm2
+ Cp6RnxDK/7zCG6SDHwDk3xB+3t1oSoSuDABJqQ9hh0IsH2P04EC7s9DaF
+ rWzAGcKxlVrTtOzVJ6XffA60bV12BfQfhWh1SXqRCQBe5W/p42ECRmBRg
+ m2QlTUOxVxNItBXr3rBTXL0BNLHPiwpd2iGmRaVJk2wQKdLMmcSIgRmHd
+ CSoDAQmuRL7TqYP0DJ2z+ahVSDBhfx5ym96Ocz90Uh9p3fAZr0eq/hlf/ Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10439"; a="353663519"
+X-IronPort-AV: E=Sophos;i="5.93,238,1654585200"; d="scan'208";a="353663519"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2022 01:58:44 -0700
+X-IronPort-AV: E=Sophos;i="5.93,238,1654585200"; d="scan'208";a="635408161"
+Received: from abelova-mobl2.ccr.corp.intel.com (HELO localhost)
+ ([10.252.50.172])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2022 01:58:43 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Mon, 15 Aug 2022 11:58:34 +0300
+Message-Id: <b08dc12a7e621a48ec35546d6cd1ed4b1434810d.1660553850.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1660553850.git.jani.nikula@intel.com>
+References: <cover.1660553850.git.jani.nikula@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [Intel-gfx v4 0/2] Delay disabling scheduling on a
- context
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/dp: add drm_dp_phy_name() for
+ getting DP PHY name
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,64 +59,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a revival of the same series posted by Matthew Brost
-back in October 2021 (https://patchwork.freedesktop.org/series/96167/).
-Additional real world measured metrics is included this time around
-that has proven the effectiveness of this series.
+Add a helper for getting the DP PHY name. In the interest of caller
+simplicity and to avoid allocations and passing in of buffers, duplicate
+the const strings to return. It's a minor penalty to pay for simplicity
+in all the call sites.
 
-This series adds a delay before disabling scheduling the guc-context
-when a context has become idle. The 2nd patch should explain it quite well.
+v2: Rebase, add kernel-doc, ensure non-NULL always
 
-This is the 4th rev of this series (counting from the first
-version by Matt). Changes from prior revs:
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> # v1
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/display/drm_dp_helper.c | 32 +++++++++++++++++++++++++
+ include/drm/display/drm_dp_helper.h     |  2 ++
+ 2 files changed, 34 insertions(+)
 
-  v4: Fix build error.
-
-  v3: Differentiate and appropriately name helper functions for getting
-      the 'default threshold of num-guc-ids' vs the 'max threshold of
-      num-guc-ids' for bypassing sched-disable and use the correct one
-      for the debugfs validation (John Harrison).
-
-  v2: Changed the default of the schedule-disable delay to 34 milisecs
-      and added debugfs to control this timing knob. Also added a debugfs
-      to control the bypass for not delaying the schedule-disable if
-      the we are under pressure with a very low balance of remaining
-      guc-ds. (John Harrison).
-
-  v1: Drop the trace log for intel_context_close (Chris Wilson).
-      Add "Tested-by" into patch-2 (Chris Wilson)
-      Add JIRA number into patch-0 (Chris Wilson).
-      Summaries patch-2s problem and metrics into
-      cover letter (Chris Wilson).
-
-Matthew Brost (2):
-  drm/i915/selftests: Use correct selfest calls for live tests
-  drm/i915/guc: Add delay to disable scheduling after pin count goes to
-    zero
-
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |   2 +-
- .../i915/gem/selftests/i915_gem_coherency.c   |   2 +-
- .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |   2 +-
- .../drm/i915/gem/selftests/i915_gem_mman.c    |   2 +-
- .../drm/i915/gem/selftests/i915_gem_object.c  |   2 +-
- drivers/gpu/drm/i915/gt/intel_context.h       |   9 ++
- drivers/gpu/drm/i915/gt/intel_context_types.h |   7 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  18 +++
- .../gpu/drm/i915/gt/uc/intel_guc_debugfs.c    |  57 +++++++
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 150 +++++++++++++++---
- drivers/gpu/drm/i915/i915_selftest.h          |   2 +
- drivers/gpu/drm/i915/i915_trace.h             |  10 ++
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |   2 +-
- drivers/gpu/drm/i915/selftests/i915_perf.c    |   2 +-
- drivers/gpu/drm/i915/selftests/i915_request.c |   2 +-
- drivers/gpu/drm/i915/selftests/i915_vma.c     |   2 +-
- 16 files changed, 237 insertions(+), 34 deletions(-)
-
-
-base-commit: 1cb5379e17f93685065d8ec54444f1baf9386ffe
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index 32b295003f49..92990a3d577a 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -390,6 +390,38 @@ void drm_dp_link_train_channel_eq_delay(const struct drm_dp_aux *aux,
+ }
+ EXPORT_SYMBOL(drm_dp_link_train_channel_eq_delay);
+ 
++/**
++ * drm_dp_phy_name() - Get the name of the given DP PHY
++ * @dp_phy: The DP PHY identifier
++ *
++ * Given the @dp_phy, get a user friendly name of the DP PHY, either "DPRX" or
++ * "LTTPR <N>", or "<INVALID DP PHY>" on errors. The returned string is always
++ * non-NULL and valid.
++ *
++ * Returns: Name of the DP PHY.
++ */
++const char *drm_dp_phy_name(enum drm_dp_phy dp_phy)
++{
++	static const char * const phy_names[] = {
++		[DP_PHY_DPRX] = "DPRX",
++		[DP_PHY_LTTPR1] = "LTTPR 1",
++		[DP_PHY_LTTPR2] = "LTTPR 2",
++		[DP_PHY_LTTPR3] = "LTTPR 3",
++		[DP_PHY_LTTPR4] = "LTTPR 4",
++		[DP_PHY_LTTPR5] = "LTTPR 5",
++		[DP_PHY_LTTPR6] = "LTTPR 6",
++		[DP_PHY_LTTPR7] = "LTTPR 7",
++		[DP_PHY_LTTPR8] = "LTTPR 8",
++	};
++
++	if (dp_phy < 0 || dp_phy >= ARRAY_SIZE(phy_names) ||
++	    WARN_ON(!phy_names[dp_phy]))
++		return "<INVALID DP PHY>";
++
++	return phy_names[dp_phy];
++}
++EXPORT_SYMBOL(drm_dp_phy_name);
++
+ void drm_dp_lttpr_link_train_clock_recovery_delay(void)
+ {
+ 	usleep_range(100, 200);
+diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+index db0fe9f8a612..ab55453f2d2c 100644
+--- a/include/drm/display/drm_dp_helper.h
++++ b/include/drm/display/drm_dp_helper.h
+@@ -69,6 +69,8 @@ bool drm_dp_128b132b_link_training_failed(const u8 link_status[DP_LINK_STATUS_SI
+ u8 drm_dp_link_rate_to_bw_code(int link_rate);
+ int drm_dp_bw_code_to_link_rate(u8 link_bw);
+ 
++const char *drm_dp_phy_name(enum drm_dp_phy dp_phy);
++
+ /**
+  * struct drm_dp_vsc_sdp - drm DP VSC SDP
+  *
 -- 
-2.25.1
+2.34.1
 
