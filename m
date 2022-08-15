@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B85593419
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Aug 2022 19:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB515935EE
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Aug 2022 20:56:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 072E3CE417;
-	Mon, 15 Aug 2022 17:35:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C29FD2374;
+	Mon, 15 Aug 2022 18:56:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91939CA548;
- Mon, 15 Aug 2022 17:35:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660584908; x=1692120908;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+m1ZYNPVKEbhdImtSfyXWz7w0YvUY5LPndPY8T/nfxQ=;
- b=DR6fOhfchP6799GZz/wZG4l/JqseF9IcAqA7MTbavLM+B2XHsf9g2RPZ
- yIfBRSOxuYKXOcFKe4F9pFR8fnF909kKXWC6uY7R5Y5wfD4VIGf1Ng10M
- dxd7WpxxhoPA1XQKHE3L8SlnC5ZAbfRbdxlpr7W3sEpC+YeF+1XNwCiu1
- vQFZ/5NETQuiAuFP4+h6+U0FVnppV8sj+gTBd/yLybE76yyxcPmnFOGmJ
- CCRmmQGiyCSoPOHASoQCt+bhJaGnaUztKqXJKYmgX2ZdzZ2+PfuNu7tMe
- C9DElA6gtFnKGYDQvke5p8/3zchGDbJulTyzva/oLp2jXVZzUzKQfE/F2 g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10440"; a="292816842"
-X-IronPort-AV: E=Sophos;i="5.93,238,1654585200"; d="scan'208";a="292816842"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2022 10:35:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,238,1654585200"; d="scan'208";a="582968317"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by orsmga006.jf.intel.com with ESMTP; 15 Aug 2022 10:35:06 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Aug 2022 20:35:46 +0300
-Message-Id: <20220815173546.8607-3-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20220815173546.8607-1-stanislav.lisovskiy@intel.com>
-References: <20220815173546.8607-1-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C23AD1CB1;
+ Mon, 15 Aug 2022 18:55:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 635D4AADD9;
+ Mon, 15 Aug 2022 18:55:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8994095045774738386=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Add DSC support to MST path
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 15 Aug 2022 18:55:55 -0000
+Message-ID: <166058975537.13796.15583913141081810365@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220815173546.8607-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20220815173546.8607-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
+ =?utf-8?q?_DP_MST_DSC_support_to_i915_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,437 +40,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Whenever we are not able to get enough timeslots
-for required PBN, let's try to allocate those
-using DSC, just same way as we do for SST.
+--===============8994095045774738386==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Removed intel_dp_mst_dsc_compute_config and refactored
-    intel_dp_dsc_compute_config to support timeslots as a
-    parameter(Ville Syrjälä)
+== Series Details ==
 
-v3: - Rebased
-    - Added a debug to see that we at least try reserving
-      VCPI slots using DSC, because currently its not visible
-      from the logs, thus making debugging more tricky.
-    - Moved timeslots to numerator, where it should be.
+Series: Add DP MST DSC support to i915 (rev6)
+URL   : https://patchwork.freedesktop.org/series/101492/
+State : success
 
-v4: - Call drm_dp_mst_atomic_check already during link
-      config computation, because we need to know already
-      by this moment if uncompressed amount of VCPI slots
-      needed can fit, otherwise we need to use DSC.
-      (thanks to Vinod Govindapillai for pointing this out)
+== Summary ==
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     |  76 ++++------
- drivers/gpu/drm/i915/display/intel_dp.h     |  17 +++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 157 ++++++++++++++++++++
- 3 files changed, 206 insertions(+), 44 deletions(-)
+CI Bug Log - changes from CI_DRM_11989 -> Patchwork_101492v6
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 32292c0be2bd..1f6dc52251c2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -116,7 +116,6 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
- }
- 
- static void intel_dp_unset_edid(struct intel_dp *intel_dp);
--static int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc);
- 
- /* Is link rate UHBR and thus 128b/132b? */
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
-@@ -687,11 +686,12 @@ small_joiner_ram_size_bits(struct drm_i915_private *i915)
- 		return 6144 * 8;
- }
- 
--static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
--				       u32 link_clock, u32 lane_count,
--				       u32 mode_clock, u32 mode_hdisplay,
--				       bool bigjoiner,
--				       u32 pipe_bpp)
-+u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
-+				u32 link_clock, u32 lane_count,
-+				u32 mode_clock, u32 mode_hdisplay,
-+				bool bigjoiner,
-+				u32 pipe_bpp,
-+				u32 timeslots)
- {
- 	u32 bits_per_pixel, max_bpp_small_joiner_ram;
- 	int i;
-@@ -702,8 +702,9 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
- 	 * for SST -> TimeSlotsPerMTP is 1,
- 	 * for MST -> TimeSlotsPerMTP has to be calculated
- 	 */
--	bits_per_pixel = (link_clock * lane_count * 8) /
-+	bits_per_pixel = (link_clock * lane_count * 8) * timeslots /
- 			 intel_dp_mode_to_fec_clock(mode_clock);
-+	drm_dbg_kms(&i915->drm, "Max link bpp: %u\n", bits_per_pixel);
- 
- 	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
- 	max_bpp_small_joiner_ram = small_joiner_ram_size_bits(i915) /
-@@ -752,9 +753,9 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
- 	return bits_per_pixel << 4;
- }
- 
--static u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
--				       int mode_clock, int mode_hdisplay,
--				       bool bigjoiner)
-+u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
-+				int mode_clock, int mode_hdisplay,
-+				bool bigjoiner)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	u8 min_slice_count, i;
-@@ -961,8 +962,8 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 	return MODE_OK;
- }
- 
--static bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
--				    int hdisplay, int clock)
-+bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
-+			     int hdisplay, int clock)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 
-@@ -1049,7 +1050,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 							    target_clock,
- 							    mode->hdisplay,
- 							    bigjoiner,
--							    pipe_bpp) >> 4;
-+							    pipe_bpp, 1) >> 4;
- 			dsc_slice_count =
- 				intel_dp_dsc_get_slice_count(intel_dp,
- 							     target_clock,
-@@ -1354,7 +1355,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
- 	return -EINVAL;
- }
- 
--static int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 max_req_bpc)
-+int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 max_req_bpc)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	int i, num_bpc;
-@@ -1444,10 +1445,11 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
- 	return drm_dsc_compute_rc_parameters(vdsc_cfg);
- }
- 
--static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
--				       struct intel_crtc_state *pipe_config,
--				       struct drm_connector_state *conn_state,
--				       struct link_config_limits *limits)
-+int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
-+				struct intel_crtc_state *pipe_config,
-+				struct drm_connector_state *conn_state,
-+				struct link_config_limits *limits,
-+				int timeslots)
- {
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
-@@ -1498,7 +1500,8 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 						    adjusted_mode->crtc_clock,
- 						    adjusted_mode->crtc_hdisplay,
- 						    pipe_config->bigjoiner_pipes,
--						    pipe_bpp);
-+						    pipe_bpp,
-+						    timeslots);
- 		dsc_dp_slice_count =
- 			intel_dp_dsc_get_slice_count(intel_dp,
- 						     adjusted_mode->crtc_clock,
-@@ -1510,41 +1513,26 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 			return -EINVAL;
- 		}
- 		pipe_config->dsc.compressed_bpp = min_t(u16,
--							       dsc_max_output_bpp >> 4,
--							       pipe_config->pipe_bpp);
-+							dsc_max_output_bpp >> 4,
-+							pipe_config->pipe_bpp);
- 		pipe_config->dsc.slice_count = dsc_dp_slice_count;
-+		drm_dbg_kms(&dev_priv->drm, "DSC: compressed bpp %d slice count %d\n",
-+			    pipe_config->dsc.compressed_bpp,
-+			    pipe_config->dsc.slice_count);
- 	}
--
--	/* As of today we support DSC for only RGB */
--	if (intel_dp->force_dsc_bpp) {
--		if (intel_dp->force_dsc_bpp >= 8 &&
--		    intel_dp->force_dsc_bpp < pipe_bpp) {
--			drm_dbg_kms(&dev_priv->drm,
--				    "DSC BPP forced to %d",
--				    intel_dp->force_dsc_bpp);
--			pipe_config->dsc.compressed_bpp =
--						intel_dp->force_dsc_bpp;
--		} else {
--			drm_dbg_kms(&dev_priv->drm,
--				    "Invalid DSC BPP %d",
--				    intel_dp->force_dsc_bpp);
--		}
--	}
--
- 	/*
- 	 * VDSC engine operates at 1 Pixel per clock, so if peak pixel rate
- 	 * is greater than the maximum Cdclock and if slice count is even
- 	 * then we need to use 2 VDSC instances.
- 	 */
--	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq ||
--	    pipe_config->bigjoiner_pipes) {
--		if (pipe_config->dsc.slice_count < 2) {
-+	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq) {
-+		if (pipe_config->dsc.slice_count > 1) {
-+			pipe_config->dsc.dsc_split = true;
-+		} else {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Cannot split stream to use 2 VDSC instances\n");
- 			return -EINVAL;
- 		}
--
--		pipe_config->dsc.dsc_split = true;
- 	}
- 
- 	ret = intel_dp_dsc_compute_params(&dig_port->base, pipe_config);
-@@ -1633,7 +1621,7 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
- 			    str_yes_no(intel_dp->force_dsc_en));
- 		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
--						  conn_state, &limits);
-+						  conn_state, &limits, 1);
- 		if (ret < 0)
- 			return ret;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index a54902c713a3..c6539a6915e9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -56,6 +56,11 @@ void intel_dp_encoder_flush_work(struct drm_encoder *encoder);
- int intel_dp_compute_config(struct intel_encoder *encoder,
- 			    struct intel_crtc_state *pipe_config,
- 			    struct drm_connector_state *conn_state);
-+int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
-+				struct intel_crtc_state *pipe_config,
-+				struct drm_connector_state *conn_state,
-+				struct link_config_limits *limits,
-+				int timeslots);
- bool intel_dp_is_edp(struct intel_dp *intel_dp);
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state);
- bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port);
-@@ -96,6 +101,18 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
- 		       struct intel_crtc_state *crtc_state,
- 		       unsigned int type);
- bool intel_digital_port_connected(struct intel_encoder *encoder);
-+int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc);
-+u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
-+				u32 link_clock, u32 lane_count,
-+				u32 mode_clock, u32 mode_hdisplay,
-+				bool bigjoiner,
-+				u32 pipe_bpp,
-+				u32 timeslots);
-+u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
-+				int mode_clock, int mode_hdisplay,
-+				bool bigjoiner);
-+bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
-+			     int hdisplay, int clock);
- 
- static inline unsigned int intel_dp_unused_lane_mask(int lane_count)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 14d2a64193b2..b4d68c324e68 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -99,6 +99,84 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 	return 0;
- }
- 
-+static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-+						struct intel_crtc_state *crtc_state,
-+						struct drm_connector_state *conn_state,
-+						struct link_config_limits *limits)
-+{
-+	struct drm_atomic_state *state = crtc_state->uapi.state;
-+	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-+	struct intel_dp *intel_dp = &intel_mst->primary->dp;
-+	struct intel_connector *connector =
-+		to_intel_connector(conn_state->connector);
-+	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	bool constant_n = drm_dp_has_quirk(&intel_dp->desc,
-+					   DP_DPCD_QUIRK_CONSTANT_N);
-+	int bpp, slots = -EINVAL;
-+	int i, num_bpc;
-+	u8 dsc_bpc[3] = {0};
-+	int min_bpp, max_bpp;
-+	u8 dsc_max_bpc;
-+
-+	crtc_state->lane_count = limits->max_lane_count;
-+	crtc_state->port_clock = limits->max_rate;
-+
-+	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
-+	if (DISPLAY_VER(i915) >= 12)
-+		dsc_max_bpc = min_t(u8, 12, conn_state->max_requested_bpc);
-+	else
-+		dsc_max_bpc = min_t(u8, 10, conn_state->max_requested_bpc);
-+
-+	max_bpp = min_t(u8, dsc_max_bpc * 3, limits->max_bpp);
-+	min_bpp = limits->min_bpp;
-+
-+	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(intel_dp->dsc_dpcd,
-+						       dsc_bpc);
-+	for (i = 0; i < num_bpc; i++) {
-+		if (max_bpp >= dsc_bpc[i] * 3)
-+			if (min_bpp > dsc_bpc[i] * 3)
-+				min_bpp = dsc_bpc[i] * 3;
-+	}
-+
-+	drm_dbg_kms(&i915->drm, "DSC Sink supported min bpp %d max bpp %d\n",
-+		    min_bpp, max_bpp);
-+
-+	for (bpp = max_bpp; bpp >= min_bpp; bpp -= 2 * 3) {
-+		crtc_state->pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock,
-+						       bpp << 4,
-+						       true);
-+
-+		slots = drm_dp_atomic_find_vcpi_slots(state, &intel_dp->mst_mgr,
-+						      connector->port,
-+						      crtc_state->pbn, 0);
-+
-+		drm_dbg_kms(&i915->drm, "Trying bpp %d got %d pbn %d slots\n",
-+			    bpp, crtc_state->pbn, slots);
-+
-+		if (slots == -EDEADLK)
-+			return slots;
-+		if (slots >= 0)
-+			break;
-+	}
-+
-+	if (slots < 0) {
-+		drm_dbg_kms(&i915->drm, "failed finding vcpi slots:%d\n",
-+			    slots);
-+		return slots;
-+	}
-+
-+	intel_link_compute_m_n(crtc_state->pipe_bpp,
-+			       crtc_state->lane_count,
-+			       adjusted_mode->crtc_clock,
-+			       crtc_state->port_clock,
-+			       &crtc_state->dp_m_n,
-+			       constant_n, crtc_state->fec_enable);
-+	crtc_state->dp_m_n.tu = slots;
-+
-+	return 0;
-+}
- static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
- 				     struct intel_crtc_state *crtc_state,
- 				     struct drm_connector_state *conn_state)
-@@ -127,6 +205,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 				       struct drm_connector_state *conn_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct drm_atomic_state *state = pipe_config->uapi.state;
- 	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
- 	struct intel_dp *intel_dp = &intel_mst->primary->dp;
- 	struct intel_connector *connector =
-@@ -175,6 +254,38 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 
- 	ret = intel_dp_mst_compute_link_config(encoder, pipe_config,
- 					       conn_state, &limits);
-+
-+	if (ret == -EDEADLK)
-+		return ret;
-+
-+	/*
-+	 * We need to check if VCPI slots allocated can actually fit already
-+	 * here, to decide whether we use DSC or not.
-+	 * If either intel_dp_mst_compute_link_config or that one fails,
-+	 * then we try DSC as last resort.
-+	 */
-+	if (!ret)
-+		ret = drm_dp_mst_atomic_check(state);
-+
-+	/* enable compression if the mode doesn't fit available BW */
-+	drm_dbg_kms(&dev_priv->drm, "Force DSC en = %d\n", intel_dp->force_dsc_en);
-+	if (ret || intel_dp->force_dsc_en) {
-+		/*
-+		 * Try to get at least some timeslots and then see, if
-+		 * we can fit there with DSC.
-+		 */
-+		drm_dbg_kms(&dev_priv->drm, "Trying to find VCPI slots in DSC mode\n");
-+
-+		ret = intel_dp_dsc_mst_compute_link_config(encoder, pipe_config,
-+							   conn_state, &limits);
-+		if (ret < 0)
-+			return ret;
-+
-+		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
-+						  conn_state, &limits,
-+						  pipe_config->dp_m_n.tu);
-+	}
-+
- 	if (ret)
- 		return ret;
- 
-@@ -713,6 +824,10 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 	int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
- 	int max_rate, mode_rate, max_lanes, max_link_clock;
- 	int ret;
-+	bool dsc = false, bigjoiner = false;
-+	u16 dsc_max_output_bpp = 0;
-+	u8 dsc_slice_count = 0;
-+	int target_clock = mode->clock;
- 
- 	if (drm_connector_is_unregistered(connector)) {
- 		*status = MODE_ERROR;
-@@ -750,6 +865,48 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 		return 0;
- 	}
- 
-+	if (intel_dp_need_bigjoiner(intel_dp, mode->hdisplay, target_clock)) {
-+		bigjoiner = true;
-+		max_dotclk *= 2;
-+	}
-+
-+	if (DISPLAY_VER(dev_priv) >= 10 &&
-+	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
-+		/*
-+		 * TBD pass the connector BPC,
-+		 * for now U8_MAX so that max BPC on that platform would be picked
-+		 */
-+		int pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
-+
-+		if (drm_dp_sink_supports_fec(intel_dp->fec_capable)) {
-+			dsc_max_output_bpp =
-+				intel_dp_dsc_get_output_bpp(dev_priv,
-+							    max_link_clock,
-+							    max_lanes,
-+							    target_clock,
-+							    mode->hdisplay,
-+							    bigjoiner,
-+							    pipe_bpp, 1) >> 4;
-+			dsc_slice_count =
-+				intel_dp_dsc_get_slice_count(intel_dp,
-+							     target_clock,
-+							     mode->hdisplay,
-+							     bigjoiner);
-+		}
-+
-+		dsc = dsc_max_output_bpp && dsc_slice_count;
-+	}
-+
-+	/*
-+	 * Big joiner configuration needs DSC for TGL which is not true for
-+	 * XE_LPD where uncompressed joiner is supported.
-+	 */
-+	if (DISPLAY_VER(dev_priv) < 13 && bigjoiner && !dsc)
-+		return MODE_CLOCK_HIGH;
-+
-+	if (mode_rate > max_rate && !dsc)
-+		return MODE_CLOCK_HIGH;
-+
- 	*status = intel_mode_valid_max_plane_size(dev_priv, mode, false);
- 	return 0;
- }
--- 
-2.24.1.485.gad05a3d8e5
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/index.html
+
+Participating hosts (29 -> 29)
+------------------------------
+
+  Additional (1): bat-dg2-9 
+  Missing    (1): bat-rpls-2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_101492v6 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bdw-5557u:       [PASS][1] -> [DMESG-FAIL][2] ([i915#5334])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [PASS][3] -> [DMESG-FAIL][4] ([i915#4494] / [i915#4957])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][5] ([i915#4817])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bsw-kefka/igt@kms_chamelium@common-hpd-after-suspend.html
+    - fi-apl-guc:         NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-apl-guc/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [PASS][8] -> [FAIL][9] ([i915#6298])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bdw-gvtdvm:      [INCOMPLETE][10] ([i915#2940]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
+    - fi-bsw-kefka:       [INCOMPLETE][12] ([i915#2940]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-ehl-2}:         [INCOMPLETE][14] ([i915#6106]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-ehl-2/igt@i915_selftest@live@hangcheck.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-ehl-2/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@reset:
+    - fi-apl-guc:         [INCOMPLETE][16] -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-apl-guc/igt@i915_selftest@live@reset.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-apl-guc/igt@i915_selftest@live@reset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6106]: https://gitlab.freedesktop.org/drm/intel/issues/6106
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11989 -> Patchwork_101492v6
+
+  CI-20190529: 20190529
+  CI_DRM_11989: 8953e41fa70d4507c6f5508e030347f7eda3ba8a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6625: d47beef9b01595f721c584070940c95be1cf11e8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_101492v6: 8953e41fa70d4507c6f5508e030347f7eda3ba8a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+29c2d35807d3 drm/i915: Add DSC support to MST path
+aa6602a6db13 drm: Add missing DP DSC extended capability definitions.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/index.html
+
+--===============8994095045774738386==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add DP MST DSC support to i915 (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101492/">https://patchwork.freedesktop.org/series/101492/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11989 -&gt; Patchwork_101492v6</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/index.html</p>
+<h2>Participating hosts (29 -&gt; 29)</h2>
+<p>Additional (1): bat-dg2-9 <br />
+  Missing    (1): bat-rpls-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_101492v6 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>
+<p>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bsw-kefka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+<li>
+<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-apl-guc/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>
+<p>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">PASS</a></p>
+</li>
+<li>
+<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-ehl-2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6106">i915#6106</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-ehl-2/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11989/fi-apl-guc/igt@i915_selftest@live@reset.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v6/fi-apl-guc/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11989 -&gt; Patchwork_101492v6</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11989: 8953e41fa70d4507c6f5508e030347f7eda3ba8a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6625: d47beef9b01595f721c584070940c95be1cf11e8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_101492v6: 8953e41fa70d4507c6f5508e030347f7eda3ba8a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>29c2d35807d3 drm/i915: Add DSC support to MST path<br />
+aa6602a6db13 drm: Add missing DP DSC extended capability definitions.</p>
+
+</body>
+</html>
+
+--===============8994095045774738386==--
