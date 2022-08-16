@@ -1,73 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04D54595A39
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 13:35:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 869F1595DB5
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 15:50:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 595E211BCE9;
-	Tue, 16 Aug 2022 11:35:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0233EAD5A6;
+	Tue, 16 Aug 2022 13:49:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 360 seconds by postgrey-1.36 at gabe;
- Tue, 16 Aug 2022 11:35:27 UTC
-Received: from smtp-relay-internal-1.canonical.com
- (smtp-relay-internal-1.canonical.com [185.125.188.123])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB50D11BCE9
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Aug 2022 11:35:27 +0000 (UTC)
-Received: from mail-oa1-f70.google.com (mail-oa1-f70.google.com
- [209.85.160.70])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2CF3F40AFB
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Aug 2022 11:29:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1660649366;
- bh=aSmJyx7D+51w1LpJgRV3eRqde7lEGdt1JKguqJZK45s=;
- h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
- To:Cc:Content-Type;
- b=dHalwpEu3omyda1I5IGxIu/SF2e/Rlkw5HSK9Qm5loTF3VIaXu/+ZEWopawrWFG4i
- 58uPhncVGMD0b5ys9xrgG0sAM10fyjRyR+wgj4kKaqbT12LL3f+O4AMgRkEnwXOthR
- RD2TTc9wtvPjouJQqiQ5jHgMZ7jf4WFyVBKmlXFXeMp9mvQoArSVFDXBxHnYuLrBo+
- n8CrNiOv3Vo+swhyVQXGGK7/A+sfAp48JisyhgIw5xyKGU2CF4OCeMhSXFfPjn8uvN
- Qa3P2MIvFSQqtsMlY5HTLTOA9WM3bfof69WodCPx9/Uv7IvSdcvHU/saXF8Q2EbWNd
- PV3n+P9ojGGBw==
-Received: by mail-oa1-f70.google.com with SMTP id
- 586e51a60fabf-10e715ad38aso2476449fac.17
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Aug 2022 04:29:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc;
- bh=aSmJyx7D+51w1LpJgRV3eRqde7lEGdt1JKguqJZK45s=;
- b=y4Eg0b2hDmQBIZih4IATfprrvLKNea3C+NEBU/Us5DhCxJZpA+vzcEJMlSeQHrFPbv
- JtOw3LPzTWRMdTzDmTOvNydJrfz/T8UIp7HeeKw5pnxY11Dkf1G0axt2ht312VnZ1iEg
- eFY1TLd4jneeLDqqMiK+gs/Fub1UlTPtgv5pArNVPpaf/jneJxA8zZj0yPoJzcjv53+O
- DxkbcvpdUjYmuvvutil4+AODqxFRM1n9p5wR9o9YJdci/Qweo3n6X2sM86fJYyKqe8fJ
- ZuwLwo5PiuzcJX6Kdt6tp/VA+ngti2NKrwLwAZD9p8/+1C/xkqfhUp6v8OO1g9y9aMtt
- 4T4A==
-X-Gm-Message-State: ACgBeo3o2Q8H95oG7cBzFaXoRcXn5unsIsBbjjQJ0+VpyHLVQtLcjHqC
- 9C/13VaIYkto2/2Ylqz+Ex9e6kN+anFPm4/6Vsd9CPvfg6wZ+Abf5La87hvhQqqLjiivZFNd6t3
- S7mFh57g/w4f9ECbw7v76Ul2k0HKd7YBT7p36fopxJUY9HoKXjm3p/GAw+hicrw==
-X-Received: by 2002:a9d:f05:0:b0:637:1068:1081 with SMTP id
- 5-20020a9d0f05000000b0063710681081mr7028772ott.224.1660649364939; 
- Tue, 16 Aug 2022 04:29:24 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR40aLi1aejRJbmvKkK+SamiRZIPYXn99+43Y4C0pFABoznjtNDPzRNRT6iTGkRayNIBEZgpA6ErMuo6SjBRYzA=
-X-Received: by 2002:a9d:f05:0:b0:637:1068:1081 with SMTP id
- 5-20020a9d0f05000000b0063710681081mr7028758ott.224.1660649364645; Tue, 16 Aug
- 2022 04:29:24 -0700 (PDT)
+X-Greylist: delayed 485 seconds by postgrey-1.36 at gabe;
+ Tue, 16 Aug 2022 08:47:15 UTC
+Received: from ssh248.corpemail.net (ssh248.corpemail.net [210.51.61.248])
+ by gabe.freedesktop.org (Postfix) with SMTP id 08DDAB723E;
+ Tue, 16 Aug 2022 08:47:14 +0000 (UTC)
+Received: from ([60.208.111.195])
+ by ssh248.corpemail.net ((D)) with ASMTP (SSL) id LID00002;
+ Tue, 16 Aug 2022 16:38:02 +0800
+Received: from localhost.localdomain (10.200.104.97) by
+ jtjnmail201610.home.langchao.com (10.100.2.10) with Microsoft SMTP Server id
+ 15.1.2507.9; Tue, 16 Aug 2022 16:38:03 +0800
+From: Bo Liu <liubo03@inspur.com>
+To: <airlied@linux.ie>, <daniel@ffwll.ch>, <jani.nikula@linux.intel.com>,
+ <joonas.lahtinen@linux.intel.com>, <rodrigo.vivi@intel.com>,
+ <tvrtko.ursulin@linux.intel.com>, <linus.walleij@linaro.org>,
+ <thierry.reding@gmail.com>, <sam@ravnborg.org>
+Date: Tue, 16 Aug 2022 04:37:59 -0400
+Message-ID: <20220816083759.4382-1-liubo03@inspur.com>
+X-Mailer: git-send-email 2.18.2
 MIME-Version: 1.0
-References: <20220816025217.618181-1-kai.heng.feng@canonical.com>
- <87leror4sl.fsf@intel.com>
-In-Reply-To: <87leror4sl.fsf@intel.com>
-From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Date: Tue, 16 Aug 2022 19:29:11 +0800
-Message-ID: <CAAd53p76ut7QRFdM4NjaRua=Hc4bu9_=7+Q_t8ExJysEAhJf=Q@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Switch TGL-H DP-IN to dGFX when
- it's supported
+Content-Type: text/plain
+X-Originating-IP: [10.200.104.97]
+tUid: 202281616380295695b11e04783094c024371e917475a
+X-Abuse-Reports-To: service@corp-email.com
+Abuse-Reports-To: service@corp-email.com
+X-Complaints-To: service@corp-email.com
+X-Report-Abuse-To: service@corp-email.com
+X-Mailman-Approved-At: Tue, 16 Aug 2022 13:49:17 +0000
+Subject: [Intel-gfx] [PATCH] drm: Fix all occurences of the "the the" typo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,85 +50,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, rodrigo.vivi@intel.com,
- Zenghui Yu <yuzenghui@huawei.com>
+Cc: intel-gfx@lists.freedesktop.org, Bo Liu <liubo03@inspur.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 16, 2022 at 4:06 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Tue, 16 Aug 2022, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
-> > On mobile workstations like HP ZBook Fury G8, iGFX's DP-IN can switch to
-> > dGFX so external monitors are routed to dGFX, and more monitors can be
-> > supported as result.
-> >
-> > To switch the DP-IN to dGFX, the driver needs to invoke _DSM function 20
-> > on intel_dsm_guid2. This method is described in Intel document 632107.
->
-> Is this the policy decision that we want to unconditionally make,
-> though?
+There are double "the" in messages in file drm_dp_helper.c,
+i915_irq.c and panel-novatek-nt35510.c, fix it.
 
-I believes so, so more external monitors can be supported at the same time.
+Signed-off-by: Bo Liu <liubo03@inspur.com>
+---
+ drivers/gpu/drm/display/drm_dp_helper.c       | 2 +-
+ drivers/gpu/drm/i915/i915_irq.c               | 2 +-
+ drivers/gpu/drm/panel/panel-novatek-nt35510.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-Kai-Heng
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index e5bab236b3ae..32b295003f49 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -1597,7 +1597,7 @@ static int drm_dp_aux_reply_duration(const struct drm_dp_aux_msg *msg)
+ 
+ /*
+  * Calculate the length of the i2c transfer in usec, assuming
+- * the i2c bus speed is as specified. Gives the the "worst"
++ * the i2c bus speed is as specified. Gives the "worst"
+  * case estimate, ie. successful while as long as possible.
+  * Doesn't account the "MOT" bit, and instead assumes each
+  * message includes a START, ADDRESS and STOP. Neither does it
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 73cebc6aa650..783a6ca41a61 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -65,7 +65,7 @@
+ 
+ /*
+  * Interrupt statistic for PMU. Increments the counter only if the
+- * interrupt originated from the the GPU so interrupts from a device which
++ * interrupt originated from the GPU so interrupts from a device which
+  * shares the interrupt line are not accounted.
+  */
+ static inline void pmu_irq_stats(struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/panel/panel-novatek-nt35510.c b/drivers/gpu/drm/panel/panel-novatek-nt35510.c
+index 40ea41b0a5dd..4085822f619a 100644
+--- a/drivers/gpu/drm/panel/panel-novatek-nt35510.c
++++ b/drivers/gpu/drm/panel/panel-novatek-nt35510.c
+@@ -231,7 +231,7 @@ struct nt35510_config {
+ 	 * bits 0..2 in the lower nibble controls HCK, the booster clock
+ 	 * frequency, the values are the same as for PCK in @bt1ctr.
+ 	 * bits 4..5 in the upper nibble controls BTH, the boosting
+-	 * amplification for the the step-up circuit.
++	 * amplification for the step-up circuit.
+ 	 * 0 = AVDD + VDDB
+ 	 * 1 = AVDD - AVEE
+ 	 * 2 = AVDD - AVEE + VDDB
+-- 
+2.27.0
 
->
-> BR,
-> Jani.
->
-> >
-> > Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_acpi.c | 18 +++++++++++++++++-
-> >  1 file changed, 17 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > index e78430001f077..3bd5930e2769b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > @@ -20,6 +20,7 @@ static const guid_t intel_dsm_guid =
-> >                 0xa8, 0x54, 0x0f, 0x13, 0x17, 0xb0, 0x1c, 0x2c);
-> >
-> >  #define INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED 0 /* No args */
-> > +#define INTEL_DSM_FN_DP_IN_SWITCH_TO_DGFX 20 /* No args */
-> >
-> >  static const guid_t intel_dsm_guid2 =
-> >       GUID_INIT(0x3e5b41c6, 0xeb1d, 0x4260,
-> > @@ -187,6 +188,7 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
-> >       struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> >       acpi_handle dhandle;
-> >       union acpi_object *obj;
-> > +     int supported = 0;
-> >
-> >       dhandle = ACPI_HANDLE(&pdev->dev);
-> >       if (!dhandle)
-> > @@ -194,8 +196,22 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
-> >
-> >       obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
-> >                               INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
-> > -     if (obj)
-> > +     if (obj) {
-> > +             if (obj->type == ACPI_TYPE_INTEGER)
-> > +                     supported = obj->integer.value;
-> > +
-> >               ACPI_FREE(obj);
-> > +     }
-> > +
-> > +     /* Tiger Lake H DP-IN Boot Time Switching from iGfx to dGfx */
-> > +     if (supported & BIT(20)) {
-> > +             obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2,
-> > +                                     INTEL_DSM_REVISION_ID,
-> > +                                     INTEL_DSM_FN_DP_IN_SWITCH_TO_DGFX,
-> > +                                     NULL);
-> > +             if (obj)
-> > +                     ACPI_FREE(obj);
-> > +     }
-> >  }
-> >
-> >  /*
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
