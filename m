@@ -1,74 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AF5E5956D7
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 11:44:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA19359576D
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 12:03:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8226999D9;
-	Tue, 16 Aug 2022 09:44:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E2F910E80E;
+	Tue, 16 Aug 2022 10:03:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com
- [64.147.123.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECDB211AEAB;
- Tue, 16 Aug 2022 09:44:08 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailout.west.internal (Postfix) with ESMTP id CDB663200077;
- Tue, 16 Aug 2022 05:44:04 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute5.internal (MEProxy); Tue, 16 Aug 2022 05:44:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:message-id
- :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
- 1660643044; x=1660729444; bh=WscAaNRAWQ+33jBBmkmwDzL9w5j/D56lNRW
- m0HIQ25c=; b=MxeO+hWuWal1CBfQQisQw6Om0XOvmHGQSYLNf+D0FfHuogDVCHQ
- xDwW2YoFA1rWIsUSD/FxTCxfPWiZtIbvJkOZV6LIvm+GVod1+co+bYV+5yOAR62h
- QfjoUKBvN3iSRkmlEvsQY/aSZ1W5BdRg39Byri5+4i7U8lu7G5nYHe05FxhXVsDw
- I+iwNK/KhdGXcU0CJEVku53INRixGeAkb/hU6YRzt2KOL/sHQMABGI3esXF8pRJK
- SLEBAGLDomlhH0X3vnuR/ks7eEbELGQpQ1kEVR5t12/dy+N6Ug+hKu9/uCRCWD0n
- kG0RtyE2j63ybBz0XaujufZCkuY2w6ZcUFA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:message-id:mime-version
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1660643044; x=
- 1660729444; bh=WscAaNRAWQ+33jBBmkmwDzL9w5j/D56lNRWm0HIQ25c=; b=n
- CTwmp++zc15DvxDjfi5WEAz4SQaFJXwnd/gMwbSOTfVN87eXa6Ozq3tVwe9fEMGQ
- Uba6ws5LrBCH1DGmfy73Wze5ij3hOBgVAtrHCwVsij1WjrNzobiiufmpdN1ViW7u
- FP7eQFGzfC6Jr/HEd30t4dkiggnmGpGxkL1jokJB1whHkd8bOYXGkRfPMMiCtPHO
- GPxU0h9aTZhSKnfkDqi7t+ZvMwkwZuN3CyzqWccIljva5/YiS8zq9Loc7OLoKA8u
- qFZLxyEA4JYXelwzzPtN7T4fIQYraVAa+wvnVWaaCPpn4C7CAYPWqEyjBNA/nDZA
- UxPdlAUpO4pbe+2gwT00w==
-X-ME-Sender: <xms:42b7YrCh0zjd2SCm-iT_ToPrzxwzrfv57L8kGDiqDQeCWS8VqAMIPQ>
- <xme:42b7YhgUlkulZ15NwCmXGwThdQ8rSC0BJVumg7Kdy6rL5hRKLAyP4-5efv-jSW7H5
- G3pi0q0rY0C-iJNlPI>
-X-ME-Received: <xmr:42b7Yml2dFJ49XESJLRE-Zcnjlw875zMiyMtfkwx51UaAx38oxzD8XOkYxc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehgedgvdduucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
- gvrhhnpeeuieehjefhieevtdehudfftdetgfdtuedvvdeugeetgfevgeevudegffduveej
- ieenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghruf
- hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
- thgvtghh
-X-ME-Proxy: <xmx:42b7YtwsqDkqL6qOqRH8zekjQhS9IhWd1zHGIkuHFPDKdN_c-6AxFg>
- <xmx:42b7YgSG_AOp8dLDFuZLgyl7AmGPkRdmnGTsGMqAAdt9vDkdYSKkgg>
- <xmx:42b7YgZEgxd2zYNJdeqDAkXQott31aJb5T-5q39jPt009yCV506mUA>
- <xmx:5Gb7YlKhYMZYsc3oup1Ek2v3ek3G1SrLcIB860JOc-Qvjz6CqDG7NQ>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 16 Aug 2022 05:44:03 -0400 (EDT)
-Date: Tue, 16 Aug 2022 11:44:01 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20220816094401.wtadc7ddr6lzq6aj@houat>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C61410E80E;
+ Tue, 16 Aug 2022 10:03:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1660644211; x=1692180211;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=QbCT1sLbylKU8NArDQzZ1P96rD3BVMmOXRpXN7woAJk=;
+ b=Ttf4fZXYx6lCXT+as6b+EzypjZXxPUzY9pBdLuVsXT34CdvVpCjKkywV
+ JLZpCHyAiQOz5JIqrf3odUKo8DAehJ/fwUoyz4ySbQqxvrG4UcFWY9aCZ
+ yPfOLy2gdHmesiiHtJy96m/i0hnwmO5uG4BnJXhYCzQ/K+/wmGvePZ/r2
+ m5Xu7pl6Hhsbb1KQyQ7UGy1a+CNYmGrToJKAlxnrELeKKIJ4eOOCNiju6
+ Tgg70VbECzjbFQhQvZOwVOoixZ0Su7z6085s9nsFF4M5ArA1VohZr5GoJ
+ c/y8SaH6B/GLsqNBS05rSyjdVp0mvpAgSV5a/eq7Ff6yfuyyZmJy9TFMs g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10440"; a="292175033"
+X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="292175033"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2022 03:03:30 -0700
+X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="667044414"
+Received: from kinzelba-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.194])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2022 03:03:26 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Denis Arefev <arefev@swemel.ru>
+In-Reply-To: <20220816092525.37670-1-arefev@swemel.ru>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220816092525.37670-1-arefev@swemel.ru>
+Date: Tue, 16 Aug 2022 13:03:24 +0300
+Message-ID: <878rnoqzdf.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="yec7wwkblx45tsg7"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 3/3] i915-pmu: Add extra check NULL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,88 +56,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: ldv-project@linuxtesting.org, trufanov@swemel.ru,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, vfh@swemel.ru,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 16 Aug 2022, Denis Arefev <arefev@swemel.ru> wrote:
+> Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
---yec7wwkblx45tsg7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The subject prefix should be something along the lines of
+"drm/i915/pmu".
 
-Hi Dave, Daniel,
+The subject is misleading; there are no functional changes here, just
+whitespace changes. I'm guessing you intended to send something else?
 
-Here's the few patches that got stuck in drm-misc-fixes
+Finally, the commit message is primarily for describing why the change
+is being made, not to advertize organizations or tools.
 
-Maxime
 
-drm-misc-fixes-2022-08-16:
-One patch for imx/dcss to get rid of a warning message, one off-by-one
-fix and GA103 support for nouveau, a refcounting fix for meson, a NULL
-pointer dereference fix for ttm, a error check fix for lvds-codec, a
-dt-binding schema fix and an underflow fix for sun4i
-The following changes since commit 66cee9097e2b74ff3c8cc040ce5717c521a0c3fa:
+BR,
+Jani.
 
-  nouveau/svm: Fix to migrate all requested pages (2022-07-28 16:43:31 -0400)
 
-are available in the Git repository at:
+>
+> Signed-off-by: Denis Arefev <arefev@swemel.ru>
+> ---
+>  drivers/gpu/drm/i915/i915_pmu.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index 34a7f0ef1f67..33db49ffac3d 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -704,8 +704,7 @@ static void i915_pmu_disable(struct perf_event *event)
+>  		 * Decrement the reference count and clear the enabled
+>  		 * bitmask when the last listener on an event goes away.
+>  		 */
+> -		if(engine != NULL)
+> -		{
+> +		if (engine != NULL) {
+>  		        if (--engine->pmu.enable_count[sample] == 0)
+>  			        engine->pmu.enable &= ~BIT(sample);
+>  		}
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-08-16
-
-for you to fetch changes up to 82a1356a933d8443139f8886f11b63c974a09a67:
-
-  drm/sun4i: dsi: Prevent underflow when computing packet sizes (2022-08-15 09:09:49 +0200)
-
-----------------------------------------------------------------
-One patch for imx/dcss to get rid of a warning message, one off-by-one
-fix and GA103 support for nouveau, a refcounting fix for meson, a NULL
-pointer dereference fix for ttm, a error check fix for lvds-codec, a
-dt-binding schema fix and an underflow fix for sun4i
-
-----------------------------------------------------------------
-Arunpravin Paneer Selvam (1):
-      drm/ttm: Fix dummy res NULL ptr deref bug
-
-Karol Herbst (1):
-      drm/nouveau: recognise GA103
-
-Laurentiu Palcu (1):
-      drm/imx/dcss: get rid of HPD warning message
-
-Liang He (1):
-      drm/meson: Fix refcount bugs in meson_vpu_has_available_connectors()
-
-Marek Vasut (1):
-      drm/bridge: lvds-codec: Fix error checking of drm_of_lvds_get_data_mapping()
-
-Samuel Holland (2):
-      dt-bindings: display: sun4i: Add D1 TCONs to conditionals
-      drm/sun4i: dsi: Prevent underflow when computing packet sizes
-
-Timur Tabi (1):
-      drm/nouveau: fix another off-by-one in nvbios_addr
-
- .../bindings/display/allwinner,sun4i-a10-tcon.yaml |  4 ++++
- drivers/gpu/drm/bridge/lvds-codec.c                |  2 +-
- drivers/gpu/drm/imx/dcss/dcss-kms.c                |  2 --
- drivers/gpu/drm/meson/meson_drv.c                  |  5 ++++-
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  | 22 ++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/base.c    |  2 +-
- drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c             | 10 +++++-----
- drivers/gpu/drm/ttm/ttm_bo.c                       |  2 +-
- 8 files changed, 38 insertions(+), 11 deletions(-)
-
---yec7wwkblx45tsg7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYvtm4AAKCRDj7w1vZxhR
-xZYhAQDEUmfn5kjUIsjbnPIpSALKrgFCiwun9oSeF9UcHSka3gD/eMvMnE6XQCgG
-5boGbDD0X06Hjywp06KxRColbAF6MAg=
-=3VGQ
------END PGP SIGNATURE-----
-
---yec7wwkblx45tsg7--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
