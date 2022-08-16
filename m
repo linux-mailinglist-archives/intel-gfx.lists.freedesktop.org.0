@@ -1,55 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11CB65A00AA
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 19:46:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D27F5A00B0
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 19:47:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A93E5BEEB2;
-	Wed, 24 Aug 2022 17:46:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 247E099FC6;
+	Wed, 24 Aug 2022 17:47:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 526462C000
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Aug 2022 08:02:21 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2A48C3F98;
+ Tue, 16 Aug 2022 08:53:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660636941; x=1692172941;
+ t=1660640002; x=1692176002;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=3BRHSXw6gsC8A1G+gFhC72BoDjDDpLS855e6ylMvKTg=;
- b=BElZiDDeJNyg4W365R9SIcZ7Asj1E6Ijytd2qU9N3W06Rl1JtxcnK382
- v25DPyFnXon27onMm7rCFXKKtrasHxQozwKYf5dVSIcMM8MnDXkkxTPNY
- 08yCY6G/LtvcWlO+Qy2q1NlmYv3NvoWDGHlqDbVxVFj9afSz36kty5Iva
- wHGTAMFCfvOvconz/iYDhE/tsHmFOSICb4UU1VF1yohfl6C53ZDOaTQud
- Ki9mupSZ3pwgvdBSSD9GLFbPXT9cE7UW85uTmnANn5EU0E7iNDSGi1lf1
- c7Nx41EPXF+r1BM5jsQNTyCEh0rYkIkCs9GDXFxHXUAtft/2SKzngGIuo g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10440"; a="279116554"
-X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="279116554"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2022 01:02:20 -0700
-X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="667005158"
+ bh=K6Og00L1IjRsIWgGWRQD8kVwArgaWlic4/wfGISF5fQ=;
+ b=DE0LYbKjehhUE3A4voSSpqWJu2fIh1i85k5BPrKyBcfQzfc8azDkIieb
+ c14Y5yx99K1NtMZgPFfTAS1BZ60YS79vBGujGZPY7RaU4O4BZerofcOxK
+ tT9Xh8RWP3jRbFkz00huefs+yPlIxWGXzjm7CnHlmUt5+54Ij7cdQtO24
+ xnjSpInO65C9M7ZW6lmSoIxDtoipnkX7s5LUSA4fpf0NAKiJ0nofRB3xq
+ 58OGIQv5M2ONWk4XjMOSoEyCMTCFjDiHFNfky8rKT8yqJnMLQ/XPp1qWJ
+ ePv1vRJJ6/dv36vED4LC8C9S2wXrSPaQeWrlCekYOVRsWEwNmiv+3c351 g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10440"; a="275219719"
+X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="275219719"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2022 01:53:20 -0700
+X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="583220366"
 Received: from kinzelba-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.39.194])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2022 01:02:18 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <DM6PR11MB3177D1EA57E1C8F1AE2EE845BA6B9@DM6PR11MB3177.namprd11.prod.outlook.com>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2022 01:53:17 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Bo Liu <liubo03@inspur.com>, airlied@linux.ie, daniel@ffwll.ch,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tvrtko.ursulin@linux.intel.com, linus.walleij@linaro.org,
+ thierry.reding@gmail.com, sam@ravnborg.org
+In-Reply-To: <20220816083759.4382-1-liubo03@inspur.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1660230121.git.jani.nikula@intel.com>
- <d7de23e80cb3a3fb488b76a092ad5f6d94d97416.1660230121.git.jani.nikula@intel.com>
- <DM6PR11MB3177A0CB978DD0EA0717418BBA679@DM6PR11MB3177.namprd11.prod.outlook.com>
- <87k07erlj2.fsf@intel.com>
- <DM6PR11MB3177D1EA57E1C8F1AE2EE845BA6B9@DM6PR11MB3177.namprd11.prod.outlook.com>
-Date: Tue, 16 Aug 2022 11:02:16 +0300
-Message-ID: <87o7wkr4zb.fsf@intel.com>
+References: <20220816083759.4382-1-liubo03@inspur.com>
+Date: Tue, 16 Aug 2022 11:53:14 +0300
+Message-ID: <87edxgr2md.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 12/39] drm/i915: move and split audio under
- display.audio and display.funcs
+Subject: Re: [Intel-gfx] [PATCH] drm: Fix all occurences of the "the the"
+ typo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,58 +60,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Bo Liu <liubo03@inspur.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 16 Aug 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Friday, August 12, 2022 12:33 PM
->> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Cc: De Marchi, Lucas <lucas.demarchi@intel.com>
->> Subject: RE: [Intel-gfx] [PATCH 12/39] drm/i915: move and split audio under
->> display.audio and display.funcs
->>
->> On Fri, 12 Aug 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> >> -----Original Message-----
->> >> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
->> >> Of Jani Nikula
->> >> Sent: Thursday, August 11, 2022 8:37 PM
->> >> To: intel-gfx@lists.freedesktop.org
->> >> Cc: Nikula, Jani <jani.nikula@intel.com>; De Marchi, Lucas
->> >> <lucas.demarchi@intel.com>
->> >> Subject: [Intel-gfx] [PATCH 12/39] drm/i915: move and split audio
->> >> under display.audio and display.funcs
->> >>
->> >> Move display related members under drm_i915_private display sub-
->> struct.
->> >>
->> >> Split audio funcs to display.funcs to follow the same pattern as all
->> >> the other display functions.
->> >>
->> > Audio is a feature as such so wouldn't intel_audio struct stand parallel to
->> intel_display?
->>
->> For i915, audio doesn't exist other than as a display feature. Display is a
->> higher level split here, parallel to gt/gem.
->>
-> Will leave it to you, since you have started this huger series containing the cleanup and understand you also have some more cleanup in queue.
-> My small suggestion is not to mix audio with display and let this audi reside in i915_priv and let it leave in parallel similar to gt/gem.
+On Tue, 16 Aug 2022, Bo Liu <liubo03@inspur.com> wrote:
+> There are double "the" in messages in file drm_dp_helper.c,
+> i915_irq.c and panel-novatek-nt35510.c, fix it.
 
-No, I'm going to stick with this hierarchy. Audio is part of display
-here.
+Please split to three patches.
 
 BR,
 Jani.
 
-
-
 >
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
+> Signed-off-by: Bo Liu <liubo03@inspur.com>
+> ---
+>  drivers/gpu/drm/display/drm_dp_helper.c       | 2 +-
+>  drivers/gpu/drm/i915/i915_irq.c               | 2 +-
+>  drivers/gpu/drm/panel/panel-novatek-nt35510.c | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index e5bab236b3ae..32b295003f49 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -1597,7 +1597,7 @@ static int drm_dp_aux_reply_duration(const struct drm_dp_aux_msg *msg)
+>  
+>  /*
+>   * Calculate the length of the i2c transfer in usec, assuming
+> - * the i2c bus speed is as specified. Gives the the "worst"
+> + * the i2c bus speed is as specified. Gives the "worst"
+>   * case estimate, ie. successful while as long as possible.
+>   * Doesn't account the "MOT" bit, and instead assumes each
+>   * message includes a START, ADDRESS and STOP. Neither does it
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index 73cebc6aa650..783a6ca41a61 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -65,7 +65,7 @@
+>  
+>  /*
+>   * Interrupt statistic for PMU. Increments the counter only if the
+> - * interrupt originated from the the GPU so interrupts from a device which
+> + * interrupt originated from the GPU so interrupts from a device which
+>   * shares the interrupt line are not accounted.
+>   */
+>  static inline void pmu_irq_stats(struct drm_i915_private *i915,
+> diff --git a/drivers/gpu/drm/panel/panel-novatek-nt35510.c b/drivers/gpu/drm/panel/panel-novatek-nt35510.c
+> index 40ea41b0a5dd..4085822f619a 100644
+> --- a/drivers/gpu/drm/panel/panel-novatek-nt35510.c
+> +++ b/drivers/gpu/drm/panel/panel-novatek-nt35510.c
+> @@ -231,7 +231,7 @@ struct nt35510_config {
+>  	 * bits 0..2 in the lower nibble controls HCK, the booster clock
+>  	 * frequency, the values are the same as for PCK in @bt1ctr.
+>  	 * bits 4..5 in the upper nibble controls BTH, the boosting
+> -	 * amplification for the the step-up circuit.
+> +	 * amplification for the step-up circuit.
+>  	 * 0 = AVDD + VDDB
+>  	 * 1 = AVDD - AVEE
+>  	 * 2 = AVDD - AVEE + VDDB
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
