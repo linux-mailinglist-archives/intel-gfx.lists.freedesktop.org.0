@@ -1,41 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F11B595DB3
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 15:50:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A656D595DB2
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 15:50:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6E63AD4D2;
-	Tue, 16 Aug 2022 13:49:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E163AD480;
+	Tue, 16 Aug 2022 13:49:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ssh248.corpemail.net (ssh248.corpemail.net [210.51.61.248])
- by gabe.freedesktop.org (Postfix) with SMTP id 233F610EB1D;
- Tue, 16 Aug 2022 09:50:23 +0000 (UTC)
-Received: from ([60.208.111.195])
- by ssh248.corpemail.net ((D)) with ASMTP (SSL) id LJO00019;
- Tue, 16 Aug 2022 17:49:19 +0800
-Received: from localhost.localdomain (10.200.104.97) by
- jtjnmail201610.home.langchao.com (10.100.2.10) with Microsoft SMTP Server id
- 15.1.2507.9; Tue, 16 Aug 2022 17:49:21 +0800
-From: Bo Liu <liubo03@inspur.com>
-To: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <tvrtko.ursulin@linux.intel.com>,
- <airlied@linux.ie>, <daniel@ffwll.ch>
-Date: Tue, 16 Aug 2022 05:49:19 -0400
-Message-ID: <20220816094919.5419-1-liubo03@inspur.com>
-X-Mailer: git-send-email 2.18.2
+Received: from mx.swemel.ru (mx.swemel.ru [95.143.211.150])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E44F1A5A97;
+ Tue, 16 Aug 2022 12:39:00 +0000 (UTC)
+From: Denis Arefev <arefev@swemel.ru>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=swemel.ru; s=mail;
+ t=1660653538;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=JLCOqrmDxlScPWlMM0m9RZxSSqsKrmtABPqJmneo9vE=;
+ b=lPvfMm6cXnmUBjJ+mYGDCPWs8YhvsFE1jDJeZQszcdhtyBjJkdfWhb2x/VmHT0nQ4nF9Kl
+ g7/0lqEmD2bJmvP5gcTXIp8L2cnjw2c4HYs3MQbo4hgMDv1dRmnOHjilgsZJ0zI4F9XxKO
+ lAzoq3CSGXd7EA6mS2cU+kimz1gfdXk=
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Date: Tue, 16 Aug 2022 15:38:57 +0300
+Message-Id: <20220816123858.42489-1-arefev@swemel.ru>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.200.104.97]
-tUid: 2022816174919560fdac986ab64afd88d720d733eb086
-X-Abuse-Reports-To: service@corp-email.com
-Abuse-Reports-To: service@corp-email.com
-X-Complaints-To: service@corp-email.com
-X-Report-Abuse-To: service@corp-email.com
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 16 Aug 2022 13:49:17 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix all occurences of the "the the"
- typo
+Subject: [Intel-gfx] [PATCH] i915-pmu: Add extra check engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,32 +41,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Bo Liu <liubo03@inspur.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: ldv-project@linuxtesting.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is an unexpected word "the" in the file i915_irq.c,
-fix it.
+Return value of a function 'intel_engine_lookup_user' is dereferenced at i915_pmu.c:708
+without checking for null, but it is usually checked for this function
 
-Signed-off-by: Bo Liu <liubo03@inspur.com>
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
+
+Signed-off-by: Denis Arefev <arefev@swemel.ru>
 ---
- drivers/gpu/drm/i915/i915_irq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_pmu.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 73cebc6aa650..783a6ca41a61 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -65,7 +65,7 @@
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 69c0fa20eba1..33db49ffac3d 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -704,8 +704,10 @@ static void i915_pmu_disable(struct perf_event *event)
+ 		 * Decrement the reference count and clear the enabled
+ 		 * bitmask when the last listener on an event goes away.
+ 		 */
+-		if (--engine->pmu.enable_count[sample] == 0)
+-			engine->pmu.enable &= ~BIT(sample);
++		if (engine != NULL) {
++		        if (--engine->pmu.enable_count[sample] == 0)
++			        engine->pmu.enable &= ~BIT(sample);
++		}
+ 	}
  
- /*
-  * Interrupt statistic for PMU. Increments the counter only if the
-- * interrupt originated from the the GPU so interrupts from a device which
-+ * interrupt originated from the GPU so interrupts from a device which
-  * shares the interrupt line are not accounted.
-  */
- static inline void pmu_irq_stats(struct drm_i915_private *i915,
+ 	GEM_BUG_ON(bit >= ARRAY_SIZE(pmu->enable_count));
 -- 
-2.27.0
+2.25.1
 
