@@ -2,42 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 869F1595DB5
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 15:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DE7595DB4
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 15:50:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0233EAD5A6;
-	Tue, 16 Aug 2022 13:49:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88A4B18A259;
+	Tue, 16 Aug 2022 13:49:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 485 seconds by postgrey-1.36 at gabe;
- Tue, 16 Aug 2022 08:47:15 UTC
-Received: from ssh248.corpemail.net (ssh248.corpemail.net [210.51.61.248])
- by gabe.freedesktop.org (Postfix) with SMTP id 08DDAB723E;
- Tue, 16 Aug 2022 08:47:14 +0000 (UTC)
-Received: from ([60.208.111.195])
- by ssh248.corpemail.net ((D)) with ASMTP (SSL) id LID00002;
- Tue, 16 Aug 2022 16:38:02 +0800
-Received: from localhost.localdomain (10.200.104.97) by
- jtjnmail201610.home.langchao.com (10.100.2.10) with Microsoft SMTP Server id
- 15.1.2507.9; Tue, 16 Aug 2022 16:38:03 +0800
-From: Bo Liu <liubo03@inspur.com>
-To: <airlied@linux.ie>, <daniel@ffwll.ch>, <jani.nikula@linux.intel.com>,
- <joonas.lahtinen@linux.intel.com>, <rodrigo.vivi@intel.com>,
- <tvrtko.ursulin@linux.intel.com>, <linus.walleij@linaro.org>,
- <thierry.reding@gmail.com>, <sam@ravnborg.org>
-Date: Tue, 16 Aug 2022 04:37:59 -0400
-Message-ID: <20220816083759.4382-1-liubo03@inspur.com>
-X-Mailer: git-send-email 2.18.2
+X-Greylist: delayed 383 seconds by postgrey-1.36 at gabe;
+ Tue, 16 Aug 2022 09:31:53 UTC
+Received: from mx.swemel.ru (mx.swemel.ru [95.143.211.150])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D59B93315;
+ Tue, 16 Aug 2022 09:31:53 +0000 (UTC)
+From: Denis Arefev <arefev@swemel.ru>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=swemel.ru; s=mail;
+ t=1660641925;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=4pN/HWYNP5Og6NT88D8bQhfdAYmJL0p3JtbVeMHSDU4=;
+ b=Ivk+0ti/i5rbLhfDR13Gj4UMSC2U3igGCdFugoWc8EPkhACXCtRR4JODk28pbDVJpywEis
+ 2VtcV3npfjFwQo2yL/1PYuvYlF0MW/6vgEXe5i5n59RgkAKPpwI1iNZPH2OvyNjjgOsJ3/
+ SU+u5ghxEgNErrG6VQphdU8tEUZFgc8=
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Date: Tue, 16 Aug 2022 12:25:25 +0300
+Message-Id: <20220816092525.37670-1-arefev@swemel.ru>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.200.104.97]
-tUid: 202281616380295695b11e04783094c024371e917475a
-X-Abuse-Reports-To: service@corp-email.com
-Abuse-Reports-To: service@corp-email.com
-X-Complaints-To: service@corp-email.com
-X-Report-Abuse-To: service@corp-email.com
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 16 Aug 2022 13:49:17 +0000
-Subject: [Intel-gfx] [PATCH] drm: Fix all occurences of the "the the" typo
+Subject: [Intel-gfx] [PATCH 3/3] i915-pmu: Add extra check NULL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,60 +43,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Bo Liu <liubo03@inspur.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: ldv-project@linuxtesting.org, trufanov@swemel.ru,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, vfh@swemel.ru,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are double "the" in messages in file drm_dp_helper.c,
-i915_irq.c and panel-novatek-nt35510.c, fix it.
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-Signed-off-by: Bo Liu <liubo03@inspur.com>
+Signed-off-by: Denis Arefev <arefev@swemel.ru>
 ---
- drivers/gpu/drm/display/drm_dp_helper.c       | 2 +-
- drivers/gpu/drm/i915/i915_irq.c               | 2 +-
- drivers/gpu/drm/panel/panel-novatek-nt35510.c | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/i915_pmu.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index e5bab236b3ae..32b295003f49 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -1597,7 +1597,7 @@ static int drm_dp_aux_reply_duration(const struct drm_dp_aux_msg *msg)
- 
- /*
-  * Calculate the length of the i2c transfer in usec, assuming
-- * the i2c bus speed is as specified. Gives the the "worst"
-+ * the i2c bus speed is as specified. Gives the "worst"
-  * case estimate, ie. successful while as long as possible.
-  * Doesn't account the "MOT" bit, and instead assumes each
-  * message includes a START, ADDRESS and STOP. Neither does it
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 73cebc6aa650..783a6ca41a61 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -65,7 +65,7 @@
- 
- /*
-  * Interrupt statistic for PMU. Increments the counter only if the
-- * interrupt originated from the the GPU so interrupts from a device which
-+ * interrupt originated from the GPU so interrupts from a device which
-  * shares the interrupt line are not accounted.
-  */
- static inline void pmu_irq_stats(struct drm_i915_private *i915,
-diff --git a/drivers/gpu/drm/panel/panel-novatek-nt35510.c b/drivers/gpu/drm/panel/panel-novatek-nt35510.c
-index 40ea41b0a5dd..4085822f619a 100644
---- a/drivers/gpu/drm/panel/panel-novatek-nt35510.c
-+++ b/drivers/gpu/drm/panel/panel-novatek-nt35510.c
-@@ -231,7 +231,7 @@ struct nt35510_config {
- 	 * bits 0..2 in the lower nibble controls HCK, the booster clock
- 	 * frequency, the values are the same as for PCK in @bt1ctr.
- 	 * bits 4..5 in the upper nibble controls BTH, the boosting
--	 * amplification for the the step-up circuit.
-+	 * amplification for the step-up circuit.
- 	 * 0 = AVDD + VDDB
- 	 * 1 = AVDD - AVEE
- 	 * 2 = AVDD - AVEE + VDDB
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 34a7f0ef1f67..33db49ffac3d 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -704,8 +704,7 @@ static void i915_pmu_disable(struct perf_event *event)
+ 		 * Decrement the reference count and clear the enabled
+ 		 * bitmask when the last listener on an event goes away.
+ 		 */
+-		if(engine != NULL)
+-		{
++		if (engine != NULL) {
+ 		        if (--engine->pmu.enable_count[sample] == 0)
+ 			        engine->pmu.enable &= ~BIT(sample);
+ 		}
 -- 
-2.27.0
+2.25.1
 
