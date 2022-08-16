@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F5D359547E
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 10:06:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE7059547C
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 10:06:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85FE78A9B0;
-	Tue, 16 Aug 2022 08:06:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 302C410FBCA;
+	Tue, 16 Aug 2022 08:06:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B629D10F9E7;
- Tue, 16 Aug 2022 08:06:31 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F317610F9E7;
+ Tue, 16 Aug 2022 08:06:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660637191; x=1692173191;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=w+c/e2AkjNu1SyDCQR+vXt15ugvR4JTciB+nrN0p4kI=;
- b=hzMjQtmUBWFEKFr46bEQkS9rZUJeRdsSwnzugAHkAiKwh/mS9AvzaCGF
- 0SpCNuBorQgPQm7IdCLHyka439Gnc8chelkTa9CZj120gQWjmxKlyDgiD
- 1cmLnCRpzdchDuTTKoJZd+TS8GadCoxfdPCVD/lUv0N6I14M53MI5R7AC
- dN5TSpdIDCj1y+3kEnSz8YXCyMfhvHn5brlIPf/VO/7ZTKimP+j20eVBA
- mjmWVkQXXrclkN5xGqdAf8CAhxmepBN5IDKiN2o7GPRf/hAqIHymp4m2P
- /auWmBj83O40cv7m+Xfdsk0Djnsrcir5c9/OJig5DCv4k+MQKeIOacPNz A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10440"; a="289726867"
-X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="289726867"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ t=1660637187; x=1692173187;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=E03Vgf1OmQkJqA2JgpZh1bbYZR5fOIQNsf/TC57P/og=;
+ b=BqgrNwXFQwVnLTtRx4a+uyXC3tuL1tfe782exERCihnYSopromYcq6Nm
+ C/9AssJDXIQGvs1aOqXk+P9+oNJHEWw3ITBDswT4KR7+GxmTjgo56tEUh
+ IMiBrYEuK64jkuyZWcBLLnQWiq9iNZHOEvZsUAnb0anUdqPCt2nNEMFQK
+ 6A4uJzUMhBXESy2921HO2JOLxSaL98HZd+0MuNKemt6KQG5V08m6YZcht
+ kue+1ABykDprJKEiUpDFOMl5UApbXOUMk2iGFj9yq+bfAcAFU5XEUDGVo
+ 6Wrx11LYHffYPZaO3pe3npMPrx53ucjaOj+25Y21sDboAIruJ6HC8hjAa g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10440"; a="292153654"
+X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="292153654"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2022 01:06:26 -0700
+X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="635796309"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.51.235])
+ ([10.252.51.235])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Aug 2022 01:06:24 -0700
-X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; d="scan'208";a="667006509"
-Received: from kinzelba-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.39.194])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2022 01:06:20 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Kai-Heng Feng <kai.heng.feng@canonical.com>,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tvrtko.ursulin@linux.intel.com
-In-Reply-To: <20220816025217.618181-1-kai.heng.feng@canonical.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220816025217.618181-1-kai.heng.feng@canonical.com>
-Date: Tue, 16 Aug 2022 11:06:18 +0300
-Message-ID: <87leror4sl.fsf@intel.com>
+Message-ID: <4dbb4795-f38b-4c15-9d66-c077c2a0ac42@linux.intel.com>
+Date: Tue, 16 Aug 2022 10:06:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Switch TGL-H DP-IN to dGFX when
- it's supported
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
+References: <20220809102638.146913-1-matthew.auld@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220809102638.146913-1-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t v2] tests/gem_lmem_swapping: add some
+ coverage for big objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,78 +60,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Kai-Heng Feng <kai.heng.feng@canonical.com>, Daniel Vetter <daniel@ffwll.ch>,
- Zenghui Yu <yuzenghui@huawei.com>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 16 Aug 2022, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
-> On mobile workstations like HP ZBook Fury G8, iGFX's DP-IN can switch to
-> dGFX so external monitors are routed to dGFX, and more monitors can be
-> supported as result.
+LGTM Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+
+On 8/9/2022 12:26 PM, Matthew Auld wrote:
+> Everything we are testing here unfortunately fits within one packet (8M)
+> which means we have zero coverage when we need to split the copy over
+> multiple packets (including the aux CCS state).
 >
-> To switch the DP-IN to dGFX, the driver needs to invoke _DSM function 20
-> on intel_dsm_guid2. This method is described in Intel document 632107.
-
-Is this the policy decision that we want to unconditionally make,
-though?
-
-BR,
-Jani.
-
+> v2:
+>   - Add some coverage for 2G objects, just to see if something blows up
+>     with overflowing int. (Ram)
+>   - Just make TEST_RANDOM use bigger sizes to ensure we get coverage of
+>     objects that require splitting the copy into multiple packets.
 >
-> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_acpi.c | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
+>   tests/i915/gem_lmem_swapping.c | 18 ++++++++++++++++--
+>   1 file changed, 16 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> index e78430001f077..3bd5930e2769b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> @@ -20,6 +20,7 @@ static const guid_t intel_dsm_guid =
->  		  0xa8, 0x54, 0x0f, 0x13, 0x17, 0xb0, 0x1c, 0x2c);
->  
->  #define INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED 0 /* No args */
-> +#define INTEL_DSM_FN_DP_IN_SWITCH_TO_DGFX 20 /* No args */
->  
->  static const guid_t intel_dsm_guid2 =
->  	GUID_INIT(0x3e5b41c6, 0xeb1d, 0x4260,
-> @@ -187,6 +188,7 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
->  	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
->  	acpi_handle dhandle;
->  	union acpi_object *obj;
-> +	int supported = 0;
->  
->  	dhandle = ACPI_HANDLE(&pdev->dev);
->  	if (!dhandle)
-> @@ -194,8 +196,22 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
->  
->  	obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
->  				INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
-> -	if (obj)
-> +	if (obj) {
-> +		if (obj->type == ACPI_TYPE_INTEGER)
-> +			supported = obj->integer.value;
+> diff --git a/tests/i915/gem_lmem_swapping.c b/tests/i915/gem_lmem_swapping.c
+> index 1a4f4ca5..cccdb319 100644
+> --- a/tests/i915/gem_lmem_swapping.c
+> +++ b/tests/i915/gem_lmem_swapping.c
+> @@ -63,6 +63,7 @@ struct params {
+>   #define TEST_ENGINES	(1 << 4)
+>   #define TEST_MULTI	(1 << 5)
+>   #define TEST_CCS	(1 << 6)
+> +#define TEST_MASSIVE	(1 << 7)
+>   	unsigned int flags;
+>   	unsigned int seed;
+>   	bool oom_test;
+> @@ -477,8 +478,8 @@ static void fill_params(int i915, struct params *params,
+>   {
+>   	const int swap_mb = /* For lmem, swap is total of smem + swap. */
+>   		igt_get_total_ram_mb() + igt_get_total_swap_mb();
+> -	const unsigned int size = 1 << 20;
+>   	const int max_swap_pct = 75;
+> +	unsigned int size;
+>   	/*
+>   	 * In random mode, add 85% hard limit to use system memory.
+>   	 * noticed that 88.8% can trigger OOM on some system.
+> @@ -487,12 +488,23 @@ static void fill_params(int i915, struct params *params,
+>   	int spill_mb;
+>   	uint32_t handle;
+>   
+> +	size = 1 << 20;
+> +	if (flags & TEST_MASSIVE)
+> +		size = 1u << 31;
 > +
->  		ACPI_FREE(obj);
-> +	}
-> +
-> +	/* Tiger Lake H DP-IN Boot Time Switching from iGfx to dGfx */
-> +	if (supported & BIT(20)) {
-> +		obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2,
-> +					INTEL_DSM_REVISION_ID,
-> +					INTEL_DSM_FN_DP_IN_SWITCH_TO_DGFX,
-> +					NULL);
-> +		if (obj)
-> +			ACPI_FREE(obj);
-> +	}
->  }
->  
->  /*
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>   	if (flags & TEST_RANDOM) {
+>   		params->size.min = 4096;
+>   		handle = create_bo(i915, &params->size.min, &region->region,
+>   				   do_oom_test);
+>   		gem_close(i915, handle);
+> -		params->size.max = 2 * size + params->size.min;
+> +		/*
+> +		 * Big enough to ensure we need to split the copy (both the
+> +		 * actual pages and aux CCS state) into multiple packets. Also
+> +		 * larger enough to ensure we get a mix of 64K and 2M GTT pages
+> +		 * (1G GTT pages are still missing from the kernel).
+> +		 */
+> +		params->size.max = (1ul << 24) + size + params->size.min;
+> +		size = params->size.max;
+>   	} else {
+>   		params->size.min = size;
+>   		params->size.max = size;
+> @@ -733,6 +745,8 @@ igt_main_args("", long_options, help_str, opt_handler, NULL)
+>   		unsigned int flags;
+>   	} *test, tests[] = {
+>   		{ "basic", 0 },
+> +		{ "massive",  TEST_MASSIVE }, /* check for (int) overflows */
+> +		{ "massive-random",  TEST_RANDOM | TEST_MASSIVE },
+>   		{ "random", TEST_RANDOM },
+>   		{ "random-engines", TEST_RANDOM | TEST_ENGINES },
+>   		{ "heavy-random", TEST_RANDOM | TEST_HEAVY },
