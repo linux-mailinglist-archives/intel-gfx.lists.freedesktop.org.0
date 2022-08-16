@@ -2,35 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5DE7595DB4
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 15:50:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F11B595DB3
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Aug 2022 15:50:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88A4B18A259;
-	Tue, 16 Aug 2022 13:49:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6E63AD4D2;
+	Tue, 16 Aug 2022 13:49:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 383 seconds by postgrey-1.36 at gabe;
- Tue, 16 Aug 2022 09:31:53 UTC
-Received: from mx.swemel.ru (mx.swemel.ru [95.143.211.150])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D59B93315;
- Tue, 16 Aug 2022 09:31:53 +0000 (UTC)
-From: Denis Arefev <arefev@swemel.ru>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=swemel.ru; s=mail;
- t=1660641925;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=4pN/HWYNP5Og6NT88D8bQhfdAYmJL0p3JtbVeMHSDU4=;
- b=Ivk+0ti/i5rbLhfDR13Gj4UMSC2U3igGCdFugoWc8EPkhACXCtRR4JODk28pbDVJpywEis
- 2VtcV3npfjFwQo2yL/1PYuvYlF0MW/6vgEXe5i5n59RgkAKPpwI1iNZPH2OvyNjjgOsJ3/
- SU+u5ghxEgNErrG6VQphdU8tEUZFgc8=
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Date: Tue, 16 Aug 2022 12:25:25 +0300
-Message-Id: <20220816092525.37670-1-arefev@swemel.ru>
+Received: from ssh248.corpemail.net (ssh248.corpemail.net [210.51.61.248])
+ by gabe.freedesktop.org (Postfix) with SMTP id 233F610EB1D;
+ Tue, 16 Aug 2022 09:50:23 +0000 (UTC)
+Received: from ([60.208.111.195])
+ by ssh248.corpemail.net ((D)) with ASMTP (SSL) id LJO00019;
+ Tue, 16 Aug 2022 17:49:19 +0800
+Received: from localhost.localdomain (10.200.104.97) by
+ jtjnmail201610.home.langchao.com (10.100.2.10) with Microsoft SMTP Server id
+ 15.1.2507.9; Tue, 16 Aug 2022 17:49:21 +0800
+From: Bo Liu <liubo03@inspur.com>
+To: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <tvrtko.ursulin@linux.intel.com>,
+ <airlied@linux.ie>, <daniel@ffwll.ch>
+Date: Tue, 16 Aug 2022 05:49:19 -0400
+Message-ID: <20220816094919.5419-1-liubo03@inspur.com>
+X-Mailer: git-send-email 2.18.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.200.104.97]
+tUid: 2022816174919560fdac986ab64afd88d720d733eb086
+X-Abuse-Reports-To: service@corp-email.com
+Abuse-Reports-To: service@corp-email.com
+X-Complaints-To: service@corp-email.com
+X-Report-Abuse-To: service@corp-email.com
 X-Mailman-Approved-At: Tue, 16 Aug 2022 13:49:17 +0000
-Subject: [Intel-gfx] [PATCH 3/3] i915-pmu: Add extra check NULL
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix all occurences of the "the the"
+ typo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,34 +48,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ldv-project@linuxtesting.org, trufanov@swemel.ru,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, vfh@swemel.ru,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Bo Liu <liubo03@inspur.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+There is an unexpected word "the" in the file i915_irq.c,
+fix it.
 
-Signed-off-by: Denis Arefev <arefev@swemel.ru>
+Signed-off-by: Bo Liu <liubo03@inspur.com>
 ---
- drivers/gpu/drm/i915/i915_pmu.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_irq.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 34a7f0ef1f67..33db49ffac3d 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -704,8 +704,7 @@ static void i915_pmu_disable(struct perf_event *event)
- 		 * Decrement the reference count and clear the enabled
- 		 * bitmask when the last listener on an event goes away.
- 		 */
--		if(engine != NULL)
--		{
-+		if (engine != NULL) {
- 		        if (--engine->pmu.enable_count[sample] == 0)
- 			        engine->pmu.enable &= ~BIT(sample);
- 		}
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 73cebc6aa650..783a6ca41a61 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -65,7 +65,7 @@
+ 
+ /*
+  * Interrupt statistic for PMU. Increments the counter only if the
+- * interrupt originated from the the GPU so interrupts from a device which
++ * interrupt originated from the GPU so interrupts from a device which
+  * shares the interrupt line are not accounted.
+  */
+ static inline void pmu_irq_stats(struct drm_i915_private *i915,
 -- 
-2.25.1
+2.27.0
 
