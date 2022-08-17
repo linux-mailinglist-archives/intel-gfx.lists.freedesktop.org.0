@@ -2,47 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C34D959728A
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 17:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A47059728B
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 17:10:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D05349747E;
-	Wed, 17 Aug 2022 15:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAF8997584;
+	Wed, 17 Aug 2022 15:10:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E85A710F5B2
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 15:10:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52D529757C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 15:10:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1660749009; x=1692285009;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SaqLXkdWw52OGvbeJB2/UUNW6/b/xW1GT4QhYx58lz4=;
- b=Qhl733Jye5IoNlkWoODSjVhhy2lzUFvK2EQ7GfIi/KHDn50h30Q/Cwtr
- baV7JaHk4mOFJ21F0HF1HLhoZRjs6SI+/FjepEPYZQrXxQt1aobRkouOV
- 7xsDJ8bzB05leFS3+wCmlUTmbczWi2YT6sZB/7GbQkZZa23H/QL5Okz2j
- MIwN5fjl7bs5L46vmaUvPUWUH46rKLyRUkrDz3JiIX9rJkI845xuvGGXu
- QjxEsMH9UmDKMPro5Eli9lO6o8ieF3bYPXigQ83Rs+yRQW14IDQwJ3g+B
- BWFRlBeYOSoQnLi/PWymTWFGCS3Ht6yEoJOnjeHcc+k1GRWvvhwu/w291 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10442"; a="275567451"
-X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="275567451"
+ bh=uBCliypDaTpvAOBwik+hHUmpLzka9AlXtPpT12JDK60=;
+ b=LD/FpSBZHoFjYrLY4UGEXeibR1vGMT8QN/WMgvNBhYrcb5NG96FqbbTm
+ MuDxbTnztrCUZjR3iLom+Fr6Q75PvQSzVH8kljj8XL5m5qV3YQXZ81tg6
+ ZlyZVOuBdtqyQDBAmsV6jnn3vOd0FL4yyppd7OBNC8tuKbqqXoBhApoLM
+ TRhdpoWrEEk+JwKI7RLLwVnif5u94BHkULwSYS/3Ds3AaoaMduEB9bFNe
+ q4Po/7Bo0obEMMjZ5v6WTtZ3CgJ15/2KnjFQDh8DHCm/GiNmIbho1lWJQ
+ ncNSLHYGbFimGwiS/oIgbk3+7x44DDGa7/WmwsGNB7rVwp8t+Qlw7u+2R A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10442"; a="275567461"
+X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="275567461"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2022 08:09:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="935398572"
+ 17 Aug 2022 08:09:56 -0700
+X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="935398579"
 Received: from srr4-3-linux-105-anshuma1.iind.intel.com ([10.223.74.179])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2022 08:09:51 -0700
+ 17 Aug 2022 08:09:53 -0700
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Aug 2022 20:39:40 +0530
-Message-Id: <20220817150941.25447-2-anshuman.gupta@intel.com>
+Date: Wed, 17 Aug 2022 20:39:41 +0530
+Message-Id: <20220817150941.25447-3-anshuman.gupta@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20220817150941.25447-1-anshuman.gupta@intel.com>
 References: <20220817150941.25447-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 1/2] drm/i915/dgfx: Release mmap on rpm suspend
+Subject: [Intel-gfx] [RFC 2/2] drm/i915/dgfx: Runtime resume the dgpu on
+ user fault
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,77 +60,87 @@ Cc: chris@chris-wilson.co.uk, matthew.auld@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Release all mmap mapping for all lmem objects which are associated
-with userfault such that, while pcie function in D3hot, any access
-to memory mappings will raise a userfault.
+Runtime resume the dgpu(when gem object lies in lmem).
+This will transition the dgpu graphics function to D0
+state if it was in D3 in order to access the mmap memory
+mappings.
 
 Cc: Matthew Auld <matthew.auld@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c  | 4 ++++
- drivers/gpu/drm/i915/gt/intel_gt.c       | 1 +
- drivers/gpu/drm/i915/gt/intel_gt_types.h | 2 ++
- drivers/gpu/drm/i915/i915_gem.c          | 6 ++++++
- 4 files changed, 13 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 25 +++++++++++++++++++------
+ 1 file changed, 19 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 5a5cf332d8a5..b49823d599e7 100644
+index b49823d599e7..1e9b07473a8f 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -1073,6 +1073,10 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
- 	} else {
- 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
- 	}
-+
+@@ -1020,6 +1020,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+ 	struct ttm_buffer_object *bo = area->vm_private_data;
+ 	struct drm_device *dev = bo->base.dev;
+ 	struct drm_i915_gem_object *obj;
++	intel_wakeref_t wakeref = 0;
+ 	vm_fault_t ret;
+ 	int idx;
+ 
+@@ -1027,18 +1028,24 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+ 	if (!obj)
+ 		return VM_FAULT_SIGBUS;
+ 
 +	if (i915_gem_object_is_lmem(obj))
-+		list_add(&obj->userfault_link, &to_gt(to_i915(obj->base.dev))->lmem_userfault_list);
++		wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
 +
- 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index e4bac2431e41..f0d641c3153c 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -39,6 +39,7 @@ static void __intel_gt_init_early(struct intel_gt *gt)
- {
- 	spin_lock_init(&gt->irq_lock);
- 
-+	INIT_LIST_HEAD(&gt->lmem_userfault_list);
- 	INIT_LIST_HEAD(&gt->closed_vma);
- 	spin_lock_init(&gt->closed_lock);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index 4d56f7d5a3be..3e915df255f3 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -132,6 +132,8 @@ struct intel_gt {
- 	struct intel_wakeref wakeref;
- 	atomic_t user_wakeref;
- 
-+	struct list_head lmem_userfault_list;
-+
- 	struct list_head closed_vma;
- 	spinlock_t closed_lock; /* guards the list of closed_vma */
- 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 702e5b89be22..1e6ce6d06c11 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -842,6 +842,12 @@ void i915_gem_runtime_suspend(struct drm_i915_private *i915)
- 				 &to_gt(i915)->ggtt->userfault_list, userfault_link)
- 		__i915_gem_object_release_mmap_gtt(obj);
- 
-+	list_for_each_entry_safe(obj, on,
-+				 &to_gt(i915)->lmem_userfault_list, userfault_link) {
-+		i915_gem_object_release_mmap_offset(obj);
-+		list_del(&obj->userfault_link);
+ 	/* Sanity check that we allow writing into this object */
+ 	if (unlikely(i915_gem_object_is_readonly(obj) &&
+-		     area->vm_flags & VM_WRITE))
+-		return VM_FAULT_SIGBUS;
++		     area->vm_flags & VM_WRITE)) {
++		ret = VM_FAULT_SIGBUS;
++		goto out_rpm;
 +	}
+ 
+ 	ret = ttm_bo_vm_reserve(bo, vmf);
+ 	if (ret)
+-		return ret;
++		goto out_rpm;
+ 
+ 	if (obj->mm.madv != I915_MADV_WILLNEED) {
+ 		dma_resv_unlock(bo->base.resv);
+-		return VM_FAULT_SIGBUS;
++		ret = VM_FAULT_SIGBUS;
++		goto out_rpm;
+ 	}
+ 
+ 	if (!i915_ttm_resource_mappable(bo->resource)) {
+@@ -1062,7 +1069,8 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+ 		if (err) {
+ 			drm_dbg(dev, "Unable to make resource CPU accessible\n");
+ 			dma_resv_unlock(bo->base.resv);
+-			return VM_FAULT_SIGBUS;
++			ret = VM_FAULT_SIGBUS;
++			goto out_rpm;
+ 		}
+ 	}
+ 
+@@ -1078,11 +1086,16 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+ 		list_add(&obj->userfault_link, &to_gt(to_i915(obj->base.dev))->lmem_userfault_list);
+ 
+ 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+-		return ret;
++		goto out_rpm;
+ 
+ 	i915_ttm_adjust_lru(obj);
+ 
+ 	dma_resv_unlock(bo->base.resv);
 +
- 	/*
- 	 * The fence will be lost when the device powers down. If any were
- 	 * in use by hardware (i.e. they are pinned), we should not be powering
++out_rpm:
++	if (wakeref)
++		intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, wakeref);
++
+ 	return ret;
+ }
+ 
 -- 
 2.26.2
 
