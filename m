@@ -1,52 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF8F596EE9
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 15:02:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18AC7596EED
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 15:05:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C45591969;
-	Wed, 17 Aug 2022 13:02:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 731AC91B7B;
+	Wed, 17 Aug 2022 13:05:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06A24911ED;
- Wed, 17 Aug 2022 13:01:42 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D44CC8A582;
+ Wed, 17 Aug 2022 13:05:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660741303; x=1692277303;
- h=date:from:to:cc:subject:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ptpN96qiIq8PoMkmPFcpSkGwSRb20zaseERFDKikYx4=;
- b=i/0DIPic3IMOaQDTmXGl5B1A0sk0LJemRxFZ/14RL5NZJ9jEgHLhHAcg
- qnBQwqOdHjtIWux8gbJJA3xoQ7LTPYuvKoc3oouy/lEgcn1akMYjqmrjA
- pqAA/51vGzzhgSnUyKDzoHlb61f42QZOOWmDK/6mfMqKN8l6ILtOocXSc
- PxVoBSA6hDJ1orkTR3nw+X9lhWKklXplrAIbKuxNu/1D1qMzYzbG+GHsC
- 8P8zyOP4ODcrFLSSm5Wlkn9B7F808MyUTi7a7y8LduJvGpgXQlOutWN+S
- 4I5FinkswLq+FC6sLURsq9QzST6qaGITUoImAUiHo8tUFCJimAiLiVlpS g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10442"; a="354226909"
-X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="354226909"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2022 06:01:34 -0700
-X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="636368348"
-Received: from maurocar-mobl2.ger.corp.intel.com (HELO maurocar-mobl2)
- ([10.252.50.167])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2022 06:01:32 -0700
-Date: Wed, 17 Aug 2022 15:01:29 +0200
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Message-ID: <20220817150129.0023caba@maurocar-mobl2>
-In-Reply-To: <20220812095346.45379-3-janusz.krzysztofik@linux.intel.com>
-References: <20220812095346.45379-1-janusz.krzysztofik@linux.intel.com>
- <20220812095346.45379-3-janusz.krzysztofik@linux.intel.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+ t=1660741520; x=1692277520;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=0r/wRpHDY/cJKimAN46sLg8b9MsBF0hryVYD2PnhY/Y=;
+ b=iG+48tqi+bA+fLYyRVCn7MvqPBWlgW+8Aomcoo5yGjHOiOZp3jBri/1B
+ bA7OVhVTtZ6d3gSonuIVdOpFBbg+lyvnBW963DsCxE2wfDGvyYYxzC26v
+ sGiekwpDQ+3CmiUFpsSM1RgfX72pD61Wcf0XE7oode6OmLdG5y1NuzgzB
+ gQFfLF1fIsFEliusLTQUHpI+Ffx5zh9CISuWPMyon1GRNclrg+5J5cGu1
+ 5mERaxGKI2D/fFiulp+Ic9Ud5NNy6V94ErLf1cczuUdNgu/BdMgJYfLs8
+ HXb2lhTatoKuRHh87Ji7v3ZkkAmpDERAGm0+ortOpNWoeOgKVqef8yuuy g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10442"; a="275538018"
+X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="275538018"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2022 06:05:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="710542739"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.59])
+ by fmsmga002.fm.intel.com with SMTP; 17 Aug 2022 06:05:14 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 17 Aug 2022 16:05:13 +0300
+Date: Wed, 17 Aug 2022 16:05:13 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Message-ID: <YvzniYpjr+PBIa56@intel.com>
+References: <20220816025217.618181-1-kai.heng.feng@canonical.com>
+ <CACO55tt=Op=0E94kK+1M8cDXNCk5Tkc=FMR8=OQFc5ohehjwaw@mail.gmail.com>
+ <CAAd53p49X95MKrTDUq92LuHw3y2i09fUA2HEPzM1EcO8xO97Eg@mail.gmail.com>
+ <CACO55tvgmb4Vog701idDYGuh125S9mjWPXhftxDMZ7hg-nQXBw@mail.gmail.com>
+ <CAAd53p4W9rjmVJcUasy9hb1Yam+846+Oomvc2r9RMNmWeh_=0w@mail.gmail.com>
+ <YvzYGGXils/Gf44d@intel.com>
+ <CAAd53p49zc2G1KutPMUcUBM3_rbCh9_40e0mdtcZKb+C69QL_Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t v3 3/3] tests/gem_exec_fence: Restore
- pre-hang checks in *await-hang scenarios
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAd53p49zc2G1KutPMUcUBM3_rbCh9_40e0mdtcZKb+C69QL_Q@mail.gmail.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Switch TGL-H DP-IN to dGFX when
+ it's supported
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,93 +66,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Mauro Carvalho Chehab <mauro.carvalho.chehab@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ Zenghui Yu <yuzenghui@huawei.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 12 Aug 2022 11:53:46 +0200
-Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
-
-> Commit c8f6aaf32d83 "tests/gem_exec_fence: Check stored values only for
-> valid workloads" resolved an issue, observed in *await-hang scenarios,
-> where a fence exposed by an invalid spin batch was signaled asynchronously
-> to pending checks for depended test batches still waiting for that fence.
-> Those checks have been disabled, weakening those scenarios.
+On Wed, Aug 17, 2022 at 08:15:58PM +0800, Kai-Heng Feng wrote:
+> On Wed, Aug 17, 2022 at 7:59 PM Ville Syrjälä
+> <ville.syrjala@linux.intel.com> wrote:
 > 
-> This change restores the pre-hang checks to the extent possible when the
-> invalid spin batch may trigger an immediate reset.  If we are lucky enough
-> to take a snapshot of the object supposed to be still not modified by
-> store batches after we confirm that the spin batch has started and before
-> the fence is signaled, we use that copy to verify if the fence dependent
-> batches are still blocked.  Running the *await-hang subtests multiple
-> times in CI should build our confidence in their results.
+> [snipped]
 > 
-> v2: preserve checking the pipeline runs ahead of the hang (Chris)
-> v3: use a more simple 'best effort' approach suggested by Chris
+> > I had a quick trawl through some Windows stuff for this and
+> > it does seem to do a few extra checks:
+> > - platform must be TGL-H (nothing else has the DPin stuff I guess)
+> > - OpRegion header must indicate dGPU presence
 > 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mauro Carvalho Chehab <mauro.carvalho.chehab@intel.com>
+> Is the dGPU presence denoted by the return bitmask of
+> INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED
 
-LGTM.
+No, there are apparently some extra bits in the OpRegion
+header which we're not currently even decoding.
 
-Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-
-> ---
->  tests/i915/gem_exec_fence.c | 22 ++++++++++++++++------
->  1 file changed, 16 insertions(+), 6 deletions(-)
 > 
-> diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
-> index 78d83460f7..f24bebdb7d 100644
-> --- a/tests/i915/gem_exec_fence.c
-> +++ b/tests/i915/gem_exec_fence.c
-> @@ -21,6 +21,7 @@
->   * IN THE SOFTWARE.
->   */
->  
-> +#include <string.h>
->  #include <sys/ioctl.h>
->  #include <sys/poll.h>
->  #include <sys/signal.h>
-> @@ -307,12 +308,12 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
->  			     const struct intel_execution_engine2 *e,
->  			     unsigned flags)
->  {
-> +	uint64_t scratch_offset, ahnd = get_reloc_ahnd(fd, ctx->id);
->  	const struct intel_execution_engine2 *e2;
->  	uint32_t scratch = gem_create(fd, 4096);
-> +	uint32_t *out, tmp[4096 / sizeof(*out)];
->  	igt_spin_t *spin;
-> -	uint32_t *out;
-> -	uint64_t scratch_offset, ahnd = get_reloc_ahnd(fd, ctx->id);
-> -	int i;
-> +	int i, n;
->  
->  	scratch_offset = get_offset(ahnd, scratch, 4096, 0);
->  
-> @@ -353,11 +354,20 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
->  	/* Long, but not too long to anger preemption disable checks */
->  	usleep(50 * 1000); /* 50 ms, typical preempt reset is 150+ms */
->  
-> +	/*
-> +	 * Check for invalidly completing the task early.
-> +	 * In -hang variants, invalid spin batch may trigger an immediate reset,
-> +	 * then we are able to verify if store batches haven't been started yet
-> +	 * only if the fence of the spin batch is still busy.
-> +	 * Just run *await-hang subtest multiple times to build confidence.
-> +	 */
-> +	memcpy(tmp, out, (i + 1) * sizeof(*out));
-> +	if (fence_busy(spin->out_fence)) {
-> +		for (n = 0; n <= i; n++)
-> +			igt_assert_eq_u32(tmp[n], 0);
-> +	}
->  	if ((flags & HANG) == 0) {
-> -		/* Check for invalidly completing the task early */
->  		igt_assert(fence_busy(spin->out_fence));
-> -		for (int n = 0; n <= i; n++)
-> -			igt_assert_eq_u32(out[n], 0);
->  
->  		igt_spin_end(spin);
->  	}
+> IIUC the mask 20 won't be set when dGPU is not present.
+
+Not sure whether that bit would change depending on the dGPU
+presence or not. Windows doesn't seem trust it alone, so either
+it won't change or someone was just extra paranoid.
+
+> 
+> >
+> > Otherwise it does call this DSM uncoditionally on boot/S4 resume
+> > so seems like that is the only really validated configuration.
+> > Although it does seem to explicitly turn off displays prior to
+> > the DSM so that does perhaps indicate that those ports might have
+> > also been enabled via the iGPU by the BIOS. Not sure if disabling
+> > the ports would work correctly after the DSM or not. If not then
+> > the DSM call would need to happen after state readout/sanitization
+> > so that we can shut things down gracefully.
+> >
+> > Additionally after the DSM call it scans the FIA TC live state
+> > bits to check for DPin usage. Looks like its trying to make sure
+> > the driver stops poking at the relevant power wells once in DPin
+> > mode. i915 doesn't check that stuff atm so we might end up
+> > mangling something while the dGPU is driving the port.
+> 
+> Thanks for investigating this. I am not really familiar with other
+> stuffs you mentioned, but I am happy to test any follow-up patch.
+> 
+> Kai-Heng
+> 
+> >
+> > --
+> > Ville Syrjälä
+> > Intel
+
+-- 
+Ville Syrjälä
+Intel
