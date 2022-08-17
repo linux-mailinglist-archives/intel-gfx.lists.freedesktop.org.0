@@ -2,82 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33958597552
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 19:56:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 005485975B2
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 20:27:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F379FA0BF6;
-	Wed, 17 Aug 2022 17:56:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B41BBA1E27;
+	Wed, 17 Aug 2022 18:27:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1F1F94954
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 17:56:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660758967;
+X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
+ Wed, 17 Aug 2022 07:07:08 UTC
+Received: from us-smtp-delivery-110.mimecast.com
+ (us-smtp-delivery-110.mimecast.com [170.10.129.110])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EAE210E3E4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 07:07:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=globallogic.com;
+ s=mimecast20210517; t=1660720027;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=u6ujo7+tHLDKQ50eag3ScQLxtrPDDWzfQledOoCebFc=;
- b=Em8OVTZnObQnCqRqZ9E9APvZOY+65nvDnGrImvn3QbU70m7C6EBnh0VlTXgHShU44WdhYK
- /KivNnGdZnpJyOXkxAlpU/zUEQJzNVzcruqRdj1ZI9fUvC7peR200a9QZCNy4snz4hKzm5
- b8+SRmXr5NNjYq57CcjuD2LBN5HcMuI=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ content-transfer-encoding:content-transfer-encoding;
+ bh=pH7OvNNPsm5VQKGPpzNsRUdrZIopXa5V2ADSxMuiVQs=;
+ b=Xp5xHxN0D1R1n6X1uJuU8GaWRiglQXm0X+dCGdWH7g1ENNqI1hpotVa9uBhMfBS65WSlqD
+ Uq/nScGfIJJ+0/D+ZWln9OPTbhUvRCXdAUwEpRhLjJk/TUQy1eb9JA2Nmhsxxl5TYuwGrb
+ MTr3WEBa+5WpMIUlTpvBuucDbd/HpdyGtbdzAwnfXaPYOgJCsO2CbvuvRzP3G+cYiUB4xv
+ SOcI/ExyNOW3xrv81f09Rxe1pmi8be9G1jnmIkpk/7Tp6gYo8n6f9W+Spl1yfrVFwtwmTj
+ LwqQerzkLSn1vA6sC0QgEbnXRDtE9troBvNhoP73EySmfAUpbNEVY/6614XIiQ==
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com
+ [209.85.208.200]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-616-uYf5_9LTNnGOyCRUb96sdA-1; Wed, 17 Aug 2022 13:56:06 -0400
-X-MC-Unique: uYf5_9LTNnGOyCRUb96sdA-1
-Received: by mail-qk1-f198.google.com with SMTP id
- bm11-20020a05620a198b00b006bb2388ef0cso8080846qkb.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 10:56:06 -0700 (PDT)
+ us-mta-274-xHiq2-dAMKKOKuV9yxcsCQ-1; Wed, 17 Aug 2022 03:00:58 -0400
+X-MC-Unique: xHiq2-dAMKKOKuV9yxcsCQ-1
+Received: by mail-lj1-f200.google.com with SMTP id
+ by17-20020a05651c1a1100b0025e54bda6c7so3886499ljb.22
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 00:00:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:user-agent:organization
- :references:in-reply-to:date:cc:to:from:subject:message-id
- :x-gm-message-state:from:to:cc;
- bh=u6ujo7+tHLDKQ50eag3ScQLxtrPDDWzfQledOoCebFc=;
- b=fUU2IT/uVm0p2hPZwAcqXudUmHJiOqiTwmLJfLTn79sOjnncwU46UC0lRl5XYmtK72
- IeNU5a8IitmAi08SeVi8F6CwDvaZvTcBOKdhVCj9mi3On2tQa4njqBYyHBcu0D0G4v+m
- /10f6iJaotVip53JjnRRK0YPf021qMsqG5Z/teq8wbmb3VQhFgyu/52PCZtlEbFFHG54
- UD4V96dp6q+yaOwhQeODz80XSYTTE+QSf1Hu77GFty92c3Vp7dBxSmSpNdYg/MX0Ko8r
- SZfcX8wuXd/Ne38YFkm1CqAu0yoMmfisBCnXrdg/xThqlbvaq8xQe/PbgZa+fc+yriE/
- J1AQ==
-X-Gm-Message-State: ACgBeo3Unwj7PFaHABLuNMDU8G1ZCB/FejLPAzvxjWRPHQtm7XU8EEA4
- 7hSYCS2z9b3CaQ/Pj+rr6H8pURYmFs8LNunrhIQFt4JK2qX4DhvmGdLG53NzfHNX3ZxCqErfibr
- xxKlRS+FoddZyKIwIhJ5smyc3KEsT
-X-Received: by 2002:a05:620a:269a:b0:6b5:b76c:11c9 with SMTP id
- c26-20020a05620a269a00b006b5b76c11c9mr19154888qkp.100.1660758966195; 
- Wed, 17 Aug 2022 10:56:06 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR6WDYz+MTlIuAdoJuBIJyS4ztL+6UVgG9kZwAFd70kTJFn9IH7U9Me8NmcInCl8uccQk42Qyg==
-X-Received: by 2002:a05:620a:269a:b0:6b5:b76c:11c9 with SMTP id
- c26-20020a05620a269a00b006b5b76c11c9mr19154869qkp.100.1660758965899; 
- Wed, 17 Aug 2022 10:56:05 -0700 (PDT)
-Received: from [192.168.8.138] (pool-100-0-245-4.bstnma.fios.verizon.net.
- [100.0.245.4]) by smtp.gmail.com with ESMTPSA id
- 20-20020a370914000000b006b8d1914504sm13417807qkj.22.2022.08.17.10.56.04
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc;
+ bh=1exQ5qdkhCvVq2PBAzpRU9G+dzwvsJeddbBUdhaFhX8=;
+ b=aL85Dtv0JwZNG/VkI5IO+tVDsrmlEoq5+9LgCs7Besw2vSqm5zHe53z4yWxW2f7jyr
+ ex8BFWL/XjuolsOoB//6Gk2CtquVgZNd0tX7QS9adrSy5NwSrH+OcZh6CHjHrUPJa6JF
+ 1wz6xWpYH47aqSkDiH+J48jnhe/Xm6aScSLemdOrwQOmHt03PYqS4ms27kA4OxRSfFYz
+ paQDSJ6xbIJ4F73HEdLjEQbo4YFz+HNVvbypQ5GFjHAw0TFBOVB2gbTPsx8e+tAKq0Fm
+ XxOd+aUFkBg2ldrnX55CB6aHHp6zunasfffxtHyoI5XgFJuTas4X9ZRuR6RPqBE+DFad
+ x1TQ==
+X-Gm-Message-State: ACgBeo0TOrN7uDQC54puoOPl43YomHM4Uv15DI4XolqNhKeKKDZ9gcg3
+ mhl59C40ZjdSXznTNtm31EiZj2cX8pl4z8sg9b+2AlVTjnExkfk7pMYjmgNwdSIhCbXY91bg0Jq
+ VzKfNBMZo6QLfbcF6XZF26P8BImQ=
+X-Received: by 2002:ac2:4562:0:b0:48b:2a91:e59 with SMTP id
+ k2-20020ac24562000000b0048b2a910e59mr8050287lfm.91.1660719657146; 
+ Wed, 17 Aug 2022 00:00:57 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR6a7nMNBiNK6k+E8U2fEcZfWVKJGSibaw9CkQYQp99t+6R5gMnJO2+WyETeLUoo4et3K4AZng==
+X-Received: by 2002:ac2:4562:0:b0:48b:2a91:e59 with SMTP id
+ k2-20020ac24562000000b0048b2a910e59mr8050281lfm.91.1660719656896; 
+ Wed, 17 Aug 2022 00:00:56 -0700 (PDT)
+Received: from localhost.localdomain ([91.245.79.37])
+ by smtp.googlemail.com with ESMTPSA id
+ o18-20020a05651205d200b0048a91266268sm1592278lfo.232.2022.08.17.00.00.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Aug 2022 10:56:05 -0700 (PDT)
-Message-ID: <35d4da2537d53ade88528dda5668f5b5d2b21e49.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Kai-Heng Feng <kai.heng.feng@canonical.com>, Mark Pearson
- <markpearson@lenovo.com>
-Date: Wed, 17 Aug 2022 13:56:03 -0400
-In-Reply-To: <CAAd53p4GoU6_ExWB=0b3_X7STd2Fnq764QpmzgOEwn3jdCUBxQ@mail.gmail.com>
-References: <20220816025217.618181-1-kai.heng.feng@canonical.com>
- <87leror4sl.fsf@intel.com>
- <CAAd53p76ut7QRFdM4NjaRua=Hc4bu9_=7+Q_t8ExJysEAhJf=Q@mail.gmail.com>
- <b8ebc447ea464371102df765882fc5010cc0c784.camel@redhat.com>
- <CAAd53p4GoU6_ExWB=0b3_X7STd2Fnq764QpmzgOEwn3jdCUBxQ@mail.gmail.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+ Wed, 17 Aug 2022 00:00:56 -0700 (PDT)
+From: Sviatoslav Peleshko <sviatoslav.peleshko@globallogic.com>
+To: 
+Date: Wed, 17 Aug 2022 09:55:41 +0300
+Message-Id: <20220817065541.30101-1-sviatoslav.peleshko@globallogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Switch TGL-H DP-IN to dGFX when
- it's supported
+X-Mimecast-Originator: globallogic.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+X-Mailman-Approved-At: Wed, 17 Aug 2022 18:27:41 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix random -ENOSPC eviction errors
+ due to locked vma objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,177 +85,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+Cc: Sviatoslav Peleshko <sviatoslav.peleshko@globallogic.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, rodrigo.vivi@intel.com,
- Zenghui Yu <yuzenghui@huawei.com>
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Adding Mark Pearson from Lenovo to this, Mark for reference the original patch
-is here:
+The i915_gem_object_trylock we had in the grab_vma() makes it return false
+when the vma->obj is already locked. In this case we'll skip this vma
+during eviction, and eventually might be forced to return -ENOSPC even
+though we could've evicted this vma if we waited for the lock a bit.
 
-https://patchwork.freedesktop.org/patch/497807/?series=107312&rev=1
+To fix this, replace the i915_gem_object_trylock with i915_gem_object_lock.
+And because we have to worry about the potential deadlock now, bubble-up
+the error code, so it will be correctly handled by the WW mechanism.
 
-Comments from me down below
+This fixes the issue https://gitlab.freedesktop.org/drm/intel/-/issues/6564
 
-On Wed, 2022-08-17 at 09:02 +0800, Kai-Heng Feng wrote:
-> On Wed, Aug 17, 2022 at 2:24 AM Lyude Paul <lyude@redhat.com> wrote:
-> > 
-> > On Tue, 2022-08-16 at 19:29 +0800, Kai-Heng Feng wrote:
-> > > On Tue, Aug 16, 2022 at 4:06 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> > > > 
-> > > > On Tue, 16 Aug 2022, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
-> > > > > On mobile workstations like HP ZBook Fury G8, iGFX's DP-IN can switch to
-> > > > > dGFX so external monitors are routed to dGFX, and more monitors can be
-> > > > > supported as result.
-> > > > > 
-> > > > > To switch the DP-IN to dGFX, the driver needs to invoke _DSM function 20
-> > > > > on intel_dsm_guid2. This method is described in Intel document 632107.
-> > 
-> > Is this documentation released anywhere? We've been wondering about these
-> > interfaces for quite a long time, and it would be good to know if there's docs
-> > for this we haven't really been seeing.
-> > 
-> > > > 
-> > > > Is this the policy decision that we want to unconditionally make,
-> > > > though?
-> > > 
-> > > I believes so, so more external monitors can be supported at the same time.
-> > > 
-> > > Kai-Heng
-> > 
-> > Is this for systems with dual Intel GPUs? I ask because if this affects
-> > Intel/Nvidia hybrid systems then this is a huge no from me. Nouveau is able to
-> > support these systems, but at a limited capacity. This would imply that we are
-> > making external displays work for users of the nvidia proprietary driver, at
-> > the expense making external display support for mainline kernel users
-> > substantially worse for people who are using the mainline kernel. Which isn't
-> > a choice we should be making, because nvidia's OOT driver is not a mainline
-> > kernel driver.
-> 
-> Yes it's for Intel/NVIDIA hybrid systems.
-> 
-> The problem is that hardware vendor design the systems to use NVIDIA
-> for external displays, so using external displays on Intel are never
-> tested by the vendors.
-> I don't think that's any good either.
-> 
+Fixes: 7e00897be8bf ("drm/i915: Add object locking to i915_gem_evict_for_no=
+de and i915_gem_evict_something, v2.")
+Signed-off-by: Sviatoslav Peleshko <sviatoslav.peleshko@globallogic.com>
+---
+ drivers/gpu/drm/i915/i915_gem_evict.c | 69 ++++++++++++++++++---------
+ 1 file changed, 46 insertions(+), 23 deletions(-)
 
-Sigh, the constant forcing of nvidia hardware into laptops from vendors is
-seriously something I wish they would knock it off with considering they're
-basically the most difficult hardware vendor to work with.
-
-Anyway, if we -need- to route displays through the external GPU then we can.
-But I'd like to at least get convinced first that this is an actual necessity
-we should expect for multiple vendors, or the exception to the rule. Because
-if these laptops are capable of driving displays through Intel, at the moment
-not doing that is a huge downgrade in terms of functionality. -Especially- if
-these machines were already working in the field as-is. Probably worth noting
-I don't think I have yet to actually hear of any complaints about this being
-the case, and I'd like to also make sure this isn't a change being done for
-one or two vendors when most vendors aren't actually doing something like
-this.
-
-Note that for a lot of systems it won't -technically- be a big difference
-since the current situation in the market right now is that a lot of laptops
-will have all their external displays routed through the nvidia GPU and
-nowhere else. It's not great compared to just being able to use the well
-supported Intel GPU for everything though. And if we're controlling display
-routing through ACPI, that implies things aren't directly hooked up and
-someone went through the hassle of adding a display mux - which kind of seems
-like a waste of engineering effort and money if it can't actually be used for
-muxing between the two GPUs. Especially considering that up until very
-recently muxes had more or less been dropped from the majority of laptop
-vendors (I think Dell was an exception for this fwiw).
-
-Mark, since you're from Lenovo can you help to confirm this as well?
-
-Also re: external displays not even working: so then how exactly does the BIOS
-handle this? Is the BIOS changing the routing to the nvidia GPU then switching
-it back right before the OS load? I assume something must have been done to
-make it so that external displays aren't just suddenly broken there.
-
-And re: gsp work being done soon: it's going to be a while unfortunately,
-there's a lot for us to catch up on so it's hard for me to give a precise
-date.
-
-> Kai-Heng
-> 
-> > 
-> > If this is just for Intel/Intel systems though that's probably fine, and it
-> > might also be fine for AMD systems.
-> > 
-> > > 
-> > > > 
-> > > > BR,
-> > > > Jani.
-> > > > 
-> > > > > 
-> > > > > Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_acpi.c | 18 +++++++++++++++++-
-> > > > >  1 file changed, 17 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > > > > index e78430001f077..3bd5930e2769b 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > > > > @@ -20,6 +20,7 @@ static const guid_t intel_dsm_guid =
-> > > > >                 0xa8, 0x54, 0x0f, 0x13, 0x17, 0xb0, 0x1c, 0x2c);
-> > > > > 
-> > > > >  #define INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED 0 /* No args */
-> > > > > +#define INTEL_DSM_FN_DP_IN_SWITCH_TO_DGFX 20 /* No args */
-> > > > > 
-> > > > >  static const guid_t intel_dsm_guid2 =
-> > > > >       GUID_INIT(0x3e5b41c6, 0xeb1d, 0x4260,
-> > > > > @@ -187,6 +188,7 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
-> > > > >       struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> > > > >       acpi_handle dhandle;
-> > > > >       union acpi_object *obj;
-> > > > > +     int supported = 0;
-> > > > > 
-> > > > >       dhandle = ACPI_HANDLE(&pdev->dev);
-> > > > >       if (!dhandle)
-> > > > > @@ -194,8 +196,22 @@ void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
-> > > > > 
-> > > > >       obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
-> > > > >                               INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
-> > > > > -     if (obj)
-> > > > > +     if (obj) {
-> > > > > +             if (obj->type == ACPI_TYPE_INTEGER)
-> > > > > +                     supported = obj->integer.value;
-> > > > > +
-> > > > >               ACPI_FREE(obj);
-> > > > > +     }
-> > > > > +
-> > > > > +     /* Tiger Lake H DP-IN Boot Time Switching from iGfx to dGfx */
-> > > > > +     if (supported & BIT(20)) {
-> > > > > +             obj = acpi_evaluate_dsm(dhandle, &intel_dsm_guid2,
-> > > > > +                                     INTEL_DSM_REVISION_ID,
-> > > > > +                                     INTEL_DSM_FN_DP_IN_SWITCH_TO_DGFX,
-> > > > > +                                     NULL);
-> > > > > +             if (obj)
-> > > > > +                     ACPI_FREE(obj);
-> > > > > +     }
-> > > > >  }
-> > > > > 
-> > > > >  /*
-> > > > 
-> > > > --
-> > > > Jani Nikula, Intel Open Source Graphics Center
-> > > 
-> > 
-> > --
-> > Cheers,
-> >  Lyude Paul (she/her)
-> >  Software Engineer at Red Hat
-> > 
-> 
-
--- 
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i=
+915_gem_evict.c
+index f025ee4fa526..9d43f213f68f 100644
+--- a/drivers/gpu/drm/i915/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+@@ -55,49 +55,58 @@ static int ggtt_flush(struct intel_gt *gt)
+ =09return intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
+ }
+=20
+-static bool grab_vma(struct i915_vma *vma, struct i915_gem_ww_ctx *ww)
++static int grab_vma(struct i915_vma *vma, struct i915_gem_ww_ctx *ww)
+ {
++=09int ret =3D 0;
++
+ =09/*
+ =09 * We add the extra refcount so the object doesn't drop to zero until
+ =09 * after ungrab_vma(), this way trylock is always paired with unlock.
+ =09 */
+ =09if (i915_gem_object_get_rcu(vma->obj)) {
+-=09=09if (!i915_gem_object_trylock(vma->obj, ww)) {
++=09=09ret =3D i915_gem_object_lock(vma->obj, ww);
++=09=09if (ret)
+ =09=09=09i915_gem_object_put(vma->obj);
+-=09=09=09return false;
+-=09=09}
+ =09} else {
+ =09=09/* Dead objects don't need pins */
+ =09=09atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
+ =09}
+=20
+-=09return true;
++=09return ret;
+ }
+=20
+-static void ungrab_vma(struct i915_vma *vma)
++static void ungrab_vma(struct i915_vma *vma, struct i915_gem_ww_ctx *ww)
+ {
+ =09if (dying_vma(vma))
+ =09=09return;
+=20
+-=09i915_gem_object_unlock(vma->obj);
++=09if (!ww)
++=09=09i915_gem_object_unlock(vma->obj);
++
+ =09i915_gem_object_put(vma->obj);
+ }
+=20
+-static bool
++static int
+ mark_free(struct drm_mm_scan *scan,
+ =09  struct i915_gem_ww_ctx *ww,
+ =09  struct i915_vma *vma,
+ =09  unsigned int flags,
+ =09  struct list_head *unwind)
+ {
++=09int err;
++
+ =09if (i915_vma_is_pinned(vma))
+-=09=09return false;
++=09=09return -ENOSPC;
+=20
+-=09if (!grab_vma(vma, ww))
+-=09=09return false;
++=09err =3D grab_vma(vma, ww);
++=09if (err)
++=09=09return err;
+=20
+ =09list_add(&vma->evict_link, unwind);
+-=09return drm_mm_scan_add_block(scan, &vma->node);
++=09if (!drm_mm_scan_add_block(scan, &vma->node))
++=09=09return -ENOSPC;
++
++=09return 0;
+ }
+=20
+ static bool defer_evict(struct i915_vma *vma)
+@@ -150,6 +159,7 @@ i915_gem_evict_something(struct i915_address_space *vm,
+ =09enum drm_mm_insert_mode mode;
+ =09struct i915_vma *active;
+ =09int ret;
++=09int err =3D 0;
+=20
+ =09lockdep_assert_held(&vm->mutex);
+ =09trace_i915_gem_evict(vm, min_size, alignment, flags);
+@@ -210,17 +220,23 @@ i915_gem_evict_something(struct i915_address_space *v=
+m,
+ =09=09=09continue;
+ =09=09}
+=20
+-=09=09if (mark_free(&scan, ww, vma, flags, &eviction_list))
++=09=09err =3D mark_free(&scan, ww, vma, flags, &eviction_list);
++=09=09if (!err)
+ =09=09=09goto found;
++=09=09if (err =3D=3D -EDEADLK)
++=09=09=09break;
+ =09}
+=20
+ =09/* Nothing found, clean up and bail out! */
+ =09list_for_each_entry_safe(vma, next, &eviction_list, evict_link) {
+ =09=09ret =3D drm_mm_scan_remove_block(&scan, &vma->node);
+ =09=09BUG_ON(ret);
+-=09=09ungrab_vma(vma);
++=09=09ungrab_vma(vma, ww);
+ =09}
+=20
++=09if (err =3D=3D -EDEADLK)
++=09=09return err;
++
+ =09/*
+ =09 * Can we unpin some objects such as idle hw contents,
+ =09 * or pending flips? But since only the GGTT has global entries
+@@ -267,7 +283,7 @@ i915_gem_evict_something(struct i915_address_space *vm,
+ =09=09=09__i915_vma_pin(vma);
+ =09=09} else {
+ =09=09=09list_del(&vma->evict_link);
+-=09=09=09ungrab_vma(vma);
++=09=09=09ungrab_vma(vma, ww);
+ =09=09}
+ =09}
+=20
+@@ -277,17 +293,21 @@ i915_gem_evict_something(struct i915_address_space *v=
+m,
+ =09=09__i915_vma_unpin(vma);
+ =09=09if (ret =3D=3D 0)
+ =09=09=09ret =3D __i915_vma_unbind(vma);
+-=09=09ungrab_vma(vma);
++=09=09ungrab_vma(vma, ww);
+ =09}
+=20
+ =09while (ret =3D=3D 0 && (node =3D drm_mm_scan_color_evict(&scan))) {
+ =09=09vma =3D container_of(node, struct i915_vma, node);
+=20
+ =09=09/* If we find any non-objects (!vma), we cannot evict them */
+-=09=09if (vma->node.color !=3D I915_COLOR_UNEVICTABLE &&
+-=09=09    grab_vma(vma, ww)) {
+-=09=09=09ret =3D __i915_vma_unbind(vma);
+-=09=09=09ungrab_vma(vma);
++=09=09if (vma->node.color !=3D I915_COLOR_UNEVICTABLE) {
++=09=09=09ret =3D grab_vma(vma, ww);
++=09=09=09if (!ret) {
++=09=09=09=09ret =3D __i915_vma_unbind(vma);
++=09=09=09=09ungrab_vma(vma, ww);
++=09=09=09} else if (ret !=3D -EDEADLK) {
++=09=09=09=09ret =3D -ENOSPC;
++=09=09=09}
+ =09=09} else {
+ =09=09=09ret =3D -ENOSPC;
+ =09=09}
+@@ -382,8 +402,11 @@ int i915_gem_evict_for_node(struct i915_address_space =
+*vm,
+ =09=09=09break;
+ =09=09}
+=20
+-=09=09if (!grab_vma(vma, ww)) {
+-=09=09=09ret =3D -ENOSPC;
++=09=09ret =3D grab_vma(vma, ww);
++=09=09if (ret) {
++=09=09=09if (ret !=3D -EDEADLK)
++=09=09=09=09ret =3D -ENOSPC;
++
+ =09=09=09break;
+ =09=09}
+=20
+@@ -405,7 +428,7 @@ int i915_gem_evict_for_node(struct i915_address_space *=
+vm,
+ =09=09if (ret =3D=3D 0)
+ =09=09=09ret =3D __i915_vma_unbind(vma);
+=20
+-=09=09ungrab_vma(vma);
++=09=09ungrab_vma(vma, ww);
+ =09}
+=20
+ =09return ret;
+--=20
+2.37.1
 
