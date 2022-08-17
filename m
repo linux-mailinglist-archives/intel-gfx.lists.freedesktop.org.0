@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2891B596AE6
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 10:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2C84596B1A
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 10:13:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15A6F10E640;
-	Wed, 17 Aug 2022 08:08:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E00011206D;
+	Wed, 17 Aug 2022 08:12:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8836B10E541
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 08:07:51 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE5C11214C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 08:12:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660723671; x=1692259671;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xKrsp+yt6HhGG8ZtpKNuklBVnRiYjL9Dkg2d9y6AXUg=;
- b=gxdkSdf7TagydU4ZxWa/60YY//RQ0LmlQ/rnzkSKN29+tUjw/zVBClos
- MmeEftVbEEplJHZtTnnHVJ0upwPdWvkhvy78J+JdxF4vJrm4u5UEmUcgD
- rPqKGYnIzPtTgrKqZrPDBZu8fGM0E7/i73v2pLj0NJGXyu/XDuT9sfG0s
- MBkjNVKShTbNe3kDp3cUnReBqGYXkcg97Rd5yoRUDeGKBMez8dyiKZvla
- 3Dd7YvRPlb0afNptmS1HTQNtNIJRy3Mt4xn105PcZl52MhaxQck6+/gBi
- eJBeEQ2pkJ/7aujQFGO17HnfgL8uvHCDmb+fgH1VwJ5nwyLXChv9xgDBr A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10441"; a="378725477"
-X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; d="scan'208";a="378725477"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2022 01:07:50 -0700
-X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; d="scan'208";a="667501320"
-Received: from sbammi-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.49.167])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2022 01:07:49 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <875yirqsav.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1660230121.git.jani.nikula@intel.com>
- <a5641ef131cf70d404b5344eb8c3cd1688fdaae6.1660230121.git.jani.nikula@intel.com>
- <20220817012322.rm4xuqdt7vxtmtov@ldmartin-desk2.lan>
- <875yirqsav.fsf@intel.com>
-Date: Wed, 17 Aug 2022 11:07:46 +0300
-Message-ID: <87pmgzpa25.fsf@intel.com>
+ t=1660723966; x=1692259966;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ok/NeemBAwPZbF/TT7fU0YSvlhre9yyG3srbVD0h6+U=;
+ b=IEWewz0P7qBRg+fhbmk/mAgF9Pg17XsgO/4UqP8F5Wn9a8Fxs3DXjDOk
+ V0gIfL0ntXqI3RtVBKRsK1jZX47cNg5aVzM3ua3TBTPkS33nR58kYLr3s
+ U0OeSpoK0knBtp2Gk8IvGyha5JUo4pYm41JCghWE+Hfl/M6mPkWePsBuZ
+ oagBEp2WTvf2VnIzFoekRbPEfxqG4UsmXZv7QrRedjKaJ52Sy+vvxi9da
+ AgE/SNhxv8vhw5ypZqzx3lR9zGnV1siregmVQFPf6GFRCroknkhwhAgto
+ G3HH0uKbrJr5BoAIw4mdakEfUU4mh8I1jTCSFKwrkv15SaG7oSvj7LYoK Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10441"; a="292431346"
+X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; d="scan'208";a="292431346"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2022 01:12:45 -0700
+X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; d="scan'208";a="607349943"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2022 01:12:44 -0700
+Date: Wed, 17 Aug 2022 11:13:20 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YvyjILz4bXhvPjdZ@intel.com>
+References: <cover.1660664162.git.jani.nikula@intel.com>
+ <b0f4f087866257d280eb97d6bcfcefd109cc5fa2.1660664162.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 01/39] drm/i915: add display sub-struct to
- drm_i915_private
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b0f4f087866257d280eb97d6bcfcefd109cc5fa2.1660664162.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [RESEND 1/3] drm/i915/dsi: filter invalid backlight
+ and CABC ports
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +57,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 17 Aug 2022, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Tue, 16 Aug 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Thu, Aug 11, 2022 at 06:07:12PM +0300, Jani Nikula wrote:
->>>In another long-overdue cleanup, add a display sub-struct to
->>>drm_i915_private, and start moving display related members there. Start
->>>with display funcs that need a rename anyway to not collide with the new
->>>display member.
->>>
->>>Add a new header under display/ for defining struct intel_display.
->>>
->>>Rename struct drm_i915_display_funcs to intel_display_funcs while at it.
+On Tue, Aug 16, 2022 at 06:37:20PM +0300, Jani Nikula wrote:
+> Avoid using ports that aren't initialized in case the VBT backlight or
+> CABC ports have invalid values. This fixes a NULL pointer dereference of
+> intel_dsi->dsi_hosts[port] in such cases.
+> 
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-[...]
+Would be interesting to figure out which one of those actually fixed the
+https://gitlab.freedesktop.org/drm/intel/-/issues/6476 issue, this one
+or next one.
 
->>>+struct intel_display_funcs {
->>
->> in the same line as comment above. Maybe we could give this struct a
->> better name? Because it's already inside a intel_display.funcs.crtc
->>
->> display->funcs.crtc->get_pipe_config()
->> display->funcs.crtc->get_initial_plane_nfig()
->> display->funcs.crtc->enable()
->> display->funcs.crtc->disable()
->> display->funcs.crtc->commit_modeset_enables()
->>
->> and then call this `struct intel_crtc_funcs`.
->>
->> This can be done later as this commit itself is basically moving things
->> with the same name inside a substruct.
->
-> I guess my question is, are the functions inside "crtc enough" to be
-> called intel_crtc_funcs? Though intel_display_funcs is really too
-> generic too.
->
-> Maybe I'll just go with crtc.
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-Mmh, except we already have a bunch of struct drm_crtc_funcs with
-<platform>_crtc_funcs in intel_crtc.c. Too confusing.
-
-struct intel_random_collection_of_display_funcs. :p
-
-The easy choice *for now* would be to stick with the struct
-intel_display_funcs and live with the display->funcs.display tautology.
-
-BR,
-Jani.
-
-
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c | 7 +++++++
+>  drivers/gpu/drm/i915/display/vlv_dsi.c | 7 +++++++
+>  2 files changed, 14 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index 5dcfa7feffa9..885c74f60366 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -2070,7 +2070,14 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+>  	else
+>  		intel_dsi->ports = BIT(port);
+>  
+> +	if (drm_WARN_ON(&dev_priv->drm, intel_connector->panel.vbt.dsi.bl_ports & ~intel_dsi->ports))
+> +		intel_connector->panel.vbt.dsi.bl_ports &= intel_dsi->ports;
+> +
+>  	intel_dsi->dcs_backlight_ports = intel_connector->panel.vbt.dsi.bl_ports;
+> +
+> +	if (drm_WARN_ON(&dev_priv->drm, intel_connector->panel.vbt.dsi.cabc_ports & ~intel_dsi->ports))
+> +		intel_connector->panel.vbt.dsi.cabc_ports &= intel_dsi->ports;
+> +
+>  	intel_dsi->dcs_cabc_ports = intel_connector->panel.vbt.dsi.cabc_ports;
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> index b9b1fed99874..35136d26e517 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -1933,7 +1933,14 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  	else
+>  		intel_dsi->ports = BIT(port);
+>  
+> +	if (drm_WARN_ON(&dev_priv->drm, intel_connector->panel.vbt.dsi.bl_ports & ~intel_dsi->ports))
+> +		intel_connector->panel.vbt.dsi.bl_ports &= intel_dsi->ports;
+> +
+>  	intel_dsi->dcs_backlight_ports = intel_connector->panel.vbt.dsi.bl_ports;
+> +
+> +	if (drm_WARN_ON(&dev_priv->drm, intel_connector->panel.vbt.dsi.cabc_ports & ~intel_dsi->ports))
+> +		intel_connector->panel.vbt.dsi.cabc_ports &= intel_dsi->ports;
+> +
+>  	intel_dsi->dcs_cabc_ports = intel_connector->panel.vbt.dsi.cabc_ports;
+>  
+>  	/* Create a DSI host (and a device) for each port. */
+> -- 
+> 2.34.1
+> 
