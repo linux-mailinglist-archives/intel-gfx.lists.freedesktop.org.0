@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D2125969D2
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 08:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 145475969E8
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 09:00:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42CF410FD78;
-	Wed, 17 Aug 2022 06:51:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4F1F10E17F;
+	Wed, 17 Aug 2022 07:00:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B33310FD7A
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 06:51:00 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 452A410EB84
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 07:00:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660719060; x=1692255060;
+ t=1660719606; x=1692255606;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=+VvuTtlsW2jX1y/7kzq1L5VzqtcFVksbc1oqagNGchU=;
- b=hoOgZzw72vFGrX6gEF9AEzKfMuqdP1TAki0V2+c0UtT5SGEyCebY0IFo
- Y7S5QqNq9fhOGBE6T5JOMCrOGBSV1ttaBMg51yDfihV8reqBtAgdPUzyb
- 6n7wcCVha5g3KWlpkRYNikQUp+jxgpSy8eq12sZ/OUgoi4Bw5KbOsK0kp
- 1hkJX3Nr4zvmAam+ROxdZD+X7w4JHsGirB34z1Z+ipCU00KwR3W9HTP77
- jhfpyxmRAmLorkdedfeazCbElz+S/XMtLWRtEICQXp/5LPAyMdRveZZd/
- nCWr20/5ZOsTursKsIWgdQO16Jix+UMU+wCkIs62MTTPuqbG2l9q5nSPg g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10441"; a="293694632"
-X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; d="scan'208";a="293694632"
+ bh=MpJP4dAQJ0bvklfCCiGmVZerbMsVGFdq1aeYVawn3kk=;
+ b=QTl1Lb9IjWXpr6X20ltzZTN9JgzNiGToumkcbKibBNhse9/Z+04LwtDd
+ qA5MJSM8oPu5YICO1t6j79yq5GeRTPT9597Sw7Znw/1MZgcRP/tNfUcPE
+ uiGS7rZSoxMFYm+ZvBGG5cxFD0TEWULN2k/57fIAXY3l/7t+9PWedGcIr
+ OjKMapB7J0q4/JTIfKx6Q0AEHLRfb0vhaqyUYlOxdc2sONfgfO9LRik3J
+ 5Rb9lDnjGMLrmNLaMZIRUWDbIAMVVnjlfopBVcKVn19oNH1gKCht8MhE9
+ 9Yo3RxVO6qeR85GTuCFnGVJ5aMiE32S03FV+M6NW1ZJNbjKcECjqrqPHj Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10441"; a="279384360"
+X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; d="scan'208";a="279384360"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2022 23:50:55 -0700
-X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; d="scan'208";a="667475942"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2022 00:00:05 -0700
+X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; d="scan'208";a="667478313"
 Received: from sbammi-mobl.amr.corp.intel.com (HELO localhost)
  ([10.252.49.167])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2022 23:50:54 -0700
+ 17 Aug 2022 00:00:04 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20220817013813.gnh2nnyd7ma2me7g@ldmartin-desk2.lan>
+In-Reply-To: <20220817043221.p3awhzpxjtwnfmxw@ldmartin-desk2.lan>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1660230121.git.jani.nikula@intel.com>
- <ee8405fc39f5c4c0f439590d98a107adfd1bf6d1.1660230121.git.jani.nikula@intel.com>
- <20220817013813.gnh2nnyd7ma2me7g@ldmartin-desk2.lan>
-Date: Wed, 17 Aug 2022 09:50:52 +0300
-Message-ID: <871qtfqs6r.fsf@intel.com>
+ <c6e7bdc0a0d86a99f19d07beed273707793c3739.1660230121.git.jani.nikula@intel.com>
+ <20220817043221.p3awhzpxjtwnfmxw@ldmartin-desk2.lan>
+Date: Wed, 17 Aug 2022 10:00:01 +0300
+Message-ID: <87y1vnpd72.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 05/39] drm/i915: move clock_gating_funcs to
- display.funcs
+Subject: Re: [Intel-gfx] [PATCH 24/39] drm/i915: move mipi_mmio_base to
+ display.dsi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,56 +64,99 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 16 Aug 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Thu, Aug 11, 2022 at 06:07:16PM +0300, Jani Nikula wrote:
+> On Thu, Aug 11, 2022 at 06:07:35PM +0300, Jani Nikula wrote:
 >>Move display related members under drm_i915_private display sub-struct.
 >>
->>Rename struct i915_clock_gating_funcs to intel_clock_gating_funcs while
->>at it.
+>>Prefer adding anonymous sub-structs even for single members that aren't
+>>our own structs.
+>>
+>>Abstract mmio base member access in register definitions in a macro.
 >>
 >>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >>---
->> .../gpu/drm/i915/display/intel_display_core.h |  4 ++
->> drivers/gpu/drm/i915/i915_drv.h               |  4 --
->> drivers/gpu/drm/i915/intel_pm.c               | 58 +++++++++----------
->> 3 files changed, 33 insertions(+), 33 deletions(-)
+>> .../gpu/drm/i915/display/intel_display_core.h |   5 +
+>> drivers/gpu/drm/i915/display/vlv_dsi.c        |   4 +-
+>> drivers/gpu/drm/i915/display/vlv_dsi_regs.h   | 188 +++++++++---------
+>> drivers/gpu/drm/i915/i915_drv.h               |   3 -
+>> 4 files changed, 102 insertions(+), 98 deletions(-)
 >>
 >>diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
->>index ff76bd4079e4..98c6ccdc9100 100644
+>>index 533c2e3a6685..db1ba379797e 100644
 >>--- a/drivers/gpu/drm/i915/display/intel_display_core.h
 >>+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
->>@@ -10,6 +10,7 @@
+>>@@ -251,6 +251,11 @@ struct intel_display {
+>> 		unsigned int max_cdclk_freq;
+>> 	} cdclk;
 >>
->> struct intel_atomic_state;
->> struct intel_cdclk_funcs;
->>+struct intel_clock_gating_funcs;
->> struct intel_crtc;
->> struct intel_crtc_state;
->> struct intel_dpll_funcs;
->>@@ -44,6 +45,9 @@ struct intel_display {
->>
->> 		/* irq display functions */
->> 		const struct intel_hotplug_funcs *hotplug;
->>+
->>+		/* pm private clock gating functions */
->>+		const struct intel_clock_gating_funcs *clock_gating;
+>>+	struct {
+>>+		/* VLV/CHV/BXT/GLK DSI MMIO register base address */
 >
-> did we get this correct moving clock_gating to display? The question I'd
-> ask is: if a platform doesn't have display, would it need to do
-> anything clock-gating related? Looking at the current functions e.g. 
-> gen9_init_clock_gating setting some chicken bits, I'd say yes.
->
-> Another reasoning I'd have is regarding the registers it touches.
-> And here they are not from display.
->
-> So, I don't really understand the reason for moving clock_gating here,
-> except that there are indeed several functions doing display-related
-> things. Should we rather split one for i915 and one for i915-display?
+> this is already outdated, so maybe remove the platforms from the
+> comment?
 
-Mmmh, maybe. It's hard to split the driver nicely when the hardware
-isn't!
+What did I miss? It's only used for vlv_dsi, not icl_dsi which is the
+newer thing.
+
+>
+>
+>>+		u32 mmio_base;
+>>+	} dsi;
+>>+
+>> 	struct {
+>> 		/* list of fbdev register on this device */
+>> 		struct intel_fbdev *fbdev;
+>>diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>>index b9b1fed99874..9651a1f00587 100644
+>>--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+>>+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>>@@ -1872,9 +1872,9 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>> 		return;
+>>
+>> 	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+>>-		dev_priv->mipi_mmio_base = BXT_MIPI_BASE;
+>>+		dev_priv->display.dsi.mmio_base = BXT_MIPI_BASE;
+>> 	else
+>>-		dev_priv->mipi_mmio_base = VLV_MIPI_BASE;
+>>+		dev_priv->display.dsi.mmio_base = VLV_MIPI_BASE;
+>>
+>> 	intel_dsi = kzalloc(sizeof(*intel_dsi), GFP_KERNEL);
+>> 	if (!intel_dsi)
+>>diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_regs.h b/drivers/gpu/drm/i915/display/vlv_dsi_regs.h
+>>index 356e51515346..e065b8f2ee08 100644
+>>--- a/drivers/gpu/drm/i915/display/vlv_dsi_regs.h
+>>+++ b/drivers/gpu/drm/i915/display/vlv_dsi_regs.h
+>>@@ -11,6 +11,8 @@
+>> #define VLV_MIPI_BASE			VLV_DISPLAY_BASE
+>> #define BXT_MIPI_BASE			0x60000
+>>
+>>+#define _MIPI_MMIO_BASE(__i915) ((__i915)->display.dsi.mmio_base)
+>>+
+>> #define _MIPI_PORT(port, a, c)	(((port) == PORT_A) ? a : c)	/* ports A and C only */
+>> #define _MMIO_MIPI(port, a, c)	_MMIO(_MIPI_PORT(port, a, c))
+>>
+>>@@ -96,8 +98,8 @@
+>>
+>> /* MIPI DSI Controller and D-PHY registers */
+>>
+>>-#define _MIPIA_DEVICE_READY		(dev_priv->mipi_mmio_base + 0xb000)
+>>-#define _MIPIC_DEVICE_READY		(dev_priv->mipi_mmio_base + 0xb800)
+>>+#define _MIPIA_DEVICE_READY		(_MIPI_MMIO_BASE(dev_priv) + 0xb000)
+>
+> ugh, and I thought we wouldn't have so many implicit params anymore.
+> Mind adding a "TODO: remove implicit dev_priv parameter" ?
+
+It's been on my private todo list like 10 years. :(
 
 BR,
 Jani.
+
+
+>
+>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>
+> Lucas De Marchi
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
