@@ -2,52 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 506BE596D8F
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 13:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EC98596DDF
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Aug 2022 13:59:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5E718D45A;
-	Wed, 17 Aug 2022 11:35:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96AEE8EAED;
+	Wed, 17 Aug 2022 11:59:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B83DC8D418
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 11:34:51 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2D208EB05;
+ Wed, 17 Aug 2022 11:59:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660736091; x=1692272091;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=dW5/Ja5NWrORvwPWuzd874Lu30/y5lsXCRYRM/7kw5I=;
- b=iKJcR9VEOAoW11xx5TWrajg7DYr3kwWfeygus6ZgybU0ZPgWlmZ55NAJ
- fYmQhwg7wnZ2ZxQ80w8hTrV2MYXM+PSG8rNnGTnFKCHeum5f5UwdoaVlM
- zyhoADMkIgYuLrB/dLhRuYwM2ZZWoBhzGQFYnwu8TgkzEdcN4NS4yWP3/
- tWMOWO3ZdF9ZFQPVI1dqCtHVvdYgm3MaGl40tq2FKxssiOFneV1VqnV9W
- bakx2uOkGt1vBWID4NLygbu0JE4+uXf8gkZ35qBBD5lstLd8yX7vw6sN9
- MRuj3P6h/n662VYSe5Z4hYR8oRnr7CLjVLJOfVZE3k7wkeYKrIREAJ3A0 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10441"; a="291222809"
-X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="291222809"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2022 04:34:50 -0700
-X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="636345211"
-Received: from sbammi-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.49.167])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2022 04:34:49 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <DM6PR11MB317705D4A120988DE483E3F6BA6B9@DM6PR11MB3177.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220815094838.3511723-1-jani.nikula@intel.com>
- <DM6PR11MB317705D4A120988DE483E3F6BA6B9@DM6PR11MB3177.namprd11.prod.outlook.com>
-Date: Wed, 17 Aug 2022 14:34:46 +0300
-Message-ID: <87edxfp0h5.fsf@intel.com>
+ t=1660737565; x=1692273565;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=6b3c6v23oiX+x1U/ZFEx/KYy2/TE/UWN/aBtKal7zRQ=;
+ b=Ess+6Q/Uf4F7JoEBu5UbMIJqkqe1QT3pqNvq76+YNEMEyFgcCMtMtFxe
+ yKGVcWLg8U6DiIDzkS7tz4XBSUvc56J5dgGQ4PX20q7pBflPc+qPIj3U5
+ VHsrEJpTbexk2CjQSwWmsguF6FaAWFHxX5W3VJYr2mt7ZuJ0LatIyeeP5
+ g144e0kB8GtyAyeWDnD13tp8LjUroxCosSak2KwMElXYIBR+OvvZTSCJG
+ F5FOLjbqZblYigKwOK9YZBlUAOLB2vHXQ8+52WkI+ByKHM1lYU3TmpBXU
+ bFZEwUAyMWTCvLKVpQTiercoCTzX/47Ujz4KC/duiSz1P673PhJOZUW6f A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10441"; a="318481909"
+X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="318481909"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2022 04:59:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; d="scan'208";a="610618489"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.59])
+ by fmsmga007.fm.intel.com with SMTP; 17 Aug 2022 04:59:21 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 17 Aug 2022 14:59:20 +0300
+Date: Wed, 17 Aug 2022 14:59:20 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Message-ID: <YvzYGGXils/Gf44d@intel.com>
+References: <20220816025217.618181-1-kai.heng.feng@canonical.com>
+ <CACO55tt=Op=0E94kK+1M8cDXNCk5Tkc=FMR8=OQFc5ohehjwaw@mail.gmail.com>
+ <CAAd53p49X95MKrTDUq92LuHw3y2i09fUA2HEPzM1EcO8xO97Eg@mail.gmail.com>
+ <CACO55tvgmb4Vog701idDYGuh125S9mjWPXhftxDMZ7hg-nQXBw@mail.gmail.com>
+ <CAAd53p4W9rjmVJcUasy9hb1Yam+846+Oomvc2r9RMNmWeh_=0w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/backlight: split out backlight
- registers to a separate file
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAd53p4W9rjmVJcUasy9hb1Yam+846+Oomvc2r9RMNmWeh_=0w@mail.gmail.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Switch TGL-H DP-IN to dGFX when
+ it's supported
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,412 +64,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ Zenghui Yu <yuzenghui@huawei.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 16 Aug 2022, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of J=
-ani
->> Nikula
->> Sent: Monday, August 15, 2022 3:19 PM
->> To: intel-gfx@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>
->> Subject: [Intel-gfx] [PATCH] drm/i915/backlight: split out backlight reg=
-isters to
->> a separate file
->>
->> Declutter i915_reg.h by splitting backlight registers to a separate file=
-. Also
->> include the utility pin definitions, even though they are used for non-
->> backlight things too.
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->
-> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+On Wed, Aug 17, 2022 at 11:04:21AM +0800, Kai-Heng Feng wrote:
+> On Wed, Aug 17, 2022 at 9:49 AM Karol Herbst <kherbst@redhat.com> wrote:
+> >
+> > On Wed, Aug 17, 2022 at 3:18 AM Kai-Heng Feng
+> > <kai.heng.feng@canonical.com> wrote:
+> > >
+> > > On Wed, Aug 17, 2022 at 2:50 AM Karol Herbst <kherbst@redhat.com> wrote:
+> > > >
+> > > > On Tue, Aug 16, 2022 at 4:53 AM Kai-Heng Feng
+> > > > <kai.heng.feng@canonical.com> wrote:
+> > > > >
+> > > > > On mobile workstations like HP ZBook Fury G8, iGFX's DP-IN can switch to
+> > > > > dGFX so external monitors are routed to dGFX, and more monitors can be
+> > > > > supported as result.
+> > > > >
+> > > > > To switch the DP-IN to dGFX, the driver needs to invoke _DSM function 20
+> > > > > on intel_dsm_guid2. This method is described in Intel document 632107.
+> > > > >
+> > > >
+> > > > Can we please not do things like this just because?
+> > >
+> > > I there's a very good reason to support more external monitors,
+> > > especially when eDP is already 4K so iGPU don't have enough buffer for
+> > > more displays.
+> > >
+> >
+> > well.. they do have it. What's the limit? 3 or 4 4K displays with gen
+> > 11th+? I find conflicting information, but 3 4K displays are no
+> > problem. It might be if you get to higher refresh rates or something.
+> >
+> > I know that 2 work quite reliably and I know I can put even more on
+> > the Intel GPU.
+> 
+> More monitors can be supported via a thunderbolt dock.
+> 
+> >
+> > > >
+> > > > It forces the discrete GPU to be on leading to higher thermal pressure
+> > > > and power consumption of the system. Lower battery runtime or higher
+> > > > fan noise is the result. Not everybody wants to use an AC simply just
+> > > > because they attach an external display.
+> > >
+> > > The system is designed in this way.
+> > >
+> >
+> > ?!? This makes no sense. If the discrete GPU is turned on, it means
+> > the system has to cool away more heat, because it consumes more power.
+> > It then causes louder fans. No idea how a "system design" can just go
+> > around simple physics...
+> 
+> The spec from HP [1] says:
+> Multi Display Support
+> Without HP Thunderbolt™ Dock G2
+> UMA Graphics: Unit supports up to 4 independent displays. Any
+> combination of displays outputs may be used except one of
+> Thunderbolt™ 4 and HDMI.
+> Hybrid Graphics: Unit supports up 5 simultaneous displays (4 from dGPU
+> + 1 from iGPU). Any combination of displays outputs may
+> be used except when using one USBC and HDMI are exclusive
+> 
+> With HP Thunderbolt™ Dock G2
+> UMA Graphics: Unit supports up to 4 simultaneous displays. Any
+> combination of displays outputs may be used except one of
+> Thunderbolt™ 4 and HDMI.
+> Hybrid Graphics (NVIDIA): Unit supports up to 5 simultaneous displays
+> (4 from dGPU + 1 from iGPU). Any combination of displays
+> outputs may be used except when using one USBC and HDMI are exclusive
+> Hybrid Graphics (AMD): Unit supports up to 5 simultaneous displays (5
+> from dGPU + 1 from iGPU). Any combination of displays
+> outputs may be used except when using one USBC and HDMI are exclusive
+> 
+> So it's "designed" to use dGPU on the hybrid configs.
+> 
+> Let's hope the copper tubes have can dissipate the heat fast enough.
+> 
+> >
+> > Even the CPU consumes more power, because on some systems it prevents
+> > deeper package sleeping modes due to the active PCIe bridge
+> > controller.
+> >
+> > But if you have certain systems where you want to enable this behavior
+> > despite the drawbacks, maybe maintain a list of systems where to apply
+> > this method?
+> 
+> The behavior will be enabled only when _DSM function 20 is present.
+> So it's already a selected few.
 
-Thanks for the review, pushed to drm-intel-next.
+I had a quick trawl through some Windows stuff for this and
+it does seem to do a few extra checks:
+- platform must be TGL-H (nothing else has the DPin stuff I guess)
+- OpRegion header must indicate dGPU presence
 
-BR,
-Jani.
+Otherwise it does call this DSM uncoditionally on boot/S4 resume
+so seems like that is the only really validated configuration.
+Although it does seem to explicitly turn off displays prior to
+the DSM so that does perhaps indicate that those ports might have
+also been enabled via the iGPU by the BIOS. Not sure if disabling
+the ports would work correctly after the DSM or not. If not then
+the DSM call would need to happen after state readout/sanitization
+so that we can shut things down gracefully.
 
->
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
->
->>  drivers/gpu/drm/i915/display/icl_dsi.c        |   1 +
->>  .../gpu/drm/i915/display/intel_backlight.c    |   1 +
->>  .../drm/i915/display/intel_backlight_regs.h   | 124 ++++++++++++++++++
->>  .../drm/i915/display/intel_display_power.c    |   1 +
->>  .../i915/display/intel_display_power_well.c   |   1 +
->>  drivers/gpu/drm/i915/i915_reg.h               | 112 ----------------
->>  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
->>  7 files changed, 129 insertions(+), 112 deletions(-)  create mode 100644
->> drivers/gpu/drm/i915/display/intel_backlight_regs.h
->>
->> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
->> b/drivers/gpu/drm/i915/display/icl_dsi.c
->> index 5dcfa7feffa9..c182253196f3 100644
->> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
->> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
->> @@ -33,6 +33,7 @@
->>  #include "icl_dsi_regs.h"
->>  #include "intel_atomic.h"
->>  #include "intel_backlight.h"
->> +#include "intel_backlight_regs.h"
->>  #include "intel_combo_phy.h"
->>  #include "intel_combo_phy_regs.h"
->>  #include "intel_connector.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c
->> b/drivers/gpu/drm/i915/display/intel_backlight.c
->> index 110fc98ec280..262b2fda37e5 100644
->> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
->> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
->> @@ -9,6 +9,7 @@
->>  #include <linux/string_helpers.h>
->>
->>  #include "intel_backlight.h"
->> +#include "intel_backlight_regs.h"
->>  #include "intel_connector.h"
->>  #include "intel_de.h"
->>  #include "intel_display_types.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_backlight_regs.h
->> b/drivers/gpu/drm/i915/display/intel_backlight_regs.h
->> new file mode 100644
->> index 000000000000..50c1210f6d5d
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/display/intel_backlight_regs.h
->> @@ -0,0 +1,124 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright =C2=A9 2022 Intel Corporation
->> + */
->> +
->> +#ifndef __INTEL_BACKLIGHT_REGS_H__
->> +#define __INTEL_BACKLIGHT_REGS_H__
->> +
->> +#include "i915_reg_defs.h"
->> +
->> +#define _VLV_BLC_PWM_CTL2_A (DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61250)
->> +#define _VLV_BLC_PWM_CTL2_B (DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61350)
->> +#define VLV_BLC_PWM_CTL2(pipe) _MMIO_PIPE(pipe,
->> _VLV_BLC_PWM_CTL2_A, \
->> +                                      _VLV_BLC_PWM_CTL2_B)
->> +
->> +#define _VLV_BLC_PWM_CTL_A (DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61254)
->> +#define _VLV_BLC_PWM_CTL_B (DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61354)
->> +#define VLV_BLC_PWM_CTL(pipe) _MMIO_PIPE(pipe,
->> _VLV_BLC_PWM_CTL_A, \
->> +                                     _VLV_BLC_PWM_CTL_B)
->> +
->> +#define _VLV_BLC_HIST_CTL_A (DISPLAY_MMIO_BASE(dev_priv) + 0x61260)
->> +#define _VLV_BLC_HIST_CTL_B (DISPLAY_MMIO_BASE(dev_priv) + 0x61360)
->> +#define VLV_BLC_HIST_CTL(pipe) _MMIO_PIPE(pipe,
->> _VLV_BLC_HIST_CTL_A, \
->> +                                      _VLV_BLC_HIST_CTL_B)
->> +
->> +/* Backlight control */
->> +#define BLC_PWM_CTL2 _MMIO(DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61250) /* 965+ only */
->> +#define   BLM_PWM_ENABLE             (1 << 31)
->> +#define   BLM_COMBINATION_MODE               (1 << 30) /* gen4 only */
->> +#define   BLM_PIPE_SELECT            (1 << 29)
->> +#define   BLM_PIPE_SELECT_IVB                (3 << 29)
->> +#define   BLM_PIPE_A                 (0 << 29)
->> +#define   BLM_PIPE_B                 (1 << 29)
->> +#define   BLM_PIPE_C                 (2 << 29) /* ivb + */
->> +#define   BLM_TRANSCODER_A           BLM_PIPE_A /* hsw */
->> +#define   BLM_TRANSCODER_B           BLM_PIPE_B
->> +#define   BLM_TRANSCODER_C           BLM_PIPE_C
->> +#define   BLM_TRANSCODER_EDP         (3 << 29)
->> +#define   BLM_PIPE(pipe)             ((pipe) << 29)
->> +#define   BLM_POLARITY_I965          (1 << 28) /* gen4 only */
->> +#define   BLM_PHASE_IN_INTERUPT_STATUS       (1 << 26)
->> +#define   BLM_PHASE_IN_ENABLE                (1 << 25)
->> +#define   BLM_PHASE_IN_INTERUPT_ENABL        (1 << 24)
->> +#define   BLM_PHASE_IN_TIME_BASE_SHIFT       (16)
->> +#define   BLM_PHASE_IN_TIME_BASE_MASK        (0xff << 16)
->> +#define   BLM_PHASE_IN_COUNT_SHIFT   (8)
->> +#define   BLM_PHASE_IN_COUNT_MASK    (0xff << 8)
->> +#define   BLM_PHASE_IN_INCR_SHIFT    (0)
->> +#define   BLM_PHASE_IN_INCR_MASK     (0xff << 0)
->> +#define BLC_PWM_CTL  _MMIO(DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61254)
->> +/*
->> + * This is the most significant 15 bits of the number of backlight
->> +cycles in a
->> + * complete cycle of the modulated backlight control.
->> + *
->> + * The actual value is this field multiplied by two.
->> + */
->> +#define   BACKLIGHT_MODULATION_FREQ_SHIFT    (17)
->> +#define   BACKLIGHT_MODULATION_FREQ_MASK     (0x7fff << 17)
->> +#define   BLM_LEGACY_MODE                    (1 << 16) /* gen2 only */
->> +/*
->> + * This is the number of cycles out of the backlight modulation cycle
->> +for which
->> + * the backlight is on.
->> + *
->> + * This field must be no greater than the number of cycles in the
->> +complete
->> + * backlight modulation cycle.
->> + */
->> +#define   BACKLIGHT_DUTY_CYCLE_SHIFT         (0)
->> +#define   BACKLIGHT_DUTY_CYCLE_MASK          (0xffff)
->> +#define   BACKLIGHT_DUTY_CYCLE_MASK_PNV              (0xfffe)
->> +#define   BLM_POLARITY_PNV                   (1 << 0) /* pnv only */
->> +
->> +#define BLC_HIST_CTL _MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61260)
->> +#define  BLM_HISTOGRAM_ENABLE                        (1 << 31)
->> +
->> +/* New registers for PCH-split platforms. Safe where new bits show up,
->> +the
->> + * register layout machtes with gen4 BLC_PWM_CTL[12]. */
->> +#define BLC_PWM_CPU_CTL2     _MMIO(0x48250)
->> +#define BLC_PWM_CPU_CTL              _MMIO(0x48254)
->> +
->> +#define HSW_BLC_PWM2_CTL     _MMIO(0x48350)
->> +
->> +/* PCH CTL1 is totally different, all but the below bits are reserved.
->> +CTL2 is
->> + * like the normal CTL from gen4 and earlier. Hooray for confusing nami=
-ng.
->> */
->> +#define BLC_PWM_PCH_CTL1     _MMIO(0xc8250)
->> +#define   BLM_PCH_PWM_ENABLE                 (1 << 31)
->> +#define   BLM_PCH_OVERRIDE_ENABLE            (1 << 30)
->> +#define   BLM_PCH_POLARITY                   (1 << 29)
->> +#define BLC_PWM_PCH_CTL2     _MMIO(0xc8254)
->> +
->> +/* BXT backlight register definition. */
->> +#define _BXT_BLC_PWM_CTL1                    0xC8250
->> +#define   BXT_BLC_PWM_ENABLE                 (1 << 31)
->> +#define   BXT_BLC_PWM_POLARITY                       (1 << 29)
->> +#define _BXT_BLC_PWM_FREQ1                   0xC8254
->> +#define _BXT_BLC_PWM_DUTY1                   0xC8258
->> +
->> +#define _BXT_BLC_PWM_CTL2                    0xC8350
->> +#define _BXT_BLC_PWM_FREQ2                   0xC8354
->> +#define _BXT_BLC_PWM_DUTY2                   0xC8358
->> +
->> +#define BXT_BLC_PWM_CTL(controller)    _MMIO_PIPE(controller,
->>       \
->> +                                     _BXT_BLC_PWM_CTL1,
->> _BXT_BLC_PWM_CTL2)
->> +#define BXT_BLC_PWM_FREQ(controller)   _MMIO_PIPE(controller, \
->> +                                     _BXT_BLC_PWM_FREQ1,
->> _BXT_BLC_PWM_FREQ2)
->> +#define BXT_BLC_PWM_DUTY(controller)   _MMIO_PIPE(controller, \
->> +                                     _BXT_BLC_PWM_DUTY1,
->> _BXT_BLC_PWM_DUTY2)
->> +
->> +/* Utility pin */
->> +#define UTIL_PIN_CTL                 _MMIO(0x48400)
->> +#define   UTIL_PIN_ENABLE            (1 << 31)
->> +#define   UTIL_PIN_PIPE_MASK         (3 << 29)
->> +#define   UTIL_PIN_PIPE(x)           ((x) << 29)
->> +#define   UTIL_PIN_MODE_MASK         (0xf << 24)
->> +#define   UTIL_PIN_MODE_DATA         (0 << 24)
->> +#define   UTIL_PIN_MODE_PWM          (1 << 24)
->> +#define   UTIL_PIN_MODE_VBLANK               (4 << 24)
->> +#define   UTIL_PIN_MODE_VSYNC                (5 << 24)
->> +#define   UTIL_PIN_MODE_EYE_LEVEL    (8 << 24)
->> +#define   UTIL_PIN_OUTPUT_DATA               (1 << 23)
->> +#define   UTIL_PIN_POLARITY          (1 << 22)
->> +#define   UTIL_PIN_DIRECTION_INPUT   (1 << 19)
->> +#define   UTIL_PIN_INPUT_DATA                (1 << 16)
->> +
->> +#endif /* __INTEL_BACKLIGHT_REGS_H__ */
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
->> b/drivers/gpu/drm/i915/display/intel_display_power.c
->> index 3f84af6beff3..1d8f2935ed98 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->> @@ -7,6 +7,7 @@
->>
->>  #include "i915_drv.h"
->>  #include "i915_irq.h"
->> +#include "intel_backlight_regs.h"
->>  #include "intel_cdclk.h"
->>  #include "intel_combo_phy.h"
->>  #include "intel_de.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> index 91cfd5890f46..7044016d4d98 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> @@ -5,6 +5,7 @@
->>
->>  #include "i915_drv.h"
->>  #include "i915_irq.h"
->> +#include "intel_backlight_regs.h"
->>  #include "intel_combo_phy.h"
->>  #include "intel_combo_phy_regs.h"
->>  #include "intel_crt.h"
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h
->> b/drivers/gpu/drm/i915/i915_reg.h index ad2c441aceca..50d7bfd541ad
->> 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -2925,118 +2925,6 @@
->>
->>  #define PFIT_AUTO_RATIOS _MMIO(DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61238)
->>
->> -#define _VLV_BLC_PWM_CTL2_A (DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61250) -#define _VLV_BLC_PWM_CTL2_B (DISPLAY_MMIO_BASE(dev_priv)
->> + 0x61350) -#define VLV_BLC_PWM_CTL2(pipe) _MMIO_PIPE(pipe,
->> _VLV_BLC_PWM_CTL2_A, \
->> -                                      _VLV_BLC_PWM_CTL2_B)
->> -
->> -#define _VLV_BLC_PWM_CTL_A (DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61254) -#define _VLV_BLC_PWM_CTL_B (DISPLAY_MMIO_BASE(dev_priv)
->> + 0x61354) -#define VLV_BLC_PWM_CTL(pipe) _MMIO_PIPE(pipe,
->> _VLV_BLC_PWM_CTL_A, \
->> -                                     _VLV_BLC_PWM_CTL_B)
->> -
->> -#define _VLV_BLC_HIST_CTL_A (DISPLAY_MMIO_BASE(dev_priv) + 0x61260)
->> -#define _VLV_BLC_HIST_CTL_B (DISPLAY_MMIO_BASE(dev_priv) + 0x61360)
->> -#define VLV_BLC_HIST_CTL(pipe) _MMIO_PIPE(pipe,
->> _VLV_BLC_HIST_CTL_A, \
->> -                                      _VLV_BLC_HIST_CTL_B)
->> -
->> -/* Backlight control */
->> -#define BLC_PWM_CTL2 _MMIO(DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61250) /* 965+ only */
->> -#define   BLM_PWM_ENABLE             (1 << 31)
->> -#define   BLM_COMBINATION_MODE               (1 << 30) /* gen4 only */
->> -#define   BLM_PIPE_SELECT            (1 << 29)
->> -#define   BLM_PIPE_SELECT_IVB                (3 << 29)
->> -#define   BLM_PIPE_A                 (0 << 29)
->> -#define   BLM_PIPE_B                 (1 << 29)
->> -#define   BLM_PIPE_C                 (2 << 29) /* ivb + */
->> -#define   BLM_TRANSCODER_A           BLM_PIPE_A /* hsw */
->> -#define   BLM_TRANSCODER_B           BLM_PIPE_B
->> -#define   BLM_TRANSCODER_C           BLM_PIPE_C
->> -#define   BLM_TRANSCODER_EDP         (3 << 29)
->> -#define   BLM_PIPE(pipe)             ((pipe) << 29)
->> -#define   BLM_POLARITY_I965          (1 << 28) /* gen4 only */
->> -#define   BLM_PHASE_IN_INTERUPT_STATUS       (1 << 26)
->> -#define   BLM_PHASE_IN_ENABLE                (1 << 25)
->> -#define   BLM_PHASE_IN_INTERUPT_ENABL        (1 << 24)
->> -#define   BLM_PHASE_IN_TIME_BASE_SHIFT       (16)
->> -#define   BLM_PHASE_IN_TIME_BASE_MASK        (0xff << 16)
->> -#define   BLM_PHASE_IN_COUNT_SHIFT   (8)
->> -#define   BLM_PHASE_IN_COUNT_MASK    (0xff << 8)
->> -#define   BLM_PHASE_IN_INCR_SHIFT    (0)
->> -#define   BLM_PHASE_IN_INCR_MASK     (0xff << 0)
->> -#define BLC_PWM_CTL  _MMIO(DISPLAY_MMIO_BASE(dev_priv) +
->> 0x61254)
->> -/*
->> - * This is the most significant 15 bits of the number of backlight cycl=
-es in a
->> - * complete cycle of the modulated backlight control.
->> - *
->> - * The actual value is this field multiplied by two.
->> - */
->> -#define   BACKLIGHT_MODULATION_FREQ_SHIFT    (17)
->> -#define   BACKLIGHT_MODULATION_FREQ_MASK     (0x7fff << 17)
->> -#define   BLM_LEGACY_MODE                    (1 << 16) /* gen2 only */
->> -/*
->> - * This is the number of cycles out of the backlight modulation cycle f=
-or
->> which
->> - * the backlight is on.
->> - *
->> - * This field must be no greater than the number of cycles in the compl=
-ete
->> - * backlight modulation cycle.
->> - */
->> -#define   BACKLIGHT_DUTY_CYCLE_SHIFT         (0)
->> -#define   BACKLIGHT_DUTY_CYCLE_MASK          (0xffff)
->> -#define   BACKLIGHT_DUTY_CYCLE_MASK_PNV              (0xfffe)
->> -#define   BLM_POLARITY_PNV                   (1 << 0) /* pnv only */
->> -
->> -#define BLC_HIST_CTL _MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61260)
->> -#define  BLM_HISTOGRAM_ENABLE                        (1 << 31)
->> -
->> -/* New registers for PCH-split platforms. Safe where new bits show up, =
-the
->> - * register layout machtes with gen4 BLC_PWM_CTL[12]. */
->> -#define BLC_PWM_CPU_CTL2     _MMIO(0x48250)
->> -#define BLC_PWM_CPU_CTL              _MMIO(0x48254)
->> -
->> -#define HSW_BLC_PWM2_CTL     _MMIO(0x48350)
->> -
->> -/* PCH CTL1 is totally different, all but the below bits are reserved. =
-CTL2 is
->> - * like the normal CTL from gen4 and earlier. Hooray for confusing nami=
-ng.
->> */
->> -#define BLC_PWM_PCH_CTL1     _MMIO(0xc8250)
->> -#define   BLM_PCH_PWM_ENABLE                 (1 << 31)
->> -#define   BLM_PCH_OVERRIDE_ENABLE            (1 << 30)
->> -#define   BLM_PCH_POLARITY                   (1 << 29)
->> -#define BLC_PWM_PCH_CTL2     _MMIO(0xc8254)
->> -
->> -#define UTIL_PIN_CTL                 _MMIO(0x48400)
->> -#define   UTIL_PIN_ENABLE            (1 << 31)
->> -#define   UTIL_PIN_PIPE_MASK         (3 << 29)
->> -#define   UTIL_PIN_PIPE(x)           ((x) << 29)
->> -#define   UTIL_PIN_MODE_MASK         (0xf << 24)
->> -#define   UTIL_PIN_MODE_DATA         (0 << 24)
->> -#define   UTIL_PIN_MODE_PWM          (1 << 24)
->> -#define   UTIL_PIN_MODE_VBLANK               (4 << 24)
->> -#define   UTIL_PIN_MODE_VSYNC                (5 << 24)
->> -#define   UTIL_PIN_MODE_EYE_LEVEL    (8 << 24)
->> -#define   UTIL_PIN_OUTPUT_DATA               (1 << 23)
->> -#define   UTIL_PIN_POLARITY          (1 << 22)
->> -#define   UTIL_PIN_DIRECTION_INPUT   (1 << 19)
->> -#define   UTIL_PIN_INPUT_DATA                (1 << 16)
->> -
->> -/* BXT backlight register definition. */
->> -#define _BXT_BLC_PWM_CTL1                    0xC8250
->> -#define   BXT_BLC_PWM_ENABLE                 (1 << 31)
->> -#define   BXT_BLC_PWM_POLARITY                       (1 << 29)
->> -#define _BXT_BLC_PWM_FREQ1                   0xC8254
->> -#define _BXT_BLC_PWM_DUTY1                   0xC8258
->> -
->> -#define _BXT_BLC_PWM_CTL2                    0xC8350
->> -#define _BXT_BLC_PWM_FREQ2                   0xC8354
->> -#define _BXT_BLC_PWM_DUTY2                   0xC8358
->> -
->> -#define BXT_BLC_PWM_CTL(controller)    _MMIO_PIPE(controller,
->>       \
->> -                                     _BXT_BLC_PWM_CTL1,
->> _BXT_BLC_PWM_CTL2)
->> -#define BXT_BLC_PWM_FREQ(controller)   _MMIO_PIPE(controller, \
->> -                                     _BXT_BLC_PWM_FREQ1,
->> _BXT_BLC_PWM_FREQ2)
->> -#define BXT_BLC_PWM_DUTY(controller)   _MMIO_PIPE(controller, \
->> -                                     _BXT_BLC_PWM_DUTY1,
->> _BXT_BLC_PWM_DUTY2)
->> -
->>  #define PCH_GTC_CTL          _MMIO(0xe7000)
->>  #define   PCH_GTC_ENABLE     (1 << 31)
->>
->> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
->> b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
->> index 157e166672d7..e015bc91a26f 100644
->> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
->> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
->> @@ -4,6 +4,7 @@
->>   */
->>
->>  #include "display/intel_audio_regs.h"
->> +#include "display/intel_backlight_regs.h"
->>  #include "display/intel_dmc_regs.h"
->>  #include "display/vlv_dsi_pll_regs.h"
->>  #include "gt/intel_gt_regs.h"
->> --
->> 2.34.1
->
+Additionally after the DSM call it scans the FIA TC live state
+bits to check for DPin usage. Looks like its trying to make sure
+the driver stops poking at the relevant power wells once in DPin
+mode. i915 doesn't check that stuff atm so we might end up
+mangling something while the dGPU is driving the port.
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Ville Syrjälä
+Intel
