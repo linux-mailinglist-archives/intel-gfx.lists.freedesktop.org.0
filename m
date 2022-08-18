@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85CAC59813F
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 12:04:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3350259815A
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 12:16:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DFDBCA43C;
-	Thu, 18 Aug 2022 10:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D766F9A9BC;
+	Thu, 18 Aug 2022 10:16:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C0FF14B884
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 10:04:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3E54BC7D8;
+ Thu, 18 Aug 2022 10:15:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660817056; x=1692353056;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=sMvlYFuTo/z/M5AC5cDHdxqhRUekpsJxWnxwGNTJN7Y=;
- b=Qgb5kbRJqm2+F/SDm/9j32GXvl1uYRShoXWNoqMn0n8TQgfmM3+AZ/IG
- 57qJH4PJWHQlQRocJjvJX8d/86X/3TasV5hoMvrQbKHJ9Qu1E8/1vBCsR
- +c/BZZR3bRjPhed2HrUV1r9DeznSJbN+FpRog7htBWBKpNnI3s+rTNtPz
- h/TP5xsQBl69eSjsHRkZlXg5FVjIw5PwOYZZxjZ8wrUHurW9FzibjlON1
- aw+iO8RkChVqJnoDhEPYsKLVZuoCbRA3/WiSa0pUkj5WqpioUsLPtOO+L
- avBcQDhQ0y88J7jZb5KfoWlbT0+iCNdykW8Di2WdWvOlUUCc3dLWLHGBq g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10442"; a="293996079"
-X-IronPort-AV: E=Sophos;i="5.93,246,1654585200"; d="scan'208";a="293996079"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1660817747; x=1692353747;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=YIlK145YnTrtkqCSVNUYb214nlmUyZrXguc7Ge3+Dw4=;
+ b=KUdWlF7ti9SyJLgQCfibHMraEWyr1YlLtC4Zf2Xl4nsNrcA6DoXcuKMU
+ 3k2Zd/f7Xixt3MbllChLS6JwkVsvqO17HLWYT04CYzErwOeT66o6v7in2
+ f2mxoJL61PewgqSKt6kerkjsy6JdKy/uL3HcDacua3W74mTE0xKNfKIRC
+ 3sdHD3iiK6+vQ6za3CawshFK7P29G7oIDxPqbhxNbkfy52b6tanKSPOJ8
+ C3NlYh5TuujbpHNUB4NGSFXz0eRc1ELX4CfF/TBb70nLLvKek+ruhn2a9
+ iGAaj4j8o2+5gh1BL+0SBwZn4Y8qCrTbjd8szr5WJBUx74P3mYINiTZgT A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10442"; a="293998529"
+X-IronPort-AV: E=Sophos;i="5.93,246,1654585200"; d="scan'208";a="293998529"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 03:04:14 -0700
-X-IronPort-AV: E=Sophos;i="5.93,246,1654585200"; d="scan'208";a="636759408"
-Received: from guoqingz-mobl.ger.corp.intel.com (HELO [10.252.51.8])
- ([10.252.51.8])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 03:04:13 -0700
-Message-ID: <914a1ac6-202f-eca4-46dc-ac1899321182@linux.intel.com>
-Date: Thu, 18 Aug 2022 11:57:07 +0200
+ 18 Aug 2022 03:15:46 -0700
+X-IronPort-AV: E=Sophos;i="5.93,246,1654585200"; d="scan'208";a="668044508"
+Received: from mwiniars-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.40.166])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2022 03:15:35 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Colin King (gmail)" <colin.i.king@gmail.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>, "zhenyuw@linux.intel.com"
+ <zhenyuw@linux.intel.com>, "King, Colin" <colin.king@intel.com>
+In-Reply-To: <9f6e3433-5748-b7e4-bbc6-b0e47cb9d1c5@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220815023855.GF1089@zhen-hp.sh.intel.com>
+ <YvrXnUnnot139qKL@intel.com> <20220816040508.GG1089@zhen-hp.sh.intel.com>
+ <20220816044303.GH1089@zhen-hp.sh.intel.com>
+ <116bdd80d399da39a6ba3f3d2f71a1f78e2b026f.camel@intel.com>
+ <9f6e3433-5748-b7e4-bbc6-b0e47cb9d1c5@gmail.com>
+Date: Thu, 18 Aug 2022 13:15:33 +0300
+Message-ID: <875yipq2m2.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.1.2
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <cover.1655712106.git.jani.nikula@intel.com>
- <a0422f0a8ac055f65b7922bcd3119b180a41e79e.1655712106.git.jani.nikula@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <a0422f0a8ac055f65b7922bcd3119b180a41e79e.1655712106.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 16/16] drm/i915: make device info a pointer
- to static const data
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,93 +62,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 20-06-2022 om 10:49 schreef Jani Nikula:
-> Now that the device info is no longer modified runtime, we don't need to
-> make a copy of it, and we can convert i915->__info into a pointer to
-> static const data. Also remove mkwrite_device_info().
+On Wed, 17 Aug 2022, "Colin King (gmail)" <colin.i.king@gmail.com> wrote:
+> On 17/08/2022 21:07, Vivi, Rodrigo wrote:
+>> On Tue, 2022-08-16 at 12:43 +0800, Zhenyu Wang wrote:
+>>> On 2022.08.16 12:05:08 +0800, Zhenyu Wang wrote:
+>>>> On 2022.08.15 19:32:45 -0400, Rodrigo Vivi wrote:
+>>>>> On Mon, Aug 15, 2022 at 10:38:55AM +0800, Zhenyu Wang wrote:
+>>> oh, surprise! I just found Colin's email is actually defined in
+>>> .mailmap,
+>>> so all his commits in kernel are changed for @intel.com address as in
+>>> mailmap...
+>> 
+>> Colin, would you mind to get the Sign-off-by in the patches the same
+>> as your authorship so the tools don't get confused?
+>> (starting with modifying in tree this already merged patch)
 >
-> This does increase the text size slightly.
+> Since my patches are generally trivial janitorial fixed done in my spare 
+> time I'm going to get the .mailmap changed to use my gmail email address 
+> rather than my Intel one (since I don't do kernel work in my current role).
 >
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> ---
->
-> An alternative is to keep copying device info, but casting away the
-> const only once at the copy time, removing mkwrite_device_info().
-> ---
->  drivers/gpu/drm/i915/i915_driver.c |  8 ++------
->  drivers/gpu/drm/i915/i915_drv.h    | 11 ++---------
->  2 files changed, 4 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 5969cc7805d3..9c9c492e97a8 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -793,9 +793,6 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
->  static struct drm_i915_private *
->  i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
->  {
-> -	const struct intel_device_info *match_info =
-> -		(struct intel_device_info *)ent->driver_data;
-> -	struct intel_device_info *device_info;
->  	struct intel_runtime_info *runtime;
->  	struct drm_i915_private *i915;
->  
-> @@ -809,9 +806,8 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	/* Device parameters start as a copy of module parameters. */
->  	i915_params_copy(&i915->params, &i915_modparams);
->  
-> -	/* Setup the write-once "constant" device info */
-> -	device_info = mkwrite_device_info(i915);
-> -	memcpy(device_info, match_info, sizeof(*device_info));
-> +	/* Static const device info. */
-> +	i915->__info = (const struct intel_device_info *)ent->driver_data;
->  
->  	/* Initialize initial runtime info from static const data and pdev. */
->  	runtime = RUNTIME_INFO(i915);
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 89472440947c..a2a57f07c5be 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -380,7 +380,7 @@ struct drm_i915_private {
->  	/* i915 device parameters */
->  	struct i915_params params;
->  
-> -	const struct intel_device_info __info; /* Use INTEL_INFO() to access. */
-> +	const struct intel_device_info *__info; /* Use INTEL_INFO() to access. */
->  	struct intel_runtime_info __runtime; /* Use RUNTIME_INFO() to access. */
->  	struct intel_driver_caps caps;
->  
-> @@ -848,7 +848,7 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
->  	GENMASK(INTEL_FRONTBUFFER_BITS_PER_PIPE * ((pipe) + 1) - 1, \
->  		INTEL_FRONTBUFFER_BITS_PER_PIPE * (pipe))
->  
-> -#define INTEL_INFO(dev_priv)	(&(dev_priv)->__info)
-> +#define INTEL_INFO(__i915)	(__i915->__info)
->  #define RUNTIME_INFO(dev_priv)	(&(dev_priv)->__runtime)
->  #define DRIVER_CAPS(dev_priv)	(&(dev_priv)->caps)
->  
-> @@ -1432,13 +1432,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv);
->  
->  int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
->  
-> -/* intel_device_info.c */
-> -static inline struct intel_device_info *
-> -mkwrite_device_info(struct drm_i915_private *dev_priv)
-> -{
-> -	return (struct intel_device_info *)INTEL_INFO(dev_priv);
-> -}
-> -
->  static inline enum i915_map_type
->  i915_coherent_map_type(struct drm_i915_private *i915,
->  		       struct drm_i915_gem_object *obj, bool always_coherent)
+> This should clean up the confusion. Apologies.
 
-I think just moving around things is safest in this case. I believe all should be moved to the new display sub-struct, but this is a start of making that easier.
+Everyone hold your horses.
 
-For the series, except patch 5:
+I think our tooling should handle the mailmap stuff. The commit *is*
+fine, it's just that the when we check it, we let mailmap alter it. We
+should check the commit without mailmap modifications.
 
-Reviewed-by: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
+BR,
+Jani.
 
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
