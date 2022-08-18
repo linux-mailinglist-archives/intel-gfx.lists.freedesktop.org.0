@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 452595A01D1
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 21:13:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 919675A01D4
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 21:13:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A263C2925;
-	Wed, 24 Aug 2022 19:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64174C35A7;
+	Wed, 24 Aug 2022 19:12:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C509D10E7FE
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 18:44:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 377A210E7B2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 18:44:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660848246;
+ s=mimecast20190719; t=1660848298;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=R3rOQzgKrQ1/uYxJD4dj6uASJ98gdoTywsZVqSCz0lw=;
- b=LbPaahsPmmzK1JkUz9kKvGdMoHb2RaJNQnm52Yvrqjl10xHdHz4gILSKpxduLgiWzIJdeP
- xr485eE2TbPcPzJ4+XQn4zhiLMbpQ0dBW6ZZ1RkFdGnQI/CqNd0CI+nOjEUl04c78Q1pXb
- 04mhxAipTvyFAdRUpZKgVXwTZkgBeDg=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=bGmxjTC329YfKDZQ5Je0yyDKIkqA4WAm4riI44+DPbM=;
+ b=dagaJmWAJddtInbY0qDtDT0m71ixWqAI42lv2tJXO9ELmUg31yrIF0arSdHaUaJ2+YIfVa
+ ueqhiR4JOAu8W0Q2eFVL7hAytBk3N2FeOMi6HjqSE3XNaLWVEVF8R7NPtPDMOsv8T3BJTg
+ +vHf10LlMYbZ1xHVJabfv4h1XHsY2f0=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-490-r7leWSVmNKe-_eED7lIUjw-1; Thu, 18 Aug 2022 14:44:03 -0400
-X-MC-Unique: r7leWSVmNKe-_eED7lIUjw-1
+ us-mta-610-qPaX2vxOOvuKBZmIuP1l2A-1; Thu, 18 Aug 2022 14:44:55 -0400
+X-MC-Unique: qPaX2vxOOvuKBZmIuP1l2A-1
 Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com
  [10.11.54.10])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 8E76C800124;
- Thu, 18 Aug 2022 18:44:02 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id E5CF01C0754D;
+ Thu, 18 Aug 2022 18:44:53 +0000 (UTC)
 Received: from localhost.localdomain (unknown [10.39.192.20])
- by smtp.corp.redhat.com (Postfix) with ESMTP id ED7A0492C3B;
- Thu, 18 Aug 2022 18:43:58 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 31272400F36;
+ Thu, 18 Aug 2022 18:44:50 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Ben Skeggs <bskeggs@redhat.com>,
 	Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
@@ -55,15 +55,15 @@ To: Ben Skeggs <bskeggs@redhat.com>,
 	Mika Westerberg <mika.westerberg@linux.intel.com>,
 	Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
 	Andy Shevchenko <andy@kernel.org>
-Date: Thu, 18 Aug 2022 20:42:43 +0200
-Message-Id: <20220818184302.10051-13-hdegoede@redhat.com>
+Date: Thu, 18 Aug 2022 20:42:56 +0200
+Message-Id: <20220818184302.10051-26-hdegoede@redhat.com>
 In-Reply-To: <20220818184302.10051-1-hdegoede@redhat.com>
 References: <20220818184302.10051-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
-Subject: [Intel-gfx] [PATCH v3 12/31] drm/nouveau: Register ACPI video
- backlight when nv_backlight registration fails
+Subject: [Intel-gfx] [PATCH v3 25/31] platform/x86: asus-wmi: Move
+ acpi_backlight=native quirks to ACPI video_detect.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,57 +78,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-acpi@vger.kernel.org, David Airlie <airlied@linux.ie>,
  nouveau@lists.freedesktop.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
  dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
  Len Brown <lenb@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Typically the acpi_video driver will initialize before nouveau, which
-used to cause /sys/class/backlight/acpi_video0 to get registered and then
-nouveau would register its own nv_backlight device later. After which
-the drivers/acpi/video_detect.c code unregistered the acpi_video0 device
-to avoid there being 2 backlight devices.
+Remove the asus-wmi quirk_entry.wmi_backlight_native quirk-flag, which
+called acpi_video_set_dmi_backlight_type(acpi_backlight_native) and replace
+it with acpi/video_detect.c video_detect_dmi_table[] entries using the
+video_detect_force_native callback.
 
-This means that userspace used to briefly see 2 devices and the
-disappearing of acpi_video0 after a brief time confuses the systemd
-backlight level save/restore code, see e.g.:
-https://bbs.archlinux.org/viewtopic.php?id=269920
+acpi_video_set_dmi_backlight_type() is troublesome because it may end up
+getting called after other backlight drivers have already called
+acpi_video_get_backlight_type() resulting in the other drivers
+already being registered even though they should not.
 
-To fix this the ACPI video code has been modified to make backlight class
-device registration a separate step, relying on the drm/kms driver to
-ask for the acpi_video backlight registration after it is done setting up
-its native backlight device.
-
-Add a call to the new acpi_video_register_backlight() when native backlight
-device registration has failed / was skipped to ensure that there is a
-backlight device available before the drm_device gets registered with
-userspace.
-
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_backlight.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/acpi/video_detect.c        |  8 ++++++++
+ drivers/platform/x86/asus-nb-wmi.c | 14 --------------
+ drivers/platform/x86/asus-wmi.c    |  3 ---
+ drivers/platform/x86/asus-wmi.h    |  1 -
+ 4 files changed, 8 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-index 91c504c7b82c..befff2a8b763 100644
---- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-@@ -437,6 +437,13 @@ nouveau_backlight_init(struct drm_connector *connector)
+diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
+index 1574ff837e31..a871ee69fcb2 100644
+--- a/drivers/acpi/video_detect.c
++++ b/drivers/acpi/video_detect.c
+@@ -564,6 +564,14 @@ static const struct dmi_system_id video_detect_dmi_table[] = {
+ 		DMI_MATCH(DMI_PRODUCT_NAME, "GA503"),
+ 		},
+ 	},
++	{
++	 .callback = video_detect_force_native,
++	 /* Asus UX303UB */
++	 .matches = {
++		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "UX303UB"),
++		},
++	},
+ 	/*
+ 	 * Clevo NL5xRU and NL5xNU/TUXEDO Aura 15 Gen1 and Gen2 have both a
+ 	 * working native and video interface. However the default detection
+diff --git a/drivers/platform/x86/asus-nb-wmi.c b/drivers/platform/x86/asus-nb-wmi.c
+index 810a94557a85..bbfed85051ee 100644
+--- a/drivers/platform/x86/asus-nb-wmi.c
++++ b/drivers/platform/x86/asus-nb-wmi.c
+@@ -97,11 +97,6 @@ static struct quirk_entry quirk_asus_x200ca = {
+ 	.wmi_backlight_set_devstate = true,
+ };
  
- fail_alloc:
- 	kfree(bl);
-+	/*
-+	 * If we get here we have an internal panel, but no nv_backlight,
-+	 * try registering an ACPI video backlight device instead.
-+	 */
-+	if (ret == 0)
-+		acpi_video_register_backlight();
-+
- 	return ret;
- }
+-static struct quirk_entry quirk_asus_ux303ub = {
+-	.wmi_backlight_native = true,
+-	.wmi_backlight_set_devstate = true,
+-};
+-
+ static struct quirk_entry quirk_asus_x550lb = {
+ 	.wmi_backlight_set_devstate = true,
+ 	.xusb2pr = 0x01D9,
+@@ -372,15 +367,6 @@ static const struct dmi_system_id asus_quirks[] = {
+ 		},
+ 		.driver_data = &quirk_asus_x200ca,
+ 	},
+-	{
+-		.callback = dmi_matched,
+-		.ident = "ASUSTeK COMPUTER INC. UX303UB",
+-		.matches = {
+-			DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
+-			DMI_MATCH(DMI_PRODUCT_NAME, "UX303UB"),
+-		},
+-		.driver_data = &quirk_asus_ux303ub,
+-	},
+ 	{
+ 		.callback = dmi_matched,
+ 		.ident = "ASUSTeK COMPUTER INC. UX330UAK",
+diff --git a/drivers/platform/x86/asus-wmi.c b/drivers/platform/x86/asus-wmi.c
+index 5cf9d9aff164..434249ac47a5 100644
+--- a/drivers/platform/x86/asus-wmi.c
++++ b/drivers/platform/x86/asus-wmi.c
+@@ -3634,9 +3634,6 @@ static int asus_wmi_add(struct platform_device *pdev)
+ 	if (asus->driver->quirks->wmi_force_als_set)
+ 		asus_wmi_set_als();
  
+-	if (asus->driver->quirks->wmi_backlight_native)
+-		acpi_video_set_dmi_backlight_type(acpi_backlight_native);
+-
+ 	if (asus->driver->quirks->xusb2pr)
+ 		asus_wmi_set_xusb2pr(asus);
+ 
+diff --git a/drivers/platform/x86/asus-wmi.h b/drivers/platform/x86/asus-wmi.h
+index 30770e411301..f30252efe1db 100644
+--- a/drivers/platform/x86/asus-wmi.h
++++ b/drivers/platform/x86/asus-wmi.h
+@@ -29,7 +29,6 @@ struct quirk_entry {
+ 	bool hotplug_wireless;
+ 	bool scalar_panel_brightness;
+ 	bool store_backlight_power;
+-	bool wmi_backlight_native;
+ 	bool wmi_backlight_set_devstate;
+ 	bool wmi_force_als_set;
+ 	bool use_kbd_dock_devid;
 -- 
 2.37.2
 
