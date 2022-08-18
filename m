@@ -2,54 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3350259815A
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 12:16:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7101598185
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 12:37:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D766F9A9BC;
-	Thu, 18 Aug 2022 10:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8555DAF68E;
+	Thu, 18 Aug 2022 10:37:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3E54BC7D8;
- Thu, 18 Aug 2022 10:15:47 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 635801130E8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 10:37:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660817747; x=1692353747;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=YIlK145YnTrtkqCSVNUYb214nlmUyZrXguc7Ge3+Dw4=;
- b=KUdWlF7ti9SyJLgQCfibHMraEWyr1YlLtC4Zf2Xl4nsNrcA6DoXcuKMU
- 3k2Zd/f7Xixt3MbllChLS6JwkVsvqO17HLWYT04CYzErwOeT66o6v7in2
- f2mxoJL61PewgqSKt6kerkjsy6JdKy/uL3HcDacua3W74mTE0xKNfKIRC
- 3sdHD3iiK6+vQ6za3CawshFK7P29G7oIDxPqbhxNbkfy52b6tanKSPOJ8
- C3NlYh5TuujbpHNUB4NGSFXz0eRc1ELX4CfF/TBb70nLLvKek+ruhn2a9
- iGAaj4j8o2+5gh1BL+0SBwZn4Y8qCrTbjd8szr5WJBUx74P3mYINiTZgT A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10442"; a="293998529"
-X-IronPort-AV: E=Sophos;i="5.93,246,1654585200"; d="scan'208";a="293998529"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 03:15:46 -0700
-X-IronPort-AV: E=Sophos;i="5.93,246,1654585200"; d="scan'208";a="668044508"
-Received: from mwiniars-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.40.166])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 03:15:35 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Colin King (gmail)" <colin.i.king@gmail.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>, "zhenyuw@linux.intel.com"
- <zhenyuw@linux.intel.com>, "King, Colin" <colin.king@intel.com>
-In-Reply-To: <9f6e3433-5748-b7e4-bbc6-b0e47cb9d1c5@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220815023855.GF1089@zhen-hp.sh.intel.com>
- <YvrXnUnnot139qKL@intel.com> <20220816040508.GG1089@zhen-hp.sh.intel.com>
- <20220816044303.GH1089@zhen-hp.sh.intel.com>
- <116bdd80d399da39a6ba3f3d2f71a1f78e2b026f.camel@intel.com>
- <9f6e3433-5748-b7e4-bbc6-b0e47cb9d1c5@gmail.com>
-Date: Thu, 18 Aug 2022 13:15:33 +0300
-Message-ID: <875yipq2m2.fsf@intel.com>
+ t=1660819045; x=1692355045;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eq1deQI9ZsBZbBC4VG+nPnQepPFHE3FPGKj6vcVvuGc=;
+ b=IRSFb9oQWQVOQYl3uOeZx8IwRQqytxBGtptAMKfPypZH6x5BbMoqABQk
+ z9731s3t0Hyzwugb2OFvU164MZpcud9d+wwIYJ4aOgIjZjgsqRwftDaMq
+ OqCeKeO6YxhjXgvKZm+C1Wye9M7QASw5w1r47onV5iIHewRjA5/P18NRS
+ DP9xKNbk8fBkBl7atxqLDc9C/AANDNv3tq2UvSjo+1j3Lp0MO7mT5SFcL
+ 2d01rp+vJlyuQQ4HsdK37I+sn0dk1CTtsVZPnlsqnn2135PyjMFGGLlGZ
+ JbxJS4lGZQV5sQp/OLjCM2+AepkjBOTk5g/prZvbPsf/TUyf+BJu0PPXG A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10442"; a="379019401"
+X-IronPort-AV: E=Sophos;i="5.93,246,1654585200"; d="scan'208";a="379019401"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2022 03:37:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,246,1654585200"; d="scan'208";a="584161112"
+Received: from kandpal.iind.intel.com ([10.190.239.32])
+ by orsmga006.jf.intel.com with ESMTP; 18 Aug 2022 03:37:21 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 18 Aug 2022 16:06:39 +0530
+Message-Id: <20220818103642.501756-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PULL] gvt-fixes
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] Enable Pipewriteback
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,43 +53,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: ville.syrjala@intel.com, jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 17 Aug 2022, "Colin King (gmail)" <colin.i.king@gmail.com> wrote:
-> On 17/08/2022 21:07, Vivi, Rodrigo wrote:
->> On Tue, 2022-08-16 at 12:43 +0800, Zhenyu Wang wrote:
->>> On 2022.08.16 12:05:08 +0800, Zhenyu Wang wrote:
->>>> On 2022.08.15 19:32:45 -0400, Rodrigo Vivi wrote:
->>>>> On Mon, Aug 15, 2022 at 10:38:55AM +0800, Zhenyu Wang wrote:
->>> oh, surprise! I just found Colin's email is actually defined in
->>> .mailmap,
->>> so all his commits in kernel are changed for @intel.com address as in
->>> mailmap...
->> 
->> Colin, would you mind to get the Sign-off-by in the patches the same
->> as your authorship so the tools don't get confused?
->> (starting with modifying in tree this already merged patch)
->
-> Since my patches are generally trivial janitorial fixed done in my spare 
-> time I'm going to get the .mailmap changed to use my gmail email address 
-> rather than my Intel one (since I don't do kernel work in my current role).
->
-> This should clean up the confusion. Apologies.
+A patch series was floated in the drm mailing list which aimed to change
+the drm_connector and drm_encoder fields to pointer in the
+drm_connector_writeback structure, this received a huge pushback from
+the community but since i915 expects each connector present in the
+drm_device list to be a intel_connector but drm_writeback framework
+makes us have a connector which cannot be embedded in an intel_connector
+structure.
+[1] https://patchwork.kernel.org/project/dri-devel/patch/20220202081702.22119-1-suraj.kandpal@intel.com/
+[2] https://patchwork.kernel.org/project/dri-devel/patch/20220202085429.22261-6-suraj.kandpal@intel.com/
+Since no one had an issue with encoder field being changed into a
+pointer it was decided to break the connector and encoder pointer
+changes into two different series.The encoder field changes is
+currently being worked upon by Abhinav Kumar and the changes have been
+merged.
+[3]https://patchwork.kernel.org/project/dri-devel/list/?series=633565
+Going forward we use a drm_connector which is not embedded in
+intel_connector. 
+We also create a intel_encoder to avoid changes to many
+iterators but no intel_connector. We also changed all iterators that
+go through connectors and add a check to only cast connectors which are
+not writeback connectors.
+I had also floated a previous series to Enable writeback but floating a
+new one as i created an extra patch in this series as suggested by
+Jani, Nikula for intel_connector iterator changes.
+Please go check the below link if interested.
+[4]https://patchwork.freedesktop.org/series/106902/
 
-Everyone hold your horses.
+Suraj Kandpal (3):
+  drm/i915: Define WD trancoder for i915
+  drm/i915 : Changing intel_connector iterators
+  drm/i915: Enabling WD Transcoder
 
-I think our tooling should handle the mailmap stuff. The commit *is*
-fine, it's just that the when we check it, we let mailmap alter it. We
-should check the commit without mailmap modifications.
-
-BR,
-Jani.
-
-
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_acpi.c     |   1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   6 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   1 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  63 +-
+ drivers/gpu/drm/i915/display/intel_display.h  |  18 +-
+ .../drm/i915/display/intel_display_debugfs.c  |  13 +-
+ .../drm/i915/display/intel_display_types.h    |  33 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   6 +
+ .../drm/i915/display/intel_modeset_setup.c    | 114 ++-
+ .../drm/i915/display/intel_modeset_verify.c   |  17 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |   3 +
+ .../gpu/drm/i915/display/intel_wb_connector.h |  20 +
+ drivers/gpu/drm/i915/display/intel_wd.c       | 704 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_wd.h       |  48 ++
+ drivers/gpu/drm/i915/i915_drv.h               |   1 +
+ drivers/gpu/drm/i915/i915_irq.c               |   8 +-
+ drivers/gpu/drm/i915/i915_pci.c               |   7 +-
+ drivers/gpu/drm/i915/i915_reg.h               | 139 ++++
+ 20 files changed, 1154 insertions(+), 55 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_wb_connector.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_wd.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_wd.h
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.37.0
+
