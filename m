@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5452F598CAC
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 21:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E02C598CBA
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 21:39:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F63210E174;
-	Thu, 18 Aug 2022 19:37:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC2210E226;
+	Thu, 18 Aug 2022 19:38:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBF8E10E198
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 19:37:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 510A810E2B1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 19:37:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660851441; x=1692387441;
+ t=1660851447; x=1692387447;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X5vOWtqNzoa5NpCnVdMRAITUvF51gQ082sfYJ9Qm9Gg=;
- b=WtFcrdZz01trtxd782lU4HsDmVjKI5B4xkiCehxorj1t21ta3+tqrjTq
- PqRLxvjsriepl+aeXo+7cPCpLzBmY20fMFs0wm+YYJxJOs5Adl5WD5z/s
- fSGR3KA1aDnKC+LWyLv5OfrJPg07LovdMs91thGTely1qqpjC963WZAgc
- Y6F9cn4Rd4l61YITxptidkgE6/JkpNXka16OLK5Tqc5IDHfb4ODNXgD66
- B0PGnud8AkYBdDlsGlc0UR5f/uVyZr8ouzKD6NpCwMxSRx231x6S2WUys
- w+N6+sItQ08yrmZRZxSt4diDBqNS0kXtnBLzyHIxl2c9AaGNvhri207Po Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="379149557"
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="379149557"
+ bh=msEccQSvOK1GlLHll91lHxR8971cAjOnAwWyZv7/Tek=;
+ b=MSlFcthBvPDtvEAnHgD4RXDNOJ9MXykk/wa1gqM3XBLPysFr7GIkoePn
+ KXlTKBm2Y3UN8mwGnrfEqUT8DR+YI8UpTjlDCwzmWMIbTkel3oojJw0LP
+ 9ekDLFe6qROqiIUJ8o7XTkC7jMfFKBuFGCqmCCATFALsbn1K5u/Hit8vB
+ MOxyCfceQKAYsytg3mf851qnuswb0IsQUW/vZGIqKAjKD7VDMFUQJWFq7
+ ootmcMPCKVhfQpbCmA7ho423UKnxw/iu8BAX0p+Lffj/MhoxsUCd9e9VD
+ AMokrZHQpcsb8658EdLeaYmdHt2VGsOq72ntAS32UbrdFj3sLfTGoMBei A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="379149572"
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="379149572"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 12:37:21 -0700
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="604364692"
+ 18 Aug 2022 12:37:27 -0700
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="604364722"
 Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 12:37:18 -0700
+ 18 Aug 2022 12:37:24 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Aug 2022 01:08:59 +0530
-Message-Id: <20220818193901.2974625-6-badal.nilawar@intel.com>
+Date: Fri, 19 Aug 2022 01:09:01 +0530
+Message-Id: <20220818193901.2974625-8-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220818193901.2974625-1-badal.nilawar@intel.com>
 References: <20220818193901.2974625-1-badal.nilawar@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/7] drm/i915/hwmon: Expose card reactive
- critical power
+Subject: [Intel-gfx] [PATCH 7/7] drm/i915/hwmon: Extend power/energy for
+ XEHPSDV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,277 +60,299 @@ Cc: linux-hwmon@vger.kernel.org, linux@roeck-us.net
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+From: Dale B Stimson <dale.b.stimson@intel.com>
 
-Expose the card reactive critical (I1) power. I1 is exposed as
-power1_crit in microwatts (typically for client products) or as
-curr1_crit in milliamperes (typically for server).
+Extend hwmon power/energy for XEHPSDV especially per gt level energy
+usage.
 
-v2: Add curr1_crit functionality (Ashutosh)
-v3:
-  - Use HWMON_CHANNEL_INFO to define power1_crit, curr1_crit (Badal)
-  - Update date and kernel version in Documentation.
-v4: Use hwm_ prefix for static functions (Ashutosh)
+v2: Update to latest HWMON spec (Ashutosh)
 
-Acked-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 Acked-by: Guenter Roeck <linux@roeck-us.net>
 ---
- .../ABI/testing/sysfs-driver-intel-i915-hwmon | 26 +++++
- drivers/gpu/drm/i915/i915_hwmon.c             | 95 ++++++++++++++++++-
- drivers/gpu/drm/i915/i915_reg.h               |  6 ++
- 3 files changed, 126 insertions(+), 1 deletion(-)
+ .../ABI/testing/sysfs-driver-intel-i915-hwmon |   7 +-
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   5 +
+ drivers/gpu/drm/i915/i915_hwmon.c             | 120 +++++++++++++++++-
+ 3 files changed, 128 insertions(+), 4 deletions(-)
 
 diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-index 03d71c6869d3..bb1101757154 100644
+index 34668f6c2dc4..e69bc43d4c9e 100644
 --- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
 +++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-@@ -26,6 +26,32 @@ Description:	RO. Card default power limit (default TDP setting).
- 
- 		Only supported for particular Intel i915 graphics platforms.
- 
-+What:		/sys/devices/.../hwmon/hwmon<i>/power1_crit
-+Date:		June 2022
-+KernelVersion:	5.19
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:	RW. Card reactive critical (I1) power limit in microwatts.
-+
-+		Card reactive critical (I1) power limit in microwatts is exposed
-+		for client products. The power controller will throttle the
-+		operating frequency if the power averaged over a window exceeds
-+		this limit.
-+
-+		Only supported for particular Intel i915 graphics platforms.
-+
-+What:		/sys/devices/.../hwmon/hwmon<i>/curr1_crit
-+Date:		June 2022
-+KernelVersion:	5.19
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:	RW. Card reactive critical (I1) power limit in milliamperes.
-+
-+		Card reactive critical (I1) power limit in milliamperes is
-+		exposed for server products. The power controller will throttle
-+		the operating frequency if the power averaged over a window
-+		exceeds this limit.
-+
-+		Only supported for particular Intel i915 graphics platforms.
-+
- What:		/sys/devices/.../hwmon/hwmon<i>/energy1_input
+@@ -65,6 +65,11 @@ What:		/sys/devices/.../hwmon/hwmon<i>/energy1_input
  Date:		June 2022
  KernelVersion:	5.19
+ Contact:	dri-devel@lists.freedesktop.org
+-Description:	RO. Energy input of device in microjoules.
++Description:	RO. Energy input of device or gt in microjoules.
++
++		For i915 device level hwmon devices (name "i915") this
++		reflects energy input for the entire device. For gt level
++		hwmon devices (name "i915_gtN") this reflects energy input
++		for the gt.
+ 
+ 		Only supported for particular Intel i915 graphics platforms.
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index 5d4fbda4d326..b7b343cec2da 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -1579,4 +1579,9 @@
+ 
+ #define GEN12_SFC_DONE(n)			_MMIO(0x1cc000 + (n) * 0x1000)
+ 
++#define GT0_PACKAGE_ENERGY_STATUS		_MMIO(0x250004)
++#define GT0_PACKAGE_RAPL_LIMIT			_MMIO(0x250008)
++#define GT0_PACKAGE_POWER_SKU_UNIT		_MMIO(0x250068)
++#define GT0_PLATFORM_ENERGY_STATUS		_MMIO(0x25006c)
++
+ #endif /* __INTEL_GT_REGS__ */
 diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index d6334f829c8c..1eedcefbf511 100644
+index 9fb39db880a2..cb3750b689d3 100644
 --- a/drivers/gpu/drm/i915/i915_hwmon.c
 +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -10,14 +10,17 @@
- #include "i915_drv.h"
+@@ -11,6 +11,7 @@
  #include "i915_hwmon.h"
  #include "intel_mchbar_regs.h"
-+#include "intel_pcode.h"
+ #include "intel_pcode.h"
++#include "gt/intel_gt.h"
  #include "gt/intel_gt_regs.h"
  
  /*
-  * SF_* - scale factors for particular quantities according to hwmon spec.
-  * - power  - microwatts
-+ * - curr   - milliamperes
+@@ -20,7 +21,7 @@
+  * - curr   - milliamperes
   * - energy - microjoules
   */
+-#define SF_TIME            1000
++#define SF_TIME		1000
  #define SF_POWER	1000000
-+#define SF_CURR		1000
+ #define SF_CURR		1000
  #define SF_ENERGY	1000000
+@@ -36,6 +37,7 @@ struct hwm_reg {
+ 	i915_reg_t pkg_power_sku;
+ 	i915_reg_t pkg_rapl_limit;
+ 	i915_reg_t energy_status_all;
++	i915_reg_t energy_status_tile;
+ };
  
- #define FIELD_SHIFT(__mask)				    \
-@@ -175,11 +178,25 @@ i915_hwmon_energy_status_get(struct drm_i915_private *i915, long *energy)
+ struct hwm_energy_info {
+@@ -49,10 +51,12 @@ struct hwm_drvdata {
+ 	struct device *hwmon_dev;
+ 	struct hwm_energy_info ei;		/*  Energy info for energy1_input */
+ 	char name[12];
++	int gt_n;
+ };
  
- static const struct hwmon_channel_info *hwm_info[] = {
- 	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
--	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX),
-+	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
- 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
-+	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
+ struct i915_hwmon {
+ 	struct hwm_drvdata ddat;
++	struct hwm_drvdata ddat_gt[I915_MAX_GT];
+ 	struct mutex hwmon_lock;		/* counter overflow logic and rmw */
+ 	struct hwm_reg rg;
+ 	int scl_shift_power;
+@@ -147,7 +151,10 @@ hwm_energy(struct hwm_drvdata *ddat, long *energy)
+ 	i915_reg_t rgaddr;
+ 	u32 reg_val;
+ 
+-	rgaddr = hwmon->rg.energy_status_all;
++	if (ddat->gt_n >= 0)
++		rgaddr = hwmon->rg.energy_status_tile;
++	else
++		rgaddr = hwmon->rg.energy_status_all;
+ 
+ 	if (!i915_mmio_reg_valid(rgaddr))
+ 		return -EOPNOTSUPP;
+@@ -295,6 +302,11 @@ static const struct hwmon_channel_info *hwm_info[] = {
  	NULL
  };
  
-+/* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
-+static int hwm_pcode_read_i1(struct drm_i915_private *i915, u32 *uval)
-+{
-+	return snb_pcode_read_p(&i915->uncore, PCODE_POWER_SETUP,
-+				POWER_SETUP_SUBCOMMAND_READ_I1, 0, uval);
-+}
++static const struct hwmon_channel_info *hwm_gt_info[] = {
++	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
++	NULL
++};
 +
-+static int hwm_pcode_write_i1(struct drm_i915_private *i915, u32 uval)
-+{
-+	return  snb_pcode_write_p(&i915->uncore, PCODE_POWER_SETUP,
-+				  POWER_SETUP_SUBCOMMAND_WRITE_I1, 0, uval);
-+}
-+
- static umode_t
- hwm_in_is_visible(const struct hwm_drvdata *ddat, u32 attr)
+ /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
+ static int hwm_pcode_read_i1(struct drm_i915_private *i915, u32 *uval)
  {
-@@ -213,13 +230,18 @@ hwm_in_read(struct hwm_drvdata *ddat, u32 attr, long *val)
- static umode_t
- hwm_power_is_visible(const struct hwm_drvdata *ddat, u32 attr, int chan)
- {
-+	struct drm_i915_private *i915 = ddat->uncore->i915;
- 	struct i915_hwmon *hwmon = ddat->hwmon;
-+	u32 uval;
+@@ -427,7 +439,10 @@ hwm_energy_is_visible(const struct hwm_drvdata *ddat, u32 attr)
  
  	switch (attr) {
- 	case hwmon_power_max:
- 		return i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit) ? 0664 : 0;
- 	case hwmon_power_rated_max:
- 		return i915_mmio_reg_valid(hwmon->rg.pkg_power_sku) ? 0444 : 0;
-+	case hwmon_power_crit:
-+		return (hwm_pcode_read_i1(i915, &uval) ||
-+			!(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0644;
+ 	case hwmon_energy_input:
+-		rgaddr = hwmon->rg.energy_status_all;
++		if (ddat->gt_n >= 0)
++			rgaddr = hwmon->rg.energy_status_tile;
++		else
++			rgaddr = hwmon->rg.energy_status_all;
+ 		return i915_mmio_reg_valid(rgaddr) ? 0444 : 0;
  	default:
  		return 0;
- 	}
-@@ -229,6 +251,8 @@ static int
- hwm_power_read(struct hwm_drvdata *ddat, u32 attr, int chan, long *val)
- {
- 	struct i915_hwmon *hwmon = ddat->hwmon;
-+	int ret;
-+	u32 uval;
- 
- 	switch (attr) {
- 	case hwmon_power_max:
-@@ -247,6 +271,15 @@ hwm_power_read(struct hwm_drvdata *ddat, u32 attr, int chan, long *val)
- 						hwmon->scl_shift_power,
- 						SF_POWER);
- 		return 0;
-+	case hwmon_power_crit:
-+		ret = hwm_pcode_read_i1(ddat->uncore->i915, &uval);
-+		if (ret)
-+			return ret;
-+		if (!(uval & POWER_SETUP_I1_WATTS))
-+			return -ENODEV;
-+		*val = mul_u64_u32_shr(REG_FIELD_GET(POWER_SETUP_I1_DATA_MASK, uval),
-+				       SF_POWER, POWER_SETUP_I1_SHIFT);
-+		return 0;
- 	default:
- 		return -EOPNOTSUPP;
- 	}
-@@ -256,6 +289,7 @@ static int
- hwm_power_write(struct hwm_drvdata *ddat, u32 attr, int chan, long val)
- {
- 	struct i915_hwmon *hwmon = ddat->hwmon;
-+	u32 uval;
- 
- 	switch (attr) {
- 	case hwmon_power_max:
-@@ -266,6 +300,9 @@ hwm_power_write(struct hwm_drvdata *ddat, u32 attr, int chan, long val)
- 					  hwmon->scl_shift_power,
- 					  SF_POWER, val);
- 		return 0;
-+	case hwmon_power_crit:
-+		uval = DIV_ROUND_CLOSEST_ULL(val << POWER_SETUP_I1_SHIFT, SF_POWER);
-+		return hwm_pcode_write_i1(ddat->uncore->i915, uval);
- 	default:
- 		return -EOPNOTSUPP;
- 	}
-@@ -297,6 +334,56 @@ hwm_energy_read(struct hwm_drvdata *ddat, u32 attr, long *val)
- 	}
- }
+@@ -562,6 +577,44 @@ static const struct hwmon_chip_info hwm_chip_info = {
+ 	.info = hwm_info,
+ };
  
 +static umode_t
-+hwm_curr_is_visible(const struct hwm_drvdata *ddat, u32 attr)
++hwm_gt_is_visible(const void *drvdata, enum hwmon_sensor_types type,
++		  u32 attr, int channel)
 +{
-+	struct drm_i915_private *i915 = ddat->uncore->i915;
-+	u32 uval;
++	struct hwm_drvdata *ddat = (struct hwm_drvdata *)drvdata;
 +
-+	switch (attr) {
-+	case hwmon_curr_crit:
-+		return (hwm_pcode_read_i1(i915, &uval) ||
-+			(uval & POWER_SETUP_I1_WATTS)) ? 0 : 0644;
++	switch (type) {
++	case hwmon_energy:
++		return hwm_energy_is_visible(ddat, attr);
 +	default:
 +		return 0;
 +	}
 +}
 +
 +static int
-+hwm_curr_read(struct hwm_drvdata *ddat, u32 attr, long *val)
++hwm_gt_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
++	    int channel, long *val)
 +{
-+	int ret;
-+	u32 uval;
++	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
 +
-+	switch (attr) {
-+	case hwmon_curr_crit:
-+		ret = hwm_pcode_read_i1(ddat->uncore->i915, &uval);
-+		if (ret)
-+			return ret;
-+		if (uval & POWER_SETUP_I1_WATTS)
-+			return -ENODEV;
-+		*val = mul_u64_u32_shr(REG_FIELD_GET(POWER_SETUP_I1_DATA_MASK, uval),
-+				       SF_CURR, POWER_SETUP_I1_SHIFT);
-+		return 0;
++	switch (type) {
++	case hwmon_energy:
++		return hwm_energy_read(ddat, attr, val);
 +	default:
 +		return -EOPNOTSUPP;
 +	}
 +}
 +
-+static int
-+hwm_curr_write(struct hwm_drvdata *ddat, u32 attr, long val)
-+{
-+	u32 uval;
++static const struct hwmon_ops hwm_gt_ops = {
++	.is_visible = hwm_gt_is_visible,
++	.read = hwm_gt_read,
++};
 +
-+	switch (attr) {
-+	case hwmon_curr_crit:
-+		uval = DIV_ROUND_CLOSEST_ULL(val << POWER_SETUP_I1_SHIFT, SF_CURR);
-+		return hwm_pcode_write_i1(ddat->uncore->i915, uval);
-+	default:
-+		return -EOPNOTSUPP;
++static const struct hwmon_chip_info hwm_gt_chip_info = {
++	.ops = &hwm_gt_ops,
++	.info = hwm_gt_info,
++};
++
+ static void
+ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ {
+@@ -570,7 +623,9 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 	struct hwm_drvdata *ddat = &hwmon->ddat;
+ 	intel_wakeref_t wakeref;
+ 	u32 val_sku_unit;
++	struct intel_gt *gt;
+ 	long energy;
++	int i;
+ 
+ 	if (IS_DG1(i915) || IS_DG2(i915)) {
+ 		hwmon->rg.gt_perf_status = GEN12_RPSTAT1;
+@@ -578,12 +633,21 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_rapl_limit = PCU_PACKAGE_RAPL_LIMIT;
+ 		hwmon->rg.energy_status_all = PCU_PACKAGE_ENERGY_STATUS;
++		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
++	} else if (IS_XEHPSDV(i915)) {
++		hwmon->rg.pkg_power_sku_unit = GT0_PACKAGE_POWER_SKU_UNIT;
++		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
++		hwmon->rg.pkg_rapl_limit = GT0_PACKAGE_RAPL_LIMIT;
++		hwmon->rg.energy_status_all = GT0_PLATFORM_ENERGY_STATUS;
++		hwmon->rg.energy_status_tile = GT0_PACKAGE_ENERGY_STATUS;
++		hwmon->rg.gt_perf_status = INVALID_MMIO_REG;
+ 	} else {
+ 		hwmon->rg.gt_perf_status = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_power_sku_unit = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_rapl_limit = INVALID_MMIO_REG;
+ 		hwmon->rg.energy_status_all = INVALID_MMIO_REG;
++		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
+ 	}
+ 
+ 	with_intel_runtime_pm(uncore->rpm, wakeref) {
+@@ -613,6 +677,10 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 	 */
+ 	if (i915_mmio_reg_valid(hwmon->rg.energy_status_all))
+ 		hwm_energy(ddat, &energy);
++	if (i915_mmio_reg_valid(hwmon->rg.energy_status_tile)) {
++		for_each_gt(gt, i915, i)
++			hwm_energy(&hwmon->ddat_gt[i], &energy);
 +	}
-+}
+ }
+ 
+ void i915_hwmon_register(struct drm_i915_private *i915)
+@@ -621,6 +689,10 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+ 	struct i915_hwmon *hwmon;
+ 	struct device *hwmon_dev;
+ 	struct hwm_drvdata *ddat;
++	struct hwm_drvdata *ddat_gt;
++	struct intel_gt *gt;
++	const char *ddname;
++	int i;
+ 
+ 	/* hwmon is available only for dGfx */
+ 	if (!IS_DGFX(i915))
+@@ -637,6 +709,16 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+ 	ddat->hwmon = hwmon;
+ 	ddat->uncore = &i915->uncore;
+ 	snprintf(ddat->name, sizeof(ddat->name), "i915");
++	ddat->gt_n = -1;
 +
- static umode_t
- hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
- 	       u32 attr, int channel)
-@@ -310,6 +397,8 @@ hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
- 		return hwm_power_is_visible(ddat, attr, channel);
- 	case hwmon_energy:
- 		return hwm_energy_is_visible(ddat, attr);
-+	case hwmon_curr:
-+		return hwm_curr_is_visible(ddat, attr);
- 	default:
- 		return 0;
++	for_each_gt(gt, i915, i) {
++		ddat_gt = hwmon->ddat_gt + i;
++
++		ddat_gt->hwmon = hwmon;
++		ddat_gt->uncore = gt->uncore;
++		snprintf(ddat_gt->name, sizeof(ddat_gt->name), "i915_gt%u", i);
++		ddat_gt->gt_n = i;
++	}
+ 
+ 	hwm_get_preregistration_info(i915);
+ 
+@@ -653,18 +735,50 @@ void i915_hwmon_register(struct drm_i915_private *i915)
  	}
-@@ -328,6 +417,8 @@ hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 		return hwm_power_read(ddat, attr, channel, val);
- 	case hwmon_energy:
- 		return hwm_energy_read(ddat, attr, val);
-+	case hwmon_curr:
-+		return hwm_curr_read(ddat, attr, val);
- 	default:
- 		return -EOPNOTSUPP;
- 	}
-@@ -342,6 +433,8 @@ hwm_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 	switch (type) {
- 	case hwmon_power:
- 		return hwm_power_write(ddat, attr, channel, val);
-+	case hwmon_curr:
-+		return hwm_curr_write(ddat, attr, val);
- 	default:
- 		return -EOPNOTSUPP;
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 78c7ce781c22..3d50b4cda382 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6676,6 +6676,12 @@
- #define   DG1_PCODE_STATUS			0x7E
- #define     DG1_UNCORE_GET_INIT_STATUS		0x0
- #define     DG1_UNCORE_INIT_STATUS_COMPLETE	0x1
-+#define   PCODE_POWER_SETUP			0x7C
-+#define     POWER_SETUP_SUBCOMMAND_READ_I1	0x4
-+#define     POWER_SETUP_SUBCOMMAND_WRITE_I1	0x5
-+#define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
-+#define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
-+#define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
- #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
- #define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* xehpsdv, pvc */
- /* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
+ 
+ 	ddat->hwmon_dev = hwmon_dev;
++
++	for_each_gt(gt, i915, i) {
++		ddat_gt = hwmon->ddat_gt + i;
++		/*
++		 * Create per-gt directories only if a per-gt attribute is
++		 * visible. Currently this is only energy
++		 */
++		if (!hwm_gt_is_visible(ddat_gt, hwmon_energy, hwmon_energy_input, 0))
++			continue;
++
++		ddname = ddat_gt->name;
++		hwmon_dev = hwmon_device_register_with_info(dev, ddname,
++							    ddat_gt,
++							    &hwm_gt_chip_info,
++							    NULL);
++		if (!IS_ERR(hwmon_dev))
++			ddat_gt->hwmon_dev = hwmon_dev;
++	}
+ }
+ 
+ void i915_hwmon_unregister(struct drm_i915_private *i915)
+ {
+ 	struct i915_hwmon *hwmon;
+ 	struct hwm_drvdata *ddat;
++	struct intel_gt *gt;
++	int i;
+ 
+ 	hwmon = fetch_and_zero(&i915->hwmon);
+ 	if (!hwmon)
+ 		return;
+ 
+ 	ddat = &hwmon->ddat;
++
++	for_each_gt(gt, i915, i) {
++		struct hwm_drvdata *ddat_gt;
++
++		ddat_gt = hwmon->ddat_gt + i;
++
++		if (ddat_gt->hwmon_dev) {
++			hwmon_device_unregister(ddat_gt->hwmon_dev);
++			ddat_gt->hwmon_dev = NULL;
++		}
++	}
++
+ 	if (ddat->hwmon_dev)
+ 		hwmon_device_unregister(ddat->hwmon_dev);
+ 
 -- 
 2.25.1
 
