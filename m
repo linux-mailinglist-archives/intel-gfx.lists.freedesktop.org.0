@@ -2,58 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2C9598A9F
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 19:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 378D2598B14
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 20:28:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D4B110E489;
-	Thu, 18 Aug 2022 17:42:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A30210E0FE;
+	Thu, 18 Aug 2022 18:28:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com
- [IPv6:2607:f8b0:4864:20::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A203A10E0F3
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 17:42:23 +0000 (UTC)
-Received: by mail-pl1-x62c.google.com with SMTP id d10so2097678plr.6
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 10:42:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc;
- bh=UkNt6nCcXqcJWYaTT79KFNWGcjRsatrpz+QhyyqREsA=;
- b=FpBGm98tcyCcDV5VBHsVND3H5f7c4O5gu+L7nexlbDrSvBWm+3Ab50yu222MFCOE7e
- 0/DCdwc2kf7ZFyeUB03NGvFMWwnZvMcnZjlx09qtxoTlpuYL5GKyxQZJg+ioiZCsAKzb
- 0EP4KpgMQq9n+A2L9qQMEMjZ4fnB0rBrjWEnY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc;
- bh=UkNt6nCcXqcJWYaTT79KFNWGcjRsatrpz+QhyyqREsA=;
- b=XriZhwkTuZNR42RFgP+HpC1fTkkIMS/h19f0pNgG8YEV8nXJWIINitnMO9cIkVlcS0
- hVSgtupvq6T/4fHlQb6gQBYMoZ/5+pVCQWX8bmMHC+W5I9Q0244sAPUmpSjWnn+cCf1Z
- bHSfFY5COdcStj5aGT2WW8KLqkutEonBZNzuh/AvjEXsB/bRyHoM71/1R0f5oEl7PDwS
- uzVNjPDio/LtUMRyvHgloLz4Cnh3ZrEQR5nRFxn4wxr3oBbdpWDoDh+1mq/tfg58yH1t
- nkpLA/4knBtqQ4qE8QL+GkqzpXTLour7QBsU4HuPZ6qFstL8mgruHalovQoSEr5q8RLF
- P9Hw==
-X-Gm-Message-State: ACgBeo34x7mntA9sEgwN4vUUpkKlzXM8ItfqZq9iUwxpBXzNOSWYXENW
- C7BHNp6iDeTfL1Po55hgqlh3VLQ1Y5Zs9eoI
-X-Google-Smtp-Source: AA6agR7sHAiBKIKmG6Ngru74ILtEd3hsDP/m2s/TJ7WWvZPu9uGptnWU5a9LaDPrDI1ISk0F8PR/BA==
-X-Received: by 2002:a17:903:1248:b0:172:614b:234b with SMTP id
- u8-20020a170903124800b00172614b234bmr3503057plh.169.1660844542952; 
- Thu, 18 Aug 2022 10:42:22 -0700 (PDT)
-Received: from justonli.c.googlers.com.com
- (137.22.168.34.bc.googleusercontent.com. [34.168.22.137])
- by smtp.gmail.com with ESMTPSA id
- b2-20020a170902d50200b0016a0bf0ce32sm1699409plg.70.2022.08.18.10.42.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Aug 2022 10:42:22 -0700 (PDT)
-From: Juston Li <justonli@chromium.org>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Aug 2022 17:42:05 +0000
-Message-Id: <20220818174205.2412730-1-justonli@chromium.org>
-X-Mailer: git-send-email 2.37.1.595.g718a3a8f04-goog
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 30DD810E78C;
+ Thu, 18 Aug 2022 18:27:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BCC5CA0099;
+ Thu, 18 Aug 2022 18:27:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6260839142019718853=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915/pxp: don't start pxp without
- mei_pxp bind
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juston Li" <justonli@google.com>
+Date: Thu, 18 Aug 2022 18:27:52 -0000
+Message-ID: <166084727276.16680.4224836018556248202@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220818174205.2412730-1-justonli@chromium.org>
+In-Reply-To: <20220818174205.2412730-1-justonli@chromium.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/pxp=3A_don=27t_start_pxp_without_mei=5Fpxp_bind_=28rev3?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,64 +41,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alan.previn.teres.alexis@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-pxp will not start correctly until after mei_pxp bind completes and
-intel_pxp_init_hw() is called.
-Wait for the bind to complete before proceeding with startup.
+--===============6260839142019718853==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This fixes a race condition during bootup where we observed a small
-window for pxp commands to be sent, starting pxp before mei_pxp bind
-completed.
+== Series Details ==
 
-Changes since v2:
-- wait for pxp_component to bind instead of returning -EAGAIN (Daniele)
+Series: drm/i915/pxp: don't start pxp without mei_pxp bind (rev3)
+URL   : https://patchwork.freedesktop.org/series/107099/
+State : success
 
-Changes since v1:
-- check pxp_component instead of pxp_component_added (Daniele)
-- pxp_component needs tee_mutex (Daniele)
-- return -EAGAIN so caller knows to retry (Daniele)
+== Summary ==
 
-Signed-off-by: Juston Li <justonli@chromium.org>
----
- drivers/gpu/drm/i915/pxp/intel_pxp.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+CI Bug Log - changes from CI_DRM_11998 -> Patchwork_107099v3
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 15311eaed848..17109c513259 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -176,6 +176,18 @@ static void pxp_queue_termination(struct intel_pxp *pxp)
- 	spin_unlock_irq(&gt->irq_lock);
- }
- 
-+static bool pxp_component_bound(struct intel_pxp *pxp)
-+{
-+	bool bound = false;
-+
-+	mutex_lock(&pxp->tee_mutex);
-+	if (pxp->pxp_component)
-+		bound = true;
-+	mutex_unlock(&pxp->tee_mutex);
-+
-+	return bound;
-+}
-+
- /*
-  * the arb session is restarted from the irq work when we receive the
-  * termination completion interrupt
-@@ -187,6 +199,9 @@ int intel_pxp_start(struct intel_pxp *pxp)
- 	if (!intel_pxp_is_enabled(pxp))
- 		return -ENODEV;
- 
-+	if (wait_for(pxp_component_bound(pxp), 250))
-+		return -ENXIO;
-+
- 	mutex_lock(&pxp->arb_mutex);
- 
- 	if (pxp->arb_is_valid)
--- 
-2.37.1.595.g718a3a8f04-goog
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/index.html
+
+Participating hosts (32 -> 31)
+------------------------------
+
+  Additional (1): fi-hsw-4770 
+  Missing    (2): bat-dg2-10 bat-adls-5 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_107099v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#3012])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][2] ([i915#4817] / [i915#6598])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271]) +9 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +7 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#1072]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][6] ([i915#6298]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11998/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6598]: https://gitlab.freedesktop.org/drm/intel/issues/6598
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11998 -> Patchwork_107099v3
+
+  CI-20190529: 20190529
+  CI_DRM_11998: fa98df3eddac93dac4377cb41a1cc58beb314c91 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6632: a0ac4d449e551fd5c78b56f85cd534330ea60507 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_107099v3: fa98df3eddac93dac4377cb41a1cc58beb314c91 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+8e5edc9a226f drm/i915/pxp: don't start pxp without mei_pxp bind
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/index.html
+
+--===============6260839142019718853==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pxp: don&#39;t start pxp without mei_pxp bind (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107099/">https://patchwork.freedesktop.org/series/107099/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11998 -&gt; Patchwork_107099v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/index.html</p>
+<h2>Participating hosts (32 -&gt; 31)</h2>
+<p>Additional (1): fi-hsw-4770 <br />
+  Missing    (2): bat-dg2-10 bat-adls-5 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_107099v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6598">i915#6598</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11998/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107099v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11998 -&gt; Patchwork_107099v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11998: fa98df3eddac93dac4377cb41a1cc58beb314c91 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6632: a0ac4d449e551fd5c78b56f85cd534330ea60507 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_107099v3: fa98df3eddac93dac4377cb41a1cc58beb314c91 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>8e5edc9a226f drm/i915/pxp: don't start pxp without mei_pxp bind</p>
+
+</body>
+</html>
+
+--===============6260839142019718853==--
