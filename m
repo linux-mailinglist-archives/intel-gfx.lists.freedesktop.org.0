@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 017B5598BEA
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 20:47:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6DC598BF0
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Aug 2022 20:47:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C07DF10EFA2;
-	Thu, 18 Aug 2022 18:45:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96A4310F0FB;
+	Thu, 18 Aug 2022 18:45:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB61210E7B2
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 18:44:56 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C805510EA7A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Aug 2022 18:45:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660848296;
+ s=mimecast20190719; t=1660848305;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=RAgFYE2wIOC+L0ShaxbDIGk5W0n1hVBowVTc99T+JT8=;
- b=NLYwdicy+0xaWZGRk1AXcnzgxy9gFGm8pzvOU5DmdUux0bGpsJgoHHj+uVq4+bZRpdHOqy
- 7O/vy33BmhEjdqZ1EXU9krZZldyYGXqq1OzQFuXyTR7D3PZMM07+5qxNGyB/6zXCUg6G1N
- dy2PWY99mmm+gS775bXmK19Lf1h7PwQ=
+ bh=5+TG12UqCtmEosjJnkODC6uWWyAm1BJ6u+TpgFhRlew=;
+ b=Da+dbMP8eXmqnsgwPzJIfzI+Xva1v2fQk04zM1asEGp3uGy1IKvhiBLPgCCjQ35TuY/YSO
+ 2eTC2vqelCMZGyQUD7KHQjzTDGO4QlbWggaqKiuTb5sayQel9R3PHLZCtnAOzmw55AW/O7
+ JwxUe4ZRnul0Skhq2JpBhMliTpMN1jE=
 Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
  [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-203-2czJgbVIObeZLRcCai-gPA-1; Thu, 18 Aug 2022 14:44:51 -0400
-X-MC-Unique: 2czJgbVIObeZLRcCai-gPA-1
+ us-mta-446-qEUP0MmoMnmXrGU18Njyjg-1; Thu, 18 Aug 2022 14:44:59 -0400
+X-MC-Unique: qEUP0MmoMnmXrGU18Njyjg-1
 Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com
  [10.11.54.10])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id ED6D83815D2F;
- Thu, 18 Aug 2022 18:44:49 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id EAF5B3C0E232;
+ Thu, 18 Aug 2022 18:44:57 +0000 (UTC)
 Received: from localhost.localdomain (unknown [10.39.192.20])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 3ED89492C3B;
- Thu, 18 Aug 2022 18:44:46 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 26AE4492C3B;
+ Thu, 18 Aug 2022 18:44:54 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Ben Skeggs <bskeggs@redhat.com>,
 	Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
@@ -55,15 +55,15 @@ To: Ben Skeggs <bskeggs@redhat.com>,
 	Mika Westerberg <mika.westerberg@linux.intel.com>,
 	Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
 	Andy Shevchenko <andy@kernel.org>
-Date: Thu, 18 Aug 2022 20:42:55 +0200
-Message-Id: <20220818184302.10051-25-hdegoede@redhat.com>
+Date: Thu, 18 Aug 2022 20:42:57 +0200
+Message-Id: <20220818184302.10051-27-hdegoede@redhat.com>
 In-Reply-To: <20220818184302.10051-1-hdegoede@redhat.com>
 References: <20220818184302.10051-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
-Subject: [Intel-gfx] [PATCH v3 24/31] platform/x86: asus-wmi: Move
- acpi_backlight=vendor quirks to ACPI video_detect.c
+Subject: [Intel-gfx] [PATCH v3 26/31] platform/x86: samsung-laptop: Move
+ acpi_backlight=[vendor|native] quirks to ACPI video_detect.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,181 +85,217 @@ Cc: linux-acpi@vger.kernel.org, David Airlie <airlied@linux.ie>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove the asus-wmi quirk_entry.wmi_backlight_power quirk-flag, which
-called acpi_video_set_dmi_backlight_type(acpi_backlight_vendor) and replace
-it with acpi/video_detect.c video_detect_dmi_table[] entries using the
-video_detect_force_vendor callback.
-
 acpi_video_set_dmi_backlight_type() is troublesome because it may end up
 getting called after other backlight drivers have already called
 acpi_video_get_backlight_type() resulting in the other drivers
 already being registered even though they should not.
 
-Note no entries are dropped from the dmi_system_id table in asus-nb-wmi.c.
-This is because the entries using the removed wmi_backlight_power flag
-also use other model specific quirks from the asus-wmi quirk_entry struct.
-So the quirk_asus_x55u struct and the entries pointing to it cannot be
-dropped.
+Move all the acpi_backlight=[vendor|native] quirks from samsung-laptop to
+drivers/acpi/video_detect.c .
+
+Note the X360 -> acpi_backlight=native quirk is not moved because that
+already was present in drivers/acpi/video_detect.c .
 
 Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/acpi/video_detect.c        | 40 ++++++++++++++++++++++++++++++
- drivers/platform/x86/asus-nb-wmi.c |  7 ------
- drivers/platform/x86/asus-wmi.c    |  3 ---
- drivers/platform/x86/asus-wmi.h    |  1 -
- drivers/platform/x86/eeepc-wmi.c   | 25 +------------------
- 5 files changed, 41 insertions(+), 35 deletions(-)
+ drivers/acpi/video_detect.c           | 54 +++++++++++++++++
+ drivers/platform/x86/samsung-laptop.c | 87 ---------------------------
+ 2 files changed, 54 insertions(+), 87 deletions(-)
 
 diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
-index 4545f9f1a5b1..1574ff837e31 100644
+index a871ee69fcb2..66ea650fb45f 100644
 --- a/drivers/acpi/video_detect.c
 +++ b/drivers/acpi/video_detect.c
-@@ -174,6 +174,46 @@ static const struct dmi_system_id video_detect_dmi_table[] = {
- 		DMI_MATCH(DMI_PRODUCT_NAME, "UL30A"),
+@@ -222,6 +222,33 @@ static const struct dmi_system_id video_detect_dmi_table[] = {
+ 		DMI_MATCH(DMI_PRODUCT_NAME, "GB-BXBT-2807"),
  		},
  	},
 +	{
 +	 .callback = video_detect_force_vendor,
-+	 /* Asus X55U */
++	 /* Samsung N150/N210/N220 */
 +	 .matches = {
-+		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
-+		DMI_MATCH(DMI_PRODUCT_NAME, "X55U"),
++		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "N150/N210/N220"),
++		DMI_MATCH(DMI_BOARD_NAME, "N150/N210/N220"),
 +		},
 +	},
 +	{
 +	 .callback = video_detect_force_vendor,
-+	 /* Asus X101CH */
++	 /* Samsung NF110/NF210/NF310 */
 +	 .matches = {
-+		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
-+		DMI_MATCH(DMI_PRODUCT_NAME, "X101CH"),
++		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "NF110/NF210/NF310"),
++		DMI_MATCH(DMI_BOARD_NAME, "NF110/NF210/NF310"),
 +		},
 +	},
 +	{
 +	 .callback = video_detect_force_vendor,
-+	 /* Asus X401U */
++	 /* Samsung NC210 */
 +	 .matches = {
-+		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
-+		DMI_MATCH(DMI_PRODUCT_NAME, "X401U"),
-+		},
-+	},
-+	{
-+	 .callback = video_detect_force_vendor,
-+	 /* Asus X501U */
-+	 .matches = {
-+		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
-+		DMI_MATCH(DMI_PRODUCT_NAME, "X501U"),
-+		},
-+	},
-+	{
-+	 .callback = video_detect_force_vendor,
-+	 /* Asus 1015CX */
-+	 .matches = {
-+		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
-+		DMI_MATCH(DMI_PRODUCT_NAME, "1015CX"),
++		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "NC210/NC110"),
++		DMI_MATCH(DMI_BOARD_NAME, "NC210/NC110"),
 +		},
 +	},
  	{
  	.callback = video_detect_force_vendor,
- 	/* GIGABYTE GB-BXBT-2807 */
-diff --git a/drivers/platform/x86/asus-nb-wmi.c b/drivers/platform/x86/asus-nb-wmi.c
-index 478dd300b9c9..810a94557a85 100644
---- a/drivers/platform/x86/asus-nb-wmi.c
-+++ b/drivers/platform/x86/asus-nb-wmi.c
-@@ -79,12 +79,10 @@ static struct quirk_entry quirk_asus_q500a = {
- 
- /*
-  * For those machines that need software to control bt/wifi status
-- * and can't adjust brightness through ACPI interface
-  * and have duplicate events(ACPI and WMI) for display toggle
-  */
- static struct quirk_entry quirk_asus_x55u = {
- 	.wapf = 4,
--	.wmi_backlight_power = true,
- 	.wmi_backlight_set_devstate = true,
- 	.no_display_toggle = true,
- };
-@@ -147,11 +145,6 @@ static const struct dmi_system_id asus_quirks[] = {
- 			DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK Computer Inc."),
- 			DMI_MATCH(DMI_PRODUCT_NAME, "U32U"),
+ 	/* Sony VPCEH3U1E */
+@@ -572,6 +599,33 @@ static const struct dmi_system_id video_detect_dmi_table[] = {
+ 		DMI_MATCH(DMI_PRODUCT_NAME, "UX303UB"),
  		},
--		/*
--		 * Note this machine has a Brazos APU, and most Brazos Asus
--		 * machines need quirk_asus_x55u / wmi_backlight_power but
--		 * here acpi-video seems to work fine for backlight control.
--		 */
- 		.driver_data = &quirk_asus_wapf4,
  	},
- 	{
-diff --git a/drivers/platform/x86/asus-wmi.c b/drivers/platform/x86/asus-wmi.c
-index 301166a5697d..5cf9d9aff164 100644
---- a/drivers/platform/x86/asus-wmi.c
-+++ b/drivers/platform/x86/asus-wmi.c
-@@ -3634,9 +3634,6 @@ static int asus_wmi_add(struct platform_device *pdev)
- 	if (asus->driver->quirks->wmi_force_als_set)
- 		asus_wmi_set_als();
- 
--	if (asus->driver->quirks->wmi_backlight_power)
--		acpi_video_set_dmi_backlight_type(acpi_backlight_vendor);
--
- 	if (asus->driver->quirks->wmi_backlight_native)
- 		acpi_video_set_dmi_backlight_type(acpi_backlight_native);
- 
-diff --git a/drivers/platform/x86/asus-wmi.h b/drivers/platform/x86/asus-wmi.h
-index b302415bf1d9..30770e411301 100644
---- a/drivers/platform/x86/asus-wmi.h
-+++ b/drivers/platform/x86/asus-wmi.h
-@@ -29,7 +29,6 @@ struct quirk_entry {
- 	bool hotplug_wireless;
- 	bool scalar_panel_brightness;
- 	bool store_backlight_power;
--	bool wmi_backlight_power;
- 	bool wmi_backlight_native;
- 	bool wmi_backlight_set_devstate;
- 	bool wmi_force_als_set;
-diff --git a/drivers/platform/x86/eeepc-wmi.c b/drivers/platform/x86/eeepc-wmi.c
-index ce86d84ee796..32d9f0ba6be3 100644
---- a/drivers/platform/x86/eeepc-wmi.c
-+++ b/drivers/platform/x86/eeepc-wmi.c
-@@ -96,11 +96,6 @@ static struct quirk_entry quirk_asus_et2012_type3 = {
- 	.store_backlight_power = true,
++	{
++	 .callback = video_detect_force_native,
++	 /* Samsung N150P */
++	 .matches = {
++		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "N150P"),
++		DMI_MATCH(DMI_BOARD_NAME, "N150P"),
++		},
++	},
++	{
++	 .callback = video_detect_force_native,
++	 /* Samsung N145P/N250P/N260P */
++	 .matches = {
++		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "N145P/N250P/N260P"),
++		DMI_MATCH(DMI_BOARD_NAME, "N145P/N250P/N260P"),
++		},
++	},
++	{
++	 .callback = video_detect_force_native,
++	 /* Samsung N250P */
++	 .matches = {
++		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "N250P"),
++		DMI_MATCH(DMI_BOARD_NAME, "N250P"),
++		},
++	},
+ 	/*
+ 	 * Clevo NL5xRU and NL5xNU/TUXEDO Aura 15 Gen1 and Gen2 have both a
+ 	 * working native and video interface. However the default detection
+diff --git a/drivers/platform/x86/samsung-laptop.c b/drivers/platform/x86/samsung-laptop.c
+index c187dcdf82f0..cc30cf08f32d 100644
+--- a/drivers/platform/x86/samsung-laptop.c
++++ b/drivers/platform/x86/samsung-laptop.c
+@@ -356,23 +356,13 @@ struct samsung_laptop {
  };
  
--static struct quirk_entry quirk_asus_x101ch = {
--	/* We need this when ACPI function doesn't do this well */
--	.wmi_backlight_power = true,
+ struct samsung_quirks {
+-	bool broken_acpi_video;
+ 	bool four_kbd_backlight_levels;
+ 	bool enable_kbd_backlight;
+-	bool use_native_backlight;
+ 	bool lid_handling;
+ };
+ 
+ static struct samsung_quirks samsung_unknown = {};
+ 
+-static struct samsung_quirks samsung_broken_acpi_video = {
+-	.broken_acpi_video = true,
 -};
 -
- static struct quirk_entry *quirks;
- 
- static void et2012_quirks(void)
-@@ -151,25 +146,7 @@ static const struct dmi_system_id asus_quirks[] = {
+-static struct samsung_quirks samsung_use_native_backlight = {
+-	.use_native_backlight = true,
+-};
+-
+ static struct samsung_quirks samsung_np740u3e = {
+ 	.four_kbd_backlight_levels = true,
+ 	.enable_kbd_backlight = true,
+@@ -1540,76 +1530,6 @@ static const struct dmi_system_id samsung_dmi_table[] __initconst = {
  		},
- 		.driver_data = &quirk_asus_unknown,
  	},
+ 	/* Specific DMI ids for laptop with quirks */
 -	{
--		.callback = dmi_matched,
--		.ident = "ASUSTeK Computer INC. X101CH",
--		.matches = {
--			DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
--			DMI_MATCH(DMI_PRODUCT_NAME, "X101CH"),
+-	 .callback = samsung_dmi_matched,
+-	 .ident = "N150P",
+-	 .matches = {
+-		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
+-		DMI_MATCH(DMI_PRODUCT_NAME, "N150P"),
+-		DMI_MATCH(DMI_BOARD_NAME, "N150P"),
 -		},
--		.driver_data = &quirk_asus_x101ch,
+-	 .driver_data = &samsung_use_native_backlight,
 -	},
 -	{
--		.callback = dmi_matched,
--		.ident = "ASUSTeK Computer INC. 1015CX",
--		.matches = {
--			DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
--			DMI_MATCH(DMI_PRODUCT_NAME, "1015CX"),
+-	 .callback = samsung_dmi_matched,
+-	 .ident = "N145P/N250P/N260P",
+-	 .matches = {
+-		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
+-		DMI_MATCH(DMI_PRODUCT_NAME, "N145P/N250P/N260P"),
+-		DMI_MATCH(DMI_BOARD_NAME, "N145P/N250P/N260P"),
 -		},
--		.driver_data = &quirk_asus_x101ch,
+-	 .driver_data = &samsung_use_native_backlight,
 -	},
--	{},
-+	{}
- };
+-	{
+-	 .callback = samsung_dmi_matched,
+-	 .ident = "N150/N210/N220",
+-	 .matches = {
+-		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
+-		DMI_MATCH(DMI_PRODUCT_NAME, "N150/N210/N220"),
+-		DMI_MATCH(DMI_BOARD_NAME, "N150/N210/N220"),
+-		},
+-	 .driver_data = &samsung_broken_acpi_video,
+-	},
+-	{
+-	 .callback = samsung_dmi_matched,
+-	 .ident = "NF110/NF210/NF310",
+-	 .matches = {
+-		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
+-		DMI_MATCH(DMI_PRODUCT_NAME, "NF110/NF210/NF310"),
+-		DMI_MATCH(DMI_BOARD_NAME, "NF110/NF210/NF310"),
+-		},
+-	 .driver_data = &samsung_broken_acpi_video,
+-	},
+-	{
+-	 .callback = samsung_dmi_matched,
+-	 .ident = "X360",
+-	 .matches = {
+-		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
+-		DMI_MATCH(DMI_PRODUCT_NAME, "X360"),
+-		DMI_MATCH(DMI_BOARD_NAME, "X360"),
+-		},
+-	 .driver_data = &samsung_broken_acpi_video,
+-	},
+-	{
+-	 .callback = samsung_dmi_matched,
+-	 .ident = "N250P",
+-	 .matches = {
+-		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
+-		DMI_MATCH(DMI_PRODUCT_NAME, "N250P"),
+-		DMI_MATCH(DMI_BOARD_NAME, "N250P"),
+-		},
+-	 .driver_data = &samsung_use_native_backlight,
+-	},
+-	{
+-	 .callback = samsung_dmi_matched,
+-	 .ident = "NC210",
+-	 .matches = {
+-		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
+-		DMI_MATCH(DMI_PRODUCT_NAME, "NC210/NC110"),
+-		DMI_MATCH(DMI_BOARD_NAME, "NC210/NC110"),
+-		},
+-	 .driver_data = &samsung_broken_acpi_video,
+-	},
+ 	{
+ 	 .callback = samsung_dmi_matched,
+ 	 .ident = "730U3E/740U3E",
+@@ -1654,15 +1574,8 @@ static int __init samsung_init(void)
+ 	samsung->handle_backlight = true;
+ 	samsung->quirks = quirks;
  
- static void eeepc_wmi_key_filter(struct asus_wmi_driver *asus_wmi, int *code,
+-#ifdef CONFIG_ACPI
+-	if (samsung->quirks->broken_acpi_video)
+-		acpi_video_set_dmi_backlight_type(acpi_backlight_vendor);
+-	if (samsung->quirks->use_native_backlight)
+-		acpi_video_set_dmi_backlight_type(acpi_backlight_native);
+-
+ 	if (acpi_video_get_backlight_type() != acpi_backlight_vendor)
+ 		samsung->handle_backlight = false;
+-#endif
+ 
+ 	ret = samsung_platform_init(samsung);
+ 	if (ret)
 -- 
 2.37.2
 
