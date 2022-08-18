@@ -2,47 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D89E05990D3
+	by mail.lfdr.de (Postfix) with ESMTPS id BAFAF5990D2
 	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 01:03:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6A7710E230;
-	Thu, 18 Aug 2022 23:03:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B42D10E475;
+	Thu, 18 Aug 2022 23:03:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F132510E230;
- Thu, 18 Aug 2022 23:03:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C64610E07A;
+ Thu, 18 Aug 2022 23:03:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660863795; x=1692399795;
+ t=1660863796; x=1692399796;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ww8r+H8UI5TF9H8lorB/wHDJFcQK322x30v8gdjs3Bc=;
- b=iA5IXREm/wEpqUo1CiFgbBhLJ497MGHhHEqeGeIEJYgpGZq9DxDczGs/
- ck2uFPq4Ir6WmrkP6HeXWGc8KA+KFljHaSUaH6aqf5aPJ6ZyK0ALd6PUs
- qHCbAyNMWzwH/Us3Gs5MPpdwj06AoJm1AjxtZ86VBkBaITKZ9GhhAgpTi
- sTIVXuK6QqZciv1iWkZkI2YBL3f1Qt5/94i+rmBrpL9RkJ6A8Tw0im2YX
- /TvHi5Q/pNrChEAhZVySFOuSQTnpk2mo7csG3mjqVEbEFT3k/QoBkJy5a
- 3ME+0S3Zlp2OKCFuyNj6ZuhmzDrIjLULiTW5bTemnRdh8Gff6CLWjiN+0 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="293677532"
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="293677532"
+ bh=AjeV7D52M2bcFGFlVTUKsCuSs9nqXvOj9vZA0hoYLRw=;
+ b=Qx+eiUsKzKoPJEkl/dNY+pvFRARUx1Va3SMOm6ucYkJmFZnCN0hRZjfP
+ WCWQjp9rJnnPtmAw6VmDZnERCnxPV8KneKqM6Z/UyTd4xEqk6xtipyZsE
+ sckBRTL9RQZSWVZjik6WLnGTwOZ8501yahL7tl3YPGOpzqeNaoYwedlx8
+ xMW8aNKkHaDC1xPTX8VCOrh1XnrfXeEn82cDs8+LWHJPdgaWY+aJppj5s
+ oVGbH7CYcunitUNhjQwV82uK/Rf/GKHxDeXYI/omPahVLqmSiO0Qm2Keb
+ bPoPiLGffwvkuHdrhZtplIwj+fw+dol1fX2jrIwKVjLmD1BfkURR6qXfo g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="293677533"
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="293677533"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 16:03:14 -0700
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="641042831"
+ 18 Aug 2022 16:03:16 -0700
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="641042841"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 16:03:14 -0700
+ 18 Aug 2022 16:03:15 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Aug 2022 16:02:31 -0700
-Message-Id: <20220818230243.3921066-4-daniele.ceraolospurio@intel.com>
+Date: Thu, 18 Aug 2022 16:02:32 -0700
+Message-Id: <20220818230243.3921066-5-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20220818230243.3921066-1-daniele.ceraolospurio@intel.com>
 References: <20220818230243.3921066-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 03/15] mei: bus: enable sending gsc commands
+Subject: [Intel-gfx] [PATCH v2 04/15] mei: bus: extend bus API to support
+ command streamer API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,84 +61,189 @@ Cc: Tomas Winkler <tomas.winkler@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tomas Winkler <tomas.winkler@intel.com>
+From: Vitaly Lubart <vitaly.lubart@intel.com>
 
-GSC command is and extended header containing a scatter gather
-list and without a data buffer. Using MEI_CL_IO_SGL flag,
-the caller send the GSC command as a data and the function internally
-moves it to the extended header.
+Add mei bus API for sending gsc commands: mei_cldev_send_gsc_command()
 
+The GSC commands are originated in the graphics stack
+and are in form of SGL DMA buffers.
+The GSC commands are synchronous, the response is received
+in the same call on the out sg list buffers.
+The function setups pointers for in and out sg lists in the
+mei sgl extended header and sends it to the firmware.
+
+V2:
+ 1. More detailed commit message
+ 2. Fix typo in the comments
+
+Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
 Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Vitaly Lubart <vitaly.lubart@intel.com>
 ---
- drivers/misc/mei/bus.c     | 20 ++++++++++++++++++--
- drivers/misc/mei/mei_dev.h |  4 ++++
- 2 files changed, 22 insertions(+), 2 deletions(-)
+ drivers/misc/mei/bus.c     | 125 +++++++++++++++++++++++++++++++++++++
+ include/linux/mei_cl_bus.h |   6 ++
+ 2 files changed, 131 insertions(+)
 
 diff --git a/drivers/misc/mei/bus.c b/drivers/misc/mei/bus.c
-index 46aa3554e97b..225f0b04c021 100644
+index 225f0b04c021..fc885ba94b36 100644
 --- a/drivers/misc/mei/bus.c
 +++ b/drivers/misc/mei/bus.c
-@@ -100,9 +100,18 @@ ssize_t __mei_cl_send(struct mei_cl *cl, const u8 *buf, size_t length, u8 vtag,
- 	cb->internal = !!(mode & MEI_CL_IO_TX_INTERNAL);
- 	cb->blocking = !!(mode & MEI_CL_IO_TX_BLOCKING);
- 	memcpy(cb->buf.data, buf, length);
-+	/* hack we point data to header */
-+	if (mode & MEI_CL_IO_SGL) {
-+		cb->ext_hdr = (struct mei_ext_hdr *)cb->buf.data;
-+		cb->buf.data = NULL;
-+		cb->buf.size = 0;
-+	}
+@@ -838,6 +838,131 @@ int mei_cldev_disable(struct mei_cl_device *cldev)
+ }
+ EXPORT_SYMBOL_GPL(mei_cldev_disable);
  
- 	rets = mei_cl_write(cl, cb);
- 
-+	if (mode & MEI_CL_IO_SGL && rets == 0)
-+		rets = length;
-+
- out:
- 	mutex_unlock(&bus->device_lock);
- 
-@@ -205,9 +214,16 @@ ssize_t __mei_cl_recv(struct mei_cl *cl, u8 *buf, size_t length, u8 *vtag,
- 		goto free;
- 	}
- 
--	r_length = min_t(size_t, length, cb->buf_idx);
--	memcpy(buf, cb->buf.data, r_length);
-+	/* for the GSC type - copy the extended header to the buffer */
-+	if (cb->ext_hdr && cb->ext_hdr->type == MEI_EXT_HDR_GSC) {
-+		r_length = min_t(size_t, length, cb->ext_hdr->length * sizeof(u32));
-+		memcpy(buf, cb->ext_hdr, r_length);
-+	} else {
-+		r_length = min_t(size_t, length, cb->buf_idx);
-+		memcpy(buf, cb->buf.data, r_length);
-+	}
- 	rets = r_length;
-+
- 	if (vtag)
- 		*vtag = cb->vtag;
- 
-diff --git a/drivers/misc/mei/mei_dev.h b/drivers/misc/mei/mei_dev.h
-index 862190b297aa..5e28294d5dca 100644
---- a/drivers/misc/mei/mei_dev.h
-+++ b/drivers/misc/mei/mei_dev.h
-@@ -109,12 +109,16 @@ enum mei_cb_file_ops {
-  * @MEI_CL_IO_TX_INTERNAL: internal communication between driver and FW
-  *
-  * @MEI_CL_IO_RX_NONBLOCK: recv is non-blocking
++/**
++ * mei_cldev_send_gsc_command - sends a gsc command, by sending
++ * a gsl mei message to gsc and receiving reply from gsc
 + *
-+ * @MEI_CL_IO_SGL: send command with sgl list.
-  */
- enum mei_cl_io_mode {
- 	MEI_CL_IO_TX_BLOCKING = BIT(0),
- 	MEI_CL_IO_TX_INTERNAL = BIT(1),
- 
- 	MEI_CL_IO_RX_NONBLOCK = BIT(2),
++ * @cldev: me client device
++ * @client_id: client id to send the command to
++ * @fence_id: fence id to send the command to
++ * @sg_in: scatter gather list containing addresses for rx message buffer
++ * @total_in_len: total length of data in 'in' sg, can be less than the sum of buffers sizes
++ * @sg_out: scatter gather list containing addresses for tx message buffer
++ *
++ * Return:
++ *  * written size in bytes
++ *  * < 0 on error
++ */
++ssize_t mei_cldev_send_gsc_command(struct mei_cl_device *cldev,
++				   u8 client_id, u32 fence_id,
++				   struct scatterlist *sg_in,
++				   size_t total_in_len,
++				   struct scatterlist *sg_out)
++{
++	struct mei_cl *cl;
++	struct mei_device *bus;
++	ssize_t ret = 0;
 +
-+	MEI_CL_IO_SGL         = BIT(3),
- };
++	struct mei_ext_hdr_gsc_h2f *ext_hdr;
++	size_t buf_sz = sizeof(struct mei_ext_hdr_gsc_h2f);
++	int sg_out_nents, sg_in_nents;
++	int i;
++	struct scatterlist *sg;
++	struct mei_ext_hdr_gsc_f2h rx_msg;
++	unsigned int sg_len;
++
++	if (!cldev || !sg_in || !sg_out)
++		return -EINVAL;
++
++	cl = cldev->cl;
++	bus = cldev->bus;
++
++	dev_dbg(bus->dev, "client_id %u, fence_id %u\n", client_id, fence_id);
++
++	if (!bus->hbm_f_gsc_supported)
++		return -EOPNOTSUPP;
++
++	sg_out_nents = sg_nents(sg_out);
++	sg_in_nents = sg_nents(sg_in);
++	/* at least one entry in tx and rx sgls must be present */
++	if (sg_out_nents <= 0 || sg_in_nents <= 0)
++		return -EINVAL;
++
++	buf_sz += (sg_out_nents + sg_in_nents) * sizeof(struct mei_gsc_sgl);
++	ext_hdr = kzalloc(buf_sz, GFP_KERNEL);
++	if (!ext_hdr)
++		return -ENOMEM;
++
++	/* construct the GSC message */
++	ext_hdr->hdr.type = MEI_EXT_HDR_GSC;
++	ext_hdr->hdr.length = buf_sz / sizeof(u32); /* length is in dw */
++
++	ext_hdr->client_id = client_id;
++	ext_hdr->addr_type = GSC_ADDRESS_TYPE_PHYSICAL_SGL;
++	ext_hdr->fence_id = fence_id;
++	ext_hdr->input_address_count = sg_in_nents;
++	ext_hdr->output_address_count = sg_out_nents;
++	ext_hdr->reserved[0] = 0;
++	ext_hdr->reserved[1] = 0;
++
++	/* copy in-sgl to the message */
++	for (i = 0, sg = sg_in; i < sg_in_nents; i++, sg++) {
++		ext_hdr->sgl[i].low = lower_32_bits(sg_dma_address(sg));
++		ext_hdr->sgl[i].high = upper_32_bits(sg_dma_address(sg));
++		sg_len = min_t(unsigned int, sg_dma_len(sg), PAGE_SIZE);
++		ext_hdr->sgl[i].length = (sg_len <= total_in_len) ? sg_len : total_in_len;
++		total_in_len -= ext_hdr->sgl[i].length;
++	}
++
++	/* copy out-sgl to the message */
++	for (i = sg_in_nents, sg = sg_out; i < sg_in_nents + sg_out_nents; i++, sg++) {
++		ext_hdr->sgl[i].low = lower_32_bits(sg_dma_address(sg));
++		ext_hdr->sgl[i].high = upper_32_bits(sg_dma_address(sg));
++		sg_len = min_t(unsigned int, sg_dma_len(sg), PAGE_SIZE);
++		ext_hdr->sgl[i].length = sg_len;
++	}
++
++	/* send the message to GSC */
++	ret = __mei_cl_send(cl, (u8 *)ext_hdr, buf_sz, 0, MEI_CL_IO_SGL);
++	if (ret < 0) {
++		dev_err(bus->dev, "__mei_cl_send failed, returned %zd\n", ret);
++		goto end;
++	}
++	if (ret != buf_sz) {
++		dev_err(bus->dev, "__mei_cl_send returned %zd instead of expected %zd\n",
++			ret, buf_sz);
++		ret = -EIO;
++		goto end;
++	}
++
++	/* receive the reply from GSC, note that at this point sg_in should contain the reply */
++	ret = __mei_cl_recv(cl, (u8 *)&rx_msg, sizeof(rx_msg), NULL, MEI_CL_IO_SGL, 0);
++
++	if (ret != sizeof(rx_msg)) {
++		dev_err(bus->dev, "__mei_cl_recv returned %zd instead of expected %zd\n",
++			ret, sizeof(rx_msg));
++		if (ret >= 0)
++			ret = -EIO;
++		goto end;
++	}
++
++	/* check rx_msg.client_id and rx_msg.fence_id match the ones we send */
++	if (rx_msg.client_id != client_id || rx_msg.fence_id != fence_id) {
++		dev_err(bus->dev, "received client_id/fence_id  %u/%u  instead of %u/%u sent\n",
++			rx_msg.client_id, rx_msg.fence_id, client_id, fence_id);
++		ret = -EFAULT;
++		goto end;
++	}
++
++	dev_dbg(bus->dev, "gsc command: successfully written %u bytes\n",  rx_msg.written);
++	ret = rx_msg.written;
++
++end:
++	kfree(ext_hdr);
++	return ret;
++}
++EXPORT_SYMBOL_GPL(mei_cldev_send_gsc_command);
++
+ /**
+  * mei_cl_device_find - find matching entry in the driver id table
+  *
+diff --git a/include/linux/mei_cl_bus.h b/include/linux/mei_cl_bus.h
+index df1fab44ea5c..308dc9155ad6 100644
+--- a/include/linux/mei_cl_bus.h
++++ b/include/linux/mei_cl_bus.h
+@@ -8,6 +8,7 @@
+ #include <linux/device.h>
+ #include <linux/uuid.h>
+ #include <linux/mod_devicetable.h>
++#include <linux/scatterlist.h>
  
- /*
+ struct mei_cl_device;
+ struct mei_device;
+@@ -116,6 +117,11 @@ void mei_cldev_set_drvdata(struct mei_cl_device *cldev, void *data);
+ int mei_cldev_enable(struct mei_cl_device *cldev);
+ int mei_cldev_disable(struct mei_cl_device *cldev);
+ bool mei_cldev_enabled(const struct mei_cl_device *cldev);
++ssize_t mei_cldev_send_gsc_command(struct mei_cl_device *cldev,
++				   u8 client_id, u32 fence_id,
++				   struct scatterlist *sg_in,
++				   size_t total_in_len,
++				   struct scatterlist *sg_out);
+ 
+ void *mei_cldev_dma_map(struct mei_cl_device *cldev, u8 buffer_id, size_t size);
+ int mei_cldev_dma_unmap(struct mei_cl_device *cldev);
 -- 
 2.37.2
 
