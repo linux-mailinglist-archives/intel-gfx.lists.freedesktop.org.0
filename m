@@ -2,65 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E7E599B08
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 13:41:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF69599B43
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 13:53:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D6F110E1D7;
-	Fri, 19 Aug 2022 11:41:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3E0A10E3FA;
+	Fri, 19 Aug 2022 11:53:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com
- [IPv6:2607:f8b0:4864:20::534])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BEC310E1D7
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 11:41:37 +0000 (UTC)
-Received: by mail-pg1-x534.google.com with SMTP id bh13so3510023pgb.4
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 04:41:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:sender
- :from:to:cc; bh=6brE+44hHVDNFD952b5eKj8dghuJ584WBCFhVsoBkUM=;
- b=IMquV9LaIxx+1unKbK8i89UmBZTEevFLI4WTTlEdd27n98Eaw+rbu5PZQ3t1mRsUT5
- hSk2hXi+QIHSSv6pCaBlTGRCOrLyZMvYWdd0WSyi6+PE+J8Fv66tm74S4KDTGr3uOT9K
- LwZmlACR9uewkY82nYUJLa/fNcK6+zgsOWGStWn6eNXF9TU4D4kdu4qkqEHCSmT5SzRj
- cxJEA5dm2rW3bc+BGxJmqIeqbouWDvuqANKZoYDbynACv9V4KHOERvXQRod9FwlrVS/N
- QJgMnSbVJwAhU/+tuyF+t10Sb8FEMC20L5YpzdZsiWbeVD2Iw6LI16+YI2utZRTa34u3
- UKtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:sender
- :x-gm-message-state:from:to:cc;
- bh=6brE+44hHVDNFD952b5eKj8dghuJ584WBCFhVsoBkUM=;
- b=6XY6KnWCw0gZ8euezxyM2aHI4qw7vmRYrcDiM4ZXgt3lb7ZC3yo/lHIXlAzKMy3eB2
- ONU+1Wlnx2gO0vrCNkwO4cVoEfof+T+PkMbIxkLOIvLUAQGgByVm7kfzjJ6PEO73yHyK
- wsknuzMWRmJ5xcWElMUc84KvPgDW7lOumsHLz6x+YI3F0MzD6RM/662whcRRvG2D1TVS
- zmfOUZc7fZX8ydKEJXv5bDRtZOPTriPLldCqOq41A3YsTnmg3cVtAewcNMQa3+asS5o/
- QWYyZ4U57Is8edoShEX4w5RbCy2k0hHrke+1n1UuvOLnPjRA+q2+dnfSIrf8N/piGQd7
- DPww==
-X-Gm-Message-State: ACgBeo15St2cqUqUwQCLU/IL53qb9mRVsep8DJdx/CoHBHxy4pXwrLSp
- 74KXd2zyDzg+0ymgbm7T6UU=
-X-Google-Smtp-Source: AA6agR4QofU5JnTd0G+htuh7nvzdffMNIH7dxh3bPxmK/VxQiESzn87KYiuc+ZyCwi7YdN6uV5V+eA==
-X-Received: by 2002:a63:8c47:0:b0:40d:2d4:e3a2 with SMTP id
- q7-20020a638c47000000b0040d02d4e3a2mr6192049pgn.2.1660909296602; 
- Fri, 19 Aug 2022 04:41:36 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- m14-20020a62a20e000000b0052d4afc4302sm3380757pff.175.2022.08.19.04.41.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Aug 2022 04:41:35 -0700 (PDT)
-Date: Fri, 19 Aug 2022 04:41:35 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20220819114135.GE3106213@roeck-us.net>
-References: <20220818193901.2974625-1-badal.nilawar@intel.com>
- <20220818193901.2974625-2-badal.nilawar@intel.com>
- <87ilmoo707.fsf@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2349D10E7CF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 11:53:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1660910018; x=1692446018;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=tP/EDepom5nt10+TkvK8KnP/Z6f3lyt0kG18Dthc+3g=;
+ b=aWJPG5aQG1kg4LAtaUB2scAGak6HY0BQYtTE9Aaf5dO+v5mRASaiDOPr
+ zvWHK5Xq5bEcLIyc/mOIBugKfaNVDAG5lNIrtySaSjgnj2e3qmUk03BJP
+ 60/LC7+bV9M94H4CfNO7xfpF6/XLEGKORdheXxE6QaEh4MCGl4T9uAV7+
+ ltSsC/awhK5SgT1tMMPSPWIjfFuWavTFre8nIp7ZEjowQCwAZqQ3Lx3tJ
+ Y2IH1d9ugR1q5XPkWb+x0h0s4GF2tkW/PkJWAaLWeeP4IgcdXZyOHbwMI
+ HSNPRDMpcnXbTi8qRZvx3aFDCDx0FhtUYYdG9DNS7hRTOO/j6t+J3ShXF w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="291753316"
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="291753316"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 04:53:36 -0700
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="936194922"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.9.30])
+ ([10.213.9.30])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 04:53:35 -0700
+Message-ID: <3aeae2e6-ebe3-5241-bfa1-ee36a0d5ec94@intel.com>
+Date: Fri, 19 Aug 2022 13:53:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87ilmoo707.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/hwmon: Add HWMON infrastructure
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.12.0
+Content-Language: en-US
+To: Juston Li <justonli@chromium.org>, intel-gfx@lists.freedesktop.org
+References: <20220818174205.2412730-1-justonli@chromium.org>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220818174205.2412730-1-justonli@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/pxp: don't start pxp without
+ mei_pxp bind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,299 +62,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Cc: alan.previn.teres.alexis@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 19, 2022 at 01:35:52PM +0300, Jani Nikula wrote:
-> On Fri, 19 Aug 2022, Badal Nilawar <badal.nilawar@intel.com> wrote:
-> > From: Dale B Stimson <dale.b.stimson@intel.com>
-> >
-> > The i915 HWMON module will be used to expose voltage, power and energy
-> > values for dGfx. Here we set up i915 hwmon infrastructure including i915
-> > hwmon registration, basic data structures and functions.
-> >
-> > v2:
-> >   - Create HWMON infra patch (Ashutosh)
-> >   - Fixed review comments (Jani)
-> >   - Remove "select HWMON" from i915/Kconfig (Jani)
-> > v3: Use hwm_ prefix for static functions (Ashutosh)
-> > v4: s/#ifdef CONFIG_HWMON/#if IS_REACHABLE(CONFIG_HWMON)/ since the former
-> >     doesn't work if hwmon is compiled as a module (Guenter)
+On 18.08.2022 19:42, Juston Li wrote:
+> pxp will not start correctly until after mei_pxp bind completes and
+> intel_pxp_init_hw() is called.
+> Wait for the bind to complete before proceeding with startup.
 > 
-> Is this really what we want to do?
+> This fixes a race condition during bootup where we observed a small
+> window for pxp commands to be sent, starting pxp before mei_pxp bind
+> completed.
 > 
-> In my books, it's a misconfiguration to have CONFIG_HWMON=m with
-> CONFIG_DRM_I915=y. That's really the problematic combo, not just
-> CONFIG_HWMON=m, right? Why do we allow it at the kconfig level, and then
-> have ugly hacks around it at the code level? Especially as
-> CONFIG_DRM_I915=y should really be thought of as a corner case.
+> Changes since v2:
+> - wait for pxp_component to bind instead of returning -EAGAIN (Daniele)
 > 
-> So why not do this in i915 Kconfig:
+> Changes since v1:
+> - check pxp_component instead of pxp_component_added (Daniele)
+> - pxp_component needs tee_mutex (Daniele)
+> - return -EAGAIN so caller knows to retry (Daniele)
 > 
-> config DRM_I915
-> 	...
-> 	depends on HWMON || HWMON=n
-> 
+> Signed-off-by: Juston Li <justonli@chromium.org>
 
-Ok with me, but not my call to make. The ifdef should then use
-IS_ENABLED(), though.
+In typical usage of component framework driver postpones initialization 
+till component is bound. In such case checking/waiting for component as 
+in this patch is not necessary and the code is more straightforward.
+I wonder how it behaves on component unbind.
 
-Guenter
+Anyway:
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-> Which rejects the CONFIG_HWMON=m && CONFIG_DRM_I915=y combo.
+Regards
+Andrzej
+
+
+> ---
+>   drivers/gpu/drm/i915/pxp/intel_pxp.c | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
 > 
-> >
-> > Cc: Guenter Roeck <linux@roeck-us.net>
-> > Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
-> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> > Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/Makefile      |   3 +
-> >  drivers/gpu/drm/i915/i915_driver.c |   7 ++
-> >  drivers/gpu/drm/i915/i915_drv.h    |   2 +
-> >  drivers/gpu/drm/i915/i915_hwmon.c  | 135 +++++++++++++++++++++++++++++
-> >  drivers/gpu/drm/i915/i915_hwmon.h  |  20 +++++
-> >  5 files changed, 167 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/i915/i915_hwmon.c
-> >  create mode 100644 drivers/gpu/drm/i915/i915_hwmon.h
-> >
-> > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> > index 522ef9b4aff3..2b235f747490 100644
-> > --- a/drivers/gpu/drm/i915/Makefile
-> > +++ b/drivers/gpu/drm/i915/Makefile
-> > @@ -208,6 +208,9 @@ i915-y += gt/uc/intel_uc.o \
-> >  # graphics system controller (GSC) support
-> >  i915-y += gt/intel_gsc.o
-> >  
-> > +# graphics hardware monitoring (HWMON) support
-> > +i915-$(CONFIG_HWMON) += i915_hwmon.o
-> 
-> Moreover, this builds i915_hwmon.o as part of i915.ko (or kernel as it's
-> builtin) even if we can't use it!
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
-> > +
-> >  # modesetting core code
-> >  i915-y += \
-> >  	display/hsw_ips.o \
-> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> > index deb8a8b76965..62340cd01dde 100644
-> > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > @@ -80,6 +80,7 @@
-> >  #include "i915_drm_client.h"
-> >  #include "i915_drv.h"
-> >  #include "i915_getparam.h"
-> > +#include "i915_hwmon.h"
-> >  #include "i915_ioc32.h"
-> >  #include "i915_ioctl.h"
-> >  #include "i915_irq.h"
-> > @@ -736,6 +737,9 @@ static void i915_driver_register(struct drm_i915_private *dev_priv)
-> >  
-> >  	intel_gt_driver_register(to_gt(dev_priv));
-> >  
-> > +#if IS_REACHABLE(CONFIG_HWMON)
-> > +	i915_hwmon_register(dev_priv);
-> > +#endif
-> >  	intel_display_driver_register(dev_priv);
-> >  
-> >  	intel_power_domains_enable(dev_priv);
-> > @@ -762,6 +766,9 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
-> >  
-> >  	intel_display_driver_unregister(dev_priv);
-> >  
-> > +#if IS_REACHABLE(CONFIG_HWMON)
-> > +	i915_hwmon_unregister(dev_priv);
-> > +#endif
-> >  	intel_gt_driver_unregister(to_gt(dev_priv));
-> >  
-> >  	i915_perf_unregister(dev_priv);
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> > index 086bbe8945d6..d437d588dec9 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -705,6 +705,8 @@ struct drm_i915_private {
-> >  
-> >  	struct i915_perf perf;
-> >  
-> > +	struct i915_hwmon *hwmon;
-> > +
-> >  	/* Abstract the submission mechanism (legacy ringbuffer or execlists) away */
-> >  	struct intel_gt gt0;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> > new file mode 100644
-> > index 000000000000..5b80a0f024f0
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> > @@ -0,0 +1,135 @@
-> > +// SPDX-License-Identifier: MIT
-> > +/*
-> > + * Copyright © 2022 Intel Corporation
-> > + */
-> > +
-> > +#include <linux/hwmon.h>
-> > +#include <linux/hwmon-sysfs.h>
-> > +#include <linux/types.h>
-> > +
-> > +#include "i915_drv.h"
-> > +#include "i915_hwmon.h"
-> > +#include "intel_mchbar_regs.h"
-> > +
-> > +struct hwm_reg {
-> > +};
-> > +
-> > +struct hwm_drvdata {
-> > +	struct i915_hwmon *hwmon;
-> > +	struct intel_uncore *uncore;
-> > +	struct device *hwmon_dev;
-> > +	char name[12];
-> > +};
-> > +
-> > +struct i915_hwmon {
-> > +	struct hwm_drvdata ddat;
-> > +	struct mutex hwmon_lock;		/* counter overflow logic and rmw */
-> > +	struct hwm_reg rg;
-> > +};
-> > +
-> > +static const struct hwmon_channel_info *hwm_info[] = {
-> > +	NULL
-> > +};
-> > +
-> > +static umode_t
-> > +hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
-> > +	       u32 attr, int channel)
-> > +{
-> > +	switch (type) {
-> > +	default:
-> > +		return 0;
-> > +	}
-> > +}
-> > +
-> > +static int
-> > +hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-> > +	 int channel, long *val)
-> > +{
-> > +	switch (type) {
-> > +	default:
-> > +		return -EOPNOTSUPP;
-> > +	}
-> > +}
-> > +
-> > +static int
-> > +hwm_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-> > +	  int channel, long val)
-> > +{
-> > +	switch (type) {
-> > +	default:
-> > +		return -EOPNOTSUPP;
-> > +	}
-> > +}
-> > +
-> > +static const struct hwmon_ops hwm_ops = {
-> > +	.is_visible = hwm_is_visible,
-> > +	.read = hwm_read,
-> > +	.write = hwm_write,
-> > +};
-> > +
-> > +static const struct hwmon_chip_info hwm_chip_info = {
-> > +	.ops = &hwm_ops,
-> > +	.info = hwm_info,
-> > +};
-> > +
-> > +static void
-> > +hwm_get_preregistration_info(struct drm_i915_private *i915)
-> > +{
-> > +}
-> > +
-> > +void i915_hwmon_register(struct drm_i915_private *i915)
-> > +{
-> > +	struct device *dev = i915->drm.dev;
-> > +	struct i915_hwmon *hwmon;
-> > +	struct device *hwmon_dev;
-> > +	struct hwm_drvdata *ddat;
-> > +
-> > +	/* hwmon is available only for dGfx */
-> > +	if (!IS_DGFX(i915))
-> > +		return;
-> > +
-> > +	hwmon = kzalloc(sizeof(*hwmon), GFP_KERNEL);
-> > +	if (!hwmon)
-> > +		return;
-> > +
-> > +	i915->hwmon = hwmon;
-> > +	mutex_init(&hwmon->hwmon_lock);
-> > +	ddat = &hwmon->ddat;
-> > +
-> > +	ddat->hwmon = hwmon;
-> > +	ddat->uncore = &i915->uncore;
-> > +	snprintf(ddat->name, sizeof(ddat->name), "i915");
-> > +
-> > +	hwm_get_preregistration_info(i915);
-> > +
-> > +	/*  hwmon_dev points to device hwmon<i> */
-> > +	hwmon_dev = hwmon_device_register_with_info(dev, ddat->name,
-> > +						    ddat,
-> > +						    &hwm_chip_info,
-> > +						    NULL);
-> > +	if (IS_ERR(hwmon_dev)) {
-> > +		mutex_destroy(&hwmon->hwmon_lock);
-> > +		i915->hwmon = NULL;
-> > +		kfree(hwmon);
-> > +		return;
-> > +	}
-> > +
-> > +	ddat->hwmon_dev = hwmon_dev;
-> > +}
-> > +
-> > +void i915_hwmon_unregister(struct drm_i915_private *i915)
-> > +{
-> > +	struct i915_hwmon *hwmon;
-> > +	struct hwm_drvdata *ddat;
-> > +
-> > +	hwmon = fetch_and_zero(&i915->hwmon);
-> > +	if (!hwmon)
-> > +		return;
-> > +
-> > +	ddat = &hwmon->ddat;
-> > +	if (ddat->hwmon_dev)
-> > +		hwmon_device_unregister(ddat->hwmon_dev);
-> > +
-> > +	mutex_destroy(&hwmon->hwmon_lock);
-> > +	kfree(hwmon);
-> > +}
-> > diff --git a/drivers/gpu/drm/i915/i915_hwmon.h b/drivers/gpu/drm/i915/i915_hwmon.h
-> > new file mode 100644
-> > index 000000000000..921ae76099d3
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/i915/i915_hwmon.h
-> > @@ -0,0 +1,20 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +
-> > +/*
-> > + * Copyright © 2022 Intel Corporation
-> > + */
-> > +
-> > +#ifndef __I915_HWMON_H__
-> > +#define __I915_HWMON_H__
-> > +
-> > +#include <linux/device.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/types.h>
-> > +#include "i915_reg.h"
-> > +
-> > +struct drm_i915_private;
-> > +
-> > +void i915_hwmon_register(struct drm_i915_private *i915);
-> > +void i915_hwmon_unregister(struct drm_i915_private *i915);
-> > +
-> > +#endif /* __I915_HWMON_H__ */
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> index 15311eaed848..17109c513259 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -176,6 +176,18 @@ static void pxp_queue_termination(struct intel_pxp *pxp)
+>   	spin_unlock_irq(&gt->irq_lock);
+>   }
+>   
+> +static bool pxp_component_bound(struct intel_pxp *pxp)
+> +{
+> +	bool bound = false;
+> +
+> +	mutex_lock(&pxp->tee_mutex);
+> +	if (pxp->pxp_component)
+> +		bound = true;
+> +	mutex_unlock(&pxp->tee_mutex);
+> +
+> +	return bound;
+> +}
+> +
+>   /*
+>    * the arb session is restarted from the irq work when we receive the
+>    * termination completion interrupt
+> @@ -187,6 +199,9 @@ int intel_pxp_start(struct intel_pxp *pxp)
+>   	if (!intel_pxp_is_enabled(pxp))
+>   		return -ENODEV;
+>   
+> +	if (wait_for(pxp_component_bound(pxp), 250))
+> +		return -ENXIO;
+> +
+>   	mutex_lock(&pxp->arb_mutex);
+>   
+>   	if (pxp->arb_is_valid)
+
