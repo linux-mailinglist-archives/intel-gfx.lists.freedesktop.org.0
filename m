@@ -2,95 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 471C4599967
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 12:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 906455999CA
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 12:36:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85F7A10E41A;
-	Fri, 19 Aug 2022 10:05:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D68D10E61C;
+	Fri, 19 Aug 2022 10:36:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83FD210E0A5
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 10:05:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660903536;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ClrqC6xI3y34Msl2MghOyY6wxIWtFZ3bYpyy58JPY0M=;
- b=i2iuljY5KyPWee73oqaV+RZTqsrau4Cd/lTY8MxSKT40iggyogIFKv3l66P/iP88BBS/dB
- rmtFbXOPPYP2oSPlRECwtKSSlNsPToLUWXbVjfL3nkdR0qRJXqaJ54/3xcEo4e6D5vZcRl
- iVuFvoGbev6Xgj5voPzxD4LpcxgYjb0=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-647-CWiOPV5XMcOjKOaFm36Zmw-1; Fri, 19 Aug 2022 06:05:33 -0400
-X-MC-Unique: CWiOPV5XMcOjKOaFm36Zmw-1
-Received: by mail-ej1-f70.google.com with SMTP id
- gb41-20020a170907962900b00730961131a7so1344838ejc.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 03:05:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc;
- bh=ClrqC6xI3y34Msl2MghOyY6wxIWtFZ3bYpyy58JPY0M=;
- b=5j1pBkUDRvQZBpXidqQ3EYKsH4lAbgzJfYgdMJTGxf/VhsiSJLUkO38emiEy7V5E1K
- 3Kx+/7Xxc+nG4SvPRoi2JF69YG38UKPNoIelzjkruxWjzCc0PIFrjUkkRpH0JgZWcnom
- 5I3enafHONQo+q6a1LRkomvQoqcHHSow3QJfcCM/j4PwKdLD1NI6F8Vr3C/BkdbA3Szh
- Xs7DWY54DCEFRJ8A0b9VjbllrFsTbmNjOaPLr7k1ru3U3kqCspbvBRhsaR8ag21Urb3y
- Zp0PhrPJqHKMOkEtb3GVjxJXA1oP6+j90bR++ya65C5msEufQwAT+iJ9H/je0mfRyBxe
- tQXQ==
-X-Gm-Message-State: ACgBeo3Xl3G7npp9+KWo3ytXii6nSpbQMyVqYBFGNii4GmCxccbISyf1
- ePzrbkbNwA4y7rJOUv4msCiqrmclcweqwza7erMWIjNiDs3HGMBnC+DPtvJV4S6KsbniO8DknvS
- qI0uMXP/9AXPsK6ciyENKv8tcjZyc
-X-Received: by 2002:a05:6402:84e:b0:440:4bac:be5a with SMTP id
- b14-20020a056402084e00b004404bacbe5amr5564251edz.103.1660903532669; 
- Fri, 19 Aug 2022 03:05:32 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR7fU47agb0EFZDnJX43gsuZ1SU7OR4Ob90bb0C5SXvvscJYiU83fnrABD1bw+CGIeNcDMsT+g==
-X-Received: by 2002:a05:6402:84e:b0:440:4bac:be5a with SMTP id
- b14-20020a056402084e00b004404bacbe5amr5564218edz.103.1660903532345; 
- Fri, 19 Aug 2022 03:05:32 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
- (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
- by smtp.gmail.com with ESMTPSA id
- q29-20020a056402249d00b0043ca6fb7e7dsm2780438eda.68.2022.08.19.03.05.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 19 Aug 2022 03:05:31 -0700 (PDT)
-Message-ID: <d5767b2e-a20f-43ca-61d7-6ea577b31188@redhat.com>
-Date: Fri, 19 Aug 2022 12:05:30 +0200
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBCA110E2BC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 10:35:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1660905356; x=1692441356;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=YIaRCf+NDPGcZ5fh1foiCYiowH44OTVHjAX9w2+52WI=;
+ b=M9y/J2GTkbKJY+dqzX31Wk1vduJ3s4xw0vsiLoW5gD4Ss+nKFoZGqrCN
+ 0yFyH/iqAJEyLVxoS1zLHJloh0T5aQMtHZI0XQMf+UkSJSSFI0gJD6Y3M
+ //ug2NPFkXYAt8KV0ymCcnznkYO7x+GSnAygN8M4nCvzdd+Ek9xZNU4LN
+ +qRtgnfSWDfd+rlGW2BJjvYlP/cPSllXFCojRc7/2VsvG89/5kwsWoBcp
+ Z0PHXYjSXvcQ6L1PIJeUyAnxCPHOJJA76RZTDkTgZEoWztcJtm3S2dWb2
+ 47Nu+sU/AbeDaemAjHoX91M6dE1bLlmQgDTGWUjbUZTVze8ihZUmEwouQ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="319017735"
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="319017735"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 03:35:56 -0700
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="668533184"
+Received: from jastrom-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.51.176])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 03:35:54 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220818193901.2974625-2-badal.nilawar@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220818193901.2974625-1-badal.nilawar@intel.com>
+ <20220818193901.2974625-2-badal.nilawar@intel.com>
+Date: Fri, 19 Aug 2022 13:35:52 +0300
+Message-ID: <87ilmoo707.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-To: Daniel Dadap <ddadap@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Xinhui <Xinhui.Pan@amd.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
- Andy Shevchenko <andy@kernel.org>
-References: <20220818184302.10051-1-hdegoede@redhat.com>
- <20220818184302.10051-16-hdegoede@redhat.com>
- <12cc48c5-b54f-1eb7-c268-beb98bce2a5d@nvidia.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <12cc48c5-b54f-1eb7-c268-beb98bce2a5d@nvidia.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 15/31] platform/x86:
- nvidia-wmi-ec-backlight: Move fw interface definitions to a header
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/hwmon: Add HWMON infrastructure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,220 +58,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Len Brown <lenb@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, linux@roeck-us.net
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, 19 Aug 2022, Badal Nilawar <badal.nilawar@intel.com> wrote:
+> From: Dale B Stimson <dale.b.stimson@intel.com>
+>
+> The i915 HWMON module will be used to expose voltage, power and energy
+> values for dGfx. Here we set up i915 hwmon infrastructure including i915
+> hwmon registration, basic data structures and functions.
+>
+> v2:
+>   - Create HWMON infra patch (Ashutosh)
+>   - Fixed review comments (Jani)
+>   - Remove "select HWMON" from i915/Kconfig (Jani)
+> v3: Use hwm_ prefix for static functions (Ashutosh)
+> v4: s/#ifdef CONFIG_HWMON/#if IS_REACHABLE(CONFIG_HWMON)/ since the former
+>     doesn't work if hwmon is compiled as a module (Guenter)
 
-On 8/18/22 21:38, Daniel Dadap wrote:
-> 
-> On 8/18/22 1:42 PM, Hans de Goede wrote:
->> Move the WMI interface definitions to a header, so that the definitions
->> can be shared with drivers/acpi/video_detect.c .
->>
->> Suggested-by: Daniel Dadap <ddadap@nvidia.com>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> ---
->>   MAINTAINERS                                   |  1 +
->>   .../platform/x86/nvidia-wmi-ec-backlight.c    | 66 +----------------
->>   .../x86/nvidia-wmi-ec-backlight.h             | 70 +++++++++++++++++++
->>   3 files changed, 72 insertions(+), 65 deletions(-)
->>   create mode 100644 include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 8a5012ba6ff9..8d59c6e9b4db 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -14526,6 +14526,7 @@ M:    Daniel Dadap <ddadap@nvidia.com>
->>   L:    platform-driver-x86@vger.kernel.org
->>   S:    Supported
->>   F:    drivers/platform/x86/nvidia-wmi-ec-backlight.c
->> +F:    include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h
->>     NVM EXPRESS DRIVER
->>   M:    Keith Busch <kbusch@kernel.org>
->> diff --git a/drivers/platform/x86/nvidia-wmi-ec-backlight.c b/drivers/platform/x86/nvidia-wmi-ec-backlight.c
->> index 61e37194df70..e84e1d629b14 100644
->> --- a/drivers/platform/x86/nvidia-wmi-ec-backlight.c
->> +++ b/drivers/platform/x86/nvidia-wmi-ec-backlight.c
->> @@ -7,74 +7,10 @@
->>   #include <linux/backlight.h>
->>   #include <linux/mod_devicetable.h>
->>   #include <linux/module.h>
->> +#include <linux/platform_data/x86/nvidia-wmi-ec-backlight.h>
->>   #include <linux/types.h>
->>   #include <linux/wmi.h>
->>   -/**
->> - * enum wmi_brightness_method - WMI method IDs
->> - * @WMI_BRIGHTNESS_METHOD_LEVEL:  Get/Set EC brightness level status
->> - * @WMI_BRIGHTNESS_METHOD_SOURCE: Get/Set EC Brightness Source
->> - */
->> -enum wmi_brightness_method {
->> -    WMI_BRIGHTNESS_METHOD_LEVEL = 1,
->> -    WMI_BRIGHTNESS_METHOD_SOURCE = 2,
->> -    WMI_BRIGHTNESS_METHOD_MAX
->> -};
->> -
->> -/**
->> - * enum wmi_brightness_mode - Operation mode for WMI-wrapped method
->> - * @WMI_BRIGHTNESS_MODE_GET:            Get the current brightness level/source.
->> - * @WMI_BRIGHTNESS_MODE_SET:            Set the brightness level.
->> - * @WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL:  Get the maximum brightness level. This
->> - *                                      is only valid when the WMI method is
->> - *                                      %WMI_BRIGHTNESS_METHOD_LEVEL.
->> - */
->> -enum wmi_brightness_mode {
->> -    WMI_BRIGHTNESS_MODE_GET = 0,
->> -    WMI_BRIGHTNESS_MODE_SET = 1,
->> -    WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL = 2,
->> -    WMI_BRIGHTNESS_MODE_MAX
->> -};
->> -
->> -/**
->> - * enum wmi_brightness_source - Backlight brightness control source selection
->> - * @WMI_BRIGHTNESS_SOURCE_GPU: Backlight brightness is controlled by the GPU.
->> - * @WMI_BRIGHTNESS_SOURCE_EC:  Backlight brightness is controlled by the
->> - *                             system's Embedded Controller (EC).
->> - * @WMI_BRIGHTNESS_SOURCE_AUX: Backlight brightness is controlled over the
->> - *                             DisplayPort AUX channel.
->> - */
->> -enum wmi_brightness_source {
->> -    WMI_BRIGHTNESS_SOURCE_GPU = 1,
->> -    WMI_BRIGHTNESS_SOURCE_EC = 2,
->> -    WMI_BRIGHTNESS_SOURCE_AUX = 3,
->> -    WMI_BRIGHTNESS_SOURCE_MAX
->> -};
->> -
->> -/**
->> - * struct wmi_brightness_args - arguments for the WMI-wrapped ACPI method
->> - * @mode:    Pass in an &enum wmi_brightness_mode value to select between
->> - *           getting or setting a value.
->> - * @val:     In parameter for value to set when using %WMI_BRIGHTNESS_MODE_SET
->> - *           mode. Not used in conjunction with %WMI_BRIGHTNESS_MODE_GET or
->> - *           %WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL mode.
->> - * @ret:     Out parameter returning retrieved value when operating in
->> - *           %WMI_BRIGHTNESS_MODE_GET or %WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL
->> - *           mode. Not used in %WMI_BRIGHTNESS_MODE_SET mode.
->> - * @ignored: Padding; not used. The ACPI method expects a 24 byte params struct.
->> - *
->> - * This is the parameters structure for the WmiBrightnessNotify ACPI method as
->> - * wrapped by WMI. The value passed in to @val or returned by @ret will be a
->> - * brightness value when the WMI method ID is %WMI_BRIGHTNESS_METHOD_LEVEL, or
->> - * an &enum wmi_brightness_source value with %WMI_BRIGHTNESS_METHOD_SOURCE.
->> - */
->> -struct wmi_brightness_args {
->> -    u32 mode;
->> -    u32 val;
->> -    u32 ret;
->> -    u32 ignored[3];
->> -};
->> -
->>   /**
->>    * wmi_brightness_notify() - helper function for calling WMI-wrapped ACPI method
->>    * @w:    Pointer to the struct wmi_device identified by %WMI_BRIGHTNESS_GUID
->> diff --git a/include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h b/include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h
->> new file mode 100644
->> index 000000000000..d83104c6c6cb
->> --- /dev/null
->> +++ b/include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h
->> @@ -0,0 +1,70 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
-> 
-> 
-> Should the copyright notice from nvidia-wmi-ec-backlight be copied here as well?
+Is this really what we want to do?
 
-Ah right, I forgot that. I'll fix that for version 4 of the series.
+In my books, it's a misconfiguration to have CONFIG_HWMON=3Dm with
+CONFIG_DRM_I915=3Dy. That's really the problematic combo, not just
+CONFIG_HWMON=3Dm, right? Why do we allow it at the kconfig level, and then
+have ugly hacks around it at the code level? Especially as
+CONFIG_DRM_I915=3Dy should really be thought of as a corner case.
 
-I'll also make the GUID a #define for version 4 of the series as
-you mentioned in one of your other remarks.
+So why not do this in i915 Kconfig:
 
->> +#ifndef __PLATFORM_DATA_X86_NVIDIA_WMI_EC_BACKLIGHT_H
->> +#define __PLATFORM_DATA_X86_NVIDIA_WMI_EC_BACKLIGHT_H
->> +
->> +/**
->> + * enum wmi_brightness_method - WMI method IDs
->> + * @WMI_BRIGHTNESS_METHOD_LEVEL:  Get/Set EC brightness level status
->> + * @WMI_BRIGHTNESS_METHOD_SOURCE: Get/Set EC Brightness Source
->> + */
->> +enum wmi_brightness_method {
->> +    WMI_BRIGHTNESS_METHOD_LEVEL = 1,
->> +    WMI_BRIGHTNESS_METHOD_SOURCE = 2,
->> +    WMI_BRIGHTNESS_METHOD_MAX
->> +};
-> 
-> 
-> It might be nice, but certainly not essential, to namespace these better, now that they're no longer internal to the EC backlight driver. I did that in the version of this change that I had started working up, but got kind of annoyed that it made a lot of lines go over 80 columns, and then got distracted by other work and never ended up finishing the change up. I guess it's probably fine to leave them as is, since there won't be many files that include this header.
+config DRM_I915
+	...
+	depends on HWMON || HWMON=3Dn
 
-This header is only used in 2 .c files, as such I'm not worried about
-namespacing the defines, so my plan for version 4 is to just keep
-this as is.
+Which rejects the CONFIG_HWMON=3Dm && CONFIG_DRM_I915=3Dy combo.
 
-Regards,
+>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile      |   3 +
+>  drivers/gpu/drm/i915/i915_driver.c |   7 ++
+>  drivers/gpu/drm/i915/i915_drv.h    |   2 +
+>  drivers/gpu/drm/i915/i915_hwmon.c  | 135 +++++++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_hwmon.h  |  20 +++++
+>  5 files changed, 167 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/i915_hwmon.c
+>  create mode 100644 drivers/gpu/drm/i915/i915_hwmon.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 522ef9b4aff3..2b235f747490 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -208,6 +208,9 @@ i915-y +=3D gt/uc/intel_uc.o \
+>  # graphics system controller (GSC) support
+>  i915-y +=3D gt/intel_gsc.o
+>=20=20
+> +# graphics hardware monitoring (HWMON) support
+> +i915-$(CONFIG_HWMON) +=3D i915_hwmon.o
 
-Hans
+Moreover, this builds i915_hwmon.o as part of i915.ko (or kernel as it's
+builtin) even if we can't use it!
 
 
-> 
-> 
->> +
->> +/**
->> + * enum wmi_brightness_mode - Operation mode for WMI-wrapped method
->> + * @WMI_BRIGHTNESS_MODE_GET:            Get the current brightness level/source.
->> + * @WMI_BRIGHTNESS_MODE_SET:            Set the brightness level.
->> + * @WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL:  Get the maximum brightness level. This
->> + *                                      is only valid when the WMI method is
->> + *                                      %WMI_BRIGHTNESS_METHOD_LEVEL.
->> + */
->> +enum wmi_brightness_mode {
->> +    WMI_BRIGHTNESS_MODE_GET = 0,
->> +    WMI_BRIGHTNESS_MODE_SET = 1,
->> +    WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL = 2,
->> +    WMI_BRIGHTNESS_MODE_MAX
->> +};
->> +
->> +/**
->> + * enum wmi_brightness_source - Backlight brightness control source selection
->> + * @WMI_BRIGHTNESS_SOURCE_GPU: Backlight brightness is controlled by the GPU.
->> + * @WMI_BRIGHTNESS_SOURCE_EC:  Backlight brightness is controlled by the
->> + *                             system's Embedded Controller (EC).
->> + * @WMI_BRIGHTNESS_SOURCE_AUX: Backlight brightness is controlled over the
->> + *                             DisplayPort AUX channel.
->> + */
->> +enum wmi_brightness_source {
->> +    WMI_BRIGHTNESS_SOURCE_GPU = 1,
->> +    WMI_BRIGHTNESS_SOURCE_EC = 2,
->> +    WMI_BRIGHTNESS_SOURCE_AUX = 3,
->> +    WMI_BRIGHTNESS_SOURCE_MAX
->> +};
->> +
->> +/**
->> + * struct wmi_brightness_args - arguments for the WMI-wrapped ACPI method
->> + * @mode:    Pass in an &enum wmi_brightness_mode value to select between
->> + *           getting or setting a value.
->> + * @val:     In parameter for value to set when using %WMI_BRIGHTNESS_MODE_SET
->> + *           mode. Not used in conjunction with %WMI_BRIGHTNESS_MODE_GET or
->> + *           %WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL mode.
->> + * @ret:     Out parameter returning retrieved value when operating in
->> + *           %WMI_BRIGHTNESS_MODE_GET or %WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL
->> + *           mode. Not used in %WMI_BRIGHTNESS_MODE_SET mode.
->> + * @ignored: Padding; not used. The ACPI method expects a 24 byte params struct.
->> + *
->> + * This is the parameters structure for the WmiBrightnessNotify ACPI method as
->> + * wrapped by WMI. The value passed in to @val or returned by @ret will be a
->> + * brightness value when the WMI method ID is %WMI_BRIGHTNESS_METHOD_LEVEL, or
->> + * an &enum wmi_brightness_source value with %WMI_BRIGHTNESS_METHOD_SOURCE.
->> + */
->> +struct wmi_brightness_args {
->> +    u32 mode;
->> +    u32 val;
->> +    u32 ret;
->> +    u32 ignored[3];
->> +};
->> +
->> +#endif
-> 
+BR,
+Jani.
 
+
+> +
+>  # modesetting core code
+>  i915-y +=3D \
+>  	display/hsw_ips.o \
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
+15_driver.c
+> index deb8a8b76965..62340cd01dde 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -80,6 +80,7 @@
+>  #include "i915_drm_client.h"
+>  #include "i915_drv.h"
+>  #include "i915_getparam.h"
+> +#include "i915_hwmon.h"
+>  #include "i915_ioc32.h"
+>  #include "i915_ioctl.h"
+>  #include "i915_irq.h"
+> @@ -736,6 +737,9 @@ static void i915_driver_register(struct drm_i915_priv=
+ate *dev_priv)
+>=20=20
+>  	intel_gt_driver_register(to_gt(dev_priv));
+>=20=20
+> +#if IS_REACHABLE(CONFIG_HWMON)
+> +	i915_hwmon_register(dev_priv);
+> +#endif
+>  	intel_display_driver_register(dev_priv);
+>=20=20
+>  	intel_power_domains_enable(dev_priv);
+> @@ -762,6 +766,9 @@ static void i915_driver_unregister(struct drm_i915_pr=
+ivate *dev_priv)
+>=20=20
+>  	intel_display_driver_unregister(dev_priv);
+>=20=20
+> +#if IS_REACHABLE(CONFIG_HWMON)
+> +	i915_hwmon_unregister(dev_priv);
+> +#endif
+>  	intel_gt_driver_unregister(to_gt(dev_priv));
+>=20=20
+>  	i915_perf_unregister(dev_priv);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 086bbe8945d6..d437d588dec9 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -705,6 +705,8 @@ struct drm_i915_private {
+>=20=20
+>  	struct i915_perf perf;
+>=20=20
+> +	struct i915_hwmon *hwmon;
+> +
+>  	/* Abstract the submission mechanism (legacy ringbuffer or execlists) a=
+way */
+>  	struct intel_gt gt0;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i91=
+5_hwmon.c
+> new file mode 100644
+> index 000000000000..5b80a0f024f0
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> @@ -0,0 +1,135 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2022 Intel Corporation
+> + */
+> +
+> +#include <linux/hwmon.h>
+> +#include <linux/hwmon-sysfs.h>
+> +#include <linux/types.h>
+> +
+> +#include "i915_drv.h"
+> +#include "i915_hwmon.h"
+> +#include "intel_mchbar_regs.h"
+> +
+> +struct hwm_reg {
+> +};
+> +
+> +struct hwm_drvdata {
+> +	struct i915_hwmon *hwmon;
+> +	struct intel_uncore *uncore;
+> +	struct device *hwmon_dev;
+> +	char name[12];
+> +};
+> +
+> +struct i915_hwmon {
+> +	struct hwm_drvdata ddat;
+> +	struct mutex hwmon_lock;		/* counter overflow logic and rmw */
+> +	struct hwm_reg rg;
+> +};
+> +
+> +static const struct hwmon_channel_info *hwm_info[] =3D {
+> +	NULL
+> +};
+> +
+> +static umode_t
+> +hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+> +	       u32 attr, int channel)
+> +{
+> +	switch (type) {
+> +	default:
+> +		return 0;
+> +	}
+> +}
+> +
+> +static int
+> +hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+> +	 int channel, long *val)
+> +{
+> +	switch (type) {
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int
+> +hwm_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+> +	  int channel, long val)
+> +{
+> +	switch (type) {
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static const struct hwmon_ops hwm_ops =3D {
+> +	.is_visible =3D hwm_is_visible,
+> +	.read =3D hwm_read,
+> +	.write =3D hwm_write,
+> +};
+> +
+> +static const struct hwmon_chip_info hwm_chip_info =3D {
+> +	.ops =3D &hwm_ops,
+> +	.info =3D hwm_info,
+> +};
+> +
+> +static void
+> +hwm_get_preregistration_info(struct drm_i915_private *i915)
+> +{
+> +}
+> +
+> +void i915_hwmon_register(struct drm_i915_private *i915)
+> +{
+> +	struct device *dev =3D i915->drm.dev;
+> +	struct i915_hwmon *hwmon;
+> +	struct device *hwmon_dev;
+> +	struct hwm_drvdata *ddat;
+> +
+> +	/* hwmon is available only for dGfx */
+> +	if (!IS_DGFX(i915))
+> +		return;
+> +
+> +	hwmon =3D kzalloc(sizeof(*hwmon), GFP_KERNEL);
+> +	if (!hwmon)
+> +		return;
+> +
+> +	i915->hwmon =3D hwmon;
+> +	mutex_init(&hwmon->hwmon_lock);
+> +	ddat =3D &hwmon->ddat;
+> +
+> +	ddat->hwmon =3D hwmon;
+> +	ddat->uncore =3D &i915->uncore;
+> +	snprintf(ddat->name, sizeof(ddat->name), "i915");
+> +
+> +	hwm_get_preregistration_info(i915);
+> +
+> +	/*  hwmon_dev points to device hwmon<i> */
+> +	hwmon_dev =3D hwmon_device_register_with_info(dev, ddat->name,
+> +						    ddat,
+> +						    &hwm_chip_info,
+> +						    NULL);
+> +	if (IS_ERR(hwmon_dev)) {
+> +		mutex_destroy(&hwmon->hwmon_lock);
+> +		i915->hwmon =3D NULL;
+> +		kfree(hwmon);
+> +		return;
+> +	}
+> +
+> +	ddat->hwmon_dev =3D hwmon_dev;
+> +}
+> +
+> +void i915_hwmon_unregister(struct drm_i915_private *i915)
+> +{
+> +	struct i915_hwmon *hwmon;
+> +	struct hwm_drvdata *ddat;
+> +
+> +	hwmon =3D fetch_and_zero(&i915->hwmon);
+> +	if (!hwmon)
+> +		return;
+> +
+> +	ddat =3D &hwmon->ddat;
+> +	if (ddat->hwmon_dev)
+> +		hwmon_device_unregister(ddat->hwmon_dev);
+> +
+> +	mutex_destroy(&hwmon->hwmon_lock);
+> +	kfree(hwmon);
+> +}
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.h b/drivers/gpu/drm/i915/i91=
+5_hwmon.h
+> new file mode 100644
+> index 000000000000..921ae76099d3
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.h
+> @@ -0,0 +1,20 @@
+> +/* SPDX-License-Identifier: MIT */
+> +
+> +/*
+> + * Copyright =C2=A9 2022 Intel Corporation
+> + */
+> +
+> +#ifndef __I915_HWMON_H__
+> +#define __I915_HWMON_H__
+> +
+> +#include <linux/device.h>
+> +#include <linux/mutex.h>
+> +#include <linux/types.h>
+> +#include "i915_reg.h"
+> +
+> +struct drm_i915_private;
+> +
+> +void i915_hwmon_register(struct drm_i915_private *i915);
+> +void i915_hwmon_unregister(struct drm_i915_private *i915);
+> +
+> +#endif /* __I915_HWMON_H__ */
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
