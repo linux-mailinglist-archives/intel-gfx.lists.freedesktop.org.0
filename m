@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 355C25A01EA
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 21:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 229C35A01EC
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 21:15:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52354C364B;
-	Wed, 24 Aug 2022 19:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFECBC35B7;
+	Wed, 24 Aug 2022 19:15:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A40F410E275;
- Fri, 19 Aug 2022 09:27:31 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6401E10E2BC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 10:37:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660901251; x=1692437251;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=unNDhrucV4hmjx+3zBANYrN+YM/7wcvIbgTqNEmeFSg=;
- b=PazNitRHQD09HBSTmayLEOmkzriebn/JvnuBDqMH7ragHIPD0BZV0KH0
- 4auQugEd4lqxzNngpDwxkIAVF5Sr8XgAzhhK/8Dpxst+LhsaPSmiNr0vW
- qzDpB43ldl3s1hDP475jmx2c3Od0DlkwrYFVhxiycyjt8jAgHs2xCNfuv
- QclhkxADEtX1HARVL5P/B3ElXvq45JZupGZ5qBFKbzkeuLqL7xA/fnFNX
- FEep2n/NtnbdQoi5grBLbMgvI4fuT5iSdVCIZOXmgkHJfy7OFBnlo/6DW
- t8kjTAS8UzjDB2YCY44SBJwP6506NSxZPy0xlg8o1Kg2FPo1yAhB0SmJB w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="291732601"
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="291732601"
+ t=1660905442; x=1692441442;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=QSUVKe8KappvgvW3Mp0CaPIoqFCyynmjJ3U/na7Wph4=;
+ b=WPWyfef2F2iHQ/E4rNXvnL1FOeAwJY3RU3UhO+3iIawC4HV2oP8Ju6oM
+ vtQ5U/GKcf3p4s46Gyr5lLTfTe0WuqlkTeqaPl2RI5sCHhKYRyCcLFxR4
+ Un7NkRS4gEtzmm2oidggpUQqwevoLN+/fw4hY2ZFLFtE7bhr6luUT2jMl
+ 9Gf7BNTW+EqwGX3xDRudM9ncY0IflC1tcSZi2nkFg6lPUK/J+8YdS+WEA
+ 7zVmqz4RQlUJluV+Oo4u0i3ph6jTkTAfAwS7C+8KuNaNn3AmZqZx/Qjdh
+ 9V2YdnETWIJI/qHhc3pnvK+cM4MPchiy2zSZpIByS/I573OCzXsBeicP1 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="272759397"
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="272759397"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2022 02:27:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="668508558"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.59])
- by fmsmga008.fm.intel.com with SMTP; 19 Aug 2022 02:27:28 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 19 Aug 2022 12:27:28 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Fri, 19 Aug 2022 12:27:28 +0300
-Message-Id: <20220819092728.14753-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 03:37:22 -0700
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="668533454"
+Received: from jastrom-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.51.176])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 03:37:20 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220818193901.2974625-2-badal.nilawar@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220818193901.2974625-1-badal.nilawar@intel.com>
+ <20220818193901.2974625-2-badal.nilawar@intel.com>
+Date: Fri, 19 Aug 2022 13:37:18 +0300
+Message-ID: <87edxco6xt.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/edid: Handle EDID 1.4 range descriptor
- h/vfreq offsets
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/hwmon: Add HWMON infrastructure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,94 +58,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: linux-hwmon@vger.kernel.org, linux@roeck-us.net
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Fri, 19 Aug 2022, Badal Nilawar <badal.nilawar@intel.com> wrote:
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.h b/drivers/gpu/drm/i915/i91=
+5_hwmon.h
+> new file mode 100644
+> index 000000000000..921ae76099d3
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.h
+> @@ -0,0 +1,20 @@
+> +/* SPDX-License-Identifier: MIT */
+> +
+> +/*
+> + * Copyright =C2=A9 2022 Intel Corporation
+> + */
+> +
+> +#ifndef __I915_HWMON_H__
+> +#define __I915_HWMON_H__
+> +
+> +#include <linux/device.h>
+> +#include <linux/mutex.h>
+> +#include <linux/types.h>
+> +#include "i915_reg.h"
 
-EDID 1.4 introduced some extra flags in the range
-descriptor to support min/max h/vfreq >= 255. Consult them
-to correctly parse the vfreq limits.
+All of the above #includes are unnecessary. Please remove.
 
-Cc: stable@vger.kernel.org
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6519
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/drm_edid.c | 24 ++++++++++++++++++------
- include/drm/drm_edid.h     |  5 +++++
- 2 files changed, 23 insertions(+), 6 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 90a5e26eafa8..4005dab6147d 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -6020,12 +6020,14 @@ static void drm_parse_cea_ext(struct drm_connector *connector,
- }
- 
- static
--void get_monitor_range(const struct detailed_timing *timing,
--		       void *info_monitor_range)
-+void get_monitor_range(const struct detailed_timing *timing, void *c)
- {
--	struct drm_monitor_range_info *monitor_range = info_monitor_range;
-+	struct detailed_mode_closure *closure = c;
-+	struct drm_display_info *info = &closure->connector->display_info;
-+	struct drm_monitor_range_info *monitor_range = &info->monitor_range;
- 	const struct detailed_non_pixel *data = &timing->data.other_data;
- 	const struct detailed_data_monitor_range *range = &data->data.range;
-+	const struct edid *edid = closure->drm_edid->edid;
- 
- 	if (!is_display_descriptor(timing, EDID_DETAIL_MONITOR_RANGE))
- 		return;
-@@ -6041,18 +6043,28 @@ void get_monitor_range(const struct detailed_timing *timing,
- 
- 	monitor_range->min_vfreq = range->min_vfreq;
- 	monitor_range->max_vfreq = range->max_vfreq;
-+
-+	if (edid->revision >= 4) {
-+		if (data->pad2 & DRM_EDID_RANGE_OFFSET_MIN_VFREQ)
-+			monitor_range->min_vfreq += 255;
-+		if (data->pad2 & DRM_EDID_RANGE_OFFSET_MAX_VFREQ)
-+			monitor_range->max_vfreq += 255;
-+	}
- }
- 
- static void drm_get_monitor_range(struct drm_connector *connector,
- 				  const struct drm_edid *drm_edid)
- {
--	struct drm_display_info *info = &connector->display_info;
-+	const struct drm_display_info *info = &connector->display_info;
-+	struct detailed_mode_closure closure = {
-+		.connector = connector,
-+		.drm_edid = drm_edid,
-+	};
- 
- 	if (!version_greater(drm_edid, 1, 1))
- 		return;
- 
--	drm_for_each_detailed_block(drm_edid, get_monitor_range,
--				    &info->monitor_range);
-+	drm_for_each_detailed_block(drm_edid, get_monitor_range, &closure);
- 
- 	DRM_DEBUG_KMS("Supported Monitor Refresh rate range is %d Hz - %d Hz\n",
- 		      info->monitor_range.min_vfreq,
-diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
-index 2181977ae683..d81da97cad6e 100644
---- a/include/drm/drm_edid.h
-+++ b/include/drm/drm_edid.h
-@@ -92,6 +92,11 @@ struct detailed_data_string {
- 	u8 str[13];
- } __attribute__((packed));
- 
-+#define DRM_EDID_RANGE_OFFSET_MIN_VFREQ (1 << 0)
-+#define DRM_EDID_RANGE_OFFSET_MAX_VFREQ (1 << 1)
-+#define DRM_EDID_RANGE_OFFSET_MIN_HFREQ (1 << 2)
-+#define DRM_EDID_RANGE_OFFSET_MAX_HFREQ (1 << 3)
-+
- #define DRM_EDID_DEFAULT_GTF_SUPPORT_FLAG   0x00
- #define DRM_EDID_RANGE_LIMITS_ONLY_FLAG     0x01
- #define DRM_EDID_SECONDARY_GTF_SUPPORT_FLAG 0x02
--- 
-2.35.1
+> +
+> +struct drm_i915_private;
+> +
+> +void i915_hwmon_register(struct drm_i915_private *i915);
+> +void i915_hwmon_unregister(struct drm_i915_private *i915);
+> +
+> +#endif /* __I915_HWMON_H__ */
 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
