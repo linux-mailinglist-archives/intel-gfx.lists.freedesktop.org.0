@@ -2,52 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A809E5993E7
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 06:11:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22E585993E9
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 06:15:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D65410E4D4;
-	Fri, 19 Aug 2022 04:11:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC2DB10E51F;
+	Fri, 19 Aug 2022 04:15:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5AA10E4D7;
- Fri, 19 Aug 2022 04:11:37 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4F0A10E511;
+ Fri, 19 Aug 2022 04:15:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660882297; x=1692418297;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8Y49LHzWGjuvArvCs2thyeNozEBUOrRqYUcI58mTGIM=;
- b=i9JvNNptFGKhRPH0Rph1Ut6exVx3TCjtfHp7GQzgME0rObRUINq9KX3u
- r9+MltkRLpx14H675Es08aTeaU2fTIcuK1oFG/YaF4MTYC5+P1cNAEoCj
- 7dsVPxMBG4EF/qvZXT4E1QFD1wli3ikNqTXHdbiqhLcqUXM383lDUOQYu
- rxyZNBsaGjZlZrGYOIuY7N02+P9bvwlwj/K6CAgBW2GO0l16+3rLhzrIh
- IuzBKJrRU+qr8nw47Z1qSZlUWwsW4HKDYMCMFpGDSRL//6z+ZdRqg3sko
- 1PtSAR/hudIDIRVGb52P70Rk+k0uXgxLw49+u7Uk2wEUIY6elbrpor1zV w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="293719421"
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="293719421"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 21:11:36 -0700
+ t=1660882543; x=1692418543;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HGEK4I4G5U2uP6dOvYWWs6QhSArCE7G8am+nUKLaTSo=;
+ b=Ck2NoCyvNa+4MaLpmQv+pMjxFSDhj1f0RSQVtMdLWy/DJ78l3M/aHX55
+ DeKs8YPVycbN7Cgb7uB1tQql07qGTH6Ng7JCDTwUYMA5J3VdQJRiUOhHB
+ RoSWLjCgfZN07MNXoHsOjNm8MLBV4Sns0D6vZ3p3vZXNmJWa3K9hOZfCo
+ djCJTlTa3tNHBu5EBYRiyX3fdkNCxfTXn5XEt1VkfnO/gOTMD6QAmhG0/
+ QtjfkNzXWbBC3OeXr8DEjgO3jAvmgLDsbIo1/f7N0OIk0cgBwTIVhUgb+
+ yyd8U/xXteJGVVFQrrrutUwTOp6G9FMGtI9emZZ/EoB6l7nxO1vxYEtf0 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="379226439"
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="379226439"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2022 21:15:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="584499033"
-Received: from lkp-server01.sh.intel.com (HELO 44b6dac04a33) ([10.239.97.150])
- by orsmga006.jf.intel.com with ESMTP; 18 Aug 2022 21:11:34 -0700
-Received: from kbuild by 44b6dac04a33 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1oOtM5-00013H-37;
- Fri, 19 Aug 2022 04:11:33 +0000
-Date: Fri, 19 Aug 2022 12:11:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202208191208.p5c4LVLR-lkp@intel.com>
-References: <20220818230243.3921066-10-daniele.ceraolospurio@intel.com>
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="711200920"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by fmsmga002.fm.intel.com with ESMTP; 18 Aug 2022 21:15:43 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	igt-dev@lists.freedesktop.org
+Date: Thu, 18 Aug 2022 21:15:24 -0700
+Message-Id: <20220819041524.33170-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220818230243.3921066-10-daniele.ceraolospurio@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 09/15] drm/i915/pxp: add huc
- authentication and loading command
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t] i915/guc: Disable i915_pm_rps when SLPC
+ is enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,67 +55,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>,
- kbuild-all@lists.01.org, Vitaly Lubart <vitaly.lubart@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniele,
+These tests were specifically designed for host Turbo. Skip
+them when SLPC is enabled as they fail frequently. We will look
+to keep adding to SLPC test coverage with these scenarios.
 
-I love your patch! Perhaps something to improve:
+Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/3963
+Bug: https://gitlab.freedesktop.org/drm/intel/issues/4016
+Bug: https://gitlab.freedesktop.org/drm/intel/issues/5468
+Bug: https://gitlab.freedesktop.org/drm/intel/issues/5831
 
-[auto build test WARNING on drm-tip/drm-tip]
+v2: Add \n for the skip message, and close fd in helper
+v3: Don't modify reset params before deciding to skip. There is
+no end fixture for this test, which needs to be fixed separately.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Daniele-Ceraolo-Spurio/drm-i915-HuC-loading-for-DG2/20220819-070704
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: i386-randconfig-s002 (https://download.01.org/0day-ci/archive/20220819/202208191208.p5c4LVLR-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-5) 11.3.0
-reproduce:
-        # apt-get install sparse
-        # sparse version: v0.6.4-39-gce1a6720-dirty
-        # https://github.com/intel-lab-lkp/linux/commit/5a5d288c4c93865952809443a74032634bfb9921
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Daniele-Ceraolo-Spurio/drm-i915-HuC-loading-for-DG2/20220819-070704
-        git checkout 5a5d288c4c93865952809443a74032634bfb9921
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ lib/igt_pm.c             | 17 +++++++++++++++++
+ lib/igt_pm.h             |  1 +
+ tests/i915/i915_pm_rps.c | 32 ++++++++++++++++++++++++++------
+ 3 files changed, 44 insertions(+), 6 deletions(-)
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/i915/pxp/intel_pxp_huc.c:39:35: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __le64 [assigned] [usertype] huc_base_address @@     got unsigned int [assigned] [usertype] huc_phys_addr @@
-   drivers/gpu/drm/i915/pxp/intel_pxp_huc.c:39:35: sparse:     expected restricted __le64 [assigned] [usertype] huc_base_address
-   drivers/gpu/drm/i915/pxp/intel_pxp_huc.c:39:35: sparse:     got unsigned int [assigned] [usertype] huc_phys_addr
-
-vim +39 drivers/gpu/drm/i915/pxp/intel_pxp_huc.c
-
-    17	
-    18	int intel_pxp_huc_load_and_auth(struct intel_pxp *pxp)
-    19	{
-    20		struct intel_gt *gt = pxp_to_gt(pxp);
-    21		struct intel_huc *huc = &gt->uc.huc;
-    22		struct pxp_tee_start_huc_auth_in huc_in = {0};
-    23		struct pxp_tee_start_huc_auth_out huc_out = {0};
-    24		dma_addr_t huc_phys_addr;
-    25		u8 client_id = 0;
-    26		u8 fence_id = 0;
-    27		int err;
-    28	
-    29		if (!pxp->pxp_component)
-    30			return -ENODEV;
-    31	
-    32		huc_phys_addr = i915_gem_object_get_dma_address(huc->fw.obj, 0);
-    33	
-    34		/* write the PXP message into the lmem (the sg list) */
-    35		huc_in.header.api_version = PXP_TEE_43_APIVER;
-    36		huc_in.header.command_id  = PXP_TEE_43_START_HUC_AUTH;
-    37		huc_in.header.status      = 0;
-    38		huc_in.header.buffer_len  = sizeof(huc_in.huc_base_address);
-  > 39		huc_in.huc_base_address   = huc_phys_addr;
-
+diff --git a/lib/igt_pm.c b/lib/igt_pm.c
+index 6ebbad33..99251b40 100644
+--- a/lib/igt_pm.c
++++ b/lib/igt_pm.c
+@@ -1202,3 +1202,20 @@ void igt_pm_print_pci_card_runtime_status(void)
+ 		igt_pm_print_pci_dev_runtime_status(__pci_dev_pwrattr[i].pci_dev);
+ 	}
+ }
++
++bool i915_is_slpc_enabled(int fd)
++{
++	int debugfs_fd = igt_debugfs_dir(fd);
++	char buf[4096] = {};
++	int len;
++
++	igt_require(debugfs_fd != -1);
++
++	len = igt_debugfs_simple_read(debugfs_fd, "gt/uc/guc_slpc_info", buf, sizeof(buf));
++	close(debugfs_fd);
++
++	if (len < 0)
++		return false;
++	else
++		return strstr(buf, "SLPC state: running");
++}
+diff --git a/lib/igt_pm.h b/lib/igt_pm.h
+index f28b6ebf..cbbde12b 100644
+--- a/lib/igt_pm.h
++++ b/lib/igt_pm.h
+@@ -79,5 +79,6 @@ void igt_pm_enable_pci_card_runtime_pm(struct pci_device *root,
+ void igt_pm_setup_pci_card_runtime_pm(struct pci_device *pci_dev);
+ void igt_pm_restore_pci_card_runtime_pm(void);
+ void igt_pm_print_pci_card_runtime_status(void);
++bool i915_is_slpc_enabled(int fd);
+ 
+ #endif /* IGT_PM_H */
+diff --git a/tests/i915/i915_pm_rps.c b/tests/i915/i915_pm_rps.c
+index d06ade27..db39ec69 100644
+--- a/tests/i915/i915_pm_rps.c
++++ b/tests/i915/i915_pm_rps.c
+@@ -914,35 +914,55 @@ igt_main
+ 		igt_install_exit_handler(pm_rps_exit_handler);
+ 	}
+ 
+-	igt_subtest("basic-api")
++	igt_subtest("basic-api") {
++		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
++			      "This subtest is not supported when SLPC is enabled\n");
+ 		min_max_config(basic_check, false);
++	}
+ 
+ 	/* Verify the constraints, check if we can reach idle */
+-	igt_subtest("min-max-config-idle")
++	igt_subtest("min-max-config-idle") {
++		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
++			      "This subtest is not supported when SLPC is enabled\n");
+ 		min_max_config(idle_check, true);
++	}
+ 
+ 	/* Verify the constraints with high load, check if we can reach max */
+ 	igt_subtest("min-max-config-loaded") {
++		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
++			      "This subtest is not supported when SLPC is enabled\n");
+ 		load_helper_run(HIGH);
+ 		min_max_config(loaded_check, false);
+ 		load_helper_stop();
+ 	}
+ 
+ 	/* Checks if we achieve boost using gem_wait */
+-	igt_subtest("waitboost")
++	igt_subtest("waitboost") {
++		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
++			      "This subtest is not supported when SLPC is enabled\n");
+ 		waitboost(drm_fd, false);
++	}
+ 
+ 	igt_describe("Check if the order of fences does not affect waitboosting");
+-	igt_subtest("fence-order")
++	igt_subtest("fence-order") {
++		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
++			      "This subtest is not supported when SLPC is enabled\n");
+ 		fence_order(drm_fd);
++	}
+ 
+ 	igt_describe("Check if context reuse does not affect waitboosting");
+-	igt_subtest("engine-order")
++	igt_subtest("engine-order") {
++		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
++			      "This subtest is not supported when SLPC is enabled\n");
+ 		engine_order(drm_fd);
++	}
+ 
+ 	/* Test boost frequency after GPU reset */
+ 	igt_subtest("reset") {
+-		igt_hang_t hang = igt_allow_hang(drm_fd, 0, 0);
++		igt_hang_t hang;
++		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
++			      "This subtest is not supported when SLPC is enabled\n");
++		hang = igt_allow_hang(drm_fd, 0, 0);
+ 		waitboost(drm_fd, true);
+ 		igt_disallow_hang(drm_fd, hang);
+ 	}
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.35.1
+
