@@ -1,51 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C2215A01EE
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 21:16:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A57C15A0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 21:17:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2292511AE3A;
-	Wed, 24 Aug 2022 19:15:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C262011A1F8;
+	Wed, 24 Aug 2022 19:17:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71D7710EABC
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 12:03:39 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFB8610E713;
+ Fri, 19 Aug 2022 22:53:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660910619; x=1692446619;
+ t=1660949633; x=1692485633;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6hNdlSmicaFynTBAeddNR1dSXSjg3YnYStiJaLSFLPM=;
- b=dedwlNZw2YHbKhyXIyvKLWd24Gjz2Uvxv74iI3SBWsTQESCl96id/Ern
- fbC8ZAJDf12fUGnNUIXAXka4DE8IqRqp6lqkpY8UtN0S+N5+YcHzEcr1z
- gNVr3DkUdy6p4ozCzxXck6OOZeM2ciyS/0y1jElSQ8qz18f44+iIQutTz
- +hIECHFTiaa492d/D+bB1ovYklNzB4cutnjri+H4cZcslWeKQqoCcIlrp
- ma2lqCd5ClDba6/e8NHzV5+QVeKYo7QOwP2YqipSp9tqJ1nhJ9fQrNaM2
- 0Z/sy/Qf7XV7E2R/4oJu+KRYqlgjGqoUe+tM50Bot/diSRtWPl2WDotTi Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="356982786"
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="356982786"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2022 05:03:38 -0700
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="697545747"
-Received: from jastrom-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.51.176])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2022 05:03:37 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+ bh=iP/kzHdaEUDcabl2PkNH6n4LIlGIbSqO9a8mD59nk7k=;
+ b=FDlaGFXfv/VXj8KwBwHwjOJdEIp9S7SErwWp0ayumClp7ut5s8n2Ywbm
+ laXW7iy4AUdSeSOpqGyVart1jSmnS/eUPjMBJrp3ssgZSHrOXbI0gGKy3
+ /frbaOPaNNWXargTNSuGTB1X9VT1+AKRP1MtwNG57WbpMJn2g094BoWhz
+ SRegMPfb5gSuSKtB2WqlD+uUCPaTXxGVSTiVd1r+ViS3xYyPdD37nMYuV
+ T3rSqVJdjaUDHaQmO7nkXiJBNQSBteuZWK/M1zlr7+10Pnc8N0H+ZvhJ6
+ B/s2UIXe7PSlMCnAuRY/i6t72DNR44fgcm6iKEvOjt7LxQiR8aY5Dsann A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10444"; a="273513230"
+X-IronPort-AV: E=Sophos;i="5.93,249,1654585200"; d="scan'208";a="273513230"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 15:53:53 -0700
+X-IronPort-AV: E=Sophos;i="5.93,249,1654585200"; d="scan'208";a="936378476"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 15:53:53 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Aug 2022 15:02:44 +0300
-Message-Id: <bff2ea209031063cec38085518508394b064df4a.1660910433.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1660910433.git.jani.nikula@intel.com>
-References: <cover.1660910433.git.jani.nikula@intel.com>
+Date: Fri, 19 Aug 2022 15:53:24 -0700
+Message-Id: <20220819225335.3947346-5-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20220819225335.3947346-1-daniele.ceraolospurio@intel.com>
+References: <20220819225335.3947346-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 11/14] drm/i915: move pipe_mask and
- cpu_transcoder_mask to runtime info
+Subject: [Intel-gfx] [PATCH v3 04/15] mei: bus: extend bus API to support
+ command streamer API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,354 +56,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Tomas Winkler <tomas.winkler@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If it's modified runtime, it's runtime info.
+From: Vitaly Lubart <vitaly.lubart@intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
+Add mei bus API for sending gsc commands: mei_cldev_send_gsc_command()
+
+The GSC commands are originated in the graphics stack
+and are in form of SGL DMA buffers.
+The GSC commands are synchronous, the response is received
+in the same call on the out sg list buffers.
+The function setups pointers for in and out sg lists in the
+mei sgl extended header and sends it to the firmware.
+
+V2:
+ 1. More detailed commit message
+ 2. Fix typo in the comments
+
+Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
+Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/i915/display/intel_display.h |  4 +-
- drivers/gpu/drm/i915/i915_drv.h              |  6 +-
- drivers/gpu/drm/i915/i915_pci.c              | 66 ++++++++++----------
- drivers/gpu/drm/i915/intel_device_info.c     | 24 +++----
- drivers/gpu/drm/i915/intel_device_info.h     |  5 +-
- 5 files changed, 53 insertions(+), 52 deletions(-)
+ drivers/misc/mei/bus.c     | 125 +++++++++++++++++++++++++++++++++++++
+ include/linux/mei_cl_bus.h |   6 ++
+ 2 files changed, 131 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index fa5371036239..e895277c4cd9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -375,7 +375,7 @@ enum hpd_pin {
+diff --git a/drivers/misc/mei/bus.c b/drivers/misc/mei/bus.c
+index 225f0b04c021..fc885ba94b36 100644
+--- a/drivers/misc/mei/bus.c
++++ b/drivers/misc/mei/bus.c
+@@ -838,6 +838,131 @@ int mei_cldev_disable(struct mei_cl_device *cldev)
+ }
+ EXPORT_SYMBOL_GPL(mei_cldev_disable);
  
- #define for_each_pipe(__dev_priv, __p) \
- 	for ((__p) = 0; (__p) < I915_MAX_PIPES; (__p)++) \
--		for_each_if(INTEL_INFO(__dev_priv)->display.pipe_mask & BIT(__p))
-+		for_each_if(RUNTIME_INFO(__dev_priv)->pipe_mask & BIT(__p))
- 
- #define for_each_pipe_masked(__dev_priv, __p, __mask) \
- 	for_each_pipe(__dev_priv, __p) \
-@@ -383,7 +383,7 @@ enum hpd_pin {
- 
- #define for_each_cpu_transcoder(__dev_priv, __t) \
- 	for ((__t) = 0; (__t) < I915_MAX_TRANSCODERS; (__t)++)	\
--		for_each_if (INTEL_INFO(__dev_priv)->display.cpu_transcoder_mask & BIT(__t))
-+		for_each_if (RUNTIME_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
- 
- #define for_each_cpu_transcoder_masked(__dev_priv, __t, __mask) \
- 	for_each_cpu_transcoder(__dev_priv, __t) \
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 16f5e74713cf..3f3e5ed52937 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1264,7 +1264,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define HAS_PSR_HW_TRACKING(dev_priv) \
- 	(INTEL_INFO(dev_priv)->display.has_psr_hw_tracking)
- #define HAS_PSR2_SEL_FETCH(dev_priv)	 (DISPLAY_VER(dev_priv) >= 12)
--#define HAS_TRANSCODER(dev_priv, trans)	 ((INTEL_INFO(dev_priv)->display.cpu_transcoder_mask & BIT(trans)) != 0)
-+#define HAS_TRANSCODER(dev_priv, trans)	 ((RUNTIME_INFO(dev_priv)->cpu_transcoder_mask & BIT(trans)) != 0)
- 
- #define HAS_RC6(dev_priv)		 (INTEL_INFO(dev_priv)->has_rc6)
- #define HAS_RC6p(dev_priv)		 (INTEL_INFO(dev_priv)->has_rc6p)
-@@ -1335,9 +1335,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define GT_FREQUENCY_MULTIPLIER 50
- #define GEN9_FREQ_SCALER 3
- 
--#define INTEL_NUM_PIPES(dev_priv) (hweight8(INTEL_INFO(dev_priv)->display.pipe_mask))
-+#define INTEL_NUM_PIPES(dev_priv) (hweight8(RUNTIME_INFO(dev_priv)->pipe_mask))
- 
--#define HAS_DISPLAY(dev_priv) (INTEL_INFO(dev_priv)->display.pipe_mask != 0)
-+#define HAS_DISPLAY(dev_priv) (RUNTIME_INFO(dev_priv)->pipe_mask != 0)
- 
- #define HAS_VRR(i915)	(DISPLAY_VER(i915) >= 11)
- 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 8c5a155fb4ac..365cbb80975a 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -168,8 +168,8 @@
- #define I830_FEATURES \
- 	GEN(2), \
- 	.is_mobile = 1, \
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
- 	.display.has_overlay = 1, \
- 	.display.cursor_needs_physical = 1, \
- 	.display.overlay_needs_physical = 1, \
-@@ -190,8 +190,8 @@
- 
- #define I845_FEATURES \
- 	GEN(2), \
--	.display.pipe_mask = BIT(PIPE_A), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A), \
-+	.__runtime.pipe_mask = BIT(PIPE_A), \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A), \
- 	.display.has_overlay = 1, \
- 	.display.overlay_needs_physical = 1, \
- 	.display.has_gmch = 1, \
-@@ -233,8 +233,8 @@ static const struct intel_device_info i865g_info = {
- 
- #define GEN3_FEATURES \
- 	GEN(3), \
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
- 	.display.has_gmch = 1, \
- 	.gpu_reset_clobbers_display = true, \
- 	.__runtime.platform_engine_mask = BIT(RCS0), \
-@@ -324,8 +324,8 @@ static const struct intel_device_info pnv_m_info = {
- 
- #define GEN4_FEATURES \
- 	GEN(4), \
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
- 	.display.has_hotplug = 1, \
- 	.display.has_gmch = 1, \
- 	.gpu_reset_clobbers_display = true, \
-@@ -378,8 +378,8 @@ static const struct intel_device_info gm45_info = {
- 
- #define GEN5_FEATURES \
- 	GEN(5), \
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
- 	.display.has_hotplug = 1, \
- 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0), \
- 	.has_3d_pipeline = 1, \
-@@ -409,8 +409,8 @@ static const struct intel_device_info ilk_m_info = {
- 
- #define GEN6_FEATURES \
- 	GEN(6), \
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
- 	.display.has_hotplug = 1, \
- 	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
- 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
-@@ -461,8 +461,8 @@ static const struct intel_device_info snb_m_gt2_info = {
- 
- #define GEN7_FEATURES  \
- 	GEN(7), \
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C), \
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C), \
- 	.display.has_hotplug = 1, \
- 	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
- 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
-@@ -517,8 +517,8 @@ static const struct intel_device_info ivb_q_info = {
- 	GEN7_FEATURES,
- 	PLATFORM(INTEL_IVYBRIDGE),
- 	.gt = 2,
--	.display.pipe_mask = 0, /* legal, last one wins */
--	.display.cpu_transcoder_mask = 0,
-+	.__runtime.pipe_mask = 0, /* legal, last one wins */
-+	.__runtime.cpu_transcoder_mask = 0,
- 	.has_l3_dpf = 1,
- };
- 
-@@ -526,8 +526,8 @@ static const struct intel_device_info vlv_info = {
- 	PLATFORM(INTEL_VALLEYVIEW),
- 	GEN(7),
- 	.is_lp = 1,
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
- 	.has_runtime_pm = 1,
- 	.has_rc6 = 1,
- 	.has_reset_engine = true,
-@@ -551,7 +551,7 @@ static const struct intel_device_info vlv_info = {
- #define G75_FEATURES  \
- 	GEN7_FEATURES, \
- 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
- 	.display.has_ddi = 1, \
- 	.display.has_fpga_dbg = 1, \
-@@ -621,8 +621,8 @@ static const struct intel_device_info bdw_gt3_info = {
- static const struct intel_device_info chv_info = {
- 	PLATFORM(INTEL_CHERRYVIEW),
- 	GEN(8),
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
- 	.display.has_hotplug = 1,
- 	.is_lp = 1,
- 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0),
-@@ -699,8 +699,8 @@ static const struct intel_device_info skl_gt4_info = {
- 	.display.dbuf.slice_mask = BIT(DBUF_S1), \
- 	.display.has_hotplug = 1, \
- 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
- 		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
- 	.has_3d_pipeline = 1, \
-@@ -810,7 +810,7 @@ static const struct intel_device_info cml_gt2_info = {
- 	GEN9_FEATURES, \
- 	GEN11_DEFAULT_PAGE_SIZES, \
- 	.display.abox_mask = BIT(0), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
- 		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
- 	.display.pipe_offsets = { \
-@@ -862,8 +862,8 @@ static const struct intel_device_info jsl_info = {
- 	GEN11_FEATURES, \
- 	GEN(12), \
- 	.display.abox_mask = GENMASK(2, 1), \
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
- 		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
- 	.display.pipe_offsets = { \
-@@ -899,8 +899,8 @@ static const struct intel_device_info rkl_info = {
- 	GEN12_FEATURES,
- 	PLATFORM(INTEL_ROCKETLAKE),
- 	.display.abox_mask = BIT(0),
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
- 		BIT(TRANSCODER_C),
- 	.display.has_hti = 1,
- 	.display.has_psr_hw_tracking = 0,
-@@ -921,7 +921,7 @@ static const struct intel_device_info dg1_info = {
- 	DGFX_FEATURES,
- 	.__runtime.graphics.rel = 10,
- 	PLATFORM(INTEL_DG1),
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
- 	.require_force_probe = 1,
- 	.__runtime.platform_engine_mask =
- 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) |
-@@ -933,7 +933,7 @@ static const struct intel_device_info dg1_info = {
- static const struct intel_device_info adl_s_info = {
- 	GEN12_FEATURES,
- 	PLATFORM(INTEL_ALDERLAKE_S),
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
- 	.display.has_hti = 1,
- 	.display.has_psr_hw_tracking = 0,
- 	.__runtime.platform_engine_mask =
-@@ -963,7 +963,7 @@ static const struct intel_device_info adl_s_info = {
- 	.display.has_ipc = 1,							\
- 	.display.has_psr = 1,							\
- 	.display.ver = 13,							\
--	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),	\
-+	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),	\
- 	.display.pipe_offsets = {						\
- 		[TRANSCODER_A] = PIPE_A_OFFSET,					\
- 		[TRANSCODER_B] = PIPE_B_OFFSET,					\
-@@ -986,7 +986,7 @@ static const struct intel_device_info adl_p_info = {
- 	GEN12_FEATURES,
- 	XE_LPD_FEATURES,
- 	PLATFORM(INTEL_ALDERLAKE_P),
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
- 			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
- 			       BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
- 	.display.has_cdclk_crawl = 1,
-@@ -1071,7 +1071,7 @@ static const struct intel_device_info xehpsdv_info = {
- static const struct intel_device_info dg2_info = {
- 	DG2_FEATURES,
- 	XE_LPD_FEATURES,
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-+	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
- 			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
- 	.require_force_probe = 1,
- };
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index bb16b0ec4ed2..91ac149ad85a 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -363,35 +363,35 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
- 		     !(sfuse_strap & SFUSE_STRAP_FUSE_LOCK))) {
- 			drm_info(&dev_priv->drm,
- 				 "Display fused off, disabling\n");
--			info->display.pipe_mask = 0;
--			info->display.cpu_transcoder_mask = 0;
-+			runtime->pipe_mask = 0;
-+			runtime->cpu_transcoder_mask = 0;
- 			runtime->fbc_mask = 0;
- 		} else if (fuse_strap & IVB_PIPE_C_DISABLE) {
- 			drm_info(&dev_priv->drm, "PipeC fused off\n");
--			info->display.pipe_mask &= ~BIT(PIPE_C);
--			info->display.cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
-+			runtime->pipe_mask &= ~BIT(PIPE_C);
-+			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
- 		}
- 	} else if (HAS_DISPLAY(dev_priv) && DISPLAY_VER(dev_priv) >= 9) {
- 		u32 dfsm = intel_de_read(dev_priv, SKL_DFSM);
- 
- 		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
--			info->display.pipe_mask &= ~BIT(PIPE_A);
--			info->display.cpu_transcoder_mask &= ~BIT(TRANSCODER_A);
-+			runtime->pipe_mask &= ~BIT(PIPE_A);
-+			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_A);
- 			runtime->fbc_mask &= ~BIT(INTEL_FBC_A);
- 		}
- 		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
--			info->display.pipe_mask &= ~BIT(PIPE_B);
--			info->display.cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
-+			runtime->pipe_mask &= ~BIT(PIPE_B);
-+			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
- 		}
- 		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
--			info->display.pipe_mask &= ~BIT(PIPE_C);
--			info->display.cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
-+			runtime->pipe_mask &= ~BIT(PIPE_C);
-+			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
- 		}
- 
- 		if (DISPLAY_VER(dev_priv) >= 12 &&
- 		    (dfsm & TGL_DFSM_PIPE_D_DISABLE)) {
--			info->display.pipe_mask &= ~BIT(PIPE_D);
--			info->display.cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
-+			runtime->pipe_mask &= ~BIT(PIPE_D);
-+			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
- 		}
- 
- 		if (dfsm & SKL_DFSM_DISPLAY_HDCP_DISABLE)
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 2084f568f7ea..f419848f52cb 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -233,6 +233,9 @@ struct intel_runtime_info {
- 
- 	/* display */
- 	struct {
-+		u8 pipe_mask;
-+		u8 cpu_transcoder_mask;
++/**
++ * mei_cldev_send_gsc_command - sends a gsc command, by sending
++ * a gsl mei message to gsc and receiving reply from gsc
++ *
++ * @cldev: me client device
++ * @client_id: client id to send the command to
++ * @fence_id: fence id to send the command to
++ * @sg_in: scatter gather list containing addresses for rx message buffer
++ * @total_in_len: total length of data in 'in' sg, can be less than the sum of buffers sizes
++ * @sg_out: scatter gather list containing addresses for tx message buffer
++ *
++ * Return:
++ *  * written size in bytes
++ *  * < 0 on error
++ */
++ssize_t mei_cldev_send_gsc_command(struct mei_cl_device *cldev,
++				   u8 client_id, u32 fence_id,
++				   struct scatterlist *sg_in,
++				   size_t total_in_len,
++				   struct scatterlist *sg_out)
++{
++	struct mei_cl *cl;
++	struct mei_device *bus;
++	ssize_t ret = 0;
 +
- 		u8 num_sprites[I915_MAX_PIPES];
- 		u8 num_scalers[I915_MAX_PIPES];
++	struct mei_ext_hdr_gsc_h2f *ext_hdr;
++	size_t buf_sz = sizeof(struct mei_ext_hdr_gsc_h2f);
++	int sg_out_nents, sg_in_nents;
++	int i;
++	struct scatterlist *sg;
++	struct mei_ext_hdr_gsc_f2h rx_msg;
++	unsigned int sg_len;
++
++	if (!cldev || !sg_in || !sg_out)
++		return -EINVAL;
++
++	cl = cldev->cl;
++	bus = cldev->bus;
++
++	dev_dbg(bus->dev, "client_id %u, fence_id %u\n", client_id, fence_id);
++
++	if (!bus->hbm_f_gsc_supported)
++		return -EOPNOTSUPP;
++
++	sg_out_nents = sg_nents(sg_out);
++	sg_in_nents = sg_nents(sg_in);
++	/* at least one entry in tx and rx sgls must be present */
++	if (sg_out_nents <= 0 || sg_in_nents <= 0)
++		return -EINVAL;
++
++	buf_sz += (sg_out_nents + sg_in_nents) * sizeof(struct mei_gsc_sgl);
++	ext_hdr = kzalloc(buf_sz, GFP_KERNEL);
++	if (!ext_hdr)
++		return -ENOMEM;
++
++	/* construct the GSC message */
++	ext_hdr->hdr.type = MEI_EXT_HDR_GSC;
++	ext_hdr->hdr.length = buf_sz / sizeof(u32); /* length is in dw */
++
++	ext_hdr->client_id = client_id;
++	ext_hdr->addr_type = GSC_ADDRESS_TYPE_PHYSICAL_SGL;
++	ext_hdr->fence_id = fence_id;
++	ext_hdr->input_address_count = sg_in_nents;
++	ext_hdr->output_address_count = sg_out_nents;
++	ext_hdr->reserved[0] = 0;
++	ext_hdr->reserved[1] = 0;
++
++	/* copy in-sgl to the message */
++	for (i = 0, sg = sg_in; i < sg_in_nents; i++, sg++) {
++		ext_hdr->sgl[i].low = lower_32_bits(sg_dma_address(sg));
++		ext_hdr->sgl[i].high = upper_32_bits(sg_dma_address(sg));
++		sg_len = min_t(unsigned int, sg_dma_len(sg), PAGE_SIZE);
++		ext_hdr->sgl[i].length = (sg_len <= total_in_len) ? sg_len : total_in_len;
++		total_in_len -= ext_hdr->sgl[i].length;
++	}
++
++	/* copy out-sgl to the message */
++	for (i = sg_in_nents, sg = sg_out; i < sg_in_nents + sg_out_nents; i++, sg++) {
++		ext_hdr->sgl[i].low = lower_32_bits(sg_dma_address(sg));
++		ext_hdr->sgl[i].high = upper_32_bits(sg_dma_address(sg));
++		sg_len = min_t(unsigned int, sg_dma_len(sg), PAGE_SIZE);
++		ext_hdr->sgl[i].length = sg_len;
++	}
++
++	/* send the message to GSC */
++	ret = __mei_cl_send(cl, (u8 *)ext_hdr, buf_sz, 0, MEI_CL_IO_SGL);
++	if (ret < 0) {
++		dev_err(bus->dev, "__mei_cl_send failed, returned %zd\n", ret);
++		goto end;
++	}
++	if (ret != buf_sz) {
++		dev_err(bus->dev, "__mei_cl_send returned %zd instead of expected %zd\n",
++			ret, buf_sz);
++		ret = -EIO;
++		goto end;
++	}
++
++	/* receive the reply from GSC, note that at this point sg_in should contain the reply */
++	ret = __mei_cl_recv(cl, (u8 *)&rx_msg, sizeof(rx_msg), NULL, MEI_CL_IO_SGL, 0);
++
++	if (ret != sizeof(rx_msg)) {
++		dev_err(bus->dev, "__mei_cl_recv returned %zd instead of expected %zd\n",
++			ret, sizeof(rx_msg));
++		if (ret >= 0)
++			ret = -EIO;
++		goto end;
++	}
++
++	/* check rx_msg.client_id and rx_msg.fence_id match the ones we send */
++	if (rx_msg.client_id != client_id || rx_msg.fence_id != fence_id) {
++		dev_err(bus->dev, "received client_id/fence_id  %u/%u  instead of %u/%u sent\n",
++			rx_msg.client_id, rx_msg.fence_id, client_id, fence_id);
++		ret = -EFAULT;
++		goto end;
++	}
++
++	dev_dbg(bus->dev, "gsc command: successfully written %u bytes\n",  rx_msg.written);
++	ret = rx_msg.written;
++
++end:
++	kfree(ext_hdr);
++	return ret;
++}
++EXPORT_SYMBOL_GPL(mei_cldev_send_gsc_command);
++
+ /**
+  * mei_cl_device_find - find matching entry in the driver id table
+  *
+diff --git a/include/linux/mei_cl_bus.h b/include/linux/mei_cl_bus.h
+index df1fab44ea5c..308dc9155ad6 100644
+--- a/include/linux/mei_cl_bus.h
++++ b/include/linux/mei_cl_bus.h
+@@ -8,6 +8,7 @@
+ #include <linux/device.h>
+ #include <linux/uuid.h>
+ #include <linux/mod_devicetable.h>
++#include <linux/scatterlist.h>
  
-@@ -257,8 +260,6 @@ struct intel_device_info {
- 		u8 ver;
- 		u8 rel;
+ struct mei_cl_device;
+ struct mei_device;
+@@ -116,6 +117,11 @@ void mei_cldev_set_drvdata(struct mei_cl_device *cldev, void *data);
+ int mei_cldev_enable(struct mei_cl_device *cldev);
+ int mei_cldev_disable(struct mei_cl_device *cldev);
+ bool mei_cldev_enabled(const struct mei_cl_device *cldev);
++ssize_t mei_cldev_send_gsc_command(struct mei_cl_device *cldev,
++				   u8 client_id, u32 fence_id,
++				   struct scatterlist *sg_in,
++				   size_t total_in_len,
++				   struct scatterlist *sg_out);
  
--		u8 pipe_mask;
--		u8 cpu_transcoder_mask;
- 		u8 abox_mask;
- 
- 		struct {
+ void *mei_cldev_dma_map(struct mei_cl_device *cldev, u8 buffer_id, size_t size);
+ int mei_cldev_dma_unmap(struct mei_cl_device *cldev);
 -- 
-2.34.1
+2.37.2
 
