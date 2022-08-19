@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0297599B55
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 14:03:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D9D599B56
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 14:03:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D46D10E736;
-	Fri, 19 Aug 2022 12:03:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EAC210E7CF;
+	Fri, 19 Aug 2022 12:03:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21A4310E736
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 12:02:53 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E24410E964
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 12:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660910573; x=1692446573;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=38BU8rIke+P8eg7eA0Yg4KCt4c3XwFPk7gLMh1535Yk=;
- b=JII+hqvLLkVTrXaGQ2M3R/PLqdsjwdQQu9aMJ3TX4wXVp1VR/CU2Sxjw
- OHlCrzlpud5J0TIGNt1zqkWO+ML96VWBedbkZO6oOUF+FnvKlotTIZ0NW
- bNwIyMGw5pGZnCuwcnQlp4WJ9EUlDShPWzdGm6DNlxOvYv8n5klBw7tIV
- dknu80VNm33dx9BqhA/A/bdXlcP6T3jUf0V1x/5beD4+gVPr5sPDQ4Rzv
- RGFjPwaw0DD0ZounOiQUeaohtG/Tqv6wuTn0lPuan2Xb8g9QBi9gKwRGd
- xJzRagRdWvn8KUt5swuOkbVzMuqlqlAmr7hIcRlSr+BfTFulZtMtb7wdZ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="290565279"
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="290565279"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2022 05:02:52 -0700
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="668560557"
+ t=1660910578; x=1692446578;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=z3OvlCRRBAbUJRA0/qPJg1Uy/n08FIFOdixerO5nViY=;
+ b=ESbquuXduUGOW1D9gNXdzi+xpgGkOwgXvXXtJGaPmFMsKML/UguOLJ55
+ pKKKq1XIQEp7X9rVVeyFp8Kj3E+I18RAj/GwR9QVM3aF+l08jDauCjh0V
+ P/v6obDHDnqB32LrnvVgHsolpEJ5zjIMFD6B9vAUUXtxrKTq0I/ZrnfNP
+ FEGIJLYjs6YdPwvew67ioxeeeoJQAqqvZaAU9Ak3vqc2BxvdXN10VXLOq
+ Ly3jjG5iQs4BRKZ5dF980bEW0WzSwBSPpD+bovgtJ1zNmcw2FpV40GeqQ
+ S5JfjFJPkdNqrZ6+g30CnxpUKM7GLxU/9jQcyzLx4VMjHwjDnCan5hAt7 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="293785947"
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="293785947"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 05:02:57 -0700
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="637256562"
 Received: from jastrom-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.51.176])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2022 05:02:51 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2022 05:02:55 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Aug 2022 15:02:33 +0300
-Message-Id: <cover.1660910433.git.jani.nikula@intel.com>
+Date: Fri, 19 Aug 2022 15:02:34 +0300
+Message-Id: <b395ac4c909042f5daabf29959d8733993545aa2.1660910433.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1660910433.git.jani.nikula@intel.com>
+References: <cover.1660910433.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 00/14] drm/i915: stop modifying "const"
- device info
+Subject: [Intel-gfx] [PATCH v3 01/14] drm/i915/guc: remove runtime info
+ printing from time stamp logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,56 +58,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: jani.nikula@intel.com, Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v3 of https://patchwork.freedesktop.org/series/105358/
+Commit 368d179adbac ("drm/i915/guc: Add GuC <-> kernel time stamp
+translation information") added intel_device_info_print_runtime() in the
+time info dump for no obvious reason or explanation in the commit
+message. It only logs the rawclk freq. Remove it.
 
-Add a patch resolving guc time stamp logging related conflicts in the
-front, and remove the last two patches, for now, to avoid any
-potentially regressing functional changes. Leave them for later.
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-
-Jani Nikula (14):
-  drm/i915/guc: remove runtime info printing from time stamp logging
-  drm/i915: combine device info printing into one
-  drm/i915: add initial runtime info into device info
-  drm/i915: move graphics.ver and graphics.rel to runtime info
-  drm/i915: move fbc_mask to runtime info
-  drm/i915: move page_sizes to runtime info
-  drm/i915: move ppgtt_type and ppgtt_size to runtime info
-  drm/i915: move has_pooled_eu to runtime info
-  drm/i915: move memory_regions to runtime info
-  drm/i915: move platform_engine_mask to runtime info
-  drm/i915: move pipe_mask and cpu_transcoder_mask to runtime info
-  drm/i915: move has_hdcp to runtime info
-  drm/i915: move has_dmc to runtime info
-  drm/i915: move has_dsc to runtime info
-
- drivers/gpu/drm/i915/display/intel_display.h  |   4 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      |   6 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c     |   4 +-
- drivers/gpu/drm/i915/display/intel_vdsc.c     |   2 +-
- .../drm/i915/display/skl_universal_plane.c    |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_pages.c     |   2 +-
- .../gpu/drm/i915/gem/selftests/huge_pages.c   |  18 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
- drivers/gpu/drm/i915/gt/intel_ppgtt.c         |   2 +-
- drivers/gpu/drm/i915/gt/intel_sseu.c          |   5 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   2 -
- drivers/gpu/drm/i915/i915_debugfs.c           |   3 +-
- drivers/gpu/drm/i915/i915_driver.c            |  11 +-
- drivers/gpu/drm/i915/i915_drv.h               |  24 +-
- drivers/gpu/drm/i915/i915_gem.c               |   3 +-
- drivers/gpu/drm/i915/i915_gpu_error.c         |   3 +-
- drivers/gpu/drm/i915/i915_pci.c               | 242 +++++++++---------
- drivers/gpu/drm/i915/intel_device_info.c      |  71 ++---
- drivers/gpu/drm/i915/intel_device_info.h      |  82 +++---
- drivers/gpu/drm/i915/intel_uncore.c           |   2 +-
- .../gpu/drm/i915/selftests/mock_gem_device.c  |   8 +-
- 21 files changed, 256 insertions(+), 242 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 01f2705cb94a..24451d000a6a 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -365,8 +365,6 @@ void intel_guc_dump_time_info(struct intel_guc *guc, struct drm_printer *p)
+ 	u32 stamp = 0;
+ 	u64 ktime;
+ 
+-	intel_device_info_print_runtime(RUNTIME_INFO(gt->i915), p);
+-
+ 	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref)
+ 		stamp = intel_uncore_read(gt->uncore, GUCPMTIMESTAMP);
+ 	ktime = ktime_get_boottime_ns();
 -- 
 2.34.1
 
