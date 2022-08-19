@@ -2,47 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22E585993E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 06:15:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F3765994ED
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Aug 2022 08:03:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2DB10E51F;
-	Fri, 19 Aug 2022 04:15:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C54D710E6D5;
+	Fri, 19 Aug 2022 06:03:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4F0A10E511;
- Fri, 19 Aug 2022 04:15:43 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5562210E277;
+ Fri, 19 Aug 2022 06:02:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660882543; x=1692418543;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HGEK4I4G5U2uP6dOvYWWs6QhSArCE7G8am+nUKLaTSo=;
- b=Ck2NoCyvNa+4MaLpmQv+pMjxFSDhj1f0RSQVtMdLWy/DJ78l3M/aHX55
- DeKs8YPVycbN7Cgb7uB1tQql07qGTH6Ng7JCDTwUYMA5J3VdQJRiUOhHB
- RoSWLjCgfZN07MNXoHsOjNm8MLBV4Sns0D6vZ3p3vZXNmJWa3K9hOZfCo
- djCJTlTa3tNHBu5EBYRiyX3fdkNCxfTXn5XEt1VkfnO/gOTMD6QAmhG0/
- QtjfkNzXWbBC3OeXr8DEjgO3jAvmgLDsbIo1/f7N0OIk0cgBwTIVhUgb+
- yyd8U/xXteJGVVFQrrrutUwTOp6G9FMGtI9emZZ/EoB6l7nxO1vxYEtf0 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="379226439"
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="379226439"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2022 21:15:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="711200920"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by fmsmga002.fm.intel.com with ESMTP; 18 Aug 2022 21:15:43 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Date: Thu, 18 Aug 2022 21:15:24 -0700
-Message-Id: <20220819041524.33170-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.35.1
+ t=1660888967; x=1692424967;
+ h=date:from:to:cc:subject:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=T8MBDr+FvGxklDndLJiMzxoY+sAb11f3JzWQrwWutrQ=;
+ b=Ob6qWkq0dkejMyFzoO2BPv0px7gvNE0hKBrIAubpEAgs0s5ZLbn6UKqb
+ M1rDOLowQvO9lqY5QzqiBYz2rCU15RdwH0nziG8j9StfVrlMzTclUfxuQ
+ OccJSeceycZPrm9XCEmZbZmmMlMsAukXH/fW3/uhAasg9rzVAOYxeP1Ak
+ 8MpSrQArkbpqHF2CMWvEtNmi8Mea1NEoHX8NIiwgr4aB627ZM4hT1WzvR
+ 3Q30GNQMukNG5tCZpT1SieNl33a74MQr4BS4X/r0ep1n0mXHH4We55Pm4
+ bzXcDu2meN4sIo8KYdKkjBIN/cn8yp3G62Ny1evA3cnEklk948nI9WmJO g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10443"; a="292940364"
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="292940364"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2022 23:02:46 -0700
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; d="scan'208";a="637143269"
+Received: from maurocar-mobl2.ger.corp.intel.com (HELO maurocar-mobl2)
+ ([10.252.40.251])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2022 23:02:44 -0700
+Date: Fri, 19 Aug 2022 08:02:42 +0200
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Message-ID: <20220819080242.38b3382f@maurocar-mobl2>
+In-Reply-To: <6809017.18pcnM708K@jkrzyszt-mobl1.ger.corp.intel.com>
+References: <20220812095346.45379-1-janusz.krzysztofik@linux.intel.com>
+ <20220817145348.562fcaa2@maurocar-mobl2>
+ <6809017.18pcnM708K@jkrzyszt-mobl1.ger.corp.intel.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t] i915/guc: Disable i915_pm_rps when SLPC
- is enabled
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t 1/3] tests/gem_exec_fence: Fix wrong
+ engine checked for store_dword capability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,134 +60,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Mauro Carvalho Chehab <mauro.carvalho.chehab@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-These tests were specifically designed for host Turbo. Skip
-them when SLPC is enabled as they fail frequently. We will look
-to keep adding to SLPC test coverage with these scenarios.
+On Thu, 18 Aug 2022 17:27:26 +0200
+Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
 
-Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/3963
-Bug: https://gitlab.freedesktop.org/drm/intel/issues/4016
-Bug: https://gitlab.freedesktop.org/drm/intel/issues/5468
-Bug: https://gitlab.freedesktop.org/drm/intel/issues/5831
+> Hi Mauro,
+> 
+> Thanks for reviewing this series, I've just pushed it.
+> 
+> On Wednesday, 17 August 2022 14:53:48 CEST Mauro Carvalho Chehab wrote:
+> > Hi Janusz,
+> > 
+> > On Fri, 12 Aug 2022 11:53:44 +0200
+> > Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
+> > 
+> > It seems that there is a numeration issue on this series, as the patches
+> > on it are:
+> > 
+> >    [PATCH i-g-t 1/3] tests/gem_exec_fence: Fix wrong engine checked for store_dword capability
+> >    [PATCH i-g-t v2 2/3] tests/gem_exec_fence: Exclude 0  from use in store batches
+> >    [PATCH i-g-t v3 3/3] tests/gem_exec_fence: Restore  pre-hang checks in *await-hang scenarios
+> > 
+> > Maybe some broken script? It is also missing a cover letter.  
+> 
+> That was not a script, I provided version numbers of individual patches 
+> manually, and not provided any cover letter.  First patch was a small fix, not 
+> directly related to the two others.  Second patch was a small enhancement, 
+> also not directly related to the third one.  However, the third one depended 
+> on the two for clean apply, and that was the only reason for me sending them 
+> in series.
+> 
+> That said, let me ask, based on your huge upstream experience, what are your 
+> preferences on patch version tagging if one is going to submit a series with 
+> new versions of some patches while still including some other that don't need 
+> to be changed?  Should all be marked as new (and the same) versions?
 
-v2: Add \n for the skip message, and close fd in helper
-v3: Don't modify reset params before deciding to skip. There is
-no end fixture for this test, which needs to be fixed separately.
+I guess you started without a cover letter because it was originally a 
+single patch. Then, you realized that this was not enough, so you needed
+extra stuff.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- lib/igt_pm.c             | 17 +++++++++++++++++
- lib/igt_pm.h             |  1 +
- tests/i915/i915_pm_rps.c | 32 ++++++++++++++++++++++++++------
- 3 files changed, 44 insertions(+), 6 deletions(-)
+When I submit single fixes upstream, I usually don't add cover letters,
+as the patch description is usually enough, but, at the moment it becomes
+multiple (dependent) ones, I add it.
 
-diff --git a/lib/igt_pm.c b/lib/igt_pm.c
-index 6ebbad33..99251b40 100644
---- a/lib/igt_pm.c
-+++ b/lib/igt_pm.c
-@@ -1202,3 +1202,20 @@ void igt_pm_print_pci_card_runtime_status(void)
- 		igt_pm_print_pci_dev_runtime_status(__pci_dev_pwrattr[i].pci_dev);
- 	}
- }
-+
-+bool i915_is_slpc_enabled(int fd)
-+{
-+	int debugfs_fd = igt_debugfs_dir(fd);
-+	char buf[4096] = {};
-+	int len;
-+
-+	igt_require(debugfs_fd != -1);
-+
-+	len = igt_debugfs_simple_read(debugfs_fd, "gt/uc/guc_slpc_info", buf, sizeof(buf));
-+	close(debugfs_fd);
-+
-+	if (len < 0)
-+		return false;
-+	else
-+		return strstr(buf, "SLPC state: running");
-+}
-diff --git a/lib/igt_pm.h b/lib/igt_pm.h
-index f28b6ebf..cbbde12b 100644
---- a/lib/igt_pm.h
-+++ b/lib/igt_pm.h
-@@ -79,5 +79,6 @@ void igt_pm_enable_pci_card_runtime_pm(struct pci_device *root,
- void igt_pm_setup_pci_card_runtime_pm(struct pci_device *pci_dev);
- void igt_pm_restore_pci_card_runtime_pm(void);
- void igt_pm_print_pci_card_runtime_status(void);
-+bool i915_is_slpc_enabled(int fd);
- 
- #endif /* IGT_PM_H */
-diff --git a/tests/i915/i915_pm_rps.c b/tests/i915/i915_pm_rps.c
-index d06ade27..db39ec69 100644
---- a/tests/i915/i915_pm_rps.c
-+++ b/tests/i915/i915_pm_rps.c
-@@ -914,35 +914,55 @@ igt_main
- 		igt_install_exit_handler(pm_rps_exit_handler);
- 	}
- 
--	igt_subtest("basic-api")
-+	igt_subtest("basic-api") {
-+		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
-+			      "This subtest is not supported when SLPC is enabled\n");
- 		min_max_config(basic_check, false);
-+	}
- 
- 	/* Verify the constraints, check if we can reach idle */
--	igt_subtest("min-max-config-idle")
-+	igt_subtest("min-max-config-idle") {
-+		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
-+			      "This subtest is not supported when SLPC is enabled\n");
- 		min_max_config(idle_check, true);
-+	}
- 
- 	/* Verify the constraints with high load, check if we can reach max */
- 	igt_subtest("min-max-config-loaded") {
-+		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
-+			      "This subtest is not supported when SLPC is enabled\n");
- 		load_helper_run(HIGH);
- 		min_max_config(loaded_check, false);
- 		load_helper_stop();
- 	}
- 
- 	/* Checks if we achieve boost using gem_wait */
--	igt_subtest("waitboost")
-+	igt_subtest("waitboost") {
-+		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
-+			      "This subtest is not supported when SLPC is enabled\n");
- 		waitboost(drm_fd, false);
-+	}
- 
- 	igt_describe("Check if the order of fences does not affect waitboosting");
--	igt_subtest("fence-order")
-+	igt_subtest("fence-order") {
-+		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
-+			      "This subtest is not supported when SLPC is enabled\n");
- 		fence_order(drm_fd);
-+	}
- 
- 	igt_describe("Check if context reuse does not affect waitboosting");
--	igt_subtest("engine-order")
-+	igt_subtest("engine-order") {
-+		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
-+			      "This subtest is not supported when SLPC is enabled\n");
- 		engine_order(drm_fd);
-+	}
- 
- 	/* Test boost frequency after GPU reset */
- 	igt_subtest("reset") {
--		igt_hang_t hang = igt_allow_hang(drm_fd, 0, 0);
-+		igt_hang_t hang;
-+		igt_skip_on_f(i915_is_slpc_enabled(drm_fd),
-+			      "This subtest is not supported when SLPC is enabled\n");
-+		hang = igt_allow_hang(drm_fd, 0, 0);
- 		waitboost(drm_fd, true);
- 		igt_disallow_hang(drm_fd, hang);
- 	}
--- 
-2.35.1
+Yet, sometimes even for simple patch submissions, I add cover letters,
+when I feel the need to add some explanation to help reviewers to analyze
+it.
 
+Basically:
+
+- the cover letter provides temporary information meant to help reviewers
+  and maintainers to understand the series. It includes, for instance:
+
+  - a short summary of the patches in the tree;
+  - on what tree/branch the patch applies, if not on upstream
+    (like someone's else tree, next-20220819 branch, etc). 
+  - any special instructions for the maintainers when applying it, like
+    if the patch should be merged after some other series;
+  - patch versions;
+  - etc.
+
+- the patch title and the body describes: why, what and how. Those should
+  be providing enough understanding for anyone that would later look at
+  the git logs to understand the changes applied there. Patch version
+  log doesn't belong here. Yet, as patch reviews could be interesting
+  even after things get merged, you can include a link to lore, in the
+  form of:
+
+	Link: https://lore.kernel.org/$mailing_list/$msg_id
+
+  (instead of $mailing list, you could just use "all")
+
+  So, for instance, if I want to place a pointer to the last e-mail
+  on this thread, I would add:
+
+	Link: https://lore.kernel.org/intel-gfx/6809017.18pcnM708K@jkrzyszt-mobl1.ger.corp.intel.com
+
+  or:
+
+	Link: https://lore.kernel.org/all/6809017.18pcnM708K@jkrzyszt-mobl1.ger.corp.intel.com
+
+  Btw, on patches generated on git, the msg_id is there after format-email.
+  So, you can even add links to the patch you're sending.
+
+-
+
+In cases like the one you described, I would be adding a cover letter
+with something like:
+
+	[PATCH i-g-t v3 0/3] Add some fixes to tests/gem_exec_fence
+
+	some description about the series
+
+	---
+
+	v3:
+	  - Added a patch to restore pre-hang checks;
+	  - patches 1 and 2 unchanged.
+
+	v2:
+	  - Added a fix to exclude 0 in store batches;
+ 	  - patch 1 unchanged.
+
+If you need a v4, add it before v3, and so on.
+
+At the series itself, version numbers are incremented on all patches.
+This makes clear for reviewers that already checked your series about
+what changed and what remains the same.
+
+I hope that helps.
+
+Regards,
+Mauro
