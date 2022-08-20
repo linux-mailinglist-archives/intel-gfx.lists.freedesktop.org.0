@@ -1,49 +1,95 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A57C15A0200
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 21:17:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B03B5A0201
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 21:18:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C262011A1F8;
-	Wed, 24 Aug 2022 19:17:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9023810F32A;
+	Wed, 24 Aug 2022 19:18:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFB8610E713;
- Fri, 19 Aug 2022 22:53:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660949633; x=1692485633;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iP/kzHdaEUDcabl2PkNH6n4LIlGIbSqO9a8mD59nk7k=;
- b=FDlaGFXfv/VXj8KwBwHwjOJdEIp9S7SErwWp0ayumClp7ut5s8n2Ywbm
- laXW7iy4AUdSeSOpqGyVart1jSmnS/eUPjMBJrp3ssgZSHrOXbI0gGKy3
- /frbaOPaNNWXargTNSuGTB1X9VT1+AKRP1MtwNG57WbpMJn2g094BoWhz
- SRegMPfb5gSuSKtB2WqlD+uUCPaTXxGVSTiVd1r+ViS3xYyPdD37nMYuV
- T3rSqVJdjaUDHaQmO7nkXiJBNQSBteuZWK/M1zlr7+10Pnc8N0H+ZvhJ6
- B/s2UIXe7PSlMCnAuRY/i6t72DNR44fgcm6iKEvOjt7LxQiR8aY5Dsann A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10444"; a="273513230"
-X-IronPort-AV: E=Sophos;i="5.93,249,1654585200"; d="scan'208";a="273513230"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2022 15:53:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,249,1654585200"; d="scan'208";a="936378476"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2022 15:53:53 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Aug 2022 15:53:24 -0700
-Message-Id: <20220819225335.3947346-5-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220819225335.3947346-1-daniele.ceraolospurio@intel.com>
-References: <20220819225335.3947346-1-daniele.ceraolospurio@intel.com>
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2058.outbound.protection.outlook.com [40.107.92.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 330A110E062;
+ Sat, 20 Aug 2022 07:33:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hcKrwNTYsY1DZzj172uEBJjmFUgQo4oZlCIm1oZf8AcxKqnJ/zs/sshpAUySstJdZrAcVylI6lrEagxKT0xDjK56LT2hLQ5BeeeKOfBsuqPzU17YzTj3MxTPGO/jPxkTQdl+1h5KaqCSIJHzPBhpfqtLXJqZHmiTNg/IFsAZD2I1KRmQZWFfKEX+xgqXzgQRvNuSJ2piwEKcksZ+wSD0LOIjXrIM6+OYJ26SusE+j4ERh8LI8yBbJmt1RWOcDOpfytgjgKxBmEmDq4jlSPn1mqXwAbZC48IrYQ5V9ID7DRoYe/rUcb7W1JrshUqK70+S2lmlSZVnnjc9qVtW2wotBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xfXwmkGW5HiD76e+dCwUhrgXfAr6Rp3lvcDkQcZJ6sc=;
+ b=TzBfUsv7ittrMBlHiWRt96BAxaCNBJgF4fp2mn6EkRVxrmPdgwnFVEQIXqq77Rxzj8jJuOmdAWY+rf7P9WW2ZIXBbRX5DyNJg2rhvdrWWrkxWm2CXvoCOikomvRVzsl5AlhLPT8xdiMlKcdldvFKOIxNMu3ulucLPOCNujS4haOdn7i0CIu7NZlyRWFdgCwX30L2w0jUwhFX3SIvirRFjZJbjEzL9Zj//kT3kG5/tp6aubtMWmoPjnBxpTf+9BsRPBljS3HRggqmyt1Joilftp3y8uJPfCIsABMMDYUmqViYk3bknT5ecaMLJqe0jE9+Dcuw4e0+cGiIrbHIikLfZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xfXwmkGW5HiD76e+dCwUhrgXfAr6Rp3lvcDkQcZJ6sc=;
+ b=CsvgRvJXI8YBunBq963si30Zr63FoR10jXlPNeqCG6mOZhlb6oj/wGbUHTpK9GNJxZkgny4mzrdpJfcAEvZMULBKClJOcg30s16ldh4FL3mm6+YBl/2+WQw/cYL3t4G7RKdoqsJq6lDES0oJ8xF7wefmiVA5O8pXfc/YZyKhE+8=
+Received: from MW4PR03CA0006.namprd03.prod.outlook.com (2603:10b6:303:8f::11)
+ by CY4PR1201MB0214.namprd12.prod.outlook.com (2603:10b6:910:25::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Sat, 20 Aug
+ 2022 07:33:34 +0000
+Received: from CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8f:cafe::e3) by MW4PR03CA0006.outlook.office365.com
+ (2603:10b6:303:8f::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.20 via Frontend
+ Transport; Sat, 20 Aug 2022 07:33:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT034.mail.protection.outlook.com (10.13.174.248) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5546.15 via Frontend Transport; Sat, 20 Aug 2022 07:33:33 +0000
+Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Sat, 20 Aug 2022 02:33:30 -0500
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Date: Sat, 20 Aug 2022 00:33:00 -0700
+Message-ID: <20220820073304.178444-2-Arunpravin.PaneerSelvam@amd.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220820073304.178444-1-Arunpravin.PaneerSelvam@amd.com>
+References: <20220820073304.178444-1-Arunpravin.PaneerSelvam@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 04/15] mei: bus: extend bus API to support
- command streamer API
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 696c1b80-3a8d-42f1-ad09-08da827e49c6
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0214:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: IS/PMycOmr4QsAamPUuK2quY9XqEzmP7dYqrOqIjnwxlFejJAI7XUqXDCJJ3Xl61Ss0LDCxqDesn2fqwphtsXCGhqRPPJGFAX18flNktYrjhYUqT/Wfcd05f9SxQJAy1GdzRA4xxBSGzKf8ixrGkI5qo19a20d1Vroo4CVGvimYzHdG/7EWknK0RDWxxBNgUkAKO5RCFNzOcfq01MQMxMbVdSrOKQ48XQ5GvZ1QAzUvM24gKVB++MfSEA0FGGFJDdjEAQORcU9B5GiftEQYQQu/+4dTdk8EOJksqe4iwzeDUHykCTSckVuHHsnk2t9X9UkplNhHic5AeiCWPsxPz58ibPsiupxKHcDyUIq/H7ei9G2R1slHcTeT4QLtdvyXNA2us0PQPJ/RP34REurb0Qulz8AhJOPY+QtbC9APIQQjTpNTGxwUpk5iQj1vShv5vDe5Fqc5dLWSOT0jQXSyV3pAIsWKQfcKJCaAbrcUkSKifHI5rgETIDny0WHLP03zNVGb0RUDEyYCBICKhJGCW7bLwaSeptv3SsL9wqRCyWZm10T32E6oqOlXXU5telJH1wBUG5o2XebYl1/iPUnyXfBK3MtQqVLP874T2ehPs5uQMbMx0CdtI/2XruwqHey8cnpd5/VU3bgneet4lBHtPljOKT+q9OweV6lBBcXBpvU4WtB8xsQOuu2AuRVCBLg9o3imnhXs09iSrO2qZasiSo4gUSQ9wNt/HvYuXhp7cRC0gX4ubTtIed45D3Q2n78opBhic/wP3IhXHH03FaUoTO0gO33w/lSnB0SWqpA3WAOjlrAl8VxY4xciUfQ5aGcyg
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(376002)(346002)(39860400002)(396003)(136003)(36840700001)(40470700004)(46966006)(6666004)(336012)(478600001)(70206006)(70586007)(8936002)(41300700001)(40460700003)(5660300002)(1076003)(8676002)(40480700001)(36860700001)(86362001)(4326008)(2906002)(426003)(16526019)(186003)(47076005)(81166007)(356005)(2616005)(54906003)(26005)(82740400003)(83380400001)(82310400005)(316002)(7696005)(36756003)(110136005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2022 07:33:33.9875 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 696c1b80-3a8d-42f1-ad09-08da827e49c6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0214
+Subject: [Intel-gfx] [PATCH v6 2/6] drm/ttm: Implement intersect/compatible
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,196 +102,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Tomas Winkler <tomas.winkler@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>, dri-devel@lists.freedesktop.org
+Cc: alexander.deucher@amd.com,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ luben.tuikov@amd.com, christian.koenig@amd.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Vitaly Lubart <vitaly.lubart@intel.com>
+Implemented a new intersect and compatible callback functions
+to ttm range manager fetching start offset from drm mm range
+allocator.
 
-Add mei bus API for sending gsc commands: mei_cldev_send_gsc_command()
-
-The GSC commands are originated in the graphics stack
-and are in form of SGL DMA buffers.
-The GSC commands are synchronous, the response is received
-in the same call on the out sg list buffers.
-The function setups pointers for in and out sg lists in the
-mei sgl extended header and sends it to the firmware.
-
-V2:
- 1. More detailed commit message
- 2. Fix typo in the comments
-
-Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
-Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Signed-off-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/misc/mei/bus.c     | 125 +++++++++++++++++++++++++++++++++++++
- include/linux/mei_cl_bus.h |   6 ++
- 2 files changed, 131 insertions(+)
+ drivers/gpu/drm/ttm/ttm_range_manager.c | 33 +++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-diff --git a/drivers/misc/mei/bus.c b/drivers/misc/mei/bus.c
-index 225f0b04c021..fc885ba94b36 100644
---- a/drivers/misc/mei/bus.c
-+++ b/drivers/misc/mei/bus.c
-@@ -838,6 +838,131 @@ int mei_cldev_disable(struct mei_cl_device *cldev)
+diff --git a/drivers/gpu/drm/ttm/ttm_range_manager.c b/drivers/gpu/drm/ttm/ttm_range_manager.c
+index d91666721dc6..4cfef2b3514d 100644
+--- a/drivers/gpu/drm/ttm/ttm_range_manager.c
++++ b/drivers/gpu/drm/ttm/ttm_range_manager.c
+@@ -113,6 +113,37 @@ static void ttm_range_man_free(struct ttm_resource_manager *man,
+ 	kfree(node);
  }
- EXPORT_SYMBOL_GPL(mei_cldev_disable);
  
-+/**
-+ * mei_cldev_send_gsc_command - sends a gsc command, by sending
-+ * a gsl mei message to gsc and receiving reply from gsc
-+ *
-+ * @cldev: me client device
-+ * @client_id: client id to send the command to
-+ * @fence_id: fence id to send the command to
-+ * @sg_in: scatter gather list containing addresses for rx message buffer
-+ * @total_in_len: total length of data in 'in' sg, can be less than the sum of buffers sizes
-+ * @sg_out: scatter gather list containing addresses for tx message buffer
-+ *
-+ * Return:
-+ *  * written size in bytes
-+ *  * < 0 on error
-+ */
-+ssize_t mei_cldev_send_gsc_command(struct mei_cl_device *cldev,
-+				   u8 client_id, u32 fence_id,
-+				   struct scatterlist *sg_in,
-+				   size_t total_in_len,
-+				   struct scatterlist *sg_out)
++static bool ttm_range_man_intersects(struct ttm_resource_manager *man,
++				     struct ttm_resource *res,
++				     const struct ttm_place *place,
++				     size_t size)
 +{
-+	struct mei_cl *cl;
-+	struct mei_device *bus;
-+	ssize_t ret = 0;
++	struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
++	u32 num_pages = PFN_UP(size);
 +
-+	struct mei_ext_hdr_gsc_h2f *ext_hdr;
-+	size_t buf_sz = sizeof(struct mei_ext_hdr_gsc_h2f);
-+	int sg_out_nents, sg_in_nents;
-+	int i;
-+	struct scatterlist *sg;
-+	struct mei_ext_hdr_gsc_f2h rx_msg;
-+	unsigned int sg_len;
++	/* Don't evict BOs outside of the requested placement range */
++	if (place->fpfn >= (node->start + num_pages) ||
++	    (place->lpfn && place->lpfn <= node->start))
++		return false;
 +
-+	if (!cldev || !sg_in || !sg_out)
-+		return -EINVAL;
-+
-+	cl = cldev->cl;
-+	bus = cldev->bus;
-+
-+	dev_dbg(bus->dev, "client_id %u, fence_id %u\n", client_id, fence_id);
-+
-+	if (!bus->hbm_f_gsc_supported)
-+		return -EOPNOTSUPP;
-+
-+	sg_out_nents = sg_nents(sg_out);
-+	sg_in_nents = sg_nents(sg_in);
-+	/* at least one entry in tx and rx sgls must be present */
-+	if (sg_out_nents <= 0 || sg_in_nents <= 0)
-+		return -EINVAL;
-+
-+	buf_sz += (sg_out_nents + sg_in_nents) * sizeof(struct mei_gsc_sgl);
-+	ext_hdr = kzalloc(buf_sz, GFP_KERNEL);
-+	if (!ext_hdr)
-+		return -ENOMEM;
-+
-+	/* construct the GSC message */
-+	ext_hdr->hdr.type = MEI_EXT_HDR_GSC;
-+	ext_hdr->hdr.length = buf_sz / sizeof(u32); /* length is in dw */
-+
-+	ext_hdr->client_id = client_id;
-+	ext_hdr->addr_type = GSC_ADDRESS_TYPE_PHYSICAL_SGL;
-+	ext_hdr->fence_id = fence_id;
-+	ext_hdr->input_address_count = sg_in_nents;
-+	ext_hdr->output_address_count = sg_out_nents;
-+	ext_hdr->reserved[0] = 0;
-+	ext_hdr->reserved[1] = 0;
-+
-+	/* copy in-sgl to the message */
-+	for (i = 0, sg = sg_in; i < sg_in_nents; i++, sg++) {
-+		ext_hdr->sgl[i].low = lower_32_bits(sg_dma_address(sg));
-+		ext_hdr->sgl[i].high = upper_32_bits(sg_dma_address(sg));
-+		sg_len = min_t(unsigned int, sg_dma_len(sg), PAGE_SIZE);
-+		ext_hdr->sgl[i].length = (sg_len <= total_in_len) ? sg_len : total_in_len;
-+		total_in_len -= ext_hdr->sgl[i].length;
-+	}
-+
-+	/* copy out-sgl to the message */
-+	for (i = sg_in_nents, sg = sg_out; i < sg_in_nents + sg_out_nents; i++, sg++) {
-+		ext_hdr->sgl[i].low = lower_32_bits(sg_dma_address(sg));
-+		ext_hdr->sgl[i].high = upper_32_bits(sg_dma_address(sg));
-+		sg_len = min_t(unsigned int, sg_dma_len(sg), PAGE_SIZE);
-+		ext_hdr->sgl[i].length = sg_len;
-+	}
-+
-+	/* send the message to GSC */
-+	ret = __mei_cl_send(cl, (u8 *)ext_hdr, buf_sz, 0, MEI_CL_IO_SGL);
-+	if (ret < 0) {
-+		dev_err(bus->dev, "__mei_cl_send failed, returned %zd\n", ret);
-+		goto end;
-+	}
-+	if (ret != buf_sz) {
-+		dev_err(bus->dev, "__mei_cl_send returned %zd instead of expected %zd\n",
-+			ret, buf_sz);
-+		ret = -EIO;
-+		goto end;
-+	}
-+
-+	/* receive the reply from GSC, note that at this point sg_in should contain the reply */
-+	ret = __mei_cl_recv(cl, (u8 *)&rx_msg, sizeof(rx_msg), NULL, MEI_CL_IO_SGL, 0);
-+
-+	if (ret != sizeof(rx_msg)) {
-+		dev_err(bus->dev, "__mei_cl_recv returned %zd instead of expected %zd\n",
-+			ret, sizeof(rx_msg));
-+		if (ret >= 0)
-+			ret = -EIO;
-+		goto end;
-+	}
-+
-+	/* check rx_msg.client_id and rx_msg.fence_id match the ones we send */
-+	if (rx_msg.client_id != client_id || rx_msg.fence_id != fence_id) {
-+		dev_err(bus->dev, "received client_id/fence_id  %u/%u  instead of %u/%u sent\n",
-+			rx_msg.client_id, rx_msg.fence_id, client_id, fence_id);
-+		ret = -EFAULT;
-+		goto end;
-+	}
-+
-+	dev_dbg(bus->dev, "gsc command: successfully written %u bytes\n",  rx_msg.written);
-+	ret = rx_msg.written;
-+
-+end:
-+	kfree(ext_hdr);
-+	return ret;
++	return true;
 +}
-+EXPORT_SYMBOL_GPL(mei_cldev_send_gsc_command);
 +
- /**
-  * mei_cl_device_find - find matching entry in the driver id table
-  *
-diff --git a/include/linux/mei_cl_bus.h b/include/linux/mei_cl_bus.h
-index df1fab44ea5c..308dc9155ad6 100644
---- a/include/linux/mei_cl_bus.h
-+++ b/include/linux/mei_cl_bus.h
-@@ -8,6 +8,7 @@
- #include <linux/device.h>
- #include <linux/uuid.h>
- #include <linux/mod_devicetable.h>
-+#include <linux/scatterlist.h>
++static bool ttm_range_man_compatible(struct ttm_resource_manager *man,
++				     struct ttm_resource *res,
++				     const struct ttm_place *place,
++				     size_t size)
++{
++	struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
++	u32 num_pages = PFN_UP(size);
++
++	if (node->start < place->fpfn ||
++	    (place->lpfn && (node->start + num_pages) > place->lpfn))
++		return false;
++
++	return true;
++}
++
+ static void ttm_range_man_debug(struct ttm_resource_manager *man,
+ 				struct drm_printer *printer)
+ {
+@@ -126,6 +157,8 @@ static void ttm_range_man_debug(struct ttm_resource_manager *man,
+ static const struct ttm_resource_manager_func ttm_range_manager_func = {
+ 	.alloc = ttm_range_man_alloc,
+ 	.free = ttm_range_man_free,
++	.intersects = ttm_range_man_intersects,
++	.compatible = ttm_range_man_compatible,
+ 	.debug = ttm_range_man_debug
+ };
  
- struct mei_cl_device;
- struct mei_device;
-@@ -116,6 +117,11 @@ void mei_cldev_set_drvdata(struct mei_cl_device *cldev, void *data);
- int mei_cldev_enable(struct mei_cl_device *cldev);
- int mei_cldev_disable(struct mei_cl_device *cldev);
- bool mei_cldev_enabled(const struct mei_cl_device *cldev);
-+ssize_t mei_cldev_send_gsc_command(struct mei_cl_device *cldev,
-+				   u8 client_id, u32 fence_id,
-+				   struct scatterlist *sg_in,
-+				   size_t total_in_len,
-+				   struct scatterlist *sg_out);
- 
- void *mei_cldev_dma_map(struct mei_cl_device *cldev, u8 buffer_id, size_t size);
- int mei_cldev_dma_unmap(struct mei_cl_device *cldev);
 -- 
-2.37.2
+2.25.1
 
