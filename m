@@ -1,47 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5633159AA4E
-	for <lists+intel-gfx@lfdr.de>; Sat, 20 Aug 2022 02:59:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FC159AA4F
+	for <lists+intel-gfx@lfdr.de>; Sat, 20 Aug 2022 02:59:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E675610E17D;
-	Sat, 20 Aug 2022 00:58:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5A410E21D;
+	Sat, 20 Aug 2022 00:59:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CF5910E17D
- for <intel-gfx@lists.freedesktop.org>; Sat, 20 Aug 2022 00:58:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F36A10E1B4
+ for <intel-gfx@lists.freedesktop.org>; Sat, 20 Aug 2022 00:58:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660957131; x=1692493131;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XZPxGPtBvg8Je1r0DoLPmN9E8epBX/nMTLpzLWMlvks=;
- b=FkQ1DF6H/q/I6Q173WyDD2VV9bPV2KxHjGI/mDnYVlFT5b3FnRnCSiHt
- pD0115JnuspA6uOLntX/DdByeWvg7Rup+QxauYJOLfRpFY/VmXqMJ5QLs
- J8+x0DvDlKG268N879+DoUq+8cXbhXFzFEeWfyCbu8k5L7YrMUVpYZCDz
- YhaTFZHSPvfb5jMHx38Z3LkkQwNdc4c3c+feVHEQsikVCBHjYa5SWCic6
- ChSB7/uDs6mGlno1D5APK0TlfI1PmaShq7turDwA2ptP6/9zdPazlr7br
- 0C1gjIdQeJf4C3bMwC/VeU0TWJftLpqazDAO8zShOoqsDqeFCywkF5xWr w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10444"; a="294411873"
-X-IronPort-AV: E=Sophos;i="5.93,249,1654585200"; d="scan'208";a="294411873"
+ t=1660957132; x=1692493132;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=UOl+49n5Qmi8ob24TZ7/DgtBDbGCrStlTFZ7GXWyWZw=;
+ b=QZqOriESy4RujoTmOvFIEHOWJgmxF6wvA6rqbXX3YnqJewB+fdDYIFSQ
+ XSNDXgwU20zUvrekaEZdcj+9V9imnKaXPPo2s7LhThVsX6HKJTFjqJk+M
+ yXa6IORj2BjAkTySpFxRcQld+vVUI5gjPaeWHLhjkgs8tUvTwtVdztSSM
+ YWyRHZ4JcKy0l3IeRj9GQG8c44c+eIyq6n9RcSFosZdy5H6bkKczK0NvK
+ dEns1mt+OKIGIHqcj1CW2Lw3s0V7ddxPzTkZmMaawbyIRCWJ3CT8K8UPO
+ fsUyga4iNaX0tgXhfW5UOY+05UzAJOwZSrDndBaWyRLGcS3+W2mWe7lfu g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10444"; a="294411877"
+X-IronPort-AV: E=Sophos;i="5.93,249,1654585200"; d="scan'208";a="294411877"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2022 17:58:50 -0700
-X-IronPort-AV: E=Sophos;i="5.93,249,1654585200"; d="scan'208";a="676626669"
+ 19 Aug 2022 17:58:51 -0700
+X-IronPort-AV: E=Sophos;i="5.93,249,1654585200"; d="scan'208";a="676626670"
 Received: from cdhirema-mobl.amr.corp.intel.com (HELO
  anushasr-mobl7.intel.com) ([10.212.188.51])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2022 17:58:49 -0700
+ 19 Aug 2022 17:58:50 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Aug 2022 17:58:18 -0700
-Message-Id: <20220820005822.102716-1-anusha.srivatsa@intel.com>
+Date: Fri, 19 Aug 2022 17:58:19 -0700
+Message-Id: <20220820005822.102716-2-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220820005822.102716-1-anusha.srivatsa@intel.com>
+References: <20220820005822.102716-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/4] CDCLK churn: move checks to atomic check
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/display: Add CDCLK actions to
+ intel_cdclk_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,22 +60,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The intention is to check for squashing, crawling and modeset conditions
-at atomic check phase and prepare for commit phase. This basically
-means the in-flight cdclk state is available. intel_cdclk_can_squash(),
-intel_cdclk_can_crawl() and intel_cdclk_needs_modeset() have changes
-to accommodate this.
+This is a prep patch for what the rest of the series does.
 
-Anusha Srivatsa (4):
-  drm/i915/display: Add CDCLK actions to intel_cdclk_state
-  drm/i915/squash: s/intel_cdclk_can_squash/intel_cdclk_squash
-  drm/i915/display: s/intel_cdclk_can_crawl/intel_cdclk_crawl
-  drm/i915/display: Add cdclk checks to atomic check
+Add existing actions that change cdclk - squash, crawl, modeset to
+intel_cdclk_state so we have access to the cdclk values
+that are in transition.
 
- drivers/gpu/drm/i915/display/intel_cdclk.c | 150 +++++++++++++--------
- drivers/gpu/drm/i915/display/intel_cdclk.h |  13 ++
- 2 files changed, 108 insertions(+), 55 deletions(-)
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index b535cf6a7d9e..43835688ee02 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -15,6 +15,14 @@ struct drm_i915_private;
+ struct intel_atomic_state;
+ struct intel_crtc_state;
+ 
++enum cdclk_actions {
++	INTEL_CDCLK_MODESET = 0,
++	INTEL_CDCLK_SQUASH,
++	INTEL_CDCLK_CRAWL,
++	INTEL_CDCLK_NOOP,
++	MAX_CDCLK_ACTIONS
++};
++
+ struct intel_cdclk_config {
+ 	unsigned int cdclk, vco, ref, bypass;
+ 	u8 voltage_level;
+@@ -51,6 +59,11 @@ struct intel_cdclk_state {
+ 
+ 	/* bitmask of active pipes */
+ 	u8 active_pipes;
++
++	struct cdclk_step {
++		enum cdclk_actions action;
++		u32 cdclk;
++	} steps[MAX_CDCLK_ACTIONS];
+ };
+ 
+ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state);
 -- 
 2.25.1
 
