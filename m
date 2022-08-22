@@ -2,48 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B5A459BB35
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 10:18:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED05459BCC4
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 11:24:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA67411B6C7;
-	Mon, 22 Aug 2022 08:18:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE4F910E6DE;
+	Mon, 22 Aug 2022 09:24:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FA61113619
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 08:18:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 137F510E4FB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 09:24:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661156283; x=1692692283;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0i8yimAfriHv8deK6SQ/OZrlItXpVOjhKqm3r6Kaup8=;
- b=ahiTJwPp12vMFxu+8roeLER9a2+3KstTAoii8idIcBViFltaNd4iL6s2
- Van18sp0UPgsJ+2eQcYTRO63x1ruKCKzDdSSfnF5roT04Oo/JTAuCOa0l
- b87w7qI4GcdIqc/gwNOiDE0jsrJ+VGepU+rIVh1936mn1U+BvJi5+ZEmn
- wjMpg9vpMUClpg7kdTtGRJT48pfHHvP8LnXQLPDTLApA1sp3yUinB0qOn
- N8bHHfnffseupRR+qEUDTVzuV4mmzi3YvOcBXOelrjGnFvFBeIv7uE5yc
- EcYA8fE2E8sLsOzEHjK2EoDqtOAe7ydWjdyTIS9vGbcD1jL3GU4VlgNuq w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="273109817"
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="273109817"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1661160243; x=1692696243;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Nz+a+A42jAT7mXtjLqmrcZdUhY6SqQkJ+lbaif/5EHk=;
+ b=gi10j5ijo3tPbzwQvRATwkNzmRMCzZ+2xchyUmiaHi8ggH4FQPDz8v8M
+ 1qfzWDR2NSZ9wqA8rpfBC44hceL0VFiVLCyNvPSA8j+M11BeMW/L8JmVT
+ 9L18T7dHcdibPhZLzDlWyiD7oXtsaThn4Le4lIsv4zXJJsee1H97ZCrfc
+ A8WjiGkuWbYxBD9E2GhdSHtov0sjnbJBYSlVEib7SBZfTL0Q0T3ImDfch
+ hlQjexkn6MJc6t0EGNx7C8uZA9CI8urVRDG4FYFgNn4Q+TLNZlWGr6O9z
+ uUQzXshclfV2hGpYohthpwZyaWs7KX5Ju1Jt2M2NZkcEGmRBYsQuzCXxh g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="273122415"
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="273122415"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2022 01:18:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="784774334"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga005.jf.intel.com with ESMTP; 22 Aug 2022 01:18:00 -0700
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 Aug 2022 13:46:41 +0530
-Message-Id: <20220822081642.159908-3-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220822081642.159908-1-suraj.kandpal@intel.com>
-References: <20220822081642.159908-1-suraj.kandpal@intel.com>
+ 22 Aug 2022 02:23:54 -0700
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="638117678"
+Received: from trangnek-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.252.50.159])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 02:23:52 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220808035750.3111046-1-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220803082010.2952698-1-arun.r.murthy@intel.com>
+ <20220808035750.3111046-1-arun.r.murthy@intel.com>
+Date: Mon, 22 Aug 2022 12:23:50 +0300
+Message-ID: <87zgfwmy1l.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/3] drm/i915 : Changing intel_connector
- iterators
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCHv3] drm/i915/display: add support for dual
+ panel backlight
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,129 +58,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+On Mon, 08 Aug 2022, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> The patch with commit 20f85ef89d94 ("drm/i915/backlight: use unique
+> backlight device names") already adds support for dual panel backlight
+> but with error prints. Since the patch tried to create the backlight
+> device with the same name and upon failure will try with a different
+> name it leads to failure logs in dmesg inturn getting caught by CI.
+>
+> This patch alternately will check if the backlight class of same name
+> exists, will use a different name.
 
-Changing intel_connector iterators as with writeback introduction
-not all drm_connector will be embedded within intel_connector.
+Thanks for the patch, pushed to drm-intel-next.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.h  |  7 ++---
- .../drm/i915/display/intel_display_types.h    | 26 ++++++++++++++++++-
- .../drm/i915/display/intel_modeset_setup.c    | 16 +++++++++---
- 3 files changed, 40 insertions(+), 9 deletions(-)
+I took the liberty of rewriting the commit message a bit while pushing.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 4e9f22954a41..3b9987b5f304 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -52,6 +52,7 @@ struct intel_crtc_state;
- struct intel_digital_port;
- struct intel_dp;
- struct intel_encoder;
-+struct intel_connector;
- struct intel_initial_plane_config;
- struct intel_load_detect_pipe;
- struct intel_plane;
-@@ -469,16 +470,12 @@ enum hpd_pin {
- 		for_each_if(intel_encoder_can_psr(intel_encoder))
- 
- #define for_each_intel_connector_iter(intel_connector, iter) \
--	while ((intel_connector = to_intel_connector(drm_connector_list_iter_next(iter))))
-+	while ((intel_connector = intel_connector_list_iter_next(iter)))
- 
- #define for_each_encoder_on_crtc(dev, __crtc, intel_encoder) \
- 	list_for_each_entry((intel_encoder), &(dev)->mode_config.encoder_list, base.head) \
- 		for_each_if((intel_encoder)->base.crtc == (__crtc))
- 
--#define for_each_connector_on_encoder(dev, __encoder, intel_connector) \
--	list_for_each_entry((intel_connector), &(dev)->mode_config.connector_list, base.head) \
--		for_each_if((intel_connector)->base.encoder == (__encoder))
--
- #define for_each_old_intel_plane_in_state(__state, plane, old_plane_state, __i) \
- 	for ((__i) = 0; \
- 	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 0e94bd430bcb..7a82b7acbaf2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1497,12 +1497,14 @@ struct cxsr_latency {
- #define to_intel_atomic_state(x) container_of(x, struct intel_atomic_state, base)
- #define to_intel_crtc(x) container_of(x, struct intel_crtc, base)
- #define to_intel_crtc_state(x) container_of(x, struct intel_crtc_state, uapi)
--#define to_intel_connector(x) container_of(x, struct intel_connector, base)
-+#define to_intel_wb_connector(x) container_of(x, struct intel_wb_connector, base)
- #define to_intel_encoder(x) container_of(x, struct intel_encoder, base)
- #define to_intel_framebuffer(x) container_of(x, struct intel_framebuffer, base)
- #define to_intel_plane(x) container_of(x, struct intel_plane, base)
- #define to_intel_plane_state(x) container_of(x, struct intel_plane_state, uapi)
- #define intel_fb_obj(x) ((x) ? to_intel_bo((x)->obj[0]) : NULL)
-+#define to_intel_connector(x) (((x->connector_type == DRM_MODE_CONNECTOR_WRITEBACK)) ?	\
-+				NULL : container_of(x, struct intel_connector, base))
- 
- struct intel_hdmi {
- 	i915_reg_t hdmi_reg;
-@@ -2068,4 +2070,26 @@ to_intel_frontbuffer(struct drm_framebuffer *fb)
- 	return fb ? to_intel_framebuffer(fb)->frontbuffer : NULL;
- }
- 
-+static inline struct intel_connector *
-+intel_connector_list_iter_next(struct drm_connector_list_iter *iter)
-+{
-+	struct drm_connector *connector;
-+	bool flag = true;
-+	/*
-+	 * Skipping connector that are Writeback connector as they will
-+	 * not be embedded in intel connector
-+	 */
-+	while (flag) {
-+		connector = drm_connector_list_iter_next(iter);
-+		if (connector && !to_intel_connector(connector))
-+			continue;
-+
-+		flag = false;
-+
-+		if (connector)
-+			return to_intel_connector(connector);
-+
-+	}
-+	return NULL;
-+}
- #endif /*  __INTEL_DISPLAY_TYPES_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index f0e04d3904c6..985dfa5f7aa1 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -204,12 +204,22 @@ static bool intel_crtc_has_encoders(struct intel_crtc *crtc)
- 
- static struct intel_connector *intel_encoder_find_connector(struct intel_encoder *encoder)
- {
--	struct drm_device *dev = encoder->base.dev;
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct intel_connector *connector;
-+	struct drm_connector_list_iter conn_iter;
-+	bool found_connector = false;
- 
--	for_each_connector_on_encoder(dev, &encoder->base, connector)
--		return connector;
-+	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+	for_each_intel_connector_iter(connector, &conn_iter) {
-+		if (&encoder->base == connector->base.encoder) {
-+			found_connector = true;
-+			break;
-+		}
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
- 
-+	if (found_connector)
-+		return connector;
- 	return NULL;
- }
- 
+BR,
+Jani.
+
+
+>
+> v2: reworked on top of the patch commit 20f85ef89d94
+> ("drm/i915/backlight: use unique backlight device names")
+> v3: fixed the ref count leak(Jani N)
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_backlight.c    | 26 +++++++++----------
+>  1 file changed, 12 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+> index 110fc98ec280..931446413372 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -971,26 +971,24 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>  	if (!name)
+>  		return -ENOMEM;
+>  
+> -	bd = backlight_device_register(name, connector->base.kdev, connector,
+> -				       &intel_backlight_device_ops, &props);
+> -
+> -	/*
+> -	 * Using the same name independent of the drm device or connector
+> -	 * prevents registration of multiple backlight devices in the
+> -	 * driver. However, we need to use the default name for backward
+> -	 * compatibility. Use unique names for subsequent backlight devices as a
+> -	 * fallback when the default name already exists.
+> -	 */
+> -	if (IS_ERR(bd) && PTR_ERR(bd) == -EEXIST) {
+> +	bd = backlight_device_get_by_name(name);
+> +	if (bd) {
+> +		put_device(&bd->dev);
+> +		/*
+> +		 * Using the same name independent of the drm device or connector
+> +		 * prevents registration of multiple backlight devices in the
+> +		 * driver. However, we need to use the default name for backward
+> +		 * compatibility. Use unique names for subsequent backlight devices as a
+> +		 * fallback when the default name already exists.
+> +		 */
+>  		kfree(name);
+>  		name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
+>  				 i915->drm.primary->index, connector->base.name);
+>  		if (!name)
+>  			return -ENOMEM;
+> -
+> -		bd = backlight_device_register(name, connector->base.kdev, connector,
+> -					       &intel_backlight_device_ops, &props);
+>  	}
+> +	bd = backlight_device_register(name, connector->base.kdev, connector,
+> +				       &intel_backlight_device_ops, &props);
+>  
+>  	if (IS_ERR(bd)) {
+>  		drm_err(&i915->drm,
+
 -- 
-2.25.1
-
+Jani Nikula, Intel Open Source Graphics Center
