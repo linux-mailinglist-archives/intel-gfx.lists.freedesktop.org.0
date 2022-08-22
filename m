@@ -1,33 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF31159C109
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 15:54:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831F059C154
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 16:06:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFE6512B8CE;
-	Mon, 22 Aug 2022 13:53:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F25858F9CE;
+	Mon, 22 Aug 2022 14:06:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A10B88ECCE;
- Mon, 22 Aug 2022 13:53:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 862E7A00CC;
- Mon, 22 Aug 2022 13:53:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3533529114456159447=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 107698F948;
+ Mon, 22 Aug 2022 14:06:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661177179; x=1692713179;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=XInS7Tlg725Q7b3NS6FNphYCPKgOQQB6IlOI38NO6+k=;
+ b=jcGqGcYSeNtuqOF2ixFJbtwTqTkA8TRo2lgDYmMSeXcLWpNSJvf38mYA
+ nRufo0x2NnwsbHFdZhNCT/G10Z5sQn1Y6NIn3TH2gXaxQcepgYE49esDP
+ yG8kV0reQppk3INdcJ/WbXE7qzXZ0AWjG1j19F8rlKMLxtmuYMt3Du9E7
+ dkpLLc97eJUbuS8TDa+ssuCjXGGK1FO70G9H6hHcY/bMxUz/gD3A9qYgR
+ 840WGC2087sT9mxzyBEp7e0GYJxY1scPUJnVq5AMs0AOb8xMUrDUsP5cu
+ D9IwH30xcssGGzKfqxYUXTjCoyokUZXseKIgK/Y+m3oZyeAutQeI2n3BS w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="379712291"
+X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; d="scan'208";a="379712291"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 07:05:54 -0700
+X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; d="scan'208";a="669556246"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.27.97])
+ ([10.213.27.97])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 07:05:51 -0700
+Message-ID: <f3370fb1-5318-c662-294b-2c7fe693efd6@intel.com>
+Date: Mon, 22 Aug 2022 16:05:49 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Date: Mon, 22 Aug 2022 13:53:27 -0000
-Message-ID: <166117640754.28449.5270484633133256604@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220822122513.3607326-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20220822122513.3607326-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/combo=5Fphy=3A_Set_DCC=5FMODE_to_one_time_update_mode?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.12.0
+Content-Language: en-US
+To: Kees Cook <keescook@chromium.org>, Andi Shyti <andi.shyti@linux.intel.com>
+References: <20220816093525.184940-1-gwan-gyeong.mun@intel.com>
+ <20220816093525.184940-2-gwan-gyeong.mun@intel.com>
+ <Yv10sQADwdZrIV42@alfio.lan> <202208171657.63AE7AC@keescook>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <202208171657.63AE7AC@keescook>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v7 1/8] overflow: Move and add few utility
+ macros into overflow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,285 +64,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, mchehab@kernel.org, jani.nikula@intel.com,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, airlied@linux.ie, nirmoy.das@intel.com,
+ linux-hardening@vger.kernel.org, chris@chris-wilson.co.uk,
+ matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3533529114456159447==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/combo_phy: Set DCC_MODE to one time update mode
-URL   : https://patchwork.freedesktop.org/series/107551/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12009 -> Patchwork_107551v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/index.html
-
-Participating hosts (34 -> 35)
-------------------------------
-
-  Additional (3): fi-kbl-soraka bat-dg2-8 fi-hsw-4770 
-  Missing    (2): bat-dg2-10 bat-dg2-9 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_107551v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#3012])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][2] ([i915#4785])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-    - bat-dg1-6:          [PASS][3] -> [DMESG-FAIL][4] ([i915#4494] / [i915#4957])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][5] ([fdo#109271]) +9 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +7 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#1072]) +3 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@runner@aborted:
-    - fi-kbl-soraka:      NOTRUN -> [FAIL][8] ([i915#6219])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-kbl-soraka/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@fbdev@read:
-    - {bat-rpls-2}:       [SKIP][9] ([i915#2582]) -> [PASS][10] +4 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/bat-rpls-2/igt@fbdev@read.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/bat-rpls-2/igt@fbdev@read.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-cfl-8109u:       [DMESG-FAIL][11] ([i915#5334]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - {bat-rpls-2}:       [SKIP][13] ([i915#1849]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/bat-rpls-2/igt@kms_frontbuffer_tracking@basic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/bat-rpls-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - {bat-rpls-2}:       [SKIP][15] ([fdo#109295] / [i915#1845] / [i915#3708]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/bat-rpls-2/igt@prime_vgem@basic-fence-flip.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/bat-rpls-2/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5950]: https://gitlab.freedesktop.org/drm/intel/issues/5950
-  [i915#6219]: https://gitlab.freedesktop.org/drm/intel/issues/6219
-  [i915#6642]: https://gitlab.freedesktop.org/drm/intel/issues/6642
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+On 18.08.2022 02:12, Kees Cook wrote:
+> On Thu, Aug 18, 2022 at 01:07:29AM +0200, Andi Shyti wrote:
+>> Hi Kees,
+>>
+>> would you mind taking a look at this patch?
+> 
+> Hi! Thanks for the heads-up!
+> 
+>>
+>> Thanks,
+>> Andi
+>>
+>> On Tue, Aug 16, 2022 at 06:35:18PM +0900, Gwan-gyeong Mun wrote:
+>>> It moves overflows_type utility macro into overflow header from i915_utils
+>>> header. The overflows_type can be used to catch the truncation between data
+>>> types. And it adds safe_conversion() macro which performs a type conversion
+>>> (cast) of an source value into a new variable, checking that the
+>>> destination is large enough to hold the source value. And the functionality
+>>> of overflows_type has been improved to handle the signbit.
+>>> The is_unsigned_type macro has been added to check the sign bit of the
+>>> built-in type.
+>>>
+>>> v3: Add is_type_unsigned() macro (Mauro)
+>>>      Modify overflows_type() macro to consider signed data types (Mauro)
+>>>      Fix the problem that safe_conversion() macro always returns true
+>>> v4: Fix kernel-doc markups
+>>> v6: Move macro addition location so that it can be used by other than drm
+>>>      subsystem (Jani, Mauro, Andi)
+>>>      Change is_type_unsigned to is_unsigned_type to have the same name form
+>>>      as is_signed_type macro
+>>>
+>>> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Nirmoy Das <nirmoy.das@intel.com>
+>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>>> Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org> (v5)
+>>> ---
+>>>   drivers/gpu/drm/i915/i915_utils.h |  5 +--
+>>>   include/linux/overflow.h          | 54 +++++++++++++++++++++++++++++++
+>>>   2 files changed, 55 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+>>> index c10d68cdc3ca..eb0ded23fa9c 100644
+>>> --- a/drivers/gpu/drm/i915/i915_utils.h
+>>> +++ b/drivers/gpu/drm/i915/i915_utils.h
+>>> @@ -32,6 +32,7 @@
+>>>   #include <linux/types.h>
+>>>   #include <linux/workqueue.h>
+>>>   #include <linux/sched/clock.h>
+>>> +#include <linux/overflow.h>
+>>>   
+>>>   #ifdef CONFIG_X86
+>>>   #include <asm/hypervisor.h>
+>>> @@ -111,10 +112,6 @@ bool i915_error_injected(void);
+>>>   #define range_overflows_end_t(type, start, size, max) \
+>>>   	range_overflows_end((type)(start), (type)(size), (type)(max))
+>>>   
+>>> -/* Note we don't consider signbits :| */
+>>> -#define overflows_type(x, T) \
+>>> -	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
+>>> -
+>>>   #define ptr_mask_bits(ptr, n) ({					\
+>>>   	unsigned long __v = (unsigned long)(ptr);			\
+>>>   	(typeof(ptr))(__v & -BIT(n));					\
+>>> diff --git a/include/linux/overflow.h b/include/linux/overflow.h
+>>> index f1221d11f8e5..462a03454377 100644
+>>> --- a/include/linux/overflow.h
+>>> +++ b/include/linux/overflow.h
+>>> @@ -35,6 +35,60 @@
+>>>   #define type_max(T) ((T)((__type_half_max(T) - 1) + __type_half_max(T)))
+>>>   #define type_min(T) ((T)((T)-type_max(T)-(T)1))
+>>>   
+>>> +/**
+>>> + * is_unsigned_type - helper for checking data type which is an unsigned data
+>>> + * type or not
+>>> + * @x: The data type to check
+>>> + *
+>>> + * Returns:
+>>> + * True if the data type is an unsigned data type, false otherwise.
+>>> + */
+>>> +#define is_unsigned_type(x) ((typeof(x))-1 >= (typeof(x))0)
+> 
+> I'd rather not have separate logic for this. Instead, I'd like it to be:
+> 
+> #define is_unsigned_type(x) (!is_signed_type(x))
+> 
+>>> +
+>>> +/**
+>>> + * overflows_type - helper for checking the truncation between data types
+>>> + * @x: Source for overflow type comparison
+>>> + * @T: Destination for overflow type comparison
+>>> + *
+>>> + * It compares the values and size of each data type between the first and
+>>> + * second argument to check whether truncation can occur when assigning the
+>>> + * first argument to the variable of the second argument.
+>>> + * Source and Destination can be used with or without sign bit.
+>>> + * Composite data structures such as union and structure are not considered.
+>>> + * Enum data types are not considered.
+>>> + * Floating point data types are not considered.
+>>> + *
+>>> + * Returns:
+>>> + * True if truncation can occur, false otherwise.
+>>> + */
+>>> +#define overflows_type(x, T) \
+>>> +	(is_unsigned_type(x) ? \
+>>> +		is_unsigned_type(T) ? \
+>>> +			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>>> +			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
+>>> +	: is_unsigned_type(T) ? \
+>>> +		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>>> +		: (sizeof(x) > sizeof(T)) ? \
+>>> +			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>>> +				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>>> +			: 0)
+> 
+> Like the other, I'd much rather this was rephrased in terms of the
+> existing macros (e.g. type_min()/type_max().)
 
 
-Build changes
--------------
+I am not sure how it could be rephrased with type_(min|max), but I guess 
+the shortest could be sth like:
 
-  * Linux: CI_DRM_12009 -> Patchwork_107551v1
+#define overflows_type(x, T) __builtin_add_overflow_p(x, (typeof(T))0, 
+(typeof(T))0)
 
-  CI-20190529: 20190529
-  CI_DRM_12009: bd2720860fed88141880c48f4dccce77cc7f7591 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6633: 40ec79634da4dc7e94309fc9c6043aff3fafc801 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_107551v1: bd2720860fed88141880c48f4dccce77cc7f7591 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-b4a8beb455b9 drm/i915/combo_phy: Set DCC_MODE to one time update mode
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/index.html
-
---===============3533529114456159447==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Regards
+Andrzej
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> 
+>>> +
+>>> +/**
+>>> + * safe_conversion - perform a type conversion (cast) of an source value into
+>>> + * a new variable, checking that the destination is large enough to hold the
+>>> + * source value.
+>>> + * @ptr: Destination pointer address
+>>> + * @value: Source value
+>>> + *
+>>> + * Returns:
+>>> + * If the value would overflow the destination, it returns false.
+>>> + */
+>>> +#define safe_conversion(ptr, value) ({ \
+>>> +	typeof(value) __v = (value); \
+>>> +	typeof(ptr) __ptr = (ptr); \
+>>> +	overflows_type(__v, *__ptr) ? 0 : ((*__ptr = (typeof(*__ptr))__v), 1); \
+>>> +})
+> 
+> I try to avoid "safe" as an adjective for interface names, since it
+> doesn't really answer "safe from what?" This looks more like "assign, but
+> zero when out of bounds". And it can be built from existing macros here:
+> 
+> 	if (check_add_overflow(0, value, ptr))
+> 		*ptr = 0;
+> 
+> I actually want to push back on this a bit, because there can still be
+> logic bugs built around this kind of primitive. Shouldn't out-of-bounds
+> assignments be seen as a direct failure? I would think this would be
+> sufficient:
+> 
+> #define check_assign(value, ptr)	check_add_overflow(0, value, ptr)
+> 
+> And callers would do:
+> 
+> 	if (check_assign(value, &var))
+> 		return -EINVAL;
+> 
+> etc.
+> 
+> 
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/combo_phy: Set DCC_MODE to one time update mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107551/">https://patchwork.freedesktop.org/series/107551/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12009 -&gt; Patchwork_107551v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/index.html</p>
-<h2>Participating hosts (34 -&gt; 35)</h2>
-<p>Additional (3): fi-kbl-soraka bat-dg2-8 fi-hsw-4770 <br />
-  Missing    (2): bat-dg2-10 bat-dg2-9 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_107551v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
-</li>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@fbdev@read:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/bat-rpls-2/igt@fbdev@read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/bat-rpls-2/igt@fbdev@read.html">PASS</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/bat-rpls-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/bat-rpls-2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12009/bat-rpls-2/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107551v1/bat-rpls-2/igt@prime_vgem@basic-fence-flip.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12009 -&gt; Patchwork_107551v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12009: bd2720860fed88141880c48f4dccce77cc7f7591 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6633: 40ec79634da4dc7e94309fc9c6043aff3fafc801 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_107551v1: bd2720860fed88141880c48f4dccce77cc7f7591 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>b4a8beb455b9 drm/i915/combo_phy: Set DCC_MODE to one time update mode</p>
-
-</body>
-</html>
-
---===============3533529114456159447==--
