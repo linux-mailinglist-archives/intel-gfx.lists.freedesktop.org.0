@@ -1,54 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A518259BDB7
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 12:41:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 768AF59BDEE
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 12:55:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B32B10E3AF;
-	Mon, 22 Aug 2022 10:41:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AED81123BA;
+	Mon, 22 Aug 2022 10:54:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 969E410E3C7
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 10:41:27 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6A2D11238F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 10:54:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661164887; x=1692700887;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rpR7TgpqdSKV6MruVJ+wqOySa1v23E9LDLdm9eNo+XE=;
- b=KuBZGdmhX4X5lT0eN4eYvTnxwDjOeYUVS7flEf7APJfDu/1Q/mQ2HMob
- 4l2JXwmGxrRCmjgek7daLbkwK8NGC7RsV7xj/HJ7PpvAIwGyZBOAf7U3o
- UrPsRGv6TkYMA7pyOY5GVgIfsIr/A0LFy/ah/IhudPeWFzaZ/YyirlVKI
- nkFznPxzf+f77QDHOW1r8b6sKIcjuv+ZVR1VX9vl0nL0H/lkRGngPJodF
- +xgMS1U16gHBZf18DD4rFldmibxfAsYHey5AYktfAsH4m/NkfapAhEW3N
- RAxrktlLK9RCBFUamDu2myWE8DD1n4aGo+L/QN/BeqhcTz7wglf1kz/B6 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="379671309"
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="379671309"
+ t=1661165692; x=1692701692;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=23+sKIAgQZvsVoEvDmLLwoUs51nMDa7doOm2Qus/8g8=;
+ b=RTOevykisdopQggkV8hYsEFpg2DJugD55QCr8QyJgKRKXg5IumAzcbqt
+ mXu/ztri2MikK7zif1mwFpJTLPDzKN7Bm7KvTZUrWFLRTpR0paOxVxeey
+ pS9HHDMKbxtQUtkEUYJ7wuwWfyQex3KjSvEXTFxqTrO1xjVvnQA/Z2w6z
+ HFo8KI3l7aea36N5intMoRrmiKjq5s3iAng2inxqpqL3XMhFeVFN1qJU+
+ mHWWcXkDSeuyFgcf21qB7kKA6dAf8xi2xp07Mr33ZJM4pMXkyvG0/G6lF
+ vHsDPzOVVl/lPxnGN6irpIzGNlkAWd/VEjQ7DEhoywjIedhrOMhxi5ZiF w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="280353973"
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="280353973"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2022 03:41:01 -0700
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="585469258"
-Received: from trangnek-mobl.gar.corp.intel.com (HELO localhost)
- ([10.252.50.159])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 03:54:52 -0700
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="585474024"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2022 03:40:59 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <711ad883-894a-e371-37c0-af9744c04894@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220817124516.284456-1-jani.nikula@intel.com>
- <d33e683d-3ce7-b449-6998-1b72b8fa3629@intel.com>
- <87wnb0mw8x.fsf@intel.com>
- <711ad883-894a-e371-37c0-af9744c04894@intel.com>
-Date: Mon, 22 Aug 2022 13:40:57 +0300
-Message-ID: <87tu64muh2.fsf@intel.com>
+ 22 Aug 2022 03:54:49 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 22 Aug 2022 16:24:21 +0530
+Message-Id: <20220822105426.3521960-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dsc/mtl: Update the DSC minor
- version
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/5] Handle BPC for HDMI2.1 PCON without DSC1.2
+ sink and other fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,21 +57,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 22 Aug 2022, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 8/22/2022 3:32 PM, Jani Nikula wrote:
->> On Mon, 22 Aug 2022, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
->>> LGTM.
->>>
->>> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> Thanks; does this apply to both patches?
->
-> I have given RB on the other patch separately.
+This series fixes issues faced when HDMI2.1 sink connected via HDMI2.1
+PCON does not support DSC, and other minor HDMI2.1 PCON
+fixes/refactoring.
 
-Thanks, both pushed to drm-intel-next.
+Patch 1 Adds helper to check HDMI2.1 DSC1.2
+Patch 2 resets 'frl trained' flag before restarting FRL training.
+Patch 3 Pulls the decision making to use DFP conversion capabilities
+for every mode during compute config, instead of having that decision
+during DP initializing phase.
+Patch 4-5 calculate the max BPC that can be sufficient with either
+RGB or YCbcr420 format for the maximum FRL rate supported.
 
-BR,
-Jani.
+Ankit Nautiyal (5):
+  drm/i915/dp: Add helper to check DSC1.2 for HDMI2.1 DFP
+  drm/i915/dp: Reset frl trained flag before restarting FRL training
+  drm/i915/dp: Fix DFP RGB->YCBCR conversion
+  drm/i915/dp: Handle BPP where HDMI2.1 DFP doesn't support DSC
+  drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP
 
+ .../drm/i915/display/intel_display_types.h    |   7 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 245 ++++++++++++++----
+ 2 files changed, 200 insertions(+), 52 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
