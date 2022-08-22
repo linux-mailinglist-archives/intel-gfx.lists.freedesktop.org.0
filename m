@@ -2,65 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C65C659C9B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 22:12:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B0959C9FE
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 22:30:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A0CA1880;
-	Mon, 22 Aug 2022 20:12:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 549D5A1F61;
+	Mon, 22 Aug 2022 20:30:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
- [IPv6:2607:f8b0:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B75F014B30A
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 20:12:32 +0000 (UTC)
-Received: by mail-pg1-x52b.google.com with SMTP id r22so10384339pgm.5
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 13:12:32 -0700 (PDT)
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
+ [IPv6:2607:f8b0:4864:20::1029])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61066A1F60
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 20:30:30 +0000 (UTC)
+Received: by mail-pj1-x1029.google.com with SMTP id
+ w11-20020a17090a380b00b001f73f75a1feso15123081pjb.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 13:30:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc; bh=EnKbvX9xMcUF8bvw923k4bLQbt044bTDeeYvXJD7Czs=;
- b=ZRBjLD5DfpCjiGPnLVcp8T95oJyFpcwl/FshmKOsc5f+ipkEpmrxPMkPmtNGASxBXZ
- t3eX8tLsBzZOra5EHFU340BNRI7sV3qioe6iMcHKeW4bNdir3ZUqQgW9oBK5xwc1tPDl
- t+obqjrxd4v8QHRJ6GR08bTFPAwtZz789dhwI=
+ :cc; bh=3WmcJu1QOHjbflVog3Dihnjfohh9E9lPG3gTnYGALkw=;
+ b=Q/ED0nTqr2QHjJyLb9i291S7vb0qnFwz9oCZ1qaiAw8xMMVJSykwJ9MkZbySvXPvCr
+ GcUMLNSk/OwSB6eJX9YIjHuu2ELX95bhOCmzYpnPhe0JLBigTpC1KdZNsKR1jxKgvrhv
+ jvYmLtabBBx2sdtSBFDpG41Fgmfp2v4Z5F7qA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc;
- bh=EnKbvX9xMcUF8bvw923k4bLQbt044bTDeeYvXJD7Czs=;
- b=7gM+7OBnZ7WFnj74VF1Z9dJNN1wgQSHafzlAVAR37jsNt3M8TGftMCQfJwppMWnnun
- xeehRkN8zp3FnN53TwfqFQFWhlIQcY/mZFsl4/Y6FKcH4ZBpqAodea8JmEPIAc5SfpYe
- QAtaD/B/NUZQH/ynN4JAb3mTLL3kJ4oWpgvFy468VKjT4gkBM+adqsk26W3EDhTy0AFP
- 9uYRO2EwECZdQWXayod9V3bLBXx+buxJ4tj/fIEhAYkjY5ObIryP28VOCIAehyqPsHiF
- de8QXHIj1uhN98UiQvWMRYhdK0O2MgJcfFeS3DGnPwhLgIB0jj5M7yreDiDccSNUxAyk
- BrOg==
-X-Gm-Message-State: ACgBeo0nNVteVUBjJ5mOiYJPGNsIrfYmzVTznfZCTCiL0AtRuhexqGfa
- sMp0bX9sSj7xsRRLM/gZKk/XdA==
-X-Google-Smtp-Source: AA6agR5G+bqfudvWxfo80uSnqhz04LgJNbj8hzZj4TJPUbvcxTt36OI0WWl0Nwrzjkz/NDeeRDq2IQ==
-X-Received: by 2002:a63:5252:0:b0:42a:9680:bd9c with SMTP id
- s18-20020a635252000000b0042a9680bd9cmr7772626pgl.469.1661199152102; 
- Mon, 22 Aug 2022 13:12:32 -0700 (PDT)
+ bh=3WmcJu1QOHjbflVog3Dihnjfohh9E9lPG3gTnYGALkw=;
+ b=8AA6C6vvibVE2Hi38TywUYHroN0aXVHOV8xS5eXtmRCm2MZpCN9lHIVMSI0z+TNiGb
+ KmWVRY/WUGxCLNl0X0K2zvyKcFmd4nz3xLv1BhYvuXeL97eULIQrCOqfc1Of8j419yDy
+ gCB0TOFWj46Fo0MTgoe0KwHjYZC2GfPe2x7n3ZTGnPXObahDmMOT447egBKVQmCe6S6f
+ ibLI0FZwiEHxu8h5t/Tw4saOWR2WuUthsiIR8lvlnVOpWxxDctJwGXzUrsHyYPpn8rSF
+ NIzsqL+Dp2lLAuWVHxeHVm/ASS4X3mRRGRvfTirO7g7K9JFeYDflbIxPBP5GKR0Bkyde
+ 1Xzg==
+X-Gm-Message-State: ACgBeo2GREAgsjg2jHA5iy0P9r1FJPBZrK8JLRlDNKpYmHHJ+kXjzlPG
+ vRXbx+BmqPm2y3pbduC+JsuhrWp73jSXDw==
+X-Google-Smtp-Source: AA6agR5UU44rwh9G2pqwFnldYRyznNPmq2OvkTdbGbeDYLJ7YyL++1HzYaWtPzQIN9xKnZH8eecMyA==
+X-Received: by 2002:a17:90b:1c85:b0:1f1:d78a:512b with SMTP id
+ oo5-20020a17090b1c8500b001f1d78a512bmr108448pjb.92.1661200229690; 
+ Mon, 22 Aug 2022 13:30:29 -0700 (PDT)
 Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
  by smtp.gmail.com with ESMTPSA id
- n14-20020a170903110e00b0016d6963cb12sm8773868plh.304.2022.08.22.13.12.31
+ f8-20020a170902ce8800b00172c298ba42sm898955plg.28.2022.08.22.13.30.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Aug 2022 13:12:31 -0700 (PDT)
-Date: Mon, 22 Aug 2022 13:12:30 -0700
+ Mon, 22 Aug 2022 13:30:29 -0700 (PDT)
+Date: Mon, 22 Aug 2022 13:30:28 -0700
 From: Kees Cook <keescook@chromium.org>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <202208221301.366A33DACA@keescook>
-References: <20220816093525.184940-1-gwan-gyeong.mun@intel.com>
- <20220816093525.184940-2-gwan-gyeong.mun@intel.com>
- <Yv10sQADwdZrIV42@alfio.lan> <202208171657.63AE7AC@keescook>
- <f3370fb1-5318-c662-294b-2c7fe693efd6@intel.com>
- <52c09fde-f788-4c2b-efdc-d1783dbc0f6c@intel.com>
+To: Lukasz Bartosik <lb@semihalf.com>
+Message-ID: <202208221321.947F67FF53@keescook>
+References: <20220201153354.11971-1-lukasz.bartosik@semihalf.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <52c09fde-f788-4c2b-efdc-d1783dbc0f6c@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v7 1/8] overflow: Move and add few utility
- macros into overflow
+In-Reply-To: <20220201153354.11971-1-lukasz.bartosik@semihalf.com>
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: fix null pointer dereference
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,78 +69,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, Andrzej Hajda <andrzej.hajda@intel.com>,
- jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, airlied@linux.ie, nirmoy.das@intel.com,
- linux-hardening@vger.kernel.org, mchehab@kernel.org, matthew.auld@intel.com
+Cc: upstream@semihalf.com, intel-gfx@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 23, 2022 at 04:32:10AM +0900, Gwan-gyeong Mun wrote:
-> On 8/22/22 11:05 PM, Andrzej Hajda wrote:
-> > On 18.08.2022 02:12, Kees Cook wrote:
-> > > On Thu, Aug 18, 2022 at 01:07:29AM +0200, Andi Shyti wrote:
-> > > > [...]
-> > > > > +#define safe_conversion(ptr, value) ({ \
-> > > > > +††† typeof(value) __v = (value); \
-> > > > > +††† typeof(ptr) __ptr = (ptr); \
-> > > > > +††† overflows_type(__v, *__ptr) ? 0 : ((*__ptr =
-> > > > > (typeof(*__ptr))__v), 1); \
-> > > > > +})
-> > > 
-> > > I try to avoid "safe" as an adjective for interface names, since it
-> > > doesn't really answer "safe from what?" This looks more like "assign, but
-> > > zero when out of bounds". And it can be built from existing macros here:
-> > > 
-> > > ††††if (check_add_overflow(0, value, ptr))
-> > > ††††††† *ptr = 0;
-> > > 
-> > > I actually want to push back on this a bit, because there can still be
-> > > logic bugs built around this kind of primitive. Shouldn't out-of-bounds
-> > > assignments be seen as a direct failure? I would think this would be
-> > > sufficient:
-> > > 
-> > > #define check_assign(value, ptr)††† check_add_overflow(0, value, ptr)
-> > > 
-> > > And callers would do:
-> > > 
-> > > ††††if (check_assign(value, &var))
-> > > ††††††† return -EINVAL;
-> > > 
-> Yes, I also like check_assign() you suggested more than safe_conversion.
-> As shown below, it would be more readable to return true when assign
-> succeeds and false when it fails. What do you think?
+On Tue, Feb 01, 2022 at 04:33:54PM +0100, Lukasz Bartosik wrote:
+> From: ≈Åukasz Bartosik <lb@semihalf.com>
+> 
+> Asus chromebook CX550 crashes during boot on v5.17-rc1 kernel.
+> The root cause is null pointer defeference of bi_next
+> in tgl_get_bw_info() in drivers/gpu/drm/i915/display/intel_bw.c.
+> 
+> BUG: kernel NULL pointer dereference, address: 000000000000002e
+> PGD 0 P4D 0
+> Oops: 0002 [#1] PREEMPT SMP NOPTI
+> CPU: 0 PID: 1 Comm: swapper/0 Tainted: G     U            5.17.0-rc1
+> Hardware name: Google Delbin/Delbin, BIOS Google_Delbin.13672.156.3 05/14/2021
+> RIP: 0010:tgl_get_bw_info+0x2de/0x510
+> ...
+> [    2.554467] Call Trace:
+> [    2.554467]  <TASK>
+> [    2.554467]  intel_bw_init_hw+0x14a/0x434
+> [    2.554467]  ? _printk+0x59/0x73
+> [    2.554467]  ? _dev_err+0x77/0x91
+> [    2.554467]  i915_driver_hw_probe+0x329/0x33e
+> [    2.554467]  i915_driver_probe+0x4c8/0x638
+> [    2.554467]  i915_pci_probe+0xf8/0x14e
+> [    2.554467]  ? _raw_spin_unlock_irqrestore+0x12/0x2c
+> [    2.554467]  pci_device_probe+0xaa/0x142
+> [    2.554467]  really_probe+0x13f/0x2f4
+> [    2.554467]  __driver_probe_device+0x9e/0xd3
+> [    2.554467]  driver_probe_device+0x24/0x7c
+> [    2.554467]  __driver_attach+0xba/0xcf
+> [    2.554467]  ? driver_attach+0x1f/0x1f
+> [    2.554467]  bus_for_each_dev+0x8c/0xc0
+> [    2.554467]  bus_add_driver+0x11b/0x1f7
+> [    2.554467]  driver_register+0x60/0xea
+> [    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
+> [    2.554467]  i915_init+0x2c/0xb9
+> [    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
+> [    2.554467]  do_one_initcall+0x12e/0x2b3
+> [    2.554467]  do_initcall_level+0xd6/0xf3
+> [    2.554467]  do_initcalls+0x4e/0x79
+> [    2.554467]  kernel_init_freeable+0xed/0x14d
+> [    2.554467]  ? rest_init+0xc1/0xc1
+> [    2.554467]  kernel_init+0x1a/0x120
+> [    2.554467]  ret_from_fork+0x1f/0x30
+> [    2.554467]  </TASK>
+> ...
+> Kernel panic - not syncing: Fatal exception
+> 
+> Fixes: c64a9a7c05be ("drm/i915: Update memory bandwidth formulae")
+> Signed-off-by: ≈Åukasz Bartosik <lb@semihalf.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 16 +++++++++-------
+>  1 file changed, 9 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 2da4aacc956b..bd0ed68b7faa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -404,15 +404,17 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  		int clpchgroup;
+>  		int j;
+>  
+> -		if (i < num_groups - 1)
+> -			bi_next = &dev_priv->max_bw[i + 1];
+> -
+>  		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
+>  
+> -		if (i < num_groups - 1 && clpchgroup < clperchgroup)
+> -			bi_next->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
+> -		else
+> -			bi_next->num_planes = 0;
+> +		if (i < num_groups - 1) {
+> +			bi_next = &dev_priv->max_bw[i + 1];
+> +
+> +			if (clpchgroup < clperchgroup)
+> +				bi_next->num_planes = (ipqdepth - clpchgroup) /
+> +						       clpchgroup + 1;
+> +			else
+> +				bi_next->num_planes = 0;
+> +		}
+>  
+>  		bi->num_qgv_points = qi.num_points;
+>  		bi->num_psf_gv_points = qi.num_psf_points;
 
-No, this inverts the style of all the other check_*() functions, so it
-should remain "non-zero is failure".
+(Some email path may be clogged; Nathan Chancellor has also sent email,
+but I wanted to comment too.)
 
-> /**
->  * check_assign - perform a type conversion (cast) of an source value into
->  * a new variable, checking that the destination is large enough to hold the
->  * source value.
->  *
->  * @value: Source value
->  * @ptr: Destination pointer address, If the pointer type is not used, a
-> warning message is output during build.
->  *
->  * Returns:
->  * If the value would overflow the destination, it returns false. If not
-> return true.
->  */
-> #define check_assign(value, ptr) __must_check_overflow(({	\
-> 	typecheck_pointer(ptr); 		\
-> 	!__builtin_add_overflow(0, value, ptr);	\
-> }))
+This patch solves https://github.com/ClangBuiltLinux/linux/issues/1626
 
-Please don't use the __builtin*s, instead stick to the check_* family,
-as they correctly wrap the builtins and perform type checking, etc. As
-mentioned, check_assign() should just be:
-
-#define check_assign(value, ptr)††† check_add_overflow(0, value, ptr)
-
-I don't think any of the other code is needed? What's the use-case for
-the other stuff? i.e. Why does anything need overflows_type()?
+And it's actually fixing a wild write as well: for folks where
+"i < num_groups - 1" is false and they don't get "lucky" with a NULL
+deref, this is writing to some address left over on the stack. :|
 
 -Kees
 
