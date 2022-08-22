@@ -2,33 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B42B59C490
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 19:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22EAB59C4AC
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 19:09:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D30EF99A0C;
-	Mon, 22 Aug 2022 17:04:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0C5999D81;
+	Mon, 22 Aug 2022 17:08:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4F4C8999B3;
- Mon, 22 Aug 2022 17:04:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F822AA0EA;
- Mon, 22 Aug 2022 17:04:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6977181538835870544=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F5C19910E;
+ Mon, 22 Aug 2022 17:08:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661188112; x=1692724112;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=tsRt7T/5VNyk2/HXqlYUWZa+Que0G9OedA3LKgidrVs=;
+ b=kliEWLfxgI71mCq0FdX0OFipZgLXXUzfi84eJTKTJ/33Syvv5pH58KuT
+ 5UtjMKz3c1kc41aw8Z5OAsFc+475reHY5+SZe6ejfkJvao54/steSUo4r
+ idCCAV4WltMVijh8lxUgq0oz/dzaagkRENPKH4kb6PkmB3dSCHJHaIswq
+ HpD8iQ+D+/F03MGzPTHo74yncYKXi50lnX+ss0x0LghHjltgyHCXKSkZS
+ +FnwepAFU9C9xHI7gPjoJF9gaJ4It2fV/00TtyrRlVJA5XjeueMFRrjtg
+ FZODN0mykBn7wy0e+hW6dWt2xvKGF5Ar5EOrWLhrqLtz35AV6+B119HDA Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="357453350"
+X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; d="scan'208";a="357453350"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 10:08:30 -0700
+X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; d="scan'208";a="559826720"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 10:08:28 -0700
+Date: Mon, 22 Aug 2022 20:08:24 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <YwO4COnayeI189qP@ideak-desk.fi.intel.com>
+References: <20220722125143.1604709-1-andrzej.hajda@intel.com>
+ <20220722125143.1604709-2-andrzej.hajda@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Mon, 22 Aug 2022 17:04:24 -0000
-Message-ID: <166118786422.28448.5483745278045075636@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220822140836.534432-1-jouni.hogander@intel.com>
-In-Reply-To: <20220822140836.534432-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/backlight=3A_Disable_pps_power_hook_for_aux_based_backlig?=
- =?utf-8?q?ht?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220722125143.1604709-2-andrzej.hajda@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 1/4] drm/i915/hpd: postpone HPD cancel
+ work after last user suspension
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,204 +57,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6977181538835870544==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Jul 22, 2022 at 02:51:40PM +0200, Andrzej Hajda wrote:
+> i915->hotplug.dig_port_work can be queued from intel_hpd_irq_handler
+> called by IRQ handler or by intel_hpd_trigger_irq called from dp_mst.
+> Since dp_mst is suspended after irq handler uninstall, a cleaner approach
+> is to cancel hpd work after intel_dp_mst_suspend, otherwise we risk
+> use-after-free.
+> 
+> It should fix following WARNINGS:
+> [283.405824] cpu_latency_qos_update_request called for unknown object
+> [283.405866] WARNING: CPU: 2 PID: 240 at kernel/power/qos.c:296 cpu_latency_qos_update_request+0x2d/0x100
+> [283.405912] CPU: 2 PID: 240 Comm: kworker/u64:9 Not tainted 5.18.0-rc6-Patchwork_103738v3-g1672d1c43e43+ #1
+> [283.405915] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.2397.A01.2109300731 09/30/2021
+> [283.405916] Workqueue: i915-dp i915_digport_work_func [i915]
+> [283.406020] RIP: 0010:cpu_latency_qos_update_request+0x2d/0x100
+> ...
+> [283.406040] Call Trace:
+> [283.406041]  <TASK>
+> [283.406044]  intel_dp_aux_xfer+0x60e/0x8e0 [i915]
+> [283.406131]  ? finish_swait+0x80/0x80
+> [283.406139]  intel_dp_aux_transfer+0xc5/0x2b0 [i915]
+> [283.406218]  drm_dp_dpcd_access+0x79/0x130 [drm_display_helper]
+> [283.406227]  drm_dp_dpcd_read+0xe2/0xf0 [drm_display_helper]
+> [283.406233]  intel_dp_hpd_pulse+0x134/0x570 [i915]
+> [283.406308]  ? __down_killable+0x70/0x140
+> [283.406313]  i915_digport_work_func+0xba/0x150 [i915]
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4586
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5558
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 3 +++
+>  drivers/gpu/drm/i915/i915_irq.c              | 1 -
+>  2 files changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index a0f84cbe974fc3..f1c765ac7ab8aa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -9021,6 +9021,9 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
+>  	 */
+>  	intel_dp_mst_suspend(i915);
+>  
+> +	/* MST is the last user of HPD work */
+> +	intel_hpd_cancel_work(i915);
+> +
 
-== Series Details ==
+MST still requires AUX and short HPD interrupts and during shutdown and
+suspend the order is suspend-MST -> disable-IRQs. So I think it makes
+more sense to move intel_dp_mst_suspend() to i915_driver_remove() before
+intel_irq_uninstall().
 
-Series: drm/i915/backlight: Disable pps power hook for aux based backlight
-URL   : https://patchwork.freedesktop.org/series/107555/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12011 -> Patchwork_107555v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Missing    (1): fi-hsw-4770 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_107555v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-pnv-d510:        NOTRUN -> [INCOMPLETE][1] ([i915#6598] / [i915#6601])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/fi-pnv-d510/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [PASS][2] -> [FAIL][3] ([i915#6298])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12011/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rplp-1}:       [DMESG-WARN][4] ([i915#2867]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12011/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-pnv-d510:        [DMESG-FAIL][6] ([i915#4528]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12011/fi-pnv-d510/igt@i915_selftest@live@requests.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/fi-pnv-d510/igt@i915_selftest@live@requests.html
-
-  
-#### Warnings ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-elk-e7500:       [INCOMPLETE][8] ([i915#6648]) -> [INCOMPLETE][9] ([i915#6598] / [i915#6601] / [i915#6648])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12011/fi-elk-e7500/igt@i915_suspend@basic-s3-without-i915.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/fi-elk-e7500/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6503]: https://gitlab.freedesktop.org/drm/intel/issues/6503
-  [i915#6579]: https://gitlab.freedesktop.org/drm/intel/issues/6579
-  [i915#6598]: https://gitlab.freedesktop.org/drm/intel/issues/6598
-  [i915#6601]: https://gitlab.freedesktop.org/drm/intel/issues/6601
-  [i915#6648]: https://gitlab.freedesktop.org/drm/intel/issues/6648
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12011 -> Patchwork_107555v1
-
-  CI-20190529: 20190529
-  CI_DRM_12011: 9292bbfc4e5bcf539ccdd248881d149d4066eafc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6634: e01fe99f00692864b709253638c809231d1fb333 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_107555v1: 9292bbfc4e5bcf539ccdd248881d149d4066eafc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-4be9592c0848 drm/i915/backlight: Disable pps power hook for aux based backlight
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/index.html
-
---===============6977181538835870544==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/backlight: Disable pps power hook for aux based backlight</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107555/">https://patchwork.freedesktop.org/series/107555/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12011 -&gt; Patchwork_107555v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Missing    (1): fi-hsw-4770 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_107555v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/fi-pnv-d510/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6598">i915#6598</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6601">i915#6601</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12011/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12011/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12011/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_suspend@basic-s3-without-i915:<ul>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12011/fi-elk-e7500/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6648">i915#6648</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107555v1/fi-elk-e7500/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6598">i915#6598</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6601">i915#6601</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6648">i915#6648</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12011 -&gt; Patchwork_107555v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12011: 9292bbfc4e5bcf539ccdd248881d149d4066eafc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6634: e01fe99f00692864b709253638c809231d1fb333 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_107555v1: 9292bbfc4e5bcf539ccdd248881d149d4066eafc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>4be9592c0848 drm/i915/backlight: Disable pps power hook for aux based backlight</p>
-
-</body>
-</html>
-
---===============6977181538835870544==--
+>  	/* poll work can call into fbdev, hence clean that up afterwards */
+>  	intel_fbdev_fini(i915);
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index 73cebc6aa65072..db14787aef95dd 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -4597,7 +4597,6 @@ void intel_irq_uninstall(struct drm_i915_private *dev_priv)
+>  
+>  	free_irq(irq, dev_priv);
+>  
+> -	intel_hpd_cancel_work(dev_priv);
+>  	dev_priv->runtime_pm.irqs_enabled = false;
+>  }
+>  
+> -- 
+> 2.25.1
+> 
