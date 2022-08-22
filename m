@@ -2,45 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4335A4CE2
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8AE5A4CF7
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:06:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8507B10F1BA;
-	Mon, 29 Aug 2022 13:04:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC09B10F1BA;
+	Mon, 29 Aug 2022 13:06:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A98D09A825
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 17:14:40 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id EBE6E61228;
- Mon, 22 Aug 2022 17:14:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3A3CC433D6;
- Mon, 22 Aug 2022 17:14:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1661188479;
- bh=8JMXguDVXG8uFi0CJCWI3z+EkaH7bG9gajiyrhjsKOc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=aMplWboStfFwf/eT+mviiW6wUAhLJ1M8HNtm0DemMgAlKe0AVygZFyGptW/4BUnbW
- 7AZ///K9I3mpZ9HkTTbRkWI73UwjCdz9p/eQXf/vL8oyXDYO4wtdSumuSh8J1N52Mn
- pDoifwzsEKfnV8/HaIyYcCWgZWI0p0kqIbvRUYTfTBeD63q/cv26sBv6EQUzBNzgX1
- w7GbwQX6J2fm4gbCb6G65lt2LZGMvapM2CBg7c3SHcekfJgwnlN4jIAuFqSMfH/HA3
- 8sGxvF2sJdddTe2BTEUgI3Iy4FWYFUQdu0gCdXJNyTnyLXvxlgcxKZJzqadQKM1OBg
- LXIWaxE2RMy1Q==
-Date: Mon, 22 Aug 2022 10:14:37 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Lukasz Bartosik <lb@semihalf.com>
-Message-ID: <YwO5fW/5N16L1gz0@dev-arch.thelio-3990X>
-References: <20220201153354.11971-1-lukasz.bartosik@semihalf.com>
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
+ [IPv6:2607:f8b0:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C894312A8FE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 17:50:38 +0000 (UTC)
+Received: by mail-pl1-x62a.google.com with SMTP id 2so10630064pll.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 10:50:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc;
+ bh=/9pdvewaFJfJXyNVSXKyqnVcGbfMxvL6xyI+fnyra6Y=;
+ b=n983nb07Xr5sc7oSWDR+0vxG9HLqEC4+IexkaNkMZA/ZEDkXTjf+CIeKEYs04z0WN6
+ cinYKMyH9u2m0PLL4GsXhtlVYxF/o2Yk2ySReCcwwd35Vsw8bbfkrmttwKCIVssutJe0
+ A2cLUOS92FVJsWj4we04Pmr5+vte2Qe7S/K3p/7jadwKJMCfDC7mDKUxWnltjTt7iO12
+ H+IqYNgHOR7czy0dk6Bvvq91sARWLhi1oh2qaARo2fGHq96kA+8zbrI98m1t536+P/9l
+ 7ofD7n+YOHyHLC0yLgKgnuxYeTjSJs5wuoxF9VNoJuWY3iJZMtjH+bFkKxTPer/yAWPH
+ wySQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+ bh=/9pdvewaFJfJXyNVSXKyqnVcGbfMxvL6xyI+fnyra6Y=;
+ b=i/55HFTQSULTh/g+W/9h79ZdQMpsmTLx80ZmiOVswFr3ou2rFuCBM3YHRRxOH9HhnI
+ dcYj4DpqotYXBfqPW2ov4uGiMd4iYZ9y68Mt5sRJ44xQ1MT5asUVWgc0YMoCDFBNmevS
+ VWJP/GuPwR1eu4qT9QwweQonyzvTO8D8HwVK2ctJKBsG1VlvZ/ZbZvNSjOjU74aYjvz6
+ Vo/C3R6Ka78QPeB8NWfzhUKoNWAX/kTD2ylfXzXxcmgMIVk29jOgHoRy2e1HwvWZDX6s
+ 7XCbzJ/YYwr+pQANX/nWNkpadouFfenjXYnzBp3BrEVLc15CzEqfEPMfdCaMaV/dqe2J
+ uMJg==
+X-Gm-Message-State: ACgBeo3NT027zMKFONlNNlzod08YbVfgM0Vj2MJRerLeEi0nmrr7ntnF
+ ZtVUmOKvjBqf9FonLMeros76uQ==
+X-Google-Smtp-Source: AA6agR4+RU3ypFQPgD2AhP7c+8BkoxdnX5SFE7IrbciQ4Z73ObiwdMig1EA716NSFqjFLWd5C7LD9w==
+X-Received: by 2002:a17:90b:1a8f:b0:1f4:fb36:a9b3 with SMTP id
+ ng15-20020a17090b1a8f00b001f4fb36a9b3mr24508878pjb.186.1661190638015; 
+ Mon, 22 Aug 2022 10:50:38 -0700 (PDT)
+Received: from google.com (7.104.168.34.bc.googleusercontent.com.
+ [34.168.104.7]) by smtp.gmail.com with ESMTPSA id
+ x2-20020a17090a164200b001f50e4c43c4sm10376557pje.22.2022.08.22.10.50.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Aug 2022 10:50:37 -0700 (PDT)
+Date: Mon, 22 Aug 2022 17:50:33 +0000
+From: Sean Christopherson <seanjc@google.com>
+To: bugzilla-daemon@kernel.org
+Message-ID: <YwPB6W2tVIGWD7kD@google.com>
+References: <bug-216388-28872@https.bugzilla.kernel.org/>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220201153354.11971-1-lukasz.bartosik@semihalf.com>
+In-Reply-To: <bug-216388-28872@https.bugzilla.kernel.org/>
 X-Mailman-Approved-At: Mon, 29 Aug 2022 13:04:13 +0000
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: fix null pointer dereference
+Subject: Re: [Intel-gfx] [Bug 216388] New: On Host, kernel errors in KVM,
+ on guests, it shows CPU stalls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,110 +71,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: upstream@semihalf.com, intel-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ kvm@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
++GVT folks
 
-On Tue, Feb 01, 2022 at 04:33:54PM +0100, Lukasz Bartosik wrote:
-> From: Łukasz Bartosik <lb@semihalf.com>
+On Sun, Aug 21, 2022, bugzilla-daemon@kernel.org wrote:
+> https://bugzilla.kernel.org/show_bug.cgi?id=216388
 > 
-> Asus chromebook CX550 crashes during boot on v5.17-rc1 kernel.
-> The root cause is null pointer defeference of bi_next
-> in tgl_get_bw_info() in drivers/gpu/drm/i915/display/intel_bw.c.
+>             Bug ID: 216388
+>            Summary: On Host, kernel errors in KVM, on guests, it shows CPU
+>                     stalls
+>            Product: Virtualization
+>            Version: unspecified
+>     Kernel Version: 5.19.0 / 5.19.1 / 5.19.2
+>           Hardware: All
+>                 OS: Linux
+>               Tree: Mainline
+>             Status: NEW
+>           Severity: high
+>           Priority: P1
+>          Component: kvm
+>           Assignee: virtualization_kvm@kernel-bugs.osdl.org
+>           Reporter: nanook@eskimo.com
+>         Regression: No
 > 
-> BUG: kernel NULL pointer dereference, address: 000000000000002e
-> PGD 0 P4D 0
-> Oops: 0002 [#1] PREEMPT SMP NOPTI
-> CPU: 0 PID: 1 Comm: swapper/0 Tainted: G     U            5.17.0-rc1
-> Hardware name: Google Delbin/Delbin, BIOS Google_Delbin.13672.156.3 05/14/2021
-> RIP: 0010:tgl_get_bw_info+0x2de/0x510
-> ...
-> [    2.554467] Call Trace:
-> [    2.554467]  <TASK>
-> [    2.554467]  intel_bw_init_hw+0x14a/0x434
-> [    2.554467]  ? _printk+0x59/0x73
-> [    2.554467]  ? _dev_err+0x77/0x91
-> [    2.554467]  i915_driver_hw_probe+0x329/0x33e
-> [    2.554467]  i915_driver_probe+0x4c8/0x638
-> [    2.554467]  i915_pci_probe+0xf8/0x14e
-> [    2.554467]  ? _raw_spin_unlock_irqrestore+0x12/0x2c
-> [    2.554467]  pci_device_probe+0xaa/0x142
-> [    2.554467]  really_probe+0x13f/0x2f4
-> [    2.554467]  __driver_probe_device+0x9e/0xd3
-> [    2.554467]  driver_probe_device+0x24/0x7c
-> [    2.554467]  __driver_attach+0xba/0xcf
-> [    2.554467]  ? driver_attach+0x1f/0x1f
-> [    2.554467]  bus_for_each_dev+0x8c/0xc0
-> [    2.554467]  bus_add_driver+0x11b/0x1f7
-> [    2.554467]  driver_register+0x60/0xea
-> [    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
-> [    2.554467]  i915_init+0x2c/0xb9
-> [    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
-> [    2.554467]  do_one_initcall+0x12e/0x2b3
-> [    2.554467]  do_initcall_level+0xd6/0xf3
-> [    2.554467]  do_initcalls+0x4e/0x79
-> [    2.554467]  kernel_init_freeable+0xed/0x14d
-> [    2.554467]  ? rest_init+0xc1/0xc1
-> [    2.554467]  kernel_init+0x1a/0x120
-> [    2.554467]  ret_from_fork+0x1f/0x30
-> [    2.554467]  </TASK>
-> ...
-> Kernel panic - not syncing: Fatal exception
+> Created attachment 301614
+>   --> https://bugzilla.kernel.org/attachment.cgi?id=301614&action=edit
+> The configuration file used to Comile this kernel.
 > 
-> Fixes: c64a9a7c05be ("drm/i915: Update memory bandwidth formulae")
-> Signed-off-by: Łukasz Bartosik <lb@semihalf.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 16 +++++++++-------
->  1 file changed, 9 insertions(+), 7 deletions(-)
+> This behavior has persisted across 5.19.0, 5.19.1, and 5.19.2.  While the
+> kernel I am taking this example from is tainted (owing to using Intel
+> development drivers for GPU virtualization), it is also occurring on
+> non-tainted kernels on servers with no development or third party modules
+> installed.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 2da4aacc956b..bd0ed68b7faa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -404,15 +404,17 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
->  		int clpchgroup;
->  		int j;
->  
-> -		if (i < num_groups - 1)
-> -			bi_next = &dev_priv->max_bw[i + 1];
-> -
->  		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
->  
-> -		if (i < num_groups - 1 && clpchgroup < clperchgroup)
-> -			bi_next->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
-> -		else
-> -			bi_next->num_planes = 0;
-> +		if (i < num_groups - 1) {
-> +			bi_next = &dev_priv->max_bw[i + 1];
-> +
-> +			if (clpchgroup < clperchgroup)
-> +				bi_next->num_planes = (ipqdepth - clpchgroup) /
-> +						       clpchgroup + 1;
-> +			else
-> +				bi_next->num_planes = 0;
-> +		}
->  
->  		bi->num_qgv_points = qi.num_points;
->  		bi->num_psf_gv_points = qi.num_psf_points;
+> INFO: task CPU 2/KVM:2343 blocked for more than 1228 seconds.
+> [207177.050049]       Tainted: G     U    I       5.19.2 #1
+> [207177.050050] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables
+> this message.
+> [207177.050051] task:CPU 2/KVM       state:D stack:    0 pid: 2343 ppid:     1
+> flags:0x00000002
+> [207177.050054] Call Trace:
+> [207177.050055]  <TASK>
+> [207177.050056]  __schedule+0x359/0x1400
+> [207177.050060]  ? kvm_mmu_page_fault+0x1ee/0x980
+> [207177.050062]  ? kvm_set_msr_common+0x31f/0x1060
+> [207177.050065]  schedule+0x5f/0x100
+> [207177.050066]  schedule_preempt_disabled+0x15/0x30
+> [207177.050068]  __mutex_lock.constprop.0+0x4e2/0x750
+> [207177.050070]  ? aa_file_perm+0x124/0x4f0
+> [207177.050071]  __mutex_lock_slowpath+0x13/0x20
+> [207177.050072]  mutex_lock+0x25/0x30
+> [207177.050075]  intel_vgpu_emulate_mmio_read+0x5d/0x3b0 [kvmgt]
+
+This isn't a KVM problem, it's a KVMGT problem (despite the name, KVMGT is very
+much not KVM).
+
+> [207177.050084]  intel_vgpu_rw+0xb8/0x1c0 [kvmgt]
+> [207177.050091]  intel_vgpu_read+0x20d/0x250 [kvmgt]
+> [207177.050097]  vfio_device_fops_read+0x1f/0x40
+> [207177.050100]  vfs_read+0x9b/0x160
+> [207177.050102]  __x64_sys_pread64+0x93/0xd0
+> [207177.050104]  do_syscall_64+0x58/0x80
+> [207177.050106]  ? kvm_on_user_return+0x84/0xe0
+> [207177.050107]  ? fire_user_return_notifiers+0x37/0x70
+> [207177.050109]  ? exit_to_user_mode_prepare+0x41/0x200
+> [207177.050111]  ? syscall_exit_to_user_mode+0x1b/0x40
+> [207177.050112]  ? do_syscall_64+0x67/0x80
+> [207177.050114]  ? irqentry_exit+0x54/0x70
+> [207177.050115]  ? sysvec_call_function_single+0x4b/0xa0
+> [207177.050116]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+> [207177.050118] RIP: 0033:0x7ff51131293f
+> [207177.050119] RSP: 002b:00007ff4ddffa260 EFLAGS: 00000293 ORIG_RAX:
+> 0000000000000011
+> [207177.050121] RAX: ffffffffffffffda RBX: 00005599a6835420 RCX:
+> 00007ff51131293f
+> [207177.050122] RDX: 0000000000000004 RSI: 00007ff4ddffa2a8 RDI:
+> 0000000000000027
+> [207177.050123] RBP: 0000000000000004 R08: 0000000000000000 R09:
+> 00000000ffffffff
+> [207177.050124] R10: 0000000000065f10 R11: 0000000000000293 R12:
+> 0000000000065f10
+> [207177.050124] R13: 00005599a6835330 R14: 0000000000000004 R15:
+> 0000000000065f10
+> [207177.050126]  </TASK>
+> 
+>      I am seeing this on Intel i7-6700k, i7-6850k, and i7-9700k platforms.
+> 
+>      This did not happen on 5.17 kernels, and 5.18 kernels never ran stable
+> enough on my platforms to actually run them for more than a few minutes.
+> 
+>      Likewise 6.0-rc1 has not been stable enough to run in production.  After
+> less than three hours running on my workstation it locked hard with even the
+> magic sys-request key being unresponsive and only power cycling the machine got
+> it back.
+> 
+>      The operating system in use for the host on all machines is Ubuntu 22.04.
+> 
+>      Guests vary with Ubuntu 22.04 being the most common but also Mint, Debian,
+> Manjaro, Centos, Fedora, ScientificLinux, Zorin, and Windows being in use.
+> 
+>      I see the same issue manifest on platforms running only Ubuntu guests as
+> with guests of varying operating systems.  
+> 
+>      The configuration file I used to compile this kernel is attached.  I
+> compiled it with gcc 12.1.0.
+> 
+>      This behavior does not manifest itself instantly, typically the machine
+> needs to be running 3-7 days before it does.  Once it does guests keep stalling
+> and restarting libvirtd does not help.  Only thing that seems to is a hard
+> reboot of the physical host.  For this reason I believe the issue lies strictly
+> with the host and not the guests.
+> 
+>      I have listed it as a severity of high since it is completely service
+> interrupting.
+> 
 > -- 
-> 2.35.0.rc2.247.g8bbb082509-goog
+> You may reply to this email to add a comment.
 > 
-> 
-
-Was this patch ever applied or was the issue fixed in a different way?
-If CONFIG_INIT_STACK_ALL_ZERO is enabled (it is on by default when the
-compiler supports it), bi_next will be deterministically initialized to
-NULL, which means 'bi_next->num_planes = 0' will crash when the first if
-statement is not taken (i.e. 'i > num_groups - 1'). This was reported to
-us at [1] so it impacts real users (and I have been applying this change
-locally for six months).
-
-I see some discussion in the thread, was it ever resolved?
-
-[1]: https://github.com/ClangBuiltLinux/linux/issues/1626
-
-Cheers,
-Nathan
+> You are receiving this mail because:
+> You are watching the assignee of the bug.
