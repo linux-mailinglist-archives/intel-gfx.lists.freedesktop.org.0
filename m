@@ -1,84 +1,80 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A58859B832
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 06:03:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3AE59B839
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 06:10:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1632196C71;
-	Mon, 22 Aug 2022 04:03:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18B2198A33;
+	Mon, 22 Aug 2022 04:10:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6248996CBB
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 04:03:02 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6821E98A08
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 04:10:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661140982; x=1692676982;
+ t=1661141415; x=1692677415;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=YFWhv5zbHkVfaULq1RTqLoYh4JH1dEELoGLX5CoTSck=;
- b=OC5M0gKvw4FD/ffsDrMnRNJxeHkyr3EaZplemPPQoD6kW4sqby6LA5KU
- tfmxxyDa4gjofBfhJcxKh9fs73MFp1lGqosjROeLLwkXv0sHhWwZhoWo4
- YReOqUWt/LVOW0mYu2WQ39HVd4b42Ow/T5rXKYgcy06X/I2+DYXij4XfR
- 5GyQJ9Ke3g5tIVKtxhNZN7nOkjhfW1N2ZqntfsNf1FdZ69ZkLea11ng1H
- xOZQnDtHI8LTbSxNx+CWck5pGY/3LQyNypp2uW2ydB4+0OVps2ObkcoCe
- VivDQz6UIuwv/wwQjmpaZbGYkvFep61EVHaM6WOPVF81KiqlpsBa6zwpd A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="293313011"
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="293313011"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2022 21:02:59 -0700
+ bh=xrxSGLXUOM5VECsLeTtVrMCno6P76pYfueaxIlxS7r4=;
+ b=JFhcOhnJ1NIaFiEaP5wgU9oad2G/6DPe+d/877ietXtCjzu0c3wqpZg/
+ mttZ7R37e+Qw/2x2iPhX/QTx90LVqk0rOcFBxMTTa6nQaqxdi8fOLJa9Z
+ dvn3q8QW8M0znkfsZuLynlqMs77Lp4hNqHsFT5P5VGMFY9ur+LMzXucIF
+ KnN3o/vmigeMatDrP+ILM7ytWnFqgQv6u7v+LGBhotowazXP71+UcCC0o
+ 0t+PHptFf+HU39Fmx/fG936a/Zhrt7v+Sfr5rN68hSAJAOwaPo1FU0/k5
+ 4SZRQNlPPGwEo09B452VT8C9CijcKDNdGSvr2k4my1m1NM1pqTK+DAPep g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="290871448"
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="290871448"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2022 21:10:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="734963944"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga004.jf.intel.com with ESMTP; 21 Aug 2022 21:02:59 -0700
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="585349460"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga006.jf.intel.com with ESMTP; 21 Aug 2022 21:10:14 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Sun, 21 Aug 2022 21:02:59 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ 15.1.2375.31; Sun, 21 Aug 2022 21:10:14 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Sun, 21 Aug 2022 21:02:58 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Sun, 21 Aug 2022 21:02:58 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.171)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Sun, 21 Aug 2022 21:10:14 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.108)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Sun, 21 Aug 2022 21:02:58 -0700
+ 15.1.2375.31; Sun, 21 Aug 2022 21:10:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=STeQPDWX9gdzU8G1PCbPklTBjaDOPnt9jaebR9Q3Pqy3xSNGjiFg1Bvn/zyqW3OwdJ5UfWGTjViIIyY+IMtWiD9ABudFz8rWmlQrB7yo6X6NTkzvhdbNT0lSXoUH6g/O9ShpcI0o83OPkcSb7Mb4sf+4I07abcbt0l8SFfVIoIoNu9Ni/Q50Y4xeAsGW+qwZXYYYVNLZeF95NhWG4j7+2RjlWBEuhMBqGp9j8SE6W/2NIrxboDWsKig4eBz+ESHKZbOwM8BUwqL3zDbTV9mz0f4SgoDepVxAV+1qglt6ryhH/cSwqkQiK9VDo7Vuk/8p34qzAZcvAS9WmJgLjNQgDQ==
+ b=R0vMpS+9pPCya8hEpiXAd4Wybtjcp3brEgZ8ETCRDaTI3sppyjoM+Cbete2df6L5+guIzAG13eUE3/EhQ40Lwns9igWgBTxy6u6t1eGEXh8JZBcLCBnKgZl5B0Ep4hJI7Lf93zanOkdC0Yu9dL6/d2+n42V5SBGO3qk/Lva83wRKmIlGlh2h30tt8qjsFEixkwWL24trNqFRZ723s4KTLBy/UBVPGqKcBC5gCfLYId8TpGqS5SEsiAwp9HLofueAHdJXejuGYHhCvzZeECvBEvzfEMgFfN+usvkA8/ZTQc0Kbe6I61yMxla+xo2X2ekveWWTsA3D6LFDWTL2+Nj6+w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4HbhG39rFi9u+qOEIj6dgg+ltdEL5tnQeCw0Jzewxc4=;
- b=Gs5B78UqAoK0x1AeaLHJmog/pyvbwmQCqRSI6ehujT0enRZPrc2RqpPUsLuO1rif1T/m70e0g7qyRE9BILF94h4oeqTY7f2eFKT8Wfm4gzE0M+qsfdtgS0Aecza1H0HHgGHeDAqG3w43Lz3wkjDdMBLrzGqGX9VxZh3PFIv+cBo3iGf6ukMDBjXhzQNB/dkOWAR5kYuZu1g45pQ4PnI36A5UpM3Ff12JdljY8xy3scFwp1tfSdLWEJ10UjaseCo2Jjps9eR8J7Q267H+Y6ZajJwSHl+mzO5mDGcK+ohmgpRdThDnguWslKbnwK6kaeFKeUOrIO8wbh3LTtZh/HQjeg==
+ bh=5eT8n/CFouhPQD7gDwf86qerRPrgBgIYd0C6PUmUT0E=;
+ b=mGT5HizqhEZ7EYSnYQqqzvSBTsL2FTAgZSrkaLbWd+9msfxSPXK+rLmUMTMYxDpxPl7K5zyjqD2GtbgWzUKg5/EF9FWpL/owtbW8I/Nozuh3u8+0YEmoyS8x+B6XwCikUY9/oBxzFvfu6oUT4NjBWhkU4k1nXDDLcqUU0Md3/sFOlexxFfaX1whriBcDiLrjUBdlT0jdOgHXK6KiYOT1atbN2RsxM60VC7C/SKXykZy58saggt9etWH9xZbFjTcTJW1hGOwo7mfCQw9fQ0k252Wd+vg5Kogq3+WRT9/sbe3uAaEaYgPW4n+DPJfQK9mSb6wh8UOF9P9ZasNw2jws8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
- DM5PR11MB1482.namprd11.prod.outlook.com (2603:10b6:4:4::13) with
+ PH7PR11MB7027.namprd11.prod.outlook.com (2603:10b6:510:20a::9) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5546.16; Mon, 22 Aug 2022 04:02:47 +0000
+ 15.20.5546.21; Mon, 22 Aug 2022 04:10:11 +0000
 Received: from DM6PR11MB3177.namprd11.prod.outlook.com
  ([fe80::d48c:d05e:cd54:3ae1]) by DM6PR11MB3177.namprd11.prod.outlook.com
  ([fe80::d48c:d05e:cd54:3ae1%5]) with mapi id 15.20.5546.022; Mon, 22 Aug 2022
- 04:02:47 +0000
+ 04:10:11 +0000
 From: "Murthy, Arun R" <arun.r.murthy@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 16/39] drm/i915: move and group hdcp under
- display.hdcp
-Thread-Index: AQHYrZWVG/OuPHpTBUiNVKNEv2f/G626XFuw
-Date: Mon, 22 Aug 2022 04:02:47 +0000
-Message-ID: <DM6PR11MB3177D3B29C3C6D33C3E200A7BA719@DM6PR11MB3177.namprd11.prod.outlook.com>
+Thread-Topic: [Intel-gfx] [PATCH 18/39] drm/i915: move overlay to
+ display.overlay
+Thread-Index: AQHYrZWE2Leme0Mx+0iAjgAiLfGg6q26XTnA
+Date: Mon, 22 Aug 2022 04:10:11 +0000
+Message-ID: <DM6PR11MB317747DBFEB3C2E9B525A2D5BA719@DM6PR11MB3177.namprd11.prod.outlook.com>
 References: <cover.1660230121.git.jani.nikula@intel.com>
- <ca70c87d2e5995555376279fe82a9caeba8f65bf.1660230121.git.jani.nikula@intel.com>
-In-Reply-To: <ca70c87d2e5995555376279fe82a9caeba8f65bf.1660230121.git.jani.nikula@intel.com>
+ <016bcb32b5c6348ee1c4b5d2bed48214ded8f227.1660230121.git.jani.nikula@intel.com>
+In-Reply-To: <016bcb32b5c6348ee1c4b5d2bed48214ded8f227.1660230121.git.jani.nikula@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -89,60 +85,60 @@ dlp-version: 11.6.500.17
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 79eb3ec0-33d5-4340-2d19-08da83f32c9a
-x-ms-traffictypediagnostic: DM5PR11MB1482:EE_
+x-ms-office365-filtering-correlation-id: 5fa7091b-c1bc-462f-a964-08da83f43503
+x-ms-traffictypediagnostic: PH7PR11MB7027:EE_
 x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: UvgewmwyLAMmjio9mI6zMG2GzJLgEWhTTITUCxGjEMcEF6ukBO5s0u9MEQdAykCTATUFmMvjFoKlBKvTah8iC11/WO4n6LtWDgvMEDvQdna5a80zmvUI9fhFmeI5XZahr3REckCm7m77RXCWzwLZwKRvw/zFUBwzqkzeY6xxs8dD2Ik/ixwhwsuBeYRngMraCaFMcJhI7DfzZoQdTd7noL+TeaWJBYc4yqvb2+5JPmGeguA0eBnHZy39yJP+ry6E28nWNudM/eD1nH6tHfZGVPeflLE7Vw4c/ggqiBQ1KxgZ+N5QIBOUx9LzEumrVI9n1eUU8xc/2oQyCTfGWjkW5lYi8wwRHqdqvyQJcUtWVowuwpemnbVYD/MSa2TUx9tRkW+ZcrZFNpUnZlli40ERcdW6Gf9o8jYwgcWbZwraAjPpQhaY1f3RKYOA7cx5CVA0IHSjWq8ua2XApxD4ei2y4MKujURbzk13nRABgx+24UxY8TAXOa5F2bON935oT4SFdwKYIuFxNJTCPXSrvxS2AmBCwHOV9CDG9KC9ILZ/4gkGCQjBYCdXx+2d5V5MGy7dw34MQl2s6wIfJJx/sFbCrBRVxIK3fCSiZjZ3Q24uKk1MWwS2q7LoDOw+h5/fwbfZ6iVFHjhME3Ee4lM3D1ofP0eU5ZRs0xQwntymOCPrUYZQz1PRSxhqvj8T+rGuzFheaDUdUwetqNo2MirsV262VjLsHa8Xuh/lr9p66oPEkhxFZF+6fAx/pDXeqaXm68U9IFqvnVnvZTgITEKXk9Yh1w==
+x-microsoft-antispam-message-info: e5RRuTp289pnZ+ahp1Z7TedncvxEeguAg5YbpRzyLtto1iDKIItbz+p45S782wPhRqB+Tt9jDXwLdg1ZqaOA2ISe98QlO2Jd6LNsHcj0DAz7bkumyjfTqSjC9nqxOgnyWf1aCk6c41MGwjqXWzlXKGInfDgBlMZgx7Y/DouySkUwU1XiyfXJq5CiiMFLFsA7mKROebOQOEwcwcpWBQNO3mUTtAWl5jquco5bYLMywq/4P5T/CLi/njrRvkTzNzxoh8kO/g2L8C/Oja3BcR9Uc5yBIdjZMNC7htpru2BX6ZZhIF83QYUCaCBT+iecsmbTQ0MIYZ68UujU8WnxB+xigkatquYiRZhwuDC+Jn8ncNHeTBapaOdzMfqtos7rdxxjhZkQM+lEzb6M5XnZ9Us7/8i2R9c+vtkYbF9Je4NairN5AaTyfIXSCgQ0SsOeuwjDFvrtvjsSPVNlMwKOrFLFRfUg7HIwMXNw4F7UioEm1iHftH2sDgNux4eFRnXepw+NW4H1uMJu2BE6qEtveHxt0717H3/9z0xyBkQZD3RquHWWWRpg8ongTnrFiwUPMX9J49gzHYxZJWckJcvKc+uakryO7c5srPZwzhymZgQanHnEEexnWcTUhEgd2NOFgav/47YPeJMvgzJKz4jvH8P9Bty+rjj2O/NJ4SlhQkuhMsul5BHH2/hI9eP706fr4WQfsryGepv0PSYvA/eB93YogKePJYT3TcVodpeneGzDkHpEe9/45yRmOqovL1XgGCltT9mqLMZaY1Zb7BEtjv6C7xXZhnEbMYvJIeJr4N2cXyc=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(396003)(39860400002)(376002)(366004)(346002)(136003)(41300700001)(8676002)(478600001)(4326008)(316002)(54906003)(110136005)(76116006)(38100700002)(66946007)(66476007)(66446008)(66556008)(64756008)(8936002)(52536014)(2906002)(186003)(83380400001)(38070700005)(122000001)(107886003)(53546011)(26005)(86362001)(9686003)(33656002)(7696005)(6506007)(82960400001)(55236004)(71200400001)(30864003)(55016003)(5660300002);
+ SFS:(13230016)(39860400002)(346002)(396003)(136003)(366004)(376002)(66946007)(478600001)(66476007)(316002)(4326008)(66556008)(76116006)(110136005)(66446008)(64756008)(8676002)(71200400001)(5660300002)(107886003)(54906003)(53546011)(26005)(55236004)(2906002)(6506007)(7696005)(9686003)(41300700001)(186003)(83380400001)(55016003)(33656002)(38070700005)(82960400001)(86362001)(52536014)(8936002)(38100700002)(122000001)(309714004);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vD8S0ljJtgiTFMjtdWTnLKjrL2Oo/skid6THUlfKKzDse+4AdZe7QqXOcavs?=
- =?us-ascii?Q?LWxNFCU39Z18zgw0XlLE3KVp4phW75dBsRoGDV8fGaMyt5NMFQWaC8WTQJji?=
- =?us-ascii?Q?nhZUePU9bRbl95V6iiKphfCG65bUiYpOV2qRaDuIp/E+nEYvQJBR9MY6ns3o?=
- =?us-ascii?Q?pUwMyuRqPEImqt2g0cpW0BC5c/Aa4imw9P4nfuLkdJAD/2O2/GOJgBVp2ZnT?=
- =?us-ascii?Q?5Hjc2zEWGY5Pr8ffRLA1zngpjeJ8LqwVfWtuujqvrrS3cd/cRAPg7xO0YEBB?=
- =?us-ascii?Q?yXMbl2nnIuorqD9772cnL0H601ItlvAO5Un5eUoBAYUs6nb9yme4gxRr/Nz8?=
- =?us-ascii?Q?MnGOvE3RfAzbBbKYCrzXMghhqDLaZcBSjepWKHO6bxarVDVnHYHO2SrR1XTB?=
- =?us-ascii?Q?RVV4dBsqqydz4Yl0TT2j/aS45U0kP18UZkiG5FWXLGWhhlJUBgbdCTVTZUfY?=
- =?us-ascii?Q?/jhwuGaObMNmsiZ7o/yyDxTyMXZ6YywPGM1q50XKJYmLD36YSYQBp3twid1N?=
- =?us-ascii?Q?29u6xXEd9IUOhsvKaP6327Zi6PNW10uXDFC+7tw3A2rXytFU+H+EPrmSprFl?=
- =?us-ascii?Q?6peiinDwjYdZer5Fr6z9mnOe8iYGEcdkFfa3vCcUMQAbfoXjhhvAW4CMyGoz?=
- =?us-ascii?Q?H4PuOLXzVt2hVTLu9mPllYZbmZzikKyc4L3PzN9p3lg1PHxgFzFsDbM/jphd?=
- =?us-ascii?Q?GLNfOF7Xc3GZrYm04tZD+HAUQ8xqeICkAGPDuQl1kqCnmE+MgxiKuNCIDTsV?=
- =?us-ascii?Q?OUxJE/R1yLH5UpG182tZGOOghegOWrHFkUxRZObVrB4hBq73GFjpHqPy6Xiy?=
- =?us-ascii?Q?9NfHHZjSj+QYfWQBX+5okSzOkMkpFRu239Oo+9flFk7QOFLj2LySjTGJV3pD?=
- =?us-ascii?Q?y53vz+zziFbxcj9DOC/5fwahGh9CubzWb5ZfRFf0mY0Vj98UpfB25+ZGqAgC?=
- =?us-ascii?Q?w+KdyOGTFkflKXYC0/SxhFyAA2M/fJ3D5ad07i7ZJuk83p+mhAtWSLPsH607?=
- =?us-ascii?Q?rGFiYQdaNsfBYGl9bVItkJArHctr2yim6b3uV6G7bjOSzgwkNt2FsNAx9BYC?=
- =?us-ascii?Q?dgiqM+6M9PqssViMfnVvsT67TkweQCvXQluojhGhQ847/bKAw90nZ+qH9J5m?=
- =?us-ascii?Q?IvCO53YJQoQLs+WZenN94pJi1dDA5NV3E1Q2yDbrrJCf9mJIGJ2Bek80yN48?=
- =?us-ascii?Q?ESzzgn4kjy2uhONMdN8y/5OaUmdETMiwagllzxb9DsKRTGULZS/PiJbKFVJF?=
- =?us-ascii?Q?W+Yav9vI8y9ghixACfUZYTyFfmtPvKZocIo5tCBOOckllI6uqsJrK98Dxyq6?=
- =?us-ascii?Q?eQiFdpAcJSYNdDhUBIJcGOM4JAXrO+ZOwvKU9mQXWiuXqhrm7ybQw31epS/C?=
- =?us-ascii?Q?S7lnucg+wbmL3/oXdaZTl47z79hF7Dg2DrFLsQ0RMdjllkaj3Ai+pGphTZ5b?=
- =?us-ascii?Q?LTBLWSLt9nWpNHPSa6IQVmJuqk0oo7PtNXLzmX6FFeK9ugmmQmIc7pwUp1gS?=
- =?us-ascii?Q?HGH7MgrRdMGMIh6i9m9OGPP1jPsYrLji9i7RDtYJGvfX5NTd6m8cBJiW8EEh?=
- =?us-ascii?Q?NxDGwLudgKKFRYRIb9cIwInxmrYpZzuiw9qP2P70?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kDPkPOfXoSyzpDxrL7GPjkYepfAay6Uxep3JN7G1aThfO1dMKKnW9AwV8kqf?=
+ =?us-ascii?Q?bAfJkX0PycFs01Tp5oztOSivIpmyUjEW41exuhRXoDfhTg7/lwu6NwbvS3+u?=
+ =?us-ascii?Q?T8E9BEE0T0eDbQRqFeVXRF18i9yiF38K+u040swKw18Ijh4rUfA9DloZvgRs?=
+ =?us-ascii?Q?ShZ1J7LS31FruhrJje0212Sj92svBxP/Mopkkmg1JZgsD1zA4nK1ZQ8TrHnu?=
+ =?us-ascii?Q?m3bfaPxyqLm1vnn6CYgfpr2bfbkDyUNLS7T/+rUkOKDySpICI4lYEZLRfqK6?=
+ =?us-ascii?Q?ROqhVbYlIGoAzw7UXy91XDs8bKFaypTiZ2Gwk/odtPiwMArg7wp18qzP5ODu?=
+ =?us-ascii?Q?Pn3fD5qlw3ShEGeqeKBh5FDbNBsDbUX2YvmSDTTLiCcp2DEI5AzgtyZn1a8W?=
+ =?us-ascii?Q?ELNdEWw6qwArN7ohni/PIUu9sPjGtR/1ZqaWToUtdGpdhUw5kEXuPALzCLG1?=
+ =?us-ascii?Q?MGUFy0QzPUZN3inn0BVvYEi+J5KVC0nZNkkGbppvWHLqe6Ns7XQN/KSZ7vO4?=
+ =?us-ascii?Q?awfOlk4sgY9KcY7fD56nzfc3vztojrOrNtfuAOyvMJhZ0JXNlE2/CNAQdi4M?=
+ =?us-ascii?Q?0dYwAzPzEsTWYemXddLvXls2/ozXMQ3Sl81h4ApfUFYDlOjfvvK8oGCFtmZ+?=
+ =?us-ascii?Q?sxRjqD749OrJLtzFHl+E1Ziu3fEHaaftlf9SYMgXgI/Ct153N0Uaia9Xx+wP?=
+ =?us-ascii?Q?zjS4UDM4LXW7UvPXpDK9yjAF8LoG+e1dfsePodIdu1r0i3EBEXxlYYLhx62a?=
+ =?us-ascii?Q?dGl35RlTDWr4xrtuHVZu6g6LK6tzhjEAyPKd90YxB0/yTs/NrtfdZF5/0W80?=
+ =?us-ascii?Q?1Wzwmhb7oi+ra5jMD2rXKBaM6UDSFJR1ab6lIG0rmB6VWsBf4LbBX4oGquGJ?=
+ =?us-ascii?Q?0OQEkpdWEFnt51wJ/CJwkJigZtDtLfDUnrtK8zyL2VTwAtaVwCoBWlXF8Hs5?=
+ =?us-ascii?Q?nBTlwzAgod/Q6Xe8V1lXgH/OHQbME40bOqMfnW+WFLFSCTpRIr1/lTU8V4/k?=
+ =?us-ascii?Q?b7hEqvrGOqkb3Cs1hkRirCnYm4AONuygtVAT2LIu10+7S3Sqn8u3blJO8jm2?=
+ =?us-ascii?Q?fwVtk4uNpqGM36sRHC9MMZBd8UA/NsWqPDEYIftfwsJ3E3iFVQQNVsb/m4Wz?=
+ =?us-ascii?Q?ZYBJDF2EYTkOIx4vJyzplrhOeEHrbhchWJDL1DglaS13VzpIuhpiasiZvWpO?=
+ =?us-ascii?Q?428mEdydmzJa0gPqxOBJLZ83YOze2Y+SW4uolF6+eY6aWjWieVuOaAva/RhH?=
+ =?us-ascii?Q?EGRe/IE7C0T3o4Ph1GsIu1R7exLodX6MLTX7BOnJ+RjgaaqqZjWoSvS8d4Wr?=
+ =?us-ascii?Q?tc2X1URj1FBkK2pT4lpGfztTpZkycwiGTdW7EKJ4R/gDEsABqVEm8o5wBsnE?=
+ =?us-ascii?Q?8NGNQnIp4tyIkFS0oKNmZBxewqsFjQQL/pJDXpQ+I7K+WFl+IOytUMttL5VS?=
+ =?us-ascii?Q?xY2JNAI1EZID2lUvkW8VAzVdp49Gt3ar6caswcKQn451fSL3Ecjc0eDb4ZZt?=
+ =?us-ascii?Q?FDYNPwBQc7Is7FBrdDq+cmzQkSRjPweuvvPI8sdmDGi+tCl/Tm6qczDLKFGy?=
+ =?us-ascii?Q?aOcKsPLeL+cAfWRwu9e68rr6RTIpmGu6AYPZ6QVr?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79eb3ec0-33d5-4340-2d19-08da83f32c9a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2022 04:02:47.4783 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fa7091b-c1bc-462f-a964-08da83f43503
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2022 04:10:11.0881 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qB1L9iZA42wyACeFdIOb9h/uoE2MFuXbMiTiQ3aXUf7j236mU6wRrkkqNOrEQZJJYUNWRlfgOaU02hI5dB6BIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1482
+X-MS-Exchange-CrossTenant-userprincipalname: rYseQYca2Q4nJcjYpFu3Pnovn4VMQmEN4TUPIJDZQQPTZvf7Phau06Ayc9sShs8WJ/7rlP7eJz5M5LnWRfgQQw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7027
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 16/39] drm/i915: move and group hdcp under
- display.hdcp
+Subject: Re: [Intel-gfx] [PATCH 18/39] drm/i915: move overlay to
+ display.overlay
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,484 +164,144 @@ ni
 > To: intel-gfx@lists.freedesktop.org
 > Cc: Nikula, Jani <jani.nikula@intel.com>; De Marchi, Lucas
 > <lucas.demarchi@intel.com>
-> Subject: [Intel-gfx] [PATCH 16/39] drm/i915: move and group hdcp under
-> display.hdcp
+> Subject: [Intel-gfx] [PATCH 18/39] drm/i915: move overlay to display.over=
+lay
 >=20
 > Move display related members under drm_i915_private display sub-struct.
-I hope the previous comments as to update of the patch description will be =
-taken care!
-
+Please update the patch description!
 >=20
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
-With the above said updates included
+Upon adding the above said updates
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 
 Thanks and Regards,
 Arun R Murthy
 --------------------
 
->  .../gpu/drm/i915/display/intel_display_core.h |   9 ++
->  drivers/gpu/drm/i915/display/intel_hdcp.c     | 134 +++++++++---------
->  drivers/gpu/drm/i915/i915_driver.c            |   2 +-
->  drivers/gpu/drm/i915/i915_drv.h               |   6 -
->  4 files changed, 77 insertions(+), 74 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_core.h |  2 ++
+>  drivers/gpu/drm/i915/display/intel_overlay.c      | 12 ++++++------
+>  drivers/gpu/drm/i915/i915_drv.h                   |  4 ----
+>  drivers/gpu/drm/i915/i915_getparam.c              |  2 +-
+>  4 files changed, 9 insertions(+), 11 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h
 > b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index c2a79e487ee9..8ac63352b27b 100644
+> index cf31ad0c9593..a5cd3a3d440e 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -19,6 +19,7 @@
+> @@ -33,6 +33,7 @@ struct intel_fbdev;
+>  struct intel_fdi_funcs;
+>  struct intel_hotplug_funcs;
+>  struct intel_initial_plane_config;
+> +struct intel_overlay;
 >=20
->  struct drm_i915_private;
->  struct i915_audio_component;
-> +struct i915_hdcp_comp_master;
->  struct intel_atomic_state;
->  struct intel_audio_funcs;
->  struct intel_cdclk_funcs;
-> @@ -193,6 +194,14 @@ struct intel_display {
->  		wait_queue_head_t wait_queue;
->  	} gmbus;
+>  struct intel_display_funcs {
+>  	/* Returns the active state of the crtc, and if the crtc is active, @@ =
+-
+> 253,6 +254,7 @@ struct intel_display {
+>  	struct intel_dmc dmc;
+>  	struct intel_dpll dpll;
+>  	struct intel_hotplug hotplug;
+> +	struct intel_overlay *overlay;
+>  	struct intel_wm wm;
+>  };
 >=20
-> +	struct {
-> +		struct i915_hdcp_comp_master *master;
-> +		bool comp_added;
-> +
-> +		/* Mutex to protect the above hdcp component related
-> values. */
-> +		struct mutex comp_mutex;
-> +	} hdcp;
-> +
->  	struct {
->  		u32 mmio_base;
+> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c
+> b/drivers/gpu/drm/i915/display/intel_overlay.c
+> index 79ed8bd04a07..6f26f7f91925 100644
+> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
+> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+> @@ -487,7 +487,7 @@ static int intel_overlay_release_old_vid(struct
+> intel_overlay *overlay)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index c5e9e86bb4cb..6f04dd69087e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -188,12 +188,12 @@ bool intel_hdcp2_capable(struct intel_connector
-> *connector)
->  		return false;
+>  void intel_overlay_reset(struct drm_i915_private *dev_priv)  {
+> -	struct intel_overlay *overlay =3D dev_priv->overlay;
+> +	struct intel_overlay *overlay =3D dev_priv->display.overlay;
 >=20
->  	/* MEI interface is solid */
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	if (!dev_priv->hdcp_comp_added ||  !dev_priv->hdcp_master) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	if (!dev_priv->display.hdcp.comp_added ||  !dev_priv-
-> >display.hdcp.master) {
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return false;
->  	}
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	/* Sink's capability for HDCP2.2 */
->  	hdcp->shim->hdcp_2_2_capable(dig_port, &capable); @@ -1124,11
-> +1124,11 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
->  	struct i915_hdcp_comp_master *comp;
+>  	if (!overlay)
+>  		return;
+> @@ -1113,7 +1113,7 @@ int intel_overlay_put_image_ioctl(struct
+> drm_device *dev, void *data,
+>  	struct drm_i915_gem_object *new_bo;
 >  	int ret;
 >=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
-> @@ -1136,7 +1136,7 @@ hdcp2_prepare_ake_init(struct intel_connector
-> *connector,
->  	if (ret)
->  		drm_dbg_kms(&dev_priv->drm, "Prepare_ake_init failed.
-> %d\n",
->  			    ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -1154,11 +1154,11 @@ hdcp2_verify_rx_cert_prepare_km(struct
-> intel_connector *connector,
->  	struct i915_hdcp_comp_master *comp;
+> -	overlay =3D dev_priv->overlay;
+> +	overlay =3D dev_priv->display.overlay;
+>  	if (!overlay) {
+>  		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
+>  		return -ENODEV;
+> @@ -1273,7 +1273,7 @@ int intel_overlay_attrs_ioctl(struct drm_device
+> *dev, void *data,
+>  	struct intel_overlay *overlay;
 >  	int ret;
 >=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
+> -	overlay =3D dev_priv->overlay;
+> +	overlay =3D dev_priv->display.overlay;
+>  	if (!overlay) {
+>  		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
+>  		return -ENODEV;
+> @@ -1416,7 +1416,7 @@ void intel_overlay_setup(struct drm_i915_private
+> *dev_priv)
+>  	update_polyphase_filter(overlay->regs);
+>  	update_reg_attrs(overlay, overlay->regs);
 >=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
+> -	dev_priv->overlay =3D overlay;
+> +	dev_priv->display.overlay =3D overlay;
+>  	drm_info(&dev_priv->drm, "Initialized overlay support.\n");
+>  	return;
 >=20
-> @@ -1168,7 +1168,7 @@ hdcp2_verify_rx_cert_prepare_km(struct
-> intel_connector *connector,
->  	if (ret < 0)
->  		drm_dbg_kms(&dev_priv->drm, "Verify rx_cert failed.
-> %d\n",
->  			    ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+> @@ -1428,7 +1428,7 @@ void intel_overlay_cleanup(struct
+> drm_i915_private *dev_priv)  {
+>  	struct intel_overlay *overlay;
 >=20
->  	return ret;
->  }
-> @@ -1182,18 +1182,18 @@ static int hdcp2_verify_hprime(struct
-> intel_connector *connector,
->  	struct i915_hdcp_comp_master *comp;
->  	int ret;
->=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
->  	ret =3D comp->ops->verify_hprime(comp->mei_dev, data, rx_hprime);
->  	if (ret < 0)
->  		drm_dbg_kms(&dev_priv->drm, "Verify hprime failed.
-> %d\n", ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -1208,11 +1208,11 @@ hdcp2_store_pairing_info(struct intel_connector
-> *connector,
->  	struct i915_hdcp_comp_master *comp;
->  	int ret;
->=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
-> @@ -1220,7 +1220,7 @@ hdcp2_store_pairing_info(struct intel_connector
-> *connector,
->  	if (ret < 0)
->  		drm_dbg_kms(&dev_priv->drm, "Store pairing info failed.
-> %d\n",
->  			    ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -1235,11 +1235,11 @@ hdcp2_prepare_lc_init(struct intel_connector
-> *connector,
->  	struct i915_hdcp_comp_master *comp;
->  	int ret;
->=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
-> @@ -1247,7 +1247,7 @@ hdcp2_prepare_lc_init(struct intel_connector
-> *connector,
->  	if (ret < 0)
->  		drm_dbg_kms(&dev_priv->drm, "Prepare lc_init failed.
-> %d\n",
->  			    ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -1262,11 +1262,11 @@ hdcp2_verify_lprime(struct intel_connector
-> *connector,
->  	struct i915_hdcp_comp_master *comp;
->  	int ret;
->=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
-> @@ -1274,7 +1274,7 @@ hdcp2_verify_lprime(struct intel_connector
-> *connector,
->  	if (ret < 0)
->  		drm_dbg_kms(&dev_priv->drm, "Verify L_Prime failed.
-> %d\n",
->  			    ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -1288,11 +1288,11 @@ static int hdcp2_prepare_skey(struct
-> intel_connector *connector,
->  	struct i915_hdcp_comp_master *comp;
->  	int ret;
->=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
-> @@ -1300,7 +1300,7 @@ static int hdcp2_prepare_skey(struct
-> intel_connector *connector,
->  	if (ret < 0)
->  		drm_dbg_kms(&dev_priv->drm, "Get session key failed.
-> %d\n",
->  			    ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -1317,11 +1317,11 @@ hdcp2_verify_rep_topology_prepare_ack(struct
-> intel_connector *connector,
->  	struct i915_hdcp_comp_master *comp;
->  	int ret;
->=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
-> @@ -1331,7 +1331,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct
-> intel_connector *connector,
->  	if (ret < 0)
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "Verify rep topology failed. %d\n", ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -1346,18 +1346,18 @@ hdcp2_verify_mprime(struct intel_connector
-> *connector,
->  	struct i915_hdcp_comp_master *comp;
->  	int ret;
->=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
->  	ret =3D comp->ops->verify_mprime(comp->mei_dev, data,
-> stream_ready);
->  	if (ret < 0)
->  		drm_dbg_kms(&dev_priv->drm, "Verify mprime failed.
-> %d\n", ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -1370,11 +1370,11 @@ static int hdcp2_authenticate_port(struct
-> intel_connector *connector)
->  	struct i915_hdcp_comp_master *comp;
->  	int ret;
->=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
-> @@ -1382,7 +1382,7 @@ static int hdcp2_authenticate_port(struct
-> intel_connector *connector)
->  	if (ret < 0)
->  		drm_dbg_kms(&dev_priv->drm, "Enable hdcp auth failed.
-> %d\n",
->  			    ret);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -1394,17 +1394,17 @@ static int hdcp2_close_mei_session(struct
-> intel_connector *connector)
->  	struct i915_hdcp_comp_master *comp;
->  	int ret;
->=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	comp =3D dev_priv->hdcp_master;
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	comp =3D dev_priv->display.hdcp.master;
->=20
->  	if (!comp || !comp->ops) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return -EINVAL;
->  	}
->=20
->  	ret =3D comp->ops->close_hdcp_session(comp->mei_dev,
->  					     &dig_port->hdcp_port_data);
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return ret;
->  }
-> @@ -2122,10 +2122,10 @@ static int i915_hdcp_component_bind(struct
-> device *i915_kdev,
->  	struct drm_i915_private *dev_priv =3D kdev_to_i915(i915_kdev);
->=20
->  	drm_dbg(&dev_priv->drm, "I915 HDCP comp bind\n");
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	dev_priv->hdcp_master =3D (struct i915_hdcp_comp_master *)data;
-> -	dev_priv->hdcp_master->mei_dev =3D mei_kdev;
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	dev_priv->display.hdcp.master =3D (struct i915_hdcp_comp_master
-> *)data;
-> +	dev_priv->display.hdcp.master->mei_dev =3D mei_kdev;
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	return 0;
->  }
-> @@ -2136,9 +2136,9 @@ static void i915_hdcp_component_unbind(struct
-> device *i915_kdev,
->  	struct drm_i915_private *dev_priv =3D kdev_to_i915(i915_kdev);
->=20
->  	drm_dbg(&dev_priv->drm, "I915 HDCP comp unbind\n");
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	dev_priv->hdcp_master =3D NULL;
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	dev_priv->display.hdcp.master =3D NULL;
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  }
->=20
->  static const struct component_ops i915_hdcp_component_ops =3D { @@ -
-> 2229,19 +2229,19 @@ void intel_hdcp_component_init(struct
-> drm_i915_private *dev_priv)
->  	if (!is_hdcp2_supported(dev_priv))
+> -	overlay =3D fetch_and_zero(&dev_priv->overlay);
+> +	overlay =3D fetch_and_zero(&dev_priv->display.overlay);
+>  	if (!overlay)
 >  		return;
 >=20
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	drm_WARN_ON(&dev_priv->drm, dev_priv->hdcp_comp_added);
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	drm_WARN_ON(&dev_priv->drm, dev_priv-
-> >display.hdcp.comp_added);
+> @@ -1457,7 +1457,7 @@ struct intel_overlay_error_state {  struct
+> intel_overlay_error_state *  intel_overlay_capture_error_state(struct
+> drm_i915_private *dev_priv)  {
+> -	struct intel_overlay *overlay =3D dev_priv->overlay;
+> +	struct intel_overlay *overlay =3D dev_priv->display.overlay;
+>  	struct intel_overlay_error_state *error;
 >=20
-> -	dev_priv->hdcp_comp_added =3D true;
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	dev_priv->display.hdcp.comp_added =3D true;
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  	ret =3D component_add_typed(dev_priv->drm.dev,
-> &i915_hdcp_component_ops,
->  				  I915_COMPONENT_HDCP);
->  	if (ret < 0) {
->  		drm_dbg_kms(&dev_priv->drm, "Failed at component
-> add(%d)\n",
->  			    ret);
-> -		mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -		dev_priv->hdcp_comp_added =3D false;
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +		mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +		dev_priv->display.hdcp.comp_added =3D false;
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return;
->  	}
->  }
-> @@ -2454,14 +2454,14 @@ void intel_hdcp_update_pipe(struct
-> intel_atomic_state *state,
->=20
->  void intel_hdcp_component_fini(struct drm_i915_private *dev_priv)  {
-> -	mutex_lock(&dev_priv->hdcp_comp_mutex);
-> -	if (!dev_priv->hdcp_comp_added) {
-> -		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-> +	if (!dev_priv->display.hdcp.comp_added) {
-> +		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->  		return;
->  	}
->=20
-> -	dev_priv->hdcp_comp_added =3D false;
-> -	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-> +	dev_priv->display.hdcp.comp_added =3D false;
-> +	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	component_del(dev_priv->drm.dev, &i915_hdcp_component_ops);
-> } diff --git a/drivers/gpu/drm/i915/i915_driver.c
-> b/drivers/gpu/drm/i915/i915_driver.c
-> index f6841c1e5f0f..8841ec398b07 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -338,7 +338,7 @@ static int i915_driver_early_probe(struct
-> drm_i915_private *dev_priv)
->  	mutex_init(&dev_priv->display.audio.mutex);
->  	mutex_init(&dev_priv->display.wm.wm_mutex);
->  	mutex_init(&dev_priv->display.pps.mutex);
-> -	mutex_init(&dev_priv->hdcp_comp_mutex);
-> +	mutex_init(&dev_priv->display.hdcp.comp_mutex);
->=20
->  	i915_memcpy_init_early(dev_priv);
->  	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+>  	if (!overlay || !overlay->active)
 > diff --git a/drivers/gpu/drm/i915/i915_drv.h
-> b/drivers/gpu/drm/i915/i915_drv.h index 9ee08e80f0aa..a0af8190ed87
+> b/drivers/gpu/drm/i915/i915_drv.h index ef67a5322c2d..3637ee4ca088
 > 100644
 > --- a/drivers/gpu/drm/i915/i915_drv.h
 > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -588,12 +588,6 @@ struct drm_i915_private {
+> @@ -82,7 +82,6 @@ struct intel_connector;  struct intel_dp;  struct
+> intel_encoder;  struct intel_limit; -struct intel_overlay;  struct
+> intel_overlay_error_state;  struct vlv_s0ix_state;
 >=20
->  	struct i915_drm_clients clients;
+> @@ -342,9 +341,6 @@ struct drm_i915_private {
 >=20
-> -	struct i915_hdcp_comp_master *hdcp_master;
-> -	bool hdcp_comp_added;
+>  	bool preserve_bios_swizzle;
+>=20
+> -	/* overlay */
+> -	struct intel_overlay *overlay;
 > -
-> -	/* Mutex to protect the above hdcp component related values. */
-> -	struct mutex hdcp_comp_mutex;
-> -
->  	/* The TTM device structure. */
->  	struct ttm_device bdev;
+>  	/* backlight registers and fields in struct intel_panel */
+>  	struct mutex backlight_lock;
 >=20
+> diff --git a/drivers/gpu/drm/i915/i915_getparam.c
+> b/drivers/gpu/drm/i915/i915_getparam.c
+> index 6fd15b39570c..342c8ca6414e 100644
+> --- a/drivers/gpu/drm/i915/i915_getparam.c
+> +++ b/drivers/gpu/drm/i915/i915_getparam.c
+> @@ -36,7 +36,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void
+> *data,
+>  		value =3D to_gt(i915)->ggtt->num_fences;
+>  		break;
+>  	case I915_PARAM_HAS_OVERLAY:
+> -		value =3D !!i915->overlay;
+> +		value =3D !!i915->display.overlay;
+>  		break;
+>  	case I915_PARAM_HAS_BSD:
+>  		value =3D !!intel_engine_lookup_user(i915,
 > --
 > 2.34.1
 
