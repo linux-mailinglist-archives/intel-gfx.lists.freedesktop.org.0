@@ -1,49 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA9859BDF5
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 12:55:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E49E59BE0C
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 13:02:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AD1D11253D;
-	Mon, 22 Aug 2022 10:55:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E65B9112A0B;
+	Mon, 22 Aug 2022 11:02:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B2761123E9
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 10:55:04 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E145112A0B;
+ Mon, 22 Aug 2022 11:02:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661165704; x=1692701704;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=d1slpelmuiY4+m/2nWjsNA2Y9oDcBBwvM5FgZMHhIL4=;
- b=S/guhRYCwy1J6OWfGLaNVcL2BxZ7KgiQZp+4rs1+3QYi3pOEdppCfG0P
- j4SM7Bvkgm7WV1iFAA30Souk7uiDliuRaMXNAW7LJcHAmPbn8VmPNr/ZI
- vMMMQzpaGTzr6coQwYfLxpE9TBWBeWgt+CxL5cTSUnbucQqLMbM3lYUyl
- RHWxVBj6C+FeNqrPiBG/JxynQHyxPJ9EqIZGwTpjURH/p3Ct1hAizbVSo
- 8dmQlNaJFT+Hbv+ESN9H6nzpRahg1Ucz99YecmO/d1H9vEdBIhz42/sLv
- jlk9D2W61Yfm25i9BHL+/jPStoWeIXvw6cntfrBG/MNz3gLv7qXDkogUJ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="280354005"
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="280354005"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2022 03:55:04 -0700
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="585474090"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2022 03:55:02 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 Aug 2022 16:24:26 +0530
-Message-Id: <20220822105426.3521960-6-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220822105426.3521960-1-ankit.k.nautiyal@intel.com>
-References: <20220822105426.3521960-1-ankit.k.nautiyal@intel.com>
+ t=1661166135; x=1692702135;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=ZDyXoOKFLsJWDZrI4atkglbvrUUdtWkTh1x2BJ1kAgI=;
+ b=m3j/Q/s8YSjSoWE4GQWGRfJ1QXNpGe3d5O13W9dkfXVyfc1E5bycU+pd
+ 0w3KiVYaAZBJOP5CTIA1NakFh5cPqO8yU/NZTBYGjdr1j4JaiIP7RLMGJ
+ lk/a1/6RECquWXQ/XziltZFLE1nMkzBxoPh0H/nln3deNWPGc2w/OSz4s
+ 2vG7jhLfVdErjkpz+sJCXJdONIf22RiPrxI0BwLR4nOvZaS9xmqS2k8+1
+ NVXPea2Tc/x0ErmIfAKLIYhMjjXFUk1shWU5wiqj8aY4D56u+oHPQZlw0
+ UhLy9jIiCRUxsQZlfQp2e6Jl3CO3MFqjdV47WDecuOuFo3j49I+K32Uo1 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="290939887"
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="290939887"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 04:02:07 -0700
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="669489583"
+Received: from trangnek-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.252.50.159])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 04:02:03 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Kees Cook <keescook@chromium.org>, Andi Shyti <andi.shyti@linux.intel.com>
+In-Reply-To: <202208171657.63AE7AC@keescook>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220816093525.184940-1-gwan-gyeong.mun@intel.com>
+ <20220816093525.184940-2-gwan-gyeong.mun@intel.com>
+ <Yv10sQADwdZrIV42@alfio.lan> <202208171657.63AE7AC@keescook>
+Date: Mon, 22 Aug 2022 14:02:01 +0300
+Message-ID: <87r118mthy.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/dp: Fix FRL BW check for HDMI2.1
- DFP
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v7 1/8] overflow: Move and add few utility
+ macros into overflow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,110 +60,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: thomas.hellstrom@linux.intel.com, andrzej.hajda@intel.com, airlied@linux.ie,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ linux-hardening@vger.kernel.org, matthew.auld@intel.com, daniel@ffwll.ch,
+ mchehab@kernel.org, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During FRL bandwidth  check for downstream HDMI2.1 sink,
-the min BPC supported is incorrectly taken for DP, and the check does
-not consider ybcr420 only modes.
-This patch fixes the bandwidth calculation similar to the TMDS case, by
-taking min 8Bpc and considering Ycbcr420 only modes.
+On Wed, 17 Aug 2022, Kees Cook <keescook@chromium.org> wrote:
+> On Thu, Aug 18, 2022 at 01:07:29AM +0200, Andi Shyti wrote:
+>> Hi Kees,
+>>=20
+>> would you mind taking a look at this patch?
+>
+> Hi! Thanks for the heads-up!
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 52 ++++++++++++++++++-------
- 1 file changed, 39 insertions(+), 13 deletions(-)
+Thanks for your review. This actually reaffirms my belief that we need
+to get these macros out of i915_utils.h and into the common headers,
+where we can get more eyes on them.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f0a62f71904e..7f24f7633078 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -118,6 +118,7 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
- static void intel_dp_unset_edid(struct intel_dp *intel_dp);
- static int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc);
- static bool intel_dp_is_hdmi_2_1_sink(struct intel_dp *intel_dp);
-+static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp);
- 
- static bool
- is_dfp_hdmi_sink_dsc_1_2(struct intel_dp *intel_dp)
-@@ -917,6 +918,32 @@ intel_dp_tmds_clock_valid(struct intel_dp *intel_dp,
- 	return MODE_OK;
- }
- 
-+static int
-+intel_dp_frl_bw_valid(struct intel_dp *intel_dp, int target_clock,
-+		      int bpc, bool ycbcr_420_only)
-+{
-+	int target_bw;
-+	int max_frl_bw;
-+	int bpp = bpc * 3;
-+
-+	if (ycbcr_420_only)
-+		target_clock /= 2;
-+
-+	target_bw = bpp * target_clock;
-+
-+	/* check for MAX FRL BW for both PCON and HDMI2.1 sink */
-+	max_frl_bw = min(intel_dp->dfp.pcon_max_frl_bw,
-+			 intel_dp_hdmi_sink_max_frl(intel_dp));
-+
-+	/* converting bw from Gbps to Kbps*/
-+	max_frl_bw = max_frl_bw * 1000000;
-+
-+	if (target_bw > max_frl_bw)
-+		return MODE_CLOCK_HIGH;
-+
-+	return MODE_OK;
-+}
-+
- static enum drm_mode_status
- intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 			       const struct drm_display_mode *mode,
-@@ -925,23 +952,24 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	const struct drm_display_info *info = &connector->base.display_info;
- 	enum drm_mode_status status;
--	bool ycbcr_420_only;
-+	bool ycbcr_420_only = drm_mode_is_420_only(info, mode);
- 
- 	/* If PCON supports FRL MODE, check FRL bandwidth constraints */
- 	if (intel_dp->dfp.pcon_max_frl_bw) {
--		int target_bw;
--		int max_frl_bw;
--		int bpp = intel_dp_mode_min_output_bpp(connector, mode);
--
--		target_bw = bpp * target_clock;
- 
--		max_frl_bw = intel_dp->dfp.pcon_max_frl_bw;
-+		/* Assume 8bpc for the HDMI2.1 FRL BW check */
-+		status = intel_dp_frl_bw_valid(intel_dp, target_clock, 8, ycbcr_420_only);
- 
--		/* converting bw from Gbps to Kbps*/
--		max_frl_bw = max_frl_bw * 1000000;
-+		if (status != MODE_OK) {
-+			if (ycbcr_420_only ||
-+			    !connector->base.ycbcr_420_allowed ||
-+			    !drm_mode_is_420_also(info, mode))
-+				return status;
- 
--		if (target_bw > max_frl_bw)
--			return MODE_CLOCK_HIGH;
-+			status = intel_dp_frl_bw_valid(intel_dp, target_clock, 8, true);
-+			if (status != MODE_OK)
-+				return status;
-+		}
- 
- 		return MODE_OK;
- 	}
-@@ -950,8 +978,6 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
- 	    target_clock > intel_dp->dfp.max_dotclock)
- 		return MODE_CLOCK_HIGH;
- 
--	ycbcr_420_only = drm_mode_is_420_only(info, mode);
--
- 	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
- 	status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
- 					   8, ycbcr_420_only, true);
--- 
-2.25.1
+BR,
+Jani.
 
+
+>
+>>=20
+>> Thanks,
+>> Andi
+>>=20
+>> On Tue, Aug 16, 2022 at 06:35:18PM +0900, Gwan-gyeong Mun wrote:
+>> > It moves overflows_type utility macro into overflow header from i915_u=
+tils
+>> > header. The overflows_type can be used to catch the truncation between=
+ data
+>> > types. And it adds safe_conversion() macro which performs a type conve=
+rsion
+>> > (cast) of an source value into a new variable, checking that the
+>> > destination is large enough to hold the source value. And the function=
+ality
+>> > of overflows_type has been improved to handle the signbit.
+>> > The is_unsigned_type macro has been added to check the sign bit of the
+>> > built-in type.
+>> >=20
+>> > v3: Add is_type_unsigned() macro (Mauro)
+>> >     Modify overflows_type() macro to consider signed data types (Mauro)
+>> >     Fix the problem that safe_conversion() macro always returns true
+>> > v4: Fix kernel-doc markups
+>> > v6: Move macro addition location so that it can be used by other than =
+drm
+>> >     subsystem (Jani, Mauro, Andi)
+>> >     Change is_type_unsigned to is_unsigned_type to have the same name =
+form
+>> >     as is_signed_type macro
+>> >=20
+>> > Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+>> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>> > Cc: Matthew Auld <matthew.auld@intel.com>
+>> > Cc: Nirmoy Das <nirmoy.das@intel.com>
+>> > Cc: Jani Nikula <jani.nikula@intel.com>
+>> > Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>> > Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org> (v5)
+>> > ---
+>> >  drivers/gpu/drm/i915/i915_utils.h |  5 +--
+>> >  include/linux/overflow.h          | 54 +++++++++++++++++++++++++++++++
+>> >  2 files changed, 55 insertions(+), 4 deletions(-)
+>> >=20
+>> > diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/=
+i915_utils.h
+>> > index c10d68cdc3ca..eb0ded23fa9c 100644
+>> > --- a/drivers/gpu/drm/i915/i915_utils.h
+>> > +++ b/drivers/gpu/drm/i915/i915_utils.h
+>> > @@ -32,6 +32,7 @@
+>> >  #include <linux/types.h>
+>> >  #include <linux/workqueue.h>
+>> >  #include <linux/sched/clock.h>
+>> > +#include <linux/overflow.h>
+>> >=20=20
+>> >  #ifdef CONFIG_X86
+>> >  #include <asm/hypervisor.h>
+>> > @@ -111,10 +112,6 @@ bool i915_error_injected(void);
+>> >  #define range_overflows_end_t(type, start, size, max) \
+>> >  	range_overflows_end((type)(start), (type)(size), (type)(max))
+>> >=20=20
+>> > -/* Note we don't consider signbits :| */
+>> > -#define overflows_type(x, T) \
+>> > -	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
+>> > -
+>> >  #define ptr_mask_bits(ptr, n) ({					\
+>> >  	unsigned long __v =3D (unsigned long)(ptr);			\
+>> >  	(typeof(ptr))(__v & -BIT(n));					\
+>> > diff --git a/include/linux/overflow.h b/include/linux/overflow.h
+>> > index f1221d11f8e5..462a03454377 100644
+>> > --- a/include/linux/overflow.h
+>> > +++ b/include/linux/overflow.h
+>> > @@ -35,6 +35,60 @@
+>> >  #define type_max(T) ((T)((__type_half_max(T) - 1) + __type_half_max(T=
+)))
+>> >  #define type_min(T) ((T)((T)-type_max(T)-(T)1))
+>> >=20=20
+>> > +/**
+>> > + * is_unsigned_type - helper for checking data type which is an unsig=
+ned data
+>> > + * type or not
+>> > + * @x: The data type to check
+>> > + *
+>> > + * Returns:
+>> > + * True if the data type is an unsigned data type, false otherwise.
+>> > + */
+>> > +#define is_unsigned_type(x) ((typeof(x))-1 >=3D (typeof(x))0)
+>
+> I'd rather not have separate logic for this. Instead, I'd like it to be:
+>
+> #define is_unsigned_type(x) (!is_signed_type(x))
+>
+>> > +
+>> > +/**
+>> > + * overflows_type - helper for checking the truncation between data t=
+ypes
+>> > + * @x: Source for overflow type comparison
+>> > + * @T: Destination for overflow type comparison
+>> > + *
+>> > + * It compares the values and size of each data type between the firs=
+t and
+>> > + * second argument to check whether truncation can occur when assigni=
+ng the
+>> > + * first argument to the variable of the second argument.
+>> > + * Source and Destination can be used with or without sign bit.
+>> > + * Composite data structures such as union and structure are not cons=
+idered.
+>> > + * Enum data types are not considered.
+>> > + * Floating point data types are not considered.
+>> > + *
+>> > + * Returns:
+>> > + * True if truncation can occur, false otherwise.
+>> > + */
+>> > +#define overflows_type(x, T) \
+>> > +	(is_unsigned_type(x) ? \
+>> > +		is_unsigned_type(T) ? \
+>> > +			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>> > +			: (sizeof(x) >=3D sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 =
+: 0 \
+>> > +	: is_unsigned_type(T) ? \
+>> > +		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) =
+? 1 : 0 \
+>> > +		: (sizeof(x) > sizeof(T)) ? \
+>> > +			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>> > +				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
+>> > +			: 0)
+>
+> Like the other, I'd much rather this was rephrased in terms of the
+> existing macros (e.g. type_min()/type_max().)
+>
+>> > +
+>> > +/**
+>> > + * safe_conversion - perform a type conversion (cast) of an source va=
+lue into
+>> > + * a new variable, checking that the destination is large enough to h=
+old the
+>> > + * source value.
+>> > + * @ptr: Destination pointer address
+>> > + * @value: Source value
+>> > + *
+>> > + * Returns:
+>> > + * If the value would overflow the destination, it returns false.
+>> > + */
+>> > +#define safe_conversion(ptr, value) ({ \
+>> > +	typeof(value) __v =3D (value); \
+>> > +	typeof(ptr) __ptr =3D (ptr); \
+>> > +	overflows_type(__v, *__ptr) ? 0 : ((*__ptr =3D (typeof(*__ptr))__v),=
+ 1); \
+>> > +})
+>
+> I try to avoid "safe" as an adjective for interface names, since it
+> doesn't really answer "safe from what?" This looks more like "assign, but
+> zero when out of bounds". And it can be built from existing macros here:
+>
+> 	if (check_add_overflow(0, value, ptr))
+> 		*ptr =3D 0;
+>
+> I actually want to push back on this a bit, because there can still be
+> logic bugs built around this kind of primitive. Shouldn't out-of-bounds
+> assignments be seen as a direct failure? I would think this would be
+> sufficient:
+>
+> #define check_assign(value, ptr)	check_add_overflow(0, value, ptr)
+>
+> And callers would do:
+>
+> 	if (check_assign(value, &var))
+> 		return -EINVAL;
+>
+> etc.
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
