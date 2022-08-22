@@ -1,53 +1,147 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E49E59BE0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 13:02:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F37C759BE53
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Aug 2022 13:20:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E65B9112A0B;
-	Mon, 22 Aug 2022 11:02:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31F051138FD;
+	Mon, 22 Aug 2022 11:20:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E145112A0B;
- Mon, 22 Aug 2022 11:02:15 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DB64113880
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 11:20:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661166135; x=1692702135;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ZDyXoOKFLsJWDZrI4atkglbvrUUdtWkTh1x2BJ1kAgI=;
- b=m3j/Q/s8YSjSoWE4GQWGRfJ1QXNpGe3d5O13W9dkfXVyfc1E5bycU+pd
- 0w3KiVYaAZBJOP5CTIA1NakFh5cPqO8yU/NZTBYGjdr1j4JaiIP7RLMGJ
- lk/a1/6RECquWXQ/XziltZFLE1nMkzBxoPh0H/nln3deNWPGc2w/OSz4s
- 2vG7jhLfVdErjkpz+sJCXJdONIf22RiPrxI0BwLR4nOvZaS9xmqS2k8+1
- NVXPea2Tc/x0ErmIfAKLIYhMjjXFUk1shWU5wiqj8aY4D56u+oHPQZlw0
- UhLy9jIiCRUxsQZlfQp2e6Jl3CO3MFqjdV47WDecuOuFo3j49I+K32Uo1 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="290939887"
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="290939887"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2022 04:02:07 -0700
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="669489583"
-Received: from trangnek-mobl.gar.corp.intel.com (HELO localhost)
- ([10.252.50.159])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2022 04:02:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Kees Cook <keescook@chromium.org>, Andi Shyti <andi.shyti@linux.intel.com>
-In-Reply-To: <202208171657.63AE7AC@keescook>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220816093525.184940-1-gwan-gyeong.mun@intel.com>
- <20220816093525.184940-2-gwan-gyeong.mun@intel.com>
- <Yv10sQADwdZrIV42@alfio.lan> <202208171657.63AE7AC@keescook>
-Date: Mon, 22 Aug 2022 14:02:01 +0300
-Message-ID: <87r118mthy.fsf@intel.com>
+ t=1661167214; x=1692703214;
+ h=message-id:date:subject:from:to:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=Go9LltRrqQHwVaCY8FjMR9zXZYmikI+ioIl+DcuWcoQ=;
+ b=e7mfTnKO0hHPxDEE+39GTDLfRosW4MMzhs/NCfW5xCcOHzWwn2gFV5qL
+ 3B0HAmd+Pv0OVel3yDg6P9EKOAYYxwAVnXXTm2e8UiQ3M2zwUwLWYnqig
+ QR4rlK7fI9l3VHmcFTLE1y2wJ18+/FadwCO97afblvkQX/8vGZTB3B/vw
+ q+U/EVEFLV7goI5ppdzpHOD+2wrHQdjZrxfXEWy9c6uwVDm/WFHYKDvIC
+ f5B6WkGkXsY1VOZDu3tAVQlDrOaWj2Gk7ZG0douU3/awrl+nUuu0HA3ae
+ c2pL7IJzexgPoAWbp2bIm6dbgjlN6sU/iYJgKXTyT6h0YBVo+2awNiUwF A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="273143279"
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="273143279"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 04:20:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; d="scan'208";a="608921675"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga002.jf.intel.com with ESMTP; 22 Aug 2022 04:20:09 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 22 Aug 2022 04:20:09 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Mon, 22 Aug 2022 04:20:09 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Mon, 22 Aug 2022 04:20:09 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XwDhZrPMSm+Qc/+EzZxErXN2NSfDgN+d8lNAgqwP+/nJdwaLe27q7aGX9pHPlGjHmp0raNaveNWD0LEWI1jUici+6GMrmgVSSbHbkD2nX6YrBKRUfdv5OYuwWfbE8c/BAsBEniLxqc3XMznzZ1QqcPOYxnkUTzan9By3DFzFn10+k0I89H2XeyovfyHzp/i69XcErVrpyEaatonSpzdNo1uSGKP/iwrcny9IuWLXxsD3lhSk/0yKAr7orAq+yyabeBLipcQjV0bxYKjvz9eEra8rdI2VHsSgfyvAUnmn2dQwbNwZYUnVXMcHLA2mnOhRLX+H7NfzzikqGfxTtuAXkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iHxIUeYHvIvhqRv8VqMbZsTJOAs+05p5j8XShOmWD4o=;
+ b=m2rZYn4JhJ1BnicMdj0NMzoBT7KBpbSbvYnk68OcSljhgRxjvgvbwCdvwSrdIt4XOw/wC5X1defTTIkSx1eD0jFKPjBeP790oCMiwavUFX4Mbolv4VoJkVcvcse852aGBv5s1XPWcC5HBVYFc8Zd988reaZya63LXGt7tFbiVXyo4QH9WeXOajAbr/qZKqAWvaA9AcqijfJjz8hxOuYtyy/o4Ce63vtOC9qHDVJFJZ/MUxEeiQc5frxxZWsa9L+9mhGKbkZq8pj+y3MQEsI7fY9+LLV5H1U0ygvplkF9l1ZWYHR74PLiX1sjd8UDxYQ/rqQ7LbdVkZBsbfxU3dqbFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CO1PR11MB5009.namprd11.prod.outlook.com (2603:10b6:303:9e::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Mon, 22 Aug
+ 2022 11:20:07 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::e8e1:12c7:5a6f:4f86]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::e8e1:12c7:5a6f:4f86%4]) with mapi id 15.20.5546.023; Mon, 22 Aug 2022
+ 11:20:07 +0000
+Message-ID: <7f8702c9-d7ea-690c-024c-def4fb03ebf5@intel.com>
+Date: Mon, 22 Aug 2022 16:49:58 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.12.0
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+References: <20220810145626.2075839-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20220810145626.2075839-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0082.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:23::27) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v7 1/8] overflow: Move and add few utility
- macros into overflow
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 07f8fe3b-c8eb-4bd2-c67c-08da8430447b
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5009:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LyK/b6oMzJEwhQxS1C7GGFvfB+f0zLTApGR7ajjQYw8VX2LUxDzPsIFQmSz/Gjg6ai08SJSQXYQc8TMohgqxxre0wD9UWkEYp+vPo0ep6GBZveGg6aReFJXx3FVVSggIyX1ducZS9uuUWDH1loo2oYm2vf2yKf79rXQjj2WF+8rVJvO2xYO3UjwbRA5fu2U8h5+34uuiZ0PCYFHEdlEaOdLVpBmTunoeWwtXNuf+3sLpKR/lriuoihS96MvibRgyFeFQxAVZPuQc2DrRoih3W+c5O81gw9PvZ9f7QLaPyxzLu4SxxYbaMkRxbMGHjCpfZYdtpSRAgdtYlwjxKSrDiY4lwXwCamX3q0nC5Hvb/9Y2F/abtTFbwLmt8FW0FT4FLfGCGBcZDibvdVRIdh7E+bd00wCmWAztjc8EYO6y2PcKh/hAcSIyGPClvqLHuTAI2P6W/QKl6In+l5j1UdicP7QLaKsbjN7A4ry38ulOJgvyChgktDk90zHb7mIhdC9rdy6Qnx1cbl0sfjPiVm90cLIw66NtR6JFqw6u+a4OrD1gtJTr0hmlZr7pk+GSt7Nqwi0LoxExdMJojZnBXK3LMZUMk3I6bhJOyXARM1NNqmXCiipYVJ62zDGmn1tONwTEf8RtdWShjGEz0rgIl5pqunV9s5V6tVaiRSvfrEW9Ja1aklrAorWgQFwaTqzITUvbg788ZFhMI+iUt6jwBlOGgL1CDYM4CpmF0ux+Ik7p9jD594+CkKDOR6+7IULUYkSq5wlyYY9tJ2ehV9YvQjCntR7J6z3W4jvRUDfc7Dlsb1g=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(366004)(376002)(396003)(346002)(136003)(39860400002)(66946007)(66556008)(66476007)(8676002)(31686004)(86362001)(31696002)(6916009)(36756003)(38100700002)(2616005)(8936002)(26005)(6512007)(55236004)(53546011)(186003)(6666004)(41300700001)(82960400001)(6486002)(478600001)(6506007)(316002)(83380400001)(2906002)(5660300002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UW1uZHMxUGJvb2JkSThxcExqWmcrN2sxcFIybzdSUE5iSUVBUjhGR0VWeWNk?=
+ =?utf-8?B?NSs4ckFVcXI3b2prQnVVRlFBdjdRdVU3QnVLNjdhcm5wN2VBSGRLbnpxQjNG?=
+ =?utf-8?B?blZMMFl5QmF3TGRRQVFKZ3QwVkppM2NSaFhYS0lCZ2ZIOVM2SlNyWWZucVdN?=
+ =?utf-8?B?a09ZYkxaRnpTNklzZVg1TkZEcVpuMzdkU1p1RW1nTW1Ea2s1b3pjUlJRek5j?=
+ =?utf-8?B?SmY4czk1eko2TmR1MkVBUFlid0Qram5KUCtGL0FNbkY4RlJWdjgrUHFGb0VO?=
+ =?utf-8?B?YkVvZzBUZEwvbWNEMExERG4vd0dSNTNqSTEySE1DQjZ2YVcyUGowdXJNOWp6?=
+ =?utf-8?B?NXJhdEl6Q2xnRU1hMTVkZ1Bnb1dVUTBuU3hIMVhRU3hkUGhreUhtUW1QV2lQ?=
+ =?utf-8?B?dTlXZExFeFBhYi9tdXd2NzRja09YR3J0VW0zV3k0cFhLUk01R2xNQVVpMmZV?=
+ =?utf-8?B?Z1ZPakU0TnRmS3ErVm9FZkFIaW5xZzIvTGFMMnI0SEwwanArR1hQVUpJMWd4?=
+ =?utf-8?B?V0tCS0FTL3lLL3RuRnUwa2xVSlhHWC8rSE5NUDhrWUFXcTRGeTBtRHNjVndh?=
+ =?utf-8?B?Z1BQWU40ekh3WkF4SUVxbmszQ0NiOWx3S2NPSFBaMnlZcU1rSCtBcXZLOHc5?=
+ =?utf-8?B?c0k2bFlLd0pBam1vZ1RXblYyY2J2YVRDWWgzVHZIbHpUU2hKVjRaSGxJakd2?=
+ =?utf-8?B?L204WENTMmdBOGowZkhiZzdZZm5qNmhiWmp0WlVXdlovKzhTbjdnSitSM091?=
+ =?utf-8?B?dENxMFNVL01GaXUrQUhkSDAxS3ZUcHZ0RnprWWNTVjIrd0xiNHBVQlgyVE90?=
+ =?utf-8?B?RFdhanhwM2N2S3YxTU11Q2tPSDRzV0lXd1Q3L2hiNFhSUURrMDlrYjhQSzhS?=
+ =?utf-8?B?aWFzRzNXZE9sMUxHQjB0azZVSWJyc0xpM0ErOFp5c0NMYXE5dU4vNi9yRmNJ?=
+ =?utf-8?B?VWhVajdnMjFWZm53dzRlT3hrQW1NOXVYbklGeGRPem8raDlxTmJZUS96VHMz?=
+ =?utf-8?B?RjdYeUFoYXFIOEVzQ0Q2UFYxMWtBTjRoOE5uM1NGbjV6ZUwvRmJYU0wxRjZP?=
+ =?utf-8?B?YVlqUGE5WEozQ0FMcFJrN2haNGxOMnZGRmhIaGxEZzFzbjRtblBQNFVkSG9p?=
+ =?utf-8?B?NE5tMkZFNi82dXN0R1JBTG1BWnBnTkhXSTYrWVdKZ05BWmtGQlVDNDN2azh4?=
+ =?utf-8?B?RDdRRjRibnpoaVp0UmViNS82S2JjMWx2UFZ1NTg2aUlXRFdQQitaTlVEcmJS?=
+ =?utf-8?B?cWRLSUpqVlROZVVsLzhFV1MyUHJPRXFSdkxQZUtwbkhaZkVpTE81NFNPbFA1?=
+ =?utf-8?B?N0JZVUk5bWhOZGlBZ29GdmcyQ2d2ME1Vd2dNM2MrSWRVME8vM3hTNzk2cmNU?=
+ =?utf-8?B?MFFHMWRmb0h4dHBtWEtrV1JNM0YzWDMwUVZTYWRnVmlQOG9DU2xFZG9DZ29G?=
+ =?utf-8?B?WjV3N1dZY1huQnJFdnhqTnpGcnhDTzEwYmRaVFVVK2V6TjFOTjZKbVJhL2FX?=
+ =?utf-8?B?UVZtczc3SXlMTmZONDhvaWJoR2JtREhDNWorSDRLZTZtOUErQmFQbjd1djND?=
+ =?utf-8?B?WnMxbUlpRDZuck5IZXBGVWRjbW05eGRRMEhJckZFSTVwRGwwZE1RUFlRQTNF?=
+ =?utf-8?B?M0VwZXNVQngvR2VEMnBvbE93bTErdmJBMWhsRi9qdHBYSDcyOHpmVHlSb2dm?=
+ =?utf-8?B?S042Mml4a1N5UlBGMWowT29sczhTc1NHUjlGN2t4WlRWUjJLM0VKOE42TnYw?=
+ =?utf-8?B?M3JtV2hqc1FBMWpNTVowTldNQWZ2aG8vQjNPdXNONW5XeE1GditSb0RXSkFo?=
+ =?utf-8?B?UWllMWZ6OEZIaTJkTUQvbjRzTERlMTcrYVk1a1ZYNkVvQjZ4S0FFSmZJSWV2?=
+ =?utf-8?B?RkFEQXBPNXlzenVIQ29lRVpKRlQ0RzF1d0ZGWHdnVUhZbGhxdFUxNjM3SW5p?=
+ =?utf-8?B?czh3cS82WVlOY2JvUHVibFo2TUNJaXA2U1kwZFJHTWtwODVJSUtGWkJPdFpu?=
+ =?utf-8?B?QXpnYThhaEFXSW5UOVhyQmRhUjNMUEg0VTh3MmtDbVQzTGFST0JyTUlUcUtj?=
+ =?utf-8?B?YUluR3F6WWUvVnRybkExdEFKb2pUd0FFVFdZSHp3MkpzaDMwZnQ1elpmck5D?=
+ =?utf-8?B?UFdJSFdVRWZwVG5WQ2hHWWFqT202WGhhKzVSQXRjTXNRZ0tFS0FNSFNQQWs0?=
+ =?utf-8?B?VkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07f8fe3b-c8eb-4bd2-c67c-08da8430447b
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2022 11:20:07.1886 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OJUVhoY1vECHA9B54AJTntawYIZH/MmPzR5Xb0W2Wj38JCGz4w0777r6ufZXsqjKQYsTDvhwmgtbnS+xlV4kh6lJFs78TWNQfzx3Z1azMw0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5009
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/combo_phy: Add Workaround to
+ avoid flicker with HBR3 eDP Panels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,198 +154,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, andrzej.hajda@intel.com, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- linux-hardening@vger.kernel.org, matthew.auld@intel.com, daniel@ffwll.ch,
- mchehab@kernel.org, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 17 Aug 2022, Kees Cook <keescook@chromium.org> wrote:
-> On Thu, Aug 18, 2022 at 01:07:29AM +0200, Andi Shyti wrote:
->> Hi Kees,
->>=20
->> would you mind taking a look at this patch?
->
-> Hi! Thanks for the heads-up!
+The Bspec:49291 is now changed to reflect that for all platforms the 
+DCC_MODE will be programmed to DCC_MODE_SELECT_ONCE,
 
-Thanks for your review. This actually reaffirms my belief that we need
-to get these macros out of i915_utils.h and into the common headers,
-where we can get more eyes on them.
+rather than DCC_MODE_SELECT_CONTINUOUSLY.
 
-BR,
-Jani.
+I will send new patch for the same.
 
+Regards,
 
->
->>=20
->> Thanks,
->> Andi
->>=20
->> On Tue, Aug 16, 2022 at 06:35:18PM +0900, Gwan-gyeong Mun wrote:
->> > It moves overflows_type utility macro into overflow header from i915_u=
-tils
->> > header. The overflows_type can be used to catch the truncation between=
- data
->> > types. And it adds safe_conversion() macro which performs a type conve=
-rsion
->> > (cast) of an source value into a new variable, checking that the
->> > destination is large enough to hold the source value. And the function=
-ality
->> > of overflows_type has been improved to handle the signbit.
->> > The is_unsigned_type macro has been added to check the sign bit of the
->> > built-in type.
->> >=20
->> > v3: Add is_type_unsigned() macro (Mauro)
->> >     Modify overflows_type() macro to consider signed data types (Mauro)
->> >     Fix the problem that safe_conversion() macro always returns true
->> > v4: Fix kernel-doc markups
->> > v6: Move macro addition location so that it can be used by other than =
-drm
->> >     subsystem (Jani, Mauro, Andi)
->> >     Change is_type_unsigned to is_unsigned_type to have the same name =
-form
->> >     as is_signed_type macro
->> >=20
->> > Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
->> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->> > Cc: Matthew Auld <matthew.auld@intel.com>
->> > Cc: Nirmoy Das <nirmoy.das@intel.com>
->> > Cc: Jani Nikula <jani.nikula@intel.com>
->> > Cc: Andi Shyti <andi.shyti@linux.intel.com>
->> > Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org> (v5)
->> > ---
->> >  drivers/gpu/drm/i915/i915_utils.h |  5 +--
->> >  include/linux/overflow.h          | 54 +++++++++++++++++++++++++++++++
->> >  2 files changed, 55 insertions(+), 4 deletions(-)
->> >=20
->> > diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/=
-i915_utils.h
->> > index c10d68cdc3ca..eb0ded23fa9c 100644
->> > --- a/drivers/gpu/drm/i915/i915_utils.h
->> > +++ b/drivers/gpu/drm/i915/i915_utils.h
->> > @@ -32,6 +32,7 @@
->> >  #include <linux/types.h>
->> >  #include <linux/workqueue.h>
->> >  #include <linux/sched/clock.h>
->> > +#include <linux/overflow.h>
->> >=20=20
->> >  #ifdef CONFIG_X86
->> >  #include <asm/hypervisor.h>
->> > @@ -111,10 +112,6 @@ bool i915_error_injected(void);
->> >  #define range_overflows_end_t(type, start, size, max) \
->> >  	range_overflows_end((type)(start), (type)(size), (type)(max))
->> >=20=20
->> > -/* Note we don't consider signbits :| */
->> > -#define overflows_type(x, T) \
->> > -	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
->> > -
->> >  #define ptr_mask_bits(ptr, n) ({					\
->> >  	unsigned long __v =3D (unsigned long)(ptr);			\
->> >  	(typeof(ptr))(__v & -BIT(n));					\
->> > diff --git a/include/linux/overflow.h b/include/linux/overflow.h
->> > index f1221d11f8e5..462a03454377 100644
->> > --- a/include/linux/overflow.h
->> > +++ b/include/linux/overflow.h
->> > @@ -35,6 +35,60 @@
->> >  #define type_max(T) ((T)((__type_half_max(T) - 1) + __type_half_max(T=
-)))
->> >  #define type_min(T) ((T)((T)-type_max(T)-(T)1))
->> >=20=20
->> > +/**
->> > + * is_unsigned_type - helper for checking data type which is an unsig=
-ned data
->> > + * type or not
->> > + * @x: The data type to check
->> > + *
->> > + * Returns:
->> > + * True if the data type is an unsigned data type, false otherwise.
->> > + */
->> > +#define is_unsigned_type(x) ((typeof(x))-1 >=3D (typeof(x))0)
->
-> I'd rather not have separate logic for this. Instead, I'd like it to be:
->
-> #define is_unsigned_type(x) (!is_signed_type(x))
->
->> > +
->> > +/**
->> > + * overflows_type - helper for checking the truncation between data t=
-ypes
->> > + * @x: Source for overflow type comparison
->> > + * @T: Destination for overflow type comparison
->> > + *
->> > + * It compares the values and size of each data type between the firs=
-t and
->> > + * second argument to check whether truncation can occur when assigni=
-ng the
->> > + * first argument to the variable of the second argument.
->> > + * Source and Destination can be used with or without sign bit.
->> > + * Composite data structures such as union and structure are not cons=
-idered.
->> > + * Enum data types are not considered.
->> > + * Floating point data types are not considered.
->> > + *
->> > + * Returns:
->> > + * True if truncation can occur, false otherwise.
->> > + */
->> > +#define overflows_type(x, T) \
->> > +	(is_unsigned_type(x) ? \
->> > +		is_unsigned_type(T) ? \
->> > +			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
->> > +			: (sizeof(x) >=3D sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 =
-: 0 \
->> > +	: is_unsigned_type(T) ? \
->> > +		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) =
-? 1 : 0 \
->> > +		: (sizeof(x) > sizeof(T)) ? \
->> > +			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
->> > +				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
->> > +			: 0)
->
-> Like the other, I'd much rather this was rephrased in terms of the
-> existing macros (e.g. type_min()/type_max().)
->
->> > +
->> > +/**
->> > + * safe_conversion - perform a type conversion (cast) of an source va=
-lue into
->> > + * a new variable, checking that the destination is large enough to h=
-old the
->> > + * source value.
->> > + * @ptr: Destination pointer address
->> > + * @value: Source value
->> > + *
->> > + * Returns:
->> > + * If the value would overflow the destination, it returns false.
->> > + */
->> > +#define safe_conversion(ptr, value) ({ \
->> > +	typeof(value) __v =3D (value); \
->> > +	typeof(ptr) __ptr =3D (ptr); \
->> > +	overflows_type(__v, *__ptr) ? 0 : ((*__ptr =3D (typeof(*__ptr))__v),=
- 1); \
->> > +})
->
-> I try to avoid "safe" as an adjective for interface names, since it
-> doesn't really answer "safe from what?" This looks more like "assign, but
-> zero when out of bounds". And it can be built from existing macros here:
->
-> 	if (check_add_overflow(0, value, ptr))
-> 		*ptr =3D 0;
->
-> I actually want to push back on this a bit, because there can still be
-> logic bugs built around this kind of primitive. Shouldn't out-of-bounds
-> assignments be seen as a direct failure? I would think this would be
-> sufficient:
->
-> #define check_assign(value, ptr)	check_add_overflow(0, value, ptr)
->
-> And callers would do:
->
-> 	if (check_assign(value, &var))
-> 		return -EINVAL;
->
-> etc.
+Ankit
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+On 8/10/2022 8:26 PM, Ankit Nautiyal wrote:
+> Wa_22012718247 : When Display PHY is configured in continuous
+> DCC calibration mode, the DCC (duty cycle correction) for the clock
+> erroneously goes through a state where the DCC code is 0x00 when it is
+> supposed to be transitioning from 0x10 to 0x0F. This glitch causes a
+> distortion in the clock, which leads to a bit error. The issue is known
+> to be causing flickering with eDP HBR3 panels.
+>
+> The work around configures the DCC in one-time-update mode.
+> This mode updates the DCC code one time during training and then
+> it does not change.  This will prevent on-the-fly updates so that the
+> glitch does not occur.
+>
+> v2: Added helper function for DCC_MODE (Imre).
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_combo_phy.c   | 16 ++++++++++++++--
+>   .../gpu/drm/i915/display/intel_combo_phy_regs.h  |  1 +
+>   2 files changed, 15 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> index 64890f39c3cc..b3be0e3ca984 100644
+> --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> @@ -226,6 +226,17 @@ static bool phy_is_master(struct drm_i915_private *dev_priv, enum phy phy)
+>   	return false;
+>   }
+>   
+> +static u32 tgl_dcc_calibration_mode(struct drm_i915_private *dev_priv)
+> +{
+> +	/* Wa_22012718247:tgl,adlp,adls */
+> +	if (IS_TIGERLAKE(dev_priv) ||
+> +	    IS_ALDERLAKE_P(dev_priv) ||
+> +	    IS_ALDERLAKE_S(dev_priv))
+> +		return DCC_MODE_SELECT_ONCE;
+> +
+> +	return DCC_MODE_SELECT_CONTINUOSLY;
+> +}
+> +
+>   static bool icl_combo_phy_verify_state(struct drm_i915_private *dev_priv,
+>   				       enum phy phy)
+>   {
+> @@ -244,7 +255,7 @@ static bool icl_combo_phy_verify_state(struct drm_i915_private *dev_priv,
+>   
+>   		ret &= check_phy_reg(dev_priv, phy, ICL_PORT_PCS_DW1_LN(0, phy),
+>   				     DCC_MODE_SELECT_MASK,
+> -				     DCC_MODE_SELECT_CONTINUOSLY);
+> +				     tgl_dcc_calibration_mode(dev_priv));
+>   	}
+>   
+>   	ret &= icl_verify_procmon_ref_values(dev_priv, phy);
+> @@ -366,8 +377,9 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
+>   			intel_de_write(dev_priv, ICL_PORT_TX_DW8_GRP(phy), val);
+>   
+>   			val = intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN(0, phy));
+> +
+>   			val &= ~DCC_MODE_SELECT_MASK;
+> -			val |= DCC_MODE_SELECT_CONTINUOSLY;
+> +			val |= tgl_dcc_calibration_mode(dev_priv);
+>   			intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy), val);
+>   		}
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy_regs.h b/drivers/gpu/drm/i915/display/intel_combo_phy_regs.h
+> index 2ed65193ca19..cf46f13401d1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_combo_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy_regs.h
+> @@ -92,6 +92,7 @@
+>   #define ICL_PORT_PCS_DW1_LN(ln, phy)		_MMIO(_ICL_PORT_PCS_DW_LN(1, ln, phy))
+>   #define   DCC_MODE_SELECT_MASK			(0x3 << 20)
+>   #define   DCC_MODE_SELECT_CONTINUOSLY		(0x3 << 20)
+> +#define   DCC_MODE_SELECT_ONCE			(0x0 << 20)
+>   #define   COMMON_KEEPER_EN			(1 << 26)
+>   #define   LATENCY_OPTIM_MASK			(0x3 << 2)
+>   #define   LATENCY_OPTIM_VAL(x)			((x) << 2)
