@@ -1,49 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D30A459EDAF
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 22:45:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F9C459ED95
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 22:42:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE7F10E8FB;
-	Tue, 23 Aug 2022 20:45:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BC1910E76C;
+	Tue, 23 Aug 2022 20:42:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F16310E653
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 779EA10E766
  for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 20:42:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1661287322; x=1692823322;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s0SbEi6XyyKt+eh9fD55CqV8prTS+Qi1peYeYZ5cU2Q=;
- b=XKRatof4EojiZUPKgcBc8SdCMROjgnmP+8tWLLQVQv0wGZ3xOT9S6EBC
- SqdSCgNJ7ImhBcO0IROrjLRn6XdYTLTBN7noPEyVlLLMFPHSvXqg1X2/l
- TCMZSTXTmVZk7rSjEFqj2KJcG85hlVWLFEGBMcyBnFHzDfWeu64NY6hjI
- j+9srsl0KTE02Xw7F8QwFkTc0+st8g+slcKPPgirEa75s0EZ59ngFABcq
- HYKFOxPu6r9g6nHI121NbOJ4KCL2hex9PquNGiU9niCU0yUMRuO+azCBr
- /LemK82PzcSKqu/4v+a+pL7WRozL71LeGHeqgzkrtVQ/zBRMu8vnCEXQh Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="294579385"
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="294579385"
+ bh=TiJtDvlP8MKMTIOVB0z05fTg7GKuie1wpn0tw+rB4dY=;
+ b=nswlOoI1UgOMUBwD34DtVpOWUGs8vfntxy+4ql3KxB9q/tUYp0wy3/n5
+ EiJW+12JJB135vpOkFcRKeCnBkuD2RMzafBIsuabI0L2MU1fsVR4sFOTh
+ JmF3wgNc2+vh0zifBk6gmjziqGa/DO5/+f+h17Y3jNf70SD14HHFvY0Eo
+ o12IHsCB2+PklkYEF3CQvL5aIVZ33rnL3LwOOuwji5ixL9WZl2FfwW6Hh
+ cbygL9Rl50hODXi3I31ig4un+DAmXI4yEj65PqkxYbp8X7bXoecBIbq/h
+ M4J4KUxOPbgihp6NiWPgAZsbdSB0PX8JR6dAoQMmz+sUkjLTb/xlm+iZu g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="294579388"
+X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="294579388"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2022 13:42:00 -0700
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="638815655"
+X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="638815658"
 Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2022 13:41:59 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Aug 2022 20:41:47 +0000
-Message-Id: <20220823204155.8178-12-umesh.nerlige.ramappa@intel.com>
+Date: Tue, 23 Aug 2022 20:41:48 +0000
+Message-Id: <20220823204155.8178-13-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
 References: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 11/19] drm/i915/perf: Store a pointer to
- oa_format in oa_buffer
+Subject: [Intel-gfx] [PATCH 12/19] drm/i915/perf: Parse 64bit report header
+ formats correctly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,128 +60,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DG2 introduces OA reports with 64 bit report header fields. Perf OA
-would need more information about the OA format in order to process such
-reports. Store all OA format info in oa_buffer instead of just the size
-and format-id.
+Now that OA formats come in flavor of 64 bit reports, the report header
+has 64 bit report-id, timestamp, context-id and gpu-ticks fields. When
+filtering these reports, use the right width for these fields.
+
+v2: Let compiler decide on inline (Jani)
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c       | 23 ++++++++++-------------
- drivers/gpu/drm/i915/i915_perf_types.h |  3 +--
- 2 files changed, 11 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/i915_perf.c       | 101 ++++++++++++++++++++-----
+ drivers/gpu/drm/i915/i915_perf_types.h |   6 ++
+ 2 files changed, 86 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index f7621b45966c..9e455bd3bce5 100644
+index 9e455bd3bce5..167e7355980a 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -483,7 +483,7 @@ static u32 gen7_oa_hw_tail_read(struct i915_perf_stream *stream)
- static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- {
- 	u32 gtt_offset = i915_ggtt_offset(stream->oa_buffer.vma);
--	int report_size = stream->oa_buffer.format_size;
-+	int report_size = stream->oa_buffer.format->size;
- 	unsigned long flags;
- 	bool pollin;
- 	u32 hw_tail;
-@@ -630,7 +630,7 @@ static int append_oa_sample(struct i915_perf_stream *stream,
- 			    size_t *offset,
- 			    const u8 *report)
- {
--	int report_size = stream->oa_buffer.format_size;
-+	int report_size = stream->oa_buffer.format->size;
- 	struct drm_i915_perf_record_header header;
- 	int report_size_partial;
- 	u8 *oa_buf_end;
-@@ -694,7 +694,7 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
- 				  size_t *offset)
- {
- 	struct intel_uncore *uncore = stream->uncore;
--	int report_size = stream->oa_buffer.format_size;
-+	int report_size = stream->oa_buffer.format->size;
- 	u8 *oa_buf_base = stream->oa_buffer.vaddr;
- 	u32 gtt_offset = i915_ggtt_offset(stream->oa_buffer.vma);
- 	size_t start_offset = *offset;
-@@ -970,7 +970,7 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
- 				  size_t *offset)
- {
- 	struct intel_uncore *uncore = stream->uncore;
--	int report_size = stream->oa_buffer.format_size;
-+	int report_size = stream->oa_buffer.format->size;
- 	u8 *oa_buf_base = stream->oa_buffer.vaddr;
- 	u32 gtt_offset = i915_ggtt_offset(stream->oa_buffer.vma);
- 	u32 mask = (OA_BUFFER_SIZE - 1);
-@@ -2517,7 +2517,7 @@ static int gen12_configure_oar_context(struct i915_perf_stream *stream,
- {
- 	int err;
- 	struct intel_context *ce = stream->pinned_ctx;
--	u32 format = stream->oa_buffer.format;
-+	u32 format = stream->oa_buffer.format->format;
- 	u32 offset = stream->perf->ctx_oactxctrl_offset;
- 	struct flex regs_context[] = {
- 		{
-@@ -2890,7 +2890,7 @@ static void gen7_oa_enable(struct i915_perf_stream *stream)
- 	u32 ctx_id = stream->specific_ctx_id;
- 	bool periodic = stream->periodic;
- 	u32 period_exponent = stream->period_exponent;
--	u32 report_format = stream->oa_buffer.format;
-+	u32 report_format = stream->oa_buffer.format->format;
+@@ -324,8 +324,8 @@ static const struct i915_oa_format oa_formats[I915_OA_FORMAT_MAX] = {
+ 	[I915_OA_FORMAT_A32u40_A4u32_B8_C8] = { 5, 256 },
+ 	[I915_OAR_FORMAT_A32u40_A4u32_B8_C8]    = { 5, 256 },
+ 	[I915_OA_FORMAT_A24u40_A14u32_B8_C8]    = { 5, 256 },
+-	[I915_OAR_FORMAT_A36u64_B8_C8]		= { 1, 384 },
+-	[I915_OA_FORMAT_A38u64_R2u64_B8_C8]	= { 1, 448 },
++	[I915_OAR_FORMAT_A36u64_B8_C8]		= { 1, 384, HDR_64_BIT },
++	[I915_OA_FORMAT_A38u64_R2u64_B8_C8]	= { 1, 448, HDR_64_BIT },
+ };
  
- 	/*
- 	 * Reset buf pointers so we don't forward reports from before now.
-@@ -2916,7 +2916,7 @@ static void gen7_oa_enable(struct i915_perf_stream *stream)
- static void gen8_oa_enable(struct i915_perf_stream *stream)
- {
- 	struct intel_uncore *uncore = stream->uncore;
--	u32 report_format = stream->oa_buffer.format;
-+	u32 report_format = stream->oa_buffer.format->format;
+ #define SAMPLE_OA_REPORT      (1<<0)
+@@ -456,6 +456,67 @@ static u32 gen7_oa_hw_tail_read(struct i915_perf_stream *stream)
+ 	return oastatus1 & GEN7_OASTATUS1_TAIL_MASK;
+ }
  
- 	/*
- 	 * Reset buf pointers so we don't forward reports from before now.
-@@ -2942,7 +2942,7 @@ static void gen8_oa_enable(struct i915_perf_stream *stream)
- static void gen12_oa_enable(struct i915_perf_stream *stream)
- {
- 	struct intel_uncore *uncore = stream->uncore;
--	u32 report_format = stream->oa_buffer.format;
-+	u32 report_format = stream->oa_buffer.format->format;
++#define oa_report_header_64bit(__s) \
++	((__s)->oa_buffer.format->header == HDR_64_BIT)
++
++static u64 oa_report_id(struct i915_perf_stream *stream, void *report)
++{
++	return oa_report_header_64bit(stream) ? *(u64 *)report : *(u32 *)report;
++}
++
++static u64 oa_report_reason(struct i915_perf_stream *stream, void *report)
++{
++	return (oa_report_id(stream, report) >> OAREPORT_REASON_SHIFT) &
++	       (GRAPHICS_VER(stream->perf->i915) == 12 ?
++		OAREPORT_REASON_MASK_EXTENDED :
++		OAREPORT_REASON_MASK);
++}
++
++static void oa_report_id_clear(struct i915_perf_stream *stream, u32 *report)
++{
++	if (oa_report_header_64bit(stream))
++		*(u64 *)report = 0;
++	else
++		*report = 0;
++}
++
++static bool oa_report_ctx_invalid(struct i915_perf_stream *stream, void *report)
++{
++	return !(oa_report_id(stream, report) &
++	       stream->perf->gen8_valid_ctx_bit) &&
++	       GRAPHICS_VER(stream->perf->i915) <= 11;
++}
++
++static u64 oa_timestamp(struct i915_perf_stream *stream, void *report)
++{
++	return oa_report_header_64bit(stream) ?
++		*((u64 *)report + 1) :
++		*((u32 *)report + 1);
++}
++
++static void oa_timestamp_clear(struct i915_perf_stream *stream, u32 *report)
++{
++	if (oa_report_header_64bit(stream))
++		*(u64 *)&report[2] = 0;
++	else
++		report[1] = 0;
++}
++
++static u32 oa_context_id(struct i915_perf_stream *stream, u32 *report)
++{
++	u32 ctx_id = oa_report_header_64bit(stream) ? report[4] : report[2];
++
++	return ctx_id & stream->specific_ctx_id_mask;
++}
++
++static void oa_context_id_squash(struct i915_perf_stream *stream, u32 *report)
++{
++	if (oa_report_header_64bit(stream))
++		report[4] = INVALID_CTX_ID;
++	else
++		report[2] = INVALID_CTX_ID;
++}
++
+ /**
+  * oa_buffer_check_unlocked - check for data and update tail ptr state
+  * @stream: i915 stream instance
+@@ -545,9 +606,10 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
+ 		 * If not : (╯°□°）╯︵ ┻━┻
+ 		 */
+ 		while (_oa_taken(stream, tail, aged_tail) >= report_size) {
+-			u32 *report32 = (void *)(stream->oa_buffer.vaddr + tail);
++			void *report = stream->oa_buffer.vaddr + tail;
  
- 	/*
- 	 * If we don't want OA reports from the OA buffer, then we don't even
-@@ -3184,15 +3184,12 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
- 	stream->sample_flags = props->sample_flags;
- 	stream->sample_size += format_size;
+-			if (report32[0] != 0 || report32[1] != 0)
++			if (oa_report_id(stream, report) ||
++			    oa_timestamp(stream, report))
+ 				break;
  
--	stream->oa_buffer.format_size = format_size;
--	if (drm_WARN_ON(&i915->drm, stream->oa_buffer.format_size == 0))
-+	stream->oa_buffer.format = &perf->oa_formats[props->oa_format];
-+	if (drm_WARN_ON(&i915->drm, stream->oa_buffer.format->size == 0))
- 		return -EINVAL;
+ 			tail = _rewind_tail(stream, tail, report_size);
+@@ -740,23 +802,19 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
+ 		u8 *report = oa_buf_base + head;
+ 		u32 *report32 = (void *)report;
+ 		u32 ctx_id;
+-		u32 reason;
++		u64 reason;
  
- 	stream->hold_preemption = props->hold_preemption;
- 
--	stream->oa_buffer.format =
--		perf->oa_formats[props->oa_format].format;
+ 		/*
+ 		 * The reason field includes flags identifying what
+ 		 * triggered this specific report (mostly timer
+ 		 * triggered or e.g. due to a context switch).
+ 		 *
+-		 * This field is never expected to be zero so we can
+-		 * check that the report isn't invalid before copying
+-		 * it to userspace...
++		 * In MMIO triggered reports, some platforms do not set the
++		 * reason bit in this field and it is valid to have a reason
++		 * field of zero.
+ 		 */
+-		reason = ((report32[0] >> OAREPORT_REASON_SHIFT) &
+-			  (GRAPHICS_VER(stream->perf->i915) == 12 ?
+-			   OAREPORT_REASON_MASK_EXTENDED :
+-			   OAREPORT_REASON_MASK));
 -
- 	stream->periodic = props->oa_periodic;
- 	if (stream->periodic)
- 		stream->period_exponent = props->oa_period_exponent;
+-		ctx_id = report32[2] & stream->specific_ctx_id_mask;
++		reason = oa_report_reason(stream, report);
++		ctx_id = oa_context_id(stream, report32);
+ 
+ 		/*
+ 		 * Squash whatever is in the CTX_ID field if it's marked as
+@@ -766,9 +824,10 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
+ 		 * Note: that we don't clear the valid_ctx_bit so userspace can
+ 		 * understand that the ID has been squashed by the kernel.
+ 		 */
+-		if (!(report32[0] & stream->perf->gen8_valid_ctx_bit) &&
+-		    GRAPHICS_VER(stream->perf->i915) <= 11)
+-			ctx_id = report32[2] = INVALID_CTX_ID;
++		if (oa_report_ctx_invalid(stream, report)) {
++			ctx_id = INVALID_CTX_ID;
++			oa_context_id_squash(stream, report32);
++		}
+ 
+ 		/*
+ 		 * NB: For Gen 8 the OA unit no longer supports clock gating
+@@ -812,7 +871,7 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
+ 			 */
+ 			if (stream->ctx &&
+ 			    stream->specific_ctx_id != ctx_id) {
+-				report32[2] = INVALID_CTX_ID;
++				oa_context_id_squash(stream, report32);
+ 			}
+ 
+ 			ret = append_oa_sample(stream, buf, count, offset,
+@@ -824,11 +883,11 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
+ 		}
+ 
+ 		/*
+-		 * Clear out the first 2 dword as a mean to detect unlanded
++		 * Clear out the report id and timestamp as a means to detect unlanded
+ 		 * reports.
+ 		 */
+-		report32[0] = 0;
+-		report32[1] = 0;
++		oa_report_id_clear(stream, report32);
++		oa_timestamp_clear(stream, report32);
+ 	}
+ 
+ 	if (start_offset != *offset) {
 diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
-index dc9bfd8086cf..e0c96b44eda8 100644
+index e0c96b44eda8..68db5f94bc58 100644
 --- a/drivers/gpu/drm/i915/i915_perf_types.h
 +++ b/drivers/gpu/drm/i915/i915_perf_types.h
-@@ -250,11 +250,10 @@ struct i915_perf_stream {
- 	 * @oa_buffer: State of the OA buffer.
- 	 */
- 	struct {
-+		const struct i915_oa_format *format;
- 		struct i915_vma *vma;
- 		u8 *vaddr;
- 		u32 last_ctx_id;
--		int format;
--		int format_size;
- 		int size_exponent;
+@@ -30,9 +30,15 @@ struct i915_vma;
+ struct intel_context;
+ struct intel_engine_cs;
  
- 		/**
++enum report_header {
++	HDR_32_BIT = 0,
++	HDR_64_BIT,
++};
++
+ struct i915_oa_format {
+ 	u32 format;
+ 	int size;
++	enum report_header header;
+ };
+ 
+ struct i915_oa_reg {
 -- 
 2.25.1
 
