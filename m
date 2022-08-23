@@ -1,57 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B3FA59EE69
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 23:48:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7540C59EEA0
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 00:07:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A36710E311;
-	Tue, 23 Aug 2022 21:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C101510E3E3;
+	Tue, 23 Aug 2022 22:07:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CDB610E455;
- Tue, 23 Aug 2022 21:48:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661291286; x=1692827286;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bw4Ds13CePXLYMTtWNasckF7SzL1i+QEDzeQP0uwAaw=;
- b=Xh39q+RPYWvwM30Ihk/kr2hq9pQQQqxNdoXQs6WrLpAh8k2a26cztrnz
- UiA73W8kOi1XevV7+CjyXeR/37W34U5GalVUUp2QSls0iKOi2i6X6A+m+
- tpDz3/W0EbLdZOAmNJx4QuHnWhrtb4yY0q2cVt+2TXWdD8mzzsB6A2gog
- Nxwft90YSjCw7E1lUM9t02q0WcJ5pXm6N5VowDe6UEmtGKeQC4Mlgn5NU
- JfvcHwQUG1VOyJu9vaVstAS1YGrgMo3XnVMntqI2s/7Hys9pezdvkv7E1
- AniG9z765htAxKkW4wPuDv7qvU3FQ8O/jI1hv0mdtkhKtRt5gtEMJHoAZ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="319855109"
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="319855109"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 14:48:06 -0700
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="638834040"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.12.34])
- ([10.213.12.34])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 14:48:03 -0700
-Message-ID: <45384b73-bfd0-083c-98dc-e2cef51411ee@intel.com>
-Date: Tue, 23 Aug 2022 23:48:01 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C8E610E3E3;
+ Tue, 23 Aug 2022 22:07:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6472EAA914;
+ Tue, 23 Aug 2022 22:07:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.12.0
-Content-Language: en-US
-To: imre.deak@intel.com
-References: <20220722125143.1604709-1-andrzej.hajda@intel.com>
- <20220722125143.1604709-4-andrzej.hajda@intel.com>
- <YwO8cAQZ22hEBX3P@ideak-desk.fi.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <YwO8cAQZ22hEBX3P@ideak-desk.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 3/4] drm/i915/display: add
- hotplug.suspended flag
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Date: Tue, 23 Aug 2022 22:07:44 -0000
+Message-ID: <166129246440.2115.9995062829055624583@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_DG2_OA_support_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,177 +40,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: Add DG2 OA support (rev2)
+URL   : https://patchwork.freedesktop.org/series/107584/
+State : warning
 
-On 22.08.2022 19:27, Imre Deak wrote:
-> On Fri, Jul 22, 2022 at 02:51:42PM +0200, Andrzej Hajda wrote:
->> HPD events during driver removal can be generated by hardware and
->> software frameworks - drm_dp_mst, the former we can avoid by disabling
->> interrupts, the latter can be triggered by any drm_dp_mst transaction,
->> and this is too late. Introducing suspended flag allows to solve this
->> chicken-egg problem.
-> intel_hpd_cancel_work() is always called after suspending MST and
-> disabling IRQs (with the order I suggested in patch 1). If both of these
-> have disabled the corresponding functionality (MST, IRQs) properly with
-> all their MST/IRQ scheduled works guaranteed to not get rescheduled,
-> then it's not clear how could either intel_hpd_trigger_irq() or an IRQ
-> work run. So the problematic sequence would need a better explanation.
+== Summary ==
 
-I am not familiar with MST but as I understand from earlier discussion 
-MST framework can be called during driver removal code even after 
-intel_dp_mst_suspend. And since MST transfer can timeout it can trigger 
-drm_dp_mst_wait_tx_reply --> mgr->cbs->poll_hpd_irq(mgr) --> 
-intel_dp_mst_poll_hpd_irq --> intel_hpd_trigger_irq.
+Error: dim checkpatch failed
+52bc7af769a8 drm/i915/perf: Fix OA filtering logic for GuC mode
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+With GuC mode of submission, GuC is in control of defining the context id field
 
-So actually this patch supersedes the 1st patch.
+total: 0 errors, 1 warnings, 0 checks, 173 lines checked
+8030e7cc5068 drm/i915/perf: Add OA formats for DG2
+-:83: CHECK:BRACES: braces {} should be used on all arms of this statement
+#83: FILE: drivers/gpu/drm/i915/i915_perf.c:635:
++	if (report_size_partial < report_size) {
+[...]
++	} else if (copy_to_user(buf, report, report_size))
+[...]
 
->
-> There's also already
-> dev_priv->runtime_pm.irqs_enabled
-> showing if hotplug interrupts are disabled (along with all other IRQs).
+-:84: ERROR:SPACING: space required before the open parenthesis '('
+#84: FILE: drivers/gpu/drm/i915/i915_perf.c:636:
++		if(copy_to_user(buf, report, report_size_partial))
 
-So it is slightly different, this patch introduces flag indicating if 
-HPD is enabled, we can have IRQs not related to HPD, and HPD events not 
-related to IRQs.
+-:88: ERROR:SPACING: space required before the open parenthesis '('
+#88: FILE: drivers/gpu/drm/i915/i915_perf.c:640:
++		if(copy_to_user(buf, stream->oa_buffer.vaddr,
 
-Regards
-Andrzej
+-:159: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>' != 'Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramampa@intel.com>'
 
->
->> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5950
->> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_display.c |  2 +-
->>   drivers/gpu/drm/i915/display/intel_hotplug.c | 11 ++++++++++-
->>   drivers/gpu/drm/i915/display/intel_hotplug.h |  2 +-
->>   drivers/gpu/drm/i915/i915_driver.c           |  4 ++--
->>   drivers/gpu/drm/i915/i915_drv.h              |  2 ++
->>   5 files changed, 16 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index f1c765ac7ab8aa..cd6139bb36151b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -9022,7 +9022,7 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
->>   	intel_dp_mst_suspend(i915);
->>   
->>   	/* MST is the last user of HPD work */
->> -	intel_hpd_cancel_work(i915);
->> +	intel_hpd_suspend(i915);
->>   
->>   	/* poll work can call into fbdev, hence clean that up afterwards */
->>   	intel_fbdev_fini(i915);
->> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
->> index 5f8b4f481cff9a..e1d384cb99df6b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
->> @@ -303,6 +303,8 @@ static void i915_digport_work_func(struct work_struct *work)
->>   	u32 old_bits = 0;
->>   
->>   	spin_lock_irq(&dev_priv->irq_lock);
->> +	if (dev_priv->hotplug.suspended)
->> +		return spin_unlock_irq(&dev_priv->irq_lock);
->>   	long_port_mask = dev_priv->hotplug.long_port_mask;
->>   	dev_priv->hotplug.long_port_mask = 0;
->>   	short_port_mask = dev_priv->hotplug.short_port_mask;
->> @@ -353,6 +355,8 @@ void intel_hpd_trigger_irq(struct intel_digital_port *dig_port)
->>   	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->>   
->>   	spin_lock_irq(&i915->irq_lock);
->> +	if (i915->hotplug.suspended)
->> +		return spin_unlock_irq(&i915->irq_lock);
->>   	i915->hotplug.short_port_mask |= BIT(dig_port->base.port);
->>   	spin_unlock_irq(&i915->irq_lock);
->>   
->> @@ -475,6 +479,9 @@ void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
->>   
->>   	spin_lock(&dev_priv->irq_lock);
->>   
->> +	if (dev_priv->hotplug.suspended)
->> +		return spin_unlock(&dev_priv->irq_lock);
->> +
->>   	/*
->>   	 * Determine whether ->hpd_pulse() exists for each pin, and
->>   	 * whether we have a short or a long pulse. This is needed
->> @@ -603,6 +610,7 @@ void intel_hpd_init(struct drm_i915_private *dev_priv)
->>   	 * just to make the assert_spin_locked checks happy.
->>   	 */
->>   	spin_lock_irq(&dev_priv->irq_lock);
->> +	dev_priv->hotplug.suspended = false;
->>   	intel_hpd_irq_setup(dev_priv);
->>   	spin_unlock_irq(&dev_priv->irq_lock);
->>   }
->> @@ -721,13 +729,14 @@ void intel_hpd_init_work(struct drm_i915_private *dev_priv)
->>   			  intel_hpd_irq_storm_reenable_work);
->>   }
->>   
->> -void intel_hpd_cancel_work(struct drm_i915_private *dev_priv)
->> +void intel_hpd_suspend(struct drm_i915_private *dev_priv)
->>   {
->>   	if (!HAS_DISPLAY(dev_priv))
->>   		return;
->>   
->>   	spin_lock_irq(&dev_priv->irq_lock);
->>   
->> +	dev_priv->hotplug.suspended = true;
->>   	dev_priv->hotplug.long_port_mask = 0;
->>   	dev_priv->hotplug.short_port_mask = 0;
->>   	dev_priv->hotplug.event_bits = 0;
->> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/drm/i915/display/intel_hotplug.h
->> index b87e95d606e668..54bddc4dd63421 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hotplug.h
->> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
->> @@ -23,7 +23,7 @@ void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
->>   void intel_hpd_trigger_irq(struct intel_digital_port *dig_port);
->>   void intel_hpd_init(struct drm_i915_private *dev_priv);
->>   void intel_hpd_init_work(struct drm_i915_private *dev_priv);
->> -void intel_hpd_cancel_work(struct drm_i915_private *dev_priv);
->> +void intel_hpd_suspend(struct drm_i915_private *dev_priv);
->>   enum hpd_pin intel_hpd_pin_default(struct drm_i915_private *dev_priv,
->>   				   enum port port);
->>   bool intel_hpd_disable(struct drm_i915_private *dev_priv, enum hpd_pin pin);
->> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
->> index deb8a8b76965a1..57a063a306e3a4 100644
->> --- a/drivers/gpu/drm/i915/i915_driver.c
->> +++ b/drivers/gpu/drm/i915/i915_driver.c
->> @@ -1092,7 +1092,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
->>   	intel_dp_mst_suspend(i915);
->>   
->>   	intel_runtime_pm_disable_interrupts(i915);
->> -	intel_hpd_cancel_work(i915);
->> +	intel_hpd_suspend(i915);
->>   
->>   	intel_suspend_encoders(i915);
->>   	intel_shutdown_encoders(i915);
->> @@ -1161,7 +1161,7 @@ static int i915_drm_suspend(struct drm_device *dev)
->>   	intel_dp_mst_suspend(dev_priv);
->>   
->>   	intel_runtime_pm_disable_interrupts(dev_priv);
->> -	intel_hpd_cancel_work(dev_priv);
->> +	intel_hpd_suspend(dev_priv);
->>   
->>   	intel_suspend_encoders(dev_priv);
->>   
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->> index d25647be25d18b..dc1562b95d7ade 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -106,6 +106,8 @@ struct vlv_s0ix_state;
->>   #define HPD_STORM_DEFAULT_THRESHOLD 50
->>   
->>   struct i915_hotplug {
->> +	bool suspended;
->> +
->>   	struct delayed_work hotplug_work;
->>   
->>   	const u32 *hpd, *pch_hpd;
->> -- 
->> 2.25.1
->>
+total: 2 errors, 1 warnings, 1 checks, 130 lines checked
+0f1d1aa255aa drm/i915/perf: Fix noa wait predication for DG2
+eb16b3efd45e drm/i915/perf: Determine gen12 oa ctx offset at runtime
+-:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#22: FILE: drivers/gpu/drm/i915/i915_perf.c:1369:
++#define __valid_oactxctrl_offset(x) ((x) && (x) != U32_MAX)
+
+total: 0 errors, 0 warnings, 1 checks, 227 lines checked
+094c94d27845 drm/i915/perf: Enable commands per clock reporting in OA
+-:58: ERROR:CODE_INDENT: code indent should use tabs where possible
+#58: FILE: drivers/gpu/drm/i915/i915_perf.c:2772:
++ ^I/*$
+
+-:58: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#58: FILE: drivers/gpu/drm/i915/i915_perf.c:2772:
++ ^I/*$
+
+-:58: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#58: FILE: drivers/gpu/drm/i915/i915_perf.c:2772:
++ ^I/*$
+
+-:59: ERROR:CODE_INDENT: code indent should use tabs where possible
+#59: FILE: drivers/gpu/drm/i915/i915_perf.c:2773:
++ ^I * Initialize Super Queue Internal Cnt Register$
+
+-:59: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#59: FILE: drivers/gpu/drm/i915/i915_perf.c:2773:
++ ^I * Initialize Super Queue Internal Cnt Register$
+
+-:60: ERROR:CODE_INDENT: code indent should use tabs where possible
+#60: FILE: drivers/gpu/drm/i915/i915_perf.c:2774:
++ ^I * Set PMON Enable in order to collect valid metrics.$
+
+-:60: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#60: FILE: drivers/gpu/drm/i915/i915_perf.c:2774:
++ ^I * Set PMON Enable in order to collect valid metrics.$
+
+-:62: ERROR:CODE_INDENT: code indent should use tabs where possible
+#62: FILE: drivers/gpu/drm/i915/i915_perf.c:2776:
++ ^I */$
+
+-:62: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#62: FILE: drivers/gpu/drm/i915/i915_perf.c:2776:
++ ^I */$
+
+-:88: ERROR:CODE_INDENT: code indent should use tabs where possible
+#88: FILE: drivers/gpu/drm/i915/i915_perf.c:2847:
++ ^I/* Reset PMON Enable to save power. */$
+
+-:88: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#88: FILE: drivers/gpu/drm/i915/i915_perf.c:2847:
++ ^I/* Reset PMON Enable to save power. */$
+
+-:88: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#88: FILE: drivers/gpu/drm/i915/i915_perf.c:2847:
++ ^I/* Reset PMON Enable to save power. */$
+
+total: 5 errors, 7 warnings, 0 checks, 79 lines checked
+011d3bb3b13a drm/i915/perf: Use helpers to process reports w.r.t. OA buffer size
+-:23: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#23: FILE: drivers/gpu/drm/i915/i915_perf.c:388:
++static u32 _oa_taken(struct i915_perf_stream * stream, u32 tail, u32 head)
+
+-:30: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#30: FILE: drivers/gpu/drm/i915/i915_perf.c:395:
++static u32 _rewind_tail(struct i915_perf_stream * stream, u32 relative_hw_tail,
+
+total: 2 errors, 0 warnings, 0 checks, 106 lines checked
+706eb71d9849 drm/i915/perf: Simply use stream->ctx
+e33a6e0a3b91 drm/i915/perf: Move gt-specific data from i915->perf to gt->perf
+-:60: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#60: FILE: drivers/gpu/drm/i915/i915_perf.c:1582:
++	BUG_ON(stream != gt->perf.exclusive_stream);
+
+total: 0 errors, 1 warnings, 0 checks, 357 lines checked
+a6af6257d624 drm/i915/perf: Replace gt->perf.lock with stream->lock for file ops
+6b6ca4561fa0 drm/i915/perf: Use gt-specific ggtt for OA and noa-wait buffers
+2b94ddd53cff drm/i915/perf: Store a pointer to oa_format in oa_buffer
+4b075ef6d3c3 drm/i915/perf: Parse 64bit report header formats correctly
+0eef5c79db8b drm/i915/perf: Add Wa_16010703925:dg2
+-:21: ERROR:CODE_INDENT: code indent should use tabs where possible
+#21: FILE: drivers/gpu/drm/i915/i915_perf.c:4745:
++ ^Iif (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_B0)) {$
+
+-:21: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#21: FILE: drivers/gpu/drm/i915/i915_perf.c:4745:
++ ^Iif (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_B0)) {$
+
+-:21: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#21: FILE: drivers/gpu/drm/i915/i915_perf.c:4745:
++ ^Iif (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_B0)) {$
+
+-:24: ERROR:CODE_INDENT: code indent should use tabs where possible
+#24: FILE: drivers/gpu/drm/i915/i915_perf.c:4748:
++ ^I}$
+
+-:24: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#24: FILE: drivers/gpu/drm/i915/i915_perf.c:4748:
++ ^I}$
+
+-:24: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#24: FILE: drivers/gpu/drm/i915/i915_perf.c:4748:
++ ^I}$
+
+total: 2 errors, 4 warnings, 0 checks, 11 lines checked
+ad8d1018d5c7 drm/i915/perf: Add Wa_1608133521:dg2
+b1cdf8bc11ea drm/i915/perf: Add Wa_1508761755:dg2
+-:31: ERROR:CODE_INDENT: code indent should use tabs where possible
+#31: FILE: drivers/gpu/drm/i915/i915_perf.c:2850:
++ ^I/*$
+
+-:31: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#31: FILE: drivers/gpu/drm/i915/i915_perf.c:2850:
++ ^I/*$
+
+-:31: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#31: FILE: drivers/gpu/drm/i915/i915_perf.c:2850:
++ ^I/*$
+
+-:33: ERROR:CODE_INDENT: code indent should use tabs where possible
+#33: FILE: drivers/gpu/drm/i915/i915_perf.c:2852:
++ ^I * EU NOA signals behave incorrectly if EU clock gating is enabled.$
+
+-:33: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#33: FILE: drivers/gpu/drm/i915/i915_perf.c:2852:
++ ^I * EU NOA signals behave incorrectly if EU clock gating is enabled.$
+
+-:34: ERROR:CODE_INDENT: code indent should use tabs where possible
+#34: FILE: drivers/gpu/drm/i915/i915_perf.c:2853:
++ ^I * Disable thread stall DOP gating and EU DOP gating.$
+
+-:34: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#34: FILE: drivers/gpu/drm/i915/i915_perf.c:2853:
++ ^I * Disable thread stall DOP gating and EU DOP gating.$
+
+-:35: ERROR:CODE_INDENT: code indent should use tabs where possible
+#35: FILE: drivers/gpu/drm/i915/i915_perf.c:2854:
++ ^I */$
+
+-:35: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#35: FILE: drivers/gpu/drm/i915/i915_perf.c:2854:
++ ^I */$
+
+-:38: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#38: FILE: drivers/gpu/drm/i915/i915_perf.c:2857:
++		intel_uncore_write(uncore, GEN8_ROW_CHICKEN,
++				_MASKED_BIT_ENABLE(STALL_DOP_GATING_DISABLE));
+
+-:40: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#40: FILE: drivers/gpu/drm/i915/i915_perf.c:2859:
++		intel_uncore_write(uncore, GEN7_ROW_CHICKEN2,
++				_MASKED_BIT_ENABLE(GEN12_DISABLE_DOP_GATING));
+
+-:56: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#56: FILE: drivers/gpu/drm/i915/i915_perf.c:2946:
++		intel_uncore_write(uncore, GEN8_ROW_CHICKEN,
++				_MASKED_BIT_DISABLE(STALL_DOP_GATING_DISABLE));
+
+-:58: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#58: FILE: drivers/gpu/drm/i915/i915_perf.c:2948:
++		intel_uncore_write(uncore, GEN7_ROW_CHICKEN2,
++				_MASKED_BIT_DISABLE(GEN12_DISABLE_DOP_GATING));
+
+total: 4 errors, 5 warnings, 4 checks, 42 lines checked
+5c73ed9b4c4a drm/i915/perf: Apply Wa_18013179988
+39bef7bd2f84 drm/i915/perf: Save/restore EU flex counters across reset
+906505495164 drm/i915/guc: Support OA when Wa_16011777198 is enabled
+556ab08afed9 drm/i915/perf: Enable OA for DG2
+
 
