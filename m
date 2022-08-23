@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0333259DA7C
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 12:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 228A659DA8A
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 12:18:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36874919F8;
-	Tue, 23 Aug 2022 10:10:32 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00698B2DDD;
- Tue, 23 Aug 2022 10:10:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9C67B2FFC;
+	Tue, 23 Aug 2022 10:18:23 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 024E5B2FD9;
+ Tue, 23 Aug 2022 10:17:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661249403; x=1692785403;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=b6Me5SkZwKclzzjgjY4XfOJsJLuLYxGNYUR4az52vBM=;
- b=myDHHpP9WSNX/q/HzxGeuQs7+NVL1yn9ps7k+kUtUhYqlVeC5m99WOzj
- XIqckEzVYJMRJ5WXXR3grG95MrdwfgnOA3ih8lauD854GGjC7D+8Onl/i
- uM9hKtPm8R8txjhgeEU2vkHyGlY31a515pQ0ug5WIYZZ4vCmRrV49OXr3
- JrV4Vvy1lfuMljR10UawR06kecpha1DfYHbCOR5QFHM64vbwKFI10eNp7
- 4T6PNsoa9YreEi+9EjyGH4rDjfzDRWteIYnA2pHURTj6bKRI/CVeBTzpA
- pAFvUU1UwfvvJ9m+tKt69IccSULiAncsmAyXPtojcRdmICNoPCK93tQrV g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="294436245"
-X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="294436245"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 03:10:01 -0700
-X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="585910375"
-Received: from obeltran-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.51.100])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 03:10:00 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-In-Reply-To: <76993a22-6f37-2fab-7b86-ae56a3e9f7e5@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220728022028.2190627-1-John.C.Harrison@Intel.com>
- <20220728022028.2190627-4-John.C.Harrison@Intel.com>
- <87a680o6jm.fsf@intel.com>
- <76993a22-6f37-2fab-7b86-ae56a3e9f7e5@intel.com>
-Date: Tue, 23 Aug 2022 13:09:57 +0300
-Message-ID: <87v8qjl18q.fsf@intel.com>
+ t=1661249876; x=1692785876;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UOoUeBZGBezcH2/KZ3Ntl67gRI+FunItzjnXIPT1M5k=;
+ b=AwFNwgYM1p+EBu6O52G2WYhYtoN8OCsMl1fwT2wlLi5MIUrGoRb04bcA
+ nlkV7Y2TDJSBExNdnjkiDKl9Nbid6UhKaGsi1P2Qqxbgg/k5aZ2H189ut
+ Cisn215bJwUOuVjw6EuoZXbD5jmDYYay3beKxExxwIUlj0bDPZ0GtgcxD
+ uTzaebZ3x45208qDxEIpf2N9w04Fv3D9meKY7uuZT3F2pkU6dlbQsgAqc
+ swo3HJtQn/8/8YWUBsnD9K94dliojR8TZryX+QUl8PyuX+Jb8lSz/k9c3
+ XO8LpniCNId6jAp1QPrhsr9U9vlh+o1m6IRMbvbT2Dwr4IQA0cBhromaS w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="273400709"
+X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="273400709"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2022 03:17:47 -0700
+X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="751639865"
+Received: from jabish-mobl2.amr.corp.intel.com (HELO paris.amr.corp.intel.com)
+ ([10.254.9.209])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2022 03:17:42 -0700
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 23 Aug 2022 19:17:21 +0900
+Message-Id: <20220823101729.2098841-1-gwan-gyeong.mun@intel.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/guc: Add GuC <-> kernel time
- stamp translation information
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v8 0/8] Fixes integer overflow or integer
+ truncation issues in page lookups,
+ ttm place configuration and scatterlist creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,78 +57,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: thomas.hellstrom@linux.intel.com, keescook@chromium.org,
+ jani.nikula@intel.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk, airlied@linux.ie,
+ andrzej.hajda@intel.com, matthew.auld@intel.com, daniel@ffwll.ch,
+ intel-gfx-trybot@lists.freedesktop.org, mchehab@kernel.org,
+ nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 19 Aug 2022, John Harrison <john.c.harrison@intel.com> wrote:
-> On 8/19/2022 03:45, Jani Nikula wrote:
->> On Wed, 27 Jul 2022, John.C.Harrison@Intel.com wrote:
->>> From: John Harrison <John.C.Harrison@Intel.com>
->>>
->>> It is useful to be able to match GuC events to kernel events when
->>> looking at the GuC log. That requires being able to convert GuC
->>> timestamps to kernel time. So, when dumping error captures and/or GuC
->>> logs, include a stamp in both time zones plus the clock frequency.
->>>
->>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/gt/intel_gt_regs.h    |  2 ++
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc.c     | 19 +++++++++++++++++++
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc.h     |  2 ++
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc_log.c |  2 ++
->>>   drivers/gpu/drm/i915/i915_gpu_error.c      | 12 ++++++++++++
->>>   drivers/gpu/drm/i915/i915_gpu_error.h      |  3 +++
->>>   6 files changed, 40 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>> index 60d6eb5f245b7..fc7979bd91db5 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>> @@ -1007,6 +1007,8 @@
->>>   #define   GEN11_LSN_UNSLCVC_GAFS_HALF_CL2_MAXALLOC	(1 << 9)
->>>   #define   GEN11_LSN_UNSLCVC_GAFS_HALF_SF_MAXALLOC	(1 << 7)
->>>   
->>> +#define GUCPMTIMESTAMP				_MMIO(0xc3e8)
->>> +
->>>   #define __GEN9_RCS0_MOCS0			0xc800
->>>   #define GEN9_GFX_MOCS(i)			_MMIO(__GEN9_RCS0_MOCS0 + (i) * 4)
->>>   #define __GEN9_VCS0_MOCS0			0xc900
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->>> index 2706a8c650900..ab4aacc516aa4 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->>> @@ -389,6 +389,25 @@ void intel_guc_write_params(struct intel_guc *guc)
->>>   	intel_uncore_forcewake_put(uncore, FORCEWAKE_GT);
->>>   }
->>>   
->>> +void intel_guc_dump_time_info(struct intel_guc *guc, struct drm_printer *p)
->>> +{
->>> +	struct intel_gt *gt = guc_to_gt(guc);
->>> +	intel_wakeref_t wakeref;
->>> +	u32 stamp = 0;
->>> +	u64 ktime;
->>> +
->>> +	intel_device_info_print_runtime(RUNTIME_INFO(gt->i915), p);
->> Why does this function print runtime info alone? Seems kind of random,
->> considering what intel_device_info_print_runtime() actually
->> prints. Should it print both device info and runtime info, or nothing at
->> all?
-> Hmm. That was added specifically to print the rawclk value (and only for 
-> the rawclk value) because that was the frequency that the GuC time stamp 
-> register ticks at. I think we later worked out that the CS frequency was 
-> more correct. Hence printing gt->clock_frequency lower down. I guess I 
-> forgot to go back and remove the rawclk print, though.
->
-> So yeah, it can be removed.
+This patch series fixes integer overflow or integer truncation issues in
+page lookups, ttm place configuration and scatterlist creation, etc.
+We need to check that we avoid integer overflows when looking up a page,
+and so fix all the instances where we have mistakenly used a plain integer
+instead of a more suitable long.
+And there is an impedance mismatch between the scatterlist API using
+unsigned int and our memory/page accounting in unsigned long. That is we
+may try to create a scatterlist for a large object that overflows returning
+a small table into which we try to fit very many pages. As the object size
+is under the control of userspace, we have to be prudent and catch the
+conversion errors. To catch the implicit truncation as we switch from
+unsigned long into the scatterlist's unsigned int, we use improved
+overflows_type check and report E2BIG prior to the operation. This is
+already used in our create ioctls to indicate if the uABI request is simply
+too large for the backing store. 
+And ttm place also has the same problem with scatterlist creation,
+and we fix the integer truncation problem with the way approached by
+scatterlist creation.
+And It corrects the error code to return -E2BIG when creating gem objects
+using ttm or shmem, if the size is too large in each case.
+In order to provide a common macro, it moves and adds a few utility macros
+into overflow/util_macros header
 
-Could you r-b the patch [1] doing just that please?
+v8: Add check_assign() and remove safe_conversion() (Kees)
+    Replace safe_conversion() with check_assign() (Kees)
+    Fix overflows_type() to use gcc's built-in overflow function (Andrzej)
+    Add overflows_ptr() to allow overflow checking when assigning a value
+    into a pointer variable (G.G.)
+v7: Fix to use WARN_ON() macro where GEM_BUG_ON() macro was used. (Jani)
+v6: Move macro addition location so that it can be used by other than drm subsystem (Jani, Mauro, Andi)
+    Fix to follow general use case for GEM_BUG_ON(). (Jani)
+v5: Fix an alignment to match open parenthesis
+    Fix macros to be enclosed in parentheses for complex values
+    Fix too long line warning
+v4: Fix build warnins that reported by kernel test robot. (kernel test robot <lkp@intel.com>)
+    Add kernel-doc markups to the kAPI functions and macros (Mauoro)
+v3: Modify overflows_type() macro to consider signed data types and
+	add is_type_unsigned() macro (Mauro)
+    Make not use the same macro name on a function. (Mauro)
+    For kernel-doc, macros and functions are handled in the same namespace,
+    the same macro name on a function prevents ever adding documentation for it.
+    Not to change execution inside a macro. (Mauro)
+    Fix the problem that safe_conversion() macro always returns true (G.G)
+    Add safe_conversion_gem_bug_on() macro and remove temporal SAFE_CONVERSION() macro. (G.G.)
 
-BR,
-Jani.
+Chris Wilson (3):
+  drm/i915/gem: Typecheck page lookups
+  drm/i915: Check for integer truncation on scatterlist creation
+  drm/i915: Remove truncation warning for large objects
 
-[1] https://patchwork.freedesktop.org/patch/msgid/b395ac4c909042f5daabf29959d8733993545aa2.1660910433.git.jani.nikula@intel.com
+Gwan-gyeong Mun (5):
+  overflow: Move and add few utility macros into overflow
+  util_macros: Add exact_type macro to catch type mis-match while
+    compiling
+  drm/i915: Check for integer truncation on the configuration of ttm
+    place
+  drm/i915: Check if the size is too big while creating shmem file
+  drm/i915: Use error code as -E2BIG when the size of gem ttm object is
+    too large
 
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   7 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    | 303 +++++++++++++++---
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  27 +-
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c      |   4 +
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  19 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  23 +-
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |   5 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |  12 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |   8 +-
+ .../drm/i915/gem/selftests/i915_gem_object.c  |   8 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c             |   9 +-
+ drivers/gpu/drm/i915/i915_gem.c               |  18 +-
+ drivers/gpu/drm/i915/i915_scatterlist.h       |  11 +
+ drivers/gpu/drm/i915/i915_user_extensions.c   |   2 +-
+ drivers/gpu/drm/i915/i915_utils.h             |   6 +-
+ drivers/gpu/drm/i915/i915_vma.c               |   8 +-
+ drivers/gpu/drm/i915/intel_region_ttm.c       |  17 +-
+ include/linux/overflow.h                      |  67 ++++
+ include/linux/util_macros.h                   |  25 ++
+ 20 files changed, 491 insertions(+), 94 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.37.1
+
