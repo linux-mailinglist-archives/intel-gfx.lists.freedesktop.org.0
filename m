@@ -1,53 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 832BE59CC71
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 01:47:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94D0A59CCBB
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 02:05:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7DCEA6C0D;
-	Mon, 22 Aug 2022 23:47:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9768AA74BB;
+	Tue, 23 Aug 2022 00:04:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1283CA6BB7;
- Mon, 22 Aug 2022 23:46:44 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1588A7328
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 00:03:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661212005; x=1692748005;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=3wply6lLS23NAlxls7wiHXwcJrxsDOjA6HxqGJL3QsQ=;
- b=i0cyQR1w5DMjam7r3B+R/cSqSLLtghwcdvhyKuIXQc5CRfOavIq48Bdj
- qvf+xX7YFgD7lRX4YTvsD3dargsM7r6AYX4EmxxdnlWhEG1r2KRvkmOXm
- oz2rGSFPMqnkBBa93W2/REleGdV8y5mbLbiKEvxcP4rEEYs6Ma3GcuF6b
- vsknIQhghinRKXxPnV4eIOHEXvQtJU3Rkq5ECisJ+y/kUQvng/4CnkCIC
- 0Iez9OnjTnYlIe3C5Hh5zb3fEfLaxqDVUOzJWTgozlF/oQEytctBucNP2
- B5BllUkbsoq9vKFfWSaT+JtYjqZ9AfafPm5Il7uZPXCIzfEs5sgCx+FTW g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="280519305"
-X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; 
- d="asc'?scan'208";a="280519305"
+ t=1661213023; x=1692749023;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FjPrK8z77ty+xeUvHzjv5PNk/hV1K32/YUW9BrKoYXw=;
+ b=m7Rad6ERbgfhK8wjNAjZLQZyJuUzIWGxvYyssZlgfF/deDFZKgO4i2Iy
+ Rikoohwjv5NcylT9+X/UMHTx5mLN+OphO4+/CCmlYJXeeKGQ7KPrDMs6q
+ 9ylsMqaIwRtOcfmMSHh3mqHWAcSpK62AwV4e0KSExEqnW987xbREBkvnX
+ 3RVWU+iyFacV1+jw4ullkiAC63NiVKGknJsc49S2G7p3/8gLOk7tRkzXT
+ W8hgOI/mtgXOGZcHOfFgLY5n3stLl6cix+zfxpC2KjLIToJ6pi97cadRL
+ j8ORvrDDmT+JvlA8ocerFPnqTZGbci3IzfnKTMeNOV9XZljx4MV81qOC5 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="273304824"
+X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; d="scan'208";a="273304824"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2022 16:46:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; 
- d="asc'?scan'208";a="669769254"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.159.108])
- by fmsmga008.fm.intel.com with ESMTP; 22 Aug 2022 16:46:42 -0700
-Date: Tue, 23 Aug 2022 07:21:40 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Sean Christopherson <seanjc@google.com>
-Message-ID: <20220822232140.GL1089@zhen-hp.sh.intel.com>
-References: <bug-216388-28872@https.bugzilla.kernel.org/>
- <YwPB6W2tVIGWD7kD@google.com>
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 17:03:42 -0700
+X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; d="scan'208";a="669775504"
+Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2022 17:03:42 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date: Tue, 23 Aug 2022 00:03:23 +0000
+Message-Id: <20220823000342.281222-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="YGTp3YEHyFTiE1eD"
-Content-Disposition: inline
-In-Reply-To: <YwPB6W2tVIGWD7kD@google.com>
-Subject: Re: [Intel-gfx] [Bug 216388] New: On Host, kernel errors in KVM,
- on guests, it shows CPU stalls
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/19] Add DG2 OA support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,177 +55,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: kvm@vger.kernel.org, bugzilla-daemon@kernel.org,
- intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Add OA format support for DG2 and various fixes for DG2.
+The below 2 patches have uapi changes:
 
---YGTp3YEHyFTiE1eD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+drm/i915/perf: Add OA formats for DG2
+drm/i915/perf: Apply Wa_18013179988
 
-On 2022.08.22 17:50:33 +0000, Sean Christopherson wrote:
-> +GVT folks
->
-> On Sun, Aug 21, 2022, bugzilla-daemon@kernel.org wrote:
-> > https://bugzilla.kernel.org/show_bug.cgi?id=3D216388
-> >=20
-> >             Bug ID: 216388
-> >            Summary: On Host, kernel errors in KVM, on guests, it shows =
-CPU
-> >                     stalls
-> >            Product: Virtualization
-> >            Version: unspecified
-> >     Kernel Version: 5.19.0 / 5.19.1 / 5.19.2
-> >           Hardware: All
-> >                 OS: Linux
-> >               Tree: Mainline
-> >             Status: NEW
-> >           Severity: high
-> >           Priority: P1
-> >          Component: kvm
-> >           Assignee: virtualization_kvm@kernel-bugs.osdl.org
-> >           Reporter: nanook@eskimo.com
-> >         Regression: No
-> >=20
-> > Created attachment 301614
-> >   --> https://bugzilla.kernel.org/attachment.cgi?id=3D301614&action=3De=
-dit
-> > The configuration file used to Comile this kernel.
-> >=20
-> > This behavior has persisted across 5.19.0, 5.19.1, and 5.19.2.  While t=
-he
-> > kernel I am taking this example from is tainted (owing to using Intel
-> > development drivers for GPU virtualization), it is also occurring on
-> > non-tainted kernels on servers with no development or third party modul=
-es
-> > installed.
-> >=20
-> > INFO: task CPU 2/KVM:2343 blocked for more than 1228 seconds.
-> > [207177.050049]       Tainted: G     U    I       5.19.2 #1
-> > [207177.050050] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disa=
-bles
-> > this message.
-> > [207177.050051] task:CPU 2/KVM       state:D stack:    0 pid: 2343 ppid=
-:     1
-> > flags:0x00000002
-> > [207177.050054] Call Trace:
-> > [207177.050055]  <TASK>
-> > [207177.050056]  __schedule+0x359/0x1400
-> > [207177.050060]  ? kvm_mmu_page_fault+0x1ee/0x980
-> > [207177.050062]  ? kvm_set_msr_common+0x31f/0x1060
-> > [207177.050065]  schedule+0x5f/0x100
-> > [207177.050066]  schedule_preempt_disabled+0x15/0x30
-> > [207177.050068]  __mutex_lock.constprop.0+0x4e2/0x750
-> > [207177.050070]  ? aa_file_perm+0x124/0x4f0
-> > [207177.050071]  __mutex_lock_slowpath+0x13/0x20
-> > [207177.050072]  mutex_lock+0x25/0x30
-> > [207177.050075]  intel_vgpu_emulate_mmio_read+0x5d/0x3b0 [kvmgt]
->=20
-> This isn't a KVM problem, it's a KVMGT problem (despite the name, KVMGT i=
-s very
-> much not KVM).
->=20
-> > [207177.050084]  intel_vgpu_rw+0xb8/0x1c0 [kvmgt]
-> > [207177.050091]  intel_vgpu_read+0x20d/0x250 [kvmgt]
-> > [207177.050097]  vfio_device_fops_read+0x1f/0x40
-> > [207177.050100]  vfs_read+0x9b/0x160
-> > [207177.050102]  __x64_sys_pread64+0x93/0xd0
-> > [207177.050104]  do_syscall_64+0x58/0x80
-> > [207177.050106]  ? kvm_on_user_return+0x84/0xe0
-> > [207177.050107]  ? fire_user_return_notifiers+0x37/0x70
-> > [207177.050109]  ? exit_to_user_mode_prepare+0x41/0x200
-> > [207177.050111]  ? syscall_exit_to_user_mode+0x1b/0x40
-> > [207177.050112]  ? do_syscall_64+0x67/0x80
-> > [207177.050114]  ? irqentry_exit+0x54/0x70
-> > [207177.050115]  ? sysvec_call_function_single+0x4b/0xa0
-> > [207177.050116]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> > [207177.050118] RIP: 0033:0x7ff51131293f
-> > [207177.050119] RSP: 002b:00007ff4ddffa260 EFLAGS: 00000293 ORIG_RAX:
-> > 0000000000000011
-> > [207177.050121] RAX: ffffffffffffffda RBX: 00005599a6835420 RCX:
-> > 00007ff51131293f
-> > [207177.050122] RDX: 0000000000000004 RSI: 00007ff4ddffa2a8 RDI:
-> > 0000000000000027
-> > [207177.050123] RBP: 0000000000000004 R08: 0000000000000000 R09:
-> > 00000000ffffffff
-> > [207177.050124] R10: 0000000000065f10 R11: 0000000000000293 R12:
-> > 0000000000065f10
-> > [207177.050124] R13: 00005599a6835330 R14: 0000000000000004 R15:
-> > 0000000000065f10
-> > [207177.050126]  </TASK>
-> >=20
-> >      I am seeing this on Intel i7-6700k, i7-6850k, and i7-9700k platfor=
-ms.
+Test-with: 20220822235657.280702-1-umesh.nerlige.ramappa@intel.com
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-One recent regression fix on Comet Lake is https://patchwork.freedesktop.or=
-g/patch/496987/,
-it's on the way to 6.0-rc and would be pushed to 5.19 stable as well. But l=
-ooks this
-report impacts on more platforms? We'll double check.
+Umesh Nerlige Ramappa (18):
+  drm/i915/perf: Fix OA filtering logic for GuC mode
+  drm/i915/perf: Add OA formats for DG2
+  drm/i915/perf: Fix noa wait predication for DG2
+  drm/i915/perf: Determine gen12 oa ctx offset at runtime
+  drm/i915/perf: Enable commands per clock reporting in OA
+  drm/i915/perf: Use helpers to process reports w.r.t. OA buffer size
+  drm/i915/perf: Simply use stream->ctx
+  drm/i915/perf: Move gt-specific data from i915->perf to gt->perf
+  drm/i915/perf: Replace gt->perf.lock with stream->lock for file ops
+  drm/i915/perf: Use gt-specific ggtt for OA and noa-wait buffers
+  drm/i915/perf: Store a pointer to oa_format in oa_buffer
+  drm/i915/perf: Parse 64bit report header formats correctly
+  drm/i915/perf: Add Wa_16010703925:dg2
+  drm/i915/perf: Add Wa_1608133521:dg2
+  drm/i915/perf: Add Wa_1508761755:dg2
+  drm/i915/perf: Apply Wa_18013179988
+  drm/i915/perf: Save/restore EU flex counters across reset
+  drm/i915/perf: Enable OA for DG2
 
-Thanks
+Vinay Belgaumkar (1):
+  drm/i915/guc: Support OA when Wa_16011777198 is enabled
 
-> >=20
-> >      This did not happen on 5.17 kernels, and 5.18 kernels never ran st=
-able
-> > enough on my platforms to actually run them for more than a few minutes.
-> >=20
-> >      Likewise 6.0-rc1 has not been stable enough to run in production. =
- After
-> > less than three hours running on my workstation it locked hard with eve=
-n the
-> > magic sys-request key being unresponsive and only power cycling the mac=
-hine got
-> > it back.
-> >=20
-> >      The operating system in use for the host on all machines is Ubuntu=
- 22.04.
-> >=20
-> >      Guests vary with Ubuntu 22.04 being the most common but also Mint,=
- Debian,
-> > Manjaro, Centos, Fedora, ScientificLinux, Zorin, and Windows being in u=
-se.
-> >=20
-> >      I see the same issue manifest on platforms running only Ubuntu gue=
-sts as
-> > with guests of varying operating systems. =20
-> >=20
-> >      The configuration file I used to compile this kernel is attached. =
- I
-> > compiled it with gcc 12.1.0.
-> >=20
-> >      This behavior does not manifest itself instantly, typically the ma=
-chine
-> > needs to be running 3-7 days before it does.  Once it does guests keep =
-stalling
-> > and restarting libvirtd does not help.  Only thing that seems to is a h=
-ard
-> > reboot of the physical host.  For this reason I believe the issue lies =
-strictly
-> > with the host and not the guests.
-> >=20
-> >      I have listed it as a severity of high since it is completely serv=
-ice
-> > interrupting.
-> >=20
-> > --=20
-> > You may reply to this email to add a comment.
-> >=20
-> > You are receiving this mail because:
-> > You are watching the assignee of the bug.
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h   |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/gt/intel_lrc.h           |   2 +
+ drivers/gpu/drm/i915/gt/intel_sseu.c          |   4 +-
+ .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |   9 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |   8 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  45 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |   2 +
+ drivers/gpu/drm/i915/i915_drv.h               |   3 +
+ drivers/gpu/drm/i915/i915_getparam.c          |   3 +
+ drivers/gpu/drm/i915/i915_pci.c               |   1 +
+ drivers/gpu/drm/i915/i915_perf.c              | 769 ++++++++++++++----
+ drivers/gpu/drm/i915/i915_perf.h              |   2 +
+ drivers/gpu/drm/i915/i915_perf_oa_regs.h      |   6 +-
+ drivers/gpu/drm/i915/i915_perf_types.h        |  53 +-
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ drivers/gpu/drm/i915/selftests/i915_perf.c    |  16 +-
+ include/uapi/drm/i915_drm.h                   |  12 +
+ 19 files changed, 746 insertions(+), 195 deletions(-)
 
---YGTp3YEHyFTiE1eD
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYwQPegAKCRCxBBozTXgY
-JwVzAJ9AGCbs4pALTV0EbDPc7WMK/2Ig9gCaA86BaIuoLjxNrPIGDl/B97DXroQ=
-=W/db
------END PGP SIGNATURE-----
-
---YGTp3YEHyFTiE1eD--
