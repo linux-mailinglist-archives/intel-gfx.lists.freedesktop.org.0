@@ -1,47 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B83759ED45
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 22:25:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8EE059ED8F
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 22:42:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F379210E1AA;
-	Tue, 23 Aug 2022 20:25:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98D8810E653;
+	Tue, 23 Aug 2022 20:42:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E74CD10E2DC;
- Tue, 23 Aug 2022 20:25:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9830910E653
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 20:41:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661286346; x=1692822346;
+ t=1661287318; x=1692823318;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=RK/RmtVt7/aU2rvCEuP5iT6sn2er6dfIHbIdiIeR1gU=;
- b=N9IUNleW0Tgb09jwpYLHvLA4nil05qzlonjjI5d2ajFPDxZeCJ6enIiq
- hjJ8nR82eCHTFrj31OvqkyQ06oBE6KzfifXuQ9Gd04t1YeZcP82EdiWFL
- Ar7FPJPXetaaMd3SHgaKKhj5XhZfZIKhe1wekmk3rfX4YcO8XQsnSTgrr
- Q4N4DRtxmKR+JtZzaVKfRQ7jpuQUZeIUnHgEOfPvenw74c0s97w8FTUzz
- iwvBls6rEvGZYLzD9ZbbRLFvEfomIBE6pI0XKFbO/3yctn8EGwoDe4/Lg
- N2HLmE6F50gV/UROFtE2kntTk2ZEPYIRgfAy+alsYluLvnBbOEvFVMiXH A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="319840752"
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="319840752"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ bh=U1w3tC7EfDt2i70EWwVQ0cX57piQC6OmbEEo50LHp34=;
+ b=duzn3alRbKK2p2VItJUVthD3RIH8KmoC3CMvGgU3henPgAilASZHxm1c
+ OgZF/nH9zcaL0EFMeSQn0R3KoOq1WJ/PLWR9+NaTbR0eMP/db0rJZO7V7
+ OAZkQB8ubECt+NYDb36wkbgWjwz9arU8AzdWToHnn7T6ShL+jkrP5sZ7C
+ U6nF93UJdNELBV4gDLGhSBvv7lokmcysKEkBZ3yP2/tkV0DYSOvwzJ05W
+ a+4wpQbPZJ6GskgkRg6gn61cdEKoBRDWoYRi/zzzc5OrXGzY6wEW+ZXpT
+ 62TE+gM5aLobqo6C/ygGmJmyUGLpFbSJqxh3SUzLdGdrhuC/kG9ucLRKF w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="319843583"
+X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="319843583"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 13:25:46 -0700
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="670189975"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 13:25:45 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
+ 23 Aug 2022 13:41:58 -0700
+X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="638815607"
+Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2022 13:41:56 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Aug 2022 13:24:49 -0700
-Message-Id: <20220823202449.83727-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.37.2
+Date: Tue, 23 Aug 2022 20:41:36 +0000
+Message-Id: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Incorporate Wa_16014892111 into
- DRAW_WATERMARK tuning
+Subject: [Intel-gfx] [PATCH 00/19] Add DG2 OA support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,80 +53,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Although register tuning settings are generally implemented via the
-workaround infrastructure, it turns out that the DRAW_WATERMARK register
-is not properly saved/restored by hardware around power events (i.e.,
-RC6 entry) so updates to the value cannot be applied in the usual
-manner.  New workaround Wa_16014892111 informs us that any tuning
-updates to this register must instead be applied via an INDIRECT_CTX
-batch buffer.  This will ensure that the necessary value is re-applied
-when a context begins running, even if an RC6 entry had wiped the
-register back to hardware defaults since the last context ran.
+Add OA format support for DG2 and various fixes for DG2.
+The below 2 patches have uapi changes:
 
-Fixes: 6dc85721df74 ("drm/i915/dg2: Add additional tuning settings")
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6642
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c         | 21 +++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_workarounds.c |  2 --
- 2 files changed, 21 insertions(+), 2 deletions(-)
+drm/i915/perf: Add OA formats for DG2
+drm/i915/perf: Apply Wa_18013179988
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index eec73c66406c..070cec4ff8a4 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1242,6 +1242,23 @@ dg2_emit_rcs_hang_wabb(const struct intel_context *ce, u32 *cs)
- 	return cs;
- }
- 
-+/*
-+ * The bspec's tuning guide asks us to program a vertical watermark value of
-+ * 0x3FF.  However this register is not saved/restored properly by the
-+ * hardware, so we're required to apply the desired value via INDIRECT_CTX
-+ * batch buffer to ensure the value takes effect properly.  All other bits
-+ * in this register should remain at 0 (the hardware default).
-+ */
-+static u32 *
-+dg2_emit_draw_watermark_setting(u32 *cs)
-+{
-+	*cs++ = MI_LOAD_REGISTER_IMM(1);
-+	*cs++ = i915_mmio_reg_offset(DRAW_WATERMARK);
-+	*cs++ = REG_FIELD_PREP(VERT_WM_VAL, 0x3FF);
-+
-+	return cs;
-+}
-+
- static u32 *
- gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
- {
-@@ -1263,6 +1280,10 @@ gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
- 	if (!HAS_FLAT_CCS(ce->engine->i915))
- 		cs = gen12_emit_aux_table_inv(cs, GEN12_GFX_CCS_AUX_NV);
- 
-+	/* Wa_16014892111 */
-+	if (IS_DG2(ce->engine->i915))
-+		cs = dg2_emit_draw_watermark_setting(cs);
-+
- 	return cs;
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 31e129329fb0..3cdb8294e13f 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2685,8 +2685,6 @@ add_render_compute_tuning_settings(struct drm_i915_private *i915,
- 	if (IS_DG2(i915)) {
- 		wa_write_or(wal, XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS);
- 		wa_write_clr_set(wal, RT_CTRL, STACKID_CTRL, STACKID_CTRL_512);
--		wa_write_clr_set(wal, DRAW_WATERMARK, VERT_WM_VAL,
--				 REG_FIELD_PREP(VERT_WM_VAL, 0x3FF));
- 
- 		/*
- 		 * This is also listed as Wa_22012654132 for certain DG2
+v2:
+- Drop inline (Jani)
+- Repost as some patches did not make it to the ML
+- Update Test-with id
+
+Test-with: 20220823183036.5270-1-umesh.nerlige.ramappa@intel.com
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+
+Umesh Nerlige Ramappa (18):
+  drm/i915/perf: Fix OA filtering logic for GuC mode
+  drm/i915/perf: Add OA formats for DG2
+  drm/i915/perf: Fix noa wait predication for DG2
+  drm/i915/perf: Determine gen12 oa ctx offset at runtime
+  drm/i915/perf: Enable commands per clock reporting in OA
+  drm/i915/perf: Use helpers to process reports w.r.t. OA buffer size
+  drm/i915/perf: Simply use stream->ctx
+  drm/i915/perf: Move gt-specific data from i915->perf to gt->perf
+  drm/i915/perf: Replace gt->perf.lock with stream->lock for file ops
+  drm/i915/perf: Use gt-specific ggtt for OA and noa-wait buffers
+  drm/i915/perf: Store a pointer to oa_format in oa_buffer
+  drm/i915/perf: Parse 64bit report header formats correctly
+  drm/i915/perf: Add Wa_16010703925:dg2
+  drm/i915/perf: Add Wa_1608133521:dg2
+  drm/i915/perf: Add Wa_1508761755:dg2
+  drm/i915/perf: Apply Wa_18013179988
+  drm/i915/perf: Save/restore EU flex counters across reset
+  drm/i915/perf: Enable OA for DG2
+
+Vinay Belgaumkar (1):
+  drm/i915/guc: Support OA when Wa_16011777198 is enabled
+
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h   |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/gt/intel_lrc.h           |   2 +
+ drivers/gpu/drm/i915/gt/intel_sseu.c          |   4 +-
+ .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |   9 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |   8 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  45 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |   2 +
+ drivers/gpu/drm/i915/i915_drv.h               |   3 +
+ drivers/gpu/drm/i915/i915_getparam.c          |   3 +
+ drivers/gpu/drm/i915/i915_pci.c               |   1 +
+ drivers/gpu/drm/i915/i915_perf.c              | 760 ++++++++++++++----
+ drivers/gpu/drm/i915/i915_perf.h              |   2 +
+ drivers/gpu/drm/i915/i915_perf_oa_regs.h      |   6 +-
+ drivers/gpu/drm/i915/i915_perf_types.h        |  53 +-
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ drivers/gpu/drm/i915/selftests/i915_perf.c    |  16 +-
+ include/uapi/drm/i915_drm.h                   |  12 +
+ 19 files changed, 737 insertions(+), 195 deletions(-)
+
 -- 
-2.37.2
+2.25.1
 
