@@ -1,48 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC355A02E3
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 22:37:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B741C5A02E4
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 22:37:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60809C7EFA;
-	Wed, 24 Aug 2022 20:36:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3FF2C7F03;
+	Wed, 24 Aug 2022 20:36:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FDE210E783
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 20:42:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661287326; x=1692823326;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UuL0xMHOIbnF5k3Ipb6WuQgYTBV7LXDGDJij/qh4Vkg=;
- b=MvODgypC69a/YGesxOzhEnjgVSfn+tWLo+1xrS8bAyYAZn0tnDDx/XXK
- jqqGc3QK/6fhihp2UdjWvW7+J++M2ry5sMUpRWXR+0RnQv6q5GXgwWpj+
- YI0QKORdVrkTtr9swPb72KJaGVQgceaOmlQIdZOuRCgAB16J5rByIDMQv
- FKWtiB9RGSc3zgyAr107oRxOLhBNHAjafUq9o8TJOOFUbEFQYbjJu4+hP
- dUqIns7qG+RlaeEtwx5hQWASCUGaG9wNJxKGU1jI+UVkTMgkmnF8UctFE
- zmQYearcRhH/W+Phyktt2Ihl3IoPhr2n/VJ9y1hY9VrKJy8ScSPDpTEWW g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="294579400"
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="294579400"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 13:42:01 -0700
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="638815693"
-Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2022 13:42:00 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Aug 2022 20:41:55 +0000
-Message-Id: <20220823204155.8178-20-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
-References: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com
+ [IPv6:2607:f8b0:4864:20::72b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C08110FAC5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 21:15:36 +0000 (UTC)
+Received: by mail-qk1-x72b.google.com with SMTP id w18so11300487qki.8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 14:15:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc;
+ bh=q3nQrPdguTPd9O27TrXIDlIOM870kd0JIIJ6PmuluuA=;
+ b=EWbe276mLSentV4YG5+OF01S/AYfrw8bSuiIjCz9JxdVoAMWieLstljhcHi8ppkrZH
+ 0ZJzmDPrKzWaNn8/+QNNSU4uoF6Nsa757XNkCRr2Dzr3aPYq2VL+FnJiPHzAnGoFRT9U
+ RtspYledwR/VFX8/OmTyHeSIiQvNYg/9Yqt1w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc;
+ bh=q3nQrPdguTPd9O27TrXIDlIOM870kd0JIIJ6PmuluuA=;
+ b=BLV5a06rRvl5FFC6r7wT9vrk3sRvM7oUzLNqeZaSFycaDLSgbq6qGSy18l4/bJuZ4l
+ 6VeKqtUb6GDSbGqyQOGN+slGfiYvyYJmtinutBiuTsKiRLEd/NYBHANgWIbWKC5cQf2V
+ 3NA70pRfWw05+hmASC0rLx3mknbIHeSEuUj7EVO9L6Cv2EwJ0Ip8M4tH/0vHPLuSLJ2K
+ xevRrBfvFKYC243CUdTnoQm4197Wl/SYqJFJQhbv9idVRjbbGwoPLb3hFpVTo0FIwKw3
+ WvB/74YpPBYEETwZbBvsjlmk1asKd7jSCwbLzuPoH7MG4Wsb8HelDkxEBhT6bmtRQ/05
+ JV1A==
+X-Gm-Message-State: ACgBeo2IKzhc8S8Bk+Q2pZzdygpMC2JCj4AydFDQulfLn/CJ91ysowSC
+ 7VjMgJeE8WMMlee+EFTSSANG2XOQ/eUOQK7G+vafMg==
+X-Google-Smtp-Source: AA6agR5JR9EDbDOUdkSQjf4lC4HXNM91jKsevFO4ZtbMfuCNmRN4//uP9CXgfxdVuL5rqsHBzbD2lckHCpgv1GfPPyA=
+X-Received: by 2002:a05:620a:b1c:b0:6ba:f6ce:85fe with SMTP id
+ t28-20020a05620a0b1c00b006baf6ce85femr17548136qkg.195.1661289335506; Tue, 23
+ Aug 2022 14:15:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 19/19] drm/i915/perf: Enable OA for DG2
+References: <20220818174205.2412730-1-justonli@chromium.org>
+ <3aeae2e6-ebe3-5241-bfa1-ee36a0d5ec94@intel.com>
+In-Reply-To: <3aeae2e6-ebe3-5241-bfa1-ee36a0d5ec94@intel.com>
+From: Juston Li <justonli@chromium.org>
+Date: Tue, 23 Aug 2022 14:15:23 -0700
+Message-ID: <CAKhQNHHoC3e6NjpjRovHnTCe88fiRXU_U08Rw1k+-3pcB3sDYg@mail.gmail.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/pxp: don't start pxp without
+ mei_pxp bind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,33 +63,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, alan.previn.teres.alexis@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-OA was disabled for DG2 as support was missing. Enable it back now.
+On Fri, Aug 19, 2022 at 4:53 AM Andrzej Hajda <andrzej.hajda@intel.com> wrote:
+>
+> On 18.08.2022 19:42, Juston Li wrote:
+> > pxp will not start correctly until after mei_pxp bind completes and
+> > intel_pxp_init_hw() is called.
+> > Wait for the bind to complete before proceeding with startup.
+> >
+> > This fixes a race condition during bootup where we observed a small
+> > window for pxp commands to be sent, starting pxp before mei_pxp bind
+> > completed.
+> >
+> > Changes since v2:
+> > - wait for pxp_component to bind instead of returning -EAGAIN (Daniele)
+> >
+> > Changes since v1:
+> > - check pxp_component instead of pxp_component_added (Daniele)
+> > - pxp_component needs tee_mutex (Daniele)
+> > - return -EAGAIN so caller knows to retry (Daniele)
+> >
+> > Signed-off-by: Juston Li <justonli@chromium.org>
+>
+> In typical usage of component framework driver postpones initialization
+> till component is bound. In such case checking/waiting for component as
+> in this patch is not necessary and the code is more straightforward.
+> I wonder how it behaves on component unbind.
+>
+> Anyway:
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/i915/i915_perf.c | 6 ------
- 1 file changed, 6 deletions(-)
+Thanks Andrzej!
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index ce1b6ad4d107..f109aeeece8d 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -4877,12 +4877,6 @@ void i915_perf_init(struct drm_i915_private *i915)
- {
- 	struct i915_perf *perf = &i915->perf;
- 
--	/* XXX const struct i915_perf_ops! */
--
--	/* i915_perf is not enabled for DG2 yet */
--	if (IS_DG2(i915))
--		return;
--
- 	perf->oa_formats = oa_formats;
- 	if (IS_HASWELL(i915)) {
- 		perf->ops.is_valid_b_counter_reg = gen7_is_valid_b_counter_addr;
--- 
-2.25.1
+Any other comments Daniele?
+Otherwise, need some help from someone to merge this :)
 
+Thanks
+Juston
+
+> Regards
+> Andrzej
+>
+>
+> > ---
+> >   drivers/gpu/drm/i915/pxp/intel_pxp.c | 15 +++++++++++++++
+> >   1 file changed, 15 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> > index 15311eaed848..17109c513259 100644
+> > --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> > @@ -176,6 +176,18 @@ static void pxp_queue_termination(struct intel_pxp *pxp)
+> >       spin_unlock_irq(&gt->irq_lock);
+> >   }
+> >
+> > +static bool pxp_component_bound(struct intel_pxp *pxp)
+> > +{
+> > +     bool bound = false;
+> > +
+> > +     mutex_lock(&pxp->tee_mutex);
+> > +     if (pxp->pxp_component)
+> > +             bound = true;
+> > +     mutex_unlock(&pxp->tee_mutex);
+> > +
+> > +     return bound;
+> > +}
+> > +
+> >   /*
+> >    * the arb session is restarted from the irq work when we receive the
+> >    * termination completion interrupt
+> > @@ -187,6 +199,9 @@ int intel_pxp_start(struct intel_pxp *pxp)
+> >       if (!intel_pxp_is_enabled(pxp))
+> >               return -ENODEV;
+> >
+> > +     if (wait_for(pxp_component_bound(pxp), 250))
+> > +             return -ENXIO;
+> > +
+> >       mutex_lock(&pxp->arb_mutex);
+> >
+> >       if (pxp->arb_is_valid)
+>
