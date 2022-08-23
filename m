@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B87F25A4CEB
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 570A15A4CF0
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81CB810F1C5;
-	Mon, 29 Aug 2022 13:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB89B10F1CE;
+	Mon, 29 Aug 2022 13:04:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bg5.exmail.qq.com (bg4.exmail.qq.com [43.155.65.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 486AB10E681;
- Tue, 23 Aug 2022 12:28:26 +0000 (UTC)
-X-QQ-mid: bizesmtp83t1661257699tzwdgpjs
+Received: from bg5.exmail.qq.com (bg4.exmail.qq.com [43.154.221.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C62DD10E363;
+ Tue, 23 Aug 2022 12:30:58 +0000 (UTC)
+X-QQ-mid: bizesmtp76t1661257851toe4j5vo
 Received: from localhost.localdomain ( [182.148.14.124])
  by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 23 Aug 2022 20:28:17 +0800 (CST)
+ id ; Tue, 23 Aug 2022 20:30:50 +0800 (CST)
 X-QQ-SSF: 01000000002000C0D000B00A0000000
-X-QQ-FEAT: DRnj/z+Sqaf2Zp2vGdN0+GAC4bAixq9uAkJsGXqE8c1ZOp77y7v7oefrIZuTT
- NsjlTF26dvCJjpO2u7sSaEfqIxPXG7I0CCqDNpOkhugzrU0zjQN9+5rySP7M8kKr/GvR1fu
- Asq9fJECZUjhW9tz4PKI/AmdszlxMT8YXOwDTH06Pqhiy4xIi+UAoJ177ed2HMXopHFYyg3
- tyn+N4wSGojewCTIzCHoZWRCBznI1dXA2k70um3sOPstl51EhT0LAbybJyrm9OKYkrGD5en
- +9u2GO8Jas8mjUPsBUU/DM3vkvTlG0VGfM0VTt96ge9WkgC0Mr2qUpGk6ulOd0nvFB/HgYt
- JcuKitQqvsC0pw71df5NfupRW6FWLCKmHpJfMDty01zGFb601mnLiV3VKObsgBPD2H/LOYE
+X-QQ-FEAT: CR3LFp2JE4nuRAt3y5hdzUXJ8PhfvhAvvgiJTnr3AKnjupX57tUKbnJ0nioxQ
+ INW5jBmZbXBroGHF0+FEYjm+Rk6YHbz4FrAU5YpFmbpuSpYKZS6ApwnmGlzMOARuF0j/UOw
+ nRLvkO3uiRovj6Ws064ydTtHc8tAqJ9tsBRASqSkdbO6fAlFlHcbFKOp3tBkmSwwJLJ5a0H
+ D2sstLjSXAlo1ELaaTBRDnUQzEseU+sL7y6zDpjARhdyvUOZFg5l08+IbGsaFOBTeh9TXN+
+ MEeH8ltMBfZ5lRHkjNjzfgWdQgf3+HvrUqLJ1eAEr3zrdlOe8P3vtARqZ9NDivOhdHUaG8z
+ zHJi9D14E+JuUFc2R4HErlF7e0mSLpaLYMXBWUpzZoaqiVvGm+4zb586u+LgjdG7HzOkLd8
 X-QQ-GoodBg: 0
 From: Jilin Yuan <yuanjilin@cdjrlc.com>
 To: airlied@linux.ie,
 	daniel@ffwll.ch
-Date: Tue, 23 Aug 2022 20:28:11 +0800
-Message-Id: <20220823122811.22525-1-yuanjilin@cdjrlc.com>
+Date: Tue, 23 Aug 2022 20:30:44 +0800
+Message-Id: <20220823123044.24593-1-yuanjilin@cdjrlc.com>
 X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -53,56 +53,65 @@ Cc: intel-gfx@lists.freedesktop.org, Jilin Yuan <yuanjilin@cdjrlc.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
- Delete the redundant word 'for'.
+ Delete the redundant word 'other'.
  Delete the redundant word 'the'.
- Delete the redundant word 'into'.
+ Delete the redundant word 'will'.
 
 Signed-off-by: Jilin Yuan <yuanjilin@cdjrlc.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h          | 2 +-
- drivers/gpu/drm/i915/i915_request.c      | 2 +-
- drivers/gpu/drm/i915/intel_device_info.h | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/i915_gem_evict.c | 2 +-
+ drivers/gpu/drm/i915/i915_irq.c       | 4 ++--
+ drivers/gpu/drm/i915/i915_memcpy.h    | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 4f5a51bb9e1e..c0c4f4acfbf9 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2534,7 +2534,7 @@
-  * HDMI/DP bits are g4x+
-  *
-  * WARNING: Bspec for hpd status bits on gen4 seems to be completely confused.
-- * Please check the detailed lore in the commit message for for experimental
-+ * Please check the detailed lore in the commit message for experimental
-  * evidence.
-  */
- /* Bspec says GM45 should match G4X/VLV/CHV, but reality disagrees */
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 73d5195146b0..9caf99a13c61 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1735,7 +1735,7 @@ __i915_request_add_to_timeline(struct i915_request *rq)
- }
+diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+index f025ee4fa526..028e509e1628 100644
+--- a/drivers/gpu/drm/i915/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+@@ -256,7 +256,7 @@ i915_gem_evict_something(struct i915_address_space *vm,
+ 	goto search_again;
+ 
+ found:
+-	/* drm_mm doesn't allow any other other operations while
++	/* drm_mm doesn't allow any other operations while
+ 	 * scanning, therefore store to-be-evicted objects on a
+ 	 * temporary list and take a reference for all before
+ 	 * calling unbind (which may remove the active reference
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 73cebc6aa650..1e4a705bc5cc 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -65,7 +65,7 @@
  
  /*
-- * NB: This function is not allowed to fail. Doing so would mean the the
-+ * NB: This function is not allowed to fail. Doing so would mean the
-  * request is not being tracked for completion but the work itself is
-  * going to happen on the hardware. This would be a Bad Thing(tm).
+  * Interrupt statistic for PMU. Increments the counter only if the
+- * interrupt originated from the the GPU so interrupts from a device which
++ * interrupt originated from the GPU so interrupts from a device which
+  * shares the interrupt line are not accounted.
   */
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index e7d2cf7d65c8..70e092f2b63a 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -253,7 +253,7 @@ struct intel_device_info {
- struct intel_runtime_info {
- 	/*
- 	 * Platform mask is used for optimizing or-ed IS_PLATFORM calls into
--	 * into single runtime conditionals, and also to provide groundwork
-+	 * single runtime conditionals, and also to provide groundwork
- 	 * for future per platform, or per SKU build optimizations.
- 	 *
- 	 * Array can be extended when necessary if the corresponding
+ static inline void pmu_irq_stats(struct drm_i915_private *i915,
+@@ -2175,7 +2175,7 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
+ 	raw_reg_write(regs, DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
+ 
+ 	/* Disable south interrupts. We'll only write to SDEIIR once, so further
+-	 * interrupts will will be stored on its back queue, and then we'll be
++	 * interrupts will be stored on its back queue, and then we'll be
+ 	 * able to process them after we restore SDEIER (as soon as we restore
+ 	 * it, we'll get an interrupt if SDEIIR still has something to process
+ 	 * due to its back queue). */
+diff --git a/drivers/gpu/drm/i915/i915_memcpy.h b/drivers/gpu/drm/i915/i915_memcpy.h
+index 3df063a3293b..126dfb4352f0 100644
+--- a/drivers/gpu/drm/i915/i915_memcpy.h
++++ b/drivers/gpu/drm/i915/i915_memcpy.h
+@@ -18,7 +18,7 @@ void i915_unaligned_memcpy_from_wc(void *dst, const void *src, unsigned long len
+ /* The movntdqa instructions used for memcpy-from-wc require 16-byte alignment,
+  * as well as SSE4.1 support. i915_memcpy_from_wc() will report if it cannot
+  * perform the operation. To check beforehand, pass in the parameters to
+- * to i915_can_memcpy_from_wc() - since we only care about the low 4 bits,
++ * i915_can_memcpy_from_wc() - since we only care about the low 4 bits,
+  * you only need to pass in the minor offsets, page-aligned pointers are
+  * always valid.
+  *
 -- 
 2.36.1
 
