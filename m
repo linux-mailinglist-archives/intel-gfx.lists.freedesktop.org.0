@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D76659ED90
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 22:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE7A059ED9B
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 22:42:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA11610E647;
-	Tue, 23 Aug 2022 20:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC7F110E828;
+	Tue, 23 Aug 2022 20:42:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1FBC10E692
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE15310E6B6
  for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 20:41:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1661287318; x=1692823318;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jsDLjVGHOwUeHn93IuhkmuFOOdX7PdT8SNatbMKF4s0=;
- b=GqFcIigLe44ozbbPWk4/YDkCdyyP3Mib7f8A+M5nvmHEdEeHPIpa40rV
- 5UpL/6Bor5oLghwH/ghM3JCyPhl6rXsA1vKjgqIbsVj23gzqCRD8YTdxo
- OwbU+s+GTCgvBhENISmDLBXv9jxEFHKUz3SAQcB1zv4muVp3HKdy3GYR3
- qamech0QYyuNDOWLsCS2cqs7b/kH0hhG0qytB2Zd3gKYCkRpdICMFKNtr
- 9iAJwniolz1yMPuvv5Uir3eczTPm0jxnV1Uc3uD95OqNsoWMeoyuI0a7P
- HdV7ff9IPaX2br0oGaw5FzaVn0VaKCMiLZOuOJf7Vye0M3otXRe+AwW8S g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="319843585"
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="319843585"
+ bh=z8ROyXubCNeNHwrBurhdD20QwcIuAhfCx0R264+DEYs=;
+ b=ZxIr84Y5t0+9d2mAwrV/LBQbwkHqBF/R1p1vdjD+IbeXsizwn6Lq2qtl
+ 9439EsIOPS+nSVtU3voMxevSHqeXKvNJev4BNGyhVjmvIrHP1H2C1HGeh
+ yB3ucmTcaMSY3Rf1r3BUY2pM0M4JOW00akcCWgaM4Q7GDCUAynZ8U9M/b
+ fuuhcw7y0sY/dntFDAAE/X/bX1yFQ9y/ByBfmgpveWCT8UGIu12UbgXeA
+ RlGHG0T6EFeepA0LHFdLPttoh0wsZC71mQyqKIxZgxyU0ORZUS39hmYqR
+ VIuaztUNgdB315FXC0eHpolkWbBQlYyO2tVCAk+JQJPP/j47DQuJ6LUCm Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="319843586"
+X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="319843586"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2022 13:41:58 -0700
-X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="638815611"
+X-IronPort-AV: E=Sophos;i="5.93,258,1654585200"; d="scan'208";a="638815620"
 Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2022 13:41:57 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Aug 2022 20:41:37 +0000
-Message-Id: <20220823204155.8178-2-umesh.nerlige.ramappa@intel.com>
+Date: Tue, 23 Aug 2022 20:41:39 +0000
+Message-Id: <20220823204155.8178-4-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
 References: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 01/19] drm/i915/perf: Fix OA filtering logic for
- GuC mode
+Subject: [Intel-gfx] [PATCH 03/19] drm/i915/perf: Fix noa wait predication
+ for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,204 +59,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With GuC mode of submission, GuC is in control of defining the context id field
-that is part of the OA reports. To filter reports, UMD and KMD must know what sw
-context id was chosen by GuC. There is not interface between KMD and GuC to
-determine this, so read the upper-dword of EXECLIST_STATUS to filter/squash OA
-reports for the specific context.
+Predication for batch buffer commands changed in XEHPSDV.
+MI_BATCH_BUFFER_START predicates based on MI_SET_PREDICATE_RESULT
+register. The MI_SET_PREDICATE_RESULT register can only be modified
+with MI_SET_PREDICATE command. When configured, the MI_SET_PREDICATE
+command sets MI_SET_PREDICATE_RESULT based on bit 0 of
+MI_PREDICATE_RESULT_2. Use this to configure predication in noa_wait.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.h |   2 +
- drivers/gpu/drm/i915/i915_perf.c    | 141 ++++++++++++++++++++++++----
- 2 files changed, 124 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h |  1 +
+ drivers/gpu/drm/i915/i915_perf.c            | 24 +++++++++++++++++----
+ 2 files changed, 21 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
-index a390f0813c8b..7111bae759f3 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.h
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
-@@ -110,6 +110,8 @@ enum {
- #define XEHP_SW_CTX_ID_WIDTH			16
- #define XEHP_SW_COUNTER_SHIFT			58
- #define XEHP_SW_COUNTER_WIDTH			6
-+#define GEN12_GUC_SW_CTX_ID_SHIFT		39
-+#define GEN12_GUC_SW_CTX_ID_WIDTH		16
- 
- static inline void lrc_runtime_start(struct intel_context *ce)
- {
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+index 889f0df3940b..25d23f3a4769 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+@@ -200,6 +200,7 @@
+ #define RING_CONTEXT_STATUS_PTR(base)		_MMIO((base) + 0x3a0)
+ #define RING_CTX_TIMESTAMP(base)		_MMIO((base) + 0x3a8) /* gen8+ */
+ #define RING_PREDICATE_RESULT(base)		_MMIO((base) + 0x3b8)
++#define MI_PREDICATE_RESULT_2_ENGINE(base)	_MMIO((base) + 0x3bc)
+ #define RING_FORCE_TO_NONPRIV(base, i)		_MMIO(((base) + 0x4D0) + (i) * 4)
+ #define   RING_FORCE_TO_NONPRIV_DENY		REG_BIT(30)
+ #define   RING_FORCE_TO_NONPRIV_ADDRESS_MASK	REG_GENMASK(25, 2)
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index f3c23fe9ad9c..735244a3aedd 100644
+index c8331b549d31..3526693d64fa 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1233,6 +1233,125 @@ static struct intel_context *oa_pin_context(struct i915_perf_stream *stream)
- 	return stream->pinned_ctx;
- }
+@@ -286,6 +286,7 @@ static u32 i915_perf_stream_paranoid = true;
+ #define OAREPORT_REASON_CTX_SWITCH     (1<<3)
+ #define OAREPORT_REASON_CLK_RATIO      (1<<5)
  
-+static int
-+__store_reg_to_mem(struct i915_request *rq, i915_reg_t reg, u32 ggtt_offset)
-+{
-+	u32 *cs, cmd;
-+
-+	cmd = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
-+	if (GRAPHICS_VER(rq->engine->i915) >= 8)
-+		cmd++;
-+
-+	cs = intel_ring_begin(rq, 4);
-+	if (IS_ERR(cs))
-+		return PTR_ERR(cs);
-+
-+	*cs++ = cmd;
-+	*cs++ = i915_mmio_reg_offset(reg);
-+	*cs++ = ggtt_offset;
-+	*cs++ = 0;
-+
-+	intel_ring_advance(rq, cs);
-+
-+	return 0;
-+}
-+
-+static int
-+__read_reg(struct intel_context *ce, i915_reg_t reg, u32 ggtt_offset)
-+{
-+	struct i915_request *rq;
-+	int err;
-+
-+	rq = i915_request_create(ce);
-+	if (IS_ERR(rq))
-+		return PTR_ERR(rq);
-+
-+	i915_request_get(rq);
-+
-+	err = __store_reg_to_mem(rq, reg, ggtt_offset);
-+
-+	i915_request_add(rq);
-+	if (!err && i915_request_wait(rq, 0, HZ / 2) < 0)
-+		err = -ETIME;
-+
-+	i915_request_put(rq);
-+
-+	return err;
-+}
-+
-+static int
-+gen12_guc_sw_ctx_id(struct intel_context *ce, u32 *ctx_id)
-+{
-+	struct i915_vma *scratch;
-+	u32 *val;
-+	int err;
-+
-+	scratch = __vm_create_scratch_for_read_pinned(&ce->engine->gt->ggtt->vm, 4);
-+	if (IS_ERR(scratch))
-+		return PTR_ERR(scratch);
-+
-+	err = i915_vma_sync(scratch);
-+	if (err)
-+		goto err_scratch;
-+
-+	err = __read_reg(ce, RING_EXECLIST_STATUS_HI(ce->engine->mmio_base),
-+			 i915_ggtt_offset(scratch));
-+	if (err)
-+		goto err_scratch;
-+
-+	val = i915_gem_object_pin_map_unlocked(scratch->obj, I915_MAP_WB);
-+	if (IS_ERR(val)) {
-+		err = PTR_ERR(val);
-+		goto err_scratch;
-+	}
-+
-+	*ctx_id = *val;
-+	i915_gem_object_unpin_map(scratch->obj);
-+
-+err_scratch:
-+	i915_vma_unpin_and_release(&scratch, 0);
-+	return err;
-+}
-+
-+/*
-+ * For execlist mode of submission, pick an unused context id
-+ * 0 - (NUM_CONTEXT_TAG -1) are used by other contexts
-+ * XXX_MAX_CONTEXT_HW_ID is used by idle context
-+ *
-+ * For GuC mode of submission read context id from the upper dword of the
-+ * EXECLIST_STATUS register.
-+ */
-+static int gen12_get_render_context_id(struct i915_perf_stream *stream)
-+{
-+	u32 ctx_id, mask;
-+	int ret;
-+
-+	if (intel_engine_uses_guc(stream->engine)) {
-+		ret = gen12_guc_sw_ctx_id(stream->pinned_ctx, &ctx_id);
-+		if (ret)
-+			return ret;
-+
-+		mask = ((1U << GEN12_GUC_SW_CTX_ID_WIDTH) - 1) <<
-+			(GEN12_GUC_SW_CTX_ID_SHIFT - 32);
-+	} else if (GRAPHICS_VER_FULL(stream->engine->i915) >= IP_VER(12, 50)) {
-+		ctx_id = (XEHP_MAX_CONTEXT_HW_ID - 1) <<
-+			(XEHP_SW_CTX_ID_SHIFT - 32);
-+
-+		mask = ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
-+			(XEHP_SW_CTX_ID_SHIFT - 32);
-+	} else {
-+		ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) <<
-+			 (GEN11_SW_CTX_ID_SHIFT - 32);
-+
-+		mask = ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) <<
-+			(GEN11_SW_CTX_ID_SHIFT - 32);
-+	}
-+	stream->specific_ctx_id = ctx_id & mask;
-+	stream->specific_ctx_id_mask = mask;
-+
-+	return 0;
-+}
-+
- /**
-  * oa_get_render_ctx_id - determine and hold ctx hw id
-  * @stream: An i915-perf stream opened for OA metrics
-@@ -1246,6 +1365,7 @@ static struct intel_context *oa_pin_context(struct i915_perf_stream *stream)
- static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
- {
- 	struct intel_context *ce;
-+	int ret = 0;
++#define HAS_MI_SET_PREDICATE(i915) (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
  
- 	ce = oa_pin_context(stream);
- 	if (IS_ERR(ce))
-@@ -1292,24 +1412,7 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+ /* For sysctl proc_dointvec_minmax of i915_oa_max_sample_rate
+  *
+@@ -1766,6 +1767,9 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 		DELTA_TARGET,
+ 		N_CS_GPR
+ 	};
++	i915_reg_t mi_predicate_result = HAS_MI_SET_PREDICATE(i915) ?
++					  MI_PREDICATE_RESULT_2_ENGINE(base) :
++					  MI_PREDICATE_RESULT_1(RENDER_RING_BASE);
  
- 	case 11:
- 	case 12:
--		if (GRAPHICS_VER_FULL(ce->engine->i915) >= IP_VER(12, 50)) {
--			stream->specific_ctx_id_mask =
--				((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
--				(XEHP_SW_CTX_ID_SHIFT - 32);
--			stream->specific_ctx_id =
--				(XEHP_MAX_CONTEXT_HW_ID - 1) <<
--				(XEHP_SW_CTX_ID_SHIFT - 32);
--		} else {
--			stream->specific_ctx_id_mask =
--				((1U << GEN11_SW_CTX_ID_WIDTH) - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
--			/*
--			 * Pick an unused context id
--			 * 0 - BITS_PER_LONG are used by other contexts
--			 * GEN12_MAX_CONTEXT_HW_ID (0x7ff) is used by idle context
--			 */
--			stream->specific_ctx_id =
--				(GEN12_MAX_CONTEXT_HW_ID - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
--		}
-+		ret = gen12_get_render_context_id(stream);
- 		break;
+ 	bo = i915_gem_object_create_internal(i915, 4096);
+ 	if (IS_ERR(bo)) {
+@@ -1803,7 +1807,7 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 			stream, cs, true /* save */, CS_GPR(i),
+ 			INTEL_GT_SCRATCH_FIELD_PERF_CS_GPR + 8 * i, 2);
+ 	cs = save_restore_register(
+-		stream, cs, true /* save */, MI_PREDICATE_RESULT_1(RENDER_RING_BASE),
++		stream, cs, true /* save */, mi_predicate_result,
+ 		INTEL_GT_SCRATCH_FIELD_PERF_PREDICATE_RESULT_1, 1);
  
- 	default:
-@@ -1323,7 +1426,7 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
- 		stream->specific_ctx_id,
- 		stream->specific_ctx_id_mask);
+ 	/* First timestamp snapshot location. */
+@@ -1857,7 +1861,10 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 	 */
+ 	*cs++ = MI_LOAD_REGISTER_REG | (3 - 2);
+ 	*cs++ = i915_mmio_reg_offset(CS_GPR(JUMP_PREDICATE));
+-	*cs++ = i915_mmio_reg_offset(MI_PREDICATE_RESULT_1(RENDER_RING_BASE));
++	*cs++ = i915_mmio_reg_offset(mi_predicate_result);
++
++	if (HAS_MI_SET_PREDICATE(i915))
++		*cs++ = MI_SET_PREDICATE | 1;
  
--	return 0;
-+	return ret;
- }
+ 	/* Restart from the beginning if we had timestamps roll over. */
+ 	*cs++ = (GRAPHICS_VER(i915) < 8 ?
+@@ -1867,6 +1874,9 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 	*cs++ = i915_ggtt_offset(vma) + (ts0 - batch) * 4;
+ 	*cs++ = 0;
  
- /**
++	if (HAS_MI_SET_PREDICATE(i915))
++		*cs++ = MI_SET_PREDICATE;
++
+ 	/*
+ 	 * Now add the diff between to previous timestamps and add it to :
+ 	 *      (((1 * << 64) - 1) - delay_ns)
+@@ -1894,7 +1904,10 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 	 */
+ 	*cs++ = MI_LOAD_REGISTER_REG | (3 - 2);
+ 	*cs++ = i915_mmio_reg_offset(CS_GPR(JUMP_PREDICATE));
+-	*cs++ = i915_mmio_reg_offset(MI_PREDICATE_RESULT_1(RENDER_RING_BASE));
++	*cs++ = i915_mmio_reg_offset(mi_predicate_result);
++
++	if (HAS_MI_SET_PREDICATE(i915))
++		*cs++ = MI_SET_PREDICATE | 1;
+ 
+ 	/* Predicate the jump.  */
+ 	*cs++ = (GRAPHICS_VER(i915) < 8 ?
+@@ -1904,13 +1917,16 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 	*cs++ = i915_ggtt_offset(vma) + (jump - batch) * 4;
+ 	*cs++ = 0;
+ 
++	if (HAS_MI_SET_PREDICATE(i915))
++		*cs++ = MI_SET_PREDICATE;
++
+ 	/* Restore registers. */
+ 	for (i = 0; i < N_CS_GPR; i++)
+ 		cs = save_restore_register(
+ 			stream, cs, false /* restore */, CS_GPR(i),
+ 			INTEL_GT_SCRATCH_FIELD_PERF_CS_GPR + 8 * i, 2);
+ 	cs = save_restore_register(
+-		stream, cs, false /* restore */, MI_PREDICATE_RESULT_1(RENDER_RING_BASE),
++		stream, cs, false /* restore */, mi_predicate_result,
+ 		INTEL_GT_SCRATCH_FIELD_PERF_PREDICATE_RESULT_1, 1);
+ 
+ 	/* And return to the ring. */
 -- 
 2.25.1
 
