@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83CE959DD56
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 14:28:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1B659DF99
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Aug 2022 14:35:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE88110E797;
-	Tue, 23 Aug 2022 12:27:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E63F10F183;
+	Tue, 23 Aug 2022 12:35:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com
- [IPv6:2a00:1450:4864:20::12d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA47D10FE63
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 12:27:35 +0000 (UTC)
-Received: by mail-lf1-x12d.google.com with SMTP id m3so13772463lfg.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 05:27:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc;
- bh=BgLcHHZg3HSTNtp4Dxlfy0KbhwXSwqY9W/etQBzNVqE=;
- b=ov4BhshY2+n13w/3iL+QFip5jxVitTTwGuwwQF+IcHQTKIUXOCNzLT5z2zfCpcA0t4
- yxUbP1iSYGvz0+NPhRu+YgIx+DUpjZ7VRIBom8s1OeZH0Ui+XkI5nn+ogVM8Cg5ZSvyQ
- W39lfdOQqUcFMFZgT2n/E8NQrhmDxmjyTyCdXRn1iqZ5A775M2lVQ5V8xzYvngDzimBN
- ZkmvyU48X4Jj4x8LLaJ5QJ3R9OkCIdfIShRNHNS8m4UEDb0Bpve6adFOlRFzVsXO4yIM
- isLXU4lt2I6izKdu+EeSxMlupLg59vin6TpTeEcnNCa9XaTxOf8/zlL1s8sir4Flcic/
- Kwfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc;
- bh=BgLcHHZg3HSTNtp4Dxlfy0KbhwXSwqY9W/etQBzNVqE=;
- b=atbdGePEMYmo/X8NRJZcE4IM3MinTyMtF7z7DNDP0l1SYlwzLXTw1iGdiTMlyqtYq4
- NFnw7GIMZ/Q4lkH/dJZj7aCAynzAUDf7a7KBViGfs+41NiI00Yys3WIcxCbobOtGl+9v
- Xpg9+IWl0/niBLNP+nrI4l9qtVbB1esmiqkIfQniI1hHP3Gg1XM3PcPl85Ibfyx6g5W0
- xPHIERgbseKO17uEXNihQ0EQCZq9UJB00cUayYYR/xg7Ka4KsCUFDgA8e34vmurfGwY9
- gT0lgKhs8u6ru0DAVNc5MVWLMUWdspbGv8674VqACsBOrSurb53zv/kaP1a90HW3VR61
- lNRg==
-X-Gm-Message-State: ACgBeo3R8F6cFtYemzeWI+Y+stgATW9OUW+ljxbwIFEOxkA/jFg+PPqi
- UAbDLkM3VYJt/ik8lLwh1VIB9GBzZo6Z5TBIobVrByEcxsMoUA==
-X-Google-Smtp-Source: AA6agR7MP3bEexz4RDvbjYHTimzHgYLg8lWwdBdRuVKjyuZhl1CKmSOrmBWUXOctNLvlogmxGvnTLvFgoaRlM0HO1zg=
-X-Received: by 2002:a05:6512:1312:b0:492:e14d:54d4 with SMTP id
- x18-20020a056512131200b00492e14d54d4mr3665800lfu.469.1661257653853; Tue, 23
- Aug 2022 05:27:33 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8E8A10EE4C;
+ Tue, 23 Aug 2022 12:35:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661258144; x=1692794144;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=y130stLTWwZlCH8lUt72ocd62b6FYVz3FBxolhtmBBs=;
+ b=lAjvTI0AyD4uNQDHVrWsiZCYgdfFCNYLt9PgyC9Ob8E/lU1XvEffI4zp
+ 4GxAnBVER9/U+VIFB9SenN0tdw8Mgt0AaChatireCM3IWFXwNkNVyLfgJ
+ RO+R9PGOfmMWBpyf7DfejyPA/cC9Fl0ZEQkfiujUW+2xzgvcwcTwaQzQx
+ vEeiIh+r3SnsgVdrlYueRdqBaN9KZH4PGdeDMifiVG+zywIvHWIUjVcJg
+ vyeg8tR1LCAZsGqtTYCi17HeFAL9CD4EbSe4OX68MqMO2ve293NHl4XE/
+ P9sO4ju9gOr4ecBM4UsdQEHYck7I0tMK0CYTRHxl/HdN/nZNFKrammLxJ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="294957590"
+X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="294957590"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2022 05:35:43 -0700
+X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="638638951"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.12.34])
+ ([10.213.12.34])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2022 05:35:40 -0700
+Message-ID: <44d2da7f-6632-8382-73c9-6df76b7eae0c@intel.com>
+Date: Tue, 23 Aug 2022 14:35:38 +0200
 MIME-Version: 1.0
-References: <20220815080907.3229449-1-jani.nikula@intel.com>
-In-Reply-To: <20220815080907.3229449-1-jani.nikula@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 23 Aug 2022 13:27:06 +0100
-Message-ID: <CAM0jSHMb48D58NhZ_S8T2k69Pi2DKaeYAQr7D0_06Uqg+xWUFg@mail.gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/utils: remove unused
- KBps/MBps/GBps macros
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.12.0
+Content-Language: en-US
+To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220823101729.2098841-1-gwan-gyeong.mun@intel.com>
+ <20220823101729.2098841-2-gwan-gyeong.mun@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220823101729.2098841-2-gwan-gyeong.mun@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v8 1/8] overflow: Move and add few utility
+ macros into overflow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,37 +64,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: thomas.hellstrom@linux.intel.com, keescook@chromium.org,
+ jani.nikula@intel.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk, airlied@linux.ie,
+ matthew.auld@intel.com, daniel@ffwll.ch,
+ intel-gfx-trybot@lists.freedesktop.org, mchehab@kernel.org,
+ nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Aug 2022 at 09:09, Jani Nikula <jani.nikula@intel.com> wrote:
->
-> Remove unused macros. If needed again, such macros belong in
-> <linux/units.h>.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-
+On 23.08.2022 12:17, Gwan-gyeong Mun wrote:
+> It moves overflows_type utility macro into overflow header from i915_utils
+> header. The overflows_type can be used to catch the truncaion (overflow)
+> between different data types. And it adds check_assign() macro which
+> performs an assigning source value into destination ptr along with an
+> overflow check. overflow_type macro has been improved to handle the signbit
+> by gcc's built-in overflow check function. And it adds overflows_ptr()
+> helper macro for checking the overflows between a value and a pointer
+> type/value.
+> 
+> v3: Add is_type_unsigned() macro (Mauro)
+>      Modify overflows_type() macro to consider signed data types (Mauro)
+>      Fix the problem that safe_conversion() macro always returns true
+> v4: Fix kernel-doc markups
+> v6: Move macro addition location so that it can be used by other than drm
+>      subsystem (Jani, Mauro, Andi)
+>      Change is_type_unsigned to is_unsigned_type to have the same name form
+>      as is_signed_type macro
+> v8: Add check_assign() and remove safe_conversion() (Kees)
+>      Fix overflows_type() to use gcc's built-in overflow function (Andrzej)
+>      Add overflows_ptr() to allow overflow checking when assigning a value
+>      into a pointer variable (G.G.)
+> 
+> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+> Cc: Kees Cook <keescook@chromium.org>
+> Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org> (v5)
 > ---
->  drivers/gpu/drm/i915/i915_utils.h | 4 ----
->  1 file changed, 4 deletions(-)
->
+>   drivers/gpu/drm/i915/i915_user_extensions.c |  2 +-
+>   drivers/gpu/drm/i915/i915_utils.h           |  5 +-
+>   include/linux/overflow.h                    | 67 +++++++++++++++++++++
+>   3 files changed, 69 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_user_extensions.c b/drivers/gpu/drm/i915/i915_user_extensions.c
+> index c822d0aafd2d..0fb2fecbcaae 100644
+> --- a/drivers/gpu/drm/i915/i915_user_extensions.c
+> +++ b/drivers/gpu/drm/i915/i915_user_extensions.c
+> @@ -51,7 +51,7 @@ int i915_user_extensions(struct i915_user_extension __user *ext,
+>   			return err;
+>   
+>   		if (get_user(next, &ext->next_extension) ||
+> -		    overflows_type(next, ext))
+> +		    overflows_ptr(next, ext))
+>   			return -EFAULT;
+>   
+>   		ext = u64_to_user_ptr(next);
 > diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> index c10d68cdc3ca..6c14d13364bf 100644
+> index c10d68cdc3ca..eb0ded23fa9c 100644
 > --- a/drivers/gpu/drm/i915/i915_utils.h
 > +++ b/drivers/gpu/drm/i915/i915_utils.h
-> @@ -360,10 +360,6 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
->  #define KHz(x) (1000 * (x))
->  #define MHz(x) KHz(1000 * (x))
->
-> -#define KBps(x) (1000 * (x))
-> -#define MBps(x) KBps(1000 * (x))
-> -#define GBps(x) ((u64)1000 * MBps((x)))
+> @@ -32,6 +32,7 @@
+>   #include <linux/types.h>
+>   #include <linux/workqueue.h>
+>   #include <linux/sched/clock.h>
+> +#include <linux/overflow.h>
+>   
+>   #ifdef CONFIG_X86
+>   #include <asm/hypervisor.h>
+> @@ -111,10 +112,6 @@ bool i915_error_injected(void);
+>   #define range_overflows_end_t(type, start, size, max) \
+>   	range_overflows_end((type)(start), (type)(size), (type)(max))
+>   
+> -/* Note we don't consider signbits :| */
+> -#define overflows_type(x, T) \
+> -	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
 > -
->  void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint);
->  static inline void __add_taint_for_CI(unsigned int taint)
->  {
-> --
-> 2.34.1
->
+>   #define ptr_mask_bits(ptr, n) ({					\
+>   	unsigned long __v = (unsigned long)(ptr);			\
+>   	(typeof(ptr))(__v & -BIT(n));					\
+> diff --git a/include/linux/overflow.h b/include/linux/overflow.h
+> index f1221d11f8e5..4016f1378bcc 100644
+> --- a/include/linux/overflow.h
+> +++ b/include/linux/overflow.h
+> @@ -52,6 +52,73 @@ static inline bool __must_check __must_check_overflow(bool overflow)
+>   	return unlikely(overflow);
+>   }
+>   
+> +/**
+> + * overflows_type - helper for checking the overflows between data types or
+> + *                  values
+> + *
+> + * @x: Source value or data type for overflow check
+> + * @T: Destination value or data type for overflow check
+> + *
+> + * It compares the values or data type between the first and second argument to
+> + * check whether overflow can occur when assigning the first argument to the
+> + * variable of the second argument. Source and Destination can be singned or
+> + * unsigned data types.
+> + *
+> + * Returns:
+> + * True if overflow can occur, false otherwise.
+> + */
+> +#define overflows_type(x, T) __must_check_overflow(({	\
+> +	typeof(T) v = 0;				\
+> +	__builtin_add_overflow_p((x), v, v);		\
+
+
+Above works since gcc7, since gcc5 you can use:
+	__builtin_add_overflow((x), v, &v);
+
+
+> +}))
+> +
+> +/**
+> + * overflows_ptr - helper for checking the overflows between a value and
+> + *                 a pointer type/value
+> + *
+> + * @x: Source value for overflow check
+> + * @T: Destination pointer type or value for overflow check
+> + *
+> + * gcc's built-in overflow check functions don't support checking between the
+> + * pointer type and non-pointer type. Therefore it compares the values and
+> + * size of each data type between the first and second argument to check whether
+> + * truncation can occur when assigning the first argument to the variable of the
+> + * second argument. It checks internally the ptr is a pointer type.
+> + *
+> + * Returns:
+> + * True if overflow can occur, false otherwise.
+> + */
+> +#define overflows_ptr(x, T) __must_check_overflow(({	\
+> +	typecheck_pointer(T);				\
+> +	((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0; \
+> +}))
+
+
+Doesn't linux assume that all pointers have size of long int ?
+Or at least all pointers have the same size.
+In such case we can use:
+#define overflows_ptr(x) overflows_type(x, unsigned long)
+
+Regards
+Andrzej
+
+> +
+> +/**
+> + * check_assign - perform an assigning source value into destination ptr along
+> + *                with an overflow check.
+> + *
+> + * @value: Source value
+> + * @ptr: Destination pointer address, If the pointer type is not used,
+> + *       a warning message is output during build.
+> + *
+> + * It checks internally the ptr is a pointer type. And it uses gcc's built-in
+> + * overflow check function.
+> + * It does not use the check_*() wrapper functions, but directly uses gcc's
+> + * built-in overflow check function so that it can be used even when
+> + * the type of value and the type pointed to by ptr are different without build
+> + * warning messages.
+> + *
+> + * Returns:
+> + * If the value would overflow the destination, it returns true. If not return
+> + * false. When overflow does not occur, the assigning into ptr from value
+> + * succeeds. It follows the return policy as other check_*_overflow() functions
+> + * return non-zero as a failure.
+> + */
+> +#define check_assign(value, ptr) __must_check_overflow(({	\
+> +	typecheck_pointer(ptr); 		\
+> +	__builtin_add_overflow(0, value, ptr);	\
+> +}))
+> +
+>   /*
+>    * For simplicity and code hygiene, the fallback code below insists on
+>    * a, b and *d having the same type (similar to the min() and max()
+
