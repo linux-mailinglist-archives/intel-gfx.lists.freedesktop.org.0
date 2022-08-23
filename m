@@ -1,34 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6EE5A02C6
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 22:31:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B62975A02CD
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 22:33:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A248C7DE1;
-	Wed, 24 Aug 2022 20:31:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57E6CC1DC3;
+	Wed, 24 Aug 2022 20:33:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EC81211BB01;
- Tue, 23 Aug 2022 10:53:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E8DE2A00E8;
- Tue, 23 Aug 2022 10:53:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1989E11A27F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 14:03:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661263399; x=1692799399;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=nS85ln4Ai92SEiiskmaXrqrch04/7gbRK+rzCBEypxk=;
+ b=jXaErFj4aoPzhlVam3U+UObSCq6p/tvBexf03M8Fotawk4BrgUHp6p/L
+ XTsLPCh3wRaLdfDmyGgppPa9SGAXE7akFk42eb/8fIJJ9NS1rIfPE298u
+ xA9FnjDlGVGxqstexH7TSF73EUes4B9lVrv4W+JiXQ4VB5TVRAb/t6qIs
+ xDCNE6/yXxP0tw9tXS7VdcOKxWLan0GJl5qFz7AresVfHn9axKlQqNMTg
+ 1xC3vTrAGsw6nMA9OuVtAjivQGQlDah4KsZFj9UH4lR8fuyLH9iFju9sR
+ DKTrh9b+dV5hJLXvijP0U5C4Iiz3iidK31r8wQcjc2IeI7Ox582VQkBMC g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="273446418"
+X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="273446418"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2022 07:03:17 -0700
+X-IronPort-AV: E=Sophos;i="5.93,257,1654585200"; d="scan'208";a="638665345"
+Received: from obeltran-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.51.100])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2022 07:03:16 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+In-Reply-To: <CAM0jSHMb48D58NhZ_S8T2k69Pi2DKaeYAQr7D0_06Uqg+xWUFg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220815080907.3229449-1-jani.nikula@intel.com>
+ <CAM0jSHMb48D58NhZ_S8T2k69Pi2DKaeYAQr7D0_06Uqg+xWUFg@mail.gmail.com>
+Date: Tue, 23 Aug 2022 17:03:14 +0300
+Message-ID: <87zgfvjbvh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Date: Tue, 23 Aug 2022 10:53:54 -0000
-Message-ID: <166125203495.2114.5078373302742523411@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220823023546.2150989-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20220823023546.2150989-1-mitulkumar.ajitkumar.golani@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/display=3A_Fix_warning_callstack_for_imbalance_wakeref_?=
- =?utf-8?b?KHJldjQp?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/utils: remove unused
+ KBps/MBps/GBps macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,39 +58,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 23 Aug 2022, Matthew Auld <matthew.william.auld@gmail.com> wrote:
+> On Mon, 15 Aug 2022 at 09:09, Jani Nikula <jani.nikula@intel.com> wrote:
+>>
+>> Remove unused macros. If needed again, such macros belong in
+>> <linux/units.h>.
+>>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-Series: drm/i915/display: Fix warning callstack for imbalance wakeref (rev4)
-URL   : https://patchwork.freedesktop.org/series/107211/
-State : failure
+Thanks, pushed to drm-intel-next.
 
-== Summary ==
+BR,
+Jani.
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/i915_driver.o
-drivers/gpu/drm/i915/i915_driver.c: In function ‘i915_driver_remove’:
-drivers/gpu/drm/i915/i915_driver.c:956:29: error: ‘rpm’ undeclared (first use in this function)
-   ret = pm_runtime_get_sync(rpm->kdev);
-                             ^~~
-drivers/gpu/drm/i915/i915_driver.c:956:29: note: each undeclared identifier is reported only once for each function it appears in
-scripts/Makefile.build:249: recipe for target 'drivers/gpu/drm/i915/i915_driver.o' failed
-make[4]: *** [drivers/gpu/drm/i915/i915_driver.o] Error 1
-scripts/Makefile.build:465: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:465: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:465: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1853: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+>
+>> ---
+>>  drivers/gpu/drm/i915/i915_utils.h | 4 ----
+>>  1 file changed, 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+>> index c10d68cdc3ca..6c14d13364bf 100644
+>> --- a/drivers/gpu/drm/i915/i915_utils.h
+>> +++ b/drivers/gpu/drm/i915/i915_utils.h
+>> @@ -360,10 +360,6 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
+>>  #define KHz(x) (1000 * (x))
+>>  #define MHz(x) KHz(1000 * (x))
+>>
+>> -#define KBps(x) (1000 * (x))
+>> -#define MBps(x) KBps(1000 * (x))
+>> -#define GBps(x) ((u64)1000 * MBps((x)))
+>> -
+>>  void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint);
+>>  static inline void __add_taint_for_CI(unsigned int taint)
+>>  {
+>> --
+>> 2.34.1
+>>
 
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
