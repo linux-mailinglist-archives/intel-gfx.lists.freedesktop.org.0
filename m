@@ -1,50 +1,144 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A115E5A0304
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 22:51:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3325A0310
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 22:54:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07807C9303;
-	Wed, 24 Aug 2022 20:50:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6837EC978D;
+	Wed, 24 Aug 2022 20:53:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91C2CB5216
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 13:18:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661347118; x=1692883118;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CvFwO/ljVtVGqMEr0hwNAEeMV/974OyKwrpgOVqGFYA=;
- b=YDckHrkwUnquXhZ8iTHEfi2vST11ySSus3YXc3/R57bYowDQeJeF0Ga5
- s2e3JcRrqlrM8W6neyTPZ9wYHIus5agxbuKxDKsmDfPN28afgdpY+r9qp
- eWyru+b+QkZA1Ef6Xz76gA0CkwEUaJjv37J+9eC8Nv+OTO0CY0R6gY8+X
- znT5c65j++p8pm2y9I7D/nDXksuZx1Y31IP1P8IoLpw+FwhDFfuXq1HE6
- SIH+D9kj+eYFxksb2FD7Rh7WNx7uz76u+ieErKxwTtbAsqqqGiQhasGee
- q47AES4Jn4QAnszEjB7/uAsdjBrTy89fzePlFOv25y1B7h/bziExfsT/4 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="280936802"
-X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="280936802"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2022 06:18:37 -0700
-X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="560598718"
-Received: from zlim2-mobl.gar.corp.intel.com (HELO localhost) ([10.252.52.23])
- by orsmga003-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2022 06:18:36 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 Aug 2022 16:16:00 +0300
-Message-Id: <be47e9cf9e397484be3cc432660f195d4a46e396.1661346845.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1661346845.git.jani.nikula@intel.com>
-References: <cover.1661346845.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1266410E0A9;
+ Wed, 24 Aug 2022 15:14:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=H0+UXBSn5GmZNTTk2zxY71PiGgQ9yZosLbctGVou41h/c/M0WJb5ZHeIsgi2MXft2xW9lCMWsAj5AUzA+m3EFTOjuFo6jtqqpqJj05yGI+tJV2nruvJ172b4bMwYD/gzOo/OnSYBSiabpS/pO/1X0x8tecj8BkTg9vj7C1G8piQEeYRN+RjHPzaC7c1MN+ujICVr+e2ltHAGP/FXdnPDAVEYkaVMo1S3r9VPdHvsHQnq/h7uie0XwNBc1MYwsA4DLM4Ht/EI0YoWTXE8JLUwQX2lu43PZps4oVeUZXRosFHB+LhR7+rx5EMc382bk6UIY29FIJbBW6N0BS9DNrYmDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h5SY9ujaA7usTkk7gToKXOqDilPtvt3VKfLudeAnnG8=;
+ b=lXYwQcuYTYIMyfN+1GQX059tqv8hDQaH7BgNgINDHugU9Rkd0U/PkWX5iiV3YVMPBXcxdfz+VLCKDw0ZM6qLI1dRNx2/XO34bQ5KuB5e4AtR9nNPFfL1WSwzLJZNnZkfWyhKnoGD5hnoFK/jI0CHfpC9Iolj4E/ULQTj7i54HrVkC7Xd2JhDBgTW3Xmd/d9qx75g3jUD5czHjvHmDMNEXREp/EhOPaCLRO90aNl5zumX0Jc1Qct+M954DBE21+yj1g5HCGiC9F6JWB2CctGE2x68fQXO6Ho687EKuN5fVnmBailNk2I10HMna5UDrQfAAz7J7V/z0sfp+6lh8efhQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h5SY9ujaA7usTkk7gToKXOqDilPtvt3VKfLudeAnnG8=;
+ b=Vvgg9ZczJlIn53Vz66AKTxxuklOiFzTdv88D3sNP6QfM0HpQ8YjcbytxHfEJK+iGhiJLIykNFm6dk6DZzMksYdQwyoYN7+rkp+Lr9BxOBXEveDrKHj1wpwS5VhuNC5hz/iii/6uCeDNMLQzvllBBdPFKlbdrm4XGcFbtmCzDP0g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by BL3PR12MB6522.namprd12.prod.outlook.com (2603:10b6:208:3be::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.21; Wed, 24 Aug
+ 2022 15:14:19 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::905:1701:3b51:7e39]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::905:1701:3b51:7e39%2]) with mapi id 15.20.5546.024; Wed, 24 Aug 2022
+ 15:14:19 +0000
+Message-ID: <b24017e9-e8e7-148e-951b-0f2a1dffdca7@amd.com>
+Date: Wed, 24 Aug 2022 17:14:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
+ Qiang Yu <yuq825@gmail.com>
+References: <20220824102248.91964-1-dmitry.osipenko@collabora.com>
+ <20220824102248.91964-7-dmitry.osipenko@collabora.com>
+ <17181951-1b40-cd39-48df-58b43cad117d@amd.com>
+ <4af793fd-eccc-ad70-65c3-de78dced71f0@collabora.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <4af793fd-eccc-ad70-65c3-de78dced71f0@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 34/38] drm/i915/quirks: abstract checking for
- display quirks
+X-ClientProxiedBy: AS9PR06CA0779.eurprd06.prod.outlook.com
+ (2603:10a6:20b:484::34) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0c93b672-f75f-441d-4ef5-08da85e35134
+X-MS-TrafficTypeDiagnostic: BL3PR12MB6522:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: S5952XXswQsal3yy/8+uNHa8DqdXW4QJaU/70c9mke1Oc+UC4xPgEFrPtZpV3oRLq4y0fDz48SL6PBB/VwM28/nzPEneLnC7Hih0x6crC4Qmzo0iHh7W4XgoKeN3zTNfrSygn3ch0n7EOAqhJWx+aO7zqIyoSyG/02mklL2PztN+bF+6wv1BB7bkTEH9a2xUJhyQa2kNQ9XlgVYSuX8TcMzgHYY89kFk7nGBArsHRZw+M/PTbHGLlk9xl7s5MF7VOLQVFLbTf5c+kuLyIl4SqGjBuLMr55SyZ9NaujBEo6pmMKWiAEUUdXGenX7p92CVMd0s1GTCl3GU705p+yyBxKAgknrda6cXTPdsEIqN7Wc7d1vnOW5fI2NoCjBVQyh1j4Jo6vBMgXVIv4fRWKtRxs98u0VDT3la0/RaK1jR6ZeBgY+tUNzpJElvtxDGfBnUDF1vDSOvjj/G5OWI36gatkn0MWcXJ8+QzxID6A4217RdBXqNMY3lfLVqLVrWmVHeK1askVKsHCEMGyVcj2VS8+VXfuD/LLiwgCVTEGQ20u7Qb7yI0JlE0GimSMH9bHUWZIBAOzUaRU0xEyYgurBzW0B6XStjKdbeuVWjqefoihye2vcIetYSteLXEOlWcaIALlRTRo2AO7RoEdNs6ixzGp0e87wpyxZVF4e3e+TWr5U/kMX0VwqSFlRxyCobgBa+3YDLrl1NMsqrSriwLcTM1ghyptlsPUzpeV6xRkQf1XVqhuDzTtelXqc8DnRp/SWHr98VDb0mGuivb/RZ5dFu+BbJXhYJMfqkk6aHdmuM5lP3gyT/C07rllnqVSifzMI5v+ok7EWI0/Br+Fe1n5VP++IcsK6JSvsjVGRUzKhT21g=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(136003)(376002)(366004)(346002)(39860400002)(53546011)(478600001)(31686004)(966005)(6486002)(6666004)(6512007)(38100700002)(186003)(2616005)(7416002)(8936002)(5660300002)(4326008)(7406005)(921005)(36756003)(66556008)(66476007)(2906002)(66574015)(6506007)(86362001)(31696002)(66946007)(45080400002)(110136005)(8676002)(83380400001)(316002)(41300700001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UjBhZkdJWStxSmFhaXhUUG9nakdhbnVZS05RcTI3aE1uNVFoK2g4amcvelNK?=
+ =?utf-8?B?dHJxQjBqYk9PcWdGYkVScy9hc3hmeTdMdW9wS3p5aEZIdnBaU0dPUURIZTFh?=
+ =?utf-8?B?KzdWbE1mWmxLaHMxT1llYlJiTzBUZDBLdDhEWXRvaGNiSzJQM1VkcWx1ZEh2?=
+ =?utf-8?B?aGVVeVJZSFF0eno1VlJ4cVo4ZG1Dem9CNkl1Rm95clprQnhJaEFVM3EzSFlS?=
+ =?utf-8?B?OHh6SkNCUmRjK2w4MlRVbm45ZkdZdG01czF0R3g2aTgrNHdzV2RCTGlEdUs2?=
+ =?utf-8?B?RDVvbTNQZ2R1RW5iUWhOUzk0dXBPM1NUM0JuZWp2TnFObVV1SVFUWTBMTy9C?=
+ =?utf-8?B?MWxFaGdCYzZmZVlTdlY2TUs3Z1BxT3psRUpOK1o4UUxwZ0ZIQTNISWJYK3JY?=
+ =?utf-8?B?NDVnMFhkRVNGZjdPWkR0OVovWURScVpjOEg2cHpiZUM3YnVyMktrdkhYOWVY?=
+ =?utf-8?B?MlJEbjRvU0ZuV0h6UXRnZTRDRDZrQTROWjlJOFJ4Ty8zOW9iK05xcHJ6Z2Nv?=
+ =?utf-8?B?YnFOS05HVWNwODlaby9jZ25rZit2Vjhqc1JZVzRBRFdRUWhFbXV2TWRMMjZx?=
+ =?utf-8?B?bTB0NVNVWHJ5blpBcVZ1S3REY2ZkM29ObGZHdTQ4Ym1TODAzSWIvM0dzYXVV?=
+ =?utf-8?B?L3ZTMXJjc3JBczhuckRCRWlkbk95bXltR3hpaVpGZXpIK21vSWZMQzJDZWNE?=
+ =?utf-8?B?Y3Z3K1BhWGszanRmZ0ZmdDZWbEVrSlNnK0FiTnFmcXoxNFZOQlBMeDN6WnZu?=
+ =?utf-8?B?MnNwSnBwSHZoc2ZXNHAyMUpuR1VDczFxc1kvRXBqeStCc2R3ay9WRlU3c1Yz?=
+ =?utf-8?B?bS95L3RsU054WEFUYkg4ZFJEbFhka1YxZXdOcG9ySWR1eE1SZXZJWVBlVnlo?=
+ =?utf-8?B?dWZaMTZUamNNaVdvcUVUUUlMd0ZIVGZTTUd5QjJvdDlSVU9qKzNuUUtQM3ZU?=
+ =?utf-8?B?QXdGVTFsTFBOWXAzeTA1Ri85dm5TNVBYVFZRZSsrdW1iSEhiVFoxaWowMU9l?=
+ =?utf-8?B?c3YvekRFVjhSYmFhdkZjYnJwOGZ2aXUvV1pFS2pmU2FvaUNndDJOeFJhT0Iv?=
+ =?utf-8?B?Nk5kaXdnVmlsRFJaV3phWE0xNGV2Y2RXYWZzT0IydjBsb202NEpLL0RITVdv?=
+ =?utf-8?B?cmZMaWFUbUFjUlBkRnNwVEdHUkN4Um9YRC9PTElycTlYdUp3OWRzWURKMXRZ?=
+ =?utf-8?B?bXpxb2lDcmViSmMwV05DRjg3cVRJcHVpOWU0Z0s0dGRxeUtjQUc2L0pMU3A2?=
+ =?utf-8?B?MkZTVUQ1Zmt5Q3Z5QklWME03cWI3TnlxM0ZxamtndmJUUGZNUENxOVFmaE5z?=
+ =?utf-8?B?MitTOU9BODR4UC9Ya3RsUS9CaitUQUJncEZBRTR4SWl2NGZyTVNTRk5POHJh?=
+ =?utf-8?B?VHdHNHN2alhIaDJUV1l6MTViTU9zT0lGdWQzcUlWcmEzNCtEa1RwY24rQWNz?=
+ =?utf-8?B?OXB6U2ljWm8rMHJXeXdBbTZsVzZkTG5uNUp1NTlwQ0x5c0FTaDNYM28veGNp?=
+ =?utf-8?B?Si81NCs2MGlxSGlaOHFnOGx6dVR4U0ZGOUFFRmJUNDdxRWpvVmFvSU1VME1X?=
+ =?utf-8?B?cUN3T2JPT1pNd2FZVWhWSkFkNGVMRGNXT2VNSmdsUEJRTEV6aytRZnhqRDkz?=
+ =?utf-8?B?ZHlPWXFFZkVuOGlCcEFzVEFSb3VEcUcvNEpkT09mSFFMeHRrRmQ3WVJCWkpL?=
+ =?utf-8?B?bzg5RjlHUG4xbjZYYzBIME9ROXBKUm54TUFOak56em9LYTQ1cDM3Q05RdktF?=
+ =?utf-8?B?ZEZKK3FIamdkQmFsWFRoUGxxN0RUSGNpaWt0eGVJQVhUTkoxN1FwbTVHbEVF?=
+ =?utf-8?B?ZXlnSlVUWmhOb2JSUktxQUdLZFdhRzYzczZ0RDlKNjV5RFhWOEpHNjhmcGdT?=
+ =?utf-8?B?NjNqVDEraEF5NW5SODVDa3grbS8yUnRXQ2Q5d1lXSUJxMTNsa1RKd093bGxq?=
+ =?utf-8?B?amFIRFFZMWs2NUgva0ZKd0lOWFZENEdpR1VOdjI3dWlqcG5tQUMrLzRpNjZR?=
+ =?utf-8?B?RGs2RTBhYmRCS0tzVHJUb2pLaVphVmduRjJyMkFaM0VaUEI0R1IrSkNoYkFz?=
+ =?utf-8?B?MG1hMFFvelBDeXhXMzE4a0lOcXFXV21ac254aHNlaEUvclNVc2lhd3ZJQ3U5?=
+ =?utf-8?B?eGJwN0xvZVVLa1VvSE9uVVM4R3pWdUt5eFhDeExhUmFUTTZ3aFpZUnNxdlZK?=
+ =?utf-8?Q?vIA6hCC7e4rr87rt/6IMrv2fDizU2Enk4ZL90Kyj3HtY?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c93b672-f75f-441d-4ef5-08da85e35134
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2022 15:14:19.4986 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rELvdTfsR8Nagcz1LvQsbfvq3akTKCvOC/9qmV8ayW/5Q9ebkATkm+Hbkf75G6zh
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6522
+Subject: Re: [Intel-gfx] [PATCH v3 6/9] dma-buf: Move dma-buf attachment to
+ dynamic locking specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,167 +151,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: lima@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, linaro-mm-sig@lists.linaro.org,
+ dri-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add intel_has_quirk() for checking if a display quirk is present. Avoid
-accessing i915->quirks all over the place.
+Am 24.08.22 um 17:03 schrieb Dmitry Osipenko:
+> On 8/24/22 17:08, Christian König wrote:
+>> Am 24.08.22 um 12:22 schrieb Dmitry Osipenko:
+>>> Move dma-buf attachment API functions to the dynamic locking
+>>> specification.
+>>> The strict locking convention prevents deadlock situations for dma-buf
+>>> importers and exporters.
+>>>
+>>> Previously, the "unlocked" versions of the attachment API functions
+>>> weren't taking the reservation lock and this patch makes them to take
+>>> the lock.
+>> Didn't we concluded that we need to keep the attach and detach callbacks
+>> without the lock and only move the map/unmap callbacks over?
+>>
+>> Otherwise it won't be possible for drivers to lock multiple buffers if
+>> they have to shuffle things around for a specific attachment.
+> We did conclude that. The attach/detach dma-buf ops are unlocked, but
+> the map_dma_buf/unmap_dma_buf must be invoked under lock and
+> dma_buf_dynamic_attach_unlocked() maps dma-buf if either importer or
+> exporter can't handle the dynamic mapping [1].
 
-v2: Rebase
+Ah! You are confusing me over and over again with that :)
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_backlight.c | 9 +++++----
- drivers/gpu/drm/i915/display/intel_ddi.c       | 3 ++-
- drivers/gpu/drm/i915/display/intel_panel.c     | 5 +++--
- drivers/gpu/drm/i915/display/intel_pps.c       | 3 ++-
- drivers/gpu/drm/i915/display/intel_quirks.c    | 5 +++++
- drivers/gpu/drm/i915/display/intel_quirks.h    | 5 ++++-
- 6 files changed, 21 insertions(+), 9 deletions(-)
+Ok in this case that here is fine, I just need to re-read the patch.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index f20f3c06ca96..11a1342d6d37 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -18,6 +18,7 @@
- #include "intel_panel.h"
- #include "intel_pci_config.h"
- #include "intel_pps.h"
-+#include "intel_quirks.h"
- 
- /**
-  * scale - scale values from one range to another
-@@ -88,7 +89,7 @@ u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 val)
- 		return val;
- 
- 	if (dev_priv->params.invert_brightness > 0 ||
--	    dev_priv->quirks & QUIRK_INVERT_BRIGHTNESS) {
-+	    intel_has_quirk(dev_priv, QUIRK_INVERT_BRIGHTNESS)) {
- 		return panel->backlight.pwm_level_max - val + panel->backlight.pwm_level_min;
- 	}
- 
-@@ -128,7 +129,7 @@ u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val)
- 			 panel->backlight.max == 0 || panel->backlight.pwm_level_max == 0);
- 
- 	if (dev_priv->params.invert_brightness > 0 ||
--	    (dev_priv->params.invert_brightness == 0 && dev_priv->quirks & QUIRK_INVERT_BRIGHTNESS))
-+	    (dev_priv->params.invert_brightness == 0 && intel_has_quirk(dev_priv, QUIRK_INVERT_BRIGHTNESS)))
- 		val = panel->backlight.pwm_level_max - (val - panel->backlight.pwm_level_min);
- 
- 	return scale(val, panel->backlight.pwm_level_min, panel->backlight.pwm_level_max,
-@@ -1605,7 +1606,7 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
- 	int ret;
- 
- 	if (!connector->panel.vbt.backlight.present) {
--		if (dev_priv->quirks & QUIRK_BACKLIGHT_PRESENT) {
-+		if (intel_has_quirk(dev_priv, QUIRK_BACKLIGHT_PRESENT)) {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "no backlight present per VBT, but present per quirk\n");
- 		} else {
-@@ -1777,7 +1778,7 @@ void intel_backlight_init_funcs(struct intel_panel *panel)
- 		if (intel_dp_aux_init_backlight_funcs(connector) == 0)
- 			return;
- 
--		if (!(dev_priv->quirks & QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK))
-+		if (!intel_has_quirk(dev_priv, QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK))
- 			connector->panel.backlight.power = intel_pps_backlight_power;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index b7702c4581aa..f5416433826d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -57,6 +57,7 @@
- #include "intel_lspcon.h"
- #include "intel_pps.h"
- #include "intel_psr.h"
-+#include "intel_quirks.h"
- #include "intel_snps_phy.h"
- #include "intel_sprite.h"
- #include "intel_tc.h"
-@@ -631,7 +632,7 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
- 
- 	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), ctl);
- 
--	if (dev_priv->quirks & QUIRK_INCREASE_DDI_DISABLED_TIME &&
-+	if (intel_has_quirk(dev_priv, QUIRK_INCREASE_DDI_DISABLED_TIME) &&
- 	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Quirk Increase DDI disabled time\n");
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 43dbc5a3ec37..a1b4ef1ad917 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -37,13 +37,14 @@
- #include "intel_display_types.h"
- #include "intel_drrs.h"
- #include "intel_panel.h"
-+#include "intel_quirks.h"
- 
- bool intel_panel_use_ssc(struct drm_i915_private *i915)
- {
- 	if (i915->params.panel_use_ssc >= 0)
- 		return i915->params.panel_use_ssc != 0;
--	return i915->display.vbt.lvds_use_ssc
--		&& !(i915->quirks & QUIRK_LVDS_SSC_DISABLE);
-+	return i915->display.vbt.lvds_use_ssc &&
-+		!intel_has_quirk(i915, QUIRK_LVDS_SSC_DISABLE);
- }
- 
- const struct drm_display_mode *
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 9a66e03aa2d6..21944f5bf3a8 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -12,6 +12,7 @@
- #include "intel_dpll.h"
- #include "intel_lvds.h"
- #include "intel_pps.h"
-+#include "intel_quirks.h"
- 
- static void vlv_steal_power_sequencer(struct drm_i915_private *dev_priv,
- 				      enum pipe pipe);
-@@ -1202,7 +1203,7 @@ static void pps_init_delays_vbt(struct intel_dp *intel_dp,
- 	 * just fails to power back on. Increasing the delay to 800ms
- 	 * seems sufficient to avoid this problem.
- 	 */
--	if (dev_priv->quirks & QUIRK_INCREASE_T12_DELAY) {
-+	if (intel_has_quirk(dev_priv, QUIRK_INCREASE_T12_DELAY)) {
- 		vbt->t11_t12 = max_t(u16, vbt->t11_t12, 1300 * 10);
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Increasing T12 panel delay as per the quirk to %d\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index c8488f5ebd04..9b5db1193a00 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -213,3 +213,8 @@ void intel_init_quirks(struct drm_i915_private *i915)
- 			intel_dmi_quirks[i].hook(i915);
- 	}
- }
-+
-+bool intel_has_quirk(struct drm_i915_private *i915, unsigned long quirk)
-+{
-+	return i915->quirks & quirk;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index b0fcff142a56..f5e399a6e7d3 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -6,8 +6,11 @@
- #ifndef __INTEL_QUIRKS_H__
- #define __INTEL_QUIRKS_H__
- 
-+#include <linux/types.h>
-+
- struct drm_i915_private;
- 
--void intel_init_quirks(struct drm_i915_private *dev_priv);
-+void intel_init_quirks(struct drm_i915_private *i915);
-+bool intel_has_quirk(struct drm_i915_private *i915, unsigned long quirk);
- 
- #endif /* __INTEL_QUIRKS_H__ */
--- 
-2.34.1
+Thanks,
+Christian.
+
+>
+> [1]
+> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv6.0-rc2%2Fsource%2Fdrivers%2Fdma-buf%2Fdma-buf.c%23L869&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cdf23d89db8b84bf6d4c008da85e1dc6c%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637969502441026991%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=d8kWKjDCFn%2B3KmK135Gcv6%2FMLffEYcipouqWxfc%2BKXM%3D&amp;reserved=0
+>
+> Hence I re-arranged the dma_resv_lock() in
+> dma_buf_dynamic_attach_unlocked() to move both pinning and mapping under
+> the held lock.
+>
 
