@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 251B95A0348
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 23:26:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BED35A034A
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 23:28:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CF2ECAD9B;
-	Wed, 24 Aug 2022 21:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35939CAE8F;
+	Wed, 24 Aug 2022 21:27:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5F299CAC84;
- Wed, 24 Aug 2022 21:25:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id A92A5CADB5;
+ Wed, 24 Aug 2022 21:26:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 237D2AADD5;
- Wed, 24 Aug 2022 21:25:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 73927AADD5;
+ Wed, 24 Aug 2022 21:26:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Date: Wed, 24 Aug 2022 21:25:43 -0000
-Message-ID: <166137634311.9870.13832373879566796907@emeril.freedesktop.org>
+To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
+Date: Wed, 24 Aug 2022 21:26:21 -0000
+Message-ID: <166137638146.9871.3043176336231745357@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220818193901.2974625-1-badal.nilawar@intel.com>
-In-Reply-To: <20220818193901.2974625-1-badal.nilawar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Add_HWMON_support_=28rev4=29?=
+References: <20220818234202.451742-1-radhakrishna.sripada@intel.com>
+In-Reply-To: <20220818234202.451742-1-radhakrishna.sripada@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBJ?=
+ =?utf-8?q?nitial_Meteorlake_Support_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,26 +47,36 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Add HWMON support (rev4)
-URL   : https://patchwork.freedesktop.org/series/104278/
+Series: Initial Meteorlake Support (rev3)
+URL   : https://patchwork.freedesktop.org/series/106786/
 State : failure
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/104278/revisions/4/mbox/ not applied
-Applying: drm/i915/hwmon: Add HWMON infrastructure
-Applying: drm/i915/hwmon: Add HWMON current voltage support
-Applying: drm/i915/hwmon: Power PL1 limit and TDP setting
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/106786/revisions/3/mbox/ not applied
+Applying: drm/i915: Read graphics/media/display arch version from hw
 Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/i915_driver.c
+M	drivers/gpu/drm/i915/i915_drv.h
+M	drivers/gpu/drm/i915/i915_pci.c
 M	drivers/gpu/drm/i915/i915_reg.h
-M	drivers/gpu/drm/i915/intel_mchbar_regs.h
+M	drivers/gpu/drm/i915/intel_device_info.c
+M	drivers/gpu/drm/i915/intel_device_info.h
+M	drivers/gpu/drm/i915/selftests/mock_gem_device.c
 Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/intel_mchbar_regs.h
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/intel_mchbar_regs.h
+Auto-merging drivers/gpu/drm/i915/selftests/mock_gem_device.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/selftests/mock_gem_device.c
+Auto-merging drivers/gpu/drm/i915/intel_device_info.h
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/intel_device_info.h
+Auto-merging drivers/gpu/drm/i915/intel_device_info.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/intel_device_info.c
 Auto-merging drivers/gpu/drm/i915/i915_reg.h
+Auto-merging drivers/gpu/drm/i915/i915_pci.c
+Auto-merging drivers/gpu/drm/i915/i915_drv.h
+Auto-merging drivers/gpu/drm/i915/i915_driver.c
 error: Failed to merge in the changes.
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0003 drm/i915/hwmon: Power PL1 limit and TDP setting
+Patch failed at 0001 drm/i915: Read graphics/media/display arch version from hw
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
