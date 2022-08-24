@@ -2,154 +2,150 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A55A59F4A5
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 10:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3870C59F4D4
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 10:13:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDA4510EA7F;
-	Wed, 24 Aug 2022 08:00:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10E4A10E69B;
+	Wed, 24 Aug 2022 08:12:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8294110E87E
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 07:59:09 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A906010E176;
+ Wed, 24 Aug 2022 08:11:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661327949; x=1692863949;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=u1xZvF1bCoK2osCEc0JNbBXfKdQI/HLBY6tlmafp0sE=;
- b=GkEl7+DLO7pw8l7NjkVVmK/ctJ7WPwLkmWdPhcJh9vl+LTjb3zBpyZIn
- IqMyEipNHMnjdnFdZXrrKvd9xk9WKvacnz17dnYDeChFLCHgOmNRYTd/T
- Z4gGapg57PKuknu1z8BXVdCrCiAZ6ObOOQjS/5Q7ZwE71YIIDxSPOUDCo
- kdHtSfNHjsBGs3VgcQ28jEZoy4YoTkd5jCdiyNwrGFjaoOUfDyE3Sx4k3
- gkS3Wcm7o6c2WANqSUDK6ZUHlT+bc1K9PYbF1EtuPnwgk70bWBidyehCk
- S/QXnUHUJAkOsQVTA65Kcc/OCaGOVGou0ZXK392FaavM7WkgnkVrMsFiB Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="380188857"
-X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="380188857"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2022 00:59:02 -0700
+ t=1661328719; x=1692864719;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=HpYuy370zfxnnFOqjptSs/ICRW0HK/tiM2BMC6LcB3Y=;
+ b=MoGIoUeUt0gbIgPPA/JMed/UzY8JDhwMedNOnHkuxn2LtfWzyymOuNGm
+ CVJ9qEjugBaApj1Ox6SBB1IY9jpHWk7jj/xeC/OiGaIAWQ2d/jpXoyZh8
+ BS7Vg2Nz/HTosnBH+2EjQ02kCIaGdASQcp5REpL8hecilWOTzR7W5gWuB
+ gL7wX04WohQ5llrcjJSejUG2cKguKiyHGddT7Th9VwCfjWbcpeP205eAD
+ s1ffLLQYvLC1s5cxtZ2oGIFpTACRaq6q0M/W9gKB1d2R6844mOL9SWw5a
+ 9aiBWHa0wpvQbZaofmZG+1av2VG4Ss3LOJA0C5tU0leRuZnUNzzyKqwpL A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="355629256"
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="355629256"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2022 01:11:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="670393243"
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="751994896"
 Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga008.fm.intel.com with ESMTP; 24 Aug 2022 00:59:02 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
+ by fmsmga001.fm.intel.com with ESMTP; 24 Aug 2022 01:11:58 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
  ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 24 Aug 2022 00:59:02 -0700
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ 15.1.2375.31; Wed, 24 Aug 2022 01:11:57 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 24 Aug 2022 00:59:01 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ 15.1.2375.31; Wed, 24 Aug 2022 01:11:57 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Wed, 24 Aug 2022 00:59:01 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.42) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Wed, 24 Aug 2022 01:11:57 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Wed, 24 Aug 2022 00:59:01 -0700
+ 15.1.2375.31; Wed, 24 Aug 2022 01:11:57 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K8lYmAA1WOY1A/5kt3+8f5JJFBakI1o7kxO04zSESakEf6VlNIxgyNz8cwZdcUBY5+mtTZr3nIlK+gQ4rTlp2pnGJtMPHnz1mO4e1uFsADjY4RKleUFJSmJ0yiXx8zDDV6ytGocZbQBbCH/8X0rB79NDtfMQIK0JTmEpVnPQ9HqL9RSuiiBZ+/FWIV08rc83B9tXEboHGoNC2OwW5EQ9nf4ouXwN8Y74gNMVnUSrz+kfhKPQvut/QJVM1MmW/JtFmNH6lJhUo3RfYcbl6uor1CqqtkoIoEcg2jqHSeyJ+ecqiae8oHhVT7/gKLlT0BLrVBaCtgNogbX2KtDbIfYYZQ==
+ b=KTPz0YcpIVVLbnxlsH8f1d8TBPtBgKVnpGSLCJ6v/3nglZDnsxszWr26rGPQsOVhRc3gk7zhMf8AUoaFxGPwrs7Us4ftBaNoOz4AFdMO5xgDjhwT5O8nu5c48R1fnQWKR3W3L6B+7eCZl8mViiU4MchV0xG2F4gQk9V1tNgQ1FanEmR9X5SFVxC4G+qv0His6vyA70L1RmvAbK7OxuF9wH29rPUmhWdj7R+gQiR3yshHJgngrk79Y1wDXKjb7va2xgiSay3DM77jExuXQhfCd4yeJR50Pbzg2QWYCGCFpM0KRPPgHzhV4WHMgyGuRAgV3YBVxuLfWxthOBOAverG0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7ButktFvAQNyn+7UmAcRfatwWmuoB0KUdmKtu0Gognw=;
- b=G6Rhwk1vtV+VENpOFoxYRgzSzJXxcwcpwiIBNe1vZAAM8shr5ti/E2vuS247P+sBOux2VUTdxr0EIuEN7t2JDf5gRsX9zjv68n/pjw8xDT9tBvl7o+Fli/0UAo3fbBQz4uoR2YVNX2H/MOf0QGLIXIRumqtRjqJ3ZmiWJqBioVyzXkU1CvfhGPaVzYCgw3zXElX64HskCx9eF+H5gMJT6qAn8WKozi5ITljioGldGRhU2aSloVd3dU0GpdmcyZFFEg4s/00jcm/czQyaexsXCoLbORF/abpfbWATm8TOUZT2fEdWWv8rbH2xDM2IZFnVBRWj/pfeMutWVEGowmqBaw==
+ bh=ipOCl6YEzAkIdYrBHiI1vc1qxv2uQELxi+vtTLorDWo=;
+ b=J4/23CUxg2znMeXQkMUp3W0j97YamdGRcX1zSbbibPq4I82RCZfvBdasi9K39M8btPB2+qc1nMCpT8qhe2q0Gzi+UszN5srH50TkPZfJt5GWNOMWmkOVCpikgZGwJzHfAS02fGlBPTdNF3TCKASJv9E84dLZOMjDLrYbBTSCCKA7ma7H/4wsW7Ce8pHPCdpTmSx4jnQfJCOfjJvdCll3C5ktWF/0/M+L7BtsHdJpg10PHA19KMyMnGnEwwyDr1Qdp3H53Xw99Vgs2ge/aP0MUd6oT0Wky8VgHOcInQXRgG5n7mj5gM/EnjB2ca9ThrRaDBDHluef3KUk9rYwGrt2Ug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by DM5PR11MB1915.namprd11.prod.outlook.com (2603:10b6:3:110::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.21; Wed, 24 Aug
- 2022 07:58:59 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::e8e1:12c7:5a6f:4f86]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::e8e1:12c7:5a6f:4f86%4]) with mapi id 15.20.5566.014; Wed, 24 Aug 2022
- 07:58:59 +0000
-Message-ID: <14c5533d-4100-0bf2-9024-38b595381e51@intel.com>
-Date: Wed, 24 Aug 2022 13:28:50 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.12.0
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from DM5PR11MB1897.namprd11.prod.outlook.com (2603:10b6:3:112::9) by
+ DM6PR11MB4689.namprd11.prod.outlook.com (2603:10b6:5:2a0::14) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5546.18; Wed, 24 Aug 2022 08:11:55 +0000
+Received: from DM5PR11MB1897.namprd11.prod.outlook.com
+ ([fe80::46f:6936:6441:5a7a]) by DM5PR11MB1897.namprd11.prod.outlook.com
+ ([fe80::46f:6936:6441:5a7a%8]) with mapi id 15.20.5546.023; Wed, 24 Aug 2022
+ 08:11:55 +0000
+Date: Wed, 24 Aug 2022 13:41:44 +0530
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
  <intel-gfx@lists.freedesktop.org>
-References: <20220822105426.3521960-1-ankit.k.nautiyal@intel.com>
- <20220822105426.3521960-4-ankit.k.nautiyal@intel.com>
- <87edx7kyqq.fsf@intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <87edx7kyqq.fsf@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0144.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:bf::11) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Message-ID: <YwXdQCeQxgqzLQcO@bala-ubuntu>
+References: <20220818234202.451742-1-radhakrishna.sripada@intel.com>
+ <20220818234202.451742-3-radhakrishna.sripada@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220818234202.451742-3-radhakrishna.sripada@intel.com>
+X-ClientProxiedBy: PN2PR01CA0104.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:27::19) To DM5PR11MB1897.namprd11.prod.outlook.com
+ (2603:10b6:3:112::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fb5330d3-1754-43c6-5f6c-08da85a6807d
-X-MS-TrafficTypeDiagnostic: DM5PR11MB1915:EE_
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Office365-Filtering-Correlation-Id: 1157ad0b-0273-4d42-7731-08da85a84eaa
+X-MS-TrafficTypeDiagnostic: DM6PR11MB4689:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VcBWpMyiqP3cgl9LXDgGEG7wjhzeV17f6JtguJy+gYk8vCrZdxlE4R4J+Hwc2C4iaMH+ZcLAhAQgX0kIu3Z7LB93Cl4l4XJaEgNilikEQaWIbMeCjQE16Uab+86M+b8IvljmpOqdIIl6Jvi/Zc610TBg/2UdBqA5KPOWL9pq2Wb307ji/7XJdhx0+m8lR5C78suvlmXIe8FPTkCdGqFAMvGcLODE/+YbBZSlcYjgzu9mJwT0hmujsT+kyLSYTT/ONjnUb1JA9FEGssyCpdBkVTk7QsjQyXTk+OwoxAcU9DfxJ/5JykApsPkQ3rQNf6409NcItUboXb0mru8Qi6cV+WYBOhSjzwWkxnMPC4wqdkrzXb73RY+Bg/0D6xINsdAGxzaKqddk1ZmZ6S8UjwNLvSUovhTcZUVHoMmPbLqWqcj6joFQDSlFbqf1CO5wxZ1BkH9wWC4T3cGM+eVKnpmjgjYAsVSL+rofn/jdbE02kWE28A9eQC461+Ed/IzTE78hxZ9di46bjWdm90YbN1/QrYjHPHcyIwdIPEuu5953xemMLraIVL0MhDnPu00PCd19gDllB8YMfX/Y9WNuqMvAXJN3bNkJnlBkgoWnSh5h/c/FRMIbm1sUZhrSZxq5BppMwug2K+IhJUECWWqzuTPVYS3eq3MW55nfXvMooZsWWN/q4ORtnJV+osMuUjQT8VrhyywTcny9E2zDTFXqVx4tBzSAn9NglSuKoVi5+MOc3GB/5wxWZxb41LWodcGJXIkAylhvRd4d6jU67Hp9mwj+5gqn4VvrcGDPn2ekm2ngoV0=
+X-Microsoft-Antispam-Message-Info: h4IBuDlIqZmaqIlvtVaUqqBhXb4Zs/egyXk4tE4nBE/CrhZ2nd1YFi+aSo5zdz0cepK1FkOjBx5wWNCevW13/syifLhy6FYzE6PFExy8V+vOnrsdfoxH4y52PXMiuFOyTCdMtppiBviHlDkGqVRFYiOssZD0hcO4URGkwbZX9iQFOa+caTEHMDedfW9Vq2OWVeRj34a0/m+lGWwTmfZSH3G/yG552a7BhrXNmnZwMhEC7yLO/F4e39890iMmLQmaPtnkyhzz+5tADktQWGgYyFcEph51c0Q21gzw2aDXO7mlyvEFtB2SRXuA8Q3p7vDGJ4hWwpNACUoZOeS/Gqw3WazZpaCcBWUuM78oYtlhr9MUYeDP0DsHRrjIXHug9bvKvYkH5POK6HymQCpm8lDbgWlP7W6cZX7b+8wRKtDu2mlLjV3P2U3hcO+tgOXapBkO8ZTMmZHP7dLsc9FJr6KbmsJFy2mmpfcksLP4lDqHd3wZiuxG/5bm8aQphEElzXBWC133jPCO4cMkEG0jEAzoNDrN31iNBH/aEEo1LE0h8JaUzVau7hOOigLNjaG67oEQOFZ5MoQ7apeUfslvXHE7Y18pe3AY+5kcBLSE7AA9uL0gV1uysyLxNbu4ITPxAmRgtcSDwV08kz1ehd1DHFu/hRU3wvAhGkhBiKnsEjNqYQKN+bO2f/T86l4eAeiB7y/6nhC28wg5kNKVqPOnjKNNHQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(136003)(376002)(396003)(346002)(39860400002)(366004)(53546011)(5660300002)(6486002)(66556008)(4326008)(66946007)(8676002)(8936002)(66476007)(26005)(478600001)(6506007)(6512007)(2616005)(36756003)(186003)(6666004)(83380400001)(55236004)(41300700001)(86362001)(82960400001)(31696002)(31686004)(316002)(2906002)(38100700002)(43740500002)(45980500001);
+ IPV:NLI; SFV:NSPM; H:DM5PR11MB1897.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(7916004)(366004)(376002)(346002)(136003)(39860400002)(396003)(8936002)(41300700001)(44832011)(8676002)(5660300002)(450100002)(4326008)(6486002)(316002)(6666004)(66476007)(478600001)(66556008)(66946007)(53546011)(82960400001)(6512007)(9686003)(186003)(26005)(6506007)(86362001)(2906002)(33716001)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MGxHdjJwV2wxQXRLOXk4NVNOb1pua3A5KzhuVm1iUjEyS25rVnFIaEFKSUFx?=
- =?utf-8?B?Znp4bmJwQzBackw4cms5S1pIZjVtbExyVTI0ZkJsRVJ4ejFzdTVrQWVlVHJt?=
- =?utf-8?B?NnJNaGREdUxibzBrbXdIWHBuRzFRQWpybGRwdmQ0MGM5OXFpdm0vcFlSbFVM?=
- =?utf-8?B?YndKQjB1RzcyRStkZDJHeCtnOVU2M3BKalExUm5VTW1xNk1nd3E4SXN2Mkpk?=
- =?utf-8?B?Y2xPcmRydWNub2R1b1BacU5JWnluQXZ0ZENMMWhCT3pja2tKekxWVmpreG02?=
- =?utf-8?B?RU9qc1JuUHl0eHJaWHJqeG5xaTJEY05tY0ZxZm1JN2k3RHJmYjVwVTFJdk9R?=
- =?utf-8?B?d3V1c3VoZUU4cElHcGtwQ25PMlNKYlV1Z1NYb1pMaEhsaDh5aTltWHQzRnBK?=
- =?utf-8?B?ZzhCdzlmVlpucll1bWVCN3JjcnNwYis2bFpBaEQ3WUx3eUtqT2I2QlYzNU4r?=
- =?utf-8?B?cHZyYlIwcUt5Z083TGgwaGZJN21NVW9DeW1iZzN3RFJGaDBxeldrakQ0L3dH?=
- =?utf-8?B?dkpxbm14RiszVWRIMFp6K3lpMXZDMzZ2emU2RWtaT0FsUnNQSnY4c21wZXJl?=
- =?utf-8?B?ZTE1aFRmTC93M2lUc1oybTFzZS8zT0svVTh3dVlzNWMyZlR6V2lyazFZemFa?=
- =?utf-8?B?OXdnaUpuV1NxT01zbkV2UWErbExjempGbU8vWkdmTW1xbHAvUFRLRzIwQUJk?=
- =?utf-8?B?S2YxTUVLVjZHbEdFUUFqSGJRNE0xdXl1dlF6TEc0TGlVWk81Zk5INVJGUkoz?=
- =?utf-8?B?K3RiVjZNQUEzNnFrQ24zT2VJYXljS29vRlpQTzlCY0QrTGlaOEVEbzI4blZ2?=
- =?utf-8?B?emZqc3BIMEhocHpLL0N1YUpJalJzSGY5NHNzeUxCRDR6dnAxMXlIcVJGcTdO?=
- =?utf-8?B?dEJvTUptc2tNTmZydmJXc2FoM3dlQWtjc0N3N0xtMVowOXRuaG1xaTBqSjh0?=
- =?utf-8?B?VUJ6L2lKQk5Ecll0OGtxOGFOay9iWjNwNWJ0bi9ucDhRNlVSUmlCZjgvUnM2?=
- =?utf-8?B?WVdIeXhWdlhIZElEL2JTNEpzT0pHREdPVkpHNmlXRUgzcElia2M5Z0I2MEtl?=
- =?utf-8?B?THp5N09INmxySU45alRJelhLZUVNOEJuQ21wV3JtYTljYlJZR2UxQWM2RXBF?=
- =?utf-8?B?aEhSdm9WR0V2YjgyOWhySzlLeHI5RnN5K2x0aExCY2o2Wm1VUk5lbmRNc3F1?=
- =?utf-8?B?ZG9JYWZHNDByM3JrKzFYTURBbkFCUjI5NkZ2SDVKaEdHOFBvYVd0ZEZXbi9r?=
- =?utf-8?B?NUMwWjBRanlQa1J2WFVDajZNbkIrbkdqdTd5eXZBVU00RGJPSVM0dHhvYXNQ?=
- =?utf-8?B?aWhvcXRyaSswSXhJQ2JXYkhvM3FoNDhuWFBXcWRtb1l0MmRGaENqWEoyTXBV?=
- =?utf-8?B?YkNCWFVyWnp0RXBtY0VGb1JkcFJJUEZaOWF4S2dmVU84bko4djVIa1JlWjVZ?=
- =?utf-8?B?MHdEWFczMDkzUk5RS0FGRThCOU96UzFJVFNxcFFxM05xOTRjRXUyZmp1M2dm?=
- =?utf-8?B?eEt4SWhjS2Y3bTNqV3htNUxZOHZoN1I2WGFqQVhiK0I3b2g5YjV3ZWRrRFpa?=
- =?utf-8?B?UHBmc0lGSVY3TndSSlpyNE12MUxZd0tBUFdNRitjQnNpajNUMHEva2pIaXB4?=
- =?utf-8?B?QjluVndiK014dThEKzhNUndRR1Y2S2xsaG9NYUJ2a3lrR05tUVVUSWJQc3hv?=
- =?utf-8?B?K2Izd2UraVRucnp5TVA1eVRqR3pkaWhtNWZ0UzJFR2tTLzZzVFl2dHNTcy8y?=
- =?utf-8?B?ak9qRkE3K0MwN3pXUVZEZnpwUDFWR0EzbG5RVlR6NXNWYWhvSExLYzZkK3FB?=
- =?utf-8?B?YzduUit0cFFmdXBuOGpYbUVHUUd3N1FQc2RGSGx1T3B4bU1MNFE3dHZqUmlY?=
- =?utf-8?B?UlBwQTlvbkJpZVREYmRwOXN1cGdsT0oxaUFSK1N6RzYrU01aTkdTU0pnQ09X?=
- =?utf-8?B?MWwvUmhMeis0dmZYMkVBWmJ6YzUveUwxQlRwM3J3TnhvdVpjR3hNNWdtZG9U?=
- =?utf-8?B?VDRqNElHc01aamJ6SE1USDhINFowWlVSNThSdkNSMEFDNWY0UzVMNHhnbktm?=
- =?utf-8?B?T1ltMDhPNXhiUHNNUXA1NUpmaTRrMWVNZ2xoSzFxaGVjSHVOT3JicDA0Ti9q?=
- =?utf-8?B?VzlMVDE3S1VEUzNEV1VNZkJXUHZvZmpnYlhxMUtoRWpwSkY4Zk9CZWdvQVhm?=
- =?utf-8?B?eEE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb5330d3-1754-43c6-5f6c-08da85a6807d
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bXJjQlUxTldpeTV3MUU1L1lzbnBHUU00eEpSNVRrZU5kKy92QkZkdUlVcEQw?=
+ =?utf-8?B?RDZZQmZ0a1JPUUZ5MlJIYVRUZFo2Y05RTVVSSmtieFBkMzJCRFlDQ016VGNF?=
+ =?utf-8?B?WEt3bGtsRUtTUFVxdnduZXVMYkdDM2JYRzRCVktKb3Z4UHI0NnpRcnJDQnB3?=
+ =?utf-8?B?Yjdtd05VVER4RFlEZEpWOGQwUlF0dzJ6TUlFd3NMY3ZFMmlwNGViWWNUbmJw?=
+ =?utf-8?B?WVJ5M0NvcWhDMUNIOXVydWlNcVc0T3VuSGRzWlhmelJSTDMzU0plby9CbEF4?=
+ =?utf-8?B?b0NIdnZ4S2tCRW9md1kyQlV3UTVrSm5xWkRqMXgyNHR2alA1WnZ2dTRyZ2Vu?=
+ =?utf-8?B?bXlBWWFIZ1JNaXpHa1FGWWhYRVl5S1FDVlh6Rko2NEsvSUNkMHAyUjliWkhN?=
+ =?utf-8?B?ZDhPamJpb0JnbEVRZHQ3YmR6OVZVWElZeFZrdVNuME1CeGJVeERDYUhCYS9O?=
+ =?utf-8?B?OVdqcTV3Z3Zvc1FwYlppemdVUFkzemU0cVU4djA0ZEtVakQwYTc1R2gwRmF6?=
+ =?utf-8?B?T25kWVBLUWZxbFpSaWJHT0d0UTMrZFRkV2pINm9IZjFFclZZeGgvZTRRVWVT?=
+ =?utf-8?B?am1mWGp0ZWI2aEw1T0JHeURxeHJjM2FZbXZ1NlA0NmllNEkzWHBvUmpOR3ox?=
+ =?utf-8?B?RTQxVTRtUG1CNHpHM2dyeHpVQjR0b3NxOWdFem9VaktjMTBWQ1MrZ3YvOS9F?=
+ =?utf-8?B?NUo2M1VXeUZsOUFCWGhJMVVXakRxWHh4ckM2RjdCUGh6TEVpUHNKbXZWWEc5?=
+ =?utf-8?B?OE9DWlgzMk90cnhab1NyZUM0bW5zckh5Q1dCOW1taWNIWmFQNU1ueCtvVWR2?=
+ =?utf-8?B?czM1WS91bG1TRjdLUm5FYmFyMmlENFd1eFEyRVFNVU1mdWxZc1k3c25NTWIx?=
+ =?utf-8?B?QjM2ODdPRk5DaHMrM2RPZko4aXdJTDZ0amcwRFk0c3AwMFZRQlMyTDk2N0x1?=
+ =?utf-8?B?TnNNeXN3eTEzdzF6dFlCU0hwMmtuMHJnem8zMlNVL0YrUC9VQ1NFVmlnTnlM?=
+ =?utf-8?B?cEs1b2labUtCS2txVDZieTU2SUpqMURRT01pMjRtL0N5czJWQ2diN1hDeFZm?=
+ =?utf-8?B?UGNoa3krMWlaaG5PeHdRT1pRSy9yZWdyaThyTGtrMnc5RUJnWDdNSVdmTmp0?=
+ =?utf-8?B?U2VkNjIrTzY4YjlZaHJsemVGWVoyWVJIZVZOQlNUSGZxRWk3TDkyT3BpdVJa?=
+ =?utf-8?B?SXNuR05IQStkZjJJQ2kwT0JGRGR5SGVkejh6WmYwckh0bnNYcUNFUlIxUCtL?=
+ =?utf-8?B?L2VsVUJTTkZGL1dMditPc09nemN3ay9BdGtRZjFsSjhvZVpnQXFHOTFoMUVL?=
+ =?utf-8?B?ZWdhaytkbit2ZFFVb09MaEtrakw3RS9SenU5MEJKOGVSRmhQbHhxU3VmSFBW?=
+ =?utf-8?B?YS9BcnBwY0QwRHV2d2NpY1NaeGNKb29CM2tHcW1pVFR0bGtGaHVEM3Q4TnBz?=
+ =?utf-8?B?bUs0K1NwSzU5Z3NsaGtqRTErV1BobHR1VzhIejlrSlJuMGFXQ09ReFVjZU4v?=
+ =?utf-8?B?Y0l5STFyMnBOUjk5MDc4QTdFNlFoOHhibmxwY0thRlJTYmxwZ2VZNFlraXdB?=
+ =?utf-8?B?bXpYajJwK0FPdFNJQk9sSThMcWhmQjdCT2NxZVNJT1BaelRVZ05RdG9OSzBB?=
+ =?utf-8?B?emhIU1I2VjlpOUduWHJLdzVMbWVuOWNTMUowN1BGY1MySEVydUxBMzQyNW9L?=
+ =?utf-8?B?b3VwZkZCY3dmNWpEbzZEVnZVN2EyS0ZONEo3TDFnK0JqeHkzMVk1V29DWFV2?=
+ =?utf-8?B?Zzk5ZjV4TENxK3JpcDcxSmppa0dGU0sxdlEzengzbFlsc0JoeFNwQXl5RFlL?=
+ =?utf-8?B?RHgxVzJobXp1Qm9XUHJaeWkvSTY5aXBxaGhNS0xyQUFBcVplZFcwZHVPVm1z?=
+ =?utf-8?B?N2hzend5Nzc0NHNBSU96bUpVbHA1Mkl6SXM0R1MvNTRuRWhoNy90dUMzOUZ5?=
+ =?utf-8?B?T2luVzY5TTQ5WGhkcUxqUmxHYnYzL01xeUJkbnNuZHhiUDM5aVkvNHJNcm9i?=
+ =?utf-8?B?bFZwSllmRzN2YnozSGNtaTRkZmM2OTZxVEZSMEpMVnZRcTE0RmpzNkd5cHg3?=
+ =?utf-8?B?MmJBbHBTbUJDU09hODZRYUR0R053Nks1RVJYSUpmeEtFRS90d1NNWnVCdTR1?=
+ =?utf-8?B?WW56L1pmbkU2RS8vNlNmSU56ZDZkVEhSSnVCNjhHMHFacUxKekxvbHZpZWZO?=
+ =?utf-8?Q?yd8G0A7hifSCGrXO/LdRLGo=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1157ad0b-0273-4d42-7731-08da85a84eaa
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1897.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2022 07:58:59.4361 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2022 08:11:55.1046 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GAAQIUtKEMkrAhFY0j3+FDG9dJeTCJDk7w0aDHWlL20N2Pw/tSP/as1FNGCN6LtaUuFk0+hUNKvuYIh5vB6Yc3oorgATQDyk28IjqAy/JB0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1915
+X-MS-Exchange-CrossTenant-UserPrincipalName: jPy4OeLI0Gkk4Qgc2C1Z3QF4NAmzsMCWC4us5wXqMp8yhD/hqiZrt5LwiMD78QAhQU9KcNLEPKNpVrf5aUh+T5oYoBk3EAiVDt9VDG1zxcodWt21Ydf5cF1MXsdArl71
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4689
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/dp: Fix DFP RGB->YCBCR
- conversion
+Subject: Re: [Intel-gfx] [PATCH v2 02/21] drm/i915: Parse and set stepping
+ for platforms with GMD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,243 +158,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 18.08.2022 16:41, Radhakrishna Sripada wrote:
+> From: José Roberto de Souza <jose.souza@intel.com>
+> 
+> The GMD step field do not properly match the current stepping convention
+> that we use(STEP_A0, STEP_A1, STEP_B0...).
+> 
+> One platform could have { arch = 12, rel = 70, step = 1 } and the
+> actual stepping is STEP_B0 but without the translation of the step
+> field would mean STEP_A1.
+> That is why we will need to have gmd_to_intel_step tables for each IP.
+> 
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_step.c | 60 +++++++++++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
 
-On 8/23/2022 4:33 PM, Jani Nikula wrote:
-> On Mon, 22 Aug 2022, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->> The decision to use DFP output format conversion capabilities should be
->> during compute_config phase.
->>
->> This patch:
->> -uses the members of intel_dp->dfp to only store the
->> format conversion capabilities of the DP device.
->> -adds new members to crtc_state to help configure the DFP
->> output related conversions.
->> -pulls the decision making to use DFP conversion capabilities
->> for every mode during compute config.
-> The fact that you have a list here probably indicates it's doing too
-> much at once.
->
-> BR,
-> Jani.
-
-Alright, perhaps adding new members as a separate patch and using them 
-in another patch will be better.
-
-Will split this into smaller patches.
-
-Thanks & Regards,
-
-Ankit
-
->
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   .../drm/i915/display/intel_display_types.h    |  7 ++
->>   drivers/gpu/drm/i915/display/intel_dp.c       | 88 +++++++++++--------
->>   2 files changed, 59 insertions(+), 36 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index 0da9b208d56e..065ed19a5dd3 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1311,6 +1311,12 @@ struct intel_crtc_state {
->>   
->>   	/* for loading single buffered registers during vblank */
->>   	struct drm_vblank_work vblank_work;
->> +
->> +	/* DP DFP color configuration */
->> +	struct {
->> +		bool rgb_to_ycbcr;
->> +		bool ycbcr_444_to_420;
->> +	} dp_dfp_config;
->>   };
->>   
->>   enum intel_pipe_crc_source {
->> @@ -1704,6 +1710,7 @@ struct intel_dp {
->>   		int pcon_max_frl_bw;
->>   		u8 max_bpc;
->>   		bool ycbcr_444_to_420;
->> +		bool ycbcr420_passthrough;
->>   		bool rgb_to_ycbcr;
->>   	} dfp;
->>   
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index fc082a933d59..8ccbe591b9e2 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -1201,19 +1201,21 @@ static bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
->>   		drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd);
->>   }
->>   
->> -static bool intel_dp_is_ycbcr420(struct intel_dp *intel_dp,
->> -				 const struct intel_crtc_state *crtc_state)
->> +static bool intel_dp_is_ycbcr420(const struct intel_crtc_state *crtc_state)
->>   {
->>   	return crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
->>   		(crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
->> -		 intel_dp->dfp.ycbcr_444_to_420);
->> +		 crtc_state->dp_dfp_config.ycbcr_444_to_420) ||
->> +		(crtc_state->output_format == INTEL_OUTPUT_FORMAT_RGB &&
->> +		 crtc_state->dp_dfp_config.ycbcr_444_to_420 &&
->> +		 crtc_state->dp_dfp_config.rgb_to_ycbcr);
->>   }
->>   
->>   static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
->>   				     const struct intel_crtc_state *crtc_state,
->>   				     int bpc, bool respect_downstream_limits)
->>   {
->> -	bool ycbcr420_output = intel_dp_is_ycbcr420(intel_dp, crtc_state);
->> +	bool ycbcr420_output = intel_dp_is_ycbcr420(crtc_state);
->>   	int clock = crtc_state->hw.adjusted_mode.crtc_clock;
->>   
->>   	/*
->> @@ -1966,6 +1968,30 @@ static bool intel_dp_has_audio(struct intel_encoder *encoder,
->>   		return intel_conn_state->force_audio == HDMI_AUDIO_ON;
->>   }
->>   
->> +static void
->> +intel_dp_compute_dfp_ycbcr420(struct intel_encoder *encoder,
->> +			      struct intel_crtc_state *crtc_state)
->> +{
->> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->> +
->> +	if (!drm_dp_is_branch(intel_dp->dpcd))
->> +		return;
->> +
->> +	/* Mode is YCBCR420, output_format is also YCBCR420: Passthrough */
->> +	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
->> +		return;
->> +
->> +	/* Mode is YCBCR420, output_format is YCBCR444: Downsample */
->> +	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444) {
->> +		crtc_state->dp_dfp_config.ycbcr_444_to_420 = true;
->> +		return;
->> +	}
->> +
->> +	/* Mode is YCBCR420, output_format is RGB: Convert to YCBCR444 and Downsample */
->> +	crtc_state->dp_dfp_config.rgb_to_ycbcr = true;
->> +	crtc_state->dp_dfp_config.ycbcr_444_to_420 = true;
->> +}
->> +
->>   static int
->>   intel_dp_compute_output_format(struct intel_encoder *encoder,
->>   			       struct intel_crtc_state *crtc_state,
->> @@ -1984,7 +2010,10 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
->>   
->>   	crtc_state->output_format = intel_dp_output_format(connector, ycbcr_420_only);
->>   
->> -	if (ycbcr_420_only && !intel_dp_is_ycbcr420(intel_dp, crtc_state)) {
->> +	if (ycbcr_420_only)
->> +		intel_dp_compute_dfp_ycbcr420(encoder, crtc_state);
->> +
->> +	if (ycbcr_420_only && !intel_dp_is_ycbcr420(crtc_state)) {
->>   		drm_dbg_kms(&i915->drm,
->>   			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
->>   		crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
->> @@ -1993,12 +2022,13 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
->>   	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
->>   					   respect_downstream_limits);
->>   	if (ret) {
->> -		if (intel_dp_is_ycbcr420(intel_dp, crtc_state) ||
->> +		if (intel_dp_is_ycbcr420(crtc_state) ||
->>   		    !connector->base.ycbcr_420_allowed ||
->>   		    !drm_mode_is_420_also(info, adjusted_mode))
->>   			return ret;
->>   
->>   		crtc_state->output_format = intel_dp_output_format(connector, true);
->> +		intel_dp_compute_dfp_ycbcr420(encoder, crtc_state);
->>   		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
->>   						   respect_downstream_limits);
->>   	}
->> @@ -2668,8 +2698,7 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
->>   		drm_dbg_kms(&i915->drm, "Failed to %s protocol converter HDMI mode\n",
->>   			    str_enable_disable(intel_dp->has_hdmi_sink));
->>   
->> -	tmp = crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
->> -		intel_dp->dfp.ycbcr_444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
->> +	tmp = crtc_state->dp_dfp_config.ycbcr_444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
->>   
->>   	if (drm_dp_dpcd_writeb(&intel_dp->aux,
->>   			       DP_PROTOCOL_CONVERTER_CONTROL_1, tmp) != 1)
->> @@ -2677,7 +2706,7 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
->>   			    "Failed to %s protocol converter YCbCr 4:2:0 conversion mode\n",
->>   			    str_enable_disable(intel_dp->dfp.ycbcr_444_to_420));
->>   
->> -	tmp = intel_dp->dfp.rgb_to_ycbcr ?
->> +	tmp = crtc_state->dp_dfp_config.rgb_to_ycbcr ?
->>   		DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
->>   
->>   	if (drm_dp_pcon_convert_rgb_to_ycbcr(&intel_dp->aux, tmp) < 0)
->> @@ -2686,7 +2715,6 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
->>   			   str_enable_disable(tmp));
->>   }
->>   
->> -
->>   bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
->>   {
->>   	u8 dprx = 0;
->> @@ -4534,7 +4562,6 @@ intel_dp_update_420(struct intel_dp *intel_dp)
->>   {
->>   	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->>   	struct intel_connector *connector = intel_dp->attached_connector;
->> -	bool is_branch, ycbcr_420_passthrough, ycbcr_444_to_420, rgb_to_ycbcr;
->>   
->>   	/* No YCbCr output support on gmch platforms */
->>   	if (HAS_GMCH(i915))
->> @@ -4547,39 +4574,28 @@ intel_dp_update_420(struct intel_dp *intel_dp)
->>   	if (IS_IRONLAKE(i915))
->>   		return;
->>   
->> -	is_branch = drm_dp_is_branch(intel_dp->dpcd);
->> -	ycbcr_420_passthrough =
->> +	if (!drm_dp_is_branch(intel_dp->dpcd)) {
->> +		connector->base.ycbcr_420_allowed = true;
->> +		return;
->> +	}
->> +
->> +	intel_dp->dfp.ycbcr420_passthrough =
->>   		drm_dp_downstream_420_passthrough(intel_dp->dpcd,
->>   						  intel_dp->downstream_ports);
->> +
->>   	/* on-board LSPCON always assumed to support 4:4:4->4:2:0 conversion */
->> -	ycbcr_444_to_420 =
->> +	intel_dp->dfp.ycbcr_444_to_420 =
->>   		dp_to_dig_port(intel_dp)->lspcon.active ||
->>   		drm_dp_downstream_444_to_420_conversion(intel_dp->dpcd,
->>   							intel_dp->downstream_ports);
->> -	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
->> -								 intel_dp->downstream_ports,
->> -								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
->> -
->> -	if (DISPLAY_VER(i915) >= 11) {
->> -		/* Let PCON convert from RGB->YCbCr if possible */
->> -		if (is_branch && rgb_to_ycbcr && ycbcr_444_to_420) {
->> -			intel_dp->dfp.rgb_to_ycbcr = true;
->> -			intel_dp->dfp.ycbcr_444_to_420 = true;
->> -			connector->base.ycbcr_420_allowed = true;
->> -		} else {
->> -		/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
->> -			intel_dp->dfp.ycbcr_444_to_420 =
->> -				ycbcr_444_to_420 && !ycbcr_420_passthrough;
->>   
->> -			connector->base.ycbcr_420_allowed =
->> -				!is_branch || ycbcr_444_to_420 || ycbcr_420_passthrough;
->> -		}
->> -	} else {
->> -		/* 4:4:4->4:2:0 conversion is the only way */
->> -		intel_dp->dfp.ycbcr_444_to_420 = ycbcr_444_to_420;
->> +	intel_dp->dfp.rgb_to_ycbcr =
->> +		drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
->> +							  intel_dp->downstream_ports,
->> +							  DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
->>   
->> -		connector->base.ycbcr_420_allowed = ycbcr_444_to_420;
->> -	}
->> +	if (intel_dp->dfp.ycbcr420_passthrough || intel_dp->dfp.ycbcr_444_to_420)
->> +		connector->base.ycbcr_420_allowed = true;
->>   
->>   	drm_dbg_kms(&i915->drm,
->>   		    "[CONNECTOR:%d:%s] RGB->YcbCr conversion? %s, YCbCr 4:2:0 allowed? %s, YCbCr 4:4:4->4:2:0 conversion? %s\n",
+Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+> index 42b3133d8387..0fa7147c7d0f 100644
+> --- a/drivers/gpu/drm/i915/intel_step.c
+> +++ b/drivers/gpu/drm/i915/intel_step.c
+> @@ -135,6 +135,48 @@ static const struct intel_step_info adlp_n_revids[] = {
+>  	[0x0] = { COMMON_GT_MEDIA_STEP(A0), .display_step = STEP_D0 },
+>  };
+>  
+> +struct gmd_to_intel_step {
+> +	struct ip_version gmd;
+> +	enum intel_step step;
+> +};
+> +
+> +static const struct gmd_to_intel_step gmd_graphics_table[] = {
+> +	{ .gmd.ver = 12, .gmd.rel = 70, .gmd.step = 0, .step = STEP_A0 },
+> +	{ .gmd.ver = 12, .gmd.rel = 70, .gmd.step = 4, .step = STEP_B0 },
+> +	{ .gmd.ver = 12, .gmd.rel = 71, .gmd.step = 0, .step = STEP_A0 },
+> +	{ .gmd.ver = 12, .gmd.rel = 71, .gmd.step = 4, .step = STEP_B0 },
+> +	{ .gmd.ver = 12, .gmd.rel = 73, .gmd.step = 0, .step = STEP_A0 },
+> +	{ .gmd.ver = 12, .gmd.rel = 73, .gmd.step = 4, .step = STEP_B0 },
+> +};
+> +
+> +static const struct gmd_to_intel_step gmd_media_table[] = {
+> +	{ .gmd.ver = 13, .gmd.rel = 70, .gmd.step = 0, .step = STEP_A0 },
+> +	{ .gmd.ver = 13, .gmd.rel = 70, .gmd.step = 4, .step = STEP_B0 },
+> +};
+> +
+> +static const struct gmd_to_intel_step gmd_display_table[] = {
+> +	{ .gmd.ver = 14, .gmd.rel = 0, .gmd.step = 0, .step = STEP_A0 },
+> +	{ .gmd.ver = 14, .gmd.rel = 0, .gmd.step = 4, .step = STEP_B0 },
+> +};
+> +
+> +static u8 gmd_to_intel_step(struct drm_i915_private *i915,
+> +			    struct ip_version *gmd,
+> +			    const struct gmd_to_intel_step *table,
+> +			    int len)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < len; i++) {
+> +		if (table[i].gmd.ver == gmd->ver &&
+> +		    table[i].gmd.rel == gmd->rel &&
+> +		    table[i].gmd.step == gmd->step)
+> +			return table[i].step;
+> +	}
+> +
+> +	drm_dbg(&i915->drm, "Using future steppings\n");
+> +	return STEP_FUTURE;
+> +}
+> +
+>  static void pvc_step_init(struct drm_i915_private *i915, int pci_revid);
+>  
+>  void intel_step_init(struct drm_i915_private *i915)
+> @@ -144,6 +186,24 @@ void intel_step_init(struct drm_i915_private *i915)
+>  	int revid = INTEL_REVID(i915);
+>  	struct intel_step_info step = {};
+>  
+> +	if (HAS_GMD_ID(i915)) {
+> +		step.graphics_step = gmd_to_intel_step(i915,
+> +						       &RUNTIME_INFO(i915)->graphics,
+> +						       gmd_graphics_table,
+> +						       ARRAY_SIZE(gmd_graphics_table));
+> +		step.media_step = gmd_to_intel_step(i915,
+> +						    &RUNTIME_INFO(i915)->media,
+> +						    gmd_media_table,
+> +						    ARRAY_SIZE(gmd_media_table));
+> +		step.display_step = gmd_to_intel_step(i915,
+> +						      &RUNTIME_INFO(i915)->display,
+> +						      gmd_display_table,
+> +						      ARRAY_SIZE(gmd_display_table));
+> +		RUNTIME_INFO(i915)->step = step;
+> +
+> +		return;
+> +	}
+> +
+>  	if (IS_PONTEVECCHIO(i915)) {
+>  		pvc_step_init(i915, revid);
+>  		return;
+> -- 
+> 2.25.1
+> 
