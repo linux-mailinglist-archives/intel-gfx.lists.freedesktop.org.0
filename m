@@ -2,36 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E2415A4CED
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 434AF5A4CEF
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBBDF10F1C8;
-	Mon, 29 Aug 2022 13:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5FE010F1D1;
+	Mon, 29 Aug 2022 13:04:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95A94900BE;
- Wed, 24 Aug 2022 15:03:48 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EB6010E583;
+ Wed, 24 Aug 2022 15:22:06 +0000 (UTC)
 Received: from [192.168.2.145] (109-252-119-13.nat.spd-mgts.ru
  [109.252.119.13])
  (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
  (No client certificate requested)
  (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 7B8806601E8F;
- Wed, 24 Aug 2022 16:03:44 +0100 (BST)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 5F0606601E8F;
+ Wed, 24 Aug 2022 16:22:02 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1661353426;
- bh=ss7Re+WGJ6gPDf+07fuRLgmV2oF07ngUyzhkLngogMo=;
+ s=mail; t=1661354524;
+ bh=0T3J2stygSQ46G6B6v9zKNnVQmlqX5H9hiMN/yLf2Co=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=oAR0YvOOYSafNUGMl1oNd0JDpIq3FDAHC3HSFM85TQLAtdUKWV9S7/KMulX1yzdJU
- ynpYz4YtIeU371JqvKb8/c29/d8CPVp3PGsQrb8kJYYp7JpoSNHveANuXdDGoXqRHL
- p9edkNfznNFe0vL1B7KsPf3EQ1iqD0q15Jh9BVqB7qaGinbAx23HtsmgAfze7Sezsa
- 5eCHp4KjFs2i46CRc/qn7EZjWd/w/c9qg+8YOKS0kgwlBEA5uFkOiS4rzy8gfpu2eT
- /NbO6kk31WXQ6hWLjRcZaGob2toZeqNH+aU5AQGrgKbdtAC0glWaondyOLmCNSr5lf
- VJAAXcJe1ilqw==
-Message-ID: <4af793fd-eccc-ad70-65c3-de78dced71f0@collabora.com>
-Date: Wed, 24 Aug 2022 18:03:42 +0300
+ b=C7kNvimP5fOeZ0pyknplgArACBn58oK40aC89jsu3KaqWXbcbY8TsmhOzQXGPZXJW
+ HlOE9l3nkbpE4cq7o7VzS7BLHKZ7JbB/cOakl527Kh6ywLyq6Vl+/D6cQEe4Tgmdsa
+ clxboeNEqjRMl0uZ8PhzGtLQXa+tn7p9f9fX0RM1Sox5gkFZodPnajK1NtmQiu0rUQ
+ jCjwYKEH2ZVybOdU5ZggxwmEs9aj+6c4EZ1TaDGOCpNvzNJSTVyvlM7X8dNfWi6Qba
+ 4ht1LFVkuybaOjoAhoDb5lNkC/scx8bwroiq2hCKb3C5T+0VaVlNIxY0x7+lIxFlrq
+ hHP83HoyFxTWA==
+Message-ID: <76beb362-09c3-bbff-c50d-794a200cb641@collabora.com>
+Date: Wed, 24 Aug 2022 18:22:00 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
@@ -62,8 +63,10 @@ To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
 References: <20220824102248.91964-1-dmitry.osipenko@collabora.com>
  <20220824102248.91964-7-dmitry.osipenko@collabora.com>
  <17181951-1b40-cd39-48df-58b43cad117d@amd.com>
+ <4af793fd-eccc-ad70-65c3-de78dced71f0@collabora.com>
+ <b24017e9-e8e7-148e-951b-0f2a1dffdca7@amd.com>
 From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <17181951-1b40-cd39-48df-58b43cad117d@amd.com>
+In-Reply-To: <b24017e9-e8e7-148e-951b-0f2a1dffdca7@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 29 Aug 2022 13:04:13 +0000
@@ -90,34 +93,37 @@ Cc: lima@lists.freedesktop.org, linux-rdma@vger.kernel.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 8/24/22 17:08, Christian König wrote:
-> Am 24.08.22 um 12:22 schrieb Dmitry Osipenko:
->> Move dma-buf attachment API functions to the dynamic locking
->> specification.
->> The strict locking convention prevents deadlock situations for dma-buf
->> importers and exporters.
->>
->> Previously, the "unlocked" versions of the attachment API functions
->> weren't taking the reservation lock and this patch makes them to take
->> the lock.
+On 8/24/22 18:14, Christian König wrote:
+> Am 24.08.22 um 17:03 schrieb Dmitry Osipenko:
+>> On 8/24/22 17:08, Christian König wrote:
+>>> Am 24.08.22 um 12:22 schrieb Dmitry Osipenko:
+>>>> Move dma-buf attachment API functions to the dynamic locking
+>>>> specification.
+>>>> The strict locking convention prevents deadlock situations for dma-buf
+>>>> importers and exporters.
+>>>>
+>>>> Previously, the "unlocked" versions of the attachment API functions
+>>>> weren't taking the reservation lock and this patch makes them to take
+>>>> the lock.
+>>> Didn't we concluded that we need to keep the attach and detach callbacks
+>>> without the lock and only move the map/unmap callbacks over?
+>>>
+>>> Otherwise it won't be possible for drivers to lock multiple buffers if
+>>> they have to shuffle things around for a specific attachment.
+>> We did conclude that. The attach/detach dma-buf ops are unlocked, but
+>> the map_dma_buf/unmap_dma_buf must be invoked under lock and
+>> dma_buf_dynamic_attach_unlocked() maps dma-buf if either importer or
+>> exporter can't handle the dynamic mapping [1].
 > 
-> Didn't we concluded that we need to keep the attach and detach callbacks
-> without the lock and only move the map/unmap callbacks over?
+> Ah! You are confusing me over and over again with that :)
 > 
-> Otherwise it won't be possible for drivers to lock multiple buffers if
-> they have to shuffle things around for a specific attachment.
+> Ok in this case that here is fine, I just need to re-read the patch.
 
-We did conclude that. The attach/detach dma-buf ops are unlocked, but
-the map_dma_buf/unmap_dma_buf must be invoked under lock and
-dma_buf_dynamic_attach_unlocked() maps dma-buf if either importer or
-exporter can't handle the dynamic mapping [1].
+It's indeed not trivial to review this patch, not sure if we can make it
+simpler. Maybe it's possible to factor out the changes related to
+dynamic mapping, or maybe it's not worthwhile..
 
-[1]
-https://elixir.bootlin.com/linux/v6.0-rc2/source/drivers/dma-buf/dma-buf.c#L869
-
-Hence I re-arranged the dma_resv_lock() in
-dma_buf_dynamic_attach_unlocked() to move both pinning and mapping under
-the held lock.
+Anyways, thank you for helping with reviewing it :)
 
 -- 
 Best regards,
