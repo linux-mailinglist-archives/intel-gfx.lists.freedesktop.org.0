@@ -2,55 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DC6C59F9D6
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 14:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E54BF59FA4F
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 14:47:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CA89A70A1;
-	Wed, 24 Aug 2022 12:18:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D51D198EDE;
+	Wed, 24 Aug 2022 12:47:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 721E791097
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 12:17:59 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9693D2AD5E;
+ Wed, 24 Aug 2022 12:47:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661343479; x=1692879479;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=15xd5v5ZTTv9UU0AQ8KwQ76tFcgT8MOIB/7N6Qqk1yg=;
- b=JThyV4Y3ewtPcPdE3ek42LjWu53Jx14Og41jNYCDj77YFaf4EoNyDgqK
- f2b6K+Sur3gNqTXLFwo94oy0Zn8H9qSb/mOPIP1hGWl3op9Sr0qoklWOX
- mdCNNGwnvPRMG9jp22kKNAaK4fhdUSlORQWy4jed9+73tQ1qByXfvciv/
- BKuxrquooN1SSaTYTsoxxPey0hqJc9f2PLK9/PY+7V+3wgczcPddLgGSr
- 2xAogp8L0kHEADgEAER+q5dnADo1UApsM6WH4A2fb1Ej0EjiSZad01FjF
- +/j1jvy1soTCaqE6phf42IXQ5AIZ0odJzLHkgc5HJ5FFxqXE1O/fm5UVS A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="380239439"
-X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="380239439"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2022 05:17:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="612776037"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.59])
- by fmsmga007.fm.intel.com with SMTP; 24 Aug 2022 05:17:55 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 24 Aug 2022 15:17:55 +0300
-Date: Wed, 24 Aug 2022 15:17:55 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Message-ID: <YwYW826HW9xjjVnE@intel.com>
-References: <20220426120407.1334318-1-arun.r.murthy@intel.com>
- <20220704161548.1343042-1-arun.r.murthy@intel.com>
- <YwTOoCLIBf8KhjWB@intel.com>
- <DM6PR11MB3177E2D112D3A3A589F650D8BA739@DM6PR11MB3177.namprd11.prod.outlook.com>
+ t=1661345238; x=1692881238;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=svJpu/aAhxTW7SBWGKYeIaIuCtBuBU2tQ9RclprRDV0=;
+ b=VVK2SzlrQPDQzeit8jDQM3MMolSE5ep0ab9xnJ1+ZYVEvfgZiVleaI1p
+ MwGjiqttohc9mNt4wwOaebV6nSZQbRZXbqoci7VJy8JjjEoZVh5tNtvzK
+ /SMQEDmlce2/Wg9UOMAlhTRbPZSx+uHbxAwdBIj6I3PDiUekZmFp6mLv5
+ xJo625j/866ickh37uRM0LbpFCLKwKR2fWAUMbKRSDHa69C7oIL6YPvke
+ OkQCuq3f2F+GUMvQ0Y5BPtuemoeZlLipEvdfzN/3U+QRyQS2NffyhvUcf
+ Fgzkf458YMaf7rc3nx7+g27HWBC2ChStiqQZrHaJFiaGRbcLO/fT0itKU g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="293952683"
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="293952683"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2022 05:47:15 -0700
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="639103382"
+Received: from zlim2-mobl.gar.corp.intel.com (HELO localhost) ([10.252.52.23])
+ by orsmga008-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2022 05:47:08 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>, Daniel Dadap
+ <ddadap@nvidia.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>, Lukas Wunner
+ <lukas@wunner.de>, Mark Gross <markgross@kernel.org>, Andy Shevchenko
+ <andy@kernel.org>
+In-Reply-To: <20220824121523.1291269-12-hdegoede@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220824121523.1291269-1-hdegoede@redhat.com>
+ <20220824121523.1291269-12-hdegoede@redhat.com>
+Date: Wed, 24 Aug 2022 15:47:05 +0300
+Message-ID: <87y1vdizau.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM6PR11MB3177E2D112D3A3A589F650D8BA739@DM6PR11MB3177.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
- buffers
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v4 11/31] drm/i915: Call
+ acpi_video_register_backlight() (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,42 +69,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: linux-acpi@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Len Brown <lenb@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 24, 2022 at 03:02:33AM +0000, Murthy, Arun R wrote:
-> > -----Original Message-----
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Sent: Tuesday, August 23, 2022 6:27 PM
-> > To: Murthy, Arun R <arun.r.murthy@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>
-> > Subject: Re: [PATCHv3] drm/i915: Support Async Flip on Linear buffers
-> > 
-> > On Mon, Jul 04, 2022 at 09:45:48PM +0530, Arun R Murthy wrote:
-> > > Intel Gen do support Async Flip is supported on linear buffers. Since
-> > > we didn't had a use case, it was not enabled. Now that as part of
-> > > hybrid graphics for unsupported hardware pixel formats, its being
-> > > converted to linear memory and then flipped, hence enabling!
-> > > This patch enables support for async on linear buffer.
-> > >
-> > > v2: added use case
-> > > v3: enabled async on linear for pre Gen 12 as well
-> > 
-> > I didn't think it went all the way back to gen9?
-> > 
-> It's the same as other buffers. I have just added support for linear buffer in the present async flip path, so the platforms on which the async flip is supported will support linear buffer as well.
+On Wed, 24 Aug 2022, Hans de Goede <hdegoede@redhat.com> wrote:
+> On machins without an i915 opregion the acpi_video driver immediately
+> probes the ACPI video bus and used to also immediately register
+> acpi_video# backlight devices when supported.
+>
+> Once the drm/kms driver then loaded later and possibly registered
+> a native backlight device then the drivers/acpi/video_detect.c code
+> unregistered the acpi_video0 device to avoid there being 2 backlight
+> devices (when acpi_video_get_backlight_type()==native).
+>
+> This means that userspace used to briefly see 2 devices and the
+> disappearing of acpi_video0 after a brief time confuses the systemd
+> backlight level save/restore code, see e.g.:
+> https://bbs.archlinux.org/viewtopic.php?id=269920
+>
+> To fix this the ACPI video code has been modified to make backlight class
+> device registration a separate step, relying on the drm/kms driver to
+> ask for the acpi_video backlight registration after it is done setting up
+> its native backlight device.
+>
+> Add a call to the new acpi_video_register_backlight() after the i915 calls
+> acpi_video_register() (after setting up the i915 opregion) so that the
+> acpi_video backlight devices get registered on systems where the i915
+> native backlight device is not registered.
+>
+> Changes in v2:
+> -Only call acpi_video_register_backlight() when a panel is detected
+>
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 8 ++++++++
+>  drivers/gpu/drm/i915/display/intel_panel.c   | 3 +++
+>  drivers/gpu/drm/i915/i915_drv.h              | 2 ++
+>  3 files changed, 13 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 6103b02c081f..2bb53efdb149 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -9088,6 +9088,14 @@ void intel_display_driver_register(struct drm_i915_private *i915)
+>  	/* Must be done after probing outputs */
+>  	intel_opregion_register(i915);
+>  	acpi_video_register();
+> +	/*
+> +	 * Only call this if i915 is driving the internal panel. If the internal
+> +	 * panel is not driven by i915 then another GPU driver may still register
+> +	 * a native backlight driver later and this should only be called after
+> +	 * any native backlights have been registered.
+> +	 */
+> +	if (i915->have_panel)
+> +		acpi_video_register_backlight();
 
-I know what the patch does. But I don't think bspec agrees with it.
+Apologies for procrastinating the review.
 
-> 
-> > Also we still don't seem to have any tests for this stuff...
-> 
-> There is an IGT patch in queue, once this patch is merged, the IGT patch will be floated.
+Please let's not add new flags like have_panel to i915; we're trying to
+clean it up instead.
 
-Do the igt stuff first. Then you can at least get some CI results for
-this stuff.
+The code here needs to iterate over the connectors to decide. Maybe
+better abstracted a function.
+
+BR,
+Jani.
+
+
+>  
+>  	intel_audio_init(i915);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+> index 237a40623dd7..4536c527f50c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -646,8 +646,11 @@ intel_panel_mode_valid(struct intel_connector *connector,
+>  
+>  int intel_panel_init(struct intel_connector *connector)
+>  {
+> +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> +	dev_priv->have_panel = true;
+> +
+>  	intel_backlight_init_funcs(panel);
+>  
+>  	drm_dbg_kms(connector->base.dev,
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 69ce6db6a7c1..14b0dcaf25c2 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -756,6 +756,8 @@ struct drm_i915_private {
+>  
+>  	bool ipc_enabled;
+>  
+> +	bool have_panel;
+> +
+>  	struct intel_audio_private audio;
+>  
+>  	struct i915_pmu pmu;
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
