@@ -2,68 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7982159F9CE
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 14:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DC6C59F9D6
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 14:21:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5192AB63E;
-	Wed, 24 Aug 2022 12:18:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CA89A70A1;
+	Wed, 24 Aug 2022 12:18:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44FD3AE4CB
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 12:17:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1661343469;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=3SH44BXwktH40KCcDZ9+emR32b1FaNxTyVmnyphrNZ0=;
- b=EPSJywInvipXb6037mci1afZRkdkqRpXNGArsXLfQjhw2Chd9dcrvoMjyhWxECuNxblnLw
- FgcYt9RgBCElNqdLP43kkmxEiKEjkvJE5BajJhNwt8Nhu1xDv8MS7ecW4Ya4KlsR/SHVSI
- AYtWwiVnBgvx3fCqJnKdFhXX/tjdoZw=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-467-IKvpAhDKN6GmZ58lZ6bPGA-1; Wed, 24 Aug 2022 08:17:48 -0400
-X-MC-Unique: IKvpAhDKN6GmZ58lZ6bPGA-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
- [10.11.54.8])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 9E1C4811E83;
- Wed, 24 Aug 2022 12:17:45 +0000 (UTC)
-Received: from localhost.localdomain (unknown [10.39.193.103])
- by smtp.corp.redhat.com (Postfix) with ESMTP id CF5DCC15BBA;
- Wed, 24 Aug 2022 12:17:41 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Ben Skeggs <bskeggs@redhat.com>,
-	Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
-	Daniel Dadap <ddadap@nvidia.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Jani Nikula <jani.nikula@linux.intel.com>,
-	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
-	Alex Deucher <alexander.deucher@amd.com>,
-	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-	Pan@freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>
-Date: Wed, 24 Aug 2022 14:15:23 +0200
-Message-Id: <20220824121523.1291269-32-hdegoede@redhat.com>
-In-Reply-To: <20220824121523.1291269-1-hdegoede@redhat.com>
-References: <20220824121523.1291269-1-hdegoede@redhat.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 721E791097
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 12:17:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661343479; x=1692879479;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=15xd5v5ZTTv9UU0AQ8KwQ76tFcgT8MOIB/7N6Qqk1yg=;
+ b=JThyV4Y3ewtPcPdE3ek42LjWu53Jx14Og41jNYCDj77YFaf4EoNyDgqK
+ f2b6K+Sur3gNqTXLFwo94oy0Zn8H9qSb/mOPIP1hGWl3op9Sr0qoklWOX
+ mdCNNGwnvPRMG9jp22kKNAaK4fhdUSlORQWy4jed9+73tQ1qByXfvciv/
+ BKuxrquooN1SSaTYTsoxxPey0hqJc9f2PLK9/PY+7V+3wgczcPddLgGSr
+ 2xAogp8L0kHEADgEAER+q5dnADo1UApsM6WH4A2fb1Ej0EjiSZad01FjF
+ +/j1jvy1soTCaqE6phf42IXQ5AIZ0odJzLHkgc5HJ5FFxqXE1O/fm5UVS A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="380239439"
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="380239439"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2022 05:17:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="612776037"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.59])
+ by fmsmga007.fm.intel.com with SMTP; 24 Aug 2022 05:17:55 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 24 Aug 2022 15:17:55 +0300
+Date: Wed, 24 Aug 2022 15:17:55 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Message-ID: <YwYW826HW9xjjVnE@intel.com>
+References: <20220426120407.1334318-1-arun.r.murthy@intel.com>
+ <20220704161548.1343042-1-arun.r.murthy@intel.com>
+ <YwTOoCLIBf8KhjWB@intel.com>
+ <DM6PR11MB3177E2D112D3A3A589F650D8BA739@DM6PR11MB3177.namprd11.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.8
-Subject: [Intel-gfx] [PATCH v4 31/31] drm/todo: Add entry about dealing with
- brightness control on devices with > 1 panel
+In-Reply-To: <DM6PR11MB3177E2D112D3A3A589F650D8BA739@DM6PR11MB3177.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
+ buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,104 +63,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-acpi@vger.kernel.org, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Len Brown <lenb@kernel.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add an entry summarizing the discussion about dealing with brightness
-control on devices with more then 1 internal panel.
+On Wed, Aug 24, 2022 at 03:02:33AM +0000, Murthy, Arun R wrote:
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Tuesday, August 23, 2022 6:27 PM
+> > To: Murthy, Arun R <arun.r.murthy@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>
+> > Subject: Re: [PATCHv3] drm/i915: Support Async Flip on Linear buffers
+> > 
+> > On Mon, Jul 04, 2022 at 09:45:48PM +0530, Arun R Murthy wrote:
+> > > Intel Gen do support Async Flip is supported on linear buffers. Since
+> > > we didn't had a use case, it was not enabled. Now that as part of
+> > > hybrid graphics for unsupported hardware pixel formats, its being
+> > > converted to linear memory and then flipped, hence enabling!
+> > > This patch enables support for async on linear buffer.
+> > >
+> > > v2: added use case
+> > > v3: enabled async on linear for pre Gen 12 as well
+> > 
+> > I didn't think it went all the way back to gen9?
+> > 
+> It's the same as other buffers. I have just added support for linear buffer in the present async flip path, so the platforms on which the async flip is supported will support linear buffer as well.
 
-The original discussion can be found here:
-https://lore.kernel.org/dri-devel/20220517152331.16217-1-hdegoede@redhat.com/
+I know what the patch does. But I don't think bspec agrees with it.
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- Documentation/gpu/todo.rst | 68 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+> 
+> > Also we still don't seem to have any tests for this stuff...
+> 
+> There is an IGT patch in queue, once this patch is merged, the IGT patch will be floated.
 
-diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-index 7634c27ac562..393d218e4a0c 100644
---- a/Documentation/gpu/todo.rst
-+++ b/Documentation/gpu/todo.rst
-@@ -679,6 +679,74 @@ Contact: Sam Ravnborg
- 
- Level: Advanced
- 
-+Brightness handling on devices with multiple internal panels
-+============================================================
-+
-+On x86/ACPI devices there can be multiple backlight firmware interfaces:
-+(ACPI) video, vendor specific and others. As well as direct/native (PWM)
-+register programming by the KMS driver.
-+
-+To deal with this backlight drivers used on x86/ACPI call
-+acpi_video_get_backlight_type() which has heuristics (+quirks) to select
-+which backlight interface to use; and backlight drivers which do not match
-+the returned type will not register themselves, so that only one backlight
-+device gets registered (in a single GPU setup, see below).
-+
-+At the moment this more or less assumes that there will only
-+be 1 (internal) panel on a system.
-+
-+On systems with 2 panels this may be a problem, depending on
-+what interface acpi_video_get_backlight_type() selects:
-+
-+1. native: in this case the KMS driver is expected to know which backlight
-+   device belongs to which output so everything should just work.
-+2. video: this does support controlling multiple backlights, but some work
-+   will need to be done to get the output <-> backlight device mapping
-+
-+The above assumes both panels will require the same backlight interface type.
-+Things will break on systems with multiple panels where the 2 panels need
-+a different type of control. E.g. one panel needs ACPI video backlight control,
-+where as the other is using native backlight control. Currently in this case
-+only one of the 2 required backlight devices will get registered, based on
-+the acpi_video_get_backlight_type() return value.
-+
-+If this (theoretical) case ever shows up, then supporting this will need some
-+work. A possible solution here would be to pass a device and connector-name
-+to acpi_video_get_backlight_type() so that it can deal with this.
-+
-+Note in a way we already have a case where userspace sees 2 panels,
-+in dual GPU laptop setups with a mux. On those systems we may see
-+either 2 native backlight devices; or 2 native backlight devices.
-+
-+Userspace already has code to deal with this by detecting if the related
-+panel is active (iow which way the mux between the GPU and the panels
-+points) and then uses that backlight device. Userspace here very much
-+assumes a single panel though. It picks only 1 of the 2 backlight devices
-+and then only uses that one.
-+
-+Note that all userspace code (that I know off) is currently hardcoded
-+to assume a single panel.
-+
-+Before the recent changes to not register multiple (e.g. video + native)
-+/sys/class/backlight devices for a single panel (on a single GPU laptop),
-+userspace would see multiple backlight devices all controlling the same
-+backlight.
-+
-+To deal with this userspace had to always picks one preferred device under
-+/sys/class/backlight and will ignore the others. So to support brightness
-+control on multiple panels userspace will need to be updated too.
-+
-+There are plans to allow brightness control through the KMS API by adding
-+a "display brightness" property to drm_connector objects for panels. This
-+solves a number of issues with the /sys/class/backlight API, including not
-+being able to map a sysfs backlight device to a specific connector. Any
-+userspace changes to add support for brightness control on devices with
-+multiple panels really should build on top of this new KMS property.
-+
-+Contact: Hans de Goede
-+
-+Level: Advanced
-+
- Outside DRM
- ===========
- 
+Do the igt stuff first. Then you can at least get some CI results for
+this stuff.
+
 -- 
-2.37.2
-
+Ville Syrjälä
+Intel
