@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C44455A01A0
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 20:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 737755A01B0
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 21:01:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99F39C2027;
-	Wed, 24 Aug 2022 18:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E690AC2734;
+	Wed, 24 Aug 2022 19:00:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 990F8C1FE4;
- Wed, 24 Aug 2022 18:54:08 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3F4EFC257C;
+ Wed, 24 Aug 2022 19:00:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8C047AADD6;
- Wed, 24 Aug 2022 18:54:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0881905544979634152=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2632BA0099;
+ Wed, 24 Aug 2022 19:00:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 24 Aug 2022 18:54:08 -0000
-Message-ID: <166136724856.9872.962050209127385020@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Wed, 24 Aug 2022 19:00:12 -0000
+Message-ID: <166136761215.9872.9449774311413664390@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <cover.1660553850.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1660553850.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/dp=3A_add_drm=5Fdp=5Fphy=5Fname=28=29_and_use_it_in_i915?=
+References: <20220816093525.184940-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20220816093525.184940-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Fixes_integer_overflow_or_integer_truncation_issues_in_page?=
+ =?utf-8?q?_lookups=2C_ttm_place_configuration_and_scatterlist_creation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,232 +46,137 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0881905544979634152==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/dp: add drm_dp_phy_name() and use it in i915
-URL   : https://patchwork.freedesktop.org/series/107266/
-State : success
+Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation
+URL   : https://patchwork.freedesktop.org/series/107318/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_12021 -> Patchwork_107266v1
-====================================================
+Error: dim checkpatch failed
+50d9962fd6ab overflow: Move and add few utility macros into overflow
+-:92: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#92: FILE: include/linux/overflow.h:64:
++#define overflows_type(x, T) \
++	(is_unsigned_type(x) ? \
++		is_unsigned_type(T) ? \
++			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
++	: is_unsigned_type(T) ? \
++		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++		: (sizeof(x) > sizeof(T)) ? \
++			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: 0)
 
-Summary
--------
+-:92: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
+#92: FILE: include/linux/overflow.h:64:
++#define overflows_type(x, T) \
++	(is_unsigned_type(x) ? \
++		is_unsigned_type(T) ? \
++			(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: (sizeof(x) >= sizeof(T) && (x) >> (BITS_PER_TYPE(T) - 1)) ? 1 : 0 \
++	: is_unsigned_type(T) ? \
++		((x) < 0) ? 1 : (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++		: (sizeof(x) > sizeof(T)) ? \
++			((x) < 0) ? (((x) * -1) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++				: ((x) >> BITS_PER_TYPE(T)) ? 1 : 0 \
++			: 0)
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 2 checks, 77 lines checked
+d17e3a569062 util_macros: Add exact_type macro to catch type mis-match while compiling
+8e21d72b3086 drm/i915/gem: Typecheck page lookups
+-:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#141: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:413:
++#define i915_gem_object_page_iter_get_sg(obj, it, n, offset) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_page_iter_get_sg(obj, it, n, offset); \
++})
 
-  No regressions found.
+-:190: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#190: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:458:
++#define i915_gem_object_get_sg(obj, n, offset) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_sg(obj, n, offset); \
++})
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/index.html
+-:239: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#239: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:503:
++#define i915_gem_object_get_sg_dma(obj, n, offset) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_sg_dma(obj, n, offset); \
++})
 
-Participating hosts (37 -> 36)
-------------------------------
+-:277: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#277: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:539:
++#define i915_gem_object_get_page(obj, n) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_page(obj, n); \
++})
 
-  Additional (1): fi-kbl-soraka 
-  Missing    (2): fi-hsw-4770 bat-dg2-11 
+-:314: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#314: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:574:
++#define i915_gem_object_get_dirty_page(obj, n) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_dirty_page(obj, n); \
++})
 
-Known issues
-------------
+-:355: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#355: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:612:
++#define i915_gem_object_get_dma_address_len(obj, n, len) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_dma_address_len(obj, n, len); \
++})
 
-  Here are the changes found in Patchwork_107266v1 that come from known issues:
+-:392: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#392: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:647:
++#define i915_gem_object_get_dma_address(obj, n) ({ \
++	exactly_pgoff_t(n); \
++	__i915_gem_object_get_dma_address(obj, n); \
++})
 
-### IGT changes ###
+total: 0 errors, 0 warnings, 7 checks, 623 lines checked
+f365654781ac drm/i915: Check for integer truncation on scatterlist creation
+-:203: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#203: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:224:
++typedef unsigned int __sg_size_t; /* see linux/scatterlist.h */
 
-#### Issues hit ####
+-:204: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#204: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
++#define sg_alloc_table(sgt, nents, gfp) \
++	overflows_type(nents, __sg_size_t) ? -E2BIG \
++		: ((sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp))
 
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-rkl-11600:       NOTRUN -> [FAIL][1] ([fdo#103375])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+-:204: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'nents' - possible side-effects?
+#204: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
++#define sg_alloc_table(sgt, nents, gfp) \
++	overflows_type(nents, __sg_size_t) ? -E2BIG \
++		: ((sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp))
 
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [PASS][2] -> [DMESG-FAIL][3] ([i915#4494] / [i915#4957])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+-:208: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#208: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:229:
++#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
++	overflows_type(npages, __sg_size_t) ? -E2BIG \
++		: ((sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, \
++						       size, max_segment, gfp))
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-rkl-11600:       NOTRUN -> [SKIP][4] ([fdo#111827])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-rkl-11600/igt@kms_chamelium@common-hpd-after-suspend.html
+-:208: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'npages' - possible side-effects?
+#208: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:229:
++#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
++	overflows_type(npages, __sg_size_t) ? -E2BIG \
++		: ((sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, \
++						       size, max_segment, gfp))
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [PASS][5] -> [FAIL][6] ([i915#6298])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+total: 2 errors, 1 warnings, 2 checks, 126 lines checked
+0a9cdea4ccc4 drm/i915: Check for integer truncation on the configuration of ttm place
+254ee0bdbb66 drm/i915: Check if the size is too big while creating shmem file
+115127b94414 drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+to add vma. The direct function that returns -ENOSPC is drm_mm_insert_node_in_range().
 
-  * igt@runner@aborted:
-    - fi-kbl-soraka:      NOTRUN -> [FAIL][7] ([i915#6219])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-kbl-soraka/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {bat-rplp-1}:       [DMESG-WARN][8] ([i915#2867]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [INCOMPLETE][10] ([i915#5982]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [FAIL][12] -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5982]: https://gitlab.freedesktop.org/drm/intel/issues/5982
-  [i915#6219]: https://gitlab.freedesktop.org/drm/intel/issues/6219
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6530]: https://gitlab.freedesktop.org/drm/intel/issues/6530
-  [i915#6580]: https://gitlab.freedesktop.org/drm/intel/issues/6580
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12021 -> Patchwork_107266v1
-
-  CI-20190529: 20190529
-  CI_DRM_12021: 078959b4819e4e0ab8cf2965e7bfd98278c0b35d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6636: 1298b5f0e1b3e010657ffba41d2e775fab028e08 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_107266v1: 078959b4819e4e0ab8cf2965e7bfd98278c0b35d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-5bb917875687 drm/i915/dp: use drm_dp_phy_name() for logging
-108fe10eab5e drm/dp: add drm_dp_phy_name() for getting DP PHY name
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/index.html
-
---===============0881905544979634152==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp: add drm_dp_phy_name() and use it in i915</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107266/">https://patchwork.freedesktop.org/series/107266/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+c3afdfc7b079 drm/i915: Remove truncation warning for large objects
 
 
-    <h1>CI Bug Log - changes from CI_DRM_12021 -&gt; Patchwork_107266v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (2): fi-hsw-4770 bat-dg2-11 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_107266v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-rkl-11600/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5982">i915#5982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12021/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107266v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12021 -&gt; Patchwork_107266v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12021: 078959b4819e4e0ab8cf2965e7bfd98278c0b35d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6636: 1298b5f0e1b3e010657ffba41d2e775fab028e08 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_107266v1: 078959b4819e4e0ab8cf2965e7bfd98278c0b35d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>5bb917875687 drm/i915/dp: use drm_dp_phy_name() for logging<br />
-108fe10eab5e drm/dp: add drm_dp_phy_name() for getting DP PHY name</p>
-
-</body>
-</html>
-
---===============0881905544979634152==--
