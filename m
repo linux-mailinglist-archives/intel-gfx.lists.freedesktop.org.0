@@ -2,61 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C693D59F7DD
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 12:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD4D59F7E8
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Aug 2022 12:36:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 738E610E868;
-	Wed, 24 Aug 2022 10:33:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB83B10E0EB;
+	Wed, 24 Aug 2022 10:36:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F50410E1B1;
- Wed, 24 Aug 2022 10:32:46 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 7843BB8239B;
- Wed, 24 Aug 2022 10:32:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D52C3C433C1;
- Wed, 24 Aug 2022 10:32:35 +0000 (UTC)
-Message-ID: <0609dbe4-5596-ee9d-abeb-3c126e7ba755@xs4all.nl>
-Date: Wed, 24 Aug 2022 12:32:34 +0200
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C48910E0EB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 10:35:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661337345; x=1692873345;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=LubNfzAkSPCBDmzq9+wRFGLZj67AHm2SrA6tvuG8C0A=;
+ b=c1TcMUFnq4CJJuPb0XHd200Bl4obLX3fLuc5gUXGYgB9tJFL4bU4vCAz
+ Byu+gWdsy8/IhQ4nEvch/0xG7n9stINnNlE/rmNO33uuIPr6IoaZu8Fj+
+ AffuzIe+im412KNa9E3MdszQSMJtFtXTZHzWqxQ3RrPtzaur8+yGi+fD3
+ bdLFkWax2q/fFv1RX22hNQgHzzUFnpQ1TQ6ZR3+7+4u36D1B6WnUNzKx5
+ YUY701W0yX1/QS9YFpeBjsX0X3CL6MB0Xj4CmC1oslDR5LOWskLygETHD
+ v4m30AzIiZIbQ16vD0bQWDpUko5YjBoXWGX2T1cgdM+sBN46Rox9pQevi Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="355659044"
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="355659044"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2022 03:35:42 -0700
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; d="scan'208";a="670448568"
+Received: from zlim2-mobl.gar.corp.intel.com (HELO localhost) ([10.252.52.23])
+ by fmsmga008-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2022 03:35:41 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <20220817041643.jfyuaugrlok7w3mu@ldmartin-desk2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1660230121.git.jani.nikula@intel.com>
+ <32be38d0fcf6dd695b1488c0b78fd6fc09280d62.1660230121.git.jani.nikula@intel.com>
+ <20220817041643.jfyuaugrlok7w3mu@ldmartin-desk2.lan>
+Date: Wed, 24 Aug 2022 13:35:39 +0300
+Message-ID: <871qt6j5dw.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
- <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- Qiang Yu <yuq825@gmail.com>
-References: <20220824102248.91964-1-dmitry.osipenko@collabora.com>
- <20220824102248.91964-9-dmitry.osipenko@collabora.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-In-Reply-To: <20220824102248.91964-9-dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 8/9] media: videobuf2: Stop using
- internal dma-buf lock
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 13/39] drm/i915: move dpll under display.dpll
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,152 +57,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lima@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, linaro-mm-sig@lists.linaro.org,
- dri-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, linux-media@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Nice!
+On Tue, 16 Aug 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Thu, Aug 11, 2022 at 06:07:24PM +0300, Jani Nikula wrote:
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+>>index 748d2a84e20e..f12ff36fef07 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_core.h
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+>>@@ -12,6 +12,7 @@
+>>
+>> #include "intel_display.h"
+>> #include "intel_dmc.h"
+>>+#include "intel_dpll_mgr.h"
+>> #include "intel_gmbus.h"
+>>
+>> struct drm_i915_private;
+>>@@ -24,6 +25,7 @@ struct intel_color_funcs;
+>> struct intel_crtc;
+>> struct intel_crtc_state;
+>> struct intel_dpll_funcs;
+>>+struct intel_dpll_mgr;
+>
+> if you include intel_dpll_mgr.h you don't need the fwd declaration?
 
-Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Funny as it is, intel_dpll_mgr.h does not define or forward declare
+struct intel_dpll_mgr. :)
 
-Regards,
+BR,
+Jani.
 
-	Hans
+>
+>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>
+> Lucas De Marchi
 
-On 24/08/2022 12:22, Dmitry Osipenko wrote:
-> All drivers that use dma-bufs have been moved to the updated locking
-> specification and now dma-buf reservation is guaranteed to be locked
-> by importers during the mapping operations. There is no need to take
-> the internal dma-buf lock anymore. Remove locking from the videobuf2
-> memory allocators.
-> 
-> Acked-by: Tomasz Figa <tfiga@chromium.org>
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> ---
->  drivers/media/common/videobuf2/videobuf2-dma-contig.c | 11 +----------
->  drivers/media/common/videobuf2/videobuf2-dma-sg.c     | 11 +----------
->  drivers/media/common/videobuf2/videobuf2-vmalloc.c    | 11 +----------
->  3 files changed, 3 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/media/common/videobuf2/videobuf2-dma-contig.c b/drivers/media/common/videobuf2/videobuf2-dma-contig.c
-> index de762dbdaf78..2c69bf0470e7 100644
-> --- a/drivers/media/common/videobuf2/videobuf2-dma-contig.c
-> +++ b/drivers/media/common/videobuf2/videobuf2-dma-contig.c
-> @@ -382,18 +382,12 @@ static struct sg_table *vb2_dc_dmabuf_ops_map(
->  	struct dma_buf_attachment *db_attach, enum dma_data_direction dma_dir)
->  {
->  	struct vb2_dc_attachment *attach = db_attach->priv;
-> -	/* stealing dmabuf mutex to serialize map/unmap operations */
-> -	struct mutex *lock = &db_attach->dmabuf->lock;
->  	struct sg_table *sgt;
->  
-> -	mutex_lock(lock);
-> -
->  	sgt = &attach->sgt;
->  	/* return previously mapped sg table */
-> -	if (attach->dma_dir == dma_dir) {
-> -		mutex_unlock(lock);
-> +	if (attach->dma_dir == dma_dir)
->  		return sgt;
-> -	}
->  
->  	/* release any previous cache */
->  	if (attach->dma_dir != DMA_NONE) {
-> @@ -409,14 +403,11 @@ static struct sg_table *vb2_dc_dmabuf_ops_map(
->  	if (dma_map_sgtable(db_attach->dev, sgt, dma_dir,
->  			    DMA_ATTR_SKIP_CPU_SYNC)) {
->  		pr_err("failed to map scatterlist\n");
-> -		mutex_unlock(lock);
->  		return ERR_PTR(-EIO);
->  	}
->  
->  	attach->dma_dir = dma_dir;
->  
-> -	mutex_unlock(lock);
-> -
->  	return sgt;
->  }
->  
-> diff --git a/drivers/media/common/videobuf2/videobuf2-dma-sg.c b/drivers/media/common/videobuf2/videobuf2-dma-sg.c
-> index 39e11600304a..e63e718c0bf7 100644
-> --- a/drivers/media/common/videobuf2/videobuf2-dma-sg.c
-> +++ b/drivers/media/common/videobuf2/videobuf2-dma-sg.c
-> @@ -424,18 +424,12 @@ static struct sg_table *vb2_dma_sg_dmabuf_ops_map(
->  	struct dma_buf_attachment *db_attach, enum dma_data_direction dma_dir)
->  {
->  	struct vb2_dma_sg_attachment *attach = db_attach->priv;
-> -	/* stealing dmabuf mutex to serialize map/unmap operations */
-> -	struct mutex *lock = &db_attach->dmabuf->lock;
->  	struct sg_table *sgt;
->  
-> -	mutex_lock(lock);
-> -
->  	sgt = &attach->sgt;
->  	/* return previously mapped sg table */
-> -	if (attach->dma_dir == dma_dir) {
-> -		mutex_unlock(lock);
-> +	if (attach->dma_dir == dma_dir)
->  		return sgt;
-> -	}
->  
->  	/* release any previous cache */
->  	if (attach->dma_dir != DMA_NONE) {
-> @@ -446,14 +440,11 @@ static struct sg_table *vb2_dma_sg_dmabuf_ops_map(
->  	/* mapping to the client with new direction */
->  	if (dma_map_sgtable(db_attach->dev, sgt, dma_dir, 0)) {
->  		pr_err("failed to map scatterlist\n");
-> -		mutex_unlock(lock);
->  		return ERR_PTR(-EIO);
->  	}
->  
->  	attach->dma_dir = dma_dir;
->  
-> -	mutex_unlock(lock);
-> -
->  	return sgt;
->  }
->  
-> diff --git a/drivers/media/common/videobuf2/videobuf2-vmalloc.c b/drivers/media/common/videobuf2/videobuf2-vmalloc.c
-> index 7831bf545874..41db707e43a4 100644
-> --- a/drivers/media/common/videobuf2/videobuf2-vmalloc.c
-> +++ b/drivers/media/common/videobuf2/videobuf2-vmalloc.c
-> @@ -267,18 +267,12 @@ static struct sg_table *vb2_vmalloc_dmabuf_ops_map(
->  	struct dma_buf_attachment *db_attach, enum dma_data_direction dma_dir)
->  {
->  	struct vb2_vmalloc_attachment *attach = db_attach->priv;
-> -	/* stealing dmabuf mutex to serialize map/unmap operations */
-> -	struct mutex *lock = &db_attach->dmabuf->lock;
->  	struct sg_table *sgt;
->  
-> -	mutex_lock(lock);
-> -
->  	sgt = &attach->sgt;
->  	/* return previously mapped sg table */
-> -	if (attach->dma_dir == dma_dir) {
-> -		mutex_unlock(lock);
-> +	if (attach->dma_dir == dma_dir)
->  		return sgt;
-> -	}
->  
->  	/* release any previous cache */
->  	if (attach->dma_dir != DMA_NONE) {
-> @@ -289,14 +283,11 @@ static struct sg_table *vb2_vmalloc_dmabuf_ops_map(
->  	/* mapping to the client with new direction */
->  	if (dma_map_sgtable(db_attach->dev, sgt, dma_dir, 0)) {
->  		pr_err("failed to map scatterlist\n");
-> -		mutex_unlock(lock);
->  		return ERR_PTR(-EIO);
->  	}
->  
->  	attach->dma_dir = dma_dir;
->  
-> -	mutex_unlock(lock);
-> -
->  	return sgt;
->  }
->  
+-- 
+Jani Nikula, Intel Open Source Graphics Center
