@@ -1,34 +1,156 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9D85A16B3
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 18:30:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B3E25A16B6
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 18:31:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEB6C10E7E2;
-	Thu, 25 Aug 2022 16:30:21 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8A8EB10E7DF;
- Thu, 25 Aug 2022 16:30:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 24575AADDD;
- Thu, 25 Aug 2022 16:30:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2887134046370955070=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B52B10E7F9;
+	Thu, 25 Aug 2022 16:31:54 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7872410E7EC;
+ Thu, 25 Aug 2022 16:31:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661445111; x=1692981111;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=t6An9QJGW+sUuOy7Z37fFEbrOc8BIilPjLJyMlg2aew=;
+ b=Bt/fBKjrnTKwvyde7dZ/tzk6HrriXzuzglYNSXBTpX9+PkHw4K1vBUVW
+ 58+RJx535Dx5u27DH7aocLSP0wB4S2WdYpEc93IDiDkgZuSqkaYPC+du9
+ 0j0YoKqpb0O/a6snlgrjxhTFqaIbjyF+uqprPlIEn78bKuqBRmMGAuLYk
+ av9hh5WsKNNh4+8MrTTPs7LKXdih+sQ+5fZw5mPzD45zG+f6MulbcVCQx
+ NPhfJxkP3zZ07JNtovK+8AQpi6WISH9z73jEE+3e20bnOiHztvlWqsVCf
+ n51jZyL9xbqD+gFV1b8thG9K6rI05f5w2g0xJlwIDQ3fMw1xfVdoXg+U0 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10450"; a="277307667"
+X-IronPort-AV: E=Sophos;i="5.93,263,1654585200"; d="scan'208";a="277307667"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2022 09:31:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,263,1654585200"; d="scan'208";a="671067287"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga008.fm.intel.com with ESMTP; 25 Aug 2022 09:31:47 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 25 Aug 2022 09:31:47 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 25 Aug 2022 09:31:47 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 25 Aug 2022 09:31:47 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Thu, 25 Aug 2022 09:31:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R8nVXWQt7HVYUQQo/BmPAD1olmYbJ/6rtSR4GBZ7OYcRijqfFuh8ocL3+gl7IXMkcrzudBKtPBdorjFQSBP+Mi/1eR1gjlM7pNpB9DFqb239B+Wvq8QKpC/R818ZZN1ik7lN5Ta4ywxFXFxjEfy2GnseWW5R+cEbFXahryzHhmJGSVNDWy2xqP1tOFKyicvLoLnT4ri2uLT/tSZmyHJ0WOCDDlWE9E3ruR17FUZZMlKW1O5ZCsx0dajJuAVcIPFKExgWFraeS420nnCzADeleMsXBHaSWqZ9ajjZBKMvI//UE6s32gEwSS9JsBB5q4yyvR8w7tLMfldgJUz6cjA02A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bsrWVXi0aMqqhN+F9esX4hcvogGkxaJ5UHV8IOFAbU8=;
+ b=L+c4rdHYsqSj3ftTkQ8jH/kwxlHKlR7pkEmVg1QalaVVfdBKEDSJH6vi+hilBWuP6Phymj5dk5PxvqyjbL/UnUR6x5XQDVyLyPNsYXlTu0tHO8QtFyOuU23YzcbSYhovBsPRWxnw18UoaFRA2r8cf0YmM1lB4yETFDIN7AnFFPYUni0BinWFVc2eCEC+n7BBxLjvScIhi33GEN0PsIJK5ut7vMqdih4Av3t00IXjQwN7VjfZlPwgMDNOf2+m53SIQPGgWDiURj4fORnMLxrNqqMMLtyVt+hMH5HkboFHA1JG6KnwAfYvVQhZawINk/+ip9RX2w/GFlpwanpL6/ADGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by MWHPR11MB1646.namprd11.prod.outlook.com (2603:10b6:301:c::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.21; Thu, 25 Aug
+ 2022 16:31:44 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::d078:34f1:873f:a40d]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::d078:34f1:873f:a40d%6]) with mapi id 15.20.5566.015; Thu, 25 Aug 2022
+ 16:31:44 +0000
+Message-ID: <899bfc43-cc8e-1e26-a58d-eeb80ed74d06@intel.com>
+Date: Thu, 25 Aug 2022 09:31:39 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.13.0
+Content-Language: en-GB
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20220728022028.2190627-1-John.C.Harrison@Intel.com>
+ <20220728022028.2190627-7-John.C.Harrison@Intel.com>
+ <166133167788.14547.12249088266216764022@jlahtine-mobl.ger.corp.intel.com>
+ <4bd7b51a-caf0-d987-c7df-6cfb24f36597@intel.com>
+ <166141170600.5625.4355115277022948576@jlahtine-mobl.ger.corp.intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <166141170600.5625.4355115277022948576@jlahtine-mobl.ger.corp.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BYAPR08CA0006.namprd08.prod.outlook.com
+ (2603:10b6:a03:100::19) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Thu, 25 Aug 2022 16:30:18 -0000
-Message-ID: <166144501811.24644.10388593034951324166@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220825143726.269890-1-hdegoede@redhat.com>
-In-Reply-To: <20220825143726.269890-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/kms=3A_Stop_registering_multiple_/sys/class/backlight_devs_for?=
- =?utf-8?q?_a_single_display?=
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 99fc0f53-4bca-43f6-d8e1-08da86b74bf2
+X-MS-TrafficTypeDiagnostic: MWHPR11MB1646:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: e9Wmn/GhZB9wK0XOb3hkcy4jTk7uu7UqzpkHMvY1DMfC4TednBC1cHvYiA1sKz2HwWgrLVALTYCub+mxFqEjHqBXwa/XF7zqfAUDHzoJd0KHgMrALy/uYIPBg0IYUAz8rXJ4dBTe8hWNJ2ogy1wn0ENppTqUSAVN+069dY3TYLdpuXxtnkVbe3LIB0e5DFE13msSSqs9In+t8k9gdcxMzmL6+3D3DEZctWgzsoZtZdw5fC1rORJsLgGCxqeTvtLO2/ZUru1Qfkg7dgSaprT4EXO/J1hZOthf4WrBfTpR3RZK0GLABFegPNp+ZOHpLEqhJVkqQrxJAG7MabLMJgP7eG0FAM/IGNGauvSsNbBVws3XxFs1xAWINisI8KqStyaHcEjxIkNGKA94ujoS/uJop1NqTQifpWGGE1E8AkG1CIMeR44i1Ny3bfJYclQhrV/xXsAOEjtH9PNuaJZnNVf+gitH8B5l7FRFhBmaGpiJYqxcFb2kdOBsAsc8bkJSSgGgIVfAZulo8Ba52MIayYglLwKq4fiM6XcK7NmYydbxf+nJdAG3CedfLsAYIDAUZgMTJxKIRgQI9sXG2nhnBAZQHnIXQpVKl2oumuAQGjrlaaWG7Gw3PYo74Ngejzl4pkWAos77qUL8IKtvWKOK5M4C56JTL6rTreVJ3JLJcwmokL8l9wGOpkln5p1OKhqHet3bWVCtT9gqTgKLGSa0GV35yFh6Wsed2TeIqwkNplvjEEHAW6PkVpYJF9BOPXjoGIy0/kq0hvf3d59c8VUdAwSMJiyBzvzPsviwpKHgS/cGgC4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(346002)(136003)(376002)(396003)(366004)(39860400002)(8676002)(36756003)(6486002)(30864003)(8936002)(66476007)(66946007)(5660300002)(66556008)(186003)(6512007)(478600001)(26005)(2616005)(4326008)(41300700001)(6506007)(83380400001)(53546011)(82960400001)(86362001)(31696002)(31686004)(6666004)(2906002)(316002)(38100700002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WFZBWnY3ay80TUxka09MNm5BOUNLOUtUUmcyazZIbXFDNWNyMFhRbjdYWmU0?=
+ =?utf-8?B?aFVQU3hiWVlOOVdrOGhtSnB5NWZtcFY3VGNseHAzcGFrOHp1Uzc4Tjd3OVN1?=
+ =?utf-8?B?ZUFBY2RKaVNwQUFiRmpZL0w0amQxbjNXSHR1T0tqY0NUaFNBUnZ3YWE5Y3Uw?=
+ =?utf-8?B?d3FtVjlLNXZHWmVnblZFMTFGenpPYTJ4RWJ2emM3Z2tpNmtWUUNpWU45UkFS?=
+ =?utf-8?B?aldlRjZ2SjVNNERLYmRrMVhiZFRsV3UxWG4reWFSY0p5cnd3a3VFT3FRdXk4?=
+ =?utf-8?B?MWgxbWRTTktGcDh4dmduT3ZxSzZJaDdZWThqN0x4YVhaSUFESFhYVDAxM3pj?=
+ =?utf-8?B?cFRNeTl6OXZ3Nm9aWk4rTURBdDdETHFvM2lUcG1PazZveTh2ejVrZStlcHd1?=
+ =?utf-8?B?Mlk4N3FSaFRPendzQjhodno4VlVXNndzZmhSL2JvWmZVdm00OVQ2MjZPNDY1?=
+ =?utf-8?B?UVBkRi9GNjZnZklMc3BmNkJnOXM4cW54b2hRU3JmSysrMDNUVURXclJRaHUx?=
+ =?utf-8?B?bmFRb0t5dUU4cDIwTy9Yc1ZxWk5FUitSYnIwbGNOd01BUkxycUxLaDdIeEdO?=
+ =?utf-8?B?NDhrUUhLMnJPNXgzQ0Y3d0xpNitpbW9rUUY2YVRDZGs3ZktPc3o5b0FnZ2t1?=
+ =?utf-8?B?cDNpU1RIV29aQXhqRDNQZTF6aWYwK1laVVZ0Z000cFF2YVlmNTM1bFdYMzZJ?=
+ =?utf-8?B?czhUT2ZieUttd3hya3RpcjhkaDdRUFQ3TDJCRm83ZmdiUWwxZnNQeU1jRlJa?=
+ =?utf-8?B?MnA1V2NwZ09DOXNxV3lIQ2w4ZEpucjNDc3JJK3ErRkJCN0FoblNyMmVOUWdo?=
+ =?utf-8?B?U2t1S25lZnhveGlIQlZCRFMyZmJlQWtkT3ljRmxHV1lFVUl3K2VoUXhrVkZU?=
+ =?utf-8?B?VWZhUW9UTHBBL3A2d1FzNVRDc1BZY1R5b0d1ZW1uQlVkNU9Da05iOS9remxJ?=
+ =?utf-8?B?dEJ4eDhUUlRBamd6bzlyTUNKUk9JalZwZUdxMUlwZ2dkOEw3aUVUajNHWXkv?=
+ =?utf-8?B?VDExM3Nkd1hINzJObjhyNStzaEQ5ekRFUDI0TUZqSkVWZm9WOXIxajZHakE0?=
+ =?utf-8?B?WTFpYlQ3WW0xMStsVWpESFdVbUVjNVJ0VWxJZXN3eGRGbk9IYXlYR3NSaW1j?=
+ =?utf-8?B?VXRpNy9rZmI1WHVQRVpiQkh4eW56MW9ZYVJwdnJjQW02MHJaOVZXSDQwYjlw?=
+ =?utf-8?B?KytUdVh0MWxobitHSTR5aG9mb0pTRG5xWTB1NUNTSlZPQlFUbnJLd2FEWC95?=
+ =?utf-8?B?d2tjOG9SWVc5TWoxL3phUHJ4Qm9OZ1JhQ0VTL1MxcXRhWm1sQ3hzTUFFTy8w?=
+ =?utf-8?B?bmRyNnFXUURONURHc0dMdnR0c1FOZ3lIRzJjZWdxRytQQkNUVFllNjFpQjBz?=
+ =?utf-8?B?cWhtdFdTazI3bEZ0UEwrK2hLQkhqdy9yUXpTQnQ1eEhSc3oza005UFVHQXVs?=
+ =?utf-8?B?UG5vS0hRMXpiSG5wZ282dHRtOEFzcTR1cmlSL041WlgydTAzN3ZKWVRSeWNL?=
+ =?utf-8?B?dzhHQW5pM3hOeDZnNWVocFZlcmhiRndmc0pDVWhhVHJxa29KeU9yb0RlWHNJ?=
+ =?utf-8?B?MHM0R0dXczFaQXFORlZUVnBhZFVOTXZJR2xLWjVHMFlPd2wyVS94YTQrM2pn?=
+ =?utf-8?B?Vmh5ZisvT1JoSjFPNm9zZk9NdHpKYWNXMWVUOXRMVmNjeFAzVDN6SWpSSTFK?=
+ =?utf-8?B?M0VqZVgzQXA0VExqazd0dlhqOFFHQkgvcS9nTWg2NldoUkQvQmhkVko5aG5J?=
+ =?utf-8?B?Wkw4NFNVNnNaSVZYcGdNYm1tRmRZOVFBVmkxN041TXBybm9WWEdWdGlqZmNT?=
+ =?utf-8?B?UzZDWkpsbmYwRmpWVDJsNlFCSWJlazJUcXhZVS9mVU9mWHIrM01wOTRxSWd4?=
+ =?utf-8?B?cXdsRHlrN0xFRUgwNHdBMm5VWXQ2MWNESHVma012Qm00R2xOVWgvaXVxVlVl?=
+ =?utf-8?B?RmtaL011NFRxNzlJUmwrZ2VSbWFRclcxRUQxK25ia1liSEI4bDNFeSs4YmVR?=
+ =?utf-8?B?R1FKZ3dqY3Q3Y1ZaOE96ZXhpcW5ZUTI2Wm45S2hlVmdadjZMODVjZjFFZC9W?=
+ =?utf-8?B?YVNJSG1TWGtzM2tQWTNxK2VJcy9XZS96T2g5dzJyYi92cTZXZmQwVldzQnAx?=
+ =?utf-8?B?VXJOaXBub0lIdHpmczFDSU95elF5VHRFUnI3MzcxcCsvU0MxMzhFUGdUWmtT?=
+ =?utf-8?B?N1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99fc0f53-4bca-43f6-d8e1-08da86b74bf2
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2022 16:31:43.9252 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: myTnZpp27IsCiPWJ996O8XjoikWwWw0rzq9CrpkCw7rvCVNGShVUxEJdL9bHGkee/1TJvzqHepGHxkUisM6DU94l1U0hqBDyPNkwjyFbcBg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1646
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/guc: Make GuC log sizes
+ runtime configurable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,316 +163,576 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2887134046370955070==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 8/25/2022 00:15, Joonas Lahtinen wrote:
+> Quoting John Harrison (2022-08-24 21:45:09)
+>> On 8/24/2022 02:01, Joonas Lahtinen wrote:
+>>> NACK on this one. Let's get this reverted or fixed to eliminate
+>>> new module parameters.
+>>>
+>>> What prevents us just from using the maximum sizes? Or alternatively
+>>> we could check the already existing drm.debug variable or anything else
+>>> but addding 3 new module parameters.
+>> We don't want to waste 24MB of memory for all users when 99.999% of them
+>> don't care about GuC logs.
+> It is not exactly wasting memory if it is what is needed to capture
+> the error logs to properly debug a system. And it's definitely not much
+> on any modern system where you will have a GPU. You can always leave
+> the Kconfig options in place for the cases where it matters.
+>
+> On the other hand, if 99.999% don't need this, then it could just stay
+> as a kernel config time option as well?
+No. The point is that we need to able to ask customers to increase the 
+log size, repro an issue and send us the results. All on a pre-installed 
+system where they do not have the option to build a custom kernel. 
+Either we always allocate the maximum and waste the memory for all end 
+users or we have a runtime configuration option. Compile time is not 
+acceptable for some important customers/situations.
 
-== Series Details ==
+>
+>> We also don't want to tie the GuC logging buffer size to the DRM
+>> debugging output. Enabling kernel debug output can change timings and
+>> prevent the issue that one is trying to capture in the GuC log. And it
+>> seems unlikely we could add an entire new top level DRM debug flag just
+>> for an internal i915 only log buffer size. Plus drm.debug is explicitly
+>> stated as being dynamically changeable via sysfs at any time. The GuC
+>> log buffer size cannot be changed without reloading the i915 driver. Or
+>> at least, not without reloading the GuC, but we definitely don't want to
+>> create a UAPI for arbitrarily reloading the GuC.
+>>
+>> We can make these parameters 'unsafe' so that they taint the kernel if
+>> used. But this is exactly what module parameters are for - configuration
+>> that we don't want to hardcode as CONFIG options but which must be set
+>> at module load time.
+> It's better to have sane defaults. And if somebody wants something
+> strange, they can have a Kconfig behind EXPERT option. But even then
+> there should really be need for it.
+Define sane.
 
-Series: drm/kms: Stop registering multiple /sys/class/backlight devs for a single display
-URL   : https://patchwork.freedesktop.org/series/107755/
-State : success
+Sane for most users is to not allocate 24MB of memory for an internal 
+debug only buffer they will never use. And which completely swamps any 
+error capture log with the ASCII encoding of said buffer.
 
-== Summary ==
+But as above, we need a way to (very occasionally) get larger GuC logs 
+from customers without rebuilding the kernel.
 
-CI Bug Log - changes from CI_DRM_12025 -> Patchwork_107755v1
-====================================================
+John.
 
-Summary
--------
+>
+> So for now, let's get the module parameters reverted and go with
+> reasonable default buffer sizes when GuC is enabled. The compile time
+> options can be left in place.
+>
+> Thank you in advance.
+>
+> Regards, Joonas
+>
+>> John.
+>>
+>>> For future reference, please do Cc maintainers when adding new uAPI
+>>> like module parameters.
+>>>
+>>> Regards, Joonas
+>>>
+>>> Quoting John.C.Harrison@Intel.com (2022-07-28 05:20:27)
+>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>
+>>>> The GuC log buffer sizes had to be configured statically at compile
+>>>> time. This can be quite troublesome when needing to get larger logs
+>>>> out of a released driver. So re-organise the code to allow a boot time
+>>>> module parameter override.
+>>>>
+>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  53 ++----
+>>>>    .../gpu/drm/i915/gt/uc/intel_guc_capture.c    |  14 +-
+>>>>    drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    | 176 +++++++++++++++++-
+>>>>    drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |  42 +++--
+>>>>    drivers/gpu/drm/i915/i915_params.c            |  12 ++
+>>>>    drivers/gpu/drm/i915/i915_params.h            |   3 +
+>>>>    6 files changed, 226 insertions(+), 74 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>> index ab4aacc516aa4..01f2705cb94a3 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>> @@ -224,53 +224,22 @@ static u32 guc_ctl_feature_flags(struct intel_guc *guc)
+>>>>    
+>>>>    static u32 guc_ctl_log_params_flags(struct intel_guc *guc)
+>>>>    {
+>>>> -       u32 offset = intel_guc_ggtt_offset(guc, guc->log.vma) >> PAGE_SHIFT;
+>>>> -       u32 flags;
+>>>> -
+>>>> -       #if (((CRASH_BUFFER_SIZE) % SZ_1M) == 0)
+>>>> -       #define LOG_UNIT SZ_1M
+>>>> -       #define LOG_FLAG GUC_LOG_LOG_ALLOC_UNITS
+>>>> -       #else
+>>>> -       #define LOG_UNIT SZ_4K
+>>>> -       #define LOG_FLAG 0
+>>>> -       #endif
+>>>> -
+>>>> -       #if (((CAPTURE_BUFFER_SIZE) % SZ_1M) == 0)
+>>>> -       #define CAPTURE_UNIT SZ_1M
+>>>> -       #define CAPTURE_FLAG GUC_LOG_CAPTURE_ALLOC_UNITS
+>>>> -       #else
+>>>> -       #define CAPTURE_UNIT SZ_4K
+>>>> -       #define CAPTURE_FLAG 0
+>>>> -       #endif
+>>>> -
+>>>> -       BUILD_BUG_ON(!CRASH_BUFFER_SIZE);
+>>>> -       BUILD_BUG_ON(!IS_ALIGNED(CRASH_BUFFER_SIZE, LOG_UNIT));
+>>>> -       BUILD_BUG_ON(!DEBUG_BUFFER_SIZE);
+>>>> -       BUILD_BUG_ON(!IS_ALIGNED(DEBUG_BUFFER_SIZE, LOG_UNIT));
+>>>> -       BUILD_BUG_ON(!CAPTURE_BUFFER_SIZE);
+>>>> -       BUILD_BUG_ON(!IS_ALIGNED(CAPTURE_BUFFER_SIZE, CAPTURE_UNIT));
+>>>> -
+>>>> -       BUILD_BUG_ON((CRASH_BUFFER_SIZE / LOG_UNIT - 1) >
+>>>> -                       (GUC_LOG_CRASH_MASK >> GUC_LOG_CRASH_SHIFT));
+>>>> -       BUILD_BUG_ON((DEBUG_BUFFER_SIZE / LOG_UNIT - 1) >
+>>>> -                       (GUC_LOG_DEBUG_MASK >> GUC_LOG_DEBUG_SHIFT));
+>>>> -       BUILD_BUG_ON((CAPTURE_BUFFER_SIZE / CAPTURE_UNIT - 1) >
+>>>> -                       (GUC_LOG_CAPTURE_MASK >> GUC_LOG_CAPTURE_SHIFT));
+>>>> +       struct intel_guc_log *log = &guc->log;
+>>>> +       u32 offset, flags;
+>>>> +
+>>>> +       GEM_BUG_ON(!log->sizes_initialised);
+>>>> +
+>>>> +       offset = intel_guc_ggtt_offset(guc, log->vma) >> PAGE_SHIFT;
+>>>>    
+>>>>           flags = GUC_LOG_VALID |
+>>>>                   GUC_LOG_NOTIFY_ON_HALF_FULL |
+>>>> -               CAPTURE_FLAG |
+>>>> -               LOG_FLAG |
+>>>> -               ((CRASH_BUFFER_SIZE / LOG_UNIT - 1) << GUC_LOG_CRASH_SHIFT) |
+>>>> -               ((DEBUG_BUFFER_SIZE / LOG_UNIT - 1) << GUC_LOG_DEBUG_SHIFT) |
+>>>> -               ((CAPTURE_BUFFER_SIZE / CAPTURE_UNIT - 1) << GUC_LOG_CAPTURE_SHIFT) |
+>>>> +               log->sizes[GUC_LOG_SECTIONS_DEBUG].flag |
+>>>> +               log->sizes[GUC_LOG_SECTIONS_CAPTURE].flag |
+>>>> +               (log->sizes[GUC_LOG_SECTIONS_CRASH].count << GUC_LOG_CRASH_SHIFT) |
+>>>> +               (log->sizes[GUC_LOG_SECTIONS_DEBUG].count << GUC_LOG_DEBUG_SHIFT) |
+>>>> +               (log->sizes[GUC_LOG_SECTIONS_CAPTURE].count << GUC_LOG_CAPTURE_SHIFT) |
+>>>>                   (offset << GUC_LOG_BUF_ADDR_SHIFT);
+>>>>    
+>>>> -       #undef LOG_UNIT
+>>>> -       #undef LOG_FLAG
+>>>> -       #undef CAPTURE_UNIT
+>>>> -       #undef CAPTURE_FLAG
+>>>> -
+>>>>           return flags;
+>>>>    }
+>>>>    
+>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+>>>> index b54b7883320b1..d2ac53d4f3b6e 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+>>>> @@ -656,16 +656,17 @@ static void check_guc_capture_size(struct intel_guc *guc)
+>>>>           struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+>>>>           int min_size = guc_capture_output_min_size_est(guc);
+>>>>           int spare_size = min_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
+>>>> +       u32 buffer_size = intel_guc_log_section_size_capture(&guc->log);
+>>>>    
+>>>>           if (min_size < 0)
+>>>>                   drm_warn(&i915->drm, "Failed to calculate GuC error state capture buffer minimum size: %d!\n",
+>>>>                            min_size);
+>>>> -       else if (min_size > CAPTURE_BUFFER_SIZE)
+>>>> +       else if (min_size > buffer_size)
+>>>>                   drm_warn(&i915->drm, "GuC error state capture buffer is too small: %d < %d\n",
+>>>> -                        CAPTURE_BUFFER_SIZE, min_size);
+>>>> -       else if (spare_size > CAPTURE_BUFFER_SIZE)
+>>>> +                        buffer_size, min_size);
+>>>> +       else if (spare_size > buffer_size)
+>>>>                   drm_notice(&i915->drm, "GuC error state capture buffer maybe too small: %d < %d (min = %d)\n",
+>>>> -                          CAPTURE_BUFFER_SIZE, spare_size, min_size);
+>>>> +                          buffer_size, spare_size, min_size);
+>>>>    }
+>>>>    
+>>>>    /*
+>>>> @@ -1294,7 +1295,8 @@ static void __guc_capture_process_output(struct intel_guc *guc)
+>>>>    
+>>>>           log_buf_state = guc->log.buf_addr +
+>>>>                           (sizeof(struct guc_log_buffer_state) * GUC_CAPTURE_LOG_BUFFER);
+>>>> -       src_data = guc->log.buf_addr + intel_guc_get_log_buffer_offset(GUC_CAPTURE_LOG_BUFFER);
+>>>> +       src_data = guc->log.buf_addr +
+>>>> +                  intel_guc_get_log_buffer_offset(&guc->log, GUC_CAPTURE_LOG_BUFFER);
+>>>>    
+>>>>           /*
+>>>>            * Make a copy of the state structure, inside GuC log buffer
+>>>> @@ -1302,7 +1304,7 @@ static void __guc_capture_process_output(struct intel_guc *guc)
+>>>>            * from it multiple times.
+>>>>            */
+>>>>           memcpy(&log_buf_state_local, log_buf_state, sizeof(struct guc_log_buffer_state));
+>>>> -       buffer_size = intel_guc_get_log_buffer_size(GUC_CAPTURE_LOG_BUFFER);
+>>>> +       buffer_size = intel_guc_get_log_buffer_size(&guc->log, GUC_CAPTURE_LOG_BUFFER);
+>>>>           read_offset = log_buf_state_local.read_ptr;
+>>>>           write_offset = log_buf_state_local.sampled_write_ptr;
+>>>>           full_count = log_buf_state_local.buffer_full_cnt;
+>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+>>>> index 4722d4b18ed19..890b6853bd609 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+>>>> @@ -13,8 +13,158 @@
+>>>>    #include "intel_guc_capture.h"
+>>>>    #include "intel_guc_log.h"
+>>>>    
+>>>> +#if defined(CONFIG_DRM_I915_DEBUG_GUC)
+>>>> +#define GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE      SZ_2M
+>>>> +#define GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE      SZ_16M
+>>>> +#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE    SZ_4M
+>>>> +#elif defined(CONFIG_DRM_I915_DEBUG_GEM)
+>>>> +#define GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE      SZ_1M
+>>>> +#define GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE      SZ_2M
+>>>> +#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE    SZ_4M
+>>>> +#else
+>>>> +#define GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE      SZ_8K
+>>>> +#define GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE      SZ_64K
+>>>> +#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE    SZ_2M
+>>>> +#endif
+>>>> +
+>>>>    static void guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log);
+>>>>    
+>>>> +struct guc_log_section {
+>>>> +       u32 max;
+>>>> +       u32 flag;
+>>>> +       u32 default_val;
+>>>> +       const char *name;
+>>>> +};
+>>>> +
+>>>> +static s32 scale_log_param(struct intel_guc_log *log, const struct guc_log_section *section,
+>>>> +                          s32 param)
+>>>> +{
+>>>> +       /* -1 means default */
+>>>> +       if (param < 0)
+>>>> +               return section->default_val;
+>>>> +
+>>>> +       /* Check for 32-bit overflow */
+>>>> +       if (param >= SZ_4K) {
+>>>> +               drm_err(&guc_to_gt(log_to_guc(log))->i915->drm, "Size too large for GuC %s log: %dMB!",
+>>>> +                       section->name, param);
+>>>> +               return section->default_val;
+>>>> +       }
+>>>> +
+>>>> +       /* Param units are 1MB */
+>>>> +       return param * SZ_1M;
+>>>> +}
+>>>> +
+>>>> +static void _guc_log_init_sizes(struct intel_guc_log *log)
+>>>> +{
+>>>> +       struct intel_guc *guc = log_to_guc(log);
+>>>> +       struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+>>>> +       static const struct guc_log_section sections[GUC_LOG_SECTIONS_LIMIT] = {
+>>>> +               {
+>>>> +                       GUC_LOG_CRASH_MASK >> GUC_LOG_CRASH_SHIFT,
+>>>> +                       GUC_LOG_LOG_ALLOC_UNITS,
+>>>> +                       GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE,
+>>>> +                       "crash dump"
+>>>> +               },
+>>>> +               {
+>>>> +                       GUC_LOG_DEBUG_MASK >> GUC_LOG_DEBUG_SHIFT,
+>>>> +                       GUC_LOG_LOG_ALLOC_UNITS,
+>>>> +                       GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE,
+>>>> +                       "debug",
+>>>> +               },
+>>>> +               {
+>>>> +                       GUC_LOG_CAPTURE_MASK >> GUC_LOG_CAPTURE_SHIFT,
+>>>> +                       GUC_LOG_CAPTURE_ALLOC_UNITS,
+>>>> +                       GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE,
+>>>> +                       "capture",
+>>>> +               }
+>>>> +       };
+>>>> +       s32 params[GUC_LOG_SECTIONS_LIMIT] = {
+>>>> +               i915->params.guc_log_size_crash,
+>>>> +               i915->params.guc_log_size_debug,
+>>>> +               i915->params.guc_log_size_capture,
+>>>> +       };
+>>>> +       int i;
+>>>> +
+>>>> +       for (i = 0; i < GUC_LOG_SECTIONS_LIMIT; i++)
+>>>> +               log->sizes[i].bytes = scale_log_param(log, sections + i, params[i]);
+>>>> +
+>>>> +       /* If debug size > 1MB then bump default crash size to keep the same units */
+>>>> +       if (log->sizes[GUC_LOG_SECTIONS_DEBUG].bytes >= SZ_1M &&
+>>>> +           (i915->params.guc_log_size_crash == -1) &&
+>>>> +           GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE < SZ_1M)
+>>>> +               log->sizes[GUC_LOG_SECTIONS_CRASH].bytes = SZ_1M;
+>>>> +
+>>>> +       /* Prepare the GuC API structure fields: */
+>>>> +       for (i = 0; i < GUC_LOG_SECTIONS_LIMIT; i++) {
+>>>> +               /* Convert to correct units */
+>>>> +               if ((log->sizes[i].bytes % SZ_1M) == 0) {
+>>>> +                       log->sizes[i].units = SZ_1M;
+>>>> +                       log->sizes[i].flag = sections[i].flag;
+>>>> +               } else {
+>>>> +                       log->sizes[i].units = SZ_4K;
+>>>> +                       log->sizes[i].flag = 0;
+>>>> +               }
+>>>> +
+>>>> +               if (!IS_ALIGNED(log->sizes[i].bytes, log->sizes[i].units))
+>>>> +                       drm_err(&i915->drm, "Mis-aligned GuC log %s size: 0x%X vs 0x%X!",
+>>>> +                               sections[i].name, log->sizes[i].bytes, log->sizes[i].units);
+>>>> +               log->sizes[i].count = log->sizes[i].bytes / log->sizes[i].units;
+>>>> +
+>>>> +               if (!log->sizes[i].count) {
+>>>> +                       drm_err(&i915->drm, "Zero GuC log %s size!", sections[i].name);
+>>>> +               } else {
+>>>> +                       /* Size is +1 unit */
+>>>> +                       log->sizes[i].count--;
+>>>> +               }
+>>>> +
+>>>> +               /* Clip to field size */
+>>>> +               if (log->sizes[i].count > sections[i].max) {
+>>>> +                       drm_err(&i915->drm, "GuC log %s size too large: %d vs %d!",
+>>>> +                               sections[i].name, log->sizes[i].count + 1, sections[i].max + 1);
+>>>> +                       log->sizes[i].count = sections[i].max;
+>>>> +               }
+>>>> +       }
+>>>> +
+>>>> +       if (log->sizes[GUC_LOG_SECTIONS_CRASH].units != log->sizes[GUC_LOG_SECTIONS_DEBUG].units) {
+>>>> +               drm_err(&i915->drm, "Unit mis-match for GuC log crash and debug sections: %d vs %d!",
+>>>> +                       log->sizes[GUC_LOG_SECTIONS_CRASH].units,
+>>>> +                       log->sizes[GUC_LOG_SECTIONS_DEBUG].units);
+>>>> +               log->sizes[GUC_LOG_SECTIONS_CRASH].units = log->sizes[GUC_LOG_SECTIONS_DEBUG].units;
+>>>> +               log->sizes[GUC_LOG_SECTIONS_CRASH].count = 0;
+>>>> +       }
+>>>> +
+>>>> +       log->sizes_initialised = true;
+>>>> +}
+>>>> +
+>>>> +static void guc_log_init_sizes(struct intel_guc_log *log)
+>>>> +{
+>>>> +       if (log->sizes_initialised)
+>>>> +               return;
+>>>> +
+>>>> +       _guc_log_init_sizes(log);
+>>>> +}
+>>>> +
+>>>> +static u32 intel_guc_log_section_size_crash(struct intel_guc_log *log)
+>>>> +{
+>>>> +       guc_log_init_sizes(log);
+>>>> +
+>>>> +       return log->sizes[GUC_LOG_SECTIONS_CRASH].bytes;
+>>>> +}
+>>>> +
+>>>> +static u32 intel_guc_log_section_size_debug(struct intel_guc_log *log)
+>>>> +{
+>>>> +       guc_log_init_sizes(log);
+>>>> +
+>>>> +       return log->sizes[GUC_LOG_SECTIONS_DEBUG].bytes;
+>>>> +}
+>>>> +
+>>>> +u32 intel_guc_log_section_size_capture(struct intel_guc_log *log)
+>>>> +{
+>>>> +       guc_log_init_sizes(log);
+>>>> +
+>>>> +       return log->sizes[GUC_LOG_SECTIONS_CAPTURE].bytes;
+>>>> +}
+>>>> +
+>>>>    static u32 intel_guc_log_size(struct intel_guc_log *log)
+>>>>    {
+>>>>           /*
+>>>> @@ -38,7 +188,10 @@ static u32 intel_guc_log_size(struct intel_guc_log *log)
+>>>>            *  |         Capture logs          |
+>>>>            *  +===============================+ + CAPTURE_SIZE
+>>>>            */
+>>>> -       return PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE + CAPTURE_BUFFER_SIZE;
+>>>> +       return PAGE_SIZE +
+>>>> +               intel_guc_log_section_size_crash(log) +
+>>>> +               intel_guc_log_section_size_debug(log) +
+>>>> +               intel_guc_log_section_size_capture(log);
+>>>>    }
+>>>>    
+>>>>    /**
+>>>> @@ -165,7 +318,8 @@ static void guc_move_to_next_buf(struct intel_guc_log *log)
+>>>>           smp_wmb();
+>>>>    
+>>>>           /* All data has been written, so now move the offset of sub buffer. */
+>>>> -       relay_reserve(log->relay.channel, log->vma->obj->base.size - CAPTURE_BUFFER_SIZE);
+>>>> +       relay_reserve(log->relay.channel, log->vma->obj->base.size -
+>>>> +                                         intel_guc_log_section_size_capture(log));
+>>>>    
+>>>>           /* Switch to the next sub buffer */
+>>>>           relay_flush(log->relay.channel);
+>>>> @@ -210,15 +364,16 @@ bool intel_guc_check_log_buf_overflow(struct intel_guc_log *log,
+>>>>           return overflow;
+>>>>    }
+>>>>    
+>>>> -unsigned int intel_guc_get_log_buffer_size(enum guc_log_buffer_type type)
+>>>> +unsigned int intel_guc_get_log_buffer_size(struct intel_guc_log *log,
+>>>> +                                          enum guc_log_buffer_type type)
+>>>>    {
+>>>>           switch (type) {
+>>>>           case GUC_DEBUG_LOG_BUFFER:
+>>>> -               return DEBUG_BUFFER_SIZE;
+>>>> +               return intel_guc_log_section_size_debug(log);
+>>>>           case GUC_CRASH_DUMP_LOG_BUFFER:
+>>>> -               return CRASH_BUFFER_SIZE;
+>>>> +               return intel_guc_log_section_size_crash(log);
+>>>>           case GUC_CAPTURE_LOG_BUFFER:
+>>>> -               return CAPTURE_BUFFER_SIZE;
+>>>> +               return intel_guc_log_section_size_capture(log);
+>>>>           default:
+>>>>                   MISSING_CASE(type);
+>>>>           }
+>>>> @@ -226,7 +381,8 @@ unsigned int intel_guc_get_log_buffer_size(enum guc_log_buffer_type type)
+>>>>           return 0;
+>>>>    }
+>>>>    
+>>>> -size_t intel_guc_get_log_buffer_offset(enum guc_log_buffer_type type)
+>>>> +size_t intel_guc_get_log_buffer_offset(struct intel_guc_log *log,
+>>>> +                                      enum guc_log_buffer_type type)
+>>>>    {
+>>>>           enum guc_log_buffer_type i;
+>>>>           size_t offset = PAGE_SIZE;/* for the log_buffer_states */
+>>>> @@ -234,7 +390,7 @@ size_t intel_guc_get_log_buffer_offset(enum guc_log_buffer_type type)
+>>>>           for (i = GUC_DEBUG_LOG_BUFFER; i < GUC_MAX_LOG_BUFFER; ++i) {
+>>>>                   if (i == type)
+>>>>                           break;
+>>>> -               offset += intel_guc_get_log_buffer_size(i);
+>>>> +               offset += intel_guc_get_log_buffer_size(log, i);
+>>>>           }
+>>>>    
+>>>>           return offset;
+>>>> @@ -285,7 +441,7 @@ static void _guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
+>>>>                    */
+>>>>                   memcpy(&log_buf_state_local, log_buf_state,
+>>>>                          sizeof(struct guc_log_buffer_state));
+>>>> -               buffer_size = intel_guc_get_log_buffer_size(type);
+>>>> +               buffer_size = intel_guc_get_log_buffer_size(log, type);
+>>>>                   read_offset = log_buf_state_local.read_ptr;
+>>>>                   write_offset = log_buf_state_local.sampled_write_ptr;
+>>>>                   full_cnt = log_buf_state_local.buffer_full_cnt;
+>>>> @@ -400,7 +556,7 @@ static int guc_log_relay_create(struct intel_guc_log *log)
+>>>>             * Keep the size of sub buffers same as shared log buffer
+>>>>             * but GuC log-events excludes the error-state-capture logs
+>>>>             */
+>>>> -       subbuf_size = log->vma->size - CAPTURE_BUFFER_SIZE;
+>>>> +       subbuf_size = log->vma->size - intel_guc_log_section_size_capture(log);
+>>>>    
+>>>>           /*
+>>>>            * Store up to 8 snapshots, which is large enough to buffer sufficient
+>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
+>>>> index dc9715411d626..02127703be809 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
+>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
+>>>> @@ -15,20 +15,6 @@
+>>>>    
+>>>>    struct intel_guc;
+>>>>    
+>>>> -#if defined(CONFIG_DRM_I915_DEBUG_GUC)
+>>>> -#define CRASH_BUFFER_SIZE      SZ_2M
+>>>> -#define DEBUG_BUFFER_SIZE      SZ_16M
+>>>> -#define CAPTURE_BUFFER_SIZE    SZ_4M
+>>>> -#elif defined(CONFIG_DRM_I915_DEBUG_GEM)
+>>>> -#define CRASH_BUFFER_SIZE      SZ_1M
+>>>> -#define DEBUG_BUFFER_SIZE      SZ_2M
+>>>> -#define CAPTURE_BUFFER_SIZE    SZ_4M
+>>>> -#else
+>>>> -#define CRASH_BUFFER_SIZE      SZ_8K
+>>>> -#define DEBUG_BUFFER_SIZE      SZ_64K
+>>>> -#define CAPTURE_BUFFER_SIZE    SZ_2M
+>>>> -#endif
+>>>> -
+>>>>    /*
+>>>>     * While we're using plain log level in i915, GuC controls are much more...
+>>>>     * "elaborate"? We have a couple of bits for verbosity, separate bit for actual
+>>>> @@ -46,10 +32,30 @@ struct intel_guc;
+>>>>    #define GUC_VERBOSITY_TO_LOG_LEVEL(x)  ((x) + 2)
+>>>>    #define GUC_LOG_LEVEL_MAX GUC_VERBOSITY_TO_LOG_LEVEL(GUC_LOG_VERBOSITY_MAX)
+>>>>    
+>>>> +enum {
+>>>> +       GUC_LOG_SECTIONS_CRASH,
+>>>> +       GUC_LOG_SECTIONS_DEBUG,
+>>>> +       GUC_LOG_SECTIONS_CAPTURE,
+>>>> +       GUC_LOG_SECTIONS_LIMIT
+>>>> +};
+>>>> +
+>>>>    struct intel_guc_log {
+>>>>           u32 level;
+>>>> +
+>>>> +       /* Allocation settings */
+>>>> +       struct {
+>>>> +               s32 bytes;      /* Size in bytes */
+>>>> +               s32 units;      /* GuC API units - 1MB or 4KB */
+>>>> +               s32 count;      /* Number of API units */
+>>>> +               u32 flag;       /* GuC API units flag */
+>>>> +       } sizes[GUC_LOG_SECTIONS_LIMIT];
+>>>> +       bool sizes_initialised;
+>>>> +
+>>>> +       /* Combined buffer allocation */
+>>>>           struct i915_vma *vma;
+>>>>           void *buf_addr;
+>>>> +
+>>>> +       /* RelayFS support */
+>>>>           struct {
+>>>>                   bool buf_in_use;
+>>>>                   bool started;
+>>>> @@ -58,6 +64,7 @@ struct intel_guc_log {
+>>>>                   struct mutex lock;
+>>>>                   u32 full_count;
+>>>>           } relay;
+>>>> +
+>>>>           /* logging related stats */
+>>>>           struct {
+>>>>                   u32 sampled_overflow;
+>>>> @@ -69,8 +76,9 @@ struct intel_guc_log {
+>>>>    void intel_guc_log_init_early(struct intel_guc_log *log);
+>>>>    bool intel_guc_check_log_buf_overflow(struct intel_guc_log *log, enum guc_log_buffer_type type,
+>>>>                                         unsigned int full_cnt);
+>>>> -unsigned int intel_guc_get_log_buffer_size(enum guc_log_buffer_type type);
+>>>> -size_t intel_guc_get_log_buffer_offset(enum guc_log_buffer_type type);
+>>>> +unsigned int intel_guc_get_log_buffer_size(struct intel_guc_log *log,
+>>>> +                                          enum guc_log_buffer_type type);
+>>>> +size_t intel_guc_get_log_buffer_offset(struct intel_guc_log *log, enum guc_log_buffer_type type);
+>>>>    int intel_guc_log_create(struct intel_guc_log *log);
+>>>>    void intel_guc_log_destroy(struct intel_guc_log *log);
+>>>>    
+>>>> @@ -92,4 +100,6 @@ void intel_guc_log_info(struct intel_guc_log *log, struct drm_printer *p);
+>>>>    int intel_guc_log_dump(struct intel_guc_log *log, struct drm_printer *p,
+>>>>                          bool dump_load_err);
+>>>>    
+>>>> +u32 intel_guc_log_section_size_capture(struct intel_guc_log *log);
+>>>> +
+>>>>    #endif
+>>>> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+>>>> index 6fc475a5db615..06ca5b8221118 100644
+>>>> --- a/drivers/gpu/drm/i915/i915_params.c
+>>>> +++ b/drivers/gpu/drm/i915/i915_params.c
+>>>> @@ -171,6 +171,18 @@ i915_param_named(guc_log_level, int, 0400,
+>>>>           "GuC firmware logging level. Requires GuC to be loaded. "
+>>>>           "(-1=auto [default], 0=disable, 1..4=enable with verbosity min..max)");
+>>>>    
+>>>> +i915_param_named(guc_log_size_crash, int, 0400,
+>>>> +       "GuC firmware logging buffer size for crash dumps (in MB)"
+>>>> +       "(-1=auto [default], NB: max = 4, other restrictions apply)");
+>>>> +
+>>>> +i915_param_named(guc_log_size_debug, int, 0400,
+>>>> +       "GuC firmware logging buffer size for debug logs (in MB)"
+>>>> +       "(-1=auto [default], NB: max = 16, other restrictions apply)");
+>>>> +
+>>>> +i915_param_named(guc_log_size_capture, int, 0400,
+>>>> +       "GuC error capture register dump buffer size (in MB)"
+>>>> +       "(-1=auto [default], NB: max = 4, other restrictions apply)");
+>>>> +
+>>>>    i915_param_named_unsafe(guc_firmware_path, charp, 0400,
+>>>>           "GuC firmware path to use instead of the default one");
+>>>>    
+>>>> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
+>>>> index 2733cb6cfe094..f684d1ab87078 100644
+>>>> --- a/drivers/gpu/drm/i915/i915_params.h
+>>>> +++ b/drivers/gpu/drm/i915/i915_params.h
+>>>> @@ -61,6 +61,9 @@ struct drm_printer;
+>>>>           param(int, invert_brightness, 0, 0600) \
+>>>>           param(int, enable_guc, -1, 0400) \
+>>>>           param(int, guc_log_level, -1, 0400) \
+>>>> +       param(int, guc_log_size_crash, -1, 0400) \
+>>>> +       param(int, guc_log_size_debug, -1, 0400) \
+>>>> +       param(int, guc_log_size_capture, -1, 0400) \
+>>>>           param(char *, guc_firmware_path, NULL, 0400) \
+>>>>           param(char *, huc_firmware_path, NULL, 0400) \
+>>>>           param(char *, dmc_firmware_path, NULL, 0400) \
+>>>> -- 
+>>>> 2.37.1
+>>>>
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/index.html
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): bat-dg2-8 bat-rpls-2 fi-hsw-4770 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_107755v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-bsw-kefka:       [PASS][1] -> [SKIP][2] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-bsw-kefka/igt@i915_pm_backlight@basic-brightness.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-bsw-kefka/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-6:          [PASS][3] -> [INCOMPLETE][4] ([i915#4418])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-g3258:       [PASS][5] -> [INCOMPLETE][6] ([i915#3303] / [i915#4785])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-hsw-g3258:       NOTRUN -> [FAIL][7] ([fdo#109271] / [i915#4312] / [i915#6246])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-hsw-g3258/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-ivb-3770:        [FAIL][8] -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-ivb-3770/igt@core_hotunplug@unbind-rebind.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-ivb-3770/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rplp-1}:       [DMESG-WARN][10] ([i915#2867]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [FAIL][12] ([i915#6298]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-#### Warnings ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-rkl-11600:       [FAIL][14] ([fdo#103375]) -> [INCOMPLETE][15] ([i915#5982])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
-    - fi-elk-e7500:       [INCOMPLETE][16] ([i915#6598] / [i915#6601] / [i915#6648]) -> [INCOMPLETE][17] ([i915#6598] / [i915#6648])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-elk-e7500/igt@i915_suspend@basic-s3-without-i915.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-elk-e7500/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5982]: https://gitlab.freedesktop.org/drm/intel/issues/5982
-  [i915#6246]: https://gitlab.freedesktop.org/drm/intel/issues/6246
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6380]: https://gitlab.freedesktop.org/drm/intel/issues/6380
-  [i915#6530]: https://gitlab.freedesktop.org/drm/intel/issues/6530
-  [i915#6579]: https://gitlab.freedesktop.org/drm/intel/issues/6579
-  [i915#6598]: https://gitlab.freedesktop.org/drm/intel/issues/6598
-  [i915#6601]: https://gitlab.freedesktop.org/drm/intel/issues/6601
-  [i915#6648]: https://gitlab.freedesktop.org/drm/intel/issues/6648
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12025 -> Patchwork_107755v1
-
-  CI-20190529: 20190529
-  CI_DRM_12025: a510fb9e9cb6f9ee56eae0ea0d4f3f9c0757a042 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6636: 1298b5f0e1b3e010657ffba41d2e775fab028e08 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_107755v1: a510fb9e9cb6f9ee56eae0ea0d4f3f9c0757a042 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-dcb253de416d drm/todo: Add entry about dealing with brightness control on devices with > 1 panel
-0693d1e4160d ACPI: video: Fix indentation of video_detect_dmi_table[] entries
-3dc1ab4f6532 ACPI: video: Drop NL5x?U, PF4NU1F and PF5?U?? acpi_backlight=native quirks
-baf8ec8c4e08 ACPI: video: Drop "Samsung X360" acpi_backlight=native quirk
-22e02f0682d8 ACPI: video: Remove acpi_video_set_dmi_backlight_type()
-a065026855a3 platform/x86: samsung-laptop: Move acpi_backlight=[vendor|native] quirks to ACPI video_detect.c
-1e0d0ee9fa5d platform/x86: asus-wmi: Move acpi_backlight=native quirks to ACPI video_detect.c
-a5637f478514 platform/x86: asus-wmi: Move acpi_backlight=vendor quirks to ACPI video_detect.c
-85e765a53f78 platform/x86: asus-wmi: Drop DMI chassis-type check from backlight handling
-18254a3375e8 platform/x86: acer-wmi: Move backlight DMI quirks to acpi/video_detect.c
-a70d889be4d2 platform/x86: toshiba_acpi: Stop using acpi_video_set_dmi_backlight_type()
-4bd5de41b8de platform/x86: apple-gmux: Stop calling acpi/video.h functions
-504ca6c6f603 platform/x86: nvidia-wmi-ec-backlight: Use acpi_video_get_backlight_type()
-2dd8881f0aa2 ACPI: video: Add Apple GMUX brightness control detection
-e094a651d72d ACPI: video: Add Nvidia WMI EC brightness control detection (v3)
-c053f9f49ba6 ACPI: video: Refactor acpi_video_get_backlight_type() a bit
-bf6434bd7c43 platform/x86: nvidia-wmi-ec-backlight: Move fw interface definitions to a header (v2)
-4b0784addd38 drm/radeon: Register ACPI video backlight when skipping radeon backlight registration
-d75ddf0d7e6f drm/amdgpu: Register ACPI video backlight when skipping amdgpu backlight registration
-945afbc25747 drm/nouveau: Register ACPI video backlight when nv_backlight registration fails (v2)
-36d81d3183f9 drm/i915: Call acpi_video_register_backlight() (v3)
-3dc3f76a30aa ACPI: video: Remove code to unregister acpi_video backlight when a native backlight registers
-04128a8901c9 ACPI: video: Make backlight class device registration a separate step (v2)
-5f285d37ec6a ACPI: video: Simplify acpi_video_unregister_backlight()
-189b7f335ac9 ACPI: video: Remove acpi_video_bus from list before tearing it down
-db2bba94dcd0 ACPI: video: Drop backlight_device_get_by_type() call from acpi_video_get_backlight_type()
-6f5e65f7d87a drm/nouveau: Don't register backlight when another backlight should be used (v2)
-b8bf18759df0 drm/radeon: Don't register backlight when another backlight should be used (v3)
-bfa741acc99e drm/amdgpu: Don't register backlight when another backlight should be used (v3)
-426f8a2ce3d3 drm/i915: Don't register backlight when another backlight should be used (v2)
-152630e9e122 ACPI: video: Add acpi_video_backlight_use_native() helper
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/index.html
-
---===============2887134046370955070==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/kms: Stop registering multiple /sys/class/backlight devs for a single display</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107755/">https://patchwork.freedesktop.org/series/107755/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12025 -&gt; Patchwork_107755v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): bat-dg2-8 bat-rpls-2 fi-hsw-4770 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_107755v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-bsw-kefka/igt@i915_pm_backlight@basic-brightness.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-bsw-kefka/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-hsw-g3258/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6246">i915#6246</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-ivb-3770/igt@core_hotunplug@unbind-rebind.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-ivb-3770/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>
-<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5982">i915#5982</a>)</p>
-</li>
-<li>
-<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12025/fi-elk-e7500/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6598">i915#6598</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6601">i915#6601</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6648">i915#6648</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107755v1/fi-elk-e7500/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6598">i915#6598</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6648">i915#6648</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12025 -&gt; Patchwork_107755v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12025: a510fb9e9cb6f9ee56eae0ea0d4f3f9c0757a042 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6636: 1298b5f0e1b3e010657ffba41d2e775fab028e08 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_107755v1: a510fb9e9cb6f9ee56eae0ea0d4f3f9c0757a042 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>dcb253de416d drm/todo: Add entry about dealing with brightness control on devices with &gt; 1 panel<br />
-0693d1e4160d ACPI: video: Fix indentation of video_detect_dmi_table[] entries<br />
-3dc1ab4f6532 ACPI: video: Drop NL5x?U, PF4NU1F and PF5?U?? acpi_backlight=native quirks<br />
-baf8ec8c4e08 ACPI: video: Drop "Samsung X360" acpi_backlight=native quirk<br />
-22e02f0682d8 ACPI: video: Remove acpi_video_set_dmi_backlight_type()<br />
-a065026855a3 platform/x86: samsung-laptop: Move acpi_backlight=[vendor|native] quirks to ACPI video_detect.c<br />
-1e0d0ee9fa5d platform/x86: asus-wmi: Move acpi_backlight=native quirks to ACPI video_detect.c<br />
-a5637f478514 platform/x86: asus-wmi: Move acpi_backlight=vendor quirks to ACPI video_detect.c<br />
-85e765a53f78 platform/x86: asus-wmi: Drop DMI chassis-type check from backlight handling<br />
-18254a3375e8 platform/x86: acer-wmi: Move backlight DMI quirks to acpi/video_detect.c<br />
-a70d889be4d2 platform/x86: toshiba_acpi: Stop using acpi_video_set_dmi_backlight_type()<br />
-4bd5de41b8de platform/x86: apple-gmux: Stop calling acpi/video.h functions<br />
-504ca6c6f603 platform/x86: nvidia-wmi-ec-backlight: Use acpi_video_get_backlight_type()<br />
-2dd8881f0aa2 ACPI: video: Add Apple GMUX brightness control detection<br />
-e094a651d72d ACPI: video: Add Nvidia WMI EC brightness control detection (v3)<br />
-c053f9f49ba6 ACPI: video: Refactor acpi_video_get_backlight_type() a bit<br />
-bf6434bd7c43 platform/x86: nvidia-wmi-ec-backlight: Move fw interface definitions to a header (v2)<br />
-4b0784addd38 drm/radeon: Register ACPI video backlight when skipping radeon backlight registration<br />
-d75ddf0d7e6f drm/amdgpu: Register ACPI video backlight when skipping amdgpu backlight registration<br />
-945afbc25747 drm/nouveau: Register ACPI video backlight when nv_backlight registration fails (v2)<br />
-36d81d3183f9 drm/i915: Call acpi_video_register_backlight() (v3)<br />
-3dc3f76a30aa ACPI: video: Remove code to unregister acpi_video backlight when a native backlight registers<br />
-04128a8901c9 ACPI: video: Make backlight class device registration a separate step (v2)<br />
-5f285d37ec6a ACPI: video: Simplify acpi_video_unregister_backlight()<br />
-189b7f335ac9 ACPI: video: Remove acpi_video_bus from list before tearing it down<br />
-db2bba94dcd0 ACPI: video: Drop backlight_device_get_by_type() call from acpi_video_get_backlight_type()<br />
-6f5e65f7d87a drm/nouveau: Don't register backlight when another backlight should be used (v2)<br />
-b8bf18759df0 drm/radeon: Don't register backlight when another backlight should be used (v3)<br />
-bfa741acc99e drm/amdgpu: Don't register backlight when another backlight should be used (v3)<br />
-426f8a2ce3d3 drm/i915: Don't register backlight when another backlight should be used (v2)<br />
-152630e9e122 ACPI: video: Add acpi_video_backlight_use_native() helper</p>
-
-</body>
-</html>
-
---===============2887134046370955070==--
