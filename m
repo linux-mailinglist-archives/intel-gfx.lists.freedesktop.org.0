@@ -1,77 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AD2A5A4CDF
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FDFC5A4CEE
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7645E10F1AF;
-	Mon, 29 Aug 2022 13:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77A4C10F1C9;
+	Mon, 29 Aug 2022 13:04:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E80810E1ED;
- Thu, 25 Aug 2022 12:55:39 +0000 (UTC)
-Received: from [192.168.2.145] (109-252-119-13.nat.spd-mgts.ru
- [109.252.119.13])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABBD10E25F;
+ Thu, 25 Aug 2022 15:38:52 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 9EE1B6601DC3;
- Thu, 25 Aug 2022 13:55:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1661432138;
- bh=8ivHC7JnTHAfG9ihlha3bu++8MKRkyY9YpxvJiw/v5A=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=BnLPmjiVEH4pa5B6MTFbNKfs40dmMNj8CIx/RwT09kuxL5i/LtGW4LvAUtP+LtZLa
- Ne3G7ntS5elIx2uEXOi9TM/I0PKayAcOV7qxsuqa6Ccrgvt1kT6jj8htyGtaa+XJ1S
- ErdKSqnINd+JDnKk7nUfzPcWP1/J2h/idt9HUwWVkx0dUKbnibZ3AXJem/5plydRQT
- mV3Zsl9bewPF12cslSAL4xvqRDDjsO1+ijRRqEbVewsqR2KqHrNE8dvKvveU/RwNOe
- kpxwemh83WVAwbJwgBdo/DgYklBQrXXZMCkA9uRFEnT8uWm5NNZ+uMqETXuzY6cmoU
- Tl/TsRTeVUs3A==
-Message-ID: <bb1e159b-26f3-a158-0263-9e6b9cef0174@collabora.com>
-Date: Thu, 25 Aug 2022 15:55:32 +0300
+ by ams.source.kernel.org (Postfix) with ESMTPS id ADE03B829E4;
+ Thu, 25 Aug 2022 15:38:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94AEEC433C1;
+ Thu, 25 Aug 2022 15:38:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1661441929;
+ bh=pQ8yD0W3R5iU7lkK49zIJA2LO1vTB4E7TUZySfUSS+c=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=bmuEm7maYWepxVZ8ZhXh5YjPHa4rJr2K32C4VfQMPmzX5cj2Y0DRDEucmK3C6GZFW
+ zFwRDmdnkc6nd+2y/VpRJS+jx/hRlV5NUUkJNdYMeaYF5GpDVaMYqrG5JcIwDVpesC
+ CkeEpHKTn6TZn8OeaJBO7I055Ac4d+NZ0NLk2CBVc6W//ONKeN8iqiqrReV1IliLrW
+ Uygw4nXa42alMPQzEPR/WHlY91uwf0CRg3s4/c+ZnNfGOauJgaNiwlqZjXNWHsi+xp
+ xF2emT9sRXPwRDnRUsD6TIWqgsAATWVH6WzWUMirhz0jAF2kpQVubEqhnIpB8IcCEu
+ 3MPIo01b0ZIPQ==
+Date: Thu, 25 Aug 2022 08:38:46 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YweXhnusRr5ACYYd@dev-arch.thelio-3990X>
+References: <20220201153354.11971-1-lukasz.bartosik@semihalf.com>
+ <YwPoCqvQ02kUl9tP@dev-arch.thelio-3990X>
+ <CAK8ByeL=1EtgBRGh9hhHofgpRqB--CQgih+tAJwFv_MchDhcSw@mail.gmail.com>
+ <875yigixjp.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
- <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- Qiang Yu <yuq825@gmail.com>
-References: <20220824102248.91964-1-dmitry.osipenko@collabora.com>
- <20220824102248.91964-7-dmitry.osipenko@collabora.com>
- <055c3c05-ac4c-430e-f2b9-08f000acf435@gmail.com>
- <25d6b7e7-bbcc-7613-42d1-13c2b9ab2937@collabora.com>
- <e7576ab7-ff1e-e6da-b0fd-0315f1b37ed1@amd.com>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <e7576ab7-ff1e-e6da-b0fd-0315f1b37ed1@amd.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <875yigixjp.fsf@intel.com>
 X-Mailman-Approved-At: Mon, 29 Aug 2022 13:04:13 +0000
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH v3 6/9] dma-buf: Move
- dma-buf attachment to dynamic locking specification
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: fix null pointer dereference
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,88 +57,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lima@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, linaro-mm-sig@lists.linaro.org,
- dri-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, linux-media@vger.kernel.org
+Cc: llvm@lists.linux.dev, upstream@semihalf.com, keescook@chromium.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?utf-8?Q?=C5=81ukasz?= Bartosik <lb@semihalf.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 8/24/22 20:45, Christian König wrote:
-> Am 24.08.22 um 17:49 schrieb Dmitry Osipenko:
->> On 8/24/22 18:24, Christian König wrote:
->>> Am 24.08.22 um 12:22 schrieb Dmitry Osipenko:
->>>> Move dma-buf attachment API functions to the dynamic locking
->>>> specification.
->>>> The strict locking convention prevents deadlock situations for dma-buf
->>>> importers and exporters.
->>>>
->>>> Previously, the "unlocked" versions of the attachment API functions
->>>> weren't taking the reservation lock and this patch makes them to take
->>>> the lock.
->>>>
->>>> Intel and AMD GPU drivers already were mapping the attached dma-bufs
->>>> under
->>>> the held lock during attachment, hence these drivers are updated to use
->>>> the locked functions.
->>>>
->>>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->>>> ---
->>>>    drivers/dma-buf/dma-buf.c                  | 115
->>>> ++++++++++++++-------
->>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    |   4 +-
->>>>    drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c |   8 +-
->>>>    drivers/gpu/drm/i915/gem/i915_gem_object.c |  12 +++
->>>>    include/linux/dma-buf.h                    |  20 ++--
->>>>    5 files changed, 110 insertions(+), 49 deletions(-)
->>>>
->>>> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
->>>> index 4556a12bd741..f2a5a122da4a 100644
->>>> --- a/drivers/dma-buf/dma-buf.c
->>>> +++ b/drivers/dma-buf/dma-buf.c
->>>> @@ -559,7 +559,7 @@ static struct file *dma_buf_getfile(struct dma_buf
->>>> *dmabuf, int flags)
->>>>     * 2. Userspace passes this file-descriptors to all drivers it wants
->>>> this buffer
->>>>     *    to share with: First the file descriptor is converted to a
->>>> &dma_buf using
->>>>     *    dma_buf_get(). Then the buffer is attached to the device using
->>>> - *    dma_buf_attach().
->>>> + *    dma_buf_attach_unlocked().
->>> Now I get why this is confusing me so much.
->>>
->>> The _unlocked postfix implies that there is another function which
->>> should be called with the locks already held, but this is not the case
->>> for attach/detach (because they always need to grab the lock
->>> themselves).
->> That's correct. The attach/detach ops of exporter can take the lock
->> (like i915 exporter does it), hence importer must not grab the lock
->> around dma_buf_attach() invocation.
->>
->>> So I suggest to drop the _unlocked postfix for the attach/detach
->>> functions. Another step would then be to unify attach/detach with
->>> dynamic_attach/dynamic_detach when both have the same locking convention
->>> anyway.
->> It's not a problem to change the name, but it's unclear to me why we
->> should do it. The _unlocked postfix tells importer that reservation must
->> be unlocked and it must be unlocked in case of dma_buf_attach().
->>
->> Dropping the postfix will make dma_buf_attach() inconsistent with the
->> rest of the _unlocked functions(?). Are you sure we need to rename it?
+On Thu, Aug 25, 2022 at 10:37:14AM +0300, Jani Nikula wrote:
+> On Tue, 23 Aug 2022, Łukasz Bartosik <lb@semihalf.com> wrote:
+> >>
+> >> Hi all,
+> >>
+> >> Apologies in advance if you see this twice. I did not see the original
+> >> make it to either lore.kernel.org or the freedesktop.org archives so I
+> >> figured it might have been sent into the void.
+> >>
+> >> On Tue, Feb 01, 2022 at 04:33:54PM +0100, Lukasz Bartosik wrote:
+> >> > From: Łukasz Bartosik <lb@semihalf.com>
+> >> >
+> >> > Asus chromebook CX550 crashes during boot on v5.17-rc1 kernel.
+> >> > The root cause is null pointer defeference of bi_next
+> >> > in tgl_get_bw_info() in drivers/gpu/drm/i915/display/intel_bw.c.
+> >> >
+> >> > BUG: kernel NULL pointer dereference, address: 000000000000002e
+> >> > PGD 0 P4D 0
+> >> > Oops: 0002 [#1] PREEMPT SMP NOPTI
+> >> > CPU: 0 PID: 1 Comm: swapper/0 Tainted: G     U            5.17.0-rc1
+> >> > Hardware name: Google Delbin/Delbin, BIOS Google_Delbin.13672.156.3 05/14/2021
+> >> > RIP: 0010:tgl_get_bw_info+0x2de/0x510
+> >> > ...
+> >> > [    2.554467] Call Trace:
+> >> > [    2.554467]  <TASK>
+> >> > [    2.554467]  intel_bw_init_hw+0x14a/0x434
+> >> > [    2.554467]  ? _printk+0x59/0x73
+> >> > [    2.554467]  ? _dev_err+0x77/0x91
+> >> > [    2.554467]  i915_driver_hw_probe+0x329/0x33e
+> >> > [    2.554467]  i915_driver_probe+0x4c8/0x638
+> >> > [    2.554467]  i915_pci_probe+0xf8/0x14e
+> >> > [    2.554467]  ? _raw_spin_unlock_irqrestore+0x12/0x2c
+> >> > [    2.554467]  pci_device_probe+0xaa/0x142
+> >> > [    2.554467]  really_probe+0x13f/0x2f4
+> >> > [    2.554467]  __driver_probe_device+0x9e/0xd3
+> >> > [    2.554467]  driver_probe_device+0x24/0x7c
+> >> > [    2.554467]  __driver_attach+0xba/0xcf
+> >> > [    2.554467]  ? driver_attach+0x1f/0x1f
+> >> > [    2.554467]  bus_for_each_dev+0x8c/0xc0
+> >> > [    2.554467]  bus_add_driver+0x11b/0x1f7
+> >> > [    2.554467]  driver_register+0x60/0xea
+> >> > [    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
+> >> > [    2.554467]  i915_init+0x2c/0xb9
+> >> > [    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
+> >> > [    2.554467]  do_one_initcall+0x12e/0x2b3
+> >> > [    2.554467]  do_initcall_level+0xd6/0xf3
+> >> > [    2.554467]  do_initcalls+0x4e/0x79
+> >> > [    2.554467]  kernel_init_freeable+0xed/0x14d
+> >> > [    2.554467]  ? rest_init+0xc1/0xc1
+> >> > [    2.554467]  kernel_init+0x1a/0x120
+> >> > [    2.554467]  ret_from_fork+0x1f/0x30
+> >> > [    2.554467]  </TASK>
+> >> > ...
+> >> > Kernel panic - not syncing: Fatal exception
+> >> >
+> >> > Fixes: c64a9a7c05be ("drm/i915: Update memory bandwidth formulae")
+> >> > Signed-off-by: Łukasz Bartosik <lb@semihalf.com>
+> >> > ---
+> >> >  drivers/gpu/drm/i915/display/intel_bw.c | 16 +++++++++-------
+> >> >  1 file changed, 9 insertions(+), 7 deletions(-)
+> >> >
+> >> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> >> > index 2da4aacc956b..bd0ed68b7faa 100644
+> >> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> >> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> >> > @@ -404,15 +404,17 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+> >> >               int clpchgroup;
+> >> >               int j;
+> >> >
+> >> > -             if (i < num_groups - 1)
+> >> > -                     bi_next = &dev_priv->max_bw[i + 1];
+> >> > -
+> >> >               clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
+> >> >
+> >> > -             if (i < num_groups - 1 && clpchgroup < clperchgroup)
+> >> > -                     bi_next->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
+> >> > -             else
+> >> > -                     bi_next->num_planes = 0;
+> >> > +             if (i < num_groups - 1) {
+> >> > +                     bi_next = &dev_priv->max_bw[i + 1];
+> >> > +
+> >> > +                     if (clpchgroup < clperchgroup)
+> >> > +                             bi_next->num_planes = (ipqdepth - clpchgroup) /
+> >> > +                                                    clpchgroup + 1;
+> >> > +                     else
+> >> > +                             bi_next->num_planes = 0;
+> >> > +             }
+> >> >
+> >> >               bi->num_qgv_points = qi.num_points;
+> >> >               bi->num_psf_gv_points = qi.num_psf_points;
+> >> > --
+> >> > 2.35.0.rc2.247.g8bbb082509-goog
+> >> >
+> >> >
+> >>
+> >> Was this patch ever applied or was the issue fixed in a different way?
+> >> If CONFIG_INIT_STACK_ALL_ZERO is enabled (it is on by default when the
+> >> compiler supports it), bi_next will be deterministically initialized to
+> >> NULL, which means 'bi_next->num_planes = 0' will crash when the first if
+> >> statement is not taken (i.e. 'i > num_groups - 1'). This was reported to
+> >> us at [1] so it impacts real users (and I have been applying this change
+> >> locally for six months). I see some discussion in this thread, was it
+> >> ever resolved?
+> >>
+> >> [1]: https://github.com/ClangBuiltLinux/linux/issues/1626
+> >>
+> >> Cheers,
+> >> Nathan
+> >
+> > The patch was not accepted by upstream. I gave up after sending two reminders
+> > that the issue is still present which resulted in no upstream reaction.
+> > I have been also applying that patch locally for a few months.
+> > Thanks for bringing it up to upstream attention again.
 > 
-> The idea of the postfix was to distinguish between two different
-> versions of the same function, e.g. dma_buf_vmap_unlocked() vs normal
-> dma_buf_vmap().
+> Apologies for us dropping the ball here. There were objections to the
+> code from Ville [1] but nobody stepped up to clean it up. I think this
+> was really more about the commit being fixed c64a9a7c05be ("drm/i915:
+> Update memory bandwidth formulae") than about the patch at hand.
 > 
-> When we don't have those two types of the same function I don't think it
-> makes to much sense to keep that. We should just properly document which
-> functions expect what and that's what your documentation patch does.
+> In any case, I've gone ahead and pushed this patch to drm-intel-next
+> now. With the Fixes tag it should eventually find its way to stable
+> v5.17+. Thank you for the patch, review - and nagging. ;)
+> 
+> What still remains is cleaning up the code. But that should never have
+> stalled the fix for months. Sorry again.
 
-Thank you for the clarification. I'll change the names in v4 like you're
-suggesting, we can always improve naming later on if will be necessary.
+No worries, better late than never :) Thanks for applying the change!
 
--- 
-Best regards,
-Dmitry
+Cheers,
+Nathan
