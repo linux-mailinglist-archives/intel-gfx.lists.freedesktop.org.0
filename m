@@ -2,49 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FDFC5A4CEE
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4275A4CE9
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77A4C10F1C9;
-	Mon, 29 Aug 2022 13:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E500D10F1C4;
+	Mon, 29 Aug 2022 13:04:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABBD10E25F;
- Thu, 25 Aug 2022 15:38:52 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id ADE03B829E4;
- Thu, 25 Aug 2022 15:38:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94AEEC433C1;
- Thu, 25 Aug 2022 15:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1661441929;
- bh=pQ8yD0W3R5iU7lkK49zIJA2LO1vTB4E7TUZySfUSS+c=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=bmuEm7maYWepxVZ8ZhXh5YjPHa4rJr2K32C4VfQMPmzX5cj2Y0DRDEucmK3C6GZFW
- zFwRDmdnkc6nd+2y/VpRJS+jx/hRlV5NUUkJNdYMeaYF5GpDVaMYqrG5JcIwDVpesC
- CkeEpHKTn6TZn8OeaJBO7I055Ac4d+NZ0NLk2CBVc6W//ONKeN8iqiqrReV1IliLrW
- Uygw4nXa42alMPQzEPR/WHlY91uwf0CRg3s4/c+ZnNfGOauJgaNiwlqZjXNWHsi+xp
- xF2emT9sRXPwRDnRUsD6TIWqgsAATWVH6WzWUMirhz0jAF2kpQVubEqhnIpB8IcCEu
- 3MPIo01b0ZIPQ==
-Date: Thu, 25 Aug 2022 08:38:46 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YweXhnusRr5ACYYd@dev-arch.thelio-3990X>
-References: <20220201153354.11971-1-lukasz.bartosik@semihalf.com>
- <YwPoCqvQ02kUl9tP@dev-arch.thelio-3990X>
- <CAK8ByeL=1EtgBRGh9hhHofgpRqB--CQgih+tAJwFv_MchDhcSw@mail.gmail.com>
- <875yigixjp.fsf@intel.com>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA0110E322;
+ Thu, 25 Aug 2022 21:27:33 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id
+ k18-20020a05600c0b5200b003a5dab49d0bso3156433wmr.3; 
+ Thu, 25 Aug 2022 14:27:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc;
+ bh=gVyA5Z8on1cy579HoV3noOGIo3WqfSZOmskPQryMgtM=;
+ b=eh/92dgXe0iyyY3sIgffq4zQH1CFGZMuz44bFe8eqZHrFui9w/sE6IF5yB6Fdl31m9
+ q/giSA6K9TF82r9Z7/3a4lVAFzW09wfSy/165AHuuX16K0vRUPKCGD88QxiQrmNNKFx/
+ PNqEaEBMyUErAL98l5VkqMECNhnqLIbgF9x4D6cHJgp36/cUymxzMzQQUJrrxSPR1sbt
+ tHiJVRpf39VhrJtrS58T4jfliailuywTFaV0Thv6p9mpo8wn9z+7N1sXsoBeOU89UV5s
+ QbzmqMrzJx9P96pqjjVEkAMxG/vEgHLJT3Oq/CqKdjvYxbHH4kMnlj0pz7TUi/E6SNFj
+ m1bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+ bh=gVyA5Z8on1cy579HoV3noOGIo3WqfSZOmskPQryMgtM=;
+ b=7MHXnOUInU67yVrwyAI7CH6PPdmHoGKAhmYITd2kdKNx0vu+n1xt7HdXIXc+IeHuyZ
+ NfDvBWXFOvEvnsJNF9PXIQkWGtfdsTmdj74iWJuR6qQkr6cub8vmC6SluUXuKDUj0n1M
+ WXlqSo9eiH5PmO8R2UARQWUaYi5iM6GT8jYt1y7E3JJz5LyfhmEb4oLH+5oub6M01D0h
+ bkzjZeDxmPpmePbU4Sj2/JEzydVlGJkXF+m8r4/1dlnXC81Qmi0L0uCT7d6FJDQKGpqj
+ 1pPURzOmJUB+jPK944mYi0emcUsewbZxyUCLbZPhLyw3IHNl4ztMe6OI2fFOV+x7J5tg
+ Q+pA==
+X-Gm-Message-State: ACgBeo204vrPLIz3k71sWnEvbyLDSZMft0hnazkZxBHPRL2QfxUZvrDJ
+ UhrTQBK8dsyEBxGqdXTpsqM=
+X-Google-Smtp-Source: AA6agR6cucYg/Du4YLrUO/NU1z88fXBAfmGuIRfE4Qrrqd+tO0lSZk3dovhgHxZZ4bK1jgQbd4MAWw==
+X-Received: by 2002:a05:600c:198e:b0:3a5:d4a2:8896 with SMTP id
+ t14-20020a05600c198e00b003a5d4a28896mr8967780wmq.140.1661462851646; 
+ Thu, 25 Aug 2022 14:27:31 -0700 (PDT)
+Received: from kista.localnet (82-149-1-172.dynamic.telemach.net.
+ [82.149.1.172]) by smtp.gmail.com with ESMTPSA id
+ k1-20020a5d6e81000000b0021e8d205705sm242110wrz.51.2022.08.25.14.27.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 25 Aug 2022 14:27:31 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: linux-kernel@vger.kernel.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Date: Thu, 25 Aug 2022 23:27:29 +0200
+Message-ID: <22761203.6Emhk5qWAg@kista>
+In-Reply-To: <20220818210008.6721-1-wsa+renesas@sang-engineering.com>
+References: <20220818210008.6721-1-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <875yigixjp.fsf@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 29 Aug 2022 13:04:13 +0000
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: fix null pointer dereference
+Subject: Re: [Intel-gfx] [PATCH] gpu: move from strlcpy with unused retval
+ to strscpy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,140 +73,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, upstream@semihalf.com, keescook@chromium.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?utf-8?Q?=C5=81ukasz?= Bartosik <lb@semihalf.com>
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Samuel Holland <samuel@sholland.org>,
+ Russell King <linux@armlinux.org.uk>, amd-gfx@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+ linux-sunxi@lists.linux.dev, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Jonas Karlman <jonas@kwiboo.se>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ linux-mediatek@lists.infradead.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Evan Quan <evan.quan@amd.com>, linux-arm-kernel@lists.infradead.org, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Sandy Huang <hjc@rock-chips.com>,
+ Robert Foss <robert.foss@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 25, 2022 at 10:37:14AM +0300, Jani Nikula wrote:
-> On Tue, 23 Aug 2022, Łukasz Bartosik <lb@semihalf.com> wrote:
-> >>
-> >> Hi all,
-> >>
-> >> Apologies in advance if you see this twice. I did not see the original
-> >> make it to either lore.kernel.org or the freedesktop.org archives so I
-> >> figured it might have been sent into the void.
-> >>
-> >> On Tue, Feb 01, 2022 at 04:33:54PM +0100, Lukasz Bartosik wrote:
-> >> > From: Łukasz Bartosik <lb@semihalf.com>
-> >> >
-> >> > Asus chromebook CX550 crashes during boot on v5.17-rc1 kernel.
-> >> > The root cause is null pointer defeference of bi_next
-> >> > in tgl_get_bw_info() in drivers/gpu/drm/i915/display/intel_bw.c.
-> >> >
-> >> > BUG: kernel NULL pointer dereference, address: 000000000000002e
-> >> > PGD 0 P4D 0
-> >> > Oops: 0002 [#1] PREEMPT SMP NOPTI
-> >> > CPU: 0 PID: 1 Comm: swapper/0 Tainted: G     U            5.17.0-rc1
-> >> > Hardware name: Google Delbin/Delbin, BIOS Google_Delbin.13672.156.3 05/14/2021
-> >> > RIP: 0010:tgl_get_bw_info+0x2de/0x510
-> >> > ...
-> >> > [    2.554467] Call Trace:
-> >> > [    2.554467]  <TASK>
-> >> > [    2.554467]  intel_bw_init_hw+0x14a/0x434
-> >> > [    2.554467]  ? _printk+0x59/0x73
-> >> > [    2.554467]  ? _dev_err+0x77/0x91
-> >> > [    2.554467]  i915_driver_hw_probe+0x329/0x33e
-> >> > [    2.554467]  i915_driver_probe+0x4c8/0x638
-> >> > [    2.554467]  i915_pci_probe+0xf8/0x14e
-> >> > [    2.554467]  ? _raw_spin_unlock_irqrestore+0x12/0x2c
-> >> > [    2.554467]  pci_device_probe+0xaa/0x142
-> >> > [    2.554467]  really_probe+0x13f/0x2f4
-> >> > [    2.554467]  __driver_probe_device+0x9e/0xd3
-> >> > [    2.554467]  driver_probe_device+0x24/0x7c
-> >> > [    2.554467]  __driver_attach+0xba/0xcf
-> >> > [    2.554467]  ? driver_attach+0x1f/0x1f
-> >> > [    2.554467]  bus_for_each_dev+0x8c/0xc0
-> >> > [    2.554467]  bus_add_driver+0x11b/0x1f7
-> >> > [    2.554467]  driver_register+0x60/0xea
-> >> > [    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
-> >> > [    2.554467]  i915_init+0x2c/0xb9
-> >> > [    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
-> >> > [    2.554467]  do_one_initcall+0x12e/0x2b3
-> >> > [    2.554467]  do_initcall_level+0xd6/0xf3
-> >> > [    2.554467]  do_initcalls+0x4e/0x79
-> >> > [    2.554467]  kernel_init_freeable+0xed/0x14d
-> >> > [    2.554467]  ? rest_init+0xc1/0xc1
-> >> > [    2.554467]  kernel_init+0x1a/0x120
-> >> > [    2.554467]  ret_from_fork+0x1f/0x30
-> >> > [    2.554467]  </TASK>
-> >> > ...
-> >> > Kernel panic - not syncing: Fatal exception
-> >> >
-> >> > Fixes: c64a9a7c05be ("drm/i915: Update memory bandwidth formulae")
-> >> > Signed-off-by: Łukasz Bartosik <lb@semihalf.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/display/intel_bw.c | 16 +++++++++-------
-> >> >  1 file changed, 9 insertions(+), 7 deletions(-)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> >> > index 2da4aacc956b..bd0ed68b7faa 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> >> > @@ -404,15 +404,17 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
-> >> >               int clpchgroup;
-> >> >               int j;
-> >> >
-> >> > -             if (i < num_groups - 1)
-> >> > -                     bi_next = &dev_priv->max_bw[i + 1];
-> >> > -
-> >> >               clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
-> >> >
-> >> > -             if (i < num_groups - 1 && clpchgroup < clperchgroup)
-> >> > -                     bi_next->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
-> >> > -             else
-> >> > -                     bi_next->num_planes = 0;
-> >> > +             if (i < num_groups - 1) {
-> >> > +                     bi_next = &dev_priv->max_bw[i + 1];
-> >> > +
-> >> > +                     if (clpchgroup < clperchgroup)
-> >> > +                             bi_next->num_planes = (ipqdepth - clpchgroup) /
-> >> > +                                                    clpchgroup + 1;
-> >> > +                     else
-> >> > +                             bi_next->num_planes = 0;
-> >> > +             }
-> >> >
-> >> >               bi->num_qgv_points = qi.num_points;
-> >> >               bi->num_psf_gv_points = qi.num_psf_points;
-> >> > --
-> >> > 2.35.0.rc2.247.g8bbb082509-goog
-> >> >
-> >> >
-> >>
-> >> Was this patch ever applied or was the issue fixed in a different way?
-> >> If CONFIG_INIT_STACK_ALL_ZERO is enabled (it is on by default when the
-> >> compiler supports it), bi_next will be deterministically initialized to
-> >> NULL, which means 'bi_next->num_planes = 0' will crash when the first if
-> >> statement is not taken (i.e. 'i > num_groups - 1'). This was reported to
-> >> us at [1] so it impacts real users (and I have been applying this change
-> >> locally for six months). I see some discussion in this thread, was it
-> >> ever resolved?
-> >>
-> >> [1]: https://github.com/ClangBuiltLinux/linux/issues/1626
-> >>
-> >> Cheers,
-> >> Nathan
-> >
-> > The patch was not accepted by upstream. I gave up after sending two reminders
-> > that the issue is still present which resulted in no upstream reaction.
-> > I have been also applying that patch locally for a few months.
-> > Thanks for bringing it up to upstream attention again.
-> 
-> Apologies for us dropping the ball here. There were objections to the
-> code from Ville [1] but nobody stepped up to clean it up. I think this
-> was really more about the commit being fixed c64a9a7c05be ("drm/i915:
-> Update memory bandwidth formulae") than about the patch at hand.
-> 
-> In any case, I've gone ahead and pushed this patch to drm-intel-next
-> now. With the Fixes tag it should eventually find its way to stable
-> v5.17+. Thank you for the patch, review - and nagging. ;)
-> 
-> What still remains is cleaning up the code. But that should never have
-> stalled the fix for months. Sorry again.
+Dne =C4=8Detrtek, 18. avgust 2022 ob 23:00:07 CEST je Wolfram Sang napisal(=
+a):
+> Follow the advice of the below link and prefer 'strscpy' in this
+> subsystem. Conversion is 1:1 because the return value is not used.
+> Generated by a coccinelle script.
+>=20
+> Link:
+> https://lore.kernel.org/r/CAHk-=3DwgfRnXz0W3D37d01q3JFkr_i_uTL=3DV6A6G1oU=
+Zcprmk
+> nw@mail.gmail.com/ Signed-off-by: Wolfram Sang
+> <wsa+renesas@sang-engineering.com>
 
-No worries, better late than never :) Thanks for applying the change!
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Cheers,
-Nathan
+Best regards,
+Jernej
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/atom.c                   | 2 +-
+>  drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c      | 2 +-
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-ahb-audio.c | 6 +++---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c           | 2 +-
+>  drivers/gpu/drm/display/drm_dp_helper.c             | 2 +-
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c       | 2 +-
+>  drivers/gpu/drm/drm_mipi_dsi.c                      | 2 +-
+>  drivers/gpu/drm/i2c/tda998x_drv.c                   | 2 +-
+>  drivers/gpu/drm/i915/selftests/i915_perf.c          | 2 +-
+>  drivers/gpu/drm/mediatek/mtk_hdmi_ddc.c             | 2 +-
+>  drivers/gpu/drm/radeon/radeon_atombios.c            | 4 ++--
+>  drivers/gpu/drm/radeon/radeon_combios.c             | 4 ++--
+>  drivers/gpu/drm/rockchip/inno_hdmi.c                | 2 +-
+>  drivers/gpu/drm/rockchip/rk3066_hdmi.c              | 2 +-
+>  drivers/gpu/drm/sun4i/sun4i_hdmi_i2c.c              | 2 +-
+>  15 files changed, 19 insertions(+), 19 deletions(-)
+
+
+
