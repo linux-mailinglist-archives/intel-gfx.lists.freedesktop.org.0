@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A7855A0950
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 09:00:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 040DE5A092E
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 08:54:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63F75D89C3;
-	Thu, 25 Aug 2022 06:59:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC301D83D7;
+	Thu, 25 Aug 2022 06:53:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6C0DD892B;
- Thu, 25 Aug 2022 06:58:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661410735; x=1692946735;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=oL/cDsyvaZ2AMAuLWe4mBX/p2crsIcQ5eiyX+HbuLvc=;
- b=nl4S89VTxT/vE1Yd8BnmiStHg9XDaMf2tqcLdOsKZlUCRHoa5BtoXTGw
- dDOHjdaaJtcPtrcCtgzLIj+icqTI2n+6edj0FUq+iXKeEdUTz0fc0AYTw
- v1seEbLEbA33qbqUCVzI+ErdwaouUnKcrB99oX4B+nI0aMphdgFfTw3zI
- 1gpg7Es+Ta59+G0oDAcpVTZnJv2EkFtrrfjKGslfJDPSWF+TUBzBm8aBC
- eZOEFMpVZwk8zXhf8xLAmLWvg9ziCPl+hl9wUGEje6Vv3jxEfUQOBjU/R
- TX7HZKuRoByjK5IplLd6YxKXNZMzQ6A54YwisBt1irIprm63Q0ElOb0HG Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10449"; a="380454575"
-X-IronPort-AV: E=Sophos;i="5.93,262,1654585200"; d="scan'208";a="380454575"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2022 23:51:44 -0700
-X-IronPort-AV: E=Sophos;i="5.93,262,1654585200"; d="scan'208";a="670847183"
-Received: from pranavir-mobl.gar.corp.intel.com (HELO localhost)
- ([10.252.50.196])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2022 23:51:41 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lv qian <lvqian@nfschina.com>, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@linux.ie,
- daniel@ffwll.ch
-In-Reply-To: <20220825013752.120988-1-lvqian@nfschina.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220825013752.120988-1-lvqian@nfschina.com>
-Date: Thu, 25 Aug 2022 09:51:39 +0300
-Message-ID: <87h720izno.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BB92FD83AF;
+ Thu, 25 Aug 2022 06:53:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BC901A00E8;
+ Thu, 25 Aug 2022 06:53:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915:Move the code position to reduce
- the number of judgments
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Thu, 25 Aug 2022 06:53:47 -0000
+Message-ID: <166141042774.24645.16585457131957935637@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220825064701.768595-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20220825064701.768595-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Remove_frontbuffer_tracking_from_gem=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,45 +40,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Lv qian <lvqian@nfschina.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 25 Aug 2022, Lv qian <lvqian@nfschina.com> wrote:
-> 	If the kmalloc allocation is successful, the if is judged twice, 
-> 	so I move the second judgment in to the first judgment.
+== Series Details ==
 
-The code is fine as it is.
+Series: drm/i915: Remove frontbuffer tracking from gem.
+URL   : https://patchwork.freedesktop.org/series/107715/
+State : failure
 
-BR,
-Jani.
+== Summary ==
 
->
-> Signed-off-by: Lv qian <lvqian@nfschina.com>
-> ---
->  drivers/gpu/drm/i915/i915_gpu_error.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index 32e92651ef7c..c8230a8beadb 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -112,10 +112,10 @@ static bool __i915_error_grow(struct drm_i915_error_state_buf *e, size_t len)
->  	if (!e->buf) {
->  		e->size = PAGE_ALIGN(len + 1);
->  		e->buf = kmalloc(e->size, GFP_KERNEL);
-> -	}
-> -	if (!e->buf) {
-> -		e->err = -ENOMEM;
-> -		return false;
-> +		if (!e->buf) {
-> +			e->err = -ENOMEM;
-> +			return false;
-> +		}
->  	}
->  
->  	return true;
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  LD [M]  drivers/gpu/drm/i915/i915.o
+  LD [M]  drivers/gpu/drm/i915/kvmgt.o
+  HDRTEST drivers/gpu/drm/i915/display/intel_frontbuffer.h
+In file included from <command-line>:
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:49:35: error: ‘struct intel_framebuffer’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
+ void __intel_fb_invalidate(struct intel_framebuffer *front,
+                                   ^~~~~~~~~~~~~~~~~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:64:56: error: ‘struct intel_framebuffer’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
+ static inline bool intel_frontbuffer_invalidate(struct intel_framebuffer *fb,
+                                                        ^~~~~~~~~~~~~~~~~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h: In function ‘intel_frontbuffer_invalidate’:
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:72:36: error: dereferencing pointer to incomplete type ‘struct intel_framebuffer’
+  frontbuffer_bits = atomic_read(&fb->bits);
+                                    ^~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:76:24: error: passing argument 1 of ‘__intel_fb_invalidate’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  __intel_fb_invalidate(fb, origin, frontbuffer_bits);
+                        ^~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:49:54: note: expected ‘struct intel_framebuffer *’ but argument is of type ‘struct intel_framebuffer *’
+ void __intel_fb_invalidate(struct intel_framebuffer *front,
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h: At top level:
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:80:30: error: ‘struct intel_framebuffer’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
+ void __intel_fb_flush(struct intel_framebuffer *fb,
+                              ^~~~~~~~~~~~~~~~~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:92:51: error: ‘struct intel_framebuffer’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
+ static inline void intel_frontbuffer_flush(struct intel_framebuffer *fb,
+                                                   ^~~~~~~~~~~~~~~~~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h: In function ‘intel_frontbuffer_flush’:
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:100:36: error: dereferencing pointer to incomplete type ‘struct intel_framebuffer’
+  frontbuffer_bits = atomic_read(&fb->bits);
+                                    ^~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:104:19: error: passing argument 1 of ‘__intel_fb_flush’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  __intel_fb_flush(fb, origin, frontbuffer_bits);
+                   ^~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:80:49: note: expected ‘struct intel_framebuffer *’ but argument is of type ‘struct intel_framebuffer *’
+ void __intel_fb_flush(struct intel_framebuffer *fb,
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h: At top level:
+./drivers/gpu/drm/i915/display/intel_frontbuffer.h:107:37: error: ‘struct intel_framebuffer’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
+ void intel_frontbuffer_track(struct intel_framebuffer *old,
+                                     ^~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+drivers/gpu/drm/i915/Makefile:361: recipe for target 'drivers/gpu/drm/i915/display/intel_frontbuffer.hdrtest' failed
+make[4]: *** [drivers/gpu/drm/i915/display/intel_frontbuffer.hdrtest] Error 1
+scripts/Makefile.build:465: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:465: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:465: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1853: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+
