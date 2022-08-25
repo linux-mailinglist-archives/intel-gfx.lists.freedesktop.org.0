@@ -1,51 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 851225A14CA
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 16:48:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6368D5A14D9
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 16:52:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8465E10E239;
-	Thu, 25 Aug 2022 14:48:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5881B10E38F;
+	Thu, 25 Aug 2022 14:52:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD45910E239
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 14:48:13 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C350E10E38F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 14:52:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661438893; x=1692974893;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Bxcfj15EA4On+ZizYl/NclYUnSWZECFeKGUNGdK+YL8=;
- b=mTVZsg0mkPLQAYhzQ8HBPjAhvCtVxAUzonJ5ypDJz9h4Zu5th1NLN77G
- eQesZVLcMyT/AOIclG8ZAsNVEttvEP97sEm65RWkq3Sw2AdmMM0qlqMZo
- vRGV1pE/UvV7MdakxD8tXUoFSq0ebE3VAP77VsZ+3eNmACjzcxQIUvsTd
- aWiiRIqq61oUyLu6fwtKL62oqgrqv9WxrOJY6gQE1JRe9utHzHhiQEwlF
- Xa/pyCywL2h2XNhXdFBogxvhACKXiIW/pPoKJVSMbpeKviFiekeBI0Q8m
- 0DGcj33PRMPmjPZQsblIUYfDCMOx5P6PW95hKEynuqOIkKbgAfbj5FAa5 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10450"; a="277272164"
-X-IronPort-AV: E=Sophos;i="5.93,263,1654585200"; d="scan'208";a="277272164"
+ t=1661439155; x=1692975155;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xtARnxyRZnhpYhzBIZ2SOwTsdxFjkpt22DHlPDcYScM=;
+ b=AvoWWLS/Bd4sxoFnSp2GjlOzU/Nj+GFR8p9LmsPehpjnM5Pp+hP6XKLg
+ laDDcnyC1uHY9xw9ZEcZ6QPB8ubJnKF5ZwZzqUH6xnSIXg+dEmBnt4V7q
+ AoMK1lWEwk9/KLmktR+QiZ6c/yK+78uYtIwDRbKeAIMgwGVWBSHl97dEi
+ FqQdoZnIiFNVK9maMpZDJHgtDJevoQ6PL0qHHgcMFaLv1G0KHk43CvRa9
+ XiPd5zU/fPfyUX3xA40BOCUFOWYc6sCtxGCBB0yXfSCOCh3BIpSKZzKBk
+ jm32pI/kFzrCL8JStx08emF+DSymmkyE5VELrP6ZjEabpWhiK5Bfi2B9L Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10450"; a="358222626"
+X-IronPort-AV: E=Sophos;i="5.93,263,1654585200"; d="scan'208";a="358222626"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2022 07:48:12 -0700
-X-IronPort-AV: E=Sophos;i="5.93,263,1654585200"; d="scan'208";a="678485667"
-Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.149])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2022 07:52:35 -0700
+X-IronPort-AV: E=Sophos;i="5.93,263,1654585200"; d="scan'208";a="678487020"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2022 07:48:10 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <Ywdd+7ifzC7AknS7@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220616124137.3184371-1-jani.nikula@intel.com>
- <Ywdd+7ifzC7AknS7@intel.com>
-Date: Thu, 25 Aug 2022 17:48:07 +0300
-Message-ID: <87sflkgz14.fsf@intel.com>
+ 25 Aug 2022 07:52:33 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 25 Aug 2022 16:52:11 +0200
+Message-Id: <20220825145211.22941-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/glk: ECS Liva Q2 needs GLK HDMI
- port timing quirk
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: do not try misaligned_pin
+ test on unmappable memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,62 +56,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Diego Santa Cruz <Diego.SantaCruz@spinetix.com>, stable@vger.kernel.org
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 25 Aug 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Jun 16, 2022 at 03:41:37PM +0300, Jani Nikula wrote:
->> From: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
->>=20
->> The quirk added in upstream commit 90c3e2198777 ("drm/i915/glk: Add
->> Quirk for GLK NUC HDMI port issues.") is also required on the ECS Liva
->> Q2.
->>=20
->> Note: Would be nicer to figure out the extra delay required for the
->> retimer without quirks, however don't know how to check for that.
->>=20
->> Cc: stable@vger.kernel.org
->> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1326
->> Signed-off-by: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Seems fine. Although I do wonder whether we could directly identify the
-> bogus retimer chip via the dual mode adapter registers. I've asked for
-> that in the bug.
->
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+In case of Small BAR configurations stolen local memory can be unmappable.
+Trying to test it causes -ENOSPC error from _i915_gem_object_stolen_init.
 
-Thanks, pushed to drm-intel-next. Let's follow up with cleanups if the
-folks in the bug ever reply.
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6565
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-BR,
-Jani.
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+index fb5e6196347925..667c4c004bdbcf 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+@@ -1164,6 +1164,10 @@ static int misaligned_pin(struct i915_address_space *vm,
+ 		if (hole_size < 3 * min_alignment)
+ 			continue;
+ 
++		/* avoid -ENOSPC on unmappable memory */
++		if (!mr->io_size)
++			continue;
++
+ 		/* we can't test < 4k alignment due to flags being encoded in lower bits */
+ 		if (min_alignment != I915_GTT_PAGE_SIZE_4K) {
+ 			err = misaligned_case(vm, mr, addr + (min_alignment / 2), size, flags);
+-- 
+2.25.1
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_quirks.c | 3 +++
->>  1 file changed, 3 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/d=
-rm/i915/display/intel_quirks.c
->> index c8488f5ebd04..e415cd7c0b84 100644
->> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
->> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
->> @@ -191,6 +191,9 @@ static struct intel_quirk intel_quirks[] =3D {
->>  	/* ASRock ITX*/
->>  	{ 0x3185, 0x1849, 0x2212, quirk_increase_ddi_disabled_time },
->>  	{ 0x3184, 0x1849, 0x2212, quirk_increase_ddi_disabled_time },
->> +	/* ECS Liva Q2 */
->> +	{ 0x3185, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
->> +	{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
->>  };
->>=20=20
->>  void intel_init_quirks(struct drm_i915_private *i915)
->> --=20
->> 2.30.2
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
