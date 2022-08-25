@@ -2,149 +2,151 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B2F5A0A08
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 09:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D06435A0AC2
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 09:53:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEA4D90E7;
-	Thu, 25 Aug 2022 07:22:13 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2065.outbound.protection.outlook.com [40.107.102.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 141B0D90D1;
- Thu, 25 Aug 2022 07:22:01 +0000 (UTC)
-Received: from BN8PR12MB3426.namprd12.prod.outlook.com (2603:10b6:408:4a::14)
- by SA0PR12MB4478.namprd12.prod.outlook.com (2603:10b6:806:9c::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14; Thu, 25 Aug
- 2022 05:50:51 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB7910E092;
+	Thu, 25 Aug 2022 07:53:37 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E336310E063;
+ Thu, 25 Aug 2022 07:53:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661414006; x=1692950006;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=d2SJ1u5LgosWgswSAUTr75T54/FJyGWfJLvnmdrcZ4A=;
+ b=hrvwrMIigmvHSTwI1PbegtFQYzzkTCi24Og8LLDyWNmjq1JnU43DUoZR
+ /LHFKBXyPbNrTCI6fwCk/dVDgkg+yvDLno7se+8bclgoAyw5eUrBdBLKW
+ 8EJP82VlGvtv7q1oKcT1+zvu0KPht9x59DcvZQov2ZBNFHU5rk1I4VTQ4
+ DJ98prTVcttZqVe07Lt4rPxlNwENu++UGfdaYXO/HqFwc8G/dBIrUOY8s
+ vsCw5zieXRC2/CRAzDgnRNwJgK8w6efKEBFX/WU3pP0mLrahVB9C+ChRY
+ 4wb0EEOwgKBIkB0nxvLaF3wc1Ysv/vKKRMzhk2F/ni300XETUIbf3lnxy g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10449"; a="294923653"
+X-IronPort-AV: E=Sophos;i="5.93,262,1654585200"; d="scan'208";a="294923653"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2022 21:50:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,262,1654585200"; d="scan'208";a="938178863"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga005.fm.intel.com with ESMTP; 24 Aug 2022 21:50:08 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 24 Aug 2022 21:50:07 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 24 Aug 2022 21:50:07 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Wed, 24 Aug 2022 21:50:07 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Wed, 24 Aug 2022 21:50:07 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sk0FeJXZspU2IsynjBlAMVcZmEFlX6N5cGB3Ir7YVTKUB6/TsHHqrNDxo5ZYT2FDhtGCLqJm2+TjswPytN9DXbA0UPPQ8TqZxZrtGd5df0SiI4QBk9QbL7fGiNbqQMbnM2lFwh2KUwnUoBPYHbk7ZBZSdO3+MDc2j4YTybvQRcxq8DDap9FP+2reouTjMrwhTb6sMv34t9Sy+p51qjFz7jUubY0W/Exu1mXmewfWsTEe/JY1HYSkLaWS+X2Rn/cW88JP+fHp/qO/SZ1TyBBcVAJFit0EldxSDkJce7wSdLzC5ObtMK/DawRx4Zc/ppTNJSpvr8Aqx9yyh+I0CMdHoQ==
+ b=d9eWotVihRK6jphXvObMJapZL6F5/p0i9Mg42zPxzqizZutzBHU8sdPd/qYAe7ZirAXcb3fQsk1gEToFWHUuxfH74Y3/0QjwhNakDbVjMW3WNgYTBDrr//4XTCEhSro2vb0nC7l1nRB0a3DrdauI4SWjD9uK5RkbGPooE3ta/s8XsOOU8Egm/KTu1hOwM/d38QQi+6X63XKbwXWSE8JDBd+DrautucMZsjZ6FaZhxr/M9yiShOki3WDipqhSuRYEGslGSQO12ToODsI30pIdPYuk4kx1lYgUkxlUVryAqyrb5GYNz/lTNnIHW6MVyrla7JJWGo37iV6iXC7gyy7rBg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8GEB4Gmf8gYzYzw0SauFbEYt7He09/ibyOEjSkXO9CY=;
- b=DDt3k5QJvEbQ7XmTsFzzTJIV4feVrOlVExqDFZ8CahUfZouK4EpTh6K8IH2br4tQf+lhLW/jD6cx+suhj0AuGIPQIO7JhWsHodpd2DXuEb9eDcdLBdqJNZApWQidCWDHefGcWzDxaF5BDU9Tay2rKVCf4NZz3d87T7HqYHd7HtY5M9rFt97FMwy9tDcnFuaGaGdCDByZi/YKYUlsKOI/GB9Q25Ht8QIDhtt3hqmzfEggWVu/rjvO2daC3+C9nOcXYarQdwxgEFnWNvUgOi6pxfF2SDhQ7qpa7oTN2fZ+cPAc7k73PTcdDpSCPhj5J2BMHaogrDNUX0SZFmu5So8ltg==
+ bh=E1EKt02kseI49mVkVoPXO6SDlCkkJ1aPxGN5UAZ4Kyw=;
+ b=PHovcVOGGq9AbbwKfKUFH6/PNjP47fIP1Rmk7Ld+pV+UomBchd/RSLsuy7TTjfk8migrPHZS8R3nNE21NGz9otsrpbAx9fCC/Qm0vOJysAG7ryj3YiiVPpobW2MveZmG7IgDTpXtoBazFEAlpAlKXNX+MiF+e2jocfObUQNdbzgfhdOxp1xc4RIiPfgbewMM3MweHHhKYV61NkkRMlL0NBA1fJx6liecGvvbB+qg/CaVHhrEPFt8GLA5qZ6f9pn/4vEJf/DOaTPwQ5JVEakYbqMLQjZ7xN6A+RgseYiD5xISinWP1SjdVS48Z83AI9zhkDMAWJdDC0u6CFQc6dj5Xw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8GEB4Gmf8gYzYzw0SauFbEYt7He09/ibyOEjSkXO9CY=;
- b=YerBgSf/XFpE4iZnDoi4PdcU89++Ab5YebBHtep9vpBfkO9NM95ZkO1zvEUZJww/ZyfP8KYERR9PlBKxYEYes3oej/siq7tlxUslb8sSAOM8c9d7sUTm9n9ug90Hur0jH+cvmne2MSfenSiPCyESZmlr5K6BftLWA8CRo3gqGM8=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by BN8PR12MB3426.namprd12.prod.outlook.com (2603:10b6:408:4a::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.18; Wed, 24 Aug
- 2022 17:45:19 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::905:1701:3b51:7e39]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::905:1701:3b51:7e39%2]) with mapi id 15.20.5546.024; Wed, 24 Aug 2022
- 17:45:19 +0000
-Message-ID: <e7576ab7-ff1e-e6da-b0fd-0315f1b37ed1@amd.com>
-Date: Wed, 24 Aug 2022 19:45:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ PH0PR11MB4823.namprd11.prod.outlook.com (2603:10b6:510:43::11) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5566.15; Thu, 25 Aug 2022 04:50:00 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::1977:59e7:5a28:24e1]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::1977:59e7:5a28:24e1%8]) with mapi id 15.20.5566.015; Thu, 25 Aug 2022
+ 04:50:00 +0000
+Message-ID: <7e1ae824-b262-91c3-3254-79e2dbef6575@intel.com>
+Date: Wed, 24 Aug 2022 21:49:56 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
 Content-Language: en-US
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
- <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- Qiang Yu <yuq825@gmail.com>
-References: <20220824102248.91964-1-dmitry.osipenko@collabora.com>
- <20220824102248.91964-7-dmitry.osipenko@collabora.com>
- <055c3c05-ac4c-430e-f2b9-08f000acf435@gmail.com>
- <25d6b7e7-bbcc-7613-42d1-13c2b9ab2937@collabora.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <25d6b7e7-bbcc-7613-42d1-13c2b9ab2937@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: <John.C.Harrison@Intel.com>, <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20220816202837.1778495-1-John.C.Harrison@Intel.com>
+ <20220816202837.1778495-2-John.C.Harrison@Intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20220816202837.1778495-2-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0050.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:48::13) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+X-ClientProxiedBy: BYAPR05CA0083.namprd05.prod.outlook.com
+ (2603:10b6:a03:e0::24) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2f7c82e3-68ba-4b44-e526-08da85f86966
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3426:EE_|SA0PR12MB4478:EE_
+X-MS-Office365-Filtering-Correlation-Id: c2d8e275-3ce9-4796-02d3-08da86554405
+X-MS-TrafficTypeDiagnostic: PH0PR11MB4823:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QkEyVwKuUGqaWjF1MugYM3eqay2SkldryTEYCa8fcn8T+/ffBrdLrmie2jlarrGb3vL3WTSkS80Slp//Lk6V243xs1mHY6JS/zL2HG4LIwbxU22EXbp8NPRkXQW8qysi/1rmwapGb8BjDbsIFxSPc0h1HwTXaTMQWSRj0zAXHqp1wQXuquisDWUTp1WMN4ahcZBfsD1HSOzmVUjOfSjPKXqMOkscLRODHntcSmvsgYiKZJAI37cnKT1KuiJMzVaCSFn0VUtKNbZKeD5Zi7x4Hei6LcDUDRoYnPv4Kzhm6eExFFwds3MApBRXe4MYUaE3/OgBygkQ4xXaysIfyg/9umsRz79tbWhoInrPG3O5M91HdUbHHeBvV8h8uEXrci9x+3COgA8ZAgxDi3hH3rzfXRBaQFNSKTRP3QZVHXCUJG+r0ceHhsmw6EP+fIrdjzn3gmkwh8VuQj9WVFUQoILkq7Jt1ei24BxcIJYyuAFXpto2tM8kyGl/Hz0tvLgO9dNUZoTuBb0JVq9mZ13cXmG5j5nHSqppmUqY1ENIjKIyrMR6sKyEMTJtLIC4ztLjQosmUUTI1Z0T64AaV+EOh+GuXwmWcDvb/lPbAjczo2Vs6nhfNgC4h2d7V18ZEmSPouJ5g2ejXDZBcf4I12GbE8Ej44ga0Kb+NmGJhttT4qYvHV9lgDFHtZDOnZcfX41e/R1NlIE02aNFBjc7reqg3EyJsg3hq6vYx3ySE9LAKALdeXOiMx1nI23q7Si2pSynsdup+A+Lv5DyAAY048pYM1TTEZxp1ZsXn2JeH/Lo/fXQEJpaGZZFzz9QiLF9gtUG6JLh
+X-Microsoft-Antispam-Message-Info: FSOzLooUBfDRPvMEaU3M7aX6p+7Fi+9Eqdjy8zVFFaHSZ9bb7wnKeEkrPrYUIDe72N0/b4p4fQ8oAhzmjrinQ2NmBiN3KpMhKqbsX10hzowUpRgyWhiCqyPx7NdbgpMuqzq9oweipokm1Hqml57zP2uY3Le5Kq4Z3379xyU9raSbfFEJbgYyDtV+umybnER7ixQuCGdXWQ5gWDRNoPbzf+BK+A/A+BapOLW+VSExJS54aWtCMUSIkyjd63cpKFcmSGEgMJtvItgx4nqtoRetwT8BwkmdxICAn16p7NT8+FQXCCSVjMcKi2WSbvu5+4c/noRXQyfTPmUiWfODk922ATsvrLGI8bUiLPbWAIkSuhyJuuI/xwN/0JyfeYoRHNy8EoXbFeRh9pyWLy/4PJdZ82juG5YZpTjuG3Do2dEelWEIWxUb7bCZ86JvOoLvYgI3dedhZTqxfiZHA3a58CZz73mGN1qce6OOuVnVc5tKF6+9/zodS0udYaWutJtEHfIj9vfc7eUK8+yMDSd235BDNRcwI8cmsK9VDtmEnkeyhG37qQzBP6gcPlUjLtwyUPzfpJN7s0uZITJcSDvszP+gDnAODEQty/YiF3EaJ8ip2o/YdKXW9yn6kGEwe4JkoR8Yb7ho07nuEE61r4+eMhQ8LL+72bSQ6qu2Wqs/ZNZu6UHSuaS3gz6NZw4sneNzaUH8IIusmPLi1cNsK1SPB+fdMhiKqYIyE5E5D6kztDsGri4Ye2TJfhbPLEg9/Rnvg7/Q4eC7wpivF5OMTd2cChPy2cWJCg9QZLAHKr4Oqp3ycPY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(376002)(346002)(366004)(396003)(136003)(66556008)(66476007)(8676002)(110136005)(66946007)(316002)(7406005)(5660300002)(7416002)(4326008)(2906002)(38100700002)(8936002)(6666004)(31696002)(86362001)(921005)(478600001)(36756003)(6506007)(53546011)(6486002)(41300700001)(186003)(66574015)(2616005)(6512007)(31686004)(83380400001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(376002)(396003)(346002)(136003)(39860400002)(366004)(83380400001)(6512007)(2906002)(53546011)(26005)(2616005)(186003)(6506007)(31696002)(86362001)(82960400001)(36756003)(38100700002)(8936002)(6486002)(5660300002)(41300700001)(30864003)(66946007)(450100002)(316002)(66556008)(66476007)(31686004)(478600001)(6666004)(8676002)(4326008)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QitJVWFodnhyVEVnVHM5VUErc3UvdnpzRWpWbTFOQmNBZE1zU0c4VytTRXhY?=
- =?utf-8?B?cXdaeXVaRWZZNklnNkdjdjJSUjRsQlYyM0xDTjNFNHB0Y2hnSE5xU2docGtJ?=
- =?utf-8?B?S0d3ZTh2UG54Znk2S1RJQW9DMXpsWDZRcytwN3JMZzdXdHpQOFVFNkhKRlVX?=
- =?utf-8?B?anNMelBVQ1RtZGVuUmxyMHRKWnVnYlJrbHNuMUhFamhBelhJRkJxaDN6Nk4r?=
- =?utf-8?B?OGp3QU0wVlIxWlZyL1o5UFQxNDdVNEpBK1NPQkplOEZ4RFFldVRkejJWOTFn?=
- =?utf-8?B?UURLMVdzK3JJTGlQZzZiaHFVaHpsOXdrNE56MktTakxlUG5maDFEQ3FKZzR0?=
- =?utf-8?B?TVZ2NHprdXZYV3IweExFZzR0dDZuckJtVllIcWFhM3B0QWwxWU10S0lzR0pB?=
- =?utf-8?B?UStTYUFMdENrYzN5b0Y2anNDOTBmbXZFanNLbnM3dXFna1dIbHNoQWZaeGJu?=
- =?utf-8?B?Njg2UnFIZHdpNWZsY21jQmVpSDV6ZG5iRU1jMjFkMlZxRGRJQld0RDY0dzBO?=
- =?utf-8?B?YlpaZ3UxbGVNa29rdVJMbDJVYUxYZWZpSUEzaEp6bzd3VSt1azVnT2JTb3Ux?=
- =?utf-8?B?VXNuMHN0L1BvS1FuUjdHS1lMeVNUM3FscFlYNXZjN09XbmsrdzN2OWtBT0hu?=
- =?utf-8?B?TGN2Tkt6MnRCemMzSU90T3krYytyQzJDbVpDc2FuQmhyZ2VlVFJRQjBQcXBo?=
- =?utf-8?B?d1dTc3FKWWVPMFpxK0JzVUpJQk00T2FxOTNyWHkwYUdOajBPZDFjeFlZejRr?=
- =?utf-8?B?MWQ5ZzNSdktOMkNONGVuR01sRUIzc1JNUFFOKzEvVWl6QmFZSlpYNXJqU3k2?=
- =?utf-8?B?b2hPRHpsTEhPTjhXbUpZajc2M3FPMUNpbk5Kd3cxQndsRmhCeEY3QkNaL0xm?=
- =?utf-8?B?U1JNRzhIYkR4SWZIbUZUb01NTWtMY2JyZEsrNlM1SnlXb2dZYk9SRGVnZitZ?=
- =?utf-8?B?TnczWDJrSDNUK3I2Q3FSUXIwN0dweHJ4dTA1aStVOWNiWDV2NWdIUGtzTWFV?=
- =?utf-8?B?UnJGMDB1S2NrNWxYRW1SZ1hNbXhFTVY3UkVoQU1xM0Y2RGlRYnlnRE9GbXFq?=
- =?utf-8?B?c2NhcW1lVm41eXFBVXlRT25Jc2krenA0Qi9TVkhDOXJadUJGRVlPZmIrbkVJ?=
- =?utf-8?B?c3pXaXFyc3QranE4TUZDcElEdS9abHZZQW43U0tmcnlJd1R6Z2twUDB3NStR?=
- =?utf-8?B?NEJaNDU5cTJ1bU5MYmVKS20yTGVYaklNZC9GRnBUd1hQcm9XdkJRR3o1MGFk?=
- =?utf-8?B?Z21zdzg2L2NOY3JYQ0ZVcXg0NS9mMTNWWmJ4YTVzVE1SVnY3ZjM5QndYRERu?=
- =?utf-8?B?bE9lSkMrV2FIQnd4NEdRNEN3TGVLdU15aVAxQVRwekJ6M25oZmpNY2VVQlBV?=
- =?utf-8?B?ZUtZQ3B1NDdGazRIVFI3eEZnZW0yNFRMTHhyb2d5TTZGQlNXbllzZlJ0bmFx?=
- =?utf-8?B?bERkaDNGRldTWWkxUXY4Zi9ScktsZE1NY1RwdGptRU9zNDRRalRYY2RWSVdW?=
- =?utf-8?B?TjB2cmczZnB3WVpzWlRpcktVTVBKYWZYdDB1eDZiTEhtcnJNOW1BNWcrVzBu?=
- =?utf-8?B?azkzdnVUcExOd0EzemJaRjZwUzgxVkVnUzZwcnpoSVUvNWpPenJ4K3E1OWd3?=
- =?utf-8?B?TWtMNGsyN1VCRGQ4dUZ2cXhrenh4Qk1yQjdEZFp3U0N0clJaNk11U1RscitW?=
- =?utf-8?B?MFc3N3B1a0FXMXJzdnI3L280UU1NREE3Sk5GeUkwOXFUYWl1TURPOStlQmZu?=
- =?utf-8?B?SDhDR3c3N0FzTWtSdkhYSUxyVmo1Uk1vUXRwR1VMZEp2cE1iMUxSRUNzN1dG?=
- =?utf-8?B?M2lJMS9odjUwbUliMnBpUnMzaDFSRzd4RXNhd01hdVhhTFRKVzFqZzNxLzVR?=
- =?utf-8?B?MjZzbjJTcmhES1p1dWV6ek8zYm5TOVlaTGlRdSs5U0xMQlQybWNKYTl0dlcz?=
- =?utf-8?B?bG0rdXlnamM3UEFBS25LbGJyM2d6cG5EaXZMdW5kWVFaN3FoczAyY2d0dG1p?=
- =?utf-8?B?S2Mzb21hREdWTXZOV0tKUkIvd1JlZG0vQlNxUHpkMFVDQlZmTGw2cEtpa1Rk?=
- =?utf-8?B?cDR3RE1LV1Fjc1hDdHZPZTVaWnE3Y1FqOGJPSFpHMHdLa0tNY2dtTlJRTHps?=
- =?utf-8?B?Q2ViSWtjcXRlRFJUSlpIeTZjRXR4cFlvcVV6WWZ3S3kyNVNia0VkeFh1QjQx?=
- =?utf-8?Q?+q0X1NCwY9F7xJQvnm9ob74uSjJfdZphK3Sy/3p4i8L7?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f7c82e3-68ba-4b44-e526-08da85f86966
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZnptbVdrZ2dEbmFVY09uUEplY1ppcTN3bWM2ajNjVng0MTliTHBBNWZibHZp?=
+ =?utf-8?B?dDlranhqTTJ0L1phR2M2MWN2eXhVS0dvS2wvVWNvMWZHUldiaG5vMDlRaFFx?=
+ =?utf-8?B?RENkd2RTNDRNb1hJZzJna2QrTjdsUzM0YTdSWWlnY2M2NC9hWDZWenV1Qi9I?=
+ =?utf-8?B?RFN2dis5c3dqbkVEM0FvcUZreWVOL25lRmIxdW1UNUQ3eUViaElldWFJWkgy?=
+ =?utf-8?B?MWdDUmNSU3FMUTBrdFlaV1NrQ1J6cDdDZk5UVkVyZTJ0aHExTk1uSUJXTjFS?=
+ =?utf-8?B?U3g2VlRUSkx5Mzk2cWpEOXIrMnBRY0h3TmxPZEs5K2VuR1ljZTM4SkJhWFJn?=
+ =?utf-8?B?ZjJJZmRvWWg0RUdMYjUwdjl5bTlub3JMcVpDT0k4VVc0c05ZL25ZcnE3REhL?=
+ =?utf-8?B?RURCbEtRWjBYVFN4OHVkS3ZJd25KV2FlbjMrUG9la0NDYjJOdEtwbmJXQkhv?=
+ =?utf-8?B?S0hJczZhakRsaWdXSGdJYVJtREZXQVJuRGhNRDJ2V0R6N0ZXRUNNYkI5VUZQ?=
+ =?utf-8?B?U1Y3dGZXVUxsdTZMOEE0aHM2Ymc5UFVHQlNkN2t0T1UxTExYL0RIOHFQcGlk?=
+ =?utf-8?B?RFFpaU9oMEFrSm1NajhHVTFXMmtxK0U3WHVOZ3FlYjVvMUFNZ2l3VXVQSnY3?=
+ =?utf-8?B?R3dxWTFhdVBEUXNHd2xPUmpKSVVXOW1rTkVlSEhwaW9JT1F6aWdqMEJsS3Br?=
+ =?utf-8?B?ZDVrR2xIcUl1Sk1vSWFkcERBOSs1OFp0d0NlclpSL25Hb1NBeUFCc0dCU3Vv?=
+ =?utf-8?B?R0xCbjJ1MVZXZHgvS25vT2c2NDJ1OXdYVTF5Sy83NWg1UjBTb2VpanlOUkFO?=
+ =?utf-8?B?S2lmQVh3a2ZTeENib3hEbDZ2RGtzRVdXc1FKZ21pYnMwK0QvUjZmcWJ3VVJy?=
+ =?utf-8?B?YVlZbDBHK2ZCZ2xaa1BCQ3dTcnJ1QlpPWUxxQVZEVlFuSTk3TTk3SlkzK1ZL?=
+ =?utf-8?B?Ni81NzFtSldtTXF6MzIremd6b2ZUQzN1SUd3S3c0ZUlBTUx5czMyclpnaFhh?=
+ =?utf-8?B?QUZraHBQQ3ZMaFZYV2FmbmNIYktUbFU2eUhmL1YyMVo2WWxYaGJvaXBhMGtM?=
+ =?utf-8?B?MWkzbWpyRSsydDBPL0tFaVNVNXV2bXFMT1R6cEJyUVlUOEx2eUtqNUppaHBl?=
+ =?utf-8?B?R2haTmpvSGNCVEJhcGVhSjRwU1BLQ20vUGtOeFVnK01QT0p4WW1DL1NqKzFL?=
+ =?utf-8?B?Nk85ajVaQjNxQUR2UWlZbWhnd2Y3UkU5VHNodTZEOEQwWGZVUTVGMFZtTGRT?=
+ =?utf-8?B?b0dLU0hoSktuNUtRMzFyV2dpc0xwZC83Zlh2S3F2YWR4RGRxY0VUYWtFODFh?=
+ =?utf-8?B?eTJxSWhoaHU0cEhxNWIrRVNRbThxV08rZFkwTnM0VlNGMXNBalEyYTh6V200?=
+ =?utf-8?B?Y2tGNkMreC9rWXJJN2FKSGRhRCtvKzFuRTd1UnJ5c0NxSGYxNkU0dTFmdDRl?=
+ =?utf-8?B?VWlPRVRobjdPNzJhWFZhaE1EaE11aGF0UnJyQVc1SnF2enR4TGlSREg4cWhE?=
+ =?utf-8?B?QVVCOG0xeDM3RUswblV5TUk5T25oUHBHN3pmd2dXeWQwM2llMXgzekNJMFAw?=
+ =?utf-8?B?WVRUQ0J6SERBS1JuMER0RjJuTFk3SThRMkN2cTU2dnBzeFdZM2NWTkhrQ3Zi?=
+ =?utf-8?B?eUVRR0xOMzJCMDQ4emMzOWJJU2gxbjhRL3hyaTNBejFxV1RmS1dlQ1dQUW9z?=
+ =?utf-8?B?aVNpQ2NMendWQXZLQnVaNjdFdExnTCtFaVNQOVV5S3lLSTJUSUhxemJZZys2?=
+ =?utf-8?B?QmtmWCtaaTE4NEJKYU1GeHdNNWJ2VXZLc2JRVE5EaDVMYitOd3NlZGU4OW5v?=
+ =?utf-8?B?Zm9xR2IrOGxONTN2QWQ5cHJUT2d3WWlVVkxOVnhKMFhUL05scFFzSzlCTGJG?=
+ =?utf-8?B?Q2pLZ0NzdXZuV3M0cDlJT2hxckRCaEFid24zdWFZUEJ3UWlmbDFjb2hQSm5z?=
+ =?utf-8?B?bUN1K0QzbW1jcExVMmFPQ1Z0MWFzRUk2Y0x1cXFXemxsN2MrcVpXaCt5MEZB?=
+ =?utf-8?B?VUJZWXNibFMycGZHa1VRRFBRRk1lZjJlMUZzNlUxNXNqaVNJRmhpOEQrRzc2?=
+ =?utf-8?B?eW9jQ09Gd095NGpObGc0d2FGTis2OVVpek92TW1JT29XZUR4SmhFQWRFaUdU?=
+ =?utf-8?B?MUZ2WnV6eTJCZUQyUlNDTFdpblhXbVJEWHNmYVNrSndlalBGU0pjYjZIdzNn?=
+ =?utf-8?B?Z0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2d8e275-3ce9-4796-02d3-08da86554405
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2022 17:45:19.5580 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2022 04:49:59.9289 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zPrGMwPHue4l/e7DGFyu0HCfpuG9Q1fJZsvvjg1IoIJ2DIdvG62xn+wC2RVbMS9P
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3426
-X-OriginatorOrg: amd.com
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH v3 6/9] dma-buf: Move
- dma-buf attachment to dynamic locking specification
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5ntYsgH4xDukXtVVyHEdhzJULGJ1XOYuWQSeI/31eRsXaS1xgwSYwIeRDJwIOynAAEIPum6j/4YGxltJS3eD8RjuEF4D2MqKhLSkBhyIago=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4823
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/uc: Support for version
+ reduced and multiple firmware files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,89 +159,860 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lima@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, linaro-mm-sig@lists.linaro.org,
- dri-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, linux-media@vger.kernel.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 24.08.22 um 17:49 schrieb Dmitry Osipenko:
-> On 8/24/22 18:24, Christian König wrote:
->> Am 24.08.22 um 12:22 schrieb Dmitry Osipenko:
->>> Move dma-buf attachment API functions to the dynamic locking
->>> specification.
->>> The strict locking convention prevents deadlock situations for dma-buf
->>> importers and exporters.
->>>
->>> Previously, the "unlocked" versions of the attachment API functions
->>> weren't taking the reservation lock and this patch makes them to take
->>> the lock.
->>>
->>> Intel and AMD GPU drivers already were mapping the attached dma-bufs
->>> under
->>> the held lock during attachment, hence these drivers are updated to use
->>> the locked functions.
->>>
->>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->>> ---
->>>    drivers/dma-buf/dma-buf.c                  | 115 ++++++++++++++-------
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    |   4 +-
->>>    drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c |   8 +-
->>>    drivers/gpu/drm/i915/gem/i915_gem_object.c |  12 +++
->>>    include/linux/dma-buf.h                    |  20 ++--
->>>    5 files changed, 110 insertions(+), 49 deletions(-)
->>>
->>> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
->>> index 4556a12bd741..f2a5a122da4a 100644
->>> --- a/drivers/dma-buf/dma-buf.c
->>> +++ b/drivers/dma-buf/dma-buf.c
->>> @@ -559,7 +559,7 @@ static struct file *dma_buf_getfile(struct dma_buf
->>> *dmabuf, int flags)
->>>     * 2. Userspace passes this file-descriptors to all drivers it wants
->>> this buffer
->>>     *    to share with: First the file descriptor is converted to a
->>> &dma_buf using
->>>     *    dma_buf_get(). Then the buffer is attached to the device using
->>> - *    dma_buf_attach().
->>> + *    dma_buf_attach_unlocked().
->> Now I get why this is confusing me so much.
->>
->> The _unlocked postfix implies that there is another function which
->> should be called with the locks already held, but this is not the case
->> for attach/detach (because they always need to grab the lock themselves).
-> That's correct. The attach/detach ops of exporter can take the lock
-> (like i915 exporter does it), hence importer must not grab the lock
-> around dma_buf_attach() invocation.
->
->> So I suggest to drop the _unlocked postfix for the attach/detach
->> functions. Another step would then be to unify attach/detach with
->> dynamic_attach/dynamic_detach when both have the same locking convention
->> anyway.
-> It's not a problem to change the name, but it's unclear to me why we
-> should do it. The _unlocked postfix tells importer that reservation must
-> be unlocked and it must be unlocked in case of dma_buf_attach().
->
-> Dropping the postfix will make dma_buf_attach() inconsistent with the
-> rest of the _unlocked functions(?). Are you sure we need to rename it?
 
-The idea of the postfix was to distinguish between two different 
-versions of the same function, e.g. dma_buf_vmap_unlocked() vs normal 
-dma_buf_vmap().
 
-When we don't have those two types of the same function I don't think it 
-makes to much sense to keep that. We should just properly document which 
-functions expect what and that's what your documentation patch does.
-
-Regards,
-Christian.
-
+On 8/16/2022 1:28 PM, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
 >
->> Sorry that this is going so much back and forth, it's really complicated
->> to keep all the stuff in my head at the moment :)
-> Not a problem at all, I expected that it will take some time for this
-> patchset to settle down.
+> There was a misunderstanding in how firmware file compatibility should
+> be managed within i915. This has been clarified as:
+>    i915 must support all existing firmware releases forever
+>    new minor firmware releases should replace prior versions
+>    only backwards compatibility breaking releases should be a new file
 >
+> Hence this patch cleans up the single fallback file support that was
+> added as a quick fix emergency effort. That is now removed in
+> preference to supporting arbitrary numbers of firmware files per
+> platform as normal.
+>
+> The patch also adds support for having GuC firmwrae files that are
+> named by major version only (because the major version indicates
+> backwards breaking changes that affect the KMD) and for having HuC
+> firmware files with no version number at all (because the KMD has no
+> interface requirements with the HuC).
+>
+> For GuC, the driver will report via dmesg if the found file is older than
+> expected. For HuC, the KMD will no longer require updating for any new
+> HuC release so will not be able to report what the latest expected
+> version is.
+>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  10 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   4 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 396 +++++++++++-------
+>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h      |  33 +-
+>   drivers/gpu/drm/i915/i915_gpu_error.c         |  16 +-
+>   5 files changed, 275 insertions(+), 184 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 0d17da77e7872..d1715971fdd79 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -1868,7 +1868,7 @@ int intel_guc_submission_init(struct intel_guc *guc)
+>   	if (guc->submission_initialized)
+>   		return 0;
+>   
+> -	if (guc->fw.major_ver_found < 70) {
+> +	if (guc->fw.file_found.major_ver < 70) {
+>   		ret = guc_lrc_desc_pool_create_v69(guc);
+>   		if (ret)
+>   			return ret;
+> @@ -2303,7 +2303,7 @@ static int register_context(struct intel_context *ce, bool loop)
+>   	GEM_BUG_ON(intel_context_is_child(ce));
+>   	trace_intel_context_register(ce);
+>   
+> -	if (guc->fw.major_ver_found >= 70)
+> +	if (guc->fw.file_found.major_ver >= 70)
+>   		ret = register_context_v70(guc, ce, loop);
+>   	else
+>   		ret = register_context_v69(guc, ce, loop);
+> @@ -2315,7 +2315,7 @@ static int register_context(struct intel_context *ce, bool loop)
+>   		set_context_registered(ce);
+>   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   
+> -		if (guc->fw.major_ver_found >= 70)
+> +		if (guc->fw.file_found.major_ver >= 70)
+>   			guc_context_policy_init_v70(ce, loop);
+>   	}
+>   
+> @@ -2921,7 +2921,7 @@ static void __guc_context_set_preemption_timeout(struct intel_guc *guc,
+>   						 u16 guc_id,
+>   						 u32 preemption_timeout)
+>   {
+> -	if (guc->fw.major_ver_found >= 70) {
+> +	if (guc->fw.file_found.major_ver >= 70) {
+>   		struct context_policy policy;
+>   
+>   		__guc_context_policy_start_klv(&policy, guc_id);
+> @@ -3186,7 +3186,7 @@ static int guc_context_alloc(struct intel_context *ce)
+>   static void __guc_context_set_prio(struct intel_guc *guc,
+>   				   struct intel_context *ce)
+>   {
+> -	if (guc->fw.major_ver_found >= 70) {
+> +	if (guc->fw.file_found.major_ver >= 70) {
+>   		struct context_policy policy;
+>   
+>   		__guc_context_policy_start_klv(&policy, ce->guc_id.id);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index f2e7c82985efd..0697128cc3362 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -436,8 +436,8 @@ static void print_fw_ver(struct intel_uc *uc, struct intel_uc_fw *fw)
+>   	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
+>   
+>   	drm_info(&i915->drm, "%s firmware %s version %u.%u\n",
+> -		 intel_uc_fw_type_repr(fw->type), fw->path,
+> -		 fw->major_ver_found, fw->minor_ver_found);
+> +		 intel_uc_fw_type_repr(fw->type), fw->file_found.path,
+> +		 fw->file_found.major_ver, fw->file_found.minor_ver);
+>   }
+>   
+>   static int __uc_init_hw(struct intel_uc *uc)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> index 58547292efa0a..eb3a15f0fa479 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> @@ -41,7 +41,7 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
+>   		"%s firmware -> %s\n",
+>   		intel_uc_fw_type_repr(uc_fw->type),
+>   		status == INTEL_UC_FIRMWARE_SELECTED ?
+> -		uc_fw->path : intel_uc_fw_status_repr(status));
+> +		uc_fw->file_found.path : intel_uc_fw_status_repr(status));
+>   }
+>   #endif
+>   
+> @@ -52,83 +52,113 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
+>    * Note that RKL and ADL-S have the same GuC/HuC device ID's and use the same
+>    * firmware as TGL.
+>    */
+> -#define INTEL_GUC_FIRMWARE_DEFS(fw_def, guc_def) \
+> -	fw_def(DG2,          0, guc_def(dg2,  70, 4, 1)) \
+> -	fw_def(ALDERLAKE_P,  0, guc_def(adlp, 70, 1, 1)) \
+> -	fw_def(ALDERLAKE_S,  0, guc_def(tgl,  70, 1, 1)) \
+> -	fw_def(DG1,          0, guc_def(dg1,  70, 1, 1)) \
+> -	fw_def(ROCKETLAKE,   0, guc_def(tgl,  70, 1, 1)) \
+> -	fw_def(TIGERLAKE,    0, guc_def(tgl,  70, 1, 1)) \
+> -	fw_def(JASPERLAKE,   0, guc_def(ehl,  70, 1, 1)) \
+> -	fw_def(ELKHARTLAKE,  0, guc_def(ehl,  70, 1, 1)) \
+> -	fw_def(ICELAKE,      0, guc_def(icl,  70, 1, 1)) \
+> -	fw_def(COMETLAKE,    5, guc_def(cml,  70, 1, 1)) \
+> -	fw_def(COMETLAKE,    0, guc_def(kbl,  70, 1, 1)) \
+> -	fw_def(COFFEELAKE,   0, guc_def(kbl,  70, 1, 1)) \
+> -	fw_def(GEMINILAKE,   0, guc_def(glk,  70, 1, 1)) \
+> -	fw_def(KABYLAKE,     0, guc_def(kbl,  70, 1, 1)) \
+> -	fw_def(BROXTON,      0, guc_def(bxt,  70, 1, 1)) \
+> -	fw_def(SKYLAKE,      0, guc_def(skl,  70, 1, 1))
+> -
+> -#define INTEL_GUC_FIRMWARE_DEFS_FALLBACK(fw_def, guc_def) \
+> -	fw_def(ALDERLAKE_P,  0, guc_def(adlp, 69, 0, 3)) \
+> -	fw_def(ALDERLAKE_S,  0, guc_def(tgl,  69, 0, 3))
+> -
+> -#define INTEL_HUC_FIRMWARE_DEFS(fw_def, huc_def) \
+> -	fw_def(ALDERLAKE_P,  0, huc_def(tgl,  7, 9, 3)) \
+> -	fw_def(ALDERLAKE_S,  0, huc_def(tgl,  7, 9, 3)) \
+> -	fw_def(DG1,          0, huc_def(dg1,  7, 9, 3)) \
+> -	fw_def(ROCKETLAKE,   0, huc_def(tgl,  7, 9, 3)) \
+> -	fw_def(TIGERLAKE,    0, huc_def(tgl,  7, 9, 3)) \
+> -	fw_def(JASPERLAKE,   0, huc_def(ehl,  9, 0, 0)) \
+> -	fw_def(ELKHARTLAKE,  0, huc_def(ehl,  9, 0, 0)) \
+> -	fw_def(ICELAKE,      0, huc_def(icl,  9, 0, 0)) \
+> -	fw_def(COMETLAKE,    5, huc_def(cml,  4, 0, 0)) \
+> -	fw_def(COMETLAKE,    0, huc_def(kbl,  4, 0, 0)) \
+> -	fw_def(COFFEELAKE,   0, huc_def(kbl,  4, 0, 0)) \
+> -	fw_def(GEMINILAKE,   0, huc_def(glk,  4, 0, 0)) \
+> -	fw_def(KABYLAKE,     0, huc_def(kbl,  4, 0, 0)) \
+> -	fw_def(BROXTON,      0, huc_def(bxt,  2, 0, 0)) \
+> -	fw_def(SKYLAKE,      0, huc_def(skl,  2, 0, 0))
+> -
+> -#define __MAKE_UC_FW_PATH(prefix_, name_, major_, minor_, patch_) \
+> +#define INTEL_GUC_FIRMWARE_DEFS(fw_def, guc_maj, guc_mmp) \
+> +	fw_def(ALDERLAKE_P,  0, guc_mmp(adlp, 70, 1, 1)) \
+> +	fw_def(ALDERLAKE_P,  0, guc_mmp(adlp, 69, 0, 3)) \
+> +	fw_def(ALDERLAKE_S,  0, guc_mmp(tgl,  70, 1, 1)) \
+> +	fw_def(DG1,          0, guc_mmp(dg1,  70, 1, 1)) \
+> +	fw_def(ROCKETLAKE,   0, guc_mmp(tgl,  70, 1, 1)) \
+> +	fw_def(TIGERLAKE,    0, guc_mmp(tgl,  70, 1, 1)) \
+> +	fw_def(JASPERLAKE,   0, guc_mmp(ehl,  70, 1, 1)) \
+> +	fw_def(ELKHARTLAKE,  0, guc_mmp(ehl,  70, 1, 1)) \
+> +	fw_def(ICELAKE,      0, guc_mmp(icl,  70, 1, 1)) \
+> +	fw_def(COMETLAKE,    5, guc_mmp(cml,  70, 1, 1)) \
+> +	fw_def(COMETLAKE,    0, guc_mmp(kbl,  70, 1, 1)) \
+> +	fw_def(COFFEELAKE,   0, guc_mmp(kbl,  70, 1, 1)) \
+> +	fw_def(GEMINILAKE,   0, guc_mmp(glk,  70, 1, 1)) \
+> +	fw_def(KABYLAKE,     0, guc_mmp(kbl,  70, 1, 1)) \
+> +	fw_def(BROXTON,      0, guc_mmp(bxt,  70, 1, 1)) \
+> +	fw_def(SKYLAKE,      0, guc_mmp(skl,  70, 1, 1))
+> +
+> +#define INTEL_HUC_FIRMWARE_DEFS(fw_def, huc_raw, huc_mmp) \
+> +	fw_def(ALDERLAKE_P,  0, huc_mmp(tgl,  7, 9, 3)) \
+> +	fw_def(ALDERLAKE_S,  0, huc_mmp(tgl,  7, 9, 3)) \
+> +	fw_def(DG1,          0, huc_mmp(dg1,  7, 9, 3)) \
+> +	fw_def(ROCKETLAKE,   0, huc_mmp(tgl,  7, 9, 3)) \
+> +	fw_def(TIGERLAKE,    0, huc_mmp(tgl,  7, 9, 3)) \
+> +	fw_def(JASPERLAKE,   0, huc_mmp(ehl,  9, 0, 0)) \
+> +	fw_def(ELKHARTLAKE,  0, huc_mmp(ehl,  9, 0, 0)) \
+> +	fw_def(ICELAKE,      0, huc_mmp(icl,  9, 0, 0)) \
+> +	fw_def(COMETLAKE,    5, huc_mmp(cml,  4, 0, 0)) \
+> +	fw_def(COMETLAKE,    0, huc_mmp(kbl,  4, 0, 0)) \
+> +	fw_def(COFFEELAKE,   0, huc_mmp(kbl,  4, 0, 0)) \
+> +	fw_def(GEMINILAKE,   0, huc_mmp(glk,  4, 0, 0)) \
+> +	fw_def(KABYLAKE,     0, huc_mmp(kbl,  4, 0, 0)) \
+> +	fw_def(BROXTON,      0, huc_mmp(bxt,  2, 0, 0)) \
+> +	fw_def(SKYLAKE,      0, huc_mmp(skl,  2, 0, 0))
+> +
+> +#define __MAKE_UC_FW_PATH_BLANK(prefix_, name_) \
+> +	"i915/" \
+> +	__stringify(prefix_) name_ ".bin"
+> +
+> +#define __MAKE_UC_FW_PATH_MAJOR(prefix_, name_, major_) \
+> +	"i915/" \
+> +	__stringify(prefix_) name_ \
+> +	__stringify(major_) ".bin"
+> +
+> +#define __MAKE_UC_FW_PATH_MMP(prefix_, name_, major_, minor_, patch_) \
+>   	"i915/" \
+>   	__stringify(prefix_) name_ \
+>   	__stringify(major_) "." \
+>   	__stringify(minor_) "." \
+>   	__stringify(patch_) ".bin"
+
+This needs a comment to explain all these different path types, 
+something like: "Following the Linux Firmware Guidelines (see relevant 
+documentation for details), we expect GuC binaries to be identified only 
+by platform+major version, while HuC binaries don't have an interface 
+with i915 so they're only identified by platform. However, for backward 
+compatibility reasons, we also need to keep supporting older firmwares 
+using the full platform_major.minor.patch nomenclature." .
+
+>   
+> -#define MAKE_GUC_FW_PATH(prefix_, major_, minor_, patch_) \
+> -	__MAKE_UC_FW_PATH(prefix_, "_guc_", major_, minor_, patch_)
+> +#define MAKE_GUC_FW_PATH_MAJOR(prefix_, major_, minor_) \
+> +	__MAKE_UC_FW_PATH_MAJOR(prefix_, "_guc_", major_)
+> +
+> +#define MAKE_GUC_FW_PATH_MMP(prefix_, major_, minor_, patch_) \
+> +	__MAKE_UC_FW_PATH_MMP(prefix_, "_guc_", major_, minor_, patch_)
+>   
+> -#define MAKE_HUC_FW_PATH(prefix_, major_, minor_, bld_num_) \
+> -	__MAKE_UC_FW_PATH(prefix_, "_huc_", major_, minor_, bld_num_)
+> +#define MAKE_HUC_FW_PATH_BLANK(prefix_) \
+> +	__MAKE_UC_FW_PATH_BLANK(prefix_, "_huc")
+> +
+> +#define MAKE_HUC_FW_PATH_MMP(prefix_, major_, minor_, patch_) \
+> +	__MAKE_UC_FW_PATH_MMP(prefix_, "_huc_", major_, minor_, patch_)
+>   
+>   /* All blobs need to be declared via MODULE_FIRMWARE() */
+>   #define INTEL_UC_MODULE_FW(platform_, revid_, uc_) \
+>   	MODULE_FIRMWARE(uc_);
+>   
+> -INTEL_GUC_FIRMWARE_DEFS(INTEL_UC_MODULE_FW, MAKE_GUC_FW_PATH)
+> -INTEL_GUC_FIRMWARE_DEFS_FALLBACK(INTEL_UC_MODULE_FW, MAKE_GUC_FW_PATH)
+> -INTEL_HUC_FIRMWARE_DEFS(INTEL_UC_MODULE_FW, MAKE_HUC_FW_PATH)
+> +INTEL_GUC_FIRMWARE_DEFS(INTEL_UC_MODULE_FW, MAKE_GUC_FW_PATH_MAJOR, MAKE_GUC_FW_PATH_MMP)
+> +INTEL_HUC_FIRMWARE_DEFS(INTEL_UC_MODULE_FW, MAKE_HUC_FW_PATH_BLANK, MAKE_HUC_FW_PATH_MMP)
+>   
+>   /* The below structs and macros are used to iterate across the list of blobs */
+>   struct __packed uc_fw_blob {
+> +	const char *path;
+> +	bool legacy;
+>   	u8 major;
+>   	u8 minor;
+> -	const char *path;
+> +	u8 patch;
+>   };
+>   
+> -#define UC_FW_BLOB(major_, minor_, path_) \
+> -	{ .major = major_, .minor = minor_, .path = path_ }
+> +#define UC_FW_BLOB_BASE(major_, minor_, patch_, path_) \
+> +	.major = major_, \
+> +	.minor = minor_, \
+> +	.patch = patch_, \
+> +	.path = path_,
+> +
+> +#define UC_FW_BLOB_NEW(major_, minor_, patch_, path_) \
+> +	{ UC_FW_BLOB_BASE(major_, minor_, patch_, path_) \
+> +	  .legacy = false }
+> +
+> +#define UC_FW_BLOB_OLD(major_, minor_, patch_, path_) \
+> +	{ UC_FW_BLOB_BASE(major_, minor_, patch_, path_) \
+> +	  .legacy = true }
+>   
+> -#define GUC_FW_BLOB(prefix_, major_, minor_, patch_) \
+> -	UC_FW_BLOB(major_, minor_, \
+> -		   MAKE_GUC_FW_PATH(prefix_, major_, minor_, patch_))
+> +#define GUC_FW_BLOB(prefix_, major_, minor_) \
+> +	UC_FW_BLOB_NEW(major_, minor_, 0, \
+> +		       MAKE_GUC_FW_PATH_MAJOR(prefix_, major_, minor_))
+
+All these macros are a bit confusing, but AFAIU you want to record the 
+expected minor on the i915 side but not encode it in the fetch path and 
+only use it for logging purposes. Maybe add a comment to explain this? 
+otherwise it is just confusing that we say we only want major on one 
+side and we include the minor on the other.
+
+>   
+> -#define HUC_FW_BLOB(prefix_, major_, minor_, bld_num_) \
+> -	UC_FW_BLOB(major_, minor_, \
+> -		   MAKE_HUC_FW_PATH(prefix_, major_, minor_, bld_num_))
+> +#define GUC_FW_BLOB_MMP(prefix_, major_, minor_, patch_) \
+> +	UC_FW_BLOB_OLD(major_, minor_, patch_, \
+> +		       MAKE_GUC_FW_PATH_MMP(prefix_, major_, minor_, patch_))
+> +
+> +#define HUC_FW_BLOB(prefix_) \
+> +	UC_FW_BLOB_NEW(0, 0, 0, MAKE_HUC_FW_PATH_BLANK(prefix_))
+> +
+> +#define HUC_FW_BLOB_MMP(prefix_, major_, minor_, patch_) \
+> +	UC_FW_BLOB_OLD(major_, minor_, patch_, \
+> +		       MAKE_HUC_FW_PATH_MMP(prefix_, major_, minor_, patch_))
+>   
+>   struct __packed uc_fw_platform_requirement {
+>   	enum intel_platform p;
+> @@ -152,13 +182,10 @@ static void
+>   __uc_fw_auto_select(struct drm_i915_private *i915, struct intel_uc_fw *uc_fw)
+>   {
+>   	static const struct uc_fw_platform_requirement blobs_guc[] = {
+> -		INTEL_GUC_FIRMWARE_DEFS(MAKE_FW_LIST, GUC_FW_BLOB)
+> -	};
+> -	static const struct uc_fw_platform_requirement blobs_guc_fallback[] = {
+> -		INTEL_GUC_FIRMWARE_DEFS_FALLBACK(MAKE_FW_LIST, GUC_FW_BLOB)
+> +		INTEL_GUC_FIRMWARE_DEFS(MAKE_FW_LIST, GUC_FW_BLOB, GUC_FW_BLOB_MMP)
+>   	};
+>   	static const struct uc_fw_platform_requirement blobs_huc[] = {
+> -		INTEL_HUC_FIRMWARE_DEFS(MAKE_FW_LIST, HUC_FW_BLOB)
+> +		INTEL_HUC_FIRMWARE_DEFS(MAKE_FW_LIST, HUC_FW_BLOB, HUC_FW_BLOB_MMP)
+>   	};
+>   	static const struct fw_blobs_by_type blobs_all[INTEL_UC_FW_NUM_TYPES] = {
+>   		[INTEL_UC_FW_TYPE_GUC] = { blobs_guc, ARRAY_SIZE(blobs_guc) },
+> @@ -184,49 +211,89 @@ __uc_fw_auto_select(struct drm_i915_private *i915, struct intel_uc_fw *uc_fw)
+>   	fw_count = blobs_all[uc_fw->type].count;
+>   
+>   	for (i = 0; i < fw_count && p <= fw_blobs[i].p; i++) {
+> -		if (p == fw_blobs[i].p && rev >= fw_blobs[i].rev) {
+> -			const struct uc_fw_blob *blob = &fw_blobs[i].blob;
+> -			uc_fw->path = blob->path;
+> -			uc_fw->wanted_path = blob->path;
+> -			uc_fw->major_ver_wanted = blob->major;
+> -			uc_fw->minor_ver_wanted = blob->minor;
+> -			break;
+> -		}
+> -	}
+> +		const struct uc_fw_blob *blob = &fw_blobs[i].blob;
+>   
+> -	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC) {
+> -		const struct uc_fw_platform_requirement *blobs = blobs_guc_fallback;
+> -		u32 count = ARRAY_SIZE(blobs_guc_fallback);
+> +		if (p != fw_blobs[i].p)
+> +			continue;
+>   
+> -		for (i = 0; i < count && p <= blobs[i].p; i++) {
+> -			if (p == blobs[i].p && rev >= blobs[i].rev) {
+> -				const struct uc_fw_blob *blob = &blobs[i].blob;
+> +		if (rev < fw_blobs[i].rev)
+> +			continue;
+>   
+> -				uc_fw->fallback.path = blob->path;
+> -				uc_fw->fallback.major_ver = blob->major;
+> -				uc_fw->fallback.minor_ver = blob->minor;
+> -				break;
+> -			}
+> -		}
+> +		if (uc_fw->file_wanted.path &&
+> +		    uc_fw->file_wanted.major_ver == blob->major)
+> +			continue;
+
+This needs a comment to explain that this function can be called 
+multiple times if the first fw we look for is not found on disk. Also, 
+how does this work with new vs legacy blob with the same version? e.g. 
+if new style dg2_guc_70.bin is not on disk, but old style dg2_guc_70.4.1 
+is, the major is 70 in both cases. Or am I missing something?
+
+> +
+> +		uc_fw->file_found.path = blob->path;
+> +		uc_fw->file_wanted.path = blob->path;
+> +		uc_fw->file_wanted.major_ver = blob->major;
+> +		uc_fw->file_wanted.minor_ver = blob->minor;
+
+The naming of "wanted" vs "found" here is a bit misleading, because 
+found is assigned here before we even attempt the fetch, so  we haven't 
+actually found it. Looks like you're before the fetch you're using this 
+mainly for printing, so can't you use file_wanted instead and only 
+assign file_found after the fetch?
+
+> +		break;
+>   	}
+>   
+>   	/* make sure the list is ordered as expected */
+>   	if (IS_ENABLED(CONFIG_DRM_I915_SELFTEST)) {
+>   		for (i = 1; i < fw_count; i++) {
+> +			/* Next platform is good: */
+>   			if (fw_blobs[i].p < fw_blobs[i - 1].p)
+>   				continue;
+>   
+> +			/* Next platform revision is good: */
+>   			if (fw_blobs[i].p == fw_blobs[i - 1].p &&
+>   			    fw_blobs[i].rev < fw_blobs[i - 1].rev)
+>   				continue;
+>   
+> -			drm_err(&i915->drm, "Invalid FW blob order: %s r%u comes before %s r%u\n",
+> -				intel_platform_name(fw_blobs[i - 1].p),
+> -				fw_blobs[i - 1].rev,
+> -				intel_platform_name(fw_blobs[i].p),
+> -				fw_blobs[i].rev);
+> +			/* Platform/revision must be in order: */
+> +			if (fw_blobs[i].p != fw_blobs[i - 1].p ||
+> +			    fw_blobs[i].rev != fw_blobs[i - 1].rev)
+> +				goto bad;
+>   
+> -			uc_fw->path = NULL;
+> +			/* Next major version is good: */
+> +			if (fw_blobs[i].blob.major < fw_blobs[i - 1].blob.major)
+> +				continue;
+> +
+> +			/* New must be before leggacy: */
+
+typo legacy
+
+> +			if (!fw_blobs[i].blob.legacy && fw_blobs[i - 1].blob.legacy)
+> +				goto bad;
+> +
+> +			/* New to legacy also means 0.0 to X.Y, or X.0 to X.Y */
+> +			if (fw_blobs[i].blob.legacy && !fw_blobs[i - 1].blob.legacy) {
+> +				if (!fw_blobs[i - 1].blob.major)
+
+I'd add a comment here to remind that we don't track the versions with HuC
+
+> +					continue;
+> +
+> +				if (fw_blobs[i].blob.major == fw_blobs[i - 1].blob.major)
+> +					continue;
+> +			}
+> +
+> +			/* Major versions must be in order: */
+> +			if (fw_blobs[i].blob.major != fw_blobs[i - 1].blob.major)
+> +				goto bad;
+> +
+> +			/* Next minor version is good: */
+> +			if (fw_blobs[i].blob.minor < fw_blobs[i - 1].blob.minor)
+> +				continue;
+> +
+> +			/* Minor versions must be in order: */
+> +			if (fw_blobs[i].blob.minor != fw_blobs[i - 1].blob.minor)
+> +				goto bad;
+> +
+> +			/* Patch versions must be in order: */
+> +			if (fw_blobs[i].blob.patch <= fw_blobs[i - 1].blob.patch)
+> +				continue;
+> +
+> +bad:
+> +			drm_err(&i915->drm, "\x1B[35;1mInvalid FW blob order: %s r%u %s%d.%d.%d comes before %s r%u %s%d.%d.%d\n",
+> +				intel_platform_name(fw_blobs[i - 1].p), fw_blobs[i - 1].rev,
+> +				fw_blobs[i - 1].blob.legacy ? "L" : "v",
+> +				fw_blobs[i - 1].blob.major,
+> +				fw_blobs[i - 1].blob.minor,
+> +				fw_blobs[i - 1].blob.patch,
+> +				intel_platform_name(fw_blobs[i].p), fw_blobs[i].rev,
+> +				fw_blobs[i].blob.legacy ? "L" : "v",
+> +				fw_blobs[i].blob.major,
+> +				fw_blobs[i].blob.minor,
+> +				fw_blobs[i].blob.patch);
+> +
+> +			uc_fw->file_found.path = NULL;
+>   		}
+
+This has grown big enough that it should probably be moved to a mock 
+selftest. Can be done as a follow up.
+
+>   	}
+>   }
+> @@ -259,7 +326,7 @@ static void __uc_fw_user_override(struct drm_i915_private *i915, struct intel_uc
+>   	}
+>   
+>   	if (unlikely(path)) {
+> -		uc_fw->path = path;
+> +		uc_fw->file_found.path = path;
+>   		uc_fw->user_overridden = true;
+>   	}
+>   }
+> @@ -283,7 +350,7 @@ void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
+>   	 */
+>   	BUILD_BUG_ON(INTEL_UC_FIRMWARE_UNINITIALIZED);
+>   	GEM_BUG_ON(uc_fw->status);
+> -	GEM_BUG_ON(uc_fw->path);
+> +	GEM_BUG_ON(uc_fw->file_found.path);
+>   
+>   	uc_fw->type = type;
+>   
+> @@ -292,7 +359,7 @@ void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
+>   		__uc_fw_user_override(i915, uc_fw);
+>   	}
+>   
+> -	intel_uc_fw_change_status(uc_fw, uc_fw->path ? *uc_fw->path ?
+> +	intel_uc_fw_change_status(uc_fw, uc_fw->file_found.path ? *uc_fw->file_found.path ?
+>   				  INTEL_UC_FIRMWARE_SELECTED :
+>   				  INTEL_UC_FIRMWARE_DISABLED :
+>   				  INTEL_UC_FIRMWARE_NOT_SUPPORTED);
+> @@ -305,32 +372,32 @@ static void __force_fw_fetch_failures(struct intel_uc_fw *uc_fw, int e)
+>   
+>   	if (i915_inject_probe_error(i915, e)) {
+>   		/* non-existing blob */
+> -		uc_fw->path = "<invalid>";
+> +		uc_fw->file_found.path = "<invalid>";
+>   		uc_fw->user_overridden = user;
+>   	} else if (i915_inject_probe_error(i915, e)) {
+>   		/* require next major version */
+> -		uc_fw->major_ver_wanted += 1;
+> -		uc_fw->minor_ver_wanted = 0;
+> +		uc_fw->file_wanted.major_ver += 1;
+> +		uc_fw->file_wanted.minor_ver = 0;
+>   		uc_fw->user_overridden = user;
+>   	} else if (i915_inject_probe_error(i915, e)) {
+>   		/* require next minor version */
+> -		uc_fw->minor_ver_wanted += 1;
+> +		uc_fw->file_wanted.minor_ver += 1;
+>   		uc_fw->user_overridden = user;
+> -	} else if (uc_fw->major_ver_wanted &&
+> +	} else if (uc_fw->file_wanted.major_ver &&
+>   		   i915_inject_probe_error(i915, e)) {
+>   		/* require prev major version */
+> -		uc_fw->major_ver_wanted -= 1;
+> -		uc_fw->minor_ver_wanted = 0;
+> +		uc_fw->file_wanted.major_ver -= 1;
+> +		uc_fw->file_wanted.minor_ver = 0;
+>   		uc_fw->user_overridden = user;
+> -	} else if (uc_fw->minor_ver_wanted &&
+> +	} else if (uc_fw->file_wanted.minor_ver &&
+>   		   i915_inject_probe_error(i915, e)) {
+>   		/* require prev minor version - hey, this should work! */
+> -		uc_fw->minor_ver_wanted -= 1;
+> +		uc_fw->file_wanted.minor_ver -= 1;
+>   		uc_fw->user_overridden = user;
+>   	} else if (user && i915_inject_probe_error(i915, e)) {
+>   		/* officially unsupported platform */
+> -		uc_fw->major_ver_wanted = 0;
+> -		uc_fw->minor_ver_wanted = 0;
+> +		uc_fw->file_wanted.major_ver = 0;
+> +		uc_fw->file_wanted.minor_ver = 0;
+>   		uc_fw->user_overridden = true;
+>   	}
+>   }
+> @@ -341,8 +408,8 @@ static int check_gsc_manifest(const struct firmware *fw,
+>   	u32 *dw = (u32 *)fw->data;
+>   	u32 version = dw[HUC_GSC_VERSION_DW];
+>   
+> -	uc_fw->major_ver_found = FIELD_GET(HUC_GSC_MAJOR_VER_MASK, version);
+> -	uc_fw->minor_ver_found = FIELD_GET(HUC_GSC_MINOR_VER_MASK, version);
+> +	uc_fw->file_found.major_ver = FIELD_GET(HUC_GSC_MAJOR_VER_MASK, version);
+> +	uc_fw->file_found.minor_ver = FIELD_GET(HUC_GSC_MINOR_VER_MASK, version);
+>   
+>   	return 0;
+>   }
+> @@ -357,7 +424,7 @@ static int check_ccs_header(struct drm_i915_private *i915,
+>   	/* Check the size of the blob before examining buffer contents */
+>   	if (unlikely(fw->size < sizeof(struct uc_css_header))) {
+>   		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> +			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_found.path,
+>   			 fw->size, sizeof(struct uc_css_header));
+>   		return -ENODATA;
+>   	}
+> @@ -370,7 +437,7 @@ static int check_ccs_header(struct drm_i915_private *i915,
+>   	if (unlikely(size != sizeof(struct uc_css_header))) {
+>   		drm_warn(&i915->drm,
+>   			 "%s firmware %s: unexpected header size: %zu != %zu\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> +			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_found.path,
+>   			 fw->size, sizeof(struct uc_css_header));
+>   		return -EPROTO;
+>   	}
+> @@ -385,7 +452,7 @@ static int check_ccs_header(struct drm_i915_private *i915,
+>   	size = sizeof(struct uc_css_header) + uc_fw->ucode_size + uc_fw->rsa_size;
+>   	if (unlikely(fw->size < size)) {
+>   		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu < %zu\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> +			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_found.path,
+>   			 fw->size, size);
+>   		return -ENOEXEC;
+>   	}
+> @@ -394,16 +461,16 @@ static int check_ccs_header(struct drm_i915_private *i915,
+>   	size = __intel_uc_fw_get_upload_size(uc_fw);
+>   	if (unlikely(size >= i915->wopcm.size)) {
+>   		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu > %zu\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> +			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_found.path,
+>   			 size, (size_t)i915->wopcm.size);
+>   		return -E2BIG;
+>   	}
+>   
+>   	/* Get version numbers from the CSS header */
+> -	uc_fw->major_ver_found = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+> -					   css->sw_version);
+> -	uc_fw->minor_ver_found = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+> -					   css->sw_version);
+> +	uc_fw->file_found.major_ver = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+> +						css->sw_version);
+> +	uc_fw->file_found.minor_ver = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+> +						css->sw_version);
+>   
+>   	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC)
+>   		uc_fw->private_data_size = css->private_data_size;
+> @@ -422,9 +489,11 @@ static int check_ccs_header(struct drm_i915_private *i915,
+>   int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>   {
+>   	struct drm_i915_private *i915 = __uc_fw_to_gt(uc_fw)->i915;
+> +	struct intel_uc_fw_file file_ideal;
+>   	struct device *dev = i915->drm.dev;
+>   	struct drm_i915_gem_object *obj;
+>   	const struct firmware *fw = NULL;
+> +	bool old_ver = false;
+>   	int err;
+>   
+>   	GEM_BUG_ON(!i915->wopcm.size);
+> @@ -437,27 +506,30 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>   	__force_fw_fetch_failures(uc_fw, -EINVAL);
+>   	__force_fw_fetch_failures(uc_fw, -ESTALE);
+>   
+> -	err = firmware_request_nowarn(&fw, uc_fw->path, dev);
+> -	if (err && !intel_uc_fw_is_overridden(uc_fw) && uc_fw->fallback.path) {
+> -		err = firmware_request_nowarn(&fw, uc_fw->fallback.path, dev);
+> -		if (!err) {
+> -			drm_notice(&i915->drm,
+> -				   "%s firmware %s is recommended, but only %s was found\n",
+> -				   intel_uc_fw_type_repr(uc_fw->type),
+> -				   uc_fw->wanted_path,
+> -				   uc_fw->fallback.path);
+> -			drm_info(&i915->drm,
+> -				 "Consider updating your linux-firmware pkg or downloading from %s\n",
+> -				 INTEL_UC_FIRMWARE_URL);
+> -
+> -			uc_fw->path = uc_fw->fallback.path;
+> -			uc_fw->major_ver_wanted = uc_fw->fallback.major_ver;
+> -			uc_fw->minor_ver_wanted = uc_fw->fallback.minor_ver;
+> +	err = firmware_request_nowarn(&fw, uc_fw->file_found.path, dev);
+> +	memcpy(&file_ideal, &uc_fw->file_wanted, sizeof(file_ideal));
+> +	if (!err || intel_uc_fw_is_overridden(uc_fw))
+> +		goto done;
+> +
+> +	while (err == -ENOENT) {
+> +		__uc_fw_auto_select(i915, uc_fw);
+> +		if (!uc_fw->file_found.path) {
+> +			/*
+> +			 * No more options! But set path back to something
+> +			 * valid just in case it gets dereferenced.
+> +			 */
+> +			uc_fw->file_found.path = file_ideal.path;
+> +			break;
+>   		}
+> +
+> +		err = firmware_request_nowarn(&fw, uc_fw->file_found.path, dev);
+>   	}
+> +
+>   	if (err)
+>   		goto fail;
+>   
+> +	old_ver = true;
+> +done:
+>   	if (uc_fw->loaded_via_gsc)
+>   		err = check_gsc_manifest(fw, uc_fw);
+>   	else
+> @@ -465,18 +537,41 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>   	if (err)
+>   		goto fail;
+>   
+> -	if (uc_fw->major_ver_found != uc_fw->major_ver_wanted ||
+> -	    uc_fw->minor_ver_found < uc_fw->minor_ver_wanted) {
+> -		drm_notice(&i915->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
+> -			   intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> -			   uc_fw->major_ver_found, uc_fw->minor_ver_found,
+> -			   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted);
+> -		if (!intel_uc_fw_is_overridden(uc_fw)) {
+> -			err = -ENOEXEC;
+> -			goto fail;
+> +	if (uc_fw->file_wanted.major_ver) {
+> +		/* Check the file's major version was as it claimed */
+> +		if (uc_fw->file_found.major_ver != uc_fw->file_wanted.major_ver) {
+> +			drm_notice(&i915->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
+> +				   intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_found.path,
+> +				   uc_fw->file_found.major_ver, uc_fw->file_found.minor_ver,
+> +				   uc_fw->file_wanted.major_ver, uc_fw->file_wanted.minor_ver);
+> +			if (!intel_uc_fw_is_overridden(uc_fw)) {
+> +				err = -ENOEXEC;
+> +				goto fail;
+> +			}
+> +		} else {
+> +			if (uc_fw->file_found.minor_ver < uc_fw->file_wanted.minor_ver)
+> +				old_ver = true;
+>   		}
+>   	}
+>   
+> +	if (old_ver) {
+> +		/* Preserve the version that was really wanted */
+> +		memcpy(&uc_fw->file_wanted, &file_ideal, sizeof(uc_fw->file_wanted));
+> +
+> +		drm_notice(&i915->drm,
+> +			   "%s firmware %s (%d.%d) is recommended, but only %s (%d.%d) was found\n",
+
+This is going to be a weird message if we were looking for new style 
+guc_70.0 and found old style guc_70.4 instead. Can we limit this log to 
+when the found version is smaller than the wanted one?
+
+> +			   intel_uc_fw_type_repr(uc_fw->type),
+> +			   uc_fw->file_wanted.path,
+> +			   uc_fw->file_wanted.major_ver,
+> +			   uc_fw->file_wanted.minor_ver,
+> +			   uc_fw->file_found.path,
+> +			   uc_fw->file_found.major_ver,
+> +			   uc_fw->file_found.minor_ver);
+> +		drm_info(&i915->drm,
+> +			 "Consider updating your linux-firmware pkg or downloading from %s\n",
+> +			 INTEL_UC_FIRMWARE_URL);
+> +	}
+> +
+>   	if (HAS_LMEM(i915)) {
+>   		obj = i915_gem_object_create_lmem_from_data(i915, fw->data, fw->size);
+>   		if (!IS_ERR(obj))
+> @@ -503,7 +598,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+>   				  INTEL_UC_FIRMWARE_ERROR);
+>   
+>   	i915_probe_error(i915, "%s firmware %s: fetch failed with error %d\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path, err);
+> +			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_found.path, err);
+>   	drm_info(&i915->drm, "%s firmware(s) can be downloaded from %s\n",
+>   		 intel_uc_fw_type_repr(uc_fw->type), INTEL_UC_FIRMWARE_URL);
+>   
+> @@ -645,7 +740,7 @@ int intel_uc_fw_upload(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
+>   
+>   fail:
+>   	i915_probe_error(gt->i915, "Failed to load %s firmware %s (%d)\n",
+> -			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+> +			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_found.path,
+>   			 err);
+>   	intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_LOAD_FAIL);
+>   	return err;
+> @@ -864,18 +959,19 @@ size_t intel_uc_fw_copy_rsa(struct intel_uc_fw *uc_fw, void *dst, u32 max_len)
+>   void intel_uc_fw_dump(const struct intel_uc_fw *uc_fw, struct drm_printer *p)
+>   {
+>   	drm_printf(p, "%s firmware: %s\n",
+> -		   intel_uc_fw_type_repr(uc_fw->type), uc_fw->wanted_path);
+> -	if (uc_fw->fallback.path) {
+> -		drm_printf(p, "%s firmware fallback: %s\n",
+> -			   intel_uc_fw_type_repr(uc_fw->type), uc_fw->fallback.path);
+> -		drm_printf(p, "fallback selected: %s\n",
+> -			   str_yes_no(uc_fw->path == uc_fw->fallback.path));
+> -	}
+> +		   intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_found.path);
+> +	if (uc_fw->file_found.path == uc_fw->file_wanted.path)
+
+Was this meant to be a != check? otherwise it's the same print twice
+
+Daniele
+
+> +		drm_printf(p, "%s firmware wanted: %s\n",
+> +			   intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_wanted.path);
+>   	drm_printf(p, "\tstatus: %s\n",
+>   		   intel_uc_fw_status_repr(uc_fw->status));
+> -	drm_printf(p, "\tversion: wanted %u.%u, found %u.%u\n",
+> -		   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted,
+> -		   uc_fw->major_ver_found, uc_fw->minor_ver_found);
+> +	if (uc_fw->file_wanted.major_ver)
+> +		drm_printf(p, "\tversion: wanted %u.%u, found %u.%u\n",
+> +			   uc_fw->file_wanted.major_ver, uc_fw->file_wanted.minor_ver,
+> +			   uc_fw->file_found.major_ver, uc_fw->file_found.minor_ver);
+> +	else
+> +		drm_printf(p, "\tversion: found %u.%u\n",
+> +			   uc_fw->file_found.major_ver, uc_fw->file_found.minor_ver);
+>   	drm_printf(p, "\tuCode: %u bytes\n", uc_fw->ucode_size);
+>   	drm_printf(p, "\tRSA: %u bytes\n", uc_fw->rsa_size);
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+> index 7aa2644400b98..5c1751773c756 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+> @@ -64,6 +64,17 @@ enum intel_uc_fw_type {
+>   };
+>   #define INTEL_UC_FW_NUM_TYPES 2
+>   
+> +/*
+> + * The firmware build process will generate a version header file with major and
+> + * minor version defined. The versions are built into CSS header of firmware.
+> + * i915 kernel driver set the minimal firmware version required per platform.
+> + */
+> +struct intel_uc_fw_file {
+> +	const char *path;
+> +	u16 major_ver;
+> +	u16 minor_ver;
+> +};
+> +
+>   /*
+>    * This structure encapsulates all the data needed during the process
+>    * of fetching, caching, and loading the firmware image into the uC.
+> @@ -74,11 +85,12 @@ struct intel_uc_fw {
+>   		const enum intel_uc_fw_status status;
+>   		enum intel_uc_fw_status __status; /* no accidental overwrites */
+>   	};
+> -	const char *wanted_path;
+> -	const char *path;
+> +	struct intel_uc_fw_file file_wanted;
+> +	struct intel_uc_fw_file file_found;
+>   	bool user_overridden;
+>   	size_t size;
+>   	struct drm_i915_gem_object *obj;
+> +
+>   	/**
+>   	 * @dummy: A vma used in binding the uc fw to ggtt. We can't define this
+>   	 * vma on the stack as it can lead to a stack overflow, so we define it
+> @@ -89,25 +101,8 @@ struct intel_uc_fw {
+>   	struct i915_vma_resource dummy;
+>   	struct i915_vma *rsa_data;
+>   
+> -	/*
+> -	 * The firmware build process will generate a version header file with major and
+> -	 * minor version defined. The versions are built into CSS header of firmware.
+> -	 * i915 kernel driver set the minimal firmware version required per platform.
+> -	 */
+> -	u16 major_ver_wanted;
+> -	u16 minor_ver_wanted;
+> -	u16 major_ver_found;
+> -	u16 minor_ver_found;
+> -
+> -	struct {
+> -		const char *path;
+> -		u16 major_ver;
+> -		u16 minor_ver;
+> -	} fallback;
+> -
+>   	u32 rsa_size;
+>   	u32 ucode_size;
+> -
+>   	u32 private_data_size;
+>   
+>   	bool loaded_via_gsc;
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 32e92651ef7c2..83cbb3589c9be 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1004,8 +1004,10 @@ static void cleanup_params(struct i915_gpu_coredump *error)
+>   
+>   static void cleanup_uc(struct intel_uc_coredump *uc)
+>   {
+> -	kfree(uc->guc_fw.path);
+> -	kfree(uc->huc_fw.path);
+> +	kfree(uc->guc_fw.file_found.path);
+> +	kfree(uc->huc_fw.file_found.path);
+> +	kfree(uc->guc_fw.file_wanted.path);
+> +	kfree(uc->huc_fw.file_wanted.path);
+>   	i915_vma_coredump_free(uc->guc_log);
+>   
+>   	kfree(uc);
+> @@ -1669,12 +1671,10 @@ gt_record_uc(struct intel_gt_coredump *gt,
+>   	memcpy(&error_uc->guc_fw, &uc->guc.fw, sizeof(uc->guc.fw));
+>   	memcpy(&error_uc->huc_fw, &uc->huc.fw, sizeof(uc->huc.fw));
+>   
+> -	/* Non-default firmware paths will be specified by the modparam.
+> -	 * As modparams are generally accesible from the userspace make
+> -	 * explicit copies of the firmware paths.
+> -	 */
+> -	error_uc->guc_fw.path = kstrdup(uc->guc.fw.path, ALLOW_FAIL);
+> -	error_uc->huc_fw.path = kstrdup(uc->huc.fw.path, ALLOW_FAIL);
+> +	error_uc->guc_fw.file_found.path = kstrdup(uc->guc.fw.file_found.path, ALLOW_FAIL);
+> +	error_uc->huc_fw.file_found.path = kstrdup(uc->huc.fw.file_found.path, ALLOW_FAIL);
+> +	error_uc->guc_fw.file_wanted.path = kstrdup(uc->guc.fw.file_wanted.path, ALLOW_FAIL);
+> +	error_uc->huc_fw.file_wanted.path = kstrdup(uc->huc.fw.file_wanted.path, ALLOW_FAIL);
+>   	error_uc->guc_log = create_vma_coredump(gt->_gt, uc->guc.log.vma,
+>   						"GuC log buffer", compress);
+>   
 
