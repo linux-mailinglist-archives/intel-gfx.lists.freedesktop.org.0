@@ -2,68 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA14B5A145D
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 16:41:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 851225A14CA
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Aug 2022 16:48:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D41F210E521;
-	Thu, 25 Aug 2022 14:39:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8465E10E239;
+	Thu, 25 Aug 2022 14:48:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB0F10E4F8
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 14:39:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1661438380;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Bsbw+Y9wYHLJhmfWn1XGBCS59qKBYDXhnuwfk4cTFbU=;
- b=OAtJ+2+UrX6OG3+vbHDcxI1hvNKiC1082Be5q89nsHbafLxsAvX3IZFwPmH/XBLuTTtMSr
- ACp5M0Ub8JyBIB1IYd1yHrmmESa0j0nVb0ADL/4T423FwCUx74Ml3QeYYbZCh+QkwwTtuZ
- 7MlxPJNC4n1cmPTsGELFS8Z62r9dqFA=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-185-pNQEWXKHNMalXPgVNTgRUg-1; Thu, 25 Aug 2022 10:39:38 -0400
-X-MC-Unique: pNQEWXKHNMalXPgVNTgRUg-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.rdu2.redhat.com
- [10.11.54.6])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id F0BAE10133E5;
- Thu, 25 Aug 2022 14:39:36 +0000 (UTC)
-Received: from shalem.redhat.com (unknown [10.39.193.46])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 374F82166B26;
- Thu, 25 Aug 2022 14:39:33 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Ben Skeggs <bskeggs@redhat.com>,
-	Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
-	Daniel Dadap <ddadap@nvidia.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Jani Nikula <jani.nikula@linux.intel.com>,
-	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
-	Alex Deucher <alexander.deucher@amd.com>,
-	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-	Pan@freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>
-Date: Thu, 25 Aug 2022 16:37:26 +0200
-Message-Id: <20220825143726.269890-32-hdegoede@redhat.com>
-In-Reply-To: <20220825143726.269890-1-hdegoede@redhat.com>
-References: <20220825143726.269890-1-hdegoede@redhat.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD45910E239
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 14:48:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661438893; x=1692974893;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Bxcfj15EA4On+ZizYl/NclYUnSWZECFeKGUNGdK+YL8=;
+ b=mTVZsg0mkPLQAYhzQ8HBPjAhvCtVxAUzonJ5ypDJz9h4Zu5th1NLN77G
+ eQesZVLcMyT/AOIclG8ZAsNVEttvEP97sEm65RWkq3Sw2AdmMM0qlqMZo
+ vRGV1pE/UvV7MdakxD8tXUoFSq0ebE3VAP77VsZ+3eNmACjzcxQIUvsTd
+ aWiiRIqq61oUyLu6fwtKL62oqgrqv9WxrOJY6gQE1JRe9utHzHhiQEwlF
+ Xa/pyCywL2h2XNhXdFBogxvhACKXiIW/pPoKJVSMbpeKviFiekeBI0Q8m
+ 0DGcj33PRMPmjPZQsblIUYfDCMOx5P6PW95hKEynuqOIkKbgAfbj5FAa5 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10450"; a="277272164"
+X-IronPort-AV: E=Sophos;i="5.93,263,1654585200"; d="scan'208";a="277272164"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2022 07:48:12 -0700
+X-IronPort-AV: E=Sophos;i="5.93,263,1654585200"; d="scan'208";a="678485667"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.149])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2022 07:48:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <Ywdd+7ifzC7AknS7@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220616124137.3184371-1-jani.nikula@intel.com>
+ <Ywdd+7ifzC7AknS7@intel.com>
+Date: Thu, 25 Aug 2022 17:48:07 +0300
+Message-ID: <87sflkgz14.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.78 on 10.11.54.6
-Subject: [Intel-gfx] [PATCH v5 31/31] drm/todo: Add entry about dealing with
- brightness control on devices with > 1 panel
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/glk: ECS Liva Q2 needs GLK HDMI
+ port timing quirk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,105 +58,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-acpi@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@redhat.com>,
- Len Brown <lenb@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org,
+ Diego Santa Cruz <Diego.SantaCruz@spinetix.com>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add an entry summarizing the discussion about dealing with brightness
-control on devices with more then 1 internal panel.
+On Thu, 25 Aug 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Jun 16, 2022 at 03:41:37PM +0300, Jani Nikula wrote:
+>> From: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
+>>=20
+>> The quirk added in upstream commit 90c3e2198777 ("drm/i915/glk: Add
+>> Quirk for GLK NUC HDMI port issues.") is also required on the ECS Liva
+>> Q2.
+>>=20
+>> Note: Would be nicer to figure out the extra delay required for the
+>> retimer without quirks, however don't know how to check for that.
+>>=20
+>> Cc: stable@vger.kernel.org
+>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1326
+>> Signed-off-by: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Seems fine. Although I do wonder whether we could directly identify the
+> bogus retimer chip via the dual mode adapter registers. I've asked for
+> that in the bug.
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-The original discussion can be found here:
-https://lore.kernel.org/dri-devel/20220517152331.16217-1-hdegoede@redhat.com/
+Thanks, pushed to drm-intel-next. Let's follow up with cleanups if the
+folks in the bug ever reply.
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- Documentation/gpu/todo.rst | 68 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+BR,
+Jani.
 
-diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-index 7634c27ac562..393d218e4a0c 100644
---- a/Documentation/gpu/todo.rst
-+++ b/Documentation/gpu/todo.rst
-@@ -679,6 +679,74 @@ Contact: Sam Ravnborg
- 
- Level: Advanced
- 
-+Brightness handling on devices with multiple internal panels
-+============================================================
-+
-+On x86/ACPI devices there can be multiple backlight firmware interfaces:
-+(ACPI) video, vendor specific and others. As well as direct/native (PWM)
-+register programming by the KMS driver.
-+
-+To deal with this backlight drivers used on x86/ACPI call
-+acpi_video_get_backlight_type() which has heuristics (+quirks) to select
-+which backlight interface to use; and backlight drivers which do not match
-+the returned type will not register themselves, so that only one backlight
-+device gets registered (in a single GPU setup, see below).
-+
-+At the moment this more or less assumes that there will only
-+be 1 (internal) panel on a system.
-+
-+On systems with 2 panels this may be a problem, depending on
-+what interface acpi_video_get_backlight_type() selects:
-+
-+1. native: in this case the KMS driver is expected to know which backlight
-+   device belongs to which output so everything should just work.
-+2. video: this does support controlling multiple backlights, but some work
-+   will need to be done to get the output <-> backlight device mapping
-+
-+The above assumes both panels will require the same backlight interface type.
-+Things will break on systems with multiple panels where the 2 panels need
-+a different type of control. E.g. one panel needs ACPI video backlight control,
-+where as the other is using native backlight control. Currently in this case
-+only one of the 2 required backlight devices will get registered, based on
-+the acpi_video_get_backlight_type() return value.
-+
-+If this (theoretical) case ever shows up, then supporting this will need some
-+work. A possible solution here would be to pass a device and connector-name
-+to acpi_video_get_backlight_type() so that it can deal with this.
-+
-+Note in a way we already have a case where userspace sees 2 panels,
-+in dual GPU laptop setups with a mux. On those systems we may see
-+either 2 native backlight devices; or 2 native backlight devices.
-+
-+Userspace already has code to deal with this by detecting if the related
-+panel is active (iow which way the mux between the GPU and the panels
-+points) and then uses that backlight device. Userspace here very much
-+assumes a single panel though. It picks only 1 of the 2 backlight devices
-+and then only uses that one.
-+
-+Note that all userspace code (that I know off) is currently hardcoded
-+to assume a single panel.
-+
-+Before the recent changes to not register multiple (e.g. video + native)
-+/sys/class/backlight devices for a single panel (on a single GPU laptop),
-+userspace would see multiple backlight devices all controlling the same
-+backlight.
-+
-+To deal with this userspace had to always picks one preferred device under
-+/sys/class/backlight and will ignore the others. So to support brightness
-+control on multiple panels userspace will need to be updated too.
-+
-+There are plans to allow brightness control through the KMS API by adding
-+a "display brightness" property to drm_connector objects for panels. This
-+solves a number of issues with the /sys/class/backlight API, including not
-+being able to map a sysfs backlight device to a specific connector. Any
-+userspace changes to add support for brightness control on devices with
-+multiple panels really should build on top of this new KMS property.
-+
-+Contact: Hans de Goede
-+
-+Level: Advanced
-+
- Outside DRM
- ===========
- 
--- 
-2.37.2
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_quirks.c | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/d=
+rm/i915/display/intel_quirks.c
+>> index c8488f5ebd04..e415cd7c0b84 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+>> @@ -191,6 +191,9 @@ static struct intel_quirk intel_quirks[] =3D {
+>>  	/* ASRock ITX*/
+>>  	{ 0x3185, 0x1849, 0x2212, quirk_increase_ddi_disabled_time },
+>>  	{ 0x3184, 0x1849, 0x2212, quirk_increase_ddi_disabled_time },
+>> +	/* ECS Liva Q2 */
+>> +	{ 0x3185, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
+>> +	{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
+>>  };
+>>=20=20
+>>  void intel_init_quirks(struct drm_i915_private *i915)
+>> --=20
+>> 2.30.2
 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
