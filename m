@@ -2,50 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48F6A5A39E4
-	for <lists+intel-gfx@lfdr.de>; Sat, 27 Aug 2022 21:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A57C5A39F7
+	for <lists+intel-gfx@lfdr.de>; Sat, 27 Aug 2022 22:24:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92BEC10ED32;
-	Sat, 27 Aug 2022 19:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B349C10ED6F;
+	Sat, 27 Aug 2022 20:24:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F67610ED32;
- Sat, 27 Aug 2022 19:47:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661629638; x=1693165638;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9ztSrrbCnzJMd+IhkTHp1MNoqIAqJrrlDZtcYou+5Xs=;
- b=gLByqrTQMhaWpT6643g0KK3hYeWanCzitMWkBduwsrHChhDzPNZL1AmT
- sw7LsyeIAJ/ncovijsltguB9wlpOg5JPG8Kw7RgKZzZZutDIl/GXuDd7K
- rG+01lGsmRSmJCkPs51XODU3RFqcq/WVJEZ+fDYFEnP3vDXbn1VnOyYzB
- 0rWpBYMpCcMtPIvquaHrd65pv0d00qXi/2jmKgZUDzkIUehCsnymW7zj+
- iY/Ay7Tjo1nUbxlHjc3dpRgjvVq4hoSX+5BVN+XMff6xbWnfah6fwcu5L
- FX5tFVBG/CZusRwRbl83mwlayuMxs2GM/vJt5fUQ7nP2MzO9uWFZn/ZSg A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10452"; a="380989735"
-X-IronPort-AV: E=Sophos;i="5.93,269,1654585200"; d="scan'208";a="380989735"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2022 12:47:17 -0700
-X-IronPort-AV: E=Sophos;i="5.93,269,1654585200"; d="scan'208";a="856334794"
-Received: from hluxenbu-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.249.44.75])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2022 12:47:14 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Sat, 27 Aug 2022 21:44:03 +0200
-Message-Id: <20220827194403.6495-18-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220827194403.6495-1-andi.shyti@linux.intel.com>
-References: <20220827194403.6495-1-andi.shyti@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5A3AA10ED6F;
+ Sat, 27 Aug 2022 20:23:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 32E28A7E03;
+ Sat, 27 Aug 2022 20:23:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH v3 17/17] drm/i915: Enable execbuf3 ioctl
- for vm_bind
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Sat, 27 Aug 2022 20:23:58 -0000
+Message-ID: <166163183817.5226.7977917793307367285@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220827194403.6495-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20220827194403.6495-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/vm=5Fbind=3A_Add_VM=5FBIND_functionality_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,58 +41,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ramalingam C <ramalingampc2008@gmail.com>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+== Series Details ==
 
-Add the uapi for the implemented execbuf3 ioctl to present it for
-userspace. This ioctl can be used only for vm_bind mode and vm_binded
-batchbuffers can be submitted only through execbuf3 ioctl.
+Series: drm/i915/vm_bind: Add VM_BIND functionality (rev2)
+URL   : https://patchwork.freedesktop.org/series/105879/
+State : warning
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c | 1 +
- include/uapi/drm/i915_drm.h        | 2 ++
- 2 files changed, 3 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 841b5d62c2c01..f3b0bbfbe9746 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1805,6 +1805,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(I915_GEM_INIT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_EXECBUFFER, drm_invalid_op, DRM_AUTH),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_EXECBUFFER2_WR, i915_gem_execbuffer2_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(I915_GEM_EXECBUFFER3, i915_gem_execbuffer3_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_PIN, i915_gem_reject_pin_ioctl, DRM_AUTH|DRM_ROOT_ONLY),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_UNPIN, i915_gem_reject_pin_ioctl, DRM_AUTH|DRM_ROOT_ONLY),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_BUSY, i915_gem_busy_ioctl, DRM_RENDER_ALLOW),
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index b4b844f558b24..c807d48e1f96c 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -472,6 +472,7 @@ typedef struct _drm_i915_sarea {
- #define DRM_I915_GEM_CREATE_EXT		0x3c
- #define DRM_I915_GEM_VM_BIND		0x3d
- #define DRM_I915_GEM_VM_UNBIND		0x3e
-+#define DRM_I915_GEM_EXECBUFFER3	0x3f
- /* Must be kept compact -- no holes */
- 
- #define DRM_IOCTL_I915_INIT		DRM_IOW( DRM_COMMAND_BASE + DRM_I915_INIT, drm_i915_init_t)
-@@ -538,6 +539,7 @@ typedef struct _drm_i915_sarea {
- #define DRM_IOCTL_I915_GEM_VM_DESTROY	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_VM_DESTROY, struct drm_i915_gem_vm_control)
- #define DRM_IOCTL_I915_GEM_VM_BIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
- #define DRM_IOCTL_I915_GEM_VM_UNBIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_unbind)
+Error: dim checkpatch failed
+0189f6e65191 drm/i915: Expose vm_lookup in i915_gem_context.h
+d15754f0b129 drm/i915: Mark vm for vm_bind usage at creation
+4fcd576cd040 drm/i915/gem: expose i915_gem_object_max_page_size() in i915_gem_object.h
+0a3d9faf5878 drm/i915: Implement bind and unbind of object
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 630 lines checked
+d66b303cbf8e drm/i915: Support for VM private BOs
+d9e6588256ed drm/i915/dmabuf: Deny the dmabuf export for VM private BOs
+3763b9a1ed87 drm/i915/vm_bind: Handle persistent vmas
+-:116: WARNING:TYPO_SPELLING: 'targetted' may be misspelled - perhaps 'targeted'?
+#116: FILE: drivers/gpu/drm/i915/i915_gem_gtt.c:54:
++ * @vm: address spece targetted
+                       ^^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 292 lines checked
+c88933ee0a97 drm/i915/vm_bind: Add out fence support
+0e15185fbdd4 drm/i915: Do not support vm_bind mode in execbuf2
+5acdcd286a95 drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
+
+-:223: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_i' - possible side-effects?
+#223: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c:186:
++#define for_each_batch_create_order(_eb, _i) \
++	for ((_i) = 0; (_i) < (_eb)->num_batches; ++(_i))
+
+-:225: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#225: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c:188:
++#define for_each_batch_add_order(_eb, _i) \
++	BUILD_BUG_ON(!typecheck(int, _i)); \
++	for ((_i) = (_eb)->num_batches - 1; (_i) >= 0; --(_i))
+
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_i' - possible side-effects?
+#225: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c:188:
++#define for_each_batch_add_order(_eb, _i) \
++	BUILD_BUG_ON(!typecheck(int, _i)); \
++	for ((_i) = (_eb)->num_batches - 1; (_i) >= 0; --(_i))
+
+total: 1 errors, 1 warnings, 2 checks, 1083 lines checked
+9ff809456d49 drm/i915: Add i915_vma_is_bind_complete()
+30c53a0c5d9b drm/i915/vm_bind: Handle persistent vmas in execbuf3
+a2f7069f8c48 drm/i915/vm_bind: userptr dma-resv changes
+-:154: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#154: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c:406:
++^I^I/* $
+
+total: 1 errors, 0 warnings, 0 checks, 273 lines checked
+11ab601fa8ab drm/i915/vm_bind: Skip vma_lookup for persistent vmas
+74e9bd08c613 drm/i915: Extend getparm for VM_BIND capability
+2fb3be5e08be drm/i915/ioctl: Enable the vm_bind/unbind ioctls
+-:42: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#42: FILE: include/uapi/drm/i915_drm.h:539:
++#define DRM_IOCTL_I915_GEM_VM_BIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
+
+-:43: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#43: FILE: include/uapi/drm/i915_drm.h:540:
++#define DRM_IOCTL_I915_GEM_VM_UNBIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_unbind)
+
+total: 0 errors, 2 warnings, 0 checks, 24 lines checked
+bfe030b1e376 drm/i915: Enable execbuf3 ioctl for vm_bind
+-:42: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#42: FILE: include/uapi/drm/i915_drm.h:542:
 +#define DRM_IOCTL_I915_GEM_EXECBUFFER3	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_execbuffer3)
- 
- /* Allow drivers to submit batchbuffers directly to hardware, relying
-  * on the security mechanisms provided by hardware.
--- 
-2.34.1
+
+total: 0 errors, 1 warnings, 0 checks, 21 lines checked
+
 
