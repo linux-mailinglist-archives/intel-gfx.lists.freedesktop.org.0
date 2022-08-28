@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A04615A4CF5
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C0CB5A4CE5
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBFB210F1DF;
-	Mon, 29 Aug 2022 13:04:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9DF010F1C3;
+	Mon, 29 Aug 2022 13:04:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.cacoal.ro.gov.br (unknown [138.97.97.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F36510E09E;
- Sat, 27 Aug 2022 04:39:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 357F410EDB8;
+ Sun, 28 Aug 2022 04:02:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by mail.cacoal.ro.gov.br (Postfix) with ESMTP id 33204112AC360;
- Fri, 26 Aug 2022 23:54:48 -0400 (-04)
+ by mail.cacoal.ro.gov.br (Postfix) with ESMTP id 2293410E1A411;
+ Sat, 27 Aug 2022 23:06:09 -0400 (-04)
 Received: from mail.cacoal.ro.gov.br ([127.0.0.1])
  by localhost (mail.cacoal.ro.gov.br [127.0.0.1]) (amavisd-new, port 10032)
- with ESMTP id oLjdila460dm; Fri, 26 Aug 2022 23:54:48 -0400 (-04)
+ with ESMTP id IZD_q_ZO2d8N; Sat, 27 Aug 2022 23:06:08 -0400 (-04)
 Received: from localhost (localhost [127.0.0.1])
- by mail.cacoal.ro.gov.br (Postfix) with ESMTP id EA330112AC36B;
- Fri, 26 Aug 2022 23:53:15 -0400 (-04)
+ by mail.cacoal.ro.gov.br (Postfix) with ESMTP id CE26C10E1A779;
+ Sat, 27 Aug 2022 23:02:58 -0400 (-04)
 X-Virus-Scanned: amavisd-new at cacoal.ro.gov.br
 Received: from mail.cacoal.ro.gov.br ([127.0.0.1])
  by localhost (mail.cacoal.ro.gov.br [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id 6QNwDIfi7e8B; Fri, 26 Aug 2022 23:53:15 -0400 (-04)
-Received: from [172.20.10.19] (unknown [197.211.58.182])
- by mail.cacoal.ro.gov.br (Postfix) with ESMTPSA id 880DE112A47F8;
- Fri, 26 Aug 2022 23:51:45 -0400 (-04)
-Content-Type: multipart/alternative; boundary="===============0806490983=="
+ with ESMTP id zIze2nyg6nFJ; Sat, 27 Aug 2022 23:02:58 -0400 (-04)
+Received: from [192.168.8.101] (unknown [197.211.58.12])
+ by mail.cacoal.ro.gov.br (Postfix) with ESMTPSA id A4D7A10E1A788;
+ Sat, 27 Aug 2022 23:00:17 -0400 (-04)
+Content-Type: multipart/alternative; boundary="===============2079096765=="
 MIME-Version: 1.0
 To: Recipients <semttran@cacoal.ro.gov.br>
 From: semttran@cacoal.ro.gov.br
-Date: Sat, 27 Aug 2022 04:51:35 +0100
-Message-Id: <20220827035145.880DE112A47F8@mail.cacoal.ro.gov.br>
+Date: Sun, 28 Aug 2022 04:00:09 +0100
+Message-Id: <20220828030017.A4D7A10E1A788@mail.cacoal.ro.gov.br>
 X-Mailman-Approved-At: Mon, 29 Aug 2022 13:04:13 +0000
 Subject: [Intel-gfx] SPENDE
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -53,7 +53,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 You will not see this in a MIME-aware mail reader.
---===============0806490983==
+--===============2079096765==
 Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -66,7 +66,7 @@ t, dan is je e-mail geselecteerd na een spin-ball. Ik heb vrijwillig beslot=
 en om het bedrag van $ 10 miljoen USD aan jou te doneren als een van de ges=
 electeerde 5, om mijn winst te verifi=EBren Vriendelijk antwoord op: mike.w=
 eirsky.foundation003@gmail.com Voor uw claim.
---===============0806490983==
+--===============2079096765==
 Content-Type: text/html; charset="iso-8859-1"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -85,4 +85,4 @@ mijn winst te verifi=EBren
 
   Vriendelijk antwoord op: mike.weirsky.foundation003@gmail.com
  Voor uw claim.</html>
---===============0806490983==--
+--===============2079096765==--
