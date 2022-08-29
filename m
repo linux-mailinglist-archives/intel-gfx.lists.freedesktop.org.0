@@ -1,41 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E04E5A4CF1
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:04:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F061E5A4AF8
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 14:04:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 618D510F1D4;
-	Mon, 29 Aug 2022 13:04:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 398C910F17C;
+	Mon, 29 Aug 2022 12:04:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.cacoal.ro.gov.br (unknown [138.97.97.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80B7510EE41;
- Sun, 28 Aug 2022 05:18:56 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by mail.cacoal.ro.gov.br (Postfix) with ESMTP id 4C15811280AA8;
- Sun, 28 Aug 2022 00:31:20 -0400 (-04)
-Received: from mail.cacoal.ro.gov.br ([127.0.0.1])
- by localhost (mail.cacoal.ro.gov.br [127.0.0.1]) (amavisd-new, port 10032)
- with ESMTP id vgDLcZKu4t6X; Sun, 28 Aug 2022 00:31:20 -0400 (-04)
-Received: from localhost (localhost [127.0.0.1])
- by mail.cacoal.ro.gov.br (Postfix) with ESMTP id CEAC51095D6D6;
- Sun, 28 Aug 2022 00:24:03 -0400 (-04)
-X-Virus-Scanned: amavisd-new at cacoal.ro.gov.br
-Received: from mail.cacoal.ro.gov.br ([127.0.0.1])
- by localhost (mail.cacoal.ro.gov.br [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id IgQmtrPmMWy9; Sun, 28 Aug 2022 00:24:03 -0400 (-04)
-Received: from [192.168.8.101] (unknown [197.211.58.12])
- by mail.cacoal.ro.gov.br (Postfix) with ESMTPSA id 9A51811197AAA;
- Sun, 28 Aug 2022 00:15:28 -0400 (-04)
-Content-Type: multipart/alternative; boundary="===============2142410358=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 545D810F167;
+ Mon, 29 Aug 2022 12:04:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1661774679; x=1693310679;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JDt2sUk2X1oCVdgSTfAuuFX5toRav6GNAo6o4hHV6as=;
+ b=aql4fAiWkMmJwv8fgBWIRozrrnMqtw//rEV2+sDcE4nAH6D3BBthSqvu
+ lD7idm7ApC/wsSkYl3eGZuiy2Zs1h0weQ/gkyWAoUgakcglQR9NzlZTua
+ PJhfyXaqnNWsFFi742OXUirnnZXIAwZNRWWBiR57pBjTrH8GPg1Cde6tK
+ XxjQdngR/P5gmrQFB+K7HmhYmcESj3dx5cUEPjuJ0tPsSbQbPRtGkP8ac
+ jY7K50JYos7GNmTY8LYXMgW47IsJWMbj1YbYVVhBxyOKu9/TiXQCpNo+F
+ YDKG3TUQtlzYy45qihemBahaHo+BuVQyYENddZ2UR1/cNwzkZQ1PORdB5 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10453"; a="295653092"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="295653092"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 05:04:17 -0700
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="672354997"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 05:04:15 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 29 Aug 2022 14:04:09 +0200
+Message-Id: <20220829120409.24260-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-To: Recipients <semttran@cacoal.ro.gov.br>
-From: semttran@cacoal.ro.gov.br
-Date: Sun, 28 Aug 2022 05:15:20 +0100
-Message-Id: <20220828041528.9A51811197AAA@mail.cacoal.ro.gov.br>
-X-Mailman-Approved-At: Mon, 29 Aug 2022 13:04:13 +0000
-Subject: [Intel-gfx] SPENDE
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/ttm: Abort suspend on i915_ttm_backup
+ failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,41 +57,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: mike.weirsky.foundation003@gmail.com
+Cc: thomas.hellstrom@intel.com, matthew.auld@intel.com,
+ dri-devel@lists.freedesktop.org, chris.p.wilson@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-You will not see this in a MIME-aware mail reader.
---===============2142410358==
-Content-Type: text/plain; charset="iso-8859-1"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
+On system suspend when system memory is low then i915_gem_obj_copy_ttm()
+could fail trying to backup a lmem obj. GEM_WARN_ON() is not enough,
+suspend shouldn't continue if i915_ttm_backup() throws an error.
 
-Beste begunstigde, Je hebt een liefdadigheidsdonatie van ($ 10.000.000,00) =
-van Mr. Mike Weirsky, een winnaar van een powerball-jackpotloterij van $ 27=
-3 miljoen. Ik doneer aan 5 willekeurige personen als je deze e-mail ontvang=
-t, dan is je e-mail geselecteerd na een spin-ball. Ik heb vrijwillig beslot=
-en om het bedrag van $ 10 miljoen USD aan jou te doneren als een van de ges=
-electeerde 5, om mijn winst te verifi=EBren Vriendelijk antwoord op: mike.w=
-eirsky.foundation003@gmail.com Voor uw claim.
---===============2142410358==
-Content-Type: text/html; charset="iso-8859-1"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6529
+Suggested-by: Chris P Wilson <chris.p.wilson@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3Diso-8859-1"/></head>Beste begunstigde,
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+index 9aad84059d56..6f5d5c0909b4 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
+@@ -79,7 +79,12 @@ static int i915_ttm_backup(struct i915_gem_apply_to_region *apply,
+ 		goto out_no_populate;
+ 
+ 	err = i915_gem_obj_copy_ttm(backup, obj, pm_apply->allow_gpu, false);
+-	GEM_WARN_ON(err);
++	if (err) {
++		drm_err(&i915->drm,
++			"Unable to copy from device to system memory, err:%d\n",
++			err);
++		goto out_no_populate;
++	}
+ 	ttm_bo_wait_ctx(backup_bo, &ctx);
+ 
+ 	obj->ttm.backup = backup;
+-- 
+2.35.1
 
- Je hebt een liefdadigheidsdonatie van ($ 10.000.000,00) van Mr. Mike Weirs=
-ky, een winnaar van een powerball-jackpotloterij van $ 273 miljoen.  Ik don=
-eer aan 5 willekeurige personen als je deze e-mail ontvangt, dan is je e-ma=
-il geselecteerd na een spin-ball. Ik heb vrijwillig besloten om het bedrag =
-van $ 10 miljoen USD aan jou te doneren als een van de geselecteerde 5, om =
-mijn winst te verifi=EBren
- =
-
-  Vriendelijk antwoord op: mike.weirsky.foundation003@gmail.com
- Voor uw claim.</html>
---===============2142410358==--
