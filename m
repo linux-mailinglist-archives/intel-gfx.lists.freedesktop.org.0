@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A322D5A537A
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 19:49:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB1865A53A1
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 19:56:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44D7B10EA90;
-	Mon, 29 Aug 2022 17:49:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2DA210EBBE;
+	Mon, 29 Aug 2022 17:55:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 88B6610EA7E;
- Mon, 29 Aug 2022 17:49:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id ACE4210EBA3;
+ Mon, 29 Aug 2022 17:54:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6ED4AA363D;
- Mon, 29 Aug 2022 17:49:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8707658970252972697=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id A1B89AADD6;
+ Mon, 29 Aug 2022 17:54:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jilin Yuan" <yuanjilin@cdjrlc.com>
-Date: Mon, 29 Aug 2022 17:49:17 -0000
-Message-ID: <166179535741.11951.1658555686008859133@emeril.freedesktop.org>
+To: "Dmitry Osipenko" <dmitry.osipenko@collabora.com>
+Date: Mon, 29 Aug 2022 17:54:58 -0000
+Message-ID: <166179569865.11951.3432778593955368706@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220823141639.13053-1-wangjianli@cdjrlc.com>
-In-Reply-To: <20220823141639.13053-1-wangjianli@cdjrlc.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_fix_repeated_words_in_comments_=28rev3=29?=
+References: <20220824102248.91964-1-dmitry.osipenko@collabora.com>
+In-Reply-To: <20220824102248.91964-1-dmitry.osipenko@collabora.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Move_all_drivers_to_a_common_dma-buf_locking_convention?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,209 +45,57 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8707658970252972697==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: fix repeated words in comments (rev3)
-URL   : https://patchwork.freedesktop.org/series/107885/
-State : success
+Series: Move all drivers to a common dma-buf locking convention
+URL   : https://patchwork.freedesktop.org/series/107884/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_12044 -> Patchwork_107885v3
-====================================================
+Error: dim checkpatch failed
+95c5249c37bb dma-buf: Add _unlocked postfix to function names
+-:770: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#770: FILE: drivers/infiniband/core/umem_dmabuf.c:153:
++	umem_dmabuf->attach = dma_buf_dynamic_attach_unlocked(
 
-Summary
--------
+-:1101: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct dma_buf_attachment *' should also have an identifier name
+#1101: FILE: include/linux/dma-buf.h:623:
++struct sg_table *dma_buf_map_attachment_unlocked(struct dma_buf_attachment *,
 
-  **SUCCESS**
+-:1103: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct dma_buf_attachment *' should also have an identifier name
+#1103: FILE: include/linux/dma-buf.h:625:
++void dma_buf_unmap_attachment_unlocked(struct dma_buf_attachment *,
 
-  No regressions found.
+-:1103: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct sg_table *' should also have an identifier name
+#1103: FILE: include/linux/dma-buf.h:625:
++void dma_buf_unmap_attachment_unlocked(struct dma_buf_attachment *,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/index.html
+-:1117: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct dma_buf *' should also have an identifier name
+#1117: FILE: include/linux/dma-buf.h:635:
++int dma_buf_mmap_unlocked(struct dma_buf *, struct vm_area_struct *,
 
-Participating hosts (40 -> 36)
-------------------------------
+-:1117: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct vm_area_struct *' should also have an identifier name
+#1117: FILE: include/linux/dma-buf.h:635:
++int dma_buf_mmap_unlocked(struct dma_buf *, struct vm_area_struct *,
 
-  Missing    (4): fi-ctg-p8600 bat-dg2-8 fi-bdw-samus fi-hsw-4200u 
+-:1117: WARNING:FUNCTION_ARGUMENTS: function definition argument 'unsigned long' should also have an identifier name
+#1117: FILE: include/linux/dma-buf.h:635:
++int dma_buf_mmap_unlocked(struct dma_buf *, struct vm_area_struct *,
 
-Known issues
-------------
+total: 0 errors, 6 warnings, 1 checks, 930 lines checked
+ef7c7ae61fc1 dma-buf: Add locked variant of dma_buf_vmap/vunmap()
+45c3f7da798e drm/gem: Take reservation lock for vmap/vunmap operations
+d3cf2e46efe0 dma-buf: Move dma_buf_vmap/vunmap_unlocked() to dynamic locking specification
+10a7c6c7933c dma-buf: Move dma_buf_mmap_unlocked() to dynamic locking specification
+bcf19d059221 dma-buf: Move dma-buf attachment to dynamic locking specification
+-:387: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct dma_buf_attachment *' should also have an identifier name
+#387: FILE: include/linux/dma-buf.h:629:
++struct sg_table *dma_buf_map_attachment(struct dma_buf_attachment *,
 
-  Here are the changes found in Patchwork_107885v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@requests:
-    - fi-pnv-d510:        [PASS][1] -> [DMESG-FAIL][2] ([i915#4528])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/fi-pnv-d510/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/fi-pnv-d510/igt@i915_selftest@live@requests.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][3] ([i915#4312])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rplp-1}:       [DMESG-WARN][4] ([i915#2867]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-adlp-4:         [DMESG-FAIL][6] ([i915#3987]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/bat-adlp-4/igt@i915_selftest@live@gt_pm.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/bat-adlp-4/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-bdw-5557u:       [INCOMPLETE][8] ([i915#146] / [i915#6598]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [DMESG-FAIL][10] ([i915#4957]) -> [DMESG-FAIL][11] ([i915#4494] / [i915#4957])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6380]: https://gitlab.freedesktop.org/drm/intel/issues/6380
-  [i915#6579]: https://gitlab.freedesktop.org/drm/intel/issues/6579
-  [i915#6598]: https://gitlab.freedesktop.org/drm/intel/issues/6598
+total: 0 errors, 1 warnings, 0 checks, 331 lines checked
+d260753b3e2c dma-buf: Document dynamic locking convention
+ed8551958b67 media: videobuf2: Stop using internal dma-buf lock
+1738dcaeddcf dma-buf: Remove internal lock
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_12044 -> Patchwork_107885v3
-
-  CI-20190529: 20190529
-  CI_DRM_12044: 287ad23d60ce7aa8befbe8dd1fea6fb705bd08ac @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6637: a23e8aed0b54018339647d0817267431bd2b7075 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_107885v3: 287ad23d60ce7aa8befbe8dd1fea6fb705bd08ac @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/index.html
-
---===============8707658970252972697==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: fix repeated words in comments (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107885/">https://patchwork.freedesktop.org/series/107885/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12044 -&gt; Patchwork_107885v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/index.html</p>
-<h2>Participating hosts (40 -&gt; 36)</h2>
-<p>Missing    (4): fi-ctg-p8600 bat-dg2-8 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_107885v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/bat-adlp-4/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/bat-adlp-4/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6598">i915#6598</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12044/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107885v3/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12044 -&gt; Patchwork_107885v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12044: 287ad23d60ce7aa8befbe8dd1fea6fb705bd08ac @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6637: a23e8aed0b54018339647d0817267431bd2b7075 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_107885v3: 287ad23d60ce7aa8befbe8dd1fea6fb705bd08ac @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-
-</body>
-</html>
-
---===============8707658970252972697==--
