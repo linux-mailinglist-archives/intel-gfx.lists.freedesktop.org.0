@@ -2,47 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20C5F5A4EED
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 16:14:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A7E5A4F29
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 16:27:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD9F10F1D1;
-	Mon, 29 Aug 2022 14:14:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA8A310F2DD;
+	Mon, 29 Aug 2022 14:27:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D0B110F13C;
- Mon, 29 Aug 2022 14:14:31 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 389C810F2DD;
+ Mon, 29 Aug 2022 14:27:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661782471; x=1693318471;
+ t=1661783244; x=1693319244;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=+4TOCeNd5iz1aL0fhEmhVh+hpLbLwO+LY5ZaMMmawU0=;
- b=OmSwFbBjgFQ16k+3n5jxRTl9oqvEdtu7Fv4e38PiTqonGl9QRH5c7Djw
- f+DCWlqRjyJ2fzZxKbnMWpuujTp42vTLi48JdloI9yQ2y22SchLltKETr
- cwd9HNcAZJU4SP5YW3cAxhbc0vRYmTxPjb82ZKtnEG5metJpyyAttJ34z
- K9ytXpF/ww7hSjjgnFOEr1leDeJrrMfO6gDgjnRe3j3FDs3NWSU0hsecy
- d8JziBc8SArC/i/tbbNWkyWNM/BNLTzXR0e1WGGsKdOB2iBUGUoIqEgi3
- Lny5+4dSjzODwC/ie8YnLNPSRmxJDmzkOhz5OrfXX+Ib5ubwRnHgV93DU g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="293647245"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="293647245"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 07:14:16 -0700
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="939591027"
+ bh=NUz1jJcbJ1/Hsp5cNd+z53+9gjXd6c9c4lg/Ll6+Nvk=;
+ b=iE7CeRf6AeHJd1oqplNsJ0ZVLazYs+AOGNrgJIRSrDbFvvqsk+AgZwWL
+ 0mesXHv9KW/R6Fa4Jv6OJGafXrQkCtX7OJ2WkB0FckYxSTMLnRHhifum0
+ SkBpFcvMWuc3wxV91b5B7Q7I5sNGu4kfJAssvdoq5MkXNsc9Zz/teXrYT
+ 8Ov5aDadZJxq8MgK1xc5yT0jLJzBNCryLkmXFN6/iLT+at7CoaT2DFNPg
+ 4dWvYlSo1ETc8s+FsNtftPqK6S5OOesbagwLBllJB0Bq6Kvh4/y5at/Ic
+ artKj1hdFylPZYZUfDpSk/nTmwWKGB1ySx806W0QerrGjg2uRiNlsSbJt g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="381206043"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="381206043"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 07:17:25 -0700
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="679637633"
 Received: from idecesar-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.53.198])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 07:14:13 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 07:17:23 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: wangjianli <wangjianli@cdjrlc.com>, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@linux.ie,
- daniel@ffwll.ch
-In-Reply-To: <20220823141639.13053-1-wangjianli@cdjrlc.com>
+To: Jilin Yuan <yuanjilin@cdjrlc.com>, airlied@linux.ie, daniel@ffwll.ch
+In-Reply-To: <20220823123044.24593-1-yuanjilin@cdjrlc.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220823141639.13053-1-wangjianli@cdjrlc.com>
-Date: Mon, 29 Aug 2022 17:14:02 +0300
-Message-ID: <87y1v7dtn9.fsf@intel.com>
+References: <20220823123044.24593-1-yuanjilin@cdjrlc.com>
+Date: Mon, 29 Aug 2022 17:17:16 +0300
+Message-ID: <87v8qbdthv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix repeated words in comments
@@ -58,31 +56,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: wangjianli <wangjianli@cdjrlc.com>, intel-gfx@lists.freedesktop.org,
+Cc: intel-gfx@lists.freedesktop.org, Jilin Yuan <yuanjilin@cdjrlc.com>,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 23 Aug 2022, wangjianli <wangjianli@cdjrlc.com> wrote:
+On Tue, 23 Aug 2022, Jilin Yuan <yuanjilin@cdjrlc.com> wrote:
+>  Delete the redundant word 'other'.
 >  Delete the redundant word 'the'.
+>  Delete the redundant word 'will'.
 >
-> Signed-off-by: wangjianli <wangjianli@cdjrlc.com>
+> Signed-off-by: Jilin Yuan <yuanjilin@cdjrlc.com>
 
-Already fixed by commit 78f48aa6f50b ("drm/i915/irq: Fix a "the the"
-typo").
-
-What is this sudden influx of patches fixing repeated words everywhere?
+Doesn't apply because some of the hunks were already fixed by other
+commits.
 
 BR,
 Jani.
 
 
 > ---
->  drivers/gpu/drm/i915/i915_irq.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/i915_gem_evict.c | 2 +-
+>  drivers/gpu/drm/i915/i915_irq.c       | 4 ++--
+>  drivers/gpu/drm/i915/i915_memcpy.h    | 2 +-
+>  3 files changed, 4 insertions(+), 4 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+> index f025ee4fa526..028e509e1628 100644
+> --- a/drivers/gpu/drm/i915/i915_gem_evict.c
+> +++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+> @@ -256,7 +256,7 @@ i915_gem_evict_something(struct i915_address_space *vm,
+>  	goto search_again;
+>  
+>  found:
+> -	/* drm_mm doesn't allow any other other operations while
+> +	/* drm_mm doesn't allow any other operations while
+>  	 * scanning, therefore store to-be-evicted objects on a
+>  	 * temporary list and take a reference for all before
+>  	 * calling unbind (which may remove the active reference
 > diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index 73cebc6aa650..783a6ca41a61 100644
+> index 73cebc6aa650..1e4a705bc5cc 100644
 > --- a/drivers/gpu/drm/i915/i915_irq.c
 > +++ b/drivers/gpu/drm/i915/i915_irq.c
 > @@ -65,7 +65,7 @@
@@ -94,6 +107,28 @@ Jani.
 >   * shares the interrupt line are not accounted.
 >   */
 >  static inline void pmu_irq_stats(struct drm_i915_private *i915,
+> @@ -2175,7 +2175,7 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
+>  	raw_reg_write(regs, DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
+>  
+>  	/* Disable south interrupts. We'll only write to SDEIIR once, so further
+> -	 * interrupts will will be stored on its back queue, and then we'll be
+> +	 * interrupts will be stored on its back queue, and then we'll be
+>  	 * able to process them after we restore SDEIER (as soon as we restore
+>  	 * it, we'll get an interrupt if SDEIIR still has something to process
+>  	 * due to its back queue). */
+> diff --git a/drivers/gpu/drm/i915/i915_memcpy.h b/drivers/gpu/drm/i915/i915_memcpy.h
+> index 3df063a3293b..126dfb4352f0 100644
+> --- a/drivers/gpu/drm/i915/i915_memcpy.h
+> +++ b/drivers/gpu/drm/i915/i915_memcpy.h
+> @@ -18,7 +18,7 @@ void i915_unaligned_memcpy_from_wc(void *dst, const void *src, unsigned long len
+>  /* The movntdqa instructions used for memcpy-from-wc require 16-byte alignment,
+>   * as well as SSE4.1 support. i915_memcpy_from_wc() will report if it cannot
+>   * perform the operation. To check beforehand, pass in the parameters to
+> - * to i915_can_memcpy_from_wc() - since we only care about the low 4 bits,
+> + * i915_can_memcpy_from_wc() - since we only care about the low 4 bits,
+>   * you only need to pass in the minor offsets, page-aligned pointers are
+>   * always valid.
+>   *
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
