@@ -2,150 +2,150 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F9865A4121
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 04:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C24E65A435F
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 08:46:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4977F10E57E;
-	Mon, 29 Aug 2022 02:48:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C660410F0C2;
+	Mon, 29 Aug 2022 06:46:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24DBE10E57E
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 02:48:21 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8052410F0C8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 06:45:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661741302; x=1693277302;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=ga0M2Ao5XTTpLqplWedYH9zzjttrvo2zXIibcP3LbHA=;
- b=Jt+44mX1o2JDqGXMiQyefhmbo1/oyIRw1wwZvLJXHfdUwyngidceCwB/
- GkgFU1eLYtJx02MF/6jbWIecV3MYPdDp3K2kDihjxcQLSEN51fLqGwA91
- OOca7flUQM4Mu/DvP1xko49V3AQQVRKhuYk8f902cHTVPqoF3RqtgbAdO
- xmI3A+e1rrrDEDhemTI3ly1KK/O2tX9ZOJ/VTmcReo7m8OSMOOZSsQhXp
- yU2ZTvNljXX9uVYiODti1NsR4/p1jTbXlFOpsUWVR86x7myugim7xt7FH
- k28rWi3ZqIzEe7L9PwrgSr9C/eCngwwXtFWAzU6TbbxryT0/QK0G3v+mw w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10453"; a="292374742"
-X-IronPort-AV: E=Sophos;i="5.93,271,1654585200"; d="scan'208";a="292374742"
+ t=1661755558; x=1693291558;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=I8JFvqAEs3ixEmD31maE7EG2PyOjAi71QiyCQZPG0ZI=;
+ b=YdHLBk1AjYfFPT8zOzUM43inv10ztEJLa+hw026f9j0V86iJaCHMD606
+ Z8Rs/KNvQJ1p/ZFWsji4bJfyWfI/3aXMv+r1rDOO31gmCcC6oCiWkBfRr
+ 1mplvpOt1dWjY/wfVJYhITvtAqE3G29RDbP+UtNDYIR9U36mCV7jVoEeX
+ 3wH2V0x2wursawWFP57BJqUiV3KUbKu3zGN8ihzH+78GgSmA87V5vNsQG
+ Gcrb+ddb4H+9WqrFV0+S96Rh4EaBXOBF6/0BCb524XmK1GrFdVAy5WI/9
+ 4W9Hx979RhuI7+4m4lIWoYEUh7vJdFGUFdd5pzxWhQVvMYJlK95GdA3P+ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10453"; a="293567462"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="293567462"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2022 19:48:21 -0700
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2022 23:45:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,271,1654585200"; d="scan'208";a="672207214"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga008.fm.intel.com with ESMTP; 28 Aug 2022 19:48:21 -0700
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="672261960"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga008.fm.intel.com with ESMTP; 28 Aug 2022 23:45:57 -0700
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Sun, 28 Aug 2022 19:48:20 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ 15.1.2375.31; Sun, 28 Aug 2022 23:45:57 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Sun, 28 Aug 2022 19:48:20 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.106)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2375.31; Sun, 28 Aug 2022 23:45:57 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Sun, 28 Aug 2022 23:45:57 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Sun, 28 Aug 2022 19:48:20 -0700
+ 15.1.2375.31; Sun, 28 Aug 2022 23:45:56 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MCDfHjZo5/W8YwXkxtfpSQTcXNyC1X+dlOCWsnrvP37lvzPq6PPTaPZhx+Vf84CLpEJJbUx3+dYVHJ367CJ48A6feh+aI7IkuRhyVkBz24w6cnEGUO2ojHMFQxEFIT1P/b5uAXuSVSqYvuPmiSvd6uowUa9aXh7dPdXFc9frgNxmWI0C4yCDW+z1a3QZBctY/eo9dV2IiH3xLOT440JCCA3n6n3r3wOKOYoBEdyjLgXMvctWGEpyg6CkApFtVUCCqsCzOJJKKp2dFTgIvHiq7UHU5nW13epdf8+Dk7+BNmWZKLRJxSFgrefRMJDBEoqIReq0gZmiSVZOJuu05Uxe0g==
+ b=Hya17ST6/2pfSEil6BNT12bXmaRMx9zjsmP3qLXb1WHJvCaPK/lSNvNv9VLcroqMh8GOVRmG6ECzY+aXxNzLLGRXI54J5jA966u/Je6MyMKejU9fPIr4lr/uWhvEWgUj4J7/I37X+jFPlCPLGEkTSINhyN4DoSwiRJC0ZUVzlUfRnudttMjo0ldd7N9sD4UW9hVw9eT+O467wFQXxsWE4L71futUnRTjmQOHsoOOcfgbt5CYYc+D0w8/8B2pmfjyQZ7+r+l6WX2HmINeZjWSEu0yGItfIIYkketsNpZIg0LjMAo9kRmwdHRHsTuNPXF+GLqeKNjzV2HCWebT9fty/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ga0M2Ao5XTTpLqplWedYH9zzjttrvo2zXIibcP3LbHA=;
- b=C6osnrxhzgBA9L0ZLHCamtD427WbqHahDexru8FiskkH5h6LPUmKrOJCq2x3ukPyatc3ge72MAe8sitFWFop0pZWfcxBKn/Qcx9//0EACw2cWA4pznywwIJNKmPn0AaDSYEO72bdnS/mYomamA37ePIfeXCYbPeVo3lUt5Bw4MS+txbMQ+fcdtwwrqE7sG9bRJjDJLjj3wBR7dM5ZjWxWymwgn8kwpHG7E4IYwhYrjBh+e9vri4HS0YrYpm4h76buiDhrzjuIZyHh3jrahh7MSUa4CnkVmIpnlCGRvUtsLyaOGL7vh3Yxt/4qKFKfsIpEq4wyEnR5OyKs3QWPugEzw==
+ bh=nDnOIeug8nKXzx+nGTfTfWDhgGIb+B8DZyTmWpJ4Pek=;
+ b=VKAAkq6mxd7FbN8rQsbqMWRh+U6/rWMbe8FscmGaop3o/TnZK0slV5iY63dGw1DHxnY3BQ7BfB1ex96cO6ZlzOSwycX9mMtAjrDPMEqeDwYWvT1Xq2eXV/ks9FbyA8MLuSyEjxvM1u8kWozY5ZM2Hluh8D7lJpesVgP34kZjJBqynAarXKPp27qahY0vR2JgJgjysiWhDFnQHj/pWYV8pfLEh3e9JcMnGGVyUzRTDjYZ6y94wj7e4cQdu0OwDloEOWof3aD9Q0J54KrphXs1XueyDC2gSCgLMvIdyZJBrz+1lz2bUNhV/Fk41emJ3fF6MKm12xuoBuuz5DTzXm+DOA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
- MN2PR11MB3983.namprd11.prod.outlook.com (2603:10b6:208:137::24) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from MWHPR11MB1935.namprd11.prod.outlook.com (2603:10b6:300:10c::20)
+ by BN7PR11MB2659.namprd11.prod.outlook.com (2603:10b6:406:ab::24)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14; Mon, 29 Aug
- 2022 02:48:17 +0000
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::f491:53c1:acd5:d8ef]) by DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::f491:53c1:acd5:d8ef%3]) with mapi id 15.20.5566.021; Mon, 29 Aug 2022
- 02:48:17 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 1/2] drm/i915/mtl: Added restriction for
- plane downscaling
-Thread-Index: AQHYuUZokKFMA3sIY0CZIKde906Twq3FMKhw
-Date: Mon, 29 Aug 2022 02:48:17 +0000
-Message-ID: <DM6PR11MB3177C91BAF3D7E483D0B2825BA769@DM6PR11MB3177.namprd11.prod.outlook.com>
-References: <20220826121741.25485-1-animesh.manna@intel.com>
-In-Reply-To: <20220826121741.25485-1-animesh.manna@intel.com>
+ 2022 06:45:55 +0000
+Received: from MWHPR11MB1935.namprd11.prod.outlook.com
+ ([fe80::61c1:4020:d92d:bd06]) by MWHPR11MB1935.namprd11.prod.outlook.com
+ ([fe80::61c1:4020:d92d:bd06%3]) with mapi id 15.20.5566.021; Mon, 29 Aug 2022
+ 06:45:54 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Fix warning callstack for
+ imbalance wakeref
+Thread-Index: AQHYrkGU1vNkWWZqjkOsmkvx0TsbAK2zEyUAgAlXRvCAABRMcIADBiEAgAYCzdA=
+Date: Mon, 29 Aug 2022 06:45:53 +0000
+Message-ID: <MWHPR11MB1935880C25E9DDF3ED205669B2769@MWHPR11MB1935.namprd11.prod.outlook.com>
+References: <20220812044724.12131-1-mitulkumar.ajitkumar.golani@intel.com>
+ <Yvzj6otIylJ8nwoJ@ideak-desk.fi.intel.com>
+ <MWHPR11MB19353E66246E6D9CB5F021D4B2709@MWHPR11MB1935.namprd11.prod.outlook.com>
+ <MWHPR11MB193572EF5A173CC9F42861DDB2709@MWHPR11MB1935.namprd11.prod.outlook.com>
+ <YwdURvTR2xakrFK0@ideak-desk.fi.intel.com>
+In-Reply-To: <YwdURvTR2xakrFK0@ideak-desk.fi.intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 dlp-product: dlpe-windows
-dlp-reaction: no-action
 dlp-version: 11.6.500.17
+dlp-reaction: no-action
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 10e8cf42-1689-4412-f770-08da8968ed15
-x-ms-traffictypediagnostic: MN2PR11MB3983:EE_
+x-ms-office365-filtering-correlation-id: 8b58ca73-e03c-4990-f3b4-08da898a1eba
+x-ms-traffictypediagnostic: BN7PR11MB2659:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: r+WmHDbw5kQEEJAYQF94FMCvzc+7H01c5iASdtLuPqD4SvzudN9JHOLUNTj3oF8PONLnKiFpdsewZxbis+MLTaCENtJxZ/QZd11v+QIH99U9LzTXZ6xK6qcUEcUK3lnjAnWVBOGYVcb62jigQA3vW9jym6Ukrefa1K1S59nqS9ZPR4xY/Vm+N9gf2VOjNLKImNVi5E9g0qumKfLFxst85MxaKHejoccUS9VVKoirX6Is7WJnfcuwydNx98TvZCV5ubrMCq5/Mg4NkgpighYtUEK1yjfewuHeWsk5DkC/1VfwfCF3hqGC3aEAoQX5FNx2mg2aFfypYaZFFjgNS/R/R67yWkq7HhIKkKbUmH6ngeH8Te28kyTsimPeASDCjxKTh16RH68bp5y/Ay0EW2kXQ5mYFu66x7lahBjNAL2bdlarjORXxNPuLgsTj/Cw0qp5nMiQAQjjXsnh9iuefrj011R0lCD4kkQX+BJ4uaqTrH4U74yP7+k2fHR8VMns0EYLu2qdly2KlsJ2thYicqPznJz6CP93x+WgBGvAOvofaSk87D5nBVaOfee/d70Sg5YdsWrE4uCReY+Gt+bIyClLopgwbiQ4fpknMDwv7mdKtlmTqanc5pZtYiPhz+QBLaXq5+JiTEct2nmlJl5bt5FV78ZiGAOCGCTf54FkqTvCqCnx5C59Wcgk0kjb9hUanV7VL8jqOxtOxZPq3YxuvstfKp1Qdx65UD+loZvbghRO4ksKSJvm3+2vWbjMA+ljNbSHiPDHHcV6B5Foub44plaHOg==
+x-microsoft-antispam-message-info: AotHsWS1vgWBipt3jeTKD9bVBK3X1Z3YbPN83GvqO5qBHXtBZsKgYk/3I+VDV3FiwXhi41QImqqtPZcUwhkd15hOwsG3TDyHot8HpqtUBm8EXAUwrukEChLN0+MC+8uXlPgzFa1oJwV6AaB+OBrbRZxtVxsiGj9P8uSu3w26FkCA+c9nqpWqvGb1XAJ/RINO8PYrVVlTCXrIvWzg9kVs3Rx58BYrskbpgSR+AjXhF1w8IEGwoCiKgZhyRbqhZrMsiDVHYVZdFss/qJT6CLjcXNoWVPVZ4g4i7N+aHgbK+SQfEyaP6UCAci90+pbTwiT+V55Hu4MNS1QC0abT8Ug+AZ08dvl42Q2TUdQdVxaB5fhR9eAhIj/RPNSThnl+9BobDat9Ta1CF7VHs2qBUhWEpClwS/JZIXg3xvvehLzav3hkBetDRZiTXRACn2I9Rexh8XKbeBaP4IAqxvyNxVDg6U9mWrvOOWSbOv4sgpnf3MM1XcbOXwz39JRL3Cuh4mf0dTjDknUgwLHt2lTBCU4zpnLBBHt599sc2vXe8t07mlmWJ7tkHbgu7+7K1HoeHwjkG9UbE8wmk41ruvuioxCdjBPkuLRyqNKpK40bysSk2WuDhVp9it3l1Vp1QoYI2KuexLpi0DJyfhbRGl/P6dAbHmhWTDVDsecYj4miQNOJrGTDDm/b+zhkpAO4G/3qaK4XKACNVZkUHjByofUvjfCM+A==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(376002)(346002)(39860400002)(366004)(396003)(136003)(66446008)(66556008)(76116006)(66946007)(64756008)(2906002)(33656002)(53546011)(6506007)(52536014)(8676002)(8936002)(55236004)(7696005)(41300700001)(55016003)(66476007)(186003)(83380400001)(66574015)(86362001)(478600001)(5660300002)(82960400001)(26005)(9686003)(38070700005)(122000001)(38100700002)(316002)(71200400001)(110136005);
+ IPV:NLI; SFV:NSPM; H:MWHPR11MB1935.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(376002)(136003)(346002)(366004)(396003)(39860400002)(64756008)(66446008)(71200400001)(8676002)(4326008)(55016003)(966005)(478600001)(38100700002)(8936002)(122000001)(52536014)(6862004)(6636002)(316002)(82960400001)(86362001)(5660300002)(76116006)(66556008)(66476007)(38070700005)(66946007)(186003)(83380400001)(7696005)(2906002)(53546011)(33656002)(55236004)(6506007)(41300700001)(9686003)(26005);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MUhndU03dFFLNXQ3eWxnQmIyM3pIZGs1WkRGZ29mMzZZb2lhc3pIYlZsdHV6?=
- =?utf-8?B?aWF4b3lPNitSbzlQdGYvZ3I3YXVrOW04dkloZU5uNFRnRHpVV1Nva2MrSGRC?=
- =?utf-8?B?VExKYVFxcEp4cEVwbGdmdURMYXdtYlV6WGxpSi9oeURVYVNlR2FDR3BuYTkr?=
- =?utf-8?B?dlNuN3RXTDZZbTB6NDJmRm85U0FjaE5Mb29RdFh5Z3AvYVVuejU1d1lmUkpY?=
- =?utf-8?B?aXBSY01waFdwNnhGRTU1V0ljVFhRSDU0RElPTkZSZFF2T3o2NUpscHN5VDNF?=
- =?utf-8?B?WGVUMkNBMldONFY2SlFxemFlblRMUGRrU3JVdlY3dnRHZUpFZnFZUXZmVjZ5?=
- =?utf-8?B?SjBUTFlkeG9Sa0N3TlhsWHBtVERmSTErbFV1d2h2YW5tMVBOTUttaXBCUHpW?=
- =?utf-8?B?T1lRTGIzSE96VW5XU25xZG95NkxxbVVqTVBBUHdyVkFrd0hsSlZibHhHVDhI?=
- =?utf-8?B?ZlcvYUFTYXRHd21MOTQ1ekdYYWZtTk5FaUNkTkpBQUJ3OFpTOWxrSmsveUxW?=
- =?utf-8?B?R3AreFNQNWJRVDQxNzlGaEhab281eHRacWtkcDBma1RLd0NRb0FlYUpXNGxH?=
- =?utf-8?B?NG5LK3JIWGdyWU5Hc3Z1c3pnb3Vxc0x6OTdEcG05RWE5M2krOWJpeFpyMDdJ?=
- =?utf-8?B?VWNsMXpBb3NMckdJc3VXMDRSMmZEOHZLUTdyZXNVejA1Vkcrc2RHd1JBU2NQ?=
- =?utf-8?B?YTNRMDNmenFYQ3k2WTJHZ3VoeURTTlhuNTdlQ1UvVEJ0eXhDQkQxS2pudmt6?=
- =?utf-8?B?VXpEbDIzWGdjeS93WkphVlk1MVZkdkY0VitxNUQ0bWZWa0Z0QWN4aUNKc0do?=
- =?utf-8?B?Z1NzTy9rbDJpMFdDdHo3OHRYQml2YldJVG1wNUdjcE9nOUkrWTNpNVJQdE9a?=
- =?utf-8?B?QlBUdXlOU2lFZ0RyQzNuSG42bVlTTXc2ZUxZOFcrV094c0RKU3NHRjlONFFF?=
- =?utf-8?B?MkFyTFIzdHFDZmhUcVEva3orVkt2d1FlYTdGSUZLQmVBV0NJcnJ1K0V5U2N4?=
- =?utf-8?B?clVtY290d0lPVUN4UU05SGlYVVVuWDlQeWRUTThKbnFLcnpvWU1BbDd6RWVT?=
- =?utf-8?B?NVk3MUlBTFViUkc2UC9wdUtkS005WDNGVHVwWTFMKzBYVjJwbG9BZzNXWjJV?=
- =?utf-8?B?N2g0WWIxc1Z2OEpFUW81UHJGWnZRNHF4dndQRmp4K1poVU1ZNllwRlhpRVlR?=
- =?utf-8?B?K1NwYzMwMUZTNmpCaE42RjdXMjdNOGh3M2cySGtyT3B5dVdDTXl6ekpHY2xN?=
- =?utf-8?B?MWFHTldIYzRVaHowb29PRkNKOUVDUTJFQzRlekw3UVJpZjJmQXloem1zUklG?=
- =?utf-8?B?TFRsQkRRVHBGTlNaTldHNGNMSkVheStVbWtxZ0ZvTzV4MVpnTGFOR20vOVdy?=
- =?utf-8?B?akJSc0VTZnRueUxNT0E0N0NVQ3l3SXNVVHQzbmhHdlJwRy9qcEh2MFc0TFpV?=
- =?utf-8?B?QncvbjU4THBvYUp5WWw1T09ta0lTNnR4MEJ2TkpxakRkSlBrKzdXZEwyYWx3?=
- =?utf-8?B?SVZlTHB5akR2VnM0SHdXZ0t3OUhkeGZ3bmRhYWJyL1RyUmpDN051Z0JDSS9D?=
- =?utf-8?B?dGZPeGx5TmdhRzJkUzFQdUV6cG1xRDh3c2JJQXdrcE12V0RxdllFUTM4Vjc1?=
- =?utf-8?B?QlQ5Zyt0V1ZDNmZ6SFludG9RR3MxOEIvbEl6Q0VPV3l1a0xPV202ZXVaMi8x?=
- =?utf-8?B?Nm9YbCtWNUNqN0MxSXdpUXFsclJPNmoySnU2Q1hkTEtNWFkvTllvQUF1SENL?=
- =?utf-8?B?dk1udGtFSVF5dW1KdEM4NkZHZWd2R1ZWNGRIUnBEenJSdkxveGlQWmF3QWUz?=
- =?utf-8?B?aDJPamQ3dkhzTnJmV1VQU1Z2Mng1VWtyUlJySzlsUC9wQkluRmphUGtWRWZB?=
- =?utf-8?B?Uzg4THNLV3I1VGt0b1pIQ1Rsbll6RVRQbjBwTzVxZ25DNmhxTzIwNU5FQkZZ?=
- =?utf-8?B?M0ZQNWpCR0ZjZWxBaWZ6S0twMktxUi9Uc0pqVGl1UGVXbVQvajE0RXQ1Mzdm?=
- =?utf-8?B?UEQvb2xNMXVhRUg0cTA3V1ZmSFdQMGdnVUk0UlR2ZVBGSFI5TW52d1BVYVU0?=
- =?utf-8?B?VFZlc2E1Z1FyS3FHRyttck11VzcrcXREOUhkVSsxM00yYm5ZUmx2NnhCcnQw?=
- =?utf-8?Q?KZgXpX26a9RLjPG3/2vWzdZEJ?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ANcbBieG1yELSO4Zw8LGalk6e45S5lifm2WFN/LZau9SP+oBmiNcQ7zXvOe0?=
+ =?us-ascii?Q?Slx5FDEf7sNFMp+0n2gOwXF7z9UoGXOzXsxOPAqSHM/3ZZ9sYv22mZnF5/yD?=
+ =?us-ascii?Q?MgfaUOP64y0qFzYze3S3qO+gcNffUKnfOWUoOGWdQhpUZQM6KQ4cNBregJg1?=
+ =?us-ascii?Q?GUJFy39akSKoqwHPBGa1WgYWIhOaGanpnTrsVJ9/FqBbPE7YcQ4y7P+lRHnU?=
+ =?us-ascii?Q?35B6QK3zY5Ea2nD0Qk1UjxGA8Txk8Gcx16zBFkXe1jaO2+9O1E3vNamMmT2q?=
+ =?us-ascii?Q?LvOhZnTqE4cAXlR+/4WlaMAn6o4EYBg126mW3IrkdFvXaAQjGBROHLXpCYk4?=
+ =?us-ascii?Q?stdpaA6+1366XEkTHEwzvF246kGrq4o2rgbkW4va4dycBD6c7kyCNMltIJlu?=
+ =?us-ascii?Q?tAfKCr1lCfHEhPBOj8cjJ09PL5w/0HTKN9UESotenbiULSkLD9Y+SVfxUkZY?=
+ =?us-ascii?Q?a+2n8OhxkOr+FDSgzEAQ8M+HK7CRYk3FnvWBQn2a772k86kYFYSePgAD31Ic?=
+ =?us-ascii?Q?Yp9mIgGtEObl4szpVDGpaDJxZvrktix7fim0MX9D1by12lkle0IcoSQNwgES?=
+ =?us-ascii?Q?stzACfVBfbECq1rwOuXDyHPbqxEQ+5MNae7Whtixq3xTsHv6RMhYgJ/l1c5H?=
+ =?us-ascii?Q?aKiPD7KgAN/zv6SG1Nts3e9sJLqWvDsWlJL0SsfX4xUBXk3IMfXHNY+uFbLQ?=
+ =?us-ascii?Q?Lk4MAE3cte0+jL2qQzQr4jw3OgaiRRsm4VvwsEIAxP7TXmqBuX7iWHiHN/y0?=
+ =?us-ascii?Q?GhZak2BYCzXFfDS0+3DjUmbrR6YXBTguGc/MgMyqsDU0TohX2Q+RK43IRNzl?=
+ =?us-ascii?Q?U8Lr5eyackKqmAoumtqHUnnr5A5nMmN9/pz9IHiXR6Yjm591QDSqTmBpwpUX?=
+ =?us-ascii?Q?f0gwapibRMfNq4GYqd/OhiG6mGc3sRCM8rqf6TsPCrWNnQnfaVCRI8YkOZrN?=
+ =?us-ascii?Q?HyNE/+8hzGoG/M0MOGQNZhSGD3lmV8mcj0GImKNq6pvMVSfQp6483DTzFXkK?=
+ =?us-ascii?Q?cXH38i1xIwO86M1Dap3z6TqVGk8DnLk2FI1x8zjQa78zG9b6ntpsM63GZ00r?=
+ =?us-ascii?Q?pU0TP8nXu8pvxftFkqL0atTnP0wlVgnNuD3qAS9qGuuO7cHLDYp6EY7YW06m?=
+ =?us-ascii?Q?nF9/v8nrwdRSIzb1iGa3qbkwDbpKqdSXfcBJFXnrSOSTC6iUf4caVcGLKBtF?=
+ =?us-ascii?Q?ji+u8IVmVSZejO3HVJbvttjKYxm5aPnfsumuOtHGga8AgPoA308LAhp+NIp/?=
+ =?us-ascii?Q?MZq4Vat2bn6LvaqrXoksNStqRDlvDr4mH+3djAoYMwUl7GnJuBxB/7m4YpYj?=
+ =?us-ascii?Q?DT1HAni1IKQI7Rk2/h27W/RT7xTDZaV5BXe019LmMiLIr1kbBQpo+TdJaiLv?=
+ =?us-ascii?Q?jgDq3fCejUQ3leab3+EajdDlAfs3C6BjZkBvGppSLwad5IhSZMT2MHpDl1rC?=
+ =?us-ascii?Q?W+n4IoDk/7BLiyPtc2ahnRGuOyMwBKUDl6g8YuoIrEX6cWHyBXMv22nsNEUb?=
+ =?us-ascii?Q?8R1wsQ/gyDqaH2hQ4sfROZVYeiJEk4D1CenwofAppQ/KXLoGwn2M3oMVF/N2?=
+ =?us-ascii?Q?mAE0qyiDq7Wtkl9dhvfLbNBT6295CWOdxi48KMQsm+L5xTdiDc6q1hWwcWJx?=
+ =?us-ascii?Q?72e5z2yyBg2DiV6gPbYsK8U=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10e8cf42-1689-4412-f770-08da8968ed15
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Aug 2022 02:48:17.3121 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1935.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b58ca73-e03c-4990-f3b4-08da898a1eba
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Aug 2022 06:45:53.9782 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uPdVHbbpvAnHOnf6ZOAZ06hq7Hm4IjMdKr42Otz4KSzQtuqDy+sFx72M80q4Bg69I0WZ2TZ5OHR2GVXvZ0jFiw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB3983
+X-MS-Exchange-CrossTenant-userprincipalname: 63ArOacrEbXRuWOdxmxrMlLPnYEhmY7Yr+zkp3rcboMSAAScv7zPY9S4rZH/PPJfUUB/a83PjcH8jWdXOEVEafxXMi2PdH8dN0ddf0lGp9ArlmPHBYzVX/7kgxVYmIGE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR11MB2659
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/mtl: Added restriction for
- plane downscaling
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix warning callstack for
+ imbalance wakeref
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,41 +158,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mDQo+IEFuaW1lc2gg
-TWFubmENCj4gU2VudDogRnJpZGF5LCBBdWd1c3QgMjYsIDIwMjIgNTo0OCBQTQ0KPiBUbzogaW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBbSW50ZWwtZ2Z4XSBbUEFU
-Q0ggMS8yXSBkcm0vaTkxNS9tdGw6IEFkZGVkIHJlc3RyaWN0aW9uIGZvciBwbGFuZQ0KPiBkb3du
-c2NhbGluZw0KPiANCj4gVGhlIHNlY29uZCBTY2FsZXIgKGkuZS4gU2NhbGVyIDIpIGRvZXMgbm90
-IHN1cHBvcnQgdmVydGljYWwgZG93bnNjYWxpbmcgKGkuZS4NCj4gaXQncyB2ZXJ0aWNhbCBzY2Fs
-ZSBmYWN0b3IgbXVzdCBub3QgYmUgZ3JlYXRlciB0aGFuIDEuMCkuIFNvLCB2ZXJ0aWNhbCBwbGFu
-ZQ0KPiBkb3duc2NhbGluZyBpcyBub3Qgc3VwcG9ydGVkIG9uIE1UTCwgc2NhbGUgZmFjdG9yIG1v
-ZGlmaWVkIGFjY29yZGluZ2x5Lg0KPiANCj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3ly
-amFsYUBsaW51eC5pbnRlbC5jb20+DQo+IENjOiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZh
-cmVAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBBbmltZXNoIE1hbm5hIDxhbmltZXNoLm1h
-bm5hQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3Nr
-bF91bml2ZXJzYWxfcGxhbmUuYyB8IDcgKysrKystLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDUgaW5z
-ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYw0KPiBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jDQo+IGluZGV4IGJjZmRlODFl
-NGQwOC4uNmJmY2RhNzQ4ZTdiIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYw0KPiBAQCAtMTQ2NCw5ICsxNDY0LDEyIEBA
-IHN0YXRpYyBpbnQgc2tsX3BsYW5lX21heF9zY2FsZShzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYsDQo+ICAJICogd2hldGhlciB3ZSBjYW4gdXNlIHRoZSBIUSBzY2FsZXIgbW9k
-ZS4gQXNzdW1lDQo+ICAJICogdGhlIGJlc3QgY2FzZS4NCj4gIAkgKiBGSVhNRSBuZWVkIHRvIHBy
-b3Blcmx5IGNoZWNrIHRoaXMgbGF0ZXIuDQo+ICsJICogRklYTUUgT24gTVRMLCBhZGp1c3Qgc3Bl
-Y2lmaWMgc2NhbGVyJ3MgZG93bnNjYWxpbmcgY2FwYWJpbGl0eS4NClRoaXMgc2hvdWxkIG5vdCBi
-ZSBGSVhNRSBhbmQgdGhpcyBpcyBhIGxpbWl0YXRpb24gb2YgaGFyZHdhcmUuIEEgTk9URSBjYW4g
-YmUgYWRkZWQgaW5zdGVhZCENCj4gIAkgKi8NCj4gLQlpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYp
-ID49IDEwIHx8DQo+IC0JICAgICFpbnRlbF9mb3JtYXRfaW5mb19pc195dXZfc2VtaXBsYW5hcihm
-Yi0+Zm9ybWF0LCBmYi0+bW9kaWZpZXIpKQ0KPiArCWlmIChJU19NRVRFT1JMQUtFKGRldl9wcml2
-KSkNCj4gKwkJcmV0dXJuIDB4MTAwMDA7DQpDYW4gdGhpcyBtYWdpYyBudW1iZXIgYmUgcmVwbGFj
-ZWQgd2l0aCBhIG1hY3JvPw0KDQo+ICsJZWxzZSBpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpID49
-IDEwIHx8DQo+ICsJCSAhaW50ZWxfZm9ybWF0X2luZm9faXNfeXV2X3NlbWlwbGFuYXIoZmItPmZv
-cm1hdCwgZmItDQo+ID5tb2RpZmllcikpDQo+ICAJCXJldHVybiAweDMwMDAwIC0gMTsNCj4gIAll
-bHNlDQo+ICAJCXJldHVybiAweDIwMDAwIC0gMTsNCj4gLS0NCj4gMi4yOS4wDQoNCg0KVGhhbmtz
-IGFuZCBSZWdhcmRzLA0KQXJ1biBSIE11cnRoeQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg==
+Hi Imre,
+
+> -----Original Message-----
+> From: Deak, Imre <imre.deak@intel.com>
+> Sent: 25 August 2022 16:22
+> To: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix warning callstack =
+for
+> imbalance wakeref
+>=20
+> On Tue, Aug 23, 2022 at 03:56:56PM +0300, Golani, Mitulkumar Ajitkumar
+> wrote:
+> > > Hi Imre,
+> > >
+> > > > On Fri, Aug 12, 2022 at 10:17:24AM +0530, Mitul Golani wrote:
+> > > > > While executing i915_selftest, wakeref imbalance warning is seen
+> > > > > with i915_selftest failure.
+> > > > >
+> > > > > When device is already suspended, wakeref is acquired by
+> > > > > disable_rpm_wakeref_asserts and rpm ownership is transferred
+> > > > > back to core. During this case wakeref_count will not be zero.
+> > > > > Once driver is unregistered, this wakeref is released with
+> > > > > enable_rpm_wakeref_asserts and balancing wakeref_count acquired
+> > > > > by driver.
+> > > > >
+> > > > > This patch will fix the warning callstack by adding check if
+> > > > > device is already suspended and rpm ownership transfer is going o=
+n.
+> > > > >
+> > > > > Signed-off-by: Mitul Golani
+> > > > > <mitulkumar.ajitkumar.golani@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/i915_driver.c | 8 +++++++-
+> > > > >  1 file changed, 7 insertions(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_driver.c
+> > > > > b/drivers/gpu/drm/i915/i915_driver.c
+> > > > > index deb8a8b76965..6530a8680cfd 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > > > > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > > > > @@ -1670,7 +1670,13 @@ static int intel_runtime_resume(struct
+> > > > > device
+> > > > > *kdev)
+> > > > >
+> > > > >   drm_dbg(&dev_priv->drm, "Resuming device\n");
+> > > > >
+> > > > > - drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm-
+> > > > >wakeref_count));
+> > > > > + /*
+> > > > > +  * When device is already suspended, Wakeref is acquired by
+> > > > disable_rpm_wakeref_asserts
+> > > > > +  * and rpm ownership is transferred back to core. During this
+> > > > > + case
+> > > > wakeref_count will
+> > > > > +  * not be zero. Once driver is unregistered, this wakeref is
+> > > > > +released
+> > > > with
+> > > > > +  * enable_rpm_wakeref_asserts and balancing wakeref_count
+> > > > acquired by driver.
+> > > > > +  */
+> > > > > + drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm-
+> > > > >wakeref_count) &&
+> > > > > +!rpm->suspended);
+> > > >
+> > > > I can't see how disable/enable_rpm_wakeref_asserts() can lead to
+> > > > this WARN. They are always called in pairs both in
+> > > > intel_runtime_suspend() and intel_runtime_resume(), leaving rpm-
+> >wakeref_count unchanged.
+> > > >
+> > > > The root cause is probably somewhere else, incrementing
+> > > > rpm->wakeref_count without runtime resuming the device.
+> > > >
+> > > > The WARN() condition is corret, we shouldn't get here with a
+> > > > non-zero wakeref_count. rpm->suspended - set in
+> > > > intel_runtime_suspend() and cleared in intel_runtime_resume() -
+> > > > should be always false here, so the above change would just disable=
+ the
+> WARN in all cases.
+> > > >
+> > > Yes, in case of DG2, after device is suspended, i915_driver_remove
+> > > is being called.  Here driver is taking wakeref with
+> > > disable_rpm_wakeref_asserts when device was not resumed.
+>=20
+> > >
+> > > As per logs,
+> > > [  395.872971] i915 0000:03:00.0: [drm:intel_runtime_suspend [i915]]
+> > > Suspending device ...
+> > > [  403.553235] i915_driver_remove: START wakeref=3D0 [  403.553288]
+> > > i915_driver_remove: before unregister i915 wakeref=3D65537 (Wakeref
+> > > Taken) [  403.566086] i915 0000:03:00.0: [drm:intel_runtime_resume
+> > > [i915]] Resuming device (Later Resuming Device)
+> > >
+> > > Pushed new change with :
+> > > https://patchwork.freedesktop.org/series/107211/#rev5
+> > >
+> > Also when compared DG2 logs with ADLP working logs, Already 1 wakeref
+> > was taken by DMC firmware(i915/adlp_dmc_ver2_16.bin (v2.16)), in-case
+> of DG2 looks to be missing.
+> > To support other targets and to prevent consecutive resuming device
+> > added following check, if (i915->runtime_pm.suspended &&
+> > !atomic_read(&i915->runtime_pm.wakeref_count))
+> >
+> > ADLP Logs:
+> > ---------------
+> > [   99.502434] i915_driver_probe: START wakeref=3D0
+> > [  713.979074] i915 0000:00:02.0: [drm] Finished loading DMC firmware
+> > i915/adlp_dmc_ver2_16.bin (v2.16) [  102.455766] i915_driver_probe:
+> > END wakeref=3D65538 ...
+> > [  103.448570] i915_driver_remove: START wakeref=3D65537 [  103.448587]
+> > i915_driver_remove: before unregister i915 wakeref=3D131074 ->
+> > (disable_rpm_wakeref_assert) [  103.585886] i915_driver_remove: END
+> > wakeref=3D0
+> >
+> > DG2 Logs:
+> > -------------
+> > [ 1271.704314] i915_driver_probe: START wakeref=3D0 [  383.050984] i915
+> > 0000:03:00.0: [drm] Finished loading DMC firmware
+> > i915/dg2_dmc_ver2_07.bin (v2.7) [ 1272.021133] i915_driver_probe: END
+> > wakeref=3D1 ...
+> > [  395.883531] i915 0000:03:00.0: [drm:intel_runtime_suspend [i915]]
+> > Device suspended ...
+> > [ 1291.450841] i915_driver_remove: START wakeref=3D0 [ 1291.450877]
+> > i915_driver_remove: before unregister i915 wakeref=3D65537 ->
+> > (disable_rpm_wakeref_assert) [ 1291.603281] i915_driver_remove: END
+> > wakeref=3D0
+>=20
+> Still not sure what's going. Both i915_pci_probe() and
+> i915_pci_remove()->i915_driver_remove() is called with a runtime PM
+> reference - taken at local_pci_probe() and pci_device_remove() - and so t=
+he
+> device should be runtime resumed at those points.
+>=20
+
+Yes reference is being taken at local_pci_probe() and pci_device_remove() b=
+ut=20
+During i915_selftest@perf, it is loading and unloading i915_pci_probe() and
+i915_pci_remove(), here pci_device_remove() is not being called, that's why
+runtime PM reference is not present during i915_driver_remove().
+
+> > > > >   disable_rpm_wakeref_asserts(rpm);
+> > > > >
+> > > > >   intel_opregion_notify_adapter(dev_priv, PCI_D0);
+> > > > > --
+> > > > > 2.25.1
+> > > > >
