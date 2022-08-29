@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB525A4DA0
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F8135A4D9F
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:19:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81FBA10F274;
-	Mon, 29 Aug 2022 13:19:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9A6E10F264;
+	Mon, 29 Aug 2022 13:18:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9487110F1E8
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:18:39 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 825D110F264
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:18:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661779119; x=1693315119;
+ t=1661779124; x=1693315124;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KsWmQ9T6wHCJYr86XHKLG6GDsev7Uy4dz1FMzk72l7A=;
- b=fsiWEvirRPNA3+PKrMP8MltrqgsrbQO12mHsp3FwVfX78eP3wZx3q5r+
- L0GyYDv21epmM6TfFkuiozKeU6HPAfmjjNaNshG+UA4OVL7aHQC3GkCdz
- tKgM9gpGo2F2J4Vdfld3zRQVXY5vH35z53koqo2cdNkZTI7GtyOUcqAzC
- Q7zB9miqvfAt5UoRKq6PSOjgsQune6j6B/zRlRR3rLX1F430YEwFwtaOI
- /feS6GGQ1N+23G3NoUtzYl+x9/S9GsyCmbeVY4Nl9ze7YIiqy2dorEG1C
- 3POIW6V7QNjFRFTbtXX864gWFlztNQrc7eltFK4YlEMi7icGUCs3r3YNo A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="281861625"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="281861625"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 06:18:39 -0700
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="640934039"
+ bh=y87Tk/QpUb70Dpf8J1jjHTYl2cPMbUJEkYEChVd5isE=;
+ b=QmnON7/VufHezegIrlM70XmpI7dRik/v8724NCnBeeeSpxbQlNwSFJnN
+ GxYhzQVLvfRQC4zgwfy1scXJK1oNbxOFwpz/aUk1JBshOIuApVtLDNXEL
+ tqVgy3WulRPsU4I6D09LMR+Q+1lZaLZsz4C+AuNQIHMpD9nsmaofawpNC
+ 0wZaY3HsCbaJk4Qs6VHHVeiQ9Wms7NM8QiLprTGXqZtqflgcLXmbiavM4
+ 6ixi/AOGWFX9QudhEyErDDCrMpT+YOrV2M7vYYickOIIac+9EJguMMMTa
+ TQfdNW7Y//q2SMdV6H7fO7CDcmZ/RYLzrg7qcNqsCbcPb9UDV8wjpSQPS g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="293634392"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="293634392"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 06:18:43 -0700
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="588163798"
 Received: from idecesar-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.53.198])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 06:18:37 -0700
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 06:18:42 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 29 Aug 2022 16:18:08 +0300
-Message-Id: <1083f5a58cce1507bd19bf7f98bf85e9351b741e.1661779055.git.jani.nikula@intel.com>
+Date: Mon, 29 Aug 2022 16:18:09 +0300
+Message-Id: <c8b9e2fdc5c226ffb71759a20e561c832a774ba5.1661779055.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1661779055.git.jani.nikula@intel.com>
 References: <cover.1661779055.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 01/18] drm/i915: move and group hdcp under
- display.hdcp
+Subject: [Intel-gfx] [PATCH v3 02/18] drm/i915: move and group max_bw and
+ bw_obj under display.bw
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,432 +62,300 @@ Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move display hdcp related members under drm_i915_private display
+Move display bandwidth related members under drm_i915_private display
 sub-struct.
+
+v2: Rebase
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_core.h |   9 ++
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 134 +++++++++---------
- drivers/gpu/drm/i915/i915_driver.c            |   2 +-
- drivers/gpu/drm/i915/i915_drv.h               |   6 -
- 4 files changed, 77 insertions(+), 74 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c       | 42 +++++++++----------
+ .../gpu/drm/i915/display/intel_display_core.h | 21 ++++++++++
+ .../drm/i915/display/intel_modeset_setup.c    |  4 +-
+ drivers/gpu/drm/i915/i915_drv.h               | 19 ---------
+ 4 files changed, 44 insertions(+), 42 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index fbe329e90c1e..4a184eac57c3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -19,6 +19,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index c87bc3117ae4..61308ebe48aa 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -324,7 +324,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	int ipqdepth, ipqdepthpch = 16;
+ 	int dclk_max;
+ 	int maxdebw;
+-	int num_groups = ARRAY_SIZE(dev_priv->max_bw);
++	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
+ 	int i, ret;
  
- struct drm_i915_private;
- struct i915_audio_component;
-+struct i915_hdcp_comp_master;
- struct intel_atomic_state;
- struct intel_audio_funcs;
- struct intel_cdclk_funcs;
-@@ -231,6 +232,14 @@ struct intel_display {
- 		wait_queue_head_t wait_queue;
- 	} gmbus;
+ 	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+@@ -340,7 +340,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
  
-+	struct {
-+		struct i915_hdcp_comp_master *master;
-+		bool comp_added;
-+
-+		/* Mutex to protect the above hdcp component related values. */
-+		struct mutex comp_mutex;
-+	} hdcp;
-+
- 	struct {
- 		u32 mmio_base;
+ 	for (i = 0; i < num_groups; i++) {
+-		struct intel_bw_info *bi = &dev_priv->max_bw[i];
++		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
+ 		int clpchgroup;
+ 		int j;
  
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 638495991c49..6406fd487ee5 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -210,12 +210,12 @@ bool intel_hdcp2_capable(struct intel_connector *connector)
- 		return false;
+@@ -395,7 +395,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	int dclk_max;
+ 	int maxdebw, peakbw;
+ 	int clperchgroup;
+-	int num_groups = ARRAY_SIZE(dev_priv->max_bw);
++	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
+ 	int i, ret;
  
- 	/* MEI interface is solid */
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	if (!dev_priv->hdcp_comp_added ||  !dev_priv->hdcp_master) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	if (!dev_priv->display.hdcp.comp_added ||  !dev_priv->display.hdcp.master) {
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return false;
+ 	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+@@ -431,7 +431,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 	clperchgroup = 4 * DIV_ROUND_UP(8, num_channels) * qi.deinterleave;
+ 
+ 	for (i = 0; i < num_groups; i++) {
+-		struct intel_bw_info *bi = &dev_priv->max_bw[i];
++		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
+ 		struct intel_bw_info *bi_next;
+ 		int clpchgroup;
+ 		int j;
+@@ -439,7 +439,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ 		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
+ 
+ 		if (i < num_groups - 1) {
+-			bi_next = &dev_priv->max_bw[i + 1];
++			bi_next = &dev_priv->display.bw.max[i + 1];
+ 
+ 			if (clpchgroup < clperchgroup)
+ 				bi_next->num_planes = (ipqdepth - clpchgroup) /
+@@ -500,7 +500,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+ static void dg2_get_bw_info(struct drm_i915_private *i915)
+ {
+ 	unsigned int deratedbw = IS_DG2_G11(i915) ? 38000 : 50000;
+-	int num_groups = ARRAY_SIZE(i915->max_bw);
++	int num_groups = ARRAY_SIZE(i915->display.bw.max);
+ 	int i;
+ 
+ 	/*
+@@ -511,7 +511,7 @@ static void dg2_get_bw_info(struct drm_i915_private *i915)
+ 	 * whereas DG2-G11 platforms have 38 GB/s.
+ 	 */
+ 	for (i = 0; i < num_groups; i++) {
+-		struct intel_bw_info *bi = &i915->max_bw[i];
++		struct intel_bw_info *bi = &i915->display.bw.max[i];
+ 
+ 		bi->num_planes = 1;
+ 		/* Need only one dummy QGV point per group */
+@@ -532,9 +532,9 @@ static unsigned int icl_max_bw(struct drm_i915_private *dev_priv,
+ 	 */
+ 	num_planes = max(1, num_planes);
+ 
+-	for (i = 0; i < ARRAY_SIZE(dev_priv->max_bw); i++) {
++	for (i = 0; i < ARRAY_SIZE(dev_priv->display.bw.max); i++) {
+ 		const struct intel_bw_info *bi =
+-			&dev_priv->max_bw[i];
++			&dev_priv->display.bw.max[i];
+ 
+ 		/*
+ 		 * Pcode will not expose all QGV points when
+@@ -560,9 +560,9 @@ static unsigned int tgl_max_bw(struct drm_i915_private *dev_priv,
+ 	 */
+ 	num_planes = max(1, num_planes);
+ 
+-	for (i = ARRAY_SIZE(dev_priv->max_bw) - 1; i >= 0; i--) {
++	for (i = ARRAY_SIZE(dev_priv->display.bw.max) - 1; i >= 0; i--) {
+ 		const struct intel_bw_info *bi =
+-			&dev_priv->max_bw[i];
++			&dev_priv->display.bw.max[i];
+ 
+ 		/*
+ 		 * Pcode will not expose all QGV points when
+@@ -575,14 +575,14 @@ static unsigned int tgl_max_bw(struct drm_i915_private *dev_priv,
+ 			return bi->deratedbw[qgv_point];
  	}
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
  
- 	/* Sink's capability for HDCP2.2 */
- 	hdcp->shim->hdcp_2_2_capable(dig_port, &capable);
-@@ -1146,11 +1146,11 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
- 
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
- 
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
-@@ -1158,7 +1158,7 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
- 	if (ret)
- 		drm_dbg_kms(&dev_priv->drm, "Prepare_ake_init failed. %d\n",
- 			    ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
+-	return dev_priv->max_bw[0].deratedbw[qgv_point];
++	return dev_priv->display.bw.max[0].deratedbw[qgv_point];
  }
-@@ -1176,11 +1176,11 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
  
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
+ static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
+ 			       int psf_gv_point)
+ {
+ 	const struct intel_bw_info *bi =
+-			&dev_priv->max_bw[0];
++			&dev_priv->display.bw.max[0];
  
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
-@@ -1190,7 +1190,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify rx_cert failed. %d\n",
- 			    ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
+ 	return bi->psf_bw[psf_gv_point];
  }
-@@ -1204,18 +1204,18 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
+@@ -703,7 +703,7 @@ intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_global_state *bw_state;
  
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
+-	bw_state = intel_atomic_get_old_global_obj_state(state, &dev_priv->bw_obj);
++	bw_state = intel_atomic_get_old_global_obj_state(state, &dev_priv->display.bw.obj);
  
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
- 	ret = comp->ops->verify_hprime(comp->mei_dev, data, rx_hprime);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify hprime failed. %d\n", ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
+ 	return to_intel_bw_state(bw_state);
  }
-@@ -1230,11 +1230,11 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
+@@ -714,7 +714,7 @@ intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_global_state *bw_state;
  
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
+-	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->bw_obj);
++	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->display.bw.obj);
  
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
-@@ -1242,7 +1242,7 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Store pairing info failed. %d\n",
- 			    ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
+ 	return to_intel_bw_state(bw_state);
  }
-@@ -1257,11 +1257,11 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
+@@ -725,7 +725,7 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_global_state *bw_state;
  
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
+-	bw_state = intel_atomic_get_global_obj_state(state, &dev_priv->bw_obj);
++	bw_state = intel_atomic_get_global_obj_state(state, &dev_priv->display.bw.obj);
+ 	if (IS_ERR(bw_state))
+ 		return ERR_CAST(bw_state);
  
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
+@@ -932,8 +932,8 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
  
-@@ -1269,7 +1269,7 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Prepare lc_init failed. %d\n",
- 			    ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
+ {
+-	unsigned int num_psf_gv_points = i915->max_bw[0].num_psf_gv_points;
+-	unsigned int num_qgv_points = i915->max_bw[0].num_qgv_points;
++	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
++	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+ 	u16 qgv_points = 0, psf_points = 0;
  
- 	return ret;
- }
-@@ -1284,11 +1284,11 @@ hdcp2_verify_lprime(struct intel_connector *connector,
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
+ 	/*
+@@ -1006,8 +1006,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	int i, ret;
+ 	u16 qgv_points = 0, psf_points = 0;
+ 	unsigned int max_bw_point = 0, max_bw = 0;
+-	unsigned int num_qgv_points = dev_priv->max_bw[0].num_qgv_points;
+-	unsigned int num_psf_gv_points = dev_priv->max_bw[0].num_psf_gv_points;
++	unsigned int num_qgv_points = dev_priv->display.bw.max[0].num_qgv_points;
++	unsigned int num_psf_gv_points = dev_priv->display.bw.max[0].num_psf_gv_points;
+ 	bool changed = false;
  
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
+ 	/* FIXME earlier gens need some checks too */
+@@ -1162,7 +1162,7 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
+ 	if (!state)
+ 		return -ENOMEM;
  
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
-@@ -1296,7 +1296,7 @@ hdcp2_verify_lprime(struct intel_connector *connector,
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify L_Prime failed. %d\n",
- 			    ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
- }
-@@ -1310,11 +1310,11 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
- 
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
- 
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
-@@ -1322,7 +1322,7 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Get session key failed. %d\n",
- 			    ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
- }
-@@ -1339,11 +1339,11 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
- 
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
- 
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
-@@ -1353,7 +1353,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Verify rep topology failed. %d\n", ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
- }
-@@ -1368,18 +1368,18 @@ hdcp2_verify_mprime(struct intel_connector *connector,
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
- 
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
- 
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
- 	ret = comp->ops->verify_mprime(comp->mei_dev, data, stream_ready);
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Verify mprime failed. %d\n", ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
- }
-@@ -1392,11 +1392,11 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
- 
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
- 
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
-@@ -1404,7 +1404,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
- 	if (ret < 0)
- 		drm_dbg_kms(&dev_priv->drm, "Enable hdcp auth failed. %d\n",
- 			    ret);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
- }
-@@ -1416,17 +1416,17 @@ static int hdcp2_close_mei_session(struct intel_connector *connector)
- 	struct i915_hdcp_comp_master *comp;
- 	int ret;
- 
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	comp = dev_priv->hdcp_master;
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	comp = dev_priv->display.hdcp.master;
- 
- 	if (!comp || !comp->ops) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return -EINVAL;
- 	}
- 
- 	ret = comp->ops->close_hdcp_session(comp->mei_dev,
- 					     &dig_port->hdcp_port_data);
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	return ret;
- }
-@@ -2144,10 +2144,10 @@ static int i915_hdcp_component_bind(struct device *i915_kdev,
- 	struct drm_i915_private *dev_priv = kdev_to_i915(i915_kdev);
- 
- 	drm_dbg(&dev_priv->drm, "I915 HDCP comp bind\n");
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	dev_priv->hdcp_master = (struct i915_hdcp_comp_master *)data;
--	dev_priv->hdcp_master->mei_dev = mei_kdev;
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	dev_priv->display.hdcp.master = (struct i915_hdcp_comp_master *)data;
-+	dev_priv->display.hdcp.master->mei_dev = mei_kdev;
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+-	intel_atomic_global_obj_init(dev_priv, &dev_priv->bw_obj,
++	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.bw.obj,
+ 				     &state->base, &intel_bw_funcs);
  
  	return 0;
- }
-@@ -2158,9 +2158,9 @@ static void i915_hdcp_component_unbind(struct device *i915_kdev,
- 	struct drm_i915_private *dev_priv = kdev_to_i915(i915_kdev);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 4a184eac57c3..0ea479b6c0c9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -14,6 +14,7 @@
+ #include "intel_display.h"
+ #include "intel_dmc.h"
+ #include "intel_dpll_mgr.h"
++#include "intel_global_state.h"
+ #include "intel_gmbus.h"
+ #include "intel_pm_types.h"
  
- 	drm_dbg(&dev_priv->drm, "I915 HDCP comp unbind\n");
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	dev_priv->hdcp_master = NULL;
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	dev_priv->display.hdcp.master = NULL;
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- }
+@@ -34,6 +35,12 @@ struct intel_hotplug_funcs;
+ struct intel_initial_plane_config;
+ struct intel_overlay;
  
- static const struct component_ops i915_hdcp_component_ops = {
-@@ -2251,19 +2251,19 @@ void intel_hdcp_component_init(struct drm_i915_private *dev_priv)
- 	if (!is_hdcp2_supported(dev_priv))
- 		return;
++/* Amount of SAGV/QGV points, BSpec precisely defines this */
++#define I915_NUM_QGV_POINTS 8
++
++/* Amount of PSF GV points, BSpec precisely defines this */
++#define I915_NUM_PSF_GV_POINTS 3
++
+ struct intel_display_funcs {
+ 	/*
+ 	 * Returns the active state of the crtc, and if the crtc is active,
+@@ -208,6 +215,20 @@ struct intel_display {
+ 	} funcs;
  
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	drm_WARN_ON(&dev_priv->drm, dev_priv->hdcp_comp_added);
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	drm_WARN_ON(&dev_priv->drm, dev_priv->display.hdcp.comp_added);
+ 	/* Grouping using anonymous structs. Keep sorted. */
++	struct {
++		struct intel_global_obj obj;
++
++		struct intel_bw_info {
++			/* for each QGV point */
++			unsigned int deratedbw[I915_NUM_QGV_POINTS];
++			/* for each PSF GV point */
++			unsigned int psf_bw[I915_NUM_PSF_GV_POINTS];
++			u8 num_qgv_points;
++			u8 num_psf_gv_points;
++			u8 num_planes;
++		} max[6];
++	} bw;
++
+ 	struct {
+ 		/* list of fbdev register on this device */
+ 		struct intel_fbdev *fbdev;
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index 4b30e8228a5e..5010a18fd993 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -30,7 +30,7 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+ 	struct intel_encoder *encoder;
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	struct intel_bw_state *bw_state =
+-		to_intel_bw_state(i915->bw_obj.state);
++		to_intel_bw_state(i915->display.bw.obj.state);
+ 	struct intel_cdclk_state *cdclk_state =
+ 		to_intel_cdclk_state(i915->cdclk.obj.state);
+ 	struct intel_dbuf_state *dbuf_state =
+@@ -535,7 +535,7 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
  
--	dev_priv->hdcp_comp_added = true;
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	dev_priv->display.hdcp.comp_added = true;
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 	ret = component_add_typed(dev_priv->drm.dev, &i915_hdcp_component_ops,
- 				  I915_COMPONENT_HDCP);
- 	if (ret < 0) {
- 		drm_dbg_kms(&dev_priv->drm, "Failed at component add(%d)\n",
- 			    ret);
--		mutex_lock(&dev_priv->hdcp_comp_mutex);
--		dev_priv->hdcp_comp_added = false;
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+		mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+		dev_priv->display.hdcp.comp_added = false;
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return;
- 	}
- }
-@@ -2476,14 +2476,14 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
- 
- void intel_hdcp_component_fini(struct drm_i915_private *dev_priv)
- {
--	mutex_lock(&dev_priv->hdcp_comp_mutex);
--	if (!dev_priv->hdcp_comp_added) {
--		mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
-+	if (!dev_priv->display.hdcp.comp_added) {
-+		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 		return;
- 	}
- 
--	dev_priv->hdcp_comp_added = false;
--	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-+	dev_priv->display.hdcp.comp_added = false;
-+	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
- 
- 	component_del(dev_priv->drm.dev, &i915_hdcp_component_ops);
- }
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 053a7dab5506..e1f77b0973d7 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -338,7 +338,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	mutex_init(&dev_priv->display.audio.mutex);
- 	mutex_init(&dev_priv->display.wm.wm_mutex);
- 	mutex_init(&dev_priv->display.pps.mutex);
--	mutex_init(&dev_priv->hdcp_comp_mutex);
-+	mutex_init(&dev_priv->display.hdcp.comp_mutex);
- 
- 	i915_memcpy_init_early(dev_priv);
- 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+ 	for_each_intel_crtc(&i915->drm, crtc) {
+ 		struct intel_bw_state *bw_state =
+-			to_intel_bw_state(i915->bw_obj.state);
++			to_intel_bw_state(i915->display.bw.obj.state);
+ 		struct intel_crtc_state *crtc_state =
+ 			to_intel_crtc_state(crtc->base.state);
+ 		struct intel_plane *plane;
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 443ed6dac92a..51afb5e744d7 100644
+index 51afb5e744d7..2c63cdb64511 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -538,12 +538,6 @@ struct drm_i915_private {
+@@ -44,7 +44,6 @@
+ #include "display/intel_dsb.h"
+ #include "display/intel_fbc.h"
+ #include "display/intel_frontbuffer.h"
+-#include "display/intel_global_state.h"
+ #include "display/intel_opregion.h"
  
- 	struct i915_drm_clients clients;
+ #include "gem/i915_gem_context_types.h"
+@@ -204,14 +203,8 @@ i915_fence_timeout(const struct drm_i915_private *i915)
+ 	return i915_fence_context_timeout(i915, U64_MAX);
+ }
  
--	struct i915_hdcp_comp_master *hdcp_master;
--	bool hdcp_comp_added;
+-/* Amount of SAGV/QGV points, BSpec precisely defines this */
+-#define I915_NUM_QGV_POINTS 8
 -
--	/* Mutex to protect the above hdcp component related values. */
--	struct mutex hdcp_comp_mutex;
--
- 	/* The TTM device structure. */
- 	struct ttm_device bdev;
+ #define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
  
+-/* Amount of PSF GV points, BSpec precisely defines this */
+-#define I915_NUM_PSF_GV_POINTS 3
+-
+ struct intel_vbt_data {
+ 	/* bdb version */
+ 	u16 version;
+@@ -470,18 +463,6 @@ struct drm_i915_private {
+ 		u8 num_psf_gv_points;
+ 	} dram_info;
+ 
+-	struct intel_bw_info {
+-		/* for each QGV point */
+-		unsigned int deratedbw[I915_NUM_QGV_POINTS];
+-		/* for each PSF GV point */
+-		unsigned int psf_bw[I915_NUM_PSF_GV_POINTS];
+-		u8 num_qgv_points;
+-		u8 num_psf_gv_points;
+-		u8 num_planes;
+-	} max_bw[6];
+-
+-	struct intel_global_obj bw_obj;
+-
+ 	struct intel_runtime_pm runtime_pm;
+ 
+ 	struct i915_perf perf;
 -- 
 2.34.1
 
