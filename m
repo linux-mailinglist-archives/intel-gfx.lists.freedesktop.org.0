@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A57C5A4D9C
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:19:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CB525A4DA0
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:19:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92F2B10F1F0;
-	Mon, 29 Aug 2022 13:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81FBA10F274;
+	Mon, 29 Aug 2022 13:19:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D38310F1E8
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:18:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9487110F1E8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:18:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661779116; x=1693315116;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yeYYq211ZTJOcWYVp/ALbH76ncM1kbhSFQOOWxO67iU=;
- b=E7KRlFwyj7XnWuC5tsdrAc2UHJZYMak6T80ju4z847y4fF63IMsCXDSl
- jiD/Sh0vkB4S9xfkIpoNFy/TLOP/FHLW9J1XPy8DmpYf+CYr5S4w1pMV6
- aIbjhPXbjc+YnOX2bQg/AhHJ61FBk6ekjaqdLMXBfKSAEXfSvlzHX5g/f
- ievOqhIT4A699ZH+9W4h+27dSJvk6OnMZN8P+tu+KK8Bs5xS819aYhtkq
- +U/rIpqKbHaxwcBd2YpHBmHZXUR4rb/jbbP/Aa1jSiqFRDT0hi0rLmSVz
- DFxDd80aSSXFKDtZHfCQXB6kw6h7Ys24ksQx5j2FCaerqteDDIojXdJ4A g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="281861611"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="281861611"
+ t=1661779119; x=1693315119;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KsWmQ9T6wHCJYr86XHKLG6GDsev7Uy4dz1FMzk72l7A=;
+ b=fsiWEvirRPNA3+PKrMP8MltrqgsrbQO12mHsp3FwVfX78eP3wZx3q5r+
+ L0GyYDv21epmM6TfFkuiozKeU6HPAfmjjNaNshG+UA4OVL7aHQC3GkCdz
+ tKgM9gpGo2F2J4Vdfld3zRQVXY5vH35z53koqo2cdNkZTI7GtyOUcqAzC
+ Q7zB9miqvfAt5UoRKq6PSOjgsQune6j6B/zRlRR3rLX1F430YEwFwtaOI
+ /feS6GGQ1N+23G3NoUtzYl+x9/S9GsyCmbeVY4Nl9ze7YIiqy2dorEG1C
+ 3POIW6V7QNjFRFTbtXX864gWFlztNQrc7eltFK4YlEMi7icGUCs3r3YNo A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="281861625"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="281861625"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 06:18:34 -0700
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="640934017"
+ 29 Aug 2022 06:18:39 -0700
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="640934039"
 Received: from idecesar-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.53.198])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 06:18:33 -0700
+ 29 Aug 2022 06:18:37 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 29 Aug 2022 16:18:07 +0300
-Message-Id: <cover.1661779055.git.jani.nikula@intel.com>
+Date: Mon, 29 Aug 2022 16:18:08 +0300
+Message-Id: <1083f5a58cce1507bd19bf7f98bf85e9351b741e.1661779055.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1661779055.git.jani.nikula@intel.com>
+References: <cover.1661779055.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 00/18] drm/i915: add display sub-struct to
- drm_i915_private
+Subject: [Intel-gfx] [PATCH v3 01/18] drm/i915: move and group hdcp under
+ display.hdcp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,86 +58,436 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v3 of https://patchwork.freedesktop.org/series/107170/
+Move display hdcp related members under drm_i915_private display
+sub-struct.
 
-Dropped already merged patches, rebased the rest.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ .../gpu/drm/i915/display/intel_display_core.h |   9 ++
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 134 +++++++++---------
+ drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   6 -
+ 4 files changed, 77 insertions(+), 74 deletions(-)
 
-Jani Nikula (18):
-  drm/i915: move and group hdcp under display.hdcp
-  drm/i915: move and group max_bw and bw_obj under display.bw
-  drm/i915: move opregion to display.opregion
-  drm/i915: move and group cdclk under display.cdclk
-  drm/i915: move backlight to display.backlight
-  drm/i915: move mipi_mmio_base to display.dsi
-  drm/i915: move vbt to display.vbt
-  drm/i915: move fbc to display.fbc
-  drm/i915: move and group power related members under display.power
-  drm/i915: move and group fdi members under display.fdi
-  drm/i915: move fb_tracking under display sub-struct
-  drm/i915: move dbuf under display sub-struct
-  drm/i915: move and group modeset_wq and flip_wq under display.wq
-  drm/i915/quirks: abstract checking for display quirks
-  drm/i915/quirks: abstract quirks further by making quirk ids an enum
-  drm/i915: move quirks under display sub-struct
-  drm/i915: move atomic_helper under display sub-struct
-  drm/i915: move and group properties under display.properties
-
- drivers/gpu/drm/i915/display/hsw_ips.c        |   2 +-
- drivers/gpu/drm/i915/display/i9xx_plane.c     |   2 +-
- drivers/gpu/drm/i915/display/intel_atomic.c   |   8 +-
- drivers/gpu/drm/i915/display/intel_audio.c    |   6 +-
- .../gpu/drm/i915/display/intel_backlight.c    |  41 ++--
- drivers/gpu/drm/i915/display/intel_bios.c     | 216 +++++++++---------
- drivers/gpu/drm/i915/display/intel_bw.c       |  42 ++--
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 206 ++++++++---------
- drivers/gpu/drm/i915/display/intel_cdclk.h    |   4 +-
- .../gpu/drm/i915/display/intel_connector.c    |   8 +-
- drivers/gpu/drm/i915/display/intel_crt.c      |   8 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  56 ++---
- .../gpu/drm/i915/display/intel_display_core.h | 155 +++++++++++++
- .../drm/i915/display/intel_display_debugfs.c  |  10 +-
- .../drm/i915/display/intel_display_power.c    | 122 +++++-----
- .../i915/display/intel_display_power_map.c    |   4 +-
- .../i915/display/intel_display_power_well.c   |  60 ++---
- .../i915/display/intel_display_power_well.h   |  12 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
- drivers/gpu/drm/i915/display/intel_dp_aux.c   |   2 +-
- drivers/gpu/drm/i915/display/intel_dpio_phy.c |   2 +-
- drivers/gpu/drm/i915/display/intel_dpll.c     |  14 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  22 +-
- drivers/gpu/drm/i915/display/intel_dsi.c      |   2 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      |   6 +-
- drivers/gpu/drm/i915/display/intel_fdi.c      |  10 +-
- .../gpu/drm/i915/display/intel_frontbuffer.c  |  54 ++---
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 134 +++++------
- drivers/gpu/drm/i915/display/intel_lvds.c     |   4 +-
- .../drm/i915/display/intel_modeset_setup.c    |  12 +-
- drivers/gpu/drm/i915/display/intel_opregion.c |  42 ++--
- drivers/gpu/drm/i915/display/intel_panel.c    |   5 +-
- .../gpu/drm/i915/display/intel_pch_refclk.c   |   2 +-
- drivers/gpu/drm/i915/display/intel_pps.c      |   3 +-
- drivers/gpu/drm/i915/display/intel_quirks.c   |  22 +-
- drivers/gpu/drm/i915/display/intel_quirks.h   |  14 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |  18 +-
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |   8 +-
- .../drm/i915/display/skl_universal_plane.c    |   2 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c        |   4 +-
- drivers/gpu/drm/i915/display/vlv_dsi_regs.h   | 188 +++++++--------
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |   4 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |   2 +-
- drivers/gpu/drm/i915/i915_driver.c            |   4 +-
- drivers/gpu/drm/i915/i915_drv.h               | 153 +------------
- drivers/gpu/drm/i915/i915_gem.c               |   2 +-
- drivers/gpu/drm/i915/i915_irq.c               |   2 +-
- drivers/gpu/drm/i915/intel_pm.c               |  16 +-
- drivers/gpu/drm/i915/intel_pm.h               |   4 +-
- 50 files changed, 885 insertions(+), 843 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index fbe329e90c1e..4a184eac57c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -19,6 +19,7 @@
+ 
+ struct drm_i915_private;
+ struct i915_audio_component;
++struct i915_hdcp_comp_master;
+ struct intel_atomic_state;
+ struct intel_audio_funcs;
+ struct intel_cdclk_funcs;
+@@ -231,6 +232,14 @@ struct intel_display {
+ 		wait_queue_head_t wait_queue;
+ 	} gmbus;
+ 
++	struct {
++		struct i915_hdcp_comp_master *master;
++		bool comp_added;
++
++		/* Mutex to protect the above hdcp component related values. */
++		struct mutex comp_mutex;
++	} hdcp;
++
+ 	struct {
+ 		u32 mmio_base;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 638495991c49..6406fd487ee5 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -210,12 +210,12 @@ bool intel_hdcp2_capable(struct intel_connector *connector)
+ 		return false;
+ 
+ 	/* MEI interface is solid */
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	if (!dev_priv->hdcp_comp_added ||  !dev_priv->hdcp_master) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	if (!dev_priv->display.hdcp.comp_added ||  !dev_priv->display.hdcp.master) {
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return false;
+ 	}
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	/* Sink's capability for HDCP2.2 */
+ 	hdcp->shim->hdcp_2_2_capable(dig_port, &capable);
+@@ -1146,11 +1146,11 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1158,7 +1158,7 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
+ 	if (ret)
+ 		drm_dbg_kms(&dev_priv->drm, "Prepare_ake_init failed. %d\n",
+ 			    ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1176,11 +1176,11 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1190,7 +1190,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
+ 	if (ret < 0)
+ 		drm_dbg_kms(&dev_priv->drm, "Verify rx_cert failed. %d\n",
+ 			    ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1204,18 +1204,18 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+ 	ret = comp->ops->verify_hprime(comp->mei_dev, data, rx_hprime);
+ 	if (ret < 0)
+ 		drm_dbg_kms(&dev_priv->drm, "Verify hprime failed. %d\n", ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1230,11 +1230,11 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1242,7 +1242,7 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
+ 	if (ret < 0)
+ 		drm_dbg_kms(&dev_priv->drm, "Store pairing info failed. %d\n",
+ 			    ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1257,11 +1257,11 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1269,7 +1269,7 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
+ 	if (ret < 0)
+ 		drm_dbg_kms(&dev_priv->drm, "Prepare lc_init failed. %d\n",
+ 			    ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1284,11 +1284,11 @@ hdcp2_verify_lprime(struct intel_connector *connector,
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1296,7 +1296,7 @@ hdcp2_verify_lprime(struct intel_connector *connector,
+ 	if (ret < 0)
+ 		drm_dbg_kms(&dev_priv->drm, "Verify L_Prime failed. %d\n",
+ 			    ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1310,11 +1310,11 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1322,7 +1322,7 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
+ 	if (ret < 0)
+ 		drm_dbg_kms(&dev_priv->drm, "Get session key failed. %d\n",
+ 			    ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1339,11 +1339,11 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1353,7 +1353,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
+ 	if (ret < 0)
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Verify rep topology failed. %d\n", ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1368,18 +1368,18 @@ hdcp2_verify_mprime(struct intel_connector *connector,
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+ 	ret = comp->ops->verify_mprime(comp->mei_dev, data, stream_ready);
+ 	if (ret < 0)
+ 		drm_dbg_kms(&dev_priv->drm, "Verify mprime failed. %d\n", ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1392,11 +1392,11 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1404,7 +1404,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
+ 	if (ret < 0)
+ 		drm_dbg_kms(&dev_priv->drm, "Enable hdcp auth failed. %d\n",
+ 			    ret);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -1416,17 +1416,17 @@ static int hdcp2_close_mei_session(struct intel_connector *connector)
+ 	struct i915_hdcp_comp_master *comp;
+ 	int ret;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	comp = dev_priv->hdcp_master;
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	comp = dev_priv->display.hdcp.master;
+ 
+ 	if (!comp || !comp->ops) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return -EINVAL;
+ 	}
+ 
+ 	ret = comp->ops->close_hdcp_session(comp->mei_dev,
+ 					     &dig_port->hdcp_port_data);
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return ret;
+ }
+@@ -2144,10 +2144,10 @@ static int i915_hdcp_component_bind(struct device *i915_kdev,
+ 	struct drm_i915_private *dev_priv = kdev_to_i915(i915_kdev);
+ 
+ 	drm_dbg(&dev_priv->drm, "I915 HDCP comp bind\n");
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	dev_priv->hdcp_master = (struct i915_hdcp_comp_master *)data;
+-	dev_priv->hdcp_master->mei_dev = mei_kdev;
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	dev_priv->display.hdcp.master = (struct i915_hdcp_comp_master *)data;
++	dev_priv->display.hdcp.master->mei_dev = mei_kdev;
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	return 0;
+ }
+@@ -2158,9 +2158,9 @@ static void i915_hdcp_component_unbind(struct device *i915_kdev,
+ 	struct drm_i915_private *dev_priv = kdev_to_i915(i915_kdev);
+ 
+ 	drm_dbg(&dev_priv->drm, "I915 HDCP comp unbind\n");
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	dev_priv->hdcp_master = NULL;
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	dev_priv->display.hdcp.master = NULL;
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ }
+ 
+ static const struct component_ops i915_hdcp_component_ops = {
+@@ -2251,19 +2251,19 @@ void intel_hdcp_component_init(struct drm_i915_private *dev_priv)
+ 	if (!is_hdcp2_supported(dev_priv))
+ 		return;
+ 
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	drm_WARN_ON(&dev_priv->drm, dev_priv->hdcp_comp_added);
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	drm_WARN_ON(&dev_priv->drm, dev_priv->display.hdcp.comp_added);
+ 
+-	dev_priv->hdcp_comp_added = true;
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	dev_priv->display.hdcp.comp_added = true;
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 	ret = component_add_typed(dev_priv->drm.dev, &i915_hdcp_component_ops,
+ 				  I915_COMPONENT_HDCP);
+ 	if (ret < 0) {
+ 		drm_dbg_kms(&dev_priv->drm, "Failed at component add(%d)\n",
+ 			    ret);
+-		mutex_lock(&dev_priv->hdcp_comp_mutex);
+-		dev_priv->hdcp_comp_added = false;
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++		mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++		dev_priv->display.hdcp.comp_added = false;
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return;
+ 	}
+ }
+@@ -2476,14 +2476,14 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+ 
+ void intel_hdcp_component_fini(struct drm_i915_private *dev_priv)
+ {
+-	mutex_lock(&dev_priv->hdcp_comp_mutex);
+-	if (!dev_priv->hdcp_comp_added) {
+-		mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
++	if (!dev_priv->display.hdcp.comp_added) {
++		mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 		return;
+ 	}
+ 
+-	dev_priv->hdcp_comp_added = false;
+-	mutex_unlock(&dev_priv->hdcp_comp_mutex);
++	dev_priv->display.hdcp.comp_added = false;
++	mutex_unlock(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	component_del(dev_priv->drm.dev, &i915_hdcp_component_ops);
+ }
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 053a7dab5506..e1f77b0973d7 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -338,7 +338,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	mutex_init(&dev_priv->display.audio.mutex);
+ 	mutex_init(&dev_priv->display.wm.wm_mutex);
+ 	mutex_init(&dev_priv->display.pps.mutex);
+-	mutex_init(&dev_priv->hdcp_comp_mutex);
++	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+ 
+ 	i915_memcpy_init_early(dev_priv);
+ 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 443ed6dac92a..51afb5e744d7 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -538,12 +538,6 @@ struct drm_i915_private {
+ 
+ 	struct i915_drm_clients clients;
+ 
+-	struct i915_hdcp_comp_master *hdcp_master;
+-	bool hdcp_comp_added;
+-
+-	/* Mutex to protect the above hdcp component related values. */
+-	struct mutex hdcp_comp_mutex;
+-
+ 	/* The TTM device structure. */
+ 	struct ttm_device bdev;
+ 
 -- 
 2.34.1
 
