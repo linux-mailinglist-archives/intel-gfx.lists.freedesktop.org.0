@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C3575A4DD4
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A685A4E0F
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:29:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 461BA10F275;
-	Mon, 29 Aug 2022 13:23:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2534010F299;
+	Mon, 29 Aug 2022 13:29:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D7C710F264;
- Mon, 29 Aug 2022 13:23:09 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED8910F299
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:29:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661779389; x=1693315389;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Fo0q1Thz44Zw2DSnCdr8UcpTq33mu38Pj5p1/bQ/+H4=;
- b=YrUPQLBBU/46TvxqojZF4m8ekWCtVD9aTqI1pOSQuUODdieFiES9yFxB
- mT0nMB9xmMrT6JL2zBcs0y9EONZMbHUVvayj7yAiEYGQJIut8ht1p6fkW
- zdrnK+hjsjproty5vswVBCTdW60pp7dt8Gnvbud5EDNzr6ndFnWcEF0iz
- Jn9HgW3G7WZIumcPe1Q9asvy18cPIUUKER6UgD0JHoH0JU2ROsD+PWCJb
- t0Rv5Ep4m9OkDCCBAnZacoL9T9RTa8YvfBmjEUNro/8huLaTDuiSjyu7t
- U3kH0+pZIeiYY73tXSd6Lv/WG0vfp6IZzSh6EgQEFRHf6uN3G/nnJZjCa w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="293635244"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="293635244"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 06:23:08 -0700
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="737327873"
+ t=1661779763; x=1693315763;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=WrS3ginx1HN8Png9CY5uy2auOC6OSTrRxaxIbDkXrTw=;
+ b=IXyDUiDd8r9H/jPf4N0p3LP58KdR4Tm5EIKVDS0sNl7r+6Ku1OmedU2y
+ kk7Ti/ojTRB/qCpExQ4jXT5jcm++/Gq45cuULuo2TrSTIBBATD6Rk6vsC
+ nO3vTm2UDmLKcCnE4RYfkM9IrIorCNWUAmlNZjv2u192wIRoy8ZN71Gt4
+ AhJXCTQhpVsWkGradxM7PGdYduBtXYHvzzkUbnfCoGsDcZJuKgWKBkQf6
+ 60+we29pzSb6sQlyeMkTYZh1D02xBAUYKkx+heSGWZRTdbRRE6m4EGOnc
+ +bCQOUgI7R9GehEc9skX6jtEvrEesOIJefWD/rADb50+zjGMqzj4gknEE Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="295668623"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="295668623"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 06:29:11 -0700
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="856714024"
 Received: from idecesar-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.53.198])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 06:23:04 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 06:29:10 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220823090128.488008-3-maarten.lankhorst@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Mon, 29 Aug 2022 16:22:57 +0300
-Message-ID: <87k06rfaku.fsf@intel.com>
+References: <20220823090128.488008-1-maarten.lankhorst@linux.intel.com>
+ <20220823090128.488008-3-maarten.lankhorst@linux.intel.com>
+Date: Mon, 29 Aug 2022 16:29:03 +0300
+Message-ID: <87h71vfaao.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [PULL] drm-intel-next
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Remove uncore from intel_tc.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,330 +57,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 23 Aug 2022, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
+> Use the intel_de macro's instead of referencing uncore directly.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Hi Dave & Daniel -
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-drm-intel-next-2022-08-29:
-drm/i915 feature pull for v6.1:
+> ---
+>  drivers/gpu/drm/i915/display/intel_tc.c | 55 ++++++++-----------------
+>  1 file changed, 18 insertions(+), 37 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+> index 6773840f6cc7..4ee69821728d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+> +#include "intel_de.h"
+>  #include "intel_display.h"
+>  #include "intel_display_power_map.h"
+>  #include "intel_display_types.h"
+> @@ -119,11 +120,9 @@ assert_tc_cold_blocked(struct intel_digital_port *dig_port)
+>  u32 intel_tc_port_get_lane_mask(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	u32 lane_mask;
+>  
+> -	lane_mask = intel_uncore_read(uncore,
+> -				      PORT_TX_DFLEXDPSP(dig_port->tc_phy_fia));
+> +	lane_mask = intel_de_read(i915, PORT_TX_DFLEXDPSP(dig_port->tc_phy_fia));
+>  
+>  	drm_WARN_ON(&i915->drm, lane_mask == 0xffffffff);
+>  	assert_tc_cold_blocked(dig_port);
+> @@ -135,11 +134,9 @@ u32 intel_tc_port_get_lane_mask(struct intel_digital_port *dig_port)
+>  u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	u32 pin_mask;
+>  
+> -	pin_mask = intel_uncore_read(uncore,
+> -				     PORT_TX_DFLEXPA1(dig_port->tc_phy_fia));
+> +	pin_mask = intel_de_read(i915, PORT_TX_DFLEXPA1(dig_port->tc_phy_fia));
+>  
+>  	drm_WARN_ON(&i915->drm, pin_mask == 0xffffffff);
+>  	assert_tc_cold_blocked(dig_port);
+> @@ -185,7 +182,6 @@ void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>  	bool lane_reversal = dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	u32 val;
+>  
+>  	drm_WARN_ON(&i915->drm,
+> @@ -193,8 +189,7 @@ void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
+>  
+>  	assert_tc_cold_blocked(dig_port);
+>  
+> -	val = intel_uncore_read(uncore,
+> -				PORT_TX_DFLEXDPMLE1(dig_port->tc_phy_fia));
+> +	val = intel_de_read(i915, PORT_TX_DFLEXDPMLE1(dig_port->tc_phy_fia));
+>  	val &= ~DFLEXDPMLE1_DPMLETC_MASK(dig_port->tc_phy_fia_idx);
+>  
+>  	switch (required_lanes) {
+> @@ -215,8 +210,7 @@ void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
+>  		MISSING_CASE(required_lanes);
+>  	}
+>  
+> -	intel_uncore_write(uncore,
+> -			   PORT_TX_DFLEXDPMLE1(dig_port->tc_phy_fia), val);
+> +	intel_de_write(i915, PORT_TX_DFLEXDPMLE1(dig_port->tc_phy_fia), val);
+>  }
+>  
+>  static void tc_port_fixup_legacy_flag(struct intel_digital_port *dig_port,
+> @@ -245,13 +239,11 @@ static void tc_port_fixup_legacy_flag(struct intel_digital_port *dig_port,
+>  static u32 icl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	u32 isr_bit = i915->hotplug.pch_hpd[dig_port->base.hpd_pin];
+>  	u32 mask = 0;
+>  	u32 val;
+>  
+> -	val = intel_uncore_read(uncore,
+> -				PORT_TX_DFLEXDPSP(dig_port->tc_phy_fia));
+> +	val = intel_de_read(i915, PORT_TX_DFLEXDPSP(dig_port->tc_phy_fia));
+>  
+>  	if (val == 0xffffffff) {
+>  		drm_dbg_kms(&i915->drm,
+> @@ -265,7 +257,7 @@ static u32 icl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
+>  	if (val & TC_LIVE_STATE_TC(dig_port->tc_phy_fia_idx))
+>  		mask |= BIT(TC_PORT_DP_ALT);
+>  
+> -	if (intel_uncore_read(uncore, SDEISR) & isr_bit)
+> +	if (intel_de_read(i915, SDEISR) & isr_bit)
+>  		mask |= BIT(TC_PORT_LEGACY);
+>  
+>  	/* The sink can be connected only in a single mode. */
+> @@ -280,7 +272,6 @@ static u32 adl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>  	enum tc_port tc_port = intel_port_to_tc(i915, dig_port->base.port);
+>  	u32 isr_bit = i915->hotplug.pch_hpd[dig_port->base.hpd_pin];
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	u32 val, mask = 0;
+>  
+>  	/*
+> @@ -288,13 +279,13 @@ static u32 adl_tc_port_live_status_mask(struct intel_digital_port *dig_port)
+>  	 * registers in IOM. Note that this doesn't apply to PHY and FIA
+>  	 * registers.
+>  	 */
+> -	val = intel_uncore_read(uncore, TCSS_DDI_STATUS(tc_port));
+> +	val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
+>  	if (val & TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT)
+>  		mask |= BIT(TC_PORT_DP_ALT);
+>  	if (val & TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT)
+>  		mask |= BIT(TC_PORT_TBT_ALT);
+>  
+> -	if (intel_uncore_read(uncore, SDEISR) & isr_bit)
+> +	if (intel_de_read(i915, SDEISR) & isr_bit)
+>  		mask |= BIT(TC_PORT_LEGACY);
+>  
+>  	/* The sink can be connected only in a single mode. */
+> @@ -325,11 +316,9 @@ static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port)
+>  static bool icl_tc_phy_status_complete(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	u32 val;
+>  
+> -	val = intel_uncore_read(uncore,
+> -				PORT_TX_DFLEXDPPMS(dig_port->tc_phy_fia));
+> +	val = intel_de_read(i915, PORT_TX_DFLEXDPPMS(dig_port->tc_phy_fia));
+>  	if (val == 0xffffffff) {
+>  		drm_dbg_kms(&i915->drm,
+>  			    "Port %s: PHY in TCCOLD, assuming not complete\n",
+> @@ -351,10 +340,9 @@ static bool adl_tc_phy_status_complete(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>  	enum tc_port tc_port = intel_port_to_tc(i915, dig_port->base.port);
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	u32 val;
+>  
+> -	val = intel_uncore_read(uncore, TCSS_DDI_STATUS(tc_port));
+> +	val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
+>  	if (val == 0xffffffff) {
+>  		drm_dbg_kms(&i915->drm,
+>  			    "Port %s: PHY in TCCOLD, assuming not complete\n",
+> @@ -379,11 +367,9 @@ static bool icl_tc_phy_take_ownership(struct intel_digital_port *dig_port,
+>  				      bool take)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	u32 val;
+>  
+> -	val = intel_uncore_read(uncore,
+> -				PORT_TX_DFLEXDPCSSS(dig_port->tc_phy_fia));
+> +	val = intel_de_read(i915, PORT_TX_DFLEXDPCSSS(dig_port->tc_phy_fia));
+>  	if (val == 0xffffffff) {
+>  		drm_dbg_kms(&i915->drm,
+>  			    "Port %s: PHY in TCCOLD, can't %s ownership\n",
+> @@ -396,8 +382,7 @@ static bool icl_tc_phy_take_ownership(struct intel_digital_port *dig_port,
+>  	if (take)
+>  		val |= DP_PHY_MODE_STATUS_NOT_SAFE(dig_port->tc_phy_fia_idx);
+>  
+> -	intel_uncore_write(uncore,
+> -			   PORT_TX_DFLEXDPCSSS(dig_port->tc_phy_fia), val);
+> +	intel_de_write(i915, PORT_TX_DFLEXDPCSSS(dig_port->tc_phy_fia), val);
+>  
+>  	return true;
+>  }
+> @@ -406,16 +391,15 @@ static bool adl_tc_phy_take_ownership(struct intel_digital_port *dig_port,
+>  				      bool take)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	enum port port = dig_port->base.port;
+>  	u32 val;
+>  
+> -	val = intel_uncore_read(uncore, DDI_BUF_CTL(port));
+> +	val = intel_de_read(i915, DDI_BUF_CTL(port));
+>  	if (take)
+>  		val |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+>  	else
+>  		val &= ~DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> -	intel_uncore_write(uncore, DDI_BUF_CTL(port), val);
+> +	intel_de_write(i915, DDI_BUF_CTL(port), val);
+>  
+>  	return true;
+>  }
+> @@ -433,11 +417,9 @@ static bool tc_phy_take_ownership(struct intel_digital_port *dig_port, bool take
+>  static bool icl_tc_phy_is_owned(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	u32 val;
+>  
+> -	val = intel_uncore_read(uncore,
+> -				PORT_TX_DFLEXDPCSSS(dig_port->tc_phy_fia));
+> +	val = intel_de_read(i915, PORT_TX_DFLEXDPCSSS(dig_port->tc_phy_fia));
+>  	if (val == 0xffffffff) {
+>  		drm_dbg_kms(&i915->drm,
+>  			    "Port %s: PHY in TCCOLD, assume safe mode\n",
+> @@ -451,11 +433,10 @@ static bool icl_tc_phy_is_owned(struct intel_digital_port *dig_port)
+>  static bool adl_tc_phy_is_owned(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	struct intel_uncore *uncore = &i915->uncore;
+>  	enum port port = dig_port->base.port;
+>  	u32 val;
+>  
+> -	val = intel_uncore_read(uncore, DDI_BUF_CTL(port));
+> +	val = intel_de_read(i915, DDI_BUF_CTL(port));
+>  	return val & DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+>  }
+>  
+> @@ -877,7 +858,7 @@ tc_has_modular_fia(struct drm_i915_private *i915, struct intel_digital_port *dig
+>  
+>  	mutex_lock(&dig_port->tc_lock);
+>  	wakeref = tc_cold_block(dig_port, &domain);
+> -	val = intel_uncore_read(&i915->uncore, PORT_TX_DFLEXDPSP(FIA1));
+> +	val = intel_de_read(i915, PORT_TX_DFLEXDPSP(FIA1));
+>  	tc_cold_unblock(dig_port, domain, wakeref);
+>  	mutex_unlock(&dig_port->tc_lock);
 
-Features and functionality:
-- Early Meteorlake (MTL) enabling (Jos=C3=A9, Radhakrishna, Clint, Imre, Va=
-ndita, Ville, Jani)
-- Support more HDMI pixel clock frequencies on DG2 (Clint)
-- Sanity check PCI BARs (Piotr Pi=C3=B3rkowski)
-- Enable DC5 on DG2 (Anusha)
-- DG2 DMC firmware version bump to v2.07 (Madhumitha)
-- New ADL-S PCI ID (Jos=C3=A9)
-
-Refactoring and cleanups:
-- Add display sub-struct to struct drm_i915_private (Jani)
-- Add initial runtime info to device info (Jani)
-- Split out HDCP and backlight registers to separate files (Jani)
-
-Fixes:
-- Skip wm/ddb readout for disabled pipes (Ville)
-- HDMI port timing quirk for GLK ECS Liva Q2 (Diego Santa Cruz)
-- Fix bw init null pointer dereference (=C5=81ukasz Bartosik)
-- Disable PPS power hook for DP AUX backlight (Jouni)
-- Avoid warnings on registering multiple backlight devices (Arun)
-- Fix dual-link DSI backlight and CABC ports for display 11+ (Jani)
-- Fix Type-C PHY ownership programming in HDMI legacy mode (Imre)
-- Fix unclaimed register access while loading PIPEDMC-C/D (Imre)
-- Bump up CDCLK for DG2 (Stan)
-- Prune modes that require HDMI 2.1 FRL (Ankit)
-- Disable FBC when PSR1 is enabled in display 12-13 (Matt)
-- Fix TGL+ HDMI transcoder clock and DDI BUF disable order (Imre)
-- Disable PSR before disable pipe (Jos=C3=A9)
-- Disable DMC handlers during firmware loading/disabling on display 12+ (Im=
-re)
-- Disable clock gating for PIPEDMC-A/B as a workaround (Imre)
-
-Merges:
-- Two drm-next backmerges (Rodrigo, Jani)
-
-BR,
-Jani.
-
-The following changes since commit 2c2d7a67defa198a8b8148dbaddc9e5554efebc8:
-
-  Merge tag 'drm-intel-gt-next-2022-08-24' of git://anongit.freedesktop.org=
-/drm/drm-intel into drm-next (2022-08-26 10:03:43 +1000)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-2022-08-29
-
-for you to fetch changes up to 917bda9ab155032a02be1a57ebd4d949ae9e1528:
-
-  Merge drm/drm-next into drm-intel-next (2022-08-29 15:14:59 +0300)
-
-----------------------------------------------------------------
-drm/i915 feature pull for v6.1:
-
-Features and functionality:
-- Early Meteorlake (MTL) enabling (Jos=C3=A9, Radhakrishna, Clint, Imre, Va=
-ndita, Ville, Jani)
-- Support more HDMI pixel clock frequencies on DG2 (Clint)
-- Sanity check PCI BARs (Piotr Pi=C3=B3rkowski)
-- Enable DC5 on DG2 (Anusha)
-- DG2 DMC firmware version bump to v2.07 (Madhumitha)
-- New ADL-S PCI ID (Jos=C3=A9)
-
-Refactoring and cleanups:
-- Add display sub-struct to struct drm_i915_private (Jani)
-- Add initial runtime info to device info (Jani)
-- Split out HDCP and backlight registers to separate files (Jani)
-
-Fixes:
-- Skip wm/ddb readout for disabled pipes (Ville)
-- HDMI port timing quirk for GLK ECS Liva Q2 (Diego Santa Cruz)
-- Fix bw init null pointer dereference (=C5=81ukasz Bartosik)
-- Disable PPS power hook for DP AUX backlight (Jouni)
-- Avoid warnings on registering multiple backlight devices (Arun)
-- Fix dual-link DSI backlight and CABC ports for display 11+ (Jani)
-- Fix Type-C PHY ownership programming in HDMI legacy mode (Imre)
-- Fix unclaimed register access while loading PIPEDMC-C/D (Imre)
-- Bump up CDCLK for DG2 (Stan)
-- Prune modes that require HDMI 2.1 FRL (Ankit)
-- Disable FBC when PSR1 is enabled in display 12-13 (Matt)
-- Fix TGL+ HDMI transcoder clock and DDI BUF disable order (Imre)
-- Disable PSR before disable pipe (Jos=C3=A9)
-- Disable DMC handlers during firmware loading/disabling on display 12+ (Im=
-re)
-- Disable clock gating for PIPEDMC-A/B as a workaround (Imre)
-
-Merges:
-- Two drm-next backmerges (Rodrigo, Jani)
-
-----------------------------------------------------------------
-Ankit Nautiyal (1):
-      drm/i915/hdmi: Prune modes that require HDMI2.1 FRL
-
-Anusha Srivatsa (3):
-      drm/i915/display: Cleanup intel_phy_is_combo()
-      drm/i915: Pass drm_i915_private struct instead of gt for gen11_gu_mis=
-c_irq_handler/ack()
-      drm/i915/dg2: Add support for DC5 state
-
-Arun R Murthy (1):
-      drm/i915/display: avoid warnings when registering dual panel backlight
-
-Bo Liu (1):
-      drm/i915/irq: Fix a "the the" typo
-
-Clint Taylor (1):
-      drm/i915/mtl: Fix rawclk for Meteorlake PCH
-
-Diego Santa Cruz (1):
-      drm/i915/glk: ECS Liva Q2 needs GLK HDMI port timing quirk
-
-Imre Deak (6):
-      drm/i915/tgl+: Fix HDMI transcoder clock vs. DDI BUF disabling order
-      drm/i915/d12+: Disable DMC handlers during loading/disabling the firm=
-ware
-      drm/i915/d13: Add Wa_16015201720 disabling clock gating for PIPEDMC-A=
-/B
-      drm/i915/xelpd: Fix unclaimed accesses while loading PIPEDMC-C/D
-      drm/i915/tc: Fix PHY ownership programming in HDMI legacy mode
-      drm/i915/mtl: Add VBT port and AUX_CH mapping
-
-Jani Nikula (42):
-      drm/i915/hdcp: split out hdcp registers to a separate file
-      drm/i915/hdcp: replace BIT() with REG_BIT() in register definitions
-      drm/i915/backlight: split out backlight registers to a separate file
-      drm/i915/dsi: filter invalid backlight and CABC ports
-      drm/i915/dsi: fix dual-link DSI backlight and CABC ports for display =
-11+
-      drm/i915/dsi: use VBT backlight and CABC port definitions directly
-      drm/i915/mtl: Meteorlake and later support DP 2.0
-      drm/i915/utils: remove unused KBps/MBps/GBps macros
-      drm/i915: combine device info printing into one
-      drm/i915: add initial runtime info into device info
-      drm/i915: move graphics.ver and graphics.rel to runtime info
-      drm/i915: move fbc_mask to runtime info
-      drm/i915: move page_sizes to runtime info
-      drm/i915: move ppgtt_type and ppgtt_size to runtime info
-      drm/i915: move has_pooled_eu to runtime info
-      drm/i915: move memory_regions to runtime info
-      drm/i915: move platform_engine_mask to runtime info
-      drm/i915: move pipe_mask and cpu_transcoder_mask to runtime info
-      drm/i915: move has_hdcp to runtime info
-      drm/i915: move has_dmc to runtime info
-      drm/i915: move has_dsc to runtime info
-      drm/i915: add display sub-struct to drm_i915_private
-      drm/i915: move cdclk_funcs to display.funcs
-      drm/i915: move dpll_funcs to display.funcs
-      drm/i915: move hotplug_funcs to display.funcs
-      drm/i915: move wm_disp funcs to display.funcs
-      drm/i915: move fdi_funcs to display.funcs
-      drm/i915: move color_funcs to display.funcs
-      drm/i915: move and group gmbus members under display.gmbus
-      drm/i915: move and group pps members under display.pps
-      drm/i915: move dmc to display.dmc
-      drm/i915: move and split audio under display.audio and display.funcs
-      drm/i915: move dpll under display.dpll
-      drm/i915: move and group fbdev under display.fbdev
-      drm/i915: move wm to display.wm
-      drm/i915: move hotplug to display.hotplug
-      drm/i915: move overlay to display.overlay
-      drm/i915: move and group sagv under display.sagv
-      drm/i915/vrr: drop window2_delay member from i915
-      drm/i915: move INTEL_FRONTBUFFER_* macros to intel_frontbuffer.h
-      drm/i915: split gem quirks from display quirks
-      Merge drm/drm-next into drm-intel-next
-
-Jos=C3=A9 Roberto de Souza (4):
-      Revert "drm/i915/display: Ensure PSR gets disabled if no encoders in =
-new state"
-      drm/i915/psr: Disable PSR before disable pipe
-      drm/i915/display/mtl: Extend MBUS programming
-      drm/i915: Add new ADL-S pci id
-
-Jouni H=C3=B6gander (2):
-      drm/i915/display: Ensure PSR gets disabled if no encoders in new state
-      drm/i915/backlight: Disable pps power hook for aux based backlight
-
-Madhumitha Tolakanahalli Pradeep (1):
-      drm/i915/dmc: Update DG2 DMC firmware to v2.07
-
-Matt Roper (1):
-      drm/i915: Add Wa_14016291713
-
-Piotr Pi=C3=B3rkowski (2):
-      drm/i915: Use of BARs names instead of numbers
-      drm/i915: Sanitycheck PCI BARs
-
-Radhakrishna Sripada (6):
-      drm/i915/mtl: Add PCH support
-      drm/i915/mtl: Add support for MTL in Display Init sequences
-      drm/i915: Extract wm latency adjustment to its own function
-      drm/i915/mtl: memory latency data from LATENCY_LPX_LPY for WM
-      drm/i915/mtl: Update memory bandwidth parameters
-      drm/i915/mtl: Reuse adl-p DBUF calculations
-
-Rodrigo Vivi (1):
-      Merge drm/drm-next into drm-intel-next
-
-Stanislav Lisovskiy (1):
-      drm/i915/dg2: Bump up CDCLK for DG2
-
-Swati Sharma (1):
-      drm/i915/display: Add debug print for scaler filter
-
-Taylor, Clinton A (1):
-      drm/i915/dg2: Add additional HDMI pixel clock frequencies
-
-Vandita Kulkarni (2):
-      drm/i915/dsc/mtl: Update the DSC minor version
-      drm/i915/dsc/mtl: Enable alternate ICH method
-
-Ville Syrj=C3=A4l=C3=A4 (2):
-      drm/i915/mtl: Introduce FBC B
-      drm/i915: Skip wm/ddb readout for disabled pipes
-
-=C5=81ukasz Bartosik (1):
-      drm/i915: fix null pointer dereference
-
- drivers/gpu/drm/i915/display/g4x_dp.c              |    4 +-
- drivers/gpu/drm/i915/display/icl_dsi.c             |   20 +-
- drivers/gpu/drm/i915/display/intel_audio.c         |   96 +-
- drivers/gpu/drm/i915/display/intel_backlight.c     |   38 +-
- .../gpu/drm/i915/display/intel_backlight_regs.h    |  124 +++
- drivers/gpu/drm/i915/display/intel_bios.c          |   24 +-
- drivers/gpu/drm/i915/display/intel_bw.c            |   66 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c         |   87 +-
- drivers/gpu/drm/i915/display/intel_color.c         |   34 +-
- .../gpu/drm/i915/display/intel_crtc_state_dump.c   |    9 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           |   46 +-
- drivers/gpu/drm/i915/display/intel_display.c       |   82 +-
- drivers/gpu/drm/i915/display/intel_display.h       |    4 +-
- drivers/gpu/drm/i915/display/intel_display_core.h  |  261 +++++
- .../gpu/drm/i915/display/intel_display_debugfs.c   |   55 +-
- drivers/gpu/drm/i915/display/intel_display_power.c |   29 +-
- .../drm/i915/display/intel_display_power_well.c    |   19 +-
- drivers/gpu/drm/i915/display/intel_dmc.c           |  142 ++-
- drivers/gpu/drm/i915/display/intel_dmc.h           |    1 +
- drivers/gpu/drm/i915/display/intel_dmc_regs.h      |    2 +
- drivers/gpu/drm/i915/display/intel_dp.c            |   24 +-
- drivers/gpu/drm/i915/display/intel_dp_aux.c        |    2 +-
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c       |    1 +
- drivers/gpu/drm/i915/display/intel_dpll.c          |   24 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  112 +-
- drivers/gpu/drm/i915/display/intel_dsi.h           |    3 -
- .../gpu/drm/i915/display/intel_dsi_dcs_backlight.c |   14 +-
- drivers/gpu/drm/i915/display/intel_fbc.c           |   12 +-
- drivers/gpu/drm/i915/display/intel_fbc.h           |    1 +
- drivers/gpu/drm/i915/display/intel_fbdev.c         |   26 +-
- drivers/gpu/drm/i915/display/intel_fdi.c           |    8 +-
- drivers/gpu/drm/i915/display/intel_frontbuffer.c   |    2 +
- drivers/gpu/drm/i915/display/intel_frontbuffer.h   |   18 +
- drivers/gpu/drm/i915/display/intel_gmbus.c         |   46 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c          |    5 +-
- drivers/gpu/drm/i915/display/intel_hdcp_regs.h     |  270 +++++
- drivers/gpu/drm/i915/display/intel_hdmi.c          |   10 +
- drivers/gpu/drm/i915/display/intel_hotplug.c       |  116 +-
- drivers/gpu/drm/i915/display/intel_lpe_audio.c     |   47 +-
- drivers/gpu/drm/i915/display/intel_modeset_setup.c |    2 +-
- drivers/gpu/drm/i915/display/intel_overlay.c       |   12 +-
- drivers/gpu/drm/i915/display/intel_pch_refclk.c    |    2 +-
- drivers/gpu/drm/i915/display/intel_plane_initial.c |    2 +-
- drivers/gpu/drm/i915/display/intel_pps.c           |   48 +-
- drivers/gpu/drm/i915/display/intel_psr.c           |   16 +-
- drivers/gpu/drm/i915/display/intel_quirks.c        |    3 +
- drivers/gpu/drm/i915/display/intel_snps_phy.c      | 1116 ++++++++++++++++=
-++++
- drivers/gpu/drm/i915/display/intel_tc.c            |    4 +-
- drivers/gpu/drm/i915/display/intel_vdsc.c          |    4 +-
- drivers/gpu/drm/i915/display/intel_vrr.c           |   14 +-
- drivers/gpu/drm/i915/display/skl_universal_plane.c |    2 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c             |    7 +-
- drivers/gpu/drm/i915/gem/i915_gem_pages.c          |    4 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |   11 +-
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c         |    4 +-
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |   18 +-
- .../drm/i915/gem/selftests/i915_gem_client_blt.c   |    2 +-
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |    4 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c          |    2 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c               |   16 +-
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c       |    2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c                 |    3 +-
- drivers/gpu/drm/i915/gt/intel_ppgtt.c              |    2 +-
- drivers/gpu/drm/i915/gt/intel_region_lmem.c        |   17 +-
- drivers/gpu/drm/i915/gt/intel_sseu.c               |    5 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c             |    2 -
- drivers/gpu/drm/i915/gvt/cfg_space.c               |    5 +-
- drivers/gpu/drm/i915/gvt/handlers.c                |    4 +-
- drivers/gpu/drm/i915/i915_debugfs.c                |    5 +-
- drivers/gpu/drm/i915/i915_driver.c                 |   23 +-
- drivers/gpu/drm/i915/i915_drv.h                    |  284 +----
- drivers/gpu/drm/i915/i915_gem.c                    |    5 +-
- drivers/gpu/drm/i915/i915_getparam.c               |    2 +-
- drivers/gpu/drm/i915/i915_gpu_error.c              |    3 +-
- drivers/gpu/drm/i915/i915_irq.c                    |   94 +-
- drivers/gpu/drm/i915/i915_pci.c                    |  266 ++---
- drivers/gpu/drm/i915/i915_pci.h                    |    6 +
- drivers/gpu/drm/i915/i915_reg.h                    |  404 +------
- drivers/gpu/drm/i915/i915_utils.h                  |    4 -
- drivers/gpu/drm/i915/intel_device_info.c           |   71 +-
- drivers/gpu/drm/i915/intel_device_info.h           |   82 +-
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c        |    1 +
- drivers/gpu/drm/i915/intel_pch.c                   |    9 +-
- drivers/gpu/drm/i915/intel_pch.h                   |    4 +
- drivers/gpu/drm/i915/intel_pci_config.h            |    7 +
- drivers/gpu/drm/i915/intel_pm.c                    |  358 ++++---
- drivers/gpu/drm/i915/intel_uncore.c                |    2 +-
- drivers/gpu/drm/i915/selftests/mock_gem_device.c   |    8 +-
- include/drm/i915_pciids.h                          |    1 +
- 89 files changed, 3172 insertions(+), 1684 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_backlight_regs.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_core.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_hdcp_regs.h
-
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
