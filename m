@@ -1,53 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4121F5AE706
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 13:57:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 294695AE86A
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:35:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D76C110E09E;
-	Tue,  6 Sep 2022 11:57:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9173010E683;
+	Tue,  6 Sep 2022 12:34:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A147A10E625
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Sep 2022 11:57:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662465458; x=1694001458;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=yvqQHkR+unaW/DdzKmqlPtInTmoFfL4AKTz1L522+UY=;
- b=DW6rBRYGbgh6cckFX3bGXfkDMWTH27XwJZqS1nJbd/lN/a04q2Rf/UQC
- KfCwPXzdlPFV8ZS2xVb/XTg9cEKRDAU7CwFV+FFqdtwPO34bVkzNRBwsQ
- QU4ZaLE9fAAlTcmz2ZumNDHni03MVntoGeu5Jm5ZX7kWSgpFnDfVejFd6
- X+CO5sMEGR9U9PVe67XhqiZPez4VV4zosZ8eFSErqL7ejhIYq0Bgjkr0o
- lun26AlmVNSDY88VhaOK1X6oDci6QK6W8yKSayPcXA38liRNIS+cnufnk
- 2yqtNV1qX/94s75n4dV7bM0ekr5wl6ruM0udFpkqa5RiYCYj19W1q7H2n Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10461"; a="358289018"
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="358289018"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2022 04:57:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="675661007"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga008.fm.intel.com with SMTP; 06 Sep 2022 04:57:35 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 06 Sep 2022 14:57:34 +0300
-Date: Tue, 6 Sep 2022 14:57:34 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <Yxc1rvmwMuN9RzTo@intel.com>
-References: <20220906102329.7073-1-stanislav.lisovskiy@intel.com>
+X-Greylist: delayed 364 seconds by postgrey-1.36 at gabe;
+ Mon, 29 Aug 2022 18:53:00 UTC
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4047410E5B2;
+ Mon, 29 Aug 2022 18:53:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=LIXwPXe6uDCw8puUWwXJwlt9Qctgfa7237R9Ay9Rr94=; b=lEkiEUddmC83T3gPlX9iC1HPqE
+ SNqV0HNvj3WohDUJb3awRux40lCfk6tyQB/y/P0NkxAmJvnLotHmUwjl8aOOgP7Mq2i6NQQK+Qfzy
+ aGX/MisxWkzuPdRvBFUrgVFV5Pp5E73ZOuHT2POkj46RBMOqXiYPFKcqFeqYAz83p2JMvS2jO7pEf
+ 1Nfovc1pcY/rW+YbwdLiXSg03RCMaci4y5cXg2twznwbCvQHEeFLKuqBYsK06/LVq5t3DUgZOvADK
+ 7zf9RrPQcFL/TgKO86KFtdoAnMH8IPBBc/k4+dp4YbP4PPdWhQGbwwkVcLgx7cXqgK+UELGvisvi2
+ nlmQP40g==;
+Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=60573)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1oSjme-00079u-AJ; Mon, 29 Aug 2022 20:46:52 +0200
+Message-ID: <f6289e5d-98e3-1a0d-f514-136e2b7978c1@tronnes.org>
+Date: Mon, 29 Aug 2022 20:46:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220906102329.7073-1-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix
- intel_dp_atomic_find_vcpi_slots function
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Chen-Yu Tsai <wens@csie.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
+ Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-1-459522d653a7@cerno.tech>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-1-459522d653a7@cerno.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:46 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 01/41] drm/tests: Order Kunit tests in
+ Makefile
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,23 +70,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 06, 2022 at 01:23:29PM +0300, Stanislav Lisovskiy wrote:
-> drm_dp_atomic_find_vcpi_slots no longer exists and needs
-> to be used as drm_dp_atomic_find_time_slots.
-> Also rename the function itself.
+
+
+Den 29.08.2022 15.11, skrev Maxime Ripard:
+> Since we've recently added a ton of tests, the list starts to be a bit
 > 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Fixes: 7ae5ab441402 ("Extract drm_dp_atomic_find_vcpi_slots cycle to separate function")
+> of a mess and creates unneeded conflicts.
+> 
+> 
+> 
+> Let's order it alphabetically.
+> 
+> 
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> 
+> 
+> 
 
-The problem only exists in drm-tip. You need to revert the 
-bad merge from rerere-cache and redo it.
+Something has gone wrong with this patchset, there are double line endings.
 
-And please always test build drm-tip after solving merge conflicts!
+I looked at the patchwork version and it look all right there so I
+figured it might have fixed up the patches, but it failed:
 
--- 
-Ville Syrjälä
-Intel
+git apply -v --check
+/home/pi/tinydrm.gud-gadget/workdirs/tv_norm_gadget/500003.patch
+Checking patch drivers/gpu/drm/tests/Makefile...
+error: while searching for:
+# SPDX-License-Identifier: GPL-2.0?
+?
+obj-$(CONFIG_DRM_KUNIT_TEST) += drm_format_helper_test.o
+drm_damage_helper_test.o \?
+        drm_cmdline_parser_test.o drm_rect_test.o drm_format_test.o
+drm_plane_helper_test.o \?
+        drm_dp_mst_helper_test.o drm_framebuffer_test.o drm_buddy_test.o
+drm_mm_test.o?
+
+error: patch failed: drivers/gpu/drm/tests/Makefile:1
+error: drivers/gpu/drm/tests/Makefile: patch does not apply
+
+ERROR: Failed check apply patch
+
+pi@build-server:~/tinydrm.gud-gadget$ file
+workdirs/tv_norm_gadget/500003.patch
+workdirs/tv_norm_gadget/500003.patch: unified diff output, ASCII text,
+with CRLF, LF line terminators
+
+Noralf.
+
+> diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Makefile
+> 
+> index 91b70f7d2769..2d9f49b62ecb 100644
+> 
+> --- a/drivers/gpu/drm/tests/Makefile
+> 
+> +++ b/drivers/gpu/drm/tests/Makefile
+> 
+> @@ -1,5 +1,13 @@
+> 
+>  # SPDX-License-Identifier: GPL-2.0
+> 
+>  
+> 
+> -obj-$(CONFIG_DRM_KUNIT_TEST) += drm_format_helper_test.o drm_damage_helper_test.o \
+> 
+> -	drm_cmdline_parser_test.o drm_rect_test.o drm_format_test.o drm_plane_helper_test.o \
+> 
+> -	drm_dp_mst_helper_test.o drm_framebuffer_test.o drm_buddy_test.o drm_mm_test.o
+> 
+> +obj-$(CONFIG_DRM_KUNIT_TEST) += \
+> 
+> +	drm_buddy_test.o \
+> 
+> +	drm_cmdline_parser_test.o \
+> 
+> +	drm_damage_helper_test.o \
+> 
+> +	drm_dp_mst_helper_test.o \
+> 
+> +	drm_format_helper_test.o \
+> 
+> +	drm_format_test.o \
+> 
+> +	drm_framebuffer_test.o \
+> 
+> +	drm_mm_test.o \
+> 
+> +	drm_plane_helper_test.o \
+> 
+> +	drm_rect_test.o
+> 
+> 
+> 
