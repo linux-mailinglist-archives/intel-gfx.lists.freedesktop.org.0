@@ -1,54 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB005A4E91
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:51:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A7DA5A4E90
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:51:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3351D10F2D4;
-	Mon, 29 Aug 2022 13:51:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E491D10F2CA;
+	Mon, 29 Aug 2022 13:50:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E9D510F2D4
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:51:08 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4848F10F2CB;
+ Mon, 29 Aug 2022 13:50:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661781068; x=1693317068;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=pfwhbK82XIa2aOpk+Z07cQf1mNaAWCvsETmfS/b9PiA=;
- b=UW7/NEMVf21PifsOHjuHS4KaTuhWu7k8OGinHBz6SHdSA11m8czxzhFy
- lTEQCWsCtFmlyx7ECMXtjdkRW8xIGLX+bEGCe3vCsP0OztRvJ/h79ur16
- IrWVf3MlqWNGU36nnAopEdmbd7jPEWdxwfmnbRUb/sSmVdRMLe0JXRuw9
- iG1yrVM8IO2rITHqd0O8x3iFX/0k2ttfgeF+NkY5bq9Ok+tmlRPZSL2FT
- W228nLnDXZUeCugEALWnSJQHVlViBJhcYjzdgFPIsPiRD+MbSnmdhncji
- Dy15/R3VlNH8YwC5NHroTHu5e3JqRCrDkzvvbIio9Xd/4b8dCu9xiRgYI w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="275300120"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="275300120"
+ t=1661781053; x=1693317053;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=riI8zs3Zj2Svr5saLGFIBJR9wQQbRS/Wig1IHcgUW2E=;
+ b=NEp05L8oIjUIU4gibkNE1+2LW701UASrOk/ma+ieCrSOsMacm55uu0vq
+ DbiPttg7mHlG8tmVX6wlZCc4kmxvvT+W6+3TonefKI73RKNAHoenWGYdY
+ kptCc5Pzci+Pbv8uY9rT6aXTtG18+Bqu537ycO3COG8yCsm/y4KQaeWXc
+ tGgei5medJiCv7VSb9JNge16L7h7tcAMX3iuGM+DlJ1GFw3Jx2LqxZdRv
+ MX6Hc0znl5VjtIQ5tsYzOgmcpNEWMERou4WCJ8aHsolmJFKnd/h4f8YE5
+ XsUNsUJ2ICgvFSn+Wmd7adpcvGoEy/QCEgXYGJR/ncUvDJyBmwH/RwGAJ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="296171597"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="296171597"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 06:51:08 -0700
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 06:50:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="607450657"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga007.jf.intel.com with SMTP; 29 Aug 2022 06:51:05 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 29 Aug 2022 16:51:05 +0300
-Date: Mon, 29 Aug 2022 16:51:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <YwzESdqZthFGI9La@intel.com>
-References: <20220823090128.488008-1-maarten.lankhorst@linux.intel.com>
- <20220823090128.488008-5-maarten.lankhorst@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="607450606"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by orsmga007.jf.intel.com with ESMTP; 29 Aug 2022 06:50:48 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 29 Aug 2022 16:51:37 +0300
+Message-Id: <20220829135137.27669-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20220829095832.21770-5-stanislav.lisovskiy@intel.com>
+References: <20220829095832.21770-5-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220823090128.488008-5-maarten.lankhorst@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Replace remaining display
- uncore references to use intel_de
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Extract
+ drm_dp_atomic_find_vcpi_slots cycle to separate function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,41 +57,176 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 23, 2022 at 11:01:28AM +0200, Maarten Lankhorst wrote:
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c       |  8 ++--
->  drivers/gpu/drm/i915/display/intel_crt.c      | 33 +++++++------
->  drivers/gpu/drm/i915/display/intel_de.h       | 47 +++++++++++++++++++
->  .../drm/i915/display/intel_display_power.c    |  2 +-
->  drivers/gpu/drm/i915/display/intel_dmc.c      |  6 +--
->  drivers/gpu/drm/i915/display/intel_dp_aux.c   | 30 ++++++------
->  drivers/gpu/drm/i915/display/intel_dpio_phy.c |  9 ++--
->  drivers/gpu/drm/i915/display/intel_fbc.c      | 10 +---
->  drivers/gpu/drm/i915/display/intel_gmbus.c    | 42 ++++++++---------
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |  6 +--
->  drivers/gpu/drm/i915/display/intel_snps_phy.c | 11 ++---
->  11 files changed, 118 insertions(+), 86 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 8ecf4e3e2bc6..1ca588e31dc9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -42,7 +42,7 @@ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
->  	u32 dclk_ratio, dclk_reference;
->  	u32 val;
->  
-> -	val = intel_uncore_read(&dev_priv->uncore, SA_PERF_STATUS_0_0_0_MCHBAR_PC);
-> +	val = intel_de_read(dev_priv, SA_PERF_STATUS_0_0_0_MCHBAR_PC);
+We are using almost same code to loop through bpps while calling
+drm_dp_atomic_find_vcpi_slots - lets remove this duplication by
+introducing a new function intel_dp_mst_find_vcpi_slots_for_bpp
 
-Surely these aren't display engine registers? If we start (ab)using
-intel_de_*() for everything we may end up in a bigger mess for the
-upcoming forcewake thing...
+v2: Fix pbn_div calculation - shouldn't matter if its DSC or not.
 
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 86 +++++++++++----------
+ 1 file changed, 45 insertions(+), 41 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 94d7e7f84c51..7dcbdcd1cb48 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -44,10 +44,14 @@
+ #include "intel_hotplug.h"
+ #include "skl_scaler.h"
+ 
+-static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+-					    struct intel_crtc_state *crtc_state,
+-					    struct drm_connector_state *conn_state,
+-					    struct link_config_limits *limits)
++static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
++						struct intel_crtc_state *crtc_state,
++						int max_bpp,
++						int min_bpp,
++						struct link_config_limits *limits,
++						struct drm_connector_state *conn_state,
++						int step,
++						bool dsc)
+ {
+ 	struct drm_atomic_state *state = crtc_state->uapi.state;
+ 	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+@@ -58,7 +62,6 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+-	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CONSTANT_N);
+ 	int bpp, slots = -EINVAL;
+ 	int ret = 0;
+ 
+@@ -72,18 +75,20 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+ 	// TODO: Handle pbn_div changes by adding a new MST helper
+ 	if (!mst_state->pbn_div) {
+ 		mst_state->pbn_div = drm_dp_get_vc_payload_bw(&intel_dp->mst_mgr,
+-							      limits->max_rate,
+-							      limits->max_lane_count);
++							      crtc_state->port_clock,
++							      crtc_state->lane_count);
+ 	}
+ 
+-	for (bpp = limits->max_bpp; bpp >= limits->min_bpp; bpp -= 2 * 3) {
++	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
+ 		crtc_state->pipe_bpp = bpp;
+ 
+ 		crtc_state->pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock,
+-						       crtc_state->pipe_bpp,
+-						       false);
++						       dsc ? bpp << 4 : crtc_state->pipe_bpp,
++						       dsc);
++
+ 		slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
+-						      connector->port, crtc_state->pbn);
++						      connector->port,
++						      crtc_state->pbn);
+ 		if (slots == -EDEADLK)
+ 			return slots;
+ 		if (slots >= 0) {
+@@ -101,11 +106,32 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+ 	if (ret && slots >= 0)
+ 		slots = ret;
+ 
+-	if (slots < 0) {
++	if (slots < 0)
+ 		drm_dbg_kms(&i915->drm, "failed finding vcpi slots:%d\n",
+ 			    slots);
++
++	return slots;
++}
++
++
++static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
++					    struct intel_crtc_state *crtc_state,
++					    struct drm_connector_state *conn_state,
++					    struct link_config_limits *limits)
++{
++	const struct drm_display_mode *adjusted_mode =
++		&crtc_state->hw.adjusted_mode;
++	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
++	struct intel_dp *intel_dp = &intel_mst->primary->dp;
++	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CONSTANT_N);
++	int slots = -EINVAL;
++
++	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, limits->max_bpp,
++						     limits->min_bpp, limits,
++						     conn_state, 2 * 3, false);
++
++	if (slots < 0)
+ 		return slots;
+-	}
+ 
+ 	intel_link_compute_m_n(crtc_state->pipe_bpp,
+ 			       crtc_state->lane_count,
+@@ -123,25 +149,21 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+ 						struct drm_connector_state *conn_state,
+ 						struct link_config_limits *limits)
+ {
+-	struct drm_atomic_state *state = crtc_state->uapi.state;
+-	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
+-	struct intel_dp *intel_dp = &intel_mst->primary->dp;
+ 	struct intel_connector *connector =
+ 		to_intel_connector(conn_state->connector);
++	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
++	struct intel_dp *intel_dp = &intel_mst->primary->dp;
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 	bool constant_n = drm_dp_has_quirk(&intel_dp->desc,
+ 					   DP_DPCD_QUIRK_CONSTANT_N);
+-	int bpp, slots = -EINVAL;
++	int slots = -EINVAL;
+ 	int i, num_bpc;
+ 	u8 dsc_bpc[3] = {0};
+ 	int min_bpp, max_bpp;
+ 	u8 dsc_max_bpc;
+ 
+-	crtc_state->lane_count = limits->max_lane_count;
+-	crtc_state->port_clock = limits->max_rate;
+-
+ 	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
+ 	if (DISPLAY_VER(i915) >= 12)
+ 		dsc_max_bpc = min_t(u8, 12, conn_state->max_requested_bpc);
+@@ -162,29 +184,11 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+ 	drm_dbg_kms(&i915->drm, "DSC Sink supported min bpp %d max bpp %d\n",
+ 		    min_bpp, max_bpp);
+ 
+-	for (bpp = max_bpp; bpp >= min_bpp; bpp -= 2 * 3) {
+-		crtc_state->pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock,
+-						       bpp << 4,
+-						       true);
++	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp, min_bpp,
++						     limits, conn_state, 2 * 3, true);
+ 
+-		slots = drm_dp_atomic_find_vcpi_slots(state, &intel_dp->mst_mgr,
+-						      connector->port,
+-						      crtc_state->pbn, 0);
+-
+-		drm_dbg_kms(&i915->drm, "Trying bpp %d got %d pbn %d slots\n",
+-			    bpp, crtc_state->pbn, slots);
+-
+-		if (slots == -EDEADLK)
+-			return slots;
+-		if (slots >= 0)
+-			break;
+-	}
+-
+-	if (slots < 0) {
+-		drm_dbg_kms(&i915->drm, "failed finding vcpi slots:%d\n",
+-			    slots);
++	if (slots < 0)
+ 		return slots;
+-	}
+ 
+ 	intel_link_compute_m_n(crtc_state->pipe_bpp,
+ 			       crtc_state->lane_count,
 -- 
-Ville Syrjälä
-Intel
+2.24.1.485.gad05a3d8e5
+
