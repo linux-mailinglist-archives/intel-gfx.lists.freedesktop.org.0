@@ -1,151 +1,149 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C24E65A435F
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 08:46:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 686A15A4364
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 08:50:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C660410F0C2;
-	Mon, 29 Aug 2022 06:46:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9103610F0C2;
+	Mon, 29 Aug 2022 06:50:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8052410F0C8
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 06:45:58 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B29410F0C2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 06:50:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661755558; x=1693291558;
+ t=1661755818; x=1693291818;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=I8JFvqAEs3ixEmD31maE7EG2PyOjAi71QiyCQZPG0ZI=;
- b=YdHLBk1AjYfFPT8zOzUM43inv10ztEJLa+hw026f9j0V86iJaCHMD606
- Z8Rs/KNvQJ1p/ZFWsji4bJfyWfI/3aXMv+r1rDOO31gmCcC6oCiWkBfRr
- 1mplvpOt1dWjY/wfVJYhITvtAqE3G29RDbP+UtNDYIR9U36mCV7jVoEeX
- 3wH2V0x2wursawWFP57BJqUiV3KUbKu3zGN8ihzH+78GgSmA87V5vNsQG
- Gcrb+ddb4H+9WqrFV0+S96Rh4EaBXOBF6/0BCb524XmK1GrFdVAy5WI/9
- 4W9Hx979RhuI7+4m4lIWoYEUh7vJdFGUFdd5pzxWhQVvMYJlK95GdA3P+ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10453"; a="293567462"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="293567462"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2022 23:45:57 -0700
+ bh=izqNXliMnS6d5E49xpvPornAypyIfIOfD0YWTl5MXNg=;
+ b=lfpfS5qotwVzcdfd+UmttvaqAfePHN/Hx/xDjgdUpvKpDkgv/5GE0o3f
+ 55e0jKpYTqtQfGP5pEESIcrbADKA43Yz6NIR3VrUjwSlpgP8LVg9GDHsR
+ Qzm+WW6KaGU58fwoI+3Ajs7C/XTVAUExrinyGCaxdXwSwU47D7EsOEZYM
+ Ii0XjIlzRodRSzUVKLL3F1NiG8t8pnopL+AE+oYgPN6+mFa19cDXuRA1o
+ 1eLCSoAzSuhIRneGzOThpn9c41Z//y+o5C3GQUmRdgllz/0v6Q7QDYczu
+ Mzdu1dGHZDcd+JyBpJnoWQ6/r54WbyAHS9Mc31T6VRywHD/5j4pI4iH4W g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10453"; a="274573547"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="274573547"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2022 23:50:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="672261960"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP; 28 Aug 2022 23:45:57 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="644317788"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga001.jf.intel.com with ESMTP; 28 Aug 2022 23:50:15 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Sun, 28 Aug 2022 23:45:57 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ 15.1.2375.31; Sun, 28 Aug 2022 23:50:14 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Sun, 28 Aug 2022 23:45:57 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.2375.31; Sun, 28 Aug 2022 23:50:13 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Sun, 28 Aug 2022 23:45:57 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Sun, 28 Aug 2022 23:50:13 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.47) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Sun, 28 Aug 2022 23:45:56 -0700
+ 15.1.2375.31; Sun, 28 Aug 2022 23:50:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Hya17ST6/2pfSEil6BNT12bXmaRMx9zjsmP3qLXb1WHJvCaPK/lSNvNv9VLcroqMh8GOVRmG6ECzY+aXxNzLLGRXI54J5jA966u/Je6MyMKejU9fPIr4lr/uWhvEWgUj4J7/I37X+jFPlCPLGEkTSINhyN4DoSwiRJC0ZUVzlUfRnudttMjo0ldd7N9sD4UW9hVw9eT+O467wFQXxsWE4L71futUnRTjmQOHsoOOcfgbt5CYYc+D0w8/8B2pmfjyQZ7+r+l6WX2HmINeZjWSEu0yGItfIIYkketsNpZIg0LjMAo9kRmwdHRHsTuNPXF+GLqeKNjzV2HCWebT9fty/w==
+ b=MnOnGMJn9esgbjQelnZbp9iFs1E2JJ6gjFsJEWCqO5ux9prqk0kNBdewmqXyF5HoXMbGFhaUIiKjMwQdbq7yCiExA5LcEhVN8jYY0pAxwXu+1ZLutKcuXxenWmY1qGIsmIV+fKdavRvUG1ovlnRKpiAptiR/Yp/Lvx/C3HeFeHdMy49xqsyBK/6LRg/gOiylFHkDUW9MccqlkA8IedcWWsBlH3pG6p1HJG2T3OlTNaVPz9O6/JEdHgrvQHOOmoo2WFypRo6A7+IUGWFDbMCMcfiYhfM8CorxrSaqFhYRkmGUzzV41SOA4AGIKn8gMF/jniC0a5lF7Ofequ+yPSpWtw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nDnOIeug8nKXzx+nGTfTfWDhgGIb+B8DZyTmWpJ4Pek=;
- b=VKAAkq6mxd7FbN8rQsbqMWRh+U6/rWMbe8FscmGaop3o/TnZK0slV5iY63dGw1DHxnY3BQ7BfB1ex96cO6ZlzOSwycX9mMtAjrDPMEqeDwYWvT1Xq2eXV/ks9FbyA8MLuSyEjxvM1u8kWozY5ZM2Hluh8D7lJpesVgP34kZjJBqynAarXKPp27qahY0vR2JgJgjysiWhDFnQHj/pWYV8pfLEh3e9JcMnGGVyUzRTDjYZ6y94wj7e4cQdu0OwDloEOWof3aD9Q0J54KrphXs1XueyDC2gSCgLMvIdyZJBrz+1lz2bUNhV/Fk41emJ3fF6MKm12xuoBuuz5DTzXm+DOA==
+ bh=Z/lAQZ9B+vXENNnuaCKjFvagvk1YWoKGuF80Bf/J3ys=;
+ b=bUiz00y+vdkp7VwATlGsczzoq8iTgCDV1IVcucNu1GxIKDSvm60DyGR2nu/Pt+xVBYYNn3eR8q9mPICqRHNz8LaFhBxA/c5t2PNN+asLeAnpPTHuP4LptUlQX1BUVs4HIvQCRne7g8U9p3xKwmxMAW55b9YefmsNcFYKEvjLxpHtShH+8tVV8MDkkaLlhhpZPe8rCe+RDS7Y3xL6ZleBRKfEl+LnFERpeiMLnr14uAEfA+Te13qoPbkMS51khdrJ78Igxcpu2CmfF5fFit58+92/GYTIyAlzEGNjt9Ps6MSDw5C2vEiDOAcZPNGQQf879PbDMY9qmQu/pr3FhkAInA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from MWHPR11MB1935.namprd11.prod.outlook.com (2603:10b6:300:10c::20)
- by BN7PR11MB2659.namprd11.prod.outlook.com (2603:10b6:406:ab::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14; Mon, 29 Aug
- 2022 06:45:55 +0000
-Received: from MWHPR11MB1935.namprd11.prod.outlook.com
- ([fe80::61c1:4020:d92d:bd06]) by MWHPR11MB1935.namprd11.prod.outlook.com
- ([fe80::61c1:4020:d92d:bd06%3]) with mapi id 15.20.5566.021; Mon, 29 Aug 2022
- 06:45:54 +0000
-From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Fix warning callstack for
- imbalance wakeref
-Thread-Index: AQHYrkGU1vNkWWZqjkOsmkvx0TsbAK2zEyUAgAlXRvCAABRMcIADBiEAgAYCzdA=
-Date: Mon, 29 Aug 2022 06:45:53 +0000
-Message-ID: <MWHPR11MB1935880C25E9DDF3ED205669B2769@MWHPR11MB1935.namprd11.prod.outlook.com>
-References: <20220812044724.12131-1-mitulkumar.ajitkumar.golani@intel.com>
- <Yvzj6otIylJ8nwoJ@ideak-desk.fi.intel.com>
- <MWHPR11MB19353E66246E6D9CB5F021D4B2709@MWHPR11MB1935.namprd11.prod.outlook.com>
- <MWHPR11MB193572EF5A173CC9F42861DDB2709@MWHPR11MB1935.namprd11.prod.outlook.com>
- <YwdURvTR2xakrFK0@ideak-desk.fi.intel.com>
-In-Reply-To: <YwdURvTR2xakrFK0@ideak-desk.fi.intel.com>
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
+ by DM6PR11MB3931.namprd11.prod.outlook.com (2603:10b6:5:6::20) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5566.21; Mon, 29 Aug 2022 06:50:06 +0000
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::1d17:ef28:d51d:6003]) by PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::1d17:ef28:d51d:6003%4]) with mapi id 15.20.5566.019; Mon, 29 Aug 2022
+ 06:50:06 +0000
+From: "Manna, Animesh" <animesh.manna@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ "Nikula, Jani" <jani.nikula@intel.com>
+Thread-Topic: [PATCH] drm/i915/pps: added get_pps_idx() hook as part of
+ pps_get_register() cleanup
+Thread-Index: AQHYpvp37+QmrbvCmEqrTXgvEl4PPq2c0+kAgB/GagCACPlGgA==
+Date: Mon, 29 Aug 2022 06:50:06 +0000
+Message-ID: <PH7PR11MB5981DB5A704F01E415C65CBAF9769@PH7PR11MB5981.namprd11.prod.outlook.com>
+References: <20220803052944.28069-1-animesh.manna@intel.com>
+ <87les5eoct.fsf@intel.com> <YwTV1oc0FK/RBsQ6@intel.com>
+In-Reply-To: <YwTV1oc0FK/RBsQ6@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
 dlp-version: 11.6.500.17
+dlp-product: dlpe-windows
 dlp-reaction: no-action
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8b58ca73-e03c-4990-f3b4-08da898a1eba
-x-ms-traffictypediagnostic: BN7PR11MB2659:EE_
+x-ms-office365-filtering-correlation-id: aba1ddc5-225e-40a5-931c-08da898ab51b
+x-ms-traffictypediagnostic: DM6PR11MB3931:EE_
 x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: AotHsWS1vgWBipt3jeTKD9bVBK3X1Z3YbPN83GvqO5qBHXtBZsKgYk/3I+VDV3FiwXhi41QImqqtPZcUwhkd15hOwsG3TDyHot8HpqtUBm8EXAUwrukEChLN0+MC+8uXlPgzFa1oJwV6AaB+OBrbRZxtVxsiGj9P8uSu3w26FkCA+c9nqpWqvGb1XAJ/RINO8PYrVVlTCXrIvWzg9kVs3Rx58BYrskbpgSR+AjXhF1w8IEGwoCiKgZhyRbqhZrMsiDVHYVZdFss/qJT6CLjcXNoWVPVZ4g4i7N+aHgbK+SQfEyaP6UCAci90+pbTwiT+V55Hu4MNS1QC0abT8Ug+AZ08dvl42Q2TUdQdVxaB5fhR9eAhIj/RPNSThnl+9BobDat9Ta1CF7VHs2qBUhWEpClwS/JZIXg3xvvehLzav3hkBetDRZiTXRACn2I9Rexh8XKbeBaP4IAqxvyNxVDg6U9mWrvOOWSbOv4sgpnf3MM1XcbOXwz39JRL3Cuh4mf0dTjDknUgwLHt2lTBCU4zpnLBBHt599sc2vXe8t07mlmWJ7tkHbgu7+7K1HoeHwjkG9UbE8wmk41ruvuioxCdjBPkuLRyqNKpK40bysSk2WuDhVp9it3l1Vp1QoYI2KuexLpi0DJyfhbRGl/P6dAbHmhWTDVDsecYj4miQNOJrGTDDm/b+zhkpAO4G/3qaK4XKACNVZkUHjByofUvjfCM+A==
+x-microsoft-antispam-message-info: QXh6hPULvPVrUq8vx1tiBrL/vL1DRK636MFIunKcIUC3a1b7mvpTMt158CICdYDGuDxONJetxdVKpwowHBteNspYdCy22dNGI5UX0dzltuAaQ5qF3LxntjXBrkN/ACpK/nZDMxCVDlrcut7HYEPFH0HK6r4agGI7LRsX5lW542x7v5MvLHOsGtkol0u37oIEu65CNc/d/hJ2Xn4sNJHzaJNwdXZBVikLhStv38T8ZExUpZoQYCGM8WHSw1lQ52Qow8LrLSdmUsZAcL5WA3yxsh2VUmD57yHfn7e1jWclyNOqNrzU/raV4FmIlP4n5rO0U36evUqc4K2sXvCVyJUcLjTMaY3ierGG8gnjT3lJoB0NPI/Dm4jQOnysH8Iu3Z4+t7POiTPjLhEyKRholmbaOnVW3oDVGTG0AC9Tyx/0UHAKVWiRRhAIHFN8AzynIyE7bfN7SU1XeFD7dshMrfhe+Gvf1D0LrFgzps1aKR8g0erK8ajYWabPqu0rFKx+k4fhshEmbt8v5EILxL55Pii8binry/wUrX5WUs5Zw5ADbzpDRvxvScPoRdi6p3BwLwj7XTtmVLu4PDpukptj5ruIhf5XpyTSQAXVEYJiKWdCxX6zxt+GKiRS+FOuFfabAL72Je/R6Tdv97tWkm6rhNnJPHlFizZ4WWvCLD/zxXd98JQU4tHrTiW2AIFImYRtbHf6KO7N58qTcORpZGLTDJbaiOCMnlmLTH7KHMcRSEbQHmW4NmlEAG0s1k1Ju+r2M1/PkTQabn7D+5ixEb9wsTEKTA==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1935.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(376002)(136003)(346002)(366004)(396003)(39860400002)(64756008)(66446008)(71200400001)(8676002)(4326008)(55016003)(966005)(478600001)(38100700002)(8936002)(122000001)(52536014)(6862004)(6636002)(316002)(82960400001)(86362001)(5660300002)(76116006)(66556008)(66476007)(38070700005)(66946007)(186003)(83380400001)(7696005)(2906002)(53546011)(33656002)(55236004)(6506007)(41300700001)(9686003)(26005);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(136003)(346002)(396003)(39860400002)(376002)(366004)(83380400001)(38100700002)(66574015)(186003)(82960400001)(33656002)(110136005)(316002)(54906003)(66446008)(66476007)(64756008)(4326008)(66946007)(55016003)(66556008)(6636002)(52536014)(76116006)(2906002)(5660300002)(8936002)(8676002)(41300700001)(86362001)(9686003)(55236004)(7696005)(38070700005)(26005)(53546011)(6506007)(478600001)(71200400001)(122000001);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ANcbBieG1yELSO4Zw8LGalk6e45S5lifm2WFN/LZau9SP+oBmiNcQ7zXvOe0?=
- =?us-ascii?Q?Slx5FDEf7sNFMp+0n2gOwXF7z9UoGXOzXsxOPAqSHM/3ZZ9sYv22mZnF5/yD?=
- =?us-ascii?Q?MgfaUOP64y0qFzYze3S3qO+gcNffUKnfOWUoOGWdQhpUZQM6KQ4cNBregJg1?=
- =?us-ascii?Q?GUJFy39akSKoqwHPBGa1WgYWIhOaGanpnTrsVJ9/FqBbPE7YcQ4y7P+lRHnU?=
- =?us-ascii?Q?35B6QK3zY5Ea2nD0Qk1UjxGA8Txk8Gcx16zBFkXe1jaO2+9O1E3vNamMmT2q?=
- =?us-ascii?Q?LvOhZnTqE4cAXlR+/4WlaMAn6o4EYBg126mW3IrkdFvXaAQjGBROHLXpCYk4?=
- =?us-ascii?Q?stdpaA6+1366XEkTHEwzvF246kGrq4o2rgbkW4va4dycBD6c7kyCNMltIJlu?=
- =?us-ascii?Q?tAfKCr1lCfHEhPBOj8cjJ09PL5w/0HTKN9UESotenbiULSkLD9Y+SVfxUkZY?=
- =?us-ascii?Q?a+2n8OhxkOr+FDSgzEAQ8M+HK7CRYk3FnvWBQn2a772k86kYFYSePgAD31Ic?=
- =?us-ascii?Q?Yp9mIgGtEObl4szpVDGpaDJxZvrktix7fim0MX9D1by12lkle0IcoSQNwgES?=
- =?us-ascii?Q?stzACfVBfbECq1rwOuXDyHPbqxEQ+5MNae7Whtixq3xTsHv6RMhYgJ/l1c5H?=
- =?us-ascii?Q?aKiPD7KgAN/zv6SG1Nts3e9sJLqWvDsWlJL0SsfX4xUBXk3IMfXHNY+uFbLQ?=
- =?us-ascii?Q?Lk4MAE3cte0+jL2qQzQr4jw3OgaiRRsm4VvwsEIAxP7TXmqBuX7iWHiHN/y0?=
- =?us-ascii?Q?GhZak2BYCzXFfDS0+3DjUmbrR6YXBTguGc/MgMyqsDU0TohX2Q+RK43IRNzl?=
- =?us-ascii?Q?U8Lr5eyackKqmAoumtqHUnnr5A5nMmN9/pz9IHiXR6Yjm591QDSqTmBpwpUX?=
- =?us-ascii?Q?f0gwapibRMfNq4GYqd/OhiG6mGc3sRCM8rqf6TsPCrWNnQnfaVCRI8YkOZrN?=
- =?us-ascii?Q?HyNE/+8hzGoG/M0MOGQNZhSGD3lmV8mcj0GImKNq6pvMVSfQp6483DTzFXkK?=
- =?us-ascii?Q?cXH38i1xIwO86M1Dap3z6TqVGk8DnLk2FI1x8zjQa78zG9b6ntpsM63GZ00r?=
- =?us-ascii?Q?pU0TP8nXu8pvxftFkqL0atTnP0wlVgnNuD3qAS9qGuuO7cHLDYp6EY7YW06m?=
- =?us-ascii?Q?nF9/v8nrwdRSIzb1iGa3qbkwDbpKqdSXfcBJFXnrSOSTC6iUf4caVcGLKBtF?=
- =?us-ascii?Q?ji+u8IVmVSZejO3HVJbvttjKYxm5aPnfsumuOtHGga8AgPoA308LAhp+NIp/?=
- =?us-ascii?Q?MZq4Vat2bn6LvaqrXoksNStqRDlvDr4mH+3djAoYMwUl7GnJuBxB/7m4YpYj?=
- =?us-ascii?Q?DT1HAni1IKQI7Rk2/h27W/RT7xTDZaV5BXe019LmMiLIr1kbBQpo+TdJaiLv?=
- =?us-ascii?Q?jgDq3fCejUQ3leab3+EajdDlAfs3C6BjZkBvGppSLwad5IhSZMT2MHpDl1rC?=
- =?us-ascii?Q?W+n4IoDk/7BLiyPtc2ahnRGuOyMwBKUDl6g8YuoIrEX6cWHyBXMv22nsNEUb?=
- =?us-ascii?Q?8R1wsQ/gyDqaH2hQ4sfROZVYeiJEk4D1CenwofAppQ/KXLoGwn2M3oMVF/N2?=
- =?us-ascii?Q?mAE0qyiDq7Wtkl9dhvfLbNBT6295CWOdxi48KMQsm+L5xTdiDc6q1hWwcWJx?=
- =?us-ascii?Q?72e5z2yyBg2DiV6gPbYsK8U=3D?=
-Content-Type: text/plain; charset="us-ascii"
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?2TlXtgBSt1XKRQiMeV6QjD/dGigcq04ZMSHfTMGrk2QN4LOpeU1B2QfQAx?=
+ =?iso-8859-1?Q?iGEAliZqwpQmzMLwFQRtvDG1qxMDgMCBxCiwKfEcNjUYn/VAiZ8H5OQmk4?=
+ =?iso-8859-1?Q?tnT0ld17UI4hivL4v+zVVvh/Gd8AiUBhJq84cSM5PgnTFCFZWQxEDXe5NA?=
+ =?iso-8859-1?Q?lqFyDQChBGZiiMlKtWLFjNMkg3XDgIFClWunAFlT59b8X6LQKVpzPi53i5?=
+ =?iso-8859-1?Q?EYhE3wXKKkoji2ISmyVvQvijJ+c/UT6XaDJOQfF3KqbBjggvcofLmxjaLl?=
+ =?iso-8859-1?Q?Q3TjkmQ9uPYcviSmG6kt4hxXQ/UPAoeWAQ39iVPogtUizf1vI/13U3XEOJ?=
+ =?iso-8859-1?Q?hRLfbFr5IYrYv0w0obRBRFen2DlSrcyN+nANIR7/rn5cD0i3wbW6dejRRD?=
+ =?iso-8859-1?Q?HX295s4eF3zZNP7tqTrJFiCYFXWoNvGK3n36wIJUKonaTfMf8D7c7xvaXD?=
+ =?iso-8859-1?Q?66GNbHCHFr1i6/wchIvemf1bbo13QqOob/M37LErJQ+g3XYsjSzkFoBmas?=
+ =?iso-8859-1?Q?pMBaKqN3OueD2v2AcZZi3p9CETOHE6HGSAlfdYUi6yjDjSnn7zUmGaSNBt?=
+ =?iso-8859-1?Q?xnrdhdNUrQC3oVInzwF4KYkJi2Fj59PekrSB0XFfsh+5q5H3bTT3KRR4uj?=
+ =?iso-8859-1?Q?KsBJiX7EORcm7gpkJ6iJJfB6sViP1rlQUmRO1sE738lI/ojy9mu3a6Sh1x?=
+ =?iso-8859-1?Q?7/KCrqoi1mOCTvrs1vurHzgMypS2kvyq4ZMXuwAj7m0+NbVvgwkXH01UJm?=
+ =?iso-8859-1?Q?f3TnZiTehb5WKa3M11Gjx5QonPnTiv9T89dhIQzPcgVzBA8/tPh1dsYUOO?=
+ =?iso-8859-1?Q?QTeiMKlgJOefqaVU+3wBoK1TwPB1oKS8GsMnt0eiMAuIJFKsyJ/T9snZQS?=
+ =?iso-8859-1?Q?EnQg4NsLjEoVsx0vakvDXJd0LcF9rsdav4qJQneH8twsp0IukM62wLIvEv?=
+ =?iso-8859-1?Q?QS4HoLaJFbVTgWPvzEMrqbTgg42MjODMvvp7OZ42y/zM5zxkxmKaoHgKkJ?=
+ =?iso-8859-1?Q?b8zM5HHQGPobudwWHkv2qSs5QreDKQa0pa0lxe/ul6ZcI/tTLkzu5H3u3I?=
+ =?iso-8859-1?Q?95FjhTQi5yjuJj7id3F7tTr0kEE0WPLwCQ2eh+G+Rdz9lsPnkcYsXJ37ed?=
+ =?iso-8859-1?Q?ed2DDWkWjUpLuo6E6mFchnXn1gkrk5DSrL3HWR5gvtr1qQ3Fy2rFg/7dZq?=
+ =?iso-8859-1?Q?HsLzdlZj+cJ8hJ1PVsYATLb580EKnQgTrqRwAgJ+x9zuIygb9yY7259HGu?=
+ =?iso-8859-1?Q?zXZHrjYvZf2Y4JFk1Jxf8pHfcOacpya977Si1PLKvfLVoJzcizEx5U+pUT?=
+ =?iso-8859-1?Q?lWVkbh8uI3Etkq1gAROlHmR3Vm+zXNsAEMBpbdyyRHlEiXdwitI4+AuaK3?=
+ =?iso-8859-1?Q?gqgDWJFUMHTCKre7J2tbHk75XcKR0xxghMdw0hbH2AWwkpdGOdbInMQjS5?=
+ =?iso-8859-1?Q?ZPMoGS3IUWAF9h/0Zo4pXhKvGBSPIWGWSRAPKOnd3MJuGD1jpjrh2NSdY9?=
+ =?iso-8859-1?Q?3JYW5Xy3cHpG1cfuhkMF/NTislYcvSTr2aKcEmZH4jFCfY2QaZHsRMspCv?=
+ =?iso-8859-1?Q?U9vpdSFCbyNps3OSgWARKW/JQfurhB/52ornh4txNaoDEtVYgiSJeaTXDM?=
+ =?iso-8859-1?Q?3ZcCnT1NOpcg76ayFQg1vKC6EvQ9uJBYtS?=
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1935.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b58ca73-e03c-4990-f3b4-08da898a1eba
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Aug 2022 06:45:53.9782 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aba1ddc5-225e-40a5-931c-08da898ab51b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Aug 2022 06:50:06.3008 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 63ArOacrEbXRuWOdxmxrMlLPnYEhmY7Yr+zkp3rcboMSAAScv7zPY9S4rZH/PPJfUUB/a83PjcH8jWdXOEVEafxXMi2PdH8dN0ddf0lGp9ArlmPHBYzVX/7kgxVYmIGE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR11MB2659
+X-MS-Exchange-CrossTenant-userprincipalname: M2qYx21VdHUQEkCN6hUcu5+iTFe9laMBqOWwRseWsn7Rym2JaZL7qInBH0XkERE1YqXzrvBKtsR6KCCsiNw4XA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3931
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix warning callstack for
- imbalance wakeref
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pps: added get_pps_idx() hook as
+ part of pps_get_register() cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,149 +160,159 @@ Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Imre,
+
 
 > -----Original Message-----
-> From: Deak, Imre <imre.deak@intel.com>
-> Sent: 25 August 2022 16:22
-> To: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix warning callstack =
-for
-> imbalance wakeref
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Tuesday, August 23, 2022 6:58 PM
+> To: Nikula, Jani <jani.nikula@intel.com>
+> Cc: Manna, Animesh <animesh.manna@intel.com>; intel-
+> gfx@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>
+> Subject: Re: [PATCH] drm/i915/pps: added get_pps_idx() hook as part of
+> pps_get_register() cleanup
 >=20
-> On Tue, Aug 23, 2022 at 03:56:56PM +0300, Golani, Mitulkumar Ajitkumar
-> wrote:
-> > > Hi Imre,
+> On Wed, Aug 03, 2022 at 11:13:38AM +0300, Jani Nikula wrote:
+> > On Wed, 03 Aug 2022, Animesh Manna <animesh.manna@intel.com> wrote:
+> > > To support dual LFP two instances of pps added from display gen12 onw=
+ards.
+> > > Few older platform like VLV also has dual pps support but handling
+> > > is different. So added separate hook get_pps_idx() to formulate
+> > > which pps instance to used for a soecific LFP on a specific platform.
 > > >
-> > > > On Fri, Aug 12, 2022 at 10:17:24AM +0530, Mitul Golani wrote:
-> > > > > While executing i915_selftest, wakeref imbalance warning is seen
-> > > > > with i915_selftest failure.
-> > > > >
-> > > > > When device is already suspended, wakeref is acquired by
-> > > > > disable_rpm_wakeref_asserts and rpm ownership is transferred
-> > > > > back to core. During this case wakeref_count will not be zero.
-> > > > > Once driver is unregistered, this wakeref is released with
-> > > > > enable_rpm_wakeref_asserts and balancing wakeref_count acquired
-> > > > > by driver.
-> > > > >
-> > > > > This patch will fix the warning callstack by adding check if
-> > > > > device is already suspended and rpm ownership transfer is going o=
-n.
-> > > > >
-> > > > > Signed-off-by: Mitul Golani
-> > > > > <mitulkumar.ajitkumar.golani@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/i915_driver.c | 8 +++++++-
-> > > > >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/i915_driver.c
-> > > > > b/drivers/gpu/drm/i915/i915_driver.c
-> > > > > index deb8a8b76965..6530a8680cfd 100644
-> > > > > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > > > > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > > > > @@ -1670,7 +1670,13 @@ static int intel_runtime_resume(struct
-> > > > > device
-> > > > > *kdev)
-> > > > >
-> > > > >   drm_dbg(&dev_priv->drm, "Resuming device\n");
-> > > > >
-> > > > > - drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm-
-> > > > >wakeref_count));
-> > > > > + /*
-> > > > > +  * When device is already suspended, Wakeref is acquired by
-> > > > disable_rpm_wakeref_asserts
-> > > > > +  * and rpm ownership is transferred back to core. During this
-> > > > > + case
-> > > > wakeref_count will
-> > > > > +  * not be zero. Once driver is unregistered, this wakeref is
-> > > > > +released
-> > > > with
-> > > > > +  * enable_rpm_wakeref_asserts and balancing wakeref_count
-> > > > acquired by driver.
-> > > > > +  */
-> > > > > + drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm-
-> > > > >wakeref_count) &&
-> > > > > +!rpm->suspended);
-> > > >
-> > > > I can't see how disable/enable_rpm_wakeref_asserts() can lead to
-> > > > this WARN. They are always called in pairs both in
-> > > > intel_runtime_suspend() and intel_runtime_resume(), leaving rpm-
-> >wakeref_count unchanged.
-> > > >
-> > > > The root cause is probably somewhere else, incrementing
-> > > > rpm->wakeref_count without runtime resuming the device.
-> > > >
-> > > > The WARN() condition is corret, we shouldn't get here with a
-> > > > non-zero wakeref_count. rpm->suspended - set in
-> > > > intel_runtime_suspend() and cleared in intel_runtime_resume() -
-> > > > should be always false here, so the above change would just disable=
- the
-> WARN in all cases.
-> > > >
-> > > Yes, in case of DG2, after device is suspended, i915_driver_remove
-> > > is being called.  Here driver is taking wakeref with
-> > > disable_rpm_wakeref_asserts when device was not resumed.
->=20
+> > > Simplified pps_get_register() which use get_pps_idx() hook to derive
+> > > the pps instance and get_pps_idx() will be initialized at pps_init().
 > > >
-> > > As per logs,
-> > > [  395.872971] i915 0000:03:00.0: [drm:intel_runtime_suspend [i915]]
-> > > Suspending device ...
-> > > [  403.553235] i915_driver_remove: START wakeref=3D0 [  403.553288]
-> > > i915_driver_remove: before unregister i915 wakeref=3D65537 (Wakeref
-> > > Taken) [  403.566086] i915 0000:03:00.0: [drm:intel_runtime_resume
-> > > [i915]] Resuming device (Later Resuming Device)
+> > > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_bios.c     |  5 ++++
+> > >  drivers/gpu/drm/i915/display/intel_bios.h     |  1 +
+> > >  .../drm/i915/display/intel_display_types.h    |  2 ++
+> > >  drivers/gpu/drm/i915/display/intel_pps.c      | 25 ++++++++++++++---=
+--
+> > >  4 files changed, 27 insertions(+), 6 deletions(-)
 > > >
-> > > Pushed new change with :
-> > > https://patchwork.freedesktop.org/series/107211/#rev5
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
+> > > b/drivers/gpu/drm/i915/display/intel_bios.c
+> > > index 51dde5bfd956..42315615a728 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> > > @@ -611,6 +611,11 @@ static int opregion_get_panel_type(struct
+> drm_i915_private *i915,
+> > >  	return intel_opregion_get_panel_type(i915);
+> > >  }
 > > >
-> > Also when compared DG2 logs with ADLP working logs, Already 1 wakeref
-> > was taken by DMC firmware(i915/adlp_dmc_ver2_16.bin (v2.16)), in-case
-> of DG2 looks to be missing.
-> > To support other targets and to prevent consecutive resuming device
-> > added following check, if (i915->runtime_pm.suspended &&
-> > !atomic_read(&i915->runtime_pm.wakeref_count))
+> > > +bool intel_bios_is_lfp2(struct intel_encoder *encoder) {
+> > > +	return encoder->devdata && encoder->devdata->child.handle =3D=3D
+> > > +DEVICE_HANDLE_LFP2; }
 > >
-> > ADLP Logs:
-> > ---------------
-> > [   99.502434] i915_driver_probe: START wakeref=3D0
-> > [  713.979074] i915 0000:00:02.0: [drm] Finished loading DMC firmware
-> > i915/adlp_dmc_ver2_16.bin (v2.16) [  102.455766] i915_driver_probe:
-> > END wakeref=3D65538 ...
-> > [  103.448570] i915_driver_remove: START wakeref=3D65537 [  103.448587]
-> > i915_driver_remove: before unregister i915 wakeref=3D131074 ->
-> > (disable_rpm_wakeref_assert) [  103.585886] i915_driver_remove: END
-> > wakeref=3D0
+> > AFAICS the encoder never really needs to know whether it's "lfp1" or
+> > "lfp2". It needs to know the pps controller number.
 > >
-> > DG2 Logs:
-> > -------------
-> > [ 1271.704314] i915_driver_probe: START wakeref=3D0 [  383.050984] i915
-> > 0000:03:00.0: [drm] Finished loading DMC firmware
-> > i915/dg2_dmc_ver2_07.bin (v2.7) [ 1272.021133] i915_driver_probe: END
-> > wakeref=3D1 ...
-> > [  395.883531] i915 0000:03:00.0: [drm:intel_runtime_suspend [i915]]
-> > Device suspended ...
-> > [ 1291.450841] i915_driver_remove: START wakeref=3D0 [ 1291.450877]
-> > i915_driver_remove: before unregister i915 wakeref=3D65537 ->
-> > (disable_rpm_wakeref_assert) [ 1291.603281] i915_driver_remove: END
-> > wakeref=3D0
+> > > +
+> > >  static int vbt_get_panel_type(struct drm_i915_private *i915,
+> > >  			      const struct intel_bios_encoder_data *devdata,
+> > >  			      const struct edid *edid)
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_bios.h
+> > > b/drivers/gpu/drm/i915/display/intel_bios.h
+> > > index e47582b0de0a..aea72a87ea2c 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> > > @@ -251,6 +251,7 @@ bool intel_bios_is_lspcon_present(const struct
+> drm_i915_private *i915,
+> > >  				  enum port port);
+> > >  bool intel_bios_is_lane_reversal_needed(const struct drm_i915_privat=
+e
+> *i915,
+> > >  					enum port port);
+> > > +bool intel_bios_is_lfp2(struct intel_encoder *encoder);
+> > >  enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private
+> > > *dev_priv, enum port port);  bool intel_bios_get_dsc_params(struct
+> intel_encoder *encoder,
+> > >  			       struct intel_crtc_state *crtc_state, diff --git
+> > > a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > index 0da9b208d56e..95f71a572b07 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > @@ -1723,6 +1723,8 @@ struct intel_dp {
+> > >
+> > >  	/* When we last wrote the OUI for eDP */
+> > >  	unsigned long last_oui_write;
+> > > +
+> > > +	int (*get_pps_idx)(struct intel_dp *intel_dp);
+> >
+> > Making this a function pointer should be a separate step. Please don't
+> > try to do too many things at once. Rule of thumb, one change per patch.
+> >
+> > Also, this should be placed near the other function pointer members in
+> > struct intel_dp.
+> >
+> > >  };
+> > >
+> > >  enum lspcon_vendor {
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c
+> > > b/drivers/gpu/drm/i915/display/intel_pps.c
+> > > index 1b21a341962f..c9cdb302d318 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> > > @@ -231,6 +231,17 @@ bxt_power_sequencer_idx(struct intel_dp
+> *intel_dp)
+> > >  	return backlight_controller;
+> > >  }
+> > >
+> > > +static int
+> > > +gen12_power_sequencer_idx(struct intel_dp *intel_dp) {
+> > > +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
+> > > +
+> > > +	if (intel_bios_is_lfp2(encoder))
+> > > +		return 1;
+> >
+> > This is actually not how this works. The bxt_power_sequencer_idx()
+> > matches bspec 20149: "PWM and PPS are assumed to be aligned to be from
+> > same block and not mismatch" i.e. the backlight controller id and the
+> > pps id are the same. There are no requirements to map lfp# and pps
+> > controller like this, even if it might be true in the common case.
+> >
+> > The problem is we need the information *before* we call
+> > intel_bios_init_panel().
+> >
+> > It's a catch-22. We need the pps id to read the panel EDID, and we
+> > need the panel EDID to choose the correct panel type in VBT, which we
+> > need to get the pps id from the VBT.
+> >
+> > This is highlighted in [1]. The 2nd eDP (which is not even physically
+> > present, only in the VBT, *sigh*) screws up the PPS for the 1st during
+> > init.
+> >
+> > I think Ville had some ideas here.
 >=20
-> Still not sure what's going. Both i915_pci_probe() and
-> i915_pci_remove()->i915_driver_remove() is called with a runtime PM
-> reference - taken at local_pci_probe() and pci_device_remove() - and so t=
-he
-> device should be runtime resumed at those points.
+> What a mess.
 >=20
+> I guess for the panel_type!=3D255 cases we could just initialize the pane=
+l specific
+> stuff earlier.
+>=20
+> The hardest case to solve would be dual panel with panel_type=3D=3D255. F=
+or that
+> not sure we can much more than to read out the state of each PPS from the
+> hardware and try to guess if one of the enabled ones corresponds to our c=
+urrent
+> panel, and then try to do the EDID read(s).
+>=20
+> Or maybe we could just take a shortcut and reject dual panel + panel_type=
+=3D255
+> combos entirely. Or did we already run into such cases?
 
-Yes reference is being taken at local_pci_probe() and pci_device_remove() b=
-ut=20
-During i915_selftest@perf, it is loading and unloading i915_pci_probe() and
-i915_pci_remove(), here pci_device_remove() is not being called, that's why
-runtime PM reference is not present during i915_driver_remove().
+Hi Jani/Ville,
 
-> > > > >   disable_rpm_wakeref_asserts(rpm);
-> > > > >
-> > > > >   intel_opregion_notify_adapter(dev_priv, PCI_D0);
-> > > > > --
-> > > > > 2.25.1
-> > > > >
+For enabling dual EDP scenario I can see vbt_get_panel_type() is getting ca=
+lled for panel type calculation and getting panel type between 0 to 0xf.
+Not sure in dual edp enable scenario will there be PANEL_TYPE_PNPID type pa=
+nel.
+
+Regards,
+Animesh
+>=20
+> --
+> Ville Syrj=E4l=E4
+> Intel
