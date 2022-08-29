@@ -1,54 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B495A4F91
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 16:48:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C02FB5A4FC1
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 17:02:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7599210F352;
-	Mon, 29 Aug 2022 14:48:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E207310F374;
+	Mon, 29 Aug 2022 15:02:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A974910F352
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 14:48:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661784493; x=1693320493;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=JQwv8Nd64M8rHYiYu6xV6n4fl4GhPLuT2oi66GZ51sA=;
- b=ZEnyP/eZmwkQgjMIQkad7YcXgf5OKBGUtMeI5jbYvFOwVe1mNDjurgmR
- PRGZIaXfPf7J4Bz5mNye4LFuFLfuJtrl22ppqB/fe79bBo/8HcCNr5s65
- mJLuk9kxqJor3Q7cXm8nfbp5HLNpmVv1pImr04lI0RPIBFv/REOIbHG0d
- CSsS9qt8wYyGXlGCIm7yVE91V9tGhHNltABsjpIv7jW4z44D6z+qviJSm
- YtIV+IaiV5bc2QeeEEmdL82DX5ItCHPCLoEnvHfipwnw8fk9QkYSQrFtR
- i+lUHpwMuIr16qt0u+ZDdP5I5K9+5Q18cyNd0ni+1f4Y51grlqCMNjQ6g g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="281882917"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="281882917"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 07:46:29 -0700
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="588188833"
-Received: from ideak-desk.fi.intel.com ([10.237.72.175])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 07:46:26 -0700
-Date: Mon, 29 Aug 2022 17:46:22 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-Message-ID: <YwzRPkKSeeYXWtgn@ideak-desk.fi.intel.com>
-References: <20220812044724.12131-1-mitulkumar.ajitkumar.golani@intel.com>
- <Yvzj6otIylJ8nwoJ@ideak-desk.fi.intel.com>
- <MWHPR11MB19353E66246E6D9CB5F021D4B2709@MWHPR11MB1935.namprd11.prod.outlook.com>
- <MWHPR11MB193572EF5A173CC9F42861DDB2709@MWHPR11MB1935.namprd11.prod.outlook.com>
- <YwdURvTR2xakrFK0@ideak-desk.fi.intel.com>
- <MWHPR11MB1935880C25E9DDF3ED205669B2769@MWHPR11MB1935.namprd11.prod.outlook.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 08D6F10F374;
+ Mon, 29 Aug 2022 15:02:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F4142AADD6;
+ Mon, 29 Aug 2022 15:02:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5016342414407506057=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MWHPR11MB1935880C25E9DDF3ED205669B2769@MWHPR11MB1935.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix warning callstack for
- imbalance wakeref
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Mon, 29 Aug 2022 15:02:55 -0000
+Message-ID: <166178537599.11950.13741028312566555587@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220826213501.31490-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220826213501.31490-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/edid=3A_Range_descriptor_stuff_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,40 +40,259 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 29, 2022 at 09:45:53AM +0300, Golani, Mitulkumar Ajitkumar wrote:
-> Hi Imre,
-> 
-> > [...]
-> > Still not sure what's going. Both i915_pci_probe() and
-> > i915_pci_remove()->i915_driver_remove() is called with a runtime PM
-> > reference - taken at local_pci_probe() and pci_device_remove() - and so the
-> > device should be runtime resumed at those points.
-> >
-> 
-> Yes reference is being taken at local_pci_probe() and pci_device_remove() but
-> During i915_selftest@perf, it is loading and unloading i915_pci_probe() and
-> i915_pci_remove(), here pci_device_remove() is not being called, that's why
-> runtime PM reference is not present during i915_driver_remove().
+--===============5016342414407506057==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ok, that explains it. Taking an actual RPM reference unconditionally in
-i915_driver_remove() should fix this (instead of the
-disable/enable_rpm_wakeref_asserts() calls there):
+== Series Details ==
 
-wakeref = intel_runtime_pm_get();
-...
-intel_runtime_pm_put(wakeref);
+Series: drm/edid: Range descriptor stuff (rev2)
+URL   : https://patchwork.freedesktop.org/series/107824/
+State : success
 
-While at it the same change should be applied in i915_driver_release()
-as well for consistency.
+== Summary ==
 
-> > > > > >   disable_rpm_wakeref_asserts(rpm);
-> > > > > >
-> > > > > >   intel_opregion_notify_adapter(dev_priv, PCI_D0);
-> > > > > > --
-> > > > > > 2.25.1
-> > > > > >
+CI Bug Log - changes from CI_DRM_12041 -> Patchwork_107824v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/index.html
+
+Participating hosts (39 -> 36)
+------------------------------
+
+  Additional (1): bat-dg2-10 
+  Missing    (4): fi-ctg-p8600 fi-rkl-11600 fi-bdw-samus fi-hsw-4200u 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_107824v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] ([i915#4785])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][3] ([fdo#109271] / [i915#4312] / [i915#5594] / [i915#6246])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8109u:       [DMESG-FAIL][4] ([i915#62]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@requests:
+    - {bat-rplp-1}:       [INCOMPLETE][6] -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/bat-rplp-1/igt@i915_selftest@live@requests.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/bat-rplp-1/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@ring_submission:
+    - fi-cfl-8109u:       [DMESG-WARN][8] ([i915#5904]) -> [PASS][9] +30 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-cfl-8109u:       [DMESG-WARN][10] ([i915#5904] / [i915#62]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [DMESG-WARN][12] ([i915#62]) -> [PASS][13] +13 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#5153]: https://gitlab.freedesktop.org/drm/intel/issues/5153
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#5904]: https://gitlab.freedesktop.org/drm/intel/issues/5904
+  [i915#6106]: https://gitlab.freedesktop.org/drm/intel/issues/6106
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#6246]: https://gitlab.freedesktop.org/drm/intel/issues/6246
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#6380]: https://gitlab.freedesktop.org/drm/intel/issues/6380
+  [i915#6530]: https://gitlab.freedesktop.org/drm/intel/issues/6530
+  [i915#6599]: https://gitlab.freedesktop.org/drm/intel/issues/6599
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12041 -> Patchwork_107824v2
+
+  CI-20190529: 20190529
+  CI_DRM_12041: 39caa74872844a95d9d2423e97ad497c1f8d1f30 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6637: a23e8aed0b54018339647d0817267431bd2b7075 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_107824v2: 39caa74872844a95d9d2423e97ad497c1f8d1f30 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+b46c364b6cd4 drm/i915: Infer vrefresh range for eDP if the EDID omits it
+5617bf80203b drm/edid: Make version checks less convoluted
+a2920e4df167 drm/edid: Unconfuse preferred timing stuff a bit
+cd0a9312d014 drm/edid: Use the correct formula for standard timings
+542a23015128 drm/edid: Use GTF2 for inferred modes
+cb15c11cc6bb drm/edid: Extract drm_gtf2_mode()
+b0252716ab05 drm/edid: Only parse VRR range for continuous frequency displays
+20dc73bcd13e drm/edid: Define more flags
+bcc35acc1a26 drm/edid: s/monitor_rage/vrr_range/
+1b21fc46dce7 drm/edid: Clarify why we only accept the "range limits only" descriptor
+66a313fc9cec drm/edid: Handle EDID 1.4 range descriptor h/vfreq offsets
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/index.html
+
+--===============5016342414407506057==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/edid: Range descriptor stuff (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107824/">https://patchwork.freedesktop.org/series/107824/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12041 -&gt; Patchwork_107824v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/index.html</p>
+<h2>Participating hosts (39 -&gt; 36)</h2>
+<p>Additional (1): bat-dg2-10 <br />
+  Missing    (4): fi-ctg-p8600 fi-rkl-11600 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_107824v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6246">i915#6246</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/bat-rplp-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/bat-rplp-1/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@ring_submission:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html">PASS</a> +30 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12041/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107824v2/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> +13 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12041 -&gt; Patchwork_107824v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12041: 39caa74872844a95d9d2423e97ad497c1f8d1f30 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6637: a23e8aed0b54018339647d0817267431bd2b7075 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_107824v2: 39caa74872844a95d9d2423e97ad497c1f8d1f30 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>b46c364b6cd4 drm/i915: Infer vrefresh range for eDP if the EDID omits it<br />
+5617bf80203b drm/edid: Make version checks less convoluted<br />
+a2920e4df167 drm/edid: Unconfuse preferred timing stuff a bit<br />
+cd0a9312d014 drm/edid: Use the correct formula for standard timings<br />
+542a23015128 drm/edid: Use GTF2 for inferred modes<br />
+cb15c11cc6bb drm/edid: Extract drm_gtf2_mode()<br />
+b0252716ab05 drm/edid: Only parse VRR range for continuous frequency displays<br />
+20dc73bcd13e drm/edid: Define more flags<br />
+bcc35acc1a26 drm/edid: s/monitor_rage/vrr_range/<br />
+1b21fc46dce7 drm/edid: Clarify why we only accept the "range limits only" descriptor<br />
+66a313fc9cec drm/edid: Handle EDID 1.4 range descriptor h/vfreq offsets</p>
+
+</body>
+</html>
+
+--===============5016342414407506057==--
