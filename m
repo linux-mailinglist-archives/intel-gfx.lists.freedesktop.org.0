@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91635A4DAF
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:19:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A746A5A4DB0
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Aug 2022 15:19:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33C8F10F291;
-	Mon, 29 Aug 2022 13:19:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B79610F28C;
+	Mon, 29 Aug 2022 13:19:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE25E10F28B
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:19:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E53010F28B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:19:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661779160; x=1693315160;
+ t=1661779165; x=1693315165;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qq+3vPsERnFUHx7bf2Rbyes4Y7heL3sTR1bJDCbscBY=;
- b=MoblwdKWHilZCludLYQHeBolUzRbpXxPABST8eajS7G6kT0z1Ucn4W83
- tNo5E3K2bUBra7ufpnjGJxWB5iYHxJjfSymfcMKIGfISiKMBBpIfw/gwV
- 58N3fdQTW0uWII1pY/4EQqjGkcdNYGU0cxtlYYDjFdhf+PX72N0mIhi71
- yDPfXOB9pwlu9RzjbuFZk0LjH5ABZ4EYrLWsmCNKoHLpy65IeEh0xorye
- rA/Az+fvaO6Zb3dwJmVUpBcqSA1ye2mJOsuFbggV6+X0vkOrVvG/0zalM
- TbRAasj7sx7iiIzu8kpQw16xhpfWBCpsp5UXJMRHk+lPE1q1WPLhHlH3f A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="277903477"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="277903477"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ bh=V5qI8PinZqXSR1zMAhLmZzdSHu+wSkBany8hpGTdnMM=;
+ b=fWW8HXyOPJrrGk7MDM9Fs6vqRalTMO5DZEXEyq1qWiINSADkfn3GYCtJ
+ C1D0VA0kR2pkSPhL6AemUsh2ke5bpFtwrcoWrqgrc8HeY8VU3rlYPrBIq
+ kG4iGtITi70x8TVmtPmIrDKBfLOP9NNclfQssGm9FmnAMiXDdo9gPUoEQ
+ dLN7e1BqmSuN+AprsmomVne8HvQSBHKBJ08AmqVFmMrSWl3Ph93wnCLV4
+ wzjMJbopfvnhBFrKZL+QdURYwqLHtWiGm0hEPXpDF0T9ttQhgAnyvAL4k
+ CRqoPk7v4aJ77uQI7ebcyWHHA1t4IbBavOXk6LwOnkS5oYKFC1YNrPlkc g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="277903490"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="277903490"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 06:19:20 -0700
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="644413682"
+ 29 Aug 2022 06:19:24 -0700
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="753626552"
 Received: from idecesar-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.53.198])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 06:19:19 -0700
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2022 06:19:23 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 29 Aug 2022 16:18:18 +0300
-Message-Id: <a5444d0a373afca46da9a2f6e4db442af21b429b.1661779055.git.jani.nikula@intel.com>
+Date: Mon, 29 Aug 2022 16:18:19 +0300
+Message-Id: <3363a516c12bd8bfb240131e9eb9fc3a0f3057a3.1661779055.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1661779055.git.jani.nikula@intel.com>
 References: <cover.1661779055.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 11/18] drm/i915: move fb_tracking under
- display sub-struct
+Subject: [Intel-gfx] [PATCH v3 12/18] drm/i915: move dbuf under display
+ sub-struct
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,263 +62,198 @@ Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move display frontbuffer tracking related members under drm_i915_private
-display sub-struct.
-
-Rename struct i915_frontbuffer_tracking to intel_frontbuffer_tracking
-while at it.
-
-FIXME: fb_tracking.lock mutex init should be moved away from
-i915_gem_init_early().
+Move display dbuf related members under drm_i915_private display
+sub-struct.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_core.h | 12 +++++
- .../drm/i915/display/intel_display_debugfs.c  |  4 +-
- .../gpu/drm/i915/display/intel_frontbuffer.c  | 54 +++++++++----------
- drivers/gpu/drm/i915/i915_drv.h               | 14 -----
- drivers/gpu/drm/i915/i915_gem.c               |  2 +-
- 5 files changed, 42 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_core.h  |  7 +++++++
+ drivers/gpu/drm/i915/display/intel_display_power.c |  6 +++---
+ .../drm/i915/display/intel_display_power_well.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_modeset_setup.c |  4 ++--
+ drivers/gpu/drm/i915/i915_drv.h                    |  7 -------
+ drivers/gpu/drm/i915/intel_pm.c                    | 14 +++++++-------
+ drivers/gpu/drm/i915/intel_pm.h                    |  4 ++--
+ 7 files changed, 22 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 0aeebf169ba6..3d2e1b14e186 100644
+index 3d2e1b14e186..b061deb21df1 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -120,6 +120,17 @@ struct intel_dpll {
- 	} ref_clks;
- };
+@@ -299,6 +299,13 @@ struct intel_display {
+ 		unsigned int max_cdclk_freq;
+ 	} cdclk;
  
-+struct intel_frontbuffer_tracking {
-+	spinlock_t lock;
++	struct {
++		/* The current hardware dbuf configuration */
++		u8 enabled_slices;
 +
-+	/*
-+	 * Tracking bits for delayed frontbuffer flushing du to gpu activity or
-+	 * scheduled flips.
-+	 */
-+	unsigned busy_bits;
-+	unsigned flip_bits;
-+};
++		struct intel_global_obj obj;
++	} dbuf;
 +
- struct intel_hotplug {
- 	struct delayed_work hotplug_work;
+ 	struct {
+ 		/* VLV/CHV/BXT/GLK DSI MMIO register base address */
+ 		u32 mmio_base;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index b64aec60c36c..1af1705d730d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1061,14 +1061,14 @@ void gen9_dbuf_slices_update(struct drm_i915_private *dev_priv,
+ 	for_each_dbuf_slice(dev_priv, slice)
+ 		gen9_dbuf_slice_set(dev_priv, slice, req_slices & BIT(slice));
  
-@@ -363,6 +374,7 @@ struct intel_display {
- 	struct intel_dmc dmc;
- 	struct intel_dpll dpll;
- 	struct intel_fbc *fbc[I915_MAX_FBCS];
-+	struct intel_frontbuffer_tracking fb_tracking;
- 	struct intel_hotplug hotplug;
- 	struct intel_opregion opregion;
- 	struct intel_overlay *overlay;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 619523f85a18..5dc364e9db49 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -37,10 +37,10 @@ static int i915_frontbuffer_tracking(struct seq_file *m, void *unused)
- 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+-	dev_priv->dbuf.enabled_slices = req_slices;
++	dev_priv->display.dbuf.enabled_slices = req_slices;
  
- 	seq_printf(m, "FB tracking busy bits: 0x%08x\n",
--		   dev_priv->fb_tracking.busy_bits);
-+		   dev_priv->display.fb_tracking.busy_bits);
- 
- 	seq_printf(m, "FB tracking flip bits: 0x%08x\n",
--		   dev_priv->fb_tracking.flip_bits);
-+		   dev_priv->display.fb_tracking.flip_bits);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-index 1463493824b8..d80e3e8a9b01 100644
---- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-+++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-@@ -81,9 +81,9 @@ static void frontbuffer_flush(struct drm_i915_private *i915,
- 			      enum fb_op_origin origin)
- {
- 	/* Delay flushing when rings are still busy.*/
--	spin_lock(&i915->fb_tracking.lock);
--	frontbuffer_bits &= ~i915->fb_tracking.busy_bits;
--	spin_unlock(&i915->fb_tracking.lock);
-+	spin_lock(&i915->display.fb_tracking.lock);
-+	frontbuffer_bits &= ~i915->display.fb_tracking.busy_bits;
-+	spin_unlock(&i915->display.fb_tracking.lock);
- 
- 	if (!frontbuffer_bits)
- 		return;
-@@ -111,11 +111,11 @@ static void frontbuffer_flush(struct drm_i915_private *i915,
- void intel_frontbuffer_flip_prepare(struct drm_i915_private *i915,
- 				    unsigned frontbuffer_bits)
- {
--	spin_lock(&i915->fb_tracking.lock);
--	i915->fb_tracking.flip_bits |= frontbuffer_bits;
-+	spin_lock(&i915->display.fb_tracking.lock);
-+	i915->display.fb_tracking.flip_bits |= frontbuffer_bits;
- 	/* Remove stale busy bits due to the old buffer. */
--	i915->fb_tracking.busy_bits &= ~frontbuffer_bits;
--	spin_unlock(&i915->fb_tracking.lock);
-+	i915->display.fb_tracking.busy_bits &= ~frontbuffer_bits;
-+	spin_unlock(&i915->display.fb_tracking.lock);
+ 	mutex_unlock(&power_domains->lock);
  }
  
- /**
-@@ -131,11 +131,11 @@ void intel_frontbuffer_flip_prepare(struct drm_i915_private *i915,
- void intel_frontbuffer_flip_complete(struct drm_i915_private *i915,
- 				     unsigned frontbuffer_bits)
+ static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
  {
--	spin_lock(&i915->fb_tracking.lock);
-+	spin_lock(&i915->display.fb_tracking.lock);
- 	/* Mask any cancelled flips. */
--	frontbuffer_bits &= i915->fb_tracking.flip_bits;
--	i915->fb_tracking.flip_bits &= ~frontbuffer_bits;
--	spin_unlock(&i915->fb_tracking.lock);
-+	frontbuffer_bits &= i915->display.fb_tracking.flip_bits;
-+	i915->display.fb_tracking.flip_bits &= ~frontbuffer_bits;
-+	spin_unlock(&i915->display.fb_tracking.lock);
+-	dev_priv->dbuf.enabled_slices =
++	dev_priv->display.dbuf.enabled_slices =
+ 		intel_enabled_dbuf_slices_mask(dev_priv);
  
- 	if (frontbuffer_bits)
- 		frontbuffer_flush(i915, frontbuffer_bits, ORIGIN_FLIP);
-@@ -155,10 +155,10 @@ void intel_frontbuffer_flip_complete(struct drm_i915_private *i915,
- void intel_frontbuffer_flip(struct drm_i915_private *i915,
- 			    unsigned frontbuffer_bits)
- {
--	spin_lock(&i915->fb_tracking.lock);
-+	spin_lock(&i915->display.fb_tracking.lock);
- 	/* Remove stale busy bits due to the old buffer. */
--	i915->fb_tracking.busy_bits &= ~frontbuffer_bits;
--	spin_unlock(&i915->fb_tracking.lock);
-+	i915->display.fb_tracking.busy_bits &= ~frontbuffer_bits;
-+	spin_unlock(&i915->display.fb_tracking.lock);
- 
- 	frontbuffer_flush(i915, frontbuffer_bits, ORIGIN_FLIP);
- }
-@@ -170,10 +170,10 @@ void __intel_fb_invalidate(struct intel_frontbuffer *front,
- 	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
- 
- 	if (origin == ORIGIN_CS) {
--		spin_lock(&i915->fb_tracking.lock);
--		i915->fb_tracking.busy_bits |= frontbuffer_bits;
--		i915->fb_tracking.flip_bits &= ~frontbuffer_bits;
--		spin_unlock(&i915->fb_tracking.lock);
-+		spin_lock(&i915->display.fb_tracking.lock);
-+		i915->display.fb_tracking.busy_bits |= frontbuffer_bits;
-+		i915->display.fb_tracking.flip_bits &= ~frontbuffer_bits;
-+		spin_unlock(&i915->display.fb_tracking.lock);
- 	}
- 
- 	trace_intel_frontbuffer_invalidate(frontbuffer_bits, origin);
-@@ -191,11 +191,11 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
- 	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
- 
- 	if (origin == ORIGIN_CS) {
--		spin_lock(&i915->fb_tracking.lock);
-+		spin_lock(&i915->display.fb_tracking.lock);
- 		/* Filter out new bits since rendering started. */
--		frontbuffer_bits &= i915->fb_tracking.busy_bits;
--		i915->fb_tracking.busy_bits &= ~frontbuffer_bits;
--		spin_unlock(&i915->fb_tracking.lock);
-+		frontbuffer_bits &= i915->display.fb_tracking.busy_bits;
-+		i915->display.fb_tracking.busy_bits &= ~frontbuffer_bits;
-+		spin_unlock(&i915->display.fb_tracking.lock);
- 	}
- 
- 	if (frontbuffer_bits)
-@@ -221,7 +221,7 @@ static void frontbuffer_retire(struct i915_active *ref)
+ 	/*
+@@ -1076,7 +1076,7 @@ static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
+ 	 * figure out later which slices we have and what we need.
+ 	 */
+ 	gen9_dbuf_slices_update(dev_priv, BIT(DBUF_S1) |
+-				dev_priv->dbuf.enabled_slices);
++				dev_priv->display.dbuf.enabled_slices);
  }
  
- static void frontbuffer_release(struct kref *ref)
--	__releases(&to_i915(front->obj->base.dev)->fb_tracking.lock)
-+	__releases(&to_i915(front->obj->base.dev)->display.fb_tracking.lock)
+ static void gen9_dbuf_disable(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index a358ce9e4bcd..c8b741dd05ba 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -946,7 +946,7 @@ static bool gen9_dc_off_power_well_enabled(struct drm_i915_private *dev_priv,
+ static void gen9_assert_dbuf_enabled(struct drm_i915_private *dev_priv)
  {
- 	struct intel_frontbuffer *front =
- 		container_of(ref, typeof(*front), ref);
-@@ -238,7 +238,7 @@ static void frontbuffer_release(struct kref *ref)
- 	spin_unlock(&obj->vma.lock);
+ 	u8 hw_enabled_dbuf_slices = intel_enabled_dbuf_slices_mask(dev_priv);
+-	u8 enabled_dbuf_slices = dev_priv->dbuf.enabled_slices;
++	u8 enabled_dbuf_slices = dev_priv->display.dbuf.enabled_slices;
  
- 	RCU_INIT_POINTER(obj->frontbuffer, NULL);
--	spin_unlock(&to_i915(obj->base.dev)->fb_tracking.lock);
-+	spin_unlock(&to_i915(obj->base.dev)->display.fb_tracking.lock);
- 
- 	i915_active_fini(&front->write);
- 
-@@ -268,7 +268,7 @@ intel_frontbuffer_get(struct drm_i915_gem_object *obj)
- 			 frontbuffer_retire,
- 			 I915_ACTIVE_RETIRE_SLEEPS);
- 
--	spin_lock(&i915->fb_tracking.lock);
-+	spin_lock(&i915->display.fb_tracking.lock);
- 	if (rcu_access_pointer(obj->frontbuffer)) {
- 		kfree(front);
- 		front = rcu_dereference_protected(obj->frontbuffer, true);
-@@ -277,7 +277,7 @@ intel_frontbuffer_get(struct drm_i915_gem_object *obj)
- 		i915_gem_object_get(obj);
- 		rcu_assign_pointer(obj->frontbuffer, front);
- 	}
--	spin_unlock(&i915->fb_tracking.lock);
-+	spin_unlock(&i915->display.fb_tracking.lock);
- 
- 	return front;
- }
-@@ -286,7 +286,7 @@ void intel_frontbuffer_put(struct intel_frontbuffer *front)
- {
- 	kref_put_lock(&front->ref,
- 		      frontbuffer_release,
--		      &to_i915(front->obj->base.dev)->fb_tracking.lock);
-+		      &to_i915(front->obj->base.dev)->display.fb_tracking.lock);
- }
- 
- /**
+ 	drm_WARN(&dev_priv->drm,
+ 		 hw_enabled_dbuf_slices != enabled_dbuf_slices,
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index def782794184..aed386dce96a 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -34,7 +34,7 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+ 	struct intel_cdclk_state *cdclk_state =
+ 		to_intel_cdclk_state(i915->display.cdclk.obj.state);
+ 	struct intel_dbuf_state *dbuf_state =
+-		to_intel_dbuf_state(i915->dbuf.obj.state);
++		to_intel_dbuf_state(i915->display.dbuf.obj.state);
+ 	struct intel_crtc_state *crtc_state =
+ 		to_intel_crtc_state(crtc->base.state);
+ 	struct intel_plane *plane;
+@@ -417,7 +417,7 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 	struct intel_cdclk_state *cdclk_state =
+ 		to_intel_cdclk_state(i915->display.cdclk.obj.state);
+ 	struct intel_dbuf_state *dbuf_state =
+-		to_intel_dbuf_state(i915->dbuf.obj.state);
++		to_intel_dbuf_state(i915->display.dbuf.obj.state);
+ 	enum pipe pipe;
+ 	struct intel_crtc *crtc;
+ 	struct intel_encoder *encoder;
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index a03b8e676a22..c950867153b6 100644
+index c950867153b6..1a494933dd92 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -39,7 +39,6 @@
- #include "display/intel_display.h"
- #include "display/intel_display_core.h"
- #include "display/intel_dsb.h"
--#include "display/intel_frontbuffer.h"
+@@ -281,13 +281,6 @@ struct drm_i915_private {
+ 	unsigned int hpll_freq;
+ 	unsigned int czclk_freq;
  
- #include "gem/i915_gem_context_types.h"
- #include "gem/i915_gem_lmem.h"
-@@ -188,17 +187,6 @@ i915_fence_timeout(const struct drm_i915_private *i915)
- 
- #define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
- 
--struct i915_frontbuffer_tracking {
--	spinlock_t lock;
+-	struct {
+-		/* The current hardware dbuf configuration */
+-		u8 enabled_slices;
 -
--	/*
--	 * Tracking bits for delayed frontbuffer flushing du to gpu activity or
--	 * scheduled flips.
--	 */
--	unsigned busy_bits;
--	unsigned flip_bits;
--};
+-		struct intel_global_obj obj;
+-	} dbuf;
 -
- struct i915_virtual_gpu {
- 	struct mutex lock; /* serialises sending of g2v_notify command pkts */
- 	bool active;
-@@ -333,8 +321,6 @@ struct drm_i915_private {
+ 	/**
+ 	 * wq - Driver workqueue for GEM.
+ 	 *
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index b8187c8d39f1..cbf46d25a0df 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -6568,7 +6568,7 @@ static void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+ void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_dbuf_state *dbuf_state =
+-		to_intel_dbuf_state(dev_priv->dbuf.obj.state);
++		to_intel_dbuf_state(dev_priv->display.dbuf.obj.state);
+ 	struct intel_crtc *crtc;
  
- 	struct list_head global_obj_list;
+ 	if (HAS_MBUS_JOINING(dev_priv))
+@@ -6630,13 +6630,13 @@ void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
+ 			    str_yes_no(dbuf_state->joined_mbus));
+ 	}
  
--	struct i915_frontbuffer_tracking fb_tracking;
--
- 	struct intel_atomic_helper {
- 		struct llist_head free_list;
- 		struct work_struct free_work;
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 32f0b5c443c8..c2d6172ba4bb 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1212,7 +1212,7 @@ void i915_gem_init_early(struct drm_i915_private *dev_priv)
- 	i915_gem_init__mm(dev_priv);
- 	i915_gem_init__contexts(dev_priv);
- 
--	spin_lock_init(&dev_priv->fb_tracking.lock);
-+	spin_lock_init(&dev_priv->display.fb_tracking.lock);
+-	dbuf_state->enabled_slices = dev_priv->dbuf.enabled_slices;
++	dbuf_state->enabled_slices = dev_priv->display.dbuf.enabled_slices;
  }
  
- void i915_gem_cleanup_early(struct drm_i915_private *dev_priv)
+ static bool skl_dbuf_is_misconfigured(struct drm_i915_private *i915)
+ {
+ 	const struct intel_dbuf_state *dbuf_state =
+-		to_intel_dbuf_state(i915->dbuf.obj.state);
++		to_intel_dbuf_state(i915->display.dbuf.obj.state);
+ 	struct skl_ddb_entry entries[I915_MAX_PIPES] = {};
+ 	struct intel_crtc *crtc;
+ 
+@@ -7222,10 +7222,10 @@ void intel_wm_state_verify(struct intel_crtc *crtc,
+ 	hw_enabled_slices = intel_enabled_dbuf_slices_mask(dev_priv);
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 11 &&
+-	    hw_enabled_slices != dev_priv->dbuf.enabled_slices)
++	    hw_enabled_slices != dev_priv->display.dbuf.enabled_slices)
+ 		drm_err(&dev_priv->drm,
+ 			"mismatch in DBUF Slices (expected 0x%x, got 0x%x)\n",
+-			dev_priv->dbuf.enabled_slices,
++			dev_priv->display.dbuf.enabled_slices,
+ 			hw_enabled_slices);
+ 
+ 	for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
+@@ -8342,7 +8342,7 @@ intel_atomic_get_dbuf_state(struct intel_atomic_state *state)
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_global_state *dbuf_state;
+ 
+-	dbuf_state = intel_atomic_get_global_obj_state(state, &dev_priv->dbuf.obj);
++	dbuf_state = intel_atomic_get_global_obj_state(state, &dev_priv->display.dbuf.obj);
+ 	if (IS_ERR(dbuf_state))
+ 		return ERR_CAST(dbuf_state);
+ 
+@@ -8357,7 +8357,7 @@ int intel_dbuf_init(struct drm_i915_private *dev_priv)
+ 	if (!dbuf_state)
+ 		return -ENOMEM;
+ 
+-	intel_atomic_global_obj_init(dev_priv, &dev_priv->dbuf.obj,
++	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.dbuf.obj,
+ 				     &dbuf_state->base, &intel_dbuf_funcs);
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
+index 945503ae493e..3ee71831d1a4 100644
+--- a/drivers/gpu/drm/i915/intel_pm.h
++++ b/drivers/gpu/drm/i915/intel_pm.h
+@@ -77,9 +77,9 @@ intel_atomic_get_dbuf_state(struct intel_atomic_state *state);
+ 
+ #define to_intel_dbuf_state(x) container_of((x), struct intel_dbuf_state, base)
+ #define intel_atomic_get_old_dbuf_state(state) \
+-	to_intel_dbuf_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->dbuf.obj))
++	to_intel_dbuf_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->display.dbuf.obj))
+ #define intel_atomic_get_new_dbuf_state(state) \
+-	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->dbuf.obj))
++	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->display.dbuf.obj))
+ 
+ int intel_dbuf_init(struct drm_i915_private *dev_priv);
+ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state);
 -- 
 2.34.1
 
