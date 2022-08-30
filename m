@@ -2,75 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D3F05A707E
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Aug 2022 00:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3E95A7080
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Aug 2022 00:19:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A54110E2B4;
-	Tue, 30 Aug 2022 22:18:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FF0110E2D1;
+	Tue, 30 Aug 2022 22:19:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E337210E28E
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Aug 2022 22:18:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1661897924;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=TSSAWMfY5IhOGMsl4sCR/Sqq+wVCREXXNdNLZqAgz7E=;
- b=haAT8saYzxLxMLS6opPLqYOpK5z2CDpq24j7RLZc1gKVCr15T8DkU5mV7iBx0N0IrkwMme
- ixjQxAuikL3BGScFINYLLsKfDS9jP7OBJW0A8Kgci4ghRKWh++TeBqckOBGjS+GCgwpdhL
- TMKNAfrk8lITAH6Dpry1XSuvclwgeM4=
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-97-KZu7zW2AOZmcVDWje8FwqA-1; Tue, 30 Aug 2022 18:18:41 -0400
-X-MC-Unique: KZu7zW2AOZmcVDWje8FwqA-1
-Received: by mail-il1-f200.google.com with SMTP id
- d4-20020a056e02214400b002df95f624a4so9206503ilv.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Aug 2022 15:18:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:organization:references
- :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc;
- bh=TSSAWMfY5IhOGMsl4sCR/Sqq+wVCREXXNdNLZqAgz7E=;
- b=6JnAtI2hbcWZthe9noMX7WplHCKRXOZ9IIkX0KcWl3RJXTD8zgua2p97vovpH/or/g
- 61+2usSrzdlsHJGP4QHVGXGhBKOy+edUgvwWzjwypOGuh0VwrL6gTRbjzfjh47KvdT5o
- pncRLSl4T2OO2OAhEFgS9XbiA1LGGwb1JCYdRDcDj5VuM/MiZGbTfSg3cZ4zy1n2uTaz
- OM3+NGQbrLjfBSzo5xhCFlxWs8fGojCcrGPoc8FiCzODpPYTauw2mXDlt994HDyrh4oU
- xe6e/wehBxP7x+En6mWsorcEGszoWy1fkUov4y+EyhsOjQqtaxEWaLWWGLXNvnFH+O1v
- oNxQ==
-X-Gm-Message-State: ACgBeo2YRfdhJwXhEvpQsnuhMZ4QwDROCUXc0hbd0SI8yk/nG2NvdE7i
- lJ49xFTAMCNzbMC2ONvwEkm3t3sOO4LnOXGpkNBRvRoiaojMXvyk7NtfXkuYnTRYTVjkvcVGAJI
- yo5T8ZEYAQk7KO3/Vw1g93ahgT5Qu
-X-Received: by 2002:a05:6602:1c4:b0:689:2db5:ea0f with SMTP id
- w4-20020a05660201c400b006892db5ea0fmr11509846iot.197.1661897921390; 
- Tue, 30 Aug 2022 15:18:41 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR73OWrrAXNYUM7X5f/RFjdmLhOTn+HRSKcgl5cCW81jvTLPZGl1q1ozpKM9lFAFywZRpg27UQ==
-X-Received: by 2002:a05:6602:1c4:b0:689:2db5:ea0f with SMTP id
- w4-20020a05660201c400b006892db5ea0fmr11509822iot.197.1661897921151; 
- Tue, 30 Aug 2022 15:18:41 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- z30-20020a056602081e00b0068b1858c81asm6110858iow.13.2022.08.30.15.18.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Aug 2022 15:18:40 -0700 (PDT)
-Date: Tue, 30 Aug 2022 16:18:38 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Kevin Tian <kevin.tian@intel.com>
-Message-ID: <20220830161838.4aa47045.alex.williamson@redhat.com>
-In-Reply-To: <20220827171037.30297-16-kevin.tian@intel.com>
-References: <20220827171037.30297-1-kevin.tian@intel.com>
- <20220827171037.30297-16-kevin.tian@intel.com>
-Organization: Red Hat
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C1C7110E2D1;
+ Tue, 30 Aug 2022 22:19:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B98C3A7DFB;
+ Tue, 30 Aug 2022 22:19:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0760504058011262975=="
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 15/15] vfio: Add struct device to vfio_device
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 30 Aug 2022 22:19:27 -0000
+Message-ID: <166189796775.27288.2021338964165852365@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220830212436.2021-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220830212436.2021-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Allow_more_varied_alternate_fixed_modes_for_panels?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,44 +40,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Rosato <mjrosato@linux.ibm.com>, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Kirti Wankhede <kwankhede@nvidia.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Longfang Liu <liulongfang@huawei.com>, linux-s390@vger.kernel.org,
- Yi Liu <yi.l.liu@intel.com>, kvm@vger.kernel.org,
- Leon Romanovsky <leon@kernel.org>, Halil Pasic <pasic@linux.ibm.com>,
- Jason Gunthorpe <jgg@ziepe.ca>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Tony Krowiak <akrowiak@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Jason Herne <jjherne@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
- Abhishek Sahu <abhsahu@nvidia.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 28 Aug 2022 01:10:37 +0800
-Kevin Tian <kevin.tian@intel.com> wrote:
+--===============0760504058011262975==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> From: Yi Liu <yi.l.liu@intel.com>
-> 
-> and replace kref. With it a 'vfio-dev/vfioX' node is created under the
-> sysfs path of the parent, indicating the device is bound to a vfio
-> driver, e.g.:
-> 
-> /sys/devices/pci0000\:6f/0000\:6f\:01.0/vfio-dev/vfio0
-> 
-> It is also a preparatory step toward adding cdev for supporting future
-> device-oriented uAPI.
+== Series Details ==
 
-Shall we start Documentation/ABI/testing/vfio-dev now?  Thanks.
+Series: drm/i915: Allow more varied alternate fixed modes for panels
+URL   : https://patchwork.freedesktop.org/series/107953/
+State : success
 
-Alex
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_12051 -> Patchwork_107953v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107953v1/index.html
+
+Participating hosts (36 -> 30)
+------------------------------
+
+  Missing    (6): fi-jsl-1 fi-hsw-4200u fi-ctg-p8600 fi-hsw-4770 fi-ehl-2 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_107953v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-g3258:       [PASS][1] -> [INCOMPLETE][2] ([i915#3303] / [i915#4785])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12051/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107953v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-hsw-g3258:       NOTRUN -> [FAIL][3] ([fdo#109271] / [i915#4312] / [i915#6246])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107953v1/fi-hsw-g3258/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#6246]: https://gitlab.freedesktop.org/drm/intel/issues/6246
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12051 -> Patchwork_107953v1
+
+  CI-20190529: 20190529
+  CI_DRM_12051: 87e7c1f925771561efe162f261251ed72b095007 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6638: 9338ab3ec085292817ab1e74d1f2fb90b6a98332 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_107953v1: 87e7c1f925771561efe162f261251ed72b095007 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+a91976496dfa drm/i915: Allow more varied alternate fixed modes for panels
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107953v1/index.html
+
+--===============0760504058011262975==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Allow more varied alternate fixed modes for panels</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107953/">https://patchwork.freedesktop.org/series/107953/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107953v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107953v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12051 -&gt; Patchwork_107953v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107953v1/index.html</p>
+<h2>Participating hosts (36 -&gt; 30)</h2>
+<p>Missing    (6): fi-jsl-1 fi-hsw-4200u fi-ctg-p8600 fi-hsw-4770 fi-ehl-2 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_107953v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12051/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107953v1/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107953v1/fi-hsw-g3258/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6246">i915#6246</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12051 -&gt; Patchwork_107953v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12051: 87e7c1f925771561efe162f261251ed72b095007 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6638: 9338ab3ec085292817ab1e74d1f2fb90b6a98332 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_107953v1: 87e7c1f925771561efe162f261251ed72b095007 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>a91976496dfa drm/i915: Allow more varied alternate fixed modes for panels</p>
+
+</body>
+</html>
+
+--===============0760504058011262975==--
