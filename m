@@ -1,63 +1,117 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 294695AE86A
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:35:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A0E65AE846
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:34:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9173010E683;
-	Tue,  6 Sep 2022 12:34:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FBB710E65D;
+	Tue,  6 Sep 2022 12:33:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 364 seconds by postgrey-1.36 at gabe;
- Mon, 29 Aug 2022 18:53:00 UTC
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4047410E5B2;
- Mon, 29 Aug 2022 18:53:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds202112;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=LIXwPXe6uDCw8puUWwXJwlt9Qctgfa7237R9Ay9Rr94=; b=lEkiEUddmC83T3gPlX9iC1HPqE
- SNqV0HNvj3WohDUJb3awRux40lCfk6tyQB/y/P0NkxAmJvnLotHmUwjl8aOOgP7Mq2i6NQQK+Qfzy
- aGX/MisxWkzuPdRvBFUrgVFV5Pp5E73ZOuHT2POkj46RBMOqXiYPFKcqFeqYAz83p2JMvS2jO7pEf
- 1Nfovc1pcY/rW+YbwdLiXSg03RCMaci4y5cXg2twznwbCvQHEeFLKuqBYsK06/LVq5t3DUgZOvADK
- 7zf9RrPQcFL/TgKO86KFtdoAnMH8IPBBc/k4+dp4YbP4PPdWhQGbwwkVcLgx7cXqgK+UELGvisvi2
- nlmQP40g==;
-Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=60573)
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1oSjme-00079u-AJ; Mon, 29 Aug 2022 20:46:52 +0200
-Message-ID: <f6289e5d-98e3-1a0d-f514-136e2b7978c1@tronnes.org>
-Date: Mon, 29 Aug 2022 20:46:42 +0200
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 879CD10E0E1;
+ Tue, 30 Aug 2022 13:43:00 +0000 (UTC)
+Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27UDcdj5018226;
+ Tue, 30 Aug 2022 13:42:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=dLMj4scT81hn+piIbAARyqrM8RYZW+n5ahtgpt1B8BU=;
+ b=E+EFWoEUKDGLYpQzvmjFv2E6WiW7Cltu3RhfxFO0GXgKUCXxQX4SYSLYLZzRm/rnfkkf
+ y97miLE5w/iSJSfToy9BFgMSRwN89Oii8exSmy4HNWiqBNIPMSKoRM6E9yDYoM0N6xOf
+ mib2DWDNDHc/W1Pas4JbC1WZQsRKrkTo5brV4kGCq+p84yGmKFwN23qsGfS6hYPQ7+ZH
+ xvDYqFi+/EOEOCg21StOIJem5F/0A18c5pQsK9GUOuQaOWlwSfhEdkzP7Ob0ZrCprWI2
+ Nhb6PMQynXz+8hrKS00En035zgneTS4Eake6oYMBecxF/8AueHGwvRMIbg24VtxTpOVC +Q== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3j9k439dkx-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 30 Aug 2022 13:42:48 +0000
+Received: from m0098409.ppops.net (m0098409.ppops.net [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 27UDckmC018907;
+ Tue, 30 Aug 2022 13:42:47 GMT
+Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com
+ [169.55.91.170])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3j9k439dk4-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 30 Aug 2022 13:42:47 +0000
+Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
+ by ppma02wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 27UDaSft028999;
+ Tue, 30 Aug 2022 13:42:45 GMT
+Received: from b01cxnp22033.gho.pok.ibm.com (b01cxnp22033.gho.pok.ibm.com
+ [9.57.198.23]) by ppma02wdc.us.ibm.com with ESMTP id 3j7aw9c0jx-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 30 Aug 2022 13:42:45 +0000
+Received: from b01ledav001.gho.pok.ibm.com (b01ledav001.gho.pok.ibm.com
+ [9.57.199.106])
+ by b01cxnp22033.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 27UDgjo9197318
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 30 Aug 2022 13:42:45 GMT
+Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 0DFB52805C;
+ Tue, 30 Aug 2022 13:42:45 +0000 (GMT)
+Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 369D528058;
+ Tue, 30 Aug 2022 13:42:43 +0000 (GMT)
+Received: from [9.160.64.167] (unknown [9.160.64.167])
+ by b01ledav001.gho.pok.ibm.com (Postfix) with ESMTP;
+ Tue, 30 Aug 2022 13:42:43 +0000 (GMT)
+Message-ID: <907c54c6-7f5b-77f3-c284-45604c60c12e@linux.ibm.com>
+Date: Tue, 30 Aug 2022 09:42:42 -0400
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
- Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
- Chen-Yu Tsai <wens@csie.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Kevin Tian <kevin.tian@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>, 
+ Zhi Wang <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-1-459522d653a7@cerno.tech>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-1-459522d653a7@cerno.tech>
-Content-Type: text/plain; charset=UTF-8
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Eric Farman <farman@linux.ibm.com>,
+ Matthew Rosato <mjrosato@linux.ibm.com>, Halil Pasic <pasic@linux.ibm.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Jason Herne <jjherne@linux.ibm.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Cornelia Huck <cohuck@redhat.com>, Longfang Liu <liulongfang@huawei.com>,
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>,
+ Eric Auger <eric.auger@redhat.com>, Kirti Wankhede <kwankhede@nvidia.com>,
+ Leon Romanovsky <leon@kernel.org>, Abhishek Sahu <abhsahu@nvidia.com>,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-s390@vger.kernel.org, kvm@vger.kernel.org
+References: <20220827171037.30297-1-kevin.tian@intel.com>
+ <20220827171037.30297-2-kevin.tian@intel.com>
+From: Anthony Krowiak <akrowiak@linux.ibm.com>
+In-Reply-To: <20220827171037.30297-2-kevin.tian@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:46 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 01/41] drm/tests: Order Kunit tests in
- Makefile
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: UInNfzO6UhsQq9SoGPUVlLqjbU3nCkc-
+X-Proofpoint-ORIG-GUID: RsKFVoA40hj8rxhPhQ80Xt5teHYxtGki
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-30_08,2022-08-30_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 bulkscore=0
+ adultscore=0 spamscore=0 mlxlogscore=999 clxscore=1011 phishscore=0
+ impostorscore=0 priorityscore=1501 suspectscore=0 lowpriorityscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208300067
+X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:45 +0000
+Subject: Re: [Intel-gfx] [PATCH 01/15] vfio: Add helpers for unifying
+ vfio_device life cycle
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,106 +124,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
+Cc: Yi Liu <yi.l.liu@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Reviewed-by: Tony Krowiak <akrowiak@linux.ibm.com>
+
+I have a couple of review comments, but nothing critical that would 
+prevent my r-b.
+
+On 8/27/22 1:10 PM, Kevin Tian wrote:
+> The idea is to let vfio core manage the vfio_device life cycle instead
+> of duplicating the logic cross drivers. This is also a preparatory
+> step for adding struct device into vfio_device.
+>
+> New pair of helpers together with a kref in vfio_device:
+>
+>   - vfio_alloc_device()
+>   - vfio_put_device()
+>
+> Drivers can register @init/@release callbacks to manage any private
+> state wrapping the vfio_device.
+>
+> However vfio-ccw doesn't fit this model due to a life cycle mess
+> that its private structure mixes both parent and mdev info hence must
+> be allocated/free'ed outside of the life cycle of vfio device.
+>
+> Per prior discussions this won't be fixed in short term by IBM folks.
+>
+> Instead of waiting introduce another helper vfio_init_device() so ccw
+> can call it to initialize a pre-allocated vfio_device.
+>
+> Further implication of the ccw trick is that vfio_device cannot be
+> free'ed uniformly in vfio core. Instead, require *EVERY* driver to
+> implement @release and free vfio_device inside. Then ccw can choose
+> to delay the free at its own discretion.
+>
+> Another trick down the road is that kvzalloc() is used to accommodate
+> the need of gvt which uses vzalloc() while all others use kzalloc().
+> So drivers should call a helper vfio_free_device() to free the
+> vfio_device instead of assuming that kfree() or vfree() is appliable.
+>
+> Later once the ccw mess is fixed we can remove those tricks and
+> fully handle structure alloc/free in vfio core.
+>
+> Existing vfio_{un}init_group_dev() will be deprecated after all
+> existing usages are converted to the new model.
+>
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Co-developed-by: Yi Liu <yi.l.liu@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> Signed-off-by: Kevin Tian <kevin.tian@intel.com>
+> ---
+>   drivers/vfio/vfio_main.c | 92 ++++++++++++++++++++++++++++++++++++++++
+>   include/linux/vfio.h     | 25 ++++++++++-
+>   2 files changed, 116 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index 7cb56c382c97..af8aad116f2b 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -496,6 +496,98 @@ void vfio_uninit_group_dev(struct vfio_device *device)
+>   }
+>   EXPORT_SYMBOL_GPL(vfio_uninit_group_dev);
+>   
+> +/*
+> + * Alloc and initialize vfio_device so it can be registered to vfio
+> + * core.
+> + *
+> + * Drivers should use the wrapper vfio_alloc_device() for allocation.
+> + * @size is the size of the structure to be allocated, including any
+> + * private data used by the driver.
 
 
-Den 29.08.2022 15.11, skrev Maxime Ripard:
-> Since we've recently added a ton of tests, the list starts to be a bit
-> 
-> of a mess and creates unneeded conflicts.
-> 
-> 
-> 
-> Let's order it alphabetically.
-> 
-> 
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> 
-> 
+It seems the purpose of the wrapper is to ensure that the object being 
+allocated has as its first field a struct vfio_device object and to 
+return its container. Why not just make that a requirement for this 
+function - which I would rename vfio_alloc_device - and document it in 
+the prologue? The caller can then cast the return pointer or use 
+container_of.
 
-Something has gone wrong with this patchset, there are double line endings.
 
-I looked at the patchwork version and it look all right there so I
-figured it might have fixed up the patches, but it failed:
+> + *
+> + * Driver may provide an @init callback to cover device private data.
+> + *
+> + * Use vfio_put_device() to release the structure after success return.
+> + */
+> +struct vfio_device *_vfio_alloc_device(size_t size, struct device *dev,
+> +		const struct vfio_device_ops *ops)
+> +{
+> +	struct vfio_device *device;
+> +	int ret;
+> +
+> +	if (WARN_ON(size < sizeof(struct vfio_device)))
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	device = kvzalloc(size, GFP_KERNEL);
+> +	if (!device)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	ret = vfio_init_device(device, dev, ops);
+> +	if (ret)
+> +		goto out_free;
+> +	return device;
+> +
+> +out_free:
+> +	kvfree(device);
+> +	return ERR_PTR(ret);
+> +}
+> +EXPORT_SYMBOL_GPL(_vfio_alloc_device);
+> +
+> +/*
+> + * Initialize a vfio_device so it can be registered to vfio core.
+> + *
+> + * Only vfio-ccw driver should call this interface.
+> + */
+> +int vfio_init_device(struct vfio_device *device, struct device *dev,
+> +		     const struct vfio_device_ops *ops)
+> +{
+> +	int ret;
+> +
+> +	vfio_init_group_dev(device, dev, ops);
+> +
+> +	if (ops->init) {
+> +		ret = ops->init(device);
+> +		if (ret)
+> +			goto out_uninit;
+> +	}
+> +
+> +	kref_init(&device->kref);
+> +	return 0;
+> +
+> +out_uninit:
+> +	vfio_uninit_group_dev(device);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(vfio_init_device);
+> +
+> +/*
+> + * The helper called by driver @release callback to free the device
+> + * structure. Drivers which don't have private data to clean can
+> + * simply use this helper as its @release.
+> + */
+> +void vfio_free_device(struct vfio_device *device)
+> +{
+> +	kvfree(device);
+> +}
+> +EXPORT_SYMBOL_GPL(vfio_free_device);
+> +
+> +/* Release helper called by vfio_put_device() */
+> +void vfio_device_release(struct kref *kref)
+> +{
+> +	struct vfio_device *device =
+> +			container_of(kref, struct vfio_device, kref);
+> +
+> +	vfio_uninit_group_dev(device);
+> +
+> +	/*
+> +	 * kvfree() cannot be done here due to a life cycle mess in
+> +	 * vfio-ccw. Before the ccw part is fixed all drivers are
+> +	 * required to support @release and call vfio_free_device()
+> +	 * from there.
+> +	 */
+> +	device->ops->release(device);
+> +}
+> +EXPORT_SYMBOL_GPL(vfio_device_release);
+> +
+>   static struct vfio_group *vfio_noiommu_group_alloc(struct device *dev,
+>   		enum vfio_group_type type)
+>   {
+> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+> index e05ddc6fe6a5..e1e9e8352903 100644
+> --- a/include/linux/vfio.h
+> +++ b/include/linux/vfio.h
+> @@ -45,7 +45,8 @@ struct vfio_device {
+>   	struct kvm *kvm;
+>   
+>   	/* Members below here are private, not for driver use */
+> -	refcount_t refcount;
+> +	struct kref kref;	/* object life cycle */
+> +	refcount_t refcount;	/* user count on registered device*/
+>   	unsigned int open_count;
+>   	struct completion comp;
+>   	struct list_head group_next;
+> @@ -55,6 +56,8 @@ struct vfio_device {
+>   /**
+>    * struct vfio_device_ops - VFIO bus driver device callbacks
+>    *
+> + * @init: initialize private fields in device structure
+> + * @release: Reclaim private fields in device structure
+>    * @open_device: Called when the first file descriptor is opened for this device
+>    * @close_device: Opposite of open_device
+>    * @read: Perform read(2) on device file descriptor
+> @@ -72,6 +75,8 @@ struct vfio_device {
+>    */
+>   struct vfio_device_ops {
+>   	char	*name;
+> +	int	(*init)(struct vfio_device *vdev);
+> +	void	(*release)(struct vfio_device *vdev);
+>   	int	(*open_device)(struct vfio_device *vdev);
+>   	void	(*close_device)(struct vfio_device *vdev);
+>   	ssize_t	(*read)(struct vfio_device *vdev, char __user *buf,
+> @@ -137,6 +142,24 @@ static inline int vfio_check_feature(u32 flags, size_t argsz, u32 supported_ops,
+>   	return 1;
+>   }
+>   
+> +struct vfio_device *_vfio_alloc_device(size_t size, struct device *dev,
+> +				       const struct vfio_device_ops *ops);
+> +#define vfio_alloc_device(dev_struct, member, dev, ops)				\
+> +	container_of(_vfio_alloc_device(sizeof(struct dev_struct) +		\
+> +					BUILD_BUG_ON_ZERO(offsetof(		\
+> +						struct dev_struct, member)),	\
+> +					dev, ops),				\
+> +		     struct dev_struct, member)
 
-git apply -v --check
-/home/pi/tinydrm.gud-gadget/workdirs/tv_norm_gadget/500003.patch
-Checking patch drivers/gpu/drm/tests/Makefile...
-error: while searching for:
-# SPDX-License-Identifier: GPL-2.0?
-?
-obj-$(CONFIG_DRM_KUNIT_TEST) += drm_format_helper_test.o
-drm_damage_helper_test.o \?
-        drm_cmdline_parser_test.o drm_rect_test.o drm_format_test.o
-drm_plane_helper_test.o \?
-        drm_dp_mst_helper_test.o drm_framebuffer_test.o drm_buddy_test.o
-drm_mm_test.o?
 
-error: patch failed: drivers/gpu/drm/tests/Makefile:1
-error: drivers/gpu/drm/tests/Makefile: patch does not apply
+I found the use of this macro confusing and unnecessary. I'd prefer 
+vfio_alloc_device be a function (see my comments above).
 
-ERROR: Failed check apply patch
 
-pi@build-server:~/tinydrm.gud-gadget$ file
-workdirs/tv_norm_gadget/500003.patch
-workdirs/tv_norm_gadget/500003.patch: unified diff output, ASCII text,
-with CRLF, LF line terminators
-
-Noralf.
-
-> diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Makefile
-> 
-> index 91b70f7d2769..2d9f49b62ecb 100644
-> 
-> --- a/drivers/gpu/drm/tests/Makefile
-> 
-> +++ b/drivers/gpu/drm/tests/Makefile
-> 
-> @@ -1,5 +1,13 @@
-> 
->  # SPDX-License-Identifier: GPL-2.0
-> 
->  
-> 
-> -obj-$(CONFIG_DRM_KUNIT_TEST) += drm_format_helper_test.o drm_damage_helper_test.o \
-> 
-> -	drm_cmdline_parser_test.o drm_rect_test.o drm_format_test.o drm_plane_helper_test.o \
-> 
-> -	drm_dp_mst_helper_test.o drm_framebuffer_test.o drm_buddy_test.o drm_mm_test.o
-> 
-> +obj-$(CONFIG_DRM_KUNIT_TEST) += \
-> 
-> +	drm_buddy_test.o \
-> 
-> +	drm_cmdline_parser_test.o \
-> 
-> +	drm_damage_helper_test.o \
-> 
-> +	drm_dp_mst_helper_test.o \
-> 
-> +	drm_format_helper_test.o \
-> 
-> +	drm_format_test.o \
-> 
-> +	drm_framebuffer_test.o \
-> 
-> +	drm_mm_test.o \
-> 
-> +	drm_plane_helper_test.o \
-> 
-> +	drm_rect_test.o
-> 
-> 
-> 
+> +
+> +int vfio_init_device(struct vfio_device *device, struct device *dev,
+> +		     const struct vfio_device_ops *ops);
+> +void vfio_free_device(struct vfio_device *device);
+> +void vfio_device_release(struct kref *kref);
+> +static inline void vfio_put_device(struct vfio_device *device)
+> +{
+> +	kref_put(&device->kref, vfio_device_release);
+> +}
+> +
+>   void vfio_init_group_dev(struct vfio_device *device, struct device *dev,
+>   			 const struct vfio_device_ops *ops);
+>   void vfio_uninit_group_dev(struct vfio_device *device);
