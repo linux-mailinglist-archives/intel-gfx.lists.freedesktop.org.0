@@ -2,33 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13C5B5A601D
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Aug 2022 12:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 914805A6048
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Aug 2022 12:07:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5BC68905A;
-	Tue, 30 Aug 2022 10:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A360A10E028;
+	Tue, 30 Aug 2022 10:07:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BE71D89798;
- Tue, 30 Aug 2022 10:03:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B44DEA0078;
- Tue, 30 Aug 2022 10:03:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9108023414738691797=="
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
+ [209.85.160.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01FC210E00C;
+ Tue, 30 Aug 2022 10:07:09 +0000 (UTC)
+Received: by mail-qt1-f174.google.com with SMTP id c20so8094973qtw.8;
+ Tue, 30 Aug 2022 03:07:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc;
+ bh=B6sPmfOEwPF2h7f07mGfudT4aQe+F6kN6ETICFIZHMY=;
+ b=o4+XEGitnnYqoqgpcZSIvG7RMttE7byKzwJfldKa3rgmfRywsHWOGZFZwmR2Gys3GK
+ NtKbFA4Ho3GdaYUwo1PZp0O5x+Ew5maD9izZYp0K3w5A+S+o3xxRmpJLw1ZDaxSO+Opu
+ ZIitImslMx8RuWP9OEpkuQXeILQVLpe4ZzS210YKI1eSqoK0Hm/Op/33kMjkZ2QEgBZa
+ iB3YzwubfFebxXwhtqPNBYhJSH1Sib+OUA59igCYBo+Q2rL6gK4Mgl68Cf16R8co5pmg
+ /pjeR7ohR8Zgp3Hp+DyoQndiNBvDVXbMZvo7swgW+BGcGusDvHsKPjfU8iJP/uHesJJu
+ xOWw==
+X-Gm-Message-State: ACgBeo0ssKdgqMiDSPPeZ6qKYLi2evRqxWnKGweBCspI4XCBekPqnvi/
+ QBjMt8x+kFOxEx+EbSZRe/Nvr/zLpz8l8g==
+X-Google-Smtp-Source: AA6agR7HTStCAJjuMUvrtkPAuP1jQedksE3tAKTXBMgTCKhbb2AQh+bPCaiA2m4ZBWoTGlm8li0dLA==
+X-Received: by 2002:a05:622a:1788:b0:344:7c86:f9a1 with SMTP id
+ s8-20020a05622a178800b003447c86f9a1mr13617175qtk.22.1661854028519; 
+ Tue, 30 Aug 2022 03:07:08 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com.
+ [209.85.128.169]) by smtp.gmail.com with ESMTPSA id
+ az11-20020a05620a170b00b006bbd0ae9c05sm8039630qkb.130.2022.08.30.03.07.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 30 Aug 2022 03:07:07 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id
+ 00721157ae682-3321c2a8d4cso260683937b3.5; 
+ Tue, 30 Aug 2022 03:07:07 -0700 (PDT)
+X-Received: by 2002:a25:8e84:0:b0:696:466c:baa with SMTP id
+ q4-20020a258e84000000b00696466c0baamr10033148ybl.604.1661854027231; Tue, 30
+ Aug 2022 03:07:07 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 30 Aug 2022 10:03:50 -0000
-Message-ID: <166185383073.27287.16040954481790095683@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220830093411.1511040-1-jani.nikula@intel.com>
-In-Reply-To: <20220830093411.1511040-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/5=5D_drm/i915/crt=3A_remove_BUG=5FO?=
- =?utf-8?b?Tigp?=
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-14-459522d653a7@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-14-459522d653a7@cerno.tech>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 30 Aug 2022 12:06:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV9wVgHFfwHoqtBoYzJDnjDmKTfaZkAKvTVKh1Y-2x1pA@mail.gmail.com>
+Message-ID: <CAMuHMdV9wVgHFfwHoqtBoYzJDnjDmKTfaZkAKvTVKh1Y-2x1pA@mail.gmail.com>
+To: Maxime Ripard <maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v2 14/41] drm/modes: Move named modes
+ parsing to a separate function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,213 +67,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ Nouveau Dev <nouveau@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Ben Skeggs <bskeggs@redhat.com>, linux-sunxi@lists.linux.dev,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9108023414738691797==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Maxime,
 
-== Series Details ==
+On Mon, Aug 29, 2022 at 3:13 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> The current construction of the named mode parsing doesn't allow to extend
+> it easily. Let's move it to a separate function so we can add more
+> parameters and modes.
+>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
-Series: series starting with [v2,1/5] drm/i915/crt: remove BUG_ON()
-URL   : https://patchwork.freedesktop.org/series/107929/
-State : success
+Thanks for your patch!
 
-== Summary ==
+> --- a/drivers/gpu/drm/drm_modes.c
+> +++ b/drivers/gpu/drm/drm_modes.c
+> @@ -1909,6 +1909,9 @@ void drm_connector_list_update(struct drm_connector *connector)
+>  }
+>  EXPORT_SYMBOL(drm_connector_list_update);
+>
+> +#define STR_STRICT_EQ(str, len, cmp) \
+> +       ((strlen(cmp) == len) && !strncmp(str, cmp, len))
 
-CI Bug Log - changes from CI_DRM_12048 -> Patchwork_107929v1
-====================================================
+This is not part of the move, but newly added.
 
-Summary
--------
+> +
+>  static int drm_mode_parse_cmdline_bpp(const char *str, char **end_ptr,
+>                                       struct drm_cmdline_mode *mode)
+>  {
+> @@ -2208,6 +2211,52 @@ static const char * const drm_named_modes_whitelist[] = {
+>         "PAL",
+>  };
+>
+> +static int drm_mode_parse_cmdline_named_mode(const char *name,
+> +                                            unsigned int name_end,
+> +                                            struct drm_cmdline_mode *cmdline_mode)
+> +{
+> +       unsigned int i;
+> +
+> +       if (!name_end)
+> +               return 0;
 
-  **SUCCESS**
+This is already checked by the caller.
 
-  No regressions found.
+> +
+> +       /* If the name starts with a digit, it's not a named mode */
+> +       if (isdigit(name[0]))
+> +               return 0;
+> +
+> +       /*
+> +        * If there's an equal sign in the name, the command-line
+> +        * contains only an option and no mode.
+> +        */
+> +       if (strnchr(name, name_end, '='))
+> +               return 0;
+> +
+> +       /* The connection status extras can be set without a mode. */
+> +       if (STR_STRICT_EQ(name, name_end, "d") ||
+> +           STR_STRICT_EQ(name, name_end, "D") ||
+> +           STR_STRICT_EQ(name, name_end, "e"))
+> +               return 0;
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/index.html
+These checks are not part of the move, and should probably be added
+in a separate patch.
 
-Participating hosts (39 -> 37)
-------------------------------
+> +
+> +       /*
+> +        * We're sure we're a named mode at that point, iterate over the
+> +        * list of modes we're aware of.
+> +        */
+> +       for (i = 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i++) {
+> +               int ret;
+> +
+> +               ret = str_has_prefix(name, drm_named_modes_whitelist[i]);
+> +               if (ret != name_end)
+> +                       continue;
+> +
+> +               strcpy(cmdline_mode->name, drm_named_modes_whitelist[i]);
+> +               cmdline_mode->specified = true;
+> +
+> +               return 1;
+> +       }
+> +
+> +       return -EINVAL;
+> +}
+> +
+>  /**
+>   * drm_mode_parse_command_line_for_connector - parse command line modeline for connector
+>   * @mode_option: optional per connector mode option
+> @@ -2244,7 +2293,7 @@ bool drm_mode_parse_command_line_for_connector(const char *mode_option,
+>         const char *bpp_ptr = NULL, *refresh_ptr = NULL, *extra_ptr = NULL;
+>         const char *options_ptr = NULL;
+>         char *bpp_end_ptr = NULL, *refresh_end_ptr = NULL;
+> -       int i, len, ret;
+> +       int len, ret;
+>
+>         memset(mode, 0, sizeof(*mode));
+>         mode->panel_orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
+> @@ -2285,17 +2334,19 @@ bool drm_mode_parse_command_line_for_connector(const char *mode_option,
+>                 parse_extras = true;
+>         }
+>
+> -       /* First check for a named mode */
+> -       for (i = 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i++) {
+> -               ret = str_has_prefix(name, drm_named_modes_whitelist[i]);
+> -               if (ret == mode_end) {
+> -                       if (refresh_ptr)
+> -                               return false; /* named + refresh is invalid */
+>
+> -                       strcpy(mode->name, drm_named_modes_whitelist[i]);
+> -                       mode->specified = true;
+> -                       break;
+> -               }
+> +       if (mode_end) {
+> +               ret = drm_mode_parse_cmdline_named_mode(name, mode_end, mode);
+> +               if (ret < 0)
+> +                       return false;
+> +
+> +               /*
+> +                * Having a mode that starts by a letter (and thus is named)
+> +                * and an at-sign (used to specify a refresh rate) is
+> +                * disallowed.
+> +                */
+> +               if (ret && refresh_ptr)
+> +                       return false;
+>         }
+>
+>         /* No named mode? Check for a normal mode argument, e.g. 1024x768 */
+>
 
-  Missing    (2): fi-ctg-p8600 fi-bdw-samus 
+Gr{oetje,eeting}s,
 
-Known issues
-------------
+                        Geert
 
-  Here are the changes found in Patchwork_107929v1 that come from known issues:
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gem:
-    - fi-pnv-d510:        NOTRUN -> [DMESG-FAIL][1] ([i915#4528])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/fi-pnv-d510/igt@i915_selftest@live@gem.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {bat-rplp-1}:       [DMESG-WARN][2] ([i915#2867]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_selftest@live@requests:
-    - {bat-rpls-1}:       [INCOMPLETE][4] ([i915#6257] / [i915#6380]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/bat-rpls-1/igt@i915_selftest@live@requests.html
-    - fi-pnv-d510:        [DMESG-FAIL][6] ([i915#4528]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/fi-pnv-d510/igt@i915_selftest@live@requests.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/fi-pnv-d510/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [FAIL][8] ([i915#6298]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2:
-    - fi-bdw-5557u:       [INCOMPLETE][10] ([i915#146]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6380]: https://gitlab.freedesktop.org/drm/intel/issues/6380
-  [i915#6643]: https://gitlab.freedesktop.org/drm/intel/issues/6643
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12048 -> Patchwork_107929v1
-
-  CI-20190529: 20190529
-  CI_DRM_12048: 7662d7a73e30619a337c4486f85f7fce046524d6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6638: 9338ab3ec085292817ab1e74d1f2fb90b6a98332 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_107929v1: 7662d7a73e30619a337c4486f85f7fce046524d6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-ad730454af3a drm/i915/fence: replace BUG_ON() with BUILD_BUG_ON()
-e66513c86e26 drm/i915/perf: replace BUG_ON() with WARN_ON()
-1892977c080b drm/i915/pch: replace BUG_ON() with drm_WARN_ON()
-b0af817b46c3 drm/i915/dpll: replace BUG_ON() with drm_WARN_ON()
-1fd161112abf drm/i915/crt: remove BUG_ON()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/index.html
-
---===============9108023414738691797==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/5] drm/i915/crt: remove BUG_ON()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107929/">https://patchwork.freedesktop.org/series/107929/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12048 -&gt; Patchwork_107929v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 37)</h2>
-<p>Missing    (2): fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_107929v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@gem:<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/fi-pnv-d510/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>
-<p>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/bat-rpls-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6257">i915#6257</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6380">i915#6380</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-<li>
-<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12048/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107929v1/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12048 -&gt; Patchwork_107929v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12048: 7662d7a73e30619a337c4486f85f7fce046524d6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6638: 9338ab3ec085292817ab1e74d1f2fb90b6a98332 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_107929v1: 7662d7a73e30619a337c4486f85f7fce046524d6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>ad730454af3a drm/i915/fence: replace BUG_ON() with BUILD_BUG_ON()<br />
-e66513c86e26 drm/i915/perf: replace BUG_ON() with WARN_ON()<br />
-1892977c080b drm/i915/pch: replace BUG_ON() with drm_WARN_ON()<br />
-b0af817b46c3 drm/i915/dpll: replace BUG_ON() with drm_WARN_ON()<br />
-1fd161112abf drm/i915/crt: remove BUG_ON()</p>
-
-</body>
-</html>
-
---===============9108023414738691797==--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
