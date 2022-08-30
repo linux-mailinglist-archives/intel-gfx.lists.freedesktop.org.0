@@ -1,18 +1,18 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD77F5AE888
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:37:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AD1C5AE84F
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:34:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 151EF10E69B;
-	Tue,  6 Sep 2022 12:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68C8E10E668;
+	Tue,  6 Sep 2022 12:33:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtp.domeneshop.no (smtp.domeneshop.no
  [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 918FE10E126;
- Tue, 30 Aug 2022 15:23:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E8AC10E129;
+ Tue, 30 Aug 2022 15:24:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
  ; s=ds202112;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
@@ -20,18 +20,18 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ZcvUU1EAXtTJzWhX0QKcblQnfz8rCARTSjamaFHiCSU=; b=K1pOL/7VuwXIcKrFnYe4r1r4tz
- VcgJ5EA7GXFLnj1vXLCdZOGTds1+FYeb1zAO+mIDcwJJr5QfAJY7wXWfydGN18tmUCWtdepYk07XN
- aVFSXq9tl8E9tl0i083anWFytp3zGwGPqXvtYp3gaPqZIruNMFZC6weAdPbrOSRFNrfmXR3mZc2N/
- ucgNyZETk1Wn5WxBd/an71gTr54Ss8Y9RQp1wgzXjxSgd8Wv7+HsWh8Tei2XEiXelz2mktoDfEO5r
- pEeW7DefxVWBgl+9h1m5KQRod3GYS/GVs2c4vWosuxGcTDjPU7/1H/TllOI9sEEbFkAHusLxgWHbz
- E5G8PuCw==;
-Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=57591)
+ bh=QtvtkqbsXixx5f4NTIBbsRT97wj7gv7iDPUIbJMOQIk=; b=MzyqECEMKTjmMsWWWPAP9z7+w1
+ poHyrUGRVDlh+BCDKlFcy6+svG/aupF8hInlu8la7IYsT6vsFTqiKB8xen1XynwFKpeaXxvqsRpZi
+ y4z9Vj07DHRyOdAa6csULjQ9RQdSzY9DxKz/TWzPkA9GxEbfpr7uvfa/cppnEQnoXWYHZes0a7hml
+ 9EyFMLuH71OwzFLArvimGutez91tK3SwCz8KgiwvNOKuh8Obce7m9LtTQ+DNJRE/dm85FASf1p7f/
+ 2GIYvscsuuDSjM3DhKiWM+2tN1VCfYoZArMWjrzhA+Xc3GY2fGUBu5xxLlqJJ+n2YVdVXWM1e0hry
+ H0HkU7AQ==;
+Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=57663)
  by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
  (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1oT355-0006ei-4d; Tue, 30 Aug 2022 17:23:11 +0200
-Message-ID: <fbad203b-a508-f328-b43e-5a6012525794@tronnes.org>
-Date: Tue, 30 Aug 2022 17:23:02 +0200
+ id 1oT36d-0007cZ-1M; Tue, 30 Aug 2022 17:24:47 +0200
+Message-ID: <4d5e0055-2ec7-4bf8-15f9-d85767351ea3@tronnes.org>
+Date: Tue, 30 Aug 2022 17:24:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
@@ -48,14 +48,14 @@ To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-24-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-25-459522d653a7@cerno.tech>
 From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-24-459522d653a7@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-25-459522d653a7@cerno.tech>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:46 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 24/41] drm/vc4: vec: Remove empty
- mode_fixup
+Subject: Re: [Intel-gfx] [PATCH v2 25/41] drm/vc4: vec: Convert to atomic
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,9 +82,9 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 Den 29.08.2022 15.11, skrev Maxime Ripard:
-> The mode_fixup hooks are deprecated, and the behaviour we implement is the
+> The VC4 VEC driver still uses legacy enable and disable hook
 > 
-> default one anyway. Let's remove it.
+> implementation. Let's convert to the atomic variants.
 > 
 > 
 > 
