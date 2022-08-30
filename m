@@ -2,46 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 363675A67BC
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Aug 2022 17:54:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0505A65DD
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Aug 2022 16:03:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E23F110E116;
-	Tue, 30 Aug 2022 15:53:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 719EF10E023;
+	Tue, 30 Aug 2022 14:03:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C352610E173
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Aug 2022 15:53:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661874835; x=1693410835;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZFWoWZslc2XokpBPbePCF8gb6k/hy++uz8y4Ca+IFpE=;
- b=Vvad6Z24oWOZdKxxoDnz7ogQMtIUnGadYR+C+SBhSqdI3VVYyEDMmwzB
- cZVpIpMgS29WtmmUS0g+NtNn14Czk7fDagJ29NihFYr9mLO4J1T+QgQ33
- a+KLU02pWsgOBtrPd7QubQ2C9hkrZgY/M0ftm16/Urszj14P7eLWQNgx9
- fVfb3JtPxUmD2swU77rZshqOFmtz6L2FeqzovRdR2DCVLFTCcoK+wxVeP
- juJBNSECkzccRYHOCn8P99fQm5g4tA8QdkuFjzUAcwjLIOHDbgxZqZA36
- fg/U0NZ7eTl6khS2AL+YAuvLOAGuqD8jJucWnsWZXk9gdHa8eqtSzsDFk Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10455"; a="356928824"
-X-IronPort-AV: E=Sophos;i="5.93,275,1654585200"; d="scan'208";a="356928824"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2022 08:53:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,275,1654585200"; d="scan'208";a="680083526"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmsmga004.fm.intel.com with ESMTP; 30 Aug 2022 08:53:53 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Aug 2022 14:21:58 +0530
-Message-Id: <20220830085158.577157-1-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com
+ [IPv6:2a00:1450:4864:20::12e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1685E10E023
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Aug 2022 14:03:16 +0000 (UTC)
+Received: by mail-lf1-x12e.google.com with SMTP id m2so11909658lfp.11
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Aug 2022 07:03:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc;
+ bh=GVg+FsJ0IBt3OwqKh0V0rvrID7eApnrW9DdhKsSZPvM=;
+ b=M6Xk9otWst1nqH71+qhM2+HfbyQffR7rDy8miPvpVlqH4ow4bcRVDF1vslli1JJQxn
+ oyMrDyAywDDZtmNRK7isXm/Fln8mbEcc7uD+sAXbHMWmlpMTsyQIAbo4HauQku17rPT5
+ 05De990SPFuyxrHVGvWpLwpQtl8qr3BNHhSFNyEqnju8vPxTC6pSTLJWHw8nXYo3so5I
+ 4kSmOsGKlk2vLhCGhIFopMCpuBG7fltbrGv5X/aZxFyThra6cdHKIkQJUm3rDj5C05Xc
+ tXV7u+LtsU0dhjKexurBM/5T6M1tAw+GsCAURHAEb70cbT8kskmH5e0xMYK0EaK10k/6
+ 74AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc;
+ bh=GVg+FsJ0IBt3OwqKh0V0rvrID7eApnrW9DdhKsSZPvM=;
+ b=pioCTLzWYcmRRx7akO9DCuT0+b6MXctqbo5eGKdp9tfW2JFgO2qUJG7e366OccpRfV
+ NseEeBBGRhAqLhk2AXT1O3sb7NfCjoI9oYBkKK3ZGZ5FparFtSiLjnxckFGL9teceyoX
+ 0YjiEn04iIBSyq3KQHuVWi9PW7KhuzOQ2z9B8ASsLXpyuzDifRmRNb8Qev5P63VhhMxz
+ S+G0lP89pk4e9pgtbbYf6nmp226W5xGhsJD8SpLRAWdkmEJufEoFw20j6+lryT2sQjPQ
+ jVcEA+ebAcV4wwqJnKrpsRZ49NTAJBLsMnBszSWC2w3ZgbiBEi/1jgTXb+UZDXhWdoeR
+ toJg==
+X-Gm-Message-State: ACgBeo0VZYwJR49NHbfKT+HvF9cz+srVhdUrMR3PvbNCrEiD95sTxkM4
+ YhicNgjqfB+TITRl07gzxUC2Y7qbqdu+3uTwkkQ=
+X-Google-Smtp-Source: AA6agR4T1IkYsCeZcdKOMmUQ8NTGy6T+sChQXksASjCQ6opZT7Jgbn7iKtE/y3JJmIqE+YnN3OsObMIyWPi90w1tjmE=
+X-Received: by 2002:a05:6512:3ca2:b0:494:6181:84a0 with SMTP id
+ h34-20020a0565123ca200b00494618184a0mr4454092lfv.185.1661868194325; Tue, 30
+ Aug 2022 07:03:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Fix warning callstack for
- imbalance wakeref
+References: <20220825105409.6927-1-anshuman.gupta@intel.com>
+ <20220825105409.6927-2-anshuman.gupta@intel.com>
+ <efccc7fb-7532-a3e7-de07-7459b83011cc@intel.com>
+ <CY5PR11MB6211B52EA9DC05ADE4318B3595769@CY5PR11MB6211.namprd11.prod.outlook.com>
+ <CAM0jSHPqW5rFeALXu1DN=985FfD=LHCeTD5d7L+ipxE-PMYw1g@mail.gmail.com>
+In-Reply-To: <CAM0jSHPqW5rFeALXu1DN=985FfD=LHCeTD5d7L+ipxE-PMYw1g@mail.gmail.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 30 Aug 2022 15:02:47 +0100
+Message-ID: <CAM0jSHNGr0PqkDLday7JH8N_6CcLvj+Yqyn8Djr16ef=uuDXxw@mail.gmail.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/dgfx: Release mmap on rpm
+ suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,69 +68,344 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, "Auld, Matthew" <matthew.auld@intel.com>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While executing i915_selftest, wakeref imbalance warning is seen
-with i915_selftest failure.
+On Tue, 30 Aug 2022 at 14:39, Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
+>
+> On Mon, 29 Aug 2022 at 12:15, Gupta, Anshuman <anshuman.gupta@intel.com> wrote:
+> >
+> >
+> >
+> > > -----Original Message-----
+> > > From: Auld, Matthew <matthew.auld@intel.com>
+> > Thanks Matt for reviewing this.
+> > > Sent: Friday, August 26, 2022 11:09 PM
+> > > To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
+> > > gfx@lists.freedesktop.org
+> > > Cc: joonas.lahtinen@linux.intel.com; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+> > > Nilawar, Badal <badal.nilawar@intel.com>; chris@chris-wilson.co.uk
+> > > Subject: Re: [PATCH 1/1] drm/i915/dgfx: Release mmap on rpm suspend
+> > >
+> > > On 25/08/2022 11:54, Anshuman Gupta wrote:
+> > > > Release all mmap mapping for all lmem objects which are associated
+> > > > with userfault such that, while pcie function in D3hot, any access to
+> > > > memory mappings will raise a userfault.
+> > > >
+> > > > Runtime resume the dgpu(when gem object lies in lmem).
+> > > > This will transition the dgpu graphics function to D0 state if it was
+> > > > in D3 in order to access the mmap memory mappings.
+> > > >
+> > > > v2:
+> > > > - Squashes the patches. [Matt Auld]
+> > > > - Add adequate locking for lmem_userfault_list addition. [Matt Auld]
+> > > > - Reused obj->userfault_count to avoid double addition. [Matt Auld]
+> > > > - Added i915_gem_object_lock to check
+> > > >    i915_gem_object_is_lmem. [Matt Auld]
+> > > >
+> > > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6331
+> > >
+> > > Just double checking, this is needed for DG1 and DG2, right? Are there any BSpec
+> > > links we can add here?
+> > This is specific to all discrete products with respect to PCIe Spec Section 5.3.1.4.1
+> > I will add the PCIe specs link here.
+> > >
+> > > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > ---
+> > > >   .../gpu/drm/i915/gem/i915_gem_object_types.h  |  3 +-
+> > > >   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 48 ++++++++++++++++---
+> > > >   drivers/gpu/drm/i915/gt/intel_gt.c            |  2 +
+> > > >   drivers/gpu/drm/i915/gt/intel_gt_types.h      |  3 ++
+> > > >   drivers/gpu/drm/i915/i915_gem.c               |  8 ++++
+> > > >   5 files changed, 57 insertions(+), 7 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> > > > b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> > > > index 9f6b14ec189a..40305e2bcd49 100644
+> > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> > > > @@ -298,7 +298,8 @@ struct drm_i915_gem_object {
+> > > >     };
+> > > >
+> > > >     /**
+> > > > -    * Whether the object is currently in the GGTT mmap.
+> > > > +    * Whether the object is currently in the GGTT or any other supported
+> > > > +    * fake offset mmap backed by lmem.
+> > > >      */
+> > > >     unsigned int userfault_count;
+> > > >     struct list_head userfault_link;
+> > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > > b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > > index 5a5cf332d8a5..6532a634bd20 100644
+> > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > > > @@ -1014,12 +1014,29 @@ static void i915_ttm_delayed_free(struct
+> > > drm_i915_gem_object *obj)
+> > > >     ttm_bo_put(i915_gem_to_ttm(obj));
+> > > >   }
+> > > >
+> > > > +static intel_wakeref_t
+> > > > +i915_gem_ttm_get_lmem_obj_wakeref(struct drm_i915_gem_object *obj) {
+> > > > +   intel_wakeref_t wakeref = 0;
+> > > > +
+> > > > +   if (i915_gem_object_lock_interruptible(obj, NULL))
+> > > > +           return 0;
+> > > > +
+> > > > +   if (i915_gem_object_is_lmem(obj))
+> > > > +           wakeref =
+> > > > +intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
+> > > > +
+> > > > +   i915_gem_object_unlock(obj);
+> > > > +
+> > > > +   return wakeref;
+> > > > +}
+> > > > +
+> > > >   static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+> > > >   {
+> > > >     struct vm_area_struct *area = vmf->vma;
+> > > >     struct ttm_buffer_object *bo = area->vm_private_data;
+> > > >     struct drm_device *dev = bo->base.dev;
+> > > >     struct drm_i915_gem_object *obj;
+> > > > +   intel_wakeref_t wakeref = 0;
+> > > >     vm_fault_t ret;
+> > > >     int idx;
+> > > >
+> > > > @@ -1027,18 +1044,23 @@ static vm_fault_t vm_fault_ttm(struct vm_fault
+> > > *vmf)
+> > > >     if (!obj)
+> > > >             return VM_FAULT_SIGBUS;
+> > > >
+> > > > +   wakeref = i915_gem_ttm_get_lmem_obj_wakeref(obj);
+> > >
+> > > We shouldn't drop the lock here (also failing to acquire the lock should be fatal),
+> > > since the object can in thoery transition to/from lmem inbetween dropping the
+> > > object lock here and re-acquiring it again below, which means we might skip
+> > > grabbing the wakeref here, but then later touch the list, if say it moves to lmem.
+> > By not releasing the lock there was a deadlock from ttm_bo_vm_reserve().
+>
+> Right, so we should probably move the check under vm_reserve.
+>
+> > >
+> > > > +
+> > > >     /* Sanity check that we allow writing into this object */
+> > > >     if (unlikely(i915_gem_object_is_readonly(obj) &&
+> > > > -                area->vm_flags & VM_WRITE))
+> > > > -           return VM_FAULT_SIGBUS;
+> > > > +                area->vm_flags & VM_WRITE)) {
+> > > > +           ret = VM_FAULT_SIGBUS;
+> > > > +           goto out_rpm;
+> > > > +   }
+> > > >
+> > > >     ret = ttm_bo_vm_reserve(bo, vmf); >     if (ret)
+> > > > -           return ret;
+> > > > +           goto out_rpm;
+> > > >
+> > > >     if (obj->mm.madv != I915_MADV_WILLNEED) {
+> > > >             dma_resv_unlock(bo->base.resv);
+> > > > -           return VM_FAULT_SIGBUS;
+> > > > +           ret = VM_FAULT_SIGBUS;
+> > > > +           goto out_rpm;
+> > > >     }
+> > > >
+> > > >     if (!i915_ttm_resource_mappable(bo->resource)) {
+> > > > @@ -1062,7 +1084,8 @@ static vm_fault_t vm_fault_ttm(struct vm_fault
+> > > *vmf)
+> > > >             if (err) {
+> > > >                     drm_dbg(dev, "Unable to make resource CPU
+> > > accessible\n");
+> > > >                     dma_resv_unlock(bo->base.resv);
+> > > > -                   return VM_FAULT_SIGBUS;
+> > > > +                   ret = VM_FAULT_SIGBUS;
+> > > > +                   goto out_rpm;
+> > > >             }
+> > > >     }
+> > > >
+> > > > @@ -1073,12 +1096,25 @@ static vm_fault_t vm_fault_ttm(struct vm_fault
+> > > *vmf)
+> > > >     } else {
+> > > >             ret = ttm_bo_vm_dummy_page(vmf, vmf->vma-
+> > > >vm_page_prot);
+> > > >     }
+> > > > +
+> > > > +   /* ttm_bo_vm_reserve() already has dma_resv_lock */
+> > > > +   if (!ret && i915_gem_object_is_lmem(obj) && !obj->userfault_count++)
+> > > {
+> > >
+> > > This might increment userfault_count more than once per mapping/object?
+> > > Is that intentional? I would have thought that with fault_ttm the
+> > > user_fault_count shouldn't ever be > 1 (there is no partial mmap here).
+> > I did not get this part,  the double addition for the object is possible only when ttm_fault will
+> > get called multiple times for an object ? In that case  isn't userfault_count would be > 1 ?
+>
+> Right, if it gets mapped and then unmapped multiple times, then
+> userfault_count might be > 1. In i915_gem_runtime_suspend() we only
+> remove it from the list once userfault_count
+> is zero. Just wondering if there is more going on there? Since with
+> ttm_fault we can't partially mmap the object (unlike with GGTT mmap),
+> so there should only be one mapping per object, AFAIK.
 
-Currently when Driver is suspended, while doing unregister
-it is taking wakeref without resuming the device.
-This patch is resuming the device, if driver is already suspended
-and doing unregister process.
+Oh, that's actually not true it seems. It looks like it might only
+fault some of the pages, as per TTM_BO_VM_NUM_PREFAULT. Although still
+not sure why we need userfault_count for lmem fault? Or maybe just
+always set it to one or zero?
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 1332c70370a6..be0d51c04cc5 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -953,7 +953,9 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- void i915_driver_remove(struct drm_i915_private *i915)
- {
--	disable_rpm_wakeref_asserts(&i915->runtime_pm);
-+	intel_wakeref_t wakeref;
-+
-+	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 
- 	i915_driver_unregister(i915);
- 
-@@ -977,18 +979,19 @@ void i915_driver_remove(struct drm_i915_private *i915)
- 
- 	i915_driver_hw_remove(i915);
- 
--	enable_rpm_wakeref_asserts(&i915->runtime_pm);
-+	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
- }
- 
- static void i915_driver_release(struct drm_device *dev)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
-+	intel_wakeref_t wakeref;
- 
- 	if (!dev_priv->do_release)
- 		return;
- 
--	disable_rpm_wakeref_asserts(rpm);
-+	wakeref = intel_runtime_pm_get(rpm);
- 
- 	i915_gem_driver_release(dev_priv);
- 
-@@ -999,7 +1002,8 @@ static void i915_driver_release(struct drm_device *dev)
- 
- 	i915_driver_mmio_release(dev_priv);
- 
--	enable_rpm_wakeref_asserts(rpm);
-+	intel_runtime_pm_put(rpm, wakeref);
-+
- 	intel_runtime_pm_driver_release(rpm);
- 
- 	i915_driver_late_release(dev_priv);
--- 
-2.25.1
-
+>
+> >
+> > >
+> > > Also it look like ret == VM_FAULT_NOPAGE if all went well. Although it
+> > > also returns that if the wait was interrupted, but I don't think that
+> > > matters much.
+> > >
+> > > Maybe we can do something like:
+> > >
+> > > ret = ttm_bo_vm_reserve(bo..) /* locks the object for us */
+> > > ..
+> > >
+> > > wakeref = 0;
+> > > if (i915_ttm_cpu_maps_iomem(bo->resource))
+> > >     wakeref = intel_runtime_pm_get();
+> > >
+> > > if (drm_dev_enter(dev, &idx)) {
+> > > } else {
+> > > }
+> > >
+> > > if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+> > >    goto out_rpm;
+> > >
+> > > if (ret == VM_FAULT_NOPAGE && wakeref && !obj->userfault_count) {
+> > >    obj->userfault_count++; /* protected by wakeref */
+> > >    mutex_lock()
+> > >    list_add();
+> > >    mutex_unlock();
+> > > }
+> > >
+> > > ?
+> > Thanks for suggestion, I will implement it.
+> > >
+> > > AFAICT we are then still missing something for object destruction, to
+> > > ensure we remove the object from the list. Otherwise we can destroy the
+> > > object, and then at some later point i915_gem_runtime_suspend() runs and
+> > > will uaf on the list. I think the trick with GTT mmap is that it will
+> > > always grab the wakeref when unbinding the vma (like during object
+> > > destruction), and then it can safely remove the object from the list.
+> > > Perhaps we will need a similar trick anyway, since destroying the object
+> > > will likely require unbinding it, which will mean touching the
+> > > page-tables from the CPU, which are in lmem anyway. Do we maybe just
+> > > always grab the wakeref for dgpu? What do you think?
+> > With input from @rodrigo , we can't get permanent wakref as that will
+> > block the d3cold(it will burn the card power).
+>
+> I meant just always grabbing during object destruction.
+>
+> > How about deleting the object from the list in __i915_gem_object_free_mmaps() to handle the
+> > object destroy case ?
+>
+> Yeah, something like that. Also note that if there is a bound vma
+> during object destruction, we will need to grab the runtime pm anyway,
+> since that will touch lmem from the CPU with the page-tables.
+>
+> > If this approach is not scalable then probably we need to think over to get the wakref  on dGPU
+> > whenever any client is connected.
+> > I was also thinking in direct to limit the mmap mapping for lmem object by using a new mmap fake offset
+> > to limit the rpm suspend latency due to revoking and re-creation of mmap ?
+>
+> Hmm, not sure I follow with the idea of using a new fake offset. Can
+> you share more info?
+>
+> > >
+> > > Also on second thought it looks like we can't directly call
+> > > i915_gem_object_release_mmap_offset() from i915_gem_runtime_suspend(),
+> > > without then also holding the object lock for the ttm_mem_io_free(). But
+> > > I think it should be OK to just directly call
+> > > drm_vma_node_unmap(&bo->base.vma_node, ...) instead.
+> > >
+> > > Also, do you know if we need something like
+> > > CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND here?
+> > It is to induced additional delay before actual runtime pm triggers.
+> > Yeah it make sense to use that , I missed earlier to incorporate this comment.
+> > Thanks,
+> > Anshuman Gupta.
+> > >
+> > > > +           mutex_lock(&to_gt(to_i915(obj->base.dev))-
+> > > >lmem_userfault_lock);
+> > > > +           list_add(&obj->userfault_link, &to_gt(to_i915(obj->base.dev))-
+> > > >lmem_userfault_list);
+> > > > +           mutex_unlock(&to_gt(to_i915(obj->base.dev))-
+> > > >lmem_userfault_lock);
+> > > > +   }
+> > > > +
+> > > >     if (ret == VM_FAULT_RETRY && !(vmf->flags &
+> > > FAULT_FLAG_RETRY_NOWAIT))
+> > > > -           return ret;
+> > > > +           goto out_rpm;
+> > > >
+> > > >     i915_ttm_adjust_lru(obj);
+> > > >
+> > > >     dma_resv_unlock(bo->base.resv);
+> > > > +
+> > > > +out_rpm:
+> > > > +   if (wakeref)
+> > > > +           intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm,
+> > > wakeref);
+> > > > +
+> > > >     return ret;
+> > > >   }
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > > index e4bac2431e41..63616ea198ca 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > > @@ -39,6 +39,8 @@ static void __intel_gt_init_early(struct intel_gt *gt)
+> > > >   {
+> > > >     spin_lock_init(&gt->irq_lock);
+> > > >
+> > > > +   INIT_LIST_HEAD(&gt->lmem_userfault_list);
+> > > > +   mutex_init(&gt->lmem_userfault_lock);
+> > > >     INIT_LIST_HEAD(&gt->closed_vma);
+> > > >     spin_lock_init(&gt->closed_lock);
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> > > b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> > > > index 4d56f7d5a3be..330e7531cf22 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> > > > +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> > > > @@ -132,6 +132,9 @@ struct intel_gt {
+> > > >     struct intel_wakeref wakeref;
+> > > >     atomic_t user_wakeref;
+> > > >
+> > > > +   struct mutex lmem_userfault_lock; /* Protects access to usefault list */
+> > > > +   struct list_head lmem_userfault_list;
+> > > > +
+> > > >     struct list_head closed_vma;
+> > > >     spinlock_t closed_lock; /* guards the list of closed_vma */
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/i915_gem.c
+> > > b/drivers/gpu/drm/i915/i915_gem.c
+> > > > index 702e5b89be22..288dc7e231dc 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_gem.c
+> > > > +++ b/drivers/gpu/drm/i915/i915_gem.c
+> > > > @@ -842,6 +842,14 @@ void i915_gem_runtime_suspend(struct
+> > > drm_i915_private *i915)
+> > > >                              &to_gt(i915)->ggtt->userfault_list,
+> > > userfault_link)
+> > > >             __i915_gem_object_release_mmap_gtt(obj);
+> > > >
+> > > > +   list_for_each_entry_safe(obj, on,
+> > > > +                            &to_gt(i915)->lmem_userfault_list,
+> > > userfault_link) {
+> > > > +           i915_gem_object_release_mmap_offset(obj);
+> > > > +
+> > > > +           if (!--obj->userfault_count)
+> > > > +                   list_del(&obj->userfault_link);
+> > > > +   }
+> > > > +
+> > > >     /*
+> > > >      * The fence will be lost when the device powers down. If any were
+> > > >      * in use by hardware (i.e. they are pinned), we should not be powering
