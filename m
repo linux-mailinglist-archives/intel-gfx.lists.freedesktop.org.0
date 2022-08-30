@@ -1,60 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF4365A5DC3
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Aug 2022 10:09:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 167D25A5E0D
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Aug 2022 10:27:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA63810EB24;
-	Tue, 30 Aug 2022 08:09:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5443810EC48;
+	Tue, 30 Aug 2022 08:27:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EDA310EC52
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Aug 2022 08:09:32 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E684710EC48
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Aug 2022 08:27:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661846972; x=1693382972;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=uqQUdoN3/1FYdb9Lpby+SdjlRw31CjyRZn8jiYs9y+g=;
- b=lDPIH80/0EedKGffciksm6Bb3qdsMBNEBnMnDfj74xqmqK6/VqF++A7U
- E8xjGu9gZWVeqW46/odMcrmz2ipF0zG1kXz3k6x9xiVteJXpIwTFEOgE2
- RHst/ljAWpLyJIuaD68HQgNYxWzUHCGYyFD9PX1p6YxdLV3FnKSC6ODM7
- gVc6W5dh9+4WLSmjoaxozaDnXSlpfNi77QpRsmCGc6igiILn5oMmDLQtu
- Zr+Zh9j3TKrhphu3lGkrejjustPK+ZkJLuWccGF0uF7TywuJVHAEW6Akl
- PY1dgw3foE0JFNkSbZIRjtdJl1AHBNZKUiXT+aVVuyo7KvqaO8K+1SoRY Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="275514873"
-X-IronPort-AV: E=Sophos;i="5.93,274,1654585200"; d="scan'208";a="275514873"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2022 01:09:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,274,1654585200"; d="scan'208";a="753942146"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga001.fm.intel.com with SMTP; 30 Aug 2022 01:09:29 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 30 Aug 2022 11:09:28 +0300
-Date: Tue, 30 Aug 2022 11:09:28 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Message-ID: <Yw3FuGk/pSY+51T0@intel.com>
-References: <20220426120407.1334318-1-arun.r.murthy@intel.com>
- <20220704161548.1343042-1-arun.r.murthy@intel.com>
- <YwTOoCLIBf8KhjWB@intel.com>
- <DM6PR11MB3177E2D112D3A3A589F650D8BA739@DM6PR11MB3177.namprd11.prod.outlook.com>
- <YwYW826HW9xjjVnE@intel.com>
- <DM6PR11MB3177D7567C42D8FAE0C3F52CBA799@DM6PR11MB3177.namprd11.prod.outlook.com>
- <Yw3AArq8Vx1LrFgl@intel.com>
- <DM6PR11MB31779B3FBE9945476890F37EBA799@DM6PR11MB3177.namprd11.prod.outlook.com>
+ t=1661848065; x=1693384065;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=97HEzabJSGeV78mcHWkuDXfM2OXyv5A7RT29pUq8p5M=;
+ b=idDNvJnqgkahE8AZMr5BYsN9pjQWTGuU3CMiY9ojUippzniYoWg2vueo
+ VRDHhhjE6FGFaq1GSmq8TtwKWW5pgsfPmVfJZGhXTw+oK8xAsZSX9oa2N
+ XHx/rm6N4lPSZI9ysv/HlWqFJRbnnVY5BIfO/TiPURG2iNPkLov/Fm6JN
+ +ZHqD2kFiD1hPXGFYWTVifmxkhmiX5GEYNrLb9DWGbtMHI2aiTsOqfTLC
+ 8qZIhk1MGX4DHnFMOh/PbZER4mZ1giHCW0jvfmQ+/+SAU9+bPQtxlwijD
+ 0Ejh8q2gBzhVIwpvm0yiJ1szAu+k3tLZoaq5lo9M55D3tksph5XsF2xiw w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="356833300"
+X-IronPort-AV: E=Sophos;i="5.93,274,1654585200"; d="scan'208";a="356833300"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2022 01:27:45 -0700
+X-IronPort-AV: E=Sophos;i="5.93,274,1654585200"; d="scan'208";a="672753013"
+Received: from amrabet-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.41.211])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2022 01:27:35 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220829135834.8585-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220829135834.8585-1-ville.syrjala@linux.intel.com>
+Date: Tue, 30 Aug 2022 11:27:27 +0300
+Message-ID: <87o7w2dtlc.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM6PR11MB31779B3FBE9945476890F37EBA799@DM6PR11MB3177.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCHv3] drm/i915: Support Async Flip on Linear
- buffers
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/bios: Copy the whole MIPI sequence
+ block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,61 +59,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 30, 2022 at 07:57:15AM +0000, Murthy, Arun R wrote:
-> > > > > > > Intel Gen do support Async Flip is supported on linear buffers.
-> > > > > > > Since we didn't had a use case, it was not enabled. Now that
-> > > > > > > as part of hybrid graphics for unsupported hardware pixel
-> > > > > > > formats, its being converted to linear memory and then flipped,
-> > hence enabling!
-> > > > > > > This patch enables support for async on linear buffer.
-> > > > > > >
-> > > > > > > v2: added use case
-> > > > > > > v3: enabled async on linear for pre Gen 12 as well
-> > > > > >
-> > > > > > I didn't think it went all the way back to gen9?
-> > > > > >
-> > > > > It's the same as other buffers. I have just added support for
-> > > > > linear buffer in
-> > > > the present async flip path, so the platforms on which the async
-> > > > flip is supported will support linear buffer as well.
-> > > >
-> > > > I know what the patch does. But I don't think bspec agrees with it.
-> > > >
-> > > I initially had this async on linear buffer support from Gen12 onwards. Will
-> > add that check back.
-> > 
-> > We're just going in circles here. What I've asked repeatedly is actual
-> > justification for whatever gen check or no gen check there is. Ie. please
-> > *read* the bspec and include the appropriate information in the patch.
-> > Otherwise there is no point in me even looking at these patches anymore.
-> > 
-> Per the BSpec async on Linear is not supported on Pre Gen 12.
+On Mon, 29 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Turns out the MIPI sequence block version number and
+> new block size fields are considered part of the block
+> header and are not included in the reported new block size
+> field itself. Bump up the block size appropriately so that
+> we'll copy over the last five bytes of the block as well.
+>
+> For this particular machine those last five bytes included
+> parts of the GPIO op for the backlight on sequence, causing
+> the backlight no longer to turn back on:
+>
+>  		Sequence 6 - MIPI_SEQ_BACKLIGHT_ON
+>  			Delay: 20000 us
+> -			GPIO index 0, number 0, set 0 (0x00)
+> +			GPIO index 1, number 70, set 1 (0x01)
+>
+> Cc: stable@vger.kernel.org
+> Fixes: e163cfb4c96d ("drm/i915/bios: Make copies of VBT data blocks")
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6652
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 81d6cfbd2615..d493d04f4049 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -479,6 +479,13 @@ init_bdb_block(struct drm_i915_private *i915,
+>=20=20
+>  	block_size =3D get_blocksize(block);
+>=20=20
+> +	/*
+> +	 * Version number and new block size are considered
+> +	 * part of the header for MIPI sequenece block v3+.
+> +	 */
 
-Where in bspec does it say that?
+Quoth Bspec, "This field specifies the size of this entire data
+structure excluding this header." Okay.
 
-> 
-> > >
-> > > > >
-> > > > > > Also we still don't seem to have any tests for this stuff...
-> > > > >
-> > > > > There is an IGT patch in queue, once this patch is merged, the IGT
-> > > > > patch will
-> > > > be floated.
-> > > >
-> > > > Do the igt stuff first. Then you can at least get some CI results for this
-> > stuff.
-> > > >
-> > > IGT has be floated. https://patchwork.freedesktop.org/series/107871/
-> > >
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
+> +	if (section_id =3D=3D BDB_MIPI_SEQUENCE && *(const u8 *)block >=3D 3)
+> +		block_size +=3D 5;
+> +
 
--- 
-Ville Syrjälä
-Intel
+Since we need to look at the header later, we can't just use data +
+5. Okay.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+I just don't get the whole sequence block u32 size thing, because the
+vbt header and bdb header still have u16, and they're supposed to cover
+the entire vbt and all bdb data blocks. And this is what we check
+anyway.
+
+>  	entry =3D kzalloc(struct_size(entry, data, max(min_size, block_size) + =
+3),
+>  			GFP_KERNEL);
+>  	if (!entry) {
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
