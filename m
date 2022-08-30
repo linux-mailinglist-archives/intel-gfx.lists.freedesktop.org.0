@@ -1,56 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A94E5A6101
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Aug 2022 12:45:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A4FB5A6109
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Aug 2022 12:46:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5322D10E047;
-	Tue, 30 Aug 2022 10:45:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8471C10E02E;
+	Tue, 30 Aug 2022 10:46:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C65510E05B;
- Tue, 30 Aug 2022 10:45:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661856313; x=1693392313;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=gXYRs/ovnag3IIKvnoC1UDC/d7uALKm8ZRa4pU5Xshw=;
- b=g9yTYfRVz8wPFJQHGYsmYt3abk7SyN4is3vVEYwqNp0RYoJA+wipfERn
- 7qamQgz7ih3k/VgQBkbnF6Ckos4qr48J5iWnDbD4fGjVu07G0ZPlhEwFn
- k2//w+gYFeoKHbqCdmgQDmZFsFTaHqhLbTlsyPAsvzediOwKu4x7Wz/wh
- vlQVbgdRBTwRx4bzmEwbxtQM2cx/4Y0NsNdmKkNcZtd2hhPPTcv/zV42Y
- iOCN3Ddke02G78lSJgs3sO8dIbo5yWoi10ae8dN0lCunMSTtV5BEUFViV
- NexI9o+OH3mQvzw3qtWFUaamysIQ+xChgQuaQ+p5C3ANq89Z9F1KFyAp6 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="275542694"
-X-IronPort-AV: E=Sophos;i="5.93,274,1654585200"; d="scan'208";a="275542694"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2022 03:45:12 -0700
-X-IronPort-AV: E=Sophos;i="5.93,274,1654585200"; d="scan'208";a="787452746"
-Received: from harshmex-mobl.gar.corp.intel.com (HELO [10.214.157.209])
- ([10.214.157.209])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2022 03:45:09 -0700
-Message-ID: <cc4c59ad-5d69-b174-5464-bd9896459169@intel.com>
-Date: Tue, 30 Aug 2022 11:45:04 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 195CE10E02E;
+ Tue, 30 Aug 2022 10:46:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 10ECEA363D;
+ Tue, 30 Aug 2022 10:46:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.2.0
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-References: <20220824142353.10293-1-luben.tuikov@amd.com>
- <1de21f6e-4b11-ee9b-1b54-fd67728766ad@amd.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <1de21f6e-4b11-ee9b-1b54-fd67728766ad@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: audit bo->resource usage
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 30 Aug 2022 10:46:36 -0000
+Message-ID: <166185639606.27288.14644956125605037670@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1661855191.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1661855191.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gmbus=3A_stop_using_implicit_dev=5Fpriv?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,119 +40,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Luben Tuikov <luben.tuikov@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On 30/08/2022 08:33, Christian König wrote:
-> Hi guys,
-> 
-> can we get an rb/acked-by for this i915 change?
-> 
-> Basically we are just making sure that the driver doesn't crash when 
-> bo->resource is NULL and a bo doesn't have any backing store assigned to 
-> it.
-> 
-> The Intel CI seems to be happy with this change, so I'm pretty sure it 
-> is correct.
+Series: drm/i915/gmbus: stop using implicit dev_priv
+URL   : https://patchwork.freedesktop.org/series/107930/
+State : warning
 
-It looks like DG2/DG1 (which happen to use TTM here) are no longer 
-loading the module:
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107680v1/index.html?
+== Summary ==
 
-According to the logs the firmware is failing to load, so perhaps 
-related to I915_BO_ALLOC_CPU_CLEAR, since that is one of the rare users. 
-See below.
+Error: dim checkpatch failed
+3c07702148f6 drm/i915/gmbus: split out gmbus regs in a separate file
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#24: 
+new file mode 100644
 
-> 
-> Thanks,
-> Christian.
-> 
-> Am 24.08.22 um 16:23 schrieb Luben Tuikov:
->> From: Christian König <christian.koenig@amd.com>
->>
->> Make sure we can at least move and alloc TT objects without backing 
->> store.
->>
->> Signed-off-by: Christian König <christian.koenig@amd.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 6 ++----
->>   drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 2 +-
->>   2 files changed, 3 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> index bc9c432edffe03..45ce2d1f754cc4 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> @@ -271,8 +271,6 @@ static struct ttm_tt *i915_ttm_tt_create(struct 
->> ttm_buffer_object *bo,
->>   {
->>       struct drm_i915_private *i915 = container_of(bo->bdev, 
->> typeof(*i915),
->>                                bdev);
->> -    struct ttm_resource_manager *man =
->> -        ttm_manager_type(bo->bdev, bo->resource->mem_type);
->>       struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
->>       unsigned long ccs_pages = 0;
->>       enum ttm_caching caching;
->> @@ -286,8 +284,8 @@ static struct ttm_tt *i915_ttm_tt_create(struct 
->> ttm_buffer_object *bo,
->>       if (!i915_tt)
->>           return NULL;
->> -    if (obj->flags & I915_BO_ALLOC_CPU_CLEAR &&
->> -        man->use_tt)
->> +    if (obj->flags & I915_BO_ALLOC_CPU_CLEAR && bo->resource &&
->> +        ttm_manager_type(bo->bdev, bo->resource->mem_type)->use_tt)
->>           page_flags |= TTM_TT_FLAG_ZERO_ALLOC;
+-:57: WARNING:LONG_LINE_COMMENT: line length of 105 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/i915/display/intel_gmbus_regs.h:29:
++#define GMBUS0			_MMIO(dev_priv->display.gmbus.mmio_base + 0x5100) /* clock/port select */
 
-AFAICT i915 was massively relying on everything starting out in a 
-"dummy" system memory resource (ttm_tt), where it then later 
-"transitions" to the real resource. And if we need to clear the memory 
-we rely on ZERO_ALLOC being set before calling into the i915_ttm_move() 
-callback (even when allocating local-memory).
+-:66: WARNING:LONG_LINE_COMMENT: line length of 102 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/i915/display/intel_gmbus_regs.h:38:
++#define GMBUS1			_MMIO(dev_priv->display.gmbus.mmio_base + 0x5104) /* command/status */
 
-For ttm_bo_type_device objects (userspace stuff) it looks like this was 
-previously handled by ttm_bo_validate() always doing:
+-:89: WARNING:LONG_LINE_COMMENT: line length of 109 exceeds 100 columns
+#89: FILE: drivers/gpu/drm/i915/display/intel_gmbus_regs.h:61:
++#define GMBUS3			_MMIO(dev_priv->display.gmbus.mmio_base + 0x510c) /* data buffer bytes 3-0 */
 
-   ret = ttm_tt_create(bo, true); /* clear = true */
+-:90: WARNING:LONG_LINE_COMMENT: line length of 114 exceeds 100 columns
+#90: FILE: drivers/gpu/drm/i915/display/intel_gmbus_regs.h:62:
++#define GMBUS4			_MMIO(dev_priv->display.gmbus.mmio_base + 0x5110) /* interrupt mask (Pineview+) */
 
-Which we would always hit since the resource was always "compatible" for 
-the dummy case. But it looks like this is no longer even called, since 
-we can now call into ttm_move with bo->resource == NULL, which still 
-calls tt_create eventually, which not always with clear = true.
+total: 0 errors, 5 warnings, 0 checks, 158 lines checked
+010019a09cff drm/i915/gmbus: whitespace cleanup in reg definitions
+f770b6f60e27 drm/i915/gmbus: add wrapper for gmbus mmio base
+8d2905eb3406 drm/i915/gmbus: stop using implicit dev_priv in register definitions
+7446134adefe drm/i915/reg: stop using implicit dev_priv in DSPCLK_GATE_D
+dcb5561c1c40 drm/i915/gmbus: mass dev_priv -> i915 rename
 
-All other objects are then ttm_bo_type_kernel so we don't care about 
-clearing, except in the rare case of ALLOC_CPU_CLEAR, which was handled 
-as per above in i915_ttm_tt_create(). But I think here bo->resource is 
-NULL at the start when first creating the object, which will skip 
-setting ZERO_ALLOC, which might explain the CI failure.
 
-The other possible concern (not sure since CI didn't get that far) is 
-around ttm_bo_pipeline_gutting(), which now leaves bo->resource = NULL. 
-It looks like i915_ttm_shrink() was relying on that to unpopulate the 
-ttm_tt. When later calling ttm_bo_validate(), i915_ttm_move() would see 
-the SWAPPED flag set on the ttm_tt , re-populate it and then potentially 
-move it back to local-memory.
-
-What are your thoughts here? Also sorry if i915 is making a bit of mess 
-here.
-
->>       caching = i915_ttm_select_tt_caching(obj);
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
->> index 9a7e50534b84bb..c420d1ab605b6f 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
->> @@ -560,7 +560,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, 
->> bool evict,
->>       bool clear;
->>       int ret;
->> -    if (GEM_WARN_ON(!obj)) {
->> +    if (GEM_WARN_ON(!obj) || !bo->resource) {
->>           ttm_bo_move_null(bo, dst_mem);
->>           return 0;
->>       }
-> 
