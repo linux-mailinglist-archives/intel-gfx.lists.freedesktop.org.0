@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 450945A8088
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Aug 2022 16:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16C325A809C
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Aug 2022 16:50:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD39510E417;
-	Wed, 31 Aug 2022 14:46:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5797310E413;
+	Wed, 31 Aug 2022 14:49:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F43A10E413
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 Aug 2022 14:46:05 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA1B710E41A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 Aug 2022 14:49:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661957165; x=1693493165;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=EFIqR8QkRoDV/kR98z2oqPoR2ORdx9sOLQAdCiKZ/o8=;
- b=hlm0bmlG6BqQ/TsLmbGSVWsmS7SD/AyjahMa/OzlGeQaYNMR2/DRLqDb
- CGBUQzZPDtYJR8ywgeSFvIDOExH1Si3E+kLXJkeKe8/KqbhANSddf4N4k
- t927cLn2zLWRuvXiY2RQkDgmaD5ssbc0pkOOAWz895vExV8hIwNJli2I3
- sA3Lhd+vkR7giVf6yCiDzGL4z8LrERpB3AweaI+yZJj89fInibusmmwDW
- E+r5vcexsNqI4mRbXFWq4OWwIRGxR0Npqmt6rAhBefXei4KdJqAun5oDe
- CvojuJemYXlAA7rRnlVkHM1JPqGY5BvCgoCsXAxbmWV6jCUcKI7CFlaGI w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10456"; a="357180473"
-X-IronPort-AV: E=Sophos;i="5.93,278,1654585200"; d="scan'208";a="357180473"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2022 07:46:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,278,1654585200"; d="scan'208";a="754440335"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga001.fm.intel.com with SMTP; 31 Aug 2022 07:46:02 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 31 Aug 2022 17:46:01 +0300
-Date: Wed, 31 Aug 2022 17:46:01 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Yw90Kfhyq8kLVE8b@intel.com>
-References: <20220830093411.1511040-1-jani.nikula@intel.com>
+ t=1661957393; x=1693493393;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=5/v7kZ6ETDm7r6dExI0tN8ePASTvj1LInqciyI0mMZk=;
+ b=H0jXWF2XlEfCnUbN9V6nTu3Qq0A8IrKH5SPpDrAsdZnm2lqp7dNSOy0J
+ MWtWIPs50QlAwOUcGYVguZXdEp1l8cwE2FkAXHBrWoid4iPtqv2CIAmf8
+ ttCH/FF4OoHdVMOpEJZdW6vsQqVZJKTGu07tdQNOOEPurnYWB3yk7K6ke
+ ifCxBBxXTWiWmeCy3+SewdGTgBLx1F7GfsmlykAoEJVz7z7HsnEtlvpxf
+ glr6aXfVQyAD03bPX9nYn/ecIjQEP3bnxaHKmkmDHaDWE+SKXwDPc/0nu
+ zx4BD3plov1Dh1ybO2rup9nzVq6wKmUxfT9uJWFNWLDmzOYfbcH8hPOdf Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10456"; a="296247156"
+X-IronPort-AV: E=Sophos;i="5.93,278,1654585200"; d="scan'208";a="296247156"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2022 07:49:53 -0700
+X-IronPort-AV: E=Sophos;i="5.93,278,1654585200"; d="scan'208";a="673379784"
+Received: from nprotaso-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.252.43.15])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2022 07:49:52 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+In-Reply-To: <cover.1661779055.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1661779055.git.jani.nikula@intel.com>
+Date: Wed, 31 Aug 2022 17:49:43 +0300
+Message-ID: <87o7w0cvso.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220830093411.1511040-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 1/5] drm/i915/crt: remove BUG_ON()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v3 00/18] drm/i915: add display sub-struct
+ to drm_i915_private
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,39 +56,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 30, 2022 at 12:34:07PM +0300, Jani Nikula wrote:
-> Avoid BUG_ON(). We don't have such checks on output type anywhere else
-> either, so just remove.
-> 
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Mon, 29 Aug 2022, Jani Nikula <jani.nikula@intel.com> wrote:
+> v3 of https://patchwork.freedesktop.org/series/107170/
+>
+> Dropped already merged patches, rebased the rest.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+And pushed the lot to drm-intel-next. Thanks for the review.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_crt.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-> index 6a3893c8ff22..d766c506b235 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> @@ -643,8 +643,6 @@ static bool intel_crt_detect_ddc(struct drm_connector *connector)
->  	struct i2c_adapter *i2c;
->  	bool ret = false;
->  
-> -	BUG_ON(crt->base.type != INTEL_OUTPUT_ANALOG);
-> -
->  	i2c = intel_gmbus_get_adapter(dev_priv, dev_priv->vbt.crt_ddc_pin);
->  	edid = intel_crt_get_edid(connector, i2c);
->  
-> -- 
-> 2.34.1
+BR,
+Jani.
+
+>
+> Jani Nikula (18):
+>   drm/i915: move and group hdcp under display.hdcp
+>   drm/i915: move and group max_bw and bw_obj under display.bw
+>   drm/i915: move opregion to display.opregion
+>   drm/i915: move and group cdclk under display.cdclk
+>   drm/i915: move backlight to display.backlight
+>   drm/i915: move mipi_mmio_base to display.dsi
+>   drm/i915: move vbt to display.vbt
+>   drm/i915: move fbc to display.fbc
+>   drm/i915: move and group power related members under display.power
+>   drm/i915: move and group fdi members under display.fdi
+>   drm/i915: move fb_tracking under display sub-struct
+>   drm/i915: move dbuf under display sub-struct
+>   drm/i915: move and group modeset_wq and flip_wq under display.wq
+>   drm/i915/quirks: abstract checking for display quirks
+>   drm/i915/quirks: abstract quirks further by making quirk ids an enum
+>   drm/i915: move quirks under display sub-struct
+>   drm/i915: move atomic_helper under display sub-struct
+>   drm/i915: move and group properties under display.properties
+>
+>  drivers/gpu/drm/i915/display/hsw_ips.c        |   2 +-
+>  drivers/gpu/drm/i915/display/i9xx_plane.c     |   2 +-
+>  drivers/gpu/drm/i915/display/intel_atomic.c   |   8 +-
+>  drivers/gpu/drm/i915/display/intel_audio.c    |   6 +-
+>  .../gpu/drm/i915/display/intel_backlight.c    |  41 ++--
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 216 +++++++++---------
+>  drivers/gpu/drm/i915/display/intel_bw.c       |  42 ++--
+>  drivers/gpu/drm/i915/display/intel_cdclk.c    | 206 ++++++++---------
+>  drivers/gpu/drm/i915/display/intel_cdclk.h    |   4 +-
+>  .../gpu/drm/i915/display/intel_connector.c    |   8 +-
+>  drivers/gpu/drm/i915/display/intel_crt.c      |   8 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +-
+>  drivers/gpu/drm/i915/display/intel_display.c  |  56 ++---
+>  .../gpu/drm/i915/display/intel_display_core.h | 155 +++++++++++++
+>  .../drm/i915/display/intel_display_debugfs.c  |  10 +-
+>  .../drm/i915/display/intel_display_power.c    | 122 +++++-----
+>  .../i915/display/intel_display_power_map.c    |   4 +-
+>  .../i915/display/intel_display_power_well.c   |  60 ++---
+>  .../i915/display/intel_display_power_well.h   |  12 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c   |   2 +-
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   2 +-
+>  drivers/gpu/drm/i915/display/intel_dpll.c     |  14 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  22 +-
+>  drivers/gpu/drm/i915/display/intel_dsi.c      |   2 +-
+>  drivers/gpu/drm/i915/display/intel_fbc.c      |   6 +-
+>  drivers/gpu/drm/i915/display/intel_fdi.c      |  10 +-
+>  .../gpu/drm/i915/display/intel_frontbuffer.c  |  54 ++---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     | 134 +++++------
+>  drivers/gpu/drm/i915/display/intel_lvds.c     |   4 +-
+>  .../drm/i915/display/intel_modeset_setup.c    |  12 +-
+>  drivers/gpu/drm/i915/display/intel_opregion.c |  42 ++--
+>  drivers/gpu/drm/i915/display/intel_panel.c    |   5 +-
+>  .../gpu/drm/i915/display/intel_pch_refclk.c   |   2 +-
+>  drivers/gpu/drm/i915/display/intel_pps.c      |   3 +-
+>  drivers/gpu/drm/i915/display/intel_quirks.c   |  22 +-
+>  drivers/gpu/drm/i915/display/intel_quirks.h   |  14 +-
+>  drivers/gpu/drm/i915/display/intel_sdvo.c     |  18 +-
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |   8 +-
+>  .../drm/i915/display/skl_universal_plane.c    |   2 +-
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        |   4 +-
+>  drivers/gpu/drm/i915/display/vlv_dsi_regs.h   | 188 +++++++--------
+>  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |   4 +-
+>  drivers/gpu/drm/i915/i915_debugfs.c           |   2 +-
+>  drivers/gpu/drm/i915/i915_driver.c            |   4 +-
+>  drivers/gpu/drm/i915/i915_drv.h               | 153 +------------
+>  drivers/gpu/drm/i915/i915_gem.c               |   2 +-
+>  drivers/gpu/drm/i915/i915_irq.c               |   2 +-
+>  drivers/gpu/drm/i915/intel_pm.c               |  16 +-
+>  drivers/gpu/drm/i915/intel_pm.h               |   4 +-
+>  50 files changed, 885 insertions(+), 843 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
