@@ -2,83 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27DAC5AE864
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:35:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DC5E5AE85D
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:34:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18C0610E680;
-	Tue,  6 Sep 2022 12:34:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 411A610E67A;
+	Tue,  6 Sep 2022 12:34:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 758A010E15B;
- Wed, 31 Aug 2022 02:23:26 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id g7so1072507lfe.11;
- Tue, 30 Aug 2022 19:23:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:from:to:cc;
- bh=D594wEp0LEmyYOAx7Tirjq3SGwda2pe5svLBID/NRVI=;
- b=eyXn8XNL5R+c7skqJd2CXAmkkmv+PO53H99rqyOH87xBrXhsqaRc9Cafy09+sKEMJA
- iijHh/Vgr/N8ms8DrRs7ZsyH/kfkPXSLcSAHRoh1+w4hJSgtLHkhgFqawSk+ZXu7vLVu
- etWsQ2c8F5mlpD6pXL4Jnwu7reEvEQPvt2Kcq7iIfhsfn4Yu0eFb5/ZnRE0d433DYCkK
- cdghwZHl1psSvBmHBmPiKQam64a3GgKwsjlObk+WtdqaHxXkPRZOKXlEsDxfpMbOFJ+F
- qvawNpaI/5HTMI7FX7pKKny6H0CoBufGQKBaV+h3B0J6ooncWt1iyUW0Dhc0OQr52xk/
- Icrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:x-gm-message-state:from:to:cc;
- bh=D594wEp0LEmyYOAx7Tirjq3SGwda2pe5svLBID/NRVI=;
- b=ONsodCQJDYGLAzmir2o5yxXoNw+Csqxt2vulJxJk3aNqmZmDXH4sxAuK7ITh3DddZj
- GOURpw3Sz7//7Ipg25hgxH6qcI3u2Jc2zqgch9rG0lC1QmYXO/tyT7x8UzEK0BGDeg7m
- 7N0ZiLVFqF3Rk9vMS/7h6OWQgPcRRva4Sxq1zik1DTc/PXB+9Bj2xl94hFWJJIhg7gbl
- Re7JKKPdZbWi/RGNHZaMCYYj8qHAux5sxjfbfA16PBeTeZq3KSYp1NIpxGuj0IbSo5Mk
- mgvOu7XcYte4oeUkvC0f8cCYxPF4SFlQ0pTUOZfJogw8xnBJIhX2/XvqVNI9fy/tweOi
- RGmQ==
-X-Gm-Message-State: ACgBeo2eAjWedWz0Cs9xKe4AwX4VNlZyuqZH+ylp+UnB6GbcS7BxMNdO
- J4N+DgJiXWg/nLdOqAA5Xe8=
-X-Google-Smtp-Source: AA6agR5RnfuFyIONMTqsPbIII5CYS1rbgB3cSxzqkqMVekfKEnddXN6p9IGLZ6Lzgilorerw0vcwmQ==
-X-Received: by 2002:a05:6512:1054:b0:494:8ce3:24c8 with SMTP id
- c20-20020a056512105400b004948ce324c8mr235583lfb.360.1661912604645; 
- Tue, 30 Aug 2022 19:23:24 -0700 (PDT)
-Received: from ?IPV6:2a02:a31a:a240:1700:d40b:b088:5bfe:3b81?
- ([2a02:a31a:a240:1700:d40b:b088:5bfe:3b81])
- by smtp.googlemail.com with ESMTPSA id
- k9-20020a2eb749000000b00261eb75fa5dsm1960508ljo.41.2022.08.30.19.23.22
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 30 Aug 2022 19:23:24 -0700 (PDT)
-From: Mateusz Kwiatkowski <kfyatek@gmail.com>
-X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-Message-ID: <c8f8015a-75da-afa8-ca7f-b2b134cacd16@gmail.com>
-Date: Wed, 31 Aug 2022 04:23:21 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.2.0
-Content-Language: pl
-To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
- Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
- Chen-Yu Tsai <wens@csie.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E771110E436;
+ Wed, 31 Aug 2022 15:39:15 +0000 (UTC)
+Received: from dimapc.. (109-252-119-13.nat.spd-mgts.ru [109.252.119.13])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 605226601DE6;
+ Wed, 31 Aug 2022 16:39:11 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1661960354;
+ bh=cwgYAH7jwolcyCLtGI04FpqLq8hntubcRxLSWxfNopM=;
+ h=From:To:Cc:Subject:Date:From;
+ b=oRfvv85zoSNQfVjXtI/ID4UDRPhD6artDtb2I5AoSEgREp4o+Jij3G0qU6jSQdbbb
+ 0K7CNinJL0fj0MFBHLIzN27bJRcMu8M/V/eckdXPmxX05IV67Oy0TqwNPqwjXRrZ+y
+ Ez45hjwVwU5b5dgqxLDrh+xHa5aZa7h7zzVnWEP+PDVoKuZgWT+nJs4MPllQdgXJaA
+ n2QsFJspmF+z32Y90ucWbmDcYyaxg2SftiXkQXa6x//kOMcPGSb0MI6FBn8PhF43Il
+ vWV+hyeg1oYHO5wglYHluD5bd5Ro1QmwF3M8BYhLv64bphBv+7ZoqgFkkN4Apu2M2Y
+ UBDopC0d+lehw==
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Clark <robdclark@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-32-459522d653a7@cerno.tech>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-32-459522d653a7@cerno.tech>
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas_os@shipmail.org>,
+ Qiang Yu <yuq825@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>
+Date: Wed, 31 Aug 2022 18:37:36 +0300
+Message-Id: <20220831153757.97381-1-dmitry.osipenko@collabora.com>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:45 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 32/41] drm/vc4: vec: Convert to the new
- TV mode property
+Subject: [Intel-gfx] [PATCH v4 00/21] Move all drivers to a common dma-buf
+ locking convention
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,109 +85,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
+Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- Geert Uytterhoeven <geert@linux-m68k.org>, Phil Elwell <phil@raspberrypi.com>,
- linux-arm-kernel@lists.infradead.org
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Maxime,
+Hello,
 
-I tested your patchset on my Pi and it mostly works. Good work! However,
-I noticed a couple of issues.
+This series moves all drivers to a dynamic dma-buf locking specification.
+From now on all dma-buf importers are made responsible for holding
+dma-buf's reservation lock around all operations performed over dma-bufs
+in accordance to the locking specification. This allows us to utilize
+reservation lock more broadly around kernel without fearing of a potential
+deadlocks.
 
-> -static int vc4_vec_encoder_atomic_check(struct drm_encoder *encoder,
-> -                    struct drm_crtc_state *crtc_state,
-> -                    struct drm_connector_state *conn_state)
-> -{
-> -    const struct vc4_vec_tv_mode *vec_mode;
-> -
-> -    vec_mode = &vc4_vec_tv_modes[conn_state->tv.mode];
-> -
-> -    if (conn_state->crtc &&
-> -        !drm_mode_equal(vec_mode->mode, &crtc_state->adjusted_mode))
-> -        return -EINVAL;
-> -
-> -    return 0;
-> -}
+This patchset passes all i915 selftests. It was also tested using VirtIO,
+Panfrost, Lima, Tegra, udmabuf, AMDGPU and Nouveau drivers. I tested cases
+of display+GPU, display+V4L and GPU+V4L dma-buf sharing (where appropriate),
+which covers majority of kernel drivers since rest of the drivers share
+same or similar code paths.
 
-I may have said it myself that we should allow custom modelines without too
-much validation. The VC4 and VEC, however, have some considerable limitations
-when it comes to the modelines that they can reliably output.
+Changelog:
 
-In particular, attempting to use "50 Hz" timings in NTSC/PAL-M modes (or
-"60 Hz" in PAL/SECAM modes) results in a weirdly skewed image. Here's how it
-may look like:
-https://user-images.githubusercontent.com/4499762/187575940-736e7262-c82d-42f3-a2d8-f309cbd51139.png
+v4: - Added dma_buf_mmap() to the "locking convention" documentation,
+      which was missed by accident in v3.
 
-This is because if the CRTC does not trigger the sync pulses within an
-acceptable time window, the VEC apparently generates them itself. This causes
-the VEC sync pulses (which go onto the wire) not quite line up with the ones
-from the modeline, which results in what you see on the screenshot.
+    - Added acks from Christian König, Tomasz Figa and Hans Verkuil that
+      they gave to couple v3 patches.
 
-I once wrote a validation function based on extensive testing of what
-produces a sensible output and what doesn't. You can find it here:
-https://github.com/raspberrypi/linux/pull/4406/commits/15c0c51. I think it
-might be a good idea to include something like that - even though I know it's
-somewhat ugly.
+    - Dropped the "_unlocked" postfix from function names that don't have
+      the locked variant, as was requested by Christian König.
 
-(BTW, those %2 checks on vertical timings in that linked commit can be ignored;
-those values are divided by 2 for interlaced modes anyway. Those checks were
-intended to ensure proper odd-first or even-first timings; I'm not sure if your
-code calculates those in the same way)
+    - Factored out the per-driver preparations into separate patches
+      to ease reviewing of the changes, which is now doable without the
+      global dma-buf functions renaming.
 
->  static int vc4_vec_connector_get_modes(struct drm_connector *connector)
->  {
-> -    struct drm_connector_state *state = connector->state;
->      struct drm_display_mode *mode;
-> +    int count = 0;
->  
-> -    mode = drm_mode_duplicate(connector->dev,
-> -                  vc4_vec_tv_modes[state->tv.mode].mode);
-> +    mode = drm_mode_analog_ntsc_480i(connector->dev);
->      if (!mode) {
->          DRM_ERROR("Failed to create a new display mode\n");
->          return -ENOMEM;
->      }
->  
->      drm_mode_probed_add(connector, mode);
-> +    count += 1;
->  
-> -    return 1;
-> +    mode = drm_mode_analog_pal_576i(connector->dev);
-> +    if (!mode) {
-> +        DRM_ERROR("Failed to create a new display mode\n");
-> +        return -ENOMEM;
-> +    }
-> +
-> +    drm_mode_probed_add(connector, mode);
-> +    count += 1;
-> +
-> +    return count;
-> +}
+    - Factored out the dynamic locking convention enforcements into separate
+      patches which add the final dma_resv_assert_held(dmabuf->resv) to the
+      dma-buf API functions.
 
-Xorg is pretty confused by these modes being reported like that. The 576i mode
-is *always* preferred, presumably because of the higher resolution. If the NTSC
-mode is set (via the kernel cmdline or just due to it being the default), this
-results in a mess on the screen - exactly the same thing as on the screenshot
-linked above.
+v3: - Factored out dma_buf_mmap_unlocked() and attachment functions
+      into aseparate patches, like was suggested by Christian König.
 
-Note that drm_helper_probe_add_cmdline_mode() *does* add the
-DRM_MODE_TYPE_USERDEF flag to the 480i mode, having detected it as preferred
-on the command line - but Xorg does not seem to care about that.
+    - Corrected and factored out dma-buf locking documentation into
+      a separate patch, like was suggested by Christian König.
 
-I remember Noralf suggesting setting DRM_MODE_TYPE_PREFERRED for the mode that
-corresponds to the currently chosen tv_mode - that would fix the problem.
-An alternative would be to _not_ add the "opposite" mode at all, like the
-current default Raspberry Pi OS kernel behaves.
+    - Intel driver dropped the reservation locking fews days ago from
+      its BO-release code path, but we need that locking for the imported
+      GEMs because in the end that code path unmaps the imported GEM.
+      So I added back the locking needed by the imported GEMs, updating
+      the "dma-buf attachment locking specification" patch appropriately.
 
-Note that if you decide to add the modeline validation like I suggested in the
-comment above, then without setting the preferred mode properly, Xorg will just
-give up and sit on a blank screen until you run xrandr from another terminal
-if tv_mode incompatible with 576i is selected.
+    - Tested Nouveau+Intel dma-buf import/export combo.
 
-Best regards,
-Mateusz Kwiatkowski
+    - Tested udmabuf import to i915/Nouveau/AMDGPU.
+
+    - Fixed few places in Etnaviv, Panfrost and Lima drivers that I missed
+      to switch to locked dma-buf vmapping in the drm/gem: Take reservation
+      lock for vmap/vunmap operations" patch. In a result invalidated the
+      Christian's r-b that he gave to v2.
+
+    - Added locked dma-buf vmap/vunmap functions that are needed for fixing
+      vmappping of Etnaviv, Panfrost and Lima drivers mentioned above.
+      I actually had this change stashed for the drm-shmem shrinker patchset,
+      but then realized that it's already needed by the dma-buf patches.
+      Also improved my tests to better cover these code paths.
+
+v2: - Changed locking specification to avoid problems with a cross-driver
+      ww locking, like was suggested by Christian König. Now the attach/detach
+      callbacks are invoked without the held lock and exporter should take the
+      lock.
+
+    - Added "locking convention" documentation that explains which dma-buf
+      functions and callbacks are locked/unlocked for importers and exporters,
+      which was requested by Christian König.
+
+    - Added ack from Tomasz Figa to the V4L patches that he gave to v1.
+
+Dmitry Osipenko (21):
+  dma-buf: Add unlocked variant of vmapping functions
+  dma-buf: Add unlocked variant of attachment-mapping functions
+  drm/gem: Take reservation lock for vmap/vunmap operations
+  drm/prime: Prepare to dynamic dma-buf locking specification
+  drm/armada: Prepare to dynamic dma-buf locking specification
+  drm/i915: Prepare to dynamic dma-buf locking specification
+  drm/omapdrm: Prepare to dynamic dma-buf locking specification
+  drm/tegra: Prepare to dynamic dma-buf locking specification
+  drm/etnaviv: Prepare to dynamic dma-buf locking specification
+  RDMA/umem: Prepare to dynamic dma-buf locking specification
+  misc: fastrpc: Prepare to dynamic dma-buf locking specification
+  xen/gntdev: Prepare to dynamic dma-buf locking specification
+  media: videobuf2: Prepare to dynamic dma-buf locking specification
+  media: tegra-vde: Prepare to dynamic dma-buf locking specification
+  dma-buf: Move dma_buf_vmap() to dynamic locking specification
+  dma-buf: Move dma_buf_attach() to dynamic locking specification
+  dma-buf: Move dma_buf_map_attachment() to dynamic locking
+    specification
+  dma-buf: Move dma_buf_mmap() to dynamic locking specification
+  dma-buf: Document dynamic locking convention
+  media: videobuf2: Stop using internal dma-buf lock
+  dma-buf: Remove obsoleted internal lock
+
+ Documentation/driver-api/dma-buf.rst          |   6 +
+ drivers/dma-buf/dma-buf.c                     | 211 +++++++++++++++---
+ drivers/gpu/drm/armada/armada_gem.c           |   8 +-
+ drivers/gpu/drm/drm_client.c                  |   4 +-
+ drivers/gpu/drm/drm_gem.c                     |  24 ++
+ drivers/gpu/drm/drm_gem_dma_helper.c          |   6 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c  |   6 +-
+ drivers/gpu/drm/drm_gem_ttm_helper.c          |   9 +-
+ drivers/gpu/drm/drm_prime.c                   |   6 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  12 +
+ .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  16 +-
+ drivers/gpu/drm/lima/lima_sched.c             |   4 +-
+ drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c     |   4 +-
+ drivers/gpu/drm/panfrost/panfrost_dump.c      |   4 +-
+ drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |   6 +-
+ drivers/gpu/drm/qxl/qxl_object.c              |  17 +-
+ drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
+ drivers/gpu/drm/tegra/gem.c                   |  17 +-
+ drivers/infiniband/core/umem_dmabuf.c         |   7 +-
+ .../common/videobuf2/videobuf2-dma-contig.c   |  22 +-
+ .../media/common/videobuf2/videobuf2-dma-sg.c |  19 +-
+ .../common/videobuf2/videobuf2-vmalloc.c      |  17 +-
+ .../platform/nvidia/tegra-vde/dmabuf-cache.c  |   6 +-
+ drivers/misc/fastrpc.c                        |   6 +-
+ drivers/xen/gntdev-dmabuf.c                   |   8 +-
+ include/drm/drm_gem.h                         |   3 +
+ include/linux/dma-buf.h                       |  17 +-
+ 29 files changed, 318 insertions(+), 155 deletions(-)
+
+-- 
+2.37.2
+
