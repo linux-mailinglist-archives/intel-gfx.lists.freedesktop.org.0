@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7388B5A76DB
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Aug 2022 08:45:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D1A5A76E6
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Aug 2022 08:48:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60F7C10E1FF;
-	Wed, 31 Aug 2022 06:45:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18B9610E1FD;
+	Wed, 31 Aug 2022 06:48:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8BB888D9;
- Wed, 31 Aug 2022 06:45:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661928338; x=1693464338;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=dhw53A8UVz42/eA9UMMVfX1TuLFNrM9zdLfo23lvjq4=;
- b=YEWPzzszXVugbc5IhzRVDV7EgIx8XpuKzd7INHoa2zvlq5sj9uGk4e3h
- hBivRvQ0z0YMPT8yEm3Qo9tKBhr19Pi0akOPymHdaRPvA9Itm0TW0IBsl
- lQXe8ApQiR2y5um0hRsGuQ3wo6cQS7dXh0uf6RrwprE5YpDSl7IR5lkMV
- kyTDdiF9uXwr6FAwOq1xAe5WbvoT52iCQQfvYsG4acM5YOzOKKO3FwhM9
- V07H+Zw/jOG164C9qKpw3zLhT6qF9hox7XtueD1L3QtP7kmRnXsTfioto
- uImRNQxFKL6vaY8gQZH6hit3xhlf/k8to+kDxP6JaijXKuDCGbqcv+tVK w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10455"; a="292962019"
-X-IronPort-AV: E=Sophos;i="5.93,277,1654585200"; d="scan'208";a="292962019"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2022 23:45:37 -0700
-X-IronPort-AV: E=Sophos;i="5.93,277,1654585200"; d="scan'208";a="673231237"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2022 23:45:37 -0700
-Date: Tue, 30 Aug 2022 23:45:16 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <20220831064515.GF10283@nvishwa1-DESK>
-References: <20220827194403.6495-1-andi.shyti@linux.intel.com>
- <20220827194403.6495-14-andi.shyti@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3A0FB10E1E5;
+ Wed, 31 Aug 2022 06:48:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 335CBA7DFB;
+ Wed, 31 Aug 2022 06:48:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0231197527472157131=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220827194403.6495-14-andi.shyti@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [RFC PATCH v3 13/17] drm/i915/vm_bind: userptr
- dma-resv changes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tian, Kevin" <kevin.tian@intel.com>
+Date: Wed, 31 Aug 2022 06:48:09 -0000
+Message-ID: <166192848918.4257.1203846524587258438@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220827171037.30297-1-kevin.tian@intel.com>
+In-Reply-To: <20220827171037.30297-1-kevin.tian@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgVGlk?=
+ =?utf-8?q?y_up_vfio=5Fdevice_life_cycle_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,353 +40,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ramalingam C <ramalingampc2008@gmail.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Aug 27, 2022 at 09:43:59PM +0200, Andi Shyti wrote:
->From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->
->For persistent (vm_bind) vmas of userptr BOs, handle the user
->page pinning by using the i915_gem_object_userptr_submit_init()
->/done() functions
->
->Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
->Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
->---
-> .../gpu/drm/i915/gem/i915_gem_execbuffer3.c   | 139 ++++++++++++++----
-> drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |  10 ++
-> .../drm/i915/gem/i915_gem_vm_bind_object.c    |  16 ++
-> drivers/gpu/drm/i915/gt/intel_gtt.c           |   2 +
-> drivers/gpu/drm/i915/gt/intel_gtt.h           |   4 +
-> drivers/gpu/drm/i915/i915_vma_types.h         |   2 +
-> 6 files changed, 142 insertions(+), 31 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
->index 8e0dde26194e0..72d6771da2113 100644
->--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
->+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
->@@ -23,6 +23,7 @@
-> #include "i915_gem_vm_bind.h"
-> #include "i915_trace.h"
->
->+#define __EXEC3_USERPTR_USED		BIT_ULL(34)
-> #define __EXEC3_HAS_PIN			BIT_ULL(33)
-> #define __EXEC3_ENGINE_PINNED		BIT_ULL(32)
-> #define __EXEC3_INTERNAL_FLAGS		(~0ull << 32)
->@@ -157,10 +158,45 @@ static void eb_scoop_unbound_vma_all(struct i915_address_space *vm)
-> 	spin_unlock(&vm->vm_rebind_lock);
-> }
->
->+static int eb_lookup_persistent_userptr_vmas(struct i915_execbuffer *eb)
->+{
->+	struct i915_address_space *vm = eb->context->vm;
->+	struct i915_vma *last_vma = NULL;
->+	struct i915_vma *vma;
->+	int err;
->+
->+	lockdep_assert_held(&vm->vm_bind_lock);
->+
->+	list_for_each_entry(vma, &vm->vm_userptr_invalidated_list,
->+			    vm_userptr_invalidated_link) {
->+		list_del_init(&vma->vm_userptr_invalidated_link);
->+		err = i915_gem_object_userptr_submit_init(vma->obj);
->+		if (err)
->+			return err;
->+
->+		last_vma = vma;
->+	}
+--===============0231197527472157131==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This should be done under the list lock. As it is a spinlock, we
-should scoop them first under that spinlock and call submit_init()
-outside that lock.
+== Series Details ==
 
->+
->+	list_for_each_entry(vma, &vm->vm_bind_list, vm_bind_link)
->+		if (i915_gem_object_is_userptr(vma->obj)) {
->+			err = i915_gem_object_userptr_submit_init(vma->obj);
->+			if (err)
->+				return err;
->+
->+			last_vma = vma;
->+		}
->+
->+	if (last_vma)
->+		eb->args->flags |= __EXEC3_USERPTR_USED;
->+
->+	return 0;
->+}
->+
-> static int eb_lookup_vma_all(struct i915_execbuffer *eb)
-> {
-> 	unsigned int i, current_batch = 0;
-> 	struct i915_vma *vma;
->+	int err = 0;
->
-> 	for (i = 0; i < eb->num_batches; i++) {
-> 		vma = eb_find_vma(eb->context->vm, eb->batch_addresses[i]);
->@@ -171,6 +207,10 @@ static int eb_lookup_vma_all(struct i915_execbuffer *eb)
-> 		++current_batch;
-> 	}
->
->+	err = eb_lookup_persistent_userptr_vmas(eb);
->+	if (err)
->+		return err;
->+
-> 	eb_scoop_unbound_vma_all(eb->context->vm);
->
-> 	return 0;
->@@ -286,33 +326,6 @@ static int eb_validate_persistent_vma_all(struct i915_execbuffer *eb)
-> 	return ret;
-> }
->
->-static int eb_validate_vma_all(struct i915_execbuffer *eb)
->-{
->-	/* only throttle once, even if we didn't need to throttle */
->-	for (bool throttle = true;; throttle = false) {
->-		int err;
->-
->-		err = eb_pin_engine(eb, throttle);
->-		if (!err)
->-			err = eb_lock_vma_all(eb);
->-
->-		if (!err)
->-			err = eb_validate_persistent_vma_all(eb);
->-
->-		if (!err)
->-			return 0;
->-
->-		if (err != -EDEADLK)
->-			return err;
->-
->-		err = i915_gem_ww_ctx_backoff(&eb->ww);
->-		if (err)
->-			return err;
->-	}
->-
->-	return 0;
->-}
->-
-> /*
->  * Using two helper loops for the order of which requests / batches are created
->  * and added the to backend. Requests are created in order from the parent to
->@@ -360,15 +373,51 @@ static void eb_move_all_persistent_vma_to_active(struct i915_execbuffer *eb)
->
-> static int eb_move_to_gpu(struct i915_execbuffer *eb)
-> {
->+	int err = 0, j;
->+
-> 	lockdep_assert_held(&eb->context->vm->vm_bind_lock);
-> 	assert_object_held(eb->context->vm->root_obj);
->
-> 	eb_move_all_persistent_vma_to_active(eb);
->
->-	/* Unconditionally flush any chipset caches (for streaming writes). */
->-	intel_gt_chipset_flush(eb->gt);
->+#ifdef CONFIG_MMU_NOTIFIER
->+	if (!err && (eb->args->flags & __EXEC3_USERPTR_USED)) {
->+		struct i915_vma *vma;
->
->-	return 0;
->+		lockdep_assert_held(&eb->context->vm->vm_bind_lock);
->+		assert_object_held(eb->context->vm->root_obj);
->+
->+		read_lock(&eb->i915->mm.notifier_lock);
->+		list_for_each_entry(vma, &eb->context->vm->vm_bind_list,
->+				    vm_bind_link) {
->+			if (!i915_gem_object_is_userptr(vma->obj))
->+				continue;
->+
->+			err = i915_gem_object_userptr_submit_done(vma->obj);
->+			if (err)
->+				break;
->+		}
->+
->+		read_unlock(&eb->i915->mm.notifier_lock);
->+	}
->+#endif
->+
->+	if (likely(!err)) {
->+		/*
->+		 * Unconditionally flush any
->+		 * chipset caches (for streaming writes).
->+		 */
->+		intel_gt_chipset_flush(eb->gt);
->+		return 0;
->+	}
->+
->+	for_each_batch_create_order(eb, j) {
->+		if (!eb->requests[j])
->+			break;
->+
->+		i915_request_set_error_once(eb->requests[j], err);
->+	}
->+	return err;
-> }
->
-> static int eb_request_submit(struct i915_execbuffer *eb,
->@@ -1088,6 +1137,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
-> {
-> 	struct drm_i915_private *i915 = to_i915(dev);
-> 	struct i915_execbuffer eb;
->+	bool throttle = true;
-> 	int err;
->
-> 	BUILD_BUG_ON(__EXEC3_INTERNAL_FLAGS & ~__I915_EXEC3_UNKNOWN_FLAGS);
->@@ -1121,6 +1171,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->
-> 	mutex_lock(&eb.context->vm->vm_bind_lock);
->
->+lookup_vmas:
-> 	err = eb_lookup_vma_all(&eb);
-> 	if (err) {
-> 		eb_release_vma_all(&eb, true);
->@@ -1129,7 +1180,33 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->
-> 	i915_gem_ww_ctx_init(&eb.ww, true);
->
->-	err = eb_validate_vma_all(&eb);
->+retry_validate:
->+	err = eb_pin_engine(&eb, throttle);
->+	if (err)
->+		goto err_validate;
->+
->+	/* only throttle once, even if we didn't need to throttle */
->+	throttle = false;
->+
->+	err = eb_lock_vma_all(&eb);
->+	if (err)
->+		goto err_validate;
->+
->+	if (!list_empty(&eb.context->vm->vm_rebind_list)) {
->+		eb_release_vma_all(&eb, true);
->+		i915_gem_ww_ctx_fini(&eb.ww);
->+		goto lookup_vmas;
->+	}
->+
->+	err = eb_validate_persistent_vma_all(&eb);
->+
->+err_validate:
->+	if (err == -EDEADLK) {
->+		eb_release_vma_all(&eb, false);
->+		err = i915_gem_ww_ctx_backoff(&eb.ww);
->+		if (!err)
->+			goto retry_validate;
->+	}
-> 	if (err)
-> 		goto err_vma;
->
->diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->index 8423df021b713..f980d7443fa27 100644
->--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
->@@ -63,6 +63,7 @@ static bool i915_gem_userptr_invalidate(struct mmu_interval_notifier *mni,
-> {
-> 	struct drm_i915_gem_object *obj = container_of(mni, struct drm_i915_gem_object, userptr.notifier);
-> 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->+	struct i915_vma *vma;
-> 	long r;
->
-> 	if (!mmu_notifier_range_blockable(range))
->@@ -85,6 +86,15 @@ static bool i915_gem_userptr_invalidate(struct mmu_interval_notifier *mni,
-> 	if (current->flags & PF_EXITING)
-> 		return true;
->
->+	spin_lock(&obj->vma.lock);
->+	list_for_each_entry(vma, &obj->vma.list, obj_link) {
->+		spin_lock(&vma->vm->vm_userptr_invalidated_lock);
->+		list_add_tail(&vma->vm_userptr_invalidated_link,
->+			      &vma->vm->vm_userptr_invalidated_list);
->+		spin_unlock(&vma->vm->vm_userptr_invalidated_lock);
+Series: Tidy up vfio_device life cycle (rev2)
+URL   : https://patchwork.freedesktop.org/series/107838/
+State : success
 
-Should be done only if vma is persistent.
+== Summary ==
 
-Niranjana
+CI Bug Log - changes from CI_DRM_12051 -> Patchwork_107838v2
+====================================================
 
->+	}
->+	spin_unlock(&obj->vma.lock);
->+
-> 	/* we will unbind on next submission, still have userptr pins */
-> 	r = dma_resv_wait_timeout(obj->base.resv, DMA_RESV_USAGE_BOOKKEEP, false,
-> 				  MAX_SCHEDULE_TIMEOUT);
->diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
->index e57b9c492a7f9..e6216f49e7d58 100644
->--- a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
->+++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
->@@ -296,6 +296,12 @@ static int i915_gem_vm_bind_obj(struct i915_address_space *vm,
-> 		goto put_obj;
-> 	}
->
->+	if (i915_gem_object_is_userptr(obj)) {
->+		ret = i915_gem_object_userptr_submit_init(obj);
->+		if (ret)
->+			goto put_obj;
->+	}
->+
-> 	ret = mutex_lock_interruptible(&vm->vm_bind_lock);
-> 	if (ret)
-> 		goto put_obj;
->@@ -328,6 +334,16 @@ static int i915_gem_vm_bind_obj(struct i915_address_space *vm,
-> 		/* Make it evictable */
-> 		__i915_vma_unpin(vma);
->
->+#ifdef CONFIG_MMU_NOTIFIER
->+		if (i915_gem_object_is_userptr(obj)) {
->+			read_lock(&vm->i915->mm.notifier_lock);
->+			ret = i915_gem_object_userptr_submit_done(obj);
->+			read_unlock(&vm->i915->mm.notifier_lock);
->+			if (ret)
->+				goto out_ww;
->+		}
->+#endif
->+
-> 		list_add_tail(&vma->vm_bind_link, &vm->vm_bound_list);
-> 		i915_vm_bind_it_insert(vma, &vm->va);
-> 		if (!obj->priv_root)
->diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
->index 97cd0089b516d..f1db8310de4a6 100644
->--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
->+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
->@@ -298,6 +298,8 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
-> 	GEM_BUG_ON(IS_ERR(vm->root_obj));
-> 	INIT_LIST_HEAD(&vm->vm_rebind_list);
-> 	spin_lock_init(&vm->vm_rebind_lock);
->+	spin_lock_init(&vm->vm_userptr_invalidated_lock);
->+	INIT_LIST_HEAD(&vm->vm_userptr_invalidated_list);
-> }
->
-> void *__px_vaddr(struct drm_i915_gem_object *p)
->diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
->index 1f3b1967ec175..71203d65e1d60 100644
->--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
->+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
->@@ -269,6 +269,10 @@ struct i915_address_space {
-> 	struct list_head vm_rebind_list;
-> 	/* @vm_rebind_lock: protects vm_rebound_list */
-> 	spinlock_t vm_rebind_lock;
->+	/* @vm_userptr_invalidated_list: list of invalidated userptr vmas */
->+	struct list_head vm_userptr_invalidated_list;
->+	/* @vm_userptr_invalidated_lock: protects vm_userptr_invalidated_list */
->+	spinlock_t vm_userptr_invalidated_lock;
-> 	/* @va: tree of persistent vmas */
-> 	struct rb_root_cached va;
-> 	struct list_head non_priv_vm_bind_list;
->diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
->index 8bf870a0f689b..5b583ca744387 100644
->--- a/drivers/gpu/drm/i915/i915_vma_types.h
->+++ b/drivers/gpu/drm/i915/i915_vma_types.h
->@@ -317,6 +317,8 @@ struct i915_vma {
-> 	struct list_head non_priv_vm_bind_link;
-> 	/* @vm_rebind_link: link to vm_rebind_list and protected by vm_rebind_lock */
-> 	struct list_head vm_rebind_link; /* Link in vm_rebind_list */
->+	/*@vm_userptr_invalidated_link: link to the vm->vm_userptr_invalidated_list */
->+	struct list_head vm_userptr_invalidated_link;
->
-> 	/** Timeline fence for vm_bind completion notification */
-> 	struct {
->-- 
->2.34.1
->
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107838v2/index.html
+
+Participating hosts (36 -> 32)
+------------------------------
+
+  Missing    (4): fi-adl-ddr5 fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_107838v2 that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#6380]: https://gitlab.freedesktop.org/drm/intel/issues/6380
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12051 -> Patchwork_107838v2
+
+  CI-20190529: 20190529
+  CI_DRM_12051: 87e7c1f925771561efe162f261251ed72b095007 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6638: 9338ab3ec085292817ab1e74d1f2fb90b6a98332 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_107838v2: 87e7c1f925771561efe162f261251ed72b095007 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+bd91582b60f8 vfio: Add struct device to vfio_device
+f8270bcb436e vfio: Rename vfio_device_put() and vfio_device_try_get()
+3d1532d2295c vfio/ccw: Use the new device life cycle helpers
+0cc7ad404d2c vfio/amba: Use the new device life cycle helpers
+1f0568824155 vfio/platform: Use the new device life cycle helpers
+0d2c0ac46cc9 vfio/fsl-mc: Use the new device life cycle helpers
+5c25744ecc67 vfio/ap: Use the new device life cycle helpers
+2526a89e122c drm/i915/gvt: Use the new device life cycle helpers
+5acd97dfcc3e vfio/mbochs: Use the new device life cycle helpers
+5053ba759ea8 vfio/mtty: Use the new device life cycle helpers
+3d9553a48c1f vfio/mdpy: Use the new device life cycle helpers
+dcb1a8c8f3e1 vfio/hisi_acc: Use the new device life cycle helpers
+66863015b8e7 vfio/mlx5: Use the new device life cycle helpers
+7678baf87812 vfio/pci: Use the new device life cycle helpers
+d484641676f8 vfio: Add helpers for unifying vfio_device life cycle
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107838v2/index.html
+
+--===============0231197527472157131==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Tidy up vfio_device life cycle (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107838/">https://patchwork.freedesktop.org/series/107838/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107838v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107838v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12051 -&gt; Patchwork_107838v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107838v2/index.html</p>
+<h2>Participating hosts (36 -&gt; 32)</h2>
+<p>Missing    (4): fi-adl-ddr5 fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_107838v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12051 -&gt; Patchwork_107838v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12051: 87e7c1f925771561efe162f261251ed72b095007 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6638: 9338ab3ec085292817ab1e74d1f2fb90b6a98332 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_107838v2: 87e7c1f925771561efe162f261251ed72b095007 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>bd91582b60f8 vfio: Add struct device to vfio_device<br />
+f8270bcb436e vfio: Rename vfio_device_put() and vfio_device_try_get()<br />
+3d1532d2295c vfio/ccw: Use the new device life cycle helpers<br />
+0cc7ad404d2c vfio/amba: Use the new device life cycle helpers<br />
+1f0568824155 vfio/platform: Use the new device life cycle helpers<br />
+0d2c0ac46cc9 vfio/fsl-mc: Use the new device life cycle helpers<br />
+5c25744ecc67 vfio/ap: Use the new device life cycle helpers<br />
+2526a89e122c drm/i915/gvt: Use the new device life cycle helpers<br />
+5acd97dfcc3e vfio/mbochs: Use the new device life cycle helpers<br />
+5053ba759ea8 vfio/mtty: Use the new device life cycle helpers<br />
+3d9553a48c1f vfio/mdpy: Use the new device life cycle helpers<br />
+dcb1a8c8f3e1 vfio/hisi_acc: Use the new device life cycle helpers<br />
+66863015b8e7 vfio/mlx5: Use the new device life cycle helpers<br />
+7678baf87812 vfio/pci: Use the new device life cycle helpers<br />
+d484641676f8 vfio: Add helpers for unifying vfio_device life cycle</p>
+
+</body>
+</html>
+
+--===============0231197527472157131==--
