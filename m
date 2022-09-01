@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F191F5A8DE9
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 08:01:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D07EA5A8DE5
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 08:01:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A745B10E5AC;
-	Thu,  1 Sep 2022 06:01:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97B0F10E5AE;
+	Thu,  1 Sep 2022 06:01:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D58FC10E5AB
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Sep 2022 06:01:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11F8810E5AB
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Sep 2022 06:01:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662012091; x=1693548091;
+ t=1662012094; x=1693548094;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2540V2KVCW+5+o4xnuXt7tt7eZ+D5Sal3LyfsekSN14=;
- b=VV8n2ydCK20irdsIdoOFOxPHMsBohwjz58Ot2bxRaCzmJviMfrjlDRu1
- zMXlKoqPnY1rEt2MvG0wIQfMRaPyqiA8Ir5VcY4GgCyRoivmwIKHBEdi6
- J72wBE/VQKhU0fv79As0r1bZjQElM8ZWRZVLr3Qv3SO7qhD0Cz3PCujT+
- Gdseibq2wn411r4X45OyuNGAAjnooUOtTD8aBNRf7k+4bjpaaYa7OvpG+
- c/MrGGjdtL15WwRx957Q06ThfGlGpW26wtOKHldnJfYYysqioa7QC4Mtr
- 27n9b/RkD6d+g4+jeFtVS1hUDnjEQBLwOsY3P1JE3WvsdoJ2HFvDNVtum w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10456"; a="381920252"
-X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="381920252"
+ bh=JCekVWjOTmkA+7q/V9YoB1gnGzNe42JEQizr1QEpJnQ=;
+ b=k4wzkP/DJABHf7HBrkyJQGzNRzkq7dgTxxkxDnwzvLnhYqmyK5mVtMcz
+ JSz9tH+paJSOgqM//DhHFtzumOGd9rsI0yHKN8A7lBF7VgImHMlnsVVEY
+ QgsD5xl9+55I78nzIZJbegeXMy+bIfo/wNiHik6QNKlOqfgJmgKFZONbI
+ uvA0hsNy3QlohWOxD3H0ZGbd3llwC4Sc/pwXnGNcFWyaOdpj/yiE2OzZL
+ CrQT0rsDsYzLQs9ZVX/cGuGw3h6B3iOO3QZAT5C72jKR7U+a90epbI6n5
+ PySh1+rABNlaKDZDdQiM8NYS1nPHsBJVYLt4LKaOglaXurOv9Q0ajOVJ7 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10456"; a="381920256"
+X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="381920256"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2022 23:01:31 -0700
-X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="754685715"
+ 31 Aug 2022 23:01:33 -0700
+X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="754685727"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2022 23:01:29 -0700
+ 31 Aug 2022 23:01:31 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Sep 2022 11:30:58 +0530
-Message-Id: <20220901060101.1000290-7-ankit.k.nautiyal@intel.com>
+Date: Thu,  1 Sep 2022 11:30:59 +0530
+Message-Id: <20220901060101.1000290-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220901060101.1000290-1-ankit.k.nautiyal@intel.com>
 References: <20220901060101.1000290-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 6/9] drm/i915/dp: Use crtc_state members in
- dp_is_ycbcr420
+Subject: [Intel-gfx] [PATCH v2 7/9] drm/i915/dp: Replace intel_dp.dfp
+ members with the new crtc_state dp_dfp members
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,66 +59,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the new crtc_state members to check if DP DFP will use YCBCR420.
-The earlier intel_dp->dfp members are not required as decision to use
-color format conversion by the PCON is computed and stored in
-crtc_state. Also drop the intel_dp argument in the helper function.
+The decision to use DFP output format conversion capabilities should be
+during compute_config phase.
+
+This patch uses the members of intel_dp->dfp to only store the
+format conversion capabilities of the DP device and uses the crtc_state
+dp_dfp members that are computed earlier, to program the
+protocol-converter for colorspace/format conversion.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 46 +++++++++----------------
+ 1 file changed, 17 insertions(+), 29 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 4c1a0d9f750c..f3c2aeda0c1d 100644
+index f3c2aeda0c1d..409bd9cdf450 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1192,22 +1192,21 @@ static bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
- 		drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd);
- }
- 
--static bool intel_dp_is_ycbcr420(struct intel_dp *intel_dp,
--				 const struct intel_crtc_state *crtc_state)
-+static bool intel_dp_is_ycbcr420(const struct intel_crtc_state *crtc_state)
+@@ -805,6 +805,7 @@ intel_dp_output_format(struct intel_connector *connector,
+ 		       bool ycbcr_420_output)
  {
- 	return crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
- 		(crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
--		 intel_dp->dfp.ycbcr_444_to_420) ||
-+		 crtc_state->dp_dfp_config.ycbcr_444_to_420) ||
- 		(crtc_state->output_format == INTEL_OUTPUT_FORMAT_RGB &&
--		 intel_dp->dfp.rgb_to_ycbcr &&
--		 intel_dp->dfp.ycbcr_444_to_420);
-+		 crtc_state->dp_dfp_config.rgb_to_ycbcr &&
-+		 crtc_state->dp_dfp_config.ycbcr_444_to_420);
- }
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
++	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
  
- static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
- 				     const struct intel_crtc_state *crtc_state,
- 				     int bpc, bool respect_downstream_limits)
+ 	if (!connector->base.ycbcr_420_allowed || !ycbcr_420_output)
+ 		return INTEL_OUTPUT_FORMAT_RGB;
+@@ -813,6 +814,10 @@ intel_dp_output_format(struct intel_connector *connector,
+ 	    intel_dp->dfp.ycbcr_444_to_420)
+ 		return INTEL_OUTPUT_FORMAT_RGB;
+ 
++	/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
++	if (DISPLAY_VER(i915) >= 11 && intel_dp->dfp.ycbcr420_passthrough)
++		return INTEL_OUTPUT_FORMAT_YCBCR420;
++
+ 	if (intel_dp->dfp.ycbcr_444_to_420)
+ 		return INTEL_OUTPUT_FORMAT_YCBCR444;
+ 	else
+@@ -2698,8 +2703,8 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
+ 		drm_dbg_kms(&i915->drm, "Failed to %s protocol converter HDMI mode\n",
+ 			    str_enable_disable(intel_dp->has_hdmi_sink));
+ 
+-	tmp = crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
+-		intel_dp->dfp.ycbcr_444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
++	tmp = crtc_state->dp_dfp_config.ycbcr_444_to_420 ?
++		DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
+ 
+ 	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+ 			       DP_PROTOCOL_CONVERTER_CONTROL_1, tmp) != 1)
+@@ -2707,7 +2712,7 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
+ 			    "Failed to %s protocol converter YCbCr 4:2:0 conversion mode\n",
+ 			    str_enable_disable(intel_dp->dfp.ycbcr_444_to_420));
+ 
+-	tmp = intel_dp->dfp.rgb_to_ycbcr ?
++	tmp = crtc_state->dp_dfp_config.rgb_to_ycbcr ?
+ 		DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
+ 
+ 	if (drm_dp_pcon_convert_rgb_to_ycbcr(&intel_dp->aux, tmp) < 0)
+@@ -4563,7 +4568,7 @@ intel_dp_update_420(struct intel_dp *intel_dp)
  {
--	bool ycbcr420_output = intel_dp_is_ycbcr420(intel_dp, crtc_state);
-+	bool ycbcr420_output = intel_dp_is_ycbcr420(crtc_state);
- 	int clock = crtc_state->hw.adjusted_mode.crtc_clock;
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	struct intel_connector *connector = intel_dp->attached_connector;
+-	bool is_branch, ycbcr_420_passthrough, ycbcr_444_to_420, rgb_to_ycbcr;
++	bool is_branch;
  
- 	/*
-@@ -2014,7 +2013,7 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 	if (ycbcr_420_only)
- 		intel_dp_compute_dfp_ycbcr420(encoder, crtc_state);
+ 	/* No YCbCr output support on gmch platforms */
+ 	if (HAS_GMCH(i915))
+@@ -4577,38 +4582,21 @@ intel_dp_update_420(struct intel_dp *intel_dp)
+ 		return;
  
--	if (ycbcr_420_only && !intel_dp_is_ycbcr420(intel_dp, crtc_state)) {
-+	if (ycbcr_420_only && !intel_dp_is_ycbcr420(crtc_state)) {
- 		drm_dbg_kms(&i915->drm,
- 			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
- 		crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
-@@ -2023,7 +2022,7 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
- 					   respect_downstream_limits);
- 	if (ret) {
--		if (intel_dp_is_ycbcr420(intel_dp, crtc_state) ||
-+		if (intel_dp_is_ycbcr420(crtc_state) ||
- 		    !connector->base.ycbcr_420_allowed ||
- 		    !drm_mode_is_420_also(info, adjusted_mode))
- 			return ret;
+ 	is_branch = drm_dp_is_branch(intel_dp->dpcd);
+-	ycbcr_420_passthrough =
++	intel_dp->dfp.ycbcr420_passthrough =
+ 		drm_dp_downstream_420_passthrough(intel_dp->dpcd,
+ 						  intel_dp->downstream_ports);
+ 	/* on-board LSPCON always assumed to support 4:4:4->4:2:0 conversion */
+-	ycbcr_444_to_420 =
++	intel_dp->dfp.ycbcr_444_to_420 =
+ 		dp_to_dig_port(intel_dp)->lspcon.active ||
+ 		drm_dp_downstream_444_to_420_conversion(intel_dp->dpcd,
+ 							intel_dp->downstream_ports);
+-	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
+-								 intel_dp->downstream_ports,
+-								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
+-
+-	if (DISPLAY_VER(i915) >= 11) {
+-		/* Let PCON convert from RGB->YCbCr if possible */
+-		if (is_branch && rgb_to_ycbcr && ycbcr_444_to_420) {
+-			intel_dp->dfp.rgb_to_ycbcr = true;
+-			intel_dp->dfp.ycbcr_444_to_420 = true;
+-			connector->base.ycbcr_420_allowed = true;
+-		} else {
+-		/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
+-			intel_dp->dfp.ycbcr_444_to_420 =
+-				ycbcr_444_to_420 && !ycbcr_420_passthrough;
++	intel_dp->dfp.rgb_to_ycbcr =
++		drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
++							  intel_dp->downstream_ports,
++							  DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
+ 
+-			connector->base.ycbcr_420_allowed =
+-				!is_branch || ycbcr_444_to_420 || ycbcr_420_passthrough;
+-		}
+-	} else {
+-		/* 4:4:4->4:2:0 conversion is the only way */
+-		intel_dp->dfp.ycbcr_444_to_420 = ycbcr_444_to_420;
+-
+-		connector->base.ycbcr_420_allowed = ycbcr_444_to_420;
+-	}
++	if (!is_branch || intel_dp->dfp.ycbcr420_passthrough || intel_dp->dfp.ycbcr_444_to_420)
++		connector->base.ycbcr_420_allowed = true;
+ 
+ 	drm_dbg_kms(&i915->drm,
+ 		    "[CONNECTOR:%d:%s] RGB->YcbCr conversion? %s, YCbCr 4:2:0 allowed? %s, YCbCr 4:4:4->4:2:0 conversion? %s\n",
 -- 
 2.25.1
 
