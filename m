@@ -2,79 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3C05AA0C5
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 22:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5606F5AA0D4
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 22:22:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB6E110E291;
-	Thu,  1 Sep 2022 20:16:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD74B10E213;
+	Thu,  1 Sep 2022 20:22:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADC9B10E213
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Sep 2022 20:16:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1662063387;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ShxcPF4Eq/4VuhK0YuLPN2dIglWIe3dTsSJxTWOrspQ=;
- b=RUL2FUJFiRVdFABhzSQ++8T5JHXq2ZTaTjKAT22CK04/XjFqW0oAqnPEArqGe1MnICvi8f
- +Np6YKTUUGfPZLPvbw/It/7dQhNG068LT/jes2MWhYij1uNHei32lNHJfA7y809RKY8uu0
- ED1hBLWFC+K62ptN246AbL7vAh26Nps=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-554-9kwaatSyMTetCg0m9Im2oA-1; Thu, 01 Sep 2022 16:16:26 -0400
-X-MC-Unique: 9kwaatSyMTetCg0m9Im2oA-1
-Received: by mail-qk1-f197.google.com with SMTP id
- bp11-20020a05620a458b00b006bbeffab91dso221403qkb.11
- for <intel-gfx@lists.freedesktop.org>; Thu, 01 Sep 2022 13:16:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:user-agent:organization
- :references:in-reply-to:date:cc:to:from:subject:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=ShxcPF4Eq/4VuhK0YuLPN2dIglWIe3dTsSJxTWOrspQ=;
- b=16okIOZp6cjepxAwTnCHAAbhK4lgkS/8sbLXKJHxYgnz9q13L4k+0bFIWfV+nbxO1x
- xyGxo5V5Xj/4D8Guicrmt/GrWBQe69mH8201wkyDdPTCzx3gdjm1IDE8H/VwIiUkNwXY
- Au9BRx03nkJLs2oBkbIXnqDfor8pRpSrpo/pFHhR899nHepTDqNJLYdoyTFNCy22W0uA
- C8GVL5RUyl9QCs1aFCZ9aTXr24LwfLbtz6opF/LQW88Au9zVavlLJtuS8LDDv1xspS+Q
- Lq2ybjlyfXCymY1yLIfg+R8dCka3RbfW45ENsQJzMHcLOO/VvQuIujaXNt1H5fxW60VC
- D7nA==
-X-Gm-Message-State: ACgBeo2Gq6S9w07wLlB2RoEOAeQZZ3LB4IL6EBE+82e7aG6OmCp4S3W+
- YbQdj88n8pi34mLf0iFefNZbIGpSJzqFEdEHh1izDAPrDToMzFsxfCUM9jWGsb394fNyfiTigOR
- rCuF7hYCDbkbrD+GqcUHMskqTFY+k
-X-Received: by 2002:a05:620a:4553:b0:6bb:1dd0:e44c with SMTP id
- u19-20020a05620a455300b006bb1dd0e44cmr21170563qkp.543.1662063386429; 
- Thu, 01 Sep 2022 13:16:26 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR4SXoUZt30A0xKlvUByAmirOD7wWDVTeEB40+CkCT1+zPJotJQ/iOqWav7vFUEdmX088i/ZHA==
-X-Received: by 2002:a05:620a:4553:b0:6bb:1dd0:e44c with SMTP id
- u19-20020a05620a455300b006bb1dd0e44cmr21170540qkp.543.1662063386195; 
- Thu, 01 Sep 2022 13:16:26 -0700 (PDT)
-Received: from ?IPv6:2600:4040:5c48:e00:e786:1aff:4f5c:c549?
- ([2600:4040:5c48:e00:e786:1aff:4f5c:c549])
- by smtp.gmail.com with ESMTPSA id
- l1-20020a05620a28c100b006b5e1aeb777sm12671930qkp.43.2022.09.01.13.16.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 01 Sep 2022 13:16:25 -0700 (PDT)
-Message-ID: <4a44b0d4511e20fc32a9d9de8e6d12ec62c9f51b.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Date: Thu, 01 Sep 2022 16:16:24 -0400
-In-Reply-To: <e2fa3e97b0989a50b9050d0518844d1f403385ea.1662036058.git.jani.nikula@intel.com>
-References: <cover.1662036058.git.jani.nikula@intel.com>
- <e2fa3e97b0989a50b9050d0518844d1f403385ea.1662036058.git.jani.nikula@intel.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F11E810E213;
+ Thu,  1 Sep 2022 20:21:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CBED0A00A0;
+ Thu,  1 Sep 2022 20:21:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6527105859541939329=="
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/nouveau: convert to using is_hdmi
- and has_audio from display info
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Date: Thu, 01 Sep 2022 20:21:54 -0000
+Message-ID: <166206371482.11921.7653387594135253393@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220901193228.255098-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20220901193228.255098-1-rodrigo.vivi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Move_some_of_the_reques?=
+ =?utf-8?q?t_decisions_out_of_rps=5Fboost_function=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,118 +41,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Karol Herbst <kherbst@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+--===============6527105859541939329==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Also, went ahead and tested this for you on one of my machines:
+== Series Details ==
 
-Tested-by: Lyude Paul <lyude@redhat.com>
+Series: series starting with [1/2] drm/i915: Move some of the request decisions out of rps_boost function.
+URL   : https://patchwork.freedesktop.org/series/108048/
+State : success
 
-On Thu, 2022-09-01 at 15:47 +0300, Jani Nikula wrote:
-> Prefer the parsed results for is_hdmi and has_audio in display info over
-> calling drm_detect_hdmi_monitor() and drm_detect_monitor_audio(),
-> respectively.
-> 
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: nouveau@lists.freedesktop.org
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/disp.c     | 8 ++++----
->  drivers/gpu/drm/nouveau/dispnv50/head.c     | 8 +-------
->  drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
->  3 files changed, 6 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index 33c97d510999..d0d9494b729c 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -769,7 +769,7 @@ nv50_audio_enable(struct drm_encoder *encoder, struct nouveau_crtc *nv_crtc,
->  				     (0x0100 << nv_crtc->index),
->  	};
->  
-> -	if (!drm_detect_monitor_audio(nv_connector->edid))
-> +	if (!nv_connector->base.display_info.has_audio)
->  		return;
->  
->  	mutex_lock(&drm->audio.lock);
-> @@ -839,7 +839,7 @@ nv50_hdmi_enable(struct drm_encoder *encoder, struct nouveau_crtc *nv_crtc,
->  	int ret;
->  	int size;
->  
-> -	if (!drm_detect_hdmi_monitor(nv_connector->edid))
-> +	if (!nv_connector->base.display_info.is_hdmi)
->  		return;
->  
->  	hdmi = &nv_connector->base.display_info.hdmi;
-> @@ -1705,7 +1705,7 @@ nv50_sor_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *sta
->  
->  	if ((disp->disp->object.oclass == GT214_DISP ||
->  	     disp->disp->object.oclass >= GF110_DISP) &&
-> -	    drm_detect_monitor_audio(nv_connector->edid))
-> +	    nv_connector->base.display_info.has_audio)
->  		hda = true;
->  	nv50_outp_acquire(nv_encoder, hda);
->  
-> @@ -1721,7 +1721,7 @@ nv50_sor_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *sta
->  			 */
->  			if (mode->clock >= 165000 &&
->  			    nv_encoder->dcb->duallink_possible &&
-> -			    !drm_detect_hdmi_monitor(nv_connector->edid))
-> +			    !nv_connector->base.display_info.is_hdmi)
->  				proto = NV507D_SOR_SET_CONTROL_PROTOCOL_DUAL_TMDS;
->  		} else {
->  			proto = NV507D_SOR_SET_CONTROL_PROTOCOL_SINGLE_TMDS_B;
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
-> index c3c57be54e1c..8b5bc834f1b3 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/head.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
-> @@ -127,14 +127,8 @@ nv50_head_atomic_check_view(struct nv50_head_atom *armh,
->  	struct drm_display_mode *omode = &asyh->state.adjusted_mode;
->  	struct drm_display_mode *umode = &asyh->state.mode;
->  	int mode = asyc->scaler.mode;
-> -	struct edid *edid;
->  	int umode_vdisplay, omode_hdisplay, omode_vdisplay;
->  
-> -	if (connector->edid_blob_ptr)
-> -		edid = (struct edid *)connector->edid_blob_ptr->data;
-> -	else
-> -		edid = NULL;
-> -
->  	if (!asyc->scaler.full) {
->  		if (mode == DRM_MODE_SCALE_NONE)
->  			omode = umode;
-> @@ -162,7 +156,7 @@ nv50_head_atomic_check_view(struct nv50_head_atom *armh,
->  	 */
->  	if ((asyc->scaler.underscan.mode == UNDERSCAN_ON ||
->  	    (asyc->scaler.underscan.mode == UNDERSCAN_AUTO &&
-> -	     drm_detect_hdmi_monitor(edid)))) {
-> +	     connector->display_info.is_hdmi))) {
->  		u32 bX = asyc->scaler.underscan.hborder;
->  		u32 bY = asyc->scaler.underscan.vborder;
->  		u32 r = (asyh->view.oH << 19) / asyh->view.oW;
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index 1991bbb1d05c..2ef5fb8df4ed 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -1012,7 +1012,7 @@ get_tmds_link_bandwidth(struct drm_connector *connector)
->  	unsigned duallink_scale =
->  		nouveau_duallink && nv_encoder->dcb->duallink_possible ? 2 : 1;
->  
-> -	if (drm_detect_hdmi_monitor(nv_connector->edid)) {
-> +	if (nv_connector->base.display_info.is_hdmi) {
->  		info = &nv_connector->base.display_info;
->  		duallink_scale = 1;
->  	}
+== Summary ==
 
--- 
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+CI Bug Log - changes from CI_DRM_12062 -> Patchwork_108048v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108048v1/index.html
+
+Participating hosts (35 -> 23)
+------------------------------
+
+  Missing    (12): bat-dg1-5 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-hsw-4770 bat-adln-1 bat-jsl-3 bat-rplp-1 bat-rpls-1 bat-dg2-11 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_108048v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-rkl-11600:       [PASS][1] -> [INCOMPLETE][2] ([i915#5982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12062/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108048v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [PASS][3] -> [FAIL][4] ([i915#6298])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12062/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108048v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  [i915#5982]: https://gitlab.freedesktop.org/drm/intel/issues/5982
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12062 -> Patchwork_108048v1
+
+  CI-20190529: 20190529
+  CI_DRM_12062: e70359a9edd28a204e57bde4d17dd8c5fa9eb712 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6641: 391ac3a06323aa8b681f9faffd74459caa14498f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_108048v1: e70359a9edd28a204e57bde4d17dd8c5fa9eb712 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+bcad0544732c drm/i915: Don't try to disable host RPS when this was never enabled.
+e15746adc62a drm/i915: Move some of the request decisions out of rps_boost function.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108048v1/index.html
+
+--===============6527105859541939329==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Move some of the request decisions out of rps_boost function.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108048/">https://patchwork.freedesktop.org/series/108048/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108048v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108048v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12062 -&gt; Patchwork_108048v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108048v1/index.html</p>
+<h2>Participating hosts (35 -&gt; 23)</h2>
+<p>Missing    (12): bat-dg1-5 bat-adlm-1 bat-dg2-9 bat-adlp-6 bat-adlp-4 fi-hsw-4770 bat-adln-1 bat-jsl-3 bat-rplp-1 bat-rpls-1 bat-dg2-11 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_108048v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12062/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108048v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5982">i915#5982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12062/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108048v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12062 -&gt; Patchwork_108048v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12062: e70359a9edd28a204e57bde4d17dd8c5fa9eb712 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6641: 391ac3a06323aa8b681f9faffd74459caa14498f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_108048v1: e70359a9edd28a204e57bde4d17dd8c5fa9eb712 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>bcad0544732c drm/i915: Don't try to disable host RPS when this was never enabled.<br />
+e15746adc62a drm/i915: Move some of the request decisions out of rps_boost function.</p>
+
+</body>
+</html>
+
+--===============6527105859541939329==--
