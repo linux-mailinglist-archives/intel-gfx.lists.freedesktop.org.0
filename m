@@ -2,43 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21D35A9B32
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 17:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E36135A9B37
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 17:08:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4504310E062;
-	Thu,  1 Sep 2022 15:07:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA57010E062;
+	Thu,  1 Sep 2022 15:08:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18AE110E05A;
- Thu,  1 Sep 2022 15:07:03 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C3FE10E062
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Sep 2022 15:08:38 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7286C61E1C;
- Thu,  1 Sep 2022 15:07:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D5A4C433C1;
- Thu,  1 Sep 2022 15:07:01 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id D3B68B82793;
+ Thu,  1 Sep 2022 15:08:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95A78C433D6;
+ Thu,  1 Sep 2022 15:08:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1662044821;
- bh=0EYiNqzInprnyGSeiUuivjo8jAdgw+J0yepStj3mwpY=;
+ s=korg; t=1662044915;
+ bh=2E4qzAZlqdzxaDQ6Sk931UgRfflnwTiFuDiHRMtDZNg=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ItbtQHKXriLjzmC0qlxq6qY6V7BRjNH/e2CdPXV6oqQPOAhZs5QdvhH3wMEXEFVbH
- tUymXXcJlwF2PfiGdCGz7R1UOC/xq8bQu53M8trHQm1Vfa/1qW7YdKxvS4SQglnm4y
- z6hfOXTUgZcAg4Ko3aEsUuioDfSvnyrvdL6SFFw8=
-Date: Thu, 1 Sep 2022 17:06:59 +0200
+ b=ebHUbAH9QOnvsnL5152n5Kl/rW8hItFAS2/zBDML30hTqqsKHoJSTrnNnTYiy/uZE
+ yQ/J8cPchHWdbooUcCIBkDK5VD0/ncoVTMHmiRPUKWuB3LGuoGppno1wV1h7nGWbYL
+ QIk2N/Bck2xORKQWHWtYll6MmK0w/vlR5b3OIw4c=
+Date: Thu, 1 Sep 2022 17:08:32 +0200
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <YxDKk++n5mbaqYAx@kroah.com>
-References: <20220819225335.3947346-1-daniele.ceraolospurio@intel.com>
- <20220819225335.3947346-3-daniele.ceraolospurio@intel.com>
+To: Tomas Winkler <tomas.winkler@intel.com>
+Message-ID: <YxDK8GEkLZ8hEIeC@kroah.com>
+References: <20220806122636.43068-1-tomas.winkler@intel.com>
+ <20220806122636.43068-11-tomas.winkler@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220819225335.3947346-3-daniele.ceraolospurio@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 02/15] mei: add support to GSC extended
- header
+In-Reply-To: <20220806122636.43068-11-tomas.winkler@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v7 10/15] mei: mkhi: add memory ready command
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,27 +49,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>,
- dri-devel@lists.freedesktop.org, Vitaly Lubart <vitaly.lubart@intel.com>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Alexander Usyskin <alexander.usyskin@intel.com>, linux-kernel@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 19, 2022 at 03:53:22PM -0700, Daniele Ceraolo Spurio wrote:
-> --- a/drivers/misc/mei/hw-me.c
-> +++ b/drivers/misc/mei/hw-me.c
-> @@ -590,7 +590,10 @@ static int mei_me_hbuf_write(struct mei_device *dev,
->  	u32 dw_cnt;
->  	int empty_slots;
->  
-> -	if (WARN_ON(!hdr || !data || hdr_len & 0x3))
-> +	if (WARN_ON(!hdr || hdr_len & 0x3))
-> +		return -EINVAL;
-> +
-> +	if (WARN_ON(!data && data_len))
+On Sat, Aug 06, 2022 at 03:26:31PM +0300, Tomas Winkler wrote:
+> Add GSC memory ready command.
+> The command indicates to the firmware that extend operation
+> memory was setup and the firmware may enter PXP mode.
+> 
+> CC: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> ---
+>  drivers/misc/mei/mkhi.h | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/misc/mei/mkhi.h b/drivers/misc/mei/mkhi.h
+> index 27a9b476904e..056b76e73d40 100644
+> --- a/drivers/misc/mei/mkhi.h
+> +++ b/drivers/misc/mei/mkhi.h
+> @@ -1,6 +1,6 @@
+>  /* SPDX-License-Identifier: GPL-2.0 */
+>  /*
+> - * Copyright (c) 2003-2020, Intel Corporation. All rights reserved.
+> + * Copyright (c) 2003-2021, Intel Corporation. All rights reserved.
 
-Do not add more WARN_ON() calls, please just handle this properly and do
-not reboot people's machines for a coding error :(
+It is 2022 :(
 
-thanks,
-
-greg k-h
