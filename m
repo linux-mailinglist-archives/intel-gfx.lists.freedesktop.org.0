@@ -2,148 +2,151 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68ECE5AA20D
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 00:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A695AA3BD
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 01:31:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D786210E34D;
-	Thu,  1 Sep 2022 22:07:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D47010E39C;
+	Thu,  1 Sep 2022 23:31:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1127610E33A;
- Thu,  1 Sep 2022 22:06:59 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F97710E39B;
+ Thu,  1 Sep 2022 23:31:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662070022; x=1693606022;
- h=from:to:cc:subject:date:message-id:references:
+ t=1662075096; x=1693611096;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=7cbxmOJubXosLEx5fdTaeY5XD4ryQD86eQZay2lZAZY=;
- b=DV2CogRLT7XmAigQOXhwQK2FIbcVmOjKPi+N9G8P8QdgrFvBEY/VJv2J
- GWD9rxIk/n7pWabA7TqP0FBBDzSxvCOkVzvpyAi8lM4JBAddLhcJrhCQn
- cdO712VubY5JMxRmrq7z3bfxky30wYG1G0NhGGZX3YssTjTUwsnMowbrC
- AckY+L8QMtVQBxmUENHUsOw0onMqDPyqBiWIjKpqPwmIMYY42+77fkURm
- yaUruTA8Lu/69O5BpcVAB8MyE5HrGaCepS2XiJgN8MnVZ1VmzwWQNbYkP
- KQoEoM/GWwrezaBxM+3dnf8VVsp8Iy50ix0430qtejGvLS1Sc2jBWd7X1 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="278855266"
-X-IronPort-AV: E=Sophos;i="5.93,281,1654585200"; d="scan'208";a="278855266"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2022 15:06:55 -0700
+ bh=KdDrGxgxWuBJT0g8Q0i6PT6J8hBWdcK7W1DT4z1xd/k=;
+ b=RgS9LtM1CBF8vj2IN2OoQqe2sglTrl6jYz1zvQTamMPYsiGKYI1zLQLn
+ fTI/0g+t5y4+YIqH5+3j869dpHJ9EN/tr+tenUqE0HTc2D4e8zsAAoWlf
+ iJnUzwwUzWzWyf7BZGycocvpFp4X/yc+QfIn00YmapELfCYEbTMs6ONae
+ ph+G4P2X/P0ezcq7cXumlHkfoV8gHLBbfpGUvoYZwdo5pdwD/9EYx7KuV
+ Vv8KAIbs1KtBQLYVRX2zmIX8VF+qzU1wHZmQtUScm8LcybuCepYznCf0E
+ zADZv8a06WNcn6aObIuiUtY6LxdJWouPEpxx1GQWFAYUqIMquNVBTxtZ5 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="382150866"
+X-IronPort-AV: E=Sophos;i="5.93,281,1654585200"; d="scan'208";a="382150866"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2022 16:31:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,281,1654585200"; d="scan'208";a="642573460"
+X-IronPort-AV: E=Sophos;i="5.93,281,1654585200"; d="scan'208";a="755038756"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga008.jf.intel.com with ESMTP; 01 Sep 2022 15:06:55 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ by fmsmga001.fm.intel.com with ESMTP; 01 Sep 2022 16:31:36 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 1 Sep 2022 15:06:55 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 1 Sep 2022 16:31:35 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 1 Sep 2022 15:06:55 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 1 Sep 2022 16:31:35 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 1 Sep 2022 15:06:55 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Thu, 1 Sep 2022 16:31:35 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 1 Sep 2022 15:06:54 -0700
+ 15.1.2375.31; Thu, 1 Sep 2022 16:31:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N0jWSGP57Mqm/6vVSFXfN+qRBwAT1FUCEs+mQ3LDM8a59YVXIEnHPqDpm8jMIsX8EF3WuaPz5KqeuRexaKqkKzfZIP2Y9Zfhz9tSVLLVzgv3afyaqRS1lp7fQNfovnGJqJCsPlOdVvOn16AmYdutwWijiDSn7b+4IFLnxVHWz9/fV5mdZILQqXMw7qUHJ8YEqMnZQ+5RWDuAfcY5QmzuJjsOA4ILSCzn81bEjLEWtrSC7cnhVeIHm1pwDkpPkXmsyoC+XVJayvGeXIKSQ+0LdvyCH24KCOXVQvxES7iTb4C8CNDoN+mMqKDFQNdBvQh9MpCsm0Eza6BM8V6ywrcVfg==
+ b=Vtp6vqIxy6UZ6oSAJMa/873pswFRmCGpDw7T+dKZgeYb2H89K+5mxwDKZRHbUwKnpngazJx3lASUcTg15vDHXYh6/TowvoT2yUYhFqY5F6r5Gk5mozLLfqQY9Hxw2quGB+QuhlH8bH8S1qLJvrxPjQa3KhSXCedEq5ZreeDjeKt9UZr1LIeiIXhEohZiy1n7g3Xtm+ANeavyzoJ2itmCVzkRUcev0hggMJew94ErZgbV95KZgcUeWNg1Z3L/qNoDfZzho2keDyZascko0QAz9VgNOixN/PHikdaMKG8GUrYP2amBe+UKqL8wV9/3PyN99uZv443wMJdsko4TqVkVjg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9bcfBcOf1jL6h56gz30j7nIjz4j46oU4u7LR1p0OFJg=;
- b=Vxq6wJCXsi3XDr/5kTWke2auJaOEW15Ew7aRPbiTdYVl9eRJRKZoOKg3HoYfyY5RWjHgwASEU/DuBx7Ql/X9UxYNtw3GEuhAVmZCX/zKf2z2C0W4APcEIYFKEJg340Yx0ER8PLWGENazIkXitS19DKdrPGbXjJis6va3qlkzW4MOGGN0e+uqn2tK4/0tn+CnTGGfi66j+g+suqDl/cI+9SlV96aubMaaq16sTN01aouZ+gjZutpzShZMiJMmc3rUIcPFXHGKxXOUgUsiagvyC8zMsMwdu+r4NGcDstqQ+9R5M9VLoEZTkrAApCOQBRY/VGJ5Ki1S2xzkX4Y5aHbnVw==
+ bh=gjESd9h++0B5UhZAw1eqOm8ZuBNnl1u/UJDZT3X6TfU=;
+ b=CUmnSGaZV9nQNpcTDXpvoEyaxD5jNEbJ1R6fnD2luFSek3pFqDAK9mlF45uqE6LNojDvltoU5bNjtGv4NEen+sOR2aaQ8EHKDbf7q4V4PBPBkrkkM88T10M4FvoNkD7k9XJKz0W3vudYkBV+okQfWnJr3o9aPfL0zeCCC+fO448HzeZu12cCmb9aDqVbOSTZnZbd0qtHeAJUH1oAsK94e1gX9QXbRZs+jsGZ/J+9WW6YV1d80zc9KB7ZcfrHffCqAzfX8fPrxUDvBUx8P2Wf/PXniPzAEM5GzfkIQlCVNk+eMqrY6Xo5TOoqA04zvMfWay8ZEhq6GRaPktqc0DSKRg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5971.namprd11.prod.outlook.com (2603:10b6:8:5e::7) by
- CO1PR11MB4995.namprd11.prod.outlook.com (2603:10b6:303:9f::22) with
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ DS0PR11MB6349.namprd11.prod.outlook.com (2603:10b6:8:ce::11) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5588.12; Thu, 1 Sep 2022 22:06:53 +0000
-Received: from DM4PR11MB5971.namprd11.prod.outlook.com
- ([fe80::5041:7722:96be:d8aa]) by DM4PR11MB5971.namprd11.prod.outlook.com
- ([fe80::5041:7722:96be:d8aa%6]) with mapi id 15.20.5588.010; Thu, 1 Sep 2022
- 22:06:53 +0000
-From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 02/11] drm/i915: Read
- graphics/media/display arch version from hw
-Thread-Index: AQHYvYPP0orxZHvcZUKvKovu5Cm+fq3KNiwAgADpalA=
-Date: Thu, 1 Sep 2022 22:06:53 +0000
-Message-ID: <DM4PR11MB59710F8ED626778BBC536328877B9@DM4PR11MB5971.namprd11.prod.outlook.com>
-References: <20220831214958.109753-1-radhakrishna.sripada@intel.com>
- <20220831214958.109753-3-radhakrishna.sripada@intel.com>
- <875yi7cyqr.fsf@intel.com>
-In-Reply-To: <875yi7cyqr.fsf@intel.com>
-Accept-Language: en-US
+ 15.20.5588.11; Thu, 1 Sep 2022 23:31:34 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::1977:59e7:5a28:24e1]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::1977:59e7:5a28:24e1%9]) with mapi id 15.20.5588.012; Thu, 1 Sep 2022
+ 23:31:33 +0000
+Message-ID: <ee2553bb-3b74-1b3d-d467-d4457105c5f7@intel.com>
+Date: Thu, 1 Sep 2022 16:31:31 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.6.500.17
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e275fe5b-5a9a-43d9-f8a3-08da8c664700
-x-ms-traffictypediagnostic: CO1PR11MB4995:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CBdQGdo8f/F2f7iedfEjMH0mvOTQXsztqVJwA5vBzC+ENAcHZ+RiIcqImXs5acmPh5zTMSmfF5OWbORMCItIBb5XnkUweg8Ns1xQp75SJx9Z70zFTC3zPTQLPldArm1+r/bJiAMedy7UMM060NpJSYbgvFFyAZSV7WYfCUCaB/Cu7wSitlHJXReT7xIaLvN0JjrSOCMf+Y9FCX1aYuXtt36Y+ZVADE0E/GI/kSWGGphhRhMKE/xieCPWrerD92CECxckDIcQqsv2kabMmwIzaKtMJhmmrdSa4jYPXQIPIxNU9rUsG6pm0FdEiz/k73U6JKKuAH7e5QRzXp0+3Sw2XEQCuvc3llz7MIDO87Ub7k6nTSGMTgosmhupOIj+JNrhT/oc1fH2oF9lLDJkXoxZ6Hb4nxdO7nuXOZi41yE9WSe9sJ+HolBnFLqXnzWJxhvOfAXR8/QBdNRhPq3Trjp/03bw3f/5KOt3BkQ+DGaUAkdHAr6PAX7it1OCtBeoMS6BV4RvOpAU0D92ITpHX+x618iCJIO4rdeN9PBRn6XWyZc6XVsfRpR1oOC5APml3bTlTVaiwVq3s+gdNEHrYqgwnX/OR4B55rLQwFSyoYFddpG61svtKkidjBrSb34y9YpFg2TMAVt+4789ImE0sJ+MpJamEPfSnWSIjZ+Gr9tsnF41iQ6SsOxB1DBET8X7+FpyefQuvVTT7OLqhFSsMwGFLK50usoYPIu5Gc0Oe0KorPQyJC98M8FaLDSSMwzYEvFEr598HKCO0iwByKosKLpDtg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5971.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(39860400002)(396003)(136003)(376002)(366004)(346002)(316002)(5660300002)(30864003)(66446008)(8676002)(66476007)(4326008)(76116006)(64756008)(66946007)(66556008)(110136005)(26005)(9686003)(71200400001)(2906002)(6506007)(7696005)(8936002)(53546011)(38070700005)(478600001)(52536014)(55016003)(41300700001)(186003)(82960400001)(86362001)(83380400001)(33656002)(38100700002)(122000001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?8D6aIQ5wwSP7Vx8m4Ehqd2B3Uc66p4bQ5XVY1IiBF+TybF2dJgxgAnQNyUjA?=
- =?us-ascii?Q?6ZK0oWLWdSrgMMMmbEJZDHVC6cliRr7IyVgM4fXlHyxeoSE1Bif3TUuWmwDm?=
- =?us-ascii?Q?Z9UcPQpMNuPWKLd4j3Dr5WDIH7ypiPP8I06JclCk4neTUm1BkXRB3jJwrSXl?=
- =?us-ascii?Q?LPnSVepenI65BdJLes/RoBe+ageb58jYQyrJ1iWpmSQKPgjB78t0mlkOhjDy?=
- =?us-ascii?Q?d6CgOuaop1d0r/EGfBLHxJ/LI6s29HowdbFnes4Ro3U8Xjge3cI6YbM/IjWA?=
- =?us-ascii?Q?SXjNffrYgdhlptdW3VJN5D5lVCVRg/WRhAh4BByHkWefHJrYmnUA23ycjZS+?=
- =?us-ascii?Q?/A9wX07nwZACA1xqBx6BXd+Qw4oQOObnbf/JCDG3gyDP6TvfxpKmsRoGRBCl?=
- =?us-ascii?Q?PnBWcxxP2n14jVzZLhmSFX3hp9srNgcvyD+q1AHcdAbdszfkP18lugju5iTt?=
- =?us-ascii?Q?3NOYwELLaha7wXmqZyDJ5HjjSEm/A0n6cOxjvzCXPv05CWQ2LJEKwVrL5cOa?=
- =?us-ascii?Q?GhoYHZMhGovGB2FH4eArYiQe2KT3ysXYQI82S4OPWczaf7eIDlKDEhyGXXNU?=
- =?us-ascii?Q?VL5zUPmlUzKXgJ5zCgPGYzDJHSGodHYzY2kDMFaZizxC1lIFbzH/Hhs3sdWE?=
- =?us-ascii?Q?1p83YTLJlQPgzuVw1m27DrhUJL3qeGxZTEx9l2Uq0dxLYb5sj6n4YDiaGHaC?=
- =?us-ascii?Q?PLqnn+Sd4QKq/VVx6PN7qIwnWAj5Tt/usibiwYB0PVIJzEIY1nsbNWr5FhyK?=
- =?us-ascii?Q?eBbmiTTwl8e7zXOgFYN3abQNK8UEiEh+qwcXemu78BMfdbCRrcgM+JAh4Cun?=
- =?us-ascii?Q?8atkQJMZZ4ba6pibA4HG+5AvKkqoEyDU2D7VxnSInkn6qg2IiL+m0C3ZZSzJ?=
- =?us-ascii?Q?u+X+fMU4JPD78xZl3quI2GcTqNmKKcEIra9tKpmfDhlxgNGghCcx17C7E28T?=
- =?us-ascii?Q?gYZuhjYklRytO1Q/AesXvps/DYpg/Oi505sut+ddq5Pmi6VkwS5Bjcdr5aDY?=
- =?us-ascii?Q?eV5C1L7txWeHtl/spcvaeObmKO/Cr8GHyVXSzQe6lH9rabjettLeWcMmFrG7?=
- =?us-ascii?Q?kusKb7fxX4G/S4juez1iqi5ikC3icQ9YGpxLEjBBaQgmZL9ctKmmTvOBgMd+?=
- =?us-ascii?Q?LUyAKonXiVTHqt5isxk/0cozu2qBblrg561LOoom/xJNQaKEugwmkFjSoYyY?=
- =?us-ascii?Q?JSTkvUUbRmdTNL+KDxZvMrgBWOUNew/1Zzn/ymjHsOj3h1+uM5IOElTa2WLq?=
- =?us-ascii?Q?PiYRDtNP1AC5fUuRLYwriZUy2BiCBilcIeNR+nhjYrwnDOq7waxUyNzB0gi9?=
- =?us-ascii?Q?YaAnHoUSJgtnVfxLQ2h6ic7hhFoasxOeIWRGgEyUxQOkRUA/zohBzSeiqA92?=
- =?us-ascii?Q?ecXHW3FDkwstCovjvOKy8nVNob9gjFo/Jwuq2XGUm0Rpoza7YjDIFiSR7IE+?=
- =?us-ascii?Q?saI8UBMzg61SENIAfO+b4GTcbZF76daiaPvm86pz6Tde8Ec56LUmjfPO0kwl?=
- =?us-ascii?Q?xtUG7bZwUkG2nwSXD5ijDs2yoqrDO7hMYJqkLEs6CKF2Ajm5jjRuqRQrOjgN?=
- =?us-ascii?Q?OjgD3XLfdUZMBxJYs2Oqc3ikCsSZAKg+DWLNxenRTQLwK7KCL3XtVIHKXqjW?=
- =?us-ascii?Q?Yw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+To: Matt Roper <matthew.d.roper@intel.com>, <intel-gfx@lists.freedesktop.org>
+References: <20220829170238.969875-1-matthew.d.roper@intel.com>
+ <20220829170238.969875-7-matthew.d.roper@intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20220829170238.969875-7-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR13CA0001.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c0::6) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 71277e56-ca95-4b44-a7bd-08da8c721b3c
+X-MS-TrafficTypeDiagnostic: DS0PR11MB6349:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: E02YqobI/EuMovrt4LRNW6jTGcuDXpaRBzMSDU5ezkm8w5dCjg0rKnHW1L5R8lmptuKcl4G9qRhIKUS36ueAGTekXRPvvnkym1aJ8xMPKlOk6yVysnsGqcFI1yIjcUaUXAW4krKTwvt7cB5DpBAe6WXdyjGaXnKEHffQyk7o4ZJhLDIaDUeCaC6aYK2VTsEgZdpVaqE5mQ+j+bgP+XCofK7/qq6BUOWr9d+xR7hyEvC9WVuXOIkU9tUUf/CDIlEK2YGY6tUIk1zAqE3cPysgGfJUKqyif7j41QDs8gQ1WSVon75gNzBhYRhTlGNGmD2UUoqHnr38h1r2r8DHOpR79xy+GCHcM5lx4zSEoiI3OK1LTmV1H1OsSKjBjxzA5uAL50csBTlSqGMKZ2IwPq+TnALVLgELG1YtovWowVLpSX4V1Lc/J233EEaXkCdT1k8Xol2BQRkQkL5Nnf8AQCq6bNMFJ8aERnAR6/9FonZ0rZZIXvGBfbvZYQjA25ZeghQokrPG0c70RdPBFC/WKEeaGBYTSUEOvSqDZOD85Z2jJOXQqmpPa9V2I8peRTiWw2yH1kKN03QfVByBS1/CppYUCnastiTzuBPiPQR8zdezY+PWymI/1ZwEYN+FcqYWwAhM7pWbceJtiJ405235wteDuC+oQSvQu6GZMbnd0M0qSENcPoJt2bBAOosqLP9gj7HM7tB0gB6LVnT6mMNyvwEjxRfYkRa/OiJCDgpJ5zKlrE9oBzm0OTZEo36QDJmK/2ThS9qPQu6iCTh2TUjajaFCVg1Rk/az4TmmFAn0wm3fX7k=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(396003)(136003)(366004)(346002)(376002)(39860400002)(2616005)(83380400001)(186003)(8676002)(316002)(66946007)(450100002)(31686004)(6486002)(478600001)(66556008)(36756003)(4326008)(66476007)(41300700001)(26005)(6512007)(86362001)(5660300002)(53546011)(8936002)(31696002)(6506007)(82960400001)(38100700002)(2906002)(30864003)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZVBSbVZJMStBUjREbGNEOEcrclJqOWZyU1IwNTFWMTA1VzFrVmxXRmExbXRw?=
+ =?utf-8?B?WFhGOWZVMFg4MHZ0SU9veHZxY1phbXRTQ05YbDJaSWd4T2xCWk42UU80QjhS?=
+ =?utf-8?B?aVhQa3l3TzR0VjUzN0t2d01VVXRMQU5rS0p4R01FM0QxaVB4ckcvWi9iWlRh?=
+ =?utf-8?B?dzExcldUNVVOa2RxK3EvSGExTGdmSXM0TkcwM1AyYUh1NVcxaWp3SG1kVTNO?=
+ =?utf-8?B?VHR1bFJPOGh3TGhIckJVTDE4T3YxVEwvbFplN1pPek9mWW5Jdi9DWEYwNHl6?=
+ =?utf-8?B?QTRYamo4RHorTnh1eDBhZkUrMEtBVDJzUnJCdlFVMWNwcUNFaDA2UTZGVkcy?=
+ =?utf-8?B?cGx1T3pEaVVZZGxUZ053RnBBVXlTN0lPTmN1NG9PdGl2ZWNPR0Z1M2FwTGwz?=
+ =?utf-8?B?NnNBdFJsZmcxb3R2TGZZTjBiOE5LTFMxZjY0Z1k4SzRUVzloOTR1LzgreG9l?=
+ =?utf-8?B?MmlpU0FVT29YR3k0UGpLb295d3R4Z3AvbUNXZ3duNDFwQkJXRytqUm1ZUFFU?=
+ =?utf-8?B?WnpFd3p2WWlUVkowcWJ6eldwVHlWU2QxUUtHTzRBRXBnTHVVRG15aWJxMHdx?=
+ =?utf-8?B?cWtJS1pTZ0huMk40V1FpTUNiK1V2MDFpNmIydVErRHBPT21Hdy90WWlTeHdV?=
+ =?utf-8?B?YmI2RUowY0ZwL3Vuc1BiVmI2bWQ2VmVyRnpKaTIrdUZhSHcwRk4wNVZmRWpx?=
+ =?utf-8?B?Sjl6dmM2OGFHYm1nOEI0ei9ZK1gxV2xEZmVhemtyZ2NON0h6bXU3cHBFN1ly?=
+ =?utf-8?B?eTd0d2RnaUtEWEo2cFRNczJzSDQ1Zzd5Wk5zQ0VxV2Y4UlZ0dmF6UlZGZXlN?=
+ =?utf-8?B?bmZvYlE5Sm1kY2dRWno1eEdENmZJL0JBby9qdXFCekxiS2JxT0REQUVkSlVj?=
+ =?utf-8?B?ZnZGNGZYdy95dmpLa0ZmVlBJd04vNnV2WGZrbUhPR3d5NElqZW5rWW9KOGVn?=
+ =?utf-8?B?amJZRXpRS1lCWGovM2I5RFZsWW52WThSZWVoaDJkbi9lWEZhNU5pbDN5UWlw?=
+ =?utf-8?B?TjM5dE1PUnI0ZFRMMTcrWVh6cjRYY3ltZGlBdStiUjhYTGE5V3dpOE1TYWt6?=
+ =?utf-8?B?WVVxM0N5b2h5YzFIY21kdHlHeno5RW5FbGdUSVlWNW9NRkc4S2pkbHQ5SlJO?=
+ =?utf-8?B?RUFtd3M2SjFOM2JoWVZBeTFJYUFNTklPOWhXYVkrOUV2UXlFQXlXNU1UM0Ex?=
+ =?utf-8?B?cW5lRUowZlVXczVXR0F3ZVlNMFpCbjdxTVcySGhIUWptdzd4d29MaUhkRllF?=
+ =?utf-8?B?RmVqT2UwcE5EN015cVRhcUJCWFZmdEhvR2pXai94c2NiWHpDbmMxNHl2cTA3?=
+ =?utf-8?B?MlRaaHovQ3Z4d0p6V1FlcnluN1ZJeVdZUG9jaDFoa3A3cWp5Y1dWUExKR2hE?=
+ =?utf-8?B?a29jb2JJOTFBMGlxQ1U2eXo4d09Xc1hDdEFPWXBxakZ1NmMwYmxuNmNVZDNy?=
+ =?utf-8?B?Q1RobWwxYlovTjVjT1dMc1RHTHhsSG5RVGRmR3J2RFJlYTZReklPTE1sRGRR?=
+ =?utf-8?B?dmZiK1ppb25iS1FPakxBNFVjSzJublNvTTFOTVZ5amRCelcwZC9RTittTWVh?=
+ =?utf-8?B?cSs5YUlTWG9zVWE1b3V5YzAxUGxPNEgvems1YTNZR25YZHdGK3RXcHQranVI?=
+ =?utf-8?B?azB3aVA5bFJWQlJPcmljenJTZUpTQkF2alpuaEVsT1lBMGZnd0o4WTl6MWFR?=
+ =?utf-8?B?YVR2alZrbWFpM2RTNURTbEdLQ2hDUHNEMXpmckl1N0NvQmtqaXh6L0ZOQzJG?=
+ =?utf-8?B?SEV5RThuZzlrcS9FbVZBL1ZkMTM2MGxPcytST3J2TlVKcjRhRUU3ZWk2UTB6?=
+ =?utf-8?B?dVdFMmRrNUdWL0h6RzBtRGtZbUdNV0FHcG96TldHZUNvUXczVHNwNkNxL0dZ?=
+ =?utf-8?B?TjdCV2p5VXJoc1RRS3BKM2VZT3hkN2ZjSGFLTXhIeTFzNWZPZm42NnBPaEI0?=
+ =?utf-8?B?bjNFUHQxZ0E0eTlzZ2pjZUs0bzZ1N1libTdsdU02NVpsZUU0Z25rU0ozbjdE?=
+ =?utf-8?B?OGJNY0tJNUFscWZlQmZqbE5tcHRweDc3L3BwbWxYcnF6NDAzN3I5MmxSVTU1?=
+ =?utf-8?B?VElkVWdjbEN3ZHErZGtUbVg5NCswSzNGMkVDUmt2anhWcTEyZzNJSjc4SFp3?=
+ =?utf-8?B?WFlDK2NyLzkyM2k1VmhzbHd2ZnNyMlhORWxkSFNLMUxreU9UeE5leGpSR2lu?=
+ =?utf-8?Q?+V2jImduJNb9EDFVwbYPxWc=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71277e56-ca95-4b44-a7bd-08da8c721b3c
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5971.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e275fe5b-5a9a-43d9-f8a3-08da8c664700
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2022 22:06:53.1520 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qULPQCJ+sr4dOknCObQZLzOIAXvAzU3bOU+JMTbpQtQKxLPswtPZNgelGB/vsA3G4ZQVQxiNWSUNPYi2ksEh1YGLezpimf1/4Gc/WNayE0Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4995
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2022 23:31:33.8871 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XU2AvhJ5i6z0Mb2rrHuXW/KsxUmSVPqgo9ePrmfyxYFZzaF7SQMvDcBALiqrbOCMyY2D7LB2AxY/9Be9Obmlhb5b2uJoty7QdHaHumIIK/o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6349
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 02/11] drm/i915: Read
- graphics/media/display arch version from hw
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915/xelpmp: Expose media as
+ another GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,330 +159,349 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Thursday, September 1, 2022 12:58 AM
-> To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH v3 02/11] drm/i915: Read graphics/media/d=
-isplay
-> arch version from hw
->=20
-> On Wed, 31 Aug 2022, Radhakrishna Sripada <radhakrishna.sripada@intel.com=
+
+On 8/29/2022 10:02 AM, Matt Roper wrote:
+> Xe_LPM+ platforms have "standalone media."  I.e., the media unit is
+> designed as an additional GT with its own engine list, GuC, forcewake,
+> etc.  Let's allow platforms to include media GTs in their device info.
 >
-> wrote:
-> > From: Matt Roper <matthew.d.roper@intel.com>
-> >
-> > Going forward, the hardware teams no longer consider new platforms to
-> > have a "generation" in the way we've defined it for past platforms.
-> > Instead, each IP block (graphics, media, display) will have their own
-> > architecture major.minor versions and stepping ID's which should be rea=
-d
-> > directly from a register in the MMIO space.  New hardware programming
-> > styles, features, and workarounds should be conditional solely on the
-> > architecture version, and should no longer be derived from the PCI
-> > device ID, revision ID, or platform-specific feature flags.
-> >
-> > Bspec: 63361, 64111
-> >
-> > v2:
-> >   - Move the IP version readout to intel_device_info.c
-> >   - Convert the macro into a function
-> >
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_gt_regs.h  |  2 +
-> >  drivers/gpu/drm/i915/i915_driver.c       |  2 +
-> >  drivers/gpu/drm/i915/i915_drv.h          |  2 +
-> >  drivers/gpu/drm/i915/i915_pci.c          |  1 +
-> >  drivers/gpu/drm/i915/i915_reg.h          |  6 ++
-> >  drivers/gpu/drm/i915/intel_device_info.c | 73 ++++++++++++++++++++++++
-> >  drivers/gpu/drm/i915/intel_device_info.h |  3 +
-> >  7 files changed, 89 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > index d414785003cc..579da62158c4 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > @@ -39,6 +39,8 @@
-> >  #define FORCEWAKE_ACK_RENDER_GEN9		_MMIO(0xd84)
-> >  #define FORCEWAKE_ACK_MEDIA_GEN9		_MMIO(0xd88)
-> >
-> > +#define GMD_ID_GRAPHICS				_MMIO(0xd8c)
-> > +
-> >  #define MCFG_MCR_SELECTOR			_MMIO(0xfd0)
-> >  #define SF_MCR_SELECTOR				_MMIO(0xfd8)
-> >  #define GEN8_MCR_SELECTOR			_MMIO(0xfdc)
-> > diff --git a/drivers/gpu/drm/i915/i915_driver.c
-> b/drivers/gpu/drm/i915/i915_driver.c
-> > index 3aedc33ded57..5826c70d6fa5 100644
-> > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > @@ -323,6 +323,8 @@ static int i915_driver_early_probe(struct
-> drm_i915_private *dev_priv)
-> >  	if (i915_inject_probe_failure(dev_priv))
-> >  		return -ENODEV;
-> >
-> > +	intel_device_info_runtime_init_early(dev_priv);
-> > +
-> >  	intel_device_info_subplatform_init(dev_priv);
->=20
-> Hmm, so why not move the subplatform init call to runtime init early?
-Will move in next rev.
+> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>   drivers/gpu/drm/i915/Makefile            |  1 +
+>   drivers/gpu/drm/i915/gt/intel_gt.c       | 12 ++++++--
+>   drivers/gpu/drm/i915/gt/intel_gt_regs.h  |  8 +++++
+>   drivers/gpu/drm/i915/gt/intel_sa_media.c | 39 ++++++++++++++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_sa_media.h | 15 +++++++++
+>   drivers/gpu/drm/i915/i915_pci.c          | 15 +++++++++
+>   drivers/gpu/drm/i915/intel_device_info.h |  5 ++-
+>   drivers/gpu/drm/i915/intel_uncore.c      | 16 ++++++++--
+>   drivers/gpu/drm/i915/intel_uncore.h      | 20 ++++++++++--
+>   9 files changed, 123 insertions(+), 8 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/gt/intel_sa_media.c
+>   create mode 100644 drivers/gpu/drm/i915/gt/intel_sa_media.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 522ef9b4aff3..e83e4cd46968 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -123,6 +123,7 @@ gt-y += \
+>   	gt/intel_ring.o \
+>   	gt/intel_ring_submission.o \
+>   	gt/intel_rps.o \
+> +	gt/intel_sa_media.o \
+>   	gt/intel_sseu.o \
+>   	gt/intel_sseu_debugfs.o \
+>   	gt/intel_timeline.o \
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index d21ec11346a5..2a29502289cb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -776,10 +776,15 @@ void intel_gt_driver_late_release_all(struct drm_i915_private *i915)
+>   	}
+>   }
+>   
+> -static int intel_gt_tile_setup(struct intel_gt *gt, phys_addr_t phys_addr)
+> +static int intel_gt_tile_setup(struct intel_gt *gt,
+> +			       phys_addr_t phys_addr,
+> +			       u32 gsi_offset)
 
->=20
-> >  	intel_step_init(dev_priv);
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h
-> b/drivers/gpu/drm/i915/i915_drv.h
-> > index bf60593a4ce5..935ff3486fef 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -936,6 +936,8 @@ IS_SUBPLATFORM(const struct drm_i915_private
-> *i915,
-> >
-> >  #define HAS_GMCH(dev_priv) (INTEL_INFO(dev_priv)->display.has_gmch)
-> >
-> > +#define HAS_GMD_ID(i915)	INTEL_INFO(i915)->has_gmd_id
-> > +
-> >  #define HAS_LSPCON(dev_priv) (IS_DISPLAY_VER(dev_priv, 9, 10))
-> >
-> >  #define HAS_L3_CCS_READ(i915) (INTEL_INFO(i915)->has_l3_ccs_read)
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c
-> b/drivers/gpu/drm/i915/i915_pci.c
-> > index 72577e327c71..9772c315185d 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -1129,6 +1129,7 @@ static const struct intel_device_info mtl_info =
-=3D {
-> >  	PLATFORM(INTEL_METEORLAKE),
-> >  	.display.has_modular_fia =3D 1,
-> >  	.has_flat_ccs =3D 0,
-> > +	.has_gmd_id =3D 1,
-> >  	.has_snoop =3D 1,
-> >  	.__runtime.memory_regions =3D REGION_SMEM |
-> REGION_STOLEN_LMEM,
-> >  	.__runtime.platform_engine_mask =3D BIT(RCS0) | BIT(BCS0) | BIT(CCS0)=
-,
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> b/drivers/gpu/drm/i915/i915_reg.h
-> > index 5e6239864c35..f52ed6d00030 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -5798,6 +5798,11 @@
-> >  #define ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz	(1 << 29)
-> >  #define ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz	(2 << 29)
-> >
-> > +#define GMD_ID_DISPLAY				_MMIO(0x510a0)
-> > +#define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
-> > +#define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
-> > +#define   GMD_ID_STEP				REG_GENMASK(5, 0)
-> > +
-> >  /*GEN11 chicken */
-> >  #define _PIPEA_CHICKEN				0x70038
-> >  #define _PIPEB_CHICKEN				0x71038
-> > @@ -8298,4 +8303,5 @@ enum skl_power_gate {
-> >  #define  MTL_LATENCY_LEVEL_EVEN_MASK	REG_GENMASK(12, 0)
-> >  #define  MTL_LATENCY_LEVEL_ODD_MASK	REG_GENMASK(28, 16)
-> >
-> > +#define MTL_MEDIA_GSI_BASE		0x380000
->=20
-> Blank line here.
->=20
-> >  #endif /* _I915_REG_H_ */
-> > diff --git a/drivers/gpu/drm/i915/intel_device_info.c
-> b/drivers/gpu/drm/i915/intel_device_info.c
-> > index 8ff66b4e11c1..e36ba0520be7 100644
-> > --- a/drivers/gpu/drm/i915/intel_device_info.c
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> > @@ -29,6 +29,7 @@
-> >
-> >  #include "display/intel_cdclk.h"
-> >  #include "display/intel_de.h"
-> > +#include "gt/intel_gt_regs.h"
-> >  #include "intel_device_info.h"
-> >  #include "i915_drv.h"
-> >  #include "i915_utils.h"
-> > @@ -133,6 +134,78 @@ void intel_device_info_print(const struct
-> intel_device_info *info,
-> >  	drm_printf(p, "rawclk rate: %u kHz\n", runtime->rawclk_freq);
-> >  }
-> >
-> > +static void ip_ver_read(struct drm_i915_private *i915, u32 offset, str=
-uct
-> ip_version *ip,
-> > +			const struct ip_version *dr_ip)
-> > +{
-> > +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
-> > +	void __iomem *addr;
-> > +	u32 ver;
-> > +
-> > +	addr =3D pci_iomap_range(pdev, 0, offset, sizeof(u32));
-> > +	if (drm_WARN_ON(&i915->drm, !addr))
-> > +		return;
-> > +
-> > +	ver =3D ioread32(addr);
-> > +	pci_iounmap(pdev, addr);
-> > +
-> > +	ip->ver =3D REG_FIELD_GET(GMD_ID_ARCH_MASK, ver);
-> > +	ip->rel =3D REG_FIELD_GET(GMD_ID_RELEASE_MASK, ver);
-> > +	ip->step =3D REG_FIELD_GET(GMD_ID_STEP, ver);
-> > +
-> > +	/* Sanity check against expected versions from device info */
-> > +	if (ip->ver !=3D dr_ip->ver || ip->rel > dr_ip->rel)
-> > +		drm_dbg(&i915->drm,
-> > +			"Hardware reports GMD IP version %u.%u but minimum
-> expected is %u.%u\n",
-> > +			ip->ver, ip->rel, dr_ip->ver, dr_ip->rel);
->=20
-> So this doesn't work because you pass in the same pointer in both ip and
-> dr_ip, and you overwrite it above. These will always match. I think just
-> drop the 2nd pointer from parameters, and make a local copy. Or read the
-> values to a local copy, check them, and assign.
+This is only called from intel_gt_probe_all with gsi_offset = 0, so the 
+extra param isn't really used at this point. I'm guessing the intent 
+here is to keep the function params the same as intel_sa_mediagt_setup, 
+so we can assign this to gtdef->setup() for "normal" extra tiles on 
+xehpsdv and pvc. Maybe add a comment about it above here, so no one 
+accidentally optimizes this out?
 
-We pass 2 different pointers here. Ip obtained from RUNTIME_INFO is=20
-&dev_priv->__runtime.{display,graphics,media} and dr_ip obtained from
-INTEL_INFO is &dev_priv->__info.__runtime.
-So the original hardcoded values in match info would be in dr_ip.
+>   {
+>   	int ret;
+>   
+> +	/* GSI offset is only applicable for media GTs */
+> +	drm_WARN_ON(&gt->i915->drm, gsi_offset);
+> +
+>   	if (!gt_is_root(gt)) {
+>   		struct intel_uncore *uncore;
+>   
+> @@ -832,7 +837,7 @@ int intel_gt_probe_all(struct drm_i915_private *i915)
+>   	gt->info.engine_mask = RUNTIME_INFO(i915)->platform_engine_mask;
+>   
+>   	drm_dbg(&i915->drm, "Setting up %s\n", gt->name);
+> -	ret = intel_gt_tile_setup(gt, phys_addr);
+> +	ret = intel_gt_tile_setup(gt, phys_addr, 0);
+>   	if (ret)
+>   		return ret;
+>   
+> @@ -862,7 +867,8 @@ int intel_gt_probe_all(struct drm_i915_private *i915)
+>   			goto err;
+>   		}
+>   
+> -		ret = gtdef->setup(gt, phys_addr + gtdef->mapping_base);
+> +		ret = gtdef->setup(gt, phys_addr + gtdef->mapping_base,
+> +				   gtdef->gsi_offset);
+>   		if (ret)
+>   			goto err;
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index 94f9ddcfb3a5..05a40ef33258 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -1576,4 +1576,12 @@
+>   
+>   #define GEN12_SFC_DONE(n)			_MMIO(0x1cc000 + (n) * 0x1000)
+>   
+> +/*
+> + * Standalone Media's non-engine GT registers are located at their regular GT
+> + * offsets plus 0x380000.  This extra offset is stored inside the intel_uncore
+> + * structure so that the existing code can be used for both GTs without
+> + * modification.
+> + */
+> +#define MTL_MEDIA_GSI_BASE			0x380000
+> +
+>   #endif /* __INTEL_GT_REGS__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_sa_media.c b/drivers/gpu/drm/i915/gt/intel_sa_media.c
+> new file mode 100644
+> index 000000000000..8c5c519457cc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gt/intel_sa_media.c
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2021 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +#include "i915_drv.h"
+> +#include "gt/intel_gt.h"
+> +#include "gt/intel_sa_media.h"
+> +
+> +int intel_sa_mediagt_setup(struct intel_gt *gt, phys_addr_t phys_addr,
+> +			   u32 gsi_offset)
+> +{
+> +	struct drm_i915_private *i915 = gt->i915;
+> +	struct intel_uncore *uncore;
+> +
+> +	uncore = drmm_kzalloc(&i915->drm, sizeof(*uncore), GFP_KERNEL);
+> +	if (!uncore)
+> +		return -ENOMEM;
+> +
+> +	uncore->gsi_offset = gsi_offset;
+> +
+> +	intel_gt_common_init_early(gt);
+> +	intel_uncore_init_early(uncore, gt);
 
-Since we copy INTEL_INFO(dev_priv)->__runtime onto RUNTIME_INFO(dev_priv)
-During driver create, we can cache the values and skip passing 2 pointers.
->=20
-> > +}
-> > +
-> > +/**
-> > + * intel_ipver_early_init - setup IP version values
-> > + * @dev_priv: device private
->=20
-> We don't need (or want) kernel-doc for static functions. It just
-> pollutes the generated documentation. The informative part can stay as a
-> regular comment.
+Where is the initialization of this uncore completed (i.e. call to 
+intel_uncore_init_mmio) ? Can't find it in follow up patches and without 
+it the register access on the media GT would be broken since the 
+function pointers in the uncore struct won't be set. Not a blocker since 
+this is still early enabling, but I'd prefer if this limitation (and 
+follow up remediation plan) was stated in the commit message or cover 
+letter.
 
-Will drop in next rev.
->=20
-> > + *
-> > + * Setup the graphics version for the current device.  This must be do=
-ne
-> before
-> > + * any code that performs checks on GRAPHICS_VER or DISPLAY_VER, so th=
-is
-> > + * function should be called very early in the driver initialization s=
-equence.
-> > + *
-> > + * Regular MMIO access is not yet setup at the point this function is =
-called so
-> > + * we peek at the appropriate MMIO offset directly.  The GMD_ID regist=
-er is
-> > + * part of an 'always on' power well by design, so we don't need to wo=
-rry
-> about
-> > + * forcewake while reading it.
-> > + */
-> > +static void intel_ipver_early_init(struct drm_i915_private *i915)
-> > +{
-> > +	struct intel_runtime_info *rtime =3D RUNTIME_INFO(i915);
-> > +	const struct intel_runtime_info *drinfo =3D &INTEL_INFO(i915)-
-> >__runtime;
->=20
-> "runtime" and "info" have been used elsewhere as the variable
-> names. Whether they are good is debatable, but better to stick to one
-> naming.
+> +
+> +	/*
+> +	 * Standalone media shares the general MMIO space with the primary
+> +	 * GT.  We'll re-use the primary GT's mapping.
+> +	 */
+> +	uncore->regs = i915->uncore.regs;
+> +	if (drm_WARN_ON(&i915->drm, uncore->regs == NULL))
+> +		return -EIO;
+> +
+> +	gt->uncore = uncore;
+> +	gt->phys_addr = phys_addr;
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_sa_media.h b/drivers/gpu/drm/i915/gt/intel_sa_media.h
+> new file mode 100644
+> index 000000000000..3afb310de932
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gt/intel_sa_media.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2021 Intel Corporation
+> + */
+> +#ifndef __INTEL_SA_MEDIA__
+> +#define __INTEL_SA_MEDIA__
+> +
+> +#include <linux/types.h>
+> +
+> +struct intel_gt;
+> +
+> +int intel_sa_mediagt_setup(struct intel_gt *gt, phys_addr_t phys_addr,
+> +			   u32 gsi_offset);
+> +
+> +#endif /* __INTEL_SA_MEDIA_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 857e8bb6865c..7183778a69c2 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -26,6 +26,9 @@
+>   #include <drm/drm_drv.h>
+>   #include <drm/i915_pciids.h>
+>   
+> +#include "gt/intel_gt_regs.h"
+> +#include "gt/intel_sa_media.h"
+> +
+>   #include "i915_driver.h"
+>   #include "i915_drv.h"
+>   #include "i915_pci.h"
+> @@ -1114,6 +1117,17 @@ static const struct intel_device_info pvc_info = {
+>   	.display.has_cdclk_crawl = 1, \
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B)
+>   
+> +static const struct intel_gt_definition xelpmp_extra_gt[] = {
+> +	{
+> +		.type = GT_MEDIA,
+> +		.name = "Standalone Media GT",
+> +		.setup = intel_sa_mediagt_setup,
+> +		.gsi_offset = MTL_MEDIA_GSI_BASE,
+> +		.engine_mask = BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+> +	},
+> +	{}
+> +};
+> +
+>   __maybe_unused
+>   static const struct intel_device_info mtl_info = {
+>   	XE_HP_FEATURES,
+> @@ -1127,6 +1141,7 @@ static const struct intel_device_info mtl_info = {
+>   	.media.ver = 13,
+>   	PLATFORM(INTEL_METEORLAKE),
+>   	.display.has_modular_fia = 1,
+> +	.extra_gt_list = xelpmp_extra_gt,
+>   	.has_flat_ccs = 0,
+>   	.has_snoop = 1,
+>   	.__runtime.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index e0b79dc0fccc..eb4bcf65e91e 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -247,14 +247,17 @@ struct intel_runtime_info {
+>   enum intel_gt_type {
+>   	GT_PRIMARY,
+>   	GT_TILE,
+> +	GT_MEDIA,
+>   };
+>   
+>   struct intel_gt_definition {
+>   	enum intel_gt_type type;
+>   	char *name;
+>   	int (*setup)(struct intel_gt *gt,
+> -		     phys_addr_t phys_addr);
+> +		     phys_addr_t phys_addr,
+> +		     u32 gsi_offset);
+>   	u32 mapping_base;
+> +	u32 gsi_offset;
+>   	intel_engine_mask_t engine_mask;
+>   };
+>   
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 6841f76533f9..be88fb95cb45 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -1780,10 +1780,15 @@ __gen2_read(64)
+>   #undef GEN2_READ_FOOTER
+>   #undef GEN2_READ_HEADER
+>   
+> +#define IS_GSI_REG(reg) ((reg) < 0x40000)
+> +
+>   #define GEN6_READ_HEADER(x) \
+> -	u32 offset = i915_mmio_reg_offset(reg); \
+> +	u32 offset; \
+>   	unsigned long irqflags; \
+>   	u##x val = 0; \
+> +	if (IS_GSI_REG(reg.reg)) \
+> +		reg.reg += uncore->gsi_offset; \
+> +	offset = i915_mmio_reg_offset(reg); \
 
-If passing single pointer is sufficient, I will skip using drinfo and modif=
-y the
-variable in next rev.
+I was initially confused here on why you were modifying reg.reg to then 
+extract it, but then I realized other function further down use the reg 
+variable as well, so this would adapt it for them all. However, it still 
+seem weird to me to use both offset and reg in an interleaved way in the 
+code and IMO we should converge on one. It looks like there is only one 
+use of "offset", so maybe that's the one we can drop. Not something that 
+needs to be done in this patch, just reflecting on it.
 
-Thanks,
-RK Sripada
->=20
-> > +
-> > +	if (!HAS_GMD_ID(i915))
-> > +		return;
-> > +
-> > +	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_GRAPHICS), &rtime-
-> >graphics,
-> > +		    &drinfo->graphics);
-> > +	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_DISPLAY), &rtime-
-> >display,
-> > +		    &drinfo->display);
-> > +	ip_ver_read(i915, MTL_MEDIA_GSI_BASE +
-> i915_mmio_reg_offset(GMD_ID_GRAPHICS),
-> > +		    &rtime->media, &drinfo->media);
-> > +}
-> > +
-> > +/**
-> > + * intel_device_info_runtime_init_early - initialize early runtime inf=
-o
-> > + * @i915: the i915 device
->=20
-> Even if this isn't a static function, I think it does beg the question
-> does it need to be part of the generated documentation?
+>   	assert_rpm_wakelock_held(uncore->rpm); \
+>   	spin_lock_irqsave(&uncore->lock, irqflags); \
+>   	unclaimed_reg_debug(uncore, reg, true, true)
+> @@ -1885,8 +1890,11 @@ __gen2_write(32)
+>   #undef GEN2_WRITE_HEADER
+>   
+>   #define GEN6_WRITE_HEADER \
+> -	u32 offset = i915_mmio_reg_offset(reg); \
+> +	u32 offset; \
+>   	unsigned long irqflags; \
+> +	if (IS_GSI_REG(reg.reg)) \
+> +		reg.reg += uncore->gsi_offset; \
+> +	offset = i915_mmio_reg_offset(reg); \
+>   	trace_i915_reg_rw(true, reg, val, sizeof(val), trace); \
+>   	assert_rpm_wakelock_held(uncore->rpm); \
+>   	spin_lock_irqsave(&uncore->lock, irqflags); \
+> @@ -2265,6 +2273,10 @@ int intel_uncore_setup_mmio(struct intel_uncore *uncore, phys_addr_t phys_addr)
+>   
+>   void intel_uncore_cleanup_mmio(struct intel_uncore *uncore)
+>   {
+> +	/* The media GT re-uses the primary GT's register mapping */
+> +	if (uncore->gt->type == GT_MEDIA)
+> +		return;
+> +
+>   	iounmap(uncore->regs);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
+> index 6100d0f4498a..1b7311a4b98b 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.h
+> +++ b/drivers/gpu/drm/i915/intel_uncore.h
+> @@ -135,6 +135,16 @@ struct intel_uncore {
+>   
+>   	spinlock_t lock; /** lock is also taken in irq contexts. */
+>   
+> +	/*
+> +	 * Do we need to apply an additional offset to reach the beginning
+> +	 * of the basic non-engine GT registers (referred to as "GSI" on
+> +	 * newer platforms, or "GT block" on older platforms)?  If so, we'll
+> +	 * track that here and apply it transparently to registers in the
+> +	 * appropriate range to maintain compatibility with our existing
+> +	 * register definitions and GT code.
+> +	 */
+> +	u32 gsi_offset;
+> +
+>   	unsigned int flags;
+>   #define UNCORE_HAS_FORCEWAKE		BIT(0)
+>   #define UNCORE_HAS_FPGA_DBG_UNCLAIMED	BIT(1)
+> @@ -298,14 +308,20 @@ intel_wait_for_register_fw(struct intel_uncore *uncore,
+>   static inline u##x__ __raw_uncore_read##x__(const struct intel_uncore *uncore, \
+>   					    i915_reg_t reg) \
+>   { \
+> -	return read##s__(uncore->regs + i915_mmio_reg_offset(reg)); \
+> +	u32 offset = i915_mmio_reg_offset(reg); \
+> +	if (offset < 0x40000) \
 
-Will drop in next rev.
->=20
-> > + *
-> > + * Determine early intel_device_info fields at runtime.
-> > + *
-> > + * Use it when:
-> > + *   - Early init of certain runtime info fields are to be initialized
-> > + *
-> > + * This function needs to be called:
-> > + *   - before the MMIO has been setup as we are reading registers,
-> > + *   - before the PCH has been detected,
-> > + *   - before the first usage of the fields it can tweak.
-> > + */
-> > +void intel_device_info_runtime_init_early(struct drm_i915_private *i91=
-5)
-> > +{
-> > +	intel_ipver_early_init(i915);
-> > +}
->=20
-> Blank line here.
->=20
-> >  #undef INTEL_VGA_DEVICE
-> >  #define INTEL_VGA_DEVICE(id, info) (id)
-> >
-> > diff --git a/drivers/gpu/drm/i915/intel_device_info.h
-> b/drivers/gpu/drm/i915/intel_device_info.h
-> > index 6511b25277dc..6031e729714e 100644
-> > --- a/drivers/gpu/drm/i915/intel_device_info.h
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> > @@ -152,6 +152,7 @@ enum intel_ppgtt_type {
-> >  	func(has_4tile); \
-> >  	func(has_flat_ccs); \
-> >  	func(has_global_mocs); \
-> > +	func(has_gmd_id); \
-> >  	func(has_gt_uc); \
-> >  	func(has_heci_pxp); \
-> >  	func(has_heci_gscfi); \
-> > @@ -197,6 +198,7 @@ enum intel_ppgtt_type {
-> >  struct ip_version {
-> >  	u8 ver;
-> >  	u8 rel;
-> > +	u8 step;
-> >  };
-> >
-> >  struct intel_runtime_info {
-> > @@ -307,6 +309,7 @@ struct intel_driver_caps {
-> >
-> >  const char *intel_platform_name(enum intel_platform platform);
-> >
-> > +void intel_device_info_runtime_init_early(struct drm_i915_private
-> *dev_priv);
-> >  void intel_device_info_subplatform_init(struct drm_i915_private *dev_p=
-riv);
-> >  void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)=
-;
->=20
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+Any reason not to have IS_GSI_REG() defined in this header and used here?
+
+Daniele
+
+> +		offset += uncore->gsi_offset; \
+> +	return read##s__(uncore->regs + offset); \
+>   }
+>   
+>   #define __raw_write(x__, s__) \
+>   static inline void __raw_uncore_write##x__(const struct intel_uncore *uncore, \
+>   					   i915_reg_t reg, u##x__ val) \
+>   { \
+> -	write##s__(val, uncore->regs + i915_mmio_reg_offset(reg)); \
+> +	u32 offset = i915_mmio_reg_offset(reg); \
+> +	if (offset < 0x40000) \
+> +		offset += uncore->gsi_offset; \
+> +	write##s__(val, uncore->regs + offset); \
+>   }
+>   __raw_read(8, b)
+>   __raw_read(16, w)
+
