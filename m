@@ -1,64 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F07B5A9E6F
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 19:48:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C0A5A9E8B
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 20:00:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4866710E0DA;
-	Thu,  1 Sep 2022 17:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3808D10E0E6;
+	Thu,  1 Sep 2022 18:00:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEFFB10E0CC;
- Thu,  1 Sep 2022 17:48:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662054499; x=1693590499;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=JTp/8L+JYkqsPEJmrkKyBNW46MNSt2S89olDw+IH0ss=;
- b=JtnmZn1kYlwMqUP3A0Nyl3y8GN7JT8qJCe0ekPMp/x4smPfEdUi+8ViL
- wd1OWd4R+fk5bP6XWhd6hqSX7qIOWaExV7S5cw7LnANsyv5WldLhjDkk0
- rUVQ5cK2WhcUGX/koCWR5vpGKAuQdwB3RmcqC44CRTjwH0+piQQaOK59Z
- 6eH0nGh1tNtQmpHQQSfKCaVggtzaJfSqi59xZfiaQGsrtLpx85cnUtTa6
- LAlF9ke8xJwrd57DxKA8EX7LrWniW3CKv6SYUNzCbPDOlOb55xNAniVEu
- 9O+L2sYrhBIk1USF4MW/HjDyFfqyncuJzLaw8BtmPSAXVu1+5TZ+LIrth w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="282768173"
-X-IronPort-AV: E=Sophos;i="5.93,281,1654585200"; d="scan'208";a="282768173"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2022 10:48:18 -0700
-X-IronPort-AV: E=Sophos;i="5.93,281,1654585200"; d="scan'208";a="563555846"
-Received: from wwdowiak-mobl.ger.corp.intel.com (HELO [10.249.254.209])
- ([10.249.254.209])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2022 10:48:16 -0700
-Message-ID: <e49bc63ba89ba1efba22d06f199cfb6d8e0a1797.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Matthew
- Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org, Intel
- Graphics <intel-gfx@lists.freedesktop.org>
-Date: Thu, 01 Sep 2022 19:48:14 +0200
-In-Reply-To: <06f90d85-2f31-e815-fd5a-f19af141df63@amd.com>
-References: <20220824142353.10293-1-luben.tuikov@amd.com>
- <1de21f6e-4b11-ee9b-1b54-fd67728766ad@amd.com>
- <cc4c59ad-5d69-b174-5464-bd9896459169@intel.com>
- <ce090a95-a822-5079-7b86-0c949e98cd64@amd.com>
- <3f3715fb-1f2b-83a5-bff7-6e06164e5546@intel.com>
- <9c7cc7ea-dd30-6df5-3f06-97a6c6d254e0@amd.com>
- <55d88b45-6986-de38-d574-d0ce7d06c62e@intel.com>
- <1392ea7c-88a3-9a56-1ccb-e2f16cd55f72@amd.com>
- <303ae81e-d9af-6912-8cdb-c881015da634@intel.com>
- <7047e694-997c-2082-48cb-f9f628c40183@amd.com>
- <50b37045-87de-04d0-7464-afcb5f9a2a0d@intel.com>
- <06f90d85-2f31-e815-fd5a-f19af141df63@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 (3.44.4-1.fc36) 
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A43510E0E6
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Sep 2022 18:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1662055209;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Cb/JBWxkocK+EYlOXZ3ihBm1AautbC5n1dX2XWAp/z0=;
+ b=Bvfwk3Fa8O1CmVFrP9bdBEUrsZKpfzWLqOB/D+S44WnzUrhsp/Lgu0a/nRXW2bbcgyiIOJ
+ X5i2s0GXi9TqXEh06nZIIRxNfV0hjQ1kK5urrgcIXOw6DJdiBjqz6IcL3uEkuuBOlfAyYm
+ sNzbTEmkH+BZjRpU8HMNL40R72zsaws=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-6-sqZ6d_P-N5ety1J1oh9ELA-1; Thu, 01 Sep 2022 14:00:08 -0400
+X-MC-Unique: sqZ6d_P-N5ety1J1oh9ELA-1
+Received: by mail-qt1-f197.google.com with SMTP id
+ cm10-20020a05622a250a00b003437b745ccdso14201816qtb.18
+ for <intel-gfx@lists.freedesktop.org>; Thu, 01 Sep 2022 11:00:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:user-agent:organization
+ :references:in-reply-to:date:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date;
+ bh=Cb/JBWxkocK+EYlOXZ3ihBm1AautbC5n1dX2XWAp/z0=;
+ b=ziu7dHOcU7Ts0bO8AZmX6wLJDTEkg9YzH2p2WBdY+6WH8KKE5maUkcuZOg1sWPrSn6
+ RdTAwyeosXlNEYnEJqPEhbk4FCBHx4Xh7PsMLmCxiux0aoBOts5MjUwZnfmq0yM8LH1A
+ f7cG5+PJu9DSQTVKUTBIgAEIqe+VSR7LKTLgstA+mwsjD1ESqfyRw9kwV9/NmGL/hdGE
+ ylIkoWJ3yccGmsHmOFzp96KJ2uVrVgG6EPMR7E82NUrhAPR/YpC4D+Yjn3JsQMR4xgjx
+ QlelzxM3myrSxlTu/kTlxAemFmu4LZ6pJBSvDR/rK0AeUiM+7MJSQE8T8WSEmVXMlDKF
+ y7zw==
+X-Gm-Message-State: ACgBeo2u4EpCMFoTqC5vSdfuv1dr2BcqJmHiFC2J37hEN8nfhz1SfMzO
+ GdtX1c93SPWzRx3cgk+cs2fAN3k/UJA570npf1pvYDwQyfuBb8bwIEgO1drenV/n0e+q7LL2KIn
+ ytrGoyWBCHtO9CMXiLfcSjVlg4AtD
+X-Received: by 2002:ac8:59c3:0:b0:343:6528:db29 with SMTP id
+ f3-20020ac859c3000000b003436528db29mr24729272qtf.575.1662055207795; 
+ Thu, 01 Sep 2022 11:00:07 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR5mxUGofTVmaQv+z9svbX0/h4xRpbhjT54cRL1foB9uUz095YblTzk+GZyCB4MvRqjgrXsa0Q==
+X-Received: by 2002:ac8:59c3:0:b0:343:6528:db29 with SMTP id
+ f3-20020ac859c3000000b003436528db29mr24729236qtf.575.1662055207348; 
+ Thu, 01 Sep 2022 11:00:07 -0700 (PDT)
+Received: from ?IPv6:2600:4040:5c48:e00::9e6? ([2600:4040:5c48:e00::9e6])
+ by smtp.gmail.com with ESMTPSA id
+ d19-20020ac81193000000b0031f0b43629dsm10557824qtj.23.2022.09.01.11.00.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 01 Sep 2022 11:00:06 -0700 (PDT)
+Message-ID: <a3817a6fff8e2ae28166bd4825109b6e7ba1ae16.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Thu, 01 Sep 2022 14:00:05 -0400
+In-Reply-To: <20220901161933.1004778-1-imre.deak@intel.com>
+References: <20220901161933.1004778-1-imre.deak@intel.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: audit bo->resource usage
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp_mst: Fix mst_mgr lookup during
+ atomic check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,210 +85,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Luben Tuikov <luben.tuikov@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2022-08-31 at 15:34 +0200, Christian K=C3=B6nig wrote:
-> Am 31.08.22 um 14:50 schrieb Matthew Auld:
-> > On 31/08/2022 13:35, Christian K=C3=B6nig wrote:
-> > > Am 31.08.22 um 14:06 schrieb Matthew Auld:
-> > > > On 31/08/2022 12:03, Christian K=C3=B6nig wrote:
-> > > > > Am 31.08.22 um 12:37 schrieb Matthew Auld:
-> > > > > > [SNIP]
-> > > > > > > >=20
-> > > > > > > > That hopefully just leaves i915_ttm_shrink(), which is
-> > > > > > > > swapping=20
-> > > > > > > > out shmem ttm_tt and is calling ttm_bo_validate() with
-> > > > > > > > empty=20
-> > > > > > > > placements to force the pipeline-gutting path, which
-> > > > > > > > importantly=20
-> > > > > > > > unpopulates the ttm_tt for us (since ttm_tt_unpopulate
-> > > > > > > > is not=20
-> > > > > > > > exported it seems). But AFAICT it looks like that will
-> > > > > > > > now also=20
-> > > > > > > > nuke the bo->resource, instead of just leaving it in
-> > > > > > > > system=20
-> > > > > > > > memory. My assumption is that when later calling=20
-> > > > > > > > ttm_bo_validate(), it will just do the bo_move_null()
-> > > > > > > > in=20
-> > > > > > > > i915_ttm_move(), instead of re-populating the ttm_tt
-> > > > > > > > and then=20
-> > > > > > > > potentially copying it back to local-memory?
-> > > > > > >=20
-> > > > > > > Well you do ttm_bo_validate() with something like GTT
-> > > > > > > domain,=20
-> > > > > > > don't you? This should result in re-populating the tt
-> > > > > > > object, but=20
-> > > > > > > I'm not 100% sure if that really works as expected.
-> > > > > >=20
-> > > > > > AFAIK for domains we either have system memory (which uses
-> > > > > > ttm_tt=20
-> > > > > > and might be shmem underneath) or local-memory. But perhaps
-> > > > > > i915=20
-> > > > > > is doing something wrong here, or abusing TTM in some way.
-> > > > > > I'm not=20
-> > > > > > sure tbh.
-> > > > > >=20
-> > > > > > Anyway, I think we have two cases here:
-> > > > > >=20
-> > > > > > - We have some system memory only object. After doing=20
-> > > > > > i915_ttm_shrink(), bo->resource is now NULL. We then call=20
-> > > > > > ttm_bo_validate() at some later point, but here we don't
-> > > > > > need to=20
-> > > > > > copy anything, but it also looks like
-> > > > > > ttm_bo_handle_move_mem()=20
-> > > > > > won't populate the ttm_tt or us either, since mem_type =3D=3D=
-=20
-> > > > > > TTM_PL_SYSTEM. It looks like i915_ttm_move() was taking
-> > > > > > care of=20
-> > > > > > this, but now we just call ttm_bo_move_null().
-> > > > > >=20
-> > > > > > - We have a local-memory only object, which was evicted to
-> > > > > > shmem,=20
-> > > > > > and then swapped out by the shrinker like above. The bo-
-> > > > > > >resource=20
-> > > > > > is NULL. However this time when calling ttm_bo_validate()
-> > > > > > we need=20
-> > > > > > to actually do a copy in i915_ttm_move(), as well as re-
-> > > > > > populate=20
-> > > > > > the ttm_tt. i915_ttm_move() was taking care of this, but
-> > > > > > now we=20
-> > > > > > just call ttm_bo_move_null().
-> > > > > >=20
-> > > > > > Perhaps i915 is doing something wrong in the above two
-> > > > > > cases?
-> > > > >=20
-> > > > > Mhm, as far as I can see that should still work.
-> > > > >=20
-> > > > > See previously you should got a transition from SYSTEM->GTT
-> > > > > in=20
-> > > > > i915_ttm_move() to re-create your backing store. Not you get=20
-> > > > > NULL->SYSTEM which is handled by ttm_bo_move_null() and then=20
-> > > > > SYSTEM->GTT.
-> > > >=20
-> > > > What is GTT here in TTM world? Also I'm not seeing where there
-> > > > is=20
-> > > > this SYSTEM->GTT transition? Maybe I'm blind. Just to be clear,
-> > > > i915=20
-> > > > is only calling ttm_bo_validate() once when acquiring the
-> > > > pages, and=20
-> > > > we don't call it again, unless it was evicted (and potentially=20
-> > > > swapped out).
-> > >=20
-> > > Well GTT means TTM_PL_TT.
-> > >=20
-> > > And calling it only once is perfectly fine, TTM will internally
-> > > see=20
-> > > that we need two hops to reach TTM_PL_TT and so does the NULL-
-> > > >SYSTEM=20
-> > > transition and then SYSTEM->TT.
-> >=20
-> > Ah interesting, so that's what the multi-hop thing does. But AFAICT
-> > i915 is not using either TTM_PL_TT or -EMULTIHOP.
->=20
-> Mhm, it could be that we then have a problem and the i915 driver only
-> sees NULL->TT directly. But I really don't know the i915 driver code=20
-> good enough to judge that.
->=20
-> Can you take a look at this and test it maybe?
->=20
-> >=20
-> > Also what is the difference between TTM_PL_TT and TM_PL_SYSTEM?
-> > When=20
-> > should you use one over the other?
->=20
-> TTM_PL_SYSTEM means the device is not accessing the buffer and TTM
-> has=20
-> the control over the backing store and can swapout/swapin as it wants
-> it.
->=20
-> TTM_PL_TT means that the device is accessing the data (TT stands for=20
-> translation table) and so TTM can't swap the backing store in/out.
->=20
-> TTM_PL_VRAM well that one is obvious.
->=20
-> Thanks,
-> Christian.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-We've had a previous long discussions on this listing pros and cons,
-and IIRC concluded that either binding to the device from system needed
-some TTM fixes and documentation to be straightforward, or a driver
-should use the above scheme bouncing in TT. IIRC we concluded that the
-best thing for i915 would be to transition and introduce a dummy TT
-region and obey the scheme outlined above by Christian.
-We unfortunately never gotten around to that, though, due to other work
-got prioritized. Also need to solve the limbo (not populated) -> vram
-transition without populating when moving to TT....
+Thanks for catching this!
 
-Originaly TT was intended for GGTT-like and AGP apertures that needed
-cpu-mapping to the PCI address. Using it like Christian outlines helps
-avoid special casing for swapout. Devices that bind to System memory
-needs the swap notifier to unbind.
+On Thu, 2022-09-01 at 19:19 +0300, Imre Deak wrote:
+> If an MST connector was disabled in the old state during a commit, the
+> connector's best_encoder will be NULL, so we can't look up mst_mgr via
+> it. Do the lookup instead via intel_connector->mst_port which always
+> points to the primary encoder.
+> 
+> This fixes the following:
+> [   58.922866] BUG: kernel NULL pointer dereference, address: 0000000000000170
+> [   58.922867] #PF: supervisor read access in kernel mode
+> [   58.922868] #PF: error_code(0x0000) - not-present page
+> [   58.922869] PGD 0 P4D 0
+> [   58.922870] Oops: 0000 [#1] PREEMPT SMP NOPTI
+> [   58.922872] CPU: 0 PID: 133 Comm: kworker/0:2 Tainted: G     U             6.0.0-rc3-imre+ #560
+> [   58.922874] Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P DDR5 RVP, BIOS ADLPFWI1.R00.3135.A00.2203251419 03/25/2022
+> [   58.922874] Workqueue: events output_poll_execute [drm_kms_helper]
+> [   58.922879] RIP: 0010:intel_dp_mst_atomic_check+0xbb/0x1c0 [i915]
+> [   58.922955] Code: 5b 7b f6 ff 84 c0 75 41 48 8b 44 24 18 65 48 2b 04 25 28 00 00 00 0f 85 ff 00 00 00 48 8b 45 10 48 8b 93 10 07 00 00 4c 89 e7 <48> 8b b0 70 01 00 00 48 83 c4 20 5b 5d 48 81 c6 f0 0c 00 00 41 5c
+> [   58.922956] RSP: 0018:ffffc90000633a88 EFLAGS: 00010246
+> [   58.922957] RAX: 0000000000000000 RBX: ffff888117d19000 RCX: ffff888101893308
+> [   58.922958] RDX: ffff888122981000 RSI: ffffffff82309ecc RDI: ffff888114da6800
+> [   58.922959] RBP: ffff8881094bab48 R08: 0000000081917436 R09: 0000000068191743
+> [   58.922960] R10: 0000000000000001 R11: 0000000000000001 R12: ffff888114da6800
+> [   58.922960] R13: ffff8881143f8000 R14: 0000000000000000 R15: ffff888119bf2000
+> [   58.922961] FS:  0000000000000000(0000) GS:ffff888496200000(0000) knlGS:0000000000000000
+> [   58.922962] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [   58.922962] CR2: 0000000000000170 CR3: 0000000005612004 CR4: 0000000000770ef0
+> [   58.922963] PKRU: 55555554
+> [   58.922963] Call Trace:
+> [   58.922964]  <TASK>
+> [   58.922966]  drm_atomic_helper_check_modeset+0x3f8/0xc70 [drm_kms_helper]
+> [   58.922972]  intel_atomic_check+0xb1/0x3180 [i915]
+> [   58.923059]  ? find_held_lock+0x2b/0x80
+> [   58.923064]  drm_atomic_check_only+0x5d3/0xa60 [drm]
+> [   58.923082]  drm_atomic_commit+0x56/0xc0 [drm]
+> [   58.923097]  ? drm_plane_get_damage_clips.cold+0x1c/0x1c [drm]
+> [   58.923114]  drm_client_modeset_commit_atomic+0x235/0x280 [drm]
+> [   58.923132]  drm_client_modeset_commit_locked+0x5b/0x190 [drm]
+> [   58.923148]  drm_client_modeset_commit+0x24/0x50 [drm]
+> [   58.923164]  drm_fb_helper_set_par+0xae/0xe0 [drm_kms_helper]
+> [   58.923171]  drm_fb_helper_hotplug_event+0xd5/0xf0 [drm_kms_helper]
+> [   58.923178]  output_poll_execute+0xac/0x200 [drm_kms_helper]
+> [   58.923187]  process_one_work+0x268/0x580
+> [   58.923190]  ? process_one_work+0x580/0x580
+> [   58.923191]  worker_thread+0x52/0x3b0
+> [   58.923193]  ? process_one_work+0x580/0x580
+> [   58.923195]  kthread+0xf0/0x120
+> [   58.923196]  ? kthread_complete_and_exit+0x20/0x20
+> [   58.923198]  ret_from_fork+0x1f/0x30
+> [   58.923202]  </TASK>
+> 
+> Fixes: ffac9721939d ("drm/display/dp_mst: Don't open code modeset checks for releasing time slots")
+> Cc: Lyude Paul <lyude@redhat.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 8 +++-----
+>  1 file changed, 3 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 13abe2b2170e7..7713c19042f34 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -315,11 +315,8 @@ intel_dp_mst_atomic_check(struct drm_connector *connector,
+>  			  struct drm_atomic_state *_state)
+>  {
+>  	struct intel_atomic_state *state = to_intel_atomic_state(_state);
+> -	struct drm_connector_state *old_conn_state =
+> -		drm_atomic_get_old_connector_state(&state->base, connector);
+>  	struct intel_connector *intel_connector =
+>  		to_intel_connector(connector);
+> -	struct drm_dp_mst_topology_mgr *mgr;
+>  	int ret;
+>  
+>  	ret = intel_digital_connector_atomic_check(connector, &state->base);
+> @@ -330,8 +327,9 @@ intel_dp_mst_atomic_check(struct drm_connector *connector,
+>  	if (ret)
+>  		return ret;
+>  
+> -	mgr = &enc_to_mst(to_intel_encoder(old_conn_state->best_encoder))->primary->dp.mst_mgr;
+> -	return drm_dp_atomic_release_time_slots(&state->base, mgr, intel_connector->port);
+> +	return drm_dp_atomic_release_time_slots(&state->base,
+> +						&intel_connector->mst_port->mst_mgr,
+> +						intel_connector->port);
+>  }
+>  
+>  static void clear_act_sent(struct intel_encoder *encoder,
 
-/Thomas
-
-
-
->=20
-> >=20
-> > >=20
-> > > As far as I can see that should work like it did before.
-> > >=20
-> > > Christian.
-> > >=20
-> > > >=20
-> > > > >=20
-> > > > > If you just validated to SYSTEM memory before I think the tt
-> > > > > object=20
-> > > > > wouldn't have been populated either.
-> > > > >=20
-> > > > > Regards,
-> > > > > Christian.
-> > > > >=20
-> > > > > >=20
-> > > > > > >=20
-> > > > > > > Thanks,
-> > > > > > > Christian.
-> > > > > > >=20
-> > > > > > > >=20
-> > > > > > > > >=20
-> > > > > > > > > I've been considering to replacing the ttm_bo_type
-> > > > > > > > > with a bunch=20
-> > > > > > > > > of behavior flags for a bo. I'm hoping that this will
-> > > > > > > > > clean=20
-> > > > > > > > > things up a bit.
-> > > > > > > > >=20
-> > > > > > > > > Regards,
-> > > > > > > > > Christian.
-> > > > > > > > >=20
-> > > > > > > > > >=20
-> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 caching =3D
-> > > > > > > > > > > > i915_ttm_select_tt_caching(obj);
-> > > > > > > > > > > > diff --git
-> > > > > > > > > > > > a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c=20
-> > > > > > > > > > > > b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> > > > > > > > > > > > index 9a7e50534b84bb..c420d1ab605b6f 100644
-> > > > > > > > > > > > ---
-> > > > > > > > > > > > a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> > > > > > > > > > > > +++
-> > > > > > > > > > > > b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> > > > > > > > > > > > @@ -560,7 +560,7 @@ int i915_ttm_move(struct=20
-> > > > > > > > > > > > ttm_buffer_object *bo, bool evict,
-> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool clear;
-> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int ret;
-> > > > > > > > > > > > -=C2=A0=C2=A0=C2=A0 if (GEM_WARN_ON(!obj)) {
-> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 if (GEM_WARN_ON(!obj) || !bo->r=
-esource) {
-> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 ttm_bo_move_null(bo, dst_mem);
-> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 return 0;
-> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > > > > > > > > > >=20
-> > > > > > > > >=20
-> > > > > > >=20
-> > > > >=20
-> > >=20
->=20
+-- 
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
