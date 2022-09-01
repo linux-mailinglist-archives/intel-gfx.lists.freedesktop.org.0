@@ -1,58 +1,82 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D7F5AE866
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:35:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F905AE852
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:34:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 982D810E68A;
-	Tue,  6 Sep 2022 12:34:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97EC410E65C;
+	Tue,  6 Sep 2022 12:34:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03EF810E566;
- Thu,  1 Sep 2022 10:44:50 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F9ED10E6D9;
+ Thu,  1 Sep 2022 10:47:17 +0000 (UTC)
 Received: from [192.168.2.145] (109-252-119-13.nat.spd-mgts.ru
  [109.252.119.13])
  (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits))
  (No client certificate requested)
  (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 7A7B86601E0A;
- Thu,  1 Sep 2022 11:44:45 +0100 (BST)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 0F1A86601E0A;
+ Thu,  1 Sep 2022 11:47:13 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1662029088;
- bh=4/2i4aqnQm0eD8QgJbBg2gvDYzIG/ZG1bPLe6WFo/t0=;
+ s=mail; t=1662029236;
+ bh=601JQW1vRODbZW3nXgrYwKwIYLdatGO7bqQS64cjbC8=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=cLbqiE/dnqUzM66LeoPYWJt2ssxBDaSl7PG8koINMEoIuFiNO/S9FSirvSfstFJ7/
- +3XhwZuh6bULact7FUzNWp72rHVbpmo2vfjnT0bf8Qj3J1aisyK0iDijIGVuyPUkDB
- 689ZWSP7OUdwJ6ZIL39SHAz6ocxJBaJqGoDfR10OvPmQYhlYOeoFfhDQEJIIzPL5bM
- BWvpDwgsTAnxEDtdvqtdec6MQmmV7eYnMN7pOGy4F132JMmubuV2LOmiSr77PlVDIj
- IQxQiPZ80EOR+8X3A/Gd+GCivXKpjYEhlMm0HDBHJ+PEbywTNtlYeAJTvojNfYCGzX
- QegYZmzerNARQ==
-Message-ID: <213eb3d6-53aa-915e-9565-3209491feeee@collabora.com>
-Date: Thu, 1 Sep 2022 13:44:43 +0300
+ b=gvIVOPIBzWZGuD6NygXzh1sohbyafn5m4zlspwSvOk7AqMsde4hQLAfTpZRLGT/Xg
+ tZCPVrVupNm/ycsQg0HqK9JAnd7gStXHbCQs/hnoLYCspCe/qIfCqS3tgCPNdjs6sS
+ 6ns55hsCsiGqdQjsubmEAVFEAIr1tWG+6jF0V0SgiLyirr7LqTX8z2z8vQEx25L7xu
+ 2xXzrL/ZUdOZB7ntAgCtSMwR/pQbOLBKNp236a2yKz2+EFYW2nQ4gkKtpamcIbbFgE
+ dA/wt53VbNU8A3PjajlEJ4BJ2/tgJLW7ng1Zhlr12NCwAZ4urG6dRbPgfbiRq0WfC9
+ 7rk9NN0l3hsgQ==
+Message-ID: <532eedc8-b468-4409-1887-8fff264a6486@collabora.com>
+Date: Thu, 1 Sep 2022 13:47:10 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
 Content-Language: en-US
 To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+ Qiang Yu <yuq825@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>
 References: <20220831153757.97381-1-dmitry.osipenko@collabora.com>
- <20220831153757.97381-7-dmitry.osipenko@collabora.com>
- <2463ccb0-6620-8760-fc06-532847835207@amd.com>
+ <8322099f-4ef3-6a5d-4a66-27c4b3329884@amd.com>
 From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <2463ccb0-6620-8760-fc06-532847835207@amd.com>
+In-Reply-To: <8322099f-4ef3-6a5d-4a66-27c4b3329884@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:46 +0000
-Subject: Re: [Intel-gfx] [PATCH v4 06/21] drm/i915: Prepare to dynamic
- dma-buf locking specification
+Subject: Re: [Intel-gfx] [PATCH v4 00/21] Move all drivers to a common
+ dma-buf locking convention
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,165 +89,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Almeida <daniel.almeida@collabora.com>,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Leon Romanovsky <leon@kernel.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, linux-rdma@vger.kernel.org,
- Russell King <linux@armlinux.org.uk>, Daniel Stone <daniel@fooishbar.org>,
- Gustavo Padovan <gustavo.padovan@collabora.com>, Chia-I Wu <olvaffe@gmail.com>,
- linux-media@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Juergen Gross <jgross@suse.com>,
- David Airlie <airlied@linux.ie>, amd-gfx@lists.freedesktop.org,
- Tomi Valkeinen <tomba@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Qiang Yu <yuq825@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 9/1/22 09:45, Christian König wrote:
-> Am 31.08.22 um 17:37 schrieb Dmitry Osipenko:
->> Prepare i915 driver to the common dynamic dma-buf locking convention
->> by starting to use the unlocked versions of dma-buf API functions
->> and handling cases where importer now holds the reservation lock.
->>
->> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Hello Christian,
+
+On 9/1/22 10:49, Christian König wrote:
+> Hi Dmitry,
 > 
-> Acked-by: Christian König <christian.koenig@amd.com>, but it's probably
-> best if somebody from the Intel guys take a look as well.
+> I've gone over this multiple times now and while it is still possible
+> that we missed something I think that this should land now.
 
-+ Chris Wilson, who touched locks of __i915_gem_free_objects() recently
+Thank you very much for the review!
 
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c       |  2 +-
->>   drivers/gpu/drm/i915/gem/i915_gem_object.c       | 12 ++++++++++++
->>   .../gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c | 16 ++++++++--------
->>   3 files changed, 21 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> index f5062d0c6333..07eee1c09aaf 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> @@ -72,7 +72,7 @@ static int i915_gem_dmabuf_vmap(struct dma_buf
->> *dma_buf,
->>       struct drm_i915_gem_object *obj = dma_buf_to_obj(dma_buf);
->>       void *vaddr;
->>   -    vaddr = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
->> +    vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
->>       if (IS_ERR(vaddr))
->>           return PTR_ERR(vaddr);
->>   diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> index 389e9f157ca5..7e2a9b02526c 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> @@ -331,7 +331,19 @@ static void __i915_gem_free_objects(struct
->> drm_i915_private *i915,
->>               continue;
->>           }
->>   +        /*
->> +         * dma_buf_unmap_attachment() requires reservation to be
->> +         * locked. The imported GEM shouldn't share reservation lock,
->> +         * so it's safe to take the lock.
->> +         */
->> +        if (obj->base.import_attach)
->> +            i915_gem_object_lock(obj, NULL);
->> +
->>           __i915_gem_object_pages_fini(obj);
->> +
->> +        if (obj->base.import_attach)
->> +            i915_gem_object_unlock(obj);
->> +
->>           __i915_gem_free_object(obj);
->>             /* But keep the pointer alive for RCU-protected lookups */
->> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
->> b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
->> index 62c61af77a42..9e3ed634aa0e 100644
->> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
->> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
->> @@ -213,7 +213,7 @@ static int igt_dmabuf_import_same_driver(struct
->> drm_i915_private *i915,
->>           goto out_import;
->>       }
->>   -    st = dma_buf_map_attachment(import_attach, DMA_BIDIRECTIONAL);
->> +    st = dma_buf_map_attachment_unlocked(import_attach,
->> DMA_BIDIRECTIONAL);
->>       if (IS_ERR(st)) {
->>           err = PTR_ERR(st);
->>           goto out_detach;
->> @@ -226,7 +226,7 @@ static int igt_dmabuf_import_same_driver(struct
->> drm_i915_private *i915,
->>           timeout = -ETIME;
->>       }
->>       err = timeout > 0 ? 0 : timeout;
->> -    dma_buf_unmap_attachment(import_attach, st, DMA_BIDIRECTIONAL);
->> +    dma_buf_unmap_attachment_unlocked(import_attach, st,
->> DMA_BIDIRECTIONAL);
->>   out_detach:
->>       dma_buf_detach(dmabuf, import_attach);
->>   out_import:
->> @@ -296,7 +296,7 @@ static int igt_dmabuf_import(void *arg)
->>           goto out_obj;
->>       }
->>   -    err = dma_buf_vmap(dmabuf, &map);
->> +    err = dma_buf_vmap_unlocked(dmabuf, &map);
->>       dma_map = err ? NULL : map.vaddr;
->>       if (!dma_map) {
->>           pr_err("dma_buf_vmap failed\n");
->> @@ -337,7 +337,7 @@ static int igt_dmabuf_import(void *arg)
->>         err = 0;
->>   out_dma_map:
->> -    dma_buf_vunmap(dmabuf, &map);
->> +    dma_buf_vunmap_unlocked(dmabuf, &map);
->>   out_obj:
->>       i915_gem_object_put(obj);
->>   out_dmabuf:
->> @@ -358,7 +358,7 @@ static int igt_dmabuf_import_ownership(void *arg)
->>       if (IS_ERR(dmabuf))
->>           return PTR_ERR(dmabuf);
->>   -    err = dma_buf_vmap(dmabuf, &map);
->> +    err = dma_buf_vmap_unlocked(dmabuf, &map);
->>       ptr = err ? NULL : map.vaddr;
->>       if (!ptr) {
->>           pr_err("dma_buf_vmap failed\n");
->> @@ -367,7 +367,7 @@ static int igt_dmabuf_import_ownership(void *arg)
->>       }
->>         memset(ptr, 0xc5, PAGE_SIZE);
->> -    dma_buf_vunmap(dmabuf, &map);
->> +    dma_buf_vunmap_unlocked(dmabuf, &map);
->>         obj = to_intel_bo(i915_gem_prime_import(&i915->drm, dmabuf));
->>       if (IS_ERR(obj)) {
->> @@ -418,7 +418,7 @@ static int igt_dmabuf_export_vmap(void *arg)
->>       }
->>       i915_gem_object_put(obj);
->>   -    err = dma_buf_vmap(dmabuf, &map);
->> +    err = dma_buf_vmap_unlocked(dmabuf, &map);
->>       ptr = err ? NULL : map.vaddr;
->>       if (!ptr) {
->>           pr_err("dma_buf_vmap failed\n");
->> @@ -435,7 +435,7 @@ static int igt_dmabuf_export_vmap(void *arg)
->>       memset(ptr, 0xc5, dmabuf->size);
->>         err = 0;
->> -    dma_buf_vunmap(dmabuf, &map);
->> +    dma_buf_vunmap_unlocked(dmabuf, &map);
->>   out:
->>       dma_buf_put(dmabuf);
->>       return err;
-> 
+> The whole topic is just to complicated that we can 100% sure guarantee
+> that there isn't anything wrong with the locking, but lockdep and driver
+> testing should allow us to quickly find remaining issues.
 
+At least the most popular drivers should be okay. If anyone will find
+issue introduced by this series, then indeed shouldn't be a problem to
+fix it later on.
+
+> Do you have commit rights to drm-misc-next or should I push it?
+
+I got the drm-misc commit right two weeks ago, haven't pushed anything
+there yet. Please let me try to do the push. I'll let you know if any
+kind of help will be needed from you.
+
+I'll wait for more acks/r-bs and then do the push.
 
 -- 
 Best regards,
