@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3FBE5A8DE8
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 08:01:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 904705A8DED
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Sep 2022 08:01:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B24BB10E5AB;
-	Thu,  1 Sep 2022 06:01:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 290C610E5B4;
+	Thu,  1 Sep 2022 06:01:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 492D710E5A6
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Sep 2022 06:01:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECB8010E5A6
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Sep 2022 06:01:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662012087; x=1693548087;
+ t=1662012089; x=1693548089;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AQ8fRJYCGfwdCQMd91PKti8jEIMCfNXdBLP0SpF3tVo=;
- b=W8/qK+ZB7x6gKb7zzv8rhLIHeZku24Yp+PGAR32JpKizmV9Kl/aIk9lF
- u2AXRUrfzkG1KKPjsPAKpbuqv/sNlE02CZnlBJo2kqWO60Z2Jr7UIauKb
- COJGNsZfq7t5psPvdTKRq/YaHuh0ecvlN5D7FznbNZcVGD4RAIsFvvR/b
- 06kzDDVDCHnf1HU7G0CgC2WxycDpwnNraCzeLYzb2e4N2Um/NbD9MV/q8
- V7MtoyuLJ25iQQezJ/N+1H9ENWjNNRaOTz6oDjILSNRV2Vv2PB0E74AAK
- aqMYS8bcQWf3Yicrdzr/GHVf1+PBwVKX1Q2CDPiC3PVBedNL+udPKB5Re w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10456"; a="381920240"
-X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="381920240"
+ bh=48fvnGmwuKwtMyoLkXN59oWM6NQpbtY+cpaXo4jfK+U=;
+ b=GV1TLUtMUmjoAw5H1NiCW4LcBif9nsIaBqwlAaNG5XVxoqTxb9s1+29J
+ IHAcobFsNJAcY4UGSggKHElNfWy/iXWMF36AkH7r0JqZcx/pXZdJ8Hit4
+ e8BqQXvPqK8Nqo9bms6ytNTtO+gRzW8ztMnQvqb8++/lldhlsIwiPpNAn
+ 5HZARTe3pNApR2pkSO/0Iau/HPvqzTdciU/Th1z0p7CfAtrqFlWPap/v6
+ RrYGxbxG/9vWLHpGwOlgSEt3nEspknjYYJKbyxVu3i+cR1LjVioQym7Pl
+ olIGUl0b/TCM5QwCQqyalKaVsdH9t4z1SiDFwTf8Blzl1CkqM9yiDWbhj w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10456"; a="381920247"
+X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="381920247"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2022 23:01:27 -0700
-X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="754685681"
+ 31 Aug 2022 23:01:29 -0700
+X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="754685706"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2022 23:01:25 -0700
+ 31 Aug 2022 23:01:27 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Sep 2022 11:30:56 +0530
-Message-Id: <20220901060101.1000290-5-ankit.k.nautiyal@intel.com>
+Date: Thu,  1 Sep 2022 11:30:57 +0530
+Message-Id: <20220901060101.1000290-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220901060101.1000290-1-ankit.k.nautiyal@intel.com>
 References: <20220901060101.1000290-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 4/9] drm/i915/display: Add new members to
- configure PCON color conversion
+Subject: [Intel-gfx] [PATCH v2 5/9] drm/i915/dp: Compute configuration for
+ using PCON's color/format conversion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,47 +59,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The decision to use DFP output format conversion capabilities should be
-during compute_config phase.
+Fill the crtc_state members to store the configuration required by PCONs
+for color/format conversion for a YCBCR420 mode and the computed output
+format.
 
-This patch adds new members to crtc_state to help configure the DFP
-output related conversions. Also adds a member to intel_dp to store
-ycbcr420 pass through capability.
-
-This will help to store only the format conversion capabilities of the
-DP device in intel_dp->dfp, and use crtc_state to compute and store the
-configuration for color/format conversion for a given mode.
+This will be later used during protocol_converter_config to program the
+PCON to use appropriate color/format conversion.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 27 +++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 0da9b208d56e..065ed19a5dd3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1311,6 +1311,12 @@ struct intel_crtc_state {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index b6f62444b589..4c1a0d9f750c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1970,6 +1970,30 @@ static bool intel_dp_has_audio(struct intel_encoder *encoder,
+ 		return intel_conn_state->force_audio == HDMI_AUDIO_ON;
+ }
  
- 	/* for loading single buffered registers during vblank */
- 	struct drm_vblank_work vblank_work;
++static void
++intel_dp_compute_dfp_ycbcr420(struct intel_encoder *encoder,
++			      struct intel_crtc_state *crtc_state)
++{
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
 +
-+	/* DP DFP color configuration */
-+	struct {
-+		bool rgb_to_ycbcr;
-+		bool ycbcr_444_to_420;
-+	} dp_dfp_config;
- };
++	if (!drm_dp_is_branch(intel_dp->dpcd))
++		return;
++
++	/* Mode is YCBCR420, output_format is also YCBCR420: Passthrough */
++	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
++		return;
++
++	/* Mode is YCBCR420, output_format is YCBCR444: Downsample */
++	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444) {
++		crtc_state->dp_dfp_config.ycbcr_444_to_420 = true;
++		return;
++	}
++
++	/* Mode is YCBCR420, output_format is RGB: Convert to YCBCR444 and Downsample */
++	crtc_state->dp_dfp_config.rgb_to_ycbcr = true;
++	crtc_state->dp_dfp_config.ycbcr_444_to_420 = true;
++}
++
+ static int
+ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 			       struct intel_crtc_state *crtc_state,
+@@ -1987,6 +2011,8 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 	ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
  
- enum intel_pipe_crc_source {
-@@ -1704,6 +1710,7 @@ struct intel_dp {
- 		int pcon_max_frl_bw;
- 		u8 max_bpc;
- 		bool ycbcr_444_to_420;
-+		bool ycbcr420_passthrough;
- 		bool rgb_to_ycbcr;
- 	} dfp;
+ 	crtc_state->output_format = intel_dp_output_format(connector, ycbcr_420_only);
++	if (ycbcr_420_only)
++		intel_dp_compute_dfp_ycbcr420(encoder, crtc_state);
  
+ 	if (ycbcr_420_only && !intel_dp_is_ycbcr420(intel_dp, crtc_state)) {
+ 		drm_dbg_kms(&i915->drm,
+@@ -2003,6 +2029,7 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 			return ret;
+ 
+ 		crtc_state->output_format = intel_dp_output_format(connector, true);
++		intel_dp_compute_dfp_ycbcr420(encoder, crtc_state);
+ 		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
+ 						   respect_downstream_limits);
+ 	}
 -- 
 2.25.1
 
