@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 569F75AA98E
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 10:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F148D5AA9A2
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 10:12:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 053EF10E7AE;
-	Fri,  2 Sep 2022 08:10:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37EDE10E79D;
+	Fri,  2 Sep 2022 08:12:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 406 seconds by postgrey-1.36 at gabe;
- Fri, 02 Sep 2022 08:10:02 UTC
-Received: from smtp-relay-canonical-1.canonical.com
- (smtp-relay-canonical-1.canonical.com [185.125.188.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75C5610E7AC
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 08:10:02 +0000 (UTC)
-Received: from [192.168.1.152] (unknown [222.129.34.149])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id A5CED41591; 
- Fri,  2 Sep 2022 08:03:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1662105795;
- bh=ZOFc641//xjZbzZJp1nLBtreufTaSDvxCbK9eKVutvg=;
- h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
- In-Reply-To:Content-Type;
- b=IeyJwuuuJHlo9ukKPSpZxfUT3MstiFAHjr9O5jNy25I2JlQXjg0WauDlQjconQ8dL
- caT9dB/oqwqM2jK1Yy33s2OcwjP6qSCLhZJBrjXXXkFu275tvOJKvnl5yuze7o9geA
- WG7Zvho27pbbt34BzXBZ/3S7Smp4l62y1bhaSZPAP+W58Kq8pYY3ManjUNJg4KSl6e
- JDGtBC5mX8B9GNfLDLsw7fjgfmOb1Pae8ozGpuVt/N9kok+0Azcr39JNaPyHjYgbw/
- fY5b1yF70mosmnyCYybCpfIXDAFCeYv0mRJR0NFEP+lVDhH4dB8a0GxxWxooLitBuQ
- cd5hAke55ZQlA==
-Message-ID: <8d7f7692-b137-fb0c-11e9-c2b69fa465d3@canonical.com>
-Date: Fri, 2 Sep 2022 16:03:07 +0800
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A63110E79D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 08:12:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662106367; x=1693642367;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=DIxD3BktQ7pJsO8QhmxWN3Yth0khTS+KJ0ONk64B+i8=;
+ b=RGfeUQk7uh5/ZQ7/p56S4AQRLK1HWYbcMZmdTQKt/YKj9M1A0cx+zWG3
+ dDRoWQzRqoP5sA+Gg0+m9s2GzEt9ZMYdnDTFtJPiGdREoBl0OtBOdM2cq
+ r/mhlrYA9foBj7/wxxy6qZxlI+YnHny/LKfUgtN4RfQcNWFoobMeKjRNT
+ hcgZhbyaQpo6+h7105pXKxEKSBds4WFiThnNQ6n7YG5DuJ6kbzOUy5aKh
+ AJrlXi5vMalDKjRj90YlnrVK6OOUqSJePJOeWoGj3UxgUtojq7xVUFWIM
+ T6XN4h+Qg+/7eEGelWwVDBuQZlDHS2BisWyWeh7fZisFuwyGp6/kFVX6j g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="275675124"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="275675124"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 01:12:40 -0700
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674259100"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 01:12:38 -0700
+Date: Fri, 2 Sep 2022 11:13:19 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YxG7HwaE0zSjzDk/@intel.com>
+References: <20220901113011.12080-1-stanislav.lisovskiy@intel.com>
+ <87wnanb8c3.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-To: ville.syrjala@linux.intel.com
-References: <20220902070319.15395-1-ville.syrjala@linux.intel.com>
-Content-Language: en-US
-From: Aaron Ma <aaron.ma@canonical.com>
-In-Reply-To: <20220902070319.15395-1-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Implement
- WaEdpLinkRateDataReload
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87wnanb8c3.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Start using REG_BIT* macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,9 +56,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Jason@zx2c4.com, intel-gfx@lists.freedesktop.org,
- stable@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tested-by: Aaron Ma <aaron.ma@canonical.com>
+On Thu, Sep 01, 2022 at 03:14:04PM +0300, Jani Nikula wrote:
+> On Thu, 01 Sep 2022, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> > Lets start to use REG_BIT* macros, instead of (x << 0) like expressions.
+> 
+> Please be more specific in the commit subject, it's not like we haven't
+> started using REG_BIT in general, ever since we introduced it! ;) So
+> refer to CDCLK_CTL.
+
+Yeah, agree looks too generic, it was previsouly part of the series, 
+so got edited "a bit" :)
+
+> 
+> Please just update the subject while pushing, no need to resend for
+> that,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> PS. Could I also persuade you to split out some of the cdclk register
+> macros to a new display/intel_cdclk_regs.h header? E.g. CDCLK_CTL is
+> only used in intel_cdclk.c (and gvt).
+
+Well need to take a look.. Shouldn't be very complex, I hope.
+
+Stan
+
+> 
+> >
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_reg.h | 20 ++++++++++----------
+> >  1 file changed, 10 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 5e6239864c35..d82f14979fdf 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -7077,16 +7077,16 @@ enum skl_power_gate {
+> >  
+> >  /* CDCLK_CTL */
+> >  #define CDCLK_CTL			_MMIO(0x46000)
+> > -#define  CDCLK_FREQ_SEL_MASK		(3 << 26)
+> > -#define  CDCLK_FREQ_450_432		(0 << 26)
+> > -#define  CDCLK_FREQ_540			(1 << 26)
+> > -#define  CDCLK_FREQ_337_308		(2 << 26)
+> > -#define  CDCLK_FREQ_675_617		(3 << 26)
+> > -#define  BXT_CDCLK_CD2X_DIV_SEL_MASK	(3 << 22)
+> > -#define  BXT_CDCLK_CD2X_DIV_SEL_1	(0 << 22)
+> > -#define  BXT_CDCLK_CD2X_DIV_SEL_1_5	(1 << 22)
+> > -#define  BXT_CDCLK_CD2X_DIV_SEL_2	(2 << 22)
+> > -#define  BXT_CDCLK_CD2X_DIV_SEL_4	(3 << 22)
+> > +#define  CDCLK_FREQ_SEL_MASK		REG_GENMASK(27, 26)
+> > +#define  CDCLK_FREQ_450_432		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 0)
+> > +#define  CDCLK_FREQ_540		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 1)
+> > +#define  CDCLK_FREQ_337_308		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 2)
+> > +#define  CDCLK_FREQ_675_617		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 3)
+> > +#define  BXT_CDCLK_CD2X_DIV_SEL_MASK	REG_GENMASK(23, 22)
+> > +#define  BXT_CDCLK_CD2X_DIV_SEL_1	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 0)
+> > +#define  BXT_CDCLK_CD2X_DIV_SEL_1_5	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 1)
+> > +#define  BXT_CDCLK_CD2X_DIV_SEL_2	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 2)
+> > +#define  BXT_CDCLK_CD2X_DIV_SEL_4	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 3)
+> >  #define  BXT_CDCLK_CD2X_PIPE(pipe)	((pipe) << 20)
+> >  #define  CDCLK_DIVMUX_CD_OVERRIDE	(1 << 19)
+> >  #define  BXT_CDCLK_CD2X_PIPE_NONE	BXT_CDCLK_CD2X_PIPE(3)
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
