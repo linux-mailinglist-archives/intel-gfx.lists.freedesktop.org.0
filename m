@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE4655AAEEF
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 14:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B28A5AAFF1
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 14:46:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 493B410E826;
-	Fri,  2 Sep 2022 12:31:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5103910E82B;
+	Fri,  2 Sep 2022 12:46:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7EE10E825;
- Fri,  2 Sep 2022 12:31:54 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CF9710E82B;
+ Fri,  2 Sep 2022 12:46:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662121914; x=1693657914;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=IuiSPA2Vod5Okb6hXPyaRmII69cYstSbavpo0ayfOuE=;
- b=PCmlWVlxqS68IOHioaMAYVl5wsyZ/29Xab6yu6GVLaLqWsnM3DWqayH6
- Zr+36c5B5eBZDZctmwVT9VPCWdeHLjxAbUts+0tLUUmB7gBb7owNrhm1g
- L8HD7jLk+9cWQq/CEZB8POb+OMcM22mdTD2JTDZSnH8KpuuauvjhiSqaK
- bPilywY2ILVy2GznXrd6OOiakaEXsiP1nix0+j/9gSyd/ZFezOG/3kUkX
- dRVPnXcKFVgC89c8VU+biSMI3qpzmUQx2rEGpPbiEn1ejQMe7P4rZ4jU8
- 4VhpildYUH9xocr/Kth5m2O6GAnD2uFm5OK2EiKQtc3aTqkrQNg2vt2wM A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="278986052"
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="278986052"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 05:31:52 -0700
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="941274686"
-Received: from svandene-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.55.245])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 05:31:50 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20220826213501.31490-11-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+ t=1662122767; x=1693658767;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=3gwVHlrTsPkNzuLM1RkqgziFv66dPQP0iNTuxReQkTk=;
+ b=Rbp4CofyPCG9+0cfRYOpLGRWxsD+jMkJ002qvwfXGauzJmNyydG+TXV4
+ +2RTM95qsdAVefAxmL458OKKn2EZl5+mEM8SnWsUJxk77EE+c4I4eRRXQ
+ RbHYxZKykjFHsMW6rUIafJSCUxoqdOV5pd8labLaxSnPB5ddJMLxlBltS
+ LasxvO81e4WN3iHRp705T58bxnV7b5yA41+5SN5qyCMfU/MQN9zsSD7ZY
+ 5SBIy1F2iiQkjjxMQThRNWry6LFT1FnwSlcvCsxGHxKCQWhWZcG3dF56P
+ WYtASEySjMQW30KHMi1HFlJQ8vCcN10VXzYkPDKYonJD3kmw7IWUuC2Ej w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="276372797"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="276372797"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 05:45:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="716507768"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga002.fm.intel.com with SMTP; 02 Sep 2022 05:45:55 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 02 Sep 2022 15:45:55 +0300
+Date: Fri, 2 Sep 2022 15:45:54 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YxH7ApmwbP99kKr4@intel.com>
 References: <20220826213501.31490-1-ville.syrjala@linux.intel.com>
- <20220826213501.31490-11-ville.syrjala@linux.intel.com>
-Date: Fri, 02 Sep 2022 15:31:39 +0300
-Message-ID: <87pmgedkk4.fsf@intel.com>
+ <20220826213501.31490-8-ville.syrjala@linux.intel.com>
+ <87v8q6dku4.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 10/11] drm/edid: Make version checks less
- convoluted
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87v8q6dku4.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 07/11] drm/edid: Use GTF2 for inferred modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,128 +61,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 27 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Get rid of the confusing version_greater() stuff and
-> simply compare edid->revision directly everwhere. Half
-> the places already did it this way, and since we actually
-> reject any EDID with edid->version!=3D1 it's a perfectly
-> sane thing to do.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Fri, Sep 02, 2022 at 03:25:39PM +0300, Jani Nikula wrote:
+> On Sat, 27 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > For some resaon we only use the secondary GTF curve for the
+> > standard timings. Use it for inferred modes as well.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_edid.c | 35 ++++++++++++++++++++++++++++++++++-
+> >  1 file changed, 34 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> > index 0c7cbe9b44f5..fed2bdd55c09 100644
+> > --- a/drivers/gpu/drm/drm_edid.c
+> > +++ b/drivers/gpu/drm/drm_edid.c
+> > @@ -3546,6 +3546,35 @@ static int drm_gtf_modes_for_range(struct drm_connector *connector,
+> >  	return modes;
+> >  }
+> >  
+> > +static int drm_gtf2_modes_for_range(struct drm_connector *connector,
+> > +				    const struct drm_edid *drm_edid,
+> > +				    const struct detailed_timing *timing)
+> > +{
+> > +	int i, modes = 0;
+> > +	struct drm_display_mode *newmode;
+> > +	struct drm_device *dev = connector->dev;
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(extra_modes); i++) {
+> > +		const struct minimode *m = &extra_modes[i];
+> > +
+> > +		newmode = drm_gtf2_mode(dev, drm_edid, m->w, m->h, m->r);
+> > +		if (!newmode)
+> > +			return modes;
+> > +
+> > +		drm_mode_fixup_1366x768(newmode);
+> > +		if (!mode_in_range(newmode, drm_edid, timing) ||
+> > +		    !valid_inferred_mode(connector, newmode)) {
+> > +			drm_mode_destroy(dev, newmode);
+> > +			continue;
+> > +		}
+> > +
+> > +		drm_mode_probed_add(connector, newmode);
+> > +		modes++;
+> > +	}
+> > +
+> > +	return modes;
+> > +}
+> > +
+> >  static int drm_cvt_modes_for_range(struct drm_connector *connector,
+> >  				   const struct drm_edid *drm_edid,
+> >  				   const struct detailed_timing *timing)
+> > @@ -3594,7 +3623,11 @@ do_inferred_modes(const struct detailed_timing *timing, void *c)
+> >  		return; /* GTF not defined yet */
+> >  
+> >  	switch (range->flags) {
+> > -	case DRM_EDID_SECONDARY_GTF_SUPPORT_FLAG: /* XXX could do more */
+> > +	case DRM_EDID_SECONDARY_GTF_SUPPORT_FLAG:
+> > +		closure->modes += drm_gtf2_modes_for_range(closure->connector,
+> > +							   closure->drm_edid,
+> > +							   timing);
+> > +		break;
+> >  	case DRM_EDID_DEFAULT_GTF_SUPPORT_FLAG:
+> 
+> Additionally, per spec:
+> 
+> * Default GTF supported if bit 0 in Feature Support Byte at address 18h = 1
+> 
+> * Secondary GTF supported --- requires support for Default GTF
+> 
+> So I guess both of these would need the edid->features &
+> DRM_EDID_FEATURE_DEFAULT_GTF check?
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+There is one actually
+	if (drm_edid->edid->features & DRM_EDID_FEATURE_DEFAULT_GTF)
+	                num_modes += add_inferred_modes(connector, drm_edid);
 
-> ---
->  drivers/gpu/drm/drm_edid.c | 25 ++++++++-----------------
->  1 file changed, 8 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 0fe06e5fd6e0..e7f46260dfe7 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -1572,15 +1572,6 @@ struct drm_edid {
->  	const struct edid *edid;
->  };
->=20=20
-> -static bool version_greater(const struct drm_edid *drm_edid,
-> -			    u8 version, u8 revision)
-> -{
-> -	const struct edid *edid =3D drm_edid->edid;
-> -
-> -	return edid->version > version ||
-> -		(edid->version =3D=3D version && edid->revision > revision);
-> -}
-> -
->  static int edid_hfeeodb_extension_block_count(const struct edid *edid);
->=20=20
->  static int edid_hfeeodb_block_count(const struct edid *edid)
-> @@ -3652,7 +3643,7 @@ do_inferred_modes(const struct detailed_timing *tim=
-ing, void *c)
->  						  closure->drm_edid,
->  						  timing);
->=20=20
-> -	if (!version_greater(closure->drm_edid, 1, 1))
-> +	if (closure->drm_edid->edid->revision < 2)
->  		return; /* GTF not defined yet */
->=20=20
->  	switch (range->flags) {
-> @@ -3667,7 +3658,7 @@ do_inferred_modes(const struct detailed_timing *tim=
-ing, void *c)
->  							  timing);
->  		break;
->  	case DRM_EDID_CVT_SUPPORT_FLAG:
-> -		if (!version_greater(closure->drm_edid, 1, 3))
-> +		if (closure->drm_edid->edid->revision < 4)
->  			break;
->=20=20
->  		closure->modes +=3D drm_cvt_modes_for_range(closure->connector,
-> @@ -3688,7 +3679,7 @@ static int add_inferred_modes(struct drm_connector =
-*connector,
->  		.drm_edid =3D drm_edid,
->  	};
->=20=20
-> -	if (version_greater(drm_edid, 1, 0))
-> +	if (drm_edid->edid->revision >=3D 1)
->  		drm_for_each_detailed_block(drm_edid, do_inferred_modes, &closure);
->=20=20
->  	return closure.modes;
-> @@ -3765,7 +3756,7 @@ static int add_established_modes(struct drm_connect=
-or *connector,
->  		}
->  	}
->=20=20
-> -	if (version_greater(drm_edid, 1, 0))
-> +	if (edid->revision >=3D 1)
->  		drm_for_each_detailed_block(drm_edid, do_established_modes,
->  					    &closure);
->=20=20
-> @@ -3820,7 +3811,7 @@ static int add_standard_modes(struct drm_connector =
-*connector,
->  		}
->  	}
->=20=20
-> -	if (version_greater(drm_edid, 1, 0))
-> +	if (drm_edid->edid->revision >=3D 1)
->  		drm_for_each_detailed_block(drm_edid, do_standard_modes,
->  					    &closure);
->=20=20
-> @@ -3900,7 +3891,7 @@ add_cvt_modes(struct drm_connector *connector, cons=
-t struct drm_edid *drm_edid)
->  		.drm_edid =3D drm_edid,
->  	};
->=20=20
-> -	if (version_greater(drm_edid, 1, 2))
-> +	if (drm_edid->edid->revision >=3D 3)
->  		drm_for_each_detailed_block(drm_edid, do_cvt_mode, &closure);
->=20=20
->  	/* XXX should also look for CVT codes in VTB blocks */
-> @@ -3955,7 +3946,7 @@ static int add_detailed_modes(struct drm_connector =
-*connector,
->  		.quirks =3D quirks,
->  	};
->=20=20
-> -	if (version_greater(drm_edid, 1, 3))
-> +	if (drm_edid->edid->revision >=3D 4)
->  		closure.preferred =3D true; /* first detailed timing is always preferr=
-ed */
->  	else
->  		closure.preferred =3D
-> @@ -6144,7 +6135,7 @@ static void drm_get_vrr_range(struct drm_connector =
-*connector,
->  		.drm_edid =3D drm_edid,
->  	};
->=20=20
-> -	if (!version_greater(drm_edid, 1, 3))
-> +	if (drm_edid->edid->revision < 4)
->  		return;
->=20=20
->  	if (!(drm_edid->edid->features & DRM_EDID_FEATURE_CONTINUOUS_FREQ))
+Though as I think I mentioned in some of these patches a lot of
+real world EDIDs don't set the default gtf/continuous frequency
+bit but still include a range descriptor. While illegal, I think
+a reasonable interpretation might be that they want us to use 
+the formula specified in the range descriptor for the non-DMT
+standard timings, while still indicating that other timings
+generated by said formula are not supported. 
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> Other than that,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> 
+> >  		closure->modes += drm_gtf_modes_for_range(closure->connector,
+> >  							  closure->drm_edid,
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Ville Syrjälä
+Intel
