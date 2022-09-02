@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C51F5AB2B7
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 16:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B5E5AB2EE
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 16:05:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D75810E856;
-	Fri,  2 Sep 2022 14:02:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C396510E858;
+	Fri,  2 Sep 2022 14:05:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4E2210E846;
- Fri,  2 Sep 2022 14:02:04 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4336210E858
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 14:05:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662127324; x=1693663324;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5v9CULFfuPfdm9D8YPgxPVfK73ifSs/YqwYUxK0SCWA=;
- b=hmAw8MGahh8qNec1IsuVNm6z/N8ayBQblATT7dokSR+DDqOGd3KPDxEP
- RiQhO9u3KZJW2whMB+36yAH2dn8+6j7wUSgG51k06YHfngaYuPmq2De7t
- 74vT9aX8PJo5Pxxf3l8l57rny7UP7I8JlUMrAhPxZyVYdqdPb4/biIMVO
- FZU40nGHPK8c+o0MbJETebi0PCB8lO88JuAI1JuvH9HA7qXdXK/8yX78U
- CO0K9xhCiOPNMeocUugPVbqquU7AHcbpePzdJZ9Wo3E0FfkR4sJSlmR6A
- ogZgjkaz4xwxKRYu/dgNr7vBt0IW3XoX/c+mPXxq5NiQ0Ks3IQxbs8j+s Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="359943562"
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="359943562"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 07:02:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="702147263"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by FMSMGA003.fm.intel.com with SMTP; 02 Sep 2022 07:02:01 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 02 Sep 2022 17:02:00 +0300
-Date: Fri, 2 Sep 2022 17:02:00 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YxIM2EmoMc1ElSCK@intel.com>
-References: <20220826213501.31490-1-ville.syrjala@linux.intel.com>
- <20220826213501.31490-9-ville.syrjala@linux.intel.com>
- <87edwtevvz.fsf@intel.com>
+ t=1662127543; x=1693663543;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=hgLGdM0QO7kC7hrczTaKyWL+RiWxkoCNfd0veuexgFk=;
+ b=EclfN4HoDSG3KzF+bfYHXS00TWv1ZnlXCYksIsKpOBDqUic3UEmS8Gs6
+ c6KYbjeAsfkOEpBNoGbW1xRSoNgD4xmYrvhRLaC4/lnPdHwGNKcmKTpKj
+ rbv8lNp1N4fN7tpCFIztD6ocyqRBWymEFRCEvchOtuiQmC40JeU6btAFM
+ xKvWXpZ901ImetOrEV6siQwYEJ4zslvtHpphPtwpA4PUcV7abdTELqYUL
+ 7OWscPOYjj4KC9XMVuFiIpTW1qEoDCGmPFQvWdpo9gIUUkz/VyiQNtlHY
+ tytAYOn23+t69zGTAQ2ep0HCQQRYcuXVWPwXdrqTWJmH6NnNw89xHKo8k g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="276388061"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="276388061"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 07:05:42 -0700
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674365492"
+Received: from svandene-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.245])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 07:05:41 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220715202044.11153-8-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220715202044.11153-1-ville.syrjala@linux.intel.com>
+ <20220715202044.11153-8-ville.syrjala@linux.intel.com>
+Date: Fri, 02 Sep 2022 17:05:30 +0300
+Message-ID: <875yi5eus5.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87edwtevvz.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 08/11] drm/edid: Use the correct formula for
- standard timings
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 07/12] drm/i915: Document the sets of bits
+ in the driver features block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,128 +60,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 02, 2022 at 04:41:36PM +0300, Jani Nikula wrote:
-> On Sat, 27 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Prefer the timing formula indicated by the range
-> > descriptor for generating the non-DMT standard timings.
-> >
-> > Previously we just used CVT for all EDID 1.4 continuous
-> > frequency displays without even checking if the range
-> > descriptor indicates otherwise. Now we check the range
-> > descriptor first, and fall back to CVT if nothing else
-> > was indicated. EDID 1.4 more or less deprecates GTF/GTF2
-> > but there are still a lot of 1.4 EDIDs out there that
-> > don't advertise CVT support, so seems safer to use the
-> > formula the EDID actually reports as supported.
-> >
-> > For EDID 1.3 we use GTF2 if indicated (as before), and for
-> > EDID 1.2+ we now just use GTF without even checking the
-> > feature flag. There seem to be quite a few EDIDs out there that
-> > don't set the GTF feature flag but still include a GTF range
-> > descriptor and non-DMT standard timings.
-> >
-> > This to me seems to be roughly what appendix B of EDID 1.4
-> > suggests should be done.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_edid.c | 49 +++++++++++++++++++++++++++++++-------
-> >  1 file changed, 41 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> > index fed2bdd55c09..c1c85b9e1208 100644
-> > --- a/drivers/gpu/drm/drm_edid.c
-> > +++ b/drivers/gpu/drm/drm_edid.c
-> > @@ -3077,20 +3077,53 @@ drm_gtf2_2j(const struct drm_edid *drm_edid)
-> >  	return descriptor ? descriptor->data.other_data.data.range.formula.gtf2.j : 0;
-> >  }
-> >  
-> > +static void
-> > +get_timing_level(const struct detailed_timing *descriptor, void *data)
-> > +{
-> > +	int *res = data;
-> > +
-> > +	if (!is_display_descriptor(descriptor, EDID_DETAIL_MONITOR_RANGE))
-> > +		return;
-> > +
-> > +	BUILD_BUG_ON(offsetof(typeof(*descriptor), data.other_data.data.range.flags) != 10);
-> > +
-> > +	switch (descriptor->data.other_data.data.range.flags) {
-> > +	case DRM_EDID_DEFAULT_GTF_SUPPORT_FLAG:
-> > +		*res = LEVEL_GTF;
-> > +		break;
-> > +	case DRM_EDID_SECONDARY_GTF_SUPPORT_FLAG:
-> > +		*res = LEVEL_GTF2;
-> > +		break;
-> > +	case DRM_EDID_CVT_SUPPORT_FLAG:
-> > +		*res = LEVEL_CVT;
-> > +		break;
-> > +	default:
-> > +		break;
-> > +	}
-> > +}
-> > +
-> >  /* Get standard timing level (CVT/GTF/DMT). */
-> >  static int standard_timing_level(const struct drm_edid *drm_edid)
-> >  {
-> >  	const struct edid *edid = drm_edid->edid;
-> >  
-> > -	if (edid->revision >= 2) {
-> > -		if (edid->revision >= 4 && (edid->features & DRM_EDID_FEATURE_DEFAULT_GTF))
-> > -			return LEVEL_CVT;
-> > -		if (drm_gtf2_hbreak(drm_edid))
-> > -			return LEVEL_GTF2;
-> > -		if (edid->features & DRM_EDID_FEATURE_DEFAULT_GTF)
-> > -			return LEVEL_GTF;
-> > +	if (edid->revision >= 4) {
-> > +		/*
-> > +		 * If the range descriptor doesn't
-> > +		 * indicate otherwise default to CVT
-> > +		 */
-> > +		int ret = LEVEL_CVT;
-> > +
-> > +		drm_for_each_detailed_block(drm_edid, get_timing_level, &ret);
-> 
-> Please remind me why it's okay to iterate all of them and pick the last?
-> I mean ret gets overwritten by the last block.
+On Fri, 15 Jul 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Add a few comment documenting the sets of bits in the driver
+> features block. Might make it a bit easier to check against
+> the spec.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-I think there is an implied assumption that there is only
-zero or one of these included in the EDID. While not explicitly
-stated in the spec, there is no mention anywhere what it would
-mean to have multiple different types of range descriptors.
-And so far I didn't come across any EDIDs that would disagree with
-that.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> 
-> Otherwise it all seems okay to me, though I admit my confidence level in
-> this review is considerably lower than for the other patches.
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> 
-> > +
-> > +		return ret;
-> > +	} else if (edid->revision >= 3 && drm_gtf2_hbreak(drm_edid)) {
-> > +		return LEVEL_GTF2;
-> > +	} else if (edid->revision >= 2) {
-> > +		return LEVEL_GTF;
-> > +	} else {
-> > +		return LEVEL_DMT;
-> >  	}
-> > -	return LEVEL_DMT;
-> >  }
-> >  
-> >  /*
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+> ---
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
+drm/i915/display/intel_vbt_defs.h
+> index 8bdb533b5304..c04937aa75b2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -542,6 +542,7 @@ struct bdb_psr {
+>  #define BDB_DRIVER_FEATURE_INT_SDVO_LVDS	3
+>=20=20
+>  struct bdb_driver_features {
+> +	/* Driver bits */
+>  	u8 boot_dev_algorithm:1;
+>  	u8 block_display_switch:1;
+>  	u8 allow_display_switch:1;
+> @@ -556,6 +557,7 @@ struct bdb_driver_features {
+>  	u8 boot_mode_bpp;
+>  	u8 boot_mode_refresh;
+>=20=20
+> +	/* Extended Driver Bits 1 */
+>  	u16 enable_lfp_primary:1;
+>  	u16 selective_mode_pruning:1;
+>  	u16 dual_frequency:1;
+> @@ -571,6 +573,7 @@ struct bdb_driver_features {
+>  	u16 tv_hotplug:1;
+>  	u16 hdmi_config:2;
+>=20=20
+> +	/* Driver Flags 1 */
+>  	u8 static_display:1;					/* 163+ */
+>  	u8 reserved2:7;
+>=20=20
+> @@ -578,8 +581,12 @@ struct bdb_driver_features {
+>  	u16 legacy_crt_max_y;
+>  	u8 legacy_crt_max_refresh;
+>=20=20
+> +	/* Extended Driver Bits 2 */
+>  	u8 hdmi_termination;
+> +
+>  	u8 custom_vbt_version;					/* 165+ */
+> +
+> +	/* Driver Feature Flags */
+>  	u16 rmpm_enabled:1;					/* 165+ */
+>  	u16 s2ddt_enabled:1;					/* 165+ */
+>  	u16 dpst_enabled:1;					/* 165-227 */
 
--- 
-Ville Syrjälä
-Intel
+--=20
+Jani Nikula, Intel Open Source Graphics Center
