@@ -2,78 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5039B5AACA3
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 12:38:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10ABC5AACBC
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 12:47:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BE5D10E7F3;
-	Fri,  2 Sep 2022 10:38:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 928D210E7F4;
+	Fri,  2 Sep 2022 10:47:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com
- [IPv6:2a00:1450:4864:20::22c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA5E510E7F1;
- Fri,  2 Sep 2022 10:38:34 +0000 (UTC)
-Received: by mail-lj1-x22c.google.com with SMTP id z20so1827401ljq.3;
- Fri, 02 Sep 2022 03:38:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date;
- bh=zb5JB4hN023tPDYi3X8LwwwxfrMO5eJ6HDfLqyKNUp4=;
- b=b+3QDVeZ8R7VkX5Bf/lQ/zM5cKpssDiy6sioxY3jw9J59uDY2aLPinjOd5/AfzMPSF
- F25cqjiDBi0zlLf8NewvQzjGLBKLLwe77dGjcGOssNv9QG7GD4v9Y7R5vUVBkwhzJqAt
- W+NgPvhc+LGHFoczAHcg6Xd3RZE5aY0kB0c6sHOthdo2C6I6KgqGlMNMjWhr5LBa7hEJ
- PF8PoWJrMQEbxEgzwwdfZOe63pnK6yiDDUckqcBXrJcCgoCnkkMNTICwsyuKzCch5zAF
- oZnume/cpTmEe8YMT0zAnJRdyZ8FX7N+NEVx+V/5rqxYqoL28d0bRVzC4c7nr4HeYJuG
- nuzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=zb5JB4hN023tPDYi3X8LwwwxfrMO5eJ6HDfLqyKNUp4=;
- b=KCTywGyRFnTP/3C6JtyU2tQjbcq4goVqUdosWJwU50+IB4+/HnVTISCE6HE+CiZNs0
- PTozkTgvFLATSMMx91utEhkN/tSswHQ/QcglzS8yzc3mmI9VyJVBA3uXgB/xk1AQ3viz
- 6JH5SpXhgmqVdVVOWMm/vgT9nyvnZahmXj5xPbR48K3qCaQk1RMaELMPRRmrQBLip3yV
- VspiZGcEbblkrDXOMA5u7MTSSE/N/w8Lc6KwOg6NyO/avtMTbr0C+oHfF34dxXT5yFvF
- R9dWFlE41N2O7MaYSzg4AJOXY3Ry5kruOVYCmugA4NGWubk9hd13OALS3FFDpui5Hlhb
- Gesg==
-X-Gm-Message-State: ACgBeo2BZA7RytIL4km1QxTdlwIU82nbn/vgOZiQwW2AgkrRw2Xfb6YH
- O4/qR4dnApRaEOAInwKs3iM=
-X-Google-Smtp-Source: AA6agR40LFWSHSrrETgLqAmkw4fHaA4WAaccG4Nn66YZ/3AUuSYYBeJUuN4jK3ma7gFMPZa8TWb1KQ==
-X-Received: by 2002:a2e:bf07:0:b0:261:cafb:d4a8 with SMTP id
- c7-20020a2ebf07000000b00261cafbd4a8mr10289818ljr.268.1662115113077; 
- Fri, 02 Sep 2022 03:38:33 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-119-13.nat.spd-mgts.ru.
- [109.252.119.13]) by smtp.googlemail.com with ESMTPSA id
- 5-20020a2eb945000000b00267232d0652sm147092ljs.46.2022.09.02.03.38.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 02 Sep 2022 03:38:32 -0700 (PDT)
-Message-ID: <c89680d0-30ee-f5d7-be68-fa84458df04d@gmail.com>
-Date: Fri, 2 Sep 2022 13:38:30 +0300
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C36A10E7F4
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 10:47:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662115650; x=1693651650;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=a0Ad8Y7NtO7CMDRObzOvpYpEmn/2dg4mNGVKT54Vgqo=;
+ b=U2LPwxieTgARmSPflEYVs7p6l9mmq7WJGXa6BuICqv7Rj10SFrlyHxwK
+ BXbLU3g5XBEn3rEeyXcZEG70vIMpl0s+r/jpmrY3OF8P3Wvr2xN0/9l5+
+ ZZkmCVC7i8dEGUIcsc69HacP1LSj+0TtR+jBhTwss9x0Hfs6P/h9V0x3y
+ 6nnC8XWBay2KgkS4Efi3AcvlMd3prNFPev+dIRYpcKsaqigLXTwbmcEHL
+ T17hc/CNho9blvcfzjheL1u1xtolNZ3i/aY69UM0R8qNlvXw3d3V8R35W
+ 8JAoM7Gp/qMmeD5aqBBKG0NqwSJrKZEEZ6f7eX09/M832PJh8FGIj0mXB g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="294694785"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="294694785"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 03:47:27 -0700
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674310969"
+Received: from svandene-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.245])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 03:47:26 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220818192223.29881-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220818192223.29881-1-ville.syrjala@linux.intel.com>
+ <20220818192223.29881-2-ville.syrjala@linux.intel.com>
+Date: Fri, 02 Sep 2022 13:47:14 +0300
+Message-ID: <871qsuf3yl.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Content-Language: en-US
-From: Dmitry Osipenko <digetx@gmail.com>
-To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-References: <20220831153757.97381-1-dmitry.osipenko@collabora.com>
- <20220831153757.97381-7-dmitry.osipenko@collabora.com>
- <DM5PR11MB1324088635FDE00B0D957816C17B9@DM5PR11MB1324.namprd11.prod.outlook.com>
- <760b999f-b15d-102e-8bc7-c3e69f07f43f@gmail.com>
-In-Reply-To: <760b999f-b15d-102e-8bc7-c3e69f07f43f@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v4 06/21] drm/i915: Prepare to dynamic
- dma-buf locking specification
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/bios: Validate fp_timing
+ terminator presence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,87 +60,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Almeida <daniel.almeida@collabora.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "virtualization@lists.linux-foundation.org"
- <virtualization@lists.linux-foundation.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Gerd Hoffmann <kraxel@redhat.com>,
- "kernel@collabora.com" <kernel@collabora.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Leon Romanovsky <leon@kernel.org>,
- Jason Gunthorpe <jgg@ziepe.ca>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- Russell King <linux@armlinux.org.uk>, Daniel Stone <daniel@fooishbar.org>,
- Gustavo Padovan <gustavo.padovan@collabora.com>, Chia-I Wu <olvaffe@gmail.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Gurchetan Singh <gurchetansingh@chromium.org>, "Gross,
- Jurgen" <jgross@suse.com>, David Airlie <airlied@linux.ie>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Tomi Valkeinen <tomba@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Tomasz Figa <tfiga@chromium.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Qiang Yu <yuq825@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>,
- Lucas Stach <l.stach@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-02.09.2022 13:31, Dmitry Osipenko пишет:
-> 01.09.2022 17:02, Ruhl, Michael J пишет:
-> ...
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> @@ -331,7 +331,19 @@ static void __i915_gem_free_objects(struct
->>> drm_i915_private *i915,
->>> 			continue;
->>> 		}
->>>
->>> +		/*
->>> +		 * dma_buf_unmap_attachment() requires reservation to be
->>> +		 * locked. The imported GEM shouldn't share reservation lock,
->>> +		 * so it's safe to take the lock.
->>> +		 */
->>> +		if (obj->base.import_attach)
->>> +			i915_gem_object_lock(obj, NULL);
->>
->> There is a lot of stuff going here.  Taking the lock may be premature...
->>
->>> 		__i915_gem_object_pages_fini(obj);
->>
->> The i915_gem_dmabuf.c:i915_gem_object_put_pages_dmabuf is where
->> unmap_attachment is actually called, would it make more sense to make
->> do the locking there?
-> 
-> The __i915_gem_object_put_pages() is invoked with a held reservation
-> lock, while freeing object is a special time when we know that GEM is
-> unused.
-> 
-> The __i915_gem_free_objects() was taking the lock two weeks ago until
-> the change made Chris Wilson [1] reached linux-next.
-> 
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=2826d447fbd60e6a05e53d5f918bceb8c04e315c
-> 
-> I don't think we can take the lock within
-> i915_gem_object_put_pages_dmabuf(), it may/should deadlock other code paths.
+On Thu, 18 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Validate the LFP data block a bit hardwer by making sure the
+> fp_timing terminators (0xffff) are where we expect them to be.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On the other hand, we can check whether the GEM's refcount number is
-zero in i915_gem_object_put_pages_dmabuf() and then take the lock if
-it's zero.
+I wonder if it would be good to debug log at each of the "return false"
+sites in fixup_lfp_data_ptrs() and validate_lfp_data_ptrs(). Anyway,
+that's a separate change.
 
-Also, seems it should be possible just to bail out from
-i915_gem_object_put_pages_dmabuf() if refcount=0. The further
-drm_prime_gem_destroy() will take care of unmapping. Perhaps this could
-be the best option, I'll give it a test.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 60 ++++++++++++-----------
+>  1 file changed, 32 insertions(+), 28 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 198a2f4920cc..f1f861da9e93 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -135,18 +135,6 @@ static u32 raw_block_offset(const void *bdb, enum bd=
+b_block_id section_id)
+>  	return block - bdb;
+>  }
+>=20=20
+> -/* size of the block excluding the header */
+> -static u32 raw_block_size(const void *bdb, enum bdb_block_id section_id)
+> -{
+> -	const void *block;
+> -
+> -	block =3D find_raw_section(bdb, section_id);
+> -	if (!block)
+> -		return 0;
+> -
+> -	return get_blocksize(block);
+> -}
+> -
+>  struct bdb_block_entry {
+>  	struct list_head node;
+>  	enum bdb_block_id section_id;
+> @@ -231,9 +219,14 @@ static bool validate_lfp_data_ptrs(const void *bdb,
+>  {
+>  	int fp_timing_size, dvo_timing_size, panel_pnp_id_size, panel_name_size;
+>  	int data_block_size, lfp_data_size;
+> +	const void *data_block;
+>  	int i;
+>=20=20
+> -	data_block_size =3D raw_block_size(bdb, BDB_LVDS_LFP_DATA);
+> +	data_block =3D find_raw_section(bdb, BDB_LVDS_LFP_DATA);
+> +	if (!data_block)
+> +		return false;
+> +
+> +	data_block_size =3D get_blocksize(data_block);
+>  	if (data_block_size =3D=3D 0)
+>  		return false;
+>=20=20
+> @@ -261,21 +254,6 @@ static bool validate_lfp_data_ptrs(const void *bdb,
+>  	if (16 * lfp_data_size > data_block_size)
+>  		return false;
+>=20=20
+> -	/*
+> -	 * Except for vlv/chv machines all real VBTs seem to have 6
+> -	 * unaccounted bytes in the fp_timing table. And it doesn't
+> -	 * appear to be a really intentional hole as the fp_timing
+> -	 * 0xffff terminator is always within those 6 missing bytes.
+> -	 */
+> -	if (fp_timing_size + dvo_timing_size + panel_pnp_id_size !=3D lfp_data_=
+size &&
+> -	    fp_timing_size + 6 + dvo_timing_size + panel_pnp_id_size !=3D lfp_d=
+ata_size)
+> -		return false;
+> -
+> -	if (ptrs->ptr[0].fp_timing.offset + fp_timing_size > ptrs->ptr[0].dvo_t=
+iming.offset ||
+> -	    ptrs->ptr[0].dvo_timing.offset + dvo_timing_size !=3D ptrs->ptr[0].=
+panel_pnp_id.offset ||
+> -	    ptrs->ptr[0].panel_pnp_id.offset + panel_pnp_id_size !=3D lfp_data_=
+size)
+> -		return false;
+> -
+>  	/* make sure the table entries have uniform size */
+>  	for (i =3D 1; i < 16; i++) {
+>  		if (ptrs->ptr[i].fp_timing.table_size !=3D fp_timing_size ||
+> @@ -289,6 +267,23 @@ static bool validate_lfp_data_ptrs(const void *bdb,
+>  			return false;
+>  	}
+>=20=20
+> +	/*
+> +	 * Except for vlv/chv machines all real VBTs seem to have 6
+> +	 * unaccounted bytes in the fp_timing table. And it doesn't
+> +	 * appear to be a really intentional hole as the fp_timing
+> +	 * 0xffff terminator is always within those 6 missing bytes.
+> +	 */
+> +	if (fp_timing_size + 6 + dvo_timing_size + panel_pnp_id_size =3D=3D lfp=
+_data_size)
+> +		fp_timing_size +=3D 6;
+> +
+> +	if (fp_timing_size + dvo_timing_size + panel_pnp_id_size !=3D lfp_data_=
+size)
+> +		return false;
+> +
+> +	if (ptrs->ptr[0].fp_timing.offset + fp_timing_size !=3D ptrs->ptr[0].dv=
+o_timing.offset ||
+> +	    ptrs->ptr[0].dvo_timing.offset + dvo_timing_size !=3D ptrs->ptr[0].=
+panel_pnp_id.offset ||
+> +	    ptrs->ptr[0].panel_pnp_id.offset + panel_pnp_id_size !=3D lfp_data_=
+size)
+> +		return false;
+> +
+>  	/* make sure the tables fit inside the data block */
+>  	for (i =3D 0; i < 16; i++) {
+>  		if (ptrs->ptr[i].fp_timing.offset + fp_timing_size > data_block_size ||
+> @@ -300,6 +295,15 @@ static bool validate_lfp_data_ptrs(const void *bdb,
+>  	if (ptrs->panel_name.offset + 16 * panel_name_size > data_block_size)
+>  		return false;
+>=20=20
+> +	/* make sure fp_timing terminators are present at expected locations */
+> +	for (i =3D 0; i < 16; i++) {
+> +		const u16 *t =3D data_block + ptrs->ptr[i].fp_timing.offset +
+> +			fp_timing_size - 2;
+> +
+> +		if (*t !=3D 0xffff)
+> +			return false;
+> +	}
+> +
+>  	return true;
+>  }
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
