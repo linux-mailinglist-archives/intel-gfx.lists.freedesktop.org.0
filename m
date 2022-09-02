@@ -1,49 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F148D5AA9A2
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 10:12:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DFE05AA9B4
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 10:15:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37EDE10E79D;
-	Fri,  2 Sep 2022 08:12:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E6A10E7AC;
+	Fri,  2 Sep 2022 08:15:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A63110E79D
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 08:12:46 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C05D410E7AC
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 08:15:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662106367; x=1693642367;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=DIxD3BktQ7pJsO8QhmxWN3Yth0khTS+KJ0ONk64B+i8=;
- b=RGfeUQk7uh5/ZQ7/p56S4AQRLK1HWYbcMZmdTQKt/YKj9M1A0cx+zWG3
- dDRoWQzRqoP5sA+Gg0+m9s2GzEt9ZMYdnDTFtJPiGdREoBl0OtBOdM2cq
- r/mhlrYA9foBj7/wxxy6qZxlI+YnHny/LKfUgtN4RfQcNWFoobMeKjRNT
- hcgZhbyaQpo6+h7105pXKxEKSBds4WFiThnNQ6n7YG5DuJ6kbzOUy5aKh
- AJrlXi5vMalDKjRj90YlnrVK6OOUqSJePJOeWoGj3UxgUtojq7xVUFWIM
- T6XN4h+Qg+/7eEGelWwVDBuQZlDHS2BisWyWeh7fZisFuwyGp6/kFVX6j g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="275675124"
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="275675124"
+ t=1662106516; x=1693642516;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=qe+4crHiIlG066JEVs7HDTNWj+lbHgW13jUDAFtwXRg=;
+ b=lYIS/UNUhlaqpAQcHhmof1o+9tuC5yx0d+2t9EtohXC1vVx2gNbrmvam
+ mTf/lrYb5erSLVMJe8hWU6/YgWgircXCMy2ccXBBMAl53Qxi3VwvFava9
+ lCOsO0xJO/8nH5UDgXaod60D1M1Knt4EkAeJIP16Is2l3llUz0LsgF2SW
+ SudxV931b+9I6IYtHTu6fU7gbnor+PQkdnGwglUTUBzmluXO3N54v3rAm
+ 12rwaMgT1wADG6vBmlKYgctZkPwTbZ9eyhGx45IrpFQURyekcp2Dt0blV
+ dTPxTbKnukPnSI8OgDdowRfbaur59ARAVftxyPa2UYSIw6fklg+wF3et3 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="297214743"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="297214743"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 01:12:40 -0700
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674259100"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 01:15:02 -0700
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674259959"
+Received: from svandene-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.245])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 01:12:38 -0700
-Date: Fri, 2 Sep 2022 11:13:19 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YxG7HwaE0zSjzDk/@intel.com>
-References: <20220901113011.12080-1-stanislav.lisovskiy@intel.com>
- <87wnanb8c3.fsf@intel.com>
+ 02 Sep 2022 01:15:00 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220902070319.15395-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220902070319.15395-1-ville.syrjala@linux.intel.com>
+Date: Fri, 02 Sep 2022 11:14:49 +0300
+Message-ID: <87czcefb0m.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87wnanb8c3.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Start using REG_BIT* macros
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Implement
+ WaEdpLinkRateDataReload
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,74 +59,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 01, 2022 at 03:14:04PM +0300, Jani Nikula wrote:
-> On Thu, 01 Sep 2022, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
-> > Lets start to use REG_BIT* macros, instead of (x << 0) like expressions.
-> 
-> Please be more specific in the commit subject, it's not like we haven't
-> started using REG_BIT in general, ever since we introduced it! ;) So
-> refer to CDCLK_CTL.
+On Fri, 02 Sep 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> A lot of modern laptops use the Parade PS8461E MUX for eDP
+> switching. The MUX can operate in jitter cleaning mode or
+> redriver mode, the first one resulting in higher link
+> quality. The jitter cleaning mode needs to know the link
+> rate used and the MUX achieves this by snooping the
+> LINK_BW_SET, LINK_RATE_SELECT and SUPPORTED_LINK_RATES
+> DPCD accesses.
+>
+> When the MUX is powered down (seems this can happen whenever
+> the display is turned off) it loses track of the snooped
+> link rates so when we do the LINK_RATE_SELECT write it no
+> longer knowns which link rate we're selecting, and thus it
+> falls back to the lower quality redriver mode. This results
+> in unstable high link rates (eg. usually 8.1Gbps link rate
+> no longer works correctly).
+>
+> In order to avoid all that let's re-snoop SUPPORTED_LINK_RATES
+> from the sink at the start of every link training.
+>
+> Unfortunately we don't have a way to detect the presence of
+> the MUX. It looks like the set of laptops equipped with this
+> MUX is fairly large and contains devices from multiple
+> manufacturers. It may also still be growing with new models.
+> So a quirk doesn't seem like a very easily maintainable
+> option, thus we shall attempt to do this unconditionally on
+> all machines that use LINK_RATE_SELECT. Hopefully this extra
+> DPCD read doesn't cause issues for any unaffected machine.
+> If that turns out to be the case we'll need to convert this
+> into a quirk in the future.
+>
+> Cc: stable@vger.kernel.org
+> Cc: Jason A. Donenfeld <Jason@zx2c4.com>
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6205
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Yeah, agree looks too generic, it was previsouly part of the series, 
-so got edited "a bit" :)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> 
-> Please just update the subject while pushing, no need to resend for
-> that,
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> 
-> PS. Could I also persuade you to split out some of the cdclk register
-> macros to a new display/intel_cdclk_regs.h header? E.g. CDCLK_CTL is
-> only used in intel_cdclk.c (and gvt).
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 9feaf1a589f3..d213d8ad1ea5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -671,6 +671,28 @@ intel_dp_prepare_link_train(struct intel_dp *intel_d=
+p,
+>  	intel_dp_compute_rate(intel_dp, crtc_state->port_clock,
+>  			      &link_bw, &rate_select);
+>=20=20
+> +	/*
+> +	 * WaEdpLinkRateDataReload
+> +	 *
+> +	 * Parade PS8461E MUX (used on varius TGL+ laptops) needs
+> +	 * to snoop the link rates reported by the sink when we
+> +	 * use LINK_RATE_SET in order to operate in jitter cleaning
+> +	 * mode (as opposed to redriver mode). Unfortunately it
+> +	 * loses track of the snooped link rates when powered down,
+> +	 * so we need to make it re-snoop often. Without this high
+> +	 * link rates are not stable.
+> +	 */
+> +	if (!link_bw) {
+> +		struct intel_connector *connector =3D intel_dp->attached_connector;
+> +		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
+> +
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Reloading eDP link rates\n",
+> +			    connector->base.base.id, connector->base.name);
+> +
+> +		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
+> +				 sink_rates, sizeof(sink_rates));
+> +	}
+> +
+>  	if (link_bw)
+>  		drm_dbg_kms(&i915->drm,
+>  			    "[ENCODER:%d:%s] Using LINK_BW_SET value %02x\n",
 
-Well need to take a look.. Shouldn't be very complex, I hope.
-
-Stan
-
-> 
-> >
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_reg.h | 20 ++++++++++----------
-> >  1 file changed, 10 insertions(+), 10 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index 5e6239864c35..d82f14979fdf 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -7077,16 +7077,16 @@ enum skl_power_gate {
-> >  
-> >  /* CDCLK_CTL */
-> >  #define CDCLK_CTL			_MMIO(0x46000)
-> > -#define  CDCLK_FREQ_SEL_MASK		(3 << 26)
-> > -#define  CDCLK_FREQ_450_432		(0 << 26)
-> > -#define  CDCLK_FREQ_540			(1 << 26)
-> > -#define  CDCLK_FREQ_337_308		(2 << 26)
-> > -#define  CDCLK_FREQ_675_617		(3 << 26)
-> > -#define  BXT_CDCLK_CD2X_DIV_SEL_MASK	(3 << 22)
-> > -#define  BXT_CDCLK_CD2X_DIV_SEL_1	(0 << 22)
-> > -#define  BXT_CDCLK_CD2X_DIV_SEL_1_5	(1 << 22)
-> > -#define  BXT_CDCLK_CD2X_DIV_SEL_2	(2 << 22)
-> > -#define  BXT_CDCLK_CD2X_DIV_SEL_4	(3 << 22)
-> > +#define  CDCLK_FREQ_SEL_MASK		REG_GENMASK(27, 26)
-> > +#define  CDCLK_FREQ_450_432		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 0)
-> > +#define  CDCLK_FREQ_540		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 1)
-> > +#define  CDCLK_FREQ_337_308		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 2)
-> > +#define  CDCLK_FREQ_675_617		REG_FIELD_PREP(CDCLK_FREQ_SEL_MASK, 3)
-> > +#define  BXT_CDCLK_CD2X_DIV_SEL_MASK	REG_GENMASK(23, 22)
-> > +#define  BXT_CDCLK_CD2X_DIV_SEL_1	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 0)
-> > +#define  BXT_CDCLK_CD2X_DIV_SEL_1_5	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 1)
-> > +#define  BXT_CDCLK_CD2X_DIV_SEL_2	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 2)
-> > +#define  BXT_CDCLK_CD2X_DIV_SEL_4	REG_FIELD_PREP(BXT_CDCLK_CD2X_DIV_SEL_MASK, 3)
-> >  #define  BXT_CDCLK_CD2X_PIPE(pipe)	((pipe) << 20)
-> >  #define  CDCLK_DIVMUX_CD_OVERRIDE	(1 << 19)
-> >  #define  BXT_CDCLK_CD2X_PIPE_NONE	BXT_CDCLK_CD2X_PIPE(3)
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+--=20
+Jani Nikula, Intel Open Source Graphics Center
