@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA7E45AB2B2
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 16:02:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C51F5AB2B7
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 16:02:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD4A810E846;
-	Fri,  2 Sep 2022 14:02:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D75810E856;
+	Fri,  2 Sep 2022 14:02:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ECC010E846
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 14:01:59 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4E2210E846;
+ Fri,  2 Sep 2022 14:02:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662127319; x=1693663319;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=8Tlp9hfK7Sbd3mYGYR8KiW+DfNK7K5jeTPbcRVFd3A0=;
- b=O3kQNO8hVci6otTDgfEgJiJQ3MvtCqJyP0R37ztxOf2NeBv36mq4Y/+p
- gwVIsjH2IpHGtNN+gppnnHFPhR28+NFLUjCs2dgVNB0ctOwbjuqaP4VZq
- MkF/Erxu9Cl+e8uBZoTZFFgrVD6G54o/otY5ebEulBZDBWCzhJP35expr
- 0JmpFUM1j80yQUjvYzxszNoXD9e8O5kGEY9OrAVvLwQYa5gPqJUBQis9z
- 0YKMPsizkdhtG0sn1nbFpGFVB6TudC/ZpPRf9I3qwO225pbNiPlHm7r3k
- klkumODyHQivn34ZpRBOdVy9+JeVyZlLbflOX5HvjATwwIq03mk0JJzvR w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="276387065"
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="276387065"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 07:01:58 -0700
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="642916856"
-Received: from svandene-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.55.245])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 07:01:57 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220715202044.11153-12-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220715202044.11153-1-ville.syrjala@linux.intel.com>
- <20220715202044.11153-12-ville.syrjala@linux.intel.com>
-Date: Fri, 02 Sep 2022 17:01:45 +0300
-Message-ID: <878rn1euye.fsf@intel.com>
+ t=1662127324; x=1693663324;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=5v9CULFfuPfdm9D8YPgxPVfK73ifSs/YqwYUxK0SCWA=;
+ b=hmAw8MGahh8qNec1IsuVNm6z/N8ayBQblATT7dokSR+DDqOGd3KPDxEP
+ RiQhO9u3KZJW2whMB+36yAH2dn8+6j7wUSgG51k06YHfngaYuPmq2De7t
+ 74vT9aX8PJo5Pxxf3l8l57rny7UP7I8JlUMrAhPxZyVYdqdPb4/biIMVO
+ FZU40nGHPK8c+o0MbJETebi0PCB8lO88JuAI1JuvH9HA7qXdXK/8yX78U
+ CO0K9xhCiOPNMeocUugPVbqquU7AHcbpePzdJZ9Wo3E0FfkR4sJSlmR6A
+ ogZgjkaz4xwxKRYu/dgNr7vBt0IW3XoX/c+mPXxq5NiQ0Ks3IQxbs8j+s Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="359943562"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="359943562"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 07:02:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="702147263"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by FMSMGA003.fm.intel.com with SMTP; 02 Sep 2022 07:02:01 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 02 Sep 2022 17:02:00 +0300
+Date: Fri, 2 Sep 2022 17:02:00 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YxIM2EmoMc1ElSCK@intel.com>
+References: <20220826213501.31490-1-ville.syrjala@linux.intel.com>
+ <20220826213501.31490-9-ville.syrjala@linux.intel.com>
+ <87edwtevvz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 11/12] drm/i915: WARN if a port should use
- VBT provided vswing tables
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87edwtevvz.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 08/11] drm/edid: Use the correct formula for
+ standard timings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,47 +62,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 15 Jul 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> We don't parse the VBT vswing/preemphassis tables at all currently.
-> Let's WARN if a port wants to use them so we get a heads up that
-> whether we really need to implement this stuff or not. My
-> current stash contains no VBTs with this bit set.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 51dde5bfd956..cd86b65055ef 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -2661,6 +2661,10 @@ static void parse_ddi_port(struct intel_bios_encod=
-er_data *devdata)
->  		return;
->  	}
->=20=20
-> +	drm_WARN(&i915->drm, child->use_vbt_vswing,
-> +		 "Port %c asks to use VBT vswing/preemph tables\n",
-> +		 port_name(port));
-> +
+On Fri, Sep 02, 2022 at 04:41:36PM +0300, Jani Nikula wrote:
+> On Sat, 27 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Prefer the timing formula indicated by the range
+> > descriptor for generating the non-DMT standard timings.
+> >
+> > Previously we just used CVT for all EDID 1.4 continuous
+> > frequency displays without even checking if the range
+> > descriptor indicates otherwise. Now we check the range
+> > descriptor first, and fall back to CVT if nothing else
+> > was indicated. EDID 1.4 more or less deprecates GTF/GTF2
+> > but there are still a lot of 1.4 EDIDs out there that
+> > don't advertise CVT support, so seems safer to use the
+> > formula the EDID actually reports as supported.
+> >
+> > For EDID 1.3 we use GTF2 if indicated (as before), and for
+> > EDID 1.2+ we now just use GTF without even checking the
+> > feature flag. There seem to be quite a few EDIDs out there that
+> > don't set the GTF feature flag but still include a GTF range
+> > descriptor and non-DMT standard timings.
+> >
+> > This to me seems to be roughly what appendix B of EDID 1.4
+> > suggests should be done.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_edid.c | 49 +++++++++++++++++++++++++++++++-------
+> >  1 file changed, 41 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> > index fed2bdd55c09..c1c85b9e1208 100644
+> > --- a/drivers/gpu/drm/drm_edid.c
+> > +++ b/drivers/gpu/drm/drm_edid.c
+> > @@ -3077,20 +3077,53 @@ drm_gtf2_2j(const struct drm_edid *drm_edid)
+> >  	return descriptor ? descriptor->data.other_data.data.range.formula.gtf2.j : 0;
+> >  }
+> >  
+> > +static void
+> > +get_timing_level(const struct detailed_timing *descriptor, void *data)
+> > +{
+> > +	int *res = data;
+> > +
+> > +	if (!is_display_descriptor(descriptor, EDID_DETAIL_MONITOR_RANGE))
+> > +		return;
+> > +
+> > +	BUILD_BUG_ON(offsetof(typeof(*descriptor), data.other_data.data.range.flags) != 10);
+> > +
+> > +	switch (descriptor->data.other_data.data.range.flags) {
+> > +	case DRM_EDID_DEFAULT_GTF_SUPPORT_FLAG:
+> > +		*res = LEVEL_GTF;
+> > +		break;
+> > +	case DRM_EDID_SECONDARY_GTF_SUPPORT_FLAG:
+> > +		*res = LEVEL_GTF2;
+> > +		break;
+> > +	case DRM_EDID_CVT_SUPPORT_FLAG:
+> > +		*res = LEVEL_CVT;
+> > +		break;
+> > +	default:
+> > +		break;
+> > +	}
+> > +}
+> > +
+> >  /* Get standard timing level (CVT/GTF/DMT). */
+> >  static int standard_timing_level(const struct drm_edid *drm_edid)
+> >  {
+> >  	const struct edid *edid = drm_edid->edid;
+> >  
+> > -	if (edid->revision >= 2) {
+> > -		if (edid->revision >= 4 && (edid->features & DRM_EDID_FEATURE_DEFAULT_GTF))
+> > -			return LEVEL_CVT;
+> > -		if (drm_gtf2_hbreak(drm_edid))
+> > -			return LEVEL_GTF2;
+> > -		if (edid->features & DRM_EDID_FEATURE_DEFAULT_GTF)
+> > -			return LEVEL_GTF;
+> > +	if (edid->revision >= 4) {
+> > +		/*
+> > +		 * If the range descriptor doesn't
+> > +		 * indicate otherwise default to CVT
+> > +		 */
+> > +		int ret = LEVEL_CVT;
+> > +
+> > +		drm_for_each_detailed_block(drm_edid, get_timing_level, &ret);
+> 
+> Please remind me why it's okay to iterate all of them and pick the last?
+> I mean ret gets overwritten by the last block.
 
-I was hoping to clean parse_ddi_port() of all this kind of informative
-stuff and shove it to print_ddi_port().
+I think there is an implied assumption that there is only
+zero or one of these included in the EDID. While not explicitly
+stated in the spec, there is no mention anywhere what it would
+mean to have multiple different types of range descriptors.
+And so far I didn't come across any EDIDs that would disagree with
+that.
 
-BR,
-Jani.
+> 
+> Otherwise it all seems okay to me, though I admit my confidence level in
+> this review is considerably lower than for the other patches.
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> > +
+> > +		return ret;
+> > +	} else if (edid->revision >= 3 && drm_gtf2_hbreak(drm_edid)) {
+> > +		return LEVEL_GTF2;
+> > +	} else if (edid->revision >= 2) {
+> > +		return LEVEL_GTF;
+> > +	} else {
+> > +		return LEVEL_DMT;
+> >  	}
+> > -	return LEVEL_DMT;
+> >  }
+> >  
+> >  /*
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
->  	if (i915->vbt.ports[port]) {
->  		drm_dbg_kms(&i915->drm,
->  			    "More than one child device for port %c in VBT, using the first.\=
-n",
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Ville Syrjälä
+Intel
