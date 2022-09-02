@@ -2,100 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BDEF5AE87F
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:36:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D58AD5AE84A
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:34:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18EEA10E691;
-	Tue,  6 Sep 2022 12:36:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD3410E660;
+	Tue,  6 Sep 2022 12:33:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F22F10E7D5
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 09:31:31 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id s23so907537wmj.4
- for <intel-gfx@lists.freedesktop.org>; Fri, 02 Sep 2022 02:31:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date;
- bh=1gh2cH8+/vu9+O44Ntzb/QjlvRTOJYihF+Y3Qm1SXrI=;
- b=X4/4Zk55Ukbyir5IW5L08w5Q+fBtLNiG6CONxZPYH5OrhlCyRaaYThfUPWsbJipvYT
- swTNjLlHybyUWC/dfqbdAW5Ah7r6Ymh4/g/oVrerD+13326oWvDv3zz6rydOMv/zNWXn
- LtHud4zBf5xTIhynm9koMjOkNsLG74eqnxnm8RKGFRPGx7mBVVLJnC9rPLFS1X7yRHuD
- 1yX57RVfuS/GckEUMvFGVsy+Mf5mTMSC+0BUZDK65PEfhodItsbyEKzD56Ku/yT7NOR6
- 3oT1E3kXSyaBiSKfL1ykhnf13PQkgJjtaV8uIpotOq7DBSYoGzbS6ubAJ3YQ7hxyMo0X
- wobw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=1gh2cH8+/vu9+O44Ntzb/QjlvRTOJYihF+Y3Qm1SXrI=;
- b=yewFENAvVrcgCHevuejpVRZ+NYoJmYZ7KSBC3OSGIHfOTYXBQ8OzQAjlb/DBtuaYAF
- T14sLyUs58VZ+fbED4ZUZPdtTjDUlB4YvzC5GQLh28Un1mBYfHfkP6Ln00BLObq2iPrJ
- VV51+6GCGQBGkrkbyMh66Yk6GeNkRQAvBtYWzBK/xkWq/RTACGGySa9m0ANQj/m0EZ1A
- Trr8DXkDTQwJcDkCwTjDtaQd8IfffklcwBP+KQfwaycKTkFj2V5F8QpJjE4zFI/r6CvF
- umk7dK1CRpkrBy0hfqKQ4NyYJT05mmWiWTlbnt6vHpFcJNfVVjRxukxFSLP16GoMdLPM
- TnLw==
-X-Gm-Message-State: ACgBeo2Y5z7bzschJvG7Tyuvq94si4ObkDYC/u+AJZhV0IBv3+/EjAiy
- Za4GvhC+GFAquocH3134x//aSA==
-X-Google-Smtp-Source: AA6agR7RmSVyjAeQGFw3MIw2xrxrUVQiVxAzEY6jcgGsEMR0UnpBnCqr/mnb1uGpwjcB9GCyqvs1tA==
-X-Received: by 2002:a1c:7703:0:b0:3a5:aefa:68e3 with SMTP id
- t3-20020a1c7703000000b003a5aefa68e3mr2239820wmi.158.1662111089219; 
- Fri, 02 Sep 2022 02:31:29 -0700 (PDT)
-Received: from [192.168.86.238]
- (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
- by smtp.googlemail.com with ESMTPSA id
- g40-20020a05600c4ca800b003a4f1385f0asm1537794wmp.24.2022.09.02.02.31.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 02 Sep 2022 02:31:28 -0700 (PDT)
-Message-ID: <c22a8724-4a1c-dcc5-816d-32faedf6dee2@linaro.org>
-Date: Fri, 2 Sep 2022 10:31:24 +0100
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52FBC10E7DA;
+ Fri,  2 Sep 2022 11:28:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=3P4G0s8jHHnMDuhy8+v0Q+ixmj390VbhdMQwj5y5Wjc=; b=bZtQWi7EyAVPLA42Rzf8cb5JdM
+ G/3PyoSsE4+TzQ45xyyuvyIG/+TEOpTWEC9Otb+gWl6o0joUn+Fb2soBCKyda0m/awdEZrUKc7uak
+ z51s4DGVhtB++KNaE9LcvK41LZ+PM5S/HiBly41wGr52SLb4ElQBdb5IssVAsOaMMzlyCEgKM7B4P
+ wiVGMqooxE9e6urqnga+WXRKxxZVYoGuxulJw2ZV1V29cJpJe+yW0s0LvhhpPHIehl5vgWFClYJI4
+ xk9vQt5rQTEuzB79xm1Vd+fefkG8uvdSATf2/klQmygxH9N0KRAJEPTZEgVWsKx0Q385qyG2Lyz62
+ t3IxvyDQ==;
+Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=64065)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1oU4qX-0004pl-Pv; Fri, 02 Sep 2022 13:28:25 +0200
+Message-ID: <020d44e6-884b-a817-8265-3461638cac71@tronnes.org>
+Date: Fri, 2 Sep 2022 13:28:16 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Chen-Yu Tsai <wens@csie.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
- <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- Qiang Yu <yuq825@gmail.com>, Amol Maheshwari <amahesh@qti.qualcomm.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- Juergen Gross <jgross@suse.com>, Stefano Stabellini
- <sstabellini@kernel.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Lucas Stach <l.stach@pengutronix.de>,
- Christian Gmeiner <christian.gmeiner@gmail.com>
-References: <20220831153757.97381-1-dmitry.osipenko@collabora.com>
- <20220831153757.97381-12-dmitry.osipenko@collabora.com>
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220831153757.97381-12-dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
+ Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Dom Cobley <dom@raspberrypi.com>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <24e09a29-6d04-3b1e-63ce-cd3c31d350e2@tronnes.org>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <24e09a29-6d04-3b1e-63ce-cd3c31d350e2@tronnes.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:46 +0000
-Subject: Re: [Intel-gfx] [PATCH v4 11/21] misc: fastrpc: Prepare to dynamic
- dma-buf locking specification
+Subject: Re: [Intel-gfx] [PATCH v2 00/41] drm: Analog TV Improvements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,56 +68,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
- linux-media@vger.kernel.org
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-sunxi@lists.linux.dev,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 31/08/2022 16:37, Dmitry Osipenko wrote:
-> Prepare fastrpc to the common dynamic dma-buf locking convention by
-> starting to use the unlocked versions of dma-buf API functions.
+Den 01.09.2022 21.35, skrev Noralf Trønnes:
 > 
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> ---
-
-LGTM,
-
-Incase you plan to take it via another tree.
-
-Acked-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
-
---srini
->   drivers/misc/fastrpc.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-> index 93ebd174d848..6fcfb2e9f7a7 100644
-> --- a/drivers/misc/fastrpc.c
-> +++ b/drivers/misc/fastrpc.c
-> @@ -310,8 +310,8 @@ static void fastrpc_free_map(struct kref *ref)
->   				return;
->   			}
->   		}
-> -		dma_buf_unmap_attachment(map->attach, map->table,
-> -					 DMA_BIDIRECTIONAL);
-> +		dma_buf_unmap_attachment_unlocked(map->attach, map->table,
-> +						  DMA_BIDIRECTIONAL);
->   		dma_buf_detach(map->buf, map->attach);
->   		dma_buf_put(map->buf);
->   	}
-> @@ -726,7 +726,7 @@ static int fastrpc_map_create(struct fastrpc_user *fl, int fd,
->   		goto attach_err;
->   	}
->   
-> -	map->table = dma_buf_map_attachment(map->attach, DMA_BIDIRECTIONAL);
-> +	map->table = dma_buf_map_attachment_unlocked(map->attach, DMA_BIDIRECTIONAL);
->   	if (IS_ERR(map->table)) {
->   		err = PTR_ERR(map->table);
->   		goto map_err;
+> I have finally found a workaround for my kernel hangs.
+> 
+> Dom had a look at my kernel and found that the VideoCore was fine, and
+> he said this:
+> 
+>> That suggests cause of lockup was on arm side rather than VC side.
+>>
+>> But it's hard to diagnose further. Once you've had a peripheral not
+>> respond, the AXI bus locks up and no further operations are possible.
+>> Usual causes of this are required clocks being stopped or domains
+>> disabled and then trying to access the hardware.
+>>
+> 
+> So when I got this on my 64-bit build:
+> 
+> [  166.702171] SError Interrupt on CPU1, code 0x00000000bf000002 -- SError
+> [  166.702187] CPU: 1 PID: 8 Comm: kworker/u8:0 Tainted: G        W
+>     5.19.0-rc6-00096-gba7973977976-dirty #1
+> [  166.702200] Hardware name: Raspberry Pi 4 Model B Rev 1.1 (DT)
+> [  166.702206] Workqueue: events_freezable_power_ thermal_zone_device_check
+> [  166.702231] pstate: 200000c5 (nzCv daIF -PAN -UAO -TCO -DIT -SSBS
+> BTYPE=--)
+> [  166.702242] pc : regmap_mmio_read32le+0x10/0x28
+> [  166.702261] lr : regmap_mmio_read+0x44/0x70
+> ...
+> [  166.702606]  bcm2711_get_temp+0x58/0xb0 [bcm2711_thermal]
+> 
+> I wondered if that reg read was stalled due to a clock being stopped.
+> 
+> Lo and behold, disabling runtime pm and keeping the vec clock running
+> all the time fixed it[1].
+> 
+> I don't know what the problem is, but at least I can now test this patchset.
+> 
+> [1] https://gist.github.com/notro/23b984e7fa05cfbda2db50a421cac065
+> 
+
+It turns out I didn't have to disable runtime pm:
+https://gist.github.com/notro/0adcfcb12460b54e54458afe11dc8ea2
+
+Noralf.
