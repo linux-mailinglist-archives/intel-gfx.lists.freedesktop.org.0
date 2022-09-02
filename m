@@ -1,54 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B28A5AAFF1
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 14:46:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A865AB0E9
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 15:00:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5103910E82B;
-	Fri,  2 Sep 2022 12:46:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD74510E832;
+	Fri,  2 Sep 2022 13:00:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CF9710E82B;
- Fri,  2 Sep 2022 12:46:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662122767; x=1693658767;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=3gwVHlrTsPkNzuLM1RkqgziFv66dPQP0iNTuxReQkTk=;
- b=Rbp4CofyPCG9+0cfRYOpLGRWxsD+jMkJ002qvwfXGauzJmNyydG+TXV4
- +2RTM95qsdAVefAxmL458OKKn2EZl5+mEM8SnWsUJxk77EE+c4I4eRRXQ
- RbHYxZKykjFHsMW6rUIafJSCUxoqdOV5pd8labLaxSnPB5ddJMLxlBltS
- LasxvO81e4WN3iHRp705T58bxnV7b5yA41+5SN5qyCMfU/MQN9zsSD7ZY
- 5SBIy1F2iiQkjjxMQThRNWry6LFT1FnwSlcvCsxGHxKCQWhWZcG3dF56P
- WYtASEySjMQW30KHMi1HFlJQ8vCcN10VXzYkPDKYonJD3kmw7IWUuC2Ej w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="276372797"
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="276372797"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 05:45:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="716507768"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga002.fm.intel.com with SMTP; 02 Sep 2022 05:45:55 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 02 Sep 2022 15:45:55 +0300
-Date: Fri, 2 Sep 2022 15:45:54 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YxH7ApmwbP99kKr4@intel.com>
-References: <20220826213501.31490-1-ville.syrjala@linux.intel.com>
- <20220826213501.31490-8-ville.syrjala@linux.intel.com>
- <87v8q6dku4.fsf@intel.com>
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9C7D10E832
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 13:00:37 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id E47D5CE2E67
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 13:00:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D300FC433C1
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 13:00:29 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+ dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
+ header.b="EAD9f2M7"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
+ t=1662123627;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=2hyvq6Ay8cVlH+dehYHucQiFeZFEAYGgG00K/Txl9sQ=;
+ b=EAD9f2M7gARQAIOyQYamJfMrkEL4qiD71lOX27R5iFAQWS0vVNSV3oeGgVYykqq4EZ9o80
+ 1PXZXLYpPHz7mOSOX5AxfyPDZyk3Am3+Ld+VWXq2GnYqTebIP/dITY4eRNW/IeM5QV4gN+
+ 3v5nwHW4UERqSalw0Jq0BriHzwX1D8o=
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 0f617ca0
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO)
+ for <intel-gfx@lists.freedesktop.org>;
+ Fri, 2 Sep 2022 13:00:27 +0000 (UTC)
+Received: by mail-yw1-f173.google.com with SMTP id
+ 00721157ae682-3321c2a8d4cso15785157b3.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 02 Sep 2022 06:00:27 -0700 (PDT)
+X-Gm-Message-State: ACgBeo03lw1ZI6862Tq9/fZhT00kXfZffK4KY9fjgCZ9nN4omedLXbya
+ 3Qaag/Tzz+p3LWytudhyaTKLPyyB0EZshgIfrG8=
+X-Google-Smtp-Source: AA6agR4g8Ma2Ck0pPHJl72h0FTl9RM4qyeG8XmUy1R7tcvnBSOIq2Ch6CK0zB4BYo9R/C9bVc7IWQ6SR1zmRNJUi5R8=
+X-Received: by 2002:a81:6141:0:b0:328:30e0:a6ca with SMTP id
+ v62-20020a816141000000b0032830e0a6camr28920281ywb.454.1662123625515; Fri, 02
+ Sep 2022 06:00:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87v8q6dku4.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 07/11] drm/edid: Use GTF2 for inferred modes
+References: <20220902070319.15395-1-ville.syrjala@linux.intel.com>
+ <87czcefb0m.fsf@intel.com>
+In-Reply-To: <87czcefb0m.fsf@intel.com>
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Fri, 2 Sep 2022 09:00:13 -0400
+X-Gmail-Original-Message-ID: <CAHmME9ryP=nxj_C26fFMehH6GtZQZvyq6a9dLxWpQ87nFwcqPg@mail.gmail.com>
+Message-ID: <CAHmME9ryP=nxj_C26fFMehH6GtZQZvyq6a9dLxWpQ87nFwcqPg@mail.gmail.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Implement
+ WaEdpLinkRateDataReload
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,108 +68,8 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, stable <stable@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 02, 2022 at 03:25:39PM +0300, Jani Nikula wrote:
-> On Sat, 27 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > For some resaon we only use the secondary GTF curve for the
-> > standard timings. Use it for inferred modes as well.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_edid.c | 35 ++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 34 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> > index 0c7cbe9b44f5..fed2bdd55c09 100644
-> > --- a/drivers/gpu/drm/drm_edid.c
-> > +++ b/drivers/gpu/drm/drm_edid.c
-> > @@ -3546,6 +3546,35 @@ static int drm_gtf_modes_for_range(struct drm_connector *connector,
-> >  	return modes;
-> >  }
-> >  
-> > +static int drm_gtf2_modes_for_range(struct drm_connector *connector,
-> > +				    const struct drm_edid *drm_edid,
-> > +				    const struct detailed_timing *timing)
-> > +{
-> > +	int i, modes = 0;
-> > +	struct drm_display_mode *newmode;
-> > +	struct drm_device *dev = connector->dev;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(extra_modes); i++) {
-> > +		const struct minimode *m = &extra_modes[i];
-> > +
-> > +		newmode = drm_gtf2_mode(dev, drm_edid, m->w, m->h, m->r);
-> > +		if (!newmode)
-> > +			return modes;
-> > +
-> > +		drm_mode_fixup_1366x768(newmode);
-> > +		if (!mode_in_range(newmode, drm_edid, timing) ||
-> > +		    !valid_inferred_mode(connector, newmode)) {
-> > +			drm_mode_destroy(dev, newmode);
-> > +			continue;
-> > +		}
-> > +
-> > +		drm_mode_probed_add(connector, newmode);
-> > +		modes++;
-> > +	}
-> > +
-> > +	return modes;
-> > +}
-> > +
-> >  static int drm_cvt_modes_for_range(struct drm_connector *connector,
-> >  				   const struct drm_edid *drm_edid,
-> >  				   const struct detailed_timing *timing)
-> > @@ -3594,7 +3623,11 @@ do_inferred_modes(const struct detailed_timing *timing, void *c)
-> >  		return; /* GTF not defined yet */
-> >  
-> >  	switch (range->flags) {
-> > -	case DRM_EDID_SECONDARY_GTF_SUPPORT_FLAG: /* XXX could do more */
-> > +	case DRM_EDID_SECONDARY_GTF_SUPPORT_FLAG:
-> > +		closure->modes += drm_gtf2_modes_for_range(closure->connector,
-> > +							   closure->drm_edid,
-> > +							   timing);
-> > +		break;
-> >  	case DRM_EDID_DEFAULT_GTF_SUPPORT_FLAG:
-> 
-> Additionally, per spec:
-> 
-> * Default GTF supported if bit 0 in Feature Support Byte at address 18h = 1
-> 
-> * Secondary GTF supported --- requires support for Default GTF
-> 
-> So I guess both of these would need the edid->features &
-> DRM_EDID_FEATURE_DEFAULT_GTF check?
-
-There is one actually
-	if (drm_edid->edid->features & DRM_EDID_FEATURE_DEFAULT_GTF)
-	                num_modes += add_inferred_modes(connector, drm_edid);
-
-Though as I think I mentioned in some of these patches a lot of
-real world EDIDs don't set the default gtf/continuous frequency
-bit but still include a range descriptor. While illegal, I think
-a reasonable interpretation might be that they want us to use 
-the formula specified in the range descriptor for the non-DMT
-standard timings, while still indicating that other timings
-generated by said formula are not supported. 
-
-> 
-> Other than that,
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> 
-> 
-> >  		closure->modes += drm_gtf_modes_for_range(closure->connector,
-> >  							  closure->drm_edid,
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
-
--- 
-Ville Syrjälä
-Intel
+Tested-by: Jason A. Donenfeld <Jason@zx2c4.com>
