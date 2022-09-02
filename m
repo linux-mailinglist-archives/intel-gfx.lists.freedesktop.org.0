@@ -2,32 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E5CB5AA503
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 03:27:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C94875AA757
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 07:42:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB35F10E3F2;
-	Fri,  2 Sep 2022 01:27:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 170C710E746;
+	Fri,  2 Sep 2022 05:42:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 64BFC10E3F2;
- Fri,  2 Sep 2022 01:27:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5C556A8830;
- Fri,  2 Sep 2022 01:27:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5096193399813860780=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8725310E745;
+ Fri,  2 Sep 2022 05:42:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662097341; x=1693633341;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ktd3KU0JgVoRosBUjdUyCbs2ORqUMFu99EVp6dQfYMM=;
+ b=L3I5/6BuzdV8L6Yu2tQbwv+ooOdmyHGX4UQ1m29rU5utT3A3R7dioHv2
+ 03zUcJXMBcL3+2A2LIo4hH+9VmQjNH6ISQzClVeki7kTBNN8hdQ5ivfxp
+ xzDi1eqxBrSHeGtb5kR9D8EQWikAN99t/wdEG4MhaxjO5tDgqHX5353m3
+ TCrt0BXT2rSBJiYqB2ZrOeSqmZ2mc1Ya5LyJGAdL7eOOAgrURxPMfwMSJ
+ XZ5+3+jgOWoDFtbNw7/tLBY2lHURxCMAbAId2XkgniCWG57xjqUbWxTyy
+ nvOyD+IEr3+TvOSlnvI2u+1UMQojF2zifNpx36mbP7rgbb2kyskH5VZfD A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="294639855"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="294639855"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2022 22:42:20 -0700
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="642769853"
+Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2022 22:42:20 -0700
+Date: Thu, 1 Sep 2022 22:41:59 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20220902054158.GJ10283@nvishwa1-DESK>
+References: <20220827194403.6495-1-andi.shyti@linux.intel.com>
+ <20220827194403.6495-11-andi.shyti@linux.intel.com>
+ <8ecb0b8f-f253-1318-444a-8370960c6140@linux.intel.com>
+ <20220901050910.GG10283@nvishwa1-DESK>
+ <f0ee82ec-03bd-1e02-affe-98f127b2d72a@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 02 Sep 2022 01:27:29 -0000
-Message-ID: <166208204933.22600.17724941087933733130@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220902004740.2849371-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220902004740.2849371-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgaTkx?=
- =?utf-8?q?5=3A_Prep_work_for_explicit_MCR_handling?=
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f0ee82ec-03bd-1e02-affe-98f127b2d72a@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [RFC PATCH v3 10/17] drm/i915/vm_bind: Implement
+ I915_GEM_EXECBUFFER3 ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,364 +62,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Ramalingam C <ramalingampc2008@gmail.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5096193399813860780==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Sep 01, 2022 at 08:58:57AM +0100, Tvrtko Ursulin wrote:
+>
+>
+>On 01/09/2022 06:09, Niranjana Vishwanathapura wrote:
+>>On Wed, Aug 31, 2022 at 08:38:48AM +0100, Tvrtko Ursulin wrote:
+>>>
+>>>On 27/08/2022 20:43, Andi Shyti wrote:
+>>>>From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+>>>>
+>>>>Implement new execbuf3 ioctl (I915_GEM_EXECBUFFER3) which only
+>>>>works in vm_bind mode. The vm_bind mode only works with
+>>>>this new execbuf3 ioctl.
+>>>>
+>>>>The new execbuf3 ioctl will not have any list of objects to validate
+>>>>bind as all required objects binding would have been requested by the
+>>>>userspace before submitting the execbuf3.
+>>>>
+>>>>And the legacy support like relocations etc are removed.
+>>>>
+>>>>Signed-off-by: Niranjana Vishwanathapura 
+>>>><niranjana.vishwanathapura@intel.com>
+>>>>Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+>>>>Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+>>>>---
+>
+>[snip]
+>
+>>>>+static void signal_fence_array(const struct i915_execbuffer *eb,
+>>>>+                   struct dma_fence * const fence)
+>>>>+{
+>>>>+    unsigned int n;
+>>>>+
+>>>>+    for (n = 0; n < eb->num_fences; n++) {
+>>>>+        struct drm_syncobj *syncobj;
+>>>>+        unsigned int flags;
+>>>>+
+>>>>+        syncobj = ptr_unpack_bits(eb->fences[n].syncobj, &flags, 2);
+>>>>+        if (!(flags & I915_TIMELINE_FENCE_SIGNAL))
+>>>>+            continue;
+>>>>+
+>>>>+        if (eb->fences[n].chain_fence) {
+>>>>+            drm_syncobj_add_point(syncobj,
+>>>>+                          eb->fences[n].chain_fence,
+>>>>+                          fence,
+>>>>+                          eb->fences[n].value);
+>>>>+            /*
+>>>>+             * The chain's ownership is transferred to the
+>>>>+             * timeline.
+>>>>+             */
+>>>>+            eb->fences[n].chain_fence = NULL;
+>>>>+        } else {
+>>>>+            drm_syncobj_replace_fence(syncobj, fence);
+>>>>+        }
+>>>>+    }
+>>>>+}
+>>>Semi-random place to ask - how many of the code here is direct 
+>>>copy of existing functions from i915_gem_execbuffer.c? There seems 
+>>>to be some 100% copies at least. And then some more with small 
+>>>tweaks. Spend some time and try to figure out some code sharing?
+>>>
+>>
+>>During VM_BIND design review, maintainers expressed thought on keeping
+>>execbuf3 completely separate and not touch the legacy execbuf path.
+>
+>Got a link so this maintainer can see what exactly was said? Just to 
+>make sure there isn't any misunderstanding on what "completely 
+>separate" means to different people.
 
-== Series Details ==
+Here is one (search for copypaste/copy-paste)
+https://patchwork.freedesktop.org/patch/486608/?series=93447&rev=3
+It is hard to search for old discussion threads. May be maintainers
+can provide feedback here directly. Dave, Daniel? :)
 
-Series: i915: Prep work for explicit MCR handling
-URL   : https://patchwork.freedesktop.org/series/108054/
-State : failure
+>
+>>I also think, execbuf3 should be fully separate. We can do some code
+>>sharing where is a close 100% copy (there is a TODO in cover letter).
+>>There are some changes like the timeline fence array handling here
+>>which looks similar, but the uapi is not exactly the same. Probably,
+>>we should keep them separate and not try to force code sharing at
+>>least at this point.
+>
+>Okay did not spot that TODO in the cover. But fair since it is RFC to 
+>be unfinished.
+>
+>I do however think it should be improved before considering the merge. 
+>Because looking at the patch, 100% copies are:
+>
+>for_each_batch_create_order
+>for_each_batch_add_order
+>eb_throttle
+>eb_pin_timeline
+>eb_pin_engine
+>eb_put_engine
+>__free_fence_array
+>put_fence_array
+>await_fence_array
+>signal_fence_array
+>retire_requests
+>eb_request_add
+>eb_requests_get
+>eb_requests_put
+>eb_find_context
+>
+>Quite a lot.
+>
+>Then there is a bunch of almost same functions which could be shared 
+>if there weren't two incompatible local struct i915_execbuffer's. 
+>Especially given when the out fence TODO item gets handled a chunk 
+>more will also become a 100% copy.
+>
 
-== Summary ==
+There are difinitely a few which is 100% copies hence should have a
+shared code.
+But some are not. Like, fence_array stuff though looks very similar,
+the uapi structures are different between execbuf3 and legacy execbuf.
+The internal flags are also different (eg., __EXEC3_ENGINE_PINNED vs
+__EXEC_ENGINE_PINNED) which causes minor differences hence not a
+100% copy.
 
-CI Bug Log - changes from CI_DRM_12063 -> Patchwork_108054v1
-====================================================
+So, I am not convinced if it is worth carrying legacy stuff into
+execbuf3 code. I think we need to look at these on a case by case
+basis and see if abstracting common functionality to a separate
+shared code makes sense or it is better to keep the code separate.
 
-Summary
--------
+>This could be done by having a common struct i915_execbuffer and then 
+>eb2 and eb3 specific parts which inherit from it. After that is done 
+>it should be easier to see if it makes sense to do something more and 
+>how.
 
-  **FAILURE**
+I am not a big fan of it. I think we should not try to load the execbuf3
+code with the legacy stuff.
 
-  Serious unknown changes coming with Patchwork_108054v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_108054v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Niranjana
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/index.html
-
-Participating hosts (36 -> 32)
-------------------------------
-
-  Missing    (4): bat-rplp-1 fi-bdw-samus bat-adlp-4 bat-dg1-5 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_108054v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@load:
-    - fi-rkl-11600:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-rkl-11600/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-rkl-11600/igt@i915_module_load@load.html
-    - fi-skl-6600u:       [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-skl-6600u/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-skl-6600u/igt@i915_module_load@load.html
-    - fi-glk-j4005:       [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-glk-j4005/igt@i915_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-glk-j4005/igt@i915_module_load@load.html
-    - fi-rkl-guc:         [PASS][7] -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-rkl-guc/igt@i915_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-rkl-guc/igt@i915_module_load@load.html
-    - fi-skl-6700k2:      [PASS][9] -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-skl-6700k2/igt@i915_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-skl-6700k2/igt@i915_module_load@load.html
-    - fi-kbl-7567u:       [PASS][11] -> [INCOMPLETE][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-kbl-7567u/igt@i915_module_load@load.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-kbl-7567u/igt@i915_module_load@load.html
-    - fi-cfl-8700k:       [PASS][13] -> [INCOMPLETE][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-cfl-8700k/igt@i915_module_load@load.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-cfl-8700k/igt@i915_module_load@load.html
-    - fi-hsw-g3258:       [PASS][15] -> [INCOMPLETE][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-hsw-g3258/igt@i915_module_load@load.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-hsw-g3258/igt@i915_module_load@load.html
-    - fi-cfl-guc:         [PASS][17] -> [INCOMPLETE][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-cfl-guc/igt@i915_module_load@load.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-cfl-guc/igt@i915_module_load@load.html
-    - fi-hsw-4770:        [PASS][19] -> [INCOMPLETE][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-hsw-4770/igt@i915_module_load@load.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-hsw-4770/igt@i915_module_load@load.html
-    - fi-cfl-8109u:       [PASS][21] -> [INCOMPLETE][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-cfl-8109u/igt@i915_module_load@load.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-cfl-8109u/igt@i915_module_load@load.html
-    - fi-ivb-3770:        [PASS][23] -> [INCOMPLETE][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-ivb-3770/igt@i915_module_load@load.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-ivb-3770/igt@i915_module_load@load.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_module_load@load:
-    - {fi-jsl-1}:         [PASS][25] -> [INCOMPLETE][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-jsl-1/igt@i915_module_load@load.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-jsl-1/igt@i915_module_load@load.html
-    - {bat-rpls-1}:       [PASS][27] -> [INCOMPLETE][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-rpls-1/igt@i915_module_load@load.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-rpls-1/igt@i915_module_load@load.html
-    - {fi-ehl-2}:         [PASS][29] -> [INCOMPLETE][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-ehl-2/igt@i915_module_load@load.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-ehl-2/igt@i915_module_load@load.html
-    - {bat-jsl-3}:        [PASS][31] -> [INCOMPLETE][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-jsl-3/igt@i915_module_load@load.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-jsl-3/igt@i915_module_load@load.html
-    - {bat-dg2-11}:       [PASS][33] -> [INCOMPLETE][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-dg2-11/igt@i915_module_load@load.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-dg2-11/igt@i915_module_load@load.html
-    - {bat-adln-1}:       [PASS][35] -> [INCOMPLETE][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-adln-1/igt@i915_module_load@load.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-adln-1/igt@i915_module_load@load.html
-    - {bat-dg2-9}:        [PASS][37] -> [INCOMPLETE][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-dg2-9/igt@i915_module_load@load.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-dg2-9/igt@i915_module_load@load.html
-    - {bat-dg2-8}:        [PASS][39] -> [INCOMPLETE][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-dg2-8/igt@i915_module_load@load.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-dg2-8/igt@i915_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_108054v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gem:
-    - fi-pnv-d510:        NOTRUN -> [DMESG-FAIL][41] ([i915#4528])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-pnv-d510/igt@i915_selftest@live@gem.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][42] ([i915#4312])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - fi-pnv-d510:        [DMESG-FAIL][43] ([i915#4528]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-pnv-d510/igt@i915_selftest@live@requests.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-pnv-d510/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [FAIL][45] ([i915#6298]) -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12063 -> Patchwork_108054v1
-
-  CI-20190529: 20190529
-  CI_DRM_12063: 3aa39acf43611227945fc8b441244cb8ae977933 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6641: 391ac3a06323aa8b681f9faffd74459caa14498f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_108054v1: 3aa39acf43611227945fc8b441244cb8ae977933 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-6b1581f876b0 drm/i915/gt: Add MCR-specific workaround initializers
-3643a2db5557 drm/i915/gt: Always use MCR functions on multicast registers
-e522a1c17bbb drm/i915: Define MCR registers explicitly
-cab3331d6a04 drm/i915/gt: Correct prefix on a few registers
-866b4c298240 drm/i915/gt: Drop a few unused register definitions
-ca926b86fc6d drm/i915/xehp: Create separate reg definitions for new MCR registers
-c8077698b245 drm/i915/gen8: Create separate reg definitions for new MCR registers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/index.html
-
---===============5096193399813860780==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>i915: Prep work for explicit MCR handling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108054/">https://patchwork.freedesktop.org/series/108054/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12063 -&gt; Patchwork_108054v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_108054v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_108054v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/index.html</p>
-<h2>Participating hosts (36 -&gt; 32)</h2>
-<p>Missing    (4): bat-rplp-1 fi-bdw-samus bat-adlp-4 bat-dg1-5 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_108054v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>
-<p>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-rkl-11600/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-rkl-11600/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-skl-6600u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-skl-6600u/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-glk-j4005/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-glk-j4005/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-rkl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-rkl-guc/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-skl-6700k2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-skl-6700k2/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-kbl-7567u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-kbl-7567u/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-cfl-8700k/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-cfl-8700k/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-hsw-g3258/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-hsw-g3258/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-cfl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-cfl-guc/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-hsw-4770/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-hsw-4770/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-cfl-8109u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-cfl-8109u/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-ivb-3770/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-ivb-3770/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>
-<p>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-jsl-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-jsl-1/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-rpls-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-rpls-1/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-ehl-2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-ehl-2/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>{bat-jsl-3}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-jsl-3/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-jsl-3/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-dg2-11/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-dg2-11/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-adln-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-adln-1/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-dg2-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-dg2-9/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>{bat-dg2-8}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/bat-dg2-8/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/bat-dg2-8/igt@i915_module_load@load.html">INCOMPLETE</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_108054v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gem:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-pnv-d510/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12063/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108054v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12063 -&gt; Patchwork_108054v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12063: 3aa39acf43611227945fc8b441244cb8ae977933 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6641: 391ac3a06323aa8b681f9faffd74459caa14498f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_108054v1: 3aa39acf43611227945fc8b441244cb8ae977933 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>6b1581f876b0 drm/i915/gt: Add MCR-specific workaround initializers<br />
-3643a2db5557 drm/i915/gt: Always use MCR functions on multicast registers<br />
-e522a1c17bbb drm/i915: Define MCR registers explicitly<br />
-cab3331d6a04 drm/i915/gt: Correct prefix on a few registers<br />
-866b4c298240 drm/i915/gt: Drop a few unused register definitions<br />
-ca926b86fc6d drm/i915/xehp: Create separate reg definitions for new MCR registers<br />
-c8077698b245 drm/i915/gen8: Create separate reg definitions for new MCR registers</p>
-
-</body>
-</html>
-
---===============5096193399813860780==--
+>
+>Regards,
+>
+>Tvrtko
