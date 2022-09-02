@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B5E5AB2EE
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 16:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 185E15AB306
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 16:09:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C396510E858;
-	Fri,  2 Sep 2022 14:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB2E210E85B;
+	Fri,  2 Sep 2022 14:09:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4336210E858
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 14:05:43 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC99610E85B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 14:09:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662127543; x=1693663543;
+ t=1662127766; x=1693663766;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=hgLGdM0QO7kC7hrczTaKyWL+RiWxkoCNfd0veuexgFk=;
- b=EclfN4HoDSG3KzF+bfYHXS00TWv1ZnlXCYksIsKpOBDqUic3UEmS8Gs6
- c6KYbjeAsfkOEpBNoGbW1xRSoNgD4xmYrvhRLaC4/lnPdHwGNKcmKTpKj
- rbv8lNp1N4fN7tpCFIztD6ocyqRBWymEFRCEvchOtuiQmC40JeU6btAFM
- xKvWXpZ901ImetOrEV6siQwYEJ4zslvtHpphPtwpA4PUcV7abdTELqYUL
- 7OWscPOYjj4KC9XMVuFiIpTW1qEoDCGmPFQvWdpo9gIUUkz/VyiQNtlHY
- tytAYOn23+t69zGTAQ2ep0HCQQRYcuXVWPwXdrqTWJmH6NnNw89xHKo8k g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="276388061"
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="276388061"
+ bh=s3YPb7HDXQDB2tbogH+JWEm19WE85JF62h4XQ6hpHSE=;
+ b=n74Fsb7MKtdSgbIMGSIH731Ni51oJdgPwEKVVAhC5ILJ52tluaZt6dVG
+ 3VEvTE9F6lZGUV783pv1LdCDgS0dL77ovyO+6w1/AKhmVMYQIBM77eLkH
+ xop8TzOWnGhNVv7WKliSHrJ8NhVNPQKfgSg9jNat1JCKsyn51KhX00I/k
+ dvUTJghy8hUdiqsNfm0hqbD2mJDNUuH8Rp55tl3H3NZDQpxWzeyKYd+Qx
+ ehN+NDAKOKGBwCkO3xnggJ8QgRhmtJ87ucE/Xx/Y4o74QdduBs+aQlNXW
+ Qz8Z218n8vpEmHgcd5mibMX2XKl3FtUoicqcYv5C8gpCNXB7GuDxa3pJ4 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="359945246"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="359945246"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 07:05:42 -0700
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674365492"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 07:09:21 -0700
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674366350"
 Received: from svandene-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.245])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 07:05:41 -0700
+ 02 Sep 2022 07:09:20 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220715202044.11153-8-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220715202044.11153-9-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220715202044.11153-1-ville.syrjala@linux.intel.com>
- <20220715202044.11153-8-ville.syrjala@linux.intel.com>
-Date: Fri, 02 Sep 2022 17:05:30 +0300
-Message-ID: <875yi5eus5.fsf@intel.com>
+ <20220715202044.11153-9-ville.syrjala@linux.intel.com>
+Date: Fri, 02 Sep 2022 17:09:09 +0300
+Message-ID: <8735d9eum2.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 07/12] drm/i915: Document the sets of bits
- in the driver features block
+Subject: Re: [Intel-gfx] [PATCH 08/12] drm/i915: Define more VBT driver
+ features block bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,60 +66,58 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 15 Jul 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Add a few comment documenting the sets of bits in the driver
-> features block. Might make it a bit easier to check against
-> the spec.
+> Define some additoonal bits in the driver features VBT block.
+
+*additional
+
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
 drm/i915/display/intel_vbt_defs.h
-> index 8bdb533b5304..c04937aa75b2 100644
+> index c04937aa75b2..2feba1e69a6d 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -542,6 +542,7 @@ struct bdb_psr {
->  #define BDB_DRIVER_FEATURE_INT_SDVO_LVDS	3
+> @@ -575,14 +575,19 @@ struct bdb_driver_features {
 >=20=20
->  struct bdb_driver_features {
-> +	/* Driver bits */
->  	u8 boot_dev_algorithm:1;
->  	u8 block_display_switch:1;
->  	u8 allow_display_switch:1;
-> @@ -556,6 +557,7 @@ struct bdb_driver_features {
->  	u8 boot_mode_bpp;
->  	u8 boot_mode_refresh;
->=20=20
-> +	/* Extended Driver Bits 1 */
->  	u16 enable_lfp_primary:1;
->  	u16 selective_mode_pruning:1;
->  	u16 dual_frequency:1;
-> @@ -571,6 +573,7 @@ struct bdb_driver_features {
->  	u16 tv_hotplug:1;
->  	u16 hdmi_config:2;
->=20=20
-> +	/* Driver Flags 1 */
+>  	/* Driver Flags 1 */
 >  	u8 static_display:1;					/* 163+ */
->  	u8 reserved2:7;
+> -	u8 reserved2:7;
+> +	u8 embedded_platform:1;					/* 163+ */
+> +	u8 display_subsystem_enable:1;				/* 163+ */
+> +	u8 reserved0:5;
 >=20=20
-> @@ -578,8 +581,12 @@ struct bdb_driver_features {
+>  	u16 legacy_crt_max_x;
 >  	u16 legacy_crt_max_y;
 >  	u8 legacy_crt_max_refresh;
 >=20=20
-> +	/* Extended Driver Bits 2 */
->  	u8 hdmi_termination;
-> +
+>  	/* Extended Driver Bits 2 */
+> -	u8 hdmi_termination;
+> +	u8 hdmi_termination:1;
+> +	u8 cea861d_hdmi_support:1;
+> +	u8 self_refresh_enable:1;
+> +	u8 reserved1:5;
+>=20=20
 >  	u8 custom_vbt_version;					/* 165+ */
-> +
-> +	/* Driver Feature Flags */
->  	u16 rmpm_enabled:1;					/* 165+ */
->  	u16 s2ddt_enabled:1;					/* 165+ */
->  	u16 dpst_enabled:1;					/* 165-227 */
+>=20=20
+> @@ -598,9 +603,10 @@ struct bdb_driver_features {
+>  	u16 tbt_enabled:1;					/* 165+ */
+>  	u16 psr_enabled:1;					/* 165-227 */
+>  	u16 ips_enabled:1;					/* 165+ */
+> -	u16 reserved3:1;
+> +	u16 dpfs_enabled:1;					/* 165+ */
+>  	u16 dmrrs_enabled:1;					/* 174-227 */
+> -	u16 reserved4:2;
+> +	u16 adt_enabled:1;					/* ???-228 */
+> +	u16 hpd_wake:1;						/* 201-240 */
+>  	u16 pc_feature_valid:1;
+>  } __packed;
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
