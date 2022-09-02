@@ -2,48 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B085ABAB2
-	for <lists+intel-gfx@lfdr.de>; Sat,  3 Sep 2022 00:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A398C5ABADA
+	for <lists+intel-gfx@lfdr.de>; Sat,  3 Sep 2022 00:40:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D65410E91D;
-	Fri,  2 Sep 2022 22:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D72910E92A;
+	Fri,  2 Sep 2022 22:40:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BEA510E91B;
- Fri,  2 Sep 2022 22:11:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662156684; x=1693692684;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1eCM+X1gSy3dYSGBPLiEK7oGOPBSCSSJ1UJ8MTmAs/w=;
- b=JXh4AbPH+NavFXOHKZ6ANRSyLcbSqN5aYRBXIiypFcpkvFl2PMSAdh1m
- qcB0BmGy570OnxocXyCUJD17njlu647cZfBVn4LU/lGvhSMGFqvJDQcj6
- ueh16RVFYuJD1U8dvpt1GR3O+Bg89ddAFrPWe8xnI37wpqkuj63DaN+Y/
- NGaYhEbRKy0v/TaOmef3yUus1n+djfmpf0BFDDLeM9kUneCHvSG8crTU+
- R3VaVK9Im5swWH+KI+EUXXb5fGy0N4sS1mi1hPsJddyKy78dsGj0sz0Lo
- TQr96bIM/e8Q0evCw8w2gVfq91yb2Qpq3J4WFhSR0sS8NbZSXiJutUq2V Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10458"; a="276496667"
-X-IronPort-AV: E=Sophos;i="5.93,285,1654585200"; d="scan'208";a="276496667"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 15:11:23 -0700
-X-IronPort-AV: E=Sophos;i="5.93,285,1654585200"; d="scan'208";a="643080161"
-Received: from invictus.jf.intel.com ([10.165.21.188])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 15:11:23 -0700
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  2 Sep 2022 15:10:54 -0700
-Message-Id: <20220902221054.173524-1-radhakrishna.sripada@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220902060342.151824-2-radhakrishna.sripada@intel.com>
-References: <20220902060342.151824-2-radhakrishna.sripada@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 686A910E920;
+ Fri,  2 Sep 2022 22:40:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 22418AADD1;
+ Fri,  2 Sep 2022 22:40:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4.1] drm/i915: Move display and media IP
- version to runtime info
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
+Date: Fri, 02 Sep 2022 22:40:22 -0000
+Message-ID: <166215842211.22603.6806759955851971215@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220902060342.151824-1-radhakrishna.sripada@intel.com>
+In-Reply-To: <20220902060342.151824-1-radhakrishna.sripada@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Initial_Meteorlake_Support_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,280 +40,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Future platforms can read the IP version from a register and the
-IP version numbers need not be hard coded in device info. Move the
-ip version for media and display to runtime info.
+== Series Details ==
 
-On platforms where hard coding of IP version is required, update
-the IP version in __runtime under device_info.
+Series: Initial Meteorlake Support (rev6)
+URL   : https://patchwork.freedesktop.org/series/106786/
+State : warning
 
-v2:
- - Avoid name collision for ip versions(Jani)
-v4.1:
- - Fix build error in mock_gem_device.c
+== Summary ==
 
-Suggested-by: Jani Nikula <jani.nikula@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h               | 14 +++----
- drivers/gpu/drm/i915/i915_pci.c               | 38 +++++++++----------
- drivers/gpu/drm/i915/intel_device_info.c      | 28 +++++++++-----
- drivers/gpu/drm/i915/intel_device_info.h      | 15 +++++---
- .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 +-
- 5 files changed, 54 insertions(+), 43 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index c9cca165bf5d..f85a470397a5 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -469,19 +469,19 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
- 
- #define IP_VER(ver, rel)		((ver) << 8 | (rel))
- 
--#define GRAPHICS_VER(i915)		(RUNTIME_INFO(i915)->graphics.ver)
--#define GRAPHICS_VER_FULL(i915)		IP_VER(RUNTIME_INFO(i915)->graphics.ver, \
--					       RUNTIME_INFO(i915)->graphics.rel)
-+#define GRAPHICS_VER(i915)		(RUNTIME_INFO(i915)->graphics.version.ver)
+Error: dim checkpatch failed
+400c5e5c3553 drm/i915: Move display and media IP version to runtime info
+-:34: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#34: FILE: drivers/gpu/drm/i915/i915_drv.h:473:
 +#define GRAPHICS_VER_FULL(i915)		IP_VER(RUNTIME_INFO(i915)->graphics.version.ver, \
 +					       RUNTIME_INFO(i915)->graphics.version.rel)
- #define IS_GRAPHICS_VER(i915, from, until) \
- 	(GRAPHICS_VER(i915) >= (from) && GRAPHICS_VER(i915) <= (until))
- 
--#define MEDIA_VER(i915)			(INTEL_INFO(i915)->media.ver)
--#define MEDIA_VER_FULL(i915)		IP_VER(INTEL_INFO(i915)->media.ver, \
--					       INTEL_INFO(i915)->media.rel)
-+#define MEDIA_VER(i915)			(RUNTIME_INFO(i915)->media.version.ver)
+
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#43: FILE: drivers/gpu/drm/i915/i915_drv.h:479:
 +#define MEDIA_VER_FULL(i915)		IP_VER(RUNTIME_INFO(i915)->media.version.ver, \
 +					       RUNTIME_INFO(i915)->media.version.rel)
- #define IS_MEDIA_VER(i915, from, until) \
- 	(MEDIA_VER(i915) >= (from) && MEDIA_VER(i915) <= (until))
- 
--#define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.ver)
-+#define DISPLAY_VER(i915)	(RUNTIME_INFO(i915)->display.version.ver)
- #define IS_DISPLAY_VER(i915, from, until) \
- 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
- 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 26b25d9434d6..f6aaf938c53c 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -34,9 +34,9 @@
- 
- #define PLATFORM(x) .platform = (x)
- #define GEN(x) \
--	.__runtime.graphics.ver = (x), \
--	.media.ver = (x), \
--	.display.ver = (x)
-+	.__runtime.graphics.version.ver = (x), \
-+	.__runtime.media.version.ver = (x), \
-+	.__runtime.display.version.ver = (x)
- 
- #define I845_PIPE_OFFSETS \
- 	.display.pipe_offsets = { \
-@@ -740,7 +740,7 @@ static const struct intel_device_info bxt_info = {
- static const struct intel_device_info glk_info = {
- 	GEN9_LP_FEATURES,
- 	PLATFORM(INTEL_GEMINILAKE),
--	.display.ver = 10,
-+	.__runtime.display.version.ver = 10,
- 	.display.dbuf.size = 1024 - 4, /* 4 blocks for bypass path allocation */
- 	GLK_COLORS,
- };
-@@ -919,7 +919,7 @@ static const struct intel_device_info rkl_info = {
- static const struct intel_device_info dg1_info = {
- 	GEN12_FEATURES,
- 	DGFX_FEATURES,
--	.__runtime.graphics.rel = 10,
-+	.__runtime.graphics.version.rel = 10,
- 	PLATFORM(INTEL_DG1),
- 	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
- 	.require_force_probe = 1,
-@@ -962,7 +962,7 @@ static const struct intel_device_info adl_s_info = {
- 	.display.has_hotplug = 1,						\
- 	.display.has_ipc = 1,							\
- 	.display.has_psr = 1,							\
--	.display.ver = 13,							\
-+	.__runtime.display.version.ver = 13,							\
- 	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),	\
- 	.display.pipe_offsets = {						\
- 		[TRANSCODER_A] = PIPE_A_OFFSET,					\
-@@ -1006,8 +1006,8 @@ static const struct intel_device_info adl_p_info = {
- 		I915_GTT_PAGE_SIZE_2M
- 
- #define XE_HP_FEATURES \
--	.__runtime.graphics.ver = 12, \
--	.__runtime.graphics.rel = 50, \
-+	.__runtime.graphics.version.ver = 12, \
-+	.__runtime.graphics.version.rel = 50, \
- 	XE_HP_PAGE_SIZES, \
- 	.dma_mask_size = 46, \
- 	.has_3d_pipeline = 1, \
-@@ -1027,8 +1027,8 @@ static const struct intel_device_info adl_p_info = {
- 	.__runtime.ppgtt_type = INTEL_PPGTT_FULL
- 
- #define XE_HPM_FEATURES \
--	.media.ver = 12, \
--	.media.rel = 50
-+	.__runtime.media.version.ver = 12, \
-+	.__runtime.media.version.rel = 50
- 
- __maybe_unused
- static const struct intel_device_info xehpsdv_info = {
-@@ -1053,8 +1053,8 @@ static const struct intel_device_info xehpsdv_info = {
- 	XE_HP_FEATURES, \
- 	XE_HPM_FEATURES, \
- 	DGFX_FEATURES, \
--	.__runtime.graphics.rel = 55, \
--	.media.rel = 55, \
-+	.__runtime.graphics.version.rel = 55, \
-+	.__runtime.media.version.rel = 55, \
- 	PLATFORM(INTEL_DG2), \
- 	.has_4tile = 1, \
- 	.has_64k_pages = 1, \
-@@ -1097,8 +1097,8 @@ static const struct intel_device_info pvc_info = {
- 	XE_HPC_FEATURES,
- 	XE_HPM_FEATURES,
- 	DGFX_FEATURES,
--	.__runtime.graphics.rel = 60,
--	.media.rel = 60,
-+	.__runtime.graphics.version.rel = 60,
-+	.__runtime.media.version.rel = 60,
- 	PLATFORM(INTEL_PONTEVECCHIO),
- 	.display = { 0 },
- 	.has_flat_ccs = 0,
-@@ -1111,7 +1111,7 @@ static const struct intel_device_info pvc_info = {
- 
- #define XE_LPDP_FEATURES	\
- 	XE_LPD_FEATURES,	\
--	.display.ver = 14,	\
-+	.__runtime.display.version.ver = 14,	\
- 	.display.has_cdclk_crawl = 1, \
- 	.__runtime.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B)
- 
-@@ -1123,9 +1123,9 @@ static const struct intel_device_info mtl_info = {
- 	 * Real graphics IP version will be obtained from hardware GMD_ID
- 	 * register.  Value provided here is just for sanity checking.
- 	 */
--	.__runtime.graphics.ver = 12,
--	.__runtime.graphics.rel = 70,
--	.media.ver = 13,
-+	.__runtime.graphics.version.ver = 12,
-+	.__runtime.graphics.version.rel = 70,
-+	.__runtime.media.version.ver = 13,
- 	PLATFORM(INTEL_METEORLAKE),
- 	.display.has_modular_fia = 1,
- 	.has_flat_ccs = 0,
-@@ -1281,7 +1281,7 @@ bool i915_pci_resource_valid(struct pci_dev *pdev, int bar)
- 
- static bool intel_mmio_bar_valid(struct pci_dev *pdev, struct intel_device_info *intel_info)
- {
--	int gttmmaddr_bar = intel_info->__runtime.graphics.ver == 2 ? GEN2_GTTMMADR_BAR : GTTMMADR_BAR;
+
+-:168: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#168: FILE: drivers/gpu/drm/i915/i915_pci.c:1284:
 +	int gttmmaddr_bar = intel_info->__runtime.graphics.version.ver == 2 ? GEN2_GTTMMADR_BAR : GTTMMADR_BAR;
- 
- 	return i915_pci_resource_valid(pdev, gttmmaddr_bar);
- }
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 0a1f97b35f2b..56f19683dd55 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -92,21 +92,29 @@ void intel_device_info_print(const struct intel_device_info *info,
- 			     const struct intel_runtime_info *runtime,
- 			     struct drm_printer *p)
- {
--	if (runtime->graphics.rel)
--		drm_printf(p, "graphics version: %u.%02u\n", runtime->graphics.ver,
--			   runtime->graphics.rel);
-+	if (runtime->graphics.version.rel)
-+		drm_printf(p, "graphics version: %u.%02u\n",
-+			   runtime->graphics.version.ver,
-+			   runtime->graphics.version.rel);
- 	else
--		drm_printf(p, "graphics version: %u\n", runtime->graphics.ver);
-+		drm_printf(p, "graphics version: %u\n",
-+			   runtime->graphics.version.ver);
- 
--	if (info->media.rel)
--		drm_printf(p, "media version: %u.%02u\n", info->media.ver, info->media.rel);
-+	if (runtime->media.version.rel)
-+		drm_printf(p, "media version: %u.%02u\n",
-+			   runtime->media.version.ver,
-+			   runtime->media.version.rel);
- 	else
--		drm_printf(p, "media version: %u\n", info->media.ver);
-+		drm_printf(p, "media version: %u\n",
-+			   runtime->media.version.ver);
- 
--	if (info->display.rel)
--		drm_printf(p, "display version: %u.%02u\n", info->display.ver, info->display.rel);
-+	if (runtime->display.version.rel)
-+		drm_printf(p, "display version: %u.%02u\n",
-+			   runtime->display.version.ver,
-+			   runtime->display.version.rel);
- 	else
--		drm_printf(p, "display version: %u\n", info->display.ver);
-+		drm_printf(p, "display version: %u\n",
-+			   runtime->display.version.ver);
- 
- 	drm_printf(p, "gt: %d\n", info->gt);
- 	drm_printf(p, "memory-regions: %x\n", runtime->memory_regions);
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 6904ad03ca19..d36cf25f1d5f 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -200,7 +200,15 @@ struct ip_version {
- };
- 
- struct intel_runtime_info {
--	struct ip_version graphics;
-+	struct {
-+		struct ip_version version;
-+	} graphics;
-+	struct {
-+		struct ip_version version;
-+	} media;
-+	struct {
-+		struct ip_version version;
-+	} display;
- 
- 	/*
- 	 * Platform mask is used for optimizing or-ed IS_PLATFORM calls into
-@@ -246,8 +254,6 @@ struct intel_runtime_info {
- };
- 
- struct intel_device_info {
--	struct ip_version media;
--
- 	enum intel_platform platform;
- 
- 	unsigned int dma_mask_size; /* available DMA address bits */
-@@ -259,9 +265,6 @@ struct intel_device_info {
- #undef DEFINE_FLAG
- 
- 	struct {
--		u8 ver;
--		u8 rel;
--
- 		u8 abox_mask;
- 
- 		struct {
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index f5904e659ef2..869b952c13a0 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -172,7 +172,7 @@ struct drm_i915_private *mock_gem_device(void)
- 	/* Using the global GTT may ask questions about KMS users, so prepare */
- 	drm_mode_config_init(&i915->drm);
- 
--	RUNTIME_INFO(i915)->graphics.ver = -1;
-+	RUNTIME_INFO(i915)->graphics.version.ver = -1;
- 
- 	RUNTIME_INFO(i915)->page_sizes =
- 		I915_GTT_PAGE_SIZE_4K |
--- 
-2.34.1
+
+total: 0 errors, 1 warnings, 2 checks, 210 lines checked
+96ff892a02f3 drm/i915: Read graphics/media/display arch version from hw
+496446695d67 drm/i915: Parse and set stepping for platforms with GMD
+590ffac3b5cd drm/i915/mtl: Define engine context layouts
+-:73: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#73: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:642:
++       NOP(1),$
+
+-:74: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#74: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:643:
++       LRI(13, POSTED),$
+
+-:75: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#75: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:644:
++       REG16(0x244),$
+
+-:76: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#76: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:645:
++       REG(0x034),$
+
+-:77: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#77: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:646:
++       REG(0x030),$
+
+-:78: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#78: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:647:
++       REG(0x038),$
+
+-:79: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#79: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:648:
++       REG(0x03c),$
+
+-:80: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#80: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:649:
++       REG(0x168),$
+
+-:81: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#81: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:650:
++       REG(0x140),$
+
+-:82: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#82: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:651:
++       REG(0x110),$
+
+-:83: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#83: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:652:
++       REG(0x1c0),$
+
+-:84: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#84: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:653:
++       REG(0x1c4),$
+
+-:85: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#85: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:654:
++       REG(0x1c8),$
+
+-:86: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#86: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:655:
++       REG(0x180),$
+
+-:87: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#87: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:656:
++       REG16(0x2b4),$
+
+-:89: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#89: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:658:
++       NOP(1),$
+
+-:90: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#90: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:659:
++       LRI(9, POSTED),$
+
+-:91: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#91: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:660:
++       REG16(0x3a8),$
+
+-:92: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#92: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:661:
++       REG16(0x28c),$
+
+-:93: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#93: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:662:
++       REG16(0x288),$
+
+-:94: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#94: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:663:
++       REG16(0x284),$
+
+-:95: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#95: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:664:
++       REG16(0x280),$
+
+-:96: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#96: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:665:
++       REG16(0x27c),$
+
+-:97: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#97: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:666:
++       REG16(0x278),$
+
+-:98: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#98: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:667:
++       REG16(0x274),$
+
+-:99: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#99: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:668:
++       REG16(0x270),$
+
+-:101: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#101: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:670:
++       NOP(2),$
+
+-:102: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#102: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:671:
++       LRI(2, POSTED),$
+
+-:103: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#103: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:672:
++       REG16(0x5a8),$
+
+-:104: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#104: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:673:
++       REG16(0x5ac),$
+
+-:106: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#106: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:675:
++       NOP(6),$
+
+-:107: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#107: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:676:
++       LRI(1, 0),$
+
+-:108: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#108: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:677:
++       REG(0x0c8),$
+
+-:110: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#110: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:679:
++       END$
+
+total: 0 errors, 34 warnings, 0 checks, 105 lines checked
+4c81250058aa drm/i915/mtl: Add gmbus and gpio support
+65a57c3f9435 drm/i915/mtl: Add display power wells
+-:36: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#36: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1358:
++#define XELPDP_PW_2_POWER_DOMAINS \
++	XELPD_PW_B_POWER_DOMAINS, \
++	XELPD_PW_C_POWER_DOMAINS, \
++	XELPD_PW_D_POWER_DOMAINS, \
++	POWER_DOMAIN_AUDIO_PLAYBACK, \
++	POWER_DOMAIN_VGA, \
++	POWER_DOMAIN_PORT_DDI_LANES_TC1, \
++	POWER_DOMAIN_PORT_DDI_LANES_TC2, \
++	POWER_DOMAIN_PORT_DDI_LANES_TC3, \
++	POWER_DOMAIN_PORT_DDI_LANES_TC4
+
+-:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#48: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1370:
++I915_DECL_PW_DOMAINS(xelpdp_pwdoms_pw_2,
++	XELPDP_PW_2_POWER_DOMAINS,
+
+-:52: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#52: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1374:
++I915_DECL_PW_DOMAINS(xelpdp_pwdoms_dc_off,
++	XELPDP_PW_2_POWER_DOMAINS,
+
+-:60: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#60: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1382:
++I915_DECL_PW_DOMAINS(xelpdp_pwdoms_aux_tc1,
++	POWER_DOMAIN_AUX_USBC1,
+
+-:64: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#64: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1386:
++I915_DECL_PW_DOMAINS(xelpdp_pwdoms_aux_tc2,
++	POWER_DOMAIN_AUX_USBC2,
+
+-:68: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#68: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1390:
++I915_DECL_PW_DOMAINS(xelpdp_pwdoms_aux_tc3,
++	POWER_DOMAIN_AUX_USBC3,
+
+-:72: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#72: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1394:
++I915_DECL_PW_DOMAINS(xelpdp_pwdoms_aux_tc4,
++	POWER_DOMAIN_AUX_USBC4,
+
+-:77: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#77: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1399:
++		.instances = &I915_PW_INSTANCES(
+
+-:83: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#83: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1405:
++		.instances = &I915_PW_INSTANCES(
+
+-:92: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#92: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1414:
++		.instances = &I915_PW_INSTANCES(
+
+-:100: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#100: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1422:
++		.instances = &I915_PW_INSTANCES(
+
+-:108: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#108: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1430:
++		.instances = &I915_PW_INSTANCES(
+
+-:116: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#116: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1438:
++		.instances = &I915_PW_INSTANCES(
+
+-:124: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#124: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1446:
++		.instances = &I915_PW_INSTANCES(
+
+total: 1 errors, 0 warnings, 13 checks, 248 lines checked
+1344ad3d6614 drm/i915/mtl: Add DP AUX support on TypeC ports
+3fade45a6406 drm/i915/mtl: Obtain SAGV values from MMIO instead of GT pcode mailbox
+07911132425a drm/i915/mtl: Update MBUS_DBOX credits
+0319593d18bd drm/i915/mtl: Update CHICKEN_TRANS* register addresses
+28e053eba389 drm/i915/mtl: Do not update GV point, mask value
+
 
