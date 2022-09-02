@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10ABC5AACBC
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 12:47:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A6E75AACBF
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 12:48:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 928D210E7F4;
-	Fri,  2 Sep 2022 10:47:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 567C010E45E;
+	Fri,  2 Sep 2022 10:48:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C36A10E7F4
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 10:47:30 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BEE510E45E
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 10:48:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662115650; x=1693651650;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=a0Ad8Y7NtO7CMDRObzOvpYpEmn/2dg4mNGVKT54Vgqo=;
- b=U2LPwxieTgARmSPflEYVs7p6l9mmq7WJGXa6BuICqv7Rj10SFrlyHxwK
- BXbLU3g5XBEn3rEeyXcZEG70vIMpl0s+r/jpmrY3OF8P3Wvr2xN0/9l5+
- ZZkmCVC7i8dEGUIcsc69HacP1LSj+0TtR+jBhTwss9x0Hfs6P/h9V0x3y
- 6nnC8XWBay2KgkS4Efi3AcvlMd3prNFPev+dIRYpcKsaqigLXTwbmcEHL
- T17hc/CNho9blvcfzjheL1u1xtolNZ3i/aY69UM0R8qNlvXw3d3V8R35W
- 8JAoM7Gp/qMmeD5aqBBKG0NqwSJrKZEEZ6f7eX09/M832PJh8FGIj0mXB g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="294694785"
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="294694785"
+ t=1662115712; x=1693651712;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=PUWm4RYd+huePFeSsn3be57zy1CwpgALMbVIlqqbCsA=;
+ b=CG9vjr00K7OYHXty18UNe0SM//Ma51XLgY/UrmOX4wI/qyT/62vT+wEQ
+ K9sNbB331WFJWQ0MkvM3Fe2B6aqYdVBC+7yP4SmD/7G0b5BPYZsA4yLuR
+ Ol6QPqvJa0LhSGb6Y2hC2WsS395/coHzoY8aMDKVUenXDpivivgfKaMP0
+ AlGpZcLWi3Wyge/VeHqcsIau3z8etB/giS7GGoBvtqS2GOJ92JTeIiQm/
+ sgBUljktWndSWWwal87/2j2ZG2NPpX6NiO2qFaOdlXMEdl/cmH0DJWWHY
+ fJ6SSYGl3mFWemturXNZDT+EkIYIpyLeOWTfabWKJN1QBJF4G+yMCFUfy A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="278971139"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="278971139"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 03:47:27 -0700
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674310969"
-Received: from svandene-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.55.245])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 03:48:19 -0700
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674311187"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.43.234])
+ ([10.252.43.234])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 03:47:26 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220818192223.29881-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220818192223.29881-1-ville.syrjala@linux.intel.com>
- <20220818192223.29881-2-ville.syrjala@linux.intel.com>
-Date: Fri, 02 Sep 2022 13:47:14 +0300
-Message-ID: <871qsuf3yl.fsf@intel.com>
+ 02 Sep 2022 03:48:18 -0700
+Message-ID: <4af93785-c413-50ac-748a-cc7b3ada536a@linux.intel.com>
+Date: Fri, 2 Sep 2022 12:48:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/bios: Validate fp_timing
- terminator presence
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220902095126.373036-1-rodrigo.vivi@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220902095126.373036-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Don't try to disable host RPS
+ when this was never enabled.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,136 +63,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+LGTM the series is:
+
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+
+On 9/2/2022 11:51 AM, Rodrigo Vivi wrote:
+> Specially in GT reset case this could be triggered and try
+> to disable things that had never been enabled. Let's add
+> some protection here.
 >
-> Validate the LFP data block a bit hardwer by making sure the
-> fp_timing terminators (0xffff) are where we expect them to be.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-I wonder if it would be good to debug log at each of the "return false"
-sites in fixup_lfp_data_ptrs() and validate_lfp_data_ptrs(). Anyway,
-that's a separate change.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
+> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 60 ++++++++++++-----------
->  1 file changed, 32 insertions(+), 28 deletions(-)
+>   drivers/gpu/drm/i915/gt/intel_rps.c | 3 +++
+>   1 file changed, 3 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 198a2f4920cc..f1f861da9e93 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -135,18 +135,6 @@ static u32 raw_block_offset(const void *bdb, enum bd=
-b_block_id section_id)
->  	return block - bdb;
->  }
->=20=20
-> -/* size of the block excluding the header */
-> -static u32 raw_block_size(const void *bdb, enum bdb_block_id section_id)
-> -{
-> -	const void *block;
-> -
-> -	block =3D find_raw_section(bdb, section_id);
-> -	if (!block)
-> -		return 0;
-> -
-> -	return get_blocksize(block);
-> -}
-> -
->  struct bdb_block_entry {
->  	struct list_head node;
->  	enum bdb_block_id section_id;
-> @@ -231,9 +219,14 @@ static bool validate_lfp_data_ptrs(const void *bdb,
->  {
->  	int fp_timing_size, dvo_timing_size, panel_pnp_id_size, panel_name_size;
->  	int data_block_size, lfp_data_size;
-> +	const void *data_block;
->  	int i;
->=20=20
-> -	data_block_size =3D raw_block_size(bdb, BDB_LVDS_LFP_DATA);
-> +	data_block =3D find_raw_section(bdb, BDB_LVDS_LFP_DATA);
-> +	if (!data_block)
-> +		return false;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index 579ae9ac089c..6fadde4ee7bf 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -1551,6 +1551,9 @@ void intel_rps_disable(struct intel_rps *rps)
+>   {
+>   	struct drm_i915_private *i915 = rps_to_i915(rps);
+>   
+> +	if (!intel_rps_is_enabled(rps))
+> +		return;
 > +
-> +	data_block_size =3D get_blocksize(data_block);
->  	if (data_block_size =3D=3D 0)
->  		return false;
->=20=20
-> @@ -261,21 +254,6 @@ static bool validate_lfp_data_ptrs(const void *bdb,
->  	if (16 * lfp_data_size > data_block_size)
->  		return false;
->=20=20
-> -	/*
-> -	 * Except for vlv/chv machines all real VBTs seem to have 6
-> -	 * unaccounted bytes in the fp_timing table. And it doesn't
-> -	 * appear to be a really intentional hole as the fp_timing
-> -	 * 0xffff terminator is always within those 6 missing bytes.
-> -	 */
-> -	if (fp_timing_size + dvo_timing_size + panel_pnp_id_size !=3D lfp_data_=
-size &&
-> -	    fp_timing_size + 6 + dvo_timing_size + panel_pnp_id_size !=3D lfp_d=
-ata_size)
-> -		return false;
-> -
-> -	if (ptrs->ptr[0].fp_timing.offset + fp_timing_size > ptrs->ptr[0].dvo_t=
-iming.offset ||
-> -	    ptrs->ptr[0].dvo_timing.offset + dvo_timing_size !=3D ptrs->ptr[0].=
-panel_pnp_id.offset ||
-> -	    ptrs->ptr[0].panel_pnp_id.offset + panel_pnp_id_size !=3D lfp_data_=
-size)
-> -		return false;
-> -
->  	/* make sure the table entries have uniform size */
->  	for (i =3D 1; i < 16; i++) {
->  		if (ptrs->ptr[i].fp_timing.table_size !=3D fp_timing_size ||
-> @@ -289,6 +267,23 @@ static bool validate_lfp_data_ptrs(const void *bdb,
->  			return false;
->  	}
->=20=20
-> +	/*
-> +	 * Except for vlv/chv machines all real VBTs seem to have 6
-> +	 * unaccounted bytes in the fp_timing table. And it doesn't
-> +	 * appear to be a really intentional hole as the fp_timing
-> +	 * 0xffff terminator is always within those 6 missing bytes.
-> +	 */
-> +	if (fp_timing_size + 6 + dvo_timing_size + panel_pnp_id_size =3D=3D lfp=
-_data_size)
-> +		fp_timing_size +=3D 6;
-> +
-> +	if (fp_timing_size + dvo_timing_size + panel_pnp_id_size !=3D lfp_data_=
-size)
-> +		return false;
-> +
-> +	if (ptrs->ptr[0].fp_timing.offset + fp_timing_size !=3D ptrs->ptr[0].dv=
-o_timing.offset ||
-> +	    ptrs->ptr[0].dvo_timing.offset + dvo_timing_size !=3D ptrs->ptr[0].=
-panel_pnp_id.offset ||
-> +	    ptrs->ptr[0].panel_pnp_id.offset + panel_pnp_id_size !=3D lfp_data_=
-size)
-> +		return false;
-> +
->  	/* make sure the tables fit inside the data block */
->  	for (i =3D 0; i < 16; i++) {
->  		if (ptrs->ptr[i].fp_timing.offset + fp_timing_size > data_block_size ||
-> @@ -300,6 +295,15 @@ static bool validate_lfp_data_ptrs(const void *bdb,
->  	if (ptrs->panel_name.offset + 16 * panel_name_size > data_block_size)
->  		return false;
->=20=20
-> +	/* make sure fp_timing terminators are present at expected locations */
-> +	for (i =3D 0; i < 16; i++) {
-> +		const u16 *t =3D data_block + ptrs->ptr[i].fp_timing.offset +
-> +			fp_timing_size - 2;
-> +
-> +		if (*t !=3D 0xffff)
-> +			return false;
-> +	}
-> +
->  	return true;
->  }
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+>   	intel_rps_clear_enabled(rps);
+>   	intel_rps_clear_interrupts(rps);
+>   	intel_rps_clear_timer(rps);
