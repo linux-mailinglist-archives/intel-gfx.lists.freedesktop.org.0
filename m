@@ -1,154 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4857B5AAD17
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 13:07:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0571F5AAD3D
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 13:13:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1BC210E7F5;
-	Fri,  2 Sep 2022 11:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0096210E7FC;
+	Fri,  2 Sep 2022 11:13:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D43310E7F5;
- Fri,  2 Sep 2022 11:06:56 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 881A310E7FC
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 11:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662116816; x=1693652816;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=/jX/e+RsA6GfrWvkZWwXDzhmC5P0sKhIdozxSZcGDng=;
- b=FuprKsVGanb0YkStXUO05wd7I99xEMuXZQuIaLhy1D1nHlWwx4+76U9P
- IRQL1ZKtf9xk6UBYUHLuHi5hWfBr0mh/vKysPpXfvNI6cthxRR1YXhIk1
- btouzkxrZWAsPWh2RKzFtgccWNqndIzZNv9gc7rQEm4fmHzkMc/ikSgbv
- /hkn/tUCaIsTVXZraGbTLE8QuoGstSjB1Ves3l9aL7KZQVrvEqAlFlX8B
- RVS03Idj7uwYIGQHOQRhsKskZV/3By5hOUO2gQ8dGyN4pzRFLlr6uykvx
- AgrlEG02NqvGNKYQpxT6yXZ/KztcaoCYhw0yJ1x4J9gpStgrGFUtlfxSq g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="282944243"
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="282944243"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2022 04:06:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="858202887"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga006.fm.intel.com with ESMTP; 02 Sep 2022 04:06:55 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 2 Sep 2022 04:06:54 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 2 Sep 2022 04:06:54 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Fri, 2 Sep 2022 04:06:54 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Fri, 2 Sep 2022 04:06:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=knBn9mevK6AQ3hWTeZCWSGBSdahHIC+eaab9KB10f7uThuRFi2yhL6Wm+w2/v9yrDEOZztEy6OIL0OsV0YW4E7S5FjIjt741DBaG+eF8VEMPoZN2xymb95mEGCvrwA1R08xlD6M4bVqBt+zKiwUh/n1sxx2vMfYMApjrtetfoqy2VoDHyPe2RFaau0zK9yhifV7akgZkhdIKL7XUj6QBaBJ65+QbjHcGFSKtcNhjWCMQ0CPHOc8swTnL+qydT6XaEshz3JsxcdT6oVVNakGZwIgPwkJE0PpjgF7tfT5qjW/O9jUNf9UT2dvL13ZcM1Hgtb27DRJTA1noKZqdJPm5Lg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/jX/e+RsA6GfrWvkZWwXDzhmC5P0sKhIdozxSZcGDng=;
- b=n88wcgdG2eqCGQMzK7ytv0/UgpPLctYGQ5nnX6ZtoGen4QVV0/dneesKloE3BaA4xSS93M3ypFnXjYl1UpxHkHgUDkSV0O14ApYBnMpO8kssh4cBkTtZb8IHS8BgLTXIUTZulH5X9PRgEHhKkxpwqnKWnt9dZSVipWhAuuSjFPo7AAfmLkI6l17xX5AJaCH+6RaWXlHyCz4JPqJG7U2e8F8b/3QaGOtXh6qBMoCz+5ykZWUSzjHRKI7Zto+mKEkOmxvKn1NZPO03hh19k2n0JlD9dQImkVJlQSkn9ff5+b/HwIoThaSze/kNGw0yRpzCh16dtp+59iFPUjC0eBxj4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MWHPR1101MB2157.namprd11.prod.outlook.com
- (2603:10b6:301:51::10) by MWHPR11MB1630.namprd11.prod.outlook.com
- (2603:10b6:301:e::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.14; Fri, 2 Sep
- 2022 11:06:52 +0000
-Received: from MWHPR1101MB2157.namprd11.prod.outlook.com
- ([fe80::549e:abb2:40dc:6591]) by MWHPR1101MB2157.namprd11.prod.outlook.com
- ([fe80::549e:abb2:40dc:6591%9]) with mapi id 15.20.5588.015; Fri, 2 Sep 2022
- 11:06:46 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v2 4/4] drm/tests: Set also mock plane src_x, 
- src_y, src_w and src_h
-Thread-Index: AQHYtuPsgrBuWJhI3Eio7cIHrSs9Wa3MCdcA
-Date: Fri, 2 Sep 2022 11:06:46 +0000
-Message-ID: <MWHPR1101MB21577A59655D65D84FCE55BDEF7A9@MWHPR1101MB2157.namprd11.prod.outlook.com>
-References: <20220823112920.352563-1-jouni.hogander@intel.com>
- <20220823112920.352563-5-jouni.hogander@intel.com>
-In-Reply-To: <20220823112920.352563-5-jouni.hogander@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fd7ee0b4-2179-4786-2704-08da8cd33a26
-x-ms-traffictypediagnostic: MWHPR11MB1630:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: A8u9nlMR4IuuY7+YlY/Biyiw7tyLRyhLVBP0drVM78C41vdbwv9bvWhp7yecrJhsYcIYMVv3U771h7P/pZBh7+vaQtkkcHS2OnZZVaqgdBJj8T8goOV+gzmcXz0r+NJtcJj4Des6I1dCJgb5pCJH04uv2tS0Mh/QF04uNLIF+79RIGyUqTy8TilS+pTjpYx4f9bRlkmU2cHvyi5pItL/vmn2k5olUF02zsE/q8qxrOOR+N2xk76abrUacm+1Q2K95r129VErU6yrnG7A2VWsobj+UBL5b2WcjJsGCO43QffUZ0EJ56T+zUPxF4ol20buwGVEqIWnloqMrFmjyHbrK0T1xlnHLsqDfDqqhjHK1wbXaQK00xOV8DZS4Y9gzP0HwjCiCjpdjXWcmXbIvJT7If4mz/xZkHjd+KCSgkOnDFdJ1RVhehxLkYiaDG4MF9EMOI25UmqcBY9AguEmZH7luFgzcaRoISkKbmKVDkQxb5XLhuu6mu2ix6rfzGMMRY9Wdx4l8GE0HSUIAPc6ODkUolk56Z/zO9BUcTBKo5B4GkaI8+nrIaeObzRbiwqoUXzzuvH+SNDY5gjfXP9Yg5E1zZZrLe36xgPNdtN/KVskCb751EprgnV0kX3ck8uAbQio7qEeLZ3gkA1MW27ZCTbMx6iY2pMaF0/Y5xCNUPy71HhiQ9KOC25IadPJTWXhaaOLQ3wOdJe4TEVU592Bsh8RDrcUS+LbxN+rK2Vr9QMVR84MYhFpfhQ3wUmfw+oYADW3HGexmlpmnf99AeYjrBkbgw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1101MB2157.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(366004)(396003)(346002)(136003)(39860400002)(376002)(53546011)(6506007)(7696005)(38070700005)(9686003)(26005)(71200400001)(478600001)(41300700001)(122000001)(186003)(82960400001)(83380400001)(55016003)(38100700002)(52536014)(66556008)(66476007)(66446008)(64756008)(8676002)(66946007)(450100002)(8936002)(76116006)(5660300002)(2906002)(33656002)(316002)(86362001)(110136005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bStoTGsxWHBMdk1yNnFuOGRlRXorQlVuazhpLzVWSUp5Z3pVbzl2VGR5d3BC?=
- =?utf-8?B?T2NsaC9NM2VRajFNcWpCczZvZy9JOEQxbnI3UzhRbWxxSThzQ1FNVW1ON2x2?=
- =?utf-8?B?VFVwcnZlUk11R3FiWnR3MnhHa3ZtdjdlejZzdDlZeWtSOFlNK3l4TGMxMlBQ?=
- =?utf-8?B?UkhWMjltblk3Q1dSUEtBb0ZyeTRwbmdTRDVTU3p2RFF3RmMzUFhJSldhSXI2?=
- =?utf-8?B?NWF2VHpRdi9QSUFlcFZpR0oxSkdGTjJyTXpWcEo3OWFTV2NRczVidFJydVJY?=
- =?utf-8?B?RVhzUkFBcnZCbS9ZMjRlZHBXczVrekRFT21pRXdRYmZ2ckhvQ043T25kVFdZ?=
- =?utf-8?B?emRnU1JYaFl1TE12V2Z0aEczTSs0cDVmeEZVTUcrTEFBT2lhVVllOUVGZVFR?=
- =?utf-8?B?ZjcySGROcHhzZHh6TWVZeldoZ2dvdmFNaGtONG41bWduVlZiaWtVdVNFT3V5?=
- =?utf-8?B?aWVvSjl4VnZvSmcrMkNsWG5RVCtrUUhHekNEaWpQa1pvTDMzdlcrNFJPaEFR?=
- =?utf-8?B?clJTUXorQVR3cWhNVVMxY1UxVDZQTFM2dXdTeWVQRU81RWlSbmJ5TUFxcTdY?=
- =?utf-8?B?T1ZETld0Z0hZM0haR2RPaHVINWJyRDcwZUg0V1BMSlp2aCtlaCsrVDNXeCtB?=
- =?utf-8?B?elJjQlBZdlVDSDEzdWtPOTZnZkswcmtHa3JzUnh3OTFVbjNGdWpaRk85RjVS?=
- =?utf-8?B?OEt2Q3ByNU1WaFNMVUkyRTAxV1FCeFQyVWo4N3hMbnJsYmJ3eFpJZ3JKQkRw?=
- =?utf-8?B?K3Baa1RNR2VQa0tTRnZEZ0cwL2xUdG1qYzVLbnRHSzEzSFc4VjJWUm5tUHhF?=
- =?utf-8?B?SW5Ka2owdjVqWlRSRmVPN3l5VnNhQ2JWSnVhSmkzYWNPdUhrMGdvZEZMVjRE?=
- =?utf-8?B?K2VHUlZBM3ZQNy9BQWN6elR2YmJFY3JWUEY2TjY4YmdldGcwKzlTenBIQUcw?=
- =?utf-8?B?dVA4YVQ3UGsvKzNOR01VdFZ6TVVnSTVnN1lUWmZ4emVnT3pPeHY2TXJDVVhj?=
- =?utf-8?B?anpyTzd5dHRPTHJkZDlyZXkyTnVCaE1EeFdXTjJrUnRVMWROcEpORzcrTUtv?=
- =?utf-8?B?ZzA3MXAxell0UWFRWFdPQUR6RDg2bS9BQVI3MmxHdWh4c2VNVUQvenZjMUY0?=
- =?utf-8?B?cEYrNzRhTVNINy91Z2o1dW4yQ3lGMklmOTdoYnlTakg5K1h0WGVIbHhUcEJ6?=
- =?utf-8?B?THJRd0hIZFZxb2ZleEpmbXd2SFRieEt3UjVHVGw1TjdpemhZM01qcjlHc0pP?=
- =?utf-8?B?aDArajhsY0pJL2YrdVBIZ080Z1Fjdktpa2ZndERUbkE5UVFtZXZvU3VyL3Ja?=
- =?utf-8?B?bVBncWd0TEJDVEFtVUZibC9RU3YweEszY3lTTVZhTCtuOWMrY1d4TXFUNHlM?=
- =?utf-8?B?WkQ3NE9oNm9BVFJtbG9hKzFqS3VQN0tPekgrMzZTNEVUcVlXTTdqTUdDeG8x?=
- =?utf-8?B?RW92YVdZbGNhTkU4RGU1WTNaTVhRdXNiYmNidEZIN3lqU0xHY3BQL1NoWnJ5?=
- =?utf-8?B?UkFMTWt5TDdCa01FaDdGcVZML0Q2eWJ0ZG01U2tOb3MxVGZWSTBUbUUxSkMz?=
- =?utf-8?B?M3dCcktEbjlSclJSdVZMTkJqYVgrSG1oby9Wcy9SdUhRTjl5UjBmZnRhMWVB?=
- =?utf-8?B?QjFXR0RPbmo2d2hxa0dwN01nNk1WQVR5NFh4eEhLOTJzL2N2TWwrSmJhbml2?=
- =?utf-8?B?aTI5cjhEbzZacWZ2blN2eVlReVY3dTRMUzJSSUFHU1I4RWp5T2JRVng4cUNl?=
- =?utf-8?B?NWZYVmZCN0Q1V0JDVk9wNmZYNFM3OGFvYkFreXFneGlpME1mWDVDc0pkRUZP?=
- =?utf-8?B?dEZuelRleDFudE9zaFcrejFFRlZNYW5DMjdDTjVlWHBmNm1wNlFaR3VIU0M1?=
- =?utf-8?B?Y0dXQmZQUUd2WXI3NHI2WmVtNnhRQjNqSjZrSFc3bDY3NUFHR0dvRTZXd09Q?=
- =?utf-8?B?RGU3RC9ETUhEZ0VnV2VJWWY0SysvTzFiMVhTQUxBSVo0WEZpNmhpdy9qTWxm?=
- =?utf-8?B?QTFLWTcwVjNua0I5d3YrSmhQSkRndVIxdlQzeFFnUHNWZkp1c3cvQkxsd3M5?=
- =?utf-8?B?YzBLTGFIWllSWlJBeTBRV0dBaFRQbGhoM2t3bHRtdzJ0a2FOSHVYZWhzb3lD?=
- =?utf-8?Q?gLzpQYAHqPHCfCk1Wh91gS6n9?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ t=1662117183; x=1693653183;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=Y2QbxUNwyHOSREIsAdIsQ6Z28d176/YBLoljkp6TvLE=;
+ b=f+8TfA7MENszmiy7Bfw2PjZGSX5uXRbmE2gkX+leM2NPMfN4OPqj270v
+ nZOPU64DlcV8K1qyGnbruWj2cgRKdKYyVGrSvfjDv/a4qyMYWeOQYDTr1
+ Mxs7dg0bC+8PlufpXsHS+tyaOMqZmHQoGKtMqb0dvzS+4oWb6x+GU3Hua
+ AuzzlI1wZa2oZIAopiGTcF+1WL/htt0a2VL3QkGXUyS7lRO4D2iQD22KF
+ ZrKmjDfc4bOUZu/8eHBIz6d7H/xtjNOzVA3UwquaX49cMI1+tENKImPC/
+ ReUsJ5eaGtdjYI+KAJuKZ6hZxCkAWutybYtIb9TniLhUX4L2ol1RtmKgy w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="296739760"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="296739760"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 04:13:02 -0700
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674317960"
+Received: from svandene-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.245])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 04:13:01 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220818192223.29881-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220818192223.29881-1-ville.syrjala@linux.intel.com>
+ <20220818192223.29881-3-ville.syrjala@linux.intel.com>
+Date: Fri, 02 Sep 2022 14:12:50 +0300
+Message-ID: <87y1v2do7h.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1101MB2157.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd7ee0b4-2179-4786-2704-08da8cd33a26
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2022 11:06:46.7288 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lqBMzFTTTYdGRB47nuNy/O8QFs9RN/T0vqMeBxa8YmrijtF0DtU9/YV9QonRC5P5Lf66NMxt5np18n10SgCHEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1630
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/tests: Set also mock plane src_x, src_y,
- src_w and src_h
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/bios: Use hardcoded fp_timing
+ size for generating LFP data pointers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,28 +63,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIEpvdW5pDQo+IEjD
-tmdhbmRlcg0KPiBTZW50OiBUdWVzZGF5LCBBdWd1c3QgMjMsIDIwMjIgMjoyOSBQTQ0KPiBUbzog
-ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZw0KPiBTdWJqZWN0OiBbSW50ZWwtZ2Z4XSBbUEFUQ0ggdjIgNC80XSBkcm0vdGVzdHM6
-IFNldCBhbHNvIG1vY2sgcGxhbmUgc3JjX3gsIHNyY195LA0KPiBzcmNfdyBhbmQgc3JjX2gNCj4g
-DQo+IFdlIG5lZWQgdG8gc2V0IGFsc28gc3JjX3gsIHNyY195LCBzcmNfdyBhbmQgc3JjX2ggZm9y
-IHRoZSBtb2NrIHBsYW5lLg0KPiBBZnRlciBmaXggZm9yIGRybV9hdG9taWNfaGVscGVyX2RhbWFn
-ZV9pdGVyX2luaXQgd2UgYXJlIHVzaW5nIHRoZXNlIHdoZW4NCj4gaXRlcmF0aW5nIGRhbWFnZV9j
-bGlwcy4NCj4gDQoNClJldmlld2VkLWJ5OiBNaWthIEthaG9sYSA8bWlrYS5rYWhvbGFAaW50ZWwu
-Y29tPg0KDQo+IFNpZ25lZC1vZmYtYnk6IEpvdW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJA
-aW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS90ZXN0cy9kcm1fZGFtYWdlX2hl
-bHBlcl90ZXN0LmMgfCA1ICsrKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCsp
-DQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3Rlc3RzL2RybV9kYW1hZ2VfaGVs
-cGVyX3Rlc3QuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS90ZXN0cy9kcm1fZGFtYWdlX2hlbHBlcl90
-ZXN0LmMNCj4gaW5kZXggYmYyNTBiZDA4ZDdlLi5jNjA4YWUwNmYwZTMgMTAwNjQ0DQo+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS90ZXN0cy9kcm1fZGFtYWdlX2hlbHBlcl90ZXN0LmMNCj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL3Rlc3RzL2RybV9kYW1hZ2VfaGVscGVyX3Rlc3QuYw0KPiBAQCAtNTks
-NiArNTksMTEgQEAgc3RhdGljIGludCBkcm1fZGFtYWdlX2hlbHBlcl9pbml0KHN0cnVjdCBrdW5p
-dCAqdGVzdCkNCj4gc3RhdGljIHZvaWQgc2V0X3BsYW5lX3NyYyhzdHJ1Y3QgZHJtX3BsYW5lX3N0
-YXRlICpzdGF0ZSwgaW50IHgxLCBpbnQgeTEsIGludCB4MiwNCj4gIAkJCSAgaW50IHkyKQ0KPiAg
-ew0KPiArCXN0YXRlLT5zcmNfeCA9IHgxOw0KPiArCXN0YXRlLT5zcmNfeSA9IHkxOw0KPiArCXN0
-YXRlLT5zcmNfdyA9IHgyIC0geDE7DQo+ICsJc3RhdGUtPnNyY19oID0geTIgLSB5MTsNCj4gKw0K
-PiAgCXN0YXRlLT5zcmMueDEgPSB4MTsNCj4gIAlzdGF0ZS0+c3JjLnkxID0geTE7DQo+ICAJc3Rh
-dGUtPnNyYy54MiA9IHgyOw0KPiAtLQ0KPiAyLjM0LjENCg0K
+On Thu, 18 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The current scheme for generating the LFP data table pointers
+> (when the block including them is missing from the VBT) expects
+> the 0xffff sequence to only appear in the fp_timing terminator
+> entries. However some VBTs also have extra 0xffff sequences
+> elsewhere in the LFP data. When looking for the terminators
+> we may end up finding those extra sequeneces insted, which means
+> we deduce the wrong size for the fp_timing table. The code
+> then notices the inconsistent looking values and gives up on
+> the generated data table pointers, preventing us from parsing
+> the LFP data table entirely.
+>
+> Let's give up on the "search for the terminators" approach
+> and instead just hardcode the expected size for the fp_timing
+> table.
+>
+> We have enough sanity checks in place to make sure we
+> shouldn't end up parsing total garbage even if that size
+> should change in the future (although that seems unlikely
+> as the fp_timing and dvo_timing tables have been declared
+> obsolete as of VBT version 229).
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6592
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+What a mess.
+
+Could debug log about missing data ptrs on vbt version < 155, but no
+biggie.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 46 +++++++++--------------
+>  1 file changed, 18 insertions(+), 28 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index f1f861da9e93..f54a1843924e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -337,18 +337,6 @@ static bool fixup_lfp_data_ptrs(const void *bdb, voi=
+d *ptrs_block)
+>  	return validate_lfp_data_ptrs(bdb, ptrs);
+>  }
+>=20=20
+> -static const void *find_fp_timing_terminator(const u8 *data, int size)
+> -{
+> -	int i;
+> -
+> -	for (i =3D 0; i < size - 1; i++) {
+> -		if (data[i] =3D=3D 0xff && data[i+1] =3D=3D 0xff)
+> -			return &data[i];
+> -	}
+> -
+> -	return NULL;
+> -}
+> -
+>  static int make_lfp_data_ptr(struct lvds_lfp_data_ptr_table *table,
+>  			     int table_size, int total_size)
+>  {
+> @@ -372,11 +360,22 @@ static void next_lfp_data_ptr(struct lvds_lfp_data_=
+ptr_table *next,
+>  static void *generate_lfp_data_ptrs(struct drm_i915_private *i915,
+>  				    const void *bdb)
+>  {
+> -	int i, size, table_size, block_size, offset;
+> -	const void *t0, *t1, *block;
+> +	int i, size, table_size, block_size, offset, fp_timing_size;
+>  	struct bdb_lvds_lfp_data_ptrs *ptrs;
+> +	const void *block;
+>  	void *ptrs_block;
+>=20=20
+> +	/*
+> +	 * The hardcoded fp_timing_size is only valid for
+> +	 * modernish VBTs. All older VBTs definitely should
+> +	 * include block 41 and thus we don't need to
+> +	 * generate one.
+> +	 */
+> +	if (i915->vbt.version < 155)
+> +		return NULL;
+> +
+> +	fp_timing_size =3D 38;
+> +
+>  	block =3D find_raw_section(bdb, BDB_LVDS_LFP_DATA);
+>  	if (!block)
+>  		return NULL;
+> @@ -385,17 +384,8 @@ static void *generate_lfp_data_ptrs(struct drm_i915_=
+private *i915,
+>=20=20
+>  	block_size =3D get_blocksize(block);
+>=20=20
+> -	size =3D block_size;
+> -	t0 =3D find_fp_timing_terminator(block, size);
+> -	if (!t0)
+> -		return NULL;
+> -
+> -	size -=3D t0 - block - 2;
+> -	t1 =3D find_fp_timing_terminator(t0 + 2, size);
+> -	if (!t1)
+> -		return NULL;
+> -
+> -	size =3D t1 - t0;
+> +	size =3D fp_timing_size + sizeof(struct lvds_dvo_timing) +
+> +		sizeof(struct lvds_pnp_id);
+>  	if (size * 16 > block_size)
+>  		return NULL;
+>=20=20
+> @@ -413,7 +403,7 @@ static void *generate_lfp_data_ptrs(struct drm_i915_p=
+rivate *i915,
+>  	table_size =3D sizeof(struct lvds_dvo_timing);
+>  	size =3D make_lfp_data_ptr(&ptrs->ptr[0].dvo_timing, table_size, size);
+>=20=20
+> -	table_size =3D t0 - block + 2;
+> +	table_size =3D fp_timing_size;
+>  	size =3D make_lfp_data_ptr(&ptrs->ptr[0].fp_timing, table_size, size);
+>=20=20
+>  	if (ptrs->ptr[0].fp_timing.table_size)
+> @@ -428,14 +418,14 @@ static void *generate_lfp_data_ptrs(struct drm_i915=
+_private *i915,
+>  		return NULL;
+>  	}
+>=20=20
+> -	size =3D t1 - t0;
+> +	size =3D fp_timing_size + sizeof(struct lvds_dvo_timing) +
+> +		sizeof(struct lvds_pnp_id);
+>  	for (i =3D 1; i < 16; i++) {
+>  		next_lfp_data_ptr(&ptrs->ptr[i].fp_timing, &ptrs->ptr[i-1].fp_timing, =
+size);
+>  		next_lfp_data_ptr(&ptrs->ptr[i].dvo_timing, &ptrs->ptr[i-1].dvo_timing=
+, size);
+>  		next_lfp_data_ptr(&ptrs->ptr[i].panel_pnp_id, &ptrs->ptr[i-1].panel_pn=
+p_id, size);
+>  	}
+>=20=20
+> -	size =3D t1 - t0;
+>  	table_size =3D sizeof(struct lvds_lfp_panel_name);
+>=20=20
+>  	if (16 * (size + table_size) <=3D block_size) {
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
