@@ -1,58 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 513145AA9EC
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 10:26:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F365AAAE5
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Sep 2022 11:08:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3F2610E7B6;
-	Fri,  2 Sep 2022 08:26:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD5AA10E7C0;
+	Fri,  2 Sep 2022 09:07:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com
- [IPv6:2a00:1450:4864:20::234])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6691510E7B6
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 08:26:02 +0000 (UTC)
-Received: by mail-lj1-x234.google.com with SMTP id b19so1490783ljf.8
- for <intel-gfx@lists.freedesktop.org>; Fri, 02 Sep 2022 01:26:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date;
- bh=yZ7GI/H/npr8l+qVhno9QYWaE882wgaDO0sWPEtrVzI=;
- b=gBY8OG2XpP3vttfs1RSHEWup1a1iLXJ18Xy6iShnIE/HNIwJph+Hjv9vUaXz/axDCA
- iVd1PNmFNZKCy8mr44bY9s780B3kBdRpDdSAJLWzZqHmPPNv0MmgLE8FgQmGk6MeCYim
- eQbCsVHw1nBiOsX3PwmKhBjTPYGZVbKvKvCNCB/j2NGcUvVfUG4QtfkZm/n90RiUuuse
- +6ym92aIJpO96LxYalFyXhF3gMayHDtAM6TI9mvOcTspQlr/goaxcGLOxLzkGjyKhYiq
- 8M4XEf/deUHsFxD1OItXh9OiVX+tlJIFa2OFbUvSmaoB/oipSXfs/TyVEQ1VFlQH8aM6
- HOjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=yZ7GI/H/npr8l+qVhno9QYWaE882wgaDO0sWPEtrVzI=;
- b=0EA2s+O9ZdFj9kM3n4iwbVycTQ7ijLrWVLi4F6PQPe0U+HHM1EJSxUK269eu67Snzr
- X9wSVRf0AKhJxEzKk2GF3pZBfpH+uYXwgA5rDOsrafXhPcakGwN8qlQw49OuJA2FkeIP
- 8HfJ9wGMjux+k0HiVQQwzf6KE0IRbcmblk46Pkb24gtbU3/dZAO3PLoiw4mEFoxtybHf
- hUhlGS7J/qpcExQ2mXHezq2xBRHIhDtwPoxk4+2No+FBG3e13mzrL39jIYH/o41nCKxG
- VxJ/29vg7WZmgYX2vqTfYZ/pBrIEt/MSpT+JZEaVYD46ZoMIqoo2Vi5Tktwznh7P5SzK
- 7LmA==
-X-Gm-Message-State: ACgBeo1r2Eb/9qupEDuunepJTQNCJB7uYyGD/pDqIjgAv26tpyZHKKeG
- V9ghG0jAFqCZJpJ18mXx5IF95iv8vecxhZnT3wk=
-X-Google-Smtp-Source: AA6agR6HICholv9FC7LpKeoDOUnCvQdkHZTOJxhZ4iQqo4eM6ddVDLKACblmrSS4Nk3c0VjJ0a6i03hsVPNs8Hjweq0=
-X-Received: by 2002:a2e:9e48:0:b0:261:c713:37dd with SMTP id
- g8-20020a2e9e48000000b00261c71337ddmr10154143ljk.385.1662107160591; Fri, 02
- Sep 2022 01:26:00 -0700 (PDT)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B5D010E7C0
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Sep 2022 09:07:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662109668; x=1693645668;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=J3ZJgF5IgzNnEpOOWt/dzw/2AsPwNj0amV0a6GES5c0=;
+ b=UGkaooHXMSqZXA1KIELW+Vl1nhVeEcMtiGf47W3rrgzZ/bo3M7InxzjA
+ k8VJ/g6o8zVi+bTbm7cqoNgaW5IdBkb8/r1OHYLApH85IpcuuiQP/Mm8V
+ QcO6nrrQ+ga/BCQdyQ825/jVC8I3ywZLio0kweDFU0OUThMhhGNUoc/6g
+ wciXzwUAN2mPlgieiG5Xbqffb+IFUV0cYa5sjluou0bkcrWN3Fxb920DE
+ KsVahAYk4FUttAn72b3lKzBEOJRB++aLi9zQ2czXYw/kNgPGzi5UdYj5m
+ 8mfGFXe1zvHr984PtkYS6NAM39jDBKxbiHoDZ2ccWzK5/vfYBuAysZfDW w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="357656633"
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="357656633"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 02:07:47 -0700
+X-IronPort-AV: E=Sophos;i="5.93,283,1654585200"; d="scan'208";a="674277638"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.43.234])
+ ([10.252.43.234])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2022 02:07:47 -0700
+Message-ID: <d47157f7-1bd0-aeb3-101e-541e4ad1de40@linux.intel.com>
+Date: Fri, 2 Sep 2022 11:07:45 +0200
 MIME-Version: 1.0
-References: <20220806122636.43068-1-tomas.winkler@intel.com>
- <20220806122636.43068-15-tomas.winkler@intel.com>
-In-Reply-To: <20220806122636.43068-15-tomas.winkler@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 2 Sep 2022 09:25:33 +0100
-Message-ID: <CAM0jSHO7sDegQysvZgfOXf5B-h6oe7nmfHeuH+KMAmFtnM3d2w@mail.gmail.com>
-To: Tomas Winkler <tomas.winkler@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v7 14/15] drm/i915/gsc: allocate extended
- operational memory in LMEM
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220901193228.255098-1-rodrigo.vivi@intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220901193228.255098-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Move some of the request
+ decisions out of rps_boost function.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,84 +60,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- David Airlie <airlied@linux.ie>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- kernel list <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 6 Aug 2022 at 13:34, Tomas Winkler <tomas.winkler@intel.com> wrote:
+Hi Rodrigo,
+
+On 9/1/2022 9:32 PM, Rodrigo Vivi wrote:
+> Ideally all the decisions should be made before calling the boost function.
+> And rps functions only receiving the rps struct. At least lets move most
+> of the decisions to the request component, but still leave the test
+> and set of the fence flag boost inside the rps because that might be time
+> sensitive.
 >
-> GSC requires more operational memory than available on chip.
-> Reserve 4M of LMEM for GSC operation. The memory is provided to the
-> GSC as struct resource to the auxiliary data of the child device.
->
-> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_gsc.c | 91 ++++++++++++++++++++++++++---
->  drivers/gpu/drm/i915/gt/intel_gsc.h |  3 +
->  2 files changed, 87 insertions(+), 7 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_atomic_plane.c | 2 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_wait.c          | 3 ++-
+>   drivers/gpu/drm/i915/gt/intel_rps.c               | 3 ---
+>   drivers/gpu/drm/i915/gt/intel_rps.h               | 1 +
+>   drivers/gpu/drm/i915/i915_request.h               | 5 +++--
+>   5 files changed, 7 insertions(+), 7 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c b/drivers/gpu/drm/i915/gt/intel_gsc.c
-> index e1040c8f2fd3..162bea57fbb5 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gsc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
-> @@ -7,6 +7,7 @@
->  #include <linux/mei_aux.h>
->  #include "i915_drv.h"
->  #include "i915_reg.h"
-> +#include "gem/i915_gem_region.h"
->  #include "gt/intel_gsc.h"
->  #include "gt/intel_gt.h"
->
-> @@ -36,12 +37,68 @@ static int gsc_irq_init(int irq)
->         return irq_set_chip_data(irq, NULL);
->  }
->
-> +static int
-> +gsc_ext_om_alloc(struct intel_gsc *gsc, struct intel_gsc_intf *intf, size_t size)
-> +{
-> +       struct intel_gt *gt = gsc_to_gt(gsc);
-> +       struct drm_i915_gem_object *obj;
-> +       void *vaddr;
-> +       int err;
-> +
-> +       obj = i915_gem_object_create_lmem(gt->i915, size, I915_BO_ALLOC_CONTIGUOUS);
-> +       if (IS_ERR(obj)) {
-> +               drm_err(&gt->i915->drm, "Failed to allocate gsc memory\n");
-> +               return PTR_ERR(obj);
-> +       }
-> +
-> +       err = i915_gem_object_pin_pages_unlocked(obj);
-> +       if (err) {
-> +               drm_err(&gt->i915->drm, "Failed to pin pages for gsc memory\n");
-> +               goto out_put;
-> +       }
-> +
-> +       vaddr = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(gt->i915, obj, true));
-> +       if (IS_ERR(vaddr)) {
-> +               err = PTR_ERR(vaddr);
-> +               drm_err(&gt->i915->drm, "Failed to map gsc memory\n");
-> +               goto out_unpin;
-> +       }
-> +
-> +       memset(vaddr, 0, obj->base.size);
-> +
-> +       i915_gem_object_unpin_map(obj);
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index dd876dbbaa39..6967c47c7ba0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -918,7 +918,7 @@ static int do_rps_boost(struct wait_queue_entry *_wait,
+>   	 * is reasonable to assume that it will complete before the next
+>   	 * vblank without our intervention, so leave RPS alone.
+>   	 */
+> -	if (!i915_request_started(rq))
+> +	if (!i915_request_started(rq) && i915_request_needs_boost(rq))
+>   		intel_rps_boost(rq);
+>   	i915_request_put(rq);
+>   
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+> index e6e01c2a74a6..2f2ca5e27248 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+> @@ -58,7 +58,8 @@ i915_gem_object_boost(struct dma_resv *resv, unsigned int flags)
+>   			    dma_resv_usage_rw(flags & I915_WAIT_ALL));
+>   	dma_resv_for_each_fence_unlocked(&cursor, fence)
+>   		if (dma_fence_is_i915(fence) &&
+> -		    !i915_request_started(to_request(fence)))
+> +		    !i915_request_started(to_request(fence)) &&
+> +		    i915_request_needs_boost(to_request(fence)))
+>   			intel_rps_boost(to_request(fence));
+>   	dma_resv_iter_end(&cursor);
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index 579ae9ac089c..2c8d9eeb7e7e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -1006,9 +1006,6 @@ void intel_rps_boost(struct i915_request *rq)
+>   {
+>   	struct intel_guc_slpc *slpc;
+>   
+> -	if (i915_request_signaled(rq) || i915_request_has_waitboost(rq))
+> -		return;
+> -
+>   	/* Serializes with i915_request_retire() */
+>   	if (!test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags)) {
+>   		struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+> index 4509dfdc52e0..9a053f1b04e8 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+> @@ -23,6 +23,7 @@ void intel_rps_disable(struct intel_rps *rps);
+>   
+>   void intel_rps_park(struct intel_rps *rps);
+>   void intel_rps_unpark(struct intel_rps *rps);
+> +bool intel_rps_request_needs_boost(struct i915_request *rq);
+>   void intel_rps_boost(struct i915_request *rq);
+>   void intel_rps_dec_waiters(struct intel_rps *rps);
+>   u32 intel_rps_get_boost_frequency(struct intel_rps *rps);
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 47041ec68df8..4f5049ef1ab9 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -625,9 +625,10 @@ static inline void i915_request_mark_complete(struct i915_request *rq)
+>   		   (u32 *)&rq->fence.seqno);
+>   }
+>   
+> -static inline bool i915_request_has_waitboost(const struct i915_request *rq)
+> +static inline bool i915_request_needs_boost(const struct i915_request *rq)
+>   {
+> -	return test_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
+> +	return i915_request_signaled(rq)
+> +		&& test_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
 
-I think this was mentioned before, here we should rather use:
+This could be i915_request_has_waitboost() or else AFAICS 
+intel_rps_boost() is the only user of i915_request_has_waitboost()
 
-create_lmem(gt->i915, size,
-                      I915_BO_ALLOC_CONTIGUOUS |
-                      I915_BO_ALLOC_CPU_CLEAR);
+and that could be removed.
 
-That way we don't need to manually map and clear it here. Instead when
-first allocating the pages (like with pin_pages), the clear will be
-done for you.
+Otherwise the series is: Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+
+Nirmoy
+
+>   }
+>   
+>   static inline bool i915_request_has_nopreempt(const struct i915_request *rq)
