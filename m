@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5195AD8B6
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFD35AD8B7
 	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 20:01:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E561510E485;
-	Mon,  5 Sep 2022 18:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8532110E484;
+	Mon,  5 Sep 2022 18:01:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BEE310E477
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Sep 2022 18:01:42 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 070DC10E484
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Sep 2022 18:01:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662400902; x=1693936902;
+ t=1662400906; x=1693936906;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ey+fGWpeiEvwyF8V7LK+oc5X6KsMIzQ9PqS+0tWxyoE=;
- b=mw3RNN/8ipkyWuXN6Y8BcZLsHapCj/11vxSF0CfGFFGMeUEM2LL3d7GD
- AjeQN13ilei05V+RQ3ymrpyxQ0EOn4Kpd/9ibQ6vheQj2cHQIgTQmyuaC
- JKbO/xmk6m/IebLKDW7/H4D5xde+YCobPvEN1qKNoLI09rOLdSdAtRmur
- Kqd7sUJdaavEvHX33vuvbPzLM6q53w6xQ7yQmxtjJwjCWC3LzGCvjLF/E
- W5eH3JDSa+NZwNL9W3wQ7g0o75yNknihj4VD1S2BUpzdIdErbyeW0czrU
- abs802k5t4MiFlBB8i28A6ouIjjH6yjrX9qL5SfiMGYn4FBsutSsWB16Y g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10461"; a="283427379"
-X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="283427379"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2022 11:01:41 -0700
-X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="590992325"
+ bh=9igO1BUN2lTK54hX4agrq2zaqg44gZO4/XQH+3cKpW8=;
+ b=H0vpGI8z1Z0Q9uPiJGmk9iLyqKxYb1HNSACNdAI92ywtbC79/p3xo520
+ TqzGR4fsLY2/6emDAv5LdtJeblmZw0zXEKOlPaSOaR6G/FeFUdRuNdetx
+ yZVoI35jQU0iZiq6a/ikLzPrGUjQidowP3esPXS8Aui22ogsuK0mFYbzH
+ flgNrxpkAvYXuae8RVGVI7p7XTZkahVpFekodoCt0joM7Wxm3yxKeK0Np
+ ihc3lne3y5TBebSCMeWqKtGx0pYKSaxPgE80xj8iOzGeK/MfX4Oz8w4WK
+ gahhtDbgHNDv+IMa/siQvy2WKRc5TrQQcyntfEHUfhoPiIaonosiAdDLg Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10461"; a="295171301"
+X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="295171301"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2022 11:01:45 -0700
+X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="942179577"
 Received: from smaciag-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.57.57])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2022 11:01:40 -0700
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2022 11:01:44 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  5 Sep 2022 21:01:07 +0300
-Message-Id: <14e02b1cf3213d7c8c4164903a52371c70cac8d8.1662400767.git.jani.nikula@intel.com>
+Date: Mon,  5 Sep 2022 21:01:08 +0300
+Message-Id: <5e19a069ca8d6957e9509f2e81da7126409e6fdb.1662400767.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1662400767.git.jani.nikula@intel.com>
 References: <cover.1662400767.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/5] drm/i915/display: move IPC under display
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915/display: move hdport under display
  sub-struct
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,7 +62,7 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move display IPC related members under drm_i915_private display
+Move display hdport related members under drm_i915_private display
 sub-struct.
 
 Prefer adding anonymous sub-structs even for single members that aren't
@@ -70,70 +70,98 @@ our own structs.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_core.h | 4 ++++
- drivers/gpu/drm/i915/display/intel_ipc.c          | 6 +++---
- drivers/gpu/drm/i915/i915_drv.h                   | 2 --
- 3 files changed, 7 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c          |  4 ++--
+ drivers/gpu/drm/i915/display/intel_display.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_display_core.h | 10 ++++++++++
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c     |  4 ++--
+ drivers/gpu/drm/i915/i915_drv.h                   |  8 --------
+ 5 files changed, 15 insertions(+), 13 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index f5416433826d..266c379c1d98 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4130,8 +4130,8 @@ intel_ddi_max_lanes(struct intel_digital_port *dig_port)
+ 
+ static bool hti_uses_phy(struct drm_i915_private *i915, enum phy phy)
+ {
+-	return i915->hti_state & HDPORT_ENABLED &&
+-	       i915->hti_state & HDPORT_DDI_USED(phy);
++	return i915->display.hdport.hti_state & HDPORT_ENABLED &&
++	       i915->display.hdport.hti_state & HDPORT_DDI_USED(phy);
+ }
+ 
+ static enum hpd_pin xelpd_hpd_pin(struct drm_i915_private *dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7834a47e0b4b..2160537fee73 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8774,7 +8774,7 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
+ 	 * any display resources before we create our display outputs.
+ 	 */
+ 	if (INTEL_INFO(i915)->display.has_hti)
+-		i915->hti_state = intel_de_read(i915, HDPORT_STATE);
++		i915->display.hdport.hti_state = intel_de_read(i915, HDPORT_STATE);
+ 
+ 	/* Just disable it once at startup */
+ 	intel_vga_disable(i915);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 9086a612365e..4c9a6b9c5512 100644
+index 4c9a6b9c5512..eb013c153c48 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -355,6 +355,10 @@ struct intel_display {
+@@ -355,6 +355,16 @@ struct intel_display {
  		struct mutex comp_mutex;
  	} hdcp;
  
 +	struct {
-+		bool enabled;
-+	} ipc;
++		/*
++		 * HTI (aka HDPORT) state read during initial hw readout.  Most
++		 * platforms don't have HTI, so this will just stay 0.  Those
++		 * that do will use this later to figure out which PLLs and PHYs
++		 * are unavailable for driver usage.
++		 */
++		u32 hti_state;
++	} hdport;
 +
  	struct {
- 		struct i915_power_domains domains;
+ 		bool enabled;
+ 	} ipc;
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index d437fcf04bdd..8260f1168e8b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -3169,10 +3169,10 @@ static void icl_update_active_dpll(struct intel_atomic_state *state,
  
-diff --git a/drivers/gpu/drm/i915/display/intel_ipc.c b/drivers/gpu/drm/i915/display/intel_ipc.c
-index 1285d88b5d25..8fd1251c40bd 100644
---- a/drivers/gpu/drm/i915/display/intel_ipc.c
-+++ b/drivers/gpu/drm/i915/display/intel_ipc.c
-@@ -10,7 +10,7 @@
- 
- bool intel_ipc_is_enabled(struct drm_i915_private *i915)
+ static u32 intel_get_hti_plls(struct drm_i915_private *i915)
  {
--	return i915->ipc_enabled;
-+	return i915->display.ipc.enabled;
+-	if (!(i915->hti_state & HDPORT_ENABLED))
++	if (!(i915->display.hdport.hti_state & HDPORT_ENABLED))
+ 		return 0;
+ 
+-	return REG_FIELD_GET(HDPORT_DPLL_USED_MASK, i915->hti_state);
++	return REG_FIELD_GET(HDPORT_DPLL_USED_MASK, i915->display.hdport.hti_state);
  }
  
- void intel_ipc_enable(struct drm_i915_private *i915)
-@@ -50,7 +50,7 @@ void intel_ipc_init(struct drm_i915_private *i915)
- 	if (!HAS_IPC(i915))
- 		return;
- 
--	i915->ipc_enabled = intel_ipc_can_enable(i915);
-+	i915->display.ipc.enabled = intel_ipc_can_enable(i915);
- 
- 	intel_ipc_enable(i915);
- }
-@@ -88,7 +88,7 @@ static ssize_t intel_ipc_status_write(struct file *file, const char __user *ubuf
- 		if (!intel_ipc_is_enabled(i915) && enable)
- 			drm_info(&i915->drm,
- 				 "Enabling IPC: WM will be proper only after next commit\n");
--		i915->ipc_enabled = enable;
-+		i915->display.ipc.enabled = enable;
- 		intel_ipc_enable(i915);
- 	}
- 
+ static int icl_compute_combo_phy_dpll(struct intel_atomic_state *state,
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index c9cca165bf5d..1c95c75714da 100644
+index 1c95c75714da..ae63a8d71392 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -395,8 +395,6 @@ struct drm_i915_private {
- 	 */
- 	u8 snps_phy_failed_calibration;
+@@ -305,14 +305,6 @@ struct drm_i915_private {
  
--	bool ipc_enabled;
+ 	struct intel_l3_parity l3_parity;
+ 
+-	/*
+-	 * HTI (aka HDPORT) state read during initial hw readout.  Most
+-	 * platforms don't have HTI, so this will just stay 0.  Those that do
+-	 * will use this later to figure out which PLLs and PHYs are unavailable
+-	 * for driver usage.
+-	 */
+-	u32 hti_state;
 -
- 	struct i915_pmu pmu;
- 
- 	struct i915_drm_clients clients;
+ 	/*
+ 	 * edram size in MB.
+ 	 * Cannot be determined by PCIID. You must always read a register.
 -- 
 2.34.1
 
