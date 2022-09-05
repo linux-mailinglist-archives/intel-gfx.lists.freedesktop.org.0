@@ -1,34 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C7B35AD088
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 12:49:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D52ED5AD00C
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 12:24:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BA9310E2CB;
-	Mon,  5 Sep 2022 10:48:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A74D10E28A;
+	Mon,  5 Sep 2022 10:24:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6000810E2B5;
- Mon,  5 Sep 2022 10:48:25 +0000 (UTC)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88]
- helo=diego.localnet) by gloria.sntech.de with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <heiko@sntech.de>)
- id 1oV96T-0005L3-MN; Mon, 05 Sep 2022 12:13:17 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
-Date: Mon, 05 Sep 2022 12:13:17 +0200
-Message-ID: <11952780.MucGe3eQFb@diego>
-In-Reply-To: <429e4b3f905b070fb985ce7388b9637e2b4704dd.1662036058.git.jani.nikula@intel.com>
-References: <cover.1662036058.git.jani.nikula@intel.com>
- <429e4b3f905b070fb985ce7388b9637e2b4704dd.1662036058.git.jani.nikula@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1813010E28A
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Sep 2022 10:24:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662373462; x=1693909462;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cUujdqthqRUm/LYI1eHJMYYXg9bwvZFTGXOUd62Z0oI=;
+ b=Uv4KX1yGY8tM5QYWpIdk6WZWQ6O4oopFL1JkAHEpnu2w4p6617Gbn0aC
+ CMdUV/tqiEPvkXQuCmOSfmfrgnloW+RhP0ZqroiQkzfKM9S6hT1An8Cb6
+ Zs/3W6lNADe/I4s1XffABINiPMKoIAa+GTem+D1jHNvw2dBjtSvczn7Qq
+ viFHkuteM1IXIL47nFkp/V5Q8uMki9L7XeEYXHY0s6eJCJmOUVsn2ViuL
+ IgF8U8lETCIfrO2/1+qSxuaqKEfcU3eDF9OOLdDohl9wn+IjgWKZeEGQP
+ 2u1EMFLc9Whv0WtkxGN31v3mEAYExKedsGYRFHANqCbjBbCj4RK1jUwMu w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10460"; a="295097343"
+X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="295097343"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2022 03:24:21 -0700
+X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="675233884"
+Received: from gpliesch-mobl1.ger.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.251.221.245])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2022 03:24:19 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  5 Sep 2022 13:23:53 +0300
+Message-Id: <20220905102355.176622-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-Subject: Re: [Intel-gfx] [PATCH 9/9] drm/rockchip: convert to using
- has_audio from display_info
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] drm/i915/psr: Disable PSR2 when SDP is sent
+ on prior line
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,67 +57,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Sandy Huang <hjc@rock-chips.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am Donnerstag, 1. September 2022, 14:47:11 CEST schrieb Jani Nikula:
-> Prefer the parsed results for has_audio in display info over calling
-> drm_detect_monitor_audio().
->=20
-> Cc: Sandy Huang <hjc@rock-chips.com>
-> Cc: Heiko St=FCbner <heiko@sntech.de>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Selective update doesn't work if SU start address is 0 and start/end
+SDP is configured to be sent prior to SU start/end lines. PSR2 has to
+be disabled in this case for Alder Lake.
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Additionally this patch set updates changed equation for sending
+start/end SDP prior to the SU region start/end.
 
-> ---
->  drivers/gpu/drm/rockchip/cdn-dp-core.c | 4 ++--
->  drivers/gpu/drm/rockchip/inno_hdmi.c   | 3 ++-
->  2 files changed, 4 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.c b/drivers/gpu/drm/roc=
-kchip/cdn-dp-core.c
-> index f77bdf5f5168..50af9861553b 100644
-> --- a/drivers/gpu/drm/rockchip/cdn-dp-core.c
-> +++ b/drivers/gpu/drm/rockchip/cdn-dp-core.c
-> @@ -272,10 +272,10 @@ static int cdn_dp_connector_get_modes(struct drm_co=
-nnector *connector)
->  		DRM_DEV_DEBUG_KMS(dp->dev, "got edid: width[%d] x height[%d]\n",
->  				  edid->width_cm, edid->height_cm);
-> =20
-> -		dp->sink_has_audio =3D drm_detect_monitor_audio(edid);
-> -
->  		drm_connector_update_edid_property(connector, edid);
->  		ret =3D drm_add_edid_modes(connector, edid);
-> +
-> +		dp->sink_has_audio =3D connector->display_info.has_audio;
->  	}
->  	mutex_unlock(&dp->lock);
-> =20
-> diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockc=
-hip/inno_hdmi.c
-> index 87b2243ea23e..fadaa795fb3d 100644
-> --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
-> +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
-> @@ -564,10 +564,11 @@ static int inno_hdmi_connector_get_modes(struct drm=
-_connector *connector)
-> =20
->  	edid =3D drm_get_edid(connector, hdmi->ddc);
->  	if (edid) {
-> -		hdmi->hdmi_data.sink_has_audio =3D drm_detect_monitor_audio(edid);
->  		drm_connector_update_edid_property(connector, edid);
->  		ret =3D drm_add_edid_modes(connector, edid);
->  		kfree(edid);
-> +
-> +		hdmi->hdmi_data.sink_has_audio =3D connector->display_info.has_audio;
->  	}
-> =20
->  	return ret;
->=20
+Cc: Mika Kahola <mika.kahola@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
 
+Jouni Högander (2):
+  drm/i915/psr: Equation changed for sending start/stop on prior line
+  drm/i915/psr: Disable PSR2 when SDP is sent on prior line
 
+ drivers/gpu/drm/i915/display/intel_psr.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
+-- 
+2.34.1
 
