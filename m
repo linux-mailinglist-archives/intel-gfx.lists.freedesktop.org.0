@@ -2,45 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D612B5ACD57
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 10:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 066CE5ACD65
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 10:05:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8190C10E1FF;
-	Mon,  5 Sep 2022 08:04:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A847310E1FE;
+	Mon,  5 Sep 2022 08:05:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D39610E1FE;
- Mon,  5 Sep 2022 08:04:18 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id C0945610A5;
- Mon,  5 Sep 2022 08:04:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A350AC433D6;
- Mon,  5 Sep 2022 08:04:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1662365057;
- bh=ZviM3XQ2DcMV3uk7a7yxPjcP+JOLn+NSZCdFHlInwuI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=WDuXJgJ/tP3RSsm/7imHBc/Vd0Qlz/CuALQErsD1g1FZNdNo7l1LNgbYOdnREqrZs
- Gl6QXF+9ALdBybSasdsVT+9FKbHk2JjlOdT4kdYmAp7koRZbH7r6MuC1+fnz0rV6Yn
- bcSzBHv8ARR0pQ1uMZe5l0j/3FI18MI3TYPv+N1A=
-Date: Mon, 5 Sep 2022 10:04:14 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Zheng Hacker <hackerzheng666@gmail.com>
-Message-ID: <YxWtfjfpNsoPUrgh@kroah.com>
-References: <tencent_E1BBF05904DFB73C478DCD592740AAE0780A@qq.com>
- <CAJedcCxVW++iH49UFZp9ruUuTcNubWCH6Wsqe11K4COB3E8msg@mail.gmail.com>
- <CAJedcCw1eJqjSK+yR7eQMDheNtH3Mjm+viwt00xAhnmrfpq2pw@mail.gmail.com>
- <CAJedcCweHjD78F7iydiq6Xc2iH=t_3m=H9JKnaCooToUk32FvQ@mail.gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C61F10E202
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Sep 2022 08:05:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662365121; x=1693901121;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TlJP7sQD9Se5PHcUkmzSu7VCiroL97RFVYLIyffKaKY=;
+ b=SQKSqbSZc4Y+h3UmCN7NcHA/s2ffmezmYFneGUOfNI+vB96QwV/efDrt
+ N3in0v1WlGmi8c7J7yunUbtsmD8qf0qznUmlkD+yDErZiVx5RLq3bFB1o
+ 3dj7SnFDVnNcnr6mGccts6BrfaltZDJQDINAXyvwyDx3ukty3dXwmEgtx
+ W6P6N6cQxeGLjdAiKgAdARLuvmjmOcF1vwnRLpMz6dMxodNw6XM5ek1TX
+ BE69M4l8MoaR9hjgxLOjLaFDmyxMJZT5NS4qITx5e6UoPymsSbCDGsbvn
+ R/OsgOOQGngUAP/1cVI0Gi8u6CiDpQCdMcq0HNl908H5LYQazKioYKtXz g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10460"; a="296338161"
+X-IronPort-AV: E=Sophos;i="5.93,290,1654585200"; d="scan'208";a="296338161"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2022 01:05:20 -0700
+X-IronPort-AV: E=Sophos;i="5.93,290,1654585200"; d="scan'208";a="590826878"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2022 01:05:19 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  5 Sep 2022 10:05:00 +0200
+Message-Id: <20220905080500.213330-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJedcCweHjD78F7iydiq6Xc2iH=t_3m=H9JKnaCooToUk32FvQ@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
- split_2MB_gtt_entry.
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: do not reset PLANE_SURF on plane
+ disable on older gens
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,52 +56,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org,
- dri-devel@lists.freedesktop.org, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- xmzyshypnc <1002992920@qq.com>, daniel@ffwll.ch, rodrigo.vivi@intel.com,
- intel-gvt-dev@lists.freedesktop.org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 05, 2022 at 03:46:09PM +0800, Zheng Hacker wrote:
-> I rewrote the letter. Hope it works.
-> 
-> There is a double-free security bug in split_2MB_gtt_entry.
-> 
-> Here is a calling chain :
-> ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
-> If intel_gvt_dma_map_guest_page failed, it will call
-> ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
-> kfree(spt). But the caller does not notice that, and it will call
-> ppgtt_free_spt again in error path.
-> 
-> Fix this by returning the result of ppgtt_invalidate_spt to split_2MB_gtt_entry.
-> 
-> Signed-off-by: Zheng Wang
-> 
-> ---
->  drivers/gpu/drm/i915/gvt/gtt.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-> index ce0eb03709c3..9f14fded8c0c 100644
-> --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> @@ -1215,7 +1215,7 @@ static int split_2MB_gtt_entry(struct intel_vgpu *vgpu,
->                 ret = intel_gvt_dma_map_guest_page(vgpu, start_gfn + sub_index,
->                                                    PAGE_SIZE, &dma_addr);
->                 if (ret) {
-> -                       ppgtt_invalidate_spt(spt);
-> +                       ret = ppgtt_invalidate_spt(spt);
->                         return ret;
+In case of ICL and older generations disabling plane and/or disabling
+async update is always performed on vblank, but if async update is enabled
+PLANE_SURF register is updated asynchronously. Writing 0 to PLANE_SURF
+when plane is still enabled can cause DMAR/PIPE errors.
+On the other side PLANE_SURF is used to arm plane registers - we need to
+write to it to trigger update on VBLANK, writting current value should
+be safe - the buffer address is valid till vblank.
 
-But now you just lost the original error, shouldn't this succeed even if
-intel_gvt_dma_map_guest_page() failed?
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-And how are you causing intel_gvt_dma_map_guest_page() to fail in a real
-system?
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index bcfde81e4d0866..bc9ed60a2d349e 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -615,11 +615,13 @@ skl_plane_disable_arm(struct intel_plane *plane,
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum plane_id plane_id = plane->id;
+ 	enum pipe pipe = plane->pipe;
++	u32 plane_surf;
+ 
+ 	skl_write_plane_wm(plane, crtc_state);
+ 
+ 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
+-	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), 0);
++	plane_surf = intel_de_read_fw(dev_priv, PLANE_SURF(pipe, plane_id));
++	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), plane_surf);
+ }
+ 
+ static void
+@@ -629,6 +631,7 @@ icl_plane_disable_arm(struct intel_plane *plane,
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	enum plane_id plane_id = plane->id;
+ 	enum pipe pipe = plane->pipe;
++	u32 plane_surf;
+ 
+ 	if (icl_is_hdr_plane(dev_priv, plane_id))
+ 		intel_de_write_fw(dev_priv, PLANE_CUS_CTL(pipe, plane_id), 0);
+@@ -637,7 +640,8 @@ icl_plane_disable_arm(struct intel_plane *plane,
+ 
+ 	intel_psr2_disable_plane_sel_fetch(plane, crtc_state);
+ 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
+-	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), 0);
++	plane_surf = intel_de_read_fw(dev_priv, PLANE_SURF(pipe, plane_id));
++	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), plane_surf);
+ }
+ 
+ static bool
+-- 
+2.25.1
 
-thanks,
-
-greg k-h
