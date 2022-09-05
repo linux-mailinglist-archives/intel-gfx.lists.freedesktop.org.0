@@ -2,53 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AAD35ACEE2
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 11:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FFFB5ACEFE
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 11:39:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8045E10E25D;
-	Mon,  5 Sep 2022 09:34:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15E2C10E25D;
+	Mon,  5 Sep 2022 09:38:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0322510E230;
- Mon,  5 Sep 2022 09:34:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662370472; x=1693906472;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=A+OC6Y2Bf5j/f9bsF7mBM9QaD2AYxiJf/NoDoIp981s=;
- b=Nw5DSW96soKNXS7IRSD+VdXfkPIvNwwzgaQTCaKBvF/hSZjI1Xuj99gl
- wYfSwqVTUrnk1GsC48zh+EIPMvdY+Z9lGvdTT+pNfp8VAhdh7+T70USME
- bJjBOCrrZfGn6YJn+LQPBkiqTKtmCblaKHTOUFMdzyAomQ+eddNZRVET8
- bvGd2q+BrlDqstmpnhq4otn+uyKzcZ/jExul3H0p8TvNHWQrpU7CYb7f9
- Ol52LypGq58uobMpyPtB1P/OJr64XSKZriUc20J1awmsK+w9T1rJwj4Ia
- jAePVCy+/VxHe7g/sZ8EbP8PPdSZ8/ymHRHZUI6McV/xNWI+J6T1YYUP4 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10460"; a="293933961"
-X-IronPort-AV: E=Sophos;i="5.93,290,1654585200"; d="scan'208";a="293933961"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2022 02:34:31 -0700
-X-IronPort-AV: E=Sophos;i="5.93,290,1654585200"; d="scan'208";a="675216301"
-Received: from hpigot-mobl1.ger.corp.intel.com (HELO [10.213.237.107])
- ([10.213.237.107])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2022 02:34:29 -0700
-Message-ID: <8888dcc8-6adf-9474-6229-7c6d446f2104@linux.intel.com>
-Date: Mon, 5 Sep 2022 10:34:28 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7972010E25D;
+ Mon,  5 Sep 2022 09:38:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7189DAADD2;
+ Mon,  5 Sep 2022 09:38:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1350990269662749214=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Content-Language: en-US
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220901183854.3446-1-niranjana.vishwanathapura@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220901183854.3446-1-niranjana.vishwanathapura@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Rename ggtt_view as gtt_view
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 05 Sep 2022 09:38:56 -0000
+Message-ID: <166237073643.1950.9051090059850874455@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220905085744.29637-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20220905085744.29637-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
+ =?utf-8?q?_DP_MST_DSC_support_to_i915_=28rev12=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,1003 +40,263 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, thomas.hellstrom@intel.com, matthew.auld@intel.com,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1350990269662749214==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 01/09/2022 19:38, Niranjana Vishwanathapura wrote:
-> So far, different views (normal, partial, rotated and remapped)
-> into the same object are only supported for GGTT mappings.
-> But with the upcoming VM_BIND feature, PPGTT will also use the
-> partial view mapping. Hence rename ggtt_view to more generic
-> gtt_view.
-> 
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+== Series Details ==
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Series: Add DP MST DSC support to i915 (rev12)
+URL   : https://patchwork.freedesktop.org/series/101492/
+State : success
 
-Easily even r-b since I did scroll through it and it all looks 
-straightforward.
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_12070 -> Patchwork_101492v12
+====================================================
 
-Tvrtko
+Summary
+-------
 
-> ---
->   drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
->   drivers/gpu/drm/i915/display/intel_display.h  |  2 +-
->   .../drm/i915/display/intel_display_types.h    |  2 +-
->   drivers/gpu/drm/i915/display/intel_fb.c       | 18 ++---
->   drivers/gpu/drm/i915/display/intel_fb_pin.c   |  4 +-
->   drivers/gpu/drm/i915/display/intel_fb_pin.h   |  4 +-
->   drivers/gpu/drm/i915/display/intel_fbdev.c    |  4 +-
->   drivers/gpu/drm/i915/gem/i915_gem_domain.c    |  4 +-
->   drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 16 ++---
->   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  2 +-
->   .../drm/i915/gem/selftests/i915_gem_mman.c    |  4 +-
->   drivers/gpu/drm/i915/gt/intel_reset.c         |  2 +-
->   drivers/gpu/drm/i915/i915_debugfs.c           | 56 +++++++--------
->   drivers/gpu/drm/i915/i915_drv.h               |  4 +-
->   drivers/gpu/drm/i915/i915_gem.c               |  6 +-
->   drivers/gpu/drm/i915/i915_vma.c               | 40 +++++------
->   drivers/gpu/drm/i915/i915_vma.h               | 18 ++---
->   drivers/gpu/drm/i915/i915_vma_types.h         | 42 ++++++------
->   drivers/gpu/drm/i915/selftests/i915_vma.c     | 68 +++++++++----------
->   19 files changed, 149 insertions(+), 149 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index be7cff722196..8251f87064f6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -670,7 +670,7 @@ bool intel_plane_uses_fence(const struct intel_plane_state *plane_state)
->   
->   	return DISPLAY_VER(dev_priv) < 4 ||
->   		(plane->fbc &&
-> -		 plane_state->view.gtt.type == I915_GGTT_VIEW_NORMAL);
-> +		 plane_state->view.gtt.type == I915_GTT_VIEW_NORMAL);
->   }
->   
->   /*
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index e895277c4cd9..e322011877bb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -45,7 +45,7 @@ struct drm_modeset_acquire_ctx;
->   struct drm_plane;
->   struct drm_plane_state;
->   struct i915_address_space;
-> -struct i915_ggtt_view;
-> +struct i915_gtt_view;
->   struct intel_atomic_state;
->   struct intel_crtc;
->   struct intel_crtc_state;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 0da9b208d56e..01977cd237eb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -105,7 +105,7 @@ struct intel_fb_view {
->   	 * In the normal view the FB object's backing store sg list is used
->   	 * directly and hence the remap information here is not used.
->   	 */
-> -	struct i915_ggtt_view gtt;
-> +	struct i915_gtt_view gtt;
->   
->   	/*
->   	 * The GTT view (gtt.type) specific information for each FB color
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index b191915ab351..eefa33c555ac 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -1395,7 +1395,7 @@ static u32 calc_plane_remap_info(const struct intel_framebuffer *fb, int color_p
->   			       plane_view_height_tiles(fb, color_plane, dims, y));
->   	}
->   
-> -	if (view->gtt.type == I915_GGTT_VIEW_ROTATED) {
-> +	if (view->gtt.type == I915_GTT_VIEW_ROTATED) {
->   		drm_WARN_ON(&i915->drm, remap_info->linear);
->   		check_array_bounds(i915, view->gtt.rotated.plane, color_plane);
->   
-> @@ -1420,7 +1420,7 @@ static u32 calc_plane_remap_info(const struct intel_framebuffer *fb, int color_p
->   		/* rotate the tile dimensions to match the GTT view */
->   		swap(tile_width, tile_height);
->   	} else {
-> -		drm_WARN_ON(&i915->drm, view->gtt.type != I915_GGTT_VIEW_REMAPPED);
-> +		drm_WARN_ON(&i915->drm, view->gtt.type != I915_GTT_VIEW_REMAPPED);
->   
->   		check_array_bounds(i915, view->gtt.remapped.plane, color_plane);
->   
-> @@ -1503,12 +1503,12 @@ calc_plane_normal_size(const struct intel_framebuffer *fb, int color_plane,
->   }
->   
->   static void intel_fb_view_init(struct drm_i915_private *i915, struct intel_fb_view *view,
-> -			       enum i915_ggtt_view_type view_type)
-> +			       enum i915_gtt_view_type view_type)
->   {
->   	memset(view, 0, sizeof(*view));
->   	view->gtt.type = view_type;
->   
-> -	if (view_type == I915_GGTT_VIEW_REMAPPED && IS_ALDERLAKE_P(i915))
-> +	if (view_type == I915_GTT_VIEW_REMAPPED && IS_ALDERLAKE_P(i915))
->   		view->gtt.remapped.plane_alignment = SZ_2M / PAGE_SIZE;
->   }
->   
-> @@ -1530,16 +1530,16 @@ int intel_fill_fb_info(struct drm_i915_private *i915, struct intel_framebuffer *
->   	int i, num_planes = fb->base.format->num_planes;
->   	unsigned int tile_size = intel_tile_size(i915);
->   
-> -	intel_fb_view_init(i915, &fb->normal_view, I915_GGTT_VIEW_NORMAL);
-> +	intel_fb_view_init(i915, &fb->normal_view, I915_GTT_VIEW_NORMAL);
->   
->   	drm_WARN_ON(&i915->drm,
->   		    intel_fb_supports_90_270_rotation(fb) &&
->   		    intel_fb_needs_pot_stride_remap(fb));
->   
->   	if (intel_fb_supports_90_270_rotation(fb))
-> -		intel_fb_view_init(i915, &fb->rotated_view, I915_GGTT_VIEW_ROTATED);
-> +		intel_fb_view_init(i915, &fb->rotated_view, I915_GTT_VIEW_ROTATED);
->   	if (intel_fb_needs_pot_stride_remap(fb))
-> -		intel_fb_view_init(i915, &fb->remapped_view, I915_GGTT_VIEW_REMAPPED);
-> +		intel_fb_view_init(i915, &fb->remapped_view, I915_GTT_VIEW_REMAPPED);
->   
->   	for (i = 0; i < num_planes; i++) {
->   		struct fb_plane_view_dims view_dims;
-> @@ -1620,8 +1620,8 @@ static void intel_plane_remap_gtt(struct intel_plane_state *plane_state)
->   	u32 gtt_offset = 0;
->   
->   	intel_fb_view_init(i915, &plane_state->view,
-> -			   drm_rotation_90_or_270(rotation) ? I915_GGTT_VIEW_ROTATED :
-> -							      I915_GGTT_VIEW_REMAPPED);
-> +			   drm_rotation_90_or_270(rotation) ? I915_GTT_VIEW_ROTATED :
-> +							      I915_GTT_VIEW_REMAPPED);
->   
->   	src_x = plane_state->uapi.src.x1 >> 16;
->   	src_y = plane_state->uapi.src.y1 >> 16;
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> index bd6e7c98e751..c86e5d4ee016 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> @@ -18,7 +18,7 @@
->   
->   static struct i915_vma *
->   intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
-> -		     const struct i915_ggtt_view *view,
-> +		     const struct i915_gtt_view *view,
->   		     bool uses_fence,
->   		     unsigned long *out_flags,
->   		     struct i915_address_space *vm)
-> @@ -79,7 +79,7 @@ intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
->   struct i915_vma *
->   intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
->   			   bool phys_cursor,
-> -			   const struct i915_ggtt_view *view,
-> +			   const struct i915_gtt_view *view,
->   			   bool uses_fence,
->   			   unsigned long *out_flags)
->   {
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> index e4fcd0218d9d..de0efaa25905 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> @@ -11,12 +11,12 @@
->   struct drm_framebuffer;
->   struct i915_vma;
->   struct intel_plane_state;
-> -struct i915_ggtt_view;
-> +struct i915_gtt_view;
->   
->   struct i915_vma *
->   intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
->   			   bool phys_cursor,
-> -			   const struct i915_ggtt_view *view,
-> +			   const struct i915_gtt_view *view,
->   			   bool uses_fence,
->   			   unsigned long *out_flags);
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> index c08ff6a5c2e9..94081bf05b99 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -198,8 +198,8 @@ static int intelfb_create(struct drm_fb_helper *helper,
->   	struct drm_i915_private *dev_priv = to_i915(dev);
->   	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
->   	struct i915_ggtt *ggtt = to_gt(dev_priv)->ggtt;
-> -	const struct i915_ggtt_view view = {
-> -		.type = I915_GGTT_VIEW_NORMAL,
-> +	const struct i915_gtt_view view = {
-> +		.type = I915_GTT_VIEW_NORMAL,
->   	};
->   	intel_wakeref_t wakeref;
->   	struct fb_info *info;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> index 1674b0c5802b..d44a152ce680 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> @@ -397,7 +397,7 @@ struct i915_vma *
->   i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
->   				     struct i915_gem_ww_ctx *ww,
->   				     u32 alignment,
-> -				     const struct i915_ggtt_view *view,
-> +				     const struct i915_gtt_view *view,
->   				     unsigned int flags)
->   {
->   	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> @@ -434,7 +434,7 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
->   	 */
->   	vma = ERR_PTR(-ENOSPC);
->   	if ((flags & PIN_MAPPABLE) == 0 &&
-> -	    (!view || view->type == I915_GGTT_VIEW_NORMAL))
-> +	    (!view || view->type == I915_GTT_VIEW_NORMAL))
->   		vma = i915_gem_object_ggtt_pin_ww(obj, ww, view, 0, alignment,
->   						  flags | PIN_MAPPABLE |
->   						  PIN_NONBLOCK);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index 0c5c43852e24..3218981488cc 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -194,17 +194,17 @@ int i915_gem_mmap_gtt_version(void)
->   	return 4;
->   }
->   
-> -static inline struct i915_ggtt_view
-> +static inline struct i915_gtt_view
->   compute_partial_view(const struct drm_i915_gem_object *obj,
->   		     pgoff_t page_offset,
->   		     unsigned int chunk)
->   {
-> -	struct i915_ggtt_view view;
-> +	struct i915_gtt_view view;
->   
->   	if (i915_gem_object_is_tiled(obj))
->   		chunk = roundup(chunk, tile_row_pages(obj) ?: 1);
->   
-> -	view.type = I915_GGTT_VIEW_PARTIAL;
-> +	view.type = I915_GTT_VIEW_PARTIAL;
->   	view.partial.offset = rounddown(page_offset, chunk);
->   	view.partial.size =
->   		min_t(unsigned int, chunk,
-> @@ -212,7 +212,7 @@ compute_partial_view(const struct drm_i915_gem_object *obj,
->   
->   	/* If the partial covers the entire object, just create a normal VMA. */
->   	if (chunk >= obj->base.size >> PAGE_SHIFT)
-> -		view.type = I915_GGTT_VIEW_NORMAL;
-> +		view.type = I915_GTT_VIEW_NORMAL;
->   
->   	return view;
->   }
-> @@ -341,12 +341,12 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->   					  PIN_NOEVICT);
->   	if (IS_ERR(vma) && vma != ERR_PTR(-EDEADLK)) {
->   		/* Use a partial view if it is bigger than available space */
-> -		struct i915_ggtt_view view =
-> +		struct i915_gtt_view view =
->   			compute_partial_view(obj, page_offset, MIN_CHUNK_PAGES);
->   		unsigned int flags;
->   
->   		flags = PIN_MAPPABLE | PIN_NOSEARCH;
-> -		if (view.type == I915_GGTT_VIEW_NORMAL)
-> +		if (view.type == I915_GTT_VIEW_NORMAL)
->   			flags |= PIN_NONBLOCK; /* avoid warnings for pinned */
->   
->   		/*
-> @@ -357,7 +357,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->   		vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
->   		if (IS_ERR(vma) && vma != ERR_PTR(-EDEADLK)) {
->   			flags = PIN_MAPPABLE;
-> -			view.type = I915_GGTT_VIEW_PARTIAL;
-> +			view.type = I915_GTT_VIEW_PARTIAL;
->   			vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
->   		}
->   
-> @@ -394,7 +394,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->   
->   	/* Finally, remap it using the new GTT offset */
->   	ret = remap_io_mapping(area,
-> -			       area->vm_start + (vma->ggtt_view.partial.offset << PAGE_SHIFT),
-> +			       area->vm_start + (vma->gtt_view.partial.offset << PAGE_SHIFT),
->   			       (ggtt->gmadr.start + vma->node.start) >> PAGE_SHIFT,
->   			       min_t(u64, vma->size, area->vm_end - area->vm_start),
->   			       &ggtt->iomap);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> index 6f0a3ce35567..7317d4102955 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -543,7 +543,7 @@ struct i915_vma * __must_check
->   i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
->   				     struct i915_gem_ww_ctx *ww,
->   				     u32 alignment,
-> -				     const struct i915_ggtt_view *view,
-> +				     const struct i915_gtt_view *view,
->   				     unsigned int flags);
->   
->   void i915_gem_object_make_unshrinkable(struct drm_i915_gem_object *obj);
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> index afdd827e7fd1..b73c91aa5450 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> @@ -93,7 +93,7 @@ static int check_partial_mapping(struct drm_i915_gem_object *obj,
->   {
->   	const unsigned long npages = obj->base.size / PAGE_SIZE;
->   	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> -	struct i915_ggtt_view view;
-> +	struct i915_gtt_view view;
->   	struct i915_vma *vma;
->   	unsigned long page;
->   	u32 __iomem *io;
-> @@ -210,7 +210,7 @@ static int check_partial_mappings(struct drm_i915_gem_object *obj,
->   	}
->   
->   	for_each_prime_number_from(page, 1, npages) {
-> -		struct i915_ggtt_view view =
-> +		struct i915_gtt_view view =
->   			compute_partial_view(obj, page, MIN_CHUNK_PAGES);
->   		u32 __iomem *io;
->   		struct page *p;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 1211774e1d91..b36674356986 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -776,7 +776,7 @@ static void revoke_mmaps(struct intel_gt *gt)
->   			continue;
->   
->   		node = &vma->mmo->vma_node;
-> -		vma_offset = vma->ggtt_view.partial.offset << PAGE_SHIFT;
-> +		vma_offset = vma->gtt_view.partial.offset << PAGE_SHIFT;
->   
->   		unmap_mapping_range(gt->i915->drm.anon_inode->i_mapping,
->   				    drm_vma_node_offset_addr(node) + vma_offset,
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index 3e99a6a88c3a..ae987e92251d 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -187,47 +187,47 @@ i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
->   			   stringify_page_sizes(vma->resource->page_sizes_gtt,
->   						NULL, 0));
->   		if (i915_vma_is_ggtt(vma) || i915_vma_is_dpt(vma)) {
-> -			switch (vma->ggtt_view.type) {
-> -			case I915_GGTT_VIEW_NORMAL:
-> +			switch (vma->gtt_view.type) {
-> +			case I915_GTT_VIEW_NORMAL:
->   				seq_puts(m, ", normal");
->   				break;
->   
-> -			case I915_GGTT_VIEW_PARTIAL:
-> +			case I915_GTT_VIEW_PARTIAL:
->   				seq_printf(m, ", partial [%08llx+%x]",
-> -					   vma->ggtt_view.partial.offset << PAGE_SHIFT,
-> -					   vma->ggtt_view.partial.size << PAGE_SHIFT);
-> +					   vma->gtt_view.partial.offset << PAGE_SHIFT,
-> +					   vma->gtt_view.partial.size << PAGE_SHIFT);
->   				break;
->   
-> -			case I915_GGTT_VIEW_ROTATED:
-> +			case I915_GTT_VIEW_ROTATED:
->   				seq_printf(m, ", rotated [(%ux%u, src_stride=%u, dst_stride=%u, offset=%u), (%ux%u, src_stride=%u, dst_stride=%u, offset=%u)]",
-> -					   vma->ggtt_view.rotated.plane[0].width,
-> -					   vma->ggtt_view.rotated.plane[0].height,
-> -					   vma->ggtt_view.rotated.plane[0].src_stride,
-> -					   vma->ggtt_view.rotated.plane[0].dst_stride,
-> -					   vma->ggtt_view.rotated.plane[0].offset,
-> -					   vma->ggtt_view.rotated.plane[1].width,
-> -					   vma->ggtt_view.rotated.plane[1].height,
-> -					   vma->ggtt_view.rotated.plane[1].src_stride,
-> -					   vma->ggtt_view.rotated.plane[1].dst_stride,
-> -					   vma->ggtt_view.rotated.plane[1].offset);
-> +					   vma->gtt_view.rotated.plane[0].width,
-> +					   vma->gtt_view.rotated.plane[0].height,
-> +					   vma->gtt_view.rotated.plane[0].src_stride,
-> +					   vma->gtt_view.rotated.plane[0].dst_stride,
-> +					   vma->gtt_view.rotated.plane[0].offset,
-> +					   vma->gtt_view.rotated.plane[1].width,
-> +					   vma->gtt_view.rotated.plane[1].height,
-> +					   vma->gtt_view.rotated.plane[1].src_stride,
-> +					   vma->gtt_view.rotated.plane[1].dst_stride,
-> +					   vma->gtt_view.rotated.plane[1].offset);
->   				break;
->   
-> -			case I915_GGTT_VIEW_REMAPPED:
-> +			case I915_GTT_VIEW_REMAPPED:
->   				seq_printf(m, ", remapped [(%ux%u, src_stride=%u, dst_stride=%u, offset=%u), (%ux%u, src_stride=%u, dst_stride=%u, offset=%u)]",
-> -					   vma->ggtt_view.remapped.plane[0].width,
-> -					   vma->ggtt_view.remapped.plane[0].height,
-> -					   vma->ggtt_view.remapped.plane[0].src_stride,
-> -					   vma->ggtt_view.remapped.plane[0].dst_stride,
-> -					   vma->ggtt_view.remapped.plane[0].offset,
-> -					   vma->ggtt_view.remapped.plane[1].width,
-> -					   vma->ggtt_view.remapped.plane[1].height,
-> -					   vma->ggtt_view.remapped.plane[1].src_stride,
-> -					   vma->ggtt_view.remapped.plane[1].dst_stride,
-> -					   vma->ggtt_view.remapped.plane[1].offset);
-> +					   vma->gtt_view.remapped.plane[0].width,
-> +					   vma->gtt_view.remapped.plane[0].height,
-> +					   vma->gtt_view.remapped.plane[0].src_stride,
-> +					   vma->gtt_view.remapped.plane[0].dst_stride,
-> +					   vma->gtt_view.remapped.plane[0].offset,
-> +					   vma->gtt_view.remapped.plane[1].width,
-> +					   vma->gtt_view.remapped.plane[1].height,
-> +					   vma->gtt_view.remapped.plane[1].src_stride,
-> +					   vma->gtt_view.remapped.plane[1].dst_stride,
-> +					   vma->gtt_view.remapped.plane[1].offset);
->   				break;
->   
->   			default:
-> -				MISSING_CASE(vma->ggtt_view.type);
-> +				MISSING_CASE(vma->gtt_view.type);
->   				break;
->   			}
->   		}
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index c9cca165bf5d..281079f0aa1b 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1019,12 +1019,12 @@ static inline void i915_gem_drain_workqueue(struct drm_i915_private *i915)
->   struct i915_vma * __must_check
->   i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
->   			    struct i915_gem_ww_ctx *ww,
-> -			    const struct i915_ggtt_view *view,
-> +			    const struct i915_gtt_view *view,
->   			    u64 size, u64 alignment, u64 flags);
->   
->   struct i915_vma * __must_check
->   i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
-> -			 const struct i915_ggtt_view *view,
-> +			 const struct i915_gtt_view *view,
->   			 u64 size, u64 alignment, u64 flags);
->   
->   int i915_gem_object_unbind(struct drm_i915_gem_object *obj,
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index c2d6172ba4bb..57402b2f7524 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -885,7 +885,7 @@ static void discard_ggtt_vma(struct i915_vma *vma)
->   struct i915_vma *
->   i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
->   			    struct i915_gem_ww_ctx *ww,
-> -			    const struct i915_ggtt_view *view,
-> +			    const struct i915_gtt_view *view,
->   			    u64 size, u64 alignment, u64 flags)
->   {
->   	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> @@ -896,7 +896,7 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
->   	GEM_WARN_ON(!ww);
->   
->   	if (flags & PIN_MAPPABLE &&
-> -	    (!view || view->type == I915_GGTT_VIEW_NORMAL)) {
-> +	    (!view || view->type == I915_GTT_VIEW_NORMAL)) {
->   		/*
->   		 * If the required space is larger than the available
->   		 * aperture, we will not able to find a slot for the
-> @@ -987,7 +987,7 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
->   
->   struct i915_vma * __must_check
->   i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
-> -			 const struct i915_ggtt_view *view,
-> +			 const struct i915_gtt_view *view,
->   			 u64 size, u64 alignment, u64 flags)
->   {
->   	struct i915_gem_ww_ctx ww;
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 260371716490..e300f8070c1d 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -109,7 +109,7 @@ static void __i915_vma_retire(struct i915_active *ref)
->   static struct i915_vma *
->   vma_create(struct drm_i915_gem_object *obj,
->   	   struct i915_address_space *vm,
-> -	   const struct i915_ggtt_view *view)
-> +	   const struct i915_gtt_view *view)
->   {
->   	struct i915_vma *pos = ERR_PTR(-E2BIG);
->   	struct i915_vma *vma;
-> @@ -141,9 +141,9 @@ vma_create(struct drm_i915_gem_object *obj,
->   	INIT_LIST_HEAD(&vma->obj_link);
->   	RB_CLEAR_NODE(&vma->obj_node);
->   
-> -	if (view && view->type != I915_GGTT_VIEW_NORMAL) {
-> -		vma->ggtt_view = *view;
-> -		if (view->type == I915_GGTT_VIEW_PARTIAL) {
-> +	if (view && view->type != I915_GTT_VIEW_NORMAL) {
-> +		vma->gtt_view = *view;
-> +		if (view->type == I915_GTT_VIEW_PARTIAL) {
->   			GEM_BUG_ON(range_overflows_t(u64,
->   						     view->partial.offset,
->   						     view->partial.size,
-> @@ -151,10 +151,10 @@ vma_create(struct drm_i915_gem_object *obj,
->   			vma->size = view->partial.size;
->   			vma->size <<= PAGE_SHIFT;
->   			GEM_BUG_ON(vma->size > obj->base.size);
-> -		} else if (view->type == I915_GGTT_VIEW_ROTATED) {
-> +		} else if (view->type == I915_GTT_VIEW_ROTATED) {
->   			vma->size = intel_rotation_info_size(&view->rotated);
->   			vma->size <<= PAGE_SHIFT;
-> -		} else if (view->type == I915_GGTT_VIEW_REMAPPED) {
-> +		} else if (view->type == I915_GTT_VIEW_REMAPPED) {
->   			vma->size = intel_remapped_info_size(&view->remapped);
->   			vma->size <<= PAGE_SHIFT;
->   		}
-> @@ -248,7 +248,7 @@ vma_create(struct drm_i915_gem_object *obj,
->   static struct i915_vma *
->   i915_vma_lookup(struct drm_i915_gem_object *obj,
->   	   struct i915_address_space *vm,
-> -	   const struct i915_ggtt_view *view)
-> +	   const struct i915_gtt_view *view)
->   {
->   	struct rb_node *rb;
->   
-> @@ -286,7 +286,7 @@ i915_vma_lookup(struct drm_i915_gem_object *obj,
->   struct i915_vma *
->   i915_vma_instance(struct drm_i915_gem_object *obj,
->   		  struct i915_address_space *vm,
-> -		  const struct i915_ggtt_view *view)
-> +		  const struct i915_gtt_view *view)
->   {
->   	struct i915_vma *vma;
->   
-> @@ -1203,7 +1203,7 @@ intel_remap_pages(struct intel_remapped_info *rem_info,
->   }
->   
->   static noinline struct sg_table *
-> -intel_partial_pages(const struct i915_ggtt_view *view,
-> +intel_partial_pages(const struct i915_gtt_view *view,
->   		    struct drm_i915_gem_object *obj)
->   {
->   	struct sg_table *st;
-> @@ -1247,33 +1247,33 @@ __i915_vma_get_pages(struct i915_vma *vma)
->   	 */
->   	GEM_BUG_ON(!i915_gem_object_has_pinned_pages(vma->obj));
->   
-> -	switch (vma->ggtt_view.type) {
-> +	switch (vma->gtt_view.type) {
->   	default:
-> -		GEM_BUG_ON(vma->ggtt_view.type);
-> +		GEM_BUG_ON(vma->gtt_view.type);
->   		fallthrough;
-> -	case I915_GGTT_VIEW_NORMAL:
-> +	case I915_GTT_VIEW_NORMAL:
->   		pages = vma->obj->mm.pages;
->   		break;
->   
-> -	case I915_GGTT_VIEW_ROTATED:
-> +	case I915_GTT_VIEW_ROTATED:
->   		pages =
-> -			intel_rotate_pages(&vma->ggtt_view.rotated, vma->obj);
-> +			intel_rotate_pages(&vma->gtt_view.rotated, vma->obj);
->   		break;
->   
-> -	case I915_GGTT_VIEW_REMAPPED:
-> +	case I915_GTT_VIEW_REMAPPED:
->   		pages =
-> -			intel_remap_pages(&vma->ggtt_view.remapped, vma->obj);
-> +			intel_remap_pages(&vma->gtt_view.remapped, vma->obj);
->   		break;
->   
-> -	case I915_GGTT_VIEW_PARTIAL:
-> -		pages = intel_partial_pages(&vma->ggtt_view, vma->obj);
-> +	case I915_GTT_VIEW_PARTIAL:
-> +		pages = intel_partial_pages(&vma->gtt_view, vma->obj);
->   		break;
->   	}
->   
->   	if (IS_ERR(pages)) {
->   		drm_err(&vma->vm->i915->drm,
->   			"Failed to get pages for VMA view type %u (%ld)!\n",
-> -			vma->ggtt_view.type, PTR_ERR(pages));
-> +			vma->gtt_view.type, PTR_ERR(pages));
->   		return PTR_ERR(pages);
->   	}
->   
-> @@ -1806,7 +1806,7 @@ void i915_vma_revoke_mmap(struct i915_vma *vma)
->   	GEM_BUG_ON(!vma->obj->userfault_count);
->   
->   	node = &vma->mmo->vma_node;
-> -	vma_offset = vma->ggtt_view.partial.offset << PAGE_SHIFT;
-> +	vma_offset = vma->gtt_view.partial.offset << PAGE_SHIFT;
->   	unmap_mapping_range(vma->vm->i915->drm.anon_inode->i_mapping,
->   			    drm_vma_node_offset_addr(node) + vma_offset,
->   			    vma->size,
-> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> index 33a58f605d75..aecd9c64486b 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.h
-> +++ b/drivers/gpu/drm/i915/i915_vma.h
-> @@ -43,7 +43,7 @@
->   struct i915_vma *
->   i915_vma_instance(struct drm_i915_gem_object *obj,
->   		  struct i915_address_space *vm,
-> -		  const struct i915_ggtt_view *view);
-> +		  const struct i915_gtt_view *view);
->   
->   void i915_vma_unpin_and_release(struct i915_vma **p_vma, unsigned int flags);
->   #define I915_VMA_RELEASE_MAP BIT(0)
-> @@ -160,7 +160,7 @@ static inline void i915_vma_put(struct i915_vma *vma)
->   static inline long
->   i915_vma_compare(struct i915_vma *vma,
->   		 struct i915_address_space *vm,
-> -		 const struct i915_ggtt_view *view)
-> +		 const struct i915_gtt_view *view)
->   {
->   	ptrdiff_t cmp;
->   
-> @@ -170,8 +170,8 @@ i915_vma_compare(struct i915_vma *vma,
->   	if (cmp)
->   		return cmp;
->   
-> -	BUILD_BUG_ON(I915_GGTT_VIEW_NORMAL != 0);
-> -	cmp = vma->ggtt_view.type;
-> +	BUILD_BUG_ON(I915_GTT_VIEW_NORMAL != 0);
-> +	cmp = vma->gtt_view.type;
->   	if (!view)
->   		return cmp;
->   
-> @@ -181,7 +181,7 @@ i915_vma_compare(struct i915_vma *vma,
->   
->   	assert_i915_gem_gtt_types();
->   
-> -	/* ggtt_view.type also encodes its size so that we both distinguish
-> +	/* gtt_view.type also encodes its size so that we both distinguish
->   	 * different views using it as a "type" and also use a compact (no
->   	 * accessing of uninitialised padding bytes) memcmp without storing
->   	 * an extra parameter or adding more code.
-> @@ -191,14 +191,14 @@ i915_vma_compare(struct i915_vma *vma,
->   	 * we assert above that all branches have the same address, and that
->   	 * each branch has a unique type/size.
->   	 */
-> -	BUILD_BUG_ON(I915_GGTT_VIEW_NORMAL >= I915_GGTT_VIEW_PARTIAL);
-> -	BUILD_BUG_ON(I915_GGTT_VIEW_PARTIAL >= I915_GGTT_VIEW_ROTATED);
-> -	BUILD_BUG_ON(I915_GGTT_VIEW_ROTATED >= I915_GGTT_VIEW_REMAPPED);
-> +	BUILD_BUG_ON(I915_GTT_VIEW_NORMAL >= I915_GTT_VIEW_PARTIAL);
-> +	BUILD_BUG_ON(I915_GTT_VIEW_PARTIAL >= I915_GTT_VIEW_ROTATED);
-> +	BUILD_BUG_ON(I915_GTT_VIEW_ROTATED >= I915_GTT_VIEW_REMAPPED);
->   	BUILD_BUG_ON(offsetof(typeof(*view), rotated) !=
->   		     offsetof(typeof(*view), partial));
->   	BUILD_BUG_ON(offsetof(typeof(*view), rotated) !=
->   		     offsetof(typeof(*view), remapped));
-> -	return memcmp(&vma->ggtt_view.partial, &view->partial, view->type);
-> +	return memcmp(&vma->gtt_view.partial, &view->partial, view->type);
->   }
->   
->   struct i915_vma_work *i915_vma_work(void);
-> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
-> index be6e028c3b57..ec0f6c9f57d0 100644
-> --- a/drivers/gpu/drm/i915/i915_vma_types.h
-> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
-> @@ -67,30 +67,30 @@ enum i915_cache_level;
->    * Implementation and usage
->    *
->    * GGTT views are implemented using VMAs and are distinguished via enum
-> - * i915_ggtt_view_type and struct i915_ggtt_view.
-> + * i915_gtt_view_type and struct i915_gtt_view.
->    *
->    * A new flavour of core GEM functions which work with GGTT bound objects were
->    * added with the _ggtt_ infix, and sometimes with _view postfix to avoid
-> - * renaming  in large amounts of code. They take the struct i915_ggtt_view
-> + * renaming  in large amounts of code. They take the struct i915_gtt_view
->    * parameter encapsulating all metadata required to implement a view.
->    *
->    * As a helper for callers which are only interested in the normal view,
-> - * globally const i915_ggtt_view_normal singleton instance exists. All old core
-> + * globally const i915_gtt_view_normal singleton instance exists. All old core
->    * GEM API functions, the ones not taking the view parameter, are operating on,
->    * or with the normal GGTT view.
->    *
->    * Code wanting to add or use a new GGTT view needs to:
->    *
->    * 1. Add a new enum with a suitable name.
-> - * 2. Extend the metadata in the i915_ggtt_view structure if required.
-> + * 2. Extend the metadata in the i915_gtt_view structure if required.
->    * 3. Add support to i915_get_vma_pages().
->    *
->    * New views are required to build a scatter-gather table from within the
-> - * i915_get_vma_pages function. This table is stored in the vma.ggtt_view and
-> + * i915_get_vma_pages function. This table is stored in the vma.gtt_view and
->    * exists for the lifetime of an VMA.
->    *
->    * Core API is designed to have copy semantics which means that passed in
-> - * struct i915_ggtt_view does not need to be persistent (left around after
-> + * struct i915_gtt_view does not need to be persistent (left around after
->    * calling the core API functions).
->    *
->    */
-> @@ -130,11 +130,11 @@ struct intel_partial_info {
->   	unsigned int size;
->   } __packed;
->   
-> -enum i915_ggtt_view_type {
-> -	I915_GGTT_VIEW_NORMAL = 0,
-> -	I915_GGTT_VIEW_ROTATED = sizeof(struct intel_rotation_info),
-> -	I915_GGTT_VIEW_PARTIAL = sizeof(struct intel_partial_info),
-> -	I915_GGTT_VIEW_REMAPPED = sizeof(struct intel_remapped_info),
-> +enum i915_gtt_view_type {
-> +	I915_GTT_VIEW_NORMAL = 0,
-> +	I915_GTT_VIEW_ROTATED = sizeof(struct intel_rotation_info),
-> +	I915_GTT_VIEW_PARTIAL = sizeof(struct intel_partial_info),
-> +	I915_GTT_VIEW_REMAPPED = sizeof(struct intel_remapped_info),
->   };
->   
->   static inline void assert_i915_gem_gtt_types(void)
-> @@ -152,18 +152,18 @@ static inline void assert_i915_gem_gtt_types(void)
->   	/* As we encode the size of each branch inside the union into its type,
->   	 * we have to be careful that each branch has a unique size.
->   	 */
-> -	switch ((enum i915_ggtt_view_type)0) {
-> -	case I915_GGTT_VIEW_NORMAL:
-> -	case I915_GGTT_VIEW_PARTIAL:
-> -	case I915_GGTT_VIEW_ROTATED:
-> -	case I915_GGTT_VIEW_REMAPPED:
-> +	switch ((enum i915_gtt_view_type)0) {
-> +	case I915_GTT_VIEW_NORMAL:
-> +	case I915_GTT_VIEW_PARTIAL:
-> +	case I915_GTT_VIEW_ROTATED:
-> +	case I915_GTT_VIEW_REMAPPED:
->   		/* gcc complains if these are identical cases */
->   		break;
->   	}
->   }
->   
-> -struct i915_ggtt_view {
-> -	enum i915_ggtt_view_type type;
-> +struct i915_gtt_view {
-> +	enum i915_gtt_view_type type;
->   	union {
->   		/* Members need to contain no holes/padding */
->   		struct intel_partial_info partial;
-> @@ -280,11 +280,11 @@ struct i915_vma {
->   	/**
->   	 * Support different GGTT views into the same object.
->   	 * This means there can be multiple VMA mappings per object and per VM.
-> -	 * i915_ggtt_view_type is used to distinguish between those entries.
-> -	 * The default one of zero (I915_GGTT_VIEW_NORMAL) is default and also
-> +	 * i915_gtt_view_type is used to distinguish between those entries.
-> +	 * The default one of zero (I915_GTT_VIEW_NORMAL) is default and also
->   	 * assumed in GEM functions which take no ggtt view parameter.
->   	 */
-> -	struct i915_ggtt_view ggtt_view;
-> +	struct i915_gtt_view gtt_view;
->   
->   	/** This object's place on the active/inactive lists */
->   	struct list_head vm_link;
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
-> index e3821398a5b0..71b52d5efef4 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
-> @@ -51,9 +51,9 @@ static bool assert_vma(struct i915_vma *vma,
->   		ok = false;
->   	}
->   
-> -	if (vma->ggtt_view.type != I915_GGTT_VIEW_NORMAL) {
-> +	if (vma->gtt_view.type != I915_GTT_VIEW_NORMAL) {
->   		pr_err("VMA created with wrong type [%d]\n",
-> -		       vma->ggtt_view.type);
-> +		       vma->gtt_view.type);
->   		ok = false;
->   	}
->   
-> @@ -63,7 +63,7 @@ static bool assert_vma(struct i915_vma *vma,
->   static struct i915_vma *
->   checked_vma_instance(struct drm_i915_gem_object *obj,
->   		     struct i915_address_space *vm,
-> -		     const struct i915_ggtt_view *view)
-> +		     const struct i915_gtt_view *view)
->   {
->   	struct i915_vma *vma;
->   	bool ok = true;
-> @@ -91,7 +91,7 @@ checked_vma_instance(struct drm_i915_gem_object *obj,
->   	}
->   
->   	if (i915_vma_compare(vma, vma->vm,
-> -			     i915_vma_is_ggtt(vma) ? &vma->ggtt_view : NULL)) {
-> +			     i915_vma_is_ggtt(vma) ? &vma->gtt_view : NULL)) {
->   		pr_err("i915_vma_compare failed with itself\n");
->   		return ERR_PTR(-EINVAL);
->   	}
-> @@ -530,12 +530,12 @@ assert_remapped(struct drm_i915_gem_object *obj,
->   	return sg;
->   }
->   
-> -static unsigned int remapped_size(enum i915_ggtt_view_type view_type,
-> +static unsigned int remapped_size(enum i915_gtt_view_type view_type,
->   				  const struct intel_remapped_plane_info *a,
->   				  const struct intel_remapped_plane_info *b)
->   {
->   
-> -	if (view_type == I915_GGTT_VIEW_ROTATED)
-> +	if (view_type == I915_GTT_VIEW_ROTATED)
->   		return a->dst_stride * a->width + b->dst_stride * b->width;
->   	else
->   		return a->dst_stride * a->height + b->dst_stride * b->height;
-> @@ -569,9 +569,9 @@ static int igt_vma_rotate_remap(void *arg)
->   
->   		{ }
->   	}, *a, *b;
-> -	enum i915_ggtt_view_type types[] = {
-> -		I915_GGTT_VIEW_ROTATED,
-> -		I915_GGTT_VIEW_REMAPPED,
-> +	enum i915_gtt_view_type types[] = {
-> +		I915_GTT_VIEW_ROTATED,
-> +		I915_GTT_VIEW_REMAPPED,
->   		0,
->   	}, *t;
->   	const unsigned int max_pages = 64;
-> @@ -588,7 +588,7 @@ static int igt_vma_rotate_remap(void *arg)
->   	for (t = types; *t; t++) {
->   	for (a = planes; a->width; a++) {
->   		for (b = planes + ARRAY_SIZE(planes); b-- != planes; ) {
-> -			struct i915_ggtt_view view = {
-> +			struct i915_gtt_view view = {
->   				.type = *t,
->   				.remapped.plane[0] = *a,
->   				.remapped.plane[1] = *b,
-> @@ -602,11 +602,11 @@ static int igt_vma_rotate_remap(void *arg)
->   			max_offset = max_pages - max_offset;
->   
->   			if (!plane_info[0].dst_stride)
-> -				plane_info[0].dst_stride = view.type == I915_GGTT_VIEW_ROTATED ?
-> +				plane_info[0].dst_stride = view.type == I915_GTT_VIEW_ROTATED ?
->   									plane_info[0].height :
->   									plane_info[0].width;
->   			if (!plane_info[1].dst_stride)
-> -				plane_info[1].dst_stride = view.type == I915_GGTT_VIEW_ROTATED ?
-> +				plane_info[1].dst_stride = view.type == I915_GTT_VIEW_ROTATED ?
->   									plane_info[1].height :
->   									plane_info[1].width;
->   
-> @@ -630,7 +630,7 @@ static int igt_vma_rotate_remap(void *arg)
->   
->   					expected_pages = remapped_size(view.type, &plane_info[0], &plane_info[1]);
->   
-> -					if (view.type == I915_GGTT_VIEW_ROTATED &&
-> +					if (view.type == I915_GTT_VIEW_ROTATED &&
->   					    vma->size != expected_pages * PAGE_SIZE) {
->   						pr_err("VMA is wrong size, expected %lu, found %llu\n",
->   						       PAGE_SIZE * expected_pages, vma->size);
-> @@ -638,7 +638,7 @@ static int igt_vma_rotate_remap(void *arg)
->   						goto out_object;
->   					}
->   
-> -					if (view.type == I915_GGTT_VIEW_REMAPPED &&
-> +					if (view.type == I915_GTT_VIEW_REMAPPED &&
->   					    vma->size > expected_pages * PAGE_SIZE) {
->   						pr_err("VMA is wrong size, expected %lu, found %llu\n",
->   						       PAGE_SIZE * expected_pages, vma->size);
-> @@ -668,13 +668,13 @@ static int igt_vma_rotate_remap(void *arg)
->   
->   					sg = vma->pages->sgl;
->   					for (n = 0; n < ARRAY_SIZE(view.rotated.plane); n++) {
-> -						if (view.type == I915_GGTT_VIEW_ROTATED)
-> +						if (view.type == I915_GTT_VIEW_ROTATED)
->   							sg = assert_rotated(obj, &view.rotated, n, sg);
->   						else
->   							sg = assert_remapped(obj, &view.remapped, n, sg);
->   						if (IS_ERR(sg)) {
->   							pr_err("Inconsistent %s VMA pages for plane %d: [(%d, %d, %d, %d, %d), (%d, %d, %d, %d, %d)]\n",
-> -							       view.type == I915_GGTT_VIEW_ROTATED ?
-> +							       view.type == I915_GTT_VIEW_ROTATED ?
->   							       "rotated" : "remapped", n,
->   							       plane_info[0].width,
->   							       plane_info[0].height,
-> @@ -741,7 +741,7 @@ static bool assert_partial(struct drm_i915_gem_object *obj,
->   }
->   
->   static bool assert_pin(struct i915_vma *vma,
-> -		       struct i915_ggtt_view *view,
-> +		       struct i915_gtt_view *view,
->   		       u64 size,
->   		       const char *name)
->   {
-> @@ -759,8 +759,8 @@ static bool assert_pin(struct i915_vma *vma,
->   		ok = false;
->   	}
->   
-> -	if (view && view->type != I915_GGTT_VIEW_NORMAL) {
-> -		if (memcmp(&vma->ggtt_view, view, sizeof(*view))) {
-> +	if (view && view->type != I915_GTT_VIEW_NORMAL) {
-> +		if (memcmp(&vma->gtt_view, view, sizeof(*view))) {
->   			pr_err("(%s) VMA mismatch upon creation!\n",
->   			       name);
->   			ok = false;
-> @@ -772,9 +772,9 @@ static bool assert_pin(struct i915_vma *vma,
->   			ok = false;
->   		}
->   	} else {
-> -		if (vma->ggtt_view.type != I915_GGTT_VIEW_NORMAL) {
-> +		if (vma->gtt_view.type != I915_GTT_VIEW_NORMAL) {
->   			pr_err("Not the normal ggtt view! Found %d\n",
-> -			       vma->ggtt_view.type);
-> +			       vma->gtt_view.type);
->   			ok = false;
->   		}
->   
-> @@ -818,14 +818,14 @@ static int igt_vma_partial(void *arg)
->   		nvma = 0;
->   		for_each_prime_number_from(sz, 1, npages) {
->   			for_each_prime_number_from(offset, 0, npages - sz) {
-> -				struct i915_ggtt_view view;
-> +				struct i915_gtt_view view;
->   
-> -				view.type = I915_GGTT_VIEW_PARTIAL;
-> +				view.type = I915_GTT_VIEW_PARTIAL;
->   				view.partial.offset = offset;
->   				view.partial.size = sz;
->   
->   				if (sz == npages)
-> -					view.type = I915_GGTT_VIEW_NORMAL;
-> +					view.type = I915_GTT_VIEW_NORMAL;
->   
->   				vma = checked_vma_instance(obj, vm, &view);
->   				if (IS_ERR(vma)) {
-> @@ -976,9 +976,9 @@ static int igt_vma_remapped_gtt(void *arg)
->   
->   		{ }
->   	}, *p;
-> -	enum i915_ggtt_view_type types[] = {
-> -		I915_GGTT_VIEW_ROTATED,
-> -		I915_GGTT_VIEW_REMAPPED,
-> +	enum i915_gtt_view_type types[] = {
-> +		I915_GTT_VIEW_ROTATED,
-> +		I915_GTT_VIEW_REMAPPED,
->   		0,
->   	}, *t;
->   	struct drm_i915_gem_object *obj;
-> @@ -996,7 +996,7 @@ static int igt_vma_remapped_gtt(void *arg)
->   
->   	for (t = types; *t; t++) {
->   		for (p = planes; p->width; p++) {
-> -			struct i915_ggtt_view view = {
-> +			struct i915_gtt_view view = {
->   				.type = *t,
->   				.rotated.plane[0] = *p,
->   			};
-> @@ -1012,7 +1012,7 @@ static int igt_vma_remapped_gtt(void *arg)
->   				goto out;
->   
->   			if (!plane_info[0].dst_stride)
-> -				plane_info[0].dst_stride = *t == I915_GGTT_VIEW_ROTATED ?
-> +				plane_info[0].dst_stride = *t == I915_GTT_VIEW_ROTATED ?
->   								 p->height : p->width;
->   
->   			vma = i915_gem_object_ggtt_pin(obj, &view, 0, 0, PIN_MAPPABLE);
-> @@ -1021,7 +1021,7 @@ static int igt_vma_remapped_gtt(void *arg)
->   				goto out;
->   			}
->   
-> -			GEM_BUG_ON(vma->ggtt_view.type != *t);
-> +			GEM_BUG_ON(vma->gtt_view.type != *t);
->   
->   			map = i915_vma_pin_iomap(vma);
->   			i915_vma_unpin(vma);
-> @@ -1035,7 +1035,7 @@ static int igt_vma_remapped_gtt(void *arg)
->   					unsigned int offset;
->   					u32 val = y << 16 | x;
->   
-> -					if (*t == I915_GGTT_VIEW_ROTATED)
-> +					if (*t == I915_GTT_VIEW_ROTATED)
->   						offset = (x * plane_info[0].dst_stride + y) * PAGE_SIZE;
->   					else
->   						offset = (y * plane_info[0].dst_stride + x) * PAGE_SIZE;
-> @@ -1052,7 +1052,7 @@ static int igt_vma_remapped_gtt(void *arg)
->   				goto out;
->   			}
->   
-> -			GEM_BUG_ON(vma->ggtt_view.type != I915_GGTT_VIEW_NORMAL);
-> +			GEM_BUG_ON(vma->gtt_view.type != I915_GTT_VIEW_NORMAL);
->   
->   			map = i915_vma_pin_iomap(vma);
->   			i915_vma_unpin(vma);
-> @@ -1067,7 +1067,7 @@ static int igt_vma_remapped_gtt(void *arg)
->   					u32 exp = y << 16 | x;
->   					u32 val;
->   
-> -					if (*t == I915_GGTT_VIEW_ROTATED)
-> +					if (*t == I915_GTT_VIEW_ROTATED)
->   						src_idx = rotated_index(&view.rotated, 0, x, y);
->   					else
->   						src_idx = remapped_index(&view.remapped, 0, x, y);
-> @@ -1076,7 +1076,7 @@ static int igt_vma_remapped_gtt(void *arg)
->   					val = ioread32(&map[offset / sizeof(*map)]);
->   					if (val != exp) {
->   						pr_err("%s VMA write test failed, expected 0x%x, found 0x%x\n",
-> -						       *t == I915_GGTT_VIEW_ROTATED ? "Rotated" : "Remapped",
-> +						       *t == I915_GTT_VIEW_ROTATED ? "Rotated" : "Remapped",
->   						       exp, val);
->   						i915_vma_unpin_iomap(vma);
->   						err = -EINVAL;
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/index.html
+
+Participating hosts (36 -> 35)
+------------------------------
+
+  Missing    (1): fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_101492v12 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] ([i915#4785])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-kefka:       [PASS][3] -> [FAIL][4] ([i915#6298])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#4312] / [i915#5594] / [i915#6246])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-rplp-1}:       [DMESG-WARN][6] ([i915#2867]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8109u:       [DMESG-FAIL][8] ([i915#62]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-1}:       [DMESG-FAIL][10] ([i915#4983] / [i915#5828]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@i915_selftest@live@ring_submission:
+    - fi-cfl-8109u:       [DMESG-WARN][12] ([i915#5904]) -> [PASS][13] +30 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-cfl-8109u:       [DMESG-WARN][14] ([i915#5904] / [i915#62]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][16] ([i915#6298]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [DMESG-WARN][18] ([i915#62]) -> [PASS][19] +12 similar issues
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#5828]: https://gitlab.freedesktop.org/drm/intel/issues/5828
+  [i915#5904]: https://gitlab.freedesktop.org/drm/intel/issues/5904
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#6246]: https://gitlab.freedesktop.org/drm/intel/issues/6246
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12070 -> Patchwork_101492v12
+
+  CI-20190529: 20190529
+  CI_DRM_12070: 6f924a2ec43ac35516136a77b1adad0b6d8f8faa @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6643: 9b2970a6d495ddd9ceb2487fc289105bf05812df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_101492v12: 6f924a2ec43ac35516136a77b1adad0b6d8f8faa @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+a01c6dbeb4cd drm/i915: Add DSC support to MST path
+57bd8aa103e9 drm/i915: Extract drm_dp_atomic_find_vcpi_slots cycle to separate function
+6d03832a4752 drm/i915: Fix intel_dp_mst_compute_link_config
+69d8503b7ba4 drm: Add missing DP DSC extended capability definitions.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/index.html
+
+--===============1350990269662749214==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add DP MST DSC support to i915 (rev12)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/101492/">https://patchwork.freedesktop.org/series/101492/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12070 -&gt; Patchwork_101492v12</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/index.html</p>
+<h2>Participating hosts (36 -&gt; 35)</h2>
+<p>Missing    (1): fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_101492v12 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6246">i915#6246</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/bat-rpls-1/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5828">i915#5828</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@ring_submission:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html">PASS</a> +30 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12070/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_101492v12/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> +12 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12070 -&gt; Patchwork_101492v12</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12070: 6f924a2ec43ac35516136a77b1adad0b6d8f8faa @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6643: 9b2970a6d495ddd9ceb2487fc289105bf05812df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_101492v12: 6f924a2ec43ac35516136a77b1adad0b6d8f8faa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>a01c6dbeb4cd drm/i915: Add DSC support to MST path<br />
+57bd8aa103e9 drm/i915: Extract drm_dp_atomic_find_vcpi_slots cycle to separate function<br />
+6d03832a4752 drm/i915: Fix intel_dp_mst_compute_link_config<br />
+69d8503b7ba4 drm: Add missing DP DSC extended capability definitions.</p>
+
+</body>
+</html>
+
+--===============1350990269662749214==--
