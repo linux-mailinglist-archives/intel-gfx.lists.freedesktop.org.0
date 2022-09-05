@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EAE65AE878
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB4335AE889
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:37:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD97610E68E;
-	Tue,  6 Sep 2022 12:35:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0ADF10E69D;
+	Tue,  6 Sep 2022 12:37:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
- [IPv6:2a00:1450:4864:20::535])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D97F10E1F5;
- Mon,  5 Sep 2022 07:46:22 +0000 (UTC)
-Received: by mail-ed1-x535.google.com with SMTP id e17so2597314edc.5;
- Mon, 05 Sep 2022 00:46:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date;
- bh=Ns0e6BF5lsSCBTPKI8hcA6JQ2wSlm+RnddxbYzGwY78=;
- b=RxePfGbUgFr9m1wzXfMcTyrFLm8VXH3Yjx/yfWE1dMrqrFq06nWkoMsCfSzy5EzaNc
- zkvReGjw1pXYSieHpawZtsbp5SfsbV0sgEO025cH+8zNr0qXEeVAKzG+nVwKkxY+Y2z6
- 8PZfmamY9BII8PaTZVTkWWMzy80ttmH0L0j8Kx9BpU3sAFm2gIhnqrN4WWAMpgODdvgs
- RIWPxIUMJEyU3jyYOIWksqLB0g+IUVvJaiT/+vfXkhfHcEpFyqtgJHcd3LCsq0zrTm14
- nRFXPkAFkOEywh8Q1ncIiuWym8mfHtpF/gGHXSB4J1ahZlYtmM3Y/XO88mosIj9W6eZG
- Sy7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=Ns0e6BF5lsSCBTPKI8hcA6JQ2wSlm+RnddxbYzGwY78=;
- b=pdmJS3v0AeH1Qsfaba6EF0jlNlLAgTpmkp0f3YHpOJtZj0+TqwljDphN1YJQmLSceS
- gvQusVjyx8vPGI/qfGFxFeXripl168s+5LMbLgO23+mq4O/W4dR3inPd5sw0tAZOTS2W
- vi5Z7GENMCjgrwPrjpkNdlVGQTCAjkC+r7rvuwgcZo6vLwmx0hEJfu/zqdN9vN3z82iQ
- 9udYAeqBkSgi126+boi/phZX9i9tEc5XCWCUdqD9XmSxEy0B2Tzgc+pFOf+ngfjfvI2C
- dyXt3nxGsvznvpKEyMQnKKEO0nw9RcRY8RLEI1v+U9X8Zwq7GifxHBNyAw5uo/QFo0JB
- JTGQ==
-X-Gm-Message-State: ACgBeo2oZArDE/1YdKbbxLOuUjGrZvoCxbQEUgdByhJatZeTLyCrh64M
- dsJDQ0nqu+1e/Xc/zlqMqRD/7jof+eZwBw4ttcs=
-X-Google-Smtp-Source: AA6agR5wybEqXz4dGsViNshife/UNSpksZhb2GioQ2olydywe0lOqHmE3AnukOX3V2PeaiKO4gRc+Yv2kqPhN/RGYDA=
-X-Received: by 2002:a05:6402:1f02:b0:445:f674:eac0 with SMTP id
- b2-20020a0564021f0200b00445f674eac0mr41072891edb.370.1662363980652; Mon, 05
- Sep 2022 00:46:20 -0700 (PDT)
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7C710E275;
+ Mon,  5 Sep 2022 10:18:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=nGjgsqGfJ0L+5KqUZMoJ4DGF2/kaGZuM3mOBrnObORY=; b=GuFH49lIq7dXPIMGs2vx4oc3BR
+ e4YS/7YXDJgB9v/zgketZQx9j+ssn++8p5j5K3bgQHeAgYXYvDb4xMsOlhPfqz7vlqzPscXDqPiDp
+ TuZk6qPEaf9gEEvSTnRfIOwWc95dRQfj//0k4w1VdwEkrGqBd9ai/8uZRyhuSxUeSOOObjAaIyW6B
+ 2x5vmyH3jI24qzuKuKEcC/2jq+sAieA5uyVJr0iVO0oz10Maa9WzNwr34UsF7CYZqJWlbCMUkDiex
+ HCn3YQ35Mqkh6eFmO3/78uayPkQngfVpngj7+TknlebgMGDtZ5dq9zlx9rs99wN7jTx7Ln6187TRI
+ kHjBOxRA==;
+Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=59939)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1oV9BW-00065d-5J; Mon, 05 Sep 2022 12:18:30 +0200
+Message-ID: <ae5932bf-c34d-8e11-c71f-f470e03822e4@tronnes.org>
+Date: Mon, 5 Sep 2022 12:18:21 +0200
 MIME-Version: 1.0
-References: <tencent_E1BBF05904DFB73C478DCD592740AAE0780A@qq.com>
- <CAJedcCxVW++iH49UFZp9ruUuTcNubWCH6Wsqe11K4COB3E8msg@mail.gmail.com>
- <CAJedcCw1eJqjSK+yR7eQMDheNtH3Mjm+viwt00xAhnmrfpq2pw@mail.gmail.com>
-In-Reply-To: <CAJedcCw1eJqjSK+yR7eQMDheNtH3Mjm+viwt00xAhnmrfpq2pw@mail.gmail.com>
-From: Zheng Hacker <hackerzheng666@gmail.com>
-Date: Mon, 5 Sep 2022 15:46:09 +0800
-Message-ID: <CAJedcCweHjD78F7iydiq6Xc2iH=t_3m=H9JKnaCooToUk32FvQ@mail.gmail.com>
-To: xmzyshypnc <1002992920@qq.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Chen-Yu Tsai <wens@csie.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
+ Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-9-459522d653a7@cerno.tech>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-9-459522d653a7@cerno.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:46 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
- split_2MB_gtt_entry.
+Subject: Re: [Intel-gfx] [PATCH v2 09/41] drm/connector: Add TV standard
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,45 +68,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org,
- dri-devel@lists.freedesktop.org, airlied@linux.ie,
- Greg KH <gregkh@linuxfoundation.org>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, daniel@ffwll.ch, rodrigo.vivi@intel.com,
- intel-gvt-dev@lists.freedesktop.org
+Cc: Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I rewrote the letter. Hope it works.
 
-There is a double-free security bug in split_2MB_gtt_entry.
 
-Here is a calling chain :
-ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
-If intel_gvt_dma_map_guest_page failed, it will call
-ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
-kfree(spt). But the caller does not notice that, and it will call
-ppgtt_free_spt again in error path.
+Den 29.08.2022 15.11, skrev Maxime Ripard:
+> The TV mode property has been around for a while now to select and get the
+> 
+> current TV mode output on an analog TV connector.
+> 
+> 
+> 
+> Despite that property name being generic, its content isn't and has been
+> 
+> driver-specific which makes it hard to build any generic behaviour on top
+> 
+> of it, both in kernel and user-space.
+> 
+> 
+> 
+> Let's create a new bitmask tv norm property, that can contain any of the
+> 
+> analog TV standards currently supported by kernel drivers. Each driver can
+> 
+> then pass in a bitmask of the modes it supports.
+> 
+> 
+> 
+> We'll then be able to phase out the older tv mode property.
+> 
+> 
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> 
+> 
+> 
 
-Fix this by returning the result of ppgtt_invalidate_spt to split_2MB_gtt_entry.
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
 
-Signed-off-by: Zheng Wang
+> +/**
+> 
+> + * drm_mode_create_tv_properties - create TV specific connector properties
+> 
+> + * @dev: DRM device
+> 
+> + * @supported_tv_modes: Bitmask of TV modes supported (See DRM_MODE_TV_MODE_*)
+> 
+> +
+> 
+> + * Called by a driver's TV initialization routine, this function creates
+> 
+> + * the TV specific connector properties for a given device.  Caller is
+> 
+> + * responsible for allocating a list of format names and passing them to
+> 
+> + * this routine.
+> 
+> + *
+> 
+> + * Returns:
+> 
+> + * 0 on success or a negative error code on failure.
+> 
+> + */
+> 
+> +int drm_mode_create_tv_properties(struct drm_device *dev,
+> 
+> +				  unsigned int supported_tv_modes)
+> 
+> +{
+> 
+> +	struct drm_prop_enum_list tv_mode_list[DRM_MODE_TV_MODE_MAX];
+> 
+> +	struct drm_property *tv_mode;
+> 
+> +	unsigned int i, len = 0;
+> 
+> +
+> 
 
----
- drivers/gpu/drm/i915/gvt/gtt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Can you add a check here like in the legacy version:
 
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index ce0eb03709c3..9f14fded8c0c 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.c
-+++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -1215,7 +1215,7 @@ static int split_2MB_gtt_entry(struct intel_vgpu *vgpu,
-                ret = intel_gvt_dma_map_guest_page(vgpu, start_gfn + sub_index,
-                                                   PAGE_SIZE, &dma_addr);
-                if (ret) {
--                       ppgtt_invalidate_spt(spt);
-+                       ret = ppgtt_invalidate_spt(spt);
-                        return ret;
-                }
-                sub_se.val64 = se->val64;
---
-2.25.1
+	if (dev->mode_config.tv_mode_property)
+		return 0;
+
+This way it's possible to call this multiple times. Like in drm/gud
+during connector init if there are multiple TV connectors or if a device
+with multiple IP blocks should show up.
+
+Noralf.
+
+> +	for (i = 0; i < DRM_MODE_TV_MODE_MAX; i++) {
+> 
+> +		if (!(supported_tv_modes & BIT(i)))
+> 
+> +			continue;
+> 
+> +
+> 
+> +		tv_mode_list[len].type = i;
+> 
+> +		tv_mode_list[len].name = drm_get_tv_mode_name(i);
+> 
+> +		len++;
+> 
+> +	}
+> 
+> +
+> 
+> +	tv_mode = drm_property_create_enum(dev, 0, "TV mode",
+> 
+> +					   tv_mode_list, len);
+> 
+> +	if (!tv_mode)
+> 
+> +		return -ENOMEM;
+> 
+> +
+> 
+> +	dev->mode_config.tv_mode_property = tv_mode;
+> 
+> +
+> 
+> +	return drm_mode_create_tv_properties_legacy(dev, 0, NULL);
+> 
+> +}
+> 
+> +EXPORT_SYMBOL(drm_mode_create_tv_properties);
+> 
