@@ -2,50 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6645AE879
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C4955AE86B
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 14:35:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BC9A10E5AB;
-	Tue,  6 Sep 2022 12:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B03610E687;
+	Tue,  6 Sep 2022 12:34:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E250310E40C;
- Mon,  5 Sep 2022 15:17:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds202112;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=usGuzrS9ubnodtwABmVJAgRg7YGR0CUzYO3sitN4zns=; b=bwzM7WTmRm21bB7V6grMXAtYlx
- p3HMSWq0kB4uO5qmU62uWYQeKvypAsTTN8hN3857TJW4iuSaQps5ZyHxsCbncRVv2vIbFaVHIn5V8
- MnpOCcW7owrJhhXpHt26t8GY591IxIR1pNCTLZpKtw1HkFTldPpGmeJ2K9U/R5CUR9RDs/00Sys+j
- 647FgKNf/37yFPUh47ygSO3mWasmaAIGc1u/GYR5OyyTphfXwgEBtXSy+ElyXuWolHABFviCkWljy
- scpTo4z+XIwLMILfGGtzicJx/vjVr9ZTILBKHfC1xltHgZITfjOGB4J/Kw7YE04mRSOjy0Rfzd+96
- fZRzkgDQ==;
-Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=50895)
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1oVDqn-0002hw-D9; Mon, 05 Sep 2022 17:17:25 +0200
-Message-ID: <74c10e51-4034-a284-1a26-b7ba7fe45fbe@tronnes.org>
-Date: Mon, 5 Sep 2022 17:17:18 +0200
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
+ [IPv6:2a00:1450:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD7B710E44F;
+ Mon,  5 Sep 2022 16:32:18 +0000 (UTC)
+Received: by mail-lj1-x22d.google.com with SMTP id by6so9717067ljb.11;
+ Mon, 05 Sep 2022 09:32:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:from:to:cc:subject:date;
+ bh=8JQHR0mNkkvaucEp4HNFvrtWVwipxgdCyYirWkcxCuc=;
+ b=Ee8/zXiC17K5Rmn0dM8r0JytBnfg1FnzFfKZcmoJMYt08MtgAEUEjpKH7+0UHsqlkK
+ BZrCCHBnA1Je5o+/sxNlA3yrl0TxM37U7XpZXjbsaVxHKMl2x7PzYQchiiwPobO+z7V/
+ tYJCFJd1YCvEbeeLM6BvAS/M1DUr6tpSFJVdgoRwA8WStFNY9E6PPHdk4RZZCOrggakT
+ xyQ8/6DOwLr6S51gainQauwtIl7r4PsEHnn/94yga+F5jpf0cp7C0OxDPl+JWqQDMoGv
+ UZySK3bX2kiLPPNYAc06FY4U1q0dxZf5LlWu/claShZQeiMPrvC2bab0MTV9I+5YA40i
+ L12g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:x-gm-message-state:from:to:cc:subject:date;
+ bh=8JQHR0mNkkvaucEp4HNFvrtWVwipxgdCyYirWkcxCuc=;
+ b=EE4eyaTrT0YQ5eN2QI+aVkhSCvGriBL7Kr/8sPd5LUHF2br+9OTfonZPfwxDxAVCJm
+ Ou+fkmKti7Sl8VWRdlmvWzMBQQ40JPCgZhwg5rfrFrVMxm3lpeqQIoRFbM/O3wMzFqOh
+ Vmt9Cj1AAVFTD2UQ3N+lWH7hg3CgGmRRakbD4THiXGrOWClIying5TkVd1E1l30Q0DIK
+ iwypk5HinwUNQQgjK5NUYHNrqeNwm+QR95UTKZVSojZfpLlsTl6wrqjRphpkwXVInUxY
+ uUsgjjMLb+peTkl0EWHXHaCjHe7660+9i80xzuhgNN0bzBziyl1T0lTquxYU/IvDKioJ
+ 11IA==
+X-Gm-Message-State: ACgBeo0+JGE2T9EPArA2/pYbDW2rCj0iDc2LbDFEAAc4IY/yYfK4imyc
+ NU07X8EDG/nrN+IqipiwiEz15JwPPcrdbg==
+X-Google-Smtp-Source: AA6agR47yvdHHgnlIjy9Ip2njnz0g5/SwgXMzTGVjcmNgzpxzvtvdxNNmmfmzBYcTnu1KYoufiDMaA==
+X-Received: by 2002:a2e:88d2:0:b0:263:2c63:d784 with SMTP id
+ a18-20020a2e88d2000000b002632c63d784mr11481762ljk.12.1662395536908; 
+ Mon, 05 Sep 2022 09:32:16 -0700 (PDT)
+Received: from ?IPV6:2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852?
+ ([2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852])
+ by smtp.googlemail.com with ESMTPSA id
+ q13-20020a056512210d00b004946a758d21sm1235189lfr.161.2022.09.05.09.32.14
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 05 Sep 2022 09:32:16 -0700 (PDT)
+From: Mateusz Kwiatkowski <kfyatek@gmail.com>
+X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Message-ID: <6ac67d1f-e5b5-2687-372f-4146eed5cc5d@gmail.com>
+Date: Mon, 5 Sep 2022 18:32:14 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-To: Maxime Ripard <maxime@cerno.tech>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.2.1
+Content-Language: pl
+To: Maxime Ripard <maxime@cerno.tech>,
+ Geert Uytterhoeven <geert@linux-m68k.org>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <24e09a29-6d04-3b1e-63ce-cd3c31d350e2@tronnes.org>
- <020d44e6-884b-a817-8265-3461638cac71@tronnes.org>
- <20220905145729.ln675jko3aw6sgzs@houat>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220905145729.ln675jko3aw6sgzs@houat>
+ <20220728-rpi-analog-tv-properties-v2-10-459522d653a7@cerno.tech>
+ <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
+ <CAMuHMdWq3aOO4-2AReDeaC2VBJb=QJF2dTMZP=DGmwCg6ZOffA@mail.gmail.com>
+ <20220905133251.js26hxdosibx4r4i@houat>
+In-Reply-To: <20220905133251.js26hxdosibx4r4i@houat>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:46 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 00/41] drm: Analog TV Improvements
+X-Mailman-Approved-At: Tue, 06 Sep 2022 12:33:45 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 10/41] drm/modes: Add a function to
+ generate analog display modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,77 +84,61 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Nouveau Dev <nouveau@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
  Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
  Samuel Holland <samuel@sholland.org>,
  Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
+ Ben Skeggs <bskeggs@redhat.com>, linux-sunxi@lists.linux.dev,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
  Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
  Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Maxime,
 
-
-Den 05.09.2022 16.57, skrev Maxime Ripard:
-> On Fri, Sep 02, 2022 at 01:28:16PM +0200, Noralf Trønnes wrote:
+W dniu 5.09.2022 o 15:32, Maxime Ripard pisze:
+> Hi,
+>
+> On Wed, Aug 31, 2022 at 10:14:28AM +0200, Geert Uytterhoeven wrote:
+>>>> +enum drm_mode_analog {
+>>>> +    DRM_MODE_ANALOG_NTSC,
+>>>> +    DRM_MODE_ANALOG_PAL,
+>>>> +};
+>>>
+>>> Using "NTSC" and "PAL" to describe the 50Hz and 60Hz analog TV modes is common,
+>>> but strictly speaking a misnomer. Those are color encoding systems, and your
+>>> patchset fully supports lesser used, but standard encodings for those (e.g.
+>>> PAL-M for 60Hz and SECAM for 50Hz). I'd propose switching to some more neutral
+>>> naming scheme. Some ideas:
+>>>
+>>> - DRM_MODE_ANALOG_60_HZ / DRM_MODE_ANALOG_50_HZ (after standard refresh rate)
+>>> - DRM_MODE_ANALOG_525_LINES / DRM_MODE_ANALOG_625_LINES (after standard line
+>>>   count)
 >>
+>> IMHO these are bad names, as e.g. VGA640x480@60 is also analog, using
+>> 60 Hz and 525 lines.  Add "TV" to the name?
 >>
->> Den 01.09.2022 21.35, skrev Noralf Trønnes:
->>>
->>>
->>> I have finally found a workaround for my kernel hangs.
->>>
->>> Dom had a look at my kernel and found that the VideoCore was fine, and
->>> he said this:
->>>
->>>> That suggests cause of lockup was on arm side rather than VC side.
->>>>
->>>> But it's hard to diagnose further. Once you've had a peripheral not
->>>> respond, the AXI bus locks up and no further operations are possible.
->>>> Usual causes of this are required clocks being stopped or domains
->>>> disabled and then trying to access the hardware.
->>>>
->>>
->>> So when I got this on my 64-bit build:
->>>
->>> [  166.702171] SError Interrupt on CPU1, code 0x00000000bf000002 -- SError
->>> [  166.702187] CPU: 1 PID: 8 Comm: kworker/u8:0 Tainted: G        W
->>>     5.19.0-rc6-00096-gba7973977976-dirty #1
->>> [  166.702200] Hardware name: Raspberry Pi 4 Model B Rev 1.1 (DT)
->>> [  166.702206] Workqueue: events_freezable_power_ thermal_zone_device_check
->>> [  166.702231] pstate: 200000c5 (nzCv daIF -PAN -UAO -TCO -DIT -SSBS
->>> BTYPE=--)
->>> [  166.702242] pc : regmap_mmio_read32le+0x10/0x28
->>> [  166.702261] lr : regmap_mmio_read+0x44/0x70
->>> ...
->>> [  166.702606]  bcm2711_get_temp+0x58/0xb0 [bcm2711_thermal]
->>>
->>> I wondered if that reg read was stalled due to a clock being stopped.
->>>
->>> Lo and behold, disabling runtime pm and keeping the vec clock running
->>> all the time fixed it[1].
->>>
->>> I don't know what the problem is, but at least I can now test this patchset.
->>>
->>> [1] https://gist.github.com/notro/23b984e7fa05cfbda2db50a421cac065
->>>
+>>> - DRM_MODE_ANALOG_JM / DRM_MODE_ANALOG_BDGHIKLN (after corresponding ITU System
+>>>   Letter Designations)
 >>
->> It turns out I didn't have to disable runtime pm:
->> https://gist.github.com/notro/0adcfcb12460b54e54458afe11dc8ea2
-> 
-> If the bcm2711_thermal IP needs that clock to be enabled, it should grab
-> a reference itself, but it looks like even the device tree binding
-> doesn't ask for one.
-> 
+>> Or DRM_MODE_ITU_*?
+>> But given the long list of letters, this looks fragile to me.
+>
+> Does it matter at all? It's an internal API that isn't exposed at all.
+> I'd rather have a common name that everyone can understand in this case
+> rather than a *perfect* name where most will scratch their head
+> wondering what it's about.
 
-The first thing I tried was to unload the bcm2711_thermal module before
-running modeset and it still hung, so I don't think that's the problem.
+You may have a point. But in that case, maybe it'd make sense to at least add
+a short comment explaining what do you mean by "NTSC" and "PAL" in this context?
 
-Noralf.
+Best regards,
+Mateusz Kwiatkowski
