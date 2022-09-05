@@ -1,34 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C225ACDF9
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 10:54:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AA5E5ACE4E
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 10:57:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96E4F10E230;
-	Mon,  5 Sep 2022 08:53:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65B1510E218;
+	Mon,  5 Sep 2022 08:57:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9871510E221;
- Mon,  5 Sep 2022 08:53:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 902E9A8830;
- Mon,  5 Sep 2022 08:53:52 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E47FF10E218;
+ Mon,  5 Sep 2022 08:56:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662368216; x=1693904216;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4IGGKd6QRL4yUbxu6TyMhUQTT7AcWazweynIGokMp+w=;
+ b=dAAci0ANjdfMLIqLQfEoBB7LnSx2ElTlBRBx32cSEmwZ5wPHCjszBScp
+ j2HITHgs5Jmm8hW8mjgCAwnR+qHw7j+UE3M8nB7CJ+QKBoZ0JNBi4FRhw
+ 4N0JvTQsAJw4CPm3d9ppPz2yCrMS0BaSY5p3dk+TQ+J3Kpv3bLpHVoG7D
+ PWzbkVSORXW+aqUc4g494MlapNtYNmY9TkrJI9KNrd7vE93vv5i80/IzH
+ sSQE31Sr7UDJiTLI/jgDumg+XnjqeTSocPo+xYv4sje4B6v/o1fPE6PZp
+ 1s7+kqwa/SMtzgjGWYDC6RJhHu67BUK8GZdIQM4rNg9zOmM9/JukA7RHx w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10460"; a="296347041"
+X-IronPort-AV: E=Sophos;i="5.93,290,1654585200"; d="scan'208";a="296347041"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2022 01:56:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,290,1654585200"; d="scan'208";a="755961700"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by fmsmga001.fm.intel.com with ESMTP; 05 Sep 2022 01:56:54 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  5 Sep 2022 11:57:40 +0300
+Message-Id: <20220905085744.29637-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Mon, 05 Sep 2022 08:53:52 -0000
-Message-ID: <166236803258.1949.3950771716158597029@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220905080500.213330-1-andrzej.hajda@intel.com>
-In-Reply-To: <20220905080500.213330-1-andrzej.hajda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_do_not_reset_PLANE=5FSURF_on_plane_disable_on_o?=
- =?utf-8?q?lder_gens?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/4] Add DP MST DSC support to i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,26 +55,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Currently we have only DSC support for DP SST.
 
-Series: drm/i915: do not reset PLANE_SURF on plane disable on older gens
-URL   : https://patchwork.freedesktop.org/series/108133/
-State : warning
+Stanislav Lisovskiy (4):
+  drm: Add missing DP DSC extended capability definitions.
+  drm/i915: Fix intel_dp_mst_compute_link_config
+  drm/i915: Extract drm_dp_atomic_find_vcpi_slots cycle to separate
+    function
+  drm/i915: Add DSC support to MST path
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_dp.c     |  73 ++++----
+ drivers/gpu/drm/i915/display/intel_dp.h     |  17 ++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 195 ++++++++++++++++++--
+ include/drm/display/drm_dp.h                |  10 +-
+ 4 files changed, 237 insertions(+), 58 deletions(-)
 
-Error: dim checkpatch failed
-574a7dd04303 drm/i915: do not reset PLANE_SURF on plane disable on older gens
--:12: WARNING:TYPO_SPELLING: 'writting' may be misspelled - perhaps 'writing'?
-#12: 
-write to it to trigger update on VBLANK, writting current value should
-                                         ^^^^^^^^
-
-total: 0 errors, 1 warnings, 0 checks, 30 lines checked
-
+-- 
+2.37.3
 
