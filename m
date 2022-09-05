@@ -2,51 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901685AD00F
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 12:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B77FB5AD0A6
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Sep 2022 12:53:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AE0310E2A4;
-	Mon,  5 Sep 2022 10:24:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6626F10E28E;
+	Mon,  5 Sep 2022 10:53:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB88810E2A4
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Sep 2022 10:24:31 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 017BA10E28E;
+ Mon,  5 Sep 2022 10:53:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662373471; x=1693909471;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=n+5RRYKmI4DJeYttzg8TR7h43HNluhBqmH+kj8zENFo=;
- b=hAUWYOrC54wXTQ4yQneL7+xfKbUmNbeuTMYad2j2eKRpygmUQprAm12Q
- GA76nmzWiZem/dTCk32o/iNp+1G8gGRy4sNQU/GnMXQOgSkHZqPL67Oca
- yvbiF7W67BvFxl8Rj6NzoXuuW5KyFVvAT57Jt/ZeCLqPwLX+4Uolest5X
- rwhnWqrQ1qP0fK0TxkjVZz3TFMUnuRxBlqZL2mciSOl3ePurVL+V5oRio
- xEfowpnbmLdDLPzedq2NREjGPWdUdJEFOENWeiR9kCcu7M/7DuzNvjlCj
- qCKqxwWAbMxz8zRvSE0vtP4T9eXi2Dyms1PwI+zL6Dla+TbC2iBnhDXHm A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10460"; a="296362041"
-X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="296362041"
+ t=1662375217; x=1693911217;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KLC/FW9KIe16SKVDU+/OtuamUatCXKhRTpO7Ttv3yrE=;
+ b=ka5Pf/1owUyE+PCLG1iRjz1gZpPJh+TfhBuUbf+G9KkrkhvFebJ1Hm1H
+ 7ZnHfrq/U/5d7EQrxgD9c3o0WOq2dNU29O58V4c8h2HopV0yB+xGHtVnz
+ AhyPbjDXDuD8YdxyLvUx97+oDtG3EtT5QnHyEZcbS0YRoqmWWFJyQqv29
+ 0aapjcLUShf8h+TNpvbWJ+zu0JBw7Ds2FAUeBTVyyYCfcuvANQIjEXOyN
+ RedeLB3lExjdbVMvGXlpS1gWklmCW6nTCNhvS8woPQthqD8V0c59RQxtD
+ VVIuABS0ZyHw3MHCJ8cjtODOx9lxYjEnQCkAxgyJwRxZx8yIZ+gF5tnIg A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10460"; a="358079231"
+X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="358079231"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2022 03:24:31 -0700
-X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="675233995"
-Received: from gpliesch-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.ger.corp.intel.com) ([10.251.221.245])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2022 03:53:36 -0700
+X-IronPort-AV: E=Sophos;i="5.93,291,1654585200"; d="scan'208";a="675242538"
+Received: from icoco-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.213.202.248])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2022 03:24:30 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+ 05 Sep 2022 03:53:35 -0700
+From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  5 Sep 2022 13:23:55 +0300
-Message-Id: <20220905102355.176622-3-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220905102355.176622-1-jouni.hogander@intel.com>
-References: <20220905102355.176622-1-jouni.hogander@intel.com>
+Date: Mon,  5 Sep 2022 11:53:29 +0100
+Message-Id: <20220905105329.41455-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/psr: Disable PSR2 when SDP is sent
- on prior line
+Subject: [Intel-gfx] [PATCH] drm/i915: consider HAS_FLAT_CCS() in
+ needs_ccs_pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,36 +55,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Selective update doesn't work if SU start address is 0 and start/end
-SDP is configured to be sent prior to SU start/end lines. PSR2 has to be
-disabled in this case for Alder Lake.
+Just move the HAS_FLAT_CCS() check into needs_ccs_pages. This also then
+fixes i915_ttm_memcpy_allowed() which was incorrectly reporting true on
+DG1, even though it doesn't have small-BAR or flat-CCS.
 
-HSDES: 22012279113
-
-Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/6605
+Fixes: efeb3caf4341 ("drm/i915/ttm: disallow CPU fallback mode for ccs pages")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/i915_gem_object.c | 3 +++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c    | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 6f03bf16d6f4..90d7cdd743be 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -811,7 +811,8 @@ static bool _compute_psr2_sdp_prior_scanline_indication(struct intel_dp *intel_d
- 	if ((hblank_ns - req_ns) > 100)
- 		return true;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 389e9f157ca5..85482a04d158 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -723,6 +723,9 @@ bool i915_gem_object_needs_ccs_pages(struct drm_i915_gem_object *obj)
+ 	bool lmem_placement = false;
+ 	int i;
  
--	if (DISPLAY_VER(dev_priv) < 13 || intel_dp->edp_dpcd[0] < DP_EDP_14b)
-+	/* Not supported <13 / Wa_22012279113:adl-p */
-+	if (DISPLAY_VER(dev_priv) <= 13 || intel_dp->edp_dpcd[0] < DP_EDP_14b)
- 		return false;
++	if (!HAS_FLAT_CCS(to_i915(obj->base.dev)))
++		return false;
++
+ 	for (i = 0; i < obj->mm.n_placements; i++) {
+ 		/* Compression is not allowed for the objects with smem placement */
+ 		if (obj->mm.placements[i]->type == INTEL_MEMORY_SYSTEM)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index bc9c432edffe..f64a3deb12fc 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -297,7 +297,7 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
+ 		i915_tt->is_shmem = true;
+ 	}
  
- 	crtc_state->req_psr2_sdp_prior_scanline = true;
+-	if (HAS_FLAT_CCS(i915) && i915_gem_object_needs_ccs_pages(obj))
++	if (i915_gem_object_needs_ccs_pages(obj))
+ 		ccs_pages = DIV_ROUND_UP(DIV_ROUND_UP(bo->base.size,
+ 						      NUM_BYTES_PER_CCS_BYTE),
+ 					 PAGE_SIZE);
 -- 
-2.34.1
+2.37.3
 
