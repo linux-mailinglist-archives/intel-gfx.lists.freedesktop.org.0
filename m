@@ -1,146 +1,150 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 691325AF394
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 20:29:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D589D5AF3D6
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 20:39:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C87B310E736;
-	Tue,  6 Sep 2022 18:29:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8967210E0E6;
+	Tue,  6 Sep 2022 18:39:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92E9410E736
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Sep 2022 18:29:27 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BEDC10E0E6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Sep 2022 18:39:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662488967; x=1694024967;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=QJJva5uTRFzQs39+CSlISIhcynlBMKle4iHE0VddRjg=;
- b=M9i5r2y5/Dg2yRA8/1mEliaNczVbVRB2wa5+E+JICCIube8aGyajx8sj
- mFdkbu0lDXx8ea0lOL1g2ZTPw8OgheCepfupVz5aa3U6vVShCOcVEUoGR
- O5AtzPKgMTl5s6a9y91Yy8M9FCUqxoswl8CROLHKZmgTDCV0/8S0CBP4S
- sfL0OubA1Tq0G4J2rqhm5J/XVc8OaGzibmc6rVoulwHr84hNQtXuDfAm5
- cXUFesPf85Dgqy/ySyuSDv2nLUtjcqFPFTAEaDJv1WVQtEXBMpxDTuptc
- znOrkkOZe2T2auxTk3kENaCbtmyG9aDkBZJFLknHkPwgFLCufB7VH97Uy Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="360619353"
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="360619353"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2022 11:29:26 -0700
+ t=1662489581; x=1694025581;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=SFKnKrnnZND2uRopoYUl2sI23bqxnDpz/p0LxGv6FMg=;
+ b=hw2ywpVyowqJv8KHZrodCEp4Hh1jN1Kkcb2MLAuS1VvrNY9k29b3yUrO
+ Gmy4eBcvX38eelaoBGXIMNlfVYYc7+zurTY0Eh130QJCEgk+NBfIDREAn
+ sg6im2h+Omnt6hTAI7wHLDFQIlHO8xDG9LFcSKROjAV8ELvR3A60Gw4Es
+ 48JINV+0pwoNG1HV/zCcCzO0I8ZZKCJkjUyKMpYNPuIZJSp37pJR2B533
+ ydFQjLBuTtJjwWMmDa2u+yyDwylyX/pGtvUQPCw7dCtGskotgtogOxql0
+ XGSm9e4s2WfvCJt3FetekbY8cc0iG3BTB6+UFQV/l5Gn5SB/TE/cZSV1H A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="277068442"
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="277068442"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2022 11:39:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="942565792"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga005.fm.intel.com with ESMTP; 06 Sep 2022 11:29:26 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="616800223"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga007.fm.intel.com with ESMTP; 06 Sep 2022 11:39:40 -0700
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 6 Sep 2022 11:29:26 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2375.31; Tue, 6 Sep 2022 11:39:40 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Tue, 6 Sep 2022 11:29:26 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.103)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Tue, 6 Sep 2022 11:39:40 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.108)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Tue, 6 Sep 2022 11:29:25 -0700
+ 15.1.2375.31; Tue, 6 Sep 2022 11:39:40 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b6XNgjxZmxmEmH1K07xYs0s+v8WfHnmMzOddqgSTZUrawmAkrFEiI78/+EJiVRrmU0thsZSL2hcIPIaG1/qhYqHMh7FKaoo28MsOSroFc+ltoj7uFwMf2CWyCLKHMGsZTaovFFu60knnfqWHIKhtgfWvV/fQKnPSmx/ec2GPdQthPuNAaX/1XzgqVulLQeztYcZNoVgUZtAcLFN7ru64CblMy7g6QFPbcl+XwB2lvxOXY/tf0MAQBlWpSaMcgxRvTWALEZeh12QsiiJx+jZi3v50BvPviGwVDvwRb3NQ09WzOV9p0saYylGDScj4NXYxEvDFNyYNfdDN5sn15pVmQQ==
+ b=kl3wQTafoQyJo5o+30udjtEK2t3N+UjXFvdW5aP7I5glk2Gc82OEOXVI3LBkb0wJRQTLJTDNqwB4wyilKVabQkH8bAZQCjgkmhvyJ0XUJO/NWx9dWqOPuX581JbsZ2APVQ8DidBQ/1S1I5ConlLzhZY3CBbFPfukmMtgPKXtlmwUlaed++HhH+js4Oejza1Lq4KX1YFlpEuCwoe+3kXhZHRtgGhVTIHipMXsJ2jBBHzGi+iZ7YuTUldULkzIPeXhDikGi3zkIFci0wy49x0ss4SsS5b2Rxmjpox8vDGbdmnocVG64F7t+rA3CprOB5d2EXVy7RThgcA9pUUpRmhK7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7oNPw51y/0nJwhqNygrdYLQAyHqAns0a97ymzX0Ph/s=;
- b=DtcQqxTNZn7hydm7he1h98eudEl6T4QAEQXnQcZlF969iwV0ZVcz3uWEA7iU0Oy/jKDYEAHm51eMevcue1badL0j4ja22IKZTsPMlOediWp4Pg3npiCWKKxboCpbK/DkRBbzLc8z8L5aDPUnFBJ2gN9hX65ZYIyuWZiP7cbApAqV/U7vityv2BzbIGGZiOhY0jftQBn0KeHx+c8c8mIgJoPnPxM335n5nu9ugSWB5Ej/cEfiwW5AztjcUlYhrq9icpRyEgixrRaoPkCs5uigkoVBZ7SrtyZZbJdf2ZOX9IVY3vCs4P/lK2pJL+1ABKJAKO8m2rkqtpezAwS3iQu5Vg==
+ bh=eUwyJdj/4edZIWQcfkG5twcrFLGNXf3ZG/Ie0VYWcRk=;
+ b=ee/J12pkx7w6I9Owk5LAjzzlEtQ4ozdAeJO9czDykI6FiiiZ6mqL21fa4KYdD1MmSHf8TTNqoN/SJh8Be5hce84HqCfrs1GlhmPpLCaOLvXSt1VxctVsCtevC7uiEg9Iq72aJzcbVe5WJ/4u/xZ+f4Hairpg9HcPJyOP3KOV0lebFGfbmJjpUR/RwPvtR7XfF4FamBv+SkLjYFHAje6YOIclb3RLTuNkFy8eeo0v7TVOAyZcQjdWGI9Uy6AekkN83HZpKrOLQPvjP2lXGQP2acib/RfkxO/Il+hxBaM3DQYtf8T4JxhUR4I4SmO+WkNhCpEz3pdX67k/6PN4StZlaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
- MN2PR11MB4415.namprd11.prod.outlook.com (2603:10b6:208:192::31) with
+Received: from DM5PR11MB1562.namprd11.prod.outlook.com (2603:10b6:4:6::15) by
+ MWHPR1101MB2304.namprd11.prod.outlook.com (2603:10b6:301:4e::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Tue, 6 Sep
- 2022 18:29:23 +0000
-Received: from DM6PR11MB2987.namprd11.prod.outlook.com
- ([fe80::b1d3:4447:7415:8adc]) by DM6PR11MB2987.namprd11.prod.outlook.com
- ([fe80::b1d3:4447:7415:8adc%6]) with mapi id 15.20.5588.018; Tue, 6 Sep 2022
- 18:29:23 +0000
-Date: Tue, 6 Sep 2022 11:29:15 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Message-ID: <YxeRe5W0Zf/TBGWw@unerlige-ril>
-References: <20220831193355.838209-1-ashutosh.dixit@intel.com>
- <20220831193355.838209-2-ashutosh.dixit@intel.com>
- <Yw/kna1W/vrCiMmF@unerlige-ril>
- <87sflaodjp.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <87sflaodjp.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0123.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::8) To DM6PR11MB2987.namprd11.prod.outlook.com
- (2603:10b6:5:65::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.14; Tue, 6 Sep
+ 2022 18:39:38 +0000
+Received: from DM5PR11MB1562.namprd11.prod.outlook.com
+ ([fe80::74ac:21b8:1f17:9bc4]) by DM5PR11MB1562.namprd11.prod.outlook.com
+ ([fe80::74ac:21b8:1f17:9bc4%5]) with mapi id 15.20.5588.018; Tue, 6 Sep 2022
+ 18:39:38 +0000
+Message-ID: <f1e9e230-2626-0f6c-02a7-e063122b759b@intel.com>
+Date: Tue, 6 Sep 2022 21:39:33 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.11.0
+Content-Language: en-US
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
+ <20220823204155.8178-2-umesh.nerlige.ramappa@intel.com>
+ <9afc705a-87a1-c51e-b223-e32accbcd2fe@intel.com>
+ <YxeF0b6ohtFcDXf6@unerlige-ril>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+In-Reply-To: <YxeF0b6ohtFcDXf6@unerlige-ril>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AS8PR04CA0112.eurprd04.prod.outlook.com
+ (2603:10a6:20b:31e::27) To DM5PR11MB1562.namprd11.prod.outlook.com
+ (2603:10b6:4:6::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 11e35f9d-e929-452f-98ab-08da9035b85f
-X-MS-TrafficTypeDiagnostic: MN2PR11MB4415:EE_
+X-MS-Office365-Filtering-Correlation-Id: 363a06ab-0be2-4e4e-6ac2-08da903726d2
+X-MS-TrafficTypeDiagnostic: MWHPR1101MB2304:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hfnYUo4AVVrKNRBs7ERV8R8F2elJsQNnPRbVUATjLH1b7+7B0Y6A23afPwgXHqeBbcU4HZVNtsXPoJFKD9v7bVqvgPiwMTWRDRDoNN4PaD/Lgxs0LlNrmVIjhg15djiwK837vzmjPTzJROyFvfmrZmtjAI2XXrOC91B+TORPmyp13aeTwwpBmEOvb2Glkouql2DLYQl2LGcoDqgQEswueemh2zw/65YzkJxaREPU1bPC7MBXgk0T0Jn8OyzpbPFqEkuuxNdbkgut7uYX56rwZD5tCrWYG6owKdT4y6bR2yZUxZzYmhjORWoVeWgygZkgK9mA4lMqKfUGjIa3HKzFIZMn55Wl/LFwbzVvOh1IGEdwG28PNeOtVl+ZC1+Xxeq78W4r9CoHMhIUCi5ndyjkHAOW1Z4bvNJPGVLRBACz2UiQg61Il0j30JPa07sekQL1dPaDzfJCP6AG78s8PNJiJ9jbv9R3mPpO5ClujGmZUc3IrSwG2AQNj130woCRKkVW6fRQHrKdC6b8diOPxcaSKBhOB374tvHJjXg9YdbiPKWivHfuynIWXIelp/FnduxHMnKp9Q2b0U0jxkI9t7yrzPbjc8M0PdPLlANsPu0xM5vpx8HSIRxyuolgnnJY1dSlOV5SPVQMzjYw2h0XACl352Y5kQZxihguYUEycs4kwQTPLhTmZav5FJI8C0O3yLOWrwcnPTo3TqBL8B5R7U9faA==
+X-Microsoft-Antispam-Message-Info: Y33gahPUNSbjYkQEGpDTb8Hw0muqOLKoXS9qHjDjTQ3sGnk9ofsgXCkMGsGWqlb0L5zV0fAfe/ExzwLIdQU9kJzxh3T6vF+qX4gABgndO8G7vt/C8WhRqXb1w9xoGEk0kCg157M0hl2HVU+N+e473dD4Hm0d8chaZ+l5xNoBHrOkI9WJ0f2tUJjJLi6vRs9Qk8/uES9ACEblE3HyC/OyScdoUUfyhoLJGzeHv8YIue5UWnGGP7EShVrvd+q82vd4QsRPnJ+ch8ctO28lN8qckl+FnbASMMQA3hrL700+FPV7tux+QZFDzhtd2SWcxCi2+p/vaowIvD/daGZorF9t2aOoX5s6j72/Ek22SEUNwL+kYyPH+hWzAkWFFcRFl4RrIxKwleLyz+714Lh4XzE13kxbc+JoFHc520C4YgkaupOfzcSbFODVBSx893lrSV+rtqZ5Z7b7G4fwvxzp+5hZo/Xnl3zb4GZlmcRI6P27j+/tHqVSOSxSFSp9UeXE14G1Vu3iKydaaznFM3ws3IuqOaV/OpORpfELDBcJJ3qFVEOAZKkFckuZ+s/+yFzkFH5vKfAu6RpoS9kp4AuB813nU3GeNzXz9uTq87K6FcAtKHkNuNUJ7u1vYqUOHurfClT36rrptHhe7rcXfrCXpWamLP8uN3eNoYoEstAmHNMqZvdzIkcMSBePeibZ0zysESY9fW8H7B677+nb8QsfHL44R0a/xMtDs1eCkNXHh+eRdHP4hjpGZssZ3YcHno/AQL40tqAztEBk4uT+QFAzMK9VgprU2ub7fP5uXF9iamHQkl4vDxPcfqHhyikPYDUuPIZ0
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(7916004)(396003)(376002)(366004)(39860400002)(136003)(346002)(8676002)(6486002)(66476007)(83380400001)(66946007)(66556008)(4326008)(478600001)(6506007)(6666004)(26005)(107886003)(2906002)(6512007)(9686003)(5660300002)(6862004)(8936002)(186003)(86362001)(30864003)(41300700001)(33716001)(6636002)(38100700002)(316002)(82960400001);
+ IPV:NLI; SFV:NSPM; H:DM5PR11MB1562.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(376002)(396003)(136003)(346002)(366004)(39860400002)(8936002)(5660300002)(6506007)(6862004)(186003)(2616005)(83380400001)(31696002)(36756003)(26005)(53546011)(86362001)(107886003)(6666004)(31686004)(41300700001)(2906002)(6486002)(6512007)(38100700002)(8676002)(478600001)(66556008)(6636002)(316002)(66476007)(4326008)(37006003)(66946007)(82960400001)(21314003)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eVBlRi9uU0VDc3pVaVIrbkQ5VEQ5R3VpWFNMNmhiNzE2Y3Nzbm5NdzlIaktr?=
- =?utf-8?B?T1h0S0p5QVN0WjZkOURKWHcxcXFnQjJ6aFAxTVhwaFV6V1dUOVduS1ppYkVv?=
- =?utf-8?B?L0tNeGxWMFR6VFhvbndYc0l2cGRJV1Q2RG1UMlNVU2YzRXVobVBTaytGUkMy?=
- =?utf-8?B?WUE3S1JzWlBCT0dwMnFMY1B4Sm5ON3V3SldaNEloVFQyZ0NTRlhIeE56Wm42?=
- =?utf-8?B?VlNaSkdaS1ovcGZlN0MzZWhrd0kyTEtjRmlrS0RBa0pqMHhscTFUQXFHOEtX?=
- =?utf-8?B?eGtoZ1RFWHBnRDU1bVlsVXQ2emVJMkxkaVNNMWpPNzEyZjhhRWgvN3ZPcFNE?=
- =?utf-8?B?dC9ySitSMWdoVWpzNU45U3FGRjBmeCtrVS9KY0JsZTdQL1ZZRkFjRmdDS1hQ?=
- =?utf-8?B?cFlPeTlxMk1ieXBjSkg2VlBYcTRRNmdrUVZtOVZudGJUc3NBSmYxYktGVGdJ?=
- =?utf-8?B?OGdPUTB6US8rWjM2RTNvMUFvTGRyQVhlUlk2eFZESFp1K1pnamIrdDZ2WWdn?=
- =?utf-8?B?eTFGYmx5cWIzQ2tNd0dmN0pEaU9iZ25hY3hleVFFVUVXTVN6ZnEzakVEams1?=
- =?utf-8?B?ZWc4ell5YXIvU1hSM3NsMTRnZXpjNVlUK3NYVWR6TEhPT3NvZlB5Yk5ONVlD?=
- =?utf-8?B?KzVONUlkMUZOejg0bU1weGlFUGVVai91Z2t4OHhHQ2hwWDU4THZZYjNEMDhs?=
- =?utf-8?B?eUNIZi90amszODZudzFpazJHQUI4YWYxZlAwZmNlcVhNamxyalFZRWVTaHYy?=
- =?utf-8?B?Ykdrd2g1S0FLREp1RWUwbi9ET2g2Y1lKaDBlRFBubkNwMktmeEJvNkdNd2Uy?=
- =?utf-8?B?VEt4VndpczI2QnlCcEtLRC8xSERET3p3UWlELzR4VFBQZmtjR2RsWWVSaFpx?=
- =?utf-8?B?blJLRS80REphMnMrYlRnWmhhYm0yMWNUYjRYVlV6MzFZOFlHK0Nyb2ZRN2F5?=
- =?utf-8?B?Q2hQb1A3RXFuVkNXUjVSMEo1N3N1S09KZXJGWTZnZEdtZ1dqNTkzZHYvTmZ6?=
- =?utf-8?B?cEJESkppU3ZvbjM0cEt6NkxyV0svZVFkUVFyZm52bWwzY0JhKzJhbnU0VWpq?=
- =?utf-8?B?azR4NDFucmlkbHY1YzQxNkh4ZG1odHhtTytkN082VHhqTE9OSHZKeTJkdW04?=
- =?utf-8?B?WVlzSUI2MGdNTEJleFhaQUdJTWNYRHNIZUVjOFZxdmsrSHNsaERtSFV1OVh5?=
- =?utf-8?B?aGxMY2p1SnlOOEc0dGhLZ2hwQVhKbHBNZXZQZG9hekRzS1VLc2k5MGdERG50?=
- =?utf-8?B?d2R1UXFQU3NzbnRraTdxbkhJc053Q2xMVVdaR0R6YVVkR3Y2WGtSc25uWXpN?=
- =?utf-8?B?d09RdUlTYTZvYUFXMzE2WlBZRmZHYUYveDVpbEl2NHloRHJmRVpoZ3VWY1B4?=
- =?utf-8?B?blhwR3pUdTJKWkFpNjJmaVVtRzl0a3ROYW0wczRob090UU9YVW5xUnRTditI?=
- =?utf-8?B?c2JHeDJRQWVnL01sek5DZ2VuVGVSVFIyb2RMRVRYUzlzMDB4dkFBaWdkTS9J?=
- =?utf-8?B?RjdNdExxc21ma0xMdDVMdy9NMDFCNUhvSlZNa295VGxmRUVVWVh5UVVGeTNO?=
- =?utf-8?B?cldKajVYTHhBSkFpWHNxcCtXdmppcXVoSExBaUlQak1pbXdxQXFQWFNrNEIr?=
- =?utf-8?B?blA2TVBXclJkaVpIRWU0NHRPc0xtb0tEZGx1azB4Zzd2UG5FQnQ1U0RSL01k?=
- =?utf-8?B?eE1TaGQ4K1UzM1RGS0pWampHL0EzTWw4WWtXWW5lTUhDRVdFUlRvaC9Ec09W?=
- =?utf-8?B?ZXc5TFc3MHh3bno3cks0VXYzV3IrdXIrOGFpWldnNjFWbU9EN01NYUNJbkIw?=
- =?utf-8?B?YS9kcWdsQ204VURUSytRWTFGa01Kc3U5aUl4bVlML0FVVFluVmc1L2Q5dXJM?=
- =?utf-8?B?NnNRNjV2ODRobGZKR2diL0hrTmVYK0lZMjI0cFlROEVHMzN3aUtEYk1ML05W?=
- =?utf-8?B?dkptNTNNVUZKSHIxK242UnI1RENISGtqM0U5RHRiNkJrYnlhUHdSd0tMRm5E?=
- =?utf-8?B?SXpHU0FpTGFJaDZlTWswdlJhL3ZlVkROREdnRjRhZUkxTjRxRjdTZ3dHSlFC?=
- =?utf-8?B?SWh3N1ZUQ2Z2OEJudUprSThhMFUyMWZmWXNjd2pGeW1Nd0JPMWh1cnA3N2tZ?=
- =?utf-8?B?cUtha00vQUorcjNzRkg2dHprajFkdG14aCtnc3c5dkUxM2Q3Vk53cE90cm53?=
- =?utf-8?Q?P+UlFYIbAvF6YEmpekUcu+Q=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11e35f9d-e929-452f-98ab-08da9035b85f
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cnNjT2RZZXlVSEhyUUN3Q0NvNWw1cVFMRi9MOU5ZSVJCWHdOc2IvT0tqVVBU?=
+ =?utf-8?B?SGJiK25zUHdIZ1dBSHpna01uL3FrWDlrOWJERHFPc1FsYXVjcGlTelNjaDRi?=
+ =?utf-8?B?MmU1cGwyVnpSQVcxbGgvNENIRUJLdnVkYWtyNWxPc2piamQ0cGpCdlZMMFU1?=
+ =?utf-8?B?VUNNKzRVeWlpRnZKaUdRdXB1VmlROUdqTTJvZGMvTTJGbkxwVzVlT2Zsam8y?=
+ =?utf-8?B?c1pmN09RNnVENGhkdXFCN1B3SU1Tc2pTMCtBazJmSjhiemtQekljR2k0VmN2?=
+ =?utf-8?B?d3JJVFZQQXBxRitkeGk2MXlPVHM1SUluamk5OUdzenh5MFZpOW1hVWxkM0dK?=
+ =?utf-8?B?KzVzblBFWjQxV2JERzVnWWtVdlFjQUhqWEkzMGtKeWM2YzFWbWsxbXdTZHZt?=
+ =?utf-8?B?TVB4Tyt2ZjZSb1IzRGZZMzkxZGJkejIvQm5NNDBlRnZHZW5tMEM5WHFQTHo5?=
+ =?utf-8?B?TWZWM2lvcERDemk3RFRaYks5UENqdlExSTVMVEl3eXNWNlBGUXZvYkh0WVJO?=
+ =?utf-8?B?bm93L0xrN2tndFE2N1YxSFFtWUV6TnRHOFc0UlJFZjhVaE8weVo5Q1pzVEJJ?=
+ =?utf-8?B?WjJ2SExpbFV5NzZsVTFCajZBWUFzNWwvbFhoVkRCTEpLZTFjSzFLeDFNSmdk?=
+ =?utf-8?B?R1U1K0ZERkFEb0J2cDl2RkpIK3F1Z0Y3dnNhTWpPczlSNnl5LytqeHRqcnB0?=
+ =?utf-8?B?dzY1ZjZzU3F3dnlFYS9JMy91UERsZElJQ0ZRZ1pNRUdGMTBhZzZlUUFYeWxU?=
+ =?utf-8?B?UElMSy8zdWRkNnpRUE5hQmpZbEJRRC9YUUc1N040dkNSamI2L0x1ckExczFH?=
+ =?utf-8?B?NERUWE9Md3BmdFNSVmN1czZZQm9rZU1MNmduL1VPc1lWUktmSjBpZzkwV1U2?=
+ =?utf-8?B?Z1k4WHBhR1ZDZlZ6elBodHMyc2RETnJZc253Skh3L1RxVGZwUC9KU1lJWHha?=
+ =?utf-8?B?VkZvVFREQnZ1L3BmTUcwVzEvM0RxUG0xd21Qblhkc0k1a0UzczA0UHJ4SlFK?=
+ =?utf-8?B?Mm5sWklYM2NFdU9qak5PNEh4bGI3ZDAxd1h5Z3JOTzRGZnB4OXV1b2VkTGJi?=
+ =?utf-8?B?S1IwUTBPemZLM3lFeGpYQ2F3Z1FPUjdFRkdtVGxlRFcxUjVIMkFuTTVOUmZV?=
+ =?utf-8?B?RGZ1enRmamU3UWltMVBqSk9FM3UvUWk5VGRod2hxeXNJYzl4UnU3UGNlUCtZ?=
+ =?utf-8?B?VzVMVzN1amloaStnenltRitoWTczaFB4SFJJeW9ZMytES1hDN3BScEM5SC9S?=
+ =?utf-8?B?WndvTGpWTnlDcm5kdkYxOUR0bGZ3ZWJYaTQ4dDM3NmRGSFdZUkxORGZRa3Js?=
+ =?utf-8?B?YnlBUzFPRGJ2d1ZWU3ZqYm5idnJINU5YbzJnYVQ4dUJNNjNWU1hpTGN2VG40?=
+ =?utf-8?B?NjNucVZaMXUvZU1ieHN2VmJyZEpaSHV0cC9PazdwNEsrTnlBVnAveFptenJw?=
+ =?utf-8?B?dE42cGw1S05SN2ZKVjgwVHJyK2tFZHNpU0QxUXJTTitjbVdIN1F3Z2hPYTFz?=
+ =?utf-8?B?dlRvcHZvMnJzamwxRVAzd3o1bENQZE9KanRNMmIyWGJRVHVzQlN2cm45L2dG?=
+ =?utf-8?B?K1NreTB1dGJ0N1FFSThiWVJrNUtaamdwMFJFQ25EWnZpUWNHYnAyOE9LemJB?=
+ =?utf-8?B?UnI4V0RLNEtWREtKWHJ1MjU5TVF6VDVjaFkyVkR6UXpUazNCbEl2UC9TbVI3?=
+ =?utf-8?B?Tm5xcG0zYmcyalFvZXBFcm1reFl0OGkwMTFQQTlodW55cW0yUVBoV050eUQx?=
+ =?utf-8?B?RXNtZjV6Rjl5TGZETktWSkZuc3J1K0tXWkJJNlJZaDRtNlVoWmVkdG9iUU9k?=
+ =?utf-8?B?N2lJejQrN2N0R0VFNDJrM0hDUTFyZ0x0SG1NcHFRaDhZM1Y5bXdQZDR4V0sy?=
+ =?utf-8?B?K09HSUdaYTI3Lzd2OUgzaEg4aHNCRVBDY1JUUEdSYkp0cHJWbHJRWndseUlI?=
+ =?utf-8?B?TTJKWDVzWjk4VnQwSkloTW5qallsdUZaKzN4TzJWSUFKVDk0ZGlaWmtoY0t3?=
+ =?utf-8?B?M1dEOVZwc0Y1QWgrZHB0VXg4ZjJaa1ZQcTdqYURQQzhYMC9JUmZsR0NRUEpi?=
+ =?utf-8?B?ZUlGcXJQb3E2dmJWVk83RjBkbGdvZGtpMnFsNEhvMzBjZFpRQ2M5bTZ1U25s?=
+ =?utf-8?B?MUxlSGhGbWlLWUdQbmpqZTA3SDNOZ0VZRTQxbDNIa0JZbk9lcEoxaHRGYXVJ?=
+ =?utf-8?B?Q0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 363a06ab-0be2-4e4e-6ac2-08da903726d2
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1562.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 18:29:23.0254 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 18:39:37.7771 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nlRiuvbDEfybkGWFm4P4yt+n+VEoNXgTdEABk96Z8ltkWPYLIvnGzYHL+43UOnUUpB3FilCYcxkzM86x1SLGMFRaAzvyHJzhTpA19limsvA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4415
+X-MS-Exchange-CrossTenant-UserPrincipalName: KOWRTL97VpfYb+3ZxGd/PJHs6f8S3lG0WWFXKDa86CSo79gFG8BN7InNun0WBk6OQKWS73t74fCBDCcjM9V73QqHqQqF1nKC1h1oLai4RLY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1101MB2304
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [RFC PATCH 2/2] Fix per client busyness locking
+Subject: Re: [Intel-gfx] [PATCH 01/19] drm/i915/perf: Fix OA filtering logic
+ for GuC mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,320 +161,263 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 01, 2022 at 04:55:22PM -0700, Dixit, Ashutosh wrote:
->On Wed, 31 Aug 2022 15:45:49 -0700, Umesh Nerlige Ramappa wrote:
+On 06/09/2022 20:39, Umesh Nerlige Ramappa wrote:
+> On Tue, Sep 06, 2022 at 05:33:00PM +0300, Lionel Landwerlin wrote:
+>> On 23/08/2022 23:41, Umesh Nerlige Ramappa wrote:
+>>> With GuC mode of submission, GuC is in control of defining the 
+>>> context id field
+>>> that is part of the OA reports. To filter reports, UMD and KMD must 
+>>> know what sw
+>>> context id was chosen by GuC. There is not interface between KMD and 
+>>> GuC to
+>>> determine this, so read the upper-dword of EXECLIST_STATUS to 
+>>> filter/squash OA
+>>> reports for the specific context.
+>>>
+>>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 >>
->
->Hi Umesh,
->
->I have updated my RFC patch based on your feedback so we can discuss again.
->
->> On Wed, Aug 31, 2022 at 12:33:55PM -0700, Ashutosh Dixit wrote:
->> > 1. Do all ce->stats updates and reads under guc->timestamp.lock
 >>
->> Other than the question about READ_ONCE/WRITE_ONCE, I am not sure I
->> understand what's broken in the locking logic here. Can you please add some
->> description? thanks
+>> I assume you checked with GuC that this doesn't change as the context 
+>> is running?
 >
->Basically ce->stats.runtime.total and ce->stats.active are tied together so
->should be accessed/updated atomically. Also just the update of
->ce->stats.runtime.total (via lrc_update_runtime()) can have multiple
->concurrent writers so even that has to be protected (since that update is
->not atomic).
->
->These was the reason for:
->* Introducing lrc_update_runtime_locked
->* Returning early from intel_context_get_total_runtime_ns otherwise we'll
->  need to introduce the same locking there
->* Enforcing locking in guc_context_update_stats (which was there in your
->  original patch too)
->
->(I think execlists code didn't have this issue because there
->lrc_update_runtime is called from a tasklet (which iirc is like a single
->thread/cpu). I am not sure how 'active' is updated in execlist mode so
->there may or may not be a problem in intel_context_get_total_runtime_ns).
->
->I have another question: what about that GPU vs. GuC race mentioned in the
->comment? What is the sequence of events there between GPU updating the
->timestamp in the context image vs. GuC setting engine_id to -1 (at least
->what is the sequence in which GPU and GuC supposed to do these updates
->though it may not matter to i915 due to scheduling delays)?
-
-With GPU, KMD and GuC running concurrently, after a context is done, 
-this is the sequence.
-
-GPU) updates context image (total_runtime)
-KMD) reads total_runtime.
-KMD) sees engine_id is valid. KMD uses start_time from pphwsp to 
-calculate active_time.
-KMD) returns total_runtime + active_time (double accounted busyness!!)
-GuC) gets ctxt switchout event and sets engine_id and start_time to ~0
-
-This is not rare when running the IGT tests, so the total runtime is 
-updated in the query only if engine_id is idle. continued below ...
-
+> Correct.
 >
 >>
->> > 2. Pin context image before reading
->> > 3. Merge __guc_context_update_clks and guc_context_update_stats into a
->> >   single function
->> > 4. Call lrc_update_runtime() unconditionally in guc_context_update_stats
->> > 5. Seems no need to update ce->stats.active with this approach
->> >
->> > Some of the above steps may not be correct or complete but the idea is to
->> > discuss/improve the original patch.
->> >
->> > Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
->> > ---
->> > drivers/gpu/drm/i915/gt/intel_context.c       |  2 +-
->> > drivers/gpu/drm/i915/gt/intel_context_types.h |  2 +-
->> > .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 41 ++++++++++---------
->> > 3 files changed, 24 insertions(+), 21 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
->> > index e2d70a9fdac0..c004f676de27 100644
->> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
->> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
->> > @@ -581,7 +581,7 @@ u64 intel_context_get_total_runtime_ns(struct intel_context *ce)
->> >	u64 total, active;
->> >
->> >	if (ce->ops->update_stats)
->> > -		ce->ops->update_stats(ce);
->> > +		return ce->ops->update_stats(ce);
+>> With i915/execlist submission mode, we had to ask i915 to pin the 
+>> sw_id/ctx_id.
 >>
->> This is an improvement that we can add and eventually, we can make this a
->> GuC specific vfunc. Doing so may also remove the COPS_RUNTIME_ACTIVE_TOTAL
->> option that I added to GuC specific context ops.
 >
->I went ahead and did this in v2 of the RFC patch.
+> From GuC perspective, the context id can change once KMD de-registers 
+> the context and that will not happen while the context is in use.
 >
->> >
->> >	total = ce->stats.runtime.total;
->> >	if (ce->ops->flags & COPS_RUNTIME_CYCLES)
->> > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
->> > index f7ff4c7d81c7..699435bfff99 100644
->> > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
->> > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
->> > @@ -59,7 +59,7 @@ struct intel_context_ops {
->> >
->> >	void (*sched_disable)(struct intel_context *ce);
->> >
->> > -	void (*update_stats)(struct intel_context *ce);
->> > +	u64 (*update_stats)(struct intel_context *ce);
->> >
->> >	void (*reset)(struct intel_context *ce);
->> >	void (*destroy)(struct kref *kref);
->> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> > index bee8cf10f749..40d0edaf2e0a 100644
->> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> > @@ -1376,7 +1376,6 @@ static void __update_guc_busyness_stats(struct intel_guc *guc)
->> >	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
->> > }
->> >
->> > -static void __guc_context_update_clks(struct intel_context *ce);
->> > static void guc_timestamp_ping(struct work_struct *wrk)
->> > {
->> >	struct intel_guc *guc = container_of(wrk, typeof(*guc),
->> > @@ -1401,7 +1400,8 @@ static void guc_timestamp_ping(struct work_struct *wrk)
->> >
->> >	/* adjust context stats for overflow */
->> >	xa_for_each(&guc->context_lookup, index, ce)
->> > -		__guc_context_update_clks(ce);
->> > +		if (ce->ops->update_stats)
->> > +			ce->ops->update_stats(ce);
+> Thanks,
+> Umesh
+
+
+Thanks Umesh,
+
+
+Maybe I should have been more precise in my question :
+
+
+Can the ID change while the i915-perf stream is opened?
+
+Because the ID not changing while the context is running makes sense.
+
+But since the number of available IDs is limited to 2k or something on 
+Gfx12, it's possible the GuC has to reuse IDs if too many apps want to 
+run during the period of time while i915-perf is active and filtering.
+
+
+-Lionel
+
+
+>
 >>
->> context pinning logic needs to be separated for this (ping) path vs. the
->> query path - intel_context_get_total_runtime_ns().
->
->Done in v2 of RFC patch.
->
->> >
->> >	intel_gt_reset_unlock(gt, srcu);
->> >
->> > @@ -1476,17 +1476,21 @@ void intel_guc_busyness_unpark(struct intel_gt *gt)
->> >			 guc->timestamp.ping_delay);
->> > }
->> >
->> > -static void __guc_context_update_clks(struct intel_context *ce)
->> > +static u64 guc_context_update_stats(struct intel_context *ce)
->> > {
->> >	struct intel_guc *guc = ce_to_guc(ce);
->> >	struct intel_gt *gt = ce->engine->gt;
->> >	u32 *pphwsp, last_switch, engine_id;
->> > -	u64 start_gt_clk, active;
->> >	unsigned long flags;
->> > +	u64 total, active = 0;
->> >	ktime_t unused;
->> >
->> > +	intel_context_pin(ce);
+>> If that's not the case then filtering is broken.
 >>
->> intel_context_pin can sleep and we are not allowed to sleep in this path -
->> intel_context_get_total_runtime_ns(), however we can sleep in the ping
->> worker path, so ideally we want to separate it out for the 2 paths.
->
->Do we know which intel_context_get_total_runtime_ns() call is not allowed
->to sleep? E.g. the code path from i915_drm_client_fdinfo() is allowed to
->sleep. As mentioned I have done this is v2 of RFC patch which I think is
->sufficient, but a more complicated scheme (which I think we can avoid for
->now) would be to pin in code paths when sleeping is allowed.
->
-
-Hmm, maybe intel_context_get_total_runtime_ns can sleep, not sure why I 
-was assuming that this falls in the perf_pmu path. This is now in the 
-drm_fdinfo query path. + Tvrtko.
-
-@Tvrtko, any idea if intel_context_get_total_runtime_ns path can sleep?
-
->> >	spin_lock_irqsave(&guc->timestamp.lock, flags);
->> >
->> > +	lrc_update_runtime(ce);
->> > +	total = ce->stats.runtime.total;
 >>
->> That would get called every second (default intel_gpu_top query internal)
->> for a long running workload. multiply that with all active contexts.
+>> -Lionel
 >>
->> For long running contexts and frequenct queries, calling this ^ when a
->> context is active does not add value. I would just call it in the else like
->> before.
->
->I have done this in v2 but are we certain that when a context is active
->it's ce->stats.runtime.total has been updated? Is it updated on each
->context save or only when scheduling is disabled (which would not happen if
->the context is active). That was the reason for my keeping it out of the
->else.
-
-continued here ...
-
-You are right, it's not updated until scheduling is disabled or a query 
-falls in the else block. We can run into a case where the 
-stats.runtime.total has not yet been updated because the context is 
-switching in/out too frequently and the query always lands in the active 
-block. In this case busyness values will accumulate the time between 
-switch-out to switch-in and eventually drop when ce->stats.runtime.total 
-is updated. This is an issue we need to resolve.
-
-I think we should track the previous value of total_runtime. On a query, 
-if total_runtime has changed, we should just return that (irrespective 
-of whether engine is active or not. Active time should be part of the 
-busyness calculations only if total_runtime has not changed (compared to 
-previous sample).
-
->
->> > +
->> >	/*
->> >	 * GPU updates ce->lrc_reg_state[CTX_TIMESTAMP] when context is switched
->> >	 * out, however GuC updates PPHWSP offsets below. Hence KMD (CPU)
->> > @@ -1502,27 +1506,26 @@ static void __guc_context_update_clks(struct intel_context *ce)
->> >	guc_update_pm_timestamp(guc, &unused);
->> >
->> >	if (engine_id != 0xffffffff && last_switch) {
->> > -		start_gt_clk = READ_ONCE(ce->stats.runtime.start_gt_clk);
->> > -		__extend_last_switch(guc, &start_gt_clk, last_switch);
->> > -		active = intel_gt_clock_interval_to_ns(gt, guc->timestamp.gt_stamp - start_gt_clk);
->> > -		WRITE_ONCE(ce->stats.runtime.start_gt_clk, start_gt_clk);
->> > -		WRITE_ONCE(ce->stats.active, active);
->> > -	} else {
->> > -		lrc_update_runtime(ce);
->> > +		__extend_last_switch(guc, &ce->stats.runtime.start_gt_clk, last_switch);
->> > +		active = intel_gt_clock_interval_to_ns(gt,
->> > +			      guc->timestamp.gt_stamp - ce->stats.runtime.start_gt_clk);
 >>
->> Makes sense. Earlier it was a rmw, now it's just a write to
->> ce->stats.runtime.start_gt_clk.
->
->It is still a rmw, just that it is not as explicitly seen in the code as
->was the case earlier.
->
->> >	}
->> >
->> >	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
->> > +	intel_context_unpin(ce);
->> > +
->> > +	return total + active;
+>>> ---
+>>>  drivers/gpu/drm/i915/gt/intel_lrc.h |   2 +
+>>>  drivers/gpu/drm/i915/i915_perf.c    | 141 ++++++++++++++++++++++++----
+>>>  2 files changed, 124 insertions(+), 19 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h 
+>>> b/drivers/gpu/drm/i915/gt/intel_lrc.h
+>>> index a390f0813c8b..7111bae759f3 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.h
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
+>>> @@ -110,6 +110,8 @@ enum {
+>>>  #define XEHP_SW_CTX_ID_WIDTH            16
+>>>  #define XEHP_SW_COUNTER_SHIFT            58
+>>>  #define XEHP_SW_COUNTER_WIDTH            6
+>>> +#define GEN12_GUC_SW_CTX_ID_SHIFT        39
+>>> +#define GEN12_GUC_SW_CTX_ID_WIDTH        16
+>>>  static inline void lrc_runtime_start(struct intel_context *ce)
+>>>  {
+>>> diff --git a/drivers/gpu/drm/i915/i915_perf.c 
+>>> b/drivers/gpu/drm/i915/i915_perf.c
+>>> index f3c23fe9ad9c..735244a3aedd 100644
+>>> --- a/drivers/gpu/drm/i915/i915_perf.c
+>>> +++ b/drivers/gpu/drm/i915/i915_perf.c
+>>> @@ -1233,6 +1233,125 @@ static struct intel_context 
+>>> *oa_pin_context(struct i915_perf_stream *stream)
+>>>      return stream->pinned_ctx;
+>>>  }
+>>> +static int
+>>> +__store_reg_to_mem(struct i915_request *rq, i915_reg_t reg, u32 
+>>> ggtt_offset)
+>>> +{
+>>> +    u32 *cs, cmd;
+>>> +
+>>> +    cmd = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
+>>> +    if (GRAPHICS_VER(rq->engine->i915) >= 8)
+>>> +        cmd++;
+>>> +
+>>> +    cs = intel_ring_begin(rq, 4);
+>>> +    if (IS_ERR(cs))
+>>> +        return PTR_ERR(cs);
+>>> +
+>>> +    *cs++ = cmd;
+>>> +    *cs++ = i915_mmio_reg_offset(reg);
+>>> +    *cs++ = ggtt_offset;
+>>> +    *cs++ = 0;
+>>> +
+>>> +    intel_ring_advance(rq, cs);
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static int
+>>> +__read_reg(struct intel_context *ce, i915_reg_t reg, u32 ggtt_offset)
+>>> +{
+>>> +    struct i915_request *rq;
+>>> +    int err;
+>>> +
+>>> +    rq = i915_request_create(ce);
+>>> +    if (IS_ERR(rq))
+>>> +        return PTR_ERR(rq);
+>>> +
+>>> +    i915_request_get(rq);
+>>> +
+>>> +    err = __store_reg_to_mem(rq, reg, ggtt_offset);
+>>> +
+>>> +    i915_request_add(rq);
+>>> +    if (!err && i915_request_wait(rq, 0, HZ / 2) < 0)
+>>> +        err = -ETIME;
+>>> +
+>>> +    i915_request_put(rq);
+>>> +
+>>> +    return err;
+>>> +}
+>>> +
+>>> +static int
+>>> +gen12_guc_sw_ctx_id(struct intel_context *ce, u32 *ctx_id)
+>>> +{
+>>> +    struct i915_vma *scratch;
+>>> +    u32 *val;
+>>> +    int err;
+>>> +
+>>> +    scratch = 
+>>> __vm_create_scratch_for_read_pinned(&ce->engine->gt->ggtt->vm, 4);
+>>> +    if (IS_ERR(scratch))
+>>> +        return PTR_ERR(scratch);
+>>> +
+>>> +    err = i915_vma_sync(scratch);
+>>> +    if (err)
+>>> +        goto err_scratch;
+>>> +
+>>> +    err = __read_reg(ce, 
+>>> RING_EXECLIST_STATUS_HI(ce->engine->mmio_base),
+>>> +             i915_ggtt_offset(scratch));
+>>> +    if (err)
+>>> +        goto err_scratch;
+>>> +
+>>> +    val = i915_gem_object_pin_map_unlocked(scratch->obj, I915_MAP_WB);
+>>> +    if (IS_ERR(val)) {
+>>> +        err = PTR_ERR(val);
+>>> +        goto err_scratch;
+>>> +    }
+>>> +
+>>> +    *ctx_id = *val;
+>>> +    i915_gem_object_unpin_map(scratch->obj);
+>>> +
+>>> +err_scratch:
+>>> +    i915_vma_unpin_and_release(&scratch, 0);
+>>> +    return err;
+>>> +}
+>>> +
+>>> +/*
+>>> + * For execlist mode of submission, pick an unused context id
+>>> + * 0 - (NUM_CONTEXT_TAG -1) are used by other contexts
+>>> + * XXX_MAX_CONTEXT_HW_ID is used by idle context
+>>> + *
+>>> + * For GuC mode of submission read context id from the upper dword 
+>>> of the
+>>> + * EXECLIST_STATUS register.
+>>> + */
+>>> +static int gen12_get_render_context_id(struct i915_perf_stream 
+>>> *stream)
+>>> +{
+>>> +    u32 ctx_id, mask;
+>>> +    int ret;
+>>> +
+>>> +    if (intel_engine_uses_guc(stream->engine)) {
+>>> +        ret = gen12_guc_sw_ctx_id(stream->pinned_ctx, &ctx_id);
+>>> +        if (ret)
+>>> +            return ret;
+>>> +
+>>> +        mask = ((1U << GEN12_GUC_SW_CTX_ID_WIDTH) - 1) <<
+>>> +            (GEN12_GUC_SW_CTX_ID_SHIFT - 32);
+>>> +    } else if (GRAPHICS_VER_FULL(stream->engine->i915) >= 
+>>> IP_VER(12, 50)) {
+>>> +        ctx_id = (XEHP_MAX_CONTEXT_HW_ID - 1) <<
+>>> +            (XEHP_SW_CTX_ID_SHIFT - 32);
+>>> +
+>>> +        mask = ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
+>>> +            (XEHP_SW_CTX_ID_SHIFT - 32);
+>>> +    } else {
+>>> +        ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) <<
+>>> +             (GEN11_SW_CTX_ID_SHIFT - 32);
+>>> +
+>>> +        mask = ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) <<
+>>> +            (GEN11_SW_CTX_ID_SHIFT - 32);
+>>> +    }
+>>> +    stream->specific_ctx_id = ctx_id & mask;
+>>> +    stream->specific_ctx_id_mask = mask;
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>>  /**
+>>>   * oa_get_render_ctx_id - determine and hold ctx hw id
+>>>   * @stream: An i915-perf stream opened for OA metrics
+>>> @@ -1246,6 +1365,7 @@ static struct intel_context 
+>>> *oa_pin_context(struct i915_perf_stream *stream)
+>>>  static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+>>>  {
+>>>      struct intel_context *ce;
+>>> +    int ret = 0;
+>>>      ce = oa_pin_context(stream);
+>>>      if (IS_ERR(ce))
+>>> @@ -1292,24 +1412,7 @@ static int oa_get_render_ctx_id(struct 
+>>> i915_perf_stream *stream)
+>>>      case 11:
+>>>      case 12:
+>>> -        if (GRAPHICS_VER_FULL(ce->engine->i915) >= IP_VER(12, 50)) {
+>>> -            stream->specific_ctx_id_mask =
+>>> -                ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
+>>> -                (XEHP_SW_CTX_ID_SHIFT - 32);
+>>> -            stream->specific_ctx_id =
+>>> -                (XEHP_MAX_CONTEXT_HW_ID - 1) <<
+>>> -                (XEHP_SW_CTX_ID_SHIFT - 32);
+>>> -        } else {
+>>> -            stream->specific_ctx_id_mask =
+>>> -                ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) << 
+>>> (GEN11_SW_CTX_ID_SHIFT - 32);
+>>> -            /*
+>>> -             * Pick an unused context id
+>>> -             * 0 - BITS_PER_LONG are used by other contexts
+>>> -             * GEN12_MAX_CONTEXT_HW_ID (0x7ff) is used by idle context
+>>> -             */
+>>> -            stream->specific_ctx_id =
+>>> -                (GEN12_MAX_CONTEXT_HW_ID - 1) << 
+>>> (GEN11_SW_CTX_ID_SHIFT - 32);
+>>> -        }
+>>> +        ret = gen12_get_render_context_id(stream);
+>>>          break;
+>>>      default:
+>>> @@ -1323,7 +1426,7 @@ static int oa_get_render_ctx_id(struct 
+>>> i915_perf_stream *stream)
+>>>          stream->specific_ctx_id,
+>>>          stream->specific_ctx_id_mask);
+>>> -    return 0;
+>>> +    return ret;
+>>>  }
+>>>  /**
 >>
->> return ce->stats.runtime.total + active;
 >>
->> and then drop the local copy of total by bringing back the else{}.
->
->Some changes here in v2, ce->stats.active had to be revived since we need
->to return previously computed value when we cannot pin.
 
-Let's wait for Tvrtko's inputs. If this can sleep, I'd just use the 
-original changes you had.
-
->
->> > }
->> >
->> > -static void guc_context_update_stats(struct intel_context *ce)
->> > +void lrc_update_runtime_locked(struct intel_context *ce)
->> > {
->> > -	if (!intel_context_pin_if_active(ce)) {
->> > -		WRITE_ONCE(ce->stats.runtime.start_gt_clk, 0);
->> > -		WRITE_ONCE(ce->stats.active, 0);
->> > -		return;
->> > -	}
->> > +	struct intel_guc *guc = ce_to_guc(ce);
->> > +	unsigned long flags;
->> >
->> > -	__guc_context_update_clks(ce);
->> > +	intel_context_pin(ce);
->> > +	spin_lock_irqsave(&guc->timestamp.lock, flags);
->> > +	lrc_update_runtime(ce);
->> > +	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
->> >	intel_context_unpin(ce);
->>
->> From where lrc_update_runtime_locked is being called, I would assume that
->> the context is already pinned (until unpin_guc_id is called).
->
->Fixed in v2.
->
->From the other email:
->
->> From your rfc patch, I like
->> - the idea of not touching ce->stats.active
->> - having the update_stats return u64
->> - not doing a rmw for start_gt_clk
->>
->> With those changes, we are only accessing total in ce->stats, so we don't
->> really need a lrc_update_runtime_locked.
->
->Strictly speaking, (as explained above) because the computation of
->ce->stats.runtime.total in lrc_update_runtime is not atomic and there are
->potentially multiple concurrent callers of lrc_update_runtime,
->lrc_update_runtime_locked is needed and I have retained it in v2.
->
->When you say we don't need it, you probably mean that because we are
->dealing with something like busyness, we can tolerate occasional errors in
->busyness if we don't have locking (and we can't verify busyness values
->anyway though I think they are expected to be monotonically
->increasing). But my question is why not keep it simple and retain the
->locking?
-
-The locking you suggested earlier is fine. I think I assumed the 
-ce->stats.runtime.total is being updated atomically, but I see your 
-point.
-
-Thanks,
-Umesh
-
->
->Thanks.
->--
->Ashutosh
->
->> > }
->> >
->> > @@ -2780,7 +2783,7 @@ static void guc_context_unpin(struct intel_context *ce)
->> > {
->> >	struct intel_guc *guc = ce_to_guc(ce);
->> >
->> > -	lrc_update_runtime(ce);
->> > +	lrc_update_runtime_locked(ce);
->> >	unpin_guc_id(guc, ce);
->> >	lrc_unpin(ce);
->> >
->> > --
->> > 2.34.1
->> >
