@@ -2,55 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973EF5AE41C
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 11:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B12A35AE48A
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 11:42:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0424B10E5FF;
-	Tue,  6 Sep 2022 09:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3927D10E60C;
+	Tue,  6 Sep 2022 09:42:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A945010E5FF;
- Tue,  6 Sep 2022 09:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662456430; x=1693992430;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=6BTHSoXRfOuZ3Qbwjw9pSgeo4IcuoP2fqSrf7+dY5Mw=;
- b=KhktnqwKjOPXLbLwcJOrG2o0HvY3XxNOYD/73YQ5BA8UsNrj+N9V+9zN
- 22LmE5fo/Wt39R/XfNmFgIg+W892VPXxi1iOjASnN4U/cXRBv4pzPyckv
- FG4axTF2TVeG7YIgiskqdTvvyz/vDDxQjGqLT2tKN1rmdhkiNvW1c447D
- GD5l6XIV3GCVlZ1eAGXCcqGhb3cK/Wa9oAZEQN/oFCp4Ob5Zxxt6zhU6v
- cts7LI+2RwW3C+JS/sJXiiHsBDd19Mb54HEc1NkX4WADtkudW+isu0rBj
- HcMUKAF2vhiI99Awzw+49K4Iem+gWJ1+2ng0xl4xCRWlBDL3g8BYzquP8 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10461"; a="296549121"
-X-IronPort-AV: E=Sophos;i="5.93,293,1654585200"; d="scan'208";a="296549121"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2022 02:27:09 -0700
-X-IronPort-AV: E=Sophos;i="5.93,293,1654585200"; d="scan'208";a="644091217"
-Received: from holmesda-mobl.ger.corp.intel.com (HELO [10.213.204.21])
- ([10.213.204.21])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2022 02:27:07 -0700
-Message-ID: <48b5773c-c6b8-fc69-c393-6b455e1bee97@linux.intel.com>
-Date: Tue, 6 Sep 2022 10:27:05 +0100
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E174D10E60C;
+ Tue,  6 Sep 2022 09:42:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=2qDYpHuHfXVn75WEqJsFoiIv26+1ntYwgiyVPU2xfns=; b=g9OAK4Ewx/kpJOsybV0tqVyLKC
+ fXPe1N0g2PyjPi7YcykxQf3qHou7W6XeCXvzfhB1MKz+1xoMQo/1B69aqyYsEgCJdPJ4eFoyRapu9
+ 4v9cxK2KLCj31WbbiVWNS75ziRNFuWcExlAlF60lghK5noBzEQUTEPiiBR/K6doR56BNUARdEHX/t
+ bHk7W2vMBxX3WGJTnC4vmOkwDkES390sWShqj1MVD2/8IkX09iKEa+jwg4Bh7oSMumi3IWxyCIoST
+ rIptoxF8mPudqsREDfFfqylMfpjsg/nakCMCF0YnUahVDGaHM96GY+aVM6/A1ZnWFp48uTpo/Z2tU
+ 4pj77kKQ==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1oVV5P-00Bz2h-AF; Tue, 06 Sep 2022 09:41:39 +0000
+Date: Tue, 6 Sep 2022 02:41:39 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: Kevin Tian <kevin.tian@intel.com>
+Message-ID: <YxcV05AVN4kqdPX6@infradead.org>
+References: <20220901143747.32858-1-kevin.tian@intel.com>
+ <20220901143747.32858-2-kevin.tian@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Content-Language: en-US
-To: Dan Carpenter <dan.carpenter@oracle.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-References: <YxDSAj6tIrTZv5Y5@kili>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YxDSAj6tIrTZv5Y5@kili>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: prevent integer overflow in
- query_engine_info()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220901143747.32858-2-kevin.tian@intel.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Subject: Re: [Intel-gfx] [PATCH v2 01/15] vfio: Add helpers for unifying
+ vfio_device life cycle
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,82 +51,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Rosato <mjrosato@linux.ibm.com>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Kirti Wankhede <kwankhede@nvidia.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Longfang Liu <liulongfang@huawei.com>, linux-s390@vger.kernel.org,
+ Yi Liu <yi.l.liu@intel.com>, kvm@vger.kernel.org,
+ Leon Romanovsky <leon@kernel.org>, Halil Pasic <pasic@linux.ibm.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Tony Krowiak <akrowiak@linux.ibm.com>,
+ Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Jason Herne <jjherne@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Abhishek Sahu <abhsahu@nvidia.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-Hi Dan,
-
-On 01/09/2022 16:38, Dan Carpenter wrote:
-> This code uses struct_size() but it stores the result in an int so the
-> integer overflow checks are not effective.  Record the types as size_t
-> to prevent the size from being truncated.
-> 
-> Fixes: bf3c50837506 ("drm/i915/query: Use struct_size() helper")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-> ---
-> I do not know if the integer overflow can happen.  This is a hardenning
-> patch just like the conversion to struct_size().
-
-It can't since num_uabi_engines in "len = struct_size(query_ptr, 
-engines, num_uabi_engines);" is max double digits and sizeof(struct 
-drm_i915_engine_info) is 56 bytes on a glance.
-
-Nevertheless hardening is almost always beneficial so no fundamental 
-complaints. Just that this patch I think leaves some parts unresolved. 
-Mostly that copy_query_item now can implicitly truncate in "return 
-total_length" and likewise query_engine_info in "return ret;".
-
-Maybe we could add, on top of your patch, something like:
-
-  static int copy_query_item(void *query_hdr, size_t query_sz,
--                          u32 total_length,
-+                          size_t total_length,
-                            struct drm_i915_query_item *query_item)
-  {
-+       if (overflows_type(query_sz, query_item->length) ||
-+           overflows_type(total_length, query_item->length))
-+               return -ERANGE; /* ??? */
-+
-
-(query->item_length is s32 so matches the int return type.)
-
-And change all variables holding result of copy_query_item to size_t.
-
-Don't know, it could be it's an overkill. More opinions?
-
-Regards,
-
-Tvrtko
-
-> 
->   drivers/gpu/drm/i915/i915_query.c | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index 6ec9c9fb7b0d..43a499fbdc8d 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -13,7 +13,7 @@
->   #include <uapi/drm/i915_drm.h>
->   
->   static int copy_query_item(void *query_hdr, size_t query_sz,
-> -			   u32 total_length,
-> +			   size_t total_length,
->   			   struct drm_i915_query_item *query_item)
->   {
->   	if (query_item->length == 0)
-> @@ -135,7 +135,8 @@ query_engine_info(struct drm_i915_private *i915,
->   	struct drm_i915_engine_info info = { };
->   	unsigned int num_uabi_engines = 0;
->   	struct intel_engine_cs *engine;
-> -	int len, ret;
-> +	size_t len;
-> +	int ret;
->   
->   	if (query_item->flags)
->   		return -EINVAL;
+What is the point?  This adds indirect calls, and actually creates
+more boilerplate code in the drivers.  i.g. when using this code there
+is more, and harder to read code.
