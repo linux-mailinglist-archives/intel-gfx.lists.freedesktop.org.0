@@ -1,58 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2FB65AF4D7
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 21:53:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93DD95AF4D8
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 21:53:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49F4710EA6D;
-	Tue,  6 Sep 2022 19:52:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA78310EA71;
+	Tue,  6 Sep 2022 19:52:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 303FD10EA65;
- Tue,  6 Sep 2022 19:52:37 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78C9D10EA69;
+ Tue,  6 Sep 2022 19:52:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662493957; x=1694029957;
+ t=1662493959; x=1694029959;
  h=date:from:to:cc:subject:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QXh+N8yFDnZSCWq7iaCGkV9oRPhO8WRuXHEx8NhlGzY=;
- b=kuSSo0H9mnkkvMCozJPwPSyShICCeHb6jcHqx1zpQx1IR/YxjVkH2FTG
- eYrvmA/l7o9LcADVXh7Zz/xuR68S2961yPAVOykIe8UwCFec3JH5bAcwH
- lmMWSSiTQO6TvzaGj+yNYnX/WsMLGiY4EH1aWwbnpiEl7QOu3GfVlDyu0
- l5/9vJN+96Mgi4mGG7EhXuqFgio94qkAMQwSI+EspF1WwBFUoUX7i5bTO
- i0eYonJbpcxCm0pZSXD18mqmx4BxBaUAPpYKTS7b0Hy/BRj/hb34Poeq6
- CrI95VNhpXQH5u5G3WMfE+Xba2WA0IKeXfPb2ONHE76dsCoC0MBZDv5vg w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="382987128"
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="382987128"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2022 12:52:35 -0700
+ bh=ogqkU6hwz+5RMxgjJdnuLelA2xSDzawITgx7hiHuXjg=;
+ b=RQgOwPzjdnGSCmJQPgIdKwcsPPIw+uuagWHdV0FNUSEcVYFYbnKLg4If
+ am02gItZ+5Gg3hNFuc+050YNflzkTWEWGLM/tpZWuXkl0A7S6fTLRDbXr
+ U5vPHEbsmhDWF84NMw93vQzaW/2+7UNpurmjYgGRM+638HQVQSuk6YK6/
+ C75bYwHuk/hGLFLwVSbrrdWw5QKsvzT36OaGZKWuVK9tVDhY5uaEMvP9q
+ a2pTdiV3V1Op/ToSWYgaUhXT0XT+GsN6gMKgHxC/3RBp3f2NsnuI5MZSR
+ GrMk+5RHA0h1X15RTjT150O1PBoAaEwkzeWgYAXZfOAAZVQyvVbTF3m/f A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="322869863"
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="322869863"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2022 12:52:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="614216271"
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="675842746"
 Received: from linux.intel.com ([10.54.29.200])
- by orsmga002.jf.intel.com with ESMTP; 06 Sep 2022 12:52:35 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 06 Sep 2022 12:52:38 -0700
 Received: from maurocar-mobl2 (maurocar-mobl2.ger.corp.intel.com
  [10.252.44.186])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id DBFA3580583;
- Tue,  6 Sep 2022 12:52:32 -0700 (PDT)
-Date: Tue, 6 Sep 2022 21:35:18 +0200
+ by linux.intel.com (Postfix) with ESMTPS id 14A6F580890;
+ Tue,  6 Sep 2022 12:52:35 -0700 (PDT)
+Date: Tue, 6 Sep 2022 21:43:30 +0200
 From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <20220906213509.6093e904@maurocar-mobl2>
-In-Reply-To: <YvIwkaYRbrd5+vtj@intel.com>
+Message-ID: <20220906214323.3d3a0db4@maurocar-mobl2>
+In-Reply-To: <YvI1CbsIZIG7FVBP@intel.com>
 References: <cover.1657699522.git.mchehab@kernel.org>
- <d7d1f6d6516eb3a82041af1d5f40c2f550de40db.1657699522.git.mchehab@kernel.org>
- <YvIwkaYRbrd5+vtj@intel.com>
+ <5630ff7f2d5a99fc78b4fc2fa7e63649d23f226c.1657699522.git.mchehab@kernel.org>
+ <YvI1CbsIZIG7FVBP@intel.com>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 30/39] docs: gpu: i915.rst: gt: add more
- kernel-doc markups
+Subject: Re: [Intel-gfx] [PATCH v2 35/39] docs: gpu: i915.rst: add the
+ remaining kernel-doc markup files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,13 +73,16 @@ Cc: Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@linux.ie>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 9 Aug 2022 06:01:53 -0400
+On Tue, 9 Aug 2022 06:20:57 -0400
 Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
 
-> On Wed, Jul 13, 2022 at 09:12:18AM +0100, Mauro Carvalho Chehab wrote:
-> > There are several documented GT kAPI that aren't currently part
-> > of the docs. Add them, as this allows identifying issues with
-> > badly-formatted tags.
+> On Wed, Jul 13, 2022 at 09:12:23AM +0100, Mauro Carvalho Chehab wrote:
+> > There are other files with kernel-doc markups:
+> > 
+> > 	$ git grep -l "/\*\*" $(git ls-files|grep drivers/gpu/drm/i915/) >kernel-doc-files
+> > 	$ for i in $(cat kernel-doc-files); do if [ "$(git grep $i Documentation/)" == "" ]; then echo "$i"; fi; done >aaa
+> > 
+> > Add them to i915.rst as well.
 > > 
 > > Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 > > ---
@@ -87,98 +90,172 @@ Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
 > > To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
 > > See [PATCH v2 00/39] at: https://lore.kernel.org/all/cover.1657699522.git.mchehab@kernel.org/
 > > 
-> >  Documentation/gpu/i915.rst | 43 +++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 42 insertions(+), 1 deletion(-)
+> >  Documentation/gpu/i915.rst | 87 ++++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 87 insertions(+)
 > > 
 > > diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-> > index 2ad7941a79f2..afd8c0e3c689 100644
+> > index 974754586be8..6bb50edc6d79 100644
 > > --- a/Documentation/gpu/i915.rst
 > > +++ b/Documentation/gpu/i915.rst
-> > @@ -149,7 +149,6 @@ Misc display functions
+> > @@ -13,6 +13,11 @@ Core Driver Infrastructure
+> >  This section covers core driver infrastructure used by both the display
+> >  and the GEM parts of the driver.
 > >  
-> >  .. kernel-doc:: drivers/gpu/drm/i915/display/skl_scaler.c
+> > +Core driver
+> > +-----------
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_driver.c
+> > +
+> >  Runtime Power Management
+> >  ------------------------
 > >  
-> > -
-> >  Plane Configuration
+> > @@ -29,6 +34,10 @@ Runtime Power Management
+> >  
+> >  .. kernel-doc:: drivers/gpu/drm/i915/intel_pm.c
+> >  
+> > +.. kernel-doc:: drivers/gpu/drm/i915/intel_wakeref.h
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_active.h  
+> 
+> not sure if this belongs to this group...
+> 
+> > +
+> >  Interrupt Handling
+> >  ------------------
+> >  
+> > @@ -44,6 +53,28 @@ Interrupt Handling
+> >  .. kernel-doc:: drivers/gpu/drm/i915/i915_irq.c
+> >     :functions: intel_runtime_pm_enable_interrupts
+> >  
+> > +Error handling
+> > +--------------
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_gpu_error.c  
+> 
+> not sure if this gt hang stuff deserves a separated section
+> alone and if the name is the best one....
+> 
+> > +
+> > +Memory Handling
+> > +---------------
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_vma_resource.h
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_vma_resource.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_vma.h
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_vma.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_mm.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/intel_memory_region.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_memcpy.c
+> > +
+> >  Intel GVT-g Guest Support(vGPU)  
+> 
+>                             ^ missing space
+> 
+> >  -------------------------------
+> >  
+> > @@ -109,6 +140,54 @@ Workarounds
+> >  .. kernel-doc:: drivers/gpu/drm/i915/gt/intel_workarounds.c
+> >     :doc: Hardware workarounds
+> >  
+> > +32-bits compatible ioctl Logic
+> > +------------------------------
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_ioc32.c
+> > +
+> > +Scatterlist handling
+> > +--------------------
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_scatterlist.h
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_scatterlist.c
+> > +
+> > +i915 request
+> > +------------
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_request.h
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_request.c
+> > +
+> > +Ancillary routines  
+> 
+> maybe simply have an "Others" section and put everything
+> that has only one item like the gpu hang one?
+
+OK!
+
+> 
+> > +------------------
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_deps.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_deps.h
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/intel_device_info.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_params.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_sw_fence_work.h
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_syncmap.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/intel_pcode.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_reg_defs.h
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/intel_wopcm.h
+> > +
+> > +
+> > +PXP  
+> 
+> Protected Xe Path (PXP)
+> 
+> 
+> > +---
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> > +
+> >  Display Hardware Handling
+> >  =========================
+> >  
+> > @@ -618,6 +697,12 @@ Protected Objects
+> >  Table Manager (TTM)
 > >  -------------------
 > >  
-> > @@ -308,6 +307,48 @@ Multicast/Replicated (MCR) Registers
-> >  .. kernel-doc:: drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-> >     :internal:
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> > +
+> > +.. kernel-doc:: drivers/gpu/drm/i915/intel_region_ttm.c
+> > +
+> >  .. kernel-doc:: drivers/gpu/drm/i915/gem/i915_gem_ttm.c
 > >  
-> > +GT engine
-> > +---------
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > +
-> > +GT context
-> > +----------
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_context.h  
-> 
-> why does the context deserves a separated section and the
-> many others below no?
-
-Good question. The patches adding stuff to i915.rst are the
-hardest ones to produce, in the sense that it is not easy to have
-a common criteria about when creating or not a new section.
-
-I tried to follow the same as other things for the same type, but
-it is hard to classify.
-
-The main point is that they should be somewhere there, in order to start
-producing errors when building the docs. Reorganizing those markups should
-be easily done once all files with kernel-docs gets added there.
-
-Anyway, I'll keep this under:
-
-	Other GT functionality
-
-Section. We can shift things later on as needed.
-
-> > +
-> > +Graphics Translation Tables
-> > +---------------------------
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > +
-> > +Other GT functionality
-> > +----------------------
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_gsc.h
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_gtt.c
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_gtt.h  
-> 
-> Why aren't these gtt ones in the above block? why only
-> having the global gtt there?
-
-Makes sense. I'll place GTT together with GGTT.
-
-> 
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_migrate.c
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_mocs.h
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_rc6.c
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_reset.c
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_rps_types.h
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_rps.c
-> > +
-> > +.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_sseu.c
-> > +
-> >  Memory Management and Command Submission
-> >  ========================================
+> >  .. kernel-doc:: drivers/gpu/drm/i915/gem/i915_gem_ttm.h
+> > @@ -627,6 +712,8 @@ Table Manager (TTM)
+> >  Graphics Execution Manager (GEM)
+> >  --------------------------------
 > >  
-> > -- 
-> > 2.36.1
-> >   
+> > +.. kernel-doc:: drivers/gpu/drm/i915/i915_gem.c
+> > +
+> >  .. kernel-doc:: drivers/gpu/drm/i915/gem/i915_gem_create.c
+> >  
+> >  .. kernel-doc:: drivers/gpu/drm/i915/gem/i915_gem_domain.c  
+> 
+> in many cases I see only the .h or only the .c... why is that?
+> wouldn't be better already put both in all the cases?
+
+No. Adding kernel-doc files that doesn't contain any markups
+will produce warnings.
+
+We're working hard upstream to have a zero-warnings policy for
+documentation.
+
+Regards,
+Mauro
