@@ -1,61 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C13E35AF044
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 18:22:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 378ED5AF10C
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 18:50:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AB1610E6F3;
-	Tue,  6 Sep 2022 16:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA73010E700;
+	Tue,  6 Sep 2022 16:49:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD89210E6F3
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Sep 2022 16:21:52 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95A5810E093;
+ Tue,  6 Sep 2022 16:49:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662481312; x=1694017312;
+ t=1662482975; x=1694018975;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=N+kUjaB5PlCPE+96ikSOTleyjjqOquVMlryRiUEtFfs=;
- b=Q3iPqjdcm6YoOqEKZ6IzjARCLS8jvBoQoJ3MSIul5Szq6Ha2yFM4mSZB
- 2wfHkERzAtT1O7FtKw0jnBnpUgvwHD6ABTp+5OpULWHftCyj+zH+xaWDB
- mel9/IkOlXsQHqepH4dCsAtXaLFjoyzd+EGO2NilcMcWq8RObXvpw9mbf
- BB8vOPGvF7/LbOPVG4p57QTEwI/SbzJIdtB0/mrx5TE5LncZnd1f3ncmn
- br47xc6OMqqPKJchTemBR5tUCvpAqB4l74Y3C2PDsbJNO9i/GTcZyRJNs
- RYL+O69I18ayGvB44Lf0vqavMRsc3I38o6dG4FnONKd5qL36tbHJnHtPV A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="276377040"
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="276377040"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2022 09:21:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="616760345"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga007.fm.intel.com with SMTP; 06 Sep 2022 09:21:50 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 06 Sep 2022 19:21:49 +0300
-Date: Tue, 6 Sep 2022 19:21:49 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <YxdznZd/zU50GV8R@intel.com>
-References: <YxXh+gGqGGahJc08@intel.com>
- <f9337b9b-4b06-cee8-4550-db7513b1a953@intel.com>
- <YxY1mznljBVkDHCw@intel.com>
- <2501aa82-dac0-6cdf-db97-c43893106027@intel.com>
- <YxctfpfZ48ySBaCc@intel.com>
- <ef46e439-2de1-db0b-2672-b17af00a15b3@intel.com>
- <YxdV4Pz1x5V1kGBw@intel.com> <Yxda1TSrbHus+7rM@intel.com>
- <YxdckL3UVMt6oSR+@intel.com>
- <e4c132b1-0442-530c-d696-e42ca1a68373@intel.com>
+ mime-version:in-reply-to;
+ bh=Vl59Es854KxQuPs/UwzeJz7RUBVybrxJ5VLveZeE3HQ=;
+ b=jjn9E5ncQKvH10IVBkn7xNX7/0zmC5BW4WD/QBbLh40SwT1DVnMgaS7j
+ pSsmbNB87biqMcFRk8NsjnTSmSlGAPby6pAz7oYjHQ8w3+qwu+6w+kkgU
+ jIjt2qJYIbpUMZTp/PWiwcTaT+G95RhsjLBTfkU4a9mFxOf+OoFPoyKBx
+ AAjJv7Rh2aS2/EfpSFdUF1h1SjosZfSH5S/pG5VP7Zdcj6daz3lCTKKPf
+ NmDeWwvr4I8khqsMPUYJaqqgEPVjDLFVcUkZEgbcYjKJDkBEZKlGYPnPa
+ bAIB+XqAKORhs4FejbOWgKnjUByYwFScpwX9CTDRoQwmc0t12Mrnfi7ce A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="295381454"
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="295381454"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2022 09:49:34 -0700
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="675771691"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2022 09:49:32 -0700
+Date: Tue, 6 Sep 2022 19:50:17 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Yxd6SXEkPpMF4d5l@intel.com>
+References: <20220905085744.29637-1-stanislav.lisovskiy@intel.com>
+ <20220905085744.29637-2-stanislav.lisovskiy@intel.com>
+ <8735d4a7vm.fsf@intel.com> <87sfl48q5h.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e4c132b1-0442-530c-d696-e42ca1a68373@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: do not reset PLANE_SURF on plane
- disable on older gens
+In-Reply-To: <87sfl48q5h.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm: Add missing DP DSC extended
+ capability definitions.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,154 +58,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 06, 2022 at 06:14:23PM +0200, Andrzej Hajda wrote:
-> 
-> 
-> On 06.09.2022 16:43, Ville Syrjälä wrote:
-> > On Tue, Sep 06, 2022 at 05:36:05PM +0300, Ville Syrjälä wrote:
-> >> On Tue, Sep 06, 2022 at 05:14:56PM +0300, Ville Syrjälä wrote:
-> >>> On Tue, Sep 06, 2022 at 03:57:37PM +0200, Andrzej Hajda wrote:
-> >>>>
-> >>>> On 06.09.2022 13:22, Ville Syrjälä wrote:
-> >>>>> On Tue, Sep 06, 2022 at 01:09:16PM +0200, Andrzej Hajda wrote:
-> >>>>>> On 05.09.2022 19:44, Ville Syrjälä wrote:
-> >>>>>>> On Mon, Sep 05, 2022 at 07:02:40PM +0200, Andrzej Hajda wrote:
-> >>>>>>>> On 05.09.2022 13:48, Ville Syrjälä wrote:
-> >>>>>>>>> On Mon, Sep 05, 2022 at 10:05:00AM +0200, Andrzej Hajda wrote:
-> >>>>>>>>>> In case of ICL and older generations disabling plane and/or disabling
-> >>>>>>>>>> async update is always performed on vblank,
-> >>>>>>>>> It should only be broken on bdw-glk (see. need_async_flip_disable_wa).
-> >>>>>>>> On CFL it is reported every drmtip run:
-> >>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip.html?testfilter=tiled-max-hw
-> >>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_1209/fi-cfl-8109u/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-async-flip.html#dmesg-warnings402
-> >>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_1209/fi-cfl-8109u/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html#dmesg-warnings402
-> >>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_1209/fi-cfl-8109u/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-180-async-flip.html
-> >>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_1208/fi-cfl-8109u/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html
-> >>>>>>>> ...
-> >>>>>>>> On APL it is less frequent, probably due to other bugs preventing run of
-> >>>>>>>> this test, last seen at:
-> >>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_1190/fi-apl-guc/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-180-async-flip.html
-> >>>>>>>> Similar for SKL:
-> >>>>>>>> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_1181/fi-skl-guc/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html
-> >>>>>>>>
-> >>>>>>>> I am not sure if I correctly read the docs but [1] says that 9th bit of
-> >>>>>>>> PLANE_CFG (Async Address Update Enable) is "not double buffered and the
-> >>>>>>>> changes will apply immediately" only for ICL, JSL, LKF1.
-> >>>>>>> It got broken in bdw and fixed again in icl.
-> >>>>>>>
-> >>>>>>>> So the change is not necessary in case of icl_plane_disable_arm.
-> >>>>>>>>
-> >>>>>>>> [1]: https://gfxspecs.intel.com/Predator/Home/Index/7656
-> >>>>>>>>>> but if async update is enabled
-> >>>>>>>>>> PLANE_SURF register is updated asynchronously. Writing 0 to PLANE_SURF
-> >>>>>>>>>> when plane is still enabled can cause DMAR/PIPE errors.
-> >>>>>>>>>> On the other side PLANE_SURF is used to arm plane registers - we need to
-> >>>>>>>>>> write to it to trigger update on VBLANK, writting current value should
-> >>>>>>>>>> be safe - the buffer address is valid till vblank.
-> >>>>>>>>> I think you're effectively saying that somehow the async
-> >>>>>>>>> flip disable w/a is not kicking in sometimes.
-> >>>>>>>> I was not aware of existence of this w/a and I am little lost in
-> >>>>>>>> figuring out how this w/a can prevent zeroing PLANE_SURF too early.
-> >>>>>>> When it works as designed it should:
-> >>>>>>> 1. turn off the async flip bit
-> >>>>>>> 2. wait for vblank so that gets latched
-> >>>>>>> 3. do the sync plane update/disable normally
-> >>>>>> After debugging this terra incognita, I've figured out that plane states
-> >>>>>> are not populated in intel_crtc_async_flip_disable_wa
-> >>>>>> so for_each_old_intel_plane_in_state does not iterate over affected
-> >>>>>> planes and w/a does not work at all.
-> >>>>>> I have no idea where affected plane states should be added.
-> >>>>>> Adding them to the beginning of intel_atomic_check helped, but this is
-> >>>>>> just blind shot:
-> >>>>>>
-> >>>>>> @@ -6778,10 +6778,14 @@ static int intel_atomic_check(struct drm_device
-> >>>>>> *dev,
-> >>>>>>                 new_crtc_state->uapi.mode_changed = true;
-> >>>>>>
-> >>>>>>             if (new_crtc_state->uapi.scaling_filter !=
-> >>>>>>                 old_crtc_state->uapi.scaling_filter)
-> >>>>>>                 new_crtc_state->uapi.mode_changed = true;
-> >>>>>> +
-> >>>>>> +        ret = intel_atomic_add_affected_planes(state, crtc);
-> >>>>>> +        if (ret)
-> >>>>>> +            goto fail;
-> >>>>>>         }
-> >>>>>>
-> >>>>>>         intel_vrr_check_modeset(state);
-> >>>>>>
-> >>>>>>         ret = drm_atomic_helper_check_modeset(dev, &state->base);
-> >>>>>                 ^
-> >>>>> This guy should be adding them for any crtc that has been flagged
-> >>>>> for modeset ahead of time. For modesets flagged later we have to
-> >>>>> add them by hand (eg. in intel_modeset_all_pipes()).
-> >>>> This is no-modeset scenario, drm_atomic_helper_check_modeset does not
-> >>>> add planes in this case.
-> >>> Then he mystery is how intel_crtc_async_flip_disable_wa() manages
-> >>> to not disable async flip for some planes...
-> >> After a few minutes of pondering I have a theory:
-> >> 1. async flip on plane 1
-> >>     crtc_state.*async_flip: false -> true
-> >> 2. sync flip on plane 2, plane 1 not include in state
-> >>     crtc_state.*async_flip: true -> false, but plane 1 still remains in
-> >>     async flip mode
-> >> 3. sync update/disable plane 1
-> >>     crtc_state.*async_flip = true -> true, so the async flip disable w/a
-> >                                ^^^^^^^^^^^^
-> > Meant to write false->false there.
-> 
-> There is only one plane in game.
-> Apparently there is an issue with intel_crtc_crc_setup_workarounds.
-> It calls intel_atomic_get_crtc_state for fresh state, causing state 
-> duplication, but async_flip flag is set always to false in new state.
-
-Ah. We'll that's basically the same thing as what I listed, except
-in step 2 we just do a commit w/o any planes. It still clears out the
-async_flip flags and then step 3 gets confused.
-
-> In cases full modeset is not performed hw and sw state of async_flip 
-> will differ after commit of this state.
-> Ugly/racy workaround for this below:
-> ---
-> @@ -316,10 +316,13 @@ intel_crtc_crc_setup_workarounds(struct intel_crtc 
-> *crtc, bool enable)
->       if (IS_HASWELL(dev_priv) &&
->           pipe_config->hw.active && crtc->pipe == PIPE_A &&
->           pipe_config->cpu_transcoder == TRANSCODER_EDP)
->           pipe_config->uapi.mode_changed = true;
-> 
-> +    if (!pipe_config->uapi.mode_changed)
-> +        pipe_config->uapi.async_flip = crtc->base.state->async_flip;
-> +
->       ret = drm_atomic_commit(state);
-> 
->   put_state:
->       if (ret == -EDEADLK) {
->           drm_atomic_state_clear(state);
-> ---
-> 
-> Regards
-> Andrzej
+On Tue, Sep 06, 2022 at 06:43:22PM +0300, Jani Nikula wrote:
+> On Tue, 06 Sep 2022, Jani Nikula <jani.nikula@intel.com> wrote:
+> > On Mon, 05 Sep 2022, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> >> Adding DP DSC register definitions, we might need for further
+> >> DSC implementation, supporting MST and DP branch pass-through mode.
+> >>
+> >> v2: - Fixed checkpatch comment warning
+> >> v3: - Removed function which is not yet used(Jani Nikula)
+> >>
+> >> Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> >>
+> >> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > >
-> >>     is not triggeed
-> >>
-> >> Should be easy to type up a dedicated test case for that.
-> >>
-> >> I think there are two options of handling this:
-> >> - Switch all planes out of async flip mode for any sync update.
-> >>    Not great because then you can't mix async flips with any other
-> >>    sync updates on the same crtc
-> >> - Start tracking which planes are in async flip mode vs. not
-> >>    Should allow more freedom in mixing async flips with other updates
-> >>    on the crtc
-> >>
-> >> -- 
-> >> Ville Syrjälä
-> >> Intel
+> > Maarten, Maxime, Thomas -
+> >
+> > So this got pushed to drm-intel-next without your acks. Apologies. Can
+> > we live with it, or want a revert?
+> 
+> I've reverted anyway for other reasons. But can we have an ack for the
+> future? :)
+> 
+> BR,
+> Jani.
 
--- 
-Ville Syrjälä
-Intel
+I've resolved the conflict properly now(not the best way of learning about
+drm-rerere) but I guess its too late now. Sorry for the hassle.
+But what am I supposed to do now? Should proceed with merge again or 
+wait for some acks? 
+Patches basically would be the same anyway.
+
+Stan
+
+> 
+> >
+> >
+> > BR,
+> > Jani.
+> >
+> >
+> >> ---
+> >>  include/drm/display/drm_dp.h | 10 +++++++++-
+> >>  1 file changed, 9 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> >> index 6c0871164771..02c4b6f20478 100644
+> >> --- a/include/drm/display/drm_dp.h
+> >> +++ b/include/drm/display/drm_dp.h
+> >> @@ -239,6 +239,9 @@
+> >>  
+> >>  #define DP_DSC_SUPPORT                      0x060   /* DP 1.4 */
+> >>  # define DP_DSC_DECOMPRESSION_IS_SUPPORTED  (1 << 0)
+> >> +# define DP_DSC_PASS_THROUGH_IS_SUPPORTED   (1 << 1)
+> >> +# define DP_DSC_DYNAMIC_PPS_UPDATE_SUPPORT_COMP_TO_COMP    (1 << 2)
+> >> +# define DP_DSC_DYNAMIC_PPS_UPDATE_SUPPORT_UNCOMP_TO_COMP  (1 << 3)
+> >>  
+> >>  #define DP_DSC_REV                          0x061
+> >>  # define DP_DSC_MAJOR_MASK                  (0xf << 0)
+> >> @@ -277,12 +280,15 @@
+> >>  
+> >>  #define DP_DSC_BLK_PREDICTION_SUPPORT       0x066
+> >>  # define DP_DSC_BLK_PREDICTION_IS_SUPPORTED (1 << 0)
+> >> +# define DP_DSC_RGB_COLOR_CONV_BYPASS_SUPPORT (1 << 1)
+> >>  
+> >>  #define DP_DSC_MAX_BITS_PER_PIXEL_LOW       0x067   /* eDP 1.4 */
+> >>  
+> >>  #define DP_DSC_MAX_BITS_PER_PIXEL_HI        0x068   /* eDP 1.4 */
+> >>  # define DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK  (0x3 << 0)
+> >>  # define DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT 8
+> >> +# define DP_DSC_MAX_BPP_DELTA_VERSION_MASK  0x06
+> >> +# define DP_DSC_MAX_BPP_DELTA_AVAILABILITY  0x08
+> >>  
+> >>  #define DP_DSC_DEC_COLOR_FORMAT_CAP         0x069
+> >>  # define DP_DSC_RGB                         (1 << 0)
+> >> @@ -344,11 +350,13 @@
+> >>  # define DP_DSC_24_PER_DP_DSC_SINK          (1 << 2)
+> >>  
+> >>  #define DP_DSC_BITS_PER_PIXEL_INC           0x06F
+> >> +# define DP_DSC_RGB_YCbCr444_MAX_BPP_DELTA_MASK 0x1f
+> >> +# define DP_DSC_RGB_YCbCr420_MAX_BPP_DELTA_MASK 0xe0
+> >>  # define DP_DSC_BITS_PER_PIXEL_1_16         0x0
+> >>  # define DP_DSC_BITS_PER_PIXEL_1_8          0x1
+> >>  # define DP_DSC_BITS_PER_PIXEL_1_4          0x2
+> >>  # define DP_DSC_BITS_PER_PIXEL_1_2          0x3
+> >> -# define DP_DSC_BITS_PER_PIXEL_1            0x4
+> >> +# define DP_DSC_BITS_PER_PIXEL_1_1          0x4
+> >>  
+> >>  #define DP_PSR_SUPPORT                      0x070   /* XXX 1.2? */
+> >>  # define DP_PSR_IS_SUPPORTED                1
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
