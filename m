@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 600BA5AF242
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 19:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 112A35AF2C0
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 19:35:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4104F10E70D;
-	Tue,  6 Sep 2022 17:17:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A475410E713;
+	Tue,  6 Sep 2022 17:35:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B15A110E70D
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Sep 2022 17:17:37 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD12D10E715;
+ Tue,  6 Sep 2022 17:34:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662484657; x=1694020657;
+ t=1662485697; x=1694021697;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=nWTrZ67h9tO+RGKsXFtlLmVI3udSf5pxrt6Uyfzfxhg=;
- b=MkbwsfMQAiQmRLA028IEEoXtA+0r1QZ22xoOyi/9uObz6xEh0Seb5V8o
- ZJDHQ3vqwoeVlOR0M8GueQoSFXlOWfRI/X3WpDeYDswDpTPjrbOPTN8Ja
- V6sK7HLtPfmkNY1lp4XrIlBFTXLaDAwDBTopYsX2GTdZ0051P3e6Jg+ja
- AYsX77dFljCuJGrx3f1v/sKZp9vlDf4hCmcdrDby+WLo7SWJreQQYSumm
- kCYF8i13a6oZOo0t0IEDEtHn0fZndfoSTVSpMqTj+nb/Nurm7Pb0RSBlc
- 3U1prBw0W/5pVxt2dDnJP02bzSKk3g+BrNLYVvGeYUoILfj+0voLEQuc5 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="276393860"
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="276393860"
+ bh=TQ9dKMxqsXgQNDL2iWpZuowxxptPr09tChGl1+c9C+s=;
+ b=gAYVhRW51XS53+Nhed54h9ZnpJFGEKfSjmOhEDsuYQcnXa1+Qd8TrU0L
+ UuBX2H6Nb+bLl47eL0ymhiMwgEKSCuMvMdk/LgnrGZlQs5NA5rs8aUbD/
+ STaITDul3lT8Uekp+hHRnd5x+qj8jut/hpDzjz1ezZSlL/OSUEYqENsL+
+ Bwaff083Rk1r74a3b1wn89rzis/FlvjeQY5YhDa+suq9pRDxXljmajLOA
+ /gNg9T+LaF1jwrpvC2hXi4r5C8EOgPFyimJnkTbdZm57a3xOf7CBTNHg/
+ CNmjH0kwc9/tQb9e7waefoP9HIkH/pDbhzCMwMinrbTKiiu6K7SOk+ZOb Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="322837486"
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="322837486"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2022 10:17:37 -0700
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="675786168"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2022 10:34:57 -0700
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="675791880"
 Received: from amomin-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.44.228])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2022 10:17:35 -0700
+ 06 Sep 2022 10:34:54 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220906071457.28881-2-animesh.manna@intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+In-Reply-To: <Yxd6SXEkPpMF4d5l@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220906071457.28881-1-animesh.manna@intel.com>
- <20220906071457.28881-2-animesh.manna@intel.com>
-Date: Tue, 06 Sep 2022 20:17:17 +0300
-Message-ID: <87pmg88lsy.fsf@intel.com>
+References: <20220905085744.29637-1-stanislav.lisovskiy@intel.com>
+ <20220905085744.29637-2-stanislav.lisovskiy@intel.com>
+ <8735d4a7vm.fsf@intel.com> <87sfl48q5h.fsf@intel.com>
+ <Yxd6SXEkPpMF4d5l@intel.com>
+Date: Tue, 06 Sep 2022 20:34:37 +0300
+Message-ID: <87leqw8l02.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pps: Enabled 2nd pps for dual
- EDP scenario
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm: Add missing DP DSC extended
+ capability definitions.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,69 +60,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 06 Sep 2022, Animesh Manna <animesh.manna@intel.com> wrote:
-> From display gen12 onwards to support dual EDP two instances of pps added.
-> Currently backlight controller and pps instance can be mapped together
-> for a specific panel. Extended support for gen12 for dual EDP usage.
+On Tue, 06 Sep 2022, "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com> wrote:
+> On Tue, Sep 06, 2022 at 06:43:22PM +0300, Jani Nikula wrote:
+>> On Tue, 06 Sep 2022, Jani Nikula <jani.nikula@intel.com> wrote:
+>> > On Mon, 05 Sep 2022, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+>> >> Adding DP DSC register definitions, we might need for further
+>> >> DSC implementation, supporting MST and DP branch pass-through mode.
+>> >>
+>> >> v2: - Fixed checkpatch comment warning
+>> >> v3: - Removed function which is not yet used(Jani Nikula)
+>> >>
+>> >> Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+>> >>
+>> >> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+>> >
+>> > Maarten, Maxime, Thomas -
+>> >
+>> > So this got pushed to drm-intel-next without your acks. Apologies. Can
+>> > we live with it, or want a revert?
+>> 
+>> I've reverted anyway for other reasons. But can we have an ack for the
+>> future? :)
+>> 
+>> BR,
+>> Jani.
 >
-> TODO: For dual EDP scenario and panel type invalid (=255), special condition
-> check to be added to reject or initialize the panel specific stuff earlier.
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> I've resolved the conflict properly now(not the best way of learning about
+> drm-rerere) but I guess its too late now. Sorry for the hassle.
 
-So this is no worse than it already is for GLK and BXT... but they're
-actually already broken. :(
+Yeah, I'm sorry too. The conflict looked too involved for us to figure
+out right now, with the diverged baselines between drm-misc-next and
+drm-intel-next, so Rodrigo and I decided to go for the revert. We needed
+to get drm-tip building again.
 
-As I tried to explain before, since commit 3cf050762534 ("drm/i915/bios:
-Split VBT data into per-panel vs. global parts") the VBT
-connector->panel.vbt.backlight.controller member gets initialized via
-intel_bios_init_panel(). But intel_pps_init() uses that *before*
-intel_bios_init_panel() gets called.
+And really, the patches as applied on top of current drm-intel-next
+weren't tested, because they were changed on the fly.
 
-Mind you, I don't think the dual backlight controller thing worked
-before that either, but the controller field was more likely to be
-correct for the first panel. Now, it's only correct by coincidence, as
-it's uninitialized.
+> But what am I supposed to do now? Should proceed with merge again or 
+> wait for some acks? 
+> Patches basically would be the same anyway.
 
-So it's not only about PNPID panel identification (panel type 255). But
-that's related, since we can't move the PNPID identification earlier,
-because that needs EDID, and EDID needs panel power, and panel power
-needs the PPS index. Which needs PNPID panel identification.
+The patches will be the same, but we'll need to get the baseline
+resolved first. drm-misc-next and drm-intel-next have diverged on
+intel_dp_mst.c, due to Lyude's DP MST changes, and we'll need to get
+them in sync in drm-intel-next before applying the patches. It'll be the
+easiest for everyone.
 
-We'll need to do something like:
+In practice this means a drm-misc-next pull request to drm-next, and
+then a backmerge from drm-next to drm-intel-next. There was a
+drm-misc-next pull request merged today, but only up to tag
+drm-misc-next-2022-08-20-1, and there's 88 commits in drm-misc-next
+since. Including Lyude's changes.
 
-- intel_bios_panel_init w/o PNPID
-- intel_pps_init
-- EDID read
-- intel_bios_panel_init w/ PNPID
-
-I don't know how exactly this is supposed to work, but I'm also kind of
-not tasked to figure it out either right now. ;)
-
-HTH,
+BR,
 Jani.
 
 
-> ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 4e770218e29f..a9ed1214a167 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -1427,7 +1427,7 @@ void intel_pps_init(struct intel_dp *intel_dp)
->  	intel_dp->pps.initializing = true;
->  	INIT_DELAYED_WORK(&intel_dp->pps.panel_vdd_work, edp_panel_vdd_work);
->  
-> -	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
-> +	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915) || DISPLAY_VER(i915) >= 12)
->  		intel_dp->get_pps_idx = bxt_power_sequencer_idx;
->  	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
->  		intel_dp->get_pps_idx = vlv_power_sequencer_pipe;
+> Stan
+>
+>> 
+>> >
+>> >
+>> > BR,
+>> > Jani.
+>> >
+>> >
+>> >> ---
+>> >>  include/drm/display/drm_dp.h | 10 +++++++++-
+>> >>  1 file changed, 9 insertions(+), 1 deletion(-)
+>> >>
+>> >> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+>> >> index 6c0871164771..02c4b6f20478 100644
+>> >> --- a/include/drm/display/drm_dp.h
+>> >> +++ b/include/drm/display/drm_dp.h
+>> >> @@ -239,6 +239,9 @@
+>> >>  
+>> >>  #define DP_DSC_SUPPORT                      0x060   /* DP 1.4 */
+>> >>  # define DP_DSC_DECOMPRESSION_IS_SUPPORTED  (1 << 0)
+>> >> +# define DP_DSC_PASS_THROUGH_IS_SUPPORTED   (1 << 1)
+>> >> +# define DP_DSC_DYNAMIC_PPS_UPDATE_SUPPORT_COMP_TO_COMP    (1 << 2)
+>> >> +# define DP_DSC_DYNAMIC_PPS_UPDATE_SUPPORT_UNCOMP_TO_COMP  (1 << 3)
+>> >>  
+>> >>  #define DP_DSC_REV                          0x061
+>> >>  # define DP_DSC_MAJOR_MASK                  (0xf << 0)
+>> >> @@ -277,12 +280,15 @@
+>> >>  
+>> >>  #define DP_DSC_BLK_PREDICTION_SUPPORT       0x066
+>> >>  # define DP_DSC_BLK_PREDICTION_IS_SUPPORTED (1 << 0)
+>> >> +# define DP_DSC_RGB_COLOR_CONV_BYPASS_SUPPORT (1 << 1)
+>> >>  
+>> >>  #define DP_DSC_MAX_BITS_PER_PIXEL_LOW       0x067   /* eDP 1.4 */
+>> >>  
+>> >>  #define DP_DSC_MAX_BITS_PER_PIXEL_HI        0x068   /* eDP 1.4 */
+>> >>  # define DP_DSC_MAX_BITS_PER_PIXEL_HI_MASK  (0x3 << 0)
+>> >>  # define DP_DSC_MAX_BITS_PER_PIXEL_HI_SHIFT 8
+>> >> +# define DP_DSC_MAX_BPP_DELTA_VERSION_MASK  0x06
+>> >> +# define DP_DSC_MAX_BPP_DELTA_AVAILABILITY  0x08
+>> >>  
+>> >>  #define DP_DSC_DEC_COLOR_FORMAT_CAP         0x069
+>> >>  # define DP_DSC_RGB                         (1 << 0)
+>> >> @@ -344,11 +350,13 @@
+>> >>  # define DP_DSC_24_PER_DP_DSC_SINK          (1 << 2)
+>> >>  
+>> >>  #define DP_DSC_BITS_PER_PIXEL_INC           0x06F
+>> >> +# define DP_DSC_RGB_YCbCr444_MAX_BPP_DELTA_MASK 0x1f
+>> >> +# define DP_DSC_RGB_YCbCr420_MAX_BPP_DELTA_MASK 0xe0
+>> >>  # define DP_DSC_BITS_PER_PIXEL_1_16         0x0
+>> >>  # define DP_DSC_BITS_PER_PIXEL_1_8          0x1
+>> >>  # define DP_DSC_BITS_PER_PIXEL_1_4          0x2
+>> >>  # define DP_DSC_BITS_PER_PIXEL_1_2          0x3
+>> >> -# define DP_DSC_BITS_PER_PIXEL_1            0x4
+>> >> +# define DP_DSC_BITS_PER_PIXEL_1_1          0x4
+>> >>  
+>> >>  #define DP_PSR_SUPPORT                      0x070   /* XXX 1.2? */
+>> >>  # define DP_PSR_IS_SUPPORTED                1
+>> 
+>> -- 
+>> Jani Nikula, Intel Open Source Graphics Center
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
