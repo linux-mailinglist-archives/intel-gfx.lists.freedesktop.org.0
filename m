@@ -1,53 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49FBC5B59DD
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 14:02:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46ED35B5B58
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 15:38:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8356A10E42D;
-	Mon, 12 Sep 2022 12:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93FFE10E4DA;
+	Mon, 12 Sep 2022 13:38:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D59B10E3E4
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 12:02:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662984162; x=1694520162;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=7lXWD5EwVmvoDHe3p3rwaFBmzx6syZeIuXK/bZs0DvM=;
- b=Jv84rocxbHfh0S+iw1EXcIte9J1W62PHVNI3Rln1GbVkekJBA/QbMVxm
- 0YX2dbohW8x2ZNZbXdn960TyAXp4eQJ9XLzCQ+X4/jz+VzjzqoG7cNz4F
- oPudr5XPc1u/5Gn18G+JUH4/2MFCaZvkrFAVKn8w7Q9/taIBZCMWHCPCd
- 7+2DUYQJias0bFtBLc/AqPBQaqPxr/xjpjvXJ6vK2iKm8AQ1OoYQYVcfG
- T1zJBtIGDzPPO94YILTJiPcnAQ1MEhxmBW8qmN6Hj65nSNDpC0tchNusX
- 8rx+u+SH8j1ov1MQkZXIkZNfN74B8ZzeX6ifvvX4AYr7Di6J0OnEC4hVz A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="384143280"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="384143280"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 05:02:41 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678058705"
-Received: from abijaz-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.58.140])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 05:02:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220912111814.17466-14-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
- <20220912111814.17466-14-ville.syrjala@linux.intel.com>
-Date: Mon, 12 Sep 2022 15:02:36 +0300
-Message-ID: <87fsgw6bs3.fsf@intel.com>
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D2A910E69B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Sep 2022 14:22:40 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id w2so15453506edc.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 06 Sep 2022 07:22:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date;
+ bh=ijOEOtFnOWbXwR0YWhOwnjAKpDCJ+VHojpuzR/RqPz0=;
+ b=Qx2ASiZZZgxmGC51opD1+il8ubB2+Rd68+KXODOdee8UvSaOPKcNch9DHENWY6VwSX
+ NM9oUFkw0it2zluxEOjNKytLWTQQXmPAfxT+3nQg0cYf1/pm914KKfB11klzzaKmElRa
+ 8WVwnwBFMvuM3dv5Z8Zqgti9ipEMgq6cW5JF6AFaRqxu1BePNtSXj9xW7wCCUjK/IMaC
+ Wfq236A2ZrsEbDXEbamxIiSOeGWJRpRg9nNz3/njOwmESoT/On1U1xAcNZCHEMKAQYTp
+ Utqxx9dRydia+ZDk3UWvZFri5VIawLreJRLDWcHwT5vw7x3E9RJEhiKTJpUnoLkjvWbJ
+ XC5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date;
+ bh=ijOEOtFnOWbXwR0YWhOwnjAKpDCJ+VHojpuzR/RqPz0=;
+ b=I8UhLVvpcKxRywgpcWZOe4zNCYmJ624xBdjWC36cG6oYHZIFzd1+b7OXs02A/mf7SN
+ GDGD2wKujwO9Dq7/N3E870ejHcC48vWffaVGI8OpqQ6Yx1ePApvuUFQqflzGzRrm5ple
+ vCppmBtJtzFdQNOMKOodlfqT/1ytaKaqe2s8QmbnIekYrn6riNHUhfwQ+ExjuBKou41L
+ aN7FpZ/3FT63eYWHUOjmWMT9fgIJkfq4/Tzdm2dkNVgob4mWnUHE1710FJx0hR9+84N2
+ MNRdG8mZN21bZURuXMCpFImjEwLEE2F2HbW0qOhSgdJvIjcdWxpGBffpW0aYPWy7pPd/
+ wzJg==
+X-Gm-Message-State: ACgBeo2TMBcUhZt8m+4YGX6HEjwhpA1NFHE0pUjpFGtn464POZVD7f06
+ YZVGH9zdVpUJBYVuCKHkdSDBnioEPSQkYd5U8t2ZN4HzHLkv9A==
+X-Google-Smtp-Source: AA6agR7jnYtYye7Xf85qnDt//TSNB3TN13wIuTuN2mmcJDSmy3gq7IcBEUCxN3irj8LKYFyENu5PqJm+xbPUrGz8bBY=
+X-Received: by 2002:a05:6402:2751:b0:443:d90a:43d4 with SMTP id
+ z17-20020a056402275100b00443d90a43d4mr49004504edd.368.1662474158540; Tue, 06
+ Sep 2022 07:22:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <tencent_E1BBF05904DFB73C478DCD592740AAE0780A@qq.com>
+ <166246909164.8880.10585519190282207260@emeril.freedesktop.org>
+In-Reply-To: <166246909164.8880.10585519190282207260@emeril.freedesktop.org>
+From: Zheng Hacker <hackerzheng666@gmail.com>
+Date: Tue, 6 Sep 2022 22:22:27 +0800
+Message-ID: <CAJedcCwxOtYPLPmHbFrSXRMN_eeHNc7vQswhSebR-aE2MfTmfw@mail.gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 13/15] drm/i915: Don't init eDP if we can't
- find a fixed mode
+X-Mailman-Approved-At: Mon, 12 Sep 2022 13:38:08 +0000
+Subject: Re: [Intel-gfx] 
+	=?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+	=?utf-8?q?rm/i915/gvt=3A_fix_double-free_bug_in_split=5F2MB=5Fgtt?=
+	=?utf-8?q?=5Fentry=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,81 +73,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 12 Sep 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Hello,
+
+I think it may because I erase the email address in "sigh-off" line. I
+will send the original patch later.
+
+Regards.
+Zheng Wang
+
+Patchwork <patchwork@emeril.freedesktop.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=
+=886=E6=97=A5=E5=91=A8=E4=BA=8C 20:58=E5=86=99=E9=81=93=EF=BC=9A
 >
-> In the unlikely case of not finding a fixed mode don't register
-> the eDP connector. I think there are some places where we'd oops
-> if we didn't have a fixed mode for eDP so presumable this doesn't
-> typically happen. But better safe than sorry.
-
-I think this is fine as the first step. ISTR there are provisions in the
-DP spec for adding some default mode if all else fails, maybe we should
-look into adding something like that?
-
-Guaranteeing we always have a fixed mode for eDP opens up possibilities
-for some further cleanup if we want. We have some "is edp and fixed
-mode" style conditions.
-
-Up to and including this patch in the series,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
+> =3D=3D Series Details =3D=3D
 >
-> Also pimp the debugs with the encoder id+name. I think dumping
-> the encoder rather than the connector provides more information
-> here (eg. to match again the port information in the VBT).
+> Series: drm/i915/gvt: fix double-free bug in split_2MB_gtt_entry.
+> URL   : https://patchwork.freedesktop.org/series/108188/
+> State : failure
 >
-> We can also drop the extra check from intel_edp_add_properties().
+> =3D=3D Summary =3D=3D
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
+> Error: patch https://patchwork.freedesktop.org/api/1.0/series/108188/revi=
+sions/1/mbox/ not applied
+> Applying: drm/i915/gvt: fix double-free bug in split_2MB_gtt_entry.
+> error: patch failed: drivers/gpu/drm/i915/gvt/gtt.c:1215
+> error: drivers/gpu/drm/i915/gvt/gtt.c: patch does not apply
+> error: Did you hand edit your patch?
+> It does not apply to blobs recorded in its index.
+> hint: Use 'git am --show-current-patch=3Ddiff' to see the failed patch
+> Using index info to reconstruct a base tree...
+> Patch failed at 0001 drm/i915/gvt: fix double-free bug in split_2MB_gtt_e=
+ntry.
+> When you have resolved this problem, run "git am --continue".
+> If you prefer to skip this patch, run "git am --skip" instead.
+> To restore the original branch and stop patching, run "git am --abort".
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 7b4ffb74c94c..8fe48634eb9d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5197,9 +5197,6 @@ intel_edp_add_properties(struct intel_dp *intel_dp)
->=20=20
->  	intel_attach_scaling_mode_property(&connector->base);
->=20=20
-> -	if (!fixed_mode)
-> -		return;
-> -
->  	drm_connector_set_panel_orientation_with_quirk(&connector->base,
->  						       i915->display.vbt.orientation,
->  						       fixed_mode->hdisplay,
-> @@ -5272,7 +5269,8 @@ static bool intel_edp_init_connector(struct intel_d=
-p *intel_dp,
->  	if (!has_dpcd) {
->  		/* if this fails, presume the device is a ghost */
->  		drm_info(&dev_priv->drm,
-> -			 "failed to retrieve link info, disabling eDP\n");
-> +			 "[ENCODER:%d:%s] failed to retrieve link info, disabling eDP\n",
-> +			 encoder->base.base.id, encoder->base.name);
->  		goto out_vdd_off;
->  	}
->=20=20
-> @@ -5318,6 +5316,13 @@ static bool intel_edp_init_connector(struct intel_=
-dp *intel_dp,
->=20=20
->  	mutex_unlock(&dev->mode_config.mutex);
->=20=20
-> +	if (!intel_panel_preferred_fixed_mode(intel_connector)) {
-> +		drm_info(&dev_priv->drm,
-> +			 "[ENCODER:%d:%s] failed to find fixed mode for the panel, disabling =
-eDP\n",
-> +			 encoder->base.base.id, encoder->base.name);
-> +		goto out_vdd_off;
-> +	}
-> +
->  	intel_panel_init(intel_connector);
->=20=20
->  	intel_edp_backlight_setup(intel_dp, intel_connector);
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+>
