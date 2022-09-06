@@ -2,152 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759C95AF528
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 21:59:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1A25AF5A1
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Sep 2022 22:17:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C811C10EA74;
-	Tue,  6 Sep 2022 19:59:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3245910EA7E;
+	Tue,  6 Sep 2022 20:17:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEDA110E236
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Sep 2022 19:59:27 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ACCB10EA7E;
+ Tue,  6 Sep 2022 20:17:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662494367; x=1694030367;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=CeFmqC9C/jmEUdl9ZcMO/p6x3isEMGnEoFbuXXHtZSw=;
- b=b6OS8L5i8MhbQChHq+gQPaW7RkLoCanTCMT4lHfrVcRW+oAf0Elo6m3R
- 45zRwWIKYIDTwBgByOw40mmPABdKrk7lTrXAS2yEZ66nVpKO6NCI7PBIP
- MkupBr2XMPffd1I2SfTE/jxvTS+KBHdlQYDd0cL36sdtT3ruwdTetBEUT
- Nf4N9JCP2WlZuaOuMOgp+318WzpT7iB+ELn4gy/dUrDNDfMODnh2Y0U8C
- 4rYi5rqxnipy6XGTWrBq1H6cGikRcgN1wISd7IPBoI9xWa9HJxkDfLY2W
- kIQF9GwDlgn69JGrcEZJLV7PRatnqjn5bXAq9f8izEXKCFzdS7XGOMM38 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="296692601"
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="296692601"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2022 12:59:27 -0700
+ t=1662495424; x=1694031424;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=t3tRAGMT9XkcPnOx0NHixcOfXhtq+FPnW0bmN3b3jlg=;
+ b=StpxNifz0w8U5DdXCWdf4sLGhlMB7enportx0bDGg3WOozl/KMrj5xZm
+ +wx7JszFI2hAi9hta34mKccWeSGcyjSuUMvTf6IcM6A+azPjP8pybsbsy
+ ZO4aUvSBm/MkL0XAhnkWT5E+WZabidgKNagXv4w5fVaBhvPR5666BoaGX
+ DXBktnP1j5DW1jWBjqAqu4+ZY6ERIsf7gfu55iJ++P8joN6pyB1VeIJJe
+ hExVJTfhvQuUHL52t1wVjk1qEmjPEDYm/DSfHptcT6+ihFMQ19wwE1/84
+ Jhu8l68qSn9uegq6hIY3/hKJpRNPqBfI0ND+Rlhp+PVLWg7tTaybInzGD Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="297479832"
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="297479832"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2022 13:17:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="610070950"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga007.jf.intel.com with ESMTP; 06 Sep 2022 12:59:24 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; d="scan'208";a="789801764"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga005.jf.intel.com with ESMTP; 06 Sep 2022 13:17:03 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 6 Sep 2022 12:59:24 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2375.31; Tue, 6 Sep 2022 13:17:03 -0700
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 6 Sep 2022 12:59:23 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2375.31; Tue, 6 Sep 2022 13:17:02 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Tue, 6 Sep 2022 12:59:23 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Tue, 6 Sep 2022 13:17:02 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.105)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Tue, 6 Sep 2022 12:59:22 -0700
+ 15.1.2375.31; Tue, 6 Sep 2022 13:17:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DVDq8mNyzMPSYDfeHI+O/6YGQQt5Wslu+TShJZtRuuKTCMAGjrUJ5GtKO8UwBTuKvz+1qv9f8cPXmQ++nWZRZ3HK2FVxVVEXtufxjzV478Rd6lPtzaf8GLZbtRVn5F7xTyXFQup90mRqyq3y2UAxETKhkn9SBA7gD9hzhZyayuUhWwvEImFPUfQ4/xLOyHcjz/FWTjw45zYoGEzcDz6vCbmntUMAachfs5a5r8VMpJT16w+khU3R9oElofTZQOjwWMNurD9+UWctKbAy7J5uLNGDbl28X5DtbePgtMMfgAwwZb54vDiPtLJi3K/Wx6OvvPnxXp7utVpFgZIRXiOPZw==
+ b=B96lc7Kjuq4SGapfyxAtZMomaZNDbOJbbrT3KC5MWMH/lfxbnaKcQylGHM/F31CyXhWGw5QeXCXQGaldEJBNEOEfyAKeaMgPm80O9reVJ/UTO+NkxRsKb3ugSClzqo4JVBQXaFI0GFOiz8qT0BYSLVFQSFr2S0UWqjkZhrKYPrb5MtyU52Xrf9UqDgT0FvQKW9MWF5WXG9CJsHVxufwEsfbvqTonYAfBP9U7FagUix3XL48Y2wnmkgTtf+eqqXLmwhJQ98UWlOZRmoaaGAKCTzeLSszgk525ZZCBfqrca2chzsPEuIl5RPDReUNPbXZDV5+FuG6uQ378f4Qg4Xc3EA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P3sqn/bgMruqEzStMsLZ7jORa9LoLIj0R/JhE/YWzaI=;
- b=AnYLJ8F+QnC6zzHtkvoC87bRjWnLlyylVazFJN/k7/74hdzonYg+NKBH886FdpfF+ATotzAPxivyPscArIOc4qcodhZVUITjXsKBVqubryrsDXIu+zRuoEPc4iw8PZ4ZVT8VmCEKh93s1SccuCoQKhe+1UflhqpqpudibySacXDgCmVV/I2nE6WOXs4PtTNrQ+/fn/kRa5dfdEWPp9zlMn1cHcQKNsbcXOTcbIPPXFWbboau0GCuSMFM4P/FU/NkyCOCCW36LegWWXIIwmOITAiGP1OzTNtJ7XW2yDZoTwnC3lq10tByUfxeWB7p1Fq7NnCd8bQj57EmzQFjpc0lpQ==
+ bh=2A9AXpXnBhks8FcmX8onD+Qe1k9pkbV2ikpg/TFyqiU=;
+ b=SxRmzESSteqacVubgQ6tYNZfyNoUKx/PQwr3PZf9/KCYHKlX1gbeocB9o5H/0TxRb4n82MjN4pLSgXxwvjGxlf47xmvTb0DoZsHgy6BweuSxipI0TUDS9Xn1ACbyHgAThiKM9pA0jnceXbcBN+iaG7uykHcjhDIj7Rd/1EAOGWpJAdZCOWZDPdOR/Q/Ci0iNy0TL7QAEYS1UjrBglzcuOL+aj5DhpohJp7iRg4awSeze6bM6pD+OtLH8j360/VoXolpaaGTCW19HAmwZQG6Li8MsXTqHJVWNNX4sbdlVzApKMy5VV2oCWddhO8k6FcL+JCc1ZyQg1wpFckTDpjI8UQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM5PR11MB1562.namprd11.prod.outlook.com (2603:10b6:4:6::15) by
- MN2PR11MB3664.namprd11.prod.outlook.com (2603:10b6:208:f1::12) with
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
+ CH0PR11MB5396.namprd11.prod.outlook.com (2603:10b6:610:bb::20) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5588.10; Tue, 6 Sep 2022 19:59:20 +0000
-Received: from DM5PR11MB1562.namprd11.prod.outlook.com
- ([fe80::74ac:21b8:1f17:9bc4]) by DM5PR11MB1562.namprd11.prod.outlook.com
- ([fe80::74ac:21b8:1f17:9bc4%5]) with mapi id 15.20.5588.018; Tue, 6 Sep 2022
- 19:59:20 +0000
-Message-ID: <340d997c-254b-67cf-4e5a-5e1ff6defb21@intel.com>
-Date: Tue, 6 Sep 2022 22:59:16 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.11.0
-Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
- <20220823204155.8178-3-umesh.nerlige.ramappa@intel.com>
- <7862e250-59b7-f966-820f-5e6ee7afc306@intel.com>
- <YxejnZCHt7nhKqRB@unerlige-ril>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-In-Reply-To: <YxejnZCHt7nhKqRB@unerlige-ril>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+ 15.20.5588.12; Tue, 6 Sep 2022 20:17:00 +0000
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::b04c:807c:4ea0:c62e]) by DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::b04c:807c:4ea0:c62e%9]) with mapi id 15.20.5588.018; Tue, 6 Sep 2022
+ 20:16:59 +0000
+From: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+To: <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <intel-gfx@lists.freedesktop.org>
+Date: Tue, 6 Sep 2022 22:16:26 +0200
+Message-ID: <20220906201629.419160-1-michal.winiarski@intel.com>
+X-Mailer: git-send-email 2.37.1
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0116.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a8::18) To DM5PR11MB1562.namprd11.prod.outlook.com
- (2603:10b6:4:6::15)
+X-ClientProxiedBy: AM6PR04CA0020.eurprd04.prod.outlook.com
+ (2603:10a6:20b:92::33) To DM4PR11MB5373.namprd11.prod.outlook.com
+ (2603:10b6:5:394::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c0eb8edb-a495-4251-5a6c-08da90424996
-X-MS-TrafficTypeDiagnostic: MN2PR11MB3664:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6f85773b-14f2-447e-a501-08da9044c088
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5396:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yn1hvgF7TNwx3rpO5Xt3ps6qtFSQ+8q9slrPlbESDsBjRQYmM1un6/Onsel+CmjiELc/HCX2HCBBN3gQ2tO3O27H7kvdKP8VW+kBVB9NU50/Abq7y4UN+ungDaaSMRV6VKfZq2SYbVMzivc6nKH42MSTwCS7hb23S59t2GJBPtbcrdcwZMfyAbC498y11BBWiBCzoRVhZ3LAQkdEUQzAI85bhBPH4iMUyE4B7uU8FRYiTIRsP2Rfp0uyPCn8X53xBR7JY/Qmv1TxP0V4rvsERa7mHZN+tUQUT3q8Gl8btrHugHRKljBG6gmBoG0NJWL35jD2zIvFIEZT+uQft/Mo0Pph6djzBrfkfDmgLJPif+BjHSRA/QeTw58+SNd8s3GfiBxJ5OdVn+R6WRCuD1zgMT9C/C5YY0c5cXo1vvxthoZo/ehTpimBlL1hKb9MMVZbL/cK3o9C1dEOoGkEljeD+HO1h8WhkixoMnq7T6VWFta1qhOVFZ+RJhYCKADH4vcAeMXuvV+mOAElY4AryKB8u+vsXY1Om5fKMhMLPtGByTnVD4ZVdoyTwA7EaaLr3d895D9DAH8zBf7rgu+jyO5NNvDr/+XmCZhkUMsJzW3HkRvYQpP8/tyV31Xa+nPGh0UH3LUkeGCqnfYcgLOuvJS1JSzQe6uRXKqjTjeDfbzRTyPM3Jrp6GWpYRcJrGdcNzs10sLzqJsYdfq9m3uUGx1LnR4y8uZkKxasMlW3HrFHiCm5peIHIHC/FmRSnM/cBP0qExQqoXqweOup+YDmemSDJ7Dfpm7mmTsJeWgV0GZDHKIVZt6/EFyPGVcBRDkuUkyQ
+X-Microsoft-Antispam-Message-Info: LQMOOvDf8aS+1ARCha/XdaoWBmVx8w9dtS4db0jt0WV/E3YG7tg9XjMsbglqFuzIyGbSOjN+c/rb6Y/+6RSRdjqxqQnAd97gKcQ/+HhQ8LHD78GlpBLfdj9GBy4C3MJzXAgzKGvEPOdmiIeG7EKzoCg5U/cte03p1m0O9b8bcIGiD+d0YV8dU12Y/rAX8FnAkGUGp49so3bD1twOlI1zjidK/+5Fx/sDZj9FBh7xQMvEQzo69pa9sbcgcoWYpLffGkywf41Aj47ycEq3c60FPg5QJhipzwU+LHKsRKySC/hp0p2OC381Or0+543Uxfgn/n5PP9+m3Yo4gwLW2tebO+khfKe6KJTxroTyMFRRhHCzdhMDlhmuHKARB2bfF9G9USCYLIz2PT/JktVqbDzTyAup4u5Sah4qegzuJAX6yufXObd3MbbdEaFKJ/pmNzhbWEmLmeI/E9VKaTdbAM+w/Cjnljvd3ktK80Tzs1ZSUCKOQjB38RagJARROoJ9bCoyVQnC1BwLqBaM2CmlYdJ/QZLUbPlW9B+4YTzFSAA2TpLY1x0D0ZYkulYi1hqp5KPirWmdaprrSK2NEkcIoghV1/D3gJO2hCHAon49LFCti+I1SVrOp+nVlIEKp8naaCBWZd4hio3j+YIyqSL/reCZSjCS0MFb4PNfQ+pxlePZ+DtSdO2SYj+o/rI9/gLjXa3rG/eHIZpVnJUsDkBUqXld/w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR11MB1562.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(346002)(136003)(376002)(39860400002)(396003)(366004)(86362001)(6506007)(6666004)(38100700002)(53546011)(107886003)(6512007)(26005)(66476007)(6862004)(66946007)(4326008)(8936002)(31686004)(31696002)(36756003)(5660300002)(66556008)(2906002)(8676002)(478600001)(37006003)(316002)(6636002)(41300700001)(186003)(83380400001)(6486002)(82960400001)(2616005)(21314003)(43740500002)(45980500001);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(376002)(396003)(346002)(136003)(39860400002)(366004)(4744005)(316002)(54906003)(86362001)(82960400001)(36756003)(2906002)(38100700002)(5660300002)(8936002)(7416002)(66946007)(4326008)(66476007)(83380400001)(8676002)(6512007)(6486002)(2616005)(6666004)(186003)(1076003)(6506007)(478600001)(66556008)(41300700001)(26005);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ajMvNTUzUW16MUorWkNWMnlNZjN1dW5mYTJCZk12ajE4TW8raHoxTm9UaFZi?=
- =?utf-8?B?SzJTb3FySDdvSDFIRU9qdFdvT2M3czJib2FjazFzYXNGQmNuM09kMlVaaGFx?=
- =?utf-8?B?ZjlXVExJUWlBNXNDY0E0Um1xWTVkUFZxc1R6V1ZvUGlTTWpMUXQ0RzV1aEpT?=
- =?utf-8?B?dFhWSEltdTR4eFJpR05MbHo0N2FLeG9Ha2ZwaWloMEZhNHc5VVpnRnRXWCtO?=
- =?utf-8?B?TE05UVV2SW1RMklUL3ZhQkZDRGZlSkx1OEJxZ05waVdabVM0VVBzVkdCWW1z?=
- =?utf-8?B?SVhNandvZ1BBczlid2EwSVhBZVYvdkNCRFJ0aUdwRDRVZmF4QWJ5enVmMVY1?=
- =?utf-8?B?OGxkVzlRVHF0NCtBb3Z6TDNJTXIxSWljQ3FBUkFPTUpiVjJabmdGMVdVZkRW?=
- =?utf-8?B?Y3htN05pQ2RYYUpMQ0JMY2pORVcySFIzVkwyUnpwZk84aXF5UEg0U0JBaDJ4?=
- =?utf-8?B?RFNubm1WM1RySSs3VWo3MkVxMjN0dlNSQ3RldEw4cm1xeFpPcWRpOHZZSjJL?=
- =?utf-8?B?TS9QWk9NMW9yZmF2czdaSGJja0lLQzVtejNtYXRlc3NaWEVGajVJVit4SjlF?=
- =?utf-8?B?S3pob2k5UDUvOTJnWjFlbE8yWXRUUDdzYnF4eWhJM3BDRmpVSU50V0VvbUEw?=
- =?utf-8?B?NHFZM212cUJIQW1RdnB2STRCMTBoZWZlMDdVSFA2SFdOQ25HejhRaWNSTFdx?=
- =?utf-8?B?ZEw3R09MSmVVbWZ1cmtLRFUvQXFJclVCR0pUVFk3TEcwMWFXNXluS1d3dEhL?=
- =?utf-8?B?Q2F2Vm5qQXJkRndWcGZGZkZGS0FRUnltdUJnZVYyZWNGR09hbVJjOHpPcnU0?=
- =?utf-8?B?Umg3MTducW5udE5WZ29FYkZiQUZSUnhFa254eVMxbUNGREZCSGcvSTF1cGVv?=
- =?utf-8?B?VXBSaFhvUTFNNGNHNXo2V2JsTHJwdFBTWGJPTmNhQjNreHFMUmExZEJtVFJX?=
- =?utf-8?B?YUZrL1NOTThsdng1Mmd0Y3lPSjMveDJSbnVDZE1ZN2s4THpaa2tBK0krZEZy?=
- =?utf-8?B?Tkh1M2VMT2hBUVNqMHFWUDUrbFNBcDNJclJLOFp6TnAzeHNVTzRETlhoRzFW?=
- =?utf-8?B?WElzYjJqSUw1KzhtNkJaRDNsUW9xdmpNMWc3UytXdWRWclV0VVlyN3NOVWIx?=
- =?utf-8?B?VkZuN2x3bm96VFZCNlRjc3dNdTVoUklRMjVidVF5N0VMUnhONW1memh0b3kz?=
- =?utf-8?B?cWpSTXBqd3JVa1RwVzl2eWw1TktIamVpTDhUb1JqS2xlTTAzekNRZERzTVEx?=
- =?utf-8?B?SG5YSXVkQjE2SFpya29jYUZSMVpMSFh4VXFyQVBTRE5LbUt4RGRaWGMyMUJ6?=
- =?utf-8?B?cStDWGV6eEc5Z1pRTGQzSmhLdzI0bHF4ZUs5ZFNCSTNxeWpJT3F4SEd3d0hJ?=
- =?utf-8?B?L3Y3aUlQTmllVjNYUm1FaFdTNEsxTEVrQjRMSzhhcVZYazJ6Um9vRmc3WmVS?=
- =?utf-8?B?Z0xSbm5OS2Q2eHpMVUdjc1pWd2JpWXdLS1FiTUFYV0ZCTGJjSlFUeURLako4?=
- =?utf-8?B?bXJpQ1lDZXpKeGpZWmF1N1pJQzUrdHpBREZSbE1QazJmNzlGd0NBVVV2cHor?=
- =?utf-8?B?aG1wSTJtSkVRVXhrbk9PZVpyUHpHbXo5ZkFGWEpuL21iVFNyc2d5UTV0SG5z?=
- =?utf-8?B?V1JJN3BLSWNTTFhWakloQ0pZOHlONCthVHVYTDFWNTQxSElKZmN5dWg5QXJ5?=
- =?utf-8?B?eENlUnowRVVzNmhZcHZjMm51YlZuaGVTSXNxTUlqeEp5ZjhhK3RqdGUrYlFh?=
- =?utf-8?B?OE5YMkFRcmpRdlFlRjZNUXhjcGQwdjFqZTdCVk8wS0UxTWQwajNpZHVhWC9j?=
- =?utf-8?B?NVQ0NUJoaTFYaS9KeHVwZlVhUldmQ3pIRHFWZTBEY24zZnVCNUtvajVBTlNx?=
- =?utf-8?B?NXlwamlCQVVVWGdRbDdHTTVLZVBZc3JvcGN6UG9WREgvajVNQjI4dFIyUVhk?=
- =?utf-8?B?WXBFZGgyeHRYUFB4OUp6SHFCRGdxT0s1YWg4QlZub0x6bW1EQUovTXBlRE1D?=
- =?utf-8?B?cjdnNDdxV1NmSmphV2N3UFIrN1hGbGFoVm1HaXRGZ1NIMkVtT1NuR2NDWWlU?=
- =?utf-8?B?cG5xWTNIOVNMb2JlT1dZbGpkTU52aTRoSXF0WG1OV2pwZ2pLTnJnWkJ3NitL?=
- =?utf-8?B?NUF0Ly95MkhPblJiMm5DNjgwTmtEdkkvdWtSc3l3UnhZTG5BdXdmT2x6THlM?=
- =?utf-8?B?OGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0eb8edb-a495-4251-5a6c-08da90424996
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1562.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WW1VS0grcFd4VEJWcVBWZERxUEhQMG8zejZuMUpLWmFvdzJHaGduWVNXUjQz?=
+ =?utf-8?B?OFEveUhMc243VUFjcXZZSzN5eEFOYjFOcWNnbDBERjZId2lkYjBuVm9uZGlv?=
+ =?utf-8?B?c3pOUTFmaXJjdXhibllJQzhrZ2RCSmhqVFZkd1R5RzdCcDJBR0V3SU1YU2VR?=
+ =?utf-8?B?empJWFdZaEk4UUVmOFRJWHkyVmlxUFprc1dUUit0amJMblZ1M2lQMXJ6VXM0?=
+ =?utf-8?B?VTcwQUtUaDBLK1FGZmRSZms5aFlsYVh0Yk1Rd0FBZXQzNktrTlVwNGZDTWQv?=
+ =?utf-8?B?NWY5ZzI4WDRxUWxKdlorQnRFNEFDd3AxQkxCTFIxSW00WTBjWUdZMUFORmVR?=
+ =?utf-8?B?OEZScVdDRmpOeUhLdTFIOUNSR3NwOTlkR0t0SC9ML1NsdlNCTUJpOXRGSU9I?=
+ =?utf-8?B?bUs0SjNjTEM2ZWNnbUdNNTkzeHp2Y0xxSS81cmtwNEFPbUI4cGxaS3J5VnZ5?=
+ =?utf-8?B?dVVkbllyTHd2UG1xZUl4RkdOVEF1OUVUbVozY3NXQU5MQmtodzFQd1Z0K2tx?=
+ =?utf-8?B?NTNDcytIaEJDdHBQU0dRc2J2bWIyY09iOWM1WHd4YUpEMitKOVFPeUN1QnJB?=
+ =?utf-8?B?RGpVUGwwNmxFNHo2M3lUSFNPSUlVNTVDcStwcnF5OVZvWHBQcDFOcGI0L0dY?=
+ =?utf-8?B?UGl5RU5JNVFtd2creWNHSWN3b0dieTNPbzU1SjlKR2NQdFc2bnpHQVNqck1Y?=
+ =?utf-8?B?TUExNk96cGdKR3N0VXdRVTJEeGIzVHdtV1RkUTV3TjljTnZ0Z291cGFZOWlo?=
+ =?utf-8?B?YTVYTlhrT0NnY2pCTkkrTWtlVU1jS2tQalZEQzlhUDJhN3ZoOVR0WE1vOVVu?=
+ =?utf-8?B?cVFSZldMbzhmQ3dOYVNlbUI4Q1pOM3haanZVZ1cvdDJuQVlXQXBlWG9PbWRi?=
+ =?utf-8?B?Ni9vRlBGVWFpL0Z3cHFRM1lURkNjUVdNZVJpYmtVb1Q1UnZnQkhFYm9yR1Ns?=
+ =?utf-8?B?dG5INDhLZzZUdW5IT0NBUzQ2UmVzeWI5NVBjNFBqbjRGT2xibVdDMHJTcEJr?=
+ =?utf-8?B?bFBOSDNYM1RNRTIwUW90Zi90STFIck90Nld2cFpDMXpxN2Y1NWN2SlhGcDN4?=
+ =?utf-8?B?cU8ydTZjWlh2TUtnMjF6dkp3Yy9kZ1Y2TUUrTXl3TG9ab0xKeVRZdlQvbG9s?=
+ =?utf-8?B?NmhpRmhMQ2dZS2Y4ZVRUNUg4MExEWGlIVTBTWURqR2NPQktVSzVPMmxDaGhF?=
+ =?utf-8?B?aEhhR0NWdHpGNER0OHRmRmVLdGUrWEU0OGdZZkhCK3owVlNJQ2c4QXVMYW1U?=
+ =?utf-8?B?MXR6L3RQNnVvR1B3cXJ3NG5SL01CRVVSSllzZzdSdlVwWEd0MWNFaWxsOXVw?=
+ =?utf-8?B?aFZrSllQZTBNbnd3Mk1FaVBxTGllRS90M3lacE1PZ2s0OTVwY1d5bGJoRStL?=
+ =?utf-8?B?QjZEa1JnQnE2U1NQR0Q3YWVrWERtVTVaekxKbnkvQnNtTFBnRHpLVU9henBY?=
+ =?utf-8?B?dDZ4R1NEZHZVYVFxNy9XZUdyRmVyNy9EOU10c0VFNi9rdno3aWdCSmpnN0gv?=
+ =?utf-8?B?QTE0R2JEZnBSUzNwbXlaR2lPWFFFS1VvVU1OU2JtYmdYYk1xd00zQXNWaThq?=
+ =?utf-8?B?WjBudnhyNVNRRGxJTGlaMy9vR1lvckJZNFhGMzJHQzIxYkxCNys0OGFNRzM5?=
+ =?utf-8?B?aHlQN3dxQkpCSkVtREpwR1gwMEYxTnRKbXlwanVzZXBORDY3bExMTlk4SDNx?=
+ =?utf-8?B?NE9tRDhpWjdBWGRnakk3eGIwell6Mi9DcWRWTWY1aU1qamlhQjhZKzBKQU5C?=
+ =?utf-8?B?dkM4ZTRYTlZhL3E4azZaSFNNMG40TG5CdWhwOXd4UTF2c3hWVnNEaXdqRmhF?=
+ =?utf-8?B?cWMwWENsb3c1NE0xL0FOVTJGNkN1VjRFOGM0eXZBY29vVXZYMVFSb1ZucWlt?=
+ =?utf-8?B?Vm5LTzF3Nng0MjNGbmxXS1lCZEJvWWYvSTh3eTBvSGw1bmJFTURaTzJ0a2dT?=
+ =?utf-8?B?RDVCUkdWRGJjc3VXZXdxUkU0YjNhM0MzalZpTnhKU2lUeHo4MDRYRnJLakpB?=
+ =?utf-8?B?V1lEYk14ZS8zYTJ4NjZxSm1QL3RuaU1talpTY1J2YXN2STBRTHh4TVQrNWRz?=
+ =?utf-8?B?T2dES1phQTd4SWhmYlhYTXhmV3VGNTUwMDFPSTdvOTJHL0d5YTBTVEc3OTNH?=
+ =?utf-8?B?Y01mZEVpOVZUeU13Qkt2TGpMZWhWQzNxeVRzcHptZTZFaFRha1hOczE4dXVu?=
+ =?utf-8?B?QlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6f85773b-14f2-447e-a501-08da9044c088
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 19:59:20.5677 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 20:16:59.0265 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1blsxoxZMW7xj9xR07y+wcUVcHEnsUKezb3IPGgwLAch7kD5tRL5igk6OV8VGwVMvCrzOjGION3svsRIAAtfVKF+qx7rhtFSgv0oxdDp36g=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB3664
+X-MS-Exchange-CrossTenant-UserPrincipalName: WsyMNSyloT+vKmQKlPbt5WuYt67LdILKwCIpzeNPHafXNFA9BaVMLyv0uBDTBXA2NHsfuTG/I71jFoh8ABdKdDwmAvQQZ0VOL5kBA0eOe34=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5396
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 02/19] drm/i915/perf: Add OA formats for DG2
+Subject: [Intel-gfx] [PATCH v4 0/3] drm: Use full allocated minor range for
+ DRM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,220 +155,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+ Simon Ser <contact@emersion.fr>, Maxime Ripard <mripard@kernel.org>,
+ Matthew Wilcox <willy@infradead.org>, Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 06/09/2022 22:46, Umesh Nerlige Ramappa wrote:
-> On Tue, Sep 06, 2022 at 10:35:16PM +0300, Lionel Landwerlin wrote:
->> On 23/08/2022 23:41, Umesh Nerlige Ramappa wrote:
->>> Add new OA formats for DG2. Some of the newer OA formats are not
->>> multples of 64 bytes and are not powers of 2. For those formats, adjust
->>> hw_tail accordingly when checking for new reports.
->>>
->>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramampa@intel.com>
->>
->> Apart from the coding style issue :
->>
->>
->> Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->>
->>
->>> ---
->>>  drivers/gpu/drm/i915/i915_perf.c | 63 ++++++++++++++++++++------------
->>>  include/uapi/drm/i915_drm.h      |  6 +++
->>>  2 files changed, 46 insertions(+), 23 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_perf.c 
->>> b/drivers/gpu/drm/i915/i915_perf.c
->>> index 735244a3aedd..c8331b549d31 100644
->>> --- a/drivers/gpu/drm/i915/i915_perf.c
->>> +++ b/drivers/gpu/drm/i915/i915_perf.c
->>> @@ -306,7 +306,8 @@ static u32 i915_oa_max_sample_rate = 100000;
->>>  /* XXX: beware if future OA HW adds new report formats that the 
->>> current
->>>   * code assumes all reports have a power-of-two size and ~(size - 
->>> 1) can
->>> - * be used as a mask to align the OA tail pointer.
->>> + * be used as a mask to align the OA tail pointer. In some of the
->>> + * formats, R is used to denote reserved field.
->>>   */
->>>  static const struct i915_oa_format oa_formats[I915_OA_FORMAT_MAX] = {
->>>      [I915_OA_FORMAT_A13]        = { 0, 64 },
->>> @@ -320,6 +321,10 @@ static const struct i915_oa_format 
->>> oa_formats[I915_OA_FORMAT_MAX] = {
->>>      [I915_OA_FORMAT_A12]            = { 0, 64 },
->>>      [I915_OA_FORMAT_A12_B8_C8]        = { 2, 128 },
->>>      [I915_OA_FORMAT_A32u40_A4u32_B8_C8] = { 5, 256 },
->>> +    [I915_OAR_FORMAT_A32u40_A4u32_B8_C8]    = { 5, 256 },
->>> +    [I915_OA_FORMAT_A24u40_A14u32_B8_C8]    = { 5, 256 },
->>> +    [I915_OAR_FORMAT_A36u64_B8_C8]        = { 1, 384 },
->>> +    [I915_OA_FORMAT_A38u64_R2u64_B8_C8]    = { 1, 448 },
->>>  };
->>>  #define SAMPLE_OA_REPORT      (1<<0)
->>> @@ -467,6 +472,7 @@ static bool oa_buffer_check_unlocked(struct 
->>> i915_perf_stream *stream)
->>>      bool pollin;
->>>      u32 hw_tail;
->>>      u64 now;
->>> +    u32 partial_report_size;
->>>      /* We have to consider the (unlikely) possibility that read() 
->>> errors
->>>       * could result in an OA buffer reset which might reset the 
->>> head and
->>> @@ -476,10 +482,16 @@ static bool oa_buffer_check_unlocked(struct 
->>> i915_perf_stream *stream)
->>>      hw_tail = stream->perf->ops.oa_hw_tail_read(stream);
->>> -    /* The tail pointer increases in 64 byte increments,
->>> -     * not in report_size steps...
->>> +    /* The tail pointer increases in 64 byte increments, whereas 
->>> report
->>> +     * sizes need not be integral multiples or 64 or powers of 2.
->>> +     * Compute potentially partially landed report in the OA buffer
->>>       */
->>> -    hw_tail &= ~(report_size - 1);
->>> +    partial_report_size = OA_TAKEN(hw_tail, stream->oa_buffer.tail);
->>> +    partial_report_size %= report_size;
->>> +
->>> +    /* Subtract partial amount off the tail */
->>> +    hw_tail = gtt_offset + ((hw_tail - partial_report_size) &
->>> +                (stream->oa_buffer.vma->size - 1));
->>>      now = ktime_get_mono_fast_ns();
->>> @@ -601,6 +613,8 @@ static int append_oa_sample(struct 
->>> i915_perf_stream *stream,
->>>  {
->>>      int report_size = stream->oa_buffer.format_size;
->>>      struct drm_i915_perf_record_header header;
->>> +    int report_size_partial;
->>> +    u8 *oa_buf_end;
->>>      header.type = DRM_I915_PERF_RECORD_SAMPLE;
->>>      header.pad = 0;
->>> @@ -614,7 +628,19 @@ static int append_oa_sample(struct 
->>> i915_perf_stream *stream,
->>>          return -EFAULT;
->>>      buf += sizeof(header);
->>> -    if (copy_to_user(buf, report, report_size))
->>> +    oa_buf_end = stream->oa_buffer.vaddr +
->>> +             stream->oa_buffer.vma->size;
->>> +    report_size_partial = oa_buf_end - report;
->>> +
->>> +    if (report_size_partial < report_size) {
->>> +        if(copy_to_user(buf, report, report_size_partial))
->>> +            return -EFAULT;
->>> +        buf += report_size_partial;
->>> +
->>> +        if(copy_to_user(buf, stream->oa_buffer.vaddr,
->>> +                report_size - report_size_partial))
->>> +            return -EFAULT;
->>
->> I think the coding style requires you to use if () not if()
->>
->
-> Will fix.
->
->>
->> Just a suggestion : you could make this code deal with the partial 
->> bit as the main bit of the function :
->>
->>
->> oa_buf_end = stream->oa_buffer.vaddr +
->>          stream->oa_buffer.vma->size;
->>
->> report_size_partial = oa_buf_end - report;
->>
->> if (copy_to_user(buf, report, report_size_partial))
->>     return -EFAULT;
->> buf += report_size_partial;
->
-> This ^ may not work because append_oa_sample is appending exactly one 
-> report to the user buffer, whereas the above may append more than one.
->
-> Thanks,
-> Umesh
+64 DRM device nodes is not enough for everyone.
+Upgrade it to ~512K (which definitely is more than enough).
 
+To allow testing userspace support for >64 devices, add additional DRM
+modparam (skip_legacy_minors) which causes DRM to skip allocating minors
+in 0-192 range.
+Additionally - convert minors to use XArray instead of IDR to simplify the
+locking.
 
-Ah I see, thanks for pointing this out.
+v1 -> v2:
+Don't touch DRM_MINOR_CONTROL and its range (Simon Ser)
 
--Lionel
+v2 -> v3:
+Don't use legacy scheme for >=192 minor range (Dave Airlie)
+Add modparam for testing (Dave Airlie)
+Add lockdep annotation for IDR (Daniel Vetter)
 
+v3 -> v4:
+Convert from IDR to XArray (Matthew Wilcox)
 
->
->>
->> if (report_size_partial < report_size &&
->>    copy_to_user(buf, stream->oa_buffer.vaddr,
->>         report_size - report_size_partial))
->>     return -EFAULT;
->> buf += report_size - report_size_partial;
->>
->>
->>> +    } else if (copy_to_user(buf, report, report_size))
->>>          return -EFAULT;
->>>      (*offset) += header.size;
->>> @@ -684,8 +710,8 @@ static int gen8_append_oa_reports(struct 
->>> i915_perf_stream *stream,
->>>       * all a power of two).
->>>       */
->>>      if (drm_WARN_ONCE(&uncore->i915->drm,
->>> -              head > OA_BUFFER_SIZE || head % report_size ||
->>> -              tail > OA_BUFFER_SIZE || tail % report_size,
->>> +              head > stream->oa_buffer.vma->size ||
->>> +              tail > stream->oa_buffer.vma->size,
->>>                "Inconsistent OA buffer pointers: head = %u, tail = 
->>> %u\n",
->>>                head, tail))
->>>          return -EIO;
->>> @@ -699,22 +725,6 @@ static int gen8_append_oa_reports(struct 
->>> i915_perf_stream *stream,
->>>          u32 ctx_id;
->>>          u32 reason;
->>> -        /*
->>> -         * All the report sizes factor neatly into the buffer
->>> -         * size so we never expect to see a report split
->>> -         * between the beginning and end of the buffer.
->>> -         *
->>> -         * Given the initial alignment check a misalignment
->>> -         * here would imply a driver bug that would result
->>> -         * in an overrun.
->>> -         */
->>> -        if (drm_WARN_ON(&uncore->i915->drm,
->>> -                (OA_BUFFER_SIZE - head) < report_size)) {
->>> -            drm_err(&uncore->i915->drm,
->>> -                "Spurious OA head ptr: non-integral report offset\n");
->>> -            break;
->>> -        }
->>> -
->>>          /*
->>>           * The reason field includes flags identifying what
->>>           * triggered this specific report (mostly timer
->>> @@ -4513,6 +4523,13 @@ static void oa_init_supported_formats(struct 
->>> i915_perf *perf)
->>>          oa_format_add(perf, I915_OA_FORMAT_C4_B8);
->>>          break;
->>> +    case INTEL_DG2:
->>> +        oa_format_add(perf, I915_OAR_FORMAT_A32u40_A4u32_B8_C8);
->>> +        oa_format_add(perf, I915_OA_FORMAT_A24u40_A14u32_B8_C8);
->>> +        oa_format_add(perf, I915_OAR_FORMAT_A36u64_B8_C8);
->>> +        oa_format_add(perf, I915_OA_FORMAT_A38u64_R2u64_B8_C8);
->>> +        break;
->>> +
->>>      default:
->>>          MISSING_CASE(platform);
->>>      }
->>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->>> index 520ad2691a99..d20d723925b5 100644
->>> --- a/include/uapi/drm/i915_drm.h
->>> +++ b/include/uapi/drm/i915_drm.h
->>> @@ -2650,6 +2650,12 @@ enum drm_i915_oa_format {
->>>      I915_OA_FORMAT_A12_B8_C8,
->>>      I915_OA_FORMAT_A32u40_A4u32_B8_C8,
->>> +    /* DG2 */
->>> +    I915_OAR_FORMAT_A32u40_A4u32_B8_C8,
->>> +    I915_OA_FORMAT_A24u40_A14u32_B8_C8,
->>> +    I915_OAR_FORMAT_A36u64_B8_C8,
->>> +    I915_OA_FORMAT_A38u64_R2u64_B8_C8,
->>> +
->>>      I915_OA_FORMAT_MAX        /* non-ABI */
->>>  };
->>
->>
+Michał Winiarski (3):
+  drm: Use XArray instead of IDR for minors
+  drm: Expand max DRM device number to full MINORBITS
+  drm: Introduce skip_legacy_minors modparam
+
+ drivers/gpu/drm/drm_drv.c | 66 +++++++++++++++++++--------------------
+ 1 file changed, 33 insertions(+), 33 deletions(-)
+
+-- 
+2.37.3
 
