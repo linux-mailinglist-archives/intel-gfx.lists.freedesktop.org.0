@@ -2,76 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45615B0CEC
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 21:12:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5242F5B0D1A
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 21:20:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 057A310E837;
-	Wed,  7 Sep 2022 19:12:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A72B10E83E;
+	Wed,  7 Sep 2022 19:20:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F83B10E837
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 19:12:22 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C76D710E83F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 19:19:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662577942; x=1694113942;
+ t=1662578397; x=1694114397;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=dXbcDuT/5Kfz6dddXcqP8dyTC51KTLnb30LJmum75e0=;
- b=LuX46EWouX67YfdikYHaUu7gqBiG510qXVRMFtNOtQJUHm6d/7u6XfUT
- WpUpY+RCdOKB7Aq5ZWLqxtFySPy+T+bKfRCpBPsqbJuXLCsrFyWZQmS09
- Hyi9KCgN5dUtujFr102UJWL/9iajWpnU1wnAI67GEyiU/ZusF6B+OFKNR
- BCpfBW1jRH0zxG7w+sEO1e8LLanGYNnFlvk9qVcrBvmL2vvWUWN6ZX4IO
- JbalcDBtE5Gwp/aC9moR0xLQqnBmj8Ob0KPMnd+pBkPN/ZHtoDkVbGWBN
- ql57gKARjGgMgwpHecNsxoImnr785uhEorxl/sji+T64otlZ4bE68Lsx5 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="283992859"
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; d="scan'208";a="283992859"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 12:12:21 -0700
+ bh=Gd3YTq1Oaz9K7Id5EGgEdMdJW88OpjBqsP1HrjAM33s=;
+ b=bDVkVohyzy8OiNP96TgoG5vTDH2zJQoW28I8Adl022DL0LE78VCsSvd+
+ Tb7P4Nz8gIxFrgGhtnWjyM2FLCMzNOEUncitjCRvqXb/MTLbc6WtgdiKQ
+ CHcUa+MzYCAFEmPvO/vH2Up0TTYnoPNmlt4Cd/RwL6Psttk53j8Ar322/
+ JyJE9BWU5bgU/PNBpkJ1aIYgYupSVb7Uhs42CFJ4YjvlAC7/9DMwys6+A
+ 4sqvG1xDJD6mQNu0g07JB4eCP3mxTfBIg2PMgLxwPlGvGoFiP0YIhowjc
+ to/qBee6MclOCBFWK+BASp5jYPHWsxyMj3/ehdimECt+g1KAQlhs57r2r w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="383267894"
+X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; d="scan'208";a="383267894"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2022 12:19:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; d="scan'208";a="740407405"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga004.jf.intel.com with ESMTP; 07 Sep 2022 12:12:21 -0700
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; d="scan'208";a="718263289"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga002.fm.intel.com with ESMTP; 07 Sep 2022 12:19:57 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 7 Sep 2022 12:12:21 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ 15.1.2375.31; Wed, 7 Sep 2022 12:19:56 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 7 Sep 2022 12:12:20 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ 15.1.2375.31; Wed, 7 Sep 2022 12:19:56 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Wed, 7 Sep 2022 12:12:20 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Wed, 7 Sep 2022 12:19:56 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.47) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Wed, 7 Sep 2022 12:12:20 -0700
+ 15.1.2375.31; Wed, 7 Sep 2022 12:19:55 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UkBMGoDYOVCwqzv/ZTv+X44gFjlmaj8haTnPINl/zneb39wF1egpEX6AcHJoPbLRHogz3JhjidaSF+tc4kFC4oxglUsM5mdmlDwZr9OKBEgZnSEJXXkjaNsb+VU6Inbq/QPfmQkLIh9+1z/DdhtWMAGVs1btqjNN+Os13Pssbdk/qv2gffgli/OwANgK3k+zqTQqujhVSTqdzCyDDhcF6H+KPE4Ms3JW8WQu7C1l+CcyaD4b10TD/XMw8OkuyD9qeomXozgkpHZQzf/a7YzbJeERvp+bXXykN2VqtEM5wPS0taZVQtY0GZOSTg+knCcQuJ1hhFomXGJUCfeNWidiZw==
+ b=BsfeN2B/oKaHcXeX3avTjNKLYlfb/ovnSh+Jn/eWVRV+S+Wli4ink79SJGL5y7iKG82IWzgZe30oL0U082oF5g/VJFk1cz06Ksr8hQNVb7gBoAoQpa5LvRMw/TM1CFDBqKOSZeIccrDNEwuqfkEudWPlGT6rND2YA7w39zQlpqG+GEdVJsiAflKnoK5yx0fqGW7LhcjRRcGZsBsvwH1ae+wqJJLhutRQLDB6KWjTXjBRLnkul+/UjTdk9/ZsFsN3TK5/4aF1spRfEy28jrJqUq0HYMxeVyNQRfPFdDnxbEJmt42FkkaNy1SijX998krgIFqaDXUl1KW0Yzio8QglEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LMNxPpZtskmDbmypR1wgo+VSnqsv+XcwS33YSit9SBE=;
- b=CnZuxGxehOlgMkNOHUmTMYc1djJvoVY/SVy7uZVUv3wNUaKW8yZT6Zeh9xDVBQjZWBu0DOp5JBgRFHv9HXIzz5LpBA+zFQJS7ptwegecIySq4miZRP9XvFx9K0nbSWPvwMTKfF8AGKmCnnqKNAeP+O1O9jPUoHlA0a3JdRcqCM/EdyfnMUS/b8/0AC9dmf7FMdrapHhfztPaP/TcrJjesK3BAmIXrGfh4WDWbXdBnmKbwlbjX6uGizu8Jqd2by0CXmmuzRNT0axMggv7gwwmLvqCxuxyKXAZgpMTGDUJdSqlZr5FyMcczx7T4ihmQK7Z4dBTC0KlMdCwsl2rw162hA==
+ bh=b6Mmvh3iA/Zq8C659IKS+ShWLGqROgJUyuRcly9RoKU=;
+ b=LaowiIc4Twx8FIN2rXkq9EVkkWEgPqIQaikl0Yw0W//lIOUuTMymOfpYnFawbgn0LSe4N1u8fPwElgFlLKSFgVpCskem2Rn1Zsrgd6JpCB7BBpnTBT3y5dgMz2/zn7v7AF8f3IpSdsTG2StyOJ7sggvDUbZXUJ9dRAGbALt2HKO5cFRZfFZ9p+lXHhxcietlTYjSUPFQ9PnBODNJil6+iWnqUgPwyhS2eIpvWskohxuZTFrWSkKPy9akFOtByVH/hUUiHtDzxVQ0ciIPMEbxF9XdHMNXf/kx7W9cZBbjoMBDeSYfw+6i5cIKli1ngfB1LIMCqkNXc54vxxaJDXZgkA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- CY4PR11MB1832.namprd11.prod.outlook.com (2603:10b6:903:127::14) with
+ MW4PR11MB7006.namprd11.prod.outlook.com (2603:10b6:303:22f::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.17; Wed, 7 Sep
- 2022 19:12:04 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Wed, 7 Sep
+ 2022 19:19:54 +0000
 Received: from DM4PR11MB5488.namprd11.prod.outlook.com
  ([fe80::1977:59e7:5a28:24e1]) by DM4PR11MB5488.namprd11.prod.outlook.com
  ([fe80::1977:59e7:5a28:24e1%9]) with mapi id 15.20.5588.017; Wed, 7 Sep 2022
- 19:12:04 +0000
-Message-ID: <09f45a21-91d6-e4d8-4a33-306deef14083@intel.com>
-Date: Wed, 7 Sep 2022 12:12:01 -0700
+ 19:19:54 +0000
+Message-ID: <d83d1cb9-961e-2f34-46d8-f46836261948@intel.com>
+Date: Wed, 7 Sep 2022 12:19:51 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
 Content-Language: en-US
@@ -79,76 +79,76 @@ To: Tomas Winkler <tomas.winkler@intel.com>, Greg Kroah-Hartman
  <gregkh@linuxfoundation.org>, David Airlie <airlied@linux.ie>, Daniel Vetter
  <daniel@ffwll.ch>
 References: <20220907155813.1427526-1-tomas.winkler@intel.com>
- <20220907155813.1427526-9-tomas.winkler@intel.com>
+ <20220907155813.1427526-10-tomas.winkler@intel.com>
 From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20220907155813.1427526-9-tomas.winkler@intel.com>
+In-Reply-To: <20220907155813.1427526-10-tomas.winkler@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR03CA0012.namprd03.prod.outlook.com
- (2603:10b6:a02:a8::25) To DM4PR11MB5488.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0128.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::13) To DM4PR11MB5488.namprd11.prod.outlook.com
  (2603:10b6:5:39d::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c79fdc7a-4bd5-414b-d6aa-08da9104d94d
-X-MS-TrafficTypeDiagnostic: CY4PR11MB1832:EE_
+X-MS-Office365-Filtering-Correlation-Id: cd39f01d-d255-4cec-73a7-08da9105f1b0
+X-MS-TrafficTypeDiagnostic: MW4PR11MB7006:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: S41jRJAZFDPOh8erMmmIex2TTsX3+dvDfa/yOdtc8ul9xPFqno+EeRnDkIMoSAIUisrzAsmhARwu/sDP/ess+GSVovOdTd5zfuFSN8RyXqVF3nb8QroLn5e26pwR7RLZ6RGdqCDF8R0kJWBXl0gA9HvnYWIuiiqSqjcPYwdPu3PUbaVB8jYF9TieHehTifXY8I8Qk2+R48xGn3p4Jk4QPCH9IpCnkjeKQn9RXnvp5TukqN61EGeaVSuazCY3lEKh6rh4RHy83fv9sn29kKiERYoaGI8BdQsXW7KP8qEW7XU+cE3R/MddICvyXaOQdyqucnx48Mnp68aVqQDBUqxA8N7tbkhc9F+tPNnEh6X96xIBXnV22+46I1NZHzqsB2ewDphrdRn0xgq0s9O1km3A5P5JkiOnMqNYM7VUFz+0g9LRtCMnG+ry+qLiRvep1dywhMhKAWP6Yx279ipihmr47qfISMbTb5UJ8pJZ0TJahYql1uW4glTLfEU6yKQIiC5jt8+MLN4fRfihfOLY4Y5OUrO+JAe0R5Ku+I8nR54s3oRQJem0VSPMu2sOvpr5m8/XpJpaYOkt6oIe+XSF7oA5dZrADEzHWXL9Pod1rbBScJtITUrNzjgsOypKvMBcnATUGrkyrRLZNHbwmmj0B/iWhPUIVnlaoF6bJE1T4L7jpnF/w+BL2ofmGRd5dnBl0jCpTTD9ALuHbBZDaUADm6feg7U58PYpndn+p9QoSOOnPZlK+DMmQH2h1hn6LWSgaaeEwo8bJL4hpi18FAhKD/gplbZ9HfLTtswgmiB9MrlgcbQ=
+X-Microsoft-Antispam-Message-Info: KWDtGc6GT96vpRoV+z4ItRS6oOhZ08d9vHtbrFKm3lFlCeEtDlivBMYP2TCSD1g7Mr/4KgR3zjjYOeY5FgbugDX8ZhhBEZuXec44xn64xMt4PVbCNSinuS1wG66ZS782tx0rRHtnt9+VQgPiY4/8/fcJ4wg9q3xeR09FkBRYsfzGqacWCjYsMpXsUJF8jF5kPr35y54HGUgw10siRiUcvLeJ8pEqk1irRJPXep96VIseEUrip9fkEfcKBG/+WVYY3oSsxW0eyoOdy3vlyX/TakvNWv3LaYxnAaGbQXJsIWwHSYpsk6El3D/+TiOUvEvmwh1hv805t8/8aVSAy+8O+sEyhJXIJSsCFR+ZJAc3nRBeCvywl2hg391y0S1mBxCECy5tDAGmhINFMjjtPUh3hWSkgGeSkaI61Pxabd6L2epKKdcgZrJsAaPhgKR3vdOsR5dpZSSuWULxeJZEeh7G1wGqhZrxecNPgEwNG504+n2Dc86Yb2EwRHDgnYKlWVKMXQzfX3yD5tDliPbKUsbPRxNSguCB8ImRD/Q9CaXVpehWot4E4t50ten6Yhp3X7T/mWmNWmeAf6L8xjZcmUi5n5V86TWyV6JVR4Bgky09Txv6kBFEpRxG+FqGnVYQHedIv/QQMYYwjAxsOO+NTEnkUtqo+EETCnErY6IPlB/rGTjAX07a5G6LiukOIYTBTgc3Un4oOmt2zErQCbRERgy8vadjcStYW+u3kgznjI1/aX6NT9u7rK485bFOUApYXbOBdTaA+SW+3JEo/wViPDjwl3ezuRGJ3ChV0NrNB8ai4po=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(39860400002)(376002)(136003)(346002)(396003)(366004)(41300700001)(6506007)(6666004)(186003)(53546011)(6512007)(2616005)(26005)(107886003)(5660300002)(4326008)(83380400001)(30864003)(8936002)(8676002)(54906003)(66476007)(6486002)(66946007)(66556008)(478600001)(110136005)(316002)(38100700002)(31696002)(2906002)(86362001)(82960400001)(36756003)(31686004)(45980500001)(43740500002);
+ SFS:(13230016)(346002)(366004)(39860400002)(396003)(136003)(376002)(38100700002)(31686004)(82960400001)(316002)(41300700001)(36756003)(54906003)(110136005)(4326008)(66556008)(66946007)(6506007)(83380400001)(478600001)(31696002)(8676002)(6486002)(66476007)(2616005)(5660300002)(8936002)(86362001)(186003)(26005)(107886003)(6666004)(2906002)(6512007)(53546011)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TnRwNER6djd5enFHd2pvbFBDYWwrSlhsZWlaNEcrMUJwYlVRMWhBcE01QWxF?=
- =?utf-8?B?cEdOckMwOExqUzdacWMrM1d0RlBNcEsyWEZyc1B6clZGYmswUk51Nk1iMFBy?=
- =?utf-8?B?MXBTMnNDOGovekFtTEJXKzVyQ2VSQWFRbENyK2pvRHY3Wmtrc3JheHJ2T3lQ?=
- =?utf-8?B?LzdWT1NVazVXa1Vsb3J1WUs4TUhyZXVsb2JIN09LaTRnbkY5MTlkRW9ON0lj?=
- =?utf-8?B?K2EvdnJ0OFFaOW5sUk9MVm9xY2pyc01TaXFkZGdkNTFVeGZUcE92Z3NKNVNJ?=
- =?utf-8?B?ZHJibkJJeGdoTE1VUEI4cmVHaTQraUw0eDREbjNEQmF3MW5RVVdWeTY0bkpQ?=
- =?utf-8?B?NzR0N29waU5ScHhVTmFSNC82UVZQQ3dCYWhNNjZtS0djeWc0MitYaEZlenow?=
- =?utf-8?B?YXRPUlU3T1kyY2piSGlxZmNlQkl5QVhRUW9XWFprUWNpcE50RDVSWUtkbitI?=
- =?utf-8?B?ZkI1bFpwenlxalNFMTJDNDNoTm0yRDk3UGd5NzB4bGpPM21ncVhoNkZrWHdu?=
- =?utf-8?B?Vkx3R0Y4LzVGdkY1UHlsa0tLQ3NKZGd4RUVQWVZRaTRUR1h1RnVray84TGNn?=
- =?utf-8?B?dGQzOFdwNHNCbGF5RFEyODZKZ3NnUmloNlVmTUdmYS9DbzJNbzRNK1lRRGk3?=
- =?utf-8?B?dnpmZEZQYmVmakN5dzJ0RnBlbC9JalZJdHU2SnBXZnRqT0dNa2RDbzc0SXlT?=
- =?utf-8?B?VGJpei8yOEVNWklNaHU5REozdVU4WFFEdHUrekU1MkFONlpGajM1ODZKZkRO?=
- =?utf-8?B?RU5uTnlnMVp5VzN0VXhEb3JNMm9XVmphNFJyL1hZOWc0NXg3NlJKQmxjM1Fk?=
- =?utf-8?B?Z0I1OVJ1RUFHeHdOaG9GYnJWb1ZHaytManFSR2lqSTRYS2NWNzJucHRjbWps?=
- =?utf-8?B?c0lRdEpoQTBWY1V3OVBIUWNHQkZCZFB3SGpCNHVaMTl6VTN6ajBsT1l2YXlr?=
- =?utf-8?B?VFZzSVBOSGZsWXBmVjQ2TmUyQUxMZDZKWGY5WVlxUm9nMkpLdjliY3FHMjQ4?=
- =?utf-8?B?UTBtcEQ5YUVhZVpaeC9NZFhpejh5NVNTZVFNMlVWVjArZEFxNFczK01GK2R5?=
- =?utf-8?B?a3ZNSTU4dHhTbEtyZ1hBUEt4T1ZuUFJ4RVYvcjU5anpWV2ZaNW52dkhBYmdr?=
- =?utf-8?B?VytmU3pSUWxrRHFGd0lwQ3ZHdFkvWFRGT3BDN2oxUU5HT1JJdXBOWnlMdTJu?=
- =?utf-8?B?a1kyQ01mNGdnYjdEbmJFTTJGd0YzbjQraG45MXFxUnkyRWl1cEFGa0t2RVJS?=
- =?utf-8?B?dDFkdmRVTjhoVEVKQkV5eGVjWEJZeU9WNUVDeWRRdTgzRXdlY2Z0dkZwRXVV?=
- =?utf-8?B?ZEZ6RXM2YjZsWWtEUGQ2U21xRkR1WU5Gb0hxVE5jZXJSRTJSNFB1Sm5uS1dD?=
- =?utf-8?B?UENrM1RiR1VoMzZPd2xBTk5pSStFVnRNb1hkdjhyY2JTMUNmWjNnQnZkTFpJ?=
- =?utf-8?B?MUdoVE1tSjkydE1IL2VYVlNOTW5iNUZOWVVLZkM1eUhTcWxOazJMaS9oQlFi?=
- =?utf-8?B?bXJtTTlCR0MvZ0wwM2RYa2I2WEc5YmZNcWx1Rk0vNCt1NUZWV3dPUVBoMGFW?=
- =?utf-8?B?R1dQckdnUFY1WWxueWUwVXkzalkzRXhYRm9ybkFYVXMzVk9tcWIzd1FGajJK?=
- =?utf-8?B?RWNPSGIzRnhabml2U052MURvYjY1RmZ2M0swaWFHSk5OdENQamFWcGJ5UGZ4?=
- =?utf-8?B?aTN3KzF6RmN3cTI1VDdIY3cxTGNPM1FTcWxWMmwzYkd0a3dUelNiVm1aYkEv?=
- =?utf-8?B?N2REU0hOWHJQVjNYSUh1aUhaVFh2QU9pSU5RdVhyc2RkQzdqRU90L3hZTDJs?=
- =?utf-8?B?eDZlU2ZTVFpITDR2bEduQVB0eFJ1UlFudnp6YmJRNm4xZDlDb05pS2FBcWZE?=
- =?utf-8?B?Tis2TnJRTFBVZ292RklVZ2JsNDRqbnVwN01NV0NVMVdCS2xRVk1mS00rSXNs?=
- =?utf-8?B?SXFnOFdVSXRlVmo0QVhsT2tlSkF4R0tUMW5Kd3RHblJBRXJXMWl1L1o1MUdv?=
- =?utf-8?B?YUc0eTJDbjc2R09GdjZ1WGlwUExDN0I5ZEFlamJkcDNwemdvYUluTTNpT1I0?=
- =?utf-8?B?TnNkM2lqS2FsWTZKSHd4b0x4SHhYU2VQMEdXUHVqUXNSRU1ITjd4TmlUdDN2?=
- =?utf-8?B?aWR3aEUyZHNRU3g3eXEyNVI0Y0oyMStlK2dqTXFWNWhqQ3FDTDZQWk1LWEx1?=
- =?utf-8?Q?ZR/AyonE1bS+YpnDWmQhwm8=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c79fdc7a-4bd5-414b-d6aa-08da9104d94d
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aVVJSllVREYrUW9nRjEvSm1VWEFkQk82RkpOaXJkZDRrUzZCRTFIT1hWOGFt?=
+ =?utf-8?B?NHNSdTVVdjg3Zm1kSnZwUW11aUNJdFltSkdTOTZxankrR1hxVnFtbnB0TmVY?=
+ =?utf-8?B?amxXWVNPdmY2c2dNOTBtMVRIcGJzTWhFdWhIL3J1L2paYzB0MlRqVkNwamVP?=
+ =?utf-8?B?ZG02WlVwM1RUTGNGbW80ZUdIckEzQk5sUW9ETFV2ZU9VTlBLbnBKRVBXN3R6?=
+ =?utf-8?B?d0RJOFFmdWxBUGtPeWlxK0RySy9sRnQ4MjFnM3J6a3hUZTNqV3NmWGRUYlpL?=
+ =?utf-8?B?SUdycXV2eVJ3cTZIR1dsSVgvdGF3UnhBbERucjBMQS9oTlZsRFd3MFBoQ1VH?=
+ =?utf-8?B?c1ovVndyNFljT0FOUHZSb0IrSkxkaklRbDlFTmd2UEtJbFJ0U3NnckU4NXdq?=
+ =?utf-8?B?Rk9tTTZleGpaZ2lhNGZuZVh6L0FUVlJ4YlJTM1VNZDRrTDRtL1VwUFgxZjVm?=
+ =?utf-8?B?WU9vc0NXVzA4eDNkVEFxV0gyd0plYWViam9IYmV6RzFzMUR1eTVRRUYvam1Z?=
+ =?utf-8?B?cVBUd1lWbWF2OHVlK3JDa2p4TGwrTnczVFlldE9jK0RLem4rL0p2UmVRdFFq?=
+ =?utf-8?B?bldJYUw4aUdORnNVT3JLeUFaVEMxOTBJbVJGM0RrcDVtNy9YZTZIK1YzRkZt?=
+ =?utf-8?B?OU40TFlJM1VwanFzTExsRkVzWHREdGdqYnZvZVVUZnpkMUNNNWNSa1AzMTFt?=
+ =?utf-8?B?ZElpTjFNd1pZdGdaMlFBV250V2VXVlVVbTNBVkZqdHpNejU5cHlpZXVwbU1w?=
+ =?utf-8?B?SkgzdWtMWUVsdzNveXZNUWtDU08xcCtoQk9UT3RrdXNTK2c1dGF4cnZ2TzM2?=
+ =?utf-8?B?amE3VVRxY293SEU1SzZIUEsrYXlQdEhIdjFyUDdLQUxIN013MGgrOFRta3RF?=
+ =?utf-8?B?azByVXQyM0RRYnlYeU5qOE9NVEh6WVNhdjRKaWV6UHAzdTgrQ245NTlGcFVJ?=
+ =?utf-8?B?L0FKUnlIbDVTOWo5QjdEN0wray9xRGdqcHBqVTRJNXJXbjlvRldBQ1Y1S0Vh?=
+ =?utf-8?B?OSszek9lMHQwclA4SWpzQ0VkQ294SDA3VjFsS0llMzBUSlFRWkNKdVlTZEdT?=
+ =?utf-8?B?TWhxeENRV3Y2aGN4VWg1Q01NRHNLMEpIeEVRaTlWM1Vpa3JGQzhMOXFZUWtW?=
+ =?utf-8?B?YTJlcm1Sc3JPejk4bGxOOTVVT1hDUHgwVDVaUVV1OHVkejgzOXNXQzNEMHFQ?=
+ =?utf-8?B?SkwvMnFvcTgrOE5jZUNnR1VoRVlXVmthUFJXYWI3cEVHT1hDN1hTVjJ2Wndo?=
+ =?utf-8?B?cG1kV25QZWxQZUR5WHNqR2RYMkVtS2NJTGlQVkwzalY3OEYwT1k0Y0ROendB?=
+ =?utf-8?B?SDhhUmg4MGRTOXZjVGVhVmVTcE1CbWRjemRabURaOUdPRmRhRHk4Q3VvVVB3?=
+ =?utf-8?B?Ni8yNFc5ZTgyMHpsVDRvVWlsTmEvQm84MTZQd1hnQ1ZvcnducG8xUERYTC9K?=
+ =?utf-8?B?R3dZWTE2UXVseUtQQW40RGN1OW91UDl4RndVNU5WMCs3WEVaVGszdW9PZlNI?=
+ =?utf-8?B?VmwwTVg5azZFeWRiYmczc2dyY0p5Um9BVVJwK2ppOXRwbmIyWS9NQXJLNUVG?=
+ =?utf-8?B?eWxtQmNlMWpTd2xHY1psSGVvaFV5a3piM0U4N3RmZEpDMjFCb1dqQW56UDJE?=
+ =?utf-8?B?Q2lhSVdQbnBSWEtnMFBLdmpiRGQrQXpGaVc2SmhCcGUzdW1FVkFhNkxPSDdm?=
+ =?utf-8?B?empRUUxnTWw5YkN6aFlWNXVTS1d2TEJWZndtRTR6eHN1UmFCcTVpNFljVWEv?=
+ =?utf-8?B?MmM2UkljNlprYUtOOXFDdDd6clh0ZDh0a2tzTmUrTXRHZDlWUVNHSklxQ2Jz?=
+ =?utf-8?B?cTdndHR3SjE3RDlGY3BUSW1YUkJKc29YMFd3YjhqREUvSC9RT2VENkJlZEx2?=
+ =?utf-8?B?Q3A3WEhoRjQ5aG9YT09iS2dxSXRjNzRhR08vL0d6aHMva21RakFqUzdWSVFn?=
+ =?utf-8?B?WTBUdTJyUXk1TTNxYmFjODNqZFR0OENyZGViVWo5WHdHS0FFMlBKVE1qUmhI?=
+ =?utf-8?B?SFFERkVuVWhOWWdVYzcxeXpYZVBhbTJnajVGcUFWOVRDRU5UdmlMV1dkM2Jh?=
+ =?utf-8?B?ckUrVTBxallRWEJRV0pvbW1xNy9hZ0kxZFprNCs5YStLY3dmekhnZW9EMzV5?=
+ =?utf-8?B?Ymh1T2gveWtQOERxWEZvSHFLald0cDRMTWc5ZUcxT2FvRTRaY0Q3QWNlRjB0?=
+ =?utf-8?Q?OH0MhgJPZ/1IthNvFglYCac=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd39f01d-d255-4cec-73a7-08da9105f1b0
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 19:12:04.0031 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 19:19:54.3489 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: osOtM5JLVLvh3sbvxNgrvEwnc6c+cA7qm06+c62ccwj42biorBQugvNZpahaZcQJmqdiqKMYtf+29vqmcRmGf7ppfzve4DGZeTxzkNghSv4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1832
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2AwqfPAO7lmhK59hx5r2HZV+TQ7vMF4UmOji4qNaJi/6oK9B9scdVvuQaU/vVRHBeIgDfJ/SQEoRZTJcU3BZTSa5btuaZYBFb6J6VsEELwY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7006
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v8 08/16] mei: extend timeouts on slow
- devices.
+Subject: Re: [Intel-gfx] [PATCH v8 09/16] mei: bus: export common mkhi
+ definitions into a separate header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,553 +170,146 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 9/7/2022 8:58 AM, Tomas Winkler wrote:
-> From: Alexander Usyskin <alexander.usyskin@intel.com>
+> From: Vitaly Lubart <vitaly.lubart@intel.com>
 >
-> Parametrize operational timeouts in order
-> to support slow firmware on some graphics devices.
+> Exported common mkhi definitions from bus-fixup.c into a separate
+> header file mkhi.h for other driver usage.
 >
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
 > Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 > ---
->   drivers/misc/mei/bus-fixup.c |  5 ++---
->   drivers/misc/mei/client.c    | 16 ++++++++--------
->   drivers/misc/mei/gsc-me.c    |  2 +-
->   drivers/misc/mei/hbm.c       | 14 +++++++-------
->   drivers/misc/mei/hw-me.c     | 30 ++++++++++++++++--------------
->   drivers/misc/mei/hw-me.h     |  2 +-
->   drivers/misc/mei/hw-txe.c    |  4 ++--
->   drivers/misc/mei/hw.h        |  7 ++++++-
->   drivers/misc/mei/init.c      | 19 ++++++++++++++++++-
->   drivers/misc/mei/main.c      |  4 ++--
->   drivers/misc/mei/mei_dev.h   | 18 +++++++++++++++++-
->   drivers/misc/mei/pci-me.c    |  4 ++--
->   12 files changed, 82 insertions(+), 43 deletions(-)
+>   drivers/misc/mei/bus-fixup.c | 31 +-------------------
+>   drivers/misc/mei/mkhi.h      | 57 ++++++++++++++++++++++++++++++++++++
+>   2 files changed, 58 insertions(+), 30 deletions(-)
+>   create mode 100644 drivers/misc/mei/mkhi.h
 >
 > diff --git a/drivers/misc/mei/bus-fixup.c b/drivers/misc/mei/bus-fixup.c
-> index 59506ba6fc48..344598fcf8e9 100644
+> index 344598fcf8e9..c4e527803299 100644
 > --- a/drivers/misc/mei/bus-fixup.c
 > +++ b/drivers/misc/mei/bus-fixup.c
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   /*
-> - * Copyright (c) 2013-2020, Intel Corporation. All rights reserved.
-> + * Copyright (c) 2013-2022, Intel Corporation. All rights reserved.
->    * Intel Management Engine Interface (Intel MEI) Linux driver
->    */
+> @@ -15,6 +15,7 @@
 >   
-> @@ -164,7 +164,6 @@ static int mei_osver(struct mei_cl_device *cldev)
->   			    sizeof(struct mkhi_fw_ver))
->   #define MKHI_FWVER_LEN(__num) (sizeof(struct mkhi_msg_hdr) + \
->   			       sizeof(struct mkhi_fw_ver_block) * (__num))
-> -#define MKHI_RCV_TIMEOUT 500 /* receive timeout in msec */
->   static int mei_fwver(struct mei_cl_device *cldev)
->   {
->   	char buf[MKHI_FWVER_BUF_LEN];
-> @@ -187,7 +186,7 @@ static int mei_fwver(struct mei_cl_device *cldev)
+>   #include "mei_dev.h"
+>   #include "client.h"
+> +#include "mkhi.h"
 >   
->   	ret = 0;
->   	bytes_recv = __mei_cl_recv(cldev->cl, buf, sizeof(buf), NULL, 0,
-> -				   MKHI_RCV_TIMEOUT);
-> +				   cldev->bus->timeouts.mkhi_recv);
->   	if (bytes_recv < 0 || (size_t)bytes_recv < MKHI_FWVER_LEN(1)) {
->   		/*
->   		 * Should be at least one version block,
-> diff --git a/drivers/misc/mei/client.c b/drivers/misc/mei/client.c
-> index 31264ab2eb13..0b2fbe1335a7 100644
-> --- a/drivers/misc/mei/client.c
-> +++ b/drivers/misc/mei/client.c
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   /*
-> - * Copyright (c) 2003-2020, Intel Corporation. All rights reserved.
+>   #define MEI_UUID_NFC_INFO UUID_LE(0xd2de1625, 0x382d, 0x417d, \
+>   			0x48, 0xa4, 0xef, 0xab, 0xba, 0x8a, 0x12, 0x06)
+> @@ -89,20 +90,6 @@ struct mei_os_ver {
+>   	u8  reserved2;
+>   } __packed;
+>   
+> -#define MKHI_FEATURE_PTT 0x10
+> -
+> -struct mkhi_rule_id {
+> -	__le16 rule_type;
+> -	u8 feature_id;
+> -	u8 reserved;
+> -} __packed;
+> -
+> -struct mkhi_fwcaps {
+> -	struct mkhi_rule_id id;
+> -	u8 len;
+> -	u8 data[];
+> -} __packed;
+> -
+>   struct mkhi_fw_ver_block {
+>   	u16 minor;
+>   	u8 major;
+> @@ -115,22 +102,6 @@ struct mkhi_fw_ver {
+>   	struct mkhi_fw_ver_block ver[MEI_MAX_FW_VER_BLOCKS];
+>   } __packed;
+>   
+> -#define MKHI_FWCAPS_GROUP_ID 0x3
+> -#define MKHI_FWCAPS_SET_OS_VER_APP_RULE_CMD 6
+> -#define MKHI_GEN_GROUP_ID 0xFF
+> -#define MKHI_GEN_GET_FW_VERSION_CMD 0x2
+> -struct mkhi_msg_hdr {
+> -	u8  group_id;
+> -	u8  command;
+> -	u8  reserved;
+> -	u8  result;
+> -} __packed;
+> -
+> -struct mkhi_msg {
+> -	struct mkhi_msg_hdr hdr;
+> -	u8 data[];
+> -} __packed;
+> -
+>   #define MKHI_OSVER_BUF_LEN (sizeof(struct mkhi_msg_hdr) + \
+>   			    sizeof(struct mkhi_fwcaps) + \
+>   			    sizeof(struct mei_os_ver))
+> diff --git a/drivers/misc/mei/mkhi.h b/drivers/misc/mei/mkhi.h
+> new file mode 100644
+> index 000000000000..43cadfb1b990
+> --- /dev/null
+> +++ b/drivers/misc/mei/mkhi.h
+> @@ -0,0 +1,57 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
 > + * Copyright (c) 2003-2022, Intel Corporation. All rights reserved.
->    * Intel Management Engine Interface (Intel MEI) Linux driver
->    */
->   
-> @@ -870,7 +870,7 @@ static int mei_cl_send_disconnect(struct mei_cl *cl, struct mei_cl_cb *cb)
->   	}
->   
->   	list_move_tail(&cb->list, &dev->ctrl_rd_list);
-> -	cl->timer_count = MEI_CONNECT_TIMEOUT;
-> +	cl->timer_count = dev->timeouts.connect;
->   	mei_schedule_stall_timer(dev);
->   
->   	return 0;
-> @@ -945,7 +945,7 @@ static int __mei_cl_disconnect(struct mei_cl *cl)
->   	wait_event_timeout(cl->wait,
->   			   cl->state == MEI_FILE_DISCONNECT_REPLY ||
->   			   cl->state == MEI_FILE_DISCONNECTED,
-> -			   mei_secs_to_jiffies(MEI_CL_CONNECT_TIMEOUT));
-> +			   dev->timeouts.cl_connect);
->   	mutex_lock(&dev->device_lock);
->   
->   	rets = cl->status;
-> @@ -1065,7 +1065,7 @@ static int mei_cl_send_connect(struct mei_cl *cl, struct mei_cl_cb *cb)
->   	}
->   
->   	list_move_tail(&cb->list, &dev->ctrl_rd_list);
-> -	cl->timer_count = MEI_CONNECT_TIMEOUT;
-> +	cl->timer_count = dev->timeouts.connect;
->   	mei_schedule_stall_timer(dev);
->   	return 0;
->   }
-> @@ -1164,7 +1164,7 @@ int mei_cl_connect(struct mei_cl *cl, struct mei_me_client *me_cl,
->   			 cl->state == MEI_FILE_DISCONNECTED ||
->   			 cl->state == MEI_FILE_DISCONNECT_REQUIRED ||
->   			 cl->state == MEI_FILE_DISCONNECT_REPLY),
-> -			mei_secs_to_jiffies(MEI_CL_CONNECT_TIMEOUT));
-> +			dev->timeouts.cl_connect);
->   	mutex_lock(&dev->device_lock);
->   
->   	if (!mei_cl_is_connected(cl)) {
-> @@ -1562,7 +1562,7 @@ int mei_cl_notify_request(struct mei_cl *cl,
->   			   cl->notify_en == request ||
->   			   cl->status ||
->   			   !mei_cl_is_connected(cl),
-> -			   mei_secs_to_jiffies(MEI_CL_CONNECT_TIMEOUT));
-> +			   dev->timeouts.cl_connect);
->   	mutex_lock(&dev->device_lock);
->   
->   	if (cl->notify_en != request && !cl->status)
-> @@ -2336,7 +2336,7 @@ int mei_cl_dma_alloc_and_map(struct mei_cl *cl, const struct file *fp,
->   	mutex_unlock(&dev->device_lock);
->   	wait_event_timeout(cl->wait,
->   			   cl->dma_mapped || cl->status,
-> -			   mei_secs_to_jiffies(MEI_CL_CONNECT_TIMEOUT));
-> +			   dev->timeouts.cl_connect);
->   	mutex_lock(&dev->device_lock);
->   
->   	if (!cl->dma_mapped && !cl->status)
-> @@ -2415,7 +2415,7 @@ int mei_cl_dma_unmap(struct mei_cl *cl, const struct file *fp)
->   	mutex_unlock(&dev->device_lock);
->   	wait_event_timeout(cl->wait,
->   			   !cl->dma_mapped || cl->status,
-> -			   mei_secs_to_jiffies(MEI_CL_CONNECT_TIMEOUT));
-> +			   dev->timeouts.cl_connect);
->   	mutex_lock(&dev->device_lock);
->   
->   	if (cl->dma_mapped && !cl->status)
-> diff --git a/drivers/misc/mei/gsc-me.c b/drivers/misc/mei/gsc-me.c
-> index 2caba3a9ac35..bfa6154b93e2 100644
-> --- a/drivers/misc/mei/gsc-me.c
-> +++ b/drivers/misc/mei/gsc-me.c
-> @@ -48,7 +48,7 @@ static int mei_gsc_probe(struct auxiliary_device *aux_dev,
->   
->   	device = &aux_dev->dev;
->   
-> -	dev = mei_me_dev_init(device, cfg);
-> +	dev = mei_me_dev_init(device, cfg, adev->slow_firmware);
->   	if (!dev) {
->   		ret = -ENOMEM;
->   		goto err;
-> diff --git a/drivers/misc/mei/hbm.c b/drivers/misc/mei/hbm.c
-> index cf2b8261da14..de712cbf5d07 100644
-> --- a/drivers/misc/mei/hbm.c
-> +++ b/drivers/misc/mei/hbm.c
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   /*
-> - * Copyright (c) 2003-2020, Intel Corporation. All rights reserved.
-> + * Copyright (c) 2003-2022, Intel Corporation. All rights reserved.
->    * Intel Management Engine Interface (Intel MEI) Linux driver
->    */
->   #include <linux/export.h>
-> @@ -232,7 +232,7 @@ int mei_hbm_start_wait(struct mei_device *dev)
->   	mutex_unlock(&dev->device_lock);
->   	ret = wait_event_timeout(dev->wait_hbm_start,
->   			dev->hbm_state != MEI_HBM_STARTING,
-> -			mei_secs_to_jiffies(MEI_HBM_TIMEOUT));
-> +			dev->timeouts.hbm);
->   	mutex_lock(&dev->device_lock);
->   
->   	if (ret == 0 && (dev->hbm_state <= MEI_HBM_STARTING)) {
-> @@ -275,7 +275,7 @@ int mei_hbm_start_req(struct mei_device *dev)
->   	}
->   
->   	dev->hbm_state = MEI_HBM_STARTING;
-> -	dev->init_clients_timer = MEI_CLIENTS_INIT_TIMEOUT;
-> +	dev->init_clients_timer = dev->timeouts.client_init;
->   	mei_schedule_stall_timer(dev);
->   	return 0;
->   }
-> @@ -316,7 +316,7 @@ static int mei_hbm_dma_setup_req(struct mei_device *dev)
->   	}
->   
->   	dev->hbm_state = MEI_HBM_DR_SETUP;
-> -	dev->init_clients_timer = MEI_CLIENTS_INIT_TIMEOUT;
-> +	dev->init_clients_timer = dev->timeouts.client_init;
->   	mei_schedule_stall_timer(dev);
->   	return 0;
->   }
-> @@ -351,7 +351,7 @@ static int mei_hbm_capabilities_req(struct mei_device *dev)
->   	}
->   
->   	dev->hbm_state = MEI_HBM_CAP_SETUP;
-> -	dev->init_clients_timer = MEI_CLIENTS_INIT_TIMEOUT;
-> +	dev->init_clients_timer = dev->timeouts.client_init;
->   	mei_schedule_stall_timer(dev);
->   	return 0;
->   }
-> @@ -385,7 +385,7 @@ static int mei_hbm_enum_clients_req(struct mei_device *dev)
->   		return ret;
->   	}
->   	dev->hbm_state = MEI_HBM_ENUM_CLIENTS;
-> -	dev->init_clients_timer = MEI_CLIENTS_INIT_TIMEOUT;
-> +	dev->init_clients_timer = dev->timeouts.client_init;
->   	mei_schedule_stall_timer(dev);
->   	return 0;
->   }
-> @@ -751,7 +751,7 @@ static int mei_hbm_prop_req(struct mei_device *dev, unsigned long start_idx)
->   		return ret;
->   	}
->   
-> -	dev->init_clients_timer = MEI_CLIENTS_INIT_TIMEOUT;
-> +	dev->init_clients_timer = dev->timeouts.client_init;
->   	mei_schedule_stall_timer(dev);
->   
->   	return 0;
-> diff --git a/drivers/misc/mei/hw-me.c b/drivers/misc/mei/hw-me.c
-> index 23ad53efbcb7..3c41b61ccbe8 100644
-> --- a/drivers/misc/mei/hw-me.c
-> +++ b/drivers/misc/mei/hw-me.c
-> @@ -445,7 +445,7 @@ static int mei_me_hw_ready_wait(struct mei_device *dev)
->   	mutex_unlock(&dev->device_lock);
->   	wait_event_timeout(dev->wait_hw_ready,
->   			dev->recvd_hw_ready,
-> -			mei_secs_to_jiffies(MEI_HW_READY_TIMEOUT));
-> +			dev->timeouts.hw_ready);
->   	mutex_lock(&dev->device_lock);
->   	if (!dev->recvd_hw_ready) {
->   		dev_err(dev->dev, "wait hw ready failed\n");
-> @@ -707,7 +707,6 @@ static void mei_me_pg_unset(struct mei_device *dev)
->   static int mei_me_pg_legacy_enter_sync(struct mei_device *dev)
->   {
->   	struct mei_me_hw *hw = to_me_hw(dev);
-> -	unsigned long timeout = mei_secs_to_jiffies(MEI_PGI_TIMEOUT);
->   	int ret;
->   
->   	dev->pg_event = MEI_PG_EVENT_WAIT;
-> @@ -718,7 +717,8 @@ static int mei_me_pg_legacy_enter_sync(struct mei_device *dev)
->   
->   	mutex_unlock(&dev->device_lock);
->   	wait_event_timeout(dev->wait_pg,
-> -		dev->pg_event == MEI_PG_EVENT_RECEIVED, timeout);
-> +		dev->pg_event == MEI_PG_EVENT_RECEIVED,
-> +		dev->timeouts.pgi);
->   	mutex_lock(&dev->device_lock);
->   
->   	if (dev->pg_event == MEI_PG_EVENT_RECEIVED) {
-> @@ -744,7 +744,6 @@ static int mei_me_pg_legacy_enter_sync(struct mei_device *dev)
->   static int mei_me_pg_legacy_exit_sync(struct mei_device *dev)
->   {
->   	struct mei_me_hw *hw = to_me_hw(dev);
-> -	unsigned long timeout = mei_secs_to_jiffies(MEI_PGI_TIMEOUT);
->   	int ret;
->   
->   	if (dev->pg_event == MEI_PG_EVENT_RECEIVED)
-> @@ -756,7 +755,8 @@ static int mei_me_pg_legacy_exit_sync(struct mei_device *dev)
->   
->   	mutex_unlock(&dev->device_lock);
->   	wait_event_timeout(dev->wait_pg,
-> -		dev->pg_event == MEI_PG_EVENT_RECEIVED, timeout);
-> +		dev->pg_event == MEI_PG_EVENT_RECEIVED,
-> +		dev->timeouts.pgi);
->   	mutex_lock(&dev->device_lock);
->   
->   reply:
-> @@ -772,7 +772,8 @@ static int mei_me_pg_legacy_exit_sync(struct mei_device *dev)
->   
->   	mutex_unlock(&dev->device_lock);
->   	wait_event_timeout(dev->wait_pg,
-> -		dev->pg_event == MEI_PG_EVENT_INTR_RECEIVED, timeout);
-> +		dev->pg_event == MEI_PG_EVENT_INTR_RECEIVED,
-> +		dev->timeouts.pgi);
->   	mutex_lock(&dev->device_lock);
->   
->   	if (dev->pg_event == MEI_PG_EVENT_INTR_RECEIVED)
-> @@ -887,8 +888,6 @@ static u32 mei_me_d0i3_unset(struct mei_device *dev)
->   static int mei_me_d0i3_enter_sync(struct mei_device *dev)
->   {
->   	struct mei_me_hw *hw = to_me_hw(dev);
-> -	unsigned long d0i3_timeout = mei_secs_to_jiffies(MEI_D0I3_TIMEOUT);
-> -	unsigned long pgi_timeout = mei_secs_to_jiffies(MEI_PGI_TIMEOUT);
->   	int ret;
->   	u32 reg;
->   
-> @@ -910,7 +909,8 @@ static int mei_me_d0i3_enter_sync(struct mei_device *dev)
->   
->   	mutex_unlock(&dev->device_lock);
->   	wait_event_timeout(dev->wait_pg,
-> -		dev->pg_event == MEI_PG_EVENT_RECEIVED, pgi_timeout);
-> +		dev->pg_event == MEI_PG_EVENT_RECEIVED,
-> +		dev->timeouts.d0i3);
+> + * Intel Management Engine Interface (Intel MEI) Linux driver
+> + */
+> +
+> +#ifndef _MEI_MKHI_H_
+> +#define _MEI_MKHI_H_
+> +
+> +#include <linux/types.h>
+> +
+> +#define MKHI_FEATURE_PTT 0x10
+> +
+> +#define MKHI_FWCAPS_GROUP_ID 0x3
+> +#define MKHI_FWCAPS_SET_OS_VER_APP_RULE_CMD 6
+> +#define MKHI_GEN_GROUP_ID 0xFF
+> +#define MKHI_GEN_GET_FW_VERSION_CMD 0x2
+> +
+> +#define MKHI_GROUP_ID_GFX              0x30
+> +#define MKHI_GFX_RESET_WARN_CMD_REQ    0x0
+> +#define MKHI_GFX_MEMORY_READY_CMD_REQ  0x1
+> +
+> +/* Allow transition to PXP mode without approval */
+> +#define MKHI_GFX_MEM_READY_PXP_ALLOWED  0x1
+> +
+> +#define MKHI_GROUP_ID_GFX              0x30
+> +#define MKHI_GFX_RESET_WARN_CMD_REQ    0x0
+> +#define MKHI_GFX_MEMORY_READY_CMD_REQ  0x1
+> +
+> +/* Allow transition to PXP mode without approval */
+> +#define MKHI_GFX_MEM_READY_PXP_ALLOWED  0x1
 
-This is now changed from MEI_PGI_TIMEOUT to MEI_D0I3_TIMEOUT
-
->   	mutex_lock(&dev->device_lock);
->   
->   	if (dev->pg_event != MEI_PG_EVENT_RECEIVED) {
-> @@ -930,7 +930,8 @@ static int mei_me_d0i3_enter_sync(struct mei_device *dev)
->   
->   	mutex_unlock(&dev->device_lock);
->   	wait_event_timeout(dev->wait_pg,
-> -		dev->pg_event == MEI_PG_EVENT_INTR_RECEIVED, d0i3_timeout);
-> +		dev->pg_event == MEI_PG_EVENT_INTR_RECEIVED,
-> +		dev->timeouts.d0i3);
->   	mutex_lock(&dev->device_lock);
->   
->   	if (dev->pg_event != MEI_PG_EVENT_INTR_RECEIVED) {
-> @@ -990,7 +991,6 @@ static int mei_me_d0i3_enter(struct mei_device *dev)
->   static int mei_me_d0i3_exit_sync(struct mei_device *dev)
->   {
->   	struct mei_me_hw *hw = to_me_hw(dev);
-> -	unsigned long timeout = mei_secs_to_jiffies(MEI_D0I3_TIMEOUT);
->   	int ret;
->   	u32 reg;
->   
-> @@ -1013,7 +1013,8 @@ static int mei_me_d0i3_exit_sync(struct mei_device *dev)
->   
->   	mutex_unlock(&dev->device_lock);
->   	wait_event_timeout(dev->wait_pg,
-> -		dev->pg_event == MEI_PG_EVENT_INTR_RECEIVED, timeout);
-> +		dev->pg_event == MEI_PG_EVENT_INTR_RECEIVED,
-> +		dev->timeouts.pgi);
-
-while this is still changed from MEI_D0I3_TIMEOUT to MEI_PGI_TIMEOUT.
-Did you switch the wrong one from pgi to d0i3 compared to the previous 
-rev? or is this intentional?
+Something weird is happening here. Those defs were added by the next 
+patch in the previous rev, while now they're added here twice and then 
+still added once more in the next patch, so they're defined 3 times. IMO 
+leaving it to the next patch is better, so they should just be dropped 
+from this one.
 
 Daniele
 
->   	mutex_lock(&dev->device_lock);
->   
->   	if (dev->pg_event != MEI_PG_EVENT_INTR_RECEIVED) {
-> @@ -1706,11 +1707,12 @@ EXPORT_SYMBOL_GPL(mei_me_get_cfg);
->    *
->    * @parent: device associated with physical device (pci/platform)
->    * @cfg: per device generation config
-> + * @slow_fw: configure longer timeouts as FW is slow
->    *
->    * Return: The mei_device pointer on success, NULL on failure.
->    */
->   struct mei_device *mei_me_dev_init(struct device *parent,
-> -				   const struct mei_cfg *cfg)
-> +				   const struct mei_cfg *cfg, bool slow_fw)
->   {
->   	struct mei_device *dev;
->   	struct mei_me_hw *hw;
-> @@ -1725,7 +1727,7 @@ struct mei_device *mei_me_dev_init(struct device *parent,
->   	for (i = 0; i < DMA_DSCR_NUM; i++)
->   		dev->dr_dscr[i].size = cfg->dma_size[i];
->   
-> -	mei_device_init(dev, parent, &mei_me_hw_ops);
-> +	mei_device_init(dev, parent, slow_fw, &mei_me_hw_ops);
->   	hw->cfg = cfg;
->   
->   	dev->fw_f_fw_ver_supported = cfg->fw_ver_supported;
-> diff --git a/drivers/misc/mei/hw-me.h b/drivers/misc/mei/hw-me.h
-> index 6256b36bdafd..95cf830b7c7b 100644
-> --- a/drivers/misc/mei/hw-me.h
-> +++ b/drivers/misc/mei/hw-me.h
-> @@ -132,7 +132,7 @@ enum mei_cfg_idx {
->   const struct mei_cfg *mei_me_get_cfg(kernel_ulong_t idx);
->   
->   struct mei_device *mei_me_dev_init(struct device *parent,
-> -				   const struct mei_cfg *cfg);
-> +				   const struct mei_cfg *cfg, bool slow_fw);
->   
->   int mei_me_pg_enter_sync(struct mei_device *dev);
->   int mei_me_pg_exit_sync(struct mei_device *dev);
-> diff --git a/drivers/misc/mei/hw-txe.c b/drivers/misc/mei/hw-txe.c
-> index 00652c137cc7..9862c6cd3e32 100644
-> --- a/drivers/misc/mei/hw-txe.c
-> +++ b/drivers/misc/mei/hw-txe.c
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   /*
-> - * Copyright (c) 2013-2020, Intel Corporation. All rights reserved.
-> + * Copyright (c) 2013-2022, Intel Corporation. All rights reserved.
->    * Intel Management Engine Interface (Intel MEI) Linux driver
->    */
->   
-> @@ -1201,7 +1201,7 @@ struct mei_device *mei_txe_dev_init(struct pci_dev *pdev)
->   	if (!dev)
->   		return NULL;
->   
-> -	mei_device_init(dev, &pdev->dev, &mei_txe_hw_ops);
-> +	mei_device_init(dev, &pdev->dev, false, &mei_txe_hw_ops);
->   
->   	hw = to_txe_hw(dev);
->   
-> diff --git a/drivers/misc/mei/hw.h b/drivers/misc/mei/hw.h
-> index b46077b17114..e7e020dba6b1 100644
-> --- a/drivers/misc/mei/hw.h
-> +++ b/drivers/misc/mei/hw.h
-> @@ -1,6 +1,6 @@
->   /* SPDX-License-Identifier: GPL-2.0 */
->   /*
-> - * Copyright (c) 2003-2020, Intel Corporation. All rights reserved
-> + * Copyright (c) 2003-2022, Intel Corporation. All rights reserved
->    * Intel Management Engine Interface (Intel MEI) Linux driver
->    */
->   
-> @@ -16,11 +16,16 @@
->   #define MEI_CONNECT_TIMEOUT         3  /* HPS: at least 2 seconds */
->   
->   #define MEI_CL_CONNECT_TIMEOUT     15  /* HPS: Client Connect Timeout */
-> +#define MEI_CL_CONNECT_TIMEOUT_SLOW 30 /* HPS: Client Connect Timeout, slow FW */
->   #define MEI_CLIENTS_INIT_TIMEOUT   15  /* HPS: Clients Enumeration Timeout */
->   
->   #define MEI_PGI_TIMEOUT             1  /* PG Isolation time response 1 sec */
->   #define MEI_D0I3_TIMEOUT            5  /* D0i3 set/unset max response time */
->   #define MEI_HBM_TIMEOUT             1  /* 1 second */
-> +#define MEI_HBM_TIMEOUT_SLOW        5  /* 5 second, slow FW */
 > +
-> +#define MKHI_RCV_TIMEOUT 500 /* receive timeout in msec */
-> +#define MKHI_RCV_TIMEOUT_SLOW 10000 /* receive timeout in msec, slow FW */
->   
->   /*
->    * FW page size for DMA allocations
-> diff --git a/drivers/misc/mei/init.c b/drivers/misc/mei/init.c
-> index bc054baf496c..5473b1fa6fff 100644
-> --- a/drivers/misc/mei/init.c
-> +++ b/drivers/misc/mei/init.c
-> @@ -359,14 +359,16 @@ bool mei_write_is_idle(struct mei_device *dev)
->   EXPORT_SYMBOL_GPL(mei_write_is_idle);
->   
->   /**
-> - * mei_device_init  -- initialize mei_device structure
-> + * mei_device_init - initialize mei_device structure
->    *
->    * @dev: the mei device
->    * @device: the device structure
-> + * @slow_fw: configure longer timeouts as FW is slow
->    * @hw_ops: hw operations
->    */
->   void mei_device_init(struct mei_device *dev,
->   		     struct device *device,
-> +		     bool slow_fw,
->   		     const struct mei_hw_ops *hw_ops)
->   {
->   	/* setup our list array */
-> @@ -404,6 +406,21 @@ void mei_device_init(struct mei_device *dev,
->   	dev->pg_event = MEI_PG_EVENT_IDLE;
->   	dev->ops      = hw_ops;
->   	dev->dev      = device;
+> +struct mkhi_rule_id {
+> +	__le16 rule_type;
+> +	u8 feature_id;
+> +	u8 reserved;
+> +} __packed;
 > +
-> +	dev->timeouts.hw_ready = mei_secs_to_jiffies(MEI_HW_READY_TIMEOUT);
-> +	dev->timeouts.connect = MEI_CONNECT_TIMEOUT;
-> +	dev->timeouts.client_init = MEI_CLIENTS_INIT_TIMEOUT;
-> +	dev->timeouts.pgi = mei_secs_to_jiffies(MEI_PGI_TIMEOUT);
-> +	dev->timeouts.d0i3 = mei_secs_to_jiffies(MEI_D0I3_TIMEOUT);
-> +	if (slow_fw) {
-> +		dev->timeouts.cl_connect = mei_secs_to_jiffies(MEI_CL_CONNECT_TIMEOUT_SLOW);
-> +		dev->timeouts.hbm = mei_secs_to_jiffies(MEI_HBM_TIMEOUT_SLOW);
-> +		dev->timeouts.mkhi_recv = msecs_to_jiffies(MKHI_RCV_TIMEOUT_SLOW);
-> +	} else {
-> +		dev->timeouts.cl_connect = mei_secs_to_jiffies(MEI_CL_CONNECT_TIMEOUT);
-> +		dev->timeouts.hbm = mei_secs_to_jiffies(MEI_HBM_TIMEOUT);
-> +		dev->timeouts.mkhi_recv = msecs_to_jiffies(MKHI_RCV_TIMEOUT);
-> +	}
->   }
->   EXPORT_SYMBOL_GPL(mei_device_init);
->   
-> diff --git a/drivers/misc/mei/main.c b/drivers/misc/mei/main.c
-> index 786f7c8f7f61..930887e7e38d 100644
-> --- a/drivers/misc/mei/main.c
-> +++ b/drivers/misc/mei/main.c
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   /*
-> - * Copyright (c) 2003-2020, Intel Corporation. All rights reserved.
-> + * Copyright (c) 2003-2022, Intel Corporation. All rights reserved.
->    * Intel Management Engine Interface (Intel MEI) Linux driver
->    */
->   
-> @@ -571,7 +571,7 @@ static int mei_ioctl_connect_vtag(struct file *file,
->   				    cl->state == MEI_FILE_DISCONNECTED ||
->   				    cl->state == MEI_FILE_DISCONNECT_REQUIRED ||
->   				    cl->state == MEI_FILE_DISCONNECT_REPLY),
-> -				   mei_secs_to_jiffies(MEI_CL_CONNECT_TIMEOUT));
-> +				   dev->timeouts.cl_connect);
->   		mutex_lock(&dev->device_lock);
->   	}
->   
-> diff --git a/drivers/misc/mei/mei_dev.h b/drivers/misc/mei/mei_dev.h
-> index 694f866f87ef..babbb0944b7f 100644
-> --- a/drivers/misc/mei/mei_dev.h
-> +++ b/drivers/misc/mei/mei_dev.h
-> @@ -1,6 +1,6 @@
->   /* SPDX-License-Identifier: GPL-2.0 */
->   /*
-> - * Copyright (c) 2003-2019, Intel Corporation. All rights reserved.
-> + * Copyright (c) 2003-2022, Intel Corporation. All rights reserved.
->    * Intel Management Engine Interface (Intel MEI) Linux driver
->    */
->   
-> @@ -415,6 +415,17 @@ struct mei_fw_version {
->   
->   #define MEI_MAX_FW_VER_BLOCKS 3
->   
-> +struct mei_dev_timeouts {
-> +	unsigned long hw_ready; /* Timeout on ready message, in jiffies */
-> +	int connect; /* HPS: at least 2 seconds, in seconds */
-> +	unsigned long cl_connect; /* HPS: Client Connect Timeout, in jiffies */
-> +	int client_init; /* HPS: Clients Enumeration Timeout, in seconds */
-> +	unsigned long pgi; /* PG Isolation time response, in jiffies */
-> +	unsigned int d0i3; /* D0i3 set/unset max response time, in jiffies */
-> +	unsigned long hbm; /* HBM operation timeout, in jiffies */
-> +	unsigned long mkhi_recv; /* receive timeout, in jiffies */
-> +};
+> +struct mkhi_fwcaps {
+> +	struct mkhi_rule_id id;
+> +	u8 len;
+> +	u8 data[];
+> +} __packed;
 > +
->   /**
->    * struct mei_device -  MEI private device struct
->    *
-> @@ -480,6 +491,8 @@ struct mei_fw_version {
->    * @allow_fixed_address: allow user space to connect a fixed client
->    * @override_fixed_address: force allow fixed address behavior
->    *
-> + * @timeouts: actual timeout values
-> + *
->    * @reset_work  : work item for the device reset
->    * @bus_rescan_work : work item for the bus rescan
->    *
-> @@ -568,6 +581,8 @@ struct mei_device {
->   	bool allow_fixed_address;
->   	bool override_fixed_address;
->   
-> +	struct mei_dev_timeouts timeouts;
+> +struct mkhi_msg_hdr {
+> +	u8  group_id;
+> +	u8  command;
+> +	u8  reserved;
+> +	u8  result;
+> +} __packed;
 > +
->   	struct work_struct reset_work;
->   	struct work_struct bus_rescan_work;
->   
-> @@ -632,6 +647,7 @@ static inline u32 mei_slots2data(int slots)
->    */
->   void mei_device_init(struct mei_device *dev,
->   		     struct device *device,
-> +		     bool slow_fw,
->   		     const struct mei_hw_ops *hw_ops);
->   int mei_reset(struct mei_device *dev);
->   int mei_start(struct mei_device *dev);
-> diff --git a/drivers/misc/mei/pci-me.c b/drivers/misc/mei/pci-me.c
-> index 5435604327a7..704cd0caa172 100644
-> --- a/drivers/misc/mei/pci-me.c
-> +++ b/drivers/misc/mei/pci-me.c
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   /*
-> - * Copyright (c) 2003-2020, Intel Corporation. All rights reserved.
-> + * Copyright (c) 2003-2022, Intel Corporation. All rights reserved.
->    * Intel Management Engine Interface (Intel MEI) Linux driver
->    */
->   
-> @@ -203,7 +203,7 @@ static int mei_me_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->   	}
->   
->   	/* allocates and initializes the mei dev structure */
-> -	dev = mei_me_dev_init(&pdev->dev, cfg);
-> +	dev = mei_me_dev_init(&pdev->dev, cfg, false);
->   	if (!dev) {
->   		err = -ENOMEM;
->   		goto end;
+> +struct mkhi_msg {
+> +	struct mkhi_msg_hdr hdr;
+> +	u8 data[];
+> +} __packed;
+> +
+> +#endif /* _MEI_MKHI_H_ */
 
