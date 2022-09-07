@@ -1,65 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A9C5AFC26
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 08:09:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADF45AFC28
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 08:10:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC1B10E32F;
-	Wed,  7 Sep 2022 06:08:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A461810E32F;
+	Wed,  7 Sep 2022 06:09:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30CC510E32B
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 06:08:44 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id u6so18062863eda.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 06 Sep 2022 23:08:44 -0700 (PDT)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E891C10E32F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 06:09:50 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id fg1so5889973ejc.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 06 Sep 2022 23:09:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date;
- bh=s4afVmtZrj2yE4ZH0qN126RX1/YJ7bOqfTTyi6e2VfQ=;
- b=iNvn+xFvBU3gG202ZB3IxSE7E2zfsCPETADmVVvwwTaGefLtdfoy13uL4QSQFdeNan
- 9KOVmrIvNndmzBekqn1tpdVMjkUJ+CBJlvMm8KODLzsp7jZnH0z23WCuZHdkPqOVkM/8
- NW9A/F0g4Z5oKQjAcynPAWs3/rgX/QQTVAs7s=
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+ :subject:date; bh=aHLnGYDFyf002uP87dLW7T4DlcNjggm7WzOBlYUHesM=;
+ b=GYPPKJo4fKfKSPYIOWUbod1cc/fB+KpTWhNhVJlIsS4asZ3qAyGTIoDRxrFaQ+UyyI
+ 0FiEqDMS1NzZMTZIrLLdHa9s+fneFH6yuumFd2SsH/JuHVlz7PgFwUDkM8Sy0CpQTeRv
+ uCw6qbXGUhD2sVDH57m5QgMxLAbjfet1rWc3o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
- bh=s4afVmtZrj2yE4ZH0qN126RX1/YJ7bOqfTTyi6e2VfQ=;
- b=ka5OML8sZZoaB7ZBt0MApMl4LF6XDYSrePa8C1tsRv4I49zo4+qoB/USVW1FWURTjm
- 3SyPw69B0IcHZXIHI4w3BC/fTfkG8sUFZ2YhENhZFyG+R4mTnygCpnC5PqY7DtYiWv49
- 0CYU/LGWxnhHXtrrgO8UfWEZtQYT6Um6QY0NjPWXk1bnL2fzq/HVYEt/PX921q3XmRZp
- wYi8LA3Q8EShMeL1tUMZfj89D9oSODZsf1d6IsGINoASf49zHl0P4hKtmGHbw9BoZCXH
- IsRve0TQDgCDo+p1uDmVUpXAm+qTiAtummWi/jF6LDa2ZihDswIQ9FBxRE0rxcMa0cg8
- dtFQ==
-X-Gm-Message-State: ACgBeo26d+wjnSO0LUFqHrFSHPPsMDluvvGiWambBlxd7lqwv6ADChpr
- nrBsoHDYx9Du+v8mdE90W+EWww==
-X-Google-Smtp-Source: AA6agR77BAciYBgwqpKnAc9x8rLCWXKGOPypzZ9RHfLUvfx/sMK/oygA+CUYL6PI6U3Cntlx11hJhQ==
-X-Received: by 2002:a05:6402:2804:b0:439:83c2:8be2 with SMTP id
- h4-20020a056402280400b0043983c28be2mr1748729ede.292.1662530922538; 
- Tue, 06 Sep 2022 23:08:42 -0700 (PDT)
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date;
+ bh=aHLnGYDFyf002uP87dLW7T4DlcNjggm7WzOBlYUHesM=;
+ b=nrcwehCxHciVjM2sp6cOTu5A29FH5sab3+n1mBpR7w0zJMVxmjKCxGkHSFvWMQgTrN
+ vPeu/IEW9VTa8xZsveT1juhkLMqQW/UIwyZ8XU222AM3QeU4CtUjeNtFc+X6PvH4tbI3
+ b6Wp1IixZ1Z8Ggyl0zbyEKYETFVe3Oys+usJSHAo+7AyNUEQXYButO589HhPtMR9WlfD
+ wxpzeZwg/24nbKk+kAEyII3U44Q3rpEHGJpFgEXwrBAmplVfq6sah3UcvNOi3CR2Mag8
+ 9yT1OuYEt+RoIBQfEjPxCrVSOxNeJcxYnrJ3tYVVcHGfpLvVB+wNkt2StN2ZZDSA0PXe
+ 6jOA==
+X-Gm-Message-State: ACgBeo0KWwQ9BXmcabBuYkUM/clV5agGTci6hf+5sU/HthGsaZxCTwsc
+ PJTQ+54UPkTWt645Znhz9F/kMg==
+X-Google-Smtp-Source: AA6agR7J0T3fKKGB0sCAbHDAHkXdAkQ27Aw/uDDAPCl1dXFnwMheZyZKs981ydBswzyfqDEeWSdjIQ==
+X-Received: by 2002:a17:907:7da8:b0:730:fdad:4af8 with SMTP id
+ oz40-20020a1709077da800b00730fdad4af8mr1275966ejc.401.1662530989455; 
+ Tue, 06 Sep 2022 23:09:49 -0700 (PDT)
 Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
  [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- m14-20020a1709062b8e00b0072f42ca292bsm7642841ejg.129.2022.09.06.23.08.41
+ ez19-20020a056402451300b0043df042bfc6sm9770073edb.47.2022.09.06.23.09.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 06 Sep 2022 23:08:41 -0700 (PDT)
-Date: Wed, 7 Sep 2022 08:08:39 +0200
+ Tue, 06 Sep 2022 23:09:48 -0700 (PDT)
+Date: Wed, 7 Sep 2022 08:09:46 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Greg KH <gregkh@linuxfoundation.org>
-Message-ID: <Yxg1Z8SzpcuTpRAC@phenom.ffwll.local>
-References: <20220720153233.144129-1-jim.cromie@gmail.com>
- <CAJfuBxxPRj-u5S45pPfAEaE46ji0--MTVxryEAUPe1+1c1jgEw@mail.gmail.com>
- <17628790-3905-460d-8734-981cfa8e7e51@akamai.com>
- <YvUz2Nk6YHl+jVwR@phenom.ffwll.local> <YvXtQ7/FJFSVXlGU@kroah.com>
- <Yxec8VRCQT5fJdqk@phenom.ffwll.local> <YxgwXgEpzyqg0cjR@kroah.com>
+To: Jim Cromie <jim.cromie@gmail.com>
+Message-ID: <Yxg1qgrTIKxcJ7HE@phenom.ffwll.local>
+Mail-Followup-To: Jim Cromie <jim.cromie@gmail.com>, jbaron@akamai.com,
+ gregkh@linuxfoundation.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ seanpaul@chromium.org, robdclark@gmail.com,
+ linux@rasmusvillemoes.dk, joe@perches.com
+References: <20220904214134.408619-1-jim.cromie@gmail.com>
+ <20220904214134.408619-23-jim.cromie@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YxgwXgEpzyqg0cjR@kroah.com>
+In-Reply-To: <20220904214134.408619-23-jim.cromie@gmail.com>
 X-Operating-System: Linux phenom 5.18.0-4-amd64 
-Subject: Re: [Intel-gfx] [PATCH v4 00/41] DYNDBG: opt-in class'd debug for
- modules, use in drm.
+Subject: Re: [Intel-gfx] [PATCH v6 22/57] drm_print: condense enum
+ drm_debug_category
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,80 +76,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jim.cromie@gmail.com, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Jason Baron <jbaron@akamai.com>, Sean Paul <seanpaul@chromium.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
+Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux@rasmusvillemoes.dk, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, jbaron@akamai.com, seanpaul@chromium.org,
+ dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch, joe@perches.com,
  intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 07, 2022 at 07:47:10AM +0200, Greg KH wrote:
-> On Tue, Sep 06, 2022 at 09:18:09PM +0200, Daniel Vetter wrote:
-> > On Fri, Aug 12, 2022 at 08:03:47AM +0200, Greg KH wrote:
-> > > On Thu, Aug 11, 2022 at 06:52:40PM +0200, Daniel Vetter wrote:
-> > > > On Wed, Aug 03, 2022 at 04:13:05PM -0400, Jason Baron wrote:
-> > > > > 
-> > > > > 
-> > > > > On 8/3/22 15:56, jim.cromie@gmail.com wrote:
-> > > > > > On Wed, Jul 20, 2022 at 9:32 AM Jim Cromie <jim.cromie@gmail.com> wrote:
-> > > > > >>
-> > > > > > 
-> > > > > >> Hi Jason, Greg, DRM-folk,
-> > > > > >>
-> > > > > >> This adds 'typed' "class FOO" support to dynamic-debug, where 'typed'
-> > > > > >> means either DISJOINT (like drm debug categories), or VERBOSE (like
-> > > > > >> nouveau debug-levels).  Use it in DRM modules: core, helpers, and in
-> > > > > >> drivers i915, amdgpu, nouveau.
-> > > > > >>
-> > > > > > 
-> > > > > > This revision fell over, on a conflict with something in drm-MUMBLE
-> > > > > > 
-> > > > > > Error: patch https://urldefense.com/v3/__https://patchwork.freedesktop.org/api/1.0/series/106427/revisions/2/mbox/__;!!GjvTz_vk!UCPl5Uf32cDVwwysMTfaLwoGLWomargFXuR8HjBA3xsUOjxXHXC5hneAkP4iWK91yc-LjjJxWW89-51Z$ 
-> > > > > > not applied
-> > > > > > Applying: dyndbg: fix static_branch manipulation
-> > > > > > Applying: dyndbg: fix module.dyndbg handling
-> > > > > > Applying: dyndbg: show both old and new in change-info
-> > > > > > Applying: dyndbg: reverse module walk in cat control
-> > > > > > Applying: dyndbg: reverse module.callsite walk in cat control
-> > > > > > Applying: dyndbg: use ESCAPE_SPACE for cat control
-> > > > > > Applying: dyndbg: let query-modname override actual module name
-> > > > > > Applying: dyndbg: add test_dynamic_debug module
-> > > > > > Applying: dyndbg: drop EXPORTed dynamic_debug_exec_queries
-> > > > > > 
-> > > > > > Jason,
-> > > > > > those above are decent maintenance patches, particularly the drop export.
-> > > > > > It would be nice to trim this unused api this cycle.
-> > > > > 
-> > > > > Hi Jim,
-> > > > > 
-> > > > > Agreed - I was thinking the same thing. Feel free to add
-> > > > > Acked-by: Jason Baron <jbaron@akamai.com> to those first 9.
-> > > > 
-> > > > Does Greg KH usually pick up dyndbg patches or someone else or do I need
-> > > > to do something? Would be great to get some movement here since -rc1 goes
-> > > > out and merging will restart next week.
-> > > 
-> > > Yes, I can take these into my tree after -rc1 is out.
-> > 
-> > [uncovering from an absolutely impressive cascade of holes :-(]
-> > 
-> > Did this happen and I can stop worrying here? I'd like to make sure these
-> > drm debug infra improvements keep moving.
+On Sun, Sep 04, 2022 at 03:40:59PM -0600, Jim Cromie wrote:
+> enum drm_debug_category has 10 categories, but is initialized with
+> bitmasks which require 10 bits of underlying storage.  By using
+> natural enumeration, and moving the BIT(cat) into drm_debug_enabled(),
+> the enum fits in 4 bits, allowing the category to be represented
+> directly in pr_debug callsites, via the ddebug.class_id field.
 > 
-> I didn't take these, and I think I saw a 6th series sent:
-> 	https://lore.kernel.org/r/20220904214134.408619-1-jim.cromie@gmail.com
+> While this slightly pessimizes the bit-test in drm_debug_enabled(),
+> using dyndbg with JUMP_LABEL will avoid the function entirely.
 > 
-> If you ack them, I will pick them up.
+> NOTE: this change forecloses the possibility of doing:
+> 
+>   drm_dbg(DRM_UT_CORE|DRM_UT_KMS, "weird 2-cat experiment")
+> 
+> but thats already strongly implied by the use of the enum itself; its
+> not a normal enum if it can be 2 values simultaneously.
+> 
+> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 
-Hm here we only talked about the first 9 or so patches from the series, do
-you still want my ack on those?
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-Since yeah I do like the direction of this :-)
+I guess this would also be a good patch to apply already, so we reduce the
+patch set size somewhat?
 -Daniel
+
+> ---
+>  include/drm/drm_print.h | 22 +++++++++++-----------
+>  1 file changed, 11 insertions(+), 11 deletions(-)
+> 
+> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+> index 22fabdeed297..b3b470440e46 100644
+> --- a/include/drm/drm_print.h
+> +++ b/include/drm/drm_print.h
+> @@ -279,49 +279,49 @@ enum drm_debug_category {
+>  	 * @DRM_UT_CORE: Used in the generic drm code: drm_ioctl.c, drm_mm.c,
+>  	 * drm_memory.c, ...
+>  	 */
+> -	DRM_UT_CORE		= 0x01,
+> +	DRM_UT_CORE,
+>  	/**
+>  	 * @DRM_UT_DRIVER: Used in the vendor specific part of the driver: i915,
+>  	 * radeon, ... macro.
+>  	 */
+> -	DRM_UT_DRIVER		= 0x02,
+> +	DRM_UT_DRIVER,
+>  	/**
+>  	 * @DRM_UT_KMS: Used in the modesetting code.
+>  	 */
+> -	DRM_UT_KMS		= 0x04,
+> +	DRM_UT_KMS,
+>  	/**
+>  	 * @DRM_UT_PRIME: Used in the prime code.
+>  	 */
+> -	DRM_UT_PRIME		= 0x08,
+> +	DRM_UT_PRIME,
+>  	/**
+>  	 * @DRM_UT_ATOMIC: Used in the atomic code.
+>  	 */
+> -	DRM_UT_ATOMIC		= 0x10,
+> +	DRM_UT_ATOMIC,
+>  	/**
+>  	 * @DRM_UT_VBL: Used for verbose debug message in the vblank code.
+>  	 */
+> -	DRM_UT_VBL		= 0x20,
+> +	DRM_UT_VBL,
+>  	/**
+>  	 * @DRM_UT_STATE: Used for verbose atomic state debugging.
+>  	 */
+> -	DRM_UT_STATE		= 0x40,
+> +	DRM_UT_STATE,
+>  	/**
+>  	 * @DRM_UT_LEASE: Used in the lease code.
+>  	 */
+> -	DRM_UT_LEASE		= 0x80,
+> +	DRM_UT_LEASE,
+>  	/**
+>  	 * @DRM_UT_DP: Used in the DP code.
+>  	 */
+> -	DRM_UT_DP		= 0x100,
+> +	DRM_UT_DP,
+>  	/**
+>  	 * @DRM_UT_DRMRES: Used in the drm managed resources code.
+>  	 */
+> -	DRM_UT_DRMRES		= 0x200,
+> +	DRM_UT_DRMRES
+>  };
+>  
+>  static inline bool drm_debug_enabled(enum drm_debug_category category)
+>  {
+> -	return unlikely(__drm_debug & category);
+> +	return unlikely(__drm_debug & BIT(category));
+>  }
+>  
+>  /*
+> -- 
+> 2.37.2
+> 
+
 -- 
 Daniel Vetter
 Software Engineer, Intel Corporation
