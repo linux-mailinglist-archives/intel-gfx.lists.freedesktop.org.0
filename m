@@ -1,34 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBD365B0386
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 14:01:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E6545B03A3
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 14:10:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93FFF10E665;
-	Wed,  7 Sep 2022 12:01:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B147210E696;
+	Wed,  7 Sep 2022 12:10:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7E0F210E665;
- Wed,  7 Sep 2022 12:01:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 77AF4AAA91;
- Wed,  7 Sep 2022 12:01:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6503481314489049993=="
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
+ [66.111.4.224])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43FF510E418;
+ Wed,  7 Sep 2022 12:10:18 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id CB3B45802A6;
+ Wed,  7 Sep 2022 08:10:14 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Wed, 07 Sep 2022 08:10:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; t=1662552614; x=1662559814; bh=mO0DxpIxEI
+ aEUkrFxNz04g9y84A96XbiPwxWwzTH7i4=; b=fom/8HSsBSNM55Lsdc1X75CCSP
+ PN8l87PDFyGp8TPirwp7/NKdyQyE9MOsckYzTIfsGD/eOWGZT1IjEvwX6zRlR0c8
+ xyd4O5AWtoc0+t62PjFtQ3RhOXb+bOnAEcfbMUfDuJAjQ6zjcXBUAvby3kG2w20b
+ j4yfradaLCNCQ4z9shorYr//Dwuft/CPwPoHfm1ruXd0ff7C+O0fdT/9xlZ8Fyd+
+ LKIrBSAPvoJbYjAYVRV4xsznzw5wgSElrFDRTMXlahcPKe4Y7zn2SQlqk2E5IL40
+ z9dpaDBbJUAmczQMZsMKwA3iTktpgYhzh2IM5IlJ4gdMKNv+HNHxTqw5tVvw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm2; t=1662552614; x=1662559814; bh=mO0DxpIxEIaEUkrFxNz04g9y84A9
+ 6XbiPwxWwzTH7i4=; b=FbB8/owoOO+ZLDH3EfniBXdqyJiFnJp0Jors+WaT5pLQ
+ 82yMu72iyNa3D+sLEkaOfuaQPmMu4qBDEhaw1y1E2VPqQsh39Vmnp2mu+yG65exK
+ 9XCM6Ux2cTtPelDoWnm1jZ1K4lzccmE2LL/qG3GEJPQqpHeu4UVuOiGf65nzurBx
+ OqflA4TM4RlvQWplqnrEGlVYw2fqBkDA5EBlljW+t7sG6IOihkY/kmK8wdQS67Sx
+ J8GsmdY3H98n5BVGhwvoOrB+W0CZFuKn6e5bMYUTQKobszQuLNN7oh3oDwv8gUEz
+ kJIqZqo7NoK9rL6MFL+hUomoXuhay/dgEfYX5A+HQA==
+X-ME-Sender: <xms:I4oYYycILHs_ZLR117ki1XkoeLqqUVDpRjJmBH3yVU5Nu8j8qLUO0g>
+ <xme:I4oYY8Oe_J6AHfDLoyTjH7Fo-tMAImiY7yMs1ESDtIa0uGa2fs2vEsuKarQgBs589
+ P82kDx_abbSPcDFx-g>
+X-ME-Received: <xmr:I4oYYzgjVxWAUOuEph6TExbD6A1U6of1EhT_r60bYTyp3bjib9h7zeO9YQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedttddggeejucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
+ ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:JIoYY_-6QayOoOGkUbElibmIA_OqIzRpgcohlNxcKGfCStYTFH0RnQ>
+ <xmx:JIoYY-t8VScFMm-81-zpX7DH7PQdTruT0rrK_OygWRInoFppYX5puQ>
+ <xmx:JIoYY2HuKwFropkYVWWfdzmm9aLh-9c2cP_gK9AFDAki_baEL1rWiw>
+ <xmx:JooYY6ffURLJH6mELmdqCpg36o9Zir-cBfbfKsj2XMnXFNsdtLFI7Q>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 7 Sep 2022 08:10:11 -0400 (EDT)
+Date: Wed, 7 Sep 2022 14:10:09 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Mateusz Kwiatkowski <kfyatek@gmail.com>
+Message-ID: <20220907121009.toizfolruuazcrns@houat>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-9-459522d653a7@cerno.tech>
+ <30a9d7cd-d9ff-3177-ac6c-e7c1f966d89a@gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Wed, 07 Sep 2022 12:01:08 -0000
-Message-ID: <166255206846.19839.7395974443987803810@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220907091057.11572-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220907091057.11572-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Make_fastset_not_suck_and_allow_seamless_M/N_changes_?=
- =?utf-8?b?KHJldjcp?=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="nqpndwa6reldojsu"
+Content-Disposition: inline
+In-Reply-To: <30a9d7cd-d9ff-3177-ac6c-e7c1f966d89a@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v2 09/41] drm/connector: Add TV standard
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,251 +85,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6503481314489049993==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+--nqpndwa6reldojsu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/i915: Make fastset not suck and allow seamless M/N changes (rev7)
-URL   : https://patchwork.freedesktop.org/series/103491/
-State : success
+Hi,
 
-== Summary ==
+On Fri, Sep 02, 2022 at 12:00:33AM +0200, Mateusz Kwiatkowski wrote:
+> W dniu 29.08.2022 o 15:11, Maxime Ripard pisze:
+> > The TV mode property has been around for a while now to select and get =
+the
+> > current TV mode output on an analog TV connector.
+> >
+> > Despite that property name being generic, its content isn't and has been
+> > driver-specific which makes it hard to build any generic behaviour on t=
+op
+> > of it, both in kernel and user-space.
+> >
+> > Let's create a new bitmask tv norm property, that can contain any of the
+> > analog TV standards currently supported by kernel drivers. Each driver =
+can
+> > then pass in a bitmask of the modes it supports.
+>=20
+> This is not a bitmask property anymore, you've just changed it to an enum.
+> The commit message is now misleading.
+>=20
+> > +static const struct drm_prop_enum_list drm_tv_mode_enum_list[] =3D {
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_NTSC_443, "NTSC-443" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_NTSC_J, "NTSC-J" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_NTSC_M, "NTSC-M" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_PAL_60, "PAL-60" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_PAL_B, "PAL-B" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_PAL_D, "PAL-D" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_PAL_G, "PAL-G" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_PAL_H, "PAL-H" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_PAL_I, "PAL-I" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_PAL_M, "PAL-M" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_PAL_N, "PAL-N" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_PAL_NC, "PAL-Nc" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_SECAM_60, "SECAM-60" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_SECAM_B, "SECAM-B" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_SECAM_D, "SECAM-D" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_SECAM_G, "SECAM-G" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_SECAM_K, "SECAM-K" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_SECAM_K1, "SECAM-K1" },
+> > +=A0=A0 =A0{ DRM_MODE_TV_MODE_SECAM_L, "SECAM-L" },
+> > +};
+>=20
+> I did not comment on it the last time, but this list looks a little bit r=
+andom.
+>=20
+> Compared to the standards defined by V4L2, you also define SECAM-60 (a go=
+od
+> thing to define, because why not), but don't define PAL-B1, PAL-D1, PAL-K,
+> SECAM-H, SECAM-LC (whatever that is - probably just another name for SECA=
+M-L,
+> see my comment about PAL-Nc below), or NTSC-M-KR (a Korean variant of NTS=
+C).
+>=20
+> Like I mentioned previously, I'm personally not a fan of including all th=
+ose
+> CCIR/ITU system variants, as they don't mean any difference to the output=
+ unless
+> there is an RF modulator involved. But I get it that they have already be=
+en used
+> and regressing probably wouldn't be a very good idea. But in that case ke=
+eping
+> it consistent with the set of values used by V4L2 would be wise, I think.
 
-CI Bug Log - changes from CI_DRM_12087 -> Patchwork_103491v7
-====================================================
+Ack. What would be the list of standards we'd absolutely need? NSTC-M,
+NTSC-J, PAL-60, PAL-B, PAL-M, SECAM-60 and SECAM-B?
 
-Summary
--------
+> > +/**
+> > + * drm_mode_create_tv_properties - create TV specific connector proper=
+ties
+> > + * @dev: DRM device
+> > + * @supported_tv_modes: Bitmask of TV modes supported (See DRM_MODE_TV=
+_MODE_*)
+> > +
+> > + * Called by a driver's TV initialization routine, this function creat=
+es
+> > + * the TV specific connector properties for a given device.=A0 Caller =
+is
+> > + * responsible for allocating a list of format names and passing them =
+to
+> > + * this routine.
+> > + *
+> > + * Returns:
+> > + * 0 on success or a negative error code on failure.
+> > + */
+> > +int drm_mode_create_tv_properties(struct drm_device *dev,
+> > +=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0 unsigned int supported_tv_=
+modes)
+>=20
+> supported_tv_modes is supposed to be a bitmask of BIT(DRM_MODE_TV_MODE_*)
+> (or (1<<DRM_MODE_TV_MODE_*)) rather than DRM_MODE_TV_MODE_* directly, but=
+ this
+> is not said explicitly anywhere in this doc comment.
 
-  **SUCCESS**
+The argument doc mentions that it's a "Bitmask of TV modes supported
+(See DRM_MODE_TV_MODE_*)", how would you improve it?
 
-  No regressions found.
+Thanks!
+Maxime
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html
+--nqpndwa6reldojsu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Participating hosts (43 -> 42)
-------------------------------
+-----BEGIN PGP SIGNATURE-----
 
-  Missing    (1): fi-bdw-samus 
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYxiKIQAKCRDj7w1vZxhR
+xQFFAQDXwgKR9pMVMn84nPWIY7c88Fvo8DwU/8cFYEx48+uZKwEAjifIFr4Dz1pH
+ltskjsJPqZk1PnFrApehWE8PzkjhpAc=
+=FzGO
+-----END PGP SIGNATURE-----
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_103491v7 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2] ([i915#3921])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-bsw-kefka:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@kms_chamelium@common-hpd-after-suspend.html
-    - fi-blb-e6850:       NOTRUN -> [SKIP][4] ([fdo#109271])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [PASS][5] -> [FAIL][6] ([i915#6298])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rplp-1}:       [DMESG-WARN][7] ([i915#2867]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [INCOMPLETE][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][11] ([i915#4528]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#5278]: https://gitlab.freedesktop.org/drm/intel/issues/5278
-  [i915#6106]: https://gitlab.freedesktop.org/drm/intel/issues/6106
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6599]: https://gitlab.freedesktop.org/drm/intel/issues/6599
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12087 -> Patchwork_103491v7
-
-  CI-20190529: 20190529
-  CI_DRM_12087: 8bdb74fa246bca022b7a5c814ce5a93fe4614402 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6647: 0bf58300f0287d2f83ac02d1201b0d0a229b637c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_103491v7: 8bdb74fa246bca022b7a5c814ce5a93fe4614402 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-42d7afdd90d4 drm/i915: Round TMDS clock to nearest
-3341c8c62857 drm/i915: Use a fixed N value always
-9c1462b636c4 drm/i915: Allow M/N change during fastset on bdw+
-72ca3da4bd22 drm/i915: Add intel_panel_highest_mode()
-6b52e2480931 drm/i915: Skip intel_modeset_pipe_config_late() if the pipe is not enabled
-ca809f4d5343 drm/i915: Nuke fastet state copy hacks
-34abfd1e33de drm/i915: Set active dpll early for icl+
-bcae3d7e9556 drm/i915: Make all clock checks non-fuzzy
-3e65290d26c0 drm/i915: Make M/N checks non-fuzzy
-8ef0ca492820 drm/i915: Compute clocks earlier
-0c6a5c0436ec drm/i915: Feed the DPLL output freq back into crtc_state
-111b646797ea drm/i915: Reassign DPLLs only for crtcs going throug .compute_config()
-ed1d7716d0ce drm/i915: Do .crtc_compute_clock() earlier
-14ef589fc01e drm/i915/dsi: Extract {vlv, bxt}_get_pclk()
-bc37ac1162ae drm/i915: Extract HAS_DOUBLE_BUFFERED_M_N()
-0b73f089af82 drm/i915: Shuffle some PLL code around
-296860fbab7d drm/i915: Relocate intel_crtc_dotclock()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html
-
---===============6503481314489049993==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Make fastset not suck and allow seamless M/N changes (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/103491/">https://patchwork.freedesktop.org/series/103491/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12087 -&gt; Patchwork_103491v7</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Missing    (1): fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_103491v7 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-<li>
-<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12087 -&gt; Patchwork_103491v7</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12087: 8bdb74fa246bca022b7a5c814ce5a93fe4614402 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6647: 0bf58300f0287d2f83ac02d1201b0d0a229b637c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_103491v7: 8bdb74fa246bca022b7a5c814ce5a93fe4614402 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>42d7afdd90d4 drm/i915: Round TMDS clock to nearest<br />
-3341c8c62857 drm/i915: Use a fixed N value always<br />
-9c1462b636c4 drm/i915: Allow M/N change during fastset on bdw+<br />
-72ca3da4bd22 drm/i915: Add intel_panel_highest_mode()<br />
-6b52e2480931 drm/i915: Skip intel_modeset_pipe_config_late() if the pipe is not enabled<br />
-ca809f4d5343 drm/i915: Nuke fastet state copy hacks<br />
-34abfd1e33de drm/i915: Set active dpll early for icl+<br />
-bcae3d7e9556 drm/i915: Make all clock checks non-fuzzy<br />
-3e65290d26c0 drm/i915: Make M/N checks non-fuzzy<br />
-8ef0ca492820 drm/i915: Compute clocks earlier<br />
-0c6a5c0436ec drm/i915: Feed the DPLL output freq back into crtc_state<br />
-111b646797ea drm/i915: Reassign DPLLs only for crtcs going throug .compute_config()<br />
-ed1d7716d0ce drm/i915: Do .crtc_compute_clock() earlier<br />
-14ef589fc01e drm/i915/dsi: Extract {vlv, bxt}_get_pclk()<br />
-bc37ac1162ae drm/i915: Extract HAS_DOUBLE_BUFFERED_M_N()<br />
-0b73f089af82 drm/i915: Shuffle some PLL code around<br />
-296860fbab7d drm/i915: Relocate intel_crtc_dotclock()</p>
-
-</body>
-</html>
-
---===============6503481314489049993==--
+--nqpndwa6reldojsu--
