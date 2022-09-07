@@ -2,82 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B387B5B5B60
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 15:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8A85B5B47
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 15:38:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 067DF10E4DC;
-	Mon, 12 Sep 2022 13:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4988910E49C;
+	Mon, 12 Sep 2022 13:38:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-00190b01.pphosted.com (mx0a-00190b01.pphosted.com
- [IPv6:2620:100:9001:583::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39F8110E81F;
- Wed,  7 Sep 2022 18:19:32 +0000 (UTC)
-Received: from pps.filterd (m0050093.ppops.net [127.0.0.1])
- by m0050093.ppops.net-00190b01. (8.17.1.5/8.17.1.5) with ESMTP id
- 287HVasv032356; Wed, 7 Sep 2022 19:19:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=jan2016.eng;
- bh=pAAAZ4N91jNAxfB3MZbN+Hr8QUu9dLU0om6B6c+CNPg=;
- b=kID3whC70e5d0nnXBW/pBoM0ZjBRFC3o3xhYo79LDb0MDCpWmEI5oxPFBNdXHC5s7iPb
- 1Z0zA4LlUr3OtlYHBCtrydA5cQZa0VGtIhiBDL7mAgUk96uJt8qJRGK77mq0qQQs+hJX
- vyIWaW8qrtG/EJUO9bYdSUBv3hePttTeniUKSFE2/eUjas5chSEwPtAxUwCPq2whx8+3
- 56JJ1OguZcXUnE1kCbwm2tVpdYxD2Is1kFAdcdNT1bpVFyMVPsh3zZk7JVfJIzVfx2xY
- 0TDKFMv2Qheq7UITOoQOFSVg6sqJANzcw0ekxe8McZDk8UFAkaWRv2LfL8IPvORAnX69 JA== 
-Received: from prod-mail-ppoint5 (prod-mail-ppoint5.akamai.com [184.51.33.60]
- (may be forged))
- by m0050093.ppops.net-00190b01. (PPS) with ESMTPS id 3je07est5w-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 07 Sep 2022 19:19:28 +0100
-Received: from pps.filterd (prod-mail-ppoint5.akamai.com [127.0.0.1])
- by prod-mail-ppoint5.akamai.com (8.17.1.5/8.17.1.5) with ESMTP id
- 287HnKQD008298; Wed, 7 Sep 2022 11:19:27 -0700
-Received: from prod-mail-relay11.akamai.com ([172.27.118.250])
- by prod-mail-ppoint5.akamai.com (PPS) with ESMTP id 3jc4w9xb0s-1;
- Wed, 07 Sep 2022 11:19:27 -0700
-Received: from [0.0.0.0] (prod-ssh-gw01.bos01.corp.akamai.com [172.27.119.138])
- by prod-mail-relay11.akamai.com (Postfix) with ESMTP id E7C512ED41;
- Wed,  7 Sep 2022 18:19:26 +0000 (GMT)
-Message-ID: <2d3846cb-ff9a-3484-61a8-973799727d8f@akamai.com>
-Date: Wed, 7 Sep 2022 14:19:26 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com
+ [IPv6:2a00:1450:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCA6710E85F;
+ Wed,  7 Sep 2022 19:52:14 +0000 (UTC)
+Received: by mail-lj1-x232.google.com with SMTP id x10so17260593ljq.4;
+ Wed, 07 Sep 2022 12:52:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:from:to:cc:subject:date;
+ bh=yUwzU/FoG+85Ns4JdKII1z4ExnjRnKZlkKN2lB94FG4=;
+ b=EKndYRdVlHtxdl+2W2aMAnRcArmaEjb20S8XowRXOt1VLMMDtTJdYqxKxAlBBZXyWd
+ beiU3DVPCWge6/5Jg6qPhE0a+1616foGXx6ccgD5um3vyJVgdOypvwX3Alfwmn0OMEv6
+ osBKtnVrz3Tqxmnij9JYHOmyhHrATbkkWaGS1Nd40b8MWyBfRTvw/MjsD1piSslcskUZ
+ NRYgTDsApqjZ8j1gq4VKOeOhsZtRXmWkF7W30sVhfK9lr0b7H5IgxBJWFO7zJ5vka5fs
+ XJpXg6LAG3ogXAWMfihP+jmbQNxYhsPHDAC71b5pHhwLgnlh9O2gkRzz2MPrwhkjteEM
+ Axag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:x-gm-message-state:from:to:cc:subject:date;
+ bh=yUwzU/FoG+85Ns4JdKII1z4ExnjRnKZlkKN2lB94FG4=;
+ b=lU0qswS8EVCyOOsO5y3GosNIzQtlA0OYiYqO3go/wO2EmvKo2JDOG61AZyruNOMUYy
+ E+aX+IOsU0z4VqkIQViYew7ptVqqrKvCe/gBhKY6dbfeiEKZy3+oySQC2o+vZpEF3cOR
+ k0axqx/UrOsrMU/eTtlSPI7vV7JLBU0nuymj9tySJFrnkbCBkH0kjwWwEwxBMimg1Yd9
+ WR8zadEdytl110+zKvVYEJcbKkjBkAuUyA4DihlGBACG6/TNPw5f+tDFdCZL8tYxFyVV
+ Y+ODxxLPad0Wcdm8OKX12g1GXNkoN6/Bqqqyvyz/VaBb5sByC1C5oCBpm++5gcjKgXMf
+ Wdew==
+X-Gm-Message-State: ACgBeo0lOlNQo0bLQCQQB8KhtGQdufkH/+R7vnhUaCW0DzgItzx/jOiY
+ EFA9Oa4bTz2ypxSc44ax2Tk=
+X-Google-Smtp-Source: AA6agR7prye+anBkusQWIezcT9fPSQhdu5CxUaHX1aDvTKI8jdwbC5l35BglvHJ8rPbpT1REMeLQag==
+X-Received: by 2002:a05:651c:110d:b0:269:f9c0:d155 with SMTP id
+ e13-20020a05651c110d00b00269f9c0d155mr1430507ljo.493.1662580332833; 
+ Wed, 07 Sep 2022 12:52:12 -0700 (PDT)
+Received: from ?IPV6:2a02:a31a:a240:1700:e929:c054:a46d:3844?
+ ([2a02:a31a:a240:1700:e929:c054:a46d:3844])
+ by smtp.googlemail.com with ESMTPSA id
+ m2-20020a056512358200b004947c4dfde8sm2693435lfr.129.2022.09.07.12.52.10
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 07 Sep 2022 12:52:12 -0700 (PDT)
+From: Mateusz Kwiatkowski <kfyatek@gmail.com>
+X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Message-ID: <6639fb8f-e16c-1ef5-5978-c522f76c8ded@gmail.com>
+Date: Wed, 7 Sep 2022 21:52:09 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Jim Cromie <jim.cromie@gmail.com>, gregkh@linuxfoundation.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20220904214134.408619-1-jim.cromie@gmail.com>
- <20220904214134.408619-18-jim.cromie@gmail.com>
-From: Jason Baron <jbaron@akamai.com>
-In-Reply-To: <20220904214134.408619-18-jim.cromie@gmail.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.2.1
+Content-Language: pl
+To: Maxime Ripard <maxime@cerno.tech>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-9-459522d653a7@cerno.tech>
+ <30a9d7cd-d9ff-3177-ac6c-e7c1f966d89a@gmail.com>
+ <20220907121009.toizfolruuazcrns@houat>
+In-Reply-To: <20220907121009.toizfolruuazcrns@houat>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-07_10,2022-09-07_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- mlxscore=0 mlxlogscore=999
- suspectscore=0 phishscore=0 bulkscore=0 malwarescore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
- definitions=main-2209070069
-X-Proofpoint-GUID: X8jGmyYHpuMt6qCmp30gNLbLd31u9Ys_
-X-Proofpoint-ORIG-GUID: X8jGmyYHpuMt6qCmp30gNLbLd31u9Ys_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-07_10,2022-09-07_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
- lowpriorityscore=0
- bulkscore=0 impostorscore=0 clxscore=1015 phishscore=0 mlxlogscore=999
- spamscore=0 suspectscore=0 priorityscore=1501 mlxscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
- definitions=main-2209070069
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 12 Sep 2022 13:38:08 +0000
-Subject: Re: [Intel-gfx] [PATCH v6 17/57] dyndbg: validate class FOO by
- checking with module
+Subject: Re: [Intel-gfx] [PATCH v2 09/41] drm/connector: Add TV standard
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,216 +81,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: joe@perches.com, daniel.vetter@ffwll.ch, seanpaul@chromium.org,
- linux@rasmusvillemoes.dk
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Maxime,
 
+W dniu 7.09.2022 o 14:10, Maxime Ripard pisze:
+> Hi,
+>
+> On Fri, Sep 02, 2022 at 12:00:33AM +0200, Mateusz Kwiatkowski wrote:
+>> W dniu 29.08.2022 o 15:11, Maxime Ripard pisze:
+>>> The TV mode property has been around for a while now to select and get the
+>>> current TV mode output on an analog TV connector.
+>>>
+>>> Despite that property name being generic, its content isn't and has been
+>>> driver-specific which makes it hard to build any generic behaviour on top
+>>> of it, both in kernel and user-space.
+>>>
+>>> Let's create a new bitmask tv norm property, that can contain any of the
+>>> analog TV standards currently supported by kernel drivers. Each driver can
+>>> then pass in a bitmask of the modes it supports.
+>>
+>> This is not a bitmask property anymore, you've just changed it to an enum.
+>> The commit message is now misleading.
+>>
+>>> +static const struct drm_prop_enum_list drm_tv_mode_enum_list[] = {
+>>> +    { DRM_MODE_TV_MODE_NTSC_443, "NTSC-443" },
+>>> +    { DRM_MODE_TV_MODE_NTSC_J, "NTSC-J" },
+>>> +    { DRM_MODE_TV_MODE_NTSC_M, "NTSC-M" },
+>>> +    { DRM_MODE_TV_MODE_PAL_60, "PAL-60" },
+>>> +    { DRM_MODE_TV_MODE_PAL_B, "PAL-B" },
+>>> +    { DRM_MODE_TV_MODE_PAL_D, "PAL-D" },
+>>> +    { DRM_MODE_TV_MODE_PAL_G, "PAL-G" },
+>>> +    { DRM_MODE_TV_MODE_PAL_H, "PAL-H" },
+>>> +    { DRM_MODE_TV_MODE_PAL_I, "PAL-I" },
+>>> +    { DRM_MODE_TV_MODE_PAL_M, "PAL-M" },
+>>> +    { DRM_MODE_TV_MODE_PAL_N, "PAL-N" },
+>>> +    { DRM_MODE_TV_MODE_PAL_NC, "PAL-Nc" },
+>>> +    { DRM_MODE_TV_MODE_SECAM_60, "SECAM-60" },
+>>> +    { DRM_MODE_TV_MODE_SECAM_B, "SECAM-B" },
+>>> +    { DRM_MODE_TV_MODE_SECAM_D, "SECAM-D" },
+>>> +    { DRM_MODE_TV_MODE_SECAM_G, "SECAM-G" },
+>>> +    { DRM_MODE_TV_MODE_SECAM_K, "SECAM-K" },
+>>> +    { DRM_MODE_TV_MODE_SECAM_K1, "SECAM-K1" },
+>>> +    { DRM_MODE_TV_MODE_SECAM_L, "SECAM-L" },
+>>> +};
+>>
+>> I did not comment on it the last time, but this list looks a little bit random.
+>>
+>> Compared to the standards defined by V4L2, you also define SECAM-60 (a good
+>> thing to define, because why not), but don't define PAL-B1, PAL-D1, PAL-K,
+>> SECAM-H, SECAM-LC (whatever that is - probably just another name for SECAM-L,
+>> see my comment about PAL-Nc below), or NTSC-M-KR (a Korean variant of NTSC).
+>>
+>> Like I mentioned previously, I'm personally not a fan of including all those
+>> CCIR/ITU system variants, as they don't mean any difference to the output unless
+>> there is an RF modulator involved. But I get it that they have already been used
+>> and regressing probably wouldn't be a very good idea. But in that case keeping
+>> it consistent with the set of values used by V4L2 would be wise, I think.
+>
+> Ack. What would be the list of standards we'd absolutely need? NSTC-M,
+> NTSC-J, PAL-60, PAL-B, PAL-M, SECAM-60 and SECAM-B?
 
-On 9/4/22 17:40, Jim Cromie wrote:
-> Add module-to-class validation:
-> 
->   #> echo class DRM_UT_KMS +p > /proc/dynamic_debug/control
-> 
-> If a query has "class FOO", then ddebug_find_valid_class(), called
-> from ddebug_change(), requires that FOO is known to module X,
-> otherwize the query is skipped entirely for X.  This protects each
-> module's class-space, other than the default:31.
-> 
-> The authors' choice of FOO is highly selective, giving isolation
-> and/or coordinated sharing of FOOs.  For example, only DRM modules
-> should know and respond to DRM_UT_KMS.
-> 
-> So this, combined with module's opt-in declaration of known classes,
-> effectively privatizes the .class_id space for each module (or
-> coordinated set of modules).
-> 
-> Notes:
-> 
-> For all "class FOO" queries, ddebug_find_valid_class() is called, it
-> returns the map matching the query, and sets valid_class via an
-> *outvar).
-> 
-> If no "class FOO" is supplied, valid_class = _CLASS_DFLT.  This
-> insures that legacy queries do not trample on new class'd callsites,
-> as they get added.
+The "essential list" IMO is NTSC, NTSC-J, NTSC-443, PAL, PAL-M, PAL-N and SECAM.
+Note that:
 
+- I intentionally propose "NTSC", "PAL" and "SECAM" without an ITU system
+  designation. If we only consider composite signals, there's no difference
+  between e.g. PAL-B, PAL-D and PAL-I, so it's better to label it as a generic
+  mode, IMO.
 
-Hi Jim,
+  * PAL-M and PAL-N are different, because those unique color encodings were
+    only ever used with Systems M and N, respectively.
 
-I'm wondering about the case where we have a callsite which is marked
-as 'class foo', but the query string is done by say module and file, so:
+  * NTSC-J is also different, because "System J" doesn't exist anywhere in ITU
+    documents. Japan technically uses System M with a non-standard black level.
+    But "NTSC-J" stuck as a universally recognized name for that variant.
 
-# echo "module bar file foo.c +p" > /proc/dynamic_debug_control
+- I intentionally did not list PAL-60 or SECAM-60. TBH... PAL-60 is just
+  regular PAL paired with 480i60 modeline. Most if not all displays that
+  accept PAL-60 input will just label it as "PAL". If we are not introducing
+  strict modeline validation, then maybe separating PAL and PAL-60 isn't really
+  necessary? Same goes for SECAM vs. SECAM-60.
+ 
+  ...and same goes for NTSC vs. NTSC-50 a.k.a NTSC-N, which is a very exotic
+  mode, but known to exist at least in the Atari ST world, see also:
+  https://en.wikipedia.org/wiki/NTSC#NTSC-N/NTSC50
 
-With the proposed code, I think this ends up not enabling anything right?
-Because valid class is set to _DPRINTK_CLASS_DFLT and then:
-'dp->class_id != valid_class' is true?
+Combining PAL and PAL-60 into a single setting would complicate the vc4 driver
+a little bit, though, as the registers need to be set up differently for those.
 
-This seems confusing to me as a user as this doesn't work like the
-other queries....so maybe we should only do the
-'dp->class_id != valid_class' check *if* query->class_string is set,
-see below.
+My feelings about the PAL-60 issue are not that strong, though. Merging PAL
+and PAL-60 in this context is just a loose suggestion, I won't even try to
+argue if you disagree.
 
+>>> +/**
+>>> + * drm_mode_create_tv_properties - create TV specific connector properties
+>>> + * @dev: DRM device
+>>> + * @supported_tv_modes: Bitmask of TV modes supported (See DRM_MODE_TV_MODE_*)
+>>> +
+>>> + * Called by a driver's TV initialization routine, this function creates
+>>> + * the TV specific connector properties for a given device.  Caller is
+>>> + * responsible for allocating a list of format names and passing them to
+>>> + * this routine.
+>>> + *
+>>> + * Returns:
+>>> + * 0 on success or a negative error code on failure.
+>>> + */
+>>> +int drm_mode_create_tv_properties(struct drm_device *dev,
+>>> +                  unsigned int supported_tv_modes)
+>>
+>> supported_tv_modes is supposed to be a bitmask of BIT(DRM_MODE_TV_MODE_*)
+>> (or (1<<DRM_MODE_TV_MODE_*)) rather than DRM_MODE_TV_MODE_* directly, but this
+>> is not said explicitly anywhere in this doc comment.
+>
+> The argument doc mentions that it's a "Bitmask of TV modes supported
+> (See DRM_MODE_TV_MODE_*)", how would you improve it?
 
+Maybe something like "Bitwise OR of BIT(DRM_MODE_TV_MODE_*) values"? Or maybe
+just add a little usage example?
 
-> 
-> Also add a new column to control-file output, displaying non-default
-> class-name (when found) or the "unknown _id:", if it has not been
-> (correctly) declared with one of the declarator macros.
-> 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
->  lib/dynamic_debug.c | 76 ++++++++++++++++++++++++++++++++++++++++-----
->  1 file changed, 68 insertions(+), 8 deletions(-)
-> 
-> diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-> index b71efd0b491d..db96ded78c3f 100644
-> --- a/lib/dynamic_debug.c
-> +++ b/lib/dynamic_debug.c
-> @@ -56,6 +56,7 @@ struct ddebug_query {
->  	const char *module;
->  	const char *function;
->  	const char *format;
-> +	const char *class_string;
->  	unsigned int first_lineno, last_lineno;
->  };
->  
-> @@ -136,15 +137,33 @@ static void vpr_info_dq(const struct ddebug_query *query, const char *msg)
->  			fmtlen--;
->  	}
->  
-> -	v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u\n",
-> -		 msg,
-> -		 query->function ?: "",
-> -		 query->filename ?: "",
-> -		 query->module ?: "",
-> -		 fmtlen, query->format ?: "",
-> -		 query->first_lineno, query->last_lineno);
-> +	v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u class=%s\n",
-> +		  msg,
-> +		  query->function ?: "",
-> +		  query->filename ?: "",
-> +		  query->module ?: "",
-> +		  fmtlen, query->format ?: "",
-> +		  query->first_lineno, query->last_lineno, query->class_string);
->  }
->  
-> +static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table const *dt,
-> +							  const char *class_string, int *class_id)
-> +{
-> +	struct ddebug_class_map *map;
-> +	int idx;
-> +
-> +	list_for_each_entry(map, &dt->maps, link) {
-> +		idx = match_string(map->class_names, map->length, class_string);
-> +		if (idx >= 0) {
-> +			*class_id = idx + map->base;
-> +			return map;
-> +		}
-> +	}
-> +	*class_id = -ENOENT;
-> +	return NULL;
-> +}
-> +
-> +#define __outvar /* filled by callee */
->  /*
->   * Search the tables for _ddebug's which match the given `query' and
->   * apply the `flags' and `mask' to them.  Returns number of matching
-> @@ -159,6 +178,8 @@ static int ddebug_change(const struct ddebug_query *query,
->  	unsigned int newflags;
->  	unsigned int nfound = 0;
->  	struct flagsbuf fbuf, nbuf;
-> +	struct ddebug_class_map *map = NULL;
-> +	int __outvar valid_class;
->  
->  	/* search for matching ddebugs */
->  	mutex_lock(&ddebug_lock);
-> @@ -169,9 +190,22 @@ static int ddebug_change(const struct ddebug_query *query,
->  		    !match_wildcard(query->module, dt->mod_name))
->  			continue;
->  
-> +		if (query->class_string) {
-> +			map = ddebug_find_valid_class(dt, query->class_string, &valid_class);
-> +			if (!map)
-> +				continue;
+> Thanks!
+> Maxime
 
-So remove the else here.
-
-> +		} else {
-> +			/* constrain query, do not touch class'd callsites */
-> +			valid_class = _DPRINTK_CLASS_DFLT;
-> +		}
-> +
->  		for (i = 0; i < dt->num_ddebugs; i++) {
->  			struct _ddebug *dp = &dt->ddebugs[i];
->  
-> +			/* match site against query-class */
-> +			if (dp->class_id != valid_class)
-
-And then make this: if (query->class_string && (dp->class_id != valid_class))
-
-thoughts?
-
-
-> +				continue;
-> +>  			/* match against the source filename */
->  			if (query->filename &&
->  			    !match_wildcard(query->filename, dp->filename) &&
-> @@ -420,6 +454,8 @@ static int ddebug_parse_query(char *words[], int nwords,
->  		} else if (!strcmp(keyword, "line")) {
->  			if (parse_linerange(query, arg))
->  				return -EINVAL;
-> +		} else if (!strcmp(keyword, "class")) {
-> +			rc = check_set(&query->class_string, arg, "class");
->  		} else {
->  			pr_err("unknown keyword \"%s\"\n", keyword);
->  			return -EINVAL;
-> @@ -854,6 +890,20 @@ static void *ddebug_proc_next(struct seq_file *m, void *p, loff_t *pos)
->  	return dp;
->  }
->  
-> +#define class_in_range(class_id, map)					\
-> +	(class_id >= map->base && class_id < map->base + map->length)
-> +
-> +static const char *ddebug_class_name(struct ddebug_iter *iter, struct _ddebug *dp)
-> +{
-> +	struct ddebug_class_map *map;
-> +
-> +	list_for_each_entry(map, &iter->table->maps, link)
-> +		if (class_in_range(dp->class_id, map))
-> +			return map->class_names[dp->class_id - map->base];
-> +
-> +	return NULL;
-> +}
-> +
->  /*
->   * Seq_ops show method.  Called several times within a read()
->   * call from userspace, with ddebug_lock held.  Formats the
-> @@ -865,6 +915,7 @@ static int ddebug_proc_show(struct seq_file *m, void *p)
->  	struct ddebug_iter *iter = m->private;
->  	struct _ddebug *dp = p;
->  	struct flagsbuf flags;
-> +	char const *class;
->  
->  	if (p == SEQ_START_TOKEN) {
->  		seq_puts(m,
-> @@ -877,7 +928,16 @@ static int ddebug_proc_show(struct seq_file *m, void *p)
->  		   iter->table->mod_name, dp->function,
->  		   ddebug_describe_flags(dp->flags, &flags));
->  	seq_escape_str(m, dp->format, ESCAPE_SPACE, "\t\r\n\"");
-> -	seq_puts(m, "\"\n");
-> +	seq_puts(m, "\"");
-> +
-> +	if (dp->class_id != _DPRINTK_CLASS_DFLT) {
-> +		class = ddebug_class_name(iter, dp);
-> +		if (class)
-> +			seq_printf(m, " class:%s", class);
-> +		else
-> +			seq_printf(m, " class unknown, _id:%d", dp->class_id);
-> +	}
-> +	seq_puts(m, "\n");
->  
->  	return 0;
->  }
+Best regards,
+Mateusz Kwiatkowski
