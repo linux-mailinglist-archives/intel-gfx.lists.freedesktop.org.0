@@ -1,50 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F255B0975
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 18:00:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 467FD5B0983
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 18:01:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5623210E7C3;
-	Wed,  7 Sep 2022 16:00:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17C1510E3DC;
+	Wed,  7 Sep 2022 16:01:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5CB10E7BE
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 16:00:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662566418; x=1694102418;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Vy/FpBzc5MogXhqsXxMsPzZx6wThfmIhB6focAFoPu8=;
- b=nJqlP6WmpnxJTyb1gZdS3sR11G/jT6hvS0RBQ0l++G3OoPMyA4c8VW5r
- i8LKPhlGMa0etgYklbWJqalruw4vS1B9aj9IAL7LfkaLFXhuMuX+0FCGe
- Rtp3FtlSC5asaJ0QdLd29yVIR+yhJLJ1jFeUwvHRvRb9YqIAl+rO8Ql+g
- MlbXEzIIwLnQucw4Hxw6eYE3Gi9HqBhBwcGQiIQOWADANM1fKnGLzyQkB
- rut0gBGEIH7Tims2vcwhRohXH4xCyxKf1l+3iMR5qqm4MqrtteIk5xSIz
- IovTgNXLeltvIKm9O5ma8dMppzvrFJjlwWvDxxbNNcD5BxPhmldSxNUS7 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="297701763"
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; d="scan'208";a="297701763"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 08:59:47 -0700
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; d="scan'208";a="676248353"
-Received: from twinkler-lnx.jer.intel.com ([10.12.87.143])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 08:59:43 -0700
-From: Tomas Winkler <tomas.winkler@intel.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Date: Wed,  7 Sep 2022 18:58:13 +0300
-Message-Id: <20220907155813.1427526-17-tomas.winkler@intel.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220907155813.1427526-1-tomas.winkler@intel.com>
-References: <20220907155813.1427526-1-tomas.winkler@intel.com>
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com
+ [IPv6:2a00:1450:4864:20::22a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A22110E3DC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 16:01:30 +0000 (UTC)
+Received: by mail-lj1-x22a.google.com with SMTP id bn9so16519085ljb.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 07 Sep 2022 09:01:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date;
+ bh=AdPpYej6Da4SIlCso24w6yNGsjKE1lXRNFa/vukYNMs=;
+ b=OcXiV5nrGHP2wnQr7VhTZDbV8vZzl7OnFBCPJlivEjmadbMY4OLVt3DDVMxlnLHl+c
+ UhA92XEYClK8FUM6crH+mkutH2trFuCjjD3GdQ4IsnVVjkf4Fl7Kem57W/0telD1dAly
+ unWKnxqU0B4dH3MOOjBG8mlGbXZ1cEkgLBxolxbm8kTpXlQh/lbHz2bKImbj+yZ0YyqJ
+ IpgIFHZjDPKgvy5dxaRsFKsMS/KP4A+FZ8JERzpZMU+QOSOuSuk1MeH1d0kz44bgWfH0
+ iY8gspP1k2R68YcQpywjju505tkD0xhRZhpUWbP/rofDmliqZesmoVDanN7Q004OD12Q
+ xk/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date;
+ bh=AdPpYej6Da4SIlCso24w6yNGsjKE1lXRNFa/vukYNMs=;
+ b=YEpuy9tJfc4yT142wCdC42i/3QIklJlofqjnAHiwdfZM3MFrzaHX8e7z0OEtabsjAB
+ 0D/R3xC+W8o6C30KHwVGImk34L/4lc8Xa/ST3TWlO/zDgDGpeliEZZepwFgIobeVBncU
+ w6PTaxBKj1ZZ0W4f6amG5D0REYfjG6dHars1P75Cz34kZp2GV4wKoQH471Ng8rEa5NoE
+ 3VIIpU7rXa5sxy3AxxZw+5Ncqxmarf7aQJ01VfSKqFaKtdXFDtMbY6a1yJKh/nInlQqZ
+ zJjIcwjmZAweW+NmNIJwCMPKXrS/uEi2ZkyS9ARzv50voYtge24KGkrp6BppoNTNNfwl
+ LPZQ==
+X-Gm-Message-State: ACgBeo0JzaIp8ZRUM+KoVGQMkBZKVuQ5qrXQ+xg7XNhyLo5CuH+s7sDX
+ Rgn+d5BdppxfxAKbkiz+s96YkWwie3QvA5V1/kLZQwrzcQE=
+X-Google-Smtp-Source: AA6agR4Xlvjzbd9Vj9KRdry7abjROMFKwycnMjwyVMg9weEfQitIuVPEEc1axw6hX578w5F+nydA4blXPy+H9QcHkW8=
+X-Received: by 2002:a2e:8415:0:b0:26a:7a15:d66b with SMTP id
+ z21-20020a2e8415000000b0026a7a15d66bmr1275571ljg.379.1662566488290; Wed, 07
+ Sep 2022 09:01:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v8 16/16] HAX: drm/i915: force INTEL_MEI_GSC on
- for CI
+References: <20220907152331.572240-1-christian.koenig@amd.com>
+In-Reply-To: <20220907152331.572240-1-christian.koenig@amd.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 7 Sep 2022 17:01:01 +0100
+Message-ID: <CAM0jSHOBByHrW=BHhc06nUTdGJY7SkX7yuViLpRs8rztd-FE+g@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/ttm: cleanup the resource of ghost
+ objects after locking them
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,38 +66,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Alexander Usyskin <alexander.usyskin@intel.com>, linux-kernel@vger.kernel.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tomas Winkler <tomas.winkler@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+On Wed, 7 Sept 2022 at 16:23, Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Otherwise lockdep will complain about cleaning up the bulk_move.
+>
+> Not even compile tested.
+>
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 
-After the new config option is merged we'll enable it by default in the
-CI config, but for now just force it on via the i915 Kconfig so we can
-get pre-merge CI results for it.
+CI looks better now. Thanks for the quick fix.
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
----
- drivers/gpu/drm/i915/Kconfig.debug | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index e7fd3e76f8a2..be4ef485d6c1 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -48,6 +48,7 @@ config DRM_I915_DEBUG
- 	select DRM_I915_DEBUG_RUNTIME_PM
- 	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
- 	select DRM_I915_SELFTEST
-+	select INTEL_MEI_GSC
- 	select BROKEN # for prototype uAPI
- 	default n
- 	help
--- 
-2.37.2
-
+> ---
+>  drivers/gpu/drm/ttm/ttm_bo_util.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_=
+bo_util.c
+> index 57a27847206f..911141d16e95 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> @@ -236,6 +236,11 @@ static int ttm_buffer_object_transfer(struct ttm_buf=
+fer_object *bo,
+>         if (bo->type !=3D ttm_bo_type_sg)
+>                 fbo->base.base.resv =3D &fbo->base.base._resv;
+>
+> +       dma_resv_init(&fbo->base.base._resv);
+> +       fbo->base.base.dev =3D NULL;
+> +       ret =3D dma_resv_trylock(&fbo->base.base._resv);
+> +       WARN_ON(!ret);
+> +
+>         if (fbo->base.resource) {
+>                 ttm_resource_set_bo(fbo->base.resource, &fbo->base);
+>                 bo->resource =3D NULL;
+> @@ -244,11 +249,6 @@ static int ttm_buffer_object_transfer(struct ttm_buf=
+fer_object *bo,
+>                 fbo->base.bulk_move =3D NULL;
+>         }
+>
+> -       dma_resv_init(&fbo->base.base._resv);
+> -       fbo->base.base.dev =3D NULL;
+> -       ret =3D dma_resv_trylock(&fbo->base.base._resv);
+> -       WARN_ON(!ret);
+> -
+>         ret =3D dma_resv_reserve_fences(&fbo->base.base._resv, 1);
+>         if (ret) {
+>                 kfree(fbo);
+> --
+> 2.25.1
+>
