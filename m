@@ -2,65 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFCC45B5B4C
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 15:38:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE2665B5B51
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 15:38:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 350C310E4A0;
-	Mon, 12 Sep 2022 13:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 392A710E4D1;
+	Mon, 12 Sep 2022 13:38:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
- [IPv6:2a00:1450:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD1F410E36D;
- Wed,  7 Sep 2022 06:48:07 +0000 (UTC)
-Received: by mail-ej1-x630.google.com with SMTP id y3so28232401ejc.1;
- Tue, 06 Sep 2022 23:48:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date;
- bh=BVuk17Av+bi2jPnkL9wfgDXhvd64IxzBdo6fgEYGs04=;
- b=l+Ix4zgCkeWJQbwso5ymf9RKOOdyJP++7E7Hn7qNe8++KSvt+whxkZnLOMrQDs0DOx
- 8Bnxfj3DRwnWqEyzdSyphQxdWMFT3V9Qs7b/tDHbUlIorwV6gri3bErqpuPWekLHhOlc
- 95QccTtWJAE1QfDqOjrgxBl7o3tHfz3Xov6eefmcjs15qr03X6yCbHQUZzOjBwtnJ2Ce
- v3MSn5FI8PTpUV7LwrFWYTCWsHEzEAT0OYOVxybHCEP0lYHSssUuWNBoYyY5Iuisb3F8
- v4ZMnm1GSBiSXQSM4x8txzQJ+vXfmqGl5JiI3TvxUzzycXJ69jn0CXTzpi52Mui/bNAT
- qL5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date;
- bh=BVuk17Av+bi2jPnkL9wfgDXhvd64IxzBdo6fgEYGs04=;
- b=DqR3UPlSu/sIgY8//WzwsQOA6chppVmmmP1KmzrmRaknkFW4pS9flIwCR4WEHMhuAQ
- JEtsX61oMPUy286E/vquHZd88QrWTt4pZp7Z7SgnWlhYdGTYrbO9QjcOJ5nh3LolQepM
- tZieL0qdjvPa/JZRTgMws5EvwZVy4pD/3PlJYCJv+GYUkU6bzJ8uFJ+d8IoxPc+xahGf
- Uh4gso6XfeLSW5lGfXA7P8obfMOvqVpY0m4nAX9mQBLRijJDL673B2uv5s0iDqE2Dkd2
- pUxtj7JTOTY7cw0xLwCLyP2v1vq31ifLwWF8XDLfOHt7SYK/9koz90VuS3ehG9ruXhal
- tCZQ==
-X-Gm-Message-State: ACgBeo2r1VLlCUNbN5F05A1mZr8ctEJMXGNwwJ1IBX5FywiCzHgaaVzJ
- IfX+BKfux/VIriIH8AVqzxudk7vylSlmVH2jPHE=
-X-Google-Smtp-Source: AA6agR5oNcJ4xiLosx9c+PBGIQP4JwyWHajAGIDrk+o8018ZQ2ZLnOx2wULEGsptfZkH/pKAB98ijFHADY5kXzED1SI=
-X-Received: by 2002:a17:907:6d16:b0:731:17b5:699 with SMTP id
- sa22-20020a1709076d1600b0073117b50699mr1428930ejc.23.1662533286189; Tue, 06
- Sep 2022 23:48:06 -0700 (PDT)
+X-Greylist: delayed 353 seconds by postgrey-1.36 at gabe;
+ Wed, 07 Sep 2022 10:42:37 UTC
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02B8210E546;
+ Wed,  7 Sep 2022 10:42:36 +0000 (UTC)
+Received: from [192.168.1.138] ([37.4.248.23]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MBlgy-1odXvW2p1o-00CEBe; Wed, 07 Sep 2022 12:36:06 +0200
+Message-ID: <965de5c0-bc6a-7210-c946-b916ae2219fc@i2se.com>
+Date: Wed, 7 Sep 2022 12:36:03 +0200
 MIME-Version: 1.0
-References: <tencent_E1BBF05904DFB73C478DCD592740AAE0780A@qq.com>
- <CAJedcCxVW++iH49UFZp9ruUuTcNubWCH6Wsqe11K4COB3E8msg@mail.gmail.com>
- <CAJedcCw1eJqjSK+yR7eQMDheNtH3Mjm+viwt00xAhnmrfpq2pw@mail.gmail.com>
- <CAJedcCweHjD78F7iydiq6Xc2iH=t_3m=H9JKnaCooToUk32FvQ@mail.gmail.com>
- <YxWtfjfpNsoPUrgh@kroah.com>
- <CAJedcCzMo51aiy=Dv7zn7VmL3gwkw7JgzwAPAB2Z27C9CnhoYA@mail.gmail.com>
- <20220907030754.GU1089@zhen-hp.sh.intel.com>
-In-Reply-To: <20220907030754.GU1089@zhen-hp.sh.intel.com>
-From: Zheng Hacker <hackerzheng666@gmail.com>
-Date: Wed, 7 Sep 2022 14:47:54 +0800
-Message-ID: <CAJedcCwPKT8Zj8aPmXz=M3zG+xvCzyo4OspaPp4-LY+DgTfteA@mail.gmail.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Maxime Ripard <maxime@cerno.tech>, =?UTF-8?Q?Noralf_Tr=c3=b8nnes?=
+ <noralf@tronnes.org>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <24e09a29-6d04-3b1e-63ce-cd3c31d350e2@tronnes.org>
+ <020d44e6-884b-a817-8265-3461638cac71@tronnes.org>
+ <20220905145729.ln675jko3aw6sgzs@houat>
+From: Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20220905145729.ln675jko3aw6sgzs@houat>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:raTGFr7ptnGZr2h9Jh6nKg1Z14xx0x8riNatR19Mgp3HoRXLPdX
+ FN+/gOxN9VXjXLIhXVkBpgujUpNMYSy+G4CQp211BQEbL4066eK8AZ57x7+Ryp53nqef83R
+ XG19WvSzjiVdclyB4a503Xj8phHhNIsA5aMzvA3iiMzzCLqNQD5cu7Y+WiuUERVXn8PvvlY
+ lI8tCye4pEPGe1CN/8vMQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:4njlfsGRC8s=:ocGf4vtKJR1Zun/4Yo9Gew
+ oV3WA6jbTihJu4RIdmFFuTHK3kktStgU7S9zvefX/Uhazuyps7stnTU2x3JqvoEXjhTdnVbHU
+ qwY1Q/WMxCFL6JR4wLPfSTPCGsmlEYphfk1SiH/Bcir2uS5YOQKO/mFmA8KX3O2nMy8am3g0E
+ KIwNisfJurVnvt/yAavIe3GeFCV60loPn0+iIKFNQjZ7SOqEXMuVhM6FELQr9qKGkKdEDa7Q1
+ A9wg9nmhVj/EtYbfJ2PNuClR30bKQg+3V2rYG/j/cGyi1p//mBN8Sy1DhZncYRcGdhhnz7Niq
+ 45qpsR6TOWOvz33/DJj/XtmOkMpXfWVjvBlCmSJygsmgSTz1fYJHLSBywB9Rin+rQtWHtoWj7
+ dJrU2wGnRqUzI9sLWTzRv2aKqAjgfJ2VGh6nRfI/KQM/bm6OwI9Kxw4Sysfjrg4Vzxbj+jaZW
+ X2yCy+xVoP8s5IvGrcmxqykNKk0QWUEy8GlDbk7akxSA2x8g9uz5XnFt6vKG2hW2MnxJ+3uF6
+ mFMuBh8idCuY4qTO0jbDtmJoZePoAwwD22L8dkdLaLuzds0uVnC9Xs8GhL8i4WFPKuv/9NQdW
+ VwRMyYQchqhbhhAZGPZFIEiQCxgMeb9Nv2+z6VDPT/DYjgBEuqnaDrsW/Tp2VJJWKpPuDDBUK
+ MELDZt551/OYOXwNUWK67qlinaEMnaW3TLzS4TlmnDUwn6wUAg8uBC2OIN5uDdBNTeZDhRR6z
+ SiMdl7zgJeN/5xOO4iQk/QT9URtagyTBr5s1KpbHjqpuemPNZnzFUfgbVuPiv5ZBJhOIsAIJg
+ 93udFi74Vi+UTGrEiD2nBU95bTZhg==
 X-Mailman-Approved-At: Mon, 12 Sep 2022 13:38:08 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
- split_2MB_gtt_entry.
+Subject: Re: [Intel-gfx] [PATCH v2 00/41] drm: Analog TV Improvements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,114 +65,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: security@kernel.org, alex000young@gmail.com, airlied@linux.ie,
- Greg KH <gregkh@linuxfoundation.org>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- xmzyshypnc <1002992920@qq.com>, daniel@ffwll.ch, rodrigo.vivi@intel.com,
- intel-gvt-dev@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Zhenyu,
+Hi Maxime,
 
-Very glad for your reply. I agree that the bug is hard to trigger in
-userspace. But it is possible to happen in some specific scene. For
-example, if calling pfn_valid failed, the bug will be triggered. And
-it did happened as the [1] commit description illustrates.
-
-As for the patch, I think your plan is the best. We need to free the
-spt only in bad case.
-
-[1] https://github.com/torvalds/linux/commit/39b4cbadb9a95bf3f13ea102d6ec84=
-1940916ee2
-
-Regards,
-Zheng Wang
-
-Zhenyu Wang <zhenyuw@linux.intel.com> =E4=BA=8E2022=E5=B9=B49=E6=9C=887=E6=
-=97=A5=E5=91=A8=E4=B8=89 11:33=E5=86=99=E9=81=93=EF=BC=9A
-
+Am 05.09.22 um 16:57 schrieb Maxime Ripard:
+> On Fri, Sep 02, 2022 at 01:28:16PM +0200, Noralf Trønnes wrote:
+>>
+>> Den 01.09.2022 21.35, skrev Noralf Trønnes:
+>>>
+>>> I have finally found a workaround for my kernel hangs.
+>>>
+>>> Dom had a look at my kernel and found that the VideoCore was fine, and
+>>> he said this:
+>>>
+>>>> That suggests cause of lockup was on arm side rather than VC side.
+>>>>
+>>>> But it's hard to diagnose further. Once you've had a peripheral not
+>>>> respond, the AXI bus locks up and no further operations are possible.
+>>>> Usual causes of this are required clocks being stopped or domains
+>>>> disabled and then trying to access the hardware.
+>>>>
+>>> So when I got this on my 64-bit build:
+>>>
+>>> [  166.702171] SError Interrupt on CPU1, code 0x00000000bf000002 -- SError
+>>> [  166.702187] CPU: 1 PID: 8 Comm: kworker/u8:0 Tainted: G        W
+>>>      5.19.0-rc6-00096-gba7973977976-dirty #1
+>>> [  166.702200] Hardware name: Raspberry Pi 4 Model B Rev 1.1 (DT)
+>>> [  166.702206] Workqueue: events_freezable_power_ thermal_zone_device_check
+>>> [  166.702231] pstate: 200000c5 (nzCv daIF -PAN -UAO -TCO -DIT -SSBS
+>>> BTYPE=--)
+>>> [  166.702242] pc : regmap_mmio_read32le+0x10/0x28
+>>> [  166.702261] lr : regmap_mmio_read+0x44/0x70
+>>> ...
+>>> [  166.702606]  bcm2711_get_temp+0x58/0xb0 [bcm2711_thermal]
+>>>
+>>> I wondered if that reg read was stalled due to a clock being stopped.
+>>>
+>>> Lo and behold, disabling runtime pm and keeping the vec clock running
+>>> all the time fixed it[1].
+>>>
+>>> I don't know what the problem is, but at least I can now test this patchset.
+>>>
+>>> [1] https://gist.github.com/notro/23b984e7fa05cfbda2db50a421cac065
+>>>
+>> It turns out I didn't have to disable runtime pm:
+>> https://gist.github.com/notro/0adcfcb12460b54e54458afe11dc8ea2
+> If the bcm2711_thermal IP needs that clock to be enabled, it should grab
+> a reference itself, but it looks like even the device tree binding
+> doesn't ask for one.
+The missing clock in the device tree binding is expected, because 
+despite of the code there is not much information about the BCM2711 
+clock tree. But i'm skeptical that the AVS IP actually needs the VEC 
+clock, i think it's more likely that the VEC clock parent is changed and 
+that cause this issue. I could take care of the bcm2711 binding & driver 
+if i know which clock is really necessary.
 >
-> On 2022.09.06 19:36:56 +0800, Zheng Hacker wrote:
-> > Hi Greg,
-> >
-> > Alex has explained how we figured out the patch. We did analyze the
-> > code and found it possible to reach the vulnerability code. But we
-> > have no physical device in hand to test the driver. So we'd like to
-> > discuss with developers to see if the issue exists or not.
-> >
-> > Best regards,
-> > Zheng Wang.
-> >
-> > Greg KH <gregkh@linuxfoundation.org> ???2022???9???5????????? 16:04????=
-?????
-> > >
-> > > On Mon, Sep 05, 2022 at 03:46:09PM +0800, Zheng Hacker wrote:
-> > > > I rewrote the letter. Hope it works.
-> > > >
-> > > > There is a double-free security bug in split_2MB_gtt_entry.
-> > > >
-> > > > Here is a calling chain :
-> > > > ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entr=
-y.
-> > > > If intel_gvt_dma_map_guest_page failed, it will call
-> > > > ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
-> > > > kfree(spt). But the caller does not notice that, and it will call
-> > > > ppgtt_free_spt again in error path.
-> > > >
+> Maxime
 >
-> It's a little mess in code so in theory it might be possible but
-> intel_gvt_dma_map_guest_page won't fail in practise...
->
-> > > > Fix this by returning the result of ppgtt_invalidate_spt to split_2=
-MB_gtt_entry.
-> > > >
->
-> I don't see why changing ret value can fix this issue, as it doesn't chan=
-ge
-> any behavior e.g caller of ppgtt_populate_spt to handle possible differen=
-t error return.
->
-> As current code looks assuming that ppgtt_invalidate_spt would free spt i=
-n good case,
-> I think the real cleanup should split that assumption and handle free in =
-error case properly.
->
-> > > > Signed-off-by: Zheng Wang
->
-> This misses proper email address.
->
-> thanks
->
-> > > >
-> > > > ---
-> > > >  drivers/gpu/drm/i915/gvt/gtt.c | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/=
-gvt/gtt.c
-> > > > index ce0eb03709c3..9f14fded8c0c 100644
-> > > > --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> > > > +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> > > > @@ -1215,7 +1215,7 @@ static int split_2MB_gtt_entry(struct intel_v=
-gpu *vgpu,
-> > > >                 ret =3D intel_gvt_dma_map_guest_page(vgpu, start_gf=
-n + sub_index,
-> > > >                                                    PAGE_SIZE, &dma_=
-addr);
-> > > >                 if (ret) {
-> > > > -                       ppgtt_invalidate_spt(spt);
-> > > > +                       ret =3D ppgtt_invalidate_spt(spt);
-> > > >                         return ret;
-> > >
-> > > But now you just lost the original error, shouldn't this succeed even=
- if
-> > > intel_gvt_dma_map_guest_page() failed?
-> > >
-> > > And how are you causing intel_gvt_dma_map_guest_page() to fail in a r=
-eal
-> > > system?
-> > >
-> > > thanks,
-> > >
-> > > greg k-h
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
