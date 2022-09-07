@@ -1,57 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 519A35AFD7C
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 09:29:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8224F5AFD90
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 09:31:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D33FA10E3BE;
-	Wed,  7 Sep 2022 07:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45D1C10E3D9;
+	Wed,  7 Sep 2022 07:31:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28F0810E3BE
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 07:28:54 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAE0510E3BE
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 07:31:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662535734; x=1694071734;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nlpmkyI+bw+oqKgDr37gbG6PUYd8qNWOJTnpYrR4vxo=;
- b=S6iMXAD+9VS0hLIMoLA16lFtropDcWy8v93pwjC/e0nZgqNaTsgunJOW
- keGxs+Vv29OcmgeT1jZJDKQaB+kqapk/syfQp5PlweaPyU3MU0WbDyvF+
- FqoPhCOKRdFiJG9VMs6dPr8p7r5ugbwjHlYLkk8SA2OKxlNTKT1m8OQbo
- QQqJQn8E9/H0SfOqQtRHWtU5SwI4kwoyua2e7eXlJAmW1q1iSvfHsYcKP
- pb3zHVaPv36tlCPdgG7qEG+IXYXzglXuyqFKUG1gg0vC0LKNN71e1lf+n
- vcoZDm2X0bYyFh7ir4AIfeSqodniirk4d9GWPco4G7SXYjMtALBqCaGb+ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="322986774"
-X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="322986774"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 00:28:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="565404918"
-Received: from tenglish-mobl1.ger.corp.intel.com (HELO [10.213.202.97])
- ([10.213.202.97])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 00:28:51 -0700
-Message-ID: <c0c9f2ab-315e-8589-50ff-bbf6d4c39de3@linux.intel.com>
-Date: Wed, 7 Sep 2022 08:28:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-References: <20220831193355.838209-1-ashutosh.dixit@intel.com>
- <20220831193355.838209-2-ashutosh.dixit@intel.com>
- <Yw/kna1W/vrCiMmF@unerlige-ril> <87sflaodjp.wl-ashutosh.dixit@intel.com>
- <YxeRe5W0Zf/TBGWw@unerlige-ril>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YxeRe5W0Zf/TBGWw@unerlige-ril>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC PATCH 2/2] Fix per client busyness locking
+ t=1662535869; x=1694071869;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=W02Yiqo2YlpnpOFnE2xwKREacLxKbKvHJwbUO6KSGUc=;
+ b=JFZAQsGigps3ioI0kV397tOPRJjZ4pU+tQ4mmrLqCcUS72Hz2nEcUwTR
+ /pezIP0LGfvjMjGdAanEBHRYQWUVdLL7DgLQHv1YAB/PMQdA0KCvNQIQa
+ lTSuzQmAK/qXZUf38UwzTdmdnra7Kyc4ZNCdAHIQcu5/fhDvdYVO6DbKo
+ dYD0JGO5CC4jRT9KdMYRBfA9ICQDsK6VicX+nk/3wRFwc9Q3GrM8vkWgv
+ ypOmvyj/WkWEmK71LE9KzmJ5ceoNWccW/ristdlQ1SkmvO1ZdMLWrDRB5
+ 3f5O4Bvn5//Ibqn46xiSE2H2GIlZRf7CTiPLx+btNOxjYOigbRsaRPkRJ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="277196853"
+X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="277196853"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2022 00:31:09 -0700
+X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="789959087"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.84.184])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2022 00:31:08 -0700
+Date: Wed, 07 Sep 2022 00:31:08 -0700
+Message-ID: <875yhzy72b.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <YxdVb+MCFl2Q+Sr5@intel.com>
+References: <20220902235302.1112388-1-ashutosh.dixit@intel.com>
+ <20220902235302.1112388-5-ashutosh.dixit@intel.com>
+ <YxdVb+MCFl2Q+Sr5@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/debugfs: Add
+ perf_limit_reasons in debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,59 +65,93 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 06 Sep 2022 07:13:03 -0700, Rodrigo Vivi wrote:
+>
 
+Copying author.
 
-On 06/09/2022 19:29, Umesh Nerlige Ramappa wrote:
-> On Thu, Sep 01, 2022 at 04:55:22PM -0700, Dixit, Ashutosh wrote:
->> On Wed, 31 Aug 2022 15:45:49 -0700, Umesh Nerlige Ramappa wrote:
-
-[snip]
-
->>> >
->>> >    intel_gt_reset_unlock(gt, srcu);
->>> >
->>> > @@ -1476,17 +1476,21 @@ void intel_guc_busyness_unpark(struct 
->>> intel_gt *gt)
->>> >             guc->timestamp.ping_delay);
->>> > }
->>> >
->>> > -static void __guc_context_update_clks(struct intel_context *ce)
->>> > +static u64 guc_context_update_stats(struct intel_context *ce)
->>> > {
->>> >    struct intel_guc *guc = ce_to_guc(ce);
->>> >    struct intel_gt *gt = ce->engine->gt;
->>> >    u32 *pphwsp, last_switch, engine_id;
->>> > -    u64 start_gt_clk, active;
->>> >    unsigned long flags;
->>> > +    u64 total, active = 0;
->>> >    ktime_t unused;
->>> >
->>> > +    intel_context_pin(ce);
->>>
->>> intel_context_pin can sleep and we are not allowed to sleep in this 
->>> path -
->>> intel_context_get_total_runtime_ns(), however we can sleep in the ping
->>> worker path, so ideally we want to separate it out for the 2 paths.
->>
->> Do we know which intel_context_get_total_runtime_ns() call is not allowed
->> to sleep? E.g. the code path from i915_drm_client_fdinfo() is allowed to
->> sleep. As mentioned I have done this is v2 of RFC patch which I think is
->> sufficient, but a more complicated scheme (which I think we can avoid for
->> now) would be to pin in code paths when sleeping is allowed.
->>
-> 
-> Hmm, maybe intel_context_get_total_runtime_ns can sleep, not sure why I 
-> was assuming that this falls in the perf_pmu path. This is now in the 
-> drm_fdinfo query path. + Tvrtko.
-> 
-> @Tvrtko, any idea if intel_context_get_total_runtime_ns path can sleep?
-
-Not at the moment - it calls it from a lockless (rcu) section when 
-walking all the contexts belonging to a client. Idea being performance 
-queries should have minimum effect on a running system. I think it would 
-be possible to change in theory but not sure how much work. There is a 
-hard need to sleep in there or what?
-
-Regards,
-
-Tvrtko
+> On Fri, Sep 02, 2022 at 04:53:00PM -0700, Ashutosh Dixit wrote:
+> > From: Tilak Tangudu <tilak.tangudu@intel.com>
+> >
+> > Add perf_limit_reasons in debugfs. Unlike the lower 16 perf_limit_reasons
+> > status bits, the upper 16 log bits remain set until cleared, thereby
+> > ensuring the throttling occurrence is not missed. The clear fop clears
+> > the upper 16 log bits, the get fop gets all 32 log and status bits.
+> >
+> > Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 27 +++++++++++++++++++
+> >  drivers/gpu/drm/i915/i915_reg.h               |  1 +
+> >  2 files changed, 28 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> > index 108b9e76c32e..5c95cba5e5df 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> > @@ -655,6 +655,32 @@ static bool rps_eval(void *data)
+> >
+> >  DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(rps_boost);
+> >
+> > +static int perf_limit_reasons_get(void *data, u64 *val)
+> > +{
+> > +	struct intel_gt *gt = data;
+> > +	intel_wakeref_t wakeref;
+> > +
+> > +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> > +		*val = intel_uncore_read(gt->uncore, GT0_PERF_LIMIT_REASONS);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int perf_limit_reasons_clear(void *data, u64 val)
+> > +{
+> > +	struct intel_gt *gt = data;
+> > +	intel_wakeref_t wakeref;
+> > +
+> > +	/* Clear the upper 16 log bits, the lower 16 status bits are read-only */
+> > +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> > +		intel_uncore_rmw(gt->uncore, GT0_PERF_LIMIT_REASONS,
+> > +				 GT0_PERF_LIMIT_REASONS_LOG_MASK, 0);
+> > +
+> > +	return 0;
+> > +}
+> > +DEFINE_SIMPLE_ATTRIBUTE(perf_limit_reasons_fops, perf_limit_reasons_get,
+> > +			perf_limit_reasons_clear, "%llu\n");
+> > +
+> >  void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
+> >  {
+> >	static const struct intel_gt_debugfs_file files[] = {
+> > @@ -664,6 +690,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
+> >		{ "forcewake_user", &forcewake_user_fops, NULL},
+> >		{ "llc", &llc_fops, llc_eval },
+> >		{ "rps_boost", &rps_boost_fops, rps_eval },
+> > +		{ "perf_limit_reasons", &perf_limit_reasons_fops, NULL },
+> >	};
+> >
+> >	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), gt);
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 5e6239864c35..10126995e1f6 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -1802,6 +1802,7 @@
+> >  #define   POWER_LIMIT_4_MASK		REG_BIT(9)
+> >  #define   POWER_LIMIT_1_MASK		REG_BIT(11)
+> >  #define   POWER_LIMIT_2_MASK		REG_BIT(12)
+> > +#define   GT0_PERF_LIMIT_REASONS_LOG_MASK REG_GENMASK(31, 16)
+>
+> Is this valid for all platforms?
+> What does the bits are really telling us?
+> Could we expand the reasons? The previous bits we know exactly
+> what kind of limits we are dealing of, but with this combined
+> one without any explanation I'm afraid this will bring more
+> confusion than help. We will get bugged by many folks trying
+> to debug this out there when bit 13, for instance, is set.
+> "What does bit 13 mean?" will be a recurrent question with
+> only a tribal knowledge kind of answer.
+>
+> >
+> >  #define CHV_CLK_CTL1			_MMIO(0x101100)
+> >  #define VLV_CLK_CTL2			_MMIO(0x101104)
+> > --
+> > 2.34.1
+> >
