@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 842085B0013
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 11:12:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001AC5B001B
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 11:12:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2C1010E4EE;
-	Wed,  7 Sep 2022 09:12:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33AC610E4D5;
+	Wed,  7 Sep 2022 09:12:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8AF610E4A0
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 09:11:35 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B9C510E4DE
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 09:11:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662541895; x=1694077895;
+ t=1662541899; x=1694077899;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PiGsB+StZBRDRb/02KLsToLzQztDbsYPGTmRGIv2/58=;
- b=DV3FY5H5x2KeWv9TvpB0h5zS9yciBSSx64s+fIGNOxmdzr7vCm0zI5G7
- eU0Z0m7wZBDWnAj29GuSYJD7ncLB9dVuQWB1aM82RiS83PTH+BdqPJYVm
- fYwJF11KeBPtKh+Dra63fUz0YkzRiWCbAq1N43/1kBRBW8B4TZjGaaJg5
- e8RuQtk0R0KEl/GDfr9FIPWfzxOrDFNyatlLJkOqFizW9CaWU/VG2LwBG
- ASdYDsi9dq7WdvKTZWKbMHxkkV/IDzNj3YRKTKbCSQ9atkeyUTBSAfln+
- crip/rrEkTRqWXowPx+Sazcln0rJcJzKqne1FpNFIu3qnoio0XxbiaWQi g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="298138128"
-X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="298138128"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 02:11:34 -0700
+ bh=H5cCuiA6v2vT7QwH37iv26ORkFA3QLeGzlrzA3vrB+A=;
+ b=AVnRnxL4cDBNSW/9ek59G0cZmVyWgZq9iATCwmeNtKyg2dATtxWEnkWy
+ Y5j+gN19frYZQE2sDFkuOb6mnm/kHfnlBswvWN8S2gaIqkXqqdMfRsMyU
+ wpe3E17HW5D3bkTCpaH+NsGJHK+IXV1hP5iCs7tueplePdPq/Mgk252jG
+ k7DzdDhqpOICTIlVu/WpOMh5ZCaHo5Ze+lnjUY18RFhesMmS19iUJP0w/
+ QjG/Wj6n84skaNw4/N911Dgew3OoXrYlK/UpjSmGLX7ZbP1NeKtVXd8AH
+ /HUy3+nIkSASoVQfKWokHRi28UMf2VFMvxOr9sqmo2lSozUcY9CcTJ9Xs w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="358538227"
+X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="358538227"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2022 02:11:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="647561746"
+X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="756697283"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga001.jf.intel.com with SMTP; 07 Sep 2022 02:11:32 -0700
+ by fmsmga001.fm.intel.com with SMTP; 07 Sep 2022 02:11:35 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 07 Sep 2022 12:11:32 +0300
+ Wed, 07 Sep 2022 12:11:35 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  7 Sep 2022 12:10:51 +0300
-Message-Id: <20220907091057.11572-12-ville.syrjala@linux.intel.com>
+Date: Wed,  7 Sep 2022 12:10:52 +0300
+Message-Id: <20220907091057.11572-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220907091057.11572-1-ville.syrjala@linux.intel.com>
 References: <20220907091057.11572-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 11/17] drm/i915: Set active dpll early for
- icl+
+Subject: [Intel-gfx] [PATCH v4 12/17] drm/i915: Nuke fastet state copy hacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,48 +64,64 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-To make the fastboot checks at least somewhat sensible let's mark
-the expected DPLL as the active one right after we finished the
-state computation. Otherwise intel_pipe_config_compare() will
-always be comparing things against NULL/0.
+Now that we no longer do the fuzzy clock and M/N checks we can
+get rid of the fastset state copy hacks.
 
-TODO: This is still not really right. If the previous commit
-had to fall back to the other PLL then the comparisong will
-now fail. I guess intel_pipe_config_compare() should rather
-be comparing port_dplls[] instead. But to do that we really
-should just unify every platform to use the port_dplls[]
-approach whether they have any need for PLL fallbacks or not.
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 28 +++-----------------
+ 1 file changed, 3 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 48a51e196c5f..e5fb66a5dd02 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3213,6 +3213,9 @@ static int icl_compute_combo_phy_dpll(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 10319856ed15..6370ba7bbbb6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6126,23 +6126,6 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
+ 	new_crtc_state->update_pipe = true;
+ }
  
- 	icl_calc_dpll_state(dev_priv, &pll_params, &port_dpll->hw_state);
+-static void intel_crtc_copy_fastset(const struct intel_crtc_state *old_crtc_state,
+-				    struct intel_crtc_state *new_crtc_state)
+-{
+-	/*
+-	 * If we're not doing the full modeset we want to
+-	 * keep the current M/N values as they may be
+-	 * sufficiently different to the computed values
+-	 * to cause problems.
+-	 *
+-	 * FIXME: should really copy more fuzzy state here
+-	 */
+-	new_crtc_state->fdi_m_n = old_crtc_state->fdi_m_n;
+-	new_crtc_state->dp_m_n = old_crtc_state->dp_m_n;
+-	new_crtc_state->dp_m2_n2 = old_crtc_state->dp_m2_n2;
+-	new_crtc_state->has_drrs = old_crtc_state->has_drrs;
+-}
+-
+ static int intel_crtc_add_planes_to_state(struct intel_atomic_state *state,
+ 					  struct intel_crtc *crtc,
+ 					  u8 plane_ids_mask)
+@@ -6852,17 +6835,12 @@ static int intel_atomic_check(struct drm_device *dev,
  
-+	/* this is mainly for the fastset check */
-+	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
-+
- 	crtc_state->port_clock = icl_ddi_combo_pll_get_freq(dev_priv, NULL,
- 							    &port_dpll->hw_state);
+ 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+ 					    new_crtc_state, i) {
+-		if (intel_crtc_needs_modeset(new_crtc_state)) {
+-			any_ms = true;
+-
+-			intel_release_shared_dplls(state, crtc);
++		if (!intel_crtc_needs_modeset(new_crtc_state))
+ 			continue;
+-		}
  
-@@ -3301,6 +3304,9 @@ static int icl_compute_tc_phy_dplls(struct intel_atomic_state *state,
- 	if (ret)
- 		return ret;
+-		if (!new_crtc_state->update_pipe)
+-			continue;
++		any_ms = true;
  
-+	/* this is mainly for the fastset check */
-+	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_MG_PHY);
-+
- 	crtc_state->port_clock = icl_ddi_mg_pll_get_freq(dev_priv, NULL,
- 							 &port_dpll->hw_state);
+-		intel_crtc_copy_fastset(old_crtc_state, new_crtc_state);
++		intel_release_shared_dplls(state, crtc);
+ 	}
  
+ 	if (any_ms && !check_digital_port_conflicts(state)) {
 -- 
 2.35.1
 
