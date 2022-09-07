@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4409C5B0007
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 11:11:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171A65B0006
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 11:11:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFA6610E480;
-	Wed,  7 Sep 2022 09:11:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BBCF10E495;
+	Wed,  7 Sep 2022 09:11:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5F0410E4D6
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 09:11:11 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5EC10E480
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 09:11:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662541871; x=1694077871;
+ t=1662541875; x=1694077875;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zDsfbfbAlkvKg/L9K3PUc1AuEIvsUpTQWyOxtFXblQA=;
- b=Vz8LqQ62vBAsovbUKNIjhTa+LbYnsUzMpgYhWiY0o4QlE2dtkhiFajVD
- PdDaZDUUl/bhMR+dPFxTK9qnVu5iFmPpoqNZGHAP/gIfgTJt/wN3M5Svx
- W/DYq1KJjdWZqcqwNKySo+u+zjUPEZQ6Kt+F2VMTat+OZNsQJCAe3lC+V
- KPdDlqvmlENqZJEp+37uav3VF8TI15h4PSslK41cncNadAS15xEejgAeQ
- I+AnvxomxfN8c/ZfSn+zWdoJk8AnW1YI5/ZYSHlsxAe4f9If1hebsDwni
- kLBkK2wZdlM04RhhEQGeD4Dj/++ovSm3aF7CLhz/V+FwsRM0rOy9sPIM4 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="279835398"
-X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="279835398"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 02:11:10 -0700
+ bh=BLWfTcpST+2uaW3efJCAMEkzlaQalQPNc0iE0BeVkDY=;
+ b=b9wbFi1DdZwwInvY5XHQaHQPArkJj6RD0WBMDg+HSNU1k+Z2vDObWuqJ
+ GkhroYPv19CyJJTi+A6mPC91Ct0Ulpwx7RbuiEL/tJloSee9mT3EqOzo8
+ Np9HLHtbaMalBi66aB0i6/59nkJy6iLXg79jwvbYUlJ7tbYGr2jQF/e/Z
+ INxixiE8F2PZ8pjztLFYMs5CXD8KS/Lx/1xrs6QtGFrI39azlXwD/pTHA
+ OyUxJJ5iPq7S9mY3kqN9k2gQy2iZi05Wu6qvohqxymXZ3ZysVcyp2aWv+
+ xLX1qHXN2veeOkuBbCLiKzHMuXt+x/3ilmfe2d5G3lfFFXtqugnSdRPP9 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="295557364"
+X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="295557364"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2022 02:11:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="703529590"
+X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; d="scan'208";a="614416677"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by FMSMGA003.fm.intel.com with SMTP; 07 Sep 2022 02:11:07 -0700
+ by orsmga002.jf.intel.com with SMTP; 07 Sep 2022 02:11:11 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 07 Sep 2022 12:11:07 +0300
+ Wed, 07 Sep 2022 12:11:10 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  7 Sep 2022 12:10:43 +0300
-Message-Id: <20220907091057.11572-4-ville.syrjala@linux.intel.com>
+Date: Wed,  7 Sep 2022 12:10:44 +0300
+Message-Id: <20220907091057.11572-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220907091057.11572-1-ville.syrjala@linux.intel.com>
 References: <20220907091057.11572-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 03/17] drm/i915: Extract
- HAS_DOUBLE_BUFFERED_M_N()
+Subject: [Intel-gfx] [PATCH v4 04/17] drm/i915/dsi: Extract {vlv,
+ bxt}_get_pclk()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,66 +59,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We have a couple of places that want to make distinction between
-double buffered M/N registers vs. the split M1/N1+M2/N2 registers.
-Add a helper for that.
+Extract the state->freq computation for VLV/BXT DSI PLL
+into small helpers. We want to use these during the state
+computation as well.
 
-v2: Turn into a HAS_ macro (Jani)
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com> #v1
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- drivers/gpu/drm/i915/display/intel_dp.c      | 3 +--
- drivers/gpu/drm/i915/i915_drv.h              | 2 ++
- 3 files changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c | 121 ++++++++++++---------
+ 1 file changed, 68 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 71b8b21b1345..d0efdf6123fd 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5770,7 +5770,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(lane_count);
- 	PIPE_CONF_CHECK_X(lane_lat_optim_mask);
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+index 5894b0138343..2606dbf09ccc 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+@@ -113,6 +113,61 @@ static int dsi_calc_mnp(struct drm_i915_private *dev_priv,
+ 	return 0;
+ }
  
--	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv)) {
-+	if (HAS_DOUBLE_BUFFERED_M_N(dev_priv)) {
- 		PIPE_CONF_CHECK_M_N_ALT(dp_m_n, dp_m2_n2);
- 	} else {
- 		PIPE_CONF_CHECK_M_N(dp_m_n);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index c19e99ee06b6..dd6fadf57f30 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1864,8 +1864,7 @@ intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
- static bool cpu_transcoder_has_drrs(struct drm_i915_private *i915,
- 				    enum transcoder cpu_transcoder)
- {
--	/* M1/N1 is double buffered */
--	if (DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
-+	if (HAS_DOUBLE_BUFFERED_M_N(i915))
- 		return true;
- 
- 	return intel_cpu_transcoder_has_m2_n2(i915, cpu_transcoder);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index befb167b3c49..76aad81c014b 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -868,6 +868,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define HAS_DP_MST(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dp_mst)
- #define HAS_DP20(dev_priv)	(IS_DG2(dev_priv) || DISPLAY_VER(dev_priv) >= 14)
- 
-+#define HAS_DOUBLE_BUFFERED_M_N(dev_priv)	(DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
++static int vlv_dsi_pclk(struct intel_encoder *encoder,
++			struct intel_crtc_state *config)
++{
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
++	int bpp = mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
++	u32 dsi_clock;
++	u32 pll_ctl, pll_div;
++	u32 m = 0, p = 0, n;
++	int refclk = IS_CHERRYVIEW(dev_priv) ? 100000 : 25000;
++	int i;
 +
- #define HAS_CDCLK_CRAWL(dev_priv)	 (INTEL_INFO(dev_priv)->display.has_cdclk_crawl)
- #define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
- #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.has_fpga_dbg)
++	pll_ctl = config->dsi_pll.ctrl;
++	pll_div = config->dsi_pll.div;
++
++	/* mask out other bits and extract the P1 divisor */
++	pll_ctl &= DSI_PLL_P1_POST_DIV_MASK;
++	pll_ctl = pll_ctl >> (DSI_PLL_P1_POST_DIV_SHIFT - 2);
++
++	/* N1 divisor */
++	n = (pll_div & DSI_PLL_N1_DIV_MASK) >> DSI_PLL_N1_DIV_SHIFT;
++	n = 1 << n; /* register has log2(N1) */
++
++	/* mask out the other bits and extract the M1 divisor */
++	pll_div &= DSI_PLL_M1_DIV_MASK;
++	pll_div = pll_div >> DSI_PLL_M1_DIV_SHIFT;
++
++	while (pll_ctl) {
++		pll_ctl = pll_ctl >> 1;
++		p++;
++	}
++	p--;
++
++	if (!p) {
++		drm_err(&dev_priv->drm, "wrong P1 divisor\n");
++		return 0;
++	}
++
++	for (i = 0; i < ARRAY_SIZE(lfsr_converts); i++) {
++		if (lfsr_converts[i] == pll_div)
++			break;
++	}
++
++	if (i == ARRAY_SIZE(lfsr_converts)) {
++		drm_err(&dev_priv->drm, "wrong m_seed programmed\n");
++		return 0;
++	}
++
++	m = i + 62;
++
++	dsi_clock = (m * refclk) / (p * n);
++
++	return DIV_ROUND_CLOSEST(dsi_clock * intel_dsi->lane_count, bpp);
++}
++
+ /*
+  * XXX: The muxing and gating is hard coded for now. Need to add support for
+  * sharing PLLs with two DSI outputs.
+@@ -262,13 +317,7 @@ u32 vlv_dsi_get_pclk(struct intel_encoder *encoder,
+ 		     struct intel_crtc_state *config)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+-	int bpp = mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
+-	u32 dsi_clock, pclk;
+ 	u32 pll_ctl, pll_div;
+-	u32 m = 0, p = 0, n;
+-	int refclk = IS_CHERRYVIEW(dev_priv) ? 100000 : 25000;
+-	int i;
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "\n");
+ 
+@@ -280,65 +329,31 @@ u32 vlv_dsi_get_pclk(struct intel_encoder *encoder,
+ 	config->dsi_pll.ctrl = pll_ctl & ~DSI_PLL_LOCK;
+ 	config->dsi_pll.div = pll_div;
+ 
+-	/* mask out other bits and extract the P1 divisor */
+-	pll_ctl &= DSI_PLL_P1_POST_DIV_MASK;
+-	pll_ctl = pll_ctl >> (DSI_PLL_P1_POST_DIV_SHIFT - 2);
++	return vlv_dsi_pclk(encoder, config);
++}
+ 
+-	/* N1 divisor */
+-	n = (pll_div & DSI_PLL_N1_DIV_MASK) >> DSI_PLL_N1_DIV_SHIFT;
+-	n = 1 << n; /* register has log2(N1) */
++static int bxt_dsi_pclk(struct intel_encoder *encoder,
++			const struct intel_crtc_state *config)
++{
++	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
++	int bpp = mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
++	u32 dsi_ratio, dsi_clk;
+ 
+-	/* mask out the other bits and extract the M1 divisor */
+-	pll_div &= DSI_PLL_M1_DIV_MASK;
+-	pll_div = pll_div >> DSI_PLL_M1_DIV_SHIFT;
++	dsi_ratio = config->dsi_pll.ctrl & BXT_DSI_PLL_RATIO_MASK;
++	dsi_clk = (dsi_ratio * BXT_REF_CLOCK_KHZ) / 2;
+ 
+-	while (pll_ctl) {
+-		pll_ctl = pll_ctl >> 1;
+-		p++;
+-	}
+-	p--;
+-
+-	if (!p) {
+-		drm_err(&dev_priv->drm, "wrong P1 divisor\n");
+-		return 0;
+-	}
+-
+-	for (i = 0; i < ARRAY_SIZE(lfsr_converts); i++) {
+-		if (lfsr_converts[i] == pll_div)
+-			break;
+-	}
+-
+-	if (i == ARRAY_SIZE(lfsr_converts)) {
+-		drm_err(&dev_priv->drm, "wrong m_seed programmed\n");
+-		return 0;
+-	}
+-
+-	m = i + 62;
+-
+-	dsi_clock = (m * refclk) / (p * n);
+-
+-	pclk = DIV_ROUND_CLOSEST(dsi_clock * intel_dsi->lane_count, bpp);
+-
+-	return pclk;
++	return DIV_ROUND_CLOSEST(dsi_clk * intel_dsi->lane_count, bpp);
+ }
+ 
+ u32 bxt_dsi_get_pclk(struct intel_encoder *encoder,
+ 		     struct intel_crtc_state *config)
+ {
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	u32 pclk;
+-	u32 dsi_clk;
+-	u32 dsi_ratio;
+-	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+-	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	int bpp = mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
+ 
+ 	config->dsi_pll.ctrl = intel_de_read(dev_priv, BXT_DSI_PLL_CTL);
+ 
+-	dsi_ratio = config->dsi_pll.ctrl & BXT_DSI_PLL_RATIO_MASK;
+-
+-	dsi_clk = (dsi_ratio * BXT_REF_CLOCK_KHZ) / 2;
+-
+-	pclk = DIV_ROUND_CLOSEST(dsi_clk * intel_dsi->lane_count, bpp);
++	pclk = bxt_dsi_pclk(encoder, config);
+ 
+ 	drm_dbg(&dev_priv->drm, "Calculated pclk=%u\n", pclk);
+ 	return pclk;
 -- 
 2.35.1
 
