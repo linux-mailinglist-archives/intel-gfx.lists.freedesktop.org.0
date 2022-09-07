@@ -2,45 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D41875B0374
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 13:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBD365B0386
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Sep 2022 14:01:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1331B10E665;
-	Wed,  7 Sep 2022 11:55:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93FFF10E665;
+	Wed,  7 Sep 2022 12:01:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A41C10E61C;
- Wed,  7 Sep 2022 11:55:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=BM2xHrfmxe+STDKKXSowY9hGQLIOtaAF8m9cL5/wDWk=; b=h/UQBtGd2bbjkcASv3lH0arQWz
- thvfSm6sN9MwBmusPTiYDemn1x33oURDjpuH0ws/E3qX991rVKb/fSZ0S3xgvv6AfeccKlZhSkohy
- sU8eMVJzi86CP1ZxSnQR6y44HjkvYXg53BVbW7b6E0TO5KzwFS9WkRg1d8F7hs9m6UTWf8YOttaRQ
- 9u3bwIfEwALBVaKutcRK5+OM37JbbVXD/yScf1SxlJMwaz7adoPlUIziChtiYWq2v7MQCGS1e8/xs
- iPFO8ZuHB0w20MuW3hCwKJ/CEPXibmys5p+gFYGxPK1TK1F6EqsOzSuIGA9Fk83XXmpv6sPUSx0MA
- CUOG073Q==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1oVteI-005sv8-Au; Wed, 07 Sep 2022 11:55:18 +0000
-Date: Wed, 7 Sep 2022 04:55:18 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: "Tian, Kevin" <kevin.tian@intel.com>
-Message-ID: <YxiGpryRNrxvEoiY@infradead.org>
-References: <20220901143747.32858-1-kevin.tian@intel.com>
- <20220901143747.32858-2-kevin.tian@intel.com>
- <YxcV05AVN4kqdPX6@infradead.org>
- <BN9PR11MB5276EE6209C1E3D4662368DC8C419@BN9PR11MB5276.namprd11.prod.outlook.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E0F210E665;
+ Wed,  7 Sep 2022 12:01:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 77AF4AAA91;
+ Wed,  7 Sep 2022 12:01:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6503481314489049993=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BN9PR11MB5276EE6209C1E3D4662368DC8C419@BN9PR11MB5276.namprd11.prod.outlook.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Intel-gfx] [PATCH v2 01/15] vfio: Add helpers for unifying
- vfio_device life cycle
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 07 Sep 2022 12:01:08 -0000
+Message-ID: <166255206846.19839.7395974443987803810@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220907091057.11572-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220907091057.11572-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Make_fastset_not_suck_and_allow_seamless_M/N_changes_?=
+ =?utf-8?b?KHJldjcp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,169 +41,251 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- Christoph Hellwig <hch@infradead.org>, David Airlie <airlied@linux.ie>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Kirti Wankhede <kwankhede@nvidia.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Longfang Liu <liulongfang@huawei.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>, "Liu,
- Yi L" <yi.l.liu@intel.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
- Leon Romanovsky <leon@kernel.org>, Halil Pasic <pasic@linux.ibm.com>,
- Jason Gunthorpe <jgg@ziepe.ca>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Cornelia Huck <cohuck@redhat.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
- Abhishek Sahu <abhsahu@nvidia.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 07, 2022 at 12:43:30AM +0000, Tian, Kevin wrote:
-> > From: Christoph Hellwig
-> > Sent: Tuesday, September 6, 2022 5:42 PM
-> > 
-> > What is the point?  This adds indirect calls, and actually creates
-> > more boilerplate code in the drivers.  i.g. when using this code there
-> > is more, and harder to read code.
-> 
-> The point is to align with struct device life cycle when it's introduced
-> to vfio_device. The object is released via put_device() then what would
-> be the alternative if the driver doesn't provide a @release callback?
-> 
-> and with @release then naturally @init is also expected.
+--===============6503481314489049993==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-No, with a release no @init is expected.  The init method is one
-of the major obsfucations here, only topped by the weird
-vfio_alloc_device macro.  Yes, that saves about 4 lines of code
-in every driver, but places a burden on the struct layout and
-very much obsfucated things.  Without vfio_alloc_device and
-the init method I think much of this would make a lot more sense.
+== Series Details ==
 
-See the patch below that goes on top of this series to show how
-undoing these two would look on mbochs.  It it a slight reduction
-lines of code, but more readable and much less churn compared
-to the status before this series.
+Series: drm/i915: Make fastset not suck and allow seamless M/N changes (rev7)
+URL   : https://patchwork.freedesktop.org/series/103491/
+State : success
 
-diff --git a/samples/vfio-mdev/mbochs.c b/samples/vfio-mdev/mbochs.c
-index df95f25fbc0ede..7f01b335fd4dbd 100644
---- a/samples/vfio-mdev/mbochs.c
-+++ b/samples/vfio-mdev/mbochs.c
-@@ -505,14 +505,12 @@ static int mbochs_reset(struct mdev_state *mdev_state)
- 	return 0;
- }
- 
--static int mbochs_init_dev(struct vfio_device *vdev)
-+static int mbochs_probe(struct mdev_device *mdev)
- {
--	struct mdev_state *mdev_state =
--		container_of(vdev, struct mdev_state, vdev);
--	struct mdev_device *mdev = to_mdev_device(vdev->dev);
-+	int avail_mbytes = atomic_read(&mbochs_avail_mbytes);
- 	const struct mbochs_type *type =
- 		&mbochs_types[mdev_get_type_group_id(mdev)];
--	int avail_mbytes = atomic_read(&mbochs_avail_mbytes);
-+	struct mdev_state *mdev_state;
- 	int ret = -ENOMEM;
- 
- 	do {
-@@ -521,10 +519,14 @@ static int mbochs_init_dev(struct vfio_device *vdev)
- 	} while (!atomic_try_cmpxchg(&mbochs_avail_mbytes, &avail_mbytes,
- 				     avail_mbytes - type->mbytes));
- 
--	mdev_state->vconfig = kzalloc(MBOCHS_CONFIG_SPACE_SIZE, GFP_KERNEL);
--	if (!mdev_state->vconfig)
-+	mdev_state = kzalloc(sizeof(struct mdev_state), GFP_KERNEL);
-+	if (mdev_state == NULL)
- 		goto err_avail;
- 
-+	mdev_state->vconfig = kzalloc(MBOCHS_CONFIG_SPACE_SIZE, GFP_KERNEL);
-+	if (mdev_state->vconfig == NULL)
-+		goto err_state;
-+
- 	mdev_state->memsize = type->mbytes * 1024 * 1024;
- 	mdev_state->pagecount = mdev_state->memsize >> PAGE_SHIFT;
- 	mdev_state->pages = kcalloc(mdev_state->pagecount,
-@@ -546,38 +548,33 @@ static int mbochs_init_dev(struct vfio_device *vdev)
- 	mbochs_create_config_space(mdev_state);
- 	mbochs_reset(mdev_state);
- 
-+	ret = vfio_init_device(&mdev_state->vdev, &mdev->dev, &mbochs_dev_ops);
-+	if (ret)
-+		goto err_mem;
-+
-+	ret = vfio_register_emulated_iommu_dev(&mdev_state->vdev);
-+	if (ret) {
-+		vfio_put_device(&mdev_state->vdev);
-+		return ret;
-+	}
-+
- 	dev_info(vdev->dev, "%s: %s, %d MB, %ld pages\n", __func__,
- 		 type->name, type->mbytes, mdev_state->pagecount);
-+
-+	dev_set_drvdata(&mdev->dev, mdev_state);
- 	return 0;
- 
-+err_mem:
-+	kfree(mdev_state->pages);
- err_vconfig:
- 	kfree(mdev_state->vconfig);
-+err_state:
-+	kfree(mdev_state);
- err_avail:
- 	atomic_add(type->mbytes, &mbochs_avail_mbytes);
- 	return ret;
- }
- 
--static int mbochs_probe(struct mdev_device *mdev)
--{
--	struct mdev_state *mdev_state;
--	int ret = -ENOMEM;
--
--	mdev_state = vfio_alloc_device(mdev_state, vdev, &mdev->dev,
--				       &mbochs_dev_ops);
--	if (IS_ERR(mdev_state))
--		return PTR_ERR(mdev_state);
--
--	ret = vfio_register_emulated_iommu_dev(&mdev_state->vdev);
--	if (ret)
--		goto err_put_vdev;
--	dev_set_drvdata(&mdev->dev, mdev_state);
--	return 0;
--
--err_put_vdev:
--	vfio_put_device(&mdev_state->vdev);
--	return ret;
--}
--
- static void mbochs_release_dev(struct vfio_device *vdev)
- {
- 	struct mdev_state *mdev_state =
-@@ -585,7 +582,7 @@ static void mbochs_release_dev(struct vfio_device *vdev)
- 
- 	kfree(mdev_state->pages);
- 	kfree(mdev_state->vconfig);
--	vfio_free_device(vdev);
-+	kfree(vdev);
- 	atomic_add(mdev_state->type->mbytes, &mbochs_avail_mbytes);
- }
- 
-@@ -1414,7 +1411,6 @@ static struct attribute_group *mdev_type_groups[] = {
- 
- static const struct vfio_device_ops mbochs_dev_ops = {
- 	.close_device = mbochs_close_device,
--	.init = mbochs_init_dev,
- 	.release = mbochs_release_dev,
- 	.read = mbochs_read,
- 	.write = mbochs_write,
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12087 -> Patchwork_103491v7
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html
+
+Participating hosts (43 -> 42)
+------------------------------
+
+  Missing    (1): fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_103491v7 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2] ([i915#3921])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@kms_chamelium@common-hpd-after-suspend.html
+    - fi-blb-e6850:       NOTRUN -> [SKIP][4] ([fdo#109271])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-kefka:       [PASS][5] -> [FAIL][6] ([i915#6298])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-rplp-1}:       [DMESG-WARN][7] ([i915#2867]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [INCOMPLETE][9] -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [DMESG-FAIL][11] ([i915#4528]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#5278]: https://gitlab.freedesktop.org/drm/intel/issues/5278
+  [i915#6106]: https://gitlab.freedesktop.org/drm/intel/issues/6106
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6599]: https://gitlab.freedesktop.org/drm/intel/issues/6599
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12087 -> Patchwork_103491v7
+
+  CI-20190529: 20190529
+  CI_DRM_12087: 8bdb74fa246bca022b7a5c814ce5a93fe4614402 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6647: 0bf58300f0287d2f83ac02d1201b0d0a229b637c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_103491v7: 8bdb74fa246bca022b7a5c814ce5a93fe4614402 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+42d7afdd90d4 drm/i915: Round TMDS clock to nearest
+3341c8c62857 drm/i915: Use a fixed N value always
+9c1462b636c4 drm/i915: Allow M/N change during fastset on bdw+
+72ca3da4bd22 drm/i915: Add intel_panel_highest_mode()
+6b52e2480931 drm/i915: Skip intel_modeset_pipe_config_late() if the pipe is not enabled
+ca809f4d5343 drm/i915: Nuke fastet state copy hacks
+34abfd1e33de drm/i915: Set active dpll early for icl+
+bcae3d7e9556 drm/i915: Make all clock checks non-fuzzy
+3e65290d26c0 drm/i915: Make M/N checks non-fuzzy
+8ef0ca492820 drm/i915: Compute clocks earlier
+0c6a5c0436ec drm/i915: Feed the DPLL output freq back into crtc_state
+111b646797ea drm/i915: Reassign DPLLs only for crtcs going throug .compute_config()
+ed1d7716d0ce drm/i915: Do .crtc_compute_clock() earlier
+14ef589fc01e drm/i915/dsi: Extract {vlv, bxt}_get_pclk()
+bc37ac1162ae drm/i915: Extract HAS_DOUBLE_BUFFERED_M_N()
+0b73f089af82 drm/i915: Shuffle some PLL code around
+296860fbab7d drm/i915: Relocate intel_crtc_dotclock()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html
+
+--===============6503481314489049993==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Make fastset not suck and allow seamless M/N changes (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/103491/">https://patchwork.freedesktop.org/series/103491/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12087 -&gt; Patchwork_103491v7</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/index.html</p>
+<h2>Participating hosts (43 -&gt; 42)</h2>
+<p>Missing    (1): fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_103491v7 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>
+<p>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
+</li>
+<li>
+<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-blb-e6850/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12087/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_103491v7/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12087 -&gt; Patchwork_103491v7</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12087: 8bdb74fa246bca022b7a5c814ce5a93fe4614402 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6647: 0bf58300f0287d2f83ac02d1201b0d0a229b637c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_103491v7: 8bdb74fa246bca022b7a5c814ce5a93fe4614402 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>42d7afdd90d4 drm/i915: Round TMDS clock to nearest<br />
+3341c8c62857 drm/i915: Use a fixed N value always<br />
+9c1462b636c4 drm/i915: Allow M/N change during fastset on bdw+<br />
+72ca3da4bd22 drm/i915: Add intel_panel_highest_mode()<br />
+6b52e2480931 drm/i915: Skip intel_modeset_pipe_config_late() if the pipe is not enabled<br />
+ca809f4d5343 drm/i915: Nuke fastet state copy hacks<br />
+34abfd1e33de drm/i915: Set active dpll early for icl+<br />
+bcae3d7e9556 drm/i915: Make all clock checks non-fuzzy<br />
+3e65290d26c0 drm/i915: Make M/N checks non-fuzzy<br />
+8ef0ca492820 drm/i915: Compute clocks earlier<br />
+0c6a5c0436ec drm/i915: Feed the DPLL output freq back into crtc_state<br />
+111b646797ea drm/i915: Reassign DPLLs only for crtcs going throug .compute_config()<br />
+ed1d7716d0ce drm/i915: Do .crtc_compute_clock() earlier<br />
+14ef589fc01e drm/i915/dsi: Extract {vlv, bxt}_get_pclk()<br />
+bc37ac1162ae drm/i915: Extract HAS_DOUBLE_BUFFERED_M_N()<br />
+0b73f089af82 drm/i915: Shuffle some PLL code around<br />
+296860fbab7d drm/i915: Relocate intel_crtc_dotclock()</p>
+
+</body>
+</html>
+
+--===============6503481314489049993==--
