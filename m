@@ -2,149 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD1B5B1DEE
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 15:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D875B1E7E
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 15:18:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBF1410EAD4;
-	Thu,  8 Sep 2022 13:06:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A80E10EAE4;
+	Thu,  8 Sep 2022 13:18:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D8B110E9CF;
- Thu,  8 Sep 2022 13:06:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662642407; x=1694178407;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=SbeQdKRPAow4LvDTaglIm03l/pR/uxwHfELR3e1Us3k=;
- b=P0BdZzLLDqB5uQJiy0iLLULYee0MX1TJXxK8h4sDTu7La4OQ8ujTohpW
- ObK4LTFLmRe3ZRoIgCFuK7Wmncbqtj7Hyljvftf283WjOwS8NC2F+nOg+
- hESta1DSjQeMNKdD998PHQ2DaRi/1qMyte/NWf7vN6AKV9D/G56RQlc29
- PwAAUF5QQ+9LaVpOpBld1vntj7WuUzk0jKD1r3ASA9LJnWlRGQmZ8T+W+
- g02bIxr4WahxKlHmNiLSdqNPsqy8+VYEZLx62Az2iOFGMk0hTXpujwqMn
- fYlkz8XZBLHuOFHEJYENGVs0PdwHi01z8pUX1WQKLPeH93flHiBMwnjZa Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="297160565"
-X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="297160565"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 06:06:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="683223930"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga004.fm.intel.com with ESMTP; 08 Sep 2022 06:06:34 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 8 Sep 2022 06:06:33 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 8 Sep 2022 06:06:33 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 8 Sep 2022 06:06:33 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.47) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 8 Sep 2022 06:05:55 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ca2Iczgku1tpGr3QjbVSPLhL5OnmxTSLr5YPMXI1DdZg4oqugrW+T05DwKgEe1HP5GDVZAHOKgu0CUPr97pI3DKLLHDxeoEWGM/hMulSmout53tTytsXKlDkXo1iGBdBvv3259TFLttA3VFlq7Q6WYilBgyO632toG856cTGrxPICepZo6Gib5+CF1YWa5yHOIiS1IqQKRpd6RER2HHo7HNhD0+UGY2tCT/lEQfIfC+tiD4KDdK+9hEzfP8eYRx0FAb8Zf8I/NGkeK5W583alF+npX+eSC298vkbzBNny6RzGkpPk9QbxNG7if9JLcZXSCFD0o53OiW1NUZ6hL7MDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R8w9e9HTk2DE9u6HMCjJ3kCmzPmEY0o5x0WGg81ZQL0=;
- b=nC3n/4GspgGCoLKglM/BvmrsijCTph33gmlOCX/4I30mC+KC4NxFaCPS/QsmGnWyXuHwT5A2mIGOJSYrXxyiyml5GUDgQLvigBsuzZBaIzQRxf2hrrS5lCw2f3uKra1GokAmkEIyTQ8lNtKbK4hfL16sDZEVj2w6kKZOWQ+WK2Nr22TU8yyz0A5Jx5MBkwdc3UWe95SD73BSPJTpHLf+C/1VVETDi3anAG/GbRl6EuzyrxZ0WG00lmZ47jb6FJoJIKTkneZzKoHLzaKnLWloKN9N8FZdUF7ldIuUzxQOn0STR3KgCb5CrkCd+kXG/yzgtT26pto7yeN+b1hM5k8dYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM5PR11MB1897.namprd11.prod.outlook.com (2603:10b6:3:112::9) by
- DM8PR11MB5656.namprd11.prod.outlook.com (2603:10b6:8:38::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5612.12; Thu, 8 Sep 2022 13:05:35 +0000
-Received: from DM5PR11MB1897.namprd11.prod.outlook.com
- ([fe80::fc2f:babb:578c:f03e]) by DM5PR11MB1897.namprd11.prod.outlook.com
- ([fe80::fc2f:babb:578c:f03e%6]) with mapi id 15.20.5588.018; Thu, 8 Sep 2022
- 13:05:35 +0000
-Date: Thu, 8 Sep 2022 18:35:24 +0530
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-Message-ID: <YxnolNemF1OQZeqN@bala-ubuntu>
-References: <20220902060342.151824-1-radhakrishna.sripada@intel.com>
- <20220902060342.151824-6-radhakrishna.sripada@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20220902060342.151824-6-radhakrishna.sripada@intel.com>
-X-ClientProxiedBy: BM1P287CA0006.INDP287.PROD.OUTLOOK.COM
- (2603:1096:b00:40::34) To DM5PR11MB1897.namprd11.prod.outlook.com
- (2603:10b6:3:112::9)
+Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
+ [64.147.123.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FF0B10EAE4;
+ Thu,  8 Sep 2022 13:18:33 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.west.internal (Postfix) with ESMTP id 3FFCB2B05BBA;
+ Thu,  8 Sep 2022 09:18:30 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute5.internal (MEProxy); Thu, 08 Sep 2022 09:18:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; t=1662643109; x=1662650309; bh=peZAPoe3RK
+ R6LaA58j2Tow8y68g/d3BSYQ3Pc87XUGY=; b=HqeaMgrK3xJVh8ppUvrDkhcU1g
+ lTVZG4zsSYvHWV7l0tEzslAnqCrVydvWGWhl2Crw/3itbwiFPLkJvkVYASYEZ4ym
+ DWqrY7+YD7G1iFbpMjNbsXLoEbp8NSZyi42R4+9GdgIvwBUjFtzrXf+aAiY6CXpv
+ NvSF7bYFOhu27KXlYOOf9vZ9K1RDfBw5HVV1gMD7FmUxA30svYp/XSrDwZtfq/q+
+ Yn2Y3ywNcBO7zVvq5wNRN/Qy25584MRc8Mf8k8ArYBhYlNGMemIFE7j3u7hQ9ikn
+ o9a3EGvyt3jSChl44qwm9IbkkthHKIY48L8H1/nSCBvoa7q6d1Sp9ykKIGvg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm2; t=1662643109; x=1662650309; bh=peZAPoe3RKR6LaA58j2Tow8y68g/
+ d3BSYQ3Pc87XUGY=; b=TdtDcZ7aisUC788WDuwkYn8KgU9dtcIC8lnHZ+ill3kl
+ MQQydSx0N7PadO5GA0H6p3cEIICW/uDgUCIxzt+BiFwybjl4dPhcdqnKwG7Er4wD
+ S6NtPDC7xt4qTX/+HQCLj7CpFeh9rDbNc7wPUsQ0d3fuOYqOuI9k6OVJANDz0GLf
+ hsldkfyH9Jm9EhRGPXvDK6vvhAAvTPz5yiATXuU72kO9bfhhK/OBN18YWp9WVf14
+ go/4SIqEfwPTSnaEvT1GYoqJnYKMd1REBRpog6EaQ/P3Br2w4NxEpXRkRMixEcHa
+ CrAPIH9ZWiWEhSJb2kvjggQm86GiTAVKzHw31lKH3A==
+X-ME-Sender: <xms:pOsZYwNWrPj2mLeJObYMt6YSnGkcD8Xe8wrtrhS8Gumrb9XsTF6TQg>
+ <xme:pOsZY29tYePljP6cmi0tgOUXt3zN1GBt6_BhWrkxnk6SE-xGtyY21M3eEPJ_FO79C
+ C1V4biIp_EluQWmcn0>
+X-ME-Received: <xmr:pOsZY3SqgXSYaY3LP-7droYRi5CoXBVWSSh4FTHwyFqM1HGFGTXA3RTN4A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedtfedgtdegucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeeflefgheeuheelueegveefkedtgefgfeevkefggeevteefgefhkeetgeeg
+ hfdtgeenucffohhmrghinhepghhithhhuhgsuhhsvghrtghonhhtvghnthdrtghomhdpgh
+ hithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghi
+ lhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:pesZY4s3LRqSUcrFAmNQ1HgBQvX5sgpPjGON7SC8Mvc_3wFIv5sXHA>
+ <xmx:pesZY4dMj78RnwKJdrCTlc6wYbs5qWt_INAFQrmEk9-BTaCeK90svQ>
+ <xmx:pesZY817H27Fc7Zo_5vHAauR5wo8vXoNImMTM-OT6pM9Z3UGl0A3nw>
+ <xmx:pesZYxOTFCWxesckTdcpa5a3R7c8JvOdfP-Kw6T-XEt0C3Ix8KyAFQxacZ8>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 8 Sep 2022 09:18:28 -0400 (EDT)
+Date: Thu, 8 Sep 2022 15:18:24 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Mateusz Kwiatkowski <kfyatek@gmail.com>
+Message-ID: <20220908131824.jjbnh2wzhj3gkutz@houat>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-32-459522d653a7@cerno.tech>
+ <c8f8015a-75da-afa8-ca7f-b2b134cacd16@gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b907267d-c5ad-4f1a-9795-08da919ad1ae
-X-MS-TrafficTypeDiagnostic: DM8PR11MB5656:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bRZcYPKDRIr1q9l7ofMQhULbmtkqw/qegvJ3Bvu1XgrTOlQQ1ergZbS/68TlccWcVjeAtQz+zXt8QcvJNuMt/dhW9y9J8lsdpiOonYVw7aFHxKTLBlfvWzO9W3zvpX7dMHxFbROLr/BHp52jYWdHydeVS4eem/MUarSqkFuZJLAtONaLQmBBW2hmPoMLTESD9bW7kdY/DraVs9ggdqvarXn5V/PXQ5m2ajgSBZ9bwMW/miFrjZ4O9NxQzpL9RPfoN2tDWR3YaNzSKlFbIIwPZQtrGNTFk8r2ak5TVR0qGT8hIQbSKKTBlq/7QS3hW4CJc0fvZJLGMvrt99SWiyacThvEhMju19F3wVp7XbjssvMq/T9WfkwZrZK6jWN0TgIi+lLOTaJ5NlHxf/FOl5xW14ov/X9iTcmwGgAUyht9S9dTQCYAR5uIIfVBeWQ3s8wF851fSRz5TNqijLBKlJcRe03gJtm77b7GiFfa+uYUurI+7RTYuKfiz3Kn7XQHWOq+MqN7lafN8/is3FelYphcZ+soy1pr0ggVYRmdMNtEUnOnlzxRqM1kLVMYQ68LJanrYRHd6GOWxUW2axZKIPJ7LWiBWNt4aZHtGMzArZfoOVwT14yL9iExdpQi8PXbicClxHXqnSEO8y+pE/e62jUo6H+/8ipCFJCa/LSe8emUR5ltbbIVy4OK14ZTV0Ks/yYag3AZhjJ9FltlrciLINXojw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR11MB1897.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(7916004)(39860400002)(136003)(396003)(376002)(366004)(346002)(186003)(26005)(8676002)(450100002)(4326008)(86362001)(66946007)(66476007)(82960400001)(66556008)(316002)(33716001)(6506007)(53546011)(6666004)(9686003)(6512007)(44832011)(38100700002)(41300700001)(6486002)(478600001)(2906002)(5660300002)(8936002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VUVqMzByRUE3THBFLzJuYkk4QXJkZklPNGY0NXNDZWwzUkdxQTl3SWMwRHhj?=
- =?utf-8?B?NHlCc0FZRGlXVVVrbmNVQUtNN2F5ZWFFTk5vTlA4WXFZOXZZOSttcW91TFI3?=
- =?utf-8?B?V2Iwb1AwbGRheDhWR3BxQzg2NEJIL3dWWkw4VUwyV28wV2tOamt2d0dwYXdp?=
- =?utf-8?B?Z0FYYTJuank4d2haa0VyYXdCVWZ1a3VvSVNTdmFacEFGc2VmZjZ6RmlFd3lu?=
- =?utf-8?B?V1pMTWdObGVaYjY3cjNNbS82ZjBTWTdYV29LMEx3NE9YQUhRZUlQOFM5d1ZT?=
- =?utf-8?B?WDFyODN4d3FkWXEzOHg3eU82aG9Cb0E4ZzFnb0gyQXNLb1hIdjUwOEM0ZnUz?=
- =?utf-8?B?SnhwVk9PTkNGRFBmdmFYelQ3VW1VWGgrcFdpeCszRWc0VlFHdW5JeU8zUThy?=
- =?utf-8?B?VVpsNWw2c3ZHZ0Z5OEYvaGhySVI5MlJmaDE2VHIwZytaNEhwSUE3ZTZ0VVlT?=
- =?utf-8?B?NzdhK3Z4Ky9kWXhrSkk2WVpjNC9yWkJ0UGJzKzc1Q05KeFpkWk9tOVZFbTJM?=
- =?utf-8?B?T21FQTJaYmZYZExFVGNqajRjY0xiQUt2bENBUEVaV05laWtqTm10KzEzTmg5?=
- =?utf-8?B?bkVLVmlJQ0pOTU1OK3JFSy9tWDVLd1V0b3V0T3M2RVhrWGxyc0hVWmFLbXgv?=
- =?utf-8?B?YzdGczNVWDRNSUhvcnhGYllLcGJTUG9FSTRNRFNnNW5vWE50bVFnSWZhS1hy?=
- =?utf-8?B?b0ttOW5wdHN4dFB1NlpUdGxBS3dQenQwZU9uMjg4Z1hmNEZFYUJDb0UzaTVu?=
- =?utf-8?B?Y2hxanNYL0ZLbGQ5Y1QxQnNVREgxVGJXVlhEVGJ2bGxKWWJMM21YNHBJYnpu?=
- =?utf-8?B?MDNlK2wrSzFtUUpmR3hUMGEyakRWN0ZjQU9YcXpMbDEvbzNZMFgzMS9oRjNa?=
- =?utf-8?B?Z3Q4RjJNc0N1SjRWWGtEZWQrZkptNUtHNis2VHJjZUJjK0Znc3FPaUhDUTBi?=
- =?utf-8?B?WEVWbVJsTHRCRlRxRDBkVDdEMXR3K01tZDlEdEFMcVRGVTRkTWxLcGlIWWl2?=
- =?utf-8?B?aExuMGlhamVBMEFUeUVDUGJEaDRja2lta0Q5SEF1SnZiZFFZaEFvd29wM1Jj?=
- =?utf-8?B?OEtQcXNkbHRDTVBwK0JCMm5hcVlvWEhQRE92QkNRaGFZQ0dOUzJMNkJCd21F?=
- =?utf-8?B?TFZuKys1SnlCQmlqOVd3VUY5Zk1JdTljUDBOMWVQcWYvaDArMzdnUHB2aUxm?=
- =?utf-8?B?YlgzS0hsdmIxeXozbDNvUkxyQ211MmI3TVl0WmpUWVNadDNRYTFJQjUzWEFQ?=
- =?utf-8?B?Y0JnNkxuYmdMYXNIYVVVUGp4dkg2dzR3L3hRdk5IRERpQlg4UEJlUEtxa3dG?=
- =?utf-8?B?WmdNamtqUkVXUThkY29xKytaV3JFMS9mbjhmQXRxZTFjdWUvWis2c25GYXdQ?=
- =?utf-8?B?b3V6NG5OTy9mNjlpalBXa2t2cnRXRDFkTFZhYnB6WEFOMVd3clkvczRBT0k4?=
- =?utf-8?B?OG93WGVQNHArS1U0MUJoUFVwUEhPMzF3eHd1VmNmR0FRMEwzd3d5eHN4REVl?=
- =?utf-8?B?ZURzZFdYcjBYTi9kdEk5MTAzd0JSdGRqVE1UdHdBOFBaL2xycEgzMk5tWi81?=
- =?utf-8?B?WHZ2M0tMOGZrSEtLdUFYTTFuZHJoTWpSN2R6U01SN1JGK1d0S0syK0RJTXVv?=
- =?utf-8?B?VHYyVmR5ZTJIcnZZaHJNbmdueEovWjlkNWxNY1BmcERZbVZLb3BVYVR3Rmts?=
- =?utf-8?B?OHZDcXBwZGNHV2Z2Y1Z4QStab09abXk2NDlQdVRXR3FoMGFFeXJIMjlmSXFj?=
- =?utf-8?B?RlNtS2tZSEdYUmhxZENsclkvalpyRHpYUlZXaWVXRFhNTkNFdkZDZ1hTUGNy?=
- =?utf-8?B?bXR2QmcvaTBEbXEyQTZLNDdvQ2NsajJQVlhKV1hlNWN1Tm1wcWNBYWlxTy8w?=
- =?utf-8?B?SnRWZ0R2bEhKeXFrd3Q0aTNsbWhUYkdQNy84V1gwOUFFQU1McHJMTHVpbnc5?=
- =?utf-8?B?dzV1bmZXcTB1OTVDZ0wreUp0dElKNjQ1VmJDRjkvb0NxT3NHYVcyNHJYbTNB?=
- =?utf-8?B?UGhHaVpZVDFzUzEwMm8xUzFkdjRHa28xVEpXOWlJYnlsMXVaYjk5VGpQRUF6?=
- =?utf-8?B?T3YxdWZrRE9MaS9SdXBaVXR0SUFrYXg4TkZ1OXY0di83WDNvbUFhWkZraFpG?=
- =?utf-8?B?anpvUjJMLytRVW9xRUs4MjA1SVhHY1BBM1cyU09RU1ZmVlprZFUvM3JHNWpo?=
- =?utf-8?Q?IupRi/DMoWl9he/r6aTK81A=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b907267d-c5ad-4f1a-9795-08da919ad1ae
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1897.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2022 13:05:35.7405 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6JzEidQqSfKpoZH+CpT/TRsxRDgKFCgZfWk3lun14JVlPpGrMiDWGmeFQOexJkjjotAfEoCVHxtYTfYRcr1T444KW5AGvgoUwdZXdpVB2Eu0iTvpr5WiKLUfPC6vJZSQ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR11MB5656
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 05/11] drm/i915/mtl: Add gmbus and gpio
- support
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="oe4rmkonoj7og4p4"
+Content-Disposition: inline
+In-Reply-To: <c8f8015a-75da-afa8-ca7f-b2b134cacd16@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v2 32/41] drm/vc4: vec: Convert to the new
+ TV mode property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,35 +86,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 01.09.2022 23:03, Radhakrishna Sripada wrote:
-> Add tables to map the GMBUS pin pairs to GPIO registers and port to DDC.
-> From spec we have registers GPIO_CTL[1-5] mapped to native display phys and
-> GPIO_CTL[9-12] are mapped to TC ports.
-> 
-> v2:
->  - Drop unused GPIO pins(MattR)
-> 
-> BSpec: 49306
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Original Author: Brian J Lovin
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_gmbus.c | 15 +++++++++++++++
->  drivers/gpu/drm/i915/display/intel_gmbus.h |  1 +
->  2 files changed, 16 insertions(+)
 
-Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> index 6f6cfccad477..74443f57f62d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> @@ -117,6 +117,18 @@ static const struct gmbus_pin gmbus_pins_dg2[] = {
->  	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIOJ },
->  };
->  
+--oe4rmkonoj7og4p4
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Aug 31, 2022 at 04:23:21AM +0200, Mateusz Kwiatkowski wrote:
+> I tested your patchset on my Pi and it mostly works. Good work! However,
+> I noticed a couple of issues.
+>=20
+> > -static int vc4_vec_encoder_atomic_check(struct drm_encoder *encoder,
+> > -=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0struct drm_crtc_stat=
+e *crtc_state,
+> > -=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0struct drm_connector=
+_state *conn_state)
+> > -{
+> > -=A0=A0 =A0const struct vc4_vec_tv_mode *vec_mode;
+> > -
+> > -=A0=A0 =A0vec_mode =3D &vc4_vec_tv_modes[conn_state->tv.mode];
+> > -
+> > -=A0=A0 =A0if (conn_state->crtc &&
+> > -=A0=A0 =A0=A0=A0=A0 !drm_mode_equal(vec_mode->mode, &crtc_state->adjus=
+ted_mode))
+> > -=A0=A0 =A0=A0=A0 =A0return -EINVAL;
+> > -
+> > -=A0=A0 =A0return 0;
+> > -}
+>=20
+> I may have said it myself that we should allow custom modelines without t=
+oo
+> much validation. The VC4 and VEC, however, have some considerable limitat=
+ions
+> when it comes to the modelines that they can reliably output.
+>=20
+> In particular, attempting to use "50 Hz" timings in NTSC/PAL-M modes (or
+> "60 Hz" in PAL/SECAM modes) results in a weirdly skewed image. Here's how=
+ it
+> may look like:
+> https://user-images.githubusercontent.com/4499762/187575940-736e7262-c82d=
+-42f3-a2d8-f309cbd51139.png
+>=20
+> This is because if the CRTC does not trigger the sync pulses within an
+> acceptable time window, the VEC apparently generates them itself. This ca=
+uses
+> the VEC sync pulses (which go onto the wire) not quite line up with the o=
+nes
+> from the modeline, which results in what you see on the screenshot.
+>=20
+> I once wrote a validation function based on extensive testing of what
+> produces a sensible output and what doesn't. You can find it here:
+> https://github.com/raspberrypi/linux/pull/4406/commits/15c0c51. I think it
+> might be a good idea to include something like that - even though I know =
+it's
+> somewhat ugly.
+
+I've reworked that code a bit, and it will be part of my next version.
+
+> (BTW, those %2 checks on vertical timings in that linked commit can be ig=
+nored;
+> those values are divided by 2 for interlaced modes anyway. Those checks w=
+ere
+> intended to ensure proper odd-first or even-first timings; I'm not sure i=
+f your
+> code calculates those in the same way)
+
+Ack, I've removed them.
+
+> >=A0 static int vc4_vec_connector_get_modes(struct drm_connector *connect=
+or)
+> >=A0 {
+> > -=A0=A0 =A0struct drm_connector_state *state =3D connector->state;
+> > =A0=A0=A0 =A0struct drm_display_mode *mode;
+> > +=A0=A0 =A0int count =3D 0;
+> > =A0
+> > -=A0=A0 =A0mode =3D drm_mode_duplicate(connector->dev,
+> > -=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0 vc4_vec_tv_modes[state->tv=
+=2Emode].mode);
+> > +=A0=A0 =A0mode =3D drm_mode_analog_ntsc_480i(connector->dev);
+> > =A0=A0=A0 =A0if (!mode) {
+> > =A0=A0=A0 =A0=A0=A0 =A0DRM_ERROR("Failed to create a new display mode\n=
+");
+> > =A0=A0=A0 =A0=A0=A0 =A0return -ENOMEM;
+> > =A0=A0=A0 =A0}
+> > =A0
+> > =A0=A0=A0 =A0drm_mode_probed_add(connector, mode);
+> > +=A0=A0 =A0count +=3D 1;
+> > =A0
+> > -=A0=A0 =A0return 1;
+> > +=A0=A0 =A0mode =3D drm_mode_analog_pal_576i(connector->dev);
+> > +=A0=A0 =A0if (!mode) {
+> > +=A0=A0 =A0=A0=A0 =A0DRM_ERROR("Failed to create a new display mode\n");
+> > +=A0=A0 =A0=A0=A0 =A0return -ENOMEM;
+> > +=A0=A0 =A0}
+> > +
+> > +=A0=A0 =A0drm_mode_probed_add(connector, mode);
+> > +=A0=A0 =A0count +=3D 1;
+> > +
+> > +=A0=A0 =A0return count;
+> > +}
+>=20
+> Xorg is pretty confused by these modes being reported like that. The 576i=
+ mode
+> is *always* preferred, presumably because of the higher resolution. If th=
+e NTSC
+> mode is set (via the kernel cmdline or just due to it being the default),=
+ this
+> results in a mess on the screen - exactly the same thing as on the screen=
+shot
+> linked above.
+>=20
+> Note that drm_helper_probe_add_cmdline_mode() *does* add the
+> DRM_MODE_TYPE_USERDEF flag to the 480i mode, having detected it as prefer=
+red
+> on the command line - but Xorg does not seem to care about that.
+
+I'm not quite sure why that would be the case. The usual logic to pick
+the preferred mode is to use either the mode with the flag or the first
+one.
+
+> I remember Noralf suggesting setting DRM_MODE_TYPE_PREFERRED for the mode=
+ that
+> corresponds to the currently chosen tv_mode - that would fix the problem.
+> An alternative would be to _not_ add the "opposite" mode at all, like the
+> current default Raspberry Pi OS kernel behaves.
+
+I'll add it the PREFERRED flag then, switching the modes have other
+challenges.
+
+Maxime
+
+--oe4rmkonoj7og4p4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYxnroAAKCRDj7w1vZxhR
+xdi7AQCzv8VgoLgusukooavi5uzzw2ozZ+Tftp0NswFipI6XtAEAxsDX9XhrvZAd
+1mdv6bmwrkQ6l0bFk912Wm89BuSHnAc=
+=vZff
+-----END PGP SIGNATURE-----
+
+--oe4rmkonoj7og4p4--
