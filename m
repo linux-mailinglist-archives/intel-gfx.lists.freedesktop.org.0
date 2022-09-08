@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 112A35B13FD
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 07:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8788D5B1401
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 07:23:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0E4B10E958;
-	Thu,  8 Sep 2022 05:22:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F92F10E958;
+	Thu,  8 Sep 2022 05:23:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 097BF10E958
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 05:22:54 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4F0310E958
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 05:23:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662614574; x=1694150574;
+ t=1662614626; x=1694150626;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lNZ1yBhLxY4g0F+J9L8t83ajZ/WprlpF3zRpNvVbTko=;
- b=hLUmVZwj1XKueX327lYOcCl+U6GuePtcJ9FBbD1rkjUWCrhBrbI+9OlN
- QvmDVsId+YcanaECRRiQpBhX1e2ceWHhmvv+xFSxJ85kozx0oRGHP8cnF
- +YICl2c324sdcuU9hK+n+ochwOE4PUrDnc2aNHrC4Qt4izhTfuMhrJcmu
- qHUWbRat7gFR/aV+tMtY1O1GV/5iSWei9r7+/85S1uJNumh/tEd+/57D7
- va/rcenaI0PYvc5krd6NO5DUz+mFRNbgoCE6BFDaNEZ8YejIsHLQCjsbJ
- HQSXI3MwkPgKIgYEm/x5eiyr6Qs8f6g6e+2TiAlAKA42EMU/54j2eaeGt Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="298408392"
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="298408392"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 22:22:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="718416748"
+ bh=i2zsGOfF6GTq3MT4oDwXA+A/4/JVb5YIykwiU/6A098=;
+ b=i2yqXg4Wun0RCfNEn98AFrAdE9g8AqaxynZdh2JSkJ8WBRXqbGS5nBk+
+ oJpVaVywABZsFXsCYTNz+gFI6154w6STkkOw/IWeZGqw2ftTINhr77SF/
+ vgCNVc8d8TZvzp6KznMKudMtTjennhTmXNk6UL/dQcnZj/LP/dYR5xaN5
+ scVDEfYhZ5Z8LhlWJ1YDpccFhGWnEawwBk5wt90ejCDqEVYRZDLl3JU1j
+ DEk9MAyCkgOIYR15vOhKK405N1uQI6TbteoI9xoFer94RDYNbOID/AWnx
+ O4oGauqd9SVxeuimwv/mVbopRw8mrAsOd/TmkDDZ5uBBee5jZ2nhYYBBB w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="383365334"
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="383365334"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2022 22:23:41 -0700
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="683091518"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 22:22:52 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2022 22:23:41 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  7 Sep 2022 22:22:49 -0700
-Message-Id: <aba9305853caa054dc598a0f559495d3e4e2b1be.1662613377.git.ashutosh.dixit@intel.com>
+Date: Wed,  7 Sep 2022 22:23:38 -0700
+Message-Id: <33dce2f6fd36cbaa570265997a5b2f4034fb6688.1662613377.git.ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1662613377.git.ashutosh.dixit@intel.com>
 References: <cover.1662613377.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/8] drm/i915/debugfs: Add perf_limit_reasons in
- debugfs
+Subject: [Intel-gfx] [PATCH 7/8] drm/i915/mtl: PERF_LIMIT_REASONS changes
+ for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,87 +57,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tilak Tangudu <tilak.tangudu@intel.com>
+PERF_LIMIT_REASONS register for MTL media gt is different now.
 
-Add perf_limit_reasons in debugfs. The upper 16 perf_limit_reasons RW "log"
-bits are identical to the lower 16 RO "status" bits except that the "log"
-bits remain set until cleared, thereby ensuring the throttling occurrence
-is not missed. The clear fop clears the upper 16 "log" bits, the get fop
-gets all 32 "log" and "status" bits.
+v2: Avoid static inline for intel_gt_perf_limit_reasons_reg() (Jani)
 
-v2: Expand commit message and clarify "log" and "status" bits in
-    comment (Rodrigo)
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 31 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h               |  1 +
- 2 files changed, 32 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_gt.c            | 6 ++++++
+ drivers/gpu/drm/i915/gt/intel_gt.h            | 1 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 4 ++--
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   | 6 +++---
+ drivers/gpu/drm/i915/i915_reg.h               | 1 +
+ 5 files changed, 13 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 070068524a19..602d711d3c9e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -224,6 +224,12 @@ static void gen6_clear_engine_error_register(struct intel_engine_cs *engine)
+ 	GEN6_RING_FAULT_REG_POSTING_READ(engine);
+ }
+ 
++i915_reg_t intel_gt_perf_limit_reasons_reg(struct intel_gt *gt)
++{
++	return gt->type == GT_MEDIA ?
++		MTL_MEDIA_PERF_LIMIT_REASONS : GT0_PERF_LIMIT_REASONS;
++}
++
+ void
+ intel_gt_clear_error_registers(struct intel_gt *gt,
+ 			       intel_engine_mask_t engine_mask)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+index c9a359f35d0f..b6509d3e8804 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+@@ -60,6 +60,7 @@ void intel_gt_driver_late_release_all(struct drm_i915_private *i915);
+ int intel_gt_wait_for_idle(struct intel_gt *gt, long timeout);
+ 
+ void intel_gt_check_and_clear_faults(struct intel_gt *gt);
++i915_reg_t intel_gt_perf_limit_reasons_reg(struct intel_gt *gt);
+ void intel_gt_clear_error_registers(struct intel_gt *gt,
+ 				    intel_engine_mask_t engine_mask);
+ 
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-index 108b9e76c32e..a009cf69103a 100644
+index a009cf69103a..68310881a793 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
 +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-@@ -655,6 +655,36 @@ static bool rps_eval(void *data)
+@@ -661,7 +661,7 @@ static int perf_limit_reasons_get(void *data, u64 *val)
+ 	intel_wakeref_t wakeref;
  
- DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(rps_boost);
+ 	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+-		*val = intel_uncore_read(gt->uncore, GT0_PERF_LIMIT_REASONS);
++		*val = intel_uncore_read(gt->uncore, intel_gt_perf_limit_reasons_reg(gt));
  
-+static int perf_limit_reasons_get(void *data, u64 *val)
-+{
-+	struct intel_gt *gt = data;
-+	intel_wakeref_t wakeref;
-+
-+	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-+		*val = intel_uncore_read(gt->uncore, GT0_PERF_LIMIT_REASONS);
-+
-+	return 0;
-+}
-+
-+static int perf_limit_reasons_clear(void *data, u64 val)
-+{
-+	struct intel_gt *gt = data;
-+	intel_wakeref_t wakeref;
-+
-+	/*
-+	 * Clear the upper 16 "log" bits, the lower 16 "status" bits are
-+	 * read-only. The upper 16 "log" bits are identical to the lower 16
-+	 * "status" bits except that the "log" bits remain set until cleared.
-+	 */
-+	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-+		intel_uncore_rmw(gt->uncore, GT0_PERF_LIMIT_REASONS,
-+				 GT0_PERF_LIMIT_REASONS_LOG_MASK, 0);
-+
-+	return 0;
-+}
-+DEFINE_SIMPLE_ATTRIBUTE(perf_limit_reasons_fops, perf_limit_reasons_get,
-+			perf_limit_reasons_clear, "%llu\n");
-+
- void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
- {
- 	static const struct intel_gt_debugfs_file files[] = {
-@@ -664,6 +694,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
- 		{ "forcewake_user", &forcewake_user_fops, NULL},
- 		{ "llc", &llc_fops, llc_eval },
- 		{ "rps_boost", &rps_boost_fops, rps_eval },
-+		{ "perf_limit_reasons", &perf_limit_reasons_fops, NULL },
- 	};
+ 	return 0;
+ }
+@@ -677,7 +677,7 @@ static int perf_limit_reasons_clear(void *data, u64 val)
+ 	 * "status" bits except that the "log" bits remain set until cleared.
+ 	 */
+ 	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+-		intel_uncore_rmw(gt->uncore, GT0_PERF_LIMIT_REASONS,
++		intel_uncore_rmw(gt->uncore, intel_gt_perf_limit_reasons_reg(gt),
+ 				 GT0_PERF_LIMIT_REASONS_LOG_MASK, 0);
  
- 	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), gt);
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+index e066cc33d9f2..54deae45d81f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+@@ -510,7 +510,7 @@ struct intel_gt_bool_throttle_attr {
+ 	struct attribute attr;
+ 	ssize_t (*show)(struct device *dev, struct device_attribute *attr,
+ 			char *buf);
+-	i915_reg_t reg32;
++	i915_reg_t (*reg32)(struct intel_gt *gt);
+ 	u32 mask;
+ };
+ 
+@@ -521,7 +521,7 @@ static ssize_t throttle_reason_bool_show(struct device *dev,
+ 	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+ 	struct intel_gt_bool_throttle_attr *t_attr =
+ 				(struct intel_gt_bool_throttle_attr *) attr;
+-	bool val = rps_read_mask_mmio(&gt->rps, t_attr->reg32, t_attr->mask);
++	bool val = rps_read_mask_mmio(&gt->rps, t_attr->reg32(gt), t_attr->mask);
+ 
+ 	return sysfs_emit(buff, "%u\n", val);
+ }
+@@ -530,7 +530,7 @@ static ssize_t throttle_reason_bool_show(struct device *dev,
+ struct intel_gt_bool_throttle_attr attr_##sysfs_func__ = { \
+ 	.attr = { .name = __stringify(sysfs_func__), .mode = 0444 }, \
+ 	.show = throttle_reason_bool_show, \
+-	.reg32 = GT0_PERF_LIMIT_REASONS, \
++	.reg32 = intel_gt_perf_limit_reasons_reg, \
+ 	.mask = mask__, \
+ }
+ 
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 24009786f88b..9492f8f43b25 100644
+index 9492f8f43b25..10a89d869b00 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1802,6 +1802,7 @@
- #define   POWER_LIMIT_4_MASK		REG_BIT(8)
+@@ -1803,6 +1803,7 @@
  #define   POWER_LIMIT_1_MASK		REG_BIT(10)
  #define   POWER_LIMIT_2_MASK		REG_BIT(11)
-+#define   GT0_PERF_LIMIT_REASONS_LOG_MASK REG_GENMASK(31, 16)
+ #define   GT0_PERF_LIMIT_REASONS_LOG_MASK REG_GENMASK(31, 16)
++#define MTL_MEDIA_PERF_LIMIT_REASONS	_MMIO(0x138030)
  
  #define CHV_CLK_CTL1			_MMIO(0x101100)
  #define VLV_CLK_CTL2			_MMIO(0x101104)
