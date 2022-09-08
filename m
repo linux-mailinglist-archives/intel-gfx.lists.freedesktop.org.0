@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA25A5B18EE
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 11:40:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 528185B1923
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 11:46:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F56E10E9EE;
-	Thu,  8 Sep 2022 09:40:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3CBE10E9EE;
+	Thu,  8 Sep 2022 09:46:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30C3910E9EE
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 09:40:49 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A14810E9EE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 09:46:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662630049; x=1694166049;
+ t=1662630384; x=1694166384;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=sQ7djiQY2gmgXGbEyBtfDZfPrttx06NCF226OcUr7WI=;
- b=EDu13g53Zu9bp8ftxcFDZLM0YrOdvgX4xwuHM+pwl1I3bPHd3P9DmGHV
- KtlmPh5+QjBgPnRUrtJdO0RULmTdygj3E8e2btmEP4DHeGLWgg6sVwe96
- tnB297Uq1+knDAHdS9X0Lqf5L54/rM2nQa4Pn1f3XMCW0AZz/KThZ5lW+
- RjCBB4R2Ry+tXasZ4f4/5o7cvjknexLPLcpiVGGqQr2dJ1v7c+yXKiATy
- DPZJiVAhCdplrnTupKIdSXlPmq0wcmTYYolyajBfxgPzhbbpsKiyR2g11
- G2hDzra6d0VS1HPvT63DQd91f10mvfyPd6NX5xbi5qKl+Mg7t4XAjggNB A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="298460998"
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="298460998"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 02:40:48 -0700
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="943273912"
-Received: from donalmur-mobl.ger.corp.intel.com (HELO [10.252.31.184])
- ([10.252.31.184])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 02:40:46 -0700
-Message-ID: <99f197d9-0b00-8b7d-011f-cb6318a99c66@intel.com>
-Date: Thu, 8 Sep 2022 10:40:44 +0100
+ bh=KX+aqeoTvsjGH2eb7imzK1GrMokb9TdTV4FVPQ2Wed8=;
+ b=ZnkCNV3AYzUYpWhmjQ33i/0ZS04iSSwN43DszDQBsWWDl2ibSATJZtqr
+ lUcNy3LpMpel/HtFtGPnv/j47kpDw8VahyqIJTYBO4ZwmW6hHmSAiF7s1
+ 6BQjm838LaX3m0dklulGtZC0LWLy2CnLkIqBYx7qHuDnQmUOPR2oG5dc9
+ UdDpPvZ9uw0CPJ8ipO5PXR9AQdf/K5e7bumPHhOUQ2qGfv6An+Eehf4fb
+ jub2orbSAflpT3IgJTEp54fWuZr94ubkFW5940u0I/P2jOEACb0JA4ICs
+ 5T8yGL2jts6mKn8YmXKY5erR8X9Rj4ryLak77JWOZJb/R511BDDQvlY4y A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="284144635"
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="284144635"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2022 02:46:22 -0700
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="676614310"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.222.34])
+ ([10.251.222.34])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2022 02:46:21 -0700
+Message-ID: <00e1d912-c3ba-71d9-af94-b03e57053a23@linux.intel.com>
+Date: Thu, 8 Sep 2022 11:46:19 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.2.1
-Content-Language: en-GB
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+To: Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>, 
+ intel-gfx@lists.freedesktop.org
 References: <20220907172641.12555-1-nirmoy.das@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20220907172641.12555-1-nirmoy.das@intel.com>
+ <99f197d9-0b00-8b7d-011f-cb6318a99c66@intel.com>
+Content-Language: en-US
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <99f197d9-0b00-8b7d-011f-cb6318a99c66@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Set correct domains values at
  _i915_vma_move_to_active
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -60,46 +62,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrzej.hajda@intel.com, chris.p.wilson@intel.com
+Cc: chris.p.wilson@intel.com, andrzej.hajda@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 07/09/2022 18:26, Nirmoy Das wrote:
-> Fix regression introduced by commit:
-> "drm/i915: Individualize fences before adding to dma_resv obj"
-> which sets obj->read_domains to 0 for both read and write paths.
-> Also set obj->write_domain to 0 on read path which was removed by
-> the commit.
-> 
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/6639
-> Fixes: 842d9346b2fd ("drm/i915: Individualize fences before adding to dma_resv obj")
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.16+
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Should I go ahead and push this?
+On 9/8/2022 11:40 AM, Matthew Auld wrote:
+> On 07/09/2022 18:26, Nirmoy Das wrote:
+>> Fix regression introduced by commit:
+>> "drm/i915: Individualize fences before adding to dma_resv obj"
+>> which sets obj->read_domains to 0 for both read and write paths.
+>> Also set obj->write_domain to 0 on read path which was removed by
+>> the commit.
+>>
+>> References: https://gitlab.freedesktop.org/drm/intel/-/issues/6639
+>> Fixes: 842d9346b2fd ("drm/i915: Individualize fences before adding to 
+>> dma_resv obj")
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Cc: <stable@vger.kernel.org> # v5.16+
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+>
+> Should I go ahead and push this?
 
-> ---
->   drivers/gpu/drm/i915/i915_vma.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 260371716490..373582cfd8f3 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1882,12 +1882,13 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
->   		enum dma_resv_usage usage;
->   		int idx;
->   
-> -		obj->read_domains = 0;
->   		if (flags & EXEC_OBJECT_WRITE) {
->   			usage = DMA_RESV_USAGE_WRITE;
->   			obj->write_domain = I915_GEM_DOMAIN_RENDER;
-> +			obj->read_domains = 0;
->   		} else {
->   			usage = DMA_RESV_USAGE_READ;
-> +			obj->write_domain = 0;
->   		}
->   
->   		dma_fence_array_for_each(curr, idx, fence)
+
+Yes,  please go ahead. Lots people are effected because of this regression.
+
+
+Nirmoy
+
+>
+>> ---
+>>   drivers/gpu/drm/i915/i915_vma.c | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_vma.c 
+>> b/drivers/gpu/drm/i915/i915_vma.c
+>> index 260371716490..373582cfd8f3 100644
+>> --- a/drivers/gpu/drm/i915/i915_vma.c
+>> +++ b/drivers/gpu/drm/i915/i915_vma.c
+>> @@ -1882,12 +1882,13 @@ int _i915_vma_move_to_active(struct i915_vma 
+>> *vma,
+>>           enum dma_resv_usage usage;
+>>           int idx;
+>>   -        obj->read_domains = 0;
+>>           if (flags & EXEC_OBJECT_WRITE) {
+>>               usage = DMA_RESV_USAGE_WRITE;
+>>               obj->write_domain = I915_GEM_DOMAIN_RENDER;
+>> +            obj->read_domains = 0;
+>>           } else {
+>>               usage = DMA_RESV_USAGE_READ;
+>> +            obj->write_domain = 0;
+>>           }
+>>             dma_fence_array_for_each(curr, idx, fence)
