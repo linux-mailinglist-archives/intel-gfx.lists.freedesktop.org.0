@@ -1,48 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D00CC5B13EF
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 07:18:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FE455B13F0
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 07:19:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E37310E94A;
-	Thu,  8 Sep 2022 05:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E9B310E94C;
+	Thu,  8 Sep 2022 05:19:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE40410E94A
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 05:18:29 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE10010E94B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 05:18:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662614309; x=1694150309;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CZP6OSEnwv2HAV6ZGzZT6Tbv8GZM6nyvzLJhKdLUjr4=;
- b=MbHQ8uJ1nBSot6LRfs40de2GdZv/QaxggsoP2So+rXCqL9CxA9Mvl3rV
- lRf6RRkmo+iQt+RvacDx8MjkOuRAI/eZYJWLjRXO9+amjrSFTjUUgM7y+
- iU3czMXFKFMKDLhSAKqiU1sMJtmiL++Y4JqL5nz6jZuBUtCt35aoTEIUk
- c4JQ479HaMKWkYqFWwxTQdZCId6dq4ONhf8dXNNjeNUaMnozIblGVCmvT
- DU5wBnYJSC4uimtAteH9P4DS9Qqnu+KCfopxWFseHcZ7TbHcKeueAo7zV
- FeAPm5tIq60iDxbgY9df3ldMNXgKU5evk8bdoRepnAhbdVHxxNZIPQHAw A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="361033325"
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="361033325"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 22:18:29 -0700
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="703872693"
+ t=1662614339; x=1694150339;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=606cF/xgGRD2bA9oPl16dHiNr77knFmKThCXs57IqWY=;
+ b=d+uKhPAd8xAuMcFpccdiyPin+jxubM3LWwJ9N5zq8v1aL3S5CfH+Gf6Y
+ tYdKL6c/+F4a4a4tIu96ArqstyvkXxdORxEKvLSXKBAP3Le4MrgC393CA
+ PH+BK0hZfEva64ThGXZuxozSu7C66oQ7PLb9WLAoezaNAFdW4edMf1Bw+
+ OfonLDdZg/IiPTGMWgA93TZJDcO6j9aZPVUZqliw5m/mhgbQfZNM0wGWo
+ k8W9uZv5HqrrR+sDH563MyjdRvnz6oCWapT2V+8V8ryLgt9tNebGPGv/f
+ M00KGVfsZbdBvi6UtCwMfKkt8fiZUkcx55TDeTAfoEnWVryWVAGFWGYBh A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="298407841"
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="298407841"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2022 22:18:58 -0700
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="790308424"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2022 22:18:28 -0700
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2022 22:18:58 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  7 Sep 2022 22:18:24 -0700
-Message-Id: <cover.1662613377.git.ashutosh.dixit@intel.com>
+Date: Wed,  7 Sep 2022 22:18:52 -0700
+Message-Id: <8ee74412a369c39a5747dff84670f7a29b43bb4b.1662613377.git.ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1662613377.git.ashutosh.dixit@intel.com>
+References: <cover.1662613377.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/8] i915: freq caps and perf_limit_reasons
- changes for MTL
+Subject: [Intel-gfx] [PATCH 1/8] drm/i915: Prepare more multi-GT
+ initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,54 +60,232 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This series includes freq caps and perf_limit_reasons changes for MTL. The
-series depends on:
+From: Matt Roper <matthew.d.roper@intel.com>
 
-https://patchwork.freedesktop.org/series/107908/
+DO NOT REVIEW, FOR COMPILING ONLY
 
-We have included 4 patches from from the above series as part of this
-series in order for this series to compile. These are the first 4 patches
-authored by Matt Roper. Please do not review these first 4 patches. Only
-patches 5 through 8 need review.
+We're going to introduce an additional intel_gt for MTL's media unit
+soon.  Let's provide a bit more multi-GT initialization framework in
+preparation for that.  The initialization will pull the list of GTs for
+a platform from the device info structure.  Although necessary for the
+immediate MTL media enabling, this same framework will also be used
+farther down the road when we enable remote tiles on xehpsdv and pvc.
 
-Cc: Badal Nilawar <badal.nilawar@intel.com>
+v2:
+ - Re-add missing test for !HAS_EXTRA_GT_LIST in intel_gt_probe_all().
 
-Ashutosh Dixit (3):
-  drm/i915/gt: Fix perf limit reasons bit positions
-  drm/i915/mtl: PERF_LIMIT_REASONS changes for MTL
-  drm/i915/rps: Freq caps for MTL
+v3:
+ - Move intel_gt_definition struct to intel_gt_types.h.  (Jani)
+ - Drop gtdef->setup().  For now we'll just use a switch() based on GT
+   type since we don't have too many different handlers for the
+   forseeable future.  (Jani)
 
-Matt Roper (4):
-  drm/i915: Prepare more multi-GT initialization
-  drm/i915: Rename and expose common GT early init routine
-  drm/i915/uncore: Add GSI offset to uncore
-  drm/i915/xelpmp: Expose media as another GT
-
-Tilak Tangudu (1):
-  drm/i915/debugfs: Add perf_limit_reasons in debugfs
-
- drivers/gpu/drm/i915/Makefile                 |  1 +
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+---
  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c            | 77 ++++++++++++++++++-
- drivers/gpu/drm/i915/gt/intel_gt.h            |  3 +-
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 31 ++++++++
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  8 ++
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   |  6 +-
- drivers/gpu/drm/i915/gt/intel_gt_types.h      | 17 ++++
- drivers/gpu/drm/i915/gt/intel_rps.c           | 46 ++++++++---
- drivers/gpu/drm/i915/gt/intel_sa_media.c      | 39 ++++++++++
- drivers/gpu/drm/i915/gt/intel_sa_media.h      | 15 ++++
+ drivers/gpu/drm/i915/gt/intel_gt.c            | 59 ++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_gt.h            |  1 -
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      | 15 +++++
  drivers/gpu/drm/i915/i915_drv.h               |  2 +
- drivers/gpu/drm/i915/i915_pci.c               | 14 ++++
- drivers/gpu/drm/i915/i915_reg.h               | 27 +++++--
  drivers/gpu/drm/i915/intel_device_info.h      |  3 +
- drivers/gpu/drm/i915/intel_uncore.c           | 10 ++-
- drivers/gpu/drm/i915/intel_uncore.h           | 22 +++++-
  .../gpu/drm/i915/selftests/mock_gem_device.c  |  1 +
- 18 files changed, 294 insertions(+), 30 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gt/intel_sa_media.c
- create mode 100644 drivers/gpu/drm/i915/gt/intel_sa_media.h
+ 7 files changed, 80 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 275ad72940c1..41acc285e8bf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -736,7 +736,7 @@ static intel_engine_mask_t init_engine_mask(struct intel_gt *gt)
+ 	u16 vdbox_mask;
+ 	u16 vebox_mask;
+ 
+-	info->engine_mask = RUNTIME_INFO(i915)->platform_engine_mask;
++	GEM_BUG_ON(!info->engine_mask);
+ 
+ 	if (GRAPHICS_VER(i915) < 11)
+ 		return info->engine_mask;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index e4bac2431e41..530637e102c0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -827,8 +827,10 @@ int intel_gt_probe_all(struct drm_i915_private *i915)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+ 	struct intel_gt *gt = &i915->gt0;
++	const struct intel_gt_definition *gtdef;
+ 	phys_addr_t phys_addr;
+ 	unsigned int mmio_bar;
++	unsigned int i;
+ 	int ret;
+ 
+ 	mmio_bar = GRAPHICS_VER(i915) == 2 ? GEN2_GTTMMADR_BAR : GTTMMADR_BAR;
+@@ -839,14 +841,69 @@ int intel_gt_probe_all(struct drm_i915_private *i915)
+ 	 * and it has been already initialized early during probe
+ 	 * in i915_driver_probe()
+ 	 */
++	gt->i915 = i915;
++	gt->name = "Primary GT";
++	gt->info.engine_mask = RUNTIME_INFO(i915)->platform_engine_mask;
++
++	drm_dbg(&i915->drm, "Setting up %s\n", gt->name);
+ 	ret = intel_gt_tile_setup(gt, phys_addr);
+ 	if (ret)
+ 		return ret;
+ 
+ 	i915->gt[0] = gt;
+ 
+-	/* TODO: add more tiles */
++	if (!HAS_EXTRA_GT_LIST(i915))
++		return 0;
++
++	for (i = 1, gtdef = &INTEL_INFO(i915)->extra_gt_list[i - 1];
++	     gtdef->name != NULL;
++	     i++, gtdef = &INTEL_INFO(i915)->extra_gt_list[i - 1]) {
++		gt = drmm_kzalloc(&i915->drm, sizeof(*gt), GFP_KERNEL);
++		if (!gt) {
++			ret = -ENOMEM;
++			goto err;
++		}
++
++		gt->i915 = i915;
++		gt->name = gtdef->name;
++		gt->type = gtdef->type;
++		gt->info.engine_mask = gtdef->engine_mask;
++		gt->info.id = i;
++
++		drm_dbg(&i915->drm, "Setting up %s\n", gt->name);
++		if (GEM_WARN_ON(range_overflows_t(resource_size_t,
++						  gtdef->mapping_base,
++						  SZ_16M,
++						  pci_resource_len(pdev, mmio_bar)))) {
++			ret = -ENODEV;
++			goto err;
++		}
++
++		switch (gtdef->type) {
++		case GT_TILE:
++			ret = intel_gt_tile_setup(gt, phys_addr + gtdef->mapping_base);
++			break;
++
++		case GT_PRIMARY:
++			/* Primary GT should not appear in extra GT list */
++		default:
++			MISSING_CASE(gtdef->type);
++			ret = -ENODEV;
++		}
++
++		if (ret)
++			goto err;
++
++		i915->gt[i] = gt;
++	}
++
+ 	return 0;
++
++err:
++	i915_probe_error(i915, "Failed to initialize %s! (%d)\n", gtdef->name, ret);
++	intel_gt_release_all(i915);
++
++	return ret;
+ }
+ 
+ int intel_gt_tiles_init(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+index 40b06adf509a..4d8779529cc2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+@@ -54,7 +54,6 @@ void intel_gt_driver_register(struct intel_gt *gt);
+ void intel_gt_driver_unregister(struct intel_gt *gt);
+ void intel_gt_driver_remove(struct intel_gt *gt);
+ void intel_gt_driver_release(struct intel_gt *gt);
+-
+ void intel_gt_driver_late_release_all(struct drm_i915_private *i915);
+ 
+ int intel_gt_wait_for_idle(struct intel_gt *gt, long timeout);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index 4d56f7d5a3be..0e139f7d75ed 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -81,8 +81,16 @@ struct gt_defaults {
+ 	u32 max_freq;
+ };
+ 
++enum intel_gt_type {
++	GT_PRIMARY,
++	GT_TILE,
++};
++
+ struct intel_gt {
+ 	struct drm_i915_private *i915;
++	const char *name;
++	enum intel_gt_type type;
++
+ 	struct intel_uncore *uncore;
+ 	struct i915_ggtt *ggtt;
+ 
+@@ -262,6 +270,13 @@ struct intel_gt {
+ 	struct kobject *sysfs_defaults;
+ };
+ 
++struct intel_gt_definition {
++	enum intel_gt_type type;
++	char *name;
++	u32 mapping_base;
++	intel_engine_mask_t engine_mask;
++};
++
+ enum intel_gt_scratch_field {
+ 	/* 8 bytes */
+ 	INTEL_GT_SCRATCH_FIELD_DEFAULT = 0,
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 76aad81c014b..7a9147e7d49e 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -918,6 +918,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define HAS_REGION(i915, i) (RUNTIME_INFO(i915)->memory_regions & (i))
+ #define HAS_LMEM(i915) HAS_REGION(i915, REGION_LMEM)
+ 
++#define HAS_EXTRA_GT_LIST(dev_priv)   (INTEL_INFO(dev_priv)->extra_gt_list)
++
+ /*
+  * Platform has the dedicated compression control state for each lmem surfaces
+  * stored in lmem to support the 3D and media compression formats.
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 6904ad03ca19..deaa07d8df2c 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -37,6 +37,7 @@
+ 
+ struct drm_printer;
+ struct drm_i915_private;
++struct intel_gt_definition;
+ 
+ /* Keep in gen based order, and chronological order within a gen */
+ enum intel_platform {
+@@ -252,6 +253,8 @@ struct intel_device_info {
+ 
+ 	unsigned int dma_mask_size; /* available DMA address bits */
+ 
++	const struct intel_gt_definition *extra_gt_list;
++
+ 	u8 gt; /* GT number, 0 if undefined */
+ 
+ #define DEFINE_FLAG(name) u8 name:1
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index f5904e659ef2..915d58ba383e 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -115,6 +115,7 @@ static struct dev_pm_domain pm_domain = {
+ static void mock_gt_probe(struct drm_i915_private *i915)
+ {
+ 	i915->gt[0] = &i915->gt0;
++	i915->gt[0]->name = "Mock GT";
+ }
+ 
+ struct drm_i915_private *mock_gem_device(void)
 -- 
 2.34.1
 
