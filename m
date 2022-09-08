@@ -2,55 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DEFF5B26A7
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 21:23:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D2445B26BB
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 21:31:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E81F10E16E;
-	Thu,  8 Sep 2022 19:23:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7A9710E636;
+	Thu,  8 Sep 2022 19:31:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7E2810E16E
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 19:23:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662664980; x=1694200980;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=VEpRk92BqYx2L5NfoGLpfAIgkindgP5m6fYypPqMGOY=;
- b=YpSNYS+MmHyf5z+1XQbioGQwImYl2eVDSWPaVTvNPQPhLD1/mtbgA4vR
- zFWLtTQ/J+oETwecmjY0AeGzH4r7Y3ssCuk2eMoC21s78n1C4bB9YBLSR
- WNnOTTUhZIXmQ+QpfMV1fyxWbAAiSs/7IpYw7Ov/nXnpTPx421vi0ITKu
- MOm12dRHwgL2BXcuN+Q54q1S4tjb5XjVr9nJ5R5lpSK9eqquWmSt3K+ef
- qmyuJLRqO7+FFCsJ8RiRd0DV/yhBQajGtQ//yod5c7hk5bc1Ux+lpq3/U
- 7ckUavYwAJY2iitU/YfjEdlzXCvhk4UrHPUpuzFeTAF3j2l1FwsLkiD8p w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="296035964"
-X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="296035964"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 12:22:52 -0700
-X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="676839781"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.47.100])
- ([10.252.47.100])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 12:22:51 -0700
-Message-ID: <8ebdf841-f118-d855-bf44-c189167cc05d@linux.intel.com>
-Date: Thu, 8 Sep 2022 21:22:49 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4E80310E63C;
+ Thu,  8 Sep 2022 19:31:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 46864A00A0;
+ Thu,  8 Sep 2022 19:31:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220906174609.23494-1-ville.syrjala@linux.intel.com>
- <6e71f8d2-fd50-4550-5168-240c6f703c7f@linux.intel.com>
- <9ef06c2a-1ca6-7cf6-0f21-1722bdc4b4fb@linux.intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <9ef06c2a-1ca6-7cf6-0f21-1722bdc4b4fb@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Kick rcu harder to free objects
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 08 Sep 2022 19:31:32 -0000
+Message-ID: <166266549225.27236.17053367623207745822@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220908191646.20239-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220908191646.20239-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Move_skl+_wm_code_into_its_own_file?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,115 +40,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 9/8/2022 4:55 PM, Tvrtko Ursulin wrote:
->
-> On 08/09/2022 15:32, Das, Nirmoy wrote:
->> Hi Ville,
->>
->>
->> I fixed a similar issue in DII but I couldn't reproduce it in drm
->>
->> http://intel-gfx-pw.fi.intel.com/patch/228850/?series=15910&rev=2.
->>
->> I wonder if that fixes the problem you are facing then I can send 
->> that to drm.
->>
->> diff --git a/drivers/gpu/drm/i915/i915_gem.c 
->> b/drivers/gpu/drm/i915/i915_gem.c
->> index 7809be3a6840..5438e9277924 100644
->> --- a/drivers/gpu/drm/i915/i915_gem.c
->> +++ b/drivers/gpu/drm/i915/i915_gem.c
->> @@ -1213,7 +1213,7 @@  void i915_gem_init_early(struct 
->> drm_i915_private *dev_priv)
->>
->>   void i915_gem_cleanup_early(struct drm_i915_private *dev_priv)
->>   {
->> -    i915_gem_drain_freed_objects(dev_priv);
->> +    i915_gem_drain_workqueue(dev_priv);
->>       GEM_BUG_ON(!llist_empty(&dev_priv->mm.free_list));
->>       GEM_BUG_ON(atomic_read(&dev_priv->mm.free_count));
->>       drm_WARN_ON(&dev_priv->drm, dev_priv->mm.shrink_count);
->
-> Yes why not, more black magic (count to three) but if it works... :) I 
-> also spy the general area has been a bit neglected. Like:
+Series: drm/i915: Move skl+ wm code into its own file
+URL   : https://patchwork.freedesktop.org/series/108313/
+State : warning
 
+== Summary ==
 
-Not sure what should be the correct solution here.  I wonder if we might 
-have to change this because of
+Error: dim checkpatch failed
+eff551e7ad3c drm/i915: Split intel_read_wm_latency() into per-platform versions
+129d570bf892 drm/i915: Extract skl_watermark.c
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:183: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#183: 
+new file mode 100644
 
-https://lwn.net/Articles/906975/ ?
+-:544: ERROR:OPEN_BRACE: that open brace { should be on the previous line
+#544: FILE: drivers/gpu/drm/i915/display/skl_watermark.c:357:
++		for (level = ilk_wm_max_level(i915);
++		     !wm->wm[level].enable; --level)
++		     { }
 
+-:2805: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#2805: FILE: drivers/gpu/drm/i915/display/skl_watermark.c:2618:
++				    enast(old_wm->sagv.trans_wm.ignore_lines), old_wm->sagv.trans_wm.lines,
 
->
-> i915_gem_driver_remove:
-> ...
->   i915_gem_drain_workqueue
->   i915_gem_drain_freed_objects
->
-> While i915_gem_drain_workqueue:
-> ...
->   i915_gem_drain_freed_objects
->
-> So i915_gem_drain_freed_objects in i915_gem_driver_remove is redundant 
-> already.
->
-> Should i915_gem_drain_freed_objects be unexported and all callers made 
-> just call i915_gem_drain_workqueue after your patch? Or if "drain free 
-> objects" is considered more self descriptive it could be made as an 
-> alias to i915_gem_drain_workqueue.
+-:2816: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#2816: FILE: drivers/gpu/drm/i915/display/skl_watermark.c:2629:
++				    enast(new_wm->sagv.trans_wm.ignore_lines), new_wm->sagv.trans_wm.lines);
 
+-:3011: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#3011: FILE: drivers/gpu/drm/i915/display/skl_watermark.c:2824:
++				val = intel_uncore_read(&i915->uncore, PLANE_WM(pipe, plane_id, level));
 
-We are using i915_gem_drain_freed_objects() in many places and replacing 
-that with i915_gem_drain_workqueue() might have performance implication.
+-:3730: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'state' - possible side-effects?
+#3730: FILE: drivers/gpu/drm/i915/display/skl_watermark.h:67:
++#define intel_atomic_get_old_dbuf_state(state) \
++	to_intel_dbuf_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->display.dbuf.obj))
 
+-:3731: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#3731: FILE: drivers/gpu/drm/i915/display/skl_watermark.h:68:
++	to_intel_dbuf_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->display.dbuf.obj))
 
-Nirmoy
+-:3732: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'state' - possible side-effects?
+#3732: FILE: drivers/gpu/drm/i915/display/skl_watermark.h:69:
++#define intel_atomic_get_new_dbuf_state(state) \
++	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->display.dbuf.obj))
+
+-:3733: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#3733: FILE: drivers/gpu/drm/i915/display/skl_watermark.h:70:
++	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->display.dbuf.obj))
+
+total: 1 errors, 6 warnings, 2 checks, 7467 lines checked
+1249118bce2e drm/i915: Use REG_FIELD_GET() to extract skl+ wm latencies
 
 
->
-> Regards,
->
-> Tvrtko
->
->>
->>
->> Regards,
->>
->> Nirmoy
->>
->> On 9/6/2022 7:46 PM, Ville Syrjala wrote:
->>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>>
->>> On gen3 the selftests are pretty much always tripping this:
->>> <4> [383.822424] pci 0000:00:02.0: 
->>> drm_WARN_ON(dev_priv->mm.shrink_count)
->>> <4> [383.822546] WARNING: CPU: 2 PID: 3560 at 
->>> drivers/gpu/drm/i915/i915_gem.c:1223 
->>> i915_gem_cleanup_early+0x96/0xb0 [i915]
->>>
->>> Looks to be due to the status page object lingering on the
->>> purge_list. Call synchronize_rcu() ahead of it to make more
->>> sure all objects have been freed.
->>>
->>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/i915_gem.c | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_gem.c 
->>> b/drivers/gpu/drm/i915/i915_gem.c
->>> index 0f49ec9d494a..5b61f7ad6473 100644
->>> --- a/drivers/gpu/drm/i915/i915_gem.c
->>> +++ b/drivers/gpu/drm/i915/i915_gem.c
->>> @@ -1098,6 +1098,7 @@ void i915_gem_drain_freed_objects(struct 
->>> drm_i915_private *i915)
->>>           flush_delayed_work(&i915->bdev.wq);
->>>           rcu_barrier();
->>>       }
->>> +    synchronize_rcu();
->>>   }
->>>   /*
