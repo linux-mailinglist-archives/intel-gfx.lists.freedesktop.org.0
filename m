@@ -1,53 +1,134 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B93225B1F15
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 15:30:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F07645B1FF3
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 16:00:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88A1610EAEF;
-	Thu,  8 Sep 2022 13:30:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3A9510EB06;
+	Thu,  8 Sep 2022 14:00:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6808610EAF4
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 13:30:10 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04EFA10EB05;
+ Thu,  8 Sep 2022 14:00:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662643810; x=1694179810;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=VwBcWh7E1TpUEgN+Ug73aE7XubYc6l2cqNYt7ItzwmY=;
- b=mLIP8+xoURWC+eYo5CVL1Ji2kUAoAaiv8XpgyOwMKegV4QSl4pzpTz19
- lmqdszCvIiU19u41Xev0AE+yry9HnSTsD2XpXG35qtaf5+iOAvI97JHic
- t9s2owtwposbosgm1Y5CMey53Krs0txVyIpSvJmJlRPto2/bsrnpx4MGf
- n/P8o6zWO7f/bgJQNEyE8MSBQbdh5ebg3y7KDjZGUVT6FspCZ6Wq0icvX
- yS+xm9gi/zx/qN6Cb0hbQIzu+dh1aDxlxmoUCMNZ3GVyqp0p2mvqSDDmx
- kzpQkQN3XlfhrvviP5SCpssR5zJ9mw1kvpLF4zwpJ9hnx5Ybo5AnrsLBD w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="277553630"
-X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="277553630"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 06:30:10 -0700
+ t=1662645610; x=1694181610;
+ h=date:from:to:cc:subject:message-id:
+ content-transfer-encoding:mime-version;
+ bh=aS72ZCjKgg9+gI2MnX5wbUYGTVg2i3zC4nXM8SrggwM=;
+ b=VRdTpHzyVIhMDbDCn+bSV5uPgreFJyY1EoxJnesOy3PZCVWDZOx4PBpF
+ OG1G3MpC3MQJ9gTpQIXv6WeaKp4va7KvnmSqd6m4+B62dFOPbAt79ZXfr
+ R+5FlnBZsBwaxPBlba5On/1gWT7q1lqEGNO52LyISJUZwr1ng1wcdiZP9
+ RjVg/iAkBJsF2Lf1qoZkKepDakF7k/llI7clGgzdN+SpWBKE4CkgqGAz3
+ dvmESTKrOYn7RqcCIykMan94Hxy9CFKn79x0yKf6bekP9u76OsJZKfwbS
+ 41FH61vv92Ip8Wt/7HgJYvsE4rmHbCdl2TdxV+rBmgoWn+RM5isKq0M5t A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="294757024"
+X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="294757024"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2022 07:00:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="718558950"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga002.fm.intel.com with SMTP; 08 Sep 2022 06:30:07 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 08 Sep 2022 16:30:07 +0300
-Date: Thu, 8 Sep 2022 16:30:07 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YxnuX805XuuSGPUY@intel.com>
-References: <20220906174609.23494-1-ville.syrjala@linux.intel.com>
- <c21535d3-8f71-b385-4ef6-1b10a783c347@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="592174757"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga006.jf.intel.com with ESMTP; 08 Sep 2022 07:00:03 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 8 Sep 2022 07:00:02 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 8 Sep 2022 07:00:02 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Thu, 8 Sep 2022 07:00:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hl6HkTVFyeMyFreIP526fVnw6YY16hl4rXAvSoQoyOVGLlyGR7TrkS3bxqnWZgvpT9KJBbL/5lcER7Ol1py5bmPwhGHFTymosjIOLnMqFX/ZPoIDSN4xkH02pjg/aFJlqfJ+HZat66tRdTIfS0yD6MbpnjPycG+OZnMLAGUg/HPf9JxOaEIm5QlBh+ayjNlPVl2Vi3lcYUyQ2sPpIbTNvmkj+7SeGSiGpD+cP3D1Kr/cXdSMIeeR5WU4ni3matd7xoXU5wRQ2tdt5cn1IkuqdPKbieefWZp/zBedCDnc/PBlOlL+Q7ovIWSMREKwm4MscJMziFAiDTy6ilVMQgyy6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=De1S6yZQHXbMRnuBpKV7Mczo1EJ1oMhPnD9u7nnMdx8=;
+ b=Rfl8G5w4Km39hhl2BOmF36OTLe54DhNHe53wf+zrjlJ1rnaFyBzfQrRa8VFU33Yl7VnOrWlb73gkFuBTXWA7H5LrZt1seBgVKQHh140QNsBF3GQ9n3JLifs4DPtkZI2SB66BQf0ZpxUzx4WWeHoHnRsJ1JWSZMX0B+qT6R1LJMUW0Dp6SA8qqqWiLr9sjWUxfuE7ZjbuC1aDCKefdcCTuaBq6vGs75aF3yg9aSisBBAXPsUMcJp0HVKcZ7Pkudi7m81QJNBtwa3cADmcn1yzGutYwqfAfsDL9yd4hrfn0ubnpiL6CTO5XUS/yWTp07WV7lbmE/345Pe9wtchwbMIhQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by MW3PR11MB4649.namprd11.prod.outlook.com (2603:10b6:303:5b::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19; Thu, 8 Sep
+ 2022 14:00:00 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7ce8:1e4e:20d4:6bd4]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7ce8:1e4e:20d4:6bd4%9]) with mapi id 15.20.5588.016; Thu, 8 Sep 2022
+ 14:00:00 +0000
+Date: Thu, 8 Sep 2022 09:59:54 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Yxn1WpmUJnJpqq23@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c21535d3-8f71-b385-4ef6-1b10a783c347@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Kick rcu harder to free objects
+X-ClientProxiedBy: SJ0PR13CA0192.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::17) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0b0d66eb-cc50-4a1e-d66f-08da91a26b6a
+X-MS-TrafficTypeDiagnostic: MW3PR11MB4649:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RmH93u0hlXzzZUXdp4vm+kHambcFKd+kTAD0zzocHCK6qZzhf19wFu/wQhEXXw3oKKCMXPNZlvUi448OwHg93dHlhofdUP81dHf7T4bpAYm9Qt+62DsnXTAX63t7At/OvLykcTsnuT0BWPDugi8whH/L7SHFM0voEsiVmYjkm2udKR13w6p78etiFVLN2RNze20DxT1/MPJMUVuJHsfOs/ueHCise5Jjdzn7KjISFPbjsilZD/EJH9aGhpx59FMwwT0hT77mWknviLVzhbf7EG+HPl/QdZ3dGWFEdGMca8dj6jSfAFB+Jg12TuqRTWEmJapklAM58ZlaAKkXh8jME+g+C90g4Rotmouo4JhvYzVl1hloRFxLSv60YtA8kbiHU2D0qXEJNBRNvL6ja7/6amGpT9OKVuYH3VJuNaPg6ATRgWRSgR9xWCXbC3P0E1gvbbjaFFqFTas8ReSHBtztmecN+tGLCAtlfUXRRlRlt/pOOTm04YJeK3MH1+6cFE5RhSvkB5JHv9Red6liQyRiJYWElkY5+0KyHUMEW6ca7RY50yDnmoWR8IjkxFsZNCNxKOEhT3vssiErwsuTl3JDQcM89t7ZdMEo51k/NmEIItlwhToCy4bYbb7UO3+liDb5R3VVO/y3JOTAA90ul1hhhCv4B4fcyE4h8mhLUURsEB6NX9psiSOq5h+AHdEGj7EhnJAELhF16EOcfkjcnGuf3A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(39860400002)(366004)(346002)(136003)(376002)(396003)(54906003)(66946007)(66556008)(66476007)(8676002)(4326008)(478600001)(6486002)(316002)(86362001)(41300700001)(6666004)(8936002)(83380400001)(110136005)(36756003)(7416002)(5660300002)(44832011)(26005)(6512007)(6506007)(82960400001)(38100700002)(186003)(2616005)(2906002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?QkqrC+up0fSk3pu5DIcJFbHWpWoIZtBR/KBMbcSrmgga78DYb/mJxbveE7?=
+ =?iso-8859-1?Q?87N/aqpj70ydDsjgLMFUQ8QggX/15CM1Zzc7XbmAk1bfsy3UOky2SWvmZM?=
+ =?iso-8859-1?Q?QOkAj+1v+U/TSXzZr3Qahx1TYshvlloytS/QnmFUqNpXiRwBrb3jV+/Ydi?=
+ =?iso-8859-1?Q?8HZjldSyqp+cNCmRK1ct+BixUyz6i7RHx9gB4Fjh7AOv3Y+aCqj1FAMF7p?=
+ =?iso-8859-1?Q?AfgUliNe++p/f+LZG0GMi0dVu1U+dqTN5ZM5rfJgdD3GH7kRaOiofR/Hrj?=
+ =?iso-8859-1?Q?Q6OnudOYbgZHMDWuhCpZhTk3Euef6LDB4TYqJQNlHn76e0JZsegLTTWJy6?=
+ =?iso-8859-1?Q?eG1+eOQaslON/W8HVz5NPxo2ZZXZ1khTRyl8L10sStGtFuLS0VaUvfQgR/?=
+ =?iso-8859-1?Q?Jl7xV9NUSoCUcHIW8meQMRYLdR+5zoM+9cwrig606YXp4jfBBE0Kq6Dum3?=
+ =?iso-8859-1?Q?GXXmzhVnwiWMNiWfTMcs9MAHc/qnuLbRLe1RBI+eWUEiHS/+lIJaW8JKqK?=
+ =?iso-8859-1?Q?/wvKZTx6LnJZTsTgYR81ItPGGrhBZATCYoIsda2qKFM4tfBhAvrO5WjfXR?=
+ =?iso-8859-1?Q?Ae1tEwSOJduT+DP/+K+MMk0YMI3zoNsqOwwaqzWAvXT4qpFWaV9KzJI+sG?=
+ =?iso-8859-1?Q?xgr+lAjnLRSD3arlUTGrTZVZip9CcUTf5+iDf3/pBpdFw6ufNBIa7KCQKQ?=
+ =?iso-8859-1?Q?bclYPNorWILen9tSy/YkagOk3SHhN7FOp3eRcD71uJYlvaFxeXeeK3tezw?=
+ =?iso-8859-1?Q?MEqcG6RQMiFOwCGICGbQl3v5bKNhO6SEv6uX+AJuZS2uCLaEcfEAAgXC3z?=
+ =?iso-8859-1?Q?37r557fTwNPYqMoip+qY6d3rlpHf+2EocK4s/mqe4fnc0CABTZpfpOpZRu?=
+ =?iso-8859-1?Q?NX/Z2rvI3vUOkE4llbW+bk+Bnjab52sZxCR0Ym1+Gfj29PQXECSnaZJfvS?=
+ =?iso-8859-1?Q?ySk6mewqvSUkcjdblaBqy6zg1aGKHki5rZwfeJG/4DL34HN63pOZ4bkbLV?=
+ =?iso-8859-1?Q?41GqSsU8AHB2NF4FIJN/EZhWA0AYHPehxsXQ59o9r4mdgNZarGq/eiW6YC?=
+ =?iso-8859-1?Q?hvZ2eZGBmPVF/BuahcPUjCnix4K1sgAWiaB1gihfwoABwYFKBJKesWW4sg?=
+ =?iso-8859-1?Q?oIH4dBV4E1skcjqTwFHGJ0Cxpd/2dB7KNPbTRDZY/SCu3g4YXvmKQi7Y8H?=
+ =?iso-8859-1?Q?7L+R5CU76i7JdnWXZMlzIUnRdIC4MgeM7KYk2PAl96pcPZEREK1wXwStwN?=
+ =?iso-8859-1?Q?ok2swQ/QMWD60oAu6BZJsjPCJQmUEDsXq9pfrAZ0C4E4O0Vsvp04JfwUEc?=
+ =?iso-8859-1?Q?32qPU8OLrnySiA4OTJB1qWvanrCuJUpLCqvDvSq9F64QmVKiG4znmBfjwP?=
+ =?iso-8859-1?Q?Rn3oovlzvUoflTFM0SEh5x0Gcnr+iiK75pQdrBjJN+zaA2pi58B8Zslez0?=
+ =?iso-8859-1?Q?KpsFUJ7+rWUpS/7HyX8F1UtKkCP8j2A+QosaH7IeU2rmBpAORrNp4Bufbz?=
+ =?iso-8859-1?Q?A0YZM5PZARJfP6DRio7MyERa7047nk5ca9DcgJ/2x/bLSZ21q3UqjOGSqz?=
+ =?iso-8859-1?Q?TcjlnKaGPR642Bz8nWx/UIBIFXjzdoT4BCOk6SnEaFiRY7RDl2YcT885Oq?=
+ =?iso-8859-1?Q?+L7yhKHOqgB7mQbRXk5X9jcwr1Drp+PhRrQMAd7+/sZU4O64jEgYGTDw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b0d66eb-cc50-4a1e-d66f-08da91a26b6a
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2022 14:00:00.1270 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uAPbqZywXW9ZAJrxJ1FN8/8dr/MZEuAstpKcRzEvsm5qlzgYA5fvNNe5K3aoyc1QQg+OGtQdjUz/lpA3VTHtnw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4649
+X-OriginatorOrg: intel.com
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,52 +141,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 08, 2022 at 01:23:50PM +0100, Tvrtko Ursulin wrote:
-> 
-> On 06/09/2022 18:46, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > On gen3 the selftests are pretty much always tripping this:
-> > <4> [383.822424] pci 0000:00:02.0: drm_WARN_ON(dev_priv->mm.shrink_count)
-> > <4> [383.822546] WARNING: CPU: 2 PID: 3560 at drivers/gpu/drm/i915/i915_gem.c:1223 i915_gem_cleanup_early+0x96/0xb0 [i915]
-> > 
-> > Looks to be due to the status page object lingering on the
-> > purge_list. Call synchronize_rcu() ahead of it to make more
-> > sure all objects have been freed.
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/i915_gem.c | 1 +
-> >   1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> > index 0f49ec9d494a..5b61f7ad6473 100644
-> > --- a/drivers/gpu/drm/i915/i915_gem.c
-> > +++ b/drivers/gpu/drm/i915/i915_gem.c
-> > @@ -1098,6 +1098,7 @@ void i915_gem_drain_freed_objects(struct drm_i915_private *i915)
-> >   		flush_delayed_work(&i915->bdev.wq);
-> >   		rcu_barrier();
-> >   	}
-> > +	synchronize_rcu();
-> 
-> Looks a bit suspicious that a loop would not free all but one last rcu 
-> grace would. Definitely fixes the issue in your testing?
+Hi Dave and Daniel,
 
-Definite is a bit hard to say with fuzzy stuff like this. But yes,
-so far didn't see the warn triggering anymore. CI results show the same.
+A few fixes, but most targeting stable.
 
-> 
-> Perhaps the fact there is a cond_resched in __i915_gem_free_objects, but 
-> then again free count should reflect the state and keep it looping in here..
-> 
-> Regards,
-> 
-> Tvrtko
+Here goes drm-intel-fixes-2022-09-08:
+- Fix MIPI sequence block copy from BIOS' table. (Ville)
+- Fix PCODE min freq setup when GuC's SLPC is in use. (Rodrigo)
+- Implement Workaround for eDP. (Ville)
+- Fix has_flat_ccs selection for DG1. (Matt)
 
--- 
-Ville Syrjälä
-Intel
+Thanks,
+Rodrigo.
+
+The following changes since commit 7e18e42e4b280c85b76967a9106a13ca61c16179:
+
+  Linux 6.0-rc4 (2022-09-04 13:10:01 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-09-08
+
+for you to fetch changes up to 151e0e0fdb4d6365305598af3b9072d44e896ef0:
+
+  drm/i915: consider HAS_FLAT_CCS() in needs_ccs_pages (2022-09-06 14:51:49 -0400)
+
+----------------------------------------------------------------
+- Fix MIPI sequence block copy from BIOS' table. (Ville)
+- Fix PCODE min freq setup when GuC's SLPC is in use. (Rodrigo)
+- Implement Workaround for eDP. (Ville)
+- Fix has_flat_ccs selection for DG1. (Matt)
+
+----------------------------------------------------------------
+Matthew Auld (1):
+      drm/i915: consider HAS_FLAT_CCS() in needs_ccs_pages
+
+Rodrigo Vivi (1):
+      drm/i915/slpc: Let's fix the PCODE min freq table setup for SLPC
+
+Ville Syrjälä (2):
+      drm/i915/bios: Copy the whole MIPI sequence block
+      drm/i915: Implement WaEdpLinkRateDataReload
+
+ drivers/gpu/drm/i915/display/intel_bios.c          |  7 +++
+ .../gpu/drm/i915/display/intel_dp_link_training.c  | 22 ++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_object.c         |  3 ++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |  2 +-
+ drivers/gpu/drm/i915/gt/intel_llc.c                | 19 ++++----
+ drivers/gpu/drm/i915/gt/intel_rps.c                | 50 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_rps.h                |  2 +
+ 7 files changed, 94 insertions(+), 11 deletions(-)
