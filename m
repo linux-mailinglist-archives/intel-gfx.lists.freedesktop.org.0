@@ -2,48 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6669F5B183D
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 11:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC025B18C8
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 11:33:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F9B10E9EC;
-	Thu,  8 Sep 2022 09:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3746A10E9F2;
+	Thu,  8 Sep 2022 09:33:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88F2A10E9EC;
- Thu,  8 Sep 2022 09:18:52 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 0B839B81DAF;
- Thu,  8 Sep 2022 09:18:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46A24C433D6;
- Thu,  8 Sep 2022 09:18:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1662628729;
- bh=CdqCZJBl/nD8tWz9C2cg69rsNzcpvtg1+SARQijR/vI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jSSGMdJPkAvltnSIff35TEf9g68krlOpCDvgsc1OoS+k3CYikT76RqQsZ7hqnrDdt
- vgt/s6s5sJ9oxM1EzfMWpK5ml0giX3LKW8WNmtVgtcb+JixhX84V7WmTBcyenvRuv1
- U3nOO54NX0ONTRfVvm7jjfyhEhCHqNyibrj1CmwQ=
-Date: Thu, 8 Sep 2022 11:19:11 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Zheng Hacker <hackerzheng666@gmail.com>
-Message-ID: <Yxmzj2nCoTKurCY8@kroah.com>
-References: <tencent_E1BBF05904DFB73C478DCD592740AAE0780A@qq.com>
- <CAJedcCxVW++iH49UFZp9ruUuTcNubWCH6Wsqe11K4COB3E8msg@mail.gmail.com>
- <CAJedcCw1eJqjSK+yR7eQMDheNtH3Mjm+viwt00xAhnmrfpq2pw@mail.gmail.com>
- <CAJedcCweHjD78F7iydiq6Xc2iH=t_3m=H9JKnaCooToUk32FvQ@mail.gmail.com>
- <YxWtfjfpNsoPUrgh@kroah.com>
- <CAJedcCzMo51aiy=Dv7zn7VmL3gwkw7JgzwAPAB2Z27C9CnhoYA@mail.gmail.com>
- <20220907030754.GU1089@zhen-hp.sh.intel.com>
- <CAJedcCxO_Rq0qMeLiHtY5+FuN1A1pDGsZd3gMtvUpm1xbAK3aA@mail.gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E7BD10E9F2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 09:33:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662629613; x=1694165613;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6hTEzWC5zdJejsLzlC9vehDiGqZJdqnq5Kfs7TFxoTw=;
+ b=gVwPOM0MGWGCIFpogdB/6EuhaQ1giULYVj8G1uui8dlEPt+28gNyjUPG
+ noafk0EEEjGdFexxrbSZPwnvwtUntTa5zMFnQLfd0DxdRWIkSWv8wT7v3
+ +an2gwseli6wSqxah4dop4j3Eld8Dnd6ZRlkfrzOJ1LE2I+yPuGIgxLrc
+ gMWJNL+G7NqOpvHmN54LnZ54pHOQRocrGcFnT/ODITiZw2U0ME18PGZQ3
+ 1436w5M/d0tbmMUwhow8p3fFlwStrVioTVJSuDKDWFOUvnUvD3XNEEuG2
+ 8nfHNTtubkdl5TGr2ICuWc8x2zjZ0yPSP0/b9IPe4N00mzgal8C+cjyd5 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="297123476"
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="297123476"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2022 02:33:32 -0700
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="645005363"
+Received: from jdemps5x-mobl.ger.corp.intel.com (HELO [10.213.237.77])
+ ([10.213.237.77])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2022 02:33:31 -0700
+Message-ID: <25e23d35-04b1-58e1-16d5-0ff973fa81fe@linux.intel.com>
+Date: Thu, 8 Sep 2022 10:33:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJedcCxO_Rq0qMeLiHtY5+FuN1A1pDGsZd3gMtvUpm1xbAK3aA@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
- split_2MB_gtt_entry.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20220831193355.838209-1-ashutosh.dixit@intel.com>
+ <20220831193355.838209-2-ashutosh.dixit@intel.com>
+ <Yw/kna1W/vrCiMmF@unerlige-ril> <87sflaodjp.wl-ashutosh.dixit@intel.com>
+ <YxeRe5W0Zf/TBGWw@unerlige-ril>
+ <c0c9f2ab-315e-8589-50ff-bbf6d4c39de3@linux.intel.com>
+ <8735d3xm44.wl-ashutosh.dixit@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <8735d3xm44.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC PATCH 2/2] Fix per client busyness locking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,23 +65,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, xmzyshypnc <1002992920@qq.com>,
- daniel@ffwll.ch, rodrigo.vivi@intel.com, intel-gvt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 08, 2022 at 05:09:40PM +0800, Zheng Hacker wrote:
-> Hi Zhenyu,
+
+On 07/09/2022 16:03, Dixit, Ashutosh wrote:
+> On Wed, 07 Sep 2022 00:28:48 -0700, Tvrtko Ursulin wrote:
+>>
+>> On 06/09/2022 19:29, Umesh Nerlige Ramappa wrote:
+>>> On Thu, Sep 01, 2022 at 04:55:22PM -0700, Dixit, Ashutosh wrote:
+>>>> On Wed, 31 Aug 2022 15:45:49 -0700, Umesh Nerlige Ramappa wrote:
+>>
+>> [snip]
+>>
+>>>>>>
+>>>>>>      intel_gt_reset_unlock(gt, srcu);
+>>>>>>
+>>>>>> @@ -1476,17 +1476,21 @@ void intel_guc_busyness_unpark(struct
+>>>>> intel_gt *gt)
+>>>>>>               guc->timestamp.ping_delay);
+>>>>>> }
+>>>>>>
+>>>>>> -static void __guc_context_update_clks(struct intel_context *ce)
+>>>>>> +static u64 guc_context_update_stats(struct intel_context *ce)
+>>>>>> {
+>>>>>>      struct intel_guc *guc = ce_to_guc(ce);
+>>>>>>      struct intel_gt *gt = ce->engine->gt;
+>>>>>>      u32 *pphwsp, last_switch, engine_id;
+>>>>>> -    u64 start_gt_clk, active;
+>>>>>>      unsigned long flags;
+>>>>>> +    u64 total, active = 0;
+>>>>>>      ktime_t unused;
+>>>>>>
+>>>>>> +    intel_context_pin(ce);
+>>>>>
+>>>>> intel_context_pin can sleep and we are not allowed to sleep in this
+>>>>> path -
+>>>>> intel_context_get_total_runtime_ns(), however we can sleep in the ping
+>>>>> worker path, so ideally we want to separate it out for the 2 paths.
+>>>>
+>>>> Do we know which intel_context_get_total_runtime_ns() call is not allowed
+>>>> to sleep? E.g. the code path from i915_drm_client_fdinfo() is allowed to
+>>>> sleep. As mentioned I have done this is v2 of RFC patch which I think is
+>>>> sufficient, but a more complicated scheme (which I think we can avoid for
+>>>> now) would be to pin in code paths when sleeping is allowed.
+>>>>
+>>>
+>>> Hmm, maybe intel_context_get_total_runtime_ns can sleep, not sure why I
+>>> was assuming that this falls in the perf_pmu path. This is now in the
+>>> drm_fdinfo query path. + Tvrtko.
+>>>
+>>> @Tvrtko, any idea if intel_context_get_total_runtime_ns path can sleep?
+>>
+>> Not at the moment - it calls it from a lockless (rcu) section when walking
+>> all the contexts belonging to a client. Idea being performance queries
+>> should have minimum effect on a running system.
 > 
-> This issue has been open for a few days. Could you plz write a patch
-> for that :) I'm not familiar with the logical code here.
+> Hmm my bad, missing the rcu and assuming a userspace thread will be able to
+> sleep.
+> 
+>> I think it would be possible to change in theory but not sure how much
+>> work. There is a hard need to sleep in there or what?
+> 
+> GuC contexts need to be pinned/unpinned which can sleep but investigating
+> if we can return a previously computed busyness when we cannot pin/sleep.
 
-As this is only able to be hit in a theoretical system, it isn't that
-high of a priority, if any priority at all.  Why not try to write a
-patch for it yourself to help resolve the issue faster?
+Yeah it would be conceptually nice to keep that query light weight. 
+Doing too much work to query accumulated state, like in case of pinning 
+the unpinned contexts, feels a bit over the top. Hopefully there aren't 
+any nasty races which would make this hard.
 
-thanks,
+Regards,
 
-greg k-h
+Tvrtko
