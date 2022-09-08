@@ -2,56 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E3A5B1D41
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 14:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9BB75B1DA7
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 14:50:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CD8F10E9BD;
-	Thu,  8 Sep 2022 12:38:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D91910E9C4;
+	Thu,  8 Sep 2022 12:50:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8084E10E9D5;
- Thu,  8 Sep 2022 12:38:03 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 3CD27227F0;
- Thu,  8 Sep 2022 12:38:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1662640682; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=nZ6EPoj1+R/6M3ceqrHxhqfIWpL/O1EJr+OCSwqEZJk=;
- b=idDkOFLLjvMQuL12hgAP55bhl4AUp4iYxbFMhNf0r3mBCIjjTnfsuwn9xa/ChSkDJdYTm/
- xIRQjz19VHunBNAYjYVXiEgdQPzPRMUB0erbXjSGE6bZ8xsSFlE49Tei06G69csHz5oDua
- 6dMP7Iwar3uZFCGjNUYIFT4zIGne6tA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1662640682;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=nZ6EPoj1+R/6M3ceqrHxhqfIWpL/O1EJr+OCSwqEZJk=;
- b=NeO3duJ05QwOgT1x6/lOiQayUHd2YEdn/dX+x8W5un2GXLn2NeHrsLhikeH2DPwgI/LO+t
- glwHph+wZbqfAoBQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 012EB1322C;
- Thu,  8 Sep 2022 12:38:01 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id DlpvOiniGWOyJQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 08 Sep 2022 12:38:01 +0000
-Date: Thu, 8 Sep 2022 14:38:00 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YxniKN4rK4qPp+J9@linux-uq9g>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1824310E9C4
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 12:50:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662641445; x=1694177445;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=pGBL0nFJq5GD7qKbf2sItEr/+SMj1ZsjyHnm8GjHBcc=;
+ b=XJxLhTVdTpLmA9gf/B5J7WujLlbVAS1Aifw9n6IekBeVLEq6G0jUTGxe
+ z+9NS8t+Raieq7GEZesqozdmBZ29C3bg7TSkg8ZL+dnOv9KfXnqlV0e8D
+ dsG0smGLFORYoyiPY6pvsfv9ry354q+U7jvhZrnOZ73LC7bildqtiokvq
+ v0vRiTvGusLh32dR+5ZTIdSs8ojZCQqSzWLEsVVY+7JRIgOwqP/2mVPzQ
+ rkHM3aXEI+r1WhukKWAYC+w+16AICPlmXFvM7qy3Nd1vOf1fKIcyRjcab
+ iOhOdJ6a5ZeMNQ9veVp7NT/jfStJpwIzvaFR23MMwTifnO0p8U1JXrerc Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="280182706"
+X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="280182706"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2022 05:50:44 -0700
+X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="645068727"
+Received: from igranath-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.46.171])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2022 05:50:42 -0700
+Date: Thu, 8 Sep 2022 14:50:35 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
+Message-ID: <YxnlGz8u1TyuvZHL@alfio.lan>
+References: <cover.1662613377.git.ashutosh.dixit@intel.com>
+ <e653fabb0b41552f988fbe38ae1d14b7db7f99b8.1662613377.git.ashutosh.dixit@intel.com>
+ <YxnHFXN+w4IUfWXg@alfio.lan>
+ <4a2b75d2-4605-07a1-4b06-425aa09b4738@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+In-Reply-To: <4a2b75d2-4605-07a1-4b06-425aa09b4738@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915/gt: Fix perf limit reasons bit
+ positions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,69 +60,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Thu, Sep 08, 2022 at 06:07:08PM +0530, Sundaresan, Sujaritha wrote:
+> 
+> On 9/8/2022 4:12 PM, Andi Shyti wrote:
+> > Hi,
+> > 
+> > On Wed, Sep 07, 2022 at 10:21:53PM -0700, Ashutosh Dixit wrote:
+> > > Perf limit reasons bit positions were off by one.
+> > > 
+> > > Fixes: fa68bff7cf27 ("drm/i915/gt: Add sysfs throttle frequency interfaces")
+> > > Cc: stable@vger.kernel.org # v5.18+
+> > > Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+> > > Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > Thanks Ashutosh!
+> > 
+> > > ---
+> > >   drivers/gpu/drm/i915/i915_reg.h | 16 ++++++++--------
+> > >   1 file changed, 8 insertions(+), 8 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > > index c413eec3373f..24009786f88b 100644
+> > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > @@ -1794,14 +1794,14 @@
+> > >   #define GT0_PERF_LIMIT_REASONS		_MMIO(0x1381a8)
+> > >   #define   GT0_PERF_LIMIT_REASONS_MASK	0xde3
+> > > -#define   PROCHOT_MASK			REG_BIT(1)
+> > > -#define   THERMAL_LIMIT_MASK		REG_BIT(2)
+> > > -#define   RATL_MASK			REG_BIT(6)
+> > > -#define   VR_THERMALERT_MASK		REG_BIT(7)
+> > > -#define   VR_TDC_MASK			REG_BIT(8)
+> > > -#define   POWER_LIMIT_4_MASK		REG_BIT(9)
+> > > -#define   POWER_LIMIT_1_MASK		REG_BIT(11)
+> > > -#define   POWER_LIMIT_2_MASK		REG_BIT(12)
+> > > +#define   PROCHOT_MASK			REG_BIT(0)
+> > > +#define   THERMAL_LIMIT_MASK		REG_BIT(1)
+> > > +#define   RATL_MASK			REG_BIT(5)
+> > > +#define   VR_THERMALERT_MASK		REG_BIT(6)
+> > > +#define   VR_TDC_MASK			REG_BIT(7)
+> > > +#define   POWER_LIMIT_4_MASK		REG_BIT(8)
+> > > +#define   POWER_LIMIT_1_MASK		REG_BIT(10)
+> > > +#define   POWER_LIMIT_2_MASK		REG_BIT(11)
+> > Sujaritha, could you please check and r-b this one?
+> > 
+> > Thanks,
+> > Andi
+> 
+> Looks good. I've checked the reg bits.
+> 
+> Reviewed-by : Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
 
-this is the weekly PR for drm-misc-fixes.
+Thanks! then:
 
-Best regards
-Thomas
+Acked-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-drm-misc-fixes-2022-09-08:
-Short summary of fixes pull:
-
- * edid: Fix EDID 1.4 range-descriptor parsing
- * panfrost: Fix devfreq OPP
- * ttm: Fix ghost-object bulk moves
-The following changes since commit a3f7c10a269d5b77dd5822ade822643ced3057f0:
-
-  dma-buf/dma-resv: check if the new fence is really later (2022-08-25 13:10:30 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-09-08
-
-for you to fetch changes up to d76034a427a2660b080bc155e4fd8f6393eefb48:
-
-  drm/panfrost: devfreq: set opp to the recommended one to configure regulator (2022-09-08 11:03:52 +0100)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * edid: Fix EDID 1.4 range-descriptor parsing
- * panfrost: Fix devfreq OPP
- * ttm: Fix ghost-object bulk moves
-
-----------------------------------------------------------------
-Christian König (1):
-      drm/ttm: cleanup the resource of ghost objects after locking them
-
-Clément Péron (1):
-      drm/panfrost: devfreq: set opp to the recommended one to configure regulator
-
-Ville Syrjälä (1):
-      drm/edid: Handle EDID 1.4 range descriptor h/vfreq offsets
-
-ZhenGuo Yin (1):
-      drm/ttm: update bulk move object of ghost BO
-
- drivers/gpu/drm/drm_debugfs.c               |  4 ++--
- drivers/gpu/drm/drm_edid.c                  | 24 ++++++++++++++++++------
- drivers/gpu/drm/panfrost/panfrost_devfreq.c | 11 +++++++++++
- drivers/gpu/drm/ttm/ttm_bo_util.c           | 13 ++++++++-----
- include/drm/drm_connector.h                 |  4 ++--
- include/drm/drm_edid.h                      |  5 +++++
- 6 files changed, 46 insertions(+), 15 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+Andi
