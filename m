@@ -1,57 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD2E85B19C0
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 12:16:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 756BA5B1A3E
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 12:42:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 102E510EA8E;
-	Thu,  8 Sep 2022 10:16:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55CEA10EA8E;
+	Thu,  8 Sep 2022 10:42:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0AE910EA90
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 10:15:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C598410EA8E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 10:42:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662632156; x=1694168156;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=6Zy+jxGCmxvAltvpRDTNxgZUG8m6YMkUkCRR+QjspSA=;
- b=eF2MbJ6HUULO8NIA7E+JRzox4IAM2zmixXScf8nlC84Z9kBQU3nh64Fp
- RjHut+kOV/9RgijwgCtuMcizK88yoy8vtrZ6IQdLLhO7HrMpFQqtbO4M3
- Gx/Ue9Nao+7oEA8S3dlhEzfa5x6HBJWD1S8XQXOKVVxQ7fMCZDXh+GD95
- iLuEhq9alM+whn81OHdM49wNT7oqfyxp+liAyXNQJbSwKuWdF2OPH7ZmC
- FYrS493zt8Wd9KN6bRkR0JNNikPQ6XrNj/49WKZVLb7b7mDDAnJtIE4iV
- z8eX9qwehVwPe2Ei6i2Me6vfm2IJK0W0Sd0iF8mEK8bQCSEzaIKCjpfem g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="277518070"
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="277518070"
+ t=1662633753; x=1694169753;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=+ucBU887TIw48rs0nrzNlnjVITol8vI2zLM4Ok2Rj4M=;
+ b=fvw16SRLi50CZOyfD3TIcYAMi5/erxBfL8fcGlsuNtpfqoupIERkjHtq
+ COrvXc/CAfTCaN3hvWAXf8u8AgPZ1Hfbi3MW9vnzPpL1mdbXGWj6R2veC
+ M/wwLuNA8MIVgHBJ1msAGv0+Y6ADU+OtVN9ZvP8zyYg8Nvm/5F9huXKkT
+ 9gNg/Dmy+7zoqu7Vw0Yxu49LHfwIafDjtHhTocAVOkdm34ZBQ3kC0vnjr
+ fnIUHCdHgrQ2ya5+Z5jWrlVm73EqCUQuPitc/8fr5fkGsuFaRo3r3+Zdo
+ wL0apWbGMlKb+b9j5pijsGoPMbEYE+4cEvvZIQA5Mpb9XHzcKC6D6EJs/ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="277522164"
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="277522164"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 03:15:54 -0700
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="676625276"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.222.34])
- ([10.251.222.34])
+ 08 Sep 2022 03:42:33 -0700
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="676631682"
+Received: from igranath-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.46.171])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 03:15:52 -0700
-Message-ID: <0b069343-58ec-f48b-a33c-d42d9479c1dc@linux.intel.com>
-Date: Thu, 8 Sep 2022 12:15:50 +0200
+ 08 Sep 2022 03:42:32 -0700
+Date: Thu, 8 Sep 2022 12:42:29 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Message-ID: <YxnHFXN+w4IUfWXg@alfio.lan>
+References: <cover.1662613377.git.ashutosh.dixit@intel.com>
+ <e653fabb0b41552f988fbe38ae1d14b7db7f99b8.1662613377.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>, 
- intel-gfx@lists.freedesktop.org
-References: <20220907172641.12555-1-nirmoy.das@intel.com>
- <99f197d9-0b00-8b7d-011f-cb6318a99c66@intel.com>
- <00e1d912-c3ba-71d9-af94-b03e57053a23@linux.intel.com>
- <52670f86-b4e8-199f-fc56-1a595330e347@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <52670f86-b4e8-199f-fc56-1a595330e347@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Set correct domains values at
- _i915_vma_move_to_active
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e653fabb0b41552f988fbe38ae1d14b7db7f99b8.1662613377.git.ashutosh.dixit@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915/gt: Fix perf limit reasons bit
+ positions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,74 +58,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris.p.wilson@intel.com, andrzej.hajda@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-On 9/8/2022 12:13 PM, Matthew Auld wrote:
-> On 08/09/2022 10:46, Das, Nirmoy wrote:
->>
->> On 9/8/2022 11:40 AM, Matthew Auld wrote:
->>> On 07/09/2022 18:26, Nirmoy Das wrote:
->>>> Fix regression introduced by commit:
->>>> "drm/i915: Individualize fences before adding to dma_resv obj"
->>>> which sets obj->read_domains to 0 for both read and write paths.
->>>> Also set obj->write_domain to 0 on read path which was removed by
->>>> the commit.
->>>>
->>>> References: https://gitlab.freedesktop.org/drm/intel/-/issues/6639
->>>> Fixes: 842d9346b2fd ("drm/i915: Individualize fences before adding 
->>>> to dma_resv obj")
->>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>>> Cc: <stable@vger.kernel.org> # v5.16+
->>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->>>
->>> Should I go ahead and push this?
->>
->>
->> Yes,  please go ahead. Lots people are effected because of this 
->> regression.
->
-> Pushed with:
-> Fixes: 420a07b841d0 ("drm/i915: Individualize fences before adding to 
-> dma_resv obj")
->
-> Otherwise dim complains it seems.
+On Wed, Sep 07, 2022 at 10:21:53PM -0700, Ashutosh Dixit wrote:
+> Perf limit reasons bit positions were off by one.
+> 
+> Fixes: fa68bff7cf27 ("drm/i915/gt: Add sysfs throttle frequency interfaces")
+> Cc: stable@vger.kernel.org # v5.18+
+> Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
+Thanks Ashutosh!
 
-Thanks, Matt!
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index c413eec3373f..24009786f88b 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1794,14 +1794,14 @@
+>  
+>  #define GT0_PERF_LIMIT_REASONS		_MMIO(0x1381a8)
+>  #define   GT0_PERF_LIMIT_REASONS_MASK	0xde3
+> -#define   PROCHOT_MASK			REG_BIT(1)
+> -#define   THERMAL_LIMIT_MASK		REG_BIT(2)
+> -#define   RATL_MASK			REG_BIT(6)
+> -#define   VR_THERMALERT_MASK		REG_BIT(7)
+> -#define   VR_TDC_MASK			REG_BIT(8)
+> -#define   POWER_LIMIT_4_MASK		REG_BIT(9)
+> -#define   POWER_LIMIT_1_MASK		REG_BIT(11)
+> -#define   POWER_LIMIT_2_MASK		REG_BIT(12)
+> +#define   PROCHOT_MASK			REG_BIT(0)
+> +#define   THERMAL_LIMIT_MASK		REG_BIT(1)
+> +#define   RATL_MASK			REG_BIT(5)
+> +#define   VR_THERMALERT_MASK		REG_BIT(6)
+> +#define   VR_TDC_MASK			REG_BIT(7)
+> +#define   POWER_LIMIT_4_MASK		REG_BIT(8)
+> +#define   POWER_LIMIT_1_MASK		REG_BIT(10)
+> +#define   POWER_LIMIT_2_MASK		REG_BIT(11)
 
+Sujaritha, could you please check and r-b this one?
 
-Nirmoy
-
->
->>
->>
->> Nirmoy
->>
->>>
->>>> ---
->>>>   drivers/gpu/drm/i915/i915_vma.c | 3 ++-
->>>>   1 file changed, 2 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/i915_vma.c 
->>>> b/drivers/gpu/drm/i915/i915_vma.c
->>>> index 260371716490..373582cfd8f3 100644
->>>> --- a/drivers/gpu/drm/i915/i915_vma.c
->>>> +++ b/drivers/gpu/drm/i915/i915_vma.c
->>>> @@ -1882,12 +1882,13 @@ int _i915_vma_move_to_active(struct 
->>>> i915_vma *vma,
->>>>           enum dma_resv_usage usage;
->>>>           int idx;
->>>>   -        obj->read_domains = 0;
->>>>           if (flags & EXEC_OBJECT_WRITE) {
->>>>               usage = DMA_RESV_USAGE_WRITE;
->>>>               obj->write_domain = I915_GEM_DOMAIN_RENDER;
->>>> +            obj->read_domains = 0;
->>>>           } else {
->>>>               usage = DMA_RESV_USAGE_READ;
->>>> +            obj->write_domain = 0;
->>>>           }
->>>>             dma_fence_array_for_each(curr, idx, fence)
+Thanks,
+Andi
