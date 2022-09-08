@@ -1,58 +1,108 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFC025B18C8
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 11:33:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 762CC5B18E1
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 11:39:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3746A10E9F2;
-	Thu,  8 Sep 2022 09:33:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2792A10E9F0;
+	Thu,  8 Sep 2022 09:39:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E7BD10E9F2
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 09:33:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662629613; x=1694165613;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=6hTEzWC5zdJejsLzlC9vehDiGqZJdqnq5Kfs7TFxoTw=;
- b=gVwPOM0MGWGCIFpogdB/6EuhaQ1giULYVj8G1uui8dlEPt+28gNyjUPG
- noafk0EEEjGdFexxrbSZPwnvwtUntTa5zMFnQLfd0DxdRWIkSWv8wT7v3
- +an2gwseli6wSqxah4dop4j3Eld8Dnd6ZRlkfrzOJ1LE2I+yPuGIgxLrc
- gMWJNL+G7NqOpvHmN54LnZ54pHOQRocrGcFnT/ODITiZw2U0ME18PGZQ3
- 1436w5M/d0tbmMUwhow8p3fFlwStrVioTVJSuDKDWFOUvnUvD3XNEEuG2
- 8nfHNTtubkdl5TGr2ICuWc8x2zjZ0yPSP0/b9IPe4N00mzgal8C+cjyd5 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="297123476"
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="297123476"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 02:33:32 -0700
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; d="scan'208";a="645005363"
-Received: from jdemps5x-mobl.ger.corp.intel.com (HELO [10.213.237.77])
- ([10.213.237.77])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 02:33:31 -0700
-Message-ID: <25e23d35-04b1-58e1-16d5-0ff973fa81fe@linux.intel.com>
-Date: Thu, 8 Sep 2022 10:33:29 +0100
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9135B10E9EE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 09:39:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1662629953;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=juN60mjz881n6CsiBEcgXlSOSOlvhxsLXH5xY7MSR4s=;
+ b=SSDJCgxA9cCsHpJeX0WAuKwxvErWzqFUMFZeAQ6MeRdhSOStJLZhkLk/46h+q1MaW/HP5S
+ Mg4AfPb8FjOxfd7R063tTs5uD+ZPin41XMmMRA+6EDjMfsiBrjVeR2/vHNnZqb2hjH+4oP
+ brEuxhgZv1Ys+UYNRMI1CT0VyqzrBUw=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-573-hAPfyDJFPayxAD0BORSQBQ-1; Thu, 08 Sep 2022 05:39:12 -0400
+X-MC-Unique: hAPfyDJFPayxAD0BORSQBQ-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ bg2-20020a05600c3c8200b003b33080cff8so249641wmb.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 08 Sep 2022 02:39:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date;
+ bh=juN60mjz881n6CsiBEcgXlSOSOlvhxsLXH5xY7MSR4s=;
+ b=dZRCJG4A+3OHaARQXUk12v9nDN2xBRFwZdEEAkNuSQjGvgPFNJtgs4TpQ042RTt0m2
+ /70AJOtVDVQ4LYqMAE0q4fSn3B54Y15axViBLZZbOqmLDN7h6eRKNjspixR6wPminfD0
+ lAxB2xFvEgUiRtdN7moYiU4qbiiL5n/S9dk7UCPEvY8gVmL1nzKrnvKNt8xEQEnu/Kln
+ Q7TfOtaQrkTUKK7b1c1W6uOVorjnGrsMbZt6vehIgz6xfCK6lMPJ7HYSsqShx88ECeAB
+ NgBtg2U82BHIDo6PJj7dJblUuyp63ROuaRbGwJ44SkBd73xrkfY2l9ETvnl62aC6h0Hk
+ 15zw==
+X-Gm-Message-State: ACgBeo38RIv+4aywgKJkcwtUFj0CGl18l/jOGIkXvW/9Zcif441aHHRo
+ NWUT3ZCYurKj1eT+EPXezHfAEM4EP4E5ECZ21qGbmQ+tEQOgjYA9zfyMvacLt7PRF3YLROiuxjZ
+ /jFs1EFT4BpcirKykw+Yji31xhiMS
+X-Received: by 2002:a05:6000:178e:b0:220:635f:eb13 with SMTP id
+ e14-20020a056000178e00b00220635feb13mr4489787wrg.634.1662629951470; 
+ Thu, 08 Sep 2022 02:39:11 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4dRBeXGabpPhvYNKiyVK4XYbixC3F8OmZF+hKUI2fO7IUkTj9BIwBvc/2UBWnZVrvaMpyPhg==
+X-Received: by 2002:a05:6000:178e:b0:220:635f:eb13 with SMTP id
+ e14-20020a056000178e00b00220635feb13mr4489754wrg.634.1662629951128; 
+ Thu, 08 Sep 2022 02:39:11 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
+ ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
+ by smtp.gmail.com with ESMTPSA id
+ p14-20020a1c544e000000b003a502c23f2asm2231024wmi.16.2022.09.08.02.39.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 08 Sep 2022 02:39:09 -0700 (PDT)
+Message-ID: <4c9350cd-c2ce-dc84-9a29-210907d2a2a2@redhat.com>
+Date: Thu, 8 Sep 2022 11:39:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
+ Thunderbird/91.11.0
+To: Yi Liu <yi.l.liu@intel.com>, Kevin Tian <kevin.tian@intel.com>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Eric Farman <farman@linux.ibm.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Halil Pasic <pasic@linux.ibm.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Tony Krowiak <akrowiak@linux.ibm.com>,
+ Jason Herne <jjherne@linux.ibm.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Cornelia Huck <cohuck@redhat.com>, Longfang Liu <liulongfang@huawei.com>,
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>,
+ Kirti Wankhede <kwankhede@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
+ Abhishek Sahu <abhsahu@nvidia.com>, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-s390@vger.kernel.org, kvm@vger.kernel.org
+References: <20220901143747.32858-1-kevin.tian@intel.com>
+ <20220901143747.32858-16-kevin.tian@intel.com>
+ <50d82b01-86a3-e6a3-06f7-7f98e60131eb@redhat.com>
+ <546463b8-54fa-2071-6a9a-e4087eb8bb2c@intel.com>
+From: Eric Auger <eric.auger@redhat.com>
+In-Reply-To: <546463b8-54fa-2071-6a9a-e4087eb8bb2c@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-References: <20220831193355.838209-1-ashutosh.dixit@intel.com>
- <20220831193355.838209-2-ashutosh.dixit@intel.com>
- <Yw/kna1W/vrCiMmF@unerlige-ril> <87sflaodjp.wl-ashutosh.dixit@intel.com>
- <YxeRe5W0Zf/TBGWw@unerlige-ril>
- <c0c9f2ab-315e-8589-50ff-bbf6d4c39de3@linux.intel.com>
- <8735d3xm44.wl-ashutosh.dixit@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <8735d3xm44.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC PATCH 2/2] Fix per client busyness locking
+Subject: Re: [Intel-gfx] [PATCH v2 15/15] vfio: Add struct device to
+ vfio_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,77 +115,274 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: eric.auger@redhat.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 07/09/2022 16:03, Dixit, Ashutosh wrote:
-> On Wed, 07 Sep 2022 00:28:48 -0700, Tvrtko Ursulin wrote:
+
+On 9/8/22 11:17, Yi Liu wrote:
+> On 2022/9/8 17:06, Eric Auger wrote:
+>> Hi Kevin,
 >>
->> On 06/09/2022 19:29, Umesh Nerlige Ramappa wrote:
->>> On Thu, Sep 01, 2022 at 04:55:22PM -0700, Dixit, Ashutosh wrote:
->>>> On Wed, 31 Aug 2022 15:45:49 -0700, Umesh Nerlige Ramappa wrote:
->>
->> [snip]
->>
->>>>>>
->>>>>>      intel_gt_reset_unlock(gt, srcu);
->>>>>>
->>>>>> @@ -1476,17 +1476,21 @@ void intel_guc_busyness_unpark(struct
->>>>> intel_gt *gt)
->>>>>>               guc->timestamp.ping_delay);
->>>>>> }
->>>>>>
->>>>>> -static void __guc_context_update_clks(struct intel_context *ce)
->>>>>> +static u64 guc_context_update_stats(struct intel_context *ce)
->>>>>> {
->>>>>>      struct intel_guc *guc = ce_to_guc(ce);
->>>>>>      struct intel_gt *gt = ce->engine->gt;
->>>>>>      u32 *pphwsp, last_switch, engine_id;
->>>>>> -    u64 start_gt_clk, active;
->>>>>>      unsigned long flags;
->>>>>> +    u64 total, active = 0;
->>>>>>      ktime_t unused;
->>>>>>
->>>>>> +    intel_context_pin(ce);
->>>>>
->>>>> intel_context_pin can sleep and we are not allowed to sleep in this
->>>>> path -
->>>>> intel_context_get_total_runtime_ns(), however we can sleep in the ping
->>>>> worker path, so ideally we want to separate it out for the 2 paths.
->>>>
->>>> Do we know which intel_context_get_total_runtime_ns() call is not allowed
->>>> to sleep? E.g. the code path from i915_drm_client_fdinfo() is allowed to
->>>> sleep. As mentioned I have done this is v2 of RFC patch which I think is
->>>> sufficient, but a more complicated scheme (which I think we can avoid for
->>>> now) would be to pin in code paths when sleeping is allowed.
->>>>
+>> On 9/1/22 16:37, Kevin Tian wrote:
+>>> From: Yi Liu <yi.l.liu@intel.com>
 >>>
->>> Hmm, maybe intel_context_get_total_runtime_ns can sleep, not sure why I
->>> was assuming that this falls in the perf_pmu path. This is now in the
->>> drm_fdinfo query path. + Tvrtko.
+>>> and replace kref. With it a 'vfio-dev/vfioX' node is created under the
+>>> sysfs path of the parent, indicating the device is bound to a vfio
+>>> driver, e.g.:
 >>>
->>> @Tvrtko, any idea if intel_context_get_total_runtime_ns path can sleep?
+>>> /sys/devices/pci0000\:6f/0000\:6f\:01.0/vfio-dev/vfio0
+>>>
+>>> It is also a preparatory step toward adding cdev for supporting future
+>>> device-oriented uAPI.
+>>>
+>>> Add Documentation/ABI/testing/sysfs-devices-vfio-dev.
+>>>
+>>> Also take this chance to rename chardev 'vfio' to 'vfio-group' in
+>>> /proc/devices.
+>>>
+>>> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+>>> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+>>> Signed-off-by: Kevin Tian <kevin.tian@intel.com>
+>>> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+>>> ---
+>>>   .../ABI/testing/sysfs-devices-vfio-dev        |  8 +++
+>>>   drivers/vfio/vfio_main.c                      | 67
+>>> +++++++++++++++----
+>>>   include/linux/vfio.h                          |  6 +-
+>>>   3 files changed, 66 insertions(+), 15 deletions(-)
+>>>   create mode 100644 Documentation/ABI/testing/sysfs-devices-vfio-dev
+>>>
+>>> diff --git a/Documentation/ABI/testing/sysfs-devices-vfio-dev
+>>> b/Documentation/ABI/testing/sysfs-devices-vfio-dev
+>>> new file mode 100644
+>>> index 000000000000..e21424fd9666
+>>> --- /dev/null
+>>> +++ b/Documentation/ABI/testing/sysfs-devices-vfio-dev
+>>> @@ -0,0 +1,8 @@
+>>> +What:         /sys/.../<device>/vfio-dev/vfioX/
+>>> +Date:         September 2022
+>>> +Contact:     Yi Liu <yi.l.liu@intel.com>
+>>> +Description:
+>>> +         This directory is created when the device is bound to a
+>>> +         vfio driver. The layout under this directory matches what
+>>> +         exists for a standard 'struct device'. 'X' is a unique
+>>> +         index marking this device in vfio.
+>>> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+>>> index bfa675d314ab..141f55c3faf5 100644
+>>> --- a/drivers/vfio/vfio_main.c
+>>> +++ b/drivers/vfio/vfio_main.c
+>>> @@ -46,6 +46,8 @@ static struct vfio {
+>>>       struct mutex            group_lock; /* locks group_list */
+>>>       struct ida            group_ida;
+>>>       dev_t                group_devt;
+>>> +    struct class            *device_class;
+>>> +    struct ida            device_ida;
+>>>   } vfio;
+>>>     struct vfio_iommu_driver {
+>>> @@ -483,12 +485,13 @@ static struct vfio_device
+>>> *vfio_group_get_device(struct vfio_group *group,
+>>>    * VFIO driver API
+>>>    */
+>>>   /* Release helper called by vfio_put_device() */
+>>> -void vfio_device_release(struct kref *kref)
+>>> +static void vfio_device_release(struct device *dev)
+>>>   {
+>>>       struct vfio_device *device =
+>>> -            container_of(kref, struct vfio_device, kref);
+>>> +            container_of(dev, struct vfio_device, device);
+>>>         vfio_release_device_set(device);
+>>> +    ida_free(&vfio.device_ida, device->index);
+>>>         /*
+>>>        * kvfree() cannot be done here due to a life cycle mess in
+>>> @@ -498,7 +501,6 @@ void vfio_device_release(struct kref *kref)
+>>>        */
+>>>       device->ops->release(device);
+>>>   }
+>>> -EXPORT_SYMBOL_GPL(vfio_device_release);
+>>>     /*
+>>>    * Alloc and initialize vfio_device so it can be registered to vfio
+>>> @@ -546,6 +548,13 @@ int vfio_init_device(struct vfio_device
+>>> *device, struct device *dev,
+>>>   {
+>>>       int ret;
+>>>   +    ret = ida_alloc_max(&vfio.device_ida, MINORMASK, GFP_KERNEL);
+>>> +    if (ret < 0) {
+>>> +        dev_dbg(dev, "Error to alloc index\n");
+>>> +        return ret;
+>>> +    }
+>>> +
+>>> +    device->index = ret;
+>>>       init_completion(&device->comp);
+>>>       device->dev = dev;
+>>>       device->ops = ops;
+>>> @@ -556,11 +565,15 @@ int vfio_init_device(struct vfio_device
+>>> *device, struct device *dev,
+>>>               goto out_uninit;
+>>>       }
+>>>   -    kref_init(&device->kref);
+>>> +    device_initialize(&device->device);
+>>> +    device->device.release = vfio_device_release;
+>>> +    device->device.class = vfio.device_class;
+>>> +    device->device.parent = device->dev;
+>>>       return 0;
+>>>     out_uninit:
+>>>       vfio_release_device_set(device);
+>>> +    ida_free(&vfio.device_ida, device->index);
+>>>       return ret;
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(vfio_init_device);
+>>> @@ -657,6 +670,7 @@ static int __vfio_register_dev(struct
+>>> vfio_device *device,
+>>>           struct vfio_group *group)
+>>>   {
+>>>       struct vfio_device *existing_device;
+>>> +    int ret;
+>>>         if (IS_ERR(group))
+>>>           return PTR_ERR(group);
+>>> @@ -673,16 +687,21 @@ static int __vfio_register_dev(struct
+>>> vfio_device *device,
+>>>           dev_WARN(device->dev, "Device already exists on group %d\n",
+>>>                iommu_group_id(group->iommu_group));
+>>>           vfio_device_put_registration(existing_device);
+>>> -        if (group->type == VFIO_NO_IOMMU ||
+>>> -            group->type == VFIO_EMULATED_IOMMU)
+>>> -            iommu_group_remove_device(device->dev);
+>>> -        vfio_group_put(group);
+>>> -        return -EBUSY;
+>>> +        ret = -EBUSY;
+>>> +        goto err_out;
+>>>       }
+>>>         /* Our reference on group is moved to the device */
+>>>       device->group = group;
+>>>   +    ret = dev_set_name(&device->device, "vfio%d", device->index);
+>>> +    if (ret)
+>>> +        goto err_out;
+>>> +
+>>> +    ret = device_add(&device->device);
+>>> +    if (ret)
+>>> +        goto err_out;
+>>> +
+>>>       /* Refcounting can't start until the driver calls register */
+>>>       refcount_set(&device->refcount, 1);
+>>>   @@ -692,6 +711,12 @@ static int __vfio_register_dev(struct
+>>> vfio_device *device,
+>>>       mutex_unlock(&group->device_lock);
+>>>         return 0;
+>>> +err_out:
+>>> +    if (group->type == VFIO_NO_IOMMU ||
+>>> +        group->type == VFIO_EMULATED_IOMMU)
+>>> +        iommu_group_remove_device(device->dev);
+>>> +    vfio_group_put(group);
+>>> +    return ret;
+>>>   }
+>>>     int vfio_register_group_dev(struct vfio_device *device)
+>>> @@ -779,6 +804,9 @@ void vfio_unregister_group_dev(struct
+>>> vfio_device *device)
+>>>       group->dev_counter--;
+>>>       mutex_unlock(&group->device_lock);
+>>>   +    /* Balances device_add in register path */
+>>> +    device_del(&device->device);
+>>> +
+>>>       if (group->type == VFIO_NO_IOMMU || group->type ==
+>>> VFIO_EMULATED_IOMMU)
+>>>           iommu_group_remove_device(device->dev);
+>>>   @@ -2145,6 +2173,7 @@ static int __init vfio_init(void)
+>>>       int ret;
+>>>         ida_init(&vfio.group_ida);
+>>> +    ida_init(&vfio.device_ida);
+>>>       mutex_init(&vfio.group_lock);
+>>>       mutex_init(&vfio.iommu_drivers_lock);
+>>>       INIT_LIST_HEAD(&vfio.group_list);
+>>> @@ -2160,12 +2189,20 @@ static int __init vfio_init(void)
+>>>       vfio.class = class_create(THIS_MODULE, "vfio");
+>>>       if (IS_ERR(vfio.class)) {
+>>>           ret = PTR_ERR(vfio.class);
+>>> -        goto err_class;
+>>> +        goto err_group_class;
+>>>       }
+>>>         vfio.class->devnode = vfio_devnode;
+>>>   -    ret = alloc_chrdev_region(&vfio.group_devt, 0, MINORMASK + 1,
+>>> "vfio");
+>>> +    /* /sys/class/vfio-dev/vfioX */
+>>> +    vfio.device_class = class_create(THIS_MODULE, "vfio-dev");
+>>> +    if (IS_ERR(vfio.device_class)) {
+>>> +        ret = PTR_ERR(vfio.device_class);
+>>> +        goto err_dev_class;
+>>> +    }
+>>> +
+>>> +    ret = alloc_chrdev_region(&vfio.group_devt, 0, MINORMASK + 1,
+>>> +                  "vfio-group");
+>>>       if (ret)
+>>>           goto err_alloc_chrdev;
+>>>   @@ -2181,9 +2218,12 @@ static int __init vfio_init(void)
+>>>   err_driver_register:
+>>>       unregister_chrdev_region(vfio.group_devt, MINORMASK + 1);
+>>>   err_alloc_chrdev:
+>>> +    class_destroy(vfio.device_class);
+>>> +    vfio.device_class = NULL;
+>>> +err_dev_class:
+>>>       class_destroy(vfio.class);
+>>>       vfio.class = NULL;
+>>> -err_class:
+>>> +err_group_class:
+>>>       misc_deregister(&vfio_dev);
+>>>       return ret;
+>>>   }
+>>> @@ -2195,8 +2235,11 @@ static void __exit vfio_cleanup(void)
+>>>   #ifdef CONFIG_VFIO_NOIOMMU
+>>>       vfio_unregister_iommu_driver(&vfio_noiommu_ops);
+>>>   #endif
+>>> +    ida_destroy(&vfio.device_ida);
+>>>       ida_destroy(&vfio.group_ida);
+>>>       unregister_chrdev_region(vfio.group_devt, MINORMASK + 1);
+>>> +    class_destroy(vfio.device_class);
+>>> +    vfio.device_class = NULL;
+>>>       class_destroy(vfio.class);
+>>>       vfio.class = NULL;
+>>>       misc_deregister(&vfio_dev);
+>>> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+>>> index f03447c8774d..5c13f74da1bb 100644
+>>> --- a/include/linux/vfio.h
+>>> +++ b/include/linux/vfio.h
+>>> @@ -45,7 +45,8 @@ struct vfio_device {
+>>>       struct kvm *kvm;
+>>>         /* Members below here are private, not for driver use */
+>>> -    struct kref kref;    /* object life cycle */
+>>> +    unsigned int index;
+>>> +    struct device device;    /* device.kref covers object life
+>>> circle */
+>>>       refcount_t refcount;    /* user count on registered device*/
+>>>       unsigned int open_count;
+>>>       struct completion comp;
+>> I am not totally clear about remaining 'struct device *dev;' in
+>> vfio_device struct. I see it used in some places. Is it supposed to
+>> disappear at some point?
+>
+> no, Eric. *dev will not disappear, it stores the dev pointet passed in by
+> caller of vfio_init_device().
+
+yeah I see but you have device->device.parent = device->dev;
+
+Eric
+>
+>>> @@ -154,10 +155,9 @@ struct vfio_device *_vfio_alloc_device(size_t
+>>> size, struct device *dev,
+>>>   int vfio_init_device(struct vfio_device *device, struct device *dev,
+>>>                const struct vfio_device_ops *ops);
+>>>   void vfio_free_device(struct vfio_device *device);
+>>> -void vfio_device_release(struct kref *kref);
+>>>   static inline void vfio_put_device(struct vfio_device *device)
+>>>   {
+>>> -    kref_put(&device->kref, vfio_device_release);
+>>> +    put_device(&device->device);
+>>>   }
+>>>     int vfio_register_group_dev(struct vfio_device *device);
 >>
->> Not at the moment - it calls it from a lockless (rcu) section when walking
->> all the contexts belonging to a client. Idea being performance queries
->> should have minimum effect on a running system.
-> 
-> Hmm my bad, missing the rcu and assuming a userspace thread will be able to
-> sleep.
-> 
->> I think it would be possible to change in theory but not sure how much
->> work. There is a hard need to sleep in there or what?
-> 
-> GuC contexts need to be pinned/unpinned which can sleep but investigating
-> if we can return a previously computed busyness when we cannot pin/sleep.
+>> Thanks
+>>
+>> Eric
+>>
+>
 
-Yeah it would be conceptually nice to keep that query light weight. 
-Doing too much work to query accumulated state, like in case of pinning 
-the unpinned contexts, feels a bit over the top. Hopefully there aren't 
-any nasty races which would make this hard.
-
-Regards,
-
-Tvrtko
