@@ -1,91 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F535B2009
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 16:03:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63AD35B209E
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Sep 2022 16:33:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1999410EB0C;
-	Thu,  8 Sep 2022 14:03:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C673F10EB32;
+	Thu,  8 Sep 2022 14:33:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
- [64.147.123.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9A2D10E9DD;
- Thu,  8 Sep 2022 14:03:04 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id 331AB2B05B92;
- Thu,  8 Sep 2022 10:03:01 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Thu, 08 Sep 2022 10:03:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm2; t=1662645780; x=
- 1662652980; bh=ZcIBIDlpdLVKZg4IlXd05S6h4JkWIhQqXXzWfBJ83ow=; b=c
- zNe6gLuyvdjRW551IVFEYSdvQD3T1eshLEO+8vISeoBxTjKAUZaGJdL08oseMrqZ
- Fut6XphRqmkGK1h4QU7mkM6EW6nEBRN/eRh9i/MqyJFJKZ4oq0aEfd3rKhkg/snx
- 7lFjef8FWWTagRHm6af1CHCss+2PSst8CB7iPb2m8HnNbecu2BQ4EgjjjVSZTx6W
- Dxga0MidtrFihJM85mmSVwcrI9Rush4dDlAy/Iouc2qHobNbKdWj2voBmEfOyWka
- GGQwayc6261/IF5J7i0pEiv2N0ryPWw/2rgqUlV2pcgIAAktZN3HwNjrAyyJ7ml1
- p04Wsngh4+31AfndU9nSA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1662645780; x=
- 1662652980; bh=ZcIBIDlpdLVKZg4IlXd05S6h4JkWIhQqXXzWfBJ83ow=; b=n
- afufB3YRGZd7vArNXwFSQtbB56G4qFj1c2iTf8oXEIZJfq/cpgOEWgDEI2p+EXfl
- 0MmREMov9f691O0PEgmDn2QdCY0LcUXjI0veG6f0P84fh/PjdFS3OTYJdDe6uKFm
- ikxXlF689P+AZ32ATwlcdZvGmIgqybmD4OJfmrhg8wREg8k3WyS7epbT7zq+E5Jo
- mWYxQrLdvvDWYibTVAhJTrvUXTUsC2jGvc/1aFrHZG8w+Y3SoYg+c+1VVqHbNxgw
- wY0EyD/EQgciCBrFuGituKnIHN5QfHt786H59uJntnddeH9LMqntUWc3+2fIUDnp
- L0T/cryCIafj8x+1QKqTw==
-X-ME-Sender: <xms:E_YZY5vKIBQ3SRZPsaFTs-xNCu4rej7pwqWIobPdZ20jgV8las1G2g>
- <xme:E_YZYyei14DxCSGS2IAfDQugKMVik5VcUneHV-CcrUuimar3TzLS6Xq8-MclN__XH
- VXNLWZiJ50f9Ku_Z9M>
-X-ME-Received: <xmr:E_YZY8xs09y0S8XFFwW_yCAdG-1jSOKDZx_cku77g7U-ZMOtMtrWDQiOpw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedtfedguddvucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephffvvefufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgig
- ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
- grthhtvghrnhepueeigefghfffffeifeehudeiuedvteegueefffevgfetvdffheehkeff
- vedufeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
- epmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:E_YZYwMHuHLjTtcD4id5zjudOWWh84hu3GkTVuOPu-ThDVpls32v5Q>
- <xmx:E_YZY59yr3vj3GSjDbehToXaDzaOLHdvPijpyn8hLZT5HDHINbnEGA>
- <xmx:E_YZYwVEKVh_ApDL07RXjXw2dv-oLAeCIMsfsJiNUgiySgC6m7hFFw>
- <xmx:FPYZY5lfjsH1-vUzgP5LB5dOEZNbB11TWY6qNAU_GjLsPJzPD6qV-PBttKk>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 8 Sep 2022 10:02:58 -0400 (EDT)
-From: Maxime Ripard <maxime@cerno.tech>
-To: =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Karol Herbst <kherbst@redhat.com>, Samuel Holland <samuel@sholland.org>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Emma Anholt <emma@anholt.net>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <maxime@cerno.tech>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Lyude Paul <lyude@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>
-Date: Thu,  8 Sep 2022 16:02:54 +0200
-Message-Id: <166264577079.2930603.15990827641277549331.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-36-459522d653a7@cerno.tech>
-References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-36-459522d653a7@cerno.tech>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCE3310EB31
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 14:32:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662647579; x=1694183579;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=5D2Ukvhr0gfVpeWkgqeyr6jhsc/xY0nMmuY/tge7NYw=;
+ b=Kp1j+P08FbaXisLje5dRaaJFhdXqk17NEJZM6FXb0pTsLERZQA+nbjTw
+ 6bUgpBeZyg7BE88/iF40WOXcB9UT9Vt6aRaW9PNeKTmOjuE6N1a0GKkzO
+ cYgmWuaDFcjfHR6E72DfCUIvp038l0iNbi+7TqE3f+wZK+ppRrtPiu5vi
+ P34JGGw1qkJI48diOcTh3CYXU5sXqrFqOvk/a/x6OGy67CRcAnMX1TF39
+ uDIEYGOq4vP8p7Z/wxE/vCILQ7k01ysouBhCMOC5mP8GOntDMKaxNMWwr
+ LUt82aZ6csJAFoIjTNMcjqmKLyGtH9Hjx14eA8+WOEK9X5HeoODsCi+e8 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="294772077"
+X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="294772077"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2022 07:32:59 -0700
+X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; d="scan'208";a="676708933"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.47.100])
+ ([10.252.47.100])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2022 07:32:58 -0700
+Message-ID: <6e71f8d2-fd50-4550-5168-240c6f703c7f@linux.intel.com>
+Date: Thu, 8 Sep 2022 16:32:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220906174609.23494-1-ville.syrjala@linux.intel.com>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+In-Reply-To: <20220906174609.23494-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] (subset) [PATCH v2 36/41] drm/sun4i: tv: Merge
- mode_set into atomic_enable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Kick rcu harder to free objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,23 +60,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 29 Aug 2022 15:11:50 +0200, Maxime Ripard wrote:
-> Our mode_set implementation can be merged into our atomic_enable
-> implementation to simplify things, so let's do this.
-> 
-> 
+Hi Ville,
 
-Applied to drm/drm-misc (drm-misc-next).
 
-Thanks!
-Maxime
+I fixed a similar issue in DII but I couldn't reproduce it in drm
+
+http://intel-gfx-pw.fi.intel.com/patch/228850/?series=15910&rev=2.
+
+I wonder if that fixes the problem you are facing then I can send that 
+to drm.
+
+diff --git a/drivers/gpu/drm/i915/i915_gem.c 
+b/drivers/gpu/drm/i915/i915_gem.c
+index 7809be3a6840..5438e9277924 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1213,7 +1213,7 @@  void i915_gem_init_early(struct drm_i915_private 
+*dev_priv)
+
+  void i915_gem_cleanup_early(struct drm_i915_private *dev_priv)
+  {
+-    i915_gem_drain_freed_objects(dev_priv);
++    i915_gem_drain_workqueue(dev_priv);
+      GEM_BUG_ON(!llist_empty(&dev_priv->mm.free_list));
+      GEM_BUG_ON(atomic_read(&dev_priv->mm.free_count));
+      drm_WARN_ON(&dev_priv->drm, dev_priv->mm.shrink_count);
+
+
+Regards,
+
+Nirmoy
+
+On 9/6/2022 7:46 PM, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+> On gen3 the selftests are pretty much always tripping this:
+> <4> [383.822424] pci 0000:00:02.0: drm_WARN_ON(dev_priv->mm.shrink_count)
+> <4> [383.822546] WARNING: CPU: 2 PID: 3560 at drivers/gpu/drm/i915/i915_gem.c:1223 i915_gem_cleanup_early+0x96/0xb0 [i915]
+>
+> Looks to be due to the status page object lingering on the
+> purge_list. Call synchronize_rcu() ahead of it to make more
+> sure all objects have been freed.
+>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_gem.c | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> index 0f49ec9d494a..5b61f7ad6473 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -1098,6 +1098,7 @@ void i915_gem_drain_freed_objects(struct drm_i915_private *i915)
+>   		flush_delayed_work(&i915->bdev.wq);
+>   		rcu_barrier();
+>   	}
+> +	synchronize_rcu();
+>   }
+>   
+>   /*
