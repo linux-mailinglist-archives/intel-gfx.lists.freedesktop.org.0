@@ -2,46 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA245B3506
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 12:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6C045B3525
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 12:25:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4027510EC5F;
-	Fri,  9 Sep 2022 10:20:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AB5510EC65;
+	Fri,  9 Sep 2022 10:25:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB2B010EC5D;
- Fri,  9 Sep 2022 10:19:57 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 7FCA3B8248E;
- Fri,  9 Sep 2022 10:19:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAF40C433C1;
- Fri,  9 Sep 2022 10:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1662718794;
- bh=IhWdkplmLLbhX2ufVeAZjIEIqvjIvHwTvI5uHEKFDz4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=J/TTiYIphlOGCDb05fq0V/shmeQkBANdybkYwIemAUq5tfjRZ2UC2G3zvnq21X/z4
- fSlqXrjKri57jKNrNwqeZwUfdle71rgGXWcJPjb8vOQAgM2/Tnv6w1Opf9GRhNeGPb
- 0ot5bWmV+VWk4s2XHR2Ol9Hr438c5sZMUkMGADmg=
-Date: Fri, 9 Sep 2022 12:19:51 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: "Winkler, Tomas" <tomas.winkler@intel.com>
-Message-ID: <YxsTR4spD5btac1/@kroah.com>
-References: <20220909001612.728451-1-daniele.ceraolospurio@intel.com>
- <20220909001612.728451-7-daniele.ceraolospurio@intel.com>
- <YxraNUiyfH6NJiq5@kroah.com>
- <MN2PR11MB409318EA31363B2E749700FFE5439@MN2PR11MB4093.namprd11.prod.outlook.com>
- <YxrkWotjObH6zAca@kroah.com>
- <BY5PR11MB40869BEBCB65489E21A3F650E5439@BY5PR11MB4086.namprd11.prod.outlook.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8ED410EC6A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 10:25:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662719104; x=1694255104;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:from:subject:to:cc:message-id:date;
+ bh=40ExF1L86gWz6KoTvHfGYI69/vgJU/NDtTfBrosP+5U=;
+ b=KRs1rjbeFpnL4bKE/2NOl6hme+NBxaGvnyy/pSq8SGY3lUG8zJAzXxuC
+ 8D0O/H+d7+WzSkx6x47H1TmwpIi55vIoU1U3Q7wzwgHGFHK4sUfU9UCe5
+ PwMi4s6UppUMq3oJNYbQHY4lIC9A/AKWBwNQfNRE2g6GdhHSycuGx3nJq
+ 7ZB7LLi1VKpeJOgkxDW8l5nm3d4FWYFl8Cc8ruJVBlU5+z7JaW3Fvqb0l
+ zpTbr5KgijqIq8NMWbRrycHuqdhTc76RjaV9SmLiqFeMn/cHPRH2Hqocl
+ UPAe6d7FGofwnkuCATjR7ftV83R9kp/S679av0ceGv5hy/zTPg3wjOgSn A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="383740523"
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="383740523"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 03:25:03 -0700
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="677109145"
+Received: from fjkilken-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.15.201])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 03:25:00 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BY5PR11MB40869BEBCB65489E21A3F650E5439@BY5PR11MB4086.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH v4 06/15] mei: pxp: support matching with a
- gfx discrete card
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <YxDLFWjIllqqh9de@kroah.com>
+References: <20220806122636.43068-1-tomas.winkler@intel.com>
+ <YxDLFWjIllqqh9de@kroah.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Tomas Winkler <tomas.winkler@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ David Airlie <airlied@linux.ie>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <166271909777.4265.10724483511179344068@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Fri, 09 Sep 2022 13:24:57 +0300
+Subject: Re: [Intel-gfx] [PATCH v7 00/15] GSC support for XeHP SDV and DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,156 +62,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>, "Lubart,
- Vitaly" <vitaly.lubart@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org,
+ Alexander Usyskin <alexander.usyskin@intel.com>, linux-kernel@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 09, 2022 at 09:21:30AM +0000, Winkler, Tomas wrote:
-> > >
-> > > > -----Original Message-----
-> > > > From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > > Sent: Friday, September 09, 2022 09:16
-> > > > To: Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>
-> > > > Cc: intel-gfx@lists.freedesktop.org;
-> > > > dri-devel@lists.freedesktop.org; Winkler, Tomas
-> > > > <tomas.winkler@intel.com>; Lubart, Vitaly <vitaly.lubart@intel.com>;
-> > > > Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>
-> > > > Subject: Re: [PATCH v4 06/15] mei: pxp: support matching with a gfx
-> > > > discrete card
-> > > >
-> > > > On Thu, Sep 08, 2022 at 05:16:03PM -0700, Daniele Ceraolo Spurio wrote:
-> > > > > From: Tomas Winkler <tomas.winkler@intel.com>
-> > > > >
-> > > > > With on-boards graphics card, both i915 and MEI are in the same
-> > > > > device hierarchy with the same parent, while for discrete gfx card
-> > > > > the MEI is its child device.
-> > > > > Adjust the match function for that scenario by matching MEI parent
-> > > > > device with i915.
-> > > > >
-> > > > > V2:
-> > > > >  1. More detailed commit message
-> > > > >  2. Check for dev is not null before it is accessed.
-> > > > >
-> > > > > Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-> > > > > Signed-off-by: Daniele Ceraolo Spurio
-> > > > > <daniele.ceraolospurio@intel.com>
-> > > > > Cc: Vitaly Lubart <vitaly.lubart@intel.com>
-> > > > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > > > Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> > > > > ---
-> > > > >  drivers/misc/mei/pxp/mei_pxp.c | 13 ++++++++++---
-> > > > >  1 file changed, 10 insertions(+), 3 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/misc/mei/pxp/mei_pxp.c
-> > > > > b/drivers/misc/mei/pxp/mei_pxp.c index 17c5d201603f..afc047627800
-> > > > > 100644
-> > > > > --- a/drivers/misc/mei/pxp/mei_pxp.c
-> > > > > +++ b/drivers/misc/mei/pxp/mei_pxp.c
-> > > > > @@ -159,17 +159,24 @@ static int mei_pxp_component_match(struct
-> > > > device
-> > > > > *dev, int subcomponent,  {
-> > > > >  	struct device *base = data;
-> > > > >
-> > > > > +	if (!dev)
-> > > > > +		return 0;
-> > > >
-> > > > How can that happen?
-> > > >
-> > > > > +
-> > > > >  	if (!dev->driver || strcmp(dev->driver->name, "i915") ||
-> > > >
-> > > > That's crazy to assume, but whatever :(
-> > > Explained here:
-> > > https://lore.kernel.org/all/20220418175932.1809770-2-
-> > wonchung@google.c
-> > > om/
-> > 
-> > Still crazy :(
-> > 
-> > >
-> > > >
-> > > > >  	    subcomponent != I915_COMPONENT_PXP)
-> > > > >  		return 0;
-> > > > >
-> > > > >  	base = base->parent;
-> > > > > -	if (!base)
-> > > > > +	if (!base) /* mei device */
-> > > >
-> > > > Why does this mean that?
-> > > >
-> > > > Where is that documented?
-> > > >
-> > > > >  		return 0;
-> > > > >
-> > > > > -	base = base->parent;
-> > > > > -	dev = dev->parent;
-> > > > > +	base = base->parent; /* pci device */
-> > > >
-> > > > Again, why is this the case?
-> > > >
-> > > > > +	/* for dgfx */
-> > > > > +	if (base && dev == base)
-> > > > > +		return 1;
-> > > > >
-> > > > > +	/* for pch */
-> > > > > +	dev = dev->parent;
-> > > >
-> > > > You are digging through a random device tree and assuming that you
-> > "know"
-> > > > what the topology is going to be, that feels very very fragile and
-> > > > ripe for problems going forward.
-> > >
-> > > I don't think it is random.
-> > 
-> > Today it is one specific way, but how do you know this always will be this
-> > way?
-> > 
-> > > > How do you ensure that this really is they way the tree is for ALL
-> > systems?
-> > >
-> > > Yes we take the topology assumption in PCI hierarchy.
-> > > There is a case where both GFX and MEI are in PCH and you cannot stick
-> > additional PCI extender or anything else there.
-> > > And case where MEI is child on a standalone graphics card this is set
-> > > in software so topology is not going to change unless we rewrite
-> > everything.  Be happy to hear your insights.
-> > 
-> > This is ripe to break in the future if someone makes a differently structured
-> > device as there is nothing forcing the current layout to always be this way by
-> > hardware designers.
-> > 
-> > The goal of the driver model is to NOT have these types of hard-coded
-> > topology assumptions because, supprise, assumptions like this have always
-> > come back to bite people in the end.
-> > 
-> > This is your driver, so that's fine, but really this feels very very wrong and you
-> > will have a hard time guaranteeing that this will always be this way for the
-> > next 20+ years of hardware designs.  So why not do it properly from the
-> > beginning and pass in the correct pointers to different places?
-> > 
-> > There is a very good reason that the driver model/core does not make it easy
-> > to determine what type of device a 'struct device *' is, because you shouldn't
-> > have to rely on that type of thing ever.  You are taking it one step further and
-> > just assuming that you know what the type is here, with no real way to
-> > ensure that this is the case.
-> > 
-> > In short, this feels like a very bad design as it is very fragile.
-> 
-> I believe I understand your concern but I would need to invent another 
-> addressing scheme to associate hw components that are already 
-> addressable by let say PCI hierarchy.  We've changed two subsystems for this work
-> components and aux bus already.  So let's have some fun in the future.
+Dave, do you have a preference how to deal with the mishap here, shall I do=
+ a
+force-push to drm-intel-gt-next to correctly record the Acked-by or revert =
+and
+re-push? Or just leave it as is?
 
-Why are you trying to reach across subsystems in the first place?  Why
-is that needed at all and why doesn't MEI just provide a generic way to
-do this for any bus type, it shouldn't require any specific topology
-from what I can determine.
+Quoting Greg Kroah-Hartman (2022-09-01 18:09:09)
+> On Sat, Aug 06, 2022 at 03:26:21PM +0300, Tomas Winkler wrote:
+> > Add GSC support for XeHP SDV and DG2 platforms.
+> >=20
+> > The series includes changes for the mei driver:
+> > - add ability to use polling instead of interrupts
+> > - add ability to use extended timeouts
+> > - setup extended operational memory for GSC
+> >=20
+> > The series includes changes for the i915 driver:
+> > - allocate extended operational memory for GSC
+> > - GSC on XeHP SDV offsets and definitions
+> >=20
+> > This patch set should be merged via gfx tree as
+> > the auxiliary device belongs there.
+> > Greg, your ACK is required for the drives/misc/mei code base,
+> > please review the patches.
+>=20
+> With the exception that you all don't know what year it is:
+>=20
+> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
-What am I missing here?
+Daniele, why were the patches applied without this A-b?
 
-thanks,
+I'm just preparing the drm-intel-gt-next pull request and now it appears
+like we're pushing a lot of commits outside of drm without any Acks.
 
-greg k-h
+Please reach out to the maintainers *before* pushing code for other
+subsystems. Unless you get an explicit ack to do so, do not push such
+code.
+
+Quoting from the committer guidelines[1] the first rule is:
+"Only push patches changing drivers/gpu/drm/i915."
+
+In those cases, please ping a maintainer and don't rush things.
+
+Regards, Joonas
+
+[1] https://drm.pages.freedesktop.org/maintainer-tools/committer-drm-intel.=
+html#high-level-guidelines
+
