@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 939F55B3CAB
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 18:08:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCC0E5B3CE0
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 18:22:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C784510E068;
-	Fri,  9 Sep 2022 16:08:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B24F510EC8D;
+	Fri,  9 Sep 2022 16:22:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC0C10E04E
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 16:08:41 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91CAA10EC8B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 16:22:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662739721; x=1694275721;
+ t=1662740565; x=1694276565;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=t48Y4NuCTICPzPB3Gr+mp70Vnbm2qKZOUvjVe7mQOkA=;
- b=W7imh6dHEZndq0V7WCHQLHAqikFiZmFGYaHfQRhFWquQiWQM8TEpUQ24
- FeXnutXCm5XETzce2o7/sOv9jeL2hwaqY2nj2+3CdDFMoJEeWei7nMVDy
- 8KQOIntlx+lm9DNQh0UFdoHd898X/zPHhKam45QWuuuOi1TfRP0DGKwD7
- cYlvVXN1GRzw0ye8vJvGSH046EMdiXSwxQK0KOItwpFQvJ6YUcpNz1GZf
- UipxP7AIZ1C4mX0QdVXRMAh5GEj3ZqztuTIjY5bawHSWFtRtScYwqCRMn
- o0nVybx9SunzIopW5xlNC1B33VV3oWF1GU2CVcN3tjoM0D5Nj/bgyDI1t g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10465"; a="280532178"
-X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="280532178"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2022 09:08:40 -0700
+ bh=FBg0KbmCiGtL22FzoU8nLq2uuK8/gHmNWNkdzZs+UJU=;
+ b=LUFi7l+VXGFHyui4afeRdsz9bXN4TTkS5OOPY4N6dqX8OsqT4az2X/FI
+ M5+u1QVF02s8MfoQC1QqdCr1JMozpJ/2hcG6aioULdS8EJ3s/Vo2Ogr2X
+ TIWLG542t8nYoY07gK2SiH5WZ0Np/bC0xGbJXgeh2MQZ0w9Cl4zzhyg0B
+ 5T2ZHEjk2M0WMi+jyojNulw/Hwr6FQ8hDSsNe5iaVo5PHttQ0gCHwKtaN
+ /mDQxm1fmAIyOj4qO8RW2oCuGOrcObStUUXZOG4M/CGwGX/1flviMb1wE
+ 3iP7zkTJK2x8VapKqMB/wCDPYD6BfgwN3hem4L4QQLxENlJCEiHNNUCha Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10465"; a="277246515"
+X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="277246515"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 09:22:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="615316193"
+X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="741104232"
 Received: from lkp-server02.sh.intel.com (HELO b2938d2e5c5a) ([10.239.97.151])
- by orsmga002.jf.intel.com with ESMTP; 09 Sep 2022 09:08:38 -0700
+ by orsmga004.jf.intel.com with ESMTP; 09 Sep 2022 09:22:42 -0700
 Received: from kbuild by b2938d2e5c5a with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1oWgYX-0001Pd-2s;
- Fri, 09 Sep 2022 16:08:37 +0000
-Date: Sat, 10 Sep 2022 00:08:06 +0800
+ (envelope-from <lkp@intel.com>) id 1oWgmA-0001Qn-0B;
+ Fri, 09 Sep 2022 16:22:42 +0000
+Date: Sat, 10 Sep 2022 00:22:37 +0800
 From: kernel test robot <lkp@intel.com>
 To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202209100005.i5hNgIqU-lkp@intel.com>
+Message-ID: <202209100051.4Wp6eLZf-lkp@intel.com>
 References: <20220909112419.26901-3-anshuman.gupta@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -72,7 +72,7 @@ Thank you for the patch! Perhaps something to improve:
 
 url:    https://github.com/intel-lab-lkp/linux/commits/Anshuman-Gupta/DGFX-mmap-with-rpm/20220909-192609
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: i386-randconfig-a004 (https://download.01.org/0day-ci/archive/20220910/202209100005.i5hNgIqU-lkp@intel.com/config)
+config: i386-randconfig-a013 (https://download.01.org/0day-ci/archive/20220910/202209100051.4Wp6eLZf-lkp@intel.com/config)
 compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
 reproduce (this is a W=1 build):
         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
