@@ -1,53 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B9965B323D
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 10:50:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9255B3264
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 10:55:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46A1610EC12;
-	Fri,  9 Sep 2022 08:50:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0C010EC22;
+	Fri,  9 Sep 2022 08:55:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A323710EC12
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 08:50:22 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7807F10EC22
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 08:55:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662713422; x=1694249422;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=KgaJFpou5qn35CmhJDfSEyLT6ULZR8HeiMn6NVJGmDQ=;
- b=D1VJJcRVjbD724lFsZfmx0SjOCFBvobmbU3ZaoUolkzKbnfOAzYBDJMg
- AFCJOafZuOokqSFA5GoXTO7vGqH7z56zjwQz1z8JYePdEyrievovL9yTR
- Lqbui5g/Z8HwbrE605z4vZaeoVE/6n1WxyX9IrO4LXryZMGinnc2u1vJZ
- JMDimt1TbNLRqZBbou8OjTaHMpi80RB28WjlOsOeWkdpI6dTHiPC91Ma5
- KICDjcn1XJUcxINERInP5/7lfbTgT0MnswSgRWUXcjKMjowk2fStbCygs
- R8kI9kulGZwTDEczeYn6koijfd+4LVjuDj/hDdhCrHRMs652W05+pWupn A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="280454806"
-X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="280454806"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2022 01:50:21 -0700
-X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="677081476"
-Received: from abaruah-mobl.gar.corp.intel.com (HELO localhost)
- ([10.252.45.217])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2022 01:50:20 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220908191646.20239-4-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220908191646.20239-1-ville.syrjala@linux.intel.com>
- <20220908191646.20239-4-ville.syrjala@linux.intel.com>
-Date: Fri, 09 Sep 2022 11:50:00 +0300
-Message-ID: <87k06d6ifb.fsf@intel.com>
+ t=1662713738; x=1694249738;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=tOuNEAQ/FPAVopJr1iQMurHaJ9qTcvjPKttTF6BLwmg=;
+ b=Q5qh8eGySrA9t39L3qNjYuapVZlTaEQrzWFPAwvJUfy5p1rtq7i29KZ+
+ 6atA3LMNgtB49pfTYyIM1m39l3X8OhsApZIrWmFLNq3rHAV/EKm91KnTq
+ w49QYJ5nnzK3NjEFzNK9Xia7VEXjZP46EejBX1ty/87cLOxSUO5DlOdM/
+ N49kent1y//cfsx9IbcObA6QadiQrOTd2ry7MbJo5G+Qn7fIla3xeHxWz
+ Um6sspAwDyocssOJwOiM4VEmP3BVUkdDAcYQwOwPNyG7xy7sPXJmV+qlc
+ 05YVIylY/BCxGckdJqtyuYbDdE8NbpIrc4hd8R6hPmlZK+sghJxTfJAyu w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="277164056"
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="277164056"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 01:55:37 -0700
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="566299441"
+Received: from brownmi2-mobl.amr.corp.intel.com (HELO [10.212.126.198])
+ ([10.212.126.198])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 01:55:35 -0700
+Message-ID: <2cd5568f-e63c-1ae3-6aa9-809be360a397@linux.intel.com>
+Date: Fri, 9 Sep 2022 09:55:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Use REG_FIELD_GET() to
- extract skl+ wm latencies
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Content-Language: en-US
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220908200706.25773-1-nirmoy.das@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220908200706.25773-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix a potential UAF at device
+ unload
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,87 +61,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 08 Sep 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Replace the hand rolled stuff with REG_FIELD_GET() for reading
-> out the skl+ watermark latencies.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
+On 08/09/2022 21:07, Nirmoy Das wrote:
+> i915_gem_drain_freed_objects() might not be enough to
+> free all the objects and RCU delayed work might get
+> scheduled after the i915 device struct gets freed.
+> 
+> Call i915_gem_drain_workqueue() to catch all RCU delayed work.
+> 
+> Suggested-by: Chris Wilson <chris.p.wilson@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 22 +++++++-------------
->  drivers/gpu/drm/i915/i915_reg.h              |  8 +++----
->  2 files changed, 12 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
-rm/i915/display/skl_watermark.c
-> index 25ca92ae8958..cb297725d5b9 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3239,13 +3239,10 @@ static void skl_read_wm_latency(struct drm_i915_p=
-rivate *i915, u16 wm[])
->  		return;
->  	}
->=20=20
-> -	wm[0] =3D (val & GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
-> -	wm[1] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_1_5_SHIFT) &
-> -		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
-> -	wm[2] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_2_6_SHIFT) &
-> -		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
-> -	wm[3] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_3_7_SHIFT) &
-> -		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
-> +	wm[0] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val) * mult;
-> +	wm[1] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val) * mult;
-> +	wm[2] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val) * mult;
-> +	wm[3] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val) * mult;
->=20=20
->  	/* read the second set of memory latencies[4:7] */
->  	val =3D 1; /* data0 to be programmed to 1 for second set */
-> @@ -3255,13 +3252,10 @@ static void skl_read_wm_latency(struct drm_i915_p=
-rivate *i915, u16 wm[])
->  		return;
->  	}
->=20=20
-> -	wm[4] =3D (val & GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
-> -	wm[5] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_1_5_SHIFT) &
-> -		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
-> -	wm[6] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_2_6_SHIFT) &
-> -		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
-> -	wm[7] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_3_7_SHIFT) &
-> -		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
-> +	wm[4] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val) * mult;
-> +	wm[5] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val) * mult;
-> +	wm[6] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val) * mult;
-> +	wm[7] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val) * mult;
->=20=20
->  	adjust_wm_latency(i915, wm, max_level, read_latency);
->  }
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index c413eec3373f..7289e2b7da2c 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6551,10 +6551,10 @@
->  #define     GEN6_DECODE_RC6_VID(vids)		(((vids) * 5) + 245)
->  #define   BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ	0x18
->  #define   GEN9_PCODE_READ_MEM_LATENCY		0x6
-> -#define     GEN9_MEM_LATENCY_LEVEL_MASK		0xFF
-> -#define     GEN9_MEM_LATENCY_LEVEL_1_5_SHIFT	8
-> -#define     GEN9_MEM_LATENCY_LEVEL_2_6_SHIFT	16
-> -#define     GEN9_MEM_LATENCY_LEVEL_3_7_SHIFT	24
-> +#define     GEN9_MEM_LATENCY_LEVEL_3_7_MASK	REG_GENMASK(31, 24)
-> +#define     GEN9_MEM_LATENCY_LEVEL_2_6_MASK	REG_GENMASK(23, 16)
-> +#define     GEN9_MEM_LATENCY_LEVEL_1_5_MASK	REG_GENMASK(15, 8)
-> +#define     GEN9_MEM_LATENCY_LEVEL_0_4_MASK	REG_GENMASK(7, 0)
->  #define   SKL_PCODE_LOAD_HDCP_KEYS		0x5
->  #define   SKL_PCODE_CDCLK_CONTROL		0x7
->  #define     SKL_CDCLK_PREPARE_FOR_CHANGE	0x3
+>   drivers/gpu/drm/i915/i915_gem.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> index 0f49ec9d494a..e8a053eaaa89 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -1254,7 +1254,7 @@ void i915_gem_init_early(struct drm_i915_private *dev_priv)
+>   
+>   void i915_gem_cleanup_early(struct drm_i915_private *dev_priv)
+>   {
+> -	i915_gem_drain_freed_objects(dev_priv);
+> +	i915_gem_drain_workqueue(dev_priv);
+>   	GEM_BUG_ON(!llist_empty(&dev_priv->mm.free_list));
+>   	GEM_BUG_ON(atomic_read(&dev_priv->mm.free_count));
+>   	drm_WARN_ON(&dev_priv->drm, dev_priv->mm.shrink_count);
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+
+Help me spot the place where RCU free worker schedules itself back to 
+free more objects - if I got the rationale here right?
+
+Regards,
+
+Tvrtko
