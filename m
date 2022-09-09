@@ -1,77 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B2B95B3197
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 10:24:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DA9E5B31A7
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 10:27:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48D5910E53C;
-	Fri,  9 Sep 2022 08:24:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B3E710E53C;
+	Fri,  9 Sep 2022 08:27:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A57410E53C;
- Fri,  9 Sep 2022 08:24:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BE0810E53C
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 08:27:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662711845; x=1694247845;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=oWD4I45PZXvaIHzh6ejY621NZtky91cQ/10cKp7MpsQ=;
- b=jBTcUxDK6tKz2sz6DUFUD1Wjs5ltmmjU0HK8efneFPIvnAOQwX/Dhpbt
- acURquAu8MZh3q2QwbhUPwQFITkRsJIhTH4F9uAS0O2tYZ3sizjDyYr3M
- zm7AV5dlNRaWQHMp6FpTVg/sdjB8XCC0jn5yY1B9o7RLn5ZnKDaRsZOsv
- IO1QuiAmMitlYNaAlwqxWVjZChXs7gE0IzdYJlYz62lmZcw44FhfA5qpp
- DNXzBc297BHAV2DVOCYmm8PVbYG7jj2/fHIPWlUltWNTbrVKHPl67IzQa
- Ngo0TXTS6aTiYQH/zgQuFOWvOJWelZY7Libjgs410Gupb3emmE/HQtjWc A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="296162758"
-X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="296162758"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ t=1662712050; x=1694248050;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=0z++Ebwx/fm3oD0PCCu/tuSs7rB5qpvp8E2cciISL4c=;
+ b=aB1Tj0VNOatFnJsQ/6KQgV4AYaJTXVSRalVwx/jiWnqRpNfLIjCNh85F
+ JO8YC2wj1Y497PQhI5W4AzmLowvevFS61d+3MztnScLZ0qbT3WmKBoTUV
+ /31r5vZlh7ssF1zpy5aWerYobOw8oCba0b0VCAfxqA7904MO5wcfNGNaE
+ Og5pgZ1E5jiSulBoeW8Ooiz5DQ3ZJZJwGZNr3M00q+L143KbcUORom9Ro
+ hERLRbTIvsUDdbIM+528Pf8HEb8yVVNsPOQtjR3Fir3Cdjv9ZcIHzEebg
+ jIMxxqdndjaUbGURSTLwWC3Zer8tZKO1D/YObAKIGyVsyaQeZL50e4/Nh g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="296163169"
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="296163169"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2022 01:24:04 -0700
-X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="943690485"
-Received: from zhaohaif-mobl1.ccr.corp.intel.com (HELO [10.254.210.127])
- ([10.254.210.127])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2022 01:23:55 -0700
-Message-ID: <acbaf0f2-91d4-3eae-5716-244893ca34c7@linux.intel.com>
-Date: Fri, 9 Sep 2022 16:23:53 +0800
+ 09 Sep 2022 01:27:28 -0700
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="677074005"
+Received: from abaruah-mobl.gar.corp.intel.com (HELO localhost)
+ ([10.252.45.217])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 01:27:27 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220908191646.20239-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220908191646.20239-1-ville.syrjala@linux.intel.com>
+ <20220908191646.20239-2-ville.syrjala@linux.intel.com>
+Date: Fri, 09 Sep 2022 11:27:07 +0300
+Message-ID: <87pmg56jhg.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-To: Kevin Tian <kevin.tian@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>, 
- Zhi Wang <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Eric Farman <farman@linux.ibm.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Tony Krowiak <akrowiak@linux.ibm.com>,
- Jason Herne <jjherne@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Cornelia Huck <cohuck@redhat.com>, Longfang Liu <liulongfang@huawei.com>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>,
- Eric Auger <eric.auger@redhat.com>, Kirti Wankhede <kwankhede@nvidia.com>,
- Leon Romanovsky <leon@kernel.org>, Abhishek Sahu <abhsahu@nvidia.com>,
- Christoph Hellwig <hch@infradead.org>, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-s390@vger.kernel.org, kvm@vger.kernel.org
-References: <20220909102247.67324-1-kevin.tian@intel.com>
- <20220909102247.67324-2-kevin.tian@intel.com>
-From: Ethan Zhao <haifeng.zhao@linux.intel.com>
-In-Reply-To: <20220909102247.67324-2-kevin.tian@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 01/15] vfio: Add helpers for unifying
- vfio_device life cycle
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Split intel_read_wm_latency()
+ into per-platform versions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,248 +60,265 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yi Liu <yi.l.liu@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Kevin,
+On Thu, 08 Sep 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> No reaon to have this humongous if ladder in intel_read_wm_latency().
 
-在 2022/9/9 18:22, Kevin Tian 写道:
-> The idea is to let vfio core manage the vfio_device life cycle instead
-> of duplicating the logic cross drivers. This is also a preparatory
-> step for adding struct device into vfio_device.
->
-> New pair of helpers together with a kref in vfio_device:
->
->   - vfio_alloc_device()
->   - vfio_put_device()
+*reason
 
-To be honest, this pair of functions make me confusing to understand their
-
-behaviour from wording point of view:
-
-- vfio_alloc_device(),  Okay, it allocates the vfio device, no reference
-  count thing. but,
-- vfio_put_device()
-  seems it will decrease reference count and then if it is zero, free it.
-  so they are not of one *pair* about wording.
-
-How about
-  
-- vfio_alloc_device() / - vfio_free_device()
-or
-- vfio_get_device() / - vfio_put_device(), perhaps not match their behviour
-in following code.
-
-  
-
-Thanks,
-Ethan
-  
-
+> Just split it into nicer per-platforms functions.
 >
-> Drivers can register @init/@release callbacks to manage any private
-> state wrapping the vfio_device.
+> Also do the s/dev_priv/i915/ while touching all of this code.
 >
-> However vfio-ccw doesn't fit this model due to a life cycle mess
-> that its private structure mixes both parent and mdev info hence must
-> be allocated/freed outside of the life cycle of vfio device.
->
-> Per prior discussions this won't be fixed in short term by IBM folks.
->
-> Instead of waiting for those modifications introduce another helper
-> vfio_init_device() so ccw can call it to initialize a pre-allocated
-> vfio_device.
->
-> Further implication of the ccw trick is that vfio_device cannot be
-> freed uniformly in vfio core. Instead, require *EVERY* driver to
-> implement @release and free vfio_device inside. Then ccw can choose
-> to delay the free at its own discretion.
->
-> Another trick down the road is that kvzalloc() is used to accommodate
-> the need of gvt which uses vzalloc() while all others use kzalloc().
-> So drivers should call a helper vfio_free_device() to free the
-> vfio_device instead of assuming that kfree() or vfree() is appliable.
->
-> Later once the ccw mess is fixed we can remove those tricks and
-> fully handle structure alloc/free in vfio core.
->
-> Existing vfio_{un}init_group_dev() will be deprecated after all
-> existing usages are converted to the new model.
->
-> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
-> Co-developed-by: Yi Liu <yi.l.liu@intel.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> Signed-off-by: Kevin Tian <kevin.tian@intel.com>
-> Reviewed-by: Tony Krowiak <akrowiak@linux.ibm.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Reviewed-by: Eric Auger <eric.auger@redhat.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->   drivers/vfio/vfio_main.c | 92 ++++++++++++++++++++++++++++++++++++++++
->   include/linux/vfio.h     | 25 ++++++++++-
->   2 files changed, 116 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/intel_pm.c | 201 +++++++++++++++++---------------
+>  1 file changed, 110 insertions(+), 91 deletions(-)
 >
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index 27d9186f35d5..adc1b697bb78 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -498,6 +498,98 @@ void vfio_uninit_group_dev(struct vfio_device *device)
->   }
->   EXPORT_SYMBOL_GPL(vfio_uninit_group_dev);
->   
-> +/* Release helper called by vfio_put_device() */
-> +void vfio_device_release(struct kref *kref)
-> +{
-> +	struct vfio_device *device =
-> +			container_of(kref, struct vfio_device, kref);
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 210c1f78cc90..096c311ed29f 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -2905,97 +2905,107 @@ adjust_wm_latency(struct drm_i915_private *i915,
+>  		wm[0] +=3D 1;
+>  }
+>=20=20
+> -static void intel_read_wm_latency(struct drm_i915_private *dev_priv,
+> -				  u16 wm[])
+> +static void mtl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
+
+Bikeshed, I'd make that u16 *wm, but the same thing I guess.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+>  {
+> -	struct intel_uncore *uncore =3D &dev_priv->uncore;
+> -	int max_level =3D ilk_wm_max_level(dev_priv);
+> -
+> -	if (DISPLAY_VER(dev_priv) >=3D 14) {
+> -		u32 val;
+> -
+> -		val =3D intel_uncore_read(uncore, MTL_LATENCY_LP0_LP1);
+> -		wm[0] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+> -		wm[1] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
+> -		val =3D intel_uncore_read(uncore, MTL_LATENCY_LP2_LP3);
+> -		wm[2] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+> -		wm[3] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
+> -		val =3D intel_uncore_read(uncore, MTL_LATENCY_LP4_LP5);
+> -		wm[4] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+> -		wm[5] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
+> -
+> -		adjust_wm_latency(dev_priv, wm, max_level, 6);
+> -	} else if (DISPLAY_VER(dev_priv) >=3D 9) {
+> -		int read_latency =3D DISPLAY_VER(dev_priv) >=3D 12 ? 3 : 2;
+> -		int mult =3D IS_DG2(dev_priv) ? 2 : 1;
+> -		u32 val;
+> -		int ret;
+> -
+> -		/* read the first set of memory latencies[0:3] */
+> -		val =3D 0; /* data0 to be programmed to 0 for first set */
+> -		ret =3D snb_pcode_read(&dev_priv->uncore, GEN9_PCODE_READ_MEM_LATENCY,
+> -				     &val, NULL);
+> -
+> -		if (ret) {
+> -			drm_err(&dev_priv->drm,
+> -				"SKL Mailbox read error =3D %d\n", ret);
+> -			return;
+> -		}
+> -
+> -		wm[0] =3D (val & GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> -		wm[1] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_1_5_SHIFT) &
+> -				GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> -		wm[2] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_2_6_SHIFT) &
+> -				GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> -		wm[3] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_3_7_SHIFT) &
+> -				GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> -
+> -		/* read the second set of memory latencies[4:7] */
+> -		val =3D 1; /* data0 to be programmed to 1 for second set */
+> -		ret =3D snb_pcode_read(&dev_priv->uncore, GEN9_PCODE_READ_MEM_LATENCY,
+> -				     &val, NULL);
+> -		if (ret) {
+> -			drm_err(&dev_priv->drm,
+> -				"SKL Mailbox read error =3D %d\n", ret);
+> -			return;
+> -		}
+> -
+> -		wm[4] =3D (val & GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> -		wm[5] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_1_5_SHIFT) &
+> -				GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> -		wm[6] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_2_6_SHIFT) &
+> -				GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> -		wm[7] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_3_7_SHIFT) &
+> -				GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> -
+> -		adjust_wm_latency(dev_priv, wm, max_level, read_latency);
+> -	} else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+> -		u64 sskpd =3D intel_uncore_read64(uncore, MCH_SSKPD);
+> -
+> -		wm[0] =3D REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
+> -		if (wm[0] =3D=3D 0)
+> -			wm[0] =3D REG_FIELD_GET64(SSKPD_OLD_WM0_MASK_HSW, sskpd);
+> -		wm[1] =3D REG_FIELD_GET64(SSKPD_WM1_MASK_HSW, sskpd);
+> -		wm[2] =3D REG_FIELD_GET64(SSKPD_WM2_MASK_HSW, sskpd);
+> -		wm[3] =3D REG_FIELD_GET64(SSKPD_WM3_MASK_HSW, sskpd);
+> -		wm[4] =3D REG_FIELD_GET64(SSKPD_WM4_MASK_HSW, sskpd);
+> -	} else if (DISPLAY_VER(dev_priv) >=3D 6) {
+> -		u32 sskpd =3D intel_uncore_read(uncore, MCH_SSKPD);
+> -
+> -		wm[0] =3D REG_FIELD_GET(SSKPD_WM0_MASK_SNB, sskpd);
+> -		wm[1] =3D REG_FIELD_GET(SSKPD_WM1_MASK_SNB, sskpd);
+> -		wm[2] =3D REG_FIELD_GET(SSKPD_WM2_MASK_SNB, sskpd);
+> -		wm[3] =3D REG_FIELD_GET(SSKPD_WM3_MASK_SNB, sskpd);
+> -	} else if (DISPLAY_VER(dev_priv) >=3D 5) {
+> -		u32 mltr =3D intel_uncore_read(uncore, MLTR_ILK);
+> -
+> -		/* ILK primary LP0 latency is 700 ns */
+> -		wm[0] =3D 7;
+> -		wm[1] =3D REG_FIELD_GET(MLTR_WM1_MASK, mltr);
+> -		wm[2] =3D REG_FIELD_GET(MLTR_WM2_MASK, mltr);
+> -	} else {
+> -		MISSING_CASE(INTEL_DEVID(dev_priv));
+> +	struct intel_uncore *uncore =3D &i915->uncore;
+> +	int max_level =3D ilk_wm_max_level(i915);
+> +	u32 val;
 > +
-> +	vfio_uninit_group_dev(device);
+> +	val =3D intel_uncore_read(uncore, MTL_LATENCY_LP0_LP1);
+> +	wm[0] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+> +	wm[1] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
 > +
-> +	/*
-> +	 * kvfree() cannot be done here due to a life cycle mess in
-> +	 * vfio-ccw. Before the ccw part is fixed all drivers are
-> +	 * required to support @release and call vfio_free_device()
-> +	 * from there.
-> +	 */
-> +	device->ops->release(device);
+> +	val =3D intel_uncore_read(uncore, MTL_LATENCY_LP2_LP3);
+> +	wm[2] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+> +	wm[3] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
+> +
+> +	val =3D intel_uncore_read(uncore, MTL_LATENCY_LP4_LP5);
+> +	wm[4] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+> +	wm[5] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
+> +
+> +	adjust_wm_latency(i915, wm, max_level, 6);
 > +}
-> +EXPORT_SYMBOL_GPL(vfio_device_release);
 > +
-> +/*
-> + * Alloc and initialize vfio_device so it can be registered to vfio
-> + * core.
-> + *
-> + * Drivers should use the wrapper vfio_alloc_device() for allocation.
-> + * @size is the size of the structure to be allocated, including any
-> + * private data used by the driver.
-> + *
-> + * Driver may provide an @init callback to cover device private data.
-> + *
-> + * Use vfio_put_device() to release the structure after success return.
-> + */
-> +struct vfio_device *_vfio_alloc_device(size_t size, struct device *dev,
-> +				       const struct vfio_device_ops *ops)
+> +static void skl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
 > +{
-> +	struct vfio_device *device;
+> +	int max_level =3D ilk_wm_max_level(i915);
+> +	int read_latency =3D DISPLAY_VER(i915) >=3D 12 ? 3 : 2;
+> +	int mult =3D IS_DG2(i915) ? 2 : 1;
+> +	u32 val;
 > +	int ret;
 > +
-> +	if (WARN_ON(size < sizeof(struct vfio_device)))
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	device = kvzalloc(size, GFP_KERNEL);
-> +	if (!device)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	ret = vfio_init_device(device, dev, ops);
-> +	if (ret)
-> +		goto out_free;
-> +	return device;
-> +
-> +out_free:
-> +	kvfree(device);
-> +	return ERR_PTR(ret);
-> +}
-> +EXPORT_SYMBOL_GPL(_vfio_alloc_device);
-> +
-> +/*
-> + * Initialize a vfio_device so it can be registered to vfio core.
-> + *
-> + * Only vfio-ccw driver should call this interface.
-> + */
-> +int vfio_init_device(struct vfio_device *device, struct device *dev,
-> +		     const struct vfio_device_ops *ops)
-> +{
-> +	int ret;
-> +
-> +	vfio_init_group_dev(device, dev, ops);
-> +
-> +	if (ops->init) {
-> +		ret = ops->init(device);
-> +		if (ret)
-> +			goto out_uninit;
+> +	/* read the first set of memory latencies[0:3] */
+> +	val =3D 0; /* data0 to be programmed to 0 for first set */
+> +	ret =3D snb_pcode_read(&i915->uncore, GEN9_PCODE_READ_MEM_LATENCY, &val=
+, NULL);
+> +	if (ret) {
+> +		drm_err(&i915->drm, "SKL Mailbox read error =3D %d\n", ret);
+> +		return;
 > +	}
 > +
-> +	kref_init(&device->kref);
-> +	return 0;
+> +	wm[0] =3D (val & GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> +	wm[1] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_1_5_SHIFT) &
+> +		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> +	wm[2] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_2_6_SHIFT) &
+> +		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> +	wm[3] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_3_7_SHIFT) &
+> +		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
 > +
-> +out_uninit:
-> +	vfio_uninit_group_dev(device);
-> +	return ret;
+> +	/* read the second set of memory latencies[4:7] */
+> +	val =3D 1; /* data0 to be programmed to 1 for second set */
+> +	ret =3D snb_pcode_read(&i915->uncore, GEN9_PCODE_READ_MEM_LATENCY, &val=
+, NULL);
+> +	if (ret) {
+> +		drm_err(&i915->drm, "SKL Mailbox read error =3D %d\n", ret);
+> +		return;
+>  	}
+> +
+> +	wm[4] =3D (val & GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> +	wm[5] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_1_5_SHIFT) &
+> +		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> +	wm[6] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_2_6_SHIFT) &
+> +		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> +	wm[7] =3D ((val >> GEN9_MEM_LATENCY_LEVEL_3_7_SHIFT) &
+> +		 GEN9_MEM_LATENCY_LEVEL_MASK) * mult;
+> +
+> +	adjust_wm_latency(i915, wm, max_level, read_latency);
 > +}
-> +EXPORT_SYMBOL_GPL(vfio_init_device);
 > +
-> +/*
-> + * The helper called by driver @release callback to free the device
-> + * structure. Drivers which don't have private data to clean can
-> + * simply use this helper as its @release.
-> + */
-> +void vfio_free_device(struct vfio_device *device)
+> +static void hsw_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
 > +{
-> +	kvfree(device);
+> +	u64 sskpd;
+> +
+> +	sskpd =3D intel_uncore_read64(&i915->uncore, MCH_SSKPD);
+> +
+> +	wm[0] =3D REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
+> +	if (wm[0] =3D=3D 0)
+> +		wm[0] =3D REG_FIELD_GET64(SSKPD_OLD_WM0_MASK_HSW, sskpd);
+> +	wm[1] =3D REG_FIELD_GET64(SSKPD_WM1_MASK_HSW, sskpd);
+> +	wm[2] =3D REG_FIELD_GET64(SSKPD_WM2_MASK_HSW, sskpd);
+> +	wm[3] =3D REG_FIELD_GET64(SSKPD_WM3_MASK_HSW, sskpd);
+> +	wm[4] =3D REG_FIELD_GET64(SSKPD_WM4_MASK_HSW, sskpd);
 > +}
-> +EXPORT_SYMBOL_GPL(vfio_free_device);
 > +
->   static struct vfio_group *vfio_noiommu_group_alloc(struct device *dev,
->   		enum vfio_group_type type)
->   {
-> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-> index 0e2826559091..f67cac700e6f 100644
-> --- a/include/linux/vfio.h
-> +++ b/include/linux/vfio.h
-> @@ -47,7 +47,8 @@ struct vfio_device {
->   	struct kvm *kvm;
->   
->   	/* Members below here are private, not for driver use */
-> -	refcount_t refcount;
-> +	struct kref kref;	/* object life cycle */
-> +	refcount_t refcount;	/* user count on registered device*/
->   	unsigned int open_count;
->   	struct completion comp;
->   	struct list_head group_next;
-> @@ -57,6 +58,8 @@ struct vfio_device {
->   /**
->    * struct vfio_device_ops - VFIO bus driver device callbacks
->    *
-> + * @init: initialize private fields in device structure
-> + * @release: Reclaim private fields in device structure
->    * @open_device: Called when the first file descriptor is opened for this device
->    * @close_device: Opposite of open_device
->    * @read: Perform read(2) on device file descriptor
-> @@ -74,6 +77,8 @@ struct vfio_device {
->    */
->   struct vfio_device_ops {
->   	char	*name;
-> +	int	(*init)(struct vfio_device *vdev);
-> +	void	(*release)(struct vfio_device *vdev);
->   	int	(*open_device)(struct vfio_device *vdev);
->   	void	(*close_device)(struct vfio_device *vdev);
->   	ssize_t	(*read)(struct vfio_device *vdev, char __user *buf,
-> @@ -161,6 +166,24 @@ static inline int vfio_check_feature(u32 flags, size_t argsz, u32 supported_ops,
->   	return 1;
->   }
->   
-> +struct vfio_device *_vfio_alloc_device(size_t size, struct device *dev,
-> +				       const struct vfio_device_ops *ops);
-> +#define vfio_alloc_device(dev_struct, member, dev, ops)				\
-> +	container_of(_vfio_alloc_device(sizeof(struct dev_struct) +		\
-> +					BUILD_BUG_ON_ZERO(offsetof(		\
-> +						struct dev_struct, member)),	\
-> +					dev, ops),				\
-> +		     struct dev_struct, member)
-> +
-> +int vfio_init_device(struct vfio_device *device, struct device *dev,
-> +		     const struct vfio_device_ops *ops);
-> +void vfio_free_device(struct vfio_device *device);
-> +void vfio_device_release(struct kref *kref);
-> +static inline void vfio_put_device(struct vfio_device *device)
+> +static void snb_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
 > +{
-> +	kref_put(&device->kref, vfio_device_release);
+> +	u32 sskpd;
+> +
+> +	sskpd =3D intel_uncore_read(&i915->uncore, MCH_SSKPD);
+> +
+> +	wm[0] =3D REG_FIELD_GET(SSKPD_WM0_MASK_SNB, sskpd);
+> +	wm[1] =3D REG_FIELD_GET(SSKPD_WM1_MASK_SNB, sskpd);
+> +	wm[2] =3D REG_FIELD_GET(SSKPD_WM2_MASK_SNB, sskpd);
+> +	wm[3] =3D REG_FIELD_GET(SSKPD_WM3_MASK_SNB, sskpd);
 > +}
 > +
->   void vfio_init_group_dev(struct vfio_device *device, struct device *dev,
->   			 const struct vfio_device_ops *ops);
->   void vfio_uninit_group_dev(struct vfio_device *device);
+> +static void ilk_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
+> +{
+> +	u32 mltr;
+> +
+> +	mltr =3D intel_uncore_read(&i915->uncore, MLTR_ILK);
+> +
+> +	/* ILK primary LP0 latency is 700 ns */
+> +	wm[0] =3D 7;
+> +	wm[1] =3D REG_FIELD_GET(MLTR_WM1_MASK, mltr);
+> +	wm[2] =3D REG_FIELD_GET(MLTR_WM2_MASK, mltr);
+>  }
+>=20=20
+>  static void intel_fixup_spr_wm_latency(struct drm_i915_private *dev_priv,
+> @@ -3128,7 +3138,12 @@ static void snb_wm_lp3_irq_quirk(struct drm_i915_p=
+rivate *dev_priv)
+>=20=20
+>  static void ilk_setup_wm_latency(struct drm_i915_private *dev_priv)
+>  {
+> -	intel_read_wm_latency(dev_priv, dev_priv->display.wm.pri_latency);
+> +	if (IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+> +		hsw_read_wm_latency(dev_priv, dev_priv->display.wm.pri_latency);
+> +	else if (DISPLAY_VER(dev_priv) >=3D 6)
+> +		snb_read_wm_latency(dev_priv, dev_priv->display.wm.pri_latency);
+> +	else
+> +		ilk_read_wm_latency(dev_priv, dev_priv->display.wm.pri_latency);
+>=20=20
+>  	memcpy(dev_priv->display.wm.spr_latency, dev_priv->display.wm.pri_laten=
+cy,
+>  	       sizeof(dev_priv->display.wm.pri_latency));
+> @@ -3150,7 +3165,11 @@ static void ilk_setup_wm_latency(struct drm_i915_p=
+rivate *dev_priv)
+>=20=20
+>  static void skl_setup_wm_latency(struct drm_i915_private *dev_priv)
+>  {
+> -	intel_read_wm_latency(dev_priv, dev_priv->display.wm.skl_latency);
+> +	if (DISPLAY_VER(dev_priv) >=3D 14)
+> +		mtl_read_wm_latency(dev_priv, dev_priv->display.wm.skl_latency);
+> +	else
+> +		skl_read_wm_latency(dev_priv, dev_priv->display.wm.skl_latency);
+> +
+>  	intel_print_wm_latency(dev_priv, "Gen9 Plane", dev_priv->display.wm.skl=
+_latency);
+>  }
 
--- 
-"firm, enduring, strong, and long-lived"
-
+--=20
+Jani Nikula, Intel Open Source Graphics Center
