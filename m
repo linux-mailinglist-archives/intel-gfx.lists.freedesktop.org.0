@@ -2,144 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 452705B2E68
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 08:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 059CF5B2E89
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 08:12:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7064B10E9A1;
-	Fri,  9 Sep 2022 06:01:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2500310E9CB;
+	Fri,  9 Sep 2022 06:11:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6CF010E8B4;
- Fri,  9 Sep 2022 06:01:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662703293; x=1694239293;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Q4qMm6XSo+EooMIxy57lu2l6c7oKZqZ98hpsS1BYrUo=;
- b=Axad64iIBxXwNdD9GirgCDK5TDEN9NMn25txVFc2QxBpN0iOIXxBrb27
- ks5HTYH31eAsjfvYNahe5VmiGvghfv7wt2QgBlOeJLQVvhDdnm79pqtgp
- o3NoTuyZzmDwQOnKyTyeN+wuIMtdR5fI8fZ/4iWk6FXocJZKdXz5bcF8r
- KmT3Sd/aWrlO+NESB3Jgzzpp7oKwFVYn438qh9F0KpR4JG7qAyqcMlTP6
- WtltRwOSWgH7DGT77UVXVySwHdZCvyhYbgksbzZ/dn1BsVZ81f21H+tW0
- 4bcZaLFiIODh2yWQNUEenC3D9V+Xx9Cf17m0SURFVpIpxYmqNytEbNzYk A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="361362525"
-X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="361362525"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2022 23:01:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="592489962"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga006.jf.intel.com with ESMTP; 08 Sep 2022 23:01:32 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 8 Sep 2022 23:01:32 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 8 Sep 2022 23:01:31 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 8 Sep 2022 23:01:31 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.43) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 8 Sep 2022 23:01:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gP2Ee5Xy8y0F5jjdWwiG0ws8lqpNrGWo1lTtIvcdKd8obQ5GXB+VglJMKkVF6Zrk6tpFpASRG7t9inSpUsYo64+GTS5b6RBojkrmV203hHI1rXwp/uwRaanxjp1xke7r3hVfEzhOeMguxfyd3PaPXPARvhZiGedX2QmEppn1O+G5piuw3EF1BD1JcYia5Hc01+gloOxS5pX2rSA3KQCj7LXvm/7TuDEWStNBotFyQWH9nrne7zLOE6UIIkLJJc9CvJMdyXiw2xZJgwr/3VcQAtXnRZVfxb1VIbs8GNGySHcgiLAckwvPFec93Y2BN0lpXaErRb7bTRXLdyMASZgoxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LXMm7O5tpxv3tiXOn6pC4UJvsfQrjtHtElwmPYCf4HU=;
- b=dhbgtolsZBHLpWOEdjDIpx3BPVjwSutPTiJiWMgurDA8uJuwLANj79t4PoSReez0CT1XL021RlmhbbMxhoUL/tTFIBrDDh+v2qR7lVLWmioDefGNeSr3U7r6VbCyJr/RrUSu19c/gnjsnDaAyy1VdYx7MsXEX4D193QaOoQGqnZEecUTVWJ8KiBVElYA6rFCJbNAHiUCpTnsLW75g28if7RYCMEqQNKAxXU/u/uIdv4zyLD8RSxjHqmsEI5KdRH+n9LC56AkZ2NlSdxC37gGLkkjmLhkiwZltMRnfSINs8hgvG6HhwINFcaEzi5vSyuBwzxTKD4ZpZ5lxTOiNZyZDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MN2PR11MB4093.namprd11.prod.outlook.com (2603:10b6:208:13f::21)
- by BL1PR11MB5319.namprd11.prod.outlook.com (2603:10b6:208:31b::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19; Fri, 9 Sep
- 2022 06:01:29 +0000
-Received: from MN2PR11MB4093.namprd11.prod.outlook.com
- ([fe80::f18d:2e17:c60e:5aa3]) by MN2PR11MB4093.namprd11.prod.outlook.com
- ([fe80::f18d:2e17:c60e:5aa3%5]) with mapi id 15.20.5588.023; Fri, 9 Sep 2022
- 06:01:29 +0000
-From: "Winkler, Tomas" <tomas.winkler@intel.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Ceraolo Spurio, Daniele"
- <daniele.ceraolospurio@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v4 00/15] drm/i915: HuC loading for DG2
-Thread-Index: AQHYw+FvISGDGt7/k0uk3ACTkCCIUa3Wmtpg
-Date: Fri, 9 Sep 2022 06:01:29 +0000
-Message-ID: <MN2PR11MB409333EF91F1B47490F78B26E5439@MN2PR11MB4093.namprd11.prod.outlook.com>
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A770410E9A1;
+ Fri,  9 Sep 2022 06:11:41 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 43716B82344;
+ Fri,  9 Sep 2022 06:11:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A15D9C433C1;
+ Fri,  9 Sep 2022 06:11:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1662703898;
+ bh=Nx9QuSHPp+BU8rIr9zvMqadtTGkiffWvSz/I3XSLDKA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=pQse+VgM/lFaHtfc6hmaWhn0Z4yPWkbnee04Lz1YDoH4YqGHl2yYGHKewBnEtWauP
+ UXxO/Rmry2iLw1R3cZ74a+iv+mWXkR1jSN8YqrWcngrZwpyQ+mvYZzEq0k2wtbV20e
+ HeIYL7+P35JsAecBlFfw8vLKYruBZQFF67PA5S+I=
+Date: Fri, 9 Sep 2022 08:11:35 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <YxrZF46WTxKa9nf2@kroah.com>
 References: <20220909001612.728451-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20220909001612.728451-1-daniele.ceraolospurio@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 26677b92-57dd-449f-1d8a-08da9228bd20
-x-ms-traffictypediagnostic: BL1PR11MB5319:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 60h1J6ynyMMBWeeb9LCpS1cgidCJa6kiBmUxe9sgZUTF+xDC47ad3xGkc1JEHjdGNd0upHCzqWSI7tWgXe9gfoKorYa2l2qhAJVYgurT7m2Iip1P2/YYl6lfoLEmESfPDFy0tOzfPx268rns4MmLD0ZHJkwWCJt6cyItyNXWasBmvnVf8BMKs0qfDF9iTWmSZjNcNjdMJJ/D48hQHYLOtXNch38G3kFQO40nAV+BriWgMnii2JYMsKddP4tYmGEJeuJ7KIU2pjubnTJX3zY/j3iujMg7nzgP9JVEmYG6SiDoqOneZWAFcEvFKWKQdpMj2yimduhs/9DkGobdaBzD+AYeN8NWW1Y6moXqDh7XOzF90GrZXXUWyUYPX3WuBpvEJDLwu+6KvLQ7bBRHG+BO8pnEPwGaMeb0ldGXNicvOT9+jQ/KdVYYqt8aDydKK/nQKvl6+5WynQL6YwEKgB5lyfl/QAQem++af76Re4kaw45DCFwWk0lmH9aIaYNXmnjZbMQ+4nk3ajJrivtmNTydLmiIsp3V2Xam3qu3IkRuyapumeOV8Qer2iTH8uFqwTpGpG4W1bk58o/rAqZPsrAlg0zZFLxxMArGSpRZxu9WHkgfbFFLVNKg31fP9XpwFKEFnBV0nUELU/oFGwN8uL3IAWgv2y8Bn4CEOuBKXVo3nFQ+2gVL0uyy60Ni3NA0a6DZD2vh0OoRicOdd86alDTpcVp5oSqLvqIE8mqT4Kpe/J/x1m2aN6cvV/E6ozz2qqYg3nUxI+b4ZS1jIGAcEbuV3Q==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR11MB4093.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(376002)(346002)(136003)(39860400002)(396003)(366004)(71200400001)(316002)(110136005)(54906003)(82960400001)(86362001)(122000001)(83380400001)(186003)(478600001)(66556008)(41300700001)(7696005)(9686003)(38100700002)(26005)(33656002)(38070700005)(6506007)(2906002)(8936002)(55016003)(5660300002)(52536014)(76116006)(4326008)(66446008)(64756008)(8676002)(66946007)(66476007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fIymrR0MaB4aqXUeKTWJnTCNqQtswcbmnK14mSkNVHUndnmNNqzWDhLKJQFr?=
- =?us-ascii?Q?g2Gt016/6CnsewPPGQvh+omsRP/et7BFTCAA48sRK9DwQbCvnxdluKTEPwm6?=
- =?us-ascii?Q?g9hhBChSy7aYawkqGBUhQcRa2V9zZapg9UPD9VKOsaupqevfGULUrwFOe7c/?=
- =?us-ascii?Q?a9y9xTnDYLvhUNgaiZBXkq8B5lg0dG+Y8J2Vz2lpFU7m84xpjq4XjUeCxz78?=
- =?us-ascii?Q?O+IDRoFVLHwA7n1l7yuFEe4YrDB4tX2tJWo6pWf83ce1wBySQyKSFQMGjjkF?=
- =?us-ascii?Q?qMa8tJ8y7HyMtZT0orHbQOb9h1+WLq5NIJ7oqspBxbfM4/bIKifvh4DPQGKN?=
- =?us-ascii?Q?6BQhwaH5XuDFPj0pivvGijbpLkZJwMEfxcLvKu1QDQdNVByIjvf+LoM0icrH?=
- =?us-ascii?Q?bCWqDwgYIkN/qYVb6QD5zozuNgxNDizLxmxQiy5xCtiTHgTN0tgHbTgTsPBL?=
- =?us-ascii?Q?3UFOV5yJZc4o0SZcxk7Ub+BqpkhRqf1uSE0nOu81DNsvPrQ/JaK1R6OzOctB?=
- =?us-ascii?Q?hMhGxKzGZ162hQpYl2Quw40VTBKCiBhsE61LUqGMb12molhXcCj3QMWnlqno?=
- =?us-ascii?Q?H9G/cnFu4EM1J43XiDYjVnVohw8R/QKpb6zCbC+GxCWFYzK2AziDGbXUSLQj?=
- =?us-ascii?Q?bH6AFqkp0667X3CTDVtySRlrnbDTNovMZj3bwuUFhNrnZKurjkDRjqPuAKiZ?=
- =?us-ascii?Q?jiWbJMmTIOUBb7nq2Qxf+EOmZAQLmb20IZ+Kzy6w8RAK/8yWbyCYPaou77Sy?=
- =?us-ascii?Q?D2qWIXD6OCOHW9a3LLQXBLygHW1wBgBjzeJmyASNc0NVcgcB19L9Xy8NejtH?=
- =?us-ascii?Q?KyeY76Vzg5pH6uvFdYLicni3ySAblqliR/8ZRy6Dmzq8zsW8tBctqbyZY8DR?=
- =?us-ascii?Q?dLWz7vEEBtTyseV6wxApLEP5pI1+/mEsTPunqY1R5BI1PjROYhZ0Jf14WO6v?=
- =?us-ascii?Q?AwFHQl6whGHGkpIFlXBaYzfmekAoI2UXyA5dDHxZF02hV4EaR0ghMzyi65oS?=
- =?us-ascii?Q?XY4FjTUzmHTEZsH1aLB/8VJ/d0lA5T+QadiAXMqdC9dmHLxX/TfOZbgoyAM1?=
- =?us-ascii?Q?hODtK5pdxSrcVM7Lvq/jfQPRhwFz2uLnbaED8P494HSiPnwrBKpg+QDwU1B/?=
- =?us-ascii?Q?xBKeff4CTWjjV8Co+/YnhwaNoUasvr3ic4tRsH+P29M8yS7nuwJWaEDVJnLF?=
- =?us-ascii?Q?sba20SAH6SZT1iuB7HIs9woYPy9qPHnF9w5cIR4S0awTWoKyctcEAB58lE6H?=
- =?us-ascii?Q?B5jPUkV6dr7B80TTpb1EBu1IiWXdCK9eccxrkm2gzQdcEBV6XcRiACCT47N9?=
- =?us-ascii?Q?Gop7nhXG5wg6TVvMpLXVtpR1kirhgtNA9SWr6UbgxAMR2uWBJsa5SgRqTtm1?=
- =?us-ascii?Q?eW7owh0EeXGDK2bYIXvJ9S9pglHv6C6ZSvlAYFQ7IfoTvrAttXAHcvuOe2NB?=
- =?us-ascii?Q?swjIBNI5y+lLT8Vez1Oyz8P8VciVGmjPhmchNLgmSqbp9/rObVLkElEqWU47?=
- =?us-ascii?Q?msMUL2bGLHx3sEeVzBtt9JQA8Xjv7NMn6CajbUoyB3uIhzHsjlPdEIJu3vNF?=
- =?us-ascii?Q?TMufasSC6YC3w2GiqdNReXQwJ2GWyYvFl3Emvwup?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ <20220909001612.728451-2-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR11MB4093.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26677b92-57dd-449f-1d8a-08da9228bd20
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2022 06:01:29.5379 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4LTVU109hPMqrPNnLjHXv8LV+fSYQQnhgKnwDkDEiPB011g+RmOweWrDjVv+O6VauvK/RtfBtMLiBULpcDZS6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5319
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 00/15] drm/i915: HuC loading for DG2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220909001612.728451-2-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 01/15] mei: add support to GSC extended
+ header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,129 +50,361 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Usyskin,
- Alexander" <alexander.usyskin@intel.com>, "Teres Alexis,
- Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>,
+ dri-devel@lists.freedesktop.org, Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Sep 08, 2022 at 05:15:58PM -0700, Daniele Ceraolo Spurio wrote:
+> From: Tomas Winkler <tomas.winkler@intel.com>
+> 
+> GSC extend header is of variable size and data
+> is provided in a sgl list inside the header
+> and not in the data buffers, need to enable the path.
+> 
+> V2:
+> 1. Add missing kdoc for mei_cl_cb
+> 2. In mei_me_hbuf_write()
+>    use dev_err() when validationg parameters instead of WARN_ON()
 
-> On DG2, HuC loading is performed by the GSC, via a PXP command. The load
-> operation itself is relatively simple (just send a message to the GSC wit=
-h the
-> physical address of the HuC in LMEM), but there are timing changes that
-> requires special attention. In particular, to send a PXP command we need =
-to
-> first export the GSC as an aux device and then wait for the mei-gsc and m=
-ei-
-> pxp modules to start, which means that HuC load will complete after i915
-> load is complete. This means that there is a small window of time after i=
-915 is
-> registered and before HuC is loaded during which userspace could submit
-> and/or check the HuC load status, although this is quite unlikely to happ=
-en
-> (HuC is usually loaded before kernel init/resume completes).
-> We've consulted with the media team in regards to how to handle this and
-> they've asked us to stall all userspace VCS submission until HuC is loade=
-d.
-> Stalls are expected to be very rare (if any), due to the fact that HuC is=
- usually
-> loaded before kernel init/resume is completed.
->=20
-> Timeouts are in place to ensure all submissions are unlocked in case
-> something goes wrong. Since we need to monitor the status of the mei
-> driver to know what's happening and when to time out, a notifier has been
-> added so we get a callback when the status of the mei driver changes.
->=20
-> Note that this series includes several mei patches that add support for
-> sending the HuC loading command via mei-gsc. We plan to merge those
-> patches through the drm tree because i915 is the sole user.
->=20
-> v2: address review comments, Reporting HuC loading still in progress whil=
-e
-> we wait for mei-gsc init to complete, rebase on latest mei-gsc series.
->=20
-> v3: fix cc list in mei patches.
->=20
-> v4: update mei patches, fix includes, rebase on new FW fetch logic and
-> merged mei-gsc support.
->=20
-> Test-with: 20220818224216.3920822-1-daniele.ceraolospurio@intel.com
-> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-> Cc: Tony Ye <tony.ye@intel.com>
-> Cc: Alexander Usyskin <alexander.usyskin@intel.com>
-> Cc: Tomas Winkler <tomas.winkler@intel.com>
+This stuff goes below the --- line, as the documentation states, right?
+Why is it here?
+
+> 
+> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Vitaly Lubart <vitaly.lubart@intel.com>
 > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> ---
+>  drivers/misc/mei/client.c    | 55 ++++++++++++++++++++++++----------
+>  drivers/misc/mei/hbm.c       | 13 ++++++++
+>  drivers/misc/mei/hw-me.c     |  7 ++++-
+>  drivers/misc/mei/hw.h        | 57 ++++++++++++++++++++++++++++++++++++
+>  drivers/misc/mei/interrupt.c | 47 ++++++++++++++++++++++++-----
+>  drivers/misc/mei/mei_dev.h   |  4 +++
+>  6 files changed, 160 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/misc/mei/client.c b/drivers/misc/mei/client.c
+> index 0b2fbe1335a7..6c8b71ae32c8 100644
+> --- a/drivers/misc/mei/client.c
+> +++ b/drivers/misc/mei/client.c
+> @@ -322,6 +322,7 @@ void mei_io_cb_free(struct mei_cl_cb *cb)
+>  
+>  	list_del(&cb->list);
+>  	kfree(cb->buf.data);
+> +	kfree(cb->ext_hdr);
+>  	kfree(cb);
+>  }
+>  
+> @@ -401,6 +402,7 @@ static struct mei_cl_cb *mei_io_cb_init(struct mei_cl *cl,
+>  	cb->buf_idx = 0;
+>  	cb->fop_type = type;
+>  	cb->vtag = 0;
+> +	cb->ext_hdr = NULL;
+>  
+>  	return cb;
+>  }
+> @@ -1740,6 +1742,17 @@ static inline u8 mei_ext_hdr_set_vtag(void *ext, u8 vtag)
+>  	return vtag_hdr->hdr.length;
+>  }
+>  
+> +static inline bool mei_ext_hdr_is_gsc(struct mei_ext_hdr *ext)
+> +{
+> +	return ext && ext->type == MEI_EXT_HDR_GSC;
+> +}
+> +
+> +static inline u8 mei_ext_hdr_set_gsc(struct mei_ext_hdr *ext, struct mei_ext_hdr *gsc_hdr)
+> +{
+> +	memcpy(ext, gsc_hdr, mei_ext_hdr_len(gsc_hdr));
+> +	return ext->length;
+> +}
+> +
+>  /**
+>   * mei_msg_hdr_init - allocate and initialize mei message header
+>   *
+> @@ -1752,14 +1765,17 @@ static struct mei_msg_hdr *mei_msg_hdr_init(const struct mei_cl_cb *cb)
+>  	size_t hdr_len;
+>  	struct mei_ext_meta_hdr *meta;
+>  	struct mei_msg_hdr *mei_hdr;
+> -	bool is_ext, is_vtag;
+> +	bool is_ext, is_hbm, is_gsc, is_vtag;
+> +	struct mei_ext_hdr *next_ext;
+>  
+>  	if (!cb)
+>  		return ERR_PTR(-EINVAL);
+>  
+>  	/* Extended header for vtag is attached only on the first fragment */
+>  	is_vtag = (cb->vtag && cb->buf_idx == 0);
+> -	is_ext = is_vtag;
+> +	is_hbm = cb->cl->me_cl->client_id == 0;
+> +	is_gsc = ((!is_hbm) && cb->cl->dev->hbm_f_gsc_supported && mei_ext_hdr_is_gsc(cb->ext_hdr));
+> +	is_ext = is_vtag || is_gsc;
+>  
+>  	/* Compute extended header size */
+>  	hdr_len = sizeof(*mei_hdr);
+> @@ -1771,6 +1787,9 @@ static struct mei_msg_hdr *mei_msg_hdr_init(const struct mei_cl_cb *cb)
+>  	if (is_vtag)
+>  		hdr_len += sizeof(struct mei_ext_hdr_vtag);
+>  
+> +	if (is_gsc)
+> +		hdr_len += mei_ext_hdr_len(cb->ext_hdr);
+> +
+>  setup_hdr:
+>  	mei_hdr = kzalloc(hdr_len, GFP_KERNEL);
+>  	if (!mei_hdr)
+> @@ -1785,10 +1804,20 @@ static struct mei_msg_hdr *mei_msg_hdr_init(const struct mei_cl_cb *cb)
+>  		goto out;
+>  
+>  	meta = (struct mei_ext_meta_hdr *)mei_hdr->extension;
+> +	meta->size = 0;
+> +	next_ext = (struct mei_ext_hdr *)meta->hdrs;
+>  	if (is_vtag) {
+>  		meta->count++;
+> -		meta->size += mei_ext_hdr_set_vtag(meta->hdrs, cb->vtag);
+> +		meta->size += mei_ext_hdr_set_vtag(next_ext, cb->vtag);
+> +		next_ext = mei_ext_next(next_ext);
+> +	}
+> +
+> +	if (is_gsc) {
+> +		meta->count++;
+> +		meta->size += mei_ext_hdr_set_gsc(next_ext, cb->ext_hdr);
+> +		next_ext = mei_ext_next(next_ext);
+>  	}
+> +
+>  out:
+>  	mei_hdr->length = hdr_len - sizeof(*mei_hdr);
+>  	return mei_hdr;
+> @@ -1812,14 +1841,14 @@ int mei_cl_irq_write(struct mei_cl *cl, struct mei_cl_cb *cb,
+>  	struct mei_msg_hdr *mei_hdr = NULL;
+>  	size_t hdr_len;
+>  	size_t hbuf_len, dr_len;
+> -	size_t buf_len;
+> +	size_t buf_len = 0;
+>  	size_t data_len;
+>  	int hbuf_slots;
+>  	u32 dr_slots;
+>  	u32 dma_len;
+>  	int rets;
+>  	bool first_chunk;
+> -	const void *data;
+> +	const void *data = NULL;
+>  
+>  	if (WARN_ON(!cl || !cl->dev))
+>  		return -ENODEV;
+> @@ -1839,8 +1868,10 @@ int mei_cl_irq_write(struct mei_cl *cl, struct mei_cl_cb *cb,
+>  		return 0;
+>  	}
+>  
+> -	buf_len = buf->size - cb->buf_idx;
+> -	data = buf->data + cb->buf_idx;
+> +	if (buf->data) {
+> +		buf_len = buf->size - cb->buf_idx;
+> +		data = buf->data + cb->buf_idx;
+> +	}
+>  	hbuf_slots = mei_hbuf_empty_slots(dev);
+>  	if (hbuf_slots < 0) {
+>  		rets = -EOVERFLOW;
+> @@ -1858,9 +1889,6 @@ int mei_cl_irq_write(struct mei_cl *cl, struct mei_cl_cb *cb,
+>  		goto err;
+>  	}
+>  
+> -	cl_dbg(dev, cl, "Extended Header %d vtag = %d\n",
+> -	       mei_hdr->extended, cb->vtag);
+> -
+>  	hdr_len = sizeof(*mei_hdr) + mei_hdr->length;
+>  
+>  	/**
+> @@ -1889,7 +1917,7 @@ int mei_cl_irq_write(struct mei_cl *cl, struct mei_cl_cb *cb,
+>  	}
+>  	mei_hdr->length += data_len;
+>  
+> -	if (mei_hdr->dma_ring)
+> +	if (mei_hdr->dma_ring && buf->data)
+>  		mei_dma_ring_write(dev, buf->data + cb->buf_idx, buf_len);
+>  	rets = mei_write_message(dev, mei_hdr, hdr_len, data, data_len);
+>  
+> @@ -1983,9 +2011,6 @@ ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb)
+>  		goto err;
+>  	}
+>  
+> -	cl_dbg(dev, cl, "Extended Header %d vtag = %d\n",
+> -	       mei_hdr->extended, cb->vtag);
+> -
+>  	hdr_len = sizeof(*mei_hdr) + mei_hdr->length;
+>  
+>  	if (rets == 0) {
+> @@ -2030,7 +2055,7 @@ ssize_t mei_cl_write(struct mei_cl *cl, struct mei_cl_cb *cb)
+>  
+>  	mei_hdr->length += data_len;
+>  
+> -	if (mei_hdr->dma_ring)
+> +	if (mei_hdr->dma_ring && buf->data)
+>  		mei_dma_ring_write(dev, buf->data, buf_len);
+>  	rets = mei_write_message(dev, mei_hdr, hdr_len, data, data_len);
+>  
+> diff --git a/drivers/misc/mei/hbm.c b/drivers/misc/mei/hbm.c
+> index de712cbf5d07..12a62a911e42 100644
+> --- a/drivers/misc/mei/hbm.c
+> +++ b/drivers/misc/mei/hbm.c
+> @@ -340,9 +340,13 @@ static int mei_hbm_capabilities_req(struct mei_device *dev)
+>  	req.hbm_cmd = MEI_HBM_CAPABILITIES_REQ_CMD;
+>  	if (dev->hbm_f_vt_supported)
+>  		req.capability_requested[0] |= HBM_CAP_VT;
+> +
+>  	if (dev->hbm_f_cd_supported)
+>  		req.capability_requested[0] |= HBM_CAP_CD;
+>  
+> +	if (dev->hbm_f_gsc_supported)
+> +		req.capability_requested[0] |= HBM_CAP_GSC;
+> +
+>  	ret = mei_hbm_write_message(dev, &mei_hdr, &req);
+>  	if (ret) {
+>  		dev_err(dev->dev,
+> @@ -1200,6 +1204,12 @@ static void mei_hbm_config_features(struct mei_device *dev)
+>  	     dev->version.minor_version >= HBM_MINOR_VERSION_VT))
+>  		dev->hbm_f_vt_supported = 1;
+>  
+> +	/* GSC support */
+> +	if (dev->version.major_version > HBM_MAJOR_VERSION_GSC ||
+> +	    (dev->version.major_version == HBM_MAJOR_VERSION_GSC &&
+> +	     dev->version.minor_version >= HBM_MINOR_VERSION_GSC))
+> +		dev->hbm_f_gsc_supported = 1;
+> +
+>  	/* Capability message Support */
+>  	dev->hbm_f_cap_supported = 0;
+>  	if (dev->version.major_version > HBM_MAJOR_VERSION_CAP ||
+> @@ -1367,6 +1377,9 @@ int mei_hbm_dispatch(struct mei_device *dev, struct mei_msg_hdr *hdr)
+>  		if (!(capability_res->capability_granted[0] & HBM_CAP_CD))
+>  			dev->hbm_f_cd_supported = 0;
+>  
+> +		if (!(capability_res->capability_granted[0] & HBM_CAP_GSC))
+> +			dev->hbm_f_gsc_supported = 0;
+> +
+>  		if (dev->hbm_f_dr_supported) {
+>  			if (mei_dmam_ring_alloc(dev))
+>  				dev_info(dev->dev, "running w/o dma ring\n");
+> diff --git a/drivers/misc/mei/hw-me.c b/drivers/misc/mei/hw-me.c
+> index 9e2f781c6ed5..da4ef0b51954 100644
+> --- a/drivers/misc/mei/hw-me.c
+> +++ b/drivers/misc/mei/hw-me.c
+> @@ -590,9 +590,14 @@ static int mei_me_hbuf_write(struct mei_device *dev,
+>  	u32 dw_cnt;
+>  	int empty_slots;
+>  
+> -	if (WARN_ON(!hdr || !data || hdr_len & 0x3))
+> +	if (WARN_ON(!hdr || hdr_len & 0x3))
+>  		return -EINVAL;
 
->=20
-> Daniele Ceraolo Spurio (7):
->   drm/i915/pxp: load the pxp module when we have a gsc-loaded huc
->   drm/i915/dg2: setup HuC loading via GSC
->   drm/i915/huc: track delayed HuC load with a fence
->   drm/i915/huc: stall media submission until HuC is loaded
->   drm/i915/huc: better define HuC status getparam possible return
->     values.
->   drm/i915/huc: define gsc-compatible HuC fw for DG2
->   HAX: drm/i915: force INTEL_MEI_GSC and INTEL_MEI_PXP on for CI
->=20
-> Tomas Winkler (5):
->   mei: add support to GSC extended header
->   mei: bus: enable sending gsc commands
->   mei: adjust extended header kdocs
->   mei: pxp: support matching with a gfx discrete card
->   drm/i915/pxp: add huc authentication and loading command
->=20
-> Vitaly Lubart (3):
->   mei: bus: extend bus API to support command streamer API
->   mei: pxp: add command streamer API to the PXP driver
->   drm/i915/pxp: implement function for sending tee stream command
->=20
->  drivers/gpu/drm/i915/Kconfig.debug            |   2 +
->  drivers/gpu/drm/i915/Makefile                 |  11 +-
->  drivers/gpu/drm/i915/gt/intel_gsc.c           |  22 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   1 +
->  drivers/gpu/drm/i915/gt/uc/intel_huc.c        | 254 ++++++++++++++++--
->  drivers/gpu/drm/i915/gt/uc/intel_huc.h        |  31 +++
->  drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c     |  34 +++
->  drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h     |   1 +
->  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  24 +-
->  drivers/gpu/drm/i915/i915_request.c           |  24 ++
->  drivers/gpu/drm/i915/pxp/intel_pxp.c          |  32 ++-
->  drivers/gpu/drm/i915/pxp/intel_pxp.h          |  32 ---
->  drivers/gpu/drm/i915/pxp/intel_pxp_huc.c      |  69 +++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_huc.h      |  13 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_irq.h      |   8 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |   8 +-
->  drivers/gpu/drm/i915/pxp/intel_pxp_session.h  |  11 +-
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 138 +++++++++-
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |   5 +
->  .../drm/i915/pxp/intel_pxp_tee_interface.h    |  23 +-
->  drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |   6 +
->  drivers/misc/mei/bus.c                        | 145 +++++++++-
->  drivers/misc/mei/client.c                     |  55 ++--
->  drivers/misc/mei/hbm.c                        |  13 +
->  drivers/misc/mei/hw-me.c                      |   7 +-
->  drivers/misc/mei/hw.h                         |  65 ++++-
->  drivers/misc/mei/interrupt.c                  |  47 +++-
->  drivers/misc/mei/mei_dev.h                    |   8 +
->  drivers/misc/mei/pxp/mei_pxp.c                |  41 ++-
->  include/drm/i915_pxp_tee_interface.h          |   5 +
->  include/linux/mei_cl_bus.h                    |   6 +
->  include/uapi/drm/i915_drm.h                   |  16 ++
->  32 files changed, 1035 insertions(+), 122 deletions(-)  create mode 1006=
-44
-> drivers/gpu/drm/i915/pxp/intel_pxp_huc.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_huc.h
->=20
+Again, please remove the WARN_ON(), don't add to it.
 
-Greg, can we have you review for the mei part of the series.
-I've addressed your comments ' mei: add support to GSC extended header'  pa=
-tch.=20
+>  
+> +	if (!data && data_len) {
+> +		dev_err(dev->dev, "wrong parameters null data with data_len = %zu\n", data_len);
+> +		return -EINVAL;
+> +	}
+> +
+>  	dev_dbg(dev->dev, MEI_HDR_FMT, MEI_HDR_PRM((struct mei_msg_hdr *)hdr));
+>  
+>  	empty_slots = mei_hbuf_empty_slots(dev);
+> diff --git a/drivers/misc/mei/hw.h b/drivers/misc/mei/hw.h
+> index e7e020dba6b1..14f89d96216b 100644
+> --- a/drivers/misc/mei/hw.h
+> +++ b/drivers/misc/mei/hw.h
+> @@ -92,6 +92,12 @@
+>  #define HBM_MINOR_VERSION_VT               2
+>  #define HBM_MAJOR_VERSION_VT               2
+>  
+> +/*
+> + * MEI version with GSC support
+> + */
+> +#define HBM_MINOR_VERSION_GSC              2
+> +#define HBM_MAJOR_VERSION_GSC              2
+> +
+>  /*
+>   * MEI version with capabilities message support
+>   */
+> @@ -229,10 +235,12 @@ enum mei_cl_disconnect_status {
+>   *
+>   * @MEI_EXT_HDR_NONE: sentinel
+>   * @MEI_EXT_HDR_VTAG: vtag header
+> + * @MEI_EXT_HDR_GSC: gsc header
+>   */
+>  enum mei_ext_hdr_type {
+>  	MEI_EXT_HDR_NONE = 0,
+>  	MEI_EXT_HDR_VTAG = 1,
+> +	MEI_EXT_HDR_GSC = 2,
+>  };
+>  
+>  /**
+> @@ -305,6 +313,39 @@ static inline bool mei_ext_last(struct mei_ext_meta_hdr *meta,
+>  	return (u8 *)ext >= (u8 *)meta + sizeof(*meta) + (meta->size * 4);
+>  }
+>  
+> +struct mei_gsc_sgl {
+> +	u32 low;
+> +	u32 high;
+> +	u32 length;
+> +} __packed;
+> +
+> +#define GSC_HECI_MSG_KERNEL 0
+> +#define GSC_HECI_MSG_USER   1
+> +
+> +#define GSC_ADDRESS_TYPE_GTT   0
+> +#define GSC_ADDRESS_TYPE_PPGTT 1
+> +#define GSC_ADDRESS_TYPE_PHYSICAL_CONTINUOUS 2 /* max of 64K */
+> +#define GSC_ADDRESS_TYPE_PHYSICAL_SGL 3
+> +
+> +struct mei_ext_hdr_gsc_h2f {
+> +	struct mei_ext_hdr hdr;
+> +	u8                 client_id;
+> +	u8                 addr_type;
+> +	u32                fence_id;
+> +	u8                 input_address_count;
+> +	u8                 output_address_count;
+> +	u8                 reserved[2];
+> +	struct mei_gsc_sgl sgl[];
+> +} __packed;
 
-Thanks
-Tomas
+Why is this structure here if you do not use it?
 
-> --
-> 2.37.2
+And that's some really odd alignment of the fields, is this coming from
+the hardware?
 
+> +
+> +struct mei_ext_hdr_gsc_f2h {
+> +	struct mei_ext_hdr hdr;
+> +	u8                 client_id;
+> +	u8                 reserved;
+> +	u32                fence_id;
+> +	u32                written;
+> +} __packed;
+> +
+>  /**
+>   * mei_ext_next - following extended header on the TLV list
+>   *
+> @@ -320,6 +361,18 @@ static inline struct mei_ext_hdr *mei_ext_next(struct mei_ext_hdr *ext)
+>  	return (struct mei_ext_hdr *)((u8 *)ext + (ext->length * 4));
+>  }
+>  
+> +/**
+> + * mei_ext_hdr_len - get ext header length in bytes
+> + *
+> + * @ext: extend header
+> + *
+> + * Return: extend header length in bytes
+> + */
+> +static inline u32 mei_ext_hdr_len(struct mei_ext_hdr *ext)
+> +{
+> +	return  (ext) ? ext->length * sizeof(u32) : 0;
+
+Odd spacing :(
+
+And please just spell out ? : statements with a real if () statement.
+There is no difference from the generated code and you write code for
+people first, compilers second.
+
+And how can ext be NULL here?
+
+thanks,
+
+greg k-h
