@@ -1,82 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D27175B39FB
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 16:01:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 027565B3A53
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 16:06:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8BBB10ED7E;
-	Fri,  9 Sep 2022 14:01:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 369B210ED98;
+	Fri,  9 Sep 2022 14:06:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
- [64.147.123.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 379CE10ED7E;
- Fri,  9 Sep 2022 14:01:13 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.west.internal (Postfix) with ESMTP id B0EA22B0591B;
- Fri,  9 Sep 2022 10:01:09 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Fri, 09 Sep 2022 10:01:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm2; t=1662732069; x=1662739269; bh=m8uWKdPqim
- TWOzbuWW9LjUIAMA5qm4azX49SLBOts+k=; b=YnzdqFanu76LTppWsnIK8yLtaw
- lPA9imn+DZMPpvmB+I+7lJ6Jtp5+Hpp/Tok4Syo0TZ+GIWgrmrIbPdzEP4csf+60
- UpEKybV/LKbOlJdebq8NtpHOX+q7UOoX+sClEWg/wr6povq2rrWI+ugq/sOCi5sZ
- xXq4KnkJMjk8hfkCCos2ghiXoM12HoF0kloEOtYmIVJ6ltnGXUKNF564vpDCPNZ8
- s3ORSfM8MEpwoQU39DDpbNTFwB5Y6PTP2jBZlZSeNbsxTCVjtqfLM5MdZpTnhTm0
- 1aNFaQE+vAnk+ZlPCXOLfH3n3kaTBYCY1K1ZgQJMdDQ0emXorULHJv6IpDTg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm2; t=1662732069; x=1662739269; bh=m8uWKdPqimTWOzbuWW9LjUIAMA5q
- m4azX49SLBOts+k=; b=UytRIGBeAIK3cYsdpEIIrN8FMBS+DdyAfw8Linj+rJgL
- g9vqVDLzMqf7z+Zq8GuX6nB76z8BX3FKfH+w0cZYcxf5Vz1m0pmqpzc3QIz1lW3i
- +qcJUgH8UYU/JZkQyJ+J0ILb8T/3YoB894efCxXtrvJD63y7GfgcmlpZQaGweQGA
- 3eQ73GeIApaHjQjnZeXMJ6l+v13ZgTzTWY7kfviqp+zfyuG5zITuOFrJ7DO7a31p
- LGTFP167QAdPLgsgxgQNe88zlb9eOnmg96qLVG2u074AnI7rabwwsuOPnUoohp3d
- BjaoBlxQzhdosblojNXzRuwyvhSKAM638mnzlx7/7w==
-X-ME-Sender: <xms:HUcbY1qT4kf-mTq2fLzQRaYzl9AUayFOIl0kpRAPDPE4ezb1dL-L8w>
- <xme:HUcbY3q1yVbTY68aHnr8xWgLWQ2NifWxNpAv2F6FOlAMWgmXE5VamBILHxPMGXevN
- _IGnIPLwdFJ29d9c7o>
-X-ME-Received: <xmr:HUcbYyM5xjzmO3e3dtMoonVbYC1ch27-ZEspCcDtsSMffAErxYBzJgCFtjCs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedthedgjeefucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
- mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
- htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
- hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:HkcbYw4y40JUDqNYJ2TTJTgsJ4f-o9o3EZPSRODX5u_vtjccrEFEtg>
- <xmx:HkcbY06o4B69hhN80GOqN_IEEzN6bZfUaP6ctsZrDz9l9eV09pSOOw>
- <xmx:HkcbY4hZrEnQSH_qfGbJ9HkdECI_If740JoappUZ-WA_oiQJHLK6Cg>
- <xmx:JUcbY07qgZzJA_p9otXIwoarGt3HNeaPn6bgdqRlPR-XGkX3B4ktoodc5Z8>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 9 Sep 2022 10:01:01 -0400 (EDT)
-Date: Fri, 9 Sep 2022 16:00:59 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Mateusz Kwiatkowski <kfyatek@gmail.com>
-Message-ID: <20220909140059.g57oihcmhuym62ei@houat>
-References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-10-459522d653a7@cerno.tech>
- <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
- <20220905133755.gcmmntg3wnecyqjq@houat>
- <10ce686a-d7c8-9ce4-3979-735ad8eab3b5@gmail.com>
- <20220907143421.4iopqwhp3yfircsh@houat>
- <dc1d9499-d4d5-1032-f39f-d4ac4cbb8412@gmail.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67D0010ED96
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 14:06:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662732391; x=1694268391;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SoQXzfy1WmRYEF2Jn/W857KszJH6pgftAeo35VJt/Wo=;
+ b=oEwHLACbdG9LTO5EKDv9grXRPcphZLax5FHL+b0rwjG6xyFcsgzP3FfU
+ yUfRVWaVVpd2SCNtqB1recNwEib757ysktdMD0kqaVyc2tAPVSDv+5ySu
+ El0wEVXPczIC9KeGE5x5PFTek6ulRklu5vJIiXdfjHwTYf7KIkxUtsEXw
+ gQOozJnnw5SsTbDVc9OfXKgxAzy0MvOJbV8AXdvAXnaFQMWMsMNO3tDMW
+ JWam9/OmljpVp52zSVTd51vUYpqQPYrJqdLTzra3ta8P4myAmkcqpKvt2
+ GKpdSRR3DXtUJexCerwwGJkrguMLrZmQfNWLJ8yn/06TKeOAOuH97da2/ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="298818949"
+X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="298818949"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 07:06:15 -0700
+X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="645544320"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 07:06:13 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Date: Fri,  9 Sep 2022 16:05:52 +0200
+Message-Id: <20220909140552.110327-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="kc2bu6zgime3t2ko"
-Content-Disposition: inline
-In-Reply-To: <dc1d9499-d4d5-1032-f39f-d4ac4cbb8412@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v2 10/41] drm/modes: Add a function to
- generate analog display modes
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: implement async_flip mode per plane
+ tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,49 +57,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Current implementation of async flip w/a relies on assumption that
+previous atomic commit contains valid information if async_flip is still
+enabled on the plane. It is incorrect. If previous commit did not modify
+the plane its state->uapi.async_flip can be false. As a result DMAR/PIPE
+errors can be observed:
+i915 0000:00:02.0: [drm] *ERROR* Fault errors on pipe A: 0x00000080
+i915 0000:00:02.0: [drm] *ERROR* Fault errors on pipe A: 0x00000080
+DMAR: DRHD: handling fault status reg 2
+DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x0 [fault reason 0x06] PTE Read access is not set
 
---kc2bu6zgime3t2ko
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_display.c       | 7 ++++---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
+ 3 files changed, 13 insertions(+), 3 deletions(-)
 
-On Wed, Sep 07, 2022 at 11:31:21PM +0200, Mateusz Kwiatkowski wrote:
-> The "canonical" modelines (at least for vc4's VEC, see the notes below):
->=20
-> - (vfp=3D=3D4, vsync=3D=3D6, vbp=3D=3D39) for 576i
-> - (vfp=3D=3D7, vsync=3D=3D6, vbp=3D=3D32) for 480i
-> - (vfp=3D=3D5, vsync=3D=3D6, vbp=3D=3D28) for 486i (full frame NTSC as or=
-iginally specified)
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index dd876dbbaa394d..4b4d8427b466c0 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -591,6 +591,12 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
+ 	if (new_plane_state->uapi.visible || old_plane_state->uapi.visible)
+ 		new_crtc_state->update_planes |= BIT(plane->id);
+ 
++	if (new_crtc_state->uapi.async_flip && plane->async_flip)
++		new_crtc_state->async_flip_planes |= BIT(plane->id);
++	else if (new_plane_state->uapi.visible != old_plane_state->uapi.visible ||
++		 new_plane_state->uapi.fb != old_plane_state->uapi.fb)
++		new_crtc_state->async_flip_planes &= ~BIT(plane->id);
++
+ 	if (new_plane_state->uapi.visible &&
+ 	    intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
+ 		new_crtc_state->data_rate_y[plane->id] =
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 72e2091d9fcb59..7bab74b2a4ae2e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1292,7 +1292,8 @@ static void intel_crtc_async_flip_disable_wa(struct intel_atomic_state *state,
+ 		intel_atomic_get_old_crtc_state(state, crtc);
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+-	u8 update_planes = new_crtc_state->update_planes;
++	u8 disable_async_flip_planes = old_crtc_state->async_flip_planes &
++				       ~new_crtc_state->async_flip_planes;
+ 	const struct intel_plane_state *old_plane_state;
+ 	struct intel_plane *plane;
+ 	bool need_vbl_wait = false;
+@@ -1301,7 +1302,7 @@ static void intel_crtc_async_flip_disable_wa(struct intel_atomic_state *state,
+ 	for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
+ 		if (plane->need_async_flip_disable_wa &&
+ 		    plane->pipe == crtc->pipe &&
+-		    update_planes & BIT(plane->id)) {
++		    disable_async_flip_planes & BIT(plane->id)) {
+ 			/*
+ 			 * Apart from the async flip bit we want to
+ 			 * preserve the old state for the plane.
+@@ -1418,7 +1419,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 	 * WA for platforms where async address update enable bit
+ 	 * is double buffered and only latched at start of vblank.
+ 	 */
+-	if (old_crtc_state->uapi.async_flip && !new_crtc_state->uapi.async_flip)
++	if (old_crtc_state->async_flip_planes & ~new_crtc_state->async_flip_planes)
+ 		intel_crtc_async_flip_disable_wa(state, crtc);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 0da9b208d56e8b..b37891a8def780 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1234,6 +1234,9 @@ struct intel_crtc_state {
+ 	/* bitmask of planes that will be updated during the commit */
+ 	u8 update_planes;
+ 
++	/* bitmask of planes with async flip active */
++	u8 async_flip_planes;
++
+ 	u8 framestart_delay; /* 1-4 */
+ 	u8 msa_timing_delay; /* 0-3 */
+ 
+-- 
+2.34.1
 
-It's not clear to me either how you come up with those timings?
-
-Maxime
-
---kc2bu6zgime3t2ko
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYxtHGwAKCRDj7w1vZxhR
-xYMtAQC2BqS997PQeLRZyCLXvTlUXGBvB07pmDNLHPWzQICluwD9FWnB9aaQ3tLC
-/OsNpUuYwh9XQJfUVrt4RcFvukTzXgc=
-=jc5S
------END PGP SIGNATURE-----
-
---kc2bu6zgime3t2ko--
