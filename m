@@ -1,57 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631CD5B3C5B
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 17:49:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 939F55B3CAB
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 18:08:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8271410EC99;
-	Fri,  9 Sep 2022 15:49:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C784510E068;
+	Fri,  9 Sep 2022 16:08:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [212.27.42.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B251D10EC99;
- Fri,  9 Sep 2022 15:49:34 +0000 (UTC)
-Received: from 82-65-29-218.subs.proxad.net (unknown
- [IPv6:2a01:e0a:5ef:1450:250:fcff:fe42:7bed])
- by smtp5-g21.free.fr (Postfix) with ESMTP id 0279C5FFD8;
- Fri,  9 Sep 2022 17:49:26 +0200 (CEST)
-Received: from berkelium.ap2c.org (localhost [127.0.0.1])
- by 82-65-29-218.subs.proxad.net (Postfix) with ESMTP id 94269A527;
- Fri,  9 Sep 2022 17:49:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ap2c.com; s=ap2cCom;
- t=1662738566; bh=KAUFs8Gddcy6mYnYueQePctsnpjY/cWYwMOTf14lGE0=;
- h=Date:From:Subject:To:Cc:In-Reply-To:References;
- b=K+185GNFdnN324begdB4IiWbweBPfej2xuzvN336Wb5nkV61eUf3qdaqHUyNRsN3o
- ax2eaJNZkM1axPcFuxge0+fTTb/EZndSPSHppeYn6WSoMFQAS7zwytmSyeedRuGrq0
- roOLfIanXnSaU8/7Wx1EM6306Cqo0m4eR2ok6qPo=
-X-Virus-Scanned: amavisd-new at ap2c.org
-Received: from 82-65-29-218.subs.proxad.net ([127.0.0.1])
- by berkelium.ap2c.org (berkelium.ap2c.org [127.0.0.1]) (amavisd-new,
- port 10024)
- with ESMTP id 6iVLbpusZ5py; Fri,  9 Sep 2022 17:49:25 +0200 (CEST)
-Received: from drive.ap2c.org (imap.ap2c.org [10.8.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by 82-65-29-218.subs.proxad.net (Postfix) with ESMTPSA;
- Fri,  9 Sep 2022 17:49:25 +0200 (CEST)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC0C10E04E
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 16:08:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662739721; x=1694275721;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=t48Y4NuCTICPzPB3Gr+mp70Vnbm2qKZOUvjVe7mQOkA=;
+ b=W7imh6dHEZndq0V7WCHQLHAqikFiZmFGYaHfQRhFWquQiWQM8TEpUQ24
+ FeXnutXCm5XETzce2o7/sOv9jeL2hwaqY2nj2+3CdDFMoJEeWei7nMVDy
+ 8KQOIntlx+lm9DNQh0UFdoHd898X/zPHhKam45QWuuuOi1TfRP0DGKwD7
+ cYlvVXN1GRzw0ye8vJvGSH046EMdiXSwxQK0KOItwpFQvJ6YUcpNz1GZf
+ UipxP7AIZ1C4mX0QdVXRMAh5GEj3ZqztuTIjY5bawHSWFtRtScYwqCRMn
+ o0nVybx9SunzIopW5xlNC1B33VV3oWF1GU2CVcN3tjoM0D5Nj/bgyDI1t g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10465"; a="280532178"
+X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="280532178"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 09:08:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="615316193"
+Received: from lkp-server02.sh.intel.com (HELO b2938d2e5c5a) ([10.239.97.151])
+ by orsmga002.jf.intel.com with ESMTP; 09 Sep 2022 09:08:38 -0700
+Received: from kbuild by b2938d2e5c5a with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1oWgYX-0001Pd-2s;
+ Fri, 09 Sep 2022 16:08:37 +0000
+Date: Sat, 10 Sep 2022 00:08:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <202209100005.i5hNgIqU-lkp@intel.com>
+References: <20220909112419.26901-3-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Date: Fri, 09 Sep 2022 15:49:24 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: RainLoop/1.16.0
-From: "=?utf-8?B?QXVyw6lsaWVu?=" <aurelien.intel@ap2c.com>
-Message-ID: <115b5a5ebddcd268ee5f7688400448a2@ap2c.com>
-To: "Jani Nikula" <jani.nikula@linux.intel.com>, "Rodrigo Vivi"
- <rodrigo.vivi@intel.com>, "Hans de Goede" <hdegoede@redhat.com>, "Lyude"
- <lyude@redhat.com>, dri-devel@lists.freedesktop.org
-In-Reply-To: <878rms7emr.fsf@intel.com>
-References: <878rms7emr.fsf@intel.com>
- <183219aab00.2890.be34037ad6564a4fe81285fd91a8f407@ap2c.com>
- <YxsMcH37rRkt0cfj@intel.com>
-Subject: Re: [Intel-gfx] Developing a new backlight driver for specific OLED
- screen
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220909112419.26901-3-anshuman.gupta@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915/dgfx: Release mmap on rpm
+ suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,47 +59,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, llvm@lists.linux.dev, kbuild-all@lists.01.org,
+ Matthew Auld <matthew.auld@intel.com>, chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,=20
+Hi Anshuman,
 
->=20+ dri-devel mailing list that looks more appropriated.
-> + Hans and Lyude who were recently working to standardize some of the
-> backlight stuff.
+Thank you for the patch! Perhaps something to improve:
 
-Thank you for these contacts. I'll try there if I need.
+[auto build test WARNING on drm-tip/drm-tip]
 
-> I don't believe you want to use the i915 API, but move the common funct=
-ions
-> to the drm subsystem itself and then reuse as a drm device.
+url:    https://github.com/intel-lab-lkp/linux/commits/Anshuman-Gupta/DGFX-mmap-with-rpm/20220909-192609
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: i386-randconfig-a004 (https://download.01.org/0day-ci/archive/20220910/202209100005.i5hNgIqU-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/b3f193a1659a69de9e9025c9b02a039d0a58390d
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Anshuman-Gupta/DGFX-mmap-with-rpm/20220909-192609
+        git checkout b3f193a1659a69de9e9025c9b02a039d0a58390d
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-If there is enough generic code I'll do everything with the DRM API. Unfo=
-rtunately I can't spend too much time in order to generalize the i915 com=
-mon functions.
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-> Aur=C3=A9lien, are you aware of drivers/gpu/drm/display/drm_dp_helper.c=
- and
-> all the functions around struct dp_aux_backlight and struct
-> drm_edp_backlight_info?
+All warnings (new ones prefixed by >>):
 
-Not yet. Since I'm not familiar with GPU/display drivers I didn't know wh=
-at could be a good starting point.=20
-Indeed=20I already checked the intel_dp_aux_backlight.c code. That's why =
-I told about using the "i915 API code" at first. But since this display i=
-s independent from the GPU i didn't want to link both code.=20
-Then=20that's a really good point if there is already an independant API.=
- I'll have a look this evening.
+>> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1065:14: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
+           if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+                       ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1065:14: note: use '&' for a bitwise operation
+           if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+                       ^~
+                       &
+   drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1065:14: note: remove constant to silence this warning
+           if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+                      ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
 
-> Does the display use some proprietary, non-VESA DPCD registers? There's
-> already some of that in i915 for Intel proprietary interfaces.
 
-For sure. It's an OLED display. Thus there is no backlight. It uses speci=
-fic registers to control the brightness of the screen.
-Unfortunately I guess the mechanism is not shared with many OLED displays=
-...
+vim +1065 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
 
-Thank you for your help.
+   985	
+   986	static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+   987	{
+   988		struct vm_area_struct *area = vmf->vma;
+   989		struct ttm_buffer_object *bo = area->vm_private_data;
+   990		struct drm_device *dev = bo->base.dev;
+   991		struct drm_i915_gem_object *obj;
+   992		intel_wakeref_t wakeref = 0;
+   993		vm_fault_t ret;
+   994		int idx;
+   995	
+   996		obj = i915_ttm_to_gem(bo);
+   997		if (!obj)
+   998			return VM_FAULT_SIGBUS;
+   999	
+  1000		/* Sanity check that we allow writing into this object */
+  1001		if (unlikely(i915_gem_object_is_readonly(obj) &&
+  1002			     area->vm_flags & VM_WRITE)) {
+  1003			ret = VM_FAULT_SIGBUS;
+  1004			goto out_rpm;
+  1005		}
+  1006	
+  1007		ret = ttm_bo_vm_reserve(bo, vmf);
+  1008		if (ret)
+  1009			goto out_rpm;
+  1010	
+  1011		if (i915_ttm_cpu_maps_iomem(bo->resource))
+  1012			wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
+  1013	
+  1014		if (obj->mm.madv != I915_MADV_WILLNEED) {
+  1015			dma_resv_unlock(bo->base.resv);
+  1016			ret = VM_FAULT_SIGBUS;
+  1017			goto out_rpm;
+  1018		}
+  1019	
+  1020		if (!i915_ttm_resource_mappable(bo->resource)) {
+  1021			int err = -ENODEV;
+  1022			int i;
+  1023	
+  1024			for (i = 0; i < obj->mm.n_placements; i++) {
+  1025				struct intel_memory_region *mr = obj->mm.placements[i];
+  1026				unsigned int flags;
+  1027	
+  1028				if (!mr->io_size && mr->type != INTEL_MEMORY_SYSTEM)
+  1029					continue;
+  1030	
+  1031				flags = obj->flags;
+  1032				flags &= ~I915_BO_ALLOC_GPU_ONLY;
+  1033				err = __i915_ttm_migrate(obj, mr, flags);
+  1034				if (!err)
+  1035					break;
+  1036			}
+  1037	
+  1038			if (err) {
+  1039				drm_dbg(dev, "Unable to make resource CPU accessible\n");
+  1040				dma_resv_unlock(bo->base.resv);
+  1041				ret = VM_FAULT_SIGBUS;
+  1042				goto out_rpm;
+  1043			}
+  1044		}
+  1045	
+  1046		if (drm_dev_enter(dev, &idx)) {
+  1047			ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+  1048						       TTM_BO_VM_NUM_PREFAULT);
+  1049			drm_dev_exit(idx);
+  1050		} else {
+  1051			ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+  1052		}
+  1053	
+  1054		if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+  1055			goto out_rpm;
+  1056	
+  1057		/* ttm_bo_vm_reserve() already has dma_resv_lock */
+  1058		if (ret == VM_FAULT_NOPAGE && wakeref && !obj->userfault_count) {
+  1059			obj->userfault_count = 1;
+  1060			mutex_lock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
+  1061			list_add(&obj->userfault_link, &to_gt(to_i915(obj->base.dev))->lmem_userfault_list);
+  1062			mutex_unlock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
+  1063		}
+  1064	
+> 1065		if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+  1066			intel_wakeref_auto(&to_gt(to_i915(obj->base.dev))->userfault_wakeref,
+  1067					   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
+  1068	
+  1069		i915_ttm_adjust_lru(obj);
+  1070	
+  1071		dma_resv_unlock(bo->base.resv);
+  1072	
+  1073	out_rpm:
+  1074		if (wakeref)
+  1075			intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, wakeref);
+  1076	
+  1077		return ret;
+  1078	}
+  1079	
 
-Aur=C3=A9lien
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
