@@ -1,155 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95E3F5B35B3
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 12:53:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E8B5B35BC
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 12:56:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F56810E2AE;
-	Fri,  9 Sep 2022 10:53:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B256410E2AE;
+	Fri,  9 Sep 2022 10:55:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47F6310E2AE;
- Fri,  9 Sep 2022 10:53:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662720787; x=1694256787;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=3w6V73NPW3G4dysUDoDN9kZG88RVu5wcp8GBmBiKXiY=;
- b=GfJlq7FO+xjZGqjY5Xnue8eAoTuhsh4b+/Jf/Sa5OSDVfQu6MO1QC235
- U74xe9KDv0SBJpxO/Ptrx0iDUheAaF+XMWucLqQj20HDJjK9dYR15ZzaO
- u7yuhW9r7w32ST0Cp8gJM3gLdsdJGBBrl90iUFWHzh5B2VQAQYn7+TL1M
- 8Nudc7aNLvoKG9HoSv1bKQ3xvJ6W0M6aDt6RuBOOo0zhIahCMgltF41z3
- mZepydicxKGLQ3O5k+TwkOCMu4Ki1pk9ZtUawlIO7eywFl+FPJoSI/RDV
- Y/Fdl6YkzVf98WEmS9G7f0tnARXda9UiAMXvuN91wghpAi0FIObGWMBbZ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="361405166"
-X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="361405166"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2022 03:53:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; d="scan'208";a="645494973"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga008.jf.intel.com with ESMTP; 09 Sep 2022 03:53:06 -0700
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 9 Sep 2022 03:53:06 -0700
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 9 Sep 2022 03:53:06 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Fri, 9 Sep 2022 03:53:06 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.103)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Fri, 9 Sep 2022 03:53:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dGdpohDSihDYaNtkMB0/PCbA4zRzYQxorPCRL7BUq+jfwyu35AQ5ZdnOUU/NigtC3oK/Ix0h+AYYe9K0efXip+a0rsRvEMn+cu5x2f2VXF9DCZXN8o90uV+8Iyr5tM6bfzxoQEKIpo/6WcqJ2dPTHmdgIsBmuGlFHFK/psMe3ceF6uP9boajqVdNY16QfDRcxtWBi3s7ZUAINOsl8VLdYT/QS5ugRhDVUy6KCnI1RdKvGynYoCiKxOPVxw/58otouKWjpQYYVSWFs+dTXrQj3OczWnxxNSviJykjBQKzkXD3F0cLoPe8eoKdEEX6lJ9VFuFSunZnZeyHuN9TIvNACw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1LAt09LwuuErjZlDSbLgYsROxTlO1yfkMfktsnlLvqA=;
- b=gsCh1KZVzmcXUUsoA/pfBgm6slIWnQyuCwbdmHlnbFP1S3CT631hHbBu2MkrS9M2nOE8BVwvOorkq+JMv/qQT6yv6EO5rXoOob5fjIES2oMeYib11x7F/nL0ihpuRnQGpBs5nKHiGdSNwKQGaReRrgnckNMKLl5pTOb276M2S8aJqZ9cWpO1Sn+SljQGorHNm09DODna2Ifcl7Om2QmWz1NnsJyDCGWHcWeX+jDy/a+EvhkWuHOtwuODY7Z7dTzc89PO6kqceGKyIGK/imKToNB808wnbbsGXYGI5G9pnPheXy427TQXv58qCG6ym4JrRKjVbD2N3hGdwruAJSeOVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
- by DM6PR11MB4707.namprd11.prod.outlook.com (2603:10b6:5:2a6::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Fri, 9 Sep
- 2022 10:53:04 +0000
-Received: from CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::54de:6030:7501:b7ae]) by CH0PR11MB5409.namprd11.prod.outlook.com
- ([fe80::54de:6030:7501:b7ae%6]) with mapi id 15.20.5612.014; Fri, 9 Sep 2022
- 10:53:04 +0000
-Message-ID: <c3241b2c-ed33-fb4f-e50e-7f8e46de301a@intel.com>
-Date: Fri, 9 Sep 2022 19:52:41 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Kees Cook <keescook@chromium.org>
-References: <20220824084514.2261614-1-gwan-gyeong.mun@intel.com>
- <20220824084514.2261614-2-gwan-gyeong.mun@intel.com>
- <202208250848.1C77B9C38@keescook>
- <1d8cc163-2435-42bc-83c8-62648d3c5ada@intel.com>
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-In-Reply-To: <1d8cc163-2435-42bc-83c8-62648d3c5ada@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BYAPR05CA0074.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::15) To CH0PR11MB5409.namprd11.prod.outlook.com
- (2603:10b6:610:d0::7)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A6E3810E2AE;
+ Fri,  9 Sep 2022 10:55:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9F7B4A0078;
+ Fri,  9 Sep 2022 10:55:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4293788615133342531=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5409:EE_|DM6PR11MB4707:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1f28613-6f6e-4f51-73f2-08da92517875
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: O1OcuGckUpCbvrmz7guZVE7qP6KOiek5GP/MaCntk6rXTbX684ytC5Cp5tLcUfBmvI32QYBb6md/VF9GAT7LJrzPRTxyQXYmLP2ZWl640oJvMdHMqHB2c7K3e5sukL/7qqO61q6QWXIMFpRtkps7vijxnE7PaWZ66vwXNhWyVSSxziA8sc5PRRanXNFW6oPG2GHGtDavufGPSOo6qaDmzWs6Tg8DkIXRRU6XnD8cNouya2K/Iz9PuM0R0/MbZC0CR7Dl3x+LcrJA3+Y67c/biKW2AW0kg1qL1Yud6q6McvfYjYXUhgJbHItar5h7/8tLJXe4gPLN6N5f9KqfMyDX5Fw9pfGjgGbAtKqpPthm/R4JO5nFGI4fGWJThc7Pe/ULI72y2cxTLyHPK7d2wEl2Ezk71tXZKFiGl21v/MUft9ZxoJrY75dkY8/FLNxQtqTrymqHgFcNqvG2r9qr268b9VBCufesLA7OaUzBDCk+aE/YLvxGNzu8Qz+9cAzEB95G4BEklHP406dz0MQYVCybuOXNJnq4Z/c9z6YElCeD8JA0Du7I8WmJxxy7hO+9Qyhqgyp3nT3MqHRnsE3NMV90ZOs7D+gsFZ4SNXux5ca5OqtOt9jfpkmnAjUp+OK0qPCYhGJmr3i1b+RsgCeZebVSzW22MCsaWoi+/A7+qPGQLqlwXgBJGaiihaX6+lEbmxZE61JgOG7mYb77u9KImxsFQ0iodfGL8DVIcM8WWbsCo05XRDSC0v6nmwfb3gsfKexkPN/Op0LB43X++1M0/DGa2QV8kXa7nSo0qfgPCxKvkMU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(376002)(39860400002)(136003)(366004)(396003)(346002)(8936002)(66574015)(7416002)(5660300002)(82960400001)(186003)(83380400001)(2616005)(31686004)(66556008)(2906002)(66946007)(8676002)(4326008)(66476007)(36756003)(86362001)(54906003)(6486002)(31696002)(316002)(6512007)(41300700001)(110136005)(53546011)(26005)(6666004)(6506007)(38100700002)(478600001)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TFNuSWZrbHdtbVM3K2lMK1p5RFpkbGI2WEs2Y1RqcTArcHVWb2NoSW9ZVXYz?=
- =?utf-8?B?ZkgyMUsvaDBSMVB3VElaaHVUZXp5NWtZM3U0cjJNaVp6U05CNC9zakhGYWVY?=
- =?utf-8?B?T0RuSGdjUTg2UlgrenhrZzJENElQOU1OMmI1SXFIREx1YzQ4WExURnErOSt5?=
- =?utf-8?B?NXZrcWJZSlBYOHRmNVQ2WHQ0MkQ2dmgyb3VzYUdaMStWanhTYWdJeGZSR1lh?=
- =?utf-8?B?aE1vVFIzYTNlL0U4VEVZeE16MGFnS2gyd0tTcFBUcUorVHNHNTV4Y0piYkVQ?=
- =?utf-8?B?N3ZEOTBzbDFpcFc4VkNyemllZUxOZ1Zld0ZBYlRwOXIwQWpXc0UvbjczZnRF?=
- =?utf-8?B?eTFydG9YM3hCc1ExTGRrbFN1dSt4WXBxbWJaSTlTVjAxcnNyUWZZa1NHUVhy?=
- =?utf-8?B?K1h3YklGWXpEbmFleUVZemwwN0xQMlJHTE80akMrRUxSclhlZ08vbEdabzdR?=
- =?utf-8?B?WWJnQ242N0gvZzRiRVhDY1ZQaE1VaEJLbEJqeWxZTjI1aVdRTHR3cFRHc0Rl?=
- =?utf-8?B?Z1JqZUE3WkpPYW45UjhPTXFyVjNGcjNZNlNBbS9EVm10Z2xlejRqV2grWHU2?=
- =?utf-8?B?RktYYk1KbmtJOTRJVStqdERCU2o2d0JoZ3hVdFU5bEdsM2J2UUwrVzlQbkpB?=
- =?utf-8?B?ZE1BN0pmZ0dKOFFScy92SFhWRXNJR1lmaHBLOGZ3ditnN05iK1VLWmltZ0xX?=
- =?utf-8?B?NlZHU2dEYW1EZ1lyUk05WFc4SmZBYzhBNDRycDFqeDE1U0R6UW9kbC9zNFZi?=
- =?utf-8?B?ZkVBZEhwWVduVkl4b1ZWbzNucDBSTVhCWU1kV3B5MExhejBFS25jUXZaaTJ3?=
- =?utf-8?B?Mng3bzRPZ2I2STNlcmpCMlhSTHh6ckc3Zi84MmE5M2lSL2JmU1pKeFUzMlZj?=
- =?utf-8?B?R0dLY1pOdjhlbFZ1Tjc2MXpzcGhSVzh0K1M2WGRnbGVXSmFIMmJ0OHRLM0hG?=
- =?utf-8?B?SUVmaytYSFJjQ0FEcG82U3R1L3JiN0pPc2VVWlBSVEdPZ2NKMlVsbUF2dlo3?=
- =?utf-8?B?UWhycldUN3NSbG1IdCtMeXk3YUJoWWw1djF1Z01zSUg4OG0rbmx4Sy9lRzIz?=
- =?utf-8?B?WXRJenk5cGthazJNSHFFb3VTMTFLeVd4UmFOOG5Pd242MVN5alBjaDY4UjE3?=
- =?utf-8?B?REtaZjFicUVBYklkaGtJaHZSNmZaU0JPRC90TjFWUnZkNktXY0UxKzlrRllI?=
- =?utf-8?B?TEc2cjZCTXQzb05XZ3lBalUveUJReXk5cTBSZFJ0bjMvSDloYmwvUlBYS096?=
- =?utf-8?B?SldQQTFmOUZZbDUvSEVweU9qSGZHb01rNC9pMS9VTUhLeU5DWmJ1elpXelNP?=
- =?utf-8?B?TTFCeC9MdWVWcUxIZ3MyZDZDZFA3bjhVZVo4U2NwUVk2NWtKcy9LSGJGQjV0?=
- =?utf-8?B?aEtTZWVQamZUR0ZnZXNiWjJRODRpZHFiZzJSK2FVRDNTR21EUE0za3p4NFF4?=
- =?utf-8?B?UkprNitTalF5MjY2bG5TVE16d1NhdjQ2c1VZTEIwQ0dUZFJhU0xCMWtMQTdw?=
- =?utf-8?B?UUhNUStjZEhHdVFWdmljVW5idlZuWGtabW1XdmJWRnVtb01HM0tmNFJCTGRm?=
- =?utf-8?B?cDlJMmdDWGlod3ZpVW1uRUJDSXM3RWxmK2lzcVVBa1lWem0zd0NGT2ZKUnUr?=
- =?utf-8?B?ZnoxUUNLSGx2MTZjeVJNemIwVTJtVHMxVTJMRDJ1UTlwOEJOZkE5K0lNbVNw?=
- =?utf-8?B?OVpQc1I2aWZRZ3pNdkhtNll6a2Y2NHhFWE53aHV3aGJyVmNTV0RTaWhDNnRQ?=
- =?utf-8?B?QnZZTmt4Q2k4QTJidFpZcUxCcTc5VWNxRVF4VEVCa2JuSHhGbU5oOE9FWElF?=
- =?utf-8?B?WHVkaXl5UnZWbS9aS3NtY2xWQjNhODh3dmZ6Y1BlenJWM081SkVjVkdFRVV0?=
- =?utf-8?B?bmYzTUhDQnhIL2h3KzFvZE5qcm82ZDF6c3lHcEVqWG8zNUg5MFdJRkwxOTJP?=
- =?utf-8?B?dVdIaStxMWFGK0xidmNSRDR1QlVRTWNldWZpZlN2ZGR3dVM0VkNJZTNHNDlu?=
- =?utf-8?B?REJNNjVLT2EydFJVaW1FNjIxdkhTQ2txNnJjK2tYVFZDc0xMOHFwcHBoZDZ6?=
- =?utf-8?B?VFNYakhreGlGenFINVhVSEd5YVBZZkhSSWxOYTA5blBQVndBYllwN00zenJa?=
- =?utf-8?B?dE8vdkErd0FpbkhVemYyRGRlR1ZEdEFOMlFOZVJDNmlIaW94K1g0MXB5ZDJZ?=
- =?utf-8?B?R0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1f28613-6f6e-4f51-73f2-08da92517875
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2022 10:53:03.9971 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0D7SlmezfCBmCNVQRyDg6JKbet01IEwvwSQ2VdZKD+tzewX2d5er6SZEWcRht9AX3c5VYmrgL7RHv/HV/prS39eGKw2mI5JOQNOQ+jCBzh8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4707
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v9 1/8] overflow: Move and add few utility
- macros into overflow
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mauro Carvalho Chehab" <mchehab@kernel.org>
+Date: Fri, 09 Sep 2022 10:55:51 -0000
+Message-ID: <166272095162.1363.7976722005144152656@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1662708705.git.mchehab@kernel.org>
+In-Reply-To: <cover.1662708705.git.mchehab@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_fix_kernel-doc_issues_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,277 +40,398 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, jani.nikula@intel.com,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, intel-gfx@lists.freedesktop.org,
- Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk, airlied@linux.ie,
- matthew.auld@intel.com, daniel@ffwll.ch,
- intel-gfx-trybot@lists.freedesktop.org, mchehab@kernel.org,
- nirmoy.das@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============4293788615133342531==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: fix kernel-doc issues (rev3)
+URL   : https://patchwork.freedesktop.org/series/106224/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12104 -> Patchwork_106224v3
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_106224v3 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_106224v3, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/index.html
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Additional (1): bat-dg2-9 
+  Missing    (2): fi-rkl-11600 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_106224v3:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@migrate:
+    - fi-bdw-gvtdvm:      [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-bdw-gvtdvm/igt@i915_selftest@live@migrate.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-bdw-gvtdvm/igt@i915_selftest@live@migrate.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_106224v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gem:
+    - fi-blb-e6850:       NOTRUN -> [DMESG-FAIL][3] ([i915#4528])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-blb-e6850/igt@i915_selftest@live@gem.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-pnv-d510:        [PASS][4] -> [DMESG-FAIL][5] ([i915#4528])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-pnv-d510/igt@i915_selftest@live@requests.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-pnv-d510/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@ring_submission:
+    - fi-cfl-8109u:       [PASS][6] -> [DMESG-WARN][7] ([i915#5904]) +30 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-cfl-8109u:       [PASS][8] -> [DMESG-WARN][9] ([i915#5904] / [i915#62])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [PASS][10] -> [DMESG-FAIL][11] ([i915#62]) +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-cfl-8109u:       [PASS][12] -> [DMESG-WARN][13] ([i915#62]) +10 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-cfl-8109u/igt@prime_vgem@basic-fence-flip.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-cfl-8109u/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@runner@aborted:
+    - fi-bdw-gvtdvm:      NOTRUN -> [FAIL][14] ([i915#4312])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-bdw-gvtdvm/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [DMESG-FAIL][15] ([i915#4528]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-1}:       [DMESG-FAIL][17] ([i915#4983]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][19] ([i915#6298]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [DMESG-FAIL][21] ([i915#4494] / [i915#4957]) -> [DMESG-FAIL][22] ([i915#4957])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5904]: https://gitlab.freedesktop.org/drm/intel/issues/5904
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6471]: https://gitlab.freedesktop.org/drm/intel/issues/6471
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
 
 
-On 8/26/22 10:44 PM, Andrzej Hajda wrote:
-> On 25.08.2022 18:47, Kees Cook wrote:
->> On Wed, Aug 24, 2022 at 05:45:07PM +0900, Gwan-gyeong Mun wrote:
->>> It moves overflows_type utility macro into overflow header from 
->>> i915_utils
->>> header. The overflows_type can be used to catch the truncaion (overflow)
->>> between different data types. And it adds check_assign() macro which
->>> performs an assigning source value into destination ptr along with an
->>> overflow check. overflow_type macro has been improved to handle the 
->>> signbit
->>> by gcc's built-in overflow check function. And it adds overflows_ptr()
->>> helper macro for checking the overflows between a value and a pointer
->>> type/value.
->>>
->>> v3: Add is_type_unsigned() macro (Mauro)
->>>      Modify overflows_type() macro to consider signed data types (Mauro)
->>>      Fix the problem that safe_conversion() macro always returns true
->>> v4: Fix kernel-doc markups
->>> v6: Move macro addition location so that it can be used by other than 
->>> drm
->>>      subsystem (Jani, Mauro, Andi)
->>>      Change is_type_unsigned to is_unsigned_type to have the same 
->>> name form
->>>      as is_signed_type macro
->>> v8: Add check_assign() and remove safe_conversion() (Kees)
->>>      Fix overflows_type() to use gcc's built-in overflow function 
->>> (Andrzej)
->>>      Add overflows_ptr() to allow overflow checking when assigning a 
->>> value
->>>      into a pointer variable (G.G.)
->>> v9: Fix overflows_type() to use __builtin_add_overflow() instead of
->>>      __builtin_add_overflow_p() (Andrzej)
->>>      Fix overflows_ptr() to use overflows_type() with the unsigned 
->>> long type
->>>      (Andrzej)
->>>
->>> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
->>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> Cc: Nirmoy Das <nirmoy.das@intel.com>
->>> Cc: Jani Nikula <jani.nikula@intel.com>
->>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->>> Cc: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
->>> Cc: Kees Cook <keescook@chromium.org>
->>> Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org> (v5)
->>> ---
->>>   drivers/gpu/drm/i915/i915_user_extensions.c |  3 +-
->>>   drivers/gpu/drm/i915/i915_utils.h           |  5 +-
->>>   include/linux/overflow.h                    | 62 +++++++++++++++++++++
->>>   3 files changed, 64 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_user_extensions.c 
->>> b/drivers/gpu/drm/i915/i915_user_extensions.c
->>> index c822d0aafd2d..6f6b5b910968 100644
->>> --- a/drivers/gpu/drm/i915/i915_user_extensions.c
->>> +++ b/drivers/gpu/drm/i915/i915_user_extensions.c
->>> @@ -50,8 +50,7 @@ int i915_user_extensions(struct i915_user_extension 
->>> __user *ext,
->>>           if (err)
->>>               return err;
->>> -        if (get_user(next, &ext->next_extension) ||
->>> -            overflows_type(next, ext))
->>> +        if (get_user(next, &ext->next_extension) || 
->>> overflows_ptr(next))
->>>               return -EFAULT;
->>>           ext = u64_to_user_ptr(next);
->>
->> I continue to dislike the layers of macros and specialization here.
->> This is just a fancy version of check_assign():
->>
->>     if (get_user(next, &ext->next_extension) || check_assign(next, &ext))
->>         return -EFAULT;
->>
->> However, the __builtin_*_overflow() family only wants to work on
->> integral types, so this needs to be slightly expanded:
->>
->>     uintptr_t kptr;
->>     ...
->>     if (get_user(next, &ext->next_extension) || check_assign(next, 
->> &kptr))
->>         return -EFAULT;
->>
->>     ext = (void * __user)kptr;
->>
->> But, it does seem like the actual problem here is that u64_to_user_ptr()
->> is not performing the checking? It's used heavily in the drm code.
->>
->> Is a check_assign_user_ptr() needed?
->>
->>> diff --git a/drivers/gpu/drm/i915/i915_utils.h 
->>> b/drivers/gpu/drm/i915/i915_utils.h
->>> index c10d68cdc3ca..eb0ded23fa9c 100644
->>> --- a/drivers/gpu/drm/i915/i915_utils.h
->>> +++ b/drivers/gpu/drm/i915/i915_utils.h
->>> @@ -32,6 +32,7 @@
->>>   #include <linux/types.h>
->>>   #include <linux/workqueue.h>
->>>   #include <linux/sched/clock.h>
->>> +#include <linux/overflow.h>
->>>   #ifdef CONFIG_X86
->>>   #include <asm/hypervisor.h>
->>> @@ -111,10 +112,6 @@ bool i915_error_injected(void);
->>>   #define range_overflows_end_t(type, start, size, max) \
->>>       range_overflows_end((type)(start), (type)(size), (type)(max))
->>> -/* Note we don't consider signbits :| */
->>> -#define overflows_type(x, T) \
->>> -    (sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
->>> -
->>>   #define ptr_mask_bits(ptr, n) ({                    \
->>>       unsigned long __v = (unsigned long)(ptr);            \
->>>       (typeof(ptr))(__v & -BIT(n));                    \
->>> diff --git a/include/linux/overflow.h b/include/linux/overflow.h
->>> index f1221d11f8e5..6af9df1d67a1 100644
->>> --- a/include/linux/overflow.h
->>> +++ b/include/linux/overflow.h
->>> @@ -52,6 +52,68 @@ static inline bool __must_check 
->>> __must_check_overflow(bool overflow)
->>>       return unlikely(overflow);
->>>   }
->>> +/**
->>> + * overflows_type - helper for checking the overflows between data 
->>> types or
->>> + *                  values
->>> + *
->>> + * @x: Source value or data type for overflow check
->>> + * @T: Destination value or data type for overflow check
->>> + *
->>> + * It compares the values or data type between the first and second 
->>> argument to
->>> + * check whether overflow can occur when assigning the first 
->>> argument to the
->>> + * variable of the second argument. Source and Destination can be 
->>> singned or
->>> + * unsigned data types. Source and Destination can be different data 
->>> types.
->>> + *
->>> + * Returns:
->>> + * True if overflow can occur, false otherwise.
->>> + */
->>> +#define overflows_type(x, T) __must_check_overflow(({    \
->>> +    typeof(T) v = 0;                \
->>> +    __builtin_add_overflow((x), v, &v);        \
->>> +}))
->>
->> I'd like to avoid "externalizing" these kinds of checks when the better
->> path is to catch the issue at operation type (add, sub, mul, assign).
->> Looking at existing users, I see stuff like:
->>
->>                  if (overflows_type(item.query_id - 1, unsigned long))
->>                          return -EINVAL;
->>
->>                  func_idx = item.query_id - 1;
->>
->> This requires too much open-coded checking, IMO. It's better as:
->>
->>         if (check_assign(item.query_id - 1, &func_idx))
->>             return -EINVAL;
->>
->> or other similar:
->>
->>          if (overflows_type(user->slice_mask, context->slice_mask) ||
->>     ...
->>          context->slice_mask = user->slice_mask;
->>
->> and some that don't make sense to me. Why check argument types? Is this
->> trying to avoid implicit type conversions?
->>
->> So, if it's _really_ needed, I can live with adding overflows_type().
->>
->>> +
->>> +/**
->>> + * overflows_ptr - helper for checking the occurrence of overflows 
->>> when a value
->>> + *                 assigns to  the pointer data type
->>> + *
->>> + * @x: Source value for overflow check
->>> + *
->>> + * gcc's built-in overflow check functions don't support checking 
->>> between the
->>> + * pointer type and non-pointer type. And ILP32 and LP64 have the 
->>> same bit size
->>> + * between long and pointer. Therefore it internally compares the 
->>> source value
->>> + * and unsigned long data type for checking overflow.
->>> + *
->>> + * Returns:
->>> + * True if overflow can occur, false otherwise.
->>> + */
->>> +#define overflows_ptr(x) __must_check_overflow(overflows_type(x, 
->>> unsigned long))
->>
->> I'd rather not have this -- it's just a specialized use of
->> overflows_type(), and only used in 1 place.
->>
->>> +
->>> +/**
->>> + * check_assign - perform an assigning source value into destination 
->>> ptr along
->>> + *                with an overflow check.
->>> + *
->>> + * @value: Source value
->>> + * @ptr: Destination pointer address, If the pointer type is not used,
->>> + *       a warning message is output during build.
->>> + *
->>> + * It checks internally the ptr is a pointer type. And it uses gcc's 
->>> built-in
->>> + * overflow check function.
->>> + * It does not use the check_*() wrapper functions, but directly 
->>> uses gcc's
->>> + * built-in overflow check function so that it can be used even when
->>> + * the type of value and the type pointed to by ptr are different 
->>> without build
->>> + * warning messages.
->>
->> This is a good point: the check_{add,sub,mul}_overflow() helpers
->> currently require all the params be the same type, which rather limits
->> their usage. Perhaps this can be weakened now that we're not using[1]
->> the fallback logic any more? (Separate patch.)
->>
->>> + *
->>> + * Returns:
->>> + * If the value would overflow the destination, it returns true. If 
->>> not return
->>> + * false. When overflow does not occur, the assigning into ptr from 
->>> value
->>> + * succeeds. It follows the return policy as other 
->>> check_*_overflow() functions
->>> + * return non-zero as a failure.
->>> + */
->>> +#define check_assign(value, ptr) __must_check_overflow(({    \
->>> +    typecheck_pointer(ptr);         \
->>> +    __builtin_add_overflow(0, value, ptr);    \
->>> +}))
->>
->> But yes, this looks correct. I really like it. :)
-> 
-> 
-> One more thing, I suspect __builtin_add_overflow checks already if ptr 
-> is pointer, so typecheck_pointer seems redundant.
-> 
-thanks for check in detail.
-I'll remove redundant code and send new version.
+Build changes
+-------------
 
-> Regards
-> Andrzej
-> 
-> 
->>
->>> +
->>>   /*
->>>    * For simplicity and code hygiene, the fallback code below insists on
->>>    * a, b and *d having the same type (similar to the min() and max()
->>> -- 
->>> 2.37.1
->>>
->>
->> -Kees
->>
->> [1] 4eb6bd55cfb2 ("compiler.h: drop fallback overflow checkers")
->>
-> 
+  * Linux: CI_DRM_12104 -> Patchwork_106224v3
+
+  CI-20190529: 20190529
+  CI_DRM_12104: 5c4fd00a7d3762801991034aa3e87967541ecb02 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6649: 7d91a6952dadaa9001b662ed60c08ccb8364929d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_106224v3: 5c4fd00a7d3762801991034aa3e87967541ecb02 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+5e82c9a413d7 drm/i915: be consistent with kernel-doc function declaration
+b1f949c37107 drm/i915: add GuC functions to the documentation
+851418920e68 drm/i915: add descriptions for some RPM macros at intel_gt_pm.h
+797aaf577b0e drm/i915: document struct drm_i915_gem_object
+a93b552953da drm/i915 i915_gem_object_types.h: document struct i915_lut_handle
+043aa29847d6 docs: gpu: i915.rst: add the remaining kernel-doc markup files
+8e69aadc7bba docs: gpu: i915.rst: GEM/TTM: add more kernel-doc markups
+7a0329ce783b docs: gpu: i915.rst: PM: add more kernel-doc markups
+f2a05cbb206b docs: gpu: i915.rst: GVT: add more kernel-doc markups
+269738f90300 docs: gpu: i915.rst: GuC: add more kernel-doc markups
+034a0d12557e docs: gpu: i915.rst: gt: add more kernel-doc markups
+036124b2b73a docs: gpu: i915.rst: display: add kernel-doc markups
+ec602b50dfab drm/i915: i915_deps: use a shorter title markup
+2e15aa86fd2a drm/i915: i915_scatterlist.h: fix some kernel-doc markups
+01fd0cdeb6a4 drm/i915: i915_gem.c fix a kernel-doc issue
+0e97779d8d42 drm/i915: i915_vma_resource.c: fix some kernel-doc markups
+450849af529f drm/i915: dvo_sil164.c: use SPDX header
+e6b39a56976b drm/i915: dvo_ch7xxx.c: use SPDX header
+99f37ff5131b drm/i915: stop using kernel-doc markups for something else
+abf6ffdbc662 drm/i915: fix i915_gem_ttm_move.c DOC: markup
+c94dfd402e0c drm/i915: i915_gem_wait.c: fix a kernel-doc markup
+fe4ed185d65d drm/i915: i915_gem_region.h: fix i915_gem_apply_to_region_ops doc
+ad7fe51847c9 drm/i915: intel_pm.c: fix some ascii artwork at kernel-doc
+9665132e6b2e drm/i915: skl_scaler: fix return value kernel-doc markup
+7f2096183507 drm/i915: intel_fb: fix a kernel-doc issue with Sphinx
+55f3570c03c8 drm/i915: intel_dp_link_training.c: fix kernel-doc markup
+9241d9524ac0 drm/i915: document kernel-doc trivial issues
+ccb19ded4e30 drm/i915: i915_gpu_error.c: document dump_flags
+bfb3126d1e54 drm/i915: gem: add kernel-doc description for some function parameters
+a1c1655903f8 drm/i915: i915_gem_ttm_pm.c: fix kernel-doc markups
+141f823a654b drm/i915: i915_gem_ttm: fix a kernel-doc markup
+b3ea60642114 drm/i915: intel_wakeref.h: fix some kernel-doc markups
+2f080506cce0 drm/i915: gem: fix some Kernel-doc issues
+eedcc11298f0 drm/i915: gvt: fix kernel-doc trivial warnings
+74b452225a8b drm/i915: gt: fix some Kernel-doc issues
+b23f0b144016 drm/i915: display: fix kernel-doc markup warnings
+7bc40fa46ad8 drm/i915: fix kernel-doc trivial warnings on i915/*.[ch] files
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/index.html
+
+--===============4293788615133342531==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: fix kernel-doc issues (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106224/">https://patchwork.freedesktop.org/series/106224/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12104 -&gt; Patchwork_106224v3</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_106224v3 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_106224v3, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/index.html</p>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Additional (1): bat-dg2-9 <br />
+  Missing    (2): fi-rkl-11600 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_106224v3:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@migrate:<ul>
+<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-bdw-gvtdvm/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-bdw-gvtdvm/igt@i915_selftest@live@migrate.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_106224v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-blb-e6850/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@ring_submission:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a>) +30 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-cfl-8109u/igt@prime_vgem@basic-fence-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-cfl-8109u/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-bdw-gvtdvm/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/bat-rpls-1/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12104/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106224v3/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12104 -&gt; Patchwork_106224v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12104: 5c4fd00a7d3762801991034aa3e87967541ecb02 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6649: 7d91a6952dadaa9001b662ed60c08ccb8364929d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_106224v3: 5c4fd00a7d3762801991034aa3e87967541ecb02 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>5e82c9a413d7 drm/i915: be consistent with kernel-doc function declaration<br />
+b1f949c37107 drm/i915: add GuC functions to the documentation<br />
+851418920e68 drm/i915: add descriptions for some RPM macros at intel_gt_pm.h<br />
+797aaf577b0e drm/i915: document struct drm_i915_gem_object<br />
+a93b552953da drm/i915 i915_gem_object_types.h: document struct i915_lut_handle<br />
+043aa29847d6 docs: gpu: i915.rst: add the remaining kernel-doc markup files<br />
+8e69aadc7bba docs: gpu: i915.rst: GEM/TTM: add more kernel-doc markups<br />
+7a0329ce783b docs: gpu: i915.rst: PM: add more kernel-doc markups<br />
+f2a05cbb206b docs: gpu: i915.rst: GVT: add more kernel-doc markups<br />
+269738f90300 docs: gpu: i915.rst: GuC: add more kernel-doc markups<br />
+034a0d12557e docs: gpu: i915.rst: gt: add more kernel-doc markups<br />
+036124b2b73a docs: gpu: i915.rst: display: add kernel-doc markups<br />
+ec602b50dfab drm/i915: i915_deps: use a shorter title markup<br />
+2e15aa86fd2a drm/i915: i915_scatterlist.h: fix some kernel-doc markups<br />
+01fd0cdeb6a4 drm/i915: i915_gem.c fix a kernel-doc issue<br />
+0e97779d8d42 drm/i915: i915_vma_resource.c: fix some kernel-doc markups<br />
+450849af529f drm/i915: dvo_sil164.c: use SPDX header<br />
+e6b39a56976b drm/i915: dvo_ch7xxx.c: use SPDX header<br />
+99f37ff5131b drm/i915: stop using kernel-doc markups for something else<br />
+abf6ffdbc662 drm/i915: fix i915_gem_ttm_move.c DOC: markup<br />
+c94dfd402e0c drm/i915: i915_gem_wait.c: fix a kernel-doc markup<br />
+fe4ed185d65d drm/i915: i915_gem_region.h: fix i915_gem_apply_to_region_ops doc<br />
+ad7fe51847c9 drm/i915: intel_pm.c: fix some ascii artwork at kernel-doc<br />
+9665132e6b2e drm/i915: skl_scaler: fix return value kernel-doc markup<br />
+7f2096183507 drm/i915: intel_fb: fix a kernel-doc issue with Sphinx<br />
+55f3570c03c8 drm/i915: intel_dp_link_training.c: fix kernel-doc markup<br />
+9241d9524ac0 drm/i915: document kernel-doc trivial issues<br />
+ccb19ded4e30 drm/i915: i915_gpu_error.c: document dump_flags<br />
+bfb3126d1e54 drm/i915: gem: add kernel-doc description for some function parameters<br />
+a1c1655903f8 drm/i915: i915_gem_ttm_pm.c: fix kernel-doc markups<br />
+141f823a654b drm/i915: i915_gem_ttm: fix a kernel-doc markup<br />
+b3ea60642114 drm/i915: intel_wakeref.h: fix some kernel-doc markups<br />
+2f080506cce0 drm/i915: gem: fix some Kernel-doc issues<br />
+eedcc11298f0 drm/i915: gvt: fix kernel-doc trivial warnings<br />
+74b452225a8b drm/i915: gt: fix some Kernel-doc issues<br />
+b23f0b144016 drm/i915: display: fix kernel-doc markup warnings<br />
+7bc40fa46ad8 drm/i915: fix kernel-doc trivial warnings on i915/*.[ch] files</p>
+
+</body>
+</html>
+
+--===============4293788615133342531==--
