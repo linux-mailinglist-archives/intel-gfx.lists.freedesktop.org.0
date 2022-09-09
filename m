@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 305CC5B3271
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 10:57:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D4B5B3273
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Sep 2022 10:58:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B74B910E5FB;
-	Fri,  9 Sep 2022 08:57:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB32510EA27;
+	Fri,  9 Sep 2022 08:58:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4631A10E5FB
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 08:57:45 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F18910EC38
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Sep 2022 08:58:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662713865; x=1694249865;
+ t=1662713922; x=1694249922;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=DXoUQ+Awb7vej/N/B16saMb1m40DphS3LxK7nisjraw=;
- b=VRZ7ocmco6gZvMoQncm/zKYoSJwylVc/NK2MXAh+DQfq9Q2z394/i6Zz
- 0KjdhbI2t43WhgpeuTYJfLi+eeVcavtE5VyTbgMswCE5VGdgFZgUFmwt9
- 4Hq6sc5p84h9UM704MGTHEIe9uajQawa/6nMWau5cVzRiQt+ytLQXOUlN
- IOvFfOaH3qgkRz9mSDG36h0LLMilliH+CDNfjPgzFjhL/cLsBqpUVOQ+Y
- JTxX0koZlmXqQf82M4ja85a0gyN3nLzxrZ/ReXbFxR+CEbtOyyZTk0JZk
- nc+68ZFQS6VOD19MpKRMWVr+knpK974wRvzFPon7HNV6IF6WgFAHzjgyx w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="295012370"
-X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="295012370"
+ bh=SwMBjIdV7BVvtlQqKiT5SudK/8U7XKe8Y2/HV254bgE=;
+ b=bIId9hp+R/55araA1fMHOPFC0mg/z8ZT9J44duaFpr2JHMunw0IctaFD
+ jSL0ujs+n0C2z0N2BEjVkuL7p3FTF/lj+yaWe++Ur8/ZkL1aHZ5obJV5H
+ b06SrLdGXjNdVt+aU5mmxCN8ocN+lnsC1/BKofX6q2NYf0oNiL4AC3rcR
+ PRGnjjxF/nJa0j10vmbrRp5NjGlnNLCjfCNogqQNre35AAPpSTd6cur9Z
+ cKFpjKGY+y5/HPWwcZ7CXvOcDqGcByugxB5NaUPBlLKgnKiD9z7FmIQsL
+ PMFEUZBD83LwbVGQ40oLXLT6qAfoPpgjlrNjCatQHB5/DI0afwU32e+3s g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10464"; a="296168074"
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="296168074"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2022 01:57:44 -0700
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2022 01:58:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="645460108"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga008.jf.intel.com with ESMTP; 09 Sep 2022 01:57:44 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; d="scan'208";a="645460215"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga008.jf.intel.com with ESMTP; 09 Sep 2022 01:58:03 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 9 Sep 2022 01:57:43 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2375.31; Fri, 9 Sep 2022 01:58:02 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 9 Sep 2022 01:57:43 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ 15.1.2375.31; Fri, 9 Sep 2022 01:58:02 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Fri, 9 Sep 2022 01:57:43 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.170)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Fri, 9 Sep 2022 01:58:02 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.176)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Fri, 9 Sep 2022 01:57:43 -0700
+ 15.1.2375.31; Fri, 9 Sep 2022 01:58:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cegayyu4/zC0/I2RpXyuVej+naO8EF7RiPd0jQQUllrZm37cHOLTyANCqA1LiKB7YzvRkiEW2SR7gg3hovfmsAHVCKja+U9nSRWyQSfASrA6fx9C5nLqfP6jtmk01FzJQLHsnpa0sH3Grn5SsXIoFYVuh5BdIdOkh4Vwb0H17OzKPliUYTq4IoYir+bhCdbNYWUHI7e5Bmp9ux7T/fftzh4avJHKa2EKL08m4HCWPcRARmSFcyajoUoKTKzI5Grn57s3TUrQEzI9hcDu6CSknPGA65D6IUQI3VDFe0CGGcUkkUzLFlpqD1QVzNMnd53kXKw9xILIp0mZ651sL9Ts7w==
+ b=kXhJED8rCsP1nIchrblxXs2oN4Rp8+Pgxr1D9OnIKep4q63jK6R9Jr5b45PLDH9aiYEtqU7rptAYzb4GWPmuvLO0S982ZoCO1WfzvVK2Z8yI4YVjU6SEXqX+l0kheO4cY0GWnsv3J4OjNPAnX63Nis7/Z5b7I0aozxBGi9r/geYdEEWYRafBtajMYvlCLG3KvlgV9XxUa6o70HTwuPwQbjpx5mA9hlH7xz3tOYGiIQJ98JB4nK+5GpsROv5sO4ZvSHQEkCcJo0bZCizh9Ea6JxNUbkWhnsUOMdthIvJCXS2HSuot0cDj9sEDCgxofVJPSkoFxKfeRRkKHgiZXcjsHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5nC6PI7DlQov4dxmGkTpOMVv5kUCj7bmgJQFki/V7kc=;
- b=bZY/YKq7HvaC5986CnrTuFdAbrJViueZ2MThf4iXhHaN4x1ti3EqrcW4uGpp9NiEbAHSO+vzXXvbHd1hTRv3zchBW4MeW8V24fRwpKo0wsXoFyDXnQs1me3sk+9961bS/sVcTikRAZnrkO1pCiBLslUGW1mKMz0ItxkbJbvm1qYoHzJzy5A5Kkjyjc/h9RlWwCKEBeKgbEjPkLELr/VMHPN8VO6C8OtO42lg8RjlZ5N6DiU5Lp1c7J4aveDiVNgQj2kDwYUg2PADC0x3kJPXhmVG8p45w2wTpnluB1oF/OfYcFaoJHa+Am9+Stun+OAercS9V2dW+0tqtDXjsFM3ww==
+ bh=+gjIizCJK/S5AYr5lm1lrzraH6/XWGz+TXnnTeHXamI=;
+ b=L4g8chdOOv8V7oC1IYld5LwZAYqo2j4y5jh9eMIbkHii8OYoshwVbUXG/bFgX5QbmUyUqlJBnDxfvOFfE4+Fn4B+pwLG3Uh5L1fG060V9aJMzWPKwiKPStIJXcRAbQLRFgIz66WqbuHB+3mcd9FUVntdpX7nMt6ye+P2leLxJfq3hkq0ESl8DtdW6aIprlW1YwBFl1a9rGdGTyM1vuLy7+BlVqHcn2Rj1cmlirAOnCaDpfZnwweDkWlah8/rCu0jXkgBa+jzwHK8SzhwRi9eYzIB8g4LwegwdkfrRpxPEiG+iaTPc4uUZcEIXS0vrzc/90SXWHapvLQy0lhAj8Zs0g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -63,21 +63,21 @@ Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
  DM4PR11MB6215.namprd11.prod.outlook.com (2603:10b6:8:a9::11) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5588.17; Fri, 9 Sep 2022 08:57:42 +0000
+ 15.20.5588.17; Fri, 9 Sep 2022 08:58:00 +0000
 Received: from DM6PR11MB3177.namprd11.prod.outlook.com
  ([fe80::3083:6b7c:8c2a:c200]) by DM6PR11MB3177.namprd11.prod.outlook.com
  ([fe80::3083:6b7c:8c2a:c200%5]) with mapi id 15.20.5588.018; Fri, 9 Sep 2022
- 08:57:41 +0000
+ 08:58:00 +0000
 From: "Murthy, Arun R" <arun.r.murthy@intel.com>
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2 1/3] drm/i915: Define WD trancoder for i915
-Thread-Index: AQHYtf+40s+GjcLnfkibd/8R/c1yS63Wx0hA
-Date: Fri, 9 Sep 2022 08:57:41 +0000
-Message-ID: <DM6PR11MB3177686D56259B3554812B48BA439@DM6PR11MB3177.namprd11.prod.outlook.com>
+Thread-Topic: [PATCH v2 2/3] drm/i915 : Changing intel_connector iterators
+Thread-Index: AQHYtf+3tfWGzel66UyyRKUMkuBj+q3WyEkA
+Date: Fri, 9 Sep 2022 08:58:00 +0000
+Message-ID: <DM6PR11MB31770B8E7CB63253231ADB98BA439@DM6PR11MB3177.namprd11.prod.outlook.com>
 References: <20220822081642.159908-1-suraj.kandpal@intel.com>
- <20220822081642.159908-2-suraj.kandpal@intel.com>
-In-Reply-To: <20220822081642.159908-2-suraj.kandpal@intel.com>
+ <20220822081642.159908-3-suraj.kandpal@intel.com>
+In-Reply-To: <20220822081642.159908-3-suraj.kandpal@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -88,60 +88,60 @@ dlp-version: 11.6.500.17
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d6c95e02-7c4d-422f-cc50-08da92415a9e
+x-ms-office365-filtering-correlation-id: 37ceede5-da17-428a-af7b-08da924165fd
 x-ms-traffictypediagnostic: DM4PR11MB6215:EE_
 x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Uv4oaB23nPVQcZcd7uAd6YjljqbgIn1K1beUBkKBX2ZlCyOymDTJVr9SCkJ0Nw8NS1JVh7ydDWo+DYnSF/iyBL3yUTZW2FzNaWtyaq0nyY0gplF+wIFjribG0Lt9mWUsv4f7kTaivHzH3vTuXzcBHFj2wpj15mKgUs5ETSe8bo37/Sx6a1YttUjtP2ITCMFzAV1c5GZik7LshNlrURckYSTKJ670t9UWL20/WfIQI11qs/mARjWWcvy8Xy56Rtvan5p36Iq7Rt62nIipobmcAV90076d2cUeoJj9S6KeeyJ6XnIYGTBIJrYInbOsGw6mst7KpHdqrHs1xs/VUx5uC8L9TCBrvV0cYbb41JMdE9u4FyKNWYrPRVBULK2w35/gAxNiB5MfW8GNqqzLvIEheguiMeXQoMwtYNBhVvcBAlVQi9/musGIAXNGozGW7HR6bqCbeZ6dByPQN3/9nXQDYbFF1k8flpiZ1WFxsnzkxeWmP9AfIS4IqPUAjdvZQFKUdvnZTTHXZ1ruc60eivCvvZRqWN3XRxnJv8BXGuA1drBv3KFQvNOu0+6HVyGW1fJZb/rDKFfY04SU5jfivcxr0XsILzM33AJMY7duu/GVDCkDcR10sQVseTWj+VHVcoRoJjDcVSmx3zhTW6JWWolOxbTcounGn+upnkVenDRs8oix3MQJr94lVL/oBNV2DCPW9xz2OlINN9hUepk06sj1CydvtZCZ5sVU9zoAl9ZMZiV14/c2cQfXLUJsyuucNV8kL2s8eLyiUt3gwuGXK/tJsA==
+x-microsoft-antispam-message-info: N61DRroBTDSnVSbcedYbx+4dj8Iz+cmsvYmjo4BMaK22j1+oA6utpaRFpUWnSW5y/QZAI59dUt3Ja+eTFQ+4PhvAmKd6fC1JCv21QmdSgfpRBPgs++9hrp2bvaZ4rbR2lwcl3ecGiZvyfcaHNXueuvzDNgj1EknKIgZSiodSRiiRi+qLq05wtn+KrKwMAGhh/AMmpmGMU+t6Vtu6mGcCaGbUzbY/KxU/FsIDabCFlmkRY/D8x24yUyk6zQ1F/FyAqdCJXniuAT/TKKFA6DTJTafT16W6zL6OTuPxovUbNCEL/4ig2QrGgaESeSzdwNoo7ARdyWhFIb5F6I4YA/y3u/D7S7SChx4R2e4E/jChxG8sIB5jpPjjUz5MEhQENJ4XlwVDIN2jXYce9AhtDecP4U91uf+Gywhm9fHIZU9XFFdn7x76cdewH97VoT7DCyK673XS3Q1hDLOWqSUabyCd+YIS/LJMIkE0jQAE6jJTWkjsX4kSzG96isEK91NlpWbxMxeHOtxzMzZuwl9HW8bCPkaKKhDf/KLY62iV1SpGd//RBAqwSghK0wa9jVf0w1Oxzj1xjZCm1PHXwS6rgXlQTFWARPIs8zMEf1nIwMYHGXJNnx89Wk/QxplFRVg+grKvTqIwBATZDlAfujCu1rIptrLMLmkhNu1A78Nd42F6dRr5SG+n/lRoDgplYcO7LQ6cK0kcCG3cQ9JC95Oxb8wYfx128M3o+g3tZLxNLQB+GLBB0nDvXgHQFEfrWje9aL+9M2l6SBG9pBxa0ThR7pE1UQ==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(366004)(396003)(346002)(376002)(136003)(39860400002)(316002)(71200400001)(38100700002)(110136005)(54906003)(186003)(122000001)(107886003)(7696005)(86362001)(55016003)(4326008)(66556008)(38070700005)(66476007)(64756008)(2906002)(6506007)(66446008)(8676002)(66946007)(41300700001)(8936002)(9686003)(26005)(76116006)(478600001)(5660300002)(52536014)(82960400001)(33656002);
+ SFS:(13230016)(366004)(396003)(346002)(376002)(136003)(39860400002)(316002)(71200400001)(38100700002)(110136005)(54906003)(186003)(122000001)(107886003)(7696005)(86362001)(55016003)(83380400001)(4326008)(66556008)(38070700005)(66476007)(64756008)(2906002)(6506007)(66446008)(8676002)(66946007)(41300700001)(8936002)(9686003)(26005)(76116006)(478600001)(5660300002)(52536014)(82960400001)(33656002);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?rmPMbMe4+4WxlLxRcpAGyU4nQNN5NBf/6EsSgPFe0p/4BvGjr64prLnlbhBr?=
- =?us-ascii?Q?lud3a7WpiPb1I9CO43S8Lo/aWTgi32Nba2HJ+rgIu9bzF2csqSQQ5NGEsSTP?=
- =?us-ascii?Q?yLNoxwfx/MR8f/eWYmxQdwt6jzLQBiFZxOsJddtC6ts+j+xubQ2fcKvsr2Cm?=
- =?us-ascii?Q?ZbJjwc9s1ffILM1dxpThpcIY0pq5SgC2ejvxfpk3ZPAcE8x8aiW8BlY6SC43?=
- =?us-ascii?Q?lDgAa/CYC4Aq1T83OGS1dMtjYzaA6M5zJ9PQ1kN4F+YwdrsMCwfqFhd1JRWt?=
- =?us-ascii?Q?NckOYO/uBvpoFX1I9VF/SxXrKDLID7NSfLPe1//27FyWSv66tPE9pFJtNjhb?=
- =?us-ascii?Q?PTZjyt9bIio1B8ogymWgoZEqTlpply8DiB5QtP6aYoktzA5b4Siq+UjET7Cu?=
- =?us-ascii?Q?QKEy3JcURAFONRkkh3mqRhSel0EUfBZmmZN2mhSHCN9C4f79h9GMgomznzBy?=
- =?us-ascii?Q?8HBff506Kc6RFC7b4g64Q/OV9R7HNpUM249789S4dAsNiryOl4tPyHYkRK7Y?=
- =?us-ascii?Q?vnE/bmPPR1fRpQ5CJ6XsHXOH46qY1wyh5xPp/sGgFCKz9bE7pe6r2ZvkHaoo?=
- =?us-ascii?Q?PsI7IYnL8CmPoeLRTP47/pK6SM2iXDVjSPCbI47/g9TPZRn5ukUAIh4lvnRG?=
- =?us-ascii?Q?UKU7KEzt7eh1w7MzhwsljO8vRllw5ggIBDwpsiM+SioiNlCVvvrQWqmXfJYj?=
- =?us-ascii?Q?FBpBMrtvwS6d7S2HIoV5SAM/Kin3/oFE9o4ETV48iTpwAXBe4PuvcMKvuklL?=
- =?us-ascii?Q?XiugVHqJJYKzvaSHmT0G4E5HOdd7y38u4CK0kErh9aH18pbAS6qFcueRlyKk?=
- =?us-ascii?Q?6jS2mej/ZvGAaCOsuLp+FjeBW6ou57VNydbvPSChcxs511KGJhlwS7ubRAC8?=
- =?us-ascii?Q?UjGOrN1iVuiD4psijLPsvX8RfdO8pQkdKtaQf6RB1AlAUdp9vbGnwA+QGsak?=
- =?us-ascii?Q?WTyOFXVKbXkStp9xPQP7jSxeCuJfRB5Bl9+L3Vc1j7hdatqlV38jbIDNg+mX?=
- =?us-ascii?Q?Z9RjatUGLV8GKsqeoxeF/vWvSszY3euxBXtPgPBywIumLFXD7CjMWv9884D7?=
- =?us-ascii?Q?BSMew33DmIblNxoK1MQtlGzgV2jESM6k19q8OncSdoPBhmYG0CgQyHBx9ABp?=
- =?us-ascii?Q?yLBKDnc0Xl7jOTEUAkvsC4zeciGvvQppaHlkclx1msk+z4A8k3f5jwBvou7w?=
- =?us-ascii?Q?qln9Gs/au+A3dnzP52Vgu7fBKYlBs8AAflafGmBRXkXoOkwilE6JITsclkAG?=
- =?us-ascii?Q?Ub4RP6iw/7L7tchMYikG8T00Q88nkrN3D/6yYqwmNk4i/HQQMKNvTGzh7mj6?=
- =?us-ascii?Q?SNdTha6ds91YhBNlVPyiL1UR/4ducNCIhY2BJzl6tpzJI2luHacSKvQq/FbR?=
- =?us-ascii?Q?RDkT2MpE7lfgzCSWyeEujNv6qrZnI8vvlIxCeNg8m5xnHBLC3opu9ZNdplEh?=
- =?us-ascii?Q?DsmS5eYb2mmyxy5aAlg4F0O38PzjgKZJqpyz/VF7NDelFWfeKR1tmYnlwG98?=
- =?us-ascii?Q?wH7pLLggPQowK4/QK6yMubfyey5A745fGK0XkIZFEFThdhRhQ0fIIFbQjso/?=
- =?us-ascii?Q?EE9vxRNjbmy3sKHOydZglQ7vxqfxe+qV0YIOxw61?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?tNRredt5QzkP48HunTYjbTEPgxgf2WUUxYP3nG/0Xrd2NxArzzTNJnS5jpr+?=
+ =?us-ascii?Q?+TqeqI0Ccv9rZqbQFCj24P/QuExjXCXkUDrURTU/GlGXmm7+spmYbEQU4YEq?=
+ =?us-ascii?Q?OTnFiumbmGNjvd6TE8Kvdc00y9BMbRVqifBtVYaS5SLZaAJ0InAcGOPk2DgI?=
+ =?us-ascii?Q?jzB1t7bmrgFx/MrPvykmV7yrhkeyrcmtysqToC1MF0ec419EO2n+l3FmhrnE?=
+ =?us-ascii?Q?MOTyLRNwPeVNDA3G57Z5CchmnNLbZJ5EGtXe2Ol2BQ4ZihWWYqzxBUhNvCgV?=
+ =?us-ascii?Q?7QZlezDJKpnHq7zNqSHes7YJQCgF7Xp+5G3qzegwfM8tIJeXRQFOtc4Dq0Hq?=
+ =?us-ascii?Q?+6q2Kx2QBBmQWQ3ud2VoTVCjKqsDtGS0ye/tIEyuo/0p7F67Wf/YMYMH/kT4?=
+ =?us-ascii?Q?W6GxoFAo8wc5DF6UZYp088Jyl3vjNMSVNDvz1WiJxyvoeNQTOU/PlGnRS8ma?=
+ =?us-ascii?Q?GoPz2TMawfkfDcK4W3HFMArBm20RiK7zTxeAHIg4u9RXGcWsJT1qxYtQognZ?=
+ =?us-ascii?Q?x71jCkIwEvsD/V6pXbRyZyo43kRZ+YyRWjwN4MYA5XjD2HepKMY4aDfj7uCC?=
+ =?us-ascii?Q?LVAl2hW6Zk6qWPRXL/LSLVqRURr5VEOw2i3yTC2WZ5T61Uyddk2VCiV/SGNj?=
+ =?us-ascii?Q?i0YKocHgZkuS0eiuCXyaOIRNdRVnx4cTtcndkfwnNDPDNK4hNVECwWyCtq/m?=
+ =?us-ascii?Q?nCPul1JPPWpBk/iin6wXD9I3j5uh0OfIvqPR6i62EReUHPArl7vBV5iptpEA?=
+ =?us-ascii?Q?nBqrWNVflmNKzh8oH1q79zM6ElEATC78o1rVdA78isWa4pdONrVBpmUn0SCl?=
+ =?us-ascii?Q?3aKtuGFFhBjSI9xwuOboDXgvjCH8y5FWE4CHPYoAM+sknGKvrQ9I3AUy0tLd?=
+ =?us-ascii?Q?HFawUPMvWe0VHlZEt5OsaXrnFp28wCF7K+Edw9JuK+3svNqHFZi9CNUQIcpd?=
+ =?us-ascii?Q?83aae6Vm995DJmCJD0J+heZv+obntQMX/LoXmKbXTSeUZg90hx0IEVqNzh7I?=
+ =?us-ascii?Q?QbryuuuB/YaqAsSiWan+HPQpdCZT7Y7pbLEDTh7XONfSFUeaBYBLAhggqlvD?=
+ =?us-ascii?Q?DfFHD8K4/IvpztZfxvDGcb7bLb7Ue3Jy6yHWp75CfsSlUgAsCuzpi5OEvrLD?=
+ =?us-ascii?Q?5jfZWqIsaYyVEYAhrKrjAnNh3KQS89WywWKhoh8DMWvmXupeEYqb82EL8XpR?=
+ =?us-ascii?Q?i3mKAPh2wey382LOWfqMMPwCHpKuc14M6U5ZjpDfuV0PVkmmZONprpSaE/7N?=
+ =?us-ascii?Q?Y4uHIFmXfjelWB09FZpG2u0CCu+SFt2T+pwnJkyNrv9xP7Hi8N1Oj+LCzNYs?=
+ =?us-ascii?Q?Tp4GBUHKNYX+NHOYXiczp+dFK8F6H4DsJOJyYsYZrs/k2DHI2YFigxnRWrRw?=
+ =?us-ascii?Q?lAgQucb/Yl2JiafZXeCItgKiqU+jDnW1b1OqSnMRmABZHofPvjVRnOj1+9sp?=
+ =?us-ascii?Q?vwZXDfYoT4wYDqxrvOOgStMLFOLG4JD6wAf0eSR+zZx7r6qsO7uPD1zDg17Q?=
+ =?us-ascii?Q?SaPKA7FEBMv5hmQCNADsloFjRsXXeUGHZNXFAixUtg6dt8dcgsZY6JVCvi8M?=
+ =?us-ascii?Q?BoHmUzuwHRPIaL3CF9nwebpkYYLCznlxSI24FEJP?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6c95e02-7c4d-422f-cc50-08da92415a9e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2022 08:57:41.7076 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37ceede5-da17-428a-af7b-08da924165fd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2022 08:58:00.6906 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YxALukZOmQqEmn+ddCi8nHa95XlHpyLeFHq2tvAt/A8sRC5SHP8U/3/KUh+ZnV3GzgcHCMw5+Nk7etsr0HViXA==
+X-MS-Exchange-CrossTenant-userprincipalname: dJlCLmOYRBELVmgTOKTFyZa9kz4yxzN/zICk6eAG0QgnO6vn/Pos7Ym18BKz59k2B/iJCelazQHbqaFhiI0unw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6215
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915: Define WD trancoder for
- i915
+Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915 : Changing intel_connector
+ iterators
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,246 +160,144 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 > From: Suraj Kandpal <suraj.kandpal@intel.com>
 >=20
-> Adding WD Types, WD transcoder to enum list and WD Transcoder offsets.
-> Adding i915 register definitions related to WD transcoder
+> Changing intel_connector iterators as with writeback introduction not all
+> drm_connector will be embedded within intel_connector.
 >=20
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.h  |   6 +
->  .../drm/i915/display/intel_display_types.h    |   1 +
->  drivers/gpu/drm/i915/i915_reg.h               | 139 ++++++++++++++++++
->  3 files changed, 146 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_display.h  |  7 ++---
+>  .../drm/i915/display/intel_display_types.h    | 26 ++++++++++++++++++-
+>  .../drm/i915/display/intel_modeset_setup.c    | 16 +++++++++---
+>  3 files changed, 40 insertions(+), 9 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.h
 > b/drivers/gpu/drm/i915/display/intel_display.h
-> index fa5371036239..4e9f22954a41 100644
+> index 4e9f22954a41..3b9987b5f304 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -120,6 +120,8 @@ enum transcoder {
->  	TRANSCODER_DSI_1,
->  	TRANSCODER_DSI_A =3D TRANSCODER_DSI_0,	/* legacy DSI */
->  	TRANSCODER_DSI_C =3D TRANSCODER_DSI_1,	/* legacy DSI */
-> +	TRANSCODER_WD_0,
-> +	TRANSCODER_WD_1,
+> @@ -52,6 +52,7 @@ struct intel_crtc_state;  struct intel_digital_port;  s=
+truct
+> intel_dp;  struct intel_encoder;
+> +struct intel_connector;
+>  struct intel_initial_plane_config;
+>  struct intel_load_detect_pipe;
+>  struct intel_plane;
+> @@ -469,16 +470,12 @@ enum hpd_pin {
+>  		for_each_if(intel_encoder_can_psr(intel_encoder))
 >=20
->  	I915_MAX_TRANSCODERS
->  };
-> @@ -141,6 +143,10 @@ static inline const char *transcoder_name(enum
-> transcoder transcoder)
->  		return "DSI A";
->  	case TRANSCODER_DSI_C:
->  		return "DSI C";
-> +	case TRANSCODER_WD_0:
-> +		return "WD 0";
-> +	case TRANSCODER_WD_1:
-> +		return "WD 1";
->  	default:
->  		return "<invalid>";
->  	}
+>  #define for_each_intel_connector_iter(intel_connector, iter) \
+> -	while ((intel_connector =3D
+> to_intel_connector(drm_connector_list_iter_next(iter))))
+> +	while ((intel_connector =3D intel_connector_list_iter_next(iter)))
+>=20
+>  #define for_each_encoder_on_crtc(dev, __crtc, intel_encoder) \
+>  	list_for_each_entry((intel_encoder), &(dev)-
+> >mode_config.encoder_list, base.head) \
+>  		for_each_if((intel_encoder)->base.crtc =3D=3D (__crtc))
+>=20
+> -#define for_each_connector_on_encoder(dev, __encoder, intel_connector)
+> \
+> -	list_for_each_entry((intel_connector), &(dev)-
+> >mode_config.connector_list, base.head) \
+> -		for_each_if((intel_connector)->base.encoder =3D=3D (__encoder))
+> -
+>  #define for_each_old_intel_plane_in_state(__state, plane, old_plane_stat=
+e,
+> __i) \
+>  	for ((__i) =3D 0; \
+>  	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
 > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 0da9b208d56e..0e94bd430bcb 100644
+> index 0e94bd430bcb..7a82b7acbaf2 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -79,6 +79,7 @@ enum intel_output_type {
->  	INTEL_OUTPUT_DSI =3D 9,
->  	INTEL_OUTPUT_DDI =3D 10,
->  	INTEL_OUTPUT_DP_MST =3D 11,
-> +	INTEL_OUTPUT_WD =3D 12,
->  };
+> @@ -1497,12 +1497,14 @@ struct cxsr_latency {  #define
+> to_intel_atomic_state(x) container_of(x, struct intel_atomic_state, base)
+> #define to_intel_crtc(x) container_of(x, struct intel_crtc, base)  #defin=
+e
+> to_intel_crtc_state(x) container_of(x, struct intel_crtc_state, uapi) -#d=
+efine
+> to_intel_connector(x) container_of(x, struct intel_connector, base)
+> +#define to_intel_wb_connector(x) container_of(x, struct
+> +intel_wb_connector, base)
+>  #define to_intel_encoder(x) container_of(x, struct intel_encoder, base)
+> #define to_intel_framebuffer(x) container_of(x, struct intel_framebuffer,
+> base)  #define to_intel_plane(x) container_of(x, struct intel_plane, base=
+)
+> #define to_intel_plane_state(x) container_of(x, struct intel_plane_state,
+> uapi)  #define intel_fb_obj(x) ((x) ? to_intel_bo((x)->obj[0]) : NULL)
+> +#define to_intel_connector(x) (((x->connector_type =3D=3D
+> DRM_MODE_CONNECTOR_WRITEBACK)) ?	\
+> +				NULL : container_of(x, struct intel_connector,
+> base))
 >=20
->  enum hdmi_force_audio {
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> b/drivers/gpu/drm/i915/i915_reg.h index bf5c39d9f953..e3fced4b9980
-> 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -2059,6 +2059,8 @@
->  #define TRANSCODER_EDP_OFFSET 0x6f000
->  #define TRANSCODER_DSI0_OFFSET	0x6b000
->  #define TRANSCODER_DSI1_OFFSET	0x6b800
-> +#define TRANSCODER_WD0_OFFSET	0x6e000
-> +#define TRANSCODER_WD1_OFFSET	0x6e800
+>  struct intel_hdmi {
+>  	i915_reg_t hdmi_reg;
+> @@ -2068,4 +2070,26 @@ to_intel_frontbuffer(struct drm_framebuffer *fb)
+>  	return fb ? to_intel_framebuffer(fb)->frontbuffer : NULL;  }
 >=20
->  #define HTOTAL(trans)		_MMIO_TRANS2(trans, _HTOTAL_A)
->  #define HBLANK(trans)		_MMIO_TRANS2(trans, _HBLANK_A)
-> @@ -3831,6 +3833,11 @@
->  #define PIPE_DSI0_OFFSET	0x7b000
->  #define PIPE_DSI1_OFFSET	0x7b800
->=20
-> +/* WD 0 and 1 */
-Can this be changed to=20
-/* WD offset */
-
-> +#define PIPE_WD0_OFFSET		0x7e000
-> +#define PIPE_WD1_OFFSET		0x7d000
-> +
-> +
->  #define PIPECONF(pipe)		_MMIO_PIPE2(pipe, _PIPEACONF)
->  #define PIPEDSL(pipe)		_MMIO_PIPE2(pipe, _PIPEADSL)
->  #define PIPEFRAME(pipe)		_MMIO_PIPE2(pipe,
-> _PIPEAFRAMEHIGH)
-> @@ -4495,6 +4502,10 @@
->  #define _PIPEDSI0CONF		0x7b008
->  #define _PIPEDSI1CONF		0x7b808
->=20
-> +/* WD 0 and 1 */
-Can this be changed to=20
-/* WD config regs */
-
-> +#define _PIPEWD0CONF		0x7e008
-> +#define _PIPEWD1CONF		0x7d008
-> +
->  /* Sprite A control */
->  #define _DVSACNTR		0x72180
->  #define   DVS_ENABLE			REG_BIT(31)
-> @@ -5720,6 +5731,7 @@
->  #define GEN8_DE_MISC_IER _MMIO(0x4446c)
->  #define  GEN8_DE_MISC_GSE		(1 << 27)
->  #define  GEN8_DE_EDP_PSR		(1 << 19)
-> +#define  GEN8_DE_MISC_WD0		(1 << 23)
->=20
->  #define GEN8_PCU_ISR _MMIO(0x444e0)
->  #define GEN8_PCU_IMR _MMIO(0x444e4)
-> @@ -8714,6 +8726,133 @@ enum skl_power_gate {
->  #define   DSB_ENABLE			(1 << 31)
->  #define   DSB_STATUS			(1 << 0)
->=20
-> +#define TGL_ROOT_DEVICE_ID		0x9A00
-> +#define TGL_ROOT_DEVICE_MASK		0xFF00
-> +#define TGL_ROOT_DEVICE_SKU_MASK	0xF
-> +#define TGL_ROOT_DEVICE_SKU_ULX		0x2
-> +#define TGL_ROOT_DEVICE_SKU_ULT		0x4
-> +
-> +/* Gen12 WD */
-> +#define _MMIO_WD(tc, wd0, wd1)		_MMIO_TRANS((tc) -
-> TRANSCODER_WD_0, \
-> +							wd0, wd1)
-> +
-> +#define WD_TRANS_ENABLE			(1 << 31)
-> +#define WD_TRANS_DISABLE		0
-> +#define WD_TRANS_ACTIVE			(1 << 30)
-> +
-> +/* WD transcoder control */
-> +#define _WD_TRANS_FUNC_CTL_0		0x6e400
-> +#define _WD_TRANS_FUNC_CTL_1		0x6ec00
-> +#define WD_TRANS_FUNC_CTL(tc)		_MMIO_WD(tc,\
-> +					_WD_TRANS_FUNC_CTL_0,\
-> +					_WD_TRANS_FUNC_CTL_1)
-> +
-> +#define TRANS_WD_FUNC_ENABLE		(1 << 31)
-> +#define WD_TRIGGERED_CAP_MODE_ENABLE	(1 << 30)
-> +#define START_TRIGGER_FRAME		(1 << 29)
-> +#define STOP_TRIGGER_FRAME		(1 << 28)
-> +#define WD_CTL_POINTER_ETEH		(0 << 18)
-> +#define WD_CTL_POINTER_ETDH		(1 << 18)
-> +#define WD_CTL_POINTER_DTDH		(2 << 18)
-> +#define WD_INPUT_SELECT_MASK		(7 << 12)
-> +#define WD_INPUT_PIPE_A			(0 << 12)
-> +#define WD_INPUT_PIPE_B			(5 << 12)
-> +#define WD_INPUT_PIPE_C			(6 << 12)
-> +#define WD_INPUT_PIPE_D			(7 << 12)
-> +
-> +#define WD_PIX_FMT_MASK			(0x3 << 20)
-> +#define WD_PIX_FMT_YUYV			(0x1 << 20)
-> +#define WD_PIX_FMT_XYUV8888		(0x2 << 20)
-> +#define WD_PIX_FMT_XBGR8888		(0x3 << 20)
-> +#define WD_PIX_FMT_Y410			(0x4 << 20)
-> +#define WD_PIX_FMT_YUV422		(0x5 << 20)
-> +#define WD_PIX_FMT_XBGR2101010		(0x6 << 20)
-> +#define WD_PIX_FMT_RGB565		(0x7 << 20)
-> +
-> +#define WD_FRAME_NUMBER_MASK		15
-> +
-> +#define _WD_STRIDE_0			0x6e510
-> +#define _WD_STRIDE_1			0x6ed10
-> +#define WD_STRIDE(tc)			_MMIO_WD(tc,\
-> +					_WD_STRIDE_0,\
-> +					_WD_STRIDE_1)
-> +#define WD_STRIDE_SHIFT			6
-> +#define WD_STRIDE_MASK			(0x3ff << WD_STRIDE_SHIFT)
-> +
-> +#define _WD_STREAMCAP_CTL0		0x6e590
-> +#define _WD_STREAMCAP_CTL1		0x6ed90
-> +#define WD_STREAMCAP_CTL(tc)		_MMIO_WD(tc,\
-> +					_WD_STREAMCAP_CTL0,\
-> +					_WD_STREAMCAP_CTL1)
-> +
-> +#define WD_STREAM_CAP_MODE_EN		(1 << 31)
-> +#define WD_STRAT_MASK			(3 << 24)
-> +#define WD_SLICING_STRAT_1_1		(0 << 24)
-> +#define WD_SLICING_STRAT_2_1		(1 << 24)
-> +#define WD_SLICING_STRAT_4_1		(2 << 24)
-> +#define WD_SLICING_STRAT_8_1		(3 << 24)
-> +#define WD_STREAM_OVERRUN_STATUS	1
-> +
-> +#define _WD_SURF_0			0x6e514
-> +#define _WD_SURF_1			0x6ed14
-> +#define WD_SURF(tc)			_MMIO_WD(tc,\
-> +					_WD_SURF_0,\
-> +					_WD_SURF_1)
-> +
-> +#define _WD_IMR_0			0x6e560
-> +#define _WD_IMR_1			0x6ed60
-> +#define WD_IMR(tc)			_MMIO_WD(tc,\
-> +					_WD_IMR_0,\
-> +					_WD_IMR_1)
-> +#define WD_FRAME_COMPLETE_INT		(1 << 7)
-> +#define WD_GTT_FAULT_INT		(1 << 6)
-> +#define WD_VBLANK_INT			(1 << 5)
-> +#define WD_OVERRUN_INT			(1 << 4)
-> +#define WD_CAPTURING_INT		(1 << 3)
-> +#define WD_WRITE_COMPLETE_INT		(1 << 2)
-> +
-> +#define _WD_IIR_0			0x6e564
-> +#define _WD_IIR_1			0x6ed64
-> +#define WD_IIR(tc)			_MMIO_WD(tc,\
-> +					_WD_IIR_0,\
-> +					_WD_IIR_1)
-> +
-> +#define _WD_FRAME_STATUS_0		0x6e56b
-> +#define _WD_FRAME_STATUS_1		0x6ed6b
-> +#define WD_FRAME_STATUS(tc)		_MMIO_WD(tc,\
-> +					_WD_FRAME_STATUS_0,\
-> +					_WD_FRAME_STATUS_1)
-> +
-> +#define WD_FRAME_COMPLETE		(1 << 31)
-> +#define WD_STATE_IDLE			(0 << 24)
-> +#define WD_STATE_CAPSTART		(1 << 24)
-> +#define WD_STATE_FRAME_START		(2 << 24)
-> +#define WD_STATE_CAPACITIVE		(3 << 24)
-> +#define WD_STATE_TG_DONE		(4 << 24)
-> +#define WD_STATE_WDX_DONE		(5 << 24)
-> +#define WD_STATE_QUICK_CAP		(6 << 24)
-> +
-> +#define _WD_27_M_0			0x6e524
-> +#define _WD_27_M_1			0x6ed24
-> +#define WD_27_M(tc)			_MMIO_WD(tc,\
-> +					_WD_27_M_0,\
-> +					_WD_27_M_1)
-> +
-> +#define _WD_27_N_0			0x6e528
-> +
-> +//Address looks wrong in bspec:
-> +#define _WD_27_N_1			0x6ec28
-> +#define WD_27_N(tc)			_MMIO_WD(tc,\
-> +					_WD_27_N_0,\
-> +					_WD_27_N_1)
-> +
-> +#define _WD_TAIL_CFG_0			0x6e520
-> +#define _WD_TAIL_CFG_1			0x6ed20
-> +
-> +#define WD_TAIL_CFG(tc)			_MMIO_WD(tc,\
-> +					_WD_TAIL_CFG_0,\
-> +					_WD_TAIL_CFG_1)
-> +
->  #define CLKREQ_POLICY			_MMIO(0x101038)
->  #define  CLKREQ_POLICY_MEM_UP_OVRD	REG_BIT(1)
->=20
-With the above said changes
+> +static inline struct intel_connector *
+> +intel_connector_list_iter_next(struct drm_connector_list_iter *iter) {
+> +	struct drm_connector *connector;
+> +	bool flag =3D true;
+> +	/*
+> +	 * Skipping connector that are Writeback connector as they will
+> +	 * not be embedded in intel connector
+> +	 */
+Better to be more clear, "An intel_connector entity is not created for writ=
+eback, hence decoupling"=20
+With the above changes
 Reviewed-by: Arun R Murthy <arun.r.murthy>
+
+> +	while (flag) {
+> +		connector =3D drm_connector_list_iter_next(iter);
+> +		if (connector && !to_intel_connector(connector))
+> +			continue;
+> +
+> +		flag =3D false;
+> +
+> +		if (connector)
+> +			return to_intel_connector(connector);
+> +
+> +	}
+> +	return NULL;
+> +}
+>  #endif /*  __INTEL_DISPLAY_TYPES_H__ */ diff --git
+> a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> index f0e04d3904c6..985dfa5f7aa1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> @@ -204,12 +204,22 @@ static bool intel_crtc_has_encoders(struct
+> intel_crtc *crtc)
+>=20
+>  static struct intel_connector *intel_encoder_find_connector(struct
+> intel_encoder *encoder)  {
+> -	struct drm_device *dev =3D encoder->base.dev;
+> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>  	struct intel_connector *connector;
+> +	struct drm_connector_list_iter conn_iter;
+> +	bool found_connector =3D false;
+>=20
+> -	for_each_connector_on_encoder(dev, &encoder->base, connector)
+> -		return connector;
+> +	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+> +	for_each_intel_connector_iter(connector, &conn_iter) {
+> +		if (&encoder->base =3D=3D connector->base.encoder) {
+> +			found_connector =3D true;
+> +			break;
+> +		}
+> +	}
+> +	drm_connector_list_iter_end(&conn_iter);
+>=20
+> +	if (found_connector)
+> +		return connector;
+>  	return NULL;
+>  }
+>=20
+> --
+> 2.25.1
 
 Thanks and Regards,
 Arun R Murthy
 --------------------
-
