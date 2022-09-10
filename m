@@ -2,49 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20FA55B46DB
-	for <lists+intel-gfx@lfdr.de>; Sat, 10 Sep 2022 16:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90AF65B46DE
+	for <lists+intel-gfx@lfdr.de>; Sat, 10 Sep 2022 16:39:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7FF210E1E4;
-	Sat, 10 Sep 2022 14:38:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B80EC10E1E8;
+	Sat, 10 Sep 2022 14:39:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B80D10E1E5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6208F10E1E4
  for <intel-gfx@lists.freedesktop.org>; Sat, 10 Sep 2022 14:38:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1662820728; x=1694356728;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ztMEq+w2Jh7VdjXNBHJ2ux5oObyIv93Oz3TDcAYRdAM=;
- b=VzmEBa6LwRLHXMRbXatXp8rfb9hAncxe1VoBMxMmBL7VOlWhN6XHCVjV
- zAOWde3g6aiq25TlrePUB6zjA4gCloXJE72uFIO3Vj6HXaxjEOjkK381l
- 4UuNrXQ1fT8SmWwCR1geQVcOjOOd286lcwushzUpnZAL6Mg82cYiStAOL
- tvgJDQ8GMuOYl2zzp7db1o+OksMR8B4KdM/ovVnhQA28MIw7J7ig+RcaU
- PzFKZUHZ0VUzCTG9rxgF68aBDYdDJlDBXi7kG+PvwnsPcG+wjCUYsAw0K
- 3bT3SjwQWoZgVGiS90g2OGCJbx5PPzhrp6sW/IwiAujmbrLIN+i2u9WDN A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10466"; a="295231747"
-X-IronPort-AV: E=Sophos;i="5.93,306,1654585200"; d="scan'208";a="295231747"
+ bh=pU9THDl/2DNNNXvu0VAEOm1tXYUdQqN5S52KYa5Cv2Y=;
+ b=aOlIK4G9aHimskP7eHAbG/ILkF8ItDw7ufOHAT1VN5yS4ALqIitwL7nL
+ rbSlWt9Z36dthLo2/h5WkmfJXGcJ7jh4An7DqXvWQ4BHpmti/zha6gOkK
+ ZlL9tPunwdWl/5HGqCHUpRKweXUKXfh/IwONJPKp3Ldn06AXrk42PPSJX
+ VcoBW8DtRtSM0b09bZaWglmHZL8Ruknh/9ie/SG8q/5R5APocvZkiv6Xm
+ UEC3SWoXScLtmiPpI/9FMZq/aHOVlibmiHc5WdGYmRXspK//Xtkj5bJ0V
+ AQY7UiLt8UiJFHWcN+RiAUEwqXGzSYYCKiLpVIVKvJ+BrIfFSweRLcRWw A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10466"; a="295231749"
+X-IronPort-AV: E=Sophos;i="5.93,306,1654585200"; d="scan'208";a="295231749"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Sep 2022 07:38:47 -0700
-X-IronPort-AV: E=Sophos;i="5.93,306,1654585200"; d="scan'208";a="566685279"
+X-IronPort-AV: E=Sophos;i="5.93,306,1654585200"; d="scan'208";a="566685280"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Sep 2022 07:38:47 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 10 Sep 2022 07:38:43 -0700
-Message-Id: <20220910143844.1755324-3-ashutosh.dixit@intel.com>
+Date: Sat, 10 Sep 2022 07:38:44 -0700
+Message-Id: <20220910143844.1755324-4-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220910143844.1755324-1-ashutosh.dixit@intel.com>
 References: <20220910143844.1755324-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/mtl: PERF_LIMIT_REASONS changes
- for MTL
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/rps: Freq caps for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,116 +59,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PERF_LIMIT_REASONS register for MTL media gt is different now.
+For MTL, when reading from HW, RP0, RP1 (actuall RPe) and RPn freq use an
+entirely different set of registers with different fields, bitwidths and
+units.
 
-v2: Avoid static inline for intel_gt_perf_limit_reasons_reg() (Jani)
+v2: Move MTL check into a separate function (Jani)
 
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: Badal Nilawar <badal.nilawar@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c            | 6 ++++++
- drivers/gpu/drm/i915/gt/intel_gt.h            | 1 +
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 4 ++--
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   | 6 +++---
- drivers/gpu/drm/i915/i915_reg.h               | 1 +
- 5 files changed, 13 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 46 +++++++++++++++++++++++------
+ drivers/gpu/drm/i915/i915_reg.h     |  9 ++++++
+ 2 files changed, 46 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index b59fb03ed274..46929afa18c2 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -229,6 +229,12 @@ static void gen6_clear_engine_error_register(struct intel_engine_cs *engine)
- 	GEN6_RING_FAULT_REG_POSTING_READ(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 6b86250c31ab..17b40b625e31 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1085,15 +1085,25 @@ static u32 intel_rps_read_state_cap(struct intel_rps *rps)
+ 		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
  }
  
-+i915_reg_t intel_gt_perf_limit_reasons_reg(struct intel_gt *gt)
+-/**
+- * gen6_rps_get_freq_caps - Get freq caps exposed by HW
+- * @rps: the intel_rps structure
+- * @caps: returned freq caps
+- *
+- * Returned "caps" frequencies should be converted to MHz using
+- * intel_gpu_freq()
+- */
+-void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps)
++static void
++mtl_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps)
 +{
-+	return gt->type == GT_MEDIA ?
-+		MTL_MEDIA_PERF_LIMIT_REASONS : GT0_PERF_LIMIT_REASONS;
++	struct intel_uncore *uncore = rps_to_uncore(rps);
++	u32 rp_state_cap = rps_to_gt(rps)->type == GT_MEDIA ?
++				intel_uncore_read(uncore, MTL_MEDIAP_STATE_CAP) :
++				intel_uncore_read(uncore, MTL_RP_STATE_CAP);
++	u32 rpe = rps_to_gt(rps)->type == GT_MEDIA ?
++			intel_uncore_read(uncore, MTL_MPE_FREQUENCY) :
++			intel_uncore_read(uncore, MTL_GT_RPE_FREQUENCY);
++
++	/* MTL values are in units of 16.67 MHz */
++	caps->rp0_freq = REG_FIELD_GET(MTL_RP0_CAP_MASK, rp_state_cap);
++	caps->min_freq = REG_FIELD_GET(MTL_RPN_CAP_MASK, rp_state_cap);
++	caps->rp1_freq = REG_FIELD_GET(MTL_RPE_MASK, rpe);
 +}
 +
- void
- intel_gt_clear_error_registers(struct intel_gt *gt,
- 			       intel_engine_mask_t engine_mask)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index 2ee582e287c8..e0365d556248 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -60,6 +60,7 @@ void intel_gt_driver_late_release_all(struct drm_i915_private *i915);
- int intel_gt_wait_for_idle(struct intel_gt *gt, long timeout);
- 
- void intel_gt_check_and_clear_faults(struct intel_gt *gt);
-+i915_reg_t intel_gt_perf_limit_reasons_reg(struct intel_gt *gt);
- void intel_gt_clear_error_registers(struct intel_gt *gt,
- 				    intel_engine_mask_t engine_mask);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-index a009cf69103a..68310881a793 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-@@ -661,7 +661,7 @@ static int perf_limit_reasons_get(void *data, u64 *val)
- 	intel_wakeref_t wakeref;
- 
- 	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
--		*val = intel_uncore_read(gt->uncore, GT0_PERF_LIMIT_REASONS);
-+		*val = intel_uncore_read(gt->uncore, intel_gt_perf_limit_reasons_reg(gt));
- 
- 	return 0;
- }
-@@ -677,7 +677,7 @@ static int perf_limit_reasons_clear(void *data, u64 val)
- 	 * "status" bits except that the "log" bits remain set until cleared.
- 	 */
- 	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
--		intel_uncore_rmw(gt->uncore, GT0_PERF_LIMIT_REASONS,
-+		intel_uncore_rmw(gt->uncore, intel_gt_perf_limit_reasons_reg(gt),
- 				 GT0_PERF_LIMIT_REASONS_LOG_MASK, 0);
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index e066cc33d9f2..54deae45d81f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -510,7 +510,7 @@ struct intel_gt_bool_throttle_attr {
- 	struct attribute attr;
- 	ssize_t (*show)(struct device *dev, struct device_attribute *attr,
- 			char *buf);
--	i915_reg_t reg32;
-+	i915_reg_t (*reg32)(struct intel_gt *gt);
- 	u32 mask;
- };
- 
-@@ -521,7 +521,7 @@ static ssize_t throttle_reason_bool_show(struct device *dev,
- 	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
- 	struct intel_gt_bool_throttle_attr *t_attr =
- 				(struct intel_gt_bool_throttle_attr *) attr;
--	bool val = rps_read_mask_mmio(&gt->rps, t_attr->reg32, t_attr->mask);
-+	bool val = rps_read_mask_mmio(&gt->rps, t_attr->reg32(gt), t_attr->mask);
- 
- 	return sysfs_emit(buff, "%u\n", val);
- }
-@@ -530,7 +530,7 @@ static ssize_t throttle_reason_bool_show(struct device *dev,
- struct intel_gt_bool_throttle_attr attr_##sysfs_func__ = { \
- 	.attr = { .name = __stringify(sysfs_func__), .mode = 0444 }, \
- 	.show = throttle_reason_bool_show, \
--	.reg32 = GT0_PERF_LIMIT_REASONS, \
-+	.reg32 = intel_gt_perf_limit_reasons_reg, \
- 	.mask = mask__, \
++static void
++__gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps)
+ {
+ 	struct drm_i915_private *i915 = rps_to_i915(rps);
+ 	u32 rp_state_cap;
+@@ -1128,6 +1138,24 @@ void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *c
+ 	}
  }
  
++/**
++ * gen6_rps_get_freq_caps - Get freq caps exposed by HW
++ * @rps: the intel_rps structure
++ * @caps: returned freq caps
++ *
++ * Returned "caps" frequencies should be converted to MHz using
++ * intel_gpu_freq()
++ */
++void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps)
++{
++	struct drm_i915_private *i915 = rps_to_i915(rps);
++
++	if (IS_METEORLAKE(i915))
++		return mtl_get_freq_caps(rps, caps);
++	else
++		return __gen6_rps_get_freq_caps(rps, caps);
++}
++
+ static void gen6_rps_init(struct intel_rps *rps)
+ {
+ 	struct drm_i915_private *i915 = rps_to_i915(rps);
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 58b0ed9dddd5..38e895ad4b59 100644
+index 38e895ad4b59..2101b6d6dae5 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1803,6 +1803,7 @@
- #define   POWER_LIMIT_1_MASK		REG_BIT(10)
- #define   POWER_LIMIT_2_MASK		REG_BIT(11)
- #define   GT0_PERF_LIMIT_REASONS_LOG_MASK REG_GENMASK(31, 16)
-+#define MTL_MEDIA_PERF_LIMIT_REASONS	_MMIO(0x138030)
+@@ -1792,6 +1792,15 @@
+ #define XEHPSDV_RP_STATE_CAP	_MMIO(0x250014)
+ #define PVC_RP_STATE_CAP	_MMIO(0x281014)
  
- #define CHV_CLK_CTL1			_MMIO(0x101100)
- #define VLV_CLK_CTL2			_MMIO(0x101104)
++#define MTL_RP_STATE_CAP	_MMIO(0x138000)
++#define MTL_MEDIAP_STATE_CAP	_MMIO(0x138020)
++#define   MTL_RP0_CAP_MASK	REG_GENMASK(8, 0)
++#define   MTL_RPN_CAP_MASK	REG_GENMASK(24, 16)
++
++#define MTL_GT_RPE_FREQUENCY	_MMIO(0x13800c)
++#define MTL_MPE_FREQUENCY	_MMIO(0x13802c)
++#define   MTL_RPE_MASK		REG_GENMASK(8, 0)
++
+ #define GT0_PERF_LIMIT_REASONS		_MMIO(0x1381a8)
+ #define   GT0_PERF_LIMIT_REASONS_MASK	0xde3
+ #define   PROCHOT_MASK			REG_BIT(0)
 -- 
 2.34.1
 
