@@ -1,35 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEBFF5B4E50
-	for <lists+intel-gfx@lfdr.de>; Sun, 11 Sep 2022 13:23:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E3D95B503B
+	for <lists+intel-gfx@lfdr.de>; Sun, 11 Sep 2022 19:22:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C77D10E3F3;
-	Sun, 11 Sep 2022 11:22:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2255410E4FC;
+	Sun, 11 Sep 2022 17:22:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1DB8810E3F3;
- Sun, 11 Sep 2022 11:22:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 34D78AA914;
- Sun, 11 Sep 2022 11:22:51 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F69C10E4F9;
+ Sun, 11 Sep 2022 17:22:11 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id ABFA4B80AFE;
+ Sun, 11 Sep 2022 17:22:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F948C433B5;
+ Sun, 11 Sep 2022 17:22:07 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+ dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
+ header.b="hao55/o6"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
+ t=1662916925;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=MtjM9PGCgkli9u/1g6h/fxcGqHy0IGdr92wuKREDxEc=;
+ b=hao55/o6mLWdkqbkTXMIiSkBX0wkw/YT/wIkWpJk9MdkwnT5e371xh1fjdhPDsfqrbviE2
+ c7uDcG5Z+52bbW+fZgf3f2GXaKitQVeOxk3860WA4pKdzqqmIAvDhz48o9594ePePhf3w5
+ IJzQGalf6NpA6qyjaoLF/XelywcT2uA=
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 6ae389f1
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
+ Sun, 11 Sep 2022 17:22:05 +0000 (UTC)
+Date: Sun, 11 Sep 2022 19:22:02 +0200
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Yx4ZOprT+BAsI2sj@zx2c4.com>
+References: <Yxn1WpmUJnJpqq23@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Sun, 11 Sep 2022 11:22:51 -0000
-Message-ID: <166289537119.10771.1315495532221351497@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220909105913.752049-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20220909105913.752049-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBG?=
- =?utf-8?q?ixes_integer_overflow_or_integer_truncation_issues_in_page_look?=
- =?utf-8?q?ups=2C_ttm_place_configuration_and_scatterlist_creation_=28rev2?=
- =?utf-8?q?=29?=
+In-Reply-To: <Yxn1WpmUJnJpqq23@intel.com>
+Subject: Re: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,45 +59,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Rodrigo,
 
-Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation (rev2)
-URL   : https://patchwork.freedesktop.org/series/108358/
-State : failure
+On Thu, Sep 08, 2022 at 09:59:54AM -0400, Rodrigo Vivi wrote:
+> Hi Dave and Daniel,
+> 
+> A few fixes, but most targeting stable.
+> 
+> [...]
+>
+> Ville Syrjälä (2):
+>       drm/i915: Implement WaEdpLinkRateDataReload
 
-== Summary ==
+Don't you need to revert d5929835080a60f9119d024fa42f315913942f76 in
+order for "drm/i915: Implement WaEdpLinkRateDataReload" to actually be
+useful/interesting? Otherwise, what's the point?
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/intel_memory_region.o
-In file included from <command-line>:
-drivers/gpu/drm/i915/selftests/intel_memory_region.c: In function ‘igt_lmem_create_with_ps’:
-././include/linux/compiler_types.h:334:35: error: expected ‘,’ before ‘)’ token
-          __same_type(t, typeof(n)))
-                                   ^
-./drivers/gpu/drm/i915/gem/i915_gem_object.h:630:2: note: in expansion of macro ‘assert_typable’
-  assert_typable(pgoff_t, n);   \
-  ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/selftests/intel_memory_region.c:851:11: note: in expansion of macro ‘i915_gem_object_get_dma_address’
-   daddr = i915_gem_object_get_dma_address(obj, 0);
-           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-scripts/Makefile.build:249: recipe for target 'drivers/gpu/drm/i915/intel_memory_region.o' failed
-make[4]: *** [drivers/gpu/drm/i915/intel_memory_region.o] Error 1
-scripts/Makefile.build:465: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:465: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:465: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1853: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
-
-
+Regards,
+Jason
