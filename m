@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3AE75B5EA9
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 18:56:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A34F5B5EA2
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 18:56:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C8E010E1AB;
-	Mon, 12 Sep 2022 16:56:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D052510E045;
+	Mon, 12 Sep 2022 16:56:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45ADD10E448
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 16:55:30 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 894C610E44A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 16:55:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663001730; x=1694537730;
+ t=1663001734; x=1694537734;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=omX9dpA4Ig/j/QuLvcWfDjXxybzoxtIceAXx5Cx7rYU=;
- b=hSSB83N0rBbVeNb55tn3EyUtUr7Ol7iop99CQJctvRT/jd+yIK93iCds
- ma6pz4GT2hYO7eo6/YnxVVHWmJfKwOSfaR07/y3y3xwEdPvrxPq7VtRD1
- Uim2I/fYFQ/OrbnL0bQ9mtlB9DJ4MDo1BaKWosfsSpejm/q5Kq5zm0rTJ
- QCMxH/kTJyfXL7hs4kR7LE5wDP4p26XnB4ioVF4Zav6fJUbiEAPgBGtg2
- i3kGWoIGQqoxYO0x4I0dYkiYThlj9IeuIknH8egxX047I5LgHQiaCXPvn
- UYh8lQg8wxsiY21LMkLHaQIqfoLLddTavUwcUjWrtDgQJOKtAHde0l7dR w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="278309233"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="278309233"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 09:55:29 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="616121051"
+ bh=+Y7Tn6j5kXzlR3q4hGk+XTfxSTHEFjV+c8aEKRioSHU=;
+ b=hbOecu3vCv4cSQkLFfKdp9Gwj9P51gpnicITljuttF6t6bFOnjyZ66A4
+ /FYRtqypjJ8BsW75CA9GCYC47HTCylLrRCagXCUxRwQDyPpvF9q0FtlN1
+ Zd82dvXWD3Vqca6hH5lQvEaKSSmeiMaOgpbKifZIxI+Ju9DZ5nUPxVXCJ
+ kZnglO46WhckuTohJLO5C9JriAAQkKNMj50y2D1UQ2Mv2VGTCcoXpQtpx
+ wOFs4COnGZmfyl+E7wSQYTMyJhCGltKEGDdvivUaPanQ/bUfdx7wxuepA
+ iX7GfTQo0kwX3H5JEkmCKOyIXQNgkCsd8K+zVSaHkr+yad3WKKM0yZQou Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="299256997"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="299256997"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 09:55:33 -0700
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="741843678"
 Received: from abijaz-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.58.140])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 09:55:28 -0700
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 09:55:32 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Sep 2022 19:54:34 +0300
-Message-Id: <ac28c6d38aa6b99b3547861bd287576298fd30a1.1662999695.git.jani.nikula@intel.com>
+Date: Mon, 12 Sep 2022 19:54:35 +0300
+Message-Id: <940e4c0853a4ffdbfd1be3d93a064f3718680ad2.1662999695.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1662999695.git.jani.nikula@intel.com>
 References: <cover.1662999695.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 12/15] drm/i915/reg: move masked field helpers
- to i915_reg_defs.h
+Subject: [Intel-gfx] [PATCH 13/15] drm/i915/reg: move pick even and pick to
+ reg defs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,54 +66,58 @@ This is a more logical place for generic helpers.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h      | 13 -------------
- drivers/gpu/drm/i915/i915_reg_defs.h | 13 +++++++++++++
- 2 files changed, 13 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h      | 15 ---------------
+ drivers/gpu/drm/i915/i915_reg_defs.h | 15 +++++++++++++++
+ 2 files changed, 15 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 52462cbfdc66..3727fc1d5d61 100644
+index 3727fc1d5d61..03ff6039b27f 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -171,19 +171,6 @@
- 					      INTEL_INFO(dev_priv)->display.cursor_offsets[PIPE_A] + \
- 					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
+@@ -117,21 +117,6 @@
  
--#define __MASKED_FIELD(mask, value) ((mask) << 16 | (value))
--#define _MASKED_FIELD(mask, value) ({					   \
--	if (__builtin_constant_p(mask))					   \
--		BUILD_BUG_ON_MSG(((mask) & 0xffff0000), "Incorrect mask"); \
--	if (__builtin_constant_p(value))				   \
--		BUILD_BUG_ON_MSG((value) & 0xffff0000, "Incorrect value"); \
--	if (__builtin_constant_p(mask) && __builtin_constant_p(value))	   \
--		BUILD_BUG_ON_MSG((value) & ~(mask),			   \
--				 "Incorrect value for mask");		   \
--	__MASKED_FIELD(mask, value); })
--#define _MASKED_BIT_ENABLE(a)	({ typeof(a) _a = (a); _MASKED_FIELD(_a, _a); })
--#define _MASKED_BIT_DISABLE(a)	(_MASKED_FIELD((a), 0))
+ #define DISPLAY_MMIO_BASE(dev_priv)	(INTEL_INFO(dev_priv)->display.mmio_offset)
+ 
+-/*
+- * Given the first two numbers __a and __b of arbitrarily many evenly spaced
+- * numbers, pick the 0-based __index'th value.
+- *
+- * Always prefer this over _PICK() if the numbers are evenly spaced.
+- */
+-#define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
 -
- #define GU_CNTL				_MMIO(0x101010)
- #define   LMEM_INIT			REG_BIT(7)
- 
+-/*
+- * Given the arbitrary numbers in varargs, pick the 0-based __index'th number.
+- *
+- * Always prefer _PICK_EVEN() over this if the numbers are evenly spaced.
+- */
+-#define _PICK(__index, ...) (((const u32 []){ __VA_ARGS__ })[__index])
+-
+ /*
+  * Named helper wrappers around _PICK_EVEN() and _PICK().
+  */
 diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
-index 8f486f77609f..7536f1b72778 100644
+index 7536f1b72778..344e5006650e 100644
 --- a/drivers/gpu/drm/i915/i915_reg_defs.h
 +++ b/drivers/gpu/drm/i915/i915_reg_defs.h
-@@ -98,6 +98,19 @@
-  */
- #define REG_FIELD_GET64(__mask, __val)	((u64)FIELD_GET(__mask, __val))
+@@ -111,6 +111,21 @@
+ #define _MASKED_BIT_ENABLE(a)	({ typeof(a) _a = (a); _MASKED_FIELD(_a, _a); })
+ #define _MASKED_BIT_DISABLE(a)	(_MASKED_FIELD((a), 0))
  
-+#define __MASKED_FIELD(mask, value) ((mask) << 16 | (value))
-+#define _MASKED_FIELD(mask, value) ({					   \
-+	if (__builtin_constant_p(mask))					   \
-+		BUILD_BUG_ON_MSG(((mask) & 0xffff0000), "Incorrect mask"); \
-+	if (__builtin_constant_p(value))				   \
-+		BUILD_BUG_ON_MSG((value) & 0xffff0000, "Incorrect value"); \
-+	if (__builtin_constant_p(mask) && __builtin_constant_p(value))	   \
-+		BUILD_BUG_ON_MSG((value) & ~(mask),			   \
-+				 "Incorrect value for mask");		   \
-+	__MASKED_FIELD(mask, value); })
-+#define _MASKED_BIT_ENABLE(a)	({ typeof(a) _a = (a); _MASKED_FIELD(_a, _a); })
-+#define _MASKED_BIT_DISABLE(a)	(_MASKED_FIELD((a), 0))
++/*
++ * Given the first two numbers __a and __b of arbitrarily many evenly spaced
++ * numbers, pick the 0-based __index'th value.
++ *
++ * Always prefer this over _PICK() if the numbers are evenly spaced.
++ */
++#define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
++
++/*
++ * Given the arbitrary numbers in varargs, pick the 0-based __index'th number.
++ *
++ * Always prefer _PICK_EVEN() over this if the numbers are evenly spaced.
++ */
++#define _PICK(__index, ...) (((const u32 []){ __VA_ARGS__ })[__index])
 +
  typedef struct {
  	u32 reg;
