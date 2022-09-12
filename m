@@ -1,52 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9E45B5AF4
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 15:16:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BAB35B5B10
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 15:23:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D0F010E3CA;
-	Mon, 12 Sep 2022 13:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A078B10E497;
+	Mon, 12 Sep 2022 13:23:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C92E8825B;
- Mon, 12 Sep 2022 13:16:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F05510E497
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 13:23:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662988573; x=1694524573;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=sYMfyDP6RABs4YbHiPnDvJlnfA9NwWOk4pNpQkFZfJc=;
- b=SLoF5y92TPyhAMjCtwlWyxfyQPhQTQTyu2qjVSI+y0yk3ap7npqYH5Qj
- 256YEfKRiSzMAIXOV1N/N54ZjgN3sf+WiA8D9+LyxMlLeKl3ZE85Z/sGe
- KB52Y9sYepVwh3kgkcDZ139c4g9gk9pTh5jU+ANVaTAHZSS5ShYC0VqNR
- 6BeGJETFkB9Icodrz0CP74vcG7zXqXUtvEW7LqYVeW7Doe9KmdkEbLemX
- caqAEF8HTtPpdyM29qTwYwMVeqlzmcU90Qhq0tLvqfxJs0Wco0lUrdYk2
- RPzwW2GlicXEGpVxby4bvLKFA0sICjgwXOxufeI7nOIxPx9QJBhKSeuwT Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="361812801"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="361812801"
+ t=1662989000; x=1694525000;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iDemb4ILKdDPfP9Pxj2ET0zyfbnNo9wZRmYxvOCJC3I=;
+ b=VOba9T9TDdfmSD6tSmCUCt150Ipww3hrKu5NrmQKqj+s1oC7mMhJ9hTd
+ hLBcj5dJ/XQpBgz00W5v8r0btqNLMknVDyteXQ/ASretHqzTeKN3NGxnl
+ pYL8iSPqA2he+6jO4Bl71fyIPiLE/nghdcsXvtD3Nwfu7Vj9VG/8nUjpI
+ cCAkyGAQ6oR5hKaEXH1Re4FybgEcuMPJKlGnaHqcs0XuFfpQy2DEh0q53
+ /l5mTWS/SvAseqg1KVQ62Ne2S220Mo9F2/VX8vw+r+n7//Gn3jN/3PudK
+ 3FupuTgPyJI4bcaZsMNG2B2TSbcgCwn5wfR09ixxT7QmUul+nrP/SKpMy A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="361814152"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="361814152"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 06:16:12 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678086379"
+ 12 Sep 2022 06:23:20 -0700
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678087998"
 Received: from abijaz-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.58.140])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 06:16:10 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20220827194403.6495-8-andi.shyti@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220827194403.6495-1-andi.shyti@linux.intel.com>
- <20220827194403.6495-8-andi.shyti@linux.intel.com>
-Date: Mon, 12 Sep 2022 16:16:06 +0300
-Message-ID: <871qsg68dl.fsf@intel.com>
+ 12 Sep 2022 06:23:18 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 12 Sep 2022 16:23:13 +0300
+Message-Id: <20220912132313.2774603-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC PATCH v3 07/17] drm/i915/vm_bind: Handle
- persistent vmas
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RESEND] drm/i915/dp: use drm_dp_phy_name() for logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,394 +56,322 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Ramalingam C <ramalingampc2008@gmail.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 27 Aug 2022, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->
-> Treat VM_BIND vmas as persistent across execbuf ioctl calls and handle
-> them during the request submission in the execbuff path.
->
-> Support eviction by maintaining a list of evicted persistent vmas
-> for rebinding during next submission.
->
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  1 +
->  .../drm/i915/gem/i915_gem_vm_bind_object.c    |  8 +++
->  drivers/gpu/drm/i915/gt/intel_gtt.c           |  2 +
->  drivers/gpu/drm/i915/gt/intel_gtt.h           |  4 ++
->  drivers/gpu/drm/i915/i915_gem_gtt.c           | 38 +++++++++++++
->  drivers/gpu/drm/i915/i915_gem_gtt.h           |  3 +
->  drivers/gpu/drm/i915/i915_vma.c               | 50 +++++++++++++++--
->  drivers/gpu/drm/i915/i915_vma.h               | 56 +++++++++++++++----
->  drivers/gpu/drm/i915/i915_vma_types.h         | 24 ++++++++
->  9 files changed, 169 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index 389e9f157ca5e..825dce41f7113 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -38,6 +38,7 @@
->  #include "i915_gem_mman.h"
->  #include "i915_gem_object.h"
->  #include "i915_gem_ttm.h"
-> +#include "i915_gem_vm_bind.h"
+Drop the local intel_dp_phy_name() function, and replace with
+drm_dp_phy_name(). This lets us drop a number of local buffers.
 
-Why do you add this here if you're not using anything from there?
+v2: Rebase
 
->  #include "i915_memcpy.h"
->  #include "i915_trace.h"
->  
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
-> index 9ff929f187cfd..3b45529fe8d4c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
-> @@ -91,6 +91,13 @@ void i915_gem_vm_bind_remove(struct i915_vma *vma, bool release_obj)
->  {
->  	lockdep_assert_held(&vma->vm->vm_bind_lock);
->  
-> +	spin_lock(&vma->vm->vm_rebind_lock);
-> +	if (!list_empty(&vma->vm_rebind_link))
-> +		list_del_init(&vma->vm_rebind_link);
-> +	i915_vma_set_purged(vma);
-> +	i915_vma_set_freed(vma);
-> +	spin_unlock(&vma->vm->vm_rebind_lock);
-> +
->  	if (!list_empty(&vma->vm_bind_link)) {
->  		list_del_init(&vma->vm_bind_link);
->  		list_del_init(&vma->non_priv_vm_bind_link);
-> @@ -190,6 +197,7 @@ static struct i915_vma *vm_bind_get_vma(struct i915_address_space *vm,
->  
->  	vma->start = va->start;
->  	vma->last = va->start + va->length - 1;
-> +	i915_vma_set_persistent(vma);
->  
->  	return vma;
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> index c4f75826213ae..97cd0089b516d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> @@ -296,6 +296,8 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
->  	INIT_LIST_HEAD(&vm->non_priv_vm_bind_list);
->  	vm->root_obj = i915_gem_object_create_internal(vm->i915, PAGE_SIZE);
->  	GEM_BUG_ON(IS_ERR(vm->root_obj));
-> +	INIT_LIST_HEAD(&vm->vm_rebind_list);
-> +	spin_lock_init(&vm->vm_rebind_lock);
->  }
->  
->  void *__px_vaddr(struct drm_i915_gem_object *p)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> index 9a2665e4ec2e5..1f3b1967ec175 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> @@ -265,6 +265,10 @@ struct i915_address_space {
->  	struct list_head vm_bind_list;
->  	/** @vm_bound_list: List of vm_binding completed */
->  	struct list_head vm_bound_list;
-> +	/* @vm_rebind_list: list of vmas to be rebinded */
-> +	struct list_head vm_rebind_list;
-> +	/* @vm_rebind_lock: protects vm_rebound_list */
-> +	spinlock_t vm_rebind_lock;
->  	/* @va: tree of persistent vmas */
->  	struct rb_root_cached va;
->  	struct list_head non_priv_vm_bind_list;
-> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> index 329ff75b80b97..f083724163deb 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> @@ -25,6 +25,44 @@
->  #include "i915_trace.h"
->  #include "i915_vgpu.h"
->  
-> +/**
-> + * i915_vm_sync() - Wait for all requests on private vmas of a vm to be completed
-> + * @vm: address space we need to wait for idle
-> + *
-> + * Waits till all requests of the vm_binded private objs are completed.
-> + *
-> + * Returns: 0 on success -ve errcode on failure
-> + */
-> +int i915_vm_sync(struct i915_address_space *vm)
-> +{
-> +	int ret;
-> +
-> +	/* Wait for all requests under this vm to finish */
-> +	ret = dma_resv_wait_timeout(vm->root_obj->base.resv,
-> +				    DMA_RESV_USAGE_BOOKKEEP, false,
-> +				    MAX_SCHEDULE_TIMEOUT);
-> +	if (ret < 0)
-> +		return ret;
-> +	else if (ret > 0)
-> +		return 0;
-> +	else
-> +		return -ETIMEDOUT;
-> +}
-> +
-> +/**
-> + * i915_vm_is_active() - Check for activeness of requests of vm
-> + * @vm: address spece targetted
-> + *
-> + * Check whether all the requests related private vmas are completed or not
-> + *
-> + * Returns: True when requests are not completed yet. Flase otherwise.
-> + */
-> +bool i915_vm_is_active(const struct i915_address_space *vm)
-> +{
-> +	return !dma_resv_test_signaled(vm->root_obj->base.resv,
-> +				       DMA_RESV_USAGE_BOOKKEEP);
-> +}
-> +
->  int i915_gem_gtt_prepare_pages(struct drm_i915_gem_object *obj,
->  			       struct sg_table *pages)
->  {
-> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.h b/drivers/gpu/drm/i915/i915_gem_gtt.h
-> index 8c2f57eb5ddaa..a5bbdc59d9dfb 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_gtt.h
-> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.h
-> @@ -51,4 +51,7 @@ int i915_gem_gtt_insert(struct i915_address_space *vm,
->  
->  #define PIN_OFFSET_MASK		I915_GTT_PAGE_MASK
->  
-> +int i915_vm_sync(struct i915_address_space *vm);
-> +bool i915_vm_is_active(const struct i915_address_space *vm);
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> # v1
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../drm/i915/display/intel_dp_link_training.c | 83 ++++++++-----------
+ 1 file changed, 36 insertions(+), 47 deletions(-)
 
-Maybe I don't get the gem header structure, but why do you add these in
-i915_gem_gtt.h but the implementation in i915_vma.c?
-
-In general, declarations for stuff in i915_foo.c should be in
-i915_foo.h.
-
-BR,
-Jani.
-
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 239346e0c07f2..0eb7727d62a6f 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -237,6 +237,7 @@ vma_create(struct drm_i915_gem_object *obj,
->  
->  	INIT_LIST_HEAD(&vma->vm_bind_link);
->  	INIT_LIST_HEAD(&vma->non_priv_vm_bind_link);
-> +	INIT_LIST_HEAD(&vma->vm_rebind_link);
->  	return vma;
->  
->  err_unlock:
-> @@ -387,8 +388,31 @@ int i915_vma_wait_for_bind(struct i915_vma *vma)
->  	return err;
->  }
->  
-> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
-> -static int i915_vma_verify_bind_complete(struct i915_vma *vma)
-> +/**
-> + * i915_vma_sync() - Wait for the vma to be idle
-> + * @vma: vma to be tested
-> + *
-> + * Returns 0 on success and error code on failure
-> + */
-> +int i915_vma_sync(struct i915_vma *vma)
-> +{
-> +	int ret;
-> +
-> +	/* Wait for the asynchronous bindings and pending GPU reads */
-> +	ret = i915_active_wait(&vma->active);
-> +	if (ret || !i915_vma_is_persistent(vma) || i915_vma_is_purged(vma))
-> +		return ret;
-> +
-> +	return i915_vm_sync(vma->vm);
-> +}
-> +
-> +/**
-> + * i915_vma_verify_bind_complete() - Check for the vm_bind completion of the vma
-> + * @vma: vma submitted for vm_bind
-> + *
-> + * Returns: 0 if the vm_bind is completed. Error code otherwise.
-> + */
-> +int i915_vma_verify_bind_complete(struct i915_vma *vma)
->  {
->  	struct dma_fence *fence = i915_active_fence_get(&vma->active.excl);
->  	int err;
-> @@ -405,9 +429,6 @@ static int i915_vma_verify_bind_complete(struct i915_vma *vma)
->  
->  	return err;
->  }
-> -#else
-> -#define i915_vma_verify_bind_complete(_vma) 0
-> -#endif
->  
->  I915_SELFTEST_EXPORT void
->  i915_vma_resource_init_from_vma(struct i915_vma_resource *vma_res,
-> @@ -1654,6 +1675,13 @@ static void force_unbind(struct i915_vma *vma)
->  	if (!drm_mm_node_allocated(&vma->node))
->  		return;
->  
-> +	/*
-> +	 * Mark persistent vma as purged to avoid it waiting
-> +	 * for VM to be released.
-> +	 */
-> +	if (i915_vma_is_persistent(vma))
-> +		i915_vma_set_purged(vma);
-> +
->  	atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
->  	WARN_ON(__i915_vma_unbind(vma));
->  	GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
-> @@ -1846,6 +1874,8 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
->  	int err;
->  
->  	assert_object_held(obj);
-> +	if (i915_vma_is_persistent(vma))
-> +		return -EINVAL;
->  
->  	GEM_BUG_ON(!vma->pages);
->  
-> @@ -2014,6 +2044,16 @@ int __i915_vma_unbind(struct i915_vma *vma)
->  	__i915_vma_evict(vma, false);
->  
->  	drm_mm_remove_node(&vma->node); /* pairs with i915_vma_release() */
-> +
-> +	if (i915_vma_is_persistent(vma)) {
-> +		spin_lock(&vma->vm->vm_rebind_lock);
-> +		if (list_empty(&vma->vm_rebind_link) &&
-> +		    !i915_vma_is_purged(vma))
-> +			list_add_tail(&vma->vm_rebind_link,
-> +				      &vma->vm->vm_rebind_list);
-> +		spin_unlock(&vma->vm->vm_rebind_lock);
-> +	}
-> +
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> index 15eac55a3e274..bf0b5b4abd919 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.h
-> +++ b/drivers/gpu/drm/i915/i915_vma.h
-> @@ -47,12 +47,6 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
->  
->  void i915_vma_unpin_and_release(struct i915_vma **p_vma, unsigned int flags);
->  #define I915_VMA_RELEASE_MAP BIT(0)
-> -
-> -static inline bool i915_vma_is_active(const struct i915_vma *vma)
-> -{
-> -	return !i915_active_is_idle(&vma->active);
-> -}
-> -
->  /* do not reserve memory to prevent deadlocks */
->  #define __EXEC_OBJECT_NO_RESERVE BIT(31)
->  
-> @@ -138,6 +132,48 @@ static inline u32 i915_ggtt_pin_bias(struct i915_vma *vma)
->  	return i915_vm_to_ggtt(vma->vm)->pin_bias;
->  }
->  
-> +static inline bool i915_vma_is_persistent(const struct i915_vma *vma)
-> +{
-> +	return test_bit(I915_VMA_PERSISTENT_BIT, __i915_vma_flags(vma));
-> +}
-> +
-> +static inline void i915_vma_set_persistent(struct i915_vma *vma)
-> +{
-> +	set_bit(I915_VMA_PERSISTENT_BIT, __i915_vma_flags(vma));
-> +}
-> +
-> +static inline bool i915_vma_is_purged(const struct i915_vma *vma)
-> +{
-> +	return test_bit(I915_VMA_PURGED_BIT, __i915_vma_flags(vma));
-> +}
-> +
-> +static inline void i915_vma_set_purged(struct i915_vma *vma)
-> +{
-> +	set_bit(I915_VMA_PURGED_BIT, __i915_vma_flags(vma));
-> +}
-> +
-> +static inline bool i915_vma_is_freed(const struct i915_vma *vma)
-> +{
-> +	return test_bit(I915_VMA_FREED_BIT, __i915_vma_flags(vma));
-> +}
-> +
-> +static inline void i915_vma_set_freed(struct i915_vma *vma)
-> +{
-> +	set_bit(I915_VMA_FREED_BIT, __i915_vma_flags(vma));
-> +}
-> +
-> +static inline bool i915_vma_is_active(const struct i915_vma *vma)
-> +{
-> +	if (i915_vma_is_persistent(vma)) {
-> +		if (i915_vma_is_purged(vma))
-> +			return false;
-> +
-> +		return i915_vm_is_active(vma->vm);
-> +	}
-> +
-> +	return !i915_active_is_idle(&vma->active);
-> +}
-> +
->  static inline struct i915_vma *i915_vma_get(struct i915_vma *vma)
->  {
->  	i915_gem_object_get(vma->obj);
-> @@ -406,12 +442,8 @@ void i915_vma_make_shrinkable(struct i915_vma *vma);
->  void i915_vma_make_purgeable(struct i915_vma *vma);
->  
->  int i915_vma_wait_for_bind(struct i915_vma *vma);
-> -
-> -static inline int i915_vma_sync(struct i915_vma *vma)
-> -{
-> -	/* Wait for the asynchronous bindings and pending GPU reads */
-> -	return i915_active_wait(&vma->active);
-> -}
-> +int i915_vma_verify_bind_complete(struct i915_vma *vma);
-> +int i915_vma_sync(struct i915_vma *vma);
->  
->  /**
->   * i915_vma_get_current_resource - Get the current resource of the vma
-> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
-> index de5534d518cdd..5483ccf0c82c7 100644
-> --- a/drivers/gpu/drm/i915/i915_vma_types.h
-> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
-> @@ -264,6 +264,28 @@ struct i915_vma {
->  #define I915_VMA_SCANOUT_BIT	17
->  #define I915_VMA_SCANOUT	((int)BIT(I915_VMA_SCANOUT_BIT))
->  
-> +  /**
-> +   * I915_VMA_PERSISTENT_BIT:
-> +   * The vma is persistent (created with VM_BIND call).
-> +   *
-> +   * I915_VMA_PURGED_BIT:
-> +   * The persistent vma is force unbound either due to VM_UNBIND call
-> +   * from UMD or VM is released. Do not check/wait for VM activeness
-> +   * in i915_vma_is_active() and i915_vma_sync() calls.
-> +   *
-> +   * I915_VMA_FREED_BIT:
-> +   * The persistent vma is being released by UMD via VM_UNBIND call.
-> +   * While releasing the vma, do not take VM_BIND lock as VM_UNBIND call
-> +   * already holds the lock.
-> +   */
-> +#define I915_VMA_PERSISTENT_BIT	19
-> +#define I915_VMA_PURGED_BIT	20
-> +#define I915_VMA_FREED_BIT	21
-> +
-> +#define I915_VMA_PERSISTENT	((int)BIT(I915_VMA_PERSISTENT_BIT))
-> +#define I915_VMA_PURGED		((int)BIT(I915_VMA_PURGED_BIT))
-> +#define I915_VMA_FREED		((int)BIT(I915_VMA_FREED_BIT))
-> +
->  	struct i915_active active;
->  
->  #define I915_VMA_PAGES_BIAS 24
-> @@ -293,6 +315,8 @@ struct i915_vma {
->  	struct list_head vm_bind_link;
->  	/* @non_priv_vm_bind_link: Link in non-private persistent VMA list */
->  	struct list_head non_priv_vm_bind_link;
-> +	/* @vm_rebind_link: link to vm_rebind_list and protected by vm_rebind_lock */
-> +	struct list_head vm_rebind_link; /* Link in vm_rebind_list */
->  
->  	/** Interval tree structures for persistent vma */
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index d213d8ad1ea5..3d3efcf02011 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -37,17 +37,6 @@ static void intel_dp_reset_lttpr_count(struct intel_dp *intel_dp)
+ 				    DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV] = 0;
+ }
+ 
+-static const char *intel_dp_phy_name(enum drm_dp_phy dp_phy,
+-				     char *buf, size_t buf_size)
+-{
+-	if (dp_phy == DP_PHY_DPRX)
+-		snprintf(buf, buf_size, "DPRX");
+-	else
+-		snprintf(buf, buf_size, "LTTPR %d", dp_phy - DP_PHY_LTTPR1 + 1);
+-
+-	return buf;
+-}
+-
+ static u8 *intel_dp_lttpr_phy_caps(struct intel_dp *intel_dp,
+ 				   enum drm_dp_phy dp_phy)
+ {
+@@ -60,20 +49,19 @@ static void intel_dp_read_lttpr_phy_caps(struct intel_dp *intel_dp,
+ {
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	u8 *phy_caps = intel_dp_lttpr_phy_caps(intel_dp, dp_phy);
+-	char phy_name[10];
+-
+-	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
+ 
+ 	if (drm_dp_read_lttpr_phy_caps(&intel_dp->aux, dpcd, dp_phy, phy_caps) < 0) {
+ 		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+ 			    "[ENCODER:%d:%s][%s] failed to read the PHY caps\n",
+-			    encoder->base.base.id, encoder->base.name, phy_name);
++			    encoder->base.base.id, encoder->base.name,
++			    drm_dp_phy_name(dp_phy));
+ 		return;
+ 	}
+ 
+ 	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
+ 		    "[ENCODER:%d:%s][%s] PHY capabilities: %*ph\n",
+-		    encoder->base.base.id, encoder->base.name, phy_name,
++		    encoder->base.base.id, encoder->base.name,
++		    drm_dp_phy_name(dp_phy),
+ 		    (int)sizeof(intel_dp->lttpr_phy_caps[0]),
+ 		    phy_caps);
+ }
+@@ -423,14 +411,13 @@ intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+ {
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	char phy_name[10];
+ 	int lane;
+ 
+ 	if (intel_dp_is_uhbr(crtc_state)) {
+ 		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
+ 			    "TX FFE request: " TRAIN_REQ_FMT "\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    crtc_state->lane_count,
+ 			    TRAIN_REQ_TX_FFE_ARGS(link_status));
+ 	} else {
+@@ -438,7 +425,7 @@ intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+ 			    "vswing request: " TRAIN_REQ_FMT ", "
+ 			    "pre-emphasis request: " TRAIN_REQ_FMT "\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    crtc_state->lane_count,
+ 			    TRAIN_REQ_VSWING_ARGS(link_status),
+ 			    TRAIN_REQ_PREEMPH_ARGS(link_status));
+@@ -503,13 +490,12 @@ intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	u8 train_pat = intel_dp_training_pattern_symbol(dp_train_pat);
+-	char phy_name[10];
+ 
+ 	if (train_pat != DP_TRAINING_PATTERN_DISABLE)
+ 		drm_dbg_kms(&i915->drm,
+ 			    "[ENCODER:%d:%s][%s] Using DP training pattern TPS%c\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    dp_training_pattern_name(train_pat));
+ 
+ 	intel_dp->set_link_train(intel_dp, crtc_state, dp_train_pat);
+@@ -546,13 +532,12 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+ {
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	char phy_name[10];
+ 
+ 	if (intel_dp_is_uhbr(crtc_state)) {
+ 		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s][%s] 128b/132b, lanes: %d, "
+ 			    "TX FFE presets: " TRAIN_SET_FMT "\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    crtc_state->lane_count,
+ 			    TRAIN_SET_TX_FFE_ARGS(intel_dp->train_set));
+ 	} else {
+@@ -560,7 +545,7 @@ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+ 			    "vswing levels: " TRAIN_SET_FMT ", "
+ 			    "pre-emphasis levels: " TRAIN_SET_FMT "\n",
+ 			    encoder->base.base.id, encoder->base.name,
+-			    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++			    drm_dp_phy_name(dp_phy),
+ 			    crtc_state->lane_count,
+ 			    TRAIN_SET_VSWING_ARGS(intel_dp->train_set),
+ 			    TRAIN_SET_PREEMPH_ARGS(intel_dp->train_set));
+@@ -754,12 +739,11 @@ intel_dp_dump_link_status(struct intel_dp *intel_dp, enum drm_dp_phy dp_phy,
+ {
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	char phy_name[10];
+ 
+ 	drm_dbg_kms(&i915->drm,
+ 		    "[ENCODER:%d:%s][%s] ln0_1:0x%x ln2_3:0x%x align:0x%x sink:0x%x adj_req0_1:0x%x adj_req2_3:0x%x\n",
+ 		    encoder->base.base.id, encoder->base.name,
+-		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++		    drm_dp_phy_name(dp_phy),
+ 		    link_status[0], link_status[1], link_status[2],
+ 		    link_status[3], link_status[4], link_status[5]);
+ }
+@@ -779,21 +763,19 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 	int voltage_tries, cr_tries, max_cr_tries;
+ 	u8 link_status[DP_LINK_STATUS_SIZE];
+ 	bool max_vswing_reached = false;
+-	char phy_name[10];
+ 	int delay_us;
+ 
+ 	delay_us = drm_dp_read_clock_recovery_delay(&intel_dp->aux,
+ 						    intel_dp->dpcd, dp_phy,
+ 						    intel_dp_is_uhbr(crtc_state));
+ 
+-	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
+-
+ 	/* clock recovery */
+ 	if (!intel_dp_reset_link_train(intel_dp, crtc_state, dp_phy,
+ 				       DP_TRAINING_PATTERN_1 |
+ 				       DP_LINK_SCRAMBLING_DISABLE)) {
+ 		drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to enable link training\n",
+-			encoder->base.base.id, encoder->base.name, phy_name);
++			encoder->base.base.id, encoder->base.name,
++			drm_dp_phy_name(dp_phy));
+ 		return false;
+ 	}
+ 
+@@ -817,14 +799,16 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 		if (drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, dp_phy,
+ 						     link_status) < 0) {
+ 			drm_err(&i915->drm, "[ENCODER:%d:%s][%s] Failed to get link status\n",
+-				encoder->base.base.id, encoder->base.name, phy_name);
++				encoder->base.base.id, encoder->base.name,
++				drm_dp_phy_name(dp_phy));
+ 			return false;
+ 		}
+ 
+ 		if (drm_dp_clock_recovery_ok(link_status, crtc_state->lane_count)) {
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Clock recovery OK\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			return true;
+ 		}
+ 
+@@ -832,7 +816,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Same voltage tried 5 times\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			return false;
+ 		}
+ 
+@@ -840,7 +825,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Max Voltage Swing reached\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			return false;
+ 		}
+ 
+@@ -850,7 +836,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
+ 			drm_err(&i915->drm,
+ 				"[ENCODER:%d:%s][%s] Failed to update link training\n",
+-				encoder->base.base.id, encoder->base.name, phy_name);
++				encoder->base.base.id, encoder->base.name,
++				drm_dp_phy_name(dp_phy));
+ 			return false;
+ 		}
+ 
+@@ -868,7 +855,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp,
+ 	intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
+ 	drm_err(&i915->drm,
+ 		"[ENCODER:%d:%s][%s] Failed clock recovery %d times, giving up!\n",
+-		encoder->base.base.id, encoder->base.name, phy_name, max_cr_tries);
++		encoder->base.base.id, encoder->base.name,
++		drm_dp_phy_name(dp_phy), max_cr_tries);
+ 
+ 	return false;
+ }
+@@ -946,15 +934,12 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 	u32 training_pattern;
+ 	u8 link_status[DP_LINK_STATUS_SIZE];
+ 	bool channel_eq = false;
+-	char phy_name[10];
+ 	int delay_us;
+ 
+ 	delay_us = drm_dp_read_channel_eq_delay(&intel_dp->aux,
+ 						intel_dp->dpcd, dp_phy,
+ 						intel_dp_is_uhbr(crtc_state));
+ 
+-	intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name));
+-
+ 	training_pattern = intel_dp_training_pattern(intel_dp, crtc_state, dp_phy);
+ 	/* Scrambling is disabled for TPS2/3 and enabled for TPS4 */
+ 	if (training_pattern != DP_TRAINING_PATTERN_4)
+@@ -966,7 +951,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 		drm_err(&i915->drm,
+ 			"[ENCODER:%d:%s][%s] Failed to start channel equalization\n",
+ 			encoder->base.base.id, encoder->base.name,
+-			phy_name);
++			drm_dp_phy_name(dp_phy));
+ 		return false;
+ 	}
+ 
+@@ -977,7 +962,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 						     link_status) < 0) {
+ 			drm_err(&i915->drm,
+ 				"[ENCODER:%d:%s][%s] Failed to get link status\n",
+-				encoder->base.base.id, encoder->base.name, phy_name);
++				encoder->base.base.id, encoder->base.name,
++				drm_dp_phy_name(dp_phy));
+ 			break;
+ 		}
+ 
+@@ -988,7 +974,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Clock recovery check failed, cannot "
+ 				    "continue channel equalization\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			break;
+ 		}
+ 
+@@ -997,7 +984,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 			channel_eq = true;
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[ENCODER:%d:%s][%s] Channel EQ done. DP Training successful\n",
+-				    encoder->base.base.id, encoder->base.name, phy_name);
++				    encoder->base.base.id, encoder->base.name,
++				    drm_dp_phy_name(dp_phy));
+ 			break;
+ 		}
+ 
+@@ -1007,7 +995,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 		if (!intel_dp_update_link_train(intel_dp, crtc_state, dp_phy)) {
+ 			drm_err(&i915->drm,
+ 				"[ENCODER:%d:%s][%s] Failed to update link training\n",
+-				encoder->base.base.id, encoder->base.name, phy_name);
++				encoder->base.base.id, encoder->base.name,
++				drm_dp_phy_name(dp_phy));
+ 			break;
+ 		}
+ 	}
+@@ -1017,7 +1006,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp,
+ 		intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
+ 		drm_dbg_kms(&i915->drm,
+ 			    "[ENCODER:%d:%s][%s] Channel equalization failed 5 times\n",
+-			    encoder->base.base.id, encoder->base.name, phy_name);
++			    encoder->base.base.id, encoder->base.name,
++			    drm_dp_phy_name(dp_phy));
+ 	}
+ 
+ 	return channel_eq;
+@@ -1092,7 +1082,6 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
+ {
+ 	struct intel_connector *connector = intel_dp->attached_connector;
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+-	char phy_name[10];
+ 	bool ret = false;
+ 
+ 	if (!intel_dp_link_training_clock_recovery(intel_dp, crtc_state, dp_phy))
+@@ -1108,7 +1097,7 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
+ 		    "[CONNECTOR:%d:%s][ENCODER:%d:%s][%s] Link Training %s at link rate = %d, lane count = %d\n",
+ 		    connector->base.base.id, connector->base.name,
+ 		    encoder->base.base.id, encoder->base.name,
+-		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)),
++		    drm_dp_phy_name(dp_phy),
+ 		    ret ? "passed" : "failed",
+ 		    crtc_state->port_clock, crtc_state->lane_count);
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.34.1
+
