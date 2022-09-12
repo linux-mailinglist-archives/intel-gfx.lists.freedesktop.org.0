@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5005B592D
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:19:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C48085B5926
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:19:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36A5A10E3A7;
-	Mon, 12 Sep 2022 11:19:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68B8A10E3CB;
+	Mon, 12 Sep 2022 11:18:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1A2610E3BE
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:49 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0078910E3BE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662981529; x=1694517529;
+ t=1662981520; x=1694517520;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=uCQtEIulLGSHAq5vBvDwsJglzj6lv48j6d+QuuVkqrg=;
- b=UrstTDSO/oeGR0srInoDZuI3S8M1l+h3TEoY2/6aL+BWxu5pqF5mFJYZ
- JPpeWOeFHR+86duo/3hB/lLu9C7xRihmxGTDBRzdmiknf7qOsl0XpBe5e
- 78pWXKZOCiQ5is1lwd6jEstvHbg7TnlwWj4nenmETdmEuUEaNjpiVEGRz
- 1WLVpIVvkDDaPRzCWfeMNV0RzfbxHCvzc33xvK6uisAT5q4AczZc+9E93
- IAoz9GOLU+CRSVIyqKkY9+9BB9Dfcu85YxcOzh6FHcc7VcpVPcI7Qdt8d
- yWuBvNQwQDPYfLrZUuQsKzDqvQj/cdCWLuQmUQBuMxGz1nKA9qj4xliP/ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="296575666"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="296575666"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 04:18:37 -0700
+ bh=71KgHHpG5ElIrEC2vaIaDdc5tn/9/q4xquduiPJmFN8=;
+ b=AmVG9A7muD8Iws/qWEuT5XqdT5yELnrEgI9Q/lwwjkWN5In5qC6FvxNM
+ KsM0svYSvPEDwtjRqDyF+8eosjwjpoFQhS9EpTRa2n6qd3+5D5OKnTa+D
+ 2jVpHdov2VPid4L138L5cUrarFQPkq/esXH8+twHPMfG5mTwLxPDIiHVJ
+ r4NKEw04RxMHz7/63d6/2gBwGdhCUXnoM3J5UR+SbIRxNtl/j2NxW8FDG
+ hYjKNQGg8ozAyAvubhHevbolDXp5w/SNLQUFcoh5KTDSt7L445hYT2QcI
+ E2iQ5YZA9CcNxJNQyXyOYUSYZVZoOPwJvsjhGIruh8srkH9thelucdrUv Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="299180237"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="299180237"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 04:18:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="705115852"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="616013707"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by FMSMGA003.fm.intel.com with SMTP; 12 Sep 2022 04:18:35 -0700
+ by orsmga002.jf.intel.com with SMTP; 12 Sep 2022 04:18:38 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 12 Sep 2022 14:18:34 +0300
+ Mon, 12 Sep 2022 14:18:37 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Sep 2022 14:18:06 +0300
-Message-Id: <20220912111814.17466-8-ville.syrjala@linux.intel.com>
+Date: Mon, 12 Sep 2022 14:18:07 +0300
+Message-Id: <20220912111814.17466-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 References: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 07/15] drm/i915: Extract
- intel_tv_add_properties()
+Subject: [Intel-gfx] [PATCH 08/15] drm/i915: Extract
+ intel_dp_mst_add_properties()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,127 +64,85 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pull all the TV connector property setup into its own neat function.
+Move the DP MST connector property setup into its own function
+so it's not spread all over intel_dp_add_mst_connector().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_tv.c | 80 +++++++++++++------------
- 1 file changed, 43 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 46 ++++++++++++++-------
+ 1 file changed, 30 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index 9379f3463344..306d08482855 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -1869,6 +1869,48 @@ static const struct drm_encoder_funcs intel_tv_enc_funcs = {
- 	.destroy = intel_encoder_destroy,
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 5adfd226d6c4..ac67738e4eda 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -790,7 +790,35 @@ static bool intel_dp_mst_get_hw_state(struct intel_connector *connector)
+ 	return false;
+ }
  
-+static void intel_tv_add_properties(struct drm_connector *connector)
+-static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port, const char *pathprop)
++static int intel_dp_mst_add_properties(struct intel_dp *intel_dp,
++				       struct drm_connector *connector,
++				       const char *pathprop)
 +{
 +	struct drm_i915_private *i915 = to_i915(connector->dev);
-+	struct drm_connector_state *conn_state = connector->state;
-+	const char *tv_format_names[ARRAY_SIZE(tv_modes)];
-+	int i;
-+
-+	/* BIOS margin values */
-+	conn_state->tv.margins.left = 54;
-+	conn_state->tv.margins.top = 36;
-+	conn_state->tv.margins.right = 46;
-+	conn_state->tv.margins.bottom = 37;
-+
-+	conn_state->tv.mode = 0;
-+
-+	/* Create TV properties then attach current values */
-+	for (i = 0; i < ARRAY_SIZE(tv_modes); i++) {
-+		/* 1080p50/1080p60 not supported on gen3 */
-+		if (DISPLAY_VER(i915) == 3 && tv_modes[i].oversample == 1)
-+			break;
-+
-+		tv_format_names[i] = tv_modes[i].name;
-+	}
-+	drm_mode_create_tv_properties(&i915->drm, i, tv_format_names);
 +
 +	drm_object_attach_property(&connector->base,
-+				   i915->drm.mode_config.tv_mode_property,
-+				   conn_state->tv.mode);
++				   i915->drm.mode_config.path_property, 0);
 +	drm_object_attach_property(&connector->base,
-+				   i915->drm.mode_config.tv_left_margin_property,
-+				   conn_state->tv.margins.left);
-+	drm_object_attach_property(&connector->base,
-+				   i915->drm.mode_config.tv_top_margin_property,
-+				   conn_state->tv.margins.top);
-+	drm_object_attach_property(&connector->base,
-+				   i915->drm.mode_config.tv_right_margin_property,
-+				   conn_state->tv.margins.right);
-+	drm_object_attach_property(&connector->base,
-+				   i915->drm.mode_config.tv_bottom_margin_property,
-+				   conn_state->tv.margins.bottom);
++				   i915->drm.mode_config.tile_property, 0);
++
++	intel_attach_force_audio_property(connector);
++	intel_attach_broadcast_rgb_property(connector);
++
++	/*
++	 * Reuse the prop from the SST connector because we're
++	 * not allowed to create new props after device registration.
++	 */
++	connector->max_bpc_property =
++		intel_dp->attached_connector->base.max_bpc_property;
++	if (connector->max_bpc_property)
++		drm_connector_attach_max_bpc_property(connector, 6, 12);
++
++	return drm_connector_set_path_property(connector, pathprop);
 +}
 +
- void
- intel_tv_init(struct drm_i915_private *dev_priv)
++static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
++							struct drm_dp_mst_port *port,
++							const char *pathprop)
  {
-@@ -1878,9 +1920,6 @@ intel_tv_init(struct drm_i915_private *dev_priv)
- 	struct intel_encoder *intel_encoder;
- 	struct intel_connector *intel_connector;
- 	u32 tv_dac_on, tv_dac_off, save_tv_dac;
--	const char *tv_format_names[ARRAY_SIZE(tv_modes)];
--	int i, initial_mode = 0;
--	struct drm_connector_state *state;
+ 	struct intel_dp *intel_dp = container_of(mgr, struct intel_dp, mst_mgr);
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+@@ -830,28 +858,14 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
+ 			goto err;
+ 	}
  
- 	if ((intel_de_read(dev_priv, TV_CTL) & TV_FUSE_STATE_MASK) == TV_FUSE_STATE_DISABLED)
- 		return;
-@@ -1926,7 +1965,6 @@ intel_tv_init(struct drm_i915_private *dev_priv)
- 
- 	intel_encoder = &intel_tv->base;
- 	connector = &intel_connector->base;
--	state = connector->state;
- 
- 	/*
- 	 * The documentation, for the older chipsets at least, recommend
-@@ -1963,41 +2001,9 @@ intel_tv_init(struct drm_i915_private *dev_priv)
- 	intel_encoder->cloneable = 0;
- 	intel_tv->type = DRM_MODE_CONNECTOR_Unknown;
- 
--	/* BIOS margin values */
--	state->tv.margins.left = 54;
--	state->tv.margins.top = 36;
--	state->tv.margins.right = 46;
--	state->tv.margins.bottom = 37;
+-	drm_object_attach_property(&connector->base, dev->mode_config.path_property, 0);
+-	drm_object_attach_property(&connector->base, dev->mode_config.tile_property, 0);
 -
--	state->tv.mode = initial_mode;
--
- 	drm_connector_helper_add(connector, &intel_tv_connector_helper_funcs);
- 	connector->interlace_allowed = false;
- 	connector->doublescan_allowed = false;
+-	ret = drm_connector_set_path_property(connector, pathprop);
++	ret = intel_dp_mst_add_properties(intel_dp, connector, pathprop);
+ 	if (ret)
+ 		goto err;
  
--	/* Create TV properties then attach current values */
--	for (i = 0; i < ARRAY_SIZE(tv_modes); i++) {
--		/* 1080p50/1080p60 not supported on gen3 */
--		if (DISPLAY_VER(dev_priv) == 3 &&
--		    tv_modes[i].oversample == 1)
--			break;
+-	intel_attach_force_audio_property(connector);
+-	intel_attach_broadcast_rgb_property(connector);
 -
--		tv_format_names[i] = tv_modes[i].name;
--	}
--	drm_mode_create_tv_properties(dev, i, tv_format_names);
--
--	drm_object_attach_property(&connector->base, dev->mode_config.tv_mode_property,
--				   state->tv.mode);
--	drm_object_attach_property(&connector->base,
--				   dev->mode_config.tv_left_margin_property,
--				   state->tv.margins.left);
--	drm_object_attach_property(&connector->base,
--				   dev->mode_config.tv_top_margin_property,
--				   state->tv.margins.top);
--	drm_object_attach_property(&connector->base,
--				   dev->mode_config.tv_right_margin_property,
--				   state->tv.margins.right);
--	drm_object_attach_property(&connector->base,
--				   dev->mode_config.tv_bottom_margin_property,
--				   state->tv.margins.bottom);
-+	intel_tv_add_properties(connector);
- }
+ 	ret = intel_dp_hdcp_init(dig_port, intel_connector);
+ 	if (ret)
+ 		drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP MST init failed, skipping.\n",
+ 			    connector->name, connector->base.id);
+-	/*
+-	 * Reuse the prop from the SST connector because we're
+-	 * not allowed to create new props after device registration.
+-	 */
+-	connector->max_bpc_property =
+-		intel_dp->attached_connector->base.max_bpc_property;
+-	if (connector->max_bpc_property)
+-		drm_connector_attach_max_bpc_property(connector, 6, 12);
+ 
+ 	return connector;
+ 
 -- 
 2.35.1
 
