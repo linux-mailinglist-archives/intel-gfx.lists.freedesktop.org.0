@@ -1,49 +1,83 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459D75BCB4E
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 13:57:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 320D55BCD3E
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:29:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F82910E610;
-	Mon, 19 Sep 2022 11:56:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF0A810E655;
+	Mon, 19 Sep 2022 13:29:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FD2C10E602;
- Mon, 19 Sep 2022 11:56:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663588600; x=1695124600;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=TFjxKWjYt6FuMgGEySU7S3Uhn+LOy2fTgufjZPuqLmo=;
- b=eqkvA+XjNSHxKDgvqMyAuMZLoHipEt2n8EaxgW699/ywlErUOFxWECdE
- TRSsZiGmlDcw+ql2I2vEFG1bUkAgffmuxsbcp6bnL4ZA4kM1VFqnzQV0K
- AdKwvhO89m9D26cNiY+5D2ThRJCDLSBDCfqdEsylXLoYgZVdrjIeCA3vs
- IC3H6eKtnWORvtpxpscZtoNnZZfM7ttuZHeEJ/sIhCiTj5BqAWjjrkWp1
- +wIB8yOTLQ1zKFycAYKHlhtnQPqaRzYPCCKIO5rU2O/sSybI6BJxlGSyP
- UgizHlOS0m2VEvbCqMEWBi7s17L8zaHO+WX2ZlsKDU4v3iB8QbzAaPimi Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10474"; a="299371197"
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="299371197"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 04:56:40 -0700
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="947190023"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 04:56:37 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 Sep 2022 17:29:06 +0530
-Message-Id: <20220919115906.1264041-3-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220919115906.1264041-1-badal.nilawar@intel.com>
-References: <20220919115906.1264041-1-badal.nilawar@intel.com>
+Received: from mx0a-00190b01.pphosted.com (mx0a-00190b01.pphosted.com
+ [IPv6:2620:100:9001:583::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7219210E172;
+ Mon, 12 Sep 2022 20:17:12 +0000 (UTC)
+Received: from pps.filterd (m0050095.ppops.net [127.0.0.1])
+ by m0050095.ppops.net-00190b01. (8.17.1.5/8.17.1.5) with ESMTP id
+ 28CGn0s1000316; Mon, 12 Sep 2022 21:17:03 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=jan2016.eng;
+ bh=PPtZHmCIQVuM9YXzLPNtRwdGAqaP/tT/4KH6zim4BTk=;
+ b=J0a0BInST46lwTEIr0aqv3RDPnHNzZzbc/gn++frBD8awWms+RF0UxiEe2dSINuE/0Ul
+ xA9klHjTwJu/NOFKI+q3hwjlk4r+pWtVammua4QSu6FgXqxvSki5PX/gtYg0laUE5tFw
+ RKhQwNGCyyow5pczu6GvQEPB22usQC9T+vn0YgSKPSSRumn/GeHDmTzZ+Mg5ykATKjDs
+ WPHJa4fC/c/4CyQsb8BbVntxkB/D9yqcFmH40HSv6v4g5419glK47rJrmlZeozCs8pnr
+ 1S9MN1H9Kj3IqyHtQLeEUkp7/4Zgi4dVE4F21z9UqOnJMy5Xu/9/DU/fyFlasyPi8Zjm Zg== 
+Received: from prod-mail-ppoint7
+ (a72-247-45-33.deploy.static.akamaitechnologies.com [72.247.45.33] (may be
+ forged))
+ by m0050095.ppops.net-00190b01. (PPS) with ESMTPS id 3jgk46s9gq-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 12 Sep 2022 21:17:03 +0100
+Received: from pps.filterd (prod-mail-ppoint7.akamai.com [127.0.0.1])
+ by prod-mail-ppoint7.akamai.com (8.17.1.5/8.17.1.5) with ESMTP id
+ 28CIUslV017697; Mon, 12 Sep 2022 16:17:02 -0400
+Received: from prod-mail-relay18.dfw02.corp.akamai.com ([172.27.165.172])
+ by prod-mail-ppoint7.akamai.com (PPS) with ESMTP id 3jgnxvdfbx-1;
+ Mon, 12 Sep 2022 16:17:02 -0400
+Received: from [0.0.0.0] (unknown [172.27.119.138])
+ by prod-mail-relay18.dfw02.corp.akamai.com (Postfix) with ESMTP id 38EF1FA;
+ Mon, 12 Sep 2022 20:17:01 +0000 (GMT)
+Message-ID: <0d9f644f-3d60-02c3-7ce0-01296757e181@akamai.com>
+Date: Mon, 12 Sep 2022 16:17:00 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Add C6 residency support for
- MTL SAMedia
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: jim.cromie@gmail.com
+References: <20220904214134.408619-1-jim.cromie@gmail.com>
+ <20220904214134.408619-18-jim.cromie@gmail.com>
+ <2d3846cb-ff9a-3484-61a8-973799727d8f@akamai.com>
+ <CAJfuBxzM=KKPbcks-aQLAJM0QVd5sjL-CucYbyFbeG5sgoCVjg@mail.gmail.com>
+From: Jason Baron <jbaron@akamai.com>
+In-Reply-To: <CAJfuBxzM=KKPbcks-aQLAJM0QVd5sjL-CucYbyFbeG5sgoCVjg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-12_14,2022-09-12_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+ malwarescore=0 adultscore=0
+ phishscore=0 bulkscore=0 mlxscore=0 mlxlogscore=999 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
+ definitions=main-2209120067
+X-Proofpoint-ORIG-GUID: NWqNNT8JvyIz1ZmPTHNe_ca5jdhHGLod
+X-Proofpoint-GUID: NWqNNT8JvyIz1ZmPTHNe_ca5jdhHGLod
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-12_14,2022-09-12_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ lowpriorityscore=0 bulkscore=0
+ phishscore=0 mlxlogscore=999 spamscore=0 priorityscore=1501 suspectscore=0
+ mlxscore=0 impostorscore=0 adultscore=0 clxscore=1015 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
+ definitions=main-2209120068
+X-Mailman-Approved-At: Mon, 19 Sep 2022 13:29:10 +0000
+Subject: Re: [Intel-gfx] [PATCH v6 17/57] dyndbg: validate class FOO by
+ checking with module
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,217 +90,277 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Cc: Greg KH <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Sean Paul <seanpaul@chromium.org>, dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Joe Perches <joe@perches.com>,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For MTL SAMedia updated relevant functions and places in the code to get
-Media C6 residency.
 
-v2: Fixed review comments (Ashutosh)
 
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: Chris Wilson <chris.p.wilson@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 60 +++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       | 10 ++++
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   |  9 ++-
- drivers/gpu/drm/i915/gt/intel_rc6.c           |  5 +-
- drivers/gpu/drm/i915/gt/selftest_rc6.c        |  9 ++-
- drivers/gpu/drm/i915/i915_pmu.c               |  8 ++-
- 6 files changed, 97 insertions(+), 4 deletions(-)
+On 9/9/22 16:44, jim.cromie@gmail.com wrote:
+> On Wed, Sep 7, 2022 at 12:19 PM Jason Baron <jbaron@akamai.com> wrote:
+>>
+>>
+>>
+>> On 9/4/22 17:40, Jim Cromie wrote:
+>>> Add module-to-class validation:
+>>>
+>>>   #> echo class DRM_UT_KMS +p > /proc/dynamic_debug/control
+>>>
+>>> If a query has "class FOO", then ddebug_find_valid_class(), called
+>>> from ddebug_change(), requires that FOO is known to module X,
+>>> otherwize the query is skipped entirely for X.  This protects each
+>>> module's class-space, other than the default:31.
+>>>
+>>> The authors' choice of FOO is highly selective, giving isolation
+>>> and/or coordinated sharing of FOOs.  For example, only DRM modules
+>>> should know and respond to DRM_UT_KMS.
+>>>
+>>> So this, combined with module's opt-in declaration of known classes,
+>>> effectively privatizes the .class_id space for each module (or
+>>> coordinated set of modules).
+>>>
+>>> Notes:
+>>>
+>>> For all "class FOO" queries, ddebug_find_valid_class() is called, it
+>>> returns the map matching the query, and sets valid_class via an
+>>> *outvar).
+>>>
+>>> If no "class FOO" is supplied, valid_class = _CLASS_DFLT.  This
+>>> insures that legacy queries do not trample on new class'd callsites,
+>>> as they get added.
+>>
+>>
+>> Hi Jim,
+>>
+>> I'm wondering about the case where we have a callsite which is marked
+>> as 'class foo', but the query string is done by say module and file, so:
+>>
+>> # echo "module bar file foo.c +p" > /proc/dynamic_debug_control
+>>
+>> With the proposed code, I think this ends up not enabling anything right?
+> 
+> correct - the only way to enable :    pr_debug_cls(CL_FOO, " ...")
+> is
+>    echo class CL_FOO +p > control
+> 
+> 1st, existing dyndbg query uses, whether ad-hoc or scripted,
+> were not written in anticipation of new / classified subsystems.
+> 
+> 2nd, new class users dont want to sit in coach. no damn legroom.
+> 
+> 3rd, consider DRM, which already has drm.debug
+> ie:  /sys/module/drm/parameters/debug
+> and prefers it, at least by inertia.
+> protecting these new class'd callsites (3-5k of them)
+> from casual (unintended) manipulations of the kernel-wide
+> dyndbg state seems prudent, and a usability win.
+> 
+> Not everyone will use module bar, requiring "class foo"
+> guarantees that changes are intentional.
+> 
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-index 68310881a793..053167b506a9 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-@@ -269,6 +269,64 @@ static int ilk_drpc(struct seq_file *m)
- 	return 0;
- }
- 
-+static int mtl_drpc(struct seq_file *m)
-+{
-+	struct intel_gt *gt = m->private;
-+	struct intel_uncore *uncore = gt->uncore;
-+	u32 gt_core_status, rcctl1, global_forcewake;
-+	u32 mtl_powergate_enable = 0, mtl_powergate_status = 0;
-+	i915_reg_t reg;
-+
-+	gt_core_status = intel_uncore_read(uncore, MTL_MIRROR_TARGET_WP1);
-+
-+	global_forcewake = intel_uncore_read(uncore, FORCEWAKE_GT_GEN9);
-+
-+	rcctl1 = intel_uncore_read(uncore, GEN6_RC_CONTROL);
-+	mtl_powergate_enable = intel_uncore_read(uncore, GEN9_PG_ENABLE);
-+	mtl_powergate_status = intel_uncore_read(uncore,
-+						 GEN9_PWRGT_DOMAIN_STATUS);
-+
-+	seq_printf(m, "RC6 Enabled: %s\n",
-+		   str_yes_no(rcctl1 & GEN6_RC_CTL_RC6_ENABLE));
-+	if (gt->type == GT_MEDIA) {
-+		seq_printf(m, "Media Well Gating Enabled: %s\n",
-+			   str_yes_no(mtl_powergate_enable & GEN9_MEDIA_PG_ENABLE));
-+	} else {
-+		seq_printf(m, "Render Well Gating Enabled: %s\n",
-+			   str_yes_no(mtl_powergate_enable & GEN9_RENDER_PG_ENABLE));
-+	}
-+
-+	seq_puts(m, "Current RC state: ");
-+
-+	switch ((gt_core_status & MTL_CC_MASK) >> MTL_CC_SHIFT) {
-+	case MTL_CC0:
-+		seq_puts(m, "on\n");
-+		break;
-+	case MTL_CC6:
-+		seq_puts(m, "RC6\n");
-+		break;
-+	default:
-+		seq_puts(m, "Unknown\n");
-+		break;
-+	}
-+
-+	if (gt->type == GT_MEDIA)
-+		seq_printf(m, "Media Power Well: %s\n",
-+			   (mtl_powergate_status &
-+			    GEN9_PWRGT_MEDIA_STATUS_MASK) ? "Up" : "Down");
-+	else
-+		seq_printf(m, "Render Power Well: %s\n",
-+			   (mtl_powergate_status &
-+			    GEN9_PWRGT_RENDER_STATUS_MASK) ? "Up" : "Down");
-+
-+	reg = (gt->type == GT_MEDIA) ? MTL_MEDIA_MC6 : GEN6_GT_GFX_RC6;
-+	print_rc6_res(m, "RC6 residency since boot:", reg);
-+
-+	seq_printf(m, "Global Forcewake Requests: 0x%x\n", global_forcewake);
-+
-+	return fw_domains_show(m, NULL);
-+}
-+
- static int drpc_show(struct seq_file *m, void *unused)
- {
- 	struct intel_gt *gt = m->private;
-@@ -279,6 +337,8 @@ static int drpc_show(struct seq_file *m, void *unused)
- 	with_intel_runtime_pm(gt->uncore->rpm, wakeref) {
- 		if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
- 			err = vlv_drpc(m);
-+		else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
-+			err = mtl_drpc(m);
- 		else if (GRAPHICS_VER(i915) >= 6)
- 			err = gen6_drpc(m);
- 		else
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 7819d32db956..8a56fd873228 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1517,6 +1517,16 @@
-  */
- #define MTL_MIRROR_TARGET_WP1          _MMIO(0x0C60)
- #define   MTL_CAGF_MASK                REG_GENMASK(8, 0)
-+#define   MTL_CC0                      0x0
-+#define   MTL_CC6                      0x3
-+#define   MTL_CC_SHIFT                 9
-+#define   MTL_CC_MASK                  (0xf << MTL_CC_SHIFT)
-+
-+/*
-+ * MTL: This register contains the total MC6 residency time that SAMedia was
-+ * since boot
-+ */
-+#define MTL_MEDIA_MC6                          _MMIO(0x138048)
- 
- #define GEN11_GT_INTR_DW(x)			_MMIO(0x190018 + ((x) * 4))
- #define   GEN11_CSME				(31)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index 54deae45d81f..7ab1d776673a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -123,7 +123,14 @@ static ssize_t rc6_enable_show(struct device *dev,
- 
- static u32 __rc6_residency_ms_show(struct intel_gt *gt)
- {
--	return get_residency(gt, GEN6_GT_GFX_RC6);
-+	i915_reg_t reg;
-+
-+	if (gt->type == GT_MEDIA)
-+		reg = MTL_MEDIA_MC6;
-+	else
-+		reg = GEN6_GT_GFX_RC6;
-+
-+	return get_residency(gt, reg);
- }
- 
- static ssize_t rc6_residency_ms_show(struct device *dev,
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index f8d0523f4c18..26f71f7f07c6 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -745,6 +745,7 @@ u64 intel_rc6_residency_ns(struct intel_rc6 *rc6, const i915_reg_t reg)
- 	unsigned long flags;
- 	unsigned int i;
- 	u32 mul, div;
-+	i915_reg_t base;
- 
- 	if (!rc6->supported)
- 		return 0;
-@@ -756,8 +757,10 @@ u64 intel_rc6_residency_ns(struct intel_rc6 *rc6, const i915_reg_t reg)
- 	 * other so we can use the relative address, compared to the smallest
- 	 * one as the index into driver storage.
- 	 */
-+	base = (rc6_to_gt(rc6)->type == GT_MEDIA) ?
-+	       MTL_MEDIA_MC6 : GEN6_GT_GFX_RC6_LOCKED;
- 	i = (i915_mmio_reg_offset(reg) -
--	     i915_mmio_reg_offset(GEN6_GT_GFX_RC6_LOCKED)) / sizeof(u32);
-+	     i915_mmio_reg_offset(base)) / sizeof(u32);
- 	if (drm_WARN_ON_ONCE(&i915->drm, i >= ARRAY_SIZE(rc6->cur_residency)))
- 		return 0;
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 8c70b7e12074..28c6a4b6b8d1 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -15,11 +15,18 @@
- 
- static u64 rc6_residency(struct intel_rc6 *rc6)
- {
-+	struct intel_gt *gt = rc6_to_gt(rc6);
-+	i915_reg_t reg;
- 	u64 result;
- 
- 	/* XXX VLV_GT_MEDIA_RC6? */
- 
--	result = intel_rc6_residency_ns(rc6, GEN6_GT_GFX_RC6);
-+	if (gt->type == GT_MEDIA)
-+		reg = MTL_MEDIA_MC6;
-+	else
-+		reg = GEN6_GT_GFX_RC6;
-+
-+	result = intel_rc6_residency_ns(rc6, reg);
- 	if (HAS_RC6p(rc6_to_i915(rc6)))
- 		result += intel_rc6_residency_ns(rc6, GEN6_GT_GFX_RC6p);
- 	if (HAS_RC6pp(rc6_to_i915(rc6)))
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 958b37123bf1..6ec139668641 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -146,9 +146,15 @@ static bool pmu_needs_timer(struct i915_pmu *pmu, bool gpu_active)
- static u64 __get_rc6(struct intel_gt *gt)
- {
- 	struct drm_i915_private *i915 = gt->i915;
-+	i915_reg_t reg;
- 	u64 val;
- 
--	val = intel_rc6_residency_ns(&gt->rc6, GEN6_GT_GFX_RC6);
-+	if (gt->type == GT_MEDIA)
-+		reg = MTL_MEDIA_MC6;
-+	else
-+		reg = GEN6_GT_GFX_RC6;
-+
-+	val = intel_rc6_residency_ns(&gt->rc6, reg);
- 
- 	if (HAS_RC6p(i915))
- 		val += intel_rc6_residency_ns(&gt->rc6, GEN6_GT_GFX_RC6p);
--- 
-2.25.1
+I sort of get that your trying to protect these from unintended toggling,
+but I would say it's that's not really new with these statements,
+prr_debug() come and go before and I'm not aware of this is an issue.
+And in any case, a query can be modified.
 
+I think what bugs me is now query stuff works differently. Previously,
+all the query strings - 'module', 'file', 'line', 'format', were
+used as additional selectors, but now we have this new one 'class'
+that works differently as it's requited for pr_debug_cls() statements.
+
+> 
+> 
+>> Because valid class is set to _DPRINTK_CLASS_DFLT and then:
+>> 'dp->class_id != valid_class' is true?
+>>
+>> This seems confusing to me as a user as this doesn't work like the
+>> other queries....so maybe we should only do the
+>> 'dp->class_id != valid_class' check *if* query->class_string is set,
+>> see below.
+>>
+> 
+> Could you clarify whether you think this is a logic error
+> or a frame-of-reference difference as elaborated above ?
+
+'frame-of-reference' I'm questioning the how 'class' works as mentioned
+above not the implementation.
+
+Thanks,
+
+-Jason
+
+> 
+> ISTM theres a place for a well-worded paragraph in doc
+> about the class distinction, perhaps a whole for-authors section.
+> 
+> 
+> 
+>>
+>>
+>>>
+>>> Also add a new column to control-file output, displaying non-default
+>>> class-name (when found) or the "unknown _id:", if it has not been
+>>> (correctly) declared with one of the declarator macros.
+>>>
+>>> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+>>> ---
+>>>  lib/dynamic_debug.c | 76 ++++++++++++++++++++++++++++++++++++++++-----
+>>>  1 file changed, 68 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
+>>> index b71efd0b491d..db96ded78c3f 100644
+>>> --- a/lib/dynamic_debug.c
+>>> +++ b/lib/dynamic_debug.c
+>>> @@ -56,6 +56,7 @@ struct ddebug_query {
+>>>       const char *module;
+>>>       const char *function;
+>>>       const char *format;
+>>> +     const char *class_string;
+>>>       unsigned int first_lineno, last_lineno;
+>>>  };
+>>>
+>>> @@ -136,15 +137,33 @@ static void vpr_info_dq(const struct ddebug_query *query, const char *msg)
+>>>                       fmtlen--;
+>>>       }
+>>>
+>>> -     v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u\n",
+>>> -              msg,
+>>> -              query->function ?: "",
+>>> -              query->filename ?: "",
+>>> -              query->module ?: "",
+>>> -              fmtlen, query->format ?: "",
+>>> -              query->first_lineno, query->last_lineno);
+>>> +     v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u class=%s\n",
+>>> +               msg,
+>>> +               query->function ?: "",
+>>> +               query->filename ?: "",
+>>> +               query->module ?: "",
+>>> +               fmtlen, query->format ?: "",
+>>> +               query->first_lineno, query->last_lineno, query->class_string);
+>>>  }
+>>>
+>>> +static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table const *dt,
+>>> +                                                       const char *class_string, int *class_id)
+>>> +{
+>>> +     struct ddebug_class_map *map;
+>>> +     int idx;
+>>> +
+>>> +     list_for_each_entry(map, &dt->maps, link) {
+>>> +             idx = match_string(map->class_names, map->length, class_string);
+>>> +             if (idx >= 0) {
+>>> +                     *class_id = idx + map->base;
+>>> +                     return map;
+>>> +             }
+>>> +     }
+>>> +     *class_id = -ENOENT;
+>>> +     return NULL;
+>>> +}
+>>> +
+>>> +#define __outvar /* filled by callee */
+>>>  /*
+>>>   * Search the tables for _ddebug's which match the given `query' and
+>>>   * apply the `flags' and `mask' to them.  Returns number of matching
+>>> @@ -159,6 +178,8 @@ static int ddebug_change(const struct ddebug_query *query,
+>>>       unsigned int newflags;
+>>>       unsigned int nfound = 0;
+>>>       struct flagsbuf fbuf, nbuf;
+>>> +     struct ddebug_class_map *map = NULL;
+>>> +     int __outvar valid_class;
+>>>
+>>>       /* search for matching ddebugs */
+>>>       mutex_lock(&ddebug_lock);
+>>> @@ -169,9 +190,22 @@ static int ddebug_change(const struct ddebug_query *query,
+>>>                   !match_wildcard(query->module, dt->mod_name))
+>>>                       continue;
+>>>
+>>> +             if (query->class_string) {
+>>> +                     map = ddebug_find_valid_class(dt, query->class_string, &valid_class);
+>>> +                     if (!map)
+>>> +                             continue;
+>>
+>> So remove the else here.
+>>
+>>> +             } else {
+>>> +                     /* constrain query, do not touch class'd callsites */
+>>> +                     valid_class = _DPRINTK_CLASS_DFLT;
+>>> +             }
+>>> +
+>>>               for (i = 0; i < dt->num_ddebugs; i++) {
+>>>                       struct _ddebug *dp = &dt->ddebugs[i];
+>>>
+>>> +                     /* match site against query-class */
+>>> +                     if (dp->class_id != valid_class)
+>>
+>> And then make this: if (query->class_string && (dp->class_id != valid_class))
+>>
+>> thoughts?
+>>
+>>
+>>> +                             continue;
+>>> +>                    /* match against the source filename */
+>>>                       if (query->filename &&
+>>>                           !match_wildcard(query->filename, dp->filename) &&
+>>> @@ -420,6 +454,8 @@ static int ddebug_parse_query(char *words[], int nwords,
+>>>               } else if (!strcmp(keyword, "line")) {
+>>>                       if (parse_linerange(query, arg))
+>>>                               return -EINVAL;
+>>> +             } else if (!strcmp(keyword, "class")) {
+>>> +                     rc = check_set(&query->class_string, arg, "class");
+>>>               } else {
+>>>                       pr_err("unknown keyword \"%s\"\n", keyword);
+>>>                       return -EINVAL;
+>>> @@ -854,6 +890,20 @@ static void *ddebug_proc_next(struct seq_file *m, void *p, loff_t *pos)
+>>>       return dp;
+>>>  }
+>>>
+>>> +#define class_in_range(class_id, map)                                        \
+>>> +     (class_id >= map->base && class_id < map->base + map->length)
+>>> +
+>>> +static const char *ddebug_class_name(struct ddebug_iter *iter, struct _ddebug *dp)
+>>> +{
+>>> +     struct ddebug_class_map *map;
+>>> +
+>>> +     list_for_each_entry(map, &iter->table->maps, link)
+>>> +             if (class_in_range(dp->class_id, map))
+>>> +                     return map->class_names[dp->class_id - map->base];
+>>> +
+>>> +     return NULL;
+>>> +}
+>>> +
+>>>  /*
+>>>   * Seq_ops show method.  Called several times within a read()
+>>>   * call from userspace, with ddebug_lock held.  Formats the
+>>> @@ -865,6 +915,7 @@ static int ddebug_proc_show(struct seq_file *m, void *p)
+>>>       struct ddebug_iter *iter = m->private;
+>>>       struct _ddebug *dp = p;
+>>>       struct flagsbuf flags;
+>>> +     char const *class;
+>>>
+>>>       if (p == SEQ_START_TOKEN) {
+>>>               seq_puts(m,
+>>> @@ -877,7 +928,16 @@ static int ddebug_proc_show(struct seq_file *m, void *p)
+>>>                  iter->table->mod_name, dp->function,
+>>>                  ddebug_describe_flags(dp->flags, &flags));
+>>>       seq_escape_str(m, dp->format, ESCAPE_SPACE, "\t\r\n\"");
+>>> -     seq_puts(m, "\"\n");
+>>> +     seq_puts(m, "\"");
+>>> +
+>>> +     if (dp->class_id != _DPRINTK_CLASS_DFLT) {
+>>> +             class = ddebug_class_name(iter, dp);
+>>> +             if (class)
+>>> +                     seq_printf(m, " class:%s", class);
+>>> +             else
+>>> +                     seq_printf(m, " class unknown, _id:%d", dp->class_id);
+>>> +     }
+>>> +     seq_puts(m, "\n");
+>>>
+>>>       return 0;
+>>>  }
