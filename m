@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 053DA5B5929
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E00315B5928
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:19:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8805010E3CD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B855A10E3CF;
 	Mon, 12 Sep 2022 11:18:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A64D010E3BE
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:43 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7034010E3BE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662981523; x=1694517523;
+ t=1662981526; x=1694517526;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=on6W24aqoXO1s3ZvRB7qJQFJDH0jYdAFO4/cRJgTWJo=;
- b=S8W6w46Bn5q8Z4mWIOWR5+4//bOn79mG8GlPnYzEm7o70IQ7R5+k82F3
- 2bMBhLEPwdKea6JAFL44gXTn+4xE/Lt9MVDYRkS+4sS8Jarr4dUsQklB+
- M7pdz122c89LAfvIki44XiS1Q/u6f0xMT7zFyngqH0OXx3vKrIUWqUstA
- gazU+X9+kZiHDhN9FwQ+qZWra4ooDBEnOIyMOQTkpnX452LNYYdlXfF15
- 6jXEjXTPCSlmKd1/oizrgPUhYecC5QIShtxrWnOZt2vsNaDZkG+rmn5D+
- YyfPKdHxU1oK2bDioHRwCdlmD+/TdRA0w1xH8mwlcudBbv4Kn+v1TCGJZ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="297841609"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="297841609"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 04:18:43 -0700
+ bh=OGnNpRfTKYawipsk3m2WIdR0tcsBnMzOMpGgoR26II8=;
+ b=mfwZb1DAJwrIeq7WaFi9tI+u01YLQwxLi61XD7H5Q8Lt4t80g88dzdWr
+ T+XDhfDzeh+bNqaG4SvlJhsfxC+utEkDCbyc5HXtrwe5y6/OvGtuOsLaY
+ H9X8eB0kS0i+vSuhNBCupfT9Wzyd3e0LP1d+pv9zAJFnuT90VpHhlD/Vy
+ Vl3CBCR6IXmBzyGfRanYTJnAlhVGOCzu5SI1JyP9VsH/7dsb6FSrG3cQx
+ 9V62GtP7I2UPn/u3wrRcabaCpGyDAekG52Hy6e9NUehInqtJThF7a2dfl
+ iMpW2lH3GuyVbzmGY9Qe6gFVjIfJWU6xj6PKl1ybTTXb09esfOKdNaUpt Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="324072063"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="324072063"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 04:18:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="719722858"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="618518529"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga002.fm.intel.com with SMTP; 12 Sep 2022 04:18:41 -0700
+ by fmsmga007.fm.intel.com with SMTP; 12 Sep 2022 04:18:44 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 12 Sep 2022 14:18:40 +0300
+ Mon, 12 Sep 2022 14:18:43 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Sep 2022 14:18:08 +0300
-Message-Id: <20220912111814.17466-10-ville.syrjala@linux.intel.com>
+Date: Mon, 12 Sep 2022 14:18:09 +0300
+Message-Id: <20220912111814.17466-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 References: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 09/15] drm/i915: Extract
- intel_lvds_add_properties()
+Subject: [Intel-gfx] [PATCH 10/15] drm/i915: Move eDP scaling_mode prop
+ setup to the proper place
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,60 +64,56 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Move the LVDS connector property setup to a dedicated
-function to depollute intel_lvds_init() a bit.
+We have an eDP specific intel_edp_add_properties() so move
+the eDP scaling_mode property setup there from
+intel_dp_add_properties().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lvds.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++-------------
+ 1 file changed, 10 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 6fef829e855b..7cadb548ad6c 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -814,6 +814,19 @@ static bool compute_is_dual_link_lvds(struct intel_lvds_encoder *lvds_encoder)
- 	return (val & LVDS_CLKB_POWER_MASK) == LVDS_CLKB_POWER_UP;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index de5a4d2df78e..049228a09364 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5183,19 +5183,6 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
+ 	if (has_gamut_metadata_dip(dev_priv, port))
+ 		drm_connector_attach_hdr_output_metadata_property(connector);
  
-+static void intel_lvds_add_properties(struct drm_connector *connector)
-+{
+-	if (intel_dp_is_edp(intel_dp)) {
+-		u32 allowed_scalers;
+-
+-		allowed_scalers = BIT(DRM_MODE_SCALE_ASPECT) | BIT(DRM_MODE_SCALE_FULLSCREEN);
+-		if (!HAS_GMCH(dev_priv))
+-			allowed_scalers |= BIT(DRM_MODE_SCALE_CENTER);
+-
+-		drm_connector_attach_scaling_mode_property(connector, allowed_scalers);
+-
+-		connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+-
+-	}
+-
+ 	if (HAS_VRR(dev_priv))
+ 		drm_connector_attach_vrr_capable_property(connector);
+ }
+@@ -5207,6 +5194,16 @@ intel_edp_add_properties(struct intel_dp *intel_dp)
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	const struct drm_display_mode *fixed_mode =
+ 		intel_panel_preferred_fixed_mode(connector);
 +	u32 allowed_scalers;
 +
 +	allowed_scalers = BIT(DRM_MODE_SCALE_ASPECT) |
-+		BIT(DRM_MODE_SCALE_FULLSCREEN) |
-+		BIT(DRM_MODE_SCALE_CENTER);
++		BIT(DRM_MODE_SCALE_FULLSCREEN);
++	if (!HAS_GMCH(i915))
++		allowed_scalers |= BIT(DRM_MODE_SCALE_CENTER);
 +
-+	drm_connector_attach_scaling_mode_property(connector, allowed_scalers);
++	drm_connector_attach_scaling_mode_property(&connector->base, allowed_scalers);
 +
-+	connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
-+}
-+
- /**
-  * intel_lvds_init - setup LVDS connectors on this device
-  * @dev_priv: i915 device
-@@ -833,7 +846,6 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	i915_reg_t lvds_reg;
- 	u32 lvds;
- 	u8 pin;
--	u32 allowed_scalers;
++	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
  
- 	/* Skip init on machines we know falsely report LVDS */
- 	if (dmi_check_system(intel_no_lvds)) {
-@@ -925,12 +937,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 
- 	lvds_encoder->reg = lvds_reg;
- 
--	/* create the scaling mode property */
--	allowed_scalers = BIT(DRM_MODE_SCALE_ASPECT);
--	allowed_scalers |= BIT(DRM_MODE_SCALE_FULLSCREEN);
--	allowed_scalers |= BIT(DRM_MODE_SCALE_CENTER);
--	drm_connector_attach_scaling_mode_property(connector, allowed_scalers);
--	connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
-+	intel_lvds_add_properties(connector);
- 
- 	intel_lvds_pps_get_hw_state(dev_priv, &lvds_encoder->init_pps);
- 	lvds_encoder->init_lvds_val = lvds;
+ 	if (!fixed_mode)
+ 		return;
 -- 
 2.35.1
 
