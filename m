@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC78F5B5E9A
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 18:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF84C5B5E9E
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 18:55:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D35310E44C;
-	Mon, 12 Sep 2022 16:55:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B302C10E5FC;
+	Mon, 12 Sep 2022 16:55:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73CD710E2F0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A417F10E43E
  for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 16:54:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1663001697; x=1694537697;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FeVr3sD2kDmzOgs3HMqa/fzCbpB/kzpAxTRUHwE0HpA=;
- b=jlUUiMgKJhccNu8KsWY0+8KE/K+haV+yLk6gaoml2CPE3H45yKnqyABH
- 4ljhuwpZgOJADwZPPQ+nubzEp2Rx4+wfdDGPHoDnwJAbPcW549lRM6P7X
- XCwKjPGfySPFakSnIEqK03NSNvUPiEahoWi5Cms/zS9dONW0p68MPYcCo
- RWrajnZ0JI4Yz4tFcQ8AHM5hfllEzSTanylFhnAkjuvi0FGpLjAPTyazq
- +wqyqpjSQXTH/PRmxTuiZJCzkVES21E3iLBZ0a6JDdUaZ2CUIJo3O70f5
- zIAgm2l1pTsakVJ8QmiMmTQ4ib2zdtOaxMPe827kEyMZGBAB4ULU8Ua8A g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="284937217"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="284937217"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ bh=E2Eqv2GRQZaHmyq+/Et8aFsQcowbDuGrB5OGeVvxeZI=;
+ b=iaMzDCdlgrDhmZgb41gaSoIqQ8Yux7r0LSQcQ6sp6tyr2cCOME3tLdgd
+ 5J7IV2iANqwnDvnJpBjxSHlWvwq3tNkx35wUxqsLGxDsBpwzqzV77Maoe
+ 3yVikp5CWuqUtfa1BTT11SFfiFBlXHPvygNLSjtyONPrIF5ZgOdEM9STQ
+ JI3WrYsj066I9s1yPaqKr/APHsbsJ5gzoxhNufh/YXHszEqOCO0ItQoVq
+ oyimqJfmFqsMzKMmXw0gfPUVtTz+cQ+awRxduUC3akj7wumAskDaL5hRW
+ Gfns9oHha67N0iRHdjUVnEcKNynNE65Jbs32p/VPKRugz8FM5a0qp/zd+ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="284937231"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="284937231"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 09:54:51 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="646546258"
+ 12 Sep 2022 09:54:55 -0700
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="593571578"
 Received: from abijaz-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.58.140])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 09:54:50 -0700
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 09:54:54 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Sep 2022 19:54:24 +0300
-Message-Id: <e7a5ee6ce96eccf0340428a9fbf4bf1cba626300.1662999695.git.jani.nikula@intel.com>
+Date: Mon, 12 Sep 2022 19:54:25 +0300
+Message-Id: <a2edeefd1fef0c197837ae846169521d5ccb88ce.1662999695.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1662999695.git.jani.nikula@intel.com>
 References: <cover.1662999695.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 02/15] drm/i915: reduce includes in
- intel_connector.h
+Subject: [Intel-gfx] [PATCH 03/15] drm/i915: reduce includes in
+ intel_fifo_underrun.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,22 +66,24 @@ Only include what's needed.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_connector.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_fifo_underrun.h | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu/drm/i915/display/intel_connector.h
-index 661a37a3c6d8..c75890dc23e9 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.h
-+++ b/drivers/gpu/drm/i915/display/intel_connector.h
-@@ -6,7 +6,7 @@
- #ifndef __INTEL_CONNECTOR_H__
- #define __INTEL_CONNECTOR_H__
+diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.h b/drivers/gpu/drm/i915/display/intel_fifo_underrun.h
+index e04f22ac1f49..2e47d7d3c101 100644
+--- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.h
++++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.h
+@@ -8,9 +8,8 @@
+ 
+ #include <linux/types.h>
  
 -#include "intel_display.h"
-+#include <linux/types.h>
+-
+ struct drm_i915_private;
++enum pipe;
  
- struct drm_connector;
- struct edid;
+ bool intel_set_cpu_fifo_underrun_reporting(struct drm_i915_private *dev_priv,
+ 					   enum pipe pipe, bool enable);
 -- 
 2.34.1
 
