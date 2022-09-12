@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C6ED5B6209
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 22:13:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59DF95B6218
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 22:21:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCD2610E13D;
-	Mon, 12 Sep 2022 20:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0347010E13D;
+	Mon, 12 Sep 2022 20:21:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A24710E13D;
- Mon, 12 Sep 2022 20:13:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663013587; x=1694549587;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=w5H9Us6zbcQVkNKEWwIf8zg85XKigIFhLnv78ZY1Z+A=;
- b=Lrne74l/6+3kTagQMvlLyC6qi2HbQxLutXhYCtFwbz8LM/olsI2mVMb4
- iDDJuWV/Rc4R/QI4cHQoALyiE6jM8ahlyyHLXnvqx1uKItUqUHf3dzpWE
- UnqyngGX4F/7UftFS5MeikaW0Bt5ZuVWoNvAg8CKJTBReBJhaDpYhu5tZ
- pu7I5nCKSCGx7JEZK6O8a2jIq8pa8m0S64RgUhRqfnf7YcwF30CY2Wfre
- 1zrcIVi08Zt2jHj4tMP5Xyz9hA/nk95bYl35D2OUq15vgwXn/7UFnWwbc
- PHW8D1dtrwe0p5B6CdW3l0dvxwTZreWPzAHrkDhLEnqNMBN4G8drVnoiw w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="299299182"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="299299182"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 13:13:06 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678247695"
-Received: from cbittigh-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.251.208.30])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 13:13:04 -0700
-Date: Mon, 12 Sep 2022 22:12:57 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <Yx+KIOliWdMIAe/M@alfio.lan>
-References: <20220912-copy-engine-v1-0-ef92fd81758d@intel.com>
- <20220912-copy-engine-v1-1-ef92fd81758d@intel.com>
- <Yx9liQu4JmnVmWVn@alfio.lan>
- <20220912181247.dfyupvp4qxbavnen@ldmartin-desk2.lan>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CF03910E13D;
+ Mon, 12 Sep 2022 20:21:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C506FAADD4;
+ Mon, 12 Sep 2022 20:21:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0441681317157820858=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220912181247.dfyupvp4qxbavnen@ldmartin-desk2.lan>
-Subject: Re: [Intel-gfx] [PATCH v1 1/1] drm/i915: Skip applying copy engine
- fuses
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Mon, 12 Sep 2022 20:21:46 -0000
+Message-ID: <166301410680.11335.9099725343333411083@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220912121957.31310-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220912121957.31310-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_display_problems_after_resume?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,104 +40,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lucas,
+--===============0441681317157820858==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Mon, Sep 12, 2022 at 11:12:47AM -0700, Lucas De Marchi wrote:
-> On Mon, Sep 12, 2022 at 06:59:53PM +0200, Andi Shyti wrote:
-> > Hi Lucas,
-> > 
-> > On Mon, Sep 12, 2022 at 09:19:38AM -0700, Lucas De Marchi wrote:
-> > > Support for reading the fuses to check what are the Link Copy engines
-> > > was added in commit ad5f74f34201 ("drm/i915/pvc: read fuses for link
-> > > copy engines"). However they were added unconditionally because the
-> > > FUSE3 register is present since graphics version 10.
-> > > 
-> > > However the bitfield with meml3 fuses only exists since graphics version
-> > > 12. Moreover, Link Copy engines are currently only available in PVC.
-> > > Tying additional copy engines to the meml3 fuses is not correct for
-> > > other platforms.
-> > > 
-> > > Make sure there is a check for  `12.60 <= ver < 12.70`. Later platforms
-> > > may extend this function later if it's needed to fuse off copy engines.
-> > > 
-> > > Currently it's harmless as the Link Copy engines are still not exported:
-> > > info->engine_mask only has BCS0 set and the register is only read for
-> > > platforms that do have it.
-> > > 
-> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > > index 814f83b5fe59..1f7188129cd1 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > > @@ -764,6 +764,10 @@ static void engine_mask_apply_copy_fuses(struct intel_gt *gt)
-> > >  	unsigned long meml3_mask;
-> > >  	unsigned long quad;
-> > > 
-> > > +	if (!(GRAPHICS_VER_FULL(i915) >= IP_VER(12, 60) &&
-> > > +	      GRAPHICS_VER_FULL(i915) < IP_VER(12, 70)))
-> > > +		return;
-> > > +
-> > 
-> > Isn't it easier if you wrote
-> > 
-> > 	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 60) ||
-> > 	    GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
-> > 		return;
-> > 
-> > ?
-> > 
-> > You save a parenthesis and a negation '!'.
-> 
-> but that makes it wrong. I'd really want the range
-> 12.60 <= version < 12.70, so it applies to PVC  but is then disabled
-> again for MTL.
+== Series Details ==
 
-But it's negated... so that if it's not in the range, it's
-outside of the range... right?
+Series: drm/i915: Fix display problems after resume
+URL   : https://patchwork.freedesktop.org/series/108432/
+State : success
 
- NOT(12.60 <= ver < 12.70)   <--- you wrote
+== Summary ==
 
-is the same as:
+CI Bug Log - changes from CI_DRM_12123 -> Patchwork_108432v1
+====================================================
 
- ver < 12.60 or ver >= 12.70 <--- I suggested
+Summary
+-------
 
-and it would mean (just to see if I'm not getting confused by
-something and the negations do always confuse me):
+  **SUCCESS**
 
+  No regressions found.
 
-                 12.60          12.70
-        return     |              |     return
-  ver: ------------[--------------[---------------
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_108432v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [PASS][1] -> [DMESG-FAIL][2] ([i915#4528])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12123/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_gttfill@basic:
+    - {bat-rpls-2}:       [DMESG-WARN][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12123/bat-rpls-2/igt@gem_exec_gttfill@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/bat-rpls-2/igt@gem_exec_gttfill@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5537]: https://gitlab.freedesktop.org/drm/intel/issues/5537
+  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
 
 
-But it's the same, taht's why I r-b it anyway.
+Build changes
+-------------
 
-> Depending on how this evolves for future platforms, we
-> may change it to a feature flag or just check by platform
-> name. For now I think this is the most future-proof option.
+  * Linux: CI_DRM_12123 -> Patchwork_108432v1
 
-yes, I got the point and I think it's fine.
+  CI-20190529: 20190529
+  CI_DRM_12123: 5dd153b15e2e3198fca3d84db9e155f454645f91 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6650: f7aff600ab16d6405f0704b1743d2b7909715752 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_108432v1: 5dd153b15e2e3198fca3d84db9e155f454645f91 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Andi
 
-> Lucas De Marchi
-> 
-> > 
-> > Anyway, looks good:
-> > 
-> > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > 
-> > Andi
-> > 
-> > >  	meml3_mask = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
-> > >  	meml3_mask = REG_FIELD_GET(GEN12_MEML3_EN_MASK, meml3_mask);
-> > > 
-> > > 
-> > > --
-> > > b4 0.10.0-dev-df873
+### Linux commits
+
+a6309c422ba4 drm/i915: Fix display problems after resume
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html
+
+--===============0441681317157820858==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix display problems after resume</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108432/">https://patchwork.freedesktop.org/series/108432/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12123 -&gt; Patchwork_108432v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_108432v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@requests:<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12123/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_gttfill@basic:<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12123/bat-rpls-2/igt@gem_exec_gttfill@basic.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/bat-rpls-2/igt@gem_exec_gttfill@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12123 -&gt; Patchwork_108432v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12123: 5dd153b15e2e3198fca3d84db9e155f454645f91 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6650: f7aff600ab16d6405f0704b1743d2b7909715752 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_108432v1: 5dd153b15e2e3198fca3d84db9e155f454645f91 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>a6309c422ba4 drm/i915: Fix display problems after resume</p>
+
+</body>
+</html>
+
+--===============0441681317157820858==--
