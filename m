@@ -1,46 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2AF5B5296
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 03:46:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D245B5366
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 07:29:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70A0110E1EB;
-	Mon, 12 Sep 2022 01:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B463010E091;
+	Mon, 12 Sep 2022 05:29:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BB3210E1EB
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 01:46:27 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4MQqFQ13vpz4xQs;
- Mon, 12 Sep 2022 11:46:17 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1662947179;
- bh=JUzNdbpckONCPuzlpTFdYGw3om0b8qs7vClxseI5AVo=;
- h=Date:From:To:Cc:Subject:From;
- b=ck2q9FiMxiOBXWQFWBSt93y5QHJ6RBgVGLmnzZZxT1/hz+RPN3IA0LOOyA1Jao9Pr
- mxNYfAFmqWX9xHwE5BwBMaM6Ua18no84r2gzH8HiDJKqaE/mQceNEyCTGS0Pg2S5yw
- CmsznClDbHXym7wTV8PUEVUTK9HruVAjAdwMrn3rZAzN3h2MYNbtv0tVseguVA7Wbm
- DgimpTj65kNVXydg/X1dOzdRUic9yv2LgipTKV050X8BFv2olJxLKUtmf6UjVohOHq
- A/i61nncbvwyps6TwywUx/Plh7eZtaO5zMvk638MyxlpVIQ462QIdiMsXmZwDeUVjv
- U63vob3T1uB7A==
-Date: Mon, 12 Sep 2022 11:46:16 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dave Airlie <airlied@redhat.com>
-Message-ID: <20220912114616.5f686243@canb.auug.org.au>
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com
+ [IPv6:2607:f8b0:4864:20::12b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E98D310E091;
+ Mon, 12 Sep 2022 05:29:05 +0000 (UTC)
+Received: by mail-il1-x12b.google.com with SMTP id y15so3995821ilq.4;
+ Sun, 11 Sep 2022 22:29:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date;
+ bh=qg9to7hIZo/tNgDGQnKxNsyMgfHTsJfmQeKWAWjBM3Y=;
+ b=fwweiZkkxgOj9IkckstUmzr3+NSlljXdQmamHEHFjSjjln6iHltmY3l7o+HzWFaYEG
+ Lb5aJYHZeN3aVoSi0wv3JIexy4kqaX0r9ZoBwqGwD5QLF3qY0rqLGqYOQyH3nVTiw+jF
+ Be9qUsrDDXn1SiWxtQzMbaXkRHkJz3b/oTcbxzPQl6uSFoqPbb+tuxVlAhaVwUhrf6qK
+ ObYNR0eEdla8tydXUacWQ5EkvI7UvdcDElX3vsKx7xKZJyG7qZ4snHR4GxLhd2RkzRR9
+ K8H7GHVGPDwTyMox6Wzdb9p2n5WnKC6KpDb4FIQ/leaQbmFI7jFryPR65ncRBxpm5S5I
+ eGvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date;
+ bh=qg9to7hIZo/tNgDGQnKxNsyMgfHTsJfmQeKWAWjBM3Y=;
+ b=S8Pc1WiV2TKEcIOyOZJfLYBOuQ3sdKiCv1qrt1Qmo3cpLVDTr2nTFnBN0Y41LLJnaC
+ V7X8F95tXClqhAJINtbg7If3ikrR/E79b8Azk1jye+wWLLqWrPqePMcxEVUziT6CmM4Y
+ w6fJp1qyJUUkU+hP7XWdMgI0eluLkxDEw6u8PVwSmaBtXYEoy+C38lehh5+ex0CGC9G2
+ xtbJJ0TGQvTb+0ZlEeKLDnP6rD53dogDaZLIUOqCkr1OoxuyLqkDIZGSpW0wkJhipDrC
+ iuT+aRZwJna8Tl9qBsyfn4qGIbUxVBof1QB9wU8aqd5YeOhqnzTymiu96+hYR15PFa3X
+ AJsQ==
+X-Gm-Message-State: ACgBeo3yxdnRf5fiyR8brTONyIIr80AUaXNdljQNt9QsB0984iDZBte/
+ 5FiyXwgGEQxZrLPhqPOqQvI=
+X-Google-Smtp-Source: AA6agR6PqOG3cAeMUhS/dA7RYLxwnEszf0aSW5+mVVBkyci+q1M/IQ4stFHaBuDia3OjYj44LDJH6A==
+X-Received: by 2002:a05:6e02:168e:b0:2f3:33d5:19bd with SMTP id
+ f14-20020a056e02168e00b002f333d519bdmr8684638ila.112.1662960545031; 
+ Sun, 11 Sep 2022 22:29:05 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ q16-20020a056e02079000b002eb75fb01dbsm3006057ils.28.2022.09.11.22.29.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 11 Sep 2022 22:29:04 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com, gregkh@linuxfoundation.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Date: Sun, 11 Sep 2022 23:28:43 -0600
+Message-Id: <20220912052852.1123868-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/hVOi3.2gqwmVBO2k/pK7a+T";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm-intel tree with the
- drm tree
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v7 0/9] dyndbg: drm.debug adaptation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,60 +70,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Jim Cromie <jim.cromie@gmail.com>, daniel.vetter@ffwll.ch,
+ linux@rasmusvillemoes.dk, seanpaul@chromium.org, joe@perches.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/hVOi3.2gqwmVBO2k/pK7a+T
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+hi Greg, Dan, Jason, DRM-folk,
 
-Hi all,
+heres follow-up to V6:
+  rebased on driver-core/driver-core-next for -v6 applied bits (thanks)
+  rework drm_debug_enabled{_raw,_instrumented,} per Dan.
 
-Today's linux-next merge of the drm-intel tree got a conflict in:
+It excludes:
+  nouveau parts (immature)
+  tracefs parts (I missed --to=Steve on v6)
+  split _ddebug_site and de-duplicate experiment (way unready)
 
-  drivers/gpu/drm/i915/intel_pm.c
+IOW, its the remaining commits of V6 on which Dan gave his Reviewed-by.
 
-between commit:
+If these are good to apply, I'll rebase and repost the rest separately.
 
-  254e5e8829a9 ("drm: Remove unnecessary include statements of drm_plane_he=
-lper.h")
+These are also available at:
+https://github.com/jimc/linux/releases/tag/dyndbg%2Fdd-drm-class-911
 
-from the drm tree and commit:
+RFC:
 
-  42a0d256496f ("drm/i915: Extract skl_watermark.c")
+DECLARE_DYNDBG_CLASSMAP's interface can be improved: class-names are
+currently strings, like "DRM_UT_CORE", which must have corresponding
+ENUM symbols defined.  It would be better to just pass DRM_UT_CORE,
+etc, and stringify the va-args inside the macro while initializing
+classnames member.  But how ?
 
-from the drm-intel tree.
 
-I fixed it up (they both removed the same include) and can carry the fix
-as necessary. This is now fixed as far as linux-next is concerned, but
-any non trivial conflicts should be mentioned to your upstream maintainer
-when your tree is submitted for merging.  You may also want to consider
-cooperating with the maintainer of the conflicting tree to minimise any
-particularly complex conflicts.
+Jim Cromie (9):
+  drm_print: condense enum drm_debug_category
+  drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers.
+  drm_print: interpose drm_*dbg with forwarding macros
+  drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
+  drm-print.h: include dyndbg header
+  drm-print: add drm_dbg_driver to improve namespace symmetry
+  drm_print: optimize drm_debug_enabled for jump-label
+  drm_print: prefer bare printk KERN_DEBUG on generic fn
+  drm_print: add _ddebug descriptor to drm_*dbg prototypes
 
---=20
-Cheers,
-Stephen Rothwell
+ drivers/gpu/drm/Kconfig                 | 12 ++++
+ drivers/gpu/drm/Makefile                |  2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 14 +++++
+ drivers/gpu/drm/display/drm_dp_helper.c | 13 +++++
+ drivers/gpu/drm/drm_crtc_helper.c       | 13 +++++
+ drivers/gpu/drm/drm_print.c             | 48 +++++++++++----
+ drivers/gpu/drm/i915/i915_params.c      | 12 ++++
+ drivers/gpu/drm/nouveau/nouveau_drm.c   | 13 +++++
+ include/drm/drm_print.h                 | 78 +++++++++++++++++++------
+ 9 files changed, 174 insertions(+), 31 deletions(-)
 
---Sig_/hVOi3.2gqwmVBO2k/pK7a+T
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+-- 
+2.37.3
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmMej2gACgkQAVBC80lX
-0GwrQggAmnmujkHXbD/S5DiS5MZe4j48iwDviIOAZtN+L/JmyMRkC2B/TAQ8UHnJ
-bsvsJm+G+b1k2UDssP4ZScBqdvRTfEmKDW6EVIJa3OhulvDi6Usw+mpJVLiJbirq
-O4q3/vfDyY95k8y/99K60ERH4YYEFHz4bBkdUC6XvEp9OuPNoJFANQOyZfcvaM12
-Fo5OwR0sC8492F34rW6qOIDLsBAqIfFIbgq8wB9WErTZUYS4NxC4D5hdSnuYnLfn
-fceRlJpjuyLAz1q7NWuBcbrd+JVBl66T5b4B5sGUjm4GcEgFK6xcYcPl3aqrcqoP
-5HKIrrHwlD73tXhZNnvKP/I4XJbFjw==
-=2h2g
------END PGP SIGNATURE-----
-
---Sig_/hVOi3.2gqwmVBO2k/pK7a+T--
