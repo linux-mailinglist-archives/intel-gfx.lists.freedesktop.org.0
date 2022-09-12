@@ -1,56 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B9CE5B6151
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 20:54:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 804425B6157
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 20:55:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 459A610E16D;
-	Mon, 12 Sep 2022 18:53:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA67210E16D;
+	Mon, 12 Sep 2022 18:55:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48B1B10E163;
- Mon, 12 Sep 2022 18:53:51 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EFFA10E16D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 18:55:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663008831; x=1694544831;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=50QRgPLOf/CrVyFJ0cfHri8jZtBrmT3+XtGh/TYDKI8=;
- b=LSlLetVlc4NOdsk3R/ZPfOpg4q3Ho23Kx/57crxkHnE0E7Ydh9FHSSST
- z9Iw5ZUtMOe+APC97iXQSSfh0beKny292Bf6Sl1xwt1pIGK7LoEPS9Fl0
- jFpGseccrdOWPUSfj8R2e9Tj3Xem7L1DkMxEr7WrLlGyrakVRL8ioF6cf
- m8LmHT/1OAXtp73L5zprLbsdmzyeTjn+i0/4rDPSXrQ6GxR4uRtkwhpXe
- bGp3/iU/VWwq2DBn/kiIBBrMYmbbpGXhMuxjOmp7XCTw6LdozSpHF2LSi
- T5XRkTf9BXZdcaKVottO54P6GBNAkUbzXYol89GfPunMk+3LD6wrfuMLL A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="280960928"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="280960928"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 11:53:50 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678221435"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.24.87])
- ([10.213.24.87])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 11:53:49 -0700
-Message-ID: <268b4c7e-4713-5975-3430-94cc5ebcb004@intel.com>
-Date: Mon, 12 Sep 2022 20:53:47 +0200
+ t=1663008913; x=1694544913;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=GjDA9GRL2NVcIf25i5exim2/dHoIlmkt0POTfgAjy/0=;
+ b=nTJPlA00kKFGS5bblwL7f1eu6kfbMDnzj1FIvb3nz/dLCi90H+XgFXv5
+ nFRXsQkOSCnE3w8eCl3vNXpMymLsqdaDfNiJFAs6sUsM8Q8LD4a1buUQ0
+ ggRFrlMglB2h/xpDJset/naoVDK9C5qfZ1p+bVgEokvrG6NMPzZrFSRTf
+ SlvCdBkEgolKC8dbCKbgkWMHV++EqMKoFWQ/VbbRDw6Mwbjd58ZPwDjeQ
+ sGorIzQhWfHbhfAI3GmyMNbmBQGeHyvoRfUUCrPuJokr3VKXDckXadg/l
+ frFMLbsEXkax4YdgiGfZ2ps6Ot2h944JM7XJpaUhMpbJJrXzIqP6yJakE Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="297945185"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="297945185"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 11:55:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="719876407"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga002.fm.intel.com with SMTP; 12 Sep 2022 11:55:09 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 12 Sep 2022 21:55:08 +0300
+Date: Mon, 12 Sep 2022 21:55:08 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <Yx+AjCFEwgUGEfTC@intel.com>
+References: <20220901060101.1000290-1-ankit.k.nautiyal@intel.com>
+ <20220901060101.1000290-5-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.2.2
-Content-Language: en-US
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220912-copy-engine-v1-0-ef92fd81758d@intel.com>
- <20220912-copy-engine-v1-1-ef92fd81758d@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20220912-copy-engine-v1-1-ef92fd81758d@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v1 1/1] drm/i915: Skip applying copy engine
- fuses
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220901060101.1000290-5-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 4/9] drm/i915/display: Add new members to
+ configure PCON color conversion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,49 +61,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12.09.2022 18:19, Lucas De Marchi wrote:
-> Support for reading the fuses to check what are the Link Copy engines
-> was added in commit ad5f74f34201 ("drm/i915/pvc: read fuses for link
-> copy engines"). However they were added unconditionally because the
-> FUSE3 register is present since graphics version 10.
+On Thu, Sep 01, 2022 at 11:30:56AM +0530, Ankit Nautiyal wrote:
+> The decision to use DFP output format conversion capabilities should be
+> during compute_config phase.
 > 
-> However the bitfield with meml3 fuses only exists since graphics version
-> 12. Moreover, Link Copy engines are currently only available in PVC.
-> Tying additional copy engines to the meml3 fuses is not correct for
-> other platforms.
+> This patch adds new members to crtc_state to help configure the DFP
+> output related conversions. Also adds a member to intel_dp to store
+> ycbcr420 pass through capability.
 > 
-> Make sure there is a check for  `12.60 <= ver < 12.70`. Later platforms
-> may extend this function later if it's needed to fuse off copy engines.
+> This will help to store only the format conversion capabilities of the
+> DP device in intel_dp->dfp, and use crtc_state to compute and store the
+> configuration for color/format conversion for a given mode.
 > 
-> Currently it's harmless as the Link Copy engines are still not exported:
-> info->engine_mask only has BCS0 set and the register is only read for
-> platforms that do have it.
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 814f83b5fe59..1f7188129cd1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -764,6 +764,10 @@ static void engine_mask_apply_copy_fuses(struct intel_gt *gt)
->   	unsigned long meml3_mask;
->   	unsigned long quad;
->   
-> +	if (!(GRAPHICS_VER_FULL(i915) >= IP_VER(12, 60) &&
-> +	      GRAPHICS_VER_FULL(i915) < IP_VER(12, 70)))
-> +		return;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 0da9b208d56e..065ed19a5dd3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1311,6 +1311,12 @@ struct intel_crtc_state {
+>  
+>  	/* for loading single buffered registers during vblank */
+>  	struct drm_vblank_work vblank_work;
 > +
->   	meml3_mask = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
->   	meml3_mask = REG_FIELD_GET(GEN12_MEML3_EN_MASK, meml3_mask);
->   
-> 
+> +	/* DP DFP color configuration */
+> +	struct {
+> +		bool rgb_to_ycbcr;
+> +		bool ycbcr_444_to_420;
+> +	} dp_dfp_config;
 
+Hmm. I'm thinking just something like
+ enum intel_output_format sink_format;
+might be easier to deal with.
+
+>  };
+>  
+>  enum intel_pipe_crc_source {
+> @@ -1704,6 +1710,7 @@ struct intel_dp {
+>  		int pcon_max_frl_bw;
+>  		u8 max_bpc;
+>  		bool ycbcr_444_to_420;
+> +		bool ycbcr420_passthrough;
+>  		bool rgb_to_ycbcr;
+>  	} dfp;
+>  
+> -- 
+> 2.25.1
+
+-- 
+Ville Syrjälä
+Intel
