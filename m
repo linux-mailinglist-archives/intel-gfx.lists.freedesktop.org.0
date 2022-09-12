@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB79E5B5927
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:19:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 681085B5930
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:19:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17D5810E3CA;
-	Mon, 12 Sep 2022 11:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE6FE10E3D1;
+	Mon, 12 Sep 2022 11:19:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B747A10E3C7
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:49 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C351810E3C7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662981529; x=1694517529;
+ t=1662981532; x=1694517532;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=83sbV5vr7U3La5jBBgcs8Kssf2UxBCbES8WYb4m3+QI=;
- b=mlfn/w/mCZ56qPK8GltlYHQkT30r/OJysBoch1IKn/UgQBkq8DLkczjH
- Kv8UX1F9JVTtSADy3EJM86LT8hvtJx3q9/a0yCIZwfkKrR8UxKSc7XdCE
- MrlVpmpKptMXbuYLqkcPSeUPTKQq3Ap5+BY1mX4nhDrx8zhyAVdduq6hJ
- PDZPkB57EMaYYl0qMuyZ093iaMppfowVXwU50+1LebI97RACl/MPSIzqy
- QwEnZ6Q+l4GxPzCpvBcGFJKNjBUqOtrSafXs7STCFkvRRontGiGqCowS6
- LSl63xB+XFYmnVx36sbw/bDbhXJRawAAlA8mUb7URCXZaSbJojzInXN+7 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="295424652"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="295424652"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 04:18:49 -0700
+ bh=/XdP/cXujAqp9sYYfbJmeJN5xZaEgT1od/h2cr4KUL0=;
+ b=StO55cFGtdrS/NVDF4CdRFoTen0Y7QYdSz7AYWazgTwTspUCsMmRttti
+ U9r06vLhF86DJLV5LGqtthcVz6n7jhKvM5rlBcxeOk5dCfC0+CdjvN/Vo
+ y7cAF7fYApFampZKifN0OVdWrYCysb3kbZmIPBydiSriCj2JQ+M3NfDvB
+ XAAFcm6PnCuug62sKj+L0mZmAONEGrfTMe5jgpnhKLQ/mNscesFU1T47S
+ xEFq1XKdMZwUDM9lpVOKim2LflzEatgSRojZp2/gp4NgyAEBYdAgPdYgA
+ PxQP8GrxExl+e9DpKaPjtsfc6B90Sk1C6EySzGpYTYnVL7jomwiV5AzLl w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="361792173"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="361792173"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 04:18:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="611727345"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678044343"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga007.jf.intel.com with SMTP; 12 Sep 2022 04:18:46 -0700
+ by fmsmga008.fm.intel.com with SMTP; 12 Sep 2022 04:18:49 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 12 Sep 2022 14:18:46 +0300
+ Mon, 12 Sep 2022 14:18:49 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Sep 2022 14:18:10 +0300
-Message-Id: <20220912111814.17466-12-ville.syrjala@linux.intel.com>
+Date: Mon, 12 Sep 2022 14:18:11 +0300
+Message-Id: <20220912111814.17466-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 References: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 11/15] drm/i915: Extract
- intel_attach_scaling_mode_property()
+Subject: [Intel-gfx] [PATCH 12/15] drm/i915: Clean up connector->*_allowed
+ setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,150 +64,149 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Consolidate the scaling_mode property setup into a single
-place.
-
-The one slight complicateion here is that GMCH platforms can't
-do the CENTER mode except on the LVDS port. But we can deal with
-that by just checking the connector type.
+All the connectors are zero initialized so no need to clear
+the *_allowed flags we don't support. Only leave the ones we want
+to set. And while at it switch to booleans instead of ints.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c         | 10 +---------
- drivers/gpu/drm/i915/display/intel_connector.c | 18 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_connector.h |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c        | 10 +---------
- drivers/gpu/drm/i915/display/intel_lvds.c      | 10 +---------
- drivers/gpu/drm/i915/display/vlv_dsi.c         | 11 +----------
- 6 files changed, 23 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c    | 2 --
+ drivers/gpu/drm/i915/display/intel_crt.c  | 7 ++-----
+ drivers/gpu/drm/i915/display/intel_dp.c   | 1 -
+ drivers/gpu/drm/i915/display/intel_dvo.c  | 2 --
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 5 ++---
+ drivers/gpu/drm/i915/display/intel_lvds.c | 2 --
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 3 +--
+ drivers/gpu/drm/i915/display/intel_tv.c   | 2 --
+ drivers/gpu/drm/i915/display/vlv_dsi.c    | 2 --
+ 9 files changed, 5 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index ed4d93942dbd..59546cbcaeda 100644
+index 59546cbcaeda..47f13750f6fa 100644
 --- a/drivers/gpu/drm/i915/display/icl_dsi.c
 +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1974,16 +1974,8 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
- {
- 	const struct drm_display_mode *fixed_mode =
- 		intel_panel_preferred_fixed_mode(connector);
--	u32 allowed_scalers;
+@@ -2038,8 +2038,6 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+ 			   DRM_MODE_CONNECTOR_DSI);
+ 	drm_connector_helper_add(connector, &gen11_dsi_connector_helper_funcs);
+ 	connector->display_info.subpixel_order = SubPixelHorizontalRGB;
+-	connector->interlace_allowed = false;
+-	connector->doublescan_allowed = false;
+ 	intel_connector->get_hw_state = intel_connector_get_hw_state;
  
--	allowed_scalers = BIT(DRM_MODE_SCALE_ASPECT) |
--			   BIT(DRM_MODE_SCALE_FULLSCREEN) |
--			   BIT(DRM_MODE_SCALE_CENTER);
--
--	drm_connector_attach_scaling_mode_property(&connector->base,
--						   allowed_scalers);
--
--	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
-+	intel_attach_scaling_mode_property(&connector->base);
+ 	/* attach connector to encoder */
+diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+index eba58345619a..94d0a5e1dd03 100644
+--- a/drivers/gpu/drm/i915/display/intel_crt.c
++++ b/drivers/gpu/drm/i915/display/intel_crt.c
+@@ -1050,11 +1050,8 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+ 	else
+ 		crt->base.pipe_mask = ~0;
  
- 	drm_connector_set_panel_orientation_with_quirk(&connector->base,
- 						       intel_dsi_get_panel_orientation(connector),
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index 6d5cbeb8df4d..6205ddd3ded0 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -293,3 +293,21 @@ intel_attach_dp_colorspace_property(struct drm_connector *connector)
- 	if (!drm_mode_create_dp_colorspace_property(connector))
- 		drm_connector_attach_colorspace_property(connector);
- }
-+
-+void
-+intel_attach_scaling_mode_property(struct drm_connector *connector)
-+{
-+	struct drm_i915_private *i915 = to_i915(connector->dev);
-+	u32 scaling_modes;
-+
-+	scaling_modes = BIT(DRM_MODE_SCALE_ASPECT) |
-+		BIT(DRM_MODE_SCALE_FULLSCREEN);
-+
-+	/* On GMCH platforms borders are only possible on the LVDS port */
-+	if (!HAS_GMCH(i915) || connector->connector_type == DRM_MODE_CONNECTOR_LVDS)
-+		scaling_modes |= BIT(DRM_MODE_SCALE_CENTER);
-+
-+	drm_connector_attach_scaling_mode_property(connector, scaling_modes);
-+
-+	connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu/drm/i915/display/intel_connector.h
-index 661a37a3c6d8..7d7b588d2286 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.h
-+++ b/drivers/gpu/drm/i915/display/intel_connector.h
-@@ -32,5 +32,6 @@ void intel_attach_broadcast_rgb_property(struct drm_connector *connector);
- void intel_attach_aspect_ratio_property(struct drm_connector *connector);
- void intel_attach_hdmi_colorspace_property(struct drm_connector *connector);
- void intel_attach_dp_colorspace_property(struct drm_connector *connector);
-+void intel_attach_scaling_mode_property(struct drm_connector *connector);
+-	if (DISPLAY_VER(dev_priv) == 2)
+-		connector->interlace_allowed = 0;
+-	else
+-		connector->interlace_allowed = 1;
+-	connector->doublescan_allowed = 0;
++	if (DISPLAY_VER(dev_priv) != 2)
++		connector->interlace_allowed = true;
  
- #endif /* __INTEL_CONNECTOR_H__ */
+ 	crt->adpa_reg = adpa_reg;
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 049228a09364..ce74f6695cab 100644
+index ce74f6695cab..7b4ffb74c94c 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5194,16 +5194,8 @@ intel_edp_add_properties(struct intel_dp *intel_dp)
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	const struct drm_display_mode *fixed_mode =
- 		intel_panel_preferred_fixed_mode(connector);
--	u32 allowed_scalers;
+@@ -5422,7 +5422,6 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
  
--	allowed_scalers = BIT(DRM_MODE_SCALE_ASPECT) |
--		BIT(DRM_MODE_SCALE_FULLSCREEN);
--	if (!HAS_GMCH(i915))
--		allowed_scalers |= BIT(DRM_MODE_SCALE_CENTER);
--
--	drm_connector_attach_scaling_mode_property(&connector->base, allowed_scalers);
--
--	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
-+	intel_attach_scaling_mode_property(&connector->base);
+ 	if (!HAS_GMCH(dev_priv))
+ 		connector->interlace_allowed = true;
+-	connector->doublescan_allowed = 0;
  
- 	if (!fixed_mode)
- 		return;
+ 	intel_connector->polled = DRM_CONNECTOR_POLL_HPD;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
+index 167c9b7318f8..595087288922 100644
+--- a/drivers/gpu/drm/i915/display/intel_dvo.c
++++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+@@ -515,8 +515,6 @@ void intel_dvo_init(struct drm_i915_private *dev_priv)
+ 		drm_connector_helper_add(connector,
+ 					 &intel_dvo_connector_helper_funcs);
+ 		connector->display_info.subpixel_order = SubPixelHorizontalRGB;
+-		connector->interlace_allowed = false;
+-		connector->doublescan_allowed = false;
+ 
+ 		intel_connector_attach_encoder(intel_connector, intel_encoder);
+ 		if (dvo->type == INTEL_DVO_CHIP_LVDS) {
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 7816b2a33fee..93519fb23d9d 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2956,9 +2956,8 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+ 				    ddc);
+ 	drm_connector_helper_add(connector, &intel_hdmi_connector_helper_funcs);
+ 
+-	connector->interlace_allowed = 1;
+-	connector->doublescan_allowed = 0;
+-	connector->stereo_allowed = 1;
++	connector->interlace_allowed = true;
++	connector->stereo_allowed = true;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 10)
+ 		connector->ycbcr_420_allowed = true;
 diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 7cadb548ad6c..951170af7bb3 100644
+index 951170af7bb3..270368b43729 100644
 --- a/drivers/gpu/drm/i915/display/intel_lvds.c
 +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -816,15 +816,7 @@ static bool compute_is_dual_link_lvds(struct intel_lvds_encoder *lvds_encoder)
+@@ -924,8 +924,6 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
  
- static void intel_lvds_add_properties(struct drm_connector *connector)
- {
--	u32 allowed_scalers;
--
--	allowed_scalers = BIT(DRM_MODE_SCALE_ASPECT) |
--		BIT(DRM_MODE_SCALE_FULLSCREEN) |
--		BIT(DRM_MODE_SCALE_CENTER);
--
--	drm_connector_attach_scaling_mode_property(connector, allowed_scalers);
--
--	connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
-+	intel_attach_scaling_mode_property(connector);
+ 	drm_connector_helper_add(connector, &intel_lvds_connector_helper_funcs);
+ 	connector->display_info.subpixel_order = SubPixelHorizontalRGB;
+-	connector->interlace_allowed = false;
+-	connector->doublescan_allowed = false;
+ 
+ 	lvds_encoder->reg = lvds_reg;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index f5b744bef18f..2a99ec7ff737 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2689,9 +2689,8 @@ intel_sdvo_connector_init(struct intel_sdvo_connector *connector,
+ 	drm_connector_helper_add(drm_connector,
+ 				 &intel_sdvo_connector_helper_funcs);
+ 
+-	connector->base.base.interlace_allowed = 1;
+-	connector->base.base.doublescan_allowed = 0;
+ 	connector->base.base.display_info.subpixel_order = SubPixelHorizontalRGB;
++	connector->base.base.interlace_allowed = true;
+ 	connector->base.get_hw_state = intel_sdvo_connector_get_hw_state;
+ 
+ 	intel_connector_attach_encoder(&connector->base, &encoder->base);
+diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+index 306d08482855..b1c74eca4fe7 100644
+--- a/drivers/gpu/drm/i915/display/intel_tv.c
++++ b/drivers/gpu/drm/i915/display/intel_tv.c
+@@ -2002,8 +2002,6 @@ intel_tv_init(struct drm_i915_private *dev_priv)
+ 	intel_tv->type = DRM_MODE_CONNECTOR_Unknown;
+ 
+ 	drm_connector_helper_add(connector, &intel_tv_connector_helper_funcs);
+-	connector->interlace_allowed = false;
+-	connector->doublescan_allowed = false;
+ 
+ 	intel_tv_add_properties(connector);
  }
- 
- /**
 diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index b3f5ca280ef2..421ad02f8e9b 100644
+index 421ad02f8e9b..dee0147a316c 100644
 --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
 +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -1659,19 +1659,10 @@ static const struct drm_connector_funcs intel_dsi_connector_funcs = {
+@@ -1971,8 +1971,6 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+ 	drm_connector_helper_add(connector, &intel_dsi_connector_helper_funcs);
  
- static void vlv_dsi_add_properties(struct intel_connector *connector)
- {
--	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
- 	const struct drm_display_mode *fixed_mode =
- 		intel_panel_preferred_fixed_mode(connector);
--	u32 allowed_scalers;
+ 	connector->display_info.subpixel_order = SubPixelHorizontalRGB; /*XXX*/
+-	connector->interlace_allowed = false;
+-	connector->doublescan_allowed = false;
  
--	allowed_scalers = BIT(DRM_MODE_SCALE_ASPECT) | BIT(DRM_MODE_SCALE_FULLSCREEN);
--	if (!HAS_GMCH(dev_priv))
--		allowed_scalers |= BIT(DRM_MODE_SCALE_CENTER);
--
--	drm_connector_attach_scaling_mode_property(&connector->base,
--						   allowed_scalers);
--
--	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
-+	intel_attach_scaling_mode_property(&connector->base);
+ 	intel_connector_attach_encoder(intel_connector, intel_encoder);
  
- 	drm_connector_set_panel_orientation_with_quirk(&connector->base,
- 						       intel_dsi_get_panel_orientation(connector),
 -- 
 2.35.1
 
