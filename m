@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D2195B5925
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:18:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5005B592D
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:19:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03CB310E3C7;
-	Mon, 12 Sep 2022 11:18:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36A5A10E3A7;
+	Mon, 12 Sep 2022 11:19:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F29D410E3A8
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:34 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1A2610E3BE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662981514; x=1694517514;
+ t=1662981529; x=1694517529;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=55Oyi62kyFs7lmNJi2N2j6kjJLxDXancExEfFTdXHyE=;
- b=Fujx1rmsBToya5mQjpnng1YwJEMEAUmUy1TjMzziZB9My1Lf7FE0EiAV
- vSGlbgoKe1ToneoMr8jaBslaGaZgTKAZBHLhRFSCNbbs1LayAEunDCYrU
- Rebc64DIJk9WS+T+XqkJSIjgszGRbwd21bXtabKCOcCvCuA9cHSGzmhpE
- bTSWuweNb1wWD0itmLlqGRh5IpApVAhhX5w9GIw6QEO4BxoHffFlpPzhL
- l+e8no8xCzcaDiOIUn0muFHriMTqLGk/h7rV4qhM98Y/rxx/kbsGdVZps
- i3RdbiUg/vvlb3UZkrVECpo0pGXw6KroRPdMhKq5KDAOnU0cX+C7dhG9N Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="278232122"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="278232122"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 04:18:34 -0700
+ bh=uCQtEIulLGSHAq5vBvDwsJglzj6lv48j6d+QuuVkqrg=;
+ b=UrstTDSO/oeGR0srInoDZuI3S8M1l+h3TEoY2/6aL+BWxu5pqF5mFJYZ
+ JPpeWOeFHR+86duo/3hB/lLu9C7xRihmxGTDBRzdmiknf7qOsl0XpBe5e
+ 78pWXKZOCiQ5is1lwd6jEstvHbg7TnlwWj4nenmETdmEuUEaNjpiVEGRz
+ 1WLVpIVvkDDaPRzCWfeMNV0RzfbxHCvzc33xvK6uisAT5q4AczZc+9E93
+ IAoz9GOLU+CRSVIyqKkY9+9BB9Dfcu85YxcOzh6FHcc7VcpVPcI7Qdt8d
+ yWuBvNQwQDPYfLrZUuQsKzDqvQj/cdCWLuQmUQBuMxGz1nKA9qj4xliP/ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="296575666"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="296575666"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 04:18:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="758357739"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="705115852"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga001.fm.intel.com with SMTP; 12 Sep 2022 04:18:32 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 12 Sep 2022 04:18:35 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 12 Sep 2022 14:18:31 +0300
+ Mon, 12 Sep 2022 14:18:34 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Sep 2022 14:18:05 +0300
-Message-Id: <20220912111814.17466-7-ville.syrjala@linux.intel.com>
+Date: Mon, 12 Sep 2022 14:18:06 +0300
+Message-Id: <20220912111814.17466-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 References: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 06/15] drm/i915: Extract
- intel_edp_backlight_setup()
+Subject: [Intel-gfx] [PATCH 07/15] drm/i915: Extract
+ intel_tv_add_properties()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,93 +64,127 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pull the eDP backlight setup ino its own function. No
-reason to pollute intel_edp_init_connector() with all
-the mundane details.
+Pull all the TV connector property setup into its own neat function.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 51 +++++++++++++++----------
- 1 file changed, 30 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/display/intel_tv.c | 80 +++++++++++++------------
+ 1 file changed, 43 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a5eca5396fed..de5a4d2df78e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5217,6 +5217,35 @@ intel_edp_add_properties(struct intel_dp *intel_dp)
- 						       fixed_mode->vdisplay);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+index 9379f3463344..306d08482855 100644
+--- a/drivers/gpu/drm/i915/display/intel_tv.c
++++ b/drivers/gpu/drm/i915/display/intel_tv.c
+@@ -1869,6 +1869,48 @@ static const struct drm_encoder_funcs intel_tv_enc_funcs = {
+ 	.destroy = intel_encoder_destroy,
+ };
  
-+static void intel_edp_backlight_setup(struct intel_dp *intel_dp,
-+				      struct intel_connector *connector)
++static void intel_tv_add_properties(struct drm_connector *connector)
 +{
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	enum pipe pipe = INVALID_PIPE;
++	struct drm_i915_private *i915 = to_i915(connector->dev);
++	struct drm_connector_state *conn_state = connector->state;
++	const char *tv_format_names[ARRAY_SIZE(tv_modes)];
++	int i;
 +
-+	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-+		/*
-+		 * Figure out the current pipe for the initial backlight setup.
-+		 * If the current pipe isn't valid, try the PPS pipe, and if that
-+		 * fails just assume pipe A.
-+		 */
-+		pipe = vlv_active_pipe(intel_dp);
++	/* BIOS margin values */
++	conn_state->tv.margins.left = 54;
++	conn_state->tv.margins.top = 36;
++	conn_state->tv.margins.right = 46;
++	conn_state->tv.margins.bottom = 37;
 +
-+		if (pipe != PIPE_A && pipe != PIPE_B)
-+			pipe = intel_dp->pps.pps_pipe;
++	conn_state->tv.mode = 0;
 +
-+		if (pipe != PIPE_A && pipe != PIPE_B)
-+			pipe = PIPE_A;
++	/* Create TV properties then attach current values */
++	for (i = 0; i < ARRAY_SIZE(tv_modes); i++) {
++		/* 1080p50/1080p60 not supported on gen3 */
++		if (DISPLAY_VER(i915) == 3 && tv_modes[i].oversample == 1)
++			break;
 +
-+		drm_dbg_kms(&i915->drm,
-+			    "[CONNECTOR:%d:%s] using pipe %c for initial backlight setup\n",
-+			    connector->base.base.id, connector->base.name,
-+			    pipe_name(pipe));
++		tv_format_names[i] = tv_modes[i].name;
 +	}
++	drm_mode_create_tv_properties(&i915->drm, i, tv_format_names);
 +
-+	intel_backlight_setup(connector, pipe);
++	drm_object_attach_property(&connector->base,
++				   i915->drm.mode_config.tv_mode_property,
++				   conn_state->tv.mode);
++	drm_object_attach_property(&connector->base,
++				   i915->drm.mode_config.tv_left_margin_property,
++				   conn_state->tv.margins.left);
++	drm_object_attach_property(&connector->base,
++				   i915->drm.mode_config.tv_top_margin_property,
++				   conn_state->tv.margins.top);
++	drm_object_attach_property(&connector->base,
++				   i915->drm.mode_config.tv_right_margin_property,
++				   conn_state->tv.margins.right);
++	drm_object_attach_property(&connector->base,
++				   i915->drm.mode_config.tv_bottom_margin_property,
++				   conn_state->tv.margins.bottom);
 +}
 +
- static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 				     struct intel_connector *intel_connector)
+ void
+ intel_tv_init(struct drm_i915_private *dev_priv)
  {
-@@ -5226,7 +5255,6 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	struct drm_display_mode *fixed_mode;
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	bool has_dpcd;
--	enum pipe pipe = INVALID_PIPE;
- 	struct edid *edid;
+@@ -1878,9 +1920,6 @@ intel_tv_init(struct drm_i915_private *dev_priv)
+ 	struct intel_encoder *intel_encoder;
+ 	struct intel_connector *intel_connector;
+ 	u32 tv_dac_on, tv_dac_off, save_tv_dac;
+-	const char *tv_format_names[ARRAY_SIZE(tv_modes)];
+-	int i, initial_mode = 0;
+-	struct drm_connector_state *state;
  
- 	if (!intel_dp_is_edp(intel_dp))
-@@ -5301,28 +5329,9 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	if ((intel_de_read(dev_priv, TV_CTL) & TV_FUSE_STATE_MASK) == TV_FUSE_STATE_DISABLED)
+ 		return;
+@@ -1926,7 +1965,6 @@ intel_tv_init(struct drm_i915_private *dev_priv)
  
- 	mutex_unlock(&dev->mode_config.mutex);
+ 	intel_encoder = &intel_tv->base;
+ 	connector = &intel_connector->base;
+-	state = connector->state;
  
--	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
--		/*
--		 * Figure out the current pipe for the initial backlight setup.
--		 * If the current pipe isn't valid, try the PPS pipe, and if that
--		 * fails just assume pipe A.
--		 */
--		pipe = vlv_active_pipe(intel_dp);
+ 	/*
+ 	 * The documentation, for the older chipsets at least, recommend
+@@ -1963,41 +2001,9 @@ intel_tv_init(struct drm_i915_private *dev_priv)
+ 	intel_encoder->cloneable = 0;
+ 	intel_tv->type = DRM_MODE_CONNECTOR_Unknown;
+ 
+-	/* BIOS margin values */
+-	state->tv.margins.left = 54;
+-	state->tv.margins.top = 36;
+-	state->tv.margins.right = 46;
+-	state->tv.margins.bottom = 37;
 -
--		if (pipe != PIPE_A && pipe != PIPE_B)
--			pipe = intel_dp->pps.pps_pipe;
+-	state->tv.mode = initial_mode;
 -
--		if (pipe != PIPE_A && pipe != PIPE_B)
--			pipe = PIPE_A;
+ 	drm_connector_helper_add(connector, &intel_tv_connector_helper_funcs);
+ 	connector->interlace_allowed = false;
+ 	connector->doublescan_allowed = false;
+ 
+-	/* Create TV properties then attach current values */
+-	for (i = 0; i < ARRAY_SIZE(tv_modes); i++) {
+-		/* 1080p50/1080p60 not supported on gen3 */
+-		if (DISPLAY_VER(dev_priv) == 3 &&
+-		    tv_modes[i].oversample == 1)
+-			break;
 -
--		drm_dbg_kms(&dev_priv->drm,
--			    "using pipe %c for initial backlight setup\n",
--			    pipe_name(pipe));
+-		tv_format_names[i] = tv_modes[i].name;
 -	}
+-	drm_mode_create_tv_properties(dev, i, tv_format_names);
 -
- 	intel_panel_init(intel_connector);
- 
--	intel_backlight_setup(intel_connector, pipe);
-+	intel_edp_backlight_setup(intel_dp, intel_connector);
- 
- 	intel_edp_add_properties(intel_dp);
- 
+-	drm_object_attach_property(&connector->base, dev->mode_config.tv_mode_property,
+-				   state->tv.mode);
+-	drm_object_attach_property(&connector->base,
+-				   dev->mode_config.tv_left_margin_property,
+-				   state->tv.margins.left);
+-	drm_object_attach_property(&connector->base,
+-				   dev->mode_config.tv_top_margin_property,
+-				   state->tv.margins.top);
+-	drm_object_attach_property(&connector->base,
+-				   dev->mode_config.tv_right_margin_property,
+-				   state->tv.margins.right);
+-	drm_object_attach_property(&connector->base,
+-				   dev->mode_config.tv_bottom_margin_property,
+-				   state->tv.margins.bottom);
++	intel_tv_add_properties(connector);
+ }
 -- 
 2.35.1
 
