@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC2205B5922
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:18:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE3865B5923
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:18:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A742F10E3A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD7E310E3B7;
 	Mon, 12 Sep 2022 11:18:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE2A110E39B
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3C9410E3A8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:18:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662981509; x=1694517509;
+ t=1662981511; x=1694517511;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=VgrHLqkg9tPpVlt22nIY4nKlabJeC99jWw4Wi4AH+xU=;
- b=Bk3jmNTJzPMUVq8jbR5caG67VFkQRdhHseYpALs1mHqHGIDmNGb2xdD9
- pZhxaR0lFbhHJHIJ/PCkZt0otgbPYGfY+lIoq233Ilj6lcydS4AiFUkXR
- dz60dWM3VGKssfsN4YU4HRsPV6MG3BUtSWp3/AyY+//PjH5u/CKmJmQHl
- tBMaVoQ4VzelLnv9uDw2X+ogmxPl31Fle/fX/mt14OGP2Sqd274lTMMq2
- k/7SF5TvMlu0c2yukjjWmOZJg14CQPpSVjbX/SAils1YBC00SLvYO5bwx
- rjPS1hL+1ensXJOOTKVsAkYVo/JiWORjjfRFdgSqJeSE6mlAz0eo95l5A A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="324072010"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="324072010"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ bh=3MH8gegRdOgwkHoIcEqkqMqrqZmjQeDDIy5Qicgi8so=;
+ b=gU0nEFvZBv+SvfwSx7heNPmMdxCNKa5sdcRI5fYowUVMm5nZTK2j0oyX
+ 1vu+Y66fAFBqshdsjg8nETunsnhJytVGYXb8tQ/R/lv+4n+bAQDXcNUt/
+ P5Gyx3KIvLnPTJ9977LUEVOgs6lh6hBnermVQ6rl2IvobltULpb590Dp+
+ KlHPEQ4LSFkyRt+sfHoPvv6ECIWHRPNelFxSUMZTcU0zQJyi4w1ll4SdK
+ uB4HjJZD5WsgC2ui5KX7NUzcvxFgo2NL0jdzSYdMHgCmtWNDgd75ZYWUB
+ LZXualZu6YCWXxNdTbgjhg7MQ8vVdEMFfMVcwGmI3QH4VgEERd1WJJ9CE g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="324072019"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="324072019"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 04:18:28 -0700
+ 12 Sep 2022 04:18:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="593452363"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="649213560"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga006.jf.intel.com with SMTP; 12 Sep 2022 04:18:26 -0700
+ by orsmga001.jf.intel.com with SMTP; 12 Sep 2022 04:18:29 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 12 Sep 2022 14:18:26 +0300
+ Mon, 12 Sep 2022 14:18:29 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Sep 2022 14:18:03 +0300
-Message-Id: <20220912111814.17466-5-ville.syrjala@linux.intel.com>
+Date: Mon, 12 Sep 2022 14:18:04 +0300
+Message-Id: <20220912111814.17466-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 References: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 04/15] drm/i915: Use BIT() when dealing with
- output types
+Subject: [Intel-gfx] [PATCH 05/15] drm/i915: Pass intel_encoder to
+ to_lvds_encoder()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,109 +64,94 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Most places that deal with output types already use BIT()
-but a few places still use manual shifts. Convert the
-stragglers over to BIT().
+Most of our encoder type cast stuff already operates on
+intel_encoder rather than drm_encoder. Switch to_lvds_encoder()
+over as well.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_hdmi.c            | 4 ++--
- drivers/gpu/drm/i915/display/intel_crt.c           | 2 +-
- drivers/gpu/drm/i915/display/intel_display.c       | 4 ++--
- drivers/gpu/drm/i915/display/intel_display_types.h | 9 +++++----
- drivers/gpu/drm/i915/display/intel_dvo.c           | 4 ++--
- 5 files changed, 12 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lvds.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index 5fbd2ae95869..5606c667e422 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -585,7 +585,7 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
- 	} else {
- 		intel_encoder->pipe_mask = ~0;
- 	}
--	intel_encoder->cloneable = 1 << INTEL_OUTPUT_ANALOG;
-+	intel_encoder->cloneable = BIT(INTEL_OUTPUT_ANALOG);
- 	intel_encoder->hpd_pin = intel_hpd_pin_default(dev_priv, port);
- 	/*
- 	 * BSpec is unclear about HDMI+HDMI cloning on g4x, but it seems
-@@ -593,7 +593,7 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
- 	 * only one port anyway, nothing is lost by allowing it.
- 	 */
- 	if (IS_G4X(dev_priv))
--		intel_encoder->cloneable |= 1 << INTEL_OUTPUT_HDMI;
-+		intel_encoder->cloneable |= BIT(INTEL_OUTPUT_HDMI);
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index 9aa38e8141b5..6fef829e855b 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -78,9 +78,9 @@ struct intel_lvds_encoder {
+ 	struct intel_connector *attached_connector;
+ };
  
- 	dig_port->hdmi.hdmi_reg = hdmi_reg;
- 	dig_port->dp.output_reg = INVALID_MMIO_REG;
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 4a8ff2f97608..eba58345619a 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -1044,7 +1044,7 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
- 	intel_connector_attach_encoder(intel_connector, &crt->base);
- 
- 	crt->base.type = INTEL_OUTPUT_ANALOG;
--	crt->base.cloneable = (1 << INTEL_OUTPUT_DVO) | (1 << INTEL_OUTPUT_HDMI);
-+	crt->base.cloneable = BIT(INTEL_OUTPUT_DVO) | BIT(INTEL_OUTPUT_HDMI);
- 	if (IS_I830(dev_priv))
- 		crt->base.pipe_mask = BIT(PIPE_A);
- 	else
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 2d0018ae34b1..53b7ee6e8a0a 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4565,8 +4565,8 @@ static bool encoders_cloneable(const struct intel_encoder *a,
- 			       const struct intel_encoder *b)
+-static struct intel_lvds_encoder *to_lvds_encoder(struct drm_encoder *encoder)
++static struct intel_lvds_encoder *to_lvds_encoder(struct intel_encoder *encoder)
  {
- 	/* masks could be asymmetric, so check both ways */
--	return a == b || (a->cloneable & (1 << b->type) &&
--			  b->cloneable & (1 << a->type));
-+	return a == b || (a->cloneable & BIT(b->type) &&
-+			  b->cloneable & BIT(a->type));
+-	return container_of(encoder, struct intel_lvds_encoder, base.base);
++	return container_of(encoder, struct intel_lvds_encoder, base);
  }
  
- static bool check_single_encoder_cloning(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 3b7945aad22a..11f083cf1124 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -2040,15 +2040,16 @@ static inline bool
- intel_crtc_has_type(const struct intel_crtc_state *crtc_state,
- 		    enum intel_output_type type)
+ bool intel_lvds_port_enabled(struct drm_i915_private *dev_priv,
+@@ -103,7 +103,7 @@ static bool intel_lvds_get_hw_state(struct intel_encoder *encoder,
+ 				    enum pipe *pipe)
  {
--	return crtc_state->output_types & (1 << type);
-+	return crtc_state->output_types & BIT(type);
- }
-+
- static inline bool
- intel_crtc_has_dp_encoder(const struct intel_crtc_state *crtc_state)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(&encoder->base);
++	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+ 	intel_wakeref_t wakeref;
+ 	bool ret;
+ 
+@@ -123,7 +123,7 @@ static void intel_lvds_get_config(struct intel_encoder *encoder,
+ 				  struct intel_crtc_state *pipe_config)
  {
- 	return crtc_state->output_types &
--		((1 << INTEL_OUTPUT_DP) |
--		 (1 << INTEL_OUTPUT_DP_MST) |
--		 (1 << INTEL_OUTPUT_EDP));
-+		(BIT(INTEL_OUTPUT_DP) |
-+		 BIT(INTEL_OUTPUT_DP_MST) |
-+		 BIT(INTEL_OUTPUT_EDP));
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(&encoder->base);
++	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+ 	u32 tmp, flags = 0;
+ 
+ 	pipe_config->output_types |= BIT(INTEL_OUTPUT_LVDS);
+@@ -229,7 +229,7 @@ static void intel_pre_enable_lvds(struct intel_atomic_state *state,
+ 				  const struct intel_crtc_state *pipe_config,
+ 				  const struct drm_connector_state *conn_state)
+ {
+-	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(&encoder->base);
++	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+ 	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+@@ -312,7 +312,7 @@ static void intel_enable_lvds(struct intel_atomic_state *state,
+ 			      const struct drm_connector_state *conn_state)
+ {
+ 	struct drm_device *dev = encoder->base.dev;
+-	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(&encoder->base);
++	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 
+ 	intel_de_write(dev_priv, lvds_encoder->reg,
+@@ -334,7 +334,7 @@ static void intel_disable_lvds(struct intel_atomic_state *state,
+ 			       const struct intel_crtc_state *old_crtc_state,
+ 			       const struct drm_connector_state *old_conn_state)
+ {
+-	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(&encoder->base);
++	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(encoder);
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 
+ 	intel_de_write(dev_priv, PP_CONTROL(0),
+@@ -413,7 +413,7 @@ static int intel_lvds_compute_config(struct intel_encoder *intel_encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(intel_encoder->base.dev);
+ 	struct intel_lvds_encoder *lvds_encoder =
+-		to_lvds_encoder(&intel_encoder->base);
++		to_lvds_encoder(intel_encoder);
+ 	struct intel_connector *intel_connector =
+ 		lvds_encoder->attached_connector;
+ 	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+@@ -775,7 +775,7 @@ bool intel_is_dual_link_lvds(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_encoder *encoder = intel_get_lvds_encoder(dev_priv);
+ 
+-	return encoder && to_lvds_encoder(&encoder->base)->is_dual_link;
++	return encoder && to_lvds_encoder(encoder)->is_dual_link;
  }
  
- static inline bool
-diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-index 5572e43026e4..167c9b7318f8 100644
---- a/drivers/gpu/drm/i915/display/intel_dvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -491,8 +491,8 @@ void intel_dvo_init(struct drm_i915_private *dev_priv)
- 		intel_encoder->pipe_mask = ~0;
- 
- 		if (dvo->type != INTEL_DVO_CHIP_LVDS)
--			intel_encoder->cloneable = (1 << INTEL_OUTPUT_ANALOG) |
--				(1 << INTEL_OUTPUT_DVO);
-+			intel_encoder->cloneable = BIT(INTEL_OUTPUT_ANALOG) |
-+				BIT(INTEL_OUTPUT_DVO);
- 
- 		switch (dvo->type) {
- 		case INTEL_DVO_CHIP_TMDS:
+ static bool compute_is_dual_link_lvds(struct intel_lvds_encoder *lvds_encoder)
 -- 
 2.35.1
 
