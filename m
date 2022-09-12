@@ -1,49 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A586D5B5EE7
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 19:10:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9785B5F03
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 19:16:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03ABD10E065;
-	Mon, 12 Sep 2022 17:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7758C10E065;
+	Mon, 12 Sep 2022 17:16:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A12A10E065
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 17:09:49 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 748CA10E065
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 17:16:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663002589; x=1694538589;
+ t=1663002980; x=1694538980;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=tEdetczyh8osGbsNkFX/RmOyn2kQ4lIUdpiEqDp5vAU=;
- b=iZtqXuodn0FWAtL7rqEyEXl/1DyXkY+YtdRf0RQfRNIx7tu9nqgBOVQf
- xdAJOW65IRDKHs9hvqESKsZgo9ED6PCBS4QXZ6fCczlSbZ0QWg4/BpMAA
- VuRRGlkXeoW4FsnR+W6zL+uPm6dC8YK+WiHe8JLSKl7hw9rntR/bVjaBR
- UV4Y8j/1Pj/Po4oMwhTggVUetZAfI30JROqQta3pkCTmCtm6fCpXnESPs
- VkUrTw8pV/htZ/FVsEG0cy6+sZO/lPZQ8qUNfCZ79c9bwhPdzFuJcu3wi
- 0KYkmMt5XcWtRtX+shhSxI+jghRgVRnitaa8mdz4LwjgH+9oAadY881rK g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="277655734"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="277655734"
+ bh=VtieUY+odc1/4g2Po7iPlEYOvt1snRz4LgX15phvzRc=;
+ b=YSTDNMyJbOjDoM3ZyVFIIhFSW783pRWh7UBa35JR8AVULKwdXn6Z+xmt
+ 6UGclAW1VXjjbWfhUB7LYNBSIX7uAcEaNYCYcpSgjvXR2bKEcdRorsNlW
+ f3gJjOEE9C5ai4YlACUtQdCweyvC6x7olyDu/h+wLJnMevbHJX0ZEBbyj
+ ej6BokiVDdoYhOK0RR/aDWIRQfPBEHcf9E3nRwJa2U0pDxOHHgKkHs3yJ
+ 0PenGSYJXexXBYo2zeeIFfCHw4GoBYHTvhE58C9ErzUMsiDotuTCSRgFp
+ eePui5PNgYUz9SEM6D0tGkSicw3O/ZKam7xU4MVFFt2h7F3eP4fTPI3QD w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="296657675"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="296657675"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 10:09:48 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678181927"
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 10:16:19 -0700
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678184899"
 Received: from mtabaka-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.252.57.56])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 10:09:47 -0700
-Date: Mon, 12 Sep 2022 19:09:45 +0200
+ 12 Sep 2022 10:16:17 -0700
+Date: Mon, 12 Sep 2022 19:16:15 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Yx9n2XlkOO1x05D5@alfio.lan>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+Message-ID: <Yx9pX8cbsoAMsB8x@alfio.lan>
 References: <20220909025646.3397620-1-badal.nilawar@intel.com>
  <Yx8VnClBmyDHCd3C@alfio.lan> <87czc06bkq.fsf@intel.com>
+ <765d5996-c3a1-07c2-6cc7-0ade0cda74a3@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87czc06bkq.fsf@intel.com>
+In-Reply-To: <765d5996-c3a1-07c2-6cc7-0ade0cda74a3@intel.com>
 Subject: Re: [Intel-gfx] [PATCH 0/6] i915: CAGF and RC6 changes for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,24 +62,111 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+Hi Badal,
 
-On Mon, Sep 12, 2022 at 03:07:01PM +0300, Jani Nikula wrote:
-> On Mon, 12 Sep 2022, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> > Hi Badal,
-> >
-> > you haven't Cc'ed anyone here... Please do CC the people
-> > interested in the patches and dri-devel mailing list.
-> >
-> > If you don't mind, could you please resend the series either as a
-> > V2, if you are going to change something, or as a RESEND, if you
-> > will not change anything?
-> 
-> Anyway some of the patches have been merged already so a rebase is in
-> order.
+On Mon, Sep 12, 2022 at 05:42:57PM +0530, Nilawar, Badal wrote:
+> I added Cc: in individual patches. So I thought it will pick automatically.
+> But anyway I have to fix some of the comments. So I will fix those and
+> resend the series. I will Cc relevant people.
 
-thanks... I see that some of the patches have been reviewed
-previously, I missed that.
+yes... it depends on your git-send-email command. I think no one
+has received the e-mail other than the mailing list.
 
-Thank you,
+If you have the '--suppress-cc=all' flag then you need to
+explicitly add the --to/--cc recipients (this is how I do it in
+order avoid sending patches to unwanted people).
+
+If you don't have the '--suppress-cc=all' then git-send-email
+figures out by itself whom to send the patch by checking the
+commit tags.
+
+In both the cases, though, before sending the patches
+individually, git-send-email displays the people that have been
+added to the 'cc' list.
+
+Please make sure not to forget the dri-devel mailing list
+(<dri-devel@lists.freedesktop.org>) and to check if the patches
+are actually sent to everyone.
+
+Thanks,
 Andi
+
+> Regards,
+> Badal
+> 
+> On 12-09-2022 17:37, Jani Nikula wrote:
+> > On Mon, 12 Sep 2022, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> > > Hi Badal,
+> > > 
+> > > you haven't Cc'ed anyone here... Please do CC the people
+> > > interested in the patches and dri-devel mailing list.
+> > > 
+> > > If you don't mind, could you please resend the series either as a
+> > > V2, if you are going to change something, or as a RESEND, if you
+> > > will not change anything?
+> > 
+> > Anyway some of the patches have been merged already so a rebase is in
+> > order.
+> > 
+> > BR,
+> > Jani.
+> > 
+> > > 
+> > > Thanks,
+> > > Andi
+> > > 
+> > > On Fri, Sep 09, 2022 at 08:26:40AM +0530, Badal Nilawar wrote:
+> > > > This series includes the code changes to get CAGF, RC State and
+> > > > C6 Residency of MTL. The series depends on:
+> > > > 
+> > > > https://patchwork.freedesktop.org/series/107908/
+> > > > 
+> > > > We have included 3 patches from from the above series as part of this
+> > > > series in order for this series to compile. These are the first 3 patches
+> > > > authored by Matt Roper. Please do not review these first 3 patches. Only
+> > > > patch 4 and 6 needs review.
+> > > > 
+> > > > v2: Included "Use GEN12 RPSTAT register" patch
+> > > > 
+> > > > Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > > > 
+> > > > Badal Nilawar (2):
+> > > >    drm/i915/mtl: Modify CAGF functions for MTL
+> > > >    drm/i915/mtl: Add C6 residency support for MTL SAMedia
+> > > > 
+> > > > Don Hiatt (1):
+> > > >    drm/i915: Use GEN12 RPSTAT register
+> > > > 
+> > > > Matt Roper (3):
+> > > >    drm/i915: Prepare more multi-GT initialization
+> > > >    drm/i915: Rename and expose common GT early init routine
+> > > >    drm/i915/xelpmp: Expose media as another GT
+> > > > 
+> > > >   drivers/gpu/drm/i915/Makefile                 |  1 +
+> > > >   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+> > > >   drivers/gpu/drm/i915/gt/intel_gt.c            | 70 +++++++++++++++----
+> > > >   drivers/gpu/drm/i915/gt/intel_gt.h            |  2 +-
+> > > >   drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 58 ++++++++++++++-
+> > > >   drivers/gpu/drm/i915/gt/intel_gt_regs.h       | 31 ++++++++
+> > > >   drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   |  9 ++-
+> > > >   drivers/gpu/drm/i915/gt/intel_gt_types.h      |  3 +
+> > > >   drivers/gpu/drm/i915/gt/intel_rc6.c           |  5 +-
+> > > >   drivers/gpu/drm/i915/gt/intel_rps.c           | 22 +++++-
+> > > >   drivers/gpu/drm/i915/gt/intel_rps.h           |  1 +
+> > > >   drivers/gpu/drm/i915/gt/intel_sa_media.c      | 39 +++++++++++
+> > > >   drivers/gpu/drm/i915/gt/intel_sa_media.h      | 15 ++++
+> > > >   drivers/gpu/drm/i915/gt/selftest_rc6.c        |  9 ++-
+> > > >   drivers/gpu/drm/i915/i915_drv.h               |  2 +
+> > > >   drivers/gpu/drm/i915/i915_pci.c               | 15 ++++
+> > > >   drivers/gpu/drm/i915/i915_pmu.c               | 11 ++-
+> > > >   drivers/gpu/drm/i915/intel_device_info.h      | 19 +++++
+> > > >   drivers/gpu/drm/i915/intel_uncore.c           | 16 ++++-
+> > > >   drivers/gpu/drm/i915/intel_uncore.h           | 20 +++++-
+> > > >   .../gpu/drm/i915/selftests/mock_gem_device.c  |  1 +
+> > > >   21 files changed, 325 insertions(+), 26 deletions(-)
+> > > >   create mode 100644 drivers/gpu/drm/i915/gt/intel_sa_media.c
+> > > >   create mode 100644 drivers/gpu/drm/i915/gt/intel_sa_media.h
+> > > > 
+> > > > -- 
+> > > > 2.25.1
+> > 
