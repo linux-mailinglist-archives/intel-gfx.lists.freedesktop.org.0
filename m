@@ -1,33 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59DF95B6218
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 22:21:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1FC65B628C
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 23:11:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0347010E13D;
-	Mon, 12 Sep 2022 20:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 518CD10E2F4;
+	Mon, 12 Sep 2022 21:11:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CF03910E13D;
- Mon, 12 Sep 2022 20:21:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C506FAADD4;
- Mon, 12 Sep 2022 20:21:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0441681317157820858=="
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com
+ [IPv6:2607:f8b0:4864:20::e2d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A5DC10E2ED;
+ Mon, 12 Sep 2022 21:11:33 +0000 (UTC)
+Received: by mail-vs1-xe2d.google.com with SMTP id o123so10362591vsc.3;
+ Mon, 12 Sep 2022 14:11:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date;
+ bh=0y5HDghcAY9sylQGFFzoaSf/fyhWZ2sBWfqcl39LrAY=;
+ b=mxC/08asEEoQwpJK7YyrNORboVPuR1mQ9pckLYXNFM9ItzfU4KAedKMQxXi+Ppdh4t
+ v0Z7Zxg+FPrE4QWEkn3h2vRE2QSxRJ0KA9uGF3tCoeY4rRltXbSYzIcixWkksNF9t9wO
+ o/Lldc8HyGnQ/TfoPY4NVvRvTjwUSJv6LYnbbdm+CZDBg4SxDRWhnzoAZXExfNnWqjl3
+ VKk+DmQ57LYXuxE3Gn8Z8PZhuSKCPAh7obwz8x90stW22FYdXekkH/8340+EcuAMqBB/
+ E9dZa3mrQQROKHo+3gvj0DQYDL1uQDqK1BDwYySeYl6pZ3WO1qwYVKsgOpXdoDHSQRvt
+ YMOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date;
+ bh=0y5HDghcAY9sylQGFFzoaSf/fyhWZ2sBWfqcl39LrAY=;
+ b=5tG8gRpe1xsUUz83YQPLca1A9vGOblFIIXgcH9QQzoky3ftZwfHRtEnkaPkkiZLcpX
+ 8jHgjITVQUv7TQu/oIiOJdXyUYoahfTnk77m23uY6XZw1XkUYo+mtlX6FAq05eubFTzf
+ eyV4ew7D/NwNZuqbNgqIrklFF/AO6MMHrq2Bp6iL2wJUI21FzruBD9uGRH08PNY1/ysR
+ c38pu6ecVM6BN7aaXfi4g6FZO1JFpX5I/HFbTUWNL22hsQTFzkkLCR2JVVmAWidt955X
+ jX3tF+r/a6sNIbGmFOIS7ka3F7SNpUhytY8XC0c6pZYTni/z/A2b6LpNwE2rMOfPnkDt
+ a/ow==
+X-Gm-Message-State: ACgBeo3h0nKRcx5ospDVV8PlXrFbHw7b1OdxlFe0H74P7H5/zmUmJw78
+ lqBZOYn5xRDWhyijaSttHyAcL1l/O4ZWThZOhck=
+X-Google-Smtp-Source: AA6agR5pilGGCrxIlDXL0vtrXfNYU1+8LLhhj8vm590FXQ+SqLj90vzQQRbHzbzkwJG/WG/xxQzVbLbSR7rfddViAoo=
+X-Received: by 2002:a05:6102:3a4c:b0:398:3098:a301 with SMTP id
+ c12-20020a0561023a4c00b003983098a301mr7548545vsu.74.1663017092101; Mon, 12
+ Sep 2022 14:11:32 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 12 Sep 2022 20:21:46 -0000
-Message-ID: <166301410680.11335.9099725343333411083@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220912121957.31310-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220912121957.31310-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_display_problems_after_resume?=
+References: <20220912052852.1123868-1-jim.cromie@gmail.com>
+ <20220912052852.1123868-3-jim.cromie@gmail.com> <87pmg06g2x.fsf@intel.com>
+In-Reply-To: <87pmg06g2x.fsf@intel.com>
+From: jim.cromie@gmail.com
+Date: Mon, 12 Sep 2022 15:11:05 -0600
+Message-ID: <CAJfuBxy5E0xPFH=bxaaXy2Q8LojBrqgr+su8wGq7rsv3m7_d_g@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v7 2/9] drm: POC drm on dyndbg - use in core,
+ 2 helpers, 3 drivers.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,162 +65,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Greg KH <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Jason Baron <jbaron@akamai.com>, Sean Paul <seanpaul@chromium.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Joe Perches <joe@perches.com>,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0441681317157820858==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Fix display problems after resume
-URL   : https://patchwork.freedesktop.org/series/108432/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12123 -> Patchwork_108432v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_108432v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [PASS][1] -> [DMESG-FAIL][2] ([i915#4528])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12123/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - {bat-rpls-2}:       [DMESG-WARN][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12123/bat-rpls-2/igt@gem_exec_gttfill@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/bat-rpls-2/igt@gem_exec_gttfill@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5537]: https://gitlab.freedesktop.org/drm/intel/issues/5537
-  [i915#6257]: https://gitlab.freedesktop.org/drm/intel/issues/6257
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+On Mon, Sep 12, 2022 at 4:29 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>
+> On Sun, 11 Sep 2022, Jim Cromie <jim.cromie@gmail.com> wrote:
+> > Use DECLARE_DYNDBG_CLASSMAP across DRM:
+> >
+> >  - in .c files, since macro defines/initializes a record
+> >
+> >  - in drivers, $mod_{drv,drm,param}.c
+> >    ie where param setup is done, since a classmap is param related
+> >
+> >  - in drm/drm_print.c
+> >    since existing __drm_debug param is defined there,
+> >    and we ifdef it, and provide an elaborated alternative.
+> >
+> >  - in drm_*_helper modules:
+> >    dp/drm_dp - 1st item in makefile target
+> >    drivers/gpu/drm/drm_crtc_helper.c - random pick iirc.
+> >
+> > Since these modules all use identical CLASSMAP declarations (ie: names
+> > and .class_id's) they will all respond together to "class DRM_UT_*"
+> > query-commands:
 
 
-Build changes
--------------
+>
+> The commit message could start off by saying each module needs to define
+> DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, ...). That is, IIUC.
+>
 
-  * Linux: CI_DRM_12123 -> Patchwork_108432v1
-
-  CI-20190529: 20190529
-  CI_DRM_12123: 5dd153b15e2e3198fca3d84db9e155f454645f91 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6650: f7aff600ab16d6405f0704b1743d2b7909715752 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_108432v1: 5dd153b15e2e3198fca3d84db9e155f454645f91 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-a6309c422ba4 drm/i915: Fix display problems after resume
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html
-
---===============0441681317157820858==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Yes, I see your point.
+All the explanations missing here are in preceding commits,
+now in GregKHs  driver-core/driver-core-next tree,
+so I didnt resend them.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> Where's DECLARE_DYNDBG_CLASSMAP defined? linux-next? What's it do? What
+> if multiple modules with that are actually builtin?
+
+The commit that adds the macro is at
+https://lore.kernel.org/lkml/20220904214134.408619-15-jim.cromie@gmail.com/
+
+there are many combos of builtin, Ive done at least several:
+with caveat that >98% of testing is on virtme (thanks for that tool)
+
+- test_dynamic_debug as module, and builtin.
+it has multiple macro uses, showing 1 kind of sharing
+
+- drm as builtin, drivers as modules
+that surely pulled in other drm-helpers as builtins
+
+- all loadable modules mostly.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix display problems after resume</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108432/">https://patchwork.freedesktop.org/series/108432/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+>
+> The duplication and requirement that they're identical seems like an
+> error prone combo.
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html</a></td></tr>
+I freely acknowledge(d) this is sub-optimal.
+There might be a best place for a single declaration that is in-scope
+across multiple modules, but I dont know the drm core/driver lifetime
+well enough to just drop this into that place.
 
-</table>
+I may have complicated things by starting with a static struct holding
+the classmap, that choice was driven by:
+
+- static declaration into a section solved a problem where the class
+definitions
+were "registered" (term used in patchset, -v2-3?) too late to be available for
+     modprobe i915 dyndbg='class DRM_UT_CORE +p'
+but worked afterwards
+(also true for builtins and boot-time $mod.dyndbg='class notworking +p')
+
+Another subtlety - the "sharing" is due more to: drm_dbg(DRM_UT_*, "")
+Im not sure precisely how this might matter.
+
+I also had an "incompleteness" argument circling in my head - something like;
+you cant simultaneously allow a drm-wanna-be module to declare "DRM_UT_CORE"
+but disallow "DRM_UT_ILL_CONSIDERED".   I kind-of stopped there.
+
+Theres also an issue where multiple declarations in a module must
+avoid range overlap.
+I had no idea how to put that into a BUILD_BUG_ON.
+Its done manually, with commentary, in test-dynamic-debug.
+
+Maybe both issues can be improved somewhat by changing the macro
+to expect real ENUM symbols, (and stringify _VA_ARGS_ to init the classnames),
+not the quoted "DRM_UT_*"s it gets now.  That would also obsolete the _base,
+since its the value of DRM_UT_CORE (the 1st enum val).
+But that still leaves the enum vals enumerated, with possibility of
+omission or mixup,
+which unlike a spelling error wouldnt get caught, and would be wrong.
+
+I fiddled with the 1st part of that for a while, I lack the macro-fu,
+and punted.
+
+Im happy to try an alternative approach, particularly with elaborated
+suggestions.
 
 
-    <h1>CI Bug Log - changes from CI_DRM_12123 -&gt; Patchwork_108432v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_108432v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12123/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_gttfill@basic:<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12123/bat-rpls-2/igt@gem_exec_gttfill@basic.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108432v1/bat-rpls-2/igt@gem_exec_gttfill@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12123 -&gt; Patchwork_108432v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12123: 5dd153b15e2e3198fca3d84db9e155f454645f91 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6650: f7aff600ab16d6405f0704b1743d2b7909715752 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_108432v1: 5dd153b15e2e3198fca3d84db9e155f454645f91 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>a6309c422ba4 drm/i915: Fix display problems after resume</p>
+>
+> Finally, the choice of placement in e.g. i915_params.c seems completely
+> arbitrary, and makes you wonder "what here requires this, nothing?".
 
-</body>
-</html>
+acknowledged - I put it there because the access to it is via a parameter,
+namely one that already affects it from a distance:
+   /sys/module/drm/parameters/debug - ie drm.dbg
 
---===============0441681317157820858==--
+And its not even i915's parameter.
+
+>
+> BR,
+> Jani.
+>
+
+thanks,
+
+>
+> >
+> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
