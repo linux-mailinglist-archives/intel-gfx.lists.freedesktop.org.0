@@ -2,56 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CC8E5B57B3
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 12:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA4B5B57D2
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 12:06:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A89110E336;
-	Mon, 12 Sep 2022 09:59:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3FBA10E35C;
+	Mon, 12 Sep 2022 10:06:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B6D110E336;
- Mon, 12 Sep 2022 09:59:51 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A723F10E34C;
+ Mon, 12 Sep 2022 10:06:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662976791; x=1694512791;
+ t=1662977162; x=1694513162;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=RtgFvCEbDKO3+Ryjbvaj8giT/Jh0GUgsrDLaro9A9y8=;
- b=JERgaY4webyrFBFjNOSxhbig8uyGQyvGCBnZnFwBhATS7E5PygEvLmgQ
- z1fEWHieWtuBca78fLhjkVXGtUrosOrb6xH9PRG8ujDXvibEWbr3k9PoP
- 5VZzo9csD4qgZaQ/1odYz4VJXrLraBaKD7j5KmPn/NB2kulEz+JWJ5Rwd
- a0kLryd0mZj2xsVDAUkvTeqtKBe6OAMcweVQfNx7nlQFtpuAPoE2GxMrl
- xwfoHu9AviqLwAIG+0IfQet5102lJpjJ1UlutKycmNcOwYuGaVBlYwq/p
- j21EA/aIVnxf6m7/QnOMtg4Xc1ycI/IZ7NzP5EbDIRFzVn51aVHdTnFOo w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="284847882"
-X-IronPort-AV: E=Sophos;i="5.93,308,1654585200"; d="scan'208";a="284847882"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 02:59:48 -0700
+ bh=A+k1zdnfIUILSfZv59XdQVjB+YccXO1Lm6gi0maxWZY=;
+ b=TfBEf0cTquId5U21CNvSQzQoEKATrH7ctoP/0+OJzQT0+NWidxDakCWO
+ BvpkNgYQ3uLTnpyp3yNRAdIcIfoBhn6EUNXs5uOSSTPKJ2+Th6qhtmSCR
+ oPdDI+AMCrJU5eQnHGXJP1imY8nFH1CPqr8MKYQjtSb3r12y3VsaswT20
+ AygnM9QuwAqXAKsv12mulHUtNRoncWqX3w4SM9XSDPDymNRdA7l/Tu/3q
+ zcoLkdevPdn2PrX+h6DDIdMfpeFHK8uJ7r9FF+Ax7D0eXyiK2Y2OO+tJS
+ yhhlveEytvGEi0Sdbllpr6deauqEhN11DlUH/9MB2A0cUsNYp/5eog1+I w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="361780541"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="361780541"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 03:06:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="758331078"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga001.fm.intel.com with ESMTP; 12 Sep 2022 02:59:47 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="567108151"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga003.jf.intel.com with ESMTP; 12 Sep 2022 03:06:01 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 12 Sep 2022 02:59:47 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2375.31; Mon, 12 Sep 2022 03:06:01 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Mon, 12 Sep 2022 02:59:47 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2375.31; Mon, 12 Sep 2022 03:06:00 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Mon, 12 Sep 2022 03:06:00 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Mon, 12 Sep 2022 02:59:46 -0700
+ 15.1.2375.31; Mon, 12 Sep 2022 03:06:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h33Zx8qsO/F30rWcOX0PG27rUsNpN06cAXj3Vh/9UZH2w8/6IiUR/YP2U7Z2f2rp8YDg7YmJsJySB/BlibD/MopzPRZbsfURwT0dK219PmZutDbwZwHF9k3HKF93DOMIxUNm4HAus3NEpSTilCn63/ekDoh0HtdmRrFLFrRFdcfWlISD4pL73TeB0B/seln/TU8YyNNQiRd19V8H2qCowiPgbZUIYyRZUYHgfERrjyqf3fDS7uN6KLDs2Q9v/vRwNak5cpfAmu/H1IGXjWiLgRnEpW+N9nfVPIFUxUVyyOYlWwHndRWsCVstFqsdiWwezxWwniA/NdQ5dT0tysDg/A==
+ b=RmuhOgqz6WqcgiJGnwVuImKRqO1OhAcCnfqR833klOIcsoCbxHMUl/0FbxDchRjF96dVUBHSGZG7zbs8BSqf7v6KGQvx2BpoO15rxAYSo8t7I8spUR+Rk77U7RyyT02yqMSaeiFaCJxJGZdkwLpHDIJPFBhlBDsFa4Zc2EzvyNBFR6JgX4mR5RskanOlwvkUPfP2rLgzl8ORGHeHTny+mITQL48STTYZvqmHRvjeCpOxJnO58B3ktdPDLOIgSefv4spRX5ek57xP6qEhOXcl2JXEs5zlsMHFFIkVjuyQNsyp0aIv3e0mCJclMGg7oxCh0COLo04QNQqNM5pLtOjznw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7dyJDcLH5VTOXIpxmUy0H+DLR1eZPod8O2bXrfZduw0=;
- b=QIjx3Alj/LPjo+qJMPRVAUrL4mJUisIIWQddiKZUba0PsXj2wEAa7I2vfIb0NZw5MwsPXYJ1oTbZcUN0K6Og3MuGid5LZpis3uzXdWeQYum5Vw2R1pmxhsMTbrcrkyv9nFPZmVM6CAI2TZL8p5LACwOe61fzE00LifWOgTJWpb9bTkyRfvUakXzomecCBiC+91w3Yg+ZWLvj0yYBmphHR/xPbYFfUWmz406M305nBz/fCTI0N1X/tIuWpNo2f4H6VjrU1UPGx313BCkkMTc+IPDcI42ZAW7CmCYrEx6cuX2MYl+A7rT5mPiTL9r4aG80bYk7pudsHR1zJFnuOB1LIg==
+ bh=SvkbqgcHR5KmoY0EaO/nhzENMM+JukwV5o8ESgB2ALo=;
+ b=DTHnfdejhupwG5o+V/wRwURvSLi8uok7YOttlhcGIImOvCBbbF0ertrhy8KeADHOnC8apYZBQv7dRp0x7lPqDeIbELxU/aD1zPVHQ57n4MpvawbOxCvTVXeshi6qpRJwv1rlfYLr4EPx6/p2RD1WsYbkxXFJRe1uQde4wXZ/KRj3otCyxehu7R3445Qo8HQjhM0F4h5ELS8XPFSyqryhNt1kpeGuYdCxmPy7cIjAqLSxu+PYejyM3m24iLCGxYtcyyWBiWhvpaA9YolnrAzPv8k34DLxz6Rb0IANBmS8K7t/RIhx0COERrmciUuiqzdZR4x/55h1tYYG/ZVGH4+q7g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -59,84 +63,89 @@ Received: from MN2PR11MB4093.namprd11.prod.outlook.com (2603:10b6:208:13f::21)
  by BL1PR11MB5509.namprd11.prod.outlook.com (2603:10b6:208:31f::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.20; Mon, 12 Sep
- 2022 09:59:46 +0000
+ 2022 10:05:58 +0000
 Received: from MN2PR11MB4093.namprd11.prod.outlook.com
  ([fe80::f18d:2e17:c60e:5aa3]) by MN2PR11MB4093.namprd11.prod.outlook.com
  ([fe80::f18d:2e17:c60e:5aa3%5]) with mapi id 15.20.5612.022; Mon, 12 Sep 2022
- 09:59:45 +0000
+ 10:05:58 +0000
 From: "Winkler, Tomas" <tomas.winkler@intel.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Thread-Topic: [PATCH v4 05/15] mei: pxp: add command streamer API to the PXP
- driver
-Thread-Index: AQHYw+F5lxpIc4tF1UiCpESP2c97qK3WnvKAgAAE1pCAAAMFAIAE6BlA
-Date: Mon, 12 Sep 2022 09:59:45 +0000
-Message-ID: <MN2PR11MB40932A4EFF78CF62E97EDDBBE5449@MN2PR11MB4093.namprd11.prod.outlook.com>
+Thread-Topic: [PATCH v4 06/15] mei: pxp: support matching with a gfx discrete
+ card
+Thread-Index: AQHYw+F96fCkMiIHjkeCNF6nKqanGK3Wn5mAgAAGijCAAAWNAIAAAgHggAA18ICABLGtoA==
+Date: Mon, 12 Sep 2022 10:05:58 +0000
+Message-ID: <MN2PR11MB4093E71EE15A20770BD4F30DE5449@MN2PR11MB4093.namprd11.prod.outlook.com>
 References: <20220909001612.728451-1-daniele.ceraolospurio@intel.com>
- <20220909001612.728451-6-daniele.ceraolospurio@intel.com>
- <YxrZqW2l7cNF5OTI@kroah.com>
- <MN2PR11MB409371E657AFC2777F8BEF0BE5439@MN2PR11MB4093.namprd11.prod.outlook.com>
- <YxrgQNbz2wvWz7Yy@kroah.com>
-In-Reply-To: <YxrgQNbz2wvWz7Yy@kroah.com>
+ <20220909001612.728451-7-daniele.ceraolospurio@intel.com>
+ <YxraNUiyfH6NJiq5@kroah.com>
+ <MN2PR11MB409318EA31363B2E749700FFE5439@MN2PR11MB4093.namprd11.prod.outlook.com>
+ <YxrkWotjObH6zAca@kroah.com>
+ <BY5PR11MB40869BEBCB65489E21A3F650E5439@BY5PR11MB4086.namprd11.prod.outlook.com>
+ <YxsTR4spD5btac1/@kroah.com>
+In-Reply-To: <YxsTR4spD5btac1/@kroah.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.500.17
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: MN2PR11MB4093:EE_|BL1PR11MB5509:EE_
-x-ms-office365-filtering-correlation-id: 95d987f7-3c7b-448d-ef8b-08da94a58598
+x-ms-office365-filtering-correlation-id: 43b6e465-47b6-462e-5076-08da94a663cc
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: tk4qJe8Lz0y33pR/olDNnSsf8G8n4G8L66CT69r12PqbVG1qNkbyuNTTCAsbYyTwnN6oZet4wL2+d8Y3Cmvp1E/jSUlYDtwEjpzQP6TDdHDHg8knQyHonr/AZx9h6B6PmO5BFcKIXVminXIrp4+gMulKumlnIFBbn9aar971bBDt5qQHdZc4UEJ8zuaLcdJ3q31rc3ZX3bSL+RMLoMWK7JktflrWNgshJ5VS2N5gKBObETdAUQmjrVhw5YZ48aggGbmzy3zHSpz1gVmIIwZCHNsKcsbbk0zsJU3cOOzs4r7V5HgfLsq8+SElN4CbF2NbGKe3tNxdDnpNlZcZByD1QOxtAkzxHIjuxe3xgkSg8j6g9mye2EYocQbkQyXz9XmJYEOEuLHfjqLXsMTN4M1+EpufFYEGgqonhIjvtKkEb7f6fjKO4OofON5vzmcEIW1in0m0QH8LcPeojqbHGcRxfOC9i43iW+L9SFqowkoit3NS9p0zfzD4rsDy2WnWZGOmSKOBOhB1PW+bXfbRBc25OtjKV+pJeZ2ak3HjTB84maaPH02dshl1C/X6W2pxhV1/TmtkzGNn1BkxtOygjE+ZsM9VgFiz0mhnm4PB7FBxkOSMUrb/JEFLrFQLFwoWQ1RIBR294BPoAykXDa65zU/GS3kZFYN4ckI/P7H0ovij0s/6GwM729vaF36aboM7ZPqOWPTG6/Rpe54Ind/DMAjBnIAiCmVwgUp/ZjANvPHVigExvtRkmYuCMBY3W3E+d6B/N6CEOv3SChHLxMpEv59hJA==
+x-microsoft-antispam-message-info: e7Z1N9xa/RWkIWqX2PNe3aN5dF4Jy3sfNc1Lwwi3j74PZxs8+vABfRlTrcfcAN017TrqQGlY9juWHj7EZWv8qu5dVOnQYCrnCM74WzEQVpi+QCrKAks2cTY2HeLb7AmaNkVlZIkgQ8I+UOAPBXzYxaJm60VTVVWKDyf4UcM4iqXs1Uf99UhWyyNw2WdEAbxQmy5+tXxJCOdysl0WBSJzaDOw1IO66kK1i/CDFqxfaYocJoXTqgnf1bLxYWrOYxgZW/nawPd2bHX1pvr5ok6ZyUvdETVEfTBZccOnPvmr3Fch3WYfw0mhzoDSsfSHt1yu+4F1+jE+ogwGsKjGqFh1Ij5dbpNXRNyvZd4V04e7671O3mjVFhPB6HYtuyiHVobWUsx4RGFdJuH4+sVJuqenNZdXab+dN2gYMZoVfoAY9g+rsUjMB35piCaQAvR2NRizF6a35TZX4d+64gsHN4fZKtTqMuHfqozpeSMxKWgH65Ssg3dYXj9AgqYWflIHXyi4o0MrnJsBFuUvN+UEi6+S8xAKfLZlsKZ7Xf+V3nYEdCs9SyL6XD43nepo37Cbj+0i3IMHIw2S203Xkl5hLg5BKcUtq5eXJVHxSmGvsqX+nb9nPDYCpUWQVrjqi+VI3d0Lf7ZjyfMsBlm0FPeM9Wobkujs3isWwdZ4IKseW4J9fmZeB2bn4oGSjXUykUVJ1qBKH9011zF96LD/Oj8hspd5sRbXMHA4Ev/F5ccRDfYhumo2RV0ER/5jmBg60BtucG/BxQA5phhJAoobz68Zg9WDpcYjjZN/16ukvERV5HL2BdQ=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR11MB4093.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(39860400002)(346002)(366004)(376002)(396003)(136003)(52536014)(4326008)(55016003)(316002)(5660300002)(86362001)(76116006)(54906003)(6916009)(64756008)(66556008)(66476007)(66446008)(8676002)(38070700005)(66946007)(71200400001)(2906002)(8936002)(478600001)(9686003)(122000001)(38100700002)(26005)(6506007)(186003)(107886003)(7696005)(41300700001)(82960400001)(33656002);
+ SFS:(13230016)(136003)(396003)(376002)(366004)(346002)(39860400002)(6506007)(53546011)(186003)(7696005)(107886003)(38100700002)(122000001)(9686003)(26005)(41300700001)(82960400001)(33656002)(83380400001)(86362001)(76116006)(66946007)(38070700005)(8676002)(66446008)(54906003)(66476007)(66556008)(64756008)(6916009)(316002)(55016003)(52536014)(4326008)(5660300002)(8936002)(478600001)(71200400001)(966005)(2906002);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pKFKGHDPFeUamNk1pDTKwnsXxQJ8ufoUBoKlAQjHzXT3ogwuzZI4IFs28cSo?=
- =?us-ascii?Q?1oFxcBKPmqEbIissNYAkAz6au7tK50x9C4n0e3dHhmhRd46UqwzWvnc0bxQo?=
- =?us-ascii?Q?Zab0A7BcgkERLkfRegtoDt5dr8L6INMfx025iE4BvkhSd/NXLwgd26VoDa/i?=
- =?us-ascii?Q?/n1UYtyDBn3FrA64MXzZLMeBUSoRjLv1vqW3wy7VRxk0rEfWJ0QmogN0Iy9d?=
- =?us-ascii?Q?c+2pilaBrBA+hHWMtRw/O2eblWoZbuSXlsQHDP0MOQCeiELZ70d3xd91uin6?=
- =?us-ascii?Q?wS9dQfV0hjefPS6sZ0AJMNgDvUQwzeEJm8imEmgMfAgmomxxRzwHRgE1oknm?=
- =?us-ascii?Q?9welnEy1tCRsldUY/17JUIGrX1yiBIw9/ob6U85FdYLvMjmZVoZ0zCxVjv2q?=
- =?us-ascii?Q?1FgRWAH/PjrhT3WmQPkw6DUlpLtcAX6VttjnnBJBZA/SaUBC5M5m509cNUZS?=
- =?us-ascii?Q?bVpf/NWHjytAoj2MuBS2GJz/f4+Pd3pWAelhllN5cyJsqSj5qaeG/QEmdv2b?=
- =?us-ascii?Q?QSS/0OA0VMD+BZrymY7y9qoXjfvYuwYlEB0nOPfMHZ3SPg/S2WHfjehRbp4K?=
- =?us-ascii?Q?ZxGaeeO9UKit1Uawpny9dwmkidSQ6r/l0TnA1m9oknGCNwXPuTHup/kxh7mb?=
- =?us-ascii?Q?jTfLBSBL/yE58+g8rEIeZi9pXlAj99boVtR9u57ECtc8JZG4lSc/yGwUs/tr?=
- =?us-ascii?Q?UNp8gjyvul79/LoDlrCXDpeY7M7IztneV/LsM3grBfk2kgz1wTA+o1p3tlD9?=
- =?us-ascii?Q?g3JR1aAeDbYa+zlnPBl3Hsi3upayfxt7vW1TTiVnLetJAJ5VCIi7WTQizGUl?=
- =?us-ascii?Q?OFoWzLjYGHj0MpGMtIXvNDi7KguGrERKFBU0vpBsNqqGvuhmlINa73hyvb0m?=
- =?us-ascii?Q?R/AdbsjgGr7tqaLvb6Z+Ique3Gn8NO+KC2jrlP980gxryhlsClKdiZkMP52z?=
- =?us-ascii?Q?F5VD3puCvtMtKk4QMb52LjPZ595FmLW5GIyr/Bw9ptTJtAaWpbqCLIVggmK6?=
- =?us-ascii?Q?oNV+HOyGcDncN/4LySK5s7gZLRJ6IA2F26lEJZkHRmWxXTTcEVea68HIKLbw?=
- =?us-ascii?Q?S2GK9sa3XiHrsb/JRTFKX4TtMhJeJoGglEXdGRKvRzPHjISTSJFo6IEf1Zq+?=
- =?us-ascii?Q?H7U9Y2QlLE6KA8DWd0FYSfceO71S4NDx0szpq8dq3XRVCyl98wQgCv1aDX2F?=
- =?us-ascii?Q?XtTRdnnT5sKvtBYBDs3n2XncesnFWWX9u5Tv2FWRFJ2BYBT4tB1KWbqAHw68?=
- =?us-ascii?Q?rU5KBMftFfbQ+nL9IwVIkYhA465f6belGGt8fd6mG3BSqxnIwUWHruWlcLnD?=
- =?us-ascii?Q?dG2KBXIQzFBr63ygmT8XiC6uwJFO/fpyH7S9DqVAExq6w0Ac7EshZX/Z4Fh2?=
- =?us-ascii?Q?KyHWDnsSfEThlauMfyei30wyJ2eIK4ir+vrT6vaR88KOMt7FDyuW0a2fvSzQ?=
- =?us-ascii?Q?T9oUfB9iUfpc72LspDTHtLcgKp8JIkHlshXyrF7Q3smO+VqPsuYjrhDU+Y6A?=
- =?us-ascii?Q?5AGAs7mikfnuqu6NwJcMN2fNIhyQxU4kr10wmpDMiJ23+XnEDhPzs469dkqS?=
- =?us-ascii?Q?u6tIGyhQClQJtGEE1HLAe2U2sAKmhw1hqlP9g8t2?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FkxgF9mz57cWs8vz1VyGwQlZlMHC3WW/DFmlV2dzkUtNS1/Eoznz0fQRGAF0?=
+ =?us-ascii?Q?U83FI3SvRIUYRPIH9URkSTFwYoDywtbNuaNC7iAWxoaUv+jSuD6LNbbGVW4l?=
+ =?us-ascii?Q?2psKk1TC/+FKdNSTUwgy4Ldh//0uafRfymknOJ3q5bJj7VJgR2xMZHTMzuNL?=
+ =?us-ascii?Q?VaF6IUNGN9Cn92I0Lil5ZIzMfUH0po6AEd5MGuWRR9rj41qrBkgfLzSLY3Bp?=
+ =?us-ascii?Q?ii5/FeWX85IAt1NvxEG/Xx+O3M++t4vRYcOoPJdK6UWx/0YhYVdswhma0dZM?=
+ =?us-ascii?Q?6ifHwAeggYRMn22MMUAbErgS4b6z+3eK0PlAM4s0zisvIHToe96KqeOxD7qV?=
+ =?us-ascii?Q?GXVcQDSi8AVrtOdN6PiyPYLp0PaFvpO0YwllVPj+w64JsvGIx+Jp1hDaUTDo?=
+ =?us-ascii?Q?yrZIirxWEEPQzfTPT2wgeTA6PlaPBsIn25d1dYm7XvsuY27f8MIWpj258kQz?=
+ =?us-ascii?Q?+l2WJ/CCPu2A7I287yOU17PsPLWK+vOga2arp+cKI34sYK0tau+Pufq1bvEi?=
+ =?us-ascii?Q?blNJOOsd151qaRHuqin8P37KcgLwYyJK4IzzaubOcIo2cQ29jmKbjo3az59y?=
+ =?us-ascii?Q?zf5efEHr8ilEd6FyJiv7UakpNltIU8X9wa6R8L9tV0ody+ZkeGJsfS7diPoQ?=
+ =?us-ascii?Q?RmBRsxPI2AKYieG7O27nsO8eoBkQQkVr11RupAZfwd+oPEKPe4ZsKjfCLfTY?=
+ =?us-ascii?Q?m+uTYXUR5lpFeD66xqwWJPZIb4T759TEKhEIAyms/yWImALKKrda5B2BBPt7?=
+ =?us-ascii?Q?nAj6j2c6RfYWw3fy/xp8ungPNq9fvzJwtYfgMFit3H0GzaVsf/MojA066+Mr?=
+ =?us-ascii?Q?SozO0J+1z+B/1NIsv9ZRESTQE4xp+cUx25iAvstUwgZHj02YsvZCd45o4Xwd?=
+ =?us-ascii?Q?Y2tUEqi5AtLGo8Fhw8W5qNLyHCHtEDbkElNqx9p1pDLh2Xre+3oTjzraBzIH?=
+ =?us-ascii?Q?Go5Zs/UrKnRwa3xPTXWsFiu3CA7IpQCuBI0uX+oQXXQj/8M2sed5Yu6vaofk?=
+ =?us-ascii?Q?a6FHTWvxznVnhdvacXuVDw3oL8t65fseni+MpJB9Re58lFfJwcQkJUdB98Ei?=
+ =?us-ascii?Q?O7yoX8tLxdD3XQizUKvuZEjOnJTLB3I3p6Xi8p/UWYMNB3+VPXF03cz726fK?=
+ =?us-ascii?Q?S7NLrntc0K4qm/DA/jUTNmMM39UJg+FXCE1mP3EmnFumrQ8e1rAGB+bYBtBF?=
+ =?us-ascii?Q?vSw+LvV+X+ZlyW+Jv/mvlFm5c+g/k1EAOS3vo8FbqBRRw+T1tnS3x7WuYAXh?=
+ =?us-ascii?Q?O0SE+mR4gPIXPFjcgy6Duk0qOTWudS1U+aZ91jnxTQoF7Yo0Txzmqy/UdSwn?=
+ =?us-ascii?Q?hk+cnPCvdQ5y8cIjU3doqGjeer89KjN68tRawzQxV1hEqgg9X+xwzty0H6yr?=
+ =?us-ascii?Q?vHpM6VajTVzrP5JdYvqGELp/2vMHxhmOoGY6l5vPlQubV1yLACEwauEA3mn3?=
+ =?us-ascii?Q?VMWzMOtHciecdRV4X1hVHVB6sH/tY1lGA2K1VN9tuYZr4Jpq19Bfz/Cl+55v?=
+ =?us-ascii?Q?Q1yaYyrJP/xgmHJy3RgQ8/a8HOTv+XXN6JJF+MZyWO9cB928HihPAycPBwAR?=
+ =?us-ascii?Q?W3y3oyjo/ClUvI7XeYJoSyKOgPf9loa5aNSaquWc?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR11MB4093.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95d987f7-3c7b-448d-ef8b-08da94a58598
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2022 09:59:45.8097 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43b6e465-47b6-462e-5076-08da94a663cc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2022 10:05:58.6006 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Lv2zP13skPnrFeAQh5bPBq5vbONHydMmUseFUp5xfVHMsvS2EMvJokORXtt+D/RILmGCbSIKPH20jH+Ul3zCLQ==
+X-MS-Exchange-CrossTenant-userprincipalname: tnoHe9l3IIbuSD3vkjc5gFUiA2hFgkHI2v2CXPvPPamBOOn/BoZRrykt6tvac2gdphNmv14bE+0n5sb+v3ND2g==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5509
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 05/15] mei: pxp: add command streamer API
- to the PXP driver
+Subject: Re: [Intel-gfx] [PATCH v4 06/15] mei: pxp: support matching with a
+ gfx discrete card
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,40 +165,178 @@ Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
->=20
-> On Fri, Sep 09, 2022 at 06:38:33AM +0000, Winkler, Tomas wrote:
-> > >
-> > > On Thu, Sep 08, 2022 at 05:16:02PM -0700, Daniele Ceraolo Spurio wrot=
-e:
-> > > > +static ssize_t mei_pxp_gsc_command(struct device *dev, u8
-> > > > +client_id,
-> > > u32 fence_id,
-> > > > +				   struct scatterlist *sg_in, size_t total_in_len,
-> > > > +				   struct scatterlist *sg_out) {
-> > > > +	struct mei_cl_device *cldev;
-> > > > +
-> > > > +	if (!dev || !sg_in || !sg_out)
-> > > > +		return -EINVAL;
-> > >
-> > > How can these ever be NULL?  Doesn't the core control this, so why
-> > > would that happen?
-> > This is any interface function between modules, I think it is not
-> > healthy to take assumptions here about how caller behaves, this is not =
-an
-> inner functions. This is important even for catching programmatical mista=
-kes.
->=20
-> It is a static function being called from a framework.  Enforce this in t=
-he
-> framework, don't sprinkle this stuff everywhere, the kernel is NOT defens=
-ive
-> about internal users like this otherwise it will overwhelm every function=
- call.
 
-I'm not sure, this is the case here.  The function is passed to  i915 (othe=
-r driver) driver via struct i915_pxp_component_op.
-This is outside of the component framework.=20
+
+> card
+>=20
+> On Fri, Sep 09, 2022 at 09:21:30AM +0000, Winkler, Tomas wrote:
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > > > Sent: Friday, September 09, 2022 09:16
+> > > > > To: Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>
+> > > > > Cc: intel-gfx@lists.freedesktop.org;
+> > > > > dri-devel@lists.freedesktop.org; Winkler, Tomas
+> > > > > <tomas.winkler@intel.com>; Lubart, Vitaly
+> > > > > <vitaly.lubart@intel.com>; Teres Alexis, Alan Previn
+> > > > > <alan.previn.teres.alexis@intel.com>
+> > > > > Subject: Re: [PATCH v4 06/15] mei: pxp: support matching with a
+> > > > > gfx discrete card
+> > > > >
+> > > > > On Thu, Sep 08, 2022 at 05:16:03PM -0700, Daniele Ceraolo Spurio
+> wrote:
+> > > > > > From: Tomas Winkler <tomas.winkler@intel.com>
+> > > > > >
+> > > > > > With on-boards graphics card, both i915 and MEI are in the
+> > > > > > same device hierarchy with the same parent, while for discrete
+> > > > > > gfx card the MEI is its child device.
+> > > > > > Adjust the match function for that scenario by matching MEI
+> > > > > > parent device with i915.
+> > > > > >
+> > > > > > V2:
+> > > > > >  1. More detailed commit message  2. Check for dev is not null
+> > > > > > before it is accessed.
+> > > > > >
+> > > > > > Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+> > > > > > Signed-off-by: Daniele Ceraolo Spurio
+> > > > > > <daniele.ceraolospurio@intel.com>
+> > > > > > Cc: Vitaly Lubart <vitaly.lubart@intel.com>
+> > > > > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > > > > Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+> > > > > > ---
+> > > > > >  drivers/misc/mei/pxp/mei_pxp.c | 13 ++++++++++---
+> > > > > >  1 file changed, 10 insertions(+), 3 deletions(-)
+> > > > > >
+> > > > > > diff --git a/drivers/misc/mei/pxp/mei_pxp.c
+> > > > > > b/drivers/misc/mei/pxp/mei_pxp.c index
+> > > > > > 17c5d201603f..afc047627800
+> > > > > > 100644
+> > > > > > --- a/drivers/misc/mei/pxp/mei_pxp.c
+> > > > > > +++ b/drivers/misc/mei/pxp/mei_pxp.c
+> > > > > > @@ -159,17 +159,24 @@ static int
+> > > > > > mei_pxp_component_match(struct
+> > > > > device
+> > > > > > *dev, int subcomponent,  {
+> > > > > >  	struct device *base =3D data;
+> > > > > >
+> > > > > > +	if (!dev)
+> > > > > > +		return 0;
+> > > > >
+> > > > > How can that happen?
+> > > > >
+> > > > > > +
+> > > > > >  	if (!dev->driver || strcmp(dev->driver->name, "i915") ||
+> > > > >
+> > > > > That's crazy to assume, but whatever :(
+> > > > Explained here:
+> > > > https://lore.kernel.org/all/20220418175932.1809770-2-
+> > > wonchung@google.c
+> > > > om/
+> > >
+> > > Still crazy :(
+> > >
+> > > >
+> > > > >
+> > > > > >  	    subcomponent !=3D I915_COMPONENT_PXP)
+> > > > > >  		return 0;
+> > > > > >
+> > > > > >  	base =3D base->parent;
+> > > > > > -	if (!base)
+> > > > > > +	if (!base) /* mei device */
+> > > > >
+> > > > > Why does this mean that?
+> > > > >
+> > > > > Where is that documented?
+> > > > >
+> > > > > >  		return 0;
+> > > > > >
+> > > > > > -	base =3D base->parent;
+> > > > > > -	dev =3D dev->parent;
+> > > > > > +	base =3D base->parent; /* pci device */
+> > > > >
+> > > > > Again, why is this the case?
+> > > > >
+> > > > > > +	/* for dgfx */
+> > > > > > +	if (base && dev =3D=3D base)
+> > > > > > +		return 1;
+> > > > > >
+> > > > > > +	/* for pch */
+> > > > > > +	dev =3D dev->parent;
+> > > > >
+> > > > > You are digging through a random device tree and assuming that
+> > > > > you
+> > > "know"
+> > > > > what the topology is going to be, that feels very very fragile
+> > > > > and ripe for problems going forward.
+> > > >
+> > > > I don't think it is random.
+> > >
+> > > Today it is one specific way, but how do you know this always will
+> > > be this way?
+> > >
+> > > > > How do you ensure that this really is they way the tree is for
+> > > > > ALL
+> > > systems?
+> > > >
+> > > > Yes we take the topology assumption in PCI hierarchy.
+> > > > There is a case where both GFX and MEI are in PCH and you cannot
+> > > > stick
+> > > additional PCI extender or anything else there.
+> > > > And case where MEI is child on a standalone graphics card this is
+> > > > set in software so topology is not going to change unless we
+> > > > rewrite
+> > > everything.  Be happy to hear your insights.
+> > >
+> > > This is ripe to break in the future if someone makes a differently
+> > > structured device as there is nothing forcing the current layout to
+> > > always be this way by hardware designers.
+> > >
+> > > The goal of the driver model is to NOT have these types of
+> > > hard-coded topology assumptions because, supprise, assumptions like
+> > > this have always come back to bite people in the end.
+> > >
+> > > This is your driver, so that's fine, but really this feels very very
+> > > wrong and you will have a hard time guaranteeing that this will
+> > > always be this way for the next 20+ years of hardware designs.  So
+> > > why not do it properly from the beginning and pass in the correct
+> pointers to different places?
+> > >
+> > > There is a very good reason that the driver model/core does not make
+> > > it easy to determine what type of device a 'struct device *' is,
+> > > because you shouldn't have to rely on that type of thing ever.  You
+> > > are taking it one step further and just assuming that you know what
+> > > the type is here, with no real way to ensure that this is the case.
+> > >
+> > > In short, this feels like a very bad design as it is very fragile.
+> >
+> > I believe I understand your concern but I would need to invent another
+> > addressing scheme to associate hw components that are already
+> > addressable by let say PCI hierarchy.  We've changed two subsystems
+> > for this work components and aux bus already.  So let's have some fun i=
+n
+> the future.
+>=20
+> Why are you trying to reach across subsystems in the first place?  Why is=
+ that
+> needed at all and why doesn't MEI just provide a generic way to do this f=
+or
+> any bus type, it shouldn't require any specific topology from what I can
+> determine.
+>=20
+> What am I missing here?
+
+MEI on PCH is hardware-wise  associated with the on-board GFX.  And MEI on =
+GFX standalone card is  hardware-wise  associated with that GFX card instan=
+ce.
+We need to couple MEI with correct GFX instance. So it is either sibling on=
+ PCH case or a parent device in standalone case.
 
 Thanks
 Tomas
 
+
+
+>=20
+> thanks,
+>=20
+> greg k-h
