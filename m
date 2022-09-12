@@ -2,50 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61155B5EB2
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 19:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A586D5B5EE7
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 19:10:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF67F10E114;
-	Mon, 12 Sep 2022 17:00:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03ABD10E065;
+	Mon, 12 Sep 2022 17:09:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5444510E0C1;
- Mon, 12 Sep 2022 16:59:58 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A12A10E065
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 17:09:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663001998; x=1694537998;
+ t=1663002589; x=1694538589;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=d1kGTyk2cN9Ovca/+x9Nb4cMgT7PK2UcJyHC3d94Rl4=;
- b=VR0CthdsheagV1uF90GDbJgGfgcBvRUxOVYFUUWuidOdmSVu52LeDUHB
- yZJU5Xe0QHMDGD3e1zIoxJtp+54+nv3Fzb97J9SwrUIgOAKnPrFYS6jlB
- fZTVRcqzlCATZSYzt54FSwcC3d71AqrWIwSsMWNHQc1UFb3+ppwc2r7tb
- UAZji9VO2OwYCI9wf0fT4WLaEQGYAUXBgKaIkoWCUjDtbkj1fTV2krba7
- CbsWw9CQpKXW0iaxYnZmhpLQ/CoroEkUaZCZFzaL4KW7KacQSvSo+qNjS
- TnM6B25d4gMVhNR/jNZ5tdcwIuormAfZj5vbpZEj/iMsjS3uVw37mmsif g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="359643568"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="359643568"
+ bh=tEdetczyh8osGbsNkFX/RmOyn2kQ4lIUdpiEqDp5vAU=;
+ b=iZtqXuodn0FWAtL7rqEyEXl/1DyXkY+YtdRf0RQfRNIx7tu9nqgBOVQf
+ xdAJOW65IRDKHs9hvqESKsZgo9ED6PCBS4QXZ6fCczlSbZ0QWg4/BpMAA
+ VuRRGlkXeoW4FsnR+W6zL+uPm6dC8YK+WiHe8JLSKl7hw9rntR/bVjaBR
+ UV4Y8j/1Pj/Po4oMwhTggVUetZAfI30JROqQta3pkCTmCtm6fCpXnESPs
+ VkUrTw8pV/htZ/FVsEG0cy6+sZO/lPZQ8qUNfCZ79c9bwhPdzFuJcu3wi
+ 0KYkmMt5XcWtRtX+shhSxI+jghRgVRnitaa8mdz4LwjgH+9oAadY881rK g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="277655734"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="277655734"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 09:59:57 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678176042"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 10:09:48 -0700
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678181927"
 Received: from mtabaka-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.252.57.56])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 09:59:56 -0700
-Date: Mon, 12 Sep 2022 18:59:53 +0200
+ 12 Sep 2022 10:09:47 -0700
+Date: Mon, 12 Sep 2022 19:09:45 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <Yx9liQu4JmnVmWVn@alfio.lan>
-References: <20220912-copy-engine-v1-0-ef92fd81758d@intel.com>
- <20220912-copy-engine-v1-1-ef92fd81758d@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Yx9n2XlkOO1x05D5@alfio.lan>
+References: <20220909025646.3397620-1-badal.nilawar@intel.com>
+ <Yx8VnClBmyDHCd3C@alfio.lan> <87czc06bkq.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220912-copy-engine-v1-1-ef92fd81758d@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v1 1/1] drm/i915: Skip applying copy engine
- fuses
+In-Reply-To: <87czc06bkq.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/6] i915: CAGF and RC6 changes for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,65 +57,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lucas,
+Hi Jani,
 
-On Mon, Sep 12, 2022 at 09:19:38AM -0700, Lucas De Marchi wrote:
-> Support for reading the fuses to check what are the Link Copy engines
-> was added in commit ad5f74f34201 ("drm/i915/pvc: read fuses for link
-> copy engines"). However they were added unconditionally because the
-> FUSE3 register is present since graphics version 10.
+On Mon, Sep 12, 2022 at 03:07:01PM +0300, Jani Nikula wrote:
+> On Mon, 12 Sep 2022, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> > Hi Badal,
+> >
+> > you haven't Cc'ed anyone here... Please do CC the people
+> > interested in the patches and dri-devel mailing list.
+> >
+> > If you don't mind, could you please resend the series either as a
+> > V2, if you are going to change something, or as a RESEND, if you
+> > will not change anything?
 > 
-> However the bitfield with meml3 fuses only exists since graphics version
-> 12. Moreover, Link Copy engines are currently only available in PVC.
-> Tying additional copy engines to the meml3 fuses is not correct for
-> other platforms.
-> 
-> Make sure there is a check for  `12.60 <= ver < 12.70`. Later platforms
-> may extend this function later if it's needed to fuse off copy engines.
-> 
-> Currently it's harmless as the Link Copy engines are still not exported:
-> info->engine_mask only has BCS0 set and the register is only read for
-> platforms that do have it.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 814f83b5fe59..1f7188129cd1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -764,6 +764,10 @@ static void engine_mask_apply_copy_fuses(struct intel_gt *gt)
->  	unsigned long meml3_mask;
->  	unsigned long quad;
->  
-> +	if (!(GRAPHICS_VER_FULL(i915) >= IP_VER(12, 60) &&
-> +	      GRAPHICS_VER_FULL(i915) < IP_VER(12, 70)))
-> +		return;
-> +
+> Anyway some of the patches have been merged already so a rebase is in
+> order.
 
-Isn't it easier if you wrote
+thanks... I see that some of the patches have been reviewed
+previously, I missed that.
 
-	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 60) ||
-	    GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
-		return;
-
-?
-
-You save a parenthesis and a negation '!'.
-
-Anyway, looks good:
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
+Thank you,
 Andi
- 
->  	meml3_mask = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
->  	meml3_mask = REG_FIELD_GET(GEN12_MEML3_EN_MASK, meml3_mask);
->  
-> 
-> -- 
-> b4 0.10.0-dev-df873
