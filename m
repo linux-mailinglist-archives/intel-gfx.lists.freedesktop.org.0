@@ -2,57 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F845B5A78
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 14:52:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E655B5AAB
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 14:56:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1F1610E455;
-	Mon, 12 Sep 2022 12:52:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29A9910E466;
+	Mon, 12 Sep 2022 12:56:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCFC410E455
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 12:51:55 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8301C10E45E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 12:56:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662987115; x=1694523115;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:cc:to:from:message-id:date;
- bh=x6ts4vYetUp3ZpQvj/K2OaDXvW8F2f5htt/5hA4EZwI=;
- b=aIFbHQKO1eQDE4c1nB1Im3Ta6qkujlzJQMpidcDdw8s6/d5a58U9avnC
- ITYNhtV0RLRfSfuQ1gmtsMElppRQRCOVD+0thgI5ntDm2URxq8QFV2bs9
- FUwh8V4WZ41/Cz3jVVjFZO49YkkawI+3IuGxIlumlhE91OUjr+0w2nJhF
- 4yIWPcmO8ESJAe+62TcvKNS17eewpt3CgNL38r5ljqZfNbdBzK5g3OBcv
- d0szTdnvG7/eONncPjuBwrQDBzmdo+MKi4fJO5ba+PXsSUPUx0P8EEW8Z
- T8/KTwWU1CDB+KK3mL7Ncgja6i7F2gOG88gfcotfyjQ/hfjbARdj1yAT1 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="384151860"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="384151860"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 05:51:55 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="616036465"
-Received: from cpboland-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.16.28])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 05:51:51 -0700
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <a3512279e0ebcd7c4d60926f118dbd435e0b7819.camel@intel.com>
-References: <20220806122636.43068-1-tomas.winkler@intel.com>
- <YxDLFWjIllqqh9de@kroah.com>
- <166271909777.4265.10724483511179344068@jlahtine-mobl.ger.corp.intel.com>
- <b959d485-5986-4524-8a84-6086f1076cc5@intel.com>
- <a3512279e0ebcd7c4d60926f118dbd435e0b7819.camel@intel.com>
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>, "Winkler, Tomas" <tomas.winkler@intel.com>,
- "airlied@linux.ie" <airlied@linux.ie>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+ t=1662987380; x=1694523380;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=tosF0Civq92ihOder46+6T1PWUQFcE2GDKfUMkCVlMk=;
+ b=HZk3G8fNeaxQSxlty/YKfPGCcCM/hrezhc4j2RcXpiVdqp4imYXsAJCS
+ AuoeOt1rDPjRSNMH+qwq7x2218jdESMhmvc2urFGwZKfY1vBA12CmvtGN
+ 0oCXKQdOloC+5mO+f1g7XtscZVTo19KziU+srh9n8W/+Sn6BWxeV0cDjw
+ KVnwGYH44/yT9cfDMuqWe1AOSS7Hlly2FF9Am9SlAp8kY1hV3Eh6vn6wK
+ kyoUD0KmZeQUuXajk4nWWaENxLS14jgNSuxU+8wABz8syPJx8bCQiwdD6
+ 9D3unf4V7lzfL5dkXgv0tny1kahCR3+SwcnfR7uTEFa6PtJs30Rb89I2d A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="359580609"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="359580609"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 05:56:19 -0700
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678080172"
+Received: from abijaz-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.58.140])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 05:56:18 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220909205932.32537-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <166298710888.11680.7585009367799223281@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Mon, 12 Sep 2022 15:51:48 +0300
-Subject: Re: [Intel-gfx] [PATCH v7 00/15] GSC support for XeHP SDV and DG2
+References: <20220909205932.32537-1-ville.syrjala@linux.intel.com>
+Date: Mon, 12 Sep 2022 15:56:14 +0300
+Message-ID: <87a67469ap.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix TV encoder clock computation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,118 +58,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Usyskin, Alexander" <alexander.usyskin@intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>, "Lubart,
- Vitaly" <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Vivi, Rodrigo (2022-09-09 19:33:45)
-> On Fri, 2022-09-09 at 08:17 -0700, Ceraolo Spurio, Daniele wrote:
-> >=20
-> >=20
-> > On 9/9/2022 3:24 AM, Joonas Lahtinen wrote:
-> > > Dave, do you have a preference how to deal with the mishap here,
-> > > shall I do a
-> > > force-push to drm-intel-gt-next to correctly record the Acked-by or
-> > > revert and
-> > > re-push? Or just leave it as is?
->=20
-> Dave and Daniel, this question is still pertinent.
+On Fri, 09 Sep 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The TV encoder has its own special clocking strategy,
+> which means we can't just use intel_crtc_dotclock() to
+> figure out what the resulting dotclock will be given
+> the actual DPLL port_clock. Additionally the DPLL can't
+> always generate exactly the frequency we initially asked
+> for. This results in us computing a bogus dotclock/etc.,
+> and it won't match the readout which is handled by the
+> encoder itself properly. Naturally the state checker
+> becomes unhappy with the mismatch.
+>
+> To do this sanely we'll need to move the DPLL computation
+> into encoder->compute_config() so that all the derived
+> state gets correctly computed based on the actual DPLL
+> output frequency. Start doing that just for the TV encoder
+> initally as intel_crtc_dotclock() should be able to handle
+> other encoder types well enough. Though eventually this
+> should be done for all encoder types rather than
+> doing it from intel_crtc_compute_config().
+>
+> With this we actually do some of the DPLL state computation
+> twice, but we can skip the second actual .find_dpll() search
+> by flagging .clock_set=3Dtrue after we've done it once. We also
+> still need to avoid clobbering the correct
+> adjusted_mode.crtc_clock set up by encoder->compute_config()
+> when called a second time from intel_crtc_compute_config().
+>
+> Fixes: 665a7b04092c ("drm/i915: Feed the DPLL output freq back into crtc_=
+state")
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Discussed with Dave and I did a force-push to add the missing
-Acked-by's.
+I'll take your word for it, and I don't think we're going to find anyone
+to review the details here...
 
-Daniele, I think the tradition is that you have volunteered
-yourself to improve dim to nag about missing Acked-by's for
-patches outside of i915 when pushing to drm-intel-gt-next.
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Regards, Joonas
+> ---
+>  drivers/gpu/drm/i915/display/intel_dpll.c |  8 ++++++--
+>  drivers/gpu/drm/i915/display/intel_tv.c   | 23 +++++++++++++++++------
+>  2 files changed, 23 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/=
+i915/display/intel_dpll.c
+> index 52f2fe1735da..b15ba78d64d6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -1302,7 +1302,9 @@ static int g4x_crtc_compute_clock(struct intel_atom=
+ic_state *state,
+>  			  &crtc_state->dpll);
+>=20=20
+>  	crtc_state->port_clock =3D crtc_state->dpll.dot;
+> -	crtc_state->hw.adjusted_mode.crtc_clock =3D intel_crtc_dotclock(crtc_st=
+ate);
+> +	/* FIXME this is a mess */
+> +	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_TVOUT))
+> +		crtc_state->hw.adjusted_mode.crtc_clock =3D intel_crtc_dotclock(crtc_s=
+tate);
+>=20=20
+>  	return 0;
+>  }
+> @@ -1374,7 +1376,9 @@ static int i9xx_crtc_compute_clock(struct intel_ato=
+mic_state *state,
+>  			  &crtc_state->dpll);
+>=20=20
+>  	crtc_state->port_clock =3D crtc_state->dpll.dot;
+> -	crtc_state->hw.adjusted_mode.crtc_clock =3D intel_crtc_dotclock(crtc_st=
+ate);
+> +	/* FIXME this is a mess */
+> +	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_TVOUT))
+> +		crtc_state->hw.adjusted_mode.crtc_clock =3D intel_crtc_dotclock(crtc_s=
+tate);
+>=20=20
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i9=
+15/display/intel_tv.c
+> index 9379f3463344..dcf89d701f0f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tv.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+> @@ -39,6 +39,7 @@
+>  #include "intel_crtc.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+> +#include "intel_dpll.h"
+>  #include "intel_hotplug.h"
+>  #include "intel_tv.h"
+>=20=20
+> @@ -982,10 +983,10 @@ intel_tv_mode_vdisplay(const struct tv_mode *tv_mod=
+e)
+>=20=20
+>  static void
+>  intel_tv_mode_to_mode(struct drm_display_mode *mode,
+> -		      const struct tv_mode *tv_mode)
+> +		      const struct tv_mode *tv_mode,
+> +		      int clock)
+>  {
+> -	mode->clock =3D tv_mode->clock /
+> -		(tv_mode->oversample >> !tv_mode->progressive);
+> +	mode->clock =3D clock / (tv_mode->oversample >> !tv_mode->progressive);
+>=20=20
+>  	/*
+>  	 * tv_mode horizontal timings:
+> @@ -1143,7 +1144,7 @@ intel_tv_get_config(struct intel_encoder *encoder,
+>  	xsize =3D tmp >> 16;
+>  	ysize =3D tmp & 0xffff;
+>=20=20
+> -	intel_tv_mode_to_mode(&mode, &tv_mode);
+> +	intel_tv_mode_to_mode(&mode, &tv_mode, pipe_config->port_clock);
+>=20=20
+>  	drm_dbg_kms(&dev_priv->drm, "TV mode: " DRM_MODE_FMT "\n",
+>  		    DRM_MODE_ARG(&mode));
+> @@ -1184,6 +1185,9 @@ intel_tv_compute_config(struct intel_encoder *encod=
+er,
+>  			struct intel_crtc_state *pipe_config,
+>  			struct drm_connector_state *conn_state)
+>  {
+> +	struct intel_atomic_state *state =3D
+> +		to_intel_atomic_state(pipe_config->uapi.state);
+> +	struct intel_crtc *crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	struct intel_tv_connector_state *tv_conn_state =3D
+>  		to_intel_tv_connector_state(conn_state);
+> @@ -1192,6 +1196,7 @@ intel_tv_compute_config(struct intel_encoder *encod=
+er,
+>  		&pipe_config->hw.adjusted_mode;
+>  	int hdisplay =3D adjusted_mode->crtc_hdisplay;
+>  	int vdisplay =3D adjusted_mode->crtc_vdisplay;
+> +	int ret;
+>=20=20
+>  	if (!tv_mode)
+>  		return -EINVAL;
+> @@ -1206,7 +1211,13 @@ intel_tv_compute_config(struct intel_encoder *enco=
+der,
+>=20=20
+>  	pipe_config->port_clock =3D tv_mode->clock;
+>=20=20
+> -	intel_tv_mode_to_mode(adjusted_mode, tv_mode);
+> +	ret =3D intel_dpll_crtc_compute_clock(state, crtc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pipe_config->clock_set =3D true;
+> +
+> +	intel_tv_mode_to_mode(adjusted_mode, tv_mode, pipe_config->port_clock);
+>  	drm_mode_set_crtcinfo(adjusted_mode, 0);
+>=20=20
+>  	if (intel_tv_source_too_wide(dev_priv, hdisplay) ||
+> @@ -1804,7 +1815,7 @@ intel_tv_get_modes(struct drm_connector *connector)
+>  		 * about the actual timings of the mode. We
+>  		 * do ignore the margins though.
+>  		 */
+> -		intel_tv_mode_to_mode(mode, tv_mode);
+> +		intel_tv_mode_to_mode(mode, tv_mode, tv_mode->clock);
+>  		if (count =3D=3D 0) {
+>  			drm_dbg_kms(&dev_priv->drm, "TV mode: " DRM_MODE_FMT "\n",
+>  				    DRM_MODE_ARG(mode));
 
->=20
-> > >=20
-> > > Quoting Greg Kroah-Hartman (2022-09-01 18:09:09)
-> > > > On Sat, Aug 06, 2022 at 03:26:21PM +0300, Tomas Winkler wrote:
-> > > > > Add GSC support for XeHP SDV and DG2 platforms.
-> > > > >=20
-> > > > > The series includes changes for the mei driver:
-> > > > > - add ability to use polling instead of interrupts
-> > > > > - add ability to use extended timeouts
-> > > > > - setup extended operational memory for GSC
-> > > > >=20
-> > > > > The series includes changes for the i915 driver:
-> > > > > - allocate extended operational memory for GSC
-> > > > > - GSC on XeHP SDV offsets and definitions
-> > > > >=20
-> > > > > This patch set should be merged via gfx tree as
-> > > > > the auxiliary device belongs there.
-> > > > > Greg, your ACK is required for the drives/misc/mei code base,
-> > > > > please review the patches.
-> > > > With the exception that you all don't know what year it is:
-> > > >=20
-> > > > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > Daniele, why were the patches applied without this A-b?
-> >=20
-> > Apologies, I usually rely on dim to pick up all the correct r-bs and=20
-> > acks from the ML and to warn me if something is missing, and I didn't
-> > realize that it hadn't automagically picked up the ack.
->=20
-> I understand the feeling. Recently I merged a patch from Vinay relying
-> on patchwork to get the reviewed-by and I forgot to double check.
->=20
-> dim picks up the "Link:", but I don't believe it picks any ack or rv-b
-> from the mailing list. Patchwork does if you use pwclient or something
-> like that.
->=20
-> Anyway, lesson to both of us to always double-check, regardless the
-> tool used.
->=20
-> >=20
-> > >=20
-> > > I'm just preparing the drm-intel-gt-next pull request and now it
-> > > appears
-> > > like we're pushing a lot of commits outside of drm without any
-> > > Acks.
-> > >=20
-> > > Please reach out to the maintainers *before* pushing code for other
-> > > subsystems. Unless you get an explicit ack to do so, do not push
-> > > such
-> > > code.
-> >=20
-> > I'm assuming you mean the i915 maintainers here, given that there is
-> > an=20
-> > ack from Greg in this email? Rodrigo was in the loop of us needing to
-> > merge this via drm, so I thought I was good on that side. I'll make
-> > sure=20
-> > to have an explicit ack on the ML next time (which is coming
-> > relatively=20
-> > soon, because there are some more mei patches in the DG2 HuC series).
->=20
-> That's my fault indeed. I was following the movement, but I failed
-> to step up right after I saw Greg's ack.
-> Although I also noticed some re-send and reviews in progress even
-> after the ack, I should had been more active there.
->=20
-> Sorry,
-> Rodrigo.
->=20
-> >=20
-> > >=20
-> > > Quoting from the committer guidelines[1] the first rule is:
-> > > "Only push patches changing drivers/gpu/drm/i915."
-> > >=20
-> > > In those cases, please ping a maintainer and don't rush things.
-> >=20
-> > Will do. And apologies again for the mistake.
-> >=20
-> > Daniele
-> >=20
-> > > Regards, Joonas
-> > >=20
-> > > [1] https://drm.pages.freedesktop.org/maintainer-tools/committer-
-> > > drm-intel.html#high-level-guidelines
-> > >=20
-> >=20
->=20
+--=20
+Jani Nikula, Intel Open Source Graphics Center
