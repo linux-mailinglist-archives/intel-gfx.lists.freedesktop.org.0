@@ -2,136 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812665B5CF3
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 17:10:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A88B25B5D37
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 17:33:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A071E10E5A0;
-	Mon, 12 Sep 2022 15:10:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB5F110E5B3;
+	Mon, 12 Sep 2022 15:33:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CBA710E5A0;
- Mon, 12 Sep 2022 15:10:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 266CA10E5A6;
+ Mon, 12 Sep 2022 15:32:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662995430; x=1694531430;
+ t=1662996777; x=1694532777;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=nUN65X+foPDyMWiVvnyJ5Ir03tqXvOFufkaekl62whI=;
- b=CmhOiJ18IXsDSF2MHMKFpYJ7uV3mfrSP3WxzsSyQvHeR3XO75KtFCWIi
- 6MSosl4YwNZLCDwAQGx/rp0PIBC0eMBuQiz14UlSmszMFhrEulhqYzXiK
- fQG5aa/InsweienNpFqk6lBZb3cQGihRfF8X8oeBQ69HRNbUrqX0jvd0y
- HNdJwbzCweHFgosP1NoBkb7E/osxLEWN8Eme9thTSRSxOWQoeMFhDmWQ/
- 8vdWWTpfyMoxmqtaC7gTXyTDdH6HxYkkInCOiKrs7AQvaZPfCxi2fL+ky
- ySyrpJ1q9v8S4Gy/6vxV30//6h88dCxfOw+uIDl8mGSWpzoxuypZheXOr Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="359614539"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="359614539"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ bh=qJLYusFJDq+PMs02ep7vGgp8KFK0jA92GgYffIKtONI=;
+ b=g5grASdfIleM1s9Nqz5lLbdK5gL3jqTYiACOEJTmeHbkZq9D6HpCVWmQ
+ EZ+1EbW9GtG8i+JPhHSyLkV1HPSS/wLKv2b9XjM3pJFEJzyt6XyDlXOoj
+ qUzvnSLzrQIjjjFExu7ggAu1+/FfGALUklvG0qo8vWOFN7V8wWix0BhdL
+ KsUFx996rXeeGeVTgvnqK5qtn7/eMAYQpQAh1qPdgsxHueCuWzPj0sddI
+ N/9HQwOURYb1gelt84kpGzEID39v4gljh9JqBYf58xPu7z5Gdthc0RDL1
+ rVufBdgN2M3o8IyXGk/0i5LpHI5dc7NwxGPR1IlXvw4N9zxl3rphuy4V4 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="359620407"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="359620407"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 08:10:10 -0700
+ 12 Sep 2022 08:32:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="567201922"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga003.jf.intel.com with ESMTP; 12 Sep 2022 08:10:10 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="618593612"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga007.fm.intel.com with ESMTP; 12 Sep 2022 08:32:56 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 12 Sep 2022 08:10:10 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ 15.1.2375.31; Mon, 12 Sep 2022 08:32:55 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Mon, 12 Sep 2022 08:10:10 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.107)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Mon, 12 Sep 2022 08:32:55 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Mon, 12 Sep 2022 08:10:09 -0700
+ 15.1.2375.31; Mon, 12 Sep 2022 08:32:55 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mwmqw0gm/NMK8eWnoE7qwqqwGY9GW2cBxV4mejNPl5+R8fbDMlLIQUUFV8/D56x6taY7OydY+Pt8Uir79AWDZntMJjXh2fJtJsjYMVFIFeb0PG7doZJXZD+G+nE3JfI1I+uhFWZqd9+2y9tai2tNaFpELoU6VQuV3UmlRKDSBKoTk2I6505DA+VQyTgpUqF/uQUg00SRtKe1/S05Ko6gNHBCCJySCA8JvLdC7CGcuYGptyRglAOIwKSNZpHPTcb6tSGWpcVFA2f4jE70hSDQ+0TZtu3p9b+9ZroHMpZNOx3RvUA+P6K8qtfQC2IZRkiZMCGgcmqFWJWHQZ2c1q66Jw==
+ b=aPOjW5qfAaibdFyVDiymkHiQfGwPxhoRiamZ9JWu+/7dWvDg5hw6H8qUIWKTHOdmelWiWzLwzRb0g9YUy4OrHexRpDZPZsF4zYUIUsBJipD60sL1fiDhlbGF7pLRJHA8MNuChas86YKExzDBZxzlfOxmGiOARzsbXesaNfizlXk2GcKOqdwMiFLzrH8n4tBCfqGyEA6U2KAqkUUyEqK/rb14kv4AFnkXI1gkUSJ2N9FLl+lVUYa8TiGmoIeqE9TrrGu+zSg9Eypkg0T4fQ8+qBclzy09vZwcFbY46BCK1Uqn5Mkdlxl70TmPQvzwmr/4fP+iamUIJzpeBNsEabAlig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rP2WdweXEHDiLCpoR/9W4Fzy7CmWla+f2dz020w/BSU=;
- b=mA7o/rCjl7zMYns63MQqje4xse6HWjAbsMp2La3B7vWdDEcX6sA2RIkayQRPIx6aMtQ4Y9ZHSzw8PtQo1zrv5GnkL0pe5Yaao4wLLbQLwzW16MOjMD/bNYsFCw+vMXJa0rAe6HtD8ctAx479bsVxtzw8qquGqIPcZCPpI3fapvOq4/NbNkxYbxRL2VWAEI2a5z6VyiaIBp4geUrxgDQ8FLMmetV25anor7EaaXOaPbuK4SnQ8gr7t/QehRAmD/TWs5+WA9Q8zYOSjp+/jBHcFwfpYFWeuLgwDSgTTjZBGC6fBXzV9TkQbdR4yulYV9lbdZkQiz32fmwqCqOelfvvSQ==
+ bh=uuE9lv0zc/lg/wcFZI3aonD0zXHzk7D3HTe8zrwvW7s=;
+ b=hJKaNxV/25thaRIiDLOGG5QxHbw2nKb2kSAk+4UoMfzPUjvM1UGMFqKq/G4Fe6lnILL5UYLeMnMvrVEVBqJ4Fhyd9XeMkUaQxrQHGr1jt29zCL29s62HmSIPYAzeSFAHsqlSeWt8WAVj2YFm0d670AdPt0EV/+GoUsUSCFWq0VNgryiXr1yOm1pzf3jxic+SKa4Rotmk8uGP/iRtrOaQcAY5SFmuLm1RZUIMGHPXrf7FbqCu+wIF8+4fxYemkVfmu2j/lNu8t71/NcGqUBjdBvcpbcvljHpE2G+AcJ9B43F5yRTY+hwmRRmiT2DZ2dowEg/GYsuUt9Q3K3bMgTI0yw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com (2603:10b6:301:11::11)
- by SA0PR11MB4589.namprd11.prod.outlook.com (2603:10b6:806:9a::12)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CO1PR11MB4881.namprd11.prod.outlook.com (2603:10b6:303:91::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Mon, 12 Sep
- 2022 15:10:00 +0000
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::ecc9:50cb:5951:2514]) by MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::ecc9:50cb:5951:2514%12]) with mapi id 15.20.5612.022; Mon, 12 Sep
- 2022 15:10:00 +0000
-Date: Mon, 12 Sep 2022 08:09:57 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Message-ID: <Yx9LxciaH/y8fnRD@mdroper-desk1.amr.corp.intel.com>
-References: <cover.1662708705.git.mchehab@kernel.org>
- <6405f00c4ba03987abf7635f4c62d86b40a0e521.1662708705.git.mchehab@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.20; Mon, 12 Sep
+ 2022 15:32:54 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b80a:cf49:9118:24e7]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b80a:cf49:9118:24e7%6]) with mapi id 15.20.5612.022; Mon, 12 Sep 2022
+ 15:32:54 +0000
+Date: Mon, 12 Sep 2022 08:32:52 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <20220912153252.zdcfz2m4qhdb3a3d@ldmartin-desk2.lan>
+X-Patchwork-Hint: comment
+References: <20220909-media-v2-0-6f20f322b4ef@intel.com>
+ <20220909-media-v2-2-6f20f322b4ef@intel.com>
+ <afe54574-6d28-9915-c673-bf925ce994f3@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <6405f00c4ba03987abf7635f4c62d86b40a0e521.1662708705.git.mchehab@kernel.org>
-X-ClientProxiedBy: SJ0PR03CA0127.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::12) To MWHPR11MB1632.namprd11.prod.outlook.com
- (2603:10b6:301:11::11)
+In-Reply-To: <afe54574-6d28-9915-c673-bf925ce994f3@intel.com>
+X-ClientProxiedBy: BYAPR06CA0072.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::49) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR11MB1632:EE_|SA0PR11MB4589:EE_
-X-MS-Office365-Filtering-Correlation-Id: 21f1cb2e-5628-4517-bff4-08da94d0dcae
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CO1PR11MB4881:EE_
+X-MS-Office365-Filtering-Correlation-Id: 732b8059-42bc-43f6-a71d-08da94d40f80
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: v1nVY5itkV3yV3PKkTrJG/gz1S/pj0ktiR0FlUd69Kpw+YQudUW/YsY3yaKAM4tAFhFlCbBpA7bEKz32uDy8XcHQvf3Cw3rJb5oIkbtOXQ4I8oDjLkmOcdrkUbIyfktwAgaE9NalYIVJEIHGTbRC/vFCtx53MUJZo5vgGHV5uaMaxgitDdDDu8IVimNSqhzrr6qNtQaRJv6hOoiinNQiDFGdynNsHF0WDWaOaJOUFyxzyNpY2Kh+QESpqdsTNEppuIcVRsQ4WvSjwcRtFSWMPmdSvoKTieOqm7HOg0cxr5E/iJoMyDgn8YIFTONSG8+kFyVQUksZ8mUNb+IeuB8D5gu+x31uIyvFfoRR32vv8YIqOAOJbLH6QgjapQ+RC4s0yKpsbQf3xm+X9Kx12EdQEHcfgRyJpsZV88M48JZm/Dtcn5bQKA/9NKIrhyQHSzm6pMOwzQJGOsqicBIvie2z9zJwvR8R5vLXpu2F4wki/icS8iVprosCDIqGvC7AmXXJ9rPL0cMQNbnG4Dz5qO2zxyKxrKNkEtX2xTJKHevBAZ6pi39xyetCT/4rrKsvv7prVaySZADJJhtP+6uANpPf5toTY37M7zAe28j0aU5Xnm3LHvl1iqz9DmD00gKHYxoh+1o0g6M7Jo6f2fokE8Gu20NQLt3jf0p38g7DXiOlUhOb2VynguW3KrxjL6K5BnnVWO9LYtc5sJyLdwQoN8KhYM/U5I8GAaYmCx1XqM1iceSgvf9l1OtUetnzKsdgGfzE
+X-Microsoft-Antispam-Message-Info: ao3zCmNPTD85c4jSGowLbBU5XQX2ISq2EYTLu9yxwxzP0Pl/IUmvSjLnReLXtslCoVv3Xk75+fp0m+mER5SekiA/VymacMMo7JSrSGryl7ySY7Jr3Xbpab6+mmrTjEvkQvJKiFKRmud6+ZJc06FV3m429Lf3FUJ9BYmZfiN8U9QOwn8oIOl/ozU1dy1adqpUILYWFHEPd0RtvVHhcSSpG7riLbUh+uaM8HRvTudcyiwHYNmf1I/3xSNRB9NabFYaXWPIhDl+xVKqF/4S2lmm4os0KnPy4lfukPU0qwmZvvNqjIWnoledQljx/l3UniyUWoJ4oEVCCVD73eEfUllPz6SZI0MUhRBr0udahMiZUsttc/kfet8m3UqWEcXbvKYxk5h4ZsxPLdv5uPPjdlW3o+aBzqJ34DCcxVj2UsZjUH99ivIH0ihApNtVEX6IJDQU01dEgnzCjlyuwBQSpiCIinhaurQOvs3cnCQUQtSuwalL0WN4s4MCPHBTt0HM3vCTNFVMSH/dVvW90WVhg7mto4nPvK62AiMCUGi3RvLhggJ6mN2REHmGRHgl+BmDEMXPYnwUkhBhjjsvm9d/HJFtVGgOaipgw8od6K2HUuIdE0brjMOTID3Nz7RFeprtiROZG1M8RYPRUF2n78Ur1JjNj4K8pdPydpoNUVTy3LQWQlyhF/52SXBOrN9OIMc3blQfcpCKv/AbPRt8UVYamkeIvg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1632.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(346002)(366004)(136003)(376002)(396003)(39860400002)(38100700002)(66476007)(66556008)(4326008)(8676002)(66946007)(6512007)(26005)(478600001)(6506007)(6486002)(966005)(54906003)(6916009)(6666004)(316002)(82960400001)(86362001)(41300700001)(186003)(30864003)(83380400001)(2906002)(5660300002)(8936002)(7416002);
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(366004)(376002)(396003)(39860400002)(136003)(346002)(8676002)(450100002)(38100700002)(82960400001)(8936002)(66476007)(4326008)(66556008)(66946007)(36756003)(86362001)(478600001)(83380400001)(6506007)(9686003)(26005)(6512007)(41300700001)(6636002)(316002)(1076003)(6486002)(186003)(2906002)(6862004)(5660300002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ThEMiFmJpiGmvRMDNVHq4cUitha7WSnd9OugvziyyMlQsuGvG90WK4s5EG9N?=
- =?us-ascii?Q?ZJoaUwMQ3ux4/xkEhDoai0vVyqNCZnIy767xUsS3genqFAFbpXPiat+azI5i?=
- =?us-ascii?Q?OWyekR6Cfo6elIfine94eppUXpfDf0I1Qy9V4Afub++AeAe/E0PM55tU577/?=
- =?us-ascii?Q?FTPaUR+snxSKupueoDW/Rm1Ml8jKN1ReBSodwKNLOAz44vrVbZP9OfODbdiB?=
- =?us-ascii?Q?DfJgUuxYTzN/uh3Mw8Nd1Lb4oQfxVfXCjO616QvTWNCVNAFCGiDeR4aUgsKl?=
- =?us-ascii?Q?4EsHlzlmp94MFB/2dvtTuoud+hah6K31RlK70wFIPkaEWunHw4MNv3F5xJJp?=
- =?us-ascii?Q?0mmIvvD5V9t776Zm3tfPwLHX563Y+EOiAnorBzOShxoU8DZWwcdAFATqRvSs?=
- =?us-ascii?Q?BECTf2+wfAzOpBodrjLUMQspHwWlDmaxUVMUdkY43atVYkKDUBd4ygLtbXSy?=
- =?us-ascii?Q?uh8fCLdEaRaPF+J55D6/hfq16xLXXk09PfyfSzDIMkP0uyA2UrhW8A9Vbqi2?=
- =?us-ascii?Q?CutPwyfm64A3cf7oC7uhiHNJzwFzX0t1UULUPSX51AWFspLgM+oiuk9+hQDz?=
- =?us-ascii?Q?BmuFxbGEvakcSTmUfSYB6XNTHIt6BLqilSEbDvAqwlVI/3hGstOFRIJwG/sl?=
- =?us-ascii?Q?Z/V7B/y1vpt9xG74JxZGKJ5SWHAvotxWcp7y/PnFxXphXR3XrQs5ptSL6Y0R?=
- =?us-ascii?Q?ZFpWiE6fS5vtuthRDrRSJ7vro3+B5Hcrxwgwm441wCgjZM2nIAvRvryi2dcJ?=
- =?us-ascii?Q?H+OrVgoszZqRwdmpRsMyEllJhuK5NJO+alYKzR4sSl03T/oASb1qfuKcTFJi?=
- =?us-ascii?Q?Ulg5/sZ6gB8cv5rEDx1kgCME1eWBmRjWGn3JNv1F2++QBK6V4JcYQUXPd7HY?=
- =?us-ascii?Q?9Z6aMIIrLqpbh2oyqHjeLxoAacT3rwt5AtS8xgHbe3SCrQFbGLV/S8rp9GUm?=
- =?us-ascii?Q?Nkl5r6TJkcyxkpYrKa/oFBe1idCZUba8yh7U+nJYVLKp7vxPDQ7zX+JPU5Nn?=
- =?us-ascii?Q?0EKrv/EdB3nl0sB8soRRNkv9dnuf8iLR+NyYXG+4Wn7sv93OSAbl9W5umu2U?=
- =?us-ascii?Q?EAHnEZmd3xSTRqb0ZYhx/+HPE2YqjOSFSq+N1sogOMvgpXrIT3OQpxE2jY2/?=
- =?us-ascii?Q?HNq1MVRl3/G9eBxNrrhQ+6MPplEswfZ1Bcsm9YYAqqRToGiuCz+jPjMV13Cw?=
- =?us-ascii?Q?C6cPFy7NRbf/vyE7bzwEu8bURzhDsMUJY5ZF6o27lZwS/Ka6Sf5sZIgql6xj?=
- =?us-ascii?Q?NCLNjVHX+hRHO7AiNdMOyZIiHj2BFeaFFcdHHPSnir/oyMRnvgG1IIllVTBe?=
- =?us-ascii?Q?dU3xWVjKmUy3vxW9ANwYwVocwBpb+vyyOuz7nsXHE0twBwQnWrf2EoRyOiSD?=
- =?us-ascii?Q?bZZ7cyBfBv7EPlMIRwiya30c52H8d2y4XoKDfXqrpp/HCWTJAXktJBfeieOM?=
- =?us-ascii?Q?EntGNQtRCiaSEkOuhroyxwTteRNGRdCdqA1SyK80qaGqskaPvHHaNbtNhPG/?=
- =?us-ascii?Q?9UHQ1U5CB3BpPXhsbh8VBIcPKV+oUmtQ60fop5JzT5zc00YIFnQgxf57+dE5?=
- =?us-ascii?Q?du/73Y0YQE2Zyxbt4SODVbqdvgOtQpZzYNFL1KRe3mHYYVz2aZzTpok2AdNW?=
- =?us-ascii?Q?Wg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 21f1cb2e-5628-4517-bff4-08da94d0dcae
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1632.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WaKjeqG+nn/YVstbtipYDWkeg+Z8j2447xX9x3UQFjZ1OwWQRDGfjza5xoFa?=
+ =?us-ascii?Q?kjmigK8z71w3YHtCt/lGQ6yjVoCv67lICQ0Jz6bqQDgX2zkpVL+avEwnS4xU?=
+ =?us-ascii?Q?X/UXIN/zJKZXXPYgtLWqg7J3cPe2zMb4Dx9AzP8kIdnWm0B5HV4tjA3rNl15?=
+ =?us-ascii?Q?j3nDgt1RcWO26X1c28mgdSoyts/LsdCspMM1EVmctp6rcZKjik0jQ/6pSxQb?=
+ =?us-ascii?Q?RGUSYpLTrEKjnngHiZrSuJgRFz8605ij27KDSu3gXiWqBUt+E9jkAOWlYz/3?=
+ =?us-ascii?Q?zAz+0yV20yUWzBFGg0k6VvjPEYGixp4M9O91AmGpC0O3l0nlqPMEeim5Ic7w?=
+ =?us-ascii?Q?V5jw51jg6JAJ3v4LXmDtNZZOkUFlEu/KPbmXSAnCEwCPOk5Z80jaGWA8zTG8?=
+ =?us-ascii?Q?45mHz//2d9JbojERO9++3sFYYzMEOCxIrTofmcNyylmjZNp6waSyWTpiPwKQ?=
+ =?us-ascii?Q?2IT8tAr7YmHVGiFTAufYkCs9dS+8ctGy5OVJMd0+Ek9J1P6pQjzkXQMtGwx5?=
+ =?us-ascii?Q?imwf5YhoY48MmXR5/Bj2lk+dj6l/CtfDFN3J5Cwa8NyROgdoe0oQrYWpzp/9?=
+ =?us-ascii?Q?yF868IeTjDxXMgiIusXbQ1Mdu97NzE+95zdWuK4jfO2+bu9tF2HHA3pNd35T?=
+ =?us-ascii?Q?jA/8a3qf90CZg2TL/v2N/hpERNDF7KBw2QgnraHW2HIPQ6xA6/yxM1HHkRY7?=
+ =?us-ascii?Q?0LK9RD9YYvD8gPGiFNLe2+03YoCfEstD+IEQMG4KDA8sLc4eL58pG7yLXxf7?=
+ =?us-ascii?Q?aXdze5MdeEtx7gYBH5/CcaXoMpVVT7GO/7h6EWo2FVVshjvOZ0AjI8eBo9VL?=
+ =?us-ascii?Q?pYcH+A+ui5JPrJBYDCveQUhTHzip5if71I5i/Q3pFhPFCvP4L/av61mNTzuL?=
+ =?us-ascii?Q?GIrZC8yf6RgybQ+PsL6hTzsQywWvRFqvZKyMmQg2yqpZWTL5dSbzhQHNzHol?=
+ =?us-ascii?Q?4BXwkWq/HA2PfCrSjaAOW88alEdmdsHUXuxrZv/uoxkDCGed+XHqY3sRwZvz?=
+ =?us-ascii?Q?r54VyN0hP0AgCddYsy/bTmKtnj6u4T4nBqRhGMKkNuwd8iKnf+6KYkWySZ5C?=
+ =?us-ascii?Q?vfqEuNAgPWgVbyD5JH40zEz4EiyvxLOFwDNTG6o/oCLDQEjEWkEeCFunBy5C?=
+ =?us-ascii?Q?9iFb5TxDzpmAJHq5rAHD3YWvLaLzc7tz6+Xbc4BUeMhCXmpLMt4L6UM450Go?=
+ =?us-ascii?Q?w6cmWoTsedW3Nc9ZkvkLtnCY3vgfQrSVFjSBQMZ9Ift91nxaam7/o3oRzZMd?=
+ =?us-ascii?Q?YUgFFRhSM0XEP5hYzd3/sJABr17n0b3ARRd2JlIX/9dGuQ4FL9Rm0bQPRZ+S?=
+ =?us-ascii?Q?ZdSgOAYMPofmbTval1MHcrrngpV9fqapryhHd7v+RRm2eJOVcoqMjFvgvE+T?=
+ =?us-ascii?Q?lGtOl1d5BBqJdHVcE1RveysRl2w5465wSlRTiwwxkIw/4hxlp8UgmJjYd7+Y?=
+ =?us-ascii?Q?bmJSkloqoaTL2wFram/VqVgb0YduJaB8ksjPQZ/m+lzrF0cQxDQd4h9PxWFp?=
+ =?us-ascii?Q?6X9vlHeVSP1Gp4GqF9eH1ErLwySFrD4kVunPRa6gewqGyuyRaTnQhzk9j14r?=
+ =?us-ascii?Q?bYIoSP7nKO2vUcXhRjtx/FQz2zAtVQgalK6U0UF3ieMSekaivvFDDtcrQAQ4?=
+ =?us-ascii?Q?kw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 732b8059-42bc-43f6-a71d-08da94d40f80
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2022 15:10:00.5707 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2022 15:32:54.2913 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XLb/ko7ZHjvAXu4Bx5Y41515lhSbc0U4YfR4yJk4YKoAimPuQEdspSZitXSKeTvt9uSIiPT4Nt/at+uxbzpS5tR+hrFiyAOs/cR4Oq6aQ+I=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4589
+X-MS-Exchange-CrossTenant-UserPrincipalName: XFrs1zh9SwRXNdLt9Pi4gQ6A3Ufdq6aauyTg07YnqSvNbv1LOlvTWDm8Dh7pYgJtRabuxuPUsilHrDmCYj6wWdTVlPMcV6z0t7XOel3iZR4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4881
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 19/37] drm/i915: stop using kernel-doc
- markups for something else
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/gt: Extract function to
+ apply media fuses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,956 +145,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
- Tomas Winkler <tomas.winkler@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-kernel@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 09, 2022 at 09:34:26AM +0200, Mauro Carvalho Chehab wrote:
-> There are some occurrences of "/**" that aren't actually part of
-> a kernel-doc markup. Replace them by "/*", in order to make easier
-> to identify what i915 files contain kernel-doc markups.
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> ---
-> 
-> To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
-> See [PATCH v3 00/37] at: https://lore.kernel.org/all/cover.1662708705.git.mchehab@kernel.org/
-> 
->  drivers/gpu/drm/i915/display/dvo_ch7017.c     | 26 +++----
->  drivers/gpu/drm/i915/display/dvo_ch7xxx.c     |  6 +-
->  .../drm/i915/display/intel_display_types.h    |  2 +-
->  drivers/gpu/drm/i915/display/intel_dvo_dev.h  |  6 +-
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |  4 +-
->  drivers/gpu/drm/i915/display/intel_tv.c       |  2 +-
->  drivers/gpu/drm/i915/gt/intel_context_types.h | 69 +++++++++----------
->  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h  |  2 +-
->  drivers/gpu/drm/i915/gt/intel_gt_types.h      | 12 ++--
->  drivers/gpu/drm/i915/gt/intel_reset_types.h   |  4 +-
->  .../gpu/drm/i915/gt/intel_timeline_types.h    |  6 +-
->  .../drm/i915/gt/shaders/clear_kernel/hsw.asm  |  4 +-
->  .../drm/i915/gt/shaders/clear_kernel/ivb.asm  |  4 +-
->  drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h | 10 +--
->  drivers/gpu/drm/i915/i915_drm_client.h        |  2 +-
->  drivers/gpu/drm/i915/i915_drv.h               | 24 +++----
->  drivers/gpu/drm/i915/i915_file_private.h      |  8 +--
->  drivers/gpu/drm/i915/i915_gpu_error.h         |  4 +-
->  drivers/gpu/drm/i915/i915_pmu.h               | 32 ++++-----
->  drivers/gpu/drm/i915/intel_uncore.h           |  4 +-
->  20 files changed, 115 insertions(+), 116 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/dvo_ch7017.c b/drivers/gpu/drm/i915/display/dvo_ch7017.c
-> index 0589994dde11..581e29ab77e4 100644
-> --- a/drivers/gpu/drm/i915/display/dvo_ch7017.c
-> +++ b/drivers/gpu/drm/i915/display/dvo_ch7017.c
-> @@ -55,13 +55,13 @@
->  #define CH7017_TEST_PATTERN		0x48
->  
->  #define CH7017_POWER_MANAGEMENT		0x49
-> -/** Enables the TV output path. */
-> +/* Enables the TV output path. */
->  #define CH7017_TV_EN			(1 << 0)
->  #define CH7017_DAC0_POWER_DOWN		(1 << 1)
->  #define CH7017_DAC1_POWER_DOWN		(1 << 2)
->  #define CH7017_DAC2_POWER_DOWN		(1 << 3)
->  #define CH7017_DAC3_POWER_DOWN		(1 << 4)
-> -/** Powers down the TV out block, and DAC0-3 */
-> +/* Powers down the TV out block, and DAC0-3 */
->  #define CH7017_TV_POWER_DOWN_EN		(1 << 5)
->  
->  #define CH7017_VERSION_ID		0x4a
-> @@ -84,26 +84,26 @@
->  #define CH7017_UP_SCALER_HORIZONTAL_INC_1	0x5e
->  
->  #define CH7017_HORIZONTAL_ACTIVE_PIXEL_INPUT	0x5f
-> -/**< Low bits of horizontal active pixel input */
-> +/* Low bits of horizontal active pixel input */
->  
->  #define CH7017_ACTIVE_INPUT_LINE_OUTPUT	0x60
-> -/** High bits of horizontal active pixel input */
-> +/* High bits of horizontal active pixel input */
->  #define CH7017_LVDS_HAP_INPUT_MASK	(0x7 << 0)
-> -/** High bits of vertical active line output */
-> +/* High bits of vertical active line output */
->  #define CH7017_LVDS_VAL_HIGH_MASK	(0x7 << 3)
->  
->  #define CH7017_VERTICAL_ACTIVE_LINE_OUTPUT	0x61
-> -/**< Low bits of vertical active line output */
-> +/* Low bits of vertical active line output */
->  
->  #define CH7017_HORIZONTAL_ACTIVE_PIXEL_OUTPUT	0x62
-> -/**< Low bits of horizontal active pixel output */
-> +/* Low bits of horizontal active pixel output */
->  
->  #define CH7017_LVDS_POWER_DOWN		0x63
-> -/** High bits of horizontal active pixel output */
-> +/* High bits of horizontal active pixel output */
->  #define CH7017_LVDS_HAP_HIGH_MASK	(0x7 << 0)
-> -/** Enables the LVDS power down state transition */
-> +/* Enables the LVDS power down state transition */
->  #define CH7017_LVDS_POWER_DOWN_EN	(1 << 6)
-> -/** Enables the LVDS upscaler */
-> +/* Enables the LVDS upscaler */
->  #define CH7017_LVDS_UPSCALER_EN		(1 << 7)
->  #define CH7017_LVDS_POWER_DOWN_DEFAULT_RESERVED 0x08
->  
-> @@ -116,9 +116,9 @@
->  #define CH7017_LVDS_ENCODING_2		0x65
->  
->  #define CH7017_LVDS_PLL_CONTROL		0x66
-> -/** Enables the LVDS panel output path */
-> +/* Enables the LVDS panel output path */
->  #define CH7017_LVDS_PANEN		(1 << 0)
-> -/** Enables the LVDS panel backlight */
-> +/* Enables the LVDS panel backlight */
->  #define CH7017_LVDS_BKLEN		(1 << 3)
->  
->  #define CH7017_POWER_SEQUENCING_T1	0x67
-> @@ -197,7 +197,7 @@ static bool ch7017_write(struct intel_dvo_device *dvo, u8 addr, u8 val)
->  	return i2c_transfer(dvo->i2c_bus, &msg, 1) == 1;
->  }
->  
-> -/** Probes for a CH7017 on the given bus and slave address. */
-> +/* Probes for a CH7017 on the given bus and slave address. */
->  static bool ch7017_init(struct intel_dvo_device *dvo,
->  			struct i2c_adapter *adapter)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/dvo_ch7xxx.c b/drivers/gpu/drm/i915/display/dvo_ch7xxx.c
-> index 54f58ba44b9f..1c1fe1f29675 100644
-> --- a/drivers/gpu/drm/i915/display/dvo_ch7xxx.c
-> +++ b/drivers/gpu/drm/i915/display/dvo_ch7xxx.c
-> @@ -81,7 +81,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
->  #define CH7301_SYNC_RGB_YUV	(1<<0)
->  #define CH7301_SYNC_POL_DVI	(1<<5)
->  
-> -/** @file
-> +/*
->   * driver for the Chrontel 7xxx DVI chip over DVO.
->   */
->  
-> @@ -132,7 +132,7 @@ static char *ch7xxx_get_did(u8 did)
->  	return NULL;
->  }
->  
-> -/** Reads an 8 bit register */
-> +/* Reads an 8 bit register */
->  static bool ch7xxx_readb(struct intel_dvo_device *dvo, int addr, u8 *ch)
->  {
->  	struct ch7xxx_priv *ch7xxx = dvo->dev_priv;
-> @@ -170,7 +170,7 @@ static bool ch7xxx_readb(struct intel_dvo_device *dvo, int addr, u8 *ch)
->  	return false;
->  }
->  
-> -/** Writes an 8 bit register */
-> +/* Writes an 8 bit register */
->  static bool ch7xxx_writeb(struct intel_dvo_device *dvo, int addr, u8 ch)
->  {
->  	struct ch7xxx_priv *ch7xxx = dvo->dev_priv;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 3b7945aad22a..e46027d2a3c7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1006,7 +1006,7 @@ struct intel_crtc_state {
->  		enum drm_scaling_filter scaling_filter;
->  	} hw;
->  
-> -	/**
-> +	/*
->  	 * quirks - bitfield with hw state readout quirks
->  	 *
->  	 * For various reasons the hw state readout code might not be able to
-> diff --git a/drivers/gpu/drm/i915/display/intel_dvo_dev.h b/drivers/gpu/drm/i915/display/intel_dvo_dev.h
-> index d96c3cc46e50..45d47209c327 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dvo_dev.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dvo_dev.h
-> @@ -110,7 +110,7 @@ struct intel_dvo_dev_ops {
->  	 */
->  	bool (*get_hw_state)(struct intel_dvo_device *dev);
->  
-> -	/**
-> +	/*
->  	 * Query the device for the modes it provides.
->  	 *
->  	 * This function may also update MonInfo, mm_width, and mm_height.
-> @@ -119,12 +119,12 @@ struct intel_dvo_dev_ops {
->  	 */
->  	struct drm_display_mode *(*get_modes)(struct intel_dvo_device *dvo);
->  
-> -	/**
-> +	/*
->  	 * Clean up driver-specific bits of the output
->  	 */
->  	void (*destroy) (struct intel_dvo_device *dvo);
->  
-> -	/**
-> +	/*
->  	 * Debugging hook to dump device registers to log file
->  	 */
->  	void (*dump_regs)(struct intel_dvo_device *dvo);
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> index f5b744bef18f..87ff910dce05 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -162,7 +162,7 @@ struct intel_sdvo_connector {
->  	/* this is to get the range of margin.*/
->  	u32 max_hscan, max_vscan;
->  
-> -	/**
-> +	/*
->  	 * This is set if we treat the device as HDMI, instead of DVI.
->  	 */
->  	bool is_hdmi;
-> @@ -280,7 +280,7 @@ static bool intel_sdvo_read_byte(struct intel_sdvo *intel_sdvo, u8 addr, u8 *ch)
->  
->  #define SDVO_CMD_NAME_ENTRY(cmd_) { .cmd = SDVO_CMD_ ## cmd_, .name = #cmd_ }
->  
-> -/** Mapping of command numbers to names, for debug output */
-> +/* Mapping of command numbers to names, for debug output */
->  static const struct {
->  	u8 cmd;
->  	const char *name;
-> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-> index 9379f3463344..2507ab1ceda6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tv.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
-> @@ -26,7 +26,7 @@
->   *
->   */
->  
-> -/** @file
-> +/*
->   * Integrated TV-out support for the 915GM and 945GM.
->   */
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> index 04eacae1aca5..1be2aad18f2a 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+On Mon, Sep 12, 2022 at 10:56:16AM +0200, Andrzej Hajda wrote:
+>On 10.09.2022 01:18, Lucas De Marchi wrote:
+>>Just like is done for compute and copy engines, extract a function to
+>>handle media engines. While at it, be consistent on using or not the
+>>uncore/gt/info variable aliases.
+>>
+>>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>
+>>diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>index b6602439224d..814f83b5fe59 100644
+>>--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>@@ -663,6 +663,74 @@ bool gen11_vdbox_has_sfc(struct intel_gt *gt,
+>>  	return false;
+>>  }
+>>+static void engine_mask_apply_media_fuses(struct intel_gt *gt)
+>>+{
+>>+	struct drm_i915_private *i915 = gt->i915;
+>>+	unsigned int logical_vdbox = 0;
+>>+	unsigned int i;
+>>+	u32 media_fuse, fuse1;
+>>+	u16 vdbox_mask;
+>>+	u16 vebox_mask;
+>>+
+>>+	if (MEDIA_VER(gt->i915) < 11)
+>>+		return;
+>>+
+>>+	/*
+>>+	 * On newer platforms the fusing register is called 'enable' and has
+>>+	 * enable semantics, while on older platforms it is called 'disable'
+>>+	 * and bits have disable semantices.
+>>+	 */
+>>+	media_fuse = intel_uncore_read(gt->uncore, GEN11_GT_VEBOX_VDBOX_DISABLE);
+>>+	if (MEDIA_VER_FULL(i915) < IP_VER(12, 50))
+>>+		media_fuse = ~media_fuse;
+>>+
+>>+	vdbox_mask = media_fuse & GEN11_GT_VDBOX_DISABLE_MASK;
+>>+	vebox_mask = (media_fuse & GEN11_GT_VEBOX_DISABLE_MASK) >>
+>>+		      GEN11_GT_VEBOX_DISABLE_SHIFT;
+>>+
+>>+	if (MEDIA_VER_FULL(i915) >= IP_VER(12, 50)) {
+>>+		fuse1 = intel_uncore_read(gt->uncore, HSW_PAVP_FUSE1);
+>>+		gt->info.sfc_mask = REG_FIELD_GET(XEHP_SFC_ENABLE_MASK, fuse1);
+>>+	} else {
+>>+		gt->info.sfc_mask = ~0;
+>>+	}
+>>+
+>>+	for (i = 0; i < I915_MAX_VCS; i++) {
+>>+		if (!HAS_ENGINE(gt, _VCS(i))) {
+>>+			vdbox_mask &= ~BIT(i);
+>>+			continue;
+>>+		}
+>>+
+>>+		if (!(BIT(i) & vdbox_mask)) {
+>>+			gt->info.engine_mask &= ~BIT(_VCS(i));
+>>+			drm_dbg(&i915->drm, "vcs%u fused off\n", i);
+>>+			continue;
+>>+		}
+>>+
+>>+		if (gen11_vdbox_has_sfc(gt, i, logical_vdbox, vdbox_mask))
+>>+			gt->info.vdbox_sfc_access |= BIT(i);
+>>+		logical_vdbox++;
+>>+	}
+>>+	drm_dbg(&i915->drm, "vdbox enable: %04x, instances: %04lx\n",
+>>+		vdbox_mask, VDBOX_MASK(gt));
+>>+	GEM_BUG_ON(vdbox_mask != VDBOX_MASK(gt));
+>>+
+>>+	for (i = 0; i < I915_MAX_VECS; i++) {
+>>+		if (!HAS_ENGINE(gt, _VECS(i))) {
+>>+			vebox_mask &= ~BIT(i);
+>>+			continue;
+>>+		}
+>>+
+>>+		if (!(BIT(i) & vebox_mask)) {
+>>+			gt->info.engine_mask &= ~BIT(_VECS(i));
+>>+			drm_dbg(&i915->drm, "vecs%u fused off\n", i);
+>>+		}
+>>+	}
+>>+	drm_dbg(&i915->drm, "vebox enable: %04x, instances: %04lx\n",
+>>+		vebox_mask, VEBOX_MASK(gt));
+>>+	GEM_BUG_ON(vebox_mask != VEBOX_MASK(gt));
+>>+}
+>>+
+>>  static void engine_mask_apply_compute_fuses(struct intel_gt *gt)
+>>  {
+>>  	struct drm_i915_private *i915 = gt->i915;
+>>@@ -671,6 +739,9 @@ static void engine_mask_apply_compute_fuses(struct intel_gt *gt)
+>>  	unsigned long ccs_mask;
+>>  	unsigned int i;
+>>+	if (GRAPHICS_VER(i915) < 11)
+>>+		return;
+>>+
+>
+>Why there is no similar sentinel in case of engine_mask_apply_copy_fuses?
+>Beside this:
+>Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Several of the comments in this file do appear to be kerneldoc (in fact
-kerneldoc that was specifically requested during code review at
-https://patchwork.freedesktop.org/patch/448456/#comment_804252) and this
-file is included from Documentation/gpu/i915.rst, so I think some of
-these changes might be moving in the wrong direction.  Should we instead
-focus on fixing up the comments that aren't quite formatted properly?
+I noticed it too while doing these patches. I have a pending one for
+that, but it seems I failed to send it on Friday.
 
+drm/i915: Skip applying copy engine fuses
 
-Matt
+Support for reading the fuses to check what are the Link Copy engines
+was added in commit ad5f74f34201 ("drm/i915/pvc: read fuses for link
+copy engines"). However they were added unconditionally because the
+FUSE3 register is present since graphics version 10.
 
-> @@ -128,7 +128,6 @@ struct intel_context {
->  	struct {
->  		u64 timeout_us;
->  	} watchdog;
-> -
->  	u32 *lrc_reg_state;
->  	union {
->  		struct {
-> @@ -139,7 +138,7 @@ struct intel_context {
->  	} lrc;
->  	u32 tag; /* cookie passed to HW to track this context on submission */
->  
-> -	/** stats: Context GPU engine busyness tracking. */
-> +	/* stats: Context GPU engine busyness tracking. */
->  	struct intel_context_stats {
->  		u64 active;
->  
-> @@ -158,7 +157,7 @@ struct intel_context {
->  	atomic_t pin_count;
->  	struct mutex pin_mutex; /* guards pinning and associated on-gpuing */
->  
-> -	/**
-> +	/*
->  	 * active: Active tracker for the rq activity (inc. external) on this
->  	 * intel_context object.
->  	 */
-> @@ -166,10 +165,10 @@ struct intel_context {
->  
->  	const struct intel_context_ops *ops;
->  
-> -	/** sseu: Control eu/slice partitioning */
-> +	/* sseu: Control eu/slice partitioning */
->  	struct intel_sseu sseu;
->  
-> -	/**
-> +	/*
->  	 * pinned_contexts_link: List link for the engine's pinned contexts.
->  	 * This is only used if this is a perma-pinned kernel context and
->  	 * the list is assumed to only be manipulated during driver load
-> @@ -180,9 +179,9 @@ struct intel_context {
->  	u8 wa_bb_page; /* if set, page num reserved for context workarounds */
->  
->  	struct {
-> -		/** @lock: protects everything in guc_state */
-> +		/* @lock: protects everything in guc_state */
->  		spinlock_t lock;
-> -		/**
-> +		/*
->  		 * @sched_state: scheduling state of this context using GuC
->  		 * submission
->  		 */
-> @@ -192,18 +191,18 @@ struct intel_context {
->  		 * being fenced until a GuC operation completes
->  		 */
->  		struct list_head fences;
-> -		/**
-> +		/*
->  		 * @blocked: fence used to signal when the blocking of a
->  		 * context's submissions is complete.
->  		 */
->  		struct i915_sw_fence blocked;
-> -		/** @number_committed_requests: number of committed requests */
-> +		/* @number_committed_requests: number of committed requests */
->  		int number_committed_requests;
-> -		/** @requests: list of active requests on this context */
-> +		/* @requests: list of active requests on this context */
->  		struct list_head requests;
-> -		/** @prio: the context's current guc priority */
-> +		/* @prio: the context's current guc priority */
->  		u8 prio;
-> -		/**
-> +		/*
->  		 * @prio_count: a counter of the number requests in flight in
->  		 * each priority bucket
->  		 */
-> @@ -211,82 +210,82 @@ struct intel_context {
->  	} guc_state;
->  
->  	struct {
-> -		/**
-> +		/*
->  		 * @id: handle which is used to uniquely identify this context
->  		 * with the GuC, protected by guc->submission_state.lock
->  		 */
->  		u16 id;
-> -		/**
-> +		/*
->  		 * @ref: the number of references to the guc_id, when
->  		 * transitioning in and out of zero protected by
->  		 * guc->submission_state.lock
->  		 */
->  		atomic_t ref;
-> -		/**
-> +		/*
->  		 * @link: in guc->guc_id_list when the guc_id has no refs but is
->  		 * still valid, protected by guc->submission_state.lock
->  		 */
->  		struct list_head link;
->  	} guc_id;
->  
-> -	/**
-> +	/*
->  	 * @destroyed_link: link in guc->submission_state.destroyed_contexts, in
->  	 * list when context is pending to be destroyed (deregistered with the
->  	 * GuC), protected by guc->submission_state.lock
->  	 */
->  	struct list_head destroyed_link;
->  
-> -	/** @parallel: sub-structure for parallel submission members */
-> +	/* @parallel: sub-structure for parallel submission members */
->  	struct {
->  		union {
-> -			/**
-> +			/*
->  			 * @child_list: parent's list of children
->  			 * contexts, no protection as immutable after context
->  			 * creation
->  			 */
->  			struct list_head child_list;
-> -			/**
-> +			/*
->  			 * @child_link: child's link into parent's list of
->  			 * children
->  			 */
->  			struct list_head child_link;
->  		};
-> -		/** @parent: pointer to parent if child */
-> +		/* @parent: pointer to parent if child */
->  		struct intel_context *parent;
-> -		/**
-> +		/*
->  		 * @last_rq: last request submitted on a parallel context, used
->  		 * to insert submit fences between requests in the parallel
->  		 * context
->  		 */
->  		struct i915_request *last_rq;
-> -		/**
-> +		/*
->  		 * @fence_context: fence context composite fence when doing
->  		 * parallel submission
->  		 */
->  		u64 fence_context;
-> -		/**
-> +		/*
->  		 * @seqno: seqno for composite fence when doing parallel
->  		 * submission
->  		 */
->  		u32 seqno;
-> -		/** @number_children: number of children if parent */
-> +		/* @number_children: number of children if parent */
->  		u8 number_children;
-> -		/** @child_index: index into child_list if child */
-> +		/* @child_index: index into child_list if child */
->  		u8 child_index;
-> -		/** @guc: GuC specific members for parallel submission */
-> +		/* @guc: GuC specific members for parallel submission */
->  		struct {
-> -			/** @wqi_head: cached head pointer in work queue */
-> +			/* @wqi_head: cached head pointer in work queue */
->  			u16 wqi_head;
-> -			/** @wqi_tail: cached tail pointer in work queue */
-> +			/* @wqi_tail: cached tail pointer in work queue */
->  			u16 wqi_tail;
-> -			/** @wq_head: pointer to the actual head in work queue */
-> +			/* @wq_head: pointer to the actual head in work queue */
->  			u32 *wq_head;
-> -			/** @wq_tail: pointer to the actual head in work queue */
-> +			/* @wq_tail: pointer to the actual head in work queue */
->  			u32 *wq_tail;
-> -			/** @wq_status: pointer to the status in work queue */
-> +			/* @wq_status: pointer to the status in work queue */
->  			u32 *wq_status;
->  
-> -			/**
-> +			/*
->  			 * @parent_page: page in context state (ce->state) used
->  			 * by parent for work queue, process descriptor
->  			 */
-> @@ -295,18 +294,18 @@ struct intel_context {
->  	} parallel;
->  
->  #ifdef CONFIG_DRM_I915_SELFTEST
-> -	/**
-> +	/*
->  	 * @drop_schedule_enable: Force drop of schedule enable G2H for selftest
->  	 */
->  	bool drop_schedule_enable;
->  
-> -	/**
-> +	/*
->  	 * @drop_schedule_disable: Force drop of schedule disable G2H for
->  	 * selftest
->  	 */
->  	bool drop_schedule_disable;
->  
-> -	/**
-> +	/*
->  	 * @drop_deregister: Force drop of deregister G2H for selftest
->  	 */
->  	bool drop_deregister;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
-> index 25340be5ecf0..230e846151a8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
-> @@ -26,7 +26,7 @@ struct i915_fence_reg {
->  	atomic_t pin_count;
->  	struct i915_active active;
->  	int id;
-> -	/**
-> +	/*
->  	 * Whether the tiling parameters for the currently
->  	 * associated fence register have changed. Note that
->  	 * for the purposes of tracking tiling changes we also
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index 4d56f7d5a3be..c66e3d803666 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -114,7 +114,7 @@ struct intel_gt {
->  	} timelines;
->  
->  	struct intel_gt_requests {
-> -		/**
-> +		/*
->  		 * We leave the user IRQ off as much as possible,
->  		 * but this means that requests will finish and never
->  		 * be retired once the system goes idle. Set a timer to
-> @@ -138,7 +138,7 @@ struct intel_gt {
->  	ktime_t last_init_time;
->  	struct intel_reset reset;
->  
-> -	/**
-> +	/*
->  	 * Is the GPU currently considered idle, or busy executing
->  	 * userspace requests? Whilst idle, we allow runtime power
->  	 * management to power down the hardware and display clocks.
-> @@ -164,12 +164,12 @@ struct intel_gt {
->  	struct {
->  		bool active;
->  
-> -		/**
-> +		/*
->  		 * @lock: Lock protecting the below fields.
->  		 */
->  		seqcount_mutex_t lock;
->  
-> -		/**
-> +		/*
->  		 * @total: Total time this engine was busy.
->  		 *
->  		 * Accumulated time not counting the most recent block in cases
-> @@ -177,7 +177,7 @@ struct intel_gt {
->  		 */
->  		ktime_t total;
->  
-> -		/**
-> +		/*
->  		 * @start: Timestamp of the last idle to active transition.
->  		 *
->  		 * Idle is defined as active == 0, active is active > 0.
-> @@ -243,7 +243,7 @@ struct intel_gt {
->  
->  		unsigned long mslice_mask;
->  
-> -		/** @hwconfig: hardware configuration data */
-> +		/* @hwconfig: hardware configuration data */
->  		struct intel_hwconfig hwconfig;
->  	} info;
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset_types.h b/drivers/gpu/drm/i915/gt/intel_reset_types.h
-> index 9312b29f5a97..4ef21186e6d5 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset_types.h
-> @@ -11,7 +11,7 @@
->  #include <linux/srcu.h>
->  
->  struct intel_reset {
-> -	/**
-> +	/*
->  	 * flags: Control various stages of the GPU reset
->  	 *
->  	 * #I915_RESET_BACKOFF - When we start a global reset, we need to
-> @@ -49,7 +49,7 @@ struct intel_reset {
->  
->  	struct mutex mutex; /* serialises wedging/unwedging */
->  
-> -	/**
-> +	/*
->  	 * Waitqueue to signal when the reset has completed. Used by clients
->  	 * that wait for dev_priv->mm.wedged to settle.
->  	 */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-> index 74e67dbf89c5..ae5f859d72c0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-> @@ -50,7 +50,7 @@ struct intel_timeline {
->  
->  	bool has_initial_breadcrumb;
->  
-> -	/**
-> +	/*
->  	 * List of breadcrumbs associated with GPU requests currently
->  	 * outstanding.
->  	 */
-> @@ -66,10 +66,10 @@ struct intel_timeline {
->  
->  	struct i915_active active;
->  
-> -	/** A chain of completed timelines ready for early retirement. */
-> +	/* A chain of completed timelines ready for early retirement. */
->  	struct intel_timeline *retire;
->  
-> -	/**
-> +	/*
->  	 * We track the most recent seqno that we wait on in every context so
->  	 * that we only have to emit a new await and dependency on a more
->  	 * recent sync point. As the contexts may be executed out-of-order, we
-> diff --git a/drivers/gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm b/drivers/gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm
-> index 5fdf384bb621..88d2dbbf981e 100644
-> --- a/drivers/gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm
-> +++ b/drivers/gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm
-> @@ -14,7 +14,7 @@
->  /* Store designated "clear GRF" value */
->  mov(1)          f0.1<1>UW       g1.2<0,1,0>UW                   { align1 1N };
->  
-> -/**
-> +/*
->   * Curbe Format
->   *
->   * DW 1.0 - Block Offset to write Render Cache
-> @@ -40,7 +40,7 @@ add(1)          g1.2<1>UD       g1.2<0,1,0>UD   0x00000001UD    { align1 1N }; /
->  cmp.z.f0.0(1)   null<1>UD       g1.3<0,1,0>UD   0x00000000UD    { align1 1N };
->  (+f0.0) jmpi(1) 352D                                            { align1 WE_all 1N };
->  
-> -/**
-> +/*
->   * State Register has info on where this thread is running
->   *	IVB: sr0.0 :: [15:13]: MBZ, 12: HSID (Half-Slice ID), [11:8]EUID, [2:0] ThreadSlotID
->   *	HSW: sr0.0 :: 15: MBZ, [14:13]: SliceID, 12: HSID (Half-Slice ID), [11:8]EUID, [2:0] ThreadSlotID
-> diff --git a/drivers/gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm b/drivers/gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm
-> index 97c7ac9e3854..4d7c5f1981ba 100644
-> --- a/drivers/gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm
-> +++ b/drivers/gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm
-> @@ -14,7 +14,7 @@
->  /* Store designated "clear GRF" value */
->  mov(1)          f0.1<1>UW       g1.2<0,1,0>UW                   { align1 1N };
->  
-> -/**
-> +/*
->   * Curbe Format
->   *
->   * DW 1.0 - Block Offset to write Render Cache
-> @@ -40,7 +40,7 @@ add(1)          g1.2<1>UD       g1.2<0,1,0>UD   0x00000001UD    { align1 1N }; /
->  cmp.z.f0.0(1)   null<1>UD       g1.3<0,1,0>UD   0x00000000UD    { align1 1N };
->  (+f0.0) jmpi(1) 44D                                             { align1 WE_all 1N };
->  
-> -/**
-> +/*
->   * State Register has info on where this thread is running
->   *	IVB: sr0.0 :: [15:13]: MBZ, 12: HSID (Half-Slice ID), [11:8]EUID, [2:0] ThreadSlotID
->   *	HSW: sr0.0 :: 15: MBZ, [14:13]: SliceID, 12: HSID (Half-Slice ID), [11:8]EUID, [2:0] ThreadSlotID
-> diff --git a/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h b/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
-> index 58f93226b1c1..d8a7659079f5 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
-> @@ -168,12 +168,12 @@ struct __guc_capture_ads_cache {
->   * Internal context of the intel_guc_capture module.
->   */
->  struct intel_guc_state_capture {
-> -	/**
-> +	/*
->  	 * @reglists: static table of register lists used for error-capture state.
->  	 */
->  	const struct __guc_mmio_reg_descr_group *reglists;
->  
-> -	/**
-> +	/*
->  	 * @extlists: allocated table of steered register lists used for error-capture state.
->  	 *
->  	 * NOTE: steered registers have multiple instances depending on the HW configuration
-> @@ -181,7 +181,7 @@ struct intel_guc_state_capture {
->  	 */
->  	struct __guc_mmio_reg_descr_group *extlists;
->  
-> -	/**
-> +	/*
->  	 * @ads_cache: cached register lists that is ADS format ready
->  	 */
->  	struct __guc_capture_ads_cache ads_cache[GUC_CAPTURE_LIST_INDEX_MAX]
-> @@ -189,7 +189,7 @@ struct intel_guc_state_capture {
->  						[GUC_MAX_ENGINE_CLASSES];
->  	void *ads_null_cache;
->  
-> -	/**
-> +	/*
->  	 * @cachelist: Pool of pre-allocated nodes for error capture output
->  	 *
->  	 * We need this pool of pre-allocated nodes because we cannot
-> @@ -204,7 +204,7 @@ struct intel_guc_state_capture {
->  #define PREALLOC_NODES_DEFAULT_NUMREGS 64
->  	int max_mmio_per_node;
->  
-> -	/**
-> +	/*
->  	 * @outlist: Pool of pre-allocated nodes for error capture output
->  	 *
->  	 * A linked list of parsed GuC error-capture output data before
-> diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-> index 69496af996d9..c722e3c18694 100644
-> --- a/drivers/gpu/drm/i915/i915_drm_client.h
-> +++ b/drivers/gpu/drm/i915/i915_drm_client.h
-> @@ -34,7 +34,7 @@ struct i915_drm_client {
->  
->  	struct i915_drm_clients *clients;
->  
-> -	/**
-> +	/*
->  	 * @past_runtime: Accumulation of pphwsp runtimes from closed contexts.
->  	 */
->  	atomic64_t past_runtime[I915_LAST_UABI_ENGINE_CLASS + 1];
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 76aad81c014b..519e8e8ace45 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -113,37 +113,37 @@ struct i915_gem_mm {
->  	 * support stolen.
->  	 */
->  	struct intel_memory_region *stolen_region;
-> -	/** Memory allocator for GTT stolen memory */
-> +	/* Memory allocator for GTT stolen memory */
->  	struct drm_mm stolen;
-> -	/** Protects the usage of the GTT stolen memory allocator. This is
-> +	/* Protects the usage of the GTT stolen memory allocator. This is
->  	 * always the inner lock when overlapping with struct_mutex. */
->  	struct mutex stolen_lock;
->  
->  	/* Protects bound_list/unbound_list and #drm_i915_gem_object.mm.link */
->  	spinlock_t obj_lock;
->  
-> -	/**
-> +	/*
->  	 * List of objects which are purgeable.
->  	 */
->  	struct list_head purge_list;
->  
-> -	/**
-> +	/*
->  	 * List of objects which have allocated pages and are shrinkable.
->  	 */
->  	struct list_head shrink_list;
->  
-> -	/**
-> +	/*
->  	 * List of objects which are pending destruction.
->  	 */
->  	struct llist_head free_list;
->  	struct work_struct free_work;
-> -	/**
-> +	/*
->  	 * Count of objects pending destructions. Used to skip needlessly
->  	 * waiting on an RCU barrier if no objects are waiting to be freed.
->  	 */
->  	atomic_t free_count;
->  
-> -	/**
-> +	/*
->  	 * tmpfs instance used for shmem backed objects
->  	 */
->  	struct vfsmount *gemfs;
-> @@ -155,7 +155,7 @@ struct i915_gem_mm {
->  	struct shrinker shrinker;
->  
->  #ifdef CONFIG_MMU_NOTIFIER
-> -	/**
-> +	/*
->  	 * notifier_lock for mmu notifiers, memory may not be allocated
->  	 * while holding this lock.
->  	 */
-> @@ -209,7 +209,7 @@ struct drm_i915_private {
->  	struct intel_runtime_info __runtime; /* Use RUNTIME_INFO() to access. */
->  	struct intel_driver_caps caps;
->  
-> -	/**
-> +	/*
->  	 * Data Stolen Memory - aka "i915 stolen memory" gives us the start and
->  	 * end of stolen which we can optionally use to create GEM objects
->  	 * backed by stolen memory. Note that stolen_usable_size tells us
-> @@ -217,7 +217,7 @@ struct drm_i915_private {
->  	 * some portion of it is in fact reserved for use by hardware functions.
->  	 */
->  	struct resource dsm;
-> -	/**
-> +	/*
->  	 * Reseved portion of Data Stolen Memory
->  	 */
->  	struct resource dsm_reserved;
-> @@ -258,7 +258,7 @@ struct drm_i915_private {
->  	struct mutex sb_lock;
->  	struct pm_qos_request sb_qos;
->  
-> -	/** Cached value of IMR to avoid reads in updating the bitfield */
-> +	/* Cached value of IMR to avoid reads in updating the bitfield */
->  	union {
->  		u32 irq_mask;
->  		u32 de_irq_mask[I915_MAX_PIPES];
-> @@ -274,7 +274,7 @@ struct drm_i915_private {
->  	unsigned int hpll_freq;
->  	unsigned int czclk_freq;
->  
-> -	/**
-> +	/*
->  	 * wq - Driver workqueue for GEM.
->  	 *
->  	 * NOTE: Work items scheduled here are not allowed to grab any modeset
-> diff --git a/drivers/gpu/drm/i915/i915_file_private.h b/drivers/gpu/drm/i915/i915_file_private.h
-> index f42877869692..282e0c280224 100644
-> --- a/drivers/gpu/drm/i915/i915_file_private.h
-> +++ b/drivers/gpu/drm/i915/i915_file_private.h
-> @@ -22,7 +22,7 @@ struct drm_i915_file_private {
->  		struct rcu_head rcu;
->  	};
->  
-> -	/** @proto_context_lock: Guards all struct i915_gem_proto_context
-> +	/* @proto_context_lock: Guards all struct i915_gem_proto_context
->  	 * operations
->  	 *
->  	 * This not only guards @proto_context_xa, but is always held
-> @@ -33,7 +33,7 @@ struct drm_i915_file_private {
->  	 */
->  	struct mutex proto_context_lock;
->  
-> -	/** @proto_context_xa: xarray of struct i915_gem_proto_context
-> +	/* @proto_context_xa: xarray of struct i915_gem_proto_context
->  	 *
->  	 * Historically, the context uAPI allowed for two methods of
->  	 * setting context parameters: SET_CONTEXT_PARAM and
-> @@ -77,7 +77,7 @@ struct drm_i915_file_private {
->  	 */
->  	struct xarray proto_context_xa;
->  
-> -	/** @context_xa: xarray of fully created i915_gem_context
-> +	/* @context_xa: xarray of fully created i915_gem_context
->  	 *
->  	 * Write access to this xarray is guarded by @proto_context_lock.
->  	 * Otherwise, writers may race with finalize_create_context_locked().
-> @@ -101,7 +101,7 @@ struct drm_i915_file_private {
->  #define   I915_CLIENT_FAST_HANG_JIFFIES (60 * HZ)
->  #define I915_CLIENT_SCORE_CONTEXT_BAN   3
->  #define I915_CLIENT_SCORE_BANNED	9
-> -	/** ban_score: Accumulated score of all ctx bans and fast hangs. */
-> +	/* ban_score: Accumulated score of all ctx bans and fast hangs. */
->  	atomic_t ban_score;
->  	unsigned long hang_timestamp;
->  
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-> index efc75cc2ffdb..4e395a9e4c11 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-> @@ -224,10 +224,10 @@ struct i915_gpu_error {
->  
->  	atomic_t pending_fb_pin;
->  
-> -	/** Number of times the device has been reset (global) */
-> +	/* Number of times the device has been reset (global) */
->  	atomic_t reset_count;
->  
-> -	/** Number of times an engine has been reset */
-> +	/* Number of times an engine has been reset */
->  	atomic_t reset_engine_count[I915_NUM_ENGINES];
->  };
->  
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-> index c30f43319a78..9fdb50376995 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.h
-> +++ b/drivers/gpu/drm/i915/i915_pmu.h
-> @@ -52,34 +52,34 @@ struct i915_pmu_sample {
->  };
->  
->  struct i915_pmu {
-> -	/**
-> +	/*
->  	 * @cpuhp: Struct used for CPU hotplug handling.
->  	 */
->  	struct {
->  		struct hlist_node node;
->  		unsigned int cpu;
->  	} cpuhp;
-> -	/**
-> +	/*
->  	 * @base: PMU base.
->  	 */
->  	struct pmu base;
-> -	/**
-> +	/*
->  	 * @closed: i915 is unregistering.
->  	 */
->  	bool closed;
-> -	/**
-> +	/*
->  	 * @name: Name as registered with perf core.
->  	 */
->  	const char *name;
-> -	/**
-> +	/*
->  	 * @lock: Lock protecting enable mask and ref count handling.
->  	 */
->  	spinlock_t lock;
-> -	/**
-> +	/*
->  	 * @timer: Timer for internal i915 PMU sampling.
->  	 */
->  	struct hrtimer timer;
-> -	/**
-> +	/*
->  	 * @enable: Bitmask of specific enabled events.
->  	 *
->  	 * For some events we need to track their state and do some internal
-> @@ -92,14 +92,14 @@ struct i915_pmu {
->  	 */
->  	u32 enable;
->  
-> -	/**
-> +	/*
->  	 * @timer_last:
->  	 *
->  	 * Timestmap of the previous timer invocation.
->  	 */
->  	ktime_t timer_last;
->  
-> -	/**
-> +	/*
->  	 * @enable_count: Reference counts for the enabled events.
->  	 *
->  	 * Array indices are mapped in the same way as bits in the @enable field
-> @@ -107,11 +107,11 @@ struct i915_pmu {
->  	 * are using the PMU API.
->  	 */
->  	unsigned int enable_count[I915_PMU_MASK_BITS];
-> -	/**
-> +	/*
->  	 * @timer_enabled: Should the internal sampling timer be running.
->  	 */
->  	bool timer_enabled;
-> -	/**
-> +	/*
->  	 * @sample: Current and previous (raw) counters for sampling events.
->  	 *
->  	 * These counters are updated from the i915 PMU sampling timer.
-> @@ -120,11 +120,11 @@ struct i915_pmu {
->  	 * struct intel_engine_cs.
->  	 */
->  	struct i915_pmu_sample sample[__I915_NUM_PMU_SAMPLERS];
-> -	/**
-> +	/*
->  	 * @sleep_last: Last time GT parked for RC6 estimation.
->  	 */
->  	ktime_t sleep_last;
-> -	/**
-> +	/*
->  	 * @irq_count: Number of interrupts
->  	 *
->  	 * Intentionally unsigned long to avoid atomics or heuristics on 32bit.
-> @@ -132,15 +132,15 @@ struct i915_pmu {
->  	 * occasional wraparound easily. It's 32bit after all.
->  	 */
->  	unsigned long irq_count;
-> -	/**
-> +	/*
->  	 * @events_attr_group: Device events attribute group.
->  	 */
->  	struct attribute_group events_attr_group;
-> -	/**
-> +	/*
->  	 * @i915_attr: Memory block holding device attributes.
->  	 */
->  	void *i915_attr;
-> -	/**
-> +	/*
->  	 * @pmu_attr: Memory block holding device attributes.
->  	 */
->  	void *pmu_attr;
-> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-> index b1fa912a65e7..5f896fbf3064 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore.h
-> +++ b/drivers/gpu/drm/i915/intel_uncore.h
-> @@ -39,7 +39,7 @@ struct intel_uncore;
->  struct intel_gt;
->  
->  struct intel_uncore_mmio_debug {
-> -	spinlock_t lock; /** lock is also taken in irq contexts. */
-> +	spinlock_t lock; /* lock is also taken in irq contexts. */
->  	int unclaimed_mmio_check;
->  	int saved_mmio_check;
->  	u32 suspend_count;
-> @@ -133,7 +133,7 @@ struct intel_uncore {
->  	struct intel_gt *gt;
->  	struct intel_runtime_pm *rpm;
->  
-> -	spinlock_t lock; /** lock is also taken in irq contexts. */
-> +	spinlock_t lock; /* lock is also taken in irq contexts. */
->  
->  	unsigned int flags;
->  #define UNCORE_HAS_FORCEWAKE		BIT(0)
-> -- 
-> 2.37.3
-> 
+However the bitfield with meml3 fuses only exists since graphics version
+12. Moreover, Link Copy engines are currently only available in PVC.
+Tying additional copy engines to the meml3 fuses is not correct for
+other platforms.
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
+Make sure there is a check for  `12.60 <= ver < 12.70`. Later platforms
+may extend this function later if it's needed to fuse off copy engines.
+
+Currently it's harmless as the Link Copy engines are still not exported:
+info->engine_mask only has BCS0 set and the register is only read for
+platforms that do have it.
+
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 4 ++++
+  1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 6e0122b3dca2..ac5ff17888cd 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -694,6 +694,10 @@ static void engine_mask_apply_copy_fuses(struct intel_gt *gt)
+  	unsigned long meml3_mask;
+  	unsigned long quad;
+  
++	if (!(GRAPHICS_VER_FULL(i915) >= IP_VER(12, 60) &&
++	      GRAPHICS_VER_FULL(i915) < IP_VER(12, 70)))
++		return;
++
+  	meml3_mask = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
+  	meml3_mask = REG_FIELD_GET(GEN12_MEML3_EN_MASK, meml3_mask);
+  
