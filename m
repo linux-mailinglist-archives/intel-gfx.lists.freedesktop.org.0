@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657895B598E
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:45:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 624C15B598C
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 13:45:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5832A10E3DE;
-	Mon, 12 Sep 2022 11:45:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C89710E3D6;
+	Mon, 12 Sep 2022 11:45:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4657A10E3CF
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:45:31 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B46EA10E3CF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Sep 2022 11:45:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662983131; x=1694519131;
+ t=1662983135; x=1694519135;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dlEGuRLlcMuzT4B0ma037AWoFloPJStbJ8EZ2p4BmgE=;
- b=AomCDTDlFayefb7Nj3VJSyiN6LU9ham9ljozCmCFnNfdLjM5Q/GMxwrn
- ShpZknMVwn7uJ8TYRhrZUgbRld23Ffg6wYqqf54B3pLmgLDqox9PBMiyD
- NgBkMdcQWpjEZE04gWte3chD1pxkhv/0CtELpZahMbTMnXTVa8IusNdBt
- Pc/K5F+WfyiXyIrs/k6Uo5yq1hXnwKaYnOdMj1RNmxjSKzzqhruKZEnw9
- fyMja47Lyi/ojX31YJJ2Rk1/RHu5DuvwtGBzqaoMtlHi6m8FBQx9c77rw
- 1LURdbLnS9EcPUWXOPmE1hNdtdinaEK9bGsHbzvn52h/zam0VMFQ0+pes A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="284865108"
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="284865108"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 04:45:30 -0700
-X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="593460164"
+ bh=yOR6iUp4ZI2aN07x3rxT6WEGahVCJInpGNPo+zqgBQs=;
+ b=I1lANUFsJFS9XT/ChQJCCQ2rDXc1Olz4kFEL7w8fcswWkJ4ySewN8fXg
+ PCJdF42w44+vMLXf37GzakawfLTwBFQpXJi5jcVsHKhH/+jqtcFSotxDB
+ pCwjhLS1ZFvTHao1zvURGHZV2pF4pu9gCSgpcIOpF7mj1NpBIZTLxF+9B
+ zdnAVQLAmJY1lOwx3pUB5xW75Mv2Fg0pW1Uqz3v0Uay297u7oGNqA4S5v
+ PYSOGNpXzb2UrEm7lrKMbhTl9+ENuw86GeklUsYFXwogm7F3+c9ChSBGY
+ ehurbw+cY2T1NxKvY8/yilnSVM8feeNaE7obFke8rLV2NllwdCmoWGC+c Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="280862332"
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="280862332"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 04:45:35 -0700
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; d="scan'208";a="678052190"
 Received: from abijaz-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.58.140])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 04:45:29 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 04:45:33 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Sep 2022 14:45:13 +0300
-Message-Id: <9d59b18f5dc06e86a48c1ce0f40d625f51e3e85a.1662983005.git.jani.nikula@intel.com>
+Date: Mon, 12 Sep 2022 14:45:14 +0300
+Message-Id: <b18edb4f96c9d2ec728ef04e6f99d161fe5641d1.1662983005.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1662983005.git.jani.nikula@intel.com>
 References: <cover.1662983005.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/5] drm/i915/ipc: move IPC debugfs to
- skl_watermark.c
+Subject: [Intel-gfx] [PATCH 3/5] drm/i915/ipc: register debugfs only if IPC
+ available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,180 +62,41 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow the new direction for debugfs files, moving the details where the
-implementation is. It seems quite natural skl_watermark.c is the place
-that controls IPC details, even for debugfs, not
-intel_display_debugfs.c.
+It looks like trying to enable IPC via debugfs on platforms that don't
+have IPC resulted in dmesg info message about IPC being enabled, which
+is clearly not possible and would not happen.
 
-Rename the functions and convert dev_priv->i915 while at it.
+Seems sensible to register IPC debugfs only on platforms that have IPC.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c  | 54 +---------------
- drivers/gpu/drm/i915/display/skl_watermark.c  | 61 +++++++++++++++++++
- drivers/gpu/drm/i915/display/skl_watermark.h  |  1 +
- 3 files changed, 63 insertions(+), 53 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index d2139cf4f825..338e92889ace 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -983,58 +983,6 @@ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
- 	return 0;
- }
- 
--static int i915_ipc_status_show(struct seq_file *m, void *data)
--{
--	struct drm_i915_private *dev_priv = m->private;
--
--	seq_printf(m, "Isochronous Priority Control: %s\n",
--		   str_yes_no(skl_watermark_ipc_enabled(dev_priv)));
--	return 0;
--}
--
--static int i915_ipc_status_open(struct inode *inode, struct file *file)
--{
--	struct drm_i915_private *dev_priv = inode->i_private;
--
--	if (!HAS_IPC(dev_priv))
--		return -ENODEV;
--
--	return single_open(file, i915_ipc_status_show, dev_priv);
--}
--
--static ssize_t i915_ipc_status_write(struct file *file, const char __user *ubuf,
--				     size_t len, loff_t *offp)
--{
--	struct seq_file *m = file->private_data;
--	struct drm_i915_private *dev_priv = m->private;
--	intel_wakeref_t wakeref;
--	bool enable;
--	int ret;
--
--	ret = kstrtobool_from_user(ubuf, len, &enable);
--	if (ret < 0)
--		return ret;
--
--	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref) {
--		if (!skl_watermark_ipc_enabled(dev_priv) && enable)
--			drm_info(&dev_priv->drm,
--				 "Enabling IPC: WM will be proper only after next commit\n");
--		dev_priv->ipc_enabled = enable;
--		skl_watermark_ipc_update(dev_priv);
--	}
--
--	return len;
--}
--
--static const struct file_operations i915_ipc_status_fops = {
--	.owner = THIS_MODULE,
--	.open = i915_ipc_status_open,
--	.read = seq_read,
--	.llseek = seq_lseek,
--	.release = single_release,
--	.write = i915_ipc_status_write
--};
--
- static int i915_ddb_info(struct seq_file *m, void *unused)
- {
- 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-@@ -1911,7 +1859,6 @@ static const struct {
- 	{"i915_dp_test_active", &i915_displayport_test_active_fops},
- 	{"i915_hpd_storm_ctl", &i915_hpd_storm_ctl_fops},
- 	{"i915_hpd_short_storm_ctl", &i915_hpd_short_storm_ctl_fops},
--	{"i915_ipc_status", &i915_ipc_status_fops},
- 	{"i915_drrs_ctl", &i915_drrs_ctl_fops},
- 	{"i915_edp_psr_debug", &i915_edp_psr_debug_fops},
- };
-@@ -1935,6 +1882,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
- 
- 	intel_dmc_debugfs_register(i915);
- 	intel_fbc_debugfs_register(i915);
-+	skl_watermark_ipc_debugfs_register(i915);
- }
- 
- static int i915_panel_show(struct seq_file *m, void *data)
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index df505ca6ef91..1f0efde29d96 100644
+index 1f0efde29d96..fd9552f08422 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3465,3 +3465,64 @@ void intel_mbus_dbox_update(struct intel_atomic_state *state)
- 		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe), val);
- 	}
+@@ -3479,9 +3479,6 @@ static int skl_watermark_ipc_status_open(struct inode *inode, struct file *file)
+ {
+ 	struct drm_i915_private *i915 = inode->i_private;
+ 
+-	if (!HAS_IPC(i915))
+-		return -ENODEV;
+-
+ 	return single_open(file, skl_watermark_ipc_status_show, i915);
  }
-+
-+static int skl_watermark_ipc_status_show(struct seq_file *m, void *data)
-+{
-+	struct drm_i915_private *i915 = m->private;
-+
-+	seq_printf(m, "Isochronous Priority Control: %s\n",
-+		   str_yes_no(skl_watermark_ipc_enabled(i915)));
-+	return 0;
-+}
-+
-+static int skl_watermark_ipc_status_open(struct inode *inode, struct file *file)
-+{
-+	struct drm_i915_private *i915 = inode->i_private;
-+
+ 
+@@ -3523,6 +3520,9 @@ void skl_watermark_ipc_debugfs_register(struct drm_i915_private *i915)
+ {
+ 	struct drm_minor *minor = i915->drm.primary;
+ 
 +	if (!HAS_IPC(i915))
-+		return -ENODEV;
++		return;
 +
-+	return single_open(file, skl_watermark_ipc_status_show, i915);
-+}
-+
-+static ssize_t skl_watermark_ipc_status_write(struct file *file,
-+					      const char __user *ubuf,
-+					      size_t len, loff_t *offp)
-+{
-+	struct seq_file *m = file->private_data;
-+	struct drm_i915_private *i915 = m->private;
-+	intel_wakeref_t wakeref;
-+	bool enable;
-+	int ret;
-+
-+	ret = kstrtobool_from_user(ubuf, len, &enable);
-+	if (ret < 0)
-+		return ret;
-+
-+	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
-+		if (!skl_watermark_ipc_enabled(i915) && enable)
-+			drm_info(&i915->drm,
-+				 "Enabling IPC: WM will be proper only after next commit\n");
-+		i915->ipc_enabled = enable;
-+		skl_watermark_ipc_update(i915);
-+	}
-+
-+	return len;
-+}
-+
-+static const struct file_operations skl_watermark_ipc_status_fops = {
-+	.owner = THIS_MODULE,
-+	.open = skl_watermark_ipc_status_open,
-+	.read = seq_read,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+	.write = skl_watermark_ipc_status_write
-+};
-+
-+void skl_watermark_ipc_debugfs_register(struct drm_i915_private *i915)
-+{
-+	struct drm_minor *minor = i915->drm.primary;
-+
-+	debugfs_create_file("i915_ipc_status", 0644, minor->debugfs_root, i915,
-+			    &skl_watermark_ipc_status_fops);
-+}
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
-index 7e5adef0c510..7a5a4e67cd73 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.h
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-@@ -47,6 +47,7 @@ void intel_wm_state_verify(struct intel_crtc *crtc,
- void skl_watermark_ipc_init(struct drm_i915_private *i915);
- void skl_watermark_ipc_update(struct drm_i915_private *i915);
- bool skl_watermark_ipc_enabled(struct drm_i915_private *i915);
-+void skl_watermark_ipc_debugfs_register(struct drm_i915_private *i915);
- 
- void skl_wm_init(struct drm_i915_private *i915);
- 
+ 	debugfs_create_file("i915_ipc_status", 0644, minor->debugfs_root, i915,
+ 			    &skl_watermark_ipc_status_fops);
+ }
 -- 
 2.34.1
 
