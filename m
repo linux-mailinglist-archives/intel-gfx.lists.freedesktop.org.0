@@ -1,51 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E66BB5B5695
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 10:48:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 046345B569D
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 10:49:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A50F10E307;
-	Mon, 12 Sep 2022 08:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03E7010E2FE;
+	Mon, 12 Sep 2022 08:49:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C24C110E2E7;
- Mon, 12 Sep 2022 08:48:52 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18CB510E32B;
+ Mon, 12 Sep 2022 08:49:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662972532; x=1694508532;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=RV/Z6Nez+AtXKAso4KztacVTIqbsyJux7G8i/ZB6gXA=;
- b=EApozQQnS6cAQ52AAWG02/0azbftvNWQo5630N8L5GiO95oxOdYNLhgm
- vGmY+egR5mjqD0dJIh+oPhntinT2VL85leBawgwKo7QecJCo3JT3GiiSO
- f0stLAv4fyXCmrIhDd00oibukrCOJI0f+RCmOMIzmhUgCOhTr299bB2hX
- GCJOYTIwTC0Fj2cCizYT9oVOXM1ynaTykP83ckFRu8zZJnO6Zxi05PSi0
- ICmnMnTfTU+oMgEPGaPlBAergfjA6f9qffPxab6WIzTlwOZpEBHfzthLt
- iClR2EqsD83Sd31bjYiBB2sf4FWbCZI/qLNtL6kSWuf6PrpPMQPJROheZ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="298616830"
-X-IronPort-AV: E=Sophos;i="5.93,308,1654585200"; d="scan'208";a="298616830"
+ t=1662972569; x=1694508569;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=1fV6UnyShZFSfMblQKy/IpHFX5MpBvdv2/rYDbvm0wQ=;
+ b=ZsDlGdwTPZjN3ErQXJaAa/Xmhja7Hxc0joSIJ5xLysvuozr3gtyNdKYF
+ 1o1oaZkKLww5ffNf+6GdZ+8/0xVNdW6YLqqkswpQFDC07P+iCrEzZ7o+i
+ dCcKk1dfXaJO4VWSkUQwVSxkU3qHzCjTsHpJhUZ3XboVsYTSsuvY7UkX8
+ EAstvaTM/6oDiUD7cr8NGLAzSM1RALfgL0YQGyjSi5JZjDv3sAfQCcxcu
+ EvvcnTPVK2XIdJXKPsUdpxKKMXc4ftt8f1ol1G5Trub3yiB7HYryFsQsc
+ HO1ec/Qr+huwb7iINMD9xlQVxHUTZWTBD0jDVS8w3/QckMJoK3CRkdN85 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="295400732"
+X-IronPort-AV: E=Sophos;i="5.93,308,1654585200"; d="scan'208";a="295400732"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 01:48:50 -0700
-X-IronPort-AV: E=Sophos;i="5.93,308,1654585200"; d="scan'208";a="678001102"
-Received: from abijaz-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.58.140])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 01:49:28 -0700
+X-IronPort-AV: E=Sophos;i="5.93,308,1654585200"; d="scan'208";a="678001216"
+Received: from mwojtowi-mobl.ger.corp.intel.com (HELO [10.213.24.87])
+ ([10.213.24.87])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 01:48:47 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <87v8q08q6w.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220905085744.29637-1-stanislav.lisovskiy@intel.com>
- <87v8q08q6w.fsf@intel.com>
-Date: Mon, 12 Sep 2022 11:48:44 +0300
-Message-ID: <87wna9566r.fsf@intel.com>
+ 12 Sep 2022 01:49:27 -0700
+Message-ID: <71c9946b-4ef0-4445-830c-bbe7af4fd9b0@intel.com>
+Date: Mon, 12 Sep 2022 10:49:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 0/4] Add DP MST DSC support to i915
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.2.2
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220909-media-v2-0-6f20f322b4ef@intel.com>
+ <20220909-media-v2-1-6f20f322b4ef@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220909-media-v2-1-6f20f322b4ef@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/gt: Use MEDIA_VER() when
+ handling media fuses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,24 +63,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 06 Sep 2022, Jani Nikula <jani.nikula@intel.com> wrote:
-> We'll need to have a clean baseline to apply the patches on, i.e.
-> drm-misc-next pull request to drm-next, and drm-next backmerge to
-> drm-intel-next.
+On 10.09.2022 01:18, Lucas De Marchi wrote:
+> Check for media IP version instead of graphics since this is figuring
+> out the media engines' configuration. Currently the only platform with
+> non-matching graphics/media version is Meteor Lake: update the check in
+> gen11_vdbox_has_sfc() so it considers not only version 12, but also any
+> later version which then includes that platform.
+> 
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Stan, this is now done, drm-intel-next has the baseline for your
-changes.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Please re-send the series, Cc: dri-devel, and please do get the drm-misc
-maintainer ack on the first patch before merging.
+Regards
+Andrzej
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 6e0122b3dca2..b6602439224d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -654,13 +654,12 @@ bool gen11_vdbox_has_sfc(struct intel_gt *gt,
+>   	 */
+>   	if ((gt->info.sfc_mask & BIT(physical_vdbox / 2)) == 0)
+>   		return false;
+> -	else if (GRAPHICS_VER(i915) == 12)
+> +	else if (MEDIA_VER(i915) >= 12)
+>   		return (physical_vdbox % 2 == 0) ||
+>   			!(BIT(physical_vdbox - 1) & vdbox_mask);
+> -	else if (GRAPHICS_VER(i915) == 11)
+> +	else if (MEDIA_VER(i915) == 11)
+>   		return logical_vdbox % 2 == 0;
+>   
+> -	MISSING_CASE(GRAPHICS_VER(i915));
+>   	return false;
+>   }
+>   
+> @@ -747,14 +746,14 @@ static intel_engine_mask_t init_engine_mask(struct intel_gt *gt)
+>   	 * and bits have disable semantices.
+>   	 */
+>   	media_fuse = intel_uncore_read(uncore, GEN11_GT_VEBOX_VDBOX_DISABLE);
+> -	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
+> +	if (MEDIA_VER_FULL(i915) < IP_VER(12, 50))
+>   		media_fuse = ~media_fuse;
+>   
+>   	vdbox_mask = media_fuse & GEN11_GT_VDBOX_DISABLE_MASK;
+>   	vebox_mask = (media_fuse & GEN11_GT_VEBOX_DISABLE_MASK) >>
+>   		      GEN11_GT_VEBOX_DISABLE_SHIFT;
+>   
+> -	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+> +	if (MEDIA_VER_FULL(i915) >= IP_VER(12, 50)) {
+>   		fuse1 = intel_uncore_read(uncore, HSW_PAVP_FUSE1);
+>   		gt->info.sfc_mask = REG_FIELD_GET(XEHP_SFC_ENABLE_MASK, fuse1);
+>   	} else {
+> 
 
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
