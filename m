@@ -1,55 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9C3D5B5685
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 10:45:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E66BB5B5695
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Sep 2022 10:48:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E747B10E139;
-	Mon, 12 Sep 2022 08:44:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A50F10E307;
+	Mon, 12 Sep 2022 08:48:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CDD210E139;
- Mon, 12 Sep 2022 08:44:43 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C24C110E2E7;
+ Mon, 12 Sep 2022 08:48:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1662972283; x=1694508283;
+ t=1662972532; x=1694508532;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=QskuECXvIQDZopSnldJAGVX2vYRzDDH6HfLyqq9sciA=;
- b=DwLG/LBTNfZKDFW6R2sY4p+iohfnRn9s9PiofJAsaLHd4WOb8ZA1cExs
- SvZEuydC0i5rJT6la9SJ0NLWvg9oWMpGwjbvqNlgTDOPkjl1Narr20oJg
- rdYe6rLsVndoNGbs+Dcaq6q/e90Bb1kh4S3RTHDdYYalvGudhXkdP7zgA
- Fp62+Tg2DdIg48wVCRwEWiOjVfFSsKdWK9Kj1ihcSN4pVD4fRnYVv0+RS
- irzQcY/1xKiFxuHvGz0K2OAXX4AVJ1hn50GGGDmydJp5rESpVee4oPMcQ
- tSAaKfIMjLEd8NxxL1HLWzqtXl67j1R8X9HsuxPyG+Eggsaeeb2yFGMel w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="324045278"
-X-IronPort-AV: E=Sophos;i="5.93,308,1654585200"; d="scan'208";a="324045278"
+ message-id:mime-version;
+ bh=RV/Z6Nez+AtXKAso4KztacVTIqbsyJux7G8i/ZB6gXA=;
+ b=EApozQQnS6cAQ52AAWG02/0azbftvNWQo5630N8L5GiO95oxOdYNLhgm
+ vGmY+egR5mjqD0dJIh+oPhntinT2VL85leBawgwKo7QecJCo3JT3GiiSO
+ f0stLAv4fyXCmrIhDd00oibukrCOJI0f+RCmOMIzmhUgCOhTr299bB2hX
+ GCJOYTIwTC0Fj2cCizYT9oVOXM1ynaTykP83ckFRu8zZJnO6Zxi05PSi0
+ ICmnMnTfTU+oMgEPGaPlBAergfjA6f9qffPxab6WIzTlwOZpEBHfzthLt
+ iClR2EqsD83Sd31bjYiBB2sf4FWbCZI/qLNtL6kSWuf6PrpPMQPJROheZ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10467"; a="298616830"
+X-IronPort-AV: E=Sophos;i="5.93,308,1654585200"; d="scan'208";a="298616830"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 01:44:42 -0700
-X-IronPort-AV: E=Sophos;i="5.93,308,1654585200"; d="scan'208";a="678000152"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2022 01:48:50 -0700
+X-IronPort-AV: E=Sophos;i="5.93,308,1654585200"; d="scan'208";a="678001102"
 Received: from abijaz-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.58.140])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2022 01:44:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?Q?Aur=C3=A9lien?= <aurelien.intel@ap2c.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Hans de Goede <hdegoede@redhat.com>, Lyude
- <lyude@redhat.com>, dri-devel@lists.freedesktop.org
-In-Reply-To: <115b5a5ebddcd268ee5f7688400448a2@ap2c.com>
+ 12 Sep 2022 01:48:47 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <87v8q08q6w.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <878rms7emr.fsf@intel.com>
- <183219aab00.2890.be34037ad6564a4fe81285fd91a8f407@ap2c.com>
- <YxsMcH37rRkt0cfj@intel.com> <115b5a5ebddcd268ee5f7688400448a2@ap2c.com>
-Date: Mon, 12 Sep 2022 11:44:37 +0300
-Message-ID: <87zgf556dm.fsf@intel.com>
+References: <20220905085744.29637-1-stanislav.lisovskiy@intel.com>
+ <87v8q08q6w.fsf@intel.com>
+Date: Mon, 12 Sep 2022 11:48:44 +0300
+Message-ID: <87wna9566r.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] Developing a new backlight driver for specific OLED
- screen
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/4] Add DP MST DSC support to i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,37 +58,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 09 Sep 2022, "Aur=C3=A9lien" <aurelien.intel@ap2c.com> wrote:
-> But since this display is independent from the GPU i didn't want to
-> link both code.
+On Tue, 06 Sep 2022, Jani Nikula <jani.nikula@intel.com> wrote:
+> We'll need to have a clean baseline to apply the patches on, i.e.
+> drm-misc-next pull request to drm-next, and drm-next backmerge to
+> drm-intel-next.
 
-If it's eDP and uses some proprietary DPCD brightness control mechanism,
-I think in practice it usually is somewhat dependent on the GPU.
+Stan, this is now done, drm-intel-next has the baseline for your
+changes.
 
-(OTOH I realize you don't mention eDP. If it's not eDP, DDC/CI is the
-more likely way to control brightness than DPCD.)
-
-> For sure. It's an OLED display. Thus there is no backlight. It uses
-> specific registers to control the brightness of the screen.
-
-As Lyude said, we have a bunch of "backlight" terminology for historical
-reasons, but basically the DP aux, or DPCD, brightness control is mostly
-agnostic to the display technology.
-
-> Unfortunately I guess the mechanism is not shared with many OLED
-> displays...
-
-Do you have a spec for it? How does it differ from the VESA eDP DPCD
-brightness control?
-
+Please re-send the series, Cc: dri-devel, and please do get the drm-misc
+maintainer ack on the first patch before merging.
 
 BR,
 Jani.
 
 
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
