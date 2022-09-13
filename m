@@ -1,49 +1,138 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF15C5B74A5
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Sep 2022 17:27:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C1F75B7537
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Sep 2022 17:36:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E48710E781;
-	Tue, 13 Sep 2022 15:27:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0641310E401;
+	Tue, 13 Sep 2022 15:36:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2EEC10E781
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Sep 2022 15:27:33 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C266B10E359
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Sep 2022 15:36:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663082853; x=1694618853;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=e/RrIYMBhwiIShhydY6PS+emV2QfDe7bQx3+MoQDaIE=;
- b=RNTi3ZUcQ2k34pVJR4tO5ZeEaaZgjxWxIkneW3lv2wk+qyRq/zkW3tcP
- NZxUAt4X8FHeLWvp6ZpSc/5UB8vy4AtdxWnT115vqYhiJTENrMq6yCASw
- whuUtKWQrK07VJnY+1MauQkh/DtUCqK7xhtI3msJLQfutElY6eZ+8EFzW
- baPBZEgXE21/0R4pmKnwMzT3qJh3ndMijazzcMSPY/zkEnI1MXdwFMIYY
- ITxPU/zrFWHWyrLgBOK1jKpsQ06KKIlPVMNAzeN0fHkbr0v7sdB5W9uOe
- zJNAD5XrZdR275ZT+RPHy4l9B6M4h1aUE4HjhntG5G3w0l9sQLkoyWhxK Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10469"; a="298172458"
-X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="298172458"
+ t=1663083380; x=1694619380;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=P5ndsmXMZSW42LE18dQBjmm/qltB/1vx4g9YOQBHMog=;
+ b=YckmNL4fhj/af3AUnNb+jvM/EKTfUMwXWW9mXasDp78hqLg1VM4ZaKaX
+ 4k3ULFm5uXA+PxvXapeJ62Vo0LgQ9ZkIuX/mDgnGv9ppqT2bwHeaVqB9n
+ EmgfWl9Y0b7KqFP11pv9NyRDlXsdd8kzgsO55i+h5sbCf+hHsE5cMsEqD
+ zzZGpyUFaqYEgs3l4+PP2SLJPitJH5VFhlMIkcf/vSpL3wC82z+bpRhcv
+ Are07taPrzNJHwPzNxifSU1f5qjj2kff4ZFBWUcqazC9LHUwWEz8UPPpC
+ MtPqmwIwkb2d5HTwoW+OuQMq2GEHeevvUny8py/AdkZ+s0/tueW4sgZta Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10469"; a="384466296"
+X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="384466296"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2022 08:27:33 -0700
-X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="646971373"
-Received: from srr4-3-linux-105-anshuma1.iind.intel.com ([10.223.74.179])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2022 08:27:30 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Sep 2022 20:57:14 +0530
-Message-Id: <20220913152714.16541-3-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20220913152714.16541-1-anshuman.gupta@intel.com>
-References: <20220913152714.16541-1-anshuman.gupta@intel.com>
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2022 08:36:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="646975984"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga008.jf.intel.com with ESMTP; 13 Sep 2022 08:36:19 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 13 Sep 2022 08:36:19 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Tue, 13 Sep 2022 08:36:19 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Tue, 13 Sep 2022 08:36:19 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XIMu5cdSBD5UN4abXh36qT0ObYH5ctI946frv1C+4LEvQ94+ChgQE9mLkiu29QbRjl9rnp61R60KIGHl3X28VF5sPU9tOgcGJfJFHkW5m+7aJJ8VoWAL8lle7FYDxnUNQttszLpNgjOLMa8A4CDXEGS7efeYJSQIAwlzMcco1w9Dbr5QnobHcquppnsNDthMNhWezXsnHEEgHsRaXtAHkLAF+c/u2Dhpnd93f/L5ZSpMWwQ7vvikKUaZdFrtYwi8zxdujKvR5zgDLTefiXIiqxinAXctCRQ/51eprXb0Mq1p871uX84CvUPrpGQmofxnVDwITXckQ//4KhZ0Jv327w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P5ndsmXMZSW42LE18dQBjmm/qltB/1vx4g9YOQBHMog=;
+ b=lc7muT4iBjFjqjOiRFcRTZYcPbN9U7xUxsmKx3kfhcTL0WhzJyzJduzBAUvlxkLUPUva18kNeEKVMvsn/cEsB8e1GxztkkQaCCgTfgAirviEQkJZi2h2Urz5WBwm1bs4qWwVHOZ45SPKVYtxyO+t+Y+Sh6Kc2Hksy8+XdjMDip12Q8kmcvTZBJfhC/JYfhCPGaIfoBfBEUdomNRai3XPXcmjP08qBFTEryTrxJ5VYGu/kPhs6zlpPQHLx+ATaOt+xj0M5f1b0h6XVMtGDPUms6phFG7OcDdoU6/TMy2q6Fo4mUeePydIc4ae8gNAmNFezi2ONfDlqKbo4M+QGbZ4Ww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DS0PR11MB6472.namprd11.prod.outlook.com (2603:10b6:8:c0::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5612.22; Tue, 13 Sep 2022 15:36:16 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b80a:cf49:9118:24e7]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::b80a:cf49:9118:24e7%6]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
+ 15:36:16 +0000
+Date: Tue, 13 Sep 2022 08:36:14 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Message-ID: <20220913153614.fxmdz4qesvaiummk@ldmartin-desk2.lan>
+X-Patchwork-Hint: comment
+References: <20220908-if-ladder-v1-0-9949a713ca08@intel.com>
+ <20220908-if-ladder-v1-2-9949a713ca08@intel.com>
+ <20220913111702.unfmxysm26rgjxqe@gjsousa-mobl2>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20220913111702.unfmxysm26rgjxqe@gjsousa-mobl2>
+X-ClientProxiedBy: BYAPR11CA0060.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::37) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 2/2] drm/i915/dgfx: Release mmap on rpm
- suspend
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB6472:EE_
+X-MS-Office365-Filtering-Correlation-Id: 80270bb8-fad9-4047-3e63-08da959db260
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lqtJeJ/4fBZ7vsNriY5kldOV+553JmJ811LBQTSFImm9SZraepSntlJaOUYmH9mZk8rNOaHd+TYBhKRgozHwm/2NZwAgifbjWns/BsFwaWZKpz880JzutkNDh5QbZ/5lADY8HkkX9lR5Ir9bB60oB0JmKNN/4TdR25voXZrhpKsqe5Y2G6fYhKceB7t9d9mOMB/0feOze8fywsT5ukRg4D6jp4DVVaS3R5AQ2H6+7B+xFIuDAFjlF2OP8iGHvXmrM5N9QpfHoiigpuShfElWu2uv09y5N/XaRouzJcwZ8+cBuFjKgpl6wbzzR3LlQM6sQBomVTNoP8oFc3OfOBQUKPqsZOSLbIEZ26KsSBS566sVOzgwXFkIq6FDE8l2Bp8mViCoh6UwMuM3TXkdUx2cltPcrLOG7L3L8r+PanJBejKWlbPKA04/xx1zWWCXdSPT9HFwRPOF+zkFEuoHpw6QUT69lB948YI86j22CgRINEzqgbD1kYX85bABvZy+LD7ELt5yGVENpbhRMor8Mo4VtutB1+SU8xAHGHhmCoXxLWUrCv3zF2Xx+LG0cAiju8wa+BV/66pX2uWKycJYW+1kJpXTvFkieh84g5tWizjdF1yeDbNlvTSkuyPAM/64T6GaekRwJEQugURUFPxwRFbnFiPhw3R7BLYvPOG6b9DJza42FBlzw3ZHWlVmOyweCh6GnK4BwjTX+Vof8qKElG7trA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(396003)(346002)(366004)(376002)(136003)(39860400002)(451199015)(66556008)(82960400001)(6862004)(38100700002)(66476007)(5660300002)(478600001)(186003)(8676002)(1076003)(2906002)(316002)(6636002)(4326008)(83380400001)(9686003)(36756003)(26005)(41300700001)(6512007)(8936002)(86362001)(4744005)(6506007)(6486002)(66946007);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tkR+7JuzRorBmDIhtxs9iuz8Xh2daVbHUnPFCRwxCksIOQXwWXFO1LzO6nYO?=
+ =?us-ascii?Q?jCor36TSES/ac/krqn3gihHcI5yrwe8Ogfo8HZdm3nJiMlfOvaKo4PiDxZbZ?=
+ =?us-ascii?Q?bMAUuotEnX9pZwfXzebAy0izwvORZxsmHwfX4AYAC+9nweyZQH6U+JygJK8e?=
+ =?us-ascii?Q?EmZ74B3WUDIA3KrI1o6xxjcFK5JAQMzVdtik54Sbdxg0WkgqHG60kfvcn7em?=
+ =?us-ascii?Q?fdw/vaiqIjbEjV272VFgXBqWtblFPsdqvu+rLyLXIBphYIMpHnERWEAgweO3?=
+ =?us-ascii?Q?MD39HuUz5LDtr8bqZFlUiGHT7jgPzdtA6QSV5NQO6IhZVTy6dcaFwA9vJ9i6?=
+ =?us-ascii?Q?fVZXnCBf/fwIfRIiAvqE+dy9qNQzmXD106q/xn6sMm60ECac63YC6/D/zcYG?=
+ =?us-ascii?Q?d7NstX6yfYaYddoZtU+gvY0Lf3H1p2TB8wbw5MeaHHlyjz2NIEst8qDIref+?=
+ =?us-ascii?Q?PGfWu5IXFm263zvgIDLbUC5ZMIWbXNnsl2vh2cP7pC11FkKEO+yPMZzkm6XS?=
+ =?us-ascii?Q?XuuEze3GbcHMopj+ycPbV85L+qsGfMNQ0IUGLnHXntPIiJpdytYLwIMvFveJ?=
+ =?us-ascii?Q?y4/plSPkBYdHiH++a52uVUscB8uUMZ7E+U8O3jtFhS5Eo7ScefpX38yXOPt/?=
+ =?us-ascii?Q?SUIFP5LxA6TbKW+m8zHgYj7nnGQKae4PNoBbezCRNFOpgrblYCocU3Wer/nQ?=
+ =?us-ascii?Q?a/uQXbJQqSYn52ZvuuImHQOZeGXd+opnjt8e3Ot215fKoZ6lxKjNXP3qoBEb?=
+ =?us-ascii?Q?2+RsNqu9wxznO/vGjzzmOkYUb+0q+GrvRXMUiAKrf9TFcp7yDXO3MoG0NApg?=
+ =?us-ascii?Q?DEd+Xr13ZHhMF+I0uytaM8lrpVnLMEoIg4CHibRdOyZKmkMqO/hlp6x6udUu?=
+ =?us-ascii?Q?zz/3MhIt3UKXLe+4sUe5uh3aZ08I/2Ke5Iw/up951inAjXQuHTAOZVv3Ulfr?=
+ =?us-ascii?Q?ns5iqsQdL5Kn+uHqMvByIzOWdP1Bq7GtW7gTYPPsCT+OdmTJnHlO1IcX8o66?=
+ =?us-ascii?Q?7sMlIWEynXvoB+y3Kh4p77oYGbUXLh+g93ykcmDzn8I0IYEdA5J4qu6cZgiE?=
+ =?us-ascii?Q?vxZvo539sOmK22DNWp2kgJ2orN7KHVgrf0EJ81BUsqkHqV3XrPbAWYgWEDWD?=
+ =?us-ascii?Q?xFNVPwRAIsYAacle2MEDzKZrgp2VCq+WjVFi0uCQ7UtIIVkqlcvXC8/27MUc?=
+ =?us-ascii?Q?nU/IpRpcMDCQus6SIIpQ4yeOBHIjOeFVgsk0TQLlj8ilRNSTdqd9wQ9KF/s4?=
+ =?us-ascii?Q?ZEYTsIhIMqUtNtRw5hgw5v23lcCUEJ5H6cWZwZIVq64S5tItJ33pXteLWCgK?=
+ =?us-ascii?Q?jlMm7fKaRzScApqUq2VCg4xRy6FTjnEZU992l/p1LBB/zKLL+L80RaFf9qR2?=
+ =?us-ascii?Q?R/hjGvFaoOLUOAEkufahhSE866meFCJmgWE2YGirosbq69pvnF7rVQHl54oQ?=
+ =?us-ascii?Q?Xhdo/iE3pvQLQafSV7HxDOB7s93LFy3x9b+2L58mtOrHou7R6uPE9GKMl9bl?=
+ =?us-ascii?Q?PZA1iI0znPXQzOek/CUNIMd09Pso7aSG5EgK5QbHCo6S5ZfTUsYYVGMDpG8g?=
+ =?us-ascii?Q?7LoX30Ktu10wcbhRdJ8yFrm0xU3OuW8IxNB3BfYWlkOsbRoJVpCmwwvWl1s5?=
+ =?us-ascii?Q?MA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80270bb8-fad9-4047-3e63-08da959db260
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2022 15:36:16.3433 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HJIej+GQ0e0fm1Mxn9maOrCShLZsA5PSQYivC21ix14kuHa2YDXesc7bLFLT1vFP1MQuIjz3ACO4suoUvoFvQuq+hl7OfCC+fnq72sqmF+k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6472
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v1 2/3] drm/i915/gt: Extract per-platform
+ function for frequency read
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,280 +145,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris@chris-wilson.co.uk, Matthew Auld <matthew.auld@intel.com>,
- rodrigo.vivi@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Release all mmap mapping for all lmem objects which are associated
-with userfault such that, while pcie function in D3hot, any access
-to memory mappings will raise a userfault.
+On Tue, Sep 13, 2022 at 08:17:02AM -0300, Gustavo Sousa wrote:
+>Hi, Lucas.
+>
+>On Thu, Sep 08, 2022 at 01:08:15PM -0700, Lucas De Marchi wrote:
+>> Instead of calling read_clock_frequency() to walk the if/else ladder
+>> per platform, move the ladder to intel_gt_init_clock_frequency() and
+>> use one function per branch.
+>
+>I think the split of current code into separate functions looks good. However,
+>maybe the correct place to do that would be inside read_clock_frequency()
+>instead of intel_gt_init_clock_frequency(), since read_clock_frequency() is used
+>inside intel_gt_check_clock_frequency().
 
-Runtime resume the dgpu(when gem object lies in lmem).
-This will transition the dgpu graphics function to D0
-state if it was in D3 in order to access the mmap memory
-mappings.
+indeed, good catch. I forgot about the debug thing reading it again
+later.
 
-v2:
-- Squashes the patches. [Matt Auld]
-- Add adequate locking for lmem_userfault_list addition. [Matt Auld]
-- Reused obj->userfault_count to avoid double addition. [Matt Auld]
-- Added i915_gem_object_lock to check
-  i915_gem_object_is_lmem. [Matt Auld]
-
-v3:
-- Use i915_ttm_cpu_maps_iomem. [Matt Auld]
-- Fix 'ret == 0 to ret == VM_FAULT_NOPAGE'. [Matt Auld]
-- Reuse obj->userfault_count as a bool 0 or 1. [Matt Auld]
-- Delete the mmaped obj from lmem_userfault_list in obj
-  destruction path. [Matt Auld]
-- Get a wakeref for object destruction patch. [Matt Auld]
-- Use intel_wakeref_auto to delay runtime PM. [Matt Auld]
-
-v4:
-- Avoid using mmo offset to get the vma_node. [Matt Auld]
-- Added comment to use the lmem_userfault_lock. [Matt Auld]
-- Get lmem_userfault_lock in i915_gem_object_release_mmap_offset.
-  [Matt Auld]
-- Fixed kernel test robot generated warning.
-
-v5:
-- Addressed the cosmetics comments. [Andi]
-- Changed i915_gem_runtime_pm_object_release_mmap_offset() name to
-  i915_gem_object_runtime_pm_release_mmap_offset() to be rhythmic.
-
-PCIe Specs 5.3.1.4.1
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6331
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 21 +++++++++++
- drivers/gpu/drm/i915/gem/i915_gem_mman.h      |  1 +
- drivers/gpu/drm/i915/gem/i915_gem_object.c    |  2 +-
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |  3 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 36 +++++++++++++++++--
- drivers/gpu/drm/i915/gt/intel_gt.c            |  2 ++
- drivers/gpu/drm/i915/gt/intel_gt_types.h      | 14 ++++++++
- drivers/gpu/drm/i915/i915_gem.c               |  4 +++
- 8 files changed, 79 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index b55befda3387..73d9eda1d6b7 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -550,6 +550,20 @@ void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj)
- 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
- }
- 
-+void i915_gem_object_runtime_pm_release_mmap_offset(struct drm_i915_gem_object *obj)
-+{
-+	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
-+	struct ttm_device *bdev = bo->bdev;
-+
-+	drm_vma_node_unmap(&bo->base.vma_node, bdev->dev_mapping);
-+
-+	if (obj->userfault_count) {
-+		/* rpm wakeref provide exclusive access */
-+		list_del(&obj->userfault_link);
-+		obj->userfault_count = 0;
-+	}
-+}
-+
- void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj)
- {
- 	struct i915_mmap_offset *mmo, *mn;
-@@ -573,6 +587,13 @@ void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj)
- 		spin_lock(&obj->mmo.lock);
- 	}
- 	spin_unlock(&obj->mmo.lock);
-+
-+	if (obj->userfault_count) {
-+		mutex_lock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
-+		list_del(&obj->userfault_link);
-+		mutex_unlock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
-+		obj->userfault_count = 0;
-+	}
- }
- 
- static struct i915_mmap_offset *
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.h b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-index efee9e0d2508..1fa91b3033b3 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-@@ -27,6 +27,7 @@ int i915_gem_dumb_mmap_offset(struct drm_file *file_priv,
- void __i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj);
- void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj);
- 
-+void i915_gem_object_runtime_pm_release_mmap_offset(struct drm_i915_gem_object *obj);
- void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 85482a04d158..7ff9c7877bec 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -238,7 +238,7 @@ static void __i915_gem_object_free_mmaps(struct drm_i915_gem_object *obj)
- {
- 	/* Skip serialisation and waking the device if known to be not used. */
- 
--	if (obj->userfault_count)
-+	if (obj->userfault_count && !IS_DGFX(to_i915(obj->base.dev)))
- 		i915_gem_object_release_mmap_gtt(obj);
- 
- 	if (!RB_EMPTY_ROOT(&obj->mmo.offsets)) {
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 9f6b14ec189a..40305e2bcd49 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -298,7 +298,8 @@ struct drm_i915_gem_object {
- 	};
- 
- 	/**
--	 * Whether the object is currently in the GGTT mmap.
-+	 * Whether the object is currently in the GGTT or any other supported
-+	 * fake offset mmap backed by lmem.
- 	 */
- 	unsigned int userfault_count;
- 	struct list_head userfault_link;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index f64a3deb12fc..0544b0a4a43a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -509,9 +509,18 @@ static int i915_ttm_shrink(struct drm_i915_gem_object *obj, unsigned int flags)
- static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
- {
- 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
-+	intel_wakeref_t wakeref = 0;
- 
- 	if (likely(obj)) {
-+		/* ttm_bo_release() already has dma_resv_lock */
-+		if (i915_ttm_cpu_maps_iomem(bo->resource))
-+			wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
-+
- 		__i915_gem_object_pages_fini(obj);
-+
-+		if (wakeref)
-+			intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, wakeref);
-+
- 		i915_ttm_free_cached_io_rsgt(obj);
- 	}
- }
-@@ -981,6 +990,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
- 	struct ttm_buffer_object *bo = area->vm_private_data;
- 	struct drm_device *dev = bo->base.dev;
- 	struct drm_i915_gem_object *obj;
-+	intel_wakeref_t wakeref = 0;
- 	vm_fault_t ret;
- 	int idx;
- 
-@@ -1002,6 +1012,9 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
- 		return VM_FAULT_SIGBUS;
- 	}
- 
-+	if (i915_ttm_cpu_maps_iomem(bo->resource))
-+		wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
-+
- 	if (!i915_ttm_resource_mappable(bo->resource)) {
- 		int err = -ENODEV;
- 		int i;
-@@ -1023,7 +1036,8 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
- 		if (err) {
- 			drm_dbg(dev, "Unable to make resource CPU accessible\n");
- 			dma_resv_unlock(bo->base.resv);
--			return VM_FAULT_SIGBUS;
-+			ret = VM_FAULT_SIGBUS;
-+			goto out_rpm;
- 		}
- 	}
- 
-@@ -1034,12 +1048,30 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
- 	} else {
- 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
- 	}
-+
- 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
--		return ret;
-+		goto out_rpm;
-+
-+	/* ttm_bo_vm_reserve() already has dma_resv_lock */
-+	if (ret == VM_FAULT_NOPAGE && wakeref && !obj->userfault_count) {
-+		obj->userfault_count = 1;
-+		mutex_lock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
-+		list_add(&obj->userfault_link, &to_gt(to_i915(obj->base.dev))->lmem_userfault_list);
-+		mutex_unlock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
-+	}
-+
-+	if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
-+		intel_wakeref_auto(&to_gt(to_i915(obj->base.dev))->userfault_wakeref,
-+				   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
- 
- 	i915_ttm_adjust_lru(obj);
- 
- 	dma_resv_unlock(bo->base.resv);
-+
-+out_rpm:
-+	if (wakeref)
-+		intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, wakeref);
-+
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 07300b0a0873..d0b03a928b9a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -40,6 +40,8 @@ void intel_gt_common_init_early(struct intel_gt *gt)
- {
- 	spin_lock_init(gt->irq_lock);
- 
-+	INIT_LIST_HEAD(&gt->lmem_userfault_list);
-+	mutex_init(&gt->lmem_userfault_lock);
- 	INIT_LIST_HEAD(&gt->closed_vma);
- 	spin_lock_init(&gt->closed_lock);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index 0757d9577551..f19c2de77ff6 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -141,6 +141,20 @@ struct intel_gt {
- 	struct intel_wakeref wakeref;
- 	atomic_t user_wakeref;
- 
-+	/**
-+	 *  Protects access to lmem usefault list.
-+	 *  It is required, if we are outside of the runtime suspend path,
-+	 *  access to @lmem_userfault_list requires always first grabbing the
-+	 *  runtime pm, to ensure we can't race against runtime suspend.
-+	 *  Once we have that we also need to grab @lmem_userfault_lock,
-+	 *  at which point we have exclusive access.
-+	 *  The runtime suspend path is special since it doesn't really hold any locks,
-+	 *  but instead has exclusive access by virtue of all other accesses requiring
-+	 *  holding the runtime pm wakeref.
-+	 */
-+	struct mutex lmem_userfault_lock;
-+	struct list_head lmem_userfault_list;
-+
- 	struct list_head closed_vma;
- 	spinlock_t closed_lock; /* guards the list of closed_vma */
- 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 3463dd795950..f18cc6270b2b 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -842,6 +842,10 @@ void i915_gem_runtime_suspend(struct drm_i915_private *i915)
- 				 &to_gt(i915)->ggtt->userfault_list, userfault_link)
- 		__i915_gem_object_release_mmap_gtt(obj);
- 
-+	list_for_each_entry_safe(obj, on,
-+				 &to_gt(i915)->lmem_userfault_list, userfault_link)
-+		i915_gem_object_runtime_pm_release_mmap_offset(obj);
-+
- 	/*
- 	 * The fence will be lost when the device powers down. If any were
- 	 * in use by hardware (i.e. they are pinned), we should not be powering
--- 
-2.26.2
-
+thanks
+Lucas De Marchi
