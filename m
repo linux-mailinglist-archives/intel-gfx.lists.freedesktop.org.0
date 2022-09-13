@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9668B5B7441
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Sep 2022 17:22:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E57405B7444
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Sep 2022 17:22:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB3AD10E76C;
-	Tue, 13 Sep 2022 15:22:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAC2A10E770;
+	Tue, 13 Sep 2022 15:22:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD10A10E76D
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Sep 2022 15:22:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4A010E76C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Sep 2022 15:22:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663082544; x=1694618544;
+ t=1663082546; x=1694618546;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JsFTFggezjsNnv0Sfayr6B0R1QsN0SCsalUFue3ukaQ=;
- b=C/9XZqCbP2nwC/89q7X/lhMQ4R59tpUSa5DStycrPdN64lC2RpIUWXZz
- 3/TS94l2cvXKQJ0J+JVVeaLhvN+Vv2JCEmeIwgUNwB8T5J3wvBmUOIAi8
- adBtD2OalaSc1F4PIvG9IJiM2M0eE/u5EtOYLgqtxk3MrSEwdZ3ylxAPj
- hXA0sHwt4O+rtJkiJWH8FSyUOc5TBd2e8rEXD8Y+hxl38AeG8M7ibxNko
- vpMiFO41u8J7Kxa6bWLwmHqjxjkKON5K7T6LGeQtKYUtV1VBbTSCXaPme
- ZhNB4KjmRhrOARU0gMcbwU1cKJYOzr0y9zI47xoel/YqCHtkklnieyQVG g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10469"; a="298963942"
-X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="298963942"
+ bh=as3tLfMVrpkws0czxsFczYerumKmLoilAdjTAseCgS0=;
+ b=cyHRHP2aEMqo1R3W9BH2dq/BQUALbF2x5ZfsqzlWFEhCcta/7kwJuYr3
+ mgwWopFCpKcDFPBHmOSeiu9/QAZTMFBdt/jbmarhRkMUugoKQ+j/OolXG
+ 4wHwEWbr0OHP48ji/jZ6i9K/XoDC77UXhwyGof/4XZtaJX8JEtg37itAc
+ OO7fv5tdr6ZQ9jcQsJGuHVUKr2XsIniVttu+491JTu8s6byfPx6MB49gy
+ ZegCJKlC0UHqJdYYiXIaDFkur5Fygxficu5Luct19x9n0JQY8LWT4bVTx
+ JgfbP+Q0ntF35v5lzHIWd4KOTZjZEoznN5wXtTUGhuAePz4reZwVTTb9Q w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10469"; a="298963971"
+X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="298963971"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2022 08:22:19 -0700
-X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="593977813"
+ 13 Sep 2022 08:22:24 -0700
+X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="593977882"
 Received: from abaczek-mobl.ger.corp.intel.com (HELO
  kdrobnik-desk.toya.net.pl) ([10.213.8.5])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2022 08:22:16 -0700
+ 13 Sep 2022 08:22:20 -0700
 From: Karolina Drobnik <karolina.drobnik@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Sep 2022 17:21:48 +0200
-Message-Id: <37c67abb3303852f06a570a4360addf52bf941c1.1663081418.git.karolina.drobnik@intel.com>
+Date: Tue, 13 Sep 2022 17:21:49 +0200
+Message-Id: <7377cb3b371a983dce02be69f6611fcf85c822bb.1663081418.git.karolina.drobnik@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1663081418.git.karolina.drobnik@intel.com>
 References: <cover.1663081418.git.karolina.drobnik@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 1/4] drm/i915/gt: Explicitly clear BB_OFFSET
- for new contexts
+Subject: [Intel-gfx] [PATCH v5 2/4] drm/i915/selftests: Check for incomplete
+ LRI from the context image
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,107 +59,175 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
  Ramalingam C <ramalingampc2008@gmail.com>,
- Chris Wilson <chris.p.wilson@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, Ramalingam C <ramalingam.c@intel.com>
+ Ramalingam C <ramalingam.c@intel.com>, Chris Wilson <chris.p.wilson@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Chris Wilson <chris@chris-wilson.co.uk>
 
-Even though the initial protocontext we load onto HW has the register
-cleared, by the time we save it into the default image, BB_OFFSET has
-had the enable bit set. Reclear BB_OFFSET for each new context.
+In order to keep the context image parser simple, we assume that all
+commands follow a similar format. A few, especially not MI commands on
+the render engines, have fixed lengths not encoded in a length field.
+This caused us to incorrectly skip over 3D state commands, and start
+interpreting context data as instructions. Eventually, as Daniele
+discovered, this would lead us to find addition LRI as part of the data
+and mistakenly add invalid LRI commands to the context probes.
 
-Testcase: igt/i915_selftests/gt_lrc
+Stop parsing after we see the first !MI command, as we know we will have
+seen all the context registers by that point. (Mostly true for all gen
+so far, though the render context does have LRI after the first page
+that we have been ignoring so far. It would be useful to extract those
+as well so that we have the full list of user accessible registers.)
 
-v2:
-  Extend it for gen8.
-v3:
-  BB_OFFSET is recorded per engine from Gen9 onwards
+Similarly, emit a warning if we do try to emit an invalid zero-length
+LRI.
 
+Testcase: igt@i915_selftest@live@gt_lrc
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6580
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6670
+
+Reported-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+Acked-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Karolina Drobnik <karolina.drobnik@intel.com>
+Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_regs.h |  1 +
- drivers/gpu/drm/i915/gt/intel_lrc.c         | 20 ++++++++++++++++++++
- drivers/gpu/drm/i915/gt/selftest_lrc.c      |  5 +++++
- 3 files changed, 26 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 61 +++++++++++++++++++++++---
+ 1 file changed, 54 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-index 889f0df3940b..fe1a0d5fd4b1 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-@@ -110,6 +110,7 @@
- #define RING_SBBSTATE(base)			_MMIO((base) + 0x118) /* hsw+ */
- #define RING_SBBADDR_UDW(base)			_MMIO((base) + 0x11c) /* gen8+ */
- #define RING_BBADDR(base)			_MMIO((base) + 0x140)
-+#define RING_BB_OFFSET(base)			_MMIO((base) + 0x158)
- #define RING_BBADDR_UDW(base)			_MMIO((base) + 0x168) /* gen8+ */
- #define CCID(base)				_MMIO((base) + 0x180)
- #define   CCID_EN				BIT(0)
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 08214683e130..3955292483a6 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -662,6 +662,21 @@ static int lrc_ring_mi_mode(const struct intel_engine_cs *engine)
- 		return -1;
- }
- 
-+static int lrc_ring_bb_offset(const struct intel_engine_cs *engine)
-+{
-+	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-+		return 0x80;
-+	else if (GRAPHICS_VER(engine->i915) >= 12)
-+		return 0x70;
-+	else if (GRAPHICS_VER(engine->i915) >= 9)
-+		return 0x64;
-+	else if (GRAPHICS_VER(engine->i915) >= 8 &&
-+		 engine->class == RENDER_CLASS)
-+		return 0xc4;
-+	else
-+		return -1;
-+}
-+
- static int lrc_ring_gpr0(const struct intel_engine_cs *engine)
- {
- 	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-@@ -768,6 +783,7 @@ static void init_common_regs(u32 * const regs,
- 			     bool inhibit)
- {
- 	u32 ctl;
-+	int loc;
- 
- 	ctl = _MASKED_BIT_ENABLE(CTX_CTRL_INHIBIT_SYN_CTX_SWITCH);
- 	ctl |= _MASKED_BIT_DISABLE(CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
-@@ -779,6 +795,10 @@ static void init_common_regs(u32 * const regs,
- 	regs[CTX_CONTEXT_CONTROL] = ctl;
- 
- 	regs[CTX_TIMESTAMP] = ce->stats.runtime.last;
-+
-+	loc = lrc_ring_bb_offset(engine);
-+	if (loc != -1)
-+		regs[loc + 1] = 0;
- }
- 
- static void init_wa_bb_regs(u32 * const regs,
 diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 1109088fe8f6..9fc031267e0f 100644
+index 9fc031267e0f..8320eab7ac36 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -357,6 +357,11 @@ static int live_lrc_fixed(void *arg)
- 				lrc_ring_cmd_buf_cctl(engine),
- 				"RING_CMD_BUF_CCTL"
- 			},
-+			{
-+				i915_mmio_reg_offset(RING_BB_OFFSET(engine->mmio_base)),
-+				lrc_ring_bb_offset(engine),
-+				"RING_BB_OFFSET"
-+			},
- 			{ },
- 		}, *t;
- 		u32 *hw;
+@@ -27,6 +27,9 @@
+ #define NUM_GPR 16
+ #define NUM_GPR_DW (NUM_GPR * 2) /* each GPR is 2 dwords */
+ 
++#define LRI_HEADER MI_INSTR(0x22, 0)
++#define LRI_LENGTH_MASK GENMASK(7, 0)
++
+ static struct i915_vma *create_scratch(struct intel_gt *gt)
+ {
+ 	return __vm_create_scratch_for_read_pinned(&gt->ggtt->vm, PAGE_SIZE);
+@@ -202,7 +205,7 @@ static int live_lrc_layout(void *arg)
+ 				continue;
+ 			}
+ 
+-			if ((lri & GENMASK(31, 23)) != MI_INSTR(0x22, 0)) {
++			if ((lri & GENMASK(31, 23)) != LRI_HEADER) {
+ 				pr_err("%s: Expected LRI command at dword %d, found %08x\n",
+ 				       engine->name, dw, lri);
+ 				err = -EINVAL;
+@@ -992,18 +995,40 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+ 	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+-		u32 len = hw[dw] & 0x7f;
++		u32 len = hw[dw] & LRI_LENGTH_MASK;
++
++		/*
++		 * Keep it simple, skip parsing complex commands
++		 *
++		 * At present, there are no more MI_LOAD_REGISTER_IMM
++		 * commands after the first 3D state command. Rather
++		 * than include a table (see i915_cmd_parser.c) of all
++		 * the possible commands and their instruction lengths
++		 * (or mask for variable length instructions), assume
++		 * we have gathered the complete list of registers and
++		 * bail out.
++		 */
++		if ((hw[dw] >> INSTR_CLIENT_SHIFT) != INSTR_MI_CLIENT)
++			break;
+ 
+ 		if (hw[dw] == 0) {
+ 			dw++;
+ 			continue;
+ 		}
+ 
+-		if ((hw[dw] & GENMASK(31, 23)) != MI_INSTR(0x22, 0)) {
++		if ((hw[dw] & GENMASK(31, 23)) != LRI_HEADER) {
++			/* Assume all other MI commands match LRI length mask */
+ 			dw += len + 2;
+ 			continue;
+ 		}
+ 
++		if (!len) {
++			pr_err("%s: invalid LRI found in context image\n",
++			       ce->engine->name);
++			igt_hexdump(defaults, PAGE_SIZE);
++			break;
++		}
++
+ 		dw++;
+ 		len = (len + 1) / 2;
+ 		while (len--) {
+@@ -1155,18 +1180,29 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ 	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+-		u32 len = hw[dw] & 0x7f;
++		u32 len = hw[dw] & LRI_LENGTH_MASK;
++
++		/* For simplicity, break parsing at the first complex command */
++		if ((hw[dw] >> INSTR_CLIENT_SHIFT) != INSTR_MI_CLIENT)
++			break;
+ 
+ 		if (hw[dw] == 0) {
+ 			dw++;
+ 			continue;
+ 		}
+ 
+-		if ((hw[dw] & GENMASK(31, 23)) != MI_INSTR(0x22, 0)) {
++		if ((hw[dw] & GENMASK(31, 23)) != LRI_HEADER) {
+ 			dw += len + 2;
+ 			continue;
+ 		}
+ 
++		if (!len) {
++			pr_err("%s: invalid LRI found in context image\n",
++			       ce->engine->name);
++			igt_hexdump(defaults, PAGE_SIZE);
++			break;
++		}
++
+ 		dw++;
+ 		len = (len + 1) / 2;
+ 		*cs++ = MI_LOAD_REGISTER_IMM(len);
+@@ -1297,18 +1333,29 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+-		u32 len = hw[dw] & 0x7f;
++		u32 len = hw[dw] & LRI_LENGTH_MASK;
++
++		/* For simplicity, break parsing at the first complex command */
++		if ((hw[dw] >> INSTR_CLIENT_SHIFT) != INSTR_MI_CLIENT)
++			break;
+ 
+ 		if (hw[dw] == 0) {
+ 			dw++;
+ 			continue;
+ 		}
+ 
+-		if ((hw[dw] & GENMASK(31, 23)) != MI_INSTR(0x22, 0)) {
++		if ((hw[dw] & GENMASK(31, 23)) != LRI_HEADER) {
+ 			dw += len + 2;
+ 			continue;
+ 		}
+ 
++		if (!len) {
++			pr_err("%s: invalid LRI found in context image\n",
++			       engine->name);
++			igt_hexdump(defaults, PAGE_SIZE);
++			break;
++		}
++
+ 		dw++;
+ 		len = (len + 1) / 2;
+ 		while (len--) {
 -- 
 2.25.1
 
