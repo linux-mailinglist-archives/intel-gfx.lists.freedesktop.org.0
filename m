@@ -1,48 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01AC35BCD38
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:29:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBB285BCD30
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:29:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 866AA10E64D;
-	Mon, 19 Sep 2022 13:29:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A00910E647;
+	Mon, 19 Sep 2022 13:29:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 233C610E4F1;
- Tue, 13 Sep 2022 02:48:56 +0000 (UTC)
-Received: from kwepemi500012.china.huawei.com (unknown [172.30.72.55])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4MRSX53gN9znVGr;
- Tue, 13 Sep 2022 10:46:13 +0800 (CST)
-Received: from cgs.huawei.com (10.244.148.83) by
- kwepemi500012.china.huawei.com (7.221.188.12) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Tue, 13 Sep 2022 10:48:52 +0800
-From: Gaosheng Cui <cuigaosheng1@huawei.com>
-To: <evan.quan@amd.com>, <alexander.deucher@amd.com>,
- <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <airlied@linux.ie>,
- <daniel@ffwll.ch>, <patrik.r.jakobsson@gmail.com>,
- <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <tvrtko.ursulin@linux.intel.com>,
- <zackr@vmware.com>, <linux-graphics-maintainer@vmware.com>,
- <lijo.lazar@amd.com>, <matthew.brost@intel.com>, <John.C.Harrison@Intel.com>, 
- <daniele.ceraolospurio@intel.com>, <cuigaosheng1@huawei.com>
-Date: Tue, 13 Sep 2022 10:48:47 +0800
-Message-ID: <20220913024847.552254-7-cuigaosheng1@huawei.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220913024847.552254-1-cuigaosheng1@huawei.com>
-References: <20220913024847.552254-1-cuigaosheng1@huawei.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.244.148.83]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- kwepemi500012.china.huawei.com (7.221.188.12)
-X-CFilter-Loop: Reflected
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com
+ [IPv6:2607:f8b0:4864:20::b4a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9C7C10E4BB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Sep 2022 20:55:42 +0000 (UTC)
+Received: by mail-yb1-xb4a.google.com with SMTP id
+ q84-20020a25d957000000b006aeb2dba911so8433800ybg.8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Sep 2022 13:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=cc:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date; bh=s33IIyZmc8+UOGDwcegpipUma0relN3TBfpMpfz2BtE=;
+ b=RjSvDvpURFWYgxGTp+hsMgMlof5mN8kvxLIrfLqX4X89vJU6vIXFtmx0+5iAbRnMOl
+ AmhQI6ePnBrDnOU4psWJxluoIzalZblllUZva2TEr4N95hjhgz8ZGbLOHTFqvjKegQex
+ HWb6RVL597rKKcH75a2RB2G/IRszLtafu+XLKFjl5XN0LrxBPn+c8Q69aA2uJCuI/Pre
+ OXID5G2XefTpi4prdWtlr5n9LEccAWLjjHsNyMBuF2bFZow0uM/4qIe4sCcbuQskeeTU
+ RRC0VCjDJWvklrNi5KxKkgKM/2yq4MoRMOQLvTqdqMcd8Wtu6wIc4NGkOeV8JKsRLtea
+ TIhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date;
+ bh=s33IIyZmc8+UOGDwcegpipUma0relN3TBfpMpfz2BtE=;
+ b=Iyt+GQlpsBB5cMpfFznM19I65qaUjfVCcUeeR17AfLKCHEKMwLehhfgaWUwJf/Jy1X
+ UFzNznOoumjWpjT1rgiNTGUlDsWcfenKlu4tY3dRsX4GeHgqsZtXs/yxLY6Ltj25xVqv
+ b7xFYMXHftK4xpttYQXgrmKQeraAKaG0XsuxKVWd1bJnVuRhTJU67XFKKEKRurgpTE/W
+ eDSVzkmMqrhz/yhyBK5a5uSJx+koLIezjjV99TyxrkN+Y3MZ7/1P2q/4LQvmU1igjQVf
+ YRuOFhpHNtcY0GyuTHvTRJecsMt/TP2pd14zL5maIj7kWAVTqc4iYDhIH5SyOSYWgbxV
+ ZKpA==
+X-Gm-Message-State: ACgBeo1tX8uNV2oFKc10/8pm0fBY6L+tiUA/EEOmGqgkwfeZ8KVvvuKU
+ fWkMoUeauXebOgdZ5F/HH5as7vmUHw==
+X-Google-Smtp-Source: AA6agR5dsFGBClGYLD+8MsGw7ygyHU5aaKZYuov7XnCqBY5RuEfzGEGGFNkCWySIkMRmAQ8phfbVgpv1BQ==
+X-Received: from nhuck.c.googlers.com ([fda3:e722:ac3:cc00:14:4d90:c0a8:39cc])
+ (user=nhuck job=sendgmr) by 2002:a25:a26a:0:b0:6ae:a723:f721 with
+ SMTP id
+ b97-20020a25a26a000000b006aea723f721mr15192009ybi.200.1663102541983; Tue, 13
+ Sep 2022 13:55:41 -0700 (PDT)
+Date: Tue, 13 Sep 2022 13:55:27 -0700
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.37.2.789.g6183377224-goog
+Message-ID: <20220913205531.155046-1-nhuck@google.com>
+From: Nathan Huckleberry <nhuck@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 19 Sep 2022 13:29:09 +0000
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915: remove unused
- i915_gem_lmem_obj_ops declaration
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix return type of mode_valid
+ function hook
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,33 +65,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, llvm@lists.linux.dev,
+ Dan Carpenter <error27@gmail.com>, David Airlie <airlied@linux.ie>,
+ Tom Rix <trix@redhat.com>, intel-gfx@lists.freedesktop.org,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
+ Nathan Huckleberry <nhuck@google.com>, Nathan Chancellor <nathan@kernel.org>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915_gem_lmem_obj_ops has been removed since
-commit 213d50927763 ("drm/i915/ttm: Introduce a TTM i915
-gem object backend"), so remove it.
+All of the functions used for intel_dvo_dev_ops.mode_valid have a return
+type of enum drm_mode_status, but the mode_valid field in the struct
+definition has a return type of int.
 
-Signed-off-by: Gaosheng Cui <cuigaosheng1@huawei.com>
+The mismatched return type breaks forward edge kCFI since the underlying
+function definitions do not match the function hook definition.
+
+The return type of the mode_valid field should be changed from int to
+enum drm_mode_status.
+
+Reported-by: Dan Carpenter <error27@gmail.com>
+Link: https://github.com/ClangBuiltLinux/linux/issues/1703
+Cc: llvm@lists.linux.dev
+Signed-off-by: Nathan Huckleberry <nhuck@google.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_lmem.h | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dvo_dev.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-index 1b88ea13435c..5a7a14e85c3f 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-@@ -12,8 +12,6 @@ struct drm_i915_private;
- struct drm_i915_gem_object;
- struct intel_memory_region;
+diff --git a/drivers/gpu/drm/i915/display/intel_dvo_dev.h b/drivers/gpu/drm/i915/display/intel_dvo_dev.h
+index d96c3cc46e50..50205f064d93 100644
+--- a/drivers/gpu/drm/i915/display/intel_dvo_dev.h
++++ b/drivers/gpu/drm/i915/display/intel_dvo_dev.h
+@@ -75,8 +75,8 @@ struct intel_dvo_dev_ops {
+ 	 *
+ 	 * \return MODE_OK if the mode is valid, or another MODE_* otherwise.
+ 	 */
+-	int (*mode_valid)(struct intel_dvo_device *dvo,
+-			  struct drm_display_mode *mode);
++	enum drm_mode_status (*mode_valid)(struct intel_dvo_device *dvo,
++					   struct drm_display_mode *mode);
  
--extern const struct drm_i915_gem_object_ops i915_gem_lmem_obj_ops;
--
- void __iomem *
- i915_gem_object_lmem_io_map(struct drm_i915_gem_object *obj,
- 			    unsigned long n,
+ 	/*
+ 	 * Callback for preparing mode changes on an output
 -- 
-2.25.1
+2.37.2.789.g6183377224-goog
 
