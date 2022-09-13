@@ -1,58 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 565295B796C
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AB135B796B
 	for <lists+intel-gfx@lfdr.de>; Tue, 13 Sep 2022 20:29:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 145F210E134;
-	Tue, 13 Sep 2022 18:28:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 767AE10E19A;
+	Tue, 13 Sep 2022 18:28:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2D5110E134;
- Tue, 13 Sep 2022 18:28:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663093721; x=1694629721;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BTsfLzI0tVlzUWOBdavAOYQc+Pzx4o+CuINtZ68syYs=;
- b=mxLS4RBppTQpP7E/q12M0kWXfHsyQSn9Y6Fb6RW7FTr4OnK70scSiw8a
- YRfT1+OLonS0w5qt3kkUsRtqEJeYLxiPfcSVP5nmefkybKMM0r5d41F05
- d5EPi5FKFWG9TlkfnbdEmPxYSxU/c3JlZlgjveH2w3gFB0xfUpVR+9lvs
- D2IYQ4gNow5VUvrVKKKPGbmoAp2w4GzzdGwJxWy4ddZmzc9NU10xeU7sa
- myvKu1iJQeSHgVn+W+scap1g+FP9HreiYdStWjiqzrXLW98BevS/OvUOX
- PpYLOKNUKiU3D8RClL1efiXrPoBHTDo14XiCAJuuW1wGMtfeVB/9HhfSc w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10469"; a="324465097"
-X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="324465097"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2022 11:28:41 -0700
-X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="678687633"
-Received: from baumeish-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.59.168])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2022 11:28:35 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gaosheng Cui <cuigaosheng1@huawei.com>, evan.quan@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@linux.ie, daniel@ffwll.ch, patrik.r.jakobsson@gmail.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tvrtko.ursulin@linux.intel.com, zackr@vmware.com,
- linux-graphics-maintainer@vmware.com, lijo.lazar@amd.com,
- matthew.brost@intel.com, John.C.Harrison@Intel.com,
- daniele.ceraolospurio@intel.com, cuigaosheng1@huawei.com
-In-Reply-To: <20220913024847.552254-7-cuigaosheng1@huawei.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220913024847.552254-1-cuigaosheng1@huawei.com>
- <20220913024847.552254-7-cuigaosheng1@huawei.com>
-Date: Tue, 13 Sep 2022 21:28:31 +0300
-Message-ID: <874jxb3z8w.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B460C10E19A;
+ Tue, 13 Sep 2022 18:28:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AC06CA66C9;
+ Tue, 13 Sep 2022 18:28:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915: remove unused
- i915_gem_lmem_obj_ops declaration
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karolina Drobnik" <karolina.drobnik@intel.com>
+Date: Tue, 13 Sep 2022 18:28:55 -0000
+Message-ID: <166309373569.21297.112491743223455923@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220913100328.579271-1-karolina.drobnik@intel.com>
+In-Reply-To: <20220913100328.579271-1-karolina.drobnik@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/selftests=3A_Check_for_incomplete_LRI_from_the_con?=
+ =?utf-8?q?text_image?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,40 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 13 Sep 2022, Gaosheng Cui <cuigaosheng1@huawei.com> wrote:
-> i915_gem_lmem_obj_ops has been removed since
-> commit 213d50927763 ("drm/i915/ttm: Introduce a TTM i915
-> gem object backend"), so remove it.
+== Series Details ==
 
-Thanks, pushed this one patch to drm-intel-gt-next.
+Series: drm/i915/selftests: Check for incomplete LRI from the context image
+URL   : https://patchwork.freedesktop.org/series/108487/
+State : warning
 
-BR,
-Jani.
+== Summary ==
 
->
-> Signed-off-by: Gaosheng Cui <cuigaosheng1@huawei.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_lmem.h | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> index 1b88ea13435c..5a7a14e85c3f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> @@ -12,8 +12,6 @@ struct drm_i915_private;
->  struct drm_i915_gem_object;
->  struct intel_memory_region;
->  
-> -extern const struct drm_i915_gem_object_ops i915_gem_lmem_obj_ops;
-> -
->  void __iomem *
->  i915_gem_object_lmem_io_map(struct drm_i915_gem_object *obj,
->  			    unsigned long n,
+Error: dim checkpatch failed
+083c5285e433 drm/i915/selftests: Check for incomplete LRI from the context image
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#16: 
+seen all the context registers by that point. (Mostly true for all gen so far,
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+total: 0 errors, 1 warnings, 0 checks, 121 lines checked
+
+
