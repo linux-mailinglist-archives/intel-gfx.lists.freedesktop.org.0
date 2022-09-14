@@ -2,45 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57CF5B81C5
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 09:07:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2A15B81C6
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 09:07:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B46F410E553;
-	Wed, 14 Sep 2022 07:07:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AA0110E5C7;
+	Wed, 14 Sep 2022 07:07:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3176C10E553
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 07:07:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBEA310E5C7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 07:07:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663139259; x=1694675259;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5kGp0WuOT+Lmeh4EDBBSJOcz4CwxY3IF3UX9hz+CCyI=;
- b=ZvuUtk+jMADfH/XArmhsNuH5xwWrLKijW9evEO7qm2WQTR/IWH+ZP82B
- J32jMqLTh8ZccuzR2WfRa3gbUkvxHhO3b06wIeWoo+n9LXRBRKncBFibx
- 3yY/eh+wlZKF5jed5RxRDbYzLfM+WnflPtNoKeO+ZO8fxFDBm67MU70Eq
- AEv8hZIwxx2nBLtxPQYdMRjaym+zUcUouE6kr+cvJsbVULnPYz0NlB8as
- p9pslPyGElgOeNa1k3Fp48ZYuX/WRfGsFk6ZH4dJy6juPP703M1nnEGWB
- K/ocGJIX3HNQJ/qyBrh4VRAfU1YOJnz6tk0mqtiLn4iQ3Aex7I40uCt3H A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10469"; a="281389537"
-X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="281389537"
+ t=1663139261; x=1694675261;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Dt7iz2rnLV6NqyYax90pkJ1hBTdGNeZKbL12jU9Wd+c=;
+ b=WS6qYIxKMSArH5FfR8XpNU11IoYUCX3Z9TOer6NApk9tzDvku/kSJm/Z
+ tk93VyypGIFbDwNBbBKTLQpQe1Ktlz/W+4pPlpVOjSBnuh+0PK9l/oQGr
+ vr0yGrjNbHUsQfdncbisyI4IqcLw4qt/YI2Xs9KGbqZaMywSl3Tk41c1r
+ jrsU7fDNAcBWZxS7xtOEXiDp7NRdYzxpMHLubqECkLhmlBWoJjpcegVKq
+ zQ+OnHDr8zj2IjdMtECKgxBPwVLHja3QiRBP1OF0Qgb3eKTzab9HczbnN
+ YU0houKIL1oUPNL5W9Zd00JbJu6hhthKA1WHh8k9mfGWkBQEDF887D39N g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10469"; a="281389549"
+X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="281389549"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2022 00:07:38 -0700
+ 14 Sep 2022 00:07:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="685202104"
+X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; d="scan'208";a="685202119"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga004.fm.intel.com with ESMTP; 14 Sep 2022 00:07:35 -0700
+ by fmsmga004.fm.intel.com with ESMTP; 14 Sep 2022 00:07:39 -0700
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Sep 2022 12:36:31 +0530
-Message-Id: <20220914070634.1595778-1-suraj.kandpal@intel.com>
+Date: Wed, 14 Sep 2022 12:36:32 +0530
+Message-Id: <20220914070634.1595778-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220914070634.1595778-1-suraj.kandpal@intel.com>
+References: <20220914070634.1595778-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 0/3] Enable Pipewriteback
+Subject: [Intel-gfx] [PATCH v3 1/3] drm/i915: Define WD trancoder for i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,69 +59,232 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A patch series was floated in the drm mailing list which aimed to change
-the drm_connector and drm_encoder fields to pointer in the
-drm_connector_writeback structure, this received a huge pushback from
-the community but since i915 expects each connector present in the
-drm_device list to be a intel_connector but drm_writeback framework
-makes us have a connector which cannot be embedded in an intel_connector
-structure.
-[1]
-https://patchwork.kernel.org/project/dri-devel/patch/20220202081702.22119-1-suraj.kandpal@intel.com/
-[2]
-https://patchwork.kernel.org/project/dri-devel/patch/20220202085429.22261-6-suraj.kandpal@intel.com/
-Since no one had an issue with encoder field being changed into a
-pointer it was decided to break the connector and encoder pointer
-changes into two different series.The encoder field changes is
-currently being worked upon by Abhinav Kumar and the changes have been
-merged.
-[3]https://patchwork.kernel.org/project/dri-devel/list/?series=633565
-Going forward we use a drm_connector which is not embedded in
-intel_connector. 
-We also create a intel_encoder to avoid changes to many
-iterators but no intel_connector. We also changed all iterators that
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 
----v2
-solving BAT issues
+Adding WD Types, WD transcoder to enum list and WD Transcoder offsets.
+Adding i915 register definitions related to WD transcoder
 
----v3
--removing unecessary comments from i915_reg.h [Arun]
--moving wd_init into its own if condition [Arun]
--fixing comment styling and alignment in intel_wd.c [Arun]
--removing continue from loop and calling function if condition is met
-[Arun]
--removing useless arguments from intel_queue_writeback_job and 
-intel_enabling_capture [Arun]
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.h  |   6 +
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 139 ++++++++++++++++++
+ 3 files changed, 146 insertions(+)
 
-
-Suraj Kandpal (3):
-  drm/i915: Define WD trancoder for i915
-  drm/i915 : Changing intel_connector iterators
-  drm/i915: Enabling WD Transcoder
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_acpi.c     |   1 +
- drivers/gpu/drm/i915/display/intel_crtc.c     |   6 +
- .../drm/i915/display/intel_crtc_state_dump.c  |   1 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +
- drivers/gpu/drm/i915/display/intel_display.c  |  68 +-
- drivers/gpu/drm/i915/display/intel_display.h  |  18 +-
- .../drm/i915/display/intel_display_debugfs.c  |  13 +-
- .../drm/i915/display/intel_display_types.h    |  32 +-
- drivers/gpu/drm/i915/display/intel_dpll.c     |   6 +
- .../drm/i915/display/intel_modeset_setup.c    | 119 ++-
- .../drm/i915/display/intel_modeset_verify.c   |  17 +-
- drivers/gpu/drm/i915/display/intel_opregion.c |   3 +
- drivers/gpu/drm/i915/display/intel_wd.c       | 695 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_wd.h       |  48 ++
- drivers/gpu/drm/i915/i915_drv.h               |   1 +
- drivers/gpu/drm/i915/i915_irq.c               |   8 +-
- drivers/gpu/drm/i915/i915_pci.c               |   7 +-
- drivers/gpu/drm/i915/i915_reg.h               | 137 ++++
- 19 files changed, 1132 insertions(+), 55 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_wd.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_wd.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 884e8e67b17c..a1ed9c82e2ed 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -120,6 +120,8 @@ enum transcoder {
+ 	TRANSCODER_DSI_1,
+ 	TRANSCODER_DSI_A = TRANSCODER_DSI_0,	/* legacy DSI */
+ 	TRANSCODER_DSI_C = TRANSCODER_DSI_1,	/* legacy DSI */
++	TRANSCODER_WD_0,
++	TRANSCODER_WD_1,
+ 
+ 	I915_MAX_TRANSCODERS
+ };
+@@ -141,6 +143,10 @@ static inline const char *transcoder_name(enum transcoder transcoder)
+ 		return "DSI A";
+ 	case TRANSCODER_DSI_C:
+ 		return "DSI C";
++	case TRANSCODER_WD_0:
++		return "WD 0";
++	case TRANSCODER_WD_1:
++		return "WD 1";
+ 	default:
+ 		return "<invalid>";
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 3b7945aad22a..5ee5560bb312 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -79,6 +79,7 @@ enum intel_output_type {
+ 	INTEL_OUTPUT_DSI = 9,
+ 	INTEL_OUTPUT_DDI = 10,
+ 	INTEL_OUTPUT_DP_MST = 11,
++	INTEL_OUTPUT_WD = 12,
+ };
+ 
+ enum hdmi_force_audio {
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 52462cbfdc66..6e1f818d7113 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1996,6 +1996,8 @@
+ #define TRANSCODER_EDP_OFFSET 0x6f000
+ #define TRANSCODER_DSI0_OFFSET	0x6b000
+ #define TRANSCODER_DSI1_OFFSET	0x6b800
++#define TRANSCODER_WD0_OFFSET	0x6e000
++#define TRANSCODER_WD1_OFFSET	0x6e800
+ 
+ #define HTOTAL(trans)		_MMIO_TRANS2(trans, _HTOTAL_A)
+ #define HBLANK(trans)		_MMIO_TRANS2(trans, _HBLANK_A)
+@@ -3656,6 +3658,11 @@
+ #define PIPE_DSI0_OFFSET	0x7b000
+ #define PIPE_DSI1_OFFSET	0x7b800
+ 
++/* WD 0 and 1 */
++#define PIPE_WD0_OFFSET		0x7e000
++#define PIPE_WD1_OFFSET		0x7d000
++
++
+ #define PIPECONF(pipe)		_MMIO_PIPE2(pipe, _PIPEACONF)
+ #define PIPEDSL(pipe)		_MMIO_PIPE2(pipe, _PIPEADSL)
+ #define PIPEFRAME(pipe)		_MMIO_PIPE2(pipe, _PIPEAFRAMEHIGH)
+@@ -4320,6 +4327,10 @@
+ #define _PIPEDSI0CONF		0x7b008
+ #define _PIPEDSI1CONF		0x7b808
+ 
++/* WD 0 and 1 */
++#define _PIPEWD0CONF		0x7e008
++#define _PIPEWD1CONF		0x7d008
++
+ /* Sprite A control */
+ #define _DVSACNTR		0x72180
+ #define   DVS_ENABLE			REG_BIT(31)
+@@ -5545,6 +5556,7 @@
+ #define GEN8_DE_MISC_IER _MMIO(0x4446c)
+ #define  GEN8_DE_MISC_GSE		(1 << 27)
+ #define  GEN8_DE_EDP_PSR		(1 << 19)
++#define  GEN8_DE_MISC_WD0		(1 << 23)
+ 
+ #define GEN8_PCU_ISR _MMIO(0x444e0)
+ #define GEN8_PCU_IMR _MMIO(0x444e4)
+@@ -8282,6 +8294,133 @@ enum skl_power_gate {
+ #define   DSB_ENABLE			(1 << 31)
+ #define   DSB_STATUS			(1 << 0)
+ 
++#define TGL_ROOT_DEVICE_ID		0x9A00
++#define TGL_ROOT_DEVICE_MASK		0xFF00
++#define TGL_ROOT_DEVICE_SKU_MASK	0xF
++#define TGL_ROOT_DEVICE_SKU_ULX		0x2
++#define TGL_ROOT_DEVICE_SKU_ULT		0x4
++
++/* Gen12 WD */
++#define _MMIO_WD(tc, wd0, wd1)		_MMIO_TRANS((tc) - TRANSCODER_WD_0, \
++							wd0, wd1)
++
++#define WD_TRANS_ENABLE			(1 << 31)
++#define WD_TRANS_DISABLE		0
++#define WD_TRANS_ACTIVE			(1 << 30)
++
++/* WD transcoder control */
++#define _WD_TRANS_FUNC_CTL_0		0x6e400
++#define _WD_TRANS_FUNC_CTL_1		0x6ec00
++#define WD_TRANS_FUNC_CTL(tc)		_MMIO_WD(tc,\
++					_WD_TRANS_FUNC_CTL_0,\
++					_WD_TRANS_FUNC_CTL_1)
++
++#define TRANS_WD_FUNC_ENABLE		(1 << 31)
++#define WD_TRIGGERED_CAP_MODE_ENABLE	(1 << 30)
++#define START_TRIGGER_FRAME		(1 << 29)
++#define STOP_TRIGGER_FRAME		(1 << 28)
++#define WD_CTL_POINTER_ETEH		(0 << 18)
++#define WD_CTL_POINTER_ETDH		(1 << 18)
++#define WD_CTL_POINTER_DTDH		(2 << 18)
++#define WD_INPUT_SELECT_MASK		(7 << 12)
++#define WD_INPUT_PIPE_A			(0 << 12)
++#define WD_INPUT_PIPE_B			(5 << 12)
++#define WD_INPUT_PIPE_C			(6 << 12)
++#define WD_INPUT_PIPE_D			(7 << 12)
++
++#define WD_PIX_FMT_MASK			(0x3 << 20)
++#define WD_PIX_FMT_YUYV			(0x1 << 20)
++#define WD_PIX_FMT_XYUV8888		(0x2 << 20)
++#define WD_PIX_FMT_XBGR8888		(0x3 << 20)
++#define WD_PIX_FMT_Y410			(0x4 << 20)
++#define WD_PIX_FMT_YUV422		(0x5 << 20)
++#define WD_PIX_FMT_XBGR2101010		(0x6 << 20)
++#define WD_PIX_FMT_RGB565		(0x7 << 20)
++
++#define WD_FRAME_NUMBER_MASK		15
++
++#define _WD_STRIDE_0			0x6e510
++#define _WD_STRIDE_1			0x6ed10
++#define WD_STRIDE(tc)			_MMIO_WD(tc,\
++					_WD_STRIDE_0,\
++					_WD_STRIDE_1)
++#define WD_STRIDE_SHIFT			6
++#define WD_STRIDE_MASK			(0x3ff << WD_STRIDE_SHIFT)
++
++#define _WD_STREAMCAP_CTL0		0x6e590
++#define _WD_STREAMCAP_CTL1		0x6ed90
++#define WD_STREAMCAP_CTL(tc)		_MMIO_WD(tc,\
++					_WD_STREAMCAP_CTL0,\
++					_WD_STREAMCAP_CTL1)
++
++#define WD_STREAM_CAP_MODE_EN		(1 << 31)
++#define WD_STRAT_MASK			(3 << 24)
++#define WD_SLICING_STRAT_1_1		(0 << 24)
++#define WD_SLICING_STRAT_2_1		(1 << 24)
++#define WD_SLICING_STRAT_4_1		(2 << 24)
++#define WD_SLICING_STRAT_8_1		(3 << 24)
++#define WD_STREAM_OVERRUN_STATUS	1
++
++#define _WD_SURF_0			0x6e514
++#define _WD_SURF_1			0x6ed14
++#define WD_SURF(tc)			_MMIO_WD(tc,\
++					_WD_SURF_0,\
++					_WD_SURF_1)
++
++#define _WD_IMR_0			0x6e560
++#define _WD_IMR_1			0x6ed60
++#define WD_IMR(tc)			_MMIO_WD(tc,\
++					_WD_IMR_0,\
++					_WD_IMR_1)
++#define WD_FRAME_COMPLETE_INT		(1 << 7)
++#define WD_GTT_FAULT_INT		(1 << 6)
++#define WD_VBLANK_INT			(1 << 5)
++#define WD_OVERRUN_INT			(1 << 4)
++#define WD_CAPTURING_INT		(1 << 3)
++#define WD_WRITE_COMPLETE_INT		(1 << 2)
++
++#define _WD_IIR_0			0x6e564
++#define _WD_IIR_1			0x6ed64
++#define WD_IIR(tc)			_MMIO_WD(tc,\
++					_WD_IIR_0,\
++					_WD_IIR_1)
++
++#define _WD_FRAME_STATUS_0		0x6e56b
++#define _WD_FRAME_STATUS_1		0x6ed6b
++#define WD_FRAME_STATUS(tc)		_MMIO_WD(tc,\
++					_WD_FRAME_STATUS_0,\
++					_WD_FRAME_STATUS_1)
++
++#define WD_FRAME_COMPLETE		(1 << 31)
++#define WD_STATE_IDLE			(0 << 24)
++#define WD_STATE_CAPSTART		(1 << 24)
++#define WD_STATE_FRAME_START		(2 << 24)
++#define WD_STATE_CAPACITIVE		(3 << 24)
++#define WD_STATE_TG_DONE		(4 << 24)
++#define WD_STATE_WDX_DONE		(5 << 24)
++#define WD_STATE_QUICK_CAP		(6 << 24)
++
++#define _WD_27_M_0			0x6e524
++#define _WD_27_M_1			0x6ed24
++#define WD_27_M(tc)			_MMIO_WD(tc,\
++					_WD_27_M_0,\
++					_WD_27_M_1)
++
++#define _WD_27_N_0			0x6e528
++
++//Address looks wrong in bspec:
++#define _WD_27_N_1			0x6ec28
++#define WD_27_N(tc)			_MMIO_WD(tc,\
++					_WD_27_N_0,\
++					_WD_27_N_1)
++
++#define _WD_TAIL_CFG_0			0x6e520
++#define _WD_TAIL_CFG_1			0x6ed20
++
++#define WD_TAIL_CFG(tc)			_MMIO_WD(tc,\
++					_WD_TAIL_CFG_0,\
++					_WD_TAIL_CFG_1)
++
+ #define CLKREQ_POLICY			_MMIO(0x101038)
+ #define  CLKREQ_POLICY_MEM_UP_OVRD	REG_BIT(1)
+ 
 -- 
 2.25.1
 
