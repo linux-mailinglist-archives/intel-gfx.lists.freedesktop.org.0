@@ -1,137 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20B3E5B8B2B
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 17:01:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E545B8B8B
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 17:15:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C07F410E44A;
-	Wed, 14 Sep 2022 15:01:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71D4910E941;
+	Wed, 14 Sep 2022 15:15:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8E6010E44A
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 15:01:31 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5327810E941
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 15:15:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663167691; x=1694703691;
+ t=1663168514; x=1694704514;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=UzLVKT4K730gxLd6wB06MPHWGP84cSqkXRUGj7SuhZ0=;
- b=MypLb01G/2Hvx6mb2wLX3vM7Uj7mjRdD4l3hixm+WpGpy+vOScERvN9l
- KTRCMQVmmaiFdojzfemTatF4CbtOQuYDN1LyoNUY8zD4IOnRDi8XlMh/7
- r4xdvAMyiwp3puW6zWd9uh3BJa0thDlWtWbOTJsczf1fcbtBeHFylog4B
- 5BQcLPBjVPKf5zze8JS/R7OVSDLTqf/4uG4oL2uPU16j4ZuTcEnBa9bwU
- 6Sg1WTSxKDFGLUKVAfRuAanVc6GCbYagY3LSjUu0CbiD7pi2vt2pYaXVL
- 8dDlJLBD/JPfO6AcbxMRVNz3A3h3IRB9emSdaCIWHuAcHrFWo3FLenLVe g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="360189806"
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="360189806"
+ mime-version:in-reply-to;
+ bh=JZosXoaqI52sVW2Kiy8uNrMdjkVXxlH/SIpi7D7fcfo=;
+ b=PZHyk2dOe0sljgmQzhW9j/K/T978JjYbsTuRzV+84x6IMsYFrEEpBtYY
+ 1Fa/SssGwC5wqY9AIYI2fcORsuqh7yux+QjE7wVeIhYmgyhg7eOtiWTK7
+ yI+HB1ej+G5e6w2VT+8YL/HzNjUtDx4tE412tDmUDGM0xNEne06ehFQSW
+ NmspIo8VZIdNM4IUucCcVVqnBi2qbT3J9BdFY9zqBrMGwGHVdIx4Sx/Gh
+ HArR42g2vTBr4AvImuFkPkBYjigUJYbPH7Md5CAyy6S4w8aU2VsU8WTIP
+ WERDN0hKZuHchWl/j+aGnvzA4iaJlEa8S9hsZhdlGdE89HYlwTNPpQHCC g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="299267325"
+X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="299267325"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2022 08:01:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="679082641"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP; 14 Sep 2022 08:01:30 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 14 Sep 2022 08:01:30 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Wed, 14 Sep 2022 08:01:30 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.42) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Wed, 14 Sep 2022 08:01:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CnHfxOCbnHwhd5mLJQUScS5eQrLdnAGlGN7mXKhGY96tuockRcAdfzDz4PKseRq6M4ca1JmlJ0hc2KD9U+ImEaWAnemSJhy7jF8Cg8db+HQhalVcaKFfCZBnmwqmSdEAi6sY8u/TAg/wbmkEmKgHl1+e0xAjRqBib8e/WI3dTDWxyprZLIzdcIUCLDE1KDVSWbTxqkyz8Ddq1fCMTJFOp77UTC9q9/UZ/9hXfQ3ep4iL02OIcQ0zgyJ9wQVk25SciHnc0kOXpkEFyxv6/ehIJRDaSQpz4VcuiVOCNa+X4VBetHMJHBceyl/PmFXiOD+ZzKXkmoJYgQXa58eWmrcRxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9aujoQFMxxtDRPqr800sAIoexyM6Kf9dMyQMpDnjzHs=;
- b=esNN1TL1qgezml+Lk/pHSOIQXjPCWGobqoYI7LFLLNvkSq+aGEjiTf51vk5vs9HpePkxv9xGddRJ2a0qeWee1BzzoJCMk4F97GblUQsf/UhRo0uLk8KvIodxYFiLt9AHYb3O2W3wPJ1RsIB7qABaMoR2KetD9yX4cH1S5Rb0cYXY1kHesP3WpBsCiKKGjuFLAgmJzMgBLibf5ogncWv/Kuuso13z5L/axiRrmh11C1XWaCoHZdvbHlOMYfnY7OuNPN08YXK9JzdcoV2a2K41H2AWPAUZ0FT73tNPgWVa3zn4Xmd+byj8M3wAul8ki9fAWaFeoD9An6FWenQ9af5ksA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by BL3PR11MB6412.namprd11.prod.outlook.com (2603:10b6:208:3bb::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Wed, 14 Sep
- 2022 15:01:24 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b80a:cf49:9118:24e7]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b80a:cf49:9118:24e7%6]) with mapi id 15.20.5612.022; Wed, 14 Sep 2022
- 15:01:24 +0000
-Date: Wed, 14 Sep 2022 08:01:21 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Karolina Drobnik <karolina.drobnik@intel.com>
-Message-ID: <20220914150121.y6ucj4mav65mt7we@ldmartin-desk2.lan>
-X-Patchwork-Hint: comment
-References: <20220914124045.903883-1-karolina.drobnik@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220914124045.903883-1-karolina.drobnik@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0029.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::34) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2022 08:15:07 -0700
+X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="679088518"
+Received: from pvasili-mobl3.ger.corp.intel.com (HELO intel.com)
+ ([10.252.57.74])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2022 08:15:05 -0700
+Date: Wed, 14 Sep 2022 17:15:02 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Message-ID: <YyHv9sf6ZfGTb2Ir@alfio.lan>
+References: <20220913161039.155964-1-janusz.krzysztofik@linux.intel.com>
+ <20220913161039.155964-3-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BL3PR11MB6412:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8657d369-5a07-47da-e348-08da9661fdd3
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xYNWbBb3gahoXe4deSUHhBzXchCSqNwYwsP6icJwBQpeR6AR2FCt+SQrB5ewuOhC73iSQYfXqtOV5i3zw2ZWv9Ca1HlhmIleonMyKUM51erNrXCGfUxe1WptjrhhizcX9hjAbn9oEHxMb3OHOXKO9DOrkArHWkfdXbnxKW/BTL4UeMysVRkbeWbll48236UIAwwN6cz1o/CTzl/dk1uo4l0+p41w69xgcFI8pVNgpIXEvTRDGOJQ97H1lqy2KRFfO6P01JamKxNBJ/FId0mYgBFkn10tDKqQHBoJ4Vn1J5UwLl31SXo9r7tjL83VKaiDuC8zlH3AzDHNDfY/W/dx/6jvOamWWXA8zlq2RMiyE7zSD1MhBPFDvNV6i9V3sfuHEOQWnN8Xkcb5jIfQzh7xIRSWFHt3BWEQe/1znkAyglgc0AxIwS6gupzRcx/0815Fn8YvVhe/ysh1uTE5kRwGiO4WpXIhqIKwueQiAB7eD44LaQ1Vc1qigRWLTt7HD78hWrjaJAXIRvMKqt+XN834ApQt+QCwOuMtVstMd9+bFNXTYiEL6t0h0Jt7iBtSUWBad9Gr+c+BonrvSSJrlqzJdBklZ58xjif4RJgMeIIIpS5z7OkFjxZMZLNNoAKL56BTB24vA+7G+hpQxXIy3hqGYw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(376002)(39860400002)(346002)(396003)(366004)(451199015)(82960400001)(9686003)(8936002)(6512007)(38100700002)(83380400001)(8676002)(966005)(26005)(6862004)(6636002)(478600001)(1076003)(66946007)(6506007)(4326008)(86362001)(66476007)(186003)(66556008)(6486002)(5660300002)(6666004)(54906003)(36756003)(2906002)(316002)(41300700001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vderUa+DgWwwWA3a7MvUeBfRcpBU0gOuik9yUCDNJI4VXVw8DZ6fPRXFA8a+?=
- =?us-ascii?Q?UOPo8Sjx4+q1CJfXDkWR8BlBibI7Ntll/QONS2GMEoU52hl5smFrApRySwBY?=
- =?us-ascii?Q?R1AhJFw7H8yw3VvVPYExR7BtxBw/PrXYSi6VwXBqiECaD95nKXBNZ6Agh1U2?=
- =?us-ascii?Q?45HjdUMoJlzkcXSxk4dPgGNjskxfLWJS3SCnfrY+CjwgS+OkEbCM/Ry0CxPw?=
- =?us-ascii?Q?kLzNToB5Ngv/3deJEqOCv7UPctHMNqFQqLmSTY0qim7bMvkARtI5VAGKhPFU?=
- =?us-ascii?Q?9s5/VqUHwi+1NeIsCSokq/ch/Xf908crGevwpHe0wAt+CiU8HMGSOmg8DHIa?=
- =?us-ascii?Q?C5csjWMwc5F+p76tWOptu+uulPlPG1tRegcCqgyrGMJxp4cr1IKM3lraz+je?=
- =?us-ascii?Q?9L0Hl9/cx7Dfqbz1lSwanJVF1iXbBxahjg/NYk9uWwpBZS6B89eAygTwsYnh?=
- =?us-ascii?Q?g7s+55KCC9/mP7E0DAGwGmD94IQvqQN4LyCdQ0/nPY/AMivcDJPGkbOYw8//?=
- =?us-ascii?Q?yvmHzzH8/9I5MtJrlIF9MyAM1OErHq0AQYF8Jgk8Lj4pJfCsJQgTLLyPYAD4?=
- =?us-ascii?Q?xCzZNc/vTHPmLvy8UkurQGRuEmq4SBwPnFzILNAWph1TfLqXCPpMEeM85uxW?=
- =?us-ascii?Q?dhPIU4eEavJkcqFIbR40THjrYR16uoeATn2ezJ+wVqPuPdlEZPDwXAAPH8wM?=
- =?us-ascii?Q?KdgXX6jLvJgsdXxAA3a3S/b5IRDlz/VpnrItDMdmaK3JznycC76+IPVWmyzA?=
- =?us-ascii?Q?7B6KpQcoaDdyV1FkBlgRBjoSXhLo65A3GcRrO12yI9whjzN08Lxz0yKkcLNZ?=
- =?us-ascii?Q?HPHp1NYb3HFdzNgDEZvJ0es5HogxqIpo/NKznXj5V2r7x7XcP7IVd9eL4Py5?=
- =?us-ascii?Q?A73OUZF5XlWHoP7RlwiAprG7Xefdr9bRX+NG4ALriQRqrgjfMRC9IOhhvIr8?=
- =?us-ascii?Q?BK/WetERNq5NhoJg0VUzBvqt4d++vJHMUlKhazmb7lpoZEstd20DVT4FtjMB?=
- =?us-ascii?Q?wUGKotLNixXEFUnSllHVG2JleGzz+7a0aUsDe11423qL7cxfOAWDi+zE0C1Y?=
- =?us-ascii?Q?4OpYtTJ0pG3QQrJwvI8nB8Du5rJCXu2ZvM5BdzlcwU2b4fkoulU3qPa3w/0S?=
- =?us-ascii?Q?bnH4aobCpaXOdoUIo1+M6YUWzWG1U8djDaIShxLPWdee6ANOnucMSyv/BwZ9?=
- =?us-ascii?Q?UCXtSRr1cL9CIwq+pqwhUynKSngeXbtP4gwPxW9ZJsgwwRu4g7G4T6B+vpLT?=
- =?us-ascii?Q?fAkh1Cl4yCxkA/GWAPwccl+hDHPV4KWhZWjrn1lSb3smFL44De1vKkg/Dzxw?=
- =?us-ascii?Q?1k4jNngn/oTwgbhPcW3iDUWGd6jb6RY6zPwybzg+EOC3p69VHmf1Qd4AvdCF?=
- =?us-ascii?Q?92AkfPuOCsUQvfirhpC2IBYbSJAZSGdJsEC3KcI4yuCSEeqCuMDrtQ82P6qa?=
- =?us-ascii?Q?rMSjCqJAunuTz7vFmTysxiUDEvDxoigg7JkB9Xx9jHsRnDiuqGYi1/sZOhNR?=
- =?us-ascii?Q?0MHVWhbZtIpa8A5KrGBlozzOuLmvqS/LO4AQpXb7N35MGsBB0EfDCKCgpiJ5?=
- =?us-ascii?Q?e3VpJKyprny69RKFdLVmZr5ohobHRaLgLyS5v08CcHq4PGR5+z4fywxwdp0o?=
- =?us-ascii?Q?tw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8657d369-5a07-47da-e348-08da9661fdd3
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 15:01:24.2268 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iaCiW+XZfYJQ5DH+0uqXS+c302vAvDBQSN49Ob3Mjnnys/Q1P7bKIP0t74VODI62P89jjtOz0BeP4JLpdMtDxc1qrZL2xic5YK4JoYvsyeo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6412
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [topic/core-for-CI] Revert "iommu/dma: Fix race
- condition during iova_domain initialization"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220913161039.155964-3-janusz.krzysztofik@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Really move
+ i915_gem_context.link under ref protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,209 +58,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Joerg Roedel <jroedel@suse.de>, iommu@lists.linux.dev,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Yunfei Wang <yf.wang@mediatek.com>, Miles Chen <miles.chen@mediatek.com>,
- Robin Murphy <robin.murphy@arm.com>, Ning Li <ning.li@mediatek.com>
+Cc: intel-gfx@lists.freedesktop.org, drm-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 14, 2022 at 02:40:45PM +0200, Karolina Drobnik wrote:
->This reverts commit ac9a5d522bb80be50ea84965699e1c8257d745ce.
->
->This change introduces a regression on Alder Lake that completely
->blocks testing. To enable CI and avoid possible circular locking
->warning, revert the patch.
+Hi Krzysztofik,
 
-We are already on rc5. Are iommu authors involved aware of this issue?
-We could do this in our "for CI only" branch, but it's equally important
-that this is fixed for 6.0
+if you are going to resend it, I just have a little thing if you
+don't mind,
 
-Cc'ing them.
+On Tue, Sep 13, 2022 at 06:10:39PM +0200, Janusz Krzysztofik wrote:
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+> 
+> i915_perf assumes that it can use the i915_gem_context reference to
+> protect its i915->gem.contexts.list iteration. However, this requires
+> that we do not remove the context from the list until after we drop the
+> final reference and release the struct. If, as currently, we remove the
+> context from the list during context_close(), the link.next pointer may
+> be poisoned while we are holding the context reference and cause a GPF:
+> 
+> [ 4070.573157] i915 0000:00:02.0: [drm:i915_perf_open_ioctl [i915]] filtering on ctx_id=0x1fffff ctx_id_mask=0x1fffff
+> [ 4070.574881] general protection fault, probably for non-canonical address 0xdead000000000100: 0000 [#1] PREEMPT SMP
+> [ 4070.574897] CPU: 1 PID: 284392 Comm: amd_performance Tainted: G            E     5.17.9 #180
+> [ 4070.574903] Hardware name: Intel Corporation NUC7i5BNK/NUC7i5BNB, BIOS BNKBL357.86A.0052.2017.0918.1346 09/18/2017
+> [ 4070.574907] RIP: 0010:oa_configure_all_contexts.isra.0+0x222/0x350 [i915]
+> [ 4070.574982] Code: 08 e8 32 6e 10 e1 4d 8b 6d 50 b8 ff ff ff ff 49 83 ed 50 f0 41 0f c1 04 24 83 f8 01 0f 84 e3 00 00 00 85 c0 0f 8e fa 00 00 00 <49> 8b 45 50 48 8d 70 b0 49 8d 45 50 48 39 44 24 10 0f 85 34 fe ff
+> [ 4070.574990] RSP: 0018:ffffc90002077b78 EFLAGS: 00010202
+> [ 4070.574995] RAX: 0000000000000002 RBX: 0000000000000002 RCX: 0000000000000000
+> [ 4070.575000] RDX: 0000000000000001 RSI: ffffc90002077b20 RDI: ffff88810ddc7c68
+> [ 4070.575004] RBP: 0000000000000001 R08: ffff888103242648 R09: fffffffffffffffc
+> [ 4070.575008] R10: ffffffff82c50bc0 R11: 0000000000025c80 R12: ffff888101bf1860
+> [ 4070.575012] R13: dead0000000000b0 R14: ffffc90002077c04 R15: ffff88810be5cabc
+> [ 4070.575016] FS:  00007f1ed50c0780(0000) GS:ffff88885ec80000(0000) knlGS:0000000000000000
+> [ 4070.575021] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 4070.575025] CR2: 00007f1ed5590280 CR3: 000000010ef6f005 CR4: 00000000003706e0
+> [ 4070.575029] Call Trace:
+> [ 4070.575033]  <TASK>
+> [ 4070.575037]  lrc_configure_all_contexts+0x13e/0x150 [i915]
+> [ 4070.575103]  gen8_enable_metric_set+0x4d/0x90 [i915]
+> [ 4070.575164]  i915_perf_open_ioctl+0xbc0/0x1500 [i915]
+> [ 4070.575224]  ? asm_common_interrupt+0x1e/0x40
+> [ 4070.575232]  ? i915_oa_init_reg_state+0x110/0x110 [i915]
+> [ 4070.575290]  drm_ioctl_kernel+0x85/0x110
+> [ 4070.575296]  ? update_load_avg+0x5f/0x5e0
+> [ 4070.575302]  drm_ioctl+0x1d3/0x370
+> [ 4070.575307]  ? i915_oa_init_reg_state+0x110/0x110 [i915]
+> [ 4070.575382]  ? gen8_gt_irq_handler+0x46/0x130 [i915]
+> [ 4070.575445]  __x64_sys_ioctl+0x3c4/0x8d0
+> [ 4070.575451]  ? __do_softirq+0xaa/0x1d2
+> [ 4070.575456]  do_syscall_64+0x35/0x80
+> [ 4070.575461]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+> [ 4070.575467] RIP: 0033:0x7f1ed5c10397
+> [ 4070.575471] Code: 3c 1c e8 1c ff ff ff 85 c0 79 87 49 c7 c4 ff ff ff ff 5b 5d 4c 89 e0 41 5c c3 66 0f 1f 84 00 00 00 00 00 b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d a9 da 0d 00 f7 d8 64 89 01 48
+> [ 4070.575478] RSP: 002b:00007ffd65c8d7a8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+> [ 4070.575484] RAX: ffffffffffffffda RBX: 0000000000000006 RCX: 00007f1ed5c10397
+> [ 4070.575488] RDX: 00007ffd65c8d7c0 RSI: 0000000040106476 RDI: 0000000000000006
+> [ 4070.575492] RBP: 00005620972f9c60 R08: 000000000000000a R09: 0000000000000005
+> [ 4070.575496] R10: 000000000000000d R11: 0000000000000246 R12: 000000000000000a
+> [ 4070.575500] R13: 000000000000000d R14: 0000000000000000 R15: 00007ffd65c8d7c0
+> [ 4070.575505]  </TASK>
+> [ 4070.575507] Modules linked in: nls_ascii(E) nls_cp437(E) vfat(E) fat(E) i915(E) x86_pkg_temp_thermal(E) intel_powerclamp(E) crct10dif_pclmul(E) crc32_pclmul(E) crc32c_intel(E) aesni_intel(E) crypto_simd(E) intel_gtt(E) cryptd(E) ttm(E) rapl(E) intel_cstate(E) drm_kms_helper(E) cfbfillrect(E) syscopyarea(E) cfbimgblt(E) intel_uncore(E) sysfillrect(E) mei_me(E) sysimgblt(E) i2c_i801(E) fb_sys_fops(E) mei(E) intel_pch_thermal(E) i2c_smbus(E) cfbcopyarea(E) video(E) button(E) efivarfs(E) autofs4(E)
+> [ 4070.575549] ---[ end trace 0000000000000000 ]---
+> 
+> Reported-by: Mark Janes <mark.janes@intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/6222
+> References: a4e7ccdac38e ("drm/i915: Move context management under GEM")
+> Fixes: f8246cf4d9a9 ("drm/i915/gem: Drop free_work for GEM contexts")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.12+
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c | 14 +++++++-------
+>  drivers/gpu/drm/i915/i915_perf.c            | 18 ++++++++++--------
+>  drivers/gpu/drm/i915/i915_sysfs.c           |  8 ++++----
+>  3 files changed, 21 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index dabdfe09f5e51..9d7142ab63c05 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1133,7 +1133,6 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx,
+>  			err = ERR_PTR(ret);
+>  			goto free_engines;
+>  		}
+> -
 
-thanks
-Lucas De Marchi
+can you please remove this cahnge? It's not even geographically
+close to the changes we are sending :)
 
->
->kernel log:
->
->======================================================
->WARNING: possible circular locking dependency detected
->6.0.0-rc5-CI_DRM_12132-g6c93e979e542+ #1 Not tainted
->------------------------------------------------------
->cpuhp/0/15 is trying to acquire lock:
->ffff8881013df278 (&(&priv->bus_notifier)->rwsem){++++}-{3:3}, at: blocking_notifier_call_chain+0x20/0x50
->              but task is already holding lock:
->ffffffff826490c0 (cpuhp_state-up){+.+.}-{0:0}, at: cpuhp_thread_fun+0x48/0x1f0
->              which lock already depends on the new loc
->              the existing dependency chain (in reverse order) is:
->              -> #3 (cpuhp_state-up){+.+.}-{0:0}:
->       lock_acquire+0xd3/0x310
->       cpuhp_thread_fun+0xa6/0x1f0
->       smpboot_thread_fn+0x1b5/0x260
->       kthread+0xed/0x120
->       ret_from_fork+0x1f/0x30
->              -> #2 (cpu_hotplug_lock){++++}-{0:0}:
->       lock_acquire+0xd3/0x310
->       __cpuhp_state_add_instance+0x43/0x1c0
->       iova_domain_init_rcaches+0x199/0x1c0
->       iommu_setup_dma_ops+0x130/0x440
->       bus_iommu_probe+0x26a/0x2d0
->       bus_set_iommu+0x82/0xd0
->       intel_iommu_init+0xe33/0x1039
->       pci_iommu_init+0x9/0x31
->       do_one_initcall+0x53/0x2f0
->       kernel_init_freeable+0x18f/0x1e1
->       kernel_init+0x11/0x120
->       ret_from_fork+0x1f/0x30
->              -> #1 (&domain->iova_cookie->mutex){+.+.}-{3:3}:
->       lock_acquire+0xd3/0x310
->       __mutex_lock+0x97/0xf10
->       iommu_setup_dma_ops+0xd7/0x440
->       iommu_probe_device+0xa4/0x180
->       iommu_bus_notifier+0x2d/0x40
->       notifier_call_chain+0x31/0x90
->       blocking_notifier_call_chain+0x3a/0x50
->       device_add+0x3c1/0x900
->       pci_device_add+0x255/0x580
->       pci_scan_single_device+0xa6/0xd0
->       pci_scan_slot+0x7a/0x1b0
->       pci_scan_child_bus_extend+0x35/0x2a0
->       vmd_probe+0x5cd/0x970
->       pci_device_probe+0x95/0x110
->       really_probe+0xd6/0x350
->       __driver_probe_device+0x73/0x170
->       driver_probe_device+0x1a/0x90
->       __driver_attach+0xbc/0x190
->       bus_for_each_dev+0x72/0xc0
->       bus_add_driver+0x1bb/0x210
->       driver_register+0x66/0xc0
->       do_one_initcall+0x53/0x2f0
->       kernel_init_freeable+0x18f/0x1e1
->       kernel_init+0x11/0x120
->       ret_from_fork+0x1f/0x30
->              -> #0 (&(&priv->bus_notifier)->rwsem){++++}-{3:3}:
->       validate_chain+0xb3f/0x2000
->       __lock_acquire+0x5a4/0xb70
->       lock_acquire+0xd3/0x310
->       down_read+0x39/0x140
->       blocking_notifier_call_chain+0x20/0x50
->       device_add+0x3c1/0x900
->       platform_device_add+0x108/0x240
->       coretemp_cpu_online+0xe1/0x15e [coretemp]
->       cpuhp_invoke_callback+0x181/0x8a0
->       cpuhp_thread_fun+0x188/0x1f0
->       smpboot_thread_fn+0x1b5/0x260
->       kthread+0xed/0x120
->       ret_from_fork+0x1f/0x30
->              other info that might help us debug thi
->Chain exists of                 &(&priv->bus_notifier)->rwsem --> cpu_hotplug_lock --> cpuhp_state-
-> Possible unsafe locking scenari
->       CPU0                    CPU1
->       ----                    ----
->  lock(cpuhp_state-up);
->                               lock(cpu_hotplug_lock);
->                               lock(cpuhp_state-up);
->  lock(&(&priv->bus_notifier)->rwsem);
->               *** DEADLOCK *
->2 locks held by cpuhp/0/15:
-> #0: ffffffff82648f10 (cpu_hotplug_lock){++++}-{0:0}, at: cpuhp_thread_fun+0x48/0x1f0
-> #1: ffffffff826490c0 (cpuhp_state-up){+.+.}-{0:0}, at: cpuhp_thread_fun+0x48/0x1f0
->              stack backtrace:
->CPU: 0 PID: 15 Comm: cpuhp/0 Not tainted 6.0.0-rc5-CI_DRM_12132-g6c93e979e542+ #1
->Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P DDR4 RVP, BIOS ADLPFWI1.R00.3135.A00.2203251419 03/25/2022
->Call Trace:
-> <TASK>
-> dump_stack_lvl+0x56/0x7f
-> check_noncircular+0x132/0x150
-> validate_chain+0xb3f/0x2000
-> __lock_acquire+0x5a4/0xb70
-> lock_acquire+0xd3/0x310
-> ? blocking_notifier_call_chain+0x20/0x50
-> down_read+0x39/0x140
-> ? blocking_notifier_call_chain+0x20/0x50
-> blocking_notifier_call_chain+0x20/0x50
-> device_add+0x3c1/0x900
-> ? dev_set_name+0x4e/0x70
-> platform_device_add+0x108/0x240
-> coretemp_cpu_online+0xe1/0x15e [coretemp]
-> ? create_core_data+0x550/0x550 [coretemp]
-> cpuhp_invoke_callback+0x181/0x8a0
-> cpuhp_thread_fun+0x188/0x1f0
-> ? smpboot_thread_fn+0x1e/0x260
-> smpboot_thread_fn+0x1b5/0x260
-> ? sort_range+0x20/0x20
-> kthread+0xed/0x120
-> ? kthread_complete_and_exit+0x20/0x20
-> ret_from_fork+0x1f/0x30
-> </TASK>
->
->Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6641
->
->Signed-off-by: Karolina Drobnik <karolina.drobnik@intel.com>
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->---
-> drivers/iommu/dma-iommu.c | 17 ++++-------------
-> 1 file changed, 4 insertions(+), 13 deletions(-)
->
->diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
->index 17dd683b2fce..9616b473e4c7 100644
->--- a/drivers/iommu/dma-iommu.c
->+++ b/drivers/iommu/dma-iommu.c
->@@ -65,7 +65,6 @@ struct iommu_dma_cookie {
->
-> 	/* Domain for flush queue callback; NULL if flush queue not in use */
-> 	struct iommu_domain		*fq_domain;
->-	struct mutex			mutex;
-> };
->
-> static DEFINE_STATIC_KEY_FALSE(iommu_deferred_attach_enabled);
->@@ -312,7 +311,6 @@ int iommu_get_dma_cookie(struct iommu_domain *domain)
-> 	if (!domain->iova_cookie)
-> 		return -ENOMEM;
->
->-	mutex_init(&domain->iova_cookie->mutex);
-> 	return 0;
-> }
->
->@@ -563,33 +561,26 @@ static int iommu_dma_init_domain(struct iommu_domain *domain, dma_addr_t base,
-> 	}
->
-> 	/* start_pfn is always nonzero for an already-initialised domain */
->-	mutex_lock(&cookie->mutex);
-> 	if (iovad->start_pfn) {
-> 		if (1UL << order != iovad->granule ||
-> 		    base_pfn != iovad->start_pfn) {
-> 			pr_warn("Incompatible range for DMA domain\n");
->-			ret = -EFAULT;
->-			goto done_unlock;
->+			return -EFAULT;
-> 		}
->
->-		ret = 0;
->-		goto done_unlock;
->+		return 0;
-> 	}
->
-> 	init_iova_domain(iovad, 1UL << order, base_pfn);
-> 	ret = iova_domain_init_rcaches(iovad);
-> 	if (ret)
->-		goto done_unlock;
->+		return ret;
->
-> 	/* If the FQ fails we can simply fall back to strict mode */
-> 	if (domain->type == IOMMU_DOMAIN_DMA_FQ && iommu_dma_init_fq(domain))
-> 		domain->type = IOMMU_DOMAIN_DMA;
->
->-	ret = iova_reserve_iommu_regions(dev, domain);
->-
->-done_unlock:
->-	mutex_unlock(&cookie->mutex);
->-	return ret;
->+	return iova_reserve_iommu_regions(dev, domain);
-> }
->
-> /**
->-- 
->2.25.1
->
+But don't mind it if you have already packed everything.
+
+Andi
+
+>  	}
+>  
+>  	return e;
+> @@ -1265,10 +1264,15 @@ static void i915_gem_context_release_work(struct work_struct *work)
+>  	struct i915_gem_context *ctx = container_of(work, typeof(*ctx),
+>  						    release_work);
+>  	struct i915_address_space *vm;
+> +	unsigned long flags;
+>  
+>  	trace_i915_context_free(ctx);
+>  	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+>  
+> +	spin_lock_irqsave(&ctx->i915->gem.contexts.lock, flags);
+> +	list_del(&ctx->link);
+> +	spin_unlock_irqrestore(&ctx->i915->gem.contexts.lock, flags);
+> +
+>  	if (ctx->syncobj)
+>  		drm_syncobj_put(ctx->syncobj);
+>  
+> @@ -1521,10 +1525,6 @@ static void context_close(struct i915_gem_context *ctx)
+>  
+>  	ctx->file_priv = ERR_PTR(-EBADF);
+>  
+> -	spin_lock(&ctx->i915->gem.contexts.lock);
+> -	list_del(&ctx->link);
+> -	spin_unlock(&ctx->i915->gem.contexts.lock);
+> -
+>  	client = ctx->client;
+>  	if (client) {
+>  		spin_lock(&client->ctx_lock);
+> @@ -1717,9 +1717,9 @@ static void gem_context_register(struct i915_gem_context *ctx,
+>  	list_add_tail_rcu(&ctx->client_link, &ctx->client->ctx_list);
+>  	spin_unlock(&ctx->client->ctx_lock);
+>  
+> -	spin_lock(&i915->gem.contexts.lock);
+> +	spin_lock_irq(&i915->gem.contexts.lock);
+>  	list_add_tail(&ctx->link, &i915->gem.contexts.list);
+> -	spin_unlock(&i915->gem.contexts.lock);
+> +	spin_unlock_irq(&i915->gem.contexts.lock);
+>  }
+>  
+>  int i915_gem_context_open(struct drm_i915_private *i915,
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index f3c23fe9ad9ce..83bb71466f8f0 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -2379,24 +2379,26 @@ oa_configure_all_contexts(struct i915_perf_stream *stream,
+>  	 * context. Contexts idle at the time of reconfiguration are not
+>  	 * trapped behind the barrier.
+>  	 */
+> -	spin_lock(&i915->gem.contexts.lock);
+> +	spin_lock_irq(&i915->gem.contexts.lock);
+>  	list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link) {
+>  		if (!kref_get_unless_zero(&ctx->ref))
+>  			continue;
+>  
+> -		spin_unlock(&i915->gem.contexts.lock);
+> +		spin_unlock_irq(&i915->gem.contexts.lock);
+>  
+> -		err = gen8_configure_context(ctx, regs, num_regs);
+> -		if (err) {
+> -			i915_gem_context_put(ctx);
+> -			return err;
+> +		if (!i915_gem_context_is_closed(ctx)) {
+> +			err = gen8_configure_context(ctx, regs, num_regs);
+> +			if (err) {
+> +				i915_gem_context_put(ctx);
+> +				return err;
+> +			}
+>  		}
+>  
+> -		spin_lock(&i915->gem.contexts.lock);
+> +		spin_lock_irq(&i915->gem.contexts.lock);
+>  		list_safe_reset_next(ctx, cn, link);
+>  		i915_gem_context_put(ctx);
+>  	}
+> -	spin_unlock(&i915->gem.contexts.lock);
+> +	spin_unlock_irq(&i915->gem.contexts.lock);
+>  
+>  	/*
+>  	 * After updating all other contexts, we need to modify ourselves.
+> diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
+> index 1e27502108313..40c7671fc0591 100644
+> --- a/drivers/gpu/drm/i915/i915_sysfs.c
+> +++ b/drivers/gpu/drm/i915/i915_sysfs.c
+> @@ -77,12 +77,12 @@ i915_l3_read(struct file *filp, struct kobject *kobj,
+>  	count = min_t(size_t, GEN7_L3LOG_SIZE - offset, count);
+>  	memset(buf, 0, count);
+>  
+> -	spin_lock(&i915->gem.contexts.lock);
+> +	spin_lock_irq(&i915->gem.contexts.lock);
+>  	if (i915->l3_parity.remap_info[slice])
+>  		memcpy(buf,
+>  		       i915->l3_parity.remap_info[slice] + offset / sizeof(u32),
+>  		       count);
+> -	spin_unlock(&i915->gem.contexts.lock);
+> +	spin_unlock_irq(&i915->gem.contexts.lock);
+>  
+>  	return count;
+>  }
+> @@ -110,7 +110,7 @@ i915_l3_write(struct file *filp, struct kobject *kobj,
+>  	if (!remap_info)
+>  		return -ENOMEM;
+>  
+> -	spin_lock(&i915->gem.contexts.lock);
+> +	spin_lock_irq(&i915->gem.contexts.lock);
+>  
+>  	if (i915->l3_parity.remap_info[slice]) {
+>  		freeme = remap_info;
+> @@ -126,7 +126,7 @@ i915_l3_write(struct file *filp, struct kobject *kobj,
+>  	list_for_each_entry(ctx, &i915->gem.contexts.list, link)
+>  		ctx->remap_slice |= BIT(slice);
+>  
+> -	spin_unlock(&i915->gem.contexts.lock);
+> +	spin_unlock_irq(&i915->gem.contexts.lock);
+>  	kfree(freeme);
+>  
+>  	/*
+> -- 
+> 2.25.1
