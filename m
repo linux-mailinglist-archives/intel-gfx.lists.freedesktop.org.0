@@ -1,52 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BECE5B8E58
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 19:51:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 549095B8EA0
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 20:10:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 593E110E0C8;
-	Wed, 14 Sep 2022 17:50:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5142410E9B7;
+	Wed, 14 Sep 2022 18:10:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66C4C10E0C8
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 17:50:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663177854; x=1694713854;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7QNg88z4sNLbW6kZ2c237g8tkMvyNkGwX4HsSKg/i3M=;
- b=eMMIc5eoMo2sSWALUqnj/y6lpmPqVE3PqGPkWU4Em9rBq95u/+bP0dD+
- 3HiQVzjTbsVxCUXZ6gO5SnLio3Aa7IEia9bMq0ODJ0E/AWcCzyY/EvWbW
- cPMDPcQMoFpS222nsxQKBcAZ5ESTQ83joiCnjxzDccgVnvYyB4ZgmYJPP
- rcwbYG0w62FVraXZhAYVSKIYYBTg1ruXnAEl3StFqz5Jd99HtyhBMD8aa
- Z80kQYSnezNlhXzP5WeXCZoQ3l12RhlWIIwzpJEf8GHp7iEkTgVJOsbPI
- O9f4iFVKWTdKNZTRAo51MLJyH5BtE0uU71iloC0RbO9PV27LcbZ35NN5i A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="324754924"
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="324754924"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2022 10:50:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="679156650"
-Received: from pvasili-mobl3.ger.corp.intel.com (HELO intel.com)
- ([10.252.57.74])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2022 10:50:51 -0700
-Date: Wed, 14 Sep 2022 19:50:49 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YyIUeb35VM8nwE5i@alfio.lan>
-References: <20220913161039.155964-1-janusz.krzysztofik@linux.intel.com>
- <20220913161039.155964-3-janusz.krzysztofik@linux.intel.com>
- <d338517e-853e-98a5-1e24-59f43f2ac212@linux.intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D52D410E9B4;
+ Wed, 14 Sep 2022 18:10:47 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 05C8461E68;
+ Wed, 14 Sep 2022 18:10:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13443C433C1;
+ Wed, 14 Sep 2022 18:10:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1663179046;
+ bh=mVGUDoPGJ3+fyw9UwUrdODWJg12rzQGWMTswdFgtKjE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=kh1DjcyskucyUtPTKYR86ZbXkBJNmlPf90jfhzqb1gEwPTNm4jzQn8me8fQoPEpq1
+ Tnj/qEeiYymWWgX416zh6AidfY88NP0Z5nJUnsWhBaFj9RjfNtIEIIe/Hbs5vot23D
+ vG1Yr8hFEHaBl+3isRmd8USdJ2i4YNOWgxKLrnUA=
+Date: Wed, 14 Sep 2022 20:11:11 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: "Winkler, Tomas" <tomas.winkler@intel.com>
+Message-ID: <YyIZP2DjqyztwxxF@kroah.com>
+References: <20220913005739.798337-1-daniele.ceraolospurio@intel.com>
+ <MN2PR11MB4093E87A6EAE878EFCE805ABE5469@MN2PR11MB4093.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d338517e-853e-98a5-1e24-59f43f2ac212@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Really move
- i915_gem_context.link under ref protection
+In-Reply-To: <MN2PR11MB4093E87A6EAE878EFCE805ABE5469@MN2PR11MB4093.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH v5 00/15] drm/i915: HuC loading for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,38 +49,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, drm-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
+ Alexander" <alexander.usyskin@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-[...]
-
-> >   	struct i915_address_space *vm;
-> > +	unsigned long flags;
-> >   	trace_i915_context_free(ctx);
-> >   	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
-> > +	spin_lock_irqsave(&ctx->i915->gem.contexts.lock, flags);
+On Wed, Sep 14, 2022 at 04:51:03PM +0000, Winkler, Tomas wrote:
+> > 
+> > On DG2, HuC loading is performed by the GSC, via a PXP command. The load
+> > operation itself is relatively simple (just send a message to the GSC with the
+> > physical address of the HuC in LMEM), but there are timing changes that
+> > requires special attention. In particular, to send a PXP command we need to
+> > first export the GSC as an aux device and then wait for the mei-gsc and mei-
+> > pxp modules to start, which means that HuC load will complete after i915
+> > load is complete. This means that there is a small window of time after i915 is
+> > registered and before HuC is loaded during which userspace could submit
+> > and/or check the HuC load status, although this is quite unlikely to happen
+> > (HuC is usually loaded before kernel init/resume completes).
+> > We've consulted with the media team in regards to how to handle this and
+> > they've asked us to stall all userspace VCS submission until HuC is loaded.
+> > Stalls are expected to be very rare (if any), due to the fact that HuC is usually
+> > loaded before kernel init/resume is completed.
+> > 
+> > Timeouts are in place to ensure all submissions are unlocked in case
+> > something goes wrong. Since we need to monitor the status of the mei
+> > driver to know what's happening and when to time out, a notifier has been
+> > added so we get a callback when the status of the mei driver changes.
+> > 
+> > Note that this series includes several mei patches that add support for
+> > sending the HuC loading command via mei-gsc. We plan to merge those
+> > patches through the drm tree because i915 is the sole user.
+> > 
+> > v2: address review comments, Reporting HuC loading still in progress while
+> > we wait for mei-gsc init to complete, rebase on latest mei-gsc series.
+> > 
+> > v3: fix cc list in mei patches.
+> > 
+> > v4: update mei patches, fix includes, rebase on new FW fetch logic and
+> > merged mei-gsc support.
+> > 
+> > v5: update mei patches
 > 
-> Why irqsave and the conversion to irq safe elsewhere? Worker context does
-> not require it and I don't see the connection to the change of list_del
-> location.
+> Greg,  I hope I've addressed most of your comments.
+> Can you please check if the mei patches are in acceptable state or anything else can be improved with this series.  Appreciated. 
 
-yah! I think there is no reason, this is just inherited from
-other code.
+These were sent 2 days ago, in the middle of a conference travel.
+Please relax, there's no special rush needed here, you know better.
 
-Andi
+In the mean time, if you are just waiting for my review, please take the
+time to review other pending patches from other developers to help
+lighten the load on me, and other maintainers.
 
-> Regards,
-> 
-> Tvrtko
-> 
-> > +	list_del(&ctx->link);
-> > +	spin_unlock_irqrestore(&ctx->i915->gem.contexts.lock, flags);
-> > +
-> >   	if (ctx->syncobj)
-> >   		drm_syncobj_put(ctx->syncobj);
+thanks,
 
-...
+greg k-h
