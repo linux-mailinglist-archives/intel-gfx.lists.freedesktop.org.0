@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58A915B9062
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 00:05:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 023985B905D
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 00:05:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 684E610EA11;
-	Wed, 14 Sep 2022 22:04:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A175110EA12;
+	Wed, 14 Sep 2022 22:04:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 432E010EA0F;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6524010EA10;
  Wed, 14 Sep 2022 22:04:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1663193081; x=1694729081;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=axgtZyE1s4LmXVoQfhNr54tm5HXJ0zb4TZOgzZjpqQE=;
- b=NGMbzlDVdQghefieAXl4VrIRpfi4vwuDpK6YJHTkM9wPKXYTbFLCGrs6
- nN+x9qBg7fqL1s40t58RSN7Y+orH7WdEGQqQkLjAWIqpWocPyG1XHFCoG
- 9eFXCJIBt7xzkR/ggCD+P9OStHMRbG6Qj7S/Y31ld2aD5/HseFs7UYJwg
- Sr2XsRDTyfW0g0v0MZj1Pk7XP+Ju6Yy6LL8xY2TQ6wQBxlWusdqa4ZRmO
- h9ofND8TDeGnbji3xR7wCEs33ZDlB8I8JNFX0jSyatRS1+a/swXLP7oPp
- wuhNjg4ffxCEBGmSqLKWRiJk7s8SycQBltH9eTxyEbrhwRpo39rFOG9M4 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="278280794"
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="278280794"
+ bh=1xrco0Aflh85IeWHAaJgIUxZJlQeD1IPivU8FCPK/Vk=;
+ b=Bs1Q+2II73wCG1XqWZczX1tDvI5f0MqdGM7q9yg2jYDnfWW+QjFvVyV2
+ n4FAHY8yKowMAQYb+jV8nxeXu2xBT1EgGbToQBxKGplL/i+nuyP46kgXs
+ vxuqZEfU7eP1OEjVB2XVITZeIbYXz4j+jXS94+8nOJPkzq6cau/Q1/bYQ
+ V1oLwq07xYJ7q/uD2mMTJPnBcaS5Py/oq0F11jcuJv3X/WIXIIaWlWIn3
+ ZWozeCDVWdcVlhOiOYNcsNgxVB4W6k+CfI8BpRSyabM7ItFVfRqkpI/4U
+ bDZTdo6zqBETqyJHjBo+ExX6cVpLKhVXTrNWUbb+u/B4qbzVdYYuzyI+/ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="278280795"
+X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="278280795"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Sep 2022 15:04:40 -0700
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="647570928"
+X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="647570931"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Sep 2022 15:04:40 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Sep 2022 15:04:25 -0700
-Message-Id: <20220914220427.3091448-3-matthew.d.roper@intel.com>
+Date: Wed, 14 Sep 2022 15:04:26 -0700
+Message-Id: <20220914220427.3091448-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220914220427.3091448-1-matthew.d.roper@intel.com>
 References: <20220914220427.3091448-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915: Make GEM resume all engines
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915: Make GEM suspend all GTs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,62 +55,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andi Shyti <andi.shyti@intel.com>, dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Walk all GTs from i915_gem_resume when resuming engines.
+Walk all GTs when suspending.
 
-Cc: Andi Shyti <andi.shyti@intel.com>
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_pm.c | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-index 3428f735e786..2c80cc8362b6 100644
+index 2c80cc8362b6..e5bfb6be9f7a 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-@@ -212,7 +212,8 @@ int i915_gem_freeze_late(struct drm_i915_private *i915)
+@@ -22,6 +22,9 @@
  
- void i915_gem_resume(struct drm_i915_private *i915)
+ void i915_gem_suspend(struct drm_i915_private *i915)
  {
--	int ret;
 +	struct intel_gt *gt;
-+	int ret, i, j;
- 
++	unsigned int i;
++
  	GEM_TRACE("%s\n", dev_name(i915->drm.dev));
  
-@@ -224,8 +225,25 @@ void i915_gem_resume(struct drm_i915_private *i915)
- 	 * guarantee that the context image is complete. So let's just reset
- 	 * it and start again.
+ 	intel_wakeref_auto(&to_gt(i915)->userfault_wakeref, 0);
+@@ -36,7 +39,8 @@ void i915_gem_suspend(struct drm_i915_private *i915)
+ 	 * state. Fortunately, the kernel_context is disposable and we do
+ 	 * not rely on its state.
  	 */
--	intel_gt_resume(to_gt(i915));
+-	intel_gt_suspend_prepare(to_gt(i915));
 +	for_each_gt(gt, i915, i)
-+		if (intel_gt_resume(gt))
-+			goto err_wedged;
++		intel_gt_suspend_prepare(gt);
  
- 	ret = lmem_restore(i915, I915_TTM_BACKUP_ALLOW_GPU);
- 	GEM_WARN_ON(ret);
-+
-+	return;
-+
-+err_wedged:
-+	for_each_gt(gt, i915, j) {
-+		if (!intel_gt_is_wedged(gt)) {
-+			dev_err(i915->drm.dev,
-+				"Failed to re-initialize GPU[%u], declaring it wedged!\n",
-+				j);
-+			intel_gt_set_wedged(gt);
-+		}
-+
-+		if (j == i)
-+			break;
-+	}
+ 	i915_gem_drain_freed_objects(i915);
  }
+@@ -131,7 +135,9 @@ void i915_gem_suspend_late(struct drm_i915_private *i915)
+ 		&i915->mm.purge_list,
+ 		NULL
+ 	}, **phase;
++	struct intel_gt *gt;
+ 	unsigned long flags;
++	unsigned int i;
+ 	bool flush = false;
+ 
+ 	/*
+@@ -154,7 +160,8 @@ void i915_gem_suspend_late(struct drm_i915_private *i915)
+ 	 * machine in an unusable condition.
+ 	 */
+ 
+-	intel_gt_suspend_late(to_gt(i915));
++	for_each_gt(gt, i915, i)
++		intel_gt_suspend_late(gt);
+ 
+ 	spin_lock_irqsave(&i915->mm.obj_lock, flags);
+ 	for (phase = phases; *phase; phase++) {
 -- 
 2.37.3
 
