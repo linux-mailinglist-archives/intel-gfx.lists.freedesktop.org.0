@@ -1,151 +1,147 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC3A65B90EC
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 01:14:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725FF5B90F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 01:37:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9BC10E0FA;
-	Wed, 14 Sep 2022 23:14:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E20710E132;
+	Wed, 14 Sep 2022 23:37:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D20EC10E0FA
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 23:13:55 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5D9810E0A1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 23:37:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663197235; x=1694733235;
+ t=1663198626; x=1694734626;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=u1OrWc+V05oOB+/9aKCDftIz0OyeGnZ5IhcXBrjMlQ4=;
- b=GiAUuZSGuxLteLFYwwahfMCqmo5qDF/CmsjcFJYvdFzoiXCBuIPv40rm
- ccEaRWUKV/q+Tb3PJXA81NGGiyX5qjrqabN9dPjXYLXCQIo13MHLbVdME
- BIuAeEBmBTBbayWImDKcKYYthv46Fxl9RKiNq9j54Ll2ZOoJb4VlUiF5o
- uzh7WdZ3bvAmH0biMZvVvK5nXpED9SWSp7iVxJ9Ka2/Wm+rWpTKC+w0yX
- phOnkSbqOdrHs9K2QMErwrZMaoJjXDvfbkoZYyQnzpdMS2F4bqeZzkBD9
- 0FmFPlMtnQVDmbaeaWzIqFY9H+2dUcMkMH/pZhRIpDjymZtAIRSrQQVRH g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="360301872"
-X-IronPort-AV: E=Sophos;i="5.93,316,1654585200"; d="scan'208";a="360301872"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2022 16:13:54 -0700
+ in-reply-to:mime-version;
+ bh=gLT9zrNuzRN0Z8OqC3E79QD8mSZCQnEFA5BceDKJ3lU=;
+ b=aof3i1zn/o2Vtum3MlKv+T7ezOz5R+yUw4OnmCWBx4LVBokQxaDfa3gS
+ vg3UlAZ57+rIXUt3EWMGirBh4a6aUt/f7rthca3CdZtQCw1WrafOfM774
+ 9F3noYYdwP8BdLpIdi0yWxskZfQ1rdWvtcCvmjkVawuIRFUr2w4Qidgcb
+ W5eWY5gXZsQIh64b9x4d62UOSsNBg4Z/Y4Hrxo+EBmNdvGZYQORVKwtd2
+ 3omkkpQ/3xAbBe4DDWqRFcuMjJ0CvTwbD/eKnMCTySn0fOfCpnQVOVfWx
+ nCkLFvHplRBxV0r8Y+9LCS9LbzAziS5z5DJW8oC++X6HhbejOnypWQPBv w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="296154841"
+X-IronPort-AV: E=Sophos;i="5.93,316,1654585200"; d="scan'208";a="296154841"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2022 16:37:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,316,1654585200"; d="scan'208";a="720757657"
+X-IronPort-AV: E=Sophos;i="5.93,316,1654585200"; d="scan'208";a="945710377"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga002.fm.intel.com with ESMTP; 14 Sep 2022 16:13:54 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ by fmsmga005.fm.intel.com with ESMTP; 14 Sep 2022 16:37:06 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 14 Sep 2022 16:13:54 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2375.31; Wed, 14 Sep 2022 16:37:06 -0700
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 14 Sep 2022 16:13:53 -0700
+ 15.1.2375.31; Wed, 14 Sep 2022 16:37:05 -0700
 Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Wed, 14 Sep 2022 16:13:53 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Wed, 14 Sep 2022 16:37:05 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Wed, 14 Sep 2022 16:13:53 -0700
+ 15.1.2375.31; Wed, 14 Sep 2022 16:37:05 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TgO8fX5Sm7+XX1uA3wwEtWw82B82GjQ9uYJgxyd0PKBG0pnQUx1D1VbMdQzIq/Ajjc63tZHesu6eblWbkj4JS6CvSAoscPeFys+0Kicbf0YzkWQwDFgSf6krlKLe7VE8PEJR5vXKGfFt9aPon/+/vru7o47l+hXRI1Qg/aoDmWbgyTgi8g/Huua2kzAIBp2/fQwAcJ24uUrgM3yV3eNV5HPdNtiXOoyOog9jU3xlJs91p7R3HnWxzDIna5dppWZYnZKm6vfBk2NGI8YKhQ/qJAnqQIkH13kE1mvE+V6VCB2U5q8NuPU25i2zbHqE3SBoQmE9RIrkj5mW7+/nQxAZlw==
+ b=aCIeL/YmM5TVNEHNIFdecBl4CGkeaZPwzWQ9ZD4kODhmfQ2mkCPAUBGRCn3pFqiFJS8XfLR6+kFaz/Iq6TeD2Q/5KD/VET4uAD2Syz5Dkz6DPYB4plgYpx0CkQ3hTl3MP20dhyfl/6uOc2S7Hrn3KxrhA7D1PY3pjrzM9qeoglRv+1F+o8Yt7kbLwipcmiCsyBZmxOsk8Y+7FEtFuZf7PEHvZutSWGZcGb1T/HbjJPbPKl3BPjAGC5OvsH0mph0WWK/6bcRCPvUWEkyaNkzB1tGuqfyLEFpFpohO8qkCB+u5heKKtJSgAH22rBkSbLlrCFVWZ8aAl6v6PlXocVDzkA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+w1mZVwtJlWd8Yy8053V/d7lSX1+eW9Y/7X/nJiK2+M=;
- b=ibf0tWJ/zT65pDHjZxSXrPmc+dP6elS/xrm1kmhQw5uA4GrreojAHPDqWw7eTXTOPLO+VUyjvwT51NKL/CelPcBhl7Z2UESy0c9DjJSpGCpzbOMqFIxJm/m1EYwb6wnY9OsFSQwD1F2UsaPtg2VpsM3FGg7NIWvfIQq15BPL5HZO5TiU3SEfUBVKk9SHWf2+5PxP3ykjsoj1y0nxo3FP6UO7EA2ifmGiBUrrUJ5jVDvaLK67xhFbgA345p2REYXJH1nBQMi2muqUPKO/SX3CDluhCt0H4d+fernwgJd4SbYWVz8yOg1cdULmCPqGkHpAEzBJbvdcQHavsrASPbNogg==
+ bh=NfMqbXYts60bxeTeNIuVm+8u2WAxKquVf6lbFZeOK6U=;
+ b=n8zdnco3zUIV+inR+dfyMAQm7U2nKH1koPMWzeao8dpxIFwtzqBtMnfYy+rqU5Gt2+lVVuUTS2ev8nSBDPrmRNaivi+9gk9iqgmkpKVBVHXyaCUkfO9jwr3OyNTEl4NEZ+Q7pCUqgUN4Fpf2M0JioTsH9qlgDeR40dhzVSmANvbIc7IqJ4qilmFXdMW13oujsk13YxbN6SSs5jdIafuvqZQrP7C9cmEAh6W40uwjH9mgEDVWb+EPCUcwfdmu4gJy9Vu7QXVZKodu3gmNYS/H+gAWodJOlWL/7TGD4RGVhtnUmKT8xwwBOCMZGRWEgVI1ThpN5D/zQKMnWxqVaqBfOQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
- DM8PR11MB5670.namprd11.prod.outlook.com (2603:10b6:8:37::12) with
+ IA1PR11MB6393.namprd11.prod.outlook.com (2603:10b6:208:3ae::7) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5612.23; Wed, 14 Sep 2022 23:13:52 +0000
+ 15.20.5612.22; Wed, 14 Sep 2022 23:37:04 +0000
 Received: from DM6PR11MB2987.namprd11.prod.outlook.com
  ([fe80::b1d3:4447:7415:8adc]) by DM6PR11MB2987.namprd11.prod.outlook.com
  ([fe80::b1d3:4447:7415:8adc%6]) with mapi id 15.20.5612.022; Wed, 14 Sep 2022
- 23:13:52 +0000
-Date: Wed, 14 Sep 2022 16:13:41 -0700
+ 23:37:03 +0000
+Date: Wed, 14 Sep 2022 16:36:27 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Message-ID: <YyJgJT6ByYZToC2h@unerlige-ril>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <YyJle7V9RS+xkrgz@unerlige-ril>
 References: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
  <20220823204155.8178-2-umesh.nerlige.ramappa@intel.com>
- <9afc705a-87a1-c51e-b223-e32accbcd2fe@intel.com>
- <YxeF0b6ohtFcDXf6@unerlige-ril>
- <f1e9e230-2626-0f6c-02a7-e063122b759b@intel.com>
- <YyJVB9DpKwhqqCHR@unerlige-ril>
+ <87mtb85cvb.wl-ashutosh.dixit@intel.com>
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YyJVB9DpKwhqqCHR@unerlige-ril>
-X-ClientProxiedBy: SJ0P220CA0025.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::16) To DM6PR11MB2987.namprd11.prod.outlook.com
+In-Reply-To: <87mtb85cvb.wl-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0030.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::35) To DM6PR11MB2987.namprd11.prod.outlook.com
  (2603:10b6:5:65::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|DM8PR11MB5670:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba73fe7d-dc62-4034-4fa0-08da96a6c9b6
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|IA1PR11MB6393:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9adf7bcf-a138-41a4-82cd-08da96aa0749
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jSxLNKKJyknkUnh19CeGBgIyIqN6K+26ljgozH+azMXTnPFxuqfXV8HaXDzySJKJ66Dl0pgtputkHbdTTn3kPNOVQ5Ks4nCQGUsnt5Sskk3o/k5NzHNBwVXL+BrHdwXhyme3NCJmGEvDEGbPmyLSAeODcDLXU08nNgZ4lizyKaf+fLfSWKQo+d9o2sC9Ii0VNcpM5pd70E2H5iLj8RrsdHVkaxIPs9gN6h1KPCr/DAVTnOF8IWEAM3mHeyRbaeSCUnhOvv1CMAhN7Y8g/ILcGfQllAkf1KC7tKZu81kaJqpwI8Ht8ug0neePZCdpZxwAakreubmm2wWmND5Z8/ZNzZ0SJriPKZ3VUmHFOIUjGkZ7iKf/xAueYAkRoxP5ok+vFqk+X30h/cCypGrp9GmyxvS+9ocvNpvqAySeQs8pbEcx3dtyD3Ld3saDXeGx2sP3WbrELjRlNKSzUoriiyUGyb+h6Ie0GMT6eha4DEf4/bSF/8SrMpSESrkAfbTd1rakqWC/4M5yAfsFBI7V0advmrjuwPfk1aRv91EyuB08t3gyfCuJgOa5saArK9FbxgRcssISsyOWBPXqMIgRtvEIpJaMdgiszBejFBNfyOr8eeLl/7FBibdUnUSXbacr/X3Oc/X2R+7q2yKUu7XKNu8mPpXeAJNIuiDqchQKsI25w2Y6K740GOCk44pCfSuawNoIukGCZzLg22U8RSSt9ttAYh3P0tZB6Qin5TwpDc2PLpKR5FhB1APeM459y1ppZfwLTzh6qnT6EH3AohUnbre93g==
+X-Microsoft-Antispam-Message-Info: Gbs2dCAZ+LtJpwy3gZllljT0+ERqUYYBheZE91Q578QehCsTd5shEknNHpjHAls95LmqIUoHEIooSKbufHJJh37XKQD58nvkCIZI939Vr0ebRI/RK2kniCHgU1+FK/YfkpLA90d8GgMFyvOroSxLFALNzOcNGM0fMgahvD1dqLErpky0o+2JkkvD1MVAzmcPpYqSvr8jx21H73unEmXZBqxJ4tcIFmSVYEWQfVYJ3bBerNTCHydtyqEgrvwHc4TD22Qs8SXASJqL8MlSIUEqyauz8n9rWdJbnuT7dDY5257PAt9CuOn/De7Kv+qGN5FigAoYiNuRwnKKTdQ1U0Cui7lz9Nbxbdt1WgD0wMdPq8HWoyTKMrF1Mtkyw6Ivc689//ROVlrKYF2q02O6jb1Y/IEGrYrsza6GvMHbL9BwYh8t5YOgCq550l4ovHQS9d+JlsLvAqBZxuDed7V7mfpPjHUiFgbzIfurNnjQbuOhZYYIlxiYooIp4yZn0AoxsPzGS0bqPrH54w33mgzJu5rbo+/uGI0S0AO+lZ0KxIJcK2wd2jwDNuvS4QHGfWxY9AJ4hYXytdj5tRQIFmSxgfvAXdO5bhnbsvZO78dClwB7LfTY23TN1bSDVfWFy2mcLmgQC9Ww3HJEgW7i7bC0l6d0iniFpCbj+gfNCJ+Qh8DnCIKPj9tVrBfnD9WRe38iQb4FR8MKIclzIaVA+eEkKe6LNDkqkQ9iAAXivt9HHLlJ05X7z93He02Q3Ame3DwvRUgLPXVEWjjTaz+QonykdcjX9qcZhDwKm2eiNm6ynACJgYc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(7916004)(346002)(376002)(396003)(39860400002)(136003)(366004)(451199015)(33716001)(38100700002)(316002)(6636002)(478600001)(8936002)(8676002)(4326008)(83380400001)(186003)(66946007)(6506007)(5660300002)(41300700001)(66556008)(6666004)(86362001)(82960400001)(6862004)(66476007)(6486002)(6512007)(2906002)(26005)(9686003)(21314003);
+ SFS:(13230022)(7916004)(376002)(346002)(396003)(136003)(39860400002)(366004)(451199015)(26005)(6862004)(186003)(6636002)(6486002)(8936002)(316002)(107886003)(6666004)(9686003)(83380400001)(66946007)(38100700002)(41300700001)(2906002)(82960400001)(5660300002)(86362001)(8676002)(66476007)(4326008)(478600001)(66556008)(6512007)(33716001)(6506007)(21314003)(67856001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Ulo5bzNMTkMweWRybEdocWdUeFdMM1draFVCRW55RGlDNUU0ZnVVVjFsWVZa?=
- =?utf-8?B?Y2IyN01zeTFhazlmOGV2RzlYc3E0NGVhblVpRUpwUUgycTNHYkdVMm1KMWFK?=
- =?utf-8?B?Q3IwNWNMMmdoeTdzTnYzZVZQcDRteXJPMWxxUDk4ZmlrZUUwR3FHTWs2Qkwr?=
- =?utf-8?B?NWxlbksrcHdSRVp6aWhXQUNXT0F2ZEZyODA4K3p4OTUxWVRKWlRQd2FKMDg2?=
- =?utf-8?B?bnhIY0lvcUdhdU95UEhYSi9Lb25jMjRHUnlndnIvemxsVm42cVN2VFhZVld6?=
- =?utf-8?B?ejBMalJ1cmhQNGNvYzU2RytTVFB2UDV5S2plZjNwV2RzQVcwTU5FNzBFL1ln?=
- =?utf-8?B?YTlNNFBZZklFdEVoZUgzaFUwaXZBVHpIaVpjekE1Z3RJNmluMmxkWkVkTWEx?=
- =?utf-8?B?WTVwaU4rTGU4anhDc0NabS9DdldlN1FMcTRXZGxYd2RGeXhsbnNLWGZHYldn?=
- =?utf-8?B?bkxBQS9ScXlHeUwwMVR6a0xWMGYvZXZJZ2d1L2ZMWUVVTDFsSjhPUU95SVFO?=
- =?utf-8?B?WnkxTm9sQ3p1NTVEaU5CN214OXpoM2VCdWM1ZnN5a0ZLYzJjUmlyYm8xOCtD?=
- =?utf-8?B?N2pNZ3g4Syt0d0FrbFVkZ3d2am1tWFVSU21JdSttbDBmNEJqR0wvWGxCalZu?=
- =?utf-8?B?M2VyZ2tmQnFzWG0zZ3RCK25pZ0p6ZnlCcUNzbk5YSVZlZ2w1SEpWVFlMa3Z2?=
- =?utf-8?B?Ui96NDY2K2dqQU5xa3dKY0RBaEdLNE56VjkvNDVoZTB6c1ROMVVhT29sNkJw?=
- =?utf-8?B?Q0p5bFpVT0JReFZrK2wxWlREWkdCQ3hYdUVSZ3UyZjFPR0duckFNVWpaVzRO?=
- =?utf-8?B?RklGY3oyOUR6RFoxc1o0K2Qva25HOG16UnVGNXlVdGxyalc5MWtLdmNaVFRM?=
- =?utf-8?B?QjRreGVwN2NqSmdpNThITjNQMjgxemRoNHRrSjV4RnM3RkZ0dHpoS0k4dlBo?=
- =?utf-8?B?cFdGWHBHS3VhU3NqeXNpemVFd09yK1JTaDMrZWJaUlppSFMrNkYxTURtNTRa?=
- =?utf-8?B?aGFxeUtFWk1iZDluMVZBY3dnQWRldG4vWnorWUxNK0FiMXNlek00NkxmTnJz?=
- =?utf-8?B?L2JLNEdRMzJUTHNPSUpuRnZ5eDRNOTJWd1NqamVDQmVrYWFsZFgyWGVaYWNK?=
- =?utf-8?B?ak9CSDF2VjBJMTJoM0g5dG8yUU5TTkUrRmhHZGhsQ3pFWkF6M1k1QXBKUlFE?=
- =?utf-8?B?bjNwUXhXdjFnY2s5N1ZET1k3VVc4bDRyUk1pZ3NpdEp2Uk9qWnpxUDVENU5w?=
- =?utf-8?B?TnMwR09ET3RlVDAyMTJMU3RmNUplM3AxUzJYS2hSTDRySHA3T1QyMmJrV1F4?=
- =?utf-8?B?NlVwbWVsUXBlN2hEK1NrblVuSGEvRGJYck9nTk5ROEFYc081bXAwd2V6Nm55?=
- =?utf-8?B?WFdvUUt0bXk3azdOblJjeEozVDZUdW1qQUlnV0Y3Rk1hbnQ4MkNjemhUdmZB?=
- =?utf-8?B?STJBekM5bzdsU3Z0RDFlOWJSLzRENDdkelVUVTJoeE10dDJHV2RSdEw4OG9y?=
- =?utf-8?B?Yy9hNEtJY2E4MllpMHA4Y1hUbkNzWTN2R3RrenBDMmkzbkxwTVUwQ1QvTmZ3?=
- =?utf-8?B?VmxwZ0FvRVpNdWg1NGJWbmVNV2NxNm1CQzhUaVAzNzY0Um5JUlpJdTFRdkZB?=
- =?utf-8?B?NVI4SE52MnFxM2U2di9BbzJLNW5CeHBPU1czTzdra0JXMkJJTzZxd2hxTWE3?=
- =?utf-8?B?OVJkcU5GTDVEVngvbWxVbGJJZGVPbGtHMlpvYi96QjhJUjNNNll0czRqTEhX?=
- =?utf-8?B?Qy9VUkFmVzg4QW12T2ZLUTI5SkIrYkZQazQzQ2FRNVlRL3RwTE16Lzlvbjlj?=
- =?utf-8?B?a051b1NOZk9naGNzSkZxV2lFSFBobnZUcFA2cU90SEF2R0pDT29VNkNHNzZt?=
- =?utf-8?B?OEdmbGpFM3VmTGY2UWoxSytUYnpJMklJRnlNSnF4K1lxbGNkeGhvMWhSdmpM?=
- =?utf-8?B?WlJYOXVCTnRURDVpcWd0VSs3Q1cxdFM4MG1xaUdXL01LRmRkRk9ncllWNUpP?=
- =?utf-8?B?K3p0VmlVdU9iY2s2MEsrdldPcWk3VDR4UTU1RnBwMHJFbXdocEwreVk3Sk93?=
- =?utf-8?B?US85WUpOTnNKenhGeTA5UVFyRXZXWVdBWDJMcllJWFdoMkxON3ZmeFFiaURJ?=
- =?utf-8?B?dlhzZ2x1elliL0hrMXE5S3NEUlBRTlRwbC8rU0YzVkU0Nk1iNVJ5eEhhMmU4?=
- =?utf-8?Q?PgODrUx9VuJB2dw7tUeIe0k=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba73fe7d-dc62-4034-4fa0-08da96a6c9b6
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y2pnV0p5YUVDM3dSdTdMcXkrcFFqeERJTVdQNENyNlk5MmgxUFBWb2VQTS9v?=
+ =?utf-8?B?bHBWNWliNXEyYXduSGVhWXFzNGF2eWxMbDZha21ydDU0RnZJWjM2SUFKZkhL?=
+ =?utf-8?B?emJoYWx0bDFwQUlJVjJ6WFNMTkhrZGxSSDdTb3ZFNmhKRm9WYkxxcEExb2pt?=
+ =?utf-8?B?Q3psUE85TmdBV0dnbmN4eXNBTWsrN0ZTa2JNODJ0N0JkVFFzeU5uMDdNN2tJ?=
+ =?utf-8?B?MndWdHB6OGNPMFlzb0plaUdzQzY3SmJZemNBYXdIRGdPV0ZXTzVUbDZab3Za?=
+ =?utf-8?B?OElkbU1tWmtDSFY1cm43TXdOekR6SE9UMDVnYUFaaU5VN3RiNTlhdjJQMWQy?=
+ =?utf-8?B?TllTcFd5b3h2ZHlVd1lHMDV3UmdURTkzQkNHNUpEUG5hKzVkYVZSaWRTYmxI?=
+ =?utf-8?B?d3hzUHFSd1p0cUN2QW84UDhSQUQyTm4xUWZxK3lxSjRCaTB4ZmMwVHFEUFVT?=
+ =?utf-8?B?cFhYRlJjS1BhdDBRTWhRUnYyMWZ0V0hvb3NKOHIyYTc0bHZOMHdDU09FamZH?=
+ =?utf-8?B?dUcwYVJ4c2YwUzhmL3NBTFRnaUlRUTk4VFgvY2tUSk5WTFJrQzdJaWF4TFpQ?=
+ =?utf-8?B?aEVGcHJpQWdBbzlraGRpUE1vbVFBQjVHYVdjbjBsM3ZvZGt5VVJHbGRiK0dU?=
+ =?utf-8?B?VGRacjNKUHlnOWxUSy8rbDhrQk5udnZxdGIycjNsUFR6ZFhrZ0RnTlRrK1A2?=
+ =?utf-8?B?cjZLZ3Y0TmVJUHMveUJzdzRzZ2lvOUhTNUxNTTQvTWNDM1JsOEZ4SGRmL1BE?=
+ =?utf-8?B?a2Y1OWttU1Z5eHVhbU9VU0V4U1pManJFdlJqNTBXdnBtVFVKSFF5cjNGQVFL?=
+ =?utf-8?B?QnlxdlJpQ25Gc1NBbnhLclJaVVNQbnJIR0QxWHByUDAvRXd5M2pPc2dMT3B1?=
+ =?utf-8?B?RnFRZWNsWFpHOHE1d3pDK2FVM1hjNGpUREVaR0RPanNkcHpZNW9hMEtJdmZD?=
+ =?utf-8?B?MHo1M1ZsY0FDdU80OTFTSEtja1UwM3RobGkwSnFiVE5OMmZEUVp5dlo5dVRL?=
+ =?utf-8?B?My8wVUZIV2doYTZPOWhqQmdLRWd6aUlwS09LcmZRTEo1d1hDMmV6MU5Uckwx?=
+ =?utf-8?B?MVAyTHM5N0RZOGxnSUw1dXBhV3QwVXRvZDR1cmxHT1BnY3htMEgybjdFNjB4?=
+ =?utf-8?B?b3FyYk9JampsZ1NHQWtWRzZORFFmTEczQnd0UWRnRGI4OE5TZlJFWWlzMWhk?=
+ =?utf-8?B?ZDI0ODRsVEVmcEdUb2kzN3hRYU9XMXBnSGZOZEROVzI1WDdiVEtXbWlkYlUr?=
+ =?utf-8?B?SUd2dHdFb0I5bzNPSE05dEVweGtwQVNValFGc2Z6Wms0d2dtcjNBeUJJcWk2?=
+ =?utf-8?B?WFlQSS9WWFdVcFcrZ1R2eXFDK0NaT3NiV0huQ2Z3K3E5c3h0RW1TMmpxOXZj?=
+ =?utf-8?B?WFAzb0ZzdGpHZmtCVW5hMDNWNjdHNkpoKzVHYnRlTG5CTDJCSVE1SUlGR252?=
+ =?utf-8?B?cWM4b3dDaDBrRGVjUHIzaGRjall1bWpMZTA5MENZRjE1cVJKTTExT0pqVitn?=
+ =?utf-8?B?RUJKcExiL0hxQmhDbnlDbDJ0cUt1NkpWTWRSRi9QZnErbm9KTmw1b1lFWjd0?=
+ =?utf-8?B?TlladjIwbDM5T2lVOXgrd0pjWHF1bGlaSmc5Q09iY3FKeDZnWVdKNTM2bk5Z?=
+ =?utf-8?B?QUtxek5WUERMcXExSTFpbmZRdksxVUhpSC9QR0Z4SUNpS0xUaVo0Y29YMU1l?=
+ =?utf-8?B?MXRWREhEWFhja3pSMjF3bHFBUUNNZm5mOC9NQnFYQ2JlRVRXNlFhSklrZElu?=
+ =?utf-8?B?RlcvRXF6REVONllBSjZldDhuM3FnNWdCOTdVdDVaQmFVWStDSFNld2JIbFlZ?=
+ =?utf-8?B?K0dYRHhVYVFxcHpvaDZSZFVwdmxUYkZrRTdpUVlDdHZwQWFBU1F3MHN0Uk5I?=
+ =?utf-8?B?T3k1SGFJNFJaTjFjUDZoeExFamQ1UDRyR0p6M3hPdVRiaUljN29FOGJ1VGRm?=
+ =?utf-8?B?V2g4bnIwRWhrbUNCbm4yeGZDTFQ0Q01JMmtDMzRKU0Q4QWFmV2hBcFhHUWlY?=
+ =?utf-8?B?Umdka0hKQ3E2dG1hWHYrUHdMNnU4L2xpZW15U2JuY05pS204d1hoYjFjY3dY?=
+ =?utf-8?B?cFl0bWxCVjNjOFhuNFFpRk41emYwaDRiM3ltQ09pNVhDbWdJb3ZuUVBIcklQ?=
+ =?utf-8?B?QUg4VmtNWW5qbHVPWTROUFJ5OURqcFVOM1hmSUNMd29JZFQ2UlZMUXprUzJw?=
+ =?utf-8?Q?myYfCuQjTLPZ/pRiP784TQo=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9adf7bcf-a138-41a4-82cd-08da96aa0749
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 23:13:52.0658 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 23:37:03.7992 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6IEpklIA++Xe5ETKQ3SJeGbE6IY6e5k7KyO0k7x/4Z8CYSGJtIkJTStjVIgB/4yLtaxJUlwBnLxb3pTxihE5d5Mgr5iLnWBqTpM+fKrRhh0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR11MB5670
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y5hOhqdJe31LQDwF/nfQ3eMuuZo8tcfRCsjzqvTiDSOkAXVUoNWDQ37QBi+Vs1Gm2PfWuCe1U60s/svDAV2FwRmE1bg9r1Ydd1w567nPTeE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6393
 X-OriginatorOrg: intel.com
 Subject: Re: [Intel-gfx] [PATCH 01/19] drm/i915/perf: Fix OA filtering logic
  for GuC mode
@@ -165,288 +161,206 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 14, 2022 at 03:26:15PM -0700, Umesh Nerlige Ramappa wrote:
->On Tue, Sep 06, 2022 at 09:39:33PM +0300, Lionel Landwerlin wrote:
->>On 06/09/2022 20:39, Umesh Nerlige Ramappa wrote:
->>>On Tue, Sep 06, 2022 at 05:33:00PM +0300, Lionel Landwerlin wrote:
->>>>On 23/08/2022 23:41, Umesh Nerlige Ramappa wrote:
->>>>>With GuC mode of submission, GuC is in control of defining the 
->>>>>context id field
->>>>>that is part of the OA reports. To filter reports, UMD and KMD 
->>>>>must know what sw
->>>>>context id was chosen by GuC. There is not interface between 
->>>>>KMD and GuC to
->>>>>determine this, so read the upper-dword of EXECLIST_STATUS to 
->>>>>filter/squash OA
->>>>>reports for the specific context.
->>>>>
->>>>>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>>>
->>>>
->>>>I assume you checked with GuC that this doesn't change as the 
->>>>context is running?
->>>
->>>Correct.
->>>
->>>>
->>>>With i915/execlist submission mode, we had to ask i915 to pin 
->>>>the sw_id/ctx_id.
->>>>
->>>
->>>From GuC perspective, the context id can change once KMD 
->>>de-registers the context and that will not happen while the 
->>>context is in use.
->>>
->>>Thanks,
->>>Umesh
->>
->>
->>Thanks Umesh,
->>
->>
->>Maybe I should have been more precise in my question :
->>
->>
->>Can the ID change while the i915-perf stream is opened?
->>
->>Because the ID not changing while the context is running makes sense.
->>
->>But since the number of available IDs is limited to 2k or something 
->>on Gfx12, it's possible the GuC has to reuse IDs if too many apps 
->>want to run during the period of time while i915-perf is active and 
->>filtering.
+On Fri, Sep 09, 2022 at 04:47:36PM -0700, Dixit, Ashutosh wrote:
+>On Tue, 23 Aug 2022 13:41:37 -0700, Umesh Nerlige Ramappa wrote:
 >>
 >
->available guc ids are 64k with 4k reserved for multi-lrc, so GuC may 
->have to reuse ids once 60k ids are used up.
+>Hi Umesh,
+>
+>> With GuC mode of submission, GuC is in control of defining the context id field
+>> that is part of the OA reports. To filter reports, UMD and KMD must know what sw
+>> context id was chosen by GuC. There is not interface between KMD and GuC to
+>> determine this, so read the upper-dword of EXECLIST_STATUS to filter/squash OA
+>> reports for the specific context.
+>
+>Do you think it is worth defining an interface for GuC to return the sw
+>ctx_id it will be using for a ctx, say at ctx registration time?
+>
+>The scheme implemented in this patch to read the ctx_id is certainly very
+>clever, at least to me. But as Lionel was saying is it a agreed upon
+>immutable interface? If it is, we can go with this patch.
+>
+>(Though even then we will need to maintain this code even if in the future
+>GuC FW is changed to return the ctx_id in order to preserve backwards
+>comptability with previous GuC versions. So maybe better to have a real
+>interface between GuC and KMD earlier rather than later?).
 
-Spoke to the GuC team again and if there are a lot of contexts (> 60K) 
-running, there is a possibility of the context id being recycled. In 
-that case, the capture would be broken. I would track this as a separate 
-JIRA and follow up on a solution.
+Agree, ideally this should be obtained from GuC and properly 
+synchronized with kmd. OR GuC should provide a way to pin the context id 
+for such cases so that the id is not stolen/unpinned. Anyways, we need 
+to follow this up as a JIRA.
 
- From OA use case perspective, are we interested in monitoring just one 
-hardware context? If we make sure this context is not stolen, are we 
-good? 
+I may drop this patch and add a message that OA buffer filtering may be 
+broken if a gem context is passed.
+
+>
+>Also a couple of general comments below.
+>
+>>
+>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/gt/intel_lrc.h |   2 +
+>>  drivers/gpu/drm/i915/i915_perf.c    | 141 ++++++++++++++++++++++++----
+>>  2 files changed, 124 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
+>> index a390f0813c8b..7111bae759f3 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
+>> @@ -110,6 +110,8 @@ enum {
+>>  #define XEHP_SW_CTX_ID_WIDTH			16
+>>  #define XEHP_SW_COUNTER_SHIFT			58
+>>  #define XEHP_SW_COUNTER_WIDTH			6
+>> +#define GEN12_GUC_SW_CTX_ID_SHIFT		39
+>> +#define GEN12_GUC_SW_CTX_ID_WIDTH		16
+>>
+>>  static inline void lrc_runtime_start(struct intel_context *ce)
+>>  {
+>> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+>> index f3c23fe9ad9c..735244a3aedd 100644
+>> --- a/drivers/gpu/drm/i915/i915_perf.c
+>> +++ b/drivers/gpu/drm/i915/i915_perf.c
+>> @@ -1233,6 +1233,125 @@ static struct intel_context *oa_pin_context(struct i915_perf_stream *stream)
+>>	return stream->pinned_ctx;
+>>  }
+>>
+>> +static int
+>> +__store_reg_to_mem(struct i915_request *rq, i915_reg_t reg, u32 ggtt_offset)
+>> +{
+>> +	u32 *cs, cmd;
+>> +
+>> +	cmd = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
+>> +	if (GRAPHICS_VER(rq->engine->i915) >= 8)
+>> +		cmd++;
+>> +
+>> +	cs = intel_ring_begin(rq, 4);
+>> +	if (IS_ERR(cs))
+>> +		return PTR_ERR(cs);
+>> +
+>> +	*cs++ = cmd;
+>> +	*cs++ = i915_mmio_reg_offset(reg);
+>> +	*cs++ = ggtt_offset;
+>> +	*cs++ = 0;
+>> +
+>> +	intel_ring_advance(rq, cs);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int
+>> +__read_reg(struct intel_context *ce, i915_reg_t reg, u32 ggtt_offset)
+>> +{
+>> +	struct i915_request *rq;
+>> +	int err;
+>> +
+>> +	rq = i915_request_create(ce);
+>> +	if (IS_ERR(rq))
+>> +		return PTR_ERR(rq);
+>> +
+>> +	i915_request_get(rq);
+>> +
+>> +	err = __store_reg_to_mem(rq, reg, ggtt_offset);
+>> +
+>> +	i915_request_add(rq);
+>> +	if (!err && i915_request_wait(rq, 0, HZ / 2) < 0)
+>> +		err = -ETIME;
+>> +
+>> +	i915_request_put(rq);
+>> +
+>> +	return err;
+>> +}
+>> +
+>> +static int
+>> +gen12_guc_sw_ctx_id(struct intel_context *ce, u32 *ctx_id)
+>> +{
+>> +	struct i915_vma *scratch;
+>> +	u32 *val;
+>> +	int err;
+>> +
+>> +	scratch = __vm_create_scratch_for_read_pinned(&ce->engine->gt->ggtt->vm, 4);
+>> +	if (IS_ERR(scratch))
+>> +		return PTR_ERR(scratch);
+>> +
+>> +	err = i915_vma_sync(scratch);
+>> +	if (err)
+>> +		goto err_scratch;
+>> +
+>> +	err = __read_reg(ce, RING_EXECLIST_STATUS_HI(ce->engine->mmio_base),
+>> +			 i915_ggtt_offset(scratch));
+>
+>Actually the RING_EXECLIST_STATUS_HI is MMIO so can be read using say
+>ENGINE_READ/intel_uncore_read. The only issue is how to read it when this
+>ctx is scheduled which is cleverly solved by the scheme above. But I am not
+>sure if there is any other simpler way to do it.
+>
+>> +	if (err)
+>> +		goto err_scratch;
+>> +
+>> +	val = i915_gem_object_pin_map_unlocked(scratch->obj, I915_MAP_WB);
+>> +	if (IS_ERR(val)) {
+>> +		err = PTR_ERR(val);
+>> +		goto err_scratch;
+>> +	}
+>> +
+>> +	*ctx_id = *val;
+>> +	i915_gem_object_unpin_map(scratch->obj);
+>> +
+>> +err_scratch:
+>> +	i915_vma_unpin_and_release(&scratch, 0);
+>> +	return err;
+>> +}
+>> +
+>> +/*
+>> + * For execlist mode of submission, pick an unused context id
+>> + * 0 - (NUM_CONTEXT_TAG -1) are used by other contexts
+>> + * XXX_MAX_CONTEXT_HW_ID is used by idle context
+>> + *
+>> + * For GuC mode of submission read context id from the upper dword of the
+>> + * EXECLIST_STATUS register.
+>> + */
+>> +static int gen12_get_render_context_id(struct i915_perf_stream *stream)
+>> +{
+>> +	u32 ctx_id, mask;
+>> +	int ret;
+>> +
+>> +	if (intel_engine_uses_guc(stream->engine)) {
+>> +		ret = gen12_guc_sw_ctx_id(stream->pinned_ctx, &ctx_id);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		mask = ((1U << GEN12_GUC_SW_CTX_ID_WIDTH) - 1) <<
+>> +			(GEN12_GUC_SW_CTX_ID_SHIFT - 32);
+>> +	} else if (GRAPHICS_VER_FULL(stream->engine->i915) >= IP_VER(12, 50)) {
+>> +		ctx_id = (XEHP_MAX_CONTEXT_HW_ID - 1) <<
+>> +			(XEHP_SW_CTX_ID_SHIFT - 32);
+>> +
+>> +		mask = ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
+>> +			(XEHP_SW_CTX_ID_SHIFT - 32);
+>> +	} else {
+>> +		ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) <<
+>> +			 (GEN11_SW_CTX_ID_SHIFT - 32);
+>> +
+>> +		mask = ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) <<
+>> +			(GEN11_SW_CTX_ID_SHIFT - 32);
+>
+>Previously I missed that these ctx_id's for non-GuC cases are just
+>constants. How does it work in these cases?
+
+In those cases we use a fixed id for the OA use case:
+
+in gen12_get_render_context_id()
+stream->specific_ctx_id = ctx_id & mask
+
+in oa_get_render_ctx_id()
+ce->tag = stream->specific_ctx_id;
+
+in __execlists_schedule_in()
+ce->lrc.ccid = ce->tag;
 
 Thanks,
 Umesh
 
 >
->Thanks,
->Umesh
->
->>
->>-Lionel
->>
->>
->>>
->>>>
->>>>If that's not the case then filtering is broken.
->>>>
->>>>
->>>>-Lionel
->>>>
->>>>
->>>>>---
->>>>> drivers/gpu/drm/i915/gt/intel_lrc.h |   2 +
->>>>> drivers/gpu/drm/i915/i915_perf.c    | 141 ++++++++++++++++++++++++----
->>>>> 2 files changed, 124 insertions(+), 19 deletions(-)
->>>>>
->>>>>diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h 
->>>>>b/drivers/gpu/drm/i915/gt/intel_lrc.h
->>>>>index a390f0813c8b..7111bae759f3 100644
->>>>>--- a/drivers/gpu/drm/i915/gt/intel_lrc.h
->>>>>+++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
->>>>>@@ -110,6 +110,8 @@ enum {
->>>>> #define XEHP_SW_CTX_ID_WIDTH            16
->>>>> #define XEHP_SW_COUNTER_SHIFT            58
->>>>> #define XEHP_SW_COUNTER_WIDTH            6
->>>>>+#define GEN12_GUC_SW_CTX_ID_SHIFT        39
->>>>>+#define GEN12_GUC_SW_CTX_ID_WIDTH        16
->>>>> static inline void lrc_runtime_start(struct intel_context *ce)
->>>>> {
->>>>>diff --git a/drivers/gpu/drm/i915/i915_perf.c 
->>>>>b/drivers/gpu/drm/i915/i915_perf.c
->>>>>index f3c23fe9ad9c..735244a3aedd 100644
->>>>>--- a/drivers/gpu/drm/i915/i915_perf.c
->>>>>+++ b/drivers/gpu/drm/i915/i915_perf.c
->>>>>@@ -1233,6 +1233,125 @@ static struct intel_context 
->>>>>*oa_pin_context(struct i915_perf_stream *stream)
->>>>>     return stream->pinned_ctx;
->>>>> }
->>>>>+static int
->>>>>+__store_reg_to_mem(struct i915_request *rq, i915_reg_t reg, 
->>>>>u32 ggtt_offset)
->>>>>+{
->>>>>+    u32 *cs, cmd;
->>>>>+
->>>>>+    cmd = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
->>>>>+    if (GRAPHICS_VER(rq->engine->i915) >= 8)
->>>>>+        cmd++;
->>>>>+
->>>>>+    cs = intel_ring_begin(rq, 4);
->>>>>+    if (IS_ERR(cs))
->>>>>+        return PTR_ERR(cs);
->>>>>+
->>>>>+    *cs++ = cmd;
->>>>>+    *cs++ = i915_mmio_reg_offset(reg);
->>>>>+    *cs++ = ggtt_offset;
->>>>>+    *cs++ = 0;
->>>>>+
->>>>>+    intel_ring_advance(rq, cs);
->>>>>+
->>>>>+    return 0;
->>>>>+}
->>>>>+
->>>>>+static int
->>>>>+__read_reg(struct intel_context *ce, i915_reg_t reg, u32 ggtt_offset)
->>>>>+{
->>>>>+    struct i915_request *rq;
->>>>>+    int err;
->>>>>+
->>>>>+    rq = i915_request_create(ce);
->>>>>+    if (IS_ERR(rq))
->>>>>+        return PTR_ERR(rq);
->>>>>+
->>>>>+    i915_request_get(rq);
->>>>>+
->>>>>+    err = __store_reg_to_mem(rq, reg, ggtt_offset);
->>>>>+
->>>>>+    i915_request_add(rq);
->>>>>+    if (!err && i915_request_wait(rq, 0, HZ / 2) < 0)
->>>>>+        err = -ETIME;
->>>>>+
->>>>>+    i915_request_put(rq);
->>>>>+
->>>>>+    return err;
->>>>>+}
->>>>>+
->>>>>+static int
->>>>>+gen12_guc_sw_ctx_id(struct intel_context *ce, u32 *ctx_id)
->>>>>+{
->>>>>+    struct i915_vma *scratch;
->>>>>+    u32 *val;
->>>>>+    int err;
->>>>>+
->>>>>+    scratch = 
->>>>>__vm_create_scratch_for_read_pinned(&ce->engine->gt->ggtt->vm, 
->>>>>4);
->>>>>+    if (IS_ERR(scratch))
->>>>>+        return PTR_ERR(scratch);
->>>>>+
->>>>>+    err = i915_vma_sync(scratch);
->>>>>+    if (err)
->>>>>+        goto err_scratch;
->>>>>+
->>>>>+    err = __read_reg(ce, 
->>>>>RING_EXECLIST_STATUS_HI(ce->engine->mmio_base),
->>>>>+             i915_ggtt_offset(scratch));
->>>>>+    if (err)
->>>>>+        goto err_scratch;
->>>>>+
->>>>>+    val = i915_gem_object_pin_map_unlocked(scratch->obj, I915_MAP_WB);
->>>>>+    if (IS_ERR(val)) {
->>>>>+        err = PTR_ERR(val);
->>>>>+        goto err_scratch;
->>>>>+    }
->>>>>+
->>>>>+    *ctx_id = *val;
->>>>>+    i915_gem_object_unpin_map(scratch->obj);
->>>>>+
->>>>>+err_scratch:
->>>>>+    i915_vma_unpin_and_release(&scratch, 0);
->>>>>+    return err;
->>>>>+}
->>>>>+
->>>>>+/*
->>>>>+ * For execlist mode of submission, pick an unused context id
->>>>>+ * 0 - (NUM_CONTEXT_TAG -1) are used by other contexts
->>>>>+ * XXX_MAX_CONTEXT_HW_ID is used by idle context
->>>>>+ *
->>>>>+ * For GuC mode of submission read context id from the upper 
->>>>>dword of the
->>>>>+ * EXECLIST_STATUS register.
->>>>>+ */
->>>>>+static int gen12_get_render_context_id(struct 
->>>>>i915_perf_stream *stream)
->>>>>+{
->>>>>+    u32 ctx_id, mask;
->>>>>+    int ret;
->>>>>+
->>>>>+    if (intel_engine_uses_guc(stream->engine)) {
->>>>>+        ret = gen12_guc_sw_ctx_id(stream->pinned_ctx, &ctx_id);
->>>>>+        if (ret)
->>>>>+            return ret;
->>>>>+
->>>>>+        mask = ((1U << GEN12_GUC_SW_CTX_ID_WIDTH) - 1) <<
->>>>>+            (GEN12_GUC_SW_CTX_ID_SHIFT - 32);
->>>>>+    } else if (GRAPHICS_VER_FULL(stream->engine->i915) >= 
->>>>>IP_VER(12, 50)) {
->>>>>+        ctx_id = (XEHP_MAX_CONTEXT_HW_ID - 1) <<
->>>>>+            (XEHP_SW_CTX_ID_SHIFT - 32);
->>>>>+
->>>>>+        mask = ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
->>>>>+            (XEHP_SW_CTX_ID_SHIFT - 32);
->>>>>+    } else {
->>>>>+        ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) <<
->>>>>+             (GEN11_SW_CTX_ID_SHIFT - 32);
->>>>>+
->>>>>+        mask = ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) <<
->>>>>+            (GEN11_SW_CTX_ID_SHIFT - 32);
->>>>>+    }
->>>>>+    stream->specific_ctx_id = ctx_id & mask;
->>>>>+    stream->specific_ctx_id_mask = mask;
->>>>>+
->>>>>+    return 0;
->>>>>+}
->>>>>+
->>>>> /**
->>>>>  * oa_get_render_ctx_id - determine and hold ctx hw id
->>>>>  * @stream: An i915-perf stream opened for OA metrics
->>>>>@@ -1246,6 +1365,7 @@ static struct intel_context 
->>>>>*oa_pin_context(struct i915_perf_stream *stream)
->>>>> static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
->>>>> {
->>>>>     struct intel_context *ce;
->>>>>+    int ret = 0;
->>>>>     ce = oa_pin_context(stream);
->>>>>     if (IS_ERR(ce))
->>>>>@@ -1292,24 +1412,7 @@ static int oa_get_render_ctx_id(struct 
->>>>>i915_perf_stream *stream)
->>>>>     case 11:
->>>>>     case 12:
->>>>>-        if (GRAPHICS_VER_FULL(ce->engine->i915) >= IP_VER(12, 50)) {
->>>>>-            stream->specific_ctx_id_mask =
->>>>>-                ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
->>>>>-                (XEHP_SW_CTX_ID_SHIFT - 32);
->>>>>-            stream->specific_ctx_id =
->>>>>-                (XEHP_MAX_CONTEXT_HW_ID - 1) <<
->>>>>-                (XEHP_SW_CTX_ID_SHIFT - 32);
->>>>>-        } else {
->>>>>-            stream->specific_ctx_id_mask =
->>>>>-                ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) << 
->>>>>(GEN11_SW_CTX_ID_SHIFT - 32);
->>>>>-            /*
->>>>>-             * Pick an unused context id
->>>>>-             * 0 - BITS_PER_LONG are used by other contexts
->>>>>-             * GEN12_MAX_CONTEXT_HW_ID (0x7ff) is used by idle context
->>>>>-             */
->>>>>-            stream->specific_ctx_id =
->>>>>-                (GEN12_MAX_CONTEXT_HW_ID - 1) << 
->>>>>(GEN11_SW_CTX_ID_SHIFT - 32);
->>>>>-        }
->>>>>+        ret = gen12_get_render_context_id(stream);
->>>>>         break;
->>>>>     default:
->>>>>@@ -1323,7 +1426,7 @@ static int oa_get_render_ctx_id(struct 
->>>>>i915_perf_stream *stream)
->>>>>         stream->specific_ctx_id,
->>>>>         stream->specific_ctx_id_mask);
->>>>>-    return 0;
->>>>>+    return ret;
->>>>> }
->>>>> /**
->>>>
->>>>
->>
+>Thanks.
+>--
+>Ashutosh
