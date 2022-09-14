@@ -2,53 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14C8F5B900B
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 23:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C28285B9015
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 23:26:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 779EF10E049;
-	Wed, 14 Sep 2022 21:23:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D675610E049;
+	Wed, 14 Sep 2022 21:26:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15835890EB
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 21:22:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663190577; x=1694726577;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=hr0eKWRElBDz3G710qUFjXwKLBMuT3JarJVVYMI9c3c=;
- b=cOkNc27W0GpowCCQUG2NLNtEh417fNVotur56xK8WQD/u04XJsPBORKe
- zc4j55obsUXboyUhmEPJ1EN1QYCY0p3q2xnXbrht21XJ8Cztnl8txPIGH
- dg/ntN2/4sSXce1FLBKY2PACiU5kpGfp5xl3/2W6dGERlDr4HKAAK7XlW
- GTqadn8lXRk67M5A8Gnmvc4kBREg/zbcHsD3SXgTwLit+CCk8Jf7Uro2U
- 4yZ3XMNsX5Zb+n+g0hJEGb6BT57Ymj3aUUcmc1v7rDFFhQZlMMzBm3J92
- rYpkfw00AbEzi8zIT1R6d3pnbhMPVtqlkVBVqEjlkUNnVr1M8WhS7LjQX Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="299905404"
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="299905404"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2022 14:22:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="720729501"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga002.fm.intel.com with SMTP; 14 Sep 2022 14:22:54 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 15 Sep 2022 00:22:53 +0300
-Date: Thu, 15 Sep 2022 00:22:53 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <YyJGLUva3ZOLUBui@intel.com>
-References: <20220820005822.102716-1-anusha.srivatsa@intel.com>
- <20220820005822.102716-2-anusha.srivatsa@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E5FA610E049;
+ Wed, 14 Sep 2022 21:26:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DD7D5A47EB;
+ Wed, 14 Sep 2022 21:26:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220820005822.102716-2-anusha.srivatsa@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/display: Add CDCLK actions to
- intel_cdclk_state
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Wed, 14 Sep 2022 21:26:47 -0000
+Message-ID: <166319080787.4164.1344291399948394280@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220914204339.4063942-1-lucas.demarchi@intel.com>
+In-Reply-To: <20220914204339.4063942-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Revert_=22drm/i915=3A_Force_compilation_with_intel-iommu_fo?=
+ =?utf-8?q?r_CI_validation=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,79 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 19, 2022 at 05:58:19PM -0700, Anusha Srivatsa wrote:
-> This is a prep patch for what the rest of the series does.
-> 
-> Add existing actions that change cdclk - squash, crawl, modeset to
-> intel_cdclk_state so we have access to the cdclk values
-> that are in transition.
-> 
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.h | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> index b535cf6a7d9e..43835688ee02 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> @@ -15,6 +15,14 @@ struct drm_i915_private;
->  struct intel_atomic_state;
->  struct intel_crtc_state;
->  
-> +enum cdclk_actions {
-> +	INTEL_CDCLK_MODESET = 0,
-> +	INTEL_CDCLK_SQUASH,
-> +	INTEL_CDCLK_CRAWL,
-> +	INTEL_CDCLK_NOOP,
-> +	MAX_CDCLK_ACTIONS
-> +};
+== Series Details ==
 
-This whole actions thing feels overly complicated to me.
-I think we should only need something like this:
+Series: Revert "drm/i915: Force compilation with intel-iommu for CI validation"
+URL   : https://patchwork.freedesktop.org/series/108576/
+State : warning
 
-if (new.squash > old.squash) {
-	mid.vco = old.vco;
-	mid.squash = new.squash;
-} else {
-	mid.vco = new.vco;
-	mid.squash = old.squash;
-}
-/*
- * bunch of asserts here to make sure
- * the mid state looks sane.
- */
-set_cdclk(mid);
-set_cdclk(new);
+== Summary ==
 
-And perhaps the current set_cdclk needs to get chunked up
-into smaller pieces so we don't do all the pre/post stuff
-more than once needlessly.
+Error: dim checkpatch failed
+e51c64216129 Revert "drm/i915: Force compilation with intel-iommu for CI validation"
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+(https://gitlab.freedesktop.org/gfx-ci/i915-infra/-/blob/master/kconfig/debug),
 
-> +
->  struct intel_cdclk_config {
->  	unsigned int cdclk, vco, ref, bypass;
->  	u8 voltage_level;
-> @@ -51,6 +59,11 @@ struct intel_cdclk_state {
->  
->  	/* bitmask of active pipes */
->  	u8 active_pipes;
-> +
-> +	struct cdclk_step {
-> +		enum cdclk_actions action;
-> +		u32 cdclk;
-> +	} steps[MAX_CDCLK_ACTIONS];
->  };
->  
->  int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state);
-> -- 
-> 2.25.1
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
 
--- 
-Ville Syrjälä
-Intel
+
