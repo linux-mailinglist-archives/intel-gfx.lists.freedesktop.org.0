@@ -2,79 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 407CE5B8DAA
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 18:59:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B045B8DAC
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Sep 2022 18:59:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FEDA10E997;
-	Wed, 14 Sep 2022 16:59:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3962D10E99D;
+	Wed, 14 Sep 2022 16:59:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A4C310E997
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 16:59:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1663174746;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=8eAE9HpKpIVvmOEFXUeeAc8cv8ndkWqJta1h5pXlw4I=;
- b=htB1+QxvhQyn20/KrKl8hoVunrDNiZQrO6ypkapEBdKIxQdLO+d6eCq/9w2WWdnlhpoAf7
- wlpdCAIb56cNsT2XbFxVGFG9OD5zqbR2griwA7HsFLFUB6sZbOsdByj97DpOQHut9cKa1e
- 4kuMetPS8w+bDpbzJOD0mp2sqxEBmh8=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-31-_nQ-0pG2Ofyls0JnpZ9Evw-1; Wed, 14 Sep 2022 12:59:02 -0400
-X-MC-Unique: _nQ-0pG2Ofyls0JnpZ9Evw-1
-Received: by mail-wm1-f69.google.com with SMTP id
- j19-20020a05600c1c1300b003ab73e4c45dso11251750wms.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 09:59:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=8eAE9HpKpIVvmOEFXUeeAc8cv8ndkWqJta1h5pXlw4I=;
- b=AAV5V4zQYGWE9wsZpvSRitwt7mrm1R3OraUN9/dJTWpQLqkO4T8kzsK0wj3V4mtg6p
- i/8Pq2sYpRV+8U+BheKxnozjhjlhFGinVotKD47Fsak3oo75GTmzqunt4FtxkFnG2XHP
- MkOqVxpuWD1VtW2W5/vhZDp30Z5pFfV6/bSY/86hntaharyvHyfPLFa0ugs0nuIVLzVa
- A20mmgvsAp3MclyXW0DDQsE79gHlEA1cXmQv2NI5vLNK5xp5jOcJKUIbPg8h41mJgVcn
- 50J2LXcENBnBc3mah+nsTzzTGCX+W9IKXlN+mwHiulMDwB88JXTbnBn8yVaaFbfpNXTN
- iDkQ==
-X-Gm-Message-State: ACgBeo2YEcNGYIRgncTd/6mqaZSApHlzigBWFIAwq7J85TnX8Z/Ihfv6
- nK4sredNfi6qrwbDtP7bl+BhAewSjYK1JxuTYMgG8FJTWNAHeEuMul9mxOcKZNvSeny+RqfVnUQ
- t7AMIqxMjBPecGXJefJxiGT/kMBur
-X-Received: by 2002:adf:f211:0:b0:228:d6a4:3510 with SMTP id
- p17-20020adff211000000b00228d6a43510mr21648602wro.448.1663174741047; 
- Wed, 14 Sep 2022 09:59:01 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR4/hMrbSSVrICYCjqMv7OHktLT/ShhknRc4TABv3IGMoKgXGV5RhWzuT4s56YrRzLlwdjxauA==
-X-Received: by 2002:adf:f211:0:b0:228:d6a4:3510 with SMTP id
- p17-20020adff211000000b00228d6a43510mr21648581wro.448.1663174740767; 
- Wed, 14 Sep 2022 09:59:00 -0700 (PDT)
-Received: from [172.16.38.152] ([185.122.133.20])
- by smtp.gmail.com with ESMTPSA id
- m23-20020a05600c3b1700b003b477532e66sm6954615wms.2.2022.09.14.09.58.59
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 14 Sep 2022 09:58:59 -0700 (PDT)
-Message-ID: <2b7693c4-b04e-425a-2f87-c4b12fa2f63b@redhat.com>
-Date: Wed, 14 Sep 2022 17:58:58 +0100
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B350910E999
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 16:59:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663174752; x=1694710752;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HrNqQMRTnpYLSc5yFXt335FjYY+Mgzif0P3vk8QVAiA=;
+ b=Cfprq85nJ3BV0eVOJbqSOLiWi3yMswI3w+BKW2U+FrUKNuYIZLbV+GpD
+ 4YZURJxATSGWdR1Kp/QP0xS3iWfHN7LQ4fdKfJi9QyfNZLhcdkI7bvR9w
+ 1auuCZ2eGb8GghXgQQEqlj5PrtFhKu2AkFyzxtkzYkZu+Ce+WKrE/JMic
+ AF5cOacZ+hzPl77r9DOQjX6QHYIYe0+Y/OQl9sLmr9UD8Xz9z/5ADXU+t
+ ERlyVOJab+6v7D8qI5v8a5gDo1cDK/scZ4tadXlzMmRzYzFCDsZ61QI57
+ /GBm5OdcMZYEWZf7HDxYZAXKU51+m9Bit1ZMxz4zvi/M/fWuYSvA0yDXW Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="298481832"
+X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="298481832"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2022 09:59:12 -0700
+X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; d="scan'208";a="679131994"
+Received: from dbrayfor-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.32.164])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2022 09:59:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 14 Sep 2022 19:59:03 +0300
+Message-Id: <20220914165903.1905962-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-To: Maxime Ripard <maxime@cerno.tech>
-References: <261afe3d-7790-e945-adf6-a2c96c9b1eff@redhat.com>
- <20220914112933.64ovljgsrv2l25rs@penduick>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20220914112933.64ovljgsrv2l25rs@penduick>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [GIT PULL] Immutable backlight-detect-refactor
- branch between acpi, drm-* and pdx86
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: move i915_fence_{context_,
+ }timeout() to i915_sw_fence.[ch]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,44 +57,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-acpi@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@redhat.com>, Len Brown <lenb@kernel.org>,
- Daniel Dadap <ddadap@nvidia.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Mark Gross <markgross@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andy@kernel.org>, Xinhui <Xinhui.Pan@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Maybe there was a grand plan with i915_fence_timeout() and
+i915_fence_context_timeout() and i915_config.c, but that seems to have
+been lost a bit.
 
-On 9/14/22 12:29, Maxime Ripard wrote:
-> Hi Hans,
-> 
-> On Mon, Sep 05, 2022 at 10:35:47AM +0200, Hans de Goede wrote:
->> Hi All,
->>
->> Now that all patches have been reviewed/acked here is an immutable backlight-detect-refactor
->> branch with 6.0-rc1 + the v5 patch-set, for merging into the relevant (acpi, drm-* and pdx86)
->> subsystems.
->>
->> Please pull this branch into the relevant subsystems.
->>
->> I will merge this into the review-hans branch of the pdx86 git tree today and
->> from there it will move to for-next once the builders have successfully build-tested
->> the merge.
-> 
-> I merged it into drm-misc-next, thanks!
+Just move the functions to i915_sw_fence.[ch] from i915_drv.h and
+i915_config.c, and remove the latter.
 
-Great, thank you!
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile        |  1 -
+ drivers/gpu/drm/i915/i915_config.c   | 15 ---------------
+ drivers/gpu/drm/i915/i915_drv.h      |  9 ---------
+ drivers/gpu/drm/i915/i915_sw_fence.c | 15 +++++++++++++++
+ drivers/gpu/drm/i915/i915_sw_fence.h |  5 +++++
+ 5 files changed, 20 insertions(+), 25 deletions(-)
+ delete mode 100644 drivers/gpu/drm/i915/i915_config.c
 
-Regards,
-
-Hans
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index a26edcdadc21..0221682d3a0f 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -34,7 +34,6 @@ subdir-ccflags-y += -I$(srctree)/$(src)
+ # core driver code
+ i915-y += i915_driver.o \
+ 	  i915_drm_client.o \
+-	  i915_config.o \
+ 	  i915_getparam.o \
+ 	  i915_ioctl.o \
+ 	  i915_irq.o \
+diff --git a/drivers/gpu/drm/i915/i915_config.c b/drivers/gpu/drm/i915/i915_config.c
+deleted file mode 100644
+index afb828dab53b..000000000000
+--- a/drivers/gpu/drm/i915/i915_config.c
++++ /dev/null
+@@ -1,15 +0,0 @@
+-// SPDX-License-Identifier: MIT
+-/*
+- * Copyright © 2020 Intel Corporation
+- */
+-
+-#include "i915_drv.h"
+-
+-unsigned long
+-i915_fence_context_timeout(const struct drm_i915_private *i915, u64 context)
+-{
+-	if (CONFIG_DRM_I915_FENCE_TIMEOUT && context)
+-		return msecs_to_jiffies_timeout(CONFIG_DRM_I915_FENCE_TIMEOUT);
+-
+-	return 0;
+-}
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 524b5ee495be..02956385d32d 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -167,15 +167,6 @@ struct i915_gem_mm {
+ 
+ #define I915_IDLE_ENGINES_TIMEOUT (200) /* in ms */
+ 
+-unsigned long i915_fence_context_timeout(const struct drm_i915_private *i915,
+-					 u64 context);
+-
+-static inline unsigned long
+-i915_fence_timeout(const struct drm_i915_private *i915)
+-{
+-	return i915_fence_context_timeout(i915, U64_MAX);
+-}
+-
+ #define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
+ 
+ struct i915_virtual_gpu {
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+index 6fc0d1b89690..2a90987799e7 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence.c
++++ b/drivers/gpu/drm/i915/i915_sw_fence.c
+@@ -11,6 +11,7 @@
+ 
+ #include "i915_sw_fence.h"
+ #include "i915_selftest.h"
++#include "i915_utils.h"
+ 
+ #if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
+ #define I915_SW_FENCE_BUG_ON(expr) BUG_ON(expr)
+@@ -471,6 +472,20 @@ static void irq_i915_sw_fence_work(struct irq_work *wrk)
+ 	kfree_rcu(cb, rcu);
+ }
+ 
++unsigned long i915_fence_context_timeout(const struct drm_i915_private *i915,
++					 u64 context)
++{
++	if (CONFIG_DRM_I915_FENCE_TIMEOUT && context)
++		return msecs_to_jiffies_timeout(CONFIG_DRM_I915_FENCE_TIMEOUT);
++
++	return 0;
++}
++
++unsigned long i915_fence_timeout(const struct drm_i915_private *i915)
++{
++	return i915_fence_context_timeout(i915, U64_MAX);
++}
++
+ int i915_sw_fence_await_dma_fence(struct i915_sw_fence *fence,
+ 				  struct dma_fence *dma,
+ 				  unsigned long timeout,
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.h b/drivers/gpu/drm/i915/i915_sw_fence.h
+index 619fc5a22f0c..cdef7dabafbd 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence.h
++++ b/drivers/gpu/drm/i915/i915_sw_fence.h
+@@ -17,6 +17,7 @@
+ 
+ struct completion;
+ struct dma_resv;
++struct drm_i915_private;
+ struct i915_sw_fence;
+ 
+ enum i915_sw_fence_notify {
+@@ -81,6 +82,10 @@ struct i915_sw_dma_fence_cb {
+ 	struct i915_sw_fence *fence;
+ };
+ 
++unsigned long i915_fence_context_timeout(const struct drm_i915_private *i915,
++					 u64 context);
++unsigned long i915_fence_timeout(const struct drm_i915_private *i915);
++
+ int __i915_sw_fence_await_dma_fence(struct i915_sw_fence *fence,
+ 				    struct dma_fence *dma,
+ 				    struct i915_sw_dma_fence_cb *cb);
+-- 
+2.34.1
 
