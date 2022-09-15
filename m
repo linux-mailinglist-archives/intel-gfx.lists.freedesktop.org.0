@@ -2,39 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0AF25BCD4D
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C0255BCD35
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:29:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0154D10E641;
-	Mon, 19 Sep 2022 13:32:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47A6C10E64F;
+	Mon, 19 Sep 2022 13:29:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id B6AC010E963
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 15:54:45 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9791C1576;
- Wed, 14 Sep 2022 08:54:51 -0700 (PDT)
-Received: from [10.57.18.118] (unknown [10.57.18.118])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 952273F73D;
- Wed, 14 Sep 2022 08:54:43 -0700 (PDT)
-Message-ID: <c539a4fb-795b-0b33-2543-6a3e94164676@arm.com>
-Date: Wed, 14 Sep 2022 16:54:36 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Content-Language: en-GB
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Karolina Drobnik <karolina.drobnik@intel.com>
-References: <20220914124045.903883-1-karolina.drobnik@intel.com>
- <20220914150121.y6ucj4mav65mt7we@ldmartin-desk2.lan>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220914150121.y6ucj4mav65mt7we@ldmartin-desk2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 19 Sep 2022 13:29:10 +0000
-Subject: Re: [Intel-gfx] [topic/core-for-CI] Revert "iommu/dma: Fix race
- condition during iova_domain initialization"
+Received: from mail-pl1-x649.google.com (mail-pl1-x649.google.com
+ [IPv6:2607:f8b0:4864:20::649])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94E1910E233
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Sep 2022 00:46:06 +0000 (UTC)
+Received: by mail-pl1-x649.google.com with SMTP id
+ s16-20020a170902ea1000b00176cf52a348so11356937plg.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 17:46:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date; bh=o0TKZg1V+iwVMAhcvK219IOXYb7az/U83DvEghII4Dw=;
+ b=ixIlbiWjYVB7lleKcOS25U/195trOCFFYYTNY2ArRn6K/NXN4jKkbx8xqVv40XOYwc
+ gzOAoHFIZ5nYNTfyaobW0eR/pRWG25686m9JNJWBrr+6XN1RIF81EpUMZ2WjcMFCwhSm
+ 8Gb5q+USrZHuvbc4jRv89+/+mSkgNgiHosn5pQFsAnbd1C2Dv7ogkJvH1mC5lGrL+dPr
+ bnDcostykRNUl2cropFFiaYmIcz4a5CirfMwmfwgNqHM/EqMlJz/pmNv4Ugl2f1MNawE
+ jIGBZhIlX4HrU621pf9P/4CGXhHLBZxK7w0Dp2p+dDVn1hB+Jl5575zzcLF/aRyRy4zu
+ UhiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date;
+ bh=o0TKZg1V+iwVMAhcvK219IOXYb7az/U83DvEghII4Dw=;
+ b=fGKHhCJLKBGh0sljZ9VUrrl1kFtnHMYIsTXBFroxWv7lH6Myd8LusTAMEM61PGvZSK
+ 6wCam2YxooRBY6jrGRW5e3iMi6FmG7vePc/F3ig3eauw66yqaWIMbb+3BXM0P58Y7Rni
+ UtriwIOVXyQSOwQH7DndO+ZFspILzEfWN5W7dW/9mnq0wdPl344tgiI+NnLcJDjrLljC
+ 3Y5vY05jpaWW8fInH7DMfjV656MuIrMi3OxtxUXIiXT7UKk3y+mwLhIdlPXRC98rh7HP
+ 38aKe1QhE2useQuE8y59wRhhVIVnvolDmC1mvrvjMyMYf8g1w4so/+nO/19MqgBIym03
+ HlxQ==
+X-Gm-Message-State: ACrzQf0mjB47Mr/TqLPiZ7Hp58elG+vLMA1A1nW6xqjnW47RqEplZX61
+ hACg8IdjbO3XCQs++Z8qieVB4BSOcEBswMA=
+X-Google-Smtp-Source: AMsMyM7cpjC0UvYeAkGaQWcCbIFCVaxS58PZrp3VQQ5nzbzNbiesGmVdHmcPLBDxn84TmNTXrfnoS9iOMdHYeok=
+X-Received: from pceballos.c.googlers.com
+ ([fda3:e722:ac3:cc00:24:72f4:c0a8:128c])
+ (user=pceballos job=sendgmr) by 2002:a17:90a:5aa2:b0:200:30aa:c773 with SMTP
+ id n31-20020a17090a5aa200b0020030aac773mr7466200pji.182.1663202766080; Wed,
+ 14 Sep 2022 17:46:06 -0700 (PDT)
+Date: Thu, 15 Sep 2022 00:46:01 +0000
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.37.2.789.g6183377224-goog
+Message-ID: <20220915004601.320198-1-pceballos@google.com>
+From: Pablo Ceballos <pceballos@google.com>
+To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Mon, 19 Sep 2022 13:29:09 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915/display/lspcon: Increase LSPCON mode
+ settle timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,231 +66,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Joerg Roedel <jroedel@suse.de>, iommu@lists.linux.dev,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Yunfei Wang <yf.wang@mediatek.com>, Miles Chen <miles.chen@mediatek.com>,
- Ning Li <ning.li@mediatek.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org,
+ Maxime Ripard <maxime@cerno.tech>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Pablo Ceballos <pceballos@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-09-14 16:01, Lucas De Marchi wrote:
-> On Wed, Sep 14, 2022 at 02:40:45PM +0200, Karolina Drobnik wrote:
->> This reverts commit ac9a5d522bb80be50ea84965699e1c8257d745ce.
->>
->> This change introduces a regression on Alder Lake that completely
->> blocks testing. To enable CI and avoid possible circular locking
->> warning, revert the patch.
-> 
-> We are already on rc5. Are iommu authors involved aware of this issue?
-> We could do this in our "for CI only" branch, but it's equally important
-> that this is fixed for 6.0
-> 
-> Cc'ing them.
+On some devices the Parade PS175 takes more than 400ms to settle in PCON
+mode.
 
-The lockdep report doesn't make much sense to me - the deadlock cycle 
-it's reporting doesn't even involve the mutex added by that commit, and 
-otherwise the lock ordering between the IOMMU bus notifier(s) and 
-cpu_hotplug_lock has existed for ages. Has lockdep somehow got multiple 
-different and unrelated bus notifiers mixed up, maybe?
+Signed-off-by: Pablo Ceballos <pceballos@google.com>
+---
+ drivers/gpu/drm/i915/display/intel_lspcon.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-FWIW nobody else has reported anything, and that mutex addresses a 
-real-world concurrency issue, so I'm not convinced a revert is 
-appropriate without at least a much clearer justification.
+diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+index 15d59de8810e..b4cbade13ee5 100644
+--- a/drivers/gpu/drm/i915/display/intel_lspcon.c
++++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+@@ -166,7 +166,7 @@ static enum drm_lspcon_mode lspcon_wait_mode(struct intel_lspcon *lspcon,
+ 	drm_dbg_kms(&i915->drm, "Waiting for LSPCON mode %s to settle\n",
+ 		    lspcon_mode_name(mode));
+ 
+-	wait_for((current_mode = lspcon_get_current_mode(lspcon)) == mode, 400);
++	wait_for((current_mode = lspcon_get_current_mode(lspcon)) == mode, 800);
+ 	if (current_mode != mode)
+ 		drm_err(&i915->drm, "LSPCON mode hasn't settled\n");
+ 
+-- 
+2.37.2.789.g6183377224-goog
 
-Robin.
-
-> thanks
-> Lucas De Marchi
-> 
->>
->> kernel log:
->>
->> ======================================================
->> WARNING: possible circular locking dependency detected
->> 6.0.0-rc5-CI_DRM_12132-g6c93e979e542+ #1 Not tainted
->> ------------------------------------------------------
->> cpuhp/0/15 is trying to acquire lock:
->> ffff8881013df278 (&(&priv->bus_notifier)->rwsem){++++}-{3:3}, at: 
->> blocking_notifier_call_chain+0x20/0x50
->>              but task is already holding lock:
->> ffffffff826490c0 (cpuhp_state-up){+.+.}-{0:0}, at: 
->> cpuhp_thread_fun+0x48/0x1f0
->>              which lock already depends on the new loc
->>              the existing dependency chain (in reverse order) is:
->>              -> #3 (cpuhp_state-up){+.+.}-{0:0}:
->>       lock_acquire+0xd3/0x310
->>       cpuhp_thread_fun+0xa6/0x1f0
->>       smpboot_thread_fn+0x1b5/0x260
->>       kthread+0xed/0x120
->>       ret_from_fork+0x1f/0x30
->>              -> #2 (cpu_hotplug_lock){++++}-{0:0}:
->>       lock_acquire+0xd3/0x310
->>       __cpuhp_state_add_instance+0x43/0x1c0
->>       iova_domain_init_rcaches+0x199/0x1c0
->>       iommu_setup_dma_ops+0x130/0x440
->>       bus_iommu_probe+0x26a/0x2d0
->>       bus_set_iommu+0x82/0xd0
->>       intel_iommu_init+0xe33/0x1039
->>       pci_iommu_init+0x9/0x31
->>       do_one_initcall+0x53/0x2f0
->>       kernel_init_freeable+0x18f/0x1e1
->>       kernel_init+0x11/0x120
->>       ret_from_fork+0x1f/0x30
->>              -> #1 (&domain->iova_cookie->mutex){+.+.}-{3:3}:
->>       lock_acquire+0xd3/0x310
->>       __mutex_lock+0x97/0xf10
->>       iommu_setup_dma_ops+0xd7/0x440
->>       iommu_probe_device+0xa4/0x180
->>       iommu_bus_notifier+0x2d/0x40
->>       notifier_call_chain+0x31/0x90
->>       blocking_notifier_call_chain+0x3a/0x50
->>       device_add+0x3c1/0x900
->>       pci_device_add+0x255/0x580
->>       pci_scan_single_device+0xa6/0xd0
->>       pci_scan_slot+0x7a/0x1b0
->>       pci_scan_child_bus_extend+0x35/0x2a0
->>       vmd_probe+0x5cd/0x970
->>       pci_device_probe+0x95/0x110
->>       really_probe+0xd6/0x350
->>       __driver_probe_device+0x73/0x170
->>       driver_probe_device+0x1a/0x90
->>       __driver_attach+0xbc/0x190
->>       bus_for_each_dev+0x72/0xc0
->>       bus_add_driver+0x1bb/0x210
->>       driver_register+0x66/0xc0
->>       do_one_initcall+0x53/0x2f0
->>       kernel_init_freeable+0x18f/0x1e1
->>       kernel_init+0x11/0x120
->>       ret_from_fork+0x1f/0x30
->>              -> #0 (&(&priv->bus_notifier)->rwsem){++++}-{3:3}:
->>       validate_chain+0xb3f/0x2000
->>       __lock_acquire+0x5a4/0xb70
->>       lock_acquire+0xd3/0x310
->>       down_read+0x39/0x140
->>       blocking_notifier_call_chain+0x20/0x50
->>       device_add+0x3c1/0x900
->>       platform_device_add+0x108/0x240
->>       coretemp_cpu_online+0xe1/0x15e [coretemp]
->>       cpuhp_invoke_callback+0x181/0x8a0
->>       cpuhp_thread_fun+0x188/0x1f0
->>       smpboot_thread_fn+0x1b5/0x260
->>       kthread+0xed/0x120
->>       ret_from_fork+0x1f/0x30
->>              other info that might help us debug thi
->> Chain exists of                 &(&priv->bus_notifier)->rwsem --> 
->> cpu_hotplug_lock --> cpuhp_state-
->> Possible unsafe locking scenari
->>       CPU0                    CPU1
->>       ----                    ----
->>  lock(cpuhp_state-up);
->>                               lock(cpu_hotplug_lock);
->>                               lock(cpuhp_state-up);
->>  lock(&(&priv->bus_notifier)->rwsem);
->>               *** DEADLOCK *
->> 2 locks held by cpuhp/0/15:
->> #0: ffffffff82648f10 (cpu_hotplug_lock){++++}-{0:0}, at: 
->> cpuhp_thread_fun+0x48/0x1f0
->> #1: ffffffff826490c0 (cpuhp_state-up){+.+.}-{0:0}, at: 
->> cpuhp_thread_fun+0x48/0x1f0
->>              stack backtrace:
->> CPU: 0 PID: 15 Comm: cpuhp/0 Not tainted 
->> 6.0.0-rc5-CI_DRM_12132-g6c93e979e542+ #1
->> Hardware name: Intel Corporation Alder Lake Client 
->> Platform/AlderLake-P DDR4 RVP, BIOS ADLPFWI1.R00.3135.A00.2203251419 
->> 03/25/2022
->> Call Trace:
->> <TASK>
->> dump_stack_lvl+0x56/0x7f
->> check_noncircular+0x132/0x150
->> validate_chain+0xb3f/0x2000
->> __lock_acquire+0x5a4/0xb70
->> lock_acquire+0xd3/0x310
->> ? blocking_notifier_call_chain+0x20/0x50
->> down_read+0x39/0x140
->> ? blocking_notifier_call_chain+0x20/0x50
->> blocking_notifier_call_chain+0x20/0x50
->> device_add+0x3c1/0x900
->> ? dev_set_name+0x4e/0x70
->> platform_device_add+0x108/0x240
->> coretemp_cpu_online+0xe1/0x15e [coretemp]
->> ? create_core_data+0x550/0x550 [coretemp]
->> cpuhp_invoke_callback+0x181/0x8a0
->> cpuhp_thread_fun+0x188/0x1f0
->> ? smpboot_thread_fn+0x1e/0x260
->> smpboot_thread_fn+0x1b5/0x260
->> ? sort_range+0x20/0x20
->> kthread+0xed/0x120
->> ? kthread_complete_and_exit+0x20/0x20
->> ret_from_fork+0x1f/0x30
->> </TASK>
->>
->> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6641
->>
->> Signed-off-by: Karolina Drobnik <karolina.drobnik@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->> drivers/iommu/dma-iommu.c | 17 ++++-------------
->> 1 file changed, 4 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
->> index 17dd683b2fce..9616b473e4c7 100644
->> --- a/drivers/iommu/dma-iommu.c
->> +++ b/drivers/iommu/dma-iommu.c
->> @@ -65,7 +65,6 @@ struct iommu_dma_cookie {
->>
->>     /* Domain for flush queue callback; NULL if flush queue not in use */
->>     struct iommu_domain        *fq_domain;
->> -    struct mutex            mutex;
->> };
->>
->> static DEFINE_STATIC_KEY_FALSE(iommu_deferred_attach_enabled);
->> @@ -312,7 +311,6 @@ int iommu_get_dma_cookie(struct iommu_domain *domain)
->>     if (!domain->iova_cookie)
->>         return -ENOMEM;
->>
->> -    mutex_init(&domain->iova_cookie->mutex);
->>     return 0;
->> }
->>
->> @@ -563,33 +561,26 @@ static int iommu_dma_init_domain(struct 
->> iommu_domain *domain, dma_addr_t base,
->>     }
->>
->>     /* start_pfn is always nonzero for an already-initialised domain */
->> -    mutex_lock(&cookie->mutex);
->>     if (iovad->start_pfn) {
->>         if (1UL << order != iovad->granule ||
->>             base_pfn != iovad->start_pfn) {
->>             pr_warn("Incompatible range for DMA domain\n");
->> -            ret = -EFAULT;
->> -            goto done_unlock;
->> +            return -EFAULT;
->>         }
->>
->> -        ret = 0;
->> -        goto done_unlock;
->> +        return 0;
->>     }
->>
->>     init_iova_domain(iovad, 1UL << order, base_pfn);
->>     ret = iova_domain_init_rcaches(iovad);
->>     if (ret)
->> -        goto done_unlock;
->> +        return ret;
->>
->>     /* If the FQ fails we can simply fall back to strict mode */
->>     if (domain->type == IOMMU_DOMAIN_DMA_FQ && iommu_dma_init_fq(domain))
->>         domain->type = IOMMU_DOMAIN_DMA;
->>
->> -    ret = iova_reserve_iommu_regions(dev, domain);
->> -
->> -done_unlock:
->> -    mutex_unlock(&cookie->mutex);
->> -    return ret;
->> +    return iova_reserve_iommu_regions(dev, domain);
->> }
->>
->> /**
->> -- 
->> 2.25.1
->>
