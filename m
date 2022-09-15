@@ -1,144 +1,205 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04F05BA278
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 23:54:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 443565BA2F5
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 00:46:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0228310E10E;
-	Thu, 15 Sep 2022 21:54:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC09A10E187;
+	Thu, 15 Sep 2022 22:46:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 367F110E10E
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Sep 2022 21:54:49 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5744710E187
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Sep 2022 22:46:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663278889; x=1694814889;
- h=date:from:to:subject:message-id:references:in-reply-to:
- mime-version; bh=xcFumeCPs90CIN2hUvaPzUmigl6x+5RY6qJzHVL8YHk=;
- b=Z06IHBc1CNb8wpxpeeeTuB9r9IhcFpMDRyPlvzeyurAsfFn6ovZJHIQQ
- ilRviRy2nUpSHcylNvTUY7i1a6YUBkY+gj5PgsN2fMtoCHbM+3ucoDFPZ
- fAE5xiPQ5SMKkwLyLKInavUUqwT1fQaSEEusTLwPnMZXSy0cusFO22DFM
- Lm02U5JrzuVUDesfHgT/AL0zQSmd/F19da8XFWD9uYrDiPI1IPPR6dy/k
- t9cIjkbFae9OmDPKYgDB/iZAN9NI1ccuDdlGamQfk157WuhejZ2R9ZWxY
- 2m3OD+UvBpNAf0jcHbcdoQJtutMFG6+0pN/t1VUpCsiel9KPUGe6FdAp9 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="297571112"
-X-IronPort-AV: E=Sophos;i="5.93,319,1654585200"; d="scan'208";a="297571112"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2022 14:54:48 -0700
+ t=1663282002; x=1694818002;
+ h=resent-from:resent-date:resent-message-id:resent-to:from:
+ to:subject:date:message-id:in-reply-to:references:
+ content-transfer-encoding:list-id:list-unsubscribe:
+ list-archive:list-post:list-help:list-subscribe:cc:
+ mime-version; bh=sr3bi5Ho2nJ9xxOamW7sASuDnJhDYQxpiFWbAFVoyyM=;
+ b=HxQik1iTBv8i9rfTVO02M1R8MZuVKOqPWvWtAlDvNUFLHIagJ+7rtqag
+ DbvdTz/G+b/A3gAoDmx6Gmxex3fjg0H7QmOsXDRVY8Hsc5mDFRNWNVWhZ
+ 9R4gRUNhsTEUeDId2NnryfmfdANnHAthBPvTvBGIqry6v2hZAmJnuSWHJ
+ Vvg4nUs4nFjcX5SOyG3BcQ+T/5aOYTau4mxH/hkfzBJxCfemnfp4ws6Sw
+ NmzDW0yamyZ1+3ESFd6Fg4C6jX97OpcY9Y71vDBO8+4m6tLo9NIayYC68
+ 3hlvKu/jylHadyUOLVoWXLj+ZD0fUs43LKmm3+GsgQyv4d2XUMcyBgfU8 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="325123017"
+X-IronPort-AV: E=Sophos;i="5.93,319,1654585200"; d="scan'208";a="325123017"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 15:46:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,319,1654585200"; d="scan'208";a="595000835"
+X-IronPort-AV: E=Sophos;i="5.93,319,1654585200"; d="scan'208";a="721194819"
 Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga006.jf.intel.com with ESMTP; 15 Sep 2022 14:54:47 -0700
+ by fmsmga002.fm.intel.com with ESMTP; 15 Sep 2022 15:46:41 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 15 Sep 2022 14:54:47 -0700
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ 15.1.2375.31; Thu, 15 Sep 2022 15:46:41 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 15 Sep 2022 14:54:46 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 15 Sep 2022 15:46:40 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 15 Sep 2022 14:54:46 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Thu, 15 Sep 2022 15:46:40 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.176)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 15 Sep 2022 14:54:46 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n3V5vnOvMPeR8r8z3On+H9o5mS1B4hu+Jm80PrDYzXoY8S1JW/WOaAUV5Rfn9HbyZGYvEOfCWbKn7Qu9hrVk1ZyBO3JrRLug7g1yvurIH53wwubTQkPAmkYMTZZILr7O5aIvNWO4hjucgzJOSQxwxXUbKtc7GGVLx+MSC2HtsgekgnnIF+iDKf6zrC/cN6OtHJ4OQY0zKKZwviZ/RcL4EmRmRQkd99LFvowmVwt5NiGusaY7A8apbiol/0eUOIx10WEkEwlGGdPS58B9KWs5xXq/rGDtVqHHz0XqL66TGe85crE2yPumyo3EY/HMadR6V2GQEQzkC0jWz7ayXclXGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ 15.1.2375.31; Thu, 15 Sep 2022 15:46:40 -0700
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=fail;
+ b=DY7f9jkiOp2vhapHhoSk+N8u8EyOW54nb0yf/hlNezNvPcpxsabVEx8faFDB/O/ZaUb+DipAEtoi2Kne7Gh1N9NTe90sMHg0Gzn/gKheBPEyorHTPxaggUxriPtGgGw3apMjlADsxa0cNMkTfWr9SdfSpi7xE4oTdj1fadcYXEIbUQMGHBux87s5+TGpsULTymaapMOkWEBW3NOcWtLxzu/a7xtd+xI+m5gCNDVs6z6YB2Goj+yLGHMFsBIJuHGYTY1L7qmO3vKoPC/5Y8sCXxnW1qnbRdmlyDH170Sfttfzm4RwC6gRIw0/JCxQ3ne1i9FcF4dKqC3opGwkODUCrA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mhlk900uEIe2AqS3DRvhNUFFzZNvk9LSD1m5aZxwNFA=;
- b=eW2TiQaxAyyMAV8c8bewnCiDfF8mb2RgF4uFgynlgK+ORVrZpIcP00W0BvVgpjAZ90cxqshqkfRCZAJj0vEajflo46A1V/7LyXQTY2xEXt2ZnwT3T1rlP8u41OBxoSqbfcHnrVceA9pRSsmDy+DgE3/f1b8C19JCoreeGYDG2vo131na/5QphhiuudF94/P2VxCrOVw5zmBiBNscH6gaHxWTXOzF8+VrzwYXBBJ1+IuXxWshS7hlz630bng6KVg4w9x8dJmoMZU24Vw/L02ZiBwEKo5nHVrXetD7C70Den6vvNJXcmBm6wznWy8oh9+2/VkR/V3saSj+pkul8BKh5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+ bh=FbequxvUAZpzT6tmI7raxTxBpVy9HS5eOiTkdj6MAac=;
+ b=AliSdpQNxIToZcl9NsF62CRKcEIpUdfw6Z8dkEwOr6RESQSi0z4HIAwjIW1bU8i1pcREiHa/rXmxZT4J+/mtyNiM/nBJ90IKJ5N/GHW4OGFdWfLaEeKNWZX6XByMfFd25DrKnMxle9vkvDVLS82ioAEDI8Z+5lRHr6t++reD5ko6NvAsRXXqs3649T8V23DpicQJU8RutK4pcvs0Kok20TLG1+F4Tx7dhaza5OBd/spnKgfthi/n4NCQindsOpaKw1okzFXOqUTtLbH8TXF22JkDSMySuD0eh5w5P5YuaWlGAS4L9k32D0xjcJYw3thbz4EMLs6PhKYp6LBIoioW9w==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=none; dmarc=none
+ action=none header.from=intel.com; dkim=error (no key for signature);
+ arc=fail (41)
+Authentication-Results: dkim=error (no key for signature)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by MW3PR11MB4697.namprd11.prod.outlook.com (2603:10b6:303:2c::15)
+ by PH7PR11MB7001.namprd11.prod.outlook.com (2603:10b6:510:208::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.15; Thu, 15 Sep
- 2022 21:54:44 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Thu, 15 Sep
+ 2022 22:46:38 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::b80a:cf49:9118:24e7]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::b80a:cf49:9118:24e7%6]) with mapi id 15.20.5612.022; Thu, 15 Sep 2022
- 21:54:44 +0000
-Date: Thu, 15 Sep 2022 14:54:42 -0700
+ 22:46:38 +0000
+Resent-From: Lucas De Marchi <lucas.demarchi@intel.com>
+Resent-Date: Thu, 15 Sep 2022 15:46:36 -0700
+Resent-Message-ID: <20220915224636.hvstyxcheg7ipy2f@ldmartin-desk2.lan>
+Resent-To: <intel-gfx@lists.freedesktop.org>
+Delivered-To: lucas.de.marchi@gmail.com
+X-Google-Smtp-Source: AMsMyM6aP8RN3Ja4QQSsfrJ5ZgD/LGCzJKDvLWdrBmLU8vDJSfJdXGZgYClICeEkJxV5V/EZqRFN
+X-Received: by 2002:a05:6a00:1d9b:b0:541:1894:d5db with SMTP id
+ z27-20020a056a001d9b00b005411894d5dbmr1931521pfw.78.1663279719106; 
+ Thu, 15 Sep 2022 15:08:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1663279719; cv=none;
+ d=google.com; s=arc-20160816;
+ b=DWPezIxk41u96gFs7ksFd79m7nJn5pfR7xHCIdoIdmAzZhHjLQpV+k/MEha6gQWkhS
+ kR4wBNPK3fFZ2EE6nM3348didIZTrEG7Th5VNo6K1TlXhCiywA/VB03ttliyvpIfbd97
+ Gg4jZtNdrkW+EhEpt+jjnW9iCkf/RF+2oVkMOamd5i/CppDvbPBUoMP/cMTAksQkTFv0
+ aloaoPjv7ei1c3GvItbW7bZh4UJziWmwwFp9v6Ur8qa9CJHoQ4TMkQBCwFDUIJ65G40R
+ PMcZlpNPF0e9/upDUJ9FI7OQTGbKZ0bSLn9q5IJOVWOYBYZD0zJP8hKhgIbt9XWNgxon
+ wT6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; 
+ h=sender:errors-to:cc:list-subscribe:list-help:list-post:list-archive
+ :list-unsubscribe:list-id:precedence:content-transfer-encoding
+ :mime-version:references:in-reply-to:message-id:date:subject:to:from
+ :dkim-signature:delivered-to;
+ bh=FbequxvUAZpzT6tmI7raxTxBpVy9HS5eOiTkdj6MAac=;
+ b=JKYt9JiaL0lN0Ph/kOAddB5C16RBy0xp+W7kbi7xEuXxdc/6Mn+CuJxMnFOHN4UJX4
+ YdzkSiL+M3GCor1JYEOJJMYjQeRygaEiIt9M2LtsBQgerH4bAaKsofcm528BnxT0JwQ/
+ 7Vl+j2WhYqKxo1CsWYO2R+QwWNer0Iz13XX4S8SqlWfBD6FqGddqtg5uDHCt5LaAN/zw
+ VbfwIRyYvkNqYWILytRTLA0jj5TkVYVNw+LP+mUtvBnDCcuEJbLfU1eYCOFEyCTG2M7U
+ k2LE/TAI9jNtYtv7bpGUmGgYHBPYUBbvCwRDai0xLPmNPiDIeY1cbsIvQRZ/p86fXYQY
+ 0k+Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+ dkim=fail header.i=@intel.com header.s=Intel header.b=nyle1ywa;
+ spf=pass (google.com: best guess record for domain of
+ dri-devel-bounces@lists.freedesktop.org designates 131.252.210.177 as
+ permitted sender) smtp.mailfrom=dri-devel-bounces@lists.freedesktop.org; 
+ dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=intel.com
+Authentication-Results: mx.google.com;
+ dkim=fail header.i=@intel.com header.s=Intel header.b=nyle1ywa;
+ spf=pass (google.com: best guess record for domain of
+ dri-devel-bounces@lists.freedesktop.org designates 131.252.210.177 as
+ permitted sender) smtp.mailfrom=dri-devel-bounces@lists.freedesktop.org; 
+ dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=intel.com
+X-Original-To: dri-devel@lists.freedesktop.org
+Delivered-To: dri-devel@lists.freedesktop.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663279709; x=1694815709;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=sr3bi5Ho2nJ9xxOamW7sASuDnJhDYQxpiFWbAFVoyyM=;
+ b=nyle1ywa/vrcuIGlICk3ABiTaJgEsQZw2RxYDXctCKWXsAvMkeX7X1YO
+ AAPZu7LNDr3eXAVahpnp4l1zeAd7MFO1aAt3SU2r6vk8ADX7kdZRZdi3Q
+ +aWjGKj1exj8yHKbdjk5S8P+RkNX7QHR7nfSIABlrb2SmqLyYzFOzftCl
+ HilfXJV/3V0MSb9+HMB/pC1+w3MO73GLt+4yOBi4hkS8y01pVaMh8bxBK
+ O7G/9sLUaFWERrVpycymUy7mW04jz+BtkUf5sdZYOgaj+dKjMYPsT3XC4
+ zucFMqCEN9pLxeXe42vc4WiBcHj2sxZt0WESqeCJejFx01cbrbHUqRmQL Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="281880472"
+X-IronPort-AV: E=Sophos;i="5.93,319,1654585200"; d="scan'208";a="281880472"
+X-IronPort-AV: E=Sophos;i="5.93,319,1654585200"; d="scan'208";a="650650698"
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Message-ID: <20220915215442.lglgfn4tk44llxji@ldmartin-desk2.lan>
-X-Patchwork-Hint: comment
-References: <20220915-stolen-v1-0-117c5f295bb2@intel.com>
- <166327671922.11974.16435649127429970763@emeril.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <166327671922.11974.16435649127429970763@emeril.freedesktop.org>
-X-ClientProxiedBy: BY5PR13CA0025.namprd13.prod.outlook.com
- (2603:10b6:a03:180::38) To CY5PR11MB6139.namprd11.prod.outlook.com
+To: gfx-internal-devel@eclists.intel.com
+Date: Thu, 15 Sep 2022 15:07:45 -0700
+Message-Id: <20220915220745.411958-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220915-stolen-v1-3-117c5f295bb2@intel.com>
+References: <20220915-stolen-v1-3-117c5f295bb2@intel.com>
+Content-Transfer-Encoding: 8bit
+X-BeenThere: dri-devel@lists.freedesktop.org
+X-Mailman-Version: 2.1.29
+Precedence: list
+X-TUID: GjlyAktLfJ/r
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR01CA0050.prod.exchangelabs.com (2603:10b6:a03:94::27)
+ To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW3PR11MB4697:EE_
-X-MS-Office365-Filtering-Correlation-Id: 25a8ba66-8455-4dfc-75e4-08da9764e61a
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB7001:EE_
+X-MS-Office365-Filtering-Correlation-Id: 73425cae-e90a-47c6-1806-08da976c2687
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: b6a8z850DKr+dFjHZOCTmO4EP+SiMLzGc9G+NhFyG9C4wARXwjPAvkuuI6W40RPbDCdfIeUAY4xNkyUlocqq+9NxV+DDO/jLw8kg7QR4q3Q+DjQmPNlCUx8uRv3Gwf0HPbnZXd5RXwla0t12aWj7scBsqVYvS9NZE6jh/LgqoFlLOVDowDMTd+4DakqURGgAi7RvC4LkD2FdKmMMWGaLxDlV20CDNuBz8l3eAHpjQqX7dF7+99NTVFZpLUoWD6cpjTl7+iTsxRkfUJWKPfDCL5GY+UiTj3I5+pnGhvw1y9jHI7e+hdWa3hw1D7s9+lG86pBw9oemhONXNBUHuhCo0DZPOwKEmVlJhm2u4wksRLJOk/sEQEjlHRWbD4JwO+APOPr+EriNVpag/rkqPGzAJTrQTBGd+p9S4iDVIVwFeV/qlZ1u9KhH/jTzZRmyXYfGQqFs02xyr9zaUZe0SOQxmlnYaaK04sDBWpHKsQyPEpsFjSdxF08fQnYvhbEhLDkhg+vr9Fu6fc+MVn3Yr67aZbv2u22PYKVFfMCWD948RaTGjALS1gDkv15wV6ogKiuF2Ju3GiP5YMwLwK7j2Kw/I1DrY3LA6YvvGerps9jEW/3sD03CDuUtQEM5GaLE0mNZsGp7iQ4n5MtYg5OVo8UmPVLMSDUk+nDttnAP5aCfLob1tKTtYCDWYWFIy7ojwweftdMJiR/kQNvSxVBsASk90mXm5ZSBpRkzbg+Du3BXIjWwSSFtbwFClE1RSF7bSClM
+X-Microsoft-Antispam-Message-Info: jQMlvNTK5GFvwr98XmyO5UiJD8I7mYHePwCpWjc3ASChtgg7CBPtoF5HvJC+PWMSO3XiRUtE018v0Be9Xelw7qAGhIwQkY2M6xxQODpxfUa1ISU8hpr4ezqYDkQYf2cYKDvOyDs8B6kF8sbisK72SqNATYCTI/8ryDNY+nXlBlLM+DlNV0T7c8yv0VTP0tGnBA7sWNh7NhkYBB0EaMt9olR5c4lSVwiOarlr1amrgs5fMn8h+sH7adcQ8VgCseiss+2nxPO38zltzGp4VMYtGNVz6slFjzREt/1VT+s0fybzRbaOGfkR8ozb0YivPolAqQEVm+u1uCzS0TQ26QfDBo8BLNLhtY/PrVaLoiZRuU6hEfsjH1VtcUrY76tJ5F4HE1FdDNEMdp88rsYf8WickJFsw7nJBPmx8t9GqhdVOZJ/BkrBsxlK/8yvi1CfShx5O/AxmPnTbJ25KaUd4WySm2tZdUxQ/iFfLOhKw8cATJaB8HsaBfJqlY824SFJYDtc8AaeMH7l9zHJsZ0EitsVrRN6app0pJiFiMPAfg5POFdXJI2MR++/8XqeKgmqL+5oYAwbxofJg/zAupaylFgewLNjc5eK0M8aZCJ1WKKpT04Kj5I9LGFQmO5km2/monCDZEmHC0QiesKHJFpn0Zgt8iAI9cOFFBC38poj3t9EGXI=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(366004)(346002)(39860400002)(396003)(376002)(451199015)(8936002)(2906002)(86362001)(6486002)(5660300002)(6506007)(36756003)(83380400001)(6916009)(316002)(66556008)(478600001)(66476007)(966005)(66946007)(82960400001)(38100700002)(6512007)(9686003)(41300700001)(26005)(30864003)(1076003)(186003);
+ SFS:(13230022)(376002)(39860400002)(136003)(346002)(366004)(396003)(451199015)(16670700002)(82960400001)(8936002)(6512007)(38100700002)(83380400001)(34206002)(26005)(86362001)(1076003)(478600001)(66946007)(6506007)(4326008)(66476007)(186003)(66556008)(6486002)(36756003)(19810500001)(2616005)(6666004)(5660300002)(8676002)(2906002)(316002)(9036002)(41300700001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qKcqKQUcoGwXGDsH8KsHGhUMCf/spIO1HY7OBoDmP9jDtwwZDSNWyYmTHxDK?=
- =?us-ascii?Q?GZO+GWIqTy0xk/ReJjH8O6KNYqiQUODqQYEJh1p6P2zwU/mNwxAQ0Ob+8bZl?=
- =?us-ascii?Q?f0gf/rgEChW7vedVFmYZHR50vgQMN+bp2wzd+EOGhoIYTvcfdU+rFg8ODZHJ?=
- =?us-ascii?Q?cW8ojjiJmfIS97ARL/UGgSW8d5xB2Jb+uGRwCvwbdTIS2yS4xXilmsSNgwCk?=
- =?us-ascii?Q?bxU/yGdqJDxyidUqIhHJvc097CoyVlo47hOLuCc9JQs2RdRxgnvGMvdgNCd8?=
- =?us-ascii?Q?oPJq97brvWBJ6ox4KEel7kwvvI42AEDEdLadAcQ4cM4hQQS+pR6fImLgX2mf?=
- =?us-ascii?Q?Qx3O8xmKW6AJCOHC4wGHMHXhO1qlK9GuXyhPDucmvhLo/zUF7kCLJYNPoh1E?=
- =?us-ascii?Q?OyjgZJbS41p5yNwsKcodxDJXGwY+v//tW/pm9xJOgQw1X8YxbmciAHIMsq01?=
- =?us-ascii?Q?7fd2ea26KQPhGwG7T9+pnSXW0g9a+j9coA9Hatmo9tn94/5rxX0t9K/zLdz6?=
- =?us-ascii?Q?UliS9ojfhjfq6EQEYcnoMaJT51WrHMgluWLPht/Om7P2y6OYlqvJSxV7Y9rb?=
- =?us-ascii?Q?d5D7JKV4U4o8zjgP2KEsvOFsLSRIN+YvsXr7tlhESaMqJBotLXAon6EUV7+O?=
- =?us-ascii?Q?kBcwomyhTLIEW+4WiC8kZCDcPn1Lh9iGVmgmrQ5qTNM1z4BzoBxoy9zzMxRK?=
- =?us-ascii?Q?g3x3fk5hAs/g5fjM09Dien3QxbxZNE8vhPeTP3TTWyOSRRwvD9tk0lX0KnL7?=
- =?us-ascii?Q?1PB+Pt3oF8n3lvvYH6r3xF5Feh7Og1FQTGhPA7Jk2e1R7Tv+Oi7XwQnn3XZC?=
- =?us-ascii?Q?Id9Y8mGfBxWBo1MJ58C7QSjtiEN0GDH0ax8XKb/F0Z0nYFGJQFnbZRjpkaIc?=
- =?us-ascii?Q?oPBf2rt5BGyb5SlzAVHgQxO4tn/iDH2XnFAAlCt56whVvNmeKhuQ1p2pSOy1?=
- =?us-ascii?Q?prNoBEvSkDUaI+UCGb75wbCD72s2fM2hoEWavzh/dQab8k0FnKhejqYaogpJ?=
- =?us-ascii?Q?IzjrfLaLTDVkHz9zM3koTkUADDdxMRvVmjoJ7W57c4og6EQTl1QM7l4hsNdE?=
- =?us-ascii?Q?ySN9Nvn9JLAC8ZI/J//iZFcti8mU73of+GaZIPyYhYs4RAX2VrHWSYitZ77j?=
- =?us-ascii?Q?YY2qhxI93mCG4b4/msbV0UeKzpSC3HbRBy2BvIAEhbMO6ZVYliCv0Hv5b0g8?=
- =?us-ascii?Q?OsMctaoNM+u0ie/jHJK9EbKvLVzX3bArhRypLtLnXt+qCyO6RRO+wGpX1JNN?=
- =?us-ascii?Q?dKXXNcHhUuK5gxU9YpoHhemWjkAWawZPVF/uOrO9tG5/SJRDohLyGrJauXtl?=
- =?us-ascii?Q?6AhXl2SsYTOWUzRyvUl1ypM5TBZ6vsnW85IlQm7bHGdRVEhVJGn5ptchGVOi?=
- =?us-ascii?Q?7uanggDYlQ9BKy/vOLOPhev1e5dHz7BpyDG5Tl5K3lYmDYCqQ2hZgi2DU7DQ?=
- =?us-ascii?Q?d1FfpV+97H69hC+Ia1XRGLeMqFvJFEaLUSvNkIYcsy42SJmH1FqxF3c/cJC3?=
- =?us-ascii?Q?kWTnomR0gFRno0OPAd61M4gHSatB/2TAKkFbE9RoDHETTzHf12N6ZvcebrS+?=
- =?us-ascii?Q?cRN0T+CjGalTi6WetqaR15KIZ+rv1OxPzjkFZf8QvjdaCOLyw/HoL9zFNxrV?=
- =?us-ascii?Q?4g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 25a8ba66-8455-4dfc-75e4-08da9764e61a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?x95Kf+kg/GrBXzpzCbgwrbAb+p33B94/pCMlGbBvrASxSFVCs2xwF9eZZJBu?=
+ =?us-ascii?Q?zHRKuC8xwAEg3oC51kIc+n9MNyIMlcyTxtDDU4bQultw0A8yjhO6P82HnxXH?=
+ =?us-ascii?Q?IWHd84U22+Re8ZqjYJpVq+meMOPMdfWS58gvNMVv94sm55QBY7GIe4SKkR+h?=
+ =?us-ascii?Q?KAoe60xX1jBNB0U3hqyNtF8jZjuH3tJ3JSx63iMo8WdEugmxPMF+W+eYcajL?=
+ =?us-ascii?Q?GahqylbvnHw/tYNlNbplY+aUIzRSSz6wsyjQCeqFZyZ3b+SdrxAD474lIyhE?=
+ =?us-ascii?Q?OGfL2mFbbxdfazSz3Jnsnt7pUZ5sc+K1x+Cd6MsKhp24qSLNz2eENjDG6OlZ?=
+ =?us-ascii?Q?2XPY9jLNA0U5nLnHaC00WSBW6gMJSfGp71P1Tn/dZ6Qe9Oh9vd3gRnFlKq2H?=
+ =?us-ascii?Q?DMABcDak5AHA+KS/6qg6xAFkRZr0sEa7QX9by2TZam24Uw/bPaDn8t5cQtwO?=
+ =?us-ascii?Q?C8PQSFP+HD/rEirB8DTghTM8v8UYbBsLZncDn7EHErbvob47+rDkpL7+2ft2?=
+ =?us-ascii?Q?anbXXdvQ+9IPj27ItWIzObdVa71+KVGRO+Sg1f5+1/7hfxSfAJM3tmrDqyxI?=
+ =?us-ascii?Q?VUJ3a94wcGhNF+9q35W+aV/Q3pYKjs2ccWF7jf+MRdqvtUmjM05WzsOIPLnN?=
+ =?us-ascii?Q?TcKb5EIE3LUiUsHVZyZ6Dl5wTwGc0dy1NPsSxyoyeVu28wkBM2/aV4++ghid?=
+ =?us-ascii?Q?uQat3q2r+MVxJ4EbXKuUaWhhifymS+4CQrbATRBgT4iSgzCA8NdznAUeL8PA?=
+ =?us-ascii?Q?ZCwnlBo4ZOOl6SD1dtvjEAfnYfsItWWubC128V8CZBSafFOa0e89X0165vvn?=
+ =?us-ascii?Q?2EeHiRAziuwe1QXt3LB8JRRxcd9kXDaWVmgUIV4XSsulxjyz5Pw2lBBauYDt?=
+ =?us-ascii?Q?X8i5YfJ+gjVFhkB0zpbe3Ymmed+MCW7Qnq3+axCk/M0NiadE7V37YAsUNtvU?=
+ =?us-ascii?Q?N9RscpLawkfMoeHLGDSmTDNpittfT2XUVZifhzH2cs1VvI7BEtE2kP8dY4TA?=
+ =?us-ascii?Q?lXmh5QBB3FDjfLPgMoBDe8eMEpGDpEticAPcOd2wnWicm6PHEiwvwpB93RTh?=
+ =?us-ascii?Q?xHlhhhEnb4UBjIgTJXXDt/zQIma8uB7YaVc0oweUcGm7fyYoYTqAg9TNhUPI?=
+ =?us-ascii?Q?MYAFq6VV0JTCRKz6+Jskk6BHJVo1q+bwR29TRJn4LrjJFA/dpYzU8mBBWrNR?=
+ =?us-ascii?Q?d/mhlaPImBm2aTcbwN+9wToQrdaq8hIo+70RjhjsLqwEsowjnPKsHqnrY8C8?=
+ =?us-ascii?Q?pTBXOU7ceM/kdgk2uvVhnnQ3AroqhquFAAvu89JJ3W6suSgvq3IpLxlogKjW?=
+ =?us-ascii?Q?e70YR4OgqZivuOfZY3rh3BrUAYm8H0APyZvgZNaXqqhBsJyT8Etgy91D+ay5?=
+ =?us-ascii?Q?zNjlJUjbOwSN+3bi1wsYs305JUyBW+YxIeYAAz6J9ECyVrZcT5iTdXeL2vSz?=
+ =?us-ascii?Q?6lnSoWOJEfTAzj8vuDFzufOZnwcEFerarfvSywt6FLAlnzdXjMAHc9+RjUiP?=
+ =?us-ascii?Q?lZahlUP42cG6nSef+0uP2mmBTpVc4tvfKjgDAfMMkcngQqsUsDoTg+5bApW1?=
+ =?us-ascii?Q?0joihb8CwzcGN5VbY7apF5vxsFZJscTZjaN3ZHJgDMhJ19MDZ2NQYGHLDQIp?=
+ =?us-ascii?Q?Fw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73425cae-e90a-47c6-1806-08da976c2687
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2022 21:54:44.1563 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2022 22:46:38.6558 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5kpg0HRsXMhrZuCWVeNB6kXKjo7UaMpHEmRCBEzMCBGpISm5N+piatA+bZ7Tf5QfqJpGRMUNWkHCh1GfDZHx78yh96nbXLHLhSVo9HBBEl8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4697
+X-MS-Exchange-CrossTenant-UserPrincipalName: a2mpm3h14yZQluIQYB61BJvrUe36QeJiff+ypmK8TIbkLpuz+kyFzj7kU1qVAlAlgbj89K5kK0wlXc/Pm+UH4c8Fapilcx7GSI4cAvZciZ4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7001
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Improvements_to_stolen_memory_setup?=
+Subject: [Intel-gfx] [PATCH v1.1] drm/i915: Split i915_gem_init_stolen()
 X-BeenThere: intel-gfx@lists.freedesktop.org
-X-Mailman-Version: 2.1.29
-Precedence: list
 List-Id: Intel graphics driver community testing & development
  <intel-gfx.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
@@ -148,251 +209,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 15, 2022 at 09:18:39PM +0000, Patchwork wrote:
->== Series Details ==
->
->Series: drm/i915: Improvements to stolen memory setup
->URL   : https://patchwork.freedesktop.org/series/108620/
->State : failure
->
->== Summary ==
->
->CI Bug Log - changes from CI_DRM_12143 -> Patchwork_108620v1
->====================================================
->
->Summary
->-------
->
->  **FAILURE**
->
->  Serious unknown changes coming with Patchwork_108620v1 absolutely need to be
->  verified manually.
->
->  If you think the reported changes have nothing to do with the changes
->  introduced in Patchwork_108620v1, please notify your bug team to allow them
->  to document this new failure mode, which will reduce false positives in CI.
->
->  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/index.html
->
->Participating hosts (42 -> 40)
->------------------------------
->
->  Additional (2): fi-rkl-11600 bat-dg2-9
->  Missing    (4): fi-kbl-soraka fi-ctg-p8600 fi-hsw-4200u fi-tgl-u2
->
->Possible new issues
->-------------------
->
->  Here are the unknown changes that may have been introduced in Patchwork_108620v1:
->
->### IGT changes ###
->
->#### Possible regressions ####
->
->  * igt@i915_selftest@live@gt_engines:
->    - fi-ilk-650:         [PASS][1] -> [DMESG-WARN][2] +40 similar issues
->   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12143/fi-ilk-650/igt@i915_selftest@live@gt_engines.html
->   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-ilk-650/igt@i915_selftest@live@gt_engines.html
+Add some helpers: adjust_stolen(), request_smem_stolen_() and
+init_reserved_stolen() that are now called by i915_gem_init_stolen() to
+initialize each part of the Data Stolen Memory region. Main goal is to
+split the reserved part, also known as WOPCM, as its calculation changes
+often per platform.
 
-ha, thanks
+No change in behavior.
 
-<7> [175.357162] i915 0000:00:02.0: [drm:i915_gem_init_stolen [i915]] ELK_STOLEN_RESERVED = 00000000
-<3> [175.357332] i915 0000:00:02.0: [drm] *ERROR* inconsistent reservation 0x00000000e0000000 + 0x0000000000000000; ignoring
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 143 ++++++++++++---------
+ 1 file changed, 85 insertions(+), 58 deletions(-)
 
-looks like I screwed somewhere for the older platforms.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index c34065fe2ecc..6279eed3cdf3 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -77,22 +77,26 @@ void i915_gem_stolen_remove_node(struct drm_i915_private *i915,
+ 	mutex_unlock(&i915->mm.stolen_lock);
+ }
+ 
+-static int i915_adjust_stolen(struct drm_i915_private *i915,
+-			      struct resource *dsm)
++static bool valid_stolen_size(struct resource *dsm)
++{
++	return dsm->start != 0 && dsm->end > dsm->start;
++}
++
++static int adjust_stolen(struct drm_i915_private *i915,
++			 struct resource *dsm)
+ {
+ 	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+ 	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
+-	struct resource *r;
+ 
+-	if (dsm->start == 0 || dsm->end <= dsm->start)
++	if (!valid_stolen_size(dsm))
+ 		return -EINVAL;
+ 
+ 	/*
++	 * Make sure we don't clobber the GTT if it's within stolen memory
++	 *
+ 	 * TODO: We have yet too encounter the case where the GTT wasn't at the
+ 	 * end of stolen. With that assumption we could simplify this.
+ 	 */
+-
+-	/* Make sure we don't clobber the GTT if it's within stolen memory */
+ 	if (GRAPHICS_VER(i915) <= 4 &&
+ 	    !IS_G33(i915) && !IS_PINEVIEW(i915) && !IS_G4X(i915)) {
+ 		struct resource stolen[2] = {*dsm, *dsm};
+@@ -131,10 +135,20 @@ static int i915_adjust_stolen(struct drm_i915_private *i915,
+ 		}
+ 	}
+ 
++	if (!valid_stolen_size(dsm))
++		return -EINVAL;
++
++	return 0;
++}
++
++static int request_smem_stolen(struct drm_i915_private *i915,
++			       struct resource *dsm)
++{
++	struct resource *r;
++
+ 	/*
+-	 * With stolen lmem, we don't need to check if the address range
+-	 * overlaps with the non-stolen system memory range, since lmem is local
+-	 * to the gpu.
++	 * With stolen lmem, we don't need to request if the address range
++	 * since lmem is local to the gpu.
+ 	 */
+ 	if (HAS_LMEM(i915))
+ 		return 0;
+@@ -392,39 +406,22 @@ static void icl_get_stolen_reserved(struct drm_i915_private *i915,
+ 	}
+ }
+ 
+-static int i915_gem_init_stolen(struct intel_memory_region *mem)
++/*
++ * Initialize i915->dsm_reserved to contain the reserved space within the Data
++ * Stolen Memory. This is a range on the top of DSM that is reserved, not to
++ * be used by driver, so must be excluded from the region passed to the
++ * allocator later. In the spec this is also called as WOPCM.
++ *
++ * Our expectation is that the reserved space is at the top of the stolen
++ * region, as it has been the case for every platform, and *never* at the
++ * bottom, so the calculation here can be simplified.
++ */
++static int init_reserved_stolen(struct drm_i915_private *i915)
+ {
+-	struct drm_i915_private *i915 = mem->i915;
+ 	struct intel_uncore *uncore = &i915->uncore;
+ 	resource_size_t reserved_base, stolen_top;
+-	resource_size_t reserved_total, reserved_size;
+-
+-	mutex_init(&i915->mm.stolen_lock);
+-
+-	if (intel_vgpu_active(i915)) {
+-		drm_notice(&i915->drm,
+-			   "%s, disabling use of stolen memory\n",
+-			   "iGVT-g active");
+-		return 0;
+-	}
+-
+-	if (i915_vtd_active(i915) && GRAPHICS_VER(i915) < 8) {
+-		drm_notice(&i915->drm,
+-			   "%s, disabling use of stolen memory\n",
+-			   "DMAR active");
+-		return 0;
+-	}
+-
+-	if (resource_size(&mem->region) == 0)
+-		return 0;
+-
+-	if (i915_adjust_stolen(i915, &mem->region))
+-		return 0;
+-
+-	GEM_BUG_ON(i915->dsm.start == 0);
+-	GEM_BUG_ON(i915->dsm.end <= i915->dsm.start);
+-
+-	i915->dsm = mem->region;
++	resource_size_t reserved_size;
++	int ret = 0;
+ 
+ 	stolen_top = i915->dsm.end + 1;
+ 	reserved_base = stolen_top;
+@@ -455,17 +452,16 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
+ 					&reserved_base, &reserved_size);
+ 	}
+ 
+-	/*
+-	 * Our expectation is that the reserved space is at the top of the
+-	 * stolen region and *never* at the bottom. If we see !reserved_base,
+-	 * it likely means we failed to read the registers correctly.
+-	 */
++	/* No reserved stolen */
++	if (reserved_base == stolen_top)
++		goto bail_out;
++
+ 	if (!reserved_base) {
+ 		drm_err(&i915->drm,
+ 			"inconsistent reservation %pa + %pa; ignoring\n",
+ 			&reserved_base, &reserved_size);
+-		reserved_base = stolen_top;
+-		reserved_size = 0;
++		ret = -EINVAL;
++		goto bail_out;
+ 	}
+ 
+ 	i915->dsm_reserved =
+@@ -475,19 +471,55 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
+ 		drm_err(&i915->drm,
+ 			"Stolen reserved area %pR outside stolen memory %pR\n",
+ 			&i915->dsm_reserved, &i915->dsm);
++		ret = -EINVAL;
++		goto bail_out;
++	}
++
++	return 0;
++
++bail_out:
++	i915->dsm_reserved =
++		(struct resource)DEFINE_RES_MEM(reserved_base, 0);
++
++	return ret;
++}
++
++static int i915_gem_init_stolen(struct intel_memory_region *mem)
++{
++	struct drm_i915_private *i915 = mem->i915;
++
++	mutex_init(&i915->mm.stolen_lock);
++
++	if (intel_vgpu_active(i915)) {
++		drm_notice(&i915->drm,
++			   "%s, disabling use of stolen memory\n",
++			   "iGVT-g active");
++		return 0;
++	}
++
++	if (i915_vtd_active(i915) && GRAPHICS_VER(i915) < 8) {
++		drm_notice(&i915->drm,
++			   "%s, disabling use of stolen memory\n",
++			   "DMAR active");
+ 		return 0;
+ 	}
+ 
++	if (adjust_stolen(i915, &mem->region))
++		return 0;
++
++	if (request_smem_stolen(i915, &mem->region))
++		return 0;
++
++	i915->dsm = mem->region;
++
++	if (init_reserved_stolen(i915))
++		return 0;
++
+ 	/* Exclude the reserved region from driver use */
+-	mem->region.end = reserved_base - 1;
++	mem->region.end = i915->dsm_reserved.start - 1;
+ 	mem->io_size = min(mem->io_size, resource_size(&mem->region));
+ 
+-	/* It is possible for the reserved area to end before the end of stolen
+-	 * memory, so just consider the start. */
+-	reserved_total = stolen_top - reserved_base;
+-
+-	i915->stolen_usable_size =
+-		resource_size(&i915->dsm) - reserved_total;
++	i915->stolen_usable_size = resource_size(&mem->region);
+ 
+ 	drm_dbg(&i915->drm,
+ 		"Memory reserved for graphics device: %lluK, usable: %lluK\n",
+@@ -759,11 +791,6 @@ static int init_stolen_lmem(struct intel_memory_region *mem)
+ 	if (GEM_WARN_ON(resource_size(&mem->region) == 0))
+ 		return -ENODEV;
+ 
+-	/*
+-	 * TODO: For stolen lmem we mostly just care about populating the dsm
+-	 * related bits and setting up the drm_mm allocator for the range.
+-	 * Perhaps split up i915_gem_init_stolen() for this.
+-	 */
+ 	err = i915_gem_init_stolen(mem);
+ 	if (err)
+ 		return err;
+-- 
+2.37.3
 
->
->  * igt@i915_selftest@live@guc_multi_lrc:
->    - fi-snb-2600:        [PASS][3] -> [DMESG-WARN][4] +40 similar issues
->   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12143/fi-snb-2600/igt@i915_selftest@live@guc_multi_lrc.html
->   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-snb-2600/igt@i915_selftest@live@guc_multi_lrc.html
->
->  * igt@i915_selftest@live@reset:
->    - fi-snb-2520m:       [PASS][5] -> [DMESG-WARN][6] +40 similar issues
->   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12143/fi-snb-2520m/igt@i915_selftest@live@reset.html
->   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-snb-2520m/igt@i915_selftest@live@reset.html
-
-/me procures a ilk and snb for proper test next.
-
-Lucas De Marchi
-
->
->
->#### Suppressed ####
->
->  The following results come from untrusted machines, tests, or statuses.
->  They do not affect the overall result.
->
->  * igt@fbdev@read:
->    - {fi-tgl-mst}:       [PASS][7] -> [FAIL][8]
->   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12143/fi-tgl-mst/igt@fbdev@read.html
->   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-tgl-mst/igt@fbdev@read.html
->
->  * igt@gem_exec_suspend@basic-s0@smem:
->    - {fi-tgl-mst}:       [DMESG-WARN][9] ([i915#5122]) -> [DMESG-WARN][10]
->   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12143/fi-tgl-mst/igt@gem_exec_suspend@basic-s0@smem.html
->   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-tgl-mst/igt@gem_exec_suspend@basic-s0@smem.html
->
->
->New tests
->---------
->
->  New tests have been introduced between CI_DRM_12143 and Patchwork_108620v1:
->
->### New IGT tests (1) ###
->
->  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-7:
->    - Statuses : 1 pass(s)
->    - Exec time: [3.68] s
->
->
->
->Known issues
->------------
->
->  Here are the changes found in Patchwork_108620v1 that come from known issues:
->
->### IGT changes ###
->
->#### Issues hit ####
->
->  * igt@gem_huc_copy@huc-copy:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][11] ([i915#2190])
->   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@gem_huc_copy@huc-copy.html
->
->  * igt@gem_lmem_swapping@basic:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][12] ([i915#4613]) +3 similar issues
->   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@gem_lmem_swapping@basic.html
->
->  * igt@gem_tiled_pread_basic:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][13] ([i915#3282])
->   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@gem_tiled_pread_basic.html
->
->  * igt@i915_pm_backlight@basic-brightness:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][14] ([i915#3012])
->   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@i915_pm_backlight@basic-brightness.html
->
->  * igt@i915_selftest@live@client:
->    - fi-elk-e7500:       [PASS][15] -> [DMESG-WARN][16] ([i915#6836]) +40 similar issues
->   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12143/fi-elk-e7500/igt@i915_selftest@live@client.html
->   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-elk-e7500/igt@i915_selftest@live@client.html
->
->  * igt@i915_selftest@live@gem:
->    - fi-blb-e6850:       [PASS][17] -> [DMESG-FAIL][18] ([i915#4528])
->   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12143/fi-blb-e6850/igt@i915_selftest@live@gem.html
->   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-blb-e6850/igt@i915_selftest@live@gem.html
->
->  * igt@i915_suspend@basic-s3-without-i915:
->    - fi-rkl-11600:       NOTRUN -> [INCOMPLETE][19] ([i915#5982])
->   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@i915_suspend@basic-s3-without-i915.html
->
->  * igt@kms_chamelium@hdmi-edid-read:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][20] ([fdo#111827]) +7 similar issues
->   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@kms_chamelium@hdmi-edid-read.html
->
->  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][21] ([i915#4103])
->   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@kms_cursor_legacy@basic-busy-flip-before-cursor.html
->
->  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
->    - fi-bsw-kefka:       [PASS][22] -> [FAIL][23] ([i915#6298])
->   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12143/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
->   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
->
->  * igt@kms_force_connector_basic@force-load-detect:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][24] ([fdo#109285] / [i915#4098])
->   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@kms_force_connector_basic@force-load-detect.html
->
->  * igt@kms_pipe_crc_basic@suspend-read-crc:
->    - fi-ivb-3770:        NOTRUN -> [SKIP][25] ([fdo#109271])
->   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-ivb-3770/igt@kms_pipe_crc_basic@suspend-read-crc.html
->
->  * igt@kms_psr@primary_page_flip:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][26] ([i915#1072]) +3 similar issues
->   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@kms_psr@primary_page_flip.html
->
->  * igt@kms_setmode@basic-clone-single-crtc:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][27] ([i915#3555] / [i915#4098])
->   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@kms_setmode@basic-clone-single-crtc.html
->
->  * igt@prime_vgem@basic-read:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][28] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 similar issues
->   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@prime_vgem@basic-read.html
->
->  * igt@prime_vgem@basic-userptr:
->    - fi-rkl-11600:       NOTRUN -> [SKIP][29] ([fdo#109295] / [i915#3301] / [i915#3708])
->   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-rkl-11600/igt@prime_vgem@basic-userptr.html
->
->  * igt@runner@aborted:
->    - fi-blb-e6850:       NOTRUN -> [FAIL][30] ([fdo#109271] / [i915#2403] / [i915#4312])
->   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-blb-e6850/igt@runner@aborted.html
->    - fi-bdw-5557u:       NOTRUN -> [FAIL][31] ([i915#4312])
->   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/fi-bdw-5557u/igt@runner@aborted.html
->
->
->  {name}: This element is suppressed. This means it is ignored when computing
->          the status of the difference (SUCCESS, WARNING, or FAILURE).
->
->  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
->  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
->  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
->  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
->  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
->  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
->  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
->  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
->  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
->  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
->  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
->  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
->  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
->  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
->  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
->  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
->  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
->  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
->  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
->  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
->  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
->  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
->  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
->  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
->  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
->  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
->  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
->  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
->  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
->  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
->  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
->  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
->  [i915#5982]: https://gitlab.freedesktop.org/drm/intel/issues/5982
->  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
->  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
->  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
->  [i915#6836]: https://gitlab.freedesktop.org/drm/intel/issues/6836
->
->
->Build changes
->-------------
->
->  * Linux: CI_DRM_12143 -> Patchwork_108620v1
->
->  CI-20190529: 20190529
->  CI_DRM_12143: bb4f6b2281b11b009210f62eecd291f7b75c1e85 @ git://anongit.freedesktop.org/gfx-ci/linux
->  IGT_6656: 24100c4e181c50e3678aeca9c641b8a43555ad73 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->  Patchwork_108620v1: bb4f6b2281b11b009210f62eecd291f7b75c1e85 @ git://anongit.freedesktop.org/gfx-ci/linux
->
->
->### Linux commits
->
->d9b4c33384c5 drm/i915/dgfx: Make failure to setup stolen non-fatal
->fc192e2c02b6 drm/i915: Split i915_gem_init_stolen()
->f2b6dafac523 drm/i915: Add missing mask when reading GEN12_DSMBASE
->e22a03ddc301 drm/i915: Move dsm assignment to be after adjustment
->
->== Logs ==
->
->For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108620v1/index.html
