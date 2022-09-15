@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB615B9D8A
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 16:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB4B55B9D9F
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 16:45:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97CA610EB56;
-	Thu, 15 Sep 2022 14:41:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA0B510EB4E;
+	Thu, 15 Sep 2022 14:45:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com
- [IPv6:2607:f8b0:4864:20::62f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F184D10EB56
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Sep 2022 14:41:13 +0000 (UTC)
-Received: by mail-pl1-x62f.google.com with SMTP id f23so2323173plr.6
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Sep 2022 07:41:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quora.org; s=google;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date;
- bh=y/6Zjd12qfNc+BpVatybk0HBBrImLOYazIfjhpyZUdY=;
- b=cw53h7fcF7/kENlR2eYYm9U+JxrCocFnK9IGdzWtSM/y585d/oW3HC4ZrEk9xW5qDG
- BeMgJT73ewQvzzxIguPXiV1O3Y+yAf/kNAz5KO+cL+PYUiEiJjHJIuAugb86pIH6vkwM
- Q6K5uIdlt9ZaQTDfgTWEWBC2hWH0qLnZJ3EOQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=y/6Zjd12qfNc+BpVatybk0HBBrImLOYazIfjhpyZUdY=;
- b=fOSPKkOrFgfCQgpJRUfMHH+Vy+3PRmrBSm5NAYEX6he2cJEDeJp2rSPXQLTAE867mr
- uSbqR7YPxNdrq28U8NU5BrMo2qxqfoVjmWJ5Kbaww1ZrTHgwCP3tbiX8z5k42hOAYHb7
- KEwRzCxrLlm9ekMvA8vkKS1kUgk3GeDE+lRjyhBibDX+fIs/Q4M+3o2jKH/yUtls3paN
- EPb+q23OlTttiuFjp1PrsXNcJMLjbtg1Rsw5S1A5XfgTaXI4KcyKWEqvjP+OEMXV/1C6
- tNQQHUEEWnb5k4UQAdLd8ujGdndDVyPw9ActauyV5+RT4A0NeLmZeLJp8qLS/1GiHjH1
- cKeQ==
-X-Gm-Message-State: ACrzQf1HbnDRDRzAoYkMC3ml36yTZi8C5IFeYkWrR/391obuOq1aB0wm
- yPOQXcnc0Y88KMxsMo/Uwl7GKx/nHd0eG9xIn0iPQy1SZz0Q8Q==
-X-Google-Smtp-Source: AMsMyM5XUyYxpLXZCD3RwXJCgeaMMMNHgEfzBFvPqeWEkJBSiJfWdD5+PF2RhLi+AYdgIIkaluEscC8+ss+BoPU5dSI=
-X-Received: by 2002:a17:90b:4b8b:b0:203:203:3365 with SMTP id
- lr11-20020a17090b4b8b00b0020302033365mr246607pjb.19.1663252873563; Thu, 15
- Sep 2022 07:41:13 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BB6310EB4E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Sep 2022 14:44:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663253096; x=1694789096;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:from:subject:to:cc:message-id:date;
+ bh=0i8xHucudFKlRMdvgl7XMTAmCpJvv4YNLC1tc3tDs0w=;
+ b=S9x24+hdzM7yFc4IM66n1IrSR8mEZ5JL6gcg2e8+jObp/qCgQKzQkj9v
+ tv6Tf7IpnAcogadoVxnoyb1DsSBE75zOEXlns1paYq0+8MNKCXG+U7Eui
+ lfDwemDWrddsI14lAef+qJIhZ88eKxbO0UOe2dDmYKdQ5WTXNKGGBbihT
+ RLW+hfrdclqh86n6p+P/KG53I/y0VGIQC3SetYrvYGupuV5covnAoMnti
+ TGEovN1MBU9kdwQjWTTE3xBskKCUp/jm3mOv3tEk7Up4v5GIqycVppxSf
+ 8TYHXfwx8XvpJId1kZd8vuYrtkPWeXgUzxi2XkOw8o3KkfLu/xmbTlZM/ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="297459306"
+X-IronPort-AV: E=Sophos;i="5.93,318,1654585200"; d="scan'208";a="297459306"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 07:44:55 -0700
+X-IronPort-AV: E=Sophos;i="5.93,318,1654585200"; d="scan'208";a="612910933"
+Received: from fbielich-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.0.144])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 07:44:52 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <CAMVG2steKr8U9t67rqai=-Qb-aTC2ocJHMiuDHxYBsSusnHckA@mail.gmail.com>
- <YyMyKsy2XdInzarL@intel.com>
-In-Reply-To: <YyMyKsy2XdInzarL@intel.com>
-From: Daniel J Blueman <daniel@quora.org>
-Date: Thu, 15 Sep 2022 22:40:59 +0800
-Message-ID: <CAMVG2svdhBp-UU2L=Zofq2qgzapwvYGbXMZxtOTzK0T+2aLMHw@mail.gmail.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] Intel Arc A370M vs Linux 5.19
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220914161329.2604-1-anshuman.gupta@intel.com>
+References: <20220914141553.16864-1-anshuman.gupta@intel.com>
+ <20220914161329.2604-1-anshuman.gupta@intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <166325308942.37754.14627822368218146189@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Thu, 15 Sep 2022 17:44:49 +0300
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/DG{1,
+ 2}: FIXME Temporary hammer to disable rpm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,58 +60,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
+Cc: Matthew Auld <matthew.auld@intel.com>, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 15 Sept 2022 at 22:09, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Sep 15, 2022 at 09:08:08PM +0800, Daniel J Blueman wrote:
-> > Dear Intel et al,
-> >
-> > With a HP Spectre x360 16 16-f1xxx/891D (Intel i7-1260P) with an Arc
-> > A370M GPU [1] running the latest Ubuntu 22.10 5.19.0-15-generic
-> > kernel, we see:
-> >
-> > i915 0000:03:00.0: Your graphics device 5693 is not properly supported
-> > by the driver in this kernel version. To force driver probe anyway,
-> > use i915.force_probe=5693
-> >
-> > Since the GPU is unmanaged, battery life is around 30% of what it
-> > could be. Unsurprisingly, adding i915.force_probe=5693 causes
-> > additional  issues. Given a lack of BIOS option to disable the GPU, is
-> > there any advice for Linux support or at least putting the GPU into
-> > D3? I see only Windows drivers on the official support page [2], and
-> > Linux 6.0-rc5 isn't buildable [3].
->
-> I believe this is what you are looking for:
->
-> echo auto | sudo tee /sys/bus/pci/devices/0000\:03\:00.0/power/control
->
-> In Linux the default is to keep the unmanaged devices in D0.
-> But changing the rpm to auto should transition the device to D3.
->
-> You can go further and check with the lspci -vv if there are other
-> unmanaged devices in the same pci root tree and also add them to the
-> 'auto' rpm so you can even achieve D3cold in that whole device, what
-> gives you extra power savings.
->
-> I hope this helps for now.
+Quoting Anshuman Gupta (2022-09-14 19:13:29)
+> DG1 and DG2 has lmem, and cpu can access the lmem objects
+> via mmap and i915 internal i915_gem_object_pin_map() for
+> i915 own usages. Both of these methods has pre-requisite
+> requirement to keep GFX PCI endpoint in D0 for a supported
+> iomem transaction over PCI link. (Refer PCIe specs 5.3.1.4.1)
+>=20
+> Both DG1/DG2 have a hardware bug that violates the PCIe specs
+> and support the iomem read write transaction over PCIe bus despite
+> endpoint is D3 state.
+> Due to above H/W bug, we had never observed any issue with i915 runtime
+> PM versus lmem access.
+> But this issue becomes visible when PCIe gfx endpoint's upstream
+> bridge enters to D3, at this point any lmem read/write access will be
+> returned as unsupported request. But again this issue is not observed
+> on every platform because it has been observed on few host machines
+> DG1/DG2 endpoint's upstream bridge does not bind with pcieport driver.
+> which really disables the PCIe poer power savings and leaves the bridge
+> at D0 state.
+>=20
+> TODO:
+> With respect to i915_gem_object_pin_map(), every caller
+> has to grab a wakeref if gem object lies in lmem.
+>=20
+> Till we fix all issues related to runtime PM, we need
+> to keep runtime PM disable on both DG1 and DG2.
+>=20
+> V2:
+> - Keep a smaller FIXME code comment for both DG1/DG2.
 
-Yes, I was also hoping this would work as we see D3hot is supported:
+I think we should also have Fixes: tags to cover both platforms.
 
-# echo auto > /sys/bus/pci/devices/0000\:03\:00.0/power/control
-# lspci -vvvs 03:00.0
-...
-Capabilities: [d0] Power Management version 3
-        Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
-PME(D0+,D1-,D2-,D3hot+,D3cold-)
-        Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
-                ^^
+Regards, Joonas
 
-However it stays in D0 with PME disabled as we see. "Kernel modules:
-i915" may suggest the i915 driver holds a reference to it, preventing
-the transition.
-
-Dan
--- 
-Daniel J Blueman
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_pci.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
+pci.c
+> index 77e7df21f539..4a7d226b074f 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -931,6 +931,14 @@ static const struct intel_device_info dg1_info =3D {
+>                 BIT(VCS0) | BIT(VCS2),
+>         /* Wa_16011227922 */
+>         .__runtime.ppgtt_size =3D 47,
+> +
+> +       /*
+> +        *  FIXME: Temporary hammer to disable rpm.
+> +        *  As per PCIe specs 5.3.1.4.1, all iomem read write request ove=
+r a PCIe
+> +        *  function will be unsupported in case PCIe endpoint function i=
+s in D3.
+> +        *  Let's disable i915 rpm till we fix all known issue with lmem =
+access in D3.
+> +        */
+> +       .has_runtime_pm =3D 0,
+>  };
+> =20
+>  static const struct intel_device_info adl_s_info =3D {
+> @@ -1076,6 +1084,13 @@ static const struct intel_device_info dg2_info =3D=
+ {
+>         XE_LPD_FEATURES,
+>         .__runtime.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSC=
+ODER_B) |
+>                                BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+> +       /*
+> +        *  FIXME: Temporary hammer to disable rpm.
+> +        *  As per PCIe specs 5.3.1.4.1, all iomem read write request ove=
+r a PCIe
+> +        *  function will be unsupported in case PCIe endpoint function i=
+s in D3.
+> +        *  Let's disable i915 rpm till we fix all known issue with lmem =
+access in D3.
+> +        */
+> +       .has_runtime_pm =3D 0,
+>         .require_force_probe =3D 1,
+>  };
+> =20
+> --=20
+> 2.26.2
+>=20
