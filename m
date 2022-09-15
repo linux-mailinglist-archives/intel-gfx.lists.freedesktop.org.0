@@ -1,55 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 455E75B9647
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 10:24:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E0A65B9699
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 10:48:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6207910E162;
-	Thu, 15 Sep 2022 08:24:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5B7D10EAB6;
+	Thu, 15 Sep 2022 08:48:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1F2310E162
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Sep 2022 08:24:02 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6BB210EAC8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Sep 2022 08:48:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663230242; x=1694766242;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=BL9mxxmEcb6Oq4OxMx4VOnJy0Yvh7//NvPZZY3SWaVQ=;
- b=VrrxsgPx1qeWpIqYHmrd+FPiF85YuCSyLzHKP1rIlU8xEt6wGoCkJIaU
- GqhWGarA2+YT+edtQtm7jHNYnXhdUQLHk1mbe7SfwZl/vb7oHvFlexcFR
- Hi1NuqKuB2JLsLFOfTZYz17EwB3AnczKgGU4uw9JRkrOn982K+KYqiBTd
- 5w5M14BZCk7KnZCZ6VR0Zi478xdu4NwulGcQC0i5g3QOUR5hIjJExDrya
- 5+d6FBVeg2MwZeNOdBpWyYLgZLITNs56IimOE4VFeNBGKaXaJea1K7e73
- NHU2BUaKzuLxDwAwYv4/8Af8p38Uh9n1TWMUWO19EB9zpF39xVDTQ+piC Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="297378669"
-X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="297378669"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2022 01:23:55 -0700
-X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="612802768"
+ t=1663231717; x=1694767717;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=L6m+U6Sq98TxvAIWNj9SbcPH2x0iFF4U8UwGtFeNHLk=;
+ b=nDxkAemNg8rSJQD5Gu0EQX49hXmrp0CFyKHJvvxGSnmUM0bIHTqtkqt9
+ q26E7kGDUYrA/mvgSSUp2Sfk5iH1QJFz++r6hA1TLQnIfBlspb+2tx0us
+ jGZCoghFf44ONhl0VeeYIQXX8Da6TKOcHCpurzSP+1VoDXEB3kQ9/wIta
+ zMM1KsNa5M06AqCrq5Uu5psTydDoiTGSn+QiZ2msRlG3Ujx+kq5fdg4l5
+ LX+v3zj3QDj2pXifeWKuRShMcKOz2vAVB2UcSYkQVJ7JhelEE7CkcdBJG
+ Buq6CdRVBeAvCxFkW3ImiN/mD4pcsUgDjE02rxJOFmoOE9HvC0KGR0rXN g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="384948089"
+X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="384948089"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 01:48:37 -0700
+X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="742856809"
 Received: from alishana-mobl1.ger.corp.intel.com (HELO [10.213.218.26])
  ([10.213.218.26])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2022 01:23:54 -0700
-Message-ID: <071854a4-8797-4d12-12c2-dda304ebc8ec@linux.intel.com>
-Date: Thu, 15 Sep 2022 09:23:52 +0100
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 01:48:36 -0700
+Message-ID: <5aec4a0d-e99b-011d-68a9-84ad1f1120bf@linux.intel.com>
+Date: Thu, 15 Sep 2022 09:48:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
 Content-Language: en-US
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20220914203545.4057637-1-lucas.demarchi@intel.com>
- <500be188-d8e0-2bc6-4f54-13a8784c0321@linux.intel.com>
- <20220915080946.fipzdukq4ib2efdk@ldmartin-desk2.lan>
+To: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220915021218.1412111-1-alan.previn.teres.alexis@intel.com>
+ <20220915021218.1412111-2-alan.previn.teres.alexis@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20220915080946.fipzdukq4ib2efdk@ldmartin-desk2.lan>
+In-Reply-To: <20220915021218.1412111-2-alan.previn.teres.alexis@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] Revert "HAX iommu/intel: Ignore igfx_off"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Delay disabling guc_id
+ scheduling for better hysteresis
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,62 +63,713 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 15/09/2022 09:09, Lucas De Marchi wrote:
-> On Thu, Sep 15, 2022 at 08:53:16AM +0100, Tvrtko Ursulin wrote:
->>
->> On 14/09/2022 21:35, Lucas De Marchi wrote:
->>> This reverts commit 58f44e349cfc10a4f2208fd806829c8fd046480b.
->>>
->>> To be removed from the topic/core-for-CI branch. If CI's config is
->>> setting that, it just shouldn't do it. Looking at a random current CI
->>> execution, the command line is:
->>>
->>> Command line: BOOT_IMAGE=/boot/drm_intel root=/dev/nvme0n1p2 \
->>>     rootwait fsck.repair=yes nmi_watchdog=panic,auto panic=5 \
->>>     softdog.soft_panic=5 drm.debug=0xe log_buf_len=1M 
->>> trace_clock=global 3 \
->>>     modprobe.blacklist=i915,snd_hda_intel ro
->>>
->>> So it should be safe to remove this commit.
->>
->> It's a patch which can silently bite so no complaints from me to 
->> remove it - just please upgrade the check from a "random current CI 
->> execution" to something stronger. Ack from CI folks would do.
+On 15/09/2022 03:12, Alan Previn wrote:
+> From: Matthew Brost <matthew.brost@intel.com>
 > 
-> Well in the commit message I mentioned "To be removed from the
-> topic/core-for-CI branch". This is how the topic/core-for-CI branch is 
-> handled
-> until now. We simply remove the commit and force push.  So there won't 
-> be any
-> trace of commit messages for me to write anything stronger.
+> Add a delay, configurable via debugfs (default 34ms), to disable
+> scheduling of a context after the pin count goes to zero. Disable
+> scheduling is a costly operation as it requires synchronizing with
+> the GuC. So the idea is that a delay allows the user to resubmit
+> something before doing this operation. This delay is only done if
+> the context isn't closed and less than a given threshold
+> (default is 3/4) of the guc_ids are in use.
 > 
-> To be at least registered in the mailing list what I used (no it was not 
-> this,
-> but linking to the execution for this specific patch serves the purpose):
+> Alan Previn: Matt Brost first introduced this patch back in Oct 2021.
+> However no real world workload with measured performance impact was
+> available to prove the intended results. Today, this series is being
+> republished in response to a real world workload that benefited greatly
+> from it along with measured performance improvement.
 > 
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108575v1/bat-dg2-8/boot0.txt 
+> Workload description: 36 containers were created on a DG2 device where
+> each container was performing a combination of 720p 3d game rendering
+> and 30fps video encoding. The workload density was configured in a way
+> that guaranteed each container to ALWAYS be able to render and
+> encode no less than 30fps with a predefined maximum render + encode
+> latency time. That means the totality of all 36 containers and their
+> workloads were not saturating the engines to their max (in order to
+> maintain just enough headrooom to meet the min fps and max latencies
+> of incoming container submissions).
 > 
+> Problem statement: It was observed that the CPU core processing the i915
+> soft IRQ work was experiencing severe load. Using tracelogs and an
+> instrumentation patch to count specific i915 IRQ events, it was confirmed
+> that the majority of the CPU cycles were caused by the
+> gen11_other_irq_handler() -> guc_irq_handler() code path. The vast
+> majority of the cycles was determined to be processing a specific G2H
+> IRQ: i.e. INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_DONE. These IRQs are sent
+> by GuC in response to i915 KMD sending H2G requests:
+> INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_SET. Those H2G requests are sent
+> whenever a context goes idle so that we can unpin the context from GuC.
+> The high CPU utilization % symptom was limiting density scaling.
 > 
-> <5>[    0.000000] Linux version 
-> 6.0.0-rc5-Patchwork_108575v1-g37b0cd34584f+ 
-> (kbuild@ci-worker1.fi.intel.com) (gcc (Ubuntu 8.4.0-1ubuntu1~18.04) 
-> 8.4.0, GNU ld (GNU Binutils for Ubuntu) 2.30) #1 SMP PREEMPT_DYNAMIC Wed 
-> Sep 14 23:50:09 EEST 2022
-> <6>[    0.000000] Command line: BOOT_IMAGE=/boot/drm_intel 
-> root=/dev/nvme0n1p2 rootwait fsck.repair=yes nmi_watchdog=panic,auto 
-> panic=5 softdog.soft_panic=5 drm.debug=0xe log_buf_len=1M 
-> trace_clock=global 3 modprobe.blacklist=i915,snd_hda_intel ro
+> Root Cause Analysis: Because the incoming execution buffers were spread
+> across 36 different containers (each with multiple contexts) but the
+> system in totality was NOT saturated to the max, it was assumed that each
+> context was constantly idling between submissions. This was causing
+> a thrashing of unpinning contexts from GuC at one moment, followed quickly
+> by repinning them due to incoming workload the very next moment. These
+> event-pairs were being triggered across multiple contexts per container,
+> across all containers at the rate of > 30 times per sec per context.
 > 
+> Metrics: When running this workload without this patch, we measured an
+> average of ~69K INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_DONE events every 10
+> seconds or ~10 million times over ~25+ mins. With this patch, the count
+> reduced to ~480 every 10 seconds or about ~28K over ~10 mins. The
+> improvement observed is ~99% for the average counts per 10 seconds.
 > 
-> Petri already acked this from the CI side via IRC today.
+> Design awareness: Selftest impact.
+> As temporary WA disable this feature for the selftests. Selftests are
+> very timing sensitive and any change in timing can cause failure. A
+> follow up patch will fixup the selftests to understand this delay.
+> 
+> Design awareness: Race between guc_request_alloc and guc_context_close.
+> If a context close is issued while there is a request submission in
+> flight and a delayed schedule disable is pending, guc_context_close
+> and guc_request_alloc will race to cancel the delayed disable.
+> To close the race, make sure that guc_request_alloc waits for
+> guc_context_close to finish running before checking any state.
+> 
+> Design awareness: GT Reset event.
+> If a gt reset is triggered, as preparation steps, add an additional step
+> to ensure all contexts that have a pending delay-disable-schedule task
+> be flushed of it. Move them directly into the closed state after cancelling
+> the worker. This is okay because the existing flow flushes all
+> yet-to-arrive G2H's dropping them anyway.
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |   2 +-
+>   drivers/gpu/drm/i915/gt/intel_context.h       |   8 +
+>   drivers/gpu/drm/i915/gt/intel_context_types.h |   7 +
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  16 ++
+>   .../gpu/drm/i915/gt/uc/intel_guc_debugfs.c    |  60 +++++
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 220 +++++++++++++++---
+>   drivers/gpu/drm/i915/i915_selftest.h          |   2 +
+>   7 files changed, 288 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index dabdfe09f5e5..df7fd1b019ec 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1454,7 +1454,7 @@ static void engines_idle_release(struct i915_gem_context *ctx,
+>   		int err;
+>   
+>   		/* serialises with execbuf */
+> -		set_bit(CONTEXT_CLOSED_BIT, &ce->flags);
+> +		intel_context_close(ce);
+>   		if (!intel_context_pin_if_active(ce))
+>   			continue;
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> index 8e2d70630c49..f96420f0b5bb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -276,6 +276,14 @@ static inline bool intel_context_is_barrier(const struct intel_context *ce)
+>   	return test_bit(CONTEXT_BARRIER_BIT, &ce->flags);
+>   }
+>   
+> +static inline void intel_context_close(struct intel_context *ce)
+> +{
+> +	set_bit(CONTEXT_CLOSED_BIT, &ce->flags);
+> +
+> +	if (ce->ops->close)
+> +		ce->ops->close(ce);
+> +}
+> +
+>   static inline bool intel_context_is_closed(const struct intel_context *ce)
+>   {
+>   	return test_bit(CONTEXT_CLOSED_BIT, &ce->flags);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index 04eacae1aca5..86ac84e2edb9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -43,6 +43,8 @@ struct intel_context_ops {
+>   	void (*revoke)(struct intel_context *ce, struct i915_request *rq,
+>   		       unsigned int preempt_timeout_ms);
+>   
+> +	void (*close)(struct intel_context *ce);
+> +
+>   	int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void **vaddr);
+>   	int (*pin)(struct intel_context *ce, void *vaddr);
+>   	void (*unpin)(struct intel_context *ce);
+> @@ -208,6 +210,11 @@ struct intel_context {
+>   		 * each priority bucket
+>   		 */
+>   		u32 prio_count[GUC_CLIENT_PRIORITY_NUM];
+> +		/**
+> +		 * @sched_disable_delay: worker to disable scheduling on this
+> +		 * context
+> +		 */
+> +		struct delayed_work sched_disable_delay;
+>   	} guc_state;
+>   
+>   	struct {
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index 804133df1ac9..12be811181b3 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -112,6 +112,10 @@ struct intel_guc {
+>   		 * refs
+>   		 */
+>   		struct list_head guc_id_list;
+> +		/**
+> +		 * @guc_ids_in_use: Number single-lrc guc_ids in use
+> +		 */
+> +		u16 guc_ids_in_use;
 
-That's all I suggested. :)
+Any specific reason to use u16? It can usually just result in larger 
+code generated and I don't see any space saving needed or achieved when 
+it is sandwiched between two struct list_heads.
+
+>   		/**
+>   		 * @destroyed_contexts: list of contexts waiting to be destroyed
+>   		 * (deregistered with the GuC)
+> @@ -132,6 +136,16 @@ struct intel_guc {
+>   		 * @reset_fail_mask: mask of engines that failed to reset
+>   		 */
+>   		intel_engine_mask_t reset_fail_mask;
+> +		/**
+> +		 * @sched_disable_delay_ms: schedule disable delay, in ms, for
+> +		 * contexts
+> +		 */
+> +		u64 sched_disable_delay_ms;
+
+64-bits for the delay then sounds like overkill. Both should IMO just be 
+unsigned ints.
+
+> +		/**
+> +		 * @sched_disable_gucid_threshold: threshold of min remaining available
+> +		 * guc_ids before we start bypassing the schedule disable delay
+> +		 */
+> +		int sched_disable_gucid_threshold;
+
+unsigned int as well, so reader does not have to think about:
+
+  return guc->submission_state.guc_ids_in_use >
+	guc->submission_state.sched_disable_gucid_threshold;
+
+further down.
+
+>   	} submission_state;
+>   
+>   	/**
+> @@ -466,4 +480,6 @@ void intel_guc_write_barrier(struct intel_guc *guc);
+>   
+>   void intel_guc_dump_time_info(struct intel_guc *guc, struct drm_printer *p);
+>   
+> +int intel_guc_sched_disable_gucid_threshold_max(struct intel_guc *guc);
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
+> index 25f09a420561..c91b150bb7ac 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
+> @@ -71,12 +71,72 @@ static bool intel_eval_slpc_support(void *data)
+>   	return intel_guc_slpc_is_used(guc);
+>   }
+>   
+> +static int guc_sched_disable_delay_ms_get(void *data, u64 *val)
+> +{
+> +	struct intel_guc *guc = data;
+> +
+> +	if (!intel_guc_submission_is_used(guc))
+> +		return -ENODEV;
+> +
+> +	*val = guc->submission_state.sched_disable_delay_ms;
+> +
+> +	return 0;
+> +}
+> +
+> +static int guc_sched_disable_delay_ms_set(void *data, u64 val)
+> +{
+> +	struct intel_guc *guc = data;
+> +
+> +	if (!intel_guc_submission_is_used(guc))
+> +		return -ENODEV;
+> +
+> +	guc->submission_state.sched_disable_delay_ms = val;
+> +
+> +	return 0;
+> +}
+> +DEFINE_SIMPLE_ATTRIBUTE(guc_sched_disable_delay_ms_fops,
+> +			guc_sched_disable_delay_ms_get,
+> +			guc_sched_disable_delay_ms_set, "%lld\n");
+> +
+> +static int guc_sched_disable_gucid_threshold_get(void *data, u64 *val)
+> +{
+> +	struct intel_guc *guc = data;
+> +
+> +	if (!intel_guc_submission_is_used(guc))
+> +		return -ENODEV;
+> +
+> +	*val = guc->submission_state.sched_disable_gucid_threshold;
+> +	return 0;
+> +}
+> +
+> +static int guc_sched_disable_gucid_threshold_set(void *data, u64 val)
+> +{
+> +	struct intel_guc *guc = data;
+> +
+> +	if (!intel_guc_submission_is_used(guc))
+> +		return -ENODEV;
+> +
+> +	if (val > intel_guc_sched_disable_gucid_threshold_max(guc))
+> +		guc->submission_state.sched_disable_gucid_threshold =
+> +			intel_guc_sched_disable_gucid_threshold_max(guc);
+> +	else
+> +		guc->submission_state.sched_disable_gucid_threshold = val;
+> +
+> +	return 0;
+> +}
+> +DEFINE_SIMPLE_ATTRIBUTE(guc_sched_disable_gucid_threshold_fops,
+> +			guc_sched_disable_gucid_threshold_get,
+> +			guc_sched_disable_gucid_threshold_set, "%lld\n");
+> +
+>   void intel_guc_debugfs_register(struct intel_guc *guc, struct dentry *root)
+>   {
+>   	static const struct intel_gt_debugfs_file files[] = {
+>   		{ "guc_info", &guc_info_fops, NULL },
+>   		{ "guc_registered_contexts", &guc_registered_contexts_fops, NULL },
+>   		{ "guc_slpc_info", &guc_slpc_info_fops, &intel_eval_slpc_support},
+> +		{ "guc_sched_disable_delay_ms", &guc_sched_disable_delay_ms_fops, NULL },
+> +		{ "guc_sched_disable_gucid_threshold", &guc_sched_disable_gucid_threshold_fops,
+> +		   NULL },
+>   	};
+>   
+>   	if (!intel_guc_is_supported(guc))
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 22ba66e48a9b..29793972c39e 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -65,7 +65,13 @@
+>    * corresponding G2H returns indicating the scheduling disable operation has
+>    * completed it is safe to unpin the context. While a disable is in flight it
+>    * isn't safe to resubmit the context so a fence is used to stall all future
+> - * requests of that context until the G2H is returned.
+> + * requests of that context until the G2H is returned. Because this interaction
+> + * with the GuC takes a non-zero amount of time we delay the disabling of
+> + * scheduling after the pin count goes to zero by a configurable period of time
+> + * (see SCHED_DISABLE_DELAY_MS). The thought is this gives the user a window of
+> + * time to resubmit something on the context before doing this costly operation.
+> + * This delay is only done if the context isn't closed and the guc_id usage is
+> + * less than a threshold (see NUM_SCHED_DISABLE_GUC_IDS_THRESHOLD).
+>    *
+>    * Context deregistration:
+>    * Before a context can be destroyed or if we steal its guc_id we must
+> @@ -163,7 +169,8 @@ guc_create_parallel(struct intel_engine_cs **engines,
+>   #define SCHED_STATE_PENDING_ENABLE			BIT(5)
+>   #define SCHED_STATE_REGISTERED				BIT(6)
+>   #define SCHED_STATE_POLICY_REQUIRED			BIT(7)
+> -#define SCHED_STATE_BLOCKED_SHIFT			8
+> +#define SCHED_STATE_CLOSED				BIT(8)
+> +#define SCHED_STATE_BLOCKED_SHIFT			9
+>   #define SCHED_STATE_BLOCKED		BIT(SCHED_STATE_BLOCKED_SHIFT)
+>   #define SCHED_STATE_BLOCKED_MASK	(0xfff << SCHED_STATE_BLOCKED_SHIFT)
+>   
+> @@ -173,12 +180,20 @@ static inline void init_sched_state(struct intel_context *ce)
+>   	ce->guc_state.sched_state &= SCHED_STATE_BLOCKED_MASK;
+>   }
+>   
+> +/*
+> + * Kernel contexts can have SCHED_STATE_REGISTERED after suspend.
+> + * A context close can race with the submission path, so SCHED_STATE_CLOSED
+> + * can be set immediately before we try to register.
+> + */
+> +#define SCHED_STATE_VALID_INIT \
+> +	(SCHED_STATE_BLOCKED_MASK | \
+> +	 SCHED_STATE_CLOSED | \
+> +	 SCHED_STATE_REGISTERED)
+> +
+>   __maybe_unused
+>   static bool sched_state_is_init(struct intel_context *ce)
+>   {
+> -	/* Kernel contexts can have SCHED_STATE_REGISTERED after suspend. */
+> -	return !(ce->guc_state.sched_state &
+> -		 ~(SCHED_STATE_BLOCKED_MASK | SCHED_STATE_REGISTERED));
+> +	return !(ce->guc_state.sched_state & ~SCHED_STATE_VALID_INIT);
+>   }
+>   
+>   static inline bool
+> @@ -319,6 +334,17 @@ static inline void clr_context_policy_required(struct intel_context *ce)
+>   	ce->guc_state.sched_state &= ~SCHED_STATE_POLICY_REQUIRED;
+>   }
+>   
+> +static inline bool context_close_done(struct intel_context *ce)
+> +{
+> +	return ce->guc_state.sched_state & SCHED_STATE_CLOSED;
+> +}
+> +
+> +static inline void set_context_close_done(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +	ce->guc_state.sched_state |= SCHED_STATE_CLOSED;
+> +}
+> +
+>   static inline u32 context_blocked(struct intel_context *ce)
+>   {
+>   	return (ce->guc_state.sched_state & SCHED_STATE_BLOCKED_MASK) >>
+> @@ -1523,6 +1549,7 @@ static void guc_flush_submissions(struct intel_guc *guc)
+>   }
+>   
+>   static void guc_flush_destroyed_contexts(struct intel_guc *guc);
+> +static void guc_flush_all_delayed_disable_sched_contexts(struct intel_guc *guc);
+>   
+>   void intel_guc_submission_reset_prepare(struct intel_guc *guc)
+>   {
+> @@ -1540,6 +1567,7 @@ void intel_guc_submission_reset_prepare(struct intel_guc *guc)
+>   	spin_lock_irq(guc_to_gt(guc)->irq_lock);
+>   	spin_unlock_irq(guc_to_gt(guc)->irq_lock);
+>   
+> +	guc_flush_all_delayed_disable_sched_contexts(guc);
+>   	guc_flush_submissions(guc);
+>   	guc_flush_destroyed_contexts(guc);
+>   	flush_work(&guc->ct.requests.worker);
+> @@ -1994,6 +2022,9 @@ static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
+>   	if (unlikely(ret < 0))
+>   		return ret;
+>   
+> +	if (!intel_context_is_parent(ce))
+> +		++guc->submission_state.guc_ids_in_use;
+> +
+>   	ce->guc_id.id = ret;
+>   	return 0;
+>   }
+> @@ -2003,14 +2034,16 @@ static void __release_guc_id(struct intel_guc *guc, struct intel_context *ce)
+>   	GEM_BUG_ON(intel_context_is_child(ce));
+>   
+>   	if (!context_guc_id_invalid(ce)) {
+> -		if (intel_context_is_parent(ce))
+> +		if (intel_context_is_parent(ce)) {
+>   			bitmap_release_region(guc->submission_state.guc_ids_bitmap,
+>   					      ce->guc_id.id,
+>   					      order_base_2(ce->parallel.number_children
+>   							   + 1));
+> -		else
+> +		} else {
+> +			--guc->submission_state.guc_ids_in_use;
+>   			ida_simple_remove(&guc->submission_state.guc_ids,
+>   					  ce->guc_id.id);
+> +		}
+>   		clr_ctx_id_mapping(guc, ce->guc_id.id);
+>   		set_context_guc_id_invalid(ce);
+>   	}
+> @@ -2998,41 +3031,130 @@ guc_context_revoke(struct intel_context *ce, struct i915_request *rq,
+>   	}
+>   }
+>   
+> -static void guc_context_sched_disable(struct intel_context *ce)
+> +static void guc_context_sched_disable(struct intel_context *ce);
+> +
+> +static void do_sched_disable(struct intel_guc *guc, struct intel_context *ce,
+> +			     unsigned long flags)
+> +	__releases(ce->guc_state.lock)
+>   {
+> -	struct intel_guc *guc = ce_to_guc(ce);
+> -	unsigned long flags;
+>   	struct intel_runtime_pm *runtime_pm = &ce->engine->gt->i915->runtime_pm;
+>   	intel_wakeref_t wakeref;
+>   	u16 guc_id;
+>   
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +	guc_id = prep_context_pending_disable(ce);
+> +
+> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+> +	with_intel_runtime_pm(runtime_pm, wakeref)
+> +		__guc_context_sched_disable(guc, ce, guc_id);
+> +}
+> +
+> +static bool bypass_sched_disable(struct intel_guc *guc,
+> +				 struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->guc_state.lock);
+>   	GEM_BUG_ON(intel_context_is_child(ce));
+>   
+> +	if (submission_disabled(guc) || context_guc_id_invalid(ce) ||
+> +	    !ctx_id_mapped(guc, ce->guc_id.id)) {
+> +		clr_context_enabled(ce);
+> +		return true;
+> +	}
+> +
+> +	return !context_enabled(ce);
+> +}
+> +
+> +static void __delay_sched_disable(struct work_struct *wrk)
+> +{
+> +	struct intel_context *ce =
+> +		container_of(wrk, typeof(*ce), guc_state.sched_disable_delay.work);
+> +	struct intel_guc *guc = ce_to_guc(ce);
+> +	unsigned long flags;
+> +
+>   	spin_lock_irqsave(&ce->guc_state.lock, flags);
+>   
+> +	if (bypass_sched_disable(guc, ce)) {
+> +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +		intel_context_sched_disable_unpin(ce);
+> +	} else {
+> +		do_sched_disable(guc, ce, flags);
+> +	}
+
+
+lock
+if
+   unlock
+   do sttuff
+else
+   do_sched_disable - which unlocks inside
+
+Now move to next block..
+
+> +}
+> +
+> +static bool guc_id_pressure(struct intel_guc *guc, struct intel_context *ce)
+> +{
+>   	/*
+> -	 * We have to check if the context has been disabled by another thread,
+> -	 * check if submssion has been disabled to seal a race with reset and
+> -	 * finally check if any more requests have been committed to the
+> -	 * context ensursing that a request doesn't slip through the
+> -	 * 'context_pending_disable' fence.
+> +	 * parent contexts are perma-pinned, if we are unpinning do schedule
+> +	 * disable immediately.
+>   	 */
+> -	if (unlikely(!context_enabled(ce) || submission_disabled(guc) ||
+> -		     context_has_committed_requests(ce))) {
+> -		clr_context_enabled(ce);
+> +	if (intel_context_is_parent(ce))
+> +		return true;
+> +
+> +	/*
+> +	 * If we are beyond the threshold for avail guc_ids, do schedule disable immediately.
+> +	 */
+> +	return guc->submission_state.guc_ids_in_use >
+> +		guc->submission_state.sched_disable_gucid_threshold;
+> +}
+> +
+> +static void guc_context_sched_disable(struct intel_context *ce)
+> +{
+> +	struct intel_guc *guc = ce_to_guc(ce);
+> +	u64 delay = guc->submission_state.sched_disable_delay_ms;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +
+> +	if (bypass_sched_disable(guc, ce)) {
+> +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +		intel_context_sched_disable_unpin(ce);
+> +	} else if (!intel_context_is_closed(ce) && !guc_id_pressure(guc, ce) &&
+> +		   delay) {
+>   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> -		goto unpin;
+> +		mod_delayed_work(system_unbound_wq,
+> +				 &ce->guc_state.sched_disable_delay,
+> +				 msecs_to_jiffies(delay));
+> +	} else {
+> +		do_sched_disable(guc, ce, flags);
+>   	}
+
+lock
+if
+   unlock
+   do stuff
+else if
+   unlock
+   do stuff
+else
+   do_sched_disable - which unlocks inside
+
+IMO it creates less readable code for the benefit of not repeating 
+with_intel_runtime_pm -> __guc_context_sched_disable two times. Dunno.. 
+it's ugly but I have no suggestions. Hm does it have to send using the 
+busy loop? It couldn't just queue the request and then wait for reply if 
+disable message was emitted?
+
+> -	guc_id = prep_context_pending_disable(ce);
+> +}
+>   
+> -	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +static void guc_flush_all_delayed_disable_sched_contexts(struct intel_guc *guc)
+> +{
+> +	struct intel_context *ce;
+> +	unsigned long index;
+> +	unsigned long flags;
+> +	unsigned long ceflags;
+>   
+> -	with_intel_runtime_pm(runtime_pm, wakeref)
+> -		__guc_context_sched_disable(guc, ce, guc_id);
+> +	xa_lock_irqsave(&guc->context_lookup, flags);
+> +	xa_for_each(&guc->context_lookup, index, ce) {
+> +		if (!kref_get_unless_zero(&ce->ref))
+> +			continue;
+> +		xa_unlock(&guc->context_lookup);
+
+So this whole loop _needs_ to run with interrupts disabled? Explaining 
+why in a comment would be good.
+
+> +		if (test_bit(CONTEXT_GUC_INIT, &ce->flags) &&
+> +		    cancel_delayed_work(&ce->guc_state.sched_disable_delay)) {
+> +			spin_lock_irqsave(&ce->guc_state.lock, ceflags);
+> +			spin_unlock_irqrestore(&ce->guc_state.lock, ceflags);
+
+This deserves a comment about what lock toggling wants to ensure.
+
+Also, if the loops runs with interrupts disabled what is the point of 
+irqsave variant in here??
+
+Also2, what is the reason for dropping the lock? intel_context_put?
+
+> +			intel_context_sched_disable_unpin(ce);
+> +		}
+> +		intel_context_put(ce);
+> +		xa_lock(&guc->context_lookup);
+> +	}
+> +	xa_unlock_irqrestore(&guc->context_lookup, flags);
+> +}
+> +
+> +static void guc_context_close(struct intel_context *ce)
+> +{
+> +	unsigned long flags;
+> +
+> +	if (test_bit(CONTEXT_GUC_INIT, &ce->flags) &&
+> +	    cancel_delayed_work(&ce->guc_state.sched_disable_delay))
+> +		__delay_sched_disable(&ce->guc_state.sched_disable_delay.work);
+>   
+> -	return;
+> -unpin:
+> -	intel_context_sched_disable_unpin(ce);
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +	set_context_close_done(ce);
+> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   }
+>   
+>   static inline void guc_lrc_desc_unpin(struct intel_context *ce)
+> @@ -3351,6 +3473,8 @@ static void remove_from_context(struct i915_request *rq)
+>   static const struct intel_context_ops guc_context_ops = {
+>   	.alloc = guc_context_alloc,
+>   
+> +	.close = guc_context_close,
+> +
+>   	.pre_pin = guc_context_pre_pin,
+>   	.pin = guc_context_pin,
+>   	.unpin = guc_context_unpin,
+> @@ -3433,6 +3557,10 @@ static void guc_context_init(struct intel_context *ce)
+>   	rcu_read_unlock();
+>   
+>   	ce->guc_state.prio = map_i915_prio_to_guc_prio(prio);
+> +
+> +	INIT_DELAYED_WORK(&ce->guc_state.sched_disable_delay,
+> +			  __delay_sched_disable);
+> +
+>   	set_bit(CONTEXT_GUC_INIT, &ce->flags);
+>   }
+>   
+> @@ -3470,6 +3598,19 @@ static int guc_request_alloc(struct i915_request *rq)
+>   	if (unlikely(!test_bit(CONTEXT_GUC_INIT, &ce->flags)))
+>   		guc_context_init(ce);
+>   
+> +	/*
+> +	 * If the context gets closed while the execbuf is ongoing, the context
+> +	 * close code will race with the below code to cancel the delayed work.
+> +	 * If the context close wins the race and cancels the work, it will
+> +	 * immediately call the sched disable (see guc_context_close), so there
+> +	 * is a chance we can get past this check while the sched_disable code
+> +	 * is being executed. To make sure that code completes before we check
+> +	 * the status further down, we wait for the close process to complete.
+> +	 */
+> +	if (cancel_delayed_work_sync(&ce->guc_state.sched_disable_delay))
+> +		intel_context_sched_disable_unpin(ce);
+> +	else if (intel_context_is_closed(ce))
+> +		wait_for(context_close_done(ce), 1);
+
+Comment makes it sounds important to handle the race, althought it 
+doesn't really explain the consequences. But most importantly, what if 
+close doesn't complete in 1ms?
 
 Regards,
 
 Tvrtko
+
+>   	/*
+>   	 * Call pin_guc_id here rather than in the pinning step as with
+>   	 * dma_resv, contexts can be repeatedly pinned / unpinned trashing the
+> @@ -3600,6 +3741,8 @@ static int guc_virtual_context_alloc(struct intel_context *ce)
+>   static const struct intel_context_ops virtual_guc_context_ops = {
+>   	.alloc = guc_virtual_context_alloc,
+>   
+> +	.close = guc_context_close,
+> +
+>   	.pre_pin = guc_virtual_context_pre_pin,
+>   	.pin = guc_virtual_context_pin,
+>   	.unpin = guc_virtual_context_unpin,
+> @@ -3689,6 +3832,8 @@ static void guc_child_context_destroy(struct kref *kref)
+>   static const struct intel_context_ops virtual_parent_context_ops = {
+>   	.alloc = guc_virtual_context_alloc,
+>   
+> +	.close = guc_context_close,
+> +
+>   	.pre_pin = guc_context_pre_pin,
+>   	.pin = guc_parent_context_pin,
+>   	.unpin = guc_parent_context_unpin,
+> @@ -4219,6 +4364,26 @@ static bool __guc_submission_selected(struct intel_guc *guc)
+>   	return i915->params.enable_guc & ENABLE_GUC_SUBMISSION;
+>   }
+>   
+> +int intel_guc_sched_disable_gucid_threshold_max(struct intel_guc *guc)
+> +{
+> +	return guc->submission_state.num_guc_ids - NUMBER_MULTI_LRC_GUC_ID(guc);
+> +}
+> +
+> +/*
+> + * This default value of 33 milisecs (+1 milisec round up) ensures 30fps or higher
+> + * workloads are able to enjoy the latency reduction when delaying the schedule-disable
+> + * operation. This matches the 30fps game-render + encode (real world) workload this
+> + * knob was tested against.
+> + */
+> +#define SCHED_DISABLE_DELAY_MS	34
+> +
+> +/*
+> + * A threshold of 75% is a reasonable starting point considering that real world apps
+> + * generally don't get anywhere near this.
+> + */
+> +#define NUM_SCHED_DISABLE_GUCIDS_DEFAULT_THRESHOLD(__guc) \
+> +	(((intel_guc_sched_disable_gucid_threshold_max(guc)) * 3) / 4)
+> +
+>   void intel_guc_submission_init_early(struct intel_guc *guc)
+>   {
+>   	xa_init_flags(&guc->context_lookup, XA_FLAGS_LOCK_IRQ);
+> @@ -4235,7 +4400,10 @@ void intel_guc_submission_init_early(struct intel_guc *guc)
+>   	spin_lock_init(&guc->timestamp.lock);
+>   	INIT_DELAYED_WORK(&guc->timestamp.work, guc_timestamp_ping);
+>   
+> +	guc->submission_state.sched_disable_delay_ms = SCHED_DISABLE_DELAY_MS;
+>   	guc->submission_state.num_guc_ids = GUC_MAX_CONTEXT_ID;
+> +	guc->submission_state.sched_disable_gucid_threshold =
+> +		NUM_SCHED_DISABLE_GUCIDS_DEFAULT_THRESHOLD(guc);
+>   	guc->submission_supported = __guc_submission_supported(guc);
+>   	guc->submission_selected = __guc_submission_selected(guc);
+>   }
+> diff --git a/drivers/gpu/drm/i915/i915_selftest.h b/drivers/gpu/drm/i915/i915_selftest.h
+> index f54de0499be7..bdf3e22c0a34 100644
+> --- a/drivers/gpu/drm/i915/i915_selftest.h
+> +++ b/drivers/gpu/drm/i915/i915_selftest.h
+> @@ -92,12 +92,14 @@ int __i915_subtests(const char *caller,
+>   			T, ARRAY_SIZE(T), data)
+>   #define i915_live_subtests(T, data) ({ \
+>   	typecheck(struct drm_i915_private *, data); \
+> +	(data)->gt[0]->uc.guc.submission_state.sched_disable_delay_ms = 0; \
+>   	__i915_subtests(__func__, \
+>   			__i915_live_setup, __i915_live_teardown, \
+>   			T, ARRAY_SIZE(T), data); \
+>   })
+>   #define intel_gt_live_subtests(T, data) ({ \
+>   	typecheck(struct intel_gt *, data); \
+> +	(data)->uc.guc.submission_state.sched_disable_delay_ms = 0; \
+>   	__i915_subtests(__func__, \
+>   			__intel_gt_live_setup, __intel_gt_live_teardown, \
+>   			T, ARRAY_SIZE(T), data); \
