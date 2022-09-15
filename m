@@ -1,48 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF2E05B98DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 12:33:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 264DC5B98F6
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 12:41:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4600810EAD3;
-	Thu, 15 Sep 2022 10:33:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4B9410EAE1;
+	Thu, 15 Sep 2022 10:40:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FEDD10EAD3
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Sep 2022 10:33:25 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87C0D10E190;
+ Thu, 15 Sep 2022 10:40:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663238005; x=1694774005;
+ t=1663238451; x=1694774451;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fVad8l3kkqvbIK9x30WYmALqpRQlbA6phN5UkhAqv+c=;
- b=cbDtUMw6Jp8t6Ytq0IjDEodEpIVRVSci8IIZHeLY52qJTzlOmQVbmCkV
- 4T93GucLMBZYkzszCVXWcXdmHS2MrYN/XC9HNKaqX9uyxKyXm0syVhnA1
- EgXPaSk7+paQ5RiHIwL+rnFaBoSdfrE6Wf4PO5bim9tJ0mKB0PHkFzDrf
- +ZqcoNVa5uDJcyVIf1WFq5aT1sX/h1TNXSF2ShdkhLAxKs/adUJqpNBkP
- Gxe4aYJ8xddRMHqM3MJ8PQjRtvNU8LN2THj8VPduMs41ub/z7niddeLd2
- AVoATKv/fOTBG2ipGlt+zLL4yqCQkhH4i79d6TsibZfUXedySdzV71OfN g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="281707353"
-X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="281707353"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2022 03:33:25 -0700
-X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="617223382"
-Received: from srr4-3-linux-105-anshuma1.iind.intel.com ([10.223.74.179])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2022 03:33:23 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 15 Sep 2022 16:03:11 +0530
-Message-Id: <20220915103311.5634-2-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20220915103311.5634-1-anshuman.gupta@intel.com>
-References: <20220915103311.5634-1-anshuman.gupta@intel.com>
+ bh=82BwvvuVXrg/Tr3uehT2VsUUfwrMnWvCMTClECJpWn8=;
+ b=FmLHVqn1GXM8Jco/QlPnPDjP+94lCpVgr0nYQwNVE+21EbKNKJg147rl
+ fbNsF9UnEm/JOUThYnMVhGDdbR5qvEcZNE49YGOlIMICqv+rE6axQSGcd
+ KQ7vzT7fICN0FfXB05gHcqISoNc8WiyOlhCgRxdkF+bXLHh2s2S2Yi/L2
+ nz8I8cUDlisqmkWbfAviGh5wQe0dSpP2SYxJ5RvBRfXBcddw/IaGyg98G
+ tzjluwJQvA4nAoM91DSjL1jMwbBbI3xEBG6HFtNmz8N2hXfOUnZ2d4nBX
+ NTbMIJSD3oINJCQS3aUo6+eQbRvDAUNXY67hUTVfgkSy0+5r1sxiFwn2I Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="285718241"
+X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="285718241"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 03:40:50 -0700
+X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="568381199"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.25.71])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 03:40:48 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
+Date: Thu, 15 Sep 2022 12:40:45 +0200
+Message-ID: <2218767.ZfL8zNpBrT@jkrzyszt-mobl1.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220914220427.3091448-2-matthew.d.roper@intel.com>
+References: <20220914220427.3091448-1-matthew.d.roper@intel.com>
+ <20220914220427.3091448-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 1/1] drm/i915/dgfx: Handling of pin_map against rpm
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Cleanup partial engine
+ discovery failures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,107 +59,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com, rodrigo.vivi@intel.com
+Cc: Chris Wilson <chris.p.wilson@intel.com>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If i915 gem obj lies in lmem, then i915_gem_object_pin_map
-need to grab a rpm wakeref to make sure gfx PCIe endpoint
-function stays in D0 state during any access to mapping
-returned by i915_gem_object_pin_map().
-Subsequently i915_gem_object_upin_map will put the wakref as well.
+Hi Matt,
 
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.c       |  2 ++
- drivers/gpu/drm/i915/gem/i915_gem_object.h       |  5 +++++
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h | 14 ++++++++++++++
- drivers/gpu/drm/i915/gem/i915_gem_pages.c        |  8 ++++++++
- 4 files changed, 29 insertions(+)
+On Thursday, 15 September 2022 00:04:24 CEST Matt Roper wrote:
+> From: Chris Wilson <chris.p.wilson@intel.com>
+> 
+> If we abort driver initialisation in the middle of gt/engine discovery,
+> some engines will be fully setup and some not. Those incompletely setup
+> engines only have 'engine->release == NULL' and so will leak any of the
+> common objects allocated.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 16 +++++++++++++---
+>  1 file changed, 13 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 1f7188129cd1..bff12b4ec314 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -1196,6 +1196,12 @@ void intel_engine_destroy_pinned_context(struct intel_context *ce)
+>  	intel_context_put(ce);
+>  }
+>  
+> +static void destroy_pinned_context(struct intel_context *ce)
+> +{
+> +	if (ce)
+> +		intel_engine_destroy_pinned_context(ce);
+> +}
+> +
+>  static struct intel_context *
+>  create_kernel_context(struct intel_engine_cs *engine)
+>  {
+> @@ -1274,8 +1280,13 @@ int intel_engines_init(struct intel_gt *gt)
+>  			return err;
+>  
+>  		err = setup(engine);
+> -		if (err)
+> +		if (err) {
+> +			intel_engine_cleanup_common(engine);
+>  			return err;
+> +		}
+> +
+> +		/* The backend should now be responsible for cleanup */
+> +		GEM_BUG_ON(engine->release == NULL);
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 85482a04d158..f291f990838d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -95,6 +95,7 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 	mutex_init(&obj->mm.get_page.lock);
- 	INIT_RADIX_TREE(&obj->mm.get_dma_page.radix, GFP_KERNEL | __GFP_NOWARN);
- 	mutex_init(&obj->mm.get_dma_page.lock);
-+	mutex_init(&obj->wakeref_lock);
- }
- 
- /**
-@@ -110,6 +111,7 @@ void __i915_gem_object_fini(struct drm_i915_gem_object *obj)
- {
- 	mutex_destroy(&obj->mm.get_page.lock);
- 	mutex_destroy(&obj->mm.get_dma_page.lock);
-+	mutex_destroy(&obj->wakeref_lock);
- 	dma_resv_fini(&obj->base._resv);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 7317d4102955..b31ac6e4c272 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -501,6 +501,11 @@ static inline void i915_gem_object_flush_map(struct drm_i915_gem_object *obj)
-  */
- static inline void i915_gem_object_unpin_map(struct drm_i915_gem_object *obj)
- {
-+	mutext_lock(obj->wakeref_lock);
-+	if (!--obj->wakeref_count)
-+		intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, obj->wakeref);
-+	mutext_unlock(obj->wakeref_lock);
-+
- 	i915_gem_object_unpin_pages(obj);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 9f6b14ec189a..34aff95a1984 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -657,6 +657,20 @@ struct drm_i915_gem_object {
- 
- 		void *gvt_info;
- 	};
-+
-+	/**
-+	 * wakeref to protect the i915 lmem iomem mappings.
-+	 * We don't pin_map an object partially that makes easy
-+	 * to track the wakeref cookie, if wakeref is already held
-+	 * then we don't need to grab it again for other pin_map.
-+	 * first pin_map will grab the wakeref and last unpin_map
-+	 * will put the wakeref.
-+	 */
-+	intel_wakeref_t wakeref;
-+	unsigned int wakeref_count;
-+
-+	/** protects the wakeref_count wakeref cookie against multiple pin_map and unpin_map */
-+	struct mutex wakeref_lock;
- };
- 
- static inline struct drm_i915_gem_object *
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 4df50b049cea..b638b5413280 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -370,6 +370,14 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
- 
- 	assert_object_held(obj);
- 
-+	if (i915_gem_object_is_lmem(obj)) {
-+		mutex_lock(&obj->wakeref_lock);
-+		if (!obj->wakeref_count++)
-+			obj->wakeref =
-+				intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
-+		mutex_unlock(&obj->wakeref_lock);
-+	}
-+
- 	pinned = !(type & I915_MAP_OVERRIDE);
- 	type &= ~I915_MAP_OVERRIDE;
- 
--- 
-2.26.2
+LGTM
+
+>  
+>  		err = engine_init_common(engine);
+>  		if (err)
+> @@ -1307,8 +1318,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
+>  	if (engine->default_state)
+>  		fput(engine->default_state);
+>  
+> -	if (engine->kernel_context)
+> -		intel_engine_destroy_pinned_context(engine->kernel_context);
+> +	destroy_pinned_context(engine->kernel_context);
+
+I think there is no point for this hunk, and consequently for the first one.  
+A version of intel_engine_destroy_pinned_context() that accepts NULL can be 
+added later, when we see need for similar code optimisation in more places, if 
+ever.
+
+Thanks,
+Janusz
+
+>  
+>  	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
+>  	cleanup_status_page(engine);
+> 
+
 
