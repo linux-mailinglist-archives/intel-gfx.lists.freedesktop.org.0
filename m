@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 264DC5B98F6
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 12:41:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B6C5B994F
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 13:06:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4B9410EAE1;
-	Thu, 15 Sep 2022 10:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAAA810EAE4;
+	Thu, 15 Sep 2022 11:06:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87C0D10E190;
- Thu, 15 Sep 2022 10:40:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663238451; x=1694774451;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=82BwvvuVXrg/Tr3uehT2VsUUfwrMnWvCMTClECJpWn8=;
- b=FmLHVqn1GXM8Jco/QlPnPDjP+94lCpVgr0nYQwNVE+21EbKNKJg147rl
- fbNsF9UnEm/JOUThYnMVhGDdbR5qvEcZNE49YGOlIMICqv+rE6axQSGcd
- KQ7vzT7fICN0FfXB05gHcqISoNc8WiyOlhCgRxdkF+bXLHh2s2S2Yi/L2
- nz8I8cUDlisqmkWbfAviGh5wQe0dSpP2SYxJ5RvBRfXBcddw/IaGyg98G
- tzjluwJQvA4nAoM91DSjL1jMwbBbI3xEBG6HFtNmz8N2hXfOUnZ2d4nBX
- NTbMIJSD3oINJCQS3aUo6+eQbRvDAUNXY67hUTVfgkSy0+5r1sxiFwn2I Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="285718241"
-X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="285718241"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2022 03:40:50 -0700
-X-IronPort-AV: E=Sophos;i="5.93,317,1654585200"; d="scan'208";a="568381199"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.25.71])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2022 03:40:48 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
-Date: Thu, 15 Sep 2022 12:40:45 +0200
-Message-ID: <2218767.ZfL8zNpBrT@jkrzyszt-mobl1.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20220914220427.3091448-2-matthew.d.roper@intel.com>
-References: <20220914220427.3091448-1-matthew.d.roper@intel.com>
- <20220914220427.3091448-2-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8BF4C10EAE5;
+ Thu, 15 Sep 2022 11:06:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82D4EA8830;
+ Thu, 15 Sep 2022 11:06:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Cleanup partial engine
- discovery failures
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Thu, 15 Sep 2022 11:06:11 -0000
+Message-ID: <166323997150.11973.4338539104845597317@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220915103311.5634-1-anshuman.gupta@intel.com>
+In-Reply-To: <20220915103311.5634-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBE?=
+ =?utf-8?q?GFX_pin=5Fmap_with_rpm?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,82 +40,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+== Series Details ==
 
-On Thursday, 15 September 2022 00:04:24 CEST Matt Roper wrote:
-> From: Chris Wilson <chris.p.wilson@intel.com>
-> 
-> If we abort driver initialisation in the middle of gt/engine discovery,
-> some engines will be fully setup and some not. Those incompletely setup
-> engines only have 'engine->release == NULL' and so will leak any of the
-> common objects allocated.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 16 +++++++++++++---
->  1 file changed, 13 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 1f7188129cd1..bff12b4ec314 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -1196,6 +1196,12 @@ void intel_engine_destroy_pinned_context(struct intel_context *ce)
->  	intel_context_put(ce);
->  }
->  
-> +static void destroy_pinned_context(struct intel_context *ce)
-> +{
-> +	if (ce)
-> +		intel_engine_destroy_pinned_context(ce);
-> +}
-> +
->  static struct intel_context *
->  create_kernel_context(struct intel_engine_cs *engine)
->  {
-> @@ -1274,8 +1280,13 @@ int intel_engines_init(struct intel_gt *gt)
->  			return err;
->  
->  		err = setup(engine);
-> -		if (err)
-> +		if (err) {
-> +			intel_engine_cleanup_common(engine);
->  			return err;
-> +		}
-> +
-> +		/* The backend should now be responsible for cleanup */
-> +		GEM_BUG_ON(engine->release == NULL);
+Series: DGFX pin_map with rpm
+URL   : https://patchwork.freedesktop.org/series/108596/
+State : failure
 
-LGTM
+== Summary ==
 
->  
->  		err = engine_init_common(engine);
->  		if (err)
-> @@ -1307,8 +1318,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
->  	if (engine->default_state)
->  		fput(engine->default_state);
->  
-> -	if (engine->kernel_context)
-> -		intel_engine_destroy_pinned_context(engine->kernel_context);
-> +	destroy_pinned_context(engine->kernel_context);
-
-I think there is no point for this hunk, and consequently for the first one.  
-A version of intel_engine_destroy_pinned_context() that accepts NULL can be 
-added later, when we see need for similar code optimisation in more places, if 
-ever.
-
-Thanks,
-Janusz
-
->  
->  	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
->  	cleanup_status_page(engine);
-> 
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/i915_driver.o
+In file included from ./drivers/gpu/drm/i915/i915_vma.h:34,
+                 from drivers/gpu/drm/i915/display/intel_display_types.h:49,
+                 from drivers/gpu/drm/i915/i915_driver.c:52:
+./drivers/gpu/drm/i915/gem/i915_gem_object.h: In function ‘i915_gem_object_unpin_map’:
+./drivers/gpu/drm/i915/gem/i915_gem_object.h:504:2: error: implicit declaration of function ‘mutext_lock’; did you mean ‘mutex_lock’? [-Werror=implicit-function-declaration]
+  mutext_lock(obj->wakeref_lock);
+  ^~~~~~~~~~~
+  mutex_lock
+./drivers/gpu/drm/i915/gem/i915_gem_object.h:506:25: error: implicit declaration of function ‘to_i915’ [-Werror=implicit-function-declaration]
+   intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, obj->wakeref);
+                         ^~~~~~~
+./drivers/gpu/drm/i915/gem/i915_gem_object.h:506:47: error: invalid type argument of ‘->’ (have ‘int’)
+   intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, obj->wakeref);
+                                               ^~
+./drivers/gpu/drm/i915/gem/i915_gem_object.h:507:2: error: implicit declaration of function ‘mutext_unlock’; did you mean ‘mutex_unlock’? [-Werror=implicit-function-declaration]
+  mutext_unlock(obj->wakeref_lock);
+  ^~~~~~~~~~~~~
+  mutex_unlock
+In file included from ./drivers/gpu/drm/i915/gt/intel_context.h:14,
+                 from drivers/gpu/drm/i915/gem/i915_gem_context.h:12,
+                 from drivers/gpu/drm/i915/i915_driver.c:66:
+./drivers/gpu/drm/i915/i915_drv.h: At top level:
+./drivers/gpu/drm/i915/i915_drv.h:417:40: error: conflicting types for ‘to_i915’
+ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+                                        ^~~~~~~
+In file included from ./drivers/gpu/drm/i915/i915_vma.h:34,
+                 from drivers/gpu/drm/i915/display/intel_display_types.h:49,
+                 from drivers/gpu/drm/i915/i915_driver.c:52:
+./drivers/gpu/drm/i915/gem/i915_gem_object.h:506:25: note: previous implicit declaration of ‘to_i915’ was here
+   intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, obj->wakeref);
+                         ^~~~~~~
+cc1: all warnings being treated as errors
+scripts/Makefile.build:249: recipe for target 'drivers/gpu/drm/i915/i915_driver.o' failed
+make[4]: *** [drivers/gpu/drm/i915/i915_driver.o] Error 1
+scripts/Makefile.build:465: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:465: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:465: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1852: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
 
 
