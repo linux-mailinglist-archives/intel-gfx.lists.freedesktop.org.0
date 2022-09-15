@@ -1,57 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C7B5B9A4A
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 14:03:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF8175B9AAE
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Sep 2022 14:25:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8361F10E198;
-	Thu, 15 Sep 2022 12:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E500310E1B1;
+	Thu, 15 Sep 2022 12:25:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ECEC10E198;
- Thu, 15 Sep 2022 12:03:51 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 0F0391F8A3;
- Thu, 15 Sep 2022 12:03:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1663243430; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=gC3k97TwYN1iHBX3ZmBOYwSbFNGOCfE/gnwcYbOKu0M=;
- b=hmJMmV4U5LWizpVZT80+ejSDZftJ8QE/Csf0lco3XruxFObyhBV7RqgTRa502bKjq8+xgq
- 1VjyJHFAFCHSXHcdFWh1k1Ih1qMjMAZlIZtEivCKbv8qSKRb4tAJqIC8WeY1rQaGUEjHjo
- 7pRmzjRGnWo0c8TGvcuR76bB01TVSlg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1663243430;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=gC3k97TwYN1iHBX3ZmBOYwSbFNGOCfE/gnwcYbOKu0M=;
- b=JDVXA08Y6ZU/+zr8OJ1Eli52jU6lCGPfE/BGJKqPAs945fXz048FnNgFnVZTt1qKDO3k4F
- H274XEAwJ2PuUIAQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id C5FD9133B6;
- Thu, 15 Sep 2022 12:03:49 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id Ysc9L6UUI2PfOAAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 15 Sep 2022 12:03:49 +0000
-Date: Thu, 15 Sep 2022 14:03:48 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YyMUpP1w21CPXq+I@linux-uq9g>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7BD910E1B1;
+ Thu, 15 Sep 2022 12:25:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663244724; x=1694780724;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=L82vbEkgB+Fh/tCmRQ1IHa+UNcLaoXrntwFbM0PRRx0=;
+ b=Uj6eg9tGbiD6xnvVfoUvd1iBkEuA5CJbShYCJ+/Q5TxzcDG2fcuh1eDb
+ VptYeVWZGKXqv5SkNmsblqzucA61TWmrLlChuUgnMeD7huigtCtzpDP24
+ z/EZ3a8qDh923FHeH4FxgK6nrweZbXo2N7ODWC+vXsuP03V7OUMBVsC+K
+ 6d28+YwcKfzAKRcfiKq38dZD5TJx+aep8qmNhYGR+kmotodRJ+mg/rVO9
+ ZzZnomBs7rfKf7MEg822lX0c+hcsepUGKrUO+/T6/eGF9cdII7FPrU+5J
+ KxuWTh8rZhhRhBeULHLCD8tWbg1Weh1vGy5dhjDvIqXQkfhT7MKYtz3Iy g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="299508674"
+X-IronPort-AV: E=Sophos;i="5.93,318,1654585200"; d="scan'208";a="299508674"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 05:25:24 -0700
+X-IronPort-AV: E=Sophos;i="5.93,318,1654585200"; d="scan'208";a="792684497"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.146])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 05:25:22 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220914220427.3091448-1-matthew.d.roper@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220914220427.3091448-1-matthew.d.roper@intel.com>
+Date: Thu, 15 Sep 2022 15:25:15 +0300
+Message-ID: <87czbwsu38.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/4] Further multi-gt handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,85 +55,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Wed, 14 Sep 2022, Matt Roper <matthew.d.roper@intel.com> wrote:
+> Now that MTL is going to start providing two GTs, there are a few more
+> places in the driver that need to iterate over each GT instead of
+> operating directly on gt0.  Also some more deliberate cleanup is needed,
+> in cases where we fail GT/engine initialization after the first GT has
+> been fully setup.
 
-this is the drm-misc-fixes PR for this week.
+Hijacking the thread a bit, not to be considered a blocker for this
+series:
 
-Best regards
-Thomas
+Is there a plan to kzalloc i915->gt[0] too in intel_gt_probe_all() so we
+wouldn't need to have intel_gt gt0 in struct drm_i915_private? And the
+to_gt() inline would return i915->gt[0] instead of &i915->gt0? (And
+maybe i915_drv.h wouldn't need the definition of intel_gt anymore! :o)
 
-drm-misc-fixes-2022-09-15:
-Short summary of fixes pull:
+BR,
+Jani.
 
- * gma500: Locking and IRQ fixes
- * meson: OSD1 display fixes
- * panel-edp: Fix Innolux timings
- * rockchip: DP/HDMI fixes
-The following changes since commit d76034a427a2660b080bc155e4fd8f6393eefb48:
 
-  drm/panfrost: devfreq: set opp to the recommended one to configure regulator (2022-09-08 11:03:52 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-09-15
-
-for you to fetch changes up to b0b9408f132623dc88e78adb5282f74e4b64bb57:
-
-  drm/rockchip: Fix return type of cdn_dp_connector_mode_valid (2022-09-14 10:42:41 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * gma500: Locking and IRQ fixes
- * meson: OSD1 display fixes
- * panel-edp: Fix Innolux timings
- * rockchip: DP/HDMI fixes
-
-----------------------------------------------------------------
-Chen-Yu Tsai (1):
-      drm/panel-edp: Fix delays for Innolux N116BCA-EA1
-
-Hans de Goede (3):
-      drm/gma500: Fix BUG: sleeping function called from invalid context errors
-      drm/gma500: Fix WARN_ON(lock->magic != lock) error
-      drm/gma500: Fix (vblank) IRQs not working after suspend/resume
-
-Nathan Huckleberry (1):
-      drm/rockchip: Fix return type of cdn_dp_connector_mode_valid
-
-Sascha Hauer (1):
-      drm/rockchip: vop2: Fix eDP/HDMI sync polarities
-
-Stuart Menefy (2):
-      drm/meson: Correct OSD1 global alpha value
-      drm/meson: Fix OSD1 RGB to YCbCr coefficient
-
- drivers/gpu/drm/gma500/cdv_device.c          |  4 +---
- drivers/gpu/drm/gma500/gem.c                 |  4 ++--
- drivers/gpu/drm/gma500/gma_display.c         | 11 +++++++----
- drivers/gpu/drm/gma500/oaktrail_device.c     |  5 +----
- drivers/gpu/drm/gma500/power.c               |  8 +-------
- drivers/gpu/drm/gma500/psb_drv.c             |  2 +-
- drivers/gpu/drm/gma500/psb_drv.h             |  5 +----
- drivers/gpu/drm/gma500/psb_irq.c             | 15 ++++++++++++---
- drivers/gpu/drm/gma500/psb_irq.h             |  2 +-
- drivers/gpu/drm/meson/meson_plane.c          |  2 +-
- drivers/gpu/drm/meson/meson_viu.c            |  2 +-
- drivers/gpu/drm/panel/panel-edp.c            |  3 ++-
- drivers/gpu/drm/rockchip/cdn-dp-core.c       |  5 +++--
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c |  4 ++++
- 14 files changed, 38 insertions(+), 34 deletions(-)
+>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>
+> Chris Wilson (1):
+>   drm/i915/gt: Cleanup partial engine discovery failures
+>
+> Tvrtko Ursulin (3):
+>   drm/i915: Make GEM resume all engines
+>   drm/i915: Make GEM suspend all GTs
+>   drm/i915: Handle all GTs on driver (un)load paths
+>
+>  drivers/gpu/drm/i915/gem/i915_gem_pm.c    | 33 ++++++++++++++--
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 16 ++++++--
+>  drivers/gpu/drm/i915/i915_driver.c        |  3 +-
+>  drivers/gpu/drm/i915/i915_gem.c           | 46 +++++++++++++++++------
+>  4 files changed, 78 insertions(+), 20 deletions(-)
 
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+Jani Nikula, Intel Open Source Graphics Center
