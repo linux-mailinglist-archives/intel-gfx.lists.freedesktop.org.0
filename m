@@ -2,69 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C234B5BB21E
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 20:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0FAD5BB21F
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 20:28:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEC7510E4FD;
-	Fri, 16 Sep 2022 18:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEB2C10ED8F;
+	Fri, 16 Sep 2022 18:28:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 440 seconds by postgrey-1.36 at gabe;
- Fri, 16 Sep 2022 18:28:19 UTC
-Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
- [205.220.166.238])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FC3D10E4FD;
- Fri, 16 Sep 2022 18:28:19 +0000 (UTC)
-Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
- by mx0a-0064b401.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28GHdif4003235;
- Fri, 16 Sep 2022 11:19:38 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
- h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PPS06212021;
- bh=4Bl1oOzxnloiv5lBZu0sTycNMhJ6BoRjgmbXTEm4F3U=;
- b=BqwncfYrEqbB4J0TOeA/YUU3Y4GvKH0Q3i2TJiI+lPvaXUQPNgSUJ79UKmDSaqbvJN0c
- KN3nER0W1aJD5P1ZNHr1h+5QBQUN3cKC2I8xq/YLvDD+SNS3E8MbARiiAigh0vUjmJAj
- U/MKsokCMTfBnNf6miDpHVw7vJCoutI11swZ5pqr9tydiUm19R9dlfTkdBRxCFHEjbDz
- rvQuAjEn2McYOQ1zXT58qKzuXrfKZj5k/J4cL3XtJ3OvfUUwYzDqcTmnLeGhJd57OaRf
- 7pGx3Ep0aYDNaRj1fFwyYJeFGNji/8OZ68mjNzryuAefSGYUA4LUK4VjA08FyM/ORcXv kg== 
-Received: from ala-exchng01.corp.ad.wrs.com (unknown-82-252.windriver.com
- [147.11.82.252])
- by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3jm8ye8x8b-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Fri, 16 Sep 2022 11:19:38 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 16 Sep 2022 11:19:37 -0700
-Received: from yow-lpggp3.wrs.com (128.224.137.13) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2242.12 via Frontend Transport; Fri, 16 Sep 2022 11:19:37 -0700
-Received: by yow-lpggp3.wrs.com (Postfix, from userid 8023)
- id 494092003A; Fri, 16 Sep 2022 14:19:37 -0400 (EDT)
-Date: Fri, 16 Sep 2022 14:19:37 -0400
-From: Paul Gortmaker <paul.gortmaker@windriver.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Message-ID: <20220916181934.GA16961@windriver.com>
-References: <cover.1657639152.git.mchehab@kernel.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BD7A110E4FD;
+ Fri, 16 Sep 2022 18:28:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 943E3A7DFB;
+ Fri, 16 Sep 2022 18:28:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7422244930801606415=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <cover.1657639152.git.mchehab@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-GUID: 35mH7Uo2DatrHXmJyPSAceB3PLOJ6EMQ
-X-Proofpoint-ORIG-GUID: 35mH7Uo2DatrHXmJyPSAceB3PLOJ6EMQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-16_12,2022-09-16_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 clxscore=1011
- bulkscore=0 phishscore=0 impostorscore=0 suspectscore=0 malwarescore=0
- priorityscore=1501 spamscore=0 adultscore=0 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209160133
-Subject: Re: [Intel-gfx] [PATCH v5 0/2] Fix TLB invalidate issues with
- Broadwell [preempt-rt regression]
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Fri, 16 Sep 2022 18:28:21 -0000
+Message-ID: <166335290157.18046.591883666427988175@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220916163331.6849-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220916163331.6849-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/atomic=3A_Lockless_blocking_commits?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,137 +40,253 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rt-users@vger.kernel.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Clark Williams <clrkwllms@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@redhat.com>,
- Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[[PATCH v5 0/2] Fix TLB invalidate issues with Broadwell] On 12/07/2022 (Tue 16:21) Mauro Carvalho Chehab wrote:
+--===============7422244930801606415==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> i915 selftest hangcheck is causing the i915 driver timeouts, as reported
-> by Intel CI bot:
-> 
-> http://gfx-ci.fi.intel.com/cibuglog-ng/issuefilterassoc/24297?query_key=42a999f48fa6ecce068bc8126c069be7c31153b4
+== Series Details ==
 
-[...]
+Series: drm/atomic: Lockless blocking commits
+URL   : https://patchwork.freedesktop.org/series/108669/
+State : success
 
-> After that, the machine just silently hangs.
-> 
-> Bisecting the issue, the patch that introduced the regression is:
-> 
->     7938d61591d3 ("drm/i915: Flush TLBs before releasing backing store")
-> 
-> Reverting it fix the issues, but introduce other problems, as TLB
-> won't be invalidated anymore. So, instead, let's fix the root cause.
-> 
-> It turns that the TLB flush logic ends conflicting with i915 reset,
-> which is called during selftest hangcheck. So, the TLB cache should
-> be serialized together with i915 reset.
-> 
-> Tested on an Intel NUC5i7RYB with an i7-5557U Broadwell CPU.
+== Summary ==
 
-It turns out that this breaks PM-suspend operations on preempt-rt, on
-multiple versions, due to all the linux-stable backports.  This happens
-because the uncore->lock is now used in atomic contexts.
+CI Bug Log - changes from CI_DRM_12146 -> Patchwork_108669v1
+====================================================
 
-As the uncore->lock is widely used, conversion to a raw lock seems
-inappropriate at 1st glance, and hence some alternate solution will
-likely be required.
+Summary
+-------
 
-Below is an example of the regression on v5.15-rt, with backport:
+  **SUCCESS**
 
-commit 0ee5874dad61d2b154a9e3db196fc33e8208ce1b
-  Author: Chris Wilson <chris@chris-wilson.co.uk>
-  Date:   Tue Jul 12 16:21:32 2022 +0100
+  No regressions found.
 
-    drm/i915/gt: Serialize GRDOM access between multiple engine resets
-        
-    [ Upstream commit b24dcf1dc507f69ed3b5c66c2b6a0209ae80d4d4 ]
-	        
-Reverting the engine reset serialization change avoids the PM-suspend
-regression and is a temporary workaround for -rt users, but of course
-leaves this original TLB issue exposed.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/index.html
 
-  BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:46
-  in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 45092, name: kworker/u8:4
-  preempt_count: 1, expected: 0
-  RCU nest depth: 0, expected: 0
-  INFO: lockdep is turned off.
-  Preemption disabled at:
-  [<ffffffffc0636522>] __intel_gt_reset+0x92/0x100 [i915]
-  CPU: 3 PID: 45092 Comm: kworker/u8:4 Tainted: G        W  O      5.15.59-rt48-preempt-rt #1
-  Hardware name: Intel(R) Client Systems NUC7i5DNKE/NUC7i5DNB, BIOS DNKBLi5v.86A.0064.2019.0523.1933 05/23/2019
-  Workqueue: events_unbound async_run_entry_fn
-  Call Trace:
-   <TASK>
-   show_stack+0x52/0x5c
-   dump_stack_lvl+0x5b/0x86
-   dump_stack+0x10/0x16
-   __might_resched.cold+0xf7/0x12f
-   ? __gen6_reset_engines.constprop.0+0x80/0x80 [i915]
-   rt_spin_lock+0x4e/0xf0
-   ? gen8_reset_engines+0x2e/0x1e0 [i915]
-   gen8_reset_engines+0x2e/0x1e0 [i915]
-   ? __gen6_reset_engines.constprop.0+0x80/0x80 [i915]
-   __intel_gt_reset+0x9d/0x100 [i915]
-   gt_sanitize+0x16c/0x190 [i915]
-   intel_gt_suspend_late+0x3d/0xc0 [i915]
-   i915_gem_suspend_late+0x57/0x130 [i915]
-   i915_drm_suspend_late+0x38/0x110 [i915]
-   i915_pm_suspend_late+0x1d/0x30 [i915]
-   pm_generic_suspend_late+0x28/0x40
-   pci_pm_suspend_late+0x37/0x50
-   ? pci_pm_poweroff_late+0x50/0x50
-   dpm_run_callback.cold+0x3c/0xa8
-   __device_suspend_late+0xa4/0x1e0
-   async_suspend_late+0x20/0xa0
-   async_run_entry_fn+0x28/0xc0
-   process_one_work+0x239/0x6c0
-   worker_thread+0x58/0x3e0
-   kthread+0x1a9/0x1d0
-   ? process_one_work+0x6c0/0x6c0
-   ? set_kthread_struct+0x50/0x50
-   ret_from_fork+0x1f/0x30
-   </TASK>
-  PM: late suspend of devices complete after 26.497 msecs
+Participating hosts (44 -> 40)
+------------------------------
 
-Paul.
---
+  Additional (1): fi-kbl-guc 
+  Missing    (5): fi-hsw-4200u fi-icl-u2 fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus 
 
-> 
-> v5:
-> - Added a missing SoB on patch 2.
-> - No other changes.
-> 
-> v4:
-> - No functional changes. All changes are at the patch descriptions:
->   - collected acked-by/reviewed-by;
->   - use the same e-mail on Author and SoB on patch 1.
-> 
-> v3:
-> - Removed the logic that would check if the engine is awake before doing
->   TLB flush invalidation as backporting PM logic up to Kernel 4.x could be
->   too painful. After getting this one merged, I'll submit a separate patch
->   with the PM awake logic.
-> 
-> v2:
-> 
-> - Reduced to bare minimum fixes, as this shoud be backported deeply
->   into stable.
-> 
-> Chris Wilson (2):
->   drm/i915/gt: Serialize GRDOM access between multiple engine resets
->   drm/i915/gt: Serialize TLB invalidates with GT resets
-> 
->  drivers/gpu/drm/i915/gt/intel_gt.c    | 15 ++++++++++-
->  drivers/gpu/drm/i915/gt/intel_reset.c | 37 ++++++++++++++++++++-------
->  2 files changed, 42 insertions(+), 10 deletions(-)
-> 
-> -- 
-> 2.36.1
-> 
-> 
+Known issues
+------------
+
+  Here are the changes found in Patchwork_108669v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bdw-gvtdvm:      [PASS][1] -> [INCOMPLETE][2] ([i915#2940])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem:
+    - fi-blb-e6850:       NOTRUN -> [DMESG-FAIL][3] ([i915#4528])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-blb-e6850/igt@i915_selftest@live@gem.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][4] ([fdo#109271])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-pnv-d510/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][5] ([fdo#109295] / [i915#3301])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-tgl-u2/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-kbl-guc:         NOTRUN -> [FAIL][6] ([i915#6219])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-kbl-guc/igt@runner@aborted.html
+    - fi-bdw-gvtdvm:      NOTRUN -> [FAIL][7] ([i915#4312])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-bdw-gvtdvm/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@nullptr:
+    - {fi-tgl-mst}:       [SKIP][8] ([i915#2582]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-tgl-mst/igt@fbdev@nullptr.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-tgl-mst/igt@fbdev@nullptr.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-pnv-d510:        [DMESG-FAIL][10] ([i915#4528]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-pnv-d510/igt@i915_selftest@live@requests.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-pnv-d510/igt@i915_selftest@live@requests.html
+    - fi-blb-e6850:       [DMESG-FAIL][12] ([i915#4528]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
+    - fi-bsw-kefka:       [FAIL][14] ([i915#6298]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#6219]: https://gitlab.freedesktop.org/drm/intel/issues/6219
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12146 -> Patchwork_108669v1
+
+  CI-20190529: 20190529
+  CI_DRM_12146: afdeadb1830054a87b9e2d765caa2f197321ca0c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6656: 24100c4e181c50e3678aeca9c641b8a43555ad73 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_108669v1: afdeadb1830054a87b9e2d765caa2f197321ca0c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+31313ba62e63 drm/i915: Make blocking commits lockless
+7eb48729932e drm/atomic: Allow lockless blocking commits
+c211e4f32c1e drm/i915: Don't reuse commit_work for the cleanup
+c5f358c74efb drm/atomic: Treat a nonblocking commit following a blocking commit as blocking commit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/index.html
+
+--===============7422244930801606415==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/atomic: Lockless blocking commits</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108669/">https://patchwork.freedesktop.org/series/108669/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12146 -&gt; Patchwork_108669v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Additional (1): fi-kbl-guc <br />
+  Missing    (5): fi-hsw-4200u fi-icl-u2 fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_108669v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-blb-e6850/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-pnv-d510/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-tgl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a>)</p>
+</li>
+<li>
+<p>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-bdw-gvtdvm/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@nullptr:</p>
+<ul>
+<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-tgl-mst/igt@fbdev@nullptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-tgl-mst/igt@fbdev@nullptr.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>
+<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a></p>
+</li>
+<li>
+<p>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108669v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12146 -&gt; Patchwork_108669v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12146: afdeadb1830054a87b9e2d765caa2f197321ca0c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6656: 24100c4e181c50e3678aeca9c641b8a43555ad73 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_108669v1: afdeadb1830054a87b9e2d765caa2f197321ca0c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>31313ba62e63 drm/i915: Make blocking commits lockless<br />
+7eb48729932e drm/atomic: Allow lockless blocking commits<br />
+c211e4f32c1e drm/i915: Don't reuse commit_work for the cleanup<br />
+c5f358c74efb drm/atomic: Treat a nonblocking commit following a blocking commit as blocking commit</p>
+
+</body>
+</html>
+
+--===============7422244930801606415==--
