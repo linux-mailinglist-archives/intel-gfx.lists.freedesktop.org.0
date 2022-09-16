@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9765BADCE
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 15:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6025C5BADC8
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 15:07:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FC8310E411;
-	Fri, 16 Sep 2022 13:07:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A16C710E40A;
+	Fri, 16 Sep 2022 13:06:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C35010E411
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 13:06:59 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 870EE10E40A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 13:06:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663333619; x=1694869619;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aZKtbWEVVKAQX6RazjR3klCzBR5dF/ZENCdT++zad6w=;
- b=aQVZ1GTzNnhIAqWaO33AgcTLe8kcdL3QOgC+rx9ySKn1qDqphdy+7JLb
- DGvMCoXe39Yy8IINqkAQ+2tQIFo8difQoMJXMl7PTy80fGpumXQbGhXbQ
- NbC+K66lwCQgPE51tGPyFj34p4nX3ANzLRPb4CJdUMisZSTeu5qJyFZlV
- RMvghlTTps9s3HQY877YOY1Hdbjahh7qAnTPHWU4b4xPoO+wPLK2wzcIh
- dAXtCT0XNI40AUFNLQdUu9dvL5ZAi2Zn6zPpcInmTJQnUkLE5zmzKkFgA
- Jg/tmO94t6pYg52FhEkx6rmolM5ZLcXr/EFdykULfrZahEn7MN0vj55F+ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10472"; a="279368387"
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="279368387"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 06:06:50 -0700
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="793094111"
+ t=1663333614; x=1694869614;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Qa+1gUVLS16hk6FkOtszEBFt3bocSjczqF6EVtjrTfg=;
+ b=AjPfr4/fvBXL16mQel+L0skaoPOQI8KT64tL3Mek/Re0QXMaMQ4Fkrxg
+ qP7qVMcfu6DgpjADsaoyNqe0L7xURF3t5cvE2NLz4L/EkQNa6Yur3O7Is
+ 67Jz8K0VzBrr+/4ptq62hm7ShonpqPJfJyGQpoXju70LewvoyWB6IE9Bs
+ E3+CwAC3c9hPbEfuofoYIU4deF9EVZO8U5r+CWo2udgJMLERBYLnh79bm
+ qKDAXT3YSdY0pLuAsjlHhJ9mi2DJfmgENLZ5JYh/13p3sqW6uq0doUan6
+ 4sWLlFLjiA6wmwAPTNk63q9o09gIx8CiMqSwXkHKLLzIy+qXTeaiKf9h2 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="299809557"
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="299809557"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2022 06:06:53 -0700
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="946367636"
 Received: from malisch-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.60.50])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 06:06:48 -0700
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2022 06:06:52 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Sep 2022 16:06:33 +0300
-Message-Id: <20220916130634.3781122-1-jani.nikula@intel.com>
+Date: Fri, 16 Sep 2022 16:06:34 +0300
+Message-Id: <20220916130634.3781122-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220916130634.3781122-1-jani.nikula@intel.com>
+References: <20220916130634.3781122-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 1/2] drm/i915/hotplug: move hotplug storm debugfs
- to intel_hotplug.c
+Subject: [Intel-gfx] [CI 2/2] drm/i915/hotplug: refactor hotplug init
+ slightly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,395 +63,118 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The debugfs should be where the implementation details are.
-
-v2: Rebase
+Rename intel_hpd_init_work() to the more generic intel_hpd_init_early(),
+and move the hotplug storm initialization there. This lets us move the
+HPD_STORM_DEFAULT_THRESHOLD macro to intel_hotplug.c too.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c  | 160 +----------------
- drivers/gpu/drm/i915/display/intel_hotplug.c  | 166 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_hotplug.h  |   1 +
- 3 files changed, 169 insertions(+), 158 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hotplug.c | 22 +++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_hotplug.h |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h              |  3 ---
+ drivers/gpu/drm/i915/i915_irq.c              | 11 +---------
+ 4 files changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 7c7253a2541c..c5f47df0f362 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -22,6 +22,7 @@
- #include "intel_fbdev.h"
- #include "intel_hdcp.h"
- #include "intel_hdmi.h"
-+#include "intel_hotplug.h"
- #include "intel_panel.h"
- #include "intel_pm.h"
- #include "intel_psr.h"
-@@ -1566,162 +1567,6 @@ static const struct file_operations i915_cur_wm_latency_fops = {
- 	.write = cur_wm_latency_write
- };
- 
--static int i915_hpd_storm_ctl_show(struct seq_file *m, void *data)
--{
--	struct drm_i915_private *dev_priv = m->private;
--	struct intel_hotplug *hotplug = &dev_priv->display.hotplug;
--
--	/* Synchronize with everything first in case there's been an HPD
--	 * storm, but we haven't finished handling it in the kernel yet
--	 */
--	intel_synchronize_irq(dev_priv);
--	flush_work(&dev_priv->display.hotplug.dig_port_work);
--	flush_delayed_work(&dev_priv->display.hotplug.hotplug_work);
--
--	seq_printf(m, "Threshold: %d\n", hotplug->hpd_storm_threshold);
--	seq_printf(m, "Detected: %s\n",
--		   str_yes_no(delayed_work_pending(&hotplug->reenable_work)));
--
--	return 0;
--}
--
--static ssize_t i915_hpd_storm_ctl_write(struct file *file,
--					const char __user *ubuf, size_t len,
--					loff_t *offp)
--{
--	struct seq_file *m = file->private_data;
--	struct drm_i915_private *dev_priv = m->private;
--	struct intel_hotplug *hotplug = &dev_priv->display.hotplug;
--	unsigned int new_threshold;
--	int i;
--	char *newline;
--	char tmp[16];
--
--	if (len >= sizeof(tmp))
--		return -EINVAL;
--
--	if (copy_from_user(tmp, ubuf, len))
--		return -EFAULT;
--
--	tmp[len] = '\0';
--
--	/* Strip newline, if any */
--	newline = strchr(tmp, '\n');
--	if (newline)
--		*newline = '\0';
--
--	if (strcmp(tmp, "reset") == 0)
--		new_threshold = HPD_STORM_DEFAULT_THRESHOLD;
--	else if (kstrtouint(tmp, 10, &new_threshold) != 0)
--		return -EINVAL;
--
--	if (new_threshold > 0)
--		drm_dbg_kms(&dev_priv->drm,
--			    "Setting HPD storm detection threshold to %d\n",
--			    new_threshold);
--	else
--		drm_dbg_kms(&dev_priv->drm, "Disabling HPD storm detection\n");
--
--	spin_lock_irq(&dev_priv->irq_lock);
--	hotplug->hpd_storm_threshold = new_threshold;
--	/* Reset the HPD storm stats so we don't accidentally trigger a storm */
--	for_each_hpd_pin(i)
--		hotplug->stats[i].count = 0;
--	spin_unlock_irq(&dev_priv->irq_lock);
--
--	/* Re-enable hpd immediately if we were in an irq storm */
--	flush_delayed_work(&dev_priv->display.hotplug.reenable_work);
--
--	return len;
--}
--
--static int i915_hpd_storm_ctl_open(struct inode *inode, struct file *file)
--{
--	return single_open(file, i915_hpd_storm_ctl_show, inode->i_private);
--}
--
--static const struct file_operations i915_hpd_storm_ctl_fops = {
--	.owner = THIS_MODULE,
--	.open = i915_hpd_storm_ctl_open,
--	.read = seq_read,
--	.llseek = seq_lseek,
--	.release = single_release,
--	.write = i915_hpd_storm_ctl_write
--};
--
--static int i915_hpd_short_storm_ctl_show(struct seq_file *m, void *data)
--{
--	struct drm_i915_private *dev_priv = m->private;
--
--	seq_printf(m, "Enabled: %s\n",
--		   str_yes_no(dev_priv->display.hotplug.hpd_short_storm_enabled));
--
--	return 0;
--}
--
--static int
--i915_hpd_short_storm_ctl_open(struct inode *inode, struct file *file)
--{
--	return single_open(file, i915_hpd_short_storm_ctl_show,
--			   inode->i_private);
--}
--
--static ssize_t i915_hpd_short_storm_ctl_write(struct file *file,
--					      const char __user *ubuf,
--					      size_t len, loff_t *offp)
--{
--	struct seq_file *m = file->private_data;
--	struct drm_i915_private *dev_priv = m->private;
--	struct intel_hotplug *hotplug = &dev_priv->display.hotplug;
--	char *newline;
--	char tmp[16];
--	int i;
--	bool new_state;
--
--	if (len >= sizeof(tmp))
--		return -EINVAL;
--
--	if (copy_from_user(tmp, ubuf, len))
--		return -EFAULT;
--
--	tmp[len] = '\0';
--
--	/* Strip newline, if any */
--	newline = strchr(tmp, '\n');
--	if (newline)
--		*newline = '\0';
--
--	/* Reset to the "default" state for this system */
--	if (strcmp(tmp, "reset") == 0)
--		new_state = !HAS_DP_MST(dev_priv);
--	else if (kstrtobool(tmp, &new_state) != 0)
--		return -EINVAL;
--
--	drm_dbg_kms(&dev_priv->drm, "%sabling HPD short storm detection\n",
--		    new_state ? "En" : "Dis");
--
--	spin_lock_irq(&dev_priv->irq_lock);
--	hotplug->hpd_short_storm_enabled = new_state;
--	/* Reset the HPD storm stats so we don't accidentally trigger a storm */
--	for_each_hpd_pin(i)
--		hotplug->stats[i].count = 0;
--	spin_unlock_irq(&dev_priv->irq_lock);
--
--	/* Re-enable hpd immediately if we were in an irq storm */
--	flush_delayed_work(&dev_priv->display.hotplug.reenable_work);
--
--	return len;
--}
--
--static const struct file_operations i915_hpd_short_storm_ctl_fops = {
--	.owner = THIS_MODULE,
--	.open = i915_hpd_short_storm_ctl_open,
--	.read = seq_read,
--	.llseek = seq_lseek,
--	.release = single_release,
--	.write = i915_hpd_short_storm_ctl_write,
--};
--
- static int i915_drrs_ctl_set(void *data, u64 val)
- {
- 	struct drm_i915_private *dev_priv = data;
-@@ -1857,8 +1702,6 @@ static const struct {
- 	{"i915_dp_test_data", &i915_displayport_test_data_fops},
- 	{"i915_dp_test_type", &i915_displayport_test_type_fops},
- 	{"i915_dp_test_active", &i915_displayport_test_active_fops},
--	{"i915_hpd_storm_ctl", &i915_hpd_storm_ctl_fops},
--	{"i915_hpd_short_storm_ctl", &i915_hpd_short_storm_ctl_fops},
- 	{"i915_drrs_ctl", &i915_drrs_ctl_fops},
- 	{"i915_edp_psr_debug", &i915_edp_psr_debug_fops},
- };
-@@ -1882,6 +1725,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
- 
- 	intel_dmc_debugfs_register(i915);
- 	intel_fbc_debugfs_register(i915);
-+	intel_hpd_debugfs_register(i915);
- 	skl_watermark_ipc_debugfs_register(i915);
- }
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index f7a2f485b177..4faae25d76c0 100644
+index 4faae25d76c0..352a1b53b63e 100644
 --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
 +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -767,3 +767,169 @@ void intel_hpd_enable(struct drm_i915_private *dev_priv, enum hpd_pin pin)
- 	dev_priv->display.hotplug.stats[pin].state = HPD_ENABLED;
- 	spin_unlock_irq(&dev_priv->irq_lock);
+@@ -90,6 +90,9 @@ enum hpd_pin intel_hpd_pin_default(struct drm_i915_private *dev_priv,
+ 	return HPD_PORT_A + port - PORT_A;
  }
+ 
++/* Threshold == 5 for long IRQs, 50 for short */
++#define HPD_STORM_DEFAULT_THRESHOLD	50
 +
-+static int i915_hpd_storm_ctl_show(struct seq_file *m, void *data)
-+{
-+	struct drm_i915_private *dev_priv = m->private;
-+	struct intel_hotplug *hotplug = &dev_priv->display.hotplug;
+ #define HPD_STORM_DETECT_PERIOD		1000
+ #define HPD_STORM_REENABLE_DELAY	(2 * 60 * 1000)
+ #define HPD_RETRY_DELAY			1000
+@@ -711,14 +714,23 @@ void intel_hpd_poll_disable(struct drm_i915_private *dev_priv)
+ 	schedule_work(&dev_priv->display.hotplug.poll_init_work);
+ }
+ 
+-void intel_hpd_init_work(struct drm_i915_private *dev_priv)
++void intel_hpd_init_early(struct drm_i915_private *i915)
+ {
+-	INIT_DELAYED_WORK(&dev_priv->display.hotplug.hotplug_work,
++	INIT_DELAYED_WORK(&i915->display.hotplug.hotplug_work,
+ 			  i915_hotplug_work_func);
+-	INIT_WORK(&dev_priv->display.hotplug.dig_port_work, i915_digport_work_func);
+-	INIT_WORK(&dev_priv->display.hotplug.poll_init_work, i915_hpd_poll_init_work);
+-	INIT_DELAYED_WORK(&dev_priv->display.hotplug.reenable_work,
++	INIT_WORK(&i915->display.hotplug.dig_port_work, i915_digport_work_func);
++	INIT_WORK(&i915->display.hotplug.poll_init_work, i915_hpd_poll_init_work);
++	INIT_DELAYED_WORK(&i915->display.hotplug.reenable_work,
+ 			  intel_hpd_irq_storm_reenable_work);
 +
-+	/* Synchronize with everything first in case there's been an HPD
-+	 * storm, but we haven't finished handling it in the kernel yet
++	i915->display.hotplug.hpd_storm_threshold = HPD_STORM_DEFAULT_THRESHOLD;
++	/* If we have MST support, we want to avoid doing short HPD IRQ storm
++	 * detection, as short HPD storms will occur as a natural part of
++	 * sideband messaging with MST.
++	 * On older platforms however, IRQ storms can occur with both long and
++	 * short pulses, as seen on some G4x systems.
 +	 */
-+	intel_synchronize_irq(dev_priv);
-+	flush_work(&dev_priv->display.hotplug.dig_port_work);
-+	flush_delayed_work(&dev_priv->display.hotplug.hotplug_work);
-+
-+	seq_printf(m, "Threshold: %d\n", hotplug->hpd_storm_threshold);
-+	seq_printf(m, "Detected: %s\n",
-+		   str_yes_no(delayed_work_pending(&hotplug->reenable_work)));
-+
-+	return 0;
-+}
-+
-+static ssize_t i915_hpd_storm_ctl_write(struct file *file,
-+					const char __user *ubuf, size_t len,
-+					loff_t *offp)
-+{
-+	struct seq_file *m = file->private_data;
-+	struct drm_i915_private *dev_priv = m->private;
-+	struct intel_hotplug *hotplug = &dev_priv->display.hotplug;
-+	unsigned int new_threshold;
-+	int i;
-+	char *newline;
-+	char tmp[16];
-+
-+	if (len >= sizeof(tmp))
-+		return -EINVAL;
-+
-+	if (copy_from_user(tmp, ubuf, len))
-+		return -EFAULT;
-+
-+	tmp[len] = '\0';
-+
-+	/* Strip newline, if any */
-+	newline = strchr(tmp, '\n');
-+	if (newline)
-+		*newline = '\0';
-+
-+	if (strcmp(tmp, "reset") == 0)
-+		new_threshold = HPD_STORM_DEFAULT_THRESHOLD;
-+	else if (kstrtouint(tmp, 10, &new_threshold) != 0)
-+		return -EINVAL;
-+
-+	if (new_threshold > 0)
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Setting HPD storm detection threshold to %d\n",
-+			    new_threshold);
-+	else
-+		drm_dbg_kms(&dev_priv->drm, "Disabling HPD storm detection\n");
-+
-+	spin_lock_irq(&dev_priv->irq_lock);
-+	hotplug->hpd_storm_threshold = new_threshold;
-+	/* Reset the HPD storm stats so we don't accidentally trigger a storm */
-+	for_each_hpd_pin(i)
-+		hotplug->stats[i].count = 0;
-+	spin_unlock_irq(&dev_priv->irq_lock);
-+
-+	/* Re-enable hpd immediately if we were in an irq storm */
-+	flush_delayed_work(&dev_priv->display.hotplug.reenable_work);
-+
-+	return len;
-+}
-+
-+static int i915_hpd_storm_ctl_open(struct inode *inode, struct file *file)
-+{
-+	return single_open(file, i915_hpd_storm_ctl_show, inode->i_private);
-+}
-+
-+static const struct file_operations i915_hpd_storm_ctl_fops = {
-+	.owner = THIS_MODULE,
-+	.open = i915_hpd_storm_ctl_open,
-+	.read = seq_read,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+	.write = i915_hpd_storm_ctl_write
-+};
-+
-+static int i915_hpd_short_storm_ctl_show(struct seq_file *m, void *data)
-+{
-+	struct drm_i915_private *dev_priv = m->private;
-+
-+	seq_printf(m, "Enabled: %s\n",
-+		   str_yes_no(dev_priv->display.hotplug.hpd_short_storm_enabled));
-+
-+	return 0;
-+}
-+
-+static int
-+i915_hpd_short_storm_ctl_open(struct inode *inode, struct file *file)
-+{
-+	return single_open(file, i915_hpd_short_storm_ctl_show,
-+			   inode->i_private);
-+}
-+
-+static ssize_t i915_hpd_short_storm_ctl_write(struct file *file,
-+					      const char __user *ubuf,
-+					      size_t len, loff_t *offp)
-+{
-+	struct seq_file *m = file->private_data;
-+	struct drm_i915_private *dev_priv = m->private;
-+	struct intel_hotplug *hotplug = &dev_priv->display.hotplug;
-+	char *newline;
-+	char tmp[16];
-+	int i;
-+	bool new_state;
-+
-+	if (len >= sizeof(tmp))
-+		return -EINVAL;
-+
-+	if (copy_from_user(tmp, ubuf, len))
-+		return -EFAULT;
-+
-+	tmp[len] = '\0';
-+
-+	/* Strip newline, if any */
-+	newline = strchr(tmp, '\n');
-+	if (newline)
-+		*newline = '\0';
-+
-+	/* Reset to the "default" state for this system */
-+	if (strcmp(tmp, "reset") == 0)
-+		new_state = !HAS_DP_MST(dev_priv);
-+	else if (kstrtobool(tmp, &new_state) != 0)
-+		return -EINVAL;
-+
-+	drm_dbg_kms(&dev_priv->drm, "%sabling HPD short storm detection\n",
-+		    new_state ? "En" : "Dis");
-+
-+	spin_lock_irq(&dev_priv->irq_lock);
-+	hotplug->hpd_short_storm_enabled = new_state;
-+	/* Reset the HPD storm stats so we don't accidentally trigger a storm */
-+	for_each_hpd_pin(i)
-+		hotplug->stats[i].count = 0;
-+	spin_unlock_irq(&dev_priv->irq_lock);
-+
-+	/* Re-enable hpd immediately if we were in an irq storm */
-+	flush_delayed_work(&dev_priv->display.hotplug.reenable_work);
-+
-+	return len;
-+}
-+
-+static const struct file_operations i915_hpd_short_storm_ctl_fops = {
-+	.owner = THIS_MODULE,
-+	.open = i915_hpd_short_storm_ctl_open,
-+	.read = seq_read,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+	.write = i915_hpd_short_storm_ctl_write,
-+};
-+
-+void intel_hpd_debugfs_register(struct drm_i915_private *i915)
-+{
-+	struct drm_minor *minor = i915->drm.primary;
-+
-+	debugfs_create_file("i915_hpd_storm_ctl", 0644, minor->debugfs_root,
-+			    i915, &i915_hpd_storm_ctl_fops);
-+	debugfs_create_file("i915_hpd_short_storm_ctl", 0644, minor->debugfs_root,
-+			    i915, &i915_hpd_short_storm_ctl_fops);
-+}
++	i915->display.hotplug.hpd_short_storm_enabled = !HAS_DP_MST(i915);
+ }
+ 
+ void intel_hpd_cancel_work(struct drm_i915_private *dev_priv)
 diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/drm/i915/display/intel_hotplug.h
-index b87e95d606e6..aa84e381d6c3 100644
+index aa84e381d6c3..424ae5dbf5a0 100644
 --- a/drivers/gpu/drm/i915/display/intel_hotplug.h
 +++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
-@@ -28,5 +28,6 @@ enum hpd_pin intel_hpd_pin_default(struct drm_i915_private *dev_priv,
+@@ -22,7 +22,7 @@ void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
+ 			   u32 pin_mask, u32 long_mask);
+ void intel_hpd_trigger_irq(struct intel_digital_port *dig_port);
+ void intel_hpd_init(struct drm_i915_private *dev_priv);
+-void intel_hpd_init_work(struct drm_i915_private *dev_priv);
++void intel_hpd_init_early(struct drm_i915_private *i915);
+ void intel_hpd_cancel_work(struct drm_i915_private *dev_priv);
+ enum hpd_pin intel_hpd_pin_default(struct drm_i915_private *dev_priv,
  				   enum port port);
- bool intel_hpd_disable(struct drm_i915_private *dev_priv, enum hpd_pin pin);
- void intel_hpd_enable(struct drm_i915_private *dev_priv, enum hpd_pin pin);
-+void intel_hpd_debugfs_register(struct drm_i915_private *i915);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 9f9372931fd2..731760b7c97d 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -75,9 +75,6 @@ struct intel_limit;
+ struct intel_overlay_error_state;
+ struct vlv_s0ix_state;
  
- #endif /* __INTEL_HOTPLUG_H__ */
+-/* Threshold == 5 for long IRQs, 50 for short */
+-#define HPD_STORM_DEFAULT_THRESHOLD 50
+-
+ #define I915_GEM_GPU_DOMAINS \
+ 	(I915_GEM_DOMAIN_RENDER | \
+ 	 I915_GEM_DOMAIN_SAMPLER | \
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 86a42d9e8041..de06f293e173 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -4399,7 +4399,7 @@ void intel_irq_init(struct drm_i915_private *dev_priv)
+ 
+ 	intel_hpd_init_pins(dev_priv);
+ 
+-	intel_hpd_init_work(dev_priv);
++	intel_hpd_init_early(dev_priv);
+ 
+ 	dev->vblank_disable_immediate = true;
+ 
+@@ -4413,15 +4413,6 @@ void intel_irq_init(struct drm_i915_private *dev_priv)
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+ 		dev_priv->display_irqs_enabled = false;
+ 
+-	dev_priv->display.hotplug.hpd_storm_threshold = HPD_STORM_DEFAULT_THRESHOLD;
+-	/* If we have MST support, we want to avoid doing short HPD IRQ storm
+-	 * detection, as short HPD storms will occur as a natural part of
+-	 * sideband messaging with MST.
+-	 * On older platforms however, IRQ storms can occur with both long and
+-	 * short pulses, as seen on some G4x systems.
+-	 */
+-	dev_priv->display.hotplug.hpd_short_storm_enabled = !HAS_DP_MST(dev_priv);
+-
+ 	if (HAS_GMCH(dev_priv)) {
+ 		if (I915_HAS_HOTPLUG(dev_priv))
+ 			dev_priv->display.funcs.hotplug = &i915_hpd_funcs;
 -- 
 2.34.1
 
