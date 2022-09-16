@@ -2,45 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 133B85BA875
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 10:47:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 251465BA8BF
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 10:58:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4029F10E3D4;
-	Fri, 16 Sep 2022 08:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C86610E3CE;
+	Fri, 16 Sep 2022 08:58:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2124510E3CE;
- Fri, 16 Sep 2022 08:47:41 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D765E10E3C1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 08:58:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663318061; x=1694854061;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=4tT4Lk6hswugSMoil1fvETzpd2Zp850w38LFwZhhuaI=;
- b=f6B4ly2QLMoGKHlIDMT4lwitakyWTMqKwVqJxFLMEiQZelv74kVtL837
- o/DTEYGEPtK25IzzUbeVELsh5iIOJu5HJVlHn90hBmNb+1d9Daw7tdWOI
- gVWfpMP/0i5wxfCOx/6NtiFuwPNoENAbZ6h1GBFESzLSA4nh7MxIwOgAA
- M+2MmNukxohRlHhJ4KnjIw4MVIcur5qknJo7x7wXJLGJyFVbHEfvkIFhP
- OoAcpV63VMj7VxnRil43b56kd9CEiAwjQ/0c/tnq1X648UoTrrxExVr/c
- 3Cu+r4UtgnfLtIdN/mHIRY0bGdgKAiuOTEvxUqLhFNfzOQjk24rX340q3 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="385236545"
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="385236545"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 01:47:40 -0700
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="686061003"
-Received: from horanmic-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.1.49])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 01:47:37 -0700
-Date: Fri, 16 Sep 2022 11:47:34 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YyQ4Jgl3cpGL1/As@jlahtine-mobl.ger.corp.intel.com>
+ t=1663318692; x=1694854692;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=quVYUdrbXa2Gesq90yxFXhOHY43fpi3JM7igEZvNK+g=;
+ b=hanqHVeGr+KwYIn1lPYxRrxvzyKTsBNn2/LPW3SPRASuAWz9ADLYERXa
+ D0PQZSBTfsipoTZnc+rS2IskwRzf5TGVPrXuX9/j0Q9Efnd4qdVH1k6ED
+ Iy6+CMq6X2yhU5ZJqeSyinIWSI6bjn+2XZ+uwVR3qJSBuvN2LFjdXG3x8
+ 9l4cXeP6G/2yeYjrYzgIO8/XbXxCiVzVZPSUide5YrmHWtL0uf1oPFuPY
+ 9K6HnE8Q7uviEzoDh9cYQleTz7afKQZC9HN95KdORCeE5L+qCGpyGwWm8
+ NQn6bCY9n3uEJsBZgt5cZmItx86E9Z4hQ5mC4LtT2kwdE8CF2yngkaDHI g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="285989031"
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="285989031"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2022 01:58:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="620022400"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga007.fm.intel.com with SMTP; 16 Sep 2022 01:58:06 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 16 Sep 2022 11:58:05 +0300
+Date: Fri, 16 Sep 2022 11:58:05 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>
+Message-ID: <YyQ6nSbIvO2WxO2K@intel.com>
+References: <20220916083102.18559-1-animesh.manna@intel.com>
+ <20220916083102.18559-2-animesh.manna@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-gt-next
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220916083102.18559-2-animesh.manna@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pps: Enable 2nd pps for dual
+ EDP scenario
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,231 +61,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Daniel,
+On Fri, Sep 16, 2022 at 02:01:02PM +0530, Animesh Manna wrote:
+> >From display gen12 onwards to support dual EDP two instances of pps added.
+> Currently backlight controller and pps instance can be mapped together
+> for a specific panel. Extended support for gen12 for dual EDP usage.
+> 
+> v1: Iniital revision
+> v2: Called intel_bios_panel_init w/o PNPID before intel_pps_init. [Jani]
+> 
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 7 -------
+>  drivers/gpu/drm/i915/display/intel_bios.h | 7 +++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c   | 9 ++++++---
+>  drivers/gpu/drm/i915/display/intel_pps.c  | 2 +-
+>  4 files changed, 14 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 28bdb936cd1f..5fd4c09dfa96 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -706,13 +706,6 @@ static int fallback_get_panel_type(struct drm_i915_private *i915,
+>  	return 0;
+>  }
+>  
+> -enum panel_type {
+> -	PANEL_TYPE_OPREGION,
+> -	PANEL_TYPE_VBT,
+> -	PANEL_TYPE_PNPID,
+> -	PANEL_TYPE_FALLBACK,
+> -};
+> -
+>  static int get_panel_type(struct drm_i915_private *i915,
+>  			  const struct intel_bios_encoder_data *devdata,
+>  			  const struct edid *edid)
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+> index e375405a7828..da01b13260ae 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> @@ -231,6 +231,13 @@ struct mipi_pps_data {
+>  	u16 panel_power_cycle_delay;
+>  } __packed;
+>  
+> +enum panel_type {
+> +	PANEL_TYPE_OPREGION,
+> +	PANEL_TYPE_VBT,
+> +	PANEL_TYPE_PNPID,
+> +	PANEL_TYPE_FALLBACK,
+> +};
+> +
+>  void intel_bios_init(struct drm_i915_private *dev_priv);
+>  void intel_bios_init_panel(struct drm_i915_private *dev_priv,
+>  			   struct intel_panel *panel,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index c19e99ee06b6..6f7afa75ec4d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5222,6 +5222,9 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>  		return false;
+>  	}
+>  
+> +	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+> +			      encoder->devdata, NULL);
 
-Here goes the final drm-intel-gt-next towards 6.1.
+We don't want to go for the fallback type here if we
+the VBT wants us to use pnpid. Maybe we should just
+remove the fallback type entirely? Or perhaps only
+use it if the VBT panel type is entirely invalid?
 
-For stable platforms we have fixes for throttle reasons decoding to sysfs, GuC
-version update to 7.5, XeHP SDV GSC support and the usual pile of smaller fixes.
+> +
+>  	intel_pps_init(intel_dp);
+>  
+>  	/* Cache DPCD and EDID for edp. */
+> @@ -5255,9 +5258,9 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>  		edid = ERR_PTR(-ENOENT);
+>  	}
+>  	intel_connector->edid = edid;
+> -
+> -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+> -			      encoder->devdata, IS_ERR(edid) ? NULL : edid);
+> +	if (intel_connector->panel.vbt.panel_type == PANEL_TYPE_FALLBACK)
+> +		intel_bios_init_panel(dev_priv, &intel_connector->panel,
+> +				      encoder->devdata, IS_ERR(edid) ? NULL : edid);
+>  
+>  	intel_panel_add_edid_fixed_modes(intel_connector,
+>  					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE,
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index b972fa6ec00d..4b8413382c5d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -1430,7 +1430,7 @@ void intel_pps_init(struct intel_dp *intel_dp)
+>  	intel_dp->pps.initializing = true;
+>  	INIT_DELAYED_WORK(&intel_dp->pps.panel_vdd_work, edp_panel_vdd_work);
+>  
+> -	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
+> +	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915) || DISPLAY_VER(i915) >= 12)
+>  		intel_dp->get_pps_idx = bxt_power_sequencer_idx;
+>  	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
+>  		intel_dp->get_pps_idx = vlv_power_sequencer_pipe;
+> -- 
+> 2.29.0
 
-DG2 and DG1 runtime PM is now mostly fixed for LMEM access via mmap, but kernel
-internal usages still need to be reviewed. There's also at least one LMEM code
-NULL deref bug to resolve [1]. Finally a bunch of Meteorlake (MTL) enabling
-patches.
-
-Note that this PR includes patches going to mei subsystem, due to the tight
-coupling of the MEI/GSC code. Those are Acked-by Greg.
-
-Regards, Joonas
-
-[1] https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12135/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-
-***
-
-drm-intel-gt-next-2022-09-16:
-
-Cross-subsystem Changes:
-
-- MEI subsystem pieces for XeHP SDV GSC support
-  These are Acked-by Greg.
-
-Driver Changes:
-
-- Release mmaps on RPM suspend on discrete GPUs (Anshuman)
-- Update GuC version to 7.5 on DG1, DG2 and ADL
-- Revert "drm/i915/dg2: extend Wa_1409120013 to DG2" (Lucas)
-- MTL enabling incl. standalone media (Matt R, Lucas)
-- Explicitly clear BB_OFFSET for new contexts on Gen8+ (Chris)
-- Fix throttling / perf limit reason decoding (Ashutosh)
-- XeHP SDV GSC support (Vitaly, Alexander, Tomas)
-
-- Fix issues with overrding firmware file paths (John)
-- Invert if-else ladders to check latest version first (Lucas)
-- Cancel GuC engine busyness worker synchronously (Umesh)
-
-- Skip applying copy engine fuses outside PVC (Lucas)
-- Eliminate Gen10 frequency read function (Lucas)
-- Static code checker fixes (Gaosheng)
-- Selftest improvements (Chris)
-
-The following changes since commit 04f7eb3d4582a0a4da67c86e55fda7de2df86d91:
-
-  drm/i915: Set correct domains values at _i915_vma_move_to_active (2022-09-08 11:06:35 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2022-09-16
-
-for you to fetch changes up to 8adc718881e0a70127f8843dd70e69a80de39352:
-
-  drm/i915/uc: Update to latest GuC and use new-format GuC/HuC names (2022-09-15 18:43:33 -0700)
-
-----------------------------------------------------------------
-Cross-subsystem Changes:
-
-- MEI subsystem pieces for XeHP SDV GSC support
-  These are Acked-by Greg.
-
-Driver Changes:
-
-- Release mmaps on RPM suspend on discrete GPUs (Anshuman)
-- Update GuC version to 7.5 on DG1, DG2 and ADL
-- Revert "drm/i915/dg2: extend Wa_1409120013 to DG2" (Lucas)
-- MTL enabling incl. standalone media (Matt R, Lucas)
-- Explicitly clear BB_OFFSET for new contexts on Gen8+ (Chris)
-- Fix throttling / perf limit reason decoding (Ashutosh)
-- XeHP SDV GSC support (Vitaly, Alexander, Tomas)
-
-- Fix issues with overrding firmware file paths (John)
-- Invert if-else ladders to check latest version first (Lucas)
-- Cancel GuC engine busyness worker synchronously (Umesh)
-
-- Skip applying copy engine fuses outside PVC (Lucas)
-- Eliminate Gen10 frequency read function (Lucas)
-- Static code checker fixes (Gaosheng)
-- Selftest improvements (Chris)
-
-----------------------------------------------------------------
-Alexander Usyskin (5):
-      drm/i915/gsc: add slow_firmware flag to the gsc device definition
-      drm/i915/gsc: add GSC XeHP SDV platform definition
-      mei: gsc: wait for reset thread on stop
-      mei: extend timeouts on slow devices
-      mei: drop ready bits check after start
-
-Anshuman Gupta (2):
-      drm/i915: Refactor userfault_wakeref to re-use
-      drm/i915/dgfx: Release mmap on rpm suspend
-
-Ashutosh Dixit (1):
-      drm/i915/gt: Fix perf limit reasons bit positions
-
-Chris Wilson (4):
-      drm/i915/gt: Explicitly clear BB_OFFSET for new contexts
-      drm/i915/selftests: Check for incomplete LRI from the context image
-      drm/i915/selftest: Always cancel semaphore on error
-      drm/i915/selftest: Clear the output buffers before GPU writes
-
-Gaosheng Cui (1):
-      drm/i915: remove unused i915_gem_lmem_obj_ops declaration
-
-John Harrison (2):
-      drm/i915/uc: Fix issues with overriding firmware files
-      drm/i915/uc: Update to latest GuC and use new-format GuC/HuC names
-
-Lucas De Marchi (7):
-      Revert "drm/i915/dg2: extend Wa_1409120013 to DG2"
-      drm/i915/gt: Use MEDIA_VER() when handling media fuses
-      drm/i915/gt: Extract function to apply media fuses
-      drm/i915: Skip applying copy engine fuses
-      drm/i915: Invert if/else ladder for frequency read
-      drm/i915/gt: Extract per-platform function for frequency read
-      drm/i915: Invert if/else ladder for stolen init
-
-Matt Roper (14):
-      drm/i915: Move locking and unclaimed check into mmio_debug_{suspend, resume}
-      drm/i915: Only hook up uncore->debug for primary uncore
-      drm/i915: Use managed allocations for extra uncore objects
-      drm/i915: Drop intel_gt_tile_cleanup()
-      drm/i915: Prepare more multi-GT initialization
-      drm/i915: Rename and expose common GT early init routine
-      drm/i915: Use a DRM-managed action to release the PCI bridge device
-      drm/i915: Initialize MMIO access for each GT
-      drm/i915: Handle each GT on init/release and suspend/resume
-      drm/i915/uncore: Add GSI offset to uncore
-      drm/i915/mtl: Add gsi_offset when emitting aux table invalidation
-      drm/i915/xelpmp: Expose media as another GT
-      drm/i915/mtl: Use primary GT's irq lock for media GT
-      drm/i915/mtl: Hook up interrupts for standalone media
-
-Tomas Winkler (7):
-      mei: add kdoc for struct mei_aux_device
-      mei: add slow_firmware flag to the mei auxiliary device
-      mei: gsc: use polling instead of interrupts
-      mei: mkhi: add memory ready command
-      mei: gsc: setup gsc extended operational memory
-      mei: debugfs: add pxp mode to devstate in debugfs
-      drm/i915/gsc: allocate extended operational memory in LMEM
-
-Umesh Nerlige Ramappa (1):
-      drm/i915/guc: Cancel GuC engine busyness worker synchronously
-
-Vitaly Lubart (3):
-      drm/i915/gsc: skip irq initialization if using polling
-      mei: bus: export common mkhi definitions into a separate header
-      mei: gsc: add transition to PXP mode in resume flow
-
- drivers/gpu/drm/i915/Makefile                     |   1 +
- drivers/gpu/drm/i915/gem/i915_gem_lmem.h          |   2 -
- drivers/gpu/drm/i915/gem/i915_gem_mman.c          |  23 ++-
- drivers/gpu/drm/i915/gem/i915_gem_mman.h          |   1 +
- drivers/gpu/drm/i915/gem/i915_gem_object.c        |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h  |   3 +-
- drivers/gpu/drm/i915/gem/i915_gem_pm.c            |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c        |  51 ++-----
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c           |  36 ++++-
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c          |  15 +-
- drivers/gpu/drm/i915/gt/gen8_engine_cs.h          |   3 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c         | 156 ++++++++++---------
- drivers/gpu/drm/i915/gt/intel_engine_regs.h       |   1 +
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c      |   1 -
- drivers/gpu/drm/i915/gt/intel_gsc.c               | 106 +++++++++++--
- drivers/gpu/drm/i915/gt/intel_gsc.h               |   3 +
- drivers/gpu/drm/i915/gt/intel_gt.c                | 111 ++++++++++----
- drivers/gpu/drm/i915/gt/intel_gt.h                |   4 +-
- drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c    | 174 ++++++++++------------
- drivers/gpu/drm/i915/gt/intel_gt_irq.c            |  35 ++++-
- drivers/gpu/drm/i915/gt/intel_gt_pm_irq.c         |   8 +-
- drivers/gpu/drm/i915/gt/intel_gt_regs.h           |  10 ++
- drivers/gpu/drm/i915/gt/intel_gt_types.h          |  36 ++++-
- drivers/gpu/drm/i915/gt/intel_gtt.h               |   3 -
- drivers/gpu/drm/i915/gt/intel_lrc.c               |  29 +++-
- drivers/gpu/drm/i915/gt/intel_rps.c               |  26 ++--
- drivers/gpu/drm/i915/gt/intel_sa_media.c          |  47 ++++++
- drivers/gpu/drm/i915/gt/intel_sa_media.h          |  15 ++
- drivers/gpu/drm/i915/gt/selftest_lrc.c            | 115 +++++++++++---
- drivers/gpu/drm/i915/gt/uc/intel_guc.c            |  24 +--
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  11 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc.c             |   4 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c          |  30 +++-
- drivers/gpu/drm/i915/i915_driver.c                | 105 +++++++++----
- drivers/gpu/drm/i915/i915_drv.h                   |   5 +
- drivers/gpu/drm/i915/i915_gem.c                   |   6 +-
- drivers/gpu/drm/i915/i915_irq.c                   |   4 +-
- drivers/gpu/drm/i915/i915_pci.c                   |  14 ++
- drivers/gpu/drm/i915/i915_reg.h                   |  16 +-
- drivers/gpu/drm/i915/intel_device_info.h          |   3 +
- drivers/gpu/drm/i915/intel_pm.c                   |   5 +-
- drivers/gpu/drm/i915/intel_uncore.c               |  92 +++++++-----
- drivers/gpu/drm/i915/intel_uncore.h               |  40 ++++-
- drivers/gpu/drm/i915/pxp/intel_pxp.c              |   4 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c      |   4 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_irq.c          |  14 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_session.c      |   4 +-
- drivers/gpu/drm/i915/selftests/mock_gem_device.c  |   1 +
- drivers/misc/mei/bus-fixup.c                      | 106 ++++++++-----
- drivers/misc/mei/client.c                         |  16 +-
- drivers/misc/mei/debugfs.c                        |  19 ++-
- drivers/misc/mei/gsc-me.c                         |  77 ++++++++--
- drivers/misc/mei/hbm.c                            |  14 +-
- drivers/misc/mei/hw-me-regs.h                     |   9 +-
- drivers/misc/mei/hw-me.c                          | 138 ++++++++++++++---
- drivers/misc/mei/hw-me.h                          |  17 ++-
- drivers/misc/mei/hw-txe.c                         |   4 +-
- drivers/misc/mei/hw.h                             |   7 +-
- drivers/misc/mei/init.c                           |  35 +++--
- drivers/misc/mei/main.c                           |   4 +-
- drivers/misc/mei/mei_dev.h                        |  35 ++++-
- drivers/misc/mei/mkhi.h                           |  55 +++++++
- drivers/misc/mei/pci-me.c                         |   4 +-
- include/linux/mei_aux.h                           |  12 ++
- 64 files changed, 1423 insertions(+), 534 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gt/intel_sa_media.c
- create mode 100644 drivers/gpu/drm/i915/gt/intel_sa_media.h
- create mode 100644 drivers/misc/mei/mkhi.h
+-- 
+Ville Syrjälä
+Intel
