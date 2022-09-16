@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72E1E5BA82D
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 10:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B873D5BA831
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 10:27:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7893110ECE3;
-	Fri, 16 Sep 2022 08:25:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B85910ECE1;
+	Fri, 16 Sep 2022 08:26:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3174910ECE1;
- Fri, 16 Sep 2022 08:25:27 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 2CC80B82443;
- Fri, 16 Sep 2022 08:25:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35EEFC433C1;
- Fri, 16 Sep 2022 08:25:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1663316724;
- bh=A2pOOvWe2UB9wO3HzrBqjdtF0tZvSpZx4gzE5N3AOl8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=rp9vqPJTTl/hwuAYY2FRCcdimXnwPc8g4TSgMJf6z8rTlq9Kp+MvMEsnTTshamB8M
- YbwiQadLyusRlPXNFLDgAlHJYYQ7wqIWKugaTusE0j1WtVopBKo4QJAWro+MR5pN0f
- xJJITCa9J/9fEFi7mB5NVVxxdISpnvSTObVZz12I=
-Date: Fri, 16 Sep 2022 10:25:50 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Zheng Hacker <hackerzheng666@gmail.com>
-Message-ID: <YyQzDlM5n7mOLh5Q@kroah.com>
-References: <CAJedcCxVW++iH49UFZp9ruUuTcNubWCH6Wsqe11K4COB3E8msg@mail.gmail.com>
- <CAJedcCw1eJqjSK+yR7eQMDheNtH3Mjm+viwt00xAhnmrfpq2pw@mail.gmail.com>
- <CAJedcCweHjD78F7iydiq6Xc2iH=t_3m=H9JKnaCooToUk32FvQ@mail.gmail.com>
- <YxWtfjfpNsoPUrgh@kroah.com>
- <CAJedcCzMo51aiy=Dv7zn7VmL3gwkw7JgzwAPAB2Z27C9CnhoYA@mail.gmail.com>
- <20220907030754.GU1089@zhen-hp.sh.intel.com>
- <CAJedcCxO_Rq0qMeLiHtY5+FuN1A1pDGsZd3gMtvUpm1xbAK3aA@mail.gmail.com>
- <Yxmzj2nCoTKurCY8@kroah.com>
- <CAJedcCwVC6Rg+wF7h6GhFvL6BGkKV=DS9Mo9fOf-gfDAk9VqPg@mail.gmail.com>
- <CAJedcCxRQ4h-ChNsD4OWpDMUJd3JNaQrvD=uVKxMpYONGFUgzA@mail.gmail.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7724610ECE1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 08:26:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663316814; x=1694852814;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ulKF8f0PAR1LPtK0o3yQ6lmId/6OphikfWpzboS/p04=;
+ b=CyZyU1lrieK/McN+TzqfJz3aYYQ3CTqZBicVTsajm6rjsMp4NHkt6DMO
+ T1b8VFA3IIWbCgjKamJi3fVCvZT/NsmS+JZ4KTiXjo7Jeomk6EjHaUTDr
+ Lxv1X+riQgMPbZwvuxz7dyVtqlJZChd8L+3n7yHGUnGqB7+01fxwIJGGY
+ waCefbu5rfiWqzySzut6MDRqI4ejRAtSa50JRVGchA850EfiVKyUGrv1J
+ wf4WTvbTVmpBjnyP5ceRNlC0xYL9T3Dn3RKbv+A+Tq9ELY4CnREHokqmK
+ /oXVztd2lI9b6+8pbmSJmXMHRyvhuOFtcJ5WvskFZyaKzXgwvKXgBctJu w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="281971200"
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="281971200"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2022 01:26:53 -0700
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="648175493"
+Received: from malisch-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.60.50])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2022 01:26:51 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 16 Sep 2022 11:26:42 +0300
+Message-Id: <20220916082642.3451961-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJedcCxRQ4h-ChNsD4OWpDMUJd3JNaQrvD=uVKxMpYONGFUgzA@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
- split_2MB_gtt_entry.
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: fix device info for devices without
+ display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,59 +56,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "alex000young@gmail.com" <alex000young@gmail.com>,
- "security@kernel.org" <security@kernel.org>,
- "airlied@linux.ie" <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- xmzyshypnc <1002992920@qq.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 16, 2022 at 02:39:21PM +0800, Zheng Hacker wrote:
-> >From 8d95c1399e3ff345500a575e21254a73b0c89144 Mon Sep 17 00:00:00 2001
-> From: xmzyshypnc <1002992920@qq.com>
-> Date: Fri, 16 Sep 2022 14:37:48 +0800
-> Subject: [PATCH] drm/i915/gvt: fix double-free bug in split_2MB_gtt_entry
-> 
-> There is a double-free security bug in split_2MB_gtt_entry.
-> 
-> Here is a calling chain :
-> ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
-> If intel_gvt_dma_map_guest_page failed, it will call
-> ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
-> kfree(spt). But the caller does not notice that, and it will call
-> ppgtt_free_spt again in error path.
-> 
-> Fix this by only freeing spt in ppgtt_invalidate_spt in good case.
-> 
-> Signed-off-by: xmzyshypnc <1002992920@qq.com>
-> ---
->  drivers/gpu/drm/i915/gvt/gtt.c | 16 +++++++++-------
->  1 file changed, 9 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-> index 9f14fded8c0c..31d2a8d56384 100644
-> --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> @@ -959,7 +959,7 @@ static inline int ppgtt_put_spt(struct
-> intel_vgpu_ppgtt_spt *spt)
->   return atomic_dec_return(&spt->refcount);
->  }
-> 
-> -static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
-> +static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *sptm,
-> int is_error);
+Commit 00c6cbfd4e8a ("drm/i915: move pipe_mask and cpu_transcoder_mask
+to runtime info") moved the pipe_mask member from struct
+intel_device_info to intel_runtime_info, but overlooked some of our
+platforms initializing device info .display = {}. This is significant,
+as pipe_mask is the single point of truth for a device having a display
+or not; the platforms in question left pipe_mask to whatever was set for
+the platforms they "inherit" from in the complex macro scheme we have.
 
-Your patch is whitespace damaged and linewrapped and can not be applied,
-and can only barely read :(
+Add new NO_DISPLAY macro initializing .__runtime.pipe_mask = 0, which
+will cause the device info .display sub-struct to be zeroed in
+intel_device_info_runtime_init(). A better solution (or simply audit of
+proper use of HAS_DISPLAY() checks) is required before moving forward
+with [1].
 
-Please fix up your email client to not do this so that the change can be
-properly reviewed and accepted if correct.
+Also clear all the display related members in runtime info if there's no
+display. The latter is a bit tedious, but it's for completeness at this
+time, to ensure similar functionality as before.
 
-thanks,
+[1] https://lore.kernel.org/r/dfda1bf67f02ceb07c280b7a13216405fd1f7a34.1660137416.git.jani.nikula@intel.com
 
-greg k-h
+Fixes: 00c6cbfd4e8a ("drm/i915: move pipe_mask and cpu_transcoder_mask to runtime info")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_pci.c          | 11 ++++++-----
+ drivers/gpu/drm/i915/intel_device_info.c |  6 ++++++
+ 2 files changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 77e7df21f539..cd4487a1d3be 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -41,6 +41,8 @@
+ 	.__runtime.media.ip.ver = (x), \
+ 	.__runtime.display.ip.ver = (x)
+ 
++#define NO_DISPLAY .__runtime.pipe_mask = 0
++
+ #define I845_PIPE_OFFSETS \
+ 	.display.pipe_offsets = { \
+ 		[TRANSCODER_A] = PIPE_A_OFFSET,	\
+@@ -519,9 +521,8 @@ static const struct intel_device_info ivb_m_gt2_info = {
+ static const struct intel_device_info ivb_q_info = {
+ 	GEN7_FEATURES,
+ 	PLATFORM(INTEL_IVYBRIDGE),
++	NO_DISPLAY,
+ 	.gt = 2,
+-	.__runtime.pipe_mask = 0, /* legal, last one wins */
+-	.__runtime.cpu_transcoder_mask = 0,
+ 	.has_l3_dpf = 1,
+ };
+ 
+@@ -1039,7 +1040,7 @@ static const struct intel_device_info xehpsdv_info = {
+ 	XE_HPM_FEATURES,
+ 	DGFX_FEATURES,
+ 	PLATFORM(INTEL_XEHPSDV),
+-	.display = { },
++	NO_DISPLAY,
+ 	.has_64k_pages = 1,
+ 	.needs_compact_pt = 1,
+ 	.has_media_ratio_mode = 1,
+@@ -1081,7 +1082,7 @@ static const struct intel_device_info dg2_info = {
+ 
+ static const struct intel_device_info ats_m_info = {
+ 	DG2_FEATURES,
+-	.display = { 0 },
++	NO_DISPLAY,
+ 	.require_force_probe = 1,
+ 	.tuning_thread_rr_after_dep = 1,
+ };
+@@ -1103,7 +1104,7 @@ static const struct intel_device_info pvc_info = {
+ 	.__runtime.graphics.ip.rel = 60,
+ 	.__runtime.media.ip.rel = 60,
+ 	PLATFORM(INTEL_PONTEVECCHIO),
+-	.display = { 0 },
++	NO_DISPLAY,
+ 	.has_flat_ccs = 0,
+ 	.__runtime.platform_engine_mask =
+ 		BIT(BCS0) |
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 1434dc33cf49..20575eb77ea7 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -433,8 +433,14 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
+ 						   DRIVER_ATOMIC);
+ 		memset(&info->display, 0, sizeof(info->display));
++
++		runtime->cpu_transcoder_mask = 0;
+ 		memset(runtime->num_sprites, 0, sizeof(runtime->num_sprites));
+ 		memset(runtime->num_scalers, 0, sizeof(runtime->num_scalers));
++		runtime->fbc_mask = 0;
++		runtime->has_hdcp = false;
++		runtime->has_dmc = false;
++		runtime->has_dsc = false;
+ 	}
+ }
+ 
+-- 
+2.34.1
+
