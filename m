@@ -1,48 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A1DC5BCD29
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:29:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 430B25BCD37
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:29:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FFC210E63F;
-	Mon, 19 Sep 2022 13:29:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F080110E64E;
+	Mon, 19 Sep 2022 13:29:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
- [IPv6:2a00:1450:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E64610ED62;
- Fri, 16 Sep 2022 15:21:48 +0000 (UTC)
-Received: by mail-ej1-x62d.google.com with SMTP id u9so50247928ejy.5;
- Fri, 16 Sep 2022 08:21:48 -0700 (PDT)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04BBF10E3FF;
+ Fri, 16 Sep 2022 15:54:56 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id bj12so50294872ejb.13;
+ Fri, 16 Sep 2022 08:54:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date;
- bh=FAZ1nZoda0LvxFO03fEct6+OY7sOs5EIJLDowUOvXx4=;
- b=i3EM54wqEUd4S0hEjrVzr83R6YfecGIo0DsXnpvu9Xi5oB1vfFa8ZVBK2Is2icTZWm
- X5hso/7NBeg9mGUsZNtQzLp7jv/OTgknKbmhMgB4znO6wmSipfbNDVNKwdd/spAXbwL4
- yVQWrtWpdhgdoaYh5zmlRXLyokBMUZXmQlOnKfqultK8EcRuQ5lTU9qONFYronuMziCP
- La1Rml9QYllS1G3sqFsNVEpqcaF3HSK2nY1c5Wpgt8fVVo6YBLBTBCUkP+xZHDWYy2Ds
- SzQjOdH8HgLucw29Hg2ugKqSYNh6Ewx+S0j0u+0N/4IHqbsTwuk8ffu8qg4/Z0N2pqzS
- gv8g==
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date;
+ bh=EuWFWN26twjl6pnBL7u1oZiY5YRuiq7q1++u96G3pgY=;
+ b=EoQJiVAYTrd4M3+DKqSvM9nCwEIljCqrB31LX/Mf3YTd9IN1mXiqpwdfmYb1HmzhSF
+ hBXK9YQ4RNqyZzeDWzGuAExSL8cI7LfiyjoHgtvsnZmoTCP0xOrpNd+c46PDGFtKDrft
+ arPkvo2nWfkQBevvVRQORFApZ7E1ncEhBKau6WEfbADES93CreFsNJaTUq2Cb3uUhb1G
+ MoF0+YsZKJ04z84ZAfyGHcwhZIYZEMzvjx+l2SfhjkDO4OLQpIXjsNG684fnZ9HP5Y2z
+ PBq0MP9cq0SS8L/cQGrLrtmJHJZCn04wDe3dVYkHhYn68gk8mi9PfgIMl7NNv8ut9uTM
+ jIzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date;
- bh=FAZ1nZoda0LvxFO03fEct6+OY7sOs5EIJLDowUOvXx4=;
- b=G3etyNsrrcAt0Yh+d8zpBeQo/UPQ7uCTTju4B/8wCrR/utmJJcUOIp1vhJGxRM2vat
- +N0nzSeqoo9fLsDwMaem5HebJ9mgd8Ib4yeRUgzejhfQ/EbfZJAVLz68TiuKWX9BrljT
- +g/mF1cwgrcbuhsA7ioBzEGtm9gkMU0r+6c3RQsCFFdp7NrQkZmc0RNfstkhinM/1Eyc
- v6qDfyMHXfsv9wX/ZkeJEtsOwaYKm8eWYwXnnft4ejOvYyMUBVMjcTlx7ieyCLKb+qu3
- 8SyG05Jh9j0cpG6QCEaavTsZicWes2QH2pxVy/PtahOEW0SUoM5JfXYR/KXzca6KfXab
- uYWg==
-X-Gm-Message-State: ACrzQf0YZM/RAzbKYi0hINBz6CnMJ/fmfy5UQgVbQA38Ul+YLYckTxMX
- 8aJI3YPRvdgr/oAOWE27iSQVkRrBvI/KOIeXVkI=
-X-Google-Smtp-Source: AMsMyM7VdObrUWQ3oMSH0uIBXnSpYn73/MNnHRJRFIMKRcnMR0VWDex5xXR94UsnsJLt5amN0/PYib0/nXhnk1LrGNk=
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date;
+ bh=EuWFWN26twjl6pnBL7u1oZiY5YRuiq7q1++u96G3pgY=;
+ b=HcXQpTwiHBqNTnMrXCjjuDw9e+nX3KykB/IxW0pAnODYhlqcEUmTWiEeXt7/XIJeXw
+ cQA/gX9uZyrzxj5NVUTkpoMAS/Fc3F0SC1bLN6dE5ynt+Q1C7E+ZC2ZKs/okPRg5zRej
+ FsZaXXH26tMVjTSUrEIXoZ3fI9nkkfI33t3pjXhVKGlPXiZzsKhuKR90LdqCK+eL+iGj
+ KRVFhsdh1ST9tFnr0KwhA20H7kkdweGRyKMVbF3gbWAO+OO/qffcpLCElIbt5QWZJWAw
+ LfRIBeMAl3NXVGJb6QxhU8unSHF1h48G1wvSKnngeS8ZDUyjT1Vz3ssw/Uqj6Kj3xpfL
+ ax6Q==
+X-Gm-Message-State: ACrzQf2Oc3xat3DRYbnOE76F7g5MtFVmX7zktPKDSfqEILXYP9kXSXcM
+ n5B17LvfS1o4sL/sQg1g8UfRDyT0ryutbMdrYjspTHxfJsv1oDz0
+X-Google-Smtp-Source: AMsMyM5S2RFtr9n8n8rdNH6foyfaJk78kYuOTBmn+L2hXS5/Y0XV9NEVfOYZSy1QOWTfM/qwcuFWq3lkxQaCptutRsM=
 X-Received: by 2002:a17:906:8a77:b0:780:a02d:ca4a with SMTP id
- hy23-20020a1709068a7700b00780a02dca4amr2762440ejc.488.1663341707544; Fri, 16
- Sep 2022 08:21:47 -0700 (PDT)
+ hy23-20020a1709068a7700b00780a02dca4amr2848192ejc.488.1663343694459; Fri, 16
+ Sep 2022 08:54:54 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAJedcCxVW++iH49UFZp9ruUuTcNubWCH6Wsqe11K4COB3E8msg@mail.gmail.com>
  <CAJedcCw1eJqjSK+yR7eQMDheNtH3Mjm+viwt00xAhnmrfpq2pw@mail.gmail.com>
@@ -57,11 +56,10 @@ References: <CAJedcCxVW++iH49UFZp9ruUuTcNubWCH6Wsqe11K4COB3E8msg@mail.gmail.com>
  <YyQzDlM5n7mOLh5Q@kroah.com>
 In-Reply-To: <YyQzDlM5n7mOLh5Q@kroah.com>
 From: Zheng Hacker <hackerzheng666@gmail.com>
-Date: Fri, 16 Sep 2022 23:21:35 +0800
-Message-ID: <CAJedcCy-beMX=ytszAWMu28FH0qGKCsLC=0bJPL_Tmh35wigKw@mail.gmail.com>
+Date: Fri, 16 Sep 2022 23:54:42 +0800
+Message-ID: <CAJedcCzt_1ZRV5egMLdoFVZ4hBDE+nDu9fLkBuGY0A=uYicvQA@mail.gmail.com>
 To: Greg KH <gregkh@linuxfoundation.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 19 Sep 2022 13:29:10 +0000
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
  split_2MB_gtt_entry.
@@ -89,59 +87,96 @@ Cc: "alex000young@gmail.com" <alex000young@gmail.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi greg,
+From afe79848cb74cc8e45ab426d13fa2394c87e0422 Mon Sep 17 00:00:00 2001
+From: xmzyshypnc <1002992920@qq.com>
+Date: Fri, 16 Sep 2022 23:48:23 +0800
+Subject: [PATCH] drm/i915/gvt: fix double-free bug in split_2MB_gtt_entry
 
-Thanks for pointing that out. Working on it now :)
+There is a double-free security bug in split_2MB_gtt_entry.
 
-Best wishes,
-Zheng Wang
+Here is a calling chain :
+ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
 
-Greg KH <gregkh@linuxfoundation.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=8816=E6=
-=97=A5=E5=91=A8=E4=BA=94 16:25=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Fri, Sep 16, 2022 at 02:39:21PM +0800, Zheng Hacker wrote:
-> > >From 8d95c1399e3ff345500a575e21254a73b0c89144 Mon Sep 17 00:00:00 2001
-> > From: xmzyshypnc <1002992920@qq.com>
-> > Date: Fri, 16 Sep 2022 14:37:48 +0800
-> > Subject: [PATCH] drm/i915/gvt: fix double-free bug in split_2MB_gtt_ent=
-ry
-> >
-> > There is a double-free security bug in split_2MB_gtt_entry.
-> >
-> > Here is a calling chain :
-> > ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
-> > If intel_gvt_dma_map_guest_page failed, it will call
-> > ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
-> > kfree(spt). But the caller does not notice that, and it will call
-> > ppgtt_free_spt again in error path.
-> >
-> > Fix this by only freeing spt in ppgtt_invalidate_spt in good case.
-> >
-> > Signed-off-by: xmzyshypnc <1002992920@qq.com>
-> > ---
-> >  drivers/gpu/drm/i915/gvt/gtt.c | 16 +++++++++-------
-> >  1 file changed, 9 insertions(+), 7 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/=
-gtt.c
-> > index 9f14fded8c0c..31d2a8d56384 100644
-> > --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> > +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> > @@ -959,7 +959,7 @@ static inline int ppgtt_put_spt(struct
-> > intel_vgpu_ppgtt_spt *spt)
-> >   return atomic_dec_return(&spt->refcount);
-> >  }
-> >
-> > -static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
-> > +static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *sptm,
-> > int is_error);
->
-> Your patch is whitespace damaged and linewrapped and can not be applied,
-> and can only barely read :(
->
-> Please fix up your email client to not do this so that the change can be
-> properly reviewed and accepted if correct.
->
-> thanks,
->
-> greg k-h
+If intel_gvt_dma_map_guest_page failed, it will call
+ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
+kfree(spt). But the caller does not notice that, and it will call
+ppgtt_free_spt again in error path.
+
+Fix this by only freeing spt in ppgtt_invalidate_spt in good case.
+
+Signed-off-by: Zheng Wang <hackerzheng666@gmail.com>
+---
+ drivers/gpu/drm/i915/gvt/gtt.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
+index ce0eb03709c3..550519f0acca 100644
+--- a/drivers/gpu/drm/i915/gvt/gtt.c
++++ b/drivers/gpu/drm/i915/gvt/gtt.c
+@@ -959,7 +959,7 @@ static inline int ppgtt_put_spt(struct
+intel_vgpu_ppgtt_spt *spt)
+    return atomic_dec_return(&spt->refcount);
+ }
+
+-static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
++static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int
+is_error);
+
+ static int ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
+        struct intel_gvt_gtt_entry *e)
+@@ -995,7 +995,7 @@ static int
+ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
+                ops->get_pfn(e));
+        return -ENXIO;
+    }
+-   return ppgtt_invalidate_spt(s);
++   return ppgtt_invalidate_spt(s, 0);
+ }
+
+ static inline void ppgtt_invalidate_pte(struct intel_vgpu_ppgtt_spt *spt,
+@@ -1016,7 +1016,7 @@ static inline void ppgtt_invalidate_pte(struct
+intel_vgpu_ppgtt_spt *spt,
+    intel_gvt_dma_unmap_guest_page(vgpu, pfn << PAGE_SHIFT);
+ }
+
+-static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt)
++static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int is_error)
+ {
+    struct intel_vgpu *vgpu = spt->vgpu;
+    struct intel_gvt_gtt_entry e;
+@@ -1059,9 +1059,11 @@ static int ppgtt_invalidate_spt(struct
+intel_vgpu_ppgtt_spt *spt)
+        }
+    }
+
+-   trace_spt_change(spt->vgpu->id, "release", spt,
++   if (!is_error) {
++       trace_spt_change(spt->vgpu->id, "release", spt,
+             spt->guest_page.gfn, spt->shadow_page.type);
+-   ppgtt_free_spt(spt);
++       ppgtt_free_spt(spt);
++   }
+    return 0;
+ fail:
+    gvt_vgpu_err("fail: shadow page %p shadow entry 0x%llx type %d\n",
+@@ -1215,7 +1217,7 @@ static int split_2MB_gtt_entry(struct intel_vgpu *vgpu,
+        ret = intel_gvt_dma_map_guest_page(vgpu, start_gfn + sub_index,
+                           PAGE_SIZE, &dma_addr);
+        if (ret) {
+-           ppgtt_invalidate_spt(spt);
++           ppgtt_invalidate_spt(spt, 1);
+            return ret;
+        }
+        sub_se.val64 = se->val64;
+@@ -1393,7 +1395,7 @@ static int
+ppgtt_handle_guest_entry_removal(struct intel_vgpu_ppgtt_spt *spt,
+            ret = -ENXIO;
+            goto fail;
+        }
+-       ret = ppgtt_invalidate_spt(s);
++       ret = ppgtt_invalidate_spt(s, 0);
+        if (ret)
+            goto fail;
+    } else {
+-- 
+2.25.1
