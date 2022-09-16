@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 615D65BB1A7
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 19:36:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18DFE5BB1AE
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 19:37:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF69110E94C;
-	Fri, 16 Sep 2022 17:36:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F31E10E4F2;
+	Fri, 16 Sep 2022 17:37:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE59410E501;
- Fri, 16 Sep 2022 17:36:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663349791; x=1694885791;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hGZ8lgCw3SCsbauSmP603+rkndqm1kBG/7Qo3k0QVPQ=;
- b=Y9S7KQzUOu/tsAvEnEHuueI0Y6VV4mJHGqlJadyduop3nE/wN+a4aC0e
- 0m3RNCz7hxFg+i+FOTlAWEJU/ZJWIZHakJ2FBiPtdfbOBNqMuqCEn3/+a
- ml1GqfmJ6CWcovt167HM4L2wXz7NK2dx+RVnkAmUfnk+S+eHEreM0evyb
- 2bygZBm1m4gN1O34DPa7jIgoVMqvTLwwV+wgW8/VzQGBFAU/ZZvAKx2By
- kv6/2FykVfxqmoARBF0GZXZfJjReNmpM4NBIw12ZjqdQ67SkfRc65pdL3
- 1HtkFyAA1CajwYwdg4lwiLb9eWBTidLQf4gvi5/kAeSR26gTcd8w1vwvX w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10472"; a="278769863"
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="278769863"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 10:36:31 -0700
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="721499670"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.143])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 10:36:31 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Caz Yokoyama <caz@caztech.com>,
- Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Date: Fri, 16 Sep 2022 10:36:08 -0700
-Message-Id: <20220915-stolen-v2-3-20ff797de047@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220915-stolen-v2-0-20ff797de047@intel.com>
-References: <20220915-stolen-v2-0-20ff797de047@intel.com>
-MIME-Version: 1.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E5C810E4F2;
+ Fri, 16 Sep 2022 17:37:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 75FF8A73C7;
+ Fri, 16 Sep 2022 17:37:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.10.0-dev-bbe61
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915/dgfx: Make failure to setup
- stolen non-fatal
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
+Date: Fri, 16 Sep 2022 17:37:31 -0000
+Message-ID: <166334985147.18049.3804451072315865353@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220916150054.807590-1-badal.nilawar@intel.com>
+In-Reply-To: <20220916150054.807590-1-badal.nilawar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_HWMON_support_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,158 +40,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tejas.upadhyay@intel.com, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is no reason to consider the setup of Data Stolen Memory fatal on
-dgfx and non-fatal on integrated. Move the debug and error propagation
-around so both have the same behavior: non-fatal. Before this change,
-loading i915 on a system with TGL + DG2 would result in just TGL
-succeeding the initialization (without stolen).
+== Series Details ==
 
-Now loading i915 on the same system with an injected failure in
-i915_gem_init_stolen():
+Series: drm/i915: Add HWMON support (rev6)
+URL   : https://patchwork.freedesktop.org/series/104278/
+State : warning
 
-	$ dmesg | grep stolen
-	i915 0000:00:02.0: [drm] Injected failure, disabling use of stolen memory
-	i915 0000:00:02.0: [drm:init_stolen_smem [i915]] Skip stolen region: failed to setup
-	i915 0000:03:00.0: [drm] Injected failure, disabling use of stolen memory
-	i915 0000:03:00.0: [drm:init_stolen_lmem [i915]] Skip stolen region: failed to setup
+== Summary ==
 
-Both GPUs are still available:
+Error: dim checkpatch failed
+5f9791e75d29 drm/i915/hwmon: Add HWMON infrastructure
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:85: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#85: 
+new file mode 100644
 
-	$ sudo build/tools/lsgpu
-	card1                    Intel Dg2 (Gen12)                 drm:/dev/dri/card1
-	└─renderD129                                               drm:/dev/dri/renderD129
-	card0                    Intel Tigerlake (Gen12)           drm:/dev/dri/card0
-	└─renderD128                                               drm:/dev/dri/renderD128
+total: 0 errors, 1 warnings, 0 checks, 196 lines checked
+55fd9940206e drm/i915/hwmon: Add HWMON current voltage support
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+new file mode 100644
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+total: 0 errors, 1 warnings, 0 checks, 104 lines checked
+39bb05f1a309 drm/i915/hwmon: Power PL1 limit and TDP setting
+0f426062d76a drm/i915/hwmon: Show device level energy usage
+87b285e45675 drm/i915/hwmon: Expose card reactive critical power
+b109c509a12b drm/i915/hwmon: Expose power1_max_interval
+3ee00bdbe06d drm/i915/hwmon: Extend power/energy for XEHPSDV
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 6edf4e374f54..c5a4035c99cd 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -494,26 +494,26 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
- 		drm_notice(&i915->drm,
- 			   "%s, disabling use of stolen memory\n",
- 			   "iGVT-g active");
--		return 0;
-+		return -ENOSPC;
- 	}
- 
- 	if (i915_vtd_active(i915) && GRAPHICS_VER(i915) < 8) {
- 		drm_notice(&i915->drm,
- 			   "%s, disabling use of stolen memory\n",
- 			   "DMAR active");
--		return 0;
-+		return -ENOSPC;
- 	}
- 
- 	if (adjust_stolen(i915, &mem->region))
--		return 0;
-+		return -ENOSPC;
- 
- 	if (request_smem_stolen(i915, &mem->region))
--		return 0;
-+		return -ENOSPC;
- 
- 	i915->dsm = mem->region;
- 
- 	if (init_reserved_stolen(i915))
--		return 0;
-+		return -ENOSPC;
- 
- 	/* Exclude the reserved region from driver use */
- 	mem->region.end = i915->dsm_reserved.start - 1;
-@@ -527,7 +527,7 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
- 		(u64)i915->stolen_usable_size >> 10);
- 
- 	if (i915->stolen_usable_size == 0)
--		return 0;
-+		return -ENOSPC;
- 
- 	/* Basic memrange allocator for stolen space. */
- 	drm_mm_init(&i915->mm.stolen, 0, i915->stolen_usable_size);
-@@ -765,11 +765,17 @@ i915_gem_object_create_stolen(struct drm_i915_private *i915,
- 
- static int init_stolen_smem(struct intel_memory_region *mem)
- {
-+	int err;
-+
- 	/*
- 	 * Initialise stolen early so that we may reserve preallocated
- 	 * objects for the BIOS to KMS transition.
- 	 */
--	return i915_gem_init_stolen(mem);
-+	err = i915_gem_init_stolen(mem);
-+	if (err)
-+		drm_dbg(&mem->i915->drm, "Skip stolen region: failed to setup\n");
-+
-+	return 0;
- }
- 
- static int release_stolen_smem(struct intel_memory_region *mem)
-@@ -786,21 +792,25 @@ static const struct intel_memory_region_ops i915_region_stolen_smem_ops = {
- 
- static int init_stolen_lmem(struct intel_memory_region *mem)
- {
-+	struct drm_i915_private *i915 = mem->i915;
- 	int err;
- 
- 	if (GEM_WARN_ON(resource_size(&mem->region) == 0))
--		return -ENODEV;
-+		return 0;
- 
- 	err = i915_gem_init_stolen(mem);
--	if (err)
--		return err;
-+	if (err) {
-+		drm_dbg(&mem->i915->drm, "Skip stolen region: failed to setup\n");
-+		return 0;
-+	}
- 
--	if (mem->io_size && !io_mapping_init_wc(&mem->iomap,
--						mem->io_start,
--						mem->io_size)) {
--		err = -EIO;
-+	if (mem->io_size &&
-+	    !io_mapping_init_wc(&mem->iomap, mem->io_start, mem->io_size))
- 		goto err_cleanup;
--	}
-+
-+	drm_dbg(&i915->drm, "Stolen Local memory IO start: %pa\n",
-+		&mem->io_start);
-+	drm_dbg(&i915->drm, "Stolen Local DSM base: %pa\n", &mem->region.start);
- 
- 	return 0;
- 
-@@ -874,16 +884,6 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 	if (IS_ERR(mem))
- 		return mem;
- 
--	/*
--	 * TODO: consider creating common helper to just print all the
--	 * interesting stuff from intel_memory_region, which we can use for all
--	 * our probed regions.
--	 */
--
--	drm_dbg(&i915->drm, "Stolen Local memory IO start: %pa\n",
--		&mem->io_start);
--	drm_dbg(&i915->drm, "Stolen Local DSM base: %pa\n", &dsm_base);
--
- 	intel_memory_region_set_name(mem, "stolen-local");
- 
- 	mem->private = true;
-@@ -908,6 +908,7 @@ i915_gem_stolen_smem_setup(struct drm_i915_private *i915, u16 type,
- 	intel_memory_region_set_name(mem, "stolen-system");
- 
- 	mem->private = true;
-+
- 	return mem;
- }
- 
 
--- 
-b4 0.10.0-dev-bbe61
