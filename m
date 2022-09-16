@@ -1,141 +1,153 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3155BB02A
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 17:26:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E3455BB051
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 17:37:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21D4110ED6E;
-	Fri, 16 Sep 2022 15:26:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9677110ED6A;
+	Fri, 16 Sep 2022 15:36:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7841210ED6E
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 15:26:44 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DB0A10E499
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 15:36:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663342004; x=1694878004;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=ZPSUKLCJoQ4HaX9NrBc2Gmc9PIqLv432FINl8++4tKM=;
- b=ileGlDIfmDP53tI/A7JfKSFMZg8SKHFnnRvConIDc/Wl++TYEhPQHNhV
- 0ulIxTVnzDz80HCkYISBjU4zTWMH6V0A2r5qFPzKut1rLw2R444lZ25XJ
- b8Owe6/vlkpIFrwsj0o42b0f7qi6ggYOZCG1S2ZyWyjM98WvEJvlMzLNo
- J+jGHhsTIYEmffYJeeBKxFyimvTUfDBhYSlwwBWjCtjeQj1CLJDbdp5cQ
- UApvDK9/ivzCgSDGgUO5mw2ynw39IlIr3wah7ufzxD6SdmBDSr3qlp36G
- 8RyKZjDQLtGZ9IE5vhFlpBNO8oPddeMLLzxeVrci0P4fHuRG9sTOe1O9u w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10472"; a="286053696"
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="286053696"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 08:26:43 -0700
+ t=1663342590; x=1694878590;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=mgoPKzzG9raJ7+UEM0HPMmKR6rrGJVQNS0GLRcMHCxo=;
+ b=XjYhRUTMQLj43TAVzqKGs4J/C7y1ly3b95qbZ/JDcwkgwViulauOs8sN
+ oSaPSGkDle9WUHA70ynSckw4RsfAcyw4+6BdkpYuxo15Q+SG1HcNIQ3Ek
+ pV2maOS51wRGG3SZ93j2fPvthExG8UHt9oBkkUjy68aIrgRTtyxlcEraC
+ KnBEOAVImaszU1E7Afqn9bJzW+/r0ouIcOEOSuvXQ+PUw9Ds+9QQOiAB9
+ ZqufrdwAqLIKdidE/QLc2JrVUxEFThC6k4DkN29uhpxW3mTNCitTE8pEI
+ +QEXdhf7vVq9+sewrKO73ceIEB+yTEH0AlVTa7yh4YYgSrkUTXjuBJPM+ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10472"; a="296603760"
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="296603760"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2022 08:36:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="648296372"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga008.jf.intel.com with ESMTP; 16 Sep 2022 08:26:43 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="650909109"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga001.jf.intel.com with ESMTP; 16 Sep 2022 08:36:29 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 16 Sep 2022 08:26:43 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ 15.1.2375.31; Fri, 16 Sep 2022 08:36:28 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 16 Sep 2022 08:26:42 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Fri, 16 Sep 2022 08:26:42 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Fri, 16 Sep 2022 08:36:28 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.106)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Fri, 16 Sep 2022 08:26:42 -0700
+ 15.1.2375.31; Fri, 16 Sep 2022 08:36:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cB4GT2BlbcWwR8Lud13Wp8rCF/tPOk4L4uVx3emMoX6BX5jM5m1UXdukBbaAGDpm7dUJpwBigG1ZRDK7Gk2XmCiDv+DixYKeGTmU/22PlfJsPBZV2vmiChgQpyc5AgP2hu+Iyag33GkQYNPtaMrHon3nymOjfU9DKoJ+I5mxhXbPF0kqSFuHzAuQL6rXdZoDTDrgqRqXrp2sLkJM/zVLtxdTlMaNEnP51chE90MS10HTzR+0Zd5djPyGT1XfyHSQPRJRhY92EC/yoIopjeLXzTw+rSjGWL0Z7wO7FLdPU2VWEsbp6MJdRJYoBRa76oydjcb33xvhmsLO8jPj/QPFXA==
+ b=aUR8IWvseLTID0vGLCwbrYUOSPNkJHf50MZc5UeJInUvjUvIL1eLvUnIjVcVUAiQhGV87hFaPRL5XuVThkLJKDXqSG69/lqcjZCOKq35RcY/vQO8oWVRJHqArJlssIv+XqYrzNL1/L4uRDB+l9HGmLfRuEBxHDxoqFB81Lg67jJz/H2n2b93Y4h3FJMan9yW6y77u7HdvUPwf2Tex8yGnyH2tE9wAhhfoPbEs5z4CPpZ7OsSdz09gOW6zxQA9SKsZjlxbTJcCFbWdUinrySiCg6HeuTimtEiZW7LrNwXxEoewAoMb4rTCTsCLNaSCI2z6lgi8DtwAMauKZoSr5tLUQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q4I7nE5DLgzO5ocW82k1phTPcNszgQpyNMQ1a2+gLPE=;
- b=adO3FnN+mAV8pC9RLdu0IpAbDV6taAGHWzl80AGuil1fBpyUdryCsqOFALa86kmqc3lOm/y3nJOaZQoby3oyxcP75rQ8SXK11krVsz0l+Se2hoBrZkRaokjV4os9d9IL35lnHINixy3DD3LUbiIjy7Px/KEsTknntwW6EMFddm876fpknHBNDKzpRgd+Rvb/9ad5ZiB+c5LQPawPcmIYbWTQ4tasddWKW0Ks6lVF7rZKVLeWiv7jCFFS2eELJIRJlKOMf3mJI8udbtBqgE8ClKdGriNla7SryqisuWah2Xr7oPcYDCkDwkMCCQkuESmNfza2xE1fRtgTqXsPygN7rg==
+ bh=sU5V+v61yOncFMHFrt+oD3rXcNG+J0XoWtv1tWtBYf0=;
+ b=fmJOnNJx+XmxX3zuxvLby/JIorrleLA9KfrDqkpW//o/ABj/F426BPdGZBMQ07sRKif2+QbYtdZTmOjRBBXh27eYNTSZf0ucjYL7jp1TqNpYYeyN/QGS1IuWHNsYmsudjJqqMjmb+escWPlMWz9avfFpxd3EnYm7hFHQuE8EklnR3B9jvybn3MjPDX/DC/6rrJsqmi/D/hW5MvNHdgTUAGkwx6ryWEKCLj9jFdEPd7C6Tr+sMv/QBfsINvSXQRTKzYBQd8yLFZyuB15FDmzpN9xz93fYreHDXWWr59QbLiXQ3dnUwPeqOgzaXnixTBKt0WYkGjAcsVSKYKfNQBQPww==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ1PR11MB6180.namprd11.prod.outlook.com (2603:10b6:a03:459::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Fri, 16 Sep
- 2022 15:26:40 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b80a:cf49:9118:24e7]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b80a:cf49:9118:24e7%6]) with mapi id 15.20.5612.022; Fri, 16 Sep 2022
- 15:26:40 +0000
-Date: Fri, 16 Sep 2022 08:26:38 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20220916152638.u3rnatqrq52x5d32@ldmartin-desk2.lan>
-X-Patchwork-Hint: comment
-References: <20220916082642.3451961-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220916082642.3451961-1-jani.nikula@intel.com>
-X-ClientProxiedBy: BY5PR16CA0017.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::30) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ SJ0PR11MB5868.namprd11.prod.outlook.com (2603:10b6:a03:42b::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5612.22; Fri, 16 Sep 2022 15:36:26 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::c057:13f9:7c74:62b4]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::c057:13f9:7c74:62b4%4]) with mapi id 15.20.5632.016; Fri, 16 Sep 2022
+ 15:36:25 +0000
+Message-ID: <c6e968c8-aaa0-949c-61c9-857ef5d9f617@intel.com>
+Date: Fri, 16 Sep 2022 08:36:23 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, "Teres Alexis, Alan
+ Previn" <alan.previn.teres.alexis@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20220915021218.1412111-1-alan.previn.teres.alexis@intel.com>
+ <20220915021218.1412111-2-alan.previn.teres.alexis@intel.com>
+ <5aec4a0d-e99b-011d-68a9-84ad1f1120bf@linux.intel.com>
+ <2808b0f67797543e453e74b4e156df4a5cdd8656.camel@intel.com>
+ <70636d43-57e8-46ac-7751-d8fd0fb13d72@linux.intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <70636d43-57e8-46ac-7751-d8fd0fb13d72@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BYAPR11CA0045.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::22) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ1PR11MB6180:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1307b092-e228-4bc9-c05d-08da97f7da39
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|SJ0PR11MB5868:EE_
+X-MS-Office365-Filtering-Correlation-Id: e593f9c1-6122-4dd4-1497-08da97f9375a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CF+o9aoC9rQoMQKHWfgU3pMkVSdXaYih2GQVcwuzTPZnsiOv4Q/Iq5ZQizMbhs7uby70NEjZl1tGUyS6xgVzJcNhxM4eiTZd8HpaXPun8ifD04rawE8KpiDtHDRgGrUIhwkCtH0bARlIlDjtbFcg65ZP0AavrKGTWqIUaWhFFGCe4WhXGMwQiSiaBMhsYCdPEtngVyvys4bP4v4Myuw4ve5+D2TOu4cKGNYJMpSctoIuWJb0IqbJB+vt3u5vp0cx3halus5JFNcG+jpVFeP6LkOenX2mtuEOCL72UvZMn9RV1HnNCAizqWf+lLCDoNOybtW3ILlucnGew67JuAw/G9eB6wsOYC0RHcVUMGgq0v+iphrYsXEXeKPFvIUIHYzkx/SeA4JKAd97A7hL/H8lGXT4P8jJSCxEHXdOJpAgIs7Bs5GihLl+ZpgUzMEGghyN4a0oOPjyefsDo9oUoHVtgEkd9NaFRpBtsAEAT1Iuz2e/OrzzL+K3PlNCjKQ+qutckkoj7WkGM+2CF9af6CIfCO0/Vn6zIlKERzlSX2XDGTUtBLl2UNCYFqCeGex+aL3oR6BBeExOLKSeHky7c2dyJ/JbBQ2C92B1/tb0k5ciZyQXc5tRUJAjkS53+wa4poSF0OpnWuhs/trmxcwz6mfMOCdNcaGXepO89R/wk1UZS0RDaowTKIvD7FJxFgzUrTgpNqUtFO59Yq9BlmEjUe61Z4A2qqnzhdG5jN4MYjHfJaU=
+X-Microsoft-Antispam-Message-Info: YMje+C9Xc8az+jbHhE3dvKhO35YvbvHzGFdBB2eNfWTdxmEJUi6uZxyURJfQw0XxkcYg/Xz/yFbscQw1/CIgy/4BHPqbLZ3pGWT9eZ7GYSK2hiVfAGBQGxTwenguFDRTOC20RBzrFrVCRg8lfbGiFQKN7QXyrc1Y1X3CEG2B7bWGBoG3yu1kOwAEakh385CDlIx2CSIudHHzAU8RCoQyh5wfU9+3VQNyiXdlJvrL9DHMEm/6n16JciqoIJI/aLCO9Swfu5tH/+3/9oK4zoT1BzwyFgiDpnC0IuagWY2s30vly6pFHItpADHZqOeT39nS4v0fbZTx3rrtILy1gaTUKceudfonXKZFN1gGRnaqQx9IGQVlBSZxwOUv27UNvsnRTaC3LyGaHSDOTGVaavYlCHQlqUqK6LwBtzv5fDv6nI7Gx4wxwPuXnkDd7zMCgvjmKOlNNX+jXd4MLAXwCCLUgDrL1jUdNBGUvsOttZ+y0wcjbbaMBO6EwuKrByY9R7l5l3RH9YTrJHIGWB3l8TnToeo8v4eFSfnodbnxFqQz++GJ4osRkuODDAAhW8Vifmoj8LjeHej7A3jRy5pM9UeFe84ujwcfH1BGaPHf8AZQNN1qjCK2xOaykH4mo3PnGbDcayV2j4rvO2dKGb8XNSmqzQz7L1XA2k4Nu0x+awo+co3nuIN9HbH5/9CK94oAmD929wVsAE7kLh3W3JTDGN6OsEumopfNptdPXUjTJfedQvv7cc7wexll+RjiR6YIzYjAS2DFEr798s+77qg+6ZHu49mIKoYhy9wpdZn/uikRHTA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(346002)(366004)(39860400002)(396003)(376002)(136003)(451199015)(6506007)(6636002)(6862004)(4326008)(66946007)(8676002)(26005)(83380400001)(66556008)(186003)(66476007)(316002)(2906002)(6486002)(478600001)(41300700001)(5660300002)(36756003)(966005)(86362001)(1076003)(8936002)(38100700002)(6512007)(9686003)(82960400001);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(136003)(366004)(376002)(346002)(396003)(451199015)(38100700002)(66556008)(8936002)(53546011)(66476007)(31696002)(2906002)(41300700001)(30864003)(36756003)(2616005)(82960400001)(83380400001)(5660300002)(186003)(26005)(86362001)(110136005)(6512007)(478600001)(316002)(31686004)(8676002)(6506007)(66946007)(6486002)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gCT1Rsq9ZR1vX0t9yQHHXMC/FNBlk5v3r2BVnV0seKy5muOrxpqTP6sLaFO4?=
- =?us-ascii?Q?Gc2W2H0HgdBqHwRLRIuZDCYnsm1zFirm28X8sAMQremMP0s4gxgxH1UrSkQf?=
- =?us-ascii?Q?ZRm0mnA4JGtegS1X5FX3zJFjsdLdkMHBm6KFuqdeYZVQ38b4i9c7FESWTXYd?=
- =?us-ascii?Q?WOffZSblrqIwhrY7fVhlA8AR3/JlLBk6VI4sOqfPL37+5rZOWDq+h2iuKwAI?=
- =?us-ascii?Q?3iLlLjAdRqnu9WtbO21fQYdHxIFHBV2h85wL97CR2BJqcECD5Vjcb4ONbKsZ?=
- =?us-ascii?Q?m3GXFr0YrbsHBDmsaC+yzXGV5nePbdw73RA9XEJQfS7Go/Uk5PI1lDRl9Ack?=
- =?us-ascii?Q?U73iY16EUJ+wtvoSogP+E1diL3oMMl2FOzZ487Ml//hpZS2f4n7otm7llpcr?=
- =?us-ascii?Q?5bB8pOZsNYaacTnjmjcj2pP9NmvAYRigdySlvnBMwHu+VM49bWXaDQPC7eKC?=
- =?us-ascii?Q?cjNKoSDfYut4sB75OLNj1mGzIhVtxWQ8xPsqrlfLJ6Nl6M1bW8XmZVshCT+z?=
- =?us-ascii?Q?IzRtCEshTPKVcD3xQiU7YA5qeKqXs6RS6Vwadvci77PMiW11N2/Q2OhgSJAl?=
- =?us-ascii?Q?o2OxUc2GMJr7SP6EM/HQg0h1VhBnBZULx1AXSdSfKl9CgZsopCJDxWKPP7fJ?=
- =?us-ascii?Q?K8dkv+jQkJwsc80vjX994mjmO1WY4/zASL0W5zBJqosSfVuKDj5MAbfymXPa?=
- =?us-ascii?Q?KVuADX7TZOv18mOe3eieFW5C7vun7r0QiXzqb3K6AW/WjSaZFEw4ENyW5+rM?=
- =?us-ascii?Q?N3kPOdULcuAlMWoAQSbM3BtBhu2K4YtOcKY8vGau6wIkRgSD/LjZjyRCJ7mL?=
- =?us-ascii?Q?bdVu8t2Te6BVs6fjFaWgYpRhYcEt+AcUiu6se4kxNrlmKYXK+0Du95YaCVP0?=
- =?us-ascii?Q?C01dW5XdMXZZ/m30D60EhEsT9JcpxUIBqhZFPx/HCXVHcvaGzYmXinPz/HJR?=
- =?us-ascii?Q?i5FbYCvknjxvPc1QUB3kqc5zQinWZNUEThlQnFOqRJgHRCu9gjfM7w+KU5Lu?=
- =?us-ascii?Q?m0IOh9mt93u7Pn5MVoqMLdH24ELH2NrV5Uygcw/1Bn9RVa+A6W+gIbNfLDcH?=
- =?us-ascii?Q?DRtsp/0633zu5OYyc3KhZxFqNZEpIa7LxxEWYGd5uSUWH01M7i8W39uaCrYt?=
- =?us-ascii?Q?tKp3/aysUUloZpHjnUFTvUpUv+VqVXabm5O7ObpdIKUCFXZvDDeNfgSIWxWS?=
- =?us-ascii?Q?v1BTaVXLESCHi/LSGPP4j6B4ime00F9Rfe/z9bqvpZU94dNstB7R7lVO+HQR?=
- =?us-ascii?Q?zTj6eS9ZL9G4yBSoZkkV8FU5jHv7IL1/5dEQNqxRWyEh9x54utH4M29ZfmRh?=
- =?us-ascii?Q?L0aGOIyHE5RsjcRBlncPI6+TpGYZvcZpsAfj0svjbwJbIMjCki/ddC2qYQOu?=
- =?us-ascii?Q?S3Ui3hhD6ov/JcS0zAsc2LnHkKUvl5n8e8QMK8CGmMFwnSlbtuwOVKeMvtgk?=
- =?us-ascii?Q?xoRGPTbmahkXgDn1iPL5rwJykNfjCCsQE1/X1xz53wZnmT3j+S9aX5Sf7MAa?=
- =?us-ascii?Q?IPmPsZpg6CcTn2qj4jsV9tfqRUuMfN1GcNmc4YJXzqKPXRUQw7qy4GsR3u1n?=
- =?us-ascii?Q?mGsWNXP6EOfVFWCIbWlkBGKb9f35Vid8rLLiB57YL+/rhuTAOFUWE5tXpmkb?=
- =?us-ascii?Q?KQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1307b092-e228-4bc9-c05d-08da97f7da39
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RHZPaHA2OHdMb0h4SWdsVGNEUkMvdWFqN3FJdU1QVmxHNkFsaCtzL0E5cnlo?=
+ =?utf-8?B?ZWN2bk1EYStYaDJqYmU2cE4yTUZ6NXlQSnhjNHdXWVpleXhML2NleTN6a0J4?=
+ =?utf-8?B?QmpwRnBZM2lLQ1lueDVEaW13S1JraUJmMXdGSzI4UFE0ZTZQSXB0enNlUTNK?=
+ =?utf-8?B?bDg0QkFpR2pPQnBtM1Y4K1N5WmgyeVVXUFZpcVdxYlhzSnR2ekFOWFo3N25y?=
+ =?utf-8?B?bEJldGt2Nks4UytrejBCNkVTQjBRWnFIK3RqczAvaUVhYkpCYlZOWnJFS1NJ?=
+ =?utf-8?B?Z0gxcDUxZHIvcWE4RDZqWFBiUzJmMVo3akE0SEc3QjQwSSttZ212aksyTzBE?=
+ =?utf-8?B?a1NGQ0Qwb0RTMER2Rm5CZVJ4eWVSTWdLaVcxVHNkWlBkNzNpQUtJQ0VMOE85?=
+ =?utf-8?B?aVRSWDZKdkZsUXo2Myt5NFFJNjY4T0pLUkc5dXhoTmxWWWNEUEZVSGluVGxn?=
+ =?utf-8?B?dHNmWGkzd0YybXdxRE1WM3BVYmplbEJhYmM4Q0NmaTkzQVZNNmZ4VTRISmh5?=
+ =?utf-8?B?V1BJN292VThFbSt6dTJMR3JSclViUUpFNkhzeHUwdm9POEN3dVBUSmdmOGRU?=
+ =?utf-8?B?TDNGaU1xT3UzTE1ib1pva2xBNUNUTmVvR1g3eWR0eERtYmRaNEtSMTFGTmJY?=
+ =?utf-8?B?cmZuZ204TVpmbW93UW1WRnNKYXdUSEFpUWpMZHRmMGU4SGxZTHhvdUpMQnB0?=
+ =?utf-8?B?L0U2QVNXRFJQTU4rK0JJdnZjSko4bWVlbG0rN2E0U2FmRHp2QzlhZ3B0bEpK?=
+ =?utf-8?B?aWZ0a2VxNmQwclUxbmlQTXpoc1Flb3ZabWpXZTdsUGplOHRPdU54a2RkUFRs?=
+ =?utf-8?B?TFBsUFhRYmtzVE1maHZ3M1ZTdlVMUkl5RkIxMkV3ZVAzVXhaMjg1SVBuUWVq?=
+ =?utf-8?B?aGMwYUt0RHhhZjhJaWhJYjFVQlpmd1hpbDhONUgxYm81TEo5Zkc5TzUvdHFl?=
+ =?utf-8?B?VlczYTl0eTZ2SEI3MVJXd09EbHZERm1zcVpVZmdlSTlSZ09iL3dpWVlxb09L?=
+ =?utf-8?B?cHdVRTdkRDUyUUFRQ0Y4ajdCYmVUUlNrZVVGR2Q1aWdlRWwxaWFCbXF5TXV1?=
+ =?utf-8?B?bVk2eWVEcUUxZnlxWU9GTVdudjdqbVg1S1MyR2MrWjNSblpBYk43blBRYVAv?=
+ =?utf-8?B?M3JUR3hNeW9UdXhCaS8yYVp4QnI5cHNWRlF5dk50Nk5hWHlvYVp3N25wSHFm?=
+ =?utf-8?B?N3BldFhxV0VsZWluamJ0a0wxYUg5VUROR2c4OFlFMCs5T2xUV0p2dWk0c21w?=
+ =?utf-8?B?SG4wYmhiVWg0WGhBYmN1aDBkM3Z6ZUlBVmVOdHVYOVRidkZJRytKREh6K0N6?=
+ =?utf-8?B?RDh6L3BoY0hwNVczQnBVNlE1Z3VQV204Q0xuNkszaTFYdVM3d1JZdmE3R0k2?=
+ =?utf-8?B?Z25kbi9ES0tyZFRtanM2empOc2kwOVpOQllXZTRmdWtYMDZHeXhqM3o3YWtn?=
+ =?utf-8?B?WUdnSEdPckxXUWVvNzkzNVByY1daRzROSy9yQlBGdDhXTDkzN1IyS1JhRWg2?=
+ =?utf-8?B?VkMxeUJqUnMrWThkbDFXVXJkdzVtSExGbGloZy9wQmNreUFXODYwRUltNStv?=
+ =?utf-8?B?U3NIejhoUFMreUJsVVpoVWN5dWxVaVNWZ0UxYWg3MUxaaFNCN1JhcWxFNDRM?=
+ =?utf-8?B?NG1SWUp6eEN0eDc0UXdGOVQvMUVBdHdHL2JrK3V2U1NBZm8vQWF1d1lxZUNs?=
+ =?utf-8?B?UHJ2V2J2dEhDUDdMMGhMcUNpSmw2ckY4YmlpSmtnRjNDUEZ5NGRGVW5HQkdx?=
+ =?utf-8?B?bzdHY0IxWFVJVnd1S1dncEVDTkpkakIxbzVtVDBld3dPNE9mZ3BuUjFMVUVh?=
+ =?utf-8?B?MmVvYUtoVVdWR3gvTXNxNDM5SE9sREFxVUNjUEliTlhZeTNhQ2dWY3BVNW12?=
+ =?utf-8?B?bFNVcFBsVWFNS2t0Z1E4ek9rblY2RU1jWWNzM1ZjMkdsZWF1V0cyQVJGWTAz?=
+ =?utf-8?B?d0Y0Y0JiaUkydy95SlhRVmROVjVkaHM3cStLKzJoZ0Z3U1ZVa3Q5eGRaUDdZ?=
+ =?utf-8?B?ZDZYOVhtcjFCMmc2a3A4L3JsMk1MMGxEb2JxTUFHVTlha3h5YU00Mm5KbDcz?=
+ =?utf-8?B?RVJicjUyemIyRUNVbTNTeVlDS1VZRzBiK0FlSkdHelJ3RFJNR3Y2TUNQU01t?=
+ =?utf-8?B?dHdQNzBzVEdvWktybEZtcHJoRUJWMjlsd3VyZ2xvTHZvQU9YcWI4NEFKRlAz?=
+ =?utf-8?Q?3/0OaP/AeMEjol0pH0q68V4=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e593f9c1-6122-4dd4-1497-08da97f9375a
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2022 15:26:40.1543 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2022 15:36:25.8897 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: orEnmUoy49W5IdzHY310ZvPpmz7l77RvyAcRb7G06xyAw7ptRoVTqsbNnxCZhMeKQFvzcNFyzj+NRWFQqYFa3DFiTz/OzNo41jEOqqPekDE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6180
+X-MS-Exchange-CrossTenant-UserPrincipalName: arevSjgIM1QgMImymjX3bJZ56yTq7QIwUnTGe8nqEYVB3MlUKQDhwjbT5yh4Mq5E59Aw858OUSYQB4UKy17HIawlVLrbCOXDsjJZyezR7Dg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5868
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix device info for devices
- without display
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Delay disabling guc_id
+ scheduling for better hysteresis
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,108 +160,368 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 16, 2022 at 11:26:42AM +0300, Jani Nikula wrote:
->Commit 00c6cbfd4e8a ("drm/i915: move pipe_mask and cpu_transcoder_mask
->to runtime info") moved the pipe_mask member from struct
->intel_device_info to intel_runtime_info, but overlooked some of our
->platforms initializing device info .display = {}. This is significant,
->as pipe_mask is the single point of truth for a device having a display
->or not; the platforms in question left pipe_mask to whatever was set for
->the platforms they "inherit" from in the complex macro scheme we have.
->
->Add new NO_DISPLAY macro initializing .__runtime.pipe_mask = 0, which
->will cause the device info .display sub-struct to be zeroed in
->intel_device_info_runtime_init(). A better solution (or simply audit of
->proper use of HAS_DISPLAY() checks) is required before moving forward
->with [1].
->
->Also clear all the display related members in runtime info if there's no
->display. The latter is a bit tedious, but it's for completeness at this
->time, to ensure similar functionality as before.
->
->[1] https://lore.kernel.org/r/dfda1bf67f02ceb07c280b7a13216405fd1f7a34.1660137416.git.jani.nikula@intel.com
->
->Fixes: 00c6cbfd4e8a ("drm/i915: move pipe_mask and cpu_transcoder_mask to runtime info")
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
->Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->---
-> drivers/gpu/drm/i915/i915_pci.c          | 11 ++++++-----
-> drivers/gpu/drm/i915/intel_device_info.c |  6 ++++++
-> 2 files changed, 12 insertions(+), 5 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
->index 77e7df21f539..cd4487a1d3be 100644
->--- a/drivers/gpu/drm/i915/i915_pci.c
->+++ b/drivers/gpu/drm/i915/i915_pci.c
->@@ -41,6 +41,8 @@
-> 	.__runtime.media.ip.ver = (x), \
-> 	.__runtime.display.ip.ver = (x)
->
->+#define NO_DISPLAY .__runtime.pipe_mask = 0
->+
-> #define I845_PIPE_OFFSETS \
-> 	.display.pipe_offsets = { \
-> 		[TRANSCODER_A] = PIPE_A_OFFSET,	\
->@@ -519,9 +521,8 @@ static const struct intel_device_info ivb_m_gt2_info = {
-> static const struct intel_device_info ivb_q_info = {
-> 	GEN7_FEATURES,
-> 	PLATFORM(INTEL_IVYBRIDGE),
->+	NO_DISPLAY,
-> 	.gt = 2,
->-	.__runtime.pipe_mask = 0, /* legal, last one wins */
->-	.__runtime.cpu_transcoder_mask = 0,
-> 	.has_l3_dpf = 1,
-> };
->
->@@ -1039,7 +1040,7 @@ static const struct intel_device_info xehpsdv_info = {
-> 	XE_HPM_FEATURES,
-> 	DGFX_FEATURES,
-> 	PLATFORM(INTEL_XEHPSDV),
->-	.display = { },
->+	NO_DISPLAY,
-> 	.has_64k_pages = 1,
-> 	.needs_compact_pt = 1,
-> 	.has_media_ratio_mode = 1,
->@@ -1081,7 +1082,7 @@ static const struct intel_device_info dg2_info = {
->
-> static const struct intel_device_info ats_m_info = {
-> 	DG2_FEATURES,
->-	.display = { 0 },
->+	NO_DISPLAY,
-> 	.require_force_probe = 1,
-> 	.tuning_thread_rr_after_dep = 1,
-> };
->@@ -1103,7 +1104,7 @@ static const struct intel_device_info pvc_info = {
-> 	.__runtime.graphics.ip.rel = 60,
-> 	.__runtime.media.ip.rel = 60,
-> 	PLATFORM(INTEL_PONTEVECCHIO),
->-	.display = { 0 },
->+	NO_DISPLAY,
-> 	.has_flat_ccs = 0,
-> 	.__runtime.platform_engine_mask =
-> 		BIT(BCS0) |
->diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
->index 1434dc33cf49..20575eb77ea7 100644
->--- a/drivers/gpu/drm/i915/intel_device_info.c
->+++ b/drivers/gpu/drm/i915/intel_device_info.c
->@@ -433,8 +433,14 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
-> 		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
-> 						   DRIVER_ATOMIC);
-> 		memset(&info->display, 0, sizeof(info->display));
->+
->+		runtime->cpu_transcoder_mask = 0;
-> 		memset(runtime->num_sprites, 0, sizeof(runtime->num_sprites));
-> 		memset(runtime->num_scalers, 0, sizeof(runtime->num_scalers));
->+		runtime->fbc_mask = 0;
->+		runtime->has_hdcp = false;
->+		runtime->has_dmc = false;
->+		runtime->has_dsc = false;
 
-why are these not inside __runtime.display?
 
-Lucas De Marchi
+On 9/16/2022 1:58 AM, Tvrtko Ursulin wrote:
+>
+> On 16/09/2022 08:53, Teres Alexis, Alan Previn wrote:
+>>
+>> On Thu, 2022-09-15 at 09:48 +0100, Tvrtko Ursulin wrote:
+>>> On 15/09/2022 03:12, Alan Previn wrote:
+>>>> From: Matthew Brost <matthew.brost@intel.com>
+>>>>
+>>>> Add a delay, configurable via debugfs (default 34ms), to disable
+>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>>>>
+>>
+>>>> +        u16 guc_ids_in_use;
+>>>
+>>> Any specific reason to use u16? It can usually just result in larger
+>>> code generated and I don't see any space saving needed or achieved when
+>>> it is sandwiched between two struct list_heads.
+>>>
+>> no specific reason - will switch to uint32.
+>
+> Unsigned int would be best. Every time there is explicit width 
+> specified it looks like there is special reason for the width - like 
+> interacting with hardware or firmware protocol. At least I always see 
+> it like that.
+>
+>>>> +        u64 sched_disable_delay_ms;
+>>>
+>>> 64-bits for the delay then sounds like overkill. Both should IMO 
+>>> just be
+>>> unsigned ints.
+>>>
+>> avoiding some typecasting on related functions that reference this
+>> but thats not a good excuse so will fix it.
+>
+> Right, yes, clamp/cap/validate at debugfs entry points should do it.
+>
+>>>> +        int sched_disable_gucid_threshold;
+>>>
+>>> unsigned int as well, so reader does not have to think about:
+>>>    return guc->submission_state.guc_ids_in_use >
+>>>     guc->submission_state.sched_disable_gucid_threshold;
+>>>
+>>> further down.
+>>>
+>> yes agreed - will fix.
+>>
+>>
+>>>> +static void __delay_sched_disable(struct work_struct *wrk)
+>>>> +{
+>>>> +    struct intel_context *ce =
+>>>> +        container_of(wrk, typeof(*ce), 
+>>>> guc_state.sched_disable_delay.work);
+>>>> +    struct intel_guc *guc = ce_to_guc(ce);
+>>>> +    unsigned long flags;
+>>>> +
+>>>>        spin_lock_irqsave(&ce->guc_state.lock, flags);
+>>>>    +    if (bypass_sched_disable(guc, ce)) {
+>>>> +        spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>>>> +        intel_context_sched_disable_unpin(ce);
+>>>> +    } else {
+>>>> +        do_sched_disable(guc, ce, flags);
+>>>> +    }
+>>>
+>>> lock
+>>> if
+>>>     unlock
+>>>     do sttuff
+>>> else
+>>>     do_sched_disable - which unlocks inside
+>>>
+>>> Now move to next block..
+>>>
+>>>> +}
+>>>> +
+>>>> +static bool guc_id_pressure(struct intel_guc *guc, struct 
+>>>> intel_context *ce)
+>>>> +{
+>>>>        /*
+>>>> -     * We have to check if the context has been disabled by 
+>>>> another thread,
+>>>> -     * check if submssion has been disabled to seal a race with 
+>>>> reset and
+>>>> -     * finally check if any more requests have been committed to the
+>>>> -     * context ensursing that a request doesn't slip through the
+>>>> -     * 'context_pending_disable' fence.
+>>>> +     * parent contexts are perma-pinned, if we are unpinning do 
+>>>> schedule
+>>>> +     * disable immediately.
+>>>>         */
+>>>> -    if (unlikely(!context_enabled(ce) || submission_disabled(guc) ||
+>>>> -             context_has_committed_requests(ce))) {
+>>>> -        clr_context_enabled(ce);
+>>>> +    if (intel_context_is_parent(ce))
+>>>> +        return true;
+>>>> +
+>>>> +    /*
+>>>> +     * If we are beyond the threshold for avail guc_ids, do 
+>>>> schedule disable immediately.
+>>>> +     */
+>>>> +    return guc->submission_state.guc_ids_in_use >
+>>>> + guc->submission_state.sched_disable_gucid_threshold;
+>>>> +}
+>>>> +
+>>>> +static void guc_context_sched_disable(struct intel_context *ce)
+>>>> +{
+>>>> +    struct intel_guc *guc = ce_to_guc(ce);
+>>>> +    u64 delay = guc->submission_state.sched_disable_delay_ms;
+>>>> +    unsigned long flags;
+>>>> +
+>>>> +    spin_lock_irqsave(&ce->guc_state.lock, flags);
+>>>> +
+>>>> +    if (bypass_sched_disable(guc, ce)) {
+>>>> +        spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>>>> +        intel_context_sched_disable_unpin(ce);
+>>>> +    } else if (!intel_context_is_closed(ce) && 
+>>>> !guc_id_pressure(guc, ce) &&
+>>>> +           delay) {
+>>>> spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>>>> -        goto unpin;
+>>>> +        mod_delayed_work(system_unbound_wq,
+>>>> +                 &ce->guc_state.sched_disable_delay,
+>>>> +                 msecs_to_jiffies(delay));
+>>>> +    } else {
+>>>> +        do_sched_disable(guc, ce, flags);
+>>>>        }
+>>>
+>>> lock
+>>> if
+>>>     unlock
+>>>     do stuff
+>>> else if
+>>>     unlock
+>>>     do stuff
+>>> else
+>>>     do_sched_disable - which unlocks inside
+>>>
+>>> IMO it creates less readable code for the benefit of not repeating
+>>> with_intel_runtime_pm -> __guc_context_sched_disable two times. Dunno..
+>>> it's ugly but I have no suggestions. Hm does it have to send using the
+>>> busy loop? It couldn't just queue the request and then wait for 
+>>> reply if
+>>> disable message was emitted?
+>>>
+>> I agree that the above code lacks readability - will see if i can 
+>> break it down to smaller
+>> functions with cleaner in-function lock/unlock pairs. I agree that a 
+>> little code duplication
+>> is better than less readable code. It was inherited code i didn't 
+>> want to modify but I'll
+>> go ahead and refactor this.
+>>
+>> On the busy loop - im assuming you are refering to the actual ct 
+>> sending. I'll consult my
+>> team if i am missing anything more but based on comments, I believe 
+>> callers must use that
+>> function to guarantee reservation of space in the G2H CTB to always 
+>> have space to capture
+>> responses for actions that MUST be acknowledged from GuC 
+>> (acknowledged by either replying
+>> with a success or failure). This is necessary for coherent guc-id 
+>> state machine (because the
+>> GuC firmware will drop requests for guc-id's that are not registered 
+>> or not in a
+>> 'sched-enabled' state).
+>
+> Maybe to explain what I meant a bit better. I thought that the reason 
+> for strange unlock pattern is the with_runtime_pm which needs to 
+> happen for the CT send/receive loop. What I meant was would it be 
+> possible to do it like this:
+>
+> state lock
+> ...
+> sent = queue_msg_2_guc (this would be i915 only, no runtime pm needed)
+> ...
+> state unlock
+>
+> if (sent)
+>   with_runtime_pm:
+>      send/receive queued guc messages (only this would talk to guc)
+>
+> But I have truly no idea if the CT messaging infrastructure supports 
+> something like this.
+>
+> Anyway, see what it is possible and if it is not or too hard for now 
+> leave it be.
+>
+>>>> -    guc_id = prep_context_pending_disable(ce);
+>>>> +}
+>>>>    -    spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>>>> +static void guc_flush_all_delayed_disable_sched_contexts(struct 
+>>>> intel_guc *guc)
+>>>> +{
+>>>> +    struct intel_context *ce;
+>>>> +    unsigned long index;
+>>>> +    unsigned long flags;
+>>>> +    unsigned long ceflags;
+>>>>    -    with_intel_runtime_pm(runtime_pm, wakeref)
+>>>> -        __guc_context_sched_disable(guc, ce, guc_id);
+>>>> +    xa_lock_irqsave(&guc->context_lookup, flags);
+>>>> +    xa_for_each(&guc->context_lookup, index, ce) {
+>>>> +        if (!kref_get_unless_zero(&ce->ref))
+>>>> +            continue;
+>>>> +        xa_unlock(&guc->context_lookup);
+>>>
+>>> So this whole loop _needs_ to run with interrupts disabled? Explaining
+>>> why in a comment would be good.
+>>>
+>> Being mid-reset, the locking mode is consistent with other functions 
+>> also used
+>> as part of the reset preparation that parses and potentially modifies 
+>> contexts.
+>> I believe the goal is to handle all of this parsing without getting 
+>> conflicting
+>> latent G2H replies that breaks the preparation flow (that herds 
+>> active contexts
+>> into a fewer set of states as part of reset) - but i will double check
+>> with my colleagues.
+>>
+>>>> +        if (test_bit(CONTEXT_GUC_INIT, &ce->flags) &&
+>>>> + cancel_delayed_work(&ce->guc_state.sched_disable_delay)) {
+>>>> +            spin_lock_irqsave(&ce->guc_state.lock, ceflags);
+>>>> + spin_unlock_irqrestore(&ce->guc_state.lock, ceflags);
+>>>
+>>> This deserves a comment about what lock toggling wants to ensure.
+>>>
+>> I realize this might have been my local rebasing mistake, the 
+>> intention was to
+>> handle cases where sched_disable_delay wasn't pending but potentially 
+>> still
+>> executing do_sched_disable. I believe I could try 
+>> cancel_delayed_work_sync (but
+>> not sure if i can call that might-sleep funtion mid reset while not-
+>> interruptible). Else, i would move that lock-unlock to if the
+>> cancel_delayed_work did not return true (as per original intent 
+>> before my
+>> rebase error).
+>
+> Okay a comment like "flush any currently executing do_sched_disable" 
+> above the lock toggling would do then. Even better if you add what 
+> happens if that flushing isn't done.
+>
+>>
+>>> Also, if the loops runs with interrupts disabled what is the point of
+>>> irqsave variant in here??
+>> Yes - its redundant, let me fix that, apologies for that.
+>>
+>>>
+>>> Also2, what is the reason for dropping the lock? intel_context_put?
+>> Being consistent with other reset preparation code that closes contexts,
+>> the lock is dropped before the intel_context_put.
+>> (I hope i am not misunderstanding your question).
+>
+> Right, okay.. so for locking inversion issues - intel_context_put must 
+> not be called with guc_state.lock held, yes?
+>
+> Not a mandatory request, but if you want you could look into the 
+> option of avoiding lock dropping and instead doing xa_erase and 
+> recording the list of contexts for sched disable or put in a local 
+> list, and doing them all in one block outside the locked/irq disabled 
+> section. Although tbh I am not sure if that would improve anything. 
+> Probably not in this case of a reset path, but if there are other 
+> places in GuC code which do this it may be beneficial for less 
+> hammering on the CPU and core synchronisation for atomics.
+>
+>>>
+>>>> +    /*
+>>>> +     * If the context gets closed while the execbuf is ongoing, 
+>>>> the context
+>>>> +     * close code will race with the below code to cancel the 
+>>>> delayed work.
+>>>> +     * If the context close wins the race and cancels the work, it 
+>>>> will
+>>>> +     * immediately call the sched disable (see guc_context_close), 
+>>>> so there
+>>>> +     * is a chance we can get past this check while the 
+>>>> sched_disable code
+>>>> +     * is being executed. To make sure that code completes before 
+>>>> we check
+>>>> +     * the status further down, we wait for the close process to 
+>>>> complete.
+>>>> +     */
+>>>> +    if (cancel_delayed_work_sync(&ce->guc_state.sched_disable_delay))
+>>>> +        intel_context_sched_disable_unpin(ce);
+>>>> +    else if (intel_context_is_closed(ce))
+>>>> +        wait_for(context_close_done(ce), 1);
+>>>
+>>> Comment makes it sounds important to handle the race, althought it
+>>> doesn't really explain the consequences. But most importantly, what if
+>>> close doesn't complete in 1ms?
+>>
+>> will add the consequence (i believe the consequence is that we could 
+>> prematurely
+>> read context flags bit indicating its gucid is still registered and 
+>> after skipping
+>> re-registration, find that context gets closed and guc-id freed).
+>>
+>> Yes the 1 second is arbitrary and unnervingly short. Just spent 
+>> sometime trying to
+>
+> One millisecond even. :)
+
+Normally 1ms is not a slow time for this. We can only hit the wait if 
+the context_close call has already called the cancel_delayed_work, so 
+the only thing left to do in that function is to send the H2G, which is 
+relatively fast. However, I've just realized that if the H2G buffer is 
+full the H2G will stall, so in that case it can take longer (maximum 
+stall time before a hang is declared is 1.5s).
+
+>
+> What would be the consequence of prematurely reading the still 
+> registered context flag? Execbuf fails? GuC hangs? Kernel crashes? 
+> Something else?
+
+i915 thinks that a request pending with the GuC, while GuC thinks we 
+disabled it (because the completion of the delayed_disable happens after 
+the new request has been submitted). The heartbeat will still go 
+through, so no reset will be triggered, the request is just lost. A new 
+request submission on the same context should be able to recover it, but 
+we didn't test that.
+
+
+>
+> And why cant' this race with context close happen at any other point 
+> than this particular spot in guc_request_alloc? Immediately after the 
+> added checks? After atomic_add_unless?
+
+The race is tied to the canceling of the delayed work. context_close 
+only does something if it cancels the delayed work, so if the 
+cancel_delayed_work_sync here does the cancelling then context_close is 
+a no-op.
+
+>
+>> figure out portions of the SCHED_foo state machine bits and believe 
+>> that its possible
+>> for guc_request_alloc to just force context_close to be done from 
+>> here as it would
+>> force it into a state requiring re-registration and would close that 
+>> a few lines
+>> below. I will however verify with my team mates as i am new to these 
+>> SCHED_foo state
+>> machine bits.
+
+I'm not sure we want to force context_close unconditionally here, that'd 
+be a big overhead. Doing it only if there is a close pending is also 
+potentially an issue, the whole point is that the close can race in. The 
+close also has to work on its own, because in the normal use-cases we 
+don't get a context_close while a request submission is ongoing.
+Unless you meant something different and I completely misunderstood.
+
+Daniele
+
+>
+> Yes it always looked complicated and perhaps it has even grown more so 
+> - I'm afraid I cannot be of any help there.
+>
+> Regards,
+>
+> Tvrtko
+
