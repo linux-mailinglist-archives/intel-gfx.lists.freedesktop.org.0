@@ -1,49 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B873D5BA831
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 10:27:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E35815BA848
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 10:35:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B85910ECE1;
-	Fri, 16 Sep 2022 08:26:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 277EF10ECDA;
+	Fri, 16 Sep 2022 08:34:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7724610ECE1
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 08:26:54 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF1AB10E3EC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 08:34:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663316814; x=1694852814;
+ t=1663317291; x=1694853291;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ulKF8f0PAR1LPtK0o3yQ6lmId/6OphikfWpzboS/p04=;
- b=CyZyU1lrieK/McN+TzqfJz3aYYQ3CTqZBicVTsajm6rjsMp4NHkt6DMO
- T1b8VFA3IIWbCgjKamJi3fVCvZT/NsmS+JZ4KTiXjo7Jeomk6EjHaUTDr
- Lxv1X+riQgMPbZwvuxz7dyVtqlJZChd8L+3n7yHGUnGqB7+01fxwIJGGY
- waCefbu5rfiWqzySzut6MDRqI4ejRAtSa50JRVGchA850EfiVKyUGrv1J
- wf4WTvbTVmpBjnyP5ceRNlC0xYL9T3Dn3RKbv+A+Tq9ELY4CnREHokqmK
- /oXVztd2lI9b6+8pbmSJmXMHRyvhuOFtcJ5WvskFZyaKzXgwvKXgBctJu w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="281971200"
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="281971200"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 01:26:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="648175493"
-Received: from malisch-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.60.50])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 01:26:51 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+ bh=nN20Z+U1ond2FMsqvEYPjz+3mTSHiQpqC+Nd0iUzf9s=;
+ b=Pj2B3JMcLzJYR1cjxnOty30cb0CwBGR1RZdo38P0tK2LxCevE0y3GFDw
+ xLQunnQOOzalkYDxEGoSPML90UBTVgSPcKZB6HhBMvip78DPgZ+tpABFt
+ uAYPHqNZ55k+O8fwpiqvnTSodCPufNgPBG8Pm2f8t+HsXk+tOZC1aIj37
+ LuJJ153wUrf2Vh2e7yxD9ffRJnL+3lxLd5qS0QjEgDmfLT6RV21ZNnn94
+ ZUbCfqHjyyLtlMH9jzydnS/mOMmmVG4UbwqmX3T6IUIccJ/6ydG/OHkLA
+ 8CmbasYQBJ93RNzyKzFP97ePGC2zYldIDlxpaRR1T87V4CAkUCcQBq1TF Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="279326145"
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="279326145"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2022 01:34:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="679879358"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmsmga008.fm.intel.com with ESMTP; 16 Sep 2022 01:34:49 -0700
+From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Sep 2022 11:26:42 +0300
-Message-Id: <20220916082642.3451961-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.34.1
+Date: Fri, 16 Sep 2022 14:01:01 +0530
+Message-Id: <20220916083102.18559-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: fix device info for devices without
- display
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/pps: Add get_pps_idx() hook as
+ part of pps_get_register() cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,109 +55,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit 00c6cbfd4e8a ("drm/i915: move pipe_mask and cpu_transcoder_mask
-to runtime info") moved the pipe_mask member from struct
-intel_device_info to intel_runtime_info, but overlooked some of our
-platforms initializing device info .display = {}. This is significant,
-as pipe_mask is the single point of truth for a device having a display
-or not; the platforms in question left pipe_mask to whatever was set for
-the platforms they "inherit" from in the complex macro scheme we have.
+Simplified pps_get_register() which use get_pps_idx() hook to derive the
+pps instance and get_pps_idx() will be initialized at pps_init().
 
-Add new NO_DISPLAY macro initializing .__runtime.pipe_mask = 0, which
-will cause the device info .display sub-struct to be zeroed in
-intel_device_info_runtime_init(). A better solution (or simply audit of
-proper use of HAS_DISPLAY() checks) is required before moving forward
-with [1].
+v1: Initial version. Got r-b from Jani.
 
-Also clear all the display related members in runtime info if there's no
-display. The latter is a bit tedious, but it's for completeness at this
-time, to ensure similar functionality as before.
-
-[1] https://lore.kernel.org/r/dfda1bf67f02ceb07c280b7a13216405fd1f7a34.1660137416.git.jani.nikula@intel.com
-
-Fixes: 00c6cbfd4e8a ("drm/i915: move pipe_mask and cpu_transcoder_mask to runtime info")
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/i915_pci.c          | 11 ++++++-----
- drivers/gpu/drm/i915/intel_device_info.c |  6 ++++++
- 2 files changed, 12 insertions(+), 5 deletions(-)
+ .../gpu/drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_pps.c          | 15 ++++++++++-----
+ 2 files changed, 11 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 77e7df21f539..cd4487a1d3be 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -41,6 +41,8 @@
- 	.__runtime.media.ip.ver = (x), \
- 	.__runtime.display.ip.ver = (x)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 0da9b208d56e..b78b29951241 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1693,6 +1693,7 @@ struct intel_dp {
+ 	u8 (*preemph_max)(struct intel_dp *intel_dp);
+ 	u8 (*voltage_max)(struct intel_dp *intel_dp,
+ 			  const struct intel_crtc_state *crtc_state);
++	int (*get_pps_idx)(struct intel_dp *intel_dp);
  
-+#define NO_DISPLAY .__runtime.pipe_mask = 0
+ 	/* Displayport compliance testing */
+ 	struct intel_dp_compliance compliance;
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 21944f5bf3a8..b972fa6ec00d 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -364,12 +364,10 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	int pps_idx = 0;
+ 
+-	memset(regs, 0, sizeof(*regs));
++	if (intel_dp->get_pps_idx)
++		pps_idx = intel_dp->get_pps_idx(intel_dp);
+ 
+-	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+-		pps_idx = bxt_power_sequencer_idx(intel_dp);
+-	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+-		pps_idx = vlv_power_sequencer_pipe(intel_dp);
++	memset(regs, 0, sizeof(*regs));
+ 
+ 	regs->pp_ctrl = PP_CONTROL(pps_idx);
+ 	regs->pp_stat = PP_STATUS(pps_idx);
+@@ -1432,6 +1430,13 @@ void intel_pps_init(struct intel_dp *intel_dp)
+ 	intel_dp->pps.initializing = true;
+ 	INIT_DELAYED_WORK(&intel_dp->pps.panel_vdd_work, edp_panel_vdd_work);
+ 
++	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
++		intel_dp->get_pps_idx = bxt_power_sequencer_idx;
++	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++		intel_dp->get_pps_idx = vlv_power_sequencer_pipe;
++	else
++		intel_dp->get_pps_idx = NULL;
 +
- #define I845_PIPE_OFFSETS \
- 	.display.pipe_offsets = { \
- 		[TRANSCODER_A] = PIPE_A_OFFSET,	\
-@@ -519,9 +521,8 @@ static const struct intel_device_info ivb_m_gt2_info = {
- static const struct intel_device_info ivb_q_info = {
- 	GEN7_FEATURES,
- 	PLATFORM(INTEL_IVYBRIDGE),
-+	NO_DISPLAY,
- 	.gt = 2,
--	.__runtime.pipe_mask = 0, /* legal, last one wins */
--	.__runtime.cpu_transcoder_mask = 0,
- 	.has_l3_dpf = 1,
- };
+ 	pps_init_timestamps(intel_dp);
  
-@@ -1039,7 +1040,7 @@ static const struct intel_device_info xehpsdv_info = {
- 	XE_HPM_FEATURES,
- 	DGFX_FEATURES,
- 	PLATFORM(INTEL_XEHPSDV),
--	.display = { },
-+	NO_DISPLAY,
- 	.has_64k_pages = 1,
- 	.needs_compact_pt = 1,
- 	.has_media_ratio_mode = 1,
-@@ -1081,7 +1082,7 @@ static const struct intel_device_info dg2_info = {
- 
- static const struct intel_device_info ats_m_info = {
- 	DG2_FEATURES,
--	.display = { 0 },
-+	NO_DISPLAY,
- 	.require_force_probe = 1,
- 	.tuning_thread_rr_after_dep = 1,
- };
-@@ -1103,7 +1104,7 @@ static const struct intel_device_info pvc_info = {
- 	.__runtime.graphics.ip.rel = 60,
- 	.__runtime.media.ip.rel = 60,
- 	PLATFORM(INTEL_PONTEVECCHIO),
--	.display = { 0 },
-+	NO_DISPLAY,
- 	.has_flat_ccs = 0,
- 	.__runtime.platform_engine_mask =
- 		BIT(BCS0) |
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 1434dc33cf49..20575eb77ea7 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -433,8 +433,14 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
- 		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
- 						   DRIVER_ATOMIC);
- 		memset(&info->display, 0, sizeof(info->display));
-+
-+		runtime->cpu_transcoder_mask = 0;
- 		memset(runtime->num_sprites, 0, sizeof(runtime->num_sprites));
- 		memset(runtime->num_scalers, 0, sizeof(runtime->num_scalers));
-+		runtime->fbc_mask = 0;
-+		runtime->has_hdcp = false;
-+		runtime->has_dmc = false;
-+		runtime->has_dsc = false;
- 	}
- }
- 
+ 	with_intel_pps_lock(intel_dp, wakeref) {
 -- 
-2.34.1
+2.29.0
 
