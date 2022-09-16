@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F25C5BB14C
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 18:52:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B87E55BB14E
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 18:53:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4EDE10E4C7;
-	Fri, 16 Sep 2022 16:52:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D17810E4E1;
+	Fri, 16 Sep 2022 16:53:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2EB110E4C7
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 16:52:13 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45A6A10E4E1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 16:52:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663347133; x=1694883133;
+ t=1663347160; x=1694883160;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=1OtDcn+twBJbkrmULRM8NwzxVWcXaiWNG7Yow1mBvJ8=;
- b=Zo60eS6B5JgzSQ+T5xF6WpZQK7fz3fYVub6N8e1Pd1lzHjaVwEYAVauW
- qZEqON8RPmOSWxh6I/ASCkeFY1hLJyGtewY/bk8/P/EKIg4KbHdiTL7oj
- 4uO/agLRAlpgejeZsQiTFaDMzIWIgqlCCHjsAvSNmdvNfHwiomXPJpWdw
- cnmFJKtQeIj+VTJfrllxpoGCcECHs0c9mfXsIdzvpjVl+xR72HRlACT/h
- B5ux+njha/Pz1VCgKOqpMMZfl7VYkZPJnCpXpXTrZDdHLE/v8y0atzJu1
- BnPXUC5D5ZPJfqlBc+Be39u3nKaOwlKND33AV1mEOX+BRKkt8Qoz2MxOx g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10472"; a="279415662"
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="279415662"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 09:52:12 -0700
+ bh=6ev/jng47FotZHMqfR3xDBK0BF8qZ58KLYFsfVRdQpM=;
+ b=VCp8z4Kg+RcvFEI2BLncGdENYImv8oeZMxvRI+6ywKPpK7tletmBxDh9
+ 4vYBr6ObmzZC7kKkAIorlgou2606+kbR1P3alYPRH0aB90et6QqXhmDEN
+ ypWFMLB2fDjjKXouhwm5pCQeSlPIfb/QwgT3pRJLomTxiMajtkzLPMIj3
+ MmOn9mZkmrgIPCu+1QpZEJeq/3oHQJ0gjxZuzaXAz2TZZUVZzoYt8RzwJ
+ DYEnxtHkD/0LzUiKZboCVsiGyaE9GR2ueP3vEE4IJGhS5L/b0yT6dMQQf
+ fjPFGREKRcwWyLCd7IgedWd8WHkP2Rlc8gi3I66URnPiXsix5wsiUF7lf Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10472"; a="299025048"
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="299025048"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2022 09:52:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="650932296"
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="760113520"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga001.jf.intel.com with SMTP; 16 Sep 2022 09:52:10 -0700
+ by fmsmga001.fm.intel.com with SMTP; 16 Sep 2022 09:52:13 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 16 Sep 2022 19:52:09 +0300
+ Fri, 16 Sep 2022 19:52:12 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Sep 2022 19:52:05 +0300
-Message-Id: <20220916165206.1499-2-ville.syrjala@linux.intel.com>
+Date: Fri, 16 Sep 2022 19:52:06 +0300
+Message-Id: <20220916165206.1499-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220916165206.1499-1-ville.syrjala@linux.intel.com>
 References: <20220916165206.1499-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/fbc: Remove stale FIXME
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Mark FBC B gone if pipe B is gone
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,44 +63,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Remove the old tales about 90/270 degree rotation
-effectively preventing FBC. That hasn't been true since
-we stopped demanding the fence is present in
-commit 691f7ba58d52 ("drm/i915/display/fbc: Make fences
-a nice-to-have for GEN9+")
+If pipe B is fused off we also shouldn't have FBC B.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/intel_device_info.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index f38175304928..e97083ea1059 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1009,7 +1009,8 @@ static bool intel_fbc_is_fence_ok(const struct intel_plane_state *plane_state)
- {
- 	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
- 
--	/* The use of a CPU fence is one of two ways to detect writes by the
-+	/*
-+	 * The use of a CPU fence is one of two ways to detect writes by the
- 	 * CPU to the scanout and trigger updates to the FBC.
- 	 *
- 	 * The other method is by software tracking (see
-@@ -1019,12 +1020,6 @@ static bool intel_fbc_is_fence_ok(const struct intel_plane_state *plane_state)
- 	 * Note that is possible for a tiled surface to be unmappable (and
- 	 * so have no fence associated with it) due to aperture constraints
- 	 * at the time of pinning.
--	 *
--	 * FIXME with 90/270 degree rotation we should use the fence on
--	 * the normal GTT view (the rotated view doesn't even have a
--	 * fence). Would need changes to the FBC fence Y offset as well.
--	 * For now this will effectively disable FBC with 90/270 degree
--	 * rotation.
- 	 */
- 	return DISPLAY_VER(i915) >= 9 ||
- 		(plane_state->flags & PLANE_HAS_FENCE &&
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 1434dc33cf49..fbefebc023f1 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -394,6 +394,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
+ 			runtime->pipe_mask &= ~BIT(PIPE_B);
+ 			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
++			runtime->fbc_mask &= ~BIT(INTEL_FBC_B);
+ 		}
+ 		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
+ 			runtime->pipe_mask &= ~BIT(PIPE_C);
 -- 
 2.35.1
 
