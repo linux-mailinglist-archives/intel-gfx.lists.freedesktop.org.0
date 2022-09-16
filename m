@@ -2,56 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60B25BA90A
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 11:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E7FE5BA94A
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 11:21:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C02A10ED02;
-	Fri, 16 Sep 2022 09:10:56 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A08AB10ED00;
- Fri, 16 Sep 2022 09:10:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663319450; x=1694855450;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yKPsW4qzSFBzOvFQEx5GDrJcxpAHzYBPLu+uWyDF4Sw=;
- b=IxgXyvrkiwoCJbSr3mfp956sdHFdDKfG8S+Lst94FNwtpHvBOexB4pnj
- 2kkvrYRNpXfSAgS2Dv929pzLfE1VAPoNdm81d7zAqyfS1yOHvprjPnNCX
- TPTgfuFshGzvtWuBM9MJLUEFjIDPfgy2kV6I+Rc/auzR1yKJYkz+Jbwqh
- n0wMTq5cjZu9Fmkkjuhl2Bi658pnTOo4pHx+yXieLOtrFYq+tBfZ5ZJnE
- igmts5F2dlesmh0HYyRgTGuhWLc9Sd9FZaQGvRClZAtKejEh5CKeKLw1o
- u1HR4VIUX4OlBgW7i564WGP7gbjH6B+u98pIRYV8SzoUH9+2UkWKonqoj g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="362914620"
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="362914620"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 02:10:48 -0700
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="617605838"
-Received: from agiridha-mobl1.ger.corp.intel.com (HELO [10.213.204.25])
- ([10.213.204.25])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 02:10:47 -0700
-Message-ID: <aeedcce3-ff03-b8d4-54b1-13ea7d482258@linux.intel.com>
-Date: Fri, 16 Sep 2022 10:10:45 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0B6010ED0D;
+	Fri, 16 Sep 2022 09:21:51 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 163F910ED0C;
+ Fri, 16 Sep 2022 09:21:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0D5B4AADD4;
+ Fri, 16 Sep 2022 09:21:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220914234605.622342-1-John.C.Harrison@Intel.com>
- <20220914234605.622342-2-John.C.Harrison@Intel.com>
- <2bf26f8f-7f5f-4cfb-5117-a9119bf708fe@linux.intel.com>
- <722b1da6-459b-dd35-8a3c-3056a75ee8a1@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <722b1da6-459b-dd35-8a3c-3056a75ee8a1@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/uc: Update to latest GuC and
- use new-format GuC/HuC names
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 16 Sep 2022 09:21:46 -0000
+Message-ID: <166332010602.18047.4562809699923094555@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220916082642.3451961-1-jani.nikula@intel.com>
+In-Reply-To: <20220916082642.3451961-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_fix_device_info_for_devices_without_display?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,72 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 15/09/2022 21:03, John Harrison wrote:
-> On 9/15/2022 01:59, Tvrtko Ursulin wrote:
->>
->> Hi,
->>
->> On 15/09/2022 00:46, John.C.Harrison@Intel.com wrote:
->>> From: John Harrison <John.C.Harrison@Intel.com>
->>>
->>> Going forwards, the intention is for GuC firmware files to be named
->>> for their major version only and HuC firmware files to have no version
->>> number in the name at all. This patch adds those entries for all
->>> platforms that are officially GuC/HuC enabled.
->>>
->>> Also, update the expected GuC version numbers to the latest firmware
->>> release for those platforms.
->>>
->>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 10 +++++++---
->>>   1 file changed, 7 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c 
->>> b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->>> index 1169e2a09da24..b91ad4aede1f7 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->>> @@ -72,12 +72,14 @@ void intel_uc_fw_change_status(struct intel_uc_fw 
->>> *uc_fw,
->>>    * security fixes, etc. to be enabled.
->>>    */
->>>   #define INTEL_GUC_FIRMWARE_DEFS(fw_def, guc_maj, guc_mmp) \
->>> -    fw_def(DG2,          0, guc_mmp(dg2,  70, 4, 1)) \
->>> +    fw_def(DG2,          0, guc_maj(dg2,  70, 5)) \
->>
->> Just glancing over out of curiosity. Part which confused me is that if 
->> only major is supposed to be used then what is the '5' in guc_maj(dg2, 
->> 70, 5) ?
-> See the earlier patch that added support for version reduced filenames. 
-> The minor number is still specified because want to be able to warn the 
-> user if their firmware is out of date and causing them to miss features, 
-> security fixes, etc. The driver will still load any old firmware with 
-> the right name and work with it, but user's need to know that there are 
-> updates available.
+Series: drm/i915: fix device info for devices without display
+URL   : https://patchwork.freedesktop.org/series/108642/
+State : warning
 
-Got it. Release is deemed not important enough to warn about? no 
-actually, it's different, I guess we never expect to bump only the 
-release with a source level change - so in practice kernel could not 
-warn that there is a newer release version since it would never know. In 
-other words those ones would only be hitting linux-firmware, while minor 
-changes would be kernel patches as well.
+== Summary ==
 
->> I also couldn't find guc_maj with grep so I guess it's some sort of a 
->> magic concatenation macro or what?
-> 'guc_maj' is a macro parameter as per the definition of the macro three 
-> lines above. According to where INTEL_GUC_FIRMWARE_DEFS is used, it 
-> becomes either a mechanism for creating just a 'MODULE_FIRMWARE' 
-> definition for the firmware file or a table entry giving all the version 
-> information as well as the filename.
+Error: dim checkpatch failed
+262478f3fe42 drm/i915: fix device info for devices without display
+-:24: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#24: 
+[1] https://lore.kernel.org/r/dfda1bf67f02ceb07c280b7a13216405fd1f7a34.1660137416.git.jani.nikula@intel.com
 
-Doh thanks, macro magic was apparently impenetrable to me yesterday.
+total: 0 errors, 1 warnings, 0 checks, 56 lines checked
 
-Regards,
 
-Tvrtko
