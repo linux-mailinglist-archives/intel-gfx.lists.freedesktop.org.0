@@ -1,58 +1,147 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58DA05BAB97
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 12:49:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C14695BABF2
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Sep 2022 13:02:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBC4510E340;
-	Fri, 16 Sep 2022 10:49:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 899D610EC1E;
+	Fri, 16 Sep 2022 11:02:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC28210E340
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 10:48:54 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A55710E3C3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Sep 2022 11:02:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663325335; x=1694861335;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=bqcgJxdB0K6M3ciPNlMqrt/v1Cb5S/ehRtINcSzHykU=;
- b=Al3Nr5KxSiJYzbnFdk6uIAPVOwTqasVE8nLNvK+f1D1jcosEP1EZqJEV
- 7fBs4Hgm82TpJnrdsXyk7mrzJfREINFRdXwe7ugb1ON6vZTpZWa6fTAMx
- Sylt4uBIHPUds56ynS3INN9UrWMMcZe6fXIetUBeh6nkkR1ojr9D4lH7V
- zpmphu3qQBhJm5U/xPaOD3F7MlPaX8NK8C+Bn3fobWiEAamPVGSRreJoB
- mtNm8qJwAP6Ie7FRPUg4+gZviZW7XIYcsCjWPhaDDvqWw7SbtPYWxur6e
- R0wo/4DsRhgr6cFwIllbxdNi1SxYJI/7oAwVOwBHheGnaf54eDqaPXtth A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="362929565"
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="362929565"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 03:48:40 -0700
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="613220092"
-Received: from agiridha-mobl1.ger.corp.intel.com (HELO [10.213.204.25])
- ([10.213.204.25])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2022 03:48:39 -0700
-Message-ID: <f6b322d7-7950-8aae-b26e-041d92e189e1@linux.intel.com>
-Date: Fri, 16 Sep 2022 11:48:37 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
+ t=1663326160; x=1694862160;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=yFAG3rOu960FBVO9sSxXlU9WNsM1BuPh35COQuIFUsE=;
+ b=if8WTF3LVhRe5a2stUHWImxTUXnu2y6q8BgHKfdBHK4PbNh1VlVm09Bv
+ kTuWt1XcnwyRvq16HyI9VPIU4LuMVOR2wFtzZCiKxeSXVLw02fmgBbfQe
+ tdg1U6rg+jGFuq57Vz7kTqnw3vQJz6QD8AJI9OL4hyHDGxGnIWfnTQocr
+ qv3/7pGpCoR4cH5Sn7wFdAjD2UiBMQgSFlMQhZlZCrv/9DhIPXExKKKm2
+ Lzq40Q6aZYbh5lphlsY5/UOUY5gFEAXT7U3oQSOtbSk5KjCdOnw1OVnKm
+ hW6DUSFJZeaKZOGE7Gy5k+SsdSjXKE5z9b7i4bgckHcatlN47ziLfvQlm w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="286008419"
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="286008419"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2022 04:02:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; d="scan'208";a="620057017"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga007.fm.intel.com with ESMTP; 16 Sep 2022 04:02:39 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 16 Sep 2022 04:02:38 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 16 Sep 2022 04:02:38 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Fri, 16 Sep 2022 04:02:38 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Fri, 16 Sep 2022 04:02:37 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bBbDLDdH8Ed38p3HwnZwV7dje+Tl9vZh+mh6uy5wZD4afFsZIUe7i5mwRDhOpjDUM/q43Xw+S+9GvFA4WPArVlffiYIkThfaRBHhEsCPmuIkwTCKsWgpYhK4pb/A3i1j75MCPdJu5k5XK6SetnHv0mvZw2GHsX+h4ekrtspCn/uBPAGs2gLu9+Ot/iOKZHKKg9jCO+zVLohkAdDtTE2zpgIgm55m/g4IWMkqzxG7mjsIkTHaB2ZDPIbSd/o9K+BgKCvlqEcqXVVLm4s2Yyfhg0Z3y+tfbwJ17TrXP3O8vORHNTC295AMZeY9qnJ2qEmTtJWo0MJYCr/nlOyKLedEFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L43w5OHjNZ+jEUDh4e7SkUCxkuszzb0QgYJp8xzVSR4=;
+ b=JV4v9OZaDKN7lujRcsOuSAKOBI8PXS/hjPbU24x+3ex4DcizlRC0Y/vkEHB7+kV9ndR4ZCBRmfT1cBQKU0Mv4H1rqANpkQ9u2YuUZfpn36ZHaxVDd3gn9h2SjlP2Koa0QXgJV/CVsmsOUbtm2jiXrAjWC6LrfVgQD7dhyKw6VBFbU+yeK8SJ2AyDbhmiagd1cHjz90hjc5vu5iKtatiRy/zE+MvIfXiJZoFYx8ierJaZphLv32+CX9M+y8IrUXf687nkLm3SYBHQhtAJIptbV5LFP9tYRibVq0lkAOAHVLU+Tr8xOUFI7f8GoN7wlD4imqvNNQ9/MZDM5Wem3j9ZsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
+ by SA1PR11MB7131.namprd11.prod.outlook.com (2603:10b6:806:2b0::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19; Fri, 16 Sep
+ 2022 11:02:35 +0000
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::440e:201d:56d1:5bf9]) by PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::440e:201d:56d1:5bf9%3]) with mapi id 15.20.5612.022; Fri, 16 Sep 2022
+ 11:02:35 +0000
+From: "Manna, Animesh" <animesh.manna@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH 2/2] drm/i915/pps: Enable 2nd pps for dual EDP scenario
+Thread-Index: AQHYyac29ZGd8DuZJUCi+Z19SgQbwK3hwY+AgAAhG7A=
+Date: Fri, 16 Sep 2022 11:02:35 +0000
+Message-ID: <PH7PR11MB598191FC5E2ACA27BA1CD305F9489@PH7PR11MB5981.namprd11.prod.outlook.com>
+References: <20220916083102.18559-1-animesh.manna@intel.com>
+ <20220916083102.18559-2-animesh.manna@intel.com> <YyQ6nSbIvO2WxO2K@intel.com>
+In-Reply-To: <YyQ6nSbIvO2WxO2K@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20220915103311.5634-1-anshuman.gupta@intel.com>
- <20220915103311.5634-2-anshuman.gupta@intel.com>
- <e7def4d0-e0e7-2da2-f6f1-bd514672ca48@linux.intel.com>
- <CY5PR11MB621113F5EEE9FC6AB9ECA22A95489@CY5PR11MB6211.namprd11.prod.outlook.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <CY5PR11MB621113F5EEE9FC6AB9ECA22A95489@CY5PR11MB6211.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC 1/1] drm/i915/dgfx: Handling of pin_map
- against rpm
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.500.17
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|SA1PR11MB7131:EE_
+x-ms-office365-filtering-correlation-id: 0fad343e-fbd1-452b-f3c1-08da97d2f642
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: tfHrolEeaBGYTrDktIE5PXkt0VKQrQq0iVcMeengtKGEP2EqVuE1dH1bVnwYUTfIN/wkgDOMbwkyACkuVKYFLLEJgLYP4vrQMVykWn/AT1CDYkI7nroaIf/mqLuwkgWFw9mDKmIPww+32QA0O4buLFKzroTPtmlUUmFVCYb9TD8+nSa1ol6da/NaZDvjwlvR5lO4/O0chp+4LGpWWh/fqn2R3Wv4CHvLQMwZ6PYVwGdBI+0XOcWFHp2MX2qeoWh9GlyTqPAuX+qzUnDPXEyaJNdg7bWgQBIz3i9bTBRifMf6eW3eQqGq42auxVoEUQdVRaJcy3tJ3MY41VVlnmYjaLN27HnhkSUCK7pMj/Yvy0QamSGswoE0eeputYePixqcabJ5gXRzI066+JDpMBx9gbviPWRHVykBNrAtAKhwfWAKAHTjv3nEPpT3VOUwTz1hIrjw3zemj73G2Fwyq01ITBcOqH/14Lh3LMfybLpbSxSyq85aShE9DdeR4C4QyRE2BESCaH+JTppaZ4gsCO8KWKa6uSnCM2ZyGhLXJaBlmaCmB7JP1KLWDpdJTbJeJNNTPhKmeF5CZgv6tJCAzZhe+8vGofZ6W3FRR7yx5FkfDDUB0+Clf5G2IaWmvHVCSQggZqAHQYHQwcrFhPTfXmUeUYCbBLQA86Q5RMIh0BEmMif58InD51UIfSfJbSXXtV1tPlrrkMIm2jJ8Y242WR8yg4dZqVxnw9YEoY78vnykeUFaLFWqMY20OBFu1iYWussgGCKtMlM+TDpRnra8Subzzw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(366004)(376002)(346002)(136003)(39860400002)(396003)(451199015)(8936002)(478600001)(66446008)(186003)(52536014)(26005)(122000001)(66946007)(86362001)(6916009)(33656002)(83380400001)(55016003)(53546011)(8676002)(316002)(41300700001)(38100700002)(9686003)(64756008)(7696005)(66476007)(6506007)(71200400001)(76116006)(66556008)(2906002)(54906003)(5660300002)(82960400001)(55236004)(4326008)(38070700005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?wflMwluqQsLJMVe0iz7Jr1kZ6G4EaKr0b90qFRXSFG1qqmKBnfXp15EesE?=
+ =?iso-8859-1?Q?vwgBjJUZIxvt15y1L5cNv1UpXyXxAzBP4bZ2FgW9E23B7GELDt1QV26jGl?=
+ =?iso-8859-1?Q?2GUNjErkVv2erNXEi7xHWSGgFcHKhkASQgttVVswbmvzOD3SXewqmueYx0?=
+ =?iso-8859-1?Q?g2lersOIIznR5hEtzIXWjUydgDrqHVuilC68EaeLwkW8qQj/IYZzcnZfZu?=
+ =?iso-8859-1?Q?9ksRf8CR6orQun51OIaQNIb8ZYGbLKinV7HW5B4aQpUBEMmI1wz96Z6zer?=
+ =?iso-8859-1?Q?dS/ass5UIupGE1gj9h7CgrF0xgs0b4jX8R+gpl5XP6hvSthpWL7dh/ML+M?=
+ =?iso-8859-1?Q?f0d3Y94u6uq7oRZtp8942pn9cNPwmA5Wee41lXecN7nzz4cJMj/q1EGdfT?=
+ =?iso-8859-1?Q?j+tTVjNQe6dneKsHHIBrNb5D0j6BIA57cMUGg2glsZF0yWvcYL+NlqKof9?=
+ =?iso-8859-1?Q?4X6OX3RDu6l5nvVr3/qhVbzHg7Vw4KkRGxWyLtUzFrAeWDX/qP2twY0Grr?=
+ =?iso-8859-1?Q?cbVFUt91DxiHwqmXpmtpoYwk8AfoQclXkPWeuBUbjhj2VQ0lwYuq1QoO3q?=
+ =?iso-8859-1?Q?bHXMoudazTKemLEL4Jk8yCIyuGlzCSvQ9Wyw03hkavG2uXiFWLfQLRoOP4?=
+ =?iso-8859-1?Q?FyKXhPQl+tv42EWjNP3vRcSevd3kOKc3/7oyMi1Z9f/aE1JT+fzFpSssWL?=
+ =?iso-8859-1?Q?Cs3ctQP7ZHuBGUIerr/7LZq8b8UbVX6HPWtGsCNQBaxcmkBNd/uS2aOxgp?=
+ =?iso-8859-1?Q?81WnIr9mjUPdYtSlB7X5lG8rVxP+fSk8V2guqwwrY3zWiYL0/LVQSZd0V5?=
+ =?iso-8859-1?Q?cT4w8EP5mVXFcxzm/5q/FtatbupjzurbnijchbND6lW/aXC9vbhe0Uie9D?=
+ =?iso-8859-1?Q?QLajlWYdw5EqdTQDo2rKpLuT1Jtx69/cXpMwq3ReKEzUQHTn3prH6GnUCG?=
+ =?iso-8859-1?Q?k6Ism0xTgX2xxr3jKPiOyd7+h56MphYUZeAgtryf1EZ82yaR7FHm9SH08X?=
+ =?iso-8859-1?Q?Q+5BIRmHRvH1sxKxMy5C9fRLc0VoRsAOC0Xd5H/hITFAQS1uhpj0SvBEqz?=
+ =?iso-8859-1?Q?4i/yRtO6gudBfrxjetPpdd/JRqJEtWhLRH2LDBoVRgld8lnl9twt7V6ev9?=
+ =?iso-8859-1?Q?lrXl4aPKeSD7Xeq8TjzAWgjaPlgTZN0Cc6tSjd4x7A+cuWai+cZt0skUmx?=
+ =?iso-8859-1?Q?zUX9+CCoemgkqyrhIFUbvhtEDkbbIF2TydlxMEDzsypkVlfp16O3spkMcX?=
+ =?iso-8859-1?Q?euDClvDE3vOfPZnS7IWEct8tWsMc2s/2cuO/DJQUfJOo7YuLdLrcLhBE8X?=
+ =?iso-8859-1?Q?j66Jl3o2WKUvUvzs88YIQEwtF69bif5/zcPORUEHIEnfDGzffpHQsLdu2F?=
+ =?iso-8859-1?Q?iWCrw8OlgmRv/z7l1UjfFvFqZoGk9YLwCkAcGY3JFoi/3aHn4tU0wLTsBP?=
+ =?iso-8859-1?Q?L/F+luAX5XIQNhh7G/e23ek5Xqdf6ALK/+GaX66OrVVKn0pOecC6U2p0A2?=
+ =?iso-8859-1?Q?VTLhcFIp+qI1ZkKAwUUPJOeHsFRRYNN9XHxQhKgLXVVVscYozsgR7IbVob?=
+ =?iso-8859-1?Q?1grCulIWBc8MBdi4wP7Fi+Q4QhUUaRFVqiUpfjetCPFHoKJQiZNxGtoF07?=
+ =?iso-8859-1?Q?B19N+M/E3Y8qrAA6ouGBlY/PMw+5WBRZl6?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0fad343e-fbd1-452b-f3c1-08da97d2f642
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Sep 2022 11:02:35.6699 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: f80YIX0S3/oWo/oghNMVFS6E1JvQyOcP4Ek0DUU0jBAD1j7loI1ZGa+C8FTtvdM+G8YgFSphkAGgUPBYV26ZMA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7131
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pps: Enable 2nd pps for dual
+ EDP scenario
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,63 +154,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Auld, Matthew" <matthew.auld@intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 16/09/2022 11:30, Gupta, Anshuman wrote:
->> -----Original Message-----
->> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->> Sent: Thursday, September 15, 2022 10:37 PM
->> To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Cc: Auld, Matthew <matthew.auld@intel.com>; Vivi, Rodrigo
->> <rodrigo.vivi@intel.com>
->> Subject: Re: [Intel-gfx] [RFC 1/1] drm/i915/dgfx: Handling of pin_map against
->> rpm
->>
->>
->> On 15/09/2022 11:33, Anshuman Gupta wrote:
->>> If i915 gem obj lies in lmem, then i915_gem_object_pin_map need to
->>> grab a rpm wakeref to make sure gfx PCIe endpoint function stays in D0
->>> state during any access to mapping returned by
->>> i915_gem_object_pin_map().
->>> Subsequently i915_gem_object_upin_map will put the wakref as well.
->>
->> Another thing to check are perma pinned contexts. Follow the flow from
->> intel_engine_create_pinned_context to intel_engine_destroy_pinned_context.
->> If you find out that kernel (&co) contexts are pinned for the duration of i915
->> load/bind and that they use lmem objects, that would mean wakeref is held for
->> the duration of i915 loaded state. Defeating the point and making the solution
->> effectively equal to just disabling RPM.
-> That’s correct  intel_ring_pin can pin_map the lmem object.
->        if (i915_vma_is_map_and_fenceable(vma)) {
->                  addr = (void __force *)i915_vma_pin_iomap(vma);
->          } else {
->                  int type = i915_coherent_map_type(vma->vm->i915, vma->obj, false);
-> 
->                  addr = i915_gem_object_pin_map(vma->obj, type);
->          }
-> 
-> If that is the case this RFC proposal will not work and in that case 
 
-Right, or LRC state for perma pinned contexts is probably even more 
-clear cut.
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Friday, September 16, 2022 2:28 PM
+> To: Manna, Animesh <animesh.manna@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>=
+;
+> Shankar, Uma <uma.shankar@intel.com>
+> Subject: Re: [PATCH 2/2] drm/i915/pps: Enable 2nd pps for dual EDP scenar=
+io
+>=20
+> On Fri, Sep 16, 2022 at 02:01:02PM +0530, Animesh Manna wrote:
+> > >From display gen12 onwards to support dual EDP two instances of pps ad=
+ded.
+> > Currently backlight controller and pps instance can be mapped together
+> > for a specific panel. Extended support for gen12 for dual EDP usage.
+> >
+> > v1: Iniital revision
+> > v2: Called intel_bios_panel_init w/o PNPID before intel_pps_init.
+> > [Jani]
+> >
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Uma Shankar <uma.shankar@intel.com>
+> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bios.c | 7 -------
+> > drivers/gpu/drm/i915/display/intel_bios.h | 7 +++++++
+> >  drivers/gpu/drm/i915/display/intel_dp.c   | 9 ++++++---
+> >  drivers/gpu/drm/i915/display/intel_pps.c  | 2 +-
+> >  4 files changed, 14 insertions(+), 11 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
+> > b/drivers/gpu/drm/i915/display/intel_bios.c
+> > index 28bdb936cd1f..5fd4c09dfa96 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> > @@ -706,13 +706,6 @@ static int fallback_get_panel_type(struct
+> drm_i915_private *i915,
+> >  	return 0;
+> >  }
+> >
+> > -enum panel_type {
+> > -	PANEL_TYPE_OPREGION,
+> > -	PANEL_TYPE_VBT,
+> > -	PANEL_TYPE_PNPID,
+> > -	PANEL_TYPE_FALLBACK,
+> > -};
+> > -
+> >  static int get_panel_type(struct drm_i915_private *i915,
+> >  			  const struct intel_bios_encoder_data *devdata,
+> >  			  const struct edid *edid)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.h
+> > b/drivers/gpu/drm/i915/display/intel_bios.h
+> > index e375405a7828..da01b13260ae 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> > @@ -231,6 +231,13 @@ struct mipi_pps_data {
+> >  	u16 panel_power_cycle_delay;
+> >  } __packed;
+> >
+> > +enum panel_type {
+> > +	PANEL_TYPE_OPREGION,
+> > +	PANEL_TYPE_VBT,
+> > +	PANEL_TYPE_PNPID,
+> > +	PANEL_TYPE_FALLBACK,
+> > +};
+> > +
+> >  void intel_bios_init(struct drm_i915_private *dev_priv);  void
+> > intel_bios_init_panel(struct drm_i915_private *dev_priv,
+> >  			   struct intel_panel *panel,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index c19e99ee06b6..6f7afa75ec4d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -5222,6 +5222,9 @@ static bool intel_edp_init_connector(struct intel=
+_dp
+> *intel_dp,
+> >  		return false;
+> >  	}
+> >
+> > +	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+> > +			      encoder->devdata, NULL);
+>=20
+> We don't want to go for the fallback type here if we the VBT wants us to =
+use
+> pnpid. Maybe we should just remove the fallback type entirely? Or perhaps=
+ only
+> use it if the VBT panel type is entirely invalid?
 
-every caller of  i915_gem_object_pin_map need to grab the wakreref before
-> accessing the retuned address by pin_map. Any inputs from you side for any other approach.
+Ok, Can I add like below?
+If (!PANEL_TYPE_FALLBACK)
+	intel_pps_init(intel_dp);
 
-I didn't quite get what you meant here.
-
-My point was that if my thinking that perma pinned contexts would hold 
-the wakeref permanently is correct, that would prevent the approach from 
-this patch to have a different effect from just disabling RPM. Would 
-unpinning the perma pinned contexts on GT park be feasible? It's not a 5 
-minute question and unfortunately I don't have enough time to go deep 
-into this problem space. Like Hopefully someone else can jump in.
+But to read EDID pps_init should be called before it. Or else I can enable =
+both the pps and later disable the unused one.
 
 Regards,
-
-Tvrtko
+Animesh
+=20
+> > +
+> >  	intel_pps_init(intel_dp);
+> >
+> >  	/* Cache DPCD and EDID for edp. */
+> > @@ -5255,9 +5258,9 @@ static bool intel_edp_init_connector(struct intel=
+_dp
+> *intel_dp,
+> >  		edid =3D ERR_PTR(-ENOENT);
+> >  	}
+> >  	intel_connector->edid =3D edid;
+> > -
+> > -	intel_bios_init_panel(dev_priv, &intel_connector->panel,
+> > -			      encoder->devdata, IS_ERR(edid) ? NULL : edid);
+> > +	if (intel_connector->panel.vbt.panel_type =3D=3D PANEL_TYPE_FALLBACK)
+> > +		intel_bios_init_panel(dev_priv, &intel_connector->panel,
+> > +				      encoder->devdata, IS_ERR(edid) ? NULL :
+> edid);
+> >
+> >  	intel_panel_add_edid_fixed_modes(intel_connector,
+> >  					 intel_connector->panel.vbt.drrs_type
+> !=3D DRRS_TYPE_NONE, diff
+> > --git a/drivers/gpu/drm/i915/display/intel_pps.c
+> > b/drivers/gpu/drm/i915/display/intel_pps.c
+> > index b972fa6ec00d..4b8413382c5d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> > @@ -1430,7 +1430,7 @@ void intel_pps_init(struct intel_dp *intel_dp)
+> >  	intel_dp->pps.initializing =3D true;
+> >  	INIT_DELAYED_WORK(&intel_dp->pps.panel_vdd_work,
+> > edp_panel_vdd_work);
+> >
+> > -	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
+> > +	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915) || DISPLAY_VER(i915) >=3D
+> > +12)
+> >  		intel_dp->get_pps_idx =3D bxt_power_sequencer_idx;
+> >  	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
+> >  		intel_dp->get_pps_idx =3D vlv_power_sequencer_pipe;
+> > --
+> > 2.29.0
+>=20
+> --
+> Ville Syrj=E4l=E4
+> Intel
