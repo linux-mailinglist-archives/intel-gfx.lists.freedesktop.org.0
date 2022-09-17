@@ -1,57 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C745C5BB6F6
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Sep 2022 09:30:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BED5BB76B
+	for <lists+intel-gfx@lfdr.de>; Sat, 17 Sep 2022 11:08:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7330410E1EF;
-	Sat, 17 Sep 2022 07:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F4E410E09C;
+	Sat, 17 Sep 2022 09:08:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com
- [IPv6:2607:f8b0:4864:20::102e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFB710E1EF
- for <intel-gfx@lists.freedesktop.org>; Sat, 17 Sep 2022 07:29:50 +0000 (UTC)
-Received: by mail-pj1-x102e.google.com with SMTP id
- d64-20020a17090a6f4600b00202ce056566so1880187pjk.4
- for <intel-gfx@lists.freedesktop.org>; Sat, 17 Sep 2022 00:29:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quora.org; s=google;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date;
- bh=yEZkEBfw3U5O49cqqkKRbyc0yDno/SJ/a/G3N2C0kfY=;
- b=MCJ85Q/kugf1aUxkjmi2PqeYs6DNw/mhotREgqrctVQkzx//iMxB46T65l/lPaWuSl
- Uh8slDaC5/aw41/Qk3qcBSGEFqkDfsK6GNkFeKdOkuJNiQF5A6CAlvDYXzrkp0njm4b4
- /EZgz4DSBu5C6Fdt02AM8Z9Jx1IKWO6h/tQBQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=yEZkEBfw3U5O49cqqkKRbyc0yDno/SJ/a/G3N2C0kfY=;
- b=NH0uiH4v31kCg7LIeTuATkuCJcj4qObhS06Phd3jwwHeOhu/zQKu4xtfcQ0m+OkVy+
- 2x8rwI1FemCfVO1f45TeTnCFGl07YEQ7dK1G7rM6HCAkhDqwzP3miOMCrB6+2P5hCoj7
- rN6zW2OpLcKuj5XejbgeEMVW/07XRHfKw08rWEYt/Jb7H70bStTkIvoyMEL7nyqyPOyd
- vesLn+a5jtHKMI87X0fzc6zBJhIhcGEgqiyspvrZz2ywvOdJDC8tTaFQ4atAM7ZN9bU8
- Jo7p5JkaiGGUcaeopt2aJr3N5kVv3g1Kd9lP3aP8E7vrnqbD/tZrEFCOnGFFWrBI88H7
- AVZQ==
-X-Gm-Message-State: ACrzQf2UfuBr6Hkclw7lbjKKTmtYvp633Q8zgWz2yKefYfc3h+2ihmNY
- jewy6iGh/9oo2HHqqc0aboqLF5YYEClqBI4GUPnA+cUQrEe2jA==
-X-Google-Smtp-Source: AMsMyM7PlnzvD1D3G+zzhdvwAmbAdxJKncpRDZZhSgxb/dkvOY/zNPEAePN6prx4QbgeL8XSu3UbuHP7xj3B2qT2jOs=
-X-Received: by 2002:a17:90b:4b8b:b0:203:203:3365 with SMTP id
- lr11-20020a17090b4b8b00b0020302033365mr9409373pjb.19.1663399789845; Sat, 17
- Sep 2022 00:29:49 -0700 (PDT)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 043D710E091;
+ Sat, 17 Sep 2022 09:08:00 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 98971B80D11;
+ Sat, 17 Sep 2022 09:07:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C47FCC433C1;
+ Sat, 17 Sep 2022 09:07:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1663405677;
+ bh=mN6OrmlEWafTBrem5aKUHKgVApH1DNBbr9anI0Yk1Yg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=PB0ZPMBZnAWZ1zw5KUQZnMcwSr7Qzh7VHP9dAIWTGoQHEXzPSYjwj4Z4NlRscuEtF
+ kFK+UTSiXstlLknXuNsRshkFqgjPVimy68V821BjwNr58X6rnNx0r6Mez0DljrOV6i
+ fv57VR41Ob3D3SpskrdHa5/Ivo4+y4N7/ZEG51M0=
+Date: Sat, 17 Sep 2022 11:08:23 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Zheng Hacker <hackerzheng666@gmail.com>
+Message-ID: <YyWOh+jGvmSdrHqz@kroah.com>
+References: <CAJedcCweHjD78F7iydiq6Xc2iH=t_3m=H9JKnaCooToUk32FvQ@mail.gmail.com>
+ <YxWtfjfpNsoPUrgh@kroah.com>
+ <CAJedcCzMo51aiy=Dv7zn7VmL3gwkw7JgzwAPAB2Z27C9CnhoYA@mail.gmail.com>
+ <20220907030754.GU1089@zhen-hp.sh.intel.com>
+ <CAJedcCxO_Rq0qMeLiHtY5+FuN1A1pDGsZd3gMtvUpm1xbAK3aA@mail.gmail.com>
+ <Yxmzj2nCoTKurCY8@kroah.com>
+ <CAJedcCwVC6Rg+wF7h6GhFvL6BGkKV=DS9Mo9fOf-gfDAk9VqPg@mail.gmail.com>
+ <CAJedcCxRQ4h-ChNsD4OWpDMUJd3JNaQrvD=uVKxMpYONGFUgzA@mail.gmail.com>
+ <YyQzDlM5n7mOLh5Q@kroah.com>
+ <CAJedcCzt_1ZRV5egMLdoFVZ4hBDE+nDu9fLkBuGY0A=uYicvQA@mail.gmail.com>
 MIME-Version: 1.0
-References: <CAMVG2steKr8U9t67rqai=-Qb-aTC2ocJHMiuDHxYBsSusnHckA@mail.gmail.com>
- <YyMyKsy2XdInzarL@intel.com>
- <CAMVG2svdhBp-UU2L=Zofq2qgzapwvYGbXMZxtOTzK0T+2aLMHw@mail.gmail.com>
- <YyM8u75CwAamBUG+@intel.com>
-In-Reply-To: <YyM8u75CwAamBUG+@intel.com>
-From: Daniel J Blueman <daniel@quora.org>
-Date: Sat, 17 Sep 2022 15:29:38 +0800
-Message-ID: <CAMVG2svkanOHTuvm7HR2yuUTLzkPEgmYqojL6af7n6X76v5bHw@mail.gmail.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] Intel Arc A370M vs Linux 5.19
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJedcCzt_1ZRV5egMLdoFVZ4hBDE+nDu9fLkBuGY0A=uYicvQA@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
+ split_2MB_gtt_entry.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,79 +58,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
+Cc: "alex000young@gmail.com" <alex000young@gmail.com>,
+ "security@kernel.org" <security@kernel.org>,
+ "airlied@linux.ie" <airlied@linux.ie>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ xmzyshypnc <1002992920@qq.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 15 Sept 2022 at 22:55, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->
-> On Thu, Sep 15, 2022 at 10:40:59PM +0800, Daniel J Blueman wrote:
-> > On Thu, 15 Sept 2022 at 22:09, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > > On Thu, Sep 15, 2022 at 09:08:08PM +0800, Daniel J Blueman wrote:
-> > > > Dear Intel et al,
-> > > >
-> > > > With a HP Spectre x360 16 16-f1xxx/891D (Intel i7-1260P) with an Arc
-> > > > A370M GPU [1] running the latest Ubuntu 22.10 5.19.0-15-generic
-> > > > kernel, we see:
-> > > >
-> > > > i915 0000:03:00.0: Your graphics device 5693 is not properly supported
-> > > > by the driver in this kernel version. To force driver probe anyway,
-> > > > use i915.force_probe=5693
-> > > >
-> > > > Since the GPU is unmanaged, battery life is around 30% of what it
-> > > > could be. Unsurprisingly, adding i915.force_probe=5693 causes
-> > > > additional  issues. Given a lack of BIOS option to disable the GPU, is
-> > > > there any advice for Linux support or at least putting the GPU into
-> > > > D3? I see only Windows drivers on the official support page [2], and
-> > > > Linux 6.0-rc5 isn't buildable [3].
-> > >
-> > > I believe this is what you are looking for:
-> > >
-> > > echo auto | sudo tee /sys/bus/pci/devices/0000\:03\:00.0/power/control
-> > >
-> > > In Linux the default is to keep the unmanaged devices in D0.
-> > > But changing the rpm to auto should transition the device to D3.
-> > >
-> > > You can go further and check with the lspci -vv if there are other
-> > > unmanaged devices in the same pci root tree and also add them to the
-> > > 'auto' rpm so you can even achieve D3cold in that whole device, what
-> > > gives you extra power savings.
-> > >
-> > > I hope this helps for now.
-> >
-> > Yes, I was also hoping this would work as we see D3hot is supported:
-> >
-> > # echo auto > /sys/bus/pci/devices/0000\:03\:00.0/power/control
-> > # lspci -vvvs 03:00.0
-> > ...
-> > Capabilities: [d0] Power Management version 3
-> >         Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
-> > PME(D0+,D1-,D2-,D3hot+,D3cold-)
-> >         Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
-> >                 ^^
-> >
-> > However it stays in D0 with PME disabled as we see. "Kernel modules:
-> > i915" may suggest the i915 driver holds a reference to it, preventing
-> > the transition.
->
-> Oh, yes. I was thinking more on using the command line I sent when
-> the i915 is not probed. i.e. without using the force probe. your first
-> scenario.
+On Fri, Sep 16, 2022 at 11:54:42PM +0800, Zheng Hacker wrote:
+> >From afe79848cb74cc8e45ab426d13fa2394c87e0422 Mon Sep 17 00:00:00 2001
+> From: xmzyshypnc <1002992920@qq.com>
+> Date: Fri, 16 Sep 2022 23:48:23 +0800
+> Subject: [PATCH] drm/i915/gvt: fix double-free bug in split_2MB_gtt_entry
+> 
+> There is a double-free security bug in split_2MB_gtt_entry.
+> 
+> Here is a calling chain :
+> ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
+> 
+> If intel_gvt_dma_map_guest_page failed, it will call
+> ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
+> kfree(spt). But the caller does not notice that, and it will call
+> ppgtt_free_spt again in error path.
+> 
+> Fix this by only freeing spt in ppgtt_invalidate_spt in good case.
+> 
+> Signed-off-by: Zheng Wang <hackerzheng666@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/gvt/gtt.c | 16 +++++++++-------
+>  1 file changed, 9 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
+> index ce0eb03709c3..550519f0acca 100644
+> --- a/drivers/gpu/drm/i915/gvt/gtt.c
+> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
+> @@ -959,7 +959,7 @@ static inline int ppgtt_put_spt(struct
+> intel_vgpu_ppgtt_spt *spt)
+>     return atomic_dec_return(&spt->refcount);
+>  }
+> 
+> -static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
+> +static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int
+> is_error);
+> 
+>  static int ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
+>         struct intel_gvt_gtt_entry *e)
+> @@ -995,7 +995,7 @@ static int
+> ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
 
-My bad - a reference is held when lspci shows "Kernel driver in use:
-..." which is not the case here. Accordingly, we see:
-# ls /sys/bus/pci/drivers/i915
-0000:00:02.0 bind  module  new_id  remove_id  uevent  unbind
-...ie no "0000:03:00.0" to unbind.
+Still line-wrapped and whitespace broken :(
 
-> With the i915 loaded I'd like to see the dmesg and a few of the debugfs
-> files under: /sys/kernel/debug/dri/0
-
-Sure, see:
-https://quora.org/a370m/{dmesg.txt,i915-debug.txt}
-https://quora.org/a370m/{dmesg-forceprobe.txt,i915-debug-forceprobe.txt}
-
-Thanks,
-  Dan
---
-Daniel J Blueman
