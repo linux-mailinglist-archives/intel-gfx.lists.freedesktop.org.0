@@ -1,70 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439A75BCD3F
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:29:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D3BD5BCD3C
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:29:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6874010E652;
-	Mon, 19 Sep 2022 13:29:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 920E410E653;
+	Mon, 19 Sep 2022 13:29:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
- [IPv6:2a00:1450:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4FE010E5C5;
- Sun, 18 Sep 2022 17:18:13 +0000 (UTC)
-Received: by mail-ej1-x630.google.com with SMTP id lc7so59648529ejb.0;
- Sun, 18 Sep 2022 10:18:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date;
- bh=g4F1o3OxSkwyGTECuVsvCx/NyKOfCc+oSSw810FYyjo=;
- b=QRI+Gv16BKwthqTnKwPsBDdooKTjM+DS7nip1lJfY2cXjnp9bXM7B5srbbWQfzwvZq
- 6b1hFUUW2uA2q7mXcES+P3JE+k3JfuUqCcJRGBX+G3zNRSGmbwor7FWwVqwXsO8fCOW3
- CMClGqb+UufxwVMtPsNAMA6LAST4e4eAXpGMWMmVbg6/aoRbs4MdD4niSj91wYjGx65R
- NvioDgl8yvTaTtRrImg3+XY3r2Znk8hn9RBeSy4RCCfz40n8EuAguPScGLGLdT23kZtT
- f70JjP9kpn27sTJAwxM5Ua9R9sprHO8iWhmq+2KpidhCdijl1q92a66hURyO9Vq+5puo
- RJkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date;
- bh=g4F1o3OxSkwyGTECuVsvCx/NyKOfCc+oSSw810FYyjo=;
- b=pEmTkVOnq8h/Me4L/1gyqLqvDeWEeVz7gRlQKg97uHrZc+ldrwRUBmZKr5ZjHoo3Vg
- DcasgtafFVmOdh9tR3/gAIjMKkqRxkRda6ON05eROet9gSmMmFuQMje6U4/by5VXApFK
- 0DuJQIBTKANR3hCJ0VsttIIPxd1+bM1GcuVPe5hdAoLUVi3irw7k+MvHPUJyxtItBxUV
- mmnjCnbO5N/XyzNM2ZfMpRW0DHEpuq/OhSpx+mD6pya+orKdq047zDe7xf/hrgIsC8DH
- i+GDbZ2sOG8nprPEkHl/fAN1ffAygX3e507QTST4rnzghf1gSHDD4T/iTBJHDRYuoJws
- Wrqw==
-X-Gm-Message-State: ACrzQf3sAoKVE66e65ULPtxUXi3QkeOqimUrY8zr7UXVj7ap5ddYaTOj
- 0YM1AUZlvZxf47jRSLAz+YLAlVI5FHAkZ8Zstko=
-X-Google-Smtp-Source: AMsMyM475ieyAlM9tDvO7b8MM84jCL/RawZkh8FJpEdvGHaOF7Cv/ooAmlyexeixIRJWEQmCGIcJ4jH/Wuv3bq0DKao=
-X-Received: by 2002:a17:907:3f09:b0:780:330d:d907 with SMTP id
- hq9-20020a1709073f0900b00780330dd907mr10763664ejc.23.1663521492233; Sun, 18
- Sep 2022 10:18:12 -0700 (PDT)
+Received: from out162-62-57-137.mail.qq.com (out162-62-57-137.mail.qq.com
+ [162.62.57.137])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A4ED10E194;
+ Sun, 18 Sep 2022 19:24:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+ t=1663529078; bh=IEVNEjmNL0yQFLfNGmENMI8xItb7ytEnmiYjjux8USs=;
+ h=Date:To:Cc:From:Subject;
+ b=dMPRRNFQ2WrLs5+yMgvW2ean4INOCGFxSTetYdf+xsguH/5QqOa12U+d3DFa+QJR1
+ prBVR+E7G7mYeiSNq/1PigXUwGsqPaaKeVJcib3Roh33l14FjmBWUZArhsTuGKMez6
+ 7d8IaHCWgqRC0pjJFOBQtt5mNt9z2jzU9UjeDQzs=
+Received: from [192.168.221.128] ([111.206.145.21])
+ by newxmesmtplogicsvrsza35.qq.com (NewEsmtp) with SMTP
+ id 6233E4CF; Mon, 19 Sep 2022 03:24:35 +0800
+X-QQ-mid: xmsmtpt1663529075tp9izz2p0
+Message-ID: <tencent_ED24158E83CB9885E8BDD173EB5896B51906@qq.com>
+X-QQ-XMAILINFO: MyIXMys/8kCtzchVYlT2S4MXJ4miJNoucTaA+rntbKRXfnxhsujcUfhHBLW/u4
+ X3edj7iAELSlpTzbLOTEsQyg2/w7Ka8LZ0PVXnb7klZoWlikrPJ+JF4SXv8WEk04JVHk98c7ALOS
+ fdWjuAqZhlnnjC5m4jIy2RfhqTgdE9CX7mc2IWCtMrjkfdVfQtT1yJhZfXdIymnHXKb+0mMSSfpi
+ w+iY7agKnL22FbFi6oh2UXmX9i91cE/cc9juoGxbf7jjH78xN7aoJYKyZj+8kPIzvfiIL+rIgUGP
+ dL+pZJKhLniqpeBRWZxaNQnBy/5MePIf/4d6f++Qxw2WTx9l+oi/tbSzTPDOi+7kVFdOpoHTUhJU
+ 0nxHxYSXEIDPwcTf6lNN3FzGMh8YN7yoF6SY9+zCp+2/mmZoKK0DDUSEFyziMKJaRrmaoSH13T8m
+ +EtIAPI+V/T6Zp4o+ILo2G7m/hUkO3+5GDZtz2iEgnXo0mXWkJjr0OvQaGCCKhgKP3O/0bu5JFnV
+ jf7Oj8ovTrBPAFTC2VAPzf4K5tBiWfdgk2xq3ld7du6HP/EirG/3V1DN7fhhY9AmO5530DsUU7x5
+ QAsg86naeFihGq0ewdrGhg4M3htSuQ7JguEMSEo4i8Ha0IIf+lfbaQpQQTfr1c5vg+/IpV7cEzFd
+ NjdY9HTuvahUr4a94O0t3ErywEQPDxuB1aN5IUpVtrPOZ1ZLPdQOp2CcsU5ZsaMobGdwoVQlsUti
+ NivctlYrVnJB2OQD6Ee2znVJhnXYpPffd+tf8ZpbPA9/Odm4G7Q+lB2jUOXqrligdK7zzJUZFwiZ
+ XMbTHJOq2hYixUYsJGSaQ2fCzDGcUD3D47GOonB44Kc3jGKaoIX3qwg05o+M51KlBJ/C4GpApWPI
+ ykNcY+7PnocUkTzYpshJx9RAkKIBN17qvX10FcrwzJZF7LoNeqZnhODsT/irU8Y/b3WRvNonMAlv
+ yU6NkrzhWy18r+Tf+rg6XcmS3gExVb9f6laghiuAHDsTXyhsg+BkGKRXF/qYyJXUseselx/wlHPa
+ g3Sq5zJMrZX9ZsJR9c+v3VXMQTXAUOGGm3bG7sIg==
+X-OQ-MSGID: <34a72fa4-33f5-6ebc-2c78-f4e756aeb591@qq.com>
+Date: Mon, 19 Sep 2022 03:24:35 +0800
 MIME-Version: 1.0
-References: <CAJedcCweHjD78F7iydiq6Xc2iH=t_3m=H9JKnaCooToUk32FvQ@mail.gmail.com>
- <YxWtfjfpNsoPUrgh@kroah.com>
- <CAJedcCzMo51aiy=Dv7zn7VmL3gwkw7JgzwAPAB2Z27C9CnhoYA@mail.gmail.com>
- <20220907030754.GU1089@zhen-hp.sh.intel.com>
- <CAJedcCxO_Rq0qMeLiHtY5+FuN1A1pDGsZd3gMtvUpm1xbAK3aA@mail.gmail.com>
- <Yxmzj2nCoTKurCY8@kroah.com>
- <CAJedcCwVC6Rg+wF7h6GhFvL6BGkKV=DS9Mo9fOf-gfDAk9VqPg@mail.gmail.com>
- <CAJedcCxRQ4h-ChNsD4OWpDMUJd3JNaQrvD=uVKxMpYONGFUgzA@mail.gmail.com>
- <YyQzDlM5n7mOLh5Q@kroah.com>
- <CAJedcCzt_1ZRV5egMLdoFVZ4hBDE+nDu9fLkBuGY0A=uYicvQA@mail.gmail.com>
- <YyWOh+jGvmSdrHqz@kroah.com>
-In-Reply-To: <YyWOh+jGvmSdrHqz@kroah.com>
-From: Zheng Hacker <hackerzheng666@gmail.com>
-Date: Mon, 19 Sep 2022 01:17:59 +0800
-Message-ID: <CAJedcCwzgELQquRLc2deXt+E4X2D2-NMLERpE1z3sy21bTdddw@mail.gmail.com>
-To: Greg KH <gregkh@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: gregkh@linuxfoundation.org
+From: Zheng Wang <1002992920@qq.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 19 Sep 2022 13:29:10 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
- split_2MB_gtt_entry.
+Subject: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
+ split_2MB_gtt_entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,69 +64,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "alex000young@gmail.com" <alex000young@gmail.com>,
- "security@kernel.org" <security@kernel.org>,
- "airlied@linux.ie" <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- xmzyshypnc <1002992920@qq.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
+ intel-gfx@lists.freedesktop.org, hackerzheng666@gmail.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I'll try using another mail client like Mutt later. :)
+ From afe79848cb74cc8e45ab426d13fa2394c87e0422 Mon Sep 17 00:00:00 2001
+From: xmzyshypnc <1002992920@qq.com>
+Date: Fri, 16 Sep 2022 23:48:23 +0800
+Subject: [PATCH] drm/i915/gvt: fix double-free bug in split_2MB_gtt_entry
 
-Regards,
-Zheng Wang
+There is a double-free security bug in split_2MB_gtt_entry.
 
-Greg KH <gregkh@linuxfoundation.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=8817=E6=
-=97=A5=E5=91=A8=E5=85=AD 17:07=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Fri, Sep 16, 2022 at 11:54:42PM +0800, Zheng Hacker wrote:
-> > >From afe79848cb74cc8e45ab426d13fa2394c87e0422 Mon Sep 17 00:00:00 2001
-> > From: xmzyshypnc <1002992920@qq.com>
-> > Date: Fri, 16 Sep 2022 23:48:23 +0800
-> > Subject: [PATCH] drm/i915/gvt: fix double-free bug in split_2MB_gtt_ent=
-ry
-> >
-> > There is a double-free security bug in split_2MB_gtt_entry.
-> >
-> > Here is a calling chain :
-> > ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
-> >
-> > If intel_gvt_dma_map_guest_page failed, it will call
-> > ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
-> > kfree(spt). But the caller does not notice that, and it will call
-> > ppgtt_free_spt again in error path.
-> >
-> > Fix this by only freeing spt in ppgtt_invalidate_spt in good case.
-> >
-> > Signed-off-by: Zheng Wang <hackerzheng666@gmail.com>
-> > ---
-> >  drivers/gpu/drm/i915/gvt/gtt.c | 16 +++++++++-------
-> >  1 file changed, 9 insertions(+), 7 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/=
-gtt.c
-> > index ce0eb03709c3..550519f0acca 100644
-> > --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> > +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> > @@ -959,7 +959,7 @@ static inline int ppgtt_put_spt(struct
-> > intel_vgpu_ppgtt_spt *spt)
-> >     return atomic_dec_return(&spt->refcount);
-> >  }
-> >
-> > -static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
-> > +static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int
-> > is_error);
-> >
-> >  static int ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgp=
-u,
-> >         struct intel_gvt_gtt_entry *e)
-> > @@ -995,7 +995,7 @@ static int
-> > ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
->
-> Still line-wrapped and whitespace broken :(
->
+Here is a calling chain :
+ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
+
+If intel_gvt_dma_map_guest_page failed, it will call
+ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
+kfree(spt). But the caller does not notice that, and it will call
+ppgtt_free_spt again in error path.
+
+Fix this by only freeing spt in ppgtt_invalidate_spt in good case.
+
+Signed-off-by: xmzyshypnc <1002992920@qq.com>
+---
+  drivers/gpu/drm/i915/gvt/gtt.c | 16 +++++++++-------
+  1 file changed, 9 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
+index ce0eb03709c3..550519f0acca 100644
+--- a/drivers/gpu/drm/i915/gvt/gtt.c
++++ b/drivers/gpu/drm/i915/gvt/gtt.c
+@@ -959,7 +959,7 @@ static inline int ppgtt_put_spt(struct 
+intel_vgpu_ppgtt_spt *spt)
+      return atomic_dec_return(&spt->refcount);
+  }
+
+-static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
++static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int 
+is_error);
+
+  static int ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
+          struct intel_gvt_gtt_entry *e)
+@@ -995,7 +995,7 @@ static int 
+ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
+                  ops->get_pfn(e));
+          return -ENXIO;
+      }
+-    return ppgtt_invalidate_spt(s);
++    return ppgtt_invalidate_spt(s, 0);
+  }
+
+  static inline void ppgtt_invalidate_pte(struct intel_vgpu_ppgtt_spt *spt,
+@@ -1016,7 +1016,7 @@ static inline void ppgtt_invalidate_pte(struct 
+intel_vgpu_ppgtt_spt *spt,
+      intel_gvt_dma_unmap_guest_page(vgpu, pfn << PAGE_SHIFT);
+  }
+
+-static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt)
++static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int 
+is_error)
+  {
+      struct intel_vgpu *vgpu = spt->vgpu;
+      struct intel_gvt_gtt_entry e;
+@@ -1059,9 +1059,11 @@ static int ppgtt_invalidate_spt(struct 
+intel_vgpu_ppgtt_spt *spt)
+          }
+      }
+
+-    trace_spt_change(spt->vgpu->id, "release", spt,
++    if (!is_error) {
++        trace_spt_change(spt->vgpu->id, "release", spt,
+               spt->guest_page.gfn, spt->shadow_page.type);
+-    ppgtt_free_spt(spt);
++        ppgtt_free_spt(spt);
++    }
+      return 0;
+  fail:
+      gvt_vgpu_err("fail: shadow page %p shadow entry 0x%llx type %d\n",
+@@ -1215,7 +1217,7 @@ static int split_2MB_gtt_entry(struct intel_vgpu 
+*vgpu,
+          ret = intel_gvt_dma_map_guest_page(vgpu, start_gfn + sub_index,
+                             PAGE_SIZE, &dma_addr);
+          if (ret) {
+-            ppgtt_invalidate_spt(spt);
++            ppgtt_invalidate_spt(spt, 1);
+              return ret;
+          }
+          sub_se.val64 = se->val64;
+@@ -1393,7 +1395,7 @@ static int ppgtt_handle_guest_entry_removal(struct 
+intel_vgpu_ppgtt_spt *spt,
+              ret = -ENXIO;
+              goto fail;
+          }
+-        ret = ppgtt_invalidate_spt(s);
++        ret = ppgtt_invalidate_spt(s, 0);
+          if (ret)
+              goto fail;
+      } else {
+-- 
+2.25.1
+
+
