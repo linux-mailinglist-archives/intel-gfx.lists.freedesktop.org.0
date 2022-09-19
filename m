@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 679895BD84C
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 01:33:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 955EE5BD859
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 01:41:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D26F10E209;
-	Mon, 19 Sep 2022 23:33:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B150110E20C;
+	Mon, 19 Sep 2022 23:41:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9FD3610E213;
- Mon, 19 Sep 2022 23:32:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DEB5D10E216;
+ Mon, 19 Sep 2022 23:41:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 976B8A73C7;
- Mon, 19 Sep 2022 23:32:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2125167951410242467=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D6B8CA77A5;
+ Mon, 19 Sep 2022 23:41:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Date: Mon, 19 Sep 2022 23:32:55 -0000
-Message-ID: <166363037558.28332.17420028446494225159@emeril.freedesktop.org>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Date: Mon, 19 Sep 2022 23:41:43 -0000
+Message-ID: <166363090387.28333.16254715094882145968@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220919150233.5457-1-nirmoy.das@intel.com>
-In-Reply-To: <20220919150233.5457-1-nirmoy.das@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Do_not_dereference_NULL_bo-=3Eresource?=
+References: <20220919130505.1984383-1-suraj.kandpal@intel.com>
+In-Reply-To: <20220919130505.1984383-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Enable_Pipewriteback_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,240 +45,150 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2125167951410242467==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Do not dereference NULL bo->resource
-URL   : https://patchwork.freedesktop.org/series/108744/
-State : success
+Series: Enable Pipewriteback (rev7)
+URL   : https://patchwork.freedesktop.org/series/107440/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_12158 -> Patchwork_108744v1
-====================================================
+Error: dim checkpatch failed
+c994ba9a29ce drm/i915: Define WD trancoder for i915
+5e7abcf91502 drm/i915 : Changing intel_connector iterators
+-:76: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#76: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1507:
++#define to_intel_connector(x) (((x->connector_type == DRM_MODE_CONNECTOR_WRITEBACK)) ?	\
++				NULL : container_of(x, struct intel_connector, base))
 
-Summary
--------
+-:76: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'x' may be better as '(x)' to avoid precedence issues
+#76: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1507:
++#define to_intel_connector(x) (((x->connector_type == DRM_MODE_CONNECTOR_WRITEBACK)) ?	\
++				NULL : container_of(x, struct intel_connector, base))
 
-  **SUCCESS**
+-:104: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#104: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2093:
++
++	}
 
-  No regressions found.
+total: 0 errors, 0 warnings, 3 checks, 104 lines checked
+056ada13d2e5 drm/i915: Enabling WD Transcoder
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:559: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#559: 
+new file mode 100644
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/index.html
+-:597: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!job"
+#597: FILE: drivers/gpu/drm/i915/display/intel_wd.c:34:
++	if (job == NULL) {
 
-Participating hosts (42 -> 38)
-------------------------------
+-:634: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#634: FILE: drivers/gpu/drm/i915/display/intel_wd.c:71:
++		DRM_ERROR("unsupported pixel format %x!\n",
++			pixel_format);
 
-  Missing    (4): fi-ctg-p8600 fi-cfl-8109u bat-jsl-3 bat-dg1-5 
+-:712: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#712: FILE: drivers/gpu/drm/i915/display/intel_wd.c:149:
++	intel_de_write(i915, WD_STREAMCAP_CTL(intel_wd->trans),
++			*tmp);
 
-Possible new issues
--------------------
+-:735: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#735: FILE: drivers/gpu/drm/i915/display/intel_wd.c:172:
++		memcpy(pipe_config, intel_crtc->config,
++			sizeof(*pipe_config));
 
-  Here are the unknown changes that may have been introduced in Patchwork_108744v1:
+-:786: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#786: FILE: drivers/gpu/drm/i915/display/intel_wd.c:223:
++	wakeref = intel_display_power_get_if_enabled(dev_priv,
++				encoder->power_domain);
 
-### IGT changes ###
+-:827: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#827: FILE: drivers/gpu/drm/i915/display/intel_wd.c:264:
++		drm_dbg_kms(&i915->drm, "Invalid framebuffer size %ux%u\n",
++				fb->width, fb->height);
 
-#### Suppressed ####
+-:834: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#834: FILE: drivers/gpu/drm/i915/display/intel_wd.c:271:
++		drm_dbg_kms(&i915->drm, "Unsupported framebuffer format %08x\n",
++				fb->format->format);
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+-:875: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#875: FILE: drivers/gpu/drm/i915/display/intel_wd.c:312:
++static bool intel_fastset_dis(struct intel_encoder *encoder,
++		struct intel_crtc_state *pipe_config)
 
-  * igt@gem_exec_fence@basic-busy@vecs0:
-    - {fi-tgl-mst}:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-tgl-mst/igt@gem_exec_fence@basic-busy@vecs0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-tgl-mst/igt@gem_exec_fence@basic-busy@vecs0.html
+-:929: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#929: FILE: drivers/gpu/drm/i915/display/intel_wd.c:366:
++	drm_encoder_helper_add(drm_enc,
++			&wd_encoder_helper_funcs);
 
-  
-Known issues
-------------
+-:944: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#944: FILE: drivers/gpu/drm/i915/display/intel_wd.c:381:
++	err = drm_writeback_connector_init_with_encoder(&i915->drm,
++		wb_conn, drm_enc, &wb_connector_funcs,
 
-  Here are the changes found in Patchwork_108744v1 that come from known issues:
+-:962: WARNING:RETURN_VOID: void function return statements are not generally useful
+#962: FILE: drivers/gpu/drm/i915/display/intel_wd.c:399:
++	return;
++}
 
-### IGT changes ###
+-:1008: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1008: FILE: drivers/gpu/drm/i915/display/intel_wd.c:445:
++	intel_de_write(dev_priv, WD_SURF(intel_wd->trans),
++			i915_ggtt_offset(intel_wd->vma));
 
-#### Issues hit ####
+-:1019: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1019: FILE: drivers/gpu/drm/i915/display/intel_wd.c:456:
++		tmp = intel_de_read(dev_priv,
++				WD_STREAMCAP_CTL(intel_wd->trans));
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
+-:1108: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1108: FILE: drivers/gpu/drm/i915/display/intel_wd.c:545:
++		if (intel_de_wait_for_set(dev_priv, PIPECONF(intel_wd->trans),
++				WD_TRANS_ACTIVE, 10))
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [PASS][4] -> [FAIL][5] ([i915#6298])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
+-:1130: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1130: FILE: drivers/gpu/drm/i915/display/intel_wd.c:567:
++	ret = intel_wd_setup_transcoder(intel_wd, pipe_config,
++		conn_state, job);
 
-  
-#### Possible fixes ####
+-:1179: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1179: FILE: drivers/gpu/drm/i915/display/intel_wd.c:616:
++void intel_wd_enable_capture(struct intel_crtc_state *pipe_config,
++		struct drm_connector_state *conn_state)
 
-  * igt@gem_ctx_create@basic-files:
-    - {fi-tgl-mst}:       [DMESG-WARN][6] -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-tgl-mst/igt@gem_ctx_create@basic-files.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-tgl-mst/igt@gem_ctx_create@basic-files.html
+-:1196: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1196: FILE: drivers/gpu/drm/i915/display/intel_wd.c:633:
++	intel_wd_capture(intel_wd, pipe_config,
++			conn_state, job);
 
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-adlm-1}:       [DMESG-WARN][8] ([i915#2867]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
+-:1201: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1201: FILE: drivers/gpu/drm/i915/display/intel_wd.c:638:
++void intel_wd_set_vblank_event(struct intel_atomic_state *state, struct intel_crtc *intel_crtc,
++			struct intel_crtc_state *intel_crtc_state)
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][10] ([i915#4785]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+-:1241: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#1241: FILE: drivers/gpu/drm/i915/display/intel_wd.c:678:
++	for_each_intel_encoder(&i915->drm, encoder) {
++
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [FAIL][12] ([i915#6298]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+-:1306: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1306: FILE: drivers/gpu/drm/i915/display/intel_wd.h:43:
++void intel_wd_enable_capture(struct intel_crtc_state *pipe_config,
++			struct drm_connector_state *conn_state);
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:1309: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1309: FILE: drivers/gpu/drm/i915/display/intel_wd.h:46:
++void intel_wd_set_vblank_event(struct intel_atomic_state *state, struct intel_crtc *crtc,
++			struct intel_crtc_state *crtc_state);
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5122]: https://gitlab.freedesktop.org/drm/intel/issues/5122
-  [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
-  [i915#6599]: https://gitlab.freedesktop.org/drm/intel/issues/6599
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12158 -> Patchwork_108744v1
-
-  CI-20190529: 20190529
-  CI_DRM_12158: 3bde74f15d452bf788ecab8933ee802b2ee9e673 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6656: 24100c4e181c50e3678aeca9c641b8a43555ad73 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_108744v1: 3bde74f15d452bf788ecab8933ee802b2ee9e673 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e34aaf9491d8 drm/i915: Do not dereference NULL bo->resource
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/index.html
-
---===============2125167951410242467==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Do not dereference NULL bo-&gt;resource</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108744/">https://patchwork.freedesktop.org/series/108744/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 2 warnings, 20 checks, 1260 lines checked
 
 
-    <h1>CI Bug Log - changes from CI_DRM_12158 -&gt; Patchwork_108744v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-cfl-8109u bat-jsl-3 bat-dg1-5 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_108744v1:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@gem_exec_fence@basic-busy@vecs0:<ul>
-<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-tgl-mst/igt@gem_exec_fence@basic-busy@vecs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-tgl-mst/igt@gem_exec_fence@basic-busy@vecs0.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_108744v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_create@basic-files:</p>
-<ul>
-<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-tgl-mst/igt@gem_ctx_create@basic-files.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-tgl-mst/igt@gem_ctx_create@basic-files.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12158/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108744v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12158 -&gt; Patchwork_108744v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12158: 3bde74f15d452bf788ecab8933ee802b2ee9e673 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6656: 24100c4e181c50e3678aeca9c641b8a43555ad73 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_108744v1: 3bde74f15d452bf788ecab8933ee802b2ee9e673 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e34aaf9491d8 drm/i915: Do not dereference NULL bo-&gt;resource</p>
-
-</body>
-</html>
-
---===============2125167951410242467==--
