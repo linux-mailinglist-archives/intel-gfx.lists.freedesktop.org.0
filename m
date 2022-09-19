@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 628055BD578
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 21:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AA105BD592
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 22:16:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B917E10E111;
-	Mon, 19 Sep 2022 19:58:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD52610E101;
+	Mon, 19 Sep 2022 20:16:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 13F0310E111;
- Mon, 19 Sep 2022 19:58:00 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5602610E101;
+ Mon, 19 Sep 2022 20:16:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 10B73AADDC;
- Mon, 19 Sep 2022 19:58:00 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4DD8FAADD7;
+ Mon, 19 Sep 2022 20:16:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pablo Ceballos" <pceballos@google.com>
-Date: Mon, 19 Sep 2022 19:58:00 -0000
-Message-ID: <166361748006.28333.5445384042378804837@emeril.freedesktop.org>
+To: "Zheng Hacker" <hackerzheng666@gmail.com>
+Date: Mon, 19 Sep 2022 20:16:20 -0000
+Message-ID: <166361858028.28333.5175264098782847386@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220915004601.320198-1-pceballos@google.com>
-In-Reply-To: <20220915004601.320198-1-pceballos@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/display/lspcon=3A_Increase_LSPCON_mode_settle_timeout?=
+References: <CAJedcCxVW++iH49UFZp9ruUuTcNubWCH6Wsqe11K4COB3E8msg@mail.gmail.com>
+In-Reply-To: <CAJedcCxVW++iH49UFZp9ruUuTcNubWCH6Wsqe11K4COB3E8msg@mail.gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/gvt=3A_fix_double-free_bug_in_split=5F2MB=5Fgtt=5Fentry?=
+ =?utf-8?q?=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,12 +48,17 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/display/lspcon: Increase LSPCON mode settle timeout
-URL   : https://patchwork.freedesktop.org/series/108735/
-State : warning
+Series: drm/i915/gvt: fix double-free bug in split_2MB_gtt_entry.
+URL   : https://patchwork.freedesktop.org/series/108736/
+State : failure
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/108735/revisions/1/mbox/ not found
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/108736/revisions/1/mbox/ not applied
+Patch is empty.
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To record the empty patch as an empty commit, run "git am --allow-empty".
+To restore the original branch and stop patching, run "git am --abort".
 
 
