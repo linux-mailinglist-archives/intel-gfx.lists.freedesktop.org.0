@@ -2,47 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 446355BCFB5
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 16:56:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7305BCFEB
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 17:03:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17FB789B57;
-	Mon, 19 Sep 2022 14:56:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A84D110E669;
+	Mon, 19 Sep 2022 15:02:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6F2D89B57
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Sep 2022 14:56:23 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3AE210E651;
+ Mon, 19 Sep 2022 15:02:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663599383; x=1695135383;
- h=from:to:subject:date:message-id:mime-version:
+ t=1663599762; x=1695135762;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=WA3tzaD1xY1uCqr6DcV0NyNA312ME0sLryKjj52qZu4=;
- b=kNydcKiQ+HUpEHP7fmDdw+x0T4al8q015NE9u1EPQEjn22JP6UbetHrK
- N5hczyqXdCuGOqvDeefeYwUCG83BHyI5Eysvd6PRmLrYNfIJPbIKuPwuF
- nG3xsAyMHQVYVUrUAPUm5KrWJRLi3eX+PqIFmVSYPSjEZD8EmtoDOgni1
- ox0rvm6xqfvHKjMhVn08OF6/RvwsEQmfn/nuPzGipbH/F1LYmnKN/su7O
- 6jDyW1u2RfqEiN3tBbFzNBgp95MglK1P8P13GNZB+zxwLBOt+/EPhfVox
- y3e81vt/zvCynIxhmrXUQHb+B/W+acF7DEKsJ26AddT92tiVfA/cAYcDI g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="300795123"
-X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; d="scan'208";a="300795123"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 07:56:22 -0700
-X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; d="scan'208";a="687002920"
-Received: from heyingji-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
- ([10.209.155.230])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 07:56:21 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
+ bh=JHrYECgzEe8LGDHUKM2IYQMKdpVDU84mqnOBo3OCC/E=;
+ b=cczDXUWLyuvsvQzeCi11TWjsx/swyS4ez+qRv/31I2HEx5+E21MPwo7+
+ Q6UwInzmvSwviDDjIyMtVRdb1/FRO5RQFVWenX24b+vQ+sPiPvdXtUUZQ
+ HiX6CjaeALltpV1kskpQFyMyy4eC969svFgHXrfhJjT5qrIeQcd7zvxFK
+ bmQsEiv+eoGvFGmAaMo0bWkQ0ykhnVjrb9mP4q+BPfj5yb8qdaxr3jgyz
+ g3iKUAUACpKykhU011wzgTdko+0YnFTCxnx8Dspw6v+LhEoY/ns1VuC9C
+ jLFQWXCVD9ueCMxlaw+bzGn8AK1wc729wHqwbHql/HUElCkc1yMrNRHiC A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="279804229"
+X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; d="scan'208";a="279804229"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 08:02:41 -0700
+X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; d="scan'208";a="596115304"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.13.19])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 08:02:39 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 Sep 2022 11:56:59 -0300
-Message-Id: <20220919145659.293492-1-gustavo.sousa@intel.com>
+Date: Mon, 19 Sep 2022 17:02:33 +0200
+Message-Id: <20220919150233.5457-1-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Move hotplug inversion logic into
- separate helper
+Subject: [Intel-gfx] [PATCH] drm/i915: Do not dereference NULL bo->resource
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,60 +56,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: matthew.auld@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make the code more readable, which will be more apparent as new
-platforms with different hotplug inversion needs are added.
+bo->resource could be NULL hence add a NULL check for
+bo->resource before dereferencing it.
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/6850
+Fixes: ad74457a6b5a96 ("drm/i915/dgfx: Release mmap on rpm suspend")
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/i915/i915_irq.c | 25 ++++++++++++++++---------
- 1 file changed, 16 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index de06f293e173..c53d21ae197f 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -3263,6 +3263,21 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
- 	spin_unlock_irq(&dev_priv->irq_lock);
- }
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 0544b0a4a43a..8608801cd9ab 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -513,7 +513,7 @@ static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
  
-+static void setup_hotplug_inversion(struct drm_i915_private *dev_priv)
-+{
-+	u32 invert_bits;
-+
-+	if (HAS_PCH_DG1(dev_priv))
-+		invert_bits = INVERT_DDIA_HPD |
-+			      INVERT_DDIB_HPD |
-+			      INVERT_DDIC_HPD |
-+			      INVERT_DDID_HPD;
-+	else
-+		return;
-+
-+	intel_uncore_rmw(&dev_priv->uncore, SOUTH_CHICKEN1, 0, invert_bits);
-+}
-+
- static u32 ibx_hotplug_enables(struct drm_i915_private *i915,
- 			       enum hpd_pin pin)
- {
-@@ -3413,15 +3428,7 @@ static u32 gen11_hotplug_enables(struct drm_i915_private *i915,
+ 	if (likely(obj)) {
+ 		/* ttm_bo_release() already has dma_resv_lock */
+-		if (i915_ttm_cpu_maps_iomem(bo->resource))
++		if (bo->resource && i915_ttm_cpu_maps_iomem(bo->resource))
+ 			wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
  
- static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
- {
--	u32 val;
--
--	val = intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN1);
--	val |= (INVERT_DDIA_HPD |
--		INVERT_DDIB_HPD |
--		INVERT_DDIC_HPD |
--		INVERT_DDID_HPD);
--	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN1, val);
--
-+	setup_hotplug_inversion(dev_priv);
- 	icp_hpd_irq_setup(dev_priv);
- }
- 
+ 		__i915_gem_object_pages_fini(obj);
 -- 
 2.37.3
 
