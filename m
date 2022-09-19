@@ -2,48 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD605BCC8E
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 15:06:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F8A75BCDD7
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 16:02:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5324310E632;
-	Mon, 19 Sep 2022 13:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74BF010E644;
+	Mon, 19 Sep 2022 14:02:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C72810E62F
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Sep 2022 13:06:27 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0154310E644
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Sep 2022 14:02:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663592787; x=1695128787;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mV1Ta/qX/7gw4GeiwvvHGpL30BMMILkkiMk9plqKsgA=;
- b=MXAxhZ24anMaJDbvgK/tXElfnSYOtS3ZJMP5T2JWoHRrrYDZN7sswMDU
- FGgqMh8vEiApWkYsKHMFlQCUXkmx0J6BGkv2Jo+9KwgD4q5zrEn5Ec6i5
- d25uUmNrlF0Oqxfd/23QkCbrA57YqjpmLqGj2yhgd4RODc2rc8JANzoFe
- f0q8OVG4Q0nRAv0H/DviU0IdD6hUlK97sZCc9pKlKXVFCVxxC5bEKw2vk
- Um9bokJVoy2xMGupbJ8qhl68LrfrKHkFKksPIvtSsVNAj5lhoYx2v/4bY
- pu/rKPwVpMdGsWU01JYZJPeLNW7bc1wdvaBbz3dioyO/8KsssXxOiZwo2 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="361132262"
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="361132262"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 06:06:26 -0700
+ t=1663596121; x=1695132121;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=zcqmAomUaoJZpQk1J5OTazXF26pH8JxVl33bB8VJmBg=;
+ b=aMJGtaPdIg2B1MTZIGHYRw27ZWLhbxAa5nAE4UR7ZwQqFKYSH1FymQfv
+ pBjtKptRJUeR0Yq70x+Isvroxc6q5EdFur71x0+ObAYvAy5I3W7kKIXrB
+ jfqiUyrd1uJ4zdlS0AC3ypIdSoOEr4N0cjjpyPw9g+LONYP5eBJXfslQP
+ ZdJEfAzAFIygE2clBYCxn4F2vMdOGEEmXkU9g3heyiDUeIp0vN3TP7Av2
+ QDt5NxLIM+Gk++cI8FdDNmSK8JkaN5/z682M+acIHBW9K0Bzjk7QiQeuY
+ hD5yd5UoRV0B7cZuNm1U4R2JNj83YTqSq20RCc5dElKI8LlFrO9glJZ2S A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="299396337"
+X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="299396337"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 07:01:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="863553327"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga006.fm.intel.com with ESMTP; 19 Sep 2022 06:06:23 -0700
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 Sep 2022 18:35:05 +0530
-Message-Id: <20220919130505.1984383-4-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220919130505.1984383-1-suraj.kandpal@intel.com>
-References: <20220919130505.1984383-1-suraj.kandpal@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="614006047"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga007.jf.intel.com with ESMTP; 19 Sep 2022 07:01:57 -0700
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 19 Sep 2022 07:01:53 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Mon, 19 Sep 2022 07:01:53 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.45) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Mon, 19 Sep 2022 07:01:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FudVOanm6OBXNq+nNNxvWs6qgXmwIQ3+OidprXjo8k/aNXqyuARjjeDHT3B3NChBxcGnL5mCMO7v92NucOhKKrtrh47KnXpUIHY+BjCMqrsJE0nl6xrPL5rOfoWzoh/ydMXnv/Jy10Y7PvzjyH2lhuzfwRV9LvMz/qe1EUK642tzlyGL9GMwD8dX/5BNAp7+WABLPqs4HmoxLGpx6CmggpC34isW4ZrmH+DYOttkK633E5fQW5xdj+mw6POT/eNSldM0Sk7m6c16ILQA1R6NnJszkEswsPO+1cT8yczvlA7R+lW+oDqQZ3LUveqC3zOoLmmUXLkwqQsUiL/NsaEL/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hEOaEw7tWbDzoADWLPyRJ5xdkjIuPbq1OIjN0kbQOoo=;
+ b=T+C3ewVLkeCJVxH4Tko3W3uvZersxQOFenpBC3pO/o7o1yOYe/eJXut3DEPqMhqoYsG1QTC5k1P4mptKV4460P58iMIdmO5k4UivIQwnlus+M9j4TknLvGsGm9AqRO8GVbl68T8BY5jLyuC51PfaN1JKx6j38vEWswqkJfld0Z2vOao0MeMtlZT5Om9YmtZrws5wpV1Mt+qmUu6bBHkSC+kQM++fEaiaBeJwHfxoEkgaX229QXLkXGaDzD8m6BCECZgyDEVy9bq7A/0MyFy6oaffyDTNhWmkEfeDb05C8yYvUZ1s6UsRnHA/BNnsQ3T5OZ1uT9WaSO98gdoUeqP4Zg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB4243.namprd11.prod.outlook.com (2603:10b6:a03:1c8::16)
+ by CO1PR11MB5042.namprd11.prod.outlook.com (2603:10b6:303:99::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21; Mon, 19 Sep
+ 2022 14:01:50 +0000
+Received: from BY5PR11MB4243.namprd11.prod.outlook.com
+ ([fe80::3068:ad4d:42b5:6b0]) by BY5PR11MB4243.namprd11.prod.outlook.com
+ ([fe80::3068:ad4d:42b5:6b0%7]) with mapi id 15.20.5632.021; Mon, 19 Sep 2022
+ 14:01:50 +0000
+Message-ID: <7090732d-291f-de14-21d2-afb4dc5e0d8c@intel.com>
+Date: Mon, 19 Sep 2022 16:01:46 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20220914124045.903883-1-karolina.drobnik@intel.com>
+ <20220914150121.y6ucj4mav65mt7we@ldmartin-desk2.lan>
+ <c539a4fb-795b-0b33-2543-6a3e94164676@arm.com>
+ <fbca082a-7fb1-bdb5-af93-69061e597b34@intel.com>
+ <20220916203238.g364hpyrcuoo4h5m@ldmartin-desk2.lan>
+From: Karolina Drobnik <karolina.drobnik@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220916203238.g364hpyrcuoo4h5m@ldmartin-desk2.lan>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 3/3] drm/i915: Enabling WD Transcoder
+X-ClientProxiedBy: AM6P193CA0054.EURP193.PROD.OUTLOOK.COM
+ (2603:10a6:209:8e::31) To BY5PR11MB4243.namprd11.prod.outlook.com
+ (2603:10b6:a03:1c8::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY5PR11MB4243:EE_|CO1PR11MB5042:EE_
+X-MS-Office365-Filtering-Correlation-Id: a28bba6f-92e2-457f-13b0-08da9a477f7c
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3N0jeJuVj2v2QIW3R34AEoJOD20yWRup/4ECaqvd3d+rzlmOFKVZvNyVZ4GFH+bJV5p/bfEIW1tliPJDGYK3I1amnn3KsPyyyCE2ql4Yj9cUS3W4QdYkhEdHIGrQmkneP3zCN4nOoZ/+P/RaWkxflks3TpdvRordtQyO0J0AdkRgHFxDDJOzjNZZB4tlKoM6Mw85ddYtkytdPBb8HnChnDpGnr89vcAmF6JspjcysK7NVLcjeWmDgSMvcEEkEr6ZzijJzsCSX6jwJ/IftZ5CVzh/6AakhcSAEUg6djczCNPLTuZAj50NFvtSaUu7HubEAm1EWqbBFvdyhMe+lscr7QOOHctt9MhkY/85oiZSFI3IUshfRtVzi5X2pTQz7O729zH+rMR+Ej37JZjQ4VKVA23Vg/79+peC02mvBlNZsxso3bYJAGD62flVWoTo3J3ErPz4ogBaOmf3jnOiGFd4pmPOAsDVqSfDmGAIZiXsqAJju9e3g/eFJmh2Pll2g+Ii7jKT0o1R4p+uHe78V+3YORSbtHZ/6wmSpx4PLTTTIvpoCOF8ZiP/XiNfk4BKe5JYOLz+qFnng8gVHF1mR/TEFUqbPtTWAHVjZGC6O/mt5WkV2Ob8dgLRUO/QFV0syiM+JQQ3GnIqEKuJ8xwvJWgixkZFVyp/emP/j/YkbW8Q1GZxoKEFjwsjETZOoXuoCHqgX9xYwCZ848aCmhIcH0CHywlGoW8OsI53yOFElZeqwqKpZRbVRubkUUk2S6dHkikVfqa3/sbKKCp06KxSXje6mPt7agYVvuN+3Yc6JjBoif5c0rXOF7yZSjqvhMFTFH4uHQhl18sO/uneiTKygxhq6rDofpIpnicjvF3IAeradgw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB4243.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(366004)(39860400002)(346002)(376002)(136003)(396003)(451199015)(2906002)(2616005)(54906003)(966005)(44832011)(53546011)(36916002)(41300700001)(6506007)(6666004)(4326008)(8676002)(66476007)(66556008)(66946007)(83380400001)(316002)(37006003)(6636002)(6486002)(5660300002)(36756003)(31696002)(186003)(6862004)(8936002)(478600001)(86362001)(6512007)(38100700002)(26005)(31686004)(82960400001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZlFIZDE1dXhXMXJwWmhFSmRhMzhNZDBTbG5ZYkp2aXVYbGN1NnpFV25BNFk4?=
+ =?utf-8?B?QnBxN2xZRnp5VGU2eWd3c1JJU2VaR0Fwekc3eWtmOFo2S3o3K3pieTJ2YW5Y?=
+ =?utf-8?B?anh0M0hBVkFkMVFIK290aWNmODd5Wm5Od05EdUJtQ2xzdlAwYzQwbEVXaGdh?=
+ =?utf-8?B?VHdoY1ptSjdSL0o1TUdZZXNQNlBTZGt3NlZSS2lWSG9TaVN2Yk5Xa0VlOVJE?=
+ =?utf-8?B?YkZ0RVNTZkh5Q202VHo3SE9BWHRZc3JJNnZnNXNqNEkvMmZoeXZYT0JOZ09u?=
+ =?utf-8?B?QkFBNGVYMWpmN1hUN0JpZ3VJRkFnSWJQQ3kxWnNzMXROVHM4dVNibFhzc3Nr?=
+ =?utf-8?B?UHplb09YSERGZlFyL3JYd3dEWnZyRGt1amxXa3RZZzZtaVZoVGdVTC85Y0xC?=
+ =?utf-8?B?cXZDd3pxMDZidm9IbUxjYkEvV1E3Y3ZsajBkSzFObGZxWXN3Z0xSQk9mOU1z?=
+ =?utf-8?B?cEFLbWlNWHNxRDNDSHNGeVpQTXFBVk4yMklBWTVZYjNpZk5iUDRXRTB0ckc2?=
+ =?utf-8?B?bU9JRnVWWm9DNzlKYzQyQkZDRjlyVkxjSnpMOE5paEc0ZGNzZG5NWldDb1Fx?=
+ =?utf-8?B?amRpbkg3Q3A3OVFjaUdGczMwRDBJR29HVThQM01uMGloV3ViNmdNMUVDdHEv?=
+ =?utf-8?B?YVVReEhFM1lTOFdTdGttR2l6OUdvZ2t0dCtjdkp3dXBmeHBxVmNXMVFDcU9X?=
+ =?utf-8?B?bWNkcFBLbVBPU3JodWsxS3BKN1R2c0toUTB4NU5xTWRUWmswTlpxUlZ2cHVC?=
+ =?utf-8?B?Z21HVWdGVndlTzBmQkQ1aHBGY3NZUjAvUHp4QVBtcFJtV0ovMXIvQWdLdWJU?=
+ =?utf-8?B?Wi9OMzdhemIzdzRUMmMvZXViTHJQVk16UHplMkY3dzFBY1Bac1BFdGRWaEJY?=
+ =?utf-8?B?THdPd1poQlBuc3plMlFjVWQwRy9HbUhCczZ2YklVc3c1RFZnL1pPbE5iKysx?=
+ =?utf-8?B?Zm9ETldEd3puN2k4KzhZMmNnMVg1ekhtM0hpdzg3by9PaFhkWW9WOU9aczJJ?=
+ =?utf-8?B?RGxLOTdPdGZvTC9PcStHay8xY25kRjlTNW1kakF5dTZsR2xjaWJENmZ3endW?=
+ =?utf-8?B?a2VxVHc0TCt2Y2QydlFhem5NWU05Q2EyK0RjbzRCT3ByRGFaTW81OXlNRXdv?=
+ =?utf-8?B?SHZNam1qV2ZZUGdFQXgwNWR4Z1VNQjZWTHdZSVNlaGRUUVlValhKbUZ0cmFt?=
+ =?utf-8?B?M3dSc3pYMkVhMjhOa25nbjN6MmxadjUwaTQzZlorZ2JBOFBWeWt5NnJhR2ti?=
+ =?utf-8?B?THJmSHZFT3Y1SWF6UHAzYkVwOE16T3VyOXlLcTNINVVieE9hZUpKUVdsbWdZ?=
+ =?utf-8?B?c3Z2dWR0QkJCSFNheTl4UXMxMDhwTVh6SFBZZk45aVU2ZjNDY1NyY3M1RzNH?=
+ =?utf-8?B?emluMUNmUWtqdG5TTTVqWjhaZUJjVkFQdTcxckh6YnVxUkJJTXM2OXI3U2M5?=
+ =?utf-8?B?dUs1S1NLeDFkWWhOUUFLTW1ObDQwcE5ZcUlMMzZubmU5cFppU2pUYUVIWEVl?=
+ =?utf-8?B?VE1Wbnc5V1duU2xZRlVyMnQ5cWQ1RlJDUFllSlQzdXdOMGtxYWI2bllZcFJt?=
+ =?utf-8?B?MWxvaUlZdEhJQjYzV3Z5Y2xmbEdxQ1dDRUkyQkVOZWdwL2ZwbzkrK1hRMDlP?=
+ =?utf-8?B?RHRBRVhSbSt0cUdNMlNEZkl4bTNMT3ZwMEVqVVpRamVpeEhxTkpJQlRJRTlr?=
+ =?utf-8?B?S1h3eE5UMmdXRmdrY1NYaHorZzdwOGtXaDREVnVPUUxNZEw0YUhDemtVSVRu?=
+ =?utf-8?B?b3YwTlZyTlhnNWxSVVRLRU5aUW1JTjI1R3pPYU9hSGpXNEhoQ3JtNk1DRnh5?=
+ =?utf-8?B?YVQyYitkVFNmTHNJZ0VFNTBBblIzVVdFdVJEY2syNmt4RzJrZG5kRlErMGl0?=
+ =?utf-8?B?QWFnQzg4Z2xHbTFkSmJ1VDV0K05ZaXZ3amhXcXRsOWdldld3V2pUV0lFOTZP?=
+ =?utf-8?B?WSt0UC9wamo5ZVd5cmRQWi9BRW94cTRsYmNhWkhsd0hVdGoxWTlMYU9VQmhq?=
+ =?utf-8?B?SlU0NTBuZm9QSzE3U2gxdlhjVXN4M1o4UlBlNXU5ekN0aG52czNSWjNtU3Rm?=
+ =?utf-8?B?RGRDREY1VWg1cHhHVmFIOGlVYzBOcFc1OUdMbjdqYm9EYWNxSjQ1ZE9oZVVy?=
+ =?utf-8?B?TE9VMjRNZDl2THZTbm15akFSdFVoQmdWL2ExMWs3M0pDTGFHTWhwN3NBK2hN?=
+ =?utf-8?B?K0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a28bba6f-92e2-457f-13b0-08da9a477f7c
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4243.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2022 14:01:49.9946 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 60O0I8BZy+mlFTWzgJh0hAJpLJVLI17iuXDWwgx/7VIIdvVLqLrFGxbpTS5KhWYp+gvYZCoGLJlzX5l9OMLpJXroqpOydAoFjLlPJY2k6Oo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5042
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [topic/core-for-CI] Revert "iommu/dma: Fix race
+ condition during iova_domain initialization"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,1417 +161,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Joerg Roedel <jroedel@suse.de>, iommu@lists.linux.dev,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Yunfei Wang <yf.wang@mediatek.com>, Miles Chen <miles.chen@mediatek.com>,
+ Robin Murphy <robin.murphy@arm.com>, Ning Li <ning.li@mediatek.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+On 16.09.2022 22:32, Lucas De Marchi wrote:
+> On Fri, Sep 16, 2022 at 02:24:00PM +0200, Karolina Drobnik wrote:
+>> On 14.09.2022 17:54, Robin Murphy wrote:
+>>> On 2022-09-14 16:01, Lucas De Marchi wrote:
+>>>> On Wed, Sep 14, 2022 at 02:40:45PM +0200, Karolina Drobnik wrote:
+>>>>> This reverts commit ac9a5d522bb80be50ea84965699e1c8257d745ce.
+>>>>>
+>>>>> This change introduces a regression on Alder Lake that
+>>>>> completely blocks testing. To enable CI and avoid possible
+>>>>> circular locking warning, revert the patch.
+>>>>
+>>>> We are already on rc5. Are iommu authors involved aware of this 
+>>>> issue? We could do this in our "for CI only" branch, but it's 
+>>>> equally important that this is fixed for 6.0
+>>>>
+>>>> Cc'ing them.
+>>>
+>>> The lockdep report doesn't make much sense to me - the deadlock cycle
+>>> it's reporting doesn't even involve the mutex added by that commit,
+>>> and otherwise the lock ordering between the IOMMU bus notifier(s) and
+>>> cpu_hotplug_lock has existed for ages. Has lockdep somehow got
+>>> multiple different and unrelated bus notifiers mixed up, maybe?
+>>>
+>>> FWIW nobody else has reported anything, and that mutex addresses a 
+>>> real-world concurrency issue, so I'm not convinced a revert is 
+>>> appropriate without at least a much clearer justification.
+>>
+>> I'll share more background on this regression. We've noticed that no
+>> tests were run for Alder Lake platforms. This may happens when, for
+>> example, there is a kernel taint or lockdep warning.
+>>
+>> Links:
+>> https://intel-gfx-ci.01.org/tree/drm-tip/bat-adlm-1.html
+>> https://intel-gfx-ci.01.org/tree/drm-tip/bat-adlp-6.html
+>>
+>> The CI logs (which can be found for example here[1], boot0 file)
+>> revealed a lockdep warning. One of the recent changes in the area was
+>> commit ac9a5d522bb8 ("iommu/dma: Fix race condition during iova_domain
+>> initialization"), and I sent a revert patch to test it on CI[2]. This
+>> proved to be effective, as the tests started running on Alder Lake
+>> platform:
+>> https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_108474v1/index.html?hosts=adlp 
+>>
+>>
+>> To be clear, that revert is just a way of unblocking CI testing, the
+>> problem requires a specific fix.
+>>
+>> Lucas, would it be possible to merge this revert to the topic branch to
+>> unblock Alder Lake until this issue is fixed? I'm afraid that some
+>> regressions could slip through the cracks if we don't do it soon enough.
+> 
+> Yeah. Let's have CI running with the revertt so we can see if on next runs
+> it will really show it was a regression or if it's something else. I
+> think it will help us understand why it's failing.
 
-Adding support for writeback transcoder to start capturing frames using
-interrupt mechanism
+Thanks for the merge. It looks like all adls are doing better now
+(revert went in CI_DRM_12147):
+https://intel-gfx-ci.01.org/tree/drm-tip/bat-adlp-6.html
+https://intel-gfx-ci.01.org/tree/drm-tip/bat-adln-1.html
+https://intel-gfx-ci.01.org/tree/drm-tip/bat-adlm-1.html (CI_DRM_12149 
+seems to show a different problem)
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_acpi.c     |   1 +
- drivers/gpu/drm/i915/display/intel_crtc.c     |   6 +
- .../drm/i915/display/intel_crtc_state_dump.c  |   1 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +
- drivers/gpu/drm/i915/display/intel_display.c  |  68 +-
- drivers/gpu/drm/i915/display/intel_display.h  |   5 +
- .../drm/i915/display/intel_display_debugfs.c  |  13 +-
- .../drm/i915/display/intel_display_types.h    |  11 +-
- drivers/gpu/drm/i915/display/intel_dpll.c     |   6 +
- .../drm/i915/display/intel_modeset_setup.c    | 103 ++-
- .../drm/i915/display/intel_modeset_verify.c   |  17 +-
- drivers/gpu/drm/i915/display/intel_opregion.c |   3 +
- drivers/gpu/drm/i915/display/intel_wd.c       | 694 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_wd.h       |  48 ++
- drivers/gpu/drm/i915/i915_drv.h               |   1 +
- drivers/gpu/drm/i915/i915_irq.c               |   8 +-
- drivers/gpu/drm/i915/i915_pci.c               |   7 +-
- 18 files changed, 950 insertions(+), 49 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_wd.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_wd.h
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index a26edcdadc21..f34db43cf58d 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -304,6 +304,7 @@ i915-y += \
- 	display/intel_tv.o \
- 	display/intel_vdsc.o \
- 	display/intel_vrr.o \
-+	display/intel_wd.o \
- 	display/vlv_dsi.o \
- 	display/vlv_dsi_pll.o
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-index 912fe5c2ffe5..3321ef62fdbd 100644
---- a/drivers/gpu/drm/i915/display/intel_acpi.c
-+++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-@@ -248,6 +248,7 @@ static u32 acpi_display_type(struct intel_connector *connector)
- 	case DRM_MODE_CONNECTOR_LVDS:
- 	case DRM_MODE_CONNECTOR_eDP:
- 	case DRM_MODE_CONNECTOR_DSI:
-+	case DRM_MODE_CONNECTOR_WRITEBACK:
- 		display_type = ACPI_DISPLAY_TYPE_INTERNAL_DIGITAL;
- 		break;
- 	case DRM_MODE_CONNECTOR_Unknown:
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 6792a9056f46..66d552758720 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -491,6 +491,9 @@ void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state)
- 	if (new_crtc_state->do_async_flip)
- 		return;
- 
-+	if (new_crtc_state->output_types & BIT(INTEL_OUTPUT_WD))
-+		return;
-+
- 	if (intel_crtc_needs_vblank_work(new_crtc_state))
- 		intel_crtc_vblank_work_init(new_crtc_state);
- 
-@@ -638,6 +641,9 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
- 	if (new_crtc_state->do_async_flip)
- 		return;
- 
-+	if (new_crtc_state->output_types & BIT(INTEL_OUTPUT_WD))
-+		return;
-+
- 	trace_intel_pipe_update_end(crtc, end_vbl_count, scanline_end);
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index e9212f69c360..8435065f3b7d 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -71,6 +71,7 @@ static const char * const output_type_str[] = {
- 	OUTPUT_TYPE(DSI),
- 	OUTPUT_TYPE(DDI),
- 	OUTPUT_TYPE(DP_MST),
-+	OUTPUT_TYPE(WD),
- };
- 
- #undef OUTPUT_TYPE
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 643832d55c28..ea8e07a957ab 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1953,6 +1953,12 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
- 	 */
- 	if (encoder->type == INTEL_OUTPUT_DP_MST)
- 		return;
-+	/*
-+	 * WD transcoder is a virtual encoder hence sanization
-+	 * is not required for it
-+	 */
-+	if (encoder->type == INTEL_OUTPUT_WD)
-+		return;
- 
- 	if (!encoder->base.crtc && intel_encoder_is_dp(encoder)) {
- 		u8 pipe_mask;
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index dd008ba8afe3..f34880799ce7 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -115,6 +115,7 @@
- #include "intel_sprite.h"
- #include "intel_tc.h"
- #include "intel_vga.h"
-+#include "intel_wd.h"
- #include "i9xx_plane.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
-@@ -1514,6 +1515,10 @@ static void intel_encoders_update_prepare(struct intel_atomic_state *state)
- 			continue;
- 
- 		intel_connector = to_intel_connector(connector);
-+		/* intel_connector instance is not created for WD transcoder */
-+		if (!intel_connector)
-+			continue;
-+
- 		encoder = intel_connector_primary_encoder(intel_connector);
- 		if (!encoder->update_prepare)
- 			continue;
-@@ -1543,6 +1548,10 @@ static void intel_encoders_update_complete(struct intel_atomic_state *state)
- 			continue;
- 
- 		intel_connector = to_intel_connector(connector);
-+		/* intel_connector instance is not created for WD transcoder */
-+		if (!intel_connector)
-+			continue;
-+
- 		encoder = intel_connector_primary_encoder(intel_connector);
- 		if (!encoder->update_complete)
- 			continue;
-@@ -1553,6 +1562,38 @@ static void intel_encoders_update_complete(struct intel_atomic_state *state)
- 	}
- }
- 
-+static void intel_queue_writeback_job(struct intel_atomic_state *state)
-+{
-+	struct drm_connector_state *new_conn_state;
-+	struct drm_connector *connector;
-+	struct drm_writeback_connector *wb_conn;
-+	int i;
-+
-+	for_each_new_connector_in_state(&state->base, connector, new_conn_state,
-+					i) {
-+		if (!new_conn_state->writeback_job)
-+			continue;
-+
-+		wb_conn = drm_connector_to_writeback(connector);
-+		drm_writeback_queue_job(wb_conn, new_conn_state);
-+	}
-+}
-+
-+static void intel_enable_writeback_capture(struct intel_atomic_state *state,
-+					   struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_connector_state *new_conn_state;
-+	struct drm_connector *connector;
-+	int i;
-+
-+	for_each_new_connector_in_state(&state->base, connector, new_conn_state,
-+					i) {
-+		if (connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK)
-+			continue;
-+		intel_wd_enable_capture(crtc_state, new_conn_state);
-+	}
-+}
-+
- static void intel_encoders_pre_pll_enable(struct intel_atomic_state *state,
- 					  struct intel_crtc *crtc)
- {
-@@ -1653,8 +1694,12 @@ static void intel_encoders_post_disable(struct intel_atomic_state *state,
- 	int i;
- 
- 	for_each_old_connector_in_state(&state->base, conn, old_conn_state, i) {
--		struct intel_encoder *encoder =
--			to_intel_encoder(old_conn_state->best_encoder);
-+		struct intel_encoder *encoder;
-+
-+		if (conn->connector_type == DRM_MODE_CONNECTOR_WRITEBACK)
-+			continue;
-+
-+		encoder = to_intel_encoder(old_conn_state->best_encoder);
- 
- 		if (old_conn_state->crtc != &crtc->base)
- 			continue;
-@@ -1933,7 +1978,8 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 		bdw_set_pipemisc(new_crtc_state);
- 
- 	if (!intel_crtc_is_bigjoiner_slave(new_crtc_state) &&
--	    !transcoder_is_dsi(cpu_transcoder))
-+	    !transcoder_is_dsi(cpu_transcoder) &&
-+	    !transcoder_is_wd(cpu_transcoder))
- 		hsw_configure_cpu_transcoder(new_crtc_state);
- 
- 	crtc->active = true;
-@@ -7535,6 +7581,11 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		}
- 	}
- 
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		if ((new_crtc_state->output_types & BIT(INTEL_OUTPUT_WD)))
-+			intel_wd_set_vblank_event(state, crtc, new_crtc_state);
-+	}
-+
- 	intel_encoders_update_prepare(state);
- 
- 	intel_dbuf_pre_plane_update(state);
-@@ -7545,6 +7596,13 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 			intel_crtc_enable_flip_done(state, crtc);
- 	}
- 
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		if ((new_crtc_state->output_types & BIT(INTEL_OUTPUT_WD))) {
-+			intel_queue_writeback_job(state);
-+			intel_enable_writeback_capture(state, new_crtc_state);
-+		}
-+	}
-+
- 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
- 	dev_priv->display.funcs.display->commit_modeset_enables(state);
- 
-@@ -7899,6 +7957,10 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
- 
-+	/* Initializing WD transcoder */
-+	if (DISPLAY_VER(dev_priv) >= 12)
-+		intel_wd_init(dev_priv, TRANSCODER_WD_0);
-+
- 	if (IS_DG2(dev_priv)) {
- 		intel_ddi_init(dev_priv, PORT_A);
- 		intel_ddi_init(dev_priv, PORT_B);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 102bf7d47ccc..1ee5e8600809 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -158,6 +158,11 @@ static inline bool transcoder_is_dsi(enum transcoder transcoder)
- 	return transcoder == TRANSCODER_DSI_A || transcoder == TRANSCODER_DSI_C;
- }
- 
-+static inline bool transcoder_is_wd(enum transcoder transcoder)
-+{
-+	return transcoder == TRANSCODER_WD_0 || transcoder == TRANSCODER_WD_1;
-+}
-+
- /*
-  * Global legacy plane identifier. Valid only for primary/sprite
-  * planes on pre-g4x, and only for primary planes on g4x-bdw.
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 7c7253a2541c..b7a0be89302e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -550,7 +550,7 @@ static void intel_hdmi_info(struct seq_file *m,
- static void intel_connector_info(struct seq_file *m,
- 				 struct drm_connector *connector)
- {
--	struct intel_connector *intel_connector = to_intel_connector(connector);
-+	struct intel_connector *intel_connector;
- 	const struct drm_connector_state *conn_state = connector->state;
- 	struct intel_encoder *encoder =
- 		to_intel_encoder(conn_state->best_encoder);
-@@ -573,6 +573,8 @@ static void intel_connector_info(struct seq_file *m,
- 	if (!encoder)
- 		return;
- 
-+	intel_connector = to_intel_connector(connector);
-+
- 	switch (connector->connector_type) {
- 	case DRM_MODE_CONNECTOR_DisplayPort:
- 	case DRM_MODE_CONNECTOR_eDP:
-@@ -590,12 +592,15 @@ static void intel_connector_info(struct seq_file *m,
- 		break;
- 	}
- 
--	seq_puts(m, "\tHDCP version: ");
--	intel_hdcp_info(m, intel_connector);
-+	if (intel_connector) {
-+		seq_puts(m, "\tHDCP version: ");
-+		intel_hdcp_info(m, intel_connector);
-+	}
- 
- 	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
- 
--	intel_panel_info(m, intel_connector);
-+	if (intel_connector)
-+		intel_panel_info(m, intel_connector);
- 
- 	seq_printf(m, "\tmodes:\n");
- 	list_for_each_entry(mode, &connector->modes, head)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index a2d294929a64..aef4427c0bd9 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -44,6 +44,7 @@
- #include <drm/drm_vblank.h>
- #include <drm/drm_vblank_work.h>
- #include <drm/i915_mei_hdcp_interface.h>
-+#include <drm/drm_writeback.h>
- #include <media/cec-notifier.h>
- 
- #include "i915_vma.h"
-@@ -1371,6 +1372,11 @@ struct intel_crtc {
- 	bool cpu_fifo_underrun_disabled;
- 	bool pch_fifo_underrun_disabled;
- 
-+	struct {
-+		struct drm_pending_vblank_event *e;
-+		atomic_t work_busy;
-+		wait_queue_head_t wd_wait;
-+	} wd;
- 	/* per-pipe watermark state */
- 	struct {
- 		/* watermarks currently being used  */
-@@ -1498,7 +1504,6 @@ struct cxsr_latency {
- #define to_intel_atomic_state(x) container_of(x, struct intel_atomic_state, base)
- #define to_intel_crtc(x) container_of(x, struct intel_crtc, base)
- #define to_intel_crtc_state(x) container_of(x, struct intel_crtc_state, uapi)
--#define to_intel_wb_connector(x) container_of(x, struct intel_wb_connector, base)
- #define to_intel_encoder(x) container_of(x, struct intel_encoder, base)
- #define to_intel_framebuffer(x) container_of(x, struct intel_framebuffer, base)
- #define to_intel_plane(x) container_of(x, struct intel_plane, base)
-@@ -2077,8 +2082,8 @@ intel_connector_list_iter_next(struct drm_connector_list_iter *iter)
- 	struct drm_connector *connector;
- 	bool flag = true;
- 	/*
--	 * Skipping connector that are Writeback connector as they will
--	 * not be embedded in intel connector
-+	 * An intel_connector entity is not created for a writeback
-+	 * connector hence decoupling.
- 	 */
- 	while (flag) {
- 		connector = drm_connector_list_iter_next(iter);
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index b15ba78d64d6..283b403c1ff9 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -940,6 +940,9 @@ static int hsw_crtc_compute_clock(struct intel_atomic_state *state,
- 		intel_get_crtc_new_encoder(state, crtc_state);
- 	int ret;
- 
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_WD))
-+		return 0;
-+
- 	if (DISPLAY_VER(dev_priv) < 11 &&
- 	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
- 		return 0;
-@@ -968,6 +971,9 @@ static int hsw_crtc_get_shared_dpll(struct intel_atomic_state *state,
- 	struct intel_encoder *encoder =
- 		intel_get_crtc_new_encoder(state, crtc_state);
- 
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_WD))
-+		return 0;
-+
- 	if (DISPLAY_VER(dev_priv) < 11 &&
- 	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
- 		return 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index e1a90331c230..15792a5dd04c 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -24,6 +24,7 @@
- #include "intel_pch_display.h"
- #include "intel_pm.h"
- #include "skl_watermark.h"
-+#include "intel_wd.h"
- 
- static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
- 					struct drm_modeset_acquire_ctx *ctx)
-@@ -111,17 +112,17 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
- 
- static void intel_modeset_update_connector_atomic_state(struct drm_i915_private *i915)
- {
--	struct intel_connector *connector;
-+	struct drm_connector *connector;
- 	struct drm_connector_list_iter conn_iter;
- 
- 	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
--	for_each_intel_connector_iter(connector, &conn_iter) {
--		struct drm_connector_state *conn_state = connector->base.state;
-+	drm_for_each_connector_iter(connector, &conn_iter) {
-+		struct drm_connector_state *conn_state = connector->state;
- 		struct intel_encoder *encoder =
--			to_intel_encoder(connector->base.encoder);
-+			to_intel_encoder(connector->encoder);
- 
- 		if (conn_state->crtc)
--			drm_connector_put(&connector->base);
-+			drm_connector_put(connector);
- 
- 		if (encoder) {
- 			struct intel_crtc *crtc =
-@@ -133,7 +134,7 @@ static void intel_modeset_update_connector_atomic_state(struct drm_i915_private
- 			conn_state->crtc = &crtc->base;
- 			conn_state->max_bpc = (crtc_state->pipe_bpp ?: 24) / 3;
- 
--			drm_connector_get(&connector->base);
-+			drm_connector_get(connector);
- 		} else {
- 			conn_state->best_encoder = NULL;
- 			conn_state->crtc = NULL;
-@@ -433,6 +434,8 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
- 	struct intel_crtc *crtc;
- 	struct intel_encoder *encoder;
- 	struct intel_connector *connector;
-+	struct drm_connector *_connector;
-+	struct drm_encoder *_encoder;
- 	struct drm_connector_list_iter conn_iter;
- 	u8 active_pipes = 0;
- 
-@@ -509,38 +512,70 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
- 	intel_dpll_readout_hw_state(i915);
- 
- 	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
--	for_each_intel_connector_iter(connector, &conn_iter) {
--		if (connector->get_hw_state(connector)) {
--			struct intel_crtc_state *crtc_state;
--			struct intel_crtc *crtc;
--
--			connector->base.dpms = DRM_MODE_DPMS_ON;
--
--			encoder = intel_attached_encoder(connector);
--			connector->base.encoder = &encoder->base;
--
--			crtc = to_intel_crtc(encoder->base.crtc);
--			crtc_state = crtc ? to_intel_crtc_state(crtc->base.state) : NULL;
--
--			if (crtc_state && crtc_state->hw.active) {
--				/*
--				 * This has to be done during hardware readout
--				 * because anything calling .crtc_disable may
--				 * rely on the connector_mask being accurate.
--				 */
--				crtc_state->uapi.connector_mask |=
--					drm_connector_mask(&connector->base);
--				crtc_state->uapi.encoder_mask |=
--					drm_encoder_mask(&encoder->base);
-+	drm_for_each_connector_iter(_connector, &conn_iter) {
-+		struct intel_crtc_state *crtc_state;
-+		struct intel_crtc *crtc;
-+		struct drm_writeback_connector *wb_conn;
-+		struct intel_wd *intel_wd;
-+
-+		connector = to_intel_connector(_connector);
-+		if (!connector) {
-+			wb_conn = drm_connector_to_writeback(_connector);
-+			intel_wd = wb_conn_to_intel_wd(wb_conn);
-+			_encoder = &intel_wd->base.base;
-+			_connector->encoder = _encoder;
-+			encoder = to_intel_encoder(_encoder);
-+			pipe = 0;
-+			if (encoder->get_hw_state(encoder, &pipe)) {
-+				_connector->dpms = DRM_MODE_DPMS_ON;
-+				crtc = to_intel_crtc(_encoder->crtc);
-+				crtc_state = crtc ? to_intel_crtc_state(crtc->base.state) : NULL;
-+
-+				if (crtc_state && crtc_state->hw.active) {
-+					/*
-+					 * This has to be done during hardware readout
-+					 * because anything calling .crtc_disable may
-+					 * rely on the connector_mask being accurate.
-+					 */
-+					crtc_state->uapi.connector_mask |=
-+						drm_connector_mask(&connector->base);
-+					crtc_state->uapi.encoder_mask |=
-+						drm_encoder_mask(&encoder->base);
-+				}
-+			} else {
-+				_connector->dpms = DRM_MODE_DPMS_OFF;
-+				_connector->encoder = NULL;
- 			}
- 		} else {
--			connector->base.dpms = DRM_MODE_DPMS_OFF;
--			connector->base.encoder = NULL;
-+			if (connector->get_hw_state(connector)) {
-+				connector->base.dpms = DRM_MODE_DPMS_OFF;
-+				encoder = intel_attached_encoder(connector);
-+				connector->base.encoder = &encoder->base;
-+
-+				crtc = to_intel_crtc(encoder->base.crtc);
-+				crtc_state = crtc ? to_intel_crtc_state(crtc->base.state) : NULL;
-+
-+				if (crtc_state && crtc_state->hw.active) {
-+					/*
-+					 * This has to be done during hardware readout
-+					 * because anything calling .crtc_disable may
-+					 * rely on the connector_mask being accurate.
-+					 */
-+					crtc_state->uapi.connector_mask |=
-+						drm_connector_mask(&connector->base);
-+					crtc_state->uapi.encoder_mask |=
-+						drm_encoder_mask(&encoder->base);
-+				}
-+			} else {
-+				connector->base.dpms = DRM_MODE_DPMS_OFF;
-+				connector->base.encoder = NULL;
-+			}
- 		}
- 		drm_dbg_kms(&i915->drm,
--			    "[CONNECTOR:%d:%s] hw state readout: %s\n",
--			    connector->base.base.id, connector->base.name,
--			    str_enabled_disabled(connector->base.encoder));
-+				"[CONNECTOR:%d:%s] hw state readout: %s\n",
-+				_connector->base.id, _connector->name,
-+				str_enabled_disabled(_connector->encoder));
-+
- 	}
- 	drm_connector_list_iter_end(&conn_iter);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-index 0fdcf2e6d57f..80e9840e2e5f 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-@@ -25,11 +25,16 @@
- static void intel_connector_verify_state(struct intel_crtc_state *crtc_state,
- 					 struct drm_connector_state *conn_state)
- {
--	struct intel_connector *connector = to_intel_connector(conn_state->connector);
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct drm_connector *_connector = conn_state->connector;
-+	struct intel_connector *connector;
-+	struct drm_i915_private *i915 = to_i915(_connector->dev);
- 
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s]\n",
--		    connector->base.base.id, connector->base.name);
-+		    _connector->base.id, _connector->name);
-+
-+	connector = to_intel_connector(_connector);
-+	if (!connector)
-+		return;
- 
- 	if (connector->get_hw_state(connector)) {
- 		struct intel_encoder *encoder = intel_attached_encoder(connector);
-@@ -119,6 +124,9 @@ verify_encoder_state(struct drm_i915_private *dev_priv, struct intel_atomic_stat
- 			    encoder->base.base.id,
- 			    encoder->base.name);
- 
-+		if (encoder->type == INTEL_OUTPUT_WD)
-+			continue;
-+
- 		for_each_oldnew_connector_in_state(&state->base, connector, old_conn_state,
- 						   new_conn_state, i) {
- 			if (old_conn_state->best_encoder == &encoder->base)
-@@ -177,6 +185,9 @@ verify_crtc_state(struct intel_crtc *crtc,
- 
- 	intel_crtc_get_pipe_config(pipe_config);
- 
-+	if (new_crtc_state->output_types & BIT(INTEL_OUTPUT_WD))
-+		return;
-+
- 	/* we keep both pipes enabled on 830 */
- 	if (IS_I830(dev_priv) && pipe_config->hw.active)
- 		pipe_config->hw.active = new_crtc_state->hw.active;
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index caa07ef34f21..1bcb4b58d992 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -374,6 +374,9 @@ int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
- 	if (ret)
- 		return ret;
- 
-+	if (intel_encoder->type == INTEL_OUTPUT_WD)
-+		return 0;
-+
- 	if (intel_encoder->type == INTEL_OUTPUT_DSI)
- 		port = 0;
- 	else
-diff --git a/drivers/gpu/drm/i915/display/intel_wd.c b/drivers/gpu/drm/i915/display/intel_wd.c
-new file mode 100644
-index 000000000000..b904ce5e1dae
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_wd.c
-@@ -0,0 +1,694 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_fourcc.h>
-+
-+#include "intel_atomic.h"
-+#include "intel_connector.h"
-+#include "intel_wd.h"
-+#include "intel_fb_pin.h"
-+#include "intel_de.h"
-+
-+enum {
-+	WD_CAPTURE_4_PIX,
-+	WD_CAPTURE_2_PIX,
-+} wd_capture_format;
-+
-+struct drm_writeback_job
-+*intel_get_writeback_job_from_queue(struct intel_wd *intel_wd)
-+{
-+	struct drm_writeback_job *job;
-+	struct drm_i915_private *i915 = to_i915(intel_wd->base.base.dev);
-+	struct drm_writeback_connector *wb_conn =
-+		&intel_wd->wb_conn;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&wb_conn->job_lock, flags);
-+	job = list_first_entry_or_null(&wb_conn->job_queue,
-+				       struct drm_writeback_job,
-+				       list_entry);
-+	spin_unlock_irqrestore(&wb_conn->job_lock, flags);
-+	if (job == NULL) {
-+		drm_dbg_kms(&i915->drm, "job queue is empty\n");
-+		return NULL;
-+	}
-+
-+	return job;
-+}
-+
-+static const u32 wd_fmts[] = {
-+	DRM_FORMAT_YUV444,
-+	DRM_FORMAT_XYUV8888,
-+	DRM_FORMAT_XBGR8888,
-+	DRM_FORMAT_XRGB8888,
-+	DRM_FORMAT_Y410,
-+	DRM_FORMAT_YUV422,
-+	DRM_FORMAT_XBGR2101010,
-+	DRM_FORMAT_RGB565,
-+};
-+
-+static int intel_wd_get_format(int pixel_format)
-+{
-+	int wd_format = -EINVAL;
-+
-+	switch (pixel_format) {
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_XRGB8888:
-+	case DRM_FORMAT_XBGR2101010:
-+	case DRM_FORMAT_XYUV8888:
-+	case DRM_FORMAT_YUV444:
-+		wd_format = WD_CAPTURE_4_PIX;
-+		break;
-+	case DRM_FORMAT_YUV422:
-+	case DRM_FORMAT_RGB565:
-+		wd_format = WD_CAPTURE_2_PIX;
-+		break;
-+	default:
-+		DRM_ERROR("unsupported pixel format %x!\n",
-+			pixel_format);
-+	}
-+
-+	return wd_format;
-+}
-+
-+static int intel_wd_verify_pix_format(int format)
-+{
-+	const struct drm_format_info *info = drm_format_info(format);
-+	int pix_format = info->format;
-+	int i = 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(wd_fmts); i++)
-+		if (pix_format == wd_fmts[i])
-+			return 0;
-+
-+	return true;
-+}
-+
-+static u32 intel_wd_get_stride(const struct intel_crtc_state *crtc_state,
-+			       int format)
-+{
-+	const struct drm_format_info *info = drm_format_info(format);
-+	int wd_format;
-+	int hactive, pixel_size;
-+
-+	wd_format = intel_wd_get_format(info->format);
-+
-+	switch (wd_format) {
-+	case WD_CAPTURE_4_PIX:
-+		pixel_size = 4;
-+		break;
-+	case WD_CAPTURE_2_PIX:
-+		pixel_size = 2;
-+		break;
-+	default:
-+		pixel_size = 1;
-+		break;
-+	}
-+
-+	hactive = crtc_state->hw.adjusted_mode.crtc_hdisplay;
-+
-+	return DIV_ROUND_UP(hactive * pixel_size, 64);
-+}
-+
-+static int intel_wd_pin_fb(struct intel_wd *intel_wd,
-+			   struct drm_framebuffer *fb)
-+{
-+	const struct i915_gtt_view view = {
-+		.type = I915_GTT_VIEW_NORMAL,
-+	};
-+	struct i915_vma *vma;
-+
-+	vma = intel_pin_and_fence_fb_obj(fb, false, &view, false,
-+					 &intel_wd->flags);
-+
-+	if (IS_ERR(vma))
-+		return PTR_ERR(vma);
-+
-+	intel_wd->vma = vma;
-+	return 0;
-+}
-+
-+static void intel_configure_slicing_strategy(struct drm_i915_private *i915,
-+					     struct intel_wd *intel_wd,
-+					     u32 *tmp)
-+{
-+	*tmp &= ~WD_STRAT_MASK;
-+	if (intel_wd->slicing_strategy == 1)
-+		*tmp |= WD_SLICING_STRAT_1_1;
-+	else if (intel_wd->slicing_strategy == 2)
-+		*tmp |= WD_SLICING_STRAT_2_1;
-+	else if (intel_wd->slicing_strategy == 3)
-+		*tmp |= WD_SLICING_STRAT_4_1;
-+	else if (intel_wd->slicing_strategy == 4)
-+		*tmp |= WD_SLICING_STRAT_8_1;
-+
-+	intel_de_write(i915, WD_STREAMCAP_CTL(intel_wd->trans),
-+			*tmp);
-+}
-+
-+static enum drm_mode_status
-+intel_wd_mode_valid(struct drm_connector *connector,
-+		    struct drm_display_mode *mode)
-+{
-+	return MODE_OK;
-+}
-+
-+static int intel_wd_get_modes(struct drm_connector *connector)
-+{
-+	return 0;
-+}
-+
-+static void intel_wd_get_config(struct intel_encoder *encoder,
-+				struct intel_crtc_state *pipe_config)
-+{
-+	struct intel_crtc *intel_crtc =
-+		to_intel_crtc(pipe_config->uapi.crtc);
-+
-+	if (intel_crtc) {
-+		memcpy(pipe_config, intel_crtc->config,
-+			sizeof(*pipe_config));
-+		pipe_config->output_types |= BIT(INTEL_OUTPUT_WD);
-+	}
-+}
-+
-+static int intel_wd_compute_config(struct intel_encoder *encoder,
-+				   struct intel_crtc_state *pipe_config,
-+				   struct drm_connector_state *conn_state)
-+{
-+	struct intel_wd *intel_wd = enc_to_intel_wd(encoder);
-+	struct drm_writeback_job *job;
-+
-+	job = intel_get_writeback_job_from_queue(intel_wd);
-+	if (job || conn_state->writeback_job) {
-+		/*
-+		 * Saving reference of pipe/crtc for later use if
-+		 * writeback job is present
-+		 */
-+		intel_wd->wd_crtc = to_intel_crtc(pipe_config->uapi.crtc);
-+		return 0;
-+	}
-+
-+	return 0;
-+}
-+
-+static void intel_wd_get_power_domains(struct intel_encoder *encoder,
-+				       struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_wd *intel_wd = enc_to_intel_wd(encoder);
-+	intel_wakeref_t wakeref;
-+
-+	wakeref = intel_display_power_get(i915, encoder->power_domain);
-+
-+	intel_wd->io_wakeref[0] = wakeref;
-+}
-+
-+static bool intel_wd_get_hw_state(struct intel_encoder *encoder,
-+				  enum pipe *pipe)
-+{
-+	bool ret = false;
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_wd *intel_wd = enc_to_intel_wd(encoder);
-+	struct intel_crtc *wd_crtc = intel_wd->wd_crtc;
-+	intel_wakeref_t wakeref;
-+	u32 tmp;
-+
-+	if (wd_crtc)
-+		return false;
-+
-+	wakeref = intel_display_power_get_if_enabled(dev_priv,
-+				encoder->power_domain);
-+
-+	if (!wakeref)
-+		goto out;
-+
-+	tmp = intel_de_read(dev_priv, PIPECONF(intel_wd->trans));
-+	ret = tmp & WD_TRANS_ACTIVE;
-+	if (ret) {
-+		*pipe = wd_crtc->pipe;
-+		return true;
-+	}
-+
-+out:
-+	intel_display_power_put(dev_priv, encoder->power_domain, wakeref);
-+	return false;
-+}
-+
-+static int intel_wd_encoder_atomic_check(struct drm_encoder *encoder,
-+					 struct drm_crtc_state *crtc_st,
-+					 struct drm_connector_state *conn_st)
-+{
-+	/* Check for the format and buffers and property validity */
-+	struct drm_framebuffer *fb;
-+	struct drm_writeback_job *job = conn_st->writeback_job;
-+	struct drm_i915_private *i915 = to_i915(encoder->dev);
-+	const struct drm_display_mode *mode = &crtc_st->mode;
-+	int ret;
-+
-+	if (!job) {
-+		drm_dbg_kms(&i915->drm, "No writeback job created returning\n");
-+		return -EINVAL;
-+	}
-+
-+	fb = job->fb;
-+	if (!fb) {
-+		drm_dbg_kms(&i915->drm, "Invalid framebuffer\n");
-+		return -EINVAL;
-+	}
-+
-+	if (fb->width != mode->hdisplay || fb->height != mode->vdisplay) {
-+		drm_dbg_kms(&i915->drm, "Invalid framebuffer size %ux%u\n",
-+				fb->width, fb->height);
-+		return -EINVAL;
-+	}
-+
-+	ret = intel_wd_verify_pix_format(fb->format->format);
-+	if (ret) {
-+		drm_dbg_kms(&i915->drm, "Unsupported framebuffer format %08x\n",
-+				fb->format->format);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct drm_encoder_helper_funcs wd_encoder_helper_funcs = {
-+	.atomic_check = intel_wd_encoder_atomic_check,
-+};
-+
-+static void intel_wd_connector_destroy(struct drm_connector *connector)
-+{
-+	drm_connector_cleanup(connector);
-+}
-+
-+static enum drm_connector_status
-+intel_wd_connector_detect(struct drm_connector *connector, bool force)
-+{
-+	return connector_status_connected;
-+}
-+
-+static const struct drm_connector_funcs wb_connector_funcs = {
-+	.detect = intel_wd_connector_detect,
-+	.reset = drm_atomic_helper_connector_reset,
-+	.destroy = intel_wd_connector_destroy,
-+	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-+};
-+
-+static const struct drm_connector_helper_funcs wb_connector_helper_funcs = {
-+	.get_modes = intel_wd_get_modes,
-+	.mode_valid = intel_wd_mode_valid,
-+};
-+
-+static const struct drm_encoder_funcs drm_writeback_encoder_funcs = {
-+	.destroy = drm_encoder_cleanup,
-+};
-+
-+static bool intel_fastset_dis(struct intel_encoder *encoder,
-+		struct intel_crtc_state *pipe_config)
-+{
-+	return false;
-+}
-+
-+static void intel_wd_connector_init(struct intel_wd *intel_wd)
-+{
-+	drm_atomic_helper_connector_reset(&intel_wd->wb_conn.base);
-+}
-+
-+static void intel_wd_disable_capture(struct intel_wd *intel_wd)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(intel_wd->base.base.dev);
-+	u32 tmp;
-+
-+	intel_de_write_fw(dev_priv, WD_IMR(intel_wd->trans), 0xFF);
-+	tmp = intel_de_read(dev_priv, PIPECONF(intel_wd->trans));
-+	tmp &= WD_TRANS_DISABLE;
-+	intel_de_write(dev_priv, PIPECONF(intel_wd->trans), tmp);
-+	tmp = intel_de_read(dev_priv, WD_TRANS_FUNC_CTL(intel_wd->trans));
-+}
-+
-+void intel_wd_init(struct drm_i915_private *i915, enum transcoder trans)
-+{
-+	struct intel_wd *intel_wd;
-+	struct intel_encoder *encoder;
-+	struct drm_writeback_connector *wb_conn;
-+	int n_formats = ARRAY_SIZE(wd_fmts);
-+	struct drm_encoder *drm_enc;
-+	int err, ret;
-+
-+	intel_wd = kzalloc(sizeof(*intel_wd), GFP_KERNEL);
-+	if (!intel_wd)
-+		return;
-+
-+	intel_wd_connector_init(intel_wd);
-+	encoder = &intel_wd->base;
-+	drm_enc = &encoder->base;
-+	wb_conn = &intel_wd->wb_conn;
-+	intel_wd->trans = trans;
-+	intel_wd->triggered_cap_mode = 1;
-+	intel_wd->frame_num = 1;
-+	intel_wd->slicing_strategy = 1;
-+	encoder->get_config = intel_wd_get_config;
-+	encoder->compute_config = intel_wd_compute_config;
-+	encoder->get_hw_state = intel_wd_get_hw_state;
-+	encoder->type = INTEL_OUTPUT_WD;
-+	encoder->cloneable = 0;
-+	encoder->pipe_mask = ~0;
-+	encoder->power_domain = POWER_DOMAIN_TRANSCODER_B;
-+	encoder->get_power_domains = intel_wd_get_power_domains;
-+	encoder->initial_fastset_check = intel_fastset_dis;
-+
-+	drm_encoder_helper_add(drm_enc,
-+			&wd_encoder_helper_funcs);
-+
-+	drm_enc->possible_crtcs = ~0;
-+	ret = drm_encoder_init(&i915->drm, drm_enc,
-+			       &drm_writeback_encoder_funcs,
-+			       DRM_MODE_ENCODER_VIRTUAL, NULL);
-+
-+	if (ret) {
-+		drm_dbg_kms(&i915->drm,
-+			    "Writeback drm_encoder init Failed: %d\n",
-+			    ret);
-+		goto cleanup;
-+	}
-+
-+	err = drm_writeback_connector_init_with_encoder(&i915->drm,
-+		wb_conn, drm_enc, &wb_connector_funcs,
-+		wd_fmts, n_formats);
-+
-+	if (err != 0) {
-+		drm_dbg_kms(&i915->drm,
-+			    "drm_writeback_connector_init: Failed: %d\n",
-+			    err);
-+		goto cleanup;
-+	}
-+
-+	wb_conn->base.encoder = drm_enc;
-+	drm_connector_helper_add(&wb_conn->base, &wb_connector_helper_funcs);
-+	wb_conn->base.status = connector_status_connected;
-+	return;
-+
-+cleanup:
-+	kfree(intel_wd);
-+	return;
-+}
-+
-+static void intel_wd_writeback_complete(struct intel_wd *intel_wd,
-+					struct drm_writeback_job *job,
-+					int status)
-+{
-+	struct drm_writeback_connector *wb_conn =
-+		&intel_wd->wb_conn;
-+	drm_writeback_signal_completion(wb_conn, status);
-+}
-+
-+static int intel_wd_setup_transcoder(struct intel_wd *intel_wd,
-+				     struct intel_crtc_state *pipe_config,
-+				     struct drm_connector_state *conn_state,
-+				     struct drm_writeback_job *job)
-+{
-+	struct intel_crtc *intel_crtc = to_intel_crtc(pipe_config->uapi.crtc);
-+	enum pipe pipe = intel_crtc->pipe;
-+	struct drm_framebuffer *fb;
-+	struct drm_i915_private *dev_priv = to_i915(intel_crtc->base.dev);
-+	struct drm_gem_object *wd_fb_obj;
-+	int ret;
-+	u32 stride, tmp;
-+	u16 hactive, vactive;
-+
-+	fb = job->fb;
-+	wd_fb_obj = fb->obj[0];
-+	if (!wd_fb_obj) {
-+		drm_dbg_kms(&dev_priv->drm, "No framebuffer gem object created\n");
-+		return -EINVAL;
-+	}
-+
-+	ret = intel_wd_pin_fb(intel_wd, fb);
-+	drm_WARN_ON(&dev_priv->drm, ret != 0);
-+	/* Write stride and surface registers in that particular order */
-+	stride = intel_wd_get_stride(pipe_config, fb->format->format);
-+
-+	tmp = intel_de_read(dev_priv, WD_STRIDE(intel_wd->trans));
-+	tmp &= ~WD_STRIDE_MASK;
-+	tmp |= (stride << WD_STRIDE_SHIFT);
-+
-+	intel_de_write(dev_priv, WD_STRIDE(intel_wd->trans), tmp);
-+
-+	tmp = intel_de_read(dev_priv, WD_SURF(intel_wd->trans));
-+
-+	intel_de_write(dev_priv, WD_SURF(intel_wd->trans),
-+			i915_ggtt_offset(intel_wd->vma));
-+
-+	tmp = intel_de_read_fw(dev_priv, WD_IIR(intel_wd->trans));
-+	intel_de_write_fw(dev_priv, WD_IIR(intel_wd->trans), tmp);
-+
-+	tmp = ~(WD_GTT_FAULT_INT | WD_WRITE_COMPLETE_INT | WD_FRAME_COMPLETE_INT |
-+			WD_VBLANK_INT | WD_OVERRUN_INT | WD_CAPTURING_INT);
-+	intel_de_write_fw(dev_priv, WD_IMR(intel_wd->trans), tmp);
-+
-+	if (intel_wd->stream_cap) {
-+		tmp = intel_de_read(dev_priv,
-+				WD_STREAMCAP_CTL(intel_wd->trans));
-+		tmp |= WD_STREAM_CAP_MODE_EN;
-+		intel_configure_slicing_strategy(dev_priv, intel_wd, &tmp);
-+	}
-+
-+	hactive = pipe_config->uapi.mode.hdisplay;
-+	vactive = pipe_config->uapi.mode.vdisplay;
-+	tmp = intel_de_read(dev_priv, HTOTAL(intel_wd->trans));
-+	tmp = intel_de_read(dev_priv, VTOTAL(intel_wd->trans));
-+
-+	/* minimum hactive as per bspec: 64 pixels */
-+	if (hactive < 64)
-+		drm_err(&dev_priv->drm, "hactive is less then 64 pixels\n");
-+
-+	intel_de_write(dev_priv, HTOTAL(intel_wd->trans), hactive - 1);
-+	intel_de_write(dev_priv, VTOTAL(intel_wd->trans), vactive - 1);
-+
-+	tmp = intel_de_read(dev_priv, WD_TRANS_FUNC_CTL(intel_wd->trans));
-+	/* select pixel format */
-+	tmp &= ~WD_PIX_FMT_MASK;
-+
-+	switch (fb->format->format) {
-+	default:
-+	fallthrough;
-+	case DRM_FORMAT_YUYV:
-+		tmp |= WD_PIX_FMT_YUYV;
-+		break;
-+	case DRM_FORMAT_XYUV8888:
-+		tmp |= WD_PIX_FMT_XYUV8888;
-+		break;
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_XRGB8888:
-+		tmp |= WD_PIX_FMT_XBGR8888;
-+		break;
-+	case DRM_FORMAT_Y410:
-+		tmp |= WD_PIX_FMT_Y410;
-+		break;
-+	case DRM_FORMAT_YUV422:
-+		tmp |= WD_PIX_FMT_YUV422;
-+		break;
-+	case DRM_FORMAT_XBGR2101010:
-+		tmp |= WD_PIX_FMT_XBGR2101010;
-+		break;
-+	case DRM_FORMAT_RGB565:
-+		tmp |= WD_PIX_FMT_RGB565;
-+		break;
-+	}
-+
-+	if (intel_wd->triggered_cap_mode)
-+		tmp |= WD_TRIGGERED_CAP_MODE_ENABLE;
-+
-+	if (intel_wd->stream_cap)
-+		tmp |= WD_CTL_POINTER_DTDH;
-+
-+	/* select input pipe */
-+	tmp &= ~WD_INPUT_SELECT_MASK;
-+	switch (pipe) {
-+	default:
-+		fallthrough;
-+	case PIPE_A:
-+		tmp |= WD_INPUT_PIPE_A;
-+		break;
-+	case PIPE_B:
-+		tmp |= WD_INPUT_PIPE_B;
-+		break;
-+	case PIPE_C:
-+		tmp |= WD_INPUT_PIPE_C;
-+		break;
-+	case PIPE_D:
-+		tmp |= WD_INPUT_PIPE_D;
-+		break;
-+	}
-+
-+	/* enable DDI buffer */
-+	if (!(tmp & TRANS_WD_FUNC_ENABLE))
-+		tmp |= TRANS_WD_FUNC_ENABLE;
-+
-+	intel_de_write(dev_priv, WD_TRANS_FUNC_CTL(intel_wd->trans), tmp);
-+
-+	tmp = intel_de_read(dev_priv, PIPECONF(intel_wd->trans));
-+	ret = tmp & WD_TRANS_ACTIVE;
-+	if (!ret) {
-+		/* enable the transcoder */
-+		tmp = intel_de_read(dev_priv, PIPECONF(intel_wd->trans));
-+		tmp |= WD_TRANS_ENABLE;
-+		intel_de_write(dev_priv, PIPECONF(intel_wd->trans), tmp);
-+
-+		/* wait for transcoder to be enabled */
-+		if (intel_de_wait_for_set(dev_priv, PIPECONF(intel_wd->trans),
-+				WD_TRANS_ACTIVE, 10))
-+			drm_err(&dev_priv->drm, "WD transcoder could not be enabled\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static int intel_wd_capture(struct intel_wd *intel_wd,
-+			    struct intel_crtc_state *pipe_config,
-+			    struct drm_connector_state *conn_state,
-+			    struct drm_writeback_job *job)
-+{
-+	u32 tmp;
-+	struct drm_i915_private *i915 = to_i915(intel_wd->base.base.dev);
-+	int ret = 0, status = 0;
-+	struct intel_crtc *wd_crtc = intel_wd->wd_crtc;
-+	unsigned long flags;
-+
-+	if (!job->out_fence)
-+		drm_dbg_kms(&i915->drm, "Not able to get out_fence for job\n");
-+
-+	ret = intel_wd_setup_transcoder(intel_wd, pipe_config,
-+		conn_state, job);
-+
-+	if (ret < 0) {
-+		drm_dbg_kms(&i915->drm,
-+			    "WD transcoder setup not completed aborting capture\n");
-+		return -1;
-+	}
-+
-+	if (!wd_crtc) {
-+		drm_err(&i915->drm, "CRTC not attached\n");
-+		return -1;
-+	}
-+
-+	tmp = intel_de_read_fw(i915, WD_TRANS_FUNC_CTL(intel_wd->trans));
-+	tmp |= START_TRIGGER_FRAME;
-+	tmp &= ~WD_FRAME_NUMBER_MASK;
-+	tmp |= intel_wd->frame_num;
-+	intel_de_write_fw(i915,	WD_TRANS_FUNC_CTL(intel_wd->trans), tmp);
-+
-+	if (!intel_de_wait_for_set(i915, WD_IIR(intel_wd->trans),
-+				   WD_FRAME_COMPLETE_INT, 100)){
-+		drm_dbg_kms(&i915->drm, "frame captured\n");
-+		status = 0;
-+	} else {
-+		drm_dbg_kms(&i915->drm, "frame not captured triggering stop frame\n");
-+		tmp = intel_de_read(i915, WD_TRANS_FUNC_CTL(intel_wd->trans));
-+		tmp |= STOP_TRIGGER_FRAME;
-+		intel_de_write(i915, WD_TRANS_FUNC_CTL(intel_wd->trans), tmp);
-+		status = -1;
-+	}
-+
-+	intel_wd_writeback_complete(intel_wd, job, status);
-+	if (wd_crtc->wd.e) {
-+		spin_lock_irqsave(&i915->drm.event_lock, flags);
-+		drm_dbg_kms(&i915->drm, "send %p\n", wd_crtc->wd.e);
-+		drm_crtc_send_vblank_event(&wd_crtc->base,
-+					   wd_crtc->wd.e);
-+		spin_unlock_irqrestore(&i915->drm.event_lock, flags);
-+		wd_crtc->wd.e = NULL;
-+	} else {
-+		drm_err(&i915->drm, "Event NULL! %p, %p\n", &i915->drm,
-+			wd_crtc);
-+	}
-+	if (!intel_get_writeback_job_from_queue(intel_wd))
-+		intel_wd_disable_capture(intel_wd);
-+	return 0;
-+}
-+
-+void intel_wd_enable_capture(struct intel_crtc_state *pipe_config,
-+		struct drm_connector_state *conn_state)
-+{
-+	struct drm_i915_private *i915 =
-+		to_i915(conn_state->connector->dev);
-+	struct drm_writeback_connector *wb_conn =
-+		drm_connector_to_writeback(conn_state->connector);
-+	struct intel_wd *intel_wd = wb_conn_to_intel_wd(wb_conn);
-+	struct drm_writeback_job *job;
-+
-+	job = intel_get_writeback_job_from_queue(intel_wd);
-+	if (!job) {
-+		drm_dbg_kms(&i915->drm,
-+			    "job queue is empty not capturing any frame\n");
-+		return;
-+	}
-+
-+	intel_wd_capture(intel_wd, pipe_config,
-+			conn_state, job);
-+	intel_wd->frame_num += 1;
-+}
-+
-+void intel_wd_set_vblank_event(struct intel_atomic_state *state, struct intel_crtc *intel_crtc,
-+			struct intel_crtc_state *intel_crtc_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(intel_crtc->base.dev);
-+	struct drm_crtc_state *crtc_state = &intel_crtc_state->uapi;
-+	struct intel_encoder *encoder;
-+	struct intel_wd *intel_wd;
-+	struct drm_connector_state *conn_state;
-+	struct drm_connector *connector;
-+	int i;
-+
-+	for_each_intel_encoder(&i915->drm, encoder) {
-+		if (encoder->type != INTEL_OUTPUT_WD)
-+			continue;
-+
-+		intel_wd = enc_to_intel_wd(encoder);
-+		if (!intel_wd->wd_crtc)
-+			return;
-+	}
-+
-+	if (intel_wd && intel_crtc == intel_wd->wd_crtc) {
-+		for_each_new_connector_in_state(&state->base, connector, conn_state,
-+						i) {
-+			if (!conn_state->writeback_job)
-+				continue;
-+
-+			intel_crtc->wd.e = crtc_state->event;
-+			crtc_state->event = NULL;
-+		}
-+	}
-+}
-+
-+void intel_wd_handle_isr(struct drm_i915_private *i915)
-+{
-+	u32 iir_value = 0;
-+	struct intel_encoder *encoder;
-+	struct intel_wd *intel_wd;
-+
-+	iir_value = intel_de_read(i915, WD_IIR(TRANSCODER_WD_0));
-+
-+	for_each_intel_encoder(&i915->drm, encoder) {
-+
-+		if (encoder->type != INTEL_OUTPUT_WD)
-+			continue;
-+
-+		intel_wd = enc_to_intel_wd(encoder);
-+		if (!intel_wd->wd_crtc) {
-+			drm_err(&i915->drm, "NO CRTC attached with WD\n");
-+			goto clear_iir;
-+		}
-+	}
-+
-+	if (iir_value & WD_FRAME_COMPLETE_INT)
-+		return;
-+
-+clear_iir:
-+	intel_de_write(i915, WD_IIR(TRANSCODER_WD_0), iir_value);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_wd.h b/drivers/gpu/drm/i915/display/intel_wd.h
-new file mode 100644
-index 000000000000..0fcd1a746593
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_wd.h
-@@ -0,0 +1,48 @@
-+/* SPDX-License-Identifier: MIT*/
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#ifndef _INTEL_WD_H
-+#define _INTEL_WD_H
-+
-+#include <drm/drm_crtc.h>
-+
-+#include "intel_display_types.h"
-+
-+#define I915_MAX_WD_TANSCODERS 2
-+
-+struct intel_wd {
-+	struct intel_encoder base;
-+	struct drm_writeback_connector wb_conn;
-+	struct intel_crtc *wd_crtc;
-+	intel_wakeref_t io_wakeref[I915_MAX_WD_TANSCODERS];
-+	enum transcoder trans;
-+	struct i915_vma *vma;
-+	unsigned long flags;
-+	struct drm_writeback_job *job;
-+	int triggered_cap_mode;
-+	int frame_num;
-+	bool stream_cap;
-+	bool start_capture;
-+	int slicing_strategy;
-+};
-+
-+static inline struct intel_wd *enc_to_intel_wd(struct intel_encoder *encoder)
-+{
-+	return container_of(&encoder->base, struct intel_wd, base.base);
-+}
-+
-+static inline struct intel_wd *wb_conn_to_intel_wd(struct drm_writeback_connector *wb_conn)
-+{
-+	return container_of(wb_conn, struct intel_wd, wb_conn);
-+}
-+
-+void intel_wd_init(struct drm_i915_private *dev_priv, enum transcoder trans);
-+void intel_wd_enable_capture(struct intel_crtc_state *pipe_config,
-+			struct drm_connector_state *conn_state);
-+void intel_wd_handle_isr(struct drm_i915_private *dev_priv);
-+void intel_wd_set_vblank_event(struct intel_atomic_state *state, struct intel_crtc *crtc,
-+			struct intel_crtc_state *crtc_state);
-+struct drm_writeback_job *intel_get_writeback_job_from_queue(struct intel_wd *intel_wd);
-+#endif/* _INTEL_WD_H */
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 9f9372931fd2..2b977bd4d9d9 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -34,6 +34,7 @@
- 
- #include <linux/pm_qos.h>
- 
-+#include <drm/drm_writeback.h>
- #include <drm/ttm/ttm_device.h>
- 
- #include "display/intel_display.h"
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 86a42d9e8041..ee0255d9eb64 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -42,6 +42,7 @@
- #include "display/intel_hotplug.h"
- #include "display/intel_lpe_audio.h"
- #include "display/intel_psr.h"
-+#include "display/intel_wd.h"
- 
- #include "gt/intel_breadcrumbs.h"
- #include "gt/intel_gt.h"
-@@ -2342,6 +2343,11 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
- 		found = true;
- 	}
- 
-+	if (iir & GEN8_DE_MISC_WD0) {
-+		intel_wd_handle_isr(dev_priv);
-+		found = true;
-+	}
-+
- 	if (iir & GEN8_DE_EDP_PSR) {
- 		struct intel_encoder *encoder;
- 		u32 psr_iir;
-@@ -3767,7 +3773,7 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
- 	u32 de_pipe_enables;
- 	u32 de_port_masked = gen8_de_port_aux_mask(dev_priv);
- 	u32 de_port_enables;
--	u32 de_misc_masked = GEN8_DE_EDP_PSR;
-+	u32 de_misc_masked = GEN8_DE_EDP_PSR | GEN8_DE_MISC_WD0;
- 	u32 trans_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_D);
- 	enum pipe pipe;
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 77e7df21f539..66bb5f53584b 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -868,7 +868,8 @@ static const struct intel_device_info jsl_info = {
- 	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
- 	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
--		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
-+		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1) | \
-+		BIT(TRANSCODER_WD_0), \
- 	.display.pipe_offsets = { \
- 		[TRANSCODER_A] = PIPE_A_OFFSET, \
- 		[TRANSCODER_B] = PIPE_B_OFFSET, \
-@@ -876,6 +877,8 @@ static const struct intel_device_info jsl_info = {
- 		[TRANSCODER_D] = PIPE_D_OFFSET, \
- 		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET, \
- 		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET, \
-+		[TRANSCODER_WD_0] = PIPE_WD0_OFFSET, \
-+		[TRANSCODER_WD_1] = PIPE_WD1_OFFSET, \
- 	}, \
- 	.display.trans_offsets = { \
- 		[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
-@@ -884,6 +887,8 @@ static const struct intel_device_info jsl_info = {
- 		[TRANSCODER_D] = TRANSCODER_D_OFFSET, \
- 		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET, \
- 		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
-+		[TRANSCODER_WD_0] = TRANSCODER_WD0_OFFSET, \
-+		[TRANSCODER_WD_1] = TRANSCODER_WD1_OFFSET, \
- 	}, \
- 	TGL_CURSOR_OFFSETS, \
- 	.has_global_mocs = 1, \
--- 
-2.25.1
-
+All the best,
+Karolina
+> 
+> Lucas De Marchi
+> 
+> 
+>>
+>> Thanks,
+>> Karolina
+>>
+>> ----
+>> [1] -
+>> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12145/bat-adlm-1/igt@runner@aborted.html 
+>>
+>> [2] - https://patchwork.freedesktop.org/series/108474/
+>>
+>>> Robin.
+>>>
+>>>> thanks Lucas De Marchi
+>>>>
+>>>>>
+>>>>> kernel log:
+>>>>>
+>>>>> ====================================================== WARNING: 
+>>>>> possible circular locking dependency detected 
+>>>>> 6.0.0-rc5-CI_DRM_12132-g6c93e979e542+ #1 Not tainted 
+>>>>> ------------------------------------------------------ cpuhp/0/15
+>>>>> is trying to acquire lock: ffff8881013df278 
+>>>>> (&(&priv->bus_notifier)->rwsem){++++}-{3:3}, at: 
+>>>>> blocking_notifier_call_chain+0x20/0x50 but task is already holding 
+>>>>> lock: ffffffff826490c0 (cpuhp_state-up){+.+.}-{0:0}, at:
+>>>>> cpuhp_thread_fun+0x48/0x1f0 which lock already depends on the
+>>>>> new loc the existing dependency chain (in reverse order) is: ->
+>>>>> #3 (cpuhp_state-up){+.+.}-{0:0}: lock_acquire+0xd3/0x310 
+>>>>> cpuhp_thread_fun+0xa6/0x1f0 smpboot_thread_fn+0x1b5/0x260 
+>>>>> kthread+0xed/0x120 ret_from_fork+0x1f/0x30 -> #2 
+>>>>> (cpu_hotplug_lock){++++}-{0:0}: lock_acquire+0xd3/0x310 
+>>>>> __cpuhp_state_add_instance+0x43/0x1c0 
+>>>>> iova_domain_init_rcaches+0x199/0x1c0 
+>>>>> iommu_setup_dma_ops+0x130/0x440 bus_iommu_probe+0x26a/0x2d0 
+>>>>> bus_set_iommu+0x82/0xd0 intel_iommu_init+0xe33/0x1039 
+>>>>> pci_iommu_init+0x9/0x31 do_one_initcall+0x53/0x2f0 
+>>>>> kernel_init_freeable+0x18f/0x1e1 kernel_init+0x11/0x120 
+>>>>> ret_from_fork+0x1f/0x30 -> #1 
+>>>>> (&domain->iova_cookie->mutex){+.+.}-{3:3}: lock_acquire+0xd3/0x310 
+>>>>> __mutex_lock+0x97/0xf10 iommu_setup_dma_ops+0xd7/0x440 
+>>>>> iommu_probe_device+0xa4/0x180 iommu_bus_notifier+0x2d/0x40 
+>>>>> notifier_call_chain+0x31/0x90 
+>>>>> blocking_notifier_call_chain+0x3a/0x50 device_add+0x3c1/0x900 
+>>>>> pci_device_add+0x255/0x580 pci_scan_single_device+0xa6/0xd0 
+>>>>> pci_scan_slot+0x7a/0x1b0 pci_scan_child_bus_extend+0x35/0x2a0 
+>>>>> vmd_probe+0x5cd/0x970 pci_device_probe+0x95/0x110 
+>>>>> really_probe+0xd6/0x350 __driver_probe_device+0x73/0x170 
+>>>>> driver_probe_device+0x1a/0x90 __driver_attach+0xbc/0x190 
+>>>>> bus_for_each_dev+0x72/0xc0 bus_add_driver+0x1bb/0x210 
+>>>>> driver_register+0x66/0xc0 do_one_initcall+0x53/0x2f0 
+>>>>> kernel_init_freeable+0x18f/0x1e1 kernel_init+0x11/0x120 
+>>>>> ret_from_fork+0x1f/0x30 -> #0 
+>>>>> (&(&priv->bus_notifier)->rwsem){++++}-{3:3}: 
+>>>>> validate_chain+0xb3f/0x2000 __lock_acquire+0x5a4/0xb70 
+>>>>> lock_acquire+0xd3/0x310 down_read+0x39/0x140 
+>>>>> blocking_notifier_call_chain+0x20/0x50 device_add+0x3c1/0x900 
+>>>>> platform_device_add+0x108/0x240 coretemp_cpu_online+0xe1/0x15e 
+>>>>> [coretemp] cpuhp_invoke_callback+0x181/0x8a0 
+>>>>> cpuhp_thread_fun+0x188/0x1f0 smpboot_thread_fn+0x1b5/0x260 
+>>>>> kthread+0xed/0x120 ret_from_fork+0x1f/0x30 other info that might
+>>>>> help us debug thi Chain exists of &(&priv->bus_notifier)->rwsem --> 
+>>>>> cpu_hotplug_lock --> cpuhp_state- Possible unsafe locking scenari 
+>>>>> CPU0 CPU1 ----                    ---- lock(cpuhp_state-up); 
+>>>>> lock(cpu_hotplug_lock); lock(cpuhp_state-up); 
+>>>>> lock(&(&priv->bus_notifier)->rwsem); *** DEADLOCK * 2 locks held by 
+>>>>> cpuhp/0/15: #0: ffffffff82648f10 (cpu_hotplug_lock){++++}-{0:0}, 
+>>>>> at: cpuhp_thread_fun+0x48/0x1f0 #1: ffffffff826490c0 
+>>>>> (cpuhp_state-up){+.+.}-{0:0}, at: cpuhp_thread_fun+0x48/0x1f0 stack 
+>>>>> backtrace: CPU: 0 PID: 15 Comm:
+>>>>> cpuhp/0 Not tainted 6.0.0-rc5-CI_DRM_12132-g6c93e979e542+ #1
+>>>>> Hardware name: Intel Corporation Alder Lake Client 
+>>>>> Platform/AlderLake-P DDR4 RVP, BIOS 
+>>>>> ADLPFWI1.R00.3135.A00.2203251419 03/25/2022 Call Trace: <TASK> 
+>>>>> dump_stack_lvl+0x56/0x7f check_noncircular+0x132/0x150 
+>>>>> validate_chain+0xb3f/0x2000 __lock_acquire+0x5a4/0xb70 
+>>>>> lock_acquire+0xd3/0x310 ? blocking_notifier_call_chain+0x20/0x50 
+>>>>> down_read+0x39/0x140 ? blocking_notifier_call_chain+0x20/0x50 
+>>>>> blocking_notifier_call_chain+0x20/0x50 device_add+0x3c1/0x900 ? 
+>>>>> dev_set_name+0x4e/0x70 platform_device_add+0x108/0x240 
+>>>>> coretemp_cpu_online+0xe1/0x15e [coretemp] ? 
+>>>>> create_core_data+0x550/0x550 [coretemp] 
+>>>>> cpuhp_invoke_callback+0x181/0x8a0 cpuhp_thread_fun+0x188/0x1f0 ?
+>>>>> smpboot_thread_fn+0x1e/0x260 smpboot_thread_fn+0x1b5/0x260 ? 
+>>>>> sort_range+0x20/0x20 kthread+0xed/0x120 ? 
+>>>>> kthread_complete_and_exit+0x20/0x20 ret_from_fork+0x1f/0x30 </TASK>
+>>>>>
+>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6641
+>>>>>
+>>>>> Signed-off-by: Karolina Drobnik <karolina.drobnik@intel.com> Cc:
+>>>>> Lucas De Marchi <lucas.demarchi@intel.com> --- 
+>>>>> drivers/iommu/dma-iommu.c | 17 ++++------------- 1 file changed,
+>>>>> 4 insertions(+), 13 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c 
+>>>>> index 17dd683b2fce..9616b473e4c7 100644 --- 
+>>>>> a/drivers/iommu/dma-iommu.c +++ b/drivers/iommu/dma-iommu.c @@ 
+>>>>> -65,7 +65,6 @@ struct iommu_dma_cookie {
+>>>>>
+>>>>> /* Domain for flush queue callback; NULL if flush queue not in use 
+>>>>> */ struct iommu_domain        *fq_domain; -    struct mutex mutex; };
+>>>>>
+>>>>> static DEFINE_STATIC_KEY_FALSE(iommu_deferred_attach_enabled); @@
+>>>>> -312,7 +311,6 @@ int iommu_get_dma_cookie(struct iommu_domain 
+>>>>> *domain) if (!domain->iova_cookie) return -ENOMEM;
+>>>>>
+>>>>> -    mutex_init(&domain->iova_cookie->mutex); return 0; }
+>>>>>
+>>>>> @@ -563,33 +561,26 @@ static int iommu_dma_init_domain(struct 
+>>>>> iommu_domain *domain, dma_addr_t base, }
+>>>>>
+>>>>> /* start_pfn is always nonzero for an already-initialised domain
+>>>>> */ -    mutex_lock(&cookie->mutex); if (iovad->start_pfn) { if (1UL 
+>>>>> << order != iovad->granule || base_pfn != iovad->start_pfn)
+>>>>> { pr_warn("Incompatible range for DMA domain\n"); - ret = -EFAULT; 
+>>>>> -            goto done_unlock; +            return -EFAULT; }
+>>>>>
+>>>>> -        ret = 0; -        goto done_unlock; +        return 0; }
+>>>>>
+>>>>> init_iova_domain(iovad, 1UL << order, base_pfn); ret = 
+>>>>> iova_domain_init_rcaches(iovad); if (ret) -        goto 
+>>>>> done_unlock; +        return ret;
+>>>>>
+>>>>> /* If the FQ fails we can simply fall back to strict mode */ if 
+>>>>> (domain->type == IOMMU_DOMAIN_DMA_FQ && iommu_dma_init_fq(domain)) 
+>>>>> domain->type = IOMMU_DOMAIN_DMA;
+>>>>>
+>>>>> -    ret = iova_reserve_iommu_regions(dev, domain); - -done_unlock: 
+>>>>> -    mutex_unlock(&cookie->mutex); -    return
+>>>>> ret; +    return iova_reserve_iommu_regions(dev, domain); }
+>>>>>
+>>>>> /** -- 2.25.1
+>>>>>
