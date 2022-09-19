@@ -2,48 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BCBC5BD76B
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 00:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD505BD77F
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 00:35:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 524CA10E1BC;
-	Mon, 19 Sep 2022 22:33:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C9B310E078;
+	Mon, 19 Sep 2022 22:35:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F58610E194;
- Mon, 19 Sep 2022 22:33:10 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30BA710E1A4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Sep 2022 22:35:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663626790; x=1695162790;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=a4sycDUWYN4IudWCOuf656+BZ7xPzwkVwZeqK5x8irU=;
- b=ikLFpvFCnOaEx6d5MdvRoy6bEt/8e/G3fNQ+9Dpa6OkQ7zGG6ParQPaC
- w8qQd0tlYm6NAF+gG9m4+zRIxNIbmwYCpg7h28LIRRMYRk38CysiNMypj
- CznRF3dkyLqh3z5+xY1ebxkNgrtiEviM7j1LqQQZBV6iTCc7KLOWeqjve
- wpByfeYQaerpW+Rw9PwBSFkUE7IKI9vUaom8cElgcjQwUr4VTh7DKTL1u
- HgL4ZwWNHzV+mKgC2itCrqRkn08ibf2Bt57sZfglBUSl5qficDpepOfJ9
- uaY2Du8zdOaYbKCW1PaqhvnoI5ij9oWl3y+RZ21pAMYuEJnktMHTvDCco w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="286585486"
-X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="286585486"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 15:33:09 -0700
-X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="794030792"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 15:33:09 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 Sep 2022 15:32:59 -0700
-Message-Id: <20220919223259.263525-13-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220919223259.263525-1-matthew.d.roper@intel.com>
-References: <20220919223259.263525-1-matthew.d.roper@intel.com>
+ t=1663626928; x=1695162928;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QoFZInXizy6CYuxToMggwTbCqtGWkxZwG9QbZ2WCgLg=;
+ b=LESNETsPdvT1MqqjWUV7rY6wrx8PMQONydItLIlJ1px35ZRgPnZh7kdz
+ sW2wUZrEDFxGdW8fo/W+FURjvTkXvxIOu5RM2YGW0j6xfyRg/pt+UYe18
+ wqu9x8iaF1iXWoDYiU1riSzbRZDpDmR7fu095MIIFDuIogqgBteUjrI6H
+ +hVx1UcaSU7bFNFGI1EQi3cztJ8bQle1rM3Miba18VDw2i9b4A2JetRuu
+ 7U9h18VyOZPE/rhJB8zJErslUclwvC0uan1y109SALv+kQkw+TcnirT0h
+ jQ2GaBpXgU59gUZ96G3xtKIhsXus7eJJVPi+zyuvk3gDx9hM2BdqUMP9K A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="300916677"
+X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="300916677"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 15:35:27 -0700
+X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="744287594"
+Received: from mdnavare-mobl1.jf.intel.com ([10.165.21.203])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 15:35:27 -0700
+Date: Mon, 19 Sep 2022 15:35:48 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20220919223548.GC1061693@mdnavare-mobl1.jf.intel.com>
+References: <20220917004404.414981-1-anusha.srivatsa@intel.com>
+ <20220917004404.414981-7-anusha.srivatsa@intel.com>
+ <20220919194645.GA1061693@mdnavare-mobl1.jf.intel.com>
+ <Yyja10cL3ltvGOnS@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 12/12] drm/i915/mtl: Add multicast steering for
- media GT
+In-Reply-To: <Yyja10cL3ltvGOnS@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/display: Dump the new cdclk
+ config values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,120 +60,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MTL's media GT only has a single type of steering ("OAADDRM") which
-selects between media slice 0 and media slice 1.  We'll always steer to
-media slice 0 unless it is fused off (which is the case when VD0, VE0,
-and SFC0 are all reported as unavailable).
+On Mon, Sep 19, 2022 at 05:10:47PM -0400, Rodrigo Vivi wrote:
+> On Mon, Sep 19, 2022 at 12:46:45PM -0700, Navare, Manasi wrote:
+> > On Fri, Sep 16, 2022 at 05:44:04PM -0700, Anusha Srivatsa wrote:
+> > > Add a helper function to get stringify values of the
+> > > desired cdclk action and dump it with rest of the
+> > > cdclk config values
+> > > 
+> > > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> > 
+> > Please add Suggested-by: field to give proper credits as per our
+> > discussion. This applies to other patches as well to add proper credits
+> > to other folks who suggested design changes/ fixes.
+> > This needs to be followed as per the upstream patch review methodology.
+> 
+> Having the suggested by is a good way to give the proper credits when the whole
+> big idea and design was co authored, or started by the other developer.
+> 
+> We really need to mind about it. However it is not a very good thing for all
+> of the patches we have. Many ideas come out of conversation with many folks
+> and we cannot simply start adding the suggested by list with all the names
+> involved.
+> 
+> There's always a threshold there that we should mind. And the official rule
+> as reference is this one:
+> 
+> "A Suggested-by: tag indicates that the patch idea is suggested by the person
+> named and ensures credit to the person for the idea. Please note that this tag
+> should not be added without the reporter’s permission, especially if the idea
+>  was not posted in a public forum." [1]
+> 
+> As a reference we don't keep adding official suggested-by tags for any and all
+> of the suggestions we receive during reviews. The simple name version in the
+> commit message is what we traditionally uses for small things.
 
-Bspec: 67789
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c      | 19 +++++++++++++++++--
- drivers/gpu/drm/i915/gt/intel_gt_types.h    |  1 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 18 +++++++++++++++++-
- 3 files changed, 35 insertions(+), 3 deletions(-)
+Thanks Rodrigo for the inputs. I agree with you in terms of not having
+this for all patches. But particularly this patch was a suggestion that
+came up through our offline discussion.
+And in cases like this it is a good idea to be mindful about and give
+respectful credits. For internal folks its not a big deal, but
+Just want to make sure we dont lose the credibility in the community if
+this is missed for external folks. People do spend time reviewing and
+suggesting and improving codebase so it is good to be respectful and add
+the tags for patches that are entirely someone else's suggestion.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-index 05f41f1cc88d..04f75c1e0f4e 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-@@ -41,6 +41,7 @@ static const char * const intel_steering_types[] = {
- 	"MSLICE",
- 	"LNCF",
- 	"DSS",
-+	"OADDRM",
- 	"INSTANCE 0",
- };
- 
-@@ -119,6 +120,12 @@ static const struct intel_mmio_range mtl3d_dss_steering_table[] = {
- 	{ 0x00DE80, 0x00E8FF },		/* DSS (0xE000-0xE0FF reserved) */
- };
- 
-+static const struct intel_mmio_range xelpmp_oaddrm_steering_table[] = {
-+	{ 0x393200, 0x39323F },
-+	{ 0x393400, 0x3934FF },
-+};
-+
-+
- void intel_gt_mcr_init(struct intel_gt *gt)
- {
- 	struct drm_i915_private *i915 = gt->i915;
-@@ -141,8 +148,9 @@ void intel_gt_mcr_init(struct intel_gt *gt)
- 			drm_warn(&i915->drm, "mslice mask all zero!\n");
- 	}
- 
--	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70) &&
--	    gt->type == GT_PRIMARY) {
-+	if (MEDIA_VER(i915) >= 13 && gt->type == GT_MEDIA) {
-+		gt->steering_table[OADDRM] = xelpmp_oaddrm_steering_table;
-+	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) {
- 		fuse = REG_FIELD_GET(GT_L3_EXC_MASK,
- 				     intel_uncore_read(gt->uncore, XEHP_FUSE4));
- 
-@@ -435,6 +443,13 @@ static void get_nonterminated_steering(struct intel_gt *gt,
- 		*group = 0;
- 		*instance = 0;
- 		break;
-+	case OADDRM:
-+		if ((VDBOX_MASK(gt) | VEBOX_MASK(gt) | gt->info.sfc_mask) & BIT(0))
-+			*group = 0;
-+		else
-+			*group = 1;
-+		*instance = 0;
-+		break;
- 	default:
- 		MISSING_CASE(type);
- 		*group = 0;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index 2a0441410ec7..5fa59a66dba2 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -60,6 +60,7 @@ enum intel_steering_type {
- 	MSLICE,
- 	LNCF,
- 	DSS,
-+	OADDRM,
- 
- 	/*
- 	 * On some platforms there are multiple types of MCR registers that
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 2562ad83966b..9227391fc144 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1585,12 +1585,28 @@ mtl_3d_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- 	}
- }
- 
-+static void
-+mtl_media_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
-+{
-+	/*
-+	 * Unlike older platforms, we no longer setup implicit steering here;
-+	 * all MCR accesses are explicitly steered.
-+	 */
-+	if (drm_debug_enabled(DRM_UT_DRIVER)) {
-+		struct drm_printer p = drm_debug_printer("MCR Steering:");
-+
-+		intel_gt_mcr_report_steering(&p, gt, false);
-+	}
-+}
-+
- static void
- gt_init_workarounds(struct intel_gt *gt, struct i915_wa_list *wal)
- {
- 	struct drm_i915_private *i915 = gt->i915;
- 
--	if (IS_METEORLAKE(i915) && gt->type == GT_PRIMARY)
-+	if (IS_METEORLAKE(i915) && gt->type == GT_MEDIA)
-+		mtl_media_gt_workarounds_init(gt, wal);
-+	else if (IS_METEORLAKE(i915) && gt->type == GT_PRIMARY)
- 		mtl_3d_gt_workarounds_init(gt, wal);
- 	else if (IS_PONTEVECCHIO(i915))
- 		pvc_gt_workarounds_init(gt, wal);
--- 
-2.37.3
+Manasi
 
+> 
+> Looking to the history of this series here I see that this patch looks like
+> an evolution of the previous series with small increment and suggestions from
+> multiple folks. Not sure if it is really worthwhile to have to add the official
+> tag and start to ping everyone to get the ack if it is okay or not to add it.
+> 
+> [1] - https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+> 
+> > 
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 18 ++++++++++++++++--
+> > >  1 file changed, 16 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > index bc627daade3e..12f5e4d23245 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > @@ -1688,6 +1688,19 @@ static u32 cdclk_squash_waveform(struct drm_i915_private *dev_priv,
+> > >  
+> > >  	return 0xffff;
+> > >  }
+> > 
+> > Missing newline causing checkpatch error
+> > 
+> > Manasi
+> > 
+> > > +static const char *cdclk_sequence_to_string(enum cdclk_sequence cdclk_sequence)
+> > > +{
+> > > +	switch (cdclk_sequence) {
+> > > +	case CDCLK_SQUASH_ONLY:
+> > > +		return "Squash only";
+> > > +	case CDCLK_CRAWL_ONLY:
+> > > +		return "Crawl only";
+> > > +	case CDCLK_LEGACY:
+> > > +		return "Legacy method";
+> > > +	default:
+> > > +		return "Not a valid cdclk sequence";
+> > > +	}
+> > > +}
+> > >  
+> > >  static void dg2_prog_squash_ctl(struct drm_i915_private *i915, u16 waveform)
+> > >  {
+> > > @@ -2083,10 +2096,11 @@ void intel_cdclk_dump_config(struct drm_i915_private *i915,
+> > >  			     const struct intel_cdclk_config *cdclk_config,
+> > >  			     const char *context)
+> > >  {
+> > > -	drm_dbg_kms(&i915->drm, "%s %d kHz, VCO %d kHz, ref %d kHz, bypass %d kHz, voltage level %d\n",
+> > > +	drm_dbg_kms(&i915->drm, "%s %d kHz, VCO %d kHz, ref %d kHz, bypass %d kHz, voltage level %d, %s action\n",
+> > >  		    context, cdclk_config->cdclk, cdclk_config->vco,
+> > >  		    cdclk_config->ref, cdclk_config->bypass,
+> > > -		    cdclk_config->voltage_level);
+> > > +		    cdclk_config->voltage_level,
+> > > +		    cdclk_sequence_to_string(cdclk_config->steps->action));
+> > >  }
+> > >  
+> > >  /**
+> > > -- 
+> > > 2.25.1
+> > > 
