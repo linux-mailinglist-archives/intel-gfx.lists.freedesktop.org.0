@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 326805BC55C
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 11:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B465BC560
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 11:31:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E63310E5E3;
-	Mon, 19 Sep 2022 09:29:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B34D110E5FE;
+	Mon, 19 Sep 2022 09:30:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1BBB10E5E3
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Sep 2022 09:28:55 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03E3F10E5EB;
+ Mon, 19 Sep 2022 09:30:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663579735; x=1695115735;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=qHvh4winl+TZoZ/aCaE1aD+W0vPlesiLsqd6jD7TsEE=;
- b=FsgvSvNxvFTdQ/pFsLTA1nNl9lvg+Y4wMP+II7Qx1EG1vigLX+vnqSUQ
- pxJVOUmSOEHdBUxL+ggpcm2CF3cue6kD9r7SQ2mqL1MUAKt9p5A859WBL
- l3OkjyhcWCVTdUMuysnG0l1e1ssULpFV0MTDkxQeR2gtMyAKwVvDG77cw
- yPAshNESOTdNXj4kklXKfFJ55JL84yftw4LopPp69+wt2WbXO9NxEmLYO
- cMgVDE1TtZ0KIXGK3z85zIbb4+sEooUrFiAWX+iRU1ULMuMyM23CXFaSj
- e231gGWtTLiG7f77ReWFzdrw550+AWHVynM6HjpzyMOGRZmGIm5ztNa3n w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10474"; a="286396220"
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="286396220"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 02:28:55 -0700
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="596011753"
+ t=1663579852; x=1695115852;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Wm82v0gvwNP1lKdhTEKnO4gPdEPdmnpw+d87R28dzDA=;
+ b=gpsKfr19L9Iwb8NPDiIywedg6ShpbAsR3IjCl9fb73Fe2A+APwGg/b3o
+ twn61de6w2+0DJvnY8WIukobIITnJPY5kBb6xOMxoVbPlKZP3Nnlpl5s0
+ O5jCe68Nvw7PzTXGFB3n3VGWq84jZrvAbaJ1T2tGJbE02S/GvV75XoWCf
+ G7ZuLxrCkvGs7WZf6paaGaw1zSK6UY/WSJR6IiKtwkORV5TXZdmjevSok
+ K0dLIa3+3/OhOttU6duZzWVMsSrGV99ZUddOZQkRI8LIDCbUCL7ZEmEuR
+ 4ALlLLzNq4kMnbiL/pBkkBH4Uqw4/pDdG9GryYDeDy7Ukp7BwF8VbXvLu g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10474"; a="299343787"
+X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="299343787"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 02:30:51 -0700
+X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; d="scan'208";a="793787602"
 Received: from jjohns2-mobl2.amr.corp.intel.com (HELO localhost)
  ([10.252.57.205])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 02:28:54 -0700
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 02:30:48 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220917004404.414981-5-anusha.srivatsa@intel.com>
+To: Zheng Wang <1002992920@qq.com>, gregkh@linuxfoundation.org
+In-Reply-To: <tencent_ED24158E83CB9885E8BDD173EB5896B51906@qq.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220917004404.414981-1-anusha.srivatsa@intel.com>
- <20220917004404.414981-5-anusha.srivatsa@intel.com>
-Date: Mon, 19 Sep 2022 12:28:38 +0300
-Message-ID: <87sfknpvax.fsf@intel.com>
+References: <tencent_ED24158E83CB9885E8BDD173EB5896B51906@qq.com>
+Date: Mon, 19 Sep 2022 12:30:33 +0300
+Message-ID: <87pmfrpv7q.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/display: Embed the new struct
- steps for crawling
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
+ split_2MB_gtt_entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,51 +58,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
+ intel-gfx@lists.freedesktop.org, hackerzheng666@gmail.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 16 Sep 2022, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
-> Populate the new struct steps for crawl case.
+On Mon, 19 Sep 2022, Zheng Wang <1002992920@qq.com> wrote:
+>  From afe79848cb74cc8e45ab426d13fa2394c87e0422 Mon Sep 17 00:00:00 2001
+> From: xmzyshypnc <1002992920@qq.com>
+> Date: Fri, 16 Sep 2022 23:48:23 +0800
+> Subject: [PATCH] drm/i915/gvt: fix double-free bug in split_2MB_gtt_entry
 >
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> There is a double-free security bug in split_2MB_gtt_entry.
+>
+> Here is a calling chain :
+> ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
+>
+> If intel_gvt_dma_map_guest_page failed, it will call
+> ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
+> kfree(spt). But the caller does not notice that, and it will call
+> ppgtt_free_spt again in error path.
+>
+> Fix this by only freeing spt in ppgtt_invalidate_spt in good case.
+>
+> Signed-off-by: xmzyshypnc <1002992920@qq.com>
+
+Please use git send-email. The patch is whitespace broken and line
+wrapped, making it unusable.
+
+BR,
+Jani.
+
+
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+>  =C2=A0drivers/gpu/drm/i915/gvt/gtt.c | 16 +++++++++-------
+>  =C2=A01 file changed, 9 insertions(+), 7 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index d2e81134b6f2..bb5bbb1ad982 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1951,8 +1951,9 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
->  
->  static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
->  				  const struct intel_cdclk_config *a,
-> -				  const struct intel_cdclk_config *b)
-> +				  struct intel_cdclk_config *b)
+> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gt=
+t.c
+> index ce0eb03709c3..550519f0acca 100644
+> --- a/drivers/gpu/drm/i915/gvt/gtt.c
+> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
+> @@ -959,7 +959,7 @@ static inline int ppgtt_put_spt(struct=20
+> intel_vgpu_ppgtt_spt *spt)
+>  =C2=A0=C2=A0=C2=A0=C2=A0 return atomic_dec_return(&spt->refcount);
+>  =C2=A0}
+>
+> -static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
+> +static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int=20
+> is_error);
+>
+>  =C2=A0static int ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu =
+*vgpu,
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 struct intel_gvt_gtt_entry *=
+e)
+> @@ -995,7 +995,7 @@ static int=20
+> ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=
+=A0=C2=A0 ops->get_pfn(e));
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 return -ENXIO;
+>  =C2=A0=C2=A0=C2=A0=C2=A0 }
+> -=C2=A0=C2=A0=C2=A0 return ppgtt_invalidate_spt(s);
+> +=C2=A0=C2=A0=C2=A0 return ppgtt_invalidate_spt(s, 0);
+>  =C2=A0}
+>
+>  =C2=A0static inline void ppgtt_invalidate_pte(struct intel_vgpu_ppgtt_sp=
+t *spt,
+> @@ -1016,7 +1016,7 @@ static inline void ppgtt_invalidate_pte(struct=20
+> intel_vgpu_ppgtt_spt *spt,
+>  =C2=A0=C2=A0=C2=A0=C2=A0 intel_gvt_dma_unmap_guest_page(vgpu, pfn << PAG=
+E_SHIFT);
+>  =C2=A0}
+>
+> -static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt)
+> +static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int=20
+> is_error)
+>  =C2=A0{
+>  =C2=A0=C2=A0=C2=A0=C2=A0 struct intel_vgpu *vgpu =3D spt->vgpu;
+>  =C2=A0=C2=A0=C2=A0=C2=A0 struct intel_gvt_gtt_entry e;
+> @@ -1059,9 +1059,11 @@ static int ppgtt_invalidate_spt(struct=20
+> intel_vgpu_ppgtt_spt *spt)
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 }
+>  =C2=A0=C2=A0=C2=A0=C2=A0 }
+>
+> -=C2=A0=C2=A0=C2=A0 trace_spt_change(spt->vgpu->id, "release", spt,
+> +=C2=A0=C2=A0=C2=A0 if (!is_error) {
+> +=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 trace_spt_change(spt->vgpu->id, "r=
+elease", spt,
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0spt=
+->guest_page.gfn, spt->shadow_page.type);
+> -=C2=A0=C2=A0=C2=A0 ppgtt_free_spt(spt);
+> +=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ppgtt_free_spt(spt);
+> +=C2=A0=C2=A0=C2=A0 }
+>  =C2=A0=C2=A0=C2=A0=C2=A0 return 0;
+>  =C2=A0fail:
+>  =C2=A0=C2=A0=C2=A0=C2=A0 gvt_vgpu_err("fail: shadow page %p shadow entry=
+ 0x%llx type %d\n",
+> @@ -1215,7 +1217,7 @@ static int split_2MB_gtt_entry(struct intel_vgpu=20
+> *vgpu,
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ret =3D intel_gvt_dma_map_gu=
+est_page(vgpu, start_gfn + sub_index,
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=
+=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 PAGE_SIZE, &dm=
+a_addr);
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 if (ret) {
+> -=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ppgtt_invalidat=
+e_spt(spt);
+> +=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ppgtt_invalidat=
+e_spt(spt, 1);
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 return re=
+t;
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 }
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 sub_se.val64 =3D se->val64;
+> @@ -1393,7 +1395,7 @@ static int ppgtt_handle_guest_entry_removal(struct=
+=20
+> intel_vgpu_ppgtt_spt *spt,
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ret =3D -=
+ENXIO;
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 goto fail;
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 }
+> -=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ret =3D ppgtt_invalidate_spt(s);
+> +=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ret =3D ppgtt_invalidate_spt(s, 0);
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 if (ret)
+>  =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 goto fail;
+>  =C2=A0=C2=A0=C2=A0=C2=A0 } else {
 
-Same here, why are you dropping const?
-
->  {
-> +	struct cdclk_step *cdclk_transition = b->steps;
-
-Same here about naming.
-
->  	int a_div, b_div;
->  
->  	if (!HAS_CDCLK_CRAWL(dev_priv))
-> @@ -1965,6 +1966,12 @@ static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
->  	a_div = DIV_ROUND_CLOSEST(a->vco, a->cdclk);
->  	b_div = DIV_ROUND_CLOSEST(b->vco, b->cdclk);
->  
-> +	if (a->vco != 0 && b->vco != 0 && a->vco != b->vco &&
-> +	    a_div == b_div && a->ref == b->ref) {
-> +		cdclk_transition->action = CDCLK_CRAWL_ONLY;
-> +		cdclk_transition->cdclk = b->cdclk;
-> +	}
-> +
->  	return a->vco != 0 && b->vco != 0 &&
->  		a->vco != b->vco &&
->  		a_div == b_div &&
-
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
