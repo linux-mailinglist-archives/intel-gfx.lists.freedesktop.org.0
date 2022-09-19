@@ -1,49 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9DC25BD55D
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 21:48:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADEA15BD577
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 21:58:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F29D10E101;
-	Mon, 19 Sep 2022 19:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0E3A10E10F;
+	Mon, 19 Sep 2022 19:57:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A202310E10C
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Sep 2022 19:48:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663616899; x=1695152899;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ScRoFSIoJBQbPApPVns64VNNiH5H7MC0sc2yIIEh7AM=;
- b=gmPm51t1UcgbIIFjU1bLr/tVoKfuFeg87LMPX4sUisT2ADR0CAEs8Rxa
- 1tXyUX12+RoLPAey98LWWNjOCRAZTGQFekAH3g7RRcRs9pC0adaR5BRWL
- n8X19ynU9A1WQYzYiYAe2TzGiHYvDWJ4wqPjDtLIG0TNubztHSGbxLo3b
- HS2krTsUOtdFtDUHvblsTPc5jNGPtLN/PBllb0x1WxhE4VZTUHs1I4YWE
- bD1S4UIzFCVrwr4HKz8sBvQ2pYQgwS8rfGEuKViSexchZwWNuINkHUM1z
- tQOQnQfxDUPjjRlqYYqUUo3Cufq+7Xck0mJBw1Vws86eSlWsw/Ow/A+Yj A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="385795744"
-X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; d="scan'208";a="385795744"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 12:48:19 -0700
-X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; d="scan'208";a="687113908"
-Received: from mdnavare-mobl1.jf.intel.com ([10.165.21.203])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 12:48:18 -0700
-Date: Mon, 19 Sep 2022 12:48:39 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <20220919194839.GB1061693@mdnavare-mobl1.jf.intel.com>
-References: <20220917004404.414981-1-anusha.srivatsa@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D5F2510E10C;
+ Mon, 19 Sep 2022 19:57:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CDEEEA0169;
+ Mon, 19 Sep 2022 19:57:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220917004404.414981-1-anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 0/6] Introduce struct cdclk_step
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pablo Ceballos" <pceballos@google.com>
+Date: Mon, 19 Sep 2022 19:57:54 -0000
+Message-ID: <166361747481.28331.1919320356991566348@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220915004601.320198-1-pceballos@google.com>
+In-Reply-To: <20220915004601.320198-1-pceballos@google.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display/lspcon=3A_Increase_LSPCON_mode_settle_time?=
+ =?utf-8?q?out?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,49 +41,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Please find the review commenst for the respective patches.
-Also as a general rule, please add/ copy all folks nvolved in offline 
-discussions/ triage help in order to accelerate reviews and get feedback
-from all.
+Series: drm/i915/display/lspcon: Increase LSPCON mode settle timeout
+URL   : https://patchwork.freedesktop.org/series/108735/
+State : warning
 
-Manasi
+== Summary ==
 
-On Fri, Sep 16, 2022 at 05:43:58PM -0700, Anusha Srivatsa wrote:
-> This is a prep series for the actual cdclk refactoring
-> that will be sent following this. Idea is to have a
-> struct - cdclk_step that holds the following:
-> - cdclk action (squash, crawl or modeset)
-> - cdclk frequency
-> which gets populated in atomic check. Driver
-> uses the populated values during atomic commit
-> to do the suitable sequence of actions like
-> programming squash ctl registers in case of squashing
-> or PLL sequence incase of modeset and so on.
-> 
-> This series just addresses the initial idea. The actual plumming
-> in the atomic commit phase will be sent shortly.
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> Anusha Srivatsa (6):
->   drm/i915/display Add dg2_prog_squash_ctl() helper
->   drm/i915/display: add cdclk action struct to cdclk_config
->   drm/i915/display: Embed the new struct steps for squashing
->   drm/i915/display: Embed the new struct steps for crawling
->   drm/i915/display: Embed the new struct steps for modeset
->   drm/i915/display: Dump the new cdclk config values
-> 
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 77 +++++++++++++++++-----
->  drivers/gpu/drm/i915/display/intel_cdclk.h | 16 ++++-
->  2 files changed, 74 insertions(+), 19 deletions(-)
-> 
-> -- 
-> 2.25.1
-> 
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/108735/revisions/1/mbox/ not found
+
+
