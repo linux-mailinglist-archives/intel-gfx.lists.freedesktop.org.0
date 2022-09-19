@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F9525BD122
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 17:36:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CDE45BD1DE
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Sep 2022 18:08:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7BD610E68A;
-	Mon, 19 Sep 2022 15:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8C010E691;
+	Mon, 19 Sep 2022 16:08:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A2F7510E68A;
- Mon, 19 Sep 2022 15:35:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9A1E9A363D;
- Mon, 19 Sep 2022 15:35:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3014668093995322006=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A381F10E691;
+ Mon, 19 Sep 2022 16:08:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663603722; x=1695139722;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=NPs0wAMiICa5jSbcC4YEuaTH4A5GViFkO+tb3iPLa2M=;
+ b=UBfRZcrFMjiLEBVO8VurqZbgkNm8wCQJVGzeb3dGXSzSrXRxHq2eKvwG
+ gTKIfLTnExtWMn7kmvHSgWQTsC/HhRJW/dUTXv3KYbaaGQtuRtnrk52pR
+ BkBM8s3/yiBo2QGyUwl9CnKmAQliyzdmETFCINqTBHeHgWM4ydQxAI/9S
+ Vbgz05NH/RjVEn/y996yAxsycnQKY9tZCEKA3TEEbc975dzHAxfHakwbN
+ JOJ6pWOdAcuCx4CO6+J0WxPAv6YuboZs1uQWmRe5q/spCQo6rNkCmJBN3
+ bWgCh3V+9GtorZF66mmQ7KAgB/4SBotKVoSYOHwn2Qo4KIGtqzDtnqn6/ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="325734535"
+X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; d="scan'208";a="325734535"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 09:08:39 -0700
+X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; d="scan'208";a="569707417"
+Received: from biancabe-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.32.244])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 09:08:33 -0700
+Date: Mon, 19 Sep 2022 18:08:26 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Message-ID: <YyiT+qc2pUWVIZHF@alfio.lan>
+References: <20220916092403.201355-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Date: Mon, 19 Sep 2022 15:35:59 -0000
-Message-ID: <166360175962.28333.13843088541309379259@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220916150054.807590-1-badal.nilawar@intel.com>
-In-Reply-To: <20220916150054.807590-1-badal.nilawar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_HWMON_support_=28rev6=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220916092403.201355-1-janusz.krzysztofik@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 0/2] drm/i915/gem: Really move
+ i915_gem_context.link under ref protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,244 +57,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3014668093995322006==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Pushed, Thanks!
 
-== Series Details ==
+Andi
 
-Series: drm/i915: Add HWMON support (rev6)
-URL   : https://patchwork.freedesktop.org/series/104278/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12146 -> Patchwork_104278v6
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/index.html
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Additional (1): fi-kbl-guc 
-  Missing    (6): fi-rkl-11600 fi-hsw-4200u bat-dg2-8 fi-icl-u2 fi-ctg-p8600 fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_104278v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-pnv-d510:        [PASS][1] -> [INCOMPLETE][2] ([i915#6863])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-pnv-d510/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-pnv-d510/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][3] -> [INCOMPLETE][4] ([i915#4785])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#4312] / [i915#5594] / [i915#6246])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-hsw-4770/igt@runner@aborted.html
-    - fi-kbl-guc:         NOTRUN -> [FAIL][6] ([i915#6219])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-kbl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - {fi-tgl-mst}:       [WARN][7] ([i915#6596]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-tgl-mst/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-tgl-mst/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:
-    - fi-bsw-kefka:       [FAIL][9] ([i915#6298]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-pnv-d510:        [FAIL][11] ([fdo#109271] / [i915#2403] / [i915#4312]) -> [FAIL][12] ([i915#2403] / [i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-pnv-d510/igt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-pnv-d510/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#5537]: https://gitlab.freedesktop.org/drm/intel/issues/5537
-  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
-  [i915#5828]: https://gitlab.freedesktop.org/drm/intel/issues/5828
-  [i915#6219]: https://gitlab.freedesktop.org/drm/intel/issues/6219
-  [i915#6246]: https://gitlab.freedesktop.org/drm/intel/issues/6246
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6596]: https://gitlab.freedesktop.org/drm/intel/issues/6596
-  [i915#6863]: https://gitlab.freedesktop.org/drm/intel/issues/6863
-
-
-Build changes
--------------
-
-  * IGT: IGT_6656 -> IGTPW_7782
-  * Linux: CI_DRM_12146 -> Patchwork_104278v6
-
-  CI-20190529: 20190529
-  CI_DRM_12146: afdeadb1830054a87b9e2d765caa2f197321ca0c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_7782: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_7782/index.html
-  IGT_6656: 24100c4e181c50e3678aeca9c641b8a43555ad73 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_104278v6: afdeadb1830054a87b9e2d765caa2f197321ca0c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e0d313f9824e drm/i915/hwmon: Extend power/energy for XEHPSDV
-838370702cd9 drm/i915/hwmon: Expose power1_max_interval
-2ce87f02bcab drm/i915/hwmon: Expose card reactive critical power
-e854da3eb44c drm/i915/hwmon: Show device level energy usage
-9bd6d1d4bb2d drm/i915/hwmon: Power PL1 limit and TDP setting
-6be6b6797886 drm/i915/hwmon: Add HWMON current voltage support
-36f18098a1aa drm/i915/hwmon: Add HWMON infrastructure
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/index.html
-
---===============3014668093995322006==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Add HWMON support (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/104278/">https://patchwork.freedesktop.org/series/104278/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12146 -&gt; Patchwork_104278v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/index.html</p>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Additional (1): fi-kbl-guc <br />
-  Missing    (6): fi-rkl-11600 fi-hsw-4200u bat-dg2-8 fi-icl-u2 fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_104278v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-pnv-d510/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-pnv-d510/igt@debugfs_test@read_all_entries.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6863">i915#6863</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6246">i915#6246</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-tgl-mst/igt@i915_module_load@reload.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6596">i915#6596</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-tgl-mst/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12146/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_104278v6/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_6656 -&gt; IGTPW_7782</li>
-<li>Linux: CI_DRM_12146 -&gt; Patchwork_104278v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12146: afdeadb1830054a87b9e2d765caa2f197321ca0c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGTPW_7782: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_7782/index.html<br />
-  IGT_6656: 24100c4e181c50e3678aeca9c641b8a43555ad73 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_104278v6: afdeadb1830054a87b9e2d765caa2f197321ca0c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e0d313f9824e drm/i915/hwmon: Extend power/energy for XEHPSDV<br />
-838370702cd9 drm/i915/hwmon: Expose power1_max_interval<br />
-2ce87f02bcab drm/i915/hwmon: Expose card reactive critical power<br />
-e854da3eb44c drm/i915/hwmon: Show device level energy usage<br />
-9bd6d1d4bb2d drm/i915/hwmon: Power PL1 limit and TDP setting<br />
-6be6b6797886 drm/i915/hwmon: Add HWMON current voltage support<br />
-36f18098a1aa drm/i915/hwmon: Add HWMON infrastructure</p>
-
-</body>
-</html>
-
---===============3014668093995322006==--
+On Fri, Sep 16, 2022 at 11:24:01AM +0200, Janusz Krzysztofik wrote:
+> i915_perf assumes that it can use the i915_gem_context reference to
+> protect its i915->gem.contexts.list iteration. However, this requires
+> that we do not remove the context from the list until after we drop the
+> final reference and release the struct. If, as currently, we remove the
+> context from the list during context_close(), the link.next pointer may
+> be poisoned while we are holding the context reference and cause a GPF:
+> 
+> [ 4070.573157] i915 0000:00:02.0: [drm:i915_perf_open_ioctl [i915]] filtering on ctx_id=0x
+> 1fffff ctx_id_mask=0x1fffff
+> [ 4070.574881] general protection fault, probably for non-canonical address 0xdead00000000
+> 0100: 0000 [#1] PREEMPT SMP
+> [ 4070.574897] CPU: 1 PID: 284392 Comm: amd_performance Tainted: G            E     5.17.9
+>  #180
+> [ 4070.574903] Hardware name: Intel Corporation NUC7i5BNK/NUC7i5BNB, BIOS BNKBL357.86A.0052.2017.0918.1346 09/18/2017
+> [ 4070.574907] RIP: 0010:oa_configure_all_contexts.isra.0+0x222/0x350 [i915]
+> [ 4070.574982] Code: 08 e8 32 6e 10 e1 4d 8b 6d 50 b8 ff ff ff ff 49 83 ed 50 f0 41 0f c1 04 24 83 f8 01 0f 84 e3 00 00 00 85 c0 0f 8e fa 00 00 00 <49> 8b 45 50 48 8d 70 b0 49 8d 45 50 48 39 44 24 10 0f 85 34 fe ff
+> [ 4070.574990] RSP: 0018:ffffc90002077b78 EFLAGS: 00010202
+> [ 4070.574995] RAX: 0000000000000002 RBX: 0000000000000002 RCX: 0000000000000000
+> [ 4070.575000] RDX: 0000000000000001 RSI: ffffc90002077b20 RDI: ffff88810ddc7c68
+> [ 4070.575004] RBP: 0000000000000001 R08: ffff888103242648 R09: fffffffffffffffc
+> [ 4070.575008] R10: ffffffff82c50bc0 R11: 0000000000025c80 R12: ffff888101bf1860
+> [ 4070.575012] R13: dead0000000000b0 R14: ffffc90002077c04 R15: ffff88810be5cabc
+> [ 4070.575016] FS:  00007f1ed50c0780(0000) GS:ffff88885ec80000(0000) knlGS:0000000000000000
+> [ 4070.575021] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 4070.575025] CR2: 00007f1ed5590280 CR3: 000000010ef6f005 CR4: 00000000003706e0
+> [ 4070.575029] Call Trace:
+> [ 4070.575033]  <TASK>
+> [ 4070.575037]  lrc_configure_all_contexts+0x13e/0x150 [i915]
+> [ 4070.575103]  gen8_enable_metric_set+0x4d/0x90 [i915]
+> [ 4070.575164]  i915_perf_open_ioctl+0xbc0/0x1500 [i915]
+> [ 4070.575224]  ? asm_common_interrupt+0x1e/0x40
+> [ 4070.575232]  ? i915_oa_init_reg_state+0x110/0x110 [i915]
+> [ 4070.575290]  drm_ioctl_kernel+0x85/0x110
+> [ 4070.575296]  ? update_load_avg+0x5f/0x5e0
+> [ 4070.575302]  drm_ioctl+0x1d3/0x370
+> [ 4070.575307]  ? i915_oa_init_reg_state+0x110/0x110 [i915]
+> [ 4070.575382]  ? gen8_gt_irq_handler+0x46/0x130 [i915]
+> [ 4070.575445]  __x64_sys_ioctl+0x3c4/0x8d0
+> [ 4070.575451]  ? __do_softirq+0xaa/0x1d2
+> [ 4070.575456]  do_syscall_64+0x35/0x80
+> [ 4070.575461]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+> [ 4070.575467] RIP: 0033:0x7f1ed5c10397
+> [ 4070.575471] Code: 3c 1c e8 1c ff ff ff 85 c0 79 87 49 c7 c4 ff ff ff ff 5b 5d 4c 89 e0 41 5c c3 66 0f 1f 84 00 00 00 00 00 b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d a9 da 0d 00 f7 d8 64 89 01 48
+> [ 4070.575478] RSP: 002b:00007ffd65c8d7a8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+> [ 4070.575484] RAX: ffffffffffffffda RBX: 0000000000000006 RCX: 00007f1ed5c10397
+> [ 4070.575488] RDX: 00007ffd65c8d7c0 RSI: 0000000040106476 RDI: 0000000000000006
+> [ 4070.575492] RBP: 00005620972f9c60 R08: 000000000000000a R09: 0000000000000005
+> [ 4070.575496] R10: 000000000000000d R11: 0000000000000246 R12: 000000000000000a
+> [ 4070.575500] R13: 000000000000000d R14: 0000000000000000 R15: 00007ffd65c8d7c0
+> [ 4070.575505]  </TASK>
+> [ 4070.575507] Modules linked in: nls_ascii(E) nls_cp437(E) vfat(E) fat(E) i915(E) x86_pkg_temp_thermal(E) intel_powerclamp(E) crct10dif_pclmul(E) crc32_pclmul(E) crc32c_intel(E) aesni_intel(E) crypto_simd(E) intel_gtt(E) cryptd(E) ttm(E) rapl(E) intel_cstate(E) drm_kms_helper(E) cfbfillrect(E) syscopyarea(E) cfbimgblt(E) intel_uncore(E) sysfillrect(E) mei_me(E) sysimgblt(E) i2c_i801(E) fb_sys_fops(E) mei(E) intel_pch_thermal(E) i2c_smbus(E) cfbcopyarea(E) video(E) button(E) efivarfs(E) autofs4(E)
+> [ 4070.575549] ---[ end trace 0000000000000000 ]---
+> 
+> However, there is a risk of triggering kernel warning on contexts list not
+> empty at driver release time if we deleagate that task to a worker for
+> i915_gem_context_release_work(), unless that work is flushed first.
+> Unfortunately, it is not flushed on driver release.  Fix it.
+> 
+> Chris Wilson (1):
+>   drm/i915/gem: Really move i915_gem_context.link under ref protection
+> 
+> Janusz Krzysztofik (1):
+>   drm/i915/gem: Flush contexts on driver release
+> 
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c | 8 ++++----
+>  drivers/gpu/drm/i915/i915_gem.c             | 3 ++-
+>  2 files changed, 6 insertions(+), 5 deletions(-)
+> 
+> -- 
+> 2.25.1
