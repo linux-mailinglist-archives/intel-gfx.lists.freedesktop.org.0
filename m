@@ -1,54 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FDC05BEF80
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 23:59:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC51E5BF035
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Sep 2022 00:33:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E3B010E080;
-	Tue, 20 Sep 2022 21:59:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA3BD10E7B4;
+	Tue, 20 Sep 2022 22:33:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0000310E080
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 21:59:03 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4B6F10E2C0;
+ Tue, 20 Sep 2022 22:33:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663711143; x=1695247143;
+ t=1663713218; x=1695249218;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Mu5hdNjHTRtc1O9/r8eh9c3FXmJZDBQCUcLDOvA4CBk=;
- b=TMvu9lzwKrWY5KY2VhMcpDHt2GxH9DXM4Rt3AFt8gq1SfSMvl0MDTRCl
- MpMikii5VsYmalmm4ogseigYRCikjdVB8lgh3O2tqwJcxxzwMP76+JFxE
- OiCEHv/rnvgF93lmb5bamfscBbayMoK2IYdP5KQlzjbT58gnY6AI+9KXY
- 68U/LhhbJHGm4wfEYJD8Wav0gNB2GqbasC3j4P46WOn2O0YfX58nM1JCe
- m6cX4UmGnAnO7LCWWecoIKltxw7uc1gAZwstQ4NQBsBPrIy4/ZVSgid0B
- D2zP3yppmCiuiTK1iI/HL/QvxdnTdvnOajxh2Ri7FIkXBP3/M0IXRX0Q/ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10476"; a="297423726"
-X-IronPort-AV: E=Sophos;i="5.93,331,1654585200"; d="scan'208";a="297423726"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2022 14:59:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,331,1654585200"; d="scan'208";a="722922224"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga002.fm.intel.com with SMTP; 20 Sep 2022 14:59:01 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 Sep 2022 00:59:00 +0300
-Date: Wed, 21 Sep 2022 00:59:00 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-Message-ID: <Yyo3pJ4QD9O4Iv6N@intel.com>
-References: <20220917004404.414981-1-anusha.srivatsa@intel.com>
- <Yyl3sZ/zE4eZR4fH@intel.com>
- <CY4PR1101MB21666FC6A193F1FDA0B2A96BF84C9@CY4PR1101MB2166.namprd11.prod.outlook.com>
+ mime-version:in-reply-to;
+ bh=xa1YRFX7IkEWb8tsFy8J/Th4HwkwJ9ZEtd4DG1r3us0=;
+ b=Y+qPWuxFwb+LoqC8l6mfykcezHG2KwVDrBkfemmFsgiOy11N5fwVlzDa
+ LDe/me/bbaef9lHZoQjBpWdpxE8oYXuiPD1jntrPyjkGEFTsOYZ5vqf3T
+ 8Acf/NSvUclbwqqsGJBkvR3zS7RxG02Nq8OG6JbNG1ZGmtve8VyT4thwy
+ NOFhU/Ck9AW9USjIqbFggM/i8eB7J99/uV41oxJYWYuvsDYqBF02bva+U
+ 6is+xijfBkM2lrDci2TSVIecJIs/9bfHAFGEqFjuW/9Zamat9IRNQm+st
+ O6kxrMs/yTOzBYASTUDE8Dycdarj6dHK9CVr0sxXYGmMFlUS7Fh2MEuI8 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10476"; a="298555757"
+X-IronPort-AV: E=Sophos;i="5.93,331,1654585200"; d="scan'208";a="298555757"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2022 15:33:38 -0700
+X-IronPort-AV: E=Sophos;i="5.93,331,1654585200"; d="scan'208";a="687606535"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO intel.com) ([10.213.28.54])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2022 15:33:36 -0700
+Date: Wed, 21 Sep 2022 00:33:34 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <Yyo/vqFb2bH116i/@ashyti-mobl2.lan>
+References: <20220920071940.3775059-1-aravind.iddamsetty@intel.com>
+ <YynxCp0OGTJ/hu3J@ashyti-mobl2.lan>
+ <YyolVATWuGbXE/HT@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CY4PR1101MB21666FC6A193F1FDA0B2A96BF84C9@CY4PR1101MB2166.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 0/6] Introduce struct cdclk_step
+In-Reply-To: <YyolVATWuGbXE/HT@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/mtl: enable local stolen memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,50 +57,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 20, 2022 at 06:48:46PM +0000, Srivatsa, Anusha wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Sent: Tuesday, September 20, 2022 1:20 AM
-> > To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma
-> > <uma.shankar@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > Subject: Re: [PATCH 0/6] Introduce struct cdclk_step
-> > 
-> > On Fri, Sep 16, 2022 at 05:43:58PM -0700, Anusha Srivatsa wrote:
-> > > This is a prep series for the actual cdclk refactoring that will be
-> > > sent following this. Idea is to have a struct - cdclk_step that holds
-> > > the following:
-> > > - cdclk action (squash, crawl or modeset)
-> > > - cdclk frequency
-> > > which gets populated in atomic check. Driver uses the populated values
-> > > during atomic commit to do the suitable sequence of actions like
-> > > programming squash ctl registers in case of squashing or PLL sequence
-> > > incase of modeset and so on.
-> > >
-> > > This series just addresses the initial idea. The actual plumming in
-> > > the atomic commit phase will be sent shortly.
-> > 
-> > OK, people keep ignoring what I say so I just typed up the code quickly. This
-> > to me seems like the most straightforward way to do what we need:
-> > https://github.com/vsyrjala/linux.git cdclk_crawl_and_squash
-> > 
-> > Totally untested ofc, apart from me doing a quick scan through our cdclk
-> > tables for the crawl+squahs platforms to make sure that this approach
-> > should produce sane values.
-> Ville,
-> Why have a mid cdclk_config? Cant we use the new-cdclk-config for this purpose?
+Hi Matt, Lucas,
 
-You either
-- start at old, crawl to mid, then squash to new
-- start at old, squash to mid, then crawl to new
+thanks for your feedback,
 
--- 
-Ville Syrjälä
-Intel
+> > > +	switch (gms) {
+> > > +	case 0x0 ... 0x10:
+> > > +		return gms * 32;
+> > > +	case 0x20:
+> > > +		return 1024;
+> > > +	case 0x30:
+> > > +		return 1536;
+> > > +	case 0x40:
+> > > +		return 2048;
+> > > +	case 0xf0 ... 0xfe:
+> > 
+> > just a bit puzzled by the fact that case ranges are not standard
+> > and are supported only by GCC, unless, of course, I miss
+> > something. Do we still want to use them as they are widely used
+> > around the kernel?
+> 
+> i915 already has 17 other uses of this notation and the DRM subsystem in
+> general has about 50 today.  So it's not super common, but I think it
+> should be okay to use.  I believe clang supports this language extension
+> as well and the coding style doc doesn't say anything one way or the
+> other.
+
+I thought clang supports it for C++ rather than C, but I'm not a
+clang expert, so that I might be wrong.
+
+The fact that it is widely used is never a convincing argument
+and if gcc supports it, then it does it against the standard,
+both C11 and C17 (this is what puzzles me everytime I see these C
+tricks offered by gcc).
+
+Anyway, I'm not against it (nor in favour) as the ellipsis is
+becoming very commonly used. My comment, by the way, did not mean
+to block the patch, I just wanted to check what other people
+think about.
+
+Thanks,
+Andi
