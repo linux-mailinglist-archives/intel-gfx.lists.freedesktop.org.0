@@ -2,60 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E0C5BE91D
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 16:33:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC565BE960
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 16:51:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62F9D10E4AB;
-	Tue, 20 Sep 2022 14:33:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50A8A10E6E8;
+	Tue, 20 Sep 2022 14:51:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D75E710E4AB
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 14:33:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663684400; x=1695220400;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=9B4f4tIrV11S9RuMJAwn0M37ma/8hRMUTPwhqsqdNbU=;
- b=d8HeGrfc6Vq3xtub5EqSwEyN/w0Mv1Xxdld9ISPTv+Nv1Os1n/3eodKI
- yqR7htGJgauFonFP3BUfwfknoucJZrtjgZpzgDVhRYLSWP74UoNljjJXi
- OF9E9j6O8TppO4eWc0z6TuKEZ9/t9RjjIMkMAfRTKK4jOS2DwmmwzYYZ8
- wfO4l8iO/B27J3p2kgLKEGYO9v/suqUQ4VKQmSoAyXWqtErGVlNyPNHS/
- f5whyfgXUxmMdjosu3L56fk9VWfWpHsx5CrUKi9+9Y7JzCLmQCW9J4j4s
- P3EtqatCdKpRcvbCcra85gFA5ApqSArhZFAK7txQrv0Ddv5NdJw2eRnP2 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10476"; a="286760208"
-X-IronPort-AV: E=Sophos;i="5.93,330,1654585200"; d="scan'208";a="286760208"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2022 07:33:13 -0700
-X-IronPort-AV: E=Sophos;i="5.93,330,1654585200"; d="scan'208";a="947693754"
-Received: from bradyadx-mobl1.ger.corp.intel.com (HELO [10.213.218.179])
- ([10.213.218.179])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2022 07:33:11 -0700
-Message-ID: <cd372139-2a33-c556-e375-03a578da157c@linux.intel.com>
-Date: Tue, 20 Sep 2022 15:33:09 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1465610E6E6;
+ Tue, 20 Sep 2022 14:51:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0C07EA47EB;
+ Tue, 20 Sep 2022 14:51:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0824956430989063685=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Content-Language: en-US
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20220915021218.1412111-1-alan.previn.teres.alexis@intel.com>
- <20220915021218.1412111-2-alan.previn.teres.alexis@intel.com>
- <5aec4a0d-e99b-011d-68a9-84ad1f1120bf@linux.intel.com>
- <2808b0f67797543e453e74b4e156df4a5cdd8656.camel@intel.com>
- <70636d43-57e8-46ac-7751-d8fd0fb13d72@linux.intel.com>
- <c6e968c8-aaa0-949c-61c9-857ef5d9f617@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <c6e968c8-aaa0-949c-61c9-857ef5d9f617@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Delay disabling guc_id
- scheduling for better hysteresis
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Date: Tue, 20 Sep 2022 14:51:28 -0000
+Message-ID: <166368548801.1409.13302951571122652183@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220919130505.1984383-1-suraj.kandpal@intel.com>
+In-Reply-To: <20220919130505.1984383-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRW5h?=
+ =?utf-8?q?ble_Pipewriteback_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,108 +40,283 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0824956430989063685==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
+== Series Details ==
 
-On 16/09/2022 16:36, Ceraolo Spurio, Daniele wrote:
-> 
-> 
-> On 9/16/2022 1:58 AM, Tvrtko Ursulin wrote:
->>
->> On 16/09/2022 08:53, Teres Alexis, Alan Previn wrote:
+Series: Enable Pipewriteback (rev8)
+URL   : https://patchwork.freedesktop.org/series/107440/
+State : failure
 
-[snip]
+== Summary ==
 
->>>>
->>>>> +    /*
->>>>> +     * If the context gets closed while the execbuf is ongoing, 
->>>>> the context
->>>>> +     * close code will race with the below code to cancel the 
->>>>> delayed work.
->>>>> +     * If the context close wins the race and cancels the work, it 
->>>>> will
->>>>> +     * immediately call the sched disable (see guc_context_close), 
->>>>> so there
->>>>> +     * is a chance we can get past this check while the 
->>>>> sched_disable code
->>>>> +     * is being executed. To make sure that code completes before 
->>>>> we check
->>>>> +     * the status further down, we wait for the close process to 
->>>>> complete.
->>>>> +     */
->>>>> +    if (cancel_delayed_work_sync(&ce->guc_state.sched_disable_delay))
->>>>> +        intel_context_sched_disable_unpin(ce);
->>>>> +    else if (intel_context_is_closed(ce))
->>>>> +        wait_for(context_close_done(ce), 1);
->>>>
->>>> Comment makes it sounds important to handle the race, althought it
->>>> doesn't really explain the consequences. But most importantly, what if
->>>> close doesn't complete in 1ms?
->>>
->>> will add the consequence (i believe the consequence is that we could 
->>> prematurely
->>> read context flags bit indicating its gucid is still registered and 
->>> after skipping
->>> re-registration, find that context gets closed and guc-id freed).
->>>
->>> Yes the 1 second is arbitrary and unnervingly short. Just spent 
->>> sometime trying to
->>
->> One millisecond even. :)
-> 
-> Normally 1ms is not a slow time for this. We can only hit the wait if 
-> the context_close call has already called the cancel_delayed_work, so 
-> the only thing left to do in that function is to send the H2G, which is 
-> relatively fast. However, I've just realized that if the H2G buffer is 
-> full the H2G will stall, so in that case it can take longer (maximum 
-> stall time before a hang is declared is 1.5s).
-> 
->>
->> What would be the consequence of prematurely reading the still 
->> registered context flag? Execbuf fails? GuC hangs? Kernel crashes? 
->> Something else?
-> 
-> i915 thinks that a request pending with the GuC, while GuC thinks we 
-> disabled it (because the completion of the delayed_disable happens after 
-> the new request has been submitted). The heartbeat will still go 
-> through, so no reset will be triggered, the request is just lost. A new 
-> request submission on the same context should be able to recover it, but 
-> we didn't test that.
-> 
-> 
->>
->> And why cant' this race with context close happen at any other point 
->> than this particular spot in guc_request_alloc? Immediately after the 
->> added checks? After atomic_add_unless?
-> 
-> The race is tied to the canceling of the delayed work. context_close 
-> only does something if it cancels the delayed work, so if the 
-> cancel_delayed_work_sync here does the cancelling then context_close is 
-> a no-op.
+CI Bug Log - changes from CI_DRM_12160 -> Patchwork_107440v8
+====================================================
 
-It's a bit involved* to follow so I'll give up and declare a "whatever" if that's okay with you.
+Summary
+-------
 
-*)
-intel_context_close
-   set_bit(CONTEXT_CLOSED_BIT, &ce->flags)
-   ->guc_context_close
-	if (test_bit(CONTEXT_GUC_INIT, &ce->flags) &&
-	    cancel_delayed_work(&ce->guc_state.sched_disable_delay))
-		__delay_sched_disable(&ce->guc_state.sched_disable_delay.work);
-		  ((which is:
-			spin_lock_irqsave(&ce->guc_state.lock, flags);
-			..stuff..
-			unlock
-		  ))
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_107440v8 absolutely need to be
+  verified manually.
   
-	spin_lock_irqsave(&ce->guc_state.lock, flags);
-	set_context_close_done(ce);
-	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_107440v8, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Takes and releases the same lock two times so I have no idea why twice, and less so whether it is safe and race free.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/index.html
 
-Regards,
+Participating hosts (48 -> 35)
+------------------------------
 
-Tvrtko
+  Missing    (13): fi-cml-u2 bat-dg1-5 fi-hsw-4200u bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 fi-ctg-p8600 bat-adln-1 fi-kbl-x1275 bat-rpls-1 fi-bdw-samus bat-jsl-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_107440v8:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-glk-j4005:       [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_module_load@load:
+    - {fi-tgl-mst}:       [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-tgl-mst/igt@i915_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-tgl-mst/igt@i915_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_107440v8 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-pnv-d510:        [PASS][5] -> [INCOMPLETE][6] ([i915#6863])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-pnv-d510/igt@debugfs_test@read_all_entries.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-pnv-d510/igt@debugfs_test@read_all_entries.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@runner@aborted:
+    - fi-pnv-d510:        NOTRUN -> [FAIL][8] ([i915#2403] / [i915#4312])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-pnv-d510/igt@runner@aborted.html
+    - fi-glk-j4005:       NOTRUN -> [FAIL][9] ([i915#4312] / [i915#5257] / [i915#6884])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-glk-j4005/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][10] ([i915#4785]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-kbl-guc:         [FAIL][12] ([i915#6219]) -> [FAIL][13] ([i915#6219] / [i915#6884])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-kbl-guc/igt@runner@aborted.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-kbl-guc/igt@runner@aborted.html
+    - fi-kbl-8809g:       [FAIL][14] ([i915#6219]) -> [FAIL][15] ([i915#6219] / [i915#6884])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-kbl-8809g/igt@runner@aborted.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-kbl-8809g/igt@runner@aborted.html
+    - fi-kbl-soraka:      [FAIL][16] ([i915#6219]) -> [FAIL][17] ([i915#6219] / [i915#6884])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-kbl-soraka/igt@runner@aborted.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-kbl-soraka/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#5257]: https://gitlab.freedesktop.org/drm/intel/issues/5257
+  [i915#6219]: https://gitlab.freedesktop.org/drm/intel/issues/6219
+  [i915#6863]: https://gitlab.freedesktop.org/drm/intel/issues/6863
+  [i915#6884]: https://gitlab.freedesktop.org/drm/intel/issues/6884
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12160 -> Patchwork_107440v8
+
+  CI-20190529: 20190529
+  CI_DRM_12160: 33a5599358a6f7bc7bff21369c758303639b5bab @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6658: c27dcb9e0baca05abce8527c245b513f7a8f1059 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_107440v8: 33a5599358a6f7bc7bff21369c758303639b5bab @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+5b8505f71d82 drm/i915: Enabling WD Transcoder
+65873bc1d616 drm/i915 : Changing intel_connector iterators
+a43d1e0e0e7d drm/i915: Define WD trancoder for i915
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/index.html
+
+--===============0824956430989063685==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable Pipewriteback (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/107440/">https://patchwork.freedesktop.org/series/107440/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12160 -&gt; Patchwork_107440v8</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_107440v8 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_107440v8, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/index.html</p>
+<h2>Participating hosts (48 -&gt; 35)</h2>
+<p>Missing    (13): fi-cml-u2 bat-dg1-5 fi-hsw-4200u bat-dg2-8 bat-adlm-1 bat-dg2-9 bat-adlp-6 fi-ctg-p8600 bat-adln-1 fi-kbl-x1275 bat-rpls-1 fi-bdw-samus bat-jsl-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_107440v8:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@late_gt_pm:<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-tgl-mst/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-tgl-mst/igt@i915_module_load@load.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_107440v8 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-pnv-d510/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-pnv-d510/igt@debugfs_test@read_all_entries.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6863">i915#6863</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-glk-j4005/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5257">i915#5257</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6884">i915#6884</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6884">i915#6884</a>)</p>
+</li>
+<li>
+<p>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6884">i915#6884</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12160/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_107440v8/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6219">i915#6219</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6884">i915#6884</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12160 -&gt; Patchwork_107440v8</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12160: 33a5599358a6f7bc7bff21369c758303639b5bab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6658: c27dcb9e0baca05abce8527c245b513f7a8f1059 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_107440v8: 33a5599358a6f7bc7bff21369c758303639b5bab @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>5b8505f71d82 drm/i915: Enabling WD Transcoder<br />
+65873bc1d616 drm/i915 : Changing intel_connector iterators<br />
+a43d1e0e0e7d drm/i915: Define WD trancoder for i915</p>
+
+</body>
+</html>
+
+--===============0824956430989063685==--
