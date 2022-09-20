@@ -1,140 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02F575BDDB6
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 09:01:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9899F5BDDD8
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 09:13:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 225DC10E2ED;
-	Tue, 20 Sep 2022 07:01:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA07B10E290;
+	Tue, 20 Sep 2022 07:13:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD05F10E2ED
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 07:01:44 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9F6910E290;
+ Tue, 20 Sep 2022 07:13:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663657304; x=1695193304;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=ezbEcUMdfKI1wWcvhmTF+n7i/WHwE49XsSXCcwq/aEQ=;
- b=GZBSLtaVd/WUkT0PBB59mg4C/EMEXK9h+q1yqHkMJsR029tWsLQ7spzP
- 4xyQoJ+Lmh7Xk8jAFhGLkgy3T3GZLv+T3PUaYSqanV5Hw9QelCIhTQ2VK
- IqmEyMfcYC5N0J1K5HZsK0gLcpzX0E/dVVdArHDtCRILbqCacMbUYqbqK
- 20n7SxgXVFR+XBEzxY6SCAAfP4rO/HPY+Eq9VmwPKRexx7mLvPQf5e0ib
- Wzazr2/1X7kwLGdkuS6qxw3diY/6z+SL1fYVZMwxwdmLzrudrj4oF+NAp
- cO+j/cTxhO3Vk28Ak6RoWuLZeTAnEwBIXEXlBvF3vzKGm5C23kFhm+Gj2 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="325917151"
-X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="325917151"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2022 00:01:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="863865313"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga006.fm.intel.com with ESMTP; 20 Sep 2022 00:01:42 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 20 Sep 2022 00:01:41 -0700
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 20 Sep 2022 00:01:40 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Tue, 20 Sep 2022 00:01:40 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Tue, 20 Sep 2022 00:01:40 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IOV9nTKdQRayMD4LCkxTcajFZH6Zc6ggsChZ9iXRTmnf39t0nWJUBY3epMLBicEylT8d7udM9m5qRkP3eFnpKPlG6GoOz2WqL5iGX/VHNI5UqIrKvrOwR0ds7gZq0/2xQnUDr/0GNzX+Dje2AcZH7Hx3a1AFSpkwbJMmQ5uosQcLf5/1NN7y7+Na2XIvlslY1G6ZEzNV4IDXbpiQ2dabCT7aDTEpDnCPgsLRyv6GoFuw+8Smf4UWqLYdpAXW9erG9WRkHbuIrlyF6uk9KTMkH0yUpSf1/DOVyG/k3ZrwnPPQUsnHkHhOvydQcLe+U+lESkhbZPfSqMFP5trB1ojxMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BwexowdZkXs/uOXnBDvhnSJK62V7H3aKndWPHI42pFE=;
- b=iZqRoDY8VraorRxRTtEfhd4S+67S3upus4wK5PNVh0e2lORveisr2PDFJ4S5eNsJb5NsT/tDesPgb/WhmobyYX7/7U9LvbJDYFX37wI9tqVp73LAz0sTksKMFh50SpMu0coQV08qIinVtgnadPiMxxTpIRtZlD44/QsuATxkedA1S0FbC/4W/nkNOXChlK/UnElz7b/NZKf+3raTHJcMxZQKof07BdgjH7EHQO0gDqJ6bD2cnZjYh7kglyA1XZ267mugBQtCk1vsgNt5dm31t0HlAo/Ipdn8z61q/x1WEOnmicNtdLFm6r9gdfeIdPedAYzGUCdejvy0vUeZDoHGig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ0PR11MB5894.namprd11.prod.outlook.com (2603:10b6:a03:42a::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21; Tue, 20 Sep
- 2022 07:01:39 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7b64:871c:564d:91fa]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7b64:871c:564d:91fa%6]) with mapi id 15.20.5632.019; Tue, 20 Sep 2022
- 07:01:38 +0000
-Date: Tue, 20 Sep 2022 00:01:36 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Message-ID: <20220920070136.nyhompdd6yvpa65n@ldmartin-desk2.lan>
-X-Patchwork-Hint: comment
-References: <20220919145659.293492-1-gustavo.sousa@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220919145659.293492-1-gustavo.sousa@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0223.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::18) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+ t=1663658014; x=1695194014;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eDv6g+bDUS+igQv1K28Yl644UwAFod41aKoQUDkvz58=;
+ b=mPLtr9ylW3hq1bnEMj8aQ6zvDu/1l9cZl4GzKxmLXRyemkAXNWY45aKM
+ DmHPSJ1fRyZ/DVCHB/uzqhH3WIxVGthnFz9dPgCfFCTKlLicEnt3AZFWR
+ PgDXfy30rF0XaiU5YWt4UIP7LlaC5iJq7aQ/wLbK8Q3KmcIyNILVJwcsa
+ Fo0j8WHVBbDAuzIEHFmuM2N1hyCnXaN2Bvsc5WEjuFCyvzy/PZCJMJxUn
+ Tmq9ln5K/FDqup14QFIGMB2I0/2Vfisq4aG5h70GYn+X4swK10qhtWnxU
+ G4tQceljIyHy9Hlh9ZbasVX9yTzT0ExZukO2q01QxJh1SIf1sO8tBQw7R g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="299609274"
+X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="299609274"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2022 00:13:34 -0700
+X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="621155658"
+Received: from aravind-dev.iind.intel.com ([10.145.162.80])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2022 00:13:32 -0700
+From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 20 Sep 2022 12:49:40 +0530
+Message-Id: <20220920071940.3775059-1-aravind.iddamsetty@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB5894:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f314a8b-9882-46b4-6b8e-08da9ad5f6a8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: T6HVu2kSxtSQDGMD9uM/ibd56ya2hjM1S2fc8GK+xL1GDU1oo24ayzm6lHbJmhbvjBafYr9rdNoKkLLBaJzjAMZU5ic1jLcfqLLAuBjvDPISyC+ed6JKxcubs3R/knPmOp0Wlbd2pVKyM3huoO8Q1JqFW6dRDtl3vCRwV6OnmQ0/qkAD8sXIhR8rIY9C6cfSgMX9JHFHXMrQC/wb2KV4HPkHZjh3lr75b+HlQMEPGXLiA4LWgLSaa939ZkoyE3xEXGWlcx2QNV07w8Y7uFsgTewBMWb+5KM9fOoAV8GYQjzKhsyPau7Knf/UEhbt3boFLGpjIg+v3j3WRiMkA0u44V98P0pDHLxcVcBmBCT/F8rg1NXbk82Jpi0fKQRpKYHCsIQm6CGgpaMrYDwdLgC6VU0Y24glFIZy9fO0MYi7wucAYeoRWyabi6weGJWKwathBDldEaowM8TdQcye+YT3pZz+Rgd+yD1qAv+HbHswCs/vcBk+swYKym8tFCLHBJuejM0BacER2vxEQguKCTKgGiOiXtVK5JQaIoy4fibfB+arngT+CefT5gSXLsLRoAVvi+ctDDLBETDMu+XzXWuEhFtllU/5jB1+RCTdnkp6CZDPckhSKT838+hvS230Z0LTVZv6nvpniYMIxXWNlm/s/TPPZ/UC8mVLrXL1cPJ/QDd5pbjF5KoCO7GbMfJPzC4foPKFVYyQaqxSEHcXQQBhfQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(346002)(376002)(136003)(366004)(396003)(39860400002)(451199015)(478600001)(36756003)(6486002)(66556008)(66946007)(6636002)(8676002)(4326008)(41300700001)(6506007)(86362001)(66476007)(6862004)(8936002)(26005)(83380400001)(38100700002)(5660300002)(6512007)(82960400001)(9686003)(316002)(186003)(1076003)(2906002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lrDuf9OLoWVaXtM+7mmtdRO5PMWUaBcKQqsI7/wFLEQtuNjn+mAWxvw40ILt?=
- =?us-ascii?Q?eQKiTkR8BFQafqRmy2C2uiHPEcMSOlvMm+QVQ4WyOii4msTktXYqS3O9dMUk?=
- =?us-ascii?Q?vVDMlNdFBJNZ9c5gaiB5s/jq50RYwVQNYMIR0YZayfvdSqovKPd+h+HfPMv3?=
- =?us-ascii?Q?CTmOCJkmnjW/PzsqQ3tzxu3NorlRHHf6BRDpiug7KVsA/DOOy883ErPOuU/V?=
- =?us-ascii?Q?arKIxKyg+SarXQOgtjn2F9E3kFHJRPMNf0E0U08Dwf+nD4QKhyL5jAg3HX/C?=
- =?us-ascii?Q?Zm7Tzl70xazR87xHPPxxsOL5yGWJYwY9XvtzO00h9dwN7eCsHMA9e4LhSnCu?=
- =?us-ascii?Q?N6R1eZgi8+4F7Bsp7cCc+i1HOd2xwNWhcAYE+Isv7VfFBKlGTPJZvKY5q0Oa?=
- =?us-ascii?Q?mpeo9He8Wm4PstOAigfbW0uQySn4ZY2K9k3NrD45Wo0F5yk70VgDorEq4vU7?=
- =?us-ascii?Q?0eISUqeL23Y4i4HNQPTik9j4TtY1YYxXE1/XhrG8YxEfteWweaxI/+oGj1ZK?=
- =?us-ascii?Q?K6O/oWuPWQc/WrgjRiHdu0c72YeT8SjwhQZxpr/EHoq9BZOWOcbvH4lEm2nZ?=
- =?us-ascii?Q?lpKPwat/oWN00fLMa/QP5WNJYi8kqgBAR6r6sasfWn96S0/ZSLgj1nundNx8?=
- =?us-ascii?Q?ZNdLRH+AfNhRudH6gRWaQzF3MZ/Fr//dCLG4hSUFdDou2mDthx8IIxSGK5fM?=
- =?us-ascii?Q?7fNndwMNOjKnM8bLTkKmLqM10xCHl85JAxMSio9Hj1yPSrf8kGiFnlGvtton?=
- =?us-ascii?Q?kirDtklGGqzSQtVQwxKbWqac7hsEccFciQbDIAV1HG2MGn0spHsROaa4EVnB?=
- =?us-ascii?Q?hnqpZmk2bl+ccnHhy/N84k97GmUSlzpDEzp8af7xa6s/q+6INBk07nTXfPkW?=
- =?us-ascii?Q?hPrdxJozqzmQf/X3taUneYUBKOWX0huQcioU9w2IKLwaWxjI4U9ukfjxHjsT?=
- =?us-ascii?Q?Cf5pm4tIqpUknli5zOyGbhrZ6lUCAW79ydyAPiOu2i3eReK1KtYKI4HJda10?=
- =?us-ascii?Q?X1qCbhBf3oysMWOBMhhmpfQCluAd3mFzOztxqVX95Dfz87D6XbgrBzG9PNoP?=
- =?us-ascii?Q?mVyv6xTXLhJ/6q9cxqbHTz57W+HevBPUjf2JVgXVfZpzPxnUYS5fpYTQ3lXl?=
- =?us-ascii?Q?hvnmTFB4FUl35H6Lx+kTTFwdae0BWHsT1z71tB8MXXsmBR2XP7APdSM9wSq1?=
- =?us-ascii?Q?ENRxC2i+hWQd9hOZkNWL+das83/iE4ZfprPEf8kG0yS0Wj2rO7gBHOTMr7X9?=
- =?us-ascii?Q?mHA3ak3IwoY3e3goTR2I78RzsqvKOYq8pSftBlIWfuwEuchvK+wzNBsUxP/M?=
- =?us-ascii?Q?lyLWy5l8n3XrkSnKjd0etEHfUC5dm7+xeHa3c8zSN83ILIY6LPnS7y+SBwdN?=
- =?us-ascii?Q?AzdqV/HxhDxeNxJOIf8Deww++L690AI76QOaf40C/XOs2w5V0o5lGoxUDJjt?=
- =?us-ascii?Q?jei5xJV0BG2EUrgsBLyMi+LGr4S7PmULxSOAu1rDW64DKmTpD8OjC20w0900?=
- =?us-ascii?Q?VneKdFnlXqGd8QPbbc5M8Wgf61npOe4VvgqCRe73RTCVkeG2Z0Fbs4zEmSTB?=
- =?us-ascii?Q?LXh4HYWZDUneYdLU7Iwbv+pbTTsZrzp8LAJ9h8riVvpUl0v3iNqB+QInOL+i?=
- =?us-ascii?Q?kA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f314a8b-9882-46b4-6b8e-08da9ad5f6a8
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2022 07:01:38.8340 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: b38bJHCny1O3jA37PJMzLS4vn/x/VjBgI8+xYk9Xj0Zz2Pu3OVIGFwsEr28ilF9vZT2Z4gF0iGAiKw/bzYACWe9n2CYlLGFXOzyWpMpnBHI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5894
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Move hotplug inversion logic into
- separate helper
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/1] drm/i915/mtl: enable local stolen memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,71 +53,246 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 19, 2022 at 11:56:59AM -0300, Gustavo Sousa wrote:
->Make the code more readable, which will be more apparent as new
->platforms with different hotplug inversion needs are added.
->
->Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->---
-> drivers/gpu/drm/i915/i915_irq.c | 25 ++++++++++++++++---------
-> 1 file changed, 16 insertions(+), 9 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
->index de06f293e173..c53d21ae197f 100644
->--- a/drivers/gpu/drm/i915/i915_irq.c
->+++ b/drivers/gpu/drm/i915/i915_irq.c
->@@ -3263,6 +3263,21 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
-> 	spin_unlock_irq(&dev_priv->irq_lock);
-> }
->
->+static void setup_hotplug_inversion(struct drm_i915_private *dev_priv)
+As an integrated GPU, MTL does not have local memory and
+HAS_LMEM() returns false.  However the platform's stolen memory
+is presented via BAR2 (i.e., the BAR we traditionally consider
+to be the LMEM BAR) and should be managed by the driver the same
+way that local memory is on dgpu platforms (which includes
+setting the "lmem" bit on page table entries).  We use the term
+"local stolen memory" to refer to this model.
 
-new users of drm_i915_private should use "i915" as variable name rather
-than dev_priv.
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 
-other than that,  Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: CQ Tang <cq.tang@intel.com>
+Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Original-author: CQ Tang
+---
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 113 +++++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_ggtt.c       |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h            |   3 +
+ 3 files changed, 100 insertions(+), 18 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index acc561c0f0aa..bad5250fb764 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -77,6 +77,19 @@ void i915_gem_stolen_remove_node(struct drm_i915_private *i915,
+ 	mutex_unlock(&i915->mm.stolen_lock);
+ }
+ 
++static bool is_dsm_invalid(struct drm_i915_private *i915, struct resource *dsm)
++{
++	if (!HAS_BAR2_SMEM_STOLEN(i915)) {
++		if (dsm->start == 0)
++			return true;
++	}
++
++	if (dsm->end <= dsm->start)
++		return true;
++
++	return false;
++}
++
+ static int i915_adjust_stolen(struct drm_i915_private *i915,
+ 			      struct resource *dsm)
+ {
+@@ -84,7 +97,7 @@ static int i915_adjust_stolen(struct drm_i915_private *i915,
+ 	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
+ 	struct resource *r;
+ 
+-	if (dsm->start == 0 || dsm->end <= dsm->start)
++	if (is_dsm_invalid(i915, dsm))
+ 		return -EINVAL;
+ 
+ 	/*
+@@ -136,7 +149,7 @@ static int i915_adjust_stolen(struct drm_i915_private *i915,
+ 	 * overlaps with the non-stolen system memory range, since lmem is local
+ 	 * to the gpu.
+ 	 */
+-	if (HAS_LMEM(i915))
++	if (HAS_LMEM(i915) || HAS_BAR2_SMEM_STOLEN(i915))
+ 		return 0;
+ 
+ 	/*
+@@ -371,8 +384,6 @@ static void icl_get_stolen_reserved(struct drm_i915_private *i915,
+ 
+ 	drm_dbg(&i915->drm, "GEN6_STOLEN_RESERVED = 0x%016llx\n", reg_val);
+ 
+-	*base = reg_val & GEN11_STOLEN_RESERVED_ADDR_MASK;
+-
+ 	switch (reg_val & GEN8_STOLEN_RESERVED_SIZE_MASK) {
+ 	case GEN8_STOLEN_RESERVED_1M:
+ 		*size = 1024 * 1024;
+@@ -390,6 +401,12 @@ static void icl_get_stolen_reserved(struct drm_i915_private *i915,
+ 		*size = 8 * 1024 * 1024;
+ 		MISSING_CASE(reg_val & GEN8_STOLEN_RESERVED_SIZE_MASK);
+ 	}
++
++	if ((GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) && !IS_DGFX(i915))
++		/* the base is initialized to stolen top so subtract size to get base */
++		*base -= *size;
++	else
++		*base = reg_val & GEN11_STOLEN_RESERVED_ADDR_MASK;
+ }
+ 
+ static int i915_gem_init_stolen(struct intel_memory_region *mem)
+@@ -423,8 +440,7 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
+ 	if (i915_adjust_stolen(i915, &i915->dsm))
+ 		return 0;
+ 
+-	GEM_BUG_ON(i915->dsm.start == 0);
+-	GEM_BUG_ON(i915->dsm.end <= i915->dsm.start);
++	GEM_BUG_ON(is_dsm_invalid(i915, &i915->dsm));
+ 
+ 	stolen_top = i915->dsm.end + 1;
+ 	reserved_base = stolen_top;
+@@ -796,6 +812,46 @@ static const struct intel_memory_region_ops i915_region_stolen_lmem_ops = {
+ 	.init_object = _i915_gem_object_stolen_init,
+ };
+ 
++static int get_mtl_gms_size(struct intel_uncore *uncore)
++{
++	u16 ggc, gms;
++
++	ggc = intel_uncore_read16(uncore, _MMIO(0x108040));
++
++	/* check GGMS, should be fixed 0x3 (8MB) */
++	if ((ggc & 0xc0) != 0xc0)
++		return -EIO;
++
++	/* return valid GMS value, -EIO if invalid */
++	gms = ggc >> 8;
++	switch (gms) {
++	case 0x0 ... 0x10:
++		return gms * 32;
++	case 0x20:
++		return 1024;
++	case 0x30:
++		return 1536;
++	case 0x40:
++		return 2048;
++	case 0xf0 ... 0xfe:
++		return (gms - 0xf0 + 1) * 4;
++	default:
++		return -EIO;
++	}
++}
++
++static inline bool lmembar_is_igpu_stolen(struct drm_i915_private *i915)
++{
++	u32 regions = RUNTIME_INFO(i915)->memory_regions;
++
++	if (regions & REGION_LMEM)
++		return false;
++
++	drm_WARN_ON(&i915->drm, (regions & REGION_STOLEN_LMEM) == 0);
++
++	return true;
++}
++
+ struct intel_memory_region *
+ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 			   u16 instance)
+@@ -806,19 +862,16 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 	struct intel_memory_region *mem;
+ 	resource_size_t io_start, io_size;
+ 	resource_size_t min_page_size;
++	int ret;
+ 
+ 	if (WARN_ON_ONCE(instance))
+ 		return ERR_PTR(-ENODEV);
+ 
+-	if (!i915_pci_resource_valid(pdev, GEN12_LMEM_BAR))
++	if (!i915_pci_resource_valid(pdev, GFXMEM_BAR))
+ 		return ERR_PTR(-ENXIO);
+ 
+-	/* Use DSM base address instead for stolen memory */
+-	dsm_base = intel_uncore_read64(uncore, GEN12_DSMBASE);
+-	if (IS_DG1(uncore->i915)) {
+-		lmem_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
+-		if (WARN_ON(lmem_size < dsm_base))
+-			return ERR_PTR(-ENODEV);
++	if (lmembar_is_igpu_stolen(i915) || IS_DG1(i915)) {
++		lmem_size = pci_resource_len(pdev, GFXMEM_BAR);
+ 	} else {
+ 		resource_size_t lmem_range;
+ 
+@@ -827,13 +880,39 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 		lmem_size *= SZ_1G;
+ 	}
+ 
+-	dsm_size = lmem_size - dsm_base;
+-	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
++	if (HAS_BAR2_SMEM_STOLEN(i915)) {
++		/*
++		 * MTL dsm size is in GGC register, not the bar size.
++		 * also MTL uses offset to DSMBASE in ptes, so i915
++		 * uses dsm_base = 0 to setup stolen region.
++		 */
++		ret = get_mtl_gms_size(uncore);
++		if (ret < 0) {
++			drm_err(&i915->drm, "invalid MTL GGC register setting\n");
++			return ERR_PTR(ret);
++		}
++
++		dsm_base = 0;
++		dsm_size = (resource_size_t)(ret * SZ_1M);
++
++		GEM_BUG_ON(pci_resource_len(pdev, GFXMEM_BAR) != 256 * SZ_1M);
++		GEM_BUG_ON((dsm_size + 8 * SZ_1M) > lmem_size);
++	} else {
++		/* Use DSM base address instead for stolen memory */
++		dsm_base = intel_uncore_read64(uncore, GEN12_DSMBASE);
++		if (WARN_ON(lmem_size < dsm_base))
++			return ERR_PTR(-ENODEV);
++		dsm_size = lmem_size - dsm_base;
++	}
++
++	io_size = dsm_size;
++	if (pci_resource_len(pdev, GFXMEM_BAR) < dsm_size) {
+ 		io_start = 0;
+ 		io_size = 0;
++	} else if (HAS_BAR2_SMEM_STOLEN(i915)) {
++		io_start = pci_resource_start(pdev, GFXMEM_BAR) + 8 * SZ_1M;
+ 	} else {
+-		io_start = pci_resource_start(pdev, GEN12_LMEM_BAR) + dsm_base;
+-		io_size = dsm_size;
++		io_start = pci_resource_start(pdev, GFXMEM_BAR) + dsm_base;
+ 	}
+ 
+ 	min_page_size = HAS_64K_PAGES(i915) ? I915_GTT_PAGE_SIZE_64K :
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 30cf5c3369d9..b31fe0fb013f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -931,7 +931,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+ 	unsigned int size;
+ 	u16 snb_gmch_ctl;
+ 
+-	if (!HAS_LMEM(i915)) {
++	if (!HAS_LMEM(i915) && !HAS_BAR2_SMEM_STOLEN(i915)) {
+ 		if (!i915_pci_resource_valid(pdev, GTT_APERTURE_BAR))
+ 			return -ENXIO;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 134fc1621821..ef3120322077 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -973,6 +973,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 
+ #define HAS_ONE_EU_PER_FUSE_BIT(i915)	(INTEL_INFO(i915)->has_one_eu_per_fuse_bit)
+ 
++#define HAS_BAR2_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
++				    GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
++
+ /* intel_device_info.c */
+ static inline struct intel_device_info *
+ mkwrite_device_info(struct drm_i915_private *dev_priv)
+-- 
+2.25.1
 
-Lucas De Marchi
-
->+{
->+	u32 invert_bits;
->+
->+	if (HAS_PCH_DG1(dev_priv))
->+		invert_bits = INVERT_DDIA_HPD |
->+			      INVERT_DDIB_HPD |
->+			      INVERT_DDIC_HPD |
->+			      INVERT_DDID_HPD;
->+	else
->+		return;
->+
->+	intel_uncore_rmw(&dev_priv->uncore, SOUTH_CHICKEN1, 0, invert_bits);
->+}
->+
-> static u32 ibx_hotplug_enables(struct drm_i915_private *i915,
-> 			       enum hpd_pin pin)
-> {
->@@ -3413,15 +3428,7 @@ static u32 gen11_hotplug_enables(struct drm_i915_private *i915,
->
-> static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> {
->-	u32 val;
->-
->-	val = intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN1);
->-	val |= (INVERT_DDIA_HPD |
->-		INVERT_DDIB_HPD |
->-		INVERT_DDIC_HPD |
->-		INVERT_DDID_HPD);
->-	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN1, val);
->-
->+	setup_hotplug_inversion(dev_priv);
-> 	icp_hpd_irq_setup(dev_priv);
-> }
->
->-- 
->2.37.3
->
