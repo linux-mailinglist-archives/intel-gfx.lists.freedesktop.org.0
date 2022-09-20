@@ -2,57 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 375745BE7D8
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 16:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DCF95BE853
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 16:14:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A16C210E54C;
-	Tue, 20 Sep 2022 14:00:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3077A10E6CB;
+	Tue, 20 Sep 2022 14:14:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com
- [IPv6:2a00:1450:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9431E10E54C
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 14:00:49 +0000 (UTC)
-Received: by mail-lj1-x229.google.com with SMTP id h3so3149857lja.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 07:00:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date;
- bh=0jY69W5KYVQIviyEBc0fZd7w85dW1XW/u2K3baVotPw=;
- b=qtHRTXSSQITXibhS12Aq2R44tI8izLTGyUOZgjji3N+KiZgG4HRpMxFr/WUA85EoTk
- CLjUYsWDTfzVKiqlvYiPmf3PXKHQXPSeMmL2bKXJnjFgjrZRPo4BbDCzdrrAZswZQCt8
- XZMWGCUvuKKQRj7B6eBTmss0QiXoraJhj4d4v5Gm6BoHrYCDTrHBQA2ZFZNkrKw5qPvV
- PnS/mbO1UFEhCLJyhbZdPjq9fdye/hp/aAol5Fgqid0cS/VJoh/uVz8fe9hO5MfAGl8X
- yl6Mc7a1DrBpLPfByrGvV3AnHeFd6NPtz2nDT4PtZskgHmg+okN/MJwgD/4gArkKZ2I6
- jlgw==
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
+ [IPv6:2607:f8b0:4864:20::b33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FFED10E6CE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 14:14:03 +0000 (UTC)
+Received: by mail-yb1-xb33.google.com with SMTP id e81so3515501ybb.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 07:14:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date;
+ bh=A5SHHtL7QW2l54muzkKKvK4LNnKVv9lnQOHGxIBuRuE=;
+ b=I0YUoX79VzdB1su5c8YsyhJqRmH5BNT4YqtIql7uMHjv4tNfOgHifd92qluReG4d/X
+ i+jYW3HyitXzOX4IonS8R0ZONlFkR1k7gzgwSfoZiyoaclz0ttvaXwLoZb7ZtxANBu5Y
+ 3z526ei+ptSUlr9B43I+BPqd8EpQylJ4cBJQM2NB3es8UnHI+rMDDmASlishpV745ZiR
+ FmF+Tn/kij0Q3tHjPuP7PPUW7rGa0WojF+SdtI5DCR6jLM2zwity5aoAXKaUhJv2tGwk
+ A1NAE6VKh7Q2gKgry+vltVNnOPdcodRj2m1ez7wQy3SuDN63Pt0F5Dl77GROsIrV6LU3
+ c7sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=0jY69W5KYVQIviyEBc0fZd7w85dW1XW/u2K3baVotPw=;
- b=iJHkCS13P5kxkUx+35h8JVsZEUUK3zQbcFXoPl+837tyK/TWqZQpX2I3/HeqjAFk7R
- tcqYPBQvgfQMUhLyzTKrQTAobhOIvXiXDwWuWdC2AkB2wyvIni5BMzlcrkM2j5/+SIRa
- 5EQKtII5Wzlj7YWrDABirXwBgBjuNXiNaKR86FXj5mO+vlEn2wcMUMq6OQJP9d50/NPE
- +8NkFfexEEgroJBh1/BEA/tw9vTobXQ54PUmNcMfoaUzeE2HBYlrBelj7EpkZ8ISo2mD
- 8OwHMzPIuzpyxuW6FfqCeZaKGDUyrCr25HtQ2z1PX35HV6CLx+IO8Q3MMczC3I2IXTeB
- QhdA==
-X-Gm-Message-State: ACrzQf25Q/G0Dqkm96NU6mnRzp1hwYLs13T1R6D53pmn386U/JqDiG1E
- cgyOvsb0jmZKR1gOayRiOPMYmAp0bWWG5HEsd/Y=
-X-Google-Smtp-Source: AMsMyM72Rrm2nLSipEd5OPRitk7egFup4VfLzAlpJ82FQWKZBpK988lGXbbcro6cDCiTCHXHVXPlt0Fw2qVRxhYEWYg=
-X-Received: by 2002:a2e:9848:0:b0:26c:49b1:9cf0 with SMTP id
- e8-20020a2e9848000000b0026c49b19cf0mr4027145ljj.385.1663682447476; Tue, 20
- Sep 2022 07:00:47 -0700 (PDT)
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date;
+ bh=A5SHHtL7QW2l54muzkKKvK4LNnKVv9lnQOHGxIBuRuE=;
+ b=oMmP0q6Gnl7ky9ogw1uxe4/3cczmH34vEBetg+pp+0mQgetceSqWhVFtAAnmodG55L
+ 7G0NxoNR65IbNWVOUQi4GeDMB1MmR6cOA+4zJvOcaEimHYIPwcM+9G99PQfFTqL9Oh3m
+ 5pwch4WeA7YJOlRfBzrKjLHFLoHOP8PUBxep99mYYLwpwuDgTmtzI4kh23lfQMOkRfZ4
+ y+q3uLeQa8by0gaUyiw9h0GGhBXIzi4Eh1XL7yDeG5rSQkVVCxLB+gcuzRon1JzQtcm+
+ 25x2nYamJkSU4omk783DtALB1DlzJVAU6br4MPriUFD19l3bCBpS4TJpioM2cS9BTQN7
+ 4Iig==
+X-Gm-Message-State: ACrzQf2dqudCTcxs0Lisl6pGTBWQtnSW+u5nRkhPOfjFvtDYUwSCErZi
+ wG4FlqI9UxSmxiebxMpgpPtndSlPglnsTqge7PVcyw==
+X-Google-Smtp-Source: AMsMyM5ptp/xJcYbBs/zLcmhTWf9yaT5sYYL81f6HBIkVW4YVsWA9kHYXFc60Kp909nkSHb5MmXRrVuHNeF6LJJFSRY=
+X-Received: by 2002:a25:af52:0:b0:6b3:de78:452a with SMTP id
+ c18-20020a25af52000000b006b3de78452amr10092889ybj.157.1663683242012; Tue, 20
+ Sep 2022 07:14:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220913152714.16541-1-anshuman.gupta@intel.com>
- <20220913152714.16541-3-anshuman.gupta@intel.com>
-In-Reply-To: <20220913152714.16541-3-anshuman.gupta@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 20 Sep 2022 15:00:19 +0100
-Message-ID: <CAM0jSHNrmFeYADNHY1sK+p4vcJ6pCuLFKqq-+tQMM399R10b4g@mail.gmail.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
+References: <20220913192757.37727-1-dmitry.osipenko@collabora.com>
+ <20220913192757.37727-16-dmitry.osipenko@collabora.com>
+In-Reply-To: <20220913192757.37727-16-dmitry.osipenko@collabora.com>
+From: Sumit Semwal <sumit.semwal@linaro.org>
+Date: Tue, 20 Sep 2022 19:43:49 +0530
+Message-ID: <CAO_48GFtLjR657nO+yh9KwsrWbNmGVsf7srHj19biO+NauYt4w@mail.gmail.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v5 2/2] drm/i915/dgfx: Release mmap on rpm
- suspend
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v5 15/21] dma-buf: Move dma_buf_vmap() to
+ dynamic locking specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,290 +67,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, rodrigo.vivi@intel.com,
- Matthew Auld <matthew.auld@intel.com>, chris@chris-wilson.co.uk
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Stefano Stabellini <sstabellini@kernel.org>, Leon Romanovsky <leon@kernel.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, linux-rdma@vger.kernel.org,
+ Russell King <linux@armlinux.org.uk>, Daniel Stone <daniel@fooishbar.org>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ virtualization@lists.linux-foundation.org, Chia-I Wu <olvaffe@gmail.com>,
+ linux-media@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Juergen Gross <jgross@suse.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>, amd-gfx@lists.freedesktop.org,
+ Tomi Valkeinen <tomba@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ Qiang Yu <yuq825@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Lucas Stach <l.stach@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 13 Sept 2022 at 16:27, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+Hi Dmitry,
+
+Thanks very much for the series.
+
+On Wed, 14 Sept 2022 at 00:59, Dmitry Osipenko
+<dmitry.osipenko@collabora.com> wrote:
 >
-> Release all mmap mapping for all lmem objects which are associated
-> with userfault such that, while pcie function in D3hot, any access
-> to memory mappings will raise a userfault.
+> Move dma_buf_vmap/vunmap_unlocked() functions to the dynamic locking
+> specification by asserting that the reservation lock is held.
+Thanks for the patch; just a minor nit - I think you mean dma_buf_vmap
+/ vunmap() here, and not _unlocked?
+
+Best,
+Sumit.
+
+
 >
-> Runtime resume the dgpu(when gem object lies in lmem).
-> This will transition the dgpu graphics function to D0
-> state if it was in D3 in order to access the mmap memory
-> mappings.
->
-> v2:
-> - Squashes the patches. [Matt Auld]
-> - Add adequate locking for lmem_userfault_list addition. [Matt Auld]
-> - Reused obj->userfault_count to avoid double addition. [Matt Auld]
-> - Added i915_gem_object_lock to check
->   i915_gem_object_is_lmem. [Matt Auld]
->
-> v3:
-> - Use i915_ttm_cpu_maps_iomem. [Matt Auld]
-> - Fix 'ret == 0 to ret == VM_FAULT_NOPAGE'. [Matt Auld]
-> - Reuse obj->userfault_count as a bool 0 or 1. [Matt Auld]
-> - Delete the mmaped obj from lmem_userfault_list in obj
->   destruction path. [Matt Auld]
-> - Get a wakeref for object destruction patch. [Matt Auld]
-> - Use intel_wakeref_auto to delay runtime PM. [Matt Auld]
->
-> v4:
-> - Avoid using mmo offset to get the vma_node. [Matt Auld]
-> - Added comment to use the lmem_userfault_lock. [Matt Auld]
-> - Get lmem_userfault_lock in i915_gem_object_release_mmap_offset.
->   [Matt Auld]
-> - Fixed kernel test robot generated warning.
->
-> v5:
-> - Addressed the cosmetics comments. [Andi]
-> - Changed i915_gem_runtime_pm_object_release_mmap_offset() name to
->   i915_gem_object_runtime_pm_release_mmap_offset() to be rhythmic.
->
-> PCIe Specs 5.3.1.4.1
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6331
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 21 +++++++++++
->  drivers/gpu/drm/i915/gem/i915_gem_mman.h      |  1 +
->  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  2 +-
->  .../gpu/drm/i915/gem/i915_gem_object_types.h  |  3 +-
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 36 +++++++++++++++++--
->  drivers/gpu/drm/i915/gt/intel_gt.c            |  2 ++
->  drivers/gpu/drm/i915/gt/intel_gt_types.h      | 14 ++++++++
->  drivers/gpu/drm/i915/i915_gem.c               |  4 +++
->  8 files changed, 79 insertions(+), 4 deletions(-)
+>  drivers/dma-buf/dma-buf.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index b55befda3387..73d9eda1d6b7 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -550,6 +550,20 @@ void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj)
->         intel_runtime_pm_put(&i915->runtime_pm, wakeref);
->  }
+> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+> index 50db7571dc4b..80fd6ccc88c6 100644
+> --- a/drivers/dma-buf/dma-buf.c
+> +++ b/drivers/dma-buf/dma-buf.c
+> @@ -1450,6 +1450,8 @@ int dma_buf_vmap(struct dma_buf *dmabuf, struct ios=
+ys_map *map)
+>         if (WARN_ON(!dmabuf))
+>                 return -EINVAL;
 >
-> +void i915_gem_object_runtime_pm_release_mmap_offset(struct drm_i915_gem_object *obj)
-> +{
-> +       struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
-> +       struct ttm_device *bdev = bo->bdev;
+> +       dma_resv_assert_held(dmabuf->resv);
 > +
-> +       drm_vma_node_unmap(&bo->base.vma_node, bdev->dev_mapping);
+>         if (!dmabuf->ops->vmap)
+>                 return -EINVAL;
+>
+> @@ -1510,6 +1512,8 @@ void dma_buf_vunmap(struct dma_buf *dmabuf, struct =
+iosys_map *map)
+>         if (WARN_ON(!dmabuf))
+>                 return;
+>
+> +       dma_resv_assert_held(dmabuf->resv);
 > +
-> +       if (obj->userfault_count) {
-> +               /* rpm wakeref provide exclusive access */
-> +               list_del(&obj->userfault_link);
-> +               obj->userfault_count = 0;
-> +       }
-> +}
-> +
->  void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj)
->  {
->         struct i915_mmap_offset *mmo, *mn;
-> @@ -573,6 +587,13 @@ void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj)
->                 spin_lock(&obj->mmo.lock);
->         }
->         spin_unlock(&obj->mmo.lock);
-> +
-> +       if (obj->userfault_count) {
-> +               mutex_lock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
-> +               list_del(&obj->userfault_link);
-> +               mutex_unlock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
-> +               obj->userfault_count = 0;
-> +       }
-
-Sorry for the late reply, I was out last week. This looks like it's
-missing holding the runtime pm AFAICT. We are holding the runtime pm
-for object destruction, but this is also called when a move is
-triggered (very common). If so, this can race against the runtime pm
-also touching the list concurrently. We are chasing some crazy looking
-NULL deref bugs, so wondering if this is somehow related...
-
->  }
->
->  static struct i915_mmap_offset *
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.h b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-> index efee9e0d2508..1fa91b3033b3 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-> @@ -27,6 +27,7 @@ int i915_gem_dumb_mmap_offset(struct drm_file *file_priv,
->  void __i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj);
->  void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj);
->
-> +void i915_gem_object_runtime_pm_release_mmap_offset(struct drm_i915_gem_object *obj);
->  void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj);
->
->  #endif
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index 85482a04d158..7ff9c7877bec 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -238,7 +238,7 @@ static void __i915_gem_object_free_mmaps(struct drm_i915_gem_object *obj)
->  {
->         /* Skip serialisation and waking the device if known to be not used. */
->
-> -       if (obj->userfault_count)
-> +       if (obj->userfault_count && !IS_DGFX(to_i915(obj->base.dev)))
->                 i915_gem_object_release_mmap_gtt(obj);
->
->         if (!RB_EMPTY_ROOT(&obj->mmo.offsets)) {
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> index 9f6b14ec189a..40305e2bcd49 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> @@ -298,7 +298,8 @@ struct drm_i915_gem_object {
->         };
->
->         /**
-> -        * Whether the object is currently in the GGTT mmap.
-> +        * Whether the object is currently in the GGTT or any other supported
-> +        * fake offset mmap backed by lmem.
->          */
->         unsigned int userfault_count;
->         struct list_head userfault_link;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index f64a3deb12fc..0544b0a4a43a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -509,9 +509,18 @@ static int i915_ttm_shrink(struct drm_i915_gem_object *obj, unsigned int flags)
->  static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
->  {
->         struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
-> +       intel_wakeref_t wakeref = 0;
->
->         if (likely(obj)) {
-> +               /* ttm_bo_release() already has dma_resv_lock */
-> +               if (i915_ttm_cpu_maps_iomem(bo->resource))
-> +                       wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
-> +
->                 __i915_gem_object_pages_fini(obj);
-> +
-> +               if (wakeref)
-> +                       intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, wakeref);
-> +
->                 i915_ttm_free_cached_io_rsgt(obj);
->         }
->  }
-> @@ -981,6 +990,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->         struct ttm_buffer_object *bo = area->vm_private_data;
->         struct drm_device *dev = bo->base.dev;
->         struct drm_i915_gem_object *obj;
-> +       intel_wakeref_t wakeref = 0;
->         vm_fault_t ret;
->         int idx;
->
-> @@ -1002,6 +1012,9 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->                 return VM_FAULT_SIGBUS;
->         }
->
-> +       if (i915_ttm_cpu_maps_iomem(bo->resource))
-> +               wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
-> +
->         if (!i915_ttm_resource_mappable(bo->resource)) {
->                 int err = -ENODEV;
->                 int i;
-> @@ -1023,7 +1036,8 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->                 if (err) {
->                         drm_dbg(dev, "Unable to make resource CPU accessible\n");
->                         dma_resv_unlock(bo->base.resv);
-> -                       return VM_FAULT_SIGBUS;
-> +                       ret = VM_FAULT_SIGBUS;
-> +                       goto out_rpm;
->                 }
->         }
->
-> @@ -1034,12 +1048,30 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->         } else {
->                 ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
->         }
-> +
->         if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
-> -               return ret;
-> +               goto out_rpm;
-> +
-> +       /* ttm_bo_vm_reserve() already has dma_resv_lock */
-> +       if (ret == VM_FAULT_NOPAGE && wakeref && !obj->userfault_count) {
-> +               obj->userfault_count = 1;
-> +               mutex_lock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
-> +               list_add(&obj->userfault_link, &to_gt(to_i915(obj->base.dev))->lmem_userfault_list);
-> +               mutex_unlock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
-> +       }
-> +
-> +       if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
-> +               intel_wakeref_auto(&to_gt(to_i915(obj->base.dev))->userfault_wakeref,
-> +                                  msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
->
->         i915_ttm_adjust_lru(obj);
->
->         dma_resv_unlock(bo->base.resv);
-> +
-> +out_rpm:
-> +       if (wakeref)
-> +               intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, wakeref);
-> +
->         return ret;
->  }
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 07300b0a0873..d0b03a928b9a 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -40,6 +40,8 @@ void intel_gt_common_init_early(struct intel_gt *gt)
->  {
->         spin_lock_init(gt->irq_lock);
->
-> +       INIT_LIST_HEAD(&gt->lmem_userfault_list);
-> +       mutex_init(&gt->lmem_userfault_lock);
->         INIT_LIST_HEAD(&gt->closed_vma);
->         spin_lock_init(&gt->closed_lock);
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index 0757d9577551..f19c2de77ff6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -141,6 +141,20 @@ struct intel_gt {
->         struct intel_wakeref wakeref;
->         atomic_t user_wakeref;
->
-> +       /**
-> +        *  Protects access to lmem usefault list.
-> +        *  It is required, if we are outside of the runtime suspend path,
-> +        *  access to @lmem_userfault_list requires always first grabbing the
-> +        *  runtime pm, to ensure we can't race against runtime suspend.
-> +        *  Once we have that we also need to grab @lmem_userfault_lock,
-> +        *  at which point we have exclusive access.
-> +        *  The runtime suspend path is special since it doesn't really hold any locks,
-> +        *  but instead has exclusive access by virtue of all other accesses requiring
-> +        *  holding the runtime pm wakeref.
-> +        */
-> +       struct mutex lmem_userfault_lock;
-> +       struct list_head lmem_userfault_list;
-> +
->         struct list_head closed_vma;
->         spinlock_t closed_lock; /* guards the list of closed_vma */
->
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 3463dd795950..f18cc6270b2b 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -842,6 +842,10 @@ void i915_gem_runtime_suspend(struct drm_i915_private *i915)
->                                  &to_gt(i915)->ggtt->userfault_list, userfault_link)
->                 __i915_gem_object_release_mmap_gtt(obj);
->
-> +       list_for_each_entry_safe(obj, on,
-> +                                &to_gt(i915)->lmem_userfault_list, userfault_link)
-> +               i915_gem_object_runtime_pm_release_mmap_offset(obj);
-> +
->         /*
->          * The fence will be lost when the device powers down. If any were
->          * in use by hardware (i.e. they are pinned), we should not be powering
+>         BUG_ON(iosys_map_is_null(&dmabuf->vmap_ptr));
+>         BUG_ON(dmabuf->vmapping_counter =3D=3D 0);
+>         BUG_ON(!iosys_map_is_equal(&dmabuf->vmap_ptr, map));
 > --
-> 2.26.2
+> 2.37.3
 >
+
+
+--
+Thanks and regards,
+
+Sumit Semwal (he / him)
+Tech Lead - LCG, Vertical Technologies
+Linaro.org =E2=94=82 Open source software for ARM SoCs
