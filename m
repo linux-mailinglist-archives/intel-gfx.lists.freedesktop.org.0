@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C08A5BDC09
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 07:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 199D75BDC21
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Sep 2022 07:10:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BFD710E272;
-	Tue, 20 Sep 2022 05:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADF5F10E275;
+	Tue, 20 Sep 2022 05:10:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9050A10E272;
- Tue, 20 Sep 2022 05:06:35 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E41410E272;
+ Tue, 20 Sep 2022 05:10:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663650395; x=1695186395;
+ t=1663650626; x=1695186626;
  h=date:from:to:cc:subject:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LeXsLZmiahkOSXbwuPC6ksPmdGKRDbHdAzw2PJNzDyI=;
- b=Tw4uhGIUDo0Fv57HkWxHg9gE4OLGcCe4CxN+pvVzZAlZWd5zlUdcmBL0
- cojxXTaY3prRO715zioEM3vyl1x63JTQBCIJKeJer5sYiizAMfUheEhxQ
- cV4xI7bnQLdi2ZaOeGurv32hsKrs6eq1Cmb5dLig8Mck8yzgdQxk1esMR
- R1coEx+iWkw78YnvCGCFK2m/vKxXZBOymZk7vBmw4pNSOadno+L8iP3W5
- U7KQc6DF3YRyvLO9CLML1ZENwEys6VfSJ42Q1mIr73lMQ4bU3nskwo8kH
- lKqSgB+wRf5i0DRF8OjM7cbh/ACq3dSahvKndxv0hoKaWvkfopxU/Mdjh Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="286645206"
-X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="286645206"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2022 22:06:34 -0700
+ bh=GzApewrPXjSSbROJHSRXHgUyrY5MCr30HSVet2f/DRI=;
+ b=HiFALjTyYRdymJceyRgjQkXIa1bVZehp3DJvnrR6Drdkj0R9mg6Iqfrk
+ r5D1pJVFFPFJviZVXDczxkJmtWF+4O/v4msY+JrUxY9GTnu3d03Og9iN+
+ VEKFOg5BN+ixi5a2q/dI6NBUkq4BjBXZEpRPHVEbjiN6wPhy3UWYV9tCl
+ qmb+C5EZ6oeXaW5an6rB3+u1yW+OUzO7psf0AsZYkB484aWMN3H9qxSwL
+ kKmwJw2zI4Tj08YO17QzWK4WJ/EvdHV4f0qxHA1fm3zTJGbm5w/ZD9SHY
+ z4bBTg3PBF9wu+qHSWyyEBOpnyb9fyd6lGPLAextQzXIt5t0QrOoWMLN3 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="298323435"
+X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="298323435"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2022 22:10:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="761157133"
+X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; d="scan'208";a="947515241"
 Received: from linux.intel.com ([10.54.29.200])
- by fmsmga001.fm.intel.com with ESMTP; 19 Sep 2022 22:06:34 -0700
+ by fmsmga005.fm.intel.com with ESMTP; 19 Sep 2022 22:10:25 -0700
 Received: from maurocar-mobl2 (maurocar-mobl2.ger.corp.intel.com
  [10.252.59.34])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id D79D7580713;
- Mon, 19 Sep 2022 22:06:32 -0700 (PDT)
-Date: Tue, 20 Sep 2022 07:06:30 +0200
+ by linux.intel.com (Postfix) with ESMTPS id 1D081580A31;
+ Mon, 19 Sep 2022 22:10:23 -0700 (PDT)
+Date: Tue, 20 Sep 2022 07:10:21 +0200
 From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
 To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Message-ID: <20220920070630.1f34dd9c@maurocar-mobl2>
-In-Reply-To: <20220913120441.146757-3-janusz.krzysztofik@linux.intel.com>
+Message-ID: <20220920071021.5e60f9ea@maurocar-mobl2>
+In-Reply-To: <20220913120441.146757-5-janusz.krzysztofik@linux.intel.com>
 References: <20220913120441.146757-1-janusz.krzysztofik@linux.intel.com>
- <20220913120441.146757-3-janusz.krzysztofik@linux.intel.com>
+ <20220913120441.146757-5-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 2/4] tests/core_hotunplug:
- Also unload audio before device unplug
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 4/4] tests/core_hotunplug:
+ Select health checks for initially detected chipset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,65 +67,44 @@ Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 13 Sep 2022 14:04:39 +0200
+On Tue, 13 Sep 2022 14:04:41 +0200
 Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
 
-> Starting from commit e9c69e02b2f7 ("tests/core_hotunplug: Unload snd
-> driver before i915 unbind") that replaced a former conservative workaround
-> with a more liberal one but also moved it out of initial igt_fixture
-> section to driver_unbind(), *plug* subtests (still blockisted in CI) can
-> suffer from issues related to an audio driver using i915 hardware.  Fix it
-> by adding a copy of the workaround in its current shape also to
-> device_unplug() / bus_rescan() pair of functions.
+> As soon as we first time open a drm device to be exercised, we identify
+> its chipset, store that information, and perform some basic device
+> specific checks.  We also store a filter that matches the device bus
+> address to make sure we will exercise still one and the same device after
+> each driver unbind-rebind / device unplug-rediscover operation.
+> 
+> However, each time before we select device specific health checks, whether
+> before or after a driver unbind-rebind / device unplug-rediscover
+> operation, we identify the device chipset again.  Besides being more
+> expensive, that approach could also result in using different set of
+> health checks should device filters not work as expected.
+> 
+> Always use the stored chipset type instead of identifying it now and
+> again.
 > 
 > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-LGTM.
+Makes sense to me, once we have patch 3/4 applied. So,
 
 Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-
 > ---
->  tests/core_hotunplug.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+>  tests/core_hotunplug.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 > diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-> index 733ea8efb0..c3756889c2 100644
+> index 29cb26ab12..7c7ed09e63 100644
 > --- a/tests/core_hotunplug.c
 > +++ b/tests/core_hotunplug.c
-> @@ -198,6 +198,21 @@ static void device_unplug(struct hotunplug *priv, const char *prefix,
->  {
->  	igt_require(priv->fd.sysfs_dev == -1);
+> @@ -400,7 +400,7 @@ static void node_healthcheck(struct hotunplug *priv, unsigned flags)
+>  	if (closed)	/* store fd for cleanup if not dirty */
+>  		priv->fd.drm_hc = fd_drm;
 >  
-> +	/*
-> +	 * FIXME: on some devices, the audio driver (snd_hda_intel)
-> +	 * binds into the i915 driver. On such hardware, kernel warnings
-> +	 * and errors may happen if i915 is unbind/removed before removing
-> +	 * first the audio driver.
-> +	 * So, add a logic that unloads the audio driver before trying to
-> +	 * unbind i915 driver, reloading it when binding again.
-> +	 */
-> +	if (igt_audio_driver_unload(&priv->snd_driver)) {
-> +		igt_skip("Audio driver %s in use, skipping test\n",
-> +			 priv->snd_driver);
-> +	} else if (priv->snd_driver) {
-> +		igt_info("Unloaded audio driver %s\n", priv->snd_driver);
-> +	}
-> +
->  	priv->fd.sysfs_dev = openat(priv->fd.sysfs_bus, priv->dev_bus_addr,
->  				    O_DIRECTORY);
->  	igt_assert_fd(priv->fd.sysfs_dev);
-> @@ -231,6 +246,13 @@ static void bus_rescan(struct hotunplug *priv, int timeout)
->  	igt_fail_on_f(faccessat(priv->fd.sysfs_bus, priv->dev_bus_addr,
->  				F_OK, 0),
->  		      "Fakely unplugged device not rediscovered (%s)!\n", priv->dev_bus_addr);
-> +
-> +	if (priv->snd_driver) {
-> +		igt_info("Realoading %s\n", priv->snd_driver);
-> +		igt_kmod_load(priv->snd_driver, NULL);
-> +		free(priv->snd_driver);
-> +		priv->snd_driver = NULL;
-> +	}
->  }
->  
->  static void cleanup(struct hotunplug *priv)
+> -	if (is_i915_device(fd_drm)) {
+> +	if (priv->chipset == DRIVER_INTEL) {
+>  		/* don't report library failed asserts as healthcheck failure */
+>  		priv->failure = "Unrecoverable test failure";
+>  		if (local_i915_healthcheck(fd_drm, "") &&
