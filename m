@@ -2,48 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A14A5BF824
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Sep 2022 09:47:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC6E55BF844
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Sep 2022 09:52:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 870EC10E3C2;
-	Wed, 21 Sep 2022 07:47:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B93BF10E8B9;
+	Wed, 21 Sep 2022 07:52:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B7AE10E8B5
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Sep 2022 07:47:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663746442; x=1695282442;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KHOo0c496UeffmiqWmVitvK2JTYFuQsGYOxulOm/fv8=;
- b=TBeTWL7bMFxG4Acl6V7CnF0HfNeBh9wlgA1UmdV7ypmjO/KPDKtgAFl8
- vas9a23aRW/pwY+FtiYTlSNa5qPHl3M/M6H+mcKtPyP5997a4BnijukyI
- dd7Vm8t0mLi5dtJNqqinu6fTgIgHnBhyyhDJsTLZssIFXgyXSVznZ6DFZ
- 9F2HZN/1ojnjlPSnBdlvIozfzIdofAFN4g8N07QD6cfvct6CnJuFNSJCU
- lulLlmu0ta3QZ/FrLlkFRNlimA815b+VdBPcdd0PBkgA20v8L3NbQSQYI
- q16hJn/CAwXOmNL3NlVk36LKekjc35fLvJqgB9f93PeQe6mNreTa2KXsy A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10476"; a="298649972"
-X-IronPort-AV: E=Sophos;i="5.93,332,1654585200"; d="scan'208";a="298649972"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2022 00:47:21 -0700
-X-IronPort-AV: E=Sophos;i="5.93,332,1654585200"; d="scan'208";a="708336992"
-Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2022 00:47:21 -0700
-From: fei.yang@intel.com
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Sep 2022 00:49:01 -0700
-Message-Id: <20220921074901.3651252-4-fei.yang@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220921074901.3651252-1-fei.yang@intel.com>
-References: <20220921074901.3651252-1-fei.yang@intel.com>
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
+ [IPv6:2a00:1450:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E76510E8B9;
+ Wed, 21 Sep 2022 07:52:10 +0000 (UTC)
+Received: by mail-ed1-x52d.google.com with SMTP id q21so7366582edc.9;
+ Wed, 21 Sep 2022 00:52:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date;
+ bh=7GXQJg1MtZ8u0ssW58yg/QC6ri/4B3Kry1/oczC1OUU=;
+ b=W4swEwLo8lHMmMpipK74s7WK3AkF3zu/sEIJZps98+WkLdEnM3NrXAHLpYEPS8eNby
+ uDawVOFg2osQCL6XlIUT3jsqacFNCSywY/gAowXffSDa+hloNvLjYXW+Sa7WxyqMUpwY
+ WXr/7TCxz4qaERwbQJeuz9pQN640b2QFDLdcuHmbUdm2PBx90FmkMxN8FjEwf3RZzL+e
+ XLurp04GO3tVJJHqC+YhJ+6iAtYxzVQ7xfXwxlc3Yodml1QH0dBb5AWvujISjofwx4WJ
+ qmzFEwHb59kHIAXll3B7ectIAgi/jN+aJ8nrm3Vn4s5fCELhti/xHdwB/SLcurvqfXZh
+ Nwbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date;
+ bh=7GXQJg1MtZ8u0ssW58yg/QC6ri/4B3Kry1/oczC1OUU=;
+ b=j88mvvDYRNP6RGlQTLyK4oo3iBIczKrZd/iej/yW2zYRfxgQwjvSwHKXJrooudPvCo
+ nzDiRiCU7Ki12t1yJ/AGGcVwFad/AkxuDkoXqH+N/ctwaFepZnyPWO1hToYtDF7LFRxS
+ LFv35jnky0V9ZepIaPC7GMlBbukatykzfph6M0UbN2X1VNB+V0JTs9Vvfeg0qS+ZS5LE
+ T/fm6ocNmEKVbyW3rCpKBOkqzTMDwYUoctojG0VobXX3lMrmXe6wOnqWQGdUYQJQMw4y
+ Lmj7pTaPnmUFOGXLdEFJgs9fLzPaR51IREFBVHSAi7uMMu/RazZSLylsOuabFfyi7DV+
+ 2zNw==
+X-Gm-Message-State: ACrzQf1JryO1uZlnd1p3FdwTHn4KzQA42agd/lHWY/dR7oGhDO+4ZUk7
+ ACkW8XfZkVUjs/Ql4sDVaZUl8fRBHQg=
+X-Google-Smtp-Source: AMsMyM4pmBzeeeZGzJ+3RNaMv0bo0KOQDaU5wlneY9YAzXjbG90o6Ztcb1JmqifVhcmesIZbci6SfQ==
+X-Received: by 2002:a05:6402:3784:b0:453:9d2a:771b with SMTP id
+ et4-20020a056402378400b004539d2a771bmr17918922edb.353.1663746728625; 
+ Wed, 21 Sep 2022 00:52:08 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:77d1:43b9:2a25:bbed?
+ ([2a02:908:1256:79a0:77d1:43b9:2a25:bbed])
+ by smtp.gmail.com with ESMTPSA id
+ i9-20020a0564020f0900b0044e937ddcabsm1303203eda.77.2022.09.21.00.52.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 21 Sep 2022 00:52:08 -0700 (PDT)
+Message-ID: <0bd4f404-4340-9b3d-7a3b-baf6dc6e84ec@gmail.com>
+Date: Wed, 21 Sep 2022 09:52:06 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>, 
+ intel-gfx@lists.freedesktop.org
+References: <20220920170628.3391-1-nirmoy.das@intel.com>
+ <180ffaa1-1739-5a84-b0e7-76685c577518@intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <180ffaa1-1739-5a84-b0e7-76685c577518@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/guc: enable GuC GGTT invalidation
- from the start
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Do not cleanup obj with NULL
+ bo->resource
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,118 +78,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Am 20.09.22 um 19:13 schrieb Matthew Auld:
+> On 20/09/2022 18:06, Nirmoy Das wrote:
+>> For delayed BO release i915_ttm_delete_mem_notify()
+>> gets called twice, once with proper bo->resource and
+>> another time with NULL. We shouldn't do anything for
+>> the 2nd time as we already cleanedup the obj once.
+>>
+>> References: https://gitlab.freedesktop.org/drm/intel/-/issues/6850
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>
+> Christian, as per above it looks like ttm calls into the 
+> delete_mem_notify() hook twice if the object ends up on the delayed 
+> destroy list, is that expected/normal?
 
-Invalidating the GuC TLBs while GuC is not loaded does not have negative
-consequences, so if we're starting the driver with GuC enabled we can
-use the GGTT invalidation function from the get-go, iinstead of switching
-to it when we initialize the GuC objects.
+Yeah, that's expected. IIRC some driver depended on this for some reason.
 
-In MTL, this fixes and issue where we try to overwrite the
-invalidation function twice (once for each GuC).
+I already wanted to change this behavior, but forgot to do so after the 
+patch set which made bo->resource a pointer landed.
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c   | 28 ++++----------------------
- drivers/gpu/drm/i915/gt/intel_gtt.h    |  2 --
- drivers/gpu/drm/i915/gt/uc/intel_guc.c |  7 -------
- 3 files changed, 4 insertions(+), 33 deletions(-)
+Going to look into it once more.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 30cf5c3369d9..c302125b9ae6 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -979,7 +979,10 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 			I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND;
- 	}
- 
--	ggtt->invalidate = gen8_ggtt_invalidate;
-+	if (intel_uc_wants_guc(&ggtt->vm.gt->uc))
-+		ggtt->invalidate = guc_ggtt_invalidate;
-+	else
-+		ggtt->invalidate = gen8_ggtt_invalidate;
- 
- 	ggtt->vm.vma_ops.bind_vma    = intel_ggtt_bind_vma;
- 	ggtt->vm.vma_ops.unbind_vma  = intel_ggtt_unbind_vma;
-@@ -1216,29 +1219,6 @@ int i915_ggtt_enable_hw(struct drm_i915_private *i915)
- 	return 0;
- }
- 
--void i915_ggtt_enable_guc(struct i915_ggtt *ggtt)
--{
--	GEM_BUG_ON(ggtt->invalidate != gen8_ggtt_invalidate);
--
--	ggtt->invalidate = guc_ggtt_invalidate;
--
--	ggtt->invalidate(ggtt);
--}
--
--void i915_ggtt_disable_guc(struct i915_ggtt *ggtt)
--{
--	/* XXX Temporary pardon for error unload */
--	if (ggtt->invalidate == gen8_ggtt_invalidate)
--		return;
--
--	/* We should only be called after i915_ggtt_enable_guc() */
--	GEM_BUG_ON(ggtt->invalidate != guc_ggtt_invalidate);
--
--	ggtt->invalidate = gen8_ggtt_invalidate;
--
--	ggtt->invalidate(ggtt);
--}
--
- /**
-  * i915_ggtt_resume_vm - Restore the memory mappings for a GGTT or DPT VM
-  * @vm: The VM to restore the mappings for
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index c0ca53cba9f0..1ebd49b04a43 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -578,8 +578,6 @@ void intel_ggtt_unbind_vma(struct i915_address_space *vm,
- int i915_ggtt_probe_hw(struct drm_i915_private *i915);
- int i915_ggtt_init_hw(struct drm_i915_private *i915);
- int i915_ggtt_enable_hw(struct drm_i915_private *i915);
--void i915_ggtt_enable_guc(struct i915_ggtt *ggtt);
--void i915_ggtt_disable_guc(struct i915_ggtt *ggtt);
- int i915_init_ggtt(struct drm_i915_private *i915);
- void i915_ggtt_driver_release(struct drm_i915_private *i915);
- void i915_ggtt_driver_late_release(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 925b6c9af491..c213e8479307 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -421,9 +421,6 @@ int intel_guc_init(struct intel_guc *guc)
- 	/* now that everything is perma-pinned, initialize the parameters */
- 	guc_init_params(guc);
- 
--	/* We need to notify the guc whenever we change the GGTT */
--	i915_ggtt_enable_guc(gt->ggtt);
--
- 	intel_uc_fw_change_status(&guc->fw, INTEL_UC_FIRMWARE_LOADABLE);
- 
- 	return 0;
-@@ -447,13 +444,9 @@ int intel_guc_init(struct intel_guc *guc)
- 
- void intel_guc_fini(struct intel_guc *guc)
- {
--	struct intel_gt *gt = guc_to_gt(guc);
--
- 	if (!intel_uc_fw_is_loadable(&guc->fw))
- 		return;
- 
--	i915_ggtt_disable_guc(gt->ggtt);
--
- 	if (intel_guc_slpc_is_used(guc))
- 		intel_guc_slpc_fini(&guc->slpc);
- 
--- 
-2.25.1
+Thanks,
+Christian.
+
+>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>> index 0544b0a4a43a..e3fc38dd5db0 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>> @@ -511,7 +511,7 @@ static void i915_ttm_delete_mem_notify(struct 
+>> ttm_buffer_object *bo)
+>>       struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+>>       intel_wakeref_t wakeref = 0;
+>>   -    if (likely(obj)) {
+>> +    if (bo->resource && likely(obj)) {
+>>           /* ttm_bo_release() already has dma_resv_lock */
+>>           if (i915_ttm_cpu_maps_iomem(bo->resource))
+>>               wakeref = 
+>> intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
 
