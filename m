@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 891CB5BF185
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Sep 2022 01:49:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFA85BF1A4
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Sep 2022 02:02:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 875F210E7C8;
-	Tue, 20 Sep 2022 23:49:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A84F10E7D9;
+	Wed, 21 Sep 2022 00:02:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com
- [IPv6:2607:f8b0:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78F7110E7C8
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 23:49:40 +0000 (UTC)
-Received: by mail-pg1-x52f.google.com with SMTP id 207so4253340pgc.7
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 16:49:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quora.org; s=google;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date;
- bh=zYPAtAGS2WWb8+rj0qZWC+Ucqtq1kN6Bn8rjgOviewU=;
- b=XPFNVZUVIBnidEYHKYgrdk4dpZBEeFfSq7hniZ/BB44bC++qc4YfaK/gQKNuXrGWMR
- BEQQNAXHT+PMxZqVpE+j5bAnPK/3jXGCo/hpABbTWC8RBwFqpVDTN9EflNosN+Ca1ucg
- 9Jmyv1JAApMEaBZDt296ioyAvisJrYDjj/6E8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=zYPAtAGS2WWb8+rj0qZWC+Ucqtq1kN6Bn8rjgOviewU=;
- b=kA+hvx0A6+c+1MEgF0kdtOm7SszZ7kZdG2cPu+ZikUiAUS38BZPv/1wo7DzMv+jvSy
- XJcdFeCFue0gKUupKuTgp12fEZHxXZeOYKy3mXGt9ZVdkrF7NdnvvugMAlEURewr6nyT
- sbEZ57xLjDAO6wHXYjzNTGDTpf3HnRBAMM4RPhzg5WIVI0eG1FnWki9PI8jO9UFsCucQ
- Emdgjuz1ZXsZIFYr6sBGl7VK5g9lqkmnp+1rMfJAZbEy08sfMsclGWVZmABR/h6iiyAj
- 4ofTwyw13YVlJkFwd/6BlAQ8yBFrWU4v6p0Xs/7WFeG9uIcbD2JtSfggh8+96tN2nk1f
- yexQ==
-X-Gm-Message-State: ACrzQf3pAjhRa9OjOpEfYTijpo5yUaESv0xkMsHEBVj5ouGtXHK+OXOo
- A4nMA790vLU2L3yqb3H9qwualrwCPxqs9+QBuV8tpA==
-X-Google-Smtp-Source: AMsMyM74FDiloBxkjJOy8rQj6NKY8Wk98L81RDr/3hbrz99FT57iN4ZxhoHLveTJ3sLAXdjYqQqvqyuKI2pP1V+QK6s=
-X-Received: by 2002:a63:de16:0:b0:438:675c:9f30 with SMTP id
- f22-20020a63de16000000b00438675c9f30mr22744617pgg.294.1663717779905; Tue, 20
- Sep 2022 16:49:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAMVG2steKr8U9t67rqai=-Qb-aTC2ocJHMiuDHxYBsSusnHckA@mail.gmail.com>
- <YyMyKsy2XdInzarL@intel.com>
- <CAMVG2svdhBp-UU2L=Zofq2qgzapwvYGbXMZxtOTzK0T+2aLMHw@mail.gmail.com>
- <YyM8u75CwAamBUG+@intel.com>
- <c915b287-fde9-b6d1-ab51-10867360f9cd@linux.intel.com>
-In-Reply-To: <c915b287-fde9-b6d1-ab51-10867360f9cd@linux.intel.com>
-From: Daniel J Blueman <daniel@quora.org>
-Date: Wed, 21 Sep 2022 07:49:28 +0800
-Message-ID: <CAMVG2stu1NDzFZs4jn2pBRcUknH0eUDEs4-0WxmUHFGnGNmR+w@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] Intel Arc A370M vs Linux 5.19
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B27CE10E7D8;
+ Wed, 21 Sep 2022 00:02:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663718536; x=1695254536;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=/x/mG0a0N+FZzBEU5j2mlqaBLd5kIIkifeNjjuv5KGg=;
+ b=dNxqFz+7oTKCvUPOTNhUljvDDLhQwlgGq1Z8ezr+XnDMPe07AusUNpQs
+ m0DTVnKXj/wmQdjo3ATcFKZR5DCxfjojO9prjbs7gMRe5iYZbCnni5dlW
+ xBRXCu3B1cwGPOh3UB6Twg9BdkZx5yT/q0VTJiwHrc4O6kc3XGxSoORpi
+ x6uAgzy/WYqWHZ1/2p2Z+Fo0G654UfLP1OluR6NaaOOnfgN+OP5a3WO7F
+ Lya5WaiRX/rJ9gQkS/S+JxLQRbF0ym3+VyIJ5BGB2BkipBz3D/wIGM09m
+ vJWnxt/1LX2QHjoGIlS4LI3p8Jjva7UeW+vhuKmTwCEgDTiav/n5zCNPs g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10476"; a="300687325"
+X-IronPort-AV: E=Sophos;i="5.93,331,1654585200"; d="scan'208";a="300687325"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2022 17:02:16 -0700
+X-IronPort-AV: E=Sophos;i="5.93,331,1654585200"; d="scan'208";a="619119979"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.57.76])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2022 17:02:16 -0700
+Date: Tue, 20 Sep 2022 17:02:15 -0700
+Message-ID: <87h711d27s.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+In-Reply-To: <20220916150054.807590-4-badal.nilawar@intel.com>
+References: <20220916150054.807590-1-badal.nilawar@intel.com>
+ <20220916150054.807590-4-badal.nilawar@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/hwmon: Power PL1 limit and TDP
+ setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,73 +60,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: linux-hwmon@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 16 Sept 2022 at 00:35, Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->> On 15/09/2022 15:54, Rodrigo Vivi wrote:
-> > On Thu, Sep 15, 2022 at 10:40:59PM +0800, Daniel J Blueman wrote:
-> >> On Thu, 15 Sept 2022 at 22:09, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> >>> On Thu, Sep 15, 2022 at 09:08:08PM +0800, Daniel J Blueman wrote:
-> >>>> Dear Intel et al,
-> >>>>
-> >>>> With a HP Spectre x360 16 16-f1xxx/891D (Intel i7-1260P) with an Arc
-> >>>> A370M GPU [1] running the latest Ubuntu 22.10 5.19.0-15-generic
-> >>>> kernel, we see:
-> >>>>
-> >>>> i915 0000:03:00.0: Your graphics device 5693 is not properly supported
-> >>>> by the driver in this kernel version. To force driver probe anyway,
-> >>>> use i915.force_probe=5693
-> >>>>
-> >>>> Since the GPU is unmanaged, battery life is around 30% of what it
-> >>>> could be. Unsurprisingly, adding i915.force_probe=5693 causes
-> >>>> additional  issues. Given a lack of BIOS option to disable the GPU, is
-> >>>> there any advice for Linux support or at least putting the GPU into
-> >>>> D3? I see only Windows drivers on the official support page [2], and
-> >>>> Linux 6.0-rc5 isn't buildable [3].
-> >>>
-> >>> I believe this is what you are looking for:
-> >>>
-> >>> echo auto | sudo tee /sys/bus/pci/devices/0000\:03\:00.0/power/control
-> >>>
-> >>> In Linux the default is to keep the unmanaged devices in D0.
-> >>> But changing the rpm to auto should transition the device to D3.
-> >>>
-> >>> You can go further and check with the lspci -vv if there are other
-> >>> unmanaged devices in the same pci root tree and also add them to the
-> >>> 'auto' rpm so you can even achieve D3cold in that whole device, what
-> >>> gives you extra power savings.
-> >>>
-> >>> I hope this helps for now.
-> >>
-> >> Yes, I was also hoping this would work as we see D3hot is supported:
-> >>
-> >> # echo auto > /sys/bus/pci/devices/0000\:03\:00.0/power/control
-> >> # lspci -vvvs 03:00.0
-> >> ...
-> >> Capabilities: [d0] Power Management version 3
-> >>          Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
-> >> PME(D0+,D1-,D2-,D3hot+,D3cold-)
-> >>          Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
-> >>                  ^^
-> >>
-> >> However it stays in D0 with PME disabled as we see. "Kernel modules:
-> >> i915" may suggest the i915 driver holds a reference to it, preventing
-> >> the transition.
-> >
-> > Oh, yes. I was thinking more on using the command line I sent when
-> > the i915 is not probed. i.e. without using the force probe. your first
-> > scenario.
+On Fri, 16 Sep 2022 08:00:50 -0700, Badal Nilawar wrote:
 >
-> Could it help to bind DG2 to vfio-pci and so prevent i915 touching it?
+> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> index e2974f928e58..bc061238e35c 100644
+> --- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> +++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> @@ -5,3 +5,23 @@ Contact:	dri-devel@lists.freedesktop.org
+>  Description:	RO. Current Voltage in millivolt.
+>
+>		Only supported for particular Intel i915 graphics platforms.
+> +
+> +What:		/sys/devices/.../hwmon/hwmon<i>/power1_max
+> +Date:		September 2022
+> +KernelVersion:	6
 
-Bingo! Booting with vfio-pci.ids=8086:5693 in my case left the dGPU in
-D3, giving the expected battery runtime.
+Maybe we should ask someone but even if we merge this today to drm-tip this
+will appear in kernel.org Linus' version only in 6.2. So I think we should
+set this as 6.2 on all patches.
 
-Many thanks Tvrtko,
-  Dan
--- 
-Daniel J Blueman
+Except for this, thanks for making the changes, this is:
+
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
