@@ -1,52 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CBE25BFDCC
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Sep 2022 14:24:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7BC5BFE27
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Sep 2022 14:44:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6DF10E95D;
-	Wed, 21 Sep 2022 12:24:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6706210E24E;
+	Wed, 21 Sep 2022 12:44:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B442B10E957
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Sep 2022 12:23:58 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33D9C10E24E;
+ Wed, 21 Sep 2022 12:44:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663763038; x=1695299038;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=6/ajOean8DR31+fupjTgT50npA8RQOXovAAvJTZpTTM=;
- b=eIK6rpV2UAvTctQcRWRMzTlpCLyou0k4S5qYDYpUeIkMl0Y7/1Lw2uhl
- e52xCPxbhneO8tu0BoHXNu4djFcFHpGml66WQw/DKgLhQX1gWcGyWxUBY
- 88w4w8/36MdjVEG1W8alQABHQ64xxPPvVM77jQMB6kn2FoovKsy+VV/+O
- vemTmpAHArUYHv2wkAuACc5hU6luJagRyTXy84uz50v9TL9vZ0lQ764re
- 3GobKWSblnHm+FmQeZdoLZ0sAs87uY/CsLoqbqgtakxTycz4+EExIT3TI
- L44b+RL71zQnuo7TH9XfQgFAL9zqsvVP3BPP1CB0F2Zf9IUX1rF7GJolI w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="298704367"
-X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; d="scan'208";a="298704367"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2022 05:23:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; d="scan'208";a="761728407"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga001.fm.intel.com with SMTP; 21 Sep 2022 05:23:56 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 Sep 2022 15:23:55 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Sep 2022 15:23:43 +0300
-Message-Id: <20220921122343.13061-5-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220921122343.13061-1-ville.syrjala@linux.intel.com>
-References: <20220921122343.13061-1-ville.syrjala@linux.intel.com>
+ t=1663764280; x=1695300280;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=KDQfceECUxtTPfl3QcG6NVqjgCRsknHtfgrpkFpRc7Q=;
+ b=MY1MTuLt8Du5ZywFo7SrApJaJipMpGaqLKhLOULi6Ol9wFulGqNwDM5A
+ ZecV4ElApoxAjWBd8CZfzkyvVU/NBYB9hFgiIwfBU5YVoGz0wSQeBbMbF
+ EGZ0ZGUWQOfVvwLw8x5NB2/gQCiwIF9AFYanMAf0EPWV7bkK1dqNe1v53
+ k5nZuZ3HWoe3kG+7eeZr98hf7j1DQEMqUSovmHpI3b+IxZYI5gOASp130
+ oG5Q0G2Rubs4CAAhBnh2+qh/Iq4fL3efDZT1x2AbktUo6s36q+lfl3092
+ RbGSlhy0w01nz5Rfg5c/Cm8FK4h1shKtYVjl/xQKnOYFuBobuG4MFolnb A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="326303617"
+X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; d="scan'208";a="326303617"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2022 05:44:39 -0700
+X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; d="scan'208";a="864405711"
+Received: from ashyti-mobl2.igk.intel.com (HELO intel.com) ([172.28.180.68])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2022 05:44:38 -0700
+Date: Wed, 21 Sep 2022 14:44:35 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Message-ID: <YysHM8Ot1escBzEy@ashyti-mobl2.lan>
+References: <20220916150054.807590-1-badal.nilawar@intel.com>
+ <20220916150054.807590-2-badal.nilawar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Decouple I915_NUM_PLLS from PLL
- IDs
+In-Reply-To: <20220916150054.807590-2-badal.nilawar@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/hwmon: Add HWMON infrastructure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,89 +57,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-hwmon@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrj채l채 <ville.syrjala@linux.intel.com>
+Hi Badal,
 
-Stop assuming the size of PLL ID based bitmask is restricted
-to I915_NUM_PLLS bits. This is the last thing coupling the
-two things together and thus artificially limiting PLL IDs.
+> +struct hwm_reg {
+> +};
+> +
+> +struct hwm_drvdata {
+> +	struct i915_hwmon *hwmon;
+> +	struct intel_uncore *uncore;
+> +	struct device *hwmon_dev;
+> +	char name[12];
+> +};
+> +
+> +struct i915_hwmon {
+> +	struct hwm_drvdata ddat;
+> +	struct mutex hwmon_lock;		/* counter overflow logic and rmw */
+> +	struct hwm_reg rg;
+> +};
+> +
+> +static const struct hwmon_channel_info *hwm_info[] = {
+> +	NULL
+> +};
+> +
+> +static umode_t
+> +hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+> +	       u32 attr, int channel)
+> +{
+> +	switch (type) {
+> +	default:
+> +		return 0;
+> +	}
+> +}
+> +
+> +static int
+> +hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+> +	 int channel, long *val)
+> +{
+> +	switch (type) {
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int
+> +hwm_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+> +	  int channel, long val)
+> +{
+> +	switch (type) {
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static const struct hwmon_ops hwm_ops = {
+> +	.is_visible = hwm_is_visible,
+> +	.read = hwm_read,
+> +	.write = hwm_write,
+> +};
+> +
+> +static const struct hwmon_chip_info hwm_chip_info = {
+> +	.ops = &hwm_ops,
+> +	.info = hwm_info,
+> +};
 
-We could just pass any arbitrary (large enough) size to
-for_each_set_bit() and be done with it, but the WARN
-requiring the caller to not pass in a bogus bitmask seems
-potentially useful to keep around. So let's just calculate
-the full bitmask on the spot.
+what's the point for splitting so much? Can't you just send the
+hwmon driver all at once? With this patch you are not actually
+doing anything useful. In my opinion this should be squashed with
+the next ones.
 
-And while at it let's assert that the PLL IDs will fit
-into the bitmask we use for them.
+> +static void
+> +hwm_get_preregistration_info(struct drm_i915_private *i915)
+> +{
+> +}
+> +
+> +void i915_hwmon_register(struct drm_i915_private *i915)
+> +{
+> +	struct device *dev = i915->drm.dev;
+> +	struct i915_hwmon *hwmon;
+> +	struct device *hwmon_dev;
+> +	struct hwm_drvdata *ddat;
+> +
+> +	/* hwmon is available only for dGfx */
+> +	if (!IS_DGFX(i915))
+> +		return;
+> +
+> +	hwmon = kzalloc(sizeof(*hwmon), GFP_KERNEL);
 
-TODO: could also get rid of I915_NUM_PLLS entirely and just
-dynamically allocate i915->shared_dplls[] and state->shared_dpll[].
-But that would involve error handling in the modeset init path. Uff.
+why don't we use devm_kzalloc?
 
-Signed-off-by: Ville Syrj채l채 <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 24 +++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+> +	if (!hwmon)
+> +		return;
+> +
+> +	i915->hwmon = hwmon;
+> +	mutex_init(&hwmon->hwmon_lock);
+> +	ddat = &hwmon->ddat;
+> +
+> +	ddat->hwmon = hwmon;
+> +	ddat->uncore = &i915->uncore;
+> +	snprintf(ddat->name, sizeof(ddat->name), "i915");
+> +
+> +	hwm_get_preregistration_info(i915);
+> +
+> +	/*  hwmon_dev points to device hwmon<i> */
+> +	hwmon_dev = hwmon_device_register_with_info(dev, ddat->name,
+> +						    ddat,
+> +						    &hwm_chip_info,
+> +						    NULL);
+> +	if (IS_ERR(hwmon_dev)) {
+> +		mutex_destroy(&hwmon->hwmon_lock);
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index fb09029cc4aa..ee04b63d2696 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -315,6 +315,21 @@ void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_state)
- 	mutex_unlock(&dev_priv->display.dpll.lock);
- }
- 
-+static unsigned long
-+intel_dpll_mask_all(struct drm_i915_private *i915)
-+{
-+	unsigned long dpll_mask = 0;
-+	int i;
-+
-+	for (i = 0; i < i915->display.dpll.num_shared_dpll; i++) {
-+		struct intel_shared_dpll *pll = &i915->display.dpll.shared_dplls[i];
-+
-+		dpll_mask |= BIT(pll->info->id);
-+	}
-+
-+	return dpll_mask;
-+}
-+
- static struct intel_shared_dpll *
- intel_find_shared_dpll(struct intel_atomic_state *state,
- 		       const struct intel_crtc *crtc,
-@@ -322,15 +337,16 @@ intel_find_shared_dpll(struct intel_atomic_state *state,
- 		       unsigned long dpll_mask)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	unsigned long dpll_mask_all = intel_dpll_mask_all(dev_priv);
- 	struct intel_shared_dpll_state *shared_dpll;
- 	struct intel_shared_dpll *unused_pll = NULL;
- 	enum intel_dpll_id id;
- 
- 	shared_dpll = intel_atomic_get_shared_dpll_state(&state->base);
- 
--	drm_WARN_ON(&dev_priv->drm, dpll_mask & ~(BIT(I915_NUM_PLLS) - 1));
-+	drm_WARN_ON(&dev_priv->drm, dpll_mask & ~dpll_mask_all);
- 
--	for_each_set_bit(id, &dpll_mask, I915_NUM_PLLS) {
-+	for_each_set_bit(id, &dpll_mask, fls(dpll_mask_all)) {
- 		struct intel_shared_dpll *pll;
- 		int i;
- 
-@@ -4234,6 +4250,10 @@ void intel_shared_dpll_init(struct drm_i915_private *dev_priv)
- 				i >= ARRAY_SIZE(dev_priv->display.dpll.shared_dplls)))
- 			break;
- 
-+		/* must fit into unsigned long bitmask on 32bit */
-+		if (drm_WARN_ON(&dev_priv->drm, dpll_info[i].id >= 32))
-+			break;
-+
- 		dev_priv->display.dpll.shared_dplls[i].info = &dpll_info[i];
- 	}
- 
--- 
-2.35.1
+there is not such a big need to destroy the mutex. Destroying
+mutexes is more useful when you actually are creating/destroying
+and there is some debug need. I don't think that's the case.
 
+With the devm_kzalloc this would be just a return.
+
+Andi
+
+> +		i915->hwmon = NULL;
+> +		kfree(hwmon);
+> +		return;
+> +	}
+> +
+> +	ddat->hwmon_dev = hwmon_dev;
+> +}
+> +
+> +void i915_hwmon_unregister(struct drm_i915_private *i915)
+> +{
+> +	struct i915_hwmon *hwmon;
+> +	struct hwm_drvdata *ddat;
+> +
+> +	hwmon = fetch_and_zero(&i915->hwmon);
+> +	if (!hwmon)
+> +		return;
+> +
+> +	ddat = &hwmon->ddat;
+> +	if (ddat->hwmon_dev)
+> +		hwmon_device_unregister(ddat->hwmon_dev);
+> +
+> +	mutex_destroy(&hwmon->hwmon_lock);
+> +	kfree(hwmon);
+> +}
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.h b/drivers/gpu/drm/i915/i915_hwmon.h
+> new file mode 100644
+> index 000000000000..7ca9cf2c34c9
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.h
+> @@ -0,0 +1,20 @@
+> +/* SPDX-License-Identifier: MIT */
+> +
+> +/*
+> + * Copyright � 2022 Intel Corporation
+> + */
+> +
+> +#ifndef __I915_HWMON_H__
+> +#define __I915_HWMON_H__
+> +
+> +struct drm_i915_private;
+> +
+> +#if IS_REACHABLE(CONFIG_HWMON)
+> +void i915_hwmon_register(struct drm_i915_private *i915);
+> +void i915_hwmon_unregister(struct drm_i915_private *i915);
+> +#else
+> +static inline void i915_hwmon_register(struct drm_i915_private *i915) { };
+> +static inline void i915_hwmon_unregister(struct drm_i915_private *i915) { };
+> +#endif
+> +
+> +#endif /* __I915_HWMON_H__ */
+> -- 
+> 2.25.1
