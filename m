@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AFC95BFC41
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Sep 2022 12:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63BCB5BFC57
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Sep 2022 12:29:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45A2B10E3C1;
-	Wed, 21 Sep 2022 10:24:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D699110E2D0;
+	Wed, 21 Sep 2022 10:29:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43E5710E908
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Sep 2022 10:24:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663755842; x=1695291842;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=qDWk86dn1qc/ospRbyEfsHSWl+DFwYemlYsqtjj2H0A=;
- b=IvnvozC4nQozmMLpV6z8gIPtUuDeyoIoZNk66WnPGMb2Bxoa4VJNW4kk
- vmK6EIbGSmmEZVge+bZS453hFfW0jzNXqVbvNWmqMmEfPwoVLGO1LX1ac
- spr2rzb80KCDn7s/K88HsmiZjNaLUH1tdU3Frp/4PYI0eP36cJgFC86ta
- eR5VFJDCtVXDSG47D9PTtvAkI9PqAY8uuAG4gD7R9W6S1deXh9ybq/tWl
- jFPcFlqBB0EtCcCwKQ9fZYq4xHXTjnJvPDix/cY8rwMQygUOe2yd9dpV2
- WowTxSJS0qoFzbZt01/mw1Zfq7do1SzE55lWB3uHEm2sOyzqF06HMqbmu w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10476"; a="298680789"
-X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; d="scan'208";a="298680789"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2022 03:24:01 -0700
-X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; d="scan'208";a="681713886"
-Received: from skam-mobl.amr.corp.intel.com (HELO localhost) ([10.252.35.114])
- by fmsmga008-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2022 03:24:00 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Gustavo Sousa
- <gustavo.sousa@intel.com>
-In-Reply-To: <20220920175601.d22uiwycs46zhkbf@ldmartin-desk2.lan>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220919145659.293492-1-gustavo.sousa@intel.com>
- <87v8pio6li.fsf@intel.com> <20220920170433.yacfjnsrtz32ggim@gjsousa-mobl2>
- <20220920175601.d22uiwycs46zhkbf@ldmartin-desk2.lan>
-Date: Wed, 21 Sep 2022 13:23:43 +0300
-Message-ID: <87r1056n68.fsf@intel.com>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E7E510E187;
+ Wed, 21 Sep 2022 10:29:15 +0000 (UTC)
+Received: from [192.168.2.145] (109-252-122-187.nat.spd-mgts.ru
+ [109.252.122.187])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 849396600375;
+ Wed, 21 Sep 2022 11:29:10 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1663756153;
+ bh=ZT5srTQo2GbRKK2KbdtuOuJEzC+8ncCgGSp7dm2y2mQ=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=KPQr5wDCdzoryN7A6LVprDyAfEKWUzqJjfZG9/T3ie9+Id2SgBPSkiw1tnPiVbIkh
+ 9xYi4rhroxm8IY+KtWBG7kcFoghtlJSjGRxD9Zytp+LrsqLoMKkz+F3fPmzq0K/KE0
+ gZln48XpBZ4rppZf5Uw3l7jqj2le3d8o8fSbRO24fxqQGReVs+RXf9MhL2OIUJdl67
+ 09j126W1FOcPf5LF6iA61F+lB9ytLMh2Vp6FqSwuiEZ5AfOcfOzCTypft4YiMBWss4
+ DYt+8EbmT0phFuB3P1uiR8i27jtygGVenFxHjBkYiz420ZoeLTqqU6QIxugByMigaa
+ T2NKIJ/zl9B5w==
+Message-ID: <333ce447-05e0-a127-6f8e-2ffd75e0c992@collabora.com>
+Date: Wed, 21 Sep 2022 13:29:07 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Move hotplug inversion logic into
- separate helper
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+To: Sumit Semwal <sumit.semwal@linaro.org>
+References: <20220913192757.37727-1-dmitry.osipenko@collabora.com>
+ <20220913192757.37727-16-dmitry.osipenko@collabora.com>
+ <CAO_48GFtLjR657nO+yh9KwsrWbNmGVsf7srHj19biO+NauYt4w@mail.gmail.com>
+Content-Language: en-US
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <CAO_48GFtLjR657nO+yh9KwsrWbNmGVsf7srHj19biO+NauYt4w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v5 15/21] dma-buf: Move dma_buf_vmap() to
+ dynamic locking specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,130 +58,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Stefano Stabellini <sstabellini@kernel.org>, Leon Romanovsky <leon@kernel.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Rodrigo Vivi <"rodrigo. vivi"@intel.com>,
+ Russell King <linux@armlinux.org.uk>, Daniel Stone <daniel@fooishbar.org>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ "linux-arm- msm"@vger.kernel.org, virtualization@lists.linux-foundation.org,
+ Chia-I Wu <olvaffe@gmail.com>, linux-media@vger.kernel.org,
+ linux-rdma@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ linaro-mm-sig@lists.linaro.org,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Juergen Gross <jgross@suse.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>, amd-gfx@lists.freedesktop.org,
+ Tomi Valkeinen <tomba@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ Qiang Yu <yuq825@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Lucas Stach <l.stach@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 20 Sep 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Sep 20, 2022 at 02:04:33PM -0300, Gustavo Sousa wrote:
->>Hi, Jani.
+On 9/20/22 17:13, Sumit Semwal wrote:
+> Hi Dmitry,
+> 
+> Thanks very much for the series.
+> 
+> On Wed, 14 Sept 2022 at 00:59, Dmitry Osipenko
+> <dmitry.osipenko@collabora.com> wrote:
 >>
->>On Tue, Sep 20, 2022 at 10:19:53AM +0300, Jani Nikula wrote:
->>> On Mon, 19 Sep 2022, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->>> > Make the code more readable, which will be more apparent as new
->>> > platforms with different hotplug inversion needs are added.
->>> >
->>> > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->>> > ---
->>> >  drivers/gpu/drm/i915/i915_irq.c | 25 ++++++++++++++++---------
->>> >  1 file changed, 16 insertions(+), 9 deletions(-)
->>> >
->>> > diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
->>> > index de06f293e173..c53d21ae197f 100644
->>> > --- a/drivers/gpu/drm/i915/i915_irq.c
->>> > +++ b/drivers/gpu/drm/i915/i915_irq.c
->>> > @@ -3263,6 +3263,21 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
->>> >  	spin_unlock_irq(&dev_priv->irq_lock);
->>> >  }
->>> >
->>> > +static void setup_hotplug_inversion(struct drm_i915_private *dev_priv)
->>> > +{
->>> > +	u32 invert_bits;
->>> > +
->>> > +	if (HAS_PCH_DG1(dev_priv))
->>> > +		invert_bits = INVERT_DDIA_HPD |
->>> > +			      INVERT_DDIB_HPD |
->>> > +			      INVERT_DDIC_HPD |
->>> > +			      INVERT_DDID_HPD;
->>>
->>> Nitpick, the indentation will be off compared to automated indentation.
->>
->>What do you mean by automated indentation?
->>
->>>
->>> > +	else
->>> > +		return;
->>> > +
->>> > +	intel_uncore_rmw(&dev_priv->uncore, SOUTH_CHICKEN1, 0, invert_bits);
->>> > +}
->>> > +
->>> >  static u32 ibx_hotplug_enables(struct drm_i915_private *i915,
->>> >  			       enum hpd_pin pin)
->>> >  {
->>> > @@ -3413,15 +3428,7 @@ static u32 gen11_hotplug_enables(struct drm_i915_private *i915,
->>> >
->>> >  static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
->>> >  {
->>> > -	u32 val;
->>> > -
->>> > -	val = intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN1);
->>> > -	val |= (INVERT_DDIA_HPD |
->>> > -		INVERT_DDIB_HPD |
->>> > -		INVERT_DDIC_HPD |
->>> > -		INVERT_DDID_HPD);
->>> > -	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN1, val);
->>> > -
->>> > +	setup_hotplug_inversion(dev_priv);
->>>
->>> Since you're already in a platform specific function here, seems a bit
->>> odd to call a new generic function that needs to have another if ladder
->>> platform check. What are we gaining here? The end result is
->>> de-duplicating just one line of intel_uncore_rmw(). I'm not convinced.
->>
->>It is true that the proposed refactor repeats a platform check, but the proposed
->>refactor has its benefits. As more platforms with hotplug inversion needs are
->>added (e.g. MTL), we will have a common place for the logic of hotplug
->>inversion. That arguably makes the code more readable and makes future refactors
->>easier when we need split a function that has become too complex due to platform
->>checks.
->>
->>To make that last point clearer, I am quoting Lucas' (copied here as well)
->>comment (which was what convinced me) from a discussion regarding the advantage
->>of using such a helper:
->>
->>    that is what helpers are for, so you don't have to open code it in every
->>    platform-fork of the function that needs it. See how the various
->>    "Sequences to initialize display" are done in the driver... When we are
->>    extending it to a future platform, if the change is small enough we just
->>    add e few if/else in the same function. But it doesn't take too long for
->>    those functions to become unreadable if there are several branches the
->>    code path may take.  So then we "fork" the function for a new platform,
->>    but reuse the helpers doing the individual steps.
->
-> the missing information here is that there are changes in the pipeline
-> for platforms that have different bits to be inverted, or none at
-> all, with a different register to program. Adding the if/else in this
-> function seems unrelated churn.
->
-> Another possibility would be to just let the caller handle the if/else
-> decision, passing the bits (and possibly register) to invert. The noise
-> in xxx_hpd_irq_setup() function may be avoid by
->
-> #define INVERT_DII_HPD		(INVERT_DDIA_HPD | INVERT_DDIB_HPD | INVERT_DDIC_HPD | INVERT_DDID_HPD)
-> #define XXX_INVERT_DII_HPD	(...)
->
-> Third possibility since the function is already very small is to just go
-> ahead and use another _setup() for the next platforms.
+>> Move dma_buf_vmap/vunmap_unlocked() functions to the dynamic locking
+>> specification by asserting that the reservation lock is held.
+> Thanks for the patch; just a minor nit - I think you mean dma_buf_vmap
+> / vunmap() here, and not _unlocked?
 
-IMO if you already have platform specific functions, it can get
-confusing if you call generic helpers that again spread out to platform
-specific functions, possibly with different conditions than the first
-one. We've had a bunch of those where you eventually realize there's
-conditions in the helper that never happen.
-
-I'd probably just add small *platform specific* hpd invert
-functions. dg1_hpd_invert() and mtl_hpd_invert() etc.
-
-Compare with *_hpd_detection_setup(), and wonder what that would look
-like if it were a generic helper. Pretty bad, huh?
-
-Also note how bxt actually handles hpd invert within
-bxt_hpd_detection_setup().
-
-
-BR,
-Jani.
-
+Yes, the _unlocked should be dropped here. Thank you for the review!
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Best regards,
+Dmitry
+
