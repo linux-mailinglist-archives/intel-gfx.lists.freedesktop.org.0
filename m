@@ -2,77 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9C7E5E9E82
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 12:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3FAD5EA0D2
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 12:42:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 333CD10E3CE;
-	Mon, 26 Sep 2022 10:01:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98A1510E315;
+	Mon, 26 Sep 2022 10:41:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
- [64.147.123.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6E510E3CE;
- Mon, 26 Sep 2022 10:01:40 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.west.internal (Postfix) with ESMTP id EF96E2B0682F;
- Mon, 26 Sep 2022 06:01:34 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Mon, 26 Sep 2022 06:01:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm2; t=1664186494; x=1664193694; bh=WCZmCAbKUP
- B8V/dy4D1u2e0awoL+XJkcSsRkdm6+wHI=; b=uDRU/N4HsyiNDw98y2Q/Bs1VP2
- iOm0QEY2ULuXESBq9q3/5ONB1kS6wfCiJ/KH+LB8sfBv4eWmQpndHAtPXPt9zD1x
- Jja1TbCtTQxJ3OCS6ZGu5+4zjjM8PLEe9xiY6RUNybMVub51j6B2tVm10glcJGmh
- ZGZlWP9gRQ66Ix5LW3YDsGSSrzGw25Y7A7uO5IMGl4qGlWkcsulLZiA4zSFmnmLh
- H9XIs8clIgTyhTwNQyv7L58dL/dSPHZphfWYMuvf9twjotVoraSj7ha02dMZeRlB
- w8JqVMt8DnnBq6jqC03xuKsglLxT+0fU47uv73psQdGu4O3QUHdXKnga5y3Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm2; t=1664186494; x=1664193694; bh=WCZmCAbKUPB8V/dy4D1u2e0awoL+
- XJkcSsRkdm6+wHI=; b=Rug80Q+sMwxGaCBKoR9jTq3KVEOUjZqyG8wmAbICk/8y
- U7Qb8l9mipmoRtWHRpu0jk4KbgeqcepH/6cUBcLB6zIMAriAWceG9e9XlLkJhrzc
- Udv/NMuUXR8Gvwdy/qNx8l91X5rkvipJeG4B7qcJefayRPw/Oqfwtm2G5gsX7WD/
- Y3ioIKmJxSdjbc+Nyu65ipugqKeKiSxPbOLx0sO0e2s8GqX0y7NSG+JP1xXtipkq
- KvIdr6w49jjsBz7ZjFEqVzW4qUmRsffLEgBm1x36UHBKLIqivB+7B1+tOch6xZ11
- FNaGncWvlEeQIhpj5wNxgI3rJlPdut6hR3ytFwbqQw==
-X-ME-Sender: <xms:fXgxY5mdo2kfVTZ0H8K4RmkdAQruihfTdqZxFowQpanMMgUwrX6kvg>
- <xme:fXgxY02sQzkLx6OD4lOEA4Nwem9HZs-4LKtXRBRzaDzV5_pMOowktPimCtlvN2FOQ
- LvM5CFR5oj_5PEZ1oc>
-X-ME-Received: <xmr:fXgxY_ri-cIGor6hHugV8NJuzVelHO76BQLl3z6gcwf2qY9YDTu288EVpZkY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeegvddgvdegucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
- mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
- htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
- ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:fngxY5msrdWHVg1xIxjHF0u1zUZ5tvrhkwkubF0xshtSnCE_jn7QtQ>
- <xmx:fngxY323Uwtoh6YXZp8h4kBfOVCjEMI5VDk0aj3DPY3x6YFgbEetlA>
- <xmx:fngxY4sKohdqqPpob5hg3AExMcSGYS0P-dUl7R1gi0usdP2LhToMCQ>
- <xmx:fngxY3W09_EJXTf_SxnejTQX4auzwNfKkrHlS3B8ypz-DpseAPV0A6-F9YQ>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 26 Sep 2022 06:01:33 -0400 (EDT)
-Date: Mon, 26 Sep 2022 12:01:31 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Message-ID: <20220926100131.o5xtslzcmez5z2r3@houat>
-References: <20220728-rpi-analog-tv-properties-v2-0-f733a0ed9f90@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-9-f733a0ed9f90@cerno.tech>
- <80138f62-faec-5f7e-a8bd-235318a4e4c2@tronnes.org>
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
+ [IPv6:2a00:1450:4864:20::52a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D45C910E827;
+ Wed, 21 Sep 2022 09:13:13 +0000 (UTC)
+Received: by mail-ed1-x52a.google.com with SMTP id f20so7664128edf.6;
+ Wed, 21 Sep 2022 02:13:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date;
+ bh=l1vyb533afax2OC0XKhODZY3BbHylHPbSqXDEOL933M=;
+ b=lexMAsGpZ4uEBXdBTpjGyZOQZbhz7PxOKpVGZx8r1n6iEClWEb2QgJhRCqVNybC4Zb
+ umXIRTZtp4aBvlzpZOZ2hzAxKU31SiyYYjtfU+gZPLt6b9qHhGA003E8M5qtNmH2fnFK
+ nchHZWUfq5ISXapeTIsdxmnTtZBV/QEoave+BO/SB2lPbt07zYW7r4PJRZdFzPZyhG+X
+ VgCsD3BKY5P8SsGT6h+idC632uotCVMDnO4bMEL8tfUssm3i662dpQJ2uawr5G4TWFBL
+ UDBGMWnbgSJ2CzHoKasq1mzIfpXFz/m4ecRfLS/c5GepOMiYEU6cmSY1VVs1zXW/jrVX
+ 7caQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date;
+ bh=l1vyb533afax2OC0XKhODZY3BbHylHPbSqXDEOL933M=;
+ b=xYfFfL1ZZf4KPTIMWxcY4hBDIDwPPDN7dpo9pWyyPBRNG/pQoaozOckNl9P7ztwq+S
+ aPaEh8UdPH3GXjfImOiMMaE7YJ91w8WEEb3UBLlUO5dy4H/YJRGKOcVduhEBM1owU3Ip
+ MRJaFV+EePiiS9C4WuNiyZXbRHiEyOXP4PBROCbs1lCCBu6hPO+NBYB45milS3QuUFSh
+ t9xMDijl7vVY17rL1XDml06qmqHTR1+2Gwx7R4ZIkA/XSMaHNI2bdgvhWUX9y3am0WuA
+ EwrGA9fIwuNjdlSOkXliBPiHjhMDEfHDdFno+V6UCU8q9yQp69rDzsOep87YSngr5hQg
+ r2KA==
+X-Gm-Message-State: ACrzQf1U0eDsfg07x3M1Usn88kR8e5HcadwwDwAyQKOT2hKXAmLn2o/V
+ 52A4aq6yHeN1hSpbl6nXcSo00WIXnqvzYRRoHKc=
+X-Google-Smtp-Source: AMsMyM6qZWoSutaGxavU1l+b7Gm2hjgycXdK2iBnT1E6FzoR1kMbyw7qnFJJdbmwW2B+f+vp5HuJ/trMQxljKzrjOS4=
+X-Received: by 2002:aa7:df87:0:b0:44e:2851:7e8d with SMTP id
+ b7-20020aa7df87000000b0044e28517e8dmr24459923edy.106.1663751592281; Wed, 21
+ Sep 2022 02:13:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="gulwpck2gltavjpu"
-Content-Disposition: inline
-In-Reply-To: <80138f62-faec-5f7e-a8bd-235318a4e4c2@tronnes.org>
-Subject: Re: [Intel-gfx] [PATCH v2 09/33] drm/connector: Add TV standard
- property
+References: <tencent_ED24158E83CB9885E8BDD173EB5896B51906@qq.com>
+ <87pmfrpv7q.fsf@intel.com>
+In-Reply-To: <87pmfrpv7q.fsf@intel.com>
+From: Zheng Hacker <hackerzheng666@gmail.com>
+Date: Wed, 21 Sep 2022 17:13:00 +0800
+Message-ID: <CAJedcCzjWw6v5Nt42jsCStdpwHuz13D+q-CD=6ycVWBczY+4mg@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 26 Sep 2022 10:40:33 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double-free bug in
+ split_2MB_gtt_entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,91 +68,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: security@kernel.org, alex000young@gmail.com, airlied@linux.ie,
+ gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Zheng Wang <1002992920@qq.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+I've sent it using git send-email with another email account (zyytlz.wz@163=
+.com)
 
---gulwpck2gltavjpu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Regards,
+Zheng Wang
 
-On Sat, Sep 24, 2022 at 05:52:29PM +0200, Noralf Tr=F8nnes wrote:
-> Den 22.09.2022 16.25, skrev Maxime Ripard:
-> > The TV mode property has been around for a while now to select and get =
-the
-> > current TV mode output on an analog TV connector.
-> >=20
-> > Despite that property name being generic, its content isn't and has been
-> > driver-specific which makes it hard to build any generic behaviour on t=
-op
-> > of it, both in kernel and user-space.
-> >=20
-> > Let's create a new enum tv norm property, that can contain any of the
-> > analog TV standards currently supported by kernel drivers. Each driver =
-can
-> > then pass in a bitmask of the modes it supports, and the property
-> > creation function will filter out the modes not supported.
-> >=20
-> > We'll then be able to phase out the older tv mode property.
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Jani Nikula <jani.nikula@linux.intel.com> =E4=BA=8E2022=E5=B9=B49=E6=9C=881=
+9=E6=97=A5=E5=91=A8=E4=B8=80 17:30=E5=86=99=E9=81=93=EF=BC=9A
 >
-> Please can you add per patch changelogs, it's hard to review when I have
-> to recall what might have happened with each patch. If you do it drm
-> style and put in the commit message it should be easy enough to do.
-
-I certainly don't want to start that discussion, but I'm really not a
-fan of that format either. I'll do it for that series if you prefer.
-
-> > +/**
-> > + * enum drm_connector_tv_mode - Analog TV output mode
-> > + *
-> > + * This enum is used to indicate the TV output mode used on an analog =
-TV
-> > + * connector.
-> > + *
-> > + * WARNING: The values of this enum is uABI since they're exposed in t=
-he
-> > + * "TV mode" connector property.
-> > + */
-> > +enum drm_connector_tv_mode {
-> > +	/**
-> > +	 * @DRM_MODE_TV_MODE_NONE: Placeholder to not default on one
-> > +	 * variant or the other when nothing is set.
-> > +	 */
-> > +	DRM_MODE_TV_MODE_NONE =3D 0,
->=20
-> How is this supposed to be used?
-
-It's not supposed to be used. It was a suggestion from Mateusz to avoid
-to default to any standard when we don't initialize something. I don't
-have any strong feeling about it, so I can drop it if you prefer.
-
-Maxime
-
---gulwpck2gltavjpu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYzF4ewAKCRDj7w1vZxhR
-xbZ+AP4xTTgpQpCXWXC6q7QOdRlNGR0Mnjaq7VCWTRYpDjbKxAD9F8HZA9VHM/b9
-pZlXPcfdA5JuIglRNfLb9ooPZ9hiAw8=
-=vOcp
------END PGP SIGNATURE-----
-
---gulwpck2gltavjpu--
+> On Mon, 19 Sep 2022, Zheng Wang <1002992920@qq.com> wrote:
+> >  From afe79848cb74cc8e45ab426d13fa2394c87e0422 Mon Sep 17 00:00:00 2001
+> > From: xmzyshypnc <1002992920@qq.com>
+> > Date: Fri, 16 Sep 2022 23:48:23 +0800
+> > Subject: [PATCH] drm/i915/gvt: fix double-free bug in split_2MB_gtt_ent=
+ry
+> >
+> > There is a double-free security bug in split_2MB_gtt_entry.
+> >
+> > Here is a calling chain :
+> > ppgtt_populate_spt->ppgtt_populate_shadow_entry->split_2MB_gtt_entry.
+> >
+> > If intel_gvt_dma_map_guest_page failed, it will call
+> > ppgtt_invalidate_spt, which will finally call ppgtt_free_spt and
+> > kfree(spt). But the caller does not notice that, and it will call
+> > ppgtt_free_spt again in error path.
+> >
+> > Fix this by only freeing spt in ppgtt_invalidate_spt in good case.
+> >
+> > Signed-off-by: xmzyshypnc <1002992920@qq.com>
+>
+> Please use git send-email. The patch is whitespace broken and line
+> wrapped, making it unusable.
+>
+> BR,
+> Jani.
+>
+>
+> > ---
+> >   drivers/gpu/drm/i915/gvt/gtt.c | 16 +++++++++-------
+> >   1 file changed, 9 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/=
+gtt.c
+> > index ce0eb03709c3..550519f0acca 100644
+> > --- a/drivers/gpu/drm/i915/gvt/gtt.c
+> > +++ b/drivers/gpu/drm/i915/gvt/gtt.c
+> > @@ -959,7 +959,7 @@ static inline int ppgtt_put_spt(struct
+> > intel_vgpu_ppgtt_spt *spt)
+> >       return atomic_dec_return(&spt->refcount);
+> >   }
+> >
+> > -static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
+> > +static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int
+> > is_error);
+> >
+> >   static int ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vg=
+pu,
+> >           struct intel_gvt_gtt_entry *e)
+> > @@ -995,7 +995,7 @@ static int
+> > ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
+> >                   ops->get_pfn(e));
+> >           return -ENXIO;
+> >       }
+> > -    return ppgtt_invalidate_spt(s);
+> > +    return ppgtt_invalidate_spt(s, 0);
+> >   }
+> >
+> >   static inline void ppgtt_invalidate_pte(struct intel_vgpu_ppgtt_spt *=
+spt,
+> > @@ -1016,7 +1016,7 @@ static inline void ppgtt_invalidate_pte(struct
+> > intel_vgpu_ppgtt_spt *spt,
+> >       intel_gvt_dma_unmap_guest_page(vgpu, pfn << PAGE_SHIFT);
+> >   }
+> >
+> > -static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt)
+> > +static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int
+> > is_error)
+> >   {
+> >       struct intel_vgpu *vgpu =3D spt->vgpu;
+> >       struct intel_gvt_gtt_entry e;
+> > @@ -1059,9 +1059,11 @@ static int ppgtt_invalidate_spt(struct
+> > intel_vgpu_ppgtt_spt *spt)
+> >           }
+> >       }
+> >
+> > -    trace_spt_change(spt->vgpu->id, "release", spt,
+> > +    if (!is_error) {
+> > +        trace_spt_change(spt->vgpu->id, "release", spt,
+> >                spt->guest_page.gfn, spt->shadow_page.type);
+> > -    ppgtt_free_spt(spt);
+> > +        ppgtt_free_spt(spt);
+> > +    }
+> >       return 0;
+> >   fail:
+> >       gvt_vgpu_err("fail: shadow page %p shadow entry 0x%llx type %d\n"=
+,
+> > @@ -1215,7 +1217,7 @@ static int split_2MB_gtt_entry(struct intel_vgpu
+> > *vgpu,
+> >           ret =3D intel_gvt_dma_map_guest_page(vgpu, start_gfn + sub_in=
+dex,
+> >                              PAGE_SIZE, &dma_addr);
+> >           if (ret) {
+> > -            ppgtt_invalidate_spt(spt);
+> > +            ppgtt_invalidate_spt(spt, 1);
+> >               return ret;
+> >           }
+> >           sub_se.val64 =3D se->val64;
+> > @@ -1393,7 +1395,7 @@ static int ppgtt_handle_guest_entry_removal(struc=
+t
+> > intel_vgpu_ppgtt_spt *spt,
+> >               ret =3D -ENXIO;
+> >               goto fail;
+> >           }
+> > -        ret =3D ppgtt_invalidate_spt(s);
+> > +        ret =3D ppgtt_invalidate_spt(s, 0);
+> >           if (ret)
+> >               goto fail;
+> >       } else {
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
