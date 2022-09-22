@@ -1,39 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E055E5D48
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 10:19:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D972C5E5D7F
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 10:30:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7099C10E22F;
-	Thu, 22 Sep 2022 08:19:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98C3310E231;
+	Thu, 22 Sep 2022 08:30:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E11710E22F
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 08:18:58 +0000 (UTC)
-Received: from 91-155-255-44.elisa-laajakaista.fi ([91.155.255.44]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1obHQ8-003Vxs-5u;
- Thu, 22 Sep 2022 11:18:57 +0300
-Message-ID: <9731fffc60162a34b7790bb08792fc55593e4ca2.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Sep 2022 11:18:55 +0300
-In-Reply-To: <20220916165206.1499-3-ville.syrjala@linux.intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F45E10E232
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 08:29:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663835398; x=1695371398;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=A903FL7RFuXuGsyHFYtc+TtvmCMDLyXtabdMIeqCCKI=;
+ b=dKE36q0Cxr3T3K5YSvubJlxItjwTtcXMsIQ7vCJltxgOfeQSc1uoETMg
+ O4/fRDYO9qVPi0FL8uNDxVT93iQ3DABjxy24s+9ix+rRheJtyTvsULJH/
+ mEnX+GCZhnIxab646Cia4b56Vqv2gGAVfp6y2F9I3SyD7wGuLd1hQQvct
+ D8oCFUs2FGGdZd7Dloe+xecQlFxCeoGmow7zYx4W4GOrxdLvJo3exEI5F
+ pJpE2ZlDGcLTZ1x5BPklzLENy9eZfS+ix7eVQn5e9wij2TX1LjD/XW8TF
+ WoRfHKWaktB8TGmAIR+7L7hIVqnhvpK3Eb9LwfqZ/YvCkjf5VYbJQ9tbV g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="386526114"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="386526114"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 01:29:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="597343507"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga006.jf.intel.com with SMTP; 22 Sep 2022 01:29:55 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 22 Sep 2022 11:29:54 +0300
+Date: Thu, 22 Sep 2022 11:29:54 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Luca Coelho <luca@coelho.fi>
+Message-ID: <YywdAq6eYfTEppUC@intel.com>
 References: <20220916165206.1499-1-ville.syrjala@linux.intel.com>
  <20220916165206.1499-3-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.0-2 
+ <9731fffc60162a34b7790bb08792fc55593e4ca2.camel@coelho.fi>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9731fffc60162a34b7790bb08792fc55593e4ca2.camel@coelho.fi>
+X-Patchwork-Hint: comment
 Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Mark FBC B gone if pipe B is
  gone
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -48,41 +62,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2022-09-16 at 19:52 +0300, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> If pipe B is fused off we also shouldn't have FBC B.
->=20
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_device_info.c | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
-915/intel_device_info.c
-> index 1434dc33cf49..fbefebc023f1 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -394,6 +394,7 @@ void intel_device_info_runtime_init(struct drm_i915_p=
-rivate *dev_priv)
->  		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
->  			runtime->pipe_mask &=3D ~BIT(PIPE_B);
->  			runtime->cpu_transcoder_mask &=3D ~BIT(TRANSCODER_B);
-> +			runtime->fbc_mask &=3D ~BIT(INTEL_FBC_B);
->  		}
->  		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
->  			runtime->pipe_mask &=3D ~BIT(PIPE_C);
+On Thu, Sep 22, 2022 at 11:18:55AM +0300, Luca Coelho wrote:
+> On Fri, 2022-09-16 at 19:52 +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > If pipe B is fused off we also shouldn't have FBC B.
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/intel_device_info.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> > index 1434dc33cf49..fbefebc023f1 100644
+> > --- a/drivers/gpu/drm/i915/intel_device_info.c
+> > +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> > @@ -394,6 +394,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+> >  		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
+> >  			runtime->pipe_mask &= ~BIT(PIPE_B);
+> >  			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
+> > +			runtime->fbc_mask &= ~BIT(INTEL_FBC_B);
+> >  		}
+> >  		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
+> >  			runtime->pipe_mask &= ~BIT(PIPE_C);
+> 
+> I don't know (yet) what exactly this does, but it makes sense if you
+> think of consistency: we already do that for PIPE_A.
 
-I don't know (yet) what exactly this does, but it makes sense if you
-think of consistency: we already do that for PIPE_A.
+It's basically saying the entire pipe is fused off, so anything
+living inside that pipe should also be fused off.
 
-But what about PIPE_C and PIPE_D? Wouldn't it make sense to do the same
-thing for them as well?
+> 
+> But what about PIPE_C and PIPE_D? Wouldn't it make sense to do the same
+> thing for them as well?
 
---
-Cheers,
-Luca.
+There is no FBC engine on those pipes (we don't even have
+the INTEL_FBC_C+ enum values defined), at least for now.
 
+-- 
+Ville Syrjälä
+Intel
