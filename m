@@ -1,54 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B05215E5CB8
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 09:56:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 185B25E5CC6
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 10:00:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE40E10EA67;
-	Thu, 22 Sep 2022 07:56:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AEE410EA6E;
+	Thu, 22 Sep 2022 08:00:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47E5D10EA67
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 07:56:09 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95E9510EA6A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 08:00:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663833369; x=1695369369;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=DHnshpJXgS0wLVRLy6Z4hikW5QAdGGxrmEDk2Isok7k=;
- b=LnG1vsBknv1z2bg2xbBTXO76OuWNcF0A7Fzsx6orS/D+Hz/79NQrYbTN
- 7/EGzysCCNJs79WT2WeY2FumJXU1Fu1IPjqNC9DmFaoNPjVG6bPsb6uG4
- jxb9kWqGETr2K5CvPtt4qv45XL+/Md3qNd2Z0PN+bUWlNdnLHJ966N578
- wprVoDhm0IGketTGXKblKO3UsQ4ZTWdZo2xvJq8OUfaj6uJSqSfj9X2A0
- hgFbir5lyops+qoNvy+TIPTNb/EBLe4+MbDUoInseNMBkqabX/pkjAwHR
- TP3zObsI3h+KJ26+4Po82+Bb5wUEao9pvGlFoMRI/l5InK8wdHkEMRZYY A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="287309598"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="287309598"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2022 00:56:08 -0700
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="688198629"
-Received: from mmorri2-mobl.ger.corp.intel.com (HELO [10.213.205.83])
- ([10.213.205.83])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2022 00:56:06 -0700
-Message-ID: <2f318650-b01a-a526-8b74-bff99d5b2010@linux.intel.com>
-Date: Thu, 22 Sep 2022 08:56:00 +0100
+ t=1663833605; x=1695369605;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ccUTpzxgMjsBTcV/GpVqBfYnIuIQCc20QoTUcSS3Qqc=;
+ b=Gxyxs041BYOD+vZGh2kha3pcTVs/DPSFy8hV2Dfdr9Q2+LY9cDi7f/bi
+ gZzaN+vnKghZdLCf9Dwt4G/pb5BUMbXH60BtgMJfqKSexeb+6mnFKjP6L
+ 5+kTxqFyZekPnPYjeJz9DUjd/n3ipE0bcDEdMOd8tk5ht9mAfWi50xK03
+ yL/yFKK1N432cwOF1c0SOlkbH8/9SJ5uFb7+bxhzfONtItVFm3HCACzsl
+ 6ASuOColJ4rtvkSIBf1WtoHDd6HlGXehNcnLPw3QiXiZjh7HriEYNLIQ6
+ lLgFI5tT5w9xH7C+zhoiA2UWAOt3q4G98GFf8vkrPo66wZJmlHmN3rOdv g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="364210160"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="364210160"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 01:00:04 -0700
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="615114334"
+Received: from aarcesan-mobl.ger.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.249.46.251])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 01:00:04 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 Sep 2022 10:59:48 +0300
+Message-Id: <20220922075948.111558-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220921173914.1606359-1-rodrigo.vivi@intel.com>
-Content-Language: en-US
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220921173914.1606359-1-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Allow D3 when we are not actively
- managing a known PCI device.
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/psr: Fix PSR_IMR/IIR field handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,105 +56,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel J Blueman <daniel@quora.org>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Current PSR code is supposed to use TRANSCODER_EDP to force 0 shift for
+bits in PSR_IMR/IIR registers:
 
-On 21/09/2022 18:39, Rodrigo Vivi wrote:
-> The force_probe protection actively avoids the probe of i915 to
-> manage a device that is currently under development. It is a nice
-> protection for future users when getting a new platform but using
-> some older kernel.
-> 
-> However, when we avoid the probe we don't take back the registration
-> of the device. We cannot give up the registration anyway since we can
-> have multiple devices present. For instance an integrated and a discrete
-> one.
-> 
-> When this scenario occurs, the user will not be able to change any
-> of the runtime pm configuration of the unmanaged device. So, it will
-> be blocked in D0 state wasting power. This is specially bad in the
-> case where we have a discrete platform attached, but the user is
-> able to fully use the integrated one for everything else.
-> 
-> So, let's put the protected and unmanaged device in D3. So we can
-> save some power.
-> 
-> Reported-by: Daniel J Blueman <daniel@quora.org>
-> Cc: stable@vger.kernel.org
-> Cc: Daniel J Blueman <daniel@quora.org>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_pci.c | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 77e7df21f539..fc3e7c69af2a 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -25,6 +25,7 @@
->   #include <drm/drm_color_mgmt.h>
->   #include <drm/drm_drv.h>
->   #include <drm/i915_pciids.h>
-> +#include <linux/pm_runtime.h>
->   
->   #include "gt/intel_gt_regs.h"
->   #include "gt/intel_sa_media.h"
-> @@ -1304,6 +1305,7 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->   {
->   	struct intel_device_info *intel_info =
->   		(struct intel_device_info *) ent->driver_data;
-> +	struct device *kdev = &pdev->dev;
->   	int err;
->   
->   	if (intel_info->require_force_probe &&
-> @@ -1314,6 +1316,12 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->   			 "module parameter or CONFIG_DRM_I915_FORCE_PROBE=%04x configuration option,\n"
->   			 "or (recommended) check for kernel updates.\n",
->   			 pdev->device, pdev->device, pdev->device);
-> +
-> +		/* Let's not waste power if we are not managing the device */
-> +		pm_runtime_use_autosuspend(kdev);
-> +		pm_runtime_allow(kdev);
-> +		pm_runtime_put_autosuspend(kdev);
+/*
+ * gen12+ has registers relative to transcoder and one per transcoder
+ * using the same bit definition: handle it as TRANSCODER_EDP to force
+ * 0 shift in bit definition
+ */
 
-This sequence is black magic to me so can't really comment on the specifics. But in general, what I think I've figured out is, that the PCI core calls our runtime resume callback before probe:
+At the time of writing the code assumption "TRANSCODER_EDP == 0" was made.
+This is not the case and all fields in PSR_IMR and PSR_IIR are shifted
+incorrectly if DISPLAY_VER >= 12.
 
-local_pci_probe:
-...
-         /*
-          * Unbound PCI devices are always put in D0, regardless of
-          * runtime PM status.  During probe, the device is set to
-          * active and the usage count is incremented.  If the driver
-          * supports runtime PM, it should call pm_runtime_put_noidle(),
-          * or any other runtime PM helper function decrementing the usage
-          * count, in its probe routine and pm_runtime_get_noresume() in
-          * its remove routine.
-          */
-         pm_runtime_get_sync(dev);
-         pci_dev->driver = pci_drv;
-         rc = pci_drv->probe(pci_dev, ddi->id);
-         if (!rc)
-                 return rc;
-         if (rc < 0) {
-                 pci_dev->driver = NULL;
-                 pm_runtime_put_sync(dev);
-                 return rc;
-         }
+Fix this by using TRANSCODER_EDP definition instead of 0. Even thought
+TRANSCODER_EDP doesn't exist in display_ver >= 12 doing it this way keeps
+code clean and readable.
 
-And if probe fails it calls pm_runtime_put_sync which presumably does not provide the symmetry we need?
+v2: Improve commit message (José)
 
-Anyway since I can't provide meaningful review I'll copy Imre since I think he worked in the area in the past. Just so more eyes is better.
+Cc: Mika Kahola <mika.kahola@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
 
-Regards,
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Tvrtko
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 9def8d9fade6..9ecf1a9a1120 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -129,7 +129,7 @@ static void psr_irq_control(struct intel_dp *intel_dp)
+ 	 * 0 shift in bit definition
+ 	 */
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+-		trans_shift = 0;
++		trans_shift = TRANSCODER_EDP;
+ 		imr_reg = TRANS_PSR_IMR(intel_dp->psr.transcoder);
+ 	} else {
+ 		trans_shift = intel_dp->psr.transcoder;
+@@ -195,7 +195,7 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+ 	i915_reg_t imr_reg;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+-		trans_shift = 0;
++		trans_shift = TRANSCODER_EDP;
+ 		imr_reg = TRANS_PSR_IMR(intel_dp->psr.transcoder);
+ 	} else {
+ 		trans_shift = intel_dp->psr.transcoder;
+@@ -1197,7 +1197,7 @@ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+ 		val = intel_de_read(dev_priv,
+ 				    TRANS_PSR_IIR(intel_dp->psr.transcoder));
+-		val &= EDP_PSR_ERROR(0);
++		val &= EDP_PSR_ERROR(TRANSCODER_EDP);
+ 	} else {
+ 		val = intel_de_read(dev_priv, EDP_PSR_IIR);
+ 		val &= EDP_PSR_ERROR(intel_dp->psr.transcoder);
+-- 
+2.34.1
 
-
-> +
->   		return -ENODEV;
->   	}
->   
