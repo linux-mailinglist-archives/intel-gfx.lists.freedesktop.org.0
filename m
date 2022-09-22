@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 452295E6B8E
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 21:13:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CCB55E6B93
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 21:13:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE7B810E02B;
-	Thu, 22 Sep 2022 19:13:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12DED10E033;
+	Thu, 22 Sep 2022 19:13:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09FDC10E02B
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 19:13:22 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5166710E030
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 19:13:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663874003; x=1695410003;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=H1RzTdpIZnIcQFWHORjufu9/WwmRU7rDq5THYAgYyLs=;
- b=MGBcoW6Vo6Ly3ehW++6cAhsNhokg9i333OidyxmsjDIbUP27wLa3ZL3B
- YGF7oGfeo9sdUi0rDaC5MZpI8KoWRumVjmCSKfTnxQZhBxiHiVkT36tXm
- 7wfHwDJeXR3yIYuIvyWlinr0FRgpSHyhUyyJ84gq6XVudRsixeXNXLGoE
- InCCZHypjQLd9EtxPL3XvskHYWgoFtD7p2nTRluIjDCNHtmayeeFgt1sC
- euHGkAt2Lo6Kk0TndiFpaBKk4UPwVsXSyUC8vpvRpWnZf33MkolIshZhr
- NTYazgErFPISxkKm/vOVB8PPwDpNv9ZTzSgEPGWaxqdBf6SlKkcGjiFH4 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="362207989"
-X-IronPort-AV: E=Sophos;i="5.93,337,1654585200"; d="scan'208";a="362207989"
+ t=1663874020; x=1695410020;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=hg6A351Hxt5EnLkTy9D1FpGmbRy2gahwg9Cp0zGyzd8=;
+ b=Go3RflBXn0pNF0DHPXI/5VrUpEPGI5jd71WUyQVBKMvke3GOU+QsbW3y
+ zVxFgemUHaaMwHBVmyXLRNHk5EZnRcpHPP5M6I/m8/VdtbQXRTs9HHOr2
+ IsODAcn6MkyZ4DBchGzCAxVjAmE3bMohzI2rgDqOdx1PnDiQHQg3XKyHr
+ 1zzPALYh/izQuZwH8aVBJxr5vaT7YbrXyxx9pFwUGTh7TEtXGELQTxuIl
+ j+GDOxI/kt5fnkN7z5FvC7Ikukwd+lrYVMMyYCJvpisF5dev62XkYGSjT
+ WyAomxRPS4OfnLceT8OTLh5ICNxSkO9wYQlM9BpMl8EVnHN4YIw78uI2C w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="301843025"
+X-IronPort-AV: E=Sophos;i="5.93,337,1654585200"; d="scan'208";a="301843025"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2022 12:12:40 -0700
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 12:13:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,337,1654585200"; d="scan'208";a="619929590"
+X-IronPort-AV: E=Sophos;i="5.93,337,1654585200"; d="scan'208";a="619929801"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga002.jf.intel.com with SMTP; 22 Sep 2022 12:12:37 -0700
+ by orsmga002.jf.intel.com with SMTP; 22 Sep 2022 12:13:15 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 22 Sep 2022 22:12:36 +0300
+ Thu, 22 Sep 2022 22:13:14 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Sep 2022 22:12:36 +0300
-Message-Id: <20220922191236.4194-1-ville.syrjala@linux.intel.com>
+Date: Thu, 22 Sep 2022 22:13:14 +0300
+Message-Id: <20220922191314.4252-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220921211525.10675-2-ville.syrjala@linux.intel.com>
-References: <20220921211525.10675-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220921211525.10675-3-ville.syrjala@linux.intel.com>
+References: <20220921211525.10675-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915: Force DPLL calculation for TC
- ports after readout
+Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915: Don't bail early from
+ intel_dp_initial_fastset_check()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,72 +64,78 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We always allocate two DPLLs (TC and TBT) for TC ports. This
-is because we can't know ahead of time wherher we need to put
-the PHY into DP-Alt or TBT mode.
+Do all the checks in intel_dp_initial_fastset_check() instead
+of bailing out on the first condition that triggers.
 
-However during readout we can obviously only read out the state
-of the DPLL that the port is actually using. Thus the state after
-readout will not have both DPLLs populated.
+This makes for better debug logs since we see all the reasons
+why the full modeset computation is forced.
 
-We run into problems if during readout the TC port is in DP-Alt
-mode, but we then perform a modeset on the port without going
-through the full .compute_config() machinery, and during said
-modeset the port cannot be switched back into DP-Alt mode and
-we need to take the TBT fallback path. Such a modeset can
-happen eg. due to cdclk reprogramming.
+Also avoid the risk of someone accidentally adding a check
+later in the function that would require connectors_changed=true
+(ie. no fastset at all), but an earlier check may have already
+bailed out with just mode_changed=true (ie. fastset is still
+possible).
 
-This wasn't a problem earlier because we did all the DPLL
-calculations much later in the modeset. So even if flagged
-a modeset very late we'd still have gone through the DPLL
-calculations. But now all the DPLL calculations happen much
-earlier and so we need to deal with it, or else we'll attempt
-a modeset without a DPLL.
+Pimp the debugs with the encoder id+name while at it.
 
-To guarantee that we always have both DPLLs fully cal/ulated
-for TC ports force a full modeset computation during the
-initial commit.
+v2: Call the return variable 'fastset' to convey its meaning
 
-v2: Avoid bitwise operation on bool (Jani)
-    Call the return variable 'fastset' to convey its meaning
-
-Reported-by: Lee Shawn C <shawn.c.lee@intel.com>
-Fixes: b000abd3b3d2 ("drm/i915: Do .crtc_compute_clock() earlier")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 643832d55c28..da8472cdc135 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3600,10 +3600,22 @@ static void intel_ddi_sync_state(struct intel_encoder *encoder,
- static bool intel_ddi_initial_fastset_check(struct intel_encoder *encoder,
- 					    struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index c9be61d2348e..9634fadb8bdc 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2306,6 +2306,7 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
  {
--	if (intel_crtc_has_dp_encoder(crtc_state))
--		return intel_dp_initial_fastset_check(encoder, crtc_state);
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	enum phy phy = intel_port_to_phy(i915, encoder->port);
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
 +	bool fastset = true;
  
--	return true;
-+	if (intel_phy_is_tc(i915, phy)) {
-+		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] Forcing full modeset to compute TC port DPLLs\n",
+ 	/*
+ 	 * If BIOS has set an unsupported or non-standard link rate for some
+@@ -2313,9 +2314,10 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+ 	 */
+ 	if (intel_dp_rate_index(intel_dp->source_rates, intel_dp->num_source_rates,
+ 				crtc_state->port_clock) < 0) {
+-		drm_dbg_kms(&i915->drm, "Forcing full modeset due to unsupported link rate\n");
++		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] Forcing full modeset due to unsupported link rate\n",
 +			    encoder->base.base.id, encoder->base.name);
-+		crtc_state->uapi.mode_changed = true;
+ 		crtc_state->uapi.connectors_changed = true;
+-		return false;
 +		fastset = false;
-+	}
-+
-+	if (intel_crtc_has_dp_encoder(crtc_state) &&
-+	    !intel_dp_initial_fastset_check(encoder, crtc_state))
+ 	}
+ 
+ 	/*
+@@ -2326,18 +2328,20 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+ 	 * Remove once we have readout for DSC.
+ 	 */
+ 	if (crtc_state->dsc.compression_enable) {
+-		drm_dbg_kms(&i915->drm, "Forcing full modeset due to DSC being enabled\n");
++		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] Forcing full modeset due to DSC being enabled\n",
++			    encoder->base.base.id, encoder->base.name);
+ 		crtc_state->uapi.mode_changed = true;
+-		return false;
 +		fastset = false;
-+
+ 	}
+ 
+ 	if (CAN_PSR(intel_dp)) {
+-		drm_dbg_kms(&i915->drm, "Forcing full modeset to compute PSR state\n");
++		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] Forcing full modeset to compute PSR state\n",
++			    encoder->base.base.id, encoder->base.name);
+ 		crtc_state->uapi.mode_changed = true;
+-		return false;
++		fastset = false;
+ 	}
+ 
+-	return true;
 +	return fastset;
  }
  
- static enum intel_output_type
+ static void intel_dp_get_pcon_dsc_cap(struct intel_dp *intel_dp)
 -- 
 2.35.1
 
