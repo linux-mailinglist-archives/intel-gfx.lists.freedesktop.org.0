@@ -1,58 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE7255E6846
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 18:20:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2417F5E6855
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 18:26:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3372C10ECA2;
-	Thu, 22 Sep 2022 16:20:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E60C10EB50;
+	Thu, 22 Sep 2022 16:26:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3C6210EA6E;
- Thu, 22 Sep 2022 16:20:01 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A807C10E36D;
+ Thu, 22 Sep 2022 16:26:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663863602; x=1695399602;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=9bR1B1OTC/uHI6AAIK1zAZ0Yh/+qK5s6tyvFakEUkEI=;
- b=hDctBAqgKqSzENIMCpaD2XoYuPhezQi3TYtQsi5k+qOCvu+SIA/M8pvR
- fEAnyE9aQUhHoCCfu8DAY/LpVr5/KGsGfrqwQyCq0eEoXUuhX6IVJwQ1C
- dFiT9URqdx2WY9hiI2OV0Xi6iVS0kCvzMKN4Y7t4BSD8oikbZlYCJ3dia
- D0DUi3yqMaSuV6N2cnNBz0pcKbeUYwb4xa0Z3U2u2QvQ9cccIGLY9v4LL
- oMUVbn9xDfJSuWYZSNHkLQPZIfVpMyI81hlFNOSbq4fU+5ML7z7siK5UL
- W4KMbH21/LV7krQQHIUMN4/y2pIBWcUQ4ivBKMSH2eQkx4QWZFDuyvXba A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="299064534"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="299064534"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2022 09:18:33 -0700
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="795151695"
-Received: from jmhendri-mobl.ger.corp.intel.com (HELO [10.252.3.12])
- ([10.252.3.12])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2022 09:18:30 -0700
-Message-ID: <1072ee80-13fb-dc72-5416-c7fdded3c80c@intel.com>
-Date: Thu, 22 Sep 2022 17:18:28 +0100
+ t=1663864005; x=1695400005;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=aFZVdvC2vAMHXMyo9Dq9HIaxk3ZrOiZBZU5QvyOabH8=;
+ b=XS5rt9daJicJvoNVvlo9tc7KXQuwG3Q+qqpjRfK51hlmBLVGo+tvvwek
+ Zqlo6pzVNgcvj3AR7oBTsLtir7iEPltpaGStoAq7chN//xPzErEZPszCC
+ YoVfczJ0IViOvUryiys5hfHKQvDgcX/wduDvQ35gLArGaXDm6sLUAjIYV
+ S3k+GQl7Sjq9uqxAeWMDeJ+t55Xus0lLhZkql51m31RHAks1VWrnMIKfb
+ RD/NqEI/f8TA4OyFFSnIOkF74Y7Z4qVSG074I6001jg6YWM82yp1JxzFs
+ +k5MjBPsSEOCnHesVx52UPenk4FyQUS+q8OnXA1wPrZkz0/o/kkpDX8M+ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="297948986"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="297948986"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 09:26:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="597501468"
+Received: from lkp-server01.sh.intel.com (HELO c0a60f19fe7e) ([10.239.97.150])
+ by orsmga006.jf.intel.com with ESMTP; 22 Sep 2022 09:26:29 -0700
+Received: from kbuild by c0a60f19fe7e with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1obP1w-0004nA-2Q;
+ Thu, 22 Sep 2022 16:26:28 +0000
+Date: Fri, 23 Sep 2022 00:25:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <202209230001.og3h9EMY-lkp@intel.com>
+References: <20220922120908.10352-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.2.1
-Content-Language: en-GB
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-References: <20220921070945.27764-1-niranjana.vishwanathapura@intel.com>
- <20220921070945.27764-4-niranjana.vishwanathapura@intel.com>
- <578445bc-d804-3f1d-a32d-51cac9460351@linux.intel.com>
- <20220921180040.GD28263@nvishwa1-DESK>
- <e02e34ef-0dca-d61d-e5c4-a6f002baf434@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <e02e34ef-0dca-d61d-e5c4-a6f002baf434@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC v4 03/14] drm/i915/vm_bind: Expose
- i915_gem_object_max_page_size()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220922120908.10352-1-nirmoy.das@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Improve debug print in
+ vm_fault_ttm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,133 +59,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, thomas.hellstrom@intel.com,
- daniel.vetter@intel.com, christian.koenig@amd.com
+Cc: kbuild-all@lists.01.org, matthew.auld@intel.com,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 22/09/2022 09:09, Tvrtko Ursulin wrote:
-> 
-> On 21/09/2022 19:00, Niranjana Vishwanathapura wrote:
->> On Wed, Sep 21, 2022 at 10:13:12AM +0100, Tvrtko Ursulin wrote:
->>>
->>> On 21/09/2022 08:09, Niranjana Vishwanathapura wrote:
->>>> Expose i915_gem_object_max_page_size() function non-static
->>>> which will be used by the vm_bind feature.
->>>>
->>>> Signed-off-by: Niranjana Vishwanathapura 
->>>> <niranjana.vishwanathapura@intel.com>
->>>> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
->>>> ---
->>>>  drivers/gpu/drm/i915/gem/i915_gem_create.c | 20 +++++++++++++++-----
->>>>  drivers/gpu/drm/i915/gem/i915_gem_object.h |  2 ++
->>>>  2 files changed, 17 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c 
->>>> b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->>>> index 33673fe7ee0a..3b3ab4abb0a3 100644
->>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
->>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->>>> @@ -11,14 +11,24 @@
->>>>  #include "pxp/intel_pxp.h"
->>>>  #include "i915_drv.h"
->>>> +#include "i915_gem_context.h"
->>>
->>> I can't spot that you are adding any code which would need this? 
->>> I915_GTT_PAGE_SIZE_4K? It is in intel_gtt.h.
->>
->> This include should have been added in a later patch for calling
->> i915_gem_vm_lookup(). But got added here while patch refactoring.
->> Will fix.
->>
->>>
->>>>  #include "i915_gem_create.h"
->>>>  #include "i915_trace.h"
->>>>  #include "i915_user_extensions.h"
->>>> -static u32 object_max_page_size(struct intel_memory_region 
->>>> **placements,
->>>> -                unsigned int n_placements)
->>>> +/**
->>>> + * i915_gem_object_max_page_size() - max of min_page_size of the 
->>>> regions
->>>> + * @placements:  list of regions
->>>> + * @n_placements: number of the placements
->>>> + *
->>>> + * Calculates the max of the min_page_size of a list of placements 
->>>> passed in.
->>>> + *
->>>> + * Return: max of the min_page_size
->>>> + */
->>>> +u32 i915_gem_object_max_page_size(struct intel_memory_region 
->>>> **placements,
->>>> +                  unsigned int n_placements)
->>>>  {
->>>> -    u32 max_page_size = 0;
->>>> +    u32 max_page_size = I915_GTT_PAGE_SIZE_4K;
->>>>      int i;
->>>>      for (i = 0; i < n_placements; i++) {
->>>> @@ -28,7 +38,6 @@ static u32 object_max_page_size(struct 
->>>> intel_memory_region **placements,
->>>>          max_page_size = max_t(u32, max_page_size, mr->min_page_size);
->>>>      }
->>>> -    GEM_BUG_ON(!max_page_size);
->>>>      return max_page_size;
->>>>  }
->>>> @@ -99,7 +108,8 @@ __i915_gem_object_create_user_ext(struct 
->>>> drm_i915_private *i915, u64 size,
->>>>      i915_gem_flush_free_objects(i915);
->>>> -    size = round_up(size, object_max_page_size(placements, 
->>>> n_placements));
->>>> +    size = round_up(size, i915_gem_object_max_page_size(placements,
->>>> +                                n_placements));
->>>>      if (size == 0)
->>>>          return ERR_PTR(-EINVAL);
->>>
->>> Because of the changes above this path is now unreachable. I suppose 
->>> it was meant to tell the user "you have supplied no placements"? But 
->>> then GEM_BUG_ON (which you remove) used to be wrong.
->>>
->>
->> Yah, looks like an existing problem. May be this "size == 0" check
->> should have been made before we do the round_up()? ie., check input 
->> 'size'
->> paramter is not 0?
->> I think for now, I will remove this check as it was unreachable anyhow.
-> 
-> Hm that's true as well. i915_gem_create_ext_ioctl ensures at least one 
-> placement and internal callers do as well.
-> 
-> To be safe, instead of removing maybe move to before "size = " and 
-> change to "if (GEM_WARN_ON(n_placements == 0))"? Not sure.. Matt any 
-> thoughts here given the changes in this patch?
+Hi Nirmoy,
 
-The check is also to reject a zero sized object with args->size = 0, i.e 
-round_up(0, PAGE_SIZE) == 0. So for sure that is still needed here.
+Thank you for the patch! Yet something to improve:
 
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->>
->> Niranjana
->>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h 
->>>> b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>>> index 7317d4102955..8c97bddad921 100644
->>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>>> @@ -47,6 +47,8 @@ static inline bool i915_gem_object_size_2big(u64 
->>>> size)
->>>>  }
->>>>  void i915_gem_init__objects(struct drm_i915_private *i915);
->>>> +u32 i915_gem_object_max_page_size(struct intel_memory_region 
->>>> **placements,
->>>> +                  unsigned int n_placements);
->>>>  void i915_objects_module_exit(void);
->>>>  int i915_objects_module_init(void);
+[auto build test ERROR on drm-tip/drm-tip]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Nirmoy-Das/drm-i915-Improve-debug-print-in-vm_fault_ttm/20220922-201041
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20220923/202209230001.og3h9EMY-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-5) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/e1a426a9e14837ada7e883d20af7c9abdf59823c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Nirmoy-Das/drm-i915-Improve-debug-print-in-vm_fault_ttm/20220922-201041
+        git checkout e1a426a9e14837ada7e883d20af7c9abdf59823c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/drm/drm_mm.h:51,
+                    from include/drm/ttm/ttm_bo_driver.h:33,
+                    from drivers/gpu/drm/i915/gem/i915_gem_ttm.c:8:
+   drivers/gpu/drm/i915/gem/i915_gem_ttm.c: In function 'vm_fault_ttm':
+>> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1037:38: error: format '%p' expects argument of type 'void *', but argument 4 has type 'int' [-Werror=format=]
+    1037 |                         drm_dbg(dev, "Unable to make resource CPU accessible(err = %pe)\n", err);
+         |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+         |                                                                                             |
+         |                                                                                             int
+   include/drm/drm_print.h:461:63: note: in definition of macro 'drm_dbg'
+     461 |         drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
+         |                                                               ^~~
+   drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1037:85: note: format string is defined here
+    1037 |                         drm_dbg(dev, "Unable to make resource CPU accessible(err = %pe)\n", err);
+         |                                                                                    ~^
+         |                                                                                     |
+         |                                                                                     void *
+         |                                                                                    %d
+   cc1: all warnings being treated as errors
+
+
+vim +1037 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+
+   986	
+   987	static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+   988	{
+   989		struct vm_area_struct *area = vmf->vma;
+   990		struct ttm_buffer_object *bo = area->vm_private_data;
+   991		struct drm_device *dev = bo->base.dev;
+   992		struct drm_i915_gem_object *obj;
+   993		intel_wakeref_t wakeref = 0;
+   994		vm_fault_t ret;
+   995		int idx;
+   996	
+   997		obj = i915_ttm_to_gem(bo);
+   998		if (!obj)
+   999			return VM_FAULT_SIGBUS;
+  1000	
+  1001		/* Sanity check that we allow writing into this object */
+  1002		if (unlikely(i915_gem_object_is_readonly(obj) &&
+  1003			     area->vm_flags & VM_WRITE))
+  1004			return VM_FAULT_SIGBUS;
+  1005	
+  1006		ret = ttm_bo_vm_reserve(bo, vmf);
+  1007		if (ret)
+  1008			return ret;
+  1009	
+  1010		if (obj->mm.madv != I915_MADV_WILLNEED) {
+  1011			dma_resv_unlock(bo->base.resv);
+  1012			return VM_FAULT_SIGBUS;
+  1013		}
+  1014	
+  1015		if (i915_ttm_cpu_maps_iomem(bo->resource))
+  1016			wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
+  1017	
+  1018		if (!i915_ttm_resource_mappable(bo->resource)) {
+  1019			int err = -ENODEV;
+  1020			int i;
+  1021	
+  1022			for (i = 0; i < obj->mm.n_placements; i++) {
+  1023				struct intel_memory_region *mr = obj->mm.placements[i];
+  1024				unsigned int flags;
+  1025	
+  1026				if (!mr->io_size && mr->type != INTEL_MEMORY_SYSTEM)
+  1027					continue;
+  1028	
+  1029				flags = obj->flags;
+  1030				flags &= ~I915_BO_ALLOC_GPU_ONLY;
+  1031				err = __i915_ttm_migrate(obj, mr, flags);
+  1032				if (!err)
+  1033					break;
+  1034			}
+  1035	
+  1036			if (err) {
+> 1037				drm_dbg(dev, "Unable to make resource CPU accessible(err = %pe)\n", err);
+  1038				dma_resv_unlock(bo->base.resv);
+  1039				ret = VM_FAULT_SIGBUS;
+  1040				goto out_rpm;
+  1041			}
+  1042		}
+  1043	
+  1044		if (drm_dev_enter(dev, &idx)) {
+  1045			ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+  1046						       TTM_BO_VM_NUM_PREFAULT);
+  1047			drm_dev_exit(idx);
+  1048		} else {
+  1049			ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+  1050		}
+  1051	
+  1052		if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+  1053			goto out_rpm;
+  1054	
+  1055		/* ttm_bo_vm_reserve() already has dma_resv_lock */
+  1056		if (ret == VM_FAULT_NOPAGE && wakeref && !obj->userfault_count) {
+  1057			obj->userfault_count = 1;
+  1058			mutex_lock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
+  1059			list_add(&obj->userfault_link, &to_gt(to_i915(obj->base.dev))->lmem_userfault_list);
+  1060			mutex_unlock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
+  1061		}
+  1062	
+  1063		if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+  1064			intel_wakeref_auto(&to_gt(to_i915(obj->base.dev))->userfault_wakeref,
+  1065					   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
+  1066	
+  1067		i915_ttm_adjust_lru(obj);
+  1068	
+  1069		dma_resv_unlock(bo->base.resv);
+  1070	
+  1071	out_rpm:
+  1072		if (wakeref)
+  1073			intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, wakeref);
+  1074	
+  1075		return ret;
+  1076	}
+  1077	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
