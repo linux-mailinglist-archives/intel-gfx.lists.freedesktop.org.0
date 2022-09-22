@@ -1,41 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD5F5E5EDE
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 11:48:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F65A5E5F0E
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 11:54:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 750D410EA95;
-	Thu, 22 Sep 2022 09:48:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D863510E2BB;
+	Thu, 22 Sep 2022 09:54:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA2CC10E291
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 09:48:33 +0000 (UTC)
-Received: from 85-76-65-44-nat.elisa-mobile.fi ([85.76.65.44]
- helo=[172.20.10.4]) by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1obIoo-003W4x-Ex;
- Thu, 22 Sep 2022 12:48:32 +0300
-Message-ID: <6a6814e577df677f121bc17e51ca9deab614a0b3.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Date: Thu, 22 Sep 2022 12:46:59 +0300
-In-Reply-To: <YywdAq6eYfTEppUC@intel.com>
-References: <20220916165206.1499-1-ville.syrjala@linux.intel.com>
- <20220916165206.1499-3-ville.syrjala@linux.intel.com>
- <9731fffc60162a34b7790bb08792fc55593e4ca2.camel@coelho.fi>
- <YywdAq6eYfTEppUC@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.0-2 
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9455610E2A4;
+ Thu, 22 Sep 2022 09:54:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663840471; x=1695376471;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=ruTMuVxuSmR3rHbwBxxJPqg3dMI+k+T9N4IDvGz3wc0=;
+ b=LlyKCPka+PGiIGd25erEcGI63Z8HYqemXDLlzY9oQKEeKIu5gFK2UnTG
+ dqZYCVvtd+CWRMxIOwLgeBKvkuOiAJ+9GUt0MbhuvNIKBVigLr0mYGURi
+ G3pHYDtCsZEXhOTalSmw7qp0zIf3V9j+D3oIp+V7ndPYK5UdbQz0qVcRx
+ UYxZLuTpcTXj8szsMxSS/4og/WlKd89V5gmYO7VxjxrORqzeaxK0JvNz4
+ WT7O4hzbfh48kk0lWT3TjQMWu9aV26+O7Uu6FyHRnvidgXCtfOzzXh22q
+ yH7Bvvz82t/ukhF7LfaKXVqOmxOXUPTk/rdBOiRVH8q05Vgu69MeFRaVk Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="364235127"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="364235127"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 02:54:31 -0700
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="864793578"
+Received: from akoska-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.156])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 02:54:26 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20220921070945.27764-9-niranjana.vishwanathapura@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220921070945.27764-1-niranjana.vishwanathapura@intel.com>
+ <20220921070945.27764-9-niranjana.vishwanathapura@intel.com>
+Date: Thu, 22 Sep 2022 12:54:09 +0300
+Message-ID: <877d1v7n0e.fsf@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
- autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Mark FBC B gone if pipe B is
- gone
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [RFC v4 08/14] drm/i915/vm_bind: Abstract out
+ common execbuf functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,57 +60,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: paulo.r.zanoni@intel.com, thomas.hellstrom@intel.com,
+ matthew.auld@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2022-09-22 at 11:29 +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
-> On Thu, Sep 22, 2022 at 11:18:55AM +0300, Luca Coelho wrote:
-> > On Fri, 2022-09-16 at 19:52 +0300, Ville Syrjala wrote:
-> > > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> > >=20
-> > > If pipe B is fused off we also shouldn't have FBC B.
-> > >=20
-> > > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
->
-> > > ---
-> > >  drivers/gpu/drm/i915/intel_device_info.c | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/d=
-rm/i915/intel_device_info.c
-> > > index 1434dc33cf49..fbefebc023f1 100644
-> > > --- a/drivers/gpu/drm/i915/intel_device_info.c
-> > > +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> > > @@ -394,6 +394,7 @@ void intel_device_info_runtime_init(struct drm_i9=
-15_private *dev_priv)
-> > >  		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
-> > >  			runtime->pipe_mask &=3D ~BIT(PIPE_B);
-> > >  			runtime->cpu_transcoder_mask &=3D ~BIT(TRANSCODER_B);
-> > > +			runtime->fbc_mask &=3D ~BIT(INTEL_FBC_B);
-> > >  		}
-> > >  		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
-> > >  			runtime->pipe_mask &=3D ~BIT(PIPE_C);
-> >=20
-> > I don't know (yet) what exactly this does, but it makes sense if you
-> > think of consistency: we already do that for PIPE_A.
->=20
-> It's basically saying the entire pipe is fused off, so anything
-> living inside that pipe should also be fused off.
->=20
-> >=20
-> > But what about PIPE_C and PIPE_D? Wouldn't it make sense to do the same
-> > thing for them as well?
->=20
-> There is no FBC engine on those pipes (we don't even have
-> the INTEL_FBC_C+ enum values defined), at least for now.
->=20
+On Wed, 21 Sep 2022, Niranjana Vishwanathapura <niranjana.vishwanathapura@i=
+ntel.com> wrote:
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.h b/driv=
+ers/gpu/drm/i915/gem/i915_gem_execbuffer_common.h
+> new file mode 100644
+> index 000000000000..725febfd6a53
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.h
+> @@ -0,0 +1,47 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2022 Intel Corporation
+> + */
+> +
+> +#ifndef __I915_GEM_EXECBUFFER_COMMON_H
+> +#define __I915_GEM_EXECBUFFER_COMMON_H
+> +
+> +#include <drm/drm_syncobj.h>
+> +
+> +#include "gt/intel_context.h"
 
-Okay, but AFAICT INTEL_FBC_B was defined but not really used directly
-anywhere.  So wouldn't it make sense to add this for pipes C and D as
-well? Then, if you ever just need to check if the pipe supports FBC,
-you could just check that bit, without making any other assumptions.
+You don't need these includes. Most of it can be handled using forward
+declarations. You'll need <linux/types.h>
 
---
-Cheers,
-Luca.
+> +
+> +struct eb_fence {
+> +	struct drm_syncobj *syncobj;
+> +	struct dma_fence *dma_fence;
+> +	u64 value;
+> +	struct dma_fence_chain *chain_fence;
+> +};
+> +
+> +int __eb_pin_engine(struct intel_context *ce, struct i915_gem_ww_ctx *ww,
+> +		    bool throttle, bool nonblock);
+> +void __eb_unpin_engine(struct intel_context *ce);
+> +int __eb_select_engine(struct intel_context *ce);
+> +void __eb_put_engine(struct intel_context *context, struct intel_gt *gt);
+> +
+> +struct intel_context *
+> +eb_find_context(struct intel_context *context, unsigned int context_numb=
+er);
+> +
+> +int add_timeline_fence(struct drm_file *file, u32 handle, u64 point,
+> +		       struct eb_fence *f, bool wait, bool signal);
+> +void put_fence_array(struct eb_fence *fences, u64 num_fences);
+> +int await_fence_array(struct eb_fence *fences, u64 num_fences,
+> +		      struct i915_request *rq);
+> +void signal_fence_array(struct eb_fence *fences, u64 num_fences,
+> +			struct dma_fence * const fence);
+> +
+> +int eb_requests_add(struct i915_request **requests, unsigned int num_bat=
+ches,
+> +		    struct intel_context *context, struct i915_sched_attr sched,
+
+struct i915_sched_attr is passed by value, so you either need to turn
+that into a pointer, or you need the definition. The definition is just
+a wrapper around an int. (For strict type safety or for future proofing
+or what, I don't know.) And this all brings me to my pet peeve about
+gem/gt headers.
+
+To get that definition of a struct wrapper around an int, you need to
+include i915_scheduler_types.h, which recursively includes a total of 16
+headers. Touch any of those files, and you get a rebuild butterfly
+effect.
+
+28% of i915 header files, when modified, cause the rebuild of 83% of the
+driver. Please let's not make it worse.
+
+
+BR,
+Jani.
+
+> +		    int err);
+> +void eb_requests_get(struct i915_request **requests, unsigned int num_ba=
+tches);
+> +void eb_requests_put(struct i915_request **requests, unsigned int num_ba=
+tches);
+> +
+> +struct dma_fence *__eb_composite_fence_create(struct i915_request **requ=
+ests,
+> +					      unsigned int num_batches,
+> +					      struct intel_context *context);
+> +
+> +#endif /* __I915_GEM_EXECBUFFER_COMMON_H */
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
