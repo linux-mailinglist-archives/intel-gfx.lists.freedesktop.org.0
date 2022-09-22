@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F275E61BF
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 13:53:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B59315E61D4
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 13:57:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA32410EAD9;
-	Thu, 22 Sep 2022 11:53:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FEB310EADB;
+	Thu, 22 Sep 2022 11:57:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98B5910EAD7
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 11:53:12 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23F1910EADC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 11:57:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663847592; x=1695383592;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=esjTFS7SuGuCC3SR0D417GxqGW6zNg+OEhtrMBRqyt8=;
- b=jkXzOkh2lMU13a6fPP0wlA9qgiiNkygBRKZLe44mx+E94kYFXmuYY2/3
- N6cQ+i1vdweRDTDvAGZ38MCUNEay7AotlwmVBaFHz54642CWt1pc3mjnh
- cVo0jw0psTwEflBX+YTcz4oV3vmU2arazk0l69dRGmzuSqlSYmd6/ABu9
- rZqBpv2R40xAZWrofJEpTTHWWjjFxnIFeadcTYiABcd4emW/D1gY1P8xU
- 4jALbICKyA4j+xkIAmJpgtd8kjWXRy/rKBcq2yLyE5U0Wobd1aZHJZ+op
- WHsC/WUMezrvQkn1nf1IVm7A5dKQmOivYaWIJMl6J09RsnW5zJ48kC8NJ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="298990651"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="298990651"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2022 04:53:11 -0700
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="795055432"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.3.25])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2022 04:53:09 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Sep 2022 13:53:07 +0200
-Message-ID: <3124035.5fSG56mABF@jkrzyszt-mobl1.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <166384380596.19670.566828024672013195@emeril.freedesktop.org>
-References: <20220922101036.87457-1-janusz.krzysztofik@linux.intel.com>
- <166384380596.19670.566828024672013195@emeril.freedesktop.org>
+ t=1663847834; x=1695383834;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=ynNWfz75KnfqV4D89rl8f4HPOQjYBoYKgoL7I0odQOw=;
+ b=PPRcgALV/hfguOmFbLlT6KfLu3GrgXdMxZPdvHHCojBRWfJtQWUbl9au
+ JbWI5k6XcNlfnt9Afs34zok1oDcBhtAoJqPZqfauUqNSU7201MD6q7EUL
+ oOWlbpO76yQVUq0p2zZEAR6AK3F1NRcio/9z7PCULB5+/OTRE5vPgfPmD
+ xg7xNe3pFrvEceCvQUXoXsRq0Lu32y+x1rIwhkr2aAc9Jrq0fc8mLP+ns
+ C7yqBmOXBSKS4q+rljbK3jGX1vQRr7XjYW7TduuiGo3mOUUOIXf5R8oty
+ 7nYrkMTVy1jT9Rj3zwDhXNCEQp138zJCxxS8alDP6Iau5g7aOJKBU0Hc9 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="364255681"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="364255681"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 04:57:11 -0700
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="570933684"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.153])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 04:57:11 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220921211525.10675-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220921211525.10675-1-ville.syrjala@linux.intel.com>
+ <20220921211525.10675-2-ville.syrjala@linux.intel.com>
+Date: Thu, 22 Sep 2022 14:56:53 +0300
+Message-ID: <87pmfn62re.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgaW9t?=
- =?utf-8?q?mu=3A_Remove_iova_cpu_hotplugging_flushing?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Force DPLL calculation for TC
+ ports after readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +59,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thursday, 22 September 2022 12:50:05 CEST Patchwork wrote:
-> == Series Details ==
-> 
-> Series: iommu: Remove iova cpu hotplugging flushing
-> URL   : https://patchwork.freedesktop.org/series/108880/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_12166 -> Patchwork_108880v1
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_108880v1 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_108880v1, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108880v1/index.html
-> 
-> Participating hosts (45 -> 42)
-> ------------------------------
-> 
->   Missing    (3): fi-kbl-soraka bat-rpls-1 fi-bdw-samus 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_108880v1:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@i915_module_load@reload:
->     - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][1]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108880v1/fi-kbl-8809g/igt@i915_module_load@reload.html
+On Thu, 22 Sep 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We always allocate two DPLLs (TC and TBT) for TC ports. This
+> is because we can't know ahead of time wherher we need to put
+> the PHY into DP-Alt or TBT mode.
+>
+> However during readout we can obviously only read out the state
+> of the DPLL that the port is actually using. Thus the state after
+> readout will not have both DPLLs populated.
+>
+> We run into problems if during readout the TC port is in DP-Alt
+> mode, but we then perform a modeset on the port without going
+> through the full .compute_config() machinery, and during said
+> modeset the port cannot be switched back into DP-Alt mode and
+> we need to take the TBT fallback path. Such a modeset can
+> happen eg. due to cdclk reprogramming.
+>
+> This wasn't a problem earlier because we did all the DPLL
+> calculations much later in the modeset. So even if flagged
+> a modeset very late we'd still have gone through the DPLL
+> calculations. But now all the DPLL calculations happen much
+> earlier and so we need to deal with it, or else we'll attempt
+> a modeset without a DPLL.
+>
+> To guarantee that we always have both DPLLs fully cal/ulated
+> for TC ports force a full modeset computation during the
+> initial commit.
+>
+> Reported-by: Lee Shawn C <shawn.c.lee@intel.com>
+> Fixes: b000abd3b3d2 ("drm/i915: Do .crtc_compute_clock() earlier")
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 643832d55c28..6278b8ea5bf1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3600,10 +3600,21 @@ static void intel_ddi_sync_state(struct intel_enc=
+oder *encoder,
+>  static bool intel_ddi_initial_fastset_check(struct intel_encoder *encode=
+r,
+>  					    struct intel_crtc_state *crtc_state)
+>  {
+> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+> +	enum phy phy =3D intel_port_to_phy(i915, encoder->port);
+> +	bool ret =3D true;
+> +
+> +	if (intel_phy_is_tc(i915, phy)) {
+> +		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s] Forcing full modeset to compu=
+te TC port DPLLs\n",
+> +			    encoder->base.base.id, encoder->base.name);
+> +		crtc_state->uapi.mode_changed =3D true;
+> +		ret =3D false;
+> +	}
+> +
+>  	if (intel_crtc_has_dp_encoder(crtc_state))
+> -		return intel_dp_initial_fastset_check(encoder, crtc_state);
+> +		ret &=3D intel_dp_initial_fastset_check(encoder, crtc_state);
 
-dmesg shows an issue discovered in amdgpu module.  BUG Filing team will file a 
-new bug and re-report.
+I think there have been static checker warnings about mixing bitwise and
+boolean AND like this. I guess there's implicit type conversion to int
+and back to bool.
 
-Thanks,
-Janusz
+BR,
+Jani.
 
+>=20=20
+> -	return true;
+> +	return ret;
+>  }
+>=20=20
+>  static enum intel_output_type
 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
