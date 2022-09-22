@@ -1,55 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 619825E680F
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 18:06:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7255E6846
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 18:20:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBE9010EC90;
-	Thu, 22 Sep 2022 16:06:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3372C10ECA2;
+	Thu, 22 Sep 2022 16:20:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DD4910EC8C
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 16:06:42 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3C6210EA6E;
+ Thu, 22 Sep 2022 16:20:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663862802; x=1695398802;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1jIB6P67uxZpHSBnwGzzfktz6KtDBw2QNGReUZwdruU=;
- b=Z0ITZTOIn5sKanjlzfuevkduR7nPJi1iOh2aeaCdgVyozBpAhYNadFkM
- Jz84v8rfKnsJneCWRVxaWZVFeZX6jr7VKIBYHFm2b1k9GhIX6pJA65IZK
- etmernHSzgIOJ0PA+dOz+hzIUNznvHnZN9zV2qZ0OAO6Ub9mCQLU4uuOm
- igk5e2UCOumQ7jVyTU7ZOUwAym2kaHbCYDHi2JAvDCEnq8nZBDG0aORPI
- KDEh7wGDMLeg+WSZZL96oDPE1HTEcNBCFbPeMZ8rm/m7l26QEDMm0i9m8
- J3WEXcJVv0MrVr07tpMw7/kbUjF3Li2XAKXE+BAoC8jqEDp0tWMYGe0yv w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="280062620"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="280062620"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2022 09:06:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="597491935"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga006.jf.intel.com with SMTP; 22 Sep 2022 09:06:37 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 22 Sep 2022 19:06:37 +0300
-Date: Thu, 22 Sep 2022 19:06:37 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YyyIDenoFfHjPXnK@intel.com>
-References: <20220921122343.13061-1-ville.syrjala@linux.intel.com>
- <20220921122343.13061-5-ville.syrjala@linux.intel.com>
- <875yhf5rpi.fsf@intel.com>
+ t=1663863602; x=1695399602;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=9bR1B1OTC/uHI6AAIK1zAZ0Yh/+qK5s6tyvFakEUkEI=;
+ b=hDctBAqgKqSzENIMCpaD2XoYuPhezQi3TYtQsi5k+qOCvu+SIA/M8pvR
+ fEAnyE9aQUhHoCCfu8DAY/LpVr5/KGsGfrqwQyCq0eEoXUuhX6IVJwQ1C
+ dFiT9URqdx2WY9hiI2OV0Xi6iVS0kCvzMKN4Y7t4BSD8oikbZlYCJ3dia
+ D0DUi3yqMaSuV6N2cnNBz0pcKbeUYwb4xa0Z3U2u2QvQ9cccIGLY9v4LL
+ oMUVbn9xDfJSuWYZSNHkLQPZIfVpMyI81hlFNOSbq4fU+5ML7z7siK5UL
+ W4KMbH21/LV7krQQHIUMN4/y2pIBWcUQ4ivBKMSH2eQkx4QWZFDuyvXba A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="299064534"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="299064534"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 09:18:33 -0700
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="795151695"
+Received: from jmhendri-mobl.ger.corp.intel.com (HELO [10.252.3.12])
+ ([10.252.3.12])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 09:18:30 -0700
+Message-ID: <1072ee80-13fb-dc72-5416-c7fdded3c80c@intel.com>
+Date: Thu, 22 Sep 2022 17:18:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.2.1
+Content-Language: en-GB
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+References: <20220921070945.27764-1-niranjana.vishwanathapura@intel.com>
+ <20220921070945.27764-4-niranjana.vishwanathapura@intel.com>
+ <578445bc-d804-3f1d-a32d-51cac9460351@linux.intel.com>
+ <20220921180040.GD28263@nvishwa1-DESK>
+ <e02e34ef-0dca-d61d-e5c4-a6f002baf434@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <e02e34ef-0dca-d61d-e5c4-a6f002baf434@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <875yhf5rpi.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Decouple I915_NUM_PLLS from
- PLL IDs
+Subject: Re: [Intel-gfx] [RFC v4 03/14] drm/i915/vm_bind: Expose
+ i915_gem_object_max_page_size()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,123 +65,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: paulo.r.zanoni@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, thomas.hellstrom@intel.com,
+ daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 22, 2022 at 06:55:37PM +0300, Jani Nikula wrote:
-> On Wed, 21 Sep 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> >
-> > Stop assuming the size of PLL ID based bitmask is restricted
-> > to I915_NUM_PLLS bits. This is the last thing coupling the
-> > two things together and thus artificially limiting PLL IDs.
-> >
-> > We could just pass any arbitrary (large enough) size to
-> > for_each_set_bit() and be done with it, but the WARN
-> > requiring the caller to not pass in a bogus bitmask seems
-> > potentially useful to keep around. So let's just calculate
-> > the full bitmask on the spot.
-> >
-> > And while at it let's assert that the PLL IDs will fit
-> > into the bitmask we use for them.
-> >
-> > TODO: could also get rid of I915_NUM_PLLS entirely and just
-> > dynamically allocate i915->shared_dplls[] and state->shared_dpll[].
-> > But that would involve error handling in the modeset init path. Uff.
-> >
-> > Signed-off-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 24 +++++++++++++++++--
-> >  1 file changed, 22 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > index fb09029cc4aa..ee04b63d2696 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > @@ -315,6 +315,21 @@ void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_state)
-> >  	mutex_unlock(&dev_priv->display.dpll.lock);
-> >  }
-> >  
-> > +static unsigned long
-> > +intel_dpll_mask_all(struct drm_i915_private *i915)
-> > +{
-> > +	unsigned long dpll_mask = 0;
-> > +	int i;
-> > +
-> > +	for (i = 0; i < i915->display.dpll.num_shared_dpll; i++) {
-> > +		struct intel_shared_dpll *pll = &i915->display.dpll.shared_dplls[i];
-> > +
-> > +		dpll_mask |= BIT(pll->info->id);
-> > +	}
-> > +
-> > +	return dpll_mask;
-> > +}
-> > +
-> >  static struct intel_shared_dpll *
-> >  intel_find_shared_dpll(struct intel_atomic_state *state,
-> >  		       const struct intel_crtc *crtc,
-> > @@ -322,15 +337,16 @@ intel_find_shared_dpll(struct intel_atomic_state *state,
-> >  		       unsigned long dpll_mask)
-> >  {
-> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> > +	unsigned long dpll_mask_all = intel_dpll_mask_all(dev_priv);
-> >  	struct intel_shared_dpll_state *shared_dpll;
-> >  	struct intel_shared_dpll *unused_pll = NULL;
-> >  	enum intel_dpll_id id;
-> >  
-> >  	shared_dpll = intel_atomic_get_shared_dpll_state(&state->base);
-> >  
-> > -	drm_WARN_ON(&dev_priv->drm, dpll_mask & ~(BIT(I915_NUM_PLLS) - 1));
-> > +	drm_WARN_ON(&dev_priv->drm, dpll_mask & ~dpll_mask_all);
-> >  
-> > -	for_each_set_bit(id, &dpll_mask, I915_NUM_PLLS) {
-> > +	for_each_set_bit(id, &dpll_mask, fls(dpll_mask_all)) {
-> >  		struct intel_shared_dpll *pll;
-> >  		int i;
-> >  
-> > @@ -4234,6 +4250,10 @@ void intel_shared_dpll_init(struct drm_i915_private *dev_priv)
-> >  				i >= ARRAY_SIZE(dev_priv->display.dpll.shared_dplls)))
-> >  			break;
+On 22/09/2022 09:09, Tvrtko Ursulin wrote:
 > 
-> Would be nice to add
+> On 21/09/2022 19:00, Niranjana Vishwanathapura wrote:
+>> On Wed, Sep 21, 2022 at 10:13:12AM +0100, Tvrtko Ursulin wrote:
+>>>
+>>> On 21/09/2022 08:09, Niranjana Vishwanathapura wrote:
+>>>> Expose i915_gem_object_max_page_size() function non-static
+>>>> which will be used by the vm_bind feature.
+>>>>
+>>>> Signed-off-by: Niranjana Vishwanathapura 
+>>>> <niranjana.vishwanathapura@intel.com>
+>>>> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+>>>> ---
+>>>>  drivers/gpu/drm/i915/gem/i915_gem_create.c | 20 +++++++++++++++-----
+>>>>  drivers/gpu/drm/i915/gem/i915_gem_object.h |  2 ++
+>>>>  2 files changed, 17 insertions(+), 5 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c 
+>>>> b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+>>>> index 33673fe7ee0a..3b3ab4abb0a3 100644
+>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+>>>> @@ -11,14 +11,24 @@
+>>>>  #include "pxp/intel_pxp.h"
+>>>>  #include "i915_drv.h"
+>>>> +#include "i915_gem_context.h"
+>>>
+>>> I can't spot that you are adding any code which would need this? 
+>>> I915_GTT_PAGE_SIZE_4K? It is in intel_gtt.h.
+>>
+>> This include should have been added in a later patch for calling
+>> i915_gem_vm_lookup(). But got added here while patch refactoring.
+>> Will fix.
+>>
+>>>
+>>>>  #include "i915_gem_create.h"
+>>>>  #include "i915_trace.h"
+>>>>  #include "i915_user_extensions.h"
+>>>> -static u32 object_max_page_size(struct intel_memory_region 
+>>>> **placements,
+>>>> -                unsigned int n_placements)
+>>>> +/**
+>>>> + * i915_gem_object_max_page_size() - max of min_page_size of the 
+>>>> regions
+>>>> + * @placements:  list of regions
+>>>> + * @n_placements: number of the placements
+>>>> + *
+>>>> + * Calculates the max of the min_page_size of a list of placements 
+>>>> passed in.
+>>>> + *
+>>>> + * Return: max of the min_page_size
+>>>> + */
+>>>> +u32 i915_gem_object_max_page_size(struct intel_memory_region 
+>>>> **placements,
+>>>> +                  unsigned int n_placements)
+>>>>  {
+>>>> -    u32 max_page_size = 0;
+>>>> +    u32 max_page_size = I915_GTT_PAGE_SIZE_4K;
+>>>>      int i;
+>>>>      for (i = 0; i < n_placements; i++) {
+>>>> @@ -28,7 +38,6 @@ static u32 object_max_page_size(struct 
+>>>> intel_memory_region **placements,
+>>>>          max_page_size = max_t(u32, max_page_size, mr->min_page_size);
+>>>>      }
+>>>> -    GEM_BUG_ON(!max_page_size);
+>>>>      return max_page_size;
+>>>>  }
+>>>> @@ -99,7 +108,8 @@ __i915_gem_object_create_user_ext(struct 
+>>>> drm_i915_private *i915, u64 size,
+>>>>      i915_gem_flush_free_objects(i915);
+>>>> -    size = round_up(size, object_max_page_size(placements, 
+>>>> n_placements));
+>>>> +    size = round_up(size, i915_gem_object_max_page_size(placements,
+>>>> +                                n_placements));
+>>>>      if (size == 0)
+>>>>          return ERR_PTR(-EINVAL);
+>>>
+>>> Because of the changes above this path is now unreachable. I suppose 
+>>> it was meant to tell the user "you have supplied no placements"? But 
+>>> then GEM_BUG_ON (which you remove) used to be wrong.
+>>>
+>>
+>> Yah, looks like an existing problem. May be this "size == 0" check
+>> should have been made before we do the round_up()? ie., check input 
+>> 'size'
+>> paramter is not 0?
+>> I think for now, I will remove this check as it was unreachable anyhow.
 > 
-> 	unsigned long dpll_mask;
+> Hm that's true as well. i915_gem_create_ext_ioctl ensures at least one 
+> placement and internal callers do as well.
 > 
->         drm_WARN_ON(&dev_priv->drm, dpll_mask & BIT(pll->info->id));
-> 
-> 	dpll_mask |= BIT(pll->info->id);
-> 
-> to check for collisions.
+> To be safe, instead of removing maybe move to before "size = " and 
+> change to "if (GEM_WARN_ON(n_placements == 0))"? Not sure.. Matt any 
+> thoughts here given the changes in this patch?
 
-Yeah, I guess we can do that. Doing it only at init time might be
-nicer but then I'd have to duplicate some code... What a conundrum.
+The check is also to reject a zero sized object with args->size = 0, i.e 
+round_up(0, PAGE_SIZE) == 0. So for sure that is still needed here.
 
 > 
-> >  
-> > +		/* must fit into unsigned long bitmask on 32bit */
-> > +		if (drm_WARN_ON(&dev_priv->drm, dpll_info[i].id >= 32))
+> Regards,
 > 
-> BITS_PER_TYPE(dpll_mask) instead of 32? Of course would only hit this
-> when actually running a 32-bit build.
-
-I'd prefer to catch it in 64bit builds too. This is the reason
-I hate 'long'.
-
+> Tvrtko
 > 
-> Regardless,
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> 
-> > +			break;
-> > +
-> >  		dev_priv->display.dpll.shared_dplls[i].info = &dpll_info[i];
-> >  	}
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
-
--- 
-Ville Syrj�l�
-Intel
+>>
+>> Niranjana
+>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h 
+>>>> b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+>>>> index 7317d4102955..8c97bddad921 100644
+>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+>>>> @@ -47,6 +47,8 @@ static inline bool i915_gem_object_size_2big(u64 
+>>>> size)
+>>>>  }
+>>>>  void i915_gem_init__objects(struct drm_i915_private *i915);
+>>>> +u32 i915_gem_object_max_page_size(struct intel_memory_region 
+>>>> **placements,
+>>>> +                  unsigned int n_placements);
+>>>>  void i915_objects_module_exit(void);
+>>>>  int i915_objects_module_init(void);
