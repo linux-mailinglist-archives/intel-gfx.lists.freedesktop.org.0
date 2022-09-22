@@ -2,47 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7BE65E59B9
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 05:49:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F935E59BF
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 05:51:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0196F10E012;
-	Thu, 22 Sep 2022 03:49:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B08910E569;
+	Thu, 22 Sep 2022 03:51:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC51F10E012
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 03:49:26 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 817ED10E42C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 03:51:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663818566; x=1695354566;
+ t=1663818692; x=1695354692;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=ghXAz4aL+LYfHcLKBjJ137FbtarVsEXQFJMZY4rII+8=;
- b=NKkxWdsOhQSdLFN+KZI6bDCnCjcTa3ZGMaMyXRjOBa8LZY4vbLZmZzSE
- 27dMb1jH+8uu73sFGxVoFPdSeS36533cTRgInUp3rYKRS43vgUFr38F5g
- tnEHZ5yJKUeD9/yTqiF0X5SmEHi0a91IybSNK5jfG/EQ7zZdOAhKT3r5Y
- vmqJMjMRkxrxJ0MhOV8FSbL7Jat8W+ookTNJxcM9fyah/vtASJvmu6TiG
- 5orQYsm198K02i2t3dYcGwCECMpNQlfNbe3jIQ3UzxQUktecDmIu+r6a6
- sLVJ5zEsonoZh8dfNvJ3cVbNRnAZIgk/FWWr1Haa/76cSN/a2mI7ha2kN w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="361953389"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="361953389"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2022 20:49:26 -0700
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="948426629"
+ bh=+7Syj8/q7QWQafPfa2uowTs6hhjQAlgUehmT0qLRNtI=;
+ b=J+HKBeaJ0YjgpUcbaaS8pHFhSRHWkiFQYEwny+g9H4I/Q7yYbDg8/vfv
+ Gp3h6+5U1JQ9LJmqGw0W8eEIHVgfBPUdJWtZVjiy1D116blBLzEQtA3bj
+ n1gzHpJp8XQQt83XQq8PJhbmLyQmgrm3AR5zYZh8cPujZRLu1EBMJxFj5
+ Gr6X5BeKbaUBD69l1Nit84rDXE/4MOm4w7FzjNLb08epkrOixtyiPS8GK
+ RJvLBpJ5Bb/AR3v2RrU4L8/k2TXMHClz7VLPO6X75LEbto30+yXsJwR5L
+ Zb6LdUwarzpBLABkd4CFUlyJXbOkN+Z0LRaBzK6wbRNETgkdGcYHsY248 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="297790142"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="297790142"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2022 20:51:31 -0700
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="762023092"
 Received: from jrluquin-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.212.181.182])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2022 20:49:25 -0700
-Date: Wed, 21 Sep 2022 20:49:25 -0700
-Message-ID: <87czbom5kq.wl-ashutosh.dixit@intel.com>
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2022 20:51:31 -0700
+Date: Wed, 21 Sep 2022 20:51:31 -0700
+Message-ID: <87bkr8m5h8.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <87edw4m5s6.wl-ashutosh.dixit@intel.com>
+In-Reply-To: <87wn9yd91b.wl-ashutosh.dixit@intel.com>
 References: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
  <20220823204155.8178-2-umesh.nerlige.ramappa@intel.com>
- <87mtb85cvb.wl-ashutosh.dixit@intel.com>
- <87edw4m5s6.wl-ashutosh.dixit@intel.com>
+ <9afc705a-87a1-c51e-b223-e32accbcd2fe@intel.com>
+ <YxeF0b6ohtFcDXf6@unerlige-ril>
+ <f1e9e230-2626-0f6c-02a7-e063122b759b@intel.com>
+ <YyJVB9DpKwhqqCHR@unerlige-ril> <YyJgJT6ByYZToC2h@unerlige-ril>
+ <YyOr98/p13pWWm+k@unerlige-ril>
+ <87wn9yd91b.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -66,69 +70,87 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 21 Sep 2022 20:44:57 -0700, Dixit, Ashutosh wrote:
+On Mon, 19 Sep 2022 20:22:40 -0700, Dixit, Ashutosh wrote:
 >
-> On Fri, 09 Sep 2022 16:47:36 -0700, Dixit, Ashutosh wrote:
+> On Thu, 15 Sep 2022 15:49:27 -0700, Umesh Nerlige Ramappa wrote:
 > >
-> > On Tue, 23 Aug 2022 13:41:37 -0700, Umesh Nerlige Ramappa wrote:
+> > On Wed, Sep 14, 2022 at 04:13:41PM -0700, Umesh Nerlige Ramappa wrote:
+> > > On Wed, Sep 14, 2022 at 03:26:15PM -0700, Umesh Nerlige Ramappa wrote:
+> > >> On Tue, Sep 06, 2022 at 09:39:33PM +0300, Lionel Landwerlin wrote:
+> > >>> On 06/09/2022 20:39, Umesh Nerlige Ramappa wrote:
+> > >>>> On Tue, Sep 06, 2022 at 05:33:00PM +0300, Lionel Landwerlin wrote:
+> > >>>>> On 23/08/2022 23:41, Umesh Nerlige Ramappa wrote:
+> > >>>>>> With GuC mode of submission, GuC is in control of defining the
+> > >>>>>> context id field
+> > >>>>>> that is part of the OA reports. To filter reports, UMD and KMD must
+> > >>>>>> know what sw
+> > >>>>>> context id was chosen by GuC. There is not interface between KMD and
+> > >>>>>> GuC to
+> > >>>>>> determine this, so read the upper-dword of EXECLIST_STATUS to
+> > >>>>>> filter/squash OA
+> > >>>>>> reports for the specific context.
+> > >>>>>>
+> > >>>>>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> > >>>>>
+> > >>>>>
+> > >>>>> I assume you checked with GuC that this doesn't change as the context
+> > >>>>> is running?
+> > >>>>
+> > >>>> Correct.
+> > >>>>
+> > >>>>>
+> > >>>>> With i915/execlist submission mode, we had to ask i915 to pin the
+> > >>>>> sw_id/ctx_id.
+> > >>>>>
+> > >>>>
+> > >>>> From GuC perspective, the context id can change once KMD de-registers
+> > >>>> the context and that will not happen while the context is in use.
+> > >>>>
+> > >>>> Thanks,
+> > >>>> Umesh
+> > >>>
+> > >>>
+> > >>> Thanks Umesh,
+> > >>>
+> > >>>
+> > >>> Maybe I should have been more precise in my question :
+> > >>>
+> > >>>
+> > >>> Can the ID change while the i915-perf stream is opened?
+> > >>>
+> > >>> Because the ID not changing while the context is running makes sense.
+> > >>>
+> > >>> But since the number of available IDs is limited to 2k or something on
+> > >>> Gfx12, it's possible the GuC has to reuse IDs if too many apps want to
+> > >>> run during the period of time while i915-perf is active and filtering.
+> > >>>
+> > >>
+> > >> available guc ids are 64k with 4k reserved for multi-lrc, so GuC may
+> > >> have to reuse ids once 60k ids are used up.
 > > >
-> > > +/*
-> > > + * For execlist mode of submission, pick an unused context id
-> > > + * 0 - (NUM_CONTEXT_TAG -1) are used by other contexts
-> > > + * XXX_MAX_CONTEXT_HW_ID is used by idle context
-> > > + *
-> > > + * For GuC mode of submission read context id from the upper dword of the
-> > > + * EXECLIST_STATUS register.
-> > > + */
-> > > +static int gen12_get_render_context_id(struct i915_perf_stream *stream)
-> > > +{
-> > > +	u32 ctx_id, mask;
-> > > +	int ret;
-> > > +
-> > > +	if (intel_engine_uses_guc(stream->engine)) {
-> > > +		ret = gen12_guc_sw_ctx_id(stream->pinned_ctx, &ctx_id);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +
-> > > +		mask = ((1U << GEN12_GUC_SW_CTX_ID_WIDTH) - 1) <<
-> > > +			(GEN12_GUC_SW_CTX_ID_SHIFT - 32);
-> > > +	} else if (GRAPHICS_VER_FULL(stream->engine->i915) >= IP_VER(12, 50)) {
-> > > +		ctx_id = (XEHP_MAX_CONTEXT_HW_ID - 1) <<
-> > > +			(XEHP_SW_CTX_ID_SHIFT - 32);
-> > > +
-> > > +		mask = ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
-> > > +			(XEHP_SW_CTX_ID_SHIFT - 32);
-> > > +	} else {
-> > > +		ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) <<
-> > > +			 (GEN11_SW_CTX_ID_SHIFT - 32);
-> > > +
-> > > +		mask = ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) <<
-> > > +			(GEN11_SW_CTX_ID_SHIFT - 32);
+> > > Spoke to the GuC team again and if there are a lot of contexts (> 60K)
+> > > running, there is a possibility of the context id being recycled. In that
+> > > case, the capture would be broken. I would track this as a separate JIRA
+> > > and follow up on a solution.
+> > >
+> > > From OA use case perspective, are we interested in monitoring just one
+> > > hardware context? If we make sure this context is not stolen, are we
+> > > good?
+> > >
 > >
-> > Previously I missed that these ctx_id's for non-GuC cases are just
-> > constants. How does it work in these cases?
+> > + John
+> >
+> > Based on John's inputs - if a context is pinned, then KMD does not steal
+> > it's id. It would just look for something else or wait for a context to be
+> > available (pin count 0 I believe).
+> >
+> > Since we pin the context for the duration of the OA use case, we should be
+> > good here.
 >
-> For the record, offline reply from Umesh for this question:
->
-> Looks like the SW context id is set to a unique value by the KMD for
-> execlist mode here - __execlists_schedule_in() as ccid. Later it is written
-> to the execlist port here (as lrc.desc) - execlists_submit_ports(). It's
-> just a unique value that the kmd determines. For OA we are setting a
-> ce->tag when OA use case is active and it used by the
-> __execlists_schedule_in().
->
-> Related commit from Chris - 2935ed5339c49
->
-> I think the reason why OA is setting it is because this value is not
-> assigned until __execlists_schedule_in() is called. For OA context, this
-> may happen much later. The code that Chris has added, just assigns a value
-> in OA and then uses it later in the __execlists_schedule_in() path.
+> Since this appears to be true I am thinking of okay'ing this patch rather
+> than define a new interface with GuC for this. Let me know if there are any
+> objections about this.
 
-I would still think this should not be a constant value but something which
-depends on the context or the context id. Anyway since this is a
-pre-existing issue not introducd in this patch, I will disregard this and
-continue reviewing this patch.
+With the above comments/assumptions this is:
 
-Thanks.
---
-Ashutosh
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
