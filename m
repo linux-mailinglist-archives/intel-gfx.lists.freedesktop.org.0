@@ -2,151 +2,151 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D695C5E5BFE
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 09:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B569F5E5C92
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 09:39:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 683C510E5B3;
-	Thu, 22 Sep 2022 07:13:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 301D410EA66;
+	Thu, 22 Sep 2022 07:39:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1303610E5B1;
- Thu, 22 Sep 2022 07:13:22 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73EEF10E0D4;
+ Thu, 22 Sep 2022 07:39:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663830802; x=1695366802;
+ t=1663832341; x=1695368341;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=M0nDP35vZcnUM0X/pJZaeeVKFOZ67lbRzhMhAq3kdN8=;
- b=Su7aUZrBp+G2jxvhyhbSPbJT4u62LXEpGmhxtcZsxEolzrqQu9a/ZzTH
- IWgyvRy8x9Tc46fUqPkWEnNX2H/Y49+U9wRMvP4+vKbe8pCe7CKbqjWkT
- M8USlqIjW77g5qe+8nWsghzhJTh8MShAQpL9ARiqK1BnNiyLBYsgVVIej
- IeMBftWeqglciYWHRErRBxGqD3ZPC+tzCdx+o6GuRbDj5zltgDexf+ybo
- 2WSolYbRMXv72xAruhb7ZPxEqamx88qp4mcIhnt72X0x0OX5vLkD2LJSc
- Z+9c727QsboiUjq+GcGoU8AJ6JpKXqKvyid5cay6AUqWjQVjlmWOtb7jU g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="301066609"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="301066609"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2022 00:13:21 -0700
+ bh=ZLamvXC4UM/OUhiwigEhbKsRrz/Sj/FuXVlI91YnUR4=;
+ b=FWYragKZOFF5JvXslL0k0Z3KbvlXGy+ka6SkjBmBnKIE6JI7AAFz9NEs
+ 4Wpmb/+LC86Dm3lgp77/G870L0McjdYkuc/0FxwgAgskAFny/Kw+c3rF4
+ vNbnyEiXgF/CcvPH5nmUxNHhQna3v1BFok4AeOqQMPTvnbNCwMRL+rrnE
+ ER32MM3GSCnWFSB9mUWRcDt71Fv7UzJqpT7bcC9LsJb3vxIBbgOS1vEVL
+ lfUzYfNXEs+Tf2T3FX0OSYLqtMbtwUFvIa2Vz5Q7LV0Hj+7YUcS91yd7E
+ RujtrDqWg32mW1EN4CgJRlgjB4mi0wtfROFnGDSbwljlGvbLclDOos86r A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="287305289"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="287305289"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 00:39:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="619684736"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="948489613"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga002.jf.intel.com with ESMTP; 22 Sep 2022 00:13:20 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ by fmsmga005.fm.intel.com with ESMTP; 22 Sep 2022 00:39:00 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 22 Sep 2022 00:13:20 -0700
+ 15.1.2375.31; Thu, 22 Sep 2022 00:38:59 -0700
 Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 22 Sep 2022 00:13:19 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.1.2375.31; Thu, 22 Sep 2022 00:38:59 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 22 Sep 2022 00:13:19 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Thu, 22 Sep 2022 00:38:59 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.48) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 22 Sep 2022 00:13:19 -0700
+ 15.1.2375.31; Thu, 22 Sep 2022 00:38:59 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HvpDthVmk3Anh5rmlWLgY+cv9g/9EegJ6ha8BTsJuorC++y11RS6NcIunhqLaIHDRX+xp3+TNBAfGGncXOVug7HHSNQH6xL7K5UKb/MMPgS2CoUDIogzms8oTVOQM/hdOwTGCg/eQmfucc+3noQ+CSluz7kavwApkFbxUIBS/Ifq17jXroxx6BFEYj2nETVRNdqxtyzfxubBSqtQebfFt8vLxhVjiyMPcHScPQVD+zy6gdyrpLtD4PAilXpGXUe2rkVKlWJ2hsC2wM1F6RHQW+qUJbGfy+c1Hth3FPIWZT0OUA4cSYhr+A4MQsChlYZiziCq/NgMiGf6SiC5iiFdNw==
+ b=Wa7IeP6k8PFnxa9Y0s2qHvD5GLpc+65rPfS2juwZjVQRdE+3U/z5P8e++eZNItIpbP58Q+G5Cd3Wwh5LewzuhQb4Rjm5t+hhBq8snS8ikEou2EtWDfJw9WpqPBp54wAm4209sLZx5p7vWmBTTae5B9ikhfcltU3Kvw2Armu8Yk5YiVt0yogPTI80kX8T46q3FDVbFNQZqHkLzepGZiOEAjAJDAjSh3/i9o7oXnZUBIM/5n3AzY5LFAuOfUDEWV+xGk6uFYi6E7qvgLel4oECTyzUmZTvwgAOY4o3njC6oUyMHI8bipAncn6L+d14BZgmadfbpQxg2ItwVGQmgvj5sw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XOYDVbSgTbG/nHKP4da4FuJmbnpBIIOJfXI4auLZITA=;
- b=L9fB8HmqnEivw09sMNcuq5Nz6gGwemaDhYY+arElnWoNjfj3SohKEHDFoP55HUdsHhdkyhXmAbgZazJxF6nW70Ce1Pfl27yOWPoi9tYJzKsfHU9j1WIQgFkQO47kuUzxJOt4BStowjbpjgl06m/wlBvmKjhpGW33lwSnG9xGv71cm0wURkml7O/ey4gHKUTxLaBRAfH+rAfNuBlh+3gyo+ogUZKC6sMM1+KrKoByaBzNdwdvNDZVwv4mqo2Kh0brKQsyniSGlFsKzyT3i9bq+vvympQjKwfYdcm2G387awYJVbvDzKbz2o9eqbta9vGDx+ghJIZp7ZgNzdLJgzexBw==
+ bh=DjVSO5brcapEoB+Yjc/S19yvaeOWpdsCRa+8RU1fYzk=;
+ b=TWAZEbHvZCy4XpAkF12sbira0wGFFyQ/aok3vtbquK4t25jsPrraxm+TMmsn9TDGP8o0EPvp+bMMzfDb5fqvdRb6UFTykYm3YObuUVBYwxujjSphUSlvWwcsK/zIiD18XEr+CuOeHtl1BZWBwmFGPAkRibnN0JO8OQN/igoBcG+gOMenFE7Q1OHIGFw6E7vEIRiAAZYpE7QyJROXRKgp2maLXoAPYwNtxjVr7Bjq5nafm553kO4k2b2qXBpn3q7u6vAupH0MyvFCmiI/+METv7zqGcsJjzMeikieSwE8OWe0LKRWOCpC0UsPDML4ZZtLi1G6r4n45VEn3cgDod8Eow==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
- by SA2PR11MB4922.namprd11.prod.outlook.com (2603:10b6:806:111::20) with
+ by IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.19; Thu, 22 Sep
- 2022 07:13:12 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.16; Thu, 22 Sep
+ 2022 07:37:56 +0000
 Received: from CY5PR11MB6211.namprd11.prod.outlook.com
  ([fe80::c144:218:70eb:9cbe]) by CY5PR11MB6211.namprd11.prod.outlook.com
  ([fe80::c144:218:70eb:9cbe%4]) with mapi id 15.20.5654.016; Thu, 22 Sep 2022
- 07:13:12 +0000
-Message-ID: <c9a6af40-2f76-e8a1-8b7b-812fa5dd5fff@intel.com>
-Date: Thu, 22 Sep 2022 12:43:00 +0530
+ 07:37:56 +0000
+Message-ID: <0f1b118d-e072-8e8b-9819-b88b7a14e255@intel.com>
+Date: Thu, 22 Sep 2022 13:07:45 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.3.0
 Content-Language: en-US
 To: Badal Nilawar <badal.nilawar@intel.com>, <intel-gfx@lists.freedesktop.org>
 References: <20220916150054.807590-1-badal.nilawar@intel.com>
- <20220916150054.807590-7-badal.nilawar@intel.com>
+ <20220916150054.807590-8-badal.nilawar@intel.com>
 From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-In-Reply-To: <20220916150054.807590-7-badal.nilawar@intel.com>
+In-Reply-To: <20220916150054.807590-8-badal.nilawar@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN0PR01CA0016.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:4f::21) To CY5PR11MB6211.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN0PR01CA0010.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:4f::15) To CY5PR11MB6211.namprd11.prod.outlook.com
  (2603:10b6:930:25::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6211:EE_|SA2PR11MB4922:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c3a3307-8dad-4d4f-096d-08da9c69e8da
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6211:EE_|IA0PR11MB7307:EE_
+X-MS-Office365-Filtering-Correlation-Id: cb90f389-d7cf-430a-b572-08da9c6d5d43
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CnpuQy8CAuFRB42Jy7PpPYZ1gE29xj91oF7z3WwDnz/KCqAitXYdCb5tltqugTSMJWxdhatVswrpDGucwBA0r6BwNd1Zx/0bDjvo+Qc9NFjgei9xvx1dISo0Mgqe3PSEiSJYJVXi00Mo47yALv19GIWeG8fnSq0axLMtXT19cxphXFV/0As/FfQwAWfS/GqGY+d/ocme82ZaftpoE4f3EN4FvgmjuUMqMO+vxvpywgphh5h/2S1OhsOoI4SkYkRQTd5ZpxKS8K7f/S2zZ5EfYYn4KFdDYVwx+4gzQjRSwIOFjPumcuorYiQJHBz3AenHkkpdcgn1nlu0SpsKw6h6PFAvPfkPd3f6uiZzEHT0U0pNHwgjJ87hHlu9uhClJWP3ugb8JTbRPtZMJhQV/OroH1LRxc/kdD8M4JUayPiW8krz9J6XQfcEvonbRvZnwS5P1JBE3tGJl00bawMuTuQII7xNtaYsDdCkgPKpjiMrddC7pUtEwSShBBeibSuziVthIt1fWhutagFf5+JxGjcb7O9Wk9Rf++t4UnDyph5Ughf8twXyrjCotVfeIKMvhACeJWJXV9u/dEhxnxr+IsQi9LzhbNvdtYOF/bF0poYNNtq6IeM+ZM85lE7qqkyUlSgEFoJ3jrAMMXEAEaWZ3FqC4gax7VS90TIWg7uyrAGkRStDTdWZf7KddACUBbtIXK8OzReliNVwF19kiHGVLe/YI1EFIDaBxkfzDoY1vfXeIvzeQzyGdAZ8eqIV598ETiswnyN2uqyDVemhYGdAfMdAuc0ojiuyqTAh6ZllH5+/vuw=
+X-Microsoft-Antispam-Message-Info: gwha+0W+3MnuBOgBF81qMa9keZZdEq30JDThejmAbk42tAq7RnSxuwwVICDwHZBTxCFq1SlsLbGynge6SBKDmUrfL5cqpXYXF9k/i5JLqpi1lk1Sei+Pku762hK7CsCdE+xnlkLLnANe3VNZVfvlWqsyIED/nVND3crTyNiK0LoMZnABj0QDhCjsSxwDE/CaGEPBtzztHXBCPK/gtiJBb7m3EaWCRvo4AlcxJrA78uZNnzcCoDt6vPLmdgHIMJXV+Dgn92vtP/4+4LZJgMl/V8ShksLURbP+WxSlRKHwC1mnKAQAA24BNclMCn6FX+GvK20zBMvtu68ULK6yZ+EqEaGkqpk5cMh91IEjrFcDWmcnFqO5monSGn4lXteFZ10nnQDjNEOoCwi2D9ZpB+bEGY7toRQoas8/w+QO7m5mX8x0qY4DLUotjqvjhjjOYAXDCzQAtUTMCj2MogUcojDItLJhUj3J3sp4q8POiWJujXa3fcBY4vl//Njcnlp9HI3D/2q2jeFClUlpFY26DuQAqfRWgtutyiYULd0gQ/m6NIdDx0gKCM/JXM3++i3iBCH5DR1W9qdGmNSfeCu9u5zxbP+gQU73MjRUoQE/wkBX7F4LGHFwgO7Fo3BajDdUoeNWLkor/4JHQA8MkKpRSaR9rRDx8sSw96Hht9TfExHPJMoXa3eqvSMagCVwkfIxVCtkK8RMYdiLWlg90Z3xA05jXmamXZTrZR+YwkkltbPtW8OaWm6QtSfovAwBIMgjtyP1Aoda0TdFLODoj8IUhcb+FQfsuiz7RpyGeSNZoUZHMgQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(376002)(396003)(346002)(366004)(136003)(39860400002)(451199015)(31686004)(66556008)(66946007)(83380400001)(36756003)(86362001)(31696002)(38100700002)(82960400001)(2906002)(4326008)(8676002)(6486002)(478600001)(41300700001)(66476007)(186003)(5660300002)(8936002)(2616005)(26005)(6512007)(55236004)(53546011)(6506007)(6666004)(316002)(45980500001)(43740500002);
+ SFS:(13230022)(346002)(366004)(136003)(39860400002)(396003)(376002)(451199015)(6486002)(478600001)(31696002)(41300700001)(5660300002)(4326008)(8936002)(8676002)(66556008)(66946007)(36756003)(66476007)(316002)(26005)(82960400001)(6512007)(38100700002)(55236004)(6666004)(6506007)(53546011)(186003)(2616005)(83380400001)(2906002)(86362001)(31686004)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Unl6dFBIT0dWV2FlMlJMVm5lYTNKSk5kZU9jSjVJcXl1R0NmSUpYV245TTFZ?=
- =?utf-8?B?a2lMREg0eDBEeWdsaVFMb2p3WFl2YmNZT1ZZUVNiTnN5WWNVcWlDRjIzMVBa?=
- =?utf-8?B?cmtGOUR1QXQwU0xjb2JhQm8zeTk5MVYyOVIwenJFb01ZRGFGNG91a2xpUkFm?=
- =?utf-8?B?aEVWRG5FTFF6WFh6a2RQemVPb1Ryck5ma2pLRWV5QVZsK0g5emJHaFdJamh5?=
- =?utf-8?B?Y3NTYmRuVjFQWmsweW1QbUk3T3JoZWZreEYvTkxMQlJSbUxlNGdTb3FhVFRQ?=
- =?utf-8?B?MFhxQ1dYZ2kyNE5TbHJNNDhYV25MSkplYkJKSlNKK0pCaUxIMnAxaURGLzJB?=
- =?utf-8?B?dEloblkyNWZTRFhjbGxmSll0M01wSlgwMG1tbVRPaStCNkJtc0dMc1ZPSktO?=
- =?utf-8?B?K0g2K3h6RnZKakM4V3VHODhHLzh3cGdmWndCRGVCY1h4MTVhZ016YTYzT0wv?=
- =?utf-8?B?c2NwRlFrRkg5RlBKdzJSSkhSeGtzSTl2OHFhL3pvTG5vNnJmWEptMTkzcks3?=
- =?utf-8?B?YktjRFVoUHBwYW5RVFltNFpvTUhJVE9iTDN3NU8yZUoxS1pKdTRFbVF3MzJI?=
- =?utf-8?B?SXRvUm1aSXNMc0VYWVJkN3lhMnByS3VYL1IvRk9IZWdSZ1JFNjhvZDRJOTdi?=
- =?utf-8?B?ajV4bDVFLy9RWWxBS01HLzZsZVVsUkh6UmdPSVpqSmJTRE5DWE9aaEwvWm0z?=
- =?utf-8?B?YzQ4dStjRjFnVGVYVDk2eEIwN3RYajJQVGd6NVEwbnNFQXA1aXUzcUkrVFNx?=
- =?utf-8?B?U1hhclhVSDdSTGlzYkt1T1pBWmxBb3JycjNPWExlOEFkM25rTHhQKys3aGN5?=
- =?utf-8?B?VUY5TCtLTjV5R25XeDJmcG5uWVZLS1M5V2tySTFrRG84bGw3V05iYkxVdzVv?=
- =?utf-8?B?d09RSkFmd0NIV0FMbUVkM3dxWDl4Tk1xZm1CZ3hVWnM5Vmo4WGw2SHV2TTdZ?=
- =?utf-8?B?cWt5Tm5FQkplKzRNUzc4Vi9KMDN5cW5JN0VCd3hIaUFobHpkcXQ4czhweGc1?=
- =?utf-8?B?WFFkQ3ROMjJDLzhNdVJDbHlEVzBVS0VoUk9mR0ovZHBOT29US3RMMUt1eDZl?=
- =?utf-8?B?blVuejErbXAwU2p5ejlKRXEyZTNXc1UraVczWE5WQjdPamZMcVBrdVNMcG9Q?=
- =?utf-8?B?d211ZGJRVzdkYTZnank3eHZhbDU1NzgvSUMzK1ZqMS9WTzJBTmNpMlFsNEx2?=
- =?utf-8?B?NkFBQlN5YUhvZEppQ0NQWkV6VjQ5Vk9hZ2V2MS9NbExBK3c4SWllMHFIMm40?=
- =?utf-8?B?azVwdk5sS3FZeHFHTmFlQXI1WTJqdUxDenp4MENRMWVGZy85Z1hMTnpLNUFn?=
- =?utf-8?B?aW96V2lOVkJDMlpjQzRYaUdINklKcWtjdm5HVGRreWV0N0ZydTNjemZWNHM5?=
- =?utf-8?B?RjRnVWNITTJ1Y2Nya1AxaklXV0lPS05hcEdYU3NNREhYendqWFlxaGloanV4?=
- =?utf-8?B?dk9vOGp6MnJJMzlxWHVvN1loME9TNDAwUzVEWlE2RlFIUmVqdERWZ1VnMUhl?=
- =?utf-8?B?cUhXZjAwYUJxYzB4dmI5M3BoRjVvSEpYNlpOV3IxTUxQdDFhRUJ6ZEp3QXBH?=
- =?utf-8?B?VlYvZTAzVzN6dFhYY3BaYmlsTk5jbHdwcEp6dHZzMEF2OVZ0eFJaNERsYkM5?=
- =?utf-8?B?U0pYTDFabEFQdEErRTVuMlprS1VpelR1U0gwalpvUSt0L2VDNHpZWGUwOVlE?=
- =?utf-8?B?a1R6NW1wVUNvYS9hRmFkL0IybVFLYWgxL2V4alp3ZkZRZUFtWkxRMVg0NnJ2?=
- =?utf-8?B?TjV4c2hGTjFhRUE4UU1samQrcjVBUmlkU3E5OWJUeTBGc1o3TWtpcnpEcmFw?=
- =?utf-8?B?NnV1ZDJGaTlKc0hYblBzVW5yVEEwRGxvMVFMMUJlZUo4UFlFQ0xYVkVueE5h?=
- =?utf-8?B?K0tRaURSaHRFemlkZ1IzbGxPUTh2bkxjYTlkWjZxanRsS3Q3OVZFQTdPUEE4?=
- =?utf-8?B?TjhGU3paOUJCMlpSK0t5bkFpVWlOZnY1eTlFODlLZktyQnhsY1VMUUNxQlpj?=
- =?utf-8?B?YkFZQXg3dzdZZzJZR1ZGR0t4OHZjWVlGUWtXNXNGa2VXcmJ5NmMycXNGYWNm?=
- =?utf-8?B?VE5ieG5PRk5wM2xrU2lXTWlXWDNVMWQxcnhHT3N2amNKNG9WNG13VzFnSjZE?=
- =?utf-8?B?MzltOStrVEw2eFpjWFNZTmQ2VkpvUDVRcG9Yd3ZvTWRKbmZjM3hpSnZvUCty?=
- =?utf-8?B?UkE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c3a3307-8dad-4d4f-096d-08da9c69e8da
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QjBxcTk3M3A0bWNSMGR2OVlKTEhZTHB1Ly9VNjVNSmEyYXpNQ0RyVVl3QUpp?=
+ =?utf-8?B?WWl6UjVsd25wQU1kdk1QR3BMa1Y3RGEyVFowbUsxTThyeXVYV0Z0dDB2VTZk?=
+ =?utf-8?B?bmpiMzlOT3FJNzhjRGMrRTlZbVdFcE1LTjlRRDdIekIvcDZsOGNlMkx6aTNh?=
+ =?utf-8?B?bXNQd25yYTFTQzZYaVJpNDFydFYrSys4QlkrZ1lhdEZ2TThFSmtiRFNtUFgr?=
+ =?utf-8?B?bjNqcXJSVVF4OW1oZUYzaEZJVHZiTjBXMldVMmdzR1psUnBJc0pxNUpPUS9O?=
+ =?utf-8?B?SS9VbXZCOWtGV0wzNWVRaGZUNTNyNmJlQ3gyMkJFSWZNbm9VS2xVVWoxQkgr?=
+ =?utf-8?B?dHdZUzRNcGZBZS9OTWdMaXpkNjNpcUhmak9zdGp5UlJJQWhDcnN6TzZvbEdI?=
+ =?utf-8?B?U0MyVUUxTWtpbktyVUZ5RjhXVU9oNFhMSjc5U3lWbkcydDZYeFp0Ny92R2JW?=
+ =?utf-8?B?Y0gvZFZINkhaUzFING5Feis1c3Z4Mm1TZFhDYURmaEVOUXRDM2QvUU9Cc3RZ?=
+ =?utf-8?B?NVdvNm9qQUNKaStXZDg2TVIzd2lKLzBKUFp0d3I3MkRqT3A3Sm10QWpwUXhO?=
+ =?utf-8?B?d3QwcHZWc2hqK1ZhYk90UHpQS3RaOVduQlNEa3lsTEZjZlRHR1BtVjA2RWxF?=
+ =?utf-8?B?UTFSU29ZL2x4c3FTem5ZVzBsMERtRlp5V1hQbzA3NzRpMElTYXBsNFFSaVlU?=
+ =?utf-8?B?R1hvZ0Z4a3JoWUFSa1ZHSjFkcnZXU0w3YXRwaDQvZi9mVkkzSjJ4YzJXWGJG?=
+ =?utf-8?B?Tml3VlhsN0J4ZjZTNS91VUJGbWdGc0I0ZiticHJtT1BCSjhDQVp3bU4yV0Rj?=
+ =?utf-8?B?Y2ZmWXQ3Snpva1lOek9lTXJycXNyRXZNNTFWZ21QWTIxQXZCN1VZL2ZSVHc0?=
+ =?utf-8?B?Zmd4LzFBRHcrN3hyYTRIU2NIS2Z4dFQ0N2RzTkNVQmszbUhrTnN1eVY0UVJU?=
+ =?utf-8?B?RkpnSHVqOWhzbDdOVTFDVmlrdnFrUDg1SjdPK1g4OSswbitJZGpjU0dUekNS?=
+ =?utf-8?B?L1dVSWNoZDEweXdMK3p0a0xQTWt2OWpNUitXZTY5bWJQaTJKd1J2UjhKS2Nw?=
+ =?utf-8?B?L1liTGFxcVZ3WndxZkRBMTJtRFExd3lGbng1akR1UE0xandrdWkwTVprQ2Ni?=
+ =?utf-8?B?Z04yaHFzWm1SUFBZaFQ2QXlXWlBLUmVOSzlXcjc4eEJBZlN6elBtcEViZThj?=
+ =?utf-8?B?c2gyWldMQWRLVzNUNndNUlQxcEdIQlBSVVI0dnZNeS9GSGVZWnFoSHZiTWZB?=
+ =?utf-8?B?TndIMHMxQU0yNkhQZld0WHlYWm01c25Db2RwdTExc2Y2SVgrM25BWUJnWEF4?=
+ =?utf-8?B?cnI1ZUlwRTI4b0FLRTNBMk5xY3FBNktkQ2hjUDNKdGswczRzVlVyVFdLQ1J4?=
+ =?utf-8?B?alZEUTN2UXFxWndzaGU3bU9WWG5vbE1QcDh6Z25GZ0s3NitqaTVpeE9SOWJG?=
+ =?utf-8?B?d1ZxT1cyL0wzS0pTeXQ1ejVEaFBLRXZUV2E4QUFTazFkUnZIVUhLNk5DU3FQ?=
+ =?utf-8?B?QWlaSlB6emtzYjVRY0kxQk8vSDhKOHUyTWk2NC9mR2NybWhRa3BjSDlaL2NX?=
+ =?utf-8?B?ajVrc1NKeVZob0E5VWtTM1NNQjY2QW04NkhsY0NzUDJrdEg3clN5MXo4NzUx?=
+ =?utf-8?B?Ym0xSUM2SUdaaUt2bkdiYy93R2JITHBobFJnN2VUanNSbExIQWw5SWpkVzly?=
+ =?utf-8?B?MnRkNUJxTVRhK0FWT2NtSGc4UE43K3l1YjFrYnAza3JVN3FRaHF5Sm9adWp1?=
+ =?utf-8?B?SENxRUo4dXFoeHNySDNiYnR3T3RnTVU1c3Jpa2JPMHdjRDNlVnFFSUhzdmFP?=
+ =?utf-8?B?clRkeW85ajdOQVdSOHZsSzQ5RGMxNXFaWTF6ZXJVZEdpdWdYOVBUSVhJbjFs?=
+ =?utf-8?B?M3NqYXN2dndoQVJtK0UvWFNicHoycnhFUTFVY0RKMktYZlJBV1FGczREdU5X?=
+ =?utf-8?B?YTlmYmFBSDloK3VYb3VLMmtTWWdDNSt2MEk5aHVKOEhmY2NuZ1liS0lQU2c4?=
+ =?utf-8?B?T0tVSjlmKzAvZzFZY0RuelpTSFkvMFQzN3hCNU9BNjkrdjM4U0JVNEFTcHZR?=
+ =?utf-8?B?NjZkdEpackxkTXU1M1FhNCtMR3BRQmxwck1MKzExbW5VdzhLMFdzMHpmS2Ur?=
+ =?utf-8?B?MnJDYmRNRzQrZEZ4bGNpdW1BckdRZWY3N1lTcm02anpFOURFNTBEUDlqaFdH?=
+ =?utf-8?B?Q1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb90f389-d7cf-430a-b572-08da9c6d5d43
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2022 07:13:12.2042 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2022 07:37:56.1132 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BTSrtQVZ/oPxoI8kHZYaXmgnlvtDOOBuhTI0jt9h3xSD6dGS5NZJKWgUKShJnb3LsweJKbGB1QDLPakrRfDb9dKSLmfs43qz5FrvajAB7pg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4922
+X-MS-Exchange-CrossTenant-UserPrincipalName: RIW0arnclPt5gKlQLzS+EaUPPD77hA4hHmbvLEB7Jd1PMlKy8q2KgxJXzdNVTqd0CTsS8tJ8S3TSjnxjCO6MYJTG1H+6DsMKuhglRtrGjg0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7307
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/hwmon: Expose
- power1_max_interval
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/hwmon: Extend power/energy for
+ XEHPSDV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,186 +166,290 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 9/16/2022 8:30 PM, Badal Nilawar wrote:
-> From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> From: Dale B Stimson <dale.b.stimson@intel.com>
 > 
-> Expose power1_max_interval, that is the tau corresponding to PL1. Some bit
-> manipulation is needed because of the format of PKG_PWR_LIM_1_TIME in
-> GT0_PACKAGE_RAPL_LIMIT register (1.x * power(2,y)).
+> Extend hwmon power/energy for XEHPSDV especially per gt level energy
+> usage.
 > 
-> v2: Update date and kernel version in Documentation (Badal)
-> v3: Cleaned up hwm_power1_max_interval_store() (Badal)
+> v2: Update to latest HWMON spec (Ashutosh)
+> v3: Fixed review comments (Ashutosh)
 > 
 > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
 > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 > Acked-by: Guenter Roeck <linux@roeck-us.net>
+> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > ---
->   .../ABI/testing/sysfs-driver-intel-i915-hwmon |   9 ++
+>   .../ABI/testing/sysfs-driver-intel-i915-hwmon |   7 +-
+>   drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   5 +
 >   drivers/gpu/drm/i915/i915_hwmon.c             | 114 +++++++++++++++++-
->   drivers/gpu/drm/i915/i915_reg.h               |   3 +
->   drivers/gpu/drm/i915/intel_mchbar_regs.h      |   4 +
->   4 files changed, 129 insertions(+), 1 deletion(-)
+>   3 files changed, 123 insertions(+), 3 deletions(-)
 > 
 > diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-> index cc70596fff44..7995a885c9d6 100644
+> index 7995a885c9d6..851525d2117d 100644
 > --- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
 > +++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-> @@ -26,6 +26,15 @@ Description:	RO. Card default power limit (default TDP setting).
->   
->   		Only supported for particular Intel i915 graphics platforms.
->   
-> +What:		/sys/devices/.../hwmon/hwmon<i>/power1_max_interval
-> +Date:		September 2022
-> +KernelVersion:	6
-> +Contact:	dri-devel@lists.freedesktop.org
-> +Description:	RW. Sustained power limit interval (Tau in PL1/Tau) in
-> +		milliseconds over which sustained power is averaged.
-> +
-> +		Only supported for particular Intel i915 graphics platforms.
-> +
->   What:		/sys/devices/.../hwmon/hwmon<i>/power1_crit
+> @@ -65,6 +65,11 @@ What:		/sys/devices/.../hwmon/hwmon<i>/energy1_input
 >   Date:		September 2022
 >   KernelVersion:	6
+>   Contact:	dri-devel@lists.freedesktop.org
+> -Description:	RO. Energy input of device in microjoules.
+> +Description:	RO. Energy input of device or gt in microjoules.
+> +
+> +		For i915 device level hwmon devices (name "i915") this
+> +		reflects energy input for the entire device. For gt level
+> +		hwmon devices (name "i915_gtN") this reflects energy input
+> +		for the gt.
+>   
+>   		Only supported for particular Intel i915 graphics platforms.
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index 65336514554d..3c385395aaef 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -1591,4 +1591,9 @@
+>    */
+>   #define MTL_MEDIA_GSI_BASE			0x380000
+>   
+> +#define GT0_PACKAGE_ENERGY_STATUS		_MMIO(0x250004)
+> +#define GT0_PACKAGE_RAPL_LIMIT			_MMIO(0x250008)
+> +#define GT0_PACKAGE_POWER_SKU_UNIT		_MMIO(0x250068)
+> +#define GT0_PLATFORM_ENERGY_STATUS		_MMIO(0x25006c)
+Keep these before MTL_MEDIA_GSI_BASE to mainitain proper numeric order?
+other then that patch looks good to me.
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Br,
+Anshuman.
+> +
+>   #endif /* __INTEL_GT_REGS__ */
 > diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> index bd9ba312c474..7d85a81bc39b 100644
+> index 7d85a81bc39b..4a4aec1c67ab 100644
 > --- a/drivers/gpu/drm/i915/i915_hwmon.c
 > +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> @@ -20,11 +20,13 @@
->    * - power  - microwatts
->    * - curr   - milliamperes
->    * - energy - microjoules
-> + * - time   - milliseconds
->    */
->   #define SF_VOLTAGE	1000
->   #define SF_POWER	1000000
->   #define SF_CURR		1000
->   #define SF_ENERGY	1000000
-> +#define SF_TIME		1000
+> @@ -12,6 +12,7 @@
+>   #include "i915_reg.h"
+>   #include "intel_mchbar_regs.h"
+>   #include "intel_pcode.h"
+> +#include "gt/intel_gt.h"
+>   #include "gt/intel_gt_regs.h"
 >   
->   struct hwm_reg {
->   	i915_reg_t gt_perf_status;
-> @@ -53,6 +55,7 @@ struct i915_hwmon {
->   	struct hwm_reg rg;
->   	int scl_shift_power;
->   	int scl_shift_energy;
-> +	int scl_shift_time;
+>   /*
+> @@ -34,6 +35,7 @@ struct hwm_reg {
+>   	i915_reg_t pkg_power_sku;
+>   	i915_reg_t pkg_rapl_limit;
+>   	i915_reg_t energy_status_all;
+> +	i915_reg_t energy_status_tile;
 >   };
 >   
+>   struct hwm_energy_info {
+> @@ -47,10 +49,12 @@ struct hwm_drvdata {
+>   	struct device *hwmon_dev;
+>   	struct hwm_energy_info ei;		/*  Energy info for energy1_input */
+>   	char name[12];
+> +	int gt_n;
+>   };
+>   
+>   struct i915_hwmon {
+>   	struct hwm_drvdata ddat;
+> +	struct hwm_drvdata ddat_gt[I915_MAX_GT];
+>   	struct mutex hwmon_lock;		/* counter overflow logic and rmw */
+>   	struct hwm_reg rg;
+>   	int scl_shift_power;
+> @@ -144,7 +148,10 @@ hwm_energy(struct hwm_drvdata *ddat, long *energy)
+>   	i915_reg_t rgaddr;
+>   	u32 reg_val;
+>   
+> -	rgaddr = hwmon->rg.energy_status_all;
+> +	if (ddat->gt_n >= 0)
+> +		rgaddr = hwmon->rg.energy_status_tile;
+> +	else
+> +		rgaddr = hwmon->rg.energy_status_all;
+>   
+>   	mutex_lock(&hwmon->hwmon_lock);
+>   
+> @@ -280,6 +287,11 @@ static const struct hwmon_channel_info *hwm_info[] = {
+>   	NULL
+>   };
+>   
+> +static const struct hwmon_channel_info *hwm_gt_info[] = {
+> +	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
+> +	NULL
+> +};
+> +
+>   /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
+>   static int hwm_pcode_read_i1(struct drm_i915_private *i915, u32 *uval)
+>   {
+> @@ -409,7 +421,10 @@ hwm_energy_is_visible(const struct hwm_drvdata *ddat, u32 attr)
+>   
+>   	switch (attr) {
+>   	case hwmon_energy_input:
+> -		rgaddr = hwmon->rg.energy_status_all;
+> +		if (ddat->gt_n >= 0)
+> +			rgaddr = hwmon->rg.energy_status_tile;
+> +		else
+> +			rgaddr = hwmon->rg.energy_status_all;
+>   		return i915_mmio_reg_valid(rgaddr) ? 0444 : 0;
+>   	default:
+>   		return 0;
+> @@ -544,6 +559,44 @@ static const struct hwmon_chip_info hwm_chip_info = {
+>   	.info = hwm_info,
+>   };
+>   
+> +static umode_t
+> +hwm_gt_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+> +		  u32 attr, int channel)
+> +{
+> +	struct hwm_drvdata *ddat = (struct hwm_drvdata *)drvdata;
+> +
+> +	switch (type) {
+> +	case hwmon_energy:
+> +		return hwm_energy_is_visible(ddat, attr);
+> +	default:
+> +		return 0;
+> +	}
+> +}
+> +
+> +static int
+> +hwm_gt_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+> +	    int channel, long *val)
+> +{
+> +	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
+> +
+> +	switch (type) {
+> +	case hwmon_energy:
+> +		return hwm_energy_read(ddat, attr, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static const struct hwmon_ops hwm_gt_ops = {
+> +	.is_visible = hwm_gt_is_visible,
+> +	.read = hwm_gt_read,
+> +};
+> +
+> +static const struct hwmon_chip_info hwm_gt_chip_info = {
+> +	.ops = &hwm_gt_ops,
+> +	.info = hwm_gt_info,
+> +};
+> +
 >   static void
-> @@ -161,6 +164,114 @@ hwm_energy(struct hwm_drvdata *ddat, long *energy)
->   	return 0;
+>   hwm_get_preregistration_info(struct drm_i915_private *i915)
+>   {
+> @@ -552,7 +605,9 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+>   	struct hwm_drvdata *ddat = &hwmon->ddat;
+>   	intel_wakeref_t wakeref;
+>   	u32 val_sku_unit;
+> +	struct intel_gt *gt;
+>   	long energy;
+> +	int i;
+>   
+>   	if (IS_DG1(i915) || IS_DG2(i915)) {
+>   		hwmon->rg.gt_perf_status = GEN12_RPSTAT1;
+> @@ -560,12 +615,21 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+>   		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+>   		hwmon->rg.pkg_rapl_limit = PCU_PACKAGE_RAPL_LIMIT;
+>   		hwmon->rg.energy_status_all = PCU_PACKAGE_ENERGY_STATUS;
+> +		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
+> +	} else if (IS_XEHPSDV(i915)) {
+> +		hwmon->rg.pkg_power_sku_unit = GT0_PACKAGE_POWER_SKU_UNIT;
+> +		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+> +		hwmon->rg.pkg_rapl_limit = GT0_PACKAGE_RAPL_LIMIT;
+> +		hwmon->rg.energy_status_all = GT0_PLATFORM_ENERGY_STATUS;
+> +		hwmon->rg.energy_status_tile = GT0_PACKAGE_ENERGY_STATUS;
+> +		hwmon->rg.gt_perf_status = INVALID_MMIO_REG;
+>   	} else {
+>   		hwmon->rg.gt_perf_status = INVALID_MMIO_REG;
+>   		hwmon->rg.pkg_power_sku_unit = INVALID_MMIO_REG;
+>   		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+>   		hwmon->rg.pkg_rapl_limit = INVALID_MMIO_REG;
+>   		hwmon->rg.energy_status_all = INVALID_MMIO_REG;
+> +		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
+>   	}
+>   
+>   	with_intel_runtime_pm(uncore->rpm, wakeref) {
+> @@ -591,6 +655,10 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+>   	 */
+>   	if (i915_mmio_reg_valid(hwmon->rg.energy_status_all))
+>   		hwm_energy(ddat, &energy);
+> +	if (i915_mmio_reg_valid(hwmon->rg.energy_status_tile)) {
+> +		for_each_gt(gt, i915, i)
+> +			hwm_energy(&hwmon->ddat_gt[i], &energy);
+> +	}
 >   }
 >   
-> +static ssize_t
-> +hwm_power1_max_interval_show(struct device *dev, struct device_attribute *attr,
-> +			     char *buf)
-> +{
-> +	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
-> +	struct i915_hwmon *hwmon = ddat->hwmon;
-> +	intel_wakeref_t wakeref;
-> +	u32 r, x, y, x_w = 2; /* 2 bits */
-> +	u64 tau4, out;
-> +
-> +	with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
-> +		r = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_rapl_limit);
-> +
-> +	x = REG_FIELD_GET(PKG_PWR_LIM_1_TIME_X, r);
-> +	y = REG_FIELD_GET(PKG_PWR_LIM_1_TIME_Y, r);
-> +	/*
-> +	 * tau = 1.x * power(2,y), x = bits(23:22), y = bits(21:17)
-> +	 *     = (4 | x) << (y - 2)
-> +	 * where (y - 2) ensures a 1.x fixed point representation of 1.x
-> +	 * However because y can be < 2, we compute
-> +	 *     tau4 = (4 | x) << y
-> +	 * but add 2 when doing the final right shift to account for units
-> +	 */
-> +	tau4 = ((1 << x_w) | x) << y;
-> +	/* val in hwmon interface units (millisec) */
-> +	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
-> +
-> +	return sysfs_emit(buf, "%llu\n", out);
-> +}
-> +
-> +static ssize_t
-> +hwm_power1_max_interval_store(struct device *dev,
-> +			      struct device_attribute *attr,
-> +			      const char *buf, size_t count)
-> +{
-> +	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
-> +	struct i915_hwmon *hwmon = ddat->hwmon;
-> +	long val, max_win, ret;
-> +	u32 x, y, rxy, x_w = 2; /* 2 bits */
-> +	u64 tau4, r;
-> +
-> +#define PKG_MAX_WIN_DEFAULT 0x12ull
-> +
-> +	ret = kstrtoul(buf, 0, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * val must be < max in hwmon interface units. The steps below are
-> +	 * explained in i915_power1_max_interval_show()
-> +	 */
-> +	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
-AFAIU we need to read r from PACKAGE_POWER_SKU reg untill unless it has 
-some known issue?
-> +	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
-> +	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
-> +	tau4 = ((1 << x_w) | x) << y;
-> +	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
-> +
-> +	if (val > max_win)
-> +		return -EINVAL;
-> +
-> +	/* val in hw units */
-> +	val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME);
-> +	/* Convert to 1.x * power(2,y) */
-> +	if (!val)
-> +		return -EINVAL;
-> +	y = ilog2(val);
-> +	/* x = (val - (1 << y)) >> (y - 2); */
-> +	x = (val - (1ul << y)) << x_w >> y;
-> +
-> +	rxy = REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_X, x) | REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_Y, y);
-> +
-> +	hwm_locked_with_pm_intel_uncore_rmw(ddat, hwmon->rg.pkg_rapl_limit,
-> +					    PKG_PWR_LIM_1_TIME, rxy);
-> +	return count;
-> +}
-> +
-/snip
->   	if (IS_ERR(hwmon_dev)) {
->   		mutex_destroy(&hwmon->hwmon_lock);
->   		i915->hwmon = NULL;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 956e5298ef1e..68e7cc85dc53 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1811,6 +1811,9 @@
->    * *_PACKAGE_POWER_SKU - SKU power and timing parameters.
->    */
->   #define   PKG_PKG_TDP			GENMASK_ULL(14, 0)
-> +#define   PKG_MAX_WIN			GENMASK_ULL(54, 48)
-> +#define     PKG_MAX_WIN_X		GENMASK_ULL(54, 53)
-> +#define     PKG_MAX_WIN_Y		GENMASK_ULL(52, 48)
-These GENMASK fields needs a reg definition.
-Br,
-Anshuman Gupta.
+>   void i915_hwmon_register(struct drm_i915_private *i915)
+> @@ -599,6 +667,9 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+>   	struct i915_hwmon *hwmon;
+>   	struct device *hwmon_dev;
+>   	struct hwm_drvdata *ddat;
+> +	struct hwm_drvdata *ddat_gt;
+> +	struct intel_gt *gt;
+> +	int i;
 >   
->   #define CHV_CLK_CTL1			_MMIO(0x101100)
->   #define VLV_CLK_CTL2			_MMIO(0x101104)
-> diff --git a/drivers/gpu/drm/i915/intel_mchbar_regs.h b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-> index 1014d0b7cc16..9331a3c15fd1 100644
-> --- a/drivers/gpu/drm/i915/intel_mchbar_regs.h
-> +++ b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-> @@ -206,6 +206,10 @@
->   #define   RPE_MASK				REG_GENMASK(15, 8)
->   #define PCU_PACKAGE_RAPL_LIMIT			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
->   #define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
-> +#define   PKG_PWR_LIM_1_EN			REG_BIT(15)
-> +#define   PKG_PWR_LIM_1_TIME			REG_GENMASK(23, 17)
-> +#define   PKG_PWR_LIM_1_TIME_X			REG_GENMASK(23, 22)
-> +#define   PKG_PWR_LIM_1_TIME_Y			REG_GENMASK(21, 17)
+>   	/* hwmon is available only for dGfx */
+>   	if (!IS_DGFX(i915))
+> @@ -615,6 +686,16 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+>   	ddat->hwmon = hwmon;
+>   	ddat->uncore = &i915->uncore;
+>   	snprintf(ddat->name, sizeof(ddat->name), "i915");
+> +	ddat->gt_n = -1;
+> +
+> +	for_each_gt(gt, i915, i) {
+> +		ddat_gt = hwmon->ddat_gt + i;
+> +
+> +		ddat_gt->hwmon = hwmon;
+> +		ddat_gt->uncore = gt->uncore;
+> +		snprintf(ddat_gt->name, sizeof(ddat_gt->name), "i915_gt%u", i);
+> +		ddat_gt->gt_n = i;
+> +	}
 >   
->   /* snb MCH registers for priority tuning */
->   #define MCH_SSKPD				_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5d10)
+>   	hwm_get_preregistration_info(i915);
+>   
+> @@ -631,18 +712,47 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+>   	}
+>   
+>   	ddat->hwmon_dev = hwmon_dev;
+> +
+> +	for_each_gt(gt, i915, i) {
+> +		ddat_gt = hwmon->ddat_gt + i;
+> +		/*
+> +		 * Create per-gt directories only if a per-gt attribute is
+> +		 * visible. Currently this is only energy
+> +		 */
+> +		if (!hwm_gt_is_visible(ddat_gt, hwmon_energy, hwmon_energy_input, 0))
+> +			continue;
+> +
+> +		hwmon_dev = hwmon_device_register_with_info(dev, ddat_gt->name,
+> +							    ddat_gt,
+> +							    &hwm_gt_chip_info,
+> +							    NULL);
+> +		if (!IS_ERR(hwmon_dev))
+> +			ddat_gt->hwmon_dev = hwmon_dev;
+> +	}
+>   }
+>   
+>   void i915_hwmon_unregister(struct drm_i915_private *i915)
+>   {
+>   	struct i915_hwmon *hwmon;
+>   	struct hwm_drvdata *ddat;
+> +	struct intel_gt *gt;
+> +	int i;
+>   
+>   	hwmon = fetch_and_zero(&i915->hwmon);
+>   	if (!hwmon)
+>   		return;
+>   
+>   	ddat = &hwmon->ddat;
+> +
+> +	for_each_gt(gt, i915, i) {
+> +		struct hwm_drvdata *ddat_gt;
+> +
+> +		ddat_gt = hwmon->ddat_gt + i;
+> +
+> +		if (ddat_gt->hwmon_dev)
+> +			hwmon_device_unregister(ddat_gt->hwmon_dev);
+> +	}
+> +
+>   	if (ddat->hwmon_dev)
+>   		hwmon_device_unregister(ddat->hwmon_dev);
+>   
