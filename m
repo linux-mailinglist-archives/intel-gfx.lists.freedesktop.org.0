@@ -2,32 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB435E5DEB
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 10:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACDE15E5DF1
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 10:51:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB93B10E0C9;
-	Thu, 22 Sep 2022 08:49:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC56610E0F4;
+	Thu, 22 Sep 2022 08:51:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 40D1110E0C7;
- Thu, 22 Sep 2022 08:49:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 36944A363D;
- Thu, 22 Sep 2022 08:49:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7279799312606051551=="
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9258D10E0F4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 08:51:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1663836695; x=1695372695;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=hfHkK7yoqVa5hKVXJhKfZSCPfm1ur4udHcMU9Nw6jdY=;
+ b=OIZWXp7N1+qEg2K1DYI89hxJXZwi6n7M4ANiUxnzO7K0hnaadD5VSZJO
+ 0NIOoyANZmJ8nkrU5ossgjtyBZcIrxnYEwiWmonf27VCtYxgvs/1IFGMM
+ N8hCblJCz8Fj4B9KrTr63SfhXQ+u5FWd5Ojlla6xT9FW+rBVuqbKig22G
+ NuvpriH95KuVGieBTr4wkiTeYGoSzjZEBxWvciQq04mVD5X9gHCRwmnG3
+ xZB0cIU2TNJ3hpb411myt8Ql1rFWgV+n0NYjSLU92hoRXWRrs+wQ2vsy4
+ L2/strBF7gQk69/w3xrSGo2s3wFM3mBoKqFYNp5PUIavKOMIVO76mx9A4 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="362008944"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="362008944"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 01:51:35 -0700
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="652886358"
+Received: from akoska-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.156])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2022 01:51:33 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Luca
+ Coelho <luca@coelho.fi>
+In-Reply-To: <YywdAq6eYfTEppUC@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220916165206.1499-1-ville.syrjala@linux.intel.com>
+ <20220916165206.1499-3-ville.syrjala@linux.intel.com>
+ <9731fffc60162a34b7790bb08792fc55593e4ca2.camel@coelho.fi>
+ <YywdAq6eYfTEppUC@intel.com>
+Date: Thu, 22 Sep 2022 11:51:16 +0300
+Message-ID: <87leqb7px7.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Thu, 22 Sep 2022 08:49:42 -0000
-Message-ID: <166383658218.19671.9188154486518325305@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220922075948.111558-1-jouni.hogander@intel.com>
-In-Reply-To: <20220922075948.111558-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/psr=3A_Fix_PSR=5FIMR/IIR_field_handling_=28rev2=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Mark FBC B gone if pipe B is
+ gone
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,167 +62,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7279799312606051551==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 22 Sep 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Sep 22, 2022 at 11:18:55AM +0300, Luca Coelho wrote:
+>> On Fri, 2022-09-16 at 19:52 +0300, Ville Syrjala wrote:
+>> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> >=20
+>> > If pipe B is fused off we also shouldn't have FBC B.
+>> >=20
+>> > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/intel_device_info.c | 1 +
+>> >  1 file changed, 1 insertion(+)
+>> >=20
+>> > diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/dr=
+m/i915/intel_device_info.c
+>> > index 1434dc33cf49..fbefebc023f1 100644
+>> > --- a/drivers/gpu/drm/i915/intel_device_info.c
+>> > +++ b/drivers/gpu/drm/i915/intel_device_info.c
+>> > @@ -394,6 +394,7 @@ void intel_device_info_runtime_init(struct drm_i91=
+5_private *dev_priv)
+>> >  		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
+>> >  			runtime->pipe_mask &=3D ~BIT(PIPE_B);
+>> >  			runtime->cpu_transcoder_mask &=3D ~BIT(TRANSCODER_B);
+>> > +			runtime->fbc_mask &=3D ~BIT(INTEL_FBC_B);
+>> >  		}
+>> >  		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
+>> >  			runtime->pipe_mask &=3D ~BIT(PIPE_C);
+>>=20
+>> I don't know (yet) what exactly this does, but it makes sense if you
+>> think of consistency: we already do that for PIPE_A.
+>
+> It's basically saying the entire pipe is fused off, so anything
+> living inside that pipe should also be fused off.
+>
+>>=20
+>> But what about PIPE_C and PIPE_D? Wouldn't it make sense to do the same
+>> thing for them as well?
+>
+> There is no FBC engine on those pipes (we don't even have
+> the INTEL_FBC_C+ enum values defined), at least for now.
 
-== Series Details ==
+A future proof way would be to add
 
-Series: drm/i915/psr: Fix PSR_IMR/IIR field handling (rev2)
-URL   : https://patchwork.freedesktop.org/series/108811/
-State : success
+	runtime->fbc_mask &=3D runtime->pipe_mask;
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12166 -> Patchwork_108811v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/index.html
-
-Participating hosts (45 -> 42)
-------------------------------
-
-  Missing    (3): fi-rkl-11600 fi-bdw-samus fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_108811v2 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-bxt-dsi:         [DMESG-FAIL][1] ([i915#5334]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12166/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - {bat-rpls-1}:       [INCOMPLETE][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12166/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2:
-    - {bat-dg2-11}:       [FAIL][5] ([i915#6818]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12166/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6818]: https://gitlab.freedesktop.org/drm/intel/issues/6818
+after all the fuse handling. Would also fix any misconfiguration in
+i915_pci.c.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_12166 -> Patchwork_108811v2
-
-  CI-20190529: 20190529
-  CI_DRM_12166: 3e89f6dc5d22dcc4f56bed3abade8107c95815b3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6659: 1becf700a737a7a98555a0cfbe8566355377afb2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_108811v2: 3e89f6dc5d22dcc4f56bed3abade8107c95815b3 @ git://anongit.freedesktop.org/gfx-ci/linux
+BR,
+Jani.
 
 
-### Linux commits
-
-60e6336dd84c drm/i915/psr: Fix PSR_IMR/IIR field handling
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/index.html
-
---===============7279799312606051551==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Fix PSR_IMR/IIR field handling (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108811/">https://patchwork.freedesktop.org/series/108811/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12166 -&gt; Patchwork_108811v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/index.html</p>
-<h2>Participating hosts (45 -&gt; 42)</h2>
-<p>Missing    (3): fi-rkl-11600 fi-bdw-samus fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_108811v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12166/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12166/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2:</p>
-<ul>
-<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12166/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6818">i915#6818</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108811v2/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12166 -&gt; Patchwork_108811v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12166: 3e89f6dc5d22dcc4f56bed3abade8107c95815b3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6659: 1becf700a737a7a98555a0cfbe8566355377afb2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_108811v2: 3e89f6dc5d22dcc4f56bed3abade8107c95815b3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>60e6336dd84c drm/i915/psr: Fix PSR_IMR/IIR field handling</p>
-
-</body>
-</html>
-
---===============7279799312606051551==--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
