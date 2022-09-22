@@ -2,46 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1934A5E59B3
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 05:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7BE65E59B9
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Sep 2022 05:49:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5918310E012;
-	Thu, 22 Sep 2022 03:45:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0196F10E012;
+	Thu, 22 Sep 2022 03:49:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 207E010E012
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 03:44:58 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC51F10E012
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 03:49:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663818299; x=1695354299;
+ t=1663818566; x=1695354566;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=OAr+xTTTD0+4Mw1TyHvZnKRe3X6NExzOv8hFCwIHKlw=;
- b=L47ru1L7xbAovxjG+vRCFMWF1crGjJE0C0PFS3X1Zt/7yt99WrQranWV
- gIu9h0976KAAhOE/8fJNjuRjD9x366BvtpgUBHSQbxknisQwmPyWkPLDs
- 4S2d5zDeQoOhVTaUGyf711EZiz7vU5m8yU3zeGSPzX2+G0PTBTN/Lbrir
- cEI4xqFhl++BEqfp+ofayRbgf3X/SIEns3aNkQOC7SZCOFvpp32PTyIwJ
- KHR9JJGbZoLvcE6NqYELRKf1qEWaEgMKuKfZPuFIX+Y8HfB526WM0TwW9
- hxe2nL1hfsN9RpiwW77vkq31Yjf8fQEvTQrzKQBoJ3FmDfI2Ah1aMqjMX g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="283238172"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="283238172"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2022 20:44:58 -0700
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="723486701"
+ bh=ghXAz4aL+LYfHcLKBjJ137FbtarVsEXQFJMZY4rII+8=;
+ b=NKkxWdsOhQSdLFN+KZI6bDCnCjcTa3ZGMaMyXRjOBa8LZY4vbLZmZzSE
+ 27dMb1jH+8uu73sFGxVoFPdSeS36533cTRgInUp3rYKRS43vgUFr38F5g
+ tnEHZ5yJKUeD9/yTqiF0X5SmEHi0a91IybSNK5jfG/EQ7zZdOAhKT3r5Y
+ vmqJMjMRkxrxJ0MhOV8FSbL7Jat8W+ookTNJxcM9fyah/vtASJvmu6TiG
+ 5orQYsm198K02i2t3dYcGwCECMpNQlfNbe3jIQ3UzxQUktecDmIu+r6a6
+ sLVJ5zEsonoZh8dfNvJ3cVbNRnAZIgk/FWWr1Haa/76cSN/a2mI7ha2kN w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="361953389"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="361953389"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2022 20:49:26 -0700
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; d="scan'208";a="948426629"
 Received: from jrluquin-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.212.181.182])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2022 20:44:57 -0700
-Date: Wed, 21 Sep 2022 20:44:57 -0700
-Message-ID: <87edw4m5s6.wl-ashutosh.dixit@intel.com>
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2022 20:49:25 -0700
+Date: Wed, 21 Sep 2022 20:49:25 -0700
+Message-ID: <87czbom5kq.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <87mtb85cvb.wl-ashutosh.dixit@intel.com>
+In-Reply-To: <87edw4m5s6.wl-ashutosh.dixit@intel.com>
 References: <20220823204155.8178-1-umesh.nerlige.ramappa@intel.com>
  <20220823204155.8178-2-umesh.nerlige.ramappa@intel.com>
  <87mtb85cvb.wl-ashutosh.dixit@intel.com>
+ <87edw4m5s6.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -65,58 +66,69 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 09 Sep 2022 16:47:36 -0700, Dixit, Ashutosh wrote:
+On Wed, 21 Sep 2022 20:44:57 -0700, Dixit, Ashutosh wrote:
 >
-> On Tue, 23 Aug 2022 13:41:37 -0700, Umesh Nerlige Ramappa wrote:
+> On Fri, 09 Sep 2022 16:47:36 -0700, Dixit, Ashutosh wrote:
 > >
-> > +/*
-> > + * For execlist mode of submission, pick an unused context id
-> > + * 0 - (NUM_CONTEXT_TAG -1) are used by other contexts
-> > + * XXX_MAX_CONTEXT_HW_ID is used by idle context
-> > + *
-> > + * For GuC mode of submission read context id from the upper dword of the
-> > + * EXECLIST_STATUS register.
-> > + */
-> > +static int gen12_get_render_context_id(struct i915_perf_stream *stream)
-> > +{
-> > +	u32 ctx_id, mask;
-> > +	int ret;
-> > +
-> > +	if (intel_engine_uses_guc(stream->engine)) {
-> > +		ret = gen12_guc_sw_ctx_id(stream->pinned_ctx, &ctx_id);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		mask = ((1U << GEN12_GUC_SW_CTX_ID_WIDTH) - 1) <<
-> > +			(GEN12_GUC_SW_CTX_ID_SHIFT - 32);
-> > +	} else if (GRAPHICS_VER_FULL(stream->engine->i915) >= IP_VER(12, 50)) {
-> > +		ctx_id = (XEHP_MAX_CONTEXT_HW_ID - 1) <<
-> > +			(XEHP_SW_CTX_ID_SHIFT - 32);
-> > +
-> > +		mask = ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
-> > +			(XEHP_SW_CTX_ID_SHIFT - 32);
-> > +	} else {
-> > +		ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) <<
-> > +			 (GEN11_SW_CTX_ID_SHIFT - 32);
-> > +
-> > +		mask = ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) <<
-> > +			(GEN11_SW_CTX_ID_SHIFT - 32);
+> > On Tue, 23 Aug 2022 13:41:37 -0700, Umesh Nerlige Ramappa wrote:
+> > >
+> > > +/*
+> > > + * For execlist mode of submission, pick an unused context id
+> > > + * 0 - (NUM_CONTEXT_TAG -1) are used by other contexts
+> > > + * XXX_MAX_CONTEXT_HW_ID is used by idle context
+> > > + *
+> > > + * For GuC mode of submission read context id from the upper dword of the
+> > > + * EXECLIST_STATUS register.
+> > > + */
+> > > +static int gen12_get_render_context_id(struct i915_perf_stream *stream)
+> > > +{
+> > > +	u32 ctx_id, mask;
+> > > +	int ret;
+> > > +
+> > > +	if (intel_engine_uses_guc(stream->engine)) {
+> > > +		ret = gen12_guc_sw_ctx_id(stream->pinned_ctx, &ctx_id);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +
+> > > +		mask = ((1U << GEN12_GUC_SW_CTX_ID_WIDTH) - 1) <<
+> > > +			(GEN12_GUC_SW_CTX_ID_SHIFT - 32);
+> > > +	} else if (GRAPHICS_VER_FULL(stream->engine->i915) >= IP_VER(12, 50)) {
+> > > +		ctx_id = (XEHP_MAX_CONTEXT_HW_ID - 1) <<
+> > > +			(XEHP_SW_CTX_ID_SHIFT - 32);
+> > > +
+> > > +		mask = ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
+> > > +			(XEHP_SW_CTX_ID_SHIFT - 32);
+> > > +	} else {
+> > > +		ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) <<
+> > > +			 (GEN11_SW_CTX_ID_SHIFT - 32);
+> > > +
+> > > +		mask = ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) <<
+> > > +			(GEN11_SW_CTX_ID_SHIFT - 32);
+> >
+> > Previously I missed that these ctx_id's for non-GuC cases are just
+> > constants. How does it work in these cases?
 >
-> Previously I missed that these ctx_id's for non-GuC cases are just
-> constants. How does it work in these cases?
+> For the record, offline reply from Umesh for this question:
+>
+> Looks like the SW context id is set to a unique value by the KMD for
+> execlist mode here - __execlists_schedule_in() as ccid. Later it is written
+> to the execlist port here (as lrc.desc) - execlists_submit_ports(). It's
+> just a unique value that the kmd determines. For OA we are setting a
+> ce->tag when OA use case is active and it used by the
+> __execlists_schedule_in().
+>
+> Related commit from Chris - 2935ed5339c49
+>
+> I think the reason why OA is setting it is because this value is not
+> assigned until __execlists_schedule_in() is called. For OA context, this
+> may happen much later. The code that Chris has added, just assigns a value
+> in OA and then uses it later in the __execlists_schedule_in() path.
 
-For the record, offline reply from Umesh for this question:
+I would still think this should not be a constant value but something which
+depends on the context or the context id. Anyway since this is a
+pre-existing issue not introducd in this patch, I will disregard this and
+continue reviewing this patch.
 
-Looks like the SW context id is set to a unique value by the KMD for
-execlist mode here - __execlists_schedule_in() as ccid. Later it is written
-to the execlist port here (as lrc.desc) - execlists_submit_ports(). It's
-just a unique value that the kmd determines. For OA we are setting a
-ce->tag when OA use case is active and it used by the
-__execlists_schedule_in().
-
-Related commit from Chris - 2935ed5339c49
-
-I think the reason why OA is setting it is because this value is not
-assigned until __execlists_schedule_in() is called. For OA context, this
-may happen much later. The code that Chris has added, just assigns a value
-in OA and then uses it later in the __execlists_schedule_in() path.
+Thanks.
+--
+Ashutosh
