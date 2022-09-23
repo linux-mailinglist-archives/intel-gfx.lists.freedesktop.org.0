@@ -1,33 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 294875E74F1
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Sep 2022 09:38:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1D65E74FC
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Sep 2022 09:39:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 882B010E476;
-	Fri, 23 Sep 2022 07:38:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5291510E479;
+	Fri, 23 Sep 2022 07:39:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 08E5110E476;
- Fri, 23 Sep 2022 07:38:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F3526AAA91;
- Fri, 23 Sep 2022 07:38:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8215627923008894074=="
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F222510E481;
+ Fri, 23 Sep 2022 07:39:50 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 21575580BDD;
+ Fri, 23 Sep 2022 03:39:47 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute5.internal (MEProxy); Fri, 23 Sep 2022 03:39:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm2; t=
+ 1663918787; x=1663925987; bh=DxxLMxpGZNOcoQBIh/TAC7dHlOlAKgdCivE
+ AIBLqp30=; b=1/1dVxq6PiO832a4adOeK2SFfYtzDUBlCBtB/sjVIKq3ihDGxOj
+ 0qTO6bYQczLycwP9MCy1ZCOWlTl2M1bD66Efj0GgLPi9S2/O2JNSe01HxN1S4PWU
+ AUdNy4DnaJ8aX19do3Zq2jrWTBWfn0chcqW8fzWGqocuGK41/nsepf0KScUgrc7v
+ w/agz11hHQcera4GcaCx5wCxUQ5s0pDWSJw7Kd5ugpPWIObIv+pgTk+CwpCTSKc3
+ d7u9uo8CksY3mtIpmX9pb1e5RbnV40ZsI0NKgLm9tboeVBj+2IHqDF1pKcXB2RjB
+ sgEvGN3DiaEqWdokapu/YXhMHn5MoChvXXQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1663918787; x=
+ 1663925987; bh=DxxLMxpGZNOcoQBIh/TAC7dHlOlAKgdCivEAIBLqp30=; b=D
+ kKBsMdkEXf47eH4TA5/VETEeu4JPcc+B7+IhANSzJS5U2iy7kYIb+Hkdh3f1chb6
+ vC4TkcoPEAe07+n5aASAOICYhs9KAcVwrEdRQFBsbO+W6LtIn79FagRmKZt4UhLG
+ qnty5oL+Fz1Frf0FbL8bpMAHeXUFsKl9lvKLettF9MT4ItrAxsUvL9FA+htS1m2I
+ YqFAMBwQ+XpSvkPxw9v2vHcLGDyEP7CmfqMkCLuCBbR8sv7wBeEpiM0aZsKqHnLn
+ hHeu0qTNw2Qz3LPZPHJScOMBZ8MsODFMlaU0QVngmcBJVS2/1PVTccQCG3ECJ+g/
+ ZCO1matcgOsPX5KaZhnWQ==
+X-ME-Sender: <xms:wmItY4FQ8sW5OwjEx_nMZ3uhoaPttjlS4z6k_Fq3tRizFRe4PLYCIg>
+ <xme:wmItYxVJYlmJxomSVxx_XCOml7nYK1c51NtlSYUATepdy1EQF9d0dABsK-ieNgpkI
+ C461_zzdytwR3Uwwt8>
+X-ME-Received: <xmr:wmItYyJUPulhQbVNJruGwo9FbSq9VF3vv2LsbITRUMcIR4HX_B897PbrO9Ze>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeefhedguddvfecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvvefukfggtggusehgtderredttdejnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepvdeffeevtedvgeegkeetleetkeetueehfeevveefieekudevjeegueffjeff
+ jedvnecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgpdhkvghrnhgvlhdroh
+ hrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehm
+ rgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:wmItY6HKW5_fQINDuXhd42St1cLpB1pxWpH04R-5k6eN2Bd4SnqCaQ>
+ <xmx:wmItY-Ww0fh3bJH6vOpT61Mnd5VcXxNwyudROjxmksZEVb8QjmLOZQ>
+ <xmx:wmItY9OrOICeXy0kOnSt8RbLMQenvaS0OiaHlBjlMpHXYiBzkATP0Q>
+ <xmx:w2ItY0G_xoo54rrZ8ERvKdFREaHJKA9Vqt5zS0GXxKRNFsc8lElDmw>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 23 Sep 2022 03:39:45 -0400 (EDT)
+Date: Fri, 23 Sep 2022 09:39:43 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20220923073943.d43tne5hni3iknlv@houat>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Fri, 23 Sep 2022 07:38:08 -0000
-Message-ID: <166391868896.30118.2250409935956230420@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220923053044.360293-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20220923053044.360293-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRGVs?=
- =?utf-8?q?ay_disabling_GuC_scheduling_of_an_idle_context?=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="zr3hh4wiludvtbko"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,232 +81,452 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8215627923008894074==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+--zr3hh4wiludvtbko
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Series: Delay disabling GuC scheduling of an idle context
-URL   : https://patchwork.freedesktop.org/series/108931/
-State : success
+Hi Daniel, Dave,
 
-== Summary ==
+We haven't had a drm-misc-next PR for a while, so here it is.
 
-CI Bug Log - changes from CI_DRM_12171 -> Patchwork_108931v1
-====================================================
+It should be the last drm-misc-next PR for 6.1
 
-Summary
--------
+Maxime
 
-  **SUCCESS**
+drm-misc-next-2022-09-23:
+drm-misc-next for 6.1:
 
-  No regressions found.
+UAPI Changes:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/index.html
+Cross-subsystem Changes:
+  - dma-buf: Improve signaling when debugging
 
-Participating hosts (44 -> 42)
-------------------------------
+Core Changes:
+  - Backlight handling improvements
+  - format-helper: Add drm_fb_build_fourcc_list()
+  - fourcc: Kunit tests improvements
+  - modes: Add DRM_MODE_INIT() macro
+  - plane: Remove drm_plane_init(), Allocate planes with drm_universal_plan=
+e_alloc()
+  - plane-helper: Add drm_plane_helper_atomic_check()
+  - probe-helper: Add drm_connector_helper_get_modes_fixed() and
+    drm_crtc_helper_mode_valid_fixed()
+  - tests: Conversion to parametrized tests, test name consistency
 
-  Missing    (2): fi-hsw-4770 fi-bdw-samus 
+Driver Changes:
+  - amdgpu: Fix for a VRAM eviction issue
+  - ast: Resolution handling improvements
+  - mediatek: small code improvements for DP
+  - omap: Refcounting fix, small improvements
+  - rockchip: RK3568 support, Gamma support for RK3399
+  - sun4i: Build failure fix when !OF
+  - udl: Multiple fixes here and there
+  - vc4: HDMI hotplug handling improvements
+  - vkms: Warning fix
+The following changes since commit 213cb76ddc8b875e772f9f4d173feefa122716af:
 
-Known issues
-------------
+  Merge tag 'drm-intel-gt-next-2022-09-09' of git://anongit.freedesktop.org=
+/drm/drm-intel into drm-next (2022-09-12 21:12:23 +1000)
 
-  Here are the changes found in Patchwork_108931v1 that come from known issues:
+are available in the Git repository at:
 
-### IGT changes ###
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2022-09-23
 
-#### Issues hit ####
+for you to fetch changes up to 39dd0cc2e5bd0d5188dd69f27e18783cea7ff06a:
 
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][1] ([i915#4817])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html
+  drm/amdgpu: Fix VRAM eviction issue (2022-09-22 19:53:06 +0200)
 
-  
-#### Possible fixes ####
+----------------------------------------------------------------
+drm-misc-next for 6.1:
 
-  * igt@gem_ctx_create@basic-files:
-    - {fi-tgl-mst}:       [DMESG-WARN][2] -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/fi-tgl-mst/igt@gem_ctx_create@basic-files.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-tgl-mst/igt@gem_ctx_create@basic-files.html
+UAPI Changes:
 
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - {bat-rplp-1}:       [DMESG-WARN][4] ([i915#2867]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
+Cross-subsystem Changes:
+  - dma-buf: Improve signaling when debugging
 
-  * igt@gem_exec_suspend@basic-s3@lmem0:
-    - {bat-dg2-11}:       [DMESG-WARN][6] ([i915#6816]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html
+Core Changes:
+  - Backlight handling improvements
+  - format-helper: Add drm_fb_build_fourcc_list()
+  - fourcc: Kunit tests improvements
+  - modes: Add DRM_MODE_INIT() macro
+  - plane: Remove drm_plane_init(), Allocate planes with drm_universal_plan=
+e_alloc()
+  - plane-helper: Add drm_plane_helper_atomic_check()
+  - probe-helper: Add drm_connector_helper_get_modes_fixed() and
+    drm_crtc_helper_mode_valid_fixed()
+  - tests: Conversion to parametrized tests, test name consistency
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bdw-gvtdvm:      [INCOMPLETE][8] ([i915#2940]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html
+Driver Changes:
+  - amdgpu: Fix for a VRAM eviction issue
+  - ast: Resolution handling improvements
+  - mediatek: small code improvements for DP
+  - omap: Refcounting fix, small improvements
+  - rockchip: RK3568 support, Gamma support for RK3399
+  - sun4i: Build failure fix when !OF
+  - udl: Multiple fixes here and there
+  - vc4: HDMI hotplug handling improvements
+  - vkms: Warning fix
 
-  * igt@i915_selftest@live@gt_pm:
-    - {fi-tgl-mst}:       [DMESG-FAIL][10] ([i915#3987]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/fi-tgl-mst/igt@i915_selftest@live@gt_pm.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-tgl-mst/igt@i915_selftest@live@gt_pm.html
+----------------------------------------------------------------
+Arunpravin Paneer Selvam (1):
+      drm/amdgpu: Fix VRAM eviction issue
 
-  * igt@i915_selftest@live@hugepages:
-    - {bat-rpls-1}:       [DMESG-WARN][12] ([i915#5278]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/bat-rpls-1/igt@i915_selftest@live@hugepages.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/bat-rpls-1/igt@i915_selftest@live@hugepages.html
+Arvind Yadav (5):
+      dma-buf: Remove the signaled bit status check
+      dma-buf: set signaling bit for the stub fence
+      dma-buf: Enable signaling on fence for selftests
+      dma-buf: dma_fence_wait must enable signaling
+      drm/sched: Use parent fence instead of finished
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
-    - fi-bsw-kefka:       [FAIL][14] ([i915#6298]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+Bo-Chen Chen (3):
+      drm/mediatek: dp: Reduce indentation in mtk_dp_bdg_detect()
+      drm/mediatek: dp: Remove unused register definitions
+      drm/mediatek: dp: Fix compiler warning in mtk_dp_video_mute()
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+Chris Morgan (2):
+      dt-bindings: display: rockchip-dsi: add rk3568 compatible
+      drm/rockchip: dsi: add rk3568 support
 
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
-  [i915#5278]: https://gitlab.freedesktop.org/drm/intel/issues/5278
-  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
-  [i915#6816]: https://gitlab.freedesktop.org/drm/intel/issues/6816
-  [i915#6818]: https://gitlab.freedesktop.org/drm/intel/issues/6818
+Christian K=C3=B6nig (1):
+      dma-buf: fix dma_fence_default_wait() signaling check
 
+Gaosheng Cui (5):
+      drm/vmwgfx: remove unused vmw_bo_is_vmw_bo() declaration
+      drm/radeon/r600_cs: remove r600_cs_legacy_get_tiling_conf() declarati=
+on
+      drm/radeon: remove unused declarations for radeon
+      drm/gma500: remove unused declarations in psb_intel_drv.h
+      drm/amd/pm: remove unused declarations in hardwaremanager.h
 
-Build changes
--------------
+Guo Zhengkui (1):
+      drm: omapdrm: dss: replace ternary operator with max()
 
-  * Linux: CI_DRM_12171 -> Patchwork_108931v1
+Hamza Mahfooz (1):
+      drm/bridge: it6505: use drm_debug_enabled() in it6505_debug_print()
 
-  CI-20190529: 20190529
-  CI_DRM_12171: 37f64f22c82d8003c6509dd8e4928ee0348bd27f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6662: dcb1d7a8822e62935f4fe3f2e6a04caaee669369 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_108931v1: 37f64f22c82d8003c6509dd8e4928ee0348bd27f @ git://anongit.freedesktop.org/gfx-ci/linux
+Hans de Goede (42):
+      ACPI: video: Add acpi_video_backlight_use_native() helper
+      drm/i915: Don't register backlight when another backlight should be u=
+sed (v2)
+      drm/amdgpu: Don't register backlight when another backlight should be=
+ used (v3)
+      drm/radeon: Don't register backlight when another backlight should be=
+ used (v3)
+      drm/nouveau: Don't register backlight when another backlight should b=
+e used (v2)
+      ACPI: video: Drop backlight_device_get_by_type() call from acpi_video=
+_get_backlight_type()
+      ACPI: video: Remove acpi_video_bus from list before tearing it down
+      ACPI: video: Simplify acpi_video_unregister_backlight()
+      ACPI: video: Make backlight class device registration a separate step=
+ (v2)
+      ACPI: video: Remove code to unregister acpi_video backlight when a na=
+tive backlight registers
+      drm/i915: Call acpi_video_register_backlight() (v3)
+      drm/nouveau: Register ACPI video backlight when nv_backlight registra=
+tion fails (v2)
+      drm/amdgpu: Register ACPI video backlight when skipping amdgpu backli=
+ght registration
+      drm/radeon: Register ACPI video backlight when skipping radeon backli=
+ght registration
+      platform/x86: nvidia-wmi-ec-backlight: Move fw interface definitions =
+to a header (v2)
+      ACPI: video: Refactor acpi_video_get_backlight_type() a bit
+      ACPI: video: Add Nvidia WMI EC brightness control detection (v3)
+      ACPI: video: Add Apple GMUX brightness control detection
+      platform/x86: nvidia-wmi-ec-backlight: Use acpi_video_get_backlight_t=
+ype()
+      platform/x86: apple-gmux: Stop calling acpi/video.h functions
+      platform/x86: toshiba_acpi: Stop using acpi_video_set_dmi_backlight_t=
+ype()
+      platform/x86: acer-wmi: Move backlight DMI quirks to acpi/video_detec=
+t.c
+      platform/x86: asus-wmi: Drop DMI chassis-type check from backlight ha=
+ndling
+      platform/x86: asus-wmi: Move acpi_backlight=3Dvendor quirks to ACPI v=
+ideo_detect.c
+      platform/x86: asus-wmi: Move acpi_backlight=3Dnative quirks to ACPI v=
+ideo_detect.c
+      platform/x86: samsung-laptop: Move acpi_backlight=3D[vendor|native] q=
+uirks to ACPI video_detect.c
+      ACPI: video: Remove acpi_video_set_dmi_backlight_type()
+      ACPI: video: Drop "Samsung X360" acpi_backlight=3Dnative quirk
+      ACPI: video: Drop NL5x?U, PF4NU1F and PF5?U?? acpi_backlight=3Dnative=
+ quirks
+      ACPI: video: Fix indentation of video_detect_dmi_table[] entries
+      drm/todo: Add entry about dealing with brightness control on devices =
+with > 1 panel
+      drm/gma500: Fix (vblank) IRQs not working after suspend/resume
+      drm/gma500: Remove runtime_allowed dead code in psb_unlocked_ioctl()
+      drm/gma500: Remove never set dev_priv->rpm_enabled flag
+      drm/gma500: Remove a couple of not useful function wrappers
+      drm/gma500: Rewrite power management code
+      drm/gma500: Remove unnecessary suspend/resume wrappers
+      drm/gma500: Refactor backlight support (v2)
+      drm/gma500: Change registered backlight device type to raw/native
+      drm/gma500: Use backlight_get_brightness() to get the brightness
+      drm/gma500: Don't register backlight when another backlight should be=
+ used
+      drm/gma500: Call acpi_video_register_backlight()
 
+Harshit Mogalapalli (1):
+      drm/vkms: fix variable dereferenced before check warning
 
-### Linux commits
+Hugh Cole-Baker (2):
+      drm/rockchip: define gamma registers for RK3399
+      drm/rockchip: support gamma control on RK3399
 
-889a8f07d9c4 drm/i915/guc: Delay disabling guc_id scheduling for better hysteresis
+Jammy Huang (2):
+      drm/ast: Add resolution support for 1152x864@75
+      drm/ast: Fix video broken in some resolutions on ast2600
 
-== Logs ==
+Javier Martinez Canillas (1):
+      drm/plane-helper: Add a drm_plane_helper_atomic_check() helper
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/index.html
+Jiapeng Chong (1):
+      drm/atomic-helper: Fix kernel-doc
 
---===============8215627923008894074==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Jilin Yuan (2):
+      drm/tidss: fix repeated words in comments
+      drm/vboxvideo: fix repeated words in comments
 
+Jouni H=C3=B6gander (2):
+      drm: Use original src rect while initializing damage iterator
+      drm/tests: Set also mock plane src_x, src_y, src_w and src_h
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Liang He (1):
+      drm/omap: dss: Fix refcount leak bugs
 
+Maxime Ripard (11):
+      drm/sun4i: tv: Include drm_atomic.h
+      drm/vc4: hdmi: Constify drm_display_mode
+      drm/vc4: hdmi: Remove unused argument in vc4_hdmi_supports_scrambling
+      drm/vc4: hdmi: Remove mutex in detect
+      drm/vc4: hdmi: Simplify the hotplug handling
+      drm/vc4: hdmi: Switch to detect_ctx
+      drm/vc4: hdmi: Move vc4_hdmi_supports_scrambling() around
+      drm/vc4: hdmi: Reset link on hotplug
+      drm/scdc: Document hotplug gotchas
+      Merge drm/drm-next into drm-misc-next
+      Merge tag 'backlight-detect-refactor-1' of git://git.kernel.org/pub/s=
+cm/linux/kernel/git/pdx86/platform-drivers-x86 into drm-misc-next
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Delay disabling GuC scheduling of an idle context</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/108931/">https://patchwork.freedesktop.org/series/108931/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Maya Matuszczyk (2):
+      drm: panel-orientation-quirks: Add quirk for Anbernic Win600
+      drm: panel-orientation-quirks: Add quirk for Aya Neo Air
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/index.html</a></td></tr>
+Ma=C3=ADra Canal (2):
+      drm/tests: Split drm_framebuffer_create_test into parameterized tests
+      drm/tests: Change "igt_" prefix to "drm_test_"
 
-</table>
+Micha=C5=82 Winiarski (2):
+      drm/format: Use appropriate types in expect/assert
+      drm/format: Split into more granular test cases
 
+Minghao Chi (1):
+      drm: bridge/dw-hdmi-ahb-audio: use strscpy() is more robust and safer
 
-    <h1>CI Bug Log - changes from CI_DRM_12171 -&gt; Patchwork_108931v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 42)</h2>
-<p>Missing    (2): fi-hsw-4770 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_108931v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_suspend@basic-s2idle-without-i915:<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s2idle-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_create@basic-files:</p>
-<ul>
-<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/fi-tgl-mst/igt@gem_ctx_create@basic-files.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-tgl-mst/igt@gem_ctx_create@basic-files.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@lmem0:</p>
-<ul>
-<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6816">i915#6816</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-bdw-gvtdvm/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/fi-tgl-mst/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-tgl-mst/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/bat-rpls-1/igt@i915_selftest@live@hugepages.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5278">i915#5278</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/bat-rpls-1/igt@i915_selftest@live@hugepages.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12171/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_108931v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12171 -&gt; Patchwork_108931v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12171: 37f64f22c82d8003c6509dd8e4928ee0348bd27f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6662: dcb1d7a8822e62935f4fe3f2e6a04caaee669369 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_108931v1: 37f64f22c82d8003c6509dd8e4928ee0348bd27f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>889a8f07d9c4 drm/i915/guc: Delay disabling guc_id scheduling for better hysteresis</p>
+Rafael Mendonca (1):
+      drm/vmwgfx: Fix memory leak in vmw_mksstat_add_ioctl()
 
-</body>
-</html>
+Robert Foss (4):
+      Revert "dt-bindings: Add byteswap order to chrontel ch7033"
+      Revert "drm/bridge: ti-sn65dsi86: Implement bridge connector operatio=
+ns for DP"
+      Revert "Revert "drm/bridge: ti-sn65dsi86: Implement bridge connector =
+operations for DP""
+      Revert "drm/bridge: chrontel-ch7033: Add byteswap order setting"
 
---===============8215627923008894074==--
+Takashi Iwai (10):
+      drm/udl: Restore display mode on resume
+      Revert "drm/udl: Kill pending URBs at suspend and disconnect"
+      drm/udl: Suppress error print for -EPROTO at URB completion
+      drm/udl: Increase the default URB list size to 20
+      drm/udl: Drop unneeded alignment
+      drm/udl: Pass rectangle directly to udl_handle_damage()
+      drm/udl: Fix potential URB leaks
+      drm/udl: Fix inconsistent urbs.count value during udl_free_urb_list()
+      drm/udl: Don't re-initialize stuff at retrying the URB list allocation
+      drm/udl: Sync pending URBs at the end of suspend
+
+Thierry Reding (1):
+      drm/aperture: Fix some kerneldoc comments
+
+Thomas Zimmermann (10):
+      drm/udl: Add reset_resume
+      drm/udl: Enable damage clipping
+      drm/probe-helper: Add drm_connector_helper_get_modes_fixed()
+      drm/probe-helper: Add drm_crtc_helper_mode_valid_fixed()
+      drm/modes: Add initializer macro DRM_MODE_INIT()
+      drm/format-helper: Add drm_fb_build_fourcc_list() helper
+      drm/plane: Remove drm_plane_init()
+      drm/plane: Allocate planes with drm_universal_plane_alloc()
+      drm/plane-helper: Warn if atomic drivers call non-atomic helpers
+      drm/plane-helper: Provide DRM_PLANE_NON_ATOMIC_FUNCS initializer macro
+
+Tom Rix (1):
+      drm/rockchip: remove vop_writel from vop1 driver
+
+Yang Yingliang (1):
+      drm/mediatek: dp: change mtk_dp_driver to static
+
+wangjianli (1):
+      drm/rockchip: vop: fix repeated words in comment
+
+ye xingchen (1):
+      drm/omap: dmm_tiler:Remove the print function dev_err()
+
+ .../bindings/display/bridge/chrontel,ch7033.yaml   |  13 -
+ .../display/rockchip/dw_mipi_dsi_rockchip.txt      |   1 +
+ Documentation/gpu/todo.rst                         |  68 ++++
+ MAINTAINERS                                        |   1 +
+ drivers/acpi/Kconfig                               |   1 +
+ drivers/acpi/acpi_video.c                          |  64 ++-
+ drivers/acpi/video_detect.c                        | 440 ++++++++++++-----=
+----
+ drivers/dma-buf/dma-fence.c                        |  22 +-
+ drivers/dma-buf/st-dma-fence-chain.c               |   4 +
+ drivers/dma-buf/st-dma-fence-unwrap.c              |  22 ++
+ drivers/dma-buf/st-dma-fence.c                     |  16 +
+ drivers/dma-buf/st-dma-resv.c                      |  10 +
+ drivers/gpu/drm/Kconfig                            |  14 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c       |   2 +-
+ drivers/gpu/drm/amd/amdgpu/atombios_encoders.c     |  14 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |   9 +
+ .../gpu/drm/amd/pm/powerplay/inc/hardwaremanager.h |   2 -
+ drivers/gpu/drm/ast/ast_mode.c                     |  19 +-
+ drivers/gpu/drm/ast/ast_tables.h                   |   7 +
+ drivers/gpu/drm/bridge/chrontel-ch7033.c           |  15 +-
+ drivers/gpu/drm/bridge/ite-it6505.c                |   2 +-
+ .../gpu/drm/bridge/synopsys/dw-hdmi-ahb-audio.c    |   6 +-
+ drivers/gpu/drm/display/drm_scdc_helper.c          |  13 +
+ drivers/gpu/drm/drm_aperture.c                     |  10 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |   2 +-
+ drivers/gpu/drm/drm_damage_helper.c                |  11 +-
+ drivers/gpu/drm/drm_format_helper.c                | 108 +++++
+ drivers/gpu/drm/drm_mipi_dbi.c                     |  38 +-
+ drivers/gpu/drm/drm_modeset_helper.c               |  68 ++--
+ drivers/gpu/drm/drm_panel_orientation_quirks.c     |  18 +
+ drivers/gpu/drm/drm_plane.c                        |  70 ++--
+ drivers/gpu/drm/drm_plane_helper.c                 |  40 ++
+ drivers/gpu/drm/drm_probe_helper.c                 |  64 +++
+ drivers/gpu/drm/gma500/Kconfig                     |   2 +
+ drivers/gpu/drm/gma500/backlight.c                 | 102 +++--
+ drivers/gpu/drm/gma500/cdv_device.c                |  50 +--
+ drivers/gpu/drm/gma500/gma_display.c               |  19 +-
+ drivers/gpu/drm/gma500/gma_display.h               |   2 -
+ drivers/gpu/drm/gma500/oaktrail_device.c           |  70 +---
+ drivers/gpu/drm/gma500/oaktrail_lvds.c             |   1 -
+ drivers/gpu/drm/gma500/opregion.c                  |   6 +-
+ drivers/gpu/drm/gma500/power.c                     | 166 ++------
+ drivers/gpu/drm/gma500/power.h                     |  18 -
+ drivers/gpu/drm/gma500/psb_device.c                |  73 +---
+ drivers/gpu/drm/gma500/psb_drv.c                   |  52 +--
+ drivers/gpu/drm/gma500/psb_drv.h                   |  25 +-
+ drivers/gpu/drm/gma500/psb_intel_drv.h             |   5 -
+ drivers/gpu/drm/gma500/psb_irq.c                   |  30 +-
+ drivers/gpu/drm/gma500/psb_irq.h                   |   2 +-
+ drivers/gpu/drm/i915/Kconfig                       |   2 +
+ drivers/gpu/drm/i915/display/intel_acpi.c          |  27 ++
+ drivers/gpu/drm/i915/display/intel_acpi.h          |   3 +
+ drivers/gpu/drm/i915/display/intel_backlight.c     |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c       |   2 +-
+ drivers/gpu/drm/mediatek/mtk_dp.c                  |  66 ++--
+ drivers/gpu/drm/mediatek/mtk_dp_reg.h              |   6 -
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c            |  45 +--
+ drivers/gpu/drm/nouveau/dispnv04/overlay.c         |  13 +-
+ drivers/gpu/drm/nouveau/nouveau_acpi.c             |  10 +
+ drivers/gpu/drm/nouveau/nouveau_acpi.h             |   4 +
+ drivers/gpu/drm/nouveau/nouveau_backlight.c        |  13 +
+ drivers/gpu/drm/omapdrm/dss/dispc.c                |   2 +-
+ drivers/gpu/drm/omapdrm/dss/dss.c                  |   3 +
+ drivers/gpu/drm/omapdrm/omap_dmm_tiler.c           |   4 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c       |   1 +
+ drivers/gpu/drm/radeon/atombios_encoders.c         |   7 +
+ drivers/gpu/drm/radeon/r600_cs.c                   |   2 -
+ drivers/gpu/drm/radeon/radeon.h                    |   3 -
+ drivers/gpu/drm/radeon/radeon_encoders.c           |  11 +-
+ drivers/gpu/drm/radeon/radeon_legacy_encoders.c    |   7 +
+ drivers/gpu/drm/radeon/radeon_mode.h               |   1 -
+ drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c    |  51 ++-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c        | 113 ++++--
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h        |   2 +
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.c        |  24 +-
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.h        |   1 +
+ drivers/gpu/drm/scheduler/sched_main.c             |   4 +-
+ drivers/gpu/drm/shmobile/shmob_drm_plane.c         |   7 +-
+ drivers/gpu/drm/solomon/ssd130x.c                  |  18 +-
+ drivers/gpu/drm/tests/drm_buddy_test.c             |  84 ++--
+ drivers/gpu/drm/tests/drm_cmdline_parser_test.c    | 156 ++++----
+ drivers/gpu/drm/tests/drm_damage_helper_test.c     |  89 +++--
+ drivers/gpu/drm/tests/drm_dp_mst_helper_test.c     |   8 +-
+ drivers/gpu/drm/tests/drm_format_helper_test.c     |   8 +-
+ drivers/gpu/drm/tests/drm_format_test.c            | 324 ++++++++-------
+ drivers/gpu/drm/tests/drm_framebuffer_test.c       |  55 +--
+ drivers/gpu/drm/tests/drm_mm_test.c                | 155 ++++----
+ drivers/gpu/drm/tests/drm_plane_helper_test.c      |   4 +-
+ drivers/gpu/drm/tests/drm_rect_test.c              |  16 +-
+ drivers/gpu/drm/tidss/tidss_kms.c                  |   2 +-
+ drivers/gpu/drm/tilcdc/tilcdc_plane.c              |   9 +-
+ drivers/gpu/drm/tiny/hx8357d.c                     |   1 +
+ drivers/gpu/drm/tiny/ili9163.c                     |   1 +
+ drivers/gpu/drm/tiny/ili9341.c                     |   1 +
+ drivers/gpu/drm/tiny/ili9486.c                     |   1 +
+ drivers/gpu/drm/tiny/mi0283qt.c                    |   1 +
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c              |   1 +
+ drivers/gpu/drm/tiny/repaper.c                     |  26 +-
+ drivers/gpu/drm/tiny/simpledrm.c                   | 123 +-----
+ drivers/gpu/drm/tiny/st7735r.c                     |   1 +
+ drivers/gpu/drm/udl/udl_drv.c                      |  19 +-
+ drivers/gpu/drm/udl/udl_drv.h                      |  13 +-
+ drivers/gpu/drm/udl/udl_main.c                     |  93 +++--
+ drivers/gpu/drm/udl/udl_modeset.c                  |  53 +--
+ drivers/gpu/drm/udl/udl_transfer.c                 |  45 +--
+ drivers/gpu/drm/vboxvideo/vboxvideo.h              |   2 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     | 305 +++++++++-----
+ drivers/gpu/drm/vc4/vc4_hdmi.h                     |  12 +-
+ drivers/gpu/drm/vkms/vkms_plane.c                  |   3 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |   1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_msg.c                |   1 +
+ drivers/platform/x86/Kconfig                       |   1 +
+ drivers/platform/x86/acer-wmi.c                    |  66 ----
+ drivers/platform/x86/apple-gmux.c                  |   3 -
+ drivers/platform/x86/asus-nb-wmi.c                 |  21 -
+ drivers/platform/x86/asus-wmi.c                    |  13 -
+ drivers/platform/x86/asus-wmi.h                    |   2 -
+ drivers/platform/x86/eeepc-wmi.c                   |  25 +-
+ drivers/platform/x86/nvidia-wmi-ec-backlight.c     |  82 +---
+ drivers/platform/x86/samsung-laptop.c              |  87 ----
+ drivers/platform/x86/toshiba_acpi.c                |  16 -
+ include/acpi/video.h                               |   9 +-
+ include/drm/drm_format_helper.h                    |  11 +-
+ include/drm/drm_mipi_dbi.h                         |   2 +
+ include/drm/drm_modes.h                            |  45 ++-
+ include/drm/drm_plane.h                            |  52 ++-
+ include/drm/drm_plane_helper.h                     |  13 +
+ include/drm/drm_probe_helper.h                     |   9 +-
+ .../platform_data/x86/nvidia-wmi-ec-backlight.h    |  76 ++++
+ 129 files changed, 2324 insertions(+), 2098 deletions(-)
+ create mode 100644 include/linux/platform_data/x86/nvidia-wmi-ec-backlight=
+=2Eh
+
+--zr3hh4wiludvtbko
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYy1ivwAKCRDj7w1vZxhR
+xevDAQDR9Jx7RJ78ixSSUyiwsrYBLXo1pzGnq2+aDfdaYrkd7wD+K8M2Lodkpz1P
+wrJHD8Md6ONwnm0Sb4P+sUYs2bn1TQI=
+=YPP1
+-----END PGP SIGNATURE-----
+
+--zr3hh4wiludvtbko--
