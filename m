@@ -1,60 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 695505E7517
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Sep 2022 09:45:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EFFD5E751A
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Sep 2022 09:46:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94C1F10E496;
-	Fri, 23 Sep 2022 07:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E98B10E4B6;
+	Fri, 23 Sep 2022 07:46:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FCAD10E48F;
- Fri, 23 Sep 2022 07:45:47 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2534510E49C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Sep 2022 07:46:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663919147; x=1695455147;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=vbYdclaTceIoqEHplIlajE2dhHjrlVBctIKNTXkm9iA=;
- b=ReQ/ZOH9nuoutQ1OQHtkAbYSGqQBkA8rrTKvqZxzPB0vlbyPe8CIeLSf
- 7bPfzG6p4mFwyDRT3tBfznhq4cJjpBKl8zlMg8Bzvc9Dg7FpK4VJaQQPz
- OL/IZ5xSNEiAaJuLTVHt2uIdBz8jyFkSfsHy1GXw47T3Nli4m/HcohYgh
- kfZ87gaSvgmF9r49X2meB5a6TTvnu46WX0ypZ3YPK9v3woKCglfIsyiEo
- j8A38KOhnpcdnYwIDgvZpPeI6MlqAoltdtxRlcV4Ij1U+prx9wi7ROF+8
- +VVhxLaHUWbIglCK4CTNqm+KwZPqLzMNsPBjXG3VXlL4/eIqlEzIvgjw2 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="386826068"
-X-IronPort-AV: E=Sophos;i="5.93,337,1654585200"; d="scan'208";a="386826068"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2022 00:45:46 -0700
-X-IronPort-AV: E=Sophos;i="5.93,337,1654585200"; d="scan'208";a="745708166"
-Received: from ccislaru-mobl.ger.corp.intel.com (HELO [10.213.225.140])
- ([10.213.225.140])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2022 00:45:44 -0700
-Message-ID: <97f2bfc9-5dc8-7f53-c38e-c09e7bb9da24@linux.intel.com>
-Date: Fri, 23 Sep 2022 08:45:42 +0100
+ t=1663919181; x=1695455181;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=VNPvLltRHNQcWBDcjjXtLEhZ8iJuBCAbtZMeTD3dZAk=;
+ b=BBg3K5M6hAL1AC1JdoutnEwuSMH/yApAeWOoVusqd1gSlABDeti6Fhyc
+ /e3EYr/2Vm2CrQQDiE/eD9Z79UsGFyNDe5TMuvWwiM4OwdMpSm5weh55N
+ 9IH8xu5UhAiJHO+NOBg2cWkwbYXOW2UHBz+1W0QtyRjQykBrAXRLw4y00
+ hmIh8dh48SFYiGgS90X2h4kaIuGkU5JLblUrQsya5py+YWbpQYDd4TvcJ
+ cfActP4Vr99Eklw93bz7pOJOZbg5TV9ot6Xw2Fei2CP9184ujOXedMzgY
+ kwouU9chAAkj2Ry9i1Y601K9gksEmAKaAYRyvNILGoo9N7E8qHlKqMcCy Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="364552266"
+X-IronPort-AV: E=Sophos;i="5.93,337,1654585200"; d="scan'208";a="364552266"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2022 00:46:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,337,1654585200"; d="scan'208";a="597782809"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga006.jf.intel.com with SMTP; 23 Sep 2022 00:46:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 23 Sep 2022 10:46:17 +0300
+Date: Fri, 23 Sep 2022 10:46:17 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Luca Coelho <luca@coelho.fi>
+Message-ID: <Yy1kSZCykGOQS7or@intel.com>
+References: <20220916165206.1499-1-ville.syrjala@linux.intel.com>
+ <20220916165206.1499-3-ville.syrjala@linux.intel.com>
+ <9731fffc60162a34b7790bb08792fc55593e4ca2.camel@coelho.fi>
+ <YywdAq6eYfTEppUC@intel.com> <87leqb7px7.fsf@intel.com>
+ <Yywsrhy2MJKRI76v@intel.com>
+ <c03ce859eb948c65123933d6c89db2c8297afba1.camel@coelho.fi>
+ <YyxNx+p2k3RscYBX@intel.com>
+ <0408c640dfbc4bdea5cfab16bbe0347299cda57d.camel@coelho.fi>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-References: <20220921070945.27764-1-niranjana.vishwanathapura@intel.com>
- <20220921070945.27764-4-niranjana.vishwanathapura@intel.com>
- <578445bc-d804-3f1d-a32d-51cac9460351@linux.intel.com>
- <20220921180040.GD28263@nvishwa1-DESK>
- <e02e34ef-0dca-d61d-e5c4-a6f002baf434@linux.intel.com>
- <1072ee80-13fb-dc72-5416-c7fdded3c80c@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <1072ee80-13fb-dc72-5416-c7fdded3c80c@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC v4 03/14] drm/i915/vm_bind: Expose
- i915_gem_object_max_page_size()
+In-Reply-To: <0408c640dfbc4bdea5cfab16bbe0347299cda57d.camel@coelho.fi>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Mark FBC B gone if pipe B is
+ gone
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,114 +67,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, thomas.hellstrom@intel.com,
- daniel.vetter@intel.com, christian.koenig@amd.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 22/09/2022 17:18, Matthew Auld wrote:
-> On 22/09/2022 09:09, Tvrtko Ursulin wrote:
->>
->> On 21/09/2022 19:00, Niranjana Vishwanathapura wrote:
->>> On Wed, Sep 21, 2022 at 10:13:12AM +0100, Tvrtko Ursulin wrote:
->>>>
->>>> On 21/09/2022 08:09, Niranjana Vishwanathapura wrote:
->>>>> Expose i915_gem_object_max_page_size() function non-static
->>>>> which will be used by the vm_bind feature.
->>>>>
->>>>> Signed-off-by: Niranjana Vishwanathapura 
->>>>> <niranjana.vishwanathapura@intel.com>
->>>>> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
->>>>> ---
->>>>>  drivers/gpu/drm/i915/gem/i915_gem_create.c | 20 +++++++++++++++-----
->>>>>  drivers/gpu/drm/i915/gem/i915_gem_object.h |  2 ++
->>>>>  2 files changed, 17 insertions(+), 5 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c 
->>>>> b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->>>>> index 33673fe7ee0a..3b3ab4abb0a3 100644
->>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
->>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->>>>> @@ -11,14 +11,24 @@
->>>>>  #include "pxp/intel_pxp.h"
->>>>>  #include "i915_drv.h"
->>>>> +#include "i915_gem_context.h"
->>>>
->>>> I can't spot that you are adding any code which would need this? 
->>>> I915_GTT_PAGE_SIZE_4K? It is in intel_gtt.h.
->>>
->>> This include should have been added in a later patch for calling
->>> i915_gem_vm_lookup(). But got added here while patch refactoring.
->>> Will fix.
->>>
->>>>
->>>>>  #include "i915_gem_create.h"
->>>>>  #include "i915_trace.h"
->>>>>  #include "i915_user_extensions.h"
->>>>> -static u32 object_max_page_size(struct intel_memory_region 
->>>>> **placements,
->>>>> -                unsigned int n_placements)
->>>>> +/**
->>>>> + * i915_gem_object_max_page_size() - max of min_page_size of the 
->>>>> regions
->>>>> + * @placements:  list of regions
->>>>> + * @n_placements: number of the placements
->>>>> + *
->>>>> + * Calculates the max of the min_page_size of a list of placements 
->>>>> passed in.
->>>>> + *
->>>>> + * Return: max of the min_page_size
->>>>> + */
->>>>> +u32 i915_gem_object_max_page_size(struct intel_memory_region 
->>>>> **placements,
->>>>> +                  unsigned int n_placements)
->>>>>  {
->>>>> -    u32 max_page_size = 0;
->>>>> +    u32 max_page_size = I915_GTT_PAGE_SIZE_4K;
->>>>>      int i;
->>>>>      for (i = 0; i < n_placements; i++) {
->>>>> @@ -28,7 +38,6 @@ static u32 object_max_page_size(struct 
->>>>> intel_memory_region **placements,
->>>>>          max_page_size = max_t(u32, max_page_size, mr->min_page_size);
->>>>>      }
->>>>> -    GEM_BUG_ON(!max_page_size);
->>>>>      return max_page_size;
->>>>>  }
->>>>> @@ -99,7 +108,8 @@ __i915_gem_object_create_user_ext(struct 
->>>>> drm_i915_private *i915, u64 size,
->>>>>      i915_gem_flush_free_objects(i915);
->>>>> -    size = round_up(size, object_max_page_size(placements, 
->>>>> n_placements));
->>>>> +    size = round_up(size, i915_gem_object_max_page_size(placements,
->>>>> +                                n_placements));
->>>>>      if (size == 0)
->>>>>          return ERR_PTR(-EINVAL);
->>>>
->>>> Because of the changes above this path is now unreachable. I suppose 
->>>> it was meant to tell the user "you have supplied no placements"? But 
->>>> then GEM_BUG_ON (which you remove) used to be wrong.
->>>>
->>>
->>> Yah, looks like an existing problem. May be this "size == 0" check
->>> should have been made before we do the round_up()? ie., check input 
->>> 'size'
->>> paramter is not 0?
->>> I think for now, I will remove this check as it was unreachable anyhow.
->>
->> Hm that's true as well. i915_gem_create_ext_ioctl ensures at least one 
->> placement and internal callers do as well.
->>
->> To be safe, instead of removing maybe move to before "size = " and 
->> change to "if (GEM_WARN_ON(n_placements == 0))"? Not sure.. Matt any 
->> thoughts here given the changes in this patch?
+On Fri, Sep 23, 2022 at 09:24:28AM +0300, Luca Coelho wrote:
+> On Thu, 2022-09-22 at 14:57 +0300, Ville Syrj�l� wrote:
+> > On Thu, Sep 22, 2022 at 02:37:35PM +0300, Luca Coelho wrote:
+> > > On Thu, 2022-09-22 at 12:36 +0300, Ville Syrj�l� wrote:
+> > > > On Thu, Sep 22, 2022 at 11:51:16AM +0300, Jani Nikula wrote:
+> > > > > On Thu, 22 Sep 2022, Ville Syrj�l� <ville.syrjala@linux.intel.com> wrote:
+> > > > > > On Thu, Sep 22, 2022 at 11:18:55AM +0300, Luca Coelho wrote:
+> > > > > > > On Fri, 2022-09-16 at 19:52 +0300, Ville Syrjala wrote:
+> > > > > > > > From: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+> > > > > > > > 
+> > > > > > > > If pipe B is fused off we also shouldn't have FBC B.
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+> > > > > > > > ---
+> > > > > > > >  drivers/gpu/drm/i915/intel_device_info.c | 1 +
+> > > > > > > >  1 file changed, 1 insertion(+)
+> > > > > > > > 
+> > > > > > > > diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> > > > > > > > index 1434dc33cf49..fbefebc023f1 100644
+> > > > > > > > --- a/drivers/gpu/drm/i915/intel_device_info.c
+> > > > > > > > +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> > > > > > > > @@ -394,6 +394,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+> > > > > > > >  		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
+> > > > > > > >  			runtime->pipe_mask &= ~BIT(PIPE_B);
+> > > > > > > >  			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
+> > > > > > > > +			runtime->fbc_mask &= ~BIT(INTEL_FBC_B);
+> > > > > > > >  		}
+> > > > > > > >  		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
+> > > > > > > >  			runtime->pipe_mask &= ~BIT(PIPE_C);
+> > > > > > > 
+> > > > > > > I don't know (yet) what exactly this does, but it makes sense if you
+> > > > > > > think of consistency: we already do that for PIPE_A.
+> > > > > > 
+> > > > > > It's basically saying the entire pipe is fused off, so anything
+> > > > > > living inside that pipe should also be fused off.
+> > > > > > 
+> > > > > > > 
+> > > > > > > But what about PIPE_C and PIPE_D? Wouldn't it make sense to do the same
+> > > > > > > thing for them as well?
+> > > > > > 
+> > > > > > There is no FBC engine on those pipes (we don't even have
+> > > > > > the INTEL_FBC_C+ enum values defined), at least for now.
+> > > > > 
+> > > > > A future proof way would be to add
+> > > > > 
+> > > > > 	runtime->fbc_mask &= runtime->pipe_mask;
+> > > > 
+> > > > Dunno if I entirely like the extra assumption that the enums match.
+> > > > Also would need to make sure we don't accidentally screw up any
+> > > > old platforms where FBC is not tied to a specific pipe, but I
+> > > > guess we should never have pipe A fused off on those w/o
+> > > > the entire display engine fused off as well.
+> > > 
+> > > I must say I don't like the idea of making these assumptions across
+> > > different masks either.
+> > > 
+> > > I think that, since you are reading the DFSM register at runtime to
+> > > check whether those pipes are fused off, you should go all the way and
+> > > disable everything, including in the fbc_mask for all pipes.  Then you
+> > > don't need to make any assumptions about whether a pipe has FBC or not.
+> > > 
+> > > In short, I think you could add those INTEL_FBC_C+ definitions and
+> > > force-unset them here too...
+> > 
+> > Hmm. I don't see any real problem with adding the FBC C+D
+> > enum values even if not used by any platform currently.
+> > Do you want to write that patch?
 > 
-> The check is also to reject a zero sized object with args->size = 0, i.e 
-> round_up(0, PAGE_SIZE) == 0. So for sure that is still needed here.
+> Sure, I can do it.  I guess it should be done _after_ your patch? Or
+> should I just add those definitions and you'll rebase your patch? And
+> there's a third option: I can add the definitions and replace your
+> patch with one that does this for all PIPEs at once...
+> 
+> Which one do you prefer?
 
-Oh yeah sneaky round up.. Thanks, my bad.
+I'm fine with just dropping my patch and you taking over the
+the wholew thing. Less stuff for me to do ;)
 
-Regards,
-
-Tvrtko
+-- 
+Ville Syrj�l�
+Intel
