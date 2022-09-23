@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF765E78F4
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Sep 2022 13:01:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B29525E78F3
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Sep 2022 13:01:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63DF110E8A3;
-	Fri, 23 Sep 2022 11:01:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22B7210E899;
+	Fri, 23 Sep 2022 11:01:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D94410E8C1
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Sep 2022 11:00:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1080A10E867
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Sep 2022 11:00:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1663930854; x=1695466854;
+ t=1663930857; x=1695466857;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4DgZQq3Kq/9q3+vrL28Mwdn1dqd7brZKAZKyT56FQRw=;
- b=NtMbFm8nTHIbvlLHA0LXPFgvtFo+27cNOR1D/wABB3A+ZEvp4QWMHXf2
- a7OmnQ3aHBaafO3M5BbB/huvFvdOKybDjeL6miZpo8XB8bMo5TZyORF+M
- D3miD+Jn2Qlqccj58Jp1m9MLGFQpZ5Rjceewsm/NrTmHfmTHaa9sRHQXK
- s9RxMkvT2BAQNG8EbxMarETDYoRBiYSFLpYN/8zfkJ4obYJQhaYc3prNV
- pesGza6TBqH0AQPHTm9fxRYzHkqeTxLrotzMTTf9r7cJlmp5JRDXgyexj
- 864vljbpmuqXHcmfh+DcT8tugEzxj0M7a56MJjSzVtH1tNlkR8wnOAx8E Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="386858213"
-X-IronPort-AV: E=Sophos;i="5.93,339,1654585200"; d="scan'208";a="386858213"
+ bh=ZawCXDJ9d51Hvx21qgAy5Ddxa+rnNz1avwcybtS8Xrg=;
+ b=Uea7dkCxlHRtW4afGcRkTNyxPDTQfPcWN9JN1E1phw6Yd5ZgfApc6Xdh
+ tATdHDHUcMYaxkiFbZbssX01em/pti5Mj2lj+QVAd663CLAGEshQ6ftsU
+ 4nvfzmUQVxyFxWQ4ok+dEBSWG6ur0dfsWxVQkUq6ADNhjjKZmDJc3AVXd
+ 2Eq6cwqZ2gArL66xPqBZ6nIl7TE4g7JDVwuUsXXBtZdZfCVsv5leVLMKs
+ 8rOQvBXZimR8Mm3WUgSiMCHQ7wnRORmXWRasqTseEWt9GU5KHT8tk19AM
+ cQjzQfKR52RiPun1HJ/lrdfNmGUrr68y7Q9WQEYrGoxlUAcLvWPUkv2lc g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="386858219"
+X-IronPort-AV: E=Sophos;i="5.93,339,1654585200"; d="scan'208";a="386858219"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2022 04:00:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,339,1654585200"; d="scan'208";a="653363754"
+ 23 Sep 2022 04:00:56 -0700
+X-IronPort-AV: E=Sophos;i="5.93,339,1654585200"; d="scan'208";a="653363769"
 Received: from rtauro-desk.iind.intel.com ([10.190.239.41])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2022 04:00:51 -0700
+ 23 Sep 2022 04:00:54 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 23 Sep 2022 16:30:41 +0530
-Message-Id: <20220923110043.789178-2-riana.tauro@intel.com>
+Date: Fri, 23 Sep 2022 16:30:42 +0530
+Message-Id: <20220923110043.789178-3-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220923110043.789178-1-riana.tauro@intel.com>
 References: <20220923110043.789178-1-riana.tauro@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915/guc/slpc: Run SLPC selftests on
- all tiles
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/selftests: Add helper function
+ measure_power
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,90 +59,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Run slpc selftests on all tiles
+move the power measurement and the triangle filter
+to a different function. No functional changes.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_slpc.c | 45 ++++++++++++++++++++-----
- 1 file changed, 37 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_rps.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_slpc.c b/drivers/gpu/drm/i915/gt/selftest_slpc.c
-index f8a1d27df272..928f74718881 100644
---- a/drivers/gpu/drm/i915/gt/selftest_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_slpc.c
-@@ -270,26 +270,50 @@ static int run_test(struct intel_gt *gt, int test_type)
- static int live_slpc_vary_min(void *arg)
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index cfb4708dd62e..99a372486fb7 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -1107,21 +1107,27 @@ static u64 __measure_power(int duration_ms)
+ 	return div64_u64(1000 * 1000 * dE, dt);
+ }
+ 
+-static u64 measure_power_at(struct intel_rps *rps, int *freq)
++static u64 measure_power(struct intel_rps *rps, int *freq)
  {
- 	struct drm_i915_private *i915 = arg;
--	struct intel_gt *gt = to_gt(i915);
-+	struct intel_gt *gt;
-+	unsigned int i;
-+	int ret;
-+
-+	for_each_gt(gt, i915, i) {
-+		ret = run_test(gt, VARY_MIN);
-+		if (ret)
-+			return ret;
-+	}
+ 	u64 x[5];
+ 	int i;
  
--	return run_test(gt, VARY_MIN);
-+	return ret;
+-	*freq = rps_set_check(rps, *freq);
+ 	for (i = 0; i < 5; i++)
+ 		x[i] = __measure_power(5);
+-	*freq = (*freq + read_cagf(rps)) / 2;
++
++	*freq = (*freq + intel_rps_read_actual_frequency(rps)) / 2;
+ 
+ 	/* A simple triangle filter for better result stability */
+ 	sort(x, 5, sizeof(*x), cmp_u64, NULL);
+ 	return div_u64(x[1] + 2 * x[2] + x[3], 4);
  }
  
- static int live_slpc_vary_max(void *arg)
++static u64 measure_power_at(struct intel_rps *rps, int *freq)
++{
++	*freq = rps_set_check(rps, *freq);
++	return measure_power(rps, freq);
++}
++
+ int live_rps_power(void *arg)
  {
- 	struct drm_i915_private *i915 = arg;
--	struct intel_gt *gt = to_gt(i915);
-+	struct intel_gt *gt;
-+	unsigned int i;
-+	int ret;
-+
-+	for_each_gt(gt, i915, i) {
-+		ret = run_test(gt, VARY_MAX);
-+		if (ret)
-+			return ret;
-+	}
- 
--	return run_test(gt, VARY_MAX);
-+	return ret;
- }
- 
- /* check if pcode can grant RP0 */
- static int live_slpc_max_granted(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
--	struct intel_gt *gt = to_gt(i915);
-+	struct intel_gt *gt;
-+	unsigned int i;
-+	int ret;
-+
-+	for_each_gt(gt, i915, i) {
-+		ret = run_test(gt, MAX_GRANTED);
-+		if (ret)
-+			return ret;
-+	}
- 
--	return run_test(gt, MAX_GRANTED);
-+	return ret;
- }
- 
- int intel_slpc_live_selftests(struct drm_i915_private *i915)
-@@ -300,8 +324,13 @@ int intel_slpc_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_slpc_max_granted),
- 	};
- 
--	if (intel_gt_is_wedged(to_gt(i915)))
--		return 0;
-+	struct intel_gt *gt;
-+	unsigned int i;
-+
-+	for_each_gt(gt, i915, i) {
-+		if (intel_gt_is_wedged(gt))
-+			return 0;
-+	}
- 
- 	return i915_live_subtests(tests, i915);
- }
+ 	struct intel_gt *gt = arg;
 -- 
 2.25.1
 
