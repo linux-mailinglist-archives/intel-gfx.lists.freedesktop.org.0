@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B1A5E8C30
-	for <lists+intel-gfx@lfdr.de>; Sat, 24 Sep 2022 14:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B2945E8CF2
+	for <lists+intel-gfx@lfdr.de>; Sat, 24 Sep 2022 15:02:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4B7810E5F8;
-	Sat, 24 Sep 2022 12:17:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC0CB10E5E4;
+	Sat, 24 Sep 2022 13:02:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABA5110EBE9;
- Sat, 24 Sep 2022 12:16:33 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D14E10E295;
+ Sat, 24 Sep 2022 13:02:40 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id A32F7CE01D0;
- Sat, 24 Sep 2022 12:16:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92FF2C433D6;
- Sat, 24 Sep 2022 12:16:29 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 6F9CDB80D6F;
+ Sat, 24 Sep 2022 13:02:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB5B9C433C1;
+ Sat, 24 Sep 2022 13:02:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1664021789;
- bh=QDgpnUzlrBQFC6/lBjr9EMlkiFqeYvtACzUmRWwdLQs=;
+ s=korg; t=1664024557;
+ bh=f9TI+zLW1k/oFp4jM/JMZaUsym4/RFdsc3oPkp8gl1A=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=CtUlpXG2GQzEyj8VZ6mSXaD9qccLjLLEQTUwy49cYmqe07wa+n9lBozBHKCj784yL
- S3CfDTEnyHMnueflu2rPtyxmtZDiTynQlLQqkp0vOMJLofpK353V6EXUhtfSXFaSKe
- m1OdThTaLYQAjUOeZiAvB+FDh4QU2bN+oPQOO6dg=
-Date: Sat, 24 Sep 2022 14:16:27 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <Yy71Gz9tw5wUVfoP@kroah.com>
-References: <20220913005739.798337-1-daniele.ceraolospurio@intel.com>
- <20220913005739.798337-6-daniele.ceraolospurio@intel.com>
+ b=vITOSzQTGC/YMameL61MhoY34yQPY9hA/15BiGXn3DaQb0P/4ieDqrLxOzgFJD/EC
+ OaJ5R8dLDwURtAdRo2n3a07T27JXSXU6D94vXm+uPBGbELv+Mk6Qeh0ckggaTKWgi3
+ NCAIw6POslOurSMVto1kITZtI4YmGXRMz+l4pFeQ=
+Date: Sat, 24 Sep 2022 15:02:34 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Jim Cromie <jim.cromie@gmail.com>
+Message-ID: <Yy7/6oTBW2lqVSK1@kroah.com>
+References: <20220912052852.1123868-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220913005739.798337-6-daniele.ceraolospurio@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 05/15] mei: pxp: add command streamer API
- to the PXP driver
+In-Reply-To: <20220912052852.1123868-1-jim.cromie@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v7 0/9] dyndbg: drm.debug adaptation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,27 +49,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>, dri-devel@lists.freedesktop.org
+Cc: daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ linux@rasmusvillemoes.dk, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, jbaron@akamai.com, seanpaul@chromium.org,
+ dri-devel@lists.freedesktop.org, joe@perches.com,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 12, 2022 at 05:57:29PM -0700, Daniele Ceraolo Spurio wrote:
-> From: Vitaly Lubart <vitaly.lubart@intel.com>
+On Sun, Sep 11, 2022 at 11:28:43PM -0600, Jim Cromie wrote:
+> hi Greg, Dan, Jason, DRM-folk,
 > 
-> The discrete graphics card with GSC firmware
-> using command streamer API hence it requires to enhance
-> pxp module with the new gsc_command() handler.
+> heres follow-up to V6:
+>   rebased on driver-core/driver-core-next for -v6 applied bits (thanks)
+>   rework drm_debug_enabled{_raw,_instrumented,} per Dan.
 > 
-> The handler is implemented via mei_pxp_gsc_command() which is
-> just a thin wrapper around mei_cldev_send_gsc_command()
+> It excludes:
+>   nouveau parts (immature)
+>   tracefs parts (I missed --to=Steve on v6)
+>   split _ddebug_site and de-duplicate experiment (way unready)
 > 
-> Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
-> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> ---
+> IOW, its the remaining commits of V6 on which Dan gave his Reviewed-by.
+> 
+> If these are good to apply, I'll rebase and repost the rest separately.
 
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+All now queued up, thanks.
+
+greg k-h
