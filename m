@@ -2,55 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EC545EA2EC
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 13:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81CFB5EA305
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 13:18:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCFB210E2C2;
-	Mon, 26 Sep 2022 11:16:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA2E10E293;
+	Mon, 26 Sep 2022 11:17:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E357210E043
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 11:16:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664190992; x=1695726992;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=nzHic9/97cNYuBmmAfQNyonBwF+cHfGSqYbftQJEsSI=;
- b=Lnk26LRDLYlHVkX5lZRhv4/qEkuWBuRsMVdcB4HFJcGi8SdbAe85Ctc/
- 6sA2iz5pobkrdNQKCBFyJmFu7CHfFRy+muvGPqU+CB5DCLSc16HHqTFH4
- 7lTTDvHy8L9QvvZPG2bKAdlgzNxaSjS9kPnWWh5OBFwQ3uecs69H6XwAH
- PirIbDw63ABDPI/5buN7XIqjMwBcDWctZ1jKGrrdu7JeYSpImeVBhw7cc
- rNRulHukaKe19YZref5uYf79Op2chp2JqdQe7lKlWQirX/353FABzBW9M
- fnKhQ5hLqrgIKL2DosVQBRMVhsKF/EO0lEW3W8F7hrPsbmfZPcB1CeJDw g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10481"; a="280726064"
-X-IronPort-AV: E=Sophos;i="5.93,345,1654585200"; d="scan'208";a="280726064"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 04:16:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10481"; a="763399390"
-X-IronPort-AV: E=Sophos;i="5.93,345,1654585200"; d="scan'208";a="763399390"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga001.fm.intel.com with SMTP; 26 Sep 2022 04:16:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 26 Sep 2022 14:16:29 +0300
-Date: Mon, 26 Sep 2022 14:16:29 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Luca Coelho <luca@coelho.fi>
-Message-ID: <YzGKDRz0412ilvVI@intel.com>
-References: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
- <20220912111814.17466-7-ville.syrjala@linux.intel.com>
- <6992a0ec208145381c0d587f7d7241684e3e1d09.camel@coelho.fi>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9D7F10E043;
+ Mon, 26 Sep 2022 11:17:55 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id CA736218EF;
+ Mon, 26 Sep 2022 11:17:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1664191073; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=uRZ2THjGw43K91frVQ0cavLJnfTwAj7TQu8exTP2YGQ=;
+ b=RWkpCHTHCIzWIBxoSgaw6qYqGGcxZ+hmp1mWx6qO0BI90JK5pm01vMJ3XVX2VjFeL0gMjN
+ 8w1puqwBcCstmcEqtZNG8EnxDX8ZNBufuDq9UdsjPmj6EMZ9HxDdy2CfR/4cpaA6zcPojd
+ X0NX00sizPKxJso+ziqll+02QMwdZTA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1664191073;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=uRZ2THjGw43K91frVQ0cavLJnfTwAj7TQu8exTP2YGQ=;
+ b=eXPjOygx/KWE7XUjMCwk7MrNGcJLOBKZxPlXQ/Jvo5S+/38MBAL3J3Yy/+kF548YhBlIhk
+ JJh0es3dPtW7TIDA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4F81313486;
+ Mon, 26 Sep 2022 11:17:53 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id M7jUEWGKMWO+LQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 26 Sep 2022 11:17:53 +0000
+Message-ID: <c714b53d-8e18-9105-9e27-8b783f246082@suse.de>
+Date: Mon, 26 Sep 2022 13:17:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6992a0ec208145381c0d587f7d7241684e3e1d09.camel@coelho.fi>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 06/15] drm/i915: Extract
- intel_edp_backlight_setup()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Content-Language: en-US
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Maxime Ripard <maxime@cerno.tech>
+References: <20220728-rpi-analog-tv-properties-v2-0-f733a0ed9f90@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-10-f733a0ed9f90@cerno.tech>
+ <72a8c3ce-ed03-0a77-fb92-eaa992eb86fe@suse.de>
+ <20220926101716.urehomr2lzv5pqln@houat>
+ <CAMuHMdXonxXiw4x2PvnQ=xedOQO1y=K0O8g1+ixeSvXmzcOOVw@mail.gmail.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <CAMuHMdXonxXiw4x2PvnQ=xedOQO1y=K0O8g1+ixeSvXmzcOOVw@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------ugjNnt50fIMLVu6urhLXoAKy"
+Subject: Re: [Intel-gfx] [PATCH v2 10/33] drm/modes: Add a function to
+ generate analog display modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,77 +75,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Karol Herbst <kherbst@redhat.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
+ Hans de Goede <hdegoede@redhat.com>, Chen-Yu Tsai <wens@csie.org>,
+ Dom Cobley <dom@raspberrypi.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org,
+ Ben Skeggs <bskeggs@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 26, 2022 at 01:58:42PM +0300, Luca Coelho wrote:
-> On Mon, 2022-09-12 at 14:18 +0300, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Pull the eDP backlight setup ino its own function. No
-> > reason to pollute intel_edp_init_connector() with all
-> > the mundane details.
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 51 +++++++++++++++----------
-> >  1 file changed, 30 insertions(+), 21 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index a5eca5396fed..de5a4d2df78e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -5217,6 +5217,35 @@ intel_edp_add_properties(struct intel_dp *intel_dp)
-> >  						       fixed_mode->vdisplay);
-> >  }
-> >  
-> > +static void intel_edp_backlight_setup(struct intel_dp *intel_dp,
-> > +				      struct intel_connector *connector)
-> > +{
-> > +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > +	enum pipe pipe = INVALID_PIPE;
-> > +
-> > +	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-> 
-> Isn't this too restrictive? Isn't there another way to check whether
-> the hardware supports backlight?
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------ugjNnt50fIMLVu6urhLXoAKy
+Content-Type: multipart/mixed; boundary="------------3WYvgZonJe2p1UqhQXWVMRE6";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Maxime Ripard <maxime@cerno.tech>
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Ben Skeggs <bskeggs@redhat.com>, linux-sunxi@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+Message-ID: <c714b53d-8e18-9105-9e27-8b783f246082@suse.de>
+Subject: Re: [PATCH v2 10/33] drm/modes: Add a function to generate analog
+ display modes
+References: <20220728-rpi-analog-tv-properties-v2-0-f733a0ed9f90@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-10-f733a0ed9f90@cerno.tech>
+ <72a8c3ce-ed03-0a77-fb92-eaa992eb86fe@suse.de>
+ <20220926101716.urehomr2lzv5pqln@houat>
+ <CAMuHMdXonxXiw4x2PvnQ=xedOQO1y=K0O8g1+ixeSvXmzcOOVw@mail.gmail.com>
+In-Reply-To: <CAMuHMdXonxXiw4x2PvnQ=xedOQO1y=K0O8g1+ixeSvXmzcOOVw@mail.gmail.com>
 
-That's not what we're checking.
+--------------3WYvgZonJe2p1UqhQXWVMRE6
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Only VLV/CHV have per-pipe backlight registers, whereas
-other platforms have less insane design. So we only need
-to figure out the pipe on VLV/CHV.
+SGkNCg0KQW0gMjYuMDkuMjIgdW0gMTI6MzQgc2NocmllYiBHZWVydCBVeXR0ZXJob2V2ZW46
+DQo+IEhpIE1heGltZSwNCj4gDQo+IE9uIE1vbiwgU2VwIDI2LCAyMDIyIGF0IDEyOjE3IFBN
+IE1heGltZSBSaXBhcmQgPG1heGltZUBjZXJuby50ZWNoPiB3cm90ZToNCj4+IE9uIEZyaSwg
+U2VwIDIzLCAyMDIyIGF0IDExOjA1OjQ4QU0gKzAyMDAsIFRob21hcyBaaW1tZXJtYW5uIHdy
+b3RlOg0KPj4+PiArICAgLyogNjMuNTU2dXMgKiAxMy41TUh6ID0gODU4IHBpeGVscyAqLw0K
+Pj4+DQo+Pj4gSSBraW5kIG9mIGdldCB3aGF0IHRoZSBjb21tZW50IHdhbnRzIHRvIHRlbGwg
+bWUsIGJ1dCB0aGUgdW5pdHMgZG9uJ3QgYWRkIHVwLg0KPj4NCj4+IEknbSBub3Qgc3VyZSBo
+b3cgaXQgZG9lc24ndCBhZGQgdXA/DQo+Pg0KPj4gV2UgaGF2ZSBhIGZyZXF1ZW5jeSBpbiBI
+eiAoZXF1aXZhbGVudCB0byBzXi0xKSBhbmQgYSBkdXJhdGlvbiBpbiBzLCBzbw0KPj4gdGhl
+IHJlc3VsdCBlbmRzIHVwIHdpdGggbm8gZGltZW5zaW9uLCB3aGljaCBpcyB0byBiZSBleHBl
+Y3RlZCBmb3IgYQ0KPj4gbnVtYmVyIG9mIHBlcmlvZHM/DQo+IA0KPiBUbyBtYWtlIHRoZSB1
+bml0cyBhZGQgdXAsIGl0IHNob3VsZCBiZSAxMy41IE1waXhlbC9zDQo+ICh3aGljaCBpcyB3
+aGF0IGEgcGl4ZWwgY2xvY2sgb2YgMTMuNSBNSHogcmVhbGx5IG1lYW5zIDstKQ0KDQpTb3J0
+IG9mLiBJdCBsZWF2ZXMgdGhlIHRpbWUgdmFsdWUgYXMgYSBtYWdpYyBudW1iZXIsIHdoaWNo
+IG9iZnVzY2F0ZXMgDQp3aGF0J3MgaGFwcGVuaW5nLg0KDQpUaGUgdW5pdCBmb3IgaHRvdGFs
+IGlzIHBpeGVscy9zY2FubGluZSBiZWNhdXNlIGlmIHlvdSBtdWx0aXBseSBpdCB3aXRoIA0K
+dGhlIG51bWJlciBvZiBzY2FubGluZXMgcGVyIGZyYW1lICh3aGljaCBpcyBpbiB2dG90YWwp
+LCB5b3UgZ2V0IA0KcGl4ZWxzL2ZyYW1lLiBNdWx0aXBseWluZyB3aXRoIHRoZSBmcmFtZXMg
+cGVyIHNlY29uZCByZXN1bHRzIGluIHRoZSANCnBpeGVsIGNsb2NrIGluIHBpeGVscy9zZWNv
+bmQuDQoNClRoYXQncyBhIGJpdCBtdWNoIGZvciB0aGlzIGNvbW1lbnQuIEhlbmNlLCBJIHN1
+Z2dlc3RlZCB0byByZW1vdmUgdGhlc2UgDQpjb21tZW50cyBlbnRpcmVseSBhbmQgZG9jdW1l
+bnQgdGhlIHJlbGF0aW9uIGFtb25nIHRoZSBudW1iZXJzIGluIGEgbW9yZSANCnByb21pbmVu
+dCBsb2NhdGlvbi4gVGhlIGRvY3VtZW50YXRpb24gZm9yIGRybV9kaXNwbGF5X21vZGUgd291
+bGQgYmUgYSANCmdvb2QgcGxhY2UsIEkgZ3Vlc3MuDQoNCkJlc3QgcmVnYXJkcw0KVGhvbWFz
+DQoNCj4gDQo+IEdye29ldGplLGVldGluZ31zLA0KPiANCj4gICAgICAgICAgICAgICAgICAg
+ICAgICAgIEdlZXJ0DQo+IA0KPiAtLQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUn
+cyBsb3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3JnDQo+
+IA0KPiBJbiBwZXJzb25hbCBjb252ZXJzYXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwg
+SSBjYWxsIG15c2VsZiBhIGhhY2tlci4gQnV0DQo+IHdoZW4gSSdtIHRhbGtpbmcgdG8gam91
+cm5hbGlzdHMgSSBqdXN0IHNheSAicHJvZ3JhbW1lciIgb3Igc29tZXRoaW5nIGxpa2UgdGhh
+dC4NCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLS0gTGludXMgVG9ydmFs
+ZHMNCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Bl
+cg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1
+LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykN
+Ckdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
 
-> 
-> 
-> > +		/*
-> > +		 * Figure out the current pipe for the initial backlight setup.
-> > +		 * If the current pipe isn't valid, try the PPS pipe, and if that
-> > +		 * fails just assume pipe A.
-> > +		 */
-> > +		pipe = vlv_active_pipe(intel_dp);
-> > +
-> > +		if (pipe != PIPE_A && pipe != PIPE_B)
-> > +			pipe = intel_dp->pps.pps_pipe;
-> > +
-> > +		if (pipe != PIPE_A && pipe != PIPE_B)
-> > +			pipe = PIPE_A;
-> > +
-> > +		drm_dbg_kms(&i915->drm,
-> > +			    "[CONNECTOR:%d:%s] using pipe %c for initial backlight setup\n",
-> > +			    connector->base.base.id, connector->base.name,
-> > +			    pipe_name(pipe));
-> > +	}
-> > +
-> > +	intel_backlight_setup(connector, pipe);
-> 
-> In most cases we will call intel_backlight_setup() with INVALID_PIPE. 
-> Wouldn't it be better to skip this call completely in that case?
+--------------3WYvgZonJe2p1UqhQXWVMRE6--
 
-INVALD_PIPE doesn't mean "no backlight", it just means we don't
-care about the pipe.
+--------------ugjNnt50fIMLVu6urhLXoAKy
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
--- 
-Ville Syrjälä
-Intel
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmMximAFAwAAAAAACgkQlh/E3EQov+DJ
+1g//RygY42C2g9i/xd+0ILDL66FTDjnaa8D93msjwX0RgMc50KzIbRpbsiRLSPZNLMpkrIcA3uSR
+N0x4eWgJrZSQWWZycl0SoM3hDsueWGj7o27kJ6dP9K8km0/CQKlF9Bz5TzQkvnihiU4tVEJ1975m
+N+OU1qG+gGOf3Slcjobwou/k8aeXOBtisOaIvtx13xhp99eTp5HLoYN2q2szoF+PIdBGFJDQFugU
+sxGCQlMaTTFl67ajM1oZg8tpQU7mfmL86cAzqp4azLGYVsDBMvA6Rf6hmJHTa9v6w1oRdA8wu1xQ
+Z/T5rXPuWQDx65f79HtkQ7UJ06sTSlNFbrjbuuuo5/DMW9bXg0Amlz6tCra3bdg0xcPZauA26rAS
+/QTU3gBYzzjo0m/Uu+xe0hrK/mfHRBgNtbVeKYKWEI5OSSl6oUzonl/QVCOTf1IxUDx1yBu/aCzV
+jzDoAzHpN91aIIjaiUuKdFbJqz1baeo0SZpqSW0hIhEFEGNSgWDGtSlkDdrBEpvVdLElo9hXn3Ue
+EIShw8OUahXUdnh21r6NKPpv1/qjYZCn1H3AvHDNZDMnX+ALFx9pDOixXd1NUW9y3LMzj0/cLaPI
+usAR4M1Q0dVG4JunLeNnzR7HrFaH6cT194xjmHpiNZEvdkXmc6V6dEkUmB+TFER1utnMweRJtLs+
+YSA=
+=1G2G
+-----END PGP SIGNATURE-----
+
+--------------ugjNnt50fIMLVu6urhLXoAKy--
