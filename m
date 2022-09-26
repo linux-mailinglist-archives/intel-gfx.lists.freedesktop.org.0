@@ -1,54 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 139E25EAB26
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 17:33:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB7725EAB2E
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 17:34:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 088FC10E6EE;
-	Mon, 26 Sep 2022 15:33:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3247310E6E8;
+	Mon, 26 Sep 2022 15:34:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E42410E6F8;
- Mon, 26 Sep 2022 15:33:03 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E895410E6E8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 15:34:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664206383; x=1695742383;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=neI0pHHqjLCVXMfycxXjSFhnAILxBQHzkFKL1CQ2Azc=;
- b=m0L2o+fg77F6/+RsQA3nV2tzgo5TssnkaF8YZeP5hTIMAk+P4dks2AlD
- X8BHnWyPbz+hFKCBBasyyVBSsIdSqVhITojrGN2+ty7kJhStnU1M2X7tC
- Sz++jhGbnn0fuq09bVoJFCl2nh+ZKtiFGVOryO8hpPNCdIcWxspSclbVB
- 0M+ZIV3h8zfQ8NavjKXoAkSqLgvDLEJ1JCyeoUr2pNXfXU+OYrrL8UIYc
- pB1EGxJc04pWG7VqETkfvpbbXefEEvh2QjAWaAlOR+Uc9ZP8ut4emXNcj
- 993ZX5mu6DNTfi3qzU98iDEUJHseY2n5K4coVqUp4+jsrDFun5LMohRmX g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="288197789"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="288197789"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 08:33:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="651869066"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="651869066"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga008.jf.intel.com with SMTP; 26 Sep 2022 08:32:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 26 Sep 2022 18:32:57 +0300
-Date: Mon, 26 Sep 2022 18:32:57 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>
-Message-ID: <YzHGKXUjwZAExVw4@intel.com>
-References: <20220916163331.6849-1-ville.syrjala@linux.intel.com>
- <20220920103415.369d3ef4@eldfell>
+ t=1664206442; x=1695742442;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5iPPPVoysgj0jywFmM68udn7dRrhbYlvISm8jbBOxfQ=;
+ b=IFlVdadkRQg6ZTBaLCJduXgXU4H0jyNbJ5oDJ0VXCIQ9mdn1fAqbPXj6
+ VLNBpU+IpF2ZZYeSnJnCKag5bNIqlDvtj8r6uKKAOpUFj/Zp4ayMck3G3
+ /zSg7FPgKI5WvMBC4LP4gh83viGYGZi4uM9bwlBCrUU78Jy1wGKj5syJa
+ AMfPkozzN65UCqNDjqzlMtAcJ3xf+pAQsg5Y6hvRHfPGwf2oZXHam+r6x
+ C7+F+lHryCOiJ9LTYV3YA99LbUdKXCvG8XVxEVySAvhPlgrSi0gQ8hE7T
+ 3nz4aL9bouplIzuQQbCLLT68PwthDL5D+U4sbEAyg4YwrDR7XwM1ZxlWA g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="301960128"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="301960128"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 08:34:00 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="616445079"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="616445079"
+Received: from vnyaykal-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.4.169])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 08:33:58 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 26 Sep 2022 16:33:33 +0100
+Message-Id: <20220926153333.102195-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220920103415.369d3ef4@eldfell>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 0/4] drm/atomic: Lockless blocking commits
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Use i915_vm_put on ppgtt_create
+ error paths
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,90 +57,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jonas =?iso-8859-1?Q?=C5dahl?= <jadahl@gmail.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Simon Ser <contact@emersion.fr>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ stable@vger.kernel.org, Chris Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 20, 2022 at 10:34:15AM +0300, Pekka Paalanen wrote:
-> On Fri, 16 Sep 2022 19:33:27 +0300
-> Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> 
-> > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > 
-> > I've talked about making blocking commits lockless a few
-> > times in the past, so here's finally an attempt at it.
-> > The main benefit I see from this is that TEST_ONLY commits
-> > no longer getting blocked on the mutexes by parallel blocking
-> > commits.
-> > 
-> > I have a small test here that spools up two threads,
-> > one does just TEST_ONLY commits in a loop, the other
-> > does either blocking or non-blocking page flips. Results
-> > came out as follows on a snb machine here:
-> > 
-> > test-only-vs-non-blocking:
-> > -85319 TEST_ONLY commits in 2000000 usecs, 23 usecs / commit
-> > +87144 TEST_ONLY commits in 2000006 usecs, 22 usecs / commit
-> > 
-> > test-only-vs-blocking:
-> > -219 TEST_ONLY commits in 2001768 usecs, 9140 usecs / commit
-> > +82442 TEST_ONLY commits in 2000011 usecs, 24 usecs / commit
-> > 
-> > Now, I have no idea if anyone actually cares about lack
-> > of parallelism due to locked blocking commits or not. Hence
-> > Cc'd some compositor folks as well. I guess this is more of
-> > an RFC at this point.
-> > 
-> > Also curious to see if CI goes up in smoke or not...
-> 
-> Hi Ville,
-> 
-> thanks for thinking about this. If I understand correctly, the issue
-> you are solving here happens only when a blocking commit is underway
-> while TEST_ONLY commits are done. This can only happen if userspace
-> does the blocking commits from one thread, while another thread is
-> doing TEST_ONLY probing on the same DRM device. It is inconsequential
-> whether the two threads target distinct CRTCs or same CRTCs.
-> 
-> If so, this is not a problem for Weston for two reasons:
-> 
-> - Weston is fundamentally single-threaded, so if it does use a blocking
->   commit, it's not going to do anything else at the same time.
-> 
-> - Weston practically always uses non-blocking commits.
-> 
-> I cannot imagine those two facts to change.
+From: Chris Wilson <chris.p.wilson@intel.com>
 
-I figured that is likely the case. Thanks for confirming.
+Now that the scratch page and page directories have a reference back to
+the i915_address_space, we cannot do an immediate free of the ppgtt upon
+error as those buffer objects will perform a later i915_vm_put in their
+deferred frees.
 
-> 
-> Ah, but there is a case: KMS leasing!
-> 
-> With leasing you have two processes poking distinct CRTCs on the same
-> device at the same time. Even if Weston never blocks, an arbitrary
-> leasing client might, and I presume that would then stall Weston's
-> TEST_ONLY commits.
-> 
-> I believe working on optimising this could be useful for KMS leasing use
-> cases, assuming lessees do blocking commits. I don't know if any do.
+The downside is that by replacing the onion unwind along the error
+paths, the ppgtt cleanup must handle a partially constructed vm. This
+includes ensuring that the vm->cleanup is set prior to the error path.
 
-Hmm, yeah didn't even think about leasing. Never have really.
+Fixes: https://gitlab.freedesktop.org/drm/intel/-/issues/6900
+Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
+Fixes: 4d8151ae5329 ("drm/i915: Don't free shared locks while shared")
+Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: <stable@vger.kernel.org> # v5.14+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c | 16 ++++----
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 58 ++++++++++++++--------------
+ drivers/gpu/drm/i915/gt/intel_gtt.c  |  3 ++
+ 3 files changed, 41 insertions(+), 36 deletions(-)
 
-The other reason (one I already forgot) I had for this is
-drm_private_obj which has its own lock embbedded inside now.
-So currently you have to think hard before actually using one
-so as to not make everything block on it. With the locks not
-held so much maybe drm_private_obj might become more palatable
-for some things.
-
-Oh, I guess there might also be some internal commits (or commit
-like things) happening in the driver in some cases, such as DP
-link retraining. At least with i915 those currently happen with
-the locks held, but maybe could also be made lockless. But I
-admit that those should be exceedingly rare situations.
-
+diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+index 1bb766c79dcb..5aaacc53fa4c 100644
+--- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+@@ -247,6 +247,7 @@ static int gen6_ppgtt_init_scratch(struct gen6_ppgtt *ppgtt)
+ 	i915_gem_object_put(vm->scratch[1]);
+ err_scratch0:
+ 	i915_gem_object_put(vm->scratch[0]);
++	vm->scratch[0] = NULL;
+ 	return ret;
+ }
+ 
+@@ -268,9 +269,10 @@ static void gen6_ppgtt_cleanup(struct i915_address_space *vm)
+ 	gen6_ppgtt_free_pd(ppgtt);
+ 	free_scratch(vm);
+ 
+-	mutex_destroy(&ppgtt->flush);
++	if (ppgtt->base.pd)
++		free_pd(&ppgtt->base.vm, ppgtt->base.pd);
+ 
+-	free_pd(&ppgtt->base.vm, ppgtt->base.pd);
++	mutex_destroy(&ppgtt->flush);
+ }
+ 
+ static void pd_vma_bind(struct i915_address_space *vm,
+@@ -449,19 +451,17 @@ struct i915_ppgtt *gen6_ppgtt_create(struct intel_gt *gt)
+ 
+ 	err = gen6_ppgtt_init_scratch(ppgtt);
+ 	if (err)
+-		goto err_free;
++		goto err_put;
+ 
+ 	ppgtt->base.pd = gen6_alloc_top_pd(ppgtt);
+ 	if (IS_ERR(ppgtt->base.pd)) {
+ 		err = PTR_ERR(ppgtt->base.pd);
+-		goto err_scratch;
++		goto err_put;
+ 	}
+ 
+ 	return &ppgtt->base;
+ 
+-err_scratch:
+-	free_scratch(&ppgtt->base.vm);
+-err_free:
+-	kfree(ppgtt);
++err_put:
++	i915_vm_put(&ppgtt->base.vm);
+ 	return ERR_PTR(err);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index c7bd5d71b03e..2128b7a72a25 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -196,7 +196,10 @@ static void gen8_ppgtt_cleanup(struct i915_address_space *vm)
+ 	if (intel_vgpu_active(vm->i915))
+ 		gen8_ppgtt_notify_vgt(ppgtt, false);
+ 
+-	__gen8_ppgtt_cleanup(vm, ppgtt->pd, gen8_pd_top_count(vm), vm->top);
++	if (ppgtt->pd)
++		__gen8_ppgtt_cleanup(vm, ppgtt->pd,
++				     gen8_pd_top_count(vm), vm->top);
++
+ 	free_scratch(vm);
+ }
+ 
+@@ -803,8 +806,10 @@ static int gen8_init_scratch(struct i915_address_space *vm)
+ 		struct drm_i915_gem_object *obj;
+ 
+ 		obj = vm->alloc_pt_dma(vm, I915_GTT_PAGE_SIZE_4K);
+-		if (IS_ERR(obj))
++		if (IS_ERR(obj)) {
++			ret = PTR_ERR(obj);
+ 			goto free_scratch;
++		}
+ 
+ 		ret = map_pt_dma(vm, obj);
+ 		if (ret) {
+@@ -823,7 +828,8 @@ static int gen8_init_scratch(struct i915_address_space *vm)
+ free_scratch:
+ 	while (i--)
+ 		i915_gem_object_put(vm->scratch[i]);
+-	return -ENOMEM;
++	vm->scratch[0] = NULL;
++	return ret;
+ }
+ 
+ static int gen8_preallocate_top_level_pdp(struct i915_ppgtt *ppgtt)
+@@ -901,6 +907,7 @@ gen8_alloc_top_pd(struct i915_address_space *vm)
+ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
+ 				     unsigned long lmem_pt_obj_flags)
+ {
++	struct i915_page_directory *pd;
+ 	struct i915_ppgtt *ppgtt;
+ 	int err;
+ 
+@@ -946,21 +953,7 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
+ 		ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
+ 	}
+ 
+-	err = gen8_init_scratch(&ppgtt->vm);
+-	if (err)
+-		goto err_free;
+-
+-	ppgtt->pd = gen8_alloc_top_pd(&ppgtt->vm);
+-	if (IS_ERR(ppgtt->pd)) {
+-		err = PTR_ERR(ppgtt->pd);
+-		goto err_free_scratch;
+-	}
+-
+-	if (!i915_vm_is_4lvl(&ppgtt->vm)) {
+-		err = gen8_preallocate_top_level_pdp(ppgtt);
+-		if (err)
+-			goto err_free_pd;
+-	}
++	ppgtt->vm.pte_encode = gen8_pte_encode;
+ 
+ 	ppgtt->vm.bind_async_flags = I915_VMA_LOCAL_BIND;
+ 	ppgtt->vm.insert_entries = gen8_ppgtt_insert;
+@@ -971,22 +964,31 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
+ 	ppgtt->vm.allocate_va_range = gen8_ppgtt_alloc;
+ 	ppgtt->vm.clear_range = gen8_ppgtt_clear;
+ 	ppgtt->vm.foreach = gen8_ppgtt_foreach;
++	ppgtt->vm.cleanup = gen8_ppgtt_cleanup;
+ 
+-	ppgtt->vm.pte_encode = gen8_pte_encode;
++	err = gen8_init_scratch(&ppgtt->vm);
++	if (err)
++		goto err_put;
++
++	pd = gen8_alloc_top_pd(&ppgtt->vm);
++	if (IS_ERR(pd)) {
++		err = PTR_ERR(pd);
++		goto err_put;
++	}
++	ppgtt->pd = pd;
++
++	if (!i915_vm_is_4lvl(&ppgtt->vm)) {
++		err = gen8_preallocate_top_level_pdp(ppgtt);
++		if (err)
++			goto err_put;
++	}
+ 
+ 	if (intel_vgpu_active(gt->i915))
+ 		gen8_ppgtt_notify_vgt(ppgtt, true);
+ 
+-	ppgtt->vm.cleanup = gen8_ppgtt_cleanup;
+-
+ 	return ppgtt;
+ 
+-err_free_pd:
+-	__gen8_ppgtt_cleanup(&ppgtt->vm, ppgtt->pd,
+-			     gen8_pd_top_count(&ppgtt->vm), ppgtt->vm.top);
+-err_free_scratch:
+-	free_scratch(&ppgtt->vm);
+-err_free:
+-	kfree(ppgtt);
++err_put:
++	i915_vm_put(&ppgtt->vm);
+ 	return ERR_PTR(err);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index b67831833c9a..2eaeba14319e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -405,6 +405,9 @@ void free_scratch(struct i915_address_space *vm)
+ {
+ 	int i;
+ 
++	if (!vm->scratch[0])
++		return;
++
+ 	for (i = 0; i <= vm->top; i++)
+ 		i915_gem_object_put(vm->scratch[i]);
+ }
 -- 
-Ville Syrj‰l‰
-Intel
+2.37.3
+
