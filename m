@@ -2,60 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F2E45EAE7B
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 19:49:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E345EAE7E
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 19:49:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D96CC10E10E;
-	Mon, 26 Sep 2022 17:49:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4532E10E4CE;
+	Mon, 26 Sep 2022 17:49:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
- [IPv6:2607:f8b0:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 411DF10E2B2
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 17:49:15 +0000 (UTC)
-Received: by mail-pl1-x62d.google.com with SMTP id w10so6898663pll.11
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 10:49:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date;
- bh=2ghx9soVNRgMuce/k3rtlZFlzNNavxdxcyGC2lzjes8=;
- b=GC57hiZQZgYOn4cuzXIko936K811D1jk++Lxi45rCq4gzvQsowln0lx4woHxaOWEVd
- wfGNpgIHsJ5oU+cBNwjXnighAUrEiz8tArdSIJMCEA0xhvMNJXe+8x3aNlvwSe7YtsWQ
- o5Ry+Le31Z/jZDbhByABzglVRuwvuBarWx6vw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
- bh=2ghx9soVNRgMuce/k3rtlZFlzNNavxdxcyGC2lzjes8=;
- b=FqLPjSzNUm5YZbIzoIq2n1I3HRoBBQZkUHBAKjltTwGgD5wn0+SBI+Nmw33ZI5WMiX
- eUg1cfSorcF80PsVKKP+v9VscP2dpvBvUjhKRFNFO3OR+HYODy63XWBAia9smH/1ck2v
- /Rmh0Mg7r9kWBS5cKdwm+3AOQ/o3x7HG0tRLBvYEdbK6yv/rKSAhENQbILyYDB6fT9oF
- kN8HPzBfX4nyMCJ7jippTrVfGcs92mOK+Zm1quatDdCS+EZftS0NAbEGpGXiS8VF4Ace
- QruGmi8Gecspst1LjyzpmmLleqZ+IbM0sI8sg0QwKZIclWyTOEseo5HWA8QCNdDvltDV
- PcuA==
-X-Gm-Message-State: ACrzQf2Bf6vzUdfR1uzbOWHLmD9bO0AOpDHBUGogXVPGgKGdIDPt/Pjw
- nHENOJzaeTg4xiHpOjJ8G43m+A==
-X-Google-Smtp-Source: AMsMyM7Nl4pXzVNRXTYRj9D3jmUhFFcCnnFwsDwyHyeCGsBtAIOaH1U38Aj3lxSoVvM4vDCHi8Fwsg==
-X-Received: by 2002:a17:90b:3b43:b0:202:d053:d305 with SMTP id
- ot3-20020a17090b3b4300b00202d053d305mr26417901pjb.229.1664214554768; 
- Mon, 26 Sep 2022 10:49:14 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id
- x125-20020a628683000000b0054087e1aea4sm12829374pfd.15.2022.09.26.10.49.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Sep 2022 10:49:14 -0700 (PDT)
-Date: Mon, 26 Sep 2022 10:49:13 -0700
-From: Kees Cook <keescook@chromium.org>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <202209261045.3EAEE773E9@keescook>
-References: <20220926003743.409911-1-keescook@chromium.org>
- <06a907d2-e976-ed8a-bfff-277c835d9ab2@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D92E010E3E5;
+ Mon, 26 Sep 2022 17:49:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664214567; x=1695750567;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OhVp/Gyhr/Zw+SvZJtMCwlmQOVcfxilaqZ2j0NhiYrw=;
+ b=LEKhz0LjfjBt8Xo3QKSncgG7yEVOUMmMQoo3l5vBce89J8ODcOYUyZyt
+ 3Xmh1UFOlE2tTUKXorKlri0CT0RFpAQ7lAs1Pt6zkwXAQLwUHILVrnRFT
+ h++AiJPMVSiH2fbhcMXleCz8ZMLlzxO1KxqkU1D9UNDL9sXz92X8HabFm
+ iGECvR581hrwlZYjR1V2wEP0afxpSA3rHVgWkA609L4H3mKvIOKCbB80q
+ UQffkI62Zpd4p1MO0zWNQ8xLO2+tkZFgQamRCb+P1VXf9I3jRNm2Cfobz
+ TLuJYtX8kKUJj8pulbC6ZzI7vCsW5fofg2JmeQo5HTBeZp98aXFmT77Pc A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="288240055"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="288240055"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 10:49:27 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="654367041"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="654367041"
+Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 10:49:24 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 26 Sep 2022 23:22:04 +0530
+Message-Id: <20220926175211.3473371-1-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <06a907d2-e976-ed8a-bfff-277c835d9ab2@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v11.5] overflow: Introduce overflows_type()
- and __castable_to_type()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/7] Add HWMON support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,144 +54,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tom Rix <trix@redhat.com>, Daniel Latypov <dlatypov@google.com>,
- llvm@lists.linux.dev, linux@rasmusvillemoes.dk,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- linux-hardening@vger.kernel.org, andrzej.hajda@intel.com,
- linux-sparse@vger.kernel.org, matthew.auld@intel.com, airlied@redhat.com,
- thomas.hellstrom@linux.intel.com, jani.nikula@intel.com,
- intel-gfx@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>,
- mchehab@kernel.org, Nick Desaulniers <ndesaulniers@google.com>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, linux-kernel@vger.kernel.org,
- daniel@ffwll.ch, Vitor Massaru Iha <vitor@massaru.org>,
- Luc Van Oostenryck <luc.vanoostenryck@gmail.com>, nirmoy.das@intel.com
+Cc: linux-hwmon@vger.kernel.org, andi.shyti@intel.com,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 26, 2022 at 06:57:53PM +0300, Gwan-gyeong Mun wrote:
-> 
-> 
-> On 9/26/22 3:37 AM, Kees Cook wrote:
-> > Add overflows_type() to test if a variable or constant value would
-> > overflow another variable or type. This can be used as a constant
-> > expression for static_assert() (which requires a constant
-> > expression[1][2]) when used on constant values. This must be constructed
-> > manually, since __builtin_add_overflow() does not produce a constant
-> > expression[3].
-> > 
-> > Additionally adds __castable_to_type(), similar to __same_type(), for
-> > checking if a constant value will fit in a given type (i.e. it could
-> > be cast to the type without overflow).
-> > 
-> > Add unit tests for overflows_type(), __same_type(), and
-> > __castable_to_type() to the existing KUnit "overflow" test.
-> > 
-> > [1] https://en.cppreference.com/w/c/language/_Static_assert
-> > [2] C11 standard (ISO/IEC 9899:2011): 6.7.10 Static assertions
-> > [3] https://gcc.gnu.org/onlinedocs/gcc/Integer-Overflow-Builtins.html
-> >      6.56 Built-in Functions to Perform Arithmetic with Overflow Checking
-> >      Built-in Function: bool __builtin_add_overflow (type1 a, type2 b,
-> >                                                      type3 *res)
-> > 
-> > Cc: Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
-> > Cc: Nathan Chancellor <nathan@kernel.org>
-> > Cc: Nick Desaulniers <ndesaulniers@google.com>
-> > Cc: Tom Rix <trix@redhat.com>
-> > Cc: Daniel Latypov <dlatypov@google.com>
-> > Cc: Vitor Massaru Iha <vitor@massaru.org>
-> > Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-> > Cc: linux-hardening@vger.kernel.org
-> > Cc: llvm@lists.linux.dev
-> > Co-developed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> > Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> > Signed-off-by: Kees Cook <keescook@chromium.org>
-> > ---
-> >   include/linux/compiler.h |   1 +
-> >   include/linux/overflow.h |  48 +++++
-> >   lib/overflow_kunit.c     | 393 ++++++++++++++++++++++++++++++++++++++-
-> >   3 files changed, 441 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/include/linux/compiler.h b/include/linux/compiler.h
-> > index 7713d7bcdaea..c631107e93b1 100644
-> > --- a/include/linux/compiler.h
-> > +++ b/include/linux/compiler.h
-> > @@ -244,6 +244,7 @@ static inline void *offset_to_ptr(const int *off)
-> >    * bool and also pointer types.
-> >    */
-> >   #define is_signed_type(type) (((type)(-1)) < (__force type)1)
-> > +#define is_unsigned_type(type) (!is_signed_type(type))
-> >   /*
-> >    * This is needed in functions which generate the stack canary, see
-> > diff --git a/include/linux/overflow.h b/include/linux/overflow.h
-> > index 19dfdd74835e..c8cbeae5f4f8 100644
-> > --- a/include/linux/overflow.h
-> > +++ b/include/linux/overflow.h
-> > @@ -127,6 +127,54 @@ static inline bool __must_check __must_check_overflow(bool overflow)
-> >   	(*_d >> _to_shift) != _a);					\
-> >   }))
-> > +#define __overflows_type_constexpr(x, T) (			\
-> > +	is_unsigned_type(typeof(x)) ?				\
-> > +		(x) > type_max(typeof(T)) ? 1 : 0		\
-> > +	: is_unsigned_type(typeof(T)) ?				\
-> > +		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
-> > +		: (x) < type_min(typeof(T)) ||			\
-> > +		  (x) > type_max(typeof(T)) ? 1 : 0 )
-> > +
-> > +#define __overflows_type(x, T)		({	\
-> > +	typeof(T) v = 0;			\
-> > +	check_add_overflow((x), v, &v);		\
-> > +})
-> > +
-> > +/**
-> > + * overflows_type - helper for checking the overflows between value, variables,
-> > + *		    or data type
-> > + *
-> > + * @n: source constant value or variable to be checked
-> > + * @T: destination variable or data type proposed to store @x
-> > + *
-> > + * Compares the @x expression for whether or not it can safely fit in
-> > + * the storage of the type in @T. @x and @T can have different types.
-> > + * If @x is a conxtant expression, this will also resolve to a constant
-> > + * expression.
-> > + *
-> > + * Returns: true if overflow can occur, false otherwise.
-> > + */
-> > +#define overflows_type(n, T)					\
-> > +	__builtin_choose_expr(__is_constexpr(n),		\
-> > +			      __overflows_type_constexpr(n, T),	\
-> > +			      __overflows_type(n, T))
-> > +
-> > +/**
-> > + * __castable_to_type - like __same_type(), but also allows for casted literals
-> > + *
-> > + * @n: variable or constant value
-> > + * @T: data type or variable
-> > + *
-> > + * Unlike the __same_type() macro, this allows a constant value as the
-> > + * first argument. If this value would not overflow into an assignment
-> > + * of the second argument's type, it returns true. Otherwise, this falls
-> > + * back to __same_type().
-> > + */
-> > +#define __castable_to_type(n, T)					\
-> > +	__builtin_choose_expr(__is_constexpr(n),			\
-> > +			      !__overflows_type_constexpr(n, T),	\
-> > +			      __same_type(n, T))
-> > +
-> This name is fine, but I prefer the __same_typable you suggested as a
-> comment in the previous patch better, what do you think?
-> ( __castable_to_type(n, T); The macro name seems to handle if type casting
-> is possible to the second argument type from the first argument variable. )
+This series adds the HWMON support for DGFX
 
-I changed this name because "typable" isn't a familiar name for someone
-reading all of this for the first time. What's really happening is a
-check if _casting_ will result in an overflow. And when I named it just
-"__castable_type" it sounded like a declaration rather than a test. But
-perhaps it should lose the "__" prefix, and just be "castable_to_type"?
-Or even more verbose as "can_cast_to_type()" ?
+Test-with: 20220919144408.251981-1-riana.tauro@intel.com
 
-As for argument order, it seemed best to keep the order the same as with
-overflows_type(). I think that makes all of these macros a bit easier to
-read/review/understand for others.
+v2:
+  - Reorganized series. Created first patch as infrastructure patch
+    followed by feature patches. (Ashutosh)
+  - Fixed review comments (Jani)
+  - Fixed review comments (Ashutosh)
+
+v3:
+  - Fixed review comments from Guenter
+  - Exposed energy inferface as standard hwmon interface (Ashutosh)
+  - For power interface added entries for critical power and maintained
+    standard interface for all the entries except 
+    power1_max_interval
+  - Extended support for XEHPSDV (Ashutosh)
+
+v4:
+  - Fixed review comment from Guenter
+  - Cleaned up unused code
+
+v5:
+  - Fixed review comments (Jani)
+
+v6: 
+  - Fixed review comments (Ashutosh)
+  - Updated date and kernel version in documentation
+
+v7:
+  - Fixed review comments (Anshuman)
+  - KernelVersion: 6.2, Date: February 2023 in doc (Tvrtko) 
+
+v8: s/hwmon_device_register_with_info/
+      devm_hwmon_device_register_with_info/ (Ashutosh)
+
+Ashutosh Dixit (2):
+  drm/i915/hwmon: Expose card reactive critical power
+  drm/i915/hwmon: Expose power1_max_interval
+
+Dale B Stimson (4):
+  drm/i915/hwmon: Add HWMON infrastructure
+  drm/i915/hwmon: Power PL1 limit and TDP setting
+  drm/i915/hwmon: Show device level energy usage
+  drm/i915/hwmon: Extend power/energy for XEHPSDV
+
+Riana Tauro (1):
+  drm/i915/hwmon: Add HWMON current voltage support
+
+ .../ABI/testing/sysfs-driver-intel-i915-hwmon |  75 ++
+ drivers/gpu/drm/i915/Makefile                 |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   8 +
+ drivers/gpu/drm/i915/i915_driver.c            |   5 +
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ drivers/gpu/drm/i915/i915_hwmon.c             | 736 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_hwmon.h             |  20 +
+ drivers/gpu/drm/i915/i915_reg.h               |   6 +
+ drivers/gpu/drm/i915/intel_mchbar_regs.h      |  21 +
+ 9 files changed, 876 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+ create mode 100644 drivers/gpu/drm/i915/i915_hwmon.c
+ create mode 100644 drivers/gpu/drm/i915/i915_hwmon.h
 
 -- 
-Kees Cook
+2.25.1
+
