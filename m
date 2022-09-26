@@ -1,48 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE6A5E9EB5
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 12:11:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0385E9EBC
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 12:12:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3D2310E666;
-	Mon, 26 Sep 2022 10:11:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A76810E65D;
+	Mon, 26 Sep 2022 10:12:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D937810E666
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 10:11:23 +0000 (UTC)
-Received: from 91-155-255-44.elisa-laajakaista.fi ([91.155.255.44]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1ocl54-003aBd-UF;
- Mon, 26 Sep 2022 13:11:21 +0300
-Message-ID: <900ec18d05a9b594750572a0c1a60e82acd1df1d.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Date: Mon, 26 Sep 2022 13:11:18 +0300
-In-Reply-To: <Yy1kSZCykGOQS7or@intel.com>
-References: <20220916165206.1499-1-ville.syrjala@linux.intel.com>
- <20220916165206.1499-3-ville.syrjala@linux.intel.com>
- <9731fffc60162a34b7790bb08792fc55593e4ca2.camel@coelho.fi>
- <YywdAq6eYfTEppUC@intel.com> <87leqb7px7.fsf@intel.com>
- <Yywsrhy2MJKRI76v@intel.com>
- <c03ce859eb948c65123933d6c89db2c8297afba1.camel@coelho.fi>
- <YyxNx+p2k3RscYBX@intel.com>
- <0408c640dfbc4bdea5cfab16bbe0347299cda57d.camel@coelho.fi>
- <Yy1kSZCykGOQS7or@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.0-2 
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39D5F10E668
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 10:11:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664187118; x=1695723118;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=4nkyp4ONi8cY4FAnh/W0paxhFeTn+Le3jSFxvoHIq2A=;
+ b=hxIn58G/CR6xGiEnXd3tpijYWOqNC3lJYpYZBEgdkbqNQnngrgot5AUM
+ lbn/a2XMB6iENUjOF/VAvcMKIFyPytn9wVRvOZVIdROeKT96vIoZ6QVxQ
+ A/OA26L2ZZvYNiSfgGkh3UG2ssGLW0lMbnBTjkZrz1OwfAfMMewNFQDJz
+ uaZUclc5iXR9nHtK+Dx2A0vb8Y/UhKTYQ3A3/6kSK1WgsiTqY7TpnMe+q
+ dSN0Hw7QzAsqw+px6cxV9Q6/C1Z4O2AK0rK+UHY3KIo7CcII6UDas3PS8
+ OZQ7bkBDvBfNlxzn2xk7UnJnqyNOHYPhzDmq7DE6apqccUFcssR9wX6uI A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10481"; a="299713049"
+X-IronPort-AV: E=Sophos;i="5.93,345,1654585200"; d="scan'208";a="299713049"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 03:11:57 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10481"; a="572153171"
+X-IronPort-AV: E=Sophos;i="5.93,345,1654585200"; d="scan'208";a="572153171"
+Received: from lsabisze-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.243])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 03:11:56 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <20220920072450.2b6wizrw2i5tyk5k@ldmartin-desk2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220916082642.3451961-1-jani.nikula@intel.com>
+ <20220916152638.u3rnatqrq52x5d32@ldmartin-desk2.lan>
+ <87edw7rdgy.fsf@intel.com>
+ <20220920072450.2b6wizrw2i5tyk5k@ldmartin-desk2.lan>
+Date: Mon, 26 Sep 2022 13:11:36 +0300
+Message-ID: <87tu4u30o7.fsf@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,URIBL_BLOCKED autolearn=ham autolearn_force=no
- version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Mark FBC B gone if pipe B is
- gone
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix device info for devices
+ without display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,100 +65,146 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2022-09-23 at 10:46 +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
-> On Fri, Sep 23, 2022 at 09:24:28AM +0300, Luca Coelho wrote:
-> > On Thu, 2022-09-22 at 14:57 +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > > On Thu, Sep 22, 2022 at 02:37:35PM +0300, Luca Coelho wrote:
-> > > > On Thu, 2022-09-22 at 12:36 +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > > > > On Thu, Sep 22, 2022 at 11:51:16AM +0300, Jani Nikula wrote:
-> > > > > > On Thu, 22 Sep 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@lin=
-ux.intel.com> wrote:
-> > > > > > > On Thu, Sep 22, 2022 at 11:18:55AM +0300, Luca Coelho wrote:
-> > > > > > > > On Fri, 2022-09-16 at 19:52 +0300, Ville Syrjala wrote:
-> > > > > > > > > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.=
-com>
-> > > > > > > > >=20
-> > > > > > > > > If pipe B is fused off we also shouldn't have FBC B.
-> > > > > > > > >=20
-> > > > > > > > > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@lin=
-ux.intel.com>
-> > > > > > > > > ---
-> > > > > > > > >  drivers/gpu/drm/i915/intel_device_info.c | 1 +
-> > > > > > > > >  1 file changed, 1 insertion(+)
-> > > > > > > > >=20
-> > > > > > > > > diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/d=
-rivers/gpu/drm/i915/intel_device_info.c
-> > > > > > > > > index 1434dc33cf49..fbefebc023f1 100644
-> > > > > > > > > --- a/drivers/gpu/drm/i915/intel_device_info.c
-> > > > > > > > > +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> > > > > > > > > @@ -394,6 +394,7 @@ void intel_device_info_runtime_init(s=
-truct drm_i915_private *dev_priv)
-> > > > > > > > >  		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
-> > > > > > > > >  			runtime->pipe_mask &=3D ~BIT(PIPE_B);
-> > > > > > > > >  			runtime->cpu_transcoder_mask &=3D ~BIT(TRANSCODER_B);
-> > > > > > > > > +			runtime->fbc_mask &=3D ~BIT(INTEL_FBC_B);
-> > > > > > > > >  		}
-> > > > > > > > >  		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
-> > > > > > > > >  			runtime->pipe_mask &=3D ~BIT(PIPE_C);
-> > > > > > > >=20
-> > > > > > > > I don't know (yet) what exactly this does, but it makes sen=
-se if you
-> > > > > > > > think of consistency: we already do that for PIPE_A.
-> > > > > > >=20
-> > > > > > > It's basically saying the entire pipe is fused off, so anythi=
-ng
-> > > > > > > living inside that pipe should also be fused off.
-> > > > > > >=20
-> > > > > > > >=20
-> > > > > > > > But what about PIPE_C and PIPE_D? Wouldn't it make sense to=
- do the same
-> > > > > > > > thing for them as well?
-> > > > > > >=20
-> > > > > > > There is no FBC engine on those pipes (we don't even have
-> > > > > > > the INTEL_FBC_C+ enum values defined), at least for now.
-> > > > > >=20
-> > > > > > A future proof way would be to add
-> > > > > >=20
-> > > > > > 	runtime->fbc_mask &=3D runtime->pipe_mask;
-> > > > >=20
-> > > > > Dunno if I entirely like the extra assumption that the enums matc=
-h.
-> > > > > Also would need to make sure we don't accidentally screw up any
-> > > > > old platforms where FBC is not tied to a specific pipe, but I
-> > > > > guess we should never have pipe A fused off on those w/o
-> > > > > the entire display engine fused off as well.
-> > > >=20
-> > > > I must say I don't like the idea of making these assumptions across
-> > > > different masks either.
-> > > >=20
-> > > > I think that, since you are reading the DFSM register at runtime to
-> > > > check whether those pipes are fused off, you should go all the way =
-and
-> > > > disable everything, including in the fbc_mask for all pipes.  Then =
-you
-> > > > don't need to make any assumptions about whether a pipe has FBC or =
-not.
-> > > >=20
-> > > > In short, I think you could add those INTEL_FBC_C+ definitions and
-> > > > force-unset them here too...
-> > >=20
-> > > Hmm. I don't see any real problem with adding the FBC C+D
-> > > enum values even if not used by any platform currently.
-> > > Do you want to write that patch?
-> >=20
-> > Sure, I can do it.  I guess it should be done _after_ your patch? Or
-> > should I just add those definitions and you'll rebase your patch? And
-> > there's a third option: I can add the definitions and replace your
-> > patch with one that does this for all PIPEs at once...
-> >=20
-> > Which one do you prefer?
->=20
-> I'm fine with just dropping my patch and you taking over the
-> the wholew thing. Less stuff for me to do ;)
->=20
+On Tue, 20 Sep 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Mon, Sep 19, 2022 at 11:10:53AM +0300, Jani Nikula wrote:
+>>On Fri, 16 Sep 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>> On Fri, Sep 16, 2022 at 11:26:42AM +0300, Jani Nikula wrote:
+>>>>Commit 00c6cbfd4e8a ("drm/i915: move pipe_mask and cpu_transcoder_mask
+>>>>to runtime info") moved the pipe_mask member from struct
+>>>>intel_device_info to intel_runtime_info, but overlooked some of our
+>>>>platforms initializing device info .display = {}. This is significant,
+>>>>as pipe_mask is the single point of truth for a device having a display
+>>>>or not; the platforms in question left pipe_mask to whatever was set for
+>>>>the platforms they "inherit" from in the complex macro scheme we have.
+>>>>
+>>>>Add new NO_DISPLAY macro initializing .__runtime.pipe_mask = 0, which
+>>>>will cause the device info .display sub-struct to be zeroed in
+>>>>intel_device_info_runtime_init(). A better solution (or simply audit of
+>>>>proper use of HAS_DISPLAY() checks) is required before moving forward
+>>>>with [1].
+>>>>
+>>>>Also clear all the display related members in runtime info if there's no
+>>>>display. The latter is a bit tedious, but it's for completeness at this
+>>>>time, to ensure similar functionality as before.
+>>>>
+>>>>[1] https://lore.kernel.org/r/dfda1bf67f02ceb07c280b7a13216405fd1f7a34.1660137416.git.jani.nikula@intel.com
+>>>>
+>>>>Fixes: 00c6cbfd4e8a ("drm/i915: move pipe_mask and cpu_transcoder_mask to runtime info")
+>>>>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>Cc: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
+>>>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>>---
+>>>> drivers/gpu/drm/i915/i915_pci.c          | 11 ++++++-----
+>>>> drivers/gpu/drm/i915/intel_device_info.c |  6 ++++++
+>>>> 2 files changed, 12 insertions(+), 5 deletions(-)
+>>>>
+>>>>diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+>>>>index 77e7df21f539..cd4487a1d3be 100644
+>>>>--- a/drivers/gpu/drm/i915/i915_pci.c
+>>>>+++ b/drivers/gpu/drm/i915/i915_pci.c
+>>>>@@ -41,6 +41,8 @@
+>>>> 	.__runtime.media.ip.ver = (x), \
+>>>> 	.__runtime.display.ip.ver = (x)
+>>>>
+>>>>+#define NO_DISPLAY .__runtime.pipe_mask = 0
+>>>>+
+>>>> #define I845_PIPE_OFFSETS \
+>>>> 	.display.pipe_offsets = { \
+>>>> 		[TRANSCODER_A] = PIPE_A_OFFSET,	\
+>>>>@@ -519,9 +521,8 @@ static const struct intel_device_info ivb_m_gt2_info = {
+>>>> static const struct intel_device_info ivb_q_info = {
+>>>> 	GEN7_FEATURES,
+>>>> 	PLATFORM(INTEL_IVYBRIDGE),
+>>>>+	NO_DISPLAY,
+>>>> 	.gt = 2,
+>>>>-	.__runtime.pipe_mask = 0, /* legal, last one wins */
+>>>>-	.__runtime.cpu_transcoder_mask = 0,
+>>>> 	.has_l3_dpf = 1,
+>>>> };
+>>>>
+>>>>@@ -1039,7 +1040,7 @@ static const struct intel_device_info xehpsdv_info = {
+>>>> 	XE_HPM_FEATURES,
+>>>> 	DGFX_FEATURES,
+>>>> 	PLATFORM(INTEL_XEHPSDV),
+>>>>-	.display = { },
+>>>>+	NO_DISPLAY,
+>>>> 	.has_64k_pages = 1,
+>>>> 	.needs_compact_pt = 1,
+>>>> 	.has_media_ratio_mode = 1,
+>>>>@@ -1081,7 +1082,7 @@ static const struct intel_device_info dg2_info = {
+>>>>
+>>>> static const struct intel_device_info ats_m_info = {
+>>>> 	DG2_FEATURES,
+>>>>-	.display = { 0 },
+>>>>+	NO_DISPLAY,
+>>>> 	.require_force_probe = 1,
+>>>> 	.tuning_thread_rr_after_dep = 1,
+>>>> };
+>>>>@@ -1103,7 +1104,7 @@ static const struct intel_device_info pvc_info = {
+>>>> 	.__runtime.graphics.ip.rel = 60,
+>>>> 	.__runtime.media.ip.rel = 60,
+>>>> 	PLATFORM(INTEL_PONTEVECCHIO),
+>>>>-	.display = { 0 },
+>>>>+	NO_DISPLAY,
+>>>> 	.has_flat_ccs = 0,
+>>>> 	.__runtime.platform_engine_mask =
+>>>> 		BIT(BCS0) |
+>>>>diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+>>>>index 1434dc33cf49..20575eb77ea7 100644
+>>>>--- a/drivers/gpu/drm/i915/intel_device_info.c
+>>>>+++ b/drivers/gpu/drm/i915/intel_device_info.c
+>>>>@@ -433,8 +433,14 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+>>>> 		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
+>>>> 						   DRIVER_ATOMIC);
+>>>> 		memset(&info->display, 0, sizeof(info->display));
+>>>>+
+>>>>+		runtime->cpu_transcoder_mask = 0;
+>>>> 		memset(runtime->num_sprites, 0, sizeof(runtime->num_sprites));
+>>>> 		memset(runtime->num_scalers, 0, sizeof(runtime->num_scalers));
+>>>>+		runtime->fbc_mask = 0;
+>>>>+		runtime->has_hdcp = false;
+>>>>+		runtime->has_dmc = false;
+>>>>+		runtime->has_dsc = false;
+>>>
+>>> why are these not inside __runtime.display?
+>>
+>>The short answer, because there isn't one. It's an anonymous struct for
+>>now.
+>
+> /me confused... that doesn't really answer the question. Why would we
+> not move these inside a display substruct? When moving stuff out of
+> device_info.display.x, it seems the better place would be inside
+> __runtime.display.x, not __runtime.x.
+>
+> I must be missing something here. We had a "recent" move of these flags
+> lying around in device_info to be inside a display substruct -
+> commit d53db442db36 ("drm/i915: Move display device info capabilities to its
+> own struct") - to be able to keep the display flags together
+> and zero them together.
 
-Okay, I sent it out: https://patchwork.freedesktop.org/patch/504761/
+So there were a few discussions spread around, but effectively the patch
+has stalled here.
 
---
-Cheers,
-Luca.
+There's probably a bigger discussion to be had about the management of
+mutable and immutable device info, and display and non-display info.
+
+In the mean time, okay to merge this one?
+
+
+BR,
+Jani.
+
+
+>
+> Lucas De Marchi
+>
+>>
+>>BR,
+>>Jani.
+>>
+>>
+>>-- 
+>>Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
