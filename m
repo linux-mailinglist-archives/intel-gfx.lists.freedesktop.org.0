@@ -1,68 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81CFB5EA305
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 13:18:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E68CC5EA37D
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 13:26:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA2E10E293;
-	Mon, 26 Sep 2022 11:17:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 860D810E2C2;
+	Mon, 26 Sep 2022 11:26:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9D7F10E043;
- Mon, 26 Sep 2022 11:17:55 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id CA736218EF;
- Mon, 26 Sep 2022 11:17:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1664191073; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=uRZ2THjGw43K91frVQ0cavLJnfTwAj7TQu8exTP2YGQ=;
- b=RWkpCHTHCIzWIBxoSgaw6qYqGGcxZ+hmp1mWx6qO0BI90JK5pm01vMJ3XVX2VjFeL0gMjN
- 8w1puqwBcCstmcEqtZNG8EnxDX8ZNBufuDq9UdsjPmj6EMZ9HxDdy2CfR/4cpaA6zcPojd
- X0NX00sizPKxJso+ziqll+02QMwdZTA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1664191073;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=uRZ2THjGw43K91frVQ0cavLJnfTwAj7TQu8exTP2YGQ=;
- b=eXPjOygx/KWE7XUjMCwk7MrNGcJLOBKZxPlXQ/Jvo5S+/38MBAL3J3Yy/+kF548YhBlIhk
- JJh0es3dPtW7TIDA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4F81313486;
- Mon, 26 Sep 2022 11:17:53 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id M7jUEWGKMWO+LQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 26 Sep 2022 11:17:53 +0000
-Message-ID: <c714b53d-8e18-9105-9e27-8b783f246082@suse.de>
-Date: Mon, 26 Sep 2022 13:17:52 +0200
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4966510E2C2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 11:26:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664191568; x=1695727568;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=2siE0tqTeacA2KW7pO16KDRpJK3Qpkl7/cLSQNggm/U=;
+ b=VGH4rI959JOoK881UAeE9zgxF2WqLobCRHXSvTR8LP3iB//7az6o/Qxl
+ kRuwknBUh2eTuFUU7FoXgClugQpGyjbtW1HPt5Ld2ZBSUv+tmYOLeRnDt
+ y+Zk0Tc8qFBJBjCgQp/0v/j1h0xA1UinoJAnM894ywf5vuVzC8vc6fd9B
+ ehFf0FIMQQUWglsw2VPDW0vCHxT61yOMYzCZ4zL01izuNYUqhel3Hw1KU
+ tUWbAUf30n2HTdMR3pwD3iDI34SxUFqFQTqm0XlTIdjM5GlYniZkNtQPZ
+ 6Ii5EqD60M+Q2f61umT+R/Gt10ldU8o/XwS2vwMbFF7GBlhtmxEHX7rqU g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10481"; a="302471609"
+X-IronPort-AV: E=Sophos;i="5.93,345,1654585200"; d="scan'208";a="302471609"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 04:26:07 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10481"; a="621019217"
+X-IronPort-AV: E=Sophos;i="5.93,345,1654585200"; d="scan'208";a="621019217"
+Received: from ashyti-mobl2.igk.intel.com (HELO intel.com) ([172.28.182.74])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 04:26:05 -0700
+Date: Mon, 26 Sep 2022 13:26:02 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <YzGMSlVn+wzLc+Jd@ashyti-mobl2.lan>
+References: <20220921135258.1714873-1-andrzej.hajda@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>
-References: <20220728-rpi-analog-tv-properties-v2-0-f733a0ed9f90@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-10-f733a0ed9f90@cerno.tech>
- <72a8c3ce-ed03-0a77-fb92-eaa992eb86fe@suse.de>
- <20220926101716.urehomr2lzv5pqln@houat>
- <CAMuHMdXonxXiw4x2PvnQ=xedOQO1y=K0O8g1+ixeSvXmzcOOVw@mail.gmail.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <CAMuHMdXonxXiw4x2PvnQ=xedOQO1y=K0O8g1+ixeSvXmzcOOVw@mail.gmail.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------ugjNnt50fIMLVu6urhLXoAKy"
-Subject: Re: [Intel-gfx] [PATCH v2 10/33] drm/modes: Add a function to
- generate analog display modes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220921135258.1714873-1-andrzej.hajda@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Restrict forced preemption to
+ the active context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,113 +57,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Karol Herbst <kherbst@redhat.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- Hans de Goede <hdegoede@redhat.com>, Chen-Yu Tsai <wens@csie.org>,
- Dom Cobley <dom@raspberrypi.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org,
- Ben Skeggs <bskeggs@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Chris Wilson <chris.p.wilson@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------ugjNnt50fIMLVu6urhLXoAKy
-Content-Type: multipart/mixed; boundary="------------3WYvgZonJe2p1UqhQXWVMRE6";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Ben Skeggs <bskeggs@redhat.com>, linux-sunxi@lists.linux.dev,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-Message-ID: <c714b53d-8e18-9105-9e27-8b783f246082@suse.de>
-Subject: Re: [PATCH v2 10/33] drm/modes: Add a function to generate analog
- display modes
-References: <20220728-rpi-analog-tv-properties-v2-0-f733a0ed9f90@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-10-f733a0ed9f90@cerno.tech>
- <72a8c3ce-ed03-0a77-fb92-eaa992eb86fe@suse.de>
- <20220926101716.urehomr2lzv5pqln@houat>
- <CAMuHMdXonxXiw4x2PvnQ=xedOQO1y=K0O8g1+ixeSvXmzcOOVw@mail.gmail.com>
-In-Reply-To: <CAMuHMdXonxXiw4x2PvnQ=xedOQO1y=K0O8g1+ixeSvXmzcOOVw@mail.gmail.com>
+Hi Andrzej and Chris,
 
---------------3WYvgZonJe2p1UqhQXWVMRE6
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+pushed to drm-intel-gt-next
 
-SGkNCg0KQW0gMjYuMDkuMjIgdW0gMTI6MzQgc2NocmllYiBHZWVydCBVeXR0ZXJob2V2ZW46
-DQo+IEhpIE1heGltZSwNCj4gDQo+IE9uIE1vbiwgU2VwIDI2LCAyMDIyIGF0IDEyOjE3IFBN
-IE1heGltZSBSaXBhcmQgPG1heGltZUBjZXJuby50ZWNoPiB3cm90ZToNCj4+IE9uIEZyaSwg
-U2VwIDIzLCAyMDIyIGF0IDExOjA1OjQ4QU0gKzAyMDAsIFRob21hcyBaaW1tZXJtYW5uIHdy
-b3RlOg0KPj4+PiArICAgLyogNjMuNTU2dXMgKiAxMy41TUh6ID0gODU4IHBpeGVscyAqLw0K
-Pj4+DQo+Pj4gSSBraW5kIG9mIGdldCB3aGF0IHRoZSBjb21tZW50IHdhbnRzIHRvIHRlbGwg
-bWUsIGJ1dCB0aGUgdW5pdHMgZG9uJ3QgYWRkIHVwLg0KPj4NCj4+IEknbSBub3Qgc3VyZSBo
-b3cgaXQgZG9lc24ndCBhZGQgdXA/DQo+Pg0KPj4gV2UgaGF2ZSBhIGZyZXF1ZW5jeSBpbiBI
-eiAoZXF1aXZhbGVudCB0byBzXi0xKSBhbmQgYSBkdXJhdGlvbiBpbiBzLCBzbw0KPj4gdGhl
-IHJlc3VsdCBlbmRzIHVwIHdpdGggbm8gZGltZW5zaW9uLCB3aGljaCBpcyB0byBiZSBleHBl
-Y3RlZCBmb3IgYQ0KPj4gbnVtYmVyIG9mIHBlcmlvZHM/DQo+IA0KPiBUbyBtYWtlIHRoZSB1
-bml0cyBhZGQgdXAsIGl0IHNob3VsZCBiZSAxMy41IE1waXhlbC9zDQo+ICh3aGljaCBpcyB3
-aGF0IGEgcGl4ZWwgY2xvY2sgb2YgMTMuNSBNSHogcmVhbGx5IG1lYW5zIDstKQ0KDQpTb3J0
-IG9mLiBJdCBsZWF2ZXMgdGhlIHRpbWUgdmFsdWUgYXMgYSBtYWdpYyBudW1iZXIsIHdoaWNo
-IG9iZnVzY2F0ZXMgDQp3aGF0J3MgaGFwcGVuaW5nLg0KDQpUaGUgdW5pdCBmb3IgaHRvdGFs
-IGlzIHBpeGVscy9zY2FubGluZSBiZWNhdXNlIGlmIHlvdSBtdWx0aXBseSBpdCB3aXRoIA0K
-dGhlIG51bWJlciBvZiBzY2FubGluZXMgcGVyIGZyYW1lICh3aGljaCBpcyBpbiB2dG90YWwp
-LCB5b3UgZ2V0IA0KcGl4ZWxzL2ZyYW1lLiBNdWx0aXBseWluZyB3aXRoIHRoZSBmcmFtZXMg
-cGVyIHNlY29uZCByZXN1bHRzIGluIHRoZSANCnBpeGVsIGNsb2NrIGluIHBpeGVscy9zZWNv
-bmQuDQoNClRoYXQncyBhIGJpdCBtdWNoIGZvciB0aGlzIGNvbW1lbnQuIEhlbmNlLCBJIHN1
-Z2dlc3RlZCB0byByZW1vdmUgdGhlc2UgDQpjb21tZW50cyBlbnRpcmVseSBhbmQgZG9jdW1l
-bnQgdGhlIHJlbGF0aW9uIGFtb25nIHRoZSBudW1iZXJzIGluIGEgbW9yZSANCnByb21pbmVu
-dCBsb2NhdGlvbi4gVGhlIGRvY3VtZW50YXRpb24gZm9yIGRybV9kaXNwbGF5X21vZGUgd291
-bGQgYmUgYSANCmdvb2QgcGxhY2UsIEkgZ3Vlc3MuDQoNCkJlc3QgcmVnYXJkcw0KVGhvbWFz
-DQoNCj4gDQo+IEdye29ldGplLGVldGluZ31zLA0KPiANCj4gICAgICAgICAgICAgICAgICAg
-ICAgICAgIEdlZXJ0DQo+IA0KPiAtLQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUn
-cyBsb3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3JnDQo+
-IA0KPiBJbiBwZXJzb25hbCBjb252ZXJzYXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwg
-SSBjYWxsIG15c2VsZiBhIGhhY2tlci4gQnV0DQo+IHdoZW4gSSdtIHRhbGtpbmcgdG8gam91
-cm5hbGlzdHMgSSBqdXN0IHNheSAicHJvZ3JhbW1lciIgb3Igc29tZXRoaW5nIGxpa2UgdGhh
-dC4NCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLS0gTGludXMgVG9ydmFs
-ZHMNCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Bl
-cg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1
-LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykN
-Ckdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
+Thanks!
+Andi
 
---------------3WYvgZonJe2p1UqhQXWVMRE6--
-
---------------ugjNnt50fIMLVu6urhLXoAKy
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmMximAFAwAAAAAACgkQlh/E3EQov+DJ
-1g//RygY42C2g9i/xd+0ILDL66FTDjnaa8D93msjwX0RgMc50KzIbRpbsiRLSPZNLMpkrIcA3uSR
-N0x4eWgJrZSQWWZycl0SoM3hDsueWGj7o27kJ6dP9K8km0/CQKlF9Bz5TzQkvnihiU4tVEJ1975m
-N+OU1qG+gGOf3Slcjobwou/k8aeXOBtisOaIvtx13xhp99eTp5HLoYN2q2szoF+PIdBGFJDQFugU
-sxGCQlMaTTFl67ajM1oZg8tpQU7mfmL86cAzqp4azLGYVsDBMvA6Rf6hmJHTa9v6w1oRdA8wu1xQ
-Z/T5rXPuWQDx65f79HtkQ7UJ06sTSlNFbrjbuuuo5/DMW9bXg0Amlz6tCra3bdg0xcPZauA26rAS
-/QTU3gBYzzjo0m/Uu+xe0hrK/mfHRBgNtbVeKYKWEI5OSSl6oUzonl/QVCOTf1IxUDx1yBu/aCzV
-jzDoAzHpN91aIIjaiUuKdFbJqz1baeo0SZpqSW0hIhEFEGNSgWDGtSlkDdrBEpvVdLElo9hXn3Ue
-EIShw8OUahXUdnh21r6NKPpv1/qjYZCn1H3AvHDNZDMnX+ALFx9pDOixXd1NUW9y3LMzj0/cLaPI
-usAR4M1Q0dVG4JunLeNnzR7HrFaH6cT194xjmHpiNZEvdkXmc6V6dEkUmB+TFER1utnMweRJtLs+
-YSA=
-=1G2G
------END PGP SIGNATURE-----
-
---------------ugjNnt50fIMLVu6urhLXoAKy--
+On Wed, Sep 21, 2022 at 03:52:58PM +0200, Andrzej Hajda wrote:
+> From: Chris Wilson <chris.p.wilson@intel.com>
+> 
+> When we submit a new pair of contexts to ELSP for execution, we start a
+> timer by which point we expect the HW to have switched execution to the
+> pending contexts. If the promotion to the new pair of contexts has not
+> occurred, we declare the executing context to have hung and force the
+> preemption to take place by resetting the engine and resubmitting the
+> new contexts.
+> 
+> This can lead to an unfair situation where almost all of the preemption
+> timeout is consumed by the first context which just switches into the
+> second context immediately prior to the timer firing and triggering the
+> preemption reset (assuming that the timer interrupts before we process
+> the CS events for the context switch). The second context hasn't yet had
+> a chance to yield to the incoming ELSP (and send the ACk for the
+> promotion) and so ends up being blamed for the reset.
+> 
+> If we see that a context switch has occurred since setting the
+> preemption timeout, but have not yet received the ACK for the ELSP
+> promotion, rearm the preemption timer and check again. This is
+> especially significant if the first context was not schedulable and so
+> we used the shortest timer possible, greatly increasing the chance of
+> accidentally blaming the second innocent context.
+> 
+> Fixes: 3a7a92aba8fb ("drm/i915/execlists: Force preemption")
+> Fixes: d12acee84ffb ("drm/i915/execlists: Cancel banned contexts on schedule-out")
+> Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Tested-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.5+
+> ---
+> Hi,
+> 
+> This patch is upstreamed from internal branch. So I have removed
+> R-B by Andi. Andi let me know if your R-B still apply.
+> 
+> Regards
+> Andrzej
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h  | 15 +++++++++++++
+>  .../drm/i915/gt/intel_execlists_submission.c  | 21 ++++++++++++++++++-
+>  2 files changed, 35 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index 633a7e5dba3b4b..6b5d4ea22b673b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -165,6 +165,21 @@ struct intel_engine_execlists {
+>  	 */
+>  	struct timer_list preempt;
+>  
+> +	/**
+> +	 * @preempt_target: active request at the time of the preemption request
+> +	 *
+> +	 * We force a preemption to occur if the pending contexts have not
+> +	 * been promoted to active upon receipt of the CS ack event within
+> +	 * the timeout. This timeout maybe chosen based on the target,
+> +	 * using a very short timeout if the context is no longer schedulable.
+> +	 * That short timeout may not be applicable to other contexts, so
+> +	 * if a context switch should happen within before the preemption
+> +	 * timeout, we may shoot early at an innocent context. To prevent this,
+> +	 * we record which context was active at the time of the preemption
+> +	 * request and only reset that context upon the timeout.
+> +	 */
+> +	const struct i915_request *preempt_target;
+> +
+>  	/**
+>  	 * @ccid: identifier for contexts submitted to this engine
+>  	 */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 4b909cb88cdfb7..c718e6dc40b515 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -1241,6 +1241,9 @@ static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
+>  	if (!rq)
+>  		return 0;
+>  
+> +	/* Only allow ourselves to force reset the currently active context */
+> +	engine->execlists.preempt_target = rq;
+> +
+>  	/* Force a fast reset for terminated contexts (ignoring sysfs!) */
+>  	if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq)))
+>  		return INTEL_CONTEXT_BANNED_PREEMPT_TIMEOUT_MS;
+> @@ -2427,8 +2430,24 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
+>  	GEM_BUG_ON(inactive - post > ARRAY_SIZE(post));
+>  
+>  	if (unlikely(preempt_timeout(engine))) {
+> +		const struct i915_request *rq = *engine->execlists.active;
+> +
+> +		/*
+> +		 * If after the preempt-timeout expired, we are still on the
+> +		 * same active request/context as before we initiated the
+> +		 * preemption, reset the engine.
+> +		 *
+> +		 * However, if we have processed a CS event to switch contexts,
+> +		 * but not yet processed the CS event for the pending
+> +		 * preemption, reset the timer allowing the new context to
+> +		 * gracefully exit.
+> +		 */
+>  		cancel_timer(&engine->execlists.preempt);
+> -		engine->execlists.error_interrupt |= ERROR_PREEMPT;
+> +		if (rq == engine->execlists.preempt_target)
+> +			engine->execlists.error_interrupt |= ERROR_PREEMPT;
+> +		else
+> +			set_timer_ms(&engine->execlists.preempt,
+> +				     active_preempt_timeout(engine, rq));
+>  	}
+>  
+>  	if (unlikely(READ_ONCE(engine->execlists.error_interrupt))) {
+> -- 
+> 2.34.1
