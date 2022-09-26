@@ -2,47 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB14B5E9D5B
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 11:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB745E9DD0
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 11:36:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 563BC10E2F9;
-	Mon, 26 Sep 2022 09:19:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF50D10E65E;
+	Mon, 26 Sep 2022 09:36:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF6C410E087;
- Mon, 26 Sep 2022 09:19:24 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 1669EB801BF;
- Mon, 26 Sep 2022 09:19:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BF7BC433D6;
- Mon, 26 Sep 2022 09:19:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1664183961;
- bh=zokIZXIlwzWBqkPaQXmt40NpJQ0hgwAisoGjIS1cLtE=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=onOnhZHPmnMEnhxjLoePqwKXpMITuZWqKeQNkgP1CajCp5fPjNwqdZxivdetEQL2C
- MznLDa8bph60pvZS8/aG5JsFrSONfxCREO7wKTPgUaKPAIGSNuMTh6yRZBvfHNpsgA
- Wlm6GCFrOfGjY5Y/RdDrXjxGPjXh3TO+qI228Cuff6LAEN8TPrs5rdXsY5kUCG3C2c
- 9z2QkcX422rsJVX4Se3WYQo/e68tVW8naNp4HmilrGj7Zdi8PI/RJMGnYH/7UDFINx
- gxAoT0yumVmNdomiYiS68Gf377Lu5j+271I+lkGzKoEI2KlawYJLrbHP4DkCtPE9sn
- g2DQhxS3nOgXg==
-Date: Mon, 26 Sep 2022 11:19:16 +0200
-From: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <20220926111916.65a9859e@coco.lan>
-In-Reply-To: <2aa5f49e-af83-6368-8db5-e9b33dd19f06@intel.com>
-References: <cover.1662708705.git.mchehab@kernel.org>
- <752ce443ea141601cf59a1ad8a5130deed2feb4f.1662708705.git.mchehab@kernel.org>
- <2aa5f49e-af83-6368-8db5-e9b33dd19f06@intel.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7DA10E3B5;
+ Mon, 26 Sep 2022 09:36:25 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.west.internal (Postfix) with ESMTP id A27792B0689B;
+ Mon, 26 Sep 2022 05:36:16 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute1.internal (MEProxy); Mon, 26 Sep 2022 05:36:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; t=1664184976; x=1664192176; bh=iMhV2MQCYE
+ l08x7MCNwj+bMXhT0kipZzBnwNpIfB8gg=; b=nJeRGFALZvB203VwJ3MiqZV0H9
+ SgOgeQdWX4BuXqw5zho/RS25xCKP8KzdQRqm2mCuyRCuOyNsg99A+lAMh76HqDOD
+ x+eTg6WYdZgrHKS0zSICLvO8j/3SJP13HCCOJDkPl0uPhzva8dlItg1Ao8XIGumK
+ Vbx9nh+ELeMIBIDKskokk2eSRhBBTy+Ebrn/rCkgwq5UieGaMJkByqoK+baIJH2C
+ 5/HTEUfuOUF0Aewimr0CqDc5o4qad0/cuXBZvtQDDPTeP6obnNVGzbrPy1O7EYyt
+ KA2581CvfZVH/CjRitmTgJKzFxhYz6lW5pJezzh6VmVJ0W1Vk1jK/Rf7r3oA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm2; t=1664184976; x=1664192176; bh=iMhV2MQCYEl08x7MCNwj+bMXhT0k
+ ipZzBnwNpIfB8gg=; b=SvSPhEi02+Ihox7kOmDVhX4pbeqMyi4CJjvjX99cbEyr
+ +Smb2FJx3Ykc2JdeOsoir0jS89/4SjDKcOp0VS69YroKe5ZScShh/wzbeal++grP
+ T3kz/sLVTtvTxyWcC7amFT8p0IQ7unvvIhjLZMctMR9p2aebfl5O2flACUCM2iCZ
+ 2P5b3wXbgjghbYrR6Kyohv5VMzKI7Yp0WJKOOxliNMEAlU2NYmH7nDfcOatZJmwA
+ R60diWPuTdqMHff6/EjwHJOUIq8bKG5D5uiy2lrUcwW+cHnxd0gbHlloPbAiVSxw
+ 3+0du3C5VZZ06FibJPIilHWQYsr44TrJRhrXkcRR1Q==
+X-ME-Sender: <xms:j3IxY2-QhYgO74s3trfwff3DryeNTqQlmXsu9yGRCxphn4GACYCIvw>
+ <xme:j3IxY2tV7NB_e-mau1S7WaAft2UEAesKgySU0wjigMGs7JoPvAF_XnZv8xyRwLir7
+ 96x3L2BZSiZ3G5aD1o>
+X-ME-Received: <xmr:j3IxY8DYYskkI72wKJw06xyNYUTiZjyG07uxoj73uLs5P24I9NFaDGqbqIho>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeegvddgudelucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
+ ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:j3IxY-c1tiNct3gIbQHjSvEYT5Xb3k1T-pot_aoZBis1vo7mxgBG4A>
+ <xmx:j3IxY7NBOijxM_Ba2H7o24TnGSFShkp4aYK8hhYtoN3RnR8bUq6Ebw>
+ <xmx:j3IxY4lnv8PCJVU1vCHuVIUJ7mwiGoNPkRCtxB_VBaxHfk_3O1upOg>
+ <xmx:kHIxY0ttx0rynzRFEyFoPEdNc13wMnnQR88F_DEk4Ml1iNEFAY-Kynb_HoE>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 26 Sep 2022 05:36:14 -0400 (EDT)
+Date: Mon, 26 Sep 2022 11:36:12 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Message-ID: <20220926093612.wvbou2srbo3uinar@houat>
+References: <20220728-rpi-analog-tv-properties-v2-0-f733a0ed9f90@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-2-f733a0ed9f90@cerno.tech>
+ <3f7000ab-b845-a7e8-f215-02121da779b7@tronnes.org>
+ <c7bd9bcb-77a1-9f2d-fe93-afefac5e6def@tronnes.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 01/37] drm/i915: fix kernel-doc trivial
- warnings on i915/*.[ch] files
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="wdbx6g5pylyw5se6"
+Content-Disposition: inline
+In-Reply-To: <c7bd9bcb-77a1-9f2d-fe93-afefac5e6def@tronnes.org>
+Subject: Re: [Intel-gfx] [PATCH v2 02/33] drm/tests: Add Kunit Helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,65 +85,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em Fri, 16 Sep 2022 17:03:27 +0300
-Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> escreveu:
 
-> >   /**
-> > - * Called when user space has done writes to this buffer
-> > + * i915_gem_sw_finish_ioctl - Called when user space has done writes to
-> > + *		this buffer  
-> As per this link[1], the brief description does not have a limitation to 
-> match the indentation when explained over multiple lines, unlike 
-> function parameters.
-> 
-> [1] 
-> https://docs.kernel.org/doc-guide/kernel-doc.html#function-documentation
-> 
-> Therefore if you look at the function brief description over several 
-> lines in i915 and drm,
-> 
-> One of the drm apis, drm_gem_lock_reservations(), is used without 
-> indentation in the form below,
-> /**
->   * drm_gem_lock_reservations - Sets up the ww context and acquires
->   * the lock on an array of GEM objects.
-> 
-> In i915_perf.c, indentation is set as follows.
-> 
-> /**
->   * gen8_append_oa_reports - Copies all buffered OA reports into
->   *			    userspace read() buffer.
-> 
-> ...
-> 
-> /**
->   * gen7_append_oa_reports - Copies all buffered OA reports into
->   *			    userspace read() buffer.
-> 
-> If there is no problem when using the same form as 
-> gen8_append_oa_reports when generating kernel-doc, it seems to be 
-> indented to match the existing i915 style. However, if there is a 
-> problem, I think you need to remove the indented part of the i915 code 
-> like the drm apis.
-> 
-> except i915_gem_sw_finish_ioctl  i915_gem_gtt_pwrite_fast parts, the 
-> rest of the parts look good to me.
+--wdbx6g5pylyw5se6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-There's no rule about either indent or not. IMO, it makes easier for
-humans to read when indent is used.
+Hi Noralf,
 
-Yet, I'd say that, right now, 50% of multi-line comments within the
-kernel has indent. So, it is more like a matter of personal developer's
-preference at the moment.
+On Sat, Sep 24, 2022 at 08:06:17PM +0200, Noralf Tr=F8nnes wrote:
+> Den 24.09.2022 19.56, skrev Noralf Tr=F8nnes:
+> >=20
+> >=20
+> > Den 22.09.2022 16.25, skrev Maxime Ripard:
+> >> As the number of kunit tests in KMS grows further, we start to have
+> >> multiple test suites that, for example, need to register a mock DRM
+> >> driver to interact with the KMS function they are supposed to test.
+> >>
+> >> Let's add a file meant to provide those kind of helpers to avoid
+> >> duplication.
+> >>
+> >> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> >>
+> >> diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Ma=
+kefile
+> >> index 2d9f49b62ecb..b29ef1085cad 100644
+> >> --- a/drivers/gpu/drm/tests/Makefile
+> >> +++ b/drivers/gpu/drm/tests/Makefile
+> >> @@ -8,6 +8,7 @@ obj-$(CONFIG_DRM_KUNIT_TEST) +=3D \
+> >>  	drm_format_helper_test.o \
+> >>  	drm_format_test.o \
+> >>  	drm_framebuffer_test.o \
+> >> +	drm_kunit_helpers.o \
+> >>  	drm_mm_test.o \
+> >>  	drm_plane_helper_test.o \
+> >>  	drm_rect_test.o
+> >> diff --git a/drivers/gpu/drm/tests/drm_kunit_helpers.c b/drivers/gpu/d=
+rm/tests/drm_kunit_helpers.c
+> >> new file mode 100644
+> >> index 000000000000..7ebd620481c1
+> >> --- /dev/null
+> >> +++ b/drivers/gpu/drm/tests/drm_kunit_helpers.c
+> >> @@ -0,0 +1,54 @@
+> >> +#include <drm/drm_drv.h>
+> >> +#include <drm/drm_managed.h>
+> >> +
+> >> +#include <linux/device.h>
+> >> +
+> >> +static const struct drm_mode_config_funcs drm_mode_config_funcs =3D {
+> >> +};
+> >> +
+> >> +static const struct drm_driver drm_mode_driver =3D {
+> >> +};
+> >> +
+> >> +static void drm_kunit_free_device(struct drm_device *drm, void *ptr)
+> >> +{
+> >> +	struct device *dev =3D ptr;
+> >> +
+> >> +	root_device_unregister(dev);
+> >> +}
+> >> +
+> >> +struct drm_device *drm_kunit_device_init(const char *name)
+> >> +{
+> >> +	struct drm_device *drm;
+> >> +	struct device *dev;
+> >> +	int ret;
+> >> +
+> >> +	dev =3D root_device_register(name);
+> >> +	if (IS_ERR(dev))
+> >> +		return ERR_CAST(dev);
+> >> +
+> >> +	drm =3D drm_dev_alloc(&drm_mode_driver, dev);
+> >=20
+> > I can't find drm being freed anywhere?
+> > Maybe you could assign it to drm->managed.final_kfree.
 
-> 
-> Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+There's a drm_dev_put in the test_exit hook which should free it.
 
-Thanks,
-Mauro
+> Perhaps a better solution would be to use devm_drm_dev_alloc() and
+> unregister the root device on exit. That avoids reaching into the drm
+> managed internals and it looks more like a regular driver.
+
+But yeah, this is a good idea, I'll do it.
+
+Maxime
+
+--wdbx6g5pylyw5se6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYzFyjAAKCRDj7w1vZxhR
+xfL5AP9r8SOCVdiPcnR+tkP1VdDT4xdxvsJmgcz60MJ5iuvezwEAwp/UpYjOSXCb
+YrQ0Vm/0KNnlKIDIInbF28eMSo1bSw0=
+=31r4
+-----END PGP SIGNATURE-----
+
+--wdbx6g5pylyw5se6--
