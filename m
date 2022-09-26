@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE7295EAF93
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 20:22:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E0E55EB027
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 20:38:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2D3810E754;
-	Mon, 26 Sep 2022 18:22:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5061110E4E0;
+	Mon, 26 Sep 2022 18:38:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4831B10E783
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 18:22:10 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 568F010E4E0;
+ Mon, 26 Sep 2022 18:38:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664216530; x=1695752530;
+ t=1664217504; x=1695753504;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=vH5/uyLOOOMyNY31x7w7N6JIwPn/w+Vv2PFsOcjA6fY=;
- b=P4IbjYtncFvw7LysPM2CI3GJp5jJmFfFcmE2RpVBOox3RPGAdvYZ3CZU
- 4D1pwpdkf+geXNRch3YvZT1+320bye/W/wFp8B2ClxXm/AQU/+yc7RMb+
- bQrB0gRzlFBpNmifjSZq8qqYFS4ePyrijaIwKTeMz8xLR/UZZnWs5AfZU
- XeUShivLSqDSsqZRaqPxJ/U74FgG3IYcrld6w2sfxINUrKVCBuUOJ6GKl
- NQ/udSDq1hU4JeO3v0e3QTyufo+r8xVCY3oFi6Qu1jE3ZJIxPyRDE0PkH
- acd70BMFxKI5PLd6CO0Z6bIHQf3JDrphqeDk9PeHShMlya4CJnAJUEpwB w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="327458376"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="327458376"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 11:22:09 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="623436267"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="623436267"
+ b=FVnSnYWULlwX+m1CjROmoY0lmKYPjuCdNWty8bq0aEsaNItQQdNwZa+P
+ Y7VeMok7eE7otvTrM54I7Vpi2OPMFyWp/q4en57iHAe25K7tIujgr0bbN
+ 4GwHkYHtPooO3L3Ii4eX6fdCJhfNpNBzICxHczBxNgFYPn6cymQMM+Vx1
+ chU5fdGynmMeGGD+2IZymK1oroe6S3siOPra1+91U4e7GroL5l43n9Q/O
+ OJvqlJQ0KmSnU/eK4jhs8nEsh8kqrEiPqN5lPweuY1PL6Ier/P/do7a0J
+ N0sbpWOsvlowvGkHNuz2KGiC1oHFVl7DE/c3DtwuOXwXzRgFtoVQxHjNP A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="302582609"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="302582609"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 11:38:23 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="763552947"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="763552947"
 Received: from aravind-dev.iind.intel.com ([10.145.162.80])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 11:22:07 -0700
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 11:38:21 -0700
 From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Sep 2022 23:58:20 +0530
-Message-Id: <20220926182820.23009-1-aravind.iddamsetty@intel.com>
+Date: Tue, 27 Sep 2022 00:14:24 +0530
+Message-Id: <20220926184424.23772-1-aravind.iddamsetty@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -54,7 +54,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.com
+Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
