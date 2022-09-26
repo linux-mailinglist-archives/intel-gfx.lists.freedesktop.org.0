@@ -1,50 +1,154 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD54C5EAE98
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 19:50:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CDE65EAEBE
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 19:55:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3D9E10E74B;
-	Mon, 26 Sep 2022 17:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBD1B10E080;
+	Mon, 26 Sep 2022 17:55:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D42CC10E4D4;
- Mon, 26 Sep 2022 17:49:53 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57A2410E080
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 17:55:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664214594; x=1695750594;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Hd35ku3m7EDG1I4an6H9d1QzFUopqt4XornHaLuGhqA=;
- b=axEivA6Qbp9jAio53XLnqCwW4JfKs2nBMdahhnmBBMlAXmUOIrAkRwAI
- 80w5XOMPTwx/NJQpm+lMVU1yu5YMno4Jur+nMOHRLGqfwu2VD+k2npJUg
- FAcuFs7bnKY91Ydkj+jeNy75W3+MauKeCUe4g8WAT3RboFPlI+qjHT9fP
- dNUhur5pdgizIbUlwm8N/4+idt2mB5bdhGAXLkVeakeOOiplgWmuVO27W
- SeD/gDdLB4B7OkbushLH9be2eJPH47S07hI3Cb5P5I615e1xARVpLr8R2
- iMW40OZkBWASE4aF81Fss0yZoYBcrnXug50yTg3GQUYIfxp0VTkX+637S g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="288240134"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="288240134"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 10:49:51 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="654367166"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="654367166"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 10:49:48 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Sep 2022 23:22:11 +0530
-Message-Id: <20220926175211.3473371-8-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220926175211.3473371-1-badal.nilawar@intel.com>
-References: <20220926175211.3473371-1-badal.nilawar@intel.com>
+ t=1664214945; x=1695750945;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=3BrI8wtb04mTxhyvHNsX4+SSNAKEoiL9atKfY7438O0=;
+ b=EJSimFZ1LPlov9iVv0/4pjEcvkZvLPr/+UVLpZKn+g5QA4qsoNKrOVcF
+ wBZSO/Gl55a90ze7lfs4SttCiws9Fv+cWQXdN9z9dORD8kZbOzJFRXGbp
+ PZGpsi7JuF3Jkt3MDzA6YySir1R/LrMSR22088itn0IYaCJ6z/MSpSfpz
+ l5QG8KoSfribo9BG4JDa9cbMyrWV5SSBR+B3lvJSPP86kVz+AeBnh4eip
+ kJ5PoZ7+qSt2taVtiHvtVIv2A5tSFS0AXVpDdzhBELV3yCC+7gzRfGVc1
+ SxNtyyWhu8qDssm5L0rqxArU/YkdBkjEnPhR2UxR6Nsdf1XVnCGIvKMsZ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="302003987"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="302003987"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 10:55:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="725147498"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="725147498"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP; 26 Sep 2022 10:55:39 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 26 Sep 2022 10:55:32 -0700
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 26 Sep 2022 10:55:31 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Mon, 26 Sep 2022 10:55:31 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Mon, 26 Sep 2022 10:55:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NwgbSnnpKnkxergFDAihjJI2d9kNNYbRPvNEPQHr4x8YCG8yqXrbhmvnSEGKJZokgOR1eAf/L7Jp/aJGIN53OP/Dza9lYRHraS1JqNghSUnEgKyvNRDhZwL4qBjYZAe9AIAt2M5J0JtCX4jcIZxb66ZLaLrzB3LVexX3Nr43tFarnfzByEMIF2LtNq4BxcElzeRERutpYFBPa7py28LK0S9B0doCfK6/YRXohl1p8uV2NBMJ878uSKcdptFOrPMb7tc3fauWeXK80/uT6tWwj9Zc0Nsz6s7mOsijes3HToZd0KxX1ZhYYeyRkYk/6FjHxSGEkAcgEV8IGY+AHOETZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3BrI8wtb04mTxhyvHNsX4+SSNAKEoiL9atKfY7438O0=;
+ b=bcf/tCzV/KXMlmsoOpSt9LFfmh/ISzqryg/yTmNHhdehpWPDZOsoOBAUolpxzTHGTZwCt0ZC8S6U31KLyBuECjAXGtRsUUdxFfopT3cPAGIQuGu1bY27jNy33iFLlpl9D0qLZGa02MduGho1mnI5ikMZrFjva95Pf7m/cnbc/UVKd9KIfUwrqjAMcd271OLD+SvjzxT/iOrNfJX8w6Rh/qzrXOGvFxOPclmYRogpHU0OpYS91HThdwTerFddW+l5xEIXWOkXwNv1yOa8q6/HIa2lsL2otyWnHKCXrfiLYg9HL2lfuAmtac0glMFimlLxipM3c2j35uSWFUKRoGdgBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY4PR1101MB2166.namprd11.prod.outlook.com
+ (2603:10b6:910:1e::13) by BN9PR11MB5482.namprd11.prod.outlook.com
+ (2603:10b6:408:103::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Mon, 26 Sep
+ 2022 17:55:29 +0000
+Received: from CY4PR1101MB2166.namprd11.prod.outlook.com
+ ([fe80::6552:707f:7dca:30e]) by CY4PR1101MB2166.namprd11.prod.outlook.com
+ ([fe80::6552:707f:7dca:30e%10]) with mapi id 15.20.5654.026; Mon, 26 Sep 2022
+ 17:55:29 +0000
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH 0/6] Introduce struct cdclk_step
+Thread-Index: AQHYyi6kDFMVlhHjNUK4AMz3dDZiPK3n/zGAgACvYkCAADVwAIAEYbDAgAAkiwCABJnh8IAAAqmAgAAHEHA=
+Date: Mon, 26 Sep 2022 17:55:29 +0000
+Message-ID: <CY4PR1101MB21669A35B55D4E610399966CF8529@CY4PR1101MB2166.namprd11.prod.outlook.com>
+References: <20220917004404.414981-1-anusha.srivatsa@intel.com>
+ <Yyl3sZ/zE4eZR4fH@intel.com>
+ <CY4PR1101MB21666FC6A193F1FDA0B2A96BF84C9@CY4PR1101MB2166.namprd11.prod.outlook.com>
+ <Yyo3pJ4QD9O4Iv6N@intel.com>
+ <CY4PR1101MB2166290BF7A081C7C3A966F5F8519@CY4PR1101MB2166.namprd11.prod.outlook.com>
+ <Yy4DPNanyNsqC+jU@intel.com>
+ <CY4PR1101MB216654E040AB3C6B8446961FF8529@CY4PR1101MB2166.namprd11.prod.outlook.com>
+ <YzHhi9b0N5szcRcF@intel.com>
+In-Reply-To: <YzHhi9b0N5szcRcF@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.500.17
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY4PR1101MB2166:EE_|BN9PR11MB5482:EE_
+x-ms-office365-filtering-correlation-id: 3a9bf35a-c6d6-4a23-fee9-08da9fe84ca6
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: WI6WwW4/y4VndkfBdJACuhxn3Xz5rDQwUNCx2d3RQprqh6vIXfVGJt3omI0NHT3E9cLhLM2G9RgWv05pi3LISlI/kmPeARcAvPnTpF4TuxhVOrMM1FeQPeuI7/3t6X02ELEalhLskSYW1AzkZW2GMU8AZPSnH+pHZmUpTV01a8uifD/A5yrwTr/UFe8OLUx8SPcOKP6yg3omFcrdJgcM77/JjbhOeqSHC6NgluvEQWQn3JRe+0WaZzQb3HKURkuoDPLg8BC1AEp5HYEntydCIxVgByoGuIWhJ+zkhKtG9akx0czs18oAzjSu5KSg8I+PZmwZXD6LDVrlRtEKnE8I8nStRZa4eM0ISpIx5RqntMZ+v8ZiN2EnalE97EFCFKwP1CNLsWTAioiSUo9SPJT3efYkbC2FJWeYNvJRcz5bbLbdR13I8QNZ4RAh+RupQN8KkPO0CyIEE6kuBTiPt4caU+Gb8MUJCd1Yh32HPqVV8OHO5/rKJUh2ZGF2CrflIwK6agtqj7+IXg57yIWldedf88pP1gXtlOKEaG5erranbkhFZEZKUpxJm/JU8rqL9/wg94+ADG4I1S84xcUxYHwQFBgYV2ckugAy0U0ejIEhuyvp93rE5UE07j88vdP4FRUu7bbeTZM0EDdHzmwEBqNU8MnFgmn42FA0jv4T2xvOh2z4KNb9H0GtT4bUzJCQ0pgLf/ZLlU71Sg0fRp017LOVP7N84jt3ReeNLLc+co74xbhC4rnJnEmGb0ed3ePoVBoP2oT3nPJBStBRWR1SNV9nKzcaccVTO5dn1JRCnA8IX0k=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY4PR1101MB2166.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(376002)(366004)(396003)(39860400002)(136003)(451199015)(9686003)(2906002)(33656002)(66574015)(186003)(83380400001)(38070700005)(55016003)(38100700002)(122000001)(86362001)(82960400001)(76116006)(66556008)(66476007)(66446008)(64756008)(66946007)(8676002)(316002)(478600001)(6916009)(54906003)(4326008)(966005)(52536014)(53546011)(6506007)(7696005)(26005)(8936002)(5660300002)(71200400001)(41300700001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?tw10CKDnzrnKTJFNQRyWVHXg9qR8d7e2lrTFHpKZ4tGIOm0h1i1g6dBxWy?=
+ =?iso-8859-1?Q?b7ygapsXmr3+Q8u7cHhPmhgUnYeDT7hQJteyZeHRaGEBVUJ6cEXn4G2Hb3?=
+ =?iso-8859-1?Q?OdLUMF6uWjddXcWRTe06nYfCvzGeZ9h8CPgaKDfMdDdIgwZhzTJaIgmIDe?=
+ =?iso-8859-1?Q?mWs57fkwCcrdJ2aSzJWkKc8g0nIZWi75x11NgVOmRWB3ZR3r9BItNs8GT4?=
+ =?iso-8859-1?Q?REHK3+59nYdH9Se9QffJNFTKj3Yx0gwb5pq4FEObpw+vR70K6EuRYC/0w6?=
+ =?iso-8859-1?Q?mjlh5jnNSCrfx7uKloQOBMjGJR+BVyARtDb0DXs1RdTfWXcRaEd6R2+/0+?=
+ =?iso-8859-1?Q?c52ZMfUMJfcieA9j3bKePTg4TqXAevGlFUGMkpaotBgs85b6LzR9/TSEWP?=
+ =?iso-8859-1?Q?FFImI/OPp1BIHfrZmk9HuqrTyDveXSFDt8StbyUgtI3c+E1DQs3mHzc0rY?=
+ =?iso-8859-1?Q?h/AUbHSTQM/z6GChEjkLLFxiphshN84KC/T1THVurLMXml9+DUbdqVaPUe?=
+ =?iso-8859-1?Q?Mi0XhB7yvlcu2LrhN7xAdbi9D8N3GtrVruUkoqZlkOtwYBvsLLLZeXZBDj?=
+ =?iso-8859-1?Q?ksvSrxzjS52otglm1Knyf2SuOyWPrwAGnrKsbvTolViYn6YjxgnCdnLCpR?=
+ =?iso-8859-1?Q?ttqDG+A5hO/uI3BLTTk67WBNZxz2A9ogB7xRaRJr/Mwl06HYXGsoJ2a4+a?=
+ =?iso-8859-1?Q?l7M/jOiz/wr86HSt9Nu9RS8a5jjl6QPXU5Lyd8XjK4ehiLyCDVbvznnxZx?=
+ =?iso-8859-1?Q?/c6/q/BEn28NA+OLL7nGXG5biJvm5T6BaEddcrpLfIafwMfmtZMcyekFyU?=
+ =?iso-8859-1?Q?jCE02ibZ1cDIslxtwIIcB5Q2BsCWb3oGrb43mc0b34qVODPQPPibXv8lTO?=
+ =?iso-8859-1?Q?nl22zy8dzgTdE6cf7AN/v6nkxBoyhQAiSQ77Vn5XuPvUNCZDS1VUHlLbMV?=
+ =?iso-8859-1?Q?DOWDB334sjY7N+SY8WqtVX2GRjWPwn0kHhq7IuSgkni5cEh3owNtUabfVY?=
+ =?iso-8859-1?Q?f198A/0IV7LieQUgXy/RGMC3vVFN3OpwSGfP9kJKjAXNcLu/g2AC/KyXD9?=
+ =?iso-8859-1?Q?Noc9KBuYnV8LXY705zTEcCAV0+jkDhVUveLaN6R5wnDj49lp7+nOevaMdc?=
+ =?iso-8859-1?Q?QIDSCuVgRFgxtGstdYjAolQwKh7FZHYcZly/V95E/G/GEbx8v4RVhULlkJ?=
+ =?iso-8859-1?Q?/wokc1VjWMLW+Y+UIsyYDxz91NVhs9DPqwsjgjXgWMy6HGue4MBdoykrfj?=
+ =?iso-8859-1?Q?GS/q0gznuE7vVzYYmzTnUb/0CMVxzuxvec6aBVOogHRVqRZYZNjaEnA0yh?=
+ =?iso-8859-1?Q?q7gEVhZrpvTzyukl+5Isl5ekKGClkylXo+BXaj6RNfgvOyZOTmMxKfoU3E?=
+ =?iso-8859-1?Q?XMidp1TTrfyYsS/QqVQmeRq4F+eaxRu0l/VnChV+KD3GpFl2jtbg0578/m?=
+ =?iso-8859-1?Q?VMHLvfda5jdodFtqhhawlziHmOWMKjY8sgJWFDfBuCL4VdYkI+LVk7oXx4?=
+ =?iso-8859-1?Q?Ma3Jh2aAQZHtechIhHn6LhFh9muyc86QppLO7CDRLdOU4ecdCAjx5fQdXc?=
+ =?iso-8859-1?Q?CHaDcK8dCvFNhLZGw4SoDm/Vx73OtnPhesgpt+TClh0zmQvfs/sMAR/BVa?=
+ =?iso-8859-1?Q?AdW0SxZel71PXZEOT1KPMSb4c4zdpuU8SINyhGpTrifDtQplEzbFyhWQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915/hwmon: Extend power/energy for
- XEHPSDV
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR1101MB2166.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a9bf35a-c6d6-4a23-fee9-08da9fe84ca6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2022 17:55:29.3119 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WDFvmc5AGlpG0iVK8728Bk5Z9FVTpZJeRPjV1f8x/gPMkaQVSC89fyxRPyeKcaBCwhfMWT32041MMbEsOSUdC9Wp9XAoRiz2Egv9dQ9535k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5482
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 0/6] Introduce struct cdclk_step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,275 +161,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, andi.shyti@intel.com,
- dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dale B Stimson <dale.b.stimson@intel.com>
 
-Extend hwmon power/energy for XEHPSDV especially per gt level energy
-usage.
 
-v2: Update to latest HWMON spec (Ashutosh)
-v3: Fix review comments (Ashutosh)
-v4: Fix review comments (Anshuman)
-v5: s/hwmon_device_register_with_info/
-    devm_hwmon_device_register_with_info/ (Ashutosh)
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Monday, September 26, 2022 10:30 AM
+> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma
+> <uma.shankar@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Navare,
+> Manasi D <manasi.d.navare@intel.com>; Roper, Matthew D
+> <matthew.d.roper@intel.com>
+> Subject: Re: [PATCH 0/6] Introduce struct cdclk_step
+>=20
+> On Mon, Sep 26, 2022 at 05:21:40PM +0000, Srivatsa, Anusha wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Sent: Friday, September 23, 2022 12:04 PM
+> > > To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma
+> > > <uma.shankar@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+> > > Navare, Manasi D <manasi.d.navare@intel.com>; Roper, Matthew D
+> > > <matthew.d.roper@intel.com>
+> > > Subject: Re: [PATCH 0/6] Introduce struct cdclk_step
+> > >
+> > > On Fri, Sep 23, 2022 at 04:56:53PM +0000, Srivatsa, Anusha wrote:
+> > > >
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > Sent: Tuesday, September 20, 2022 2:59 PM
+> > > > > To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> > > > > Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma
+> > > > > <uma.shankar@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > > > > Subject: Re: [PATCH 0/6] Introduce struct cdclk_step
+> > > > >
+> > > > > On Tue, Sep 20, 2022 at 06:48:46PM +0000, Srivatsa, Anusha wrote:
+> > > > > >
+> > > > > >
+> > > > > > > -----Original Message-----
+> > > > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > > Sent: Tuesday, September 20, 2022 1:20 AM
+> > > > > > > To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> > > > > > > Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma
+> > > > > > > <uma.shankar@intel.com>; Vivi, Rodrigo
+> > > > > > > <rodrigo.vivi@intel.com>
+> > > > > > > Subject: Re: [PATCH 0/6] Introduce struct cdclk_step
+> > > > > > >
+> > > > > > > On Fri, Sep 16, 2022 at 05:43:58PM -0700, Anusha Srivatsa wro=
+te:
+> > > > > > > > This is a prep series for the actual cdclk refactoring
+> > > > > > > > that will be sent following this. Idea is to have a struct
+> > > > > > > > - cdclk_step that holds the following:
+> > > > > > > > - cdclk action (squash, crawl or modeset)
+> > > > > > > > - cdclk frequency
+> > > > > > > > which gets populated in atomic check. Driver uses the
+> > > > > > > > populated values during atomic commit to do the suitable
+> > > > > > > > sequence of actions like programming squash ctl registers
+> > > > > > > > in case of squashing or PLL sequence incase of modeset and =
+so
+> on.
+> > > > > > > >
+> > > > > > > > This series just addresses the initial idea. The actual
+> > > > > > > > plumming in the atomic commit phase will be sent shortly.
+> > > > > > >
+> > > > > > > OK, people keep ignoring what I say so I just typed up the
+> > > > > > > code quickly. This to me seems like the most straightforward
+> > > > > > > way to do what
+> > > > > we need:
+> > > > > > > https://github.com/vsyrjala/linux.git cdclk_crawl_and_squash
+> > > > > > >
+> > > > > > > Totally untested ofc, apart from me doing a quick scan
+> > > > > > > through our cdclk tables for the crawl+squahs platforms to
+> > > > > > > make sure that this approach should produce sane values.
+> > > > > > Ville,
+> > > > > > Why have a mid cdclk_config? Cant we use the new-cdclk-config
+> > > > > > for this
+> > > > > purpose?
+> > > > >
+> > > > > You either
+> > > > > - start at old, crawl to mid, then squash to new
+> > > > > - start at old, squash to mid, then crawl to new
+> > > >
+> > > > Tested the changes on TGL(legacy) and DG2(squash). Took some time
+> > > > to
+> > > understand the code but the mid cdclk config logic works. @Ville
+> > > Syrj=E4l=E4 does replacing the intel_cdclk_can_squash() and
+> > > intel_cdclk_can_crawl() with your new cdclk_crawl_and_squash in atomi=
+c
+> check make sense?
+> > >
+> > > I don't think we should need any real logic at that point.
+> > > If we can squash and crawl then I think we can always do the cdclk
+> > > change w/o a modeset, at least with what we currently have defined
+> > > in the cdclk tables.
+> >
+> > @Ville Syrj=E4l=E4 is this patch in your radar to be sending out to the=
+ ML? Or
+> should I send it on your behalf?
+>=20
+> You can take over again if you want.
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-Acked-by: Guenter Roeck <linux@roeck-us.net>
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- .../ABI/testing/sysfs-driver-intel-i915-hwmon |   7 +-
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   5 +
- drivers/gpu/drm/i915/i915_hwmon.c             | 102 +++++++++++++++++-
- 3 files changed, 111 insertions(+), 3 deletions(-)
+Will do. Thanks Ville!
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-index 19b9fe3ef237..dbd16b0f56d0 100644
---- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-@@ -65,6 +65,11 @@ What:		/sys/devices/.../hwmon/hwmon<i>/energy1_input
- Date:		February 2023
- KernelVersion:	6.2
- Contact:	dri-devel@lists.freedesktop.org
--Description:	RO. Energy input of device in microjoules.
-+Description:	RO. Energy input of device or gt in microjoules.
-+
-+		For i915 device level hwmon devices (name "i915") this
-+		reflects energy input for the entire device. For gt level
-+		hwmon devices (name "i915_gtN") this reflects energy input
-+		for the gt.
- 
- 		Only supported for particular Intel i915 graphics platforms.
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index fcf5f9012852..30458f1cf0dd 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1592,6 +1592,11 @@
- 
- #define GEN12_SFC_DONE(n)			_MMIO(0x1cc000 + (n) * 0x1000)
- 
-+#define GT0_PACKAGE_ENERGY_STATUS		_MMIO(0x250004)
-+#define GT0_PACKAGE_RAPL_LIMIT			_MMIO(0x250008)
-+#define GT0_PACKAGE_POWER_SKU_UNIT		_MMIO(0x250068)
-+#define GT0_PLATFORM_ENERGY_STATUS		_MMIO(0x25006c)
-+
- /*
-  * Standalone Media's non-engine GT registers are located at their regular GT
-  * offsets plus 0x380000.  This extra offset is stored inside the intel_uncore
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index 641143956c45..d80bc569ebcf 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -12,6 +12,7 @@
- #include "i915_reg.h"
- #include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
-+#include "gt/intel_gt.h"
- #include "gt/intel_gt_regs.h"
- 
- /*
-@@ -34,6 +35,7 @@ struct hwm_reg {
- 	i915_reg_t pkg_power_sku;
- 	i915_reg_t pkg_rapl_limit;
- 	i915_reg_t energy_status_all;
-+	i915_reg_t energy_status_tile;
- };
- 
- struct hwm_energy_info {
-@@ -47,10 +49,12 @@ struct hwm_drvdata {
- 	struct device *hwmon_dev;
- 	struct hwm_energy_info ei;		/*  Energy info for energy1_input */
- 	char name[12];
-+	int gt_n;
- };
- 
- struct i915_hwmon {
- 	struct hwm_drvdata ddat;
-+	struct hwm_drvdata ddat_gt[I915_MAX_GT];
- 	struct mutex hwmon_lock;		/* counter overflow logic and rmw */
- 	struct hwm_reg rg;
- 	int scl_shift_power;
-@@ -144,7 +148,10 @@ hwm_energy(struct hwm_drvdata *ddat, long *energy)
- 	i915_reg_t rgaddr;
- 	u32 reg_val;
- 
--	rgaddr = hwmon->rg.energy_status_all;
-+	if (ddat->gt_n >= 0)
-+		rgaddr = hwmon->rg.energy_status_tile;
-+	else
-+		rgaddr = hwmon->rg.energy_status_all;
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
-@@ -281,6 +288,11 @@ static const struct hwmon_channel_info *hwm_info[] = {
- 	NULL
- };
- 
-+static const struct hwmon_channel_info *hwm_gt_info[] = {
-+	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
-+	NULL
-+};
-+
- /* I1 is exposed as power_crit or as curr_crit depending on bit 31 */
- static int hwm_pcode_read_i1(struct drm_i915_private *i915, u32 *uval)
- {
-@@ -410,7 +422,10 @@ hwm_energy_is_visible(const struct hwm_drvdata *ddat, u32 attr)
- 
- 	switch (attr) {
- 	case hwmon_energy_input:
--		rgaddr = hwmon->rg.energy_status_all;
-+		if (ddat->gt_n >= 0)
-+			rgaddr = hwmon->rg.energy_status_tile;
-+		else
-+			rgaddr = hwmon->rg.energy_status_all;
- 		return i915_mmio_reg_valid(rgaddr) ? 0444 : 0;
- 	default:
- 		return 0;
-@@ -545,6 +560,44 @@ static const struct hwmon_chip_info hwm_chip_info = {
- 	.info = hwm_info,
- };
- 
-+static umode_t
-+hwm_gt_is_visible(const void *drvdata, enum hwmon_sensor_types type,
-+		  u32 attr, int channel)
-+{
-+	struct hwm_drvdata *ddat = (struct hwm_drvdata *)drvdata;
-+
-+	switch (type) {
-+	case hwmon_energy:
-+		return hwm_energy_is_visible(ddat, attr);
-+	default:
-+		return 0;
-+	}
-+}
-+
-+static int
-+hwm_gt_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-+	    int channel, long *val)
-+{
-+	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
-+
-+	switch (type) {
-+	case hwmon_energy:
-+		return hwm_energy_read(ddat, attr, val);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static const struct hwmon_ops hwm_gt_ops = {
-+	.is_visible = hwm_gt_is_visible,
-+	.read = hwm_gt_read,
-+};
-+
-+static const struct hwmon_chip_info hwm_gt_chip_info = {
-+	.ops = &hwm_gt_ops,
-+	.info = hwm_gt_info,
-+};
-+
- static void
- hwm_get_preregistration_info(struct drm_i915_private *i915)
- {
-@@ -553,7 +606,9 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
- 	struct hwm_drvdata *ddat = &hwmon->ddat;
- 	intel_wakeref_t wakeref;
- 	u32 val_sku_unit;
-+	struct intel_gt *gt;
- 	long energy;
-+	int i;
- 
- 	if (IS_DG1(i915) || IS_DG2(i915)) {
- 		hwmon->rg.gt_perf_status = GEN12_RPSTAT1;
-@@ -561,12 +616,21 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
- 		hwmon->rg.pkg_power_sku = PCU_PACKAGE_POWER_SKU;
- 		hwmon->rg.pkg_rapl_limit = PCU_PACKAGE_RAPL_LIMIT;
- 		hwmon->rg.energy_status_all = PCU_PACKAGE_ENERGY_STATUS;
-+		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
-+	} else if (IS_XEHPSDV(i915)) {
-+		hwmon->rg.pkg_power_sku_unit = GT0_PACKAGE_POWER_SKU_UNIT;
-+		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
-+		hwmon->rg.pkg_rapl_limit = GT0_PACKAGE_RAPL_LIMIT;
-+		hwmon->rg.energy_status_all = GT0_PLATFORM_ENERGY_STATUS;
-+		hwmon->rg.energy_status_tile = GT0_PACKAGE_ENERGY_STATUS;
-+		hwmon->rg.gt_perf_status = INVALID_MMIO_REG;
- 	} else {
- 		hwmon->rg.gt_perf_status = INVALID_MMIO_REG;
- 		hwmon->rg.pkg_power_sku_unit = INVALID_MMIO_REG;
- 		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
- 		hwmon->rg.pkg_rapl_limit = INVALID_MMIO_REG;
- 		hwmon->rg.energy_status_all = INVALID_MMIO_REG;
-+		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
- 	}
- 
- 	with_intel_runtime_pm(uncore->rpm, wakeref) {
-@@ -592,6 +656,10 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
- 	 */
- 	if (i915_mmio_reg_valid(hwmon->rg.energy_status_all))
- 		hwm_energy(ddat, &energy);
-+	if (i915_mmio_reg_valid(hwmon->rg.energy_status_tile)) {
-+		for_each_gt(gt, i915, i)
-+			hwm_energy(&hwmon->ddat_gt[i], &energy);
-+	}
- }
- 
- void i915_hwmon_register(struct drm_i915_private *i915)
-@@ -600,6 +668,9 @@ void i915_hwmon_register(struct drm_i915_private *i915)
- 	struct i915_hwmon *hwmon;
- 	struct device *hwmon_dev;
- 	struct hwm_drvdata *ddat;
-+	struct hwm_drvdata *ddat_gt;
-+	struct intel_gt *gt;
-+	int i;
- 
- 	/* hwmon is available only for dGfx */
- 	if (!IS_DGFX(i915))
-@@ -616,6 +687,16 @@ void i915_hwmon_register(struct drm_i915_private *i915)
- 	ddat->hwmon = hwmon;
- 	ddat->uncore = &i915->uncore;
- 	snprintf(ddat->name, sizeof(ddat->name), "i915");
-+	ddat->gt_n = -1;
-+
-+	for_each_gt(gt, i915, i) {
-+		ddat_gt = hwmon->ddat_gt + i;
-+
-+		ddat_gt->hwmon = hwmon;
-+		ddat_gt->uncore = gt->uncore;
-+		snprintf(ddat_gt->name, sizeof(ddat_gt->name), "i915_gt%u", i);
-+		ddat_gt->gt_n = i;
-+	}
- 
- 	hwm_get_preregistration_info(i915);
- 
-@@ -630,6 +711,23 @@ void i915_hwmon_register(struct drm_i915_private *i915)
- 	}
- 
- 	ddat->hwmon_dev = hwmon_dev;
-+
-+	for_each_gt(gt, i915, i) {
-+		ddat_gt = hwmon->ddat_gt + i;
-+		/*
-+		 * Create per-gt directories only if a per-gt attribute is
-+		 * visible. Currently this is only energy
-+		 */
-+		if (!hwm_gt_is_visible(ddat_gt, hwmon_energy, hwmon_energy_input, 0))
-+			continue;
-+
-+		hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat_gt->name,
-+								 ddat_gt,
-+								 &hwm_gt_chip_info,
-+								 NULL);
-+		if (!IS_ERR(hwmon_dev))
-+			ddat_gt->hwmon_dev = hwmon_dev;
-+	}
- }
- 
- void i915_hwmon_unregister(struct drm_i915_private *i915)
--- 
-2.25.1
-
+Anusha
+> --
+> Ville Syrj=E4l=E4
+> Intel
