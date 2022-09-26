@@ -2,55 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284155E9BE4
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 10:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5935E9BF4
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 10:26:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24ABB10E64B;
-	Mon, 26 Sep 2022 08:22:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F325A10E650;
+	Mon, 26 Sep 2022 08:26:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E18510E64B
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 08:22:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664180525; x=1695716525;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=8SPfcAkcvWEQR6LjTOW4EzIK/D6kIngLiYhZAPQHsCU=;
- b=I85y0ix5ZPPtilfpwKgZbwCvBcp8hyH//WUSGwDVD2G5XIDQCeALEPuI
- dCSJ4bvsjWbtNWz9FMfaDep3xEN1zmLOlaqeYEsWL31bFbZUSn4logKGB
- d0xPG0iCuqgIUn2ikDILMeunXAlTpev8jIOqxTM1TfcZh+iHwbg+bVduF
- 46IHKbsoyG6UNBqA5Wsfc1m6fTcUjV43j7ZWQ7qEoj3yZhSpToU/W0B7u
- fpMf+Q+0Vr6MiESwptfUMKPHNYGAeMYiyKdfE0vZz+se/qt4ef5D0059g
- EX7zVYJo4/pVeXsgwahzhtEHdiMZiMWjiAgDvTB+OaMoydPqo85OmkUE8 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10481"; a="301872695"
-X-IronPort-AV: E=Sophos;i="5.93,345,1654585200"; d="scan'208";a="301872695"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 01:22:04 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10481"; a="598646995"
-X-IronPort-AV: E=Sophos;i="5.93,345,1654585200"; d="scan'208";a="598646995"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.20.190])
- ([10.252.20.190])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 01:22:03 -0700
-Message-ID: <2b5906f6-cdf7-fe25-0aaf-c19434987fda@linux.intel.com>
-Date: Mon, 26 Sep 2022 10:22:01 +0200
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF5D110E64B;
+ Mon, 26 Sep 2022 08:26:05 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id E643ACE109B;
+ Mon, 26 Sep 2022 08:25:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45A8BC43470;
+ Mon, 26 Sep 2022 08:25:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1664180756;
+ bh=App1ZjPH8nkKBwK8Hhjqf0mfR2s8++nd8clCs0X/edI=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=qxxJdB5QU2RfOjTWBoZ63EhYxEYw326xMhU+YxYSrEkbdhAv/Avr6uKiT9iZZs7nE
+ F8ELI+H8nVVHB4YoHTa0Qa1dZAr1OPF8G+N/muNxMgn+lM4hVHoBiQag49PIq421xM
+ abc5j6+D30N/JqptqcFV2wxTuQNS6k30R2nT1yHNpSNYU9YHfOfbkKP55bdCFwp/Xd
+ xf8UiT5zat7955XASia1noCEGiRUs+NM4URexoifb6q+K66tAiUDvY/tzxCH65e7qX
+ sngqrF6PnbGHE6dBoQFSuzbFyyOwLr04q4jKufTEL6cEI4ghWOO0CWoujPIV9RP+g6
+ ueqFLwtuzlPMQ==
+Date: Mon, 26 Sep 2022 10:25:51 +0200
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20220926102551.55278f31@coco.lan>
+In-Reply-To: <Yx9qCCmxnSM06CgH@mdroper-desk1.amr.corp.intel.com>
+References: <cover.1662708705.git.mchehab@kernel.org>
+ <6405f00c4ba03987abf7635f4c62d86b40a0e521.1662708705.git.mchehab@kernel.org>
+ <Yx9LxciaH/y8fnRD@mdroper-desk1.amr.corp.intel.com>
+ <20220912184756.61492ad1@coco.lan>
+ <Yx9qCCmxnSM06CgH@mdroper-desk1.amr.corp.intel.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Content-Language: en-US
-To: Alan Previn <alan.previn.teres.alexis@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220922233112.243677-1-alan.previn.teres.alexis@intel.com>
- <20220922233112.243677-2-alan.previn.teres.alexis@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20220922233112.243677-2-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/pxp: Add firmware status when
- ARB session fails
+Subject: Re: [Intel-gfx] [PATCH v3 19/37] drm/i915: stop using kernel-doc
+ markups for something else
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,44 +57,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tomas Winkler <tomas.winkler@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-LGTM Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+Em Mon, 12 Sep 2022 10:19:04 -0700
+Matt Roper <matthew.d.roper@intel.com> escreveu:
 
-On 9/23/2022 1:31 AM, Alan Previn wrote:
-> Add firmware status using a drm_warn when ARB session fails
-> or else a drm_dbg when the ARB session register slot bit did
-> get set.
->
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> ---
->   drivers/gpu/drm/i915/pxp/intel_pxp_session.c | 1 +
->   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     | 2 ++
->   2 files changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> index 1bb5b5249157..c4f5c994ca51 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> @@ -77,6 +77,7 @@ static int pxp_create_arb_session(struct intel_pxp *pxp)
->   		drm_err(&gt->i915->drm, "arb session failed to go in play\n");
->   		return ret;
->   	}
-> +	drm_dbg(&gt->i915->drm, "PXP ARB session is alive\n");
->   
->   	if (!++pxp->key_instance)
->   		++pxp->key_instance;
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index 4b6f5655fab5..b388c9e77b59 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -174,6 +174,8 @@ int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
->   
->   	if (ret)
->   		drm_err(&i915->drm, "Failed to send tee msg ret=[%d]\n", ret);
-> +	else if (msg_out.header.status != 0x0)
-> +		drm_warn(&i915->drm, "PXP firmware failed arb session init request ret=[0x%08x]\n", msg_out.header.status);
->   
->   	return ret;
->   }
+> > Those *appear* to be kernel-doc markups, but they aren't, because
+> > the structs themselves are not properly marked. See, for instance
+> > struct intel_context.
+> > 
+> > scripts/kerneldoc will *only* consider what's there as a proper
+> > comment if you add:
+> > 
+> > 	/**
+> > 	 * struct intel_context - describes an i915 context
+> > 	 * <add a proper description for it>
+> > 	 */
+> > 	struct intel_context {
+> > 		union {
+> > 			/** @ref: a kernel object reference */
+> > 	                struct kref ref; /* no kref_get_unless_zero()! */
+> > 			/** @rcu: a rcu header */
+> > 	                struct rcu_head rcu;
+> > 	        };
+> > 		...
+> > 	}
+> > 
+> > Describing all fields inside the struct. Just placing
+> > 	/** something */
+> > on some random places in the middle doesn't make it a kernel-doc.  
+> 
+> Right, what we have today is incomplete/incorrect.  But I think we
+> should be fixing that by adding the missing documentation on the
+> structure, rather than giving up and removing the kerneldoc.  The end
+> goal should be to have proper generated documentation, not just silence
+> the warnings while leaving the actual output incomplete.
+
+The end goal is to have *real* kernel-doc markups, not fake ones.
+We're aiming towards there, where the first step is to get rid of the
+ones that just pretend to be kernel-doc without really being validated
+in order to check if they produce a valid content.
+
+See, what we have so far are just comments. Some examples from this
+patch:
+
+	/** Powers down the TV out block, and DAC0-3 */
+	 #define CH7017_TV_POWER_DOWN_EN		(1 << 5)
+
+Currently, kernel-doc doesn't have any markup for not-function defines.
+
+What we do to document this at kernel-doc is to either:
+
+1. convert to an enum;
+2. embed it inside some struct (or function) definition.
+
+Other examples: this is not a Kernel-doc markup:
+
+	/** @file
+	  * driver for the Chrontel 7xxx DVI chip over DVO.
+	  */
+
+Neither this:
+
+	/**
+ 	 * active: Active tracker for the rq activity (inc. external) on this
+ 	 * intel_context object.
+ 	 */
+ 
+In summary, what happens is that those "/**" tags removed on this patch are
+just pretending to be Kernel-doc, but they aren't anything. See, when a newbie
+starts programming in C code, without having a compiler, lots of syntax
+issues will happen. When they try to compile their code, hundreds or errors
+and warnings happen. That's basically what it is happening here.
+
+See, the very basic syntax thing is missing: just like a C file requires
+that all codes to be inside functions, a kernel-doc field description 
+requires a kernel-doc markup for the struct/function/enum/union that
+contains it.
+
+-
+
+Now, I fully agree that the end goal is to have proper kernel-doc markups.
+
+Adding those require a lot of archaeological work, looking at the git
+commits which introduced the changes. Patch 34/37, for instance, does
+that for struct drm_i915_gem_object:
+
+	https://lists.freedesktop.org/archives/intel-gfx/2022-September/305736.html
+
+See, besides adding a real Kernel-doc markup for the struct:
+
+	+/**
+	+ * struct drm_i915_gem_object - describes an i915 GEM object
+	+ */
+	 struct drm_i915_gem_object {
+
+It had to fix several sintax and semantic mistakes:
+
+Typos:
+
+	/**
+-	 * @shared_resv_from: The object shares the resv from this vm.
++	 * @shares_resv_from: The object shares the resv from this vm.
+ 	 */
+
+Invalid kernel-doc markups:
+
+	 	/**
+	-	 * @mem_flags - Mutable placement-related flags
+	+	 * @mem_flags: Mutable placement-related flags
+
+Kernel markups that miss that they're on an embedded struct inside
+the main one (thus those are also invalid kernel-doc markups):
+
+                /**
+-                * @shrink_pin: Prevents the pages from being made visible to
++                * @mm.shrink_pin: Prevents the pages from being made visible to
+
+
+Etc.
+
+Thanks,
+Mauro
