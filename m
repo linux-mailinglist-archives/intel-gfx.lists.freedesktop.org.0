@@ -1,43 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9245EA404
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 13:38:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A169B5EA5C3
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 14:16:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1429D10E389;
-	Mon, 26 Sep 2022 11:38:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1A3310E68F;
+	Mon, 26 Sep 2022 12:16:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1BF510E389
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 11:38:15 +0000 (UTC)
-Received: from 91-155-255-44.elisa-laajakaista.fi ([91.155.255.44]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1ocmRA-003aMf-6F;
- Mon, 26 Sep 2022 14:38:13 +0300
-Message-ID: <f5b7fe5cb6d1b1df6f240e0db8e98a06742c497f.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Date: Mon, 26 Sep 2022 14:38:11 +0300
-In-Reply-To: <6949d9290535115fe279bd04439c979311e15246.camel@coelho.fi>
-References: <20220912111814.17466-1-ville.syrjala@linux.intel.com>
- <20220912111814.17466-7-ville.syrjala@linux.intel.com>
- <6992a0ec208145381c0d587f7d7241684e3e1d09.camel@coelho.fi>
- <YzGKDRz0412ilvVI@intel.com>
- <6949d9290535115fe279bd04439c979311e15246.camel@coelho.fi>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.0-2 
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D03FB10E68B;
+ Mon, 26 Sep 2022 12:15:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=VqqSqbLQ5CcNULSIxBrajieA3dWYiSKrZmW1RRtf2jA=; b=FMxfkov+yeLnAgQjafE8g9To1P
+ clmuv1NwmM/GT/7KQvLpa2fgLvgElGaDMSjVapH/NX57xOh5Cfd1Tsa2tvazzp1xbT34/sWFZSsxf
+ G+33Mez91WAezNG7jxhrzQJi1HJ4RMSbrEt/NhffiULFzLJkf0DT+Dy3y/PhaE6Mj51uSvpE8Q02X
+ +Wg8OyhF/H9EumsY/eHK7iQo7QkDFQZMEHfp3Lnk5V1ZMMtekj/ajQLAvH6ws+wESFiM4pzDtspPW
+ +H7msO0IVHArxJVz7tWFGwWvpRY3610HctqslpxOAPUco0dGkVPpdoTrG4RbBtVSg5vlQAtpJbMBK
+ a6MHbVJw==;
+Received: from [2a01:799:961:d200:3946:6b45:3eef:d112] (port=65380)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1ocn1g-0001Me-Bi; Mon, 26 Sep 2022 14:15:56 +0200
+Message-ID: <8eab2fc7-92de-fcc9-150b-ac3e7f293267@tronnes.org>
+Date: Mon, 26 Sep 2022 14:15:48 +0200
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH 06/15] drm/i915: Extract
- intel_edp_backlight_setup()
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+To: Maxime Ripard <maxime@cerno.tech>
+References: <20220728-rpi-analog-tv-properties-v2-0-f733a0ed9f90@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-2-f733a0ed9f90@cerno.tech>
+ <3f7000ab-b845-a7e8-f215-02121da779b7@tronnes.org>
+ <c7bd9bcb-77a1-9f2d-fe93-afefac5e6def@tronnes.org>
+ <20220926093612.wvbou2srbo3uinar@houat>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220926093612.wvbou2srbo3uinar@houat>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 02/33] drm/tests: Add Kunit Helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,57 +58,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2022-09-26 at 14:33 +0300, Luca Coelho wrote:
-> On Mon, 2022-09-26 at 14:16 +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > On Mon, Sep 26, 2022 at 01:58:42PM +0300, Luca Coelho wrote:
-> > > On Mon, 2022-09-12 at 14:18 +0300, Ville Syrjala wrote:
-> > > > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> > > >=20
-> > > > Pull the eDP backlight setup ino its own function. No
-> > > > reason to pollute intel_edp_init_connector() with all
-> > > > the mundane details.
-> > > >=20
-> > > > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
-om>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_dp.c | 51 +++++++++++++++------=
-----
-> > > >  1 file changed, 30 insertions(+), 21 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/=
-drm/i915/display/intel_dp.c
-> > > > index a5eca5396fed..de5a4d2df78e 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > @@ -5217,6 +5217,35 @@ intel_edp_add_properties(struct intel_dp *in=
-tel_dp)
-> > > >  						       fixed_mode->vdisplay);
-> > > >  }
-> > > > =20
-> > > > +static void intel_edp_backlight_setup(struct intel_dp *intel_dp,
-> > > > +				      struct intel_connector *connector)
-> > > > +{
-> > > > +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> > > > +	enum pipe pipe =3D INVALID_PIPE;
-> > > > +
-> > > > +	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-> > >=20
-> > > Isn't this too restrictive? Isn't there another way to check whether
-> > > the hardware supports backlight?
-> >=20
-> > That's not what we're checking.
-> >=20
-> > Only VLV/CHV have per-pipe backlight registers, whereas
-> > other platforms have less insane design. So we only need
-> > to figure out the pipe on VLV/CHV.
 
-BTW, this is exactly the kind of code that I think deserves some
-comments. =F0=9F=98=89 Very hard to figure out where this comes from...
 
---
-Cheers,
-Luca.
+Den 26.09.2022 11.36, skrev Maxime Ripard:
+> Hi Noralf,
+> 
+> On Sat, Sep 24, 2022 at 08:06:17PM +0200, Noralf Trønnes wrote:
+>> Den 24.09.2022 19.56, skrev Noralf Trønnes:
+>>>
+>>>
+>>> Den 22.09.2022 16.25, skrev Maxime Ripard:
+>>>> As the number of kunit tests in KMS grows further, we start to have
+>>>> multiple test suites that, for example, need to register a mock DRM
+>>>> driver to interact with the KMS function they are supposed to test.
+>>>>
+>>>> Let's add a file meant to provide those kind of helpers to avoid
+>>>> duplication.
+>>>>
+>>>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+>>>>
+>>>> diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Makefile
+>>>> index 2d9f49b62ecb..b29ef1085cad 100644
+>>>> --- a/drivers/gpu/drm/tests/Makefile
+>>>> +++ b/drivers/gpu/drm/tests/Makefile
+>>>> @@ -8,6 +8,7 @@ obj-$(CONFIG_DRM_KUNIT_TEST) += \
+>>>>  	drm_format_helper_test.o \
+>>>>  	drm_format_test.o \
+>>>>  	drm_framebuffer_test.o \
+>>>> +	drm_kunit_helpers.o \
+>>>>  	drm_mm_test.o \
+>>>>  	drm_plane_helper_test.o \
+>>>>  	drm_rect_test.o
+>>>> diff --git a/drivers/gpu/drm/tests/drm_kunit_helpers.c b/drivers/gpu/drm/tests/drm_kunit_helpers.c
+>>>> new file mode 100644
+>>>> index 000000000000..7ebd620481c1
+>>>> --- /dev/null
+>>>> +++ b/drivers/gpu/drm/tests/drm_kunit_helpers.c
+>>>> @@ -0,0 +1,54 @@
+>>>> +#include <drm/drm_drv.h>
+>>>> +#include <drm/drm_managed.h>
+>>>> +
+>>>> +#include <linux/device.h>
+>>>> +
+>>>> +static const struct drm_mode_config_funcs drm_mode_config_funcs = {
+>>>> +};
+>>>> +
+>>>> +static const struct drm_driver drm_mode_driver = {
+>>>> +};
+>>>> +
+>>>> +static void drm_kunit_free_device(struct drm_device *drm, void *ptr)
+>>>> +{
+>>>> +	struct device *dev = ptr;
+>>>> +
+>>>> +	root_device_unregister(dev);
+>>>> +}
+>>>> +
+>>>> +struct drm_device *drm_kunit_device_init(const char *name)
+>>>> +{
+>>>> +	struct drm_device *drm;
+>>>> +	struct device *dev;
+>>>> +	int ret;
+>>>> +
+>>>> +	dev = root_device_register(name);
+>>>> +	if (IS_ERR(dev))
+>>>> +		return ERR_CAST(dev);
+>>>> +
+>>>> +	drm = drm_dev_alloc(&drm_mode_driver, dev);
+>>>
+>>> I can't find drm being freed anywhere?
+>>> Maybe you could assign it to drm->managed.final_kfree.
+> 
+> There's a drm_dev_put in the test_exit hook which should free it.
+> 
+
+I see now, there's a drmm_add_final_kfree() in drm_dev_alloc().
+
+Noralf.
+
+>> Perhaps a better solution would be to use devm_drm_dev_alloc() and
+>> unregister the root device on exit. That avoids reaching into the drm
+>> managed internals and it looks more like a regular driver.
+> 
+> But yeah, this is a good idea, I'll do it.
+> 
+> Maxime
