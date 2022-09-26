@@ -2,46 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0E55EB027
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 20:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 924415EB0F8
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 21:11:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5061110E4E0;
-	Mon, 26 Sep 2022 18:38:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6C0D10E471;
+	Mon, 26 Sep 2022 19:11:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 568F010E4E0;
- Mon, 26 Sep 2022 18:38:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664217504; x=1695753504;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vH5/uyLOOOMyNY31x7w7N6JIwPn/w+Vv2PFsOcjA6fY=;
- b=FVnSnYWULlwX+m1CjROmoY0lmKYPjuCdNWty8bq0aEsaNItQQdNwZa+P
- Y7VeMok7eE7otvTrM54I7Vpi2OPMFyWp/q4en57iHAe25K7tIujgr0bbN
- 4GwHkYHtPooO3L3Ii4eX6fdCJhfNpNBzICxHczBxNgFYPn6cymQMM+Vx1
- chU5fdGynmMeGGD+2IZymK1oroe6S3siOPra1+91U4e7GroL5l43n9Q/O
- OJvqlJQ0KmSnU/eK4jhs8nEsh8kqrEiPqN5lPweuY1PL6Ier/P/do7a0J
- N0sbpWOsvlowvGkHNuz2KGiC1oHFVl7DE/c3DtwuOXwXzRgFtoVQxHjNP A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="302582609"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="302582609"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 11:38:23 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="763552947"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="763552947"
-Received: from aravind-dev.iind.intel.com ([10.145.162.80])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 11:38:21 -0700
-From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Sep 2022 00:14:24 +0530
-Message-Id: <20220926184424.23772-1-aravind.iddamsetty@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com
+ [IPv6:2607:f8b0:4864:20::102e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A72710E471
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 19:11:12 +0000 (UTC)
+Received: by mail-pj1-x102e.google.com with SMTP id
+ u59-20020a17090a51c100b00205d3c44162so272458pjh.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 12:11:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date;
+ bh=t0CfCoZqMGHjpwAIdJA1QP0G4eln/PQ4u1Lhg2kh+P8=;
+ b=ZMjPeBN4gxWG5u3/aa/mxPmuEieRccWNlGNcEQAwF3i+nJOkd2vPCexg+9kG0aFyHe
+ B20Qndr3PupebMoqQ3u++H9YArzaWICstuh2CRPt2ucWLgrSYASemROOU2humxTeTK4Q
+ u1jKqPoqk2QnSVqH5IctQ9oqoCRSa2EEBwmls=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date;
+ bh=t0CfCoZqMGHjpwAIdJA1QP0G4eln/PQ4u1Lhg2kh+P8=;
+ b=oNe0ANK9yIFE5kvPH+xAdljiyKsPKfzzFfq2Qk6vrJv4DwezMRNClyeJatxt1YA9DY
+ I+gHWFUaYQtgyaudjRioXwi7E9xdSAIbEk7mRSB4fne/uNQhh/wABdPdmngKlOmCZONY
+ FhcN4y5xqxVeczVDzDsBO6RhwJ0XHml9/H0xMJJWPJUpYUrXt3FMHMrbKcIfMDmzFI4c
+ L9boQ8HETYNCbS1hIWYYxD/IiGdSWKqGtdpZvKH6xfLwggweKKc/BsUt8qUrzS/9XoX2
+ lwqo8G/saImT1FuDfW8x49mwEUX+EZtxGUP4ZgNMMj0qd/swQSpgdAPaf0FtQ/oVMQu9
+ +bsw==
+X-Gm-Message-State: ACrzQf0YRt4rsN3ZhC8gtJtICR3Kcuz2VNVk7QGdEuOLiHE4OUu9toc7
+ 2sP7wusrMP007m9KqtaoeGcWSg==
+X-Google-Smtp-Source: AMsMyM5jfIId8O7l/si7yraVXZJS0LWZx8kdixNZvxHWXvLV5Ynwjjmwz1GPSZ49podHVTwBy/mxcw==
+X-Received: by 2002:a17:90b:3a8e:b0:200:5585:4099 with SMTP id
+ om14-20020a17090b3a8e00b0020055854099mr295386pjb.70.1664219471903; 
+ Mon, 26 Sep 2022 12:11:11 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+ by smtp.gmail.com with ESMTPSA id
+ w16-20020a170902e89000b00176d8e33601sm11636791plg.203.2022.09.26.12.11.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 26 Sep 2022 12:11:11 -0700 (PDT)
+From: Kees Cook <keescook@chromium.org>
+To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Date: Mon, 26 Sep 2022 12:11:09 -0700
+Message-Id: <20220926191109.1803094-1-keescook@chromium.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=23674; h=from:subject;
+ bh=u4b5EhRKbhmHqO3PVH0GCid/8a3LBtAJqtetUQD9A9o=;
+ b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBjMflMZnd4MG9qc67tbwKA7UMW1dlOcV6gGArXWHiv
+ HuR8LT+JAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCYzH5TAAKCRCJcvTf3G3AJqSED/
+ 4lGU7cgF8nOvpdNUnxaGn5z4Dl1DuAKLABHro1hKFsfMRHrO+oLZnHpcyt0CMOKkosiZiAcr511fBo
+ jzut1rpzQYv/lOUZf9+VyDQlhSvttsAEXtbve6EcudJf9CL1Xklc8HM9SqHQgrjZv1U2K+vx/0Nbl5
+ /EZQhS27TMqvd9nCp5PYfw+N6sMbXrpePZz56OaRN6RAQinzqlziy7xhSnXF8IGMsrk+nSbgv0/r1C
+ Ypr/RRYlUP80sPXwxGeXd51mG4f3FjaxLfPoptK4/u3plDgbC/74KbGzX8lAK3qz3McscFKdGPjP7W
+ 9Ltuw4Y0ywYpCYFqKFjfq/CWrO0BTGQCV4zahux1Tf4KGJMkJVMxTh3+z3cnTYI1N8bwJ0ogRZ41ta
+ XNJM0htNqmhrfjmEfW8RNHISdVu6t+xjL1pMeVIRAnsBTrwdRbJFPXM2pcYWiy/2xg7pyNGj/tn/jI
+ 2VWjtN3jEG9b7t9+OzjE9Nw3mqBIEo7rv8lf21M1T/J6R3WZ/+Yh2mVQXedQ6OQWH3Fji5EcNtLvzU
+ EMVHnYV7rAM7Vc5BVxxTSEQKM8CBvtMn/mW9HNtRzT2pMWyj8z4ruFel/mBfLOttfNxRk1vMeYEiP/
+ oVY0BGy9preiY8ipVi0JMSqqGuwAqiI5+eSgfHf8cjVPggY0laI8GTP0mfvQ==
+X-Developer-Key: i=keescook@chromium.org; a=openpgp;
+ fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915/mtl: enable local stolen memory
+Subject: [Intel-gfx] [PATCH v2] overflow: Introduce overflows_type() and
+ castable_to_type()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,254 +81,571 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Kees Cook <keescook@chromium.org>,
+ David Airlie <airlied@linux.ie>, Tom Rix <trix@redhat.com>,
+ Daniel Latypov <dlatypov@google.com>, llvm@lists.linux.dev,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, linux-kernel@vger.kernel.org,
+ Nathan Chancellor <nathan@kernel.org>, linux-sparse@vger.kernel.org,
+ linux-hardening@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ Vitor Massaru Iha <vitor@massaru.org>,
+ Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As an integrated GPU, MTL does not have local memory and
-HAS_LMEM() returns false.  However the platform's stolen memory
-is presented via BAR2 (i.e., the BAR we traditionally consider
-to be the LMEM BAR) and should be managed by the driver the same
-way that local memory is on dgpu platforms (which includes
-setting the "lmem" bit on page table entries).  We use the term
-"local stolen memory" to refer to this model.
+Implement a robust overflows_type() macro to test if a variable or
+constant value would overflow another variable or type. This can be
+used as a constant expression for static_assert() (which requires a
+constant expression[1][2]) when used on constant values. This must be
+constructed manually, since __builtin_add_overflow() does not produce
+a constant expression[3].
 
-v2:
-1. dropped is_dsm_invalid, updated valid_stolen_size check from Lucas
-(Jani, Lucas)
-2. drop lmembar_is_igpu_stolen
-3. revert to referring GFXMEM_BAR as GEN12_LMEM_BAR (Lucas)
+Additionally adds castable_to_type(), similar to __same_type(), but for
+checking if a constant value would overflow if cast to a given type.
 
-v3:(Jani)
-1. rename get_mtl_gms_size to mtl_get_gms_size
-2. define register for MMIO address
+Add unit tests for overflows_type(), __same_type(), and castable_to_type()
+to the existing KUnit "overflow" test.
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
+[1] https://en.cppreference.com/w/c/language/_Static_assert
+[2] C11 standard (ISO/IEC 9899:2011): 6.7.10 Static assertions
+[3] https://gcc.gnu.org/onlinedocs/gcc/Integer-Overflow-Builtins.html
+    6.56 Built-in Functions to Perform Arithmetic with Overflow Checking
+    Built-in Function: bool __builtin_add_overflow (type1 a, type2 b,
 
-Signed-off-by: CQ Tang <cq.tang@intel.com>
-Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Original-author: CQ Tang
+Cc: Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
+Cc: Nathan Chancellor <nathan@kernel.org>
+Cc: Nick Desaulniers <ndesaulniers@google.com>
+Cc: Tom Rix <trix@redhat.com>
+Cc: Daniel Latypov <dlatypov@google.com>
+Cc: Vitor Massaru Iha <vitor@massaru.org>
+Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: linux-hardening@vger.kernel.org
+Cc: llvm@lists.linux.dev
+Co-developed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Signed-off-by: Kees Cook <keescook@chromium.org>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 88 ++++++++++++++++++----
- drivers/gpu/drm/i915/gt/intel_ggtt.c       |  2 +-
- drivers/gpu/drm/i915/i915_drv.h            |  3 +
- drivers/gpu/drm/i915/i915_reg.h            |  5 ++
- 4 files changed, 81 insertions(+), 17 deletions(-)
+v2:
+ - fix comment typo
+ - wrap clang pragma to avoid GCC warnings
+ - style nit cleanups
+ - rename __castable_to_type() to castable_to_type()
+ - remove prior overflows_type() definition
+v1: https://lore.kernel.org/lkml/20220926003743.409911-1-keescook@chromium.org
+---
+ drivers/gpu/drm/i915/i915_utils.h |   4 -
+ include/linux/compiler.h          |   1 +
+ include/linux/overflow.h          |  48 ++++
+ lib/overflow_kunit.c              | 388 +++++++++++++++++++++++++++++-
+ 4 files changed, 436 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index c5a4035c99cd..0eb66c55bbf3 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -77,9 +77,9 @@ void i915_gem_stolen_remove_node(struct drm_i915_private *i915,
- 	mutex_unlock(&i915->mm.stolen_lock);
- }
+diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+index c10d68cdc3ca..d14b7faee054 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -111,10 +111,6 @@ bool i915_error_injected(void);
+ #define range_overflows_end_t(type, start, size, max) \
+ 	range_overflows_end((type)(start), (type)(size), (type)(max))
  
--static bool valid_stolen_size(struct resource *dsm)
-+static bool valid_stolen_size(struct drm_i915_private *i915, struct resource *dsm)
- {
--	return dsm->start != 0 && dsm->end > dsm->start;
-+	return (dsm->start != 0 || HAS_BAR2_SMEM_STOLEN(i915)) && dsm->end > dsm->start;
- }
- 
- static int adjust_stolen(struct drm_i915_private *i915,
-@@ -88,7 +88,7 @@ static int adjust_stolen(struct drm_i915_private *i915,
- 	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
- 	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
- 
--	if (!valid_stolen_size(dsm))
-+	if (!valid_stolen_size(i915, dsm))
- 		return -EINVAL;
- 
- 	/*
-@@ -135,7 +135,7 @@ static int adjust_stolen(struct drm_i915_private *i915,
- 		}
- 	}
- 
--	if (!valid_stolen_size(dsm))
-+	if (!valid_stolen_size(i915, dsm))
- 		return -EINVAL;
- 
- 	return 0;
-@@ -148,9 +148,10 @@ static int request_smem_stolen(struct drm_i915_private *i915,
- 
- 	/*
- 	 * With stolen lmem, we don't need to request system memory for the
--	 * address range since it's local to the gpu.
-+	 * address range since it's local to the gpu and in some IGFX devices
-+	 * BAR2 is exposed as stolen
- 	 */
--	if (HAS_LMEM(i915))
-+	if (HAS_LMEM(i915) || HAS_BAR2_SMEM_STOLEN(i915))
- 		return 0;
- 
- 	/*
-@@ -385,8 +386,6 @@ static void icl_get_stolen_reserved(struct drm_i915_private *i915,
- 
- 	drm_dbg(&i915->drm, "GEN6_STOLEN_RESERVED = 0x%016llx\n", reg_val);
- 
--	*base = reg_val & GEN11_STOLEN_RESERVED_ADDR_MASK;
+-/* Note we don't consider signbits :| */
+-#define overflows_type(x, T) \
+-	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
 -
- 	switch (reg_val & GEN8_STOLEN_RESERVED_SIZE_MASK) {
- 	case GEN8_STOLEN_RESERVED_1M:
- 		*size = 1024 * 1024;
-@@ -404,6 +403,12 @@ static void icl_get_stolen_reserved(struct drm_i915_private *i915,
- 		*size = 8 * 1024 * 1024;
- 		MISSING_CASE(reg_val & GEN8_STOLEN_RESERVED_SIZE_MASK);
- 	}
-+
-+	if (HAS_BAR2_SMEM_STOLEN(i915))
-+		/* the base is initialized to stolen top so subtract size to get base */
-+		*base -= *size;
-+	else
-+		*base = reg_val & GEN11_STOLEN_RESERVED_ADDR_MASK;
- }
+ #define ptr_mask_bits(ptr, n) ({					\
+ 	unsigned long __v = (unsigned long)(ptr);			\
+ 	(typeof(ptr))(__v & -BIT(n));					\
+diff --git a/include/linux/compiler.h b/include/linux/compiler.h
+index 7713d7bcdaea..c631107e93b1 100644
+--- a/include/linux/compiler.h
++++ b/include/linux/compiler.h
+@@ -244,6 +244,7 @@ static inline void *offset_to_ptr(const int *off)
+  * bool and also pointer types.
+  */
+ #define is_signed_type(type) (((type)(-1)) < (__force type)1)
++#define is_unsigned_type(type) (!is_signed_type(type))
  
  /*
-@@ -833,6 +838,34 @@ static const struct intel_memory_region_ops i915_region_stolen_lmem_ops = {
- 	.init_object = _i915_gem_object_stolen_init,
- };
+  * This is needed in functions which generate the stack canary, see
+diff --git a/include/linux/overflow.h b/include/linux/overflow.h
+index 19dfdd74835e..58eb34aa2af9 100644
+--- a/include/linux/overflow.h
++++ b/include/linux/overflow.h
+@@ -127,6 +127,54 @@ static inline bool __must_check __must_check_overflow(bool overflow)
+ 	(*_d >> _to_shift) != _a);					\
+ }))
  
-+static int mtl_get_gms_size(struct intel_uncore *uncore)
++#define __overflows_type_constexpr(x, T) (			\
++	is_unsigned_type(typeof(x)) ?				\
++		(x) > type_max(typeof(T)) ? 1 : 0		\
++	: is_unsigned_type(typeof(T)) ?				\
++		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
++		: (x) < type_min(typeof(T)) ||			\
++		  (x) > type_max(typeof(T)) ? 1 : 0)
++
++#define __overflows_type(x, T)		({	\
++	typeof(T) v = 0;			\
++	check_add_overflow((x), v, &v);		\
++})
++
++/**
++ * overflows_type - helper for checking the overflows between value, variables,
++ *		    or data type
++ *
++ * @n: source constant value or variable to be checked
++ * @T: destination variable or data type proposed to store @x
++ *
++ * Compares the @x expression for whether or not it can safely fit in
++ * the storage of the type in @T. @x and @T can have different types.
++ * If @x is a constant expression, this will also resolve to a constant
++ * expression.
++ *
++ * Returns: true if overflow can occur, false otherwise.
++ */
++#define overflows_type(n, T)					\
++	__builtin_choose_expr(__is_constexpr(n),		\
++			      __overflows_type_constexpr(n, T),	\
++			      __overflows_type(n, T))
++
++/**
++ * castable_to_type - like __same_type(), but also allows for casted literals
++ *
++ * @n: variable or constant value
++ * @T: variable or data type
++ *
++ * Unlike the __same_type() macro, this allows a constant value as the
++ * first argument. If this value would not overflow into an assignment
++ * of the second argument's type, it returns true. Otherwise, this falls
++ * back to __same_type().
++ */
++#define castable_to_type(n, T)						\
++	__builtin_choose_expr(__is_constexpr(n),			\
++			      !__overflows_type_constexpr(n, T),	\
++			      __same_type(n, T))
++
+ /**
+  * size_mul() - Calculate size_t multiplication with saturation at SIZE_MAX
+  *
+diff --git a/lib/overflow_kunit.c b/lib/overflow_kunit.c
+index f385ca652b74..fffc3f86181d 100644
+--- a/lib/overflow_kunit.c
++++ b/lib/overflow_kunit.c
+@@ -16,6 +16,11 @@
+ #include <linux/types.h>
+ #include <linux/vmalloc.h>
+ 
++/* We're expecting to do a lot of "always true" or "always false" tests. */
++#ifdef CONFIG_CC_IS_CLANG
++#pragma clang diagnostic ignored "-Wtautological-constant-out-of-range-compare"
++#endif
++
+ #define DEFINE_TEST_ARRAY_TYPED(t1, t2, t)			\
+ 	static const struct test_ ## t1 ## _ ## t2 ## __ ## t {	\
+ 		t1 a;						\
+@@ -246,7 +251,7 @@ DEFINE_TEST_ARRAY(s64) = {
+ 
+ #define DEFINE_TEST_FUNC_TYPED(n, t, fmt)				\
+ static void do_test_ ## n(struct kunit *test, const struct test_ ## n *p) \
+-{							   		\
++{									\
+ 	check_one_op(t, fmt, add, "+", p->a, p->b, p->sum, p->s_of);	\
+ 	check_one_op(t, fmt, add, "+", p->b, p->a, p->sum, p->s_of);	\
+ 	check_one_op(t, fmt, sub, "-", p->a, p->b, p->diff, p->d_of);	\
+@@ -708,6 +713,384 @@ static void overflow_size_helpers_test(struct kunit *test)
+ #undef check_one_size_helper
+ }
+ 
++static void overflows_type_test(struct kunit *test)
 +{
-+	u16 ggc, gms;
++	int count = 0;
++	unsigned int var;
 +
-+	ggc = intel_uncore_read16(uncore, GGC);
++#define __TEST_OVERFLOWS_TYPE(func, arg1, arg2, of)	do {		\
++	bool __of = func(arg1, arg2);					\
++	KUNIT_EXPECT_EQ_MSG(test, __of, of,				\
++		"expected " #func "(" #arg1 ", " #arg2 " to%s overflow\n",\
++		of ? "" : " not");					\
++	count++;							\
++} while (0)
 +
-+	/* check GGMS, should be fixed 0x3 (8MB) */
-+	if ((ggc & GGMS_MASK) != GGMS_MASK)
-+		return -EIO;
++/* Args are: first type, second type, value, overflow expected */
++#define TEST_OVERFLOWS_TYPE(__t1, __t2, v, of) do {			\
++	__t1 t1 = (v);							\
++	__t2 t2;							\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, __t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, t2, of);	\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, __t2, of);\
++} while (0)
 +
-+	/* return valid GMS value, -EIO if invalid */
-+	gms = (ggc & GMS_MASK) >> GMS_SHIFT;
-+	switch (gms) {
-+	case 0x0 ... 0x10:
-+		return gms * 32;
-+	case 0x20:
-+		return 1024;
-+	case 0x30:
-+		return 1536;
-+	case 0x40:
-+		return 2048;
-+	case 0xf0 ... 0xfe:
-+		return (gms - 0xf0 + 1) * 4;
-+	default:
-+		return -EIO;
-+	}
++	TEST_OVERFLOWS_TYPE(u8, u8, U8_MAX, false);
++	TEST_OVERFLOWS_TYPE(u8, u16, U8_MAX, false);
++	TEST_OVERFLOWS_TYPE(u8, s8, U8_MAX, true);
++	TEST_OVERFLOWS_TYPE(u8, s8, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(u8, s8, (u8)S8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u8, s16, U8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s8, u8, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s8, u8, -1, true);
++	TEST_OVERFLOWS_TYPE(s8, u8, S8_MIN, true);
++	TEST_OVERFLOWS_TYPE(s8, u16, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s8, u16, -1, true);
++	TEST_OVERFLOWS_TYPE(s8, u16, S8_MIN, true);
++	TEST_OVERFLOWS_TYPE(s8, u32, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s8, u32, -1, true);
++	TEST_OVERFLOWS_TYPE(s8, u32, S8_MIN, true);
++#if BITS_PER_LONG == 64
++	TEST_OVERFLOWS_TYPE(s8, u64, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s8, u64, -1, true);
++	TEST_OVERFLOWS_TYPE(s8, u64, S8_MIN, true);
++#endif
++	TEST_OVERFLOWS_TYPE(s8, s8, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s8, s8, S8_MIN, false);
++	TEST_OVERFLOWS_TYPE(s8, s16, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s8, s16, S8_MIN, false);
++	TEST_OVERFLOWS_TYPE(u16, u8, U8_MAX, false);
++	TEST_OVERFLOWS_TYPE(u16, u8, (u16)U8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u16, u8, U16_MAX, true);
++	TEST_OVERFLOWS_TYPE(u16, s8, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(u16, s8, (u16)S8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u16, s8, U16_MAX, true);
++	TEST_OVERFLOWS_TYPE(u16, s16, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(u16, s16, (u16)S16_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u16, s16, U16_MAX, true);
++	TEST_OVERFLOWS_TYPE(u16, u32, U16_MAX, false);
++	TEST_OVERFLOWS_TYPE(u16, s32, U16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s16, u8, U8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s16, u8, (s16)U8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s16, u8, -1, true);
++	TEST_OVERFLOWS_TYPE(s16, u8, S16_MIN, true);
++	TEST_OVERFLOWS_TYPE(s16, u16, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s16, u16, -1, true);
++	TEST_OVERFLOWS_TYPE(s16, u16, S16_MIN, true);
++	TEST_OVERFLOWS_TYPE(s16, u32, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s16, u32, -1, true);
++	TEST_OVERFLOWS_TYPE(s16, u32, S16_MIN, true);
++#if BITS_PER_LONG == 64
++	TEST_OVERFLOWS_TYPE(s16, u64, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s16, u64, -1, true);
++	TEST_OVERFLOWS_TYPE(s16, u64, S16_MIN, true);
++#endif
++	TEST_OVERFLOWS_TYPE(s16, s8, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s16, s8, S8_MIN, false);
++	TEST_OVERFLOWS_TYPE(s16, s8, (s16)S8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s16, s8, (s16)S8_MIN - 1, true);
++	TEST_OVERFLOWS_TYPE(s16, s8, S16_MAX, true);
++	TEST_OVERFLOWS_TYPE(s16, s8, S16_MIN, true);
++	TEST_OVERFLOWS_TYPE(s16, s16, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s16, s16, S16_MIN, false);
++	TEST_OVERFLOWS_TYPE(s16, s32, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s16, s32, S16_MIN, false);
++	TEST_OVERFLOWS_TYPE(u32, u8, U8_MAX, false);
++	TEST_OVERFLOWS_TYPE(u32, u8, (u32)U8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u32, u8, U32_MAX, true);
++	TEST_OVERFLOWS_TYPE(u32, s8, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(u32, s8, (u32)S8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u32, s8, U32_MAX, true);
++	TEST_OVERFLOWS_TYPE(u32, u16, U16_MAX, false);
++	TEST_OVERFLOWS_TYPE(u32, u16, U16_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u32, u16, U32_MAX, true);
++	TEST_OVERFLOWS_TYPE(u32, s16, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(u32, s16, (u32)S16_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u32, s16, U32_MAX, true);
++	TEST_OVERFLOWS_TYPE(u32, u32, U32_MAX, false);
++	TEST_OVERFLOWS_TYPE(u32, s32, S32_MAX, false);
++	TEST_OVERFLOWS_TYPE(u32, s32, U32_MAX, true);
++	TEST_OVERFLOWS_TYPE(u32, s32, (u32)S32_MAX + 1, true);
++#if BITS_PER_LONG == 64
++	TEST_OVERFLOWS_TYPE(u32, u64, U32_MAX, false);
++	TEST_OVERFLOWS_TYPE(u32, s64, U32_MAX, false);
++#endif
++	TEST_OVERFLOWS_TYPE(s32, u8, U8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s32, u8, (s32)U8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s32, u16, S32_MAX, true);
++	TEST_OVERFLOWS_TYPE(s32, u8, -1, true);
++	TEST_OVERFLOWS_TYPE(s32, u8, S32_MIN, true);
++	TEST_OVERFLOWS_TYPE(s32, u16, U16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s32, u16, (s32)U16_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s32, u16, S32_MAX, true);
++	TEST_OVERFLOWS_TYPE(s32, u16, -1, true);
++	TEST_OVERFLOWS_TYPE(s32, u16, S32_MIN, true);
++	TEST_OVERFLOWS_TYPE(s32, u32, S32_MAX, false);
++	TEST_OVERFLOWS_TYPE(s32, u32, -1, true);
++	TEST_OVERFLOWS_TYPE(s32, u32, S32_MIN, true);
++#if BITS_PER_LONG == 64
++	TEST_OVERFLOWS_TYPE(s32, u64, S32_MAX, false);
++	TEST_OVERFLOWS_TYPE(s32, u64, -1, true);
++	TEST_OVERFLOWS_TYPE(s32, u64, S32_MIN, true);
++#endif
++	TEST_OVERFLOWS_TYPE(s32, s8, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s32, s8, S8_MIN, false);
++	TEST_OVERFLOWS_TYPE(s32, s8, (s32)S8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s32, s8, (s32)S8_MIN - 1, true);
++	TEST_OVERFLOWS_TYPE(s32, s8, S32_MAX, true);
++	TEST_OVERFLOWS_TYPE(s32, s8, S32_MIN, true);
++	TEST_OVERFLOWS_TYPE(s32, s16, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s32, s16, S16_MIN, false);
++	TEST_OVERFLOWS_TYPE(s32, s16, (s32)S16_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s32, s16, (s32)S16_MIN - 1, true);
++	TEST_OVERFLOWS_TYPE(s32, s16, S32_MAX, true);
++	TEST_OVERFLOWS_TYPE(s32, s16, S32_MIN, true);
++	TEST_OVERFLOWS_TYPE(s32, s32, S32_MAX, false);
++	TEST_OVERFLOWS_TYPE(s32, s32, S32_MIN, false);
++#if BITS_PER_LONG == 64
++	TEST_OVERFLOWS_TYPE(s32, s64, S32_MAX, false);
++	TEST_OVERFLOWS_TYPE(s32, s64, S32_MIN, false);
++	TEST_OVERFLOWS_TYPE(u64, u8, U64_MAX, true);
++	TEST_OVERFLOWS_TYPE(u64, u8, U8_MAX, false);
++	TEST_OVERFLOWS_TYPE(u64, u8, (u64)U8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u64, u16, U64_MAX, true);
++	TEST_OVERFLOWS_TYPE(u64, u16, U16_MAX, false);
++	TEST_OVERFLOWS_TYPE(u64, u16, (u64)U16_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u64, u32, U64_MAX, true);
++	TEST_OVERFLOWS_TYPE(u64, u32, U32_MAX, false);
++	TEST_OVERFLOWS_TYPE(u64, u32, (u64)U32_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u64, u64, U64_MAX, false);
++	TEST_OVERFLOWS_TYPE(u64, s8, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(u64, s8, (u64)S8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u64, s8, U64_MAX, true);
++	TEST_OVERFLOWS_TYPE(u64, s16, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(u64, s16, (u64)S16_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u64, s16, U64_MAX, true);
++	TEST_OVERFLOWS_TYPE(u64, s32, S32_MAX, false);
++	TEST_OVERFLOWS_TYPE(u64, s32, (u64)S32_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(u64, s32, U64_MAX, true);
++	TEST_OVERFLOWS_TYPE(u64, s64, S64_MAX, false);
++	TEST_OVERFLOWS_TYPE(u64, s64, U64_MAX, true);
++	TEST_OVERFLOWS_TYPE(u64, s64, (u64)S64_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s64, u8, S64_MAX, true);
++	TEST_OVERFLOWS_TYPE(s64, u8, S64_MIN, true);
++	TEST_OVERFLOWS_TYPE(s64, u8, -1, true);
++	TEST_OVERFLOWS_TYPE(s64, u8, U8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s64, u8, (s64)U8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s64, u16, S64_MAX, true);
++	TEST_OVERFLOWS_TYPE(s64, u16, S64_MIN, true);
++	TEST_OVERFLOWS_TYPE(s64, u16, -1, true);
++	TEST_OVERFLOWS_TYPE(s64, u16, U16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s64, u16, (s64)U16_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s64, u32, S64_MAX, true);
++	TEST_OVERFLOWS_TYPE(s64, u32, S64_MIN, true);
++	TEST_OVERFLOWS_TYPE(s64, u32, -1, true);
++	TEST_OVERFLOWS_TYPE(s64, u32, U32_MAX, false);
++	TEST_OVERFLOWS_TYPE(s64, u32, (s64)U32_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s64, u64, S64_MAX, false);
++	TEST_OVERFLOWS_TYPE(s64, u64, S64_MIN, true);
++	TEST_OVERFLOWS_TYPE(s64, u64, -1, true);
++	TEST_OVERFLOWS_TYPE(s64, s8, S8_MAX, false);
++	TEST_OVERFLOWS_TYPE(s64, s8, S8_MIN, false);
++	TEST_OVERFLOWS_TYPE(s64, s8, (s64)S8_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s64, s8, (s64)S8_MIN - 1, true);
++	TEST_OVERFLOWS_TYPE(s64, s8, S64_MAX, true);
++	TEST_OVERFLOWS_TYPE(s64, s16, S16_MAX, false);
++	TEST_OVERFLOWS_TYPE(s64, s16, S16_MIN, false);
++	TEST_OVERFLOWS_TYPE(s64, s16, (s64)S16_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s64, s16, (s64)S16_MIN - 1, true);
++	TEST_OVERFLOWS_TYPE(s64, s16, S64_MAX, true);
++	TEST_OVERFLOWS_TYPE(s64, s32, S32_MAX, false);
++	TEST_OVERFLOWS_TYPE(s64, s32, S32_MIN, false);
++	TEST_OVERFLOWS_TYPE(s64, s32, (s64)S32_MAX + 1, true);
++	TEST_OVERFLOWS_TYPE(s64, s32, (s64)S32_MIN - 1, true);
++	TEST_OVERFLOWS_TYPE(s64, s32, S64_MAX, true);
++	TEST_OVERFLOWS_TYPE(s64, s64, S64_MAX, false);
++	TEST_OVERFLOWS_TYPE(s64, s64, S64_MIN, false);
++#endif
++
++	/* Check for macro side-effects. */
++	var = INT_MAX - 1;
++	__TEST_OVERFLOWS_TYPE(__overflows_type, var++, int, false);
++	__TEST_OVERFLOWS_TYPE(__overflows_type, var++, int, false);
++	__TEST_OVERFLOWS_TYPE(__overflows_type, var++, int, true);
++	var = INT_MAX - 1;
++	__TEST_OVERFLOWS_TYPE(overflows_type, var++, int, false);
++	__TEST_OVERFLOWS_TYPE(overflows_type, var++, int, false);
++	__TEST_OVERFLOWS_TYPE(overflows_type, var++, int, true);
++
++	kunit_info(test, "%d overflows_type() tests finished\n", count);
++#undef TEST_OVERFLOWS_TYPE
++#undef __TEST_OVERFLOWS_TYPE
 +}
 +
- struct intel_memory_region *
- i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 			   u16 instance)
-@@ -843,6 +876,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 	struct intel_memory_region *mem;
- 	resource_size_t io_start, io_size;
- 	resource_size_t min_page_size;
-+	int ret;
- 
- 	if (WARN_ON_ONCE(instance))
- 		return ERR_PTR(-ENODEV);
-@@ -850,12 +884,8 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 	if (!i915_pci_resource_valid(pdev, GEN12_LMEM_BAR))
- 		return ERR_PTR(-ENXIO);
- 
--	/* Use DSM base address instead for stolen memory */
--	dsm_base = intel_uncore_read64(uncore, GEN12_DSMBASE) & GEN12_BDSM_MASK;
--	if (IS_DG1(uncore->i915)) {
-+	if (HAS_BAR2_SMEM_STOLEN(i915) || IS_DG1(i915)) {
- 		lmem_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
--		if (WARN_ON(lmem_size < dsm_base))
--			return ERR_PTR(-ENODEV);
- 	} else {
- 		resource_size_t lmem_range;
- 
-@@ -864,13 +894,39 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 		lmem_size *= SZ_1G;
- 	}
- 
--	dsm_size = lmem_size - dsm_base;
--	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < lmem_size) {
-+	if (HAS_BAR2_SMEM_STOLEN(i915)) {
-+		/*
-+		 * MTL dsm size is in GGC register, not the bar size.
-+		 * also MTL uses offset to DSMBASE in ptes, so i915
-+		 * uses dsm_base = 0 to setup stolen region.
-+		 */
-+		ret = mtl_get_gms_size(uncore);
-+		if (ret < 0) {
-+			drm_err(&i915->drm, "invalid MTL GGC register setting\n");
-+			return ERR_PTR(ret);
-+		}
++static void same_type_test(struct kunit *test)
++{
++	int count = 0;
++	int var;
 +
-+		dsm_base = 0;
-+		dsm_size = (resource_size_t)(ret * SZ_1M);
++#define TEST_SAME_TYPE(t1, t2, same)			do {	\
++	typeof(t1) __t1h = type_max(t1);			\
++	typeof(t1) __t1l = type_min(t1);			\
++	typeof(t2) __t2h = type_max(t2);			\
++	typeof(t2) __t2l = type_min(t2);			\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
++} while (0)
 +
-+		GEM_BUG_ON(pci_resource_len(pdev, GEN12_LMEM_BAR) != 256 * SZ_1M);
-+		GEM_BUG_ON((dsm_size + 8 * SZ_1M) > lmem_size);
-+	} else {
-+		/* Use DSM base address instead for stolen memory */
-+		dsm_base = intel_uncore_read64(uncore, GEN12_DSMBASE);
-+		if (WARN_ON(lmem_size < dsm_base))
-+			return ERR_PTR(-ENODEV);
-+		dsm_size = lmem_size - dsm_base;
-+	}
++#if BITS_PER_LONG == 64
++# define TEST_SAME_TYPE64(base, t, m)	TEST_SAME_TYPE(base, t, m)
++#else
++# define TEST_SAME_TYPE64(base, t, m)	do { } while (0)
++#endif
 +
-+	io_size = dsm_size;
-+	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < dsm_size) {
- 		io_start = 0;
- 		io_size = 0;
-+	} else if (HAS_BAR2_SMEM_STOLEN(i915)) {
-+		io_start = pci_resource_start(pdev, GEN12_LMEM_BAR) + 8 * SZ_1M;
- 	} else {
- 		io_start = pci_resource_start(pdev, GEN12_LMEM_BAR) + dsm_base;
--		io_size = dsm_size;
- 	}
- 
- 	min_page_size = HAS_64K_PAGES(i915) ? I915_GTT_PAGE_SIZE_64K :
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 30cf5c3369d9..b31fe0fb013f 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -931,7 +931,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 	unsigned int size;
- 	u16 snb_gmch_ctl;
- 
--	if (!HAS_LMEM(i915)) {
-+	if (!HAS_LMEM(i915) && !HAS_BAR2_SMEM_STOLEN(i915)) {
- 		if (!i915_pci_resource_valid(pdev, GTT_APERTURE_BAR))
- 			return -ENXIO;
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index d830d52ded5d..b33ba0d49bbd 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -975,6 +975,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- 
- #define HAS_ONE_EU_PER_FUSE_BIT(i915)	(INTEL_INFO(i915)->has_one_eu_per_fuse_bit)
- 
-+#define HAS_BAR2_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
-+				    GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
++#define TEST_TYPE_SETS(base, mu8, mu16, mu32, ms8, ms16, ms32, mu64, ms64) \
++do {									\
++	TEST_SAME_TYPE(base,  u8,  mu8);				\
++	TEST_SAME_TYPE(base, u16, mu16);				\
++	TEST_SAME_TYPE(base, u32, mu32);				\
++	TEST_SAME_TYPE(base,  s8,  ms8);				\
++	TEST_SAME_TYPE(base, s16, ms16);				\
++	TEST_SAME_TYPE(base, s32, ms32);				\
++	TEST_SAME_TYPE64(base, u64, mu64);				\
++	TEST_SAME_TYPE64(base, s64, ms64);				\
++} while (0)
 +
- /* intel_device_info.c */
- static inline struct intel_device_info *
- mkwrite_device_info(struct drm_i915_private *dev_priv)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 5003a5ffbc6a..3ace2d6b4961 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7967,6 +7967,11 @@ enum skl_power_gate {
- 							   _ICL_PIPE_DSS_CTL2_PB, \
- 							   _ICL_PIPE_DSS_CTL2_PC)
- 
-+#define GGC				_MMIO(0x108040)
-+#define   GMS_MASK			REG_GENMASK(15, 8)
-+#define   GMS_SHIFT			8
-+#define   GGMS_MASK			REG_GENMASK(7, 6)
++	TEST_TYPE_SETS(u8,   true, false, false, false, false, false, false, false);
++	TEST_TYPE_SETS(u16, false,  true, false, false, false, false, false, false);
++	TEST_TYPE_SETS(u32, false, false,  true, false, false, false, false, false);
++	TEST_TYPE_SETS(s8,  false, false, false,  true, false, false, false, false);
++	TEST_TYPE_SETS(s16, false, false, false, false,  true, false, false, false);
++	TEST_TYPE_SETS(s32, false, false, false, false, false,  true, false, false);
++#if BITS_PER_LONG == 64
++	TEST_TYPE_SETS(u64, false, false, false, false, false, false,  true, false);
++	TEST_TYPE_SETS(s64, false, false, false, false, false, false, false,  true);
++#endif
 +
- #define GEN12_GSMBASE			_MMIO(0x108100)
- #define GEN12_DSMBASE			_MMIO(0x1080C0)
- #define   GEN12_BDSM_MASK		REG_GENMASK64(63, 20)
++	/* Check for macro side-effects. */
++	var = 4;
++	KUNIT_EXPECT_EQ(test, var, 4);
++	KUNIT_EXPECT_TRUE(test, __same_type(var++, int));
++	KUNIT_EXPECT_EQ(test, var, 4);
++	KUNIT_EXPECT_TRUE(test, __same_type(int, var++));
++	KUNIT_EXPECT_EQ(test, var, 4);
++	KUNIT_EXPECT_TRUE(test, __same_type(var++, var++));
++	KUNIT_EXPECT_EQ(test, var, 4);
++
++	kunit_info(test, "%d __same_type() tests finished\n", count);
++
++#undef TEST_TYPE_SETS
++#undef TEST_SAME_TYPE64
++#undef TEST_SAME_TYPE
++}
++
++static void castable_to_type_test(struct kunit *test)
++{
++	int count = 0;
++
++#define TEST_CASTABLE_TO_TYPE(arg1, arg2, pass)	do {	\
++	bool __pass = castable_to_type(arg1, arg2);		\
++	KUNIT_EXPECT_EQ_MSG(test, __pass, pass,			\
++		"expected castable_to_type(" #arg1 ", " #arg2 ") to%s pass\n",\
++		pass ? "" : " not");				\
++	count++;						\
++} while (0)
++
++	TEST_CASTABLE_TO_TYPE(16, u8, true);
++	TEST_CASTABLE_TO_TYPE(16, u16, true);
++	TEST_CASTABLE_TO_TYPE(16, u32, true);
++	TEST_CASTABLE_TO_TYPE(16, s8, true);
++	TEST_CASTABLE_TO_TYPE(16, s16, true);
++	TEST_CASTABLE_TO_TYPE(16, s32, true);
++	TEST_CASTABLE_TO_TYPE(-16, s8, true);
++	TEST_CASTABLE_TO_TYPE(-16, s16, true);
++	TEST_CASTABLE_TO_TYPE(-16, s32, true);
++#if BITS_PER_LONG == 64
++	TEST_CASTABLE_TO_TYPE(16, u64, true);
++	TEST_CASTABLE_TO_TYPE(-16, s64, true);
++#endif
++
++#define TEST_CASTABLE_TO_TYPE_VAR(width)	do {				\
++	u ## width u ## width ## var = 0;					\
++	s ## width s ## width ## var = 0;					\
++										\
++	/* Constant expressions that fit types. */				\
++	TEST_CASTABLE_TO_TYPE(type_max(u ## width), u ## width, true);		\
++	TEST_CASTABLE_TO_TYPE(type_min(u ## width), u ## width, true);		\
++	TEST_CASTABLE_TO_TYPE(type_max(u ## width), u ## width ## var, true);	\
++	TEST_CASTABLE_TO_TYPE(type_min(u ## width), u ## width ## var, true);	\
++	TEST_CASTABLE_TO_TYPE(type_max(s ## width), s ## width, true);		\
++	TEST_CASTABLE_TO_TYPE(type_min(s ## width), s ## width, true);		\
++	TEST_CASTABLE_TO_TYPE(type_max(s ## width), s ## width ## var, true);	\
++	TEST_CASTABLE_TO_TYPE(type_min(u ## width), s ## width ## var, true);	\
++	/* Constant expressions that do not fit types. */			\
++	TEST_CASTABLE_TO_TYPE(type_max(u ## width), s ## width, false);		\
++	TEST_CASTABLE_TO_TYPE(type_max(u ## width), s ## width ## var, false);	\
++	TEST_CASTABLE_TO_TYPE(type_min(s ## width), u ## width, false);		\
++	TEST_CASTABLE_TO_TYPE(type_min(s ## width), u ## width ## var, false);	\
++	/* Non-constant expression with mismatched type. */			\
++	TEST_CASTABLE_TO_TYPE(s ## width ## var, u ## width, false);		\
++	TEST_CASTABLE_TO_TYPE(u ## width ## var, s ## width, false);		\
++} while (0)
++
++#define TEST_CASTABLE_TO_TYPE_RANGE(width)	do {				\
++	unsigned long big = U ## width ## _MAX;					\
++	signed long small = S ## width ## _MIN;					\
++	u ## width u ## width ## var = 0;					\
++	s ## width s ## width ## var = 0;					\
++										\
++	/* Constant expression in range. */					\
++	TEST_CASTABLE_TO_TYPE(U ## width ## _MAX, u ## width, true);		\
++	TEST_CASTABLE_TO_TYPE(U ## width ## _MAX, u ## width ## var, true);	\
++	TEST_CASTABLE_TO_TYPE(S ## width ## _MIN, s ## width, true);		\
++	TEST_CASTABLE_TO_TYPE(S ## width ## _MIN, s ## width ## var, true);	\
++	/* Constant expression out of range. */					\
++	TEST_CASTABLE_TO_TYPE((unsigned long)U ## width ## _MAX + 1, u ## width, false); \
++	TEST_CASTABLE_TO_TYPE((unsigned long)U ## width ## _MAX + 1, u ## width ## var, false); \
++	TEST_CASTABLE_TO_TYPE((signed long)S ## width ## _MIN - 1, s ## width, false); \
++	TEST_CASTABLE_TO_TYPE((signed long)S ## width ## _MIN - 1, s ## width ## var, false); \
++	/* Non-constant expression with mismatched type. */			\
++	TEST_CASTABLE_TO_TYPE(big, u ## width, false);				\
++	TEST_CASTABLE_TO_TYPE(big, u ## width ## var, false);			\
++	TEST_CASTABLE_TO_TYPE(small, s ## width, false);			\
++	TEST_CASTABLE_TO_TYPE(small, s ## width ## var, false);			\
++} while (0)
++
++	TEST_CASTABLE_TO_TYPE_VAR(8);
++	TEST_CASTABLE_TO_TYPE_VAR(16);
++	TEST_CASTABLE_TO_TYPE_VAR(32);
++#if BITS_PER_LONG == 64
++	TEST_CASTABLE_TO_TYPE_VAR(64);
++#endif
++
++	TEST_CASTABLE_TO_TYPE_RANGE(8);
++	TEST_CASTABLE_TO_TYPE_RANGE(16);
++#if BITS_PER_LONG == 64
++	TEST_CASTABLE_TO_TYPE_RANGE(32);
++#endif
++	kunit_info(test, "%d castable_to_type() tests finished\n", count);
++
++#undef TEST_CASTABLE_TO_TYPE_RANGE
++#undef TEST_CASTABLE_TO_TYPE_VAR
++#undef TEST_CASTABLE_TO_TYPE
++}
++
+ static struct kunit_case overflow_test_cases[] = {
+ 	KUNIT_CASE(u8_u8__u8_overflow_test),
+ 	KUNIT_CASE(s8_s8__s8_overflow_test),
+@@ -730,6 +1113,9 @@ static struct kunit_case overflow_test_cases[] = {
+ 	KUNIT_CASE(shift_nonsense_test),
+ 	KUNIT_CASE(overflow_allocation_test),
+ 	KUNIT_CASE(overflow_size_helpers_test),
++	KUNIT_CASE(overflows_type_test),
++	KUNIT_CASE(same_type_test),
++	KUNIT_CASE(castable_to_type_test),
+ 	{}
+ };
+ 
 -- 
-2.25.1
+2.34.1
 
