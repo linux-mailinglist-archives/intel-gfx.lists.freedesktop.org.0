@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D7A5EAB54
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 17:41:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7880A5EAB9F
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Sep 2022 17:50:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DAF610E706;
-	Mon, 26 Sep 2022 15:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4316D10E6FA;
+	Mon, 26 Sep 2022 15:50:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E090510E706;
- Mon, 26 Sep 2022 15:41:31 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88D2F10E6FA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Sep 2022 15:50:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664206891; x=1695742891;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cJtS1l/hYLRTkrJK1zvNl4hftjTQqox5BLOaFPE0CkM=;
- b=ikA0iGIgd/4nYdxzlZP4VAEFJ6IZlKXJ/aIgXG9BDYTWPIb1KZx98h4d
- FLhOuZ/fsfEIG6GDfj0VcGxrCPWbMn1EdKkL4hasn3jmCJhyc1Jy7EmH6
- /+FxQSUGDGkMDmHAq8p28QpJeyILk1xMl/tdmVZlQe/dt3Bfb85MpG4GU
- wRnsr1bDrxn4/sLpx1SoeySYDsgarZ1HvX3FmPaqnMzZBnM0ZQEpHw+D5
- zatDmuM8gzPJJCoy7D/va5z+dyfcyMHZ0Iw+lCVBkdc2SLJcRYC6euLsK
- 17gKag8Sr/ZJA24odGlvxC00mFHPfzO7iabS6ekvgbSFjpRCmYgGwSUjk w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="280787051"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="280787051"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 08:41:31 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="763481118"
-X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="763481118"
-Received: from bsochack-mobl2.ger.corp.intel.com (HELO
- paris.ger.corp.intel.com) ([10.249.128.215])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2022 08:41:22 -0700
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+ t=1664207429; x=1695743429;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+TSHSVnORK5VmoUBE4C55guVhQBCvDwvWx7Wf07iK/w=;
+ b=mxpEQHDMtzEMWgl2V+V6nDUBuWBHVQB0wRC0TGSW1eauvtJ5vBesyieE
+ 8LUr1Fvgz0adBl1GTtAT8UE/n2PtLd0CpwC4CZY56+gg/sJnJcKPsf2VC
+ WsQ5yapQIMkPkxdCIL3Oqj+h2A8xuPR/tminBFJ83kjL0g2LCj6ESldwa
+ 0XMeH0u0GYoZozHWymSp0L+g7yiiFc49C6EFMQENdTqEcUicM28ibwTfB
+ i/VLbe0ccXF/kA2KHAhdaCpRZqOERIunskmRgzvf7E6eKRXkbCMaZfLP6
+ Ew+L9ZpKjmTpyzSrz2WaKFdxv9C3FuxKl2zPTAzCCC0H32yjSC22b46cE w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="281438108"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="281438108"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 08:50:28 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="621103476"
+X-IronPort-AV: E=Sophos;i="5.93,346,1654585200"; d="scan'208";a="621103476"
+Received: from vnyaykal-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.4.169])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2022 08:50:27 -0700
+From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Sep 2022 18:39:53 +0300
-Message-Id: <20220926153953.3836470-10-gwan-gyeong.mun@intel.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220926153953.3836470-1-gwan-gyeong.mun@intel.com>
-References: <20220926153953.3836470-1-gwan-gyeong.mun@intel.com>
+Date: Mon, 26 Sep 2022 16:50:18 +0100
+Message-Id: <20220926155018.109678-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v12 9/9] drm/i915: Remove truncation warning for
- large objects
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Move scratch page into system
+ memory on all platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,71 +56,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gustavoars@kernel.org, trix@redhat.com, dlatypov@google.com,
- llvm@lists.linux.dev, linux@rasmusvillemoes.dk,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- linux-hardening@vger.kernel.org, andrzej.hajda@intel.com,
- linux-sparse@vger.kernel.org, matthew.auld@intel.com, airlied@redhat.com,
- thomas.hellstrom@linux.intel.com, keescook@chromium.org, jani.nikula@intel.com,
- nathan@kernel.org, mchehab@kernel.org, ndesaulniers@google.com,
- linux-kernel@vger.kernel.org, daniel@ffwll.ch, vitor@massaru.org,
- luc.vanoostenryck@gmail.com, nirmoy.das@intel.com
+Cc: Chris Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
+From: Chris Wilson <chris.p.wilson@intel.com>
 
-Having addressed the issues surrounding incorrect types for local
-variables and potential integer truncation in using the scatterlist API,
-we have closed all the loop holes we had previously identified with
-dangerously large object creation. As such, we can eliminate the warning
-put in place to remind us to complete the review.
+The scratch page should never be accessed, and is only assigned as a
+filler page to redirection invalid userspace access. It is not of a
+performance concern and so we prefer to have a single consistent
+configuration across all platforms, reducing the pressure on device
+memory and avoiding the direct device access that would be required to
+initialise the scratch page.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
+Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Testcase: igt@gem_create@create-massive
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4991
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object.h | 15 ---------------
- 1 file changed, 15 deletions(-)
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 43 ++++++++++++++--------------
+ 1 file changed, 22 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index a826b959e3fb..7dc784079c6c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -20,25 +20,10 @@
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index c7bd5d71b03e..9604edf7d7c2 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -922,29 +922,30 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
+ 	 */
+ 	ppgtt->vm.has_read_only = !IS_GRAPHICS_VER(gt->i915, 11, 12);
  
- enum intel_region_id;
- 
--/*
-- * XXX: There is a prevalence of the assumption that we fit the
-- * object's page count inside a 32bit _signed_ variable. Let's document
-- * this and catch if we ever need to fix it. In the meantime, if you do
-- * spot such a local variable, please consider fixing!
-- *
-- * We can check for invalidly typed locals with typecheck(), see for example
-- * i915_gem_object_get_sg().
-- */
--#define GEM_CHECK_SIZE_OVERFLOW(sz) \
--	GEM_WARN_ON((sz) >> PAGE_SHIFT > INT_MAX)
+-	if (HAS_LMEM(gt->i915)) {
++	if (HAS_LMEM(gt->i915))
+ 		ppgtt->vm.alloc_pt_dma = alloc_pt_lmem;
 -
- static inline bool i915_gem_object_size_2big(u64 size)
- {
- 	struct drm_i915_gem_object *obj;
+-		/*
+-		 * On some platforms the hw has dropped support for 4K GTT pages
+-		 * when dealing with LMEM, and due to the design of 64K GTT
+-		 * pages in the hw, we can only mark the *entire* page-table as
+-		 * operating in 64K GTT mode, since the enable bit is still on
+-		 * the pde, and not the pte. And since we still need to allow
+-		 * 4K GTT pages for SMEM objects, we can't have a "normal" 4K
+-		 * page-table with scratch pointing to LMEM, since that's
+-		 * undefined from the hw pov. The simplest solution is to just
+-		 * move the 64K scratch page to SMEM on such platforms and call
+-		 * it a day, since that should work for all configurations.
+-		 */
+-		if (HAS_64K_PAGES(gt->i915))
+-			ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
+-		else
+-			ppgtt->vm.alloc_scratch_dma = alloc_pt_lmem;
+-	} else {
++	else
+ 		ppgtt->vm.alloc_pt_dma = alloc_pt_dma;
+-		ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
+-	}
++
++	/*
++	 * On some platforms the hw has dropped support for 4K GTT pages
++	 * when dealing with LMEM, and due to the design of 64K GTT
++	 * pages in the hw, we can only mark the *entire* page-table as
++	 * operating in 64K GTT mode, since the enable bit is still on
++	 * the pde, and not the pte. And since we still need to allow
++	 * 4K GTT pages for SMEM objects, we can't have a "normal" 4K
++	 * page-table with scratch pointing to LMEM, since that's
++	 * undefined from the hw pov. The simplest solution is to just
++	 * move the 64K scratch page to SMEM on all platforms and call
++	 * it a day, since that should work for all configurations.
++	 *
++	 * Using SMEM instead of LMEM has the additional advantage of
++	 * not reserving high performance memory for a "never" used
++	 * filler page. It also removes the device access that would
++	 * be required to initialise the scratch page, reducing pressure
++	 * on an even scarcer resource.
++	 */
++	ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
  
--	if (GEM_CHECK_SIZE_OVERFLOW(size))
--		return true;
--
- 	if (overflows_type(size, obj->base.size))
- 		return true;
- 
+ 	err = gen8_init_scratch(&ppgtt->vm);
+ 	if (err)
 -- 
-2.37.1
+2.37.3
 
