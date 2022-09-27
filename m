@@ -1,142 +1,142 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BD5E5EC138
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 13:26:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3CC5EC139
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 13:26:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8587410E8EE;
-	Tue, 27 Sep 2022 11:26:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC7A10E285;
+	Tue, 27 Sep 2022 11:26:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72E9910E285
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 11:26:16 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DB0F10E285
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 11:26:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664277976; x=1695813976;
+ t=1664277975; x=1695813975;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=p0C9ktX4QSonS3TNSrGj0Zh4aH/sYy+vWvn2R/KLqi0=;
- b=Oc63SjYxcIaUJw2HjNKnYOJkrx2c+FxRnCgM14eCafgmeD1fZ4vR3Xj1
- rQ77XTguuGkwAEv0MQEt7xV4uKQgcXc3q+SjeAv+IWjQxWZiy2nQg3DHd
- +ly9+MX/hyJI1a2tlO/Ut6oQTkz6WVrpBx+tHubbaBqAa/1DxFihl45iD
- xqG0eHLm+5DtWv5z7+7GIyV1xJCOJVqcXjbMRJTLERGKeEcx3+cbWjozs
- 11U5gagg0hvh4I4gEw0MbYQ6B4PmDt6RJWqdvYG3/CHBJ4dRmR9A7ly+M
- 4Jw+AulUOA979k8r/rqWaqLs4j7ZOdXVK320Tl5uzUGKKhew79TqU43Ob Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="298887909"
-X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="298887909"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2022 04:26:07 -0700
+ bh=l5lGh0RK0tD8sPiXbVZKp7Z81YdM1Qb7shN+UTzTDpQ=;
+ b=U2xynAOtwcZY9V1bmkDCXqI6gNupzPbkdkAc23nvzAbq5xiUGPoyYSHP
+ VI8zTzT8/6VOlYnS2fVGNddVPcrrKCIPpmSHO7NBtqEPRAb7NU/xhFVBO
+ GZLoyvaXn2bygaJ3b9LTwKQ9Pwm1UdzXHm6TjOkZGZS/zDRhLyV0GHGqc
+ DaRAHtBc5UcMrmNWkjTbvakWagQ5gOXwwHJ176tHLAIYsCRQDUvQWfuzP
+ YoEAoWPh+VMcLPUUvpQBPmeWL9cb+CNhgoAPn2fW+zRq/biEQoeM36lj7
+ ZqHsOgHF5P5EAP+rJ8duwTS2+WBqfAYWV8dpsmkdhNDTAbOSQN3hThp4a A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="288441274"
+X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="288441274"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2022 04:26:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="599146556"
-X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="599146556"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga006.jf.intel.com with ESMTP; 27 Sep 2022 04:26:06 -0700
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="689959570"
+X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="689959570"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga004.fm.intel.com with ESMTP; 27 Sep 2022 04:26:14 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 27 Sep 2022 04:26:06 -0700
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ 15.1.2375.31; Tue, 27 Sep 2022 04:26:13 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 27 Sep 2022 04:26:05 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ 15.1.2375.31; Tue, 27 Sep 2022 04:26:13 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Tue, 27 Sep 2022 04:26:05 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Tue, 27 Sep 2022 04:26:13 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Tue, 27 Sep 2022 04:26:05 -0700
+ 15.1.2375.31; Tue, 27 Sep 2022 04:26:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a8PZf75+V3Ddd/CoApkzXHveLJXFtKKZEtGNl/Gk1vQnPswPca1WYaeEkLePhumjq143Cyhm0lyV1KhZHmFUF1y0B3QYNheQa7Lepbm1mkq/e7fyE0qM8XLGN7DUJNgxSiszxdoLhgVmh8naLQrT+puMfKR1bRmK4n+F+I8HmlTCCjCS5/xtxw+e96wgmUu+t6qBcBnln7ZFBou7vVQOgx7Na3N+icEUREodMLSXy5xE4IOo0GLn0BSiZ/exxqS4l+gebfS5fiWb4hvqwdk15roJxivhE8JsCGPLs15A/pxhoIUFzlelBFv2dM2NibjFwDXYKRc3shj+9954c8cbag==
+ b=Bv/QpwPliXATeOQXTGT8BU2VgKjAdKDRWrdLIfIWvFPCi2c5OnqRQ8Turu8ExjPWsAKKaT0vyc65Akb/viNqN6/Bjb9BrYvFnRkJZbclYLJD14N85z0M4XfnbAI+Z1Xzg9EldL/4lxGzX/6lTK1zQ3cl3fpdkHRHKbNIbYav4Q4cH3ZO4Wc03bNNZa7xlshKST/evMDSWZYpV6HjrOK30L4cYwX45M5pK2y9q6we2DDSBnA1pQ+W5cH3eP50OHoXdbV+JGiEHf5ofNZsafu3L24x5b5mZwAX2au5xhBTHmpaLowiM772WuxTGtLRIz4iUFtvjiDT73s8TlZeNki3FA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1mlSssyNYSkG9vGBbBUnTVdOuoMzGMnP6bdrqzKkggU=;
- b=F7JcGRUUa8KerucjthxiQCbGclJJrqwLvw6jdDnxyfd2ptxGRffDdSqfd/XwSHmyAJ0XJnBKoklY5eUtZ3xT5l2W0jepUy0w30ZeZ1Rogekk4d+IDQVpnQUUFfxqHa4xvcx/zHclyQ4ktCoZ1rF25LULqorZz1abNSqTYn4YCvaWukPMKmWOLKdCrq4gK02bmL44B8HkzmEIiN5pPI9LoLDuY5pGs2bg/c9ZHfNOJ4LM7jzboAH31UYzXL+CcfcpK3oakfx41HZmcEczqz7Xg/q1NXV2yADlu6PDXfSlFZG6+WpIk6zZXz94ONRBsmFmRlg962lhmW4QfGZAVbc3pA==
+ bh=3/OaMVIZj+JvFxkP7J68o5FXfVFuJN7I4uL/Kf5FN5U=;
+ b=OEkf6NIPZzb5qOESuao9WiPbchxKDiDj5i4bfTy3/5Bu8CM2WUCDLZDa90R9zsrBW1s8BJmvbKukxOseBIcMB7tEfzu9gp6mD5aCiVr2lNntM67/VhTU3IJl7GU5cAmFaRUVWCl0rdH6ojackR9ll/+5YwJbCFzVb9M4KhkqBgK1ynqYMnLtChaZN4DoR1D0eMkEH5/VAELWkJqiPV51g9wiYC4gE7JCsFPJ30oTgsMHWD2fPOoUfpgn91SHRJnD+ziLxZbQhM3bJGKhgT59tjejuhxTCiZG4gCyzFJ+tsc0yi1DN245hVk6LcqazNYkDWnK9juThtorbCt5pL8h+g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM5PR11MB1897.namprd11.prod.outlook.com (2603:10b6:3:112::9) by
- BL1PR11MB5333.namprd11.prod.outlook.com (2603:10b6:208:309::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.26; Tue, 27 Sep
- 2022 11:26:03 +0000
+ SN7PR11MB6797.namprd11.prod.outlook.com (2603:10b6:806:263::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5654.25; Tue, 27 Sep 2022 11:26:11 +0000
 Received: from DM5PR11MB1897.namprd11.prod.outlook.com
  ([fe80::c0e8:f5ad:37d:ee67]) by DM5PR11MB1897.namprd11.prod.outlook.com
  ([fe80::c0e8:f5ad:37d:ee67%3]) with mapi id 15.20.5654.026; Tue, 27 Sep 2022
- 11:26:03 +0000
+ 11:26:11 +0000
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: <intel-gfx@lists.freedesktop.org>
-Date: Tue, 27 Sep 2022 16:55:42 +0530
-Message-ID: <20220927112547.328078-2-balasubramani.vivekanandan@intel.com>
+Date: Tue, 27 Sep 2022 16:55:43 +0530
+Message-ID: <20220927112547.328078-3-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220927112547.328078-1-balasubramani.vivekanandan@intel.com>
 References: <20220927112547.328078-1-balasubramani.vivekanandan@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: PN3PR01CA0078.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:9a::13) To DM5PR11MB1897.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN3PR01CA0187.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:be::10) To DM5PR11MB1897.namprd11.prod.outlook.com
  (2603:10b6:3:112::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM5PR11MB1897:EE_|BL1PR11MB5333:EE_
-X-MS-Office365-Filtering-Correlation-Id: 251327a9-406e-48e2-5bea-08daa07b0f5a
+X-MS-TrafficTypeDiagnostic: DM5PR11MB1897:EE_|SN7PR11MB6797:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3d152a80-ca3d-4318-7d86-08daa07b1447
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A+0vYlmZR+/EVM9d+uzF8n8DEENtcZfFqjiWOMhrwAtlscpnQzP/8ydKovF4iYfVhwk1eElalgHnkaVfbhwHuOH33GbOGoFofx2rqrTrCHbR3ZKKAlN+6o5WGxdNDQOGbQKJp2dR+AsO4v7RIaMCmuioH0SFgY8+gT/Ioi4ASc/xeU8QCAb4iJ45gq4Ay0MoGFrcctx8/3hClo+44MI8mIws7+wIUoCc5AdyyMSQfhvRHWUF0yIrpNtm2Z1Ckgb9NPISmNwTQhEuypxgnayT6Rf4BswyUVxj4m/5MAQFWYNcX8eL+S0dyAmAa48JHYotXx7cKkVDyXDbtZyYV8LtVFHK5UQIHOldAQgaw6kM7emG0nRlMrEKBmHxSbze8wy+i4LdSgQg35dP+C6VUBFJoJTIIh1weOkRWOnGgpVXUXloDgvRIfvl+Ebw1N8XKqQifJM2uvwOHcxnh8viR3YbB666vdISmQU8KRGyCV+kUgP9ODxSmV4459HwYjJ3DVzuXKKTRkIZjL/i2dibULZy36eKI/vBW6+83GA9cPn0UFFLioTywNsegQ8JGEf3Wp4ADA7+xaymWMrzd1eXaV8F7XIsPGrpGtN/YoES1BUtbcb0RfK2qZKg+qmV/LvsSgtVMVxHCW61+mXivcuATiB9tVv9p4JT1yuIL5ZD4yYTQGBdJbaoAtH71EtUYilYwheTmmTYxQOa0rqlorU3tMug3A==
+X-Microsoft-Antispam-Message-Info: JkM4HFm7DNnKQNML3ASQqwXc4UvGVZ9ESxz3DnhtLZZt+h2QI3nudJ5ckJiCxzMHflBWRoPo6+Rm9GF7aAagV/c/GPxFYb7l2/gfasExy8H/qVpjaPdAPqdqKV3FPh+BUvJ47kt15R2+ugL3gABtvYlgfgsJf8US0DOL1bp6dYWD5aDb+TqaDhElxnUEbBotDhOvdrmlOLB6kmHzMHu2w4a/fqK4Mjv3S4swNeCDqlzN1xjRy7yH3U1TK1697LD7WRjmYybf5oJOU+SdlL+CN90u2yummpSRxIIiu45TY64dTmDhWwF5+Bb5Hbu7kwbup5UeYTDhLhjCFeTFfFLGn+aYrvd1RtbgxsJJsJ3xyTEnnEdres5eKqCVAg+uUx4Cw5UO1IAzF4s34kC1KUT+nIrrbKeDZdyI64V/YEQUrEDlF7b1bH33wXJPutk2MXdQdeqR99AGSErclxJ2k+MP5ZGKHalCtUvUstxaiuOcKcDFQeyDimCQl+utaV66DKggfljbDSBZrjJmvTmtSJTHDLCRcWJuz2VK4s00P6bxxK+df3PtEqGeg0LU8QYW9wg6BprGzl3lcaIQ1ncDBuS/GniZ8mdibNtA9HlYBj26ONH0p2DPnKP67ngCj+g3pUZJJsAlasDRqiilJ3BlNs9Prf9q2BMuvqFNe5v2SDKzM1zuxWFVYmOJFV3JfQHuERCEZWbe1jtedTLMqCMkXih8PA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM5PR11MB1897.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(376002)(396003)(136003)(39860400002)(366004)(346002)(451199015)(86362001)(8676002)(66476007)(66556008)(38100700002)(82960400001)(8936002)(478600001)(6506007)(66946007)(6486002)(41300700001)(36756003)(44832011)(30864003)(316002)(6916009)(83380400001)(54906003)(26005)(6512007)(5660300002)(186003)(1076003)(2906002)(6666004)(4326008)(2616005);
+ SFS:(13230022)(136003)(376002)(39860400002)(366004)(396003)(346002)(451199015)(41300700001)(2906002)(44832011)(36756003)(5660300002)(8936002)(66476007)(38100700002)(4326008)(66946007)(54906003)(8676002)(478600001)(316002)(66556008)(6486002)(6916009)(6666004)(86362001)(2616005)(1076003)(186003)(82960400001)(6506007)(83380400001)(6512007)(26005);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+QQ1FbL2qdw7fGnVDT8R+WYkEL9U2I49Z8mB6SUxtZsn8bAYY9U7YO11Ci5x?=
- =?us-ascii?Q?/u4/cxyN+Z1qFTF0D0KT40z2NuY/4InzkwYx6ehn8DUKDdH1gUECE9KwHhQ4?=
- =?us-ascii?Q?m6k9BIYKusPw5e5q3E748TwxMva2TqlyAvycG6NKvLgXKRFPIcovYlyKe16t?=
- =?us-ascii?Q?/aQsr6W+TLaYhQUXafLgUPgR8nO8k57uzcqOxkh8SvdmnUV/7xt7E/Pt+BGC?=
- =?us-ascii?Q?cX/T8HrcAiqOjBRk0AaAVhzfn7O10xbyeZI9vcXTWGrMOBHqoSiLn57TczdV?=
- =?us-ascii?Q?JYiLhhHLvm5cdU9/7UOF+uKwNoyUJLd8eFXu4qP77rVQWSmSIXpJEfzTJfYg?=
- =?us-ascii?Q?FKLQ0LTcMCczS9x6Pg9HdGSrq05CbFk5eLRgkn0ar3TkP/RfzCsZfDJ9Ts/r?=
- =?us-ascii?Q?BV8D62zdPlcNlHHYnzoCE6r20AebcO6tpNVqs7mrrYIwhqLCSVvQuppHklIg?=
- =?us-ascii?Q?1RrN1KKYyQdp6XJ3vfj5q7lbu/6l9VR41bhyIm72cUVbMMY5ElzwHZbM10Pz?=
- =?us-ascii?Q?u2xFhENVal6q7PxXscUTFZCUpz2y8Plp1TDOSk2K1olGp8z5DD/4rcpu6SLZ?=
- =?us-ascii?Q?jFhnvgFWu/i1Pj8IIja3rWGtyKBcviI9CK6RJUfVBvNKVx547zI5WY/JRQjS?=
- =?us-ascii?Q?myysKGU94kNOUph+YjoH7DEZPk3VuJ47bAnTGmmlTOkjs1pRzkJQ+XxpCEU/?=
- =?us-ascii?Q?TwsIZMN47LKyP06TgPjNZS04AtJiiM2CJ6LX8llDVYnnCekQ72DHy+Q+OWGm?=
- =?us-ascii?Q?3lwLvHd2MwmyXKx1+hac1LkDwsNJhS8iDHv+FVBwtRxWPWo0o/GY1HR2ODG4?=
- =?us-ascii?Q?ADE/229INe1TXbErOCVWJAFQT+hM5X0gUQs1w5VUFhEHk+d5QEkpYw1QUWY4?=
- =?us-ascii?Q?b1KnJWssxEvnqcvh4dN+XWX+HW5/RanJy+G9g0le1cpjkIUK1Pd6ov2ROJ8z?=
- =?us-ascii?Q?8AMoWo4I7nX8N8Qdl2hifP1yIT1uHzSmD22esjJ8xY7zUvMVQteAfyiXQiGc?=
- =?us-ascii?Q?0j0eUJmtMhqWa0rt38HkiiY8Wp01bk2rRLmzWCe9vxdZPUdzK35HFVUCuL1W?=
- =?us-ascii?Q?brvsVTGybmoOl3lHEdXOiiHKI0wfPLa9nUzuNsgLehholCM3z167+tMoXA57?=
- =?us-ascii?Q?Srq/SXRbRAkjWf8mTcwz3x4DHYsIDZgqRyLB1WnpkskbnrH0eENw0gJAyUt1?=
- =?us-ascii?Q?5VYbXc5bfGnWl5bhiwpMJN95apDF+vvR7hqyGODcNQPvKd7ZW4creI8cymhg?=
- =?us-ascii?Q?9gUivMtQdzGL0lpi4COMGNl2i6zjVacl9cC0AIplau0OhZ+yMQGlX24/i1F2?=
- =?us-ascii?Q?dCKxXvpGSerovpu2nJZPV/PqrDQZ5nbbuwv0o6r6qN43SieEx9BapOj4Tauy?=
- =?us-ascii?Q?3Z2R83K9M5TBuuRp1E4F2YDL+agR6reCuyxse+EFkAs0paMzQLa3eo6xQh3u?=
- =?us-ascii?Q?3nWk8QhE/hpRY6aaDYZBcDI3gpvQth6j1HsMxY7dkESn0Vqc11bYLVVoRN2L?=
- =?us-ascii?Q?ACvknoGb+fZIt3Ms51B3yO49ade1SMwljT16pU5T/1NbdXF5wj3mXy8d6eGm?=
- =?us-ascii?Q?+4JihPAOYb/YpHDeJD+FmWzjkycFGUaFoCLe9+lKPVfNAtrpv84RbMmve92o?=
- =?us-ascii?Q?2D7ATQuao7kRhqFBYqz/PJg=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 251327a9-406e-48e2-5bea-08daa07b0f5a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XTBDz3dXmIfAA5m8Yoj5CZRnqhfUM9/cxWA/V72H3G1KpwVYvpa5HbTMNZ4I?=
+ =?us-ascii?Q?J7Nb/0emf6/9pAo5165xOcPPMgmF9cVT1gz3Itd6bRwJ6XaOr5Bm2rd1GMut?=
+ =?us-ascii?Q?v2pHZkpTlXKQc9STB9lhZIm/YQx3Cdr7HPSsfl9oqXtYeyCnl7/p27RVjMQ4?=
+ =?us-ascii?Q?nvDp0y52VApg2hDYOFeddy/xkfiFdj9kf89FCjTUhEJd/w8EYCGy9Jb/7OUv?=
+ =?us-ascii?Q?NVs5/JVy/XFJUts7Af8Vt1tIZBezuuT9BckBp6jiojj4tuTvuetUAX7JBVtK?=
+ =?us-ascii?Q?EWxuB3SpYIu8gqL+ep1XySKNVyTQvJ0Q4CAL9jsxQVB+fed8WOxyr3mUjYvr?=
+ =?us-ascii?Q?dCvs4aVa+E+uWZtVVEfbEgSYmrKWLf3/7beI8kxD2l1XqVNdxWcc772g1NGX?=
+ =?us-ascii?Q?LOJYRvlxtt9mjw610lVeken6Zrp8xr6UyHFYd7oOydrI+BxsEuO3jDfUZl3K?=
+ =?us-ascii?Q?YjLnLgqxolavDtQnPgKbs6SK7idqxxEE2+AKdCmFnMFI6g30fHYz7XKZiNKT?=
+ =?us-ascii?Q?Xgmll2iyPm2ybhXQqOoTJeCAK4Rm73g0BUtzSfcRRrVuuV98j3yBchnIpDjn?=
+ =?us-ascii?Q?rxpNePYyzJcY6rBiftiEHQ4z/uvZ1dbKSYsmhBdQhU2x2L6l2CYqE3CNzV1L?=
+ =?us-ascii?Q?8945R26LTEoY8i+nWRssekRRah/PW4gbB/DA68xp3qNHvUDg5b2zaBfREUm8?=
+ =?us-ascii?Q?vQNBZmktTM524p/Z1Wb91A9V0jcsOb5AcPhq0mUVJ40LFZkuPmaPuv9wi6Bn?=
+ =?us-ascii?Q?c/A1BfJprd+RzhXk/hrkFfJESqsj5UgjQLxpNIZKeHHEmFNqFzu83SjQj2x8?=
+ =?us-ascii?Q?WxP8LFEi6waXEEpSWpapKoR3NwLivGJJwc4UmuW0EZDmcAT6n3Iqwy2JkvVt?=
+ =?us-ascii?Q?dx/Te4UmYHvhnhSfU0XGtZAlBjYcT3VKSFlvL1/a9bsFQsGZYpd6hrms3Gjk?=
+ =?us-ascii?Q?LTszkKnFaZCOVijrdYaCkHwl4IzLf9M8xEesZ6z3p7X7wZNZuk7+8qU2DodJ?=
+ =?us-ascii?Q?RZlEMXm73yqan7ty3yFQJV6KlyWo8evy7y+io2r2XXnmrEnGXDoJIURtXn0T?=
+ =?us-ascii?Q?EDldJ+WQcTiS2PU+gKC5424mV0uiSBZ9zV71234tp45bgMPTqbTo1xqrePlk?=
+ =?us-ascii?Q?Tj5A1tToiAHu0quTLpv5hUy+9MMYWywTTI6ao9KgHbm9rKo8Eqo9r3LThkCV?=
+ =?us-ascii?Q?LG1A5N+Q4QjQPBuRSLNL11OywXv50B/v6M0Ez5Wmrqe40Iyxokwx+rZ0xeYW?=
+ =?us-ascii?Q?/Y4zzm2Z2qVaEvrxCo1L+UCihwqS9sOFsMfmz/F/o8cOXnpV+RMbfbj8qqiw?=
+ =?us-ascii?Q?CSijeWith9PlmxYWDPMzAUPc9ztaUHHrRpVPyRKDEBDXjygAcz/LpXmxUzup?=
+ =?us-ascii?Q?wt10X+WuNrUl4hh2wQJS0hNcwmHbWy7oOEa9GHNsHDobk5zz5SulEoxm4SvT?=
+ =?us-ascii?Q?nv410ZDxvPRqqIKfN8w+nAPxtHW5WyNat+w6AKEjnZR1YomspiJuM8Zwa2mS?=
+ =?us-ascii?Q?f9gd3VyBU/DR7ffxMFJbhtaYFjazawl5y7mlk1+l8w9Xcv017J0c1o0gymgp?=
+ =?us-ascii?Q?5Ce96gsrs5yB0p2xWiq9i30EyW+8VwDsUKXbnxoPP9FAwplvje9GmGPjCFC/?=
+ =?us-ascii?Q?Zs4WBPEmtppY6w6RMsruBq0=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d152a80-ca3d-4318-7d86-08daa07b1447
 X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1897.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2022 11:26:02.8941 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2022 11:26:10.9247 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Fg23Vucje7QhluDxP+eeOLzlSH7BzIMzayQ2TxB4h3ydcfG1njDpEQW+eE7cIF01O0wjSGdGgn9JxXkufMGpPoSSWvA9Kpb/W6Y1wc5Jp9gHnSsXn/7KHhBhAQH0/NU/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5333
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ha29X3dAhKS9NHd5l5yUrWs1jckL0vpht8YOi1B9aj0MKXAy7geSd1/GrgYkb8veMDmLC2W9YJ/v+ZxEgF3hYU0EgFdkgyerbll1TNPtG4+Lb++wV5d/b20uuo5l9Ta/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6797
 X-OriginatorOrg: intel.com
-Subject: [Intel-gfx] [PATCH v3 1/6] drm/i915/display: Pass struct
- drm_i915_private to DDI_BUF_CTL macro
+Subject: [Intel-gfx] [PATCH v3 2/6] drm/i915/display: Define the DDI port
+ indices inside device info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,477 +152,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a prep patch for a patch series in which register offset of the
-DDI ports are not calculated using the port enums but using a different
-datastructure part of the device info.
-So the device info is passed as a parameter to the macro DDI_BUF_CTL but
-unused yet.
+Prior to display version 12, platforms had DDI ports A,B,C,D,E,F
+represented by enums PORT_A,PORT_B...PORT_F. The DDI register offsets of
+the ports was in the same order as the ports. So the port enums
+were directly used as index to calculate the register offset of the
+ports.
+Starting in display version 12, TypeC ports were introduced in the
+platforms. These were defined as new enums PORT_TC1,PORT_TC2... The
+later generation platforms had DDI register offests of TypeC and
+non-TypeC ports interleaved and the existing port enums didn't match the
+order of the DDI register offests. So the enums could no more be used as
+index to calculate the register offest.
+This led to the creation of new platform specific enums for the ports
+like PORT_D_XELPD, PORT_E_XELPD to match the index of the ports in those
+platforms and additional code to handle the special enums.
+
+So we want to make the port enums not tied to DDI register offset and
+use the index from somewhere else to calculate the register offsets.
+The index of the DDI ports in the platform is now defined as part of
+device info. This patch just adds the indices to the device info. Later
+patches in the series use that index for offset calculation.
 
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c       | 12 +++---
- drivers/gpu/drm/i915/display/intel_ddi.c     | 39 +++++++++++---------
- drivers/gpu/drm/i915/display/intel_display.c |  6 ++-
- drivers/gpu/drm/i915/display/intel_fdi.c     | 14 +++----
- drivers/gpu/drm/i915/display/intel_tc.c      |  6 +--
- drivers/gpu/drm/i915/gvt/display.c           | 30 +++++++--------
- drivers/gpu/drm/i915/gvt/handlers.c          | 17 +++++----
- drivers/gpu/drm/i915/i915_reg.h              |  6 ++-
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c  | 10 ++---
- 9 files changed, 76 insertions(+), 64 deletions(-)
+ drivers/gpu/drm/i915/i915_pci.c          | 46 ++++++++++++++++++++++--
+ drivers/gpu/drm/i915/intel_device_info.h |  1 +
+ 2 files changed, 44 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index ed4d93942dbd..70098b67149b 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -548,11 +548,11 @@ static void gen11_dsi_enable_ddi_buffer(struct intel_encoder *encoder)
- 	enum port port;
- 
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		tmp = intel_de_read(dev_priv, DDI_BUF_CTL(port));
-+		tmp = intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port));
- 		tmp |= DDI_BUF_CTL_ENABLE;
--		intel_de_write(dev_priv, DDI_BUF_CTL(port), tmp);
-+		intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, port), tmp);
- 
--		if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-+		if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port)) &
- 				  DDI_BUF_IS_IDLE),
- 				  500))
- 			drm_err(&dev_priv->drm, "DDI port:%c buffer idle\n",
-@@ -1400,11 +1400,11 @@ static void gen11_dsi_disable_port(struct intel_encoder *encoder)
- 
- 	gen11_dsi_ungate_clocks(encoder);
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		tmp = intel_de_read(dev_priv, DDI_BUF_CTL(port));
-+		tmp = intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port));
- 		tmp &= ~DDI_BUF_CTL_ENABLE;
--		intel_de_write(dev_priv, DDI_BUF_CTL(port), tmp);
-+		intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, port), tmp);
- 
--		if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-+		if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port)) &
- 				 DDI_BUF_IS_IDLE),
- 				 8))
- 			drm_err(&dev_priv->drm,
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 643832d55c28..aae429bd2e2b 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -172,7 +172,7 @@ void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
- 		return;
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index cace897e1db1..e7eb7c0ea7fd 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -130,6 +130,42 @@
+ 		[PIPE_D] = TGL_CURSOR_D_OFFSET, \
  	}
  
--	if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-+	if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port)) &
- 			 DDI_BUF_IS_IDLE), 8))
- 		drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c to get idle\n",
- 			port_name(port));
-@@ -189,7 +189,7 @@ static void intel_wait_ddi_buf_active(struct drm_i915_private *dev_priv,
- 		return;
- 	}
- 
--	ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
-+	ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port)) &
- 			  DDI_BUF_IS_IDLE), IS_DG2(dev_priv) ? 1200 : 500, 10, 10);
- 
- 	if (ret)
-@@ -730,7 +730,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
- 	if (!wakeref)
- 		return;
- 
--	tmp = intel_de_read(dev_priv, DDI_BUF_CTL(port));
-+	tmp = intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port));
- 	if (!(tmp & DDI_BUF_CTL_ENABLE))
- 		goto out;
- 
-@@ -1397,8 +1397,8 @@ hsw_set_signal_levels(struct intel_encoder *encoder,
- 	intel_dp->DP &= ~DDI_BUF_EMP_MASK;
- 	intel_dp->DP |= signal_levels;
- 
--	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
--	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
-+	intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, port), intel_dp->DP);
-+	intel_de_posting_read(dev_priv, DDI_BUF_CTL(dev_priv, port));
- }
- 
- static void _icl_ddi_enable_clock(struct drm_i915_private *i915, i915_reg_t reg,
-@@ -2577,10 +2577,10 @@ static void intel_disable_ddi_buf(struct intel_encoder *encoder,
- 	bool wait = false;
- 	u32 val;
- 
--	val = intel_de_read(dev_priv, DDI_BUF_CTL(port));
-+	val = intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port));
- 	if (val & DDI_BUF_CTL_ENABLE) {
- 		val &= ~DDI_BUF_CTL_ENABLE;
--		intel_de_write(dev_priv, DDI_BUF_CTL(port), val);
-+		intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, port), val);
- 		wait = true;
- 	}
- 
-@@ -2909,7 +2909,7 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
- 		drm_WARN_ON(&dev_priv->drm, !intel_tc_port_in_legacy_mode(dig_port));
- 		buf_ctl |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
- 	}
--	intel_de_write(dev_priv, DDI_BUF_CTL(port), buf_ctl);
-+	intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, port), buf_ctl);
- 
- 	intel_audio_codec_enable(encoder, crtc_state, conn_state);
- }
-@@ -3113,9 +3113,9 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 	dp_tp_ctl = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
- 
- 	if (dp_tp_ctl & DP_TP_CTL_ENABLE) {
--		ddi_buf_ctl = intel_de_read(dev_priv, DDI_BUF_CTL(port));
-+		ddi_buf_ctl = intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port));
- 		if (ddi_buf_ctl & DDI_BUF_CTL_ENABLE) {
--			intel_de_write(dev_priv, DDI_BUF_CTL(port),
-+			intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, port),
- 				       ddi_buf_ctl & ~DDI_BUF_CTL_ENABLE);
- 			wait = true;
- 		}
-@@ -3145,8 +3145,8 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 		adlp_tbt_to_dp_alt_switch_wa(encoder);
- 
- 	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
--	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
--	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
-+	intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, port), intel_dp->DP);
-+	intel_de_posting_read(dev_priv, DDI_BUF_CTL(dev_priv, port));
- 
- 	intel_wait_ddi_buf_active(dev_priv, port);
- }
-@@ -3805,13 +3805,15 @@ static struct intel_connector *
- intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
- {
- 	struct intel_connector *connector;
--	enum port port = dig_port->base.port;
-+	struct intel_encoder *encoder = &dig_port->base;
-+	enum port port = encoder->port;
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 
- 	connector = intel_connector_alloc();
- 	if (!connector)
- 		return NULL;
- 
--	dig_port->dp.output_reg = DDI_BUF_CTL(port);
-+	dig_port->dp.output_reg = DDI_BUF_CTL(i915, port);
- 	dig_port->dp.prepare_link_retrain = intel_ddi_prepare_link_retrain;
- 	dig_port->dp.set_link_train = intel_ddi_set_link_train;
- 	dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
-@@ -4043,12 +4045,13 @@ intel_ddi_init_hdmi_connector(struct intel_digital_port *dig_port)
- {
- 	struct intel_connector *connector;
- 	enum port port = dig_port->base.port;
-+	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
- 
- 	connector = intel_connector_alloc();
- 	if (!connector)
- 		return NULL;
- 
--	dig_port->hdmi.hdmi_reg = DDI_BUF_CTL(port);
-+	dig_port->hdmi.hdmi_reg = DDI_BUF_CTL(dev_priv, port);
- 	intel_hdmi_init_connector(dig_port, connector);
- 
- 	return connector;
-@@ -4084,7 +4087,7 @@ intel_ddi_max_lanes(struct intel_digital_port *dig_port)
- 		return max_lanes;
- 
- 	if (port == PORT_A || port == PORT_E) {
--		if (intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_A_4_LANES)
-+		if (intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, PORT_A)) & DDI_A_4_LANES)
- 			max_lanes = port == PORT_A ? 4 : 0;
- 		else
- 			/* Both A and E share 2 lanes */
-@@ -4446,11 +4449,11 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 
- 	if (DISPLAY_VER(dev_priv) >= 11)
- 		dig_port->saved_port_bits =
--			intel_de_read(dev_priv, DDI_BUF_CTL(port))
-+			intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port))
- 			& DDI_BUF_PORT_REVERSAL;
- 	else
- 		dig_port->saved_port_bits =
--			intel_de_read(dev_priv, DDI_BUF_CTL(port))
-+			intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, port))
- 			& (DDI_BUF_PORT_REVERSAL | DDI_A_4_LANES);
- 
- 	if (intel_bios_is_lane_reversal_needed(dev_priv, port))
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index dd008ba8afe3..194a4758ee04 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7880,7 +7880,7 @@ static bool intel_ddi_crt_present(struct drm_i915_private *dev_priv)
- 		return false;
- 
- 	/* DDI E can't be used if DDI A requires 4 lanes */
--	if (intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_A_4_LANES)
-+	if (intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, PORT_A)) & DDI_A_4_LANES)
- 		return false;
- 
- 	if (!dev_priv->display.vbt.int_crt_support)
-@@ -7966,7 +7966,9 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 			intel_crt_init(dev_priv);
- 
- 		/* Haswell uses DDI functions to detect digital outputs. */
--		found = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
-+		found = intel_de_read(dev_priv,
-+				      DDI_BUF_CTL(dev_priv, PORT_A)) &
-+				      DDI_INIT_DISPLAY_DETECTED;
- 		if (found)
- 			intel_ddi_init(dev_priv, PORT_A);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index 7f47e5c85c81..d3d92ac26099 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -818,9 +818,9 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
- 		 * DDI E does not support port reversal, the functionality is
- 		 * achieved on the PCH side in FDI_RX_CTL, so no need to set the
- 		 * port reversal bit */
--		intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E),
-+		intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, PORT_E),
- 			       DDI_BUF_CTL_ENABLE | ((crtc_state->fdi_lanes - 1) << 1) | DDI_BUF_TRANS_SELECT(i / 2));
--		intel_de_posting_read(dev_priv, DDI_BUF_CTL(PORT_E));
-+		intel_de_posting_read(dev_priv, DDI_BUF_CTL(dev_priv, PORT_E));
- 
- 		udelay(600);
- 
-@@ -864,10 +864,10 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
- 		intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
- 		intel_de_posting_read(dev_priv, FDI_RX_CTL(PIPE_A));
- 
--		temp = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_E));
-+		temp = intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, PORT_E));
- 		temp &= ~DDI_BUF_CTL_ENABLE;
--		intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E), temp);
--		intel_de_posting_read(dev_priv, DDI_BUF_CTL(PORT_E));
-+		intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, PORT_E), temp);
-+		intel_de_posting_read(dev_priv, DDI_BUF_CTL(dev_priv, PORT_E));
- 
- 		/* Disable DP_TP_CTL and FDI_RX_CTL and retry */
- 		temp = intel_de_read(dev_priv, DP_TP_CTL(PORT_E));
-@@ -909,9 +909,9 @@ void hsw_fdi_disable(struct intel_encoder *encoder)
- 	val &= ~FDI_RX_ENABLE;
- 	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), val);
- 
--	val = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_E));
-+	val = intel_de_read(dev_priv, DDI_BUF_CTL(dev_priv, PORT_E));
- 	val &= ~DDI_BUF_CTL_ENABLE;
--	intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E), val);
-+	intel_de_write(dev_priv, DDI_BUF_CTL(dev_priv, PORT_E), val);
- 
- 	intel_wait_ddi_buf_idle(dev_priv, PORT_E);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index e5af955b5600..8baee1f19d89 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -410,12 +410,12 @@ static bool adl_tc_phy_take_ownership(struct intel_digital_port *dig_port,
- 	enum port port = dig_port->base.port;
- 	u32 val;
- 
--	val = intel_uncore_read(uncore, DDI_BUF_CTL(port));
-+	val = intel_uncore_read(uncore, DDI_BUF_CTL(i915, port));
- 	if (take)
- 		val |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
- 	else
- 		val &= ~DDI_BUF_CTL_TC_PHY_OWNERSHIP;
--	intel_uncore_write(uncore, DDI_BUF_CTL(port), val);
-+	intel_uncore_write(uncore, DDI_BUF_CTL(i915, port), val);
- 
- 	return true;
- }
-@@ -455,7 +455,7 @@ static bool adl_tc_phy_is_owned(struct intel_digital_port *dig_port)
- 	enum port port = dig_port->base.port;
- 	u32 val;
- 
--	val = intel_uncore_read(uncore, DDI_BUF_CTL(port));
-+	val = intel_uncore_read(uncore, DDI_BUF_CTL(i915, port));
- 	return val & DDI_BUF_CTL_TC_PHY_OWNERSHIP;
- }
- 
-diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
-index c7722c818b4d..5e3cd306c41d 100644
---- a/drivers/gpu/drm/i915/gvt/display.c
-+++ b/drivers/gpu/drm/i915/gvt/display.c
-@@ -213,10 +213,10 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 				  PORT_PLL_REF_SEL | PORT_PLL_LOCK |
- 				  PORT_PLL_ENABLE);
- 
--			vgpu_vreg_t(vgpu, DDI_BUF_CTL(port)) &=
-+			vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, port)) &=
- 				~(DDI_INIT_DISPLAY_DETECTED |
- 				  DDI_BUF_CTL_ENABLE);
--			vgpu_vreg_t(vgpu, DDI_BUF_CTL(port)) |= DDI_BUF_IS_IDLE;
-+			vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, port)) |= DDI_BUF_IS_IDLE;
- 		}
- 		vgpu_vreg_t(vgpu, PCH_PORT_HOTPLUG) &=
- 			~(PORTA_HOTPLUG_ENABLE | PORTA_HOTPLUG_STATUS_MASK);
-@@ -276,9 +276,9 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 				(PORT_PLL_POWER_STATE | PORT_PLL_POWER_ENABLE |
- 				 PORT_PLL_REF_SEL | PORT_PLL_LOCK |
- 				 PORT_PLL_ENABLE);
--			vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_A)) |=
-+			vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_A)) |=
- 				(DDI_BUF_CTL_ENABLE | DDI_INIT_DISPLAY_DETECTED);
--			vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_A)) &=
-+			vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_A)) &=
- 				~DDI_BUF_IS_IDLE;
- 			vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(TRANSCODER_EDP)) |=
- 				(TRANS_DDI_BPC_8 | TRANS_DDI_MODE_SELECT_DP_SST |
-@@ -305,9 +305,9 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 				(PORT_PLL_POWER_STATE | PORT_PLL_POWER_ENABLE |
- 				 PORT_PLL_REF_SEL | PORT_PLL_LOCK |
- 				 PORT_PLL_ENABLE);
--			vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_B)) |=
-+			vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_B)) |=
- 				DDI_BUF_CTL_ENABLE;
--			vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_B)) &=
-+			vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_B)) &=
- 				~DDI_BUF_IS_IDLE;
- 			vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(TRANSCODER_A)) |=
- 				(TRANS_DDI_BPC_8 | TRANS_DDI_MODE_SELECT_DP_SST |
-@@ -335,9 +335,9 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 				(PORT_PLL_POWER_STATE | PORT_PLL_POWER_ENABLE |
- 				 PORT_PLL_REF_SEL | PORT_PLL_LOCK |
- 				 PORT_PLL_ENABLE);
--			vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_C)) |=
-+			vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_C)) |=
- 				DDI_BUF_CTL_ENABLE;
--			vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_C)) &=
-+			vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_C)) &=
- 				~DDI_BUF_IS_IDLE;
- 			vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(TRANSCODER_A)) |=
- 				(TRANS_DDI_BPC_8 | TRANS_DDI_MODE_SELECT_DP_SST |
-@@ -416,8 +416,8 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 			vgpu_vreg_t(vgpu, PORT_CLK_SEL(PORT_B)) |=
- 				PORT_CLK_SEL_LCPLL_810;
- 		}
--		vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_B)) |= DDI_BUF_CTL_ENABLE;
--		vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_B)) &= ~DDI_BUF_IS_IDLE;
-+		vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_B)) |= DDI_BUF_CTL_ENABLE;
-+		vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_B)) &= ~DDI_BUF_IS_IDLE;
- 		vgpu_vreg_t(vgpu, SDEISR) |= SDE_PORTB_HOTPLUG_CPT;
- 	}
- 
-@@ -442,8 +442,8 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 			vgpu_vreg_t(vgpu, PORT_CLK_SEL(PORT_C)) |=
- 				PORT_CLK_SEL_LCPLL_810;
- 		}
--		vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_C)) |= DDI_BUF_CTL_ENABLE;
--		vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_C)) &= ~DDI_BUF_IS_IDLE;
-+		vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_C)) |= DDI_BUF_CTL_ENABLE;
-+		vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_C)) &= ~DDI_BUF_IS_IDLE;
- 		vgpu_vreg_t(vgpu, SFUSE_STRAP) |= SFUSE_STRAP_DDIC_DETECTED;
- 	}
- 
-@@ -468,8 +468,8 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 			vgpu_vreg_t(vgpu, PORT_CLK_SEL(PORT_D)) |=
- 				PORT_CLK_SEL_LCPLL_810;
- 		}
--		vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_D)) |= DDI_BUF_CTL_ENABLE;
--		vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_D)) &= ~DDI_BUF_IS_IDLE;
-+		vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_D)) |= DDI_BUF_CTL_ENABLE;
-+		vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_D)) &= ~DDI_BUF_IS_IDLE;
- 		vgpu_vreg_t(vgpu, SFUSE_STRAP) |= SFUSE_STRAP_DDID_DETECTED;
- 	}
- 
-@@ -488,7 +488,7 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 		else
- 			vgpu_vreg_t(vgpu, SDEISR) |= SDE_PORTA_HOTPLUG_SPT;
- 
--		vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_A)) |= DDI_INIT_DISPLAY_DETECTED;
-+		vgpu_vreg_t(vgpu, DDI_BUF_CTL(dev_priv, PORT_A)) |= DDI_INIT_DISPLAY_DETECTED;
- 	}
- 
- 	/* Clear host CRT status, so guest couldn't detect this host CRT. */
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index daac2050d77d..15393c861721 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -787,13 +787,15 @@ static int force_nonpriv_write(struct intel_vgpu *vgpu,
- static int ddi_buf_ctl_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
- 		void *p_data, unsigned int bytes)
- {
-+	struct drm_i915_private *i915 = vgpu->gvt->gt->i915;
++#define GEN9_DDI_INDEX \
++	.display.ddi_index = { \
++		[PORT_A] = 0, \
++		[PORT_B] = 1, \
++		[PORT_C] = 2, \
++		[PORT_D] = 3, \
++		[PORT_E] = 4, \
++		[PORT_F] = 5, \
++	}
 +
- 	write_vreg(vgpu, offset, p_data, bytes);
- 
- 	if (vgpu_vreg(vgpu, offset) & DDI_BUF_CTL_ENABLE) {
- 		vgpu_vreg(vgpu, offset) &= ~DDI_BUF_IS_IDLE;
- 	} else {
- 		vgpu_vreg(vgpu, offset) |= DDI_BUF_IS_IDLE;
--		if (offset == i915_mmio_reg_offset(DDI_BUF_CTL(PORT_E)))
-+		if (offset == i915_mmio_reg_offset(DDI_BUF_CTL(i915, PORT_E)))
- 			vgpu_vreg_t(vgpu, DP_TP_STATUS(PORT_E))
- 				&= ~DP_TP_STATUS_AUTOTRAIN_DONE;
- 	}
-@@ -812,7 +814,8 @@ static int fdi_rx_iir_mmio_write(struct intel_vgpu *vgpu,
- 
- static int fdi_auto_training_started(struct intel_vgpu *vgpu)
- {
--	u32 ddi_buf_ctl = vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_E));
-+	struct drm_i915_private *i915 = vgpu->gvt->gt->i915;
-+	u32 ddi_buf_ctl = vgpu_vreg_t(vgpu, DDI_BUF_CTL(i915, PORT_E));
- 	u32 rx_ctl = vgpu_vreg(vgpu, _FDI_RXA_CTL);
- 	u32 tx_ctl = vgpu_vreg_t(vgpu, DP_TP_CTL(PORT_E));
- 
-@@ -2333,11 +2336,11 @@ static int init_generic_mmio_info(struct intel_gvt *gvt)
- 	MMIO_F(_MMIO(_DPA_AUX_CH_CTL), 6 * 4, 0, 0, 0, D_ALL, NULL,
- 		dp_aux_ch_ctl_mmio_write);
- 
--	MMIO_DH(DDI_BUF_CTL(PORT_A), D_ALL, NULL, ddi_buf_ctl_mmio_write);
--	MMIO_DH(DDI_BUF_CTL(PORT_B), D_ALL, NULL, ddi_buf_ctl_mmio_write);
--	MMIO_DH(DDI_BUF_CTL(PORT_C), D_ALL, NULL, ddi_buf_ctl_mmio_write);
--	MMIO_DH(DDI_BUF_CTL(PORT_D), D_ALL, NULL, ddi_buf_ctl_mmio_write);
--	MMIO_DH(DDI_BUF_CTL(PORT_E), D_ALL, NULL, ddi_buf_ctl_mmio_write);
-+	MMIO_DH(DDI_BUF_CTL(dev_priv, PORT_A), D_ALL, NULL, ddi_buf_ctl_mmio_write);
-+	MMIO_DH(DDI_BUF_CTL(dev_priv, PORT_B), D_ALL, NULL, ddi_buf_ctl_mmio_write);
-+	MMIO_DH(DDI_BUF_CTL(dev_priv, PORT_C), D_ALL, NULL, ddi_buf_ctl_mmio_write);
-+	MMIO_DH(DDI_BUF_CTL(dev_priv, PORT_D), D_ALL, NULL, ddi_buf_ctl_mmio_write);
-+	MMIO_DH(DDI_BUF_CTL(dev_priv, PORT_E), D_ALL, NULL, ddi_buf_ctl_mmio_write);
- 
- 	MMIO_DH(DP_TP_CTL(PORT_A), D_ALL, NULL, dp_tp_ctl_mmio_write);
- 	MMIO_DH(DP_TP_CTL(PORT_B), D_ALL, NULL, dp_tp_ctl_mmio_write);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 5003a5ffbc6a..67f3b17b2360 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6936,7 +6936,11 @@ enum skl_power_gate {
- /* DDI Buffer Control */
- #define _DDI_BUF_CTL_A				0x64000
- #define _DDI_BUF_CTL_B				0x64100
--#define DDI_BUF_CTL(port) _MMIO_PORT(port, _DDI_BUF_CTL_A, _DDI_BUF_CTL_B)
-+#define DDI_BUF_CTL(i915, port) ({ \
-+					(void)i915; /* Suppress unused variable warning */ \
-+					_MMIO_PORT(port, _DDI_BUF_CTL_A, _DDI_BUF_CTL_B); \
-+				 })
++#define GEN12_DDI_INDEX \
++	.display.ddi_index = { \
++		[PORT_A] = 0, \
++		[PORT_B] = 1, \
++		[PORT_C] = 2, \
++		[PORT_TC1] = 3, \
++		[PORT_TC2] = 4, \
++		[PORT_TC3] = 5, \
++		[PORT_TC4] = 6, \
++		[PORT_TC5] = 7, \
++		[PORT_TC6] = 8, \
++	}
 +
- #define  DDI_BUF_CTL_ENABLE			(1 << 31)
- #define  DDI_BUF_TRANS_SELECT(n)	((n) << 24)
- #define  DDI_BUF_EMP_MASK			(0xf << 24)
-diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index 8279dc580a3e..b55bdc2cdd84 100644
---- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-+++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -503,11 +503,11 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(SBI_CTL_STAT);
- 	MMIO_D(PIXCLK_GATE);
- 	MMIO_F(_MMIO(_DPA_AUX_CH_CTL), 6 * 4);
--	MMIO_D(DDI_BUF_CTL(PORT_A));
--	MMIO_D(DDI_BUF_CTL(PORT_B));
--	MMIO_D(DDI_BUF_CTL(PORT_C));
--	MMIO_D(DDI_BUF_CTL(PORT_D));
--	MMIO_D(DDI_BUF_CTL(PORT_E));
-+	MMIO_D(DDI_BUF_CTL(dev_priv, PORT_A));
-+	MMIO_D(DDI_BUF_CTL(dev_priv, PORT_B));
-+	MMIO_D(DDI_BUF_CTL(dev_priv, PORT_C));
-+	MMIO_D(DDI_BUF_CTL(dev_priv, PORT_D));
-+	MMIO_D(DDI_BUF_CTL(dev_priv, PORT_E));
- 	MMIO_D(DP_TP_CTL(PORT_A));
- 	MMIO_D(DP_TP_CTL(PORT_B));
- 	MMIO_D(DP_TP_CTL(PORT_C));
++#define XE_LPD_DDI_INDEX \
++	.display.ddi_index = { \
++		[PORT_A] = 0, \
++		[PORT_B] = 1, \
++		[PORT_C] = 2, \
++		[PORT_TC1] = 3, \
++		[PORT_TC2] = 4, \
++		[PORT_TC3] = 5, \
++		[PORT_TC4] = 6, \
++		[PORT_D_XELPD] = 7, \
++		[PORT_E_XELPD] = 8, \
++	}
++
+ #define I9XX_COLORS \
+ 	.display.color = { .gamma_lut_size = 256 }
+ #define I965_COLORS \
+@@ -664,7 +700,8 @@ static const struct intel_device_info chv_info = {
+ 	.display.has_psr = 1, \
+ 	.display.has_psr_hw_tracking = 1, \
+ 	.display.dbuf.size = 896 - 4, /* 4 blocks for bypass path allocation */ \
+-	.display.dbuf.slice_mask = BIT(DBUF_S1)
++	.display.dbuf.slice_mask = BIT(DBUF_S1), \
++	GEN9_DDI_INDEX
+ 
+ #define SKL_PLATFORM \
+ 	GEN9_FEATURES, \
+@@ -732,7 +769,8 @@ static const struct intel_device_info skl_gt4_info = {
+ 	IVB_CURSOR_OFFSETS, \
+ 	IVB_COLORS, \
+ 	GEN9_DEFAULT_PAGE_SIZES, \
+-	GEN_DEFAULT_REGIONS
++	GEN_DEFAULT_REGIONS, \
++	GEN9_DDI_INDEX
+ 
+ static const struct intel_device_info bxt_info = {
+ 	GEN9_LP_FEATURES,
+@@ -886,6 +924,7 @@ static const struct intel_device_info jsl_info = {
+ 		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
+ 	}, \
+ 	TGL_CURSOR_OFFSETS, \
++	GEN12_DDI_INDEX, \
+ 	.has_global_mocs = 1, \
+ 	.has_pxp = 1, \
+ 	.display.has_dsb = 0 /* FIXME: LUT load is broken with DSB */
+@@ -983,7 +1022,8 @@ static const struct intel_device_info adl_s_info = {
+ 		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,			\
+ 		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,			\
+ 	},									\
+-	TGL_CURSOR_OFFSETS
++	TGL_CURSOR_OFFSETS,							\
++	XE_LPD_DDI_INDEX
+ 
+ static const struct intel_device_info adl_p_info = {
+ 	GEN12_FEATURES,
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index bc87d3156b14..a93f54990a01 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -292,6 +292,7 @@ struct intel_device_info {
+ 		u32 pipe_offsets[I915_MAX_TRANSCODERS];
+ 		u32 trans_offsets[I915_MAX_TRANSCODERS];
+ 		u32 cursor_offsets[I915_MAX_PIPES];
++		u32 ddi_index[I915_MAX_PORTS];
+ 
+ 		struct {
+ 			u32 degamma_lut_size;
 -- 
 2.34.1
 
