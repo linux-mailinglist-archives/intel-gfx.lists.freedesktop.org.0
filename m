@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47665ECA4B
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 19:00:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC0D5ECA4E
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 19:00:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64F1310E05C;
-	Tue, 27 Sep 2022 17:00:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FD5C10E096;
+	Tue, 27 Sep 2022 17:00:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B84910E05B;
- Tue, 27 Sep 2022 17:00:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 483FA10E05C;
+ Tue, 27 Sep 2022 17:00:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664298010; x=1695834010;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=JQzOFuT+Wecw4ac9Rm6mhmaj07/jTbOEy5IPKbwi6cs=;
- b=EVtLjXoMso/lmwgL+jq65DXZyl9rBCitinBBI5IkIkQbLDDb6QlGow+t
- fPOV2qx9UdHbUqr4B8H1lT1jtSVVNawDHhiTliZbLqA50h/dOMOh1LABg
- +9kofZC9ic96FPG5JmlRzTGx+WfFtGq1XB+zi/jQLZWCFB6E3e0o62HXr
- ZH5dcheAXEx4PSUtcJQ4O4tbakwksHO//f0Y7lJznz0HgfNq98rFcBBu6
- fNIPrpiNqtVUm+xrHaCiqIP7XpY+4LMFyRSIs+e/gLAwwLVk292dM94J/
- ymtcl74ynFDXX483zBWWtsF0eG8YrNMc2Rb0NiR92mQ3kzURRllWpjpyr w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="363208112"
-X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="363208112"
+ t=1664298014; x=1695834014;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=FhJMM87k0x5zG3sXLdlJ9nnD79G+3grLJBKMOo94wRA=;
+ b=YrsNFxSlQvllGgp2ogys7VIhyX+pcfyZammA4zDPaKcFKkN2vYZColHk
+ Ghnf0TED9dhx+X3RAWNYH63zSZc6v0tjb0WyWiT/bSjYa4M7+8Xt1zzwb
+ LY6wj3u2QW5RNtfrFhv9d7kgI6DmBYH9vZZmpMMNd5VrkgdMfUUjvFHoK
+ BGDHT3JfCjmYVI8Bf8FloFjJGk5NV3uf9lncsxOBYXjg4F+KAQIy9IFZq
+ kjHV9cunAQJKWr/YtJc7IvZnw8XhSYKp+KfNEPKHHEEiNxjzZqDmtuP9k
+ C2xTu3x0+9kW0c47Wng1byhPHiIhtUwkNq4K0DVXmvHbXFw9b7+5vX2vm Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="363208133"
+X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="363208133"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2022 10:00:09 -0700
+ 27 Sep 2022 10:00:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="623821343"
-X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="623821343"
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="623821484"
+X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="623821484"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga007.fm.intel.com with SMTP; 27 Sep 2022 10:00:07 -0700
+ by fmsmga007.fm.intel.com with SMTP; 27 Sep 2022 10:00:10 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 27 Sep 2022 20:00:06 +0300
+ Tue, 27 Sep 2022 20:00:09 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: dri-devel@lists.freedesktop.org
-Date: Tue, 27 Sep 2022 19:59:57 +0300
-Message-Id: <20220927170006.27855-1-ville.syrjala@linux.intel.com>
+Date: Tue, 27 Sep 2022 19:59:58 +0300
+Message-Id: <20220927170006.27855-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220927170006.27855-1-ville.syrjala@linux.intel.com>
+References: <20220927170006.27855-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 0/9] drm/edid: Range descriptor stuff
+Subject: [Intel-gfx] [PATCH v2 1/9] drm/edid: Clarify why we only accept the
+ "range limits only" descriptor
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,45 +60,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Various improvements (mostly) related to the EDID
-range descriptor handling.
+The current comment fails to clarify why we only accept
+the "range limits only" variant of the range descriptor.
+Reword it to make some actual sense.
 
-v2:
-- One patch got merged already
-- Reorder the struct rename to be last
-- Drop the "infer vrr range for eDP" for now. While we may
-  want it eventually for now I'm just thinking of adding all
-  the EDID declared modes whether we have drrs/vrr panel or
-  not. This seems to be what Windows does and it'll get us
-  the alternate refresh rates just w/o actual vrr support.
-  Anyways, that'll be a separate series.
+Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/drm_edid.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-Ville Syrjälä (9):
-  drm/edid: Clarify why we only accept the "range limits only"
-    descriptor
-  drm/edid: Define more flags
-  drm/edid: Only parse VRR range for continuous frequency displays
-  drm/edid: Extract drm_gtf2_mode()
-  drm/edid: Use GTF2 for inferred modes
-  drm/edid: Use the correct formula for standard timings
-  drm/edid: Unconfuse preferred timing stuff a bit
-  drm/edid: Make version checks less convoluted
-  drm/edid: s/monitor_rage/vrr_range/
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  12 +-
- drivers/gpu/drm/drm_debugfs.c                 |   4 +-
- drivers/gpu/drm/drm_edid.c                    | 217 ++++++++++++------
- drivers/gpu/drm/i915/display/intel_vrr.c      |   6 +-
- include/drm/drm_connector.h                   |   4 +-
- include/drm/drm_edid.h                        |  14 +-
- 6 files changed, 169 insertions(+), 88 deletions(-)
-
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 4005dab6147d..ac662495635c 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -6033,10 +6033,13 @@ void get_monitor_range(const struct detailed_timing *timing, void *c)
+ 		return;
+ 
+ 	/*
+-	 * Check for flag range limits only. If flag == 1 then
+-	 * no additional timing information provided.
+-	 * Default GTF, GTF Secondary curve and CVT are not
+-	 * supported
++	 * These limits are used to determine the VRR refresh
++	 * rate range. Only the "range limits only" variant
++	 * of the range descriptor seems to guarantee that
++	 * any and all timings are accepted by the sink, as
++	 * opposed to just timings conforming to the indicated
++	 * formula (GTF/GTF2/CVT). Thus other variants of the
++	 * range descriptor are not accepted here.
+ 	 */
+ 	if (range->flags != DRM_EDID_RANGE_LIMITS_ONLY_FLAG)
+ 		return;
 -- 
 2.35.1
 
