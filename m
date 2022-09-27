@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33BBB5ECBDF
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 20:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A635ECBE3
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 20:06:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1816110E044;
-	Tue, 27 Sep 2022 18:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D51110E04F;
+	Tue, 27 Sep 2022 18:06:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F16C10E04E
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 18:06:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F8BE10E044
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 18:06:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664301982; x=1695837982;
+ t=1664301984; x=1695837984;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=HERkROSXe+2lUodmLjXeBMj9R1cFhjvFQqLkl2hxnK8=;
- b=d18HBXLUsRTWBb1vGDoYvMkfmAj7Wvg08TxWjmSamPL7pOZrSpYJnh0R
- /Qrej0/UV/bG4T2DwljjS4tTbLcf7G6HPdUCdAASqihAq4wSnja3vkJXk
- 2ijLd6ofIqP4t8hF9VlvvXn9Qe6w7ePWW8aXMgPlHoP50rK+wzPWMqO4A
- keRF6obFB+R0xeGBlIjOT/zrOUCabMDeQNHdKXzfjdoSK77HRlXflvu3R
- C0Zgibv8WQ1udvb5ch5IPvb0U+N96PDTw9IZlifHhZm6rj090zPTUBG5i
- 7bnlChCEh4nNUBAZGpvdn28Eann5tj2YD7OvE8uswRnkqoUkhSICtFOYQ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="288543257"
-X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="288543257"
+ bh=6Cd5AUjBCf5O6vPsantMK990hfuWBk6j5gPcPyECkHo=;
+ b=bcwf7L3rx1WYiCD9vmO5t6t3njhbXu4FqXFZVPHSKngOzuo9N6ZUHuV5
+ /+tYbCccUEQMkbhtRI0M8GLjtjoiTmnYNt1L5dskYVW383/BJo3PyUaJz
+ 0ml/V4UDqHeWcAsqtK/4ChskSR3u0lR21JkDvTrOdDnvwjRHnblYqQcGr
+ HFOdAeEr8yN42gxRRix1+U3jsCoUI13kjcIAhxF2GuYcvxRrDfFMVsaAP
+ 2RL9xpLQXq84km+0J+r7krTUolmhiNW9vgXxlmKj8FRBSxOYWVtG/faI+
+ Dq6M1ApP8VvzU3MaOr3d3vrWhk6CLRWE/jBa0T3Ec/sa91Bda67J/Lznh w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="288543268"
+X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="288543268"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2022 11:06:21 -0700
+ 27 Sep 2022 11:06:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="599270034"
-X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="599270034"
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="599270072"
+X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="599270072"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga006.jf.intel.com with SMTP; 27 Sep 2022 11:06:19 -0700
+ by orsmga006.jf.intel.com with SMTP; 27 Sep 2022 11:06:22 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 27 Sep 2022 21:06:18 +0300
+ Tue, 27 Sep 2022 21:06:21 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Sep 2022 21:06:13 +0300
-Message-Id: <20220927180615.25476-2-ville.syrjala@linux.intel.com>
+Date: Tue, 27 Sep 2022 21:06:14 +0300
+Message-Id: <20220927180615.25476-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220927180615.25476-1-ville.syrjala@linux.intel.com>
 References: <20220927180615.25476-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Simplify
- intel_panel_add_edid_alt_fixed_modes()
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Allow alternate fixed modes
+ always for eDP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,90 +65,40 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Since commit a5810f551d0a ("drm/i915: Allow more varied alternate
-fixed modes for panels") intel_panel_add_edid_alt_fixed_modes()
-no longer considers vrr vs. drrs separately. So no reason to
-pass them as separate parameters either.
+Stop considering VBT's static DRRS support when deciding whether
+to use alternate fixed modes or not. It looks like Windows more
+or less just uses that to decide whether to automagically switch
+refresh rates on AC<->batter changes, or perhaps whether to
+even expose a control for that in some UI thing. Either way it
+seems happy to always use all EDID modes, and I guess the
+DRRS/VRR stuff more or less adjust how said modes get
+actually used.
 
+Let's do the same and just accept all the suitable looking
+modes from EDID, whether we have DRRS or VRR.
+
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6323
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6484
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c    | 2 +-
- drivers/gpu/drm/i915/display/intel_lvds.c  | 3 +--
- drivers/gpu/drm/i915/display/intel_panel.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_panel.h | 2 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c  | 2 +-
- 5 files changed, 6 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6ebd6e104b2c..c368caa23291 100644
+index c368caa23291..70b06806ec0d 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5293,7 +5293,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+@@ -5292,9 +5292,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	intel_bios_init_panel(dev_priv, &intel_connector->panel,
  			      encoder->devdata, IS_ERR(edid) ? NULL : edid);
  
- 	intel_panel_add_edid_fixed_modes(intel_connector,
--					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE,
-+					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE ||
- 					 intel_vrr_is_capable(intel_connector));
+-	intel_panel_add_edid_fixed_modes(intel_connector,
+-					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE ||
+-					 intel_vrr_is_capable(intel_connector));
++	intel_panel_add_edid_fixed_modes(intel_connector, true);
  
  	/* MSO requires information from the EDID */
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 270368b43729..e6600d2f369b 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -969,8 +969,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 
- 	/* Try EDID first */
- 	intel_panel_add_edid_fixed_modes(intel_connector,
--					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE,
--					 false);
-+					 intel_connector->panel.vbt.drrs_type != DRRS_TYPE_NONE);
- 
- 	/* Failed to get EDID, what about VBT? */
- 	if (!intel_panel_preferred_fixed_mode(intel_connector))
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index a3a3f9fe4342..41cec9dc4223 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -254,10 +254,10 @@ static void intel_panel_destroy_probed_modes(struct intel_connector *connector)
- }
- 
- void intel_panel_add_edid_fixed_modes(struct intel_connector *connector,
--				      bool has_drrs, bool has_vrr)
-+				      bool use_alt_fixed_modes)
- {
- 	intel_panel_add_edid_preferred_mode(connector);
--	if (intel_panel_preferred_fixed_mode(connector) && (has_drrs || has_vrr))
-+	if (intel_panel_preferred_fixed_mode(connector) && use_alt_fixed_modes)
- 		intel_panel_add_edid_alt_fixed_modes(connector);
- 	intel_panel_destroy_probed_modes(connector);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
-index eff3ffd3d082..5c5b5b7f95b6 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.h
-+++ b/drivers/gpu/drm/i915/display/intel_panel.h
-@@ -44,7 +44,7 @@ int intel_panel_fitting(struct intel_crtc_state *crtc_state,
- int intel_panel_compute_config(struct intel_connector *connector,
- 			       struct drm_display_mode *adjusted_mode);
- void intel_panel_add_edid_fixed_modes(struct intel_connector *connector,
--				      bool has_drrs, bool has_vrr);
-+				      bool use_alt_fixed_modes);
- void intel_panel_add_vbt_lfp_fixed_mode(struct intel_connector *connector);
- void intel_panel_add_vbt_sdvo_fixed_mode(struct intel_connector *connector);
- void intel_panel_add_encoder_fixed_mode(struct intel_connector *connector,
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 2a99ec7ff737..cf8e80936d8e 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -2910,7 +2910,7 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
- 
- 	if (!intel_panel_preferred_fixed_mode(intel_connector)) {
- 		intel_ddc_get_modes(connector, &intel_sdvo->ddc);
--		intel_panel_add_edid_fixed_modes(intel_connector, false, false);
-+		intel_panel_add_edid_fixed_modes(intel_connector, false);
- 	}
- 
- 	intel_panel_init(intel_connector);
+ 	intel_edp_mso_init(intel_dp);
 -- 
 2.35.1
 
