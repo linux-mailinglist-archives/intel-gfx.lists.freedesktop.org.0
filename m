@@ -1,51 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 389375ECC12
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 20:20:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121515ECC1D
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 20:25:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCBF210E0AD;
-	Tue, 27 Sep 2022 18:20:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7964510E0C1;
+	Tue, 27 Sep 2022 18:25:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A767710E0C1
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 18:20:38 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E91F410E0C1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 18:25:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664302838; x=1695838838;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ggzj/++4vdCjN/drvNA3nLbDQGNaFtNyoWdHVK09Gsg=;
- b=lzLvQkhw5T1Nvi4hS8JIQCJP2+zcxKHGuf6VgDwq9ZRUU6DH9qb5vzB/
- 8MLQtg0igAlIP1hQa+2M8CYYsLI8G7Z2p3eJKhJsxwzEjDb2/HzQopMAa
- 6uQSdYYyVKSpPpblrZmfhv7/nelzIT/24FVGXcWhvEJVFWt1PgPOj8iYo
- x4J8Lj1Lt4vbGK/Xxlj0G0JxTvjSBVDY7slxKR11NhQiItH2PymqmCgAG
- VbRCP+PAg5IrwhXdEQS+sNANKgh2UNf6dN35CO133IfQPNHTzjKYBxNZE
- DaeF+m+cVJVGQzSSgLmXh86e6+7O6gtUzqR/bjL5mT83pX11+LnS4nhYE A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="288546873"
-X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="288546873"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2022 11:20:35 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="690091661"
-X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="690091661"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2022 11:20:35 -0700
-Date: Tue, 27 Sep 2022 11:20:13 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20220927182013.GD16345@nvishwa1-DESK>
-References: <20220927054016.21474-1-niranjana.vishwanathapura@intel.com>
- <87sfkd1f7l.fsf@intel.com>
+ t=1664303102; x=1695839102;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pf26LhXSssSEWvbFhoQmUjhJWMmP/V/rt8fEsHqMc3o=;
+ b=hEgUZ+HYi9m2g6A1wkii40NKZ3CapQBPLESyVFAXaRWCe0rJvD0mXjCW
+ lYOWOA+bWVib63YUQBZBJmU2ycD/HlBEVSEXppC+IWpKzY/ikoN+siBsW
+ 45voxuqz1GRjKQXUwLTzxvJSpATheCCmbqtHnbDICYpS2C6bDr7c2VbT1
+ 5dKb6F9qt8IO0fg7h9AqyDLBl5v/0hGeyngd8DO+cLTJUzTY7qS1d5MgS
+ hS+422Zy4IV5HK1sD3LkRC7wIXCMdRH002lMR1P0krvDluJvPd4nSnIr3
+ CTvyRJCd7/nrqmgfJRgj+Eya15lhcR9ARIyf9Mk0g+1ksAxUJH8bK9i+p g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="327754048"
+X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="327754048"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2022 11:25:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="599275819"
+X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="599275819"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga006.jf.intel.com with SMTP; 27 Sep 2022 11:24:56 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 27 Sep 2022 21:24:55 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 27 Sep 2022 21:24:55 +0300
+Message-Id: <20220927182455.3422-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <87sfkd1f7l.fsf@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove unwanted pointer unpacking
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Reject excessive dotclocks early
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,50 +57,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 27, 2022 at 09:52:46AM +0300, Jani Nikula wrote:
->On Mon, 26 Sep 2022, Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com> wrote:
->> In await_fence_array(), unpacking syncobj pointer is not needed.
->> Remove it.
->
->Where are we with the goal of getting rid of all of ptr_pack_bits(),
->ptr_unpack_bits(), ptr_mask_bits() and ptr_unmask_bits()?
->
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I am not sure, I just noticed this unwanted code while working on
-VM_BIND patch series.
+Make sure modes with crazy big dotclocks are rejected early,
+so as to not cause problems for subsequent code via integer
+overflows and whatnot.
 
-Regards,
-Niranjana
+These would eventually be rejected in intel_crtc_compute_pipe_mode()
+but that is now too late as we do the clock computations a bit
+earlier than that. And we don't want to just reorder the two since
+we still want to check the final computed dotclock against the
+hardware limit to make sure we didn't end up above the limit due
+to rounding/etc.
 
->BR,
->Jani.
->
->
->>
->> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->> ---
->>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 5 -----
->>  1 file changed, 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> index cd75b0ca2555..8f5796cf9c9c 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> @@ -2954,11 +2954,6 @@ await_fence_array(struct i915_execbuffer *eb,
->>  	int err;
->>
->>  	for (n = 0; n < eb->num_fences; n++) {
->> -		struct drm_syncobj *syncobj;
->> -		unsigned int flags;
->> -
->> -		syncobj = ptr_unpack_bits(eb->fences[n].syncobj, &flags, 2);
->> -
->>  		if (!eb->fences[n].dma_fence)
->>  			continue;
->
->-- 
->Jani Nikula, Intel Open Source Graphics Center
+Fixes: 0ff0e219d9b8 ("drm/i915: Compute clocks earlier")
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index eb8eaeb19881..04e8fa953bc7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8130,6 +8130,17 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 	drm_helper_move_panel_connectors_to_head(&dev_priv->drm);
+ }
+ 
++static int max_dotclock(struct drm_i915_private *i915)
++{
++	int max_dotclock = i915->max_dotclk_freq;
++
++	/* icl+ might use bigjoiner */
++	if (DISPLAY_VER(i915) >= 11)
++		max_dotclock *= 2;
++
++	return max_dotclock;
++}
++
+ static enum drm_mode_status
+ intel_mode_valid(struct drm_device *dev,
+ 		 const struct drm_display_mode *mode)
+@@ -8167,6 +8178,13 @@ intel_mode_valid(struct drm_device *dev,
+ 			   DRM_MODE_FLAG_CLKDIV2))
+ 		return MODE_BAD;
+ 
++	/*
++	 * Reject clearly excessive dotclocks early to
++	 * avoid having to worry about huge integers later.
++	 */
++	if (mode->clock > max_dotclock(dev_priv))
++		return MODE_CLOCK_HIGH;
++
+ 	/* Transcoder timing limits */
+ 	if (DISPLAY_VER(dev_priv) >= 11) {
+ 		hdisplay_max = 16384;
+-- 
+2.35.1
+
