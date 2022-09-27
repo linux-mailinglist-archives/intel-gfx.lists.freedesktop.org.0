@@ -1,58 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931CC5EBBAA
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 09:37:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F19265EBBCB
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 09:43:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3418A10E8CD;
-	Tue, 27 Sep 2022 07:37:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01AF110E04B;
+	Tue, 27 Sep 2022 07:43:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A68110E8DB
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 07:37:07 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3330210E04B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 07:43:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664264227; x=1695800227;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=sV+0AgU6BCUn3gTsigjzlgNxeGrpeyj9WHqJqyofyrw=;
- b=dwyKgLiuNW0VWf3OlLOUrHRV1k1o3muM+5/nyMFtbnM5wz1UeUyoKz7C
- 4s2zMdpi1TvP3GjB0Qlz+tXKZ5tbYw8z5hW0AhWKUl9aY7CgfAJ8IJfA2
- eEjViHOAPx3RWRmIw18ApYpXOKbmHZbZ9jo5pFCELdhQTaWPok2NxoALN
- P67oR757rzuuJJhurHFB4H921ZLaeW2GRbuQPSA3bcHdqU8Iq0gc3Bmzs
- yCwEzOzIf2hMVXOnZfrKQijGtjWDyFq1bpYRR/6bCgiEAU6vbgtdqlfdI
- mTrfqSz7oo4eqlH9Xt74yBJKKd76XNH+3HXoaODg/6d5aqXclPmN+HG1Z w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="302159420"
-X-IronPort-AV: E=Sophos;i="5.93,348,1654585200"; d="scan'208";a="302159420"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2022 00:37:06 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="866471311"
-X-IronPort-AV: E=Sophos;i="5.93,348,1654585200"; d="scan'208";a="866471311"
-Received: from bvoinov-mobl1.ger.corp.intel.com (HELO [10.213.221.221])
- ([10.213.221.221])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2022 00:36:56 -0700
-Message-ID: <0959ae1c-50fd-87bc-efb2-43f334f1d731@linux.intel.com>
-Date: Tue, 27 Sep 2022 08:36:54 +0100
+ t=1664264622; x=1695800622;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=/sVlCqEaN9HFSNUepNFulAvdptmbWBMsm3wxdDu4GzE=;
+ b=HDYOY7QQBRJJFi7RjH43GcYpAD9fEPcwdC6qaEs9OS+/eeNtsmfZjAT5
+ uugZ0YowQGUAEV0f/MkyO0quNTgMDCGUuQaEHrLfhpgOqBZOQikYGlmNH
+ mlKO7tiPxcrJWzx5z1AroSz/kceTC5LxKeOin2yEJyZzr30Y8Fbjo4/pe
+ gRQ3Ed6zh5TZ/Dwlv+TCtVkcH1BV+2hqA0ERdZbShZEqWBjolKuPyCbO3
+ IrjoWJpSjwfcB9CincM7sUgTJFkUpQ3C1vfxuI60BSWrZ1Pzcv2I9b2r6
+ QxI4frIhG9O/xPH5/nz9erlwRiH4ttDpFa1KVmaX0dPpNMIODsAysVus5 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="363087489"
+X-IronPort-AV: E=Sophos;i="5.93,348,1654585200"; d="scan'208";a="363087489"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2022 00:43:40 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="746952544"
+X-IronPort-AV: E=Sophos;i="5.93,348,1654585200"; d="scan'208";a="746952544"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.18.240])
+ ([10.213.18.240])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2022 00:43:39 -0700
+Message-ID: <97a134b9-7ee1-01a4-07ad-4023ed8736bf@intel.com>
+Date: Tue, 27 Sep 2022 09:43:37 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20220926084551.231080-1-anshuman.gupta@intel.com>
- <a12afd96-d1ab-d945-f3a2-6f7da785bb15@linux.intel.com>
- <CY5PR11MB62111ED05665995C6E27437995559@CY5PR11MB6211.namprd11.prod.outlook.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.3.0
 Content-Language: en-US
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <CY5PR11MB62111ED05665995C6E27437995559@CY5PR11MB6211.namprd11.prod.outlook.com>
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220923073515.23093-1-nirmoy.das@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20220923073515.23093-1-nirmoy.das@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/rc6: GTC6_RESIDENCY_{LSB,
- MSB} Residency counter support
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix a potential UAF at device
+ unload
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,122 +63,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: matthew.auld@intel.com, chris.p.wilson@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 27/09/2022 07:48, Gupta, Anshuman wrote:
+On 23.09.2022 09:35, Nirmoy Das wrote:
+> i915_gem_drain_freed_objects() might not be enough to
+> free all the objects and RCU delayed work might get
+> scheduled after the i915 device struct gets freed.
 > 
->> -----Original Message-----
->> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->> Sent: Monday, September 26, 2022 9:35 PM
->> To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Subject: Re: [Intel-gfx] [PATCH] drm/i915/rc6: GTC6_RESIDENCY_{LSB, MSB}
->> Residency counter support
->>
->>
->> On 26/09/2022 09:45, Anshuman Gupta wrote:
->>> Adding support in drpc show debugfs to print the GT RPM Unit RC6
->>> residency. This GTC6_RESIDENCY_{LSB, MSB} will only increment when GT
->>> will be RC6. Therefore these register will get reset at RC6 exit and
->>> will start incrementing on next RC6 entry.
->>>
->>> BSpec: 64977
->>> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  5 +++++
->>>    drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  5 +++++
->>>    drivers/gpu/drm/i915/gt/intel_rc6.c           | 19 +++++++++++++++++++
->>>    drivers/gpu/drm/i915/gt/intel_rc6.h           |  1 +
->>>    4 files changed, 30 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
->>> b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
->>> index 10f680dbd7b62..59b6cc49464e9 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
->>> @@ -195,6 +195,11 @@ static int gen6_drpc(struct seq_file *m)
->>>    	print_rc6_res(m, "RC6 \"Locked to RPn\" residency since boot:",
->>>    		      GEN6_GT_GFX_RC6_LOCKED);
->>>    	print_rc6_res(m, "RC6 residency since boot:", GEN6_GT_GFX_RC6);
->>> +
->>> +	if (GRAPHICS_VER(i915) >= 12)
->>> +		seq_printf(m, "GT RC6 RPM Unit Residency since last RC6 exit:
->> 0x%llx\n",
->>> +			   intel_rc6_rpm_unit_residency(&gt->rc6));
->>> +
->>>    	print_rc6_res(m, "RC6+ residency since boot:", GEN6_GT_GFX_RC6p);
->>>    	print_rc6_res(m, "RC6++ residency since boot:", GEN6_GT_GFX_RC6pp);
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>> b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>> index 7f79bbf978284..7715d0aeffc9d 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>> @@ -8,6 +8,11 @@
->>>
->>>    #include "i915_reg_defs.h"
->>>
->>> +/* GT RPM RC6 counter */
->>> +#define GEN12_GT_GFX_RC6_LSB			_MMIO(0xC20)
->>> +#define GEN12_GT_GFX_RC6_MSB			_MMIO(0xC24)
->>> +#define   GEN12_GT_GFX_RC6_MSB_MASK		REG_GENMASK(23, 0)
->>> +
->>>    /* RPM unit config (Gen8+) */
->>>    #define RPM_CONFIG0				_MMIO(0xd00)
->>>    #define   GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT	3
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c
->>> b/drivers/gpu/drm/i915/gt/intel_rc6.c
->>> index f8d0523f4c18e..ee830c4027542 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
->>> @@ -816,6 +816,25 @@ u64 intel_rc6_residency_us(struct intel_rc6 *rc6,
->> i915_reg_t reg)
->>>    	return DIV_ROUND_UP_ULL(intel_rc6_residency_ns(rc6, reg), 1000);
->>>    }
->>>
->>> +u64 intel_rc6_rpm_unit_residency(struct intel_rc6 *rc6) {
->>> +	struct drm_i915_private *i915 = rc6_to_i915(rc6);
->>> +	struct intel_gt *gt = rc6_to_gt(rc6);
->>> +	intel_wakeref_t wakeref;
->>> +	u64 lsb, msb, counter;
->>> +
->>> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref) {
->>> +		lsb = intel_uncore_read(gt->uncore, GEN12_GT_GFX_RC6_LSB);
->>> +		msb = intel_uncore_read(gt->uncore,
->> GEN12_GT_GFX_RC6_MSB);
->>> +	}
->>> +
->>> +	drm_dbg(&i915->drm, "GT RC6 MSB=0x%x LSB=0x%x\n", (u32) msb,
->> (u32) lsb);
->>> +	msb = REG_FIELD_GET(GEN12_GT_GFX_RC6_MSB_MASK, (u32)msb);
->>> +	counter = msb << 32 | lsb;
->>
->> What about wrap?
-> Wrap is not practically possible here, as this is 56 bit counter and this will get reset on each rc6 exit.
-
-I primarily was thinking about LSB wrap, see the repeat of the loop 
-intel_uncore_read64_2x32 does to handle it. But as you say increment 
-period is unknown...
-
->> I guess you can't use intel_uncore_read64_2x32 because there is something
->> present in bits 31-24?
->>
->> Anyway, what is the unit here and why it is useful to put this in debugfs (together
->> with drm_dbg)? (Considering the value restarts on each
->> RC6 entry.)
-> I will remove the drm_dbg.
-> This can be useful to know about rc6 exit from debugfs.
+> Call i915_gem_drain_workqueue() to catch all RCU delayed work.
 > 
-> Actual frequency this counter is ticking is not really known from spec.
-> I am still trying to figuring out that. Currently these are just raw count from reg.
+> Suggested-by: Chris Wilson <chris.p.wilson@intel.com>
+> Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-... IMO too many unknowns to justify adding this. Yes it's only debugfs 
-but (rapid) polling on a debugfs register to notice some internal state 
-transitions feels over the top. Would intel_reg read perhaps be enough 
-to whatever use case you have in mind?
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Regards,
+Regards
+Andrzej
 
-Tvrtko
+> ---
+>   drivers/gpu/drm/i915/i915_gem.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> index 88df9a35e0fe..7541028caebd 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -1278,7 +1278,7 @@ void i915_gem_init_early(struct drm_i915_private *dev_priv)
+>   
+>   void i915_gem_cleanup_early(struct drm_i915_private *dev_priv)
+>   {
+> -	i915_gem_drain_freed_objects(dev_priv);
+> +	i915_gem_drain_workqueue(dev_priv);
+>   	GEM_BUG_ON(!llist_empty(&dev_priv->mm.free_list));
+>   	GEM_BUG_ON(atomic_read(&dev_priv->mm.free_count));
+>   	drm_WARN_ON(&dev_priv->drm, dev_priv->mm.shrink_count);
+
