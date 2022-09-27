@@ -2,97 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD0405EC06F
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 13:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1F955EC09F
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 13:11:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02A4610E8DB;
-	Tue, 27 Sep 2022 11:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 129D010E285;
+	Tue, 27 Sep 2022 11:11:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C159810E8D9
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 11:04:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1664276697;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=l/JllRVsLXk1mVK18+Kbna9TAwN4318CnjejoNa5Zl0=;
- b=YK+AinDWE/yYS77zbSrSAfPAZrGWOwomQZ/dDv1ymGVHzqQOUSMFbr8lV0XfvX41iwp/No
- RAS8xQj+h9N1JeYOU5otn0tnn20mrRZH3e7I6zoGyFxgssLXGAJfxVCEWrfJ4V/mnWdlf1
- XeMTkfH8FT1ErJu5bUGisGh/fV5coJI=
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
- [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-357-vuK2Ks35OLGhl4uZuSkWLg-1; Tue, 27 Sep 2022 07:04:57 -0400
-X-MC-Unique: vuK2Ks35OLGhl4uZuSkWLg-1
-Received: by mail-ed1-f72.google.com with SMTP id
- x5-20020a05640226c500b00451ec193793so7548901edd.16
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 04:04:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=l/JllRVsLXk1mVK18+Kbna9TAwN4318CnjejoNa5Zl0=;
- b=x7hiNJAY7KoyS4ypLayJCdlIFD4UkIHeS7jbuJXfl+TjI4KB6SMJNPrD+KgEjM2IaO
- GDUstA3yW1FhBZiGQvRg24YdK+8zAqZ48ZXPRGrcZKJWJsRTPQtxZFg86MxcU0aYR1jC
- syLuV8YPUohjO7wbLfvArCAyXv+TJlDeyvlRcsB9fUGHGMm5PW7JhhlCh2LZeFfvxgAl
- toYpqWz8V+iPxAsUBYY3r4WaVCifS9R4VHhDllfpABSAPzpBt+RbcMLjFBJ6uf3iP4oQ
- dKqdfjWFshHF3MCaEUSlmnuvtNTftOrMGpfcLJc2JGhoekIqxDebJokvQCv3oqZ9TzAb
- s42A==
-X-Gm-Message-State: ACrzQf0WNPEHH8Js47KJo7ZP5vLaO5N5vT7WLAgT8IUW/ukAfIA/vYf9
- xIOZo0lpxCVbIk0EmChLEz1uT3Iz9YtBDX1jYGbEOZxsKgBULtBENvJmHIdMtx2btMg7Qp4IGBz
- aUkYmric00I6ROYji0uMM3+y27ml/
-X-Received: by 2002:a17:906:eecb:b0:73c:5bcb:8eb3 with SMTP id
- wu11-20020a170906eecb00b0073c5bcb8eb3mr22169279ejb.284.1664276695618; 
- Tue, 27 Sep 2022 04:04:55 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM7D5QZjU/upOCee7GoUO2AdF8ylwZyk3AjCM/1ND7XlQnca3IxNEAVjdAeeHSEga9s+yI8OrQ==
-X-Received: by 2002:a17:906:eecb:b0:73c:5bcb:8eb3 with SMTP id
- wu11-20020a170906eecb00b0073c5bcb8eb3mr22169235ejb.284.1664276695270; 
- Tue, 27 Sep 2022 04:04:55 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
- (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
- by smtp.gmail.com with ESMTPSA id
- a3-20020a50e703000000b0044657ecfbb5sm1058230edn.13.2022.09.27.04.04.53
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 27 Sep 2022 04:04:54 -0700 (PDT)
-Message-ID: <42a5f2c9-a1dc-8fc0-7334-fe6c390ecfbb@redhat.com>
-Date: Tue, 27 Sep 2022 13:04:52 +0200
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D7D910E285
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 11:10:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664277058; x=1695813058;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=r+SsFhSmjyJpnJujeQ2T/Z7Iqqlr/hSbjNgJaur9LZw=;
+ b=HeXNMAuk7DPmWmWNSzDUiHHMkxqubmbwSO+K/60q5Ia/sHK193Fb5B/o
+ TldL3rntCW0QXva1s/f/WnXkCVGUR9HIIer9Erwt3Gec1SVX5Z5X1Jo7Y
+ hw0voK+ncY4C7G9NSFMcyzVVgByunSTPHpjf9tG9agcJ15zupghiztYFi
+ vgUxaJlZEHYGgNU4paOomu/tCVO42OnzRJH7/XB4LbmHkSYbD8JJp/pyN
+ F3hNVvQw1efcYOCVzIUNMOkWbgRK+5+DPjFRXaAfqvOoqaIYEFVx1DXRO
+ nP1QcaMboV572keKJmhejTv5706fDIBlH+7OQaTFU/YbmDJrZBahYfnkG w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="281008009"
+X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="281008009"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2022 04:10:58 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="689955650"
+X-IronPort-AV: E=Sophos;i="5.93,349,1654585200"; d="scan'208";a="689955650"
+Received: from tjungman-mobl.ger.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.249.32.180])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2022 04:10:56 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 27 Sep 2022 14:09:43 +0300
+Message-Id: <20220927110943.212470-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-To: Dmitry Osipenko <digetx@gmail.com>, Ben Skeggs <bskeggs@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
- Daniel Dadap <ddadap@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Pan@freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
- Andy Shevchenko <andy@kernel.org>
-References: <20220825143726.269890-1-hdegoede@redhat.com>
- <20220825143726.269890-3-hdegoede@redhat.com>
- <f914ceb3-94bd-743c-f8b6-0334086e731a@gmail.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <f914ceb3-94bd-743c-f8b6-0334086e731a@gmail.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 02/31] drm/i915: Don't register backlight
- when another backlight should be used (v2)
+Subject: [Intel-gfx] [PATCH v3] drm/i915/psr: Fix PSR_IMR/IIR field handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,197 +57,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, nouveau@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@redhat.com>,
- Len Brown <lenb@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dmitry,
+Current PSR code is supposed to use TRANSCODER_EDP to force 0 shift for
+bits in PSR_IMR/IIR registers:
 
-On 9/26/22 01:39, Dmitry Osipenko wrote:
-> 25.08.2022 17:36, Hans de Goede пишет:
->> Before this commit when we want userspace to use the acpi_video backlight
->> device we register both the GPU's native backlight device and acpi_video's
->> firmware acpi_video# backlight device. This relies on userspace preferring
->> firmware type backlight devices over native ones.
->>
->> Registering 2 backlight devices for a single display really is
->> undesirable, don't register the GPU's native backlight device when
->> another backlight device should be used.
->>
->> Changes in v2:
->> - Use drm_info(drm_dev,  ...) for log messages
->>
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_backlight.c | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
->> index 681ebcda97ad..03c7966f68d6 100644
->> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
->> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
->> @@ -8,6 +8,8 @@
->>  #include <linux/pwm.h>
->>  #include <linux/string_helpers.h>
->>  
->> +#include <acpi/video.h>
->> +
->>  #include "intel_backlight.h"
->>  #include "intel_backlight_regs.h"
->>  #include "intel_connector.h"
->> @@ -952,6 +954,11 @@ int intel_backlight_device_register(struct intel_connector *connector)
->>  
->>  	WARN_ON(panel->backlight.max == 0);
->>  
->> +	if (!acpi_video_backlight_use_native()) {
->> +		drm_info(&i915->drm, "Skipping intel_backlight registration\n");
->> +		return 0;
->> +	}
->> +
->>  	memset(&props, 0, sizeof(props));
->>  	props.type = BACKLIGHT_RAW;
->>  
-> 
-> This breaks backlight on Acer Chromebook Spin 713 because backlight
-> isn't registered anymore. Any ideas how to fix it?
+/*
+ * gen12+ has registers relative to transcoder and one per transcoder
+ * using the same bit definition: handle it as TRANSCODER_EDP to force
+ * 0 shift in bit definition
+ */
 
-Thank you for reporting this.
+At the time of writing the code assumption "TRANSCODER_EDP == 0" was made.
+This is not the case and all fields in PSR_IMR and PSR_IIR are shifted
+incorrectly if DISPLAY_VER >= 12.
 
-Let me start with some background info on this change:
+Fix this by adding separate register field defines for >=12 and add bit
+getter functions to keep code readability.
 
-As you may have noticed sometimes on laptops there are multiple
-backlights registered under /sys/class/backlight and we just let
-userspace figure out which one to use, which is quite bad.
+v3:
+ - Add separate register field defines (José)
+ - Add bit getter functions (José)
+v2:
+ - Improve commit message (José)
 
-This patch is part of a series fixing this, this is also preparation
-for adding a new display brightness control API where the brightness is
-a property on the drm_connector object for the panel/display, which
-of course requires the kernel to know which backlight control method
-to use.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 84 ++++++++++++++----------
+ drivers/gpu/drm/i915/i915_reg.h          | 16 +++--
+ 2 files changed, 62 insertions(+), 38 deletions(-)
 
-If you are want to know more about the new userspace API see:
-https://lore.kernel.org/dri-devel/b61d3eeb-6213-afac-2e70-7b9791c86d2e@redhat.com/
-
-What this series does is on x86/ACPI platforms make all the possible
-/sys/class/backlight providers call: acpi_video_get_backlight_type()
-(acpi_video_backlight_use_native() is a special wrapper) and only if
-that returns their type then have them register their backlight device.
-
-So to fix this we need to make acpi_video_get_backlight_type()
-return native on the Acer Chromebook Spin 713.
-
-The heuristics used in acpi_video_get_backlight_type() is
-explained by comments in the function:
-
-        /*
-         * The below heuristics / detection steps are in order of descending
-         * presedence. The commandline takes presedence over anything else.
-         */
-        /* DMI quirks override any autodetection. */
-        /* Special cases such as nvidia_wmi_ec and apple gmux. */
-
-None of these apply here, so we end up in the core of this function:
-
-        /* On systems with ACPI video use either native or ACPI video. */
-        if (video_caps & ACPI_VIDEO_BACKLIGHT) {
-                /*
-                 * Windows 8 and newer no longer use the ACPI video interface,
-                 * so it often does not work. If the ACPI tables are written
-                 * for win8 and native brightness ctl is available, use that.
-                 *
-                 * The native check deliberately is inside the if acpi-video
-                 * block on older devices without acpi-video support native
-                 * is usually not the best choice.
-                 */
-                if (acpi_osi_is_win8() && native_available)
-                        return acpi_backlight_native;
-                else
-                        return acpi_backlight_video;
-        }
-
-        /* No ACPI video (old hw), use vendor specific fw methods. */
-        return acpi_backlight_vendor;
-
-
-The acpi_video_backlight_use_native() wrappers causes native_available to
-be true, so one or both of these 2 conditions fail:
-
-1.      if (video_caps & ACPI_VIDEO_BACKLIGHT)
-2.	if (acpi_osi_is_win8())
-
-I assume that 2. will actually likely fail on quite a few chromebooks.
-So to fix this you could do something like this:
-
-diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
-index 0d9064a9804c..660ea46fbee8 100644
---- a/drivers/acpi/video_detect.c
-+++ b/drivers/acpi/video_detect.c
-@@ -75,6 +75,12 @@ find_video(acpi_handle handle, u32 lvl, void *context, void **rv)
- 	return AE_OK;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 9def8d9fade6..d7b08a7da9e9 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -116,34 +116,56 @@ static bool psr2_global_enabled(struct intel_dp *intel_dp)
+ 	}
  }
  
-+static bool is_chromebook(void)
++static u32 psr_irq_psr_error_bit_get(struct intel_dp *intel_dp)
 +{
-+	// FIXME return true when running under ChromeOS (coreboot) firmware
-+	return false;
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++
++	return DISPLAY_VER(dev_priv) >= 12 ? TGL_EDP_PSR_ERROR :
++		EDP_PSR_ERROR(intel_dp->psr.transcoder);
 +}
 +
- /* This depends on ACPI_WMI which is X86 only */
- #ifdef CONFIG_X86
- static bool nvidia_wmi_ec_supported(void)
-@@ -724,7 +730,7 @@ static enum acpi_backlight_type __acpi_video_get_backlight_type(bool native)
- 		 * block on older devices without acpi-video support native
- 		 * is usually not the best choice.
++static u32 psr_irq_post_exit_bit_get(struct intel_dp *intel_dp)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++
++	return DISPLAY_VER(dev_priv) >= 12 ? TGL_EDP_PSR_POST_EXIT :
++		EDP_PSR_POST_EXIT(intel_dp->psr.transcoder);
++}
++
++static u32 psr_irq_pre_entry_bit_get(struct intel_dp *intel_dp)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++
++	return DISPLAY_VER(dev_priv) >= 12 ? TGL_EDP_PSR_PRE_ENTRY :
++		EDP_PSR_PRE_ENTRY(intel_dp->psr.transcoder);
++}
++
++static u32 psr_irq_mask_get(struct intel_dp *intel_dp)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++
++	return DISPLAY_VER(dev_priv) >= 12 ? TGL_EDP_PSR_MASK :
++		EDP_PSR_MASK(intel_dp->psr.transcoder);
++}
++
+ static void psr_irq_control(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+-	enum transcoder trans_shift;
+ 	i915_reg_t imr_reg;
+ 	u32 mask, val;
+ 
+-	/*
+-	 * gen12+ has registers relative to transcoder and one per transcoder
+-	 * using the same bit definition: handle it as TRANSCODER_EDP to force
+-	 * 0 shift in bit definition
+-	 */
+-	if (DISPLAY_VER(dev_priv) >= 12) {
+-		trans_shift = 0;
++	if (DISPLAY_VER(dev_priv) >= 12)
+ 		imr_reg = TRANS_PSR_IMR(intel_dp->psr.transcoder);
+-	} else {
+-		trans_shift = intel_dp->psr.transcoder;
++	else
+ 		imr_reg = EDP_PSR_IMR;
+-	}
+ 
+-	mask = EDP_PSR_ERROR(trans_shift);
++	mask = psr_irq_psr_error_bit_get(intel_dp);
+ 	if (intel_dp->psr.debug & I915_PSR_DEBUG_IRQ)
+-		mask |= EDP_PSR_POST_EXIT(trans_shift) |
+-			EDP_PSR_PRE_ENTRY(trans_shift);
++		mask |= psr_irq_post_exit_bit_get(intel_dp) |
++			psr_irq_pre_entry_bit_get(intel_dp);
+ 
+-	/* Warning: it is masking/setting reserved bits too */
+ 	val = intel_de_read(dev_priv, imr_reg);
+-	val &= ~EDP_PSR_TRANS_MASK(trans_shift);
++	val &= ~psr_irq_mask_get(intel_dp);
+ 	val |= ~mask;
+ 	intel_de_write(dev_priv, imr_reg, val);
+ }
+@@ -191,25 +213,21 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	ktime_t time_ns =  ktime_get();
+-	enum transcoder trans_shift;
+ 	i915_reg_t imr_reg;
+ 
+-	if (DISPLAY_VER(dev_priv) >= 12) {
+-		trans_shift = 0;
++	if (DISPLAY_VER(dev_priv) >= 12)
+ 		imr_reg = TRANS_PSR_IMR(intel_dp->psr.transcoder);
+-	} else {
+-		trans_shift = intel_dp->psr.transcoder;
++	else
+ 		imr_reg = EDP_PSR_IMR;
+-	}
+ 
+-	if (psr_iir & EDP_PSR_PRE_ENTRY(trans_shift)) {
++	if (psr_iir & psr_irq_pre_entry_bit_get(intel_dp)) {
+ 		intel_dp->psr.last_entry_attempt = time_ns;
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "[transcoder %s] PSR entry attempt in 2 vblanks\n",
+ 			    transcoder_name(cpu_transcoder));
+ 	}
+ 
+-	if (psr_iir & EDP_PSR_POST_EXIT(trans_shift)) {
++	if (psr_iir & psr_irq_post_exit_bit_get(intel_dp)) {
+ 		intel_dp->psr.last_exit = time_ns;
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "[transcoder %s] PSR exit completed\n",
+@@ -226,7 +244,7 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+ 		}
+ 	}
+ 
+-	if (psr_iir & EDP_PSR_ERROR(trans_shift)) {
++	if (psr_iir & psr_irq_psr_error_bit_get(intel_dp)) {
+ 		u32 val;
+ 
+ 		drm_warn(&dev_priv->drm, "[transcoder %s] PSR aux error\n",
+@@ -243,7 +261,7 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+ 		 * or unset irq_aux_error.
  		 */
--		if (acpi_osi_is_win8() && native_available)
-+		if (native_available && (acpi_osi_is_win8() || is_chromebook()))
- 			return acpi_backlight_native;
- 		else
- 			return acpi_backlight_video;
-
-The ACPI video bus is a pretty standard thing (and part of the ACPI standard),
-still I would not be surprised if it is missing from the ACPI tables on some
-Chromebooks, so a slightly bigger hammer approach would be:
-
-diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
-index 0d9064a9804c..ff950be472a7 100644
---- a/drivers/acpi/video_detect.c
-+++ b/drivers/acpi/video_detect.c
-@@ -75,6 +75,12 @@ find_video(acpi_handle handle, u32 lvl, void *context, void **rv)
- 	return AE_OK;
- }
+ 		val = intel_de_read(dev_priv, imr_reg);
+-		val |= EDP_PSR_ERROR(trans_shift);
++		val |= psr_irq_psr_error_bit_get(intel_dp);
+ 		intel_de_write(dev_priv, imr_reg, val);
  
-+static bool is_chromeos_firmware(void)
-+{
-+	// FIXME return true when running under ChromeOS (coreboot) firmware
-+	return false;
-+}
-+
- /* This depends on ACPI_WMI which is X86 only */
- #ifdef CONFIG_X86
- static bool nvidia_wmi_ec_supported(void)
-@@ -713,6 +719,10 @@ static enum acpi_backlight_type __acpi_video_get_backlight_type(bool native)
- 	if (apple_gmux_present())
- 		return acpi_backlight_apple_gmux;
+ 		schedule_work(&intel_dp->psr.work);
+@@ -1194,14 +1212,12 @@ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+ 	 * first time that PSR HW tries to activate so lets keep PSR disabled
+ 	 * to avoid any rendering problems.
+ 	 */
+-	if (DISPLAY_VER(dev_priv) >= 12) {
++	if (DISPLAY_VER(dev_priv) >= 12)
+ 		val = intel_de_read(dev_priv,
+ 				    TRANS_PSR_IIR(intel_dp->psr.transcoder));
+-		val &= EDP_PSR_ERROR(0);
+-	} else {
++	else
+ 		val = intel_de_read(dev_priv, EDP_PSR_IIR);
+-		val &= EDP_PSR_ERROR(intel_dp->psr.transcoder);
+-	}
++	val &= psr_irq_psr_error_bit_get(intel_dp);
+ 	if (val) {
+ 		intel_dp->psr.sink_not_reliable = true;
+ 		drm_dbg_kms(&dev_priv->drm,
+@@ -2158,9 +2174,9 @@ static void intel_psr_work(struct work_struct *work)
  
-+	/* On Chromebooks always use native if available */
-+	if (is_chromeos_firmware() && native_available)
-+		return acpi_backlight_native;
-+
- 	/* On systems with ACPI video use either native or ACPI video. */
- 	if (video_caps & ACPI_VIDEO_BACKLIGHT) {
- 		/*
-
-I assume you are more familiar with Chromebooks ACPI tables (or at least
-are better capable to sample a couple of them) so I will leave which
-approach to take is best up to you.
-
-Regards,
-
-Hans
+ 	/*
+ 	 * We have to make sure PSR is ready for re-enable
+-	 * otherwise it keeps disabled until next full enable/disable cycle.
+-	 * PSR might take some time to get fully disabled
+-	 * and be ready for re-enable.
++	 * otherwise it keeps disabled until next full enable/disable
++	 * cycle. PSR might take some time to get fully disabled and
++	 * be ready for re-enable.
+ 	 */
+ 	if (!__psr_wait_for_idle_locked(intel_dp))
+ 		goto unlock;
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 5003a5ffbc6a..3c103aeaa2e4 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2168,10 +2168,18 @@
+ #define TRANS_PSR_IIR(tran)			_MMIO_TRANS2(tran, _PSR_IIR_A)
+ #define   _EDP_PSR_TRANS_SHIFT(trans)		((trans) == TRANSCODER_EDP ? \
+ 						 0 : ((trans) - TRANSCODER_A + 1) * 8)
+-#define   EDP_PSR_TRANS_MASK(trans)		(0x7 << _EDP_PSR_TRANS_SHIFT(trans))
+-#define   EDP_PSR_ERROR(trans)			(0x4 << _EDP_PSR_TRANS_SHIFT(trans))
+-#define   EDP_PSR_POST_EXIT(trans)		(0x2 << _EDP_PSR_TRANS_SHIFT(trans))
+-#define   EDP_PSR_PRE_ENTRY(trans)		(0x1 << _EDP_PSR_TRANS_SHIFT(trans))
++#define   TGL_EDP_PSR_MASK			(0x7)
++#define   TGL_EDP_PSR_ERROR			(1 << 2)
++#define   TGL_EDP_PSR_POST_EXIT			(1 << 1)
++#define   TGL_EDP_PSR_PRE_ENTRY			(1 << 0)
++#define   EDP_PSR_MASK(trans)			(TGL_EDP_PSR_MASK <<	\
++						 _EDP_PSR_TRANS_SHIFT(trans))
++#define   EDP_PSR_ERROR(trans)			(TGL_EDP_PSR_ERROR <<	\
++						 _EDP_PSR_TRANS_SHIFT(trans))
++#define   EDP_PSR_POST_EXIT(trans)		(TGL_EDP_PSR_POST_EXIT << \
++						 _EDP_PSR_TRANS_SHIFT(trans))
++#define   EDP_PSR_PRE_ENTRY(trans)		(TGL_EDP_PSR_PRE_ENTRY << \
++						 _EDP_PSR_TRANS_SHIFT(trans))
+ 
+ #define _SRD_AUX_DATA_A				0x60814
+ #define _SRD_AUX_DATA_EDP			0x6f814
+-- 
+2.34.1
 
