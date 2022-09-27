@@ -1,57 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BB8C5EBBCD
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 09:44:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2E95EBBD5
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Sep 2022 09:45:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFE1B10E083;
-	Tue, 27 Sep 2022 07:44:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF08110E04B;
+	Tue, 27 Sep 2022 07:45:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC19F10E16C
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 07:44:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFF8710E04B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Sep 2022 07:45:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664264641; x=1695800641;
+ t=1664264745; x=1695800745;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=RnmyOYCqLesCLj+Jjgv96fsI0X7fRObIiitFEozFIJc=;
- b=SB3vc9Sp+7GZZDHnLkz89GKdjXuZdP8vfkGT+PXCVTttdO1QgIFXUzRx
- EHelbaO8fLoXYm0QUmXbFdcnBXazT31bCmVD6Z5SGeG+0O+SuENXubfeX
- QMmLs4Sh+KDTnNMjloD3oyaQ6fcCODM98ytLzTFIda27D9yW+XntsRLGf
- 5v6SM6tYZRkOfmu1gG9aut6j4pqyb2/wB8ymXal86sWMcuggyH6a2f0PU
- biO1HUiex1+0X9giz5Lvlx83Z501mi9NHjR5afnyIEctrLp45o7j49TCu
- +Owb2gdEoRSy5bxUCOFG+q9gK2YtPsflTnJTV02AanwFwK/TF2sQQ6vYk w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="327604037"
-X-IronPort-AV: E=Sophos;i="5.93,348,1654585200"; d="scan'208";a="327604037"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ bh=nJEdFHogjLy4q72XEnNVY5oPHsUTiHaQTB+9keBtPBA=;
+ b=jQ9jaMkzqPAokhxsrGi0xE9qPReFktbwdaytSUOiie+ouZdLAtlHrSI9
+ /QyBm/uZ3nh//a0NZWbG+S0bPBa6JDBF9MnkVtQjyiLdYbY21X9f7YKop
+ SJSzwVKtTY0ZNe90uGIJ/3Y6hM1Zn+vyS9E8NPd8N8mbuvBMdszMTK25J
+ lhG0njWthlLCfUEuCzxknCJkLsM2CSWMvhNOjkfIz/cQJOHDpGqjuJvQg
+ Wvl3NKcxCbdFxUrhIFz6fQS0liipYMDlCr4jHjHAiCdDG0bQrzOEndRbd
+ Wy1zjJPcKwI8Ue8Yq+ffdM7G1alYOM+/ywNjLI2jLCEc4DzELyaUpz9Zk A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="327604331"
+X-IronPort-AV: E=Sophos;i="5.93,348,1654585200"; d="scan'208";a="327604331"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2022 00:44:01 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="746952619"
-X-IronPort-AV: E=Sophos;i="5.93,348,1654585200"; d="scan'208";a="746952619"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.18.240])
- ([10.213.18.240])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2022 00:43:59 -0700
-Message-ID: <53dab03e-f4a2-f60b-48d7-d1613773658d@intel.com>
-Date: Tue, 27 Sep 2022 09:43:57 +0200
+ 27 Sep 2022 00:45:45 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10482"; a="725412439"
+X-IronPort-AV: E=Sophos;i="5.93,348,1654585200"; d="scan'208";a="725412439"
+Received: from bvoinov-mobl1.ger.corp.intel.com (HELO [10.213.221.221])
+ ([10.213.221.221])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2022 00:45:43 -0700
+Message-ID: <c3af2831-d06b-5818-baf2-e88b4d1f6694@linux.intel.com>
+Date: Tue, 27 Sep 2022 08:45:42 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
 Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220923073515.23093-1-nirmoy.das@intel.com>
- <20220923073515.23093-2-nirmoy.das@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20220923073515.23093-2-nirmoy.das@intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+ "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+References: <20220926215410.2268295-1-andrzej.hajda@intel.com>
+ <YzIrUG8lrEsY9XOo@ashyti-mobl2.lan>
+ <7039faf9-b2a1-9400-fdc7-f5dcd7a8dd9a@intel.com>
+ <f34e60c9-17ea-56a0-acb2-bb8d97363993@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <f34e60c9-17ea-56a0-acb2-bb8d97363993@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: remove excessive
- i915_gem_drain_freed_objects
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: do not capture error state on
+ exiting context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,50 +67,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com, chris.p.wilson@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 23.09.2022 09:35, Nirmoy Das wrote:
-> i915_gem_drain_workqueue() call i915_gem_drain_freed_objects()
-> so no need to call that again.
+
+On 27/09/2022 07:49, Andrzej Hajda wrote:
 > 
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
-
-> ---
->   drivers/gpu/drm/i915/i915_gem.c                  | 2 --
->   drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 -
->   2 files changed, 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 7541028caebd..55d605c0c55d 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -1236,8 +1236,6 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
->   
->   	/* Flush any outstanding unpin_work. */
->   	i915_gem_drain_workqueue(dev_priv);
-> -
-> -	i915_gem_drain_freed_objects(dev_priv);
->   }
->   
->   void i915_gem_driver_release(struct drm_i915_private *dev_priv)
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> index fff11c90f1fa..f6a7c0bd2955 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> @@ -67,7 +67,6 @@ static void mock_device_release(struct drm_device *dev)
->   	intel_gt_driver_remove(to_gt(i915));
->   
->   	i915_gem_drain_workqueue(i915);
-> -	i915_gem_drain_freed_objects(i915);
->   
->   	mock_fini_ggtt(to_gt(i915)->ggtt);
->   	destroy_workqueue(i915->wq);
+> On 27.09.2022 01:34, Ceraolo Spurio, Daniele wrote:
+>>
+>>
+>> On 9/26/2022 3:44 PM, Andi Shyti wrote:
+>>> Hi Andrzej,
+>>>
+>>> On Mon, Sep 26, 2022 at 11:54:09PM +0200, Andrzej Hajda wrote:
+>>>> Capturing error state is time consuming (up to 350ms on DG2), so it 
+>>>> should
+>>>> be avoided if possible. Context reset triggered by context removal is a
+>>>> good example.
+>>>> With this patch multiple igt tests will not timeout and should run 
+>>>> faster.
+>>>>
+>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1551
+>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3952
+>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5891
+>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6268
+>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6281
+>>>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>>> fine for me:
+>>>
+>>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+>>>
+>>> Just to be on the safe side, can we also have the ack from any of
+>>> the GuC folks? Daniele, John?
+>>>
+>>> Andi
+>>>
+>>>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 3 ++-
+>>>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>> index 22ba66e48a9b01..cb58029208afe1 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>> @@ -4425,7 +4425,8 @@ static void guc_handle_context_reset(struct 
+>>>> intel_guc *guc,
+>>>>       trace_intel_context_reset(ce);
+>>>>         if (likely(!intel_context_is_banned(ce))) {
+>>>> -        capture_error_state(guc, ce);
+>>>> +        if (!intel_context_is_exiting(ce))
+>>>> +            capture_error_state(guc, ce);
 
+I am not sure here - if we have a persistent context which caused a GPU 
+hang I'd expect we'd still want error capture.
+
+What causes the reset in the affected IGTs? Always preemption timeout?
+
+>>>>           guc_context_replay(ce);
+>>
+>> You definitely don't want to replay requests of a context that is 
+>> going away.
+> 
+> My intention was to just avoid error capture, but that's even better, 
+> only condition change:
+> -        if (likely(!intel_context_is_banned(ce))) {
+> +       if (likely(intel_context_is_schedulable(ce)))  {
+
+Yes that helper was intended to be used for contexts which should not be 
+scheduled post exit or ban.
+
+Daniele - you say there are some misses in the GuC backend. Should most, 
+or even all in intel_guc_submission.c be converted to use 
+intel_context_is_schedulable? My idea indeed was that "ban" should be a 
+level up from the backends. Backend should only distinguish between 
+"should I run this or not", and not the reason.
+
+Regards,
+
+Tvrtko
+
+> 
+>>
+>> This seems at least in part due to 
+>> https://patchwork.freedesktop.org/patch/487531/, where we replaced the 
+>> "context_ban" with "context_exiting". There are several places where 
+>> we skipped operations if the context was banned (here included) which 
+>> are now not covered anymore for exiting contexts. Maybe we need a new 
+>> checker function to check both flags in places where we don't care why 
+>> the context is being removed (ban vs exiting), just that it is?
+>>
+>> Daniele
+>>
+>>>>       } else {
+>>>>           drm_info(&guc_to_gt(guc)->i915->drm,
+> 
+> And maybe degrade above to drm_dbg, to avoid spamming dmesg?
+> 
+> Regards
+> Andrzej
+> 
+> 
+>>>> -- 
+>>>> 2.34.1
+>>
+> 
