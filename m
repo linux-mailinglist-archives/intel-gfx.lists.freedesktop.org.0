@@ -1,51 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8318C5EDF0F
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 16:44:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5DB5EDF66
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 16:59:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF4E310E9A4;
-	Wed, 28 Sep 2022 14:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 837EC10E9B1;
+	Wed, 28 Sep 2022 14:59:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99A3210E930;
- Wed, 28 Sep 2022 14:44:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664376271; x=1695912271;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=dBhAazOzkvx5S2BwiHtccNSzkq/oofjDIg75Irxb51A=;
- b=f7OSmG/i1EupWfZJVCi/09bWXjbxvJbvTO7nH1K/+acGSta7nhNYKzHh
- +ouNkOGI+wIvGb/jE5SUROJkccA/pvWla9uz+wL70h2zZK1gqw9f8XZxR
- flmtUQIjK8WPorOX70O1jj/oeLopC6mHtq7HoF4Mfb8dqu+QbGCkD7Jmk
- SFw5IPaonVChqrwbmNROzlyUYNhhxyuN8PhHZc8Ky+sHpOfhppL9+/hlB
- 7Uhw/Oz195iUK3ch3Im09zRSBcElv0/NgVYlWW5Z5yz/jRxo+4xK7/IBV
- C94DW1PSU3AYaknb9CvuyTzUFo3NUYKRXWVxsvsh11JYFIsC/NeNJPhO7 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="300337130"
-X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="300337130"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 07:44:14 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="652703728"
-X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="652703728"
-Received: from ashyti-mobl2.igk.intel.com (HELO intel.com) ([172.28.182.107])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2022 07:44:10 -0700
-Date: Wed, 28 Sep 2022 16:44:08 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Message-ID: <YzRduJwDy9+7dUNL@ashyti-mobl2.lan>
-References: <20220928061918.6340-1-niranjana.vishwanathapura@intel.com>
- <20220928061918.6340-5-niranjana.vishwanathapura@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C2F0C10E4B9;
+ Wed, 28 Sep 2022 14:59:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BAA29AA0EA;
+ Wed, 28 Sep 2022 14:59:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8204744860545710773=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928061918.6340-5-niranjana.vishwanathapura@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 04/16] drm/i915/vm_bind: Add support to
- create persistent vma
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Wed, 28 Sep 2022 14:59:22 -0000
+Message-ID: <166437716273.596.6840203586291248337@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220928081300.101516-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20220928081300.101516-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRml4?=
+ =?utf-8?q?es_integer_overflow_or_integer_truncation_issues_in_page_lookup?=
+ =?utf-8?q?s=2C_ttm_place_configuration_and_scatterlist_creation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,173 +41,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- thomas.hellstrom@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
- christian.koenig@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Niranjana,
+--===============8204744860545710773==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 27, 2022 at 11:19:06PM -0700, Niranjana Vishwanathapura wrote:
-> Add i915_vma_instance_persistent() to create persistent vmas.
-> Persistent vmas will use i915_gtt_view to support partial binding.
-> 
-> vma_lookup is tied to segment of the object instead of section
-> of VA space. Hence, it do not support aliasing. ie., multiple
-> mappings (at different VA) point to the same gtt_view of object.
-> Skip vma_lookup for persistent vmas to support aliasing.
-> 
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_vma.c       | 39 ++++++++++++++++++++++++---
->  drivers/gpu/drm/i915/i915_vma.h       | 16 +++++++++--
->  drivers/gpu/drm/i915/i915_vma_types.h |  7 +++++
->  3 files changed, 57 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index f17c09ead7d7..5839e1f55f00 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -109,7 +109,8 @@ static void __i915_vma_retire(struct i915_active *ref)
->  static struct i915_vma *
->  vma_create(struct drm_i915_gem_object *obj,
->  	   struct i915_address_space *vm,
-> -	   const struct i915_gtt_view *view)
-> +	   const struct i915_gtt_view *view,
-> +	   bool skip_lookup_cache)
->  {
->  	struct i915_vma *pos = ERR_PTR(-E2BIG);
->  	struct i915_vma *vma;
-> @@ -196,6 +197,9 @@ vma_create(struct drm_i915_gem_object *obj,
->  		__set_bit(I915_VMA_GGTT_BIT, __i915_vma_flags(vma));
->  	}
->  
-> +	if (skip_lookup_cache)
-> +		goto skip_rb_insert;
-> +
->  	rb = NULL;
->  	p = &obj->vma.tree.rb_node;
->  	while (*p) {
-> @@ -220,6 +224,7 @@ vma_create(struct drm_i915_gem_object *obj,
->  	rb_link_node(&vma->obj_node, rb, p);
->  	rb_insert_color(&vma->obj_node, &obj->vma.tree);
->  
-> +skip_rb_insert:
->  	if (i915_vma_is_ggtt(vma))
->  		/*
->  		 * We put the GGTT vma at the start of the vma-list, followed
-> @@ -299,7 +304,34 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
->  
->  	/* vma_create() will resolve the race if another creates the vma */
->  	if (unlikely(!vma))
-> -		vma = vma_create(obj, vm, view);
-> +		vma = vma_create(obj, vm, view, false);
-> +
-> +	GEM_BUG_ON(!IS_ERR(vma) && i915_vma_compare(vma, vm, view));
-> +	return vma;
-> +}
-> +
-> +/**
-> + * i915_vma_create_persistent - create a persistent VMA
-> + * @obj: parent &struct drm_i915_gem_object to be mapped
-> + * @vm: address space in which the mapping is located
-> + * @view: additional mapping requirements
-> + *
-> + * Creates a persistent vma.
-> + *
-> + * Returns the vma, or an error pointer.
-> + */
-> +struct i915_vma *
-> +i915_vma_create_persistent(struct drm_i915_gem_object *obj,
-> +			   struct i915_address_space *vm,
-> +			   const struct i915_gtt_view *view)
-> +{
-> +	struct i915_vma *vma;
-> +
-> +	GEM_BUG_ON(!kref_read(&vm->ref));
-> +
-> +	vma = vma_create(obj, vm, view, true);
-> +	if (!IS_ERR(vma))
-> +		i915_vma_set_persistent(vma);
->  
->  	GEM_BUG_ON(!IS_ERR(vma) && i915_vma_compare(vma, vm, view));
->  	return vma;
-> @@ -1666,7 +1698,8 @@ static void release_references(struct i915_vma *vma, struct intel_gt *gt,
->  
->  	spin_lock(&obj->vma.lock);
->  	list_del(&vma->obj_link);
-> -	if (!RB_EMPTY_NODE(&vma->obj_node))
-> +	if (!i915_vma_is_persistent(vma) &&
-> +	    !RB_EMPTY_NODE(&vma->obj_node))
->  		rb_erase(&vma->obj_node, &obj->vma.tree);
->  
->  	spin_unlock(&obj->vma.lock);
-> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> index aecd9c64486b..51e712de380a 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.h
-> +++ b/drivers/gpu/drm/i915/i915_vma.h
-> @@ -44,6 +44,10 @@ struct i915_vma *
->  i915_vma_instance(struct drm_i915_gem_object *obj,
->  		  struct i915_address_space *vm,
->  		  const struct i915_gtt_view *view);
-> +struct i915_vma *
-> +i915_vma_create_persistent(struct drm_i915_gem_object *obj,
-> +			   struct i915_address_space *vm,
-> +			   const struct i915_gtt_view *view);
->  
->  void i915_vma_unpin_and_release(struct i915_vma **p_vma, unsigned int flags);
->  #define I915_VMA_RELEASE_MAP BIT(0)
-> @@ -138,6 +142,16 @@ static inline u32 i915_ggtt_pin_bias(struct i915_vma *vma)
->  	return i915_vm_to_ggtt(vma->vm)->pin_bias;
->  }
->  
-> +static inline bool i915_vma_is_persistent(const struct i915_vma *vma)
-> +{
-> +	return test_bit(I915_VMA_PERSISTENT_BIT, __i915_vma_flags(vma));
-> +}
-> +
-> +static inline void i915_vma_set_persistent(struct i915_vma *vma)
-> +{
-> +	set_bit(I915_VMA_PERSISTENT_BIT, __i915_vma_flags(vma));
-> +}
-> +
->  static inline struct i915_vma *i915_vma_get(struct i915_vma *vma)
->  {
->  	i915_gem_object_get(vma->obj);
-> @@ -164,8 +178,6 @@ i915_vma_compare(struct i915_vma *vma,
->  {
->  	ptrdiff_t cmp;
->  
-> -	GEM_BUG_ON(view && !i915_is_ggtt_or_dpt(vm));
-> -
->  	cmp = ptrdiff(vma->vm, vm);
->  	if (cmp)
->  		return cmp;
-> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
-> index ec0f6c9f57d0..2200f1f103ba 100644
-> --- a/drivers/gpu/drm/i915/i915_vma_types.h
-> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
-> @@ -264,6 +264,13 @@ struct i915_vma {
->  #define I915_VMA_SCANOUT_BIT	17
->  #define I915_VMA_SCANOUT	((int)BIT(I915_VMA_SCANOUT_BIT))
->  
-> +/**
-> + * I915_VMA_PERSISTENT_BIT:
-> + * The vma is persistent (created with VM_BIND call).
-> + */
-> +#define I915_VMA_PERSISTENT_BIT	19
-> +#define I915_VMA_PERSISTENT	((int)BIT(I915_VMA_PERSISTENT_BIT))
-> +
+== Series Details ==
 
-are we using I915_VMA_PERSISTENT anywhere?
+Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation
+URL   : https://patchwork.freedesktop.org/series/109169/
+State : success
 
-Andi
+== Summary ==
 
->  	struct i915_active active;
->  
->  #define I915_VMA_PAGES_BIAS 24
-> -- 
-> 2.21.0.rc0.32.g243a4c7e27
+CI Bug Log - changes from CI_DRM_12193 -> Patchwork_109169v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109169v1/index.html
+
+Participating hosts (44 -> 44)
+------------------------------
+
+  Additional (1): fi-tgl-dsi 
+  Missing    (1): fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_109169v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-2:
+    - {bat-dg2-11}:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12193/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-2.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109169v1/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-2.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109169v1 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@lmem0:
+    - {bat-dg2-11}:       [DMESG-WARN][3] ([i915#6816]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12193/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109169v1/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6816]: https://gitlab.freedesktop.org/drm/intel/issues/6816
+  [i915#6856]: https://gitlab.freedesktop.org/drm/intel/issues/6856
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12193 -> Patchwork_109169v1
+
+  CI-20190529: 20190529
+  CI_DRM_12193: 0f0716dcfd8446cde4391475c9c3656ca670b55f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6666: 1e3ecbaa3c56f4c52c62047707eb4942d3a39c44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109169v1: 0f0716dcfd8446cde4391475c9c3656ca670b55f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+24847626c2a0 drm/i915: Remove truncation warning for large objects
+122e401d217c drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
+fa026ffe63df drm/i915: Check if the size is too big while creating shmem file
+c21bbacab403 drm/i915: Check for integer truncation on the configuration of ttm place
+28d079cef486 drm/i915: Check for integer truncation on scatterlist creation
+3aab4654e14b drm/i915/gem: Typecheck page lookups
+0818337d2f25 overflow: Introduce overflows_type() and castable_to_type()
+47c5745d4e24 overflow: Introduce check_assign() and check_assign_user_ptr()
+488ee261cc98 overflow: Allow mixed type arguments
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109169v1/index.html
+
+--===============8204744860545710773==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109169/">https://patchwork.freedesktop.org/series/109169/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109169v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109169v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12193 -&gt; Patchwork_109169v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109169v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 44)</h2>
+<p>Additional (1): fi-tgl-dsi <br />
+  Missing    (1): fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_109169v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-2:<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12193/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109169v1/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-2.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109169v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3@lmem0:<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12193/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6816">i915#6816</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109169v1/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12193 -&gt; Patchwork_109169v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12193: 0f0716dcfd8446cde4391475c9c3656ca670b55f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6666: 1e3ecbaa3c56f4c52c62047707eb4942d3a39c44 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109169v1: 0f0716dcfd8446cde4391475c9c3656ca670b55f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>24847626c2a0 drm/i915: Remove truncation warning for large objects<br />
+122e401d217c drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large<br />
+fa026ffe63df drm/i915: Check if the size is too big while creating shmem file<br />
+c21bbacab403 drm/i915: Check for integer truncation on the configuration of ttm place<br />
+28d079cef486 drm/i915: Check for integer truncation on scatterlist creation<br />
+3aab4654e14b drm/i915/gem: Typecheck page lookups<br />
+0818337d2f25 overflow: Introduce overflows_type() and castable_to_type()<br />
+47c5745d4e24 overflow: Introduce check_assign() and check_assign_user_ptr()<br />
+488ee261cc98 overflow: Allow mixed type arguments</p>
+
+</body>
+</html>
+
+--===============8204744860545710773==--
