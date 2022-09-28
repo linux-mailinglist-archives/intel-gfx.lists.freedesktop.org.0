@@ -2,48 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A325EE4C2
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 21:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C4255EE4F0
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 21:17:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3D7010E7CD;
-	Wed, 28 Sep 2022 19:04:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8A310E7E9;
+	Wed, 28 Sep 2022 19:17:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97A3010E7CD
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664391859; x=1695927859;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CC9Z5F1RjUwkkd9C107DSGpIgQoEArR+j3XPUsKbJHc=;
- b=SrN09nAqdoH2O7mIGctxbOJlBS74g4/g9EJRWAW/PxAF+/iD1LIq50WZ
- u48lDNoPw+Zs0cpODk8xl+zq+KftZYe3G1IVnvgd83TgF/jiwkFCotjLx
- NjjB78H1nhrSSEbsPl5QwWkGx7PRxFM8wJsOTV3j1T3NFGCInuz6IvP/W
- 4UPV/cyswzdzshAbRVBC5cvpJAU7jYsPRKTTuPDgqrWJ4fxoOjdne4k8L
- y7YWnttYUPdK/k0l9hpGM9hyN6cH8o6hjUiFHsvJuW+Wg7/iB/pw1ur+8
- IQxmPz0iofdQ8qwrrz1V+16TNugpuA5MRqEJVVYAKK/n9v1PsPJLCVsgT g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="300410025"
-X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="300410025"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 12:04:19 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="690511376"
-X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="690511376"
-Received: from anushasr-mobl7.jf.intel.com ([10.24.14.105])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 12:04:19 -0700
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 28 Sep 2022 12:04:15 -0700
-Message-Id: <20220928190415.282665-2-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220928190415.282665-1-anusha.srivatsa@intel.com>
-References: <20220928190415.282665-1-anusha.srivatsa@intel.com>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0AD910E7E9;
+ Wed, 28 Sep 2022 19:17:24 +0000 (UTC)
+Received: from dimapc.. (unknown [109.252.125.248])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 712166602299;
+ Wed, 28 Sep 2022 20:17:19 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1664392643;
+ bh=x+LbBJS2tZ45QIcAQeiD7PzTYeniLrpyZp+rSQmzi+c=;
+ h=From:To:Cc:Subject:Date:From;
+ b=RSqzZajkssm+OLwq2hEOT9R+CoxC5d7VCe/egP4Jdq/t/VaUmLs/xmnYW4qa3bCyf
+ Lts00mED/19NdGIZxKgA3QWjhiuZGSk7HELSArnBpppX6SDSk7GTgy58l+WGcxl/Xk
+ h8LbfZVlXQ17FnK62OSxdSgUr9y2p7w4ia79I5Nz2U8eK+chDPr0QDGrPIS4yXZxjY
+ 1/nMp4u1yDJ3CZzkmYZTvytrkst8Sk9WmWl9vvH5k62w3ghR1uXMaZAcB45PP6b/2J
+ Ne99b892td1qpK/qXiA8rRXeeBcxhm8m/j7hRA7/vTRICN4X/GmW9jaZwe4UTwJxyp
+ HOn+OW3fvd+uA==
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Clark <robdclark@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas_os@shipmail.org>,
+ Qiang Yu <yuq825@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Ruhl Michael J <michael.j.ruhl@intel.com>
+Date: Wed, 28 Sep 2022 22:15:39 +0300
+Message-Id: <20220928191600.5874-1-dmitry.osipenko@collabora.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/display: Add CDCLK Support for MTL
+Subject: [Intel-gfx] [PATCH v6 00/21] Move all drivers to a common dma-buf
+ locking convention
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,160 +84,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As per bSpec MTL has 38.4 MHz Reference clock.
-MTL does support squasher like DG2 but only for lower
-frequencies. Change the has_cdclk_squasher()
-helper to reflect this.
+Hello,
 
-bxt_get_cdclk() is not properly calculating HW clock for MTL,
-because the squash formula is only prepared for DG2.
-Apart from adding the cdclk table, align cdclk support with the
-new cdclk_crawl_and_squash() introduced in previous patch.
+This series moves all drivers to a dynamic dma-buf locking specification.
+From now on all dma-buf importers are made responsible for holding
+dma-buf's reservation lock around all operations performed over dma-bufs
+in accordance to the locking specification. This allows us to utilize
+reservation lock more broadly around kernel without fearing of a potential
+deadlocks.
 
-BSpec: 65243
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 95 +++++++++++++++++++++-
- 1 file changed, 93 insertions(+), 2 deletions(-)
+This patchset passes all i915 selftests. It was also tested using VirtIO,
+Panfrost, Lima, Tegra, udmabuf, AMDGPU and Nouveau drivers. I tested cases
+of display+GPU, display+V4L and GPU+V4L dma-buf sharing (where appropriate),
+which covers majority of kernel drivers since rest of the drivers share
+same or similar code paths.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index f7bc1013b149..6271eed0d7cf 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1222,7 +1222,7 @@ static void skl_cdclk_uninit_hw(struct drm_i915_private *dev_priv)
- 
- static bool has_cdclk_squasher(struct drm_i915_private *i915)
- {
--	return IS_DG2(i915);
-+	return DISPLAY_VER(i915) >= 14 || IS_DG2(i915);
- }
- 
- struct intel_cdclk_vals {
-@@ -1350,6 +1350,16 @@ static const struct intel_cdclk_vals dg2_cdclk_table[] = {
- 	{}
- };
- 
-+static const struct intel_cdclk_vals mtl_cdclk_table[] = {
-+	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
-+	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
-+	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0x0000 },
-+	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0x0000 },
-+	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0x0000 },
-+	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0x0000 },
-+	{}
-+};
-+
- static int bxt_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk)
- {
- 	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
-@@ -1479,6 +1489,76 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
- 	cdclk_config->vco = ratio * cdclk_config->ref;
- }
- 
-+static void mtl_get_cdclk(struct drm_i915_private *i915,
-+			  struct intel_cdclk_config *cdclk_config)
-+{
-+	const struct intel_cdclk_vals *table = i915->display.cdclk.table;
-+	u32 squash_ctl, divider, waveform;
-+	int div, i, ratio;
-+
-+	bxt_de_pll_readout(i915, cdclk_config);
-+
-+	cdclk_config->bypass = cdclk_config->ref / 2;
-+
-+	if (cdclk_config->vco == 0) {
-+		cdclk_config->cdclk = cdclk_config->bypass;
-+		goto out;
-+	}
-+
-+	divider = intel_de_read(i915, CDCLK_CTL) & BXT_CDCLK_CD2X_DIV_SEL_MASK;
-+	switch (divider) {
-+	case BXT_CDCLK_CD2X_DIV_SEL_1:
-+		div = 2;
-+		break;
-+	case BXT_CDCLK_CD2X_DIV_SEL_1_5:
-+		div = 3;
-+		break;
-+	case BXT_CDCLK_CD2X_DIV_SEL_2:
-+		div = 4;
-+		break;
-+	case BXT_CDCLK_CD2X_DIV_SEL_4:
-+		div = 8;
-+		break;
-+	default:
-+		MISSING_CASE(divider);
-+		return;
-+	}
-+
-+	squash_ctl = intel_de_read(i915, CDCLK_SQUASH_CTL);
-+	if (squash_ctl & CDCLK_SQUASH_ENABLE)
-+		waveform = squash_ctl & CDCLK_SQUASH_WAVEFORM_MASK;
-+	else
-+		waveform = 0;
-+
-+	ratio = cdclk_config->vco / cdclk_config->ref;
-+
-+	for (i = 0, cdclk_config->cdclk = 0; table[i].refclk; i++) {
-+		if (table[i].refclk != cdclk_config->ref)
-+			continue;
-+
-+		if (table[i].divider != div)
-+			continue;
-+
-+		if (table[i].waveform != waveform)
-+			continue;
-+
-+		if (table[i].ratio != ratio)
-+			continue;
-+
-+		cdclk_config->cdclk = table[i].cdclk;
-+		break;
-+	}
-+
-+out:
-+	/*
-+	 * Can't read this out :( Let's assume it's
-+	 * at least what the CDCLK frequency requires.
-+	 */
-+	cdclk_config->voltage_level =
-+		intel_cdclk_calc_voltage_level(i915, cdclk_config->cdclk);
-+}
-+
-+
- static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
- 			  struct intel_cdclk_config *cdclk_config)
- {
-@@ -3138,6 +3218,13 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
- 	return freq;
- }
- 
-+static const struct intel_cdclk_funcs mtl_cdclk_funcs = {
-+	.get_cdclk = mtl_get_cdclk,
-+	.set_cdclk = bxt_set_cdclk,
-+	.modeset_calc_cdclk = bxt_modeset_calc_cdclk,
-+	.calc_voltage_level = tgl_calc_voltage_level,
-+};
-+
- static const struct intel_cdclk_funcs tgl_cdclk_funcs = {
- 	.get_cdclk = bxt_get_cdclk,
- 	.set_cdclk = bxt_set_cdclk,
-@@ -3273,7 +3360,11 @@ static const struct intel_cdclk_funcs i830_cdclk_funcs = {
-  */
- void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
- {
--	if (IS_DG2(dev_priv)) {
-+
-+	if (IS_METEORLAKE(dev_priv)) {
-+		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
-+		dev_priv->display.cdclk.table = mtl_cdclk_table;
-+	} else if (IS_DG2(dev_priv)) {
- 		dev_priv->display.funcs.cdclk = &tgl_cdclk_funcs;
- 		dev_priv->display.cdclk.table = dg2_cdclk_table;
- 	} else if (IS_ALDERLAKE_P(dev_priv)) {
+Changelog:
+
+v6: - Added r-b from Michael Ruhl to the i915 patch.
+
+    - Added acks from Sumit Semwal and updated commit message of the
+      "Move dma_buf_vmap() to dynamic locking specification" patch like
+      was suggested by Sumit.
+
+    - Added "!dmabuf" check to dma_buf_vmap_unlocked() to match the locked
+      variant of the function, for consistency.
+
+v5: - Added acks and r-bs that were given to v4.
+
+    - Changed i915 preparation patch like was suggested by Michael Ruhl.
+      The scope of reservation locking is smaller now.
+
+v4: - Added dma_buf_mmap() to the "locking convention" documentation,
+      which was missed by accident in v3.
+
+    - Added acks from Christian König, Tomasz Figa and Hans Verkuil that
+      they gave to couple v3 patches.
+
+    - Dropped the "_unlocked" postfix from function names that don't have
+      the locked variant, as was requested by Christian König.
+
+    - Factored out the per-driver preparations into separate patches
+      to ease reviewing of the changes, which is now doable without the
+      global dma-buf functions renaming.
+
+    - Factored out the dynamic locking convention enforcements into separate
+      patches which add the final dma_resv_assert_held(dmabuf->resv) to the
+      dma-buf API functions.
+
+v3: - Factored out dma_buf_mmap_unlocked() and attachment functions
+      into aseparate patches, like was suggested by Christian König.
+
+    - Corrected and factored out dma-buf locking documentation into
+      a separate patch, like was suggested by Christian König.
+
+    - Intel driver dropped the reservation locking fews days ago from
+      its BO-release code path, but we need that locking for the imported
+      GEMs because in the end that code path unmaps the imported GEM.
+      So I added back the locking needed by the imported GEMs, updating
+      the "dma-buf attachment locking specification" patch appropriately.
+
+    - Tested Nouveau+Intel dma-buf import/export combo.
+
+    - Tested udmabuf import to i915/Nouveau/AMDGPU.
+
+    - Fixed few places in Etnaviv, Panfrost and Lima drivers that I missed
+      to switch to locked dma-buf vmapping in the drm/gem: Take reservation
+      lock for vmap/vunmap operations" patch. In a result invalidated the
+      Christian's r-b that he gave to v2.
+
+    - Added locked dma-buf vmap/vunmap functions that are needed for fixing
+      vmappping of Etnaviv, Panfrost and Lima drivers mentioned above.
+      I actually had this change stashed for the drm-shmem shrinker patchset,
+      but then realized that it's already needed by the dma-buf patches.
+      Also improved my tests to better cover these code paths.
+
+v2: - Changed locking specification to avoid problems with a cross-driver
+      ww locking, like was suggested by Christian König. Now the attach/detach
+      callbacks are invoked without the held lock and exporter should take the
+      lock.
+
+    - Added "locking convention" documentation that explains which dma-buf
+      functions and callbacks are locked/unlocked for importers and exporters,
+      which was requested by Christian König.
+
+    - Added ack from Tomasz Figa to the V4L patches that he gave to v1.
+
+Dmitry Osipenko (21):
+  dma-buf: Add unlocked variant of vmapping functions
+  dma-buf: Add unlocked variant of attachment-mapping functions
+  drm/gem: Take reservation lock for vmap/vunmap operations
+  drm/prime: Prepare to dynamic dma-buf locking specification
+  drm/armada: Prepare to dynamic dma-buf locking specification
+  drm/i915: Prepare to dynamic dma-buf locking specification
+  drm/omapdrm: Prepare to dynamic dma-buf locking specification
+  drm/tegra: Prepare to dynamic dma-buf locking specification
+  drm/etnaviv: Prepare to dynamic dma-buf locking specification
+  RDMA/umem: Prepare to dynamic dma-buf locking specification
+  misc: fastrpc: Prepare to dynamic dma-buf locking specification
+  xen/gntdev: Prepare to dynamic dma-buf locking specification
+  media: videobuf2: Prepare to dynamic dma-buf locking specification
+  media: tegra-vde: Prepare to dynamic dma-buf locking specification
+  dma-buf: Move dma_buf_vmap() to dynamic locking specification
+  dma-buf: Move dma_buf_attach() to dynamic locking specification
+  dma-buf: Move dma_buf_map_attachment() to dynamic locking
+    specification
+  dma-buf: Move dma_buf_mmap() to dynamic locking specification
+  dma-buf: Document dynamic locking convention
+  media: videobuf2: Stop using internal dma-buf lock
+  dma-buf: Remove obsoleted internal lock
+
+ Documentation/driver-api/dma-buf.rst          |   6 +
+ drivers/dma-buf/dma-buf.c                     | 214 +++++++++++++++---
+ drivers/gpu/drm/armada/armada_gem.c           |   8 +-
+ drivers/gpu/drm/drm_client.c                  |   4 +-
+ drivers/gpu/drm/drm_gem.c                     |  24 ++
+ drivers/gpu/drm/drm_gem_dma_helper.c          |   6 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c  |   6 +-
+ drivers/gpu/drm/drm_gem_ttm_helper.c          |   9 +-
+ drivers/gpu/drm/drm_prime.c                   |   6 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  14 ++
+ .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  16 +-
+ drivers/gpu/drm/lima/lima_sched.c             |   4 +-
+ drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c     |   4 +-
+ drivers/gpu/drm/panfrost/panfrost_dump.c      |   4 +-
+ drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |   6 +-
+ drivers/gpu/drm/qxl/qxl_object.c              |  17 +-
+ drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
+ drivers/gpu/drm/tegra/gem.c                   |  17 +-
+ drivers/infiniband/core/umem_dmabuf.c         |   7 +-
+ .../common/videobuf2/videobuf2-dma-contig.c   |  22 +-
+ .../media/common/videobuf2/videobuf2-dma-sg.c |  19 +-
+ .../common/videobuf2/videobuf2-vmalloc.c      |  17 +-
+ .../platform/nvidia/tegra-vde/dmabuf-cache.c  |   6 +-
+ drivers/misc/fastrpc.c                        |   6 +-
+ drivers/xen/gntdev-dmabuf.c                   |   8 +-
+ include/drm/drm_gem.h                         |   3 +
+ include/linux/dma-buf.h                       |  17 +-
+ 29 files changed, 323 insertions(+), 155 deletions(-)
+
 -- 
-2.25.1
+2.37.3
 
