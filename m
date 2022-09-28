@@ -2,155 +2,140 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E30C5EE453
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 20:27:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 740D55EE471
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 20:36:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76DD410E702;
-	Wed, 28 Sep 2022 18:27:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DC0010E726;
+	Wed, 28 Sep 2022 18:36:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D0B410E702
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 18:27:45 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E43A710E726;
+ Wed, 28 Sep 2022 18:35:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664389665; x=1695925665;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=qGylkDc5H8Y9/ETTkjh1/bp1sLBuZq/hrJ+w55d1waE=;
- b=OdfKizBmFt7Q03xOEgpGbjrcxC0IrCSIrp8p6GVGU2xGmgVQVBCe6Exg
- 86rFllzS+Om0cYJmgcygXYkUhYOn/XqUyKFNBc5UD+UQLXeqE+6q7yFTP
- SAMxQJhhiRIALbpySI5isNxLW9PpuzZKJGrc2R4541f5fDfFrd+1cjZl+
- GNYKN1WKao+GuQmNY09usMgxNCEFQ3flWTZcGL9RcCKJ5rFqbe03CPwPo
- QmgSfkqPm0Kg3y+hiubnmPh6Rsd/hJ04rR+bs7HANzf7PqlPV/5cSe40o
- azXRIv6zv22p3zg4yTsPzUZ5aCCWeluerNBLWUTJLAwDa0MLJ9oMLktao w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="363524933"
-X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="363524933"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 11:27:44 -0700
+ t=1664390160; x=1695926160;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=ii9F5b38Lywdd/7RVCRRB6LC8u9hmszooFK+6s0j01s=;
+ b=djeipG265GCJqCtWu5Q6cgecc69mo52NIaTc+e3sh6DoyXP0F78E3sHd
+ 8nTBCyNJtGdTnNDdQOA9aXrGYp+YEIzvBjSozOCF5jiPOs3ku0UmQ8DUY
+ dqzaMLBFkapSoTuDH4dJ1RKefzKxtjVOgdf8WX3SbB/jnhnWZKBfBYcoF
+ 15sZmupzVSS+SNHTZD5sz+jkxJEtK5Ths8HKNQ5r0Dw1cG6VqlQq8ti05
+ HghZ664zlV9EA3mGTKn2mVRUHH+F2RyPbYECOd7vjOAbINY1xfT4GLK/w
+ gT+E8ls1Kpa2TpHrJX7PWPvjXC8YmRerLml/j0qIcgbSF7vFMOVhm/rrt g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="365733418"
+X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="365733418"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2022 11:35:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="690499244"
-X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="690499244"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga004.fm.intel.com with ESMTP; 28 Sep 2022 11:27:43 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="624256677"
+X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="624256677"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga007.fm.intel.com with ESMTP; 28 Sep 2022 11:35:26 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 28 Sep 2022 11:27:43 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ 15.1.2375.31; Wed, 28 Sep 2022 11:35:25 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Wed, 28 Sep 2022 11:27:43 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.170)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2375.31; Wed, 28 Sep 2022 11:35:25 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Wed, 28 Sep 2022 11:35:25 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Wed, 28 Sep 2022 11:27:43 -0700
+ 15.1.2375.31; Wed, 28 Sep 2022 11:35:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ivy5QQl138blXaVTcnDVb5yCXBE/3kpf4Y3KMCZTi5+41ZfSCQUOQfg23iuWtzDTpluTEUCknFFDN7L+JGKA9wHuR0Q+GeBIljLuyEp3UFsJsqZeXNuEO7c+IBlD2ot035WwQzo5Gj1xkECUUX7wup7bwbD71buoHPrAcXbfdztBukityre+lmdZNfYbl4tVwtOf6RJG0osISJ9leBtRPmgsREOVEiuKG/MLzZtBlOPcCcw6PJXZVLUb34XZiL+D0Rdp42+tjaEq9HlvoddGFONmtB6tfxGQ+tU5Rv2Llx3A/HVXY+9Yp4jlS4G4O8Z7Wp4NJyzRWT8CEPFvgUj/Bg==
+ b=EyG4kt2mhRxzXOmLkfvi14fOYNfe3QPMYvqdvEFIRzhFlHLhDzWxBdZ6jU4vEgKnOQEkwnillLD9jBFcF1xFe1nOIGMQ6CyRaeLpMw8f9BOYh/COEwlcugWHbdF3Qeeov3MnmqfO6c4RCO7VuVwu7YHN3P9NPji1K86kLDD4b2fZkvYZb+UDLed1BozRFd4cBixJmW7XoPHVNNhDVMrlQd9PAAelwGwj996vj3S7JOlK9BHhDLrbigDT9E3MZM2mLLjiJcgnQynEWjF/CbydrELJUm/hp80xG8wOpWF6n7CQWS9Ec4sdkGwGz7y/1Q/KCzI+dTHXPUdOIeFX1B5Q5A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HbenjAOAW6BOgSpYgdDoWxHwN/GQmKZfg4esGMhms9U=;
- b=Hce9tybC5HANozfNymu6G9y88P/RbOdNkBuJSakdAKA412r4XvAzY9dqf+mNJ0V7IlwUY/0LYKBTjF3w+k4UQOwvAfv60mu5ZNQ9rC+Zy0xzIWvLA2twEL07vTRwl8QIorYvL8WTZinaXiKVH+9pUjjr4mqJb1wzTGGDD1BvS7AhAByMb3NunOunLgbrKzj/CKIscestSEDWHIowRiMc6bjJU9I/nwurVbUzuqiVt1CqDvCwl1YtIAVg3gK7ks8NuN/V8CT7wZRrj+Ll5MCCxqQaVUWkG2NtaSx6UrwRfd4NKnNhYbyHiQIFlNKN9TPc6zgKN8gs1DcQLeHleax0GA==
+ bh=bhtdtQ9uN4pcQkC7fNI/HTFtdYTDA7teF/Ppgl85wE4=;
+ b=nCzWJDl5YrVgeDk61ig0ioctOOz8y1h/Nmb/EZGwAfl4uavPI+kUjyejTbxD6VG2KOSZ8VKSuMTHOzqGDZmgnAZwL7cwiObPtjKqAFAI7Ira7GsQhLUVb9HCKGAfQKhrlXDDJKcUlzJ8CeGfh4Fr9BXG0XiQ7HvMIE8VXY5QgVCwJIXwr8ZvrcDxPIuxlRKVpVZqzjMERd90fc2cslMbo0FAlznr+8bl/Zm2mY3LilVUsc0E25DhHAYc2YdoUE8AboP6c91bBsOqTDSR3qUg4oatK0XvVFBJf44D/CwIaSL0tBGlyq/2xdFnPn+N0U9lcOrwulym8isWe83XCgzCuQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by SA0PR11MB4702.namprd11.prod.outlook.com (2603:10b6:806:92::23)
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by PH0PR11MB5205.namprd11.prod.outlook.com (2603:10b6:510:3d::24)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17; Wed, 28 Sep
- 2022 18:27:36 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::7750:dd86:4ef:afc6]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::7750:dd86:4ef:afc6%7]) with mapi id 15.20.5676.017; Wed, 28 Sep 2022
- 18:27:36 +0000
-Message-ID: <e4200a76-f7e0-106e-cff9-5e58f27b40da@intel.com>
-Date: Wed, 28 Sep 2022 11:27:33 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.2.2
-Content-Language: en-GB
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, "Ceraolo Spurio, Daniele"
- <daniele.ceraolospurio@intel.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-References: <20220926215410.2268295-1-andrzej.hajda@intel.com>
- <YzIrUG8lrEsY9XOo@ashyti-mobl2.lan>
- <7039faf9-b2a1-9400-fdc7-f5dcd7a8dd9a@intel.com>
- <f34e60c9-17ea-56a0-acb2-bb8d97363993@intel.com>
- <c3af2831-d06b-5818-baf2-e88b4d1f6694@linux.intel.com>
- <ad885543-02f3-5a44-0d06-0ffe48cf29e2@intel.com>
- <ad22bd93-fcdb-3463-9915-1e4409618239@linux.intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <ad22bd93-fcdb-3463-9915-1e4409618239@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0248.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::13) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+ 2022 18:35:23 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7ea6:6f6c:f2dc:cec7]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7ea6:6f6c:f2dc:cec7%3]) with mapi id 15.20.5654.025; Wed, 28 Sep 2022
+ 18:35:23 +0000
+Date: Wed, 28 Sep 2022 14:35:18 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <YzST5ouKVrCGnUda@intel.com>
+References: <20220919162401.2077713-1-ashutosh.dixit@intel.com>
+ <871qrvzq2h.fsf@intel.com> <87v8p75pp9.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <87v8p75pp9.wl-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: BY5PR16CA0003.namprd16.prod.outlook.com
+ (2603:10b6:a03:1a0::16) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|SA0PR11MB4702:EE_
-X-MS-Office365-Filtering-Correlation-Id: bb3396be-8c4f-4d67-7730-08daa17f1e10
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB5205:EE_
+X-MS-Office365-Filtering-Correlation-Id: 26b36a4b-06de-4ba9-a1b6-08daa1803402
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: exLq0R1j7iJAlwYGdv9EuvV9tMALWNDQNieUHNyYQC3vZtpAIX6He3ZN2SEeZ2BVwb245Sgb9TkXwEwzmezhLfiKG81fgBRAMV9w28M1Rk6npPFgtuqMnuseXYQCeQtoZosYs7DUCTqjxnKCAn5Gcxs9zHH1DU8v2dxnjPH6ft/e00y7jRNPFdjYTduk8RVfQIzGC+iFCFRczRGXh4R/ckclIo4PF9lhO8VQk0bvnsnFGGcSSSAbneMvwEJeBp7ZjZ2hVdvlG3e67cMoMh6AsYl7icTwvsHX3288dkU8kh6kIsAXkposRCafOXT6+Org7eG2FVj10icmDU8AzOsHt6CTy/aJ3TfreChCeRtJC4OJv7lEbZZo+FYWOQlArcw1zjY8agyP3vT6wpCTTLr5AHKeNz0hojfU34GuTzrA6DIWhFxKiU9s5jvisJ6bLhcfWxtteJeh4LKODJeKiEqzckiyVTctGeDIC+7G2xTziRl35ObCE03zsX2LMszOpvlQ50POrfY0RKk9/tIYkd6eu9+IDPXvrGT15L/fwjoagGU406fIMWRN+b2mleJRH2eR1ZXhaKoeipF588KcoomjGcIpeZRfLHFzcwC5Uh1HzoHtQdwNTpHmc9uO8jH2IfVnbFDWnWMq/T3Rnnl+6cJdzC1H7FhcuikXzrabUB3gbwSb5sw9ZmjgjhHzQ07LUw8TNssjZHiWz05QcKFi9y3WZp/8mULX6E7qJFZ1PdSJVoF4KTffPSS33L3sPJxQtF0r
+X-Microsoft-Antispam-Message-Info: MPmzDw3UfC9GLZ+I4scsxoNF50RacmiwvPqibWuwWAtJI/6rTwLOhOaQaDL7PlDX98ws+Yz5Fv5l6YpkXBfS615q+P8J98OqTUDWGsSdtthHNi6C0fbzgV5IhSCXOcigW62l+5ZjZs7w7c79mU81KSkxoAp4tofT1pespiQtvjZLrlWhtTXb24l2Tpq2kmgqpEBcdlF4PmVP9/+RFzAEp3ETrKe7ELzMX8uhC/sfwjefO7/vUdLlFY9u1CKYdVChOf2pvjlhI0mdxGM8niRcYTaZ8BptHYz4c5achFo8iXAFGwtIWk9bP9YlmPxxiDZba4ySqdcx1RHlPrDqkAuD4cl/p2PQpIg5GFK07s8msR05MjAek14obG7debFFSS/E4+Q4zVypSePgBVMZgvz56/vnPu/GzMPAYukrtrH+q9XBu16+bEF1OpJ98P/55AVgrAlSh1XOm1HRXN65Xa0gDqyYNJ38nU7OcXv9VpaCm9NaNHHiLIwKm6IFSeShAyJM/5mTPPg3rsSvjfNlQtcVhsP7df1vDUXpl1EHYKCYSAMHms/tOU8CrH8XHOck8uK+V+pGsAq1Y7ntL3pQnl76Y/Nk4RtyUYMJaejJl0c3sIv8NNvdLir1eiQM5VKDE+7iXbNX979dJWEYWUx8zPLspdX/1xkRdnzy4UtJO35Rm6t0QphE03fRC9bxcLEbdeGhwA32QBleKMCFDYNFB6pgODWo34DJObAaw81/sh5Tx7Q=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(366004)(346002)(396003)(39860400002)(136003)(376002)(451199015)(6486002)(478600001)(966005)(6666004)(5660300002)(2616005)(31696002)(6512007)(8936002)(86362001)(316002)(53546011)(82960400001)(6506007)(66476007)(36756003)(8676002)(110136005)(186003)(26005)(54906003)(66946007)(38100700002)(4326008)(31686004)(41300700001)(2906002)(66556008)(83380400001)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(396003)(39860400002)(346002)(136003)(366004)(376002)(451199015)(6506007)(26005)(6512007)(38100700002)(8676002)(82960400001)(37006003)(316002)(4326008)(66556008)(66476007)(66946007)(86362001)(36756003)(186003)(478600001)(6636002)(6666004)(966005)(6486002)(2616005)(2906002)(6862004)(8936002)(44832011)(83380400001)(41300700001)(5660300002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UjRuUnFrVVVyNFZqNkZ3c01jcmJCanV4WkpJUUJDVzJRb2NCT3lFbENadnRH?=
- =?utf-8?B?VzA4RDVNVlBLUVl2U3phcW9TUjVQQ2F0djdoemVMaHNLNlVvRHQ4ZEFEemU4?=
- =?utf-8?B?dWhkT0JFMy9NS1BlL0N4YXRDalpQemdCQzdWVk5TV3VOQmhsbjZSeW93cjRX?=
- =?utf-8?B?TDllVnpDeHptSVU1WDVZN0lkbFBRajI3VzZjRGVxa0NJRURPbjhrV2p1c3Zj?=
- =?utf-8?B?eGkwSjA3YXFBZUdzUk5Qb1orY2RFNUtjRDVpTU54NWJPTXR5VEt2VlhlVXdy?=
- =?utf-8?B?NUQwZ0lmeW94YUl6c2h3SVVFd2wrZ1lSaC84S2pqb0ZEZVVJcnpBckhndzVZ?=
- =?utf-8?B?UUZpSWFjM05qMHpONVdZMnl1MDUxRkU3aldkS0VId050WTU0Vk92dC9YVldP?=
- =?utf-8?B?TyswTXVkR25FcHdLWkpFSWljOTFjb3pabmcrQ0lMOU5xeEpwZkMydWs0bjNT?=
- =?utf-8?B?L2JsVWMvK2FrdGR4UlhUMGl5bU5FU2NrOExmU3JtVUYxc1ZUU1dzQWY1bFVt?=
- =?utf-8?B?SS9LRlZ0eTNXd3JhcXpEOTdvcytZVUVFVVRoNkpRc3FBbENEdllyYnJpOHcr?=
- =?utf-8?B?QXp2NTBqVzI0ZC9WTjIxUWh6NkxDU0VtdHM5SzJkZnV6QVZ0Q2pIeHQvdzNp?=
- =?utf-8?B?SDM2RG5kWndxKzY4M0dJNGNzV3J2eWJuT0lFSGM2MDFEV2N1QkhGVDRncFdK?=
- =?utf-8?B?eUFMUHBUTTFWWGlUWGRpM21ZQVo3T0IvbVJNNEVWL1cxeGxtTitRMndyaDFl?=
- =?utf-8?B?dDVBR0ExYjlCRDRDbVFUZDBhME92UEJoUzlFRVJGZjMyb2cxRmVTUFR2Rk9J?=
- =?utf-8?B?T2dZdFJQL1pzNncwQlcwblFIVTZZcWNZN044Z0FyNG0xK0pFejZTWFdKa0Jx?=
- =?utf-8?B?NlBoRnhhRmVHWXUvY0hBZmwyVnNLRTNrQ3hoRzkxcFRxWmdqUGt5SWpXRUJR?=
- =?utf-8?B?R0NQNXpKeWdzVnVTSEtLeml0WHFPeUtIMkJXbFd4WUNuY1Jrcmh3Vkpla1JX?=
- =?utf-8?B?dTdvV3pIWVgycmhJbVh1aHNwY0RDUGZNcTlwS3gvWlRiNjczTU53WnlOZlcv?=
- =?utf-8?B?YkhMc0dlUDFBdFlSUnNpYStDQ2k0OU5xSWowZmNoc01qVUt2NW5nSStEczg0?=
- =?utf-8?B?NEhhSk1NaDJtdENRWjJ3ZmRvaUQ2WWVqRkR0OHVBUjJuSE9Md040cDI1Z3pN?=
- =?utf-8?B?elhlUkFCeEg5MkxuZkxIN1JGRlZFZU1NQmZURmo4SGxHekd4b2pwRW1oK0hk?=
- =?utf-8?B?YjNJSWx4UFZUSG1vWHgremZEVnd1YWZSZ1ROT3lLUXlZM3Bvai8yc0JVTngv?=
- =?utf-8?B?WWp6QjVrUlNNY1JrYUl0Y0tMMHdveEc2U29Vb0hoc1cxaTRlYVZBQmJYZ2Vr?=
- =?utf-8?B?SEhzUU10NGR3ejRraWpkZFR6MWpOdGpUenlMTExGUG44Mmg4U2UxVVpjTlZN?=
- =?utf-8?B?YVZCVDYwOEJjd1pyNHhUdFNXem5HY0Y4eGM1TnBBYktxVGlYNy8reDdQSWlz?=
- =?utf-8?B?V1NncXM1aGVGL3VOT0R5VW4xNCsrQVBCK0s0N0FQN08vV2dSUDZzajRNUWRL?=
- =?utf-8?B?WEphUFpsWnFUSVoxSEMxdjdDeitibHVPOGt1NHZjSStWK1FPVVMvZmNTRzdx?=
- =?utf-8?B?dmV4c09KRG45NXAxWXJMcnA2Z2MvQldxZS9JQmdIQjRUVkF5YTlDOUt6UERL?=
- =?utf-8?B?VGtOS0NNK3Fkc2JIc0dVYUxhaTFhU2VuV2pCOVc0cDBhVlhtcVVCNm93NEUw?=
- =?utf-8?B?YUxXSWd6eWZZUGcyYzV2MFV0VGh3Y2JHL1NpUTBjdUhYbTZ4KzUzaUlWVmQ5?=
- =?utf-8?B?eXd3KzVlcjFFTStUZ0diTkVQZ3hCbXdDd2pidVl2Q1NTV21DaENKSStUaDEr?=
- =?utf-8?B?bXNmZWpYNm1qNzN3Y21mVWJTTFNMenFENmVCUnNjSmpHT0FIOFlNeDBtb21a?=
- =?utf-8?B?MWdYTXdNVTVJVnN3cTdCa2E0ZTVzS2ltUlBLVCtZeGl6dFVvRTE1V1VOZ3dq?=
- =?utf-8?B?TlpXQ0g1Rkw1TlgwSjg4aVRKRmJVRS95bE1nc2NBTXBPbWN0bEJZL1ZOTjdT?=
- =?utf-8?B?cTVxdllpYlhMSGJFa0dGWTl5NEhJMGl5b0JiVUFvRjhBRndiVm1Cd25rVG1j?=
- =?utf-8?B?b0VtVWJlNVMxVllscFpGdGU3RkloTlc3bE1RZmdMVXNhTExzdjZIeEw0QlhV?=
- =?utf-8?B?UXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb3396be-8c4f-4d67-7730-08daa17f1e10
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XQ3XW/cMnxzmffTJzSZG49EkTRPsMGVO9sv7hiKrUho4X0+9nyqPhbqhlN9p?=
+ =?us-ascii?Q?TCLtzM63spCNdeYAYTY94qEAQgTkAsITGrriYVpHtCd/R8CQOZ/kW5nPIU4B?=
+ =?us-ascii?Q?RYzkdjaUZW6kkAe6kEGzHkS9igA9BeDfi8+H5vncfuXJZz9vGHG+eomiSV+C?=
+ =?us-ascii?Q?47tPh26bLPgJwLkxLE/F3GOVlTcS+bhSD1RhRHvtZ2titCqgPF7aA8RGlYKE?=
+ =?us-ascii?Q?vEkHnnO1i2YWJhQNDYLvPfLZdVzqO9stm5MAx0bQQOjCvzT5PAgJpwUZZ/O7?=
+ =?us-ascii?Q?CswveFGJ1pjBPv9ouPID2xrukPa7juViwAuqRz7gntZcSeY2iqOYVRjIONxL?=
+ =?us-ascii?Q?RKBqGof9DDSpk18zaiLz/f7tyamRENQR+kfZxwIPAYZ9klKE7JpZSwwSNNrc?=
+ =?us-ascii?Q?9RwhUDYw7ksjoSLp7rAJS9zpuFKIoeqB1ZzJ8EfFWiZITAHpFjd8RWDdNHSL?=
+ =?us-ascii?Q?jHvUL5XDKLJZMq4+if/MnqrdE49fwOrOhmfXlU3AE2wWo5Ayxk9JqH3R3W9d?=
+ =?us-ascii?Q?YhCaKTLgnSPAhvz/38JXS2S85tBvdEn32Lh9Ml7kAeUlLlCKhhR0Yym2V/n+?=
+ =?us-ascii?Q?I5dtpFshALTK2aOftBG6Z8cPFrCvy0LGMm2hnP1OjXh2GAQeKHXp0Vvyz/hT?=
+ =?us-ascii?Q?NC6cvbIQDnmHwukdb38lXg9r4LgABgqzVhLCsEVNv6bp1dd0OF6Ng1oSHqHI?=
+ =?us-ascii?Q?rf8zAQ205sHN3JhnIAS19PLtOJDKp2OfsTHJxg2ERV+NF98iFJY8LpjXU9TK?=
+ =?us-ascii?Q?XWGmtpbbxZK7SALPsIMHqObMIL6e8uZvMyTLKPOyiAqOvXnvG/utvKEePsmm?=
+ =?us-ascii?Q?Lmlo96tPYG5bQ1FbXQvkByhGc0szX4FX5MjKSu2BKBrkhxSpzNtDbfBk87MJ?=
+ =?us-ascii?Q?AELqx4CCu9SR5qiikn8w3HOZENZXxctEychrpsvLWZTvvtOBeiCv3CLFXNwW?=
+ =?us-ascii?Q?P7VzbsRpC2W+DPA7Ruhd3eOeWZQZ0kKIwk4DpUu/zRcNfg0NOZj+2Oel6HQG?=
+ =?us-ascii?Q?l5KjRC+v7W9TckekzqjJeo24s/gNvHYND8Azh5d4hKdKIPmoZptBYueDJv5E?=
+ =?us-ascii?Q?jsJuDfDtJTK9WvGsA4XxCKwroh0swMJYdsk8Db+v9Gn0GNAGj4/Z6y91HcFo?=
+ =?us-ascii?Q?W5dCwlBxX7MbpvX7xkwjtNFGmnj+cQJdxuXtMHG7I+uIzEGfbp4T1c2rrAZ3?=
+ =?us-ascii?Q?96rvKaGf+/QCKQDGe9RRHPW8S2gx9Hkcjl2rQ76bjBoiTEIXh6DEvmjdlcSN?=
+ =?us-ascii?Q?x7qZiR0rOfb6BSx/rcY7bGqUpyceOSHm7G7B+jqEpYgbOgK7Msjjg9jYMUaz?=
+ =?us-ascii?Q?8isNzevEH0OBeTxbqTpQDVGbHBw6H+AuRRqtn7kgd/n7OT5dA+AwVhothewe?=
+ =?us-ascii?Q?I7QrpecaWmLSnciZF1XxaGRHO6uJEYSJIdoOozO1eyeiWaa1z7zQVNq3cNNI?=
+ =?us-ascii?Q?CHaFiPFfga7Ie4zL164Dlg6gb6/AluxEbuNWr+eEVNk0/XGVjzkQz8cC2Z08?=
+ =?us-ascii?Q?ZMg2geNiu2OA2oB+Qdl5bb/0hS5qLjtkwaJAO85WfMIg3lB5yaw9RC1Aue18?=
+ =?us-ascii?Q?dDNRE1YERFGbaNqf1QKgZYLdbeiC/05O41i6I152p0SqIHsbtaqLu16w1fls?=
+ =?us-ascii?Q?cw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26b36a4b-06de-4ba9-a1b6-08daa1803402
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 18:27:36.5066 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 18:35:22.9007 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FdJlYZtdBfR8GmJJ76kGlCsMiMnHmdTytuwj0FvHd5xmZEmwlRHwW/1Qvba2CmPpdjuhTWX2MIUIpu65ZC/xRMyRu0cG3LZs1nGyx6AqTUA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4702
+X-MS-Exchange-CrossTenant-UserPrincipalName: RGUNbAHpq1CTWJhAv7YdrMJRZ3x6JDb6qVmnN/laP/IGWhkb1kakKfsoIWm5jBGvtRVzWKQ9mrZSr1xK0MouQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5205
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: do not capture error state on
- exiting context
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Perf_limit_reasons are only
+ available for Gen11+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,141 +148,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- chris@chris-wilson.co.uk
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 9/28/2022 00:19, Tvrtko Ursulin wrote:
-> On 27/09/2022 22:36, Ceraolo Spurio, Daniele wrote:
->> On 9/27/2022 12:45 AM, Tvrtko Ursulin wrote:
->>> On 27/09/2022 07:49, Andrzej Hajda wrote:
->>>> On 27.09.2022 01:34, Ceraolo Spurio, Daniele wrote:
->>>>> On 9/26/2022 3:44 PM, Andi Shyti wrote:
->>>>>> Hi Andrzej,
->>>>>>
->>>>>> On Mon, Sep 26, 2022 at 11:54:09PM +0200, Andrzej Hajda wrote:
->>>>>>> Capturing error state is time consuming (up to 350ms on DG2), so 
->>>>>>> it should
->>>>>>> be avoided if possible. Context reset triggered by context 
->>>>>>> removal is a
->>>>>>> good example.
->>>>>>> With this patch multiple igt tests will not timeout and should 
->>>>>>> run faster.
->>>>>>>
->>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1551
->>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3952
->>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5891
->>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6268
->>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6281
->>>>>>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->>>>>> fine for me:
->>>>>>
->>>>>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->>>>>>
->>>>>> Just to be on the safe side, can we also have the ack from any of
->>>>>> the GuC folks? Daniele, John?
->>>>>>
->>>>>> Andi
->>>>>>
->>>>>>
->>>>>>> ---
->>>>>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 3 ++-
->>>>>>>   1 file changed, 2 insertions(+), 1 deletion(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>> index 22ba66e48a9b01..cb58029208afe1 100644
->>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>> @@ -4425,7 +4425,8 @@ static void 
->>>>>>> guc_handle_context_reset(struct intel_guc *guc,
->>>>>>>       trace_intel_context_reset(ce);
->>>>>>>         if (likely(!intel_context_is_banned(ce))) {
->>>>>>> -        capture_error_state(guc, ce);
->>>>>>> +        if (!intel_context_is_exiting(ce))
->>>>>>> +            capture_error_state(guc, ce);
->>>
->>> I am not sure here - if we have a persistent context which caused a 
->>> GPU hang I'd expect we'd still want error capture.
->>>
->>> What causes the reset in the affected IGTs? Always preemption timeout?
->>>
->>>>>>> guc_context_replay(ce);
->>>>>
->>>>> You definitely don't want to replay requests of a context that is 
->>>>> going away.
->>>>
->>>> My intention was to just avoid error capture, but that's even 
->>>> better, only condition change:
->>>> -        if (likely(!intel_context_is_banned(ce))) {
->>>> +       if (likely(intel_context_is_schedulable(ce)))  {
->>>
->>> Yes that helper was intended to be used for contexts which should 
->>> not be scheduled post exit or ban.
->>>
->>> Daniele - you say there are some misses in the GuC backend. Should 
->>> most, or even all in intel_guc_submission.c be converted to use 
->>> intel_context_is_schedulable? My idea indeed was that "ban" should 
->>> be a level up from the backends. Backend should only distinguish 
->>> between "should I run this or not", and not the reason.
->>
->> I think that all of them should be updated, but I'd like Matt B to 
->> confirm as he's more familiar with the code than me.
->
-> Right, that sounds plausible to me as well.
->
-> One thing I forgot to mention - the only place where backend can care 
-> between "schedulable" and "banned" is when it picks the preempt 
-> timeout for non-schedulable contexts. This is to only apply the strict 
-> 1ms to banned (so bad or naught contexts), while the ones which are 
-> exiting cleanly get the full preempt timeout as otherwise configured. 
-> This solves the ugly user experience quirk where GPU resets/errors 
-> were logged upon exit/Ctrl-C of a well behaving application (using 
-> non-persistent contexts). Hopefully GuC can match that behaviour so 
-> customers stay happy.
->
-> Regards,
->
-> Tvrtko
+On Wed, Sep 28, 2022 at 11:17:06AM -0700, Dixit, Ashutosh wrote:
+> On Wed, 28 Sep 2022 04:38:46 -0700, Jani Nikula wrote:
+> >
+> > On Mon, 19 Sep 2022, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
+> > > Register GT0_PERF_LIMIT_REASONS (0x1381a8) is available only for
+> > > Gen11+. Therefore ensure perf_limit_reasons sysfs/debugfs files are created
+> > > only for Gen11+. Otherwise on Gen < 5 accessing these files results in the
+> > > following oops:
+> > >
+> > > <1> [88.829420] BUG: unable to handle page fault for address: ffffc90000bb81a8
+> > > <1> [88.829438] #PF: supervisor read access in kernel mode
+> > > <1> [88.829447] #PF: error_code(0x0000) - not-present page
+> > >
+> > > Bspec: 20008
+> > > Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/6863
+> > > Fixes: fe5979665f64 ("drm/i915/debugfs: Add perf_limit_reasons in debugfs")
+> > > Fixes: fa68bff7cf27 ("drm/i915/gt: Add sysfs throttle frequency interfaces")
+> > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> >
+> 
+> Hi Jani,
+> 
+> > Ashutosh, can you provide a backport of this i.e. commit 0d2d201095e9
+> > ("drm/i915: Perf_limit_reasons are only available for Gen11+") that
+> > applies cleanly on drm-intel-fixes, please?
+> 
+> I've sent the patch:
+> 
+> https://patchwork.freedesktop.org/series/109196/
+> 
+> Not sure though if it is worth applying on drm-intel-fixes because of one
+> conflict with drm-tip which will need to be resolved manually. On
 
-The whole revoke vs ban thing seems broken to me.
+The conflict shouldn't be that bad to resolve, but since the patch deviates
+from the original, the new commit message needs to highlight and explain
+that this is a backport and the reasons of the difference and including the sha
+of the already merged patch. Similar to the option 3 of the stable rules. [1].
 
-First of all, if the user hits Ctrl+C we need to kill the context off 
-immediately. That is a fundamental customer requirement. Render and 
-compute engines have a 7.5s pre-emption timeout. The user should not 
-have to wait 7.5s for a context to be removed from the system when they 
-have explicitly killed it themselves. Even the regular timeout of 640ms 
-is borderline a long time to wait. And note that there is an ongoing 
-request/requirement to increase that to 1900ms.
+Well, another option is to wait until this patch gets propagated to Linus master
+and then send the backported version to the stable mailing list. But again,
+with the proper rules of the option 3. [1]
 
-Under what circumstances would a user expect anything sensible to happen 
-after a Ctrl+C in terms of things finishing their rendering and display 
-nice pretty images? They killed the app. They want it dead. We should be 
-getting it off the hardware as quickly as possible. If you are really 
-concerned about resets causing collateral damage then maybe bump the 
-termination timeout from 1ms up to 10ms, maybe at most 100ms. If an app 
-is 'well behaved' then it should cleanly exit within 10ms. But if it is 
-bad (which is almost certainly the case if the user is manually and 
-explicitly killing it) then it needs to be killed because it is not 
-going to gracefully exit.
+[1] - https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
 
-Secondly, the whole persistence thing is a total mess, completely broken 
-and intended to be massively simplified. See the internal task for it. 
-In short, the plan is that all contexts will be immediately killed when 
-the last DRM file handle is closed. Persistence is only valid between 
-the time the per context file handle is closed and the time the master 
-DRM handle is closed. Whereas, non-persistent contexts get killed as 
-soon as the per context handle is closed. There is absolutely no 
-connection to heartbeats or other irrelevant operations.
+> drm-intel-fixes the crash mentioned above will be seen only on Gen < 5 if
+> someone manually cat's the sysfs. We had to fix on drm-tip because there
+> was a CI failure with Gen3 debugfs but that code is not in drm-intel-fixes.
 
-So in my view, the best option is to revert the ban vs revoke patch. It 
-is creating bugs. It is making persistence more complex not simpler. It 
-harms the user experience.
+since it is sysfs it is probably a good protection to have anyway.
 
-If the original problem was simply that error captures were being done 
-on Ctrl+C then the fix is simple. Don't capture for a banned context. 
-There is no need for all the rest of the revoke patch.
-
-John.
-
+> 
+> Thanks.
+> --
+> Ashutosh
