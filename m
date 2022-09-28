@@ -1,53 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F025ED83E
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 10:51:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 459015ED857
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 10:59:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A22F10E366;
-	Wed, 28 Sep 2022 08:51:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73BC310E381;
+	Wed, 28 Sep 2022 08:59:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4456E10E37A;
- Wed, 28 Sep 2022 08:51:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E26EF10E360
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 08:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664355071; x=1695891071;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=eltQSsd00+eTulXtPk3YMa9SYpcWVAR8VjdLyZ6mqho=;
- b=TX6LxgvBl9PoKJlK3CM8KVaicM2epzP5Uzmej/+pz8zOG4RqFioMK0Zb
- tzxx4niOiQOzzOnb94tyVyU/oh6EkdMZVqIZnV/2qpNgV3T9snzG2j1q2
- ykVjc6occI0KIWM7fZnG31g77yOUwAxNgpy7J6MRkPbVmVLh4v8hSdGSa
- O6Yq/bQwQel1LG5e8iJSCURanGXEVRl6DZLF4wv2KWYDtsv+a9LteVs22
- 10jgfEA0ciSuZuNMKAkeFiX/6HoCqcbg85TEX8oXGDN/jLh97k44Qbfw6
- +rN+2mpTUphV7TbXkMZFsbVhkSX8JkyfJcFeygHQJiIoOd0NZIfe9GQAr Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="303029446"
-X-IronPort-AV: E=Sophos;i="5.93,351,1654585200"; d="scan'208";a="303029446"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ t=1664355546; x=1695891546;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Np3T7N3TObKdC03YyyrEGgEcgZ2sQDTB9ZVnepcaT5k=;
+ b=OuTVcKGg1g14Q6/IBIHYMzHNQWT3CcIRsuQ7m6B23LX3effJq0zCrzdq
+ i+jcRC/MTUO7X4ZhQjxAkFe3s9q0z/rSnb1qPGQhDRMsJKgFKC+TVPAaC
+ S8M2FiYfO2EvlsgdSvDhtqTWFoguDsXp/iHPljf7jtbV3jB5jBu9Pz6Hh
+ FiZcXeFoJ5DsgmpSHY+sBPAMNQHOIOFl3TJHOH3bHe6MxEMEIZkeZ8pnY
+ yTXhBKA3r1eEekUqysjzZWZeiW2SVvHTL6ErGuq+WsbTX7xMsxvgOkY16
+ wTbrri5LjfNG8eGLdiZbwxbv8YyMqH1xMgFcAXrZLhUtPQZ7z9cQZlqDL Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="303030944"
+X-IronPort-AV: E=Sophos;i="5.93,351,1654585200"; d="scan'208";a="303030944"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 01:51:10 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="866895387"
-X-IronPort-AV: E=Sophos;i="5.93,351,1654585200"; d="scan'208";a="866895387"
-Received: from novermar-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.61.30])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 01:51:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220928081300.101516-6-gwan-gyeong.mun@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220928081300.101516-1-gwan-gyeong.mun@intel.com>
- <20220928081300.101516-6-gwan-gyeong.mun@intel.com>
-Date: Wed, 28 Sep 2022 11:51:00 +0300
-Message-ID: <87edvvzxu3.fsf@intel.com>
+ 28 Sep 2022 01:58:56 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="690319962"
+X-IronPort-AV: E=Sophos;i="5.93,351,1654585200"; d="scan'208";a="690319962"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.5.184])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2022 01:58:53 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Date: Wed, 28 Sep 2022 10:58:24 +0200
+Message-Id: <20220928085826.243721-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v13 5/9] drm/i915: Check for integer
- truncation on scatterlist creation
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [core-for-CI][PATCH v2 0/2] iommu: Remove iova cpu
+ hotplugging flushing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,54 +55,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gustavoars@kernel.org, trix@redhat.com, dlatypov@google.com,
- llvm@lists.linux.dev, linux@rasmusvillemoes.dk,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- linux-hardening@vger.kernel.org, andrzej.hajda@intel.com,
- linux-sparse@vger.kernel.org, matthew.auld@intel.com, airlied@redhat.com,
- thomas.hellstrom@linux.intel.com, keescook@chromium.org, nathan@kernel.org,
- mchehab@kernel.org, ndesaulniers@google.com, linux-kernel@vger.kernel.org,
- daniel@ffwll.ch, vitor@massaru.org, luc.vanoostenryck@gmail.com,
- nirmoy.das@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 28 Sep 2022, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
-> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
-> index 9ddb3e743a3e..1d1802beb42b 100644
-> --- a/drivers/gpu/drm/i915/i915_scatterlist.h
-> +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
-> @@ -220,4 +220,15 @@ struct i915_refct_sgt *i915_rsgt_from_buddy_resource(struct ttm_resource *res,
->  						     u64 region_start,
->  						     u32 page_alignment);
->  
-> +/* Wrap scatterlist.h to sanity check for integer truncation */
-> +typedef unsigned int __sg_size_t; /* see linux/scatterlist.h */
-> +#define sg_alloc_table(sgt, nents, gfp) \
-> +	overflows_type(nents, __sg_size_t) ? -E2BIG \
-> +		: ((sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp))
-> +
-> +#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
-> +	overflows_type(npages, __sg_size_t) ? -E2BIG \
-> +		: ((sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, \
-> +						       size, max_segment, gfp))
-> +
->  #endif
+Manual revert of commit f598a497bc7d ("iova: Add CPU hotplug handler to
+flush rcaches").  It is trying to instantiate a cpuhp notifier from inside
+a cpuhp callback.  That code replaced intel_iommu implementation of
+flushing per-IOVA domain CPU rcaches which used a single instance of cpuhp
+held for the module lifetime.
 
-No. I don't think we should shadow sg_alloc_table() and
-sg_alloc_table_from_pages_segment().
+v2: Restore formerly reverted commit ac9a5d522bb8 "iommu/dma: Fix race
+    condition during iova_domain initialization" after we have this more
+    effective fix applied.  The former occurred not sufficient and is no
+    longer needed once we have the latter in place.
 
-Either get this in scatterlist.h (preferred) or prefix with i915_ or
-whatever to indicate it's our local thing.
-
-i915_scatterlist.h already has too much scatterlist "namespace" abuse
-that I'd rather see gone than violated more.
+Note: I'm no longer CCing IOMMU nor mainstream, they have been already
+      warned.
 
 
-BR,
-Jani.
+Chris Wilson (1):
+  iommu: Remove iova cpu hotplugging flushing
 
+Janusz Krzysztofik (1):
+  Restore "iommu/dma: Fix race condition during iova_domain
+    initialization"
 
+ drivers/iommu/dma-iommu.c  | 17 +++++++++++++----
+ drivers/iommu/iova.c       | 28 ----------------------------
+ include/linux/cpuhotplug.h |  1 -
+ include/linux/iova.h       |  1 -
+ 4 files changed, 13 insertions(+), 34 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
