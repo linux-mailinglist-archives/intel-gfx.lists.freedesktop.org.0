@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 445ED5EDFBD
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 17:07:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DE535EDFBC
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 17:07:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2407310E9CE;
-	Wed, 28 Sep 2022 15:07:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27B4710E6F2;
+	Wed, 28 Sep 2022 15:07:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4B15310E9CE;
- Wed, 28 Sep 2022 15:07:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 25A3010E9CF;
+ Wed, 28 Sep 2022 15:07:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 42FEDAAA91;
- Wed, 28 Sep 2022 15:07:23 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 20E3FAAA91;
+ Wed, 28 Sep 2022 15:07:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Date: Wed, 28 Sep 2022 15:07:23 -0000
-Message-ID: <166437764326.595.8451273263780761726@emeril.freedesktop.org>
+Date: Wed, 28 Sep 2022 15:07:26 -0000
+Message-ID: <166437764613.593.16692174933643053415@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220928085826.243721-1-janusz.krzysztofik@linux.intel.com>
 In-Reply-To: <20220928085826.243721-1-janusz.krzysztofik@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_iommu=3A_Remove_iova_cpu_hotplugging_flushing_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?iommu=3A_Remove_iova_cpu_hotplugging_flushing_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,22 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-197c8a0312f4 iommu: Remove iova cpu hotplugging flushing
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
-<4>[    6.931011] ffff888100e02a78 (&(&priv->bus_notifier)->rwsem){++++}-{3:3}, at: blocking_notifier_call_chain+0x20/0x50
-
-total: 0 errors, 1 warnings, 0 checks, 76 lines checked
-a07376429e5f Restore "iommu/dma: Fix race condition during iova_domain initialization"
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ac9a5d522bb8 ("iommu/dma: Fix race condition during iova_domain initialization")'
-#8: 
-reverted commit ac9a5d522bb80be50ea84965699e1c8257d745ce.  That revert is
-
--:22: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
-#22: FILE: drivers/iommu/dma-iommu.c:68:
-+	struct mutex			mutex;
-
-total: 1 errors, 0 warnings, 1 checks, 51 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
