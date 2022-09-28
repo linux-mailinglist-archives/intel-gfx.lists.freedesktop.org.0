@@ -2,67 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72B225EE2DE
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 19:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C755EE31D
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 19:28:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0962910E4C4;
-	Wed, 28 Sep 2022 17:16:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88F7910E521;
+	Wed, 28 Sep 2022 17:28:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com
- [IPv6:2607:f8b0:4864:20::f2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9C5710E4C5
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 17:16:29 +0000 (UTC)
-Received: by mail-qv1-xf2f.google.com with SMTP id u8so2920131qvv.9
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 10:16:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date;
- bh=7vQ2L03NmZjTjKW7aYlNCJZqth3/yEDQLyW9BQRTAy8=;
- b=A+bgUQTLuISMRGKf3gH1kVvGmP3b/AaIOap7gHgA/PD0nbgpIKholTwlPXLri1af0K
- cnXmQYCXr6Teuy/PYE/inGfAxECxd/mCvZF/wqKa528cfQv970CHoLHSzLvnxIGoeg2I
- Wt438dq+Wr6ck6v+tRyZuqUTQ439HqIxvfrIc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=7vQ2L03NmZjTjKW7aYlNCJZqth3/yEDQLyW9BQRTAy8=;
- b=AGSKAWGMiF0/NU4CkEYjJVD1jqrhkPdSgJR0jacbqGZ8s/DXndruL4f+Lv1/uxbMEu
- O6hqk8W6+n0s9mdU+GlSbMbf4z7HfKsiUgIieCbVDHh3ImKibfrUJsv5Q8IqVOcnYpvN
- LredFuU8OnO/LBehWvbowA/+oigCj5uITvDmFPnEV5Przu1SWjqp/SszmpTQOEaSb8iI
- AYMrUuLAJG6408tAV0hlscFzADDw6F2YSmNnPvyMblmHqGZhocyqO1l7SEGgqUodelA/
- UeSDm80fcoHyusqe8VO0TBGN5yD6in650bG3exGRdyFdtQBJUb/jyaUmSF6PC9PfPzg9
- 39Rg==
-X-Gm-Message-State: ACrzQf0gb9BbPtBnITS2RuXHjZ+gAAw2r2y9RSrfEkNIwwTMlh5xhhTI
- 2mMfGXVaoZolvvwkh93DnY3a+vifsnMJ3w==
-X-Google-Smtp-Source: AMsMyM7Sk7PU85Ksxcsw4FQm9Kw373WhnPdcuj8GWC2eEW3CUfqY3X8ZoI2CjA85l1x2ELQB6M9sow==
-X-Received: by 2002:ad4:5aa3:0:b0:4a8:821d:5e69 with SMTP id
- u3-20020ad45aa3000000b004a8821d5e69mr27220276qvg.25.1664385388337; 
- Wed, 28 Sep 2022 10:16:28 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com.
- [209.85.219.175]) by smtp.gmail.com with ESMTPSA id
- dt39-20020a05620a47a700b006bbd2c4cccfsm3724506qkb.53.2022.09.28.10.16.27
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 28 Sep 2022 10:16:28 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id 4so8592287ybe.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 10:16:27 -0700 (PDT)
-X-Received: by 2002:a9d:2de3:0:b0:638:e210:c9da with SMTP id
- g90-20020a9d2de3000000b00638e210c9damr14921820otb.69.1664384960424; Wed, 28
- Sep 2022 10:09:20 -0700 (PDT)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2FC810E500;
+ Wed, 28 Sep 2022 17:28:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664386103; x=1695922103;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=8eVw9C5sPYEUOLA7l5QFddja9Pb2L/c4WImdAJ/ZVPk=;
+ b=g6KYeMVh7GCRxcy5ymxEOzVzLs1jtKu4tyluBR6Fn+6VFa9HcU6VUY3o
+ 9Jbs8H7wlZ+QBJ540T/FDPDY42Jo2gA5ELupSRKvC+L3nz3EztOc0qSjb
+ EpS+/P4vJ2u721FfAvlRUmxQNV4bha5j1j4oQcX653eQdgS8kNoFum+em
+ 5FH7Z3P9TRp1lD2uyYKL7uh/Rm8j4Xi3HzzpRbq3ci9gpxU4h9PeyWim8
+ AwX30aIET3z6aqyKWexKOclDphv6d9b+xj9I4z9w8KGPl+nipfx9Czjp2
+ R+oRbosrXq2dAipn1z/BuwMQuEq5Q9wsZHooWKhScjJ9BpYf83ibdM/S9 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="281382339"
+X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="281382339"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2022 10:28:22 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="617290467"
+X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="617290467"
+Received: from ekarpovi-mobl1.ger.corp.intel.com (HELO [10.252.6.131])
+ ([10.252.6.131])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2022 10:28:18 -0700
+Message-ID: <917ff992-5f6c-c9de-2d3a-d0bde2e49516@intel.com>
+Date: Wed, 28 Sep 2022 18:28:15 +0100
 MIME-Version: 1.0
-References: <20220928081300.101516-1-gwan-gyeong.mun@intel.com>
- <20220928081300.101516-6-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20220928081300.101516-6-gwan-gyeong.mun@intel.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 28 Sep 2022 10:09:04 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wivJwvVbMUKma8600F6qaVLZHT=BY90SEnjiHWw2ZUVEg@mail.gmail.com>
-Message-ID: <CAHk-=wivJwvVbMUKma8600F6qaVLZHT=BY90SEnjiHWw2ZUVEg@mail.gmail.com>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v13 5/9] drm/i915: Check for integer
- truncation on scatterlist creation
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.3.0
+Content-Language: en-GB
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20220928061918.6340-1-niranjana.vishwanathapura@intel.com>
+ <20220928061918.6340-2-niranjana.vishwanathapura@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220928061918.6340-2-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 01/16] drm/i915/vm_bind: Expose vm lookup
+ function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,56 +63,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gustavoars@kernel.org, trix@redhat.com, dlatypov@google.com,
- llvm@lists.linux.dev, linux@rasmusvillemoes.dk,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- linux-hardening@vger.kernel.org, andrzej.hajda@intel.com,
- linux-sparse@vger.kernel.org, matthew.auld@intel.com, airlied@redhat.com,
- thomas.hellstrom@linux.intel.com, keescook@chromium.org, jani.nikula@intel.com,
- intel-gfx@lists.freedesktop.org, nathan@kernel.org, mchehab@kernel.org,
- ndesaulniers@google.com, linux-kernel@vger.kernel.org, daniel@ffwll.ch,
- vitor@massaru.org, luc.vanoostenryck@gmail.com, nirmoy.das@intel.com
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
+ daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 28, 2022 at 1:15 AM Gwan-gyeong Mun
-<gwan-gyeong.mun@intel.com> wrote:
->
-> +       if (check_assign(obj->base.size >> PAGE_SHIFT, &npages))
-> +               return -E2BIG;
+On 28/09/2022 07:19, Niranjana Vishwanathapura wrote:
+> Make i915_gem_vm_lookup() function non-static as it will be
+> used by the vm_bind feature.
+> 
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-I have to say, I find that new "check_assign()" macro use to be disgusting.
+Acked-by: Matthew Auld <matthew.auld@intel.com>
 
-It's one thing to check for overflows.
-
-It's another thing entirely to just assign something to a local variable.
-
-This disgusting "let's check and assign" needs to die. It makes the
-code a completely unreadable mess. The "user" wersion is even worse.
-
-If you worry about overflow, then use a mix of
-
- (a) use a sufficiently large type to begin with
-
- (b) check for value range separately
-
-and in this particular case, I also suspect that the whole range check
-should have been somewhere else entirely - at the original creation of
-that "obj" structure, not at one random end-point where it is used.
-
-In other words, THIS WHOLE PATCH is just end-points checking the size
-requirements of that "base.size" thing much too late, when it should
-have been checked originally for some "maximum acceptable base size"
-instead.
-
-And that "maximum acceptable base size" should *not* be about "this is
-the size of the variables we use". It should be a sanity check of
-"this value is sane and fits in sane use cases".
-
-Because "let's plug security checks" is most definitely not about
-picking random assignments and saying "let's check this one". It's
-about trying to catch things earlier than that.
-
-Kees, you need to reign in the craziness in overflow.h.
-
-                 Linus
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 11 ++++++++++-
+>   drivers/gpu/drm/i915/gem/i915_gem_context.h |  3 +++
+>   2 files changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 0bcde53c50c6..f4e648ec01ed 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -346,7 +346,16 @@ static int proto_context_register(struct drm_i915_file_private *fpriv,
+>   	return ret;
+>   }
+>   
+> -static struct i915_address_space *
+> +/**
+> + * i915_gem_vm_lookup() - looks up for the VM reference given the vm id
+> + * @file_priv: the private data associated with the user's file
+> + * @id: the VM id
+> + *
+> + * Finds the VM reference associated to a specific id.
+> + *
+> + * Returns the VM pointer on success, NULL in case of failure.
+> + */
+> +struct i915_address_space *
+>   i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id)
+>   {
+>   	struct i915_address_space *vm;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> index e5b0f66ea1fe..899fa8f1e0fe 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> @@ -139,6 +139,9 @@ int i915_gem_context_setparam_ioctl(struct drm_device *dev, void *data,
+>   int i915_gem_context_reset_stats_ioctl(struct drm_device *dev, void *data,
+>   				       struct drm_file *file);
+>   
+> +struct i915_address_space *
+> +i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id);
+> +
+>   struct i915_gem_context *
+>   i915_gem_context_lookup(struct drm_i915_file_private *file_priv, u32 id);
+>   
