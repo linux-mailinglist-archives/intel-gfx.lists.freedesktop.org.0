@@ -1,54 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12175ED731
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 10:11:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD485ED73B
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 10:13:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3A2510E303;
-	Wed, 28 Sep 2022 08:11:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CFE110E308;
+	Wed, 28 Sep 2022 08:13:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7DB110E303
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 08:11:17 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F55B10E303;
+ Wed, 28 Sep 2022 08:13:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664352677; x=1695888677;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=qJLV8GbAwKe9Wxl33LYPQ6fB9kpBWhvZziBEDumIuAs=;
- b=Ps/vcz5r/FGygcqUbn1JJyHEhzkgUQF9pYucCGKcIk3HIA/WXGd5enfS
- sAcl+eTG3P63V8yH05NzimcBV1KImJwPm/BhlhaA7o20oouToAxEw42ar
- kvVU7e7u/s2Ot+RAs28krwz1d1K2dZfxhu6bT9C211F9H6ahyKOwQG+vE
- 4b/WKUUFSMC39OD+6+suc0/hFmIs+jXdavp2XRGgc842hqixsjdPD2Avt
- KR2Wl64PtGrGftmojzFUlzk/vvr+LY+FOXvgqkjgq0obAJasHMd79SdC3
- G8JTX+Q01N0b+LTBkME0hxw3QLsOlHvRww0g/K8FtPs8QHV1u43A6tBvl A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="288696765"
-X-IronPort-AV: E=Sophos;i="5.93,351,1654585200"; d="scan'208";a="288696765"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 01:11:17 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="572946991"
-X-IronPort-AV: E=Sophos;i="5.93,351,1654585200"; d="scan'208";a="572946991"
-Received: from novermar-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.61.30])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 01:11:15 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220927180615.25476-3-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220927180615.25476-1-ville.syrjala@linux.intel.com>
- <20220927180615.25476-3-ville.syrjala@linux.intel.com>
-Date: Wed, 28 Sep 2022 11:11:13 +0300
-Message-ID: <87h70rzzoe.fsf@intel.com>
+ t=1664352803; x=1695888803;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WB6T+yJXx+m1nIR3FdvolGa4A9+LMo8MXrdYv+JxSW8=;
+ b=eLB4/mgLhulGtEkDCHOqnXqoyOD+ptZp4vS4AXHeQWAwaUJwkyoICAN1
+ 2ipKZ/G3g1XpkMSu4EECkjDknN9zyVGT0WZMcw74kIX/a3HJ46Z0ULqvx
+ CGzFJCo+LhnQd5s1zCMfvF44eE0K9uTg1Itif1OT0hyVZPth75bPvWtdU
+ UdXnVs8oTgdnntg8TAApiZn4xJoqPUNJU9pGocy8NhrwQQnhHJGKVHcPG
+ 6Y6Z28Yg1Pk0PK2PuinF8VHKijx44erG6nBU6PNlJg42i7UqSdx0WNBzg
+ IMKVPLASUqv13RcFoEq4YCg8l4KY3Bvzfu49fQfu37tLvD5e8RpZN7AIv A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="281257588"
+X-IronPort-AV: E=Sophos;i="5.93,351,1654585200"; d="scan'208";a="281257588"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2022 01:13:22 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="621836042"
+X-IronPort-AV: E=Sophos;i="5.93,351,1654585200"; d="scan'208";a="621836042"
+Received: from maciejos-mobl.ger.corp.intel.com (HELO
+ paris.ger.corp.intel.com) ([10.249.147.47])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2022 01:13:13 -0700
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 28 Sep 2022 11:12:51 +0300
+Message-Id: <20220928081300.101516-1-gwan-gyeong.mun@intel.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Allow alternate fixed modes
- always for eDP
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v13 0/9] Fixes integer overflow or integer
+ truncation issues in page lookups,
+ ttm place configuration and scatterlist creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,56 +58,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: gustavoars@kernel.org, trix@redhat.com, dlatypov@google.com,
+ llvm@lists.linux.dev, linux@rasmusvillemoes.dk,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ linux-hardening@vger.kernel.org, andrzej.hajda@intel.com,
+ linux-sparse@vger.kernel.org, matthew.auld@intel.com, airlied@redhat.com,
+ thomas.hellstrom@linux.intel.com, keescook@chromium.org, jani.nikula@intel.com,
+ nathan@kernel.org, mchehab@kernel.org, ndesaulniers@google.com,
+ linux-kernel@vger.kernel.org, daniel@ffwll.ch, vitor@massaru.org,
+ luc.vanoostenryck@gmail.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 27 Sep 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Stop considering VBT's static DRRS support when deciding whether
-> to use alternate fixed modes or not. It looks like Windows more
-> or less just uses that to decide whether to automagically switch
-> refresh rates on AC<->batter changes, or perhaps whether to
+This patch series fixes integer overflow or integer truncation issues in
+page lookups, ttm place configuration and scatterlist creation, etc.
+We need to check that we avoid integer overflows when looking up a page,
+and so fix all the instances where we have mistakenly used a plain integer
+instead of a more suitable long.
+And there is an impedance mismatch between the scatterlist API using
+unsigned int and our memory/page accounting in unsigned long. That is we
+may try to create a scatterlist for a large object that overflows returning
+a small table into which we try to fit very many pages. As the object size
+is under the control of userspace, we have to be prudent and catch the
+conversion errors. To catch the implicit truncation as we switch from
+unsigned long into the scatterlist's unsigned int, we use improved
+overflows_type check and report E2BIG prior to the operation. This is
+already used in our create ioctls to indicate if the uABI request is simply
+too large for the backing store. 
+And ttm place also has the same problem with scatterlist creation,
+and we fix the integer truncation problem with the way approached by
+scatterlist creation.
+And It corrects the error code to return -E2BIG when creating gem objects
+using ttm or shmem, if the size is too large in each case.
+In order to provide a common macro, it adds a few utility macros
+into overflow header.
+Introduce check_assign() and check_assign_user_ptr(). the check_assign()
+macro which performs an assigning source value into destination pointer
+along with an overflow check and check_assign_user_ptr() macro which
+performs an assigning source value into destination pointer type variable
+along with an overflow check. If an explicit overflow check is required
+while assigning to a user-space ptr, assign_user_ptr() can be used instead
+of u64_to_user_ptr() to assign integers into __user pointers along with an
+overflow check. check_assign(), overflows_type() are implemented on top of
+updated check_add_overflow() macro [1], and it also uses updated
+overflows_type() and castable_to_type() macro [2].
+Therefore this series include the patch which came from Kees [1][2]
+(the both patches are under reviewing from other patch mails).
 
-*battery
+[1] https://lore.kernel.org/all/202208311040.C6CA8253@keescook/
+[2] https://lore.kernel.org/lkml/20220926191109.1803094-1-keescook@chromium.org/
 
-The series is
+Chris Wilson (3):
+  drm/i915/gem: Typecheck page lookups
+  drm/i915: Check for integer truncation on scatterlist creation
+  drm/i915: Remove truncation warning for large objects
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Gwan-gyeong Mun (4):
+  overflow: Introduce check_assign() and check_assign_user_ptr()
+  drm/i915: Check for integer truncation on the configuration of ttm
+    place
+  drm/i915: Check if the size is too big while creating shmem file
+  drm/i915: Use error code as -E2BIG when the size of gem ttm object is
+    too large
 
+Kees Cook (2):
+  overflow: Allow mixed type arguments
+  overflow: Introduce overflows_type() and castable_to_type()
 
-> even expose a control for that in some UI thing. Either way it
-> seems happy to always use all EDID modes, and I guess the
-> DRRS/VRR stuff more or less adjust how said modes get
-> actually used.
->
-> Let's do the same and just accept all the suitable looking
-> modes from EDID, whether we have DRRS or VRR.
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6323
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6484
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index c368caa23291..70b06806ec0d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5292,9 +5292,7 @@ static bool intel_edp_init_connector(struct intel_d=
-p *intel_dp,
->  	intel_bios_init_panel(dev_priv, &intel_connector->panel,
->  			      encoder->devdata, IS_ERR(edid) ? NULL : edid);
->=20=20
-> -	intel_panel_add_edid_fixed_modes(intel_connector,
-> -					 intel_connector->panel.vbt.drrs_type !=3D DRRS_TYPE_NONE ||
-> -					 intel_vrr_is_capable(intel_connector));
-> +	intel_panel_add_edid_fixed_modes(intel_connector, true);
->=20=20
->  	/* MSO requires information from the EDID */
->  	intel_edp_mso_init(intel_dp);
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   7 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    | 303 +++++++++--
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  27 +-
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c      |   4 +
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  19 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  23 +-
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |   5 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |  12 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |   8 +-
+ .../drm/i915/gem/selftests/i915_gem_object.c  |   8 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c             |   9 +-
+ drivers/gpu/drm/i915/i915_gem.c               |  18 +-
+ drivers/gpu/drm/i915/i915_scatterlist.h       |  11 +
+ drivers/gpu/drm/i915/i915_user_extensions.c   |   6 +-
+ drivers/gpu/drm/i915/i915_utils.h             |   4 -
+ drivers/gpu/drm/i915/i915_vma.c               |   8 +-
+ drivers/gpu/drm/i915/intel_region_ttm.c       |  17 +-
+ include/linux/compiler.h                      |   1 +
+ include/linux/overflow.h                      | 166 ++++--
+ lib/overflow_kunit.c                          | 489 ++++++++++++++++--
+ 21 files changed, 993 insertions(+), 158 deletions(-)
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+2.37.1
+
