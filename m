@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 925445ED223
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 02:41:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74EB75ED226
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 02:41:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 677A310E201;
-	Wed, 28 Sep 2022 00:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D04D610E208;
+	Wed, 28 Sep 2022 00:41:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A864610E1F3
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 00:40:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB1010E1F3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 00:40:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664325624; x=1695861624;
+ t=1664325625; x=1695861625;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=+R6sOYzqD6uSxITDgDcnOTO2wEwGxjV7uZnBJsqTF1Q=;
- b=EqrzxipajPiR0DgWPtNVYSkz/x7NDH9ebJSkCbWd0TvDTs4PLlRjmM1M
- TGDKNk+hNKbqYsOegmWBGIU+9Izi1512yYrrARDI6/QNu9V1sLeNeJE7s
- 5yWHdrC29P/sRrMllOwuirAiq03l4zHoBmyg1n6B9+Kj6wfDq/dRyXekE
- sE1nXYZIgfDVQk/ICr9PM4GKoBdZrmL1m1eyb+TuTFj0F6PmohS/ZOp/f
- f9xzQ9oultSczIb27La6IKprN0wGlQhMcB/KR3SSpQKhBwmg4KwYs+YMO
- LRT+nHaw9m24uhE/jJBxhdmVYcLdMSYDvTcI5phm+v6hHkibgmlHIwY6o Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="387752074"
-X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="387752074"
+ bh=8kVS6P93c1vQvOhYrSH2xqU7ZmZD8XTs2oJ2SZLkX9A=;
+ b=oBIFXUCd62q+gaFwDunhnwZgw38K51mvWFtQf5qz2wnvegGSMW9eXMA3
+ DhLq+2Mtl9fTUIn6QiVi8QH57/vK/BG2NANTC+UE8uaGsVs54nL91UmCk
+ qH9PgklgsNs7u8j34ziue/ULz2NAX4mgaQrev0I4Q77LeBuYXEBILIuTr
+ av8n46kNUIcr5DMTjOEnbK9olWq8HJeeQeqZfLkSYRnhGcnKD6Zw/qSeL
+ MxZUWctA3KK20KACMCgKxB9dbBugb+i7bZiSNy5TPNaPiJwwt1zGyTxEn
+ 3eMv1DOhhPpoKOAOPAz9wIDpG+BPhpEs05LUrq7CZnUNkazreLp5avbXx g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="387752075"
+X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="387752075"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Sep 2022 17:40:24 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="572841175"
-X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="572841175"
+X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="572841177"
+X-IronPort-AV: E=Sophos;i="5.93,350,1654585200"; d="scan'208";a="572841177"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Sep 2022 17:40:24 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Sep 2022 17:41:38 -0700
-Message-Id: <20220928004145.745803-9-daniele.ceraolospurio@intel.com>
+Date: Tue, 27 Sep 2022 17:41:39 -0700
+Message-Id: <20220928004145.745803-10-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220928004145.745803-1-daniele.ceraolospurio@intel.com>
 References: <20220928004145.745803-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 08/15] drm/i915/pxp: implement function for sending
- tee stream command
+Subject: [Intel-gfx] [CI 09/15] drm/i915/pxp: add huc authentication and
+ loading command
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,225 +60,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Vitaly Lubart <vitaly.lubart@intel.com>
+From: Tomas Winkler <tomas.winkler@intel.com>
 
-Command to be sent via the stream interface are written to a local
-memory page, whose address is then provided to the GSC.
-The interface supports providing a full sg with multiple pages for both
-input and output messages, but since for now we only aim to support short
-and synchronous messages we can use a single page for both input and
-output.
+Add support for loading HuC via a pxp stream command.
 
-Note that the mei interface expects an sg of 4k pages, while our lmem pages
-are 64k. If we ever need to support more than 4k we'll need to convert.
-Added a TODO comment to the code to record this.
+V4:
+1. Remove unnecessary include in intel_pxp_huc.h (Jani)
+2. Adjust copyright year to 2022
 
-Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
 Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
- drivers/gpu/drm/i915/pxp/intel_pxp_tee.c   | 115 ++++++++++++++++++++-
- drivers/gpu/drm/i915/pxp/intel_pxp_tee.h   |   5 +
- drivers/gpu/drm/i915/pxp/intel_pxp_types.h |   6 ++
- 3 files changed, 125 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/Makefile                 |  3 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_huc.c      | 69 +++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_huc.h      | 13 ++++
+ .../drm/i915/pxp/intel_pxp_tee_interface.h    | 23 ++++++-
+ 4 files changed, 106 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_huc.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_huc.h
 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-index 17d7d83b6f1b..27d19d94253b 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-@@ -8,6 +8,8 @@
- #include <drm/i915_pxp_tee_interface.h>
- #include <drm/i915_component.h>
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 26fc2f23c4e0..f8cc1eb52626 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -312,7 +312,8 @@ i915-y += i915_perf.o
+ # Protected execution platform (PXP) support. Base support is required for HuC
+ i915-y += \
+ 	pxp/intel_pxp.o \
+-	pxp/intel_pxp_tee.o
++	pxp/intel_pxp_tee.o \
++	pxp/intel_pxp_huc.o
  
-+#include "gem/i915_gem_lmem.h"
+ i915-$(CONFIG_DRM_I915_PXP) += \
+ 	pxp/intel_pxp_cmd.o \
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_huc.c b/drivers/gpu/drm/i915/pxp/intel_pxp_huc.c
+new file mode 100644
+index 000000000000..7ec36d94e758
+--- /dev/null
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_huc.c
+@@ -0,0 +1,69 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright(c) 2021-2022, Intel Corporation. All rights reserved.
++ */
 +
- #include "i915_drv.h"
- #include "intel_pxp.h"
- #include "intel_pxp_session.h"
-@@ -69,6 +71,47 @@ static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
- 	return ret;
- }
- 
-+int intel_pxp_tee_stream_message(struct intel_pxp *pxp,
-+				 u8 client_id, u32 fence_id,
-+				 void *msg_in, size_t msg_in_len,
-+				 void *msg_out, size_t msg_out_len)
++#include "drm/i915_drm.h"
++#include "i915_drv.h"
++
++#include "gem/i915_gem_region.h"
++#include "gt/intel_gt.h"
++
++#include "intel_pxp.h"
++#include "intel_pxp_huc.h"
++#include "intel_pxp_tee.h"
++#include "intel_pxp_types.h"
++#include "intel_pxp_tee_interface.h"
++
++int intel_pxp_huc_load_and_auth(struct intel_pxp *pxp)
 +{
-+	/* TODO: for bigger objects we need to use a sg of 4k pages */
-+	const size_t max_msg_size = PAGE_SIZE;
-+	struct drm_i915_private *i915 = pxp_to_gt(pxp)->i915;
-+	struct i915_pxp_component *pxp_component = pxp->pxp_component;
-+	unsigned int offset = 0;
-+	struct scatterlist *sg;
-+	int ret;
-+
-+	if (msg_in_len > max_msg_size || msg_out_len > max_msg_size)
-+		return -ENOSPC;
-+
-+	mutex_lock(&pxp->tee_mutex);
-+
-+	if (unlikely(!pxp_component || !pxp_component->ops->gsc_command)) {
-+		ret = -ENODEV;
-+		goto unlock;
-+	}
-+
-+	GEM_BUG_ON(!pxp->stream_cmd.obj);
-+
-+	sg = i915_gem_object_get_sg_dma(pxp->stream_cmd.obj, 0, &offset);
-+
-+	memcpy(pxp->stream_cmd.vaddr, msg_in, msg_in_len);
-+
-+	ret = pxp_component->ops->gsc_command(pxp_component->tee_dev, client_id,
-+					      fence_id, sg, msg_in_len, sg);
-+	if (ret < 0)
-+		drm_err(&i915->drm, "Failed to send PXP TEE gsc command\n");
-+	else
-+		memcpy(msg_out, pxp->stream_cmd.vaddr, msg_out_len);
-+
-+unlock:
-+	mutex_unlock(&pxp->tee_mutex);
-+	return ret;
-+}
-+
- /**
-  * i915_pxp_tee_component_bind - bind function to pass the function pointers to pxp_tee
-  * @i915_kdev: pointer to i915 kernel device
-@@ -126,6 +169,66 @@ static const struct component_ops i915_pxp_tee_component_ops = {
- 	.unbind = i915_pxp_tee_component_unbind,
- };
- 
-+static int alloc_streaming_command(struct intel_pxp *pxp)
-+{
-+	struct drm_i915_private *i915 = pxp_to_gt(pxp)->i915;
-+	struct drm_i915_gem_object *obj = NULL;
-+	void *cmd;
++	struct intel_gt *gt = pxp_to_gt(pxp);
++	struct intel_huc *huc = &gt->uc.huc;
++	struct pxp_tee_start_huc_auth_in huc_in = {0};
++	struct pxp_tee_start_huc_auth_out huc_out = {0};
++	dma_addr_t huc_phys_addr;
++	u8 client_id = 0;
++	u8 fence_id = 0;
 +	int err;
 +
-+	pxp->stream_cmd.obj = NULL;
-+	pxp->stream_cmd.vaddr = NULL;
++	if (!pxp->pxp_component)
++		return -ENODEV;
 +
-+	if (!IS_DGFX(i915))
-+		return 0;
++	huc_phys_addr = i915_gem_object_get_dma_address(huc->fw.obj, 0);
 +
-+	/* allocate lmem object of one page for PXP command memory and store it */
-+	obj = i915_gem_object_create_lmem(i915, PAGE_SIZE, I915_BO_ALLOC_CONTIGUOUS);
-+	if (IS_ERR(obj)) {
-+		drm_err(&i915->drm, "Failed to allocate pxp streaming command!\n");
-+		return PTR_ERR(obj);
++	/* write the PXP message into the lmem (the sg list) */
++	huc_in.header.api_version = PXP_TEE_43_APIVER;
++	huc_in.header.command_id  = PXP_TEE_43_START_HUC_AUTH;
++	huc_in.header.status      = 0;
++	huc_in.header.buffer_len  = sizeof(huc_in.huc_base_address);
++	huc_in.huc_base_address   = huc_phys_addr;
++
++	err = intel_pxp_tee_stream_message(pxp, client_id, fence_id,
++					   &huc_in, sizeof(huc_in),
++					   &huc_out, sizeof(huc_out));
++	if (err < 0) {
++		drm_err(&gt->i915->drm,
++			"Failed to send HuC load and auth command to GSC [%d]!\n",
++			err);
++		return err;
 +	}
 +
-+	err = i915_gem_object_pin_pages_unlocked(obj);
-+	if (err) {
-+		drm_err(&i915->drm, "Failed to pin gsc message page!\n");
-+		goto out_put;
++	/*
++	 * HuC does sometimes survive suspend/resume (it depends on how "deep"
++	 * a sleep state the device reaches) so we can end up here on resume
++	 * with HuC already loaded, in which case the GSC will return
++	 * PXP_STATUS_OP_NOT_PERMITTED. We can therefore consider the GuC
++	 * correctly transferred in this scenario; if the same error is ever
++	 * returned with HuC not loaded we'll still catch it when we check the
++	 * authentication bit later.
++	 */
++	if (huc_out.header.status != PXP_STATUS_SUCCESS &&
++	    huc_out.header.status != PXP_STATUS_OP_NOT_PERMITTED) {
++		drm_err(&gt->i915->drm,
++			"HuC load failed with GSC error = 0x%x\n",
++			huc_out.header.status);
++		return -EPROTO;
 +	}
-+
-+	/* map the lmem into the virtual memory pointer */
-+	cmd = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(i915, obj, true));
-+	if (IS_ERR(cmd)) {
-+		drm_err(&i915->drm, "Failed to map gsc message page!\n");
-+		err = PTR_ERR(cmd);
-+		goto out_unpin;
-+	}
-+
-+	memset(cmd, 0, obj->base.size);
-+
-+	pxp->stream_cmd.obj = obj;
-+	pxp->stream_cmd.vaddr = cmd;
 +
 +	return 0;
-+
-+out_unpin:
-+	i915_gem_object_unpin_pages(obj);
-+out_put:
-+	i915_gem_object_put(obj);
-+	return err;
 +}
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_huc.h b/drivers/gpu/drm/i915/pxp/intel_pxp_huc.h
+new file mode 100644
+index 000000000000..e40847a91c39
+--- /dev/null
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_huc.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2021-2022, Intel Corporation. All rights reserved.
++ */
 +
-+static void free_streaming_command(struct intel_pxp *pxp)
-+{
-+	struct drm_i915_gem_object *obj = fetch_and_zero(&pxp->stream_cmd.obj);
++#ifndef __INTEL_PXP_HUC_H__
++#define __INTEL_PXP_HUC_H__
 +
-+	if (!obj)
-+		return;
++struct intel_pxp;
 +
-+	i915_gem_object_unpin_map(obj);
-+	i915_gem_object_unpin_pages(obj);
-+	i915_gem_object_put(obj);
-+}
++int intel_pxp_huc_load_and_auth(struct intel_pxp *pxp);
 +
- int intel_pxp_tee_component_init(struct intel_pxp *pxp)
- {
- 	int ret;
-@@ -134,16 +237,24 @@ int intel_pxp_tee_component_init(struct intel_pxp *pxp)
++#endif /* __INTEL_PXP_HUC_H__ */
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h b/drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h
+index 36e9b0868f5c..7edc1760f142 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h
+@@ -1,6 +1,6 @@
+ /* SPDX-License-Identifier: MIT */
+ /*
+- * Copyright(c) 2020, Intel Corporation. All rights reserved.
++ * Copyright(c) 2020-2022, Intel Corporation. All rights reserved.
+  */
  
- 	mutex_init(&pxp->tee_mutex);
+ #ifndef __INTEL_PXP_TEE_INTERFACE_H__
+@@ -9,8 +9,20 @@
+ #include <linux/types.h>
  
-+	ret = alloc_streaming_command(pxp);
-+	if (ret)
-+		return ret;
+ #define PXP_TEE_APIVER 0x40002
++#define PXP_TEE_43_APIVER 0x00040003
+ #define PXP_TEE_ARB_CMDID 0x1e
+ #define PXP_TEE_ARB_PROTECTION_MODE 0x2
++#define PXP_TEE_43_START_HUC_AUTH   0x0000003A
 +
- 	ret = component_add_typed(i915->drm.dev, &i915_pxp_tee_component_ops,
- 				  I915_COMPONENT_PXP);
- 	if (ret < 0) {
- 		drm_err(&i915->drm, "Failed to add PXP component (%d)\n", ret);
--		return ret;
-+		goto out_free;
- 	}
++/*
++ * there are a lot of status codes for PXP, but we only define the ones we
++ * actually can handle in the driver. other failure codes will be printed to
++ * error msg for debug.
++ */
++enum pxp_status {
++	PXP_STATUS_SUCCESS = 0x0,
++	PXP_STATUS_OP_NOT_PERMITTED = 0x4013
++};
  
- 	pxp->pxp_component_added = true;
+ /* PXP TEE message header */
+ struct pxp_tee_cmd_header {
+@@ -33,4 +45,13 @@ struct pxp_tee_create_arb_out {
+ 	struct pxp_tee_cmd_header header;
+ } __packed;
  
- 	return 0;
++struct pxp_tee_start_huc_auth_in {
++	struct pxp_tee_cmd_header header;
++	__le64                    huc_base_address;
++};
 +
-+out_free:
-+	free_streaming_command(pxp);
-+	return ret;
- }
- 
- void intel_pxp_tee_component_fini(struct intel_pxp *pxp)
-@@ -155,6 +266,8 @@ void intel_pxp_tee_component_fini(struct intel_pxp *pxp)
- 
- 	component_del(i915->drm.dev, &i915_pxp_tee_component_ops);
- 	pxp->pxp_component_added = false;
++struct pxp_tee_start_huc_auth_out {
++	struct pxp_tee_cmd_header header;
++};
 +
-+	free_streaming_command(pxp);
- }
- 
- int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
-index c136053ce340..aeb3dfe7ce96 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
-@@ -14,4 +14,9 @@ void intel_pxp_tee_component_fini(struct intel_pxp *pxp);
- int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
- 					 int arb_session_id);
- 
-+int intel_pxp_tee_stream_message(struct intel_pxp *pxp,
-+				 u8 client_id, u32 fence_id,
-+				 void *msg_in, size_t msg_in_len,
-+				 void *msg_out, size_t msg_out_len);
-+
- #endif /* __INTEL_PXP_TEE_H__ */
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-index 7ce5f37ee12e..f74b1e11a505 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-@@ -53,6 +53,12 @@ struct intel_pxp {
- 	/** @tee_mutex: protects the tee channel binding and messaging. */
- 	struct mutex tee_mutex;
- 
-+	/** @stream_cmd: LMEM obj used to send stream PXP commands to the GSC */
-+	struct {
-+		struct drm_i915_gem_object *obj; /* contains PXP command memory */
-+		void *vaddr; /* virtual memory for PXP command */
-+	} stream_cmd;
-+
- 	/**
- 	 * @hw_state_invalidated: if the HW perceives an attack on the integrity
- 	 * of the encryption it will invalidate the keys and expect SW to
+ #endif /* __INTEL_PXP_TEE_INTERFACE_H__ */
 -- 
 2.37.3
 
