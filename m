@@ -1,157 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD35B5EDECD
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 16:30:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 257B95EDEDE
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 16:35:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AC2310E8B0;
-	Wed, 28 Sep 2022 14:29:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FB6D10E940;
+	Wed, 28 Sep 2022 14:35:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3B6210E8B0
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 14:29:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664375394; x=1695911394;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=DCUjRvG4AStu9WPsuHNsLNwEvcAcxfBHjl1wQB3n9rU=;
- b=eatAEsR9QK1uSrQAJI2xhJFDPMDsY/ayDcA6b9nS1hq/twR/p0pXbW4m
- G/ZD4GYjMQz2be5X2gKlYU6/1rEBKAsQXaEBS7yXs2nTXeQHBUMPCyJHy
- 1lXf+O+q7Ws7D1lA54n63ETCW3f7pf+xT1k12jsj3WUhlTuo4I1JzWlhs
- vVfaxamu3H8Y7ieRUVQU13up20bYwog1bCB4r4OhYpooCj9/MY/di7sxk
- ++3y7hBC3I++t2eVho/kzAKHdvbXNigusxWQ2i1pv+EuBPMg8KHnNUF4Q
- c1DrT2BTBCM5PtxUEDTFWUkpVTpWabQpuairBmdMNt6mWvdDGz08mkErQ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="327982296"
-X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="327982296"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 07:29:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="950722468"
-X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="950722468"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga005.fm.intel.com with ESMTP; 28 Sep 2022 07:29:54 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 28 Sep 2022 07:29:53 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Wed, 28 Sep 2022 07:29:53 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Wed, 28 Sep 2022 07:29:53 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fFGtLkTAunjB30G6dFI56GO7NnsdEzUb+a5UUTrJU+eq5+RmTv9vArNuHmLd2FSK+iUMuak0Fae+p+gtgAEbNwaFZ4jydBfYmi25gJ8sKq+OnRa2NMdeMuTg4Pi+mORW3AnWzmU6K8tQsUtVS+nT4Hyd8n8gxdl5RQ/dovzvPbwIdL0NzzIGvX6YIN2sI5auRBRTjtP4IqR/NjFnE9D4+Ke6q33huupFYANuL2ExuDrRu1shqqrjvwLjuJamW+hIQsFXP7swEMAOYdKu6SlJi975V6+HhrPmJxHzED4H7/P0kXbzGCnSaNC5ZcH1uNm+/dhiMIUkBN/U1V6B1pr2Wg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DCUjRvG4AStu9WPsuHNsLNwEvcAcxfBHjl1wQB3n9rU=;
- b=EC+r2O5XvLaxDhOg7HCr6c+WNczivEBT3UihYjkVNPpDB0ZfJzqaFzxYdzwwAY0YVdykYiZhH0tPEyzaJj8w+fhSKiQ9xxqkqnFkfVQbjUewn3tUViANVbhLKjHfXJiVBVROQeIeZQimGxNlUGrid/7nPdutTbxb4+8gei6QqanuU2AU/95zUjZz8BnPrThkziCGxPm8lAGMSmqjT/NreyJjfyz2Zsec4ryANuSg8z4lYpYR1fcz17K05ZxV0ZW/6IifWmC2X4agNtdkVVjhC3EkwNKij+1yVnvgR0j88tDXbgy9Tgbtag4EH4FWOeWIzyuW0NNr/uYBa8S+dzTrwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by IA1PR11MB6171.namprd11.prod.outlook.com (2603:10b6:208:3e9::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17; Wed, 28 Sep
- 2022 14:29:51 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7ea6:6f6c:f2dc:cec7]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7ea6:6f6c:f2dc:cec7%3]) with mapi id 15.20.5654.025; Wed, 28 Sep 2022
- 14:29:51 +0000
-From: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "Gupta, Anshuman"
- <anshuman.gupta@intel.com>, "Tangudu, Tilak" <tilak.tangudu@intel.com>
-Thread-Topic: [PATCH 1/8] drm/i915: Added is_intel_rpm_allowed helper
-Thread-Index: AQHYnOb/v+1MXmvomUmaaCwLzsl/3a2dtiSAgACXUwCAVuDqAIAABEIAgAAhFoA=
-Date: Wed, 28 Sep 2022 14:29:51 +0000
-Message-ID: <c85e1e88ea721f74bb8e301aabd0f431906a308f.camel@intel.com>
-References: <20220721095955.3986943-1-tilak.tangudu@intel.com>
- <20220721095955.3986943-2-tilak.tangudu@intel.com>
- <YurbEfhNA53uoNlk@intel.com>
- <DM4PR11MB524866E916928FF7F9752A58E29F9@DM4PR11MB5248.namprd11.prod.outlook.com>
- <DM4PR11MB52486B936CD17F347D2B7070E2549@DM4PR11MB5248.namprd11.prod.outlook.com>
- <DM4PR11MB5248484CA0AF528B0B32AB2EE2549@DM4PR11MB5248.namprd11.prod.outlook.com>
-In-Reply-To: <DM4PR11MB5248484CA0AF528B0B32AB2EE2549@DM4PR11MB5248.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.42.4 (3.42.4-2.fc35) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN0PR11MB6059:EE_|IA1PR11MB6171:EE_
-x-ms-office365-filtering-correlation-id: cb03b515-1594-49e4-a331-08daa15de758
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: rE/CUXaRW/XmGKhmUrvrKEbuYrriWukVbFUlIggTldZ584n0Pz8gFET3KLKFGPoDVGMv3gheiGgXojVk17kFFG7DEzKsxFgy4bMgkdcEJPmIxNKqrOTOunvUWJUlLI2zLyxf5sXWSggUQC1FI71Z32Ue6/bk+SCkXjhRwUyB84XtJQajQ10zS/ZttuyvfJW5eXDqxyXQpxWa+E+aeYEc88w5WWeOFUcOO4eKd8kmlbxQWloc7hjiLKwiBFAxeVkkt8PlS4iqD8dotJjaynIYNPQEOOmJowCHdWIrjTtf8p2WIuLxpEdpDOSnVhXlyMjIL10KozzK0I0zhlJgOldHzpX/klGG7Vsto7QZ+CrrUDDig96QTeAmvSf7wujx1Pbn8VT7XVNR6UJXY5FKKFOLy7AhZqSgH3H/p3OtWLYFiYLrPSzhfVvaWBjhiyjR6A+Qvu5hxyUvQ/oMovHPuu/Jlo1MuafNoE2EeaPbjbtMp4WWlZTiC07z4ROBzAh4kG+6ghq0mn4x1xYIh0pNTfar54sjvYEXohQErGrGZx3/XDfmM/yuQJE4CeOoxztum4UScapPkjSUyWST+1oBPjJJh24BzoiMFjPNb4fJthziExSzcXlhIeiUbxiFaVIFWR/ZT/ADJTYWNm5dtGmDh9KF8T3kiW/kmOFFoMV2VcSOz0u3LNDV6WHTyVw/0a+jsgTkB+yc+8E4v+NhxFGzIa+ZWQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(346002)(366004)(136003)(376002)(39860400002)(451199015)(6506007)(8936002)(54906003)(478600001)(66476007)(110136005)(66946007)(76116006)(316002)(41300700001)(8676002)(66556008)(53546011)(64756008)(91956017)(4326008)(86362001)(66446008)(5660300002)(38100700002)(6486002)(82960400001)(122000001)(36756003)(26005)(6512007)(6636002)(38070700005)(2616005)(83380400001)(186003)(71200400001)(2906002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?V3JDMi91MVRBOXBOZ21BaHVpLzI4QTBKeUI3SGExU1R4MlhaRTJqcGQ0ZTdB?=
- =?utf-8?B?SnVjbU5Qb2hHWmkrbVBwTmlnREE0NjVZcGRpM3YwblNkMTIzSjQxRmJ2QVlS?=
- =?utf-8?B?cy9iYjZiT0cyTFprS0djT01PclFjc0VkeTlEZ3NOOFFaVXJiTlE4TWJjTXFm?=
- =?utf-8?B?Y25pUHV3bUM5akxXY1p1dzhpV09RVm9MNmxsSnNDWGZGWlpXMW5uVmpGeGNY?=
- =?utf-8?B?WExBWnB1VWR3L0lvc3oyVnZzb3MwQTdWODdGVldMQ1duUDFDOEVwWVpzWnRK?=
- =?utf-8?B?Lzd0b0oydlgyWW1jTUpJYVowNGM0ckwyTmE4U0lUVjhobnVjbFAvemoxR2Fq?=
- =?utf-8?B?YWgwN0Q2dm5ycUZSczJGZlBRL0VRcTF6elZpWG9CN2x0dlJxVFFPWmRxblJs?=
- =?utf-8?B?dWNjWmxTZGI5azVvaEZzUXlkV2YrR0cweXhualJpQU9TRzFvWDNzNDEwMkpm?=
- =?utf-8?B?L1VFcVA4WkR0VVNWV3g0c2l5dE9jL0xIUGpZWWNSbXdNVTlRZG9zeFQyNFJT?=
- =?utf-8?B?LzZvMlI5Vy9DdnVKTm9GMjUwNTB1MCtRZ1ZXU0tpRkQwVjFyNVB4bXpCZlJy?=
- =?utf-8?B?QkV6bnF2K1ZLUytKd3NGaDJqVk04d3dQTWFIZVJuN08xSlh4enFRMlpsM1gz?=
- =?utf-8?B?WmlCeWF4dHRWaDArTE1nM3FXOVNMdUJPUXJSZVZyanBUbTlSUGlQZWJrMU9a?=
- =?utf-8?B?N3ZLMVlPdFFzZEczWjNSWnlaSHVEc2lUb2dQajM3ZTNUNEsrb2NVOXVpZlNO?=
- =?utf-8?B?TEJBc2kreVE3aW9nakJpTGZRTUU3QzVYRmZlakdDNTdHZTg1NnNjZUhoT3lR?=
- =?utf-8?B?cUZ3aVNuUHVpSW1rdUZwMi9CR2F1NWJ1aTFLaFNIditTa0NoR0xhKzhiZE9u?=
- =?utf-8?B?VUlaWUlWeXQ2cnRjRS8yaXdyeGxycmt1UzZLQTRlM1RiaTlQSzc0bW9nOWRR?=
- =?utf-8?B?OUtoL1VDRXppL21COGtvVWhuNmR3NWF5WEZkbGhXdGc5SnQwRWp0T2NaOEc4?=
- =?utf-8?B?ZUNudk1HM3NoRGFEblFpZTEzbmh5MDc3eUM4dlNpVDQycGJ0QUFXUC8wSW5I?=
- =?utf-8?B?QndDdlVQOW03UnpBc2gxUzRQSWZJNGE0dlorZXZjYitIRndhZVJPTVR3SXNp?=
- =?utf-8?B?alBRRWdjNmhLMzZaVlZJeHcvTXBaRllOc2h2dE52Tko4MVF6bTFBRisrTkZR?=
- =?utf-8?B?UFdUNHJEVXg5OHU1TjNVK0JQTW83QzFmMFRmb2dvU201Y0Zab0tycnFmakIy?=
- =?utf-8?B?eUdMdGx5cmxzbkpnc0t4b2Q5Y3dHR2dzbVBSVTcrQUxaNjQvVzllNXlacGtM?=
- =?utf-8?B?M1dXY21QUEF4S2l0ZEtQNVIzR3JTNUV3S3IzZ1BIWTJOY2NNVDdCTTduSHVO?=
- =?utf-8?B?NjFmZGd0THdqY1BqcnZkR05haWVZUUoyNkYrYUEvMGxaeUF0WlFGTk0waERB?=
- =?utf-8?B?dWVBSHhvQk5YeXhjUitCSnhENjlIWUNPbmV5SFBXSTlOeVl5bGpGczVsdlU0?=
- =?utf-8?B?dFVZU25LcE5SSEdNVGR0MThmSi8rWU1SZ3BkMWlvbTlVOW0rc1A1Skk1dGJL?=
- =?utf-8?B?bXkvaGJuemtHU2RTV0xxSG03T2xiVGJXZE5TWCtwUGVEZkdialNNTHhqWS8v?=
- =?utf-8?B?V2N4cTBNU2ordUxoa1o1VFc2RWwvZGVickMrempFNWVWT2JtWUwwaFlKTW5E?=
- =?utf-8?B?QWFwNktCR2JKcElReldIUmQvQ05Yb0RJeEUvK0hXei8zOGxFRUczeDF5c3Bh?=
- =?utf-8?B?Q2hieVZ1OUU5VStscVZRTm5DaEdjS0svNXphVzJHbXE1dk9lRkFhbk1NWVRo?=
- =?utf-8?B?SjZVV1MrZmd4RG1QUUtnNW51N2I0VTEwUE5mMVNENlcvZDVNdm41RTlhYXFJ?=
- =?utf-8?B?R0M3RWthcnc0M0twSERtTlZvZkFBNnE0aFVyNGNYeGk5NE1Pdjk4MG14eUtG?=
- =?utf-8?B?QzBZVXFscHNMdkZJUmZReG1BRUk1Rml3V1EvYTZlOGFLcUJLdUEzdnBtRmFx?=
- =?utf-8?B?MStxZFZkdW4yS0FYaUJyVVlFalIyUUcxSWZhcENjNkV0UXZ4MktNVVJnZUJp?=
- =?utf-8?B?QngwQTNNY2RtRUJLMWNzOUIvVExhVnZ0SCsvYkhFdVhxc1pUK2ZkSFNIM3dm?=
- =?utf-8?B?eUl6V2NJajV3YUNxRVdIMmg1YlJhekNkcWJ0MHNKZnBvanJkMXM2TXVhWDFh?=
- =?utf-8?B?R3c9PQ==?=
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7057610E940;
+ Wed, 28 Sep 2022 14:35:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 678A9A00FD;
+ Wed, 28 Sep 2022 14:35:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <6ABACC5C9C2EE84F9D6DEB5D753509D9@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb03b515-1594-49e4-a331-08daa15de758
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2022 14:29:51.1097 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Ul5xhH2dn4K+Nq2YswHSLd9LjsrJwXS9z5uhNxdVHZy3hCioVPoq2nExJMsUq5uJdlecG4Hv2OHAy2hvpCuPDw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6171
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915: Added is_intel_rpm_allowed
- helper
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Wed, 28 Sep 2022 14:35:40 -0000
+Message-ID: <166437574038.594.5448782456925637837@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220928081300.101516-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20220928081300.101516-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Fixes_integer_overflow_or_integer_truncation_issues_in_page?=
+ =?utf-8?q?_lookups=2C_ttm_place_configuration_and_scatterlist_creation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,182 +41,537 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Gupta, saurabhg" <saurabhg.gupta@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Wilson,
- Chris P" <chris.p.wilson@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIyLTA5LTI4IGF0IDEyOjMxICswMDAwLCBUYW5ndWR1LCBUaWxhayB3cm90ZToN
-Cj4gKw0KPiANCj4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206IFRhbmd1
-ZHUsIFRpbGFrDQo+ID4gU2VudDogV2VkbmVzZGF5LCBTZXB0ZW1iZXIgMjgsIDIwMjIgNTo0NiBQ
-TQ0KPiA+IFRvOiBUYW5ndWR1LCBUaWxhayA8dGlsYWsudGFuZ3VkdUBpbnRlbC5jb20+OyBWaXZp
-LCBSb2RyaWdvDQo+ID4gPHJvZHJpZ28udml2aUBpbnRlbC5jb20+OyBOaWt1bGEsIEphbmkgPGph
-bmkubmlrdWxhQGludGVsLmNvbT4NCj4gPiBDYzogV2lsc29uLCBDaHJpcyBQIDxDaHJpcy5QLldp
-bHNvbkBpbnRlbC5jb20+OyBHdXB0YSwgc2F1cmFiaGcNCj4gPiA8c2F1cmFiaGcuZ3VwdGFAaW50
-ZWwuY29tPjsgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiA+IFN1YmplY3Q6IFJF
-OiBbUEFUQ0ggMS84XSBkcm0vaTkxNTogQWRkZWQgaXNfaW50ZWxfcnBtX2FsbG93ZWQNCj4gPiBo
-ZWxwZXINCj4gPiANCj4gPiDCoEBOaWt1bGEsIEphbmksDQo+ID4gDQo+ID4gQXMgeW91IGtub3cg
-d2UgaGF2ZSByZXVzZWQgaTkxNV9nZW1fYmFja3VwX3N1c3BlbmQsDQo+ID4gaTkxNV9nZW1fc3Vz
-cGVuZF9sYXRlIGFuZCBpOTE1X2dlbV9yZXN1bWUgaW4NCj4gPiBydW50aW1lX3BtX3N1c3BlbmQv
-cmVzdW1lIGNhbGxiYWNrcyAsdGhleSB1c2UgcnVudGltZSBwbSBoZWxwZXJzDQo+ID4gKGludGVs
-X3J1bnRpbWVfcG1fZ2V0L3B1dCkuDQo+ID4gVGhlc2UgbmVlZCB0byBiZSBhdm9pZGVkIGluIGNh
-bGxiYWNrcyBhcyB0aGV5IGxlYWQgdG8gZGVhZGxvY2suDQo+ID4gDQo+ID4gVGhpcyBjYW4gYmUg
-ZG9uZSBpbiB0d28gd2F5cw0KPiA+IDEpIHB1c2ggcnVudGltZSBwbSBoZWxwZXJzIHVzYWdlIGF0
-IGhpZ2hlciBsZXZlbCBmdW5jdGlvbnMsDQo+ID4gV2hpY2ggcmVxdWlyZXMgY29kZSByZWZhY3Rv
-cmluZw0KPiA+IChodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzEwNTQy
-Ny8jcmV2MsKgwqDCoCBpcw0KPiA+IHBhcnRpYWxseQ0KPiA+IGltcGxlbWVudGVkIGZvbGxvd2lu
-ZyB0aGlzKQ0KPiA+IDIpIEFkZCBpc19pbnRlbF9ycG1fYWxsb3dlZCBoZWxwZXIgYW5kIGF2b2lk
-IHRoZSBydW50aW1lIGhlbHBlcnMNCj4gPiAoaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
-b3JnL3Nlcmllcy8xMDU0MjcvI3JldjPCoGlzDQo+ID4gY29tcGxldGVseQ0KPiA+IGltcGxlbWVu
-dGVkIGZvbGxvd2luZyB0aGlzKQ0KPiA+IA0KPiA+IEhvcGUgSSBnYXZlIHlvdSB0aGUgY29udGV4
-dCwNCj4gPiANCj4gPiBBcyBwZXIgeW91ciByZXZpZXcgY29tbWVudCBpbiByZXYyLMKgIHRoZSBi
-ZWxvdyBpcyBpbXBsZW1lbnRlZCBpbg0KPiA+IHJldjMNCj4gPiANCj4gPiAiIiIiIiIiIiIiIiIi
-IiIiIiIiIiIiIiINCj4gPiB2MjogUmV0dXJuIC0yIGlmIHJ1bnRpbWUgcG0gaXMgbm90IGFsbG93
-ZWQgaW4gcnVudGltZV9wbV9nZXQgYW5kDQo+ID4gc2tpcA0KPiA+IHdha2VyZWYgcmVsZWFzZSBp
-biBydW50aW1lX3BtX3B1dCBpZiB3YWtlcmVmIHZhbHVlIGlzIC0yLiAtIEphbmkgTg0KPiA+IFNp
-Z25lZC1vZmYtYnk6IFRpbGFrIFRhbmd1ZHUgPHRpbGFrLnRhbmd1ZHVAaW50ZWwuY29tPg0KPiA+
-ICIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiINCj4gPiANCj4gPiBSb2RyaWdvIGFuZCBteXNlbGYg
-d2FudCB0byB0cmlnZ2VyIGEgZGlzY3Vzc2lvbiwgaWYgMikgaXMgYSBwcm9wZXINCj4gPiBhcHBy
-b2FjaCBvcg0KPiA+IGdvIHdpdGggMSkgd2hpY2ggcmVxdWlyZXMgbG90IG9mIGNvZGUgcmVmYWN0
-b3JpbmcuDQo+ID4gT3IgSXMgdGhlcmUgYW55IHdheSB3ZSBmb2xsb3cgMSkgd2l0aCBsZXNzIGNv
-ZGUgcmVmYWN0b3JpbmcuPw0KPiA+IE9yIERvIHlvdSB0aGluayB0aGVyZSBpcyBhbnkgb3RoZXIg
-cHJvcGVyIGFwcHJvYWNoID8NCj4gPiANCj4gPiAoUGxlYXNlIG5vdGUgcmV2MyBpcyBub3QgY2xl
-YW4sIGQzY29sZCBvZmYgc3VwcG9ydCBuZWVkIHRvIGJlDQo+ID4gcmVzdHJpY3RlZCB0bw0KPiA+
-IEhlYWRsZXNzIGNsaWVudHMgZm9yIG5vdyAsIHdlIHNlZSBzb21lIERpc3BsYXkgcmVsYXRlZCB3
-YXJuaW5ncyBpbg0KPiA+IGhlYWRlZA0KPiA+IGNhc2UgKS4NCg0KSSBiZWxpZXZlIHRoaXMgd2Fy
-bmluZ3Mgc2hvd3MgdGhhdCB0aGUgc29sdXRpb24gMiBoYXMgc29tZSBmbGF3cyBvcg0KY29ybmVy
-IGNhc2VzIHRoYXQgd2UgZG9uJ3QgZnVsbHkgdW5kZXJzdGFuZC4NCg0KSSBob25lc3RseSBiZWxp
-ZXZlIHdlIG5lZWQgdG8gZ28gd2l0aCBvcHRpb24gMSwgbW92aW5nIHRoZSBydW50aW1lX3BtXw0K
-e2dldCxwdXR9IHRvIGhpZ2hlciBsZXZlbHMuDQoNCk9uZSB3YXkgb3IgYW5vdGhlciwgd2Ugc2hv
-dWxkIG5vdCBnbyBwYXJ0aWFsIGhlcmUsIGJ1dCB3aXRoIGZ1bGwNCmltcGxlbWVudGF0aW9uIHNv
-IHdlIGNhbiBzZWUgaWYgd2UgYXJlIHJlYWxseSBjb3ZlcmVkLg0KDQpKYW5pLCB0aG91Z2h0cz8N
-Cg0KPiA+IA0KPiA+IFRoYW5rcw0KPiA+IFRpbGFrDQo+ID4gDQo+ID4gDQo+ID4gPiAtLS0tLU9y
-aWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+ID4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRlbC1nZngtYm91
-bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uDQo+ID4gPiBCZWhhbGYgT2YNCj4gPiA+IFRh
-bmd1ZHUsIFRpbGFrDQo+ID4gPiBTZW50OiBUaHVyc2RheSwgQXVndXN0IDQsIDIwMjIgMTE6MDMg
-QU0NCj4gPiA+IFRvOiBWaXZpLCBSb2RyaWdvIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPg0KPiA+
-ID4gQ2M6IE5pa3VsYSwgSmFuaSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPjsgV2lsc29uLCBDaHJp
-cyBQDQo+ID4gPiA8Y2hyaXMucC53aWxzb25AaW50ZWwuY29tPjsgR3VwdGEsIHNhdXJhYmhnDQo+
-ID4gPiA8c2F1cmFiaGcuZ3VwdGFAaW50ZWwuY29tPjsgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZw0KPiA+ID4gU3ViamVjdDogUmU6IFtJbnRlbC1nZnhdIFtQQVRDSCAxLzhdIGRybS9p
-OTE1OiBBZGRlZA0KPiA+ID4gaXNfaW50ZWxfcnBtX2FsbG93ZWQgaGVscGVyDQo+ID4gPiANCj4g
-PiA+IA0KPiA+ID4gDQo+ID4gPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gPiA+
-IEZyb206IFZpdmksIFJvZHJpZ28gPHJvZHJpZ28udml2aUBpbnRlbC5jb20+DQo+ID4gPiA+IFNl
-bnQ6IFRodXJzZGF5LCBBdWd1c3QgNCwgMjAyMiAyOjAxIEFNDQo+ID4gPiA+IFRvOiBUYW5ndWR1
-LCBUaWxhayA8dGlsYWsudGFuZ3VkdUBpbnRlbC5jb20+DQo+ID4gPiA+IENjOiBFd2lucywgSm9u
-IDxqb24uZXdpbnNAaW50ZWwuY29tPjsgQmVsZ2F1bWthciwgVmluYXkNCj4gPiA+ID4gPHZpbmF5
-LmJlbGdhdW1rYXJAaW50ZWwuY29tPjsgUm9wZXIsIE1hdHRoZXcgRA0KPiA+ID4gPiA8bWF0dGhl
-dy5kLnJvcGVyQGludGVsLmNvbT47IFdpbHNvbiwgQ2hyaXMgUA0KPiA+ID4gPiA8Y2hyaXMucC53
-aWxzb25AaW50ZWwuY29tPjsgTmlrdWxhLCBKYW5pDQo+ID4gPiA+IDxqYW5pLm5pa3VsYUBpbnRl
-bC5jb20+Ow0KPiA+ID4gPiBHdXB0YSwgc2F1cmFiaGcgPHNhdXJhYmhnLmd1cHRhQGludGVsLmNv
-bT47IEd1cHRhLCBBbnNodW1hbg0KPiA+ID4gPiA8YW5zaHVtYW4uZ3VwdGFAaW50ZWwuY29tPjsg
-TmlsYXdhciwgQmFkYWwNCj4gPiA+ID4gPGJhZGFsLm5pbGF3YXJAaW50ZWwuY29tPjsgRGVhaywg
-SW1yZSA8aW1yZS5kZWFrQGludGVsLmNvbT47DQo+ID4gPiA+IElkZGFtc2V0dHksIEFyYXZpbmQg
-PGFyYXZpbmQuaWRkYW1zZXR0eUBpbnRlbC5jb20+Ow0KPiA+ID4gPiBpbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnDQo+ID4gPiA+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMS84XSBkcm0vaTkx
-NTogQWRkZWQgaXNfaW50ZWxfcnBtX2FsbG93ZWQNCj4gPiA+ID4gaGVscGVyDQo+ID4gPiA+IA0K
-PiA+ID4gPiBPbiBUaHUsIEp1bCAyMSwgMjAyMiBhdCAwMzoyOTo0OFBNICswNTMwLA0KPiA+ID4g
-PiB0aWxhay50YW5ndWR1QGludGVsLmNvbQ0KPiA+IHdyb3RlOg0KPiA+ID4gPiA+IEZyb206IFRp
-bGFrIFRhbmd1ZHUgPHRpbGFrLnRhbmd1ZHVAaW50ZWwuY29tPg0KPiA+ID4gPiA+IA0KPiA+ID4g
-PiA+IEFkZGVkIGlzX2ludGVsX3JwbV9hbGxvd2VkIGZ1bmN0aW9uIHRvIHF1ZXJ5IHRoZSBydW50
-aW1lX3BtDQo+ID4gPiA+ID4gc3RhdHVzDQo+ID4gPiA+ID4gYW5kIGRpc2xsb3cgZHVyaW5nIHN1
-c3BlbmRpbmcgYW5kIHJlc3VtaW5nLg0KPiA+ID4gPiANCj4gPiA+ID4gPiANCj4gPiA+ID4gPiB2
-MjogUmV0dXJuIC0yIGlmIHJ1bnRpbWUgcG0gaXMgbm90IGFsbG93ZWQgaW4gcnVudGltZV9wbV9n
-ZXQNCj4gPiA+ID4gPiBhbmQNCj4gPiA+ID4gPiBza2lwIHdha2VyZWYgcmVsZWFzZSBpbiBydW50
-aW1lX3BtX3B1dCBpZiB3YWtlcmVmIHZhbHVlIGlzIC0NCj4gPiA+ID4gPiAyLiAtDQo+ID4gPiA+
-ID4gSmFuaSBODQo+ID4gPiA+IA0KPiA+ID4gPiBTaG91bGQgd2UgaGF2ZSBzb21lIGRlZmluZXMg
-aW5zdGVhZCBvZiB0aGUgLSNzPw0KPiA+ID4gT2sgd2lsbCBhZGRyZXNzIHRoaXMuDQo+ID4gPiA+
-IA0KPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFRpbGFrIFRhbmd1ZHUgPHRpbGFrLnRhbmd1ZHVA
-aW50ZWwuY29tPg0KPiA+ID4gPiA+IC0tLQ0KPiA+ID4gPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfcnVudGltZV9wbS5jIHwgMjMNCj4gPiA+ID4gKysrKysrKysrKysrKysrKysrKysr
-Ky0NCj4gPiA+ID4gPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9ydW50aW1lX3BtLmggfMKg
-IDEgKw0KPiA+ID4gPiA+IMKgMiBmaWxlcyBjaGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspLCAxIGRl
-bGV0aW9uKC0pDQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX3J1bnRpbWVfcG0uYw0KPiA+ID4gPiA+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaW50ZWxfcnVudGltZV9wbS5jDQo+ID4gPiA+ID4gaW5kZXggNmVkNTc4NmJjZDI5Li43
-MDRiZWVlYjU2MGIgMTAwNjQ0DQo+ID4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfcnVudGltZV9wbS5jDQo+ID4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfcnVudGltZV9wbS5jDQo+ID4gPiA+ID4gQEAgLTExMyw3ICsxMTMsNyBAQCBzdGF0aWMg
-dm9pZA0KPiA+ID4gPiB1bnRyYWNrX2ludGVsX3J1bnRpbWVfcG1fd2FrZXJlZihzdHJ1Y3QgaW50
-ZWxfcnVudGltZV9wbSAqcnBtLA0KPiA+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqB1bnNpZ25lZCBs
-b25nIGZsYWdzLCBuOw0KPiA+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqBib29sIGZvdW5kID0gZmFs
-c2U7DQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gLcKgwqDCoMKgwqDCoMKgaWYgKHVubGlrZWx5KHN0
-YWNrID09IC0xKSkNCj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqBpZiAodW5saWtlbHkoc3RhY2sg
-PT0gLTEpIHx8IHVubGlrZWx5KHN0YWNrID09IC0yKSkNCj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybjsNCj4gPiA+ID4gPiANCj4gPiA+ID4gPiDCoMKgwqDC
-oMKgwqDCoMKgc3Bpbl9sb2NrX2lycXNhdmUoJnJwbS0+ZGVidWcubG9jaywgZmxhZ3MpOyBAQCAt
-MzIwLDYNCj4gPiA+ID4gPiArMzIwLDIxDQo+ID4gPiA+IEBADQo+ID4gPiA+ID4gdW50cmFja19h
-bGxfaW50ZWxfcnVudGltZV9wbV93YWtlcmVmcyhzdHJ1Y3QgaW50ZWxfcnVudGltZV9wbQ0KPiA+
-ID4gPiA+ICpycG0pIH0NCj4gPiA+ID4gPiANCj4gPiA+ID4gPiDCoCNlbmRpZg0KPiA+ID4gPiA+
-ICtzdGF0aWMgaW50IGludGVsX3J1bnRpbWVfcG1fc3RhdHVzKHN0cnVjdCBpbnRlbF9ydW50aW1l
-X3BtDQo+ID4gPiA+ID4gKnJwbSkgew0KPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoHJldHVybiBy
-cG0tPmtkZXYtPnBvd2VyLnJ1bnRpbWVfc3RhdHVzOyB9DQo+ID4gPiA+ID4gKw0KPiA+ID4gPiA+
-ICtib29sIGlzX2ludGVsX3JwbV9hbGxvd2VkKHN0cnVjdCBpbnRlbF9ydW50aW1lX3BtICpycG0p
-DQo+ID4gPiA+IA0KPiA+ID4gPiB3aHkgbm90IHN0YXRpYz8NCj4gPiA+IMKgV2UgbmVlZCBpc19p
-bnRlbF9ycG1fYWxsb3dlZCBmb3IgcmM2IGhlbHBlcnMgLCB0aGUgaGVscGVycyB1c2UNCj4gPiA+
-IHBtX3J1bnRpbWVfZ2V0X3N5bmMsIFRvIGF2b2lkIGxvY2sgaXNzdWUgd2UgbmVlZCB0byB1c2Ug
-aXQgaGVyZQ0KPiA+ID4gdG9vLg0KPiA+ID4gDQo+ID4gPiBTZWUgdGhpcyBwYXRjaCAiIGRybS9p
-OTE1OiBHdWFyZCByYzYgaGVscGVycyB3aXRoDQo+ID4gPiBpc19pbnRlbF9ycG1fYWxsb3dlZCIN
-Cj4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gPiArew0KPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDC
-oGludCBycG1fc3RhdHVzOw0KPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqBy
-cG1fc3RhdHVzID0gaW50ZWxfcnVudGltZV9wbV9zdGF0dXMocnBtKTsNCj4gPiA+ID4gPiArwqDC
-oMKgwqDCoMKgwqBpZiAocnBtX3N0YXR1cyA9PSBSUE1fUkVTVU1JTkcNCj4gPiA+ID4gDQo+ID4g
-PiA+IEkgZG9uJ3QgaGF2ZSBhIGdvb2QgZmVlbGluZyBhYm91dCB0aGlzLiBJZiB3ZSBhcmUgcmVz
-dW1pbmcgd2UNCj4gPiA+ID4gc2hvdWxkbid0IGdyYWIgZXh0cmEgcmVmZXJlbmNlcy4uLiBUaGlz
-IHNlZW1zIGEgd29ya2Fyb3VuZCBmb3INCj4gPiA+ID4gdGhlDQo+ID4gPiA+IGxvY2sNCj4gPiA+
-IG1lc3MuDQo+ID4gPiA+IA0KPiA+ID4gPiA+ID4gPiBycG1fc3RhdHVzID09IFJQTV9TVVNQRU5E
-SU5HKQ0KPiA+ID4gPiANCj4gPiA+ID4gYW5kIHdoZW4gd2UgYXJlIHN1c3BlbmRpbmcgYW5kIHdl
-IGNhbGwgdGhpcyBmdW5jdGlvbiBpcyBiZWNhdXNlDQo+ID4gPiA+IHdlDQo+ID4gPiA+IG5lZWQg
-dG8gd2FrZSB1cCwgbm8/IQ0KPiA+ID4gDQo+ID4gPiBBcyB3ZSBoYXZlIHJlLXVzZWQgaTkxNV9n
-ZW1fYmFja3VwX3N1c3BlbmQsIGk5MTVfZ2VtX3N1c3BlbmRfbGF0ZQ0KPiA+IGFuZA0KPiA+ID4g
-aTkxNV9nZW1fcmVzdW1lICwgVGhlc2UgZnVuY3Rpb25zIHVzZSBydW50aW1lIGhlbHBlcnMsIHdo
-aWNoIGluLQ0KPiA+ID4gdHVybg0KPiA+ID4gY2FsbMKgIHJ1bnRpbWUgc3VzcGVuZC9yZXN1bWUg
-Y2FsbGJhY2tzIGFuZCBsZWFkcyB0byBkZWFkbG9jay4NCj4gPiA+IMKgU28sIHRoZXNlIGhlbHBl
-cnMgbmVlZCB0byBiZSBhdm9pZGVkLsKgIHdlIGhhdmUgYWRkZWQNCj4gPiA+IGlzX2ludGVsX3Jw
-bV9hbGxvd2VkIGFuZCBkaXNhbGxvd2VkIHJwbSBjYWxsYmFja3Mgd2l0aCBhYm92ZQ0KPiA+ID4g
-Y29uZGl0aW9uDQo+ID4gPiBkdXJpbmcgc3VzcGVuZGluZyBhbmQgcmVzdW1pbmfCoCB0byBhdm9p
-ZCBkZWFkbG9jay4NCj4gPiA+ID4gDQo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoHJldHVybiBmYWxzZTsNCj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqBlbHNlDQo+ID4g
-PiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiB0cnVlOw0KPiA+ID4g
-PiA+ICt9DQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gwqBzdGF0aWMgdm9pZA0KPiA+ID4gPiA+IMKg
-aW50ZWxfcnVudGltZV9wbV9hY3F1aXJlKHN0cnVjdCBpbnRlbF9ydW50aW1lX3BtICpycG0sIGJv
-b2wNCj4gPiA+ID4gPiB3YWtlbG9jaykgQEAgLTM1NCw2ICszNjksOSBAQCBzdGF0aWMgaW50ZWxf
-d2FrZXJlZl90DQo+ID4gPiA+IF9faW50ZWxfcnVudGltZV9wbV9nZXQoc3RydWN0IGludGVsX3J1
-bnRpbWVfcG0gKnJwbSwNCj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoA0KPiA+ID4gPiA+IHJ1bnRpbWVfcG0pOw0KPiA+ID4gPiA+IMKgwqDC
-oMKgwqDCoMKgwqBpbnQgcmV0Ow0KPiA+ID4gPiA+IA0KPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDC
-oGlmICghaXNfaW50ZWxfcnBtX2FsbG93ZWQocnBtKSkNCj4gPiA+ID4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIC0yOw0KPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiDCoMKg
-wqDCoMKgwqDCoMKgcmV0ID0gcG1fcnVudGltZV9nZXRfc3luYyhycG0tPmtkZXYpOw0KPiA+ID4g
-PiA+IMKgwqDCoMKgwqDCoMKgwqBkcm1fV0FSTl9PTkNFKCZpOTE1LT5kcm0sIHJldCA8IDAsDQo+
-ID4gPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJwbV9y
-dW50aW1lX2dldF9zeW5jKCkgZmFpbGVkOiAlZFxuIiwNCj4gPiA+ID4gPiByZXQpOyBAQCAtNDkw
-LDYNCj4gPiA+ID4gKzUwOCw5DQo+ID4gPiA+ID4gQEAgc3RhdGljIHZvaWQgX19pbnRlbF9ydW50
-aW1lX3BtX3B1dChzdHJ1Y3QgaW50ZWxfcnVudGltZV9wbQ0KPiA+ID4gPiA+ICpycG0sDQo+ID4g
-PiA+ID4gDQo+ID4gPiA+ID4gwqDCoMKgwqDCoMKgwqDCoHVudHJhY2tfaW50ZWxfcnVudGltZV9w
-bV93YWtlcmVmKHJwbSwgd3JlZik7DQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gK8KgwqDCoMKgwqDC
-oMKgaWYgKHdyZWYgPT0gLTIpDQo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoHJldHVybjsNCj4gPiA+ID4gPiArDQo+ID4gPiA+ID4gwqDCoMKgwqDCoMKgwqDCoGludGVs
-X3J1bnRpbWVfcG1fcmVsZWFzZShycG0sIHdha2Vsb2NrKTsNCj4gPiA+ID4gPiANCj4gPiA+ID4g
-PiDCoMKgwqDCoMKgwqDCoMKgcG1fcnVudGltZV9tYXJrX2xhc3RfYnVzeShrZGV2KTsgZGlmZiAt
-LWdpdA0KPiA+ID4gPiA+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcnVudGltZV9wbS5o
-DQo+ID4gPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9ydW50aW1lX3BtLmgNCj4g
-PiA+ID4gPiBpbmRleCBkOTE2MGUzZmY0YWYuLjk5NDE4YzNhOTM0YSAxMDA2NDQNCj4gPiA+ID4g
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9ydW50aW1lX3BtLmgNCj4gPiA+ID4g
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9ydW50aW1lX3BtLmgNCj4gPiA+ID4g
-PiBAQCAtMTczLDYgKzE3Myw3IEBAIHZvaWQgaW50ZWxfcnVudGltZV9wbV9pbml0X2Vhcmx5KHN0
-cnVjdA0KPiA+ID4gPiA+IGludGVsX3J1bnRpbWVfcG0gKnJwbSk7wqAgdm9pZCBpbnRlbF9ydW50
-aW1lX3BtX2VuYWJsZShzdHJ1Y3QNCj4gPiA+ID4gPiBpbnRlbF9ydW50aW1lX3BtICpycG0pO8Kg
-IHZvaWQgaW50ZWxfcnVudGltZV9wbV9kaXNhYmxlKHN0cnVjdA0KPiA+ID4gPiA+IGludGVsX3J1
-bnRpbWVfcG0gKnJwbSk7wqAgdm9pZA0KPiA+ID4gPiA+IGludGVsX3J1bnRpbWVfcG1fZHJpdmVy
-X3JlbGVhc2Uoc3RydWN0DQo+ID4gPiA+ID4gaW50ZWxfcnVudGltZV9wbSAqcnBtKTsNCj4gPiA+
-ID4gPiArYm9vbCBpc19pbnRlbF9ycG1fYWxsb3dlZChzdHJ1Y3QgaW50ZWxfcnVudGltZV9wbSAq
-cnBtKTsNCj4gPiA+ID4gDQo+ID4gPiA+IGlmIHJlYWxseSBuZWVkIHRvIGV4cG9ydCBwbGVhc2Ug
-Zm9sbG93IHRoZSBuYW1pbmcgY29udmVudGlvbi5cDQo+ID4gPiANCj4gPiA+IE9rIHdpbGwgYWRk
-cmVzcyB0aGlzLg0KPiA+ID4gDQo+ID4gPiAtVGlsYWsNCj4gPiA+ID4gDQo+ID4gPiA+ID4gDQo+
-ID4gPiA+ID4gwqBpbnRlbF93YWtlcmVmX3QgaW50ZWxfcnVudGltZV9wbV9nZXQoc3RydWN0IGlu
-dGVsX3J1bnRpbWVfcG0NCj4gPiA+ID4gPiAqcnBtKTsgaW50ZWxfd2FrZXJlZl90IGludGVsX3J1
-bnRpbWVfcG1fZ2V0X2lmX2luX3VzZShzdHJ1Y3QNCj4gPiA+ID4gPiBpbnRlbF9ydW50aW1lX3Bt
-ICpycG0pOw0KPiA+ID4gPiA+IC0tDQo+ID4gPiA+ID4gMi4yNS4xDQo+ID4gPiA+ID4gDQoNCg==
+== Series Details ==
+
+Series: Fixes integer overflow or integer truncation issues in page lookups, ttm place configuration and scatterlist creation
+URL   : https://patchwork.freedesktop.org/series/109169/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+3f208bf5aace overflow: Allow mixed type arguments
+-:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#18: 
+[2] https://lore.kernel.org/lkml/20220824084514.2261614-2-gwan-gyeong.mun@intel.com
+
+-:29: WARNING:BAD_SIGN_OFF: Use a single space after Tested-by:
+#29: 
+Tested-by:  Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+
+-:139: CHECK:SPACING: No space is necessary after a cast
+#139: FILE: lib/overflow_kunit.c:27:
++#define DEFINE_TEST_ARRAY(t)	DEFINE_TEST_ARRAY_TYPED(t, t, t)
+
+-:139: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
+#139: FILE: lib/overflow_kunit.c:27:
++#define DEFINE_TEST_ARRAY(t)	DEFINE_TEST_ARRAY_TYPED(t, t, t)
+
+-:153: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fmt' - possible side-effects?
+#153: FILE: lib/overflow_kunit.c:228:
++#define check_one_op(t, fmt, op, sym, a, b, r, of) do {			\
++	int _a_orig = a, _a_bump = a + 1;				\
++	int _b_orig = b, _b_bump = b + 1;				\
++	bool _of;							\
++	t _r;								\
++									\
++	_of = check_ ## op ## _overflow(a, b, &_r);			\
++	KUNIT_EXPECT_EQ_MSG(test, _of, of,				\
+ 		"expected "fmt" "sym" "fmt" to%s overflow (type %s)\n",	\
++		a, b, of ? "" : " not", #t);				\
++	KUNIT_EXPECT_EQ_MSG(test, _r, r,				\
+ 		"expected "fmt" "sym" "fmt" == "fmt", got "fmt" (type %s)\n", \
++		a, b, r, _r, #t);					\
++	/* Check for internal macro side-effects. */			\
++	_of = check_ ## op ## _overflow(_a_orig++, _b_orig++, &_r);	\
++	KUNIT_EXPECT_EQ_MSG(test, _a_orig, _a_bump, "Unexpected " #op " macro side-effect!\n"); \
++	KUNIT_EXPECT_EQ_MSG(test, _b_orig, _b_bump, "Unexpected " #op " macro side-effect!\n"); \
+ } while (0)
+
+-:153: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'sym' - possible side-effects?
+#153: FILE: lib/overflow_kunit.c:228:
++#define check_one_op(t, fmt, op, sym, a, b, r, of) do {			\
++	int _a_orig = a, _a_bump = a + 1;				\
++	int _b_orig = b, _b_bump = b + 1;				\
++	bool _of;							\
++	t _r;								\
++									\
++	_of = check_ ## op ## _overflow(a, b, &_r);			\
++	KUNIT_EXPECT_EQ_MSG(test, _of, of,				\
+ 		"expected "fmt" "sym" "fmt" to%s overflow (type %s)\n",	\
++		a, b, of ? "" : " not", #t);				\
++	KUNIT_EXPECT_EQ_MSG(test, _r, r,				\
+ 		"expected "fmt" "sym" "fmt" == "fmt", got "fmt" (type %s)\n", \
++		a, b, r, _r, #t);					\
++	/* Check for internal macro side-effects. */			\
++	_of = check_ ## op ## _overflow(_a_orig++, _b_orig++, &_r);	\
++	KUNIT_EXPECT_EQ_MSG(test, _a_orig, _a_bump, "Unexpected " #op " macro side-effect!\n"); \
++	KUNIT_EXPECT_EQ_MSG(test, _b_orig, _b_bump, "Unexpected " #op " macro side-effect!\n"); \
+ } while (0)
+
+-:153: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'a' - possible side-effects?
+#153: FILE: lib/overflow_kunit.c:228:
++#define check_one_op(t, fmt, op, sym, a, b, r, of) do {			\
++	int _a_orig = a, _a_bump = a + 1;				\
++	int _b_orig = b, _b_bump = b + 1;				\
++	bool _of;							\
++	t _r;								\
++									\
++	_of = check_ ## op ## _overflow(a, b, &_r);			\
++	KUNIT_EXPECT_EQ_MSG(test, _of, of,				\
+ 		"expected "fmt" "sym" "fmt" to%s overflow (type %s)\n",	\
++		a, b, of ? "" : " not", #t);				\
++	KUNIT_EXPECT_EQ_MSG(test, _r, r,				\
+ 		"expected "fmt" "sym" "fmt" == "fmt", got "fmt" (type %s)\n", \
++		a, b, r, _r, #t);					\
++	/* Check for internal macro side-effects. */			\
++	_of = check_ ## op ## _overflow(_a_orig++, _b_orig++, &_r);	\
++	KUNIT_EXPECT_EQ_MSG(test, _a_orig, _a_bump, "Unexpected " #op " macro side-effect!\n"); \
++	KUNIT_EXPECT_EQ_MSG(test, _b_orig, _b_bump, "Unexpected " #op " macro side-effect!\n"); \
+ } while (0)
+
+-:153: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#153: FILE: lib/overflow_kunit.c:228:
++#define check_one_op(t, fmt, op, sym, a, b, r, of) do {			\
++	int _a_orig = a, _a_bump = a + 1;				\
++	int _b_orig = b, _b_bump = b + 1;				\
++	bool _of;							\
++	t _r;								\
++									\
++	_of = check_ ## op ## _overflow(a, b, &_r);			\
++	KUNIT_EXPECT_EQ_MSG(test, _of, of,				\
+ 		"expected "fmt" "sym" "fmt" to%s overflow (type %s)\n",	\
++		a, b, of ? "" : " not", #t);				\
++	KUNIT_EXPECT_EQ_MSG(test, _r, r,				\
+ 		"expected "fmt" "sym" "fmt" == "fmt", got "fmt" (type %s)\n", \
++		a, b, r, _r, #t);					\
++	/* Check for internal macro side-effects. */			\
++	_of = check_ ## op ## _overflow(_a_orig++, _b_orig++, &_r);	\
++	KUNIT_EXPECT_EQ_MSG(test, _a_orig, _a_bump, "Unexpected " #op " macro side-effect!\n"); \
++	KUNIT_EXPECT_EQ_MSG(test, _b_orig, _b_bump, "Unexpected " #op " macro side-effect!\n"); \
+ } while (0)
+
+-:153: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'r' - possible side-effects?
+#153: FILE: lib/overflow_kunit.c:228:
++#define check_one_op(t, fmt, op, sym, a, b, r, of) do {			\
++	int _a_orig = a, _a_bump = a + 1;				\
++	int _b_orig = b, _b_bump = b + 1;				\
++	bool _of;							\
++	t _r;								\
++									\
++	_of = check_ ## op ## _overflow(a, b, &_r);			\
++	KUNIT_EXPECT_EQ_MSG(test, _of, of,				\
+ 		"expected "fmt" "sym" "fmt" to%s overflow (type %s)\n",	\
++		a, b, of ? "" : " not", #t);				\
++	KUNIT_EXPECT_EQ_MSG(test, _r, r,				\
+ 		"expected "fmt" "sym" "fmt" == "fmt", got "fmt" (type %s)\n", \
++		a, b, r, _r, #t);					\
++	/* Check for internal macro side-effects. */			\
++	_of = check_ ## op ## _overflow(_a_orig++, _b_orig++, &_r);	\
++	KUNIT_EXPECT_EQ_MSG(test, _a_orig, _a_bump, "Unexpected " #op " macro side-effect!\n"); \
++	KUNIT_EXPECT_EQ_MSG(test, _b_orig, _b_bump, "Unexpected " #op " macro side-effect!\n"); \
+ } while (0)
+
+-:153: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'of' - possible side-effects?
+#153: FILE: lib/overflow_kunit.c:228:
++#define check_one_op(t, fmt, op, sym, a, b, r, of) do {			\
++	int _a_orig = a, _a_bump = a + 1;				\
++	int _b_orig = b, _b_bump = b + 1;				\
++	bool _of;							\
++	t _r;								\
++									\
++	_of = check_ ## op ## _overflow(a, b, &_r);			\
++	KUNIT_EXPECT_EQ_MSG(test, _of, of,				\
+ 		"expected "fmt" "sym" "fmt" to%s overflow (type %s)\n",	\
++		a, b, of ? "" : " not", #t);				\
++	KUNIT_EXPECT_EQ_MSG(test, _r, r,				\
+ 		"expected "fmt" "sym" "fmt" == "fmt", got "fmt" (type %s)\n", \
++		a, b, r, _r, #t);					\
++	/* Check for internal macro side-effects. */			\
++	_of = check_ ## op ## _overflow(_a_orig++, _b_orig++, &_r);	\
++	KUNIT_EXPECT_EQ_MSG(test, _a_orig, _a_bump, "Unexpected " #op " macro side-effect!\n"); \
++	KUNIT_EXPECT_EQ_MSG(test, _b_orig, _b_bump, "Unexpected " #op " macro side-effect!\n"); \
+ } while (0)
+
+-:177: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
+#177: FILE: lib/overflow_kunit.c:247:
++#define DEFINE_TEST_FUNC_TYPED(n, t, fmt)				\
++static void do_test_ ## n(struct kunit *test, const struct test_ ## n *p) \
+ {							   		\
+ 	check_one_op(t, fmt, add, "+", p->a, p->b, p->sum, p->s_of);	\
+ 	check_one_op(t, fmt, add, "+", p->b, p->a, p->sum, p->s_of);	\
+
+-:177: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fmt' - possible side-effects?
+#177: FILE: lib/overflow_kunit.c:247:
++#define DEFINE_TEST_FUNC_TYPED(n, t, fmt)				\
++static void do_test_ ## n(struct kunit *test, const struct test_ ## n *p) \
+ {							   		\
+ 	check_one_op(t, fmt, add, "+", p->a, p->b, p->sum, p->s_of);	\
+ 	check_one_op(t, fmt, add, "+", p->b, p->a, p->sum, p->s_of);	\
+
+-:187: ERROR:OPEN_BRACE: open brace '{' following function definitions go on the next line
+#187: FILE: lib/overflow_kunit.c:257:
++static void n ## _overflow_test(struct kunit *test) {			\
+
+-:214: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#214: FILE: lib/overflow_kunit.c:285:
++};
++DEFINE_TEST_FUNC_TYPED(u32_u32__u8, u8, "%d");
+
+-:220: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#220: FILE: lib/overflow_kunit.c:291:
++};
++DEFINE_TEST_FUNC_TYPED(u32_u32__int, int, "%d");
+
+-:227: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#227: FILE: lib/overflow_kunit.c:298:
++};
++DEFINE_TEST_FUNC_TYPED(u8_u8__int, int, "%d");
+
+-:234: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#234: FILE: lib/overflow_kunit.c:305:
++};
++DEFINE_TEST_FUNC_TYPED(int_int__u8, u8, "%d");
+
+total: 1 errors, 2 warnings, 14 checks, 224 lines checked
+6b4bd5bf2340 overflow: Introduce check_assign() and check_assign_user_ptr()
+017f1098ad82 overflow: Introduce overflows_type() and castable_to_type()
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#73: FILE: include/linux/overflow.h:174:
++#define __overflows_type_constexpr(x, T) (			\
++	is_unsigned_type(typeof(x)) ?				\
++		(x) > type_max(typeof(T)) ? 1 : 0		\
++	: is_unsigned_type(typeof(T)) ?				\
++		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
++		: (x) < type_min(typeof(T)) ||			\
++		  (x) > type_max(typeof(T)) ? 1 : 0)
+
+-:74: CHECK:SPACING: No space is necessary after a cast
+#74: FILE: include/linux/overflow.h:175:
++	is_unsigned_type(typeof(x)) ?				\
+
+-:75: CHECK:SPACING: No space is necessary after a cast
+#75: FILE: include/linux/overflow.h:176:
++		(x) > type_max(typeof(T)) ? 1 : 0		\
+
+-:76: CHECK:SPACING: No space is necessary after a cast
+#76: FILE: include/linux/overflow.h:177:
++	: is_unsigned_type(typeof(T)) ?				\
+
+-:77: CHECK:SPACING: No space is necessary after a cast
+#77: FILE: include/linux/overflow.h:178:
++		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
+
+-:78: CHECK:SPACING: No space is necessary after a cast
+#78: FILE: include/linux/overflow.h:179:
++		: (x) < type_min(typeof(T)) ||			\
+
+-:79: CHECK:SPACING: No space is necessary after a cast
+#79: FILE: include/linux/overflow.h:180:
++		  (x) > type_max(typeof(T)) ? 1 : 0)
+
+-:100: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#100: FILE: include/linux/overflow.h:201:
++#define overflows_type(n, T)					\
++	__builtin_choose_expr(__is_constexpr(n),		\
++			      __overflows_type_constexpr(n, T),	\
++			      __overflows_type(n, T))
+
+-:100: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
+#100: FILE: include/linux/overflow.h:201:
++#define overflows_type(n, T)					\
++	__builtin_choose_expr(__is_constexpr(n),		\
++			      __overflows_type_constexpr(n, T),	\
++			      __overflows_type(n, T))
+
+-:116: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#116: FILE: include/linux/overflow.h:217:
++#define castable_to_type(n, T)						\
++	__builtin_choose_expr(__is_constexpr(n),			\
++			      !__overflows_type_constexpr(n, T),	\
++			      __same_type(n, T))
+
+-:116: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
+#116: FILE: include/linux/overflow.h:217:
++#define castable_to_type(n, T)						\
++	__builtin_choose_expr(__is_constexpr(n),			\
++			      !__overflows_type_constexpr(n, T),	\
++			      __same_type(n, T))
+
+-:158: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'of' - possible side-effects?
+#158: FILE: lib/overflow_kunit.c:700:
++#define __TEST_OVERFLOWS_TYPE(func, arg1, arg2, of)	do {		\
++	bool __of = func(arg1, arg2);					\
++	KUNIT_EXPECT_EQ_MSG(test, __of, of,				\
++		"expected " #func "(" #arg1 ", " #arg2 " to%s overflow\n",\
++		of ? "" : " not");					\
++	count++;							\
++} while (0)
+
+-:167: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__t2' - possible side-effects?
+#167: FILE: lib/overflow_kunit.c:709:
++#define TEST_OVERFLOWS_TYPE(__t1, __t2, v, of) do {			\
++	__t1 t1 = (v);							\
++	__t2 t2;							\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, __t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, t2, of);	\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, __t2, of);\
++} while (0)
+
+-:167: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'of' - possible side-effects?
+#167: FILE: lib/overflow_kunit.c:709:
++#define TEST_OVERFLOWS_TYPE(__t1, __t2, v, of) do {			\
++	__t1 t1 = (v);							\
++	__t2 t2;							\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, __t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, t2, of);	\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, __t2, of);\
++} while (0)
+
+-:370: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't1' - possible side-effects?
+#370: FILE: lib/overflow_kunit.c:912:
++#define TEST_SAME_TYPE(t1, t2, same)			do {	\
++	typeof(t1) __t1h = type_max(t1);			\
++	typeof(t1) __t1l = type_min(t1);			\
++	typeof(t2) __t2h = type_max(t2);			\
++	typeof(t2) __t2l = type_min(t2);			\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
++} while (0)
+
+-:370: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't2' - possible side-effects?
+#370: FILE: lib/overflow_kunit.c:912:
++#define TEST_SAME_TYPE(t1, t2, same)			do {	\
++	typeof(t1) __t1h = type_max(t1);			\
++	typeof(t1) __t1l = type_min(t1);			\
++	typeof(t2) __t2h = type_max(t2);			\
++	typeof(t2) __t2l = type_min(t2);			\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
++} while (0)
+
+-:370: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'same' - possible side-effects?
+#370: FILE: lib/overflow_kunit.c:912:
++#define TEST_SAME_TYPE(t1, t2, same)			do {	\
++	typeof(t1) __t1h = type_max(t1);			\
++	typeof(t1) __t1l = type_min(t1);			\
++	typeof(t2) __t2h = type_max(t2);			\
++	typeof(t2) __t2l = type_min(t2);			\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
++} while (0)
+
+-:371: CHECK:SPACING: No space is necessary after a cast
+#371: FILE: lib/overflow_kunit.c:913:
++	typeof(t1) __t1h = type_max(t1);			\
+
+-:372: CHECK:SPACING: No space is necessary after a cast
+#372: FILE: lib/overflow_kunit.c:914:
++	typeof(t1) __t1l = type_min(t1);			\
+
+-:400: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'base' - possible side-effects?
+#400: FILE: lib/overflow_kunit.c:942:
++#define TEST_TYPE_SETS(base, mu8, mu16, mu32, ms8, ms16, ms32, mu64, ms64) \
++do {									\
++	TEST_SAME_TYPE(base,  u8,  mu8);				\
++	TEST_SAME_TYPE(base, u16, mu16);				\
++	TEST_SAME_TYPE(base, u32, mu32);				\
++	TEST_SAME_TYPE(base,  s8,  ms8);				\
++	TEST_SAME_TYPE(base, s16, ms16);				\
++	TEST_SAME_TYPE(base, s32, ms32);				\
++	TEST_SAME_TYPE64(base, u64, mu64);				\
++	TEST_SAME_TYPE64(base, s64, ms64);				\
++} while (0)
+
+-:444: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pass' - possible side-effects?
+#444: FILE: lib/overflow_kunit.c:986:
++#define TEST_CASTABLE_TO_TYPE(arg1, arg2, pass)	do {	\
++	bool __pass = castable_to_type(arg1, arg2);		\
++	KUNIT_EXPECT_EQ_MSG(test, __pass, pass,			\
++		"expected castable_to_type(" #arg1 ", " #arg2 ") to%s pass\n",\
++		pass ? "" : " not");				\
++	count++;						\
++} while (0)
+
+total: 0 errors, 0 warnings, 21 checks, 483 lines checked
+ba130e7b77ab drm/i915/gem: Typecheck page lookups
+-:148: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#148: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:413:
++#define i915_gem_object_page_iter_get_sg(obj, it, n, offset) ({	\
++	static_assert(castable_to_type(n , pgoff_t));		\
++	__i915_gem_object_page_iter_get_sg(obj, it, n, offset);	\
++})
+
+-:149: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#149: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:414:
++	static_assert(castable_to_type(n , pgoff_t));		\
+ 	                                 ^
+
+-:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#197: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:458:
++#define i915_gem_object_get_sg(obj, n, offset) ({	\
++	static_assert(castable_to_type(n , pgoff_t));	\
++	__i915_gem_object_get_sg(obj, n, offset);	\
++})
+
+-:198: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#198: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:459:
++	static_assert(castable_to_type(n , pgoff_t));	\
+ 	                                 ^
+
+-:246: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#246: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:503:
++#define i915_gem_object_get_sg_dma(obj, n, offset) ({	\
++	static_assert(castable_to_type(n , pgoff_t));	\
++	__i915_gem_object_get_sg_dma(obj, n, offset);	\
++})
+
+-:247: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#247: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:504:
++	static_assert(castable_to_type(n , pgoff_t));	\
+ 	                                 ^
+
+-:284: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#284: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:539:
++#define i915_gem_object_get_page(obj, n) ({		\
++	static_assert(castable_to_type(n , pgoff_t));	\
++	__i915_gem_object_get_page(obj, n);		\
++})
+
+-:285: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#285: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:540:
++	static_assert(castable_to_type(n , pgoff_t));	\
+ 	                                 ^
+
+-:321: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#321: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:574:
++#define i915_gem_object_get_dirty_page(obj, n) ({	\
++	static_assert(castable_to_type(n , pgoff_t));	\
++	__i915_gem_object_get_dirty_page(obj, n);	\
++})
+
+-:322: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#322: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:575:
++	static_assert(castable_to_type(n , pgoff_t));	\
+ 	                                 ^
+
+-:362: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#362: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:612:
++#define i915_gem_object_get_dma_address_len(obj, n, len) ({	\
++	static_assert(castable_to_type(n , pgoff_t));		\
++	__i915_gem_object_get_dma_address_len(obj, n, len);	\
++})
+
+-:363: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#363: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:613:
++	static_assert(castable_to_type(n , pgoff_t));		\
+ 	                                 ^
+
+-:399: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#399: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:647:
++#define i915_gem_object_get_dma_address(obj, n) ({	\
++	static_assert(castable_to_type(n , pgoff_t));	\
++	__i915_gem_object_get_dma_address(obj, n);	\
++})
+
+-:400: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#400: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:648:
++	static_assert(castable_to_type(n , pgoff_t));	\
+ 	                                 ^
+
+total: 7 errors, 0 warnings, 7 checks, 616 lines checked
+4ad8c30d7857 drm/i915: Check for integer truncation on scatterlist creation
+-:204: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#204: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:224:
++typedef unsigned int __sg_size_t; /* see linux/scatterlist.h */
+
+-:205: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#205: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
++#define sg_alloc_table(sgt, nents, gfp) \
++	overflows_type(nents, __sg_size_t) ? -E2BIG \
++		: ((sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp))
+
+-:205: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'nents' - possible side-effects?
+#205: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:225:
++#define sg_alloc_table(sgt, nents, gfp) \
++	overflows_type(nents, __sg_size_t) ? -E2BIG \
++		: ((sg_alloc_table)(sgt, (__sg_size_t)(nents), gfp))
+
+-:209: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#209: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:229:
++#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
++	overflows_type(npages, __sg_size_t) ? -E2BIG \
++		: ((sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, \
++						       size, max_segment, gfp))
+
+-:209: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'npages' - possible side-effects?
+#209: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:229:
++#define sg_alloc_table_from_pages_segment(sgt, pages, npages, offset, size, max_segment, gfp) \
++	overflows_type(npages, __sg_size_t) ? -E2BIG \
++		: ((sg_alloc_table_from_pages_segment)(sgt, pages, (__sg_size_t)(npages), offset, \
++						       size, max_segment, gfp))
+
+total: 2 errors, 1 warnings, 2 checks, 126 lines checked
+ad1f99d2abd0 drm/i915: Check for integer truncation on the configuration of ttm place
+d1fc76d35921 drm/i915: Check if the size is too big while creating shmem file
+d159a371473b drm/i915: Use error code as -E2BIG when the size of gem ttm object is too large
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+to add vma. The direct function that returns -ENOSPC is drm_mm_insert_node_in_range().
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+8f8019726fd6 drm/i915: Remove truncation warning for large objects
+
+
