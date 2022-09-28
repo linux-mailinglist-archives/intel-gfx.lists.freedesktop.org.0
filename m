@@ -2,78 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ABC25EE52E
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 21:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 039055EE57E
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Sep 2022 21:23:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0F2210E84A;
-	Wed, 28 Sep 2022 19:18:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4198110E8A0;
+	Wed, 28 Sep 2022 19:23:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84BC910E83E;
- Wed, 28 Sep 2022 19:18:32 +0000 (UTC)
-Received: from dimapc.. (unknown [109.252.125.248])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 6813066022D1;
- Wed, 28 Sep 2022 20:18:28 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1664392711;
- bh=MMwSk+z9u32nBQDdb29EaZu6/2HmJAl3BYF6699Cp9U=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=fQUna9UItfYVsI3YmLwjTDdh8xo0j4vWh3nEEHIXLO+Q28UjEw4JDSH0fKuwkBfAy
- e6umLKzJtQYJ/RWTcHmVLVhRiYyKhIIMQj/SPQXMBQWU7TMhsWX8FjzD+II7DZQUlh
- j/FIlzVEgCCLT9oK3h02wHhGzTLMIjHoIcKQJn/zXU82t+zx5FNcI9jKCFN9EXSTjR
- Wq8uWNjcM0abz6tHTR/fuAtYWhB6ZWXSGo+wmDq4/vAjfaM+aleU8vFShl/XFS4bt4
- 8uBrNvpwU3TPuaxe6ElzhUmB8R0jvloiQEwe8FhDZxH/rLV+JZ2hibZ+lCmTZBFvsv
- AUfI4L1UKmQSg==
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Clark <robdclark@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas_os@shipmail.org>,
- Qiang Yu <yuq825@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>, Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Lucas Stach <l.stach@pengutronix.de>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Ruhl Michael J <michael.j.ruhl@intel.com>
-Date: Wed, 28 Sep 2022 22:16:00 +0300
-Message-Id: <20220928191600.5874-22-dmitry.osipenko@collabora.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220928191600.5874-1-dmitry.osipenko@collabora.com>
-References: <20220928191600.5874-1-dmitry.osipenko@collabora.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB4210E8A0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:23:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664393017; x=1695929017;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=cD4XA67ERaSGP9Y2ZUlGhYnNpVhG++Au76s3b3LNfP4=;
+ b=Q/RoyaK7cokk3QCXeYofL9PwMepvCrBIBJ23F8E6K+1saGhE7GoPSVqj
+ PZngyWl+IGSYnizHTxZ8G66xisRZVuAv8eb1/njxW0LVzkkZs5a6FJTjZ
+ IKz/hzXLGOTmvQebTiT2ZkO61JXImnpXuv2OkHGJBf5sZQiGo0CEWqCuH
+ vrSCqGir+OrifoD47UtriMlhG2bfgdgqtU/SuLmPFgPdtRyA1CFlsfkCg
+ BQ7lzwHIb9Y5Ow9zKgTx5JIs3J0HaH+rSlnsIx33viZNYoGZOtOhldcGN
+ YfQccD+E+aITYxChUNPSZXpjJYTt2fS4rfDD/9tMPHXMjbsBbkAeuFfRP A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="284830215"
+X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="284830215"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2022 12:23:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="652804918"
+X-IronPort-AV: E=Sophos;i="5.93,352,1654585200"; d="scan'208";a="652804918"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga008.jf.intel.com with SMTP; 28 Sep 2022 12:23:34 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 28 Sep 2022 22:23:33 +0300
+Date: Wed, 28 Sep 2022 22:23:33 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Message-ID: <YzSfNTJqBGRkdwTW@intel.com>
+References: <20220928190415.282665-1-anusha.srivatsa@intel.com>
+ <20220928190415.282665-2-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 21/21] dma-buf: Remove obsoleted internal lock
+In-Reply-To: <20220928190415.282665-2-anusha.srivatsa@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Add CDCLK Support for
+ MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,116 +62,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
- linux-media@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The internal dma-buf lock isn't needed anymore because the updated
-locking specification claims that dma-buf reservation must be locked
-by importers, and thus, the internal data is already protected by the
-reservation lock. Remove the obsoleted internal lock.
+On Wed, Sep 28, 2022 at 12:04:15PM -0700, Anusha Srivatsa wrote:
+> As per bSpec MTL has 38.4 MHz Reference clock.
+> MTL does support squasher like DG2 but only for lower
+> frequencies. Change the has_cdclk_squasher()
+> helper to reflect this.
+> 
+> bxt_get_cdclk() is not properly calculating HW clock for MTL,
+> because the squash formula is only prepared for DG2.
+> Apart from adding the cdclk table, align cdclk support with the
+> new cdclk_crawl_and_squash() introduced in previous patch.
+> 
+> BSpec: 65243
+> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 95 +++++++++++++++++++++-
+>  1 file changed, 93 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index f7bc1013b149..6271eed0d7cf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1222,7 +1222,7 @@ static void skl_cdclk_uninit_hw(struct drm_i915_private *dev_priv)
+>  
+>  static bool has_cdclk_squasher(struct drm_i915_private *i915)
+>  {
+> -	return IS_DG2(i915);
+> +	return DISPLAY_VER(i915) >= 14 || IS_DG2(i915);
+>  }
+>  
+>  struct intel_cdclk_vals {
+> @@ -1350,6 +1350,16 @@ static const struct intel_cdclk_vals dg2_cdclk_table[] = {
+>  	{}
+>  };
+>  
+> +static const struct intel_cdclk_vals mtl_cdclk_table[] = {
+> +	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
+> +	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
+> +	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0x0000 },
+> +	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0x0000 },
+> +	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0x0000 },
+> +	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0x0000 },
+> +	{}
+> +};
+> +
+>  static int bxt_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk)
+>  {
+>  	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
+> @@ -1479,6 +1489,76 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
+>  	cdclk_config->vco = ratio * cdclk_config->ref;
+>  }
+>  
+> +static void mtl_get_cdclk(struct drm_i915_private *i915,
+> +			  struct intel_cdclk_config *cdclk_config)
+> +{
+> +	const struct intel_cdclk_vals *table = i915->display.cdclk.table;
+> +	u32 squash_ctl, divider, waveform;
+> +	int div, i, ratio;
+> +
+> +	bxt_de_pll_readout(i915, cdclk_config);
+> +
+> +	cdclk_config->bypass = cdclk_config->ref / 2;
+> +
+> +	if (cdclk_config->vco == 0) {
+> +		cdclk_config->cdclk = cdclk_config->bypass;
+> +		goto out;
+> +	}
+> +
+> +	divider = intel_de_read(i915, CDCLK_CTL) & BXT_CDCLK_CD2X_DIV_SEL_MASK;
+> +	switch (divider) {
+> +	case BXT_CDCLK_CD2X_DIV_SEL_1:
+> +		div = 2;
+> +		break;
+> +	case BXT_CDCLK_CD2X_DIV_SEL_1_5:
+> +		div = 3;
+> +		break;
+> +	case BXT_CDCLK_CD2X_DIV_SEL_2:
+> +		div = 4;
+> +		break;
+> +	case BXT_CDCLK_CD2X_DIV_SEL_4:
+> +		div = 8;
+> +		break;
+> +	default:
+> +		MISSING_CASE(divider);
+> +		return;
+> +	}
+> +
+> +	squash_ctl = intel_de_read(i915, CDCLK_SQUASH_CTL);
+> +	if (squash_ctl & CDCLK_SQUASH_ENABLE)
+> +		waveform = squash_ctl & CDCLK_SQUASH_WAVEFORM_MASK;
+> +	else
+> +		waveform = 0;
+> +
+> +	ratio = cdclk_config->vco / cdclk_config->ref;
+> +
+> +	for (i = 0, cdclk_config->cdclk = 0; table[i].refclk; i++) {
+> +		if (table[i].refclk != cdclk_config->ref)
+> +			continue;
+> +
+> +		if (table[i].divider != div)
+> +			continue;
+> +
+> +		if (table[i].waveform != waveform)
+> +			continue;
+> +
+> +		if (table[i].ratio != ratio)
+> +			continue;
+> +
+> +		cdclk_config->cdclk = table[i].cdclk;
+> +		break;
+> +	}
 
-Acked-by: Sumit Semwal <sumit.semwal@linaro.org>
-Acked-by: Christian KÃ¶nig <christian.koenig@amd.com>
-Reviewed-by: Christian KÃ¶nig <christian.koenig@amd.com>
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
----
- drivers/dma-buf/dma-buf.c | 14 ++++----------
- include/linux/dma-buf.h   |  9 ---------
- 2 files changed, 4 insertions(+), 19 deletions(-)
+NAK. Readout must not depend on these tables. Otherwise it's not
+proper readout and bugs can slip through. What is the supposed problem
+with the already existing code?
 
-diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-index e04d504441a5..82f72b5647f8 100644
---- a/drivers/dma-buf/dma-buf.c
-+++ b/drivers/dma-buf/dma-buf.c
-@@ -657,7 +657,6 @@ struct dma_buf *dma_buf_export(const struct dma_buf_export_info *exp_info)
- 
- 	dmabuf->file = file;
- 
--	mutex_init(&dmabuf->lock);
- 	INIT_LIST_HEAD(&dmabuf->attachments);
- 
- 	mutex_lock(&db_list.lock);
-@@ -1503,7 +1502,7 @@ EXPORT_SYMBOL_NS_GPL(dma_buf_mmap, DMA_BUF);
- int dma_buf_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
- {
- 	struct iosys_map ptr;
--	int ret = 0;
-+	int ret;
- 
- 	iosys_map_clear(map);
- 
-@@ -1515,28 +1514,25 @@ int dma_buf_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
- 	if (!dmabuf->ops->vmap)
- 		return -EINVAL;
- 
--	mutex_lock(&dmabuf->lock);
- 	if (dmabuf->vmapping_counter) {
- 		dmabuf->vmapping_counter++;
- 		BUG_ON(iosys_map_is_null(&dmabuf->vmap_ptr));
- 		*map = dmabuf->vmap_ptr;
--		goto out_unlock;
-+		return 0;
- 	}
- 
- 	BUG_ON(iosys_map_is_set(&dmabuf->vmap_ptr));
- 
- 	ret = dmabuf->ops->vmap(dmabuf, &ptr);
- 	if (WARN_ON_ONCE(ret))
--		goto out_unlock;
-+		return ret;
- 
- 	dmabuf->vmap_ptr = ptr;
- 	dmabuf->vmapping_counter = 1;
- 
- 	*map = dmabuf->vmap_ptr;
- 
--out_unlock:
--	mutex_unlock(&dmabuf->lock);
--	return ret;
-+	return 0;
- }
- EXPORT_SYMBOL_NS_GPL(dma_buf_vmap, DMA_BUF);
- 
-@@ -1581,13 +1577,11 @@ void dma_buf_vunmap(struct dma_buf *dmabuf, struct iosys_map *map)
- 	BUG_ON(dmabuf->vmapping_counter == 0);
- 	BUG_ON(!iosys_map_is_equal(&dmabuf->vmap_ptr, map));
- 
--	mutex_lock(&dmabuf->lock);
- 	if (--dmabuf->vmapping_counter == 0) {
- 		if (dmabuf->ops->vunmap)
- 			dmabuf->ops->vunmap(dmabuf, map);
- 		iosys_map_clear(&dmabuf->vmap_ptr);
- 	}
--	mutex_unlock(&dmabuf->lock);
- }
- EXPORT_SYMBOL_NS_GPL(dma_buf_vunmap, DMA_BUF);
- 
-diff --git a/include/linux/dma-buf.h b/include/linux/dma-buf.h
-index f11b5bbc2f37..6fa8d4e29719 100644
---- a/include/linux/dma-buf.h
-+++ b/include/linux/dma-buf.h
-@@ -326,15 +326,6 @@ struct dma_buf {
- 	/** @ops: dma_buf_ops associated with this buffer object. */
- 	const struct dma_buf_ops *ops;
- 
--	/**
--	 * @lock:
--	 *
--	 * Used internally to serialize list manipulation, attach/detach and
--	 * vmap/unmap. Note that in many cases this is superseeded by
--	 * dma_resv_lock() on @resv.
--	 */
--	struct mutex lock;
--
- 	/**
- 	 * @vmapping_counter:
- 	 *
+> +out:
+> +	/*
+> +	 * Can't read this out :( Let's assume it's
+> +	 * at least what the CDCLK frequency requires.
+> +	 */
+> +	cdclk_config->voltage_level =
+> +		intel_cdclk_calc_voltage_level(i915, cdclk_config->cdclk);
+> +}
+> +
+> +
+>  static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+>  			  struct intel_cdclk_config *cdclk_config)
+>  {
+> @@ -3138,6 +3218,13 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
+>  	return freq;
+>  }
+>  
+> +static const struct intel_cdclk_funcs mtl_cdclk_funcs = {
+> +	.get_cdclk = mtl_get_cdclk,
+> +	.set_cdclk = bxt_set_cdclk,
+> +	.modeset_calc_cdclk = bxt_modeset_calc_cdclk,
+> +	.calc_voltage_level = tgl_calc_voltage_level,
+> +};
+> +
+>  static const struct intel_cdclk_funcs tgl_cdclk_funcs = {
+>  	.get_cdclk = bxt_get_cdclk,
+>  	.set_cdclk = bxt_set_cdclk,
+> @@ -3273,7 +3360,11 @@ static const struct intel_cdclk_funcs i830_cdclk_funcs = {
+>   */
+>  void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+>  {
+> -	if (IS_DG2(dev_priv)) {
+> +
+> +	if (IS_METEORLAKE(dev_priv)) {
+> +		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
+> +		dev_priv->display.cdclk.table = mtl_cdclk_table;
+> +	} else if (IS_DG2(dev_priv)) {
+>  		dev_priv->display.funcs.cdclk = &tgl_cdclk_funcs;
+>  		dev_priv->display.cdclk.table = dg2_cdclk_table;
+>  	} else if (IS_ALDERLAKE_P(dev_priv)) {
+> -- 
+> 2.25.1
+
 -- 
-2.37.3
-
+Ville Syrjälä
+Intel
