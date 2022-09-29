@@ -1,155 +1,95 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0FBA5EFA49
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 18:22:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DB85EFA81
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 18:31:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E5CC10E60B;
-	Thu, 29 Sep 2022 16:22:06 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC0310E60B;
- Thu, 29 Sep 2022 16:22:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664468523; x=1696004523;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=RBoKnNMK2XK/V+upw99j1Jlaox0/ogydbgAD8ABMmfk=;
- b=QWF1IuRv3GAMrb30kSjpYnnruQdTfac1+2/4TQlJ6piPNSuMmQ/wPzlR
- w1fAat/F+Lac5i7EGQRtRvnfbPMUqCYc2Xip5Fb1D2rTJE8fVNPwKSPnG
- 0N5Oo+qe+AkdThdNRTOqEI51wAvo6liP3OegPwTTjQt+FmsB4M5+pXZ9a
- VdhDL7AfzJIvHvoRhnEqRtnGqgPcdU2UVeSGk4f+JeszIhEilxEl+uqbA
- RffWPWvG3MYSwssjl5l9/v987YxRsXJBFcOZ75grPzKvo9q898Z90VA3n
- 7s3TtGSjH9f2PEIDiDDVZ+bhuE5wSoGiH/3xa/JOEbhU00J/Q3zzvFGoW A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="328323182"
-X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="328323182"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 09:22:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="617661682"
-X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="617661682"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga007.jf.intel.com with ESMTP; 29 Sep 2022 09:22:01 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 29 Sep 2022 09:22:01 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 29 Sep 2022 09:22:01 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 29 Sep 2022 09:22:01 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 29 Sep 2022 09:22:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EybiuEboHTjPFHp6acu3OFW2GBya8D7em8jrS/qfZdykzi9+JhyqZ36xAIary1eVVvb39Oo4DUdQAgROtWuE9E+lTyPtzh7Vg+fIp8kD6dVYZFmjk99OsG6dm20LjUaOY6e26Xr1HPEHPBfgCwaU9Yd7prcoyHzhFWQ1YbYPN6EEi45XNdCvailc05dE7dhO7ipeAAz23+ik50cumQcf5K8puLUdV0XVcLVC0vssLTlPVeHDuV5VSqXk47U0bTtBgLpCY+OWpvHZvtfnMrCPQULVEj6fsZqM2qxrqSIlYoSeLaNQL/6P/LULw2ufTZ7ep2ThqBrgnj7XC6A7HhqOuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PrC9cZ45MBXsxlSMQTcSgxFpp1Mnnni6pRDn76c/74Y=;
- b=O0COMDDLc/ikNi2GAhswEZ7cG0lBLt0LMHB7q+K2uUvHQd5eTCr614/w6EHe83tqGG8cUDBFvpFVK3FCUKMS9GFrQdRnN7XNgEhvONQvK/4JRLrclOWowLU3t1OeKqosJQFgV9aWDdSKFA0XppVbCPgaWJWwT7LqIDSSclpgKhFUWov45GUePtqPE8TiycJ9lJ+7YRe0v0l4YVKIVczop2SjyixXNMltLKVoeYoE+jPPfK+Cgy3itbGfW81VjsYZMoE4MJz2LRbt8CnUD0UEFYswknZbTyYhUOHw3J9R1hEM6g2zR0MexHEE/oU8VAitakqptOEftQlp7ibIn+/osA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by SA2PR11MB4970.namprd11.prod.outlook.com (2603:10b6:806:11f::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.19; Thu, 29 Sep
- 2022 16:21:59 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::7750:dd86:4ef:afc6]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::7750:dd86:4ef:afc6%7]) with mapi id 15.20.5676.020; Thu, 29 Sep 2022
- 16:21:59 +0000
-Message-ID: <ae042c9d-f6f1-2ecd-e23a-7d6994c97151@intel.com>
-Date: Thu, 29 Sep 2022 09:21:56 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.2.2
-Content-Language: en-GB
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- <Intel-GFX@Lists.FreeDesktop.Org>
-References: <20220929021813.2172701-1-John.C.Harrison@Intel.com>
- <20220929021813.2172701-4-John.C.Harrison@Intel.com>
- <a2c2cddf-009b-a2e0-2af2-6f1553c59cbc@linux.intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <a2c2cddf-009b-a2e0-2af2-6f1553c59cbc@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY5PR04CA0025.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::35) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14CAA10E128;
+	Thu, 29 Sep 2022 16:31:13 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91F5B10E128;
+ Thu, 29 Sep 2022 16:31:08 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 3A8B75807D7;
+ Thu, 29 Sep 2022 12:31:08 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute3.internal (MEProxy); Thu, 29 Sep 2022 12:31:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:message-id:mime-version:reply-to:sender:subject
+ :subject:to:to; s=fm2; t=1664469068; x=1664476268; bh=7RHzLU9hR9
+ LLeroMnqijUPLrsWnQsBv6WBMebB+Ifk4=; b=N4AxiVL9J5r1R7hnFIQnQ6vb4C
+ /EJ4+QixNSn90KvWebrNieZke/RDHzOqX404XxDNJwAGLNsI+dtnTk8HUfG9AfOy
+ Peopw895+Gd7JOJ1XwtKJ7u6Yccqm/VZk/899v1Ov4pQkaBvdScrj6plr/rMeHSw
+ TwErv+kmt0oKG0CK19H/qGkiENNwidoFYhNZ1WxCklY8JloD+P5hObHyHk/+E9nU
+ M2SbNBVrgQDweKY4QBBc77T3VZ5iT03u7Muyz9S80YC3tJus5BjaZoAIV1zHoWQ4
+ 1C83edlf9U+atTfsaSI3yctoh+JrFOWvcClWjv+qd+yEPokrohdYjnJGz+SQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:message-id:mime-version:reply-to:sender:subject
+ :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm2; t=1664469068; x=1664476268; bh=7RHzLU9hR9LLe
+ roMnqijUPLrsWnQsBv6WBMebB+Ifk4=; b=EYPczQ1O+vbB7Zv18YoX9kcwXEZfY
+ xZyozDJmYB5lZUNy8yXeXGrlyDB7BlaMwqKKWGuRZ+eZwtdYOCLYF7h4/4JNJnOz
+ 9Ab5qYQ9mEecSPbACdbbM+pbVixeqIw4aRmWnUxs1p+qloB6OoiSh66HoUrWCOJG
+ K4ttRFVG9tnnF8gmMCfqmfRMY2IGME3lyFESF7yQ1n9nqcmCCj3YxI3XVlWOnq7N
+ +jyglJJN5rYVkVS8BupqfzbqpjDCra9tI3D5yCQUYAct8FKUFQzNRddiOio1fn+S
+ lpHtFg3v91MpATgC9y7McNOqlKSmTy13p4sGbXPO7hu1x1CeG5Pv3hkQQ==
+X-ME-Sender: <xms:Ssg1Y53EBDgfvRU-ayL_hnRqkoiKY8cDlwl8pIXl5V95TIJlyWVsrQ>
+ <xme:Ssg1YwHhXtHya-KHXoCjZ8iYIhz82twHduZJJQD8e_roF59KPxtA59qj3OzfmVSWI
+ 4j2-l_viCNZjPArIP4>
+X-ME-Received: <xmr:Ssg1Y54L2aUww16iWstMek1gCSqOqWKeaxO6nFEL5Ew7dWJzYR2Fh5klMc19>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeehtddguddtfecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpefugggtgffhfffkvfevofesthekredtredtjeenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeelueevteetffdvveelgfffleegudeufeelveefvddugeehkeefkeehjeei
+ keegudenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+ eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
+ hh
+X-ME-Proxy: <xmx:Ssg1Y21SZZxn2F7yVLz3AWn-A2joU28-PfJFCxlVCbSA1zIFbTjifA>
+ <xmx:Ssg1Y8HK8V1XF_xf3HIHi77OO-5nCXrKFtEnjQvzoEQ6xzX7AFoNUA>
+ <xmx:Ssg1Y39W7wRDMoyHLvDvJs2oOLi3C5IMAOCA7EBtou1XnIl3ti70eg>
+ <xmx:TMg1Y0SpucgrMnL6d1mnaqBFQutXi_cb0fWDqks0yYOfd9u37CpZBw>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 29 Sep 2022 12:31:06 -0400 (EDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|SA2PR11MB4970:EE_
-X-MS-Office365-Filtering-Correlation-Id: 29dbe620-a22b-421a-a5fb-08daa236bbcd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Za6w77D2meNASV2x8Gqxahkr4fV679dhOArxFDyhysiL4rAEyByvqAoGFpSsno2LCynx6hOqCfukpPj902+eOLyzkfoNZoiRbiWvTBG9r+USzpPJnw5Q+hM/fy24oLjzEt8CnGkVBScsgNvZwJWjAQx5aTD8010W5RyOWQvO+QVzNIZikOBxIgNyCDvrhB6aGhTQAEIZS9JSjbJFL+yrDJptUyoxkj6KZZTCctEZrH9na992qxxU/q3ojhvbq2KNtc2r8hkKqcGi8Vk7F+s3nehjsZUJ5kuzOmbBT48oazYHGdrK6WXNN218lYCSPI4/mzRLB7E8ziASJyq7iy6Vp6iWI6pNTqCSkmWKVkE+vu/Og1u5SLluQBIUs5sTgDuzyDNAllrKijswg80PGF3/I913KbL+5QjMjvuRBm/ytDN7QIPcddI5pm5oOING9dQpV7fD/uy50NpIKCfs/+fZPpp3Udp2/oGhzSQlKt2og1ZUnU8NasEh6Oz/krclLFQ3G+De4LXzxID7Wa0nYoz/PspwYyNgArAUrEK5VZHhnr/TVLonhAbY4MIst0P7vbk2LvE9+oCCe7Mbvz/iB0CSgr23RO1fKOZcBhEk/Xa9PXVOUvxvzRvsAI3qYkP2jYi2a11UrUGaM1/FvnyOw7E1ZpatVeryJzaebDVLntEowl0o/RoGGA2J9vCvTaG23RvLmE9gbtu6OIfez9bE+GDo0/YNdFaDRR0hnMkKlBUT7CrgHW1ftlBflfOcjGKt/enWpKrD3Jly4BU5r9QboMa3C+bBIGL0Q4gSnzs5DvKmfRE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(39860400002)(376002)(346002)(136003)(366004)(396003)(451199015)(36756003)(31686004)(38100700002)(82960400001)(186003)(83380400001)(2616005)(31696002)(86362001)(6506007)(6666004)(53546011)(478600001)(8676002)(6512007)(26005)(316002)(4326008)(41300700001)(8936002)(5660300002)(66946007)(66556008)(66476007)(2906002)(6486002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MEN4OEJIRjMxenNiL0pydElscVdQRGlhM2hSK1lyY3EzZFhQS0ZjYjUweHFo?=
- =?utf-8?B?WWdDZlM3dG13TnhMUzZYQ2ZVYXQ4bys5UG41WGgzdlN6L0Y1UU1ZZEtWUXBN?=
- =?utf-8?B?WWo0SG4xMUxORExVblBjV202SVpNY2hFY04rRktPaVh0cW1wWkwrYW5HUzFs?=
- =?utf-8?B?OTU3VE9KZHg2ck5oZkcrRHFkb1I5cm0rOHZaOHY5WUhzRTZmTEZ6NTNjSlpR?=
- =?utf-8?B?azBVdUwzcjFFTmkvSTJoWkFQd3ZDakJNVC9HekZFNkJrN0FNNEsxVGZmaUlG?=
- =?utf-8?B?bUEvSnJMTnJIQXRZdGhuK1Z5K3JPVkZRZzdvUCtMUXFtMGVBRlBmTGNBOVJp?=
- =?utf-8?B?N2toUUhmYlNjUWRUVmYzYmNXR01iQ1hEUFRuVGsyOURhMnBuakZJQ3ZrUUV4?=
- =?utf-8?B?bkZaZEFJZ1NuYStYVXdjZUZqM0o4M3JIMVJNMi93aUdrMmlQMllkdjFyZ2NW?=
- =?utf-8?B?bGY0cXd4K1c1ODZsemUzYVJ0Sk1SaUQ0NWpyTWduUWMzN1ZOekpjVzd2aW14?=
- =?utf-8?B?azRWZzErTDRubTA3dUFuSFQzdTFsNW1BMHRaQUVBNmJpaG1uZ0t1SXJYVVFJ?=
- =?utf-8?B?S0N4ZE9lVHVhb2N4cmVYTmhnclhuWHFrRi9rTTh4dHphRzY0eElTK0NsOUd6?=
- =?utf-8?B?ODdxQnJXRE1ra0EyUjA0WnE3QjNaMnBxb0pvb1JSTVhFN1hvTkRQY3ZlUzdy?=
- =?utf-8?B?SGxReW5BWE5TYWI1Mk4vaXFCZ0UxR045aTFJb0pZQkpEZ3ZqSXZtaFFNdU1C?=
- =?utf-8?B?YlVFVWcrTmxEQURndExsVWZxWHdiZkFlZWRlajNuRDJ1OXNJVXh4Vk94amUw?=
- =?utf-8?B?SVZVZWttdk1taTJteHFxR0NaQXBVSnZ3ZWh2TW4yYTdhb0g5ZDJ2eGdjRDhZ?=
- =?utf-8?B?NUpGUElDR1p6elJGRWFRa1RhQzZZSHVGeXhtS3pUVXljSVlOZnF5a1UrRkcr?=
- =?utf-8?B?SUlKUE9ZSTdJS2pWSXkvNlZaQzJOL0RtUDd1dkt3ZGhvSG5RSmpJTmluY0Nq?=
- =?utf-8?B?OVNVVzRSR1A0ZUN5THhxcjdzaTZnUjdoSkUrN1lvR1RuSVNXVEdWR3U3SUVI?=
- =?utf-8?B?MkVSVEdyMkUwNDlEV2YwQm00MHA1elNMWTBES1J3blgwYXZoQUxrVTROZFlP?=
- =?utf-8?B?SHZYbFBmakRCaVRnNllURGt5UjJORzRpblFKblJlaG5iTWx1SUFOS1dnc2ZX?=
- =?utf-8?B?aGswT2p0WC9uYnNiUVZKVkdsbUgvd3dMTlM5Zm1zZVdqdTdzQWxNKzZiTy9w?=
- =?utf-8?B?cVNxQk9jajk4U2NUN2VVbVVBSEhhMXRxVEJtQWFmT1JRNXl5QmpzYllsRlV6?=
- =?utf-8?B?ZGs4WnlyRW5pRURnYmlaL1plTENhUHV1OE9rMkxWWjFFUEROQlAzNlIva01i?=
- =?utf-8?B?NDgwenc3NHJYa1ZMWk9FU2JOT2JnYVRFaWdXN3FYVy9HOTRkZEpTMldyVE9Q?=
- =?utf-8?B?K09ydkt3RGFhclQzMEZRM3NyaVR5MXErUmVIczlISFVjZ0ZZTTZMWU93QVNG?=
- =?utf-8?B?dXlaN3FjdXFaWXp5YW5mNVFJNjdyREt3MGE3MjFDT1MvL2F6Q1Vlc3V2V3gr?=
- =?utf-8?B?dWwyTFN1V3dUMHo0V2c4T21IcXpYc2pYT2hoU0ExY0ZXZkxTdlVkYUhaTnFk?=
- =?utf-8?B?eFRoY3ByNjI1c1Q4dmQxbzZaS2hlNEFnWHpOanNuVG56WC9FRTQ0TXlrbW91?=
- =?utf-8?B?MWxrRE9lcTRES3FkVktVK2FZUDFreFV0Y1ZRUFJ0d0YzbEVwMUFzUkVPTXRS?=
- =?utf-8?B?SWF1L0RmTmk2ZXRscmF6YnFhTEM2U1JkSmYrRTMydy9VVGZJUTA5TWFsQkRM?=
- =?utf-8?B?Wm5uRGMyaGw0dHhzd2hpYktjdVRNdm1HK3pDK2I2U0g2dzJMR2dubWJOUUpw?=
- =?utf-8?B?SjRTUUZMTk9CS2p1M2YzYUZ1MnozNkNwV3JnOTZKekx2ZFBtbkJpekRtbVVp?=
- =?utf-8?B?a1V0emlPT2dYTVhndUZPcVoyQWlqVTlxdmtnUmQwRGI5RW0vWTJ6dWtWRFpM?=
- =?utf-8?B?cGpUekg0S0ZMQmhCRk5wc2lCZlNzdEFxaktwNlFyNDNuZTRBM1E5VTFzTTlV?=
- =?utf-8?B?dnVwK01mY0oySityMjcxRk0yL2JZdFpkQm96UDdZWFppdnR6RnVqK01vU0sr?=
- =?utf-8?B?OWNQUkxyWEgwTnhpRG9vdDBNTzBPQTFmUmNDalRySWR1ek1TemxZcUNwTlBD?=
- =?utf-8?B?WUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 29dbe620-a22b-421a-a5fb-08daa236bbcd
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2022 16:21:59.1284 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ilpFosFTbgaf/En9TYfeyQodx+fcwFWRFqRH0201MN2Tsx7mXY0yqzn8jXmaJ4EPJwG7i0uxuOuYAruQ1RRjRKlU561QUXGc/LI5bSRJLeE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4970
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 3/4] drm/i915: Make the heartbeat play
- nice with long pre-emption timeouts
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIAD7INWMC/42OUQqDMBBEryL57pY0Sq398h6lHzFZdaEmsgmhRbx7156gMLAM7LyZTSVkwqTu1a
+ YYCyWKQUxzqpSbbZgQyItXRhujW3MDXglssK84QS6wclyRsxBAd5fGjw6xuWol8cEmhIFtcPMB8LzA
+ QslBwHeGAycJ0fE6U8qRP78RpZbz+KOvCADGtq6tRt+Nne4dcojnjFL43Pf9C3Fv6MncAAAA
+From: Maxime Ripard <maxime@cerno.tech>
+Date: Thu, 29 Sep 2022 18:30:54 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v4-0-60d38873f782@cerno.tech>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Karol Herbst <kherbst@redhat.com>, 
+ Samuel Holland <samuel@sholland.org>, Lyude Paul <lyude@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Emma Anholt <emma@anholt.net>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>
+X-Mailer: b4 0.11.0-dev-7da52
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9271; i=maxime@cerno.tech;
+ h=from:subject:message-id; bh=Yr40RoFlPyeq6zBgoNSqYFJA8x3cZo1Ypr+RnWwaUpc=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMmmJ9z0pr08mH/S3D55yZ9F5kcCZ8b0SX0WPsWk4hf2QPnW
+ 0h1LO0pZGMS4GGTFFFlihM2XxJ2a9bqTjW8ezBxWJpAhDFycAjCRb2cY/pn6rFFcbcZxWYRNh/Xl5e
+ NbTm2OLWh/8PFI9h7NulkKpycyMswVstrG4nJ3u9n03bMbvs+JM7nzIvfWptJjvD9/sR34fZoLAA==
+X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+Subject: [Intel-gfx] [PATCH v4 00/30] drm: Analog TV Improvements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,89 +102,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: Dom Cobley <dom@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>, Hans de Goede <hdegoede@redhat.com>, Noralf Trønnes <noralf@tronnes.org>, Geert Uytterhoeven <geert@linux-m68k.org>, Maxime Ripard <maxime@cerno.tech>, linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 9/29/2022 00:42, Tvrtko Ursulin wrote:
-> On 29/09/2022 03:18, John.C.Harrison@Intel.com wrote:
->> From: John Harrison <John.C.Harrison@Intel.com>
->>
->> Compute workloads are inherently not pre-emptible for long periods on
->> current hardware. As a workaround for this, the pre-emption timeout
->> for compute capable engines was disabled. This is undesirable with GuC
->> submission as it prevents per engine reset of hung contexts. Hence the
->> next patch will re-enable the timeout but bumped up by an order of
->> magnitude.
->>
->> However, the heartbeat might not respect that. Depending upon current
->> activity, a pre-emption to the heartbeat pulse might not even be
->> attempted until the last heartbeat period. Which means that only one
->> period is granted for the pre-emption to occur. With the aforesaid
->> bump, the pre-emption timeout could be significantly larger than this
->> heartbeat period.
->>
->> So adjust the heartbeat code to take the pre-emption timeout into
->> account. When it reaches the final (high priority) period, it now
->> ensures the delay before hitting reset is bigger than the pre-emption
->> timeout.
->>
->> v2: Fix for selftests which adjust the heartbeat period manually.
->>
->> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->> ---
->>   .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 19 +++++++++++++++++++
->>   1 file changed, 19 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c 
->> b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->> index a3698f611f457..823a790a0e2ae 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->> @@ -22,9 +22,28 @@
->>     static bool next_heartbeat(struct intel_engine_cs *engine)
->>   {
->> +    struct i915_request *rq;
->>       long delay;
->>         delay = READ_ONCE(engine->props.heartbeat_interval_ms);
->> +
->> +    rq = engine->heartbeat.systole;
->> +
->> +    if (rq && rq->sched.attr.priority >= I915_PRIORITY_BARRIER &&
->> +        delay == engine->defaults.heartbeat_interval_ms) {
->
-> Maybe I forgot but what is the reason for the check against the 
-> default heartbeat interval?
-That's the 'v2: fix for selftests that manually adjust the heartbeat'. 
-If something (or someone) has explicitly set an override of the 
-heartbeat then it has to be assumed that they know what they are doing, 
-and if things don't work any more that's their problem. But if we don't 
-respect their override then they won't get the timings they expect and 
-the selftest will fail.
+Hi,
 
-John.
+Here's a series aiming at improving the command line named modes support,
+and more importantly how we deal with all the analog TV variants.
 
->
-> Regards,
->
-> Tvrtko
->
->> +        long longer;
->> +
->> +        /*
->> +         * The final try is at the highest priority possible. Up 
->> until now
->> +         * a pre-emption might not even have been attempted. So make 
->> sure
->> +         * this last attempt allows enough time for a pre-emption to 
->> occur.
->> +         */
->> +        longer = READ_ONCE(engine->props.preempt_timeout_ms) * 2;
->> +        longer = intel_clamp_heartbeat_interval_ms(engine, longer);
->> +        if (longer > delay)
->> +            delay = longer;
->> +    }
->> +
->>       if (!delay)
->>           return false;
+The named modes support were initially introduced to allow to specify the
+analog TV mode to be used.
 
+However, this was causing multiple issues:
+
+  * The mode name parsed on the command line was passed directly to the
+    driver, which had to figure out which mode it was suppose to match;
+
+  * Figuring that out wasn't really easy, since the video= argument or what
+    the userspace might not even have a name in the first place, but
+    instead could have passed a mode with the same timings;
+
+  * The fallback to matching on the timings was mostly working as long as
+    we were supporting one 525 lines (most likely NSTC) and one 625 lines
+    (PAL), but couldn't differentiate between two modes with the same
+    timings (NTSC vs PAL-M vs NSTC-J for example);
+
+  * There was also some overlap with the tv mode property registered by
+    drm_mode_create_tv_properties(), but named modes weren't interacting
+    with that property at all.
+
+  * Even though that property was generic, its possible values were
+    specific to each drivers, which made some generic support difficult.
+
+Thus, I chose to tackle in multiple steps:
+
+  * A new TV mode property was introduced, with generic values, each driver
+    reporting through a bitmask what standard it supports to the userspace;
+
+  * This option was added to the command line parsing code to be able to
+    specify it on the kernel command line, and new atomic_check and reset
+    helpers were created to integrate properly into atomic KMS;
+
+  * The named mode parsing code is now creating a proper display mode for
+    the given named mode, and the TV standard will thus be part of the
+    connector state;
+
+  * Two drivers were converted and tested for now (vc4 and sun4i), with
+    some backward compatibility code to translate the old TV mode to the
+    new TV mode;
+
+Unit tests were created along the way.
+
+One can switch from NTSC to PAL now using (on vc4)
+
+modetest -M vc4  -s 53:720x480i -w 53:'TV mode':1 # NTSC
+modetest -M vc4  -s 53:720x576i -w 53:'TV mode':4 # PAL
+
+Let me know what you think,
+Maxime
+
+To: David Airlie <airlied@linux.ie>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Emma Anholt <emma@anholt.net>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Ben Skeggs <bskeggs@redhat.com>
+To: Karol Herbst <kherbst@redhat.com>
+To: Lyude Paul <lyude@redhat.com>
+To: Chen-Yu Tsai <wens@csie.org>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Samuel Holland <samuel@sholland.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Cc: "Noralf Trønnes" <noralf@tronnes.org>
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Dom Cobley <dom@raspberrypi.com>
+Cc: Phil Elwell <phil@raspberrypi.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Cc: linux-kernel@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-sunxi@lists.linux.dev
+Cc: Hans de Goede <hdegoede@redhat.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
+---
+Changes in v4:
+- Removed the unused TV Standard property documentation
+- Added the TV Mode property documentation to kms-properties.csv
+- Fixed the documentation of drm_mode_create_tv_properties()
+- Removed DRM_MODE_TV_MODE_NONE
+- Reworded the line length check comment in drm_mode_analog_tv tests
+- Switched to HZ_PER_KHZ in drm_mode_analog_tv tests
+- Reworked drm_mode_analog_tv to fill our mode using the previously computed
+  timings
+- Added the command-line option documentation to modedb.rst
+- Improved the Kunit helpers cleanup
+- Moved the subconnector documentation renaming to the proper patch
+- Added the various review tags
+- Removed the count variable in vc4_vec_connector_get_modes
+- Rebased on drm-misc-next-2022-09-23 and fixed a merge conflict
+- Folded all the named mode parsing improvements in a single patch
+- Link to v3: https://lore.kernel.org/r/20220728-rpi-analog-tv-properties-v2-0-f733a0ed9f90@cerno.tech
+
+Changes in v3:
+- Applied some of the fixes to vc4 and sun4i
+- Renamed the old TV mode property to legacy_mode
+- Fixed a bunch of bisection errors
+- Removed most of the redundant TV modes
+- Added a new None TV mode to not fall back on NTSC by mistake
+- Fixed the mode generation function to match better what is expected
+- Added some logging to the mode generation function
+- Split the improvements to the named mode parsing logic into separate patches
+- Added more checks to the TV atomic_check helper
+- Link to v2: https://lore.kernel.org/dri-devel/20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech/
+
+Changes in v2:
+- Kept the older TV mode property as legacy so we can keep the old drivers functional
+- Renamed the tv_norm property to tv_mode
+- Added a function to create PAL and NTSC compatible display modes
+- Added some helpers to instantiate a mock DRM device in Kunit
+- More Kunit tests
+- Removed the HD analog TV modes
+- Renamed some of the tests
+- Renamed some of the named modes
+- Fixed typos in commit logs
+- Added the various tags
+- Link to v1: https://lore.kernel.org/dri-devel/20220728-rpi-analog-tv-properties-v1-0-3d53ae722097@cerno.tech/
+
+---
+Geert Uytterhoeven (1):
+      drm/modes: parse_cmdline: Add support for named modes containing dashes
+
+Mateusz Kwiatkowski (3):
+      drm/vc4: vec: Fix definition of PAL-M mode
+      drm/vc4: vec: Check for VEC output constraints
+      drm/vc4: vec: Add support for more analog TV standards
+
+Maxime Ripard (26):
+      drm/docs: Remove unused TV Standard property
+      drm/tests: Order Kunit tests in Makefile
+      drm/tests: Add Kunit Helpers
+      drm/atomic-helper: Rename drm_atomic_helper_connector_tv_reset to avoid ambiguity
+      drm/connector: Rename subconnector state variable
+      drm/atomic: Add TV subconnector property to get/set_property
+      drm/connector: Rename legacy TV property
+      drm/connector: Only register TV mode property if present
+      drm/connector: Rename drm_mode_create_tv_properties
+      drm/connector: Add TV standard property
+      drm/modes: Add a function to generate analog display modes
+      drm/modes: Only consider bpp and refresh before options
+      drm/client: Add some tests for drm_connector_pick_cmdline_mode()
+      drm/modes: Move named modes parsing to a separate function
+      drm/modes: Switch to named mode descriptors
+      drm/modes: Fill drm_cmdline mode from named modes
+      drm/connector: Add pixel clock to cmdline mode
+      drm/connector: Add a function to lookup a TV mode by its name
+      drm/modes: Introduce the tv_mode property as a command-line option
+      drm/modes: Properly generate a drm_display_mode from a named mode
+      drm/modes: Introduce more named modes
+      drm/atomic-helper: Add a TV properties reset helper
+      drm/atomic-helper: Add an analog TV atomic_check implementation
+      drm/vc4: vec: Use TV Reset implementation
+      drm/vc4: vec: Convert to the new TV mode property
+      drm/sun4i: tv: Convert to the new TV mode property
+
+ Documentation/fb/modedb.rst                     |   2 +
+ Documentation/gpu/kms-properties.csv            |   2 +-
+ drivers/gpu/drm/drm_atomic_state_helper.c       | 128 ++++-
+ drivers/gpu/drm/drm_atomic_uapi.c               |   8 +
+ drivers/gpu/drm/drm_client_modeset.c            |   4 +
+ drivers/gpu/drm/drm_connector.c                 | 108 +++-
+ drivers/gpu/drm/drm_modes.c                     | 658 +++++++++++++++++++++++-
+ drivers/gpu/drm/gud/gud_connector.c             |  12 +-
+ drivers/gpu/drm/i2c/ch7006_drv.c                |   6 +-
+ drivers/gpu/drm/i915/display/intel_tv.c         |   5 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c       |   6 +-
+ drivers/gpu/drm/sun4i/sun4i_tv.c                | 148 ++----
+ drivers/gpu/drm/tests/Makefile                  |  16 +-
+ drivers/gpu/drm/tests/drm_client_modeset_test.c | 230 +++++++++
+ drivers/gpu/drm/tests/drm_cmdline_parser_test.c |  67 +++
+ drivers/gpu/drm/tests/drm_kunit_helpers.c       |  61 +++
+ drivers/gpu/drm/tests/drm_kunit_helpers.h       |   9 +
+ drivers/gpu/drm/tests/drm_modes_test.c          | 144 ++++++
+ drivers/gpu/drm/vc4/vc4_hdmi.c                  |   2 +-
+ drivers/gpu/drm/vc4/vc4_vec.c                   | 336 ++++++++++--
+ include/drm/drm_atomic_state_helper.h           |   4 +
+ include/drm/drm_connector.h                     |  86 +++-
+ include/drm/drm_mode_config.h                   |  12 +-
+ include/drm/drm_modes.h                         |  17 +
+ 24 files changed, 1863 insertions(+), 208 deletions(-)
+---
+base-commit: 06bd0853188a01ce58f75e6dce940abff39c897f
+change-id: 20220728-rpi-analog-tv-properties-0914dfcee460
+
+Best regards,
+-- 
+Maxime Ripard <maxime@cerno.tech>
