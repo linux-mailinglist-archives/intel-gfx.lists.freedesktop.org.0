@@ -1,53 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202865EF3C7
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 12:57:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7947A5EF42D
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 13:21:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 496DA10E5AF;
-	Thu, 29 Sep 2022 10:57:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F29FE10E5DB;
+	Thu, 29 Sep 2022 11:21:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A76BB10E5AF
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Sep 2022 10:57:20 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B08ED10E5DA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Sep 2022 11:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664449040; x=1695985040;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TVPI/l5obUZ9PGIKMRQXncMSkqt6FPqRLIRwU2IeAKI=;
- b=N2IDXrCZ4R1/9o5U3gdZHbedPdcg9NHinZ+LQuuyV22OFukS5INZtvKk
- XrVSrTqNQ+FmKBXCy7i6HTKVOlNB27ghf/b+C65OpvemvKdgxxX6BOkt7
- YhsTzrc0DSuZRpHYVJ5lo+xzsDEC7giohX2cO6XQJVt58PjewEVIvrV2u
- 0DpWtQHFJ7sxk7/58tl8m5gjNa47EtbcEZUboHkjowqtdOTPbyaGsS6jq
- MEm0qvcgnz5c5Zn1t5GfNEVxlJEEqiLwLbtuFpjUj2EidH33deMlvgwbv
- YN0VQjj+vQAjMWysOQsOMZi7ARRCFdcJrYThcOKRXuuNH4/X+tgvaTfGh w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="363704502"
-X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="363704502"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 03:57:19 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="622313948"
-X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="622313948"
-Received: from ashyti-mobl2.igk.intel.com (HELO intel.com) ([172.28.182.72])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 03:57:18 -0700
-Date: Thu, 29 Sep 2022 12:57:16 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
+ t=1664450485; x=1695986485;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fRzUvh8aPSU4hxC/B1UNvop6iWHdwEuf2lpx5TJHTW8=;
+ b=Beh7muJw/joOCCgtUHgUI8KFTihOfpIUHj6cLIQzcWlQFM1JD54eMGML
+ FBuBaaxgA9Q6btOnCY3UyMmRCeqz2y7+E4ZmmeQis9MmBdDwtv6zFloNR
+ CX7wph36If1ZRM9lv6/lN3+wZu2jQOu0zSOjSESgwRUNHqVeNlhiXbd/d
+ vYdnK3yCQtYRvGu/bzFuVL4n7nlrGY5OrtGy57wBzoS+fvsrH+1nEx16i
+ A41IAwqy/H7ufnkVsG2F2Zi9hYFFl0MGgSncl3wHFUwg2rT6CChuwsCdd
+ H4vIlzDzhEbmnou/yXPVKn5e9HQb7BZ54CEalTyG0hs5qF/ni+a9ZY20x A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="299465312"
+X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="299465312"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2022 04:21:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="655515776"
+X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="655515776"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orsmga001.jf.intel.com with ESMTP; 29 Sep 2022 04:21:23 -0700
+From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <YzV6DPuhAQQA8ltS@ashyti-mobl2.lan>
-References: <20220927171313.6553-1-nirmoy.das@intel.com>
- <166439104849.593.17384297578294966615@emeril.freedesktop.org>
+Date: Thu, 29 Sep 2022 14:16:58 +0300
+Message-Id: <20220929111703.2472410-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <166439104849.593.17384297578294966615@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Flush_to_global_observation_point_before_breadcrumb?=
- =?utf-8?q?_write?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/5] drm/i915/mtl: Add C10 support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,54 +54,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Das, Nirmoy" <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+PHY programming support for message bus and phy programming.
+Updates for HDMI programming and vswing tables.
 
->    Series: drm/i915/gt: Flush to global observation point before
->    breadcrumb write
->    URL: [1]https://patchwork.freedesktop.org/series/109133/
->    State: failure
->    Details:
->    [2]https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109133v1/index.ht
->    ml
-> 
->      CI Bug Log - changes from CI_DRM_12193_full -> Patchwork_109133v1_full
-> 
-> Summary
-> 
->    FAILURE
-> 
->    Serious unknown changes coming with Patchwork_109133v1_full absolutely
->    need to be
->    verified manually.
-> 
->    If you think the reported changes have nothing to do with the changes
->    introduced in Patchwork_109133v1_full, please notify your bug team to
->    allow them
->    to document this new failure mode, which will reduce false positives in
->    CI.
-> 
-> Participating hosts (10 -> 10)
-> 
->    No changes in participating hosts
-> 
-> Possible new issues
-> 
->    Here are the unknown changes that may have been introduced in
->    Patchwork_109133v1_full:
-> 
->   IGT changes
-> 
->     Possible regressions
-> 
->      * igt@kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling
->        @pipe-a-valid-mode:
->           + shard-tglb: [3]PASS -> [4]INCOMPLETE
+Radhakrishna Sripada (5):
+  drm/i915/mtl: Add Support for C10,C20 PHY Message Bus
+  drm/i915/mtl: Add PLL programming support for C10 phy
+  drm/i915/mtl: Add support for C10 phy programming
+  drm/i915/mtl: Add C10 phy programming for HDMI
+  drm/i915/mtl: Add vswing programming for C10 phys
 
-This looks a false positive to me, not even an unrelated failure.
-Can anyone from display have a look and confirm, please?
+ drivers/gpu/drm/i915/Makefile                 |    1 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 1300 +++++
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  155 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   26 +-
+ .../drm/i915/display/intel_ddi_buf_trans.c    |   36 +-
+ .../drm/i915/display/intel_ddi_buf_trans.h    |    6 +
+ drivers/gpu/drm/i915/display/intel_display.c  |    1 +
+ .../drm/i915/display/intel_display_power.c    |    3 +-
+ .../i915/display/intel_display_power_map.c    |    1 +
+ .../i915/display/intel_display_power_well.c   |    2 +-
+ .../drm/i915/display/intel_display_types.h    |    6 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   15 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   20 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |    2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |    5 +-
+ .../drm/i915/display/intel_modeset_verify.c   |    2 +
+ drivers/gpu/drm/i915/i915_reg.h               |  142 +
+ drivers/gpu/drm/i915/intel_pm.c               | 5066 -----------------
+ 18 files changed, 1714 insertions(+), 5075 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_phy.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_phy.h
+ delete mode 100644 drivers/gpu/drm/i915/intel_pm.c
 
-Andi
+-- 
+2.34.1
+
