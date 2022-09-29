@@ -1,54 +1,155 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 500E35EF9AE
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 18:03:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0FBA5EFA49
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 18:22:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D90A310EAB9;
-	Thu, 29 Sep 2022 16:02:56 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C6DF10EABE;
- Thu, 29 Sep 2022 16:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E5CC10E60B;
+	Thu, 29 Sep 2022 16:22:06 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC0310E60B;
+ Thu, 29 Sep 2022 16:22:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664467372; x=1696003372;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=syl4hkIBMsJJBox/omDOJujHfzKNxcXOzymxNVYz/Z8=;
- b=JfnDfsXnFgJZWa1riAu7Db3rlm00eNFf+z0EZP71pkgpCcVmfjAAr/jA
- x+DufM+Ot1Z23TPAdbceqkSJq4NMNxrNz6rIO2+GpAYXmKYVXrChPYzox
- 0XQztx8jmNp2NIaMhWWbncqCuslNCguv8MxE8z4d2j+CldjJ0GhKn1CJc
- QZWd3EF0t6cVRSOyHrg0BeKYltFLD/sXdKuW5DIWPCg808XK3JlnAyfTH
- hmR0EvPjIeFgM+Mrrr2Zn1MoIlWMpVUoE4UOEPBPP9wlcNRW94NIVx0d2
- 83pvABVGe+gc2EiK80u3qRlYdpuVUY9PR2jbo1yjxayqgZcGoKHlq9WSj A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="365987568"
-X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="365987568"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 09:02:23 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="655604460"
-X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="655604460"
-Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 09:02:23 -0700
-Date: Thu, 29 Sep 2022 09:02:01 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20220929160159.GC22224@nvishwa1-DESK>
-References: <20220928061918.6340-1-niranjana.vishwanathapura@intel.com>
- <20220928061918.6340-13-niranjana.vishwanathapura@intel.com>
- <9fa140b7-fa8a-fa04-556b-aab240d7b6f0@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
+ t=1664468523; x=1696004523;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=RBoKnNMK2XK/V+upw99j1Jlaox0/ogydbgAD8ABMmfk=;
+ b=QWF1IuRv3GAMrb30kSjpYnnruQdTfac1+2/4TQlJ6piPNSuMmQ/wPzlR
+ w1fAat/F+Lac5i7EGQRtRvnfbPMUqCYc2Xip5Fb1D2rTJE8fVNPwKSPnG
+ 0N5Oo+qe+AkdThdNRTOqEI51wAvo6liP3OegPwTTjQt+FmsB4M5+pXZ9a
+ VdhDL7AfzJIvHvoRhnEqRtnGqgPcdU2UVeSGk4f+JeszIhEilxEl+uqbA
+ RffWPWvG3MYSwssjl5l9/v987YxRsXJBFcOZ75grPzKvo9q898Z90VA3n
+ 7s3TtGSjH9f2PEIDiDDVZ+bhuE5wSoGiH/3xa/JOEbhU00J/Q3zzvFGoW A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="328323182"
+X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="328323182"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2022 09:22:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="617661682"
+X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="617661682"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga007.jf.intel.com with ESMTP; 29 Sep 2022 09:22:01 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 29 Sep 2022 09:22:01 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 29 Sep 2022 09:22:01 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 29 Sep 2022 09:22:01 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Thu, 29 Sep 2022 09:22:00 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EybiuEboHTjPFHp6acu3OFW2GBya8D7em8jrS/qfZdykzi9+JhyqZ36xAIary1eVVvb39Oo4DUdQAgROtWuE9E+lTyPtzh7Vg+fIp8kD6dVYZFmjk99OsG6dm20LjUaOY6e26Xr1HPEHPBfgCwaU9Yd7prcoyHzhFWQ1YbYPN6EEi45XNdCvailc05dE7dhO7ipeAAz23+ik50cumQcf5K8puLUdV0XVcLVC0vssLTlPVeHDuV5VSqXk47U0bTtBgLpCY+OWpvHZvtfnMrCPQULVEj6fsZqM2qxrqSIlYoSeLaNQL/6P/LULw2ufTZ7ep2ThqBrgnj7XC6A7HhqOuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PrC9cZ45MBXsxlSMQTcSgxFpp1Mnnni6pRDn76c/74Y=;
+ b=O0COMDDLc/ikNi2GAhswEZ7cG0lBLt0LMHB7q+K2uUvHQd5eTCr614/w6EHe83tqGG8cUDBFvpFVK3FCUKMS9GFrQdRnN7XNgEhvONQvK/4JRLrclOWowLU3t1OeKqosJQFgV9aWDdSKFA0XppVbCPgaWJWwT7LqIDSSclpgKhFUWov45GUePtqPE8TiycJ9lJ+7YRe0v0l4YVKIVczop2SjyixXNMltLKVoeYoE+jPPfK+Cgy3itbGfW81VjsYZMoE4MJz2LRbt8CnUD0UEFYswknZbTyYhUOHw3J9R1hEM6g2zR0MexHEE/oU8VAitakqptOEftQlp7ibIn+/osA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by SA2PR11MB4970.namprd11.prod.outlook.com (2603:10b6:806:11f::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.19; Thu, 29 Sep
+ 2022 16:21:59 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::7750:dd86:4ef:afc6]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::7750:dd86:4ef:afc6%7]) with mapi id 15.20.5676.020; Thu, 29 Sep 2022
+ 16:21:59 +0000
+Message-ID: <ae042c9d-f6f1-2ecd-e23a-7d6994c97151@intel.com>
+Date: Thu, 29 Sep 2022 09:21:56 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.2.2
+Content-Language: en-GB
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20220929021813.2172701-1-John.C.Harrison@Intel.com>
+ <20220929021813.2172701-4-John.C.Harrison@Intel.com>
+ <a2c2cddf-009b-a2e0-2af2-6f1553c59cbc@linux.intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <a2c2cddf-009b-a2e0-2af2-6f1553c59cbc@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9fa140b7-fa8a-fa04-556b-aab240d7b6f0@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 12/16] drm/i915/vm_bind: Implement
- I915_GEM_EXECBUFFER3 ioctl
+X-ClientProxiedBy: BY5PR04CA0025.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::35) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|SA2PR11MB4970:EE_
+X-MS-Office365-Filtering-Correlation-Id: 29dbe620-a22b-421a-a5fb-08daa236bbcd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Za6w77D2meNASV2x8Gqxahkr4fV679dhOArxFDyhysiL4rAEyByvqAoGFpSsno2LCynx6hOqCfukpPj902+eOLyzkfoNZoiRbiWvTBG9r+USzpPJnw5Q+hM/fy24oLjzEt8CnGkVBScsgNvZwJWjAQx5aTD8010W5RyOWQvO+QVzNIZikOBxIgNyCDvrhB6aGhTQAEIZS9JSjbJFL+yrDJptUyoxkj6KZZTCctEZrH9na992qxxU/q3ojhvbq2KNtc2r8hkKqcGi8Vk7F+s3nehjsZUJ5kuzOmbBT48oazYHGdrK6WXNN218lYCSPI4/mzRLB7E8ziASJyq7iy6Vp6iWI6pNTqCSkmWKVkE+vu/Og1u5SLluQBIUs5sTgDuzyDNAllrKijswg80PGF3/I913KbL+5QjMjvuRBm/ytDN7QIPcddI5pm5oOING9dQpV7fD/uy50NpIKCfs/+fZPpp3Udp2/oGhzSQlKt2og1ZUnU8NasEh6Oz/krclLFQ3G+De4LXzxID7Wa0nYoz/PspwYyNgArAUrEK5VZHhnr/TVLonhAbY4MIst0P7vbk2LvE9+oCCe7Mbvz/iB0CSgr23RO1fKOZcBhEk/Xa9PXVOUvxvzRvsAI3qYkP2jYi2a11UrUGaM1/FvnyOw7E1ZpatVeryJzaebDVLntEowl0o/RoGGA2J9vCvTaG23RvLmE9gbtu6OIfez9bE+GDo0/YNdFaDRR0hnMkKlBUT7CrgHW1ftlBflfOcjGKt/enWpKrD3Jly4BU5r9QboMa3C+bBIGL0Q4gSnzs5DvKmfRE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(376002)(346002)(136003)(366004)(396003)(451199015)(36756003)(31686004)(38100700002)(82960400001)(186003)(83380400001)(2616005)(31696002)(86362001)(6506007)(6666004)(53546011)(478600001)(8676002)(6512007)(26005)(316002)(4326008)(41300700001)(8936002)(5660300002)(66946007)(66556008)(66476007)(2906002)(6486002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MEN4OEJIRjMxenNiL0pydElscVdQRGlhM2hSK1lyY3EzZFhQS0ZjYjUweHFo?=
+ =?utf-8?B?WWdDZlM3dG13TnhMUzZYQ2ZVYXQ4bys5UG41WGgzdlN6L0Y1UU1ZZEtWUXBN?=
+ =?utf-8?B?WWo0SG4xMUxORExVblBjV202SVpNY2hFY04rRktPaVh0cW1wWkwrYW5HUzFs?=
+ =?utf-8?B?OTU3VE9KZHg2ck5oZkcrRHFkb1I5cm0rOHZaOHY5WUhzRTZmTEZ6NTNjSlpR?=
+ =?utf-8?B?azBVdUwzcjFFTmkvSTJoWkFQd3ZDakJNVC9HekZFNkJrN0FNNEsxVGZmaUlG?=
+ =?utf-8?B?bUEvSnJMTnJIQXRZdGhuK1Z5K3JPVkZRZzdvUCtMUXFtMGVBRlBmTGNBOVJp?=
+ =?utf-8?B?N2toUUhmYlNjUWRUVmYzYmNXR01iQ1hEUFRuVGsyOURhMnBuakZJQ3ZrUUV4?=
+ =?utf-8?B?bkZaZEFJZ1NuYStYVXdjZUZqM0o4M3JIMVJNMi93aUdrMmlQMllkdjFyZ2NW?=
+ =?utf-8?B?bGY0cXd4K1c1ODZsemUzYVJ0Sk1SaUQ0NWpyTWduUWMzN1ZOekpjVzd2aW14?=
+ =?utf-8?B?azRWZzErTDRubTA3dUFuSFQzdTFsNW1BMHRaQUVBNmJpaG1uZ0t1SXJYVVFJ?=
+ =?utf-8?B?S0N4ZE9lVHVhb2N4cmVYTmhnclhuWHFrRi9rTTh4dHphRzY0eElTK0NsOUd6?=
+ =?utf-8?B?ODdxQnJXRE1ra0EyUjA0WnE3QjNaMnBxb0pvb1JSTVhFN1hvTkRQY3ZlUzdy?=
+ =?utf-8?B?SGxReW5BWE5TYWI1Mk4vaXFCZ0UxR045aTFJb0pZQkpEZ3ZqSXZtaFFNdU1C?=
+ =?utf-8?B?YlVFVWcrTmxEQURndExsVWZxWHdiZkFlZWRlajNuRDJ1OXNJVXh4Vk94amUw?=
+ =?utf-8?B?SVZVZWttdk1taTJteHFxR0NaQXBVSnZ3ZWh2TW4yYTdhb0g5ZDJ2eGdjRDhZ?=
+ =?utf-8?B?NUpGUElDR1p6elJGRWFRa1RhQzZZSHVGeXhtS3pUVXljSVlOZnF5a1UrRkcr?=
+ =?utf-8?B?SUlKUE9ZSTdJS2pWSXkvNlZaQzJOL0RtUDd1dkt3ZGhvSG5RSmpJTmluY0Nq?=
+ =?utf-8?B?OVNVVzRSR1A0ZUN5THhxcjdzaTZnUjdoSkUrN1lvR1RuSVNXVEdWR3U3SUVI?=
+ =?utf-8?B?MkVSVEdyMkUwNDlEV2YwQm00MHA1elNMWTBES1J3blgwYXZoQUxrVTROZFlP?=
+ =?utf-8?B?SHZYbFBmakRCaVRnNllURGt5UjJORzRpblFKblJlaG5iTWx1SUFOS1dnc2ZX?=
+ =?utf-8?B?aGswT2p0WC9uYnNiUVZKVkdsbUgvd3dMTlM5Zm1zZVdqdTdzQWxNKzZiTy9w?=
+ =?utf-8?B?cVNxQk9jajk4U2NUN2VVbVVBSEhhMXRxVEJtQWFmT1JRNXl5QmpzYllsRlV6?=
+ =?utf-8?B?ZGs4WnlyRW5pRURnYmlaL1plTENhUHV1OE9rMkxWWjFFUEROQlAzNlIva01i?=
+ =?utf-8?B?NDgwenc3NHJYa1ZMWk9FU2JOT2JnYVRFaWdXN3FYVy9HOTRkZEpTMldyVE9Q?=
+ =?utf-8?B?K09ydkt3RGFhclQzMEZRM3NyaVR5MXErUmVIczlISFVjZ0ZZTTZMWU93QVNG?=
+ =?utf-8?B?dXlaN3FjdXFaWXp5YW5mNVFJNjdyREt3MGE3MjFDT1MvL2F6Q1Vlc3V2V3gr?=
+ =?utf-8?B?dWwyTFN1V3dUMHo0V2c4T21IcXpYc2pYT2hoU0ExY0ZXZkxTdlVkYUhaTnFk?=
+ =?utf-8?B?eFRoY3ByNjI1c1Q4dmQxbzZaS2hlNEFnWHpOanNuVG56WC9FRTQ0TXlrbW91?=
+ =?utf-8?B?MWxrRE9lcTRES3FkVktVK2FZUDFreFV0Y1ZRUFJ0d0YzbEVwMUFzUkVPTXRS?=
+ =?utf-8?B?SWF1L0RmTmk2ZXRscmF6YnFhTEM2U1JkSmYrRTMydy9VVGZJUTA5TWFsQkRM?=
+ =?utf-8?B?Wm5uRGMyaGw0dHhzd2hpYktjdVRNdm1HK3pDK2I2U0g2dzJMR2dubWJOUUpw?=
+ =?utf-8?B?SjRTUUZMTk9CS2p1M2YzYUZ1MnozNkNwV3JnOTZKekx2ZFBtbkJpekRtbVVp?=
+ =?utf-8?B?a1V0emlPT2dYTVhndUZPcVoyQWlqVTlxdmtnUmQwRGI5RW0vWTJ6dWtWRFpM?=
+ =?utf-8?B?cGpUekg0S0ZMQmhCRk5wc2lCZlNzdEFxaktwNlFyNDNuZTRBM1E5VTFzTTlV?=
+ =?utf-8?B?dnVwK01mY0oySityMjcxRk0yL2JZdFpkQm96UDdZWFppdnR6RnVqK01vU0sr?=
+ =?utf-8?B?OWNQUkxyWEgwTnhpRG9vdDBNTzBPQTFmUmNDalRySWR1ek1TemxZcUNwTlBD?=
+ =?utf-8?B?WUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29dbe620-a22b-421a-a5fb-08daa236bbcd
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2022 16:21:59.1284 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ilpFosFTbgaf/En9TYfeyQodx+fcwFWRFqRH0201MN2Tsx7mXY0yqzn8jXmaJ4EPJwG7i0uxuOuYAruQ1RRjRKlU561QUXGc/LI5bSRJLeE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4970
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v4 3/4] drm/i915: Make the heartbeat play
+ nice with long pre-emption timeouts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,269 +162,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- thomas.hellstrom@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 29, 2022 at 04:00:47PM +0100, Matthew Auld wrote:
->On 28/09/2022 07:19, Niranjana Vishwanathapura wrote:
->>Implement new execbuf3 ioctl (I915_GEM_EXECBUFFER3) which only
->>works in vm_bind mode. The vm_bind mode only works with
->>this new execbuf3 ioctl.
+On 9/29/2022 00:42, Tvrtko Ursulin wrote:
+> On 29/09/2022 03:18, John.C.Harrison@Intel.com wrote:
+>> From: John Harrison <John.C.Harrison@Intel.com>
 >>
->>The new execbuf3 ioctl will not have any list of objects to validate
->>bind as all required objects binding would have been requested by the
->>userspace before submitting the execbuf3.
+>> Compute workloads are inherently not pre-emptible for long periods on
+>> current hardware. As a workaround for this, the pre-emption timeout
+>> for compute capable engines was disabled. This is undesirable with GuC
+>> submission as it prevents per engine reset of hung contexts. Hence the
+>> next patch will re-enable the timeout but bumped up by an order of
+>> magnitude.
 >>
->>Legacy features like relocations etc are not supported by execbuf3.
+>> However, the heartbeat might not respect that. Depending upon current
+>> activity, a pre-emption to the heartbeat pulse might not even be
+>> attempted until the last heartbeat period. Which means that only one
+>> period is granted for the pre-emption to occur. With the aforesaid
+>> bump, the pre-emption timeout could be significantly larger than this
+>> heartbeat period.
 >>
->>Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->>Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
->>---
->>  drivers/gpu/drm/i915/Makefile                 |   1 +
->>  .../gpu/drm/i915/gem/i915_gem_execbuffer3.c   | 571 ++++++++++++++++++
->>  drivers/gpu/drm/i915/gem/i915_gem_ioctls.h    |   2 +
->>  drivers/gpu/drm/i915/i915_driver.c            |   1 +
->>  include/uapi/drm/i915_drm.h                   |  61 ++
->>  5 files changed, 636 insertions(+)
->>  create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
+>> So adjust the heartbeat code to take the pre-emption timeout into
+>> account. When it reaches the final (high priority) period, it now
+>> ensures the delay before hitting reset is bigger than the pre-emption
+>> timeout.
 >>
->>diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
->>index bf952f478555..3473ee5825bb 100644
->>--- a/drivers/gpu/drm/i915/Makefile
->>+++ b/drivers/gpu/drm/i915/Makefile
->>@@ -150,6 +150,7 @@ gem-y += \
->>  	gem/i915_gem_domain.o \
->>  	gem/i915_gem_execbuffer_common.o \
->>  	gem/i915_gem_execbuffer.o \
->>+	gem/i915_gem_execbuffer3.o \
->>  	gem/i915_gem_internal.o \
->>  	gem/i915_gem_object.o \
->>  	gem/i915_gem_lmem.o \
->>diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
->>new file mode 100644
->>index 000000000000..92af88bc8deb
->>--- /dev/null
->>+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
->>@@ -0,0 +1,571 @@
->>+// SPDX-License-Identifier: MIT
->>+/*
->>+ * Copyright � 2022 Intel Corporation
->>+ */
->>+
->>+#include <linux/dma-resv.h>
->>+#include <linux/uaccess.h>
->>+
->>+#include <drm/drm_syncobj.h>
->>+
->>+#include "gt/intel_context.h"
->>+#include "gt/intel_gpu_commands.h"
->>+#include "gt/intel_gt.h"
->>+
->>+#include "i915_drv.h"
->>+#include "i915_gem_context.h"
->>+#include "i915_gem_execbuffer_common.h"
->>+#include "i915_gem_ioctls.h"
->>+#include "i915_gem_vm_bind.h"
->>+#include "i915_trace.h"
->>+
->>+#define __EXEC3_ENGINE_PINNED		BIT_ULL(32)
->>+#define __EXEC3_INTERNAL_FLAGS		(~0ull << 32)
->>+
->>+/* Catch emission of unexpected errors for CI! */
->>+#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
->>+#undef EINVAL
->>+#define EINVAL ({ \
->>+	DRM_DEBUG_DRIVER("EINVAL at %s:%d\n", __func__, __LINE__); \
->>+	22; \
->>+})
->>+#endif
->>+
->>+/**
->>+ * DOC: User command execution with execbuf3 ioctl
->>+ *
->>+ * A VM in VM_BIND mode will not support older execbuf mode of binding.
->>+ * The execbuf ioctl handling in VM_BIND mode differs significantly from the
->>+ * older execbuf2 ioctl (See struct drm_i915_gem_execbuffer2).
->>+ * Hence, a new execbuf3 ioctl has been added to support VM_BIND mode. (See
->>+ * struct drm_i915_gem_execbuffer3). The execbuf3 ioctl will not accept any
->>+ * execlist. Hence, no support for implicit sync.
->>+ *
->>+ * The new execbuf3 ioctl only works in VM_BIND mode and the VM_BIND mode only
->>+ * works with execbuf3 ioctl for submission.
->>+ *
->>+ * The execbuf3 ioctl directly specifies the batch addresses instead of as
->>+ * object handles as in execbuf2 ioctl. The execbuf3 ioctl will also not
->>+ * support many of the older features like in/out/submit fences, fence array,
->>+ * default gem context etc. (See struct drm_i915_gem_execbuffer3).
->>+ *
->>+ * In VM_BIND mode, VA allocation is completely managed by the user instead of
->>+ * the i915 driver. Hence all VA assignment, eviction are not applicable in
->>+ * VM_BIND mode. Also, for determining object activeness, VM_BIND mode will not
->>+ * be using the i915_vma active reference tracking. It will instead check the
->>+ * dma-resv object's fence list for that.
->>+ *
->>+ * So, a lot of code supporting execbuf2 ioctl, like relocations, VA evictions,
->>+ * vma lookup table, implicit sync, vma active reference tracking etc., are not
->>+ * applicable for execbuf3 ioctl.
->>+ */
->>+
->>+/**
->>+ * struct i915_execbuffer - execbuf struct for execbuf3
->>+ * @i915: reference to the i915 instance we run on
->>+ * @file: drm file reference
->>+ * args: execbuf3 ioctl structure
->>+ * @gt: reference to the gt instance ioctl submitted for
->>+ * @context: logical state for the request
->>+ * @gem_context: callers context
->>+ * @requests: requests to be build
->>+ * @composite_fence: used for excl fence in dma_resv objects when > 1 BB submitted
->>+ * @ww: i915_gem_ww_ctx instance
->>+ * @num_batches: number of batches submitted
->>+ * @batch_addresses: addresses corresponds to the submitted batches
->>+ * @batches: references to the i915_vmas corresponding to the batches
->>+ */
->>+struct i915_execbuffer {
->>+	struct drm_i915_private *i915;
->>+	struct drm_file *file;
->>+	struct drm_i915_gem_execbuffer3 *args;
->>+
->>+	struct intel_gt *gt;
->>+	struct intel_context *context;
->>+	struct i915_gem_context *gem_context;
->>+
->>+	struct i915_request *requests[MAX_ENGINE_INSTANCE + 1];
->>+	struct dma_fence *composite_fence;
->>+
->>+	struct i915_gem_ww_ctx ww;
->>+
->>+	unsigned int num_batches;
->>+	u64 batch_addresses[MAX_ENGINE_INSTANCE + 1];
->>+	struct i915_vma *batches[MAX_ENGINE_INSTANCE + 1];
->>+
->>+	struct eb_fence *fences;
->>+	u64 num_fences;
->>+};
->>+
->>+static void eb_unpin_engine(struct i915_execbuffer *eb);
->>+
->>+static int eb_select_context(struct i915_execbuffer *eb)
->>+{
->>+	struct i915_gem_context *ctx;
->>+
->>+	ctx = i915_gem_context_lookup(eb->file->driver_priv, eb->args->ctx_id);
->>+	if (IS_ERR(ctx))
->>+		return PTR_ERR(ctx);
->>+
->>+	if (!ctx->vm->vm_bind_mode) {
->>+		i915_gem_context_put(ctx);
->>+		return -EOPNOTSUPP;
->>+	}
->>+
->>+	eb->gem_context = ctx;
->>+	return 0;
->>+}
->>+
->>+static struct i915_vma *
->>+eb_find_vma(struct i915_address_space *vm, u64 addr)
->>+{
->>+	u64 va;
->>+
->>+	lockdep_assert_held(&vm->vm_bind_lock);
->>+
->>+	va = gen8_noncanonical_addr(addr & PIN_OFFSET_MASK);
->>+	return i915_gem_vm_bind_lookup_vma(vm, va);
->>+}
->>+
->>+static int eb_lookup_vma_all(struct i915_execbuffer *eb)
->>+{
->>+	unsigned int i, current_batch = 0;
->>+	struct i915_vma *vma;
->>+
->>+	for (i = 0; i < eb->num_batches; i++) {
->>+		vma = eb_find_vma(eb->context->vm, eb->batch_addresses[i]);
->>+		if (!vma)
->>+			return -EINVAL;
->>+
->>+		eb->batches[current_batch] = vma;
->>+		++current_batch;
->>+	}
->>+
->>+	return 0;
->>+}
->>+
->>+static void eb_release_vma_all(struct i915_execbuffer *eb, bool final)
->>+{
->>+	eb_unpin_engine(eb);
->>+}
->>+
->>+/*
->>+ * Using two helper loops for the order of which requests / batches are created
->>+ * and added the to backend. Requests are created in order from the parent to
->>+ * the last child. Requests are added in the reverse order, from the last child
->>+ * to parent. This is done for locking reasons as the timeline lock is acquired
->>+ * during request creation and released when the request is added to the
->>+ * backend. To make lockdep happy (see intel_context_timeline_lock) this must be
->>+ * the ordering.
->>+ */
->>+#define for_each_batch_create_order(_eb) \
->>+	for (unsigned int i = 0; i < (_eb)->num_batches; ++i)
->>+
->>+static int eb_move_to_gpu(struct i915_execbuffer *eb)
->>+{
->>+	/* Unconditionally flush any chipset caches (for streaming writes). */
->>+	intel_gt_chipset_flush(eb->gt);
->>+
->>+	return 0;
->>+}
->>+
->>+static int eb_request_submit(struct i915_execbuffer *eb,
->>+			     struct i915_request *rq,
->>+			     struct i915_vma *batch,
->>+			     u64 batch_len)
->>+{
->>+	struct intel_engine_cs *engine = rq->context->engine;
->>+	int err;
->>+
->>+	if (intel_context_nopreempt(rq->context))
->>+		__set_bit(I915_FENCE_FLAG_NOPREEMPT, &rq->fence.flags);
->>+
->>+	/*
->>+	 * After we completed waiting for other engines (using HW semaphores)
->>+	 * then we can signal that this request/batch is ready to run. This
->>+	 * allows us to determine if the batch is still waiting on the GPU
->>+	 * or actually running by checking the breadcrumb.
->>+	 */
->>+	if (engine->emit_init_breadcrumb) {
->>+		err = engine->emit_init_breadcrumb(rq);
->>+		if (err)
->>+			return err;
->>+	}
->>+
->>+	return engine->emit_bb_start(rq, batch->node.start, batch_len, 0);
->>+}
->>+
->>+static int eb_submit(struct i915_execbuffer *eb)
->>+{
->>+	int err;
->>+
->>+	err = eb_move_to_gpu(eb);
+>> v2: Fix for selftests which adjust the heartbeat period manually.
+>>
+>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>> ---
+>>   .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 19 +++++++++++++++++++
+>>   1 file changed, 19 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c 
+>> b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+>> index a3698f611f457..823a790a0e2ae 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+>> @@ -22,9 +22,28 @@
+>>     static bool next_heartbeat(struct intel_engine_cs *engine)
+>>   {
+>> +    struct i915_request *rq;
+>>       long delay;
+>>         delay = READ_ONCE(engine->props.heartbeat_interval_ms);
+>> +
+>> +    rq = engine->heartbeat.systole;
+>> +
+>> +    if (rq && rq->sched.attr.priority >= I915_PRIORITY_BARRIER &&
+>> +        delay == engine->defaults.heartbeat_interval_ms) {
 >
->I'm looking but can't find the magic bit that chains up the request 
->against each of the binds (since binding often can be async), to 
->ensure we don't submit the rq to hw, before the binds (and potential 
->moves/clears) are for sure complete. In i915_vma_bind() it's still 
->using vma->active, and not for example adding kernel fence to 
->dma-resv, and here ensuring we adhere to it? What am I missing?
+> Maybe I forgot but what is the reason for the check against the 
+> default heartbeat interval?
+That's the 'v2: fix for selftests that manually adjust the heartbeat'. 
+If something (or someone) has explicitly set an override of the 
+heartbeat then it has to be assumed that they know what they are doing, 
+and if things don't work any more that's their problem. But if we don't 
+respect their override then they won't get the timings they expect and 
+the selftest will fail.
 
-Yah, you are right, looks like it got lost in the driver redesign.
-We do need to call __i915_request_await_bind() for persistent vmas,
-and keep the persistent vmas in vm_bind_list in the vm_bind ioctl,
-so that execbuf properly waits for the binds to complete.
-Will update.
+John.
 
-Regards,
-Niranjana
+>
+> Regards,
+>
+> Tvrtko
+>
+>> +        long longer;
+>> +
+>> +        /*
+>> +         * The final try is at the highest priority possible. Up 
+>> until now
+>> +         * a pre-emption might not even have been attempted. So make 
+>> sure
+>> +         * this last attempt allows enough time for a pre-emption to 
+>> occur.
+>> +         */
+>> +        longer = READ_ONCE(engine->props.preempt_timeout_ms) * 2;
+>> +        longer = intel_clamp_heartbeat_interval_ms(engine, longer);
+>> +        if (longer > delay)
+>> +            delay = longer;
+>> +    }
+>> +
+>>       if (!delay)
+>>           return false;
 
