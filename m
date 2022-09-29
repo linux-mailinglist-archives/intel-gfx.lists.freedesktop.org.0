@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCDAA5EEEAB
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 09:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B5615EEEA6
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 09:16:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43B8F10E9B0;
-	Thu, 29 Sep 2022 07:16:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC44810E9A1;
+	Thu, 29 Sep 2022 07:15:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA97D10E919
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Sep 2022 07:15:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2551310E989
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Sep 2022 07:15:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664435739; x=1695971739;
+ t=1664435740; x=1695971740;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=8OhC/qzivFIjlwc0Gb8QLozjIjx45YZ1/U6Wt1s6XpU=;
- b=C+lbIx8oOVB0YMa3OIEgHIt5x0qghW03x8iqp7XyxZAvSJjr56eQebhR
- iL3DCSp0tOiLPqWsILpiGrW6IzdvYxcvT38XWx5kSixEVRhX+eoRbY9nP
- m8sEVPNo/d3SxzrrqmWRadtwDUFYsdxO1pYVUDT8VN/NuCMm6IwiFuw4c
- 5j8LShLALAnHiQvVMepaHaDI8gNlyIwOmy7K5xJj2MdAQxDz3EBvgIN3x
- NQOrw+DpV4e3By5ZIXIq+87vPp8dViV/fcn2u5y1fJKvNXAWMlsNBckP+
- KtZD29765iz3+d2DUbO9VfN1xRMrld5usH0dTlTsYfaPXFNPRqxYSt8TL Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="288979106"
-X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="288979106"
+ bh=j1Z3N8lIZK2sAfIqotvE6ATJO38jEjWVkqW1nYxICg8=;
+ b=krqiQ9e+QUV0R58n4Nzg+C3sBSLQFNAaD0x8YSSk0/pZN2v/WftkChyR
+ AodbXY9A+g4daZ1ARz9lH+hM1Qr09Lix4iePBwAoRs4A3szIAI4wpHdGI
+ BAbYPC9gJAb1E7ffGZt1mp8FGLjWyHLNJpbUsod1k02hnVhNWKOz7BG4Y
+ tKdU5EwJu4DoRgSZvEgWGo8HBhRpee/feyaxue7B4T3/GHcVVs6/lyx0f
+ Ptss1P+qOnNfgDEUipj6vGVBw/ijDO8wvq75G8ARQxrwJO7AxQ+666c7B
+ Ww+cm81icJIPhQ3zd3VFSPJVd+pTnlfANxPFEcocTc/DBWyX94ASnKZZU w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="288979116"
+X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="288979116"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 00:15:36 -0700
+ 29 Sep 2022 00:15:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="655441198"
-X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="655441198"
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="655441221"
+X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="655441221"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga001.jf.intel.com with SMTP; 29 Sep 2022 00:15:34 -0700
+ by orsmga001.jf.intel.com with SMTP; 29 Sep 2022 00:15:37 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 29 Sep 2022 10:15:34 +0300
+ Thu, 29 Sep 2022 10:15:36 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Sep 2022 10:15:15 +0300
-Message-Id: <20220929071521.26612-5-ville.syrjala@linux.intel.com>
+Date: Thu, 29 Sep 2022 10:15:16 +0300
+Message-Id: <20220929071521.26612-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220929071521.26612-1-ville.syrjala@linux.intel.com>
 References: <20220929071521.26612-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 04/10] drm/i915: Clean up
- intel_color_init_hooks()
+Subject: [Intel-gfx] [PATCH 05/10] drm/i915: Change glk_load_degamma_lut()
+ calling convention
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,70 +65,70 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Remove a bunch of pointless curly brackets and do
-the s/dev_priv/i915/ while at it.
+Make glk_load_degamma_lut() more like most everyone else and
+pass in the LUT explicitly.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c | 43 +++++++++++-----------
- 1 file changed, 21 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index ce8a4be9b292..96687ec30b19 100644
+index 96687ec30b19..0c73b2ba1283 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -2219,30 +2219,29 @@ void intel_crtc_color_init(struct intel_crtc *crtc)
- 				   INTEL_INFO(dev_priv)->display.color.gamma_lut_size);
+@@ -826,13 +826,14 @@ static int glk_degamma_lut_size(struct drm_i915_private *i915)
+ 		return 35;
  }
  
--void intel_color_init_hooks(struct drm_i915_private *dev_priv)
-+void intel_color_init_hooks(struct drm_i915_private *i915)
+-static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state)
++static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state,
++				 const struct drm_property_blob *blob)
  {
--	if (HAS_GMCH(dev_priv)) {
--		if (IS_CHERRYVIEW(dev_priv)) {
--			dev_priv->display.funcs.color = &chv_color_funcs;
--		} else if (DISPLAY_VER(dev_priv) >= 4) {
--			dev_priv->display.funcs.color = &i965_color_funcs;
--		} else {
--			dev_priv->display.funcs.color = &i9xx_color_funcs;
--		}
-+	if (HAS_GMCH(i915)) {
-+		if (IS_CHERRYVIEW(i915))
-+			i915->display.funcs.color = &chv_color_funcs;
-+		else if (DISPLAY_VER(i915) >= 4)
-+			i915->display.funcs.color = &i965_color_funcs;
-+		else
-+			i915->display.funcs.color = &i9xx_color_funcs;
- 	} else {
--		if (DISPLAY_VER(dev_priv) >= 11)
--			dev_priv->display.funcs.color = &icl_color_funcs;
--		else if (DISPLAY_VER(dev_priv) == 10)
--			dev_priv->display.funcs.color = &glk_color_funcs;
--		else if (DISPLAY_VER(dev_priv) == 9)
--			dev_priv->display.funcs.color = &skl_color_funcs;
--		else if (DISPLAY_VER(dev_priv) == 8)
--			dev_priv->display.funcs.color = &bdw_color_funcs;
--		else if (IS_HASWELL(dev_priv))
--			dev_priv->display.funcs.color = &hsw_color_funcs;
--		else if (DISPLAY_VER(dev_priv) == 7)
--			dev_priv->display.funcs.color = &ivb_color_funcs;
-+		if (DISPLAY_VER(i915) >= 11)
-+			i915->display.funcs.color = &icl_color_funcs;
-+		else if (DISPLAY_VER(i915) == 10)
-+			i915->display.funcs.color = &glk_color_funcs;
-+		else if (DISPLAY_VER(i915) == 9)
-+			i915->display.funcs.color = &skl_color_funcs;
-+		else if (DISPLAY_VER(i915) == 8)
-+			i915->display.funcs.color = &bdw_color_funcs;
-+		else if (IS_HASWELL(i915))
-+			i915->display.funcs.color = &hsw_color_funcs;
-+		else if (DISPLAY_VER(i915) == 7)
-+			i915->display.funcs.color = &ivb_color_funcs;
- 		else
--			dev_priv->display.funcs.color = &ilk_color_funcs;
-+			i915->display.funcs.color = &ilk_color_funcs;
- 	}
- }
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	const struct drm_color_lut *lut = blob->data;
++	int i, lut_size = drm_color_lut_size(blob);
+ 	enum pipe pipe = crtc->pipe;
+-	int i, lut_size = INTEL_INFO(dev_priv)->display.color.degamma_lut_size;
+-	const struct drm_color_lut *lut = crtc_state->hw.degamma_lut->data;
+ 
+ 	/*
+ 	 * When setting the auto-increment bit, the hardware seems to
+@@ -899,6 +900,7 @@ static void glk_load_degamma_lut_linear(const struct intel_crtc_state *crtc_stat
+ 
+ static void glk_load_luts(const struct intel_crtc_state *crtc_state)
+ {
++	const struct drm_property_blob *degamma_lut = crtc_state->hw.degamma_lut;
+ 	const struct drm_property_blob *gamma_lut = crtc_state->hw.gamma_lut;
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 
+@@ -910,8 +912,8 @@ static void glk_load_luts(const struct intel_crtc_state *crtc_state)
+ 	 * the degama LUT so that we don't have to reload
+ 	 * it every time the pipe CSC is being enabled.
+ 	 */
+-	if (crtc_state->hw.degamma_lut)
+-		glk_load_degamma_lut(crtc_state);
++	if (degamma_lut)
++		glk_load_degamma_lut(crtc_state, degamma_lut);
+ 	else
+ 		glk_load_degamma_lut_linear(crtc_state);
+ 
+@@ -1043,11 +1045,12 @@ icl_program_gamma_multi_segment(const struct intel_crtc_state *crtc_state)
+ 
+ static void icl_load_luts(const struct intel_crtc_state *crtc_state)
+ {
++	const struct drm_property_blob *degamma_lut = crtc_state->hw.degamma_lut;
+ 	const struct drm_property_blob *gamma_lut = crtc_state->hw.gamma_lut;
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 
+-	if (crtc_state->hw.degamma_lut)
+-		glk_load_degamma_lut(crtc_state);
++	if (degamma_lut)
++		glk_load_degamma_lut(crtc_state, degamma_lut);
+ 
+ 	switch (crtc_state->gamma_mode & GAMMA_MODE_MODE_MASK) {
+ 	case GAMMA_MODE_MODE_8BIT:
 -- 
 2.35.1
 
