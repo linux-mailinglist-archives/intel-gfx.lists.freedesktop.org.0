@@ -2,66 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C80B85EF39E
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 12:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D4BA5EF3A1
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 12:41:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAF6610E06F;
-	Thu, 29 Sep 2022 10:40:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24B8010E06F;
+	Thu, 29 Sep 2022 10:41:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A137210E06F
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Sep 2022 10:40:13 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BFB610E06F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Sep 2022 10:41:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664448013; x=1695984013;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=EioTVs1WISYeEUAdjhIPghvum+4guFurifjr1vtIglQ=;
- b=N0uRoLtLVKREcmMA+kllgwvTEYfCVHmKA2soMt/bHsO1y7NDLo/td6B2
- IiKzmR3WD7hI0iWePgmwg0Z5ypNwRg50/eOkD+UYgjUw3SID55lOMEM0O
- SvAIImDn7/hNeUg8mq6pbFMho5zMuu+pgD+HeKIXl07sxymD9ZoNkyKqZ
- UfSji++PyXVYr0jq/eNoNPpMTgQ8tyjrhsQfJqmvI45qgpXeOTmm+yLfx
- bM6LQLp4EmuE2W/ij28VfnYwV8bpxIMqNs3iNXYuQQZ7BroyoemsTaA7H
- 7rXysj+udqLOB8zrHr+BkrMCBrkipiKIkSU9GevheJ+apNoqalwnNJIZV A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="301832375"
-X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="301832375"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 03:40:05 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="655504805"
-X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="655504805"
-Received: from aknyaze1-mobl.ger.corp.intel.com (HELO [10.213.226.16])
- ([10.213.226.16])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 03:40:03 -0700
-Message-ID: <85255d26-bdd0-a9ab-7d6a-347e616ff279@linux.intel.com>
-Date: Thu, 29 Sep 2022 11:40:01 +0100
+ t=1664448113; x=1695984113;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=rkOlOc2xI5WG6aM7FN+noAJAdKlwraeqiakmxP8pnC8=;
+ b=mGU5CzOd8fjWQLBIH1mwffZusI5i+4EOyBdu+9psIbSMlxIg0PyZdMte
+ J41pbcfUHlse53r1EynC0gO5t3OodVxpQ0tckQxZoyzNWIzy4cRi9QLBb
+ N9R3OyfSSKmjGngxUZe+hUKsA/MxIj3yL+kx1xWGaumgoXaAGYsW1WojJ
+ e0StpRQpFE2tiWnoymRq7Or7a0nvrFFrjsb0aRwv/dc/TCpsrULPBqCR8
+ 5GaO48FA6ML1ZiArkN129MzeKTQuBIAmRFh9eHWXJfY4mjZTKXin77EI0
+ q7/E+fidVgR+03v5SDt6mZN8qaycHcscA4II42RB3mUa+xpVcQgm5pOOE Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="289021045"
+X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="289021045"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2022 03:41:52 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10484"; a="797509853"
+X-IronPort-AV: E=Sophos;i="5.93,354,1654585200"; d="scan'208";a="797509853"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.153])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2022 03:41:51 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220929071521.26612-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220929071521.26612-1-ville.syrjala@linux.intel.com>
+ <20220929071521.26612-3-ville.syrjala@linux.intel.com>
+Date: Thu, 29 Sep 2022 13:41:47 +0300
+Message-ID: <87o7uyxy1g.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- John Harrison <john.c.harrison@intel.com>,
- "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-References: <20220926215410.2268295-1-andrzej.hajda@intel.com>
- <YzIrUG8lrEsY9XOo@ashyti-mobl2.lan>
- <7039faf9-b2a1-9400-fdc7-f5dcd7a8dd9a@intel.com>
- <f34e60c9-17ea-56a0-acb2-bb8d97363993@intel.com>
- <c3af2831-d06b-5818-baf2-e88b4d1f6694@linux.intel.com>
- <ad885543-02f3-5a44-0d06-0ffe48cf29e2@intel.com>
- <ad22bd93-fcdb-3463-9915-1e4409618239@linux.intel.com>
- <e4200a76-f7e0-106e-cff9-5e58f27b40da@intel.com>
- <92edfe5c-17f9-9f82-7df4-d653c7899765@linux.intel.com>
- <a6c8ae15-c84d-0d8b-e6bf-a1e4a2914b1f@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <a6c8ae15-c84d-0d8b-e6bf-a1e4a2914b1f@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: do not capture error state on
- exiting context
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 02/10] drm/i915: Split up intel_color_init()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,233 +59,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 29 Sep 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> intel_color_init() does both device level and crtc level stuff.
+> Split it up accordingly.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_color.c   | 15 +++++++++------
+>  drivers/gpu/drm/i915/display/intel_color.h   |  4 +++-
+>  drivers/gpu/drm/i915/display/intel_crtc.c    |  3 +--
+>  drivers/gpu/drm/i915/display/intel_display.c |  1 +
+>  4 files changed, 14 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm=
+/i915/display/intel_color.c
+> index bbc56affb3ec..ddfe7c257a72 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -2206,13 +2206,21 @@ static const struct intel_color_funcs ilk_color_f=
+uncs =3D {
+>  	.read_luts =3D ilk_read_luts,
+>  };
+>=20=20
+> -void intel_color_init(struct intel_crtc *crtc)
+> +void intel_crtc_color_init(struct intel_crtc *crtc)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	bool has_ctm =3D INTEL_INFO(dev_priv)->display.color.degamma_lut_size !=
+=3D 0;
+>=20=20
+>  	drm_mode_crtc_set_gamma_size(&crtc->base, 256);
+>=20=20
+> +	drm_crtc_enable_color_mgmt(&crtc->base,
+> +				   INTEL_INFO(dev_priv)->display.color.degamma_lut_size,
+> +				   has_ctm,
+> +				   INTEL_INFO(dev_priv)->display.color.gamma_lut_size);
+> +}
+> +
+> +void intel_color_init_hooks(struct drm_i915_private *dev_priv)
+> +{
+>  	if (HAS_GMCH(dev_priv)) {
+>  		if (IS_CHERRYVIEW(dev_priv)) {
+>  			dev_priv->display.funcs.color =3D &chv_color_funcs;
+> @@ -2238,9 +2246,4 @@ void intel_color_init(struct intel_crtc *crtc)
+>  		} else
+>  			dev_priv->display.funcs.color =3D &ilk_color_funcs;
+>  	}
+> -
+> -	drm_crtc_enable_color_mgmt(&crtc->base,
+> -				   INTEL_INFO(dev_priv)->display.color.degamma_lut_size,
+> -				   has_ctm,
+> -				   INTEL_INFO(dev_priv)->display.color.gamma_lut_size);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm=
+/i915/display/intel_color.h
+> index fd873425e082..67702451e2fd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.h
+> +++ b/drivers/gpu/drm/i915/display/intel_color.h
+> @@ -10,9 +10,11 @@
+>=20=20
+>  struct intel_crtc_state;
+>  struct intel_crtc;
+> +struct drm_i915_private;
+>  struct drm_property_blob;
+>=20=20
+> -void intel_color_init(struct intel_crtc *crtc);
+> +void intel_color_init_hooks(struct drm_i915_private *i915);
+> +void intel_crtc_color_init(struct intel_crtc *crtc);
+>  int intel_color_check(struct intel_crtc_state *crtc_state);
+>  void intel_color_commit_noarm(const struct intel_crtc_state *crtc_state);
+>  void intel_color_commit_arm(const struct intel_crtc_state *crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
+i915/display/intel_crtc.c
+> index 6792a9056f46..2d9fc7383bfc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -365,8 +365,7 @@ int intel_crtc_init(struct drm_i915_private *dev_priv=
+, enum pipe pipe)
+>  						BIT(DRM_SCALING_FILTER_DEFAULT) |
+>  						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
+>=20=20
+> -	intel_color_init(crtc);
+> -
+> +	intel_crtc_color_init(crtc);
+>  	intel_crtc_drrs_init(crtc);
+>  	intel_crtc_crc_init(crtc);
 
-On 29/09/2022 10:49, Andrzej Hajda wrote:
-> On 29.09.2022 10:22, Tvrtko Ursulin wrote:
->> On 28/09/2022 19:27, John Harrison wrote:
->>> On 9/28/2022 00:19, Tvrtko Ursulin wrote:
->>>> On 27/09/2022 22:36, Ceraolo Spurio, Daniele wrote:
->>>>> On 9/27/2022 12:45 AM, Tvrtko Ursulin wrote:
->>>>>> On 27/09/2022 07:49, Andrzej Hajda wrote:
->>>>>>> On 27.09.2022 01:34, Ceraolo Spurio, Daniele wrote:
->>>>>>>> On 9/26/2022 3:44 PM, Andi Shyti wrote:
->>>>>>>>> Hi Andrzej,
->>>>>>>>>
->>>>>>>>> On Mon, Sep 26, 2022 at 11:54:09PM +0200, Andrzej Hajda wrote:
->>>>>>>>>> Capturing error state is time consuming (up to 350ms on DG2), 
->>>>>>>>>> so it should
->>>>>>>>>> be avoided if possible. Context reset triggered by context 
->>>>>>>>>> removal is a
->>>>>>>>>> good example.
->>>>>>>>>> With this patch multiple igt tests will not timeout and should 
->>>>>>>>>> run faster.
->>>>>>>>>>
->>>>>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1551
->>>>>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3952
->>>>>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5891
->>>>>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6268
->>>>>>>>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6281
->>>>>>>>>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->>>>>>>>> fine for me:
->>>>>>>>>
->>>>>>>>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->>>>>>>>>
->>>>>>>>> Just to be on the safe side, can we also have the ack from any of
->>>>>>>>> the GuC folks? Daniele, John?
->>>>>>>>>
->>>>>>>>> Andi
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>> ---
->>>>>>>>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 3 ++-
->>>>>>>>>>   1 file changed, 2 insertions(+), 1 deletion(-)
->>>>>>>>>>
->>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>>>>> index 22ba66e48a9b01..cb58029208afe1 100644
->>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>>>>> @@ -4425,7 +4425,8 @@ static void 
->>>>>>>>>> guc_handle_context_reset(struct intel_guc *guc,
->>>>>>>>>>       trace_intel_context_reset(ce);
->>>>>>>>>>         if (likely(!intel_context_is_banned(ce))) {
->>>>>>>>>> -        capture_error_state(guc, ce);
->>>>>>>>>> +        if (!intel_context_is_exiting(ce))
->>>>>>>>>> +            capture_error_state(guc, ce);
->>>>>>
->>>>>> I am not sure here - if we have a persistent context which caused 
->>>>>> a GPU hang I'd expect we'd still want error capture.
->>>>>>
->>>>>> What causes the reset in the affected IGTs? Always preemption 
->>>>>> timeout?
->>>>>>
->>>>>>>>>> guc_context_replay(ce);
->>>>>>>>
->>>>>>>> You definitely don't want to replay requests of a context that 
->>>>>>>> is going away.
->>>>>>>
->>>>>>> My intention was to just avoid error capture, but that's even 
->>>>>>> better, only condition change:
->>>>>>> -        if (likely(!intel_context_is_banned(ce))) {
->>>>>>> +       if (likely(intel_context_is_schedulable(ce)))  {
->>>>>>
->>>>>> Yes that helper was intended to be used for contexts which should 
->>>>>> not be scheduled post exit or ban.
->>>>>>
->>>>>> Daniele - you say there are some misses in the GuC backend. Should 
->>>>>> most, or even all in intel_guc_submission.c be converted to use 
->>>>>> intel_context_is_schedulable? My idea indeed was that "ban" should 
->>>>>> be a level up from the backends. Backend should only distinguish 
->>>>>> between "should I run this or not", and not the reason.
->>>>>
->>>>> I think that all of them should be updated, but I'd like Matt B to 
->>>>> confirm as he's more familiar with the code than me.
->>>>
->>>> Right, that sounds plausible to me as well.
->>>>
->>>> One thing I forgot to mention - the only place where backend can 
->>>> care between "schedulable" and "banned" is when it picks the preempt 
->>>> timeout for non-schedulable contexts. This is to only apply the 
->>>> strict 1ms to banned (so bad or naught contexts), while the ones 
->>>> which are exiting cleanly get the full preempt timeout as otherwise 
->>>> configured. This solves the ugly user experience quirk where GPU 
->>>> resets/errors were logged upon exit/Ctrl-C of a well behaving 
->>>> application (using non-persistent contexts). Hopefully GuC can match 
->>>> that behaviour so customers stay happy.
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
->>>
->>> The whole revoke vs ban thing seems broken to me.
->>>
->>> First of all, if the user hits Ctrl+C we need to kill the context off 
->>> immediately. That is a fundamental customer requirement. Render and 
->>> compute engines have a 7.5s pre-emption timeout. The user should not 
->>> have to wait 7.5s for a context to be removed from the system when 
->>> they have explicitly killed it themselves. Even the regular timeout 
->>> of 640ms is borderline a long time to wait. And note that there is an 
->>> ongoing request/requirement to increase that to 1900ms.
->>>
->>> Under what circumstances would a user expect anything sensible to 
->>> happen after a Ctrl+C in terms of things finishing their rendering 
->>> and display nice pretty images? They killed the app. They want it 
->>> dead. We should be getting it off the hardware as quickly as 
->>> possible. If you are really concerned about resets causing collateral 
->>> damage then maybe bump the termination timeout from 1ms up to 10ms, 
->>> maybe at most 100ms. If an app is 'well behaved' then it should 
->>> cleanly exit within 10ms. But if it is bad (which is almost certainly 
->>> the case if the user is manually and explicitly killing it) then it 
->>> needs to be killed because it is not going to gracefully exit.
->>
->> Right.. I had it like that initially (lower timeout - I think 20ms or 
->> so, patch history on the mailing list would know for sure), but then 
->> simplified it after review feedback to avoid adding another timeout 
->> value.
->>
->> So it's not at all about any expectation that something should 
->> actually finish to any sort of completion/success. It is primarily 
->> about not logging an error message when there is no error. Thing to 
->> keep in mind is that error messages are a big deal in some cultures. 
->> In addition to that, avoiding needless engine resets is a good thing 
->> as well.
->>
->> Previously the execlists backend was over eager and only allowed for 
->> 1ms for such contexts to exit. If the context was banned sure - that 
->> means it was a bad context which was causing many hangs already. But 
->> if the context was a clean one I argue there is no point in doing an 
->> engine reset.
->>
->> So if you want, I think it is okay to re-introduce a secondary timeout.
->>
->> Or if you have an idea on how to avoid the error messages / GPU resets 
->> when "friendly" contexts exit in some other way, that is also 
->> something to discuss.
->>
->>> Secondly, the whole persistence thing is a total mess, completely 
->>> broken and intended to be massively simplified. See the internal task 
->>> for it. In short, the plan is that all contexts will be immediately 
->>> killed when the last DRM file handle is closed. Persistence is only 
->>> valid between the time the per context file handle is closed and the 
->>> time the master DRM handle is closed. Whereas, non-persistent 
->>> contexts get killed as soon as the per context handle is closed. 
->>> There is absolutely no connection to heartbeats or other irrelevant 
->>> operations.
->>
->> The change we are discussing is not about persistence, but for the 
->> persistence itself - I am not sure it is completely broken and if, or 
->> when, the internal task will result with anything being attempted. In 
->> the meantime we had unhappy customers for more than a year. So do we 
->> tell them "please wait for a few years more until some internal task 
->> with no clear timeline or anyone assigned maybe gets looked at"?
->>
->>> So in my view, the best option is to revert the ban vs revoke patch. 
->>> It is creating bugs. It is making persistence more complex not 
->>> simpler. It harms the user experience.
->>
->> I am not aware of the bugs, even less so that it is harming user 
->> experience!?
->>
->> Bugs are limited to the GuC backend or in general? My CI runs were 
->> clean so maybe test cases are lacking. Is it just a case of 
->> s/intel_context_is_banned/intel_context_is_schedulable/ in there to 
->> fix it?
->>
->> Again, the change was not about persistence. It is the opposite - 
->> allowing non-persistent contexts to exit cleanly.
->>
->>> If the original problem was simply that error captures were being 
->>> done on Ctrl+C then the fix is simple. Don't capture for a banned 
->>> context. There is no need for all the rest of the revoke patch.
->>
->> Error capture was not part of the original story so it may be a 
->> completely orthogonal topic that we are discussing it in this thread.
-> 
-> Wouldn't be good then to separate these two issues: 
-> banned/exiting/schedulable handling and error capturing of exiting context.
-> This patch handles only the latter, and as I understand there is no big 
-> controversy that we de not need capture errors for exiting contexts.
-> If yes, can we ack/merge this patch, to make CI happy and continue 
-> discussion on the former.
+I'd name all of these like:
 
-Right, question is if the code in guc_handle_context_reset shouldn't be changed to:
+	intel_color_crtc_init();
+        intel_drrs_crtc_init();
+        intel_crc_crtc_init();
 
-  	if (likely(!intel_context_is_exiting(ce))) {
-		capture_error_state(guc, ce);
-  		guc_context_replay(ce);
-  	} else {
+I think in gem side the "name functions based on first/context argument"
+style has lead to serious problems wrt code organization. They still
+stick to it, but I can't make heads or tails where function definitions
+or declarations are supposed to be placed or found.
 
-And if that should be part of patch which changes a few more instances of that same check.
+BR,
+Jani.
 
-But you wrote that doesn't work? And then Daniele said he thinks it is because revoke is not called when hangcheck is disabled and GuC backend gets confused? If I got the conversation right..
 
-I wonder if that means equivalent of execlists:
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index eb8eaeb19881..a103413cb081 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8326,6 +8326,7 @@ void intel_init_display_hooks(struct drm_i915_priva=
+te *dev_priv)
+>  	if (!HAS_DISPLAY(dev_priv))
+>  		return;
+>=20=20
+> +	intel_color_init_hooks(dev_priv);
+>  	intel_init_cdclk_hooks(dev_priv);
+>  	intel_audio_hooks_init(dev_priv);
 
-         if (unlikely(intel_context_is_closed(ce) &&
-                      !intel_engine_has_heartbeat(engine)))
-                intel_context_set_exiting(ce);
-
-Is needed somewhere in the GuC backend. Which with execlists skips over the context which is no longer schedulable.
-
-But I don't understand why testing did not pick up that miss, or the miss with guc_context_replay on an exiting context. Or where exactly to put the extra handling in the GuC backend. Perhaps it isn't possible in which case we could have an ugly solution where for GuC we do something special in kill_engines() if hangcheck is disabled. Maybe add and call a new helper like:
-
-intel_context_exit_nohangcheck()
-{
-	bool ret = intel_context_set_exiting(ce);
-
-	if (!ret && intel_engine_uses_guc(ce->engine))
-		intel_context_ban(ce, NULL);
-
-	return ret;
-}
-
-Too ugly?
-
-Regards,
-
-Tvrtko
+--=20
+Jani Nikula, Intel Open Source Graphics Center
