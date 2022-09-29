@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 538A85EF652
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 15:22:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A795F5EF654
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 15:23:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BE0110EA53;
-	Thu, 29 Sep 2022 13:22:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAB1710EA59;
+	Thu, 29 Sep 2022 13:22:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFEC310EA50
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Sep 2022 13:22:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1094F10EA50
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Sep 2022 13:22:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664457737; x=1695993737;
+ t=1664457739; x=1695993739;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=71kiSa5eTgMJGu6vl2J4evyONYSjRv37omZ12G/6H8A=;
- b=Id1BE3nxnOEXUDtGZ22AfbckOQ9HdS/fDCfB0bgxDcs1HaRE0BOA2VyW
- 9u4Z362wMbg63HQOBiv1aP08u4xoRNssndw+pvMaweXdtocAx2zPdbmwC
- hBMs/B0NahMoPPwn5KZK53unLA6XppjdY4sZQMOtw6L4Xm0cMrLJghzVt
- f+3xo5Zavii9I5fA4Tf5e0mExSkeZhlW5n/XA5U2jC+mxJSWzIYuq+Pxy
- lt0NcmumMg4Mb3GledDfa41qDFIH9zhCDtD8/jyRwh4yLDg3/ZLyLerG0
- 9G1Z8VwiZJyFULtTcacUiFBq94IHyv05yuLVKf+EEk8os/h3KushLAGy3 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="365934672"
-X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="365934672"
+ bh=PnPvECrr+Ur9y2M/DKfjO4+RcxUyifSaM9D5qGv68MM=;
+ b=cyVtEWb5JBYJ/Fghg+uSqHSIacSAwuQnBjYy4zjLV5vXfBR/BVuUCYvI
+ 32JENVHra+lOd6DklTM3XBCj9QIVeRf+8vs12PKDo82CeUksGlZ1vCvd/
+ EtybyvHp3cvNUvlmjG4cT0WUvJCwh4/j6NCxFlJ40sS55FuEgyMHnSr19
+ zeKHT0yw4Ptcgzgphyy55POJBtDki8aSpu/ee0DFUnaDlmvf4N5QvgmIM
+ hXn0yrw6hhhxLfuHyKBppXpGEm/iSyj20tdm+CI2X//SbjpQbV96HGwGU
+ LX95t4O1hete13PgUsg0FHVQKGTHY+fRV9Uc0DCdZxO4Wz5oGLky6gElY A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="365934684"
+X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="365934684"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 06:22:16 -0700
+ 29 Sep 2022 06:22:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="655550465"
-X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="655550465"
+X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="655550480"
+X-IronPort-AV: E=Sophos;i="5.93,355,1654585200"; d="scan'208";a="655550480"
 Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orsmga001.jf.intel.com with ESMTP; 29 Sep 2022 06:22:14 -0700
+ by orsmga001.jf.intel.com with ESMTP; 29 Sep 2022 06:22:16 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Sep 2022 16:17:46 +0300
-Message-Id: <20220929131747.2592092-5-mika.kahola@intel.com>
+Date: Thu, 29 Sep 2022 16:17:47 +0300
+Message-Id: <20220929131747.2592092-6-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220929131747.2592092-1-mika.kahola@intel.com>
 References: <20220929131747.2592092-1-mika.kahola@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/5] drm/i915/mtl: Add C10 phy programming for
- HDMI
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915/mtl: Add vswing programming for
+ C10 phys
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,294 +62,487 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 
-Like DG2, we still don't have a proper algorithm that can be used
-for calculating PHY settings, but we do have tables of register
-values for a handful of the more common link rates. Some support is
-better than none, so let's go ahead and add/use these tables when we
-can, and also add some logic to hdmi_port_clock_valid() to filter the
-modelist to just the modes we can actually support with these link
-rates.
+C10 phys uses direct mapping internally for voltage and pre-emphasis levels.
+Program the levels directly to the fields in the VDR Registers.
 
-Hopefully we'll have a proper / non-encumbered algorithm to calculate
-these registers by the time we upstream and we'll be able to replace
-this patch with something more general purpose.
-
-Bspec: 64568
+Bspec: 65449
 
 Cc: Imre Deak <imre.deak@intel.com>
 Cc: Mika Kahola <mika.kahola@intel.com>
 Cc: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 168 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_cx0_phy.h |   2 +
- drivers/gpu/drm/i915/display/intel_hdmi.c    |   5 +-
- 3 files changed, 170 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 157 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   8 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
+ .../drm/i915/display/intel_ddi_buf_trans.c    |  36 +++-
+ .../drm/i915/display/intel_ddi_buf_trans.h    |   6 +
+ .../i915/display/intel_display_power_map.c    |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               |   1 +
+ 7 files changed, 187 insertions(+), 26 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 6ba11cd7cd75..a08788d2a3bc 100644
+index a08788d2a3bc..bba3c4579cfa 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -448,6 +448,152 @@ static const struct intel_c10mpllb_state * const mtl_c10_edp_tables[] = {
- 	NULL,
- };
+@@ -4,12 +4,24 @@
+  */
  
-+/*
-+ * HDMI link rates with 38.4 MHz reference clock.
-+ */
-+
-+static const struct intel_c10mpllb_state mtl_c10_hdmi_25_175 = {
-+	.clock = 25175,
-+	.pll[0] = 0x4,
-+	.pll[1] = 0,
-+	.pll[2] = 0xB2,
-+	.pll[3] = 0,
-+	.pll[4] = 0,
-+	.pll[5] = 0,
-+	.pll[6] = 0,
-+	.pll[7] = 0,
-+	.pll[8] = 0x20,
-+	.pll[9] = 0x1,
-+	.pll[10] = 0,
-+	.pll[11] = 0,
-+	.pll[12] = 0,
-+	.pll[13] = 0,
-+	.pll[14] = 0,
-+	.pll[15] = 0xD,
-+	.pll[16] = 0x6,
-+	.pll[17] = 0x8F,
-+	.pll[18] = 0x84,
-+	.pll[19] = 0x23,
-+};
-+
-+static const struct intel_c10mpllb_state mtl_c10_hdmi_27_0 = {
-+	.clock = 27000,
-+	.pll[0] = 0x34,
-+	.pll[1] = 0,
-+	.pll[2] = 0xC0,
-+	.pll[3] = 0,
-+	.pll[4] = 0,
-+	.pll[5] = 0,
-+	.pll[6] = 0,
-+	.pll[7] = 0,
-+	.pll[8] = 0x20,
-+	.pll[9] = 0x1,
-+	.pll[10] = 0,
-+	.pll[11] = 0,
-+	.pll[12] = 0x80,
-+	.pll[13] = 0,
-+	.pll[14] = 0,
-+	.pll[15] = 0xD,
-+	.pll[16] = 0x6,
-+	.pll[17] = 0xCF,
-+	.pll[18] = 0x84,
-+	.pll[19] = 0x23,
-+};
-+
-+static const struct intel_c10mpllb_state mtl_c10_hdmi_74_25 = {
-+	.clock = 74250,
-+	.pll[0] = 0xF4,
-+	.pll[1] = 0,
-+	.pll[2] = 0x7A,
-+	.pll[3] = 0,
-+	.pll[4] = 0,
-+	.pll[5] = 0,
-+	.pll[6] = 0,
-+	.pll[7] = 0,
-+	.pll[8] = 0x20,
-+	.pll[9] = 0x1,
-+	.pll[10] = 0,
-+	.pll[11] = 0,
-+	.pll[12] = 0x58,
-+	.pll[13] = 0,
-+	.pll[14] = 0,
-+	.pll[15] = 0xB,
-+	.pll[16] = 0x6,
-+	.pll[17] = 0xF,
-+	.pll[18] = 0x85,
-+	.pll[19] = 0x23,
-+};
-+
-+static const struct intel_c10mpllb_state mtl_c10_hdmi_148_5 = {
-+	.clock = 148500,
-+	.pll[0] = 0xF4,
-+	.pll[1] = 0,
-+	.pll[2] = 0x7A,
-+	.pll[3] = 0,
-+	.pll[4] = 0,
-+	.pll[5] = 0,
-+	.pll[6] = 0,
-+	.pll[7] = 0,
-+	.pll[8] = 0x20,
-+	.pll[9] = 0x1,
-+	.pll[10] = 0,
-+	.pll[11] = 0,
-+	.pll[12] = 0x58,
-+	.pll[13] = 0,
-+	.pll[14] = 0,
-+	.pll[15] = 0xA,
-+	.pll[16] = 0x6,
-+	.pll[17] = 0xF,
-+	.pll[18] = 0x85,
-+	.pll[19] = 0x23,
-+};
-+
-+static const struct intel_c10mpllb_state mtl_c10_hdmi_594 = {
-+	.clock = 594000,
-+	.pll[0] = 0xF4,
-+	.pll[1] = 0,
-+	.pll[2] = 0x7A,
-+	.pll[3] = 0,
-+	.pll[4] = 0,
-+	.pll[5] = 0,
-+	.pll[6] = 0,
-+	.pll[7] = 0,
-+	.pll[8] = 0x20,
-+	.pll[9] = 0x1,
-+	.pll[10] = 0,
-+	.pll[11] = 0,
-+	.pll[12] = 0x58,
-+	.pll[13] = 0,
-+	.pll[14] = 0,
-+	.pll[15] = 0x8,
-+	.pll[16] = 0x6,
-+	.pll[17] = 0xF,
-+	.pll[18] = 0x85,
-+	.pll[19] = 0x23,
-+};
-+
-+static const struct intel_c10mpllb_state * const mtl_c10_hdmi_tables[] = {
-+	&mtl_c10_hdmi_25_175,
-+	&mtl_c10_hdmi_27_0,
-+	&mtl_c10_hdmi_74_25,
-+	&mtl_c10_hdmi_148_5,
-+	&mtl_c10_hdmi_594,
-+	NULL,
-+};
-+
-+int intel_c10_phy_check_hdmi_link_rate(int clock)
+ #include "intel_cx0_phy.h"
++#include "intel_ddi.h"
++#include "intel_ddi_buf_trans.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_dp.h"
+ #include "intel_panel.h"
++#include "intel_psr.h"
+ #include "intel_uncore.h"
+ 
++static void
++assert_dc_off(struct drm_i915_private *i915)
 +{
-+	const struct intel_c10mpllb_state * const *tables = mtl_c10_hdmi_tables;
-+	int i;
++	bool enabled;
 +
-+	for (i = 0; tables[i]; i++) {
-+		if (clock == tables[i]->clock)
-+			return MODE_OK;
-+	}
-+
-+	return MODE_CLOCK_RANGE;
++	enabled = intel_display_power_is_enabled(i915, POWER_DOMAIN_DC_OFF);
++	drm_WARN_ON(&i915->drm, !enabled);
 +}
 +
- static const struct intel_c10mpllb_state * const *
- intel_c10_mpllb_tables_get(struct intel_crtc_state *crtc_state,
- 			   struct intel_encoder *encoder)
-@@ -457,9 +603,10 @@ intel_c10_mpllb_tables_get(struct intel_crtc_state *crtc_state,
- 			return mtl_c10_edp_tables;
- 		else
- 			return mtl_c10_dp_tables;
-+	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-+		return mtl_c10_hdmi_tables;
- 	}
- 
--	/* TODO: Add HDMI Support */
- 	MISSING_CASE(encoder->type);
- 	return NULL;
- }
-@@ -467,9 +614,20 @@ intel_c10_mpllb_tables_get(struct intel_crtc_state *crtc_state,
- static int intel_c10mpllb_calc_state(struct intel_crtc_state *crtc_state,
- 				     struct intel_encoder *encoder)
+ static void intel_cx0_bus_reset(struct drm_i915_private *i915, enum port port, int lane)
  {
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	const struct intel_c10mpllb_state * const *tables;
-+	enum phy phy = intel_port_to_phy(i915, encoder->port);
- 	int i;
+ 	enum phy phy = intel_port_to_phy(i915, port);
+@@ -37,6 +49,8 @@ static u8 intel_cx0_read(struct drm_i915_private *i915, enum port port,
+ 	u32 val = 0;
+ 	int attempts = 0;
  
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-+		if (intel_c10_phy_check_hdmi_link_rate(crtc_state->port_clock)
-+		    != MODE_OK) {
-+			drm_dbg_kms(&i915->drm, "Can't support HDMI link rate %d on phy %c.\n",
-+				      crtc_state->port_clock, phy_name(phy));
-+			return -EINVAL;
-+		}
++	assert_dc_off(i915);
++
+ retry:
+ 	if (attempts == 3) {
+ 		drm_err_once(&i915->drm, "PHY %c Read %04x failed after %d retries. Status: 0x%x\n", phy_name(phy), addr, attempts, val ?: 0);
+@@ -126,6 +140,8 @@ static void __intel_cx0_write(struct drm_i915_private *i915, enum port port,
+ 	enum phy phy = intel_port_to_phy(i915, port);
+ 	int attempts = 0;
+ 
++	assert_dc_off(i915);
++
+ retry:
+ 	if (attempts == 3) {
+ 		drm_err_once(&i915->drm, "PHY %c Write %04x failed after %d retries.\n", phy_name(phy), addr, attempts);
+@@ -204,6 +220,76 @@ static void intel_cx0_rmw(struct drm_i915_private *i915, enum port port,
+ 	}
+ }
+ 
++/*
++ * Prepare HW for CX0 phy transactions.
++ *
++ * It is required that PSR and DC5/6 are disabled before any CX0 message
++ * bus transaction is executed.
++ */
++static intel_wakeref_t intel_cx0_phy_transaction_begin(struct intel_encoder *encoder)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
++	intel_psr_pause(intel_dp);
++	return intel_display_power_get(i915, POWER_DOMAIN_DC_OFF);
++}
++
++static void intel_cx0_phy_transaction_end(struct intel_encoder *encoder, intel_wakeref_t wakeref)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
++	intel_psr_resume(intel_dp);
++	intel_display_power_put(i915, POWER_DOMAIN_DC_OFF, wakeref);
++}
++
++void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
++				     const struct intel_crtc_state *crtc_state)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++	bool lane_reversal = dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
++	enum intel_cx0_lanes master_lane = lane_reversal ? INTEL_CX0_LANE1 :
++				 INTEL_CX0_LANE0;
++	const struct intel_ddi_buf_trans *trans;
++	intel_wakeref_t wakeref;
++	int n_entries, ln;
++
++	wakeref = intel_cx0_phy_transaction_begin(encoder);
++
++	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
++	if (drm_WARN_ON_ONCE(&i915->drm, !trans))
++		return;
++
++	intel_cx0_rmw(i915, encoder->port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
++		      0, C10_VDR_CTRL_MSGBUS_ACCESS, MB_WRITE_COMMITTED);
++
++	for (ln = 0; ln < 4; ln++) {
++		int level = intel_ddi_level(encoder, crtc_state, ln);
++		int lane, tx;
++
++		lane = ln / 2;
++		tx = ln % 2 + 1;
++
++		intel_cx0_rmw(i915, encoder->port, lane, PHY_CX0_TX_CONTROL(tx, 2),
++			      C10_PHY_VSWING_PREEMPH_MASK,
++			      C10_PHY_VSWING_PREEMPH(trans->entries[level].direct.preemph),
++			      MB_WRITE_COMMITTED);
++		intel_cx0_rmw(i915, encoder->port, lane, PHY_CX0_TX_CONTROL(tx, 8),
++			      C10_PHY_VSWING_LEVEL_MASK,
++			      C10_PHY_VSWING_LEVEL(trans->entries[level].direct.level),
++			      MB_WRITE_COMMITTED);
 +	}
 +
- 	tables = intel_c10_mpllb_tables_get(crtc_state, encoder);
- 	if (!tables)
- 		return -EINVAL;
-@@ -521,7 +679,8 @@ void intel_c10mpllb_readout_hw_state(struct intel_encoder *encoder,
- 	cmn = intel_cx0_read(i915, encoder->port, lane, PHY_C10_VDR_CMN(0));
- 	tx0 = intel_cx0_read(i915, encoder->port, lane, PHY_C10_VDR_TX(0));
++	intel_cx0_write(i915, encoder->port, !master_lane, PHY_C10_VDR_CONTROL(1),
++		 C10_VDR_CTRL_UPDATE_CFG, MB_WRITE_COMMITTED);
++	intel_cx0_write(i915, encoder->port, master_lane, PHY_C10_VDR_CONTROL(1),
++			C10_VDR_CTRL_MASTER_LANE | C10_VDR_CTRL_UPDATE_CFG,
++			MB_WRITE_COMMITTED);
++	intel_cx0_phy_transaction_end(encoder, wakeref);
++}
++
+ /*
+  * Basic DP link rates with 38.4 MHz reference clock.
+  * Note: The tables below are with SSC. In non-ssc
+@@ -662,9 +748,12 @@ void intel_c10mpllb_readout_hw_state(struct intel_encoder *encoder,
+ 	enum intel_cx0_lanes lane = lane_reversal ? INTEL_CX0_LANE1 :
+ 				    INTEL_CX0_LANE0;
+ 	enum phy phy = intel_port_to_phy(i915, encoder->port);
++	intel_wakeref_t wakeref;
+ 	int i;
+ 	u8 cmn, tx0;
  
--	if (tx0 != C10_TX0_VAL || cmn != C10_CMN0_DP_VAL)
-+	if (tx0 != C10_TX0_VAL || cmn != (intel_encoder_is_dp(encoder) ?
-+					  C10_CMN0_DP_VAL : C10_CMN0_HDMI_VAL))
++	wakeref = intel_cx0_phy_transaction_begin(encoder);
++
+ 	/*
+ 	 * According to C10 VDR Register programming Sequence we need
+ 	 * to do this to read PHY internal registers from MsgBus.
+@@ -683,6 +772,8 @@ void intel_c10mpllb_readout_hw_state(struct intel_encoder *encoder,
+ 					  C10_CMN0_DP_VAL : C10_CMN0_HDMI_VAL))
  		drm_warn(&i915->drm, "Unexpected tx: %x or cmn: %x for phy: %c.\n",
  			 tx0, cmn, phy_name(phy));
++
++	intel_cx0_phy_transaction_end(encoder, wakeref);
  }
-@@ -537,11 +696,10 @@ static void intel_c10_pll_program(struct drm_i915_private *i915,
- 				 INTEL_CX0_LANE0;
- 	enum intel_cx0_lanes follower_lane = lane_reversal ? INTEL_CX0_LANE0 :
- 				 INTEL_CX0_LANE1;
--
- 	int i;
- 	struct intel_dp *intel_dp;
- 	bool use_ssc = false;
--	u8 cmn0 = 0;
-+	u8 cmn0;
+ 
+ static void intel_c10_pll_program(struct drm_i915_private *i915,
+@@ -839,17 +930,20 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
  
  	if (intel_crtc_has_dp_encoder(crtc_state)) {
  		intel_dp = enc_to_intel_dp(encoder);
-@@ -552,6 +710,8 @@ static void intel_c10_pll_program(struct drm_i915_private *i915,
- 			use_ssc = false;
+-		ssc_enabled = intel_dp->dpcd[DP_MAX_DOWNSPREAD] &
+-			      DP_MAX_DOWNSPREAD_0_5;
++		ssc_enabled = (intel_dp->dpcd[DP_MAX_DOWNSPREAD] &
++			      DP_MAX_DOWNSPREAD_0_5);
++
++		if (intel_dp_is_edp(intel_dp) && !intel_panel_use_ssc(i915))
++			ssc_enabled = false;
  
- 		cmn0 = C10_CMN0_DP_VAL;
-+	} else {
-+		cmn0 = C10_CMN0_HDMI_VAL;
+ 		/* TODO: DP2.0 10G and 20G rates enable MPLLA*/
+ 		val |= ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
+ 	}
++
+ 	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(encoder->port),
+-		     XELPDP_LANE1_PHY_CLOCK_SELECT |
+-		     XELPDP_FORWARD_CLOCK_UNGATE |
++		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
+ 		     XELPDP_DDI_CLOCK_SELECT_MASK |
+-		     XELPDP_SSC_ENABLE_PLLB, val);
++		     XELPDP_SSC_ENABLE_PLLA | XELPDP_SSC_ENABLE_PLLB, val);
+ }
+ 
+ static void intel_cx0_powerdown_change_sequence(struct drm_i915_private *i915,
+@@ -859,16 +953,16 @@ static void intel_cx0_powerdown_change_sequence(struct drm_i915_private *i915,
+ 	enum phy phy = intel_port_to_phy(i915, port);
+ 
+ 	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port),
+-		     PHY_LANES_VAL(POWERDOWN_NEW_STATE_MASK, lane),
++		     PHY_LANES_VAL(POWERDOWN_NEW_STATE_MASK, INTEL_CX0_BOTH_LANES),
+ 		     PHY_LANES_VAL_ARG(POWERDOWN_NEW_STATE, lane, state));
+ 	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port),
+-		     PHY_LANES_VAL(POWERDOWN_UPDATE, lane),
++		     PHY_LANES_VAL(POWERDOWN_UPDATE, INTEL_CX0_BOTH_LANES),
+ 		     PHY_LANES_VAL(POWERDOWN_UPDATE, lane));
+ 
+ 	/* Update Timeout Value */
+ 	if (__intel_wait_for_register(&i915->uncore, XELPDP_PORT_BUF_CTL2(port),
+ 				      PHY_LANES_VAL(POWERDOWN_UPDATE, lane), 0,
+-				      XELPDP_PORT_RESET_START_TIMEOUT_US, 0, NULL))
++				      XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+ }
+@@ -912,11 +1006,11 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port po
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+ 
+ 	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(port),
+-		     PHY_LANES_VAL(PCLK_REFCLK_REQUEST, lane),
++		     PHY_LANES_VAL(PCLK_REFCLK_REQUEST, INTEL_CX0_BOTH_LANES),
+ 		     PHY_LANES_VAL(PCLK_REFCLK_REQUEST, lane));
+ 
+ 	if (__intel_wait_for_register(&i915->uncore, XELPDP_PORT_CLOCK_CTL(port),
+-				      PHY_LANES_VAL(PCLK_REFCLK_ACK, lane),
++				      PHY_LANES_VAL(PCLK_REFCLK_ACK, INTEL_CX0_BOTH_LANES),
+ 				      PHY_LANES_VAL(PCLK_REFCLK_ACK, lane),
+ 				      XELPDP_REFCLK_ENABLE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to request refclk after %dus.\n",
+@@ -943,9 +1037,12 @@ static void intel_c10_program_phy_lane(struct drm_i915_private *i915,
+ {
+ 	u8 l0t1, l0t2, l1t1, l1t2;
+ 
+-	intel_cx0_rmw(i915, port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
+-		      C10_VDR_CTRL_MSGBUS_ACCESS, C10_VDR_CTRL_MSGBUS_ACCESS,
+-		      MB_WRITE_COMMITTED);
++	intel_cx0_rmw(i915, port, 1, PHY_C10_VDR_CONTROL(1),
++		      C10_VDR_CTRL_MSGBUS_ACCESS | C10_VDR_CTRL_UPDATE_CFG,
++		      C10_VDR_CTRL_MSGBUS_ACCESS, MB_WRITE_COMMITTED);
++	intel_cx0_rmw(i915, port, 0, PHY_C10_VDR_CONTROL(1),
++		      C10_VDR_CTRL_MSGBUS_ACCESS | C10_VDR_CTRL_UPDATE_CFG,
++		      C10_VDR_CTRL_MASTER_LANE  | C10_VDR_CTRL_MSGBUS_ACCESS, MB_WRITE_COMMITTED);
+ 
+ 	l0t1 = intel_cx0_read(i915, port, 0, PHY_CX0_TX_CONTROL(1, 2));
+ 	l0t2 = intel_cx0_read(i915, port, 0, PHY_CX0_TX_CONTROL(2, 2));
+@@ -996,8 +1093,12 @@ static void intel_c10_program_phy_lane(struct drm_i915_private *i915,
+ 		}
  	}
  
- 	intel_cx0_write(i915, encoder->port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
+-	intel_cx0_rmw(i915, port, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
+-		      C10_VDR_CTRL_UPDATE_CFG, C10_VDR_CTRL_UPDATE_CFG, MB_WRITE_COMMITTED);
++	intel_cx0_rmw(i915, port, 1, PHY_C10_VDR_CONTROL(1),
++		      C10_VDR_CTRL_UPDATE_CFG | C10_VDR_CTRL_MSGBUS_ACCESS,
++		      C10_VDR_CTRL_UPDATE_CFG, MB_WRITE_COMMITTED);
++	intel_cx0_rmw(i915, port, 0, PHY_C10_VDR_CONTROL(1),
++		      C10_VDR_CTRL_UPDATE_CFG | C10_VDR_CTRL_MSGBUS_ACCESS,
++		      C10_VDR_CTRL_MASTER_LANE | C10_VDR_CTRL_UPDATE_CFG, MB_WRITE_COMMITTED);
+ }
+ 
+ static void intel_c10pll_enable(struct intel_encoder *encoder,
+@@ -1050,12 +1151,13 @@ static void intel_c10pll_enable(struct intel_encoder *encoder,
+ 	 * 8. Set PORT_CLOCK_CTL register PCLK PLL Request
+ 	 * LN<Lane for maxPCLK> to "1" to enable PLL.
+ 	 */
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(encoder->port), 0,
++	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(encoder->port),
++		     PHY_LANES_VAL(PCLK_PLL_REQUEST, INTEL_CX0_BOTH_LANES),
+ 		     PHY_LANES_VAL(PCLK_PLL_REQUEST, maxpclk_lane));
+ 
+ 	/* 9. Poll on PORT_CLOCK_CTL PCLK PLL Ack LN<Lane for maxPCLK> == "1". */
+ 	if (__intel_wait_for_register(&i915->uncore, XELPDP_PORT_CLOCK_CTL(encoder->port),
+-				      PHY_LANES_VAL(PCLK_PLL_ACK, maxpclk_lane),
++				      PHY_LANES_VAL(PCLK_PLL_ACK, INTEL_CX0_BOTH_LANES),
+ 				      PHY_LANES_VAL(PCLK_PLL_ACK, maxpclk_lane),
+ 				      XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "Port %c PLL not locked after %dus.\n",
+@@ -1072,19 +1174,20 @@ void intel_cx0pll_enable(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	enum phy phy = intel_port_to_phy(i915, encoder->port);
++	intel_wakeref_t wakeref;
++
++	wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
+ 	drm_WARN_ON(&i915->drm, !intel_is_c10phy(i915, phy));
+ 	intel_c10pll_enable(encoder, crtc_state);
++
++	intel_cx0_phy_transaction_end(encoder, wakeref);
+ }
+ 
+ static void intel_c10pll_disable(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	enum phy phy = intel_port_to_phy(i915, encoder->port);
+-	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+-	bool lane_reversal = dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
+-	enum intel_cx0_lanes lane = lane_reversal ? INTEL_CX0_LANE1 :
+-				    INTEL_CX0_LANE0;
+ 
+ 	/* 1. Change owned PHY lane power to Disable state. */
+ 	intel_cx0_powerdown_change_sequence(i915, encoder->port, INTEL_CX0_BOTH_LANES,
+@@ -1110,8 +1213,8 @@ static void intel_c10pll_disable(struct intel_encoder *encoder)
+ 	 * 5. Poll on PORT_CLOCK_CTL PCLK PLL Ack LN<Lane for maxPCLK**> == "0".
+ 	 */
+ 	if (__intel_wait_for_register(&i915->uncore, XELPDP_PORT_CLOCK_CTL(encoder->port),
+-				      PHY_LANES_VAL(PCLK_PLL_ACK, lane) |
+-				      PHY_LANES_VAL(PCLK_REFCLK_ACK, lane), 0,
++				      PHY_LANES_VAL(PCLK_PLL_ACK, INTEL_CX0_BOTH_LANES) |
++				      PHY_LANES_VAL(PCLK_REFCLK_ACK, INTEL_CX0_BOTH_LANES), 0,
+ 				      XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "Port %c PLL not unlocked after %dus.\n",
+ 			 phy_name(phy), XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US);
+@@ -1123,7 +1226,8 @@ static void intel_c10pll_disable(struct intel_encoder *encoder)
+ 
+ 	/* 7. Program PORT_CLOCK_CTL register to disable and gate clocks. */
+ 	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(encoder->port),
+-		     XELPDP_DDI_CLOCK_SELECT_MASK |
++		     XELPDP_DDI_CLOCK_SELECT_MASK, 0);
++	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(encoder->port),
+ 		     XELPDP_FORWARD_CLOCK_UNGATE, 0);
+ }
+ 
+@@ -1131,9 +1235,14 @@ void intel_cx0pll_disable(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	enum phy phy = intel_port_to_phy(i915, encoder->port);
++	intel_wakeref_t wakeref;
++
++	wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
+ 	drm_WARN_ON(&i915->drm, !intel_is_c10phy(i915, phy));
+ 	intel_c10pll_disable(encoder);
++
++	intel_cx0_phy_transaction_end(encoder, wakeref);
+ }
+ 
+ #undef PHY_LANES_VAL_ARG
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index d12d2e2f02ee..fc8e4041f26f 100644
+index fc8e4041f26f..9816449e3931 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -96,6 +96,7 @@ enum intel_cx0_lanes {
- #define  C10_PLL15_TXCLKDIV_MASK	REG_GENMASK8(2, 0)
- #define PHY_C10_VDR_CMN(idx)		(0xC20 + (idx))
- #define  C10_CMN0_DP_VAL		0x21
-+#define  C10_CMN0_HDMI_VAL		0x1
- #define  C10_CMN3_TXVBOOST_MASK		REG_GENMASK8(7, 5)
- #define  C10_CMN3_TXVBOOST(val)		REG_FIELD_PREP8(C10_CMN3_TXVBOOST_MASK, val)
- #define PHY_C10_VDR_TX(idx)		(0xC30 + (idx))
-@@ -141,5 +142,6 @@ int intel_c10mpllb_calc_port_clock(struct intel_encoder *encoder,
- 				   const struct intel_c10mpllb_state *pll_state);
+@@ -120,6 +120,12 @@ enum intel_cx0_lanes {
+ #define PHY_CX0_TX_CONTROL(tx, control)	(0x400 + ((tx) - 1) * 0x200 + (control))
+ #define CONTROL2_DISABLE_SINGLE_TX	REG_BIT(6)
+ 
++/* C10 Phy VSWING Masks */
++#define C10_PHY_VSWING_LEVEL_MASK		REG_GENMASK8(2, 0)
++#define C10_PHY_VSWING_LEVEL(val)		REG_FIELD_PREP8(C10_PHY_VSWING_LEVEL_MASK, val)
++#define C10_PHY_VSWING_PREEMPH_MASK		REG_GENMASK8(1, 0)
++#define C10_PHY_VSWING_PREEMPH(val)		REG_FIELD_PREP8(C10_PHY_VSWING_PREEMPH_MASK, val)
++
+ static inline bool intel_is_c10phy(struct drm_i915_private *dev_priv, enum phy phy)
+ {
+ 	if (!IS_METEORLAKE(dev_priv))
+@@ -143,5 +149,7 @@ int intel_c10mpllb_calc_port_clock(struct intel_encoder *encoder,
  void intel_c10mpllb_state_verify(struct intel_atomic_state *state,
  				 struct intel_crtc_state *new_crtc_state);
-+int intel_c10_phy_check_hdmi_link_rate(int clock);
+ int intel_c10_phy_check_hdmi_link_rate(int clock);
++void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
++				     const struct intel_crtc_state *crtc_state);
  
  #endif /* __INTEL_CX0_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 93519fb23d9d..c274098f2196 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -44,6 +44,7 @@
- #include "i915_drv.h"
- #include "intel_atomic.h"
- #include "intel_connector.h"
-+#include "intel_cx0_phy.h"
- #include "intel_ddi.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
-@@ -1875,7 +1876,9 @@ hdmi_port_clock_valid(struct intel_hdmi *hdmi,
- 	 * FIXME: We will hopefully get an algorithmic way of programming
- 	 * the MPLLB for HDMI in the future.
- 	 */
--	if (IS_DG2(dev_priv))
-+	if (IS_METEORLAKE(dev_priv))
-+		return intel_c10_phy_check_hdmi_link_rate(clock);
-+	else if (IS_DG2(dev_priv))
- 		return intel_snps_phy_check_hdmi_link_rate(clock);
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 639ec604babf..1380ed2221ad 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4445,7 +4445,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 		encoder->get_config = hsw_ddi_get_config;
+ 	}
  
- 	return MODE_OK;
+-	if (IS_DG2(dev_priv)) {
++	if (DISPLAY_VER(dev_priv) >= 14) {
++		encoder->set_signal_levels = intel_cx0_phy_set_signal_levels;
++	} else if (IS_DG2(dev_priv)) {
+ 		encoder->set_signal_levels = intel_snps_phy_set_signal_levels;
+ 	} else if (DISPLAY_VER(dev_priv) >= 12) {
+ 		if (intel_phy_is_combo(dev_priv, phy))
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index 006a2e979000..49f8a0a6593b 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -1035,6 +1035,30 @@ static const struct intel_ddi_buf_trans dg2_snps_trans_uhbr = {
+ 	.num_entries = ARRAY_SIZE(_dg2_snps_trans_uhbr),
+ };
+ 
++/*
++ * Some platforms don't need a mapping table and only expect us to
++ * to program the vswing + preemphasis levels directly since the
++ * hardware will do its own mapping to tuning values internally.
++ */
++static const union intel_ddi_buf_trans_entry direct_map_trans[] = {
++    { .direct = { .level = 0, .preemph = 0 } },
++    { .direct = { .level = 0, .preemph = 1 } },
++    { .direct = { .level = 0, .preemph = 2 } },
++    { .direct = { .level = 0, .preemph = 3 } },
++    { .direct = { .level = 1, .preemph = 0 } },
++    { .direct = { .level = 1, .preemph = 0 } },
++    { .direct = { .level = 1, .preemph = 2 } },
++    { .direct = { .level = 2, .preemph = 0 } },
++    { .direct = { .level = 2, .preemph = 1 } },
++    { .direct = { .level = 3, .preemph = 0 } },
++};
++
++static const struct intel_ddi_buf_trans mtl_cx0c10_trans = {
++	.entries = direct_map_trans,
++	.num_entries = ARRAY_SIZE(direct_map_trans),
++	.hdmi_default_entry = ARRAY_SIZE(direct_map_trans) - 1,
++};
++
+ bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
+ {
+ 	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
+@@ -1606,12 +1630,22 @@ dg2_get_snps_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&dg2_snps_trans, n_entries);
+ }
+ 
++static const struct intel_ddi_buf_trans *
++mtl_get_cx0_buf_trans(struct intel_encoder *encoder,
++		      const struct intel_crtc_state *crtc_state,
++		      int *n_entries)
++{
++	return intel_get_buf_trans(&mtl_cx0c10_trans, n_entries);
++}
++
+ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	enum phy phy = intel_port_to_phy(i915, encoder->port);
+ 
+-	if (IS_DG2(i915)) {
++	if (DISPLAY_VER(i915) >= 14) {
++		encoder->get_buf_trans = mtl_get_cx0_buf_trans;
++	} else if (IS_DG2(i915)) {
+ 		encoder->get_buf_trans = dg2_get_snps_buf_trans;
+ 	} else if (IS_ALDERLAKE_P(i915)) {
+ 		if (intel_phy_is_combo(i915, phy))
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+index 2133984a572b..e4a857b9829d 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+@@ -51,6 +51,11 @@ struct dg2_snps_phy_buf_trans {
+ 	u8 post_cursor;
+ };
+ 
++struct direct_phy_buf_trans {
++	u8 level;
++	u8 preemph;
++};
++
+ union intel_ddi_buf_trans_entry {
+ 	struct hsw_ddi_buf_trans hsw;
+ 	struct bxt_ddi_buf_trans bxt;
+@@ -58,6 +63,7 @@ union intel_ddi_buf_trans_entry {
+ 	struct icl_mg_phy_ddi_buf_trans mg;
+ 	struct tgl_dkl_phy_ddi_buf_trans dkl;
+ 	struct dg2_snps_phy_buf_trans snps;
++	struct direct_phy_buf_trans direct;
+ };
+ 
+ struct intel_ddi_buf_trans {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+index dc04afc6cc8f..45c3ab4e2f28 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+@@ -1374,6 +1374,7 @@ I915_DECL_PW_DOMAINS(xelpdp_pwdoms_dc_off,
+ 	XELPDP_PW_2_POWER_DOMAINS,
+ 	POWER_DOMAIN_AUDIO_MMIO,
+ 	POWER_DOMAIN_MODESET,
++	POWER_DOMAIN_DC_OFF,
+ 	POWER_DOMAIN_AUX_A,
+ 	POWER_DOMAIN_AUX_B,
+ 	POWER_DOMAIN_INIT);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 5e6ff9f2aa10..bafd70fb96bd 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -8442,6 +8442,7 @@ enum skl_power_gate {
+ #define XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US		20
+ #define XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US		100
+ #define XELPDP_PORT_RESET_START_TIMEOUT_US		5
++#define XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US		100
+ #define XELPDP_PORT_RESET_END_TIMEOUT			15
+ #define XELPDP_REFCLK_ENABLE_TIMEOUT_US			1
+ 
 -- 
 2.34.1
 
