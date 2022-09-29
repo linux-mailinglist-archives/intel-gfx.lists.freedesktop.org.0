@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD715EEBC4
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 04:33:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C9A5EEBC7
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Sep 2022 04:33:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAFE810E9F1;
-	Thu, 29 Sep 2022 02:33:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5980F10EA06;
+	Thu, 29 Sep 2022 02:33:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C16C210E9E9;
- Thu, 29 Sep 2022 02:33:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9021910E9F1;
+ Thu, 29 Sep 2022 02:33:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B8D3CA0169;
- Thu, 29 Sep 2022 02:33:10 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8CC18A0169;
+ Thu, 29 Sep 2022 02:33:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 29 Sep 2022 02:33:10 -0000
-Message-ID: <166441879072.11951.10730813118711178771@emeril.freedesktop.org>
+Date: Thu, 29 Sep 2022 02:33:13 -0000
+Message-ID: <166441879357.11952.12407965290547284311@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220929021813.2172701-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20220929021813.2172701-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Improve_anti-pre-emption_w/a_for_compute_workloads_=28rev7?=
- =?utf-8?q?=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Improve_anti-pre-emption_w/a_for_compute_workloads_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,24 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-502f12c04cdf drm/i915/guc: Limit scheduling properties to avoid overflow
--:44: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'field' - possible side-effects?
-#44: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:516:
-+#define CLAMP_PROP(field) \
-+	do { \
-+		u64 clamp = intel_clamp_##field(engine, engine->props.field); \
-+		if (clamp != engine->props.field) { \
-+			drm_notice(&engine->i915->drm, \
-+				   "Warning, clamping %s to %lld to prevent overflow\n", \
-+				   #field, clamp); \
-+			engine->props.field = clamp; \
-+		} \
-+	} while (0)
-
-total: 0 errors, 0 warnings, 1 checks, 223 lines checked
-29c47abff7df drm/i915: Fix compute pre-emption w/a to apply to compute engines
-911b8d3394fd drm/i915: Make the heartbeat play nice with long pre-emption timeouts
-3924354f431a drm/i915: Improve long running compute w/a for GuC submission
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
