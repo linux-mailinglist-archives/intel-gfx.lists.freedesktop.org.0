@@ -1,60 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9248C5F0AF4
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 13:46:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A331D5F0AFB
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 13:47:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08FBF10E20C;
-	Fri, 30 Sep 2022 11:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77A9810E20C;
+	Fri, 30 Sep 2022 11:47:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED41F10E165;
- Fri, 30 Sep 2022 11:46:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds202112;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=IifDSaiSaen7SDFh+4iH9IwPZlddD8Axc+s6Pi1ODoY=; b=OYj/yleDGKQJZnmZIrlEbeP/b/
- DoAf3KiJo708NW1GO9RM8Z0+qA/GZsSTYp623JXFCkgvJEkD7l059APXopLJt3s4dB4BYpBi29rDP
- NI+lAlBtvJE5WCKwt8oBRNksB3aLgmGnEcT32XxqmqSa+FRLo/DpbyhRogW6WUmikYauxGu65WXKu
- AGiTYT3bUNYgYIlD0pNZwY7ND2rRwa0GJMbrjn2bjKkl2T+yzthf3wPj4JShRhiBeCWEntMXdpx5u
- 8NWKpSyVfeG5PDsXJd8qWDfPuX//9GUVhLdFQO691ossfQdYJDnMUYwa6FlsyJ2LNeWm7Vzwk7hW4
- l1wydY+Q==;
-Received: from [2a01:799:961:d200:c807:6849:43f8:dd23] (port=55455)
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1oeETG-0003MV-SM; Fri, 30 Sep 2022 13:46:22 +0200
-Message-ID: <fc7664cc-25f4-ee37-5261-fc6e35259e50@tronnes.org>
-Date: Fri, 30 Sep 2022 13:46:19 +0200
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3739610E20C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Sep 2022 11:47:40 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id s14so6492953wro.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Sep 2022 04:47:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date;
+ bh=Al6O9itma5kp/gHWUeQ+UMduj7jOUIHt2FV2sOUg/78=;
+ b=cveXjnfDbKmoo4/d4bpK8WHnvZCfml/xFAeBvq35UBdNpOG+VQOh6B8jlK+8p6i5wT
+ QFkfWUeelm00d/i9oD1/m/gZfMqLRxrwZvOad5KTpPF6QX4qRp/jWjr4yO7iChNUeXJL
+ RI8ASLu/M/wJnn0K0TZymtTW2P4O05lD4xEeQFOGI1CyGec/MsAf4rFNt4lJ8KF9VBCG
+ mHqOeVLTuNmspYdfwgwqGm7lBhWNy9mwSaG6R81/7hv7pHoisBMo3GaR9oz0AQdda79j
+ uPM5uMRbiXQVEQ0F3+7tSU38jARaF3ULhME7f46BewKPq6WjOFutmHWI3AGcl58WYNTo
+ 1H2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date;
+ bh=Al6O9itma5kp/gHWUeQ+UMduj7jOUIHt2FV2sOUg/78=;
+ b=EqHLUKKtsq7WYPD9oGvbwReXcX3oGe2vzGhL9IfldY1l25L0U90e0HfCyRS6OC2aEu
+ HMgsCyyAvgJBrpvMOdkqXyVOHxbXO490250kvlbSzjD31hNTYzwhBL9eyKSQ3mcHcqn8
+ tiKpZs50YUE9IQBKX689NBJ+XPdswyWGgZntpBQylsmjPnvLCTVaC0Du9jpPnfERonnD
+ 6/BVKrmHWZJKdz2Lq/02zgSbgc0+z2NEaFSZ1oEyv7haUDdbRgje2I/xutw9J9xX/0G+
+ BP8dLi4ELrND6ZOw+gB93QHhwVSyy7Ch4QIvpXaOfml+L6jZ8a/EPVAmiD4BMNNZN5V9
+ OrYg==
+X-Gm-Message-State: ACrzQf1D5gGYgT94hhivT1q9QwAdtFkDgpHcXaLmSjO1rJ0q1hD9nMjJ
+ qfwYkstgNcwxXr3MUi/CTQt9nodOf9LfA3GZ
+X-Google-Smtp-Source: AMsMyM4u6eql0ibNA18vzouk2ade5wYFq9OUAPel0kkCeDnag8aIAkWE+/I3erCwcg/dl1bHgoLizQ==
+X-Received: by 2002:a5d:5b18:0:b0:22b:1c7:6f8 with SMTP id
+ bx24-20020a5d5b18000000b0022b01c706f8mr5514576wrb.502.1664538458391; 
+ Fri, 30 Sep 2022 04:47:38 -0700 (PDT)
+Received: from [0.0.0.0] ([134.134.139.85])
+ by smtp.googlemail.com with ESMTPSA id
+ n37-20020a05600c3ba500b003b47b913901sm6127128wms.1.2022.09.30.04.47.36
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 30 Sep 2022 04:47:37 -0700 (PDT)
+Message-ID: <039f8845-3521-614a-7794-c3eac9494429@gmail.com>
+Date: Fri, 30 Sep 2022 14:47:32 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-To: Maxime Ripard <maxime@cerno.tech>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Karol Herbst <kherbst@redhat.com>, Samuel Holland <samuel@sholland.org>,
- Lyude Paul <lyude@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- Emma Anholt <emma@anholt.net>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>
-References: <20220728-rpi-analog-tv-properties-v4-0-60d38873f782@cerno.tech>
- <20220728-rpi-analog-tv-properties-v4-10-60d38873f782@cerno.tech>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v4-10-60d38873f782@cerno.tech>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Content-Language: en-US
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20220930104302.25836-1-ville.syrjala@linux.intel.com>
+ <20220930104302.25836-6-ville.syrjala@linux.intel.com>
+ <e6c027ff-0cd4-ef3d-0f12-13d31015ba60@gmail.com> <YzbTnZFZdFUM5REm@intel.com>
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+In-Reply-To: <YzbTnZFZdFUM5REm@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v4 10/30] drm/connector: Add TV standard
- property
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Simplify modifier lookup in
+ watermark code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,68 +77,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Phil Elwell <phil@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
+Reply-To: juhapekka.heikkila@gmail.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 30.9.2022 14.31, Ville Syrjälä wrote:
+> On Fri, Sep 30, 2022 at 02:22:08PM +0300, Juha-Pekka Heikkila wrote:
+>> I had earlier this patch which look like it does mostly the same
+>> https://patchwork.freedesktop.org/patch/444010/?series=92491&rev=4
+>>
+>> With exception to mc ccs, earlier Imre said mc ccs must not be
+>> considered here.
+> 
+> For the rc_surface thing? Doesn't actually matter what we put there
+> on glk+ since it's only used in skl/bxt code.
+> 
 
+ack. Then this set is
 
-Den 29.09.2022 18.31, skrev Maxime Ripard:
-> The TV mode property has been around for a while now to select and get the
-> current TV mode output on an analog TV connector.
-> 
-> Despite that property name being generic, its content isn't and has been
-> driver-specific which makes it hard to build any generic behaviour on top
-> of it, both in kernel and user-space.
-> 
-> Let's create a new enum tv norm property, that can contain any of the
-> analog TV standards currently supported by kernel drivers. Each driver can
-> then pass in a bitmask of the modes it supports, and the property
-> creation function will filter out the modes not supported.
-> 
-> We'll then be able to phase out the older tv mode property.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> ---
-> Changes in v4:
-> - Add property documentation to kms-properties.csv
-> - Fix documentation
-> ---
->  Documentation/gpu/kms-properties.csv |  1 +
->  drivers/gpu/drm/drm_atomic_uapi.c    |  4 +++
->  drivers/gpu/drm/drm_connector.c      | 57 +++++++++++++++++++++++++++++++-
->  include/drm/drm_connector.h          | 64 ++++++++++++++++++++++++++++++++++++
->  include/drm/drm_mode_config.h        |  8 +++++
->  5 files changed, 133 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/gpu/kms-properties.csv b/Documentation/gpu/kms-properties.csv
-> index 45c12e3e82f4..3498bd5d5856 100644
-> --- a/Documentation/gpu/kms-properties.csv
-> +++ b/Documentation/gpu/kms-properties.csv
-> @@ -91,6 +91,7 @@ omap,Generic,“zorder”,RANGE,"Min=0, Max=3","CRTC, Plane",TBD
->  qxl,Generic,"“hotplug_mode_update""",RANGE,"Min=0, Max=1",Connector,TBD
->  radeon,DVI-I,“coherent”,RANGE,"Min=0, Max=1",Connector,TBD
->  ,DAC enable load detect,“load detection”,RANGE,"Min=0, Max=1",Connector,TBD
-> +,TV Mode,"""TV Mode""",ENUM,"{ ""NTSC"", ""NTSC-443"", ""NTSC-J"", ""PAL"", ""PAL-M"", ""PAL-N"", ""SECAM"" }",Connector,TBD
->  ,legacy TMDS PLL detect,"""tmds_pll""",ENUM,"{ ""driver"", ""bios"" }",-,TBD
->  ,Underscan,"""underscan""",ENUM,"{ ""off"", ""on"", ""auto"" }",Connector,TBD
->  ,,"""underscan hborder""",RANGE,"Min=0, Max=128",Connector,TBD
+Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
-Turns out I was wrong about adding the property to this file, Daniel
-says it's deprecated in f0f0657b108c ("drm/doc: Drop "content type" from
-the legacy kms property table").
+>>
+>> /Juha-Pekka
+>>
+>> On 30.9.2022 13.43, Ville Syrjala wrote:
+>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>
+>>> Replace the huge modifier lists in the watermark code with
+>>> a few calls to intel_fb.c.
+>>>
+>>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/display/intel_fb.c      | 13 ++++++++++++
+>>>    drivers/gpu/drm/i915/display/intel_fb.h      |  1 +
+>>>    drivers/gpu/drm/i915/display/skl_watermark.c | 22 +++-----------------
+>>>    3 files changed, 17 insertions(+), 19 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+>>> index eefa33c555ac..63137ae5ab21 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+>>> @@ -300,6 +300,19 @@ static bool plane_caps_contain_all(u8 caps, u8 mask)
+>>>    	return (caps & mask) == mask;
+>>>    }
+>>>    
+>>> +/**
+>>> + * intel_fb_is_tiled_modifier: Check if a modifier is a tiled modifier type
+>>> + * @modifier: Modifier to check
+>>> + *
+>>> + * Returns:
+>>> + * Returns %true if @modifier is a tiled modifier.
+>>> + */
+>>> +bool intel_fb_is_tiled_modifier(u64 modifier)
+>>> +{
+>>> +	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
+>>> +				      INTEL_PLANE_CAP_TILING_MASK);
+>>> +}
+>>> +
+>>>    /**
+>>>     * intel_fb_is_ccs_modifier: Check if a modifier is a CCS modifier type
+>>>     * @modifier: Modifier to check
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+>>> index 12386f13a4e0..4662b812b934 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_fb.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+>>> @@ -29,6 +29,7 @@ struct intel_plane_state;
+>>>    #define INTEL_PLANE_CAP_TILING_Yf	BIT(5)
+>>>    #define INTEL_PLANE_CAP_TILING_4	BIT(6)
+>>>    
+>>> +bool intel_fb_is_tiled_modifier(u64 modifier);
+>>>    bool intel_fb_is_ccs_modifier(u64 modifier);
+>>>    bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
+>>>    bool intel_fb_is_mc_ccs_modifier(u64 modifier);
+>>> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+>>> index 18178b01375e..0715bb308989 100644
+>>> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+>>> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+>>> @@ -1706,26 +1706,10 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+>>>    		return -EINVAL;
+>>>    	}
+>>>    
+>>> -	wp->y_tiled = modifier == I915_FORMAT_MOD_Y_TILED ||
+>>> -		      modifier == I915_FORMAT_MOD_4_TILED ||
+>>> -		      modifier == I915_FORMAT_MOD_Yf_TILED ||
+>>> -		      modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+>>> -		      modifier == I915_FORMAT_MOD_Yf_TILED_CCS ||
+>>> -		      modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+>>> -		      modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS ||
+>>> -		      modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC ||
+>>> -		      modifier == I915_FORMAT_MOD_4_TILED_DG2_RC_CCS ||
+>>> -		      modifier == I915_FORMAT_MOD_4_TILED_DG2_MC_CCS ||
+>>> -		      modifier == I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC;
+>>>    	wp->x_tiled = modifier == I915_FORMAT_MOD_X_TILED;
+>>> -	wp->rc_surface = modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+>>> -			 modifier == I915_FORMAT_MOD_Yf_TILED_CCS ||
+>>> -			 modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+>>> -			 modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS ||
+>>> -			 modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC ||
+>>> -			 modifier == I915_FORMAT_MOD_4_TILED_DG2_RC_CCS ||
+>>> -			 modifier == I915_FORMAT_MOD_4_TILED_DG2_MC_CCS ||
+>>> -			 modifier == I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC;
+>>> +	wp->y_tiled = modifier != I915_FORMAT_MOD_X_TILED &&
+>>> +		intel_fb_is_tiled_modifier(modifier);
+>>> +	wp->rc_surface = intel_fb_is_ccs_modifier(modifier);
+>>
+>> I had earlier this patch which look like it did mostly the same
+>> https://patchwork.freedesktop.org/patch/444010/?series=92491&rev=4
+>>
+>> With exception to mc ccs, earlier Imre said mc ccs must not be
+>> considered here.
+>>
+>> /Juha-Pekka
+>>
+>>>    	wp->is_planar = intel_format_info_is_yuv_semiplanar(format, modifier);
+>>>    
+>>>    	wp->width = width;
+> 
 
-If you look at the Fixes commit it adds a kernel doc HDMI property
-section and TV should probably have something like that.
-
-Noralf.
