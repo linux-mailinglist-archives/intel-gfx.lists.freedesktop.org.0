@@ -1,50 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13AF35F14A0
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 23:16:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B7C55F14E7
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 23:31:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFB9A10EDB3;
-	Fri, 30 Sep 2022 21:16:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30D0510EDBA;
+	Fri, 30 Sep 2022 21:31:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EFB110EDB7
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Sep 2022 21:16:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664572597; x=1696108597;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=dR4qonDTx1GN7285aU4+x7gGSf8aZUnppA9o7A4Mi8E=;
- b=ZNial3QdrfVCS+Kjcc9xHAbyFSqrgmeM9cwqBlLHmw5vENI3fWsqktTg
- 2OqkOaDU/e5pBrwIDQ4AXHZH/n2aIfgV3ujMwFMnMSeqDs9/TfFqaftbY
- bSpm3WXb4Z8GI2xmDoaWBpQ9YZWTOjMcg/DeXNbuefTR5pSVIswUz3NJA
- XStjLwdniTfhpdO4cJ1E5NdAvWWP9Qh+eySS1VYFcks35m5ebp5MUo+a/
- ncqlmsX/nk50DpSFFw3ia85kgMmsmX+N+A2iXWWyaBpSZtpu9tpoAK7vw
- kvgKx1hj4oHRtna/CQgzQzQn5TKziNVxsEgWNcFO5+GspHedeRFuCu9rz g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10486"; a="328677252"
-X-IronPort-AV: E=Sophos;i="5.93,359,1654585200"; d="scan'208";a="328677252"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2022 14:16:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10486"; a="656088453"
-X-IronPort-AV: E=Sophos;i="5.93,359,1654585200"; d="scan'208";a="656088453"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by orsmga001.jf.intel.com with ESMTP; 30 Sep 2022 14:16:36 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 30 Sep 2022 14:18:36 -0700
-Message-Id: <20220930211836.148041-2-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220930211836.148041-1-alan.previn.teres.alexis@intel.com>
-References: <20220930211836.148041-1-alan.previn.teres.alexis@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A83810EDB0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Sep 2022 21:31:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1664573507;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=7MZyE4q4pUK9exbRcIZDL/JbobrwIaDD99sfovICQ4I=;
+ b=Dy4fDLGrhU4x/HdAFAAywLi8FlRZDm9pK0+cPfdxqqixiGQ0y/ANYJPWg2V5Tud26W/1hI
+ kQQHzdazQO61C1GY2vRLi+QPhe3xsSNRGlu1ULTFrUSSX1TEmeKQlZrbyq/+A1NzjrkewD
+ n2RqBmQi6vA/ec6m2GJpbWupXBP9gUo=
+Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
+ [209.85.166.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-498-5I0FCrUcO9yKDKSaF14gqQ-1; Fri, 30 Sep 2022 17:31:44 -0400
+X-MC-Unique: 5I0FCrUcO9yKDKSaF14gqQ-1
+Received: by mail-il1-f197.google.com with SMTP id
+ h9-20020a056e021b8900b002f19c2a1836so4380536ili.23
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Sep 2022 14:31:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:organization:references
+ :in-reply-to:message-id:subject:cc:to:from:date:x-gm-message-state
+ :from:to:cc:subject:date;
+ bh=7MZyE4q4pUK9exbRcIZDL/JbobrwIaDD99sfovICQ4I=;
+ b=6nAbqglosfGxl3XbLoYmPKfDLy2RW0BYbJZjBkpKfcRPPeBQPw0iySFETQ4k/2Q9XQ
+ Dig4Bq4JFALdJksLB1wYt0ZtLJZqfCp6aTu7lDg1+DXVhKnGEnaRasyI56BbKl82rR9A
+ L0RK/8Kw1ZzyCwjB9XK/6akeoBeCEBIYs7dg0JYFOA/a2vNjQKxFnSexXFO69aVpBgmq
+ zCoNRHJg6rZasQUVXYXwP1aNfpd9kLxc1LRPJ+DFQHt7cNLyLkUrOoROvICG9fFTN5yn
+ AiVexvh1UCf2UC6V16XKLX7gRHIigUzIDYoSRg56F3pHUB0Ins7ni2XvifVbfL5SlhVq
+ 6zJA==
+X-Gm-Message-State: ACrzQf1ZwF2mdF+nhl4ai3+m6VqjER+1amz1pkwwPP8nmA1wHQSyxTMP
+ WOPMC7SPqJsf/xcQAkmfvffPLL6fUGwk4UP/AkRjXlOUG4yeLselF+4OYMC0S/TZ/aFtp8X3U5C
+ 9YfmjL9UaeUF8OscviNXki2SdfB34
+X-Received: by 2002:a05:6638:4416:b0:35a:3cca:4db3 with SMTP id
+ bp22-20020a056638441600b0035a3cca4db3mr5665321jab.0.1664573503687; 
+ Fri, 30 Sep 2022 14:31:43 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM5cqLb3noeJWS0YhPhgS37XjFCTWP2XxFR9rFh11+Uu4oQtCWPM3VbBWg5g6mGXkpdAVP6H6g==
+X-Received: by 2002:a05:6638:4416:b0:35a:3cca:4db3 with SMTP id
+ bp22-20020a056638441600b0035a3cca4db3mr5665306jab.0.1664573503392; 
+ Fri, 30 Sep 2022 14:31:43 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ l15-20020a02cd8f000000b0034c107ac9bbsm1343303jap.8.2022.09.30.14.31.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 30 Sep 2022 14:31:42 -0700 (PDT)
+Date: Fri, 30 Sep 2022 15:31:39 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20220930153139.0d60652b.alex.williamson@redhat.com>
+In-Reply-To: <0-v1-013609965fe8+9d-vfio_gvt_unregister_jgg@nvidia.com>
+References: <0-v1-013609965fe8+9d-vfio_gvt_unregister_jgg@nvidia.com>
+Organization: Red Hat
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/1] drm/i915/guc: Fix GuC error capture
- sizing estimation and reporting
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: Add missing
+ vfio_unregister_group_dev() call
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,101 +83,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org,
+ intel-gvt-dev@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During GuC error capture initialization, we estimate the amount of size
-we need for the error-capture-region of the shared GuC-log-buffer.
-This calculation was incorrect so fix that. Additionally, if the size
-was insufficient, don't drm_warn or drm_notice, just drm_debug since
-actually running out based on that estimation is a corner case. It
-can only occur if all engine instances get reset all at once and i915
-isn't able extract the capture data fast enough within G2H handler
-worker.
+On Thu, 29 Sep 2022 14:48:35 -0300
+Jason Gunthorpe <jgg@nvidia.com> wrote:
 
-Fixes d7c15d76a5547: drm/i915/guc: Check sizing of guc_capture output
+> When converting to directly create the vfio_device the mdev driver has to
+> put a vfio_register_emulated_iommu_dev() in the probe() and a pairing
+> vfio_unregister_group_dev() in the remove.
+> 
+> This was missed for gvt, add it.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 978cf586ac35 ("drm/i915/gvt: convert to use vfio_register_emulated_iommu_dev")
+> Reported-by: Alex Williamson <alex.williamson@redhat.com>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>  drivers/gpu/drm/i915/gvt/kvmgt.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> Should go through Alex's tree.
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 29 ++++++++++++-------
- 1 file changed, 18 insertions(+), 11 deletions(-)
+Applied to vfio next branch for v6.1.  Thanks for the quick fix!
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-index 8f1165146013..b3c6ed839163 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-@@ -502,8 +502,9 @@ intel_guc_capture_getlistsize(struct intel_guc *guc, u32 owner, u32 type, u32 cl
- 	if (!num_regs)
- 		return -ENODATA;
+Alex
  
--	*size = PAGE_ALIGN((sizeof(struct guc_debug_capture_list)) +
--			   (num_regs * sizeof(struct guc_mmio_reg)));
-+	if (size)
-+		*size = PAGE_ALIGN((sizeof(struct guc_debug_capture_list)) +
-+				   (num_regs * sizeof(struct guc_mmio_reg)));
- 
- 	return 0;
- }
-@@ -606,7 +607,7 @@ guc_capture_output_min_size_est(struct intel_guc *guc)
- 	struct intel_gt *gt = guc_to_gt(guc);
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	int worst_min_size = 0, num_regs = 0;
-+	int worst_min_size = 0;
- 	size_t tmp = 0;
- 
- 	if (!guc->capture)
-@@ -628,20 +629,18 @@ guc_capture_output_min_size_est(struct intel_guc *guc)
- 					 (3 * sizeof(struct guc_state_capture_header_t));
- 
- 		if (!intel_guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_GLOBAL, 0, &tmp))
--			num_regs += tmp;
-+			worst_min_size += tmp;
- 
- 		if (!intel_guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS,
- 						   engine->class, &tmp)) {
--			num_regs += tmp;
-+			worst_min_size += tmp;
- 		}
- 		if (!intel_guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE,
- 						   engine->class, &tmp)) {
--			num_regs += tmp;
-+			worst_min_size += tmp;
- 		}
- 	}
- 
--	worst_min_size += (num_regs * sizeof(struct guc_mmio_reg));
--
- 	return worst_min_size;
- }
- 
-@@ -658,15 +657,23 @@ static void check_guc_capture_size(struct intel_guc *guc)
- 	int spare_size = min_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
- 	u32 buffer_size = intel_guc_log_section_size_capture(&guc->log);
- 
-+	/*
-+	 * Don't drm_warn or drm_error here on "possible" insufficient size because we only run out
-+	 * of space if all engines were to suffer resets all at once AND the driver is not able to
-+	 * extract that data fast enough in the interrupt handler worker (moving them to the
-+	 * larger pool of pre-allocated capture nodes. If GuC does run out of space, we will
-+	 * print an error when processing the G2H event capture-notification (search for
-+	 * "INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE").
-+	 */
- 	if (min_size < 0)
- 		drm_warn(&i915->drm, "Failed to calculate GuC error state capture buffer minimum size: %d!\n",
- 			 min_size);
- 	else if (min_size > buffer_size)
--		drm_warn(&i915->drm, "GuC error state capture buffer is too small: %d < %d\n",
-+		drm_warn(&i915->drm, "GuC error state capture buffer maybe small: %d < %d\n",
- 			 buffer_size, min_size);
- 	else if (spare_size > buffer_size)
--		drm_notice(&i915->drm, "GuC error state capture buffer maybe too small: %d < %d (min = %d)\n",
--			   buffer_size, spare_size, min_size);
-+		drm_dbg(&i915->drm, "GuC error state capture buffer lacks spare size: %d < %d (min = %d)\n",
-+			buffer_size, spare_size, min_size);
- }
- 
- /*
--- 
-2.34.1
+> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> index 41bba40feef8f4..9003145adb5a93 100644
+> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> @@ -1615,6 +1615,7 @@ static void intel_vgpu_remove(struct mdev_device *mdev)
+>  	if (WARN_ON_ONCE(vgpu->attached))
+>  		return;
+>  
+> +	vfio_unregister_group_dev(&vgpu->vfio_device);
+>  	vfio_put_device(&vgpu->vfio_device);
+>  }
+>  
+> 
+> base-commit: c72e0034e6d4c36322d958b997d11d2627c6056c
 
