@@ -2,55 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED5265F0D97
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 16:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCD75F0DE1
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 16:47:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 033F410ED32;
-	Fri, 30 Sep 2022 14:32:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9205310ED39;
+	Fri, 30 Sep 2022 14:47:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0F8C10ED32
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Sep 2022 14:32:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664548339; x=1696084339;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=xE0WrHNEJe5Af4hDCqJMcMYl15QP7YYy34er/iV/AFA=;
- b=LhUmVhV2PzcKp9Cbtym0cQPXYLxgzdWh4h0epal1BKsNirRsbzmVXbrx
- vxZyErLQCWDpqlI5d7P53X0tXW3PkRJjmcPZBduj10SYR+ExmwOfIecom
- cVzZ/ct/+Zh402yRk9pyHgmx//kxOvCHBy2JrjM/ebi27XNHcsrqpaiht
- HEUo74X7lvYN90xYnRU7Lf98XA8DaXvIRVG5HMRex6FnMvX0ZzYDYtjrc
- 88yiJimvOzaoIL97MelPpUkUDwXf45u1gIhLSxBr1HmlidSxL3qdrbZmH
- tm8VtRZZS7iqEatAAwFG4Yvjmvv117/oAKv+RHfqgyB5g+if7OH5Zd7eg Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10486"; a="388482511"
-X-IronPort-AV: E=Sophos;i="5.93,358,1654585200"; d="scan'208";a="388482511"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2022 07:32:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10486"; a="867828769"
-X-IronPort-AV: E=Sophos;i="5.93,358,1654585200"; d="scan'208";a="867828769"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga006.fm.intel.com with SMTP; 30 Sep 2022 07:32:16 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 30 Sep 2022 17:32:15 +0300
-Date: Fri, 30 Sep 2022 17:32:15 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <Yzb97150RzdA9Sai@intel.com>
-References: <20220930134731.389416-1-matthew.auld@intel.com>
- <Yzb2iHBSFpr6i8B2@intel.com>
- <09fcae20-0f50-d43f-336e-7f82293ce97c@intel.com>
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D09FB10ED36;
+ Fri, 30 Sep 2022 14:47:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=mNNkRRw0Gbq4V+ztYG6L23EmoagwCkTjNrLNxOdS6h0=; b=pJNR3S8cONTj/8h4P2g2LUDXUa
+ P4qz1z/bkXJaUIs7binQsqWk3/AwoR64GRyNbZeAAPKEG3VvG0VqEcUktWPwzbIS2+dyAb3bglkrR
+ Gbp26oZwNi/2R9lfWfSlBtmhJWFxmcgI7a8IAf0g/52W794SXMJJL6jGDr825vE7BQXwjQEyRfFWP
+ Uy9SFNlE4SEEbsM7JDtb3cgFOqTncjGrvOfEEg27A/Pdv0HXPMkV2SSwbECAhxDsIdVOyX3o9TeE3
+ 96jn29a4os1mr+hXMBkJegjmqljW/OW889m7G0N9eIO4FA8PmW8PWAHgCqUfr7qmdT5HDwQG4Mp7P
+ Q5vpA6jg==;
+Received: from [2a01:799:961:d200:c807:6849:43f8:dd23] (port=51305)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1oeHIa-0005u3-EX; Fri, 30 Sep 2022 16:47:32 +0200
+Message-ID: <7341c6f0-a6ca-25e5-c246-3665da441069@tronnes.org>
+Date: Fri, 30 Sep 2022 16:47:24 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+To: Maxime Ripard <maxime@cerno.tech>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Karol Herbst <kherbst@redhat.com>, Samuel Holland <samuel@sholland.org>,
+ Lyude Paul <lyude@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Emma Anholt <emma@anholt.net>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>
+References: <20220728-rpi-analog-tv-properties-v4-0-60d38873f782@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v4-3-60d38873f782@cerno.tech>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v4-3-60d38873f782@cerno.tech>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <09fcae20-0f50-d43f-336e-7f82293ce97c@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/display: consider
- DG2_RC_CCS_CC when migrating buffers
+Subject: Re: [Intel-gfx] [PATCH v4 03/30] drm/tests: Add Kunit Helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,56 +66,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>,
- Jianshui Yu <jianshui.yu@intel.com>
+Cc: Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Phil Elwell <phil@raspberrypi.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 30, 2022 at 03:10:41PM +0100, Matthew Auld wrote:
-> On 30/09/2022 15:00, Ville Syrj‰l‰ wrote:
-> > On Fri, Sep 30, 2022 at 02:47:30PM +0100, Matthew Auld wrote:
-> >> For these types of display buffers, we need to able to CPU access some
-> >> part of the backing memory in prepare_plane_clear_colors(). As a result
-> >> we need to ensure we always place in the mappable part of lmem, which
-> >> becomes necessary on small-bar systems.
-> >>
-> >> Fixes: eb1c535f0d69 ("drm/i915: turn on small BAR support")
-> >> Reported-by: Jianshui Yu <jianshui.yu@intel.com>
-> >> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> >> Cc: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> >> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_fb_pin.c   | 11 ++++--
-> >>   drivers/gpu/drm/i915/gem/i915_gem_object.c    | 37 ++++++++++++++++++-
-> >>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  4 ++
-> >>   .../gpu/drm/i915/gem/i915_gem_object_types.h  |  3 +-
-> >>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  5 ++-
-> >>   5 files changed, 53 insertions(+), 7 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> >> index c86e5d4ee016..f83cf41ddd63 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> >> @@ -139,9 +139,14 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
-> >>   	ret = i915_gem_object_lock(obj, &ww);
-> >>   	if (!ret && phys_cursor)
-> >>   		ret = i915_gem_object_attach_phys(obj, alignment);
-> >> -	else if (!ret && HAS_LMEM(dev_priv))
-> >> -		ret = i915_gem_object_migrate(obj, &ww, INTEL_REGION_LMEM_0);
-> >> -	/* TODO: Do we need to sync when migration becomes async? */
-> > 
-> > Why is the TODO being removed?
+
+
+Den 29.09.2022 18.30, skrev Maxime Ripard:
+> As the number of kunit tests in KMS grows further, we start to have
+> multiple test suites that, for example, need to register a mock DRM
+> driver to interact with the KMS function they are supposed to test.
 > 
-> Just because we now know we do a fence sync below, when binding into the 
-> GGTT (this comment was from before we had async moves/migrations). I can 
-> a make a note of that in the commit message. Or perhaps change the 
-> comment to "Should we rather make this async, currently we sync below 
-> which is maybe not optimal?" :)
+> Let's add a file meant to provide those kind of helpers to avoid
+> duplication.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> 
 
-Shrug. As long as the commit message will get some explanation
-we should be good. Could even be a separate patch since it
-seems entirely orthogonal to the actual contents of this patch.
-
--- 
-Ville Syrj‰l‰
-Intel
+Reviewed-by: Noralf Tr√∏nnes <noralf@tronnes.org>
