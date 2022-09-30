@@ -1,46 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE0B5F00DF
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 00:44:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4FF5F01B1
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 02:10:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CBC710EB9B;
-	Thu, 29 Sep 2022 22:44:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5961410EC34;
+	Fri, 30 Sep 2022 00:10:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B0DB10E147;
- Thu, 29 Sep 2022 22:44:44 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7DC39621CD;
- Thu, 29 Sep 2022 22:44:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20A3CC433C1;
- Thu, 29 Sep 2022 22:44:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1664491482;
- bh=xbgrbyccy1aHb7UibACXjsrSFOwOatsWQ3dsov9OvNg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=TeuDc/e4In6KHR3qSE53GT0P7DlIbW+th0QkOhQcPOuUplYD3PlH64nDrXBBA9zCk
- wFjYDEC4QxQMn9f3n3RIijoUhQV8e5UlSXrWaZ6XWjG7+jkCBBuRVoKoGPDT58oBzZ
- qgIjm0LmwSmQEvmmGrw9Erb1AFJsVsmnzuI0Q0WEjvr1V4U9OHWfLOCEe9y4jy7xzm
- W21a8I0qyuAHNfi0i99ts8RbZeLkcJclJSISwY/JENml5psaL5JsDDRIU9pIt5NEvA
- GQHYM9uthVQPdtnlXTN1bskGtlbuJxRz4AS4VAPgcr+FJz3mUm3sMZUPWdMhmzq0W2
- guyKbYKhwbLRQ==
-Date: Thu, 29 Sep 2022 15:44:40 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <YzYf2LNOCBMDosAl@dev-arch.thelio-3990X>
-References: <20220922195127.2607496-1-nathan@kernel.org>
- <9c7cc54d-5525-f909-b8b3-40cd828ae293@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B16F310EC34;
+ Fri, 30 Sep 2022 00:10:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664496639; x=1696032639;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=D9wGp9/6KRZ1de8Ip7HwVsLCroDKC7m3tL7Ge54uvJE=;
+ b=mKUV8IQZxB8/46gnhowK8NfM+ybNdWnVUuy1N2jmdSYho4qHCt+Y7cea
+ 6fgFalRODpY4GlBsNGayQ3PP0gLn4WHOdmclVotN7LO9hHZLQLxmi0bwD
+ +4Gy1oMSrBkuc2H1nWi4gmFBK87BJciGbRBsWmmExWb/WASUxkDn3XfNu
+ 2WK0QUVt5FQGjA4pJP+PJymHT3+2L+vybOxRtiAQSsoudpO1v2tB+SubB
+ 1fzd6t1gWOKX48ssnb6oXQ8KTUEIqv2E0fU0mOLRFMQqjNsb4HVp5gHXK
+ GeDWTCnOIU8ein3GS5xCYOlHZzlP2CKiw4MoRxie9en0CTmGBZJ862Y5A Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="366112081"
+X-IronPort-AV: E=Sophos;i="5.93,356,1654585200"; d="scan'208";a="366112081"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2022 17:10:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="617809019"
+X-IronPort-AV: E=Sophos;i="5.93,356,1654585200"; d="scan'208";a="617809019"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga007.jf.intel.com with ESMTP; 29 Sep 2022 17:10:38 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 29 Sep 2022 17:10:38 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 29 Sep 2022 17:10:38 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 29 Sep 2022 17:10:38 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Thu, 29 Sep 2022 17:10:37 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jHa6mDnNedx8aCg8RdkCSMFkidZfVC2SXE+SVDMD0tFC/iWDtzpmxS5CimhTwbzbBOUAcFS0SXYruKDQeBgrdiedbKpjCiCvpgXt4Je2F54A9/eDn1Ocf2tehSBRNPANt+GaadbXNtT898u298eqoi2IcdOsK+t3xfkY3fuTZpeAs8Lof5Z+E6t1wRSUTbHjnrdEVvfDL1erVr0FDLpOWFNsdOpwpanjv0HGZ4yGzhm/NVMAEJoUdgUFYfXeXKR8dGLYGsJo7lt5a6GOfjaLQRXPM8T6R6VetCKeD1r6S0L2x4E6vOi68R+/iAvFbW0Z4ID8bXIsh5o7igkXGrvWuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=D9wGp9/6KRZ1de8Ip7HwVsLCroDKC7m3tL7Ge54uvJE=;
+ b=VxkQAZvyLF61y4FY65rNzkp5858mlYtJzSnjQNows9qCWrJOXhbqHsLgUUfGZh64ot/0AjrGBWovh2LqSxbdxgXVd5oHBxENAacO4UIE5UW2uUayfboGF7xPGNBxLvgWBYOxzsAsvw7moU5TSpzPtbX4mUwyFS7bicOYMesrhS8xu2R2pGooZgLMymHCxh15V/a8ya4JEDRyR1BEBn0k2rpS3Nu0Z1nBPjLzuvB7CCMyHQ+oM7zhIGsiidI6HPqhoQUVQSTHDvhXsp/o1ktIsnM0eMVVVsKf5WqmmWJwS9KO7lraFuGcRQLXU2u6QKz9K3bBPzW8CfE7DEKmA4ZG5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SN7PR11MB6797.namprd11.prod.outlook.com (2603:10b6:806:263::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Fri, 30 Sep
+ 2022 00:10:35 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7246:dc8c:c81f:5a10]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7246:dc8c:c81f:5a10%3]) with mapi id 15.20.5654.025; Fri, 30 Sep 2022
+ 00:10:35 +0000
+Date: Thu, 29 Sep 2022 17:10:31 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Message-ID: <20220930001031.35cnjng7txadie5b@ldmartin-desk2.lan>
+X-Patchwork-Hint: comment
+References: <20220928155511.2379663-1-radhakrishna.sripada@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <9c7cc54d-5525-f909-b8b3-40cd828ae293@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix CFI violations in gt_sysfs
+In-Reply-To: <20220928155511.2379663-1-radhakrishna.sripada@intel.com>
+X-ClientProxiedBy: BY5PR13CA0015.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::28) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SN7PR11MB6797:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ed2f20e-8d90-4103-23d2-08daa2783257
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jMqgY3yNgv969jiC0WNwVMCzsfbzmRxMJ8re/wJ5Dya9FRq9GadaELLpa/CcPCprELG5wRsWqre8YKN07M65bOGGJ2jQ1Z+2UJkfFiJ2G5/bOyAlMy2Cbh+fcTXUvABdVjNxPCdAOVsfMZChFmEJfu7wsWi5Q68sDi1X+Xa9h5+I8Ve9+WE0qnbarZWHtxSstwlQSpio4O4GWXDtKrVdwS4qq5sNMs7HQHmr6c9XujJpAIFp/P2/1mCoFXyyStFYWXLPK7iATeCAPSo2N+H+XAGuovkKC9/FJ7Vrqohef7TYnRKXSMeW6XR3Ml0vUvtT8xA4v0PBzrFZt1UCYEig0FuDcN9oylF4phO6+q+JHV13KYlbPRbFQGAyxiqwsUe+/DlZIt/VAtLDczLzEf8s7ru4BDDiA1x0KeETsvpnZWskEe5/p/StTWP8hdzSSuGN6xw37iSEo8vytv6NjfTVEdnPtH0KMfbRLgZJb1SgLGsD9Z222aUdK5O4Qui+jMq8vN3qeNDOVZdoneyDmcBraWXsn8jJy5+Th+YVMJhFfiotMAEm7SPVbXiOBMyH9gikG1sWfZbaimTVAOoenlLIns3MMp/uUDgQxbcM8RPb9ZcXJD0CAV+tBlJN9IuFk1IiUik7DX22IeqMUIRTH+3HMwOOHFMmaoarlOzKJB1Tj2ueaeQ/k3KmZ4G1a0TPQCW25bETq1m/RK1CXUFnzoLnMQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(396003)(366004)(376002)(136003)(346002)(451199015)(450100002)(8936002)(316002)(41300700001)(6636002)(83380400001)(36756003)(26005)(478600001)(9686003)(6506007)(6512007)(6666004)(2906002)(6486002)(86362001)(5660300002)(186003)(1076003)(6862004)(82960400001)(38100700002)(66476007)(66556008)(66946007)(4326008)(8676002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kdaFVD1Jo5Mi0rkjLxH6NYeIUsctqwp2IsfYh/ywDu/bDXwHQ8foh41SwiCD?=
+ =?us-ascii?Q?49KXhNvIqxtBrsVU3nRq65Ho+Ru07FWwMqhJ8Mj3uI93goKvP49wQuryGndZ?=
+ =?us-ascii?Q?IHu+VZAmf7OYNr+9DgLLTkI4EVDr+Q9dJaz2Fc7FU6sRS5gUeXaJnO+Hygiy?=
+ =?us-ascii?Q?cyz0iKnhlFhcXZXPX/augnBHl+ZzqlllELAOt08pURrvZnOlJxpcM+Tw/nIE?=
+ =?us-ascii?Q?h8Qh5XDqZAiDMfx/F0q1oajQRCqFfSX2WGm73GV5i7nfsE+aN9o9p7BOhLvJ?=
+ =?us-ascii?Q?mhoA7Xb9Ge9HJdMhuDcPlj3dEfJUe2Qm1Nf96v3zuDDI42nQ7o1QOJp0Ejbz?=
+ =?us-ascii?Q?+ndtGP+cLhqaVjq89R8iEx5RH8HeCYI9YQ2JrRlauCs6USM9b8ust0+sHv9c?=
+ =?us-ascii?Q?+yrZ8Q4nNIUBc+/Dpk1GkKUx/C0MCQQWe69U0oramd0Bi605OtHESxevxsUZ?=
+ =?us-ascii?Q?0GJZq8e0JjUC9ZS3aTXun8JRMm/Gv+kKHwdyjbTSbbf53G5zF+dUTngPOHoA?=
+ =?us-ascii?Q?MI4idf4Zn+cKRPqh0gFTK7njBcWk38D3n4szA4WvexpQluDx0JAHKYAkn+9x?=
+ =?us-ascii?Q?QwR4uB3yQNdh79YiC/FhiDK4NtMofLKG6yNc8hfC4dYOGTeO1IRobJkmwQNA?=
+ =?us-ascii?Q?38QJAraAVUDklfW3iFgxRYnqDCC1qlSvGt6UfPCrkDH05DXOJgb787kYV5lu?=
+ =?us-ascii?Q?q0IlK6Zj3ycZDG9pdlpKLxrsWimPUUl/oRFVDt1PU+kiWwidAszSWITXgmoF?=
+ =?us-ascii?Q?/rxR2MZVLceZNYn1YhtyeB7VPzf5bjcMSe7WFWjiePLJKiikiOb8QZHwRZ1y?=
+ =?us-ascii?Q?jLQhGMkSt0N0dXw4cQNBKBAwfUTQIAdN/g/LwAt2XpeQ18uJo5U1/mI19Tld?=
+ =?us-ascii?Q?ubv361n4RQa/j1gFRqx7ubYZS3VDojW0XJwuHNL6JrABrtvmPyUDrZBBvFEc?=
+ =?us-ascii?Q?K+aBUZtHyz4FKkS/kDxWIbeOUqfqOzouAGabMEUJazfuqYQ2ehAxnese57O0?=
+ =?us-ascii?Q?wnUBGySGFV93vcMeGdR8yO+MdV8eU9hhJVlCvbWXp0NT5lYCmtFR+d6xzp2F?=
+ =?us-ascii?Q?CY+QXTr4M/88Q0ByqDGnsgRKtskDVIOO8XPeZnvfQwhlN2OpvJQbqmTtEIEx?=
+ =?us-ascii?Q?1eA1gw7IjvkLnC7f7M6WjPuVLzu5yagWjbaYDkbFQmt2Y8WWNC55B6z+aCla?=
+ =?us-ascii?Q?uuOfBFs6de1XX+7enyaBALyEajfXYPA8J4L7RCqrjbdw9xjotqReQDxo/BHA?=
+ =?us-ascii?Q?FrvlzPry4LDfqsAP4MiVn4aguWaAegave1jwcOCIzMaqDSZVGHK7+ziY03/5?=
+ =?us-ascii?Q?u7OlsxRKVRkiZbFWh+LrXvYyg2l7No4ftAB1brVR2kWKJVSGImjjyaf8mulj?=
+ =?us-ascii?Q?WdLCL5Ys0dnSG8gxZ1VVL7hYf7XawjNmpNafFe9QjUuYcPV+aogfSFDjwOPD?=
+ =?us-ascii?Q?pcThTUbXAfkN/mYIwgTEJQGJ3KJMSScXLys3R7tY+GSVZxVKXdphgi453Zd0?=
+ =?us-ascii?Q?CC4PaJhn205yHr1iM8W1jm9jOcIiyzCyehiLPxaJDCZHMsz/xKoZRlDdsEek?=
+ =?us-ascii?Q?L7FEZD4/J26caHteUerYD3+fW7gaJJfhg7kDJzN9xjtB0TpqsbT5tI0upGEc?=
+ =?us-ascii?Q?xQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ed2f20e-8d90-4103-23d2-08daa2783257
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2022 00:10:35.2880 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PgY0SklDxO6C8LTzH/gzUZgBHf14Oz47yhA7s9EtakkhufeIc35g89xY6rF8nzpMEmanSARIPpgSeLpRkr3LJ7rnPfpHVkUCugXB4RocuYY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6797
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v4.1] drm/i915/mtl: Define engine context
+ layouts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,881 +148,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, Kees Cook <keescook@chromium.org>,
- Tom Rix <trix@redhat.com>, intel-gfx@lists.freedesktop.org,
- Nick Desaulniers <ndesaulniers@google.com>, patches@lists.linux.dev,
- dri-devel@lists.freedesktop.org, Sami Tolvanen <samitolvanen@google.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 30, 2022 at 12:34:41AM +0200, Andrzej Hajda wrote:
-> On 22.09.2022 21:51, Nathan Chancellor wrote:
-> > When booting with clang's kernel control flow integrity series [1],
-> > there are numerous violations when accessing the files under
-> > /sys/devices/pci0000:00/0000:00:02.0/drm/card0/gt/gt0:
-> > 
-> >    $ cd /sys/devices/pci0000:00/0000:00:02.0/drm/card0/gt/gt0
-> > 
-> >    $ grep . *
-> >    id:0
-> >    punit_req_freq_mhz:350
-> >    rc6_enable:1
-> >    rc6_residency_ms:214934
-> >    rps_act_freq_mhz:1300
-> >    rps_boost_freq_mhz:1300
-> >    rps_cur_freq_mhz:350
-> >    rps_max_freq_mhz:1300
-> >    rps_min_freq_mhz:350
-> >    rps_RP0_freq_mhz:1300
-> >    rps_RP1_freq_mhz:350
-> >    rps_RPn_freq_mhz:350
-> >    throttle_reason_pl1:0
-> >    throttle_reason_pl2:0
-> >    throttle_reason_pl4:0
-> >    throttle_reason_prochot:0
-> >    throttle_reason_ratl:0
-> >    throttle_reason_status:0
-> >    throttle_reason_thermal:0
-> >    throttle_reason_vr_tdc:0
-> >    throttle_reason_vr_thermalert:0
-> > 
-> >    $ sudo dmesg &| grep "CFI failure at"
-> >    [  214.595903] CFI failure at kobj_attr_show+0x19/0x30 (target: id_show+0x0/0x70 [i915]; expected type: 0xc527b809)
-> >    [  214.596064] CFI failure at kobj_attr_show+0x19/0x30 (target: punit_req_freq_mhz_show+0x0/0x40 [i915]; expected type: 0xc527b809)
-> >    [  214.596407] CFI failure at kobj_attr_show+0x19/0x30 (target: rc6_enable_show+0x0/0x40 [i915]; expected type: 0xc527b809)
-> >    [  214.596528] CFI failure at kobj_attr_show+0x19/0x30 (target: rc6_residency_ms_show+0x0/0x270 [i915]; expected type: 0xc527b809)
-> >    [  214.596682] CFI failure at kobj_attr_show+0x19/0x30 (target: act_freq_mhz_show+0x0/0xe0 [i915]; expected type: 0xc527b809)
-> >    [  214.596792] CFI failure at kobj_attr_show+0x19/0x30 (target: boost_freq_mhz_show+0x0/0xe0 [i915]; expected type: 0xc527b809)
-> >    [  214.596893] CFI failure at kobj_attr_show+0x19/0x30 (target: cur_freq_mhz_show+0x0/0xe0 [i915]; expected type: 0xc527b809)
-> >    [  214.596996] CFI failure at kobj_attr_show+0x19/0x30 (target: max_freq_mhz_show+0x0/0xe0 [i915]; expected type: 0xc527b809)
-> >    [  214.597099] CFI failure at kobj_attr_show+0x19/0x30 (target: min_freq_mhz_show+0x0/0xe0 [i915]; expected type: 0xc527b809)
-> >    [  214.597198] CFI failure at kobj_attr_show+0x19/0x30 (target: RP0_freq_mhz_show+0x0/0xe0 [i915]; expected type: 0xc527b809)
-> >    [  214.597301] CFI failure at kobj_attr_show+0x19/0x30 (target: RP1_freq_mhz_show+0x0/0xe0 [i915]; expected type: 0xc527b809)
-> >    [  214.597405] CFI failure at kobj_attr_show+0x19/0x30 (target: RPn_freq_mhz_show+0x0/0xe0 [i915]; expected type: 0xc527b809)
-> >    [  214.597538] CFI failure at kobj_attr_show+0x19/0x30 (target: throttle_reason_bool_show+0x0/0x50 [i915]; expected type: 0xc527b809)
-> >    [  214.597701] CFI failure at kobj_attr_show+0x19/0x30 (target: throttle_reason_bool_show+0x0/0x50 [i915]; expected type: 0xc527b809)
-> >    [  214.597836] CFI failure at kobj_attr_show+0x19/0x30 (target: throttle_reason_bool_show+0x0/0x50 [i915]; expected type: 0xc527b809)
-> >    [  214.597952] CFI failure at kobj_attr_show+0x19/0x30 (target: throttle_reason_bool_show+0x0/0x50 [i915]; expected type: 0xc527b809)
-> >    [  214.598071] CFI failure at kobj_attr_show+0x19/0x30 (target: throttle_reason_bool_show+0x0/0x50 [i915]; expected type: 0xc527b809)
-> >    [  214.598177] CFI failure at kobj_attr_show+0x19/0x30 (target: throttle_reason_bool_show+0x0/0x50 [i915]; expected type: 0xc527b809)
-> >    [  214.598307] CFI failure at kobj_attr_show+0x19/0x30 (target: throttle_reason_bool_show+0x0/0x50 [i915]; expected type: 0xc527b809)
-> >    [  214.598439] CFI failure at kobj_attr_show+0x19/0x30 (target: throttle_reason_bool_show+0x0/0x50 [i915]; expected type: 0xc527b809)
-> >    [  214.598542] CFI failure at kobj_attr_show+0x19/0x30 (target: throttle_reason_bool_show+0x0/0x50 [i915]; expected type: 0xc527b809)
-> > 
-> > With kCFI, indirect calls are validated against their expected type
-> > versus actual type and failures occur when the two types do not match.
-> 
-> Have you tried this tool with drm subsytem, IIRC there are also similar
-> cases with callbacks expecting ptr to different struct than actually passed.
+On Wed, Sep 28, 2022 at 08:55:11AM -0700, Radhakrishna Sripada wrote:
+>From: Matt Roper <matthew.d.roper@intel.com>
+>
+>The part of the media and blitter engine contexts that we care about for
+>setting up an initial state on MTL are nearly similar to DG2 (and PVC).
+>The difference being PRT_BB_STATE being replaced with NOP.
+>
+>For render/compute engines, the part of the context images are nearly
+>the same, although the layout had a very slight change --- one POSH
+>register was removed and the placement of some LRI/noops adjusted
+>slightly to compensate.
+>
+>v2:
+> - Dg2, mtl xcs offsets slightly vary. Use a separate offsets array(Bala)
+> - Add missing nop in xcs offsets(Bala)
+>v3:
+> - Fix the spacing for nop in xcs offset(MattR)
+>v4:
+> - Fix rcs register offset(MattR)
+>v4.1:
+> - Fix commit message(Lucas)
+>
+>Bspec: 46261, 46260, 45585
+>Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+>Cc: Licas De Marchi <lucas.demarchi@intel.com>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 
-Yes, I have also run a kCFI kernel on an AMD system that I have and I
-have not seen any failures from them. I only have AMD and Intel systems
-with graphics so there could be other problems lurking in other drivers.
 
-> > The ultimate issue is that these sysfs functions are expecting to be
-> > called via dev_attr_show() but they may also be called via
-> > kobj_attr_show(), as certain files are created under two different
-> > kobjects that have two different sysfs_ops in intel_gt_sysfs_register(),
-> > hence the warnings above. When accessing the gt_ files under
-> > /sys/devices/pci0000:00/0000:00:02.0/drm/card0, which are using the same
-> > sysfs functions, there are no violations, meaning the functions are
-> > being called with the proper type.
-> > 
-> > To make everything work properly, adjust certain functions to match the
-> > type of the ->show() and ->store() members in 'struct kobj_attribute'.
-> > Add a macro to generate functions for that can be called via both
-> > dev_attr_{show,store}() or kobj_attr_{show,store}() so that they can be
-> > called through both kobject locations without violating kCFI and adjust
-> > the attribute groups to account for this.
-> > 
-> > [1]: https://lore.kernel.org/20220908215504.3686827-1-samitolvanen@google.com/
-> > 
-> > Link: https://github.com/ClangBuiltLinux/linux/issues/1716
-> > Signed-off-by: Nathan Chancellor <nathan@kernel.org>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_gt_sysfs.c    |  15 +-
-> >   drivers/gpu/drm/i915/gt/intel_gt_sysfs.h    |   2 +-
-> >   drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 462 +++++++++-----------
-> >   3 files changed, 221 insertions(+), 258 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
-> > index d651ccd0ab20..9486dd3bed99 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
-> > @@ -22,11 +22,9 @@ bool is_object_gt(struct kobject *kobj)
-> >   	return !strncmp(kobj->name, "gt", 2);
-> >   }
-> > -struct intel_gt *intel_gt_sysfs_get_drvdata(struct device *dev,
-> > +struct intel_gt *intel_gt_sysfs_get_drvdata(struct kobject *kobj,
-> >   					    const char *name)
-> >   {
-> > -	struct kobject *kobj = &dev->kobj;
-> > -
-> >   	/*
-> >   	 * We are interested at knowing from where the interface
-> >   	 * has been called, whether it's called from gt/ or from
-> > @@ -38,6 +36,7 @@ struct intel_gt *intel_gt_sysfs_get_drvdata(struct device *dev,
-> >   	 * "struct drm_i915_private *" type.
-> >   	 */
-> >   	if (!is_object_gt(kobj)) {
-> > +		struct device *dev = kobj_to_dev(kobj);
-> >   		struct drm_i915_private *i915 = kdev_minor_to_i915(dev);
-> >   		return to_gt(i915);
-> > @@ -51,18 +50,18 @@ static struct kobject *gt_get_parent_obj(struct intel_gt *gt)
-> >   	return &gt->i915->drm.primary->kdev->kobj;
-> >   }
-> > -static ssize_t id_show(struct device *dev,
-> > -		       struct device_attribute *attr,
-> > +static ssize_t id_show(struct kobject *kobj,
-> > +		       struct kobj_attribute *attr,
-> >   		       char *buf)
-> >   {
-> > -	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-> >   	return sysfs_emit(buf, "%u\n", gt->info.id);
-> >   }
-> > -static DEVICE_ATTR_RO(id);
-> > +static struct kobj_attribute attr_id = __ATTR_RO(id);
-> >   static struct attribute *id_attrs[] = {
-> > -	&dev_attr_id.attr,
-> > +	&attr_id.attr,
-> >   	NULL,
-> >   };
-> >   ATTRIBUTE_GROUPS(id);
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
-> > index 6232923a420d..c3a123faee98 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
-> > @@ -30,7 +30,7 @@ static inline struct intel_gt *kobj_to_gt(struct kobject *kobj)
-> >   void intel_gt_sysfs_register(struct intel_gt *gt);
-> >   void intel_gt_sysfs_unregister(struct intel_gt *gt);
-> > -struct intel_gt *intel_gt_sysfs_get_drvdata(struct device *dev,
-> > +struct intel_gt *intel_gt_sysfs_get_drvdata(struct kobject *kobj,
-> >   					    const char *name);
-> >   #endif /* SYSFS_GT_H */
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-> > index 904160952369..308d54008983 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-> > @@ -24,14 +24,15 @@ enum intel_gt_sysfs_op {
-> >   };
-> >   static int
-> > -sysfs_gt_attribute_w_func(struct device *dev, struct device_attribute *attr,
-> > +sysfs_gt_attribute_w_func(struct kobject *kobj, struct attribute attr,
-> >   			  int (func)(struct intel_gt *gt, u32 val), u32 val)
-> >   {
-> >   	struct intel_gt *gt;
-> >   	int ret;
-> > -	if (!is_object_gt(&dev->kobj)) {
-> > +	if (!is_object_gt(kobj)) {
-> >   		int i;
-> > +		struct device *dev = kobj_to_dev(kobj);
-> >   		struct drm_i915_private *i915 = kdev_minor_to_i915(dev);
-> >   		for_each_gt(gt, i915, i) {
-> > @@ -40,7 +41,7 @@ sysfs_gt_attribute_w_func(struct device *dev, struct device_attribute *attr,
-> >   				break;
-> >   		}
-> >   	} else {
-> > -		gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +		gt = intel_gt_sysfs_get_drvdata(kobj, attr.name);
-> >   		ret = func(gt, val);
-> >   	}
-> > @@ -48,7 +49,7 @@ sysfs_gt_attribute_w_func(struct device *dev, struct device_attribute *attr,
-> >   }
-> >   static u32
-> > -sysfs_gt_attribute_r_func(struct device *dev, struct device_attribute *attr,
-> > +sysfs_gt_attribute_r_func(struct kobject *kobj, struct attribute attr,
-> >   			  u32 (func)(struct intel_gt *gt),
-> >   			  enum intel_gt_sysfs_op op)
-> >   {
-> > @@ -57,8 +58,9 @@ sysfs_gt_attribute_r_func(struct device *dev, struct device_attribute *attr,
-> >   	ret = (op == INTEL_GT_SYSFS_MAX) ? 0 : (u32) -1;
-> > -	if (!is_object_gt(&dev->kobj)) {
-> > +	if (!is_object_gt(kobj)) {
-> >   		int i;
-> > +		struct device *dev = kobj_to_dev(kobj);
-> >   		struct drm_i915_private *i915 = kdev_minor_to_i915(dev);
-> >   		for_each_gt(gt, i915, i) {
-> > @@ -77,7 +79,7 @@ sysfs_gt_attribute_r_func(struct device *dev, struct device_attribute *attr,
-> >   			}
-> >   		}
-> >   	} else {
-> > -		gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +		gt = intel_gt_sysfs_get_drvdata(kobj, attr.name);
-> >   		ret = func(gt);
-> >   	}
-> > @@ -92,6 +94,77 @@ sysfs_gt_attribute_r_func(struct device *dev, struct device_attribute *attr,
-> >   #define sysfs_gt_attribute_r_max_func(d, a, f) \
-> >   		sysfs_gt_attribute_r_func(d, a, f, INTEL_GT_SYSFS_MAX)
-> > +#define INTEL_GT_SYSFS_SHOW(_name, _attr_type)							\
-> > +	static ssize_t _name##_show(struct kobject *kobj,					\
-> > +				    struct kobj_attribute *attr, char *buff)			\
-> > +	{											\
-> > +		u32 val = sysfs_gt_attribute_r_##_attr_type##_func(kobj, attr->attr,		\
-> > +								   __##_name##_show);		\
-> > +												\
-> > +		return sysfs_emit(buff, "%u\n", val);						\
-> > +	}											\
-> > +	static ssize_t _name##_dev_show(struct device *dev,					\
-> > +					struct device_attribute *attr, char *buff)		\
-> > +	{											\
-> > +		u32 val = sysfs_gt_attribute_r_##_attr_type##_func(&dev->kobj, attr->attr,	\
-> > +								   __##_name##_show);		\
-> > +												\
-> > +		return sysfs_emit(buff, "%u\n", val);						\
-> > +	}
-> > +
-> > +#define INTEL_GT_SYSFS_STORE(_name, _func)						\
-> > +	static ssize_t _name##_store(struct kobject *kobj,				\
-> > +				     struct kobj_attribute *attr, const char *buff,	\
-> > +				     size_t count)					\
-> > +	{										\
-> > +		int ret;								\
-> > +		u32 val;								\
-> > +											\
-> > +		ret = kstrtou32(buff, 0, &val);						\
-> > +		if (ret)								\
-> > +			return ret;							\
-> > +											\
-> > +		ret = sysfs_gt_attribute_w_func(kobj, attr->attr, _func, val);		\
-> > +											\
-> > +		return ret ?: count;							\
-> > +	}										\
-> > +	static ssize_t _name##_dev_store(struct device *dev,				\
-> > +					 struct device_attribute *attr,			\
-> > +					 const char *buff, size_t count)		\
-> > +	{										\
-> > +		int ret;								\
-> > +		u32 val;								\
-> > +											\
-> > +		ret = kstrtou32(buff, 0, &val);						\
-> > +		if (ret)								\
-> > +			return ret;							\
-> > +											\
-> > +		ret = sysfs_gt_attribute_w_func(&dev->kobj, attr->attr, _func, val);	\
-> > +											\
-> > +		return ret ?: count;							\
-> > +	}
-> 
-> In both cases above I guess 2nd function can just call 1st one instead of
-> copy/paste (small, but still). For example:
-> static ssize_t _name##_dev_store(...)
-> {
-> 	return _name##_store(&dev->kobj, attr->attr, _func, val);
-> }
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Ah great point, I had thought about that but never jumped on it for some
-reason... I can send a v2 on Monday (I will be offline Friday) to give a
-chance for others to comment.
-
-> Beside this:
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Thank you for taking a look!
-
-Cheers,
-Nathan
-
-> Nice work.
-> 
-> Regards
-> Andrzej
-> 
-> > +
-> > +#define INTEL_GT_SYSFS_SHOW_MAX(_name) INTEL_GT_SYSFS_SHOW(_name, max)
-> > +#define INTEL_GT_SYSFS_SHOW_MIN(_name) INTEL_GT_SYSFS_SHOW(_name, min)
-> > +
-> > +#define INTEL_GT_ATTR_RW(_name) \
-> > +	static struct kobj_attribute attr_##_name = __ATTR_RW(_name)
-> > +
-> > +#define INTEL_GT_ATTR_RO(_name) \
-> > +	static struct kobj_attribute attr_##_name = __ATTR_RO(_name)
-> > +
-> > +#define INTEL_GT_DUAL_ATTR_RW(_name) \
-> > +	static struct device_attribute dev_attr_##_name = __ATTR(_name, 0644,		\
-> > +								 _name##_dev_show,	\
-> > +								 _name##_dev_store);	\
-> > +	INTEL_GT_ATTR_RW(_name)
-> > +
-> > +#define INTEL_GT_DUAL_ATTR_RO(_name) \
-> > +	static struct device_attribute dev_attr_##_name = __ATTR(_name, 0444,		\
-> > +								 _name##_dev_show,	\
-> > +								 NULL);			\
-> > +	INTEL_GT_ATTR_RO(_name)
-> > +
-> >   #ifdef CONFIG_PM
-> >   static u32 get_residency(struct intel_gt *gt, i915_reg_t reg)
-> >   {
-> > @@ -104,11 +177,8 @@ static u32 get_residency(struct intel_gt *gt, i915_reg_t reg)
-> >   	return DIV_ROUND_CLOSEST_ULL(res, 1000);
-> >   }
-> > -static ssize_t rc6_enable_show(struct device *dev,
-> > -			       struct device_attribute *attr,
-> > -			       char *buff)
-> > +static u8 get_rc6_mask(struct intel_gt *gt)
-> >   {
-> > -	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> >   	u8 mask = 0;
-> >   	if (HAS_RC6(gt->i915))
-> > @@ -118,37 +188,35 @@ static ssize_t rc6_enable_show(struct device *dev,
-> >   	if (HAS_RC6pp(gt->i915))
-> >   		mask |= BIT(2);
-> > -	return sysfs_emit(buff, "%x\n", mask);
-> > +	return mask;
-> >   }
-> > -static u32 __rc6_residency_ms_show(struct intel_gt *gt)
-> > +static ssize_t rc6_enable_show(struct kobject *kobj,
-> > +			       struct kobj_attribute *attr,
-> > +			       char *buff)
-> >   {
-> > -	return get_residency(gt, GEN6_GT_GFX_RC6);
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-> > +
-> > +	return sysfs_emit(buff, "%x\n", get_rc6_mask(gt));
-> >   }
-> > -static ssize_t rc6_residency_ms_show(struct device *dev,
-> > -				     struct device_attribute *attr,
-> > -				     char *buff)
-> > +static ssize_t rc6_enable_dev_show(struct device *dev,
-> > +				   struct device_attribute *attr,
-> > +				   char *buff)
-> >   {
-> > -	u32 rc6_residency = sysfs_gt_attribute_r_min_func(dev, attr,
-> > -						      __rc6_residency_ms_show);
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(&dev->kobj, attr->attr.name);
-> > -	return sysfs_emit(buff, "%u\n", rc6_residency);
-> > +	return sysfs_emit(buff, "%x\n", get_rc6_mask(gt));
-> >   }
-> > -static u32 __rc6p_residency_ms_show(struct intel_gt *gt)
-> > +static u32 __rc6_residency_ms_show(struct intel_gt *gt)
-> >   {
-> > -	return get_residency(gt, GEN6_GT_GFX_RC6p);
-> > +	return get_residency(gt, GEN6_GT_GFX_RC6);
-> >   }
-> > -static ssize_t rc6p_residency_ms_show(struct device *dev,
-> > -				      struct device_attribute *attr,
-> > -				      char *buff)
-> > +static u32 __rc6p_residency_ms_show(struct intel_gt *gt)
-> >   {
-> > -	u32 rc6p_residency = sysfs_gt_attribute_r_min_func(dev, attr,
-> > -						__rc6p_residency_ms_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", rc6p_residency);
-> > +	return get_residency(gt, GEN6_GT_GFX_RC6p);
-> >   }
-> >   static u32 __rc6pp_residency_ms_show(struct intel_gt *gt)
-> > @@ -156,67 +224,69 @@ static u32 __rc6pp_residency_ms_show(struct intel_gt *gt)
-> >   	return get_residency(gt, GEN6_GT_GFX_RC6pp);
-> >   }
-> > -static ssize_t rc6pp_residency_ms_show(struct device *dev,
-> > -				       struct device_attribute *attr,
-> > -				       char *buff)
-> > -{
-> > -	u32 rc6pp_residency = sysfs_gt_attribute_r_min_func(dev, attr,
-> > -						__rc6pp_residency_ms_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", rc6pp_residency);
-> > -}
-> > -
-> >   static u32 __media_rc6_residency_ms_show(struct intel_gt *gt)
-> >   {
-> >   	return get_residency(gt, VLV_GT_MEDIA_RC6);
-> >   }
-> > -static ssize_t media_rc6_residency_ms_show(struct device *dev,
-> > -					   struct device_attribute *attr,
-> > -					   char *buff)
-> > -{
-> > -	u32 rc6_residency = sysfs_gt_attribute_r_min_func(dev, attr,
-> > -						__media_rc6_residency_ms_show);
-> > +INTEL_GT_SYSFS_SHOW_MIN(rc6_residency_ms);
-> > +INTEL_GT_SYSFS_SHOW_MIN(rc6p_residency_ms);
-> > +INTEL_GT_SYSFS_SHOW_MIN(rc6pp_residency_ms);
-> > +INTEL_GT_SYSFS_SHOW_MIN(media_rc6_residency_ms);
-> > -	return sysfs_emit(buff, "%u\n", rc6_residency);
-> > -}
-> > -
-> > -static DEVICE_ATTR_RO(rc6_enable);
-> > -static DEVICE_ATTR_RO(rc6_residency_ms);
-> > -static DEVICE_ATTR_RO(rc6p_residency_ms);
-> > -static DEVICE_ATTR_RO(rc6pp_residency_ms);
-> > -static DEVICE_ATTR_RO(media_rc6_residency_ms);
-> > +INTEL_GT_DUAL_ATTR_RO(rc6_enable);
-> > +INTEL_GT_DUAL_ATTR_RO(rc6_residency_ms);
-> > +INTEL_GT_DUAL_ATTR_RO(rc6p_residency_ms);
-> > +INTEL_GT_DUAL_ATTR_RO(rc6pp_residency_ms);
-> > +INTEL_GT_DUAL_ATTR_RO(media_rc6_residency_ms);
-> >   static struct attribute *rc6_attrs[] = {
-> > +	&attr_rc6_enable.attr,
-> > +	&attr_rc6_residency_ms.attr,
-> > +	NULL
-> > +};
-> > +
-> > +static struct attribute *rc6p_attrs[] = {
-> > +	&attr_rc6p_residency_ms.attr,
-> > +	&attr_rc6pp_residency_ms.attr,
-> > +	NULL
-> > +};
-> > +
-> > +static struct attribute *media_rc6_attrs[] = {
-> > +	&attr_media_rc6_residency_ms.attr,
-> > +	NULL
-> > +};
-> > +
-> > +static struct attribute *rc6_dev_attrs[] = {
-> >   	&dev_attr_rc6_enable.attr,
-> >   	&dev_attr_rc6_residency_ms.attr,
-> >   	NULL
-> >   };
-> > -static struct attribute *rc6p_attrs[] = {
-> > +static struct attribute *rc6p_dev_attrs[] = {
-> >   	&dev_attr_rc6p_residency_ms.attr,
-> >   	&dev_attr_rc6pp_residency_ms.attr,
-> >   	NULL
-> >   };
-> > -static struct attribute *media_rc6_attrs[] = {
-> > +static struct attribute *media_rc6_dev_attrs[] = {
-> >   	&dev_attr_media_rc6_residency_ms.attr,
-> >   	NULL
-> >   };
-> >   static const struct attribute_group rc6_attr_group[] = {
-> >   	{ .attrs = rc6_attrs, },
-> > -	{ .name = power_group_name, .attrs = rc6_attrs, },
-> > +	{ .name = power_group_name, .attrs = rc6_dev_attrs, },
-> >   };
-> >   static const struct attribute_group rc6p_attr_group[] = {
-> >   	{ .attrs = rc6p_attrs, },
-> > -	{ .name = power_group_name, .attrs = rc6p_attrs, },
-> > +	{ .name = power_group_name, .attrs = rc6p_dev_attrs, },
-> >   };
-> >   static const struct attribute_group media_rc6_attr_group[] = {
-> >   	{ .attrs = media_rc6_attrs, },
-> > -	{ .name = power_group_name, .attrs = media_rc6_attrs, },
-> > +	{ .name = power_group_name, .attrs = media_rc6_dev_attrs, },
-> >   };
-> >   static int __intel_gt_sysfs_create_group(struct kobject *kobj,
-> > @@ -271,104 +341,34 @@ static u32 __act_freq_mhz_show(struct intel_gt *gt)
-> >   	return intel_rps_read_actual_frequency(&gt->rps);
-> >   }
-> > -static ssize_t act_freq_mhz_show(struct device *dev,
-> > -				 struct device_attribute *attr, char *buff)
-> > -{
-> > -	u32 actual_freq = sysfs_gt_attribute_r_max_func(dev, attr,
-> > -						    __act_freq_mhz_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", actual_freq);
-> > -}
-> > -
-> >   static u32 __cur_freq_mhz_show(struct intel_gt *gt)
-> >   {
-> >   	return intel_rps_get_requested_frequency(&gt->rps);
-> >   }
-> > -static ssize_t cur_freq_mhz_show(struct device *dev,
-> > -				 struct device_attribute *attr, char *buff)
-> > -{
-> > -	u32 cur_freq = sysfs_gt_attribute_r_max_func(dev, attr,
-> > -						 __cur_freq_mhz_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", cur_freq);
-> > -}
-> > -
-> >   static u32 __boost_freq_mhz_show(struct intel_gt *gt)
-> >   {
-> >   	return intel_rps_get_boost_frequency(&gt->rps);
-> >   }
-> > -static ssize_t boost_freq_mhz_show(struct device *dev,
-> > -				   struct device_attribute *attr,
-> > -				   char *buff)
-> > -{
-> > -	u32 boost_freq = sysfs_gt_attribute_r_max_func(dev, attr,
-> > -						   __boost_freq_mhz_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", boost_freq);
-> > -}
-> > -
-> >   static int __boost_freq_mhz_store(struct intel_gt *gt, u32 val)
-> >   {
-> >   	return intel_rps_set_boost_frequency(&gt->rps, val);
-> >   }
-> > -static ssize_t boost_freq_mhz_store(struct device *dev,
-> > -				    struct device_attribute *attr,
-> > -				    const char *buff, size_t count)
-> > -{
-> > -	ssize_t ret;
-> > -	u32 val;
-> > -
-> > -	ret = kstrtou32(buff, 0, &val);
-> > -	if (ret)
-> > -		return ret;
-> > -
-> > -	return sysfs_gt_attribute_w_func(dev, attr,
-> > -					 __boost_freq_mhz_store, val) ?: count;
-> > -}
-> > -
-> > -static u32 __rp0_freq_mhz_show(struct intel_gt *gt)
-> > +static u32 __RP0_freq_mhz_show(struct intel_gt *gt)
-> >   {
-> >   	return intel_rps_get_rp0_frequency(&gt->rps);
-> >   }
-> > -static ssize_t RP0_freq_mhz_show(struct device *dev,
-> > -				 struct device_attribute *attr, char *buff)
-> > -{
-> > -	u32 rp0_freq = sysfs_gt_attribute_r_max_func(dev, attr,
-> > -						     __rp0_freq_mhz_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", rp0_freq);
-> > -}
-> > -
-> > -static u32 __rp1_freq_mhz_show(struct intel_gt *gt)
-> > -{
-> > -	return intel_rps_get_rp1_frequency(&gt->rps);
-> > -}
-> > -
-> > -static ssize_t RP1_freq_mhz_show(struct device *dev,
-> > -				 struct device_attribute *attr, char *buff)
-> > -{
-> > -	u32 rp1_freq = sysfs_gt_attribute_r_max_func(dev, attr,
-> > -						     __rp1_freq_mhz_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", rp1_freq);
-> > -}
-> > -
-> > -static u32 __rpn_freq_mhz_show(struct intel_gt *gt)
-> > +static u32 __RPn_freq_mhz_show(struct intel_gt *gt)
-> >   {
-> >   	return intel_rps_get_rpn_frequency(&gt->rps);
-> >   }
-> > -static ssize_t RPn_freq_mhz_show(struct device *dev,
-> > -				 struct device_attribute *attr, char *buff)
-> > +static u32 __RP1_freq_mhz_show(struct intel_gt *gt)
-> >   {
-> > -	u32 rpn_freq = sysfs_gt_attribute_r_max_func(dev, attr,
-> > -						     __rpn_freq_mhz_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", rpn_freq);
-> > +	return intel_rps_get_rp1_frequency(&gt->rps);
-> >   }
-> >   static u32 __max_freq_mhz_show(struct intel_gt *gt)
-> > @@ -376,71 +376,21 @@ static u32 __max_freq_mhz_show(struct intel_gt *gt)
-> >   	return intel_rps_get_max_frequency(&gt->rps);
-> >   }
-> > -static ssize_t max_freq_mhz_show(struct device *dev,
-> > -				 struct device_attribute *attr, char *buff)
-> > -{
-> > -	u32 max_freq = sysfs_gt_attribute_r_max_func(dev, attr,
-> > -						     __max_freq_mhz_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", max_freq);
-> > -}
-> > -
-> >   static int __set_max_freq(struct intel_gt *gt, u32 val)
-> >   {
-> >   	return intel_rps_set_max_frequency(&gt->rps, val);
-> >   }
-> > -static ssize_t max_freq_mhz_store(struct device *dev,
-> > -				  struct device_attribute *attr,
-> > -				  const char *buff, size_t count)
-> > -{
-> > -	int ret;
-> > -	u32 val;
-> > -
-> > -	ret = kstrtou32(buff, 0, &val);
-> > -	if (ret)
-> > -		return ret;
-> > -
-> > -	ret = sysfs_gt_attribute_w_func(dev, attr, __set_max_freq, val);
-> > -
-> > -	return ret ?: count;
-> > -}
-> > -
-> >   static u32 __min_freq_mhz_show(struct intel_gt *gt)
-> >   {
-> >   	return intel_rps_get_min_frequency(&gt->rps);
-> >   }
-> > -static ssize_t min_freq_mhz_show(struct device *dev,
-> > -				 struct device_attribute *attr, char *buff)
-> > -{
-> > -	u32 min_freq = sysfs_gt_attribute_r_min_func(dev, attr,
-> > -						     __min_freq_mhz_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", min_freq);
-> > -}
-> > -
-> >   static int __set_min_freq(struct intel_gt *gt, u32 val)
-> >   {
-> >   	return intel_rps_set_min_frequency(&gt->rps, val);
-> >   }
-> > -static ssize_t min_freq_mhz_store(struct device *dev,
-> > -				  struct device_attribute *attr,
-> > -				  const char *buff, size_t count)
-> > -{
-> > -	int ret;
-> > -	u32 val;
-> > -
-> > -	ret = kstrtou32(buff, 0, &val);
-> > -	if (ret)
-> > -		return ret;
-> > -
-> > -	ret = sysfs_gt_attribute_w_func(dev, attr, __set_min_freq, val);
-> > -
-> > -	return ret ?: count;
-> > -}
-> > -
-> >   static u32 __vlv_rpe_freq_mhz_show(struct intel_gt *gt)
-> >   {
-> >   	struct intel_rps *rps = &gt->rps;
-> > @@ -448,23 +398,31 @@ static u32 __vlv_rpe_freq_mhz_show(struct intel_gt *gt)
-> >   	return intel_gpu_freq(rps, rps->efficient_freq);
-> >   }
-> > -static ssize_t vlv_rpe_freq_mhz_show(struct device *dev,
-> > -				     struct device_attribute *attr, char *buff)
-> > -{
-> > -	u32 rpe_freq = sysfs_gt_attribute_r_max_func(dev, attr,
-> > -						 __vlv_rpe_freq_mhz_show);
-> > -
-> > -	return sysfs_emit(buff, "%u\n", rpe_freq);
-> > -}
-> > -
-> > -#define INTEL_GT_RPS_SYSFS_ATTR(_name, _mode, _show, _store) \
-> > -	static struct device_attribute dev_attr_gt_##_name = __ATTR(gt_##_name, _mode, _show, _store); \
-> > -	static struct device_attribute dev_attr_rps_##_name = __ATTR(rps_##_name, _mode, _show, _store)
-> > -
-> > -#define INTEL_GT_RPS_SYSFS_ATTR_RO(_name)				\
-> > -		INTEL_GT_RPS_SYSFS_ATTR(_name, 0444, _name##_show, NULL)
-> > -#define INTEL_GT_RPS_SYSFS_ATTR_RW(_name)				\
-> > -		INTEL_GT_RPS_SYSFS_ATTR(_name, 0644, _name##_show, _name##_store)
-> > +INTEL_GT_SYSFS_SHOW_MAX(act_freq_mhz);
-> > +INTEL_GT_SYSFS_SHOW_MAX(boost_freq_mhz);
-> > +INTEL_GT_SYSFS_SHOW_MAX(cur_freq_mhz);
-> > +INTEL_GT_SYSFS_SHOW_MAX(RP0_freq_mhz);
-> > +INTEL_GT_SYSFS_SHOW_MAX(RP1_freq_mhz);
-> > +INTEL_GT_SYSFS_SHOW_MAX(RPn_freq_mhz);
-> > +INTEL_GT_SYSFS_SHOW_MAX(max_freq_mhz);
-> > +INTEL_GT_SYSFS_SHOW_MIN(min_freq_mhz);
-> > +INTEL_GT_SYSFS_SHOW_MAX(vlv_rpe_freq_mhz);
-> > +INTEL_GT_SYSFS_STORE(boost_freq_mhz, __boost_freq_mhz_store);
-> > +INTEL_GT_SYSFS_STORE(max_freq_mhz, __set_max_freq);
-> > +INTEL_GT_SYSFS_STORE(min_freq_mhz, __set_min_freq);
-> > +
-> > +#define INTEL_GT_RPS_SYSFS_ATTR(_name, _mode, _show, _store, _show_dev, _store_dev)		\
-> > +	static struct device_attribute dev_attr_gt_##_name = __ATTR(gt_##_name, _mode,		\
-> > +								    _show_dev, _store_dev);	\
-> > +	static struct kobj_attribute attr_rps_##_name = __ATTR(rps_##_name, _mode,		\
-> > +							       _show, _store)
-> > +
-> > +#define INTEL_GT_RPS_SYSFS_ATTR_RO(_name)						\
-> > +		INTEL_GT_RPS_SYSFS_ATTR(_name, 0444, _name##_show, NULL,		\
-> > +					_name##_dev_show, NULL)
-> > +#define INTEL_GT_RPS_SYSFS_ATTR_RW(_name)						\
-> > +		INTEL_GT_RPS_SYSFS_ATTR(_name, 0644, _name##_show, _name##_store,	\
-> > +					_name##_dev_show, _name##_dev_store)
-> >   /* The below macros generate static structures */
-> >   INTEL_GT_RPS_SYSFS_ATTR_RO(act_freq_mhz);
-> > @@ -475,32 +433,31 @@ INTEL_GT_RPS_SYSFS_ATTR_RO(RP1_freq_mhz);
-> >   INTEL_GT_RPS_SYSFS_ATTR_RO(RPn_freq_mhz);
-> >   INTEL_GT_RPS_SYSFS_ATTR_RW(max_freq_mhz);
-> >   INTEL_GT_RPS_SYSFS_ATTR_RW(min_freq_mhz);
-> > -
-> > -static DEVICE_ATTR_RO(vlv_rpe_freq_mhz);
-> > -
-> > -#define GEN6_ATTR(s) { \
-> > -		&dev_attr_##s##_act_freq_mhz.attr, \
-> > -		&dev_attr_##s##_cur_freq_mhz.attr, \
-> > -		&dev_attr_##s##_boost_freq_mhz.attr, \
-> > -		&dev_attr_##s##_max_freq_mhz.attr, \
-> > -		&dev_attr_##s##_min_freq_mhz.attr, \
-> > -		&dev_attr_##s##_RP0_freq_mhz.attr, \
-> > -		&dev_attr_##s##_RP1_freq_mhz.attr, \
-> > -		&dev_attr_##s##_RPn_freq_mhz.attr, \
-> > +INTEL_GT_RPS_SYSFS_ATTR_RO(vlv_rpe_freq_mhz);
-> > +
-> > +#define GEN6_ATTR(p, s) { \
-> > +		&p##attr_##s##_act_freq_mhz.attr, \
-> > +		&p##attr_##s##_cur_freq_mhz.attr, \
-> > +		&p##attr_##s##_boost_freq_mhz.attr, \
-> > +		&p##attr_##s##_max_freq_mhz.attr, \
-> > +		&p##attr_##s##_min_freq_mhz.attr, \
-> > +		&p##attr_##s##_RP0_freq_mhz.attr, \
-> > +		&p##attr_##s##_RP1_freq_mhz.attr, \
-> > +		&p##attr_##s##_RPn_freq_mhz.attr, \
-> >   		NULL, \
-> >   	}
-> > -#define GEN6_RPS_ATTR GEN6_ATTR(rps)
-> > -#define GEN6_GT_ATTR  GEN6_ATTR(gt)
-> > +#define GEN6_RPS_ATTR GEN6_ATTR(, rps)
-> > +#define GEN6_GT_ATTR  GEN6_ATTR(dev_, gt)
-> >   static const struct attribute * const gen6_rps_attrs[] = GEN6_RPS_ATTR;
-> >   static const struct attribute * const gen6_gt_attrs[]  = GEN6_GT_ATTR;
-> > -static ssize_t punit_req_freq_mhz_show(struct device *dev,
-> > -				       struct device_attribute *attr,
-> > +static ssize_t punit_req_freq_mhz_show(struct kobject *kobj,
-> > +				       struct kobj_attribute *attr,
-> >   				       char *buff)
-> >   {
-> > -	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-> >   	u32 preq = intel_rps_read_punit_req_frequency(&gt->rps);
-> >   	return sysfs_emit(buff, "%u\n", preq);
-> > @@ -508,17 +465,17 @@ static ssize_t punit_req_freq_mhz_show(struct device *dev,
-> >   struct intel_gt_bool_throttle_attr {
-> >   	struct attribute attr;
-> > -	ssize_t (*show)(struct device *dev, struct device_attribute *attr,
-> > +	ssize_t (*show)(struct kobject *kobj, struct kobj_attribute *attr,
-> >   			char *buf);
-> >   	i915_reg_t (*reg32)(struct intel_gt *gt);
-> >   	u32 mask;
-> >   };
-> > -static ssize_t throttle_reason_bool_show(struct device *dev,
-> > -					 struct device_attribute *attr,
-> > +static ssize_t throttle_reason_bool_show(struct kobject *kobj,
-> > +					 struct kobj_attribute *attr,
-> >   					 char *buff)
-> >   {
-> > -	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-> >   	struct intel_gt_bool_throttle_attr *t_attr =
-> >   				(struct intel_gt_bool_throttle_attr *) attr;
-> >   	bool val = rps_read_mask_mmio(&gt->rps, t_attr->reg32(gt), t_attr->mask);
-> > @@ -534,7 +491,7 @@ struct intel_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-> >   	.mask = mask__, \
-> >   }
-> > -static DEVICE_ATTR_RO(punit_req_freq_mhz);
-> > +INTEL_GT_ATTR_RO(punit_req_freq_mhz);
-> >   static INTEL_GT_RPS_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
-> >   static INTEL_GT_RPS_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
-> >   static INTEL_GT_RPS_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
-> > @@ -597,8 +554,8 @@ static const struct attribute *throttle_reason_attrs[] = {
-> >   #define U8_8_VAL_MASK           0xffff
-> >   #define U8_8_SCALE_TO_VALUE     "0.00390625"
-> > -static ssize_t freq_factor_scale_show(struct device *dev,
-> > -				      struct device_attribute *attr,
-> > +static ssize_t freq_factor_scale_show(struct kobject *kobj,
-> > +				      struct kobj_attribute *attr,
-> >   				      char *buff)
-> >   {
-> >   	return sysfs_emit(buff, "%s\n", U8_8_SCALE_TO_VALUE);
-> > @@ -610,11 +567,11 @@ static u32 media_ratio_mode_to_factor(u32 mode)
-> >   	return !mode ? mode : 256 / mode;
-> >   }
-> > -static ssize_t media_freq_factor_show(struct device *dev,
-> > -				      struct device_attribute *attr,
-> > +static ssize_t media_freq_factor_show(struct kobject *kobj,
-> > +				      struct kobj_attribute *attr,
-> >   				      char *buff)
-> >   {
-> > -	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-> >   	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
-> >   	intel_wakeref_t wakeref;
-> >   	u32 mode;
-> > @@ -641,11 +598,11 @@ static ssize_t media_freq_factor_show(struct device *dev,
-> >   	return sysfs_emit(buff, "%u\n", media_ratio_mode_to_factor(mode));
-> >   }
-> > -static ssize_t media_freq_factor_store(struct device *dev,
-> > -				       struct device_attribute *attr,
-> > +static ssize_t media_freq_factor_store(struct kobject *kobj,
-> > +				       struct kobj_attribute *attr,
-> >   				       const char *buff, size_t count)
-> >   {
-> > -	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-> >   	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
-> >   	u32 factor, mode;
-> >   	int err;
-> > @@ -670,11 +627,11 @@ static ssize_t media_freq_factor_store(struct device *dev,
-> >   	return err ?: count;
-> >   }
-> > -static ssize_t media_RP0_freq_mhz_show(struct device *dev,
-> > -				       struct device_attribute *attr,
-> > +static ssize_t media_RP0_freq_mhz_show(struct kobject *kobj,
-> > +				       struct kobj_attribute *attr,
-> >   				       char *buff)
-> >   {
-> > -	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-> >   	u32 val;
-> >   	int err;
-> > @@ -691,11 +648,11 @@ static ssize_t media_RP0_freq_mhz_show(struct device *dev,
-> >   	return sysfs_emit(buff, "%u\n", val);
-> >   }
-> > -static ssize_t media_RPn_freq_mhz_show(struct device *dev,
-> > -				       struct device_attribute *attr,
-> > +static ssize_t media_RPn_freq_mhz_show(struct kobject *kobj,
-> > +				       struct kobj_attribute *attr,
-> >   				       char *buff)
-> >   {
-> > -	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-> >   	u32 val;
-> >   	int err;
-> > @@ -712,17 +669,17 @@ static ssize_t media_RPn_freq_mhz_show(struct device *dev,
-> >   	return sysfs_emit(buff, "%u\n", val);
-> >   }
-> > -static DEVICE_ATTR_RW(media_freq_factor);
-> > -static struct device_attribute dev_attr_media_freq_factor_scale =
-> > +INTEL_GT_ATTR_RW(media_freq_factor);
-> > +static struct kobj_attribute attr_media_freq_factor_scale =
-> >   	__ATTR(media_freq_factor.scale, 0444, freq_factor_scale_show, NULL);
-> > -static DEVICE_ATTR_RO(media_RP0_freq_mhz);
-> > -static DEVICE_ATTR_RO(media_RPn_freq_mhz);
-> > +INTEL_GT_ATTR_RO(media_RP0_freq_mhz);
-> > +INTEL_GT_ATTR_RO(media_RPn_freq_mhz);
-> >   static const struct attribute *media_perf_power_attrs[] = {
-> > -	&dev_attr_media_freq_factor.attr,
-> > -	&dev_attr_media_freq_factor_scale.attr,
-> > -	&dev_attr_media_RP0_freq_mhz.attr,
-> > -	&dev_attr_media_RPn_freq_mhz.attr,
-> > +	&attr_media_freq_factor.attr,
-> > +	&attr_media_freq_factor_scale.attr,
-> > +	&attr_media_RP0_freq_mhz.attr,
-> > +	&attr_media_RPn_freq_mhz.attr,
-> >   	NULL
-> >   };
-> > @@ -754,20 +711,29 @@ static const struct attribute * const rps_defaults_attrs[] = {
-> >   	NULL
-> >   };
-> > -static int intel_sysfs_rps_init(struct intel_gt *gt, struct kobject *kobj,
-> > -				const struct attribute * const *attrs)
-> > +static int intel_sysfs_rps_init(struct intel_gt *gt, struct kobject *kobj)
-> >   {
-> > +	const struct attribute * const *attrs;
-> > +	struct attribute *vlv_attr;
-> >   	int ret;
-> >   	if (GRAPHICS_VER(gt->i915) < 6)
-> >   		return 0;
-> > +	if (is_object_gt(kobj)) {
-> > +		attrs = gen6_rps_attrs;
-> > +		vlv_attr = &attr_rps_vlv_rpe_freq_mhz.attr;
-> > +	} else {
-> > +		attrs = gen6_gt_attrs;
-> > +		vlv_attr = &dev_attr_gt_vlv_rpe_freq_mhz.attr;
-> > +	}
-> > +
-> >   	ret = sysfs_create_files(kobj, attrs);
-> >   	if (ret)
-> >   		return ret;
-> >   	if (IS_VALLEYVIEW(gt->i915) || IS_CHERRYVIEW(gt->i915))
-> > -		ret = sysfs_create_file(kobj, &dev_attr_vlv_rpe_freq_mhz.attr);
-> > +		ret = sysfs_create_file(kobj, vlv_attr);
-> >   	return ret;
-> >   }
-> > @@ -778,9 +744,7 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
-> >   	intel_sysfs_rc6_init(gt, kobj);
-> > -	ret = is_object_gt(kobj) ?
-> > -	      intel_sysfs_rps_init(gt, kobj, gen6_rps_attrs) :
-> > -	      intel_sysfs_rps_init(gt, kobj, gen6_gt_attrs);
-> > +	ret = intel_sysfs_rps_init(gt, kobj);
-> >   	if (ret)
-> >   		drm_warn(&gt->i915->drm,
-> >   			 "failed to create gt%u RPS sysfs files (%pe)",
-> > @@ -790,7 +754,7 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
-> >   	if (!is_object_gt(kobj))
-> >   		return;
-> > -	ret = sysfs_create_file(kobj, &dev_attr_punit_req_freq_mhz.attr);
-> > +	ret = sysfs_create_file(kobj, &attr_punit_req_freq_mhz.attr);
-> >   	if (ret)
-> >   		drm_warn(&gt->i915->drm,
-> >   			 "failed to create gt%u punit_req_freq_mhz sysfs (%pe)",
-> > 
-> > base-commit: 783f6f852cc061e59962e53aa9824aa785de0d8c
-> 
+Lucas De Marchi
