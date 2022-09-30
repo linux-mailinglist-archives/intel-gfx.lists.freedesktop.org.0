@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7FD85F06ED
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 10:54:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E583A5F0724
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 11:04:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1363E10EBC7;
-	Fri, 30 Sep 2022 08:54:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2377A10EBED;
+	Fri, 30 Sep 2022 09:04:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21DBD10EBC7;
- Fri, 30 Sep 2022 08:54:30 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB85C10EBED
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Sep 2022 09:04:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664528070; x=1696064070;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=y/IOwcDTGGZ/62FsnQh7gFyjWNpdE8KkrhndqztKJYk=;
- b=Y61I7SZhSmUvQE46G9OrUDlta6dMlx1St/PxSb8F9AX9AaOdkToos3ab
- Aid+BGw5vSzN4jvcVaEdRAXt8bWdWuPjdwok7adnleNLEr2c2wRoI9pKe
- WDsrAQUSh6j0oZKkEvyedpByflkcFqxKndE1lszunzUy5iAuuvtLEr8eS
- MsKo+PYkcDw3GFK3jjJja/aX7Q5YXe6pgf0REdFlkUFH5nUNiHrKb7smS
- 2dE+LPNYVHc6ltAG2CILwGGLbkpxsHxinf6FAvVjG5kOW2Ew9hN7+9aYk
- 66zZe9G4xvyLfHLh0N2dzquP8uuG/nl9EG0OtxZ7lPZ9umFjS1qiPPB7p A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="363986478"
-X-IronPort-AV: E=Sophos;i="5.93,357,1654585200"; d="scan'208";a="363986478"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2022 01:54:23 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="765062930"
-X-IronPort-AV: E=Sophos;i="5.93,357,1654585200"; d="scan'208";a="765062930"
-Received: from kzalewsk-mobl.ger.corp.intel.com (HELO [10.252.37.5])
- ([10.252.37.5])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2022 01:54:20 -0700
-Message-ID: <afbd505a-3799-c73b-8008-ef6e156ad7e1@linux.intel.com>
-Date: Fri, 30 Sep 2022 10:54:18 +0200
+ t=1664528688; x=1696064688;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=a1Yg6o+Cpmub0VXIUkSjecrfpuur/9mg+9T41EXuwAE=;
+ b=azrUkaspu1A6dptpG9PsZ1LVEX/ZUV6cNmvYYoQnqKCGtCpjdb/Bpcvg
+ fdQiIsCf0h7HKEizbklhcX1h+cKRldLP3lttE33FRgLAHWxPvC2lTrsYi
+ qCGyi5KfXif943qccskNC6GYU1kSUGmRfOXTLduEd+SSs/q38j6jRdkOc
+ ZAOoUQmU+m8UY4h68lR+o5iJ0B4tl29XNBYuuoCypqd2iXqxaN1I/d0Yd
+ dIVQTFlIXaXpTzy5SYLaCYZsA6JMOKF2r8LWTiVLiSHraz3hGvc4zIhK3
+ Yh51Z4RoWvTfMUybZejA1Yc5Bik9xdvwfuYXDpdZnxa2jNKvsbpwdLTa/ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="300863574"
+X-IronPort-AV: E=Sophos;i="5.93,357,1654585200"; d="scan'208";a="300863574"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2022 02:04:48 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="622706646"
+X-IronPort-AV: E=Sophos;i="5.93,357,1654585200"; d="scan'208";a="622706646"
+Received: from rrogov-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.252.37.237])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2022 02:04:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220929131747.2592092-2-mika.kahola@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220929131747.2592092-1-mika.kahola@intel.com>
+ <20220929131747.2592092-2-mika.kahola@intel.com>
+Date: Fri, 30 Sep 2022 12:04:43 +0300
+Message-ID: <87pmfdw7v8.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.1.2
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-next
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/mtl: Add Support for C10,
+ C20 PHY Message Bus
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,145 +60,275 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Small final pull request for v6.1, if still before deadline!
+On Thu, 29 Sep 2022, Mika Kahola <mika.kahola@intel.com> wrote:
+> From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>
+> XELPDP has C10 and C20 phys from Synopsys to drive displays. Each phy
+> has a dedicated PIPE 5.2 Message bus for configuration. This message
+> bus is used to configure the phy internal registers.
 
-drm-misc-next-2022-09-30:
-drm-misc-next for v6.1:
+This looks like a silly intermediate step, adding a bunch of static
+functions with __maybe_unused, just to be modified again in the next
+patch.
 
-Core Changes:
-- Add dma_resv_assert_held to vmap/vunmap calls.
-- Add kunit tests for some format conversion calls.
-- Don't rewrite link config when setting phy test pattern in
-  DP link training.
+>
+> Bspec: 64599, 65100, 65101, 67610, 67636
+>
+> Cc: Mika Kahola <mika.kahola@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com> (v4)
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 179 +++++++++++++++++++
+>  1 file changed, 179 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
+rm/i915/display/intel_cx0_phy.c
+> new file mode 100644
+> index 000000000000..7930b0255cfa
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -0,0 +1,179 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2021 Intel Corporation
+> + */
+> +
+> +#include "intel_de.h"
+> +#include "intel_uncore.h"
 
-Driver Changes:
-- Assorted small fixes in bridge/lt8192b, qxl, virtio-gpu, ast.
-- Fix corrupted image output in lt8912b.
-- Fix driver unbind in meson.
-- Add INX, BOE, AUO, Multi-Inno Technology panels to panel-edp.
-- Synchronize access to GEM bo's in simpledrm, ssd130x.
-- Use dev_err_probe in panel-edp and panel-simple.
-The following changes since commit 39dd0cc2e5bd0d5188dd69f27e18783cea7ff06a:
+Do you use anything from intel_uncore.h directly, or is it just
+intel_de.h?
 
-  drm/amdgpu: Fix VRAM eviction issue (2022-09-22 19:53:06 +0200)
+> +
+> +static void intel_cx0_bus_reset(struct drm_i915_private *i915, enum port=
+ port, int lane)
+> +{
+> +	enum phy phy =3D intel_port_to_phy(i915, port);
+> +
+> +	/* Bring the phy to idle. */
+> +	intel_de_write(i915, XELPDP_PORT_M2P_MSGBUS_CTL(port, lane),
+> +		       XELPDP_PORT_M2P_TRANSACTION_RESET);
+> +
+> +	/* Wait for Idle Clear. */
+> +	if (intel_de_wait_for_clear(i915, XELPDP_PORT_M2P_MSGBUS_CTL(port, lane=
+),
+> +				    XELPDP_PORT_M2P_TRANSACTION_RESET,
+> +				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
+> +		drm_err_once(&i915->drm, "Failed to bring PHY %c to idle. \n", phy_nam=
+e(phy));
+> +		return;
+> +	}
+> +
+> +	intel_de_write(i915, XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane), ~0);
+> +	return;
 
-are available in the Git repository at:
+Unnecessary return statement.
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2022-09-30
+> +}
+> +
+> +__maybe_unused static u8 intel_cx0_read(struct drm_i915_private *i915, e=
+num port port,
+> +			 int lane, u16 addr)
+> +{
+> +	enum phy phy =3D intel_port_to_phy(i915, port);
+> +	u32 val =3D 0;
+> +	int attempts =3D 0;
+> +
+> +retry:
+> +	if (attempts =3D=3D 3) {
+> +		drm_err_once(&i915->drm, "PHY %c Read %04x failed after %d retries. St=
+atus: 0x%x\n", phy_name(phy), addr, attempts, val ?: 0);
+> +		return 0;
+> +	}
 
-for you to fetch changes up to c9b48b91e2fbb74fb981aa616a6ef3c78194077f:
+The code looks like it would benefit from abstracting a non-retrying
+read function that returns errors, with this function doing the retry
+loop using a conventional for loop.
 
-  drm/panel: simple: Use dev_err_probe() to simplify code (2022-09-29 14:04:25 -0700)
+There's four copy-pasted bits of error handling here that's just error
+prone.
 
-----------------------------------------------------------------
-drm-misc-next for v6.1:
+> +
+> +	/* Wait for pending transactions.*/
+> +	if (intel_de_wait_for_clear(i915, XELPDP_PORT_M2P_MSGBUS_CTL(port, lane=
+),
+> +				    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+> +				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
+> +		drm_dbg(&i915->drm, "PHY %c Timeout waiting for previous transaction t=
+o complete. Reset the bus and retry.\n", phy_name(phy));
 
-Core Changes:
-- Add dma_resv_assert_held to vmap/vunmap calls.
-- Add kunit tests for some format conversion calls.
-- Don't rewrite link config when setting phy test pattern in
-  DP link training.
+drm_dbg_kms() throughout.
 
-Driver Changes:
-- Assorted small fixes in bridge/lt8192b, qxl, virtio-gpu, ast.
-- Fix corrupted image output in lt8912b.
-- Fix driver unbind in meson.
-- Add INX, BOE, AUO, Multi-Inno Technology panels to panel-edp.
-- Synchronize access to GEM bo's in simpledrm, ssd130x.
-- Use dev_err_probe in panel-edp and panel-simple.
+> +		attempts++;
+> +		intel_cx0_bus_reset(i915, port, lane);
+> +		goto retry;
+> +	}
+> +
+> +	/* Issue the read command. */
+> +	intel_de_write(i915, XELPDP_PORT_M2P_MSGBUS_CTL(port, lane),
+> +		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
+> +		       XELPDP_PORT_M2P_COMMAND_READ |
+> +		       XELPDP_PORT_M2P_ADDRESS(addr));
+> +
+> +	/* Wait for response ready. And read response.*/
+> +	if (__intel_wait_for_register(&i915->uncore,
+> +				      XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane),
+> +				      XELPDP_PORT_P2M_RESPONSE_READY,
+> +				      XELPDP_PORT_P2M_RESPONSE_READY,
+> +				      XELPDP_MSGBUS_TIMEOUT_FAST_US,
+> +				      XELPDP_MSGBUS_TIMEOUT_SLOW, &val)) {
+> +		drm_dbg(&i915->drm, "PHY %c Timeout waiting for Read response ACK. Sta=
+tus: 0x%x\n", phy_name(phy), val);
+> +		attempts++;
+> +		intel_cx0_bus_reset(i915, port, lane);
+> +		goto retry;
+> +	}
+> +
+> +	/* Check for error. */
+> +	if (val & XELPDP_PORT_P2M_ERROR_SET) {
+> +		drm_dbg(&i915->drm, "PHY %c Error occurred during read command. Status=
+: 0x%x\n", phy_name(phy), val);
+> +		attempts++;
+> +		intel_cx0_bus_reset(i915, port, lane);
+> +		goto retry;
+> +	}
+> +
+> +	/* Check for Read Ack. */
+> +	if (REG_FIELD_GET(XELPDP_PORT_P2M_COMMAND_TYPE_MASK, val) !=3D
+> +	    XELPDP_PORT_P2M_COMMAND_READ_ACK) {
+> +		drm_dbg(&i915->drm, "PHY %c Not a Read response. MSGBUS Status: 0x%x.\=
+n", phy_name(phy), val);
+> +		attempts++;
+> +		intel_cx0_bus_reset(i915, port, lane);
+> +		goto retry;
+> +	}
+> +
+> +	/* Clear Response Ready flag.*/
+> +	intel_de_write(i915, XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane), ~0);
 
-----------------------------------------------------------------
-Adrián Larumbe (3):
-      drm/meson: reorder driver deinit sequence to fix use-after-free bug
-      drm/meson: explicitly remove aggregate driver at module unload time
-      drm/meson: remove drm bridges at aggregate driver unbind time
+Blank line before return.
 
-Christian König (1):
-      drm/ttm: add dma_resv_assert_held() calls to vmap/vunmap
+> +	return (u8)REG_FIELD_GET(XELPDP_PORT_P2M_DATA_MASK, val);
 
-Christoph Niedermaier (2):
-      dt-bindings: display: simple: Add Multi-Inno Technology MI0800FT-9 panel
-      drm/panel: simple: Add Multi-Inno Technology MI0800FT-9
+Unnecessary cast.
 
-Dan Carpenter (1):
-      virtio-gpu: fix shift wrapping bug in virtio_gpu_fence_event_create()
+> +}
+> +
+> +static int intel_cx0_wait_cwrite_ack(struct drm_i915_private *i915,
+> +				      enum port port, int lane)
+> +{
+> +	enum phy phy =3D intel_port_to_phy(i915, port);
+> +	u32 val;
+> +
+> +	/* Check for write ack. */
+> +	if (__intel_wait_for_register(&i915->uncore,
+> +				      XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane),
+> +				      XELPDP_PORT_P2M_RESPONSE_READY,
+> +				      XELPDP_PORT_P2M_RESPONSE_READY,
+> +				      XELPDP_MSGBUS_TIMEOUT_FAST_US,
+> +				      XELPDP_MSGBUS_TIMEOUT_SLOW, &val)) {
+> +		drm_dbg(&i915->drm, "PHY %c Timeout waiting for Committed message ACK.=
+ Status: 0x%x\n", phy_name(phy), val);
+> +		return -ETIMEDOUT;
+> +	}
+> +
+> +	if ((REG_FIELD_GET(XELPDP_PORT_P2M_COMMAND_TYPE_MASK, val) !=3D
+> +	     XELPDP_PORT_P2M_COMMAND_WRITE_ACK) || val & XELPDP_PORT_P2M_ERROR_=
+SET) {
+> +		drm_dbg(&i915->drm, "PHY %c Unexpected ACK received. MSGBUS STATUS: 0x=
+%x.\n", phy_name(phy), val);
+> +		return -EINVAL;
+> +	}
 
-Francesco Dolcini (2):
-      drm/bridge: lt8912b: clarify lvds output status
-      drm/bridge: lt8912b: fix corrupted image output
+This is also copy-paste duplicating the stuff in the previous
+function. So why isn't this function used there?
 
-Javier Martinez Canillas (2):
-      drm/ssd130x: Use drm_atomic_get_new_plane_state()
-      drm/ssd130x: Synchronize access to dma-buf imported GEM BOs
+> +
+> +	return 0;
+> +}
+> +
+> +__maybe_unused static void intel_cx0_write(struct drm_i915_private *i915=
+, enum port port,
+> +			    int lane, u16 addr, u8 data, bool committed)
+> +{
+> +	enum phy phy =3D intel_port_to_phy(i915, port);
+> +	int attempts =3D 0;
+> +
+> +retry:
+> +	if (attempts =3D=3D 3) {
+> +		drm_err_once(&i915->drm, "PHY %c Write %04x failed after %d retries.\n=
+", phy_name(phy), addr, attempts);
+> +		return;
+> +	}
 
-José Expósito (3):
-      drm/format-helper: Add KUnit tests for drm_fb_xrgb8888_to_rgb888()
-      drm/format-helper: Add KUnit tests for drm_fb_xrgb8888_to_xrgb2101010()
-      drm/format-helper: Add KUnit tests for drm_fb_xrgb8888_to_gray8()
+Same here with the retries as in the write. Have a lower level
+non-retrying write function, and handle the rewrites at a different
+abstraction level.
 
-Khaled Almahallawy (1):
-      drm/dp: Don't rewrite link config when setting phy test pattern
+> +
+> +	/* Wait for pending transactions.*/
+> +	if (intel_de_wait_for_clear(i915, XELPDP_PORT_M2P_MSGBUS_CTL(port, lane=
+),
+> +				    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+> +				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
+> +		drm_dbg(&i915->drm, "PHY %c Timeout waiting for previous transaction t=
+o complete. Reset the bus and retry.\n", phy_name(phy));
+> +		attempts++;
+> +		intel_cx0_bus_reset(i915, port, lane);
+> +		goto retry;
+> +	}
+> +
+> +	/* Issue the write command. */
+> +	intel_de_write(i915, XELPDP_PORT_M2P_MSGBUS_CTL(port, lane),
+> +		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
+> +		       (committed ? XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED :
+> +		       XELPDP_PORT_M2P_COMMAND_WRITE_UNCOMMITTED) |
+> +		       XELPDP_PORT_M2P_DATA(data) |
+> +		       XELPDP_PORT_M2P_ADDRESS(addr));
+> +
+> +	/* Check for error. */
+> +	if (committed) {
+> +		if (intel_cx0_wait_cwrite_ack(i915, port, lane) < 0) {
+> +			attempts++;
+> +			intel_cx0_bus_reset(i915, port, lane);
+> +			goto retry;
+> +		}
+> +	} else if ((intel_de_read(i915, XELPDP_PORT_P2M_MSGBUS_STATUS(phy, lane=
+)) &
+> +			    XELPDP_PORT_P2M_ERROR_SET)) {
+> +		drm_dbg(&i915->drm, "PHY %c Error occurred during write command.\n", p=
+hy_name(phy));
+> +		attempts++;
+> +		intel_cx0_bus_reset(i915, port, lane);
+> +		goto retry;
+> +	}
+> +
+> +	intel_de_write(i915, XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane), ~0);
+> +
+> +	return;
 
-Philippe Schenker (2):
-      drm/bridge: lt8912b: add vsync hsync
-      drm/bridge: lt8912b: set hdmi or dvi mode
+Unnecessary return statement.
 
-Sean Hong (8):
-      drm/panel-edp: Add INX N116BCN-EA1
-      drm/panel-edp: Add BOE NT116WHM-N21 (HW: V8.1)
-      drm/panel-edp: Add BOE NT116WHM-N21
-      drm/panel-edp: Add AUO B116XAK01.6
-      drm/panel-edp: Add INX N116BCA-EA2
-      drm/panel-edp: Fix delays for INX N116BCN-EA1 (HW: C4)
-      drm/panel-edp: Fix delays for INX N116BCA-EA2 (HW: C1)
-      drm/panel-edp: Add BOE NT116WHM-N4C (HW: V8.1)
+> +}
+> +
+> +__maybe_unused static void intel_cx0_rmw(struct drm_i915_private *i915, =
+enum port port,
+> +			  int lane, u16 addr, u8 clear, u8 set, bool committed)
+> +{
+> +	u8 old, val;
+> +
+> +	old =3D intel_cx0_read(i915, port, lane, addr);
+> +	val =3D (old & ~clear) | set;
+> +
+> +	if (val !=3D old)
+> +		intel_cx0_write(i915, port, lane, addr, val, committed);
+> +}
 
-Simon Ser (1):
-      drm/framebuffer: convert to drm_dbg_kms()
-
-Thomas Zimmermann (5):
-      drm/simpledrm: Compute linestride with drm_format_info_min_pitch()
-      drm/simpledrm: Use drm_atomic_get_new_plane_state()
-      drm/simpledrm: Remove !fb check from atomic_update
-      drm/simpledrm: Iterate over damage clips
-      drm/simpledrm: Synchronize access to GEM BOs
-
-Yuan Can (2):
-      drm/panel: panel-edp: Use dev_err_probe() to simplify code
-      drm/panel: simple: Use dev_err_probe() to simplify code
-
-Zongmin Zhou (1):
-      drm/qxl: drop set_prod_notify parameter from qxl_ring_create
-
-ruanjinjie (1):
-      drm/ast: make ast_modeset static
-
- .../bindings/display/panel/panel-simple.yaml       |   2 +
- drivers/gpu/drm/ast/ast_drv.c                      |   2 +-
- drivers/gpu/drm/bridge/lontium-lt8912b.c           |  39 +++--
- drivers/gpu/drm/display/drm_dp_helper.c            |   9 -
- drivers/gpu/drm/drm_format_helper.c                |   1 +
- drivers/gpu/drm/drm_framebuffer.c                  |  66 +++----
- drivers/gpu/drm/meson/meson_drv.c                  |  14 +-
- drivers/gpu/drm/meson/meson_drv.h                  |   7 +
- drivers/gpu/drm/meson/meson_encoder_cvbs.c         |  13 ++
- drivers/gpu/drm/meson/meson_encoder_cvbs.h         |   1 +
- drivers/gpu/drm/meson/meson_encoder_hdmi.c         |  13 ++
- drivers/gpu/drm/meson/meson_encoder_hdmi.h         |   1 +
- drivers/gpu/drm/panel/panel-edp.c                  |  28 ++-
- drivers/gpu/drm/panel/panel-simple.c               |  42 ++++-
- drivers/gpu/drm/qxl/qxl_cmd.c                      |   8 -
- drivers/gpu/drm/qxl/qxl_drv.h                      |   2 -
- drivers/gpu/drm/qxl/qxl_kms.c                      |   4 +-
- drivers/gpu/drm/solomon/ssd130x.c                  |  15 +-
- drivers/gpu/drm/tests/drm_format_helper_test.c     | 190 +++++++++++++++++++++
- drivers/gpu/drm/tiny/simpledrm.c                   |  48 +++---
- drivers/gpu/drm/ttm/ttm_bo_util.c                  |   4 +
- drivers/gpu/drm/virtio/virtgpu_ioctl.c             |   2 +-
- 22 files changed, 396 insertions(+), 115 deletions(-)
+--=20
+Jani Nikula, Intel Open Source Graphics Center
