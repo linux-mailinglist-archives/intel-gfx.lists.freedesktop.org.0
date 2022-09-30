@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B15A5F0FA5
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 18:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 898C55F0FA8
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 18:13:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 863E310ED73;
-	Fri, 30 Sep 2022 16:12:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30FC110ED7B;
+	Fri, 30 Sep 2022 16:13:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 183B110ED73
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Sep 2022 16:12:24 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6DC510ED76;
+ Fri, 30 Sep 2022 16:13:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664554344; x=1696090344;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=InUwIC4mexdj2gLWxRfZtMGzvVeH7r0t2mNdYFsHTwk=;
- b=Q1KeHyWcazS9wl4bxWZMScHAzJKMyNoIemTUj653w0EAF/1agiUIKa+E
- 06+o0EoHJEYu/oQlkvOT6KfTlR6wYhSIYVrbLFqExhdEO5BVkt99bwGLV
- s3vQIAi6BpXWzGwFyc4iEvaeBysO1HLVAbDfYd13NpJ3t77c/NS4ZdMuZ
- YI75ZS5jTllelWszwpKOwdZf7VPuRoSXzEcV0B4JhzwwrdDi2RVTR1ywm
- nOKOaQ29rT3PAN4c1H7SnTXgiWV3tJqaD0L9jFTlGbYawtwH2aI/m0Wzf
- CFX8ljXRZxlPBH5WcyUNRDIvPeixRCRofp6x8fwCdf+obxYFRv1mMq6qL w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10486"; a="299828229"
-X-IronPort-AV: E=Sophos;i="5.93,358,1654585200"; d="scan'208";a="299828229"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2022 09:12:23 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10486"; a="726910764"
-X-IronPort-AV: E=Sophos;i="5.93,358,1654585200"; d="scan'208";a="726910764"
-Received: from dtrawins-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.7.39])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2022 09:12:22 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 30 Sep 2022 17:12:03 +0100
-Message-Id: <20220930161203.432540-4-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220930161203.432540-1-matthew.auld@intel.com>
-References: <20220930161203.432540-1-matthew.auld@intel.com>
+ t=1664554403; x=1696090403;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=GsI+ofswTjbHnpiYtYQ1Ydt+QdbSgxMGCVr1fuk9ngY=;
+ b=SYrh3P3QpkQfoz1vpajlS9F6moJDn1rOzMoHo4GsodrjhWNjL3oD9sX+
+ AQ8TtJ3t2OA9krtgFHiF/nwTxxE+rmCgMWUqwIa7pW0w2Q/l1bvCIdGn0
+ HKmyY1zCgRzJz5s6nZ0GXEF1EDNo0XhlRfLiVX6AoI+OUW8l3/DqUM0aj
+ jy8unI0N1CW3Yy7ExVAvUGkEwgHuPKwMfEL5cbgRKf6JmgZuXVfPdwx2N
+ 0dcqk1KhFEJHnSeM2uDITQxDMD0q967jqdH9ZDde+/6M8e498lxvoVG54
+ zs7Bbjqh/KGNn/oK5/HhpHPWojRSIu+5EF0gI6a0MiUZwEeN/AOvK3UPK g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10486"; a="328611123"
+X-IronPort-AV: E=Sophos;i="5.93,358,1654585200"; d="scan'208";a="328611123"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2022 09:13:23 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10486"; a="748277291"
+X-IronPort-AV: E=Sophos;i="5.93,358,1654585200"; d="scan'208";a="748277291"
+Received: from nvishwa1-desk.sc.intel.com (HELO nvishwa1-DESK) ([172.25.29.76])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2022 09:13:22 -0700
+Date: Fri, 30 Sep 2022 09:13:00 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <20220930161255.GI22224@nvishwa1-DESK>
+References: <20220928061918.6340-1-niranjana.vishwanathapura@intel.com>
+ <20220928061918.6340-17-niranjana.vishwanathapura@intel.com>
+ <110254ac-a4af-395c-0581-73de653e8cd9@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 4/4] drm/i915: check memory is mappable in
- read_from_page
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <110254ac-a4af-395c-0581-73de653e8cd9@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 16/16] drm/i915/vm_bind: Add uapi for user
+ to enable vm_bind_mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,55 +60,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@intel.com>, Jianshui Yu <jianshui.yu@intel.com>
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ thomas.hellstrom@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On small-bar systems we could be given something non-mappable here,
-which leads to nasty oops. Make this nicer by checking if the resource
-is mappable or not, and return an error otherwise.
+On Fri, Sep 30, 2022 at 11:01:17AM +0100, Matthew Auld wrote:
+>On 28/09/2022 07:19, Niranjana Vishwanathapura wrote:
+>>Add getparam support for VM_BIND capability version.
+>>Add VM creation time flag to enable vm_bind_mode for the VM.
+>>
+>>Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+>>Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+>>---
+>>  drivers/gpu/drm/i915/gem/i915_gem_context.c |  9 +++++++-
+>>  drivers/gpu/drm/i915/i915_drv.h             |  2 ++
+>>  drivers/gpu/drm/i915/i915_getparam.c        |  3 +++
+>>  include/uapi/drm/i915_drm.h                 | 24 ++++++++++++++++++++-
+>>  4 files changed, 36 insertions(+), 2 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>index f4e648ec01ed..c20bd6e8aaf8 100644
+>>--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>>@@ -1808,9 +1808,13 @@ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
+>>  	if (!HAS_FULL_PPGTT(i915))
+>>  		return -ENODEV;
+>>-	if (args->flags)
+>>+	if (args->flags & I915_VM_CREATE_FLAGS_UNKNOWN)
+>>  		return -EINVAL;
+>>+	if ((args->flags & I915_VM_CREATE_FLAGS_USE_VM_BIND) &&
+>>+	    !HAS_VM_BIND(i915))
+>>+		return -EOPNOTSUPP;
+>>+
+>>  	ppgtt = i915_ppgtt_create(to_gt(i915), 0);
+>>  	if (IS_ERR(ppgtt))
+>>  		return PTR_ERR(ppgtt);
+>>@@ -1828,6 +1832,9 @@ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
+>>  	if (err)
+>>  		goto err_put;
+>>+	if (args->flags & I915_VM_CREATE_FLAGS_USE_VM_BIND)
+>>+		ppgtt->vm.vm_bind_mode = true;
+>>+
+>>  	GEM_BUG_ON(id == 0); /* reserved for invalid/unassigned ppgtt */
+>>  	args->vm_id = id;
+>>  	return 0;
+>>diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>>index 84a2f6b16f57..e77393d74c6f 100644
+>>--- a/drivers/gpu/drm/i915/i915_drv.h
+>>+++ b/drivers/gpu/drm/i915/i915_drv.h
+>>@@ -974,6 +974,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>>  #define HAS_ONE_EU_PER_FUSE_BIT(i915)	(INTEL_INFO(i915)->has_one_eu_per_fuse_bit)
+>>+#define HAS_VM_BIND(dev_priv) (GRAPHICS_VER(dev_priv) >= 12)
+>
+>s/dev_priv/i915/
 
-v2: drop GEM_BUG_ON(flags & I915_BO_ALLOC_GPU_ONLY)
+Ok, will fix
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Jianshui Yu <jianshui.yu@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+>
+>>+
+>>  /* intel_device_info.c */
+>>  static inline struct intel_device_info *
+>>  mkwrite_device_info(struct drm_i915_private *dev_priv)
+>>diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+>>index 342c8ca6414e..f45b3c684bcf 100644
+>>--- a/drivers/gpu/drm/i915/i915_getparam.c
+>>+++ b/drivers/gpu/drm/i915/i915_getparam.c
+>>@@ -175,6 +175,9 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+>>  	case I915_PARAM_PERF_REVISION:
+>>  		value = i915_perf_ioctl_version();
+>>  		break;
+>>+	case I915_PARAM_VM_BIND_VERSION:
+>>+		value = HAS_VM_BIND(i915);
+>>+		break;
+>>  	default:
+>>  		DRM_DEBUG("Unknown parameter %d\n", param->param);
+>>  		return -EINVAL;
+>>diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>>index f3a5b198b3e7..9a033acc254b 100644
+>>--- a/include/uapi/drm/i915_drm.h
+>>+++ b/include/uapi/drm/i915_drm.h
+>>@@ -755,6 +755,27 @@ typedef struct drm_i915_irq_wait {
+>>  /* Query if the kernel supports the I915_USERPTR_PROBE flag. */
+>>  #define I915_PARAM_HAS_USERPTR_PROBE 56
+>>+/*
+>>+ * VM_BIND feature version supported.
+>>+ *
+>>+ * The following versions of VM_BIND have been defined:
+>>+ *
+>>+ * 0: No VM_BIND support.
+>>+ *
+>>+ * 1: In VM_UNBIND calls, the UMD must specify the exact mappings created
+>>+ *    previously with VM_BIND, the ioctl will not support unbinding multiple
+>>+ *    mappings or splitting them. Similarly, VM_BIND calls will not replace
+>>+ *    any existing mappings.
+>>+ *
+>>+ * 2: The restrictions on unbinding partial or multiple mappings is
+>>+ *    lifted, Similarly, binding will replace any mappings in the given range.
+>
+>Should we just remove 2 for now? It looks like 1 is this series.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 369006c5317f..62495d5d0038 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -444,6 +444,16 @@ i915_gem_object_read_from_page_iomap(struct drm_i915_gem_object *obj, u64 offset
- 	io_mapping_unmap(src_map);
- }
- 
-+static bool object_has_mappable_iomem(struct drm_i915_gem_object *obj)
-+{
-+	GEM_BUG_ON(!i915_gem_object_has_iomem(obj));
-+
-+	if (IS_DGFX(to_i915(obj->base.dev)))
-+		return i915_ttm_resource_mappable(i915_gem_to_ttm(obj)->resource);
-+
-+	return true;
-+}
-+
- /**
-  * i915_gem_object_read_from_page - read data from the page of a GEM object
-  * @obj: GEM object to read from
-@@ -466,7 +476,7 @@ int i915_gem_object_read_from_page(struct drm_i915_gem_object *obj, u64 offset,
- 
- 	if (i915_gem_object_has_struct_page(obj))
- 		i915_gem_object_read_from_page_kmap(obj, offset, dst, size);
--	else if (i915_gem_object_has_iomem(obj))
-+	else if (i915_gem_object_has_iomem(obj) && object_has_mappable_iomem(obj))
- 		i915_gem_object_read_from_page_iomap(obj, offset, dst, size);
- 	else
- 		return -ENODEV;
--- 
-2.37.3
+Yah, will remove.
 
+>
+>>+ *
+>>+ * See struct drm_i915_gem_vm_bind and struct drm_i915_gem_vm_unbind.
+>>+ *
+>>+ * vm_bind versions are backward compatible.
+>>+ */
+>>+#define I915_PARAM_VM_BIND_VERSION	57
+>>+
+>>  /* Must be kept compact -- no holes and well documented */
+>>  /**
+>>@@ -2622,7 +2643,8 @@ struct drm_i915_gem_vm_control {
+>>  	/** @extensions: Zero-terminated chain of extensions. */
+>>  	__u64 extensions;
+>>-	/** @flags: reserved for future usage, currently MBZ */
+>>+#define I915_VM_CREATE_FLAGS_USE_VM_BIND	(1u << 0)
+>
+>Some kernel-doc for that would be good, even if it's kind of obvious.
+>
+
+Ok, will add comment.
+
+Regards,
+Niranjana
+
+>Acked-by: Matthew Auld <matthew.auld@intel.com>
+>
+>>+#define I915_VM_CREATE_FLAGS_UNKNOWN	(-(I915_VM_CREATE_FLAGS_USE_VM_BIND << 1))
+>>  	__u32 flags;
+>>  	/** @vm_id: Id of the VM created or to be destroyed */
