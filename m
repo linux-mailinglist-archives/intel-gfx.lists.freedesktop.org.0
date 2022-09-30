@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C9F5F040B
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 07:10:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E16DE5F0491
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Sep 2022 08:13:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B917310E1A4;
-	Fri, 30 Sep 2022 05:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED4C810EB85;
+	Fri, 30 Sep 2022 06:13:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52C6710E1A4;
- Fri, 30 Sep 2022 05:09:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664514591; x=1696050591;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=SGUsbKhOm0pdXxXmw6qbwtIINHibHeem7UpuGzGQz90=;
- b=BfqcwCsII8/Sw3iYS+/OxQABrZwlHBghC8MSMoPxcNtPfToMsubFw6f4
- THOd3iY3XmoQ2EOr75k6aqXa+XQGYH0R1tzle791Pu0H2ImSnQlv9mWaU
- QdMx3cqLzDyTOwQ/VCRKLWLUC+s9CG5ArGYm0IQ1Zdv+XSi0koPGyKiok
- K4PTa/NGXLXgYngNUzQ2j4uhGNMY/MzVIKxo1IHRS0pIoPuRUUezq4WLC
- 2TAXvgsHVyuca/tNXHhG2pvkTITd9FCh0flFf5BnT9ywKv+gSbeYaptol
- qPER3YEj8EqNYQw5+5MINKIsBQylzFf0CI9yMrmiAGbJL6VGX9Ps84ifu A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="299707897"
-X-IronPort-AV: E=Sophos;i="5.93,357,1654585200"; d="scan'208";a="299707897"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 22:09:50 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="711668539"
-X-IronPort-AV: E=Sophos;i="5.93,357,1654585200"; d="scan'208";a="711668539"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.143])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 22:09:48 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 29 Sep 2022 22:09:03 -0700
-Message-Id: <20220930050903.3479619-4-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220930050903.3479619-1-lucas.demarchi@intel.com>
-References: <20220930050903.3479619-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BEAD810EB83;
+ Fri, 30 Sep 2022 06:13:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B72C1AADDA;
+ Fri, 30 Sep 2022 06:13:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1786973537332178871=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Fix platform prefix
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Fri, 30 Sep 2022 06:13:39 -0000
+Message-ID: <166451841971.23343.17293755870297232138@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220930050903.3479619-1-lucas.demarchi@intel.com>
+In-Reply-To: <20220930050903.3479619-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Improve_register_state_context_init?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,120 +40,212 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Chris Wilson <chris.p.wilson@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Different handling for XeHP and later platforms should be using the
-xehp prefix, not gen125. Rename them.
+--===============1786973537332178871==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c      | 24 +++++++++----------
- drivers/gpu/drm/i915/gt/gen8_engine_cs.h      | 12 +++++-----
- .../drm/i915/gt/intel_execlists_submission.c  |  4 ++--
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  2 +-
- 4 files changed, 21 insertions(+), 21 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-index e000eaf8abed..e1c76e5bfa82 100644
---- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-@@ -396,10 +396,10 @@ int gen8_emit_init_breadcrumb(struct i915_request *rq)
- 	return 0;
- }
- 
--static int __gen125_emit_bb_start(struct i915_request *rq,
--				  u64 offset, u32 len,
--				  const unsigned int flags,
--				  u32 arb)
-+static int __xehp_emit_bb_start(struct i915_request *rq,
-+				u64 offset, u32 len,
-+				const unsigned int flags,
-+				u32 arb)
- {
- 	struct intel_context *ce = rq->context;
- 	u32 wa_offset = lrc_indirect_bb(ce);
-@@ -437,18 +437,18 @@ static int __gen125_emit_bb_start(struct i915_request *rq,
- 	return 0;
- }
- 
--int gen125_emit_bb_start_noarb(struct i915_request *rq,
--			       u64 offset, u32 len,
--			       const unsigned int flags)
-+int xehp_emit_bb_start_noarb(struct i915_request *rq,
-+			     u64 offset, u32 len,
-+			     const unsigned int flags)
- {
--	return __gen125_emit_bb_start(rq, offset, len, flags, MI_ARB_DISABLE);
-+	return __xehp_emit_bb_start(rq, offset, len, flags, MI_ARB_DISABLE);
- }
- 
--int gen125_emit_bb_start(struct i915_request *rq,
--			 u64 offset, u32 len,
--			 const unsigned int flags)
-+int xehp_emit_bb_start(struct i915_request *rq,
-+		       u64 offset, u32 len,
-+		       const unsigned int flags)
- {
--	return __gen125_emit_bb_start(rq, offset, len, flags, MI_ARB_ENABLE);
-+	return __xehp_emit_bb_start(rq, offset, len, flags, MI_ARB_ENABLE);
- }
- 
- int gen8_emit_bb_start_noarb(struct i915_request *rq,
-diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.h b/drivers/gpu/drm/i915/gt/gen8_engine_cs.h
-index e4d24c811dd6..655e5c00ddc2 100644
---- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.h
-+++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.h
-@@ -32,12 +32,12 @@ int gen8_emit_bb_start(struct i915_request *rq,
- 		       u64 offset, u32 len,
- 		       const unsigned int flags);
- 
--int gen125_emit_bb_start_noarb(struct i915_request *rq,
--			       u64 offset, u32 len,
--			       const unsigned int flags);
--int gen125_emit_bb_start(struct i915_request *rq,
--			 u64 offset, u32 len,
--			 const unsigned int flags);
-+int xehp_emit_bb_start_noarb(struct i915_request *rq,
-+			     u64 offset, u32 len,
-+			     const unsigned int flags);
-+int xehp_emit_bb_start(struct i915_request *rq,
-+		       u64 offset, u32 len,
-+		       const unsigned int flags);
- 
- u32 *gen8_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs);
- u32 *gen12_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs);
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index c718e6dc40b5..0187bc72310d 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -3471,9 +3471,9 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
- 
- 	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50)) {
- 		if (intel_engine_has_preemption(engine))
--			engine->emit_bb_start = gen125_emit_bb_start;
-+			engine->emit_bb_start = xehp_emit_bb_start;
- 		else
--			engine->emit_bb_start = gen125_emit_bb_start_noarb;
-+			engine->emit_bb_start = xehp_emit_bb_start_noarb;
- 	} else {
- 		if (intel_engine_has_preemption(engine))
- 			engine->emit_bb_start = gen8_emit_bb_start;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 0ef295a94060..d81f68fef9a8 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -4094,7 +4094,7 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
- 
- 	engine->emit_bb_start = gen8_emit_bb_start;
- 	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
--		engine->emit_bb_start = gen125_emit_bb_start;
-+		engine->emit_bb_start = xehp_emit_bb_start;
- }
- 
- static void rcs_submission_override(struct intel_engine_cs *engine)
--- 
-2.37.3
+Series: drm/i915: Improve register state context init
+URL   : https://patchwork.freedesktop.org/series/109284/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12202 -> Patchwork_109284v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_109284v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_109284v1, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/index.html
+
+Participating hosts (47 -> 42)
+------------------------------
+
+  Missing    (5): fi-rkl-11600 fi-hsw-4200u fi-tgl-u2 fi-ctg-p8600 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_109284v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6600u:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12202/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109284v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [PASS][3] -> [INCOMPLETE][4] ([i915#146])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12202/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@lmem0:
+    - {bat-dg2-11}:       [DMESG-WARN][5] ([i915#6816]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12202/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html
+
+  * igt@i915_selftest@live@requests:
+    - {bat-rpls-1}:       [INCOMPLETE][7] ([i915#4983]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12202/bat-rpls-1/igt@i915_selftest@live@requests.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/bat-rpls-1/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5828]: https://gitlab.freedesktop.org/drm/intel/issues/5828
+  [i915#6816]: https://gitlab.freedesktop.org/drm/intel/issues/6816
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12202 -> Patchwork_109284v1
+
+  CI-20190529: 20190529
+  CI_DRM_12202: 0b9f0501c9541cf79fdfb43a7760360a81453d88 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6670: d618e9865fe5cbaf511ca43503abad442605d0a5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109284v1: 0b9f0501c9541cf79fdfb43a7760360a81453d88 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+93b56b01f580 drm/i915/gt: Fix platform prefix
+a3a4bfec1d19 drm/i915/gt: Document function to decode register state context
+b996c7997bbb drm/i915: Fix __gen125_emit_bb_start() without WA
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/index.html
+
+--===============1786973537332178871==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Improve register state context init</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109284/">https://patchwork.freedesktop.org/series/109284/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12202 -&gt; Patchwork_109284v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_109284v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_109284v1, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/index.html</p>
+<h2>Participating hosts (47 -&gt; 42)</h2>
+<p>Missing    (5): fi-rkl-11600 fi-hsw-4200u fi-tgl-u2 fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_109284v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12202/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109284v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12202/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@lmem0:</p>
+<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12202/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6816">i915#6816</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/bat-dg2-11/igt@gem_exec_suspend@basic-s3@lmem0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12202/bat-rpls-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109284v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12202 -&gt; Patchwork_109284v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12202: 0b9f0501c9541cf79fdfb43a7760360a81453d88 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6670: d618e9865fe5cbaf511ca43503abad442605d0a5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109284v1: 0b9f0501c9541cf79fdfb43a7760360a81453d88 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>93b56b01f580 drm/i915/gt: Fix platform prefix<br />
+a3a4bfec1d19 drm/i915/gt: Document function to decode register state context<br />
+b996c7997bbb drm/i915: Fix __gen125_emit_bb_start() without WA</p>
+
+</body>
+</html>
+
+--===============1786973537332178871==--
