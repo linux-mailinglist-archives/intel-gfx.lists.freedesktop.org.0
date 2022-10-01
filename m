@@ -1,60 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4269A5F1E74
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 Oct 2022 19:44:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC165F1E93
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 Oct 2022 20:25:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B0510E00F;
-	Sat,  1 Oct 2022 17:44:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB13310E4C0;
+	Sat,  1 Oct 2022 18:25:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E133910E00F;
- Sat,  1 Oct 2022 17:44:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=9ZvRHOU18e7h4A4d6PSko7Bg/uoJADNtuvXxaSjBcE4=; b=kukm3IuTORUMlf/QbJJMHUAuvQ
- V1G70+Abwv3zlu6kGWVMJ57PKpgHIsQWsnEIODq4QjM10fSQZ8+rR831octdmaAcgajX3CJpgeumx
- V0MRBeYUKLuv4P6RBu3GdW491xkZxdYfSbXumQwHF+/hqLfqJDY5wQGF33lRb3IZCugDEDRKV/qsw
- bmYTknaQduH2/X81nkpC4xlzmT3ykrIm8l0MxiUqwBD68HtVcrHt1nVp3WX3qBt0TxMlmolAS6sfY
- Qdg/Fcg7u+8xbM0/dWcauL+Mryw4w5YKuvsevTIoo0X2EYdaWuF76tNywAeohTGwPjKsvbrqVEKy8
- FQWJBrIQ==;
-Received: from [177.34.169.227] (helo=[192.168.0.8])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1oegVf-002bNr-M6; Sat, 01 Oct 2022 19:42:43 +0200
-Message-ID: <4d9d7795-7e98-5bca-14fd-8e8f86da31b3@igalia.com>
-Date: Sat, 1 Oct 2022 14:42:18 -0300
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6340910E4C0
+ for <intel-gfx@lists.freedesktop.org>; Sat,  1 Oct 2022 18:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664648709; x=1696184709;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7hVcSU7PzC2BdyLbwG/NHif/DIMj1uwcFRK82ponTXI=;
+ b=NWoPcoPFXZwBehPjT09EgDcwKlnEi25IrRw6zmCYDHBTf1NLWtvdNW+1
+ O3RfmVqviK3An3NbBXY0u5XjzKO6IgHgBUWFJim6mUaRsO91AfRMzrArj
+ M9wqAHGQZeQGADFzXGgObky3qOfTInI4JhBypJiXEexPBf9xfQBidoTpf
+ uIk5AZIUQgf22ePj6vILmVoXJBWBZBPJ+/35Um79cbkDALEUlNz5ndRSV
+ wCm8Emi9pGozzq6F+MEHW/n+HRNIFnAr9LFHHjt/1171Llh5/8nN0Az7b
+ rwyrUC0gb97ppahH+T7r9KSSU65doDKjwlosB6ChZJwY2gpMWgMELIZau w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10487"; a="303893428"
+X-IronPort-AV: E=Sophos;i="5.93,361,1654585200"; d="scan'208";a="303893428"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2022 11:25:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10487"; a="685655010"
+X-IronPort-AV: E=Sophos;i="5.93,361,1654585200"; d="scan'208";a="685655010"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga008.fm.intel.com with SMTP; 01 Oct 2022 11:25:06 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Sat, 01 Oct 2022 21:25:05 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat,  1 Oct 2022 21:25:01 +0300
+Message-Id: <20221001182505.3675-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Content-Language: en-US
-To: Maxime Ripard <maxime@cerno.tech>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Karol Herbst <kherbst@redhat.com>, Samuel Holland <samuel@sholland.org>,
- Lyude Paul <lyude@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- Emma Anholt <emma@anholt.net>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>
-References: <20220728-rpi-analog-tv-properties-v4-0-60d38873f782@cerno.tech>
- <20220728-rpi-analog-tv-properties-v4-14-60d38873f782@cerno.tech>
-From: =?UTF-8?Q?Ma=c3=adra_Canal?= <mcanal@igalia.com>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v4-14-60d38873f782@cerno.tech>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v4 14/30] drm/client: Add some tests for
- drm_connector_pick_cmdline_mode()
+Subject: [Intel-gfx] [PATCH v2 0/4] drm/i915: Per-crtc/connector DRRS debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,183 +57,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 9/29/22 13:31, Maxime Ripard wrote:
-> drm_connector_pick_cmdline_mode() is in charge of finding a proper
-> drm_display_mode from the definition we got in the video= command line
-> argument.
-> 
-> Let's add some unit tests to make sure we're not getting any regressions
-> there.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> ---
-> Changes in v4:
-> - Removed MODULE macros
-> ---
->  drivers/gpu/drm/drm_client_modeset.c            |   4 +
->  drivers/gpu/drm/tests/drm_client_modeset_test.c | 105 ++++++++++++++++++++++++
->  2 files changed, 109 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-> index bbc535cc50dd..d553e793e673 100644
-> --- a/drivers/gpu/drm/drm_client_modeset.c
-> +++ b/drivers/gpu/drm/drm_client_modeset.c
-> @@ -1237,3 +1237,7 @@ int drm_client_modeset_dpms(struct drm_client_dev *client, int mode)
->  	return ret;
->  }
->  EXPORT_SYMBOL(drm_client_modeset_dpms);
-> +
-> +#ifdef CONFIG_DRM_KUNIT_TEST
-> +#include "tests/drm_client_modeset_test.c"
-> +#endif
-> diff --git a/drivers/gpu/drm/tests/drm_client_modeset_test.c b/drivers/gpu/drm/tests/drm_client_modeset_test.c
-> new file mode 100644
-> index 000000000000..09dc5acbbc42
-> --- /dev/null
-> +++ b/drivers/gpu/drm/tests/drm_client_modeset_test.c
-> @@ -0,0 +1,105 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2022 Maxime Ripard <mripard@kernel.org>
-> + */
-> +
-> +#include <kunit/test.h>
-> +
-> +#include <drm/drm_connector.h>
-> +#include <drm/drm_edid.h>
-> +#include <drm/drm_drv.h>
-> +#include <drm/drm_modes.h>
-> +#include <drm/drm_modeset_helper_vtables.h>
-> +#include <drm/drm_probe_helper.h>
-> +
-> +#include "drm_kunit_helpers.h"
-> +
-> +struct drm_client_modeset_test_priv {
-> +	struct drm_device *drm;
-> +	struct drm_connector connector;
-> +};
-> +
-> +static int drm_client_modeset_connector_get_modes(struct drm_connector *connector)
-> +{
-> +	struct drm_display_mode *mode;
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Small nit: I guess this should be added on patch 21/30, as it is not
-being currently used.
+Chang DRRS debugfs to be per-crtc/connector.
 
-> +	int count;
-> +
-> +	count = drm_add_modes_noedid(connector, 1920, 1200);
-> +
-> +	return count;
-> +}
-> +
-> +static const struct drm_connector_helper_funcs drm_client_modeset_connector_helper_funcs = {
-> +	.get_modes = drm_client_modeset_connector_get_modes,
-> +};
-> +
-> +static const struct drm_connector_funcs drm_client_modeset_connector_funcs = {
-> +};
-> +
-> +static int drm_client_modeset_test_init(struct kunit *test)
-> +{
-> +	struct drm_client_modeset_test_priv *priv;
-> +	int ret;
-> +
-> +	priv = kunit_kzalloc(test, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
+v2: for ci to actually run the drrs tests...
 
-I believe it would be nicer to use KUNIT_ASSERT_NOT_NULL here, instead
-of returning a error.
+Test-with: 20220929032642.16556-1-ville.syrjala@linux.intel.com
 
-> +	test->priv = priv;
-> +
-> +	priv->drm = drm_kunit_device_init(test, "drm-client-modeset-test");
-> +	if (IS_ERR(priv->drm))
-> +		return PTR_ERR(priv->drm);
+Ville Syrjälä (4):
+  drm/i915: Move DRRS debugfs next to the implementation
+  drm/i915: Make the DRRS debugfs contents more consistent
+  drm/i915: Make DRRS debugfs per-crtc/connector
+  drm/i915: Fix locking in DRRS debugfs
 
-Here you could use KUNIT_ASSERT_NOT_ERR_OR_NULL.
+ .../drm/i915/display/intel_display_debugfs.c  |  98 +---------------
+ drivers/gpu/drm/i915/display/intel_drrs.c     | 108 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_drrs.h     |   2 +
+ 3 files changed, 113 insertions(+), 95 deletions(-)
 
-> +
-> +	ret = drmm_connector_init(priv->drm, &priv->connector,
-> +				  &drm_client_modeset_connector_funcs,
-> +				  DRM_MODE_CONNECTOR_Unknown,
-> +				  NULL);
-> +	if (ret)
-> +		return ret;
+-- 
+2.35.1
 
-Same idea here. This would make it more compliant to the KUnit API.
-
-> +	drm_connector_helper_add(&priv->connector, &drm_client_modeset_connector_helper_funcs);
-> +
-> +	return 0;
-> +
-> +}
-> +
-> +static void drm_pick_cmdline_res_1920_1080_60(struct kunit *test)
-> +{
-> +	struct drm_client_modeset_test_priv *priv = test->priv;
-> +	struct drm_device *drm = priv->drm;
-> +	struct drm_connector *connector = &priv->connector;
-> +	struct drm_cmdline_mode *cmdline_mode = &connector->cmdline_mode;
-> +	struct drm_display_mode *expected_mode, *mode;
-> +	const char *cmdline = "1920x1080@60";
-> +	int ret;
-> +
-> +	expected_mode = drm_mode_find_dmt(priv->drm, 1920, 1080, 60, false);
-> +	KUNIT_ASSERT_PTR_NE(test, expected_mode, NULL);
-
-You could use KUNIT_ASSERT_NOT_NULL here.
-
-> +
-> +	KUNIT_ASSERT_TRUE(test,
-> +			  drm_mode_parse_command_line_for_connector(cmdline,
-> +								    connector,
-> +								    cmdline_mode));
-> +
-> +	mutex_lock(&drm->mode_config.mutex);
-> +	ret = drm_helper_probe_single_connector_modes(connector, 1920, 1080);
-> +	mutex_unlock(&drm->mode_config.mutex);
-> +	KUNIT_ASSERT_GT(test, ret, 0);
-> +
-> +	mode = drm_connector_pick_cmdline_mode(connector);
-> +	KUNIT_ASSERT_PTR_NE(test, mode, NULL);
-
-You could also use KUNIT_ASSERT_NOT_NULL here.
-
-This idea could also apply to the patches 21/30 and 22/30, which have a
-similar structure and are also using KUNIT_ASSERT_PTR_NE.
-
-Best Regards,
-- Maíra Canal
-
-> +
-> +	KUNIT_EXPECT_TRUE(test, drm_mode_equal(expected_mode, mode));
-> +}
-> +
-> +static struct kunit_case drm_pick_cmdline_tests[] = {
-> +	KUNIT_CASE(drm_pick_cmdline_res_1920_1080_60),
-> +	{}
-> +};
-> +
-> +static struct kunit_suite drm_pick_cmdline_test_suite = {
-> +	.name = "drm_pick_cmdline",
-> +	.init = drm_client_modeset_test_init,
-> +	.test_cases = drm_pick_cmdline_tests
-> +};
-> +
-> +kunit_test_suite(drm_pick_cmdline_test_suite);
-> 
