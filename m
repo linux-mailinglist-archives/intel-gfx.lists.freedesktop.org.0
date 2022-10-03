@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A835F346E
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 19:25:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12C9D5F3484
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 19:29:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 850D610E44F;
-	Mon,  3 Oct 2022 17:25:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA8E110E444;
+	Mon,  3 Oct 2022 17:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E890910E44B;
- Mon,  3 Oct 2022 17:25:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0AF10E444
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Oct 2022 17:29:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664817939; x=1696353939;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KXcF9saxLBQoMjaIKPlHlqIiZLX+zVtc82+BfitsArQ=;
- b=aSmWMArZ31yQrmVYSFIxWMxJtO4Yb+c8Klva9bI8TU5tRGOBZ9xQ++GS
- tyhGkyXbNvOIUU8tDZbn4dSnLMBVSNwKnRSyqtyajfcdTrI5JJwwM+5Ac
- AS0n+lW0tk40xM+IIx9KjqZQAXa1GncDYGfH01flzqQ4Ri1r53gHvy9cr
- cySLBCjter9jVihRf8aeWzjnVG3OXPKbjwxSt29ICjgKT32QDMZ0TKCi2
- AxzwFyvD+AUwy8TPEkYnG5asGx7F1Nb09NtT0kSA4wfyd2dPnZOCnvUZN
- Xj3jiFUJRhx53XvBuobYENgiBH5/1S3OJTiAYHubIDdjKD2yhL9qMH2Le g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="282413415"
-X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="282413415"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ t=1664818181; x=1696354181;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=myIzLuWgVJdiPDr5hx/EXFzM92MvKQieARje5kX5riU=;
+ b=YnUUPwhusn0wvRvnSnY21OGGkYF15lzlhNp3wYxYgLsDYujQaqOdGfzR
+ P5p2xE177z5wWSQ93cGpfOs6nasIZKrfVan+yiE2L5raA7dIY+vYWzWu5
+ rJQAGGnGgpYb6rkRhqZQpTlYBDXdRAaPfBKWGF6U0o1ZFpP1+vQIbeYDo
+ svuDFUFPAeWWmkGZUlD8q7mNLaiqKctNd3HoBcKuZUqMJJZA0lwtbEJJX
+ SAEYEhN1//bW+6YVKG3NCKAhxWlD9cpFjyMyRV9KiC2QUZBU4IF/7D3qZ
+ NFsTAk+yndHka3kqGgGArWo8kDFLluDSoJrHhIYglh2d3XpR3pexJUcng w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="282416606"
+X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="282416606"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 10:25:28 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="686202391"
-X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="686202391"
+ 03 Oct 2022 10:28:53 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="712684391"
+X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="712684391"
 Received: from adejeanb-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.6.198])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 10:25:27 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2022 10:28:52 -0700
 From: Matthew Auld <matthew.auld@intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Mon,  3 Oct 2022 18:24:56 +0100
-Message-Id: <20221003172456.97522-4-matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  3 Oct 2022 18:28:19 +0100
+Message-Id: <20221003172819.99245-1-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221003172456.97522-1-matthew.auld@intel.com>
-References: <20221003172456.97522-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 4/4] tests/i915/gem_create: add some basic
- testing for GTT alignment
+Subject: [Intel-gfx] [PATCH v3] drm/i915/ttm: implement access_memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,154 +55,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make sure we can always place an object at some GTT address, so
-long as we adhere to the min GTT alignment for the given region.
+It looks like we need this for local-memory, if we want to use ptrace.
+Something more is still needed if we want to handle non-mappable memory,
+which looks quite annoying.
 
+v2:
+  - ttm_bo_kmap doesn't seem to work well here, and seems to expect
+    contiguous resource.
+v3(Andi):
+  - s/PAGE_SIZE/bytes/ when passing in the size of the mapping.
+
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/6989
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- tests/i915/gem_create.c | 117 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 117 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 45 +++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-diff --git a/tests/i915/gem_create.c b/tests/i915/gem_create.c
-index becdc715..5ede76fa 100644
---- a/tests/i915/gem_create.c
-+++ b/tests/i915/gem_create.c
-@@ -821,6 +821,115 @@ static void create_ext_cpu_access_big(int fd)
- 	free(regions);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 3dc6acfcf4ec..d11cd9c57247 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -699,6 +699,50 @@ static unsigned long i915_ttm_io_mem_pfn(struct ttm_buffer_object *bo,
+ 	return ((base + sg_dma_address(sg)) >> PAGE_SHIFT) + ofs;
  }
  
-+/** XXX: remove once we sync the uapi header */
-+#define gtt_alignment rsvd0
-+static bool supports_gtt_alignment(int fd)
++static int i915_ttm_access_memory(struct ttm_buffer_object *bo,
++				  unsigned long offset, void *buf,
++				  int len, int write)
 +{
-+	struct drm_i915_query_memory_regions *regions;
-+	uint32_t gtt_alignment;
++	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
++	resource_size_t iomap = obj->mm.region->iomap.base -
++		obj->mm.region->region.start;
++	unsigned long page = offset >> PAGE_SHIFT;
++	unsigned long bytes_left = len;
 +
-+	regions = gem_get_query_memory_regions(fd);
-+	igt_assert(regions);
-+	igt_assert(regions->num_regions);
++	/*
++	 * TODO: For now just let it fail if the resource is non-mappable,
++	 * otherwise we need to perform the memcpy from the gpu here, without
++	 * interfering with the object (like moving the entire thing).
++	 */
++	if (!i915_ttm_resource_mappable(bo->resource))
++		return -EIO;
 +
-+	gtt_alignment = regions->regions[0].gtt_alignment;
-+	free(regions);
++	offset -= page << PAGE_SHIFT;
++	do {
++		unsigned long bytes = min(bytes_left, PAGE_SIZE - offset);
++		void __iomem *ptr;
++		dma_addr_t daddr;
 +
-+	return gtt_alignment;
++		daddr = i915_gem_object_get_dma_address(obj, page);
++		ptr = ioremap_wc(iomap + daddr + offset, bytes);
++		if (!ptr)
++			return -EIO;
++
++		if (write)
++			memcpy_toio(ptr, buf, bytes);
++		else
++			memcpy_fromio(buf, ptr, bytes);
++		iounmap(ptr);
++
++		page++;
++		buf += bytes;
++		bytes_left -= bytes;
++		offset = 0;
++	} while (bytes_left);
++
++	return len;
 +}
 +
-+static void create_ext_placement_alignment(int fd)
-+{
-+	struct drm_i915_gem_create_ext_memory_regions setparam_region = {
-+		.base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
-+	};
-+	struct drm_i915_gem_memory_class_instance *uregions;
-+	struct drm_i915_query_memory_regions *regions;
-+	const uint32_t bbe = MI_BATCH_BUFFER_END;
-+	struct drm_i915_gem_execbuffer2 execbuf = {};
-+	struct drm_i915_gem_exec_object2 obj = {};
-+	uint32_t max_gtt_alignment;
-+	uint32_t handle;
-+	uint32_t ctx;
-+	uint64_t ahnd;
-+	uint64_t size;
-+	int i;
-+
-+	regions = gem_get_query_memory_regions(fd);
-+	igt_assert(regions);
-+	igt_assert(regions->num_regions);
-+
-+	uregions = calloc(regions->num_regions, sizeof(*uregions));
-+
-+	ctx = gem_context_create(fd);
-+
-+	max_gtt_alignment = 0;
-+	for (i = 0; i < regions->num_regions; i++) {
-+		struct drm_i915_memory_region_info qmr = regions->regions[i];
-+		struct drm_i915_gem_memory_class_instance ci = qmr.region;
-+		uint32_t gtt_alignment;
-+
-+		gtt_alignment = qmr.gtt_alignment;
-+
-+		setparam_region.regions = to_user_pointer(&ci);
-+		setparam_region.num_regions = 1;
-+
-+		size = PAGE_SIZE;
-+		igt_assert_eq(__gem_create_ext(fd, &size, 0, &handle,
-+					       &setparam_region.base), 0);
-+		gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-+
-+		ahnd = intel_allocator_open_full(fd, ctx, 0, 0,
-+						 INTEL_ALLOCATOR_RANDOM,
-+						 ALLOC_STRATEGY_HIGH_TO_LOW,
-+						 gtt_alignment);
-+
-+		obj.handle = handle;
-+		obj.offset = CANONICAL(get_offset(ahnd, handle, size, 0));
-+		obj.flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS | EXEC_OBJECT_PINNED;
-+
-+		execbuf.buffers_ptr = to_user_pointer(&obj);
-+		execbuf.buffer_count = 1;
-+
-+		gem_execbuf(fd, &execbuf);
-+
-+		put_ahnd(ahnd);
-+
-+		max_gtt_alignment = max(max_gtt_alignment, gtt_alignment);
-+		uregions[i] = regions->regions[i].region;
-+	}
-+
-+	setparam_region.regions = to_user_pointer(uregions);
-+	setparam_region.num_regions = regions->num_regions;
-+
-+	size = PAGE_SIZE;
-+	igt_assert_eq(__gem_create_ext(fd, &size, 0, &handle,
-+				       &setparam_region.base), 0);
-+	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-+
-+	ahnd = intel_allocator_open_full(fd, ctx, 0, 0,
-+					 INTEL_ALLOCATOR_RANDOM,
-+					 ALLOC_STRATEGY_HIGH_TO_LOW,
-+					 max_gtt_alignment);
-+
-+	obj.handle = handle;
-+	obj.offset = CANONICAL(get_offset(ahnd, handle, size, 0));
-+	obj.flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS | EXEC_OBJECT_PINNED;
-+
-+	execbuf.buffers_ptr = to_user_pointer(&obj);
-+	execbuf.buffer_count = 1;
-+
-+	gem_execbuf(fd, &execbuf);
-+
-+	put_ahnd(ahnd);
-+
-+	gem_context_destroy(fd, ctx);
-+
-+	gem_close(fd, handle);
-+	free(uregions);
-+	free(regions);
-+}
-+
- igt_main
- {
- 	int fd = -1;
-@@ -906,4 +1015,12 @@ igt_main
- 		igt_require(supports_needs_cpu_access(fd));
- 		create_ext_cpu_access_big(fd);
- 	}
-+
-+	igt_describe("Check reported GTT alignment gives usable GTT address, for each region.");
-+	igt_subtest("create-ext-placement-alignment") {
-+		igt_require(supports_gtt_alignment(fd));
-+		igt_require(gem_uses_full_ppgtt(fd));
-+		create_ext_placement_alignment(fd);
-+	}
-+
- }
+ /*
+  * All callbacks need to take care not to downcast a struct ttm_buffer_object
+  * without checking its subclass, since it might be a TTM ghost object.
+@@ -715,6 +759,7 @@ static struct ttm_device_funcs i915_ttm_bo_driver = {
+ 	.delete_mem_notify = i915_ttm_delete_mem_notify,
+ 	.io_mem_reserve = i915_ttm_io_mem_reserve,
+ 	.io_mem_pfn = i915_ttm_io_mem_pfn,
++	.access_memory = i915_ttm_access_memory,
+ };
+ 
+ /**
 -- 
 2.37.3
 
