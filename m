@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABABD5F3303
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 17:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 735EF5F3332
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 18:16:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB3D10E40D;
-	Mon,  3 Oct 2022 15:59:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74DCC10E33D;
+	Mon,  3 Oct 2022 16:16:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53EA410E413;
- Mon,  3 Oct 2022 15:59:23 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D342210E40D
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Oct 2022 16:16:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664812763; x=1696348763;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=K4RU6UN3r9kUtOHGvaK9akx5x/yisdjnJxIuM/3xZNY=;
- b=AACK0qDvt5qlAX4eRi4qe7rqmot+ctdBskbVLtnNgMX2k6L9FYNoOI5q
- u+lx+rQTDb0jAMgviah7mZy9wxQUB7nIiGnQD+Tcn9nwO7j0EzAKy6Mum
- v7orOLiQbLuA2Vp1fbFVHbAt+60FGjlpmrw0m60QUddmk9ufh6AAO6R2S
- kkDTUdix4yeQILkXXo9eZdOvC3EAQZasR0PraqPQApyRYpo/ew0Pfz+Jy
- WGkal49Z2HRwxN8WaNY0bKSxwHFiUvhO5GZx8vel1XRPSnLRGrPMnR7Wd
- SQOGrvxbZokTpxjOrkFtUNMWdtUlRvmJDmMBMdaGrbGgI/IRqENDmHPIV Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="304184143"
-X-IronPort-AV: E=Sophos;i="5.93,365,1654585200"; d="scan'208";a="304184143"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 08:59:09 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="798778841"
-X-IronPort-AV: E=Sophos;i="5.93,365,1654585200"; d="scan'208";a="798778841"
-Received: from ashyti-mobl2.igk.intel.com (HELO intel.com) ([172.28.182.81])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 08:59:06 -0700
-Date: Mon, 3 Oct 2022 17:59:04 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Message-ID: <YzsGyKZnMjK0DBdL@ashyti-mobl2.lan>
-References: <20221003061245.12716-1-niranjana.vishwanathapura@intel.com>
- <20221003061245.12716-15-niranjana.vishwanathapura@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221003061245.12716-15-niranjana.vishwanathapura@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 14/17] drm/i915/vm_bind: Expose
- i915_request_await_bind()
+ t=1664813805; x=1696349805;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=gA2eDeVvaJbNOy/ukw2YEH/kWSJri56SdjNGF/BJBpk=;
+ b=eUgXgSiRbq5BPM0wmK4NDcMf9peu1E16MXLETHZG5qGwI3fKj9tbSFKn
+ oOWlTOkMSfZ8Cnpbh/iJOE7GrUuqPHNQ5ZpXktw/hP2IzlxqiCAj0Y+9Q
+ VG4cwB/IFpiisn5GpZ4IZHnfHYEdibW2hEqHMFLlwx6oMtmmPGfzgYib2
+ iuTBIsWN2NEJNQiGDqFYZyh5NSaH0HmmEw7qhAnzZvUzTR1oCA2F6TwhR
+ 1oemMTaNrD2YaLpW8eBPC3xs3sVxOTadm3Nj+ecrlnTegV0P5DXy+djdG
+ EldH+9opxk0cOh+G+AOc1l2fmY+JViUJVux0FIYVeqA7jHet1jPOcBayh w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="300281841"
+X-IronPort-AV: E=Sophos;i="5.93,365,1654585200"; d="scan'208";a="300281841"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2022 09:16:45 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="656793785"
+X-IronPort-AV: E=Sophos;i="5.93,365,1654585200"; d="scan'208";a="656793785"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.230.48])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2022 09:16:44 -0700
+Date: Mon, 03 Oct 2022 09:16:42 -0700
+Message-ID: <87edvozxud.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <4b4b3625-a740-fa6f-9ff3-c75c9d05e265@linux.intel.com>
+References: <20220910143844.1755324-1-ashutosh.dixit@intel.com>	<20220910143844.1755324-2-ashutosh.dixit@intel.com>	<86f6485f-d7c7-66ad-b819-af33913194ef@linux.intel.com>	<87fsg5zd0b.wl-ashutosh.dixit@intel.com>	<4b4b3625-a740-fa6f-9ff3-c75c9d05e265@linux.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/debugfs: Add
+ perf_limit_reasons in debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,21 +60,170 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- thomas.hellstrom@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
- christian.koenig@amd.com
+Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Niranjana,
+On Mon, 03 Oct 2022 01:11:21 -0700, Tvrtko Ursulin wrote:
+> On 03/10/2022 06:34, Dixit, Ashutosh wrote:
+> > On Tue, 27 Sep 2022 07:17:23 -0700, Tvrtko Ursulin wrote:
+> >
+> > Hi Tvrtko,
+> >
+> > I am adding some people who may have more background/history into this.
+> >
+> >> On 10/09/2022 15:38, Ashutosh Dixit wrote:
+> >>> From: Tilak Tangudu <tilak.tangudu@intel.com>
+> >>>
+> >>> Add perf_limit_reasons in debugfs. The upper 16 perf_limit_reasons RW "log"
+> >>> bits are identical to the lower 16 RO "status" bits except that the "log"
+> >>> bits remain set until cleared, thereby ensuring the throttling occurrence
+> >>> is not missed. The clear fop clears the upper 16 "log" bits, the get fop
+> >>> gets all 32 "log" and "status" bits.
+> >>>
+> >>> v2: Expand commit message and clarify "log" and "status" bits in
+> >>>       comment (Rodrigo)
+> >>>
+> >>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >>> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> >>> Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
+> >>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >>> ---
+> >>>    drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 31 +++++++++++++++++++
+> >>>    drivers/gpu/drm/i915/i915_reg.h               |  1 +
+> >>>    2 files changed, 32 insertions(+)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> >>> index 108b9e76c32e..a009cf69103a 100644
+> >>> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> >>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> >>> @@ -655,6 +655,36 @@ static bool rps_eval(void *data)
+> >>>      DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(rps_boost);
+> >>>    +static int perf_limit_reasons_get(void *data, u64 *val)
+> >>> +{
+> >>> +	struct intel_gt *gt = data;
+> >>> +	intel_wakeref_t wakeref;
+> >>> +
+> >>> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> >>> +		*val = intel_uncore_read(gt->uncore, GT0_PERF_LIMIT_REASONS);
+> >>
+> >> I have a bunch of questions, given failure to apply this to
+> >> drm-intel-next-fixes brought my attention to it.
+> >>
+> >> Why is GT0_PERF_LIMIT_REASONS_MASK not applied here?
+> >
+> > To expose all 32 "log" and "status" bits, since no log bits and only a few
+> > status bits are available in sysfs.
+> >
+> >> Who resets the low bits and when in normal operation? (I mean not via this
+> >> debugfs clear.)
+> >
+> > HW would reset the low status bits after the condition causing the
+> > throttling goes away. That condition would persist in the the upper log
+> > bits till cleared via debugfs.
+> >
+> >> Why do we have sysfs expose some of this register, but not these high log
+> >> bits? Which are more important to the user?
+> >
+> > The low status bits should be sampled while the throttling condition is
+> > "current" (still happening). The upper log bits can be looked at later to
+> > see if a particular condition happened.
+> >
+> > I would say as long user land can sample (say every 5 ms) the low status
+> > bits while a workload is running they can get a complete picture of what
+> > throttling happened when (the app could sample the actual_freq sysfs and
+> > correlate those values with the perf_limit_reasons sysfs e.g.).
+> >
+> >> What is the use case for allowing clearing of the log bits from debugfs?
+> >> Why do we want to carry that code? For IGT?
+> >
+> > I guess the reason for exposing/clearing the log bits is that they can be
+> > useful in cases where userspace does not want to sample the status bits
+> > continuously while a workload is running. They can just come afterwards and
+> > say, ah, these are the reasons limiting freq while the workload was
+> > running.
+>
+> But as you say hardware clears them, then it is questionable it would show
+> anything at that point?
 
-On Sun, Oct 02, 2022 at 11:12:42PM -0700, Niranjana Vishwanathapura wrote:
-> Rename __i915_request_await_bind() as i915_request_await_bind()
-> and make it non-static as it will be used in execbuf3 ioctl path.
-> 
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+The status bits would be cleared by HW but any events which have occured
+would be coalesced and persist in the log bits.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Do we have interrupts associated with throttling and associated log message
+> or uevents?
 
-Andi
+I believe there are punit interrupts and some work-items to hook these say
+into HWMON "alarms" but pretty sure none of this is implemented because
+no clear customer requirements at this point.
+
+> > Also the log bits could be used in conjunction with the low status bits to
+> > infer if any limiting event got missed during sampling the status bits.
+> >
+> > I believe IGT's correlating the actual_freq with perf_limit_reasons are
+> > planned. But yes, whether the upper log bits should also be exposed in
+> > sysfs is a valid one and should be discussed.
+>
+> Thanks for the clarifications!
+>
+> Yes, it sounds like some discussion is needed as to intended use cases for
+> exposing and clearing the log.
+>
+> TBH I am not sure how urgent it is - will there be further conflicts caused
+> by divergence of 7738be973fc4e2ba22154fafd3a5d7b9666f9abf vs
+> 0d2d201095e9f141d6a9fb44320afce761f8b5c2. If there would be it would
+> probably be good to close on this question within the current development
+> cycle.
+
+I believe this is already resolved by the merge of drm-intel-fixes into
+drm-tip.
+
+Thanks.
+--
+Ashutosh
+
+
+> >>> +
+> >>> +	return 0;
+> >>> +}
+> >>> +
+> >>> +static int perf_limit_reasons_clear(void *data, u64 val)
+> >>> +{
+> >>> +	struct intel_gt *gt = data;
+> >>> +	intel_wakeref_t wakeref;
+> >>> +
+> >>> +	/*
+> >>> +	 * Clear the upper 16 "log" bits, the lower 16 "status" bits are
+> >>> +	 * read-only. The upper 16 "log" bits are identical to the lower 16
+> >>> +	 * "status" bits except that the "log" bits remain set until cleared.
+> >>> +	 */
+> >>> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> >>> +		intel_uncore_rmw(gt->uncore, GT0_PERF_LIMIT_REASONS,
+> >>> +				 GT0_PERF_LIMIT_REASONS_LOG_MASK, 0);
+> >>> +
+> >>> +	return 0;
+> >>> +}
+> >>> +DEFINE_SIMPLE_ATTRIBUTE(perf_limit_reasons_fops, perf_limit_reasons_get,
+> >>> +			perf_limit_reasons_clear, "%llu\n");
+> >>> +
+> >>>    void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
+> >>>    {
+> >>>	static const struct intel_gt_debugfs_file files[] = {
+> >>> @@ -664,6 +694,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
+> >>>		{ "forcewake_user", &forcewake_user_fops, NULL},
+> >>>		{ "llc", &llc_fops, llc_eval },
+> >>>		{ "rps_boost", &rps_boost_fops, rps_eval },
+> >>> +		{ "perf_limit_reasons", &perf_limit_reasons_fops, NULL },
+> >>>	};
+> >>>		intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files),
+> >>> gt);
+> >>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> >>> index 52462cbfdc66..58b0ed9dddd5 100644
+> >>> --- a/drivers/gpu/drm/i915/i915_reg.h
+> >>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> >>> @@ -1802,6 +1802,7 @@
+> >>>    #define   POWER_LIMIT_4_MASK		REG_BIT(8)
+> >>>    #define   POWER_LIMIT_1_MASK		REG_BIT(10)
+> >>>    #define   POWER_LIMIT_2_MASK		REG_BIT(11)
+> >>> +#define   GT0_PERF_LIMIT_REASONS_LOG_MASK REG_GENMASK(31, 16)
+> >>>      #define CHV_CLK_CTL1			_MMIO(0x101100)
+> >>>    #define VLV_CLK_CTL2			_MMIO(0x101104)
