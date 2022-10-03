@@ -1,142 +1,158 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D44955F3655
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 21:33:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D26B5F36A9
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 21:47:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B60810E011;
-	Mon,  3 Oct 2022 19:33:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F88910E4B6;
+	Mon,  3 Oct 2022 19:47:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4489910E011;
- Mon,  3 Oct 2022 19:32:56 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C26610E4B6
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Oct 2022 19:47:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664825576; x=1696361576;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=pYYggf1QOwRiFqI6IwsjdaQk2Xctlhx2Q7jO54OfZYo=;
- b=VmOEMzV0/n7AH1/HA737SNosMN2PZ3avLm9UJdA+J4gsx9J3lUJqE02n
- FtEr3n3eGGcJQ5IPDOmAobaoCF98/yyJauTygcn0G2Ab++hyol7N7OoCp
- wsc1F6UoBloP0/HfsKY55Ah/qy2L/qkM00Fk0/EKukvDdRD1F3+gnrcpB
- eP2ujJv8XBwepMn7Dfq4M9bxNxAqDyqJDSm0txuZU7T6h4ujhCrRCo9iL
- NYRFLzK5zUm+xpxlnI34vQCdsgnGSbRGEmwgiZv1lSB3jYUKCO6zyWvSE
- v8f1y69jy2xaDTO93DqLL0PB3n/Jql/Q6epOANrwlrbGX1KfRGCbwkT2I g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="302720771"
-X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="302720771"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 12:32:55 -0700
+ t=1664826451; x=1696362451;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=+8p4j9zK1Mxjo8p+rV5kPC+GD6Cwty49kJQZsjd0Fmo=;
+ b=Ta1LA942BrgD4/ecx91/unTXUAMJOpeVDRIQnWpTKWpX8JzhxHlRNHcG
+ MJ6c9km7Eb2S4w6Ijslrbkz/ao1t6HK3DBidFF3i8vf/E4DSdb9sMhb14
+ F49JLpOr1NTvjPsPKB8iJFkUbqHFI3d5VBLI45o5hjTyo7PcKKd7IHm6U
+ bioowLDWR5QLAGyy6wFzcsAfy9gAYf/YCrlyHNyuaae4JkDvTs5/CPQNu
+ +F7kSfaEth3PgKqhvIbfRTNKfVq7BG8h/iQQS+HGrjqmIzeVVcB504wOm
+ QVGyftm4g16veyb+5ux70n1bAr0GAQsFHQ+eDAuAnj7AmLw5KluEqx4E+ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="303706037"
+X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="303706037"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2022 12:47:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="692214392"
-X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="692214392"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga004.fm.intel.com with ESMTP; 03 Oct 2022 12:32:55 -0700
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="766074619"
+X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="766074619"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga001.fm.intel.com with ESMTP; 03 Oct 2022 12:47:25 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 3 Oct 2022 12:32:55 -0700
+ 15.1.2375.31; Mon, 3 Oct 2022 12:47:25 -0700
 Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 3 Oct 2022 12:47:24 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 3 Oct 2022 12:32:54 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Mon, 3 Oct 2022 12:32:54 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Mon, 3 Oct 2022 12:47:24 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.107)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Mon, 3 Oct 2022 12:32:54 -0700
+ 15.1.2375.31; Mon, 3 Oct 2022 12:47:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hMOiyPwoy+GFxSEKq411Jxu2l00ZwsQQNsJncWn1ZkHi8QjAjm3I7gmqCwVrMa6Kq+M6m9rqhkrlkjltusAxjI+pc+EyLyjrrGgDu4ZFXoByd2tjrhJGpxmwD1IvG8Ti9j5+mH3cCNRF0N7wLApZRimHbiI818flUcoq1tLEiI19L4982Zi88BMj7MLk3BbADA+Ti5Nhwxnu1z6TYYu2osuwbMy4UWE0b8OyiVQIXAkKXiMJwzJeyTfvYLWdr9AuD4zS/fNoxpOmyVE630mdl6RhTjGENwq78kmUnWF9RhVEYXBx33eRmUuxjUvERQ5LTm+pHqfRmE6EnXGkE2Cu2A==
+ b=oMLdrRvUR/tfEKYAH/k93EtvUgSK2Lecd9k8vSVD8EPnp6ZNv3/GSagWgDLcd7J4ZEFD80dXEzH5hK39lHT2QVt0e2oL/ZPaNr9C3Lybjl6gVuvkr4q4hhNj7aBc4UxykFK1+DNjHe3F6aXQzHw8ypjEDKIfhTrr+FC0uJWYq4DSG661JDSwRIvU3I4n5a85TRsH7eLFayK0d+Zcw5R9iBngeJ89fcfJRVrGa7IM4knYqE/B5eWSNY6hDr7rhDslflJKVEEx+I2uEMYJjvlEM+0Ad5Md+MMJitd9ERoBboO7LFn0hz/CAw6lr6hIWy/MTRI7JqJ8aczXfj9n0pKIKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tGj5DfkPjFf/HcY8Myo4e2vLlBamQW3t6AtnpTWE7AE=;
- b=j00uI/1ZkFIGDP3g3mMUBCP1JzVwFFL/LrO2/aLqa+OAJBu72IQ6LNY/ShM9V0CsL7JC4ostgs9YtiwJVHJ4UZ9dxyOnCBOMxDUFkr4u+OEghN0ni0eqHbKBYX6ltmkM96Ycvy6ts7D+pLugcpIIzcwDMta78HKHwXmYJW6TCKlGAJ7M5gdxi+Wrr7oTSsQ8yajDKLSTl3kCwmA9U577qrl4KceARseF2+W8YsjenlpbBmu4WGwwWB1yOG1/HkBLMgjkkcWtJW+oJcGpo/M6ffwGliin/0z4C2EWhOqqHNMWNYfsjARB1iq79EdizbViY6aFwfKrRgYgbnGhQgZQfg==
+ bh=qDvwW2W9UqfiEAy6FCxGuC3ue01QIrLYt85UnXlHGnQ=;
+ b=Cj6xtuBg8oz+RQ1MgKiGzkGAjDvxgl3HUvsW1gvjp9QvcYrxMDVT5supYMoAnMfjW/fUL1YwzX1FbmW28kVeidKWDTW6+huvTCYDmXLiHq2COrFV2OukxyD+cVaRm3+y2u891Z3bT72+VDjVx94Kq5PGMkx4Kj7/hLI9sdzJCD8Fa3ag0+etu4evNyMF6awVxMypyTpCobrcz2A9/ukve27FRhKB8o1ufQlce8jR8pPXZmF8YknAsH+iu4Ay1IcC4ySJV91AQ3VpIZMtDQgYpN4D8hm11bzaS55WCw76OjEObZSQ1baqzdlEGZzc770nNqIGn+t1SR3rP9AMB73qWw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com (2603:10b6:301:11::11)
- by PH7PR11MB6794.namprd11.prod.outlook.com (2603:10b6:510:1b8::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Mon, 3 Oct
- 2022 19:32:53 +0000
-Received: from MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::29f8:1b74:685c:6198]) by MWHPR11MB1632.namprd11.prod.outlook.com
- ([fe80::29f8:1b74:685c:6198%8]) with mapi id 15.20.5676.028; Mon, 3 Oct 2022
- 19:32:53 +0000
-Date: Mon, 3 Oct 2022 12:32:50 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Yzs44t6dUNd8LjZw@mdroper-desk1.amr.corp.intel.com>
-References: <20221001004550.3031431-1-matthew.d.roper@intel.com>
- <20221001004550.3031431-15-matthew.d.roper@intel.com>
- <406ebfa6-b00c-b2ba-fd27-04e46de7ffc1@linux.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <406ebfa6-b00c-b2ba-fd27-04e46de7ffc1@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0377.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::22) To MWHPR11MB1632.namprd11.prod.outlook.com
- (2603:10b6:301:11::11)
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by DM4PR11MB7302.namprd11.prod.outlook.com (2603:10b6:8:109::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.15; Mon, 3 Oct
+ 2022 19:47:22 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::7750:dd86:4ef:afc6]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::7750:dd86:4ef:afc6%7]) with mapi id 15.20.5676.030; Mon, 3 Oct 2022
+ 19:47:22 +0000
+Message-ID: <9703bd69-3b42-3e64-04e1-5b8fc6e9f367@intel.com>
+Date: Mon, 3 Oct 2022 12:47:19 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.2.2
+Content-Language: en-GB
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20220930010507.108296-1-alan.previn.teres.alexis@intel.com>
+ <20220930010507.108296-2-alan.previn.teres.alexis@intel.com>
+ <49be7acd-79b8-2937-96ec-5a9728006d76@intel.com>
+ <acdf464bc515f0489c70c9282dcccce1cc2e85ca.camel@intel.com>
+ <0dad721a-2308-588c-8b7d-8ac98d17f3dc@intel.com>
+ <2cb443945f86c2bbcfef78ca19cc4a85fdae3666.camel@intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <2cb443945f86c2bbcfef78ca19cc4a85fdae3666.camel@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR05CA0046.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::21) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR11MB1632:EE_|PH7PR11MB6794:EE_
-X-MS-Office365-Filtering-Correlation-Id: 79c30f9f-60aa-4541-fb72-08daa5761085
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|DM4PR11MB7302:EE_
+X-MS-Office365-Filtering-Correlation-Id: bacef55e-fa60-41c0-426d-08daa57816a4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UdK8B5vQfv8ga35fMLQobC+dawS3UgZ8OlYsypcfhEWeRY0Rxm4u8VzsF9Dp12QL1BBby6zuE/92LDcpGVIqO5Igh8TObAEafXfzk2ViXedk8IiyJnyQE24HVirRj9EXROHJd4jjiEQ1CKR1mvTYKCnzi00HuwxpriTssA9W70IA2ikjFNxVHA8DsbZfR3s7FEeujlXLWGX6lvPqxeTTrmCmbslXcBd8NRhkprZAf3/mZXGVDctPWpscSIlVqB3ZlDFn2HQcwIouzCShUA9wu2DFwsx/osHx9kgdEXgO6/8uARe+i6atTn/RVmM/GqAdgKx4mLwwFnf0p7KH4WQTYoPFnW8p4FQJwThfJwFUSct0ttqMW4/aR0kA9P5nenXvePAvyUwHwXFivDzwXIxDoAs2GOAuA/5aaiKld1G41pLasc6pz7LWV0pu13Z+CTrB60asgcXzaC9h/JvFaGUHKxca/+5UEoZ+dmuOyub92j32BTgl+jwz7caEntZzWDEa9PIxtmDdrNhDIupPzIc0gMh9NLX78JcKqftVGTby6E19uSTa5RbQtieiRCb5uBjiCYwidarW+u2Fik5weca63XAzKca97cMROAeOy6JEz7L7v//Efza4iuiWNyYx0PKx3gGAl7PJAjJR8rZH8y6UmxOrjZlY1g+GeKUIiz/rdxIsnBNf2bUG1Ic0Vi+oMvcZCRvP6DhviMS9lo4aj0nqYw==
+X-Microsoft-Antispam-Message-Info: JX/DZ/RCU8EQ++2h8k5PKZVJu9jSmEIm8iElNfyibKcKr2MREQvuQyZnjY2eFRuniqx0/7v8znmq02mMhBSzWzHJFbPlcYF5w3al2lSSSANh9nO0AJPDCs+IslPtbs1VGGf4sz4FGyYuvy5rvPDEM13v7czlUaZv0CQ2wfp2hHwW1Uo0s+KU1s4cRWVXgoWbUK6dAF9ZqteaEUEhP453vYJwn267e/bCBmaaq6h0zopGtx0Nz3MhjoH1F5g/ud4VfMOYQQCuiOYE2I7R9laDGtDdDsngBAecck+/HI79CZTZxITyLvwaF2xlxlZEXZPbbVtUCnWAQO9eBpqZG9AcVryRu3yJAkoNv5rFBPdHEOoFBnTQ+M8ZDwRNdp/8ZNv/PKoGEs1HooUplYH2vIg5EKga2d+2o5n9+Fu48V0Mxs70XgSWjAG5y4PhIEHLmAv7ki4hYAyewJB68H+OYK5wFFcfgjbHz9B3y9zeoOE/XGqt5CR+hRmA9wNd2a4SzB30QJJ+n3gB40DcGJG7ykYrfeFZM4OyRKstqzNEqmq5gPi7+zMMGFV1+f0+8ovRUHGsXlOrWOPGlbEQPWwg2almzd5uOaSeYUNhSDBjD5DbvQF9DNJzMKhSTRHEijTQi3Mhv5uDd1wALKBELNELyPws862D16XaHuskITb6eBALaR3s6rBKuxnulKh15LblS4XqCmdzScwnH9UNNtA4d7cRBHwh/jHkoWDL6E10TXTRD1OeUbOHpm3k7eOlyIXcfZYDUDg+OTSDx97bnjtXDnBcygIApQtNTHzMRfOQdkV/3j4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR11MB1632.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(376002)(366004)(136003)(346002)(396003)(39860400002)(451199015)(38100700002)(82960400001)(478600001)(6486002)(6916009)(66946007)(66556008)(8936002)(4326008)(53546011)(66476007)(316002)(41300700001)(6506007)(26005)(8676002)(86362001)(5660300002)(6512007)(2906002)(186003)(83380400001);
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(376002)(39860400002)(346002)(136003)(366004)(396003)(451199015)(31696002)(2616005)(478600001)(2906002)(86362001)(6512007)(5660300002)(36756003)(6506007)(66946007)(6666004)(186003)(6486002)(316002)(38100700002)(53546011)(66476007)(110136005)(83380400001)(8676002)(26005)(8936002)(41300700001)(66556008)(31686004)(82960400001)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?eNX4Fe9snSGvHr8G5xu9ejn0bPrmqVSJPQteCseFP/sUfHoqWR3efcbtGxST?=
- =?us-ascii?Q?9r6D7MIf+fVjcoBkUoejr1I2NvVNxToEMzuUI8dmDSp10IF3KnsENcPhBtZh?=
- =?us-ascii?Q?RULfEW99DyXb0j1cBzjD3QbZTmJ0V7GnOZTjNRMjY41reK0wBB9O+bVoV00/?=
- =?us-ascii?Q?VRD3lkin1F/1ytR9aVVEwUv/I9PjWWS0/5czrLEmKAYaVXWhWGRhH3sW9pLv?=
- =?us-ascii?Q?UL/1bIfWNmrDp4jLDcVJljgjaaEaMjR8rkz4dXLlshbWtDYRNFOWTeVzSJFy?=
- =?us-ascii?Q?e68gCTCxuSgZt894a19ubuGxBVu2mOLFiQcExBGSFpcsEP9+VVVhg3SxW89/?=
- =?us-ascii?Q?IPJejK86Au69BBVLr2QZgmHfOLh0C+8jAEbKq6ZyhtXu+4546tg+262NC5BE?=
- =?us-ascii?Q?gZqLo97tv4S6Rt84W8EKZDol/iuVqg9zNOQV8Vx9VPZKK2TLMd+LLfN/Ke+h?=
- =?us-ascii?Q?S8mT4qzOvRAXoah+zcxKXz5y3Zdt0nSyGsPJ0cQKR1ojnLeANGMfQ8Ms6gkV?=
- =?us-ascii?Q?ajALrObPawnG1jIAAdDRkLIEwq02/1/Us/N6aKkWr/TQKikgwMcIu7fsTqoN?=
- =?us-ascii?Q?CEmDzDjyB1t6s3kLFhGlE+mLwwv4a7TORw8MQvlugBA+8fWVxFcqw8gkkJiZ?=
- =?us-ascii?Q?PZgVR4DUDZe1GTztq+0qwOM3FoRLC1itJ3HohyGTdkaSmwA04KA/Ndl/GQy1?=
- =?us-ascii?Q?d1Y/Efw8q/LHWMMJwDjmuhTHIEzETdVGvZX0qMSFYOe8c/J1mxZ3oUGwPH4h?=
- =?us-ascii?Q?6CN6qKeJYVt5wbZk8XSOpswHMU7HNpuu/VIztFqyvUmZdbSOakU3DZyV4Ei2?=
- =?us-ascii?Q?HHJ3c1GuISYlxwc7QT9y1zqbmWrabOTGDYIuTBsIUHg4U3/3cs6v4FGD/E7H?=
- =?us-ascii?Q?nQKSCgPCyTVJS5ot1SWLjKJDNGU8GmJPClvYzB1/HZDHCWl6iKt6zbunAX3M?=
- =?us-ascii?Q?zHTKXhblzwPbP8QtC5pnvF7Exn3dYoGXTNcXllr6vsMBhr2B6EU79kgzpWNV?=
- =?us-ascii?Q?J1eyrocbBEHvNDrEoI/ORA4aLrfm0rVblIhfWcLii4zvL7j1sWNor8iopfQ7?=
- =?us-ascii?Q?C64YkbdOnIE4rPbENfiudXTiih0HMI5k0c6ngYF2l7ZMMfNbhk2RZl9Aoegq?=
- =?us-ascii?Q?6oztH0wuklw4uDzgUdxeM6GECiTCFos4t79R6C8h3TssfhUhx0jHAD0wt7xV?=
- =?us-ascii?Q?e2tKGI0ITUxOSoZC2YRUiwATpzsVrYjw9aqw1QOJl/U+esAB2ZCsjFQKd2ZM?=
- =?us-ascii?Q?TnsVV1eYr6QWZYfPvSQFHtAVSz/P8RPMNKnt3hxdtQX5J2MxNqJnhqIedW4D?=
- =?us-ascii?Q?oD6qH520D7i2sZ5zme6ShcuGHpuAiCnZMy0qGGVJC/1HNiHPC2k/3UIBDwHv?=
- =?us-ascii?Q?sw0SsFk6qIARuLqehHW3aFsTXVqltj9h9E++cBciww9Lz/IXSZwu5Kunzi3a?=
- =?us-ascii?Q?yx7e5s+PBMUVGrkAi45kkLd1SUpuwVDft1sgqvJCuP+9yZNtqgVEJxkiATOB?=
- =?us-ascii?Q?NOUxCYBoY5yIz3A0YFaWtSo/uPV+yD14kuB38+j3nLwQz2hPGUEi4HNjBAXH?=
- =?us-ascii?Q?tHq3FTBd3VTEQEP07kKY7lHOMRZyPcwNB+tVAhzJK077gd+GVdJYn+/COS3n?=
- =?us-ascii?Q?vA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79c30f9f-60aa-4541-fb72-08daa5761085
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1632.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eU9USm9NbXVwRzQ2b2dpdVpCSXZHZ2NaTy9wRDJGQ1JLRFJkUGxtbmZRUEU1?=
+ =?utf-8?B?cTJqbDJqeEQyUmxUR29tcm5nOVFrbzNKcnlkM0YxTlAwUDB4NzJZUGRMUDZS?=
+ =?utf-8?B?VlJaejBodGx5OWFlb09NWnM4Q3NNTFpPRzJVMGNxYS9Cdlp3ZlI3VjZhSDRJ?=
+ =?utf-8?B?U0I0SURncUZJM3dVTzBES1VnWThEWHp5cTZCeGlkQlI5NmJOYWs1SlMxeXFw?=
+ =?utf-8?B?WkV3bVVvdnNqZFpYVXlHSzc1aHZpQSsyREVHZUtzUTlNSTE2cW0rZGRrZExF?=
+ =?utf-8?B?UDh5aVBrTk9ZNGZueUljSUZoTEFzQ2JZMjBqV3doQU81V1l1SUtNTWZVWk04?=
+ =?utf-8?B?T3N6eitoTlByOVlRRytJYTd2MktmdTd4SDFRelo1d2FoaVNiTVQxVk1hQjJt?=
+ =?utf-8?B?a1crUjdQdENlM2lwSGpsZENsWVFhd0JGSmVIUlFleVRXWisyYXJhUGlXaEpS?=
+ =?utf-8?B?RXBFYStvaXVhWTNMaWlLMmhCa2dtWFBhK2lGTjhpcVlacG41TFE2ZkRoWEVo?=
+ =?utf-8?B?VWw2RW9lZ0R4WnI3Z1VVTTRhUkZCQ2xXTkF4Vy9nSUpTNjB1dzIrdCtUZHAz?=
+ =?utf-8?B?MHgvYjF0VkdoNTIxWWZpWWQzeUY1ZXJjQnUxVGVURldnWVRuRG9BRlVZNmxV?=
+ =?utf-8?B?aTl5T0d2ZThKRlZCU0ZBdVUxMmhRK2ozMlZCTTN2UnIvbTNWbVN0MkE1eEhX?=
+ =?utf-8?B?d2JmbUlRZ3hNWkVKVGhXMkJiakFTckI1emlYOGEvOUlFRG1vaDRQRWRWNk1E?=
+ =?utf-8?B?RFBjbm9MQkZ4OHp6Rm5SbExpV3ZzcW90Y2s2dGc2KzdKejM3QmN0cGh4OU1R?=
+ =?utf-8?B?Y0gwcElhTDBnU0tDc3cwZ3lGcXBVSkRwYjJ5SHZDWWQ0K2FLV0EwbFhnZHdU?=
+ =?utf-8?B?M0x3MFhyQnJ2aHpIQWRPRHhiR1Y5dWdud1FNWWE2RStxZkFaajNmRUdXK0k2?=
+ =?utf-8?B?RlpNWjNBS09DTUpGcnR4NXVaUllkb0RaZlkvOW91K1J3N2Y0d00vV2lwaDU0?=
+ =?utf-8?B?Wk9tcW1mNCtiZ2ZqUWgydTR3ODRhY2JWRU5iY2pBek9vb2tRTGVhTnhKQUJj?=
+ =?utf-8?B?QjA0aFEvYU16TTRrWGMvaHFUYTdPWmUrcE1UUmU2MnhBYTBzQXQrNE5aNEJQ?=
+ =?utf-8?B?aWVScHZadXN4Y3ltbFhYd1prSFkrUVBDZjBKcUptQ3MrQzhyQTRoWlI2Q3RI?=
+ =?utf-8?B?Q25zdnVGWjBwR0tKU3pTay9vTG85NGhjanFUWW5sZ3hhMTU5ZE5YK285NGQ2?=
+ =?utf-8?B?M1ZNMnZ5bitGYWg0STZiT2EzaW9UQnVrNjNpVkNQdE90QnV1TTNYckF1QUhL?=
+ =?utf-8?B?a2s4UU5Rb0tKTkQ3NEpBVkUyMlFlUlIrOW5PUTRBUmRiTFIxMmhRdDJJZHhu?=
+ =?utf-8?B?dUlyMEhwK0doejNyRFRxeHhGRkVaZDFiLzlMZTNiZ0VjWlkvemk5OTFxajA2?=
+ =?utf-8?B?VGNYYittMER5Tzh2ak5FNy9tbjVUWTJsSXJ0U3B1SDMxWXBSbXpwcm9VajdD?=
+ =?utf-8?B?Z1BXc3ppa2x6ei9SOERnLzNBSzhGOE5CR1NtMDBPOUQwVlRpVVcxT2dVTm1l?=
+ =?utf-8?B?cHhIVmNOUENmOUxZQW10TEYyNlZXK0U2cVZhMGpvRHFxUUVNdkRZNmU5bEgr?=
+ =?utf-8?B?YzlBSFpKanNURTQyZncvblpjckk5eE4xNTJlTEx6QVlWWTQvNVcvN0NTTmoz?=
+ =?utf-8?B?MjdzYThGMmdzQlA1YUZHNlZORHFtZlFlNndJUmNsdTRjTEZyN21zTHdxYjMz?=
+ =?utf-8?B?dFNPZ2tFRFJoU3FhaDZyK0MwRU43cnc1R1k3M2Y1eE8wVmZkUDRhVjRVQ3Nx?=
+ =?utf-8?B?eVIyTWpQN3RLemtXcUZmQWVtYjZHaE1PU3Q5T1JnSVBLOHNzQVI3cFRjcTRD?=
+ =?utf-8?B?MGRyTzJyMXM1cEFQTkI2aVJqNjZCcVdxT1EvaTc1dEt4eFlzU0xJU0RvRDIy?=
+ =?utf-8?B?aElWSVpJN1lReDZobHA3dlYydXpaZWpKaTVYQ0JQTCs1WXV0aUFTRVlmekNO?=
+ =?utf-8?B?RDlhcXlYMEFsVFdNY2Z6eldJQVNabnFnZWJXYUg5a2VkN0MvQ1U5RG13Tmxr?=
+ =?utf-8?B?bU1BUUF5eGpORzJKTU5jTWo2cjBYNHlVYVN3OXl0TU4yQnBCay9SWC9XdDl2?=
+ =?utf-8?B?bWFNZGp5TGRIUnU2TEZNYlVHOG4wSzBaa0MrOW8waG1VMWNweTBJZ21UNG5j?=
+ =?utf-8?B?UGc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bacef55e-fa60-41c0-426d-08daa57816a4
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2022 19:32:53.0786 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2022 19:47:22.2274 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Lh++kX/rjOaCA7I7cGixxU7MkSNCrAGv/kB2cMPw/GQ2qsKyIiJ5FIo1+dwXAeWSPQjTXGsY25gtpb5kmY8fBcULkGP3xCfla5dgGCkcnNg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6794
+X-MS-Exchange-CrossTenant-UserPrincipalName: c/mBKOmN0FlsOs+StKGvS4gNtGooFYY8hdPTX9dvElNYja56T+9BsS/1P4keb5sSye0WCyD7jPchd5PQcZ1lD6RoJM7GZerUFe709KsuXmE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7302
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 14/14] drm/i915/mtl: Add multicast
- steering for media GT
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/guc: Fix GuC error capture
+ sizing estimation and reporting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,96 +165,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ravi.kumar.vodapalli@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 03, 2022 at 09:56:18AM +0100, Tvrtko Ursulin wrote:
-> 
-> Hi Matt,
-> 
-> On 01/10/2022 01:45, Matt Roper wrote:
-> > MTL's media GT only has a single type of steering ("OAADDRM") which
-> > selects between media slice 0 and media slice 1.  We'll always steer to
-> > media slice 0 unless it is fused off (which is the case when VD0, VE0,
-> > and SFC0 are all reported as unavailable).
-> > 
-> > Bspec: 67789
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_gt_mcr.c      | 19 +++++++++++++++++--
-> >   drivers/gpu/drm/i915/gt/intel_gt_types.h    |  1 +
-> >   drivers/gpu/drm/i915/gt/intel_workarounds.c | 18 +++++++++++++++++-
-> >   3 files changed, 35 insertions(+), 3 deletions(-)
-> 
-> [snip]
-> 
-> > +static void
-> > +mtl_media_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
-> > +{
-> > +	/*
-> > +	 * Unlike older platforms, we no longer setup implicit steering here;
-> > +	 * all MCR accesses are explicitly steered.
-> > +	 */
-> > +	if (drm_debug_enabled(DRM_UT_DRIVER)) {
-> > +		struct drm_printer p = drm_debug_printer("MCR Steering:");
-> > +
-> > +		intel_gt_mcr_report_steering(&p, gt, false);
-> > +	}
-> > +}
-> > +
-> >   static void
-> >   gt_init_workarounds(struct intel_gt *gt, struct i915_wa_list *wal)
-> >   {
-> >   	struct drm_i915_private *i915 = gt->i915;
-> > -	if (IS_METEORLAKE(i915) && gt->type == GT_PRIMARY)
-> > +	if (IS_METEORLAKE(i915) && gt->type == GT_MEDIA)
-> > +		mtl_media_gt_workarounds_init(gt, wal);
-> > +	else if (IS_METEORLAKE(i915) && gt->type == GT_PRIMARY)
-> >   		mtl_3d_gt_workarounds_init(gt, wal);
-> >   	else if (IS_PONTEVECCHIO(i915))
-> >   		pvc_gt_workarounds_init(gt, wal);
-> 
-> Casually reading only - wouldn't it be nicer if the if-ladder in here
-> (gt_init_workarounds) would have a single case per platform, and then you'd
-> fork further (3d vs media) in MTL specific function?
+On 10/3/2022 11:28, Teres Alexis, Alan Previn wrote:
+> On Fri, 2022-09-30 at 15:35 -0700, Harrison, John C wrote:
+>> On 9/30/2022 14:08, Teres Alexis, Alan Previn wrote:
+>>> I disagree because its unlikely that all engines can reset all at once (we probably have bigger problems at the at
+>>> point) and if they all occurred within the same G2H handler scheduled worker run, our current gpu_coredump framework
+>>> would just discard the ones after the first one and so it wouldnt even matter if we did catch it.
+>> So min_size is not actually the minimal size for a meaningful capture?
+>> So what is? And remember that for compute class engines, there is
+>> dependent engine reset. So a reset of CCS2 also means a reset of RCS,
+>> CCS0, CCS1 and CCS3. So having at least four engines per capture is not
+>> unreasonable.
+>>
+> Alan: min_size is a meaningful size for the worst case scenario of collecting the guc-report. However due to gpu-core-
+> dump, its not meaningful in terms of reporting that information out to the user. Thats not a limitation of this
+> subsystem.
+I'm not following what you mean about gpu-core-dump. The point of the 
+warning is to let the user know that the interface they want to use 
+(error capture via sysfs) might not be complete in the majority of 
+cases. If there is some catastrophic worst case scenario that overflows 
+but 99% of instances are fine then that's what the drm_notice about 
+'spare_size' is for. But if the 99% of instances of a capture are going 
+to overflow then that is what the drm_warn about 'min_size' should be for.
 
-Actually, that reminds me that we probably need to change this in a
-different direction --- starting with MTL, we should stop tying
-workarounds to the platform (IS_METEORLAKE) but rather tie them to the
-IP version (i.e., GRAPHICS_VER or MEDIA_VER) since in the future the
-same chiplets can potentially be re-used on multiple platforms.
-Conversely, you could also potentially have variants of the same
-"platform" (e.g., MTL) that incorporate chiplets with different IP
-versions (and thus need distinct lists of workarounds and such).
+>> It seems pointless to go through a lot of effort to calculate the
+>> minimum and recommend sizes only to basically ignore them by just
+>> whispering very, very quietly that there might be a problem.
+>>
+> Alan: I already responded that i will re-rev as per your recommendation and switch back to drm_notice.
+>
+>> It also
+>> seems pointless to complain about a minimum size that actually isn't the
+>> minimum size. That's sort of worse - now you are telling the user there
+>> is a problem when really there isn't.
+>>
+> Alan: the min size is accurate - but whether we report to the use about them possibly facing a problem is where it gets
+> a bit unclear because of the limitation in the gpu-core-dump framework. We could drop the message completely if you like
+> - but then we'd have to remember to re-add it if we fix gpu-core-dump in future. For now, as i mentioned in the last
+What limitation in the 'gpu-core-dump framework'? What is the fix required?
 
-At the moment MTL is the only platform we have with the standalone media
-design so there's no potential for mix-and-match of chiplets yet, and
-IS_METEORLAKE works fine in the short term, but we do need to start
-planning ahead and moving off of platform checks in areas of the driver
-like this.
+> reply, i have already changed it back to "notice" as per your last comment. Perhaps you should have looked at rev2 which
+> was posted before your responses above. As mentioned in last reply, i disagreed but i am committing to your request
+> which was fixed in rev2 as per your request.
+The point of a code review is not "I say X so you must do X, immediately 
+post a new revision now". I asked some questions. I stated my opinion 
+about what the end user should see. If you think your implementation 
+already matches that or you disagree because you think I am basing my 
+comments on incorrect information, or even just that you disagree with 
+my reasoning, then you should not blindly post a new revision saying 
+"here are your changes, I don't like it because Y but just r-b it and 
+I'll merge". You should reply to the comments with your thoughts and 
+suggestions. Maybe the reviewer is wrong!
 
-> 
-> Also, series ends up with mtl_media_gt_workarounds_init and
-> mtl_3d_gt_workarounds_init apparently 100% identical. You will need two
-> copies in the future?
+>> IMHO, the min_size check should be meaningful and should be visible to
+>> the user if it fails.
+>>
+>> Also, are we still hitting the minimum size failure message? Now that
+>> the calculation has been fixed, what sizes does it come up with for min
+>> and spare? Are they within the allocation now or not?
+>>
+> Yes - we are within the allocation with this patch (the fix of removing the redundant register-struct-size
+> multiplication brought the number down significantly).
+Bringing in comment from other thread:
+ > Some context: with the calculation fix we are allocating 4MB but we 
+only need 78k as min-est.
 
-Yes, the two GTs are expected to end up with completely different sets
-of workarounds once the platform is enabled.  We've just been delaying
-on actually sending the new MTL workarounds upstream to give the
-workaround database a bit more time to settle.
+Wow! That is quite a big smaller. And much more plausible! So if 
+min_size is 78KB, what is spare_size now?
+
+Sounds like we can drop it down to a 1MB allocation. And even if 
+min_size is not the absolute minimum but quite a bit more worst case 
+kind of size, it still seems reasonable to keep it as a warning rather 
+than a notice. Given that it is so much smaller than the allocation 
+size, if it does somehow overflow on some platform/configuration then 
+that sounds like something we should know about because it likely means 
+something is broken.
 
 
-Matt
+>> John.
+> So how would you like to proceed? Could we reply on rev2 btw?
+I would like to answer the questions/concerns before jumping in to 
+writing/re-writing code.
 
-> 
-> Regards,
-> 
-> Tvrtko
+Why split the email thread? The discussion is already happening here. 
+There is no point splitting a single discussion across multiple patch 
+sets just because a new patch has been posted if that patch does not 
+actually change the discussion.
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
+John.
+
