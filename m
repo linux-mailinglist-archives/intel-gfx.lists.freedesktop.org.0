@@ -1,42 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1230A5F238B
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Oct 2022 16:18:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE1C25F2804
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 06:37:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A926110E32B;
-	Sun,  2 Oct 2022 14:17:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0194710E200;
+	Mon,  3 Oct 2022 04:37:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC61910E323;
- Sun,  2 Oct 2022 14:17:51 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7170D60DEA;
- Sun,  2 Oct 2022 14:17:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58E7DC433C1;
- Sun,  2 Oct 2022 14:17:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1664720269;
- bh=O0dVpkklwl+/CmBu9T6X6qz9+BKjvm8jj7H5XyJIFtI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=hv36Au6oqRLpsEtoqNEzc96LyUd8otjN69WNWwMaVOA2KtRhKKR0U4f/B3zRswJDy
- yyBwBig/qpyA/eOrtxwCQD+p3Km+lpYHIfpIP4XEqI6eXXDVDXaJMn/cCyPGsfo5cZ
- flzQ6mTULmsdWPgbJIE9Kei2ak6XKy4CLFoF9yBo=
-Date: Sun, 2 Oct 2022 16:18:27 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Zheng Wang <zyytlz.wz@163.com>
-Message-ID: <Yzmds3DXu32EeSO5@kroah.com>
-References: <CAJedcCzjWw6v5Nt42jsCStdpwHuz13D+q-CD=6ycVWBczY+4mg@mail.gmail.com>
- <20220928033340.1063949-1-zyytlz.wz@163.com>
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
+ [IPv6:2607:f8b0:4864:20::829])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67FA310E0AA;
+ Mon,  3 Oct 2022 04:37:09 +0000 (UTC)
+Received: by mail-qt1-x829.google.com with SMTP id b23so5768963qtr.13;
+ Sun, 02 Oct 2022 21:37:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date;
+ bh=BvAlvanR3o7fXwx9KEh86a8oE8coV41tHMYXTm6mxvI=;
+ b=nsLU8NdaXsSd/W61Jc2+eOY0OKIQkyGMKj5oGWlPAndHS2M+HF6uBSe+oPNyQAjvk9
+ v2rq7d39Q6KucH1zaGV+ejvoiyvCOTleSkmyMGoWyBjf3wRAnud/vntV05OErzo+Aw34
+ 1fsfaIiY+LLEBxMvl1+MlIVloqgjN6dgfXXl6koB1gOFzDOfWHgjlTSC5pND/POUOnUv
+ K9YpuSBUZww4m3pIv+9oXOUQIVkzdHjsK6OpDNSacCmCHirrQKFWjIDudyLWEdunpaut
+ g82Np1YobhWhU4nucWrwTSOfji/dHvZ9mzb4iLSUaASXhv+HsVytsg4CvLdWRDRCCrws
+ vWiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date;
+ bh=BvAlvanR3o7fXwx9KEh86a8oE8coV41tHMYXTm6mxvI=;
+ b=xFAkJ/YXOTabnOIKwJvUcOatTjSpqbnxCWXIgVC3SpbUX5PqM/MGySVMEYfEjjmCF3
+ 2reqT70TdzhauKIq2IkLzNWLpEayuhxZvTMrIrqlN5l/FqMkHJU9Y9D/VkPGtnqw0xlG
+ /4YIHn88pI6lqX9F9TauxtfuKzdIl2Mqykk5MrIvvhpCLnSWb8VCi85kKnpN4SxS4v02
+ j5XJjJBNLxEzJ1QdzDnvsR+nifQlVzBxF3BTWjGsmTpEctHqQZv34WDD9WpVi3GTT9cU
+ WbQLU8GTfynu9lCBNToxYqTmojTHDd6OoRsNgy2T/N9bDm7GWFwuNsFXYOnX2mix+6cT
+ v3UQ==
+X-Gm-Message-State: ACrzQf2c+8a18kYJtDZO474k1z8OqfQAHGqgRn4lWkZ7C93DTNsnPhGX
+ B0Mw7Rwk4Zz8p0Wy3r4Tlza92pc3wxMckGXRA1g=
+X-Google-Smtp-Source: AMsMyM5Ztt/VxNlvaOYQvQLHOHvlYqVhf5VigvFxWXmC81iKMpkY36bXzW3+VfKnu23HeokGiLuY8vwWw6k+VZtsIvA=
+X-Received: by 2002:ac8:7d14:0:b0:35c:bdbe:5b97 with SMTP id
+ g20-20020ac87d14000000b0035cbdbe5b97mr15029892qtb.272.1664771828453; Sun, 02
+ Oct 2022 21:37:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928033340.1063949-1-zyytlz.wz@163.com>
+References: <CAJedcCzjWw6v5Nt42jsCStdpwHuz13D+q-CD=6ycVWBczY+4mg@mail.gmail.com>
+ <20220928033340.1063949-1-zyytlz.wz@163.com> <Yzmds3DXu32EeSO5@kroah.com>
+In-Reply-To: <Yzmds3DXu32EeSO5@kroah.com>
+From: Zheng Hacker <hackerzheng666@gmail.com>
+Date: Mon, 3 Oct 2022 12:36:56 +0800
+Message-ID: <CAJedcCy5TbdskDVK5Z2-Bm9gTG+sbo1KkFn3_2n65Sno7xG+ag@mail.gmail.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double free bug in
  split_2MB_gtt_entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -52,44 +66,19 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, hackerzheng666@gmail.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- 1002992920@qq.com
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, 1002992920@qq.com,
+ Zheng Wang <zyytlz.wz@163.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 28, 2022 at 11:33:40AM +0800, Zheng Wang wrote:
-> If intel_gvt_dma_map_guest_page failed, it will call
-> ppgtt_invalidate_spt, which will finally free the spt.
-> But the caller does not notice that, it will free spt again in error path.
-> 
-> Fix this by only freeing spt in ppgtt_invalidate_spt in good case.
-> 
-> Fixes: b901b252b6cf ("drm/i915/gvt: Add 2M huge gtt support")
-> Reported-by: Zheng Wang <hackerzheng666@gmail.com>
-> Signed-off-by: Zheng Wang <zyytlz.wz@163.com>
-> ---
->  drivers/gpu/drm/i915/gvt/gtt.c | 16 +++++++++-------
->  1 file changed, 9 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-> index ce0eb03709c3..550519f0acca 100644
-> --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> @@ -959,7 +959,7 @@ static inline int ppgtt_put_spt(struct intel_vgpu_ppgtt_spt *spt)
->  	return atomic_dec_return(&spt->refcount);
->  }
->  
-> -static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
-> +static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt, int is_error);
+> That is a horrible way to make an api (and it should be a bool too.)
+> Now every time you see this call in the code, you have to go look up
+> what the last parameter means.  Just make 2 functions, one that does the
+> "is error" thing, and one that does not, and that will be much easier to
+> maintain and understand for the next 10+ years.
 
-That is a horrible way to make an api (and it should be a bool too.)
+Got it. I'll figure out anothr way. :)
 
-Now every time you see this call in the code, you have to go look up
-what the last parameter means.  Just make 2 functions, one that does the
-"is error" thing, and one that does not, and that will be much easier to
-maintain and understand for the next 10+ years.
-
-thanks,
-
-greg k-h
+Thanks,
+Zheng Wang
