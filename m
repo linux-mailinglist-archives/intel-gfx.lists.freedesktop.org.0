@@ -1,58 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE1C25F2804
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 06:37:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2679A5F282E
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 07:35:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0194710E200;
-	Mon,  3 Oct 2022 04:37:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3EFF10E056;
+	Mon,  3 Oct 2022 05:35:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
- [IPv6:2607:f8b0:4864:20::829])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67FA310E0AA;
- Mon,  3 Oct 2022 04:37:09 +0000 (UTC)
-Received: by mail-qt1-x829.google.com with SMTP id b23so5768963qtr.13;
- Sun, 02 Oct 2022 21:37:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date;
- bh=BvAlvanR3o7fXwx9KEh86a8oE8coV41tHMYXTm6mxvI=;
- b=nsLU8NdaXsSd/W61Jc2+eOY0OKIQkyGMKj5oGWlPAndHS2M+HF6uBSe+oPNyQAjvk9
- v2rq7d39Q6KucH1zaGV+ejvoiyvCOTleSkmyMGoWyBjf3wRAnud/vntV05OErzo+Aw34
- 1fsfaIiY+LLEBxMvl1+MlIVloqgjN6dgfXXl6koB1gOFzDOfWHgjlTSC5pND/POUOnUv
- K9YpuSBUZww4m3pIv+9oXOUQIVkzdHjsK6OpDNSacCmCHirrQKFWjIDudyLWEdunpaut
- g82Np1YobhWhU4nucWrwTSOfji/dHvZ9mzb4iLSUaASXhv+HsVytsg4CvLdWRDRCCrws
- vWiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=BvAlvanR3o7fXwx9KEh86a8oE8coV41tHMYXTm6mxvI=;
- b=xFAkJ/YXOTabnOIKwJvUcOatTjSpqbnxCWXIgVC3SpbUX5PqM/MGySVMEYfEjjmCF3
- 2reqT70TdzhauKIq2IkLzNWLpEayuhxZvTMrIrqlN5l/FqMkHJU9Y9D/VkPGtnqw0xlG
- /4YIHn88pI6lqX9F9TauxtfuKzdIl2Mqykk5MrIvvhpCLnSWb8VCi85kKnpN4SxS4v02
- j5XJjJBNLxEzJ1QdzDnvsR+nifQlVzBxF3BTWjGsmTpEctHqQZv34WDD9WpVi3GTT9cU
- WbQLU8GTfynu9lCBNToxYqTmojTHDd6OoRsNgy2T/N9bDm7GWFwuNsFXYOnX2mix+6cT
- v3UQ==
-X-Gm-Message-State: ACrzQf2c+8a18kYJtDZO474k1z8OqfQAHGqgRn4lWkZ7C93DTNsnPhGX
- B0Mw7Rwk4Zz8p0Wy3r4Tlza92pc3wxMckGXRA1g=
-X-Google-Smtp-Source: AMsMyM5Ztt/VxNlvaOYQvQLHOHvlYqVhf5VigvFxWXmC81iKMpkY36bXzW3+VfKnu23HeokGiLuY8vwWw6k+VZtsIvA=
-X-Received: by 2002:ac8:7d14:0:b0:35c:bdbe:5b97 with SMTP id
- g20-20020ac87d14000000b0035cbdbe5b97mr15029892qtb.272.1664771828453; Sun, 02
- Oct 2022 21:37:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAJedcCzjWw6v5Nt42jsCStdpwHuz13D+q-CD=6ycVWBczY+4mg@mail.gmail.com>
- <20220928033340.1063949-1-zyytlz.wz@163.com> <Yzmds3DXu32EeSO5@kroah.com>
-In-Reply-To: <Yzmds3DXu32EeSO5@kroah.com>
-From: Zheng Hacker <hackerzheng666@gmail.com>
-Date: Mon, 3 Oct 2022 12:36:56 +0800
-Message-ID: <CAJedcCy5TbdskDVK5Z2-Bm9gTG+sbo1KkFn3_2n65Sno7xG+ag@mail.gmail.com>
-To: Greg KH <gregkh@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix double free bug in
- split_2MB_gtt_entry
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC46610E102
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Oct 2022 05:35:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664775318; x=1696311318;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=MCPNc7gX3pHF5fUzPzfhWWn20ggawEsoRKIAF11SZXI=;
+ b=WlTaVq7DMDW+oeF2HFslKnCZ9QBxDWJUMzwLxZOToOjOXmVB3KrpxcZ4
+ aXcqqA3uTOACCWK0jcgXvBI5V1iG66km4m1vR4vc+Fr1c6gj8S8OrUVMy
+ yO1RqbUY4komq2Fm170p0kYkuW4K9QTg6sYBPHaPMSPZlLP6noWqCKWAW
+ RjqVOZa0u25ttIDjnI0keMJmRhQgKYAsy8vUfduPNQciZ3fVPVh665V3W
+ E4ins5/H/pWB8omMq49ZY2pRj1srhoyDN7DKh0ym8eOimQaReElSVAziQ
+ SROTBaxQD7B9rLLUeED/edBYjaWW8ANMyoksEhhy24vZo9yehBoAnFkGb w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10488"; a="302531146"
+X-IronPort-AV: E=Sophos;i="5.93,364,1654585200"; d="scan'208";a="302531146"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2022 22:35:17 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10488"; a="748864265"
+X-IronPort-AV: E=Sophos;i="5.93,364,1654585200"; d="scan'208";a="748864265"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.202.245])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2022 22:35:16 -0700
+Date: Sun, 02 Oct 2022 22:34:28 -0700
+Message-ID: <87fsg5zd0b.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <86f6485f-d7c7-66ad-b819-af33913194ef@linux.intel.com>
+References: <20220910143844.1755324-1-ashutosh.dixit@intel.com>	<20220910143844.1755324-2-ashutosh.dixit@intel.com>	<86f6485f-d7c7-66ad-b819-af33913194ef@linux.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/debugfs: Add
+ perf_limit_reasons in debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,20 +60,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, 1002992920@qq.com,
- Zheng Wang <zyytlz.wz@163.com>
+Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> That is a horrible way to make an api (and it should be a bool too.)
-> Now every time you see this call in the code, you have to go look up
-> what the last parameter means.  Just make 2 functions, one that does the
-> "is error" thing, and one that does not, and that will be much easier to
-> maintain and understand for the next 10+ years.
+On Tue, 27 Sep 2022 07:17:23 -0700, Tvrtko Ursulin wrote:
+>
 
-Got it. I'll figure out anothr way. :)
+Hi Tvrtko,
 
-Thanks,
-Zheng Wang
+I am adding some people who may have more background/history into this.
+
+> On 10/09/2022 15:38, Ashutosh Dixit wrote:
+> > From: Tilak Tangudu <tilak.tangudu@intel.com>
+> >
+> > Add perf_limit_reasons in debugfs. The upper 16 perf_limit_reasons RW "log"
+> > bits are identical to the lower 16 RO "status" bits except that the "log"
+> > bits remain set until cleared, thereby ensuring the throttling occurrence
+> > is not missed. The clear fop clears the upper 16 "log" bits, the get fop
+> > gets all 32 "log" and "status" bits.
+> >
+> > v2: Expand commit message and clarify "log" and "status" bits in
+> >      comment (Rodrigo)
+> >
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
+> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 31 +++++++++++++++++++
+> >   drivers/gpu/drm/i915/i915_reg.h               |  1 +
+> >   2 files changed, 32 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> > index 108b9e76c32e..a009cf69103a 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> > @@ -655,6 +655,36 @@ static bool rps_eval(void *data)
+> >     DEFINE_INTEL_GT_DEBUGFS_ATTRIBUTE(rps_boost);
+> >   +static int perf_limit_reasons_get(void *data, u64 *val)
+> > +{
+> > +	struct intel_gt *gt = data;
+> > +	intel_wakeref_t wakeref;
+> > +
+> > +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> > +		*val = intel_uncore_read(gt->uncore, GT0_PERF_LIMIT_REASONS);
+>
+> I have a bunch of questions, given failure to apply this to
+> drm-intel-next-fixes brought my attention to it.
+>
+> Why is GT0_PERF_LIMIT_REASONS_MASK not applied here?
+
+To expose all 32 "log" and "status" bits, since no log bits and only a few
+status bits are available in sysfs.
+
+> Who resets the low bits and when in normal operation? (I mean not via this
+> debugfs clear.)
+
+HW would reset the low status bits after the condition causing the
+throttling goes away. That condition would persist in the the upper log
+bits till cleared via debugfs.
+
+> Why do we have sysfs expose some of this register, but not these high log
+> bits? Which are more important to the user?
+
+The low status bits should be sampled while the throttling condition is
+"current" (still happening). The upper log bits can be looked at later to
+see if a particular condition happened.
+
+I would say as long user land can sample (say every 5 ms) the low status
+bits while a workload is running they can get a complete picture of what
+throttling happened when (the app could sample the actual_freq sysfs and
+correlate those values with the perf_limit_reasons sysfs e.g.).
+
+> What is the use case for allowing clearing of the log bits from debugfs?
+> Why do we want to carry that code? For IGT?
+
+I guess the reason for exposing/clearing the log bits is that they can be
+useful in cases where userspace does not want to sample the status bits
+continuously while a workload is running. They can just come afterwards and
+say, ah, these are the reasons limiting freq while the workload was
+running.
+
+Also the log bits could be used in conjunction with the low status bits to
+infer if any limiting event got missed during sampling the status bits.
+
+I believe IGT's correlating the actual_freq with perf_limit_reasons are
+planned. But yes, whether the upper log bits should also be exposed in
+sysfs is a valid one and should be discussed.
+
+Thanks.
+--
+Ashutosh
+
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int perf_limit_reasons_clear(void *data, u64 val)
+> > +{
+> > +	struct intel_gt *gt = data;
+> > +	intel_wakeref_t wakeref;
+> > +
+> > +	/*
+> > +	 * Clear the upper 16 "log" bits, the lower 16 "status" bits are
+> > +	 * read-only. The upper 16 "log" bits are identical to the lower 16
+> > +	 * "status" bits except that the "log" bits remain set until cleared.
+> > +	 */
+> > +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> > +		intel_uncore_rmw(gt->uncore, GT0_PERF_LIMIT_REASONS,
+> > +				 GT0_PERF_LIMIT_REASONS_LOG_MASK, 0);
+> > +
+> > +	return 0;
+> > +}
+> > +DEFINE_SIMPLE_ATTRIBUTE(perf_limit_reasons_fops, perf_limit_reasons_get,
+> > +			perf_limit_reasons_clear, "%llu\n");
+> > +
+> >   void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
+> >   {
+> >	static const struct intel_gt_debugfs_file files[] = {
+> > @@ -664,6 +694,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root)
+> >		{ "forcewake_user", &forcewake_user_fops, NULL},
+> >		{ "llc", &llc_fops, llc_eval },
+> >		{ "rps_boost", &rps_boost_fops, rps_eval },
+> > +		{ "perf_limit_reasons", &perf_limit_reasons_fops, NULL },
+> >	};
+> >		intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files),
+> > gt);
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 52462cbfdc66..58b0ed9dddd5 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -1802,6 +1802,7 @@
+> >   #define   POWER_LIMIT_4_MASK		REG_BIT(8)
+> >   #define   POWER_LIMIT_1_MASK		REG_BIT(10)
+> >   #define   POWER_LIMIT_2_MASK		REG_BIT(11)
+> > +#define   GT0_PERF_LIMIT_REASONS_LOG_MASK REG_GENMASK(31, 16)
+> >     #define CHV_CLK_CTL1			_MMIO(0x101100)
+> >   #define VLV_CLK_CTL2			_MMIO(0x101104)
