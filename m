@@ -2,50 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E35E25F3731
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 22:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FCC35F3737
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 22:39:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2390B10E406;
-	Mon,  3 Oct 2022 20:37:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9D4410E406;
+	Mon,  3 Oct 2022 20:39:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59A5310E406
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Oct 2022 20:37:43 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E1F610E406
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Oct 2022 20:39:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664829463; x=1696365463;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=r+YRwB/ioVMLtRps3OuakOCgt61jTHQQpDtHaZKV2SY=;
- b=ax9j5u5BY8EeS6TORX4MH2lLtM/qAhr8LdD9Btd9ykRKmJev0RnWdugu
- OadonCAapCh3SUKuTWDo3SQYJiA54gsei+Ah/eadfM1sMK8Uq4Dtw9i/z
- aKhJbUuqCO1ywXlOUGLxbe04TTbHljzDA2OxjprjR9SWez1658GdMCNyk
- HV0bFQYuZ34TwTqGCTDMXw4gtduiX5kBS5R5yODOhF4VzfyRT39jhUfd3
- VFnYxWcw0qoVSd3ecmhLwHFABvZ6RnCUqWGFkHxvDmww6xF+698EA8Ahm
- PMNOyQEFe3pc0uKeq1J3bb+Uvg2ItKY+tB43/clgSo1H+/rqOJlZ0s2qY Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="285945652"
-X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="285945652"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 13:37:42 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="623690831"
-X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="623690831"
-Received: from kbalinsk-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.213.7.91])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 13:37:41 -0700
-Date: Mon, 3 Oct 2022 22:37:38 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <YztIEmJKIjgb7R6A@ashyti-mobl2.lan>
-References: <20221003170242.1246830-1-gwan-gyeong.mun@intel.com>
+ t=1664829582; x=1696365582;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fo65/YujDfdPb7m+QTcyhTARI9Sg+dGo7Mt8qrtaSyw=;
+ b=B1q9Lt+eamZ1WeFz4kPx0FzQ3NSGzBBytAds27O6uQBwFkr2Tja0r0Bo
+ IszPWZU494xDaOb7/ppWD4dZJ5cGR3FJLAokpC7K/IuKZ1adWIIPDSy6I
+ alJkBzcHNHDwBROZytpeDbTn++sL/U/d5EvP90G+pbPoWpHZHer+lYjaF
+ 4+VSz9XEJa//AikPW2bQ8iDsel2LmdXubm1sZMfaRFHnYa3Y9PmWwEUvA
+ 219pR/nexdBuHsnA868Zg5ZhGw3kgsNuqhXP9EspbRf9U6+3mqEOqu8iG
+ iR2Z38fSYR2wyfnsaZqvtSx7kUbeIAwtF2VHQ+n5/h1tBqVM3ryAf5laL A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="302733328"
+X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="302733328"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2022 13:39:41 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="798879424"
+X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="798879424"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2022 13:39:41 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: linux-firmware@kernel.org
+Date: Mon,  3 Oct 2022 13:41:07 -0700
+Message-Id: <20221003204107.1105725-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221003170242.1246830-1-gwan-gyeong.mun@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Remove unused function
- prototype
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] PR for DG2 HuC v7.10.6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,44 +54,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jwboyer@kernel.org, intel-gfx@lists.freedesktop.org, kyle@kernel.org,
+ ben@decadent.org.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi G.G.
+The following changes since commit fdf1a65258522edf18a0a1768fbafa61ed07e598:
 
-On Mon, Oct 03, 2022 at 08:02:42PM +0300, Gwan-gyeong Mun wrote:
-> Remove unused function prototype; intel_gt_create_kobj()
-> 
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_sysfs.h | 5 -----
->  1 file changed, 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
-> index 6232923a420d..d637c6c3a69f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
-> @@ -18,11 +18,6 @@ bool is_object_gt(struct kobject *kobj);
->  
->  struct drm_i915_private *kobj_to_i915(struct kobject *kobj);
->  
-> -struct kobject *
-> -intel_gt_create_kobj(struct intel_gt *gt,
-> -		     struct kobject *dir,
-> -		     const char *name);
-> -
+  linux-firmware: Update AMD cpu microcode (2022-09-30 17:33:35 -0400)
 
-this must be some leftover after some refactoring. Thanks for
-spotting it:
+are available in the Git repository at:
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+  git://anongit.freedesktop.org/drm/drm-firmware dg2_huc_7.10.6_pr
 
-Andi
+for you to fetch changes up to b3110904e23e0032f6b6c72af84547066a5c4f26:
 
->  static inline struct intel_gt *kobj_to_gt(struct kobject *kobj)
->  {
->  	return container_of(kobj, struct intel_gt, sysfs_gt);
-> -- 
-> 2.37.1
+  i915: add HuC 7.10.6 for DG2 (2022-10-03 13:32:30 -0700)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (1):
+      i915: add HuC 7.10.6 for DG2
+
+ WHENCE               |   3 +++
+ i915/dg2_huc_gsc.bin | Bin 0 -> 626688 bytes
+ 2 files changed, 3 insertions(+)
+ create mode 100755 i915/dg2_huc_gsc.bin
