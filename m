@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B410C5F3462
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 19:22:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 665795F346B
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 19:25:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1213510E43D;
-	Mon,  3 Oct 2022 17:22:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDB3010E444;
+	Mon,  3 Oct 2022 17:25:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BADC10E422;
- Mon,  3 Oct 2022 17:22:06 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07ADF10E444;
+ Mon,  3 Oct 2022 17:25:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664817727; x=1696353727;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=HwgIHCNLONeefB3omLt3STfKfoh5e+OYGFbRe0CGMM8=;
- b=j1ReRPLseq1nAtIkAHxccRUBIDM+yHrPy0ae6IgKg/3UK0jdUAMpJaWm
- ZIAt5EgG46m/xvHxtDk4AikCUtwl7fGo9EENpToSBS3i2u0auX7OnzipK
- E2SAhYD2QBmAie/eAV2nozNLMg1BOvoAnLH67T7ZaHAJgloTUGvv+Kczo
- aNklCvMa2fFavM3cZL5RXyw2XscZHhwaW/6idFRKgQqbYgtR/YNSKVu1j
- Cy2GmWlDN0NXls5HAg5xXlvdklWb0AqgEv1DotSkWugWlnTJQj8c1UBdu
- 50GgtbxAxCs3lp4gWN/H5pqSINFigbzrXtQPFE0Kray1lfBGv5zgHwZBn Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="301422490"
-X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="301422490"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 10:22:06 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="623615325"
-X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="623615325"
-Received: from ashyti-mobl2.igk.intel.com (HELO intel.com) ([172.28.182.81])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 10:22:04 -0700
-Date: Mon, 3 Oct 2022 19:22:02 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Message-ID: <YzsaOsrB/+nXROl5@ashyti-mobl2.lan>
-References: <20220927113529.3646989-1-badal.nilawar@intel.com>
- <20220927113529.3646989-2-badal.nilawar@intel.com>
- <87wn9o5ky7.wl-ashutosh.dixit@intel.com>
+ t=1664817939; x=1696353939;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YjJKPO6l1giTJLE2BCEVJifRtUpFQ5+iW3rAd7x0MBQ=;
+ b=aIk0D9gt2roR5vFb8UuPL/4arFpavZOXBDQahypWSaugO++I/HhKePsE
+ gnql1+orcwDmlgVNH5WxBB06BEYP5LsJ32YP+GIDaxPs2H33NNJTVT+KD
+ k7i+EJ9rSKFKzcyEmGAlKD5oHiBq/351l1tWA4TGK5eFGQ0p4Qd/2LA9L
+ 5tm8PFUlKKHpg1t0GwYImGXihztsEdGrFVdo8jmZLJzxTGdZPS2jn+v5N
+ EKplJkzDmp+d1wRvpxP+GSiHSbY2g2YGF3zY2LWDAH1mzV/+pVwVwt/sS
+ 2w3epi9GhuCAtcmP5Jx+ubKh2b6DkYWNGNVOKf8C+3IN6i6MDCyjhyOAD w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="282413381"
+X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="282413381"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2022 10:25:23 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="686202355"
+X-IronPort-AV: E=Sophos;i="5.93,366,1654585200"; d="scan'208";a="686202355"
+Received: from adejeanb-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.6.198])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2022 10:25:22 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon,  3 Oct 2022 18:24:53 +0100
+Message-Id: <20221003172456.97522-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87wn9o5ky7.wl-ashutosh.dixit@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Use GEN12 RPSTAT register
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t 1/4] i915_drm.h sync
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,182 +55,367 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- donhiatt@gmail.com
+Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 27, 2022 at 06:47:28PM -0700, Dixit, Ashutosh wrote:
-> On Tue, 27 Sep 2022 04:35:29 -0700, Badal Nilawar wrote:
-> >
-> > From: Don Hiatt <don.hiatt@intel.com>
-> >
-> > On GEN12 and above use GEN12_RPSTAT register to get Current
-> > Actual Graphics Frequency of GT
-> 
-> I think even for the purposes of reviewing this it would be good to mention
-> in the commit message that:
-> 
-> a. GEN12_RPSTAT register doesn't require a forcewake to be read (it doesn't
->    belong to a forcewake domain)
-> b. Will result in a 0 frequency if the GT is in RC6
+Get the small-bar related stuff at: 525e93f6317a ("drm/i915/uapi: add
+NEEDS_CPU_ACCESS hint"), and drop the local related bits.
 
-perhaps also in a comment... (continue)
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+---
+ include/drm-uapi/i915_drm.h    | 182 +++++++++++++++++++++++++--------
+ lib/i915/i915_drm_local.h      |  21 ----
+ lib/i915/intel_memory_region.c |   3 +-
+ tests/i915/gem_create.c        |   5 -
+ tests/i915/gem_exec_capture.c  |   5 -
+ tests/i915/i915_query.c        |   6 --
+ 6 files changed, 141 insertions(+), 81 deletions(-)
 
-> 
-> Thanks.
-> --
-> Ashutosh
-> 
-> > v2:
-> >   - Fixed review comments(Ashutosh)
-> >   - Added function intel_rps_read_rpstat_fw to read RPSTAT without
-> >     forcewake, required especially for GEN6_RPSTAT1 (Ashutosh, Tvrtko)
-> >
-> > Cc: Don Hiatt <donhiatt@gmail.com>
-> > Cc: Andi Shyti <andi.shyti@intel.com>
-> > Signed-off-by: Don Hiatt <don.hiatt@intel.com>
-> > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  2 +-
-> >  drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  4 +++
-> >  drivers/gpu/drm/i915/gt/intel_rps.c           | 32 +++++++++++++++++--
-> >  drivers/gpu/drm/i915/gt/intel_rps.h           |  2 ++
-> >  drivers/gpu/drm/i915/i915_pmu.c               |  3 +-
-> >  5 files changed, 38 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> > index 10f680dbd7b6..b9b47052b26d 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> > @@ -380,7 +380,7 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
-> >		rpinclimit = intel_uncore_read(uncore, GEN6_RP_UP_THRESHOLD);
-> >		rpdeclimit = intel_uncore_read(uncore, GEN6_RP_DOWN_THRESHOLD);
-> >
-> > -		rpstat = intel_uncore_read(uncore, GEN6_RPSTAT1);
-> > +		rpstat = intel_rps_read_rpstat(rps);
-> >		rpcurupei = intel_uncore_read(uncore, GEN6_RP_CUR_UP_EI) & GEN6_CURICONT_MASK;
-> >		rpcurup = intel_uncore_read(uncore, GEN6_RP_CUR_UP) & GEN6_CURBSYTAVG_MASK;
-> >		rpprevup = intel_uncore_read(uncore, GEN6_RP_PREV_UP) & GEN6_CURBSYTAVG_MASK;
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > index 7f79bbf97828..1f1e90acc1ab 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> > @@ -1519,6 +1519,10 @@
-> >  #define VLV_RENDER_C0_COUNT			_MMIO(0x138118)
-> >  #define VLV_MEDIA_C0_COUNT			_MMIO(0x13811c)
-> >
-> > +#define GEN12_RPSTAT1				_MMIO(0x1381b4)
-> > +#define   GEN12_CAGF_SHIFT			11
-> > +#define   GEN12_CAGF_MASK			REG_GENMASK(19, 11)
-> > +
-> >  #define GEN11_GT_INTR_DW(x)			_MMIO(0x190018 + ((x) * 4))
-> >  #define   GEN11_CSME				(31)
-> >  #define   GEN11_GUNIT				(28)
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> > index 17b40b625e31..5a15a630b1c6 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> > @@ -2068,12 +2068,40 @@ void intel_rps_sanitize(struct intel_rps *rps)
-> >		rps_disable_interrupts(rps);
-> >  }
+diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
+index b4efc96c..ae9558b3 100644
+--- a/include/drm-uapi/i915_drm.h
++++ b/include/drm-uapi/i915_drm.h
+@@ -3207,36 +3207,6 @@ struct drm_i915_gem_memory_class_instance {
+  * struct drm_i915_memory_region_info - Describes one region as known to the
+  * driver.
+  *
+- * Note that we reserve some stuff here for potential future work. As an example
+- * we might want expose the capabilities for a given region, which could include
+- * things like if the region is CPU mappable/accessible, what are the supported
+- * mapping types etc.
+- *
+- * Note that to extend struct drm_i915_memory_region_info and struct
+- * drm_i915_query_memory_regions in the future the plan is to do the following:
+- *
+- * .. code-block:: C
+- *
+- *	struct drm_i915_memory_region_info {
+- *		struct drm_i915_gem_memory_class_instance region;
+- *		union {
+- *			__u32 rsvd0;
+- *			__u32 new_thing1;
+- *		};
+- *		...
+- *		union {
+- *			__u64 rsvd1[8];
+- *			struct {
+- *				__u64 new_thing2;
+- *				__u64 new_thing3;
+- *				...
+- *			};
+- *		};
+- *	};
+- *
+- * With this things should remain source compatible between versions for
+- * userspace, even as we add new fields.
+- *
+  * Note this is using both struct drm_i915_query_item and struct drm_i915_query.
+  * For this new query we are adding the new query id DRM_I915_QUERY_MEMORY_REGIONS
+  * at &drm_i915_query_item.query_id.
+@@ -3248,14 +3218,81 @@ struct drm_i915_memory_region_info {
+ 	/** @rsvd0: MBZ */
+ 	__u32 rsvd0;
+ 
+-	/** @probed_size: Memory probed by the driver (-1 = unknown) */
++	/**
++	 * @probed_size: Memory probed by the driver
++	 *
++	 * Note that it should not be possible to ever encounter a zero value
++	 * here, also note that no current region type will ever return -1 here.
++	 * Although for future region types, this might be a possibility. The
++	 * same applies to the other size fields.
++	 */
+ 	__u64 probed_size;
+ 
+-	/** @unallocated_size: Estimate of memory remaining (-1 = unknown) */
++	/**
++	 * @unallocated_size: Estimate of memory remaining
++	 *
++	 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable accounting.
++	 * Without this (or if this is an older kernel) the value here will
++	 * always equal the @probed_size. Note this is only currently tracked
++	 * for I915_MEMORY_CLASS_DEVICE regions (for other types the value here
++	 * will always equal the @probed_size).
++	 */
+ 	__u64 unallocated_size;
+ 
+-	/** @rsvd1: MBZ */
+-	__u64 rsvd1[8];
++	union {
++		/** @rsvd1: MBZ */
++		__u64 rsvd1[8];
++		struct {
++			/**
++			 * @probed_cpu_visible_size: Memory probed by the driver
++			 * that is CPU accessible.
++			 *
++			 * This will be always be <= @probed_size, and the
++			 * remainder (if there is any) will not be CPU
++			 * accessible.
++			 *
++			 * On systems without small BAR, the @probed_size will
++			 * always equal the @probed_cpu_visible_size, since all
++			 * of it will be CPU accessible.
++			 *
++			 * Note this is only tracked for
++			 * I915_MEMORY_CLASS_DEVICE regions (for other types the
++			 * value here will always equal the @probed_size).
++			 *
++			 * Note that if the value returned here is zero, then
++			 * this must be an old kernel which lacks the relevant
++			 * small-bar uAPI support (including
++			 * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS), but on
++			 * such systems we should never actually end up with a
++			 * small BAR configuration, assuming we are able to load
++			 * the kernel module. Hence it should be safe to treat
++			 * this the same as when @probed_cpu_visible_size ==
++			 * @probed_size.
++			 */
++			__u64 probed_cpu_visible_size;
++
++			/**
++			 * @unallocated_cpu_visible_size: Estimate of CPU
++			 * visible memory remaining.
++			 *
++			 * Note this is only tracked for
++			 * I915_MEMORY_CLASS_DEVICE regions (for other types the
++			 * value here will always equal the
++			 * @probed_cpu_visible_size).
++			 *
++			 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
++			 * accounting.  Without this the value here will always
++			 * equal the @probed_cpu_visible_size. Note this is only
++			 * currently tracked for I915_MEMORY_CLASS_DEVICE
++			 * regions (for other types the value here will also
++			 * always equal the @probed_cpu_visible_size).
++			 *
++			 * If this is an older kernel the value here will be
++			 * zero, see also @probed_cpu_visible_size.
++			 */
++			__u64 unallocated_cpu_visible_size;
++		};
++	};
+ };
+ 
+ /**
+@@ -3329,11 +3366,11 @@ struct drm_i915_query_memory_regions {
+  * struct drm_i915_gem_create_ext - Existing gem_create behaviour, with added
+  * extension support using struct i915_user_extension.
+  *
+- * Note that in the future we want to have our buffer flags here, at least for
+- * the stuff that is immutable. Previously we would have two ioctls, one to
+- * create the object with gem_create, and another to apply various parameters,
+- * however this creates some ambiguity for the params which are considered
+- * immutable. Also in general we're phasing out the various SET/GET ioctls.
++ * Note that new buffer flags should be added here, at least for the stuff that
++ * is immutable. Previously we would have two ioctls, one to create the object
++ * with gem_create, and another to apply various parameters, however this
++ * creates some ambiguity for the params which are considered immutable. Also in
++ * general we're phasing out the various SET/GET ioctls.
+  */
+ struct drm_i915_gem_create_ext {
+ 	/**
+@@ -3341,7 +3378,6 @@ struct drm_i915_gem_create_ext {
+ 	 *
+ 	 * The (page-aligned) allocated size for the object will be returned.
+ 	 *
+-	 *
+ 	 * DG2 64K min page size implications:
+ 	 *
+ 	 * On discrete platforms, starting from DG2, we have to contend with GTT
+@@ -3353,7 +3389,9 @@ struct drm_i915_gem_create_ext {
+ 	 *
+ 	 * Note that the returned size here will always reflect any required
+ 	 * rounding up done by the kernel, i.e 4K will now become 64K on devices
+-	 * such as DG2.
++	 * such as DG2. The kernel will always select the largest minimum
++	 * page-size for the set of possible placements as the value to use when
++	 * rounding up the @size.
+ 	 *
+ 	 * Special DG2 GTT address alignment requirement:
+ 	 *
+@@ -3377,14 +3415,58 @@ struct drm_i915_gem_create_ext {
+ 	 * is deemed to be a good compromise.
+ 	 */
+ 	__u64 size;
++
+ 	/**
+ 	 * @handle: Returned handle for the object.
+ 	 *
+ 	 * Object handles are nonzero.
+ 	 */
+ 	__u32 handle;
+-	/** @flags: MBZ */
++
++	/**
++	 * @flags: Optional flags.
++	 *
++	 * Supported values:
++	 *
++	 * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS - Signal to the kernel that
++	 * the object will need to be accessed via the CPU.
++	 *
++	 * Only valid when placing objects in I915_MEMORY_CLASS_DEVICE, and only
++	 * strictly required on configurations where some subset of the device
++	 * memory is directly visible/mappable through the CPU (which we also
++	 * call small BAR), like on some DG2+ systems. Note that this is quite
++	 * undesirable, but due to various factors like the client CPU, BIOS etc
++	 * it's something we can expect to see in the wild. See
++	 * &drm_i915_memory_region_info.probed_cpu_visible_size for how to
++	 * determine if this system applies.
++	 *
++	 * Note that one of the placements MUST be I915_MEMORY_CLASS_SYSTEM, to
++	 * ensure the kernel can always spill the allocation to system memory,
++	 * if the object can't be allocated in the mappable part of
++	 * I915_MEMORY_CLASS_DEVICE.
++	 *
++	 * Also note that since the kernel only supports flat-CCS on objects
++	 * that can *only* be placed in I915_MEMORY_CLASS_DEVICE, we therefore
++	 * don't support I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS together with
++	 * flat-CCS.
++	 *
++	 * Without this hint, the kernel will assume that non-mappable
++	 * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note that the
++	 * kernel can still migrate the object to the mappable part, as a last
++	 * resort, if userspace ever CPU faults this object, but this might be
++	 * expensive, and so ideally should be avoided.
++	 *
++	 * On older kernels which lack the relevant small-bar uAPI support (see
++	 * also &drm_i915_memory_region_info.probed_cpu_visible_size),
++	 * usage of the flag will result in an error, but it should NEVER be
++	 * possible to end up with a small BAR configuration, assuming we can
++	 * also successfully load the i915 kernel module. In such cases the
++	 * entire I915_MEMORY_CLASS_DEVICE region will be CPU accessible, and as
++	 * such there are zero restrictions on where the object can be placed.
++	 */
++#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1 << 0)
+ 	__u32 flags;
++
+ 	/**
+ 	 * @extensions: The chain of extensions to apply to this object.
+ 	 *
+@@ -3443,6 +3525,22 @@ struct drm_i915_gem_create_ext {
+  * At which point we get the object handle in &drm_i915_gem_create_ext.handle,
+  * along with the final object size in &drm_i915_gem_create_ext.size, which
+  * should account for any rounding up, if required.
++ *
++ * Note that userspace has no means of knowing the current backing region
++ * for objects where @num_regions is larger than one. The kernel will only
++ * ensure that the priority order of the @regions array is honoured, either
++ * when initially placing the object, or when moving memory around due to
++ * memory pressure
++ *
++ * On Flat-CCS capable HW, compression is supported for the objects residing
++ * in I915_MEMORY_CLASS_DEVICE. When such objects (compressed) have other
++ * memory class in @regions and migrated (by i915, due to memory
++ * constraints) to the non I915_MEMORY_CLASS_DEVICE region, then i915 needs to
++ * decompress the content. But i915 doesn't have the required information to
++ * decompress the userspace compressed objects.
++ *
++ * So i915 supports Flat-CCS, on the objects which can reside only on
++ * I915_MEMORY_CLASS_DEVICE regions.
+  */
+ struct drm_i915_gem_create_ext_memory_regions {
+ 	/** @base: Extension link. See struct i915_user_extension. */
+diff --git a/lib/i915/i915_drm_local.h b/lib/i915/i915_drm_local.h
+index ac35abf6..9a2273c4 100644
+--- a/lib/i915/i915_drm_local.h
++++ b/lib/i915/i915_drm_local.h
+@@ -23,27 +23,6 @@ extern "C" {
+ 
+ #define DRM_I915_QUERY_GEOMETRY_SUBSLICES      6
+ 
+-/*
+- * Signal to the kernel that the object will need to be accessed via
+- * the CPU.
+- *
+- * Only valid when placing objects in I915_MEMORY_CLASS_DEVICE, and only
+- * strictly required on platforms where only some of the device memory
+- * is directly visible or mappable through the CPU, like on DG2+.
+- *
+- * One of the placements MUST also be I915_MEMORY_CLASS_SYSTEM, to
+- * ensure we can always spill the allocation to system memory, if we
+- * can't place the object in the mappable part of
+- * I915_MEMORY_CLASS_DEVICE.
+- *
+- * Without this hint, the kernel will assume that non-mappable
+- * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note that the
+- * kernel can still migrate the object to the mappable part, as a last
+- * resort, if userspace ever CPU faults this object, but this might be
+- * expensive, and so ideally should be avoided.
+- */
+-#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1 << 0)
+-
+ #if defined(__cplusplus)
+ }
+ #endif
+diff --git a/lib/i915/intel_memory_region.c b/lib/i915/intel_memory_region.c
+index d80cb3a0..075ba0ce 100644
+--- a/lib/i915/intel_memory_region.c
++++ b/lib/i915/intel_memory_region.c
+@@ -942,8 +942,7 @@ struct gem_memory_region *__gem_get_memory_regions(int i915)
+ 
+ 		r->ci = info->regions[i].region;
+ 		r->size = info->regions[i].probed_size;
+-		/* XXX: replace with probed_cpu_visible_size */
+-		r->cpu_size = info->regions[i].rsvd1[0];
++		r->cpu_size = info->regions[i].probed_cpu_visible_size;
+ 		if (r->size == -1ull)
+ 			r->size = igt_get_avail_ram_mb() << 20;
+ 
+diff --git a/tests/i915/gem_create.c b/tests/i915/gem_create.c
+index c39390f3..becdc715 100644
+--- a/tests/i915/gem_create.c
++++ b/tests/i915/gem_create.c
+@@ -724,11 +724,6 @@ static void trap_sigbus(uint32_t *ptr)
+ 	signal(SIGBUS, old_sigbus);
+ }
+ 
+-/**
+- * XXX: Remove this once we can safely sync the uapi header with the kernel.
+- * Should be source compatible either way though.
+- */
+-#define probed_cpu_visible_size rsvd1[0]
+ static void create_ext_cpu_access_big(int fd)
+ {
+ 	struct drm_i915_query_memory_regions *regions;
+diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
+index 6950b2d2..2db58266 100644
+--- a/tests/i915/gem_exec_capture.c
++++ b/tests/i915/gem_exec_capture.c
+@@ -578,11 +578,6 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
+ 	return offsets;
+ }
+ 
+-/*
+- * FIXME: remove once the kernel changes have landed and everything has settled.
+- * The change here is non-backwards compatible, and we don't want to upset CI.
+-*/
+-#define probed_cpu_visible_size rsvd1[0]
+ static bool kernel_supports_probed_size(int fd)
+ {
+ 	struct drm_i915_query_memory_regions *regions;
+diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
+index 8befd48b..2744421c 100644
+--- a/tests/i915/i915_query.c
++++ b/tests/i915/i915_query.c
+@@ -516,12 +516,6 @@ static bool query_regions_supported(int fd)
+ 	return __i915_query_items(fd, &item, 1) == 0 && item.length > 0;
+ }
+ 
+-/**
+- * XXX: Remove these once we can safely sync the uapi header with the kernel.
+- * Should be source compatible either way though.
+- */
+-#define probed_cpu_visible_size rsvd1[0]
+-#define unallocated_cpu_visible_size rsvd1[1]
+ static bool query_regions_unallocated_supported(int fd)
+ {
+ 	struct drm_i915_query_memory_regions *regions;
+-- 
+2.37.3
 
-... here!
-
-> > +u32 intel_rps_read_rpstat_fw(struct intel_rps *rps)
-> > +{
-> > +	struct drm_i915_private *i915 = rps_to_i915(rps);
-> > +	i915_reg_t rpstat;
-> > +
-> > +	if (GRAPHICS_VER(i915) >= 12)
-> > +		rpstat = GEN12_RPSTAT1;
-> > +	else
-> > +		rpstat = GEN6_RPSTAT1;
-> > +
-> > +	return intel_uncore_read_fw(rps_to_gt(rps)->uncore, rpstat);
-> > +}
-> > +
-> > +u32 intel_rps_read_rpstat(struct intel_rps *rps)
-> > +{
-> > +	struct drm_i915_private *i915 = rps_to_i915(rps);
-> > +	i915_reg_t rpstat;
-> > +
-> > +	if (GRAPHICS_VER(i915) >= 12)
-> > +		rpstat = GEN12_RPSTAT1;
-> > +	else
-> > +		rpstat = GEN6_RPSTAT1;
-> > +
-> > +	return intel_uncore_read(rps_to_gt(rps)->uncore, rpstat);
-> > +}
-
-perhaps this can be simplified a bit more to avoid some code
-duplication, but I'm not going to push on this.
-
-I see that CI got stuck somewhere, but the failure doesn't seem
-to be related to this patch.
-
-Otherwise it all looks good, with the improved git comment as
-Ashutosh asked and the comment above:
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-Andi
-
-> >  u32 intel_rps_get_cagf(struct intel_rps *rps, u32 rpstat)
-> >  {
-> >	struct drm_i915_private *i915 = rps_to_i915(rps);
-> >	u32 cagf;
-> >
-> > -	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-> > +	if (GRAPHICS_VER(i915) >= 12)
-> > +		cagf = (rpstat & GEN12_CAGF_MASK) >> GEN12_CAGF_SHIFT;
-> > +	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-> >		cagf = (rpstat >> 8) & 0xff;
-> >	else if (GRAPHICS_VER(i915) >= 9)
-> >		cagf = (rpstat & GEN9_CAGF_MASK) >> GEN9_CAGF_SHIFT;
-> > @@ -2099,7 +2127,7 @@ static u32 read_cagf(struct intel_rps *rps)
-> >		freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
-> >		vlv_punit_put(i915);
-> >	} else if (GRAPHICS_VER(i915) >= 6) {
-> > -		freq = intel_uncore_read(uncore, GEN6_RPSTAT1);
-> > +		freq = intel_rps_read_rpstat(rps);
-> >	} else {
-> >		freq = intel_uncore_read(uncore, MEMSTAT_ILK);
-> >	}
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
-> > index 4509dfdc52e0..76c8404d8416 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_rps.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_rps.h
-> > @@ -47,6 +47,8 @@ u32 intel_rps_get_rp1_frequency(struct intel_rps *rps);
-> >  u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
-> >  u32 intel_rps_read_punit_req(struct intel_rps *rps);
-> >  u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
-> > +u32 intel_rps_read_rpstat(struct intel_rps *rps);
-> > +u32 intel_rps_read_rpstat_fw(struct intel_rps *rps);
-> >  void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *caps);
-> >  void intel_rps_raise_unslice(struct intel_rps *rps);
-> >  void intel_rps_lower_unslice(struct intel_rps *rps);
-> > diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> > index 958b37123bf1..67140a87182f 100644
-> > --- a/drivers/gpu/drm/i915/i915_pmu.c
-> > +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> > @@ -371,7 +371,6 @@ static void
-> >  frequency_sample(struct intel_gt *gt, unsigned int period_ns)
-> >  {
-> >	struct drm_i915_private *i915 = gt->i915;
-> > -	struct intel_uncore *uncore = gt->uncore;
-> >	struct i915_pmu *pmu = &i915->pmu;
-> >	struct intel_rps *rps = &gt->rps;
-> >
-> > @@ -394,7 +393,7 @@ frequency_sample(struct intel_gt *gt, unsigned int period_ns)
-> >		 * case we assume the system is running at the intended
-> >		 * frequency. Fortunately, the read should rarely fail!
-> >		 */
-> > -		val = intel_uncore_read_fw(uncore, GEN6_RPSTAT1);
-> > +		val = intel_rps_read_rpstat_fw(rps);
-> >		if (val)
-> >			val = intel_rps_get_cagf(rps, val);
-> >		else
-> > --
-> > 2.25.1
-> >
