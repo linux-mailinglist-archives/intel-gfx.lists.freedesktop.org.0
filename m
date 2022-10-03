@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2C6F5F2F5F
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 13:15:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DFA75F2F62
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Oct 2022 13:15:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 304D910E304;
-	Mon,  3 Oct 2022 11:15:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EBBE10E2FB;
+	Mon,  3 Oct 2022 11:15:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEAE010E2E7
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Oct 2022 11:15:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0835710E2E7
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Oct 2022 11:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664795748; x=1696331748;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=OIaaWaD145pXFHAxS6ULlwXtCMfy5pJY3W1j4HzvAn8=;
- b=XWfxzbvM2syWUJxPw/8OJxaGn97n74RbIz/JUXUZdEccZbS0CALFVAVK
- fXo3UukeXS9jIrNiiNtk5GhgRqyZ13sCgET0SKe74RAWzdNGKt9F51bN2
- Eg7c+Ho5pNQSf8o1hiBlb0TT8GaaSPh/1/FL5i03TbTjOYoxBNIMQT00B
- jcT12EHxj8T+lvwA6/KrP9osBc5wrS/kLtdKTYAAUv+RNXryW6tJo34kq
- y3So/MC7KdZWr+lXLgUFCxqYxjXSx++JHUApiRAHEl3jNSsK3a6vG9v1s
- XdSHHqeW+MSvhlDe1GMGePjuIP+wudr5u4/LH9jHQ1GgAGpsvneABL5R3 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10488"; a="366650627"
-X-IronPort-AV: E=Sophos;i="5.93,365,1654585200"; d="scan'208";a="366650627"
+ t=1664795751; x=1696331751;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=h+g50rP7L6IpScu5vnmpPTgDesIgArQ1FdXdgG99ylQ=;
+ b=EZejWQ1chLG1Tyt0fOsTlkRi+r5G/p8OB+5XhvOh86veqLDAQBgDnTp4
+ m9FK235GBDEhD48s35aM5PuKMEjB44eNtG3ylBklsjYieg0Y9pFE34y9q
+ P/eXWDrzr55t3D+86bgKJSg4kL/tu6S8JwtSC2bPXp3Sinf1oXqoSzRTY
+ /P/UG9BeZ3BZ2W9/+3KS1vx0UUoG7ljgJtr5qoKqDCfpjWzxir+YEOi7s
+ lRyHdwIWOEpCePbIMJFll61BAE7SQc5ovAS96S/aDQcEglsVlObR6+vwl
+ ZZRf1iljZPuXOP17QVqj7O7HSEQPkXIRaETGK48X7CUofSn7geTCz5qUg g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10488"; a="366650633"
+X-IronPort-AV: E=Sophos;i="5.93,365,1654585200"; d="scan'208";a="366650633"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2022 04:15:47 -0700
+ 03 Oct 2022 04:15:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10488"; a="618696678"
-X-IronPort-AV: E=Sophos;i="5.93,365,1654585200"; d="scan'208";a="618696678"
+X-IronPort-AV: E=McAfee;i="6500,9779,10488"; a="618696695"
+X-IronPort-AV: E=Sophos;i="5.93,365,1654585200"; d="scan'208";a="618696695"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga007.jf.intel.com with SMTP; 03 Oct 2022 04:15:45 -0700
+ by orsmga007.jf.intel.com with SMTP; 03 Oct 2022 04:15:48 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 03 Oct 2022 14:15:44 +0300
+ Mon, 03 Oct 2022 14:15:47 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Oct 2022 14:15:38 +0300
-Message-Id: <20221003111544.8007-1-ville.syrjala@linux.intel.com>
+Date: Mon,  3 Oct 2022 14:15:39 +0300
+Message-Id: <20221003111544.8007-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221003111544.8007-1-ville.syrjala@linux.intel.com>
+References: <20221003111544.8007-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 0/6] drm/i915: Fix watermark calculations
- with various CCS modifiers
+Subject: [Intel-gfx] [PATCH v2 1/6] drm/i915: Fix watermark calculations for
+ gen12+ RC CCS modifier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,31 +60,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We are neglegting to consider all the new CCS modifiers as
-Y-tiled in the watermark calculations. So we are incorrectrly
-calculation the watermarks as if dealing with a linear surface.
+Take the gen12+ RC CCS modifier into account when calculating the
+watermarks. Othwerwise we'll calculate the watermarks thinking this
+Y-tiled modifier is linear.
 
-v2: Fix tgl RC CCS vs. MC CCS to separate patches since they
-    need separate fixes tags
+The rc_surface part is actually a nop since that is not used
+for any glk+ platform.
 
-Ville Syrjälä (6):
-  drm/i915: Fix watermark calculations for gen12+ RC CCS modifier
-  drm/i915: Fix watermark calculations for gen12+ MC CCS modifier
-  drm/i915: Fix watermark calculations for gen12+ CCS+CC modifier
-  drm/i915: Fix watermark calculations for DG2 CCS modifiers
-  drm/i915: Fix watermark calculations for DG2 CCS+CC modifier
-  drm/i915: Simplify modifier lookup in watermark code
+v2: Split RC CCS vs. MC CCS to separate patches
 
- drivers/gpu/drm/i915/display/intel_fb.c      | 13 +++++++++++++
- drivers/gpu/drm/i915/display/intel_fb.h      |  1 +
- drivers/gpu/drm/i915/display/skl_watermark.c | 10 +++-------
- 3 files changed, 17 insertions(+), 7 deletions(-)
+Cc: stable@vger.kernel.org
+Fixes: b3e57bccd68a ("drm/i915/tgl: Gen-12 render decompression")
+Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 59e4fc6191f1..6ce1213c18b3 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -1710,10 +1710,12 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 		      modifier == I915_FORMAT_MOD_4_TILED ||
+ 		      modifier == I915_FORMAT_MOD_Yf_TILED ||
+ 		      modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+-		      modifier == I915_FORMAT_MOD_Yf_TILED_CCS;
++		      modifier == I915_FORMAT_MOD_Yf_TILED_CCS ||
++		      modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS;
+ 	wp->x_tiled = modifier == I915_FORMAT_MOD_X_TILED;
+ 	wp->rc_surface = modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+-			 modifier == I915_FORMAT_MOD_Yf_TILED_CCS;
++			 modifier == I915_FORMAT_MOD_Yf_TILED_CCS ||
++			 modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS;
+ 	wp->is_planar = intel_format_info_is_yuv_semiplanar(format, modifier);
+ 
+ 	wp->width = width;
 -- 
 2.35.1
 
