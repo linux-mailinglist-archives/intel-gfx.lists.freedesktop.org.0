@@ -1,58 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078175F3D93
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 10:00:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 691E25F3E28
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 10:21:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65F6810E088;
-	Tue,  4 Oct 2022 07:59:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3755310E18C;
+	Tue,  4 Oct 2022 08:21:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95ACB10E088
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 07:59:47 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FB5F10E18C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 08:21:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664870387; x=1696406387;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=/97Wv8UBHC2MupGr2AbPimmNecJ5La6+azZMed674A8=;
- b=TDR28vhB+vumk6nR737ShyL99X/teShiJsB0yXE9mjpK1/GJToi3o5lY
- 3rheZKI3QXMx7FRtT25Tqwjp2OfHhmuIgh6K2UIJTSoax1jFIUEaeO/d+
- Cbi9PX5Nvb8iKPfsiMfchDxdQnjYQeAqRe4/luzIGuMpWwJFICu1mZA3i
- fORrPFVOIYVj6nG63JR1Zh8jOngD+Ka081jgvC4usydWRyUG7r1aBuc9Q
- ThlFlaYL5gwpoKW4BzXAj+oounGTUu8dVBgwwknvkhy/9qfOFr7nlXQHF
- ivjjLkEnvo/VklgPianmaYGsQ10P+hPKrnOXLeunpPXE7p+KE8gRljZnV w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="286043268"
-X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; d="scan'208";a="286043268"
+ t=1664871677; x=1696407677;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KjnBBrNPuL7Fifo9DThJVdB2A3ImTPxsutYKPk/+DLg=;
+ b=GMUnpBK4sKFE1IJrsAaPcsLX6PAezk79gipGgYA0qKdyykA57TaHjReO
+ KWSLf1A1Jillu+InqAUniLCljsPbDrsslj0qCqwnDz1ov511oMxG1f8nq
+ o9eJlir9USLxp/I9TB23Pcy8bBXIcVUIsXJkqm9elS4YXjJz1OUsziZzU
+ NF+a9dwHqyG9VYDskIqKdoxM+7GLLxc3kdShfGsxqBb+7ZGHhn9qL8PLL
+ Ukfa4zeQt+HCwLRkQN027flpTcwpThf/he1VLLhzuISXce+3vumX8wxcw
+ 4gFAFCncofUJgdnoUK4YiNpm7APaGKNKWUpQlrjC0odMWMqL77lsfSUPD w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="282567933"
+X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; d="scan'208";a="282567933"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2022 00:59:46 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="692394314"
-X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; d="scan'208";a="692394314"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.8.49])
- ([10.213.8.49])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2022 00:59:43 -0700
-Message-ID: <26de0717-a71d-170c-f03c-3b4ebcb1999c@intel.com>
-Date: Tue, 4 Oct 2022 09:59:41 +0200
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 01:21:16 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10489"; a="692399882"
+X-IronPort-AV: E=Sophos;i="5.93,367,1654585200"; d="scan'208";a="692399882"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 04 Oct 2022 01:21:16 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Oct 2022 01:20:47 -0700
+Message-Id: <20221004082047.23902-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.1
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>
-References: <20221003223258.2650934-1-andrzej.hajda@intel.com>
- <20221003223258.2650934-2-andrzej.hajda@intel.com>
- <Yzt0Gif4yzdA/88b@ashyti-mobl2.lan>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <Yzt0Gif4yzdA/88b@ashyti-mobl2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/display: Use drm_device alias
- if defined
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC] drm/i915/selftests: Fix overwriting ggtt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,105 +54,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 04.10.2022 01:45, Andi Shyti wrote:
-> Hi Andrzej,
-> 
-> [...]
-> 
->> @@ -847,7 +847,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
->>   	}
->>   
->>   	if (!dev_priv->display.vbt.int_lvds_support) {
->> -		drm_dbg_kms(&dev_priv->drm,
->> +		drm_dbg_kms(dev,
->>   			    "Internal LVDS support disabled by VBT\n");
-> 
-> you don't need to break this anymore
-> 
->>   		return;
->>   	}
->> @@ -867,11 +867,11 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
->>   	pin = GMBUS_PIN_PANEL;
->>   	if (!intel_bios_is_lvds_present(dev_priv, &pin)) {
->>   		if ((lvds & LVDS_PORT_EN) == 0) {
->> -			drm_dbg_kms(&dev_priv->drm,
->> +			drm_dbg_kms(dev,
->>   				    "LVDS is not present in VBT\n");
-> 
-> here, as well (and so on for the rest)
+Looks like vma and gtt mock selftests overwrite the ggtt
+initialized by mock_gem_device() by calling intel_gt_assign_ggtt()
+and mock_init_ggtt() functions.
+The side effect seems to be mock_destroy_device() tries to
+release the ggtt already released by mock_fini_ggtt() instead of
+releasing the ggtt created by mock_gem_device() function.
 
-I forgot increase in 1st two patches max line width to 100, will fix it.
+I ran into this issue with vm_bind patch series.
+https://patchwork.freedesktop.org/series/105879/#rev5
 
+I am fixing the vm_bind patch series by remvoing the vm->root_obj
+initialization for ggtt (it is required only for ppgtt upon user
+request).
 
-> 
-> With the above:
-> 
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+But we need to address the underlying problem.
+But with this patch, I am seeing some of the vma and gtt mock
+selftests run into other crashes. So, this patch is not complete
+and I am missing the big picture here. Hence this RFC.
 
-Thx
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 16 ++--------------
+ drivers/gpu/drm/i915/selftests/i915_vma.c     | 16 ++--------------
+ 2 files changed, 4 insertions(+), 28 deletions(-)
 
-Andrzej
-
-
-> 
-> Andi
-> 
->>   			return;
->>   		}
->> -		drm_dbg_kms(&dev_priv->drm,
->> +		drm_dbg_kms(dev,
->>   			    "LVDS is not present in VBT, but enabled anyway\n");
->>   	}
->>   
->> @@ -993,7 +993,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
->>   	intel_backlight_setup(intel_connector, INVALID_PIPE);
->>   
->>   	lvds_encoder->is_dual_link = compute_is_dual_link_lvds(lvds_encoder);
->> -	drm_dbg_kms(&dev_priv->drm, "detected %s-link lvds configuration\n",
->> +	drm_dbg_kms(dev, "detected %s-link lvds configuration\n",
->>   		    lvds_encoder->is_dual_link ? "dual" : "single");
->>   
->>   	lvds_encoder->a3_power = lvds & LVDS_A3_POWER_MASK;
->> @@ -1001,7 +1001,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
->>   	return;
->>   
->>   failed:
->> -	drm_dbg_kms(&dev_priv->drm, "No LVDS modes found, disabling.\n");
->> +	drm_dbg_kms(dev, "No LVDS modes found, disabling.\n");
->>   	drm_connector_cleanup(connector);
->>   	drm_encoder_cleanup(encoder);
->>   	kfree(lvds_encoder);
->> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
->> index caa07ef34f21ef..ba3666e94fc48d 100644
->> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
->> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
->> @@ -465,7 +465,7 @@ static u32 asle_set_backlight(struct drm_i915_private *dev_priv, u32 bclp)
->>   	struct opregion_asle *asle = dev_priv->display.opregion.asle;
->>   	struct drm_device *dev = &dev_priv->drm;
->>   
->> -	drm_dbg(&dev_priv->drm, "bclp = 0x%08x\n", bclp);
->> +	drm_dbg(dev, "bclp = 0x%08x\n", bclp);
->>   
->>   	if (acpi_video_get_backlight_type() == acpi_backlight_native) {
->>   		drm_dbg_kms(&dev_priv->drm,
->> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> index dee0147a316ce7..fdfe3611e74a76 100644
->> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
->> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> @@ -1855,7 +1855,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
->>   	enum port port;
->>   	enum pipe pipe;
->>   
->> -	drm_dbg_kms(&dev_priv->drm, "\n");
->> +	drm_dbg_kms(dev, "\n");
->>   
->>   	/* There is no detection method for MIPI so rely on VBT */
->>   	if (!intel_bios_is_dsi_present(dev_priv, &port))
->> -- 
->> 2.34.1
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+index ea2cf1080979..9b0dae1d1a68 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+@@ -1919,30 +1919,18 @@ int i915_gem_gtt_mock_selftests(void)
+ 		SUBTEST(igt_gtt_insert),
+ 	};
+ 	struct drm_i915_private *i915;
+-	struct intel_gt *gt;
+ 	int err;
+ 
+ 	i915 = mock_gem_device();
+ 	if (!i915)
+ 		return -ENOMEM;
+ 
+-	/* allocate the ggtt */
+-	err = intel_gt_assign_ggtt(to_gt(i915));
+-	if (err)
+-		goto out_put;
+-
+-	gt = to_gt(i915);
+-
+-	mock_init_ggtt(gt);
+-
+-	err = i915_subtests(tests, gt->ggtt);
++	err = i915_subtests(tests, to_gt(i915)->ggtt);
+ 
+ 	mock_device_flush(i915);
+ 	i915_gem_drain_freed_objects(i915);
+-	mock_fini_ggtt(gt->ggtt);
+-
+-out_put:
+ 	mock_destroy_device(i915);
++
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+index 71b52d5efef4..dbe78ed408e5 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_vma.c
++++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+@@ -923,30 +923,18 @@ int i915_vma_mock_selftests(void)
+ 		SUBTEST(igt_vma_partial),
+ 	};
+ 	struct drm_i915_private *i915;
+-	struct intel_gt *gt;
+ 	int err;
+ 
+ 	i915 = mock_gem_device();
+ 	if (!i915)
+ 		return -ENOMEM;
+ 
+-	/* allocate the ggtt */
+-	err = intel_gt_assign_ggtt(to_gt(i915));
+-	if (err)
+-		goto out_put;
+-
+-	gt = to_gt(i915);
+-
+-	mock_init_ggtt(gt);
+-
+-	err = i915_subtests(tests, gt->ggtt);
++	err = i915_subtests(tests, to_gt(i915)->ggtt);
+ 
+ 	mock_device_flush(i915);
+ 	i915_gem_drain_freed_objects(i915);
+-	mock_fini_ggtt(gt->ggtt);
+-
+-out_put:
+ 	mock_destroy_device(i915);
++
+ 	return err;
+ }
+ 
+-- 
+2.21.0.rc0.32.g243a4c7e27
 
