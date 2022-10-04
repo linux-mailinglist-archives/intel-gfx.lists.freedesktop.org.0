@@ -2,50 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4586A5F469E
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 17:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1A75F46ED
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 17:49:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30DC910E711;
-	Tue,  4 Oct 2022 15:26:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1370010E3AE;
+	Tue,  4 Oct 2022 15:49:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA70110E724;
- Tue,  4 Oct 2022 15:26:22 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B027210E3B6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 15:49:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664897182; x=1696433182;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=exIdKb5B73+GhD3q4SRTY1/IZO35AGSv2ITM754pZUQ=;
- b=Ne3ILYzcoFB7osUBLqOzKol/n2cI1m2gfCO9Da7ffBV38y+iy8ukoyuj
- hpOxAyA5Rl1m1ifpcxkQhrqhR8quMsvgx9tMMV1weZ8NiAHJuj36AIzJL
- SDPHAbb9riq/8wkYLXZ6jYvVfclCtJmx09AOPf1939gHD+yiBZj+ai2ST
- HZYcKtAh1wfNRSNe6biUn+6NgcFPetEuL5LRdIxSA+kyYhNilNQamkEnL
- fodZWQ9qNL/vFKH4LDorYcMNEcGZ4cRnkvqZtxyU5i9jNIzmt2kf57Ww8
- n6sJdQo/I03uHqKmaobAik/Tdtthr7xy95MYfewZAv4/Wn63qqXR6WD6U Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="301659426"
-X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="301659426"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2022 08:26:22 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="601655880"
-X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="601655880"
-Received: from ngverso-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.7.149])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2022 08:26:21 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Tue,  4 Oct 2022 16:25:49 +0100
-Message-Id: <20221004152549.436801-5-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221004152549.436801-1-matthew.auld@intel.com>
-References: <20221004152549.436801-1-matthew.auld@intel.com>
+ t=1664898544; x=1696434544;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mfTmzhVOtSRP9ECYsZaNb1zT2E5Ol5tQqQoGy8U3Erw=;
+ b=Xpx6wSNSLTPAiLoKXmejIQ4Oz5R/ue29IbF0PE5VkGaiJIa/pfedgYrI
+ 2v8bEiD8ZhXJ0pCpN23rqj55kz8nYtS6tFZ3MJe2RdwB9/unXCAIPcwAq
+ Nn0sJtv/NwlvB0XPF2HrdtHmCCKV+SicH1+yNORk3Nibv+asRFkctkf55
+ JETyoBvwa3HhmKOmvleE4Oay3cLYyI0zjkdER2JF2By/1Rqo85FkpWOKr
+ LRwhTRBzyO3Qhmejpv+eP+8xSjMu5HizbRo/DsfZa/Oy3oYIZxdxucoCg
+ BvVXvPvlC6l+c2Vu8ugmO0wCWtw9XMZyrSKRIZsOU+V/Esh6901OU9Oh3 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="300545914"
+X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="300545914"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 08:49:04 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="713055737"
+X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="713055737"
+Received: from vgovind2-mobl3.tm.intel.com ([10.237.50.39])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 08:49:03 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Oct 2022 18:48:48 +0300
+Message-Id: <20221004154848.689607-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t v2 5/5] tests/i915/gem_create: add some
- basic testing for GTT alignment
+Subject: [Intel-gfx] [PATCH] drm/i915: Enable SDP split for DP2.0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,155 +55,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make sure we can always place an object at some GTT address, so
-long as we adhere to the min GTT alignment for the given region.
+Enable the SDP split configuration for DP2.0.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+v2: Move the register handling out of compute config function (JaniN)
+
+v3: Patch styling and register access based on platform support (JaniN)
+
+Bspec: 67768
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- tests/i915/gem_create.c | 117 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 117 insertions(+)
+ drivers/gpu/drm/i915/display/intel_audio.c    | 12 ++++++++++++
+ drivers/gpu/drm/i915/display/intel_audio.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  3 +++
+ .../drm/i915/display/intel_display_types.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 19 +++++++++++++++++++
+ 5 files changed, 38 insertions(+)
 
-diff --git a/tests/i915/gem_create.c b/tests/i915/gem_create.c
-index becdc715..5ede76fa 100644
---- a/tests/i915/gem_create.c
-+++ b/tests/i915/gem_create.c
-@@ -821,6 +821,115 @@ static void create_ext_cpu_access_big(int fd)
- 	free(regions);
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index aacbc6da84ef..c9c96f1e1a99 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -800,6 +800,18 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 	intel_de_write(dev_priv, aud_config, tmp);
  }
  
-+/** XXX: remove once we sync the uapi header */
-+#define gtt_alignment rsvd0
-+static bool supports_gtt_alignment(int fd)
++void intel_audio_sdp_split_update(struct intel_encoder *encoder,
++				  const struct intel_crtc_state *crtc_state)
 +{
-+	struct drm_i915_query_memory_regions *regions;
-+	uint32_t gtt_alignment;
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	enum transcoder trans = crtc_state->cpu_transcoder;
++	u32 clear = crtc_state->sdp_split_enable ? 0 : AUD_ENABLE_SDP_SPLIT;
++	u32 set = crtc_state->sdp_split_enable ? AUD_ENABLE_SDP_SPLIT : 0;
 +
-+	regions = gem_get_query_memory_regions(fd);
-+	igt_assert(regions);
-+	igt_assert(regions->num_regions);
-+
-+	gtt_alignment = regions->regions[0].gtt_alignment;
-+	free(regions);
-+
-+	return gtt_alignment;
++	if (HAS_DP20(i915))
++		intel_de_rmw(i915, AUD_DP_2DOT0_CTRL(trans), clear, set);
 +}
 +
-+static void create_ext_placement_alignment(int fd)
-+{
-+	struct drm_i915_gem_create_ext_memory_regions setparam_region = {
-+		.base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
-+	};
-+	struct drm_i915_gem_memory_class_instance *uregions;
-+	struct drm_i915_query_memory_regions *regions;
-+	const uint32_t bbe = MI_BATCH_BUFFER_END;
-+	struct drm_i915_gem_execbuffer2 execbuf = {};
-+	struct drm_i915_gem_exec_object2 obj = {};
-+	uint32_t max_gtt_alignment;
-+	uint32_t handle;
-+	uint32_t ctx;
-+	uint64_t ahnd;
-+	uint64_t size;
-+	int i;
+ /**
+  * intel_audio_codec_enable - Enable the audio codec for HD audio
+  * @encoder: encoder on which to enable audio
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
+index 63b22131dc45..1b87257c6a17 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.h
++++ b/drivers/gpu/drm/i915/display/intel_audio.h
+@@ -22,5 +22,7 @@ void intel_audio_cdclk_change_pre(struct drm_i915_private *dev_priv);
+ void intel_audio_cdclk_change_post(struct drm_i915_private *dev_priv);
+ void intel_audio_init(struct drm_i915_private *dev_priv);
+ void intel_audio_deinit(struct drm_i915_private *dev_priv);
++void intel_audio_sdp_split_update(struct intel_encoder *encoder,
++				  const struct intel_crtc_state *crtc_state);
+ 
+ #endif /* __INTEL_AUDIO_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 971356237eca..dfb0a8218c62 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2926,6 +2926,9 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
+ 
+ 	intel_vrr_enable(encoder, crtc_state);
+ 
++	/* Enable/Disable DP2.0 SDP split config before transcoder */
++	intel_audio_sdp_split_update(encoder, crtc_state);
 +
-+	regions = gem_get_query_memory_regions(fd);
-+	igt_assert(regions);
-+	igt_assert(regions->num_regions);
+ 	intel_enable_transcoder(crtc_state);
+ 
+ 	intel_crtc_vblank_on(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index e2b853e9e51d..51478e7e086d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1282,6 +1282,8 @@ struct intel_crtc_state {
+ 	/* Forward Error correction State */
+ 	bool fec_enable;
+ 
++	bool sdp_split_enable;
 +
-+	uregions = calloc(regions->num_regions, sizeof(*uregions));
-+
-+	ctx = gem_context_create(fd);
-+
-+	max_gtt_alignment = 0;
-+	for (i = 0; i < regions->num_regions; i++) {
-+		struct drm_i915_memory_region_info qmr = regions->regions[i];
-+		struct drm_i915_gem_memory_class_instance ci = qmr.region;
-+		uint32_t gtt_alignment;
-+
-+		gtt_alignment = qmr.gtt_alignment;
-+
-+		setparam_region.regions = to_user_pointer(&ci);
-+		setparam_region.num_regions = 1;
-+
-+		size = PAGE_SIZE;
-+		igt_assert_eq(__gem_create_ext(fd, &size, 0, &handle,
-+					       &setparam_region.base), 0);
-+		gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-+
-+		ahnd = intel_allocator_open_full(fd, ctx, 0, 0,
-+						 INTEL_ALLOCATOR_RANDOM,
-+						 ALLOC_STRATEGY_HIGH_TO_LOW,
-+						 gtt_alignment);
-+
-+		obj.handle = handle;
-+		obj.offset = CANONICAL(get_offset(ahnd, handle, size, 0));
-+		obj.flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS | EXEC_OBJECT_PINNED;
-+
-+		execbuf.buffers_ptr = to_user_pointer(&obj);
-+		execbuf.buffer_count = 1;
-+
-+		gem_execbuf(fd, &execbuf);
-+
-+		put_ahnd(ahnd);
-+
-+		max_gtt_alignment = max(max_gtt_alignment, gtt_alignment);
-+		uregions[i] = regions->regions[i].region;
-+	}
-+
-+	setparam_region.regions = to_user_pointer(uregions);
-+	setparam_region.num_regions = regions->num_regions;
-+
-+	size = PAGE_SIZE;
-+	igt_assert_eq(__gem_create_ext(fd, &size, 0, &handle,
-+				       &setparam_region.base), 0);
-+	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-+
-+	ahnd = intel_allocator_open_full(fd, ctx, 0, 0,
-+					 INTEL_ALLOCATOR_RANDOM,
-+					 ALLOC_STRATEGY_HIGH_TO_LOW,
-+					 max_gtt_alignment);
-+
-+	obj.handle = handle;
-+	obj.offset = CANONICAL(get_offset(ahnd, handle, size, 0));
-+	obj.flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS | EXEC_OBJECT_PINNED;
-+
-+	execbuf.buffers_ptr = to_user_pointer(&obj);
-+	execbuf.buffer_count = 1;
-+
-+	gem_execbuf(fd, &execbuf);
-+
-+	put_ahnd(ahnd);
-+
-+	gem_context_destroy(fd, ctx);
-+
-+	gem_close(fd, handle);
-+	free(uregions);
-+	free(regions);
-+}
-+
- igt_main
- {
- 	int fd = -1;
-@@ -906,4 +1015,12 @@ igt_main
- 		igt_require(supports_needs_cpu_access(fd));
- 		create_ext_cpu_access_big(fd);
- 	}
-+
-+	igt_describe("Check reported GTT alignment gives usable GTT address, for each region.");
-+	igt_subtest("create-ext-placement-alignment") {
-+		igt_require(supports_gtt_alignment(fd));
-+		igt_require(gem_uses_full_ppgtt(fd));
-+		create_ext_placement_alignment(fd);
-+	}
-+
+ 	/* Pointer to master transcoder in case of tiled displays */
+ 	enum transcoder master_transcoder;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 70b06806ec0d..be7ea95ac2a6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2008,6 +2008,23 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 	return ret;
  }
+ 
++static void
++intel_dp_audio_compute_config(struct intel_encoder *encoder,
++			      struct intel_crtc_state *pipe_config,
++			      struct drm_connector_state *conn_state)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct drm_connector *connector = conn_state->connector;
++
++	pipe_config->sdp_split_enable =
++		    intel_dp_has_audio(encoder, pipe_config, conn_state) &&
++		    intel_dp_is_uhbr(pipe_config);
++
++	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDP split enable: %s\n",
++		    connector->base.id, connector->name,
++		    str_yes_no(pipe_config->sdp_split_enable));
++}
++
+ int
+ intel_dp_compute_config(struct intel_encoder *encoder,
+ 			struct intel_crtc_state *pipe_config,
+@@ -2091,6 +2108,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 		adjusted_mode->crtc_clock /= n;
+ 	}
+ 
++	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
++
+ 	intel_link_compute_m_n(output_bpp,
+ 			       pipe_config->lane_count,
+ 			       adjusted_mode->crtc_clock,
 -- 
-2.37.3
+2.34.1
 
