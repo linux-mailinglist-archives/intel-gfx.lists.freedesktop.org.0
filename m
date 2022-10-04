@@ -1,52 +1,155 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 117F25F4642
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 17:13:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6965A5F4645
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 17:14:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD9A10E5E4;
-	Tue,  4 Oct 2022 15:13:42 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33E9A10E5E4
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 15:13:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE2510E70C;
+	Tue,  4 Oct 2022 15:14:10 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FAFC10E5E5;
+ Tue,  4 Oct 2022 15:14:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664896420; x=1696432420;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=PIo0dgPOyovxkkaLWRwrheppaE7b3I+eiL2tdX0DzOU=;
- b=YO2ecjtAkUWc+8DYdsXK9GI2jvDHAcYoclqexxfjfm2s1eQhkx3Vp0Vd
- cdG4byFmyM6rjHtq63sZf+gB22Fe0fR+DFgy1YBpe7PvMGEXAmofiiUt7
- sS4ZH16XDuNgIYoGT+5YgledKqqxj8ZQF1frttexoP+xt4vxH0fZpKuSp
- dLBAL1TbfcKgl2jel6ERgWvk02XQwxuDRb42Wm/05w4FbVceYhOr1ZoNY
- l4T9ku7p966eiMWXirbhGqYsX3sNzQ/osBwqNJc5YYT5Q30ctkOE9jlZ+
- zrBHsUZE4+g6gmc47s7CIFXLKh0ODrgc6DxP6cVaJD4cAzOesfnc51JW9 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="302913043"
-X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="302913043"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2022 08:13:39 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="728256859"
-X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="728256859"
-Received: from pvarla-mobl4.gar.corp.intel.com (HELO localhost)
- ([10.252.39.104])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2022 08:13:38 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221004150929.23910-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221004150929.23910-1-ville.syrjala@linux.intel.com>
-Date: Tue, 04 Oct 2022 18:13:35 +0300
-Message-ID: <87o7ursjts.fsf@intel.com>
+ t=1664896446; x=1696432446;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=xsca9zHdkVJneKupEbk1p6pr9QJuxZid3ga6O+b1EUc=;
+ b=hpr08wMSHEpmPShvpwuAnw1hGktV6jmwSxEXNuXBoygf/3ZEc5g67N4r
+ hWOKVaZekGdhMslUoAH0OlLeDoyJB0byPDOi9OIMvqckPySMXHFJGL1cY
+ OEmz8NR6wf57CA+P6K9CUYgqe0nK4z0rWoaM29ITxWVvz5VKDG8KKVXu2
+ azzc1CxIu6N74TJlCqpBHBKpGLtouKIQtDmI9rqrgLd2xKT17IscnSCF9
+ fE+IFiBqBAFl1K7X4Raj/sO3OIIAeTqENxQR/jSFmqr58ifJLgucAPYGO
+ qKKxLNk2iBJY4SUAo+Y6EoSMiHWa7mlU1fMOV9GD/qYpn5KZVMJTZ5j/m A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="282646425"
+X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="282646425"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 08:14:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="686577317"
+X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="686577317"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga008.fm.intel.com with ESMTP; 04 Oct 2022 08:14:06 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 4 Oct 2022 08:14:05 -0700
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 4 Oct 2022 08:14:05 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Tue, 4 Oct 2022 08:14:05 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Tue, 4 Oct 2022 08:14:04 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P16TSUiEich6t/IBw9527Yrk6KgZ5kvWmSz3oisb0yi4F62mxVxtdcJLcg79gZRrqMOGwKz06D+jtgFpwKI7HoE0WPh7k+VOB2UKpANeryrt7DgvpfNIPiLWtTcOlMYPnA3ICPo9ggIjj2XmevKXea5XV9d0mJVvtvnNl7W6eWqcF3qBCklbKG7/jnTdYPbcN3fr4skgcb8AII/e9PjjmZtJ2YF7Y/49r2arvrtcGnYbnRueVMHV9l7Iol7iC1DVpP0GN6wx5TRXm97ecsiasfJzEOCblA95P3o+CEtcl6yx8jrG0R54zeLL6ImluBnO+jDoZtvUl0/g12xfatTFIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aYqCgNb9PLkdgUpBfkObfm0xXQde12eajx0E9I7BGuU=;
+ b=OmxLmZBE22UIaN+t/LfhXID+s3d9sDVJs2tdaINVBzxtWb4K6FKSYG+LiqG4WzIkvRbcCNU5QIO0XTGw06ietKLnoX8ureLjbGyPmtot9dq9goncJMO1yoApId3/zoBlgTnVVeNIIUs8FTXxy3msmT2imfkrRDr9ghokChjLUKI3te50xbK6EWcnnEYgknEmFg6cHnmf2/VouqZHId4ILk7o7xWmZAaEAyRQI1MA4idnNzH1YAHIxAwje5NR/QcIvmM1xtkysEDYIXxMSloXoECCuKivtEr+CN/6Xb7KCD258JSCjt0/9FbUhsFZfT0jdxr+Wh/HSAvs/T5BV9TTUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH0PR11MB5475.namprd11.prod.outlook.com (2603:10b6:610:d6::21)
+ by MN2PR11MB4536.namprd11.prod.outlook.com (2603:10b6:208:26a::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Tue, 4 Oct
+ 2022 15:13:57 +0000
+Received: from CH0PR11MB5475.namprd11.prod.outlook.com
+ ([fe80::4061:3db5:84b8:8f77]) by CH0PR11MB5475.namprd11.prod.outlook.com
+ ([fe80::4061:3db5:84b8:8f77%7]) with mapi id 15.20.5676.031; Tue, 4 Oct 2022
+ 15:13:57 +0000
+Message-ID: <e2140d7a-b084-4298-d92a-649d0672fcc7@intel.com>
+Date: Tue, 4 Oct 2022 08:13:54 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ <Intel-gfx@lists.freedesktop.org>
+References: <20220930094716.430937-1-tvrtko.ursulin@linux.intel.com>
+ <20221003121630.694249-1-tvrtko.ursulin@linux.intel.com>
+ <36096340-aac7-7072-688a-bbef4e7d7d7f@linux.intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <36096340-aac7-7072-688a-bbef4e7d7d7f@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR13CA0209.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::34) To CH0PR11MB5475.namprd11.prod.outlook.com
+ (2603:10b6:610:d6::21)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Clean up some namespacing
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5475:EE_|MN2PR11MB4536:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c6c691b-1ee3-4ef4-43c8-08daa61b0f1b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kZ3GfcZKlcilqCTymK4AT7tK/xiiR+RVc4ulg62scsjcoOX47oGgj7x+S1XSK0mzvnFwbJf7KVb00WBHONZCNXhp+6yh63xxpqIouGhP+eCf1S7rZpEd/vSWJDnGIzuqvf91KZoAEOtqCbUhjS1pO2BYmDl4eerpEW8jroD0nJht+9ILDCMW6R7HZTE7Mz+EpGIggSdl8FVjlIl4z2A2lNzGH2Ew5a47ubLyY4yDB78M+01XU3u/q4ke78bejvY8rcOhC7cKHQdHUqyuTI+gxVKMS5UhRokbQ1jvN+9RW+rjgEhzOopAYcczkHMbj0heFKCy3GpohbaZ0svWb59vCjddzqUGHZ6pSQziHYqztGe3BkPWjSNnSP4JqfoowO7rPQNwpXldfQ5M5IQfrhgz0dB2UWbzTvz/M+A3lwKKiYmMiHjmjAhxTCdD9qgcAt78AQDsx/bDxXkV0gPruyHBhMYwzCd4OWr8yp/9BsKKf6XXYwPVnod9oHXKGrkUxEx+1IiCUFAl3WAxWJJbEGfKElABZedn7edeb2BjYRwvUfVNRhlzyuRNQgo+LtEeIJ+JyGHKvA7Ink2lwSFf5Rv78YRHae3PhhMJexWLkSstnkzVp5Eghbh9tCIoFjscwNEIGwcBI1nPVSi/HgfEIFP7hCLulOPwjIpLjDI7eLZ+TvZJvceyJvnQTlqbX5SoJyT8LNkpIzjiQZzOnC10z8UHrINHBV5T1fWQodeLuSOMkTVX0ew2DleyVUE38AbldIeeWvHElMLYxzMjVcU8Y+UJNSWA09BUHtyoG/C+fM2CLik=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5475.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(136003)(366004)(396003)(346002)(376002)(451199015)(31686004)(36756003)(66899015)(86362001)(2906002)(31696002)(53546011)(6512007)(26005)(82960400001)(38100700002)(66946007)(8936002)(41300700001)(66476007)(5660300002)(66556008)(4326008)(186003)(8676002)(2616005)(6666004)(83380400001)(316002)(478600001)(6486002)(54906003)(6506007)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Rk5xRTRhQXhuM0JueDF3L2J6NzVGdU5ER2xBSEpYc09SZzNWRm1IVnI1Zi91?=
+ =?utf-8?B?SCtHM2pjRlBrL3JFLytJV00wYlptTGgzRElXSW9rSzl4THpsbWpHRStRR1V5?=
+ =?utf-8?B?ZUQ3c0FpekdVbHIwWTN4QTcvT1dydU1qVE8yRXgybnd5eUowV1RJeDByV3o1?=
+ =?utf-8?B?aXJ5Sml1UzRXcWxwOTlmY0VnSGpaVGQzdnhPM2IyQjRsdGVwOWZCWkUxZzYv?=
+ =?utf-8?B?ZmlwL1cveTJqblhBWXlnUEtsZnhoZXlSaHc3YVJYY3p5aXdFSFdSQXNlQjNL?=
+ =?utf-8?B?WXFkankrUTk0dUVFN3JueXhJMVhCZE1iUDR2eFBhcW1FcWcyamFONjlnbkNZ?=
+ =?utf-8?B?VzhPVktRS0R6VFJJYmpGMXYxM2MxVFpTbkJiNGd6clVWZFVEQ09yVDB6OGE4?=
+ =?utf-8?B?RjJsSUJRd0F4cTFhUWtvNHBIaGNqbjBTN0F0bDR2aWJpcmg3U2I4QXQ3Vi90?=
+ =?utf-8?B?d1h4bGFBcmFzRGVvOTA1emg5K0hFRTROR3lHaytBQXQyQ0kwRTBwQjRSaCtU?=
+ =?utf-8?B?am1MVGhlcnFaTDFVZGNnUDM1SXRYa2dNR1RIYVJUaXBGcWkwNy9QWlNPNmpN?=
+ =?utf-8?B?UTZCYkVsUzNjSGtUNWcrK2NWeE1ZNjZoVXhsOStVU0I4THdyaWZPWGhFVlI1?=
+ =?utf-8?B?MlFaZVAxREtxaWhvdWpxb1h2bFJYcm1NcllOVnhpOUVDNjBMT29oN0Rtczcx?=
+ =?utf-8?B?Y21Ocy9mNWVWcjhpcVlKeE1PM0x2Ykl2Y2lqU1h0TEo3ZkdkUU9pZ2hNMWdG?=
+ =?utf-8?B?cTZSL0Q3QUxUaHBTY2EweVhGanpsTDFVRXFkN1ppRzYybDlOOEYzaHZqTVN0?=
+ =?utf-8?B?K1ptWUtBbmdIcXNEN0VzNFRnK2RyajNBOENnVFBLS1VqNDdPcmkzcEZKWDJw?=
+ =?utf-8?B?NUgxRGNWZzdrRHUzUzQ5WXYxUFlqOWJ4cUdMVjFLbmt6MVZBLzBqdmY1bktM?=
+ =?utf-8?B?MXVBWTZ3emRRODY4cTFBMkNVdk1VcTFoYTVjWURZa3QranYvRUxERkY4M21y?=
+ =?utf-8?B?eStuR2JFeDFtYTkwa3p3ZXJDWGQzM2luUG1RenhadVZGcEFpM2tpMElhQXBr?=
+ =?utf-8?B?cTA2bTNTY1pBZUN5Yk1zampFMXBNdWEwQWhHU1pMOU1HU3ZWUElRZ21HVkxu?=
+ =?utf-8?B?dlRuNzZHd0VhYVJJcGpTaXh3YmtPTDhRdWNNNGwxeGVNUGZPbTArbkJxS25V?=
+ =?utf-8?B?TmpzT3pwUEhDcFBDVWJUNTE4VFlzMHRYZVhMOGVOMVRRamNRZm9vcFdjMHdz?=
+ =?utf-8?B?c0tTby9GQ2Z1bitmRFNyQ01iREtFR1ZXckp2cmpTWFVLQTRFM3JyZCtmM3E4?=
+ =?utf-8?B?ZnYvb3YyZ1NkTHUwNFNidnRyV1R3YUpZdVRteCswSDF2eUp0am5pZXRYNUVN?=
+ =?utf-8?B?OVFsS1pkUllRMktjamM2UWhLajJEd0l2ZCtia1VsUi9xV3Zhb2o0Mnp2NzNv?=
+ =?utf-8?B?dWlZNm9QMG9icHNUT29UYXRFamlKZFhnaVNhV3MrcDFiQkJCeEV4M1ZMc0R3?=
+ =?utf-8?B?YjgvOXQwTXpMRXNkNUZqd1dTZXozL1dSdFlZN2NRUUtQcm5qUVErTTBKcUds?=
+ =?utf-8?B?WlFMQzlrV0JkWnRBSm9IbGNpL2VjcHQ4Z1gyTnZyaVl1VVZPVEZkSFU5SG5v?=
+ =?utf-8?B?RlZqUWJTbkRrYWJGbFl4S2tWL29nZWRvMzl1ZXNqRTFhMHJ0R094bGNyQ3pp?=
+ =?utf-8?B?MDdHZnVNNDNRNG1ZK2FwYlpQSS96QjBxNHNXUDNBWDd5MUFGWjhDbDlnMTd3?=
+ =?utf-8?B?R0gyMjZBR3V2Y0l2cEg0YlJQVnlCKzY5eTNtU3hMUGhETHd4VXN6RU9qb1NV?=
+ =?utf-8?B?QTNwM1BRWGFMNHA0WVVuK2lOZit0MURIQTk0MVErSTV1TVJuMHl0Y0huOSsz?=
+ =?utf-8?B?ZTNWMUVtU1BDTE9HOHhGdS80bG9iMmdYY2RPZitkZnhWd09VWlN0MUg2QTBS?=
+ =?utf-8?B?VlNzNHpubkxYWlRPT0svRTF0UEJITk1XMjdXcUhKQi9HUXMwdVJocWNVQjBJ?=
+ =?utf-8?B?eTNNSnFiU1RLOWY4SUY5Y2xBbDgwVTdCOEZ6TGhXNnVwejZ3ZUVudGNIOXdr?=
+ =?utf-8?B?VWFGM0l1OEN1TGtRRmJEQ1BGaTZtNCtKYTlId0U1aUZrU0tzUnk3Rys4TVpv?=
+ =?utf-8?B?ODdhMFQvQk9ZOWIvbENwTE5ORFFjM2NPMGk3QWNGSzN2SWtaQm1NTGg1QmtX?=
+ =?utf-8?Q?DP69h5xCZY3QBxhuAKN+Fr4=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c6c691b-1ee3-4ef4-43c8-08daa61b0f1b
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5475.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2022 15:13:57.6630 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6mwsrqSevMVkS+sZ4RPvVDy+91Teqlb8o5q00pu/QZ4Wr1cTgMoDQ012CSxhs0ruO8jm78yMkgngYVe1qZzOd4Xp9+WdMTiHCq2HLyiu/tk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4536
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/guc: Fix revocation of
+ non-persistent contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,119 +162,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 04 Oct 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+
+On 10/4/2022 4:14 AM, Tvrtko Ursulin wrote:
 >
-> Rename a few functions from intel_crtc_foo_init() to
-> intel_foo_crtc_init() so that the namespaec clearly
-> indicates what feature/file we're talking about.
+> On 03/10/2022 13:16, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Patch which added graceful exit for non-persistent contexts missed the
+>> fact it is not enough to set the exiting flag on a context and let the
+>> backend handle it from there.
+>>
+>> GuC backend cannot handle it because it runs independently in the
+>> firmware and driver might not see the requests ever again. Patch also
+>> missed the fact some usages of intel_context_is_banned in the GuC 
+>> backend
+>> needed replacing with newly introduced intel_context_is_schedulable.
+>>
+>> Fix the first issue by calling into backend revoke when we know this is
+>> the last chance to do it. Fix the second issue by replacing
+>> intel_context_is_banned with intel_context_is_schedulable, which should
+>> always be safe since latter is a superset of the former.
+>>
+>> v2:
+>>   * Just call ce->ops->revoke unconditionally. (Andrzej)
 >
-> If left out intel_crtc_crc_init() because the whole crc
+> CI is happy - could I get some acks for the GuC backend changes please?
 
-*I
+I think we still need to have a longer conversation on the revoking 
+times, but in the meantime this fixes the immediate concerns, so:
 
-> stuff uses intel_crtc_ as its namespace currently.
+Acked-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+Daniele
+
 >
-> Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_color.c | 2 +-
->  drivers/gpu/drm/i915/display/intel_color.h | 2 +-
->  drivers/gpu/drm/i915/display/intel_crtc.c  | 4 ++--
->  drivers/gpu/drm/i915/display/intel_drrs.c  | 4 ++--
->  drivers/gpu/drm/i915/display/intel_drrs.h  | 2 +-
->  5 files changed, 7 insertions(+), 7 deletions(-)
+> Regards,
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm=
-/i915/display/intel_color.c
-> index 0c73b2ba1283..fc23d5d8f7fd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -2209,7 +2209,7 @@ static const struct intel_color_funcs ilk_color_fun=
-cs =3D {
->  	.read_luts =3D ilk_read_luts,
->  };
->=20=20
-> -void intel_crtc_color_init(struct intel_crtc *crtc)
-> +void intel_color_crtc_init(struct intel_crtc *crtc)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	bool has_ctm =3D INTEL_INFO(dev_priv)->display.color.degamma_lut_size !=
-=3D 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm=
-/i915/display/intel_color.h
-> index 67702451e2fd..04984e6000b6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.h
-> +++ b/drivers/gpu/drm/i915/display/intel_color.h
-> @@ -14,7 +14,7 @@ struct drm_i915_private;
->  struct drm_property_blob;
->=20=20
->  void intel_color_init_hooks(struct drm_i915_private *i915);
-> -void intel_crtc_color_init(struct intel_crtc *crtc);
-> +void intel_color_crtc_init(struct intel_crtc *crtc);
->  int intel_color_check(struct intel_crtc_state *crtc_state);
->  void intel_color_commit_noarm(const struct intel_crtc_state *crtc_state);
->  void intel_color_commit_arm(const struct intel_crtc_state *crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
-i915/display/intel_crtc.c
-> index 2d9fc7383bfc..6be1fe34c83b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -365,8 +365,8 @@ int intel_crtc_init(struct drm_i915_private *dev_priv=
-, enum pipe pipe)
->  						BIT(DRM_SCALING_FILTER_DEFAULT) |
->  						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
->=20=20
-> -	intel_crtc_color_init(crtc);
-> -	intel_crtc_drrs_init(crtc);
-> +	intel_color_crtc_init(crtc);
-> +	intel_drrs_crtc_init(crtc);
->  	intel_crtc_crc_init(crtc);
->=20=20
->  	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
-> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/=
-i915/display/intel_drrs.c
-> index 2b94a62ef65a..e27408efaae2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-> @@ -284,14 +284,14 @@ void intel_drrs_flush(struct drm_i915_private *dev_=
-priv,
->  }
->=20=20
->  /**
-> - * intel_crtc_drrs_init - Init DRRS for CRTC
-> + * intel_drrs_crtc_init - Init DRRS for CRTC
->   * @crtc: crtc
->   *
->   * This function is called only once at driver load to initialize basic
->   * DRRS stuff.
->   *
->   */
-> -void intel_crtc_drrs_init(struct intel_crtc *crtc)
-> +void intel_drrs_crtc_init(struct intel_crtc *crtc)
->  {
->  	INIT_DELAYED_WORK(&crtc->drrs.work, intel_drrs_downclock_work);
->  	mutex_init(&crtc->drrs.mutex);
-> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.h b/drivers/gpu/drm/=
-i915/display/intel_drrs.h
-> index 041248bf5d67..8ef5f93a80ff 100644
-> --- a/drivers/gpu/drm/i915/display/intel_drrs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_drrs.h
-> @@ -23,7 +23,7 @@ void intel_drrs_invalidate(struct drm_i915_private *dev=
-_priv,
->  			   unsigned int frontbuffer_bits);
->  void intel_drrs_flush(struct drm_i915_private *dev_priv,
->  		      unsigned int frontbuffer_bits);
-> -void intel_crtc_drrs_init(struct intel_crtc *crtc);
-> +void intel_drrs_crtc_init(struct intel_crtc *crtc);
->  void intel_drrs_crtc_debugfs_add(struct intel_crtc *crtc);
->  void intel_drrs_connector_debugfs_add(struct intel_connector *connector);
+> Tvrtko
+>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Fixes: 45c64ecf97ee ("drm/i915: Improve user experience and driver 
+>> robustness under SIGINT or similar")
+>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: <stable@vger.kernel.org> # v6.0+
+>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  8 +-----
+>>   drivers/gpu/drm/i915/gt/intel_context.c       |  5 ++--
+>>   drivers/gpu/drm/i915/gt/intel_context.h       |  3 +--
+>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 26 +++++++++----------
+>>   4 files changed, 17 insertions(+), 25 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c 
+>> b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> index 0bcde53c50c6..1e29b1e6d186 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> @@ -1387,14 +1387,8 @@ kill_engines(struct i915_gem_engines *engines, 
+>> bool exit, bool persistent)
+>>        */
+>>       for_each_gem_engine(ce, engines, it) {
+>>           struct intel_engine_cs *engine;
+>> -        bool skip = false;
+>>   -        if (exit)
+>> -            skip = intel_context_set_exiting(ce);
+>> -        else if (!persistent)
+>> -            skip = intel_context_exit_nonpersistent(ce, NULL);
+>> -
+>> -        if (skip)
+>> +        if ((exit || !persistent) && intel_context_revoke(ce))
+>>               continue; /* Already marked. */
+>>             /*
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c 
+>> b/drivers/gpu/drm/i915/gt/intel_context.c
+>> index 654a092ed3d6..e94365b08f1e 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+>> @@ -614,13 +614,12 @@ bool intel_context_ban(struct intel_context 
+>> *ce, struct i915_request *rq)
+>>       return ret;
+>>   }
+>>   -bool intel_context_exit_nonpersistent(struct intel_context *ce,
+>> -                      struct i915_request *rq)
+>> +bool intel_context_revoke(struct intel_context *ce)
+>>   {
+>>       bool ret = intel_context_set_exiting(ce);
+>>         if (ce->ops->revoke)
+>> -        ce->ops->revoke(ce, rq, ce->engine->props.preempt_timeout_ms);
+>> +        ce->ops->revoke(ce, NULL, 
+>> ce->engine->props.preempt_timeout_ms);
+>>         return ret;
+>>   }
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h 
+>> b/drivers/gpu/drm/i915/gt/intel_context.h
+>> index 8e2d70630c49..be09fb2e883a 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+>> @@ -329,8 +329,7 @@ static inline bool 
+>> intel_context_set_exiting(struct intel_context *ce)
+>>       return test_and_set_bit(CONTEXT_EXITING, &ce->flags);
+>>   }
+>>   -bool intel_context_exit_nonpersistent(struct intel_context *ce,
+>> -                      struct i915_request *rq);
+>> +bool intel_context_revoke(struct intel_context *ce);
+>>     static inline bool
+>>   intel_context_force_single_submission(const struct intel_context *ce)
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>> index 0ef295a94060..88a4476b8e92 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>> @@ -685,7 +685,7 @@ static int __guc_add_request(struct intel_guc 
+>> *guc, struct i915_request *rq)
+>>        * Corner case where requests were sitting in the priority list 
+>> or a
+>>        * request resubmitted after the context was banned.
+>>        */
+>> -    if (unlikely(intel_context_is_banned(ce))) {
+>> +    if (unlikely(!intel_context_is_schedulable(ce))) {
+>>           i915_request_put(i915_request_mark_eio(rq));
+>>           intel_engine_signal_breadcrumbs(ce->engine);
+>>           return 0;
+>> @@ -871,15 +871,15 @@ static int guc_wq_item_append(struct intel_guc 
+>> *guc,
+>>                     struct i915_request *rq)
+>>   {
+>>       struct intel_context *ce = request_to_scheduling_context(rq);
+>> -    int ret = 0;
+>> +    int ret;
+>>   -    if (likely(!intel_context_is_banned(ce))) {
+>> -        ret = __guc_wq_item_append(rq);
+>> +    if (unlikely(!intel_context_is_schedulable(ce)))
+>> +        return 0;
+>>   -        if (unlikely(ret == -EBUSY)) {
+>> -            guc->stalled_request = rq;
+>> -            guc->submission_stall_reason = STALL_MOVE_LRC_TAIL;
+>> -        }
+>> +    ret = __guc_wq_item_append(rq);
+>> +    if (unlikely(ret == -EBUSY)) {
+>> +        guc->stalled_request = rq;
+>> +        guc->submission_stall_reason = STALL_MOVE_LRC_TAIL;
+>>       }
+>>         return ret;
+>> @@ -898,7 +898,7 @@ static bool multi_lrc_submit(struct i915_request 
+>> *rq)
+>>        * submitting all the requests generated in parallel.
+>>        */
+>>       return test_bit(I915_FENCE_FLAG_SUBMIT_PARALLEL, 
+>> &rq->fence.flags) ||
+>> -        intel_context_is_banned(ce);
+>> +           !intel_context_is_schedulable(ce);
+>>   }
+>>     static int guc_dequeue_one_context(struct intel_guc *guc)
+>> @@ -967,7 +967,7 @@ static int guc_dequeue_one_context(struct 
+>> intel_guc *guc)
+>>           struct intel_context *ce = 
+>> request_to_scheduling_context(last);
+>>             if (unlikely(!ctx_id_mapped(guc, ce->guc_id.id) &&
+>> -                 !intel_context_is_banned(ce))) {
+>> +                 intel_context_is_schedulable(ce))) {
+>>               ret = try_context_registration(ce, false);
+>>               if (unlikely(ret == -EPIPE)) {
+>>                   goto deadlk;
+>> @@ -1577,7 +1577,7 @@ static void guc_reset_state(struct 
+>> intel_context *ce, u32 head, bool scrub)
+>>   {
+>>       struct intel_engine_cs *engine = __context_to_physical_engine(ce);
+>>   -    if (intel_context_is_banned(ce))
+>> +    if (!intel_context_is_schedulable(ce))
+>>           return;
+>>         GEM_BUG_ON(!intel_context_is_pinned(ce));
+>> @@ -4518,12 +4518,12 @@ static void guc_handle_context_reset(struct 
+>> intel_guc *guc,
+>>   {
+>>       trace_intel_context_reset(ce);
+>>   -    if (likely(!intel_context_is_banned(ce))) {
+>> +    if (likely(intel_context_is_schedulable(ce))) {
+>>           capture_error_state(guc, ce);
+>>           guc_context_replay(ce);
+>>       } else {
+>>           drm_info(&guc_to_gt(guc)->i915->drm,
+>> -             "Ignoring context reset notification of banned context 
+>> 0x%04X on %s",
+>> +             "Ignoring context reset notification of exiting context 
+>> 0x%04X on %s",
+>>                ce->guc_id.id, ce->engine->name);
+>>       }
+>>   }
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
