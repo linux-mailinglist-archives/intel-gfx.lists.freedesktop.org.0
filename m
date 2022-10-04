@@ -1,155 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6965A5F4645
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 17:14:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 278425F469F
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 17:26:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE2510E70C;
-	Tue,  4 Oct 2022 15:14:10 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FAFC10E5E5;
- Tue,  4 Oct 2022 15:14:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C5D310E70F;
+	Tue,  4 Oct 2022 15:26:20 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59FAA10E70F;
+ Tue,  4 Oct 2022 15:26:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664896446; x=1696432446;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=xsca9zHdkVJneKupEbk1p6pr9QJuxZid3ga6O+b1EUc=;
- b=hpr08wMSHEpmPShvpwuAnw1hGktV6jmwSxEXNuXBoygf/3ZEc5g67N4r
- hWOKVaZekGdhMslUoAH0OlLeDoyJB0byPDOi9OIMvqckPySMXHFJGL1cY
- OEmz8NR6wf57CA+P6K9CUYgqe0nK4z0rWoaM29ITxWVvz5VKDG8KKVXu2
- azzc1CxIu6N74TJlCqpBHBKpGLtouKIQtDmI9rqrgLd2xKT17IscnSCF9
- fE+IFiBqBAFl1K7X4Raj/sO3OIIAeTqENxQR/jSFmqr58ifJLgucAPYGO
- qKKxLNk2iBJY4SUAo+Y6EoSMiHWa7mlU1fMOV9GD/qYpn5KZVMJTZ5j/m A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="282646425"
-X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="282646425"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2022 08:14:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="686577317"
-X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="686577317"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP; 04 Oct 2022 08:14:06 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 4 Oct 2022 08:14:05 -0700
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 4 Oct 2022 08:14:05 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Tue, 4 Oct 2022 08:14:05 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Tue, 4 Oct 2022 08:14:04 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P16TSUiEich6t/IBw9527Yrk6KgZ5kvWmSz3oisb0yi4F62mxVxtdcJLcg79gZRrqMOGwKz06D+jtgFpwKI7HoE0WPh7k+VOB2UKpANeryrt7DgvpfNIPiLWtTcOlMYPnA3ICPo9ggIjj2XmevKXea5XV9d0mJVvtvnNl7W6eWqcF3qBCklbKG7/jnTdYPbcN3fr4skgcb8AII/e9PjjmZtJ2YF7Y/49r2arvrtcGnYbnRueVMHV9l7Iol7iC1DVpP0GN6wx5TRXm97ecsiasfJzEOCblA95P3o+CEtcl6yx8jrG0R54zeLL6ImluBnO+jDoZtvUl0/g12xfatTFIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aYqCgNb9PLkdgUpBfkObfm0xXQde12eajx0E9I7BGuU=;
- b=OmxLmZBE22UIaN+t/LfhXID+s3d9sDVJs2tdaINVBzxtWb4K6FKSYG+LiqG4WzIkvRbcCNU5QIO0XTGw06ietKLnoX8ureLjbGyPmtot9dq9goncJMO1yoApId3/zoBlgTnVVeNIIUs8FTXxy3msmT2imfkrRDr9ghokChjLUKI3te50xbK6EWcnnEYgknEmFg6cHnmf2/VouqZHId4ILk7o7xWmZAaEAyRQI1MA4idnNzH1YAHIxAwje5NR/QcIvmM1xtkysEDYIXxMSloXoECCuKivtEr+CN/6Xb7KCD258JSCjt0/9FbUhsFZfT0jdxr+Wh/HSAvs/T5BV9TTUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5475.namprd11.prod.outlook.com (2603:10b6:610:d6::21)
- by MN2PR11MB4536.namprd11.prod.outlook.com (2603:10b6:208:26a::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Tue, 4 Oct
- 2022 15:13:57 +0000
-Received: from CH0PR11MB5475.namprd11.prod.outlook.com
- ([fe80::4061:3db5:84b8:8f77]) by CH0PR11MB5475.namprd11.prod.outlook.com
- ([fe80::4061:3db5:84b8:8f77%7]) with mapi id 15.20.5676.031; Tue, 4 Oct 2022
- 15:13:57 +0000
-Message-ID: <e2140d7a-b084-4298-d92a-649d0672fcc7@intel.com>
-Date: Tue, 4 Oct 2022 08:13:54 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- <Intel-gfx@lists.freedesktop.org>
-References: <20220930094716.430937-1-tvrtko.ursulin@linux.intel.com>
- <20221003121630.694249-1-tvrtko.ursulin@linux.intel.com>
- <36096340-aac7-7072-688a-bbef4e7d7d7f@linux.intel.com>
-From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <36096340-aac7-7072-688a-bbef4e7d7d7f@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR13CA0209.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::34) To CH0PR11MB5475.namprd11.prod.outlook.com
- (2603:10b6:610:d6::21)
+ t=1664897177; x=1696433177;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Clf9GMQsKEzztWw7j/XK8tJNYHv0oe7Vqj7K/36eT2Y=;
+ b=T/XRMGBBs8VtMQ+F2APowOPSw+iy2E6CptZLpXgk0WlzuxPTyO5GiIgC
+ sB434YNKceADxDm+3EmnFJn7yrQWwv26yjrlv6/RLt8yrC8doBQDM46VI
+ EaYA8ZPo5nAuNEZCZAoreme9sBShT7PytQAcRUYIlKHVf/z2i4JvT8ZFE
+ u1EHykZtLVmsG8wGdQNTfMFeqcFEBhZ0AWPNSWhzbo2mIDEptyCm03emi
+ 5gFU5YQpbccFQTt5x3KceAmef9mKhORy0zekF4kOGAuz77ScBkIOgxhMj
+ tdO9qclxlL/QL3AXnhHlpFmYRYBGKaNR7h4YiuJfHA8CLOZkkm4RB/deV w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="301659395"
+X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="301659395"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 08:26:16 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="601655859"
+X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="601655859"
+Received: from ngverso-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.7.149])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 08:26:14 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Tue,  4 Oct 2022 16:25:45 +0100
+Message-Id: <20221004152549.436801-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5475:EE_|MN2PR11MB4536:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c6c691b-1ee3-4ef4-43c8-08daa61b0f1b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kZ3GfcZKlcilqCTymK4AT7tK/xiiR+RVc4ulg62scsjcoOX47oGgj7x+S1XSK0mzvnFwbJf7KVb00WBHONZCNXhp+6yh63xxpqIouGhP+eCf1S7rZpEd/vSWJDnGIzuqvf91KZoAEOtqCbUhjS1pO2BYmDl4eerpEW8jroD0nJht+9ILDCMW6R7HZTE7Mz+EpGIggSdl8FVjlIl4z2A2lNzGH2Ew5a47ubLyY4yDB78M+01XU3u/q4ke78bejvY8rcOhC7cKHQdHUqyuTI+gxVKMS5UhRokbQ1jvN+9RW+rjgEhzOopAYcczkHMbj0heFKCy3GpohbaZ0svWb59vCjddzqUGHZ6pSQziHYqztGe3BkPWjSNnSP4JqfoowO7rPQNwpXldfQ5M5IQfrhgz0dB2UWbzTvz/M+A3lwKKiYmMiHjmjAhxTCdD9qgcAt78AQDsx/bDxXkV0gPruyHBhMYwzCd4OWr8yp/9BsKKf6XXYwPVnod9oHXKGrkUxEx+1IiCUFAl3WAxWJJbEGfKElABZedn7edeb2BjYRwvUfVNRhlzyuRNQgo+LtEeIJ+JyGHKvA7Ink2lwSFf5Rv78YRHae3PhhMJexWLkSstnkzVp5Eghbh9tCIoFjscwNEIGwcBI1nPVSi/HgfEIFP7hCLulOPwjIpLjDI7eLZ+TvZJvceyJvnQTlqbX5SoJyT8LNkpIzjiQZzOnC10z8UHrINHBV5T1fWQodeLuSOMkTVX0ew2DleyVUE38AbldIeeWvHElMLYxzMjVcU8Y+UJNSWA09BUHtyoG/C+fM2CLik=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5475.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(39860400002)(136003)(366004)(396003)(346002)(376002)(451199015)(31686004)(36756003)(66899015)(86362001)(2906002)(31696002)(53546011)(6512007)(26005)(82960400001)(38100700002)(66946007)(8936002)(41300700001)(66476007)(5660300002)(66556008)(4326008)(186003)(8676002)(2616005)(6666004)(83380400001)(316002)(478600001)(6486002)(54906003)(6506007)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Rk5xRTRhQXhuM0JueDF3L2J6NzVGdU5ER2xBSEpYc09SZzNWRm1IVnI1Zi91?=
- =?utf-8?B?SCtHM2pjRlBrL3JFLytJV00wYlptTGgzRElXSW9rSzl4THpsbWpHRStRR1V5?=
- =?utf-8?B?ZUQ3c0FpekdVbHIwWTN4QTcvT1dydU1qVE8yRXgybnd5eUowV1RJeDByV3o1?=
- =?utf-8?B?aXJ5Sml1UzRXcWxwOTlmY0VnSGpaVGQzdnhPM2IyQjRsdGVwOWZCWkUxZzYv?=
- =?utf-8?B?ZmlwL1cveTJqblhBWXlnUEtsZnhoZXlSaHc3YVJYY3p5aXdFSFdSQXNlQjNL?=
- =?utf-8?B?WXFkankrUTk0dUVFN3JueXhJMVhCZE1iUDR2eFBhcW1FcWcyamFONjlnbkNZ?=
- =?utf-8?B?VzhPVktRS0R6VFJJYmpGMXYxM2MxVFpTbkJiNGd6clVWZFVEQ09yVDB6OGE4?=
- =?utf-8?B?RjJsSUJRd0F4cTFhUWtvNHBIaGNqbjBTN0F0bDR2aWJpcmg3U2I4QXQ3Vi90?=
- =?utf-8?B?d1h4bGFBcmFzRGVvOTA1emg5K0hFRTROR3lHaytBQXQyQ0kwRTBwQjRSaCtU?=
- =?utf-8?B?am1MVGhlcnFaTDFVZGNnUDM1SXRYa2dNR1RIYVJUaXBGcWkwNy9QWlNPNmpN?=
- =?utf-8?B?UTZCYkVsUzNjSGtUNWcrK2NWeE1ZNjZoVXhsOStVU0I4THdyaWZPWGhFVlI1?=
- =?utf-8?B?MlFaZVAxREtxaWhvdWpxb1h2bFJYcm1NcllOVnhpOUVDNjBMT29oN0Rtczcx?=
- =?utf-8?B?Y21Ocy9mNWVWcjhpcVlKeE1PM0x2Ykl2Y2lqU1h0TEo3ZkdkUU9pZ2hNMWdG?=
- =?utf-8?B?cTZSL0Q3QUxUaHBTY2EweVhGanpsTDFVRXFkN1ppRzYybDlOOEYzaHZqTVN0?=
- =?utf-8?B?K1ptWUtBbmdIcXNEN0VzNFRnK2RyajNBOENnVFBLS1VqNDdPcmkzcEZKWDJw?=
- =?utf-8?B?NUgxRGNWZzdrRHUzUzQ5WXYxUFlqOWJ4cUdMVjFLbmt6MVZBLzBqdmY1bktM?=
- =?utf-8?B?MXVBWTZ3emRRODY4cTFBMkNVdk1VcTFoYTVjWURZa3QranYvRUxERkY4M21y?=
- =?utf-8?B?eStuR2JFeDFtYTkwa3p3ZXJDWGQzM2luUG1RenhadVZGcEFpM2tpMElhQXBr?=
- =?utf-8?B?cTA2bTNTY1pBZUN5Yk1zampFMXBNdWEwQWhHU1pMOU1HU3ZWUElRZ21HVkxu?=
- =?utf-8?B?dlRuNzZHd0VhYVJJcGpTaXh3YmtPTDhRdWNNNGwxeGVNUGZPbTArbkJxS25V?=
- =?utf-8?B?TmpzT3pwUEhDcFBDVWJUNTE4VFlzMHRYZVhMOGVOMVRRamNRZm9vcFdjMHdz?=
- =?utf-8?B?c0tTby9GQ2Z1bitmRFNyQ01iREtFR1ZXckp2cmpTWFVLQTRFM3JyZCtmM3E4?=
- =?utf-8?B?ZnYvb3YyZ1NkTHUwNFNidnRyV1R3YUpZdVRteCswSDF2eUp0am5pZXRYNUVN?=
- =?utf-8?B?OVFsS1pkUllRMktjamM2UWhLajJEd0l2ZCtia1VsUi9xV3Zhb2o0Mnp2NzNv?=
- =?utf-8?B?dWlZNm9QMG9icHNUT29UYXRFamlKZFhnaVNhV3MrcDFiQkJCeEV4M1ZMc0R3?=
- =?utf-8?B?YjgvOXQwTXpMRXNkNUZqd1dTZXozL1dSdFlZN2NRUUtQcm5qUVErTTBKcUds?=
- =?utf-8?B?WlFMQzlrV0JkWnRBSm9IbGNpL2VjcHQ4Z1gyTnZyaVl1VVZPVEZkSFU5SG5v?=
- =?utf-8?B?RlZqUWJTbkRrYWJGbFl4S2tWL29nZWRvMzl1ZXNqRTFhMHJ0R094bGNyQ3pp?=
- =?utf-8?B?MDdHZnVNNDNRNG1ZK2FwYlpQSS96QjBxNHNXUDNBWDd5MUFGWjhDbDlnMTd3?=
- =?utf-8?B?R0gyMjZBR3V2Y0l2cEg0YlJQVnlCKzY5eTNtU3hMUGhETHd4VXN6RU9qb1NV?=
- =?utf-8?B?QTNwM1BRWGFMNHA0WVVuK2lOZit0MURIQTk0MVErSTV1TVJuMHl0Y0huOSsz?=
- =?utf-8?B?ZTNWMUVtU1BDTE9HOHhGdS80bG9iMmdYY2RPZitkZnhWd09VWlN0MUg2QTBS?=
- =?utf-8?B?VlNzNHpubkxYWlRPT0svRTF0UEJITk1XMjdXcUhKQi9HUXMwdVJocWNVQjBJ?=
- =?utf-8?B?eTNNSnFiU1RLOWY4SUY5Y2xBbDgwVTdCOEZ6TGhXNnVwejZ3ZUVudGNIOXdr?=
- =?utf-8?B?VWFGM0l1OEN1TGtRRmJEQ1BGaTZtNCtKYTlId0U1aUZrU0tzUnk3Rys4TVpv?=
- =?utf-8?B?ODdhMFQvQk9ZOWIvbENwTE5ORFFjM2NPMGk3QWNGSzN2SWtaQm1NTGg1QmtX?=
- =?utf-8?Q?DP69h5xCZY3QBxhuAKN+Fr4=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c6c691b-1ee3-4ef4-43c8-08daa61b0f1b
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5475.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2022 15:13:57.6630 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6mwsrqSevMVkS+sZ4RPvVDy+91Teqlb8o5q00pu/QZ4Wr1cTgMoDQ012CSxhs0ruO8jm78yMkgngYVe1qZzOd4Xp9+WdMTiHCq2HLyiu/tk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4536
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/guc: Fix revocation of
- non-persistent contexts
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t v2 1/5] i915_drm.h sync
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,199 +55,368 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Get the small-bar related stuff at: 525e93f6317a ("drm/i915/uapi: add
+NEEDS_CPU_ACCESS hint"), and drop the local related bits.
 
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ include/drm-uapi/i915_drm.h    | 182 +++++++++++++++++++++++++--------
+ lib/i915/i915_drm_local.h      |  21 ----
+ lib/i915/intel_memory_region.c |   3 +-
+ tests/i915/gem_create.c        |   5 -
+ tests/i915/gem_exec_capture.c  |   5 -
+ tests/i915/i915_query.c        |   6 --
+ 6 files changed, 141 insertions(+), 81 deletions(-)
 
-On 10/4/2022 4:14 AM, Tvrtko Ursulin wrote:
->
-> On 03/10/2022 13:16, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Patch which added graceful exit for non-persistent contexts missed the
->> fact it is not enough to set the exiting flag on a context and let the
->> backend handle it from there.
->>
->> GuC backend cannot handle it because it runs independently in the
->> firmware and driver might not see the requests ever again. Patch also
->> missed the fact some usages of intel_context_is_banned in the GuC 
->> backend
->> needed replacing with newly introduced intel_context_is_schedulable.
->>
->> Fix the first issue by calling into backend revoke when we know this is
->> the last chance to do it. Fix the second issue by replacing
->> intel_context_is_banned with intel_context_is_schedulable, which should
->> always be safe since latter is a superset of the former.
->>
->> v2:
->>   * Just call ce->ops->revoke unconditionally. (Andrzej)
->
-> CI is happy - could I get some acks for the GuC backend changes please?
-
-I think we still need to have a longer conversation on the revoking 
-times, but in the meantime this fixes the immediate concerns, so:
-
-Acked-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Daniele
-
->
-> Regards,
->
-> Tvrtko
->
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Fixes: 45c64ecf97ee ("drm/i915: Improve user experience and driver 
->> robustness under SIGINT or similar")
->> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: <stable@vger.kernel.org> # v6.0+
->> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  8 +-----
->>   drivers/gpu/drm/i915/gt/intel_context.c       |  5 ++--
->>   drivers/gpu/drm/i915/gt/intel_context.h       |  3 +--
->>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 26 +++++++++----------
->>   4 files changed, 17 insertions(+), 25 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> index 0bcde53c50c6..1e29b1e6d186 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> @@ -1387,14 +1387,8 @@ kill_engines(struct i915_gem_engines *engines, 
->> bool exit, bool persistent)
->>        */
->>       for_each_gem_engine(ce, engines, it) {
->>           struct intel_engine_cs *engine;
->> -        bool skip = false;
->>   -        if (exit)
->> -            skip = intel_context_set_exiting(ce);
->> -        else if (!persistent)
->> -            skip = intel_context_exit_nonpersistent(ce, NULL);
->> -
->> -        if (skip)
->> +        if ((exit || !persistent) && intel_context_revoke(ce))
->>               continue; /* Already marked. */
->>             /*
->> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c 
->> b/drivers/gpu/drm/i915/gt/intel_context.c
->> index 654a092ed3d6..e94365b08f1e 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_context.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
->> @@ -614,13 +614,12 @@ bool intel_context_ban(struct intel_context 
->> *ce, struct i915_request *rq)
->>       return ret;
->>   }
->>   -bool intel_context_exit_nonpersistent(struct intel_context *ce,
->> -                      struct i915_request *rq)
->> +bool intel_context_revoke(struct intel_context *ce)
->>   {
->>       bool ret = intel_context_set_exiting(ce);
->>         if (ce->ops->revoke)
->> -        ce->ops->revoke(ce, rq, ce->engine->props.preempt_timeout_ms);
->> +        ce->ops->revoke(ce, NULL, 
->> ce->engine->props.preempt_timeout_ms);
->>         return ret;
->>   }
->> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h 
->> b/drivers/gpu/drm/i915/gt/intel_context.h
->> index 8e2d70630c49..be09fb2e883a 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_context.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
->> @@ -329,8 +329,7 @@ static inline bool 
->> intel_context_set_exiting(struct intel_context *ce)
->>       return test_and_set_bit(CONTEXT_EXITING, &ce->flags);
->>   }
->>   -bool intel_context_exit_nonpersistent(struct intel_context *ce,
->> -                      struct i915_request *rq);
->> +bool intel_context_revoke(struct intel_context *ce);
->>     static inline bool
->>   intel_context_force_single_submission(const struct intel_context *ce)
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> index 0ef295a94060..88a4476b8e92 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> @@ -685,7 +685,7 @@ static int __guc_add_request(struct intel_guc 
->> *guc, struct i915_request *rq)
->>        * Corner case where requests were sitting in the priority list 
->> or a
->>        * request resubmitted after the context was banned.
->>        */
->> -    if (unlikely(intel_context_is_banned(ce))) {
->> +    if (unlikely(!intel_context_is_schedulable(ce))) {
->>           i915_request_put(i915_request_mark_eio(rq));
->>           intel_engine_signal_breadcrumbs(ce->engine);
->>           return 0;
->> @@ -871,15 +871,15 @@ static int guc_wq_item_append(struct intel_guc 
->> *guc,
->>                     struct i915_request *rq)
->>   {
->>       struct intel_context *ce = request_to_scheduling_context(rq);
->> -    int ret = 0;
->> +    int ret;
->>   -    if (likely(!intel_context_is_banned(ce))) {
->> -        ret = __guc_wq_item_append(rq);
->> +    if (unlikely(!intel_context_is_schedulable(ce)))
->> +        return 0;
->>   -        if (unlikely(ret == -EBUSY)) {
->> -            guc->stalled_request = rq;
->> -            guc->submission_stall_reason = STALL_MOVE_LRC_TAIL;
->> -        }
->> +    ret = __guc_wq_item_append(rq);
->> +    if (unlikely(ret == -EBUSY)) {
->> +        guc->stalled_request = rq;
->> +        guc->submission_stall_reason = STALL_MOVE_LRC_TAIL;
->>       }
->>         return ret;
->> @@ -898,7 +898,7 @@ static bool multi_lrc_submit(struct i915_request 
->> *rq)
->>        * submitting all the requests generated in parallel.
->>        */
->>       return test_bit(I915_FENCE_FLAG_SUBMIT_PARALLEL, 
->> &rq->fence.flags) ||
->> -        intel_context_is_banned(ce);
->> +           !intel_context_is_schedulable(ce);
->>   }
->>     static int guc_dequeue_one_context(struct intel_guc *guc)
->> @@ -967,7 +967,7 @@ static int guc_dequeue_one_context(struct 
->> intel_guc *guc)
->>           struct intel_context *ce = 
->> request_to_scheduling_context(last);
->>             if (unlikely(!ctx_id_mapped(guc, ce->guc_id.id) &&
->> -                 !intel_context_is_banned(ce))) {
->> +                 intel_context_is_schedulable(ce))) {
->>               ret = try_context_registration(ce, false);
->>               if (unlikely(ret == -EPIPE)) {
->>                   goto deadlk;
->> @@ -1577,7 +1577,7 @@ static void guc_reset_state(struct 
->> intel_context *ce, u32 head, bool scrub)
->>   {
->>       struct intel_engine_cs *engine = __context_to_physical_engine(ce);
->>   -    if (intel_context_is_banned(ce))
->> +    if (!intel_context_is_schedulable(ce))
->>           return;
->>         GEM_BUG_ON(!intel_context_is_pinned(ce));
->> @@ -4518,12 +4518,12 @@ static void guc_handle_context_reset(struct 
->> intel_guc *guc,
->>   {
->>       trace_intel_context_reset(ce);
->>   -    if (likely(!intel_context_is_banned(ce))) {
->> +    if (likely(intel_context_is_schedulable(ce))) {
->>           capture_error_state(guc, ce);
->>           guc_context_replay(ce);
->>       } else {
->>           drm_info(&guc_to_gt(guc)->i915->drm,
->> -             "Ignoring context reset notification of banned context 
->> 0x%04X on %s",
->> +             "Ignoring context reset notification of exiting context 
->> 0x%04X on %s",
->>                ce->guc_id.id, ce->engine->name);
->>       }
->>   }
+diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
+index b4efc96c..ae9558b3 100644
+--- a/include/drm-uapi/i915_drm.h
++++ b/include/drm-uapi/i915_drm.h
+@@ -3207,36 +3207,6 @@ struct drm_i915_gem_memory_class_instance {
+  * struct drm_i915_memory_region_info - Describes one region as known to the
+  * driver.
+  *
+- * Note that we reserve some stuff here for potential future work. As an example
+- * we might want expose the capabilities for a given region, which could include
+- * things like if the region is CPU mappable/accessible, what are the supported
+- * mapping types etc.
+- *
+- * Note that to extend struct drm_i915_memory_region_info and struct
+- * drm_i915_query_memory_regions in the future the plan is to do the following:
+- *
+- * .. code-block:: C
+- *
+- *	struct drm_i915_memory_region_info {
+- *		struct drm_i915_gem_memory_class_instance region;
+- *		union {
+- *			__u32 rsvd0;
+- *			__u32 new_thing1;
+- *		};
+- *		...
+- *		union {
+- *			__u64 rsvd1[8];
+- *			struct {
+- *				__u64 new_thing2;
+- *				__u64 new_thing3;
+- *				...
+- *			};
+- *		};
+- *	};
+- *
+- * With this things should remain source compatible between versions for
+- * userspace, even as we add new fields.
+- *
+  * Note this is using both struct drm_i915_query_item and struct drm_i915_query.
+  * For this new query we are adding the new query id DRM_I915_QUERY_MEMORY_REGIONS
+  * at &drm_i915_query_item.query_id.
+@@ -3248,14 +3218,81 @@ struct drm_i915_memory_region_info {
+ 	/** @rsvd0: MBZ */
+ 	__u32 rsvd0;
+ 
+-	/** @probed_size: Memory probed by the driver (-1 = unknown) */
++	/**
++	 * @probed_size: Memory probed by the driver
++	 *
++	 * Note that it should not be possible to ever encounter a zero value
++	 * here, also note that no current region type will ever return -1 here.
++	 * Although for future region types, this might be a possibility. The
++	 * same applies to the other size fields.
++	 */
+ 	__u64 probed_size;
+ 
+-	/** @unallocated_size: Estimate of memory remaining (-1 = unknown) */
++	/**
++	 * @unallocated_size: Estimate of memory remaining
++	 *
++	 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable accounting.
++	 * Without this (or if this is an older kernel) the value here will
++	 * always equal the @probed_size. Note this is only currently tracked
++	 * for I915_MEMORY_CLASS_DEVICE regions (for other types the value here
++	 * will always equal the @probed_size).
++	 */
+ 	__u64 unallocated_size;
+ 
+-	/** @rsvd1: MBZ */
+-	__u64 rsvd1[8];
++	union {
++		/** @rsvd1: MBZ */
++		__u64 rsvd1[8];
++		struct {
++			/**
++			 * @probed_cpu_visible_size: Memory probed by the driver
++			 * that is CPU accessible.
++			 *
++			 * This will be always be <= @probed_size, and the
++			 * remainder (if there is any) will not be CPU
++			 * accessible.
++			 *
++			 * On systems without small BAR, the @probed_size will
++			 * always equal the @probed_cpu_visible_size, since all
++			 * of it will be CPU accessible.
++			 *
++			 * Note this is only tracked for
++			 * I915_MEMORY_CLASS_DEVICE regions (for other types the
++			 * value here will always equal the @probed_size).
++			 *
++			 * Note that if the value returned here is zero, then
++			 * this must be an old kernel which lacks the relevant
++			 * small-bar uAPI support (including
++			 * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS), but on
++			 * such systems we should never actually end up with a
++			 * small BAR configuration, assuming we are able to load
++			 * the kernel module. Hence it should be safe to treat
++			 * this the same as when @probed_cpu_visible_size ==
++			 * @probed_size.
++			 */
++			__u64 probed_cpu_visible_size;
++
++			/**
++			 * @unallocated_cpu_visible_size: Estimate of CPU
++			 * visible memory remaining.
++			 *
++			 * Note this is only tracked for
++			 * I915_MEMORY_CLASS_DEVICE regions (for other types the
++			 * value here will always equal the
++			 * @probed_cpu_visible_size).
++			 *
++			 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
++			 * accounting.  Without this the value here will always
++			 * equal the @probed_cpu_visible_size. Note this is only
++			 * currently tracked for I915_MEMORY_CLASS_DEVICE
++			 * regions (for other types the value here will also
++			 * always equal the @probed_cpu_visible_size).
++			 *
++			 * If this is an older kernel the value here will be
++			 * zero, see also @probed_cpu_visible_size.
++			 */
++			__u64 unallocated_cpu_visible_size;
++		};
++	};
+ };
+ 
+ /**
+@@ -3329,11 +3366,11 @@ struct drm_i915_query_memory_regions {
+  * struct drm_i915_gem_create_ext - Existing gem_create behaviour, with added
+  * extension support using struct i915_user_extension.
+  *
+- * Note that in the future we want to have our buffer flags here, at least for
+- * the stuff that is immutable. Previously we would have two ioctls, one to
+- * create the object with gem_create, and another to apply various parameters,
+- * however this creates some ambiguity for the params which are considered
+- * immutable. Also in general we're phasing out the various SET/GET ioctls.
++ * Note that new buffer flags should be added here, at least for the stuff that
++ * is immutable. Previously we would have two ioctls, one to create the object
++ * with gem_create, and another to apply various parameters, however this
++ * creates some ambiguity for the params which are considered immutable. Also in
++ * general we're phasing out the various SET/GET ioctls.
+  */
+ struct drm_i915_gem_create_ext {
+ 	/**
+@@ -3341,7 +3378,6 @@ struct drm_i915_gem_create_ext {
+ 	 *
+ 	 * The (page-aligned) allocated size for the object will be returned.
+ 	 *
+-	 *
+ 	 * DG2 64K min page size implications:
+ 	 *
+ 	 * On discrete platforms, starting from DG2, we have to contend with GTT
+@@ -3353,7 +3389,9 @@ struct drm_i915_gem_create_ext {
+ 	 *
+ 	 * Note that the returned size here will always reflect any required
+ 	 * rounding up done by the kernel, i.e 4K will now become 64K on devices
+-	 * such as DG2.
++	 * such as DG2. The kernel will always select the largest minimum
++	 * page-size for the set of possible placements as the value to use when
++	 * rounding up the @size.
+ 	 *
+ 	 * Special DG2 GTT address alignment requirement:
+ 	 *
+@@ -3377,14 +3415,58 @@ struct drm_i915_gem_create_ext {
+ 	 * is deemed to be a good compromise.
+ 	 */
+ 	__u64 size;
++
+ 	/**
+ 	 * @handle: Returned handle for the object.
+ 	 *
+ 	 * Object handles are nonzero.
+ 	 */
+ 	__u32 handle;
+-	/** @flags: MBZ */
++
++	/**
++	 * @flags: Optional flags.
++	 *
++	 * Supported values:
++	 *
++	 * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS - Signal to the kernel that
++	 * the object will need to be accessed via the CPU.
++	 *
++	 * Only valid when placing objects in I915_MEMORY_CLASS_DEVICE, and only
++	 * strictly required on configurations where some subset of the device
++	 * memory is directly visible/mappable through the CPU (which we also
++	 * call small BAR), like on some DG2+ systems. Note that this is quite
++	 * undesirable, but due to various factors like the client CPU, BIOS etc
++	 * it's something we can expect to see in the wild. See
++	 * &drm_i915_memory_region_info.probed_cpu_visible_size for how to
++	 * determine if this system applies.
++	 *
++	 * Note that one of the placements MUST be I915_MEMORY_CLASS_SYSTEM, to
++	 * ensure the kernel can always spill the allocation to system memory,
++	 * if the object can't be allocated in the mappable part of
++	 * I915_MEMORY_CLASS_DEVICE.
++	 *
++	 * Also note that since the kernel only supports flat-CCS on objects
++	 * that can *only* be placed in I915_MEMORY_CLASS_DEVICE, we therefore
++	 * don't support I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS together with
++	 * flat-CCS.
++	 *
++	 * Without this hint, the kernel will assume that non-mappable
++	 * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note that the
++	 * kernel can still migrate the object to the mappable part, as a last
++	 * resort, if userspace ever CPU faults this object, but this might be
++	 * expensive, and so ideally should be avoided.
++	 *
++	 * On older kernels which lack the relevant small-bar uAPI support (see
++	 * also &drm_i915_memory_region_info.probed_cpu_visible_size),
++	 * usage of the flag will result in an error, but it should NEVER be
++	 * possible to end up with a small BAR configuration, assuming we can
++	 * also successfully load the i915 kernel module. In such cases the
++	 * entire I915_MEMORY_CLASS_DEVICE region will be CPU accessible, and as
++	 * such there are zero restrictions on where the object can be placed.
++	 */
++#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1 << 0)
+ 	__u32 flags;
++
+ 	/**
+ 	 * @extensions: The chain of extensions to apply to this object.
+ 	 *
+@@ -3443,6 +3525,22 @@ struct drm_i915_gem_create_ext {
+  * At which point we get the object handle in &drm_i915_gem_create_ext.handle,
+  * along with the final object size in &drm_i915_gem_create_ext.size, which
+  * should account for any rounding up, if required.
++ *
++ * Note that userspace has no means of knowing the current backing region
++ * for objects where @num_regions is larger than one. The kernel will only
++ * ensure that the priority order of the @regions array is honoured, either
++ * when initially placing the object, or when moving memory around due to
++ * memory pressure
++ *
++ * On Flat-CCS capable HW, compression is supported for the objects residing
++ * in I915_MEMORY_CLASS_DEVICE. When such objects (compressed) have other
++ * memory class in @regions and migrated (by i915, due to memory
++ * constraints) to the non I915_MEMORY_CLASS_DEVICE region, then i915 needs to
++ * decompress the content. But i915 doesn't have the required information to
++ * decompress the userspace compressed objects.
++ *
++ * So i915 supports Flat-CCS, on the objects which can reside only on
++ * I915_MEMORY_CLASS_DEVICE regions.
+  */
+ struct drm_i915_gem_create_ext_memory_regions {
+ 	/** @base: Extension link. See struct i915_user_extension. */
+diff --git a/lib/i915/i915_drm_local.h b/lib/i915/i915_drm_local.h
+index ac35abf6..9a2273c4 100644
+--- a/lib/i915/i915_drm_local.h
++++ b/lib/i915/i915_drm_local.h
+@@ -23,27 +23,6 @@ extern "C" {
+ 
+ #define DRM_I915_QUERY_GEOMETRY_SUBSLICES      6
+ 
+-/*
+- * Signal to the kernel that the object will need to be accessed via
+- * the CPU.
+- *
+- * Only valid when placing objects in I915_MEMORY_CLASS_DEVICE, and only
+- * strictly required on platforms where only some of the device memory
+- * is directly visible or mappable through the CPU, like on DG2+.
+- *
+- * One of the placements MUST also be I915_MEMORY_CLASS_SYSTEM, to
+- * ensure we can always spill the allocation to system memory, if we
+- * can't place the object in the mappable part of
+- * I915_MEMORY_CLASS_DEVICE.
+- *
+- * Without this hint, the kernel will assume that non-mappable
+- * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note that the
+- * kernel can still migrate the object to the mappable part, as a last
+- * resort, if userspace ever CPU faults this object, but this might be
+- * expensive, and so ideally should be avoided.
+- */
+-#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1 << 0)
+-
+ #if defined(__cplusplus)
+ }
+ #endif
+diff --git a/lib/i915/intel_memory_region.c b/lib/i915/intel_memory_region.c
+index d80cb3a0..075ba0ce 100644
+--- a/lib/i915/intel_memory_region.c
++++ b/lib/i915/intel_memory_region.c
+@@ -942,8 +942,7 @@ struct gem_memory_region *__gem_get_memory_regions(int i915)
+ 
+ 		r->ci = info->regions[i].region;
+ 		r->size = info->regions[i].probed_size;
+-		/* XXX: replace with probed_cpu_visible_size */
+-		r->cpu_size = info->regions[i].rsvd1[0];
++		r->cpu_size = info->regions[i].probed_cpu_visible_size;
+ 		if (r->size == -1ull)
+ 			r->size = igt_get_avail_ram_mb() << 20;
+ 
+diff --git a/tests/i915/gem_create.c b/tests/i915/gem_create.c
+index c39390f3..becdc715 100644
+--- a/tests/i915/gem_create.c
++++ b/tests/i915/gem_create.c
+@@ -724,11 +724,6 @@ static void trap_sigbus(uint32_t *ptr)
+ 	signal(SIGBUS, old_sigbus);
+ }
+ 
+-/**
+- * XXX: Remove this once we can safely sync the uapi header with the kernel.
+- * Should be source compatible either way though.
+- */
+-#define probed_cpu_visible_size rsvd1[0]
+ static void create_ext_cpu_access_big(int fd)
+ {
+ 	struct drm_i915_query_memory_regions *regions;
+diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
+index 6950b2d2..2db58266 100644
+--- a/tests/i915/gem_exec_capture.c
++++ b/tests/i915/gem_exec_capture.c
+@@ -578,11 +578,6 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
+ 	return offsets;
+ }
+ 
+-/*
+- * FIXME: remove once the kernel changes have landed and everything has settled.
+- * The change here is non-backwards compatible, and we don't want to upset CI.
+-*/
+-#define probed_cpu_visible_size rsvd1[0]
+ static bool kernel_supports_probed_size(int fd)
+ {
+ 	struct drm_i915_query_memory_regions *regions;
+diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
+index 8befd48b..2744421c 100644
+--- a/tests/i915/i915_query.c
++++ b/tests/i915/i915_query.c
+@@ -516,12 +516,6 @@ static bool query_regions_supported(int fd)
+ 	return __i915_query_items(fd, &item, 1) == 0 && item.length > 0;
+ }
+ 
+-/**
+- * XXX: Remove these once we can safely sync the uapi header with the kernel.
+- * Should be source compatible either way though.
+- */
+-#define probed_cpu_visible_size rsvd1[0]
+-#define unallocated_cpu_visible_size rsvd1[1]
+ static bool query_regions_unallocated_supported(int fd)
+ {
+ 	struct drm_i915_query_memory_regions *regions;
+-- 
+2.37.3
 
