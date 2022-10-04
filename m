@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA9085F4575
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 16:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA3E65F45C2
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 16:40:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE6A610E61C;
-	Tue,  4 Oct 2022 14:28:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1B7410E203;
+	Tue,  4 Oct 2022 14:40:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92B4310E61C
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 14:28:53 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id E6B346144D;
- Tue,  4 Oct 2022 14:28:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02952C433C1;
- Tue,  4 Oct 2022 14:28:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1664893732;
- bh=L9H7qt89dQO9gmaTuwb/RdjgljEn4KUX3dOz82UCafg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=KtJ80HP7IAGUaPvAMSApmQLcFMaRRM5xIjtDNgCjyIC9qQNJFY3V3xo/a7OgYUnl+
- z9LSzJ9s7XPLsWA8z/m9UUed0vEwPKE5KISBhwc6wbp6OprsZh/du1xiE1ta+F53Ld
- N7l57QFgRFIHdZt5eN4yfvmdEyYjwpRge6LZlyxg=
-Date: Tue, 4 Oct 2022 16:28:49 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <YzxDIXMPIWqsELmj@kroah.com>
-References: <YzaFq7fzw5TbrJyv@kroah.com>
- <03147889-B21C-449B-B110-7E504C8B0EF4@sladewatkins.net>
- <aa8b9724-50c6-ae2e-062d-3791144ac97e@cern.ch>
- <e3e2915d-1411-a758-3991-48d6c2688a1e@leemhuis.info>
- <YzsfrkJcwqKOO+E/@intel.com> <YzsgeXOK6JeVQGHF@intel.com>
- <714903fa-16c8-4247-d69d-74af6ef50bfa@leemhuis.info>
- <9aae6b15-265a-4ef9-87c1-83dfe5094378@smtp-relay.sendinblue.com>
- <Yzw3591mUb8b9Wst@kroah.com> <Yzw4w6JQ2fKo9AE1@intel.com>
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 959E110E203
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 14:40:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664894418; x=1696430418;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=k0nA2ReUQo230Yn8dSHyFc/MHTBLKZD9tXTTvrramTc=;
+ b=OZ/PsfakEo3TrK6qkmhvHplRHpnV16CdZ8A+pELN0YIAypFUiSi5vy2i
+ rRHH4YeOXfZSZsmC76nxC6q86Ie9Xz/D1NQtQyd0GpjIICF/0zav6B4mk
+ 6ISitZCwnQV5SLWDV+f4wb1Mb+x7qe69kfrnRnDfXEGaAvwrkrONnoDFM
+ qA0j9B2Y2uH1LvG5rYM7Q1D9Vr6K4DyRjb0IvWzvOF851VILH54iwqEvz
+ aNtEvjGZ1N6lAZOatByu92/9ldAm/+RPiCu14dxPzaY87Iqcx54FCFTpb
+ JBmmQ6B/14GVgZ2Sku21wMp6qfzXD0iKCOOBE0PREHjm0kJWPn+ChD8f1 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="364824497"
+X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="364824497"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 07:40:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="869022849"
+X-IronPort-AV: E=Sophos;i="5.95,158,1661842800"; d="scan'208";a="869022849"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga006.fm.intel.com with SMTP; 04 Oct 2022 07:40:15 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 04 Oct 2022 17:40:14 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Oct 2022 17:40:12 +0300
+Message-Id: <20221004144014.6199-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yzw4w6JQ2fKo9AE1@intel.com>
-Subject: Re: [Intel-gfx] Regression on 5.19.12,
- display flickering on Framework laptop
+Subject: [Intel-gfx] [PATCH 0/2] drm/i915: Try not to screw up the pps
+ during panel probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,65 +58,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- Slade Watkins <srw@sladewatkins.net>, stable@vger.kernel.org,
- Thorsten Leemhuis <regressions@leemhuis.info>,
- David Matthew Mattli <dmm@mattli.us>, Jerry Ling <jiling@cern.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 04, 2022 at 04:44:35PM +0300, Ville Syrj‰l‰ wrote:
-> On Tue, Oct 04, 2022 at 03:40:55PM +0200, Greg Kroah-Hartman wrote:
-> > On Tue, Oct 04, 2022 at 06:46:10AM -0500, David Matthew Mattli wrote:
-> > > Thorsten Leemhuis writes:
-> > > 
-> > > > On 03.10.22 19:48, Ville Syrj‰l‰ wrote:
-> > > >> On Mon, Oct 03, 2022 at 08:45:18PM +0300, Ville Syrj‰l‰ wrote:
-> > > >>> On Sat, Oct 01, 2022 at 12:07:39PM +0200, Thorsten Leemhuis wrote:
-> > > >>>> On 30.09.22 14:26, Jerry Ling wrote:
-> > > >>>>>
-> > > >>>>> looks like someone has done it:
-> > > >>>>> https://bbs.archlinux.org/viewtopic.php?pid=2059823#p2059823
-> > > >>>>>
-> > > >>>>> and the bisect points to:
-> > > >>>>>
-> > > >>>>> |# first bad commit: [fc6aff984b1c63d6b9e54f5eff9cc5ac5840bc8c]
-> > > >>>>> drm/i915/bios: Split VBT data into per-panel vs. global parts Best, Jerry
-> > > |
-> > > >>>>
-> > > >>>> FWIW, that's 3cf050762534 in mainline. Adding Ville, its author to the
-> > > >>>> list of recipients.
-> > > >>>
-> > > >>> I definitely had no plans to backport any of that stuff,
-> > > >>> but I guess the automagics did it anyway.
-> > > >>>
-> > > >>> Looks like stable is at least missing this pile of stuff:
-> > > >>> 50759c13735d drm/i915/pps: Keep VDD enabled during eDP probe
-> > > >>> 67090801489d drm/i915/pps: Reinit PPS delays after VBT has been fully
-> > > parsed
-> > > >>> 8e75e8f573e1 drm/i915/pps: Split PPS init+sanitize in two
-> > > >>> 586294c3c186 drm/i915/pps: Stash away original BIOS programmed PPS delays
-> > > >>> 89fcdf430599 drm/i915/pps: Don't apply quirks/etc. to the VBT PPS
-> > > >>> delays if they haven't been initialized
-> > > >>> 60b02a09598f drm/i915/pps: Introduce pps_delays_valid()
-> > > >>>
-> > > >>> But dunno if even that is enough.
-> > > >
-> > > > If you need testers: David (now CCed) apparently has a affected machine
-> > > > and offered to test patches in a different subthread of this thread.
-> > > >
-> > > 
-> > > I cherry-picked the six commits Thorsten listed onto 5.19.12 and it
-> > > resolved the issue on my Framework laptop.
-> > 
-> > Thanks for testing, but I'm just going to revert the offending commits
-> > as they probably shouldn't all be added to 5.19.y
-> 
-> Yeah, revert seems the safer route. Thanks.
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-5.19.13 is now released with 8 reverts for this driver, hopefully that
-sould resolve this issue.
+I had to stare at the pps stuff again while dealing with the -stable
+pps regression. While doing that I figured I'd try to make it so we
+don't accidentally use the wrong pps during the panle probe when we
+don't yet have the VBT parsed. So here's an attempt at deducing the
+correct pps from the hardware state.
 
-thanks,
+Cc: Animesh Manna <animesh.manna@intel.com>
 
-greg k-h
+Ville Syrj√§l√§ (2):
+  drm/i915: Generalize the PPS vlv_pipe_check() stuff
+  drm/i915: Try to use the correct power sequencer initially on bxt/glk
+
+ .../gpu/drm/i915/display/intel_connector.c    |   3 +
+ .../drm/i915/display/intel_display_types.h    |   8 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      | 105 ++++++++++++++----
+ 3 files changed, 93 insertions(+), 23 deletions(-)
+
+-- 
+2.35.1
+
