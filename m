@@ -1,53 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9665F43DF
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 15:03:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369315F43E7
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 15:06:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEC810E642;
-	Tue,  4 Oct 2022 13:03:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6DB310E62A;
+	Tue,  4 Oct 2022 13:06:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBC2C10E6EA
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 13:03:21 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EDFB10E5F6;
+ Tue,  4 Oct 2022 13:05:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664888601; x=1696424601;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=BSZ4G5EnH2BRptNDvnahonzz0AJRcalYKZrbFVaXWOQ=;
- b=g09PszKfxBPq+A7j0+9sJFvwgFLENbVcUwDwpmtjnN57NDpUUZnaXGiF
- waA7LtWYW4e47kCHVlxtT+gAtmwYXtFEYeDHE+WiVg+oV0NLMhAgqHHHh
- ZdW04ccyvIV4jAzOVf3R16VHUe0u/1dmLUpgiZ2/WEjMF/hmvbT7cPojy
- Ju9OZj4uDb4a2Q5Z7Bu+q+3/COhH1eQufuCyCc4BFHPG9eoH/4QQqZE2m
- yNU5010WfKBnmGyXunzejtaTonpLH4HUSER/W9V3jYwOpEmaoVa7QhiKI
- azQcAdjdy5dKW4kQvc6GDpRZYlowHsbmRg41xNq99dE2/qo9gT677ePeK Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="300503622"
-X-IronPort-AV: E=Sophos;i="5.95,157,1661842800"; d="scan'208";a="300503622"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2022 06:03:21 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="868995489"
-X-IronPort-AV: E=Sophos;i="5.95,157,1661842800"; d="scan'208";a="868995489"
-Received: from pvarla-mobl4.gar.corp.intel.com (HELO localhost)
- ([10.252.39.104])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2022 06:03:19 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221004125344.228294-1-balasubramani.vivekanandan@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221004125344.228294-1-balasubramani.vivekanandan@intel.com>
-Date: Tue, 04 Oct 2022 16:03:16 +0300
-Message-ID: <877d1fu4ff.fsf@intel.com>
+ t=1664888759; x=1696424759;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=jJaQCjdVJze25eq6DHdeSbzA+Pw1FOoPFZEb1WdBOKc=;
+ b=BCJMqZmr7amB08G+yuAe3J3FWKSP5xYtWo9zWuJ+npoj0cYHZX4pyClu
+ VbYQB8dVYVF5VBQKsaUJYP20PaalwNjwWwGJ5uiu0m1gmgbZtxwkA8RDH
+ LVvY9dF2E5wZPs7XWkEPXeWHPTS3X+5+EQEKp2C5NYGVvjv6mWeOx2cSf
+ c24r5F9KHaKC40IT0Rnkf9egkeHXzo/ZTkLN9liW6RtWHuZNcURAyPlXY
+ nwgVn/5FfaQjVoNNvPpJp5Bh/ZBVLbo3kSqdSwFVxDToiBgt/hrb4b2MN
+ DD3xKU84tS7qTB/F1ZM/+ofZvrWtlyYKyB62XqOubL9tzpOvVOCQRRnOx A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="283271137"
+X-IronPort-AV: E=Sophos;i="5.95,157,1661842800"; d="scan'208";a="283271137"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 06:05:58 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="623925383"
+X-IronPort-AV: E=Sophos;i="5.95,157,1661842800"; d="scan'208";a="623925383"
+Received: from tomfin1x-mobl1.ger.corp.intel.com (HELO [10.213.229.10])
+ ([10.213.229.10])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 06:05:57 -0700
+Message-ID: <7b7fe361-bdeb-7fe0-7572-c64cd8eb6ad6@linux.intel.com>
+Date: Tue, 4 Oct 2022 14:05:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v6 0/7] drm/i915/display: Don't use port
- enum as register offset
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Content-Language: en-US
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20221003192419.3541088-1-ashutosh.dixit@intel.com>
+ <d83e3b3b-25ee-74cd-b4a3-bee6c567d50a@linux.intel.com>
+ <dce4c792-fd6d-0647-1977-613026c8c5b3@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <dce4c792-fd6d-0647-1977-613026c8c5b3@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Match frequencies reported by
+ PMU and sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,102 +64,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 04 Oct 2022, Balasubramani Vivekanandan <balasubramani.vivekanandan=
-@intel.com> wrote:
-> Prior to display version 12, platforms had DDI ports A,B,C,D,E,F=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-> represented by enums PORT_A,PORT_B...PORT_F. The DDI register offsets of=
-=20=20=20=20=20=20=20=20=20=20
-> the ports were in the same order as the ports. So the port enums=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-> were directly used as index to calculate the register offset of the=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20
-> ports.=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20
-> Starting in display version 12, TypeC ports were introduced in the=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-> platforms. These were defined as new enums PORT_TC1,PORT_TC2... The=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20
-> later generation platforms had DDI register offests of TypeC and=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-> non-TypeC ports interleaved and the existing port enums didn't match the=
-=20=20=20=20=20=20=20=20=20=20
-> order of the DDI register offests. So the enums could no more be used as=
-=20=20=20=20=20=20=20=20=20=20
-> index to calculate the register offest.=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20
-> This led to the creation of new platform specific enums for the ports=20=
-=20=20=20=20=20=20=20=20=20=20=20=20
-> like PORT_D_XELPD, PORT_E_XELPD to match the index of the ports in those=
-=20=20=20=20=20=20=20=20=20=20
-> platforms and additional code to handle the special enums.=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
->=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20
-> So we want to make the port enums not tied to DDI register offset and=20=
-=20=20=20=20=20=20=20=20=20=20=20=20
-> use the index from somewhere else to calculate the register offsets.=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20
-> The index of the DDI ports in the platform is now defined as part of=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20
-> device info.
->
-> Series includes few patches at the end which does some cleanup and
-> fixing made possible because of unique enums for the ports.
->
-> v2: ddi_index defined for platforms starting from Gen75. Many platforms
-> from Gen75 has ddi support.
-> v3: Updated DDI_CLK_SEL macro to use new index for DDI register offset
-> caculation.
-> v4: After removing d13_port_domains array, d12_port_domains is used for
-> all platforms with DISPLAY_VER 12 and above. So the port_end member had
-> to fixed to extend it for ports D and E.
->
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Why do you keep sending several new versions within days when there's
-been no replies to the previous ones?
+On 04/10/2022 14:00, Tvrtko Ursulin wrote:
+> 
+> On 04/10/2022 10:29, Tvrtko Ursulin wrote:
+>>
+>> On 03/10/2022 20:24, Ashutosh Dixit wrote:
+>>> PMU and sysfs use different wakeref's to "interpret" zero freq. Sysfs 
+>>> uses
+>>> runtime PM wakeref (see intel_rps_read_punit_req and
+>>> intel_rps_read_actual_frequency). PMU uses the GT parked/unparked
+>>> wakeref. In general the GT wakeref is held for less time that the 
+>>> runtime
+>>> PM wakeref which causes PMU to report a lower average freq than the 
+>>> average
+>>> freq obtained from sampling sysfs.
+>>>
+>>> To resolve this, use the same freq functions (and wakeref's) in PMU as
+>>> those used in sysfs.
+>>>
+>>> Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7025
+>>> Reported-by: Ashwin Kumar Kulkarni <ashwin.kumar.kulkarni@intel.com>
+>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/i915_pmu.c | 27 ++-------------------------
+>>>   1 file changed, 2 insertions(+), 25 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_pmu.c 
+>>> b/drivers/gpu/drm/i915/i915_pmu.c
+>>> index 958b37123bf1..eda03f264792 100644
+>>> --- a/drivers/gpu/drm/i915/i915_pmu.c
+>>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+>>> @@ -371,37 +371,16 @@ static void
+>>>   frequency_sample(struct intel_gt *gt, unsigned int period_ns)
+>>>   {
+>>>       struct drm_i915_private *i915 = gt->i915;
+>>> -    struct intel_uncore *uncore = gt->uncore;
+>>>       struct i915_pmu *pmu = &i915->pmu;
+>>>       struct intel_rps *rps = &gt->rps;
+>>>       if (!frequency_sampling_enabled(pmu))
+>>>           return;
+>>> -    /* Report 0/0 (actual/requested) frequency while parked. */
+>>> -    if (!intel_gt_pm_get_if_awake(gt))
+>>> -        return;
+>>> -
+>>>       if (pmu->enable & config_mask(I915_PMU_ACTUAL_FREQUENCY)) {
+>>> -        u32 val;
+>>> -
+>>> -        /*
+>>> -         * We take a quick peek here without using forcewake
+>>> -         * so that we don't perturb the system under observation
+>>> -         * (forcewake => !rc6 => increased power use). We expect
+>>> -         * that if the read fails because it is outside of the
+>>> -         * mmio power well, then it will return 0 -- in which
+>>> -         * case we assume the system is running at the intended
+>>> -         * frequency. Fortunately, the read should rarely fail!
+>>> -         */
+>>> -        val = intel_uncore_read_fw(uncore, GEN6_RPSTAT1);
+>>> -        if (val)
+>>> -            val = intel_rps_get_cagf(rps, val);
+>>> -        else
+>>> -            val = rps->cur_freq;
+>>> -
+>>>           add_sample_mult(&pmu->sample[__I915_SAMPLE_FREQ_ACT],
+>>> -                intel_gpu_freq(rps, val), period_ns / 1000);
+>>> +                intel_rps_read_actual_frequency(rps),
+>>> +                period_ns / 1000);
+>>>       }
+>>>       if (pmu->enable & config_mask(I915_PMU_REQUESTED_FREQUENCY)) {
+>>
+>> What is software tracking of requested frequency showing when GT is 
+>> parked or runtime suspended? With this change sampling would be 
+>> outside any such checks so we need to be sure reported value makes sense.
+>>
+>> Although more important open is around what is actually correct.
+>>
+>> For instance how does the patch affect RC6 and power? I don't know how 
+>> power management of different blocks is wired up, so personally I 
+>> would only be able to look at it empirically. In other words what I am 
+>> asking is this - if we changed from skipping obtaining forcewake even 
+>> when unparked, to obtaining forcewake if not runtime suspended - what 
+>> hardware blocks does that power up and how it affects RC6 and power? 
+>> Can it affect actual frequency or not? (Will "something" power up the 
+>> clocks just because we will be getting forcewake?)
+>>
+>> Or maybe question simplified - does 200Hz polling on existing sysfs 
+>> actual frequency field disturbs the system under some circumstances? 
+>> (Increases power and decreases RC6.) If it does then that would be a 
+>> problem. We want a solution which shows the real data, but where the 
+>> act of monitoring itself does not change it too much. If it doesn't 
+>> then it's okay.
+>>
+>> Could you somehow investigate on these topics? Maybe log RAPL GPU 
+>> power while polling on sysfs, versus getting the actual frequency from 
+>> the existing PMU implementation and see if that shows anything? Or 
+>> actually simpler - RAPL GPU power for current PMU intel_gpu_top versus 
+>> this patch? On idle(-ish) desktop workloads perhaps? Power and 
+>> frequency graphed for both.
+> 
+> Another thought - considering that bspec says for 0xa01c "This register 
+> reflects real-time values and thus does not have a pre-determined 
+> default value out of reset" - could it be that it also does not reflect 
+> a real value when GPU is not executing anything (so zero), just happens 
+> to be not runtime suspended? That would mean sysfs reads could maybe 
+> show last known value? Just a thought to check.
+> 
+> I've also tried on my Alderlake desktop:
+> 
+> 1)
+> 
+> while true; do cat gt_act_freq_mhz >/dev/null; sleep 0.005; done
+> 
+> This costs ~120mW of GPU power and ~20% decrease in RC6.
+> 
+> 
+> 2)
+> 
+> intel_gpu_top -l -s 5 >/dev/null
 
-BR,
-Jani.
+This "-s 5" was pointless though. :)
 
+Regards,
 
->
-> Balasubramani Vivekanandan (7):
->   drm/i915/display: Pass struct drm_i915_private to DDI_BUF_CTL macro
->   drm/i915/display: Pass struct drm_i915_private to DDI_CLK_SEL macro
->   drm/i915/display: Define the DDI port indices inside device info
->   drm/i915/display: Free port enums from tied to register offset
->   drm/i915/display: Remove PORT_D_XELPD/PORT_E_XELPD platform specific
->     defintions
->   drm/i915/display: Fix port_identifier function
->   drm/i915/display: cleanup unused DDI port enums
->
->  drivers/gpu/drm/i915/display/icl_dsi.c        | 12 +--
->  drivers/gpu/drm/i915/display/intel_bios.c     |  7 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 80 ++++++++-----------
->  drivers/gpu/drm/i915/display/intel_display.c  | 12 +--
->  drivers/gpu/drm/i915/display/intel_display.h  | 29 ++++---
->  .../drm/i915/display/intel_display_power.c    | 44 +---------
->  drivers/gpu/drm/i915/display/intel_fdi.c      | 14 ++--
->  drivers/gpu/drm/i915/display/intel_tc.c       |  6 +-
->  drivers/gpu/drm/i915/gvt/display.c            | 30 +++----
->  drivers/gpu/drm/i915/gvt/handlers.c           | 17 ++--
->  drivers/gpu/drm/i915/i915_pci.c               | 46 ++++++++++-
->  drivers/gpu/drm/i915/i915_reg.h               |  7 +-
->  drivers/gpu/drm/i915/intel_device_info.h      |  1 +
->  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   | 10 +--
->  include/drm/i915_component.h                  |  2 +-
->  15 files changed, 153 insertions(+), 164 deletions(-)
+Tvrtko
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> This costs no power or RC6.
+> 
+> I have also never observed sysfs to show below min freq. This was with 
+> no desktop so it's possible this register indeed does not reflect the 
+> real situation when things are idle.
+> 
+> So I think it is possible sysfs value is the misleading one.
+> 
+> Regards,
+> 
+> Tvrtko
