@@ -1,50 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00A75F43BB
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 14:57:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2A65F43CE
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Oct 2022 15:00:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B1C510E5E1;
-	Tue,  4 Oct 2022 12:57:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE51910E63B;
+	Tue,  4 Oct 2022 13:00:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6525110E5E1
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 12:57:42 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id AEAD361350;
- Tue,  4 Oct 2022 12:57:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6609C433C1;
- Tue,  4 Oct 2022 12:57:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1664888261;
- bh=XRLrVe5FJar3hOcKdcXWyUQ7ioExsUqdkDWT0AfgXNg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=L4OFRMF1m494hA11aDNKzQ5N3AIv1bvpyxFL244PWvWubrISXZKvurzFTTRyWgoGB
- G9vg6HoyBL/Fm8E3+GHQ7xgFkoh/FQ283kG608TG2cqraJFPz+M/2neVAZ59V4fPs8
- MwHMvmJE+lDEbMBU5rCWh913MSzPXTCJ8eRYnRM4=
-Date: Tue, 4 Oct 2022 14:57:38 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <YzwtwjZVSJm/S9p0@kroah.com>
-References: <55905860-adf9-312c-69cc-491ac8ce1a8b@cern.ch>
- <YzZynE2FAMNQKm2E@kroah.com> <YzaFq7fzw5TbrJyv@kroah.com>
- <03147889-B21C-449B-B110-7E504C8B0EF4@sladewatkins.net>
- <aa8b9724-50c6-ae2e-062d-3791144ac97e@cern.ch>
- <e3e2915d-1411-a758-3991-48d6c2688a1e@leemhuis.info>
- <YzsfrkJcwqKOO+E/@intel.com> <YzsgeXOK6JeVQGHF@intel.com>
- <714903fa-16c8-4247-d69d-74af6ef50bfa@leemhuis.info>
- <YzwooNdMECzuI5+h@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34F7C10E5F4;
+ Tue,  4 Oct 2022 13:00:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664888428; x=1696424428;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=FKS26gAA7+nW1HABlx4JnyOajXde6gAdPLaByXAvOC4=;
+ b=B4A3487DS4Ttic6l39KXd+UBu77uPb+BUdoKUDRw7tYmq32BEtw8qi4/
+ xdnwguhf3w9tQ8g+kb2jlD4J76Mpp3Q2S+/PNXd/pE1YncStJISuJV3hl
+ ftI+OYz0vUFI79ueW+dyBqpIvt0OlMyoq0YOtD2uJv/ZU/ZZuu1B+RyH0
+ 5+1ZMq+88w6s4a/6PKC15hH2cOQy3vRHewT/JxJhNs5TTklM4kgmpL8ih
+ 9J669EtPuTSaH32d8KfQCO1jT9/jW6aH5/fwNywTXJh/0NgMPn5cdGNLw
+ RkOd1ke/KNYwTsbCYxFVXnNHf0gdXTr+s39YL/slI17InPSZpWdyet9ww w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="301622074"
+X-IronPort-AV: E=Sophos;i="5.95,157,1661842800"; d="scan'208";a="301622074"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 06:00:25 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="868994126"
+X-IronPort-AV: E=Sophos;i="5.95,157,1661842800"; d="scan'208";a="868994126"
+Received: from tomfin1x-mobl1.ger.corp.intel.com (HELO [10.213.229.10])
+ ([10.213.229.10])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2022 06:00:24 -0700
+Message-ID: <dce4c792-fd6d-0647-1977-613026c8c5b3@linux.intel.com>
+Date: Tue, 4 Oct 2022 14:00:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Content-Language: en-US
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20221003192419.3541088-1-ashutosh.dixit@intel.com>
+ <d83e3b3b-25ee-74cd-b4a3-bee6c567d50a@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <d83e3b3b-25ee-74cd-b4a3-bee6c567d50a@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YzwooNdMECzuI5+h@intel.com>
-Subject: Re: [Intel-gfx] Regression on 5.19.12,
- display flickering on Framework laptop
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Match frequencies reported by
+ PMU and sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,67 +63,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- Slade Watkins <srw@sladewatkins.net>, stable@vger.kernel.org,
- Thorsten Leemhuis <regressions@leemhuis.info>,
- David Matthew Mattli <dmm@mattli.us>, Jerry Ling <jiling@cern.ch>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 04, 2022 at 03:35:44PM +0300, Ville Syrj�l� wrote:
-> On Mon, Oct 03, 2022 at 08:28:50PM +0200, Thorsten Leemhuis wrote:
-> > 
-> > 
-> > On 03.10.22 19:48, Ville Syrj�l� wrote:
-> > > On Mon, Oct 03, 2022 at 08:45:18PM +0300, Ville Syrj�l� wrote:
-> > >> On Sat, Oct 01, 2022 at 12:07:39PM +0200, Thorsten Leemhuis wrote:
-> > >>> On 30.09.22 14:26, Jerry Ling wrote:
-> > >>>>
-> > >>>> looks like someone has done it:
-> > >>>> https://bbs.archlinux.org/viewtopic.php?pid=2059823#p2059823
-> > >>>>
-> > >>>> and the bisect points to:
-> > >>>>
-> > >>>> |# first bad commit: [fc6aff984b1c63d6b9e54f5eff9cc5ac5840bc8c]
-> > >>>> drm/i915/bios: Split VBT data into per-panel vs. global parts Best, Jerry |
-> > >>>
-> > >>> FWIW, that's 3cf050762534 in mainline. Adding Ville, its author to the
-> > >>> list of recipients.
-> > >>
-> > >> I definitely had no plans to backport any of that stuff,
-> > >> but I guess the automagics did it anyway.
-> > >>
-> > >> Looks like stable is at least missing this pile of stuff:
-> > >> 50759c13735d drm/i915/pps: Keep VDD enabled during eDP probe
-> > >> 67090801489d drm/i915/pps: Reinit PPS delays after VBT has been fully parsed
-> > >> 8e75e8f573e1 drm/i915/pps: Split PPS init+sanitize in two
-> > >> 586294c3c186 drm/i915/pps: Stash away original BIOS programmed PPS delays
-> > >> 89fcdf430599 drm/i915/pps: Don't apply quirks/etc. to the VBT PPS delays if they haven't been initialized
-> > >> 60b02a09598f drm/i915/pps: Introduce pps_delays_valid()
-> > >>
-> > >> But dunno if even that is enough.
-> > 
-> > If you need testers: David (now CCed) apparently has a affected machine
-> > and offered to test patches in a different subthread of this thread.
-> > 
-> > >> This bug report is probably the same thing:
-> > >> https://gitlab.freedesktop.org/drm/intel/-/issues/7013
-> > 
-> > Sounds like it.
-> > 
-> >  > Also cc intel-gfx...
-> > 
-> > Ahh, sorry, should have done that when I CCed you.
-> 
-> After looking at some logs we do end up with potentially bogus
-> panel power sequencing delays, which may harm the LCD panel.
-> 
-> 
-> Greg, I recommend immediate revert of this stuff, and new stable
-> release ASAP. Plus a recommendation that no one using laptops
-> with Intel GPUs run 5.19.12.
 
-Ok, will do, I'll go do that right now, thanks and sorry for the
-problems.
+On 04/10/2022 10:29, Tvrtko Ursulin wrote:
+> 
+> On 03/10/2022 20:24, Ashutosh Dixit wrote:
+>> PMU and sysfs use different wakeref's to "interpret" zero freq. Sysfs 
+>> uses
+>> runtime PM wakeref (see intel_rps_read_punit_req and
+>> intel_rps_read_actual_frequency). PMU uses the GT parked/unparked
+>> wakeref. In general the GT wakeref is held for less time that the runtime
+>> PM wakeref which causes PMU to report a lower average freq than the 
+>> average
+>> freq obtained from sampling sysfs.
+>>
+>> To resolve this, use the same freq functions (and wakeref's) in PMU as
+>> those used in sysfs.
+>>
+>> Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7025
+>> Reported-by: Ashwin Kumar Kulkarni <ashwin.kumar.kulkarni@intel.com>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_pmu.c | 27 ++-------------------------
+>>   1 file changed, 2 insertions(+), 25 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_pmu.c 
+>> b/drivers/gpu/drm/i915/i915_pmu.c
+>> index 958b37123bf1..eda03f264792 100644
+>> --- a/drivers/gpu/drm/i915/i915_pmu.c
+>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+>> @@ -371,37 +371,16 @@ static void
+>>   frequency_sample(struct intel_gt *gt, unsigned int period_ns)
+>>   {
+>>       struct drm_i915_private *i915 = gt->i915;
+>> -    struct intel_uncore *uncore = gt->uncore;
+>>       struct i915_pmu *pmu = &i915->pmu;
+>>       struct intel_rps *rps = &gt->rps;
+>>       if (!frequency_sampling_enabled(pmu))
+>>           return;
+>> -    /* Report 0/0 (actual/requested) frequency while parked. */
+>> -    if (!intel_gt_pm_get_if_awake(gt))
+>> -        return;
+>> -
+>>       if (pmu->enable & config_mask(I915_PMU_ACTUAL_FREQUENCY)) {
+>> -        u32 val;
+>> -
+>> -        /*
+>> -         * We take a quick peek here without using forcewake
+>> -         * so that we don't perturb the system under observation
+>> -         * (forcewake => !rc6 => increased power use). We expect
+>> -         * that if the read fails because it is outside of the
+>> -         * mmio power well, then it will return 0 -- in which
+>> -         * case we assume the system is running at the intended
+>> -         * frequency. Fortunately, the read should rarely fail!
+>> -         */
+>> -        val = intel_uncore_read_fw(uncore, GEN6_RPSTAT1);
+>> -        if (val)
+>> -            val = intel_rps_get_cagf(rps, val);
+>> -        else
+>> -            val = rps->cur_freq;
+>> -
+>>           add_sample_mult(&pmu->sample[__I915_SAMPLE_FREQ_ACT],
+>> -                intel_gpu_freq(rps, val), period_ns / 1000);
+>> +                intel_rps_read_actual_frequency(rps),
+>> +                period_ns / 1000);
+>>       }
+>>       if (pmu->enable & config_mask(I915_PMU_REQUESTED_FREQUENCY)) {
+> 
+> What is software tracking of requested frequency showing when GT is 
+> parked or runtime suspended? With this change sampling would be outside 
+> any such checks so we need to be sure reported value makes sense.
+> 
+> Although more important open is around what is actually correct.
+> 
+> For instance how does the patch affect RC6 and power? I don't know how 
+> power management of different blocks is wired up, so personally I would 
+> only be able to look at it empirically. In other words what I am asking 
+> is this - if we changed from skipping obtaining forcewake even when 
+> unparked, to obtaining forcewake if not runtime suspended - what 
+> hardware blocks does that power up and how it affects RC6 and power? Can 
+> it affect actual frequency or not? (Will "something" power up the clocks 
+> just because we will be getting forcewake?)
+> 
+> Or maybe question simplified - does 200Hz polling on existing sysfs 
+> actual frequency field disturbs the system under some circumstances? 
+> (Increases power and decreases RC6.) If it does then that would be a 
+> problem. We want a solution which shows the real data, but where the act 
+> of monitoring itself does not change it too much. If it doesn't then 
+> it's okay.
+> 
+> Could you somehow investigate on these topics? Maybe log RAPL GPU power 
+> while polling on sysfs, versus getting the actual frequency from the 
+> existing PMU implementation and see if that shows anything? Or actually 
+> simpler - RAPL GPU power for current PMU intel_gpu_top versus this 
+> patch? On idle(-ish) desktop workloads perhaps? Power and frequency 
+> graphed for both.
 
-greg k-h
+Another thought - considering that bspec says for 0xa01c "This register 
+reflects real-time values and thus does not have a pre-determined 
+default value out of reset" - could it be that it also does not reflect 
+a real value when GPU is not executing anything (so zero), just happens 
+to be not runtime suspended? That would mean sysfs reads could maybe 
+show last known value? Just a thought to check.
+
+I've also tried on my Alderlake desktop:
+
+1)
+
+while true; do cat gt_act_freq_mhz >/dev/null; sleep 0.005; done
+
+This costs ~120mW of GPU power and ~20% decrease in RC6.
+
+
+2)
+
+intel_gpu_top -l -s 5 >/dev/null
+
+This costs no power or RC6.
+
+I have also never observed sysfs to show below min freq. This was with 
+no desktop so it's possible this register indeed does not reflect the 
+real situation when things are idle.
+
+So I think it is possible sysfs value is the misleading one.
+
+Regards,
+
+Tvrtko
