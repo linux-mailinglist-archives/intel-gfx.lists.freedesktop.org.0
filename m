@@ -2,52 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F7375F5B59
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 23:01:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 225815F5B90
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 23:16:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E16510E785;
-	Wed,  5 Oct 2022 21:01:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3736310E78B;
+	Wed,  5 Oct 2022 21:16:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF75B10E785
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 21:01:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665003682; x=1696539682;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=BiyyNDdpoWDbwoMjKNlmuFrhc9+9zH1dPWqGjNVhC7M=;
- b=LCDh8U1Q+rmDSDcjcJV/vY15j3pDyRaf2i+VFkAE09nZ56IouTvnTskw
- Pu7u64JKzpN4h3V0Gkl3WGU+BTwBg5o8cNsJFlRMtPWPXaG+skuyZiwim
- DrZgsDJzGpjf9FjfRCxJq9NDklewzsJCOOBPMjDYK12lPhdWYYN0WC3xC
- AiLNXjxWWoW/ZDGYuuadN2GYTFBp8AsOblgeaB8R67CK6mzLUpWENGoMY
- vBPReCxYDjlUV6ynPFhB6VLHD3mc9WY6wllXLTWFV5fmvGvhx1EMgE8JQ
- RI+RxohwU9OLOjIvaYxPwX2oE0gthWIM7/AJZdeu9RrQJbecGPQ9FRel1 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="304265774"
-X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="304265774"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 14:01:22 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="799642409"
-X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="799642409"
-Received: from ideak-desk.fi.intel.com ([10.237.72.175])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 14:01:21 -0700
-Date: Thu, 6 Oct 2022 00:01:17 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <Yz3wnbs+66FdHmHG@ideak-desk.fi.intel.com>
-References: <20221005175251.3586272-1-imre.deak@intel.com>
- <20221005175251.3586272-2-imre.deak@intel.com>
- <Yz3Xo4sj71e83rsV@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C5D2B10E78A;
+ Wed,  5 Oct 2022 21:16:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BC491AADD4;
+ Wed,  5 Oct 2022 21:16:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yz3Xo4sj71e83rsV@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Suspend/resume encoders
- during GPU reset
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alex Williamson" <alex.williamson@redhat.com>
+Date: Wed, 05 Oct 2022 21:16:28 -0000
+Message-ID: <166500458874.20198.12508357785727695430@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <0-v1-013609965fe8+9d-vfio_gvt_unregister_jgg@nvidia.com>
+In-Reply-To: <0-v1-013609965fe8+9d-vfio_gvt_unregister_jgg@nvidia.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gvt=3A_Add_missing_vfio=5Funregister=5Fgroup=5Fdev?=
+ =?utf-8?b?KCkgY2FsbCAocmV2Mik=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,44 +41,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 05, 2022 at 10:14:43PM +0300, Ville Syrjälä wrote:
-> On Wed, Oct 05, 2022 at 08:52:51PM +0300, Imre Deak wrote:
-> > The GPU reset involves a display suspend/resume sequence, but this is
-> > done without suspending/resuming the encoders.
-> 
-> The display reset path is there for the old platforms which
-> can't reset the gt stuff separately from the display engine. 
-> And the only reason we started to force that codepath on more
-> modern platforms was to make sure it doesn't break all the time.
-> That used to happen quite regularly, but not sure if we even had
-> any pre-g4x hw in CI at the time.
-> 
-> I suspect it's probably a mistake to start piling on more
-> code in there just to make it work on really modern hw.
-> The old hw where it actually matters doesn't need any of
-> that code after all.
+== Series Details ==
 
-Ok, but for the !clobbers_display case the current resume sequence is
-broken imo. So if this fix is not acceptable how about only restoring
-modeset_restore_state in this case without reading out the HW state
-first (to keep some test coverage still) or removing the
-force_reset_modeset_test?
+Series: drm/i915/gvt: Add missing vfio_unregister_group_dev() call (rev2)
+URL   : https://patchwork.freedesktop.org/series/109264/
+State : warning
 
-> Well, unless we manage to make it just call some simple high
-> level "suspend display + resume display" pair of functions
-> and nothing else. That would probably be nice simplification
-> in general, but iirc currently it's much more ad-hoc than that.
+== Summary ==
 
-I agree, but I'd say that should be done as a follow-up (just calling
-the same functions during both system supend/resume and reset I suppose)
-and have a simpler fix for the current issue.
+Error: dim checkpatch failed
+d1cb20a63051 drm/i915/gvt: Add missing vfio_unregister_group_dev() call
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#16: 
+> Fixes: 978cf586ac35 ("drm/i915/gvt: convert to use vfio_register_emulated_iommu_dev")
 
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+-:56: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 1 errors, 1 warnings, 0 checks, 9 lines checked
+
+
