@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 891275F57B1
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 17:42:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22CE25F57B7
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 17:42:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96A6710E6BC;
-	Wed,  5 Oct 2022 15:42:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BED6610E6BD;
+	Wed,  5 Oct 2022 15:42:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0948C10E6B7
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 15:42:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFA3F10E6B7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 15:42:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664984526; x=1696520526;
+ t=1664984528; x=1696520528;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=lcxLxrrLtI3DCRWXkSCBiSo7WFLZQLc1s90yHGei40A=;
- b=Mwxi5U/VhtxYiXmLBp4ry21b+2idJkqidTUhU+vGT4AQEnlgmEWHRgpr
- J5ynHRuJoQgxESV+b/xUsteL5QFYCN5Ti1EMAlfOzp+exf02scos7bWEj
- lKWp7yxPO3U+yqrp2AJyzQ8aDzzWrRlcEtMgyW6WLSF+Tf7h/UUbrgluS
- O9NFnovkJ8rsCAPirKH24T9hO0tAK737RY9uhj/O3m9O2uvpr9WvLrS6e
- y+lOVPKtBc8YzNKdoMSVzT9ZgsDE7bYve9KJD3abR8ZriM7dNs2X5kFiM
- L1j/FBMKrgs3wCVHHhAQ9+5ZkxcI4pEbQKZJTCc3sr0uj5iulJcWnlAOI w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="300792284"
-X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="300792284"
+ bh=mOrkC8QjM2JX6XO70oO3i4Gr2SfZEUicopUw4espx7g=;
+ b=DnBKBoAbnjNRBVYtBm8YpXm5hkI8o7wz+NRFRV61jHC4PGsg8b/+l37E
+ r+EvzUIkojN8fNc9ibQJXtAUyRpRDo2+P74jdclOqDGzx4ukPlxNTlB39
+ gcwdFxSZsSIty8TJf83rGmWnYPRU90DTbvaQ/8KuwSjBUwxaZOdVvu+Fr
+ mnIDHAs55gzymgfvXVz5O5mrTPJ9xHCimdHTcinwnp+zqRMAxI2yT02Fw
+ kFEhGXbDswhQI2IihyWxMzrYfpy9Mob7iLhdUEH90xR+0Xj2SPxqdUX55
+ UWngjTer4mjeBmuygPD5OFekSQ/ZT2JQGPuR1WeTgVe0UEXqoplHDndE3 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="300792293"
+X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="300792293"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 08:42:05 -0700
+ 05 Oct 2022 08:42:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="655207344"
-X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="655207344"
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="655207353"
+X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="655207353"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga008.jf.intel.com with SMTP; 05 Oct 2022 08:42:03 -0700
+ by orsmga008.jf.intel.com with SMTP; 05 Oct 2022 08:42:06 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 Oct 2022 18:42:02 +0300
+ Wed, 05 Oct 2022 18:42:05 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Oct 2022 18:41:58 +0300
-Message-Id: <20221005154159.18750-2-ville.syrjala@linux.intel.com>
+Date: Wed,  5 Oct 2022 18:41:59 +0300
+Message-Id: <20221005154159.18750-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221005154159.18750-1-ville.syrjala@linux.intel.com>
 References: <20221005154159.18750-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Name our BARs based on the spec
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915:
+ s/HAS_BAR2_SMEM_STOLEN/HAS_LMEMBAR_SMEM_STOLEN/
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,133 +65,102 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We use all kinds of weird names for our base address registers.
-Take the names from the spec and stick to them to avoid confusing
-everyone.
-
-The only exceptions are IOBAR and LMEMBAR since naming them
-IOBAR_BAR and LMEMBAR_BAR looks too funny, and yet I think
-that adding the _BAR to GTTMMADR & co. (which don't have one
-in the spec name) does make it more clear what they are.
-And IOBAR vs. GTTMMADR_BAR also looks a bit too inconsistent
-for my taste.
+The fact that LMEMBAR is BAR2 should be of no real interest
+to anyone. So use the name of the BAR rather than its index.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_lpe_audio.c    |  4 ++--
- drivers/gpu/drm/i915/gt/intel_ggtt.c          | 12 +++++-----
- drivers/gpu/drm/i915/gvt/cfg_space.c          |  2 +-
- drivers/gpu/drm/i915/intel_pci_config.h       | 23 +++++++++++++------
- 4 files changed, 25 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 12 ++++++------
+ drivers/gpu/drm/i915/gt/intel_ggtt.c       |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h            |  4 ++--
+ 3 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index dca6003ccac8..389ccdc46a1e 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -101,9 +101,9 @@ lpe_audio_platdev_create(struct drm_i915_private *dev_priv)
- 	rsc[0].flags    = IORESOURCE_IRQ;
- 	rsc[0].name     = "hdmi-lpe-audio-irq";
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index 910086974454..ffd9d01835a9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -79,7 +79,7 @@ void i915_gem_stolen_remove_node(struct drm_i915_private *i915,
  
--	rsc[1].start    = pci_resource_start(pdev, GTTMMADR_BAR) +
-+	rsc[1].start    = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) +
- 		I915_HDMI_LPE_AUDIO_BASE;
--	rsc[1].end      = pci_resource_start(pdev, GTTMMADR_BAR) +
-+	rsc[1].end      = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) +
- 		I915_HDMI_LPE_AUDIO_BASE + I915_HDMI_LPE_AUDIO_SIZE - 1;
- 	rsc[1].flags    = IORESOURCE_MEM;
- 	rsc[1].name     = "hdmi-lpe-audio-mmio";
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index b31fe0fb013f..668131c25da7 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -871,8 +871,8 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
- 	u32 pte_flags;
- 	int ret;
+ static bool valid_stolen_size(struct drm_i915_private *i915, struct resource *dsm)
+ {
+-	return (dsm->start != 0 || HAS_BAR2_SMEM_STOLEN(i915)) && dsm->end > dsm->start;
++	return (dsm->start != 0 || HAS_LMEMBAR_SMEM_STOLEN(i915)) && dsm->end > dsm->start;
+ }
  
--	GEM_WARN_ON(pci_resource_len(pdev, GTTMMADR_BAR) != gen6_gttmmadr_size(i915));
--	phys_addr = pci_resource_start(pdev, GTTMMADR_BAR) + gen6_gttadr_offset(i915);
-+	GEM_WARN_ON(pci_resource_len(pdev, GEN4_GTTMMADR_BAR) != gen6_gttmmadr_size(i915));
-+	phys_addr = pci_resource_start(pdev, GEN4_GTTMMADR_BAR) + gen6_gttadr_offset(i915);
+ static int adjust_stolen(struct drm_i915_private *i915,
+@@ -153,7 +153,7 @@ static int request_smem_stolen(struct drm_i915_private *i915,
+ 	 * Starting MTL, in IGFX devices the stolen memory is exposed via
+ 	 * BAR2 and shall be considered similar to stolen lmem.
+ 	 */
+-	if (HAS_LMEM(i915) || HAS_BAR2_SMEM_STOLEN(i915))
++	if (HAS_LMEM(i915) || HAS_LMEMBAR_SMEM_STOLEN(i915))
+ 		return 0;
  
  	/*
- 	 * On BXT+/ICL+ writes larger than 64 bit to the GTT pagetable range
-@@ -932,10 +932,10 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 	u16 snb_gmch_ctl;
- 
- 	if (!HAS_LMEM(i915) && !HAS_BAR2_SMEM_STOLEN(i915)) {
--		if (!i915_pci_resource_valid(pdev, GTT_APERTURE_BAR))
-+		if (!i915_pci_resource_valid(pdev, GEN4_GMADR_BAR))
- 			return -ENXIO;
- 
--		ggtt->gmadr = pci_resource(pdev, GTT_APERTURE_BAR);
-+		ggtt->gmadr = pci_resource(pdev, GEN4_GMADR_BAR);
- 		ggtt->mappable_end = resource_size(&ggtt->gmadr);
+@@ -406,7 +406,7 @@ static void icl_get_stolen_reserved(struct drm_i915_private *i915,
+ 		MISSING_CASE(reg_val & GEN8_STOLEN_RESERVED_SIZE_MASK);
  	}
  
-@@ -1089,10 +1089,10 @@ static int gen6_gmch_probe(struct i915_ggtt *ggtt)
+-	if (HAS_BAR2_SMEM_STOLEN(i915))
++	if (HAS_LMEMBAR_SMEM_STOLEN(i915))
+ 		/* the base is initialized to stolen top so subtract size to get base */
+ 		*base -= *size;
+ 	else
+@@ -881,7 +881,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 	if (!i915_pci_resource_valid(pdev, GEN12_LMEM_BAR))
+ 		return ERR_PTR(-ENXIO);
+ 
+-	if (HAS_BAR2_SMEM_STOLEN(i915) || IS_DG1(i915)) {
++	if (HAS_LMEMBAR_SMEM_STOLEN(i915) || IS_DG1(i915)) {
+ 		lmem_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
+ 	} else {
+ 		resource_size_t lmem_range;
+@@ -891,7 +891,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 		lmem_size *= SZ_1G;
+ 	}
+ 
+-	if (HAS_BAR2_SMEM_STOLEN(i915)) {
++	if (HAS_LMEMBAR_SMEM_STOLEN(i915)) {
+ 		/*
+ 		 * MTL dsm size is in GGC register.
+ 		 * Also MTL uses offset to DSMBASE in ptes, so i915
+@@ -920,7 +920,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < dsm_size) {
+ 		io_start = 0;
+ 		io_size = 0;
+-	} else if (HAS_BAR2_SMEM_STOLEN(i915)) {
++	} else if (HAS_LMEMBAR_SMEM_STOLEN(i915)) {
+ 		io_start = pci_resource_start(pdev, GEN12_LMEM_BAR) + SZ_8M;
+ 	} else {
+ 		io_start = pci_resource_start(pdev, GEN12_LMEM_BAR) + dsm_base;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 668131c25da7..1bca9fb72754 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -931,7 +931,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
  	unsigned int size;
  	u16 snb_gmch_ctl;
  
--	if (!i915_pci_resource_valid(pdev, GTT_APERTURE_BAR))
-+	if (!i915_pci_resource_valid(pdev, GEN4_GMADR_BAR))
- 		return -ENXIO;
+-	if (!HAS_LMEM(i915) && !HAS_BAR2_SMEM_STOLEN(i915)) {
++	if (!HAS_LMEM(i915) && !HAS_LMEMBAR_SMEM_STOLEN(i915)) {
+ 		if (!i915_pci_resource_valid(pdev, GEN4_GMADR_BAR))
+ 			return -ENXIO;
  
--	ggtt->gmadr = pci_resource(pdev, GTT_APERTURE_BAR);
-+	ggtt->gmadr = pci_resource(pdev, GEN4_GMADR_BAR);
- 	ggtt->mappable_end = resource_size(&ggtt->gmadr);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 90ed8e6db2fe..517d7d2951da 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -974,8 +974,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
  
- 	/*
-diff --git a/drivers/gpu/drm/i915/gvt/cfg_space.c b/drivers/gpu/drm/i915/gvt/cfg_space.c
-index eef3bba8a41b..19a663f6504f 100644
---- a/drivers/gpu/drm/i915/gvt/cfg_space.c
-+++ b/drivers/gpu/drm/i915/gvt/cfg_space.c
-@@ -356,7 +356,7 @@ void intel_vgpu_init_cfg_space(struct intel_vgpu *vgpu,
- 	vgpu->cfg_space.bar[INTEL_GVT_PCI_BAR_GTTMMIO].size =
- 		pci_resource_len(pdev, GTTMMADR_BAR);
- 	vgpu->cfg_space.bar[INTEL_GVT_PCI_BAR_APERTURE].size =
--		pci_resource_len(pdev, GTT_APERTURE_BAR);
-+		pci_resource_len(pdev, GMADR_BAR);
+ #define HAS_ONE_EU_PER_FUSE_BIT(i915)	(INTEL_INFO(i915)->has_one_eu_per_fuse_bit)
  
- 	memset(vgpu_cfg_space(vgpu) + PCI_ROM_ADDRESS, 0, 4);
+-#define HAS_BAR2_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
+-				    GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
++#define HAS_LMEMBAR_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
++				       GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
  
-diff --git a/drivers/gpu/drm/i915/intel_pci_config.h b/drivers/gpu/drm/i915/intel_pci_config.h
-index 305f137d2ebd..ffe9e6a94a04 100644
---- a/drivers/gpu/drm/i915/intel_pci_config.h
-+++ b/drivers/gpu/drm/i915/intel_pci_config.h
-@@ -7,17 +7,26 @@
- #define __INTEL_PCI_CONFIG_H__
- 
- /* PCI BARs */
--#define GTTMMADR_BAR				0
--#define GEN2_GTTMMADR_BAR			1
--#define GFXMEM_BAR				2
--#define GTT_APERTURE_BAR			GFXMEM_BAR
--#define GEN12_LMEM_BAR				GFXMEM_BAR
-+#define GEN2_GMADR_BAR				0
-+#define GEN2_MMADR_BAR				1 /* MMIO+GTT, despite the name */
-+
-+#define GEN3_MMADR_BAR				0 /* MMIO only */
-+#define GEN3_IO_BAR				1
-+#define GEN3_GMADR_BAR				2
-+#define GEN3_GTTADR_BAR				3 /* GTT only */
-+
-+#define GEN4_GTTMMADR_BAR			0 /* MMIO+GTT */
-+#define GEN4_GMADR_BAR				2
-+#define GEN4_IO_BAR				4
-+
-+#define GEN12_LMEM_BAR				2
- 
- static inline int intel_mmio_bar(int graphics_ver)
- {
- 	switch (graphics_ver) {
--	case 2: return GEN2_GTTMMADR_BAR;
--	default: return GTTMMADR_BAR;
-+	case 2: return GEN2_MMADR_BAR;
-+	case 3: return GEN3_MMADR_BAR;
-+	default: return GEN4_GTTMMADR_BAR;
- 	}
- }
- 
+ /* intel_device_info.c */
+ static inline struct intel_device_info *
 -- 
 2.35.1
 
