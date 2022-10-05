@@ -2,58 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC645F5087
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 09:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5BE85F5137
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 10:55:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C60BD10E46C;
-	Wed,  5 Oct 2022 07:59:25 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB9310E1CB;
- Wed,  5 Oct 2022 07:59:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AF4F89C7F;
+	Wed,  5 Oct 2022 08:55:27 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73D1D10E1AB;
+ Wed,  5 Oct 2022 08:55:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664956760; x=1696492760;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4APE4Td3vlhTWgT0QNyfJeF5+Y1L7mYJzFdpEImeczM=;
- b=lbLI1BoDB6HEvIkHeeWTUXNKuPOkgaHhj2EVVIWg2Op1CgpmB+/lzLo8
- y1JpxnQTr9IajJ9lZkvGmxs2ycsOCcUsrq3WRl1RUpmzbLhgLxWwsVvGj
- rbcEGSZnZHUqArItMokuB/ijh3Qcd8haqwKaqTGEXWjTZ0f7vtofxSVGU
- MEBVsHhuvlNwI6UAeL3mPlNFkjsRCJkjCJ050dUZw65wpMQ7pxi8zq1pU
- Dv9X4D7M7wmoYhbm88F1A3LSAbfrcbpfg5YNGtg/a04bgkcVNzLRQOQiH
- VurtG5NaTS9b/2y/cPl7V5TUmIqUOh1bBHG6C4hzhhErCeQXz1AlVjxGy A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="304674072"
-X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="304674072"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 00:59:19 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="655091239"
-X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="655091239"
-Received: from bfglenno-mobl.ger.corp.intel.com (HELO [10.213.229.208])
- ([10.213.229.208])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 00:59:18 -0700
-Message-ID: <7af80924-73cf-14fb-44d4-b5ed28bbdc9f@linux.intel.com>
-Date: Wed, 5 Oct 2022 08:59:16 +0100
+ t=1664960121; x=1696496121;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=PAMzlPy8xXqCuMGUI5kJ3ducvgdsZTKRFiblO/VmJOQ=;
+ b=ipTTrx9j0324Fw8gH0tjIJrJ9egyDm4Y3Tun8K55EB+JoRINNcwkMW69
+ rOrFWV/2kJ5ojWSGVOFovj/i4Cwz251SZ5j57OBWwoEaR4L6o3B44cDNA
+ SRppeyrymW1DdtNDq/aSVTX01hsiWDVYpUP3vmqyHOoO4+KQFxg5Dnz9f
+ 0gH07En1txFmuspJzbaWTkHQVy9trg5z62dNPDljpE7clrt3iOoQgIAPA
+ MDjQIZX3mbhIB0y0txDrXGUY8RWJXhVEzH9kW316kCnVih7Z1s6VglbgN
+ 3/nx8scMEADjAVCit8KVevgKuBbcmY0AGdE/mkbIS1bFHxOVWJLLv/75v Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="286326394"
+X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="286326394"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2022 01:55:20 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="657446007"
+X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="657446007"
+Received: from gionescu-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.173])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2022 01:55:19 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20221004222903.23898-3-vinay.belgaumkar@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221004222903.23898-1-vinay.belgaumkar@intel.com>
+ <20221004222903.23898-3-vinay.belgaumkar@intel.com>
+Date: Wed, 05 Oct 2022 11:55:16 +0300
+Message-ID: <87bkqqsl8r.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Content-Language: en-US
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- Intel-gfx@lists.freedesktop.org
-References: <20220930094716.430937-1-tvrtko.ursulin@linux.intel.com>
- <20221003121630.694249-1-tvrtko.ursulin@linux.intel.com>
- <36096340-aac7-7072-688a-bbef4e7d7d7f@linux.intel.com>
- <e2140d7a-b084-4298-d92a-649d0672fcc7@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <e2140d7a-b084-4298-d92a-649d0672fcc7@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/guc: Fix revocation of
- non-persistent contexts
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/slpc: Update the frequency
+ debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,50 +59,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 04 Oct 2022, Vinay Belgaumkar <vinay.belgaumkar@intel.com> wrote:
+> Read the values stored in the SLPC structures. Remove the
+> fields that are no longer valid (like RPS interrupts) as
+> well.
+>
+> v2: Move all functionality changes to this patch (Jani)
+>
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_rps.c | 46 ++++++++++++++++++++++++++++-
+>  1 file changed, 45 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index 737db780db00..8181d85e89f8 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -2219,7 +2219,7 @@ u32 intel_rps_get_rpn_frequency(struct intel_rps *rps)
+>  		return intel_gpu_freq(rps, rps->min_freq);
+>  }
+>  
+> -void gen6_rps_frequency_dump(struct intel_rps *rps, struct drm_printer *p)
+> +void rps_frequency_dump(struct intel_rps *rps, struct drm_printer *p)
+>  {
+>  	struct intel_gt *gt = rps_to_gt(rps);
+>  	struct drm_i915_private *i915 = gt->i915;
+> @@ -2382,6 +2382,50 @@ void gen6_rps_frequency_dump(struct intel_rps *rps, struct drm_printer *p)
+>  		   intel_gpu_freq(rps, rps->efficient_freq));
+>  }
+>  
+> +static void slpc_frequency_dump(struct intel_rps *rps, struct drm_printer *p)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +	struct intel_uncore *uncore = gt->uncore;
+> +	struct intel_rps_freq_caps caps;
+> +	u32 pm_mask;
+> +
+> +	gen6_rps_get_freq_caps(rps, &caps);
+> +	pm_mask = intel_uncore_read(uncore, GEN6_PMINTRMSK);
+> +
+> +	drm_printf(p, "PM MASK=0x%08x\n", pm_mask);
+> +	drm_printf(p, "pm_intrmsk_mbz: 0x%08x\n",
+> +		   rps->pm_intrmsk_mbz);
+> +	drm_printf(p, "RPSTAT1: 0x%08x\n", intel_uncore_read(uncore, GEN6_RPSTAT1));
+> +	drm_printf(p, "RPNSWREQ: %dMHz\n", intel_rps_get_requested_frequency(rps));
+> +	drm_printf(p, "Lowest (RPN) frequency: %dMHz\n",
+> +		   intel_gpu_freq(rps, caps.min_freq));
+> +	drm_printf(p, "Nominal (RP1) frequency: %dMHz\n",
+> +		   intel_gpu_freq(rps, caps.rp1_freq));
+> +	drm_printf(p, "Max non-overclocked (RP0) frequency: %dMHz\n",
+> +		   intel_gpu_freq(rps, caps.rp0_freq));
+> +	drm_printf(p, "Current freq: %d MHz\n",
+> +		   intel_rps_get_requested_frequency(rps));
+> +	drm_printf(p, "Actual freq: %d MHz\n",
+> +		   intel_rps_read_actual_frequency(rps));
+> +	drm_printf(p, "Min freq: %d MHz\n",
+> +		   intel_rps_get_min_frequency(rps));
+> +	drm_printf(p, "Boost freq: %d MHz\n",
+> +		   intel_rps_get_boost_frequency(rps));
+> +	drm_printf(p, "Max freq: %d MHz\n",
+> +		   intel_rps_get_max_frequency(rps));
+> +	drm_printf(p,
+> +		   "efficient (RPe) frequency: %d MHz\n",
+> +		   intel_gpu_freq(rps, caps.rp1_freq));
+> +}
+> +
+> +void gen6_rps_frequency_dump(struct intel_rps *rps, struct drm_printer *p)
+> +{
+> +	if (!rps_uses_slpc(rps))
 
-On 04/10/2022 16:13, Ceraolo Spurio, Daniele wrote:
-> On 10/4/2022 4:14 AM, Tvrtko Ursulin wrote:
->>
->> On 03/10/2022 13:16, Tvrtko Ursulin wrote:
->>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>
->>> Patch which added graceful exit for non-persistent contexts missed the
->>> fact it is not enough to set the exiting flag on a context and let the
->>> backend handle it from there.
->>>
->>> GuC backend cannot handle it because it runs independently in the
->>> firmware and driver might not see the requests ever again. Patch also
->>> missed the fact some usages of intel_context_is_banned in the GuC 
->>> backend
->>> needed replacing with newly introduced intel_context_is_schedulable.
->>>
->>> Fix the first issue by calling into backend revoke when we know this is
->>> the last chance to do it. Fix the second issue by replacing
->>> intel_context_is_banned with intel_context_is_schedulable, which should
->>> always be safe since latter is a superset of the former.
->>>
->>> v2:
->>>   * Just call ce->ops->revoke unconditionally. (Andrzej)
->>
->> CI is happy - could I get some acks for the GuC backend changes please?
-> 
-> I think we still need to have a longer conversation on the revoking 
-> times, but in the meantime this fixes the immediate concerns, so:
-> 
-> Acked-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Please don't use "if not" when you have two branches like this. Just
+flip them around and use the positive.
 
-Thanks, I've pushed it so should unbreak 6.0 via stable.
+BR,
+Jani.
 
-For follow up work I am okay either with a fixes 20ms timeout (this was 
-enough for users which originally reported it), or go with fully 
-configurable? Latter feels a bit over the top since it would then me a 
-kconfig and sysfs to align with the normal preempt timeout.
 
-Regards,
+> +		return rps_frequency_dump(rps, p);
+> +	else
+> +		return slpc_frequency_dump(rps, p);
+> +}
+> +
+>  static int set_max_freq(struct intel_rps *rps, u32 val)
+>  {
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
 
-Tvrtko
+-- 
+Jani Nikula, Intel Open Source Graphics Center
