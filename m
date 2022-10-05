@@ -2,57 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20FFB5F57C6
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 17:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EB0B5F57EA
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 18:00:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 468F010E6BC;
-	Wed,  5 Oct 2022 15:48:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57B6810E6BC;
+	Wed,  5 Oct 2022 16:00:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9A5810E6BC
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 15:48:26 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id bp15so12666964lfb.13
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Oct 2022 08:48:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date;
- bh=lrmmRj5M1EgBV1gOGWR7N44Rk++ODhxPMb8PNf6pY8Q=;
- b=B+eQgMAS+EywSFZ1HjF4G1aZjLApSTq6RJisnw5+3gbfXWRezuf2N3LGSlmkwu+stO
- J6+cswxQFYDpDbjMgB08eiFNYDfDvsLb/svVINVthGPK3F4LCD/vdQ9Ch8E1Zb5E4sqS
- vbw1WuOETfofxFq2ixvbCQgM7SLkmOcSPiIHPko9S+qylzTgRqq5kpPani4E6+GGTA6A
- JeMOPLwVQyTSuYO1Qwm3tPrq/wBGCOu92Wo0OJ+J5+qRh851cMpyMPZUd7tGxzLoStAX
- +Wb8M9o4Nw1KAUki+E6WUR8FJ3o3rgF/pUp6l5BtS4fur6tLW2P282MrdwrFP4CflnSA
- wcHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date;
- bh=lrmmRj5M1EgBV1gOGWR7N44Rk++ODhxPMb8PNf6pY8Q=;
- b=0wAWTzUH6gw8QalKtNkP4A/TyyodzIPwD5GhZYd3HQxL+wGty+E3tI5zFlAe2PwJ+X
- cyXdJ2cxFW78aNbx0/tmpcwonsQU+0d5xAlka/8LGpziVi/Ve9tiYRLvL4K+TkIwzoXj
- FwGY21juuj6F8dvzxjemH/xFx7g7nfWH1nSqc8BdtQQq4Rz71HojpD+ponnujfCdKS79
- nP5zdMkdIOHBf4OHcsqt8jvfnNt0T6EaAMbXmdYg9anKIu9TENW8klyJBsfzXEGFmY4s
- MVx9iI27yX4z7HyApWrI6eMkeFZCpU7yCWAhf2TPxWjig4mI3i3ZR77Odk5FN+JaXauP
- IlgQ==
-X-Gm-Message-State: ACrzQf05MPlf+m/6l1jvnpx4yicSASdJs0QoeuXe+OuoOdL6RqGgj8mi
- D5/bKl2v+qYFOUVNfe5aR7B4VJ60Hd1HLadyHtY=
-X-Google-Smtp-Source: AMsMyM67CZg+ey35dtwQRGsFY0R0usQYTBZ5ql4VBv/R45AX+XjfUTeqF9dVqsGDYYJLZ5QSSKO9kctBtMHLJCQRl4I=
-X-Received: by 2002:a05:6512:25a4:b0:4a0:547a:b29b with SMTP id
- bf36-20020a05651225a400b004a0547ab29bmr149673lfb.469.1664984904963; Wed, 05
- Oct 2022 08:48:24 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89AED10E6BC;
+ Wed,  5 Oct 2022 15:59:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1664985597; x=1696521597;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/SEmjhX5hmHIax7DJj7QjBoHtl/nJmxvQGqhOiwZblI=;
+ b=G6ZS+zr6PzGqNrFv/LKA7F/0z7JN1+5y+oH812irUyBemAjJTV1CrcYt
+ HTvOSRdVSegEqb53/ml+mxB1uYhBWVh4it4viOGidgAGwFY5hxReKYZ1E
+ 4QXci9wHM9n7pzcDddA5y9NsZKCmKHg0X2wLEghcYMV5fZmBfpslOuQkq
+ /8Wh+O/DLwZQ0DNJHReWc4k2BzJP7MOaUB9htG39DpeBbPv54HitPVnk6
+ 6CbKE4oiDzmh6xutRavLT2t2WM9vS2Yyv6EzcBbBZwiO8EzVy08UMUkKw
+ qCvBvtZ337J4ZDYufTO4wjxRuQl6hrBL6+MJukhg/6GC2Jiagjf93Dn2k w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="304177343"
+X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="304177343"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2022 08:59:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="657549953"
+X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="657549953"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by orsmga001.jf.intel.com with ESMTP; 05 Oct 2022 08:59:56 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed,  5 Oct 2022 08:59:41 -0700
+Message-Id: <20221005155943.34747-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20221005154159.18750-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20221005154159.18750-1-ville.syrjala@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 5 Oct 2022 16:47:57 +0100
-Message-ID: <CAM0jSHOBi9qXUT26OvYiRe7Et+5VKkefNMq5y4JYoj-rNVKuMw@mail.gmail.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Extract intel_mmio_bar()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/2] drm/i915/slpc: Update frequency debugfs
+ for SLPC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,17 +56,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 5 Oct 2022 at 16:42, Ville Syrjala
-<ville.syrjala@linux.intel.com> wrote:
->
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> We have the same code to determine the MMIO BAR in
-> two places. Collect it to a single place.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Remove the RPS related information that is not valid when
+SLPC is enabled.
+
+v2: Add version numbers and address other comments (Jani)
+v3: Fix compile warning
+
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+
+Vinay Belgaumkar (2):
+  drm/i915: Add a wrapper for frequency debugfs
+  drm/i915/slpc: Update the frequency debugfs
+
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 157 +------------
+ drivers/gpu/drm/i915/gt/intel_rps.c           | 207 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_rps.h           |   3 +
+ 3 files changed, 211 insertions(+), 156 deletions(-)
+
+-- 
+2.35.1
+
