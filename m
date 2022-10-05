@@ -2,52 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22CE25F57B7
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 17:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20FFB5F57C6
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 17:48:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED6610E6BD;
-	Wed,  5 Oct 2022 15:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 468F010E6BC;
+	Wed,  5 Oct 2022 15:48:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFA3F10E6B7
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 15:42:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664984528; x=1696520528;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=mOrkC8QjM2JX6XO70oO3i4Gr2SfZEUicopUw4espx7g=;
- b=DnBKBoAbnjNRBVYtBm8YpXm5hkI8o7wz+NRFRV61jHC4PGsg8b/+l37E
- r+EvzUIkojN8fNc9ibQJXtAUyRpRDo2+P74jdclOqDGzx4ukPlxNTlB39
- gcwdFxSZsSIty8TJf83rGmWnYPRU90DTbvaQ/8KuwSjBUwxaZOdVvu+Fr
- mnIDHAs55gzymgfvXVz5O5mrTPJ9xHCimdHTcinwnp+zqRMAxI2yT02Fw
- kFEhGXbDswhQI2IihyWxMzrYfpy9Mob7iLhdUEH90xR+0Xj2SPxqdUX55
- UWngjTer4mjeBmuygPD5OFekSQ/ZT2JQGPuR1WeTgVe0UEXqoplHDndE3 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="300792293"
-X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="300792293"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 08:42:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="655207353"
-X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="655207353"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga008.jf.intel.com with SMTP; 05 Oct 2022 08:42:06 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 Oct 2022 18:42:05 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Oct 2022 18:41:59 +0300
-Message-Id: <20221005154159.18750-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221005154159.18750-1-ville.syrjala@linux.intel.com>
-References: <20221005154159.18750-1-ville.syrjala@linux.intel.com>
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
+ [IPv6:2a00:1450:4864:20::12b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9A5810E6BC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 15:48:26 +0000 (UTC)
+Received: by mail-lf1-x12b.google.com with SMTP id bp15so12666964lfb.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 05 Oct 2022 08:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date;
+ bh=lrmmRj5M1EgBV1gOGWR7N44Rk++ODhxPMb8PNf6pY8Q=;
+ b=B+eQgMAS+EywSFZ1HjF4G1aZjLApSTq6RJisnw5+3gbfXWRezuf2N3LGSlmkwu+stO
+ J6+cswxQFYDpDbjMgB08eiFNYDfDvsLb/svVINVthGPK3F4LCD/vdQ9Ch8E1Zb5E4sqS
+ vbw1WuOETfofxFq2ixvbCQgM7SLkmOcSPiIHPko9S+qylzTgRqq5kpPani4E6+GGTA6A
+ JeMOPLwVQyTSuYO1Qwm3tPrq/wBGCOu92Wo0OJ+J5+qRh851cMpyMPZUd7tGxzLoStAX
+ +Wb8M9o4Nw1KAUki+E6WUR8FJ3o3rgF/pUp6l5BtS4fur6tLW2P282MrdwrFP4CflnSA
+ wcHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date;
+ bh=lrmmRj5M1EgBV1gOGWR7N44Rk++ODhxPMb8PNf6pY8Q=;
+ b=0wAWTzUH6gw8QalKtNkP4A/TyyodzIPwD5GhZYd3HQxL+wGty+E3tI5zFlAe2PwJ+X
+ cyXdJ2cxFW78aNbx0/tmpcwonsQU+0d5xAlka/8LGpziVi/Ve9tiYRLvL4K+TkIwzoXj
+ FwGY21juuj6F8dvzxjemH/xFx7g7nfWH1nSqc8BdtQQq4Rz71HojpD+ponnujfCdKS79
+ nP5zdMkdIOHBf4OHcsqt8jvfnNt0T6EaAMbXmdYg9anKIu9TENW8klyJBsfzXEGFmY4s
+ MVx9iI27yX4z7HyApWrI6eMkeFZCpU7yCWAhf2TPxWjig4mI3i3ZR77Odk5FN+JaXauP
+ IlgQ==
+X-Gm-Message-State: ACrzQf05MPlf+m/6l1jvnpx4yicSASdJs0QoeuXe+OuoOdL6RqGgj8mi
+ D5/bKl2v+qYFOUVNfe5aR7B4VJ60Hd1HLadyHtY=
+X-Google-Smtp-Source: AMsMyM67CZg+ey35dtwQRGsFY0R0usQYTBZ5ql4VBv/R45AX+XjfUTeqF9dVqsGDYYJLZ5QSSKO9kctBtMHLJCQRl4I=
+X-Received: by 2002:a05:6512:25a4:b0:4a0:547a:b29b with SMTP id
+ bf36-20020a05651225a400b004a0547ab29bmr149673lfb.469.1664984904963; Wed, 05
+ Oct 2022 08:48:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915:
- s/HAS_BAR2_SMEM_STOLEN/HAS_LMEMBAR_SMEM_STOLEN/
+References: <20221005154159.18750-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221005154159.18750-1-ville.syrjala@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 5 Oct 2022 16:47:57 +0100
+Message-ID: <CAM0jSHOBi9qXUT26OvYiRe7Et+5VKkefNMq5y4JYoj-rNVKuMw@mail.gmail.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Extract intel_mmio_bar()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,107 +65,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-The fact that LMEMBAR is BAR2 should be of no real interest
-to anyone. So use the name of the BAR rather than its index.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 12 ++++++------
- drivers/gpu/drm/i915/gt/intel_ggtt.c       |  2 +-
- drivers/gpu/drm/i915/i915_drv.h            |  4 ++--
- 3 files changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 910086974454..ffd9d01835a9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -79,7 +79,7 @@ void i915_gem_stolen_remove_node(struct drm_i915_private *i915,
- 
- static bool valid_stolen_size(struct drm_i915_private *i915, struct resource *dsm)
- {
--	return (dsm->start != 0 || HAS_BAR2_SMEM_STOLEN(i915)) && dsm->end > dsm->start;
-+	return (dsm->start != 0 || HAS_LMEMBAR_SMEM_STOLEN(i915)) && dsm->end > dsm->start;
- }
- 
- static int adjust_stolen(struct drm_i915_private *i915,
-@@ -153,7 +153,7 @@ static int request_smem_stolen(struct drm_i915_private *i915,
- 	 * Starting MTL, in IGFX devices the stolen memory is exposed via
- 	 * BAR2 and shall be considered similar to stolen lmem.
- 	 */
--	if (HAS_LMEM(i915) || HAS_BAR2_SMEM_STOLEN(i915))
-+	if (HAS_LMEM(i915) || HAS_LMEMBAR_SMEM_STOLEN(i915))
- 		return 0;
- 
- 	/*
-@@ -406,7 +406,7 @@ static void icl_get_stolen_reserved(struct drm_i915_private *i915,
- 		MISSING_CASE(reg_val & GEN8_STOLEN_RESERVED_SIZE_MASK);
- 	}
- 
--	if (HAS_BAR2_SMEM_STOLEN(i915))
-+	if (HAS_LMEMBAR_SMEM_STOLEN(i915))
- 		/* the base is initialized to stolen top so subtract size to get base */
- 		*base -= *size;
- 	else
-@@ -881,7 +881,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 	if (!i915_pci_resource_valid(pdev, GEN12_LMEM_BAR))
- 		return ERR_PTR(-ENXIO);
- 
--	if (HAS_BAR2_SMEM_STOLEN(i915) || IS_DG1(i915)) {
-+	if (HAS_LMEMBAR_SMEM_STOLEN(i915) || IS_DG1(i915)) {
- 		lmem_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
- 	} else {
- 		resource_size_t lmem_range;
-@@ -891,7 +891,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 		lmem_size *= SZ_1G;
- 	}
- 
--	if (HAS_BAR2_SMEM_STOLEN(i915)) {
-+	if (HAS_LMEMBAR_SMEM_STOLEN(i915)) {
- 		/*
- 		 * MTL dsm size is in GGC register.
- 		 * Also MTL uses offset to DSMBASE in ptes, so i915
-@@ -920,7 +920,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
- 	if (pci_resource_len(pdev, GEN12_LMEM_BAR) < dsm_size) {
- 		io_start = 0;
- 		io_size = 0;
--	} else if (HAS_BAR2_SMEM_STOLEN(i915)) {
-+	} else if (HAS_LMEMBAR_SMEM_STOLEN(i915)) {
- 		io_start = pci_resource_start(pdev, GEN12_LMEM_BAR) + SZ_8M;
- 	} else {
- 		io_start = pci_resource_start(pdev, GEN12_LMEM_BAR) + dsm_base;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 668131c25da7..1bca9fb72754 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -931,7 +931,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 	unsigned int size;
- 	u16 snb_gmch_ctl;
- 
--	if (!HAS_LMEM(i915) && !HAS_BAR2_SMEM_STOLEN(i915)) {
-+	if (!HAS_LMEM(i915) && !HAS_LMEMBAR_SMEM_STOLEN(i915)) {
- 		if (!i915_pci_resource_valid(pdev, GEN4_GMADR_BAR))
- 			return -ENXIO;
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 90ed8e6db2fe..517d7d2951da 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -974,8 +974,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- 
- #define HAS_ONE_EU_PER_FUSE_BIT(i915)	(INTEL_INFO(i915)->has_one_eu_per_fuse_bit)
- 
--#define HAS_BAR2_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
--				    GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
-+#define HAS_LMEMBAR_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
-+				       GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
- 
- /* intel_device_info.c */
- static inline struct intel_device_info *
--- 
-2.35.1
-
+On Wed, 5 Oct 2022 at 16:42, Ville Syrjala
+<ville.syrjala@linux.intel.com> wrote:
+>
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We have the same code to determine the MMIO BAR in
+> two places. Collect it to a single place.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
