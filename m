@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58D095F52A1
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 12:31:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04BE65F52EA
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 12:52:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE89110E099;
-	Wed,  5 Oct 2022 10:30:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABE0710E1AD;
+	Wed,  5 Oct 2022 10:51:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C80310E099
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 10:30:44 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A543710E4B2;
+ Wed,  5 Oct 2022 10:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664965844; x=1696501844;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=mrc/Kj2DyqTJqW5g9zEuyA3n1eONO0D/8kddrMUVVrg=;
- b=IfXowRqiCSb0aAGZXM2ZLEqrKNc1GX41PWWS9ZSaLNCH8Q7WsEYUHfjf
- 5mfvGp+UZOoogEyVW4L2mE5oWjN3pcF45k/oXfCTqqWnsHyA45DG4mEzu
- 9I6J2iLf4dISUEbgb4z+WWaPcRLi2Wd+Ow5gd7tHeEw7U5dzGBj5oDnul
- IP1382+L1aNgb7gEG2HHwMx0Y33MYru1XondNrh1jxHXz5kWstn+U2pOQ
- fTXvaCfCz1djo3FChx4KUIf1bSVYqFzNSE209zAT8ZUDWmMOsmWB26j3H
- mOT/+e3PQxqhRRWCy1Pxja8iEsW71ymLF5DHx/wk1kfUBXxtzjWe5W1xT A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="301848898"
-X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="301848898"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 03:30:44 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="619426421"
-X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="619426421"
+ t=1664967112; x=1696503112;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tzLz/h1cx3l0UqC+pOnjEYwI7zKEMRB48aEchfspRlE=;
+ b=Rve5qgoRzpF2tPneBQYdIhW51rDn5ndHoe2P0pgPQRCqpxlq0WOUUg8g
+ VK8g+lByKKgb+/PZLqLn9kmdTA28UV/tvSWhf1+kuZO+ICb9X0ANWy9yx
+ 5cz+oGRu1/h5FngUCdJgui1C9vkwkfarSM5WSK0OGVSUt5/9U9H5m+lyN
+ 5Nk/+o+JKx/I0i5tlupULuSkDdcqhfKMQ9rPDW9e9NUctvOQ7t08lN6bK
+ WPMH4zaSABqmEo/mzCS3Av8FI40R/fjB+bvi8Jw1tTAc42CXsPdGAkspD
+ qYQqyexeuOxgERmHs1IDpNrshU0750+fVwKxTbfBoy9xJOEsKDdQeGi6R A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="286343559"
+X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="286343559"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2022 03:51:51 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="655131149"
+X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="655131149"
 Received: from gionescu-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.39.173])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 03:30:41 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2022 03:51:48 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220919130505.1984383-3-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220919130505.1984383-1-suraj.kandpal@intel.com>
- <20220919130505.1984383-3-suraj.kandpal@intel.com>
-Date: Wed, 05 Oct 2022 13:30:38 +0300
-Message-ID: <877d1esgtt.fsf@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Wed,  5 Oct 2022 13:51:42 +0300
+Message-Id: <cover.1664966047.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v6 2/3] drm/i915 : Changing intel_connector
- iterators
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC 0/2] drm/connector: connector iterator with
+ filtering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,180 +59,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com, Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Dave Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 19 Sep 2022, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
-> From: Suraj Kandpal <suraj.kandpal@intel.com>
->
-> Changing intel_connector iterators as with writeback introduction
-> not all drm_connector will be embedded within intel_connector.
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_acpi.c     |  7 ++++-
->  drivers/gpu/drm/i915/display/intel_display.h  |  7 ++---
->  .../drm/i915/display/intel_display_types.h    | 26 ++++++++++++++++++-
->  .../drm/i915/display/intel_modeset_setup.c    | 16 +++++++++---
->  4 files changed, 46 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> index 9df78e7caa2b..912fe5c2ffe5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> @@ -349,8 +349,13 @@ void intel_acpi_video_register(struct drm_i915_private *i915)
->  	 */
->  	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
->  	drm_for_each_connector_iter(connector, &conn_iter) {
-> -		struct intel_panel *panel = &to_intel_connector(connector)->panel;
-> +		struct intel_panel *panel;
-> +		struct intel_connector *intel_connector =
-> +					to_intel_connector(connector);
->  
-> +		if (!intel_connector)
-> +			continue;
-> +		panel = &intel_connector->panel;
->  		if (panel->backlight.funcs && !panel->backlight.device) {
->  			acpi_video_register_backlight();
->  			break;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index a1ed9c82e2ed..102bf7d47ccc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -52,6 +52,7 @@ struct intel_crtc_state;
->  struct intel_digital_port;
->  struct intel_dp;
->  struct intel_encoder;
-> +struct intel_connector;
->  struct intel_initial_plane_config;
->  struct intel_load_detect_pipe;
->  struct intel_plane;
-> @@ -469,16 +470,12 @@ enum hpd_pin {
->  		for_each_if(intel_encoder_can_psr(intel_encoder))
->  
->  #define for_each_intel_connector_iter(intel_connector, iter) \
-> -	while ((intel_connector = to_intel_connector(drm_connector_list_iter_next(iter))))
-> +	while ((intel_connector = intel_connector_list_iter_next(iter)))
->  
->  #define for_each_encoder_on_crtc(dev, __crtc, intel_encoder) \
->  	list_for_each_entry((intel_encoder), &(dev)->mode_config.encoder_list, base.head) \
->  		for_each_if((intel_encoder)->base.crtc == (__crtc))
->  
-> -#define for_each_connector_on_encoder(dev, __encoder, intel_connector) \
-> -	list_for_each_entry((intel_connector), &(dev)->mode_config.connector_list, base.head) \
-> -		for_each_if((intel_connector)->base.encoder == (__encoder))
-> -
+Currently i915 assumes all drm_connectors it encounters are embedded in
+intel_connectors that i915 allocated. The drm_writeback_connector forces
+a design where this is not the case; we can't provide our own connector,
+and writeback embeds the drm_connector it initializes itself.
 
-Getting rid of this macro should be a separate change. As the first
-patch, could've been merged already.
+To use drm writeback, none of the i915 connector iteration could assume
+the drm connector is embedded in intel_connector. Checking this is
+tedious, and would require an intermediate step with
+drm_connector. Here's an idea I came up with; filtering at the drm
+connector iterator level with a caller supplied function. Not too much
+code, and could be used for other things as well.
 
->  #define for_each_old_intel_plane_in_state(__state, plane, old_plane_state, __i) \
->  	for ((__i) = 0; \
->  	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 633cacd79074..a2d294929a64 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1498,12 +1498,14 @@ struct cxsr_latency {
->  #define to_intel_atomic_state(x) container_of(x, struct intel_atomic_state, base)
->  #define to_intel_crtc(x) container_of(x, struct intel_crtc, base)
->  #define to_intel_crtc_state(x) container_of(x, struct intel_crtc_state, uapi)
-> -#define to_intel_connector(x) container_of(x, struct intel_connector, base)
-> +#define to_intel_wb_connector(x) container_of(x, struct intel_wb_connector, base)
+Mind you, we'd still much rather modify drm writeback to allow passing
+the connector i915 allocated, instead of the current midlayer design
+that forces drivers to a certain model. Working around this is a bunch
+of error prone and tedious code that we really could do without.
 
-Note that all of the macros here are sorted alphabetically.
-
-The wb/wd difference is a pretty bad eyesore. Maybe we should use one or
-the other, not mix them. (Except if we go with writeback, leave the
-register macros WD because that's what they are.)
-
->  #define to_intel_encoder(x) container_of(x, struct intel_encoder, base)
->  #define to_intel_framebuffer(x) container_of(x, struct intel_framebuffer, base)
->  #define to_intel_plane(x) container_of(x, struct intel_plane, base)
->  #define to_intel_plane_state(x) container_of(x, struct intel_plane_state, uapi)
->  #define intel_fb_obj(x) ((x) ? to_intel_bo((x)->obj[0]) : NULL)
-> +#define to_intel_connector(x) (((x->connector_type == DRM_MODE_CONNECTOR_WRITEBACK)) ?	\
-> +				NULL : container_of(x, struct intel_connector, base))
-
-Would need to have (x)->connector_type, with parenthesis.
-
-The problem with this is that we currently have 131 uses of
-to_intel_connector() and practically all of them expect to get non-NULL
-result.
-
-You're going to get 131 static analyzer reports that you don't check for
-NULL. You can't check for NULL in most places, because they're in the
-middle of local parameter initialization.
-
->  
->  struct intel_hdmi {
->  	i915_reg_t hdmi_reg;
-> @@ -2069,4 +2071,26 @@ to_intel_frontbuffer(struct drm_framebuffer *fb)
->  	return fb ? to_intel_framebuffer(fb)->frontbuffer : NULL;
->  }
->  
-> +static inline struct intel_connector *
-> +intel_connector_list_iter_next(struct drm_connector_list_iter *iter)
-> +{
-> +	struct drm_connector *connector;
-> +	bool flag = true;
-> +	/*
-> +	 * Skipping connector that are Writeback connector as they will
-> +	 * not be embedded in intel connector
-> +	 */
-> +	while (flag) {
-> +		connector = drm_connector_list_iter_next(iter);
-> +		if (connector && !to_intel_connector(connector))
-> +			continue;
-> +
-> +		flag = false;
-> +
-> +		if (connector)
-> +			return to_intel_connector(connector);
-> +
-> +	}
-> +	return NULL;
-> +}
-
-This gets pretty ugly. I've got an idea, I'll send patches later
-today.
-
-Code is worth a thousand words, it's easier to explain that way.
 
 BR,
 Jani.
 
->  #endif /*  __INTEL_DISPLAY_TYPES_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> index cbfabd58b75a..e1a90331c230 100644
-> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> @@ -205,12 +205,22 @@ static bool intel_crtc_has_encoders(struct intel_crtc *crtc)
->  
->  static struct intel_connector *intel_encoder_find_connector(struct intel_encoder *encoder)
->  {
-> -	struct drm_device *dev = encoder->base.dev;
-> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	struct intel_connector *connector;
-> +	struct drm_connector_list_iter conn_iter;
-> +	bool found_connector = false;
->  
-> -	for_each_connector_on_encoder(dev, &encoder->base, connector)
-> -		return connector;
-> +	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-> +	for_each_intel_connector_iter(connector, &conn_iter) {
-> +		if (&encoder->base == connector->base.encoder) {
-> +			found_connector = true;
-> +			break;
-> +		}
-> +	}
-> +	drm_connector_list_iter_end(&conn_iter);
->  
-> +	if (found_connector)
-> +		return connector;
->  	return NULL;
->  }
+
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: Dave Airlie <airlied@gmail.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+Jani Nikula (2):
+  drm/connector: add connector list iteration with filtering
+  drm/i915: iterate intel_connectors only
+
+ drivers/gpu/drm/drm_connector.c               | 57 +++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_display.c  |  3 +-
+ .../drm/i915/display/intel_display_types.h    |  7 +++
+ drivers/gpu/drm/i915/display/intel_dp.c       |  6 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  3 +-
+ drivers/gpu/drm/i915/display/intel_hotplug.c  | 12 ++--
+ .../drm/i915/display/intel_modeset_setup.c    |  6 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |  9 ++-
+ include/drm/drm_connector.h                   |  9 +++
+ 10 files changed, 89 insertions(+), 26 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.34.1
+
