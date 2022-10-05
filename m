@@ -2,52 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAB615F52F0
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 12:52:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C6C05F5338
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 13:16:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7532010E49C;
-	Wed,  5 Oct 2022 10:52:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4025710E48E;
+	Wed,  5 Oct 2022 11:16:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC6010E46B;
- Wed,  5 Oct 2022 10:52:01 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E9A410E48E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 11:16:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664967121; x=1696503121;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ciuAKtGTW6uZVPEpxLUypZwPONSF3ZVJef6Opp4wa7c=;
- b=GxoGSxnh0dMhBjfvk/y6hhfiyJoe+xkOg6zG4PwZ0qptRvzO7CFDozNw
- vd0iUbdv+X/IPXBSupLf7r8Q995XcmjlTMx6h14bIc67Zp+7zqhO/DXfh
- 0U4X3BhvXqGFHMeutPopv7eo5JACddxBvFBRoUdRuMDHRjwx8TveNcK/L
- DNiqBGOyMZNdtLpI0Rln+3/u6O+GedCPBJrLkdcgeykPeZqkuVKdc6T7Z
- vlb0/+b+PEQ1MeNFpVWkxL8e7/9+Y5zKmsPTppRd5bD/nf5mCXZk+ZOGW
- x+2LocZGnEzx5x0ZV1zKZetEpn9/VFmJhPc6D9jE+y04FvbneJ+Ve4yVC g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="304699849"
-X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="304699849"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 03:52:00 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="655131165"
-X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="655131165"
-Received: from gionescu-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.39.173])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 03:51:58 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Oct 2022 13:51:44 +0300
-Message-Id: <37625095998bff9c4f191a8b5a7f4780b90eb408.1664966047.git.jani.nikula@intel.com>
+ t=1664968576; x=1696504576;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Di24TIUdNIuQInmqw8gR8kEGzfWfjldA+ml2CyMivvE=;
+ b=VQm2LeMF3J+e5ulPNufyOOTKMefTHdjdxUziRsdLadVK59P+a3MJSsbS
+ O+SD+yxEhokcPejNfNSE66zimv0tdD/awczpAirn9I3pDpx96yZlXt4bB
+ FvtZBPpQTAMJsrznTvFfgjl7xC1jqH6h6Uw+dQrTGVBOw5MszwYpMiLsn
+ ARUHlI7JhmpusjIwwOYTkazc1iLWk10jEHJZPwjNWCiVgaczPZLzeBVpV
+ aHJv/7apSIumRfkwmlvtTdRv+n5YFloW/vWl+hDeHzmpz3Ps1+QCZLvfs
+ Wa005AatJUshsGvAu9VBfQtm5UEZlS1oHMlpv4Yz01DpxktpEGjy8m7rQ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="329547441"
+X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="329547441"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2022 04:16:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10490"; a="601981985"
+X-IronPort-AV: E=Sophos;i="5.95,159,1661842800"; d="scan'208";a="601981985"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orsmga006.jf.intel.com with ESMTP; 05 Oct 2022 04:16:14 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  5 Oct 2022 14:11:58 +0300
+Message-Id: <20221005111158.3022387-1-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1664966047.git.jani.nikula@intel.com>
-References: <cover.1664966047.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 2/2] drm/i915: iterate intel_connectors only
+Subject: [Intel-gfx] [PATCH] drm/i915: Ensure dbuf state is defined
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,219 +54,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The drm_connectors that are embedded in writeback connectors won't be
-embedded in intel_connectors, so we can't assume being able to convert a
-drm_connector to intel_connector when iterating all the connectors we
-have. Use the drm connector list filtering to skip writeback connectors.
+Ensure that the new dbuf state is not null. If so, throw
+an error, discontinue to allocate ddb and return.
 
-Note: We could also wrap the begin/end calls to intel specific macros to
-hide the boilerplate.
-
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c       |  3 ++-
- drivers/gpu/drm/i915/display/intel_display_types.h |  7 +++++++
- drivers/gpu/drm/i915/display/intel_dp.c            |  6 ++++--
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |  3 ++-
- drivers/gpu/drm/i915/display/intel_hdcp.c          |  3 ++-
- drivers/gpu/drm/i915/display/intel_hotplug.c       | 12 ++++++++----
- drivers/gpu/drm/i915/display/intel_modeset_setup.c |  6 ++++--
- drivers/gpu/drm/i915/display/intel_opregion.c      |  9 ++++++---
- 8 files changed, 35 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8c3bd9ba0d74..892a86c86fb4 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8960,7 +8960,8 @@ static void intel_hpd_poll_fini(struct drm_i915_private *i915)
- 	struct drm_connector_list_iter conn_iter;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index d58e667016e4..4ecf3b43d6d2 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -638,6 +638,9 @@ skl_crtc_allocate_ddb(struct intel_atomic_state *state, struct intel_crtc *crtc)
+ 	u32 start, end;
+ 	int ret;
  
- 	/* Kill all the work that may have been queued by hpd. */
--	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+	drm_connector_list_iter_filter_begin(&i915->drm, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		if (connector->modeset_retry_work.func)
- 			cancel_work_sync(&connector->modeset_retry_work);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index e2b853e9e51d..49a5a1ddc4df 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -612,6 +612,13 @@ struct intel_connector {
- 	struct intel_hdcp hdcp;
- };
- 
-+static inline bool is_intel_connector(const struct drm_connector *connector,
-+				      void *unused_filter_context)
-+{
-+	/* writeback connectors aren't embedded in intel_connector */
-+	return connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK;
-+}
++	if (IS_ERR(new_dbuf_state))
++		return PTR_ERR(new_dbuf_state);
 +
- struct intel_digital_connector_state {
- 	struct drm_connector_state base;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 70b06806ec0d..4cf934c51290 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4044,7 +4044,8 @@ static int intel_dp_prep_link_retrain(struct intel_dp *intel_dp,
- 	if (!intel_dp_needs_link_retrain(intel_dp))
- 		return 0;
- 
--	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+	drm_connector_list_iter_filter_begin(&i915->drm, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		struct drm_connector_state *conn_state =
- 			connector->base.state;
-@@ -4173,7 +4174,8 @@ static int intel_dp_prep_phy_test(struct intel_dp *intel_dp,
- 
- 	*pipe_mask = 0;
- 
--	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+	drm_connector_list_iter_filter_begin(&i915->drm, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		struct drm_connector_state *conn_state =
- 			connector->base.state;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index cd4e61026d98..e4f98cee8d81 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -272,7 +272,8 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
- 	if (!intel_connector_needs_modeset(state, &connector->base))
- 		return 0;
- 
--	drm_connector_list_iter_begin(&dev_priv->drm, &connector_list_iter);
-+	drm_connector_list_iter_filter_begin(&dev_priv->drm, &connector_list_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector_iter, &connector_list_iter) {
- 		struct intel_digital_connector_state *conn_iter_state;
- 		struct intel_crtc_state *crtc_state;
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 6406fd487ee5..36167e42a537 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -83,7 +83,8 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
- 	if (dig_port->hdcp_auth_status)
- 		return 0;
- 
--	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+	drm_connector_list_iter_filter_begin(&i915->drm, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		if (connector->base.status == connector_status_disconnected)
- 			continue;
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 352a1b53b63e..3a9bf87907f5 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -185,7 +185,8 @@ intel_hpd_irq_storm_switch_to_polling(struct drm_i915_private *dev_priv)
- 
- 	lockdep_assert_held(&dev_priv->irq_lock);
- 
--	drm_connector_list_iter_begin(dev, &conn_iter);
-+	drm_connector_list_iter_filter_begin(dev, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		enum hpd_pin pin;
- 
-@@ -232,7 +233,8 @@ static void intel_hpd_irq_storm_reenable_work(struct work_struct *work)
- 
- 	spin_lock_irq(&dev_priv->irq_lock);
- 
--	drm_connector_list_iter_begin(dev, &conn_iter);
-+	drm_connector_list_iter_filter_begin(dev, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		pin = intel_connector_hpd_pin(connector);
- 		if (pin == HPD_NONE ||
-@@ -392,7 +394,8 @@ static void i915_hotplug_work_func(struct work_struct *work)
- 
- 	spin_unlock_irq(&dev_priv->irq_lock);
- 
--	drm_connector_list_iter_begin(dev, &conn_iter);
-+	drm_connector_list_iter_filter_begin(dev, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		enum hpd_pin pin;
- 		u32 hpd_bit;
-@@ -624,7 +627,8 @@ static void i915_hpd_poll_init_work(struct work_struct *work)
- 
- 	enabled = READ_ONCE(dev_priv->display.hotplug.poll_enabled);
- 
--	drm_connector_list_iter_begin(dev, &conn_iter);
-+	drm_connector_list_iter_filter_begin(dev, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		enum hpd_pin pin;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index cbfabd58b75a..0bd145ad8f17 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -114,7 +114,8 @@ static void intel_modeset_update_connector_atomic_state(struct drm_i915_private
- 	struct intel_connector *connector;
- 	struct drm_connector_list_iter conn_iter;
- 
--	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+	drm_connector_list_iter_filter_begin(&i915->drm, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		struct drm_connector_state *conn_state = connector->base.state;
- 		struct intel_encoder *encoder =
-@@ -498,7 +499,8 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
- 
- 	intel_dpll_readout_hw_state(i915);
- 
--	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+	drm_connector_list_iter_filter_begin(&i915->drm, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		if (connector->get_hw_state(connector)) {
- 			struct intel_crtc_state *crtc_state;
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index caa07ef34f21..697d902a8d79 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -488,7 +488,8 @@ static u32 asle_set_backlight(struct drm_i915_private *dev_priv, u32 bclp)
- 	 */
- 	drm_dbg_kms(&dev_priv->drm, "updating opregion backlight %d/255\n",
- 		    bclp);
--	drm_connector_list_iter_begin(dev, &conn_iter);
-+	drm_connector_list_iter_filter_begin(dev, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter)
- 		intel_backlight_set_acpi(connector->base.state, bclp, 255);
- 	drm_connector_list_iter_end(&conn_iter);
-@@ -709,7 +710,8 @@ static void intel_didl_outputs(struct drm_i915_private *dev_priv)
- 
- 	intel_acpi_device_id_update(dev_priv);
- 
--	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-+	drm_connector_list_iter_filter_begin(&dev_priv->drm, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		if (i < max_outputs)
- 			set_did(opregion, i, connector->acpi_device_id);
-@@ -746,7 +748,8 @@ static void intel_setup_cadls(struct drm_i915_private *dev_priv)
- 	 * Note that internal panels should be at the front of the connector
- 	 * list already, ensuring they're not left out.
- 	 */
--	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-+	drm_connector_list_iter_filter_begin(&dev_priv->drm, &conn_iter,
-+					     is_intel_connector, NULL);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		if (i >= ARRAY_SIZE(opregion->acpi->cadl))
- 			break;
+ 	if (new_dbuf_state->weight[pipe] == 0) {
+ 		skl_ddb_entry_init(&new_dbuf_state->ddb[pipe], 0, 0);
+ 		goto out;
 -- 
 2.34.1
 
