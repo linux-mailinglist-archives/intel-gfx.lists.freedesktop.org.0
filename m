@@ -2,54 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8471C5F5A7A
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 21:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 170A15F5A84
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Oct 2022 21:17:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01A9C10E392;
-	Wed,  5 Oct 2022 19:14:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E04B610E757;
+	Wed,  5 Oct 2022 19:16:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF9510E2FF
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 19:14:47 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E01B810E392
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Oct 2022 19:16:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1664997287; x=1696533287;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=GbQqndfbSIl81wHnHni481D5WIgUUv6eRBFGwC7sHAg=;
- b=XImw9eER5pHUSXR+2Mz5doer8DGKUN3NC/FeeqsHDvbMULKhXjMUEzl6
- GCNFv+FH4KzBmBh9D4RoyqGwQwow0VMACwzIrpjNoMo6u9RkfDseFPWft
- RpYXHNW3YpvHMO1czd7yd4DlhV0F+oYOLRLHlSJYXbXRx7DlEYqZ17QQX
- K60DhGgnXXq/ssAYrmpHY2XFc4W6HrT2pYFDJ2Xw1tMzn2nExx0gsbrYB
- p/6httbweCNQ4Xf/76TkBchFVhA8J3bxGnhZ3GDg3Pk+cls5P6Bp2cY9S
- vkKwWi4cHsT/FPr0hN25rZzhT0+9RfsWwTIa0BNMOUqSLT96LZ7On9f1w w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="329668158"
-X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="329668158"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 12:14:46 -0700
+ t=1664997403; x=1696533403;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1oq7+D/FWa4oxdNwinvF+Lld3E02bbpG/ClzDJbtm4o=;
+ b=gDUTHaTR/angTaqaO/eNLoWzm5W5Ejxibgkq5AQn1CpB14vqNBNkOVJD
+ XPxD2CSTi7giYGYf50WwcxYEHLqV1DKXjzmoHbuu5ZKCYvUbFXnriC/yf
+ ZxpwICjbDc4nPAqRjQg1UYQRcIJYBk9Ry6sysdWrLFjmhe1dOUldZ95n1
+ b3O60nsxTPFX+NtacPc5wmQegqBmzH/m5RHBLUF9SaNvqGmlbp6kbh31N
+ SCtOlVLs3pEfYDdBiGbKuFAYyvz6HCmFzIyvKn4VL93yEXt2mV1MWMfwi
+ ILXMsmV5na9kbfrneXbUMPLKeo82Ku21EnRuyu+aIlMV1azl49lF2CK8g Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="283618485"
+X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="283618485"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2022 12:16:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="766847652"
-X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="766847652"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga001.fm.intel.com with SMTP; 05 Oct 2022 12:14:44 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 Oct 2022 22:14:43 +0300
-Date: Wed, 5 Oct 2022 22:14:43 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <Yz3Xo4sj71e83rsV@intel.com>
-References: <20221005175251.3586272-1-imre.deak@intel.com>
- <20221005175251.3586272-2-imre.deak@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="602132206"
+X-IronPort-AV: E=Sophos;i="5.95,161,1661842800"; d="scan'208";a="602132206"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga006.jf.intel.com with ESMTP; 05 Oct 2022 12:16:35 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  5 Oct 2022 12:18:32 -0700
+Message-Id: <20221005191838.466351-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221005175251.3586272-2-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Suspend/resume encoders
- during GPU reset
+Subject: [Intel-gfx] [PATCH 0/6] drm/i915/pxp: Prepare intel_pxp entry
+ points for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,31 +55,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 05, 2022 at 08:52:51PM +0300, Imre Deak wrote:
-> The GPU reset involves a display suspend/resume sequence, but this is
-> done without suspending/resuming the encoders.
+MTL has two tiles that is represented by the intel_gt structure in the i915
+code. The PXP feature has a control-structure that contains the PXP context
+and this hangs of the intel_gt structure. In MTL, the standalone media tile
+(i.e. not the root tile) contains the VDBOX and KCR engine which is what
+PXP relies on for establishing and tearing down the PXP session. However
+PXP is a global feature as other engines on other tiles can reference the
+PXP session in object info within batch buffer instructions.That coherrency
+is handled implicitly by the HW. However current intel_pxp functions such
+as intel_pxp_enabled, intel_pxp_start and others take in the intel_gt
+structure pointer as its input thus creation the perception that PXP is
+a GT-tile specific domain that is independant from other GT tiles.
 
-The display reset path is there for the old platforms which
-can't reset the gt stuff separately from the display engine. 
-And the only reason we started to force that codepath on more
-modern platforms was to make sure it doesn't break all the time.
-That used to happen quite regularly, but not sure if we even had
-any pre-g4x hw in CI at the time.
+This series updates all of the intel_pxp_foo functions that are accessed
+from outside the PXP subsystem so that the callers only need to pass in the
+i915 structure as the input param (being a global handle). Internally,
+these functions will loop through all available GT structures on the GPU
+and find the one GT structure that contains the one PXP+TEE control
+structure before proceeding with the rest of its operation.
 
-I suspect it's probably a mistake to start piling on more
-code in there just to make it work on really modern hw.
-The old hw where it actually matters doesn't need any of
-that code after all.
+Alan Previn (6):
+  drm/i915/pxp: Make gt and pxp init/fini aware of PXP-owning-GT
+  drm/i915/pxp: Make intel_pxp_is_enabled implicitly sort PXP-owning-GT
+  drm/i915/pxp: Make intel_pxp_is_active implicitly sort PXP-owning-GT
+  drm/i915/pxp: Make PXP tee component bind/unbind aware of
+    PXP-owning-GT
+  drm/i915/pxp: Make intel_pxp_start implicitly sort PXP-owning-GT
+  drm/i915/pxp: Make intel_pxp_key_check implicitly sort PXP-owning-GT
 
-Well, unless we manage to make it just call some simple high
-level "suspend display + resume display" pair of functions
-and nothing else. That would probably be nice simplification
-in general, but iirc currently it's much more ad-hoc than that.
+ .../drm/i915/display/skl_universal_plane.c    |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  2 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  4 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |  5 ++
+ drivers/gpu/drm/i915/gt/intel_sa_media.c      |  4 +
+ drivers/gpu/drm/i915/i915_drv.h               |  6 +-
+ drivers/gpu/drm/i915/i915_pci.c               |  1 +
+ drivers/gpu/drm/i915/intel_device_info.h      |  1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 79 ++++++++++++++++---
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          | 10 ++-
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      |  2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c  |  8 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      |  7 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  8 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 21 ++++-
+ 17 files changed, 130 insertions(+), 38 deletions(-)
 
+
+base-commit: eeba73dc310025dbbf2edf81098cd114cbcec54b
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
