@@ -2,42 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B82D5F6E22
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 21:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EAAE5F6E28
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 21:25:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 014CC10E87F;
-	Thu,  6 Oct 2022 19:22:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A572E10E08D;
+	Thu,  6 Oct 2022 19:24:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A30B10E87D;
- Thu,  6 Oct 2022 19:22:37 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id CB73AB82150;
- Thu,  6 Oct 2022 19:22:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E57FCC433D7;
- Thu,  6 Oct 2022 19:22:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1665084154;
- bh=YsMh0kWe/OOR+5QG3loglTlzXYtyV8KBcvp4A3mJk5Q=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BVJCPliSRQiCQnT7Nl1mNjkmwplBTP4CTh/QWA/r38FtWwVGbWjuoeyTvGbaEt5Ep
- sRnDdxkefmR3TRQULCPjSOp+KRIx0SdZjsp+ZUwI/6z1SIREquHhn84iNiUWZ/igTz
- lmi1YCbk/hJYZpNCJxUCJML1iHEdri22IlDOWvrI=
-Date: Thu, 6 Oct 2022 21:23:15 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Zheng Wang <zyytlz.wz@163.com>
-Message-ID: <Yz8rIxV7bVCcfZb0@kroah.com>
-References: <20220928033340.1063949-1-zyytlz.wz@163.com>
- <20221006165845.1735393-1-zyytlz.wz@163.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E90210E87F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Oct 2022 19:24:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1665084289; x=1696620289;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=tQOo1zq/rRiY0zWKnsuST5sVZSMX21lsam1dGfggGmk=;
+ b=P1317WacpzmpD9YDjmS9DtvUGsTr6QC/j/HI2w7GLSiBUtXMSuIALVHa
+ 3f+3+N9TPP/a2Vd8W/oV8y8XCpHwiHh3UkJ3jvOmV9pi9iNQavlBmgqbc
+ lyPleNeWw0g350nYLM0KWg+TeyMabUIIglLSHOvNaZclIhsYjScOTnPrW
+ i5VbDM+ON7X9E2x4Bx5hVsLd6uODvwEaJQhXEQ0hNCYePkt/TJ8ipl+om
+ +so/L8yQufRIbaeDf2Mt9V94qIqJ5f1zbKZ9ZdmMmQdkTDIT9oA5fV65t
+ iinHI+97wiyeylMaAifpb750VvK/J2yxWMeHfofOnAaOF739jSRc99zxL Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="301146498"
+X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; d="scan'208";a="301146498"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2022 12:24:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="713971450"
+X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; d="scan'208";a="713971450"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by FMSMGA003.fm.intel.com with SMTP; 06 Oct 2022 12:24:46 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 06 Oct 2022 22:24:45 +0300
+Date: Thu, 6 Oct 2022 22:24:45 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <Yz8rfR8T2XoXiIiT@intel.com>
+References: <20221005175251.3586272-1-imre.deak@intel.com>
+ <20221005175251.3586272-2-imre.deak@intel.com>
+ <Yz3Xo4sj71e83rsV@intel.com>
+ <Yz3wnbs+66FdHmHG@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20221006165845.1735393-1-zyytlz.wz@163.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gvt: fix double free bug in
- split_2MB_gtt_entry
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yz3wnbs+66FdHmHG@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Suspend/resume encoders
+ during GPU reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,41 +64,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, hackerzheng666@gmail.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- 1002992920@qq.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 07, 2022 at 12:58:45AM +0800, Zheng Wang wrote:
-> If intel_gvt_dma_map_guest_page failed, it will call
-> ppgtt_invalidate_spt, which will finally free the spt.
-> But the caller does not notice that, it will free spt again in error path.
+On Thu, Oct 06, 2022 at 12:01:17AM +0300, Imre Deak wrote:
+> On Wed, Oct 05, 2022 at 10:14:43PM +0300, Ville Syrjälä wrote:
+> > On Wed, Oct 05, 2022 at 08:52:51PM +0300, Imre Deak wrote:
+> > > The GPU reset involves a display suspend/resume sequence, but this is
+> > > done without suspending/resuming the encoders.
+> > 
+> > The display reset path is there for the old platforms which
+> > can't reset the gt stuff separately from the display engine. 
+> > And the only reason we started to force that codepath on more
+> > modern platforms was to make sure it doesn't break all the time.
+> > That used to happen quite regularly, but not sure if we even had
+> > any pre-g4x hw in CI at the time.
+> > 
+> > I suspect it's probably a mistake to start piling on more
+> > code in there just to make it work on really modern hw.
+> > The old hw where it actually matters doesn't need any of
+> > that code after all.
 > 
-> Fix this by spliting invalidate and free in ppgtt_invalidate_spt.
-> Only free spt when in good case.
-> 
-> Reported-by: Zheng Wang <hackerzheng666@gmail.com>
-> Signed-off-by: Zheng Wang <zyytlz.wz@163.com>
-> ---
-> v2:
-> - split initial function into two api function suggested by Greg
-> 
-> v1: https://lore.kernel.org/all/20220928033340.1063949-1-zyytlz.wz@163.com/
-> ---
->  drivers/gpu/drm/i915/gvt/gtt.c | 31 +++++++++++++++++++++----------
->  1 file changed, 21 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-> index ce0eb03709c3..55d8e1419302 100644
-> --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> @@ -959,6 +959,7 @@ static inline int ppgtt_put_spt(struct intel_vgpu_ppgtt_spt *spt)
->  	return atomic_dec_return(&spt->refcount);
->  }
->  
-> +static int  ppgtt_invalidate_and_free_spt(struct intel_vgpu_ppgtt_spt *spt);
+> Ok, but for the !clobbers_display case the current resume sequence is
+> broken imo. So if this fix is not acceptable how about only restoring
+> modeset_restore_state in this case without reading out the HW state
+> first (to keep some test coverage still) or removing the
+> force_reset_modeset_test?
 
-Odd extra space after the 'int', why?
+So the conclusion from our chat was to nuke all the extra
+junk from the simulated path and leave it with just the
+commit_duplicated_state(). I think that's still sufficient
+test of the display vs. reset path since it should still
+grab the modeset locks and whatnot. Well, sufficient
+assuming it actually works :)
 
+-- 
+Ville Syrjälä
+Intel
