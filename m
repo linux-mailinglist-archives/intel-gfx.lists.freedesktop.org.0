@@ -1,51 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 661A95F716E
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 00:54:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 613B65F7179
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 00:59:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DA2C10E0DA;
-	Thu,  6 Oct 2022 22:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4728110E0DC;
+	Thu,  6 Oct 2022 22:59:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 399A610E0DA
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Oct 2022 22:54:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665096857; x=1696632857;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WTJ18NwRAWMbBJ56NneFo+poU6IKImkTnmqx1xP5k0U=;
- b=CdLAUNjYrrF/P2aR0x+16JL2n3S6VVnwupQF0ZE59npGj6U3nQgDpqVB
- PbmfRAo46q2hc8GIL05MkTxv5A1KKXOBqmcyne6LWqyEx6Z4vT024oiAc
- b/v2XPSGyl1o+EeM6QYQfJq0ruCUFoYDvdKsy5uTANMPKgzfvyiSHaGVR
- xuGI5xEu0+x3ZFzw4i/bZ90YjTvS/oHuMiXm3W2HZRyzAEuOq5kbxSVmh
- TlUH9sEyvn+3jhOO2euSAUBP11DqxKAnBrPlxXUmKXi8Lj0W3fLuswh3v
- 4a+PNzfmB0cp6RN+7DEJHvU8tQB8kJDJ8ogxoax1afyvaHARKuF0yabSg Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="365535847"
-X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; d="scan'208";a="365535847"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2022 15:54:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="687636105"
-X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; d="scan'208";a="687636105"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga008.fm.intel.com with SMTP; 06 Oct 2022 15:54:14 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Oct 2022 01:54:13 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 Oct 2022 01:54:13 +0300
-Message-Id: <20221006225413.27731-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
+ [IPv6:2a00:1450:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 826CA10E0DA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Oct 2022 22:59:36 +0000 (UTC)
+Received: by mail-wm1-x32d.google.com with SMTP id e18so1908330wmq.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 06 Oct 2022 15:59:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=avEX5sX4fWSQDRhQ5zfAho1hTMVB7N6QeUvMMZK6eUs=;
+ b=OKIqK8JAjQKBLYBDL7mNsO5e4cDNNxjykGWD5Nnz32y6EU/F65djn2Tl4IcJ+sMQz/
+ ks8XmGQzqIaYgDpg4TWW4w1CTVnw8aJi/KtB5jdi7LXyEwjZ3xXy6ruz6/4kQl3NPA10
+ kOGbOGS1nn2ykomkEwWdtQTuNdMeKpSLKChixUG3hGANrOxF9XIq7l6pft0Bdwk16gMb
+ H6/6tv896O1QHuBSwsdYwN07vzRT0iR+fvpIWfr2o7ZkBr4n2kQ6hvXqKUM024h/8LEr
+ Q4PX0iGulQdXxJ5WDP6MTg2oNAeFRAwSilt3iVsrfACACxvFx7G1JjyCDQJDvDAbBU8N
+ hzDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=avEX5sX4fWSQDRhQ5zfAho1hTMVB7N6QeUvMMZK6eUs=;
+ b=eEMZLfBSCHf9OJyPqu3fXigGGax0tCcpiT+1iPDmuxGu3CfFkDGobToGTdcvwa7jhZ
+ wH5dP/ZV1fjmDERMvuy37ZaXiCRTGIwdOE+lI4wnpiwk1fmyPey2rgo8iFsnIfsz+gXq
+ dpTBK51JFwhtOK9YmQ89FRcCx5UnHBo/2weOJMDvKxZwMNqxsMXo5XJPz1ZQwNIDrvqw
+ Pf6FEkRvjTt1WoR2yWsl4novKzLW968g3SvAmcURYcwU2/DamYFPnxHalqvN0l2QGQL/
+ lJ95g82LRzLWHcdsbOf1Qd8klpvwSkF/RfI1GmyU8DkhEcwZ6XC4jkYpkgsFClpwtMt8
+ xKqA==
+X-Gm-Message-State: ACrzQf0X212FW29f9j052UDT0MD3M0L7SC6rJUERDWEg8yWRnjqYCrg8
+ BweRKwg4iSdlTpBklyhZIvscdWmrji3etMMetypmYw==
+X-Google-Smtp-Source: AMsMyM6aKn0eJCmhL/qmPs1UoQzTSUlh8VLvuzERiTJx+Wjq91flrs4ovRZO5TNSUKWy+KWyE8aLgG8HwI6lGRUygt8=
+X-Received: by 2002:a7b:c8d5:0:b0:3b4:76bc:5dae with SMTP id
+ f21-20020a7bc8d5000000b003b476bc5daemr1335097wml.122.1665097174896; Thu, 06
+ Oct 2022 15:59:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Allow panel fixed modes to have
- differing sync polarities
+References: <20220915004601.320198-1-pceballos@google.com>
+ <87ilkzsd4f.fsf@intel.com>
+In-Reply-To: <87ilkzsd4f.fsf@intel.com>
+From: Pablo Ceballos <pceballos@google.com>
+Date: Thu, 6 Oct 2022 15:59:22 -0700
+Message-ID: <CAO9JgFyCQAtBVvtNYa-jL5O0mM69g53XEO7DKP9yHXXXBudoNQ@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/lspcon: Increase LSPCON
+ mode settle timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,46 +66,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, Javier Martinez Canillas <javierm@redhat.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Maxime Ripard <maxime@cerno.tech>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sam Ravnborg <sam@ravnborg.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Oct 4, 2022 at 10:38 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> Got any bug report with more info, or any other details to back this up?
+> This is kind of thin. What's the 800 ms based on?
 
-Apparently some panels declare multiple modes with random
-sync polarities. Seems a bit weird, but looks like Windows/GOP
-doesn't care, so let follow suit and accept alternate fixed
-modes regardless of their sync polarities.
+This issue affected several different CometLake-based Chrome OS device
+designs. The details of the original report are in the Google partner
+issue tracker (issue # 178169843), but I believe this requires a
+Google partner account to access:
+https://partnerissuetracker.corp.google.com/issues/178169843
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6968
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_panel.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+The summary is that we were seeing these "*ERROR* LSPCON mode hasn't
+settled" messages in the kernel logs followed by the display not
+working at all. We increased the timeout to 500ms while investigation
+continued and this reduced the number of occurrences of this issue:
+https://chromium.googlesource.com/chromiumos/third_party/kernel/+/7b2899fc1a6f9409e8075b3153baaf02c4d1fc75
 
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 2b4b359b8342..fdeb1cd608c3 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -82,12 +82,16 @@ static bool is_alt_drrs_mode(const struct drm_display_mode *mode,
- 		mode->clock != preferred_mode->clock;
- }
- 
-+#define DRM_MODE_FLAG_SYNC_MASK (DRM_MODE_FLAG_PHSYNC | \
-+				 DRM_MODE_FLAG_NHSYNC | \
-+				 DRM_MODE_FLAG_PVSYNC | \
-+				 DRM_MODE_FLAG_NVSYNC)
-+
- static bool is_alt_fixed_mode(const struct drm_display_mode *mode,
- 			      const struct drm_display_mode *preferred_mode)
- {
--	return drm_mode_match(mode, preferred_mode,
--			      DRM_MODE_MATCH_FLAGS |
--			      DRM_MODE_MATCH_3D_FLAGS) &&
-+	return (mode->flags & ~DRM_MODE_FLAG_SYNC_MASK) ==
-+		(preferred_mode->flags & ~DRM_MODE_FLAG_SYNC_MASK) &&
- 		mode->hdisplay == preferred_mode->hdisplay &&
- 		mode->vdisplay == preferred_mode->vdisplay;
- }
--- 
-2.35.1
+The problem continued to occur on about 2% of devices even after
+increasing the timeout to 500ms. The investigation continued in issue
+# 188035814, with engineers from Parade and Intel involved.
+Ultimately, the recommendation from Intel engineers was to increase
+the timeout further:
+https://partnerissuetracker.corp.google.com/issues/188035814
 
+The timeout was then increased to 1000ms:
+https://chromium.googlesource.com/chromiumos/third_party/kernel/+/a16cfc2062e768c8e5ad8fa09b8ca127aa1ead9a
+
+I recently ran 100 reboot trials on one device and found that the
+median time for the LSPCON mode to settle was 440ms and the max was
+444ms. But we know from the original reports that even after we set
+the timeout to 500ms the issue continued to happen on some small
+percentage of devices. So this is why I picked the larger value of
+800ms.
