@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737D35F6032
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 06:37:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F60F5F602F
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 06:36:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AA1110E7E0;
-	Thu,  6 Oct 2022 04:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D437B10E7D9;
+	Thu,  6 Oct 2022 04:36:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6084910E4A0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C25110E7DA
  for <intel-gfx@lists.freedesktop.org>; Thu,  6 Oct 2022 04:36:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1665030993; x=1696566993;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=micz+el/BL0npX12Xu3Aztr99uNhkLQEE3Xvro6Daw8=;
- b=eY7jfkNML7aoCpJlUTaKTn7onlG0G5fn7+uGwbqjQm+sVV/ooQkcfAVw
- 9F0VZ7OJLi9apBvUk15y3qwaWiFKltpdYf/s/UUwGxrcRkCZAagn+gHZ0
- ZCZwh9m3d6p50NppEFGaORijWqw7x8USVo+PnIVwSO5YNPxZUZ/ixyzLW
- PuX8ZwyNX0O+6CRjiXVKMuPZz5uFZnNte/6MJ3weGxvjVJOfs/yjiDOWm
- eHslCY1soMWg2+wFhNpvy2A7oBO9Qm9OwGIJufeZ1Le5g3uuPygPMDxk/
- OvYK3U4+mLiDDqpYc5W9Q+YoQaJh24yiElxF7jpUoWsbD6dLJW15q3TiM Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="290599853"
-X-IronPort-AV: E=Sophos;i="5.95,162,1661842800"; d="scan'208";a="290599853"
+ bh=SO6KsFfBS/bIPpsnFUnSfcQ3xTR96HTnKsFpKcdNK4E=;
+ b=CsqOqHposD30Vz4DMT2hS0Tb5nYjXmZwPI4OPaDV/nETf1Nm9NtOHTXk
+ yZTcIhZ1sZebbigRk0wo5HIEUHB5jdoDbbjsWCdvXxWAlsU3CU2ZKqGWd
+ 5/DnsSJAuXVGfKHcX4/jO7Y29ypzi/qGHStDgbTGSzh75eMCp0lpD0YdR
+ ZqChI1gIAhfgPUjhz7xmWBFMBjHtkA4mn+6HPoQqDPwjXQ7aRp29tOLry
+ CLo26D9s/3HYyBtUbZhrQ+ZBVJM0oHEjsOOyJV1FJ7zIQgPzrc4hWsmiv
+ d8mO4ihqY/c3ITJRedL4dpoi2ZjKP7KMVHub4zyarFbC77n2ZiyXwgMVC Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="290599854"
+X-IronPort-AV: E=Sophos;i="5.95,162,1661842800"; d="scan'208";a="290599854"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Oct 2022 21:36:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="953462915"
-X-IronPort-AV: E=Sophos;i="5.95,162,1661842800"; d="scan'208";a="953462915"
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="953462916"
+X-IronPort-AV: E=Sophos;i="5.95,162,1661842800"; d="scan'208";a="953462916"
 Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
  by fmsmga005.fm.intel.com with ESMTP; 05 Oct 2022 21:36:31 -0700
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Oct 2022 21:38:32 -0700
-Message-Id: <20221006043834.606220-7-alan.previn.teres.alexis@intel.com>
+Date: Wed,  5 Oct 2022 21:38:33 -0700
+Message-Id: <20221006043834.606220-8-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221006043834.606220-1-alan.previn.teres.alexis@intel.com>
 References: <20221006043834.606220-1-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 6/7] drm/i915/pxp: Make intel_pxp_key_check
- implicitly sort PXP-owning-GT
+Subject: [Intel-gfx] [PATCH v2 7/7] drm/i915/pxp: Make intel_pxp power
+ management implicitly sort PXP-owning-GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,85 +60,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make intel_pxp_key_check implicitly find the PXP-owning-GT.
-Callers of this function shall now pass in i915 since PXP
-is a global GPU feature. Make intel_pxp_key_check implicitly
-find the right gt to verify pxp session key establishment count
-so it's transparent to the callers.
+Make PXP suspend/ resume functions implicitly verify if the caller
+is the PXP-owning-GT. PXP control structure still hangs off the intel_gt
+structure that manages has gt-level power management events. Thus change
+the input param to intel_gt structure and let PXP implicitly take the
+expected action only if triggered from the PXP-owning-GT.
 
 Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  2 +-
- drivers/gpu/drm/i915/pxp/intel_pxp.c               | 12 ++++++++++--
- drivers/gpu/drm/i915/pxp/intel_pxp.h               |  2 +-
- 4 files changed, 13 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c   | 10 +++---
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c | 44 ++++++++++++++++++++-----
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h | 22 ++++++-------
+ 3 files changed, 51 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 7cb713043408..04e78acbaf5f 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1841,7 +1841,7 @@ static bool bo_has_valid_encryption(struct drm_i915_gem_object *obj)
- {
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index f553e2173bda..0f477dfb392d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -276,7 +276,7 @@ int intel_gt_resume(struct intel_gt *gt)
  
--	return intel_pxp_key_check(&to_gt(i915)->pxp, obj, false) == 0;
-+	return intel_pxp_key_check(i915, obj, false) == 0;
+ 	intel_uc_resume(&gt->uc);
+ 
+-	intel_pxp_resume(&gt->pxp);
++	intel_pxp_resume(gt);
+ 
+ 	user_forcewake(gt, false);
+ 
+@@ -312,7 +312,7 @@ void intel_gt_suspend_prepare(struct intel_gt *gt)
+ 	user_forcewake(gt, true);
+ 	wait_for_suspend(gt);
+ 
+-	intel_pxp_suspend_prepare(&gt->pxp);
++	intel_pxp_suspend_prepare(gt);
  }
  
- static bool pxp_is_borked(struct drm_i915_gem_object *obj)
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 8f5796cf9c9c..79fb8da1c646 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -868,7 +868,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
- 		 */
- 		if (i915_gem_context_uses_protected_content(eb->gem_context) &&
- 		    i915_gem_object_is_protected(obj)) {
--			err = intel_pxp_key_check(&vm->gt->pxp, obj, true);
-+			err = intel_pxp_key_check(vm->gt->i915, obj, true);
- 			if (err) {
- 				i915_gem_object_put(obj);
- 				return ERR_PTR(err);
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 944c8466f786..148f9fbd907a 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -300,11 +300,19 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp)
- 	intel_pxp_irq_disable(pxp);
- }
+ static suspend_state_t pm_suspend_target(void)
+@@ -337,7 +337,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
+ 	GEM_BUG_ON(gt->awake);
  
--int intel_pxp_key_check(struct intel_pxp *pxp,
-+int intel_pxp_key_check(struct drm_i915_private *i915,
- 			struct drm_i915_gem_object *obj,
- 			bool assign)
+ 	intel_uc_suspend(&gt->uc);
+-	intel_pxp_suspend(&gt->pxp);
++	intel_pxp_suspend(gt);
+ 
+ 	/*
+ 	 * On disabling the device, we want to turn off HW access to memory
+@@ -365,7 +365,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
+ 
+ void intel_gt_runtime_suspend(struct intel_gt *gt)
  {
--	if (!intel_pxp_is_active(pxp_to_gt(pxp)->i915))
-+	struct intel_gt *gt = intel_pxp_get_owning_gt(i915);
+-	intel_pxp_runtime_suspend(&gt->pxp);
++	intel_pxp_runtime_suspend(gt);
+ 	intel_uc_runtime_suspend(&gt->uc);
+ 
+ 	GT_TRACE(gt, "\n");
+@@ -383,7 +383,7 @@ int intel_gt_runtime_resume(struct intel_gt *gt)
+ 	if (ret)
+ 		return ret;
+ 
+-	intel_pxp_runtime_resume(&gt->pxp);
++	intel_pxp_runtime_resume(gt);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+index 5f713ac5c3ce..81e03c4eea71 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+@@ -9,34 +9,54 @@
+ #include "intel_pxp_session.h"
+ #include "i915_drv.h"
+ 
+-void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
++void intel_pxp_suspend_prepare(struct intel_gt *gt)
+ {
+-	if (!intel_pxp_is_enabled(pxp_to_gt(pxp)->i915))
 +	struct intel_pxp *pxp;
 +
-+	if (!gt)
-+		return -ENODEV;
++	if (!intel_pxp_is_enabled(gt->i915))
++		return;
++
++	if (!gt->pxptee_iface_owner)
+ 		return;
+ 
++	pxp = &gt->pxp;
++
+ 	pxp->arb_is_valid = false;
+ 
+ 	intel_pxp_invalidate(pxp);
+ }
+ 
+-void intel_pxp_suspend(struct intel_pxp *pxp)
++void intel_pxp_suspend(struct intel_gt *gt)
+ {
++	struct intel_pxp *pxp;
+ 	intel_wakeref_t wakeref;
+ 
+-	if (!intel_pxp_is_enabled(pxp_to_gt(pxp)->i915))
++	if (!intel_pxp_is_enabled(gt->i915))
+ 		return;
+ 
+-	with_intel_runtime_pm(&pxp_to_gt(pxp)->i915->runtime_pm, wakeref) {
++	if (!gt->pxptee_iface_owner)
++		return;
 +
 +	pxp = &gt->pxp;
 +
-+	if (!intel_pxp_is_active(i915))
- 		return -ENODEV;
++	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref) {
+ 		intel_pxp_fini_hw(pxp);
+ 		pxp->hw_state_invalidated = false;
+ 	}
+ }
  
- 	if (!i915_gem_object_is_protected(obj))
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-index 61ef3bedc3a0..94fec55389df 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-@@ -28,7 +28,7 @@ void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);
+-void intel_pxp_resume(struct intel_pxp *pxp)
++void intel_pxp_resume(struct intel_gt *gt)
+ {
+-	if (!intel_pxp_is_enabled(pxp_to_gt(pxp)->i915))
++	struct intel_pxp *pxp;
++
++	if (!intel_pxp_is_enabled(gt->i915))
++		return;
++
++	if (!gt->pxptee_iface_owner)
+ 		return;
  
- int intel_pxp_start(struct drm_i915_private *i915);
++	pxp = &gt->pxp;
++
+ 	/*
+ 	 * The PXP component gets automatically unbound when we go into S3 and
+ 	 * re-bound after we come out, so in that scenario we can defer the
+@@ -48,11 +68,17 @@ void intel_pxp_resume(struct intel_pxp *pxp)
+ 	intel_pxp_init_hw(pxp);
+ }
  
--int intel_pxp_key_check(struct intel_pxp *pxp,
-+int intel_pxp_key_check(struct drm_i915_private *i915,
- 			struct drm_i915_gem_object *obj,
- 			bool assign);
+-void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
++void intel_pxp_runtime_suspend(struct intel_gt *gt)
+ {
+-	if (!intel_pxp_is_enabled(pxp_to_gt(pxp)->i915))
++	struct intel_pxp *pxp;
++
++	if (!intel_pxp_is_enabled(gt->i915))
++		return;
++
++	if (!gt->pxptee_iface_owner)
+ 		return;
  
++	pxp = &gt->pxp;
+ 	pxp->arb_is_valid = false;
+ 
+ 	intel_pxp_fini_hw(pxp);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+index 586be769104f..c87d54699793 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+@@ -6,32 +6,32 @@
+ #ifndef __INTEL_PXP_PM_H__
+ #define __INTEL_PXP_PM_H__
+ 
+-struct intel_pxp;
++struct intel_gt;
+ 
+ #ifdef CONFIG_DRM_I915_PXP
+-void intel_pxp_suspend_prepare(struct intel_pxp *pxp);
+-void intel_pxp_suspend(struct intel_pxp *pxp);
+-void intel_pxp_resume(struct intel_pxp *pxp);
+-void intel_pxp_runtime_suspend(struct intel_pxp *pxp);
++void intel_pxp_suspend_prepare(struct intel_gt *gt);
++void intel_pxp_suspend(struct intel_gt *gt);
++void intel_pxp_resume(struct intel_gt *gt);
++void intel_pxp_runtime_suspend(struct intel_gt *gt);
+ #else
+-static inline void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
++static inline void intel_pxp_suspend_prepare(struct intel_gt *gt)
+ {
+ }
+ 
+-static inline void intel_pxp_suspend(struct intel_pxp *pxp)
++static inline void intel_pxp_suspend(struct intel_gt *gt)
+ {
+ }
+ 
+-static inline void intel_pxp_resume(struct intel_pxp *pxp)
++static inline void intel_pxp_resume(struct intel_gt *gt)
+ {
+ }
+ 
+-static inline void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
++static inline void intel_pxp_runtime_suspend(struct intel_gt *gt)
+ {
+ }
+ #endif
+-static inline void intel_pxp_runtime_resume(struct intel_pxp *pxp)
++static inline void intel_pxp_runtime_resume(struct intel_gt *gt)
+ {
+-	intel_pxp_resume(pxp);
++	intel_pxp_resume(gt);
+ }
+ #endif /* __INTEL_PXP_PM_H__ */
 -- 
 2.34.1
 
