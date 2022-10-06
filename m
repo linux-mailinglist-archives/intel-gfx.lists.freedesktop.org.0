@@ -2,35 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 367F55FA039
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 16:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B4CB5FA03D
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 16:31:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D12F910E624;
-	Mon, 10 Oct 2022 14:31:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DD4210E627;
+	Mon, 10 Oct 2022 14:31:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 306 seconds by postgrey-1.36 at gabe;
- Thu, 06 Oct 2022 11:58:52 UTC
-Received: from out30-54.freemail.mail.aliyun.com
- (out30-54.freemail.mail.aliyun.com [115.124.30.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B1410E36E;
- Thu,  6 Oct 2022 11:58:51 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R501e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045176;
- MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=14; SR=0;
- TI=SMTPD_---0VRQIduS_1665057219; 
-Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
- fp:SMTPD_---0VRQIduS_1665057219) by smtp.aliyun-inc.com;
- Thu, 06 Oct 2022 19:53:40 +0800
-From: Yang Li <yang.lee@linux.alibaba.com>
-To: tvrtko.ursulin@linux.intel.com
-Date: Thu,  6 Oct 2022 19:53:37 +0800
-Message-Id: <20221006115337.15729-1-yang.lee@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from mail-m971.mail.163.com (mail-m971.mail.163.com [123.126.97.1])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 42FB610E654;
+ Thu,  6 Oct 2022 16:59:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=P36UR
+ nJL820ycRfoyiCP6wRhwOEFM7keKtxcCy0do6Y=; b=k1r//rUT0jPaTi4Zb6m4l
+ gF/gDqEbUjlP7rTKA6nHge1W794HsPuoV5GntaM0CDWf6d9xhkLaqFaHELRhK62/
+ IhJ/bH6nCNCby408gobEyoU/WmpLFFKqM8Lahgj8pthY70XaT3pEPwrqwPQuqoX5
+ 0lZv2y2nGILIFGg6DHMGhA=
+Received: from leanderwang-LC2.localdomain (unknown [111.206.145.21])
+ by smtp1 (Coremail) with SMTP id GdxpCgA3n2dGCT9jRdswiQ--.20016S2;
+ Fri, 07 Oct 2022 00:58:46 +0800 (CST)
+From: Zheng Wang <zyytlz.wz@163.com>
+To: zyytlz.wz@163.com
+Date: Fri,  7 Oct 2022 00:58:45 +0800
+Message-Id: <20221006165845.1735393-1-zyytlz.wz@163.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220928033340.1063949-1-zyytlz.wz@163.com>
+References: <20220928033340.1063949-1-zyytlz.wz@163.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: GdxpCgA3n2dGCT9jRdswiQ--.20016S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxAr1UKr1xtFW3GFWDAr18Xwb_yoW5ur18pF
+ W5XFZ0yFs8Aw4Ivr4xCw1kZF15JF1fWry8GrZ3K3ZYyF1DtF1kKFZ3ZrW7Jr9agrZ7Gr1f
+ Ar4UtF4UCa47XaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRH5lnUUUUU=
+X-Originating-IP: [111.206.145.21]
+X-CM-SenderInfo: h2113zf2oz6qqrwthudrp/1tbiQgaSU1aEDIPvewAAsM
 X-Mailman-Approved-At: Mon, 10 Oct 2022 14:31:03 +0000
-Subject: [Intel-gfx] [PATCH -next] drm/i915/gvt: remove unneeded semicolon
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gvt: fix double free bug in
+ split_2MB_gtt_entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,35 +52,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, Yang Li <yang.lee@linux.alibaba.com>,
- daniel@ffwll.ch, rodrigo.vivi@intel.com, airlied@gmail.com
+Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
+ gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ hackerzheng666@gmail.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 1002992920@qq.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove the redundant semicolon
+If intel_gvt_dma_map_guest_page failed, it will call
+ppgtt_invalidate_spt, which will finally free the spt.
+But the caller does not notice that, it will free spt again in error path.
 
-Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=2333
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+Fix this by spliting invalidate and free in ppgtt_invalidate_spt.
+Only free spt when in good case.
+
+Reported-by: Zheng Wang <hackerzheng666@gmail.com>
+Signed-off-by: Zheng Wang <zyytlz.wz@163.com>
 ---
- drivers/gpu/drm/i915/gvt/vgpu.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v2:
+- split initial function into two api function suggested by Greg
 
-diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/vgpu.c
-index 56c71474008a..5ccb04e26e6d 100644
---- a/drivers/gpu/drm/i915/gvt/vgpu.c
-+++ b/drivers/gpu/drm/i915/gvt/vgpu.c
-@@ -325,7 +325,7 @@ int intel_gvt_create_vgpu(struct intel_vgpu *vgpu,
- 	ret = idr_alloc(&gvt->vgpu_idr, vgpu, IDLE_VGPU_IDR + 1, GVT_MAX_VGPU,
- 		GFP_KERNEL);
- 	if (ret < 0)
--		goto out_unlock;;
-+		goto out_unlock;
+v1: https://lore.kernel.org/all/20220928033340.1063949-1-zyytlz.wz@163.com/
+---
+ drivers/gpu/drm/i915/gvt/gtt.c | 31 +++++++++++++++++++++----------
+ 1 file changed, 21 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
+index ce0eb03709c3..55d8e1419302 100644
+--- a/drivers/gpu/drm/i915/gvt/gtt.c
++++ b/drivers/gpu/drm/i915/gvt/gtt.c
+@@ -959,6 +959,7 @@ static inline int ppgtt_put_spt(struct intel_vgpu_ppgtt_spt *spt)
+ 	return atomic_dec_return(&spt->refcount);
+ }
  
- 	vgpu->id = ret;
- 	vgpu->sched_ctl.weight = conf->weight;
++static int  ppgtt_invalidate_and_free_spt(struct intel_vgpu_ppgtt_spt *spt);
+ static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt);
+ 
+ static int ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
+@@ -995,7 +996,7 @@ static int ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
+ 				ops->get_pfn(e));
+ 		return -ENXIO;
+ 	}
+-	return ppgtt_invalidate_spt(s);
++	return ppgtt_invalidate_and_free_spt(s);
+ }
+ 
+ static inline void ppgtt_invalidate_pte(struct intel_vgpu_ppgtt_spt *spt,
+@@ -1016,18 +1017,31 @@ static inline void ppgtt_invalidate_pte(struct intel_vgpu_ppgtt_spt *spt,
+ 	intel_gvt_dma_unmap_guest_page(vgpu, pfn << PAGE_SHIFT);
+ }
+ 
+-static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt)
++static int  ppgtt_invalidate_and_free_spt(struct intel_vgpu_ppgtt_spt *spt)
+ {
+ 	struct intel_vgpu *vgpu = spt->vgpu;
+-	struct intel_gvt_gtt_entry e;
+-	unsigned long index;
+ 	int ret;
+ 
+ 	trace_spt_change(spt->vgpu->id, "die", spt,
+-			spt->guest_page.gfn, spt->shadow_page.type);
+-
++		spt->guest_page.gfn, spt->shadow_page.type);
+ 	if (ppgtt_put_spt(spt) > 0)
+ 		return 0;
++	ret = ppgtt_invalidate_spt(spt);
++	if (!ret) {
++		trace_spt_change(spt->vgpu->id, "release", spt,
++			 spt->guest_page.gfn, spt->shadow_page.type);
++		ppgtt_free_spt(spt);
++	}
++
++	return ret;
++}
++
++static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt)
++{
++	struct intel_vgpu *vgpu = spt->vgpu;
++	struct intel_gvt_gtt_entry e;
++	unsigned long index;
++	int ret;
+ 
+ 	for_each_present_shadow_entry(spt, &e, index) {
+ 		switch (e.type) {
+@@ -1059,9 +1073,6 @@ static int ppgtt_invalidate_spt(struct intel_vgpu_ppgtt_spt *spt)
+ 		}
+ 	}
+ 
+-	trace_spt_change(spt->vgpu->id, "release", spt,
+-			 spt->guest_page.gfn, spt->shadow_page.type);
+-	ppgtt_free_spt(spt);
+ 	return 0;
+ fail:
+ 	gvt_vgpu_err("fail: shadow page %p shadow entry 0x%llx type %d\n",
+@@ -1393,7 +1404,7 @@ static int ppgtt_handle_guest_entry_removal(struct intel_vgpu_ppgtt_spt *spt,
+ 			ret = -ENXIO;
+ 			goto fail;
+ 		}
+-		ret = ppgtt_invalidate_spt(s);
++		ret = ppgtt_invalidate_and_free_spt(s);
+ 		if (ret)
+ 			goto fail;
+ 	} else {
 -- 
-2.20.1.7.g153144c
+2.25.1
 
