@@ -1,151 +1,152 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0C75F6EC3
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 22:17:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 404CA5F6F02
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 22:25:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71D3B10E896;
-	Thu,  6 Oct 2022 20:16:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 508A110E89C;
+	Thu,  6 Oct 2022 20:25:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5E9C10E892;
- Thu,  6 Oct 2022 20:16:48 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F1C510E89C;
+ Thu,  6 Oct 2022 20:25:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665087408; x=1696623408;
+ t=1665087950; x=1696623950;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=2C4WGwL9xieQj5yyLiFQ11kYlzrFwlIN2aMTgs6hDO4=;
- b=cHyJHWZs1jmMZYehvq979sEr/U1Qzm4TIvLm9P/zJhYBms5b0LjSwTD+
- D/+g94S3kBF//etxtJTZc4eI0aHks2Ts2f6Qx+D2F5qP7v8/0ya08+NdM
- /xLlfTRJ3Wc/MdrBQcFX/C2LBitUdQ1TmcbnI8TSf5qy0hIYZqtsxxKQU
- RrBjgCFo1NAMQQxddNZ+mujG0/k1wld9PD0g0wTlGmNDx9qUQ0853xkbJ
- munFJIf6IuY96oslGEdqrQe9FajqWaEylxvdYdQQqhux/cGmRitphwvd/
- D0X9meNGC1mdsq8Yw5xjkCAyw90yllqe8QyxPLi6BA3gMZjC8Gys16lyL w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="303538227"
-X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; d="scan'208";a="303538227"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2022 13:16:48 -0700
+ bh=jyHEhT4cl+/+W4CV+3PnV5G3uEKHXrW53gg73lJOm7o=;
+ b=Ly0iGCaWiRtpQHuOq55/YpG7fMOn9Oco93yv25wUEfFslZSsYLH7lmLd
+ XwnPiToUCK7hB35yri4VvH0N+u2jeo15Iov458heByDhW1OtYxKFH80pW
+ zvwOoH4v2T4OEBqE0NY8gKBlQWPI2RBrw/n/W3NOVpRpndItbGIEOUeDt
+ Hcyf50fryr5EwLeSgSWNlXY7//HUXouequfndrmzznvLZ3ySeA7tDWxbZ
+ dryVDiRE9h4rq3ffo2UhpXkA4DO0LxDJdZEPNGW3GoKrM7+V19ZzJegyv
+ wdMfYAmgFjjSOvyrkJByE9aDUJQb/KlfPLgPHD2RomFs/waoywv0RrKYb w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="365503438"
+X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; d="scan'208";a="365503438"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2022 13:25:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="869991239"
-X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; d="scan'208";a="869991239"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga006.fm.intel.com with ESMTP; 06 Oct 2022 13:16:48 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="693502073"
+X-IronPort-AV: E=Sophos;i="5.95,164,1661842800"; d="scan'208";a="693502073"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga004.fm.intel.com with ESMTP; 06 Oct 2022 13:24:54 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 6 Oct 2022 13:16:47 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 6 Oct 2022 13:24:54 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 6 Oct 2022 13:16:47 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2375.31; Thu, 6 Oct 2022 13:24:53 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 6 Oct 2022 13:16:47 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Thu, 6 Oct 2022 13:24:53 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 6 Oct 2022 13:16:47 -0700
+ 15.1.2375.31; Thu, 6 Oct 2022 13:24:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mYsyZ89i70Z9/6Bi3VFjaIlFuEfBWosU0/zmGcCF80Q0u8TPVJ4BV6dZSK/Dem21621wyWhVP3TrwCEWgLgVi+WyAB7867oronoZ4pFHYH4dfUuIFd+w8hae3I/q8b7i/UYUoWTLYOXNZT889KWSOQjnumPFRfSJRdt7Cz89dM0LvQ30UsanS3TVs4/dH1WfKwJLF5VXyWn0HoBsEpJc1VmItDskCgmqDkomHg1HnxlAOGnGMeOQc5zMe2Juj4Gbs7lmTIakOq5PGRI4x+xqjrFuAXK008VY/LXxQ9ndd7hAMIwAnLn/FP1I8lymgv9qFryUBy0AWPwh5q83hRaeKg==
+ b=EyFePlGlSyNA5FN7pNwcvZMXxCENqE9zMxxReIWseXNcZ7FPXoH4fFVwBoS1+rru2vy5Yx1xl/rB304WTyVFQNxgUOPdNNMzdcndWhd3x43Vf+bD2sTeRj/VQgM9Nb5DTonghj5Dbgj//V4+42v8AJEZvnbKMC4LPDPaP3Hmhb75Tb/Py728lm9OeAv93zFG0iMg80yEEkJvvCAq96iS0z8RYrmNnFkJ1df1A46OrdWCB4uP7C0OaAv/Ncu73GwAEXjo46SW78V5S6bTWW+xQZLQG63EwZx93+UkqL3Iy8jWzHopgysOiPQFVWo+UD+TaKvL2YTRfqjo/11FfCDwfw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T1jyF9hhbil38+wP9mwMXwRnUAXDgPYyDprHchnYkSA=;
- b=XWZ2p6x6k8VaHcHwi5A17zrqSQ1Fsp1sa0RLHPGrKpSkMOv9KCl++/ovuiv8hWbFk759CaEjsygcJ7CL7fFGwpY6lGEJR2nOtSE0odfCRtct1UlRIGyeodqbSmCZTi3mTllK9THPU+mkoDW9+PTsa1NVLLazbNftbu0alAdyYFFqfyrHwyMGmyVwbZvXbIplz3rbAAqgGEJxDPpoB03NXi4jNxw94xpp7fSWublUDAiYDLkwRsR8xSLl/CHeZ4C3t0ZWlr6o8xvJG30svpeO+fB9l6IIV4q+tf6f2Qw7m331Isay4H45YANZZ6xhu96s7a14uSRwQy/hCHNiJAs+mQ==
+ bh=Z2V573XBzlUvIi38Q11HWAPT9zwnopeDcATizYRJk14=;
+ b=cnmkakbmq5iqVdUmJ0ox9kWZ/JPgBnw+wTEH8ZfN1G/lGC0JqoCSVWNnce0zXzx3xJ3uIv8kTkux986KYasfsR9ytWNNJeEPzk1FhIQKqMNDZ5EGlFHB6ycxD/cmQtq3odFKEbqK+qI2p14SXOwinAgHRHPsaAsFtaQAtkFuLtcJDdQZbXbdV7e2idVn1fUgK8ToZcgtgNAytBwe3Ef+szuw2BTVZSgAj8oW+zJEsfcBV3WLQCBSjEkCZsUCOMviy9yfnt08b+u8RJXfR7q7/1PlbYCIcS5njM24vzGNljpfdzloXuFGcH0TnDVCxN5w6OWRqg93fIGKkUs31uJimA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- PH7PR11MB6378.namprd11.prod.outlook.com (2603:10b6:510:1fa::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.36; Thu, 6 Oct
- 2022 20:16:44 +0000
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::e8e8:7e00:919e:7a44]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::e8e8:7e00:919e:7a44%5]) with mapi id 15.20.5676.031; Thu, 6 Oct 2022
- 20:16:44 +0000
-Message-ID: <d34651c0-f7ef-3cf5-fe30-0ce04163552a@intel.com>
-Date: Thu, 6 Oct 2022 13:16:41 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by SA1PR11MB7088.namprd11.prod.outlook.com (2603:10b6:806:2b7::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Thu, 6 Oct
+ 2022 20:24:51 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::7750:dd86:4ef:afc6]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::7750:dd86:4ef:afc6%7]) with mapi id 15.20.5676.036; Thu, 6 Oct 2022
+ 20:24:51 +0000
+Message-ID: <5066c56c-173b-b1bf-4e55-e05168195125@intel.com>
+Date: Thu, 6 Oct 2022 13:24:49 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.2.2
+Content-Language: en-GB
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
  <intel-gfx@lists.freedesktop.org>
 References: <20221006172056.1381588-1-daniele.ceraolospurio@intel.com>
  <ab07d4f9-84e9-461e-d9a5-20ea852d30ca@intel.com>
-From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <ab07d4f9-84e9-461e-d9a5-20ea852d30ca@intel.com>
+ <d34651c0-f7ef-3cf5-fe30-0ce04163552a@intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <d34651c0-f7ef-3cf5-fe30-0ce04163552a@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY3PR03CA0018.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::23) To DM4PR11MB5488.namprd11.prod.outlook.com
- (2603:10b6:5:39d::5)
+X-ClientProxiedBy: BYAPR05CA0063.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::40) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|PH7PR11MB6378:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6bd3872e-d090-41cd-ca9a-08daa7d7b014
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|SA1PR11MB7088:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3f67883d-a278-4731-1909-08daa7d8d259
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dp8ARo/XJbXUeb75CV58OcqqZmdrnHyTguwekPRZwZ1nUAR8YNt6svPe+lgt2BUskxIOX34rcZZKp4idGLO4BKkDUGglGdRKHtj5JdwLF/G2i1LInriQJlaj5jS8D3KywGo6kVvvjxNckaLYeMQBIvWL7GAUzEBXrrGmQwSM2uWDzFJ5MgbIFn9Sp75gVr+AL0Vi9WE75jzqgfHwdQ4RN5OVxfoPOuSoYcLiz/iLasvfT9UCOqROizQiFJLC3NJ8YNdFCjMCWnJAngORK+kNFT8IF/IO9xcp3L9xgNlRIzNzIY/AErdYiPb+BIm7I/A0PrhQBi7pSlqVWpAI+pWxgo4lvkivaux2wl5cefLbIw4BxZddjzgeas8GVbdf7JhGsr/uRKLRq1VSX0d4Tsw6bHOnjw+MwBaTdA7zrPr9sqD9wuhVdRgrrJhIjDwx2Is8J3Px2VZM2lfsrbaG7j3oQYUZlZJc3BT/b49rrgQbQoLyB2Fa6YIsWwtR+fPDGR3YKD/6E9+krJXFCxAGKcG3zWNVoRMDZGhSwXNpkzstYsJWw/sIy9QmvFtTXUVSoFilLi5Ch8w73IBAKeo5fR9X1TP4WXhEQLwTk1lWTmLw+xheYgXt7Kn9tU1DjLM1DUDLBmd/6aNb2eyn6R1+DziqyIaMu85wuZAuQoQwy6zsuZXUpTq7GgqIIyAdPZG8MKg1phb2DwJHjtws00E+iFnjD0O82sKwoF9FQIE348vV63pW3AehIlLvmgSPAQoRLARA
+X-Microsoft-Antispam-Message-Info: 56/QVtxMzYW0LXr4F44Mi/Dt7OtGU+uCaa7y4GwEbSzdI/iZATuFyHEu9Enqln1EKw5/YAJW9ZDS9uLnX2/uwChuO3w27fykwA2hmtjNp5yVBEDMWfR8DZ+R3FufQ/ftUd4nFfXwn2gylniv9GoZ1OEI4soU/r9wUz6sut3wDYUkMomqL8EJWELULv1NOIHSqwb7yzfmALdt54xU/6A+XjDkJ2gT7+fXNlbNiYT2Y3fZULvc7Da+CHKMGjCeZEiWZi4pFrVwevSKBsCLovSDGgXMPq4MXl7qGddbCXE1OoWWFlSaPvYbJ18WtiuOweiRHhGMng3XjsKb/OpXdSP/q6df9R3dr3vPwYpG3OrkvooypTb0NighlCZKDdJ7X5MI/DMCNblwOBOn1eUf3P53da9JZaAa+6KzQKMT231873lwLIyv+qghhLtXVcYmNQzUEFnPpfIiOF9PIpSxe4xgRPgrkGVmG0+6IjSAg3TPvh8MJlqOfTxnI4i4/R/d3Cd4FZiIIkLtJHBN4L07h7gr8aAZxy4GbsQQDb3lk8AMOuX2/4TUqK8gfaYSQvRB0wcO8jHQ+78bpG6GwamLXW2AEDxG7H/OLUA+Xu9scnVdOWx49v67UYqKBdKjMe5d/pCNECEFR5PQayFd6VPRpKf8jhrFrcRN65JJJFAM89qCpK5ALvQ1H9E3EdsAztJr914DDbeXRFsuu5MF9n5GVfqVkU7pFxGynWsbT8zdvgl1RGrJqz9R4IwFbD13yTuMX3J/
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(376002)(396003)(39860400002)(346002)(366004)(451199015)(5660300002)(8676002)(41300700001)(66556008)(450100002)(4326008)(66476007)(2906002)(8936002)(66946007)(478600001)(53546011)(26005)(6512007)(316002)(6666004)(6506007)(966005)(6486002)(31696002)(86362001)(36756003)(83380400001)(2616005)(186003)(82960400001)(38100700002)(31686004)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(136003)(346002)(39860400002)(376002)(396003)(366004)(451199015)(31686004)(2616005)(186003)(6512007)(53546011)(83380400001)(6506007)(26005)(450100002)(478600001)(966005)(6486002)(5660300002)(86362001)(8936002)(31696002)(66946007)(66556008)(38100700002)(316002)(36756003)(66476007)(2906002)(4326008)(8676002)(41300700001)(82960400001)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V1FPY05JQlpxWE9qUGlHM2E1YThwS2NhVkJTeklaQ2JHZEU2S0ZldkQ3TENy?=
- =?utf-8?B?bi9rb0ZjcjJhN0lWRHVHcGFCYkVjVXpLa1JGTnZWUEpMT0l3NGxnOFNZamRv?=
- =?utf-8?B?ZVM3cWg2NUppYmZ5Z05kYkhPNnlEbEVaZjQxaFpJcDhicHpqUitad2wzMDJI?=
- =?utf-8?B?QTBjazVaQjRjcno5THcvTWhFTk5IVU02emI3cGU1eU5JVkMweU1OQnppb2pw?=
- =?utf-8?B?TGxKcGdiWUxodThoalhXQm8ycEhTMGpTTnpqMU9WWWxUUlNKSVU1Q2ZlU0Ux?=
- =?utf-8?B?SGgzUi9MQkl0WVdIa2FidmJWUk9NN0oxQnI1a3RxcEsrbjRWbUZ6V1ZtZ0dI?=
- =?utf-8?B?ZUhzV2VPSGh1U1cremhEZ2w5MzNVeUVyY1RxK25paUlGK0JIWUZ2WldIWlRp?=
- =?utf-8?B?U2E5OHVRcUZjWGNteFk1ZTMvaDRkNXhDaXFEd2ZOWG1hQnNlSyt4TnBqQnFm?=
- =?utf-8?B?VkFycDZ1NlFuUFVMUFZxTWVMd1A5UHV5M2VhNlBjbFp6WU1EWVdUcXJjZ2hi?=
- =?utf-8?B?cnVzYlc0b1prM3RXQnJ0KzFHbmJWcGl0dy90UkF3SU05anRSWDF0dUJrT2wx?=
- =?utf-8?B?Y1ZzNnVmZ2c4d1lidUx6U1BwQlc4Q1Fwa3VIdHRReWVYK3RraklnZUxCS1Fh?=
- =?utf-8?B?bEVXOXQ0alRVL1JjTy9wQkhNcmdEN0tndUtuQkdxYjYwZHh5SCtpTWVVNGJK?=
- =?utf-8?B?UmFTV0VOSUtUbllHdUR1WVlObGQxY0EwdEtpOXRmUksxSFVkRnJPUC96cEZq?=
- =?utf-8?B?RzJ2MFUwQmoyc25xR1RwdkJZbEdWM1AyalJPZk1xU0U5anhaN1BuSTY2dXQ3?=
- =?utf-8?B?S09DUUJkTzhnWWZKdXg5WFdVUWpsZVU5aGhSVGlaeUl0ZVY0eXViR2RYM0Q2?=
- =?utf-8?B?V2lTTzJrUzdNMUNDdW1oYXJ0Uk9IWTVjSTBTYmRwUzBKMklxazdkd2tKQmM4?=
- =?utf-8?B?a1ovQm10R3BOREJvMjF1Tk5FVW1WME1sZFZqTTFwWCtHWjhIRmdSM1JmbjhQ?=
- =?utf-8?B?Y25VMUxkZ1FjcFlsZERzWmpnOTdWN1V6UkFyci9FVUt3cENnUXI2bXBnRjhz?=
- =?utf-8?B?S1llNUpuV3E4Y0VrTG5jSnJpODFPc0lFTVpsWW1VVVppUVQ1bUtMbUpQRWVz?=
- =?utf-8?B?M2JFczU3SmhWZU96dForV3NiSHJYcU9GT3lCcE01a1VzbUtxcEtlMEE1RjBS?=
- =?utf-8?B?WCs1eTQ5aVR1YjU3djJTRTlaWUk0VitNNmN2MnJOcHZsekhiME9FT0NTUTd2?=
- =?utf-8?B?dHJGeVMwRGxFZ2pmZk9USThzUEEyWFJPaEFsa0VmSmlQWk51a0M4THZwajcx?=
- =?utf-8?B?VU1qMVhXSS9qeU9JeUtWRTkzUEtZMmE3Y2gwU3ErZnRENEdkbGpFNDA3UXV6?=
- =?utf-8?B?eDlwb0pjN1ZZUE9xNTRnbUlDOFB5aU5IbXUwdlA5QmhzbXM2ZmZ5U3JBaFhn?=
- =?utf-8?B?NU0zVE9XNTR5Z1hGbmFUb2daZFZVaG5qSXdaV2kvaXdUbDJHbjZKVTBhclo4?=
- =?utf-8?B?RHdRaGRYZGQ3cHRYZWozdjZMOTI2N0ZBNU12ZzFLS0dRdzJibmo2ODgzUXk1?=
- =?utf-8?B?Yk81T3AxT2QrSjhrckdqSElqWmFNblFuRW9BQTNKWWE3dE5TTzFXSUtDU1Nz?=
- =?utf-8?B?eTF5SVdVaXpyNFFJMVVtUWZWa2lRWGNMdVA2ZjNscGRvdHJNUFQ1VHQxZXll?=
- =?utf-8?B?Ynd0V0xJSmZiRjd1d0lPOTQ4YU5UODVjWGNSZkFiejFMTTQvWTFjRkdaSHVh?=
- =?utf-8?B?QStvcHhzR3VpbUVuQTFxaFhmRC9vMW5mallvQ1R0QTlIc0pSS2JTdnNSMmgr?=
- =?utf-8?B?NmVZVG1SZUxTSmJhdFFQY0hEakRwL0ZwTnhBOHdjZ3o0QXJFY0dLNFZVb21j?=
- =?utf-8?B?bFBmaWVnRGI1MmhEWTZoWlRpM1FCYSt4UWI1SWsxUnZiV2dLZ2tQcnY2ait4?=
- =?utf-8?B?cmhrMWZnRVBIOEJZQVVZc2htZmNocnRpeTJhNXNGdGFZT3dLZ2ovRmo3UzZw?=
- =?utf-8?B?U1l2RU9Xc1VvZWhncGYwOHVWelk1S0huNTR0NkxQK2U2dUlyWkFmM2l1OWxI?=
- =?utf-8?B?V3VheDBjNEVyeVhvZGhhY2dsYTQzS2hQWXdRTFpxdnZ5ZGdOeCt0M3hpRExY?=
- =?utf-8?B?czZONEYra29sZVdob0RxSVF6MXAzejFGbGRzd083Tjg0aE9LNnZodVk3SURx?=
- =?utf-8?Q?fh+6WeJo/QDeUANYfr0QbK0=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6bd3872e-d090-41cd-ca9a-08daa7d7b014
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VjJ0TEJXc0UyQXgwVTFJR1ZUaGg2cHdmOERqTDRXbFpTWXZJNlc2eU5aM0FS?=
+ =?utf-8?B?Ly9HeHZ4VnN0STFBSlZCRXVTVFdhVVphTU9TYjRJMjBZTzZJdElZNFREZmV2?=
+ =?utf-8?B?dE5wYVRYWXl1b0pnWFhLOHJKVlpLa2V1bThGcDVIcjlpK1VNWFo1TUNoVnl3?=
+ =?utf-8?B?MzFkdmFrOTRacDhNR1JwNXVwUjlzelRPaEF6d2IxaUQ2SE1ZRTQ1ZldESnha?=
+ =?utf-8?B?ajh3U2wrR0ZoOTBaRFlqZWlIaklsbGxCb2VIbTlnNWJ6TlJDaXRaMVRqYy9r?=
+ =?utf-8?B?S1VMN2QvdUVQOVB0RkVubnJsMDNwL0hmdW9zOVJrWG9QTFdXcjFwWXNRZVNV?=
+ =?utf-8?B?VzRZbE1vUjhCSTcveCtNQ21tTC9ZZFpHK05GWmIxSEZxT0lpTUowQ1JBRzNL?=
+ =?utf-8?B?b0xKUnFzRDlucEhsSjZGejlhRzNHYVVzcW9iTVZ6UWNTQjFqejFUWHg0SC83?=
+ =?utf-8?B?d3ZWa3JmdThBSnZGVTBUN0NLMHRsclpXSHA1SlhOTmJ0OGFpVzVlSWZTa0Fo?=
+ =?utf-8?B?UXNRQjVCSisrb1ZWRUxpemVjdjlqaFFaWURoTWRCYVdmZVpsZDRGUWNqWGk0?=
+ =?utf-8?B?ZWxZaHFHeWNKMWFnTWNLNnZhVGJWMnMvc0I1RHVFT2U0ekdVUzRtd3dvaXlj?=
+ =?utf-8?B?SVRYQldQeHZwZXVmRXg0YUgvSnNpTVNKdHJNWERTVEcxeTh4TlkvWnRuK3hw?=
+ =?utf-8?B?aVRvUlRlcEJIdHUzNDJqb1ZvSHh0V2g1T1B1N0twaHlKR29SRWd1SmZhYTEv?=
+ =?utf-8?B?MUhkVVgweWJWKzFsSHRveTQzR1did2djZVhXUHRDM05mMHF0VXBWZEZaQkkz?=
+ =?utf-8?B?Y1gyKzNkbTlHR1BkZkszUk5zU3ZsdTJjQytuREJlNVVYWjVUbXFXN0xBRnlZ?=
+ =?utf-8?B?Z1ljNWZtaW9HN25Nc0N2eFJGMFlHaUdlWHRaKzFDWnR2QTIyeDhtU0x2em9r?=
+ =?utf-8?B?RXJOK25HT3UzV1ZSbDIraXhqRXlwN2labHhGcVF2ZlI0a1VvMjlwL2ZtSVR6?=
+ =?utf-8?B?ODhEc3FFSnczK0JqbFdlWnIrYVNtRkpxcEJIRFNPb2JVUEowNjdDTTdPOCto?=
+ =?utf-8?B?dGtZenVqNmpJaTVFYStkRnF4NktZL1MyZStIemxVd0RBUVFYZ3VpSkVUQ0hj?=
+ =?utf-8?B?NWpoL0FuYjNTV2t2VTFDUHM5WStDOU9lSExVQlRxQzJScXVBTTVPZkFLdTlj?=
+ =?utf-8?B?V3JnT0tzWmFNS1MrMG1RZTZHeHFoTnZBeEhUclArK1l0Mlg5QU13RFhNck1q?=
+ =?utf-8?B?cXc3dVFOSVVGT3lGd0pIZHJZVFI5NXJ3TS9tUHZ4aFZ0TW53R0tIaDAvTE1K?=
+ =?utf-8?B?TCtNQU9qcWJpYnM2aXlEWDliRmo0aDRzL2N6eWtWanFBTDVrUnVLVTlibTFv?=
+ =?utf-8?B?d3FVQlA3SUpLcmVRNkxlZFdxeFgzcUVwOVRURGlydC9mZkcwaksveUhncFpB?=
+ =?utf-8?B?NUNLSE9ET085N1hkR0NoTWVMR3VVZHdhc1pBK3dBU2VjRUxIT2YyREc1UTEx?=
+ =?utf-8?B?b0p4OFFFNmRDWmcrY3RaRnI1Ym9qUmhOSEVYbDZQcjdXNmxiVk93Z3U5Wkxl?=
+ =?utf-8?B?eWI0VTREUVBKaVdhbTNBMmc5WWlndTNGVVM4VUtnYXZjbk9jTjJaRUJ6UWpN?=
+ =?utf-8?B?Tm9iSlNXNlhIVHZZNWluYXRscXU5YkVTRmQ1aFJlZzl1eFBUSU11eEhnYmZG?=
+ =?utf-8?B?M0hZcVgxZy9RTFNlY1BjaWxvTW5MdWVPd0pBdyswb1BBRThsTkpTNGw2Q0s3?=
+ =?utf-8?B?Z0dUTDk4WkFDY0phUHVsZE4zWEkvaWxGZU9ubzM2aVN6aWFYckw1NXRHV2Fj?=
+ =?utf-8?B?enFKODJGWHBKTHFydi9YUmVMU3NSU1RuZzBSbUFGcWl3cjV0WTd4VHF3WDVQ?=
+ =?utf-8?B?M01weS9KcDZNSTRXakR3MEVuNGZSeUJYeEdLVWpHbDNYL25oeHBGbWJoV1hD?=
+ =?utf-8?B?aTlHNkFndlFBZE44SnF3MDRjQVNHdEhZZGlUWUdkL2U3dFhhTXVXVVZNd0tW?=
+ =?utf-8?B?V0lGRkpnYnNwL2hHY1R0b0dDckRrSVdrTWxmeDRpKzlCcVlOS3NWVnd5clE1?=
+ =?utf-8?B?UXJ5S2VhYklQWnc3T3hKU1ZiZExwNXRydkRIbzRqVys5WWtqN25GR0pwS255?=
+ =?utf-8?B?VEZ6a096dU1mVnYxNDBNUUg2UW81VjJ6R0F5SzE1elhlelEwYStHTy9jZVdS?=
+ =?utf-8?B?c0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f67883d-a278-4731-1909-08daa7d8d259
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2022 20:16:44.2024 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2022 20:24:51.1112 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: egyjVH3U1ypQWJWyzIomJoQPD3FCXjV27il1+VDk5b0daiQ5m5wKNDqynu7yEV1FgdTjp/zSknzi+m/9NLOzXZ/X+q8mt6BMJNmKOlLRl68=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6378
+X-MS-Exchange-CrossTenant-UserPrincipalName: UsVSyRIytz7c0cyywawX6XtgV8KJaH5XmoWVpwuYalP/6U1TMo+1EDQq+fEnKd7LZ12ef5pGRg1ofmX493+H/KxwV1qzv48aeqr2eR09QdM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7088
 X-OriginatorOrg: intel.com
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: bump timeout for delayed load
  and reduce print verbosity
@@ -165,106 +166,116 @@ Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 10/6/2022 1:09 PM, John Harrison wrote:
-> On 10/6/2022 10:20, Daniele Ceraolo Spurio wrote:
->> We're observing sporadic HuC delayed load timeouts in CI, due to mei_pxp
->> binding completing later than we expected. HuC is still still loaded
-> still still
+On 10/6/2022 13:16, Ceraolo Spurio, Daniele wrote:
+> On 10/6/2022 1:09 PM, John Harrison wrote:
+>> On 10/6/2022 10:20, Daniele Ceraolo Spurio wrote:
+>>> We're observing sporadic HuC delayed load timeouts in CI, due to 
+>>> mei_pxp
+>>> binding completing later than we expected. HuC is still still loaded
+>> still still
+>>
+>>> when the bind occurs, but in the meantime i915 has started allowing
+>>> submission to the VCS engines even if HuC is not there.
+>>> In most of the cases I've observed, the timeout was due to the
+>>> init/resume of another driver between i915 and mei hitting errors and
+>>> thus adding an extra delay, but HuC was still loaded before userspace
+>>> could submit, because the whole resume process time was increased by 
+>>> the
+>>> delays.
+>>>
+>>> Given that there is no upper bound to the delay that can be introduced
+>>> by other drivers, I've reached the following compromise with the media
+>>> team:
+>>>
+>>> 1) i915 is going to bump the timeout to 5s, to reduce the probability
+>>> of reaching it. We still expect HuC to be loaded before userspace
+>>> starts submitting, so increasing the timeout should have no impact on
+>>> normal operations, but in case something weird happens we don't want to
+>>> stall video submissions for too long.
+>>>
+>>> 2) The media driver will cope with the failing submissions that manage
+>>> to go through between i915 init/resume complete and HuC loading, if any
+>>> ever happen. This could cause a small corruption of video playback
+>>> immediately after a resume (we should be safe on boot because the media
+>>> driver polls the HUC_STATUS ioctl before starting submissions).
+>>>
+>>> Since we're accepting the timeout as a valid outcome, I'm also reducing
+>>> the print verbosity from error to notice.
+>>>
+>>> References: https://gitlab.freedesktop.org/drm/intel/-/issues/7033
+>>> Fixes: 27536e03271d ("drm/i915/huc: track delayed HuC load with a 
+>>> fence")
+>>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>> Cc: Tony Ye <tony.ye@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/gt/uc/intel_huc.c | 10 ++++++----
+>>>   1 file changed, 6 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c 
+>>> b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>> index 4d1cc383b681..73a6a2fae637 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>> @@ -52,10 +52,12 @@
+>>>    * guaranteed for this to happen during boot, so the big timeout 
+>>> is a safety net
+>>>    * that we never expect to need.
+>>>    * MEI-PXP + HuC load usually takes ~300ms, but if the GSC needs 
+>>> to be resumed
+>>> - * and/or reset, this can take longer.
+>>> + * and/or reset, this can take longer. Note that the kernel might 
+>>> schedule
+>>> + * other work between the i915 init/resume and the MEI one, which 
+>>> can add to
+>>> + * the delay.
+>>>    */
+>>>   #define GSC_INIT_TIMEOUT_MS 10000
+>>> -#define PXP_INIT_TIMEOUT_MS 2000
+>>> +#define PXP_INIT_TIMEOUT_MS 5000
+>> If we already have the GSC timeout at 10s, why not just use 10s for 
+>> PXP as well?
 >
->> when the bind occurs, but in the meantime i915 has started allowing
->> submission to the VCS engines even if HuC is not there.
->> In most of the cases I've observed, the timeout was due to the
->> init/resume of another driver between i915 and mei hitting errors and
->> thus adding an extra delay, but HuC was still loaded before userspace
->> could submit, because the whole resume process time was increased by the
->> delays.
->>
->> Given that there is no upper bound to the delay that can be introduced
->> by other drivers, I've reached the following compromise with the media
->> team:
->>
->> 1) i915 is going to bump the timeout to 5s, to reduce the probability
->> of reaching it. We still expect HuC to be loaded before userspace
->> starts submitting, so increasing the timeout should have no impact on
->> normal operations, but in case something weird happens we don't want to
->> stall video submissions for too long.
->>
->> 2) The media driver will cope with the failing submissions that manage
->> to go through between i915 init/resume complete and HuC loading, if any
->> ever happen. This could cause a small corruption of video playback
->> immediately after a resume (we should be safe on boot because the media
->> driver polls the HUC_STATUS ioctl before starting submissions).
->>
->> Since we're accepting the timeout as a valid outcome, I'm also reducing
->> the print verbosity from error to notice.
->>
->> References: https://gitlab.freedesktop.org/drm/intel/-/issues/7033
->> Fixes: 27536e03271d ("drm/i915/huc: track delayed HuC load with a 
->> fence")
->> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: Tony Ye <tony.ye@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/uc/intel_huc.c | 10 ++++++----
->>   1 file changed, 6 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c 
->> b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
->> index 4d1cc383b681..73a6a2fae637 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
->> @@ -52,10 +52,12 @@
->>    * guaranteed for this to happen during boot, so the big timeout is 
->> a safety net
->>    * that we never expect to need.
->>    * MEI-PXP + HuC load usually takes ~300ms, but if the GSC needs to 
->> be resumed
->> - * and/or reset, this can take longer.
->> + * and/or reset, this can take longer. Note that the kernel might 
->> schedule
->> + * other work between the i915 init/resume and the MEI one, which 
->> can add to
->> + * the delay.
->>    */
->>   #define GSC_INIT_TIMEOUT_MS 10000
->> -#define PXP_INIT_TIMEOUT_MS 2000
->> +#define PXP_INIT_TIMEOUT_MS 5000
-> If we already have the GSC timeout at 10s, why not just use 10s for 
-> PXP as well?
-
-They're different type of operations: mei_gsc is a full on aux driver, 
-so it is loaded only once during boot; mei_pxp is a component and it is 
-bound on init and then unbound/re-bound on suspend/resume. On resume we 
-don't want timeouts excessively big.
-
->
->>     static int sw_fence_dummy_notify(struct i915_sw_fence *sf,
->>                    enum i915_sw_fence_notify state)
->> @@ -104,8 +106,8 @@ static enum hrtimer_restart 
->> huc_delayed_load_timer_callback(struct hrtimer *hrti
->>       struct intel_huc *huc = container_of(hrtimer, struct intel_huc, 
->> delayed_load.timer);
->>         if (!intel_huc_is_authenticated(huc)) {
->> -        drm_err(&huc_to_gt(huc)->i915->drm,
->> -            "timed out waiting for GSC init to load HuC\n");
->> +        drm_notice(&huc_to_gt(huc)->i915->drm,
->> +               "timed out waiting for GSC init to load HuC\n");
-> If the failure is that the MEI PXP module hasn't loaded yet, why is 
-> the error message 'waiting for GSC init'? Or can we not distinguish 
-> between GSC load timeout and PXP load timeout? In which case should 
-> the message refer to 'GSC/PXP'?
-
-I wanted to keep things simple and have a unified message for both 
-scenarios as what we care about from an i915 POV is that something went 
-wrong on the mei side. I can split it up.
-
-Daniele
+> They're different type of operations: mei_gsc is a full on aux driver, 
+> so it is loaded only once during boot; mei_pxp is a component and it 
+> is bound on init and then unbound/re-bound on suspend/resume. On 
+> resume we don't want timeouts excessively big.
+Okay.
 
 >
-> John.
+>>
+>>>     static int sw_fence_dummy_notify(struct i915_sw_fence *sf,
+>>>                    enum i915_sw_fence_notify state)
+>>> @@ -104,8 +106,8 @@ static enum hrtimer_restart 
+>>> huc_delayed_load_timer_callback(struct hrtimer *hrti
+>>>       struct intel_huc *huc = container_of(hrtimer, struct 
+>>> intel_huc, delayed_load.timer);
+>>>         if (!intel_huc_is_authenticated(huc)) {
+>>> -        drm_err(&huc_to_gt(huc)->i915->drm,
+>>> -            "timed out waiting for GSC init to load HuC\n");
+>>> +        drm_notice(&huc_to_gt(huc)->i915->drm,
+>>> +               "timed out waiting for GSC init to load HuC\n");
+>> If the failure is that the MEI PXP module hasn't loaded yet, why is 
+>> the error message 'waiting for GSC init'? Or can we not distinguish 
+>> between GSC load timeout and PXP load timeout? In which case should 
+>> the message refer to 'GSC/PXP'?
 >
->>             __gsc_init_error(huc);
->>       }
+> I wanted to keep things simple and have a unified message for both 
+> scenarios as what we care about from an i915 POV is that something 
+> went wrong on the mei side. I can split it up.
+Or just change it to 'waiting for GSC/PXP init'? If we don't care about 
+the differentiation then no need to make the code more complex. But it 
+is worth having a message that reflects all the major causes of the issue.
+
+John.
+
+>
+> Daniele
+>
+>>
+>> John.
+>>
+>>>             __gsc_init_error(huc);
+>>>       }
+>>
 >
 
