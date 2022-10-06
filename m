@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D695F609C
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 07:29:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F40D35F60A3
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 07:32:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 487F610E4A0;
-	Thu,  6 Oct 2022 05:29:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17B7610E4A0;
+	Thu,  6 Oct 2022 05:32:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFF9910E4DB
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Oct 2022 05:29:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665034167; x=1696570167;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=nyWz3msaiXagMjCwhZSHARX2TClJAxFVXY4C+OSO35g=;
- b=dU+T4j8eP0IOoJiOXS7bjd8F9xJLxTmgE7xC8afDyuJT7Sl29O+7LKM9
- QW6+iNBdxWA2Ij84JpoEPOsWIvTVYDknaF8hskZQhMqsAqV9w1EOvFOXH
- FMw2TWbRPgy4ZJykoNBXO0Mg0evI8EIAAJDulq/vDDZFZoiaSU6guYIZ8
- ghZhURlzOSSj+8b+ohpUoHM6QIFPUaEYGFN+YV9xK71LVBjJbHcXrCekg
- 1hLFLrgZyXyZ50LtjKBovX/7pEnXKVHEjGpp6MeT/YhnRoxoKepIILKFW
- 04Qk7qwAGdnnjuK1yFv9n/oBgDmNros2ujdWPzy+OArH76xgvokJxlXPp w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="300949258"
-X-IronPort-AV: E=Sophos;i="5.95,163,1661842800"; d="scan'208";a="300949258"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2022 22:29:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="687278711"
-X-IronPort-AV: E=Sophos;i="5.95,163,1661842800"; d="scan'208";a="687278711"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by fmsmga008.fm.intel.com with ESMTP; 05 Oct 2022 22:29:27 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Oct 2022 22:31:29 -0700
-Message-Id: <20221006053129.663793-2-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221006053129.663793-1-alan.previn.teres.alexis@intel.com>
-References: <20221006053129.663793-1-alan.previn.teres.alexis@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F251510E4A0;
+ Thu,  6 Oct 2022 05:32:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EA0B6A00FD;
+ Thu,  6 Oct 2022 05:32:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5080683378166540947=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 1/1] drm/i915/guc: Fix GuC error capture
- sizing estimation and reporting
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Thu, 06 Oct 2022 05:32:52 -0000
+Message-ID: <166503437292.5834.14704525984306103853@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221006043834.606220-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20221006043834.606220-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/pxp=3A_Prepare_intel=5Fpxp_entry_points_for_MTL_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,133 +41,278 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During GuC error capture initialization, we estimate the amount of size
-we need for the error-capture-region of the shared GuC-log-buffer.
-This calculation was incorrect so fix that. With the fixed calculation
-we can reduce the allocation of error-capture region from 4MB to 1MB
-(see note2 below for reasoning). Additionally, switch from drm_notice to
-drm_debug for the 3X spare size check since that would be impossible to
-hit without redesigning gpu_coredump framework to hold multiple captures.
+--===============5080683378166540947==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-NOTE1: Even for 1x the min size estimation case, actually running out
-of space is a corner case because it can only occur if all engine
-instances get reset all at once and i915 isn't able extract the capture
-data fast enough within G2H handler worker.
+== Series Details ==
 
-NOTE2: With the corrected calculation, a DG2 part required ~77K and a PVC
-required ~115K (1X min-est-size that is calculated as one-shot all-engine-
-reset scenario).
+Series: drm/i915/pxp: Prepare intel_pxp entry points for MTL (rev2)
+URL   : https://patchwork.freedesktop.org/series/109429/
+State : success
 
-Fixes d7c15d76a5547: drm/i915/guc: Check sizing of guc_capture output
+== Summary ==
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 29 ++++++++++++-------
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  6 ++--
- 2 files changed, 21 insertions(+), 14 deletions(-)
+CI Bug Log - changes from CI_DRM_12221 -> Patchwork_109429v2
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-index 8f1165146013..9fa76f384abc 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-@@ -502,8 +502,9 @@ intel_guc_capture_getlistsize(struct intel_guc *guc, u32 owner, u32 type, u32 cl
- 	if (!num_regs)
- 		return -ENODATA;
- 
--	*size = PAGE_ALIGN((sizeof(struct guc_debug_capture_list)) +
--			   (num_regs * sizeof(struct guc_mmio_reg)));
-+	if (size)
-+		*size = PAGE_ALIGN((sizeof(struct guc_debug_capture_list)) +
-+				   (num_regs * sizeof(struct guc_mmio_reg)));
- 
- 	return 0;
- }
-@@ -606,7 +607,7 @@ guc_capture_output_min_size_est(struct intel_guc *guc)
- 	struct intel_gt *gt = guc_to_gt(guc);
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	int worst_min_size = 0, num_regs = 0;
-+	int worst_min_size = 0;
- 	size_t tmp = 0;
- 
- 	if (!guc->capture)
-@@ -628,20 +629,18 @@ guc_capture_output_min_size_est(struct intel_guc *guc)
- 					 (3 * sizeof(struct guc_state_capture_header_t));
- 
- 		if (!intel_guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_GLOBAL, 0, &tmp))
--			num_regs += tmp;
-+			worst_min_size += tmp;
- 
- 		if (!intel_guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS,
- 						   engine->class, &tmp)) {
--			num_regs += tmp;
-+			worst_min_size += tmp;
- 		}
- 		if (!intel_guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE,
- 						   engine->class, &tmp)) {
--			num_regs += tmp;
-+			worst_min_size += tmp;
- 		}
- 	}
- 
--	worst_min_size += (num_regs * sizeof(struct guc_mmio_reg));
--
- 	return worst_min_size;
- }
- 
-@@ -658,15 +657,23 @@ static void check_guc_capture_size(struct intel_guc *guc)
- 	int spare_size = min_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
- 	u32 buffer_size = intel_guc_log_section_size_capture(&guc->log);
- 
-+	/*
-+	 * NOTE: min_size is much smaller than the capture region allocation (DG2: <80K vs 1MB)
-+	 * Additionally, its based on space needed to fit all engines getting reset at once
-+	 * within the same G2H handler task slot. This is very unlikely. However, if GuC really
-+	 * does run out of space for whatever reason, we will see an separate warning message
-+	 * when processing the G2H event capture-notification, search for:
-+	 * INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE.
-+	 */
- 	if (min_size < 0)
- 		drm_warn(&i915->drm, "Failed to calculate GuC error state capture buffer minimum size: %d!\n",
- 			 min_size);
- 	else if (min_size > buffer_size)
--		drm_warn(&i915->drm, "GuC error state capture buffer is too small: %d < %d\n",
-+		drm_warn(&i915->drm, "GuC error state capture buffer maybe small: %d < %d\n",
- 			 buffer_size, min_size);
- 	else if (spare_size > buffer_size)
--		drm_notice(&i915->drm, "GuC error state capture buffer maybe too small: %d < %d (min = %d)\n",
--			   buffer_size, spare_size, min_size);
-+		drm_dbg(&i915->drm, "GuC error state capture buffer lacks spare size: %d < %d (min = %d)\n",
-+			buffer_size, spare_size, min_size);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-index 55d3ef93e86f..68331c538b0a 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-@@ -16,15 +16,15 @@
- #if defined(CONFIG_DRM_I915_DEBUG_GUC)
- #define GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE	SZ_2M
- #define GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE	SZ_16M
--#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE	SZ_4M
-+#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE	SZ_1M
- #elif defined(CONFIG_DRM_I915_DEBUG_GEM)
- #define GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE	SZ_1M
- #define GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE	SZ_2M
--#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE	SZ_4M
-+#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE	SZ_1M
- #else
- #define GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE	SZ_8K
- #define GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE	SZ_64K
--#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE	SZ_2M
-+#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE	SZ_1M
- #endif
- 
- static void guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log);
--- 
-2.34.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/index.html
+
+Participating hosts (43 -> 37)
+------------------------------
+
+  Missing    (6): fi-rkl-11600 fi-hsw-4200u fi-apl-guc bat-adlp-6 fi-ctg-p8600 fi-hsw-4770 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_109429v2:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-1}:       [DMESG-FAIL][1] ([i915#4983]) -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109429v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-bdw-5557u:       [PASS][3] -> [INCOMPLETE][4] ([i915#146] / [i915#6712])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - {bat-rplp-1}:       [DMESG-WARN][5] ([i915#2867]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8109u:       [DMESG-FAIL][7] ([i915#62]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-cfl-8109u:       [DMESG-WARN][9] ([i915#5904]) -> [PASS][10] +30 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@i915_selftest@live@mman:
+    - {bat-dg2-8}:        [INCOMPLETE][11] ([i915#6797]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/bat-dg2-8/igt@i915_selftest@live@mman.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/bat-dg2-8/igt@i915_selftest@live@mman.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-cfl-8109u:       [DMESG-WARN][13] ([i915#5904] / [i915#62]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [DMESG-WARN][15] ([i915#62]) -> [PASS][16] +14 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2:
+    - {bat-dg2-11}:       [FAIL][17] ([i915#6818]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5828]: https://gitlab.freedesktop.org/drm/intel/issues/5828
+  [i915#5904]: https://gitlab.freedesktop.org/drm/intel/issues/5904
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#6712]: https://gitlab.freedesktop.org/drm/intel/issues/6712
+  [i915#6797]: https://gitlab.freedesktop.org/drm/intel/issues/6797
+  [i915#6816]: https://gitlab.freedesktop.org/drm/intel/issues/6816
+  [i915#6818]: https://gitlab.freedesktop.org/drm/intel/issues/6818
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12221 -> Patchwork_109429v2
+
+  CI-20190529: 20190529
+  CI_DRM_12221: 473f3064abe6fbdd81fc696215a853ec44ed4b8f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7000: 17292ab1e63802d8456670f606f8ad78082d09ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109429v2: 473f3064abe6fbdd81fc696215a853ec44ed4b8f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+2fad86aaf1b3 drm/i915/pxp: Make intel_pxp power management implicitly sort PXP-owning-GT
+43268351fd2c drm/i915/pxp: Make intel_pxp_key_check implicitly sort PXP-owning-GT
+c26c7fcaf1aa drm/i915/pxp: Make intel_pxp_start implicitly sort PXP-owning-GT
+739d7e97103e drm/i915/pxp: Make PXP tee component bind/unbind aware of PXP-owning-GT
+ba5e53e1712e drm/i915/pxp: Make intel_pxp_is_active implicitly sort PXP-owning-GT
+01abb2f13f5b drm/i915/pxp: Make intel_pxp_is_enabled implicitly sort PXP-owning-GT
+e4f635a347d5 drm/i915/pxp: Make gt and pxp init/fini aware of PXP-owning-GT
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/index.html
+
+--===============5080683378166540947==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pxp: Prepare intel_pxp entry points for MTL (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109429/">https://patchwork.freedesktop.org/series/109429/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12221 -&gt; Patchwork_109429v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/index.html</p>
+<h2>Participating hosts (43 -&gt; 37)</h2>
+<p>Missing    (6): fi-rkl-11600 fi-hsw-4200u fi-apl-guc bat-adlp-6 fi-ctg-p8600 fi-hsw-4770 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_109429v2:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@reset:<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/bat-rpls-1/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/bat-rpls-1/igt@i915_selftest@live@reset.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109429v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_suspend@basic-s3-without-i915:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6712">i915#6712</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/bat-rplp-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">PASS</a> +30 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>{bat-dg2-8}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/bat-dg2-8/igt@i915_selftest@live@mman.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6797">i915#6797</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/bat-dg2-8/igt@i915_selftest@live@mman.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> +14 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2:</p>
+<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12221/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6818">i915#6818</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109429v2/bat-dg2-11/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-2.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12221 -&gt; Patchwork_109429v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12221: 473f3064abe6fbdd81fc696215a853ec44ed4b8f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7000: 17292ab1e63802d8456670f606f8ad78082d09ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109429v2: 473f3064abe6fbdd81fc696215a853ec44ed4b8f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>2fad86aaf1b3 drm/i915/pxp: Make intel_pxp power management implicitly sort PXP-owning-GT<br />
+43268351fd2c drm/i915/pxp: Make intel_pxp_key_check implicitly sort PXP-owning-GT<br />
+c26c7fcaf1aa drm/i915/pxp: Make intel_pxp_start implicitly sort PXP-owning-GT<br />
+739d7e97103e drm/i915/pxp: Make PXP tee component bind/unbind aware of PXP-owning-GT<br />
+ba5e53e1712e drm/i915/pxp: Make intel_pxp_is_active implicitly sort PXP-owning-GT<br />
+01abb2f13f5b drm/i915/pxp: Make intel_pxp_is_enabled implicitly sort PXP-owning-GT<br />
+e4f635a347d5 drm/i915/pxp: Make gt and pxp init/fini aware of PXP-owning-GT</p>
+
+</body>
+</html>
+
+--===============5080683378166540947==--
