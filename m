@@ -2,62 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4741D5F6417
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 12:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59EF95F641A
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Oct 2022 12:04:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6E9510E1F1;
-	Thu,  6 Oct 2022 10:03:43 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D192210E1F1;
- Thu,  6 Oct 2022 10:03:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5473A10E1F1;
+	Thu,  6 Oct 2022 10:04:34 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4D2B10E2F3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Oct 2022 10:04:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665050617; x=1696586617;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=393bczN3Xpumxlpq10XgfvqXt1jj1NoUMNHPSHEz4LU=;
- b=i1hqUvJjDdbTN8LMYOhPjQaGIrRZgFymrq0IT3Bo0R2kXQVp99VP5krw
- FjnJ6TWWQFL2gjkB6j20kUKwPc0TexhXxXjfeZttBRMszgCpaFPPxTGKY
- uHfjrfltYKIn9ggJ6/yeOyb/D4xuGJjGDwx7BzRHE+PIbCCtBdfp5Ijym
- HE7bJxm3Do2e/9ssNrySJrbRt0y8S0YS+liqWB5ePUkk4+QEcJ8cnCemv
- xuT5CU1qzm4z2OhI5QQb+FK8Nmy4uzZlXcd9A8K2HYe6EoX4fgGHO97Cy
- XqvJA/ciheChhEC1CCe/VUwGI3htWCAY0fpBnUq7g0KQ2iaLoY93R11aE A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="286627083"
-X-IronPort-AV: E=Sophos;i="5.95,163,1661842800"; d="scan'208";a="286627083"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2022 03:03:37 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="953557938"
-X-IronPort-AV: E=Sophos;i="5.95,163,1661842800"; d="scan'208";a="953557938"
-Received: from nnolan-mobl2.ger.corp.intel.com (HELO [10.213.212.51])
- ([10.213.212.51])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2022 03:03:35 -0700
-Message-ID: <afa6ff3c-23a7-be32-d095-738976d5ab7b@linux.intel.com>
-Date: Thu, 6 Oct 2022 11:03:34 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
+ t=1665050669; x=1696586669;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=ga5FUfM0mPw5IvjFc9NXPM4YJC8tLIC4TE3pOWYWCDc=;
+ b=mD5piNuWj1MvUXjcRxv3GfGyC0Hn0tP8vY3QhOiZnfIxBjJjAJ6zgHY4
+ OWbSDZMchdNeFXca+/aLg9Fah9tAgGctbkcLQXI3g8awykXBpjaj5ggNj
+ ZpxTUpeG8SxnMiLcHX8/4GSiIU43KfAXooLghu6Zwit7saYQUc8UDAM+s
+ 597AXhwW3tWCP+nFI9B83Avg9uzVL9sRSu/mDz8lrQpK/tYzFBWxkvJrk
+ xsj78rPVdb+OPby8YqKbw6bLJgVWeEOr2V856rQ1VOdg6AKew0WAaod8R
+ 7uoyUPJnPorRa7xaMuSRschMxo3nfrn5fZnLEEi40A2QwnUZNiKP5g479 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="365340050"
+X-IronPort-AV: E=Sophos;i="5.95,163,1661842800"; d="scan'208";a="365340050"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2022 03:04:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10491"; a="655554230"
+X-IronPort-AV: E=Sophos;i="5.95,163,1661842800"; d="scan'208";a="655554230"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga008.jf.intel.com with ESMTP; 06 Oct 2022 03:04:29 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 6 Oct 2022 03:04:28 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 6 Oct 2022 03:04:28 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Thu, 6 Oct 2022 03:04:28 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UwobvkrVttbK/YDlFiPhTvp5iZU/BTj/purfl7d6KukIES+JEH6T1FgTK+1xm7ik9CFvBrILotzW/aCz6QVbXWIQNDYXHeN8Ub0MojBot9kQKdcNc2B7qz9Is29tPg2XRpnWJLOv99SEQ4iBVDUwPp9f25PybTRaw9xvLfDZ8M/Xutk5Lc1SdZIpMI2I9m1KtRyq7rDX/mO0n3Tu5oucRg7r1IuYXK10vt5zBn2fcUQRxotjt3HojZPWYiLa1Ag/L1cAQ8zGkO0SH9CvFIKMYlnZVAP2EHvQFokI+mYVeUL4p05HciP3p/lvaSv/GxnBj0tGCn11AOBSsvlNPvnDQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ga5FUfM0mPw5IvjFc9NXPM4YJC8tLIC4TE3pOWYWCDc=;
+ b=lPWuk3eP2C1+ZAaIbVLbuC11hiwZawBJtgrhdPYtTnCHyNC1guIPjj8D9m2rFi7+rQES0v/0NGN4JAFj4fw9MqAS1VPAeQFiR5OGs8ORts3CFz9ysmZQHbhhaFAxzfr8EyM49yStq8IpB/NwZnTbFimx2rkBMGVHq6SCNZixhBbPvejqLkEZLJ0ciLt8eRUoM/4P0sNindXjH0GzFR+6l+FHcrN04VgLBmQW1SAEKMErjoilarSflXA4G1Y0obRKwDjyCS+GpwyZEn3qRnuN6JGUiNGPCHB6KkwzeGw/lMwqOguBejVFdxinRfTYZ5cQ24ncOpdpmikfXBvbFySQfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from MWHPR1101MB2157.namprd11.prod.outlook.com
+ (2603:10b6:301:51::10) by IA1PR11MB6322.namprd11.prod.outlook.com
+ (2603:10b6:208:38a::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.32; Thu, 6 Oct
+ 2022 10:04:26 +0000
+Received: from MWHPR1101MB2157.namprd11.prod.outlook.com
+ ([fe80::f4bb:8e76:e146:6f97]) by MWHPR1101MB2157.namprd11.prod.outlook.com
+ ([fe80::f4bb:8e76:e146:6f97%9]) with mapi id 15.20.5676.036; Thu, 6 Oct 2022
+ 10:04:26 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 1/5] drm/i915/mtl: Add Support for C10, C20
+ PHY Message Bus
+Thread-Index: AQHY1Ku0lbhnLLiQNUuewNkjRdRARa4BD+zw
+Date: Thu, 6 Oct 2022 10:04:25 +0000
+Message-ID: <MWHPR1101MB21576AB1AA71990151B74E59EF5C9@MWHPR1101MB2157.namprd11.prod.outlook.com>
+References: <20220929131747.2592092-1-mika.kahola@intel.com>
+ <20220929131747.2592092-2-mika.kahola@intel.com> <87pmfdw7v8.fsf@intel.com>
+In-Reply-To: <87pmfdw7v8.fsf@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220929021813.2172701-1-John.C.Harrison@Intel.com>
- <20220929021813.2172701-4-John.C.Harrison@Intel.com>
- <a2c2cddf-009b-a2e0-2af2-6f1553c59cbc@linux.intel.com>
- <ae042c9d-f6f1-2ecd-e23a-7d6994c97151@intel.com>
- <28690581-b934-b99f-feb9-78a8e6c2d052@linux.intel.com>
- <89566262-2cd0-f456-e8b2-c7bc6ad6fe36@intel.com>
- <c61d540a-9b3a-76f5-2641-c508a6e2bcbd@linux.intel.com>
- <0e29ab23-4304-bd62-7065-4d1ab3a1461a@linux.intel.com>
- <4cfc1d07-9197-ed5d-52b2-db63490416f9@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <4cfc1d07-9197-ed5d-52b2-db63490416f9@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v4 3/4] drm/i915: Make the heartbeat play
- nice with long pre-emption timeouts
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.500.17
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MWHPR1101MB2157:EE_|IA1PR11MB6322:EE_
+x-ms-office365-filtering-correlation-id: b528bba5-5877-404f-f298-08daa7822682
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 3xpg/yhETRtlvfFLkYm9w0JvzFQnqzEkxzmoZjNdMUFasN/ogO3HHkdfOQxQQT6KlKJCChzXpsuHeGjiQv2KvET5g+5c5SEL7VqR1mJLimx9qXug0BQRSuLYwbo3/yGlM7LZLHn7xh6N0b654LfCmij9rZ14vBYoaFzM+b+3KqTzHK6Xr1YnHkPrUllX+1wvOWkPkKVZxUPYf2jW6SZSI63OeLJDxy81IlIPHmpo2/TQQeW2Izj5MpjawNL24Ats0WwSdlQNu6abudlFmKlwGMsmF/N7J950d6hYPORFjJ+p65/CiAEFSE+Ft434PQMTt5G29g5FExGtUmC+1/ENeNfZ0h3eW8x97v81QxeeD/7DacYMzMAJNkSFhU8z+ji+eYpRfG2D3uuaYubhxmXfQDOsB2v5wICk6if/SdSBsKdpWawffwSn6qtOXuhI5OJNN5hZeZxDt+oyJVT4xlxXCYs4K5hrSJBDFFWrE+tALTg56qwru3MMtJesdJOyccOuYvPDuIEDasuN7hl+BLMgnhP0+5cCas2x86PKA84tQE19uboMcXI+VGMy6Kg/FQR8l3Sea3Zr5+zTkgZR9DTlX80NPfKGpD9EcLD5vjdgLBLcQ5iTgQQpNbn8H1+uHnTiyJcocMCjvgmt/MmVmyMFDcXe/jAhipr74deFqJ5ob3NnIQpAaDkjA0CVbF3kgJp3LXgEc4w9JOOIKt3w4D2qHiqc2H3mNALTjZmQYZL3mbHkEutwfXpXO8kqFyxLLVaA+FVTnTtGTTVpX4fbegq1XA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR1101MB2157.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(136003)(366004)(376002)(39860400002)(396003)(451199015)(33656002)(86362001)(55016003)(82960400001)(38070700005)(122000001)(38100700002)(26005)(2906002)(83380400001)(186003)(8676002)(6506007)(110136005)(5660300002)(7696005)(9686003)(8936002)(71200400001)(53546011)(478600001)(66476007)(64756008)(76116006)(66556008)(66946007)(316002)(52536014)(41300700001)(66446008)(15650500001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?S0hzc3poekxHaEp6ckJkYmkwTkYrUDd4djVKNmV3U0VBdms0ZFhqNTJzR2lt?=
+ =?utf-8?B?UUc5TGRldGdIMDBjdGpiM0QvcmloWjdSRG9tNFUyQ1laU3ZZejRmVWpvYis1?=
+ =?utf-8?B?djRZTGxOVmJzdzJDUzJCU3NuUTFjZk9jVTAyNEM4N0NhOTE3UVB0encyUktn?=
+ =?utf-8?B?T2pYZVJhcGk3MWxiSkNtN3ZwalhlZUNnbDdZcHlCQnpiSjNaQ0Jzem1JOXRr?=
+ =?utf-8?B?dlBCOXhEMjdJWVQ3MWdyRTFsdXdDaTRGT2NCMk1sSVh1c0FqekFNdjFWM0ZQ?=
+ =?utf-8?B?UlpHS00rRzdjVnhWRmMwTFVoUXR4dVorY25oajVuNjJQVnJkY3R3SENSNUxv?=
+ =?utf-8?B?ZW1JK2JqNER0UW4vSWpwRlpUQnhYSEcxbGEzRks3RGR2bDJRZUVFQTBkSndy?=
+ =?utf-8?B?Uzd6NHFrdFJqb0s0TzY0b2ZIak1uTUpwNTZyeXErYUs2dWpFeVdjQ2RhMDhz?=
+ =?utf-8?B?alJ5NjgyVXFyeVRleThXYi9mOWQ0bHE2a2ZDaGRTMjJiWHdjQm9ETFNuR1JV?=
+ =?utf-8?B?RlY5SHVmelF5N3I0ZGVEaVpucmNqNFBYLzVDVXp3QWNJc2F1ZXNKdGNDVTJR?=
+ =?utf-8?B?MjNadjZrSzRvWkFtQTRocXUvbjJrQmJLNDZMWFlxRnBLVURPZzlIWGM0YUVr?=
+ =?utf-8?B?TnRiMTg5YVVxaTY2NFNQWE5tZ29PQ1ZPZ2JIa1QvTTBkUEd1MDVLenQvQlZE?=
+ =?utf-8?B?dk9Cd1ZibEdDU1dYeU5BMVVWWWZvbm8wUE9waVVRbFdZZERYYnJoUXJkSE9t?=
+ =?utf-8?B?aWk1U2c0K2M5RUhTclJnYTdIS2dySWFwS3Nld1R0aVN4ZEVwNldTRlBVRDFp?=
+ =?utf-8?B?YmdyZ25FdThEb01BUmpLajhkV24raXlFU3ViOUJPTEdja29CZzRNUSs0a0ha?=
+ =?utf-8?B?T3FUczFjeW05VG5zeDMzcU9JUTlUZDlqdngvaXdPazdERnZLY25PT2RObzlE?=
+ =?utf-8?B?ZndzVjFYOGcrbXM4cWpMT2hicWUyMzN3eXhFUnVFK1dPVWZKVEVmeEh0R0hP?=
+ =?utf-8?B?R2xIbTg5cmZobTVNK1VzRVdRdXRoNUJYd2JLVWlGTTdHam8weHhrRWl4TGZU?=
+ =?utf-8?B?a0hUZFpnVEdaTm9RdzlESVFEV3hpMXRKOUNtbmEvc3BkVDVaYjVtSHV5Y25v?=
+ =?utf-8?B?T1JGK0NBQzFMcUF0Ym5sUlJnci9LeHczNTR5VTVDcnNFcmNJdkRlQjNaN081?=
+ =?utf-8?B?dVBoTm1kNVRFcm93L3JwekpadnBxL2l1QVYzSGZacHV4aWNUS1ROUUo0a0hr?=
+ =?utf-8?B?Y2EycDNNMmlJUmxzSnlTZER5QmlPcFp1TENCY2dVUXdLcVZNb0ltaHJuMFVZ?=
+ =?utf-8?B?WE5iZWxXYU05dnV2NG9YY3Z4clNCdGE5R3FTK3dkang4dW50ektPVFlhWDlv?=
+ =?utf-8?B?UHQzKytyamJtYkVOeVRNZkRONkZGWm54Nzl4L1FPM29HUUU3T04zY1YrREti?=
+ =?utf-8?B?bnV2RnJNMmQ5OGQrTnZiQUdQbkRPVlE2bC95VmZ2eElOS1BIdUJ0L2s4SGlD?=
+ =?utf-8?B?KzFYWERsNExqY1hHRmMzSFBFUDJvM1RKV1pqbVI2anMxTU9QV1k3YW05TlQr?=
+ =?utf-8?B?MkdDMktZQ3BlYnQyYXZCQ2YwYXlqNEdCS0syU2tPMDlsMU1sUjRDZnRJWUxI?=
+ =?utf-8?B?RWdaUGxuSGYrVTJoMDlUM2lXVEk3VlhDYWRqbThEU0RMbEI5M3NXZFUwUXRi?=
+ =?utf-8?B?akRHT00ra1pCZHhiSm1FbHB4Si9sRFV5aXB3cVM2am91RkNQWXJvbjRabHFR?=
+ =?utf-8?B?YjN6SHZabUE4Q0ZhMjY2bVVqRVQwVlRsTm15VXpHczZvQUJJM2ExRXI4VzZV?=
+ =?utf-8?B?OURYZjZESVVPbWFrZm84Tk94K1JVMll3eExHakorVVF1WGw4bnB2OGwzK2xm?=
+ =?utf-8?B?MEFMRDltampBWG5XREJqYVVqRVVkUlVQc3NGMU9SdXlPYVVjUmdhTHgyTVVC?=
+ =?utf-8?B?KzA2VnFxMGc1RlpoVGs2MW50RTZ1bWlGUnc4VTZFOWR0Rk9ieGk4QjJITzZR?=
+ =?utf-8?B?RWpub0pYTE5xeVpXOWI0VlBzb2dWNlJMV0xlTWtyMzhUY3lQQXY0RE5SMExo?=
+ =?utf-8?B?c0pBZkt0RmtZanFLLzN3T2o0LzYvdFRIWXc0OEhTTG5IZERtN3Vva2xlOVVE?=
+ =?utf-8?Q?U4VYH+xAiAq9GjdnlivtvgYq+?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1101MB2157.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b528bba5-5877-404f-f298-08daa7822682
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Oct 2022 10:04:25.9893 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /oTehO7+X5dyyMj/rZqkwjFnjxFR3pdHZIQpJVADA5bzalGDARkyBN8qx588ynOSZvwQhapKBz/cVqIq40lKNw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6322
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/mtl: Add Support for C10,
+ C20 PHY Message Bus
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,181 +160,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 05/10/2022 19:48, John Harrison wrote:
-> On 10/3/2022 05:00, Tvrtko Ursulin wrote:
->> On 03/10/2022 08:53, Tvrtko Ursulin wrote:
->>> On 30/09/2022 18:44, John Harrison wrote:
->>>> On 9/30/2022 02:22, Tvrtko Ursulin wrote:
->>>>> On 29/09/2022 17:21, John Harrison wrote:
->>>>>> On 9/29/2022 00:42, Tvrtko Ursulin wrote:
->>>>>>> On 29/09/2022 03:18, John.C.Harrison@Intel.com wrote:
->>>>>>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>>
->>>>>>>> Compute workloads are inherently not pre-emptible for long 
->>>>>>>> periods on
->>>>>>>> current hardware. As a workaround for this, the pre-emption timeout
->>>>>>>> for compute capable engines was disabled. This is undesirable 
->>>>>>>> with GuC
->>>>>>>> submission as it prevents per engine reset of hung contexts. 
->>>>>>>> Hence the
->>>>>>>> next patch will re-enable the timeout but bumped up by an order of
->>>>>>>> magnitude.
->>>>>>>>
->>>>>>>> However, the heartbeat might not respect that. Depending upon 
->>>>>>>> current
->>>>>>>> activity, a pre-emption to the heartbeat pulse might not even be
->>>>>>>> attempted until the last heartbeat period. Which means that only 
->>>>>>>> one
->>>>>>>> period is granted for the pre-emption to occur. With the aforesaid
->>>>>>>> bump, the pre-emption timeout could be significantly larger than 
->>>>>>>> this
->>>>>>>> heartbeat period.
->>>>>>>>
->>>>>>>> So adjust the heartbeat code to take the pre-emption timeout into
->>>>>>>> account. When it reaches the final (high priority) period, it now
->>>>>>>> ensures the delay before hitting reset is bigger than the 
->>>>>>>> pre-emption
->>>>>>>> timeout.
->>>>>>>>
->>>>>>>> v2: Fix for selftests which adjust the heartbeat period manually.
->>>>>>>>
->>>>>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>> ---
->>>>>>>>   .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 19 
->>>>>>>> +++++++++++++++++++
->>>>>>>>   1 file changed, 19 insertions(+)
->>>>>>>>
->>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c 
->>>>>>>> b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->>>>>>>> index a3698f611f457..823a790a0e2ae 100644
->>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->>>>>>>> @@ -22,9 +22,28 @@
->>>>>>>>     static bool next_heartbeat(struct intel_engine_cs *engine)
->>>>>>>>   {
->>>>>>>> +    struct i915_request *rq;
->>>>>>>>       long delay;
->>>>>>>>         delay = READ_ONCE(engine->props.heartbeat_interval_ms);
->>>>>>>> +
->>>>>>>> +    rq = engine->heartbeat.systole;
->>>>>>>> +
->>>>>>>> +    if (rq && rq->sched.attr.priority >= I915_PRIORITY_BARRIER &&
->>>>>>>> +        delay == engine->defaults.heartbeat_interval_ms) {
->>>>>>>
->>>>>>> Maybe I forgot but what is the reason for the check against the 
->>>>>>> default heartbeat interval?
->>>>>> That's the 'v2: fix for selftests that manually adjust the 
->>>>>> heartbeat'. If something (or someone) has explicitly set an 
->>>>>> override of the heartbeat then it has to be assumed that they know 
->>>>>> what they are doing, and if things don't work any more that's 
->>>>>> their problem. But if we don't respect their override then they 
->>>>>> won't get the timings they expect and the selftest will fail.
->>>>>
->>>>> Isn't this a bit too strict for the non-selftest case? If the new 
->>>>> concept is extending the last pulse to guarantee preemption, then I 
->>>>> think we could allow tweaking of the heartbeat period. Like what if 
->>>>> user wants 1s, or 10s instead of 2.5s - why would that need to 
->>>>> break the improvement from this patch?
->>>> Then the user is back to where they were before this patch.
->>>>
->>>>>
->>>>> In what ways selftests fail? Are they trying to guess time to reset 
->>>>> based on the hearbeat period set? If so perhaps add a helper to 
->>>>> query it based on the last pulse extension.
->>>>
->>>> I don't recall. It was six months ago when I was actually working on 
->>>> this. And right now I do not have the time to go back and re-run all 
->>>> the testing and re-write a bunch of self tests with whole new 
->>>> helpers and algorithms and whatever else might be necessary to 
->>>> polish this to perfection. And in the meantime, all the existing 
->>>> issues are still present - there is no range checking on any of this 
->>>> stuff, it is very possible for a driver with default settings to 
->>>> break a legal workload because the heartbeat and pre-emption are 
->>>> fighting with each other, we don't even have per engine resets 
->>>> enabled, etc.
->>>>
->>>> Maybe it could be even better with a follow up patch. Feel free to 
->>>> do that. But as it stands, this patch set significantly improves the 
->>>> situation without making anything worse.
->>>
->>> As we seem to be in agreement that the check against default 
->>> heartbeat is a hack with only purpose to work around assumptions made 
->>> by selftests, then please file a Jira about removing it (this hack). 
->>> Then work can be assigned to someone to clean it up. With that done I 
->>> would agree the series is indeed an improvement and it would have my 
->>> ack.
-> VLK-39595
-> 
->>
->> One more thing - put a comment in the code along the lines of 
->> "FIXME/HACK: Work around selftests assumptions by only extending the 
->> last heartbeat if the period is at default value". The the Jira can 
->> associate to that comment.
->>
->> Until that is resolve it may also be worth emitting a drm_notice if 
->> heartbeat is changed via sysfs? Informing users the things will not 
->> work as expected if they fiddle with it. Whether as a blanket warning 
->> or checking first the 3-4x heartbeat vs preempt timeout value. That 
->> message should then go away once the follow up work to fix the 
->> selftests is done. See what the other reviewers will think.
->>
-> What should the drm_notice say? How can you describe to an innocent end 
-> user what the symptoms might be in a single, concise line rather than 
-> the huge email thread that it took to explain to you, an experienced 
-> i915 kernel developer?
-
-I think what would be useful is to have something like:
-
-sysfs_write, or was it a setter helper?:
-
-/* FIXME: Remove together with equally marked hack in next_heartbeat. */
-if (heartbeat != default && heartbeat < 2 * preempt_timeout) {
-	if (guc)
-		drm_note("%s heartbeat interval adjusted to a non-default value which 
-may downgrade individual engine resets to full GPU resets!\n", 
-engine->name);
-	else
-		drm_note("%s heartbeat interval adjusted to a non-default value which 
-may cause engine resets to target innocent contexts!\n", engine->name);
-}
-
-Sounds correct? Double preempt timeout or maybe 1.5x, not sure.
-
-I do accept this is something which we could have had from the start (of 
-heartbeats and preempt timeout), but now that this patch fixes the logic 
-to extend the last pulse, apart from the selftests hack which limits it 
-again, I think it is reasonable to add it in scope of this series.
-
-> Is there a single end user out there that actually uses the sysfs 
-> interface for tuning these parameters? AFAIK, the usage is 99.999% IGT, 
-> the rest is internal developers debugging problems. Maybe someone 
-> somewhere has noticed them because they have a compute task that takes 
-> tens of seconds to complete. But the official guidance for compute users 
-> is to simply disable the heartbeat completely. We never tell anyone to 
-> try to tune the period or the pre-emption timeout to their specific 
-> application. That's just too complicated and unpredictable. We need 
-> defaults that work for the general case and for compute it is disabled. 
-> Manual tuning just isn't useful. Unless it's to reduce the stupidly high 
-> pre-emption timeout to get a more responsive desktop because they never 
-> actually need to run long compute tasks. And in that case, you don't 
-> need extended last periods because your pre-emption timeout is already 
-> massively smaller than the period.
-
-Don't know if there are users but it's out there and it's ABI so I would 
-err on the side of caution. It happened in the past that we were 
-discussing how something is maybe not important and then with uncanny 
-coincidence users immediately appear complaining about the very same thing.
-
-Again, I do agree the patch is not making anything worse - on the 
-contrary it is improving things in the default configuration. And as I 
-think the principle of last pulse extension is the right approach it 
-feels selftests are too weak of a reason to give up on it so easily.
-
-Regards,
-
-Tvrtko
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBKYW5pIE5pa3VsYSA8amFuaS5u
+aWt1bGFAbGludXguaW50ZWwuY29tPg0KPiBTZW50OiBGcmlkYXksIFNlcHRlbWJlciAzMCwgMjAy
+MiAxMjowNSBQTQ0KPiBUbzogS2Fob2xhLCBNaWthIDxtaWthLmthaG9sYUBpbnRlbC5jb20+OyBp
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFJlOiBbSW50ZWwtZ2Z4
+XSBbUEFUQ0ggMS81XSBkcm0vaTkxNS9tdGw6IEFkZCBTdXBwb3J0IGZvciBDMTAsIEMyMCBQSFkN
+Cj4gTWVzc2FnZSBCdXMNCj4gDQo+IE9uIFRodSwgMjkgU2VwIDIwMjIsIE1pa2EgS2Fob2xhIDxt
+aWthLmthaG9sYUBpbnRlbC5jb20+IHdyb3RlOg0KPiA+IEZyb206IFJhZGhha3Jpc2huYSBTcmlw
+YWRhIDxyYWRoYWtyaXNobmEuc3JpcGFkYUBpbnRlbC5jb20+DQo+ID4NCj4gPiBYRUxQRFAgaGFz
+IEMxMCBhbmQgQzIwIHBoeXMgZnJvbSBTeW5vcHN5cyB0byBkcml2ZSBkaXNwbGF5cy4gRWFjaCBw
+aHkNCj4gPiBoYXMgYSBkZWRpY2F0ZWQgUElQRSA1LjIgTWVzc2FnZSBidXMgZm9yIGNvbmZpZ3Vy
+YXRpb24uIFRoaXMgbWVzc2FnZQ0KPiA+IGJ1cyBpcyB1c2VkIHRvIGNvbmZpZ3VyZSB0aGUgcGh5
+IGludGVybmFsIHJlZ2lzdGVycy4NCj4gDQo+IFRoaXMgbG9va3MgbGlrZSBhIHNpbGx5IGludGVy
+bWVkaWF0ZSBzdGVwLCBhZGRpbmcgYSBidW5jaCBvZiBzdGF0aWMgZnVuY3Rpb25zIHdpdGgNCj4g
+X19tYXliZV91bnVzZWQsIGp1c3QgdG8gYmUgbW9kaWZpZWQgYWdhaW4gaW4gdGhlIG5leHQgcGF0
+Y2guDQoNClllcywgdGhpcyB3YXMgYW4gaW50ZXJtZWRpYXRlIHN0ZXAgdG8gZ2V0IGFyb3VuZCBn
+Y2Mgd2FybiBvbiB1bnVzZWQgZnVuY3Rpb25zLg0KDQo+IA0KPiA+DQo+ID4gQnNwZWM6IDY0NTk5
+LCA2NTEwMCwgNjUxMDEsIDY3NjEwLCA2NzYzNg0KPiA+DQo+ID4gQ2M6IE1pa2EgS2Fob2xhIDxt
+aWthLmthaG9sYUBpbnRlbC5jb20+DQo+ID4gQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVs
+LmNvbT4NCj4gPiBDYzogVW1hIFNoYW5rYXIgPHVtYS5zaGFua2FyQGludGVsLmNvbT4NCj4gPiBT
+aWduZWQtb2ZmLWJ5OiBSYWRoYWtyaXNobmEgU3JpcGFkYSA8cmFkaGFrcmlzaG5hLnNyaXBhZGFA
+aW50ZWwuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBp
+bnRlbC5jb20+ICh2NCkNCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9jeDBfcGh5LmMgfCAxNzkNCj4gPiArKysrKysrKysrKysrKysrKysrDQo+ID4gIDEg
+ZmlsZSBjaGFuZ2VkLCAxNzkgaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQg
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jeDBfcGh5LmMNCj4gPg0KPiA+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N4MF9waHkuYw0K
+PiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jeDBfcGh5LmMNCj4gPiBu
+ZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uNzkzMGIwMjU1Y2Zh
+DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfY3gwX3BoeS5jDQo+ID4gQEAgLTAsMCArMSwxNzkgQEANCj4gPiArLy8gU1BEWC1M
+aWNlbnNlLUlkZW50aWZpZXI6IE1JVA0KPiA+ICsvKg0KPiA+ICsgKiBDb3B5cmlnaHQgwqkgMjAy
+MSBJbnRlbCBDb3Jwb3JhdGlvbiAgKi8NCj4gPiArDQo+ID4gKyNpbmNsdWRlICJpbnRlbF9kZS5o
+Ig0KPiA+ICsjaW5jbHVkZSAiaW50ZWxfdW5jb3JlLmgiDQo+IA0KPiBEbyB5b3UgdXNlIGFueXRo
+aW5nIGZyb20gaW50ZWxfdW5jb3JlLmggZGlyZWN0bHksIG9yIGlzIGl0IGp1c3QgaW50ZWxfZGUu
+aD8NCg0KSSBkb24ndCB0aGluayB0aGlzIEMxMCBwYXRjaCBzZXJpZXMgdXNlIGludGVsX3VuY29y
+ZS5oIGRpcmVjdGx5LiBJIGhhdmUgdG8gZG91YmxlIGNoZWNrIHRoYXQgdGhvdWdoLiBJZiBub3Qg
+dGhpcyBpbnRlbF91bmNvcmUuaCBpcyBub3QgbmVlZGVkLg0KDQo+IA0KPiA+ICsNCj4gPiArc3Rh
+dGljIHZvaWQgaW50ZWxfY3gwX2J1c19yZXNldChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
+NSwgZW51bQ0KPiA+ICtwb3J0IHBvcnQsIGludCBsYW5lKSB7DQo+ID4gKwllbnVtIHBoeSBwaHkg
+PSBpbnRlbF9wb3J0X3RvX3BoeShpOTE1LCBwb3J0KTsNCj4gPiArDQo+ID4gKwkvKiBCcmluZyB0
+aGUgcGh5IHRvIGlkbGUuICovDQo+ID4gKwlpbnRlbF9kZV93cml0ZShpOTE1LCBYRUxQRFBfUE9S
+VF9NMlBfTVNHQlVTX0NUTChwb3J0LCBsYW5lKSwNCj4gPiArCQkgICAgICAgWEVMUERQX1BPUlRf
+TTJQX1RSQU5TQUNUSU9OX1JFU0VUKTsNCj4gPiArDQo+ID4gKwkvKiBXYWl0IGZvciBJZGxlIENs
+ZWFyLiAqLw0KPiA+ICsJaWYgKGludGVsX2RlX3dhaXRfZm9yX2NsZWFyKGk5MTUsDQo+IFhFTFBE
+UF9QT1JUX00yUF9NU0dCVVNfQ1RMKHBvcnQsIGxhbmUpLA0KPiA+ICsJCQkJICAgIFhFTFBEUF9Q
+T1JUX00yUF9UUkFOU0FDVElPTl9SRVNFVCwNCj4gPiArCQkJCSAgICBYRUxQRFBfTVNHQlVTX1RJ
+TUVPVVRfU0xPVykpIHsNCj4gPiArCQlkcm1fZXJyX29uY2UoJmk5MTUtPmRybSwgIkZhaWxlZCB0
+byBicmluZyBQSFkgJWMgdG8gaWRsZS4gXG4iLA0KPiBwaHlfbmFtZShwaHkpKTsNCj4gPiArCQly
+ZXR1cm47DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJaW50ZWxfZGVfd3JpdGUoaTkxNSwgWEVMUERQ
+X1BPUlRfUDJNX01TR0JVU19TVEFUVVMocG9ydCwgbGFuZSksDQo+IH4wKTsNCj4gPiArCXJldHVy
+bjsNCg0KWWVhaCwgdHJ1ZS4NCg0KPiANCj4gVW5uZWNlc3NhcnkgcmV0dXJuIHN0YXRlbWVudC4N
+Cj4gDQo+ID4gK30NCj4gPiArDQo+ID4gK19fbWF5YmVfdW51c2VkIHN0YXRpYyB1OCBpbnRlbF9j
+eDBfcmVhZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gZW51bSBwb3J0IHBvcnQs
+DQo+ID4gKwkJCSBpbnQgbGFuZSwgdTE2IGFkZHIpDQo+ID4gK3sNCj4gPiArCWVudW0gcGh5IHBo
+eSA9IGludGVsX3BvcnRfdG9fcGh5KGk5MTUsIHBvcnQpOw0KPiA+ICsJdTMyIHZhbCA9IDA7DQo+
+ID4gKwlpbnQgYXR0ZW1wdHMgPSAwOw0KPiA+ICsNCj4gPiArcmV0cnk6DQo+ID4gKwlpZiAoYXR0
+ZW1wdHMgPT0gMykgew0KPiA+ICsJCWRybV9lcnJfb25jZSgmaTkxNS0+ZHJtLCAiUEhZICVjIFJl
+YWQgJTA0eCBmYWlsZWQgYWZ0ZXIgJWQNCj4gcmV0cmllcy4gU3RhdHVzOiAweCV4XG4iLCBwaHlf
+bmFtZShwaHkpLCBhZGRyLCBhdHRlbXB0cywgdmFsID86IDApOw0KPiA+ICsJCXJldHVybiAwOw0K
+PiA+ICsJfQ0KPiANCj4gVGhlIGNvZGUgbG9va3MgbGlrZSBpdCB3b3VsZCBiZW5lZml0IGZyb20g
+YWJzdHJhY3RpbmcgYSBub24tcmV0cnlpbmcgcmVhZA0KPiBmdW5jdGlvbiB0aGF0IHJldHVybnMg
+ZXJyb3JzLCB3aXRoIHRoaXMgZnVuY3Rpb24gZG9pbmcgdGhlIHJldHJ5IGxvb3AgdXNpbmcgYQ0K
+PiBjb252ZW50aW9uYWwgZm9yIGxvb3AuDQoNClllcywgSSBjb3VsZCBkbyBzb21lIHRpZHlpbmcg
+dXAgaGVyZQ0KDQo+IA0KPiBUaGVyZSdzIGZvdXIgY29weS1wYXN0ZWQgYml0cyBvZiBlcnJvciBo
+YW5kbGluZyBoZXJlIHRoYXQncyBqdXN0IGVycm9yIHByb25lLg0KPiANCj4gPiArDQo+ID4gKwkv
+KiBXYWl0IGZvciBwZW5kaW5nIHRyYW5zYWN0aW9ucy4qLw0KPiA+ICsJaWYgKGludGVsX2RlX3dh
+aXRfZm9yX2NsZWFyKGk5MTUsDQo+IFhFTFBEUF9QT1JUX00yUF9NU0dCVVNfQ1RMKHBvcnQsIGxh
+bmUpLA0KPiA+ICsNCj4gWEVMUERQX1BPUlRfTTJQX1RSQU5TQUNUSU9OX1BFTkRJTkcsDQo+ID4g
+KwkJCQkgICAgWEVMUERQX01TR0JVU19USU1FT1VUX1NMT1cpKSB7DQo+ID4gKwkJZHJtX2RiZygm
+aTkxNS0+ZHJtLCAiUEhZICVjIFRpbWVvdXQgd2FpdGluZyBmb3IgcHJldmlvdXMNCj4gPiArdHJh
+bnNhY3Rpb24gdG8gY29tcGxldGUuIFJlc2V0IHRoZSBidXMgYW5kIHJldHJ5LlxuIiwgcGh5X25h
+bWUocGh5KSk7DQo+IA0KPiBkcm1fZGJnX2ttcygpIHRocm91Z2hvdXQuDQo+IA0KPiA+ICsJCWF0
+dGVtcHRzKys7DQo+ID4gKwkJaW50ZWxfY3gwX2J1c19yZXNldChpOTE1LCBwb3J0LCBsYW5lKTsN
+Cj4gPiArCQlnb3RvIHJldHJ5Ow0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCS8qIElzc3VlIHRoZSBy
+ZWFkIGNvbW1hbmQuICovDQo+ID4gKwlpbnRlbF9kZV93cml0ZShpOTE1LCBYRUxQRFBfUE9SVF9N
+MlBfTVNHQlVTX0NUTChwb3J0LCBsYW5lKSwNCj4gPiArCQkgICAgICAgWEVMUERQX1BPUlRfTTJQ
+X1RSQU5TQUNUSU9OX1BFTkRJTkcgfA0KPiA+ICsJCSAgICAgICBYRUxQRFBfUE9SVF9NMlBfQ09N
+TUFORF9SRUFEIHwNCj4gPiArCQkgICAgICAgWEVMUERQX1BPUlRfTTJQX0FERFJFU1MoYWRkcikp
+Ow0KPiA+ICsNCj4gPiArCS8qIFdhaXQgZm9yIHJlc3BvbnNlIHJlYWR5LiBBbmQgcmVhZCByZXNw
+b25zZS4qLw0KPiA+ICsJaWYgKF9faW50ZWxfd2FpdF9mb3JfcmVnaXN0ZXIoJmk5MTUtPnVuY29y
+ZSwNCj4gPiArDQo+IFhFTFBEUF9QT1JUX1AyTV9NU0dCVVNfU1RBVFVTKHBvcnQsIGxhbmUpLA0K
+PiA+ICsJCQkJICAgICAgWEVMUERQX1BPUlRfUDJNX1JFU1BPTlNFX1JFQURZLA0KPiA+ICsJCQkJ
+ICAgICAgWEVMUERQX1BPUlRfUDJNX1JFU1BPTlNFX1JFQURZLA0KPiA+ICsJCQkJICAgICAgWEVM
+UERQX01TR0JVU19USU1FT1VUX0ZBU1RfVVMsDQo+ID4gKwkJCQkgICAgICBYRUxQRFBfTVNHQlVT
+X1RJTUVPVVRfU0xPVywgJnZhbCkpIHsNCj4gPiArCQlkcm1fZGJnKCZpOTE1LT5kcm0sICJQSFkg
+JWMgVGltZW91dCB3YWl0aW5nIGZvciBSZWFkDQo+IHJlc3BvbnNlIEFDSy4gU3RhdHVzOiAweCV4
+XG4iLCBwaHlfbmFtZShwaHkpLCB2YWwpOw0KPiA+ICsJCWF0dGVtcHRzKys7DQo+ID4gKwkJaW50
+ZWxfY3gwX2J1c19yZXNldChpOTE1LCBwb3J0LCBsYW5lKTsNCj4gPiArCQlnb3RvIHJldHJ5Ow0K
+PiA+ICsJfQ0KPiA+ICsNCj4gPiArCS8qIENoZWNrIGZvciBlcnJvci4gKi8NCj4gPiArCWlmICh2
+YWwgJiBYRUxQRFBfUE9SVF9QMk1fRVJST1JfU0VUKSB7DQo+ID4gKwkJZHJtX2RiZygmaTkxNS0+
+ZHJtLCAiUEhZICVjIEVycm9yIG9jY3VycmVkIGR1cmluZyByZWFkDQo+IGNvbW1hbmQuIFN0YXR1
+czogMHgleFxuIiwgcGh5X25hbWUocGh5KSwgdmFsKTsNCj4gPiArCQlhdHRlbXB0cysrOw0KPiA+
+ICsJCWludGVsX2N4MF9idXNfcmVzZXQoaTkxNSwgcG9ydCwgbGFuZSk7DQo+ID4gKwkJZ290byBy
+ZXRyeTsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwkvKiBDaGVjayBmb3IgUmVhZCBBY2suICovDQo+
+ID4gKwlpZiAoUkVHX0ZJRUxEX0dFVChYRUxQRFBfUE9SVF9QMk1fQ09NTUFORF9UWVBFX01BU0ss
+IHZhbCkNCj4gIT0NCj4gPiArCSAgICBYRUxQRFBfUE9SVF9QMk1fQ09NTUFORF9SRUFEX0FDSykg
+ew0KPiA+ICsJCWRybV9kYmcoJmk5MTUtPmRybSwgIlBIWSAlYyBOb3QgYSBSZWFkIHJlc3BvbnNl
+LiBNU0dCVVMNCj4gU3RhdHVzOiAweCV4LlxuIiwgcGh5X25hbWUocGh5KSwgdmFsKTsNCj4gPiAr
+CQlhdHRlbXB0cysrOw0KPiA+ICsJCWludGVsX2N4MF9idXNfcmVzZXQoaTkxNSwgcG9ydCwgbGFu
+ZSk7DQo+ID4gKwkJZ290byByZXRyeTsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwkvKiBDbGVhciBS
+ZXNwb25zZSBSZWFkeSBmbGFnLiovDQo+ID4gKwlpbnRlbF9kZV93cml0ZShpOTE1LCBYRUxQRFBf
+UE9SVF9QMk1fTVNHQlVTX1NUQVRVUyhwb3J0LCBsYW5lKSwNCj4gfjApOw0KPiANCj4gQmxhbmsg
+bGluZSBiZWZvcmUgcmV0dXJuLg0KSSB3aWxsIGRlbGV0ZSB0aGlzIGxpbmUNCg0KPiANCj4gPiAr
+CXJldHVybiAodTgpUkVHX0ZJRUxEX0dFVChYRUxQRFBfUE9SVF9QMk1fREFUQV9NQVNLLCB2YWwp
+Ow0KPiANCj4gVW5uZWNlc3NhcnkgY2FzdC4NCkZpeGluZyBpdCB3aXRoIG5leHQgc2V0IG9mIHBh
+dGNoZXMuDQoNCj4gDQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgaW50ZWxfY3gwX3dh
+aXRfY3dyaXRlX2FjayhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gPiArCQkJCSAg
+ICAgIGVudW0gcG9ydCBwb3J0LCBpbnQgbGFuZSkNCj4gPiArew0KPiA+ICsJZW51bSBwaHkgcGh5
+ID0gaW50ZWxfcG9ydF90b19waHkoaTkxNSwgcG9ydCk7DQo+ID4gKwl1MzIgdmFsOw0KPiA+ICsN
+Cj4gPiArCS8qIENoZWNrIGZvciB3cml0ZSBhY2suICovDQo+ID4gKwlpZiAoX19pbnRlbF93YWl0
+X2Zvcl9yZWdpc3RlcigmaTkxNS0+dW5jb3JlLA0KPiA+ICsNCj4gWEVMUERQX1BPUlRfUDJNX01T
+R0JVU19TVEFUVVMocG9ydCwgbGFuZSksDQo+ID4gKwkJCQkgICAgICBYRUxQRFBfUE9SVF9QMk1f
+UkVTUE9OU0VfUkVBRFksDQo+ID4gKwkJCQkgICAgICBYRUxQRFBfUE9SVF9QMk1fUkVTUE9OU0Vf
+UkVBRFksDQo+ID4gKwkJCQkgICAgICBYRUxQRFBfTVNHQlVTX1RJTUVPVVRfRkFTVF9VUywNCj4g
+PiArCQkJCSAgICAgIFhFTFBEUF9NU0dCVVNfVElNRU9VVF9TTE9XLCAmdmFsKSkgew0KPiA+ICsJ
+CWRybV9kYmcoJmk5MTUtPmRybSwgIlBIWSAlYyBUaW1lb3V0IHdhaXRpbmcgZm9yIENvbW1pdHRl
+ZA0KPiBtZXNzYWdlIEFDSy4gU3RhdHVzOiAweCV4XG4iLCBwaHlfbmFtZShwaHkpLCB2YWwpOw0K
+PiA+ICsJCXJldHVybiAtRVRJTUVET1VUOw0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCWlmICgoUkVH
+X0ZJRUxEX0dFVChYRUxQRFBfUE9SVF9QMk1fQ09NTUFORF9UWVBFX01BU0ssIHZhbCkNCj4gIT0N
+Cj4gPiArCSAgICAgWEVMUERQX1BPUlRfUDJNX0NPTU1BTkRfV1JJVEVfQUNLKSB8fCB2YWwgJg0K
+PiBYRUxQRFBfUE9SVF9QMk1fRVJST1JfU0VUKSB7DQo+ID4gKwkJZHJtX2RiZygmaTkxNS0+ZHJt
+LCAiUEhZICVjIFVuZXhwZWN0ZWQgQUNLIHJlY2VpdmVkLg0KPiBNU0dCVVMgU1RBVFVTOiAweCV4
+LlxuIiwgcGh5X25hbWUocGh5KSwgdmFsKTsNCj4gPiArCQlyZXR1cm4gLUVJTlZBTDsNCj4gPiAr
+CX0NCj4gDQo+IFRoaXMgaXMgYWxzbyBjb3B5LXBhc3RlIGR1cGxpY2F0aW5nIHRoZSBzdHVmZiBp
+biB0aGUgcHJldmlvdXMgZnVuY3Rpb24uIFNvIHdoeSBpc24ndA0KPiB0aGlzIGZ1bmN0aW9uIHVz
+ZWQgdGhlcmU/DQoNClRoaXMgd291bGQgYmVuZWZpdCBhbiBvd24gZnVuY3Rpb24uIEkgd2lsbCBm
+aXggdGhhdCBpbiB0aGUgbmV4dCBzZXJpZXMgb2YgcGF0Y2hlcy4NCg0KPiANCj4gPiArDQo+ID4g
+KwlyZXR1cm4gMDsNCj4gPiArfQ0KPiA+ICsNCj4gPiArX19tYXliZV91bnVzZWQgc3RhdGljIHZv
+aWQgaW50ZWxfY3gwX3dyaXRlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LA0KPiBlbnVt
+IHBvcnQgcG9ydCwNCj4gPiArCQkJICAgIGludCBsYW5lLCB1MTYgYWRkciwgdTggZGF0YSwgYm9v
+bCBjb21taXR0ZWQpIHsNCj4gPiArCWVudW0gcGh5IHBoeSA9IGludGVsX3BvcnRfdG9fcGh5KGk5
+MTUsIHBvcnQpOw0KPiA+ICsJaW50IGF0dGVtcHRzID0gMDsNCj4gPiArDQo+ID4gK3JldHJ5Og0K
+PiA+ICsJaWYgKGF0dGVtcHRzID09IDMpIHsNCj4gPiArCQlkcm1fZXJyX29uY2UoJmk5MTUtPmRy
+bSwgIlBIWSAlYyBXcml0ZSAlMDR4IGZhaWxlZCBhZnRlciAlZA0KPiByZXRyaWVzLlxuIiwgcGh5
+X25hbWUocGh5KSwgYWRkciwgYXR0ZW1wdHMpOw0KPiA+ICsJCXJldHVybjsNCj4gPiArCX0NCj4g
+DQo+IFNhbWUgaGVyZSB3aXRoIHRoZSByZXRyaWVzIGFzIGluIHRoZSB3cml0ZS4gSGF2ZSBhIGxv
+d2VyIGxldmVsIG5vbi1yZXRyeWluZyB3cml0ZQ0KPiBmdW5jdGlvbiwgYW5kIGhhbmRsZSB0aGUg
+cmV3cml0ZXMgYXQgYSBkaWZmZXJlbnQgYWJzdHJhY3Rpb24gbGV2ZWwuDQoNCkknbGwgdHJ5IHRv
+IHJlcGhyYXNlIHRoZXNlLg0KDQo+IA0KPiA+ICsNCj4gPiArCS8qIFdhaXQgZm9yIHBlbmRpbmcg
+dHJhbnNhY3Rpb25zLiovDQo+ID4gKwlpZiAoaW50ZWxfZGVfd2FpdF9mb3JfY2xlYXIoaTkxNSwN
+Cj4gWEVMUERQX1BPUlRfTTJQX01TR0JVU19DVEwocG9ydCwgbGFuZSksDQo+ID4gKw0KPiBYRUxQ
+RFBfUE9SVF9NMlBfVFJBTlNBQ1RJT05fUEVORElORywNCj4gPiArCQkJCSAgICBYRUxQRFBfTVNH
+QlVTX1RJTUVPVVRfU0xPVykpIHsNCj4gPiArCQlkcm1fZGJnKCZpOTE1LT5kcm0sICJQSFkgJWMg
+VGltZW91dCB3YWl0aW5nIGZvciBwcmV2aW91cw0KPiB0cmFuc2FjdGlvbiB0byBjb21wbGV0ZS4g
+UmVzZXQgdGhlIGJ1cyBhbmQgcmV0cnkuXG4iLCBwaHlfbmFtZShwaHkpKTsNCj4gPiArCQlhdHRl
+bXB0cysrOw0KPiA+ICsJCWludGVsX2N4MF9idXNfcmVzZXQoaTkxNSwgcG9ydCwgbGFuZSk7DQo+
+ID4gKwkJZ290byByZXRyeTsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwkvKiBJc3N1ZSB0aGUgd3Jp
+dGUgY29tbWFuZC4gKi8NCj4gPiArCWludGVsX2RlX3dyaXRlKGk5MTUsIFhFTFBEUF9QT1JUX00y
+UF9NU0dCVVNfQ1RMKHBvcnQsIGxhbmUpLA0KPiA+ICsJCSAgICAgICBYRUxQRFBfUE9SVF9NMlBf
+VFJBTlNBQ1RJT05fUEVORElORyB8DQo+ID4gKwkJICAgICAgIChjb21taXR0ZWQgPw0KPiBYRUxQ
+RFBfUE9SVF9NMlBfQ09NTUFORF9XUklURV9DT01NSVRURUQgOg0KPiA+ICsJCSAgICAgICBYRUxQ
+RFBfUE9SVF9NMlBfQ09NTUFORF9XUklURV9VTkNPTU1JVFRFRCkNCj4gfA0KPiA+ICsJCSAgICAg
+ICBYRUxQRFBfUE9SVF9NMlBfREFUQShkYXRhKSB8DQo+ID4gKwkJICAgICAgIFhFTFBEUF9QT1JU
+X00yUF9BRERSRVNTKGFkZHIpKTsNCj4gPiArDQo+ID4gKwkvKiBDaGVjayBmb3IgZXJyb3IuICov
+DQo+ID4gKwlpZiAoY29tbWl0dGVkKSB7DQo+ID4gKwkJaWYgKGludGVsX2N4MF93YWl0X2N3cml0
+ZV9hY2soaTkxNSwgcG9ydCwgbGFuZSkgPCAwKSB7DQo+ID4gKwkJCWF0dGVtcHRzKys7DQo+ID4g
+KwkJCWludGVsX2N4MF9idXNfcmVzZXQoaTkxNSwgcG9ydCwgbGFuZSk7DQo+ID4gKwkJCWdvdG8g
+cmV0cnk7DQo+ID4gKwkJfQ0KPiA+ICsJfSBlbHNlIGlmICgoaW50ZWxfZGVfcmVhZChpOTE1LA0K
+PiBYRUxQRFBfUE9SVF9QMk1fTVNHQlVTX1NUQVRVUyhwaHksIGxhbmUpKSAmDQo+ID4gKwkJCSAg
+ICBYRUxQRFBfUE9SVF9QMk1fRVJST1JfU0VUKSkgew0KPiA+ICsJCWRybV9kYmcoJmk5MTUtPmRy
+bSwgIlBIWSAlYyBFcnJvciBvY2N1cnJlZCBkdXJpbmcgd3JpdGUNCj4gY29tbWFuZC5cbiIsIHBo
+eV9uYW1lKHBoeSkpOw0KPiA+ICsJCWF0dGVtcHRzKys7DQo+ID4gKwkJaW50ZWxfY3gwX2J1c19y
+ZXNldChpOTE1LCBwb3J0LCBsYW5lKTsNCj4gPiArCQlnb3RvIHJldHJ5Ow0KPiA+ICsJfQ0KPiA+
+ICsNCj4gPiArCWludGVsX2RlX3dyaXRlKGk5MTUsIFhFTFBEUF9QT1JUX1AyTV9NU0dCVVNfU1RB
+VFVTKHBvcnQsIGxhbmUpLA0KPiB+MCk7DQo+ID4gKw0KPiA+ICsJcmV0dXJuOw0KPiANCj4gVW5u
+ZWNlc3NhcnkgcmV0dXJuIHN0YXRlbWVudC4NClllcy4NCg0KVGhhbmtzIGZvciB0aGUgY29tbWVu
+dHMgYW5kIGEgcmV2aWV3LiBJIHdpbGwgdHJ5IHRvIGFkZHJlc3MgdGhlc2UgZmluZGluZyB3aXRo
+IHRoZSBuZXh0IGl0ZXJhdGlvbiBvZiB0aGlzIHBhdGNoIHNlcmllcy4NCg0KLU1pa2EtDQoNCj4g
+DQo+ID4gK30NCj4gPiArDQo+ID4gK19fbWF5YmVfdW51c2VkIHN0YXRpYyB2b2lkIGludGVsX2N4
+MF9ybXcoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsDQo+IGVudW0gcG9ydCBwb3J0LA0K
+PiA+ICsJCQkgIGludCBsYW5lLCB1MTYgYWRkciwgdTggY2xlYXIsIHU4IHNldCwgYm9vbCBjb21t
+aXR0ZWQpIHsNCj4gPiArCXU4IG9sZCwgdmFsOw0KPiA+ICsNCj4gPiArCW9sZCA9IGludGVsX2N4
+MF9yZWFkKGk5MTUsIHBvcnQsIGxhbmUsIGFkZHIpOw0KPiA+ICsJdmFsID0gKG9sZCAmIH5jbGVh
+cikgfCBzZXQ7DQo+ID4gKw0KPiA+ICsJaWYgKHZhbCAhPSBvbGQpDQo+ID4gKwkJaW50ZWxfY3gw
+X3dyaXRlKGk5MTUsIHBvcnQsIGxhbmUsIGFkZHIsIHZhbCwgY29tbWl0dGVkKTsgfQ0KPiANCj4g
+LS0NCj4gSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcg0K
