@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 091785F7891
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 15:05:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 596AA5F790A
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 15:33:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6FAE10E1F2;
-	Fri,  7 Oct 2022 13:05:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58EE910E2E0;
+	Fri,  7 Oct 2022 13:33:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3931310E1F2;
- Fri,  7 Oct 2022 13:05:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 154F7AADD5;
- Fri,  7 Oct 2022 13:05:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0837525665435363982=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05D1E10E2E0
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Oct 2022 13:33:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1665149604; x=1696685604;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DPzL1HW1YpLG19NN/nZApgKQtmYp5FXFAXm1CJadbGk=;
+ b=gmLd+XQA9ixEPXWGRu2SVp5SfbiZ6wXRT+y0Jwmr+6PKkV02vW2Y9JvB
+ Gv7ap+sNHdjnwJ6ePXlmQmxFs9LuEY721tiUUYhBvkhVZPBmotP3ssiqx
+ CS5Bl1szyD80IKo+CzZWmZypEuGHPnYLS0/mVoxs2KiEbW4Najkxj9it7
+ zISpNqaKjIjan1j+5KXD/2U6eXjIMmqCpwG6C7pACAhpa2a3s8AOAO/Cd
+ JP9eiyuMKJ4q9Hh6NEGcitOSWqiGywgMmfNQLtj789KB2tsbt6Qm/OI2p
+ rNME0BEUOycav4ouDPOUfD/z3keRLCl8NBYYD4MV8x5yxcZJT/QIIQCbe Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10493"; a="304735418"
+X-IronPort-AV: E=Sophos;i="5.95,166,1661842800"; d="scan'208";a="304735418"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2022 06:33:11 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10493"; a="800308471"
+X-IronPort-AV: E=Sophos;i="5.95,166,1661842800"; d="scan'208";a="800308471"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2022 06:33:10 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  7 Oct 2022 16:33:07 +0300
+Message-Id: <20221007133307.3805735-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Date: Fri, 07 Oct 2022 13:05:41 -0000
-Message-ID: <166514794105.15724.874147430651451863@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221007113958.1890779-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20221007113958.1890779-1-vinod.govindapillai@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUHJv?=
- =?utf-8?q?vision_to_ignore_long_HPDs_in_CI_systems?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix simulated GPU reset wrt. encoder
+ HW readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,240 +56,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0837525665435363982==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The GPU reset involves a display suspend/resume sequence, but this is
+done without suspending/resuming the encoders. The encoder HW readout
+code during resume however assumes that the encoders were
+suspended/resumed, at least on TypeC platforms where the TC PHYs must be
+left in a disconnected state during encoder-suspend, and the PHY's TypeC
+mode must be initialized already during encoder-resume.
 
-== Series Details ==
+Since the above issue occurs only in case the display recovery during
+GPU reset is simulated in CI tests (on new platforms w/o the GPU reset
+clobbering the display), this patch fixes the issue by simply restoring
+the saved display state in this case w/o doing a display HW state
+readout / sanitization first. This also fixes the WARN below introduced
+by
 
-Series: Provision to ignore long HPDs in CI systems
-URL   : https://patchwork.freedesktop.org/series/109475/
-State : success
+commit a82796a2e332 ("drm/i915: Fix TypeC mode initialization during system resume")
 
-== Summary ==
+<4> [319.983309] ------------[ cut here ]------------
+<4> [319.983313] i915 0000:00:02.0: drm_WARN_ON(dig_port->tc_link_refcount != 1)
+<4> [319.983341] WARNING: CPU: 10 PID: 268 at drivers/gpu/drm/i915/display/intel_tc.c:751
+intel_tc_port_sanitize_mode+0x239/0x290 [i915]
+<4> [319.983407] Modules linked in: fuse snd_hda_codec_hdmi i915 x86_pkg_temp_thermal mei_hdcp coretemp wmi_bmof
+r8153_ecm cdc_ether kvm_intel usbnet r8152 mii kvm prime_numbers snd_hda_intel ttm snd_intel_dspcfg irqbypass
+drm_buddy e1000e crct10dif_pclmul snd_hda_codec crc32_pclmul drm_display_helper ptp snd_hwdep ghash_clmulni_intel
+snd_hda_core drm_kms_helper pps_core mei_me syscopyarea video i2c_i801 snd_pcm sysfillrect i2c_smbus sysimgblt mei
+fb_sys_fops intel_lpss_pci wmi
+<4> [319.983483] CPU: 10 PID: 268 Comm: kworker/10:1H Not tainted 6.0.0-rc7-CI_DRM_12200-g394e575b57e9+ #1
+<4> [319.983486] Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P LP5 RVP, BIOS
+ADLPFWI1.R00.2313.A00.2107301001 07/30/2021
+<4> [319.983488] Workqueue: events_highpri heartbeat [i915]
+<4> [319.983536] RIP: 0010:intel_tc_port_sanitize_mode+0x239/0x290 [i915]
+<4> [319.983600] Code: 85 d2 75 03 48 8b 17 48 89 14 24 e8 e1 dc 2d e1 48 8b 14 24 48 c7 c1 f8 db 5b a0 48 c7 c7 3e
+3c 5e a0 48 89 c6 e8 45 d7 66 e1 <0f> 0b e9 20 fe ff ff 0f 0b 49 c7 c0 8b 3c 5e a0 e9 9e fe ff ff 48
+<4> [319.983601] RSP: 0018:ffffc90001617a30 EFLAGS: 00010286
+<4> [319.983604] RAX: 0000000000000000 RBX: ffff88811f9d2000 RCX: 0000000000000001
+<4> [319.983606] RDX: 0000000080000001 RSI: ffffffff8231e8cd RDI: 00000000ffffffff
+<4> [319.983607] RBP: ffff888121e98000 R08: 0000000000000000 R09: c0000000ffffc134
+<4> [319.983608] R10: 00000000000d6078 R11: ffffc900016178c8 R12: ffff88811f9d3838
+<4> [319.983609] R13: ffff88811f9d397d R14: ffff888121e98000 R15: 0000000000000000
+<4> [319.983611] FS:  0000000000000000(0000) GS:ffff8882a7300000(0000) knlGS:0000000000000000
+<4> [319.983612] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [319.983613] CR2: 00007fe7397f1e18 CR3: 0000000006612003 CR4: 0000000000770ee0
+<4> [319.983615] PKRU: 55555554
+<4> [319.983616] Call Trace:
+<4> [319.983617]  <TASK>
+<4> [319.983621]  intel_ddi_sync_state+0x3f/0x90 [i915]
+<4> [319.983698]  intel_modeset_setup_hw_state+0x3a3/0x1440 [i915]
+<4> [319.983777]  ? intel_gt_reset_global+0xeb/0x160 [i915]
+<4> [319.983839]  ? __intel_display_resume+0x15/0xe0 [i915]
+<4> [319.983909]  __intel_display_resume+0x15/0xe0 [i915]
+<4> [319.983979]  intel_display_finish_reset+0x58/0x130 [i915]
+<4> [319.984048]  intel_gt_reset_global+0xf3/0x160 [i915]
+<4> [319.984107]  ? intel_reset_guc.cold.62+0x5d/0x5d [i915]
+<4> [319.984189]  ? 0xffffffff81000000
+<4> [319.984192]  ? queue_work_node+0x90/0x90
+<4> [319.984202]  intel_gt_handle_error+0x2c2/0x410 [i915]
+<4> [319.984267]  ? _raw_spin_unlock_irqrestore+0x54/0x70
+<4> [319.984271]  ? lockdep_hardirqs_on+0xbf/0x140
+<4> [319.984276]  ? intel_guc_find_hung_context+0x19e/0x1d0 [i915]
+<4> [319.984352]  reset_engine+0x99/0xd0 [i915]
+<4> [319.984399]  ? __drm_printfn_seq_file+0x20/0x20
+<4> [319.984406]  heartbeat+0x4cd/0x4f0 [i915]
+<4> [319.984454]  process_one_work+0x272/0x5b0
+<4> [319.984461]  worker_thread+0x37/0x370
+<4> [319.984465]  ? process_one_work+0x5b0/0x5b0
+<4> [319.984467]  kthread+0xed/0x120
+<4> [319.984470]  ? kthread_complete_and_exit+0x20/0x20
+<4> [319.984474]  ret_from_fork+0x1f/0x30
+<4> [319.984484]  </TASK>
+<4> [319.984485] irq event stamp: 36107
+<4> [319.984487] hardirqs last  enabled at (36113): [<ffffffff811391d6>] __up_console_sem+0x66/0x70
+<4> [319.984492] hardirqs last disabled at (36118): [<ffffffff811391bb>] __up_console_sem+0x4b/0x70
+<4> [319.984494] softirqs last  enabled at (34316): [<ffffffff81e00323>] __do_softirq+0x323/0x48e
+<4> [319.984497] softirqs last disabled at (34309): [<ffffffff810c16b8>] irq_exit_rcu+0xb8/0xe0
+<4> [319.984499] ---[ end trace 0000000000000000 ]---
 
-CI Bug Log - changes from CI_DRM_12225 -> Patchwork_109475v1
-====================================================
+v2:
+- Instead of trying to fix the suspend/resume sequence, restore simply
+  the state w/o the HW readout/sanitization step. (Ville)
 
-Summary
--------
+References: https://lore.kernel.org/intel-gfx/20221005175251.3586272-1-imre.deak@intel.com/T/#mcfac180a67f6048096d09fa04347aa088291fafb
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/7021
+Cc: Mika Kahola <mika.kahola@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 24 ++++++++++++++------
+ 1 file changed, 17 insertions(+), 7 deletions(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 8c3bd9ba0d748..b147ea79c566a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -830,6 +830,20 @@ intel_plane_fence_y_offset(const struct intel_plane_state *plane_state)
+ 	return y;
+ }
+ 
++static int
++intel_display_commit_duplicated_state(struct intel_atomic_state *state,
++				      struct drm_modeset_acquire_ctx *ctx)
++{
++	struct drm_i915_private *i915 = to_i915(state->base.dev);
++	int ret;
++
++	ret = drm_atomic_helper_commit_duplicated_state(&state->base, ctx);
++
++	drm_WARN_ON(&i915->drm, ret == -EDEADLK);
++
++	return ret;
++}
++
+ static int
+ __intel_display_resume(struct drm_i915_private *i915,
+ 		       struct drm_atomic_state *state,
+@@ -837,7 +851,7 @@ __intel_display_resume(struct drm_i915_private *i915,
+ {
+ 	struct drm_crtc_state *crtc_state;
+ 	struct drm_crtc *crtc;
+-	int i, ret;
++	int i;
+ 
+ 	intel_modeset_setup_hw_state(i915, ctx);
+ 	intel_vga_redisable(i915);
+@@ -863,11 +877,7 @@ __intel_display_resume(struct drm_i915_private *i915,
+ 	if (!HAS_GMCH(i915))
+ 		to_intel_atomic_state(state)->skip_intermediate_wm = true;
+ 
+-	ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
+-
+-	drm_WARN_ON(&i915->drm, ret == -EDEADLK);
+-
+-	return ret;
++	return intel_display_commit_duplicated_state(to_intel_atomic_state(state), ctx);
+ }
+ 
+ static bool gpu_reset_clobbers_display(struct drm_i915_private *dev_priv)
+@@ -959,7 +969,7 @@ void intel_display_finish_reset(struct drm_i915_private *i915)
+ 	/* reset doesn't touch the display */
+ 	if (!gpu_reset_clobbers_display(i915)) {
+ 		/* for testing only restore the display */
+-		ret = __intel_display_resume(i915, state, ctx);
++		ret = intel_display_commit_duplicated_state(to_intel_atomic_state(state), ctx);
+ 		if (ret)
+ 			drm_err(&i915->drm,
+ 				"Restoring old state failed with %i\n", ret);
+-- 
+2.37.1
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/index.html
-
-Participating hosts (46 -> 42)
-------------------------------
-
-  Missing    (4): fi-ctg-p8600 fi-hsw-4770 fi-hsw-4200u bat-jsl-3 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_109475v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - bat-dg1-5:          NOTRUN -> [SKIP][1] ([fdo#111827])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-dg1-5/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-dg1-5:          NOTRUN -> [SKIP][2] ([i915#4078])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {bat-rpls-1}:       [DMESG-WARN][3] ([i915#6687]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - {bat-atsm-1}:       [FAIL][5] ([i915#7029]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-atsm-1/igt@gem_huc_copy@huc-copy.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-atsm-1/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_module_load@load:
-    - {bat-atsm-1}:       [DMESG-WARN][7] ([i915#7031]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-atsm-1/igt@i915_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-atsm-1/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-5:          [INCOMPLETE][9] ([i915#4418]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-dg1-5/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-bxt-dsi:         [DMESG-FAIL][11] ([i915#5334]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - {bat-rpls-2}:       [FAIL][13] ([i915#6559]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#5278]: https://gitlab.freedesktop.org/drm/intel/issues/5278
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6559]: https://gitlab.freedesktop.org/drm/intel/issues/6559
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#6854]: https://gitlab.freedesktop.org/drm/intel/issues/6854
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7029]: https://gitlab.freedesktop.org/drm/intel/issues/7029
-  [i915#7031]: https://gitlab.freedesktop.org/drm/intel/issues/7031
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12225 -> Patchwork_109475v1
-
-  CI-20190529: 20190529
-  CI_DRM_12225: 31426dd8e9677d64141dcf5546927c6c23e994bd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7003: 1ea9ec5e7295fbc1cb784be4692971fd342bea53 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_109475v1: 31426dd8e9677d64141dcf5546927c6c23e994bd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-bf5c9678c18d drm/i915: debugfs entry to control ignore long hpd flag
-bfda5f24264e drm/i915/display: ignore long HPDs based on a flag
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/index.html
-
---===============0837525665435363982==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Provision to ignore long HPDs in CI systems</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109475/">https://patchwork.freedesktop.org/series/109475/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12225 -&gt; Patchwork_109475v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/index.html</p>
-<h2>Participating hosts (46 -&gt; 42)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-hsw-4770 fi-hsw-4200u bat-jsl-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_109475v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-dg1-5/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>{bat-atsm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-atsm-1/igt@gem_huc_copy@huc-copy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7029">i915#7029</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-atsm-1/igt@gem_huc_copy@huc-copy.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>{bat-atsm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-atsm-1/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7031">i915#7031</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-atsm-1/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-dg1-5/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12225/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6559">i915#6559</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109475v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12225 -&gt; Patchwork_109475v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12225: 31426dd8e9677d64141dcf5546927c6c23e994bd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7003: 1ea9ec5e7295fbc1cb784be4692971fd342bea53 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_109475v1: 31426dd8e9677d64141dcf5546927c6c23e994bd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>bf5c9678c18d drm/i915: debugfs entry to control ignore long hpd flag<br />
-bfda5f24264e drm/i915/display: ignore long HPDs based on a flag</p>
-
-</body>
-</html>
-
---===============0837525665435363982==--
