@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41AEC5F7F7D
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 23:11:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B28415F7F7F
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 23:11:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74B1F10E286;
-	Fri,  7 Oct 2022 21:11:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4A0810E292;
+	Fri,  7 Oct 2022 21:11:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C37210E231
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Oct 2022 21:11:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7314D10E231
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Oct 2022 21:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665177072; x=1696713072;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=O4yJVfZOYsIj2zoF1+4G4JIdLEBMuez/MfqNalwxpeM=;
- b=F9LXPauaLr5Doi5V8T4OvuKDHjxBT8nqZBE+8FCoWrYZ5Zv5X/5tEicN
- iv6WeyVLPEDNkzWgzvOALtWaTrwgc+sJgI+7zNQcSfMFm+M1GHRYwN2Wf
- IqH/uzii3hlkwwm94ADbR8/fCHeZ1VlSTIO1tqrtQ/0lRFHo+Hxh2HNPU
- 8DMjAOPJ+w/x4p2IHVtDJ5MXjpEGhBQYrpsDhvGSwDqcyyTsZ6XT1ttvg
- Eq56vBQy9Nk12NXEeRRf77lqGhx+yikha1fuel4KIHLi/9znpgftkJZvd
- GMTEr79cLikgHoxMi7hvQkZK2Owt09Wq/FysQly3j7pwKB+2nbslp3/c6 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10493"; a="302560505"
-X-IronPort-AV: E=Sophos;i="5.95,167,1661842800"; d="scan'208";a="302560505"
+ t=1665177074; x=1696713074;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=ciFRDXJM0HPr+PgKjjwl7N4ikEHpTIbYZSB0UVmKOWo=;
+ b=GvgWyEfJt0Lgi4F6V83OnDeosav5v7DYIwyZdfSi7QCP7xHHanFMw3xg
+ Ry8mEp/NEe9lKS3dqjynY41QimWe9/Bo0W5w8s82YlLo2PYq1xRCc3fKk
+ T1X6lQPBK6vQI6ZAy5L56Yb4nCUh+pESgit+XRLEV2Ra5Y+lV9X9FROsa
+ xW0A1da1xsn2ZN9XalDmX2U+2bUjoVzRTo/PvpGZsSkaHS0iGA7d8Au6y
+ 8nR0ac3DLG1fWPDFrahUF2N7DTCYmUptCqoPvtU+81t/q9JgRnWEYfkPz
+ 779QRT2NrPlTZtJLhtIOg0iG8E6pmGLRJlIxzVJh9CCH8RNgnp2gAdxWz A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10493"; a="302560520"
+X-IronPort-AV: E=Sophos;i="5.95,167,1661842800"; d="scan'208";a="302560520"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2022 14:11:11 -0700
+ 07 Oct 2022 14:11:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10493"; a="688050589"
-X-IronPort-AV: E=Sophos;i="5.95,167,1661842800"; d="scan'208";a="688050589"
+X-IronPort-AV: E=McAfee;i="6500,9779,10493"; a="688050602"
+X-IronPort-AV: E=Sophos;i="5.95,167,1661842800"; d="scan'208";a="688050602"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga008.fm.intel.com with SMTP; 07 Oct 2022 14:11:09 -0700
+ by fmsmga008.fm.intel.com with SMTP; 07 Oct 2022 14:11:12 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 08 Oct 2022 00:11:08 +0300
+ Sat, 08 Oct 2022 00:11:11 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat,  8 Oct 2022 00:11:07 +0300
-Message-Id: <20221007211108.3883-1-ville.syrjala@linux.intel.com>
+Date: Sat,  8 Oct 2022 00:11:08 +0300
+Message-Id: <20221007211108.3883-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221007211108.3883-1-ville.syrjala@linux.intel.com>
+References: <20221007211108.3883-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Do the DRIVER_ATOMIC feature
- disable later
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Enable atomic by default on
+ ctg/elk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,53 +65,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently we do the DRIVER_ATOMIC disable as almost the
-first thing during pci probe. That involves the use of
-DISPLAY_VER() which is perhaps a bit sketchy now that we
-may need to read that out from the hardware itself.
-Looks like we do populate a default value for it anyway
-so the current does at least still work.
+The watermark code for ctg/elk has been atomic ready for a long time
+so let's just flip the switch now that some of the last CxSR issues
+have been sorted out (which granted was a problem for vlv/chv as well
+despite them already having atomic enabled by default).
 
-But let's make this safer anyway and move the code
-into intel_device_info_runtime_init() where we also
-handle the same thing for the !HAS_DISPLAY case.
+v2: Rebase
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c       | 4 ----
- drivers/gpu/drm/i915/intel_device_info.c | 4 ++++
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/intel_device_info.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index fb3826dabe8b..cebe347f424c 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -894,10 +894,6 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (IS_ERR(i915))
- 		return PTR_ERR(i915);
- 
--	/* Disable nuclear pageflip by default on pre-ILK */
--	if (!i915->params.nuclear_pageflip && DISPLAY_VER(i915) < 5)
--		i915->drm.driver_features &= ~DRIVER_ATOMIC;
--
- 	ret = pci_enable_device(pdev);
- 	if (ret)
- 		goto out_fini;
 diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 908ec241fe71..b691b7c8c254 100644
+index b691b7c8c254..090097bb3c0a 100644
 --- a/drivers/gpu/drm/i915/intel_device_info.c
 +++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -507,6 +507,10 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
- 		runtime->has_dmc = false;
+@@ -508,8 +508,9 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
  		runtime->has_dsc = false;
  	}
-+
-+	/* Disable nuclear pageflip by default on pre-ILK */
-+	if (!dev_priv->params.nuclear_pageflip && DISPLAY_VER(dev_priv) < 5)
-+		dev_priv->drm.driver_features &= ~DRIVER_ATOMIC;
+ 
+-	/* Disable nuclear pageflip by default on pre-ILK */
+-	if (!dev_priv->params.nuclear_pageflip && DISPLAY_VER(dev_priv) < 5)
++	/* Disable nuclear pageflip by default on pre-g4x */
++	if (!dev_priv->params.nuclear_pageflip &&
++	    DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv))
+ 		dev_priv->drm.driver_features &= ~DRIVER_ATOMIC;
  }
  
- void intel_driver_caps_print(const struct intel_driver_caps *caps,
 -- 
 2.35.1
 
