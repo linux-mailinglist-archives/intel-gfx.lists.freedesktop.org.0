@@ -1,49 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1143F5F7E3E
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 21:42:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15ED45F7E49
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 21:48:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA80610E0C9;
-	Fri,  7 Oct 2022 19:42:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24DB610E0C9;
+	Fri,  7 Oct 2022 19:47:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59F4E10E0CC
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Oct 2022 19:42:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665171727; x=1696707727;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HEw3Y5d0pv5Z2S6nirqPzKRVdLMjWXg3WSYNQcwjnc4=;
- b=EiYZkfijDO0eta2DEHwDP0OIxVyYXaR7ax6ZLgu0N1mbs0pL9b8vH1wW
- C4Zu4ifiRG3FVkjz910mUOidzs4VUbRLZOGKPkbNBHIxbr/ngXQ/hhq8i
- o8VelSrmfGaL3c3JgcioxkIgwgMeCSxxmPk5H6hbwDcmvlg37CDSgO+id
- GGGC09ieCCLJkXgDX4yq3PV1DgvppA8ZOJtnghOJS6oi6+TIbg6mNbsN0
- ZrFJ0B3EauUQ1FsqYOymdYmvYH+ir0lxuX2l1O9+6mT99S1ugHC/NIAsE
- wKHvagNfUMz1fCOn05+ergT4jLldg5v3YW3aw3Po0sb2L/hsK3BTG2ui2 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10493"; a="287046148"
-X-IronPort-AV: E=Sophos;i="5.95,167,1661842800"; d="scan'208";a="287046148"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2022 12:42:06 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10493"; a="620362355"
-X-IronPort-AV: E=Sophos;i="5.95,167,1661842800"; d="scan'208";a="620362355"
-Received: from rsdua-mobl.amr.corp.intel.com (HELO anushasr-mobl7.intel.com)
- ([10.209.88.50])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2022 12:42:06 -0700
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 Oct 2022 12:42:03 -0700
-Message-Id: <20221007194203.154772-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
+ [IPv6:2a00:1450:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAE4810E0C9;
+ Fri,  7 Oct 2022 19:47:48 +0000 (UTC)
+Received: by mail-wm1-x335.google.com with SMTP id o5so3489136wms.1;
+ Fri, 07 Oct 2022 12:47:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=aQIAtfxw9qFz9Hl/XRNhdWvv/WP4PsamsNA94vPOScw=;
+ b=CWEz1G2S7PpTw3YqmzToiMwiNbuD1Drf7WmIgIG8V7JJvKYsk/ZIOpnPDfjkqNtj4u
+ x30Wo/rBxvwnjxsrYw4VshH3VQRaJNJBS9dwf2gCSam8zVwT0x57jLY0PkzPhtjRvgru
+ yS4DFP4pSMkpeCuO9D5YZWKbdxEPxQ7p8LzZEf5/CVfFcZeDkP+bz6t9Ne7SGq+his84
+ FbyRlu5tBAMBVqeBr2ppFUJmG+9yQMlSq0OJ8QiwrN6HLr5Q55oU0RnQFjnA7qLh7PMq
+ udmzxQlqNKIaMlrC1eUYEpZsqX8u/rhlv+eTU/IyYY9xZmwr1rYWaF7ZqOk8eSiOY4lC
+ qaXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=aQIAtfxw9qFz9Hl/XRNhdWvv/WP4PsamsNA94vPOScw=;
+ b=xEab4Wz+XiNYFsbgrYylB41sCpNZaQItM1Ct5j8g3FjbI2fz3owSVjyBcICAusMgJH
+ jVb7wt8nLbHKiMHGARTtj2Vdd/zCr4UHgNeekWLltUcuTiiF4dZYuTRQ3tgn/NaoiYdZ
+ BdioGgvNAFKPGT7fkAAoX+y8Z8VDPSUd/uct3saRkIpE4HIe/2z5KWEI5ufGVQ/G8ScT
+ JliI7nHO8yA3GCk71Ldg2vE+QsvbFWSVxXwqlVrDZ6i4x7XC7JPyrBmvEz/tFafV+5wu
+ 1YM+Jqs82k7ps17+xVQjT12dn9G/UmAZImNw9u2jHeKjokGuAkL8+reOyU3aTn4djCh+
+ VW/w==
+X-Gm-Message-State: ACrzQf1Nb54qvRaiE5s7voHJXhwTmpjyyMhnE9XAu93ITTOXHdfq1oL0
+ 7WoUKtL1HGHJCndRkPr2U44=
+X-Google-Smtp-Source: AMsMyM7/YTveBhPU+ZlmzDgp++oNS+vvRqhX5gWak6BuDVO4QseTU9T6OaWBOMN9HuEbtuNn71dvDw==
+X-Received: by 2002:a05:600c:4ed3:b0:3b4:ade9:ecf0 with SMTP id
+ g19-20020a05600c4ed300b003b4ade9ecf0mr11769784wmq.46.1665172066974; 
+ Fri, 07 Oct 2022 12:47:46 -0700 (PDT)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ e17-20020adfdbd1000000b0022ae59d472esm2705304wrj.112.2022.10.07.12.47.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 07 Oct 2022 12:47:46 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Fri,  7 Oct 2022 20:47:45 +0100
+Message-Id: <20221007194745.2749277-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Add DC5 counter and DMC
- debugfs entries for MTL
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: remove redundant assignments to
+ variable ret
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,82 +75,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MTL and dgfx use the same DC5 counter.
+The variable ret is being assigned with a value that is never read
+both before and after a while-loop. The variable is being re-assigned
+inside the while-loop and afterwards on the call to the function
+i915_gem_object_lock_interruptible. Remove the redundants assignments.
 
-While at it, this patch also adds the corresponding
-debugfs entries. Some cleanup wrt dc3co register
-which makes the code more readable.
+Cleans up clang scan-build warnings:
 
-Driver loads all firmware that it finds in the firmware
-binary but platform doesn't *need* all of them. Cleaning the
-previous debugs entries to reflect which firmware is needed
-and if the needed firmware is loaded or not.
+warning: Although the value stored to 'ret' is used in the
+enclosing expression, the value is never actually read
+from 'ret' [deadcode.DeadStores]
 
-MTL needs both Pipe A and Pipe B DMC to be loaded
-along with Main DMC.
+warning: Value stored to 'ret' is never read [deadcode.DeadStores]
 
-BSpec: 49788
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 22 ++++++++++------------
- 1 file changed, 10 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index e52ecc0738a6..081a4d0083b1 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1065,12 +1065,13 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 	seq_printf(m, "fw loaded: %s\n",
- 		   str_yes_no(intel_dmc_has_payload(i915)));
- 	seq_printf(m, "path: %s\n", dmc->fw_path);
--	seq_printf(m, "Pipe A fw support: %s\n",
-+	seq_printf(m, "Pipe A fw needed: %s\n",
- 		   str_yes_no(GRAPHICS_VER(i915) >= 12));
- 	seq_printf(m, "Pipe A fw loaded: %s\n",
- 		   str_yes_no(dmc->dmc_info[DMC_FW_PIPEA].payload));
--	seq_printf(m, "Pipe B fw support: %s\n",
--		   str_yes_no(IS_ALDERLAKE_P(i915)));
-+	seq_printf(m, "Pipe B fw needed: %s\n",
-+		   str_yes_no(IS_ALDERLAKE_P(i915) ||
-+			      DISPLAY_VER(i915) >= 14));
- 	seq_printf(m, "Pipe B fw loaded: %s\n",
- 		   str_yes_no(dmc->dmc_info[DMC_FW_PIPEB].payload));
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+index d4398948f016..b7e24476a0fd 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+@@ -292,7 +292,7 @@ int i915_gem_object_userptr_submit_init(struct drm_i915_gem_object *obj)
+ 	if (!i915_gem_object_is_readonly(obj))
+ 		gup_flags |= FOLL_WRITE;
  
-@@ -1081,22 +1082,19 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 		   DMC_VERSION_MINOR(dmc->version));
+-	pinned = ret = 0;
++	pinned = 0;
+ 	while (pinned < num_pages) {
+ 		ret = pin_user_pages_fast(obj->userptr.ptr + pinned * PAGE_SIZE,
+ 					  num_pages - pinned, gup_flags,
+@@ -302,7 +302,6 @@ int i915_gem_object_userptr_submit_init(struct drm_i915_gem_object *obj)
  
- 	if (DISPLAY_VER(i915) >= 12) {
--		if (IS_DGFX(i915)) {
-+		i915_reg_t dc3co_reg;
-+
-+		if (IS_DGFX(i915) || DISPLAY_VER(i915) >= 14) {
-+			dc3co_reg = DG1_DMC_DEBUG3;
- 			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
- 		} else {
-+			dc3co_reg = TGL_DMC_DEBUG3;
- 			dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
- 			dc6_reg = TGL_DMC_DEBUG_DC6_COUNT;
- 		}
+ 		pinned += ret;
+ 	}
+-	ret = 0;
  
--		/*
--		 * NOTE: DMC_DEBUG3 is a general purpose reg.
--		 * According to B.Specs:49196 DMC f/w reuses DC5/6 counter
--		 * reg for DC3CO debugging and validation,
--		 * but TGL DMC f/w is using DMC_DEBUG3 reg for DC3CO counter.
--		 */
- 		seq_printf(m, "DC3CO count: %d\n",
--			   intel_de_read(i915, IS_DGFX(i915) ?
--					 DG1_DMC_DEBUG3 : TGL_DMC_DEBUG3));
-+			   intel_de_read(i915, dc3co_reg));
- 	} else {
- 		dc5_reg = IS_BROXTON(i915) ? BXT_DMC_DC3_DC5_COUNT :
- 			SKL_DMC_DC3_DC5_COUNT;
+ 	ret = i915_gem_object_lock_interruptible(obj, NULL);
+ 	if (ret)
 -- 
-2.25.1
+2.37.3
 
