@@ -1,53 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15ED45F7E49
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 21:48:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0D985F7E59
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 21:53:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24DB610E0C9;
-	Fri,  7 Oct 2022 19:47:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C19A10E125;
+	Fri,  7 Oct 2022 19:53:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
- [IPv6:2a00:1450:4864:20::335])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAE4810E0C9;
- Fri,  7 Oct 2022 19:47:48 +0000 (UTC)
-Received: by mail-wm1-x335.google.com with SMTP id o5so3489136wms.1;
- Fri, 07 Oct 2022 12:47:48 -0700 (PDT)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EB4210E125;
+ Fri,  7 Oct 2022 19:53:48 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id
+ p26-20020a7bcc9a000000b003c384e59047so1184094wma.4; 
+ Fri, 07 Oct 2022 12:53:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=aQIAtfxw9qFz9Hl/XRNhdWvv/WP4PsamsNA94vPOScw=;
- b=CWEz1G2S7PpTw3YqmzToiMwiNbuD1Drf7WmIgIG8V7JJvKYsk/ZIOpnPDfjkqNtj4u
- x30Wo/rBxvwnjxsrYw4VshH3VQRaJNJBS9dwf2gCSam8zVwT0x57jLY0PkzPhtjRvgru
- yS4DFP4pSMkpeCuO9D5YZWKbdxEPxQ7p8LzZEf5/CVfFcZeDkP+bz6t9Ne7SGq+his84
- FbyRlu5tBAMBVqeBr2ppFUJmG+9yQMlSq0OJ8QiwrN6HLr5Q55oU0RnQFjnA7qLh7PMq
- udmzxQlqNKIaMlrC1eUYEpZsqX8u/rhlv+eTU/IyYY9xZmwr1rYWaF7ZqOk8eSiOY4lC
- qaXg==
+ bh=z8rAF2O4yeCpXpnecitKEaHx4FvdtHm+sRpB2Z22bUo=;
+ b=StHGyKvomVuKHeS4JcqqnrXu6vz7Gl8mGv7UkKkDtOsQAALjpB0Ib6Yti3tNPmwr2l
+ YQahqqornyZQT6Vw7l+X8PPmRq963saK0sLOtLxPiw1rQI8emHl3NbCgOrgoXsPuwzqB
+ 5QeaDh5I8qzl0sm7IdXmkE5H7h4JOUDfo7WNYGHk1Tb/PSyUfBJIGItknYanTWduWI8s
+ sHQbATmjMCy/CU5B9czznffV52+0Pk00Eu3Bq99TYLdgfY2B2Qyjrb4BnmNaZWKB6tp9
+ 0L2+VYb5LdXe+AeGgLuOqOWfm5mv/NZkgWb4KLJ7sdAR2m9fY/XRztwc5/8XuA7cBb+K
+ T/MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=aQIAtfxw9qFz9Hl/XRNhdWvv/WP4PsamsNA94vPOScw=;
- b=xEab4Wz+XiNYFsbgrYylB41sCpNZaQItM1Ct5j8g3FjbI2fz3owSVjyBcICAusMgJH
- jVb7wt8nLbHKiMHGARTtj2Vdd/zCr4UHgNeekWLltUcuTiiF4dZYuTRQ3tgn/NaoiYdZ
- BdioGgvNAFKPGT7fkAAoX+y8Z8VDPSUd/uct3saRkIpE4HIe/2z5KWEI5ufGVQ/G8ScT
- JliI7nHO8yA3GCk71Ldg2vE+QsvbFWSVxXwqlVrDZ6i4x7XC7JPyrBmvEz/tFafV+5wu
- 1YM+Jqs82k7ps17+xVQjT12dn9G/UmAZImNw9u2jHeKjokGuAkL8+reOyU3aTn4djCh+
- VW/w==
-X-Gm-Message-State: ACrzQf1Nb54qvRaiE5s7voHJXhwTmpjyyMhnE9XAu93ITTOXHdfq1oL0
- 7WoUKtL1HGHJCndRkPr2U44=
-X-Google-Smtp-Source: AMsMyM7/YTveBhPU+ZlmzDgp++oNS+vvRqhX5gWak6BuDVO4QseTU9T6OaWBOMN9HuEbtuNn71dvDw==
-X-Received: by 2002:a05:600c:4ed3:b0:3b4:ade9:ecf0 with SMTP id
- g19-20020a05600c4ed300b003b4ade9ecf0mr11769784wmq.46.1665172066974; 
- Fri, 07 Oct 2022 12:47:46 -0700 (PDT)
+ bh=z8rAF2O4yeCpXpnecitKEaHx4FvdtHm+sRpB2Z22bUo=;
+ b=NUVYl4Y0v6ubaf+bDl5nv2ktrMKuP/ZXxWxoDZRA3ertla/GvMkddLLVP8LKMOPgqb
+ gFbI4uP3D8gWggQGQWSjEETrgPq8mIiUblJLE7O19+ZA0Z3cgQ7NH9O89SSjfLA6ZUbN
+ SEuxAP1cKFygzkL7eX12h/0EYT4dnJYEJ6+HwZk6nhNJRBaHi+4WC7EdAYFR3oHbD4jU
+ 7mYFjHNGGatPAFGEYoHWa7ojHRk9uecvRlK6ozvY6qv5ortn5bIR73xBVPqtCriq8GxV
+ TuingMhdSoCsl03uO5Yy88o6I8NaksoMLWPzeAmCCrN8w+oMiw8/y5uCeNNYU1iEOO+0
+ jxFw==
+X-Gm-Message-State: ACrzQf3mjS/NNOdq0fyRwrIxiNd99NDLTiyr7UcRulzDByyfgR2xXY6R
+ V5xxKetBNpKjvTSlJ2Tepp4=
+X-Google-Smtp-Source: AMsMyM7alIwgvl0Zu7M5vCk5X5x6zVQWzj6M6XZlvvnQJWIo43xPeL2gkcOIO8gVIElZyk8Sbqx4/g==
+X-Received: by 2002:a05:600c:3d05:b0:3b4:9a42:10d0 with SMTP id
+ bh5-20020a05600c3d0500b003b49a4210d0mr4488015wmb.135.1665172426779; 
+ Fri, 07 Oct 2022 12:53:46 -0700 (PDT)
 Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
  [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
- e17-20020adfdbd1000000b0022ae59d472esm2705304wrj.112.2022.10.07.12.47.45
+ l15-20020adfe58f000000b0022ac119fcc5sm2687448wrm.60.2022.10.07.12.53.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Oct 2022 12:47:46 -0700 (PDT)
+ Fri, 07 Oct 2022 12:53:46 -0700 (PDT)
 From: Colin Ian King <colin.i.king@gmail.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -55,14 +56,13 @@ To: Jani Nikula <jani.nikula@linux.intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Date: Fri,  7 Oct 2022 20:47:45 +0100
-Message-Id: <20221007194745.2749277-1-colin.i.king@gmail.com>
+Date: Fri,  7 Oct 2022 20:53:45 +0100
+Message-Id: <20221007195345.2749911-1-colin.i.king@gmail.com>
 X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: remove redundant assignments to
- variable ret
+Subject: [Intel-gfx] [PATCH] drm/i915/perf: remove redundant variable 'taken'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,45 +79,57 @@ Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The variable ret is being assigned with a value that is never read
-both before and after a while-loop. The variable is being re-assigned
-inside the while-loop and afterwards on the call to the function
-i915_gem_object_lock_interruptible. Remove the redundants assignments.
+The assignment to variable taken is redundant and so it can be
+removed as well as the variable too.
 
-Cleans up clang scan-build warnings:
-
-warning: Although the value stored to 'ret' is used in the
-enclosing expression, the value is never actually read
-from 'ret' [deadcode.DeadStores]
-
-warning: Value stored to 'ret' is never read [deadcode.DeadStores]
+Cleans up clang-scan build warnings:
+warning: Although the value stored to 'taken' is used in the enclosing
+expression, the value is never actually read from 'taken'
+[deadcode.DeadStores]
 
 Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_perf.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index d4398948f016..b7e24476a0fd 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -292,7 +292,7 @@ int i915_gem_object_userptr_submit_init(struct drm_i915_gem_object *obj)
- 	if (!i915_gem_object_is_readonly(obj))
- 		gup_flags |= FOLL_WRITE;
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 0defbb43ceea..15816df916c7 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -656,7 +656,6 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
+ 	size_t start_offset = *offset;
+ 	unsigned long flags;
+ 	u32 head, tail;
+-	u32 taken;
+ 	int ret = 0;
  
--	pinned = ret = 0;
-+	pinned = 0;
- 	while (pinned < num_pages) {
- 		ret = pin_user_pages_fast(obj->userptr.ptr + pinned * PAGE_SIZE,
- 					  num_pages - pinned, gup_flags,
-@@ -302,7 +302,6 @@ int i915_gem_object_userptr_submit_init(struct drm_i915_gem_object *obj)
+ 	if (drm_WARN_ON(&uncore->i915->drm, !stream->enabled))
+@@ -692,7 +691,7 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
  
- 		pinned += ret;
- 	}
--	ret = 0;
  
- 	ret = i915_gem_object_lock_interruptible(obj, NULL);
- 	if (ret)
+ 	for (/* none */;
+-	     (taken = OA_TAKEN(tail, head));
++	     OA_TAKEN(tail, head);
+ 	     head = (head + report_size) & mask) {
+ 		u8 *report = oa_buf_base + head;
+ 		u32 *report32 = (void *)report;
+@@ -950,7 +949,6 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
+ 	size_t start_offset = *offset;
+ 	unsigned long flags;
+ 	u32 head, tail;
+-	u32 taken;
+ 	int ret = 0;
+ 
+ 	if (drm_WARN_ON(&uncore->i915->drm, !stream->enabled))
+@@ -984,7 +982,7 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
+ 
+ 
+ 	for (/* none */;
+-	     (taken = OA_TAKEN(tail, head));
++	     OA_TAKEN(tail, head);
+ 	     head = (head + report_size) & mask) {
+ 		u8 *report = oa_buf_base + head;
+ 		u32 *report32 = (void *)report;
 -- 
 2.37.3
 
