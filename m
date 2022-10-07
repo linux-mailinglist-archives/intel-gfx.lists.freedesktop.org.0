@@ -1,52 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 523425F7417
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 08:03:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB25A5F7428
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Oct 2022 08:21:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E4DD10E916;
-	Fri,  7 Oct 2022 06:03:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D56910E571;
+	Fri,  7 Oct 2022 06:21:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C55810E916
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Oct 2022 06:03:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82A0C10E571
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Oct 2022 06:21:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665122609; x=1696658609;
+ t=1665123673; x=1696659673;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=8TyRTdpqgMRmy+AHnFE0ub7elXFM9Tzff/gFqCSXIzM=;
- b=ab9tLkmReprH3ttBxBpJYp+LzhmklLB7M4pr0fkUNInEv5nUfWT3BeY6
- nTeyUleruvAzsgjqCtURrrWUb19bJ/Uw5+aOT6yipvCopqjwXaPg62hrX
- O2ZwYrvaY8pAYeFfDtCjRUb1KK8PX3ZPFATd4h6eQXmgZn/ArkYR0itrh
- CnR534IkWHkxGdnxoXd+xmZu8hkb4ciBGQ6bYL74F49tbHFWogCQgmY3S
- JaZMihj1TTfitE3s1jHhKwvbDJHNIZXZQ/ihZ4vUGHSB8MQAzcK/UK9ce
- KfNojUELpbLxnSm2ofcKCjkQFUvgbRQMxs6Ec3BQd8Z8uEmSXLddyr4LV w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="367786342"
-X-IronPort-AV: E=Sophos;i="5.95,166,1661842800"; d="scan'208";a="367786342"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ bh=UByQK4UP1TA+4t57ByrP+77ly4lTRjFkQcoMAsHEG7U=;
+ b=hKUS08JCh+Lzl8jyTCNxy5RUUSPjIXLr+htaXf4/XLrFBogVuONvI4BS
+ aNVWYjVigEezXjOISQ+kjVDE/7AUwHz7PWr8uikOnnRmyi7+mEgbO3iRJ
+ HE+bjZ0OvQBzTnPqf9+AK1g2fUMsHBpwXJJ8+YQNavbFHl3ppChdFJBoA
+ E4Eq0V8dkqgC0FbmKuNxY8ItYZUk2ATuUQX9j6ImZhQ6c777H7wXB+IwV
+ fSPbe1ulOAJt0CVhyTNezWbMD4zCy7n5Y8rR3zl+WWyB48SadQugXomVm
+ UGfs5A83vPW4uVTXAH+4Q4ImHBFy8xByJM03y8B/MwbjGx+KF/+3p15My w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="367789572"
+X-IronPort-AV: E=Sophos;i="5.95,166,1661842800"; d="scan'208";a="367789572"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2022 23:03:28 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="693656874"
-X-IronPort-AV: E=Sophos;i="5.95,166,1661842800"; d="scan'208";a="693656874"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2022 23:03:27 -0700
-Date: Fri, 7 Oct 2022 09:03:24 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <Yz/BLO2PQklPXfRX@intel.com>
+ 06 Oct 2022 23:21:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10492"; a="620125501"
+X-IronPort-AV: E=Sophos;i="5.95,166,1661842800"; d="scan'208";a="620125501"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga007.jf.intel.com with SMTP; 06 Oct 2022 23:21:10 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 07 Oct 2022 09:21:09 +0300
+Date: Fri, 7 Oct 2022 09:21:09 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <Yz/FVcnoGp3ELyeK@intel.com>
 References: <20220622155452.32587-1-ville.syrjala@linux.intel.com>
- <20220622155452.32587-9-ville.syrjala@linux.intel.com>
+ <20220622155452.32587-8-ville.syrjala@linux.intel.com>
+ <Yz/Avhm/L5k8AiFP@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220622155452.32587-9-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 8/9] drm/i915: Write watermarks for
- disabled pipes on gmch platforms
+In-Reply-To: <Yz/Avhm/L5k8AiFP@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 7/9] drm/i915: Fix pipe gamma
+ enable/disable vs. CxSR on gmch platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,41 +67,52 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 22, 2022 at 06:54:51PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Fri, Oct 07, 2022 at 09:01:34AM +0300, Lisovskiy, Stanislav wrote:
+> On Wed, Jun 22, 2022 at 06:54:50PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Like most other plane control register bits, the pipe gamma
+> > enable bit is also blocked by CxSR. So make sure we kick the
+> > machine out of CxSR before trying to change that bit.
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> We've excluded gmch platforms from writing the final watermarks
-> for any disabled pipe. IIRC the reason was perhaps some lingering
-> issue with the watermark merging across the pipes. But I can't
-> really see any reason for this anymore, so let's unify this behaviour.
-> The main benefit being more consistency in register dumps when
-> we don't have stale watermarks hanging around in the registers.
-> Functionally there should be no difference as the hardware just
-> ignore all of it when the pipe is disabled.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Should that new i9xx_must_disable_cxsr function be extended
+> to be used here as well?
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+That stuff happens far too early.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 903226e2a626..2c5dadc62c55 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7192,9 +7192,7 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
->  	intel_fbc_disable(crtc);
->  	intel_disable_shared_dpll(old_crtc_state);
->  
-> -	/* FIXME unify this for all platforms */
-> -	if (!new_crtc_state->hw.active &&
-> -	    !HAS_GMCH(dev_priv))
-> +	if (!new_crtc_state->hw.active)
->  		intel_initial_watermarks(state, crtc);
->  }
->  
-> -- 
-> 2.35.1
+> Besides that
 > 
+> Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+Thanks.
+
+> 
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_color.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> > index a27ce874a9e8..bc01a7d3b0d3 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > @@ -1305,6 +1305,10 @@ intel_color_add_affected_planes(struct intel_crtc_state *new_crtc_state)
+> >  			return PTR_ERR(plane_state);
+> >  
+> >  		new_crtc_state->update_planes |= BIT(plane->id);
+> > +
+> > +		/* plane control register changes blocked by CxSR */
+> > +		if (HAS_GMCH(dev_priv))
+> > +			new_crtc_state->disable_cxsr = true;
+> >  	}
+> >  
+> >  	return 0;
+> > -- 
+> > 2.35.1
+> > 
+
+-- 
+Ville Syrjälä
+Intel
