@@ -1,44 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 718455F8524
-	for <lists+intel-gfx@lfdr.de>; Sat,  8 Oct 2022 13:55:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A6E45F888A
+	for <lists+intel-gfx@lfdr.de>; Sun,  9 Oct 2022 02:09:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE5210E21C;
-	Sat,  8 Oct 2022 11:55:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37E6110E457;
+	Sun,  9 Oct 2022 00:09:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.smtpout.orange.fr (smtp06.smtpout.orange.fr
- [80.12.242.128])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28A6C10E21E
- for <intel-gfx@lists.freedesktop.org>; Sat,  8 Oct 2022 11:55:33 +0000 (UTC)
-Received: from [192.168.1.18] ([86.243.100.34]) by smtp.orange.fr with ESMTPA
- id h8QOovA5ITyouh8QOoKFYq; Sat, 08 Oct 2022 13:55:27 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 08 Oct 2022 13:55:27 +0200
-X-ME-IP: 86.243.100.34
-Message-ID: <6a57b91b-8614-6596-ae0f-acce6a31d161@wanadoo.fr>
-Date: Sat, 8 Oct 2022 13:55:24 +0200
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2AB810E26D;
+ Sun,  9 Oct 2022 00:09:04 +0000 (UTC)
+Received: from [192.168.2.145] (109-252-119-114.nat.spd-mgts.ru
+ [109.252.119.114])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id AD61E6602303;
+ Sun,  9 Oct 2022 01:08:59 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1665274142;
+ bh=tRu/AWDhf1iOYLNP6D5ccZEJMnF9oPGtd04+Gk3jRuA=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=fH3GVJPP0Agx7FoWitfSeocWjORT1LvnTSnPwSqsxinARwwXtUpOaikNENp0bqUrC
+ PEWSWFEjMZP7lDmv6EU2Grv25zWS7RZ/h7CyD+7zKtjl4QAfnnCEScMPlrHhseb+En
+ Gz6vFJUxlSWNVwbR41RbruaqwCZ47lCdToK+BcEO9GuR8so0PP/P07QqERBUWyAJVb
+ MMo4+FZKLISPnrknOSkksa6Ta/zh2p7kUJ5bKem5cyumvth/JLc9RmmGae3HPvGZFj
+ 1usDID4w07q/Pi3FDQyJlsU/m9taGaBUzV9f+UEhS80kUisNvUwJDrtVlek5svMZjQ
+ SedcaWbpdnMdw==
+Message-ID: <e3ba146d-8153-add5-2cf4-02fe6519abee@collabora.com>
+Date: Sun, 9 Oct 2022 03:08:56 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: fr
-To: Colin Ian King <colin.i.king@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20221007195345.2749911-1-colin.i.king@gmail.com>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20221007195345.2749911-1-colin.i.king@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>
+References: <20220928191600.5874-1-dmitry.osipenko@collabora.com>
+ <20220928191600.5874-11-dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20220928191600.5874-11-dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: remove redundant variable
- 'taken'
+Subject: Re: [Intel-gfx] [PATCH v6 10/21] RDMA/umem: Prepare to dynamic
+ dma-buf locking specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,71 +57,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Daniel Almeida <daniel.almeida@collabora.com>,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, Sumit Semwal <sumit.semwal@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-rdma@vger.kernel.org,
+ Russell King <linux@armlinux.org.uk>, Daniel Stone <daniel@fooishbar.org>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>, Chia-I Wu <olvaffe@gmail.com>,
+ linux-media@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Juergen Gross <jgross@suse.com>,
+ David Airlie <airlied@linux.ie>, amd-gfx@lists.freedesktop.org,
+ Tomi Valkeinen <tomba@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ Qiang Yu <yuq825@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Lucas Stach <l.stach@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Le 07/10/2022 à 21:53, Colin Ian King a écrit :
-> The assignment to variable taken is redundant and so it can be
-> removed as well as the variable too.
+On 9/28/22 22:15, Dmitry Osipenko wrote:
+> Prepare InfiniBand drivers to the common dynamic dma-buf locking
+> convention by starting to use the unlocked versions of dma-buf API
+> functions.
 > 
-> Cleans up clang-scan build warnings:
-> warning: Although the value stored to 'taken' is used in the enclosing
-> expression, the value is never actually read from 'taken'
-> [deadcode.DeadStores]
-
-Hi,
-
-#define OA_TAKEN(tail, head)	((tail - head) & (OA_BUFFER_SIZE - 1))
-
-So if the result is not used, maybe calling OA_TAKEN() can be removed as 
-well?
-It looks like a no-op in such a case.
-
-CJ
-
-> 
-> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> Acked-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 > ---
->   drivers/gpu/drm/i915/i915_perf.c | 6 ++----
->   1 file changed, 2 insertions(+), 4 deletions(-)
+>  drivers/infiniband/core/umem_dmabuf.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 0defbb43ceea..15816df916c7 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -656,7 +656,6 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
->   	size_t start_offset = *offset;
->   	unsigned long flags;
->   	u32 head, tail;
-> -	u32 taken;
->   	int ret = 0;
->   
->   	if (drm_WARN_ON(&uncore->i915->drm, !stream->enabled))
-> @@ -692,7 +691,7 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
->   
->   
->   	for (/* none */;
-> -	     (taken = OA_TAKEN(tail, head));
-> +	     OA_TAKEN(tail, head);
->   	     head = (head + report_size) & mask) {
->   		u8 *report = oa_buf_base + head;
->   		u32 *report32 = (void *)report;
-> @@ -950,7 +949,6 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
->   	size_t start_offset = *offset;
->   	unsigned long flags;
->   	u32 head, tail;
-> -	u32 taken;
->   	int ret = 0;
->   
->   	if (drm_WARN_ON(&uncore->i915->drm, !stream->enabled))
-> @@ -984,7 +982,7 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
->   
->   
->   	for (/* none */;
-> -	     (taken = OA_TAKEN(tail, head));
-> +	     OA_TAKEN(tail, head);
->   	     head = (head + report_size) & mask) {
->   		u8 *report = oa_buf_base + head;
->   		u32 *report32 = (void *)report;
+> diff --git a/drivers/infiniband/core/umem_dmabuf.c b/drivers/infiniband/core/umem_dmabuf.c
+> index 04c04e6d24c3..43b26bc12288 100644
+> --- a/drivers/infiniband/core/umem_dmabuf.c
+> +++ b/drivers/infiniband/core/umem_dmabuf.c
+> @@ -26,7 +26,8 @@ int ib_umem_dmabuf_map_pages(struct ib_umem_dmabuf *umem_dmabuf)
+>  	if (umem_dmabuf->sgt)
+>  		goto wait_fence;
+>  
+> -	sgt = dma_buf_map_attachment(umem_dmabuf->attach, DMA_BIDIRECTIONAL);
+> +	sgt = dma_buf_map_attachment_unlocked(umem_dmabuf->attach,
+> +					      DMA_BIDIRECTIONAL);
+>  	if (IS_ERR(sgt))
+>  		return PTR_ERR(sgt);
+>  
+> @@ -102,8 +103,8 @@ void ib_umem_dmabuf_unmap_pages(struct ib_umem_dmabuf *umem_dmabuf)
+>  		umem_dmabuf->last_sg_trim = 0;
+>  	}
+>  
+> -	dma_buf_unmap_attachment(umem_dmabuf->attach, umem_dmabuf->sgt,
+> -				 DMA_BIDIRECTIONAL);
+> +	dma_buf_unmap_attachment_unlocked(umem_dmabuf->attach, umem_dmabuf->sgt,
+> +					  DMA_BIDIRECTIONAL);
+>  
+>  	umem_dmabuf->sgt = NULL;
+>  }
+
+Jason / Leon,
+
+Could you please ack this patch?
+
+-- 
+Best regards,
+Dmitry
 
