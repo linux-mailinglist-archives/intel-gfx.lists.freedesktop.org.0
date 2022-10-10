@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5497A5F9D5D
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 13:14:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AC715F9DF1
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 13:50:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B203D10E0BB;
-	Mon, 10 Oct 2022 11:14:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D72CC10E14D;
+	Mon, 10 Oct 2022 11:50:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7E3F10E053;
- Mon, 10 Oct 2022 11:14:37 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE11D10E14D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Oct 2022 11:50:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665400477; x=1696936477;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=a4GbAi2ibBhYDvVDM8UyPNkQo4RewGYnde2jJSftsI0=;
- b=PD1YVhUXyoBVk57Zxzn9/UfaRQ1vgLaWdzVHW2RfKTNzUa1bYUy1Se9O
- Y9Vfvc5TPj7jy2Efa8ZoBQ2QHAhkNIt0q/5wMiXeNWPX1uh+yG+++goaP
- hcQ7Mdv1c8roZPc/AJiF/+0jXaEu+4ioMfjKAaIGHm7sKyXak9T0dSvq0
- UrFknjjO5EhSsLZHAjBsVF6LV9w2p2xalDcAytMpH/WLjeVoX+zw3P4SI
- l6Gz3M6EhMaq+wzXwzOmtVs5gES0sjFaFqdb6tDprseysiGbj0apjWPEh
- HUYFo0surf2gdoP8EnprbkvTaiwhgtHBEt+4tk117QGL1tqwcpmFY3Q9J Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="305794697"
-X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="305794697"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2022 04:14:36 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="659114081"
-X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="659114081"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.10.35])
- ([10.252.10.35])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2022 04:14:35 -0700
-Message-ID: <cd4ff9de-d369-ed86-2837-b6c55e67bd4f@linux.intel.com>
-Date: Mon, 10 Oct 2022 13:14:33 +0200
+ t=1665402627; x=1696938627;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=rKWUX0SLMqpmv8eeVY6mcNwwEZVMNqIdILT6efGbpIo=;
+ b=Vxy6k15jTAYnqjAQIAGmSGBer/gN3//+N3zmvkQQChNkYBctovh6Q3z7
+ IXTiSif2spBo6QLXGceExPs932ogDf2PX2WxDDJkaBLZ2BG+c5mnZraDr
+ wsIP+bvLkZJQt/G2SSp3r+mNB799MGMnRz1+/FNvjU0gDDlOdzNnZXwkV
+ DNBywbzgO9CulYcsW33agtSdHP1izuelmXUAHymRXZxErWFdGZfMA/Ewc
+ xI3TGJxjX3qeh/W5406OwCsBRlYbPRmIEzLpoH0jJ+Ohr59OmZOTu1MPC
+ vWkqjmvQepN6d5BXgjcQKlLCp4LDS/C0ezCGn5ik8WnMaXUHV5Vty1yxc g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="283931602"
+X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="283931602"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2022 04:50:27 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="577020710"
+X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="577020710"
+Received: from iolejnic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.41.51])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2022 04:50:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221007211108.3883-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221007211108.3883-1-ville.syrjala@linux.intel.com>
+Date: Mon, 10 Oct 2022 14:50:23 +0300
+Message-ID: <87czazzym8.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
-References: <20221010104840.28026-1-matthew.auld@intel.com>
-Content-Language: en-US
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20221010104840.28026-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915/module_load: fix
- resize-bar on DG1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Do the DRIVER_ATOMIC feature
+ disable later
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,39 +60,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/10/2022 12:48 PM, Matthew Auld wrote:
-> DG1, as expected only has a fixed sized bar, so attempting to force the
-> BAR size should fail. Update the test to account for such devices, and
-> perform a skip, instead of failing.
+On Sat, 08 Oct 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/6458
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Currently we do the DRIVER_ATOMIC disable as almost the
+> first thing during pci probe. That involves the use of
+> DISPLAY_VER() which is perhaps a bit sketchy now that we
+> may need to read that out from the hardware itself.
+> Looks like we do populate a default value for it anyway
+> so the current does at least still work.
+>
+> But let's make this safer anyway and move the code
+> into intel_device_info_runtime_init() where we also
+> handle the same thing for the !HAS_DISPLAY case.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Tested-by:  Nirmoy Das <nirmoy.das@intel.com>
-
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->   tests/i915/i915_module_load.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/i915_driver.c       | 4 ----
+>  drivers/gpu/drm/i915/intel_device_info.c | 4 ++++
+>  2 files changed, 4 insertions(+), 4 deletions(-)
 >
-> diff --git a/tests/i915/i915_module_load.c b/tests/i915/i915_module_load.c
-> index 4c72157c..6d74de58 100644
-> --- a/tests/i915/i915_module_load.c
-> +++ b/tests/i915/i915_module_load.c
-> @@ -422,7 +422,7 @@ igt_main
->   
->   		/* Test for lmem_bar_size modparam support */
->   		lmem_bar_size = driver_load_with_lmem_bar_size(MIN_BAR_SIZE, true);
-> -		igt_assert_eq(lmem_bar_size, MIN_BAR_SIZE);
-> +		igt_skip_on_f(lmem_bar_size != MIN_BAR_SIZE, "Device lacks PCI resizeable BAR support.\n");
->   
->   		lmem_bar_size = driver_load_with_lmem_bar_size(0, false);
->   
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
+15_driver.c
+> index fb3826dabe8b..cebe347f424c 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -894,10 +894,6 @@ int i915_driver_probe(struct pci_dev *pdev, const st=
+ruct pci_device_id *ent)
+>  	if (IS_ERR(i915))
+>  		return PTR_ERR(i915);
+>=20=20
+> -	/* Disable nuclear pageflip by default on pre-ILK */
+> -	if (!i915->params.nuclear_pageflip && DISPLAY_VER(i915) < 5)
+> -		i915->drm.driver_features &=3D ~DRIVER_ATOMIC;
+> -
+>  	ret =3D pci_enable_device(pdev);
+>  	if (ret)
+>  		goto out_fini;
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
+915/intel_device_info.c
+> index 908ec241fe71..b691b7c8c254 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -507,6 +507,10 @@ void intel_device_info_runtime_init(struct drm_i915_=
+private *dev_priv)
+>  		runtime->has_dmc =3D false;
+>  		runtime->has_dsc =3D false;
+>  	}
+> +
+> +	/* Disable nuclear pageflip by default on pre-ILK */
+> +	if (!dev_priv->params.nuclear_pageflip && DISPLAY_VER(dev_priv) < 5)
+> +		dev_priv->drm.driver_features &=3D ~DRIVER_ATOMIC;
+>  }
+>=20=20
+>  void intel_driver_caps_print(const struct intel_driver_caps *caps,
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
