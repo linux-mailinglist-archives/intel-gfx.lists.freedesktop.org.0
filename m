@@ -1,62 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9294D5F9ABE
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 10:14:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E0675F9B15
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 10:35:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3232110E6FD;
-	Mon, 10 Oct 2022 08:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 526F810E462;
+	Mon, 10 Oct 2022 08:35:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F9C210E464;
- Mon, 10 Oct 2022 08:14:08 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BD5510E462
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Oct 2022 08:35:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665389648; x=1696925648;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nD+TiFgre8EfP7ineZy7SVnMlN+CCTdmpGNG1FzZ/l8=;
- b=ANrguG0hoaaHVLeFwcC2oqL4LVQOaD6TbuakA99aNI1MJzSt7LmsnW3h
- KqQY+hZTRGfKkk5oD7L2Sz+RWTNYmVLCGYkAqo+ug28MfUGkJkHEEaygP
- oqdyac3curDQ3ayrWGSe+GXB4xm6quAXhwQPXhtS9tLlj4V2Xsb4R9QPB
- 9mmKjG/XYRASnywBB+0suYhNFeiM0a4VNky3AIn/BpeHvVGcaxlDQjiY0
- lDPU4z8QsDgmlyBEiWMIzuQYvcS32F2ZB5vwbBb4Myo2j5SxaTxHX/exi
- X9OdfgaE82O0B2gLcjBJQTADBF6i9Ke9h3MtX1y23C1cCCUe10Lmk9UDM A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="302908689"
-X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="302908689"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2022 01:14:05 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="694544256"
-X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="694544256"
-Received: from liammurp-mobl1.ger.corp.intel.com (HELO [10.213.197.233])
- ([10.213.197.233])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2022 01:14:03 -0700
-Message-ID: <96ba4258-4195-3a6a-e296-291f93a0b8de@linux.intel.com>
-Date: Mon, 10 Oct 2022 09:14:02 +0100
+ t=1665390902; x=1696926902;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GB7AFFmwjmdK/flOTySr8LGAa9tFr8IzhQ6DOhO14d8=;
+ b=XdFuFJPpLSIHTZ3u0f3z6yu9S/DB0xAzAd0wgjpVPzfzu4aHM3+MnR/w
+ ZmiTDyU+SWYMaam1R6jdMVmabNtf2HNoYTNoHjhrfShd3+bIf1AtLBXnd
+ txESfBVsfhhzssrclcIEon7MPPglR878j4xYYnCCVIPH0d2JosDiRT4C2
+ aNukXFFfQXzi6sMj2hpWPcy5XDdW7LNTchqa+brdwwPxbnwzx1isEvS55
+ vkmVB3ORNQxk8YIIp4zt8f8RE+aTdtrfSU9vEG7fkW0Ik1MYVjfUNeSM+
+ bzeqnqQZ9UqO4WkgVsBUmPJKcUFtRfyEY/uiCHBxuvhCV+k+6mSQUib8C A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="291460164"
+X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="291460164"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2022 01:35:01 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="954839175"
+X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="954839175"
+Received: from vgovind2-mobl3.tm.intel.com ([10.237.50.39])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2022 01:35:00 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 10 Oct 2022 11:34:45 +0300
+Message-Id: <20221010083447.139768-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Content-Language: en-US
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Colin Ian King <colin.i.king@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20221007195345.2749911-1-colin.i.king@gmail.com>
- <6a57b91b-8614-6596-ae0f-acce6a31d161@wanadoo.fr>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <6a57b91b-8614-6596-ae0f-acce6a31d161@wanadoo.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: remove redundant variable
- 'taken'
+Subject: [Intel-gfx] [PATCH v2 0/2] Provision to ignore long HPDs in CI
+ systems
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,86 +56,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+As some faulty displays generate long HPDs even while connected to ports
+can cause CI execution issues. Add a provision to ignore such long HPDs
+in such systems with control through debugfs
 
-On 08/10/2022 12:55, Christophe JAILLET wrote:
-> Le 07/10/2022 à 21:53, Colin Ian King a écrit :
->> The assignment to variable taken is redundant and so it can be
->> removed as well as the variable too.
->>
->> Cleans up clang-scan build warnings:
->> warning: Although the value stored to 'taken' is used in the enclosing
->> expression, the value is never actually read from 'taken'
->> [deadcode.DeadStores]
-> 
-> Hi,
-> 
-> #define OA_TAKEN(tail, head)    ((tail - head) & (OA_BUFFER_SIZE - 1))
-> 
-> So if the result is not used, maybe calling OA_TAKEN() can be removed as 
-> well?
-> It looks like a no-op in such a case.
+Vinod Govindapillai (2):
+  drm/i915/display: ignore long HPDs based on a flag
+  drm/i915/display: debugfs entry to control ignore long hpd flag
 
-AFAICS result is used, just the copy/local variable is not.
+ .../gpu/drm/i915/display/intel_display_core.h | 11 ++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c       |  7 ++++++
+ drivers/gpu/drm/i915/display/intel_hotplug.c  | 25 +++++++++++++++++++
+ 3 files changed, 43 insertions(+)
 
-For the patch:
+-- 
+2.34.1
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Thanks for the cleanup, will merge.
-
-Regards,
-
-Tvrtko
-
-
-> 
-> CJ
-> 
->>
->> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
->> ---
->>   drivers/gpu/drm/i915/i915_perf.c | 6 ++----
->>   1 file changed, 2 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_perf.c 
->> b/drivers/gpu/drm/i915/i915_perf.c
->> index 0defbb43ceea..15816df916c7 100644
->> --- a/drivers/gpu/drm/i915/i915_perf.c
->> +++ b/drivers/gpu/drm/i915/i915_perf.c
->> @@ -656,7 +656,6 @@ static int gen8_append_oa_reports(struct 
->> i915_perf_stream *stream,
->>       size_t start_offset = *offset;
->>       unsigned long flags;
->>       u32 head, tail;
->> -    u32 taken;
->>       int ret = 0;
->>       if (drm_WARN_ON(&uncore->i915->drm, !stream->enabled))
->> @@ -692,7 +691,7 @@ static int gen8_append_oa_reports(struct 
->> i915_perf_stream *stream,
->>       for (/* none */;
->> -         (taken = OA_TAKEN(tail, head));
->> +         OA_TAKEN(tail, head);
->>            head = (head + report_size) & mask) {
->>           u8 *report = oa_buf_base + head;
->>           u32 *report32 = (void *)report;
->> @@ -950,7 +949,6 @@ static int gen7_append_oa_reports(struct 
->> i915_perf_stream *stream,
->>       size_t start_offset = *offset;
->>       unsigned long flags;
->>       u32 head, tail;
->> -    u32 taken;
->>       int ret = 0;
->>       if (drm_WARN_ON(&uncore->i915->drm, !stream->enabled))
->> @@ -984,7 +982,7 @@ static int gen7_append_oa_reports(struct 
->> i915_perf_stream *stream,
->>       for (/* none */;
->> -         (taken = OA_TAKEN(tail, head));
->> +         OA_TAKEN(tail, head);
->>            head = (head + report_size) & mask) {
->>           u8 *report = oa_buf_base + head;
->>           u32 *report32 = (void *)report;
-> 
