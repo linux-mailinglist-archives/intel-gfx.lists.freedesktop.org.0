@@ -2,56 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64A4B5F9A4D
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 09:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 757FE5F9A58
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 09:47:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FAC910E45E;
-	Mon, 10 Oct 2022 07:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 103F410E45E;
+	Mon, 10 Oct 2022 07:47:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E401D10E1A1;
- Mon, 10 Oct 2022 07:44:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665387870; x=1696923870;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+xYBzkJJbEswt3Udi7rw2jLreR3Vwbfut7+yRDH0aa4=;
- b=CdCZn7exU3SnmOeflO9kW5I5gYmvZn0XMkEKRu+M7IqRbsC2wqDf5Q11
- isfSVNjZcpwppXXWt7A5kfKLFtDWFGLl6YgmkM0CUhExGiX6ZzcGs1Ymj
- PYfvll/K3io1Bo9f7U1G8ijrsdhg4+ne+2zubFCPkDmTVOoYi4oilEvVO
- 6uNuHXbXj1T5F1K9xlpV1vyoBnKiTpWL4bmLmispvMjgXYoH5WYwTNuAs
- 0kB6qZXLXXBayUeARs56mS/i13mBXXkuUfAoDJYUOTGKvKxd+cBLBDI09
- plIJg/FdC6+QNZjZcA7XRLib2Zmsui9yqXRx3cErIQkjBjBft3x2OHNkf Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="304153211"
-X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="304153211"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2022 00:44:30 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="603628611"
-X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="603628611"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.10.52])
- ([10.213.10.52])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2022 00:44:23 -0700
-Message-ID: <10268aa0-6d76-2635-79f8-f450f11e01d0@intel.com>
-Date: Mon, 10 Oct 2022 09:44:20 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B931310E45E;
+ Mon, 10 Oct 2022 07:47:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B1396A00FD;
+ Mon, 10 Oct 2022 07:47:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.1
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20221005121159.340245-1-thomas.hellstrom@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20221005121159.340245-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH RESEND] drm/i915: Fix display problems after
- resume
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Mon, 10 Oct 2022 07:47:09 -0000
+Message-ID: <166538802970.29672.6434672332784021835@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221010065826.32037-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20221010065826.32037-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/vm=5Fbind=3A_Add_VM=5FBIND_functionality_=28rev6?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,60 +41,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kevin Boulain <kevinboulain@gmail.com>,
- David de Sousa <davidesousa@gmail.com>, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 05.10.2022 14:11, Thomas Hellström wrote:
-> Commit 39a2bd34c933 ("drm/i915: Use the vma resource as argument for gtt
-> binding / unbinding") introduced a regression that due to the vma resource
-> tracking of the binding state, dpt ptes were not correctly repopulated.
-> Fix this by clearing the vma resource state before repopulating.
-> The state will subsequently be restored by the bind_vma operation.
-> 
-> Fixes: 39a2bd34c933 ("drm/i915: Use the vma resource as argument for gtt binding / unbinding")
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20220912121957.31310-1-thomas.hellstrom@linux.intel.com
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: <stable@vger.kernel.org> # v5.18+
-> Reported-and-tested-by: Kevin Boulain <kevinboulain@gmail.com>
-> Tested-by: David de Sousa <davidesousa@gmail.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_ggtt.c | 8 +++++++-
->   1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index b31fe0fb013f..5c67e49aacf6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -1275,10 +1275,16 @@ bool i915_ggtt_resume_vm(struct i915_address_space *vm)
->   			atomic_read(&vma->flags) & I915_VMA_BIND_MASK;
->   
->   		GEM_BUG_ON(!was_bound);
-> -		if (!retained_ptes)
-> +		if (!retained_ptes) {
-> +			/*
-> +			 * Clear the bound flags of the vma resource to allow
-> +			 * ptes to be repopulated.
-> +			 */
-> +			vma->resource->bound_flags = 0;
+== Series Details ==
 
-Personally I would put this at suspend path, if possible.
-Anyway:
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Series: drm/i915/vm_bind: Add VM_BIND functionality (rev6)
+URL   : https://patchwork.freedesktop.org/series/105879/
+State : warning
 
-Regards
-Andrzej
+== Summary ==
 
+Error: dim checkpatch failed
+95d7e27b6d51 drm/i915/vm_bind: Expose vm lookup function
+630f95af9f30 drm/i915/vm_bind: Add __i915_sw_fence_await_reservation()
+e867bca3237c drm/i915/vm_bind: Expose i915_gem_object_max_page_size()
+b138b570e262 drm/i915/vm_bind: Add support to create persistent vma
+4e952253c8f3 drm/i915/vm_bind: Implement bind and unbind of object
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:53: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#53: 
+new file mode 100644
 
->   			vma->ops->bind_vma(vm, NULL, vma->resource,
->   					   obj ? obj->cache_level : 0,
->   					   was_bound);
-> +		}
->   		if (obj) { /* only used during resume => exclusive access */
->   			write_domain_objs |= fetch_and_zero(&obj->write_domain);
->   			obj->read_domains |= I915_GEM_DOMAIN_GTT;
+-:556: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#556: FILE: include/uapi/drm/i915_drm.h:539:
++#define DRM_IOCTL_I915_GEM_VM_BIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
+
+-:557: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#557: FILE: include/uapi/drm/i915_drm.h:540:
++#define DRM_IOCTL_I915_GEM_VM_UNBIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_unbind)
+
+total: 0 errors, 3 warnings, 0 checks, 592 lines checked
+78df628e2508 drm/i915/vm_bind: Support for VM private BOs
+8b22f873db8b drm/i915/vm_bind: Add support to handle object evictions
+b2d0b1eb8ce6 drm/i915/vm_bind: Support persistent vma activeness tracking
+042dfe044cfe drm/i915/vm_bind: Add out fence support
+9adc9194583b drm/i915/vm_bind: Abstract out common execbuf functions
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:28: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#28: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 747 lines checked
+0dbff0478b94 drm/i915/vm_bind: Use common execbuf functions in execbuf path
+199b61793aed drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:36: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#36: 
+new file mode 100644
+
+-:662: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#662: FILE: include/uapi/drm/i915_drm.h:542:
++#define DRM_IOCTL_I915_GEM_EXECBUFFER3	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_execbuffer3)
+
+total: 0 errors, 2 warnings, 0 checks, 681 lines checked
+e54479be2c5a drm/i915/vm_bind: Update i915_vma_verify_bind_complete()
+7b317fbf8f69 drm/i915/vm_bind: Expose i915_request_await_bind()
+02db32350f6c drm/i915/vm_bind: Handle persistent vmas in execbuf3
+aa432abb9326 drm/i915/vm_bind: userptr dma-resv changes
+527606eae87c drm/i915/vm_bind: Add uapi for user to enable vm_bind_mode
+
 
