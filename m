@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C74695FA333
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 20:14:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 578465FA337
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 20:14:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DFD710E6B5;
-	Mon, 10 Oct 2022 18:14:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42D5810E6C5;
+	Mon, 10 Oct 2022 18:14:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB41610E6BC
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Oct 2022 18:14:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE5610E6E2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Oct 2022 18:14:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665425677; x=1696961677;
+ t=1665425678; x=1696961678;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=xdL5g16hvWoRXtIK01mqJBwVRFsir67mkS11mGon/As=;
- b=OTc/1tNZT/ImZ5BftcxPoGWBOzvMfVj+QM/gc4MorS0/wNe9bKoEc/Th
- Tbs5MzBDIf0CoClCrQPUaLAtOcU1+oJpOAOJe2rM5mEodJFVaPBQ2VIz2
- Fp+VrYN6aQ3bAkS3P57VAA3yLgZbxbOZbm8VQxsQBQQj1TM2O5BWhrxWg
- c9aUyoAcSMaIE5ycQA2fnupqaDMQo1+otZBy92CYrqXWt7j/ea7oHI0LI
- Ik+eYDzF/Ybz6hfF8N1C6ZTBPjJ28CpGKt8cEI4uHXKKRsATAe5ESqxKm
- +Zsw8kqaJ2rTLOXa/9F1MegdbXc79ZNjp2zApJsbiBfvIRM1TeF3OLvLA A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="368439657"
-X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="368439657"
+ bh=RBNJA5Ki+xlYSfFoUv15Te5LTjyVoGrRKN8FF0M4TOE=;
+ b=B+ALQajh7i0fycd1alA0pnePAxi7neaKHguYDJUVGi5BH/ZjAhSWwvjG
+ PXUKN6SMPYPyJtwd4BY+hbjonwNyek2+6i+xItn96Q5NDQIwHrOlTNCoV
+ 6CqKYZ0dLeH4V2jwUdCs8fAQBpAu+5yykP0bL5DvtgfvJJTuVJxCzdpeZ
+ iaX3xcGRVxk8ZgJdbl+e5BTwRMHwcVYSHauWO2Xju/nTfhKr0gGZ08mm1
+ lWPjzSmUKzKmz9mdoLO8n4kOQgAXwpEdhMZQPsSd6KxAVuTJwA2n1Ge6/
+ 6gdXAi1kRks3/QkkoHE1g+kbEH6JhCZsxq5yfahTyrsLTnzezUXd4i/UP g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="368439658"
+X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="368439658"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Oct 2022 11:14:36 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="603820289"
-X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="603820289"
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="603820292"
+X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="603820292"
 Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Oct 2022 11:14:36 -0700
@@ -38,15 +38,14 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
  Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
  Ashutosh Dixit <ashutosh.dixit@intel.com>
-Date: Mon, 10 Oct 2022 18:14:28 +0000
-Message-Id: <20221010181434.513477-11-umesh.nerlige.ramappa@intel.com>
+Date: Mon, 10 Oct 2022 18:14:29 +0000
+Message-Id: <20221010181434.513477-12-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221010181434.513477-1-umesh.nerlige.ramappa@intel.com>
 References: <20221010181434.513477-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 10/16] drm/i915/perf: Store a pointer to
- oa_format in oa_buffer
+Subject: [Intel-gfx] [PATCH v3 11/16] drm/i915/perf: Add Wa_1508761755:dg2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,147 +61,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DG2 introduces OA reports with 64 bit report header fields. Perf OA
-would need more information about the OA format in order to process such
-reports. Store all OA format info in oa_buffer instead of just the size
-and format-id.
+Disable Clock gating in EU when gathering the events so that EU events
+are not lost.
 
-v2: Drop format_size variable (Ashutosh)
+v2: Fix checkpatch issues
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c       | 30 +++++++++++---------------
- drivers/gpu/drm/i915/i915_perf_types.h |  3 +--
- 2 files changed, 13 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h |  1 +
+ drivers/gpu/drm/i915/i915_perf.c        | 23 +++++++++++++++++++++++
+ 2 files changed, 24 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index 2275ee47da95..8bb1694035a6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -1131,6 +1131,7 @@
+ #define   GEN12_DISABLE_EARLY_READ		REG_BIT(14)
+ #define   GEN12_ENABLE_LARGE_GRF_MODE		REG_BIT(12)
+ #define   GEN12_PUSH_CONST_DEREF_HOLD_DIS	REG_BIT(8)
++#define   GEN12_DISABLE_DOP_GATING              REG_BIT(0)
+ 
+ #define RT_CTRL					_MMIO(0xe530)
+ #define   DIS_NULL_QUERY			REG_BIT(10)
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 2f9e18ee0aab..ad74fa5847f7 100644
+index ad74fa5847f7..ccc0bd9f2969 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -465,7 +465,7 @@ static u32 gen7_oa_hw_tail_read(struct i915_perf_stream *stream)
- static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- {
- 	u32 gtt_offset = i915_ggtt_offset(stream->oa_buffer.vma);
--	int report_size = stream->oa_buffer.format_size;
-+	int report_size = stream->oa_buffer.format->size;
- 	unsigned long flags;
- 	bool pollin;
- 	u32 hw_tail;
-@@ -602,7 +602,7 @@ static int append_oa_sample(struct i915_perf_stream *stream,
- 			    size_t *offset,
- 			    const u8 *report)
- {
--	int report_size = stream->oa_buffer.format_size;
-+	int report_size = stream->oa_buffer.format->size;
- 	struct drm_i915_perf_record_header header;
- 
- 	header.type = DRM_I915_PERF_RECORD_SAMPLE;
-@@ -652,7 +652,7 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
- 				  size_t *offset)
- {
- 	struct intel_uncore *uncore = stream->uncore;
--	int report_size = stream->oa_buffer.format_size;
-+	int report_size = stream->oa_buffer.format->size;
- 	u8 *oa_buf_base = stream->oa_buffer.vaddr;
- 	u32 gtt_offset = i915_ggtt_offset(stream->oa_buffer.vma);
- 	u32 mask = (OA_BUFFER_SIZE - 1);
-@@ -946,7 +946,7 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
- 				  size_t *offset)
- {
- 	struct intel_uncore *uncore = stream->uncore;
--	int report_size = stream->oa_buffer.format_size;
-+	int report_size = stream->oa_buffer.format->size;
- 	u8 *oa_buf_base = stream->oa_buffer.vaddr;
- 	u32 gtt_offset = i915_ggtt_offset(stream->oa_buffer.vma);
- 	u32 mask = (OA_BUFFER_SIZE - 1);
-@@ -2502,7 +2502,7 @@ static int gen12_configure_oar_context(struct i915_perf_stream *stream,
- {
- 	int err;
- 	struct intel_context *ce = stream->pinned_ctx;
--	u32 format = stream->oa_buffer.format;
-+	u32 format = stream->oa_buffer.format->format;
- 	u32 offset = stream->perf->ctx_oactxctrl_offset;
- 	struct flex regs_context[] = {
- 		{
-@@ -2875,7 +2875,7 @@ static void gen7_oa_enable(struct i915_perf_stream *stream)
- 	u32 ctx_id = stream->specific_ctx_id;
- 	bool periodic = stream->periodic;
- 	u32 period_exponent = stream->period_exponent;
--	u32 report_format = stream->oa_buffer.format;
-+	u32 report_format = stream->oa_buffer.format->format;
- 
- 	/*
- 	 * Reset buf pointers so we don't forward reports from before now.
-@@ -2901,7 +2901,7 @@ static void gen7_oa_enable(struct i915_perf_stream *stream)
- static void gen8_oa_enable(struct i915_perf_stream *stream)
- {
- 	struct intel_uncore *uncore = stream->uncore;
--	u32 report_format = stream->oa_buffer.format;
-+	u32 report_format = stream->oa_buffer.format->format;
- 
- 	/*
- 	 * Reset buf pointers so we don't forward reports from before now.
-@@ -2927,7 +2927,7 @@ static void gen8_oa_enable(struct i915_perf_stream *stream)
- static void gen12_oa_enable(struct i915_perf_stream *stream)
- {
- 	struct intel_uncore *uncore = stream->uncore;
--	u32 report_format = stream->oa_buffer.format;
-+	u32 report_format = stream->oa_buffer.format->format;
- 
- 	/*
- 	 * If we don't want OA reports from the OA buffer, then we don't even
-@@ -3108,7 +3108,6 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
- 	struct drm_i915_private *i915 = stream->perf->i915;
- 	struct i915_perf *perf = stream->perf;
- 	struct intel_gt *gt;
--	int format_size;
+@@ -2773,6 +2773,18 @@ gen12_enable_metric_set(struct i915_perf_stream *stream,
+ 	u32 sqcnt1;
  	int ret;
  
- 	if (!props->engine) {
-@@ -3164,20 +3163,15 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
++	/*
++	 * Wa_1508761755:xehpsdv, dg2
++	 * EU NOA signals behave incorrectly if EU clock gating is enabled.
++	 * Disable thread stall DOP gating and EU DOP gating.
++	 */
++	if (IS_XEHPSDV(i915) || IS_DG2(i915)) {
++		intel_uncore_write(uncore, GEN8_ROW_CHICKEN,
++				   _MASKED_BIT_ENABLE(STALL_DOP_GATING_DISABLE));
++		intel_uncore_write(uncore, GEN7_ROW_CHICKEN2,
++				   _MASKED_BIT_ENABLE(GEN12_DISABLE_DOP_GATING));
++	}
++
+ 	intel_uncore_write(uncore, GEN12_OAG_OA_DEBUG,
+ 			   /* Disable clk ratio reports, like previous Gens. */
+ 			   _MASKED_BIT_ENABLE(GEN12_OAG_OA_DEBUG_DISABLE_CLK_RATIO_REPORTS |
+@@ -2851,6 +2863,17 @@ static void gen12_disable_metric_set(struct i915_perf_stream *stream)
+ 	struct drm_i915_private *i915 = stream->perf->i915;
+ 	u32 sqcnt1;
  
- 	stream->sample_size = sizeof(struct drm_i915_perf_record_header);
++	/*
++	 * Wa_1508761755:xehpsdv, dg2
++	 * Enable thread stall DOP gating and EU DOP gating.
++	 */
++	if (IS_XEHPSDV(i915) || IS_DG2(i915)) {
++		intel_uncore_write(uncore, GEN8_ROW_CHICKEN,
++				   _MASKED_BIT_DISABLE(STALL_DOP_GATING_DISABLE));
++		intel_uncore_write(uncore, GEN7_ROW_CHICKEN2,
++				   _MASKED_BIT_DISABLE(GEN12_DISABLE_DOP_GATING));
++	}
++
+ 	/* Reset all contexts' slices/subslices configurations. */
+ 	gen12_configure_all_contexts(stream, NULL, NULL);
  
--	format_size = perf->oa_formats[props->oa_format].size;
-+	stream->oa_buffer.format = &perf->oa_formats[props->oa_format];
-+	if (drm_WARN_ON(&i915->drm, stream->oa_buffer.format->size == 0))
-+		return -EINVAL;
- 
- 	stream->sample_flags = props->sample_flags;
--	stream->sample_size += format_size;
--
--	stream->oa_buffer.format_size = format_size;
--	if (drm_WARN_ON(&i915->drm, stream->oa_buffer.format_size == 0))
--		return -EINVAL;
-+	stream->sample_size += stream->oa_buffer.format->size;
- 
- 	stream->hold_preemption = props->hold_preemption;
- 
--	stream->oa_buffer.format =
--		perf->oa_formats[props->oa_format].format;
--
- 	stream->periodic = props->oa_periodic;
- 	if (stream->periodic)
- 		stream->period_exponent = props->oa_period_exponent;
-diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
-index dc9bfd8086cf..e0c96b44eda8 100644
---- a/drivers/gpu/drm/i915/i915_perf_types.h
-+++ b/drivers/gpu/drm/i915/i915_perf_types.h
-@@ -250,11 +250,10 @@ struct i915_perf_stream {
- 	 * @oa_buffer: State of the OA buffer.
- 	 */
- 	struct {
-+		const struct i915_oa_format *format;
- 		struct i915_vma *vma;
- 		u8 *vaddr;
- 		u32 last_ctx_id;
--		int format;
--		int format_size;
- 		int size_exponent;
- 
- 		/**
 -- 
 2.25.1
 
