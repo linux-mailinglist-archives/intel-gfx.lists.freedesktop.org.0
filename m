@@ -2,88 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0781F5F9E7F
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 14:12:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B92D5F9E69
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Oct 2022 14:11:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C78810E708;
-	Mon, 10 Oct 2022 12:11:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A05C410E4BF;
+	Mon, 10 Oct 2022 12:11:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06CE610E6F1;
- Mon, 10 Oct 2022 12:11:37 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id 086BC2B0652C;
- Mon, 10 Oct 2022 08:11:31 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute3.internal (MEProxy); Mon, 10 Oct 2022 08:11:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1665403891; x=
- 1665411091; bh=vRm7+WmZAhRa5yrqCAa1OvaqLCpV3QJHnoFPD/kwJUk=; b=t
- 7JHUYh3iY/qHO0nLu9pFFjSFd+EwQvae/pkjocSgxemsQ3hYmfDE8wELqxEWJ7eb
- YFLSulmjs64K36WZ9uvlrxbom8SELPS31g5zLFlMRqZJf6Wz2sMDOjS6CVkIEval
- Y7DunjkiD6j7EEM9MrDR78HxNDuhZQvChy0x3vY/7Gr7uFtGCMEz2teHxIRA8fx2
- nAp0w9g/2LYhk1DgoYCdc5/Z1CbcnzYBitmA7nxOn6RlbDIwk/jJ3+Nw7hxM2Mwz
- hcwEQD157OpreliBTiQVWIDovhD9tR7DMsXsR3Hmi7rvRiX0TVUT53i8alUQRHVN
- LWqR6V2PUfVU9zE6kE+iQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1665403891; x=
- 1665411091; bh=vRm7+WmZAhRa5yrqCAa1OvaqLCpV3QJHnoFPD/kwJUk=; b=m
- tlnFNIV+gjVMYFpaC8R7BpdMXXlkfc0yHLhYYbc9JmzxX2VBtyoVe++rb2jrC/+L
- WZpGokwjLCZO3wSDxyPVI7MpVqp3YjNHROapvoDBePTXq0FNdZ45ehnAXDX59O6w
- E2fsSg8PpbFPDy/+qsVz++YHhbTIrdT9iH0R1i3bNgwoo+ASA80f053Gyk3CdjRy
- aOHwfJwyaYH/h007Tg9CW2R8tn3Qazp2K/6EUMaqTXMhbfVmR7ucy+1jxvqn4OmP
- rg+QdMXbq+t4TUBoCLeO6Syi6FHEJ4O0rAQV5gDeOBaduL2xpQqy2XPgnHx3pYEG
- x4PKn+DSbT3E9wq/Vi25Q==
-X-ME-Sender: <xms:8wtEY2_CGNCUe2Co5AL-K-EtsTUKmFR7f9GZalRsm5std5o-GFS2Gg>
- <xme:8wtEY2ufhKGajwTv5nhJ6ZtWjCMdigpjE5LROdjTZOCkSqFAyhZeyRpPHW2sXTHii
- 3YQIGChQxGce5qLkPA>
-X-ME-Received: <xmr:8wtEY8BatqTCo5z8FEUJt2LLLBg4ieVs7thWOR6LS4qsGCzhK7LlMssFF3Au>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeejgedggeegucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephffvvefufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgig
- ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
- grthhtvghrnhepueeigefghfffffeifeehudeiuedvteegueefffevgfetvdffheehkeff
- vedufeeinecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomh
- epmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:8wtEY-ePEGXpDC2-RABS_12V7gYliG9PwXfb2N16YEGqkCd22wefZQ>
- <xmx:8wtEY7OTjiCYJmRZZiPJ2IlssEB3RvBGBqzBmbwkmDPaxCwPURhWgg>
- <xmx:8wtEY4lRUtk5eMQT9Q9Ukn8nPKpDMXpt8jCBelgTkWHsaKuM15Op_w>
- <xmx:8wtEYyrnlJ5wf-dN0GgiMee_lrpgP7L6Ug0HCrJfdVIy55mdvyLX7GJxSJQ>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 10 Oct 2022 08:11:30 -0400 (EDT)
-From: Maxime Ripard <maxime@cerno.tech>
-To: Karol Herbst <kherbst@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Chen-Yu Tsai <wens@csie.org>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Emma Anholt <emma@anholt.net>,
- Thomas Zimmermann <tzimmermann@suse.de>, Lyude Paul <lyude@redhat.com>,
- Maxime Ripard <maxime@cerno.tech>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 10 Oct 2022 14:10:42 +0200
-Message-Id: <166540374295.183315.18200738975920089518.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220728-rpi-analog-tv-properties-v4-25-60d38873f782@cerno.tech>
-References: <20220728-rpi-analog-tv-properties-v4-0-60d38873f782@cerno.tech>
- <20220728-rpi-analog-tv-properties-v4-25-60d38873f782@cerno.tech>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30E7210E144
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Oct 2022 12:10:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1665403856; x=1696939856;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=+7iCPWnmbJAUOTEWx6U878iQD9S3SDNSufytTDUJa4k=;
+ b=bN7WyZ2e8XGXlgf/RNMFzYU4h5kUdz9SmaQ+0fbrpyGy4SoyXjDYu1qP
+ kGwO9BCZsdAkTtqHSDL7YESTIEcl0mlsID3/RqDnEF0KKhJN7jqXWI1bD
+ WQra5dCsYdsbUYZHUlRMxqtlnlhheoTumYypi0JnNzc52Dqgg3mD+22fW
+ LT/vcXJGCYasqYnaAKU/ycxaDpceh4yTID6lL0oz428wTkhJ0SnJ25f78
+ 1E3w1scnNigF6+YR4rrZWepus1Qr1Lu7cUtHmVX64CTeMZ94a7GrjJ6wD
+ AbDbosp14xikWOWI2wh2KwhGekgVJnOJGdw/r43bxI4uRCf6F9rYVTlDe Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="305804670"
+X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="305804670"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2022 05:10:55 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10495"; a="871080489"
+X-IronPort-AV: E=Sophos;i="5.95,173,1661842800"; d="scan'208";a="871080489"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.10.52])
+ ([10.213.10.52])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2022 05:10:54 -0700
+Message-ID: <a7d4b6a9-0da9-1dbb-43ff-36506c02eaef@intel.com>
+Date: Mon, 10 Oct 2022 14:10:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] (subset) [PATCH v4 25/30] drm/vc4: vec: Fix
- definition of PAL-M mode
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.3.1
+Content-Language: en-US
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221010083447.139768-1-vinod.govindapillai@intel.com>
+ <20221010083447.139768-3-vinod.govindapillai@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20221010083447.139768-3-vinod.govindapillai@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/display: debugfs entry to
+ control ignore long hpd flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,29 +65,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?q?Noralf=20Tr=EF=BF=BD=EF=BF=BDnnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 29 Sep 2022 18:31:19 +0200, Maxime Ripard wrote:
-> From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+On 10.10.2022 10:34, Vinod Govindapillai wrote:
+> Knob to control ignoring the long hpds. Set this to true will
+> start ignoring the long HPDs generated by the displays. Useful
+> for use cases like CI systems where we dont expect to disconnect
+> the panels.
 > 
-> PAL-M is a Brazilian analog TV standard that uses a PAL-style chroma
-> subcarrier at 3.575611[888111] MHz on top of 525-line (480i60) timings.
-> This commit makes the driver actually use the proper VEC preset for this
-> mode instead of just changing PAL subcarrier frequency.
+> v2: Address patch styling comments (Jani Nikula)
 > 
-> [...]
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 
-Applied to drm/drm-misc (drm-misc-next).
 
-Thanks!
-Maxime
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Regards
+Andrzej
+
+> ---
+>   drivers/gpu/drm/i915/display/intel_hotplug.c | 25 ++++++++++++++++++++
+>   1 file changed, 25 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> index 352a1b53b63e..45c67f0f1c9f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> @@ -936,6 +936,29 @@ static const struct file_operations i915_hpd_short_storm_ctl_fops = {
+>   	.write = i915_hpd_short_storm_ctl_write,
+>   };
+>   
+> +static int i915_ignore_long_hpd_set(void *data, u64 val)
+> +{
+> +	struct drm_i915_private *i915 = data;
+> +
+> +	drm_dbg_kms(&i915->drm, "Ignoring long HPDs: %s\n", str_yes_no(val));
+> +
+> +	i915->display.hotplug.ignore_long_hpd = val;
+> +
+> +	return 0;
+> +}
+> +
+> +static int i915_ignore_long_hpd_get(void *data, u64 *val)
+> +{
+> +	struct drm_i915_private *i915 = data;
+> +
+> +	*val = i915->display.hotplug.ignore_long_hpd;
+> +
+> +	return 0;
+> +}
+> +
+> +DEFINE_SIMPLE_ATTRIBUTE(i915_ignore_long_hpd_fops, i915_ignore_long_hpd_get,
+> +			i915_ignore_long_hpd_set, "%llu\n");
+> +
+>   void intel_hpd_debugfs_register(struct drm_i915_private *i915)
+>   {
+>   	struct drm_minor *minor = i915->drm.primary;
+> @@ -944,4 +967,6 @@ void intel_hpd_debugfs_register(struct drm_i915_private *i915)
+>   			    i915, &i915_hpd_storm_ctl_fops);
+>   	debugfs_create_file("i915_hpd_short_storm_ctl", 0644, minor->debugfs_root,
+>   			    i915, &i915_hpd_short_storm_ctl_fops);
+> +	debugfs_create_file("i915_ignore_long_hpd", 0644, minor->debugfs_root,
+> +			    i915, &i915_ignore_long_hpd_fops);
+>   }
+
