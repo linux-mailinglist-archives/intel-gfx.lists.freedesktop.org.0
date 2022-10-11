@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53E85FAB2B
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 05:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47DCF5FAB2E
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 05:28:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9DE810E797;
-	Tue, 11 Oct 2022 03:28:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31ECF10E79D;
+	Tue, 11 Oct 2022 03:28:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5F0C10E797
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Oct 2022 03:28:06 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FBFE10E79E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Oct 2022 03:28:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665458886; x=1696994886;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=pfZSAc8wnnVqjLJSKca2gAe0G7UVzN1ZMRHlyfKogOg=;
- b=lCiNZnaLDvi76MA6d+z3Uuleu0d3q+WT7QJswrBxbXeN1/ffaPOiKxhz
- pbg7Q3RuAu+E7sILWOlzkC/CsrHQNX2J+GpTXhXsmcTdK5Ly2yUWYj6YI
- j4+ZOhC47HpO+LhrUIXt/tu0uPtQUbcFTjpQAXvyhvW8l7qY0WKtYomV2
- doLZ1Z99bpn1GMbGXwDT3s9qliPXNr0S8eQwJ4rR4/YsZgwL7pS5mxbst
- HP2JcABfOYl5Zj1ADb6Fj3HK8zPCfIsRk/GTlDUwslx0uqx6nQGsDYRxX
- yOs2BJ2pMu5k7wHtnTCj+s+XRy9jM/90o+aPEyYAId/jcaEva+a81cxjI Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="330870691"
-X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="330870691"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2022 20:28:06 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="694894377"
-X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="694894377"
+ t=1665458927; x=1696994927;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SqejX57MJsZV8z/ybFBBdQDZmtXOVk6uozKBZWTgNpM=;
+ b=O3Mzew0RflTTX3MdyCGoXdEQXS5Uje2Asc1O6Siq/Tz24MuVbPq3QdoA
+ oUnm4TT/7hFWphPU/g6jWpPlAekg+TNx9O2J5e8Bt1x+CCrMFB6BBtkvm
+ d6B+IMYZiEvkpAPXEONuNEy9a8amJbhwE883Uo7EbEm++xbA496tHehcA
+ BGRvB+DnRBLvwES3DhGbxXDEclRH7KraXITX8NfApLeDsx0OlYP3HKGPB
+ 7DU8p8yl6XwdY6E63w3/CYtCyjFxnF2sP66I7g6wIU/LUNhdIIhheWGzy
+ y0O2G7qDxOEbrr1vtd92a7xFyWtnfidbHj6NiLeqd7dE17OiRv2P1Jf6K Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="284777774"
+X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="284777774"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2022 20:28:46 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="603977026"
+X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="603977026"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2022 20:28:06 -0700
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2022 20:28:46 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Oct 2022 20:27:58 -0700
-Message-Id: <cover.1665458639.git.ashutosh.dixit@intel.com>
+Date: Mon, 10 Oct 2022 20:28:43 -0700
+Message-Id: <e59e680be0d56fdb4c116f45fac94350832752ec.1665458639.git.ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1665458639.git.ashutosh.dixit@intel.com>
+References: <cover.1665458639.git.ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/2] Firm up gt park/unpark
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Don't do display work on
+ platforms without display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,17 +61,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A couple of patches to firm up gt park/unpark.
+Do display work only on platforms with display. This avoids holding the
+runtime PM wakeref for an additional 100+ ms after GT has been parked.
 
-Ashutosh Dixit (2):
-  drm/i915/gt: Don't do display work on platforms without display
-  drm/i915/gt: Warn if not in RC6 when GT is parked
+Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7025
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c | 36 +++++++++++++++------------
+ 1 file changed, 20 insertions(+), 16 deletions(-)
 
- drivers/gpu/drm/i915/gt/intel_gt_pm.c | 42 +++++++++++++++++----------
- drivers/gpu/drm/i915/gt/intel_rc6.c   | 15 ++++++++++
- drivers/gpu/drm/i915/gt/intel_rc6.h   |  1 +
- 3 files changed, 42 insertions(+), 16 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index f553e2173bdad..26aa2e979a148 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -70,19 +70,21 @@ static int __gt_unpark(struct intel_wakeref *wf)
+ 
+ 	GT_TRACE(gt, "\n");
+ 
+-	/*
+-	 * It seems that the DMC likes to transition between the DC states a lot
+-	 * when there are no connected displays (no active power domains) during
+-	 * command submission.
+-	 *
+-	 * This activity has negative impact on the performance of the chip with
+-	 * huge latencies observed in the interrupt handler and elsewhere.
+-	 *
+-	 * Work around it by grabbing a GT IRQ power domain whilst there is any
+-	 * GT activity, preventing any DC state transitions.
+-	 */
+-	gt->awake = intel_display_power_get(i915, POWER_DOMAIN_GT_IRQ);
+-	GEM_BUG_ON(!gt->awake);
++	if (HAS_DISPLAY(i915) && INTEL_DISPLAY_ENABLED(i915)) {
++		/*
++		 * It seems that the DMC likes to transition between the DC states a lot
++		 * when there are no connected displays (no active power domains) during
++		 * command submission.
++		 *
++		 * This activity has negative impact on the performance of the chip with
++		 * huge latencies observed in the interrupt handler and elsewhere.
++		 *
++		 * Work around it by grabbing a GT IRQ power domain whilst there is any
++		 * GT activity, preventing any DC state transitions.
++		 */
++		gt->awake = intel_display_power_get(i915, POWER_DOMAIN_GT_IRQ);
++		GEM_BUG_ON(!gt->awake);
++	}
+ 
+ 	intel_rc6_unpark(&gt->rc6);
+ 	intel_rps_unpark(&gt->rps);
+@@ -115,9 +117,11 @@ static int __gt_park(struct intel_wakeref *wf)
+ 	/* Everything switched off, flush any residual interrupt just in case */
+ 	intel_synchronize_irq(i915);
+ 
+-	/* Defer dropping the display power well for 100ms, it's slow! */
+-	GEM_BUG_ON(!wakeref);
+-	intel_display_power_put_async(i915, POWER_DOMAIN_GT_IRQ, wakeref);
++	if (HAS_DISPLAY(i915) && INTEL_DISPLAY_ENABLED(i915)) {
++		/* Defer dropping the display power well for 100ms, it's slow! */
++		GEM_BUG_ON(!wakeref);
++		intel_display_power_put_async(i915, POWER_DOMAIN_GT_IRQ, wakeref);
++	}
+ 
+ 	return 0;
+ }
 -- 
 2.34.1
 
