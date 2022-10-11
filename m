@@ -1,59 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E34D5FB7AB
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 17:49:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5BB35FB7C0
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 17:52:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16B5810E3E6;
-	Tue, 11 Oct 2022 15:49:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD8AB10E380;
+	Tue, 11 Oct 2022 15:52:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 488D010E3E6;
- Tue, 11 Oct 2022 15:48:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665503338; x=1697039338;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=KA0cLm3hg30fH3NRbxmN6bT4y+YjBKXUTzDe5gV2iSc=;
- b=lx8nNag/pyhugXIT1MhEuhAD4v0vRHdxgJwpkqCWlGuzS3ie/FNBkYA1
- wqYi/uY8mqzNqXpc8RDouWQePkJnTK2l/47x4mf0peNnScCBGKYepVX3n
- R4swDM4wVsITQFDXh9oqCKWqhRUT0Cs+fd2yZZfNyYDk7JMSZvSikRlre
- pfQGC8vA/rIVeOUW68+5lfozc+WuN1b47S6BrhiV/aYyyk4U8HmhRMMiJ
- a+f3FFiw3tlM+6Rl2kEzk9qV3eV791P+XieDGX9FE0NOFeZGLKAN5BiKG
- m0u5eXvs+9nyAPDaEfeXFdwb01eEhRgEVsDtxjLnQJgXNa3jXcbAtrSZK g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="306162339"
-X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="306162339"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 08:48:57 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="659575765"
-X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="659575765"
-Received: from korubohx-mobl.ger.corp.intel.com (HELO [10.252.10.79])
- ([10.252.10.79])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 08:48:54 -0700
-Message-ID: <08c9e525-06f3-90e6-b5c3-d5221507509c@intel.com>
-Date: Tue, 11 Oct 2022 16:48:52 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7C92E10E380;
+ Tue, 11 Oct 2022 15:52:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 70C89A73C7;
+ Tue, 11 Oct 2022 15:52:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6732941572823608010=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.1
-Content-Language: en-GB
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-References: <20221010065826.32037-1-niranjana.vishwanathapura@intel.com>
- <20221010065826.32037-8-niranjana.vishwanathapura@intel.com>
- <b7bbe2fa-9dab-8a6d-bda0-a505ae0660dc@intel.com>
- <20221010161146.GE1773@nvishwa1-DESK>
- <37285083-957c-e02c-5e62-b8e11a1f79c5@intel.com>
- <20221011004345.GF1773@nvishwa1-DESK> <20221011005531.GG1773@nvishwa1-DESK>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20221011005531.GG1773@nvishwa1-DESK>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 07/17] drm/i915/vm_bind: Add support to
- handle object evictions
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 11 Oct 2022 15:52:34 -0000
+Message-ID: <166550355442.5541.11352792948079865313@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1665496046.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1665496046.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/edid=3A_EDID_override_refactoring_and_fixes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,269 +40,247 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- thomas.hellstrom@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/10/2022 01:55, Niranjana Vishwanathapura wrote:
-> On Mon, Oct 10, 2022 at 05:43:47PM -0700, Niranjana Vishwanathapura wrote:
->> On Mon, Oct 10, 2022 at 06:15:02PM +0100, Matthew Auld wrote:
->>> On 10/10/2022 17:11, Niranjana Vishwanathapura wrote:
->>>> On Mon, Oct 10, 2022 at 02:30:49PM +0100, Matthew Auld wrote:
->>>>> On 10/10/2022 07:58, Niranjana Vishwanathapura wrote:
->>>>>> Support eviction by maintaining a list of evicted persistent vmas
->>>>>> for rebinding during next submission. Ensure the list do not
->>>>>> include persistent vmas that are being purged.
->>>>>>
->>>>>> v2: Remove unused I915_VMA_PURGED definition.
->>>>>> v3: Properly handle __i915_vma_unbind_async() case.
->>>>>>
->>>>>> Acked-by: Matthew Auld <matthew.auld@intel.com>
->>>>>> Signed-off-by: Niranjana Vishwanathapura 
->>>>>> <niranjana.vishwanathapura@intel.com>
->>>>>> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
->>>>>> ---
->>>>>>  .../drm/i915/gem/i915_gem_vm_bind_object.c    |  6 ++++
->>>>>>  drivers/gpu/drm/i915/gt/intel_gtt.c           |  2 ++
->>>>>>  drivers/gpu/drm/i915/gt/intel_gtt.h           |  4 +++
->>>>>>  drivers/gpu/drm/i915/i915_vma.c               | 31 
->>>>>> +++++++++++++++++--
->>>>>>  drivers/gpu/drm/i915/i915_vma.h               | 10 ++++++
->>>>>>  drivers/gpu/drm/i915/i915_vma_types.h         |  8 +++++
->>>>>>  6 files changed, 59 insertions(+), 2 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c 
->>>>>> b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
->>>>>> index 8e3e6ceb9442..c435d49af2c8 100644
->>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
->>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
->>>>>> @@ -85,6 +85,12 @@ static void i915_gem_vm_bind_remove(struct 
->>>>>> i915_vma *vma, bool release_obj)
->>>>>>  {
->>>>>>      lockdep_assert_held(&vma->vm->vm_bind_lock);
->>>>>> +    spin_lock(&vma->vm->vm_rebind_lock);
->>>>>> +    if (!list_empty(&vma->vm_rebind_link))
->>>>>> +        list_del_init(&vma->vm_rebind_link);
->>>>>> +    i915_vma_set_purged(vma);
->>>>>> +    spin_unlock(&vma->vm->vm_rebind_lock);
->>>>>> +
->>>>>>      list_del_init(&vma->vm_bind_link);
->>>>>>      list_del_init(&vma->non_priv_vm_bind_link);
->>>>>>      i915_vm_bind_it_remove(vma, &vma->vm->va);
->>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c 
->>>>>> b/drivers/gpu/drm/i915/gt/intel_gtt.c
->>>>>> index 422394f8fb40..2fa37f46750b 100644
->>>>>> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
->>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
->>>>>> @@ -295,6 +295,8 @@ void i915_address_space_init(struct 
->>>>>> i915_address_space *vm, int subclass)
->>>>>>      INIT_LIST_HEAD(&vm->vm_bound_list);
->>>>>>      mutex_init(&vm->vm_bind_lock);
->>>>>>      INIT_LIST_HEAD(&vm->non_priv_vm_bind_list);
->>>>>> +    INIT_LIST_HEAD(&vm->vm_rebind_list);
->>>>>> +    spin_lock_init(&vm->vm_rebind_lock);
->>>>>>  }
->>>>>>  void *__px_vaddr(struct drm_i915_gem_object *p)
->>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h 
->>>>>> b/drivers/gpu/drm/i915/gt/intel_gtt.h
->>>>>> index 4ae5734f7d6b..443d1918ad4e 100644
->>>>>> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
->>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
->>>>>> @@ -265,6 +265,10 @@ struct i915_address_space {
->>>>>>      struct list_head vm_bind_list;
->>>>>>      /** @vm_bound_list: List of vm_binding completed */
->>>>>>      struct list_head vm_bound_list;
->>>>>> +    /* @vm_rebind_list: list of vmas to be rebinded */
->>>>>> +    struct list_head vm_rebind_list;
->>>>>> +    /* @vm_rebind_lock: protects vm_rebound_list */
->>>>>> +    spinlock_t vm_rebind_lock;
->>>>>>      /* @va: tree of persistent vmas */
->>>>>>      struct rb_root_cached va;
->>>>>>      struct list_head non_priv_vm_bind_list;
->>>>>> diff --git a/drivers/gpu/drm/i915/i915_vma.c 
->>>>>> b/drivers/gpu/drm/i915/i915_vma.c
->>>>>> index 5d3d67a4bf47..b4be2cbe8382 100644
->>>>>> --- a/drivers/gpu/drm/i915/i915_vma.c
->>>>>> +++ b/drivers/gpu/drm/i915/i915_vma.c
->>>>>> @@ -241,6 +241,7 @@ vma_create(struct drm_i915_gem_object *obj,
->>>>>>      INIT_LIST_HEAD(&vma->vm_bind_link);
->>>>>>      INIT_LIST_HEAD(&vma->non_priv_vm_bind_link);
->>>>>> +    INIT_LIST_HEAD(&vma->vm_rebind_link);
->>>>>>      return vma;
->>>>>>  err_unlock:
->>>>>> @@ -1686,6 +1687,14 @@ static void force_unbind(struct i915_vma *vma)
->>>>>>      if (!drm_mm_node_allocated(&vma->node))
->>>>>>          return;
->>>>>> +    /*
->>>>>> +     * Persistent vma should have been purged by now.
->>>>>> +     * If not, issue a warning and purge it.
->>>>>> +     */
->>>>>> +    if (GEM_WARN_ON(i915_vma_is_persistent(vma) &&
->>>>>> +            !i915_vma_is_purged(vma)))
->>>>>> +        i915_vma_set_purged(vma);
->>>>>> +
->>>>>>      atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
->>>>>>      WARN_ON(__i915_vma_unbind(vma));
->>>>>>      GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
->>>>>> @@ -2047,6 +2056,16 @@ int __i915_vma_unbind(struct i915_vma *vma)
->>>>>>      __i915_vma_evict(vma, false);
->>>>>>      drm_mm_remove_node(&vma->node); /* pairs with 
->>>>>> i915_vma_release() */
->>>>>> +
->>>>>> +    if (i915_vma_is_persistent(vma)) {
->>>>>> +        spin_lock(&vma->vm->vm_rebind_lock);
->>>>>> +        if (list_empty(&vma->vm_rebind_link) &&
->>>>>> +            !i915_vma_is_purged(vma))
->>>>>> +            list_add_tail(&vma->vm_rebind_link,
->>>>>> +                      &vma->vm->vm_rebind_list);
->>>>>> +        spin_unlock(&vma->vm->vm_rebind_lock);
->>>>>> +    }
->>>>>> +
->>>>>>      return 0;
->>>>>>  }
->>>>>> @@ -2059,8 +2078,7 @@ static struct dma_fence 
->>>>>> *__i915_vma_unbind_async(struct i915_vma *vma)
->>>>>>      if (!drm_mm_node_allocated(&vma->node))
->>>>>>          return NULL;
->>>>>> -    if (i915_vma_is_pinned(vma) ||
->>>>>> -        &vma->obj->mm.rsgt->table != vma->resource->bi.pages)
->>>>>
->>>>> Hmm that's looks interesting. IIRC we only keep a ref on the rsgt 
->>>>> for the object pages, and not the vma->bi.pages, where the vma 
->>>>> pages can be destroyed before the async unbind completes, which I 
->>>>> guess was the idea behind this check.
->>>>>
->>>>> But in practice it looks the vma->bi.pages are always just some 
->>>>> subset or rearrangement of the objects rsgt pages, if not the same 
->>>>> table, so the device mapping pointed at by the PTEs should still be 
->>>>> valid here (assuming rsgt in not NULL), even if bi.pages gets 
->>>>> nuked? I guess this change should rather be a patch by itself, with 
->>>>> proper explanation in commit message, since this looks mostly 
->>>>> orthogonal?
->>>>>
->>>>
->>>> Yah, I am not sure about the intent of this check. It is expecting the
->>>> vma->resource->bi.pages to just point to the sg table of the object
->>>> (vma->obj->mm.rsgt->table) which is reference counted, instead of
->>>> decoupling it as you mentioned above. Also, the return code -EAGAIN
->>>> is bit confusing to me as I am not sure how trying again will fix it.
->>>>
->>>> This check was preventing eviction of objects with persistent (vm_bind)
->>>> vmas (Hence the update is in this patch).
->>>> Persistent vmas have I915_GTT_VIEW_PARTIAL, so they will get their 
->>>> sg table
->>>> by calling intel_partial_pages() which creates a new sg table 
->>>> instead of
->>>> pointing to object's sg table (as done in the I915_GTT_VIEW_NORMAL 
->>>> case).]
->>>>
->>>> If the vma is removed before async unbind completes, we probably
->>>> should wait for async unbind to complete before releaseing the vma
->>>> pages? Other option is to have vma point to object's sg table even for
->>>> partial gtt_view (instead of creating a new sg table) and handle
->>>> partial binding during the page table update.
->>>
->>> Yeah, it's a new sg_table, but nothing is actually remmapped in there 
->>> it seems, so all the device addresses must map to something already 
->>> in obj->mm.rsgt->table (which is ref counted), so all the PTEs will 
->>> still be valid, even if the vma is nuked before the unbind actually 
->>> completes, AFAICT.
->>>
->>
->> Yah, it is just that vma->pages (hence vma_res.bi.pages), ie., the sg 
->> table
->> (if decoupled from obj's sg table) gets freed in __vma_put_pages() before
->> async vma resource is asynchronously unbound and released.
->> This technically seems fine as vma_res.bi.pages are only accessed during
->> binding and not during unbind. But seems bad to keep a pointer dangling
->> after releasing the memory.
->>
-> 
-> Perhaps we can set vma_res->bi.pages to NULL in __vma_put_pages() after
-> freeing the vma->pages.
+--===============6732941572823608010==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Seems reasonable to me.
+== Series Details ==
 
-> 
-> Regards,
-> Niranjana
-> 
->> Niranjana
->>
->>>>
->>>> I can also keep the above removed check and only don't check it for
->>>> persistent vmas.
->>>>
->>>> Any thoughts?
->>>>
->>>> Niranjana
->>>>
->>>>>> +    if (i915_vma_is_pinned(vma))
->>>>>>          return ERR_PTR(-EAGAIN);
->>>>>>      /*
->>>>>> @@ -2082,6 +2100,15 @@ static struct dma_fence 
->>>>>> *__i915_vma_unbind_async(struct i915_vma *vma)
->>>>>>      drm_mm_remove_node(&vma->node); /* pairs with 
->>>>>> i915_vma_release() */
->>>>>> +    if (i915_vma_is_persistent(vma)) {
->>>>>> +        spin_lock(&vma->vm->vm_rebind_lock);
->>>>>> +        if (list_empty(&vma->vm_rebind_link) &&
->>>>>> +            !i915_vma_is_purged(vma))
->>>>>> +            list_add_tail(&vma->vm_rebind_link,
->>>>>> +                      &vma->vm->vm_rebind_list);
->>>>>> +        spin_unlock(&vma->vm->vm_rebind_lock);
->>>>>> +    }
->>>>>> +
->>>>>>      return fence;
->>>>>>  }
->>>>>> diff --git a/drivers/gpu/drm/i915/i915_vma.h 
->>>>>> b/drivers/gpu/drm/i915/i915_vma.h
->>>>>> index c5378ec2f70a..9a4a7a8dfe5b 100644
->>>>>> --- a/drivers/gpu/drm/i915/i915_vma.h
->>>>>> +++ b/drivers/gpu/drm/i915/i915_vma.h
->>>>>> @@ -152,6 +152,16 @@ static inline void 
->>>>>> i915_vma_set_persistent(struct i915_vma *vma)
->>>>>>      set_bit(I915_VMA_PERSISTENT_BIT, __i915_vma_flags(vma));
->>>>>>  }
->>>>>> +static inline bool i915_vma_is_purged(const struct i915_vma *vma)
->>>>>> +{
->>>>>> +    return test_bit(I915_VMA_PURGED_BIT, __i915_vma_flags(vma));
->>>>>> +}
->>>>>> +
->>>>>> +static inline void i915_vma_set_purged(struct i915_vma *vma)
->>>>>> +{
->>>>>> +    set_bit(I915_VMA_PURGED_BIT, __i915_vma_flags(vma));
->>>>>> +}
->>>>>> +
->>>>>>  static inline struct i915_vma *i915_vma_get(struct i915_vma *vma)
->>>>>>  {
->>>>>>      i915_gem_object_get(vma->obj);
->>>>>> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h 
->>>>>> b/drivers/gpu/drm/i915/i915_vma_types.h
->>>>>> index b8176cca58c0..d32c72e8d242 100644
->>>>>> --- a/drivers/gpu/drm/i915/i915_vma_types.h
->>>>>> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
->>>>>> @@ -267,8 +267,14 @@ struct i915_vma {
->>>>>>  /**
->>>>>>   * I915_VMA_PERSISTENT_BIT:
->>>>>>   * The vma is persistent (created with VM_BIND call).
->>>>>> + *
->>>>>> + * I915_VMA_PURGED_BIT:
->>>>>> + * The persistent vma is force unbound either due to VM_UNBIND call
->>>>>> + * from UMD or VM is released. Do not check/wait for VM activeness
->>>>>> + * in i915_vma_is_active() and i915_vma_sync() calls.
->>>>>>   */
->>>>>>  #define I915_VMA_PERSISTENT_BIT    19
->>>>>> +#define I915_VMA_PURGED_BIT    20
->>>>>>      struct i915_active active;
->>>>>> @@ -299,6 +305,8 @@ struct i915_vma {
->>>>>>      struct list_head vm_bind_link;
->>>>>>      /* @non_priv_vm_bind_link: Link in non-private persistent VMA 
->>>>>> list */
->>>>>>      struct list_head non_priv_vm_bind_link;
->>>>>> +    /* @vm_rebind_link: link to vm_rebind_list and protected by 
->>>>>> vm_rebind_lock */
->>>>>> +    struct list_head vm_rebind_link; /* Link in vm_rebind_list */
->>>>>>      /** Interval tree structures for persistent vma */
+Series: drm/edid: EDID override refactoring and fixes
+URL   : https://patchwork.freedesktop.org/series/109579/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12233 -> Patchwork_109579v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/index.html
+
+Participating hosts (45 -> 42)
+------------------------------
+
+  Missing    (3): fi-ctg-p8600 fi-icl-u2 fi-tgl-dsi 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_109579v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live:
+    - {fi-tgl-mst}:       NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/fi-tgl-mst/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@guc_hang:
+    - {bat-rpls-2}:       [PASS][2] -> [DMESG-FAIL][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12233/bat-rpls-2/igt@i915_selftest@live@guc_hang.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/bat-rpls-2/igt@i915_selftest@live@guc_hang.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109579v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-apl-guc:         [PASS][4] -> [INCOMPLETE][5] ([i915#7073])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12233/fi-apl-guc/igt@core_hotunplug@unbind-rebind.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/fi-apl-guc/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - {fi-tgl-mst}:       [DMESG-WARN][6] ([i915#5537]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12233/fi-tgl-mst/igt@i915_pm_rpm@module-reload.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/fi-tgl-mst/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@guc:
+    - {bat-rpls-1}:       [DMESG-WARN][8] ([i915#6471]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12233/bat-rpls-1/igt@i915_selftest@live@guc.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/bat-rpls-1/igt@i915_selftest@live@guc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#5537]: https://gitlab.freedesktop.org/drm/intel/issues/5537
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6471]: https://gitlab.freedesktop.org/drm/intel/issues/6471
+  [i915#6559]: https://gitlab.freedesktop.org/drm/intel/issues/6559
+  [i915#6596]: https://gitlab.freedesktop.org/drm/intel/issues/6596
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7073]: https://gitlab.freedesktop.org/drm/intel/issues/7073
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12233 -> Patchwork_109579v1
+
+  CI-20190529: 20190529
+  CI_DRM_12233: 6fbcc8bcd3c991362bec9b644b6a982630406d6b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7009: cf55acdeea3747c668074a8734029364960e5f5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109579v1: 6fbcc8bcd3c991362bec9b644b6a982630406d6b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+bcd53fa7d1e7 drm/edid: convert to device specific logging
+1963639e6b93 drm/edid/firmware: convert to drm device specific logging
+966fab794f5d drm/edid: move edid load declarations to internal header
+c48e0e554102 drm/edid: use struct drm_edid for override/firmware EDID
+a9415f54aa87 drm/edid/firmware: rename drm_load_edid_firmware() to drm_edid_load_firmware()
+fa090e8be028 drm/edid/firmware: drop redundant connector_name variable/parameter
+ec6e3efd1e3e drm/edid: detach debugfs EDID override from EDID property update
+b2cd67b22e4d drm/edid: add function for checking drm_edid validity
+0f04ee686827 drm/edid: split drm_edid block count helper
+7723a53f5f51 drm/edid: rename drm_add_override_edid_modes() to drm_edid_override_connector_update()
+06a01b72a136 drm/edid: abstract debugfs override EDID show better
+e46e50c41da8 drm/edid: debug log EDID override set/reset
+99b4eab97641 drm/amd/display: stop using connector->override_edid
+0831b3d1b520 drm/i915/hdmi: stop using connector->override_edid
+d2e3cab454f7 drm/i915/hdmi: do dual mode detect only if connected
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/index.html
+
+--===============6732941572823608010==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/edid: EDID override refactoring and fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109579/">https://patchwork.freedesktop.org/series/109579/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12233 -&gt; Patchwork_109579v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 42)</h2>
+<p>Missing    (3): fi-ctg-p8600 fi-icl-u2 fi-tgl-dsi </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_109579v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>{fi-tgl-mst}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/fi-tgl-mst/igt@i915_selftest@live.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc_hang:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12233/bat-rpls-2/igt@i915_selftest@live@guc_hang.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/bat-rpls-2/igt@i915_selftest@live@guc_hang.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109579v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12233/fi-apl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/fi-apl-guc/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7073">i915#7073</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12233/fi-tgl-mst/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5537">i915#5537</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/fi-tgl-mst/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12233/bat-rpls-1/igt@i915_selftest@live@guc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6471">i915#6471</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v1/bat-rpls-1/igt@i915_selftest@live@guc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12233 -&gt; Patchwork_109579v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12233: 6fbcc8bcd3c991362bec9b644b6a982630406d6b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7009: cf55acdeea3747c668074a8734029364960e5f5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109579v1: 6fbcc8bcd3c991362bec9b644b6a982630406d6b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>bcd53fa7d1e7 drm/edid: convert to device specific logging<br />
+1963639e6b93 drm/edid/firmware: convert to drm device specific logging<br />
+966fab794f5d drm/edid: move edid load declarations to internal header<br />
+c48e0e554102 drm/edid: use struct drm_edid for override/firmware EDID<br />
+a9415f54aa87 drm/edid/firmware: rename drm_load_edid_firmware() to drm_edid_load_firmware()<br />
+fa090e8be028 drm/edid/firmware: drop redundant connector_name variable/parameter<br />
+ec6e3efd1e3e drm/edid: detach debugfs EDID override from EDID property update<br />
+b2cd67b22e4d drm/edid: add function for checking drm_edid validity<br />
+0f04ee686827 drm/edid: split drm_edid block count helper<br />
+7723a53f5f51 drm/edid: rename drm_add_override_edid_modes() to drm_edid_override_connector_update()<br />
+06a01b72a136 drm/edid: abstract debugfs override EDID show better<br />
+e46e50c41da8 drm/edid: debug log EDID override set/reset<br />
+99b4eab97641 drm/amd/display: stop using connector-&gt;override_edid<br />
+0831b3d1b520 drm/i915/hdmi: stop using connector-&gt;override_edid<br />
+d2e3cab454f7 drm/i915/hdmi: do dual mode detect only if connected</p>
+
+</body>
+</html>
+
+--===============6732941572823608010==--
