@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01E315FB9D4
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 19:42:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62AD15FB9DB
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 19:47:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8937510E840;
-	Tue, 11 Oct 2022 17:41:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B44910E848;
+	Tue, 11 Oct 2022 17:47:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2DD510E659;
- Tue, 11 Oct 2022 17:41:52 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D17710E848
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Oct 2022 17:47:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665510113; x=1697046113;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=mAPY5nurAfpUtOOyMQ6ovHNWohzRGErIfcWirf4mCaE=;
- b=GlBG+mAq67Vqv3RP/IWZimRvw/ZHPPjJfCHocxmFLNq/o1jD/Psk35Rh
- +RroQnIqrNw4ILB5OfHp0ZCiaptiTr/5Kxd2OISnJ2R8fgZSlicX8Sp8A
- cEPeBahbX89Se+p54ZpiF3jOaWW1t+eC1q7BKRgZioftTbVjPbNTP5PkP
- tSb2K5Icy/PI1DX1owsmPGUyFjBzKhp2T7z/AXEngUX7HxVTljlG1I2vJ
- iR349C7bqN0GUFi9n6AOQ5WZQ+0foyXxAVEgBWyZhoVYrfqGmUP6caZdF
- S7XkYMfkvay6ERGF8/g7FfZXxo2xcNz9vqamSiJ4F4ub/GLmWquJXU8qQ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="284962610"
-X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="284962610"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 10:41:28 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="689334206"
-X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="689334206"
-Received: from korubohx-mobl.ger.corp.intel.com (HELO [10.252.10.79])
- ([10.252.10.79])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 10:41:25 -0700
-Message-ID: <f8fe2903-371c-dea9-b2aa-b36b665c0a99@intel.com>
-Date: Tue, 11 Oct 2022 18:41:23 +0100
+ t=1665510429; x=1697046429;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=kx2mj3GTzvsXBiEIV42RSc4AofKPmzCV5KvigG25pzQ=;
+ b=Eg6AlS+477YkCUUy+XnG+/VusYxD8GxVus87WBf7pK0kVJMU7o/twu1c
+ AU9QELGoFRXKVhxKNVR5eaJ2x/vjP+fVFllnzi+WB/aRDprHPYQF9zJpX
+ XBikSGTlnprkrtsIr3PdsXCvq9aizvJSUQ8utsmnxPLFUGgrJA0k45jg5
+ U+nYBoHmf48FVkwxufAaEUAzQyX7W+S6W1wrJmHf2IGbGDQl/R1xWpas2
+ Rmt4UNFMEwp4qG/YgAeMWcS9T6cKx0Oybq+c9DLMfWE8FN193sWPRW/gm
+ X532nhHfjjWV9i2L9X+diabW3CDDaROAgNZk3MTGptyOTX3U+hUeoAY0u g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="303322458"
+X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="303322458"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 10:47:06 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="659625415"
+X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="659625415"
+Received: from milawils-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.40.183])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 10:47:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org, Lionel G Landwerlin
+ <lionel.g.landwerlin@intel.com>, Ashutosh Dixit <ashutosh.dixit@intel.com>
+In-Reply-To: <20221010181434.513477-5-umesh.nerlige.ramappa@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221010181434.513477-1-umesh.nerlige.ramappa@intel.com>
+ <20221010181434.513477-5-umesh.nerlige.ramappa@intel.com>
+Date: Tue, 11 Oct 2022 20:47:00 +0300
+Message-ID: <87y1tmw8vf.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.1
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20221010065826.32037-1-niranjana.vishwanathapura@intel.com>
- <20221010065826.32037-7-niranjana.vishwanathapura@intel.com>
- <e3e99b0e-5b2f-4e51-28f3-b04712b2f2ea@intel.com>
-In-Reply-To: <e3e99b0e-5b2f-4e51-28f3-b04712b2f2ea@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 06/17] drm/i915/vm_bind: Support for VM
- private BOs
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v3 04/16] drm/i915/perf: Determine gen12 oa
+ ctx offset at runtime
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,273 +60,309 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
- daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/10/2022 17:27, Matthew Auld wrote:
-> On 10/10/2022 07:58, Niranjana Vishwanathapura wrote:
->> Each VM creates a root_obj and shares it with all of its private objects
->> to use it as dma_resv object. This has a performance advantage as it
->> requires a single dma_resv object update for all private BOs vs list of
->> dma_resv objects update for shared BOs, in the execbuf path.
->>
->> VM private BOs can be only mapped on specified VM and cannot be dmabuf
->> exported. Also, they are supported only in vm_bind mode.
->>
->> v2: Pad struct drm_i915_gem_create_ext_vm_private for 64bit alignment,
->>      add input validity checks.
->> v3: Create root_obj only for ppgtt.
->>
->> Signed-off-by: Niranjana Vishwanathapura 
->> <niranjana.vishwanathapura@intel.com>
->> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_context.c   | 16 +++++-
->>   drivers/gpu/drm/i915/gem/i915_gem_create.c    | 49 ++++++++++++++++++-
->>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  6 +++
->>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  4 ++
->>   drivers/gpu/drm/i915/gem/i915_gem_object.c    |  3 ++
->>   .../gpu/drm/i915/gem/i915_gem_object_types.h  |  3 ++
->>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  3 ++
->>   .../drm/i915/gem/i915_gem_vm_bind_object.c    |  9 ++++
->>   drivers/gpu/drm/i915/gt/intel_gtt.c           |  3 ++
->>   drivers/gpu/drm/i915/gt/intel_gtt.h           |  2 +
->>   drivers/gpu/drm/i915/i915_vma.c               |  1 +
->>   drivers/gpu/drm/i915/i915_vma_types.h         |  2 +
->>   include/uapi/drm/i915_drm.h                   | 33 +++++++++++++
->>   13 files changed, 131 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> index 793345cbf99e..5ea7064805f3 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> @@ -83,6 +83,7 @@
->>   #include "i915_file_private.h"
->>   #include "i915_gem_context.h"
->> +#include "i915_gem_internal.h"
->>   #include "i915_trace.h"
->>   #include "i915_user_extensions.h"
->> @@ -1795,6 +1796,7 @@ int i915_gem_vm_create_ioctl(struct drm_device 
->> *dev, void *data,
->>       struct drm_i915_private *i915 = to_i915(dev);
->>       struct drm_i915_gem_vm_control *args = data;
->>       struct drm_i915_file_private *file_priv = file->driver_priv;
->> +    struct drm_i915_gem_object *obj;
->>       struct i915_ppgtt *ppgtt;
->>       u32 id;
->>       int err;
->> @@ -1817,15 +1819,27 @@ int i915_gem_vm_create_ioctl(struct drm_device 
->> *dev, void *data,
->>               goto err_put;
->>       }
->> +    obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
->> +    if (IS_ERR(obj)) {
->> +        err = PTR_ERR(obj);
->> +        goto err_put;
->> +    }
->> +
->> +    ppgtt->vm.root_obj = obj;
->> +    ppgtt->vm.vm_bind_mode = true;
-> 
-> Won't this temporarily break execbuf2? Only in the final patch does this 
-> depend on the new flag? Perhaps the patch split could be improved, or 
-> maybe we can just keep this as false here, until the final patch? Could 
-> also maybe also keep root_obj = NULL, until the last patch also?
-> 
->> +
->>       err = xa_alloc(&file_priv->vm_xa, &id, &ppgtt->vm,
->>                  xa_limit_32b, GFP_KERNEL);
->>       if (err)
->> -        goto err_put;
->> +        goto err_root_obj_put;
->>       GEM_BUG_ON(id == 0); /* reserved for invalid/unassigned ppgtt */
->>       args->vm_id = id;
->>       return 0;
->> +err_root_obj_put:
->> +    if (ppgtt->vm.root_obj)
->> +        i915_gem_object_put(ppgtt->vm.root_obj);
->>   err_put:
->>       i915_vm_put(&ppgtt->vm);
->>       return err;
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> index 5c6e396ab74d..694d4638ac8b 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> @@ -11,6 +11,7 @@
->>   #include "pxp/intel_pxp.h"
->>   #include "i915_drv.h"
->> +#include "i915_gem_context.h"
->>   #include "i915_gem_create.h"
->>   #include "i915_trace.h"
->>   #include "i915_user_extensions.h"
->> @@ -251,6 +252,7 @@ struct create_ext {
->>       unsigned int n_placements;
->>       unsigned int placement_mask;
->>       unsigned long flags;
->> +    u32 vm_id;
->>   };
->>   static void repr_placements(char *buf, size_t size,
->> @@ -400,9 +402,32 @@ static int ext_set_protected(struct 
->> i915_user_extension __user *base, void *data
->>       return 0;
->>   }
->> +static int ext_set_vm_private(struct i915_user_extension __user *base,
->> +                  void *data)
->> +{
->> +    struct drm_i915_gem_create_ext_vm_private ext;
->> +    struct create_ext *ext_data = data;
->> +
->> +    if (copy_from_user(&ext, base, sizeof(ext)))
->> +        return -EFAULT;
->> +
->> +    /* Reserved fields must be 0 */
->> +    if (ext.rsvd)
->> +        return -EINVAL;
->> +
->> +    /* vm_id 0 is reserved */
->> +    if (!ext.vm_id)
->> +        return -ENOENT;
->> +
->> +    ext_data->vm_id = ext.vm_id;
->> +
->> +    return 0;
->> +}
->> +
->>   static const i915_user_extension_fn create_extensions[] = {
->>       [I915_GEM_CREATE_EXT_MEMORY_REGIONS] = ext_set_placements,
->>       [I915_GEM_CREATE_EXT_PROTECTED_CONTENT] = ext_set_protected,
->> +    [I915_GEM_CREATE_EXT_VM_PRIVATE] = ext_set_vm_private,
->>   };
->>   /**
->> @@ -418,6 +443,7 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, 
->> void *data,
->>       struct drm_i915_private *i915 = to_i915(dev);
->>       struct drm_i915_gem_create_ext *args = data;
->>       struct create_ext ext_data = { .i915 = i915 };
->> +    struct i915_address_space *vm = NULL;
->>       struct drm_i915_gem_object *obj;
->>       int ret;
->> @@ -431,6 +457,12 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, 
->> void *data,
->>       if (ret)
->>           return ret;
->> +    if (ext_data.vm_id) {
->> +        vm = i915_gem_vm_lookup(file->driver_priv, ext_data.vm_id);
->> +        if (unlikely(!vm))
->> +            return -ENOENT;
->> +    }
->> +
->>       if (!ext_data.n_placements) {
->>           ext_data.placements[0] =
->>               intel_memory_region_by_type(i915, INTEL_MEMORY_SYSTEM);
->> @@ -457,8 +489,21 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, 
->> void *data,
->>                           ext_data.placements,
->>                           ext_data.n_placements,
->>                           ext_data.flags);
->> -    if (IS_ERR(obj))
->> -        return PTR_ERR(obj);
->> +    if (IS_ERR(obj)) {
->> +        ret = PTR_ERR(obj);
->> +        goto vm_put;
->> +    }
->> +
->> +    if (vm) {
->> +        obj->base.resv = vm->root_obj->base.resv;
->> +        obj->priv_root = i915_gem_object_get(vm->root_obj);
->> +        i915_vm_put(vm);
->> +    }
->>       return i915_gem_publish(obj, file, &args->size, &args->handle);
->> +vm_put:
->> +    if (vm)
->> +        i915_vm_put(vm);
->> +
->> +    return ret;
->>   }
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> index f5062d0c6333..6433173c3e84 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> @@ -218,6 +218,12 @@ struct dma_buf *i915_gem_prime_export(struct 
->> drm_gem_object *gem_obj, int flags)
->>       struct drm_i915_gem_object *obj = to_intel_bo(gem_obj);
->>       DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
->> +    if (obj->priv_root) {
->> +        drm_dbg(obj->base.dev,
->> +            "Exporting VM private objects is not allowed\n");
->> +        return ERR_PTR(-EINVAL);
->> +    }
->> +
->>       exp_info.ops = &i915_dmabuf_ops;
->>       exp_info.size = gem_obj->size;
->>       exp_info.flags = flags;
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> index 9fb9f6faafd8..4673e0812277 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> @@ -864,6 +864,10 @@ static struct i915_vma *eb_lookup_vma(struct 
->> i915_execbuffer *eb, u32 handle)
->>           if (unlikely(!obj))
->>               return ERR_PTR(-ENOENT);
->> +        /* VM private objects are not supported here */
->> +        if (obj->priv_root)
->> +            return ERR_PTR(-EINVAL);
->> +
->>           /*
->>            * If the user has opted-in for protected-object tracking, make
->>            * sure the object encryption can be used.
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> index 62495d5d0038..b799c53ac4b1 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> @@ -108,6 +108,9 @@ void i915_gem_object_init(struct 
->> drm_i915_gem_object *obj,
->>    */
->>   void __i915_gem_object_fini(struct drm_i915_gem_object *obj)
->>   {
->> +    if (obj->priv_root && !obj->ttm.created)
->> +        i915_gem_object_put(obj->priv_root);
-> 
-> Can we not ignore the ttm.created here? And then drop the object_put() 
-> below?
+On Mon, 10 Oct 2022, Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com> wrote:
+> Some SKUs of same gen12 platform may have different oactxctrl
+> offsets. For gen12, determine oactxctrl offsets at runtime.
+>
+> v2: (Lionel)
+> - Move MI definitions to intel_gpu_commands.h
+> - Ensure __find_reg_in_lri does read past context image size
+>
+> v3: (Ashutosh)
+> - Drop unnecessary use of double underscores
+> - fix find_reg_in_lri
+> - Return error if oa context offset is U32_MAX
+> - Error out if oa_ctx_ctrl_offset does not find offset
+>
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gpu_commands.h |   4 +
+>  drivers/gpu/drm/i915/i915_perf.c             | 154 +++++++++++++++----
+>  drivers/gpu/drm/i915/i915_perf_oa_regs.h     |   2 +-
+>  3 files changed, 129 insertions(+), 31 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> index d4e9702d3c8e..f50ea92910d9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> @@ -187,6 +187,10 @@
+>  #define   MI_BATCH_RESOURCE_STREAMER REG_BIT(10)
+>  #define   MI_BATCH_PREDICATE         REG_BIT(15) /* HSW+ on RCS only*/
+>  
+> +#define MI_OPCODE(x)		(((x) >> 23) & 0x3f)
+> +#define IS_MI_LRI_CMD(x)	(MI_OPCODE(x) == MI_OPCODE(MI_INSTR(0x22, 0)))
+> +#define MI_LRI_LEN(x)		(((x) & 0xff) + 1)
+> +
+>  /*
+>   * 3D instructions used by the kernel
+>   */
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index cd57b5836386..b292aa39633e 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -1358,6 +1358,68 @@ static int gen12_get_render_context_id(struct i915_perf_stream *stream)
+>  	return 0;
+>  }
+>  
+> +#define valid_oactxctrl_offset(x) ((x) && (x) != U32_MAX)
+> +static bool oa_find_reg_in_lri(u32 *state, u32 reg, u32 *offset, u32 end)
+> +{
+> +	u32 idx = *offset;
+> +	u32 len = min(MI_LRI_LEN(state[idx]) + idx, end);
 
-Otherwise,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+I don't understand any of this stuff, but why are the offset, index and
+length u32 instead of just, say, int?
 
-> 
->> +
->>       mutex_destroy(&obj->mm.get_page.lock);
->>       mutex_destroy(&obj->mm.get_dma_page.lock);
->>       dma_resv_fini(&obj->base._resv);
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h 
->> b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> index d0d6772e6f36..b77bf0e07fe1 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> @@ -242,6 +242,9 @@ struct drm_i915_gem_object {
->>       const struct drm_i915_gem_object_ops *ops;
->> +    /* For VM private BO, points to root_obj in VM. NULL otherwise */
->> +    struct drm_i915_gem_object *priv_root;
->> +
->>       struct {
->>           /**
->>            * @vma.lock: protect the list/tree of vmas
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> index d63f30efd631..233d670a91de 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> @@ -1200,6 +1200,9 @@ void i915_ttm_bo_destroy(struct 
->> ttm_buffer_object *bo)
->>       mutex_destroy(&obj->ttm.get_io_page.lock);
->>       if (obj->ttm.created) {
->> +        if (obj->priv_root)
->> +            i915_gem_object_put(obj->priv_root);
->> +
+> +	bool found = false;
+> +
+> +	idx++;
+> +	for (; idx < len; idx += 2) {
+
+I find the initialization of idx and len confusing, and thereby the
+entire loop too.
+
+BR,
+Jani.
+
+
+> +		if (state[idx] == reg) {
+> +			found = true;
+> +			break;
+> +		}
+> +	}
+> +
+> +	*offset = idx;
+> +	return found;
+> +}
+> +
+> +static u32 oa_context_image_offset(struct intel_context *ce, u32 reg)
+> +{
+> +	u32 offset, len = (ce->engine->context_size - PAGE_SIZE) / 4;
+> +	u32 *state = ce->lrc_reg_state;
+> +
+> +	for (offset = 0; offset < len; ) {
+> +		if (IS_MI_LRI_CMD(state[offset])) {
+> +			if (oa_find_reg_in_lri(state, reg, &offset, len))
+> +				break;
+> +		} else {
+> +			offset++;
+> +		}
+> +	}
+> +
+> +	return offset < len ? offset : U32_MAX;
+> +}
+> +
+> +static int set_oa_ctx_ctrl_offset(struct intel_context *ce)
+> +{
+> +	i915_reg_t reg = GEN12_OACTXCONTROL(ce->engine->mmio_base);
+> +	struct i915_perf *perf = &ce->engine->i915->perf;
+> +	u32 offset = perf->ctx_oactxctrl_offset;
+> +
+> +	/* Do this only once. Failure is stored as offset of U32_MAX */
+> +	if (offset)
+> +		goto exit;
+> +
+> +	offset = oa_context_image_offset(ce, i915_mmio_reg_offset(reg));
+> +	perf->ctx_oactxctrl_offset = offset;
+> +
+> +	drm_dbg(&ce->engine->i915->drm,
+> +		"%s oa ctx control at 0x%08x dword offset\n",
+> +		ce->engine->name, offset);
+> +
+> +exit:
+> +	return valid_oactxctrl_offset(offset) ? 0 : -ENODEV;
+> +}
+> +
+> +static bool engine_supports_mi_query(struct intel_engine_cs *engine)
+> +{
+> +	return engine->class == RENDER_CLASS;
+> +}
+> +
+>  /**
+>   * oa_get_render_ctx_id - determine and hold ctx hw id
+>   * @stream: An i915-perf stream opened for OA metrics
+> @@ -1377,6 +1439,21 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+>  	if (IS_ERR(ce))
+>  		return PTR_ERR(ce);
+>  
+> +	if (engine_supports_mi_query(stream->engine)) {
+> +		/*
+> +		 * We are enabling perf query here. If we don't find the context
+> +		 * offset here, just return an error.
+> +		 */
+> +		ret = set_oa_ctx_ctrl_offset(ce);
+> +		if (ret) {
+> +			intel_context_unpin(ce);
+> +			drm_err(&stream->perf->i915->drm,
+> +				"Enabling perf query failed for %s\n",
+> +				stream->engine->name);
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	switch (GRAPHICS_VER(ce->engine->i915)) {
+>  	case 7: {
+>  		/*
+> @@ -2408,10 +2485,11 @@ static int gen12_configure_oar_context(struct i915_perf_stream *stream,
+>  	int err;
+>  	struct intel_context *ce = stream->pinned_ctx;
+>  	u32 format = stream->oa_buffer.format;
+> +	u32 offset = stream->perf->ctx_oactxctrl_offset;
+>  	struct flex regs_context[] = {
+>  		{
+>  			GEN8_OACTXCONTROL,
+> -			stream->perf->ctx_oactxctrl_offset + 1,
+> +			offset + 1,
+>  			active ? GEN8_OA_COUNTER_RESUME : 0,
+>  		},
+>  	};
+> @@ -2436,15 +2514,18 @@ static int gen12_configure_oar_context(struct i915_perf_stream *stream,
+>  		},
+>  	};
+>  
+> -	/* Modify the context image of pinned context with regs_context*/
+> -	err = intel_context_lock_pinned(ce);
+> -	if (err)
+> -		return err;
+> +	/* Modify the context image of pinned context with regs_context */
+> +	if (valid_oactxctrl_offset(offset)) {
+> +		err = intel_context_lock_pinned(ce);
+> +		if (err)
+> +			return err;
+>  
+> -	err = gen8_modify_context(ce, regs_context, ARRAY_SIZE(regs_context));
+> -	intel_context_unlock_pinned(ce);
+> -	if (err)
+> -		return err;
+> +		err = gen8_modify_context(ce, regs_context,
+> +					  ARRAY_SIZE(regs_context));
+> +		intel_context_unlock_pinned(ce);
+> +		if (err)
+> +			return err;
+> +	}
+>  
+>  	/* Apply regs_lri using LRI with pinned context */
+>  	return gen8_modify_self(ce, regs_lri, ARRAY_SIZE(regs_lri), active);
+> @@ -2566,6 +2647,7 @@ lrc_configure_all_contexts(struct i915_perf_stream *stream,
+>  			   const struct i915_oa_config *oa_config,
+>  			   struct i915_active *active)
+>  {
+> +	u32 ctx_oactxctrl = stream->perf->ctx_oactxctrl_offset;
+>  	/* The MMIO offsets for Flex EU registers aren't contiguous */
+>  	const u32 ctx_flexeu0 = stream->perf->ctx_flexeu0_offset;
+>  #define ctx_flexeuN(N) (ctx_flexeu0 + 2 * (N) + 1)
+> @@ -2576,7 +2658,7 @@ lrc_configure_all_contexts(struct i915_perf_stream *stream,
+>  		},
+>  		{
+>  			GEN8_OACTXCONTROL,
+> -			stream->perf->ctx_oactxctrl_offset + 1,
+> +			ctx_oactxctrl + 1,
+>  		},
+>  		{ EU_PERF_CNTL0, ctx_flexeuN(0) },
+>  		{ EU_PERF_CNTL1, ctx_flexeuN(1) },
+> @@ -4545,6 +4627,37 @@ static void oa_init_supported_formats(struct i915_perf *perf)
+>  	}
+>  }
+>  
+> +static void i915_perf_init_info(struct drm_i915_private *i915)
+> +{
+> +	struct i915_perf *perf = &i915->perf;
+> +
+> +	switch (GRAPHICS_VER(i915)) {
+> +	case 8:
+> +		perf->ctx_oactxctrl_offset = 0x120;
+> +		perf->ctx_flexeu0_offset = 0x2ce;
+> +		perf->gen8_valid_ctx_bit = BIT(25);
+> +		break;
+> +	case 9:
+> +		perf->ctx_oactxctrl_offset = 0x128;
+> +		perf->ctx_flexeu0_offset = 0x3de;
+> +		perf->gen8_valid_ctx_bit = BIT(16);
+> +		break;
+> +	case 11:
+> +		perf->ctx_oactxctrl_offset = 0x124;
+> +		perf->ctx_flexeu0_offset = 0x78e;
+> +		perf->gen8_valid_ctx_bit = BIT(16);
+> +		break;
+> +	case 12:
+> +		/*
+> +		 * Calculate offset at runtime in oa_pin_context for gen12 and
+> +		 * cache the value in perf->ctx_oactxctrl_offset.
+> +		 */
+> +		break;
+> +	default:
+> +		MISSING_CASE(GRAPHICS_VER(i915));
+> +	}
+> +}
+> +
+>  /**
+>   * i915_perf_init - initialize i915-perf state on module bind
+>   * @i915: i915 device instance
+> @@ -4583,6 +4696,7 @@ void i915_perf_init(struct drm_i915_private *i915)
+>  		 * execlist mode by default.
+>  		 */
+>  		perf->ops.read = gen8_oa_read;
+> +		i915_perf_init_info(i915);
+>  
+>  		if (IS_GRAPHICS_VER(i915, 8, 9)) {
+>  			perf->ops.is_valid_b_counter_reg =
+> @@ -4602,18 +4716,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+>  			perf->ops.enable_metric_set = gen8_enable_metric_set;
+>  			perf->ops.disable_metric_set = gen8_disable_metric_set;
+>  			perf->ops.oa_hw_tail_read = gen8_oa_hw_tail_read;
+> -
+> -			if (GRAPHICS_VER(i915) == 8) {
+> -				perf->ctx_oactxctrl_offset = 0x120;
+> -				perf->ctx_flexeu0_offset = 0x2ce;
+> -
+> -				perf->gen8_valid_ctx_bit = BIT(25);
+> -			} else {
+> -				perf->ctx_oactxctrl_offset = 0x128;
+> -				perf->ctx_flexeu0_offset = 0x3de;
+> -
+> -				perf->gen8_valid_ctx_bit = BIT(16);
+> -			}
+>  		} else if (GRAPHICS_VER(i915) == 11) {
+>  			perf->ops.is_valid_b_counter_reg =
+>  				gen7_is_valid_b_counter_addr;
+> @@ -4627,11 +4729,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+>  			perf->ops.enable_metric_set = gen8_enable_metric_set;
+>  			perf->ops.disable_metric_set = gen11_disable_metric_set;
+>  			perf->ops.oa_hw_tail_read = gen8_oa_hw_tail_read;
+> -
+> -			perf->ctx_oactxctrl_offset = 0x124;
+> -			perf->ctx_flexeu0_offset = 0x78e;
+> -
+> -			perf->gen8_valid_ctx_bit = BIT(16);
+>  		} else if (GRAPHICS_VER(i915) == 12) {
+>  			perf->ops.is_valid_b_counter_reg =
+>  				gen12_is_valid_b_counter_addr;
+> @@ -4645,9 +4742,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+>  			perf->ops.enable_metric_set = gen12_enable_metric_set;
+>  			perf->ops.disable_metric_set = gen12_disable_metric_set;
+>  			perf->ops.oa_hw_tail_read = gen12_oa_hw_tail_read;
+> -
+> -			perf->ctx_flexeu0_offset = 0;
+> -			perf->ctx_oactxctrl_offset = 0x144;
+>  		}
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_perf_oa_regs.h b/drivers/gpu/drm/i915/i915_perf_oa_regs.h
+> index f31c9f13a9fc..0ef3562ff4aa 100644
+> --- a/drivers/gpu/drm/i915/i915_perf_oa_regs.h
+> +++ b/drivers/gpu/drm/i915/i915_perf_oa_regs.h
+> @@ -97,7 +97,7 @@
+>  #define  GEN12_OAR_OACONTROL_COUNTER_FORMAT_SHIFT 1
+>  #define  GEN12_OAR_OACONTROL_COUNTER_ENABLE       (1 << 0)
+>  
+> -#define GEN12_OACTXCONTROL _MMIO(0x2360)
+> +#define GEN12_OACTXCONTROL(base) _MMIO((base) + 0x360)
+>  #define GEN12_OAR_OASTATUS _MMIO(0x2968)
+>  
+>  /* Gen12 OAG unit */
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
