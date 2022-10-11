@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F6705FAD64
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 09:22:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63CDF5FAD75
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 09:28:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB6110E7D2;
-	Tue, 11 Oct 2022 07:22:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4DB10E7D2;
+	Tue, 11 Oct 2022 07:28:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3C010E7D2
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Oct 2022 07:22:39 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72E8B10E7D5;
+ Tue, 11 Oct 2022 07:28:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665472959; x=1697008959;
+ t=1665473296; x=1697009296;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=j8BSvLASBNpxAvxP4TENg3boCensxT18wVTxL4WCqmg=;
- b=bflB6V2Sp56surauNRgrOsOEiAwGtf+0MuAfDB5fKv4lFszra/vCZ0Do
- mgg0uAgx+JqjFuWAabuPMmMqDDhLaIyS3puRp7hF40PTyCSnqH173CDQw
- 3G5DROmbPNj+Q+uq+R+BnDe5emmbV34u4YdkW8E4K+Ov8c2Udbfdmcb8T
- 0mYiVT0Wm8pX4WdsmeUQRtQxZvGyrE6xHhV27Q9OkT79SIkEaTc28BkTf
- pJktDgnb1z7WCz2UoyH3bP+B3QyFKjCrNqkQyOoMg3pgQrluCboC2fgMY
- DR+11NenaZoOm4l/sPxWXJbY4AryK/7WfRGAVsFkxPYSqLEv8C+IxjMr9 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="291746172"
-X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="291746172"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 00:22:38 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="801361675"
-X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="801361675"
+ bh=L5MBqgqp6MTU4ypjZqNT8kLPN3xIwjQwKf//0nsfzJk=;
+ b=cn6QbeH7FHI9zEiOgsoLwMaQFL+p5TQ+1UNzmJIeK2E0wUYpNl3mVHVL
+ JaEZHCTbNkmvB+mhiRSOs6MohiLvW0ZG0z3LPH1OEP4xsXavA/hvzhIkr
+ acZodIBctAxzf6cfCA6HgbvyvfOPEgoTT3Dbsrzo5HxRMkMZbRtSO+QVV
+ X6C4tGTFUTsWywCaMa5WixhCYEFHYNIbEDGH8dyuzmz/IJuNeXL16hAsi
+ l+evbC3iStjQadyfStiaT+LHLDF3DEIkioIFeVlmCk0/V37NjkjLdXelm
+ 7rn+dQ5lAHnVwQY54JYUgY3m2H/+kCtm/JfrV4R+5I6Esu1pIUgH4nH9O A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="390739348"
+X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="390739348"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 00:28:01 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="730872554"
+X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="730872554"
 Received: from milawils-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.40.183])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 00:22:37 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 00:27:59 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <e59e680be0d56fdb4c116f45fac94350832752ec.1665458639.git.ashutosh.dixit@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221010231720.3730568-1-radhakrishna.sripada@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1665458639.git.ashutosh.dixit@intel.com>
- <e59e680be0d56fdb4c116f45fac94350832752ec.1665458639.git.ashutosh.dixit@intel.com>
-Date: Tue, 11 Oct 2022 10:22:34 +0300
-Message-ID: <87tu4aygcl.fsf@intel.com>
+References: <20221010231720.3730568-1-radhakrishna.sripada@intel.com>
+Date: Tue, 11 Oct 2022 10:27:56 +0300
+Message-ID: <87pmeyyg3n.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Don't do display work on
- platforms without display
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use graphics ver,
+ rel info for media on old platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,79 +59,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 10 Oct 2022, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
-> Do display work only on platforms with display. This avoids holding the
-> runtime PM wakeref for an additional 100+ ms after GT has been parked.
+On Mon, 10 Oct 2022, Radhakrishna Sripada <radhakrishna.sripada@intel.com> wrote:
+> Platforms prior to MTL do not have a separate media and graphics version.
+> On platforms where GMD id is not supported, reuse the graphics ip version,
+> release info for media.
 >
-> Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7025
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> The rest of the IP graphics, display versions would be copied during driver
+> creation.
+>
+> While at it warn if GMD is not used for platforms greater than gen12.
+>
+> Fixes: c2c7075225ef ("drm/i915: Read graphics/media/display arch version from hw")
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_gt_pm.c | 36 +++++++++++++++------------
->  1 file changed, 20 insertions(+), 16 deletions(-)
+>  drivers/gpu/drm/i915/intel_device_info.c | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index f553e2173bdad..26aa2e979a148 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -70,19 +70,21 @@ static int __gt_unpark(struct intel_wakeref *wf)
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> index 090097bb3c0a..ba178b61bceb 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -329,8 +329,18 @@ static void intel_ipver_early_init(struct drm_i915_private *i915)
+>  {
+>  	struct intel_runtime_info *runtime = RUNTIME_INFO(i915);
 >  
->  	GT_TRACE(gt, "\n");
->  
-> -	/*
-> -	 * It seems that the DMC likes to transition between the DC states a lot
-> -	 * when there are no connected displays (no active power domains) during
-> -	 * command submission.
-> -	 *
-> -	 * This activity has negative impact on the performance of the chip with
-> -	 * huge latencies observed in the interrupt handler and elsewhere.
-> -	 *
-> -	 * Work around it by grabbing a GT IRQ power domain whilst there is any
-> -	 * GT activity, preventing any DC state transitions.
-> -	 */
-> -	gt->awake = intel_display_power_get(i915, POWER_DOMAIN_GT_IRQ);
-> -	GEM_BUG_ON(!gt->awake);
-> +	if (HAS_DISPLAY(i915) && INTEL_DISPLAY_ENABLED(i915)) {
+> -	if (!HAS_GMD_ID(i915))
+> +	if (!HAS_GMD_ID(i915)) {
+> +		drm_WARN_ON(&i915->drm, RUNTIME_INFO(i915)->graphics.ip.ver > 12);
+> +		/*
+> +		 * On older platforms, graphics and media share the same ip
+> +		 * version and release.
+> +		 */
+> +		RUNTIME_INFO(i915)->media.ip.ver =
+> +			RUNTIME_INFO(i915)->graphics.ip.ver;
+> +		RUNTIME_INFO(i915)->media.ip.rel =
+> +			RUNTIME_INFO(i915)->graphics.ip.rel;
 
-Feels like something's wrong if you need both of those.
+You could assign the whole struct ip_version (*) at once, or is there a
+reason you're intentionally not assigning step?
 
 BR,
 Jani.
 
-> +		/*
-> +		 * It seems that the DMC likes to transition between the DC states a lot
-> +		 * when there are no connected displays (no active power domains) during
-> +		 * command submission.
-> +		 *
-> +		 * This activity has negative impact on the performance of the chip with
-> +		 * huge latencies observed in the interrupt handler and elsewhere.
-> +		 *
-> +		 * Work around it by grabbing a GT IRQ power domain whilst there is any
-> +		 * GT activity, preventing any DC state transitions.
-> +		 */
-> +		gt->awake = intel_display_power_get(i915, POWER_DOMAIN_GT_IRQ);
-> +		GEM_BUG_ON(!gt->awake);
+(*) Why does that name not have intel_ prefix?
+
+>  		return;
 > +	}
 >  
->  	intel_rc6_unpark(&gt->rc6);
->  	intel_rps_unpark(&gt->rps);
-> @@ -115,9 +117,11 @@ static int __gt_park(struct intel_wakeref *wf)
->  	/* Everything switched off, flush any residual interrupt just in case */
->  	intel_synchronize_irq(i915);
->  
-> -	/* Defer dropping the display power well for 100ms, it's slow! */
-> -	GEM_BUG_ON(!wakeref);
-> -	intel_display_power_put_async(i915, POWER_DOMAIN_GT_IRQ, wakeref);
-> +	if (HAS_DISPLAY(i915) && INTEL_DISPLAY_ENABLED(i915)) {
-> +		/* Defer dropping the display power well for 100ms, it's slow! */
-> +		GEM_BUG_ON(!wakeref);
-> +		intel_display_power_put_async(i915, POWER_DOMAIN_GT_IRQ, wakeref);
-> +	}
->  
->  	return 0;
->  }
+>  	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_GRAPHICS),
+>  		    &runtime->graphics.ip);
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
