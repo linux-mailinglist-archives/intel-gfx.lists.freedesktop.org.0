@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 163A05FAD53
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 09:20:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F6705FAD64
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 09:22:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E07F410E7C5;
-	Tue, 11 Oct 2022 07:20:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB6110E7D2;
+	Tue, 11 Oct 2022 07:22:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59EA510E7C5;
- Tue, 11 Oct 2022 07:20:23 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3C010E7D2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Oct 2022 07:22:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665472823; x=1697008823;
+ t=1665472959; x=1697008959;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=SWyygabijBYM8Iz4fQ8EX/wCoEDK8XDQK1VEUWJ79Iw=;
- b=R+MqcZ2nM+uMe2GR3pxkxf3hNsIGJjba/3fcuMhjAx0ybidlshK6WFV4
- +P+aZEzEML72GARua41OZ9b9Qsghd1zEQUJTEpTyJxFFJX1tCtgLj4IyX
- KPkaCz6nAVQBQx56I+utB8NaqqKYwQS7+tarcG2MhtHNbcEhowa+fnCGR
- mZNF7/hWIUb9BTsXz/f9qIMk+K59SqIeWf2cSb3WAIwwzsp2joU61n3T8
- iH2pffdIednAS227EzZXIIxzRWuGwdjDuHHptpWLQi4LspsDq5t62uW45
- S+zRBa5SvjeqGXcq3zw0t5Qpgh1Ridm/dUuCkqpaoYteAihEYjiDz5A1V g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="303170433"
-X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="303170433"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 00:20:22 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="659439177"
-X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="659439177"
+ message-id:mime-version;
+ bh=j8BSvLASBNpxAvxP4TENg3boCensxT18wVTxL4WCqmg=;
+ b=bflB6V2Sp56surauNRgrOsOEiAwGtf+0MuAfDB5fKv4lFszra/vCZ0Do
+ mgg0uAgx+JqjFuWAabuPMmMqDDhLaIyS3puRp7hF40PTyCSnqH173CDQw
+ 3G5DROmbPNj+Q+uq+R+BnDe5emmbV34u4YdkW8E4K+Ov8c2Udbfdmcb8T
+ 0mYiVT0Wm8pX4WdsmeUQRtQxZvGyrE6xHhV27Q9OkT79SIkEaTc28BkTf
+ pJktDgnb1z7WCz2UoyH3bP+B3QyFKjCrNqkQyOoMg3pgQrluCboC2fgMY
+ DR+11NenaZoOm4l/sPxWXJbY4AryK/7WfRGAVsFkxPYSqLEv8C+IxjMr9 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="291746172"
+X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="291746172"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 00:22:38 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="801361675"
+X-IronPort-AV: E=Sophos;i="5.95,175,1661842800"; d="scan'208";a="801361675"
 Received: from milawils-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.40.183])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 00:20:20 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matthieu CHARETTE <matthieu.charette@gmail.com>
-In-Reply-To: <GLSKJR.CU4DWLJQSTHT2@gmail.com>
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 00:22:37 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <e59e680be0d56fdb4c116f45fac94350832752ec.1665458639.git.ashutosh.dixit@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221006222146.2375217-1-jani.nikula@intel.com>
- <GLSKJR.CU4DWLJQSTHT2@gmail.com>
-Date: Tue, 11 Oct 2022 10:20:18 +0300
-Message-ID: <87wn96yggd.fsf@intel.com>
+References: <cover.1665458639.git.ashutosh.dixit@intel.com>
+ <e59e680be0d56fdb4c116f45fac94350832752ec.1665458639.git.ashutosh.dixit@intel.com>
+Date: Tue, 11 Oct 2022 10:22:34 +0300
+Message-ID: <87tu4aygcl.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/edid/firmware: stop using throwaway
- platform device
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Don't do display work on
+ platforms without display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,79 +59,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 Oct 2022, Matthieu CHARETTE <matthieu.charette@gmail.com> wrote:
-> It should fix the issue. Meanwhile, the system will still crash if a=20
-> new monitor is plugged while the machine is suspended. We might need to=20
-> precache the EDID to prevent that.
+On Mon, 10 Oct 2022, Ashutosh Dixit <ashutosh.dixit@intel.com> wrote:
+> Do display work only on platforms with display. This avoids holding the
+> runtime PM wakeref for an additional 100+ ms after GT has been parked.
+>
+> Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7025
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.c | 36 +++++++++++++++------------
+>  1 file changed, 20 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> index f553e2173bdad..26aa2e979a148 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> @@ -70,19 +70,21 @@ static int __gt_unpark(struct intel_wakeref *wf)
+>  
+>  	GT_TRACE(gt, "\n");
+>  
+> -	/*
+> -	 * It seems that the DMC likes to transition between the DC states a lot
+> -	 * when there are no connected displays (no active power domains) during
+> -	 * command submission.
+> -	 *
+> -	 * This activity has negative impact on the performance of the chip with
+> -	 * huge latencies observed in the interrupt handler and elsewhere.
+> -	 *
+> -	 * Work around it by grabbing a GT IRQ power domain whilst there is any
+> -	 * GT activity, preventing any DC state transitions.
+> -	 */
+> -	gt->awake = intel_display_power_get(i915, POWER_DOMAIN_GT_IRQ);
+> -	GEM_BUG_ON(!gt->awake);
+> +	if (HAS_DISPLAY(i915) && INTEL_DISPLAY_ENABLED(i915)) {
 
-Please elaborate.
+Feels like something's wrong if you need both of those.
 
 BR,
 Jani.
 
+> +		/*
+> +		 * It seems that the DMC likes to transition between the DC states a lot
+> +		 * when there are no connected displays (no active power domains) during
+> +		 * command submission.
+> +		 *
+> +		 * This activity has negative impact on the performance of the chip with
+> +		 * huge latencies observed in the interrupt handler and elsewhere.
+> +		 *
+> +		 * Work around it by grabbing a GT IRQ power domain whilst there is any
+> +		 * GT activity, preventing any DC state transitions.
+> +		 */
+> +		gt->awake = intel_display_power_get(i915, POWER_DOMAIN_GT_IRQ);
+> +		GEM_BUG_ON(!gt->awake);
+> +	}
+>  
+>  	intel_rc6_unpark(&gt->rc6);
+>  	intel_rps_unpark(&gt->rps);
+> @@ -115,9 +117,11 @@ static int __gt_park(struct intel_wakeref *wf)
+>  	/* Everything switched off, flush any residual interrupt just in case */
+>  	intel_synchronize_irq(i915);
+>  
+> -	/* Defer dropping the display power well for 100ms, it's slow! */
+> -	GEM_BUG_ON(!wakeref);
+> -	intel_display_power_put_async(i915, POWER_DOMAIN_GT_IRQ, wakeref);
+> +	if (HAS_DISPLAY(i915) && INTEL_DISPLAY_ENABLED(i915)) {
+> +		/* Defer dropping the display power well for 100ms, it's slow! */
+> +		GEM_BUG_ON(!wakeref);
+> +		intel_display_power_put_async(i915, POWER_DOMAIN_GT_IRQ, wakeref);
+> +	}
+>  
+>  	return 0;
+>  }
 
->
-> Matthieu
->
-> On Fri, Oct 7 2022 at 01:21:46 AM +0300, Jani Nikula=20
-> <jani.nikula@intel.com> wrote:
->> We've used a temporary platform device for firmware EDID loading since
->> it was introduced in commit da0df92b5731 ("drm: allow loading an EDID=20
->> as
->> firmware to override broken monitor"), but there's no explanation why.
->>=20
->> Do we need to?
->>=20
->> Maybe this fixes the suspend/resume issue?
->>=20
->> (Yes, I'll rewrite the commit message if this is the way to go ;)
->>=20
->> References:=20
->> https://lore.kernel.org/r/20220727074152.43059-1-matthieu.charette@gmail=
-.com
->> Cc: Matthieu CHARETTE <matthieu.charette@gmail.com>
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/drm_edid_load.c | 11 +----------
->>  1 file changed, 1 insertion(+), 10 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/drm_edid_load.c=20
->> b/drivers/gpu/drm/drm_edid_load.c
->> index 37d8ba3ddb46..fbae12130234 100644
->> --- a/drivers/gpu/drm/drm_edid_load.c
->> +++ b/drivers/gpu/drm/drm_edid_load.c
->> @@ -182,18 +182,9 @@ static void *edid_load(struct drm_connector=20
->> *connector, const char *name,
->>  		fwdata =3D generic_edid[builtin];
->>  		fwsize =3D sizeof(generic_edid[builtin]);
->>  	} else {
->> -		struct platform_device *pdev;
->>  		int err;
->>=20
->> -		pdev =3D platform_device_register_simple(connector_name, -1, NULL,=20
->> 0);
->> -		if (IS_ERR(pdev)) {
->> -			DRM_ERROR("Failed to register EDID firmware platform device "
->> -				  "for connector \"%s\"\n", connector_name);
->> -			return ERR_CAST(pdev);
->> -		}
->> -
->> -		err =3D request_firmware(&fw, name, &pdev->dev);
->> -		platform_device_unregister(pdev);
->> +		err =3D request_firmware(&fw, name, connector->dev->dev);
->>  		if (err) {
->>  			DRM_ERROR("Requesting EDID firmware \"%s\" failed (err=3D%d)\n",
->>  				  name, err);
->> --
->> 2.34.1
->>=20
->
->
-
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
