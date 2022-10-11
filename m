@@ -2,58 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74C8B5FB15D
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 13:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2F055FB178
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 13:30:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10E6210E095;
-	Tue, 11 Oct 2022 11:20:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3122A10E0FE;
+	Tue, 11 Oct 2022 11:30:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7142610E095
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Oct 2022 11:20:11 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9429F10E2F1;
+ Tue, 11 Oct 2022 11:30:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665487211; x=1697023211;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=aZLFHgF6r4bOgztLFHdufTETUiIQamsiUDovBPow5+c=;
- b=UYte9QQdTgd2//rjz8G2oi9Zk1J5LwpvDKmGmA0vzQOBjYEEKnrKnPQa
- AxHq0bsJg0scKFMpj7kp0AO6E8I1RoO8Sqci/qbDt3pF5F7JcWdPTsLyY
- NY+4dBrtl8I2SWB30g56WGBdBOSgslJR0gIn8DvCR4FtpLvoObUwO1ToK
- QwzOx3D9SRrgDIGsWrN/QzVyzMzuPApC5kgFsNYGXp378AMMCLWszJR7P
- xS9gngn3zt4Qeu9ZxBwisjmEQ2jbdzuGnfx4sCcrlFf74c+Fo/8h7tro0
- A+U4uK1yXhqHNXrMZfcgZAHyDJg0YeAQmyTrASsZho4JmxiNo/5SAG8f9 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="302086637"
-X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="302086637"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 04:19:58 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="871471989"
-X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="871471989"
-Received: from mhartiga-mobl.ger.corp.intel.com (HELO [10.213.228.219])
- ([10.213.228.219])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 04:19:56 -0700
-Message-ID: <0f10a183-d86b-8ec7-8ce1-368c8bd25123@linux.intel.com>
-Date: Tue, 11 Oct 2022 12:19:54 +0100
+ t=1665487832; x=1697023832;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Zd0VpAaEHAgtHpQXOD1386a9dQV5VtC33NJFepBcYyA=;
+ b=jiXEooiU3qlVy6aIauWXR7Tb3ajr0aTE3mEeXPw12hoF+d2KDC3bhpO1
+ YKOmhhQR4ZltlhwbydxahaepaXhZBVKhTiMQw0flkc/LdjIbMeohyOSwG
+ TI6jpfrIpvm8olWvBQSg9W1EjuwJNWG+7PKVLK+G+nYXHk5pGVaJ17qe4
+ PB7/f9Mqouj+lbhF40eVt7ObJiydrJjEb12twA63hYuQy0aup2DfNXat+
+ mTuw4Zi0K1ofpLtCmhN5wQP/05POmWdMQIPJ9R54ftCC88C+4EIdKLy9A
+ NMhyacBjnStvAsK+IdLhdzOQYvdUAnHirNixUUeF7uQmqmPyho1X531AI w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="305532800"
+X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="305532800"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 04:30:31 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="689201659"
+X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="689201659"
+Received: from milawils-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.40.183])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 04:30:30 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+In-Reply-To: <Y0VEnTB950XYrhBI@ashyti-mobl2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221011100137.2838947-1-jani.nikula@intel.com>
+ <Y0VEnTB950XYrhBI@ashyti-mobl2.lan>
+Date: Tue, 11 Oct 2022 14:30:27 +0300
+Message-ID: <87bkqiy4vg.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-References: <Yz8FHapUF8BD7kkw@intel.com>
- <20221006204844.2831303-1-andrzej.hajda@intel.com>
- <Y0QswEzRwwv9Vops@ashyti-mobl2.lan> <Y0VAyikdFVTl0YhX@ashyti-mobl2.lan>
- <87h70ay8fr.fsf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87h70ay8fr.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 1/4] drm/i915/display: remove drm_device
- aliases
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RFC] drm: split build lists one per line and sort
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,40 +58,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ville Syrjala <ville.syrjala@intel.com>, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 11 Oct 2022, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> Hi Jani,
+>
+>> While it takes more vertical space, sorted build lists with one object
+>> per line are arguably easier to manage, especially when there are
+>> conflicting changes.
+>> 
+>> Split anything with more than one object file.
+>
+> looks much better! Just an error below.
+>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/Makefile         | 106 ++++++++++++++++++++++---------
+>>  drivers/gpu/drm/display/Makefile |  14 ++--
+>>  2 files changed, 84 insertions(+), 36 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+>> index 25d0ba310509..c4e6ef321566 100644
+>> --- a/drivers/gpu/drm/Makefile
+>> +++ b/drivers/gpu/drm/Makefile
+>> @@ -3,32 +3,70 @@
+>>  # Makefile for the drm device driver.  This driver provides support for the
+>>  # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
+>>  
+>> -drm-y       :=	drm_aperture.o drm_auth.o drm_cache.o \
+>> -		drm_file.o drm_gem.o drm_ioctl.o \
+>> -		drm_drv.o \
+>> -		drm_sysfs.o drm_mm.o \
+>> -		drm_crtc.o drm_fourcc.o drm_modes.o drm_edid.o drm_displayid.o \
+>> -		drm_trace_points.o drm_prime.o \
+>> -		drm_vma_manager.o \
+>> -		drm_modeset_lock.o drm_atomic.o drm_bridge.o \
+>> -		drm_framebuffer.o drm_connector.o drm_blend.o \
+>> -		drm_encoder.o drm_mode_object.o drm_property.o \
+>> -		drm_plane.o drm_color_mgmt.o drm_print.o \
+>> -		drm_dumb_buffers.o drm_mode_config.o drm_vblank.o \
+>> -		drm_syncobj.o drm_lease.o drm_writeback.o drm_client.o \
+>> -		drm_client_modeset.o drm_atomic_uapi.o \
+>> -		drm_managed.o drm_vblank_work.o
+>> -drm-$(CONFIG_DRM_LEGACY) += drm_agpsupport.o drm_bufs.o drm_context.o drm_dma.o \
+>> -			    drm_hashtab.o drm_irq.o drm_legacy_misc.o drm_lock.o \
+>> -			    drm_memory.o drm_scatter.o drm_vm.o
+>> +drm-y := \
+>> +	drm_aperture.o \
+>> +	drm_atomic.o \
+>> +	drm_atomic_uapi.o \
+>> +	drm_auth.o drm_cache.o \
+>
+> You forgot to split here and drm_cache.o goes after drm_bridge.o
+>
+> Other than this there are no errors, I checked them all.
 
-On 11/10/2022 11:13, Jani Nikula wrote:
-> On Tue, 11 Oct 2022, Andi Shyti <andi.shyti@linux.intel.com> wrote:
->> On Mon, Oct 10, 2022 at 04:31:28PM +0200, Andi Shyti wrote:
->>> On Thu, Oct 06, 2022 at 10:48:44PM +0200, Andrzej Hajda wrote:
->>>> drm_device pointers are unwelcome.
->>>>
->>>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->>>
->>> Acked-by: Andi Shyti <andi.shyti@linux.intel.com>
->>
->> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->>
->> Only this first patch is strictly related to display, I'm taking
->> the series in intel-gt-next. Anyone against?
-> 
-> Absolutely against. That logic is backwards.
-> 
-> drm-intel-gt-next is for stuff that's strictly about gt/gem. Everything
-> else, especially stuff touching common code, needs to go through
-> drm-intel-next.
-> 
-> There's nothing here that's gt/gem specific.
+Good catch! I double checked before sending and missed this anyway.
 
-Glanced over the series and although there are a few bits which are not 
-about display, it does seem majority is either display or common code so 
-I agree it should all go in via drm-intel-next.
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Regards,
+Thanks!
 
-Tvrtko
+>
+> Andi
+>
+>> +	drm_blend.o \
+>> +	drm_bridge.o \
+>> +	drm_client.o \
+>> +	drm_client_modeset.o \
+>> +	drm_color_mgmt.o \
+>> +	drm_connector.o \
+>> +	drm_crtc.o \
+>
+> [...]
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
