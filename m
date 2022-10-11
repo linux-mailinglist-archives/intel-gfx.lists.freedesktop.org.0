@@ -2,62 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8BA601836
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 21:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 638BC60182D
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 21:56:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E53A10EE17;
-	Mon, 17 Oct 2022 19:56:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B20110EE0B;
+	Mon, 17 Oct 2022 19:56:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A67C10E7B6;
- Tue, 11 Oct 2022 06:27:24 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id bp11so7243806wrb.9;
- Mon, 10 Oct 2022 23:27:24 -0700 (PDT)
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com
+ [IPv6:2001:4860:4864:20::31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA7B10E376;
+ Tue, 11 Oct 2022 20:45:36 +0000 (UTC)
+Received: by mail-oa1-x31.google.com with SMTP id
+ 586e51a60fabf-1364357a691so10852252fac.7; 
+ Tue, 11 Oct 2022 13:45:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:cc:to:subject:from:date:from:to:cc:subject:date
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :references:in-reply-to:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=0w8KGzGuvSzltAZdX8cl8yXaNHAwAsGs64+X1MnyKz4=;
- b=nt2Bk2i0Wvg9Z1K5eWtXLPYJmF2uh8X3u4KhfczGQTpC8cwAJ1t4w+ekvZeahuAKre
- ErRt/lZKKAul+u0js1JZVzcMsLneJuQm+cjqkQ8fM3gbsXxkziRbyIS7cJxFeyHb1fDP
- N/uTIXtU6+t3LA5n7lPKczHtBOzixdZkEIiU2/+dlE/dPKpCkxPE3fbWRtbJauP/twsR
- xMlIbknGTtXp8N3Laj9ZYhGHGqc3MRB9LiASlzkPp8ZqHafIRcEDT7sFdgbBv2n9W/yo
- /kzoN8TTBBX8WqOUp2wWTM056TUP0ngGL/MlGJVKFxg9ssduT88BNGYAygJYEMhxiv0T
- Pseg==
+ bh=yk/YC/vwhdA4SmlGq4Gb2K6GBPNqKnbli+wPdxVsRl0=;
+ b=loYkHW4XCXD6gN3aQbD2PtMDX6dVUFR4bxTbXpA23pxkHtruKY/rumyNwQi2SKYcKX
+ GImappNH+hyJqFQZOYR8FcsDkFBdrrYDaCJ2xgTajT3eGpcdO9azjspMy5gqvqUXpUDK
+ /YyA1eyxcMThdyQk04m6QSZjD2bBG5IDt5esqj0ZDi/CD2OmfMZfa/EDxoYZNj7TvmXo
+ 0+DKsXVEy5i5Ie92oceuxyh8HK27GrhfElbCLXGYqzpDEUzdapONLWeL/GAam/ebyOPV
+ 0v4+Zlvu1wD0014NfcOVWDWDCMC/4ZR885eqzChDPSoSVjTPHP+TdcHChJVXm4Xyc58D
+ mzlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:cc:to:subject:from:date:x-gm-message-state:from:to:cc
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :references:in-reply-to:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=0w8KGzGuvSzltAZdX8cl8yXaNHAwAsGs64+X1MnyKz4=;
- b=J/XOyWxSCyxLRtr4aAUOk/KRHxgLke1OLWeTUelSBM2sCTQPRskWX8fsFouJEZzs7A
- 7ZSzCuEO4ZFcJrNNsduQ/D73l4g1lEqjEIE5w20Kw2rLp5Kjezx/yXqlhqmei4AqGR2b
- HhgZmKklGLR09RAXo5llJz0+1UPvrCr8Z8L8dxrjaUdSYoNI5aAiKxq0ZWjlCrnHErOI
- /gDX1otQ09q59lhnkZaHYw3frbS7ygr4HGc4+BzZEym+fmutTimzEGGI55Gcsb+11Q4j
- oxmllEIqNPvEzIHdlIMLcIPIi9UN49JFiKfYFEZpw7CHd1nXinG+NQ7PhNvN1L+Y/69p
- ms4w==
-X-Gm-Message-State: ACrzQf0wvyygoqiyGuc4drGK/8pCRWlXFil13tso8kI6bFyZazsK2uQX
- pxD0i+sLmlUFEhQkuFKym18=
-X-Google-Smtp-Source: AMsMyM6aCAPv7AgDk7ukmpHffbaN2G+tUhMBQ0pSjLlhdBalKzMELngowvczKh5sW/+QYTd+LSfdoA==
-X-Received: by 2002:a5d:4a01:0:b0:21d:8ce1:8b6d with SMTP id
- m1-20020a5d4a01000000b0021d8ce18b6dmr13751400wrq.718.1665469642666; 
- Mon, 10 Oct 2022 23:27:22 -0700 (PDT)
-Received: from matebook-d-15 ([2a01:e0a:1d2:1f90:be95:f3a2:4d99:a3b3])
- by smtp.gmail.com with ESMTPSA id
- r16-20020adff710000000b0022afbd02c69sm10268120wrp.56.2022.10.10.23.27.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 10 Oct 2022 23:27:22 -0700 (PDT)
-Date: Tue, 11 Oct 2022 08:27:16 +0200
-From: Matthieu CHARETTE <matthieu.charette@gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-Id: <GLSKJR.CU4DWLJQSTHT2@gmail.com>
-In-Reply-To: <20221006222146.2375217-1-jani.nikula@intel.com>
-References: <20221006222146.2375217-1-jani.nikula@intel.com>
-X-Mailer: geary/40.0
+ bh=yk/YC/vwhdA4SmlGq4Gb2K6GBPNqKnbli+wPdxVsRl0=;
+ b=8QNyZaHI5Zw33ih1JMBsB5kTFCVsro1zbaSYqFQSKpnWBeu+18waUjgcnRAFly+hN1
+ o/3M35hVVlSIzV6iArvKutSAmAAVkZLS7ts3QfVHbj50vhJMSO5EnEkutKzoFJyi8saa
+ JMpYfhgLoE/texmDeZkSGISQi+yt5F2yEB5zDWL25E11cuIqPyLitnG+imZ4dmPuxu8W
+ mUfCiE1pFFWSS4U+QpXfzBgZ4M++yBzTDvK4Rk/xxyADXNSCN83iEkm24I/F4hRZXK02
+ c0JmXG5+VcpYfU0hkyMk0kBwqzzUHatRhj7UiZtW5Uv2s/bemVNBC6IlCRQQR04eX84D
+ hFrg==
+X-Gm-Message-State: ACrzQf3VVxmLfCLFryhNtVdUhcsGNtQpNlgJhYSY+dP2Mr4swRL47Fzg
+ lS7PnNnDgMy+5aeGVaPc/SJLeVDSk4nyY5tDZJY=
+X-Google-Smtp-Source: AMsMyM4eCv5ypQ4ONMv0BAL3aePyZkoRRh+DKTwk9L4CXbyI0un2AuGl6d5pqupKKXwTvJW9TCSnPTX3iUD0/uSZp5o=
+X-Received: by 2002:a05:6870:b68c:b0:132:b864:2aa2 with SMTP id
+ cy12-20020a056870b68c00b00132b8642aa2mr608499oab.130.1665521135691; Tue, 11
+ Oct 2022 13:45:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Received: by 2002:a05:6838:7e8b:0:0:0:0 with HTTP; Tue, 11 Oct 2022 13:45:35
+ -0700 (PDT)
+In-Reply-To: <87wn96yggd.fsf@intel.com>
+References: <20221006222146.2375217-1-jani.nikula@intel.com>
+ <GLSKJR.CU4DWLJQSTHT2@gmail.com> <87wn96yggd.fsf@intel.com>
+From: Matthieu CHARETTE <matthieu.charette@gmail.com>
+Date: Tue, 11 Oct 2022 22:45:35 +0200
+Message-ID: <CA+FNwmJRZ-5BwuXykp3R6tQagQgunMC9EhfL9CRyi+Ff47TXhA@mail.gmail.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 17 Oct 2022 19:56:17 +0000
 Subject: Re: [Intel-gfx] [PATCH] drm/edid/firmware: stop using throwaway
@@ -78,64 +76,100 @@ Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It should fix the issue. Meanwhile, the system will still crash if a=20
-new monitor is plugged while the machine is suspended. We might need to=20
-precache the EDID to prevent that.
+Currently the EDID is requested during the resume. But since it's
+requested too early, this means before the filesystem is mounted, the
+firmware request fails. This make the DRM driver crash when resuming.
+This kind of issue should be prevented by the firmware caching process
+which cache every firmware requested for the next resume. But since we
+are using a temporary device, the firmware isn't cached on suspend
+since the device doesn't work anymore.
+When using a non temporary device to get the EDID, the firmware will
+be cached on suspend for the next resume. So requesting the firmware
+during resume will succeed.
+But if the firmware has never been requested since the boot, this
+means that the monitor isn't plugged since the boot. The kernel will
+not be caching the EDID. So if we plug the monitor while the machine
+is suspended. The resume will fail to load the firmware. And the DRM
+driver will crash.
+So basically, your fix should solve the issue except for the case
+where the monitor hasn't been plugged since boot and is plugged while
+the machine is suspended.
+I hope I was clear. Tell me if I wasn't. I'm not really good at explaining.
 
 Matthieu
 
-On Fri, Oct 7 2022 at 01:21:46 AM +0300, Jani Nikula=20
-<jani.nikula@intel.com> wrote:
-> We've used a temporary platform device for firmware EDID loading since
-> it was introduced in commit da0df92b5731 ("drm: allow loading an EDID=20
-> as
-> firmware to override broken monitor"), but there's no explanation why.
->=20
-> Do we need to?
->=20
-> Maybe this fixes the suspend/resume issue?
->=20
-> (Yes, I'll rewrite the commit message if this is the way to go ;)
->=20
-> References:=20
-> https://lore.kernel.org/r/20220727074152.43059-1-matthieu.charette@gmail.=
-com
-> Cc: Matthieu CHARETTE <matthieu.charette@gmail.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/drm_edid_load.c | 11 +----------
->  1 file changed, 1 insertion(+), 10 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_edid_load.c=20
-> b/drivers/gpu/drm/drm_edid_load.c
-> index 37d8ba3ddb46..fbae12130234 100644
-> --- a/drivers/gpu/drm/drm_edid_load.c
-> +++ b/drivers/gpu/drm/drm_edid_load.c
-> @@ -182,18 +182,9 @@ static void *edid_load(struct drm_connector=20
-> *connector, const char *name,
->  		fwdata =3D generic_edid[builtin];
->  		fwsize =3D sizeof(generic_edid[builtin]);
->  	} else {
-> -		struct platform_device *pdev;
->  		int err;
->=20
-> -		pdev =3D platform_device_register_simple(connector_name, -1, NULL,=20
-> 0);
-> -		if (IS_ERR(pdev)) {
-> -			DRM_ERROR("Failed to register EDID firmware platform device "
-> -				  "for connector \"%s\"\n", connector_name);
-> -			return ERR_CAST(pdev);
-> -		}
-> -
-> -		err =3D request_firmware(&fw, name, &pdev->dev);
-> -		platform_device_unregister(pdev);
-> +		err =3D request_firmware(&fw, name, connector->dev->dev);
->  		if (err) {
->  			DRM_ERROR("Requesting EDID firmware \"%s\" failed (err=3D%d)\n",
->  				  name, err);
+On 10/11/22, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Tue, 11 Oct 2022, Matthieu CHARETTE <matthieu.charette@gmail.com> wrot=
+e:
+>> It should fix the issue. Meanwhile, the system will still crash if a
+>> new monitor is plugged while the machine is suspended. We might need to
+>> precache the EDID to prevent that.
+>
+> Please elaborate.
+>
+> BR,
+> Jani.
+>
+>
+>>
+>> Matthieu
+>>
+>> On Fri, Oct 7 2022 at 01:21:46 AM +0300, Jani Nikula
+>> <jani.nikula@intel.com> wrote:
+>>> We've used a temporary platform device for firmware EDID loading since
+>>> it was introduced in commit da0df92b5731 ("drm: allow loading an EDID
+>>> as
+>>> firmware to override broken monitor"), but there's no explanation why.
+>>>
+>>> Do we need to?
+>>>
+>>> Maybe this fixes the suspend/resume issue?
+>>>
+>>> (Yes, I'll rewrite the commit message if this is the way to go ;)
+>>>
+>>> References:
+>>> https://lore.kernel.org/r/20220727074152.43059-1-matthieu.charette@gmai=
+l.com
+>>> Cc: Matthieu CHARETTE <matthieu.charette@gmail.com>
+>>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/drm_edid_load.c | 11 +----------
+>>>  1 file changed, 1 insertion(+), 10 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_edid_load.c
+>>> b/drivers/gpu/drm/drm_edid_load.c
+>>> index 37d8ba3ddb46..fbae12130234 100644
+>>> --- a/drivers/gpu/drm/drm_edid_load.c
+>>> +++ b/drivers/gpu/drm/drm_edid_load.c
+>>> @@ -182,18 +182,9 @@ static void *edid_load(struct drm_connector
+>>> *connector, const char *name,
+>>>  		fwdata =3D generic_edid[builtin];
+>>>  		fwsize =3D sizeof(generic_edid[builtin]);
+>>>  	} else {
+>>> -		struct platform_device *pdev;
+>>>  		int err;
+>>>
+>>> -		pdev =3D platform_device_register_simple(connector_name, -1, NULL,
+>>> 0);
+>>> -		if (IS_ERR(pdev)) {
+>>> -			DRM_ERROR("Failed to register EDID firmware platform device "
+>>> -				  "for connector \"%s\"\n", connector_name);
+>>> -			return ERR_CAST(pdev);
+>>> -		}
+>>> -
+>>> -		err =3D request_firmware(&fw, name, &pdev->dev);
+>>> -		platform_device_unregister(pdev);
+>>> +		err =3D request_firmware(&fw, name, connector->dev->dev);
+>>>  		if (err) {
+>>>  			DRM_ERROR("Requesting EDID firmware \"%s\" failed (err=3D%d)\n",
+>>>  				  name, err);
+>>> --
+>>> 2.34.1
+>>>
+>>
+>>
+>
 > --
-> 2.34.1
->=20
-
-
+> Jani Nikula, Intel Open Source Graphics Center
+>
