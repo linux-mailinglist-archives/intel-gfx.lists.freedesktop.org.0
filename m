@@ -2,53 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F6EA5FB033
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 12:10:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 566F15FB03A
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Oct 2022 12:13:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14E1110E7E4;
-	Tue, 11 Oct 2022 10:10:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D385010E7D7;
+	Tue, 11 Oct 2022 10:12:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E396C10E7F7;
- Tue, 11 Oct 2022 10:10:31 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D565510E7D7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Oct 2022 10:12:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665483031; x=1697019031;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=stVivBrUOWNM3XfYcDu1vIrYQlmmFL5o1eWxnZQ3OZk=;
- b=aqCeUwF6GQ8amXIbFMxu6qWV+CS2Q2bKLqsA9ELWF6i2nMPF+1kznh4X
- kogPomIddO+adN2W+oeNbUYBQUSJqtevls+gYPad/Gbj8wDfzuxZ6oOmC
- kg9UP5SX1XYivgnm2WAgrbLK7lYGZzFUWwXNHrtfizzOr0rA+1shqRh3P
- qEyz5rEzAa1+6GDvipjMpNr9utctrwW8drI7Q4nmdZlppJqKaGaeFd43x
- o+20jBliCFxsi+k5a2sW296OjhE3zWjVq0T/yPunMeEHgG2KqC2OFWb/a
- /eYQ1/lH0u29OGwyQN0TG+Ns6rIA1SviXQ3LKs8SH7vcC+1cLg/Vw8bbS A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="330941052"
-X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="330941052"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 03:10:31 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="657294434"
-X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="657294434"
-Received: from milawils-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.40.183])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2022 03:10:29 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <DM4PR11MB59714D6C8D496B5538DA27AB87239@DM4PR11MB5971.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221010231720.3730568-1-radhakrishna.sripada@intel.com>
- <87pmeyyg3n.fsf@intel.com>
- <DM4PR11MB59714D6C8D496B5538DA27AB87239@DM4PR11MB5971.namprd11.prod.outlook.com>
-Date: Tue, 11 Oct 2022 13:10:26 +0300
-Message-ID: <87k056y8kt.fsf@intel.com>
+ t=1665483173; x=1697019173;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=/hvhmi9L4C8tCg+p10J8PAZPBNpt/NSTU1oP+KFPezQ=;
+ b=GQImoqBiqS3aaE1RYBh4mb6xYM7/n9jh8bQGlpJwQZwnNEIBF+ghJlmY
+ POYWoATiisoK9JxI90RowCgaxX3xWx3236+ZfMfqgLoDK+Jkr6JPY65QP
+ wgb2LgDWzk0KEJUdEFuBii3Mc0+8bUIfEUCtTEA8F9QsXI0ygmtpIyRQK
+ JQcz22ztbctpg/EYo2HsauYzuQCdrvVgm2XJ9JheSgJXpC76jHYLJQo+t
+ CWAF5g2ptQNpQ1r+LZG0oitviNGkWHC5q5kcjdzyvC3Vkb3A+5PeZh7X+
+ 1n68KPO6hkOwpFJV6NjGfpdRJt0jLpPGQyJus4LwpA5tqjZ14iihC1a4D A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="304453834"
+X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="304453834"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 03:12:53 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10496"; a="621356952"
+X-IronPort-AV: E=Sophos;i="5.95,176,1661842800"; d="scan'208";a="621356952"
+Received: from ideak-desk.fi.intel.com ([10.237.72.175])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2022 03:12:50 -0700
+Date: Tue, 11 Oct 2022 13:12:46 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Message-ID: <Y0VBnlm2vei/Vj5k@ideak-desk.fi.intel.com>
+References: <20221007133307.3805735-1-imre.deak@intel.com>
+ <DM6PR11MB3177E0CAC9D1794A550BB201BA239@DM6PR11MB3177.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use graphics ver,
- rel info for media on old platforms
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM6PR11MB3177E0CAC9D1794A550BB201BA239@DM6PR11MB3177.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix simulated GPU reset wrt.
+ encoder HW readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,118 +58,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 Oct 2022, "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com> wrote:
-> Hi Jani,
+On Tue, Oct 11, 2022 at 10:07:11AM +0300, Murthy, Arun R wrote:
+> > [...]
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 8c3bd9ba0d748..b147ea79c566a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -830,6 +830,20 @@ intel_plane_fence_y_offset(const struct
+> > intel_plane_state *plane_state)
+> >       return y;
+> >  }
+> >
+> > +static int
+> > +intel_display_commit_duplicated_state(struct intel_atomic_state *state,
+> > +                                   struct drm_modeset_acquire_ctx *ctx) {
+> > +     struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > +     int ret;
+> > +
+> > +     ret = drm_atomic_helper_commit_duplicated_state(&state->base,
+> > ctx);
+> > +
+> > +     drm_WARN_ON(&i915->drm, ret == -EDEADLK);
+> > +
+> > +     return ret;
+> > +}
 >
->> -----Original Message-----
->> From: Jani Nikula <jani.nikula@linux.intel.com>
->> Sent: Tuesday, October 11, 2022 12:28 AM
->> To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Cc: dri-devel@lists.freedesktop.org; Sripada, Radhakrishna
->> <radhakrishna.sripada@intel.com>; De Marchi, Lucas
->> <lucas.demarchi@intel.com>; Roper, Matthew D
->> <matthew.d.roper@intel.com>
->> Subject: Re: [PATCH] drm/i915: Use graphics ver, rel info for media on old
->> platforms
->> 
->> On Mon, 10 Oct 2022, Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->> wrote:
->> > Platforms prior to MTL do not have a separate media and graphics version.
->> > On platforms where GMD id is not supported, reuse the graphics ip version,
->> > release info for media.
->> >
->> > The rest of the IP graphics, display versions would be copied during driver
->> > creation.
->> >
->> > While at it warn if GMD is not used for platforms greater than gen12.
->> >
->> > Fixes: c2c7075225ef ("drm/i915: Read graphics/media/display arch version
->> from hw")
->> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> > Cc: Matt Roper <matthew.d.roper@intel.com>
->> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/intel_device_info.c | 12 +++++++++++-
->> >  1 file changed, 11 insertions(+), 1 deletion(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/intel_device_info.c
->> b/drivers/gpu/drm/i915/intel_device_info.c
->> > index 090097bb3c0a..ba178b61bceb 100644
->> > --- a/drivers/gpu/drm/i915/intel_device_info.c
->> > +++ b/drivers/gpu/drm/i915/intel_device_info.c
->> > @@ -329,8 +329,18 @@ static void intel_ipver_early_init(struct
->> drm_i915_private *i915)
->> >  {
->> >  	struct intel_runtime_info *runtime = RUNTIME_INFO(i915);
->> >
->> > -	if (!HAS_GMD_ID(i915))
->> > +	if (!HAS_GMD_ID(i915)) {
->> > +		drm_WARN_ON(&i915->drm, RUNTIME_INFO(i915)-
->> >graphics.ip.ver > 12);
->> > +		/*
->> > +		 * On older platforms, graphics and media share the same ip
->> > +		 * version and release.
->> > +		 */
->> > +		RUNTIME_INFO(i915)->media.ip.ver =
->> > +			RUNTIME_INFO(i915)->graphics.ip.ver;
->> > +		RUNTIME_INFO(i915)->media.ip.rel =
->> > +			RUNTIME_INFO(i915)->graphics.ip.rel;
->> 
->> You could assign the whole struct ip_version (*) at once, or is there a
->> reason you're intentionally not assigning step?
-> Step info would anyways be determined later in the function intel_step_init.
-> We already have macros in place to handle common gt and media steps there.
->
-> Do you suggest we memcpy(&RUNTIME_INFO(i915)->media.ip, &RUNTIME_INFO->graphics.ip, sizeof(struct ip_version)) here?
+> Do we need a wrapper function for this, cant the drm function be
+> called directly? since the wrapper function does nothing than calling
+> drm atomic helper function.
 
-Simple assign should do it for such a small struct.
+It also WARNs when failing with -EDEADLK, which is not expected when
+committing a duplicated state.
 
-BR,
-Jani.
-
->
->> 
->> BR,
->> Jani.
->> 
->> (*) Why does that name not have intel_ prefix?
-> Good question. Since introduced in " a5b7ef27da60 drm/i915: Add struct to hold IP version"
-> we have been using as is. The author might have felt that the structure is not big enough/used in as many places
-> to have an intel_ prefix. Do you see a symbol collision here that we
-> need to add intel_ prefix?
-
-It's not just about avoiding any immediate symbol collisions, it's also
-about setting an example. People see this and think it's fine not to
-have the prefix. And then the practice proliferates until there's a
-collision.
-
-> If so should we do it in a separate patch?
-
-If there's a semantically separate change, it should always be a
-separate patch.
-
-BR,
-Jani.
-
->
-> Thanks,
-> Radhakrishna(RK) Sripada
->> 
->> >  		return;
->> > +	}
->> >
->> >  	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_GRAPHICS),
->> >  		    &runtime->graphics.ip);
->> 
->> --
->> Jani Nikula, Intel Open Source Graphics Center
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+> > +
+> >  static int
+> >  __intel_display_resume(struct drm_i915_private *i915,
+> >                      struct drm_atomic_state *state, @@ -837,7 +851,7 @@
+> > __intel_display_resume(struct drm_i915_private *i915,  {
+> >       struct drm_crtc_state *crtc_state;
+> >       struct drm_crtc *crtc;
+> > -     int i, ret;
+> > +     int i;
+> >
+> >       intel_modeset_setup_hw_state(i915, ctx);
+> >       intel_vga_redisable(i915);
+> > @@ -863,11 +877,7 @@ __intel_display_resume(struct drm_i915_private
+> > *i915,
+> >       if (!HAS_GMCH(i915))
+> >               to_intel_atomic_state(state)->skip_intermediate_wm = true;
+> >
+> > -     ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
+> > -
+> > -     drm_WARN_ON(&i915->drm, ret == -EDEADLK);
+> > -
+> > -     return ret;
+> > +     return
+> > +intel_display_commit_duplicated_state(to_intel_atomic_state(state),
+> > +ctx);
+> >  }
+> >
+> >  static bool gpu_reset_clobbers_display(struct drm_i915_private *dev_priv)
+> > @@ -959,7 +969,7 @@ void intel_display_finish_reset(struct
+> > drm_i915_private *i915)
+> >       /* reset doesn't touch the display */
+> >       if (!gpu_reset_clobbers_display(i915)) {
+> >               /* for testing only restore the display */
+> > -             ret = __intel_display_resume(i915, state, ctx);
+> > +             ret =
+> > +intel_display_commit_duplicated_state(to_intel_atomic_state(state),
+> > +ctx);
+> >               if (ret)
+> >                       drm_err(&i915->drm,
+> >                               "Restoring old state failed with %i\n", ret);
+> > --
+> > 2.37.1
+> 
