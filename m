@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91B495FC3B7
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 12:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2F65FC3CD
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 12:32:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA57D10E2F6;
-	Wed, 12 Oct 2022 10:26:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1123810E3C7;
+	Wed, 12 Oct 2022 10:32:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FAD610E2F6
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Oct 2022 10:26:51 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7BD310E2F6;
+ Wed, 12 Oct 2022 10:32:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665570411; x=1697106411;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:to:cc:from:message-id:date;
- bh=tx4vjRGPSI98SvG8z/1mNfqeYylGy9spBtrIeGHG8gs=;
- b=gUDkuxsQY7GPrqjtY0XUKnbTNyI7Dd9Kwm32DSSHYH7jsaV6rdaBSGWL
- bi4UzSjSe8HjEebGs6J/xIS/yX/MmMw+coa/84eqG4jVT4GjJ7WZEi1tC
- vemQKanS3jDQL85KOQYabjmXHJNSMbr9LtNQz/xTbzG5/Y1gjD11d1W4/
- DPliP4Ykcbk87fuAEh3Hr7hrAWcqzaW7IHn1o/1JbfypwJCq2rhgHZsBU
- MTLDEaSMZ/vivx5+crAP+0MPPJiwbF9NhpGaf8rx4nV3t3Uf+gEwc9HYc
- gGppGIKvIvX1bsMguHPMhs80cXcJJ62YukFcePkv10wFiv4Zl/v7Be9cW A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="292081891"
-X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="292081891"
+ t=1665570743; x=1697106743;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=pAU3qH7t9xZciy3nsc6QfbuEQGLxLne6lR6B+fK5WBs=;
+ b=m91i0TEl5nu1x/SIgg5Lufd9EExtvcNrFHhhLlKMcUoS1ab1gQAE23rm
+ n6xhvfW7KokwNu6+q9AzVvPonK1IBJqrPGV2SRlTQ0Q1C7qgnZQ6TvWvl
+ O1QNDKZzCTdzxaXbRoTpaeZZR+Cn3Wmd5bAus7gb9FO5VatjRBw8bXZlc
+ x2Fz7uCyUIN/FAmswEhNppMxXykDO+p5QIp0s9zJcVTXSdS4/1lskCSKw
+ u38CUYd3W6FxtPZ30zQCKkuFBurq/eqe0gJweFdGk0cUpcjhICdsz71Am
+ 2rLD3/AmmGgLURULb09niaya03kpGET6zIYbiPZeqJakhHlU5PdQgxEtV Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="331249828"
+X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="331249828"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 03:26:51 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="801796278"
-X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="801796278"
-Received: from mpiecho-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.25.11])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2022 03:32:23 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="801797988"
+X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="801797988"
+Received: from dionita-mobl.ger.corp.intel.com (HELO [10.252.24.124])
+ ([10.252.24.124])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 03:26:48 -0700
-Content-Type: text/plain; charset="utf-8"
+ 12 Oct 2022 03:32:20 -0700
+Message-ID: <5aed1778-ae6f-58fe-625e-45e7195c2616@intel.com>
+Date: Wed, 12 Oct 2022 11:32:18 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20221012083402.1069940-1-anshuman.gupta@intel.com>
-References: <20221012083402.1069940-1-anshuman.gupta@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <166557040585.17580.5212685833257862558@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Wed, 12 Oct 2022 13:26:45 +0300
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dgfx: Temporary hammer to keep
- autosuspend control 'on'
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.3.1
+Content-Language: en-GB
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20221010065826.32037-1-niranjana.vishwanathapura@intel.com>
+ <20221010065826.32037-13-niranjana.vishwanathapura@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20221010065826.32037-13-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3 12/17] drm/i915/vm_bind: Implement
+ I915_GEM_EXECBUFFER3 ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,81 +63,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com, rodrigo.vivi@intel.com
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
+ daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I think I commented on this already, but the patch subject should really be=
- as
-informative as possible like: "Disable PCI runtime PM on dGPUs" as that is =
-exactly
-what the patch does.
-
-Also bit unsure if the Fixes: tag should really point to the runtime PM
-commit but maybe instead to the introduction of LMEM commit.
-
-Regards, Joonas
-
-Quoting Anshuman Gupta (2022-10-12 11:34:02)
-> DGFX platforms has lmem and cpu can access the lmem objects
-> via mmap and i915 internal i915_gem_object_pin_map() for
-> i915 own usages. Both of these methods has pre-requisite
-> requirement to keep GFX PCI endpoint in D0 for a supported
-> iomem transaction over PCI link. (Refer PCIe specs 5.3.1.4.1)
->=20
-> Both DG1/DG2 have a hardware bug that violates the PCIe specs
-> and support the iomem read write transaction over PCIe bus despite
-> endpoint is D3 state.
-> Due to above H/W bug, we had never observed any issue with i915 runtime
-> PM versus lmem access.
-> But this issue becomes visible when PCIe gfx endpoint's upstream
-> bridge enters to D3, at this point any lmem read/write access will be
-> returned as unsupported request. But again this issue is not observed
-> on every platform because it has been observed on few host machines
-> DG1/DG2 endpoint's upstream bridge does not bind with pcieport driver.
-> which really disables the PCIe  power savings and leaves the bridge
-> at D0 state.
->=20
-> Till we fix all issues related to runtime PM, we need
-> to keep autosupend control to 'on' on all discrete platforms with lmem.
->=20
-> Fixes: 527bab0473f2 ("drm/i915/rpm: Enable runtime pm autosuspend by defa=
-ult")
-> Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+On 10/10/2022 07:58, Niranjana Vishwanathapura wrote:
+> Implement new execbuf3 ioctl (I915_GEM_EXECBUFFER3) which only
+> works in vm_bind mode. The vm_bind mode only works with
+> this new execbuf3 ioctl.
+> 
+> The new execbuf3 ioctl will not have any list of objects to validate
+> bind as all required objects binding would have been requested by the
+> userspace before submitting the execbuf3.
+> 
+> Legacy features like relocations etc are not supported by execbuf3.
+> 
+> v2: Add more input validity checks.
+> v3: batch_address is a VA (not an array) if num_batches=1,
+>      minor cleanup
+> 
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/intel_runtime_pm.c | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i9=
-15/intel_runtime_pm.c
-> index 6ed5786bcd29..410a5cb58a61 100644
-> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> @@ -591,8 +591,15 @@ void intel_runtime_pm_enable(struct intel_runtime_pm=
- *rpm)
->                 pm_runtime_use_autosuspend(kdev);
->         }
-> =20
-> -       /* Enable by default */
-> -       pm_runtime_allow(kdev);
-> +       /*
-> +        *  FIXME: Temp hammer to keep autosupend disable on lmem support=
-ed platforms.
-> +        *  As per PCIe specs 5.3.1.4.1, all iomem read write request ove=
-r a PCIe
-> +        *  function will be unsupported in case PCIe endpoint function i=
-s in D3.
-> +        *  Let's keep i915 autosuspend control 'on' till we fix all know=
-n issue
-> +        *  with lmem access in D3.
-> +        */
-> +       if (!HAS_LMEM(i915))
-> +               pm_runtime_allow(kdev);
-> =20
->         /*
->          * The core calls the driver load handler with an RPM reference h=
-eld.
-> --=20
-> 2.25.1
->=20
+>   drivers/gpu/drm/i915/Makefile                 |   1 +
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer3.c   | 580 ++++++++++++++++++
+>   drivers/gpu/drm/i915/gem/i915_gem_ioctls.h    |   2 +
+>   drivers/gpu/drm/i915/i915_driver.c            |   1 +
+>   include/uapi/drm/i915_drm.h                   |  61 ++
+>   5 files changed, 645 insertions(+)
+>   create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 3564307699ea..94520b79e7e7 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -150,6 +150,7 @@ gem-y += \
+>   	gem/i915_gem_domain.o \
+>   	gem/i915_gem_execbuffer_common.o \
+>   	gem/i915_gem_execbuffer.o \
+> +	gem/i915_gem_execbuffer3.o \
+>   	gem/i915_gem_internal.o \
+>   	gem/i915_gem_object.o \
+>   	gem/i915_gem_lmem.o \
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
+> new file mode 100644
+> index 000000000000..1f38f658066a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
+> @@ -0,0 +1,580 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2022 Intel Corporation
+> + */
+> +
+> +#include <linux/dma-resv.h>
+> +#include <linux/uaccess.h>
+> +
+> +#include <drm/drm_syncobj.h>
+> +
+> +#include "gt/intel_context.h"
+> +#include "gt/intel_gpu_commands.h"
+> +#include "gt/intel_gt.h"
+> +
+> +#include "i915_drv.h"
+> +#include "i915_gem_context.h"
+> +#include "i915_gem_execbuffer_common.h"
+> +#include "i915_gem_ioctls.h"
+> +#include "i915_gem_vm_bind.h"
+> +#include "i915_trace.h"
+> +
+> +#define __EXEC3_ENGINE_PINNED		BIT_ULL(32)
+> +#define __EXEC3_INTERNAL_FLAGS		(~0ull << 32)
+> +
+> +/* Catch emission of unexpected errors for CI! */
+> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
+> +#undef EINVAL
+> +#define EINVAL ({ \
+> +	DRM_DEBUG_DRIVER("EINVAL at %s:%d\n", __func__, __LINE__); \
+> +	22; \
+> +})
+> +#endif
+> +
+> +/**
+> + * DOC: User command execution with execbuf3 ioctl
+> + *
+> + * A VM in VM_BIND mode will not support older execbuf mode of binding.
+> + * The execbuf ioctl handling in VM_BIND mode differs significantly from the
+> + * older execbuf2 ioctl (See struct drm_i915_gem_execbuffer2).
+> + * Hence, a new execbuf3 ioctl has been added to support VM_BIND mode. (See
+> + * struct drm_i915_gem_execbuffer3). The execbuf3 ioctl will not accept any
+> + * execlist. Hence, no support for implicit sync.
+> + *
+> + * The new execbuf3 ioctl only works in VM_BIND mode and the VM_BIND mode only
+> + * works with execbuf3 ioctl for submission.
+> + *
+> + * The execbuf3 ioctl directly specifies the batch addresses instead of as
+> + * object handles as in execbuf2 ioctl. The execbuf3 ioctl will also not
+> + * support many of the older features like in/out/submit fences, fence array,
+> + * default gem context etc. (See struct drm_i915_gem_execbuffer3).
+> + *
+> + * In VM_BIND mode, VA allocation is completely managed by the user instead of
+> + * the i915 driver. Hence all VA assignment, eviction are not applicable in
+> + * VM_BIND mode. Also, for determining object activeness, VM_BIND mode will not
+> + * be using the i915_vma active reference tracking. It will instead check the
+> + * dma-resv object's fence list for that.
+> + *
+> + * So, a lot of code supporting execbuf2 ioctl, like relocations, VA evictions,
+> + * vma lookup table, implicit sync, vma active reference tracking etc., are not
+> + * applicable for execbuf3 ioctl.
+
+I guess EXEC_CAPTURE is also now gone? Is that expected? We ofc don't 
+have the list of objects so perhaps doesn't make sense any more. Just 
+double checking...
