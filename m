@@ -1,52 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75DFC5FC1F6
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 10:26:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE3E5FC213
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 10:34:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCE110E3A8;
-	Wed, 12 Oct 2022 08:26:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBC0310E3C5;
+	Wed, 12 Oct 2022 08:34:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9430910E14F;
- Wed, 12 Oct 2022 08:26:01 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0D210E3C5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Oct 2022 08:34:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665563161; x=1697099161;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=NIc23BcaMRZEE9D455/Rz/Z0DMm9jbzOaJUmqTtzqEY=;
- b=RD8ytB2jmpAdlzF8W49y96VhxPoRZ88YQj0FSZ/DxjMtlgWXOwUZkwex
- oMBP60a0GR4utT9tKu40cujV2oyqPX4SpJWzWW+2bJte2RDUw1CFmalLt
- tuL1suwi49ckwiC3CWpVKzuhwYekwcz6zax2LflHvxKrljcLxzj17f5R1
- YLKPLJwbM3PnqqiXWyi2drHq5vC0V7c4OUV7W0XmUUfVrWuz9TVWiD079
- plSdG5t+kMxZhf+j+VlQDvb+C6seif256upaCKNItJWxDiL4Bt5+C5Bb6
- 8G0ca0N+JYSuVJUuktEtGsswDE8i+ChI7Cm43/959JXsFUYTjOKshK3iW w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="366733646"
-X-IronPort-AV: E=Sophos;i="5.95,178,1661842800"; d="scan'208";a="366733646"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 01:26:00 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="871828338"
-X-IronPort-AV: E=Sophos;i="5.95,178,1661842800"; d="scan'208";a="871828338"
-Received: from freeb-mobl.ger.corp.intel.com (HELO localhost) ([10.252.49.24])
- by fmsmga006-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Oct 2022 01:25:58 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matthieu CHARETTE <matthieu.charette@gmail.com>
-In-Reply-To: <CA+FNwmJRZ-5BwuXykp3R6tQagQgunMC9EhfL9CRyi+Ff47TXhA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221006222146.2375217-1-jani.nikula@intel.com>
- <GLSKJR.CU4DWLJQSTHT2@gmail.com> <87wn96yggd.fsf@intel.com>
- <CA+FNwmJRZ-5BwuXykp3R6tQagQgunMC9EhfL9CRyi+Ff47TXhA@mail.gmail.com>
-Date: Wed, 12 Oct 2022 11:25:59 +0300
-Message-ID: <87v8opwiqw.fsf@intel.com>
+ t=1665563659; x=1697099659;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gyPkMqk2vDnkfQkzDdPoW0VbUf2yLdfUS44seW2ZNTk=;
+ b=Q6NAGoFp7rbiyAsAyDtp1RFbOYRa7ZVxLRwXXYelcIhXfS1ZyyIuW01U
+ J7XljLJO1m5FQGnXiGZJXsUeu+1wXUSoh7lElY8IKCBPSbRBStoXp9zL4
+ nHypV1KzjyDAP0lIcGo19qZyGn+U6n+VfBGjDyna63bLq/RjqDitN+bpN
+ 3yUuT4/FD1I1YtbQPNVMSjuuUsyKWfMpl7NrjR4X4uDrukKJd1dPwy9P+
+ /gelsEDG2kQeMvuJvtQml3e5oL4I+ti3jrnp8ESw2YsRDN17BFhRBqdRP
+ VzO9qAV5Ohox93cYDuseZ5pPB/B+XQ7m9E6siLRPfC1VqjPTlykvs70se w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="292060572"
+X-IronPort-AV: E=Sophos;i="5.95,178,1661842800"; d="scan'208";a="292060572"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2022 01:34:18 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="731335319"
+X-IronPort-AV: E=Sophos;i="5.95,178,1661842800"; d="scan'208";a="731335319"
+Received: from anshuma1-desk.iind.intel.com ([10.190.239.112])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2022 01:34:15 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 12 Oct 2022 14:04:02 +0530
+Message-Id: <20221012083402.1069940-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/edid/firmware: stop using throwaway
- platform device
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dgfx: Temporary hammer to keep
+ autosuspend control 'on'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,44 +55,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: matthew.auld@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 Oct 2022, Matthieu CHARETTE <matthieu.charette@gmail.com> wrote:
-> Currently the EDID is requested during the resume. But since it's
-> requested too early, this means before the filesystem is mounted, the
-> firmware request fails. This make the DRM driver crash when resuming.
-> This kind of issue should be prevented by the firmware caching process
-> which cache every firmware requested for the next resume. But since we
-> are using a temporary device, the firmware isn't cached on suspend
-> since the device doesn't work anymore.
-> When using a non temporary device to get the EDID, the firmware will
-> be cached on suspend for the next resume. So requesting the firmware
-> during resume will succeed.
-> But if the firmware has never been requested since the boot, this
-> means that the monitor isn't plugged since the boot. The kernel will
-> not be caching the EDID. So if we plug the monitor while the machine
-> is suspended. The resume will fail to load the firmware. And the DRM
-> driver will crash.
-> So basically, your fix should solve the issue except for the case
-> where the monitor hasn't been plugged since boot and is plugged while
-> the machine is suspended.
-> I hope I was clear. Tell me if I wasn't. I'm not really good at explaining.
+DGFX platforms has lmem and cpu can access the lmem objects
+via mmap and i915 internal i915_gem_object_pin_map() for
+i915 own usages. Both of these methods has pre-requisite
+requirement to keep GFX PCI endpoint in D0 for a supported
+iomem transaction over PCI link. (Refer PCIe specs 5.3.1.4.1)
 
-That was a pretty good explanation. The only thing I'm missing is what
-the failure mode is exactly when you claim the driver will crash. Why
-would request_firmware() "crash" if called for the first time on the
-resume path?
+Both DG1/DG2 have a hardware bug that violates the PCIe specs
+and support the iomem read write transaction over PCIe bus despite
+endpoint is D3 state.
+Due to above H/W bug, we had never observed any issue with i915 runtime
+PM versus lmem access.
+But this issue becomes visible when PCIe gfx endpoint's upstream
+bridge enters to D3, at this point any lmem read/write access will be
+returned as unsupported request. But again this issue is not observed
+on every platform because it has been observed on few host machines
+DG1/DG2 endpoint's upstream bridge does not bind with pcieport driver.
+which really disables the PCIe  power savings and leaves the bridge
+at D0 state.
 
-I'm not sure I care much about not being able to load the firmware EDID
-in the suspend-plug-resume case (as this can be remedied with a
-subsequent modeset), but obviously any errors need to be handled
-gracefully, without crashing.
+Till we fix all issues related to runtime PM, we need
+to keep autosupend control to 'on' on all discrete platforms with lmem.
 
-BR,
-Jani.
+Fixes: 527bab0473f2 ("drm/i915/rpm: Enable runtime pm autosuspend by default")
+Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/intel_runtime_pm.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index 6ed5786bcd29..410a5cb58a61 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -591,8 +591,15 @@ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
+ 		pm_runtime_use_autosuspend(kdev);
+ 	}
+ 
+-	/* Enable by default */
+-	pm_runtime_allow(kdev);
++	/*
++	 *  FIXME: Temp hammer to keep autosupend disable on lmem supported platforms.
++	 *  As per PCIe specs 5.3.1.4.1, all iomem read write request over a PCIe
++	 *  function will be unsupported in case PCIe endpoint function is in D3.
++	 *  Let's keep i915 autosuspend control 'on' till we fix all known issue
++	 *  with lmem access in D3.
++	 */
++	if (!HAS_LMEM(i915))
++		pm_runtime_allow(kdev);
+ 
+ 	/*
+ 	 * The core calls the driver load handler with an RPM reference held.
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
