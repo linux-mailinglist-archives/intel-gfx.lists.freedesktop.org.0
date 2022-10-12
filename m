@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684E05FC80E
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 17:15:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80BF95FC81D
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 17:16:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07E5B10E51F;
-	Wed, 12 Oct 2022 15:15:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63DDA10E548;
+	Wed, 12 Oct 2022 15:16:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B2110E519
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Oct 2022 15:15:42 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7305410E548
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Oct 2022 15:16:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665587742; x=1697123742;
+ t=1665587795; x=1697123795;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=PV1ttITQ5cQJJKJJreDI1BxZ+F0WPtc1ELm5n6S+JRg=;
- b=KJz+MRnLnpk640NJaYrWtCXQz8odpYtvQb0xicR6DvK+9RabAMIaMmC7
- UwJOU/AC4GN1iYa4GrL6GMC0fJmie1u1jqKK5noQrs7LpyLoRccyRiKgo
- dyDSurh8Zr4OqWdaL5nmFz24N6FGSLtUM1eub0vvdQECbV9phMhZM+n9m
- FBUPjAKjgUnoRF6G+8PP67geFr56w8coN2WdVwDqjwpR+qXdhYAojCmYm
- k/BXTTQtAgX4b8PF9xzohN0rC3zHiFBBA0sWKXBaCRWWhb9m5Q/xJiWpX
- g1AGattPq25XcgHj3lYZwURcWGVRyOixtXiHms8OpQQ9c41Fn5pTuF3UN g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="331313572"
-X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="331313572"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 08:15:40 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="695508607"
-X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="695508607"
+ bh=XOKvgo/L+mxMLBvMm4e7oJaSAFQNvyPZWs8+JWgozDM=;
+ b=bfcyP/f8FexETk3/UHQ0HHZd3RcL7p+CWqXwFEXeEwSoPZ/otmadB3Nn
+ x133dkaBlVUXtLiC/zICH6w3VZAnWNoX4oijVA7oWYbKs6+xJRGcpRMFW
+ eVJAm5V9aUGvEURSl/mWPVXsFyset+xgKtfpxUzk7rWnPhR93SU2bvlbU
+ 7YvvGAH4dFY+qweSAuzN8rpzPdN4VMUIJS+jlvgBsHy8mAeWsKFbFiwCi
+ tUQeOlFY4bhB58IdoWSFAokxH4kt0N57YKZn35w1V89mH0bfWTh0uGyzN
+ wkwIBTofbNyVxxUtYOTyg/wc8k9Lo7eVbVWqUDKzVzcuHC7rQZd+HXOlI w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="305878651"
+X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="305878651"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2022 08:16:34 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="689708726"
+X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="689708726"
 Received: from jhpuonti-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.40.226])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 08:15:38 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2022 08:16:33 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20221011170011.17198-18-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221011170011.17198-19-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20221011170011.17198-1-ville.syrjala@linux.intel.com>
- <20221011170011.17198-18-ville.syrjala@linux.intel.com>
-Date: Wed, 12 Oct 2022 18:15:42 +0300
-Message-ID: <87y1tlt6n5.fsf@intel.com>
+ <20221011170011.17198-19-ville.syrjala@linux.intel.com>
+Date: Wed, 12 Oct 2022 18:16:36 +0300
+Message-ID: <87v8opt6ln.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 17/22] drm/i915/sdvo: Extract
- intel_sdvo_has_audio()
+Subject: Re: [Intel-gfx] [PATCH 18/22] drm/i915/sdvo: Precompute the ELD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,82 +67,61 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 11 Oct 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Pull the SDVO audio state computaiton into a helper.
-
-*computation
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
->
-> This is almost identical to intel_hdmi_has_audio(),
-> except the sink capabilities are stored under intel_sdvo
-> rather than intel_hdmi. Might be nice to get rid of
-> this duplication eventually...
+> Use the precomputed crtc_state->eld for audio setup on SDVO
+> just like we do with native HDMI.
 >
 > Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 > Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 > Cc: Takashi Iwai <tiwai@suse.de>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_sdvo.c | 27 +++++++++++++++--------
->  1 file changed, 18 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_sdvo.c | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/=
 i915/display/intel_sdvo.c
-> index cf8e80936d8e..8852564b5fbf 100644
+> index 8852564b5fbf..d9a54ed4623a 100644
 > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
 > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -1297,13 +1297,28 @@ static bool intel_sdvo_limited_color_range(struct=
- intel_encoder *encoder,
->  	return intel_hdmi_limited_color_range(crtc_state, conn_state);
->  }
+> @@ -38,6 +38,7 @@
 >=20=20
-> +static bool intel_sdvo_has_audio(struct intel_encoder *encoder,
-> +				 const struct intel_crtc_state *crtc_state,
-> +				 const struct drm_connector_state *conn_state)
-> +{
-> +	struct intel_sdvo *intel_sdvo =3D to_sdvo(encoder);
-> +	const struct intel_digital_connector_state *intel_conn_state =3D
-> +		to_intel_digital_connector_state(conn_state);
-> +
-> +	if (!crtc_state->has_hdmi_sink)
-> +		return false;
-> +
-> +	if (intel_conn_state->force_audio =3D=3D HDMI_AUDIO_AUTO)
-> +		return intel_sdvo->has_hdmi_audio;
-> +	else
-> +		return intel_conn_state->force_audio =3D=3D HDMI_AUDIO_ON;
-> +}
-> +
->  static int intel_sdvo_compute_config(struct intel_encoder *encoder,
->  				     struct intel_crtc_state *pipe_config,
->  				     struct drm_connector_state *conn_state)
->  {
->  	struct intel_sdvo *intel_sdvo =3D to_sdvo(encoder);
-> -	struct intel_sdvo_connector_state *intel_sdvo_state =3D
-> -		to_intel_sdvo_connector_state(conn_state);
->  	struct intel_sdvo_connector *intel_sdvo_connector =3D
->  		to_intel_sdvo_connector(conn_state->connector);
->  	struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjusted_mo=
-de;
-> @@ -1362,13 +1377,7 @@ static int intel_sdvo_compute_config(struct intel_=
-encoder *encoder,
+>  #include "i915_drv.h"
+>  #include "intel_atomic.h"
+> +#include "intel_audio.h"
+>  #include "intel_connector.h"
+>  #include "intel_crtc.h"
+>  #include "intel_de.h"
+> @@ -1377,7 +1378,9 @@ static int intel_sdvo_compute_config(struct intel_e=
+ncoder *encoder,
 >=20=20
 >  	pipe_config->has_hdmi_sink =3D intel_has_hdmi_sink(intel_sdvo, conn_sta=
 te);
 >=20=20
-> -	if (pipe_config->has_hdmi_sink) {
-> -		if (intel_sdvo_state->base.force_audio =3D=3D HDMI_AUDIO_AUTO)
-> -			pipe_config->has_audio =3D intel_sdvo->has_hdmi_audio;
-> -		else
-> -			pipe_config->has_audio =3D
-> -				intel_sdvo_state->base.force_audio =3D=3D HDMI_AUDIO_ON;
-> -	}
-> +	pipe_config->has_audio =3D intel_sdvo_has_audio(encoder, pipe_config, c=
+> -	pipe_config->has_audio =3D intel_sdvo_has_audio(encoder, pipe_config, c=
 onn_state);
+> +	pipe_config->has_audio =3D
+> +		intel_sdvo_has_audio(encoder, pipe_config, conn_state) &&
+> +		intel_audio_compute_config(encoder, pipe_config, conn_state);
 >=20=20
 >  	pipe_config->limited_color_range =3D
 >  		intel_sdvo_limited_color_range(encoder, pipe_config,
+> @@ -1752,12 +1755,7 @@ static void intel_sdvo_enable_audio(struct intel_s=
+dvo *intel_sdvo,
+>  				    const struct intel_crtc_state *crtc_state,
+>  				    const struct drm_connector_state *conn_state)
+>  {
+> -	const struct drm_display_mode *adjusted_mode =3D
+> -		&crtc_state->hw.adjusted_mode;
+> -	struct drm_connector *connector =3D conn_state->connector;
+> -	u8 *eld =3D connector->eld;
+> -
+> -	eld[6] =3D drm_av_sync_delay(connector, adjusted_mode) / 2;
+> +	const u8 *eld =3D crtc_state->eld;
+>=20=20
+>  	intel_sdvo_set_audio_state(intel_sdvo, 0);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
