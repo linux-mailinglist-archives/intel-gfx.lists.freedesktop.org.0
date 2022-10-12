@@ -1,56 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E2F65FC3CD
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 12:32:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6995C5FC3F0
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 12:49:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1123810E3C7;
-	Wed, 12 Oct 2022 10:32:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB61210E3CC;
+	Wed, 12 Oct 2022 10:49:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7BD310E2F6;
- Wed, 12 Oct 2022 10:32:23 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C688210E3CC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Oct 2022 10:49:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665570743; x=1697106743;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=pAU3qH7t9xZciy3nsc6QfbuEQGLxLne6lR6B+fK5WBs=;
- b=m91i0TEl5nu1x/SIgg5Lufd9EExtvcNrFHhhLlKMcUoS1ab1gQAE23rm
- n6xhvfW7KokwNu6+q9AzVvPonK1IBJqrPGV2SRlTQ0Q1C7qgnZQ6TvWvl
- O1QNDKZzCTdzxaXbRoTpaeZZR+Cn3Wmd5bAus7gb9FO5VatjRBw8bXZlc
- x2Fz7uCyUIN/FAmswEhNppMxXykDO+p5QIp0s9zJcVTXSdS4/1lskCSKw
- u38CUYd3W6FxtPZ30zQCKkuFBurq/eqe0gJweFdGk0cUpcjhICdsz71Am
- 2rLD3/AmmGgLURULb09niaya03kpGET6zIYbiPZeqJakhHlU5PdQgxEtV Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="331249828"
-X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="331249828"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 03:32:23 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="801797988"
-X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="801797988"
-Received: from dionita-mobl.ger.corp.intel.com (HELO [10.252.24.124])
- ([10.252.24.124])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 03:32:20 -0700
-Message-ID: <5aed1778-ae6f-58fe-625e-45e7195c2616@intel.com>
-Date: Wed, 12 Oct 2022 11:32:18 +0100
+ t=1665571780; x=1697107780;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=nRBYW1V4AryzK+c2y1TbL52MWDkbAiZ1lOqhA8kgLoM=;
+ b=BSKMHtnnHqlBb8vbZjWxa50h6FGEg6qNC9aHPs3fFkoEoFJFNVqzF3LB
+ yBJtBCkAe0ZbJNJQxd/95lW0eS8xM+kOKZ1WXZwI6p5gcHM/fH+yT/Xu4
+ yAgPQnV/bZ/9rUAUSpXmbi9lt/1PHGvChpXNSaMrEDIWHKGAyvL5xGjVS
+ tnbqgrWVncllukR7laq6HZUvW0o/0zyhFJDCeL8HlF5df9c+88PuQjdrF
+ NR2dd3XFr8mtFLy4uhQVJvh3PX3rV5X9qH0/nlBYDpKyHRkw140hYx30Z
+ v8ywZ5q6Fj3UhvhdW01LzwUAPsZiW3Uujd/5O32fAO6eGjl0ygf3G+QRJ Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="285142859"
+X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="285142859"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2022 03:49:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="629064781"
+X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="629064781"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga007.fm.intel.com with SMTP; 12 Oct 2022 03:49:37 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 12 Oct 2022 13:49:36 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 12 Oct 2022 13:49:36 +0300
+Message-Id: <20221012104936.30911-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221011170011.17198-23-ville.syrjala@linux.intel.com>
+References: <20221011170011.17198-23-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.1
-Content-Language: en-GB
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20221010065826.32037-1-niranjana.vishwanathapura@intel.com>
- <20221010065826.32037-13-niranjana.vishwanathapura@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20221010065826.32037-13-niranjana.vishwanathapura@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 12/17] drm/i915/vm_bind: Implement
- I915_GEM_EXECBUFFER3 ioctl
+Subject: [Intel-gfx] [PATCH v2 22/22] drm/i915/audio: Resume HSW/BDW HDA
+ controller around ELD access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,116 +60,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
- daniel.vetter@intel.com, christian.koenig@amd.com
+Cc: Takashi Iwai <tiwai@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/10/2022 07:58, Niranjana Vishwanathapura wrote:
-> Implement new execbuf3 ioctl (I915_GEM_EXECBUFFER3) which only
-> works in vm_bind mode. The vm_bind mode only works with
-> this new execbuf3 ioctl.
-> 
-> The new execbuf3 ioctl will not have any list of objects to validate
-> bind as all required objects binding would have been requested by the
-> userspace before submitting the execbuf3.
-> 
-> Legacy features like relocations etc are not supported by execbuf3.
-> 
-> v2: Add more input validity checks.
-> v3: batch_address is a VA (not an array) if num_batches=1,
->      minor cleanup
-> 
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/Makefile                 |   1 +
->   .../gpu/drm/i915/gem/i915_gem_execbuffer3.c   | 580 ++++++++++++++++++
->   drivers/gpu/drm/i915/gem/i915_gem_ioctls.h    |   2 +
->   drivers/gpu/drm/i915/i915_driver.c            |   1 +
->   include/uapi/drm/i915_drm.h                   |  61 ++
->   5 files changed, 645 insertions(+)
->   create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
-> 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 3564307699ea..94520b79e7e7 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -150,6 +150,7 @@ gem-y += \
->   	gem/i915_gem_domain.o \
->   	gem/i915_gem_execbuffer_common.o \
->   	gem/i915_gem_execbuffer.o \
-> +	gem/i915_gem_execbuffer3.o \
->   	gem/i915_gem_internal.o \
->   	gem/i915_gem_object.o \
->   	gem/i915_gem_lmem.o \
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
-> new file mode 100644
-> index 000000000000..1f38f658066a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
-> @@ -0,0 +1,580 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2022 Intel Corporation
-> + */
-> +
-> +#include <linux/dma-resv.h>
-> +#include <linux/uaccess.h>
-> +
-> +#include <drm/drm_syncobj.h>
-> +
-> +#include "gt/intel_context.h"
-> +#include "gt/intel_gpu_commands.h"
-> +#include "gt/intel_gt.h"
-> +
-> +#include "i915_drv.h"
-> +#include "i915_gem_context.h"
-> +#include "i915_gem_execbuffer_common.h"
-> +#include "i915_gem_ioctls.h"
-> +#include "i915_gem_vm_bind.h"
-> +#include "i915_trace.h"
-> +
-> +#define __EXEC3_ENGINE_PINNED		BIT_ULL(32)
-> +#define __EXEC3_INTERNAL_FLAGS		(~0ull << 32)
-> +
-> +/* Catch emission of unexpected errors for CI! */
-> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
-> +#undef EINVAL
-> +#define EINVAL ({ \
-> +	DRM_DEBUG_DRIVER("EINVAL at %s:%d\n", __func__, __LINE__); \
-> +	22; \
-> +})
-> +#endif
-> +
-> +/**
-> + * DOC: User command execution with execbuf3 ioctl
-> + *
-> + * A VM in VM_BIND mode will not support older execbuf mode of binding.
-> + * The execbuf ioctl handling in VM_BIND mode differs significantly from the
-> + * older execbuf2 ioctl (See struct drm_i915_gem_execbuffer2).
-> + * Hence, a new execbuf3 ioctl has been added to support VM_BIND mode. (See
-> + * struct drm_i915_gem_execbuffer3). The execbuf3 ioctl will not accept any
-> + * execlist. Hence, no support for implicit sync.
-> + *
-> + * The new execbuf3 ioctl only works in VM_BIND mode and the VM_BIND mode only
-> + * works with execbuf3 ioctl for submission.
-> + *
-> + * The execbuf3 ioctl directly specifies the batch addresses instead of as
-> + * object handles as in execbuf2 ioctl. The execbuf3 ioctl will also not
-> + * support many of the older features like in/out/submit fences, fence array,
-> + * default gem context etc. (See struct drm_i915_gem_execbuffer3).
-> + *
-> + * In VM_BIND mode, VA allocation is completely managed by the user instead of
-> + * the i915 driver. Hence all VA assignment, eviction are not applicable in
-> + * VM_BIND mode. Also, for determining object activeness, VM_BIND mode will not
-> + * be using the i915_vma active reference tracking. It will instead check the
-> + * dma-resv object's fence list for that.
-> + *
-> + * So, a lot of code supporting execbuf2 ioctl, like relocations, VA evictions,
-> + * vma lookup table, implicit sync, vma active reference tracking etc., are not
-> + * applicable for execbuf3 ioctl.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I guess EXEC_CAPTURE is also now gone? Is that expected? We ofc don't 
-have the list of objects so perhaps doesn't make sense any more. Just 
-double checking...
+On HSW/BDW the hardware ELD buffer does not work if the controller
+is suspended. I'm not 100% which thing in there is needed to make it
+work (at least just forcing the controller into D0 with setpci is
+not enough). But a full runtime resume seems to do the trick here
+at least, and so far it looks like this doesn't even deadlock or
+anything.
+
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Cc: Takashi Iwai <tiwai@suse.de>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_audio.c | 38 ++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 328c47719fd8..467f3f260969 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -23,6 +23,7 @@
+ 
+ #include <linux/component.h>
+ #include <linux/kernel.h>
++#include <linux/pm_runtime.h>
+ 
+ #include <drm/drm_edid.h>
+ #include <drm/i915_component.h>
+@@ -480,6 +481,16 @@ hsw_audio_config_update(struct intel_encoder *encoder,
+ 		hsw_hdmi_audio_config_update(encoder, crtc_state);
+ }
+ 
++static struct pci_dev *hsw_hda_controller(struct drm_i915_private *i915)
++{
++	int domain = pci_domain_nr(to_pci_dev(i915->drm.dev)->bus);
++
++	if (!IS_HASWELL(i915) && !IS_BROADWELL(i915))
++		return NULL;
++
++	return pci_get_domain_bus_and_slot(domain, 0, PCI_DEVFN(3, 0));
++}
++
+ static int hsw_eld_buffer_size(struct drm_i915_private *i915,
+ 			       enum transcoder cpu_transcoder)
+ {
+@@ -497,8 +508,14 @@ static void hsw_audio_codec_get_config(struct intel_encoder *encoder,
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	u32 *eld = (u32 *)crtc_state->eld;
+ 	int eld_buffer_size, len, i;
++	struct pci_dev *hsw_hdac;
+ 	u32 tmp;
+ 
++	/* on HSW/BDW ELD access doesn't work if the HDA controller is supended */
++	hsw_hdac = hsw_hda_controller(i915);
++	if (hsw_hdac)
++		pm_runtime_get_sync(&hsw_hdac->dev);
++
+ 	tmp = intel_de_read(i915, HSW_AUD_PIN_ELD_CP_VLD);
+ 	if ((tmp & AUDIO_ELD_VALID(cpu_transcoder)) == 0)
+ 		return;
+@@ -511,6 +528,9 @@ static void hsw_audio_codec_get_config(struct intel_encoder *encoder,
+ 
+ 	for (i = 0; i < len; i++)
+ 		eld[i] = intel_de_read(i915, HSW_AUD_EDID_DATA(cpu_transcoder));
++
++	if (hsw_hdac)
++		pm_runtime_put(&hsw_hdac->dev);
+ }
+ 
+ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+@@ -520,6 +540,12 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+ 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
++	struct pci_dev *hsw_hdac;
++
++	/* on HSW/BDW ELD access doesn't work if the HDA controller is supended */
++	hsw_hdac = hsw_hda_controller(i915);
++	if (hsw_hdac)
++		pm_runtime_get_sync(&hsw_hdac->dev);
+ 
+ 	mutex_lock(&i915->display.audio.mutex);
+ 
+@@ -544,6 +570,9 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 		     AUDIO_OUTPUT_ENABLE(cpu_transcoder), 0);
+ 
+ 	mutex_unlock(&i915->display.audio.mutex);
++
++	if (hsw_hdac)
++		pm_runtime_put(&hsw_hdac->dev);
+ }
+ 
+ static unsigned int calc_hblank_early_prog(struct intel_encoder *encoder,
+@@ -664,6 +693,12 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	const u32 *eld = (const u32 *)crtc_state->eld;
+ 	int eld_buffer_size, len, i;
++	struct pci_dev *hsw_hdac;
++
++	/* on HSW/BDW ELD access doesn't work if the HDA controller is supended */
++	hsw_hdac = hsw_hda_controller(i915);
++	if (hsw_hdac)
++		pm_runtime_get_sync(&hsw_hdac->dev);
+ 
+ 	mutex_lock(&i915->display.audio.mutex);
+ 
+@@ -705,6 +740,9 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 	hsw_audio_config_update(encoder, crtc_state);
+ 
+ 	mutex_unlock(&i915->display.audio.mutex);
++
++	if (hsw_hdac)
++		pm_runtime_put(&hsw_hdac->dev);
+ }
+ 
+ struct ilk_audio_regs {
+-- 
+2.35.1
+
