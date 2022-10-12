@@ -1,50 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E3415FC353
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 11:55:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91B495FC3B7
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Oct 2022 12:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A2BC10E0C6;
-	Wed, 12 Oct 2022 09:55:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA57D10E2F6;
+	Wed, 12 Oct 2022 10:26:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6F2C10E0C6
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Oct 2022 09:55:35 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FAD610E2F6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Oct 2022 10:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665568535; x=1697104535;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LdqJLLSPo7SyJusLtfPvtbBcq19ZJVwxXOlux193w5Q=;
- b=Q6epgqgQuOWdsDeVEAGck5CjLIe8dzuIEwM4HBZUYyor+SOYWRyege4c
- GC4wEeQPSNG9AphJ82zZyF33hUY3sKZRHRkfsW9ToBfVLWoSD0lq+BbJf
- 2spFm4gqPwF6MnxehmFcvfglrlSLL9dDK8ZWjvpiGi+xhl6KgLfjSiJWt
- 5UXRor3PI7xi5ZWWNAt+3Ctb4NcsyhdJjIeB9n1y3c1AyTn9a+ARrRcB8
- u225rzuZFrr1u4d1uOA42jBNWu1FPMbKapX+cIuPZtIXDr8VIHbydPze5
- 98IwImdOTeGNQ1tnSpIRx1wyPmocmRjAgAoW2aeUpYyVXuJiqwHfdUmRc w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="303490487"
-X-IronPort-AV: E=Sophos;i="5.95,178,1661842800"; d="scan'208";a="303490487"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 02:55:34 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="955693583"
-X-IronPort-AV: E=Sophos;i="5.95,178,1661842800"; d="scan'208";a="955693583"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 02:55:33 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Oct 2022 15:25:50 +0530
-Message-Id: <20221012095550.1025147-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221011063447.904649-7-ankit.k.nautiyal@intel.com>
-References: <20221011063447.904649-7-ankit.k.nautiyal@intel.com>
+ t=1665570411; x=1697106411;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:to:cc:from:message-id:date;
+ bh=tx4vjRGPSI98SvG8z/1mNfqeYylGy9spBtrIeGHG8gs=;
+ b=gUDkuxsQY7GPrqjtY0XUKnbTNyI7Dd9Kwm32DSSHYH7jsaV6rdaBSGWL
+ bi4UzSjSe8HjEebGs6J/xIS/yX/MmMw+coa/84eqG4jVT4GjJ7WZEi1tC
+ vemQKanS3jDQL85KOQYabjmXHJNSMbr9LtNQz/xTbzG5/Y1gjD11d1W4/
+ DPliP4Ykcbk87fuAEh3Hr7hrAWcqzaW7IHn1o/1JbfypwJCq2rhgHZsBU
+ MTLDEaSMZ/vivx5+crAP+0MPPJiwbF9NhpGaf8rx4nV3t3Uf+gEwc9HYc
+ gGppGIKvIvX1bsMguHPMhs80cXcJJ62YukFcePkv10wFiv4Zl/v7Be9cW A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="292081891"
+X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="292081891"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2022 03:26:51 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10497"; a="801796278"
+X-IronPort-AV: E=Sophos;i="5.95,179,1661842800"; d="scan'208";a="801796278"
+Received: from mpiecho-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.25.11])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2022 03:26:48 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 6/8] drm/i915/dp: Replace intel_dp.dfp
- members with the new crtc_state sink_format
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20221012083402.1069940-1-anshuman.gupta@intel.com>
+References: <20221012083402.1069940-1-anshuman.gupta@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <166557040585.17580.5212685833257862558@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Wed, 12 Oct 2022 13:26:45 +0300
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dgfx: Temporary hammer to keep
+ autosuspend control 'on'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,170 +60,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: matthew.auld@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The decision to use DFP output format conversion capabilities should be
-during compute_config phase.
+I think I commented on this already, but the patch subject should really be=
+ as
+informative as possible like: "Disable PCI runtime PM on dGPUs" as that is =
+exactly
+what the patch does.
 
-This patch uses the members of intel_dp->dfp to only store the
-format conversion capabilities of the DP device and uses the crtc_state
-sink_format member, to program the protocol-converter for
-colorspace/format conversion.
+Also bit unsure if the Fixes: tag should really point to the runtime PM
+commit but maybe instead to the introduction of LMEM commit.
 
-v2: Use sink_format to determine the color conversion config for the
-pcon (Ville).
+Regards, Joonas
 
-v3: Fix typo: missing 'break' in switch case (lkp kernel test robot).
-
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 80 +++++++++++++++----------
- 1 file changed, 48 insertions(+), 32 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d7a4506717a6..c0338cc81a74 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -790,6 +790,7 @@ intel_dp_output_format(struct intel_connector *connector,
- 		       bool ycbcr_420_output)
- {
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 
- 	if (!connector->base.ycbcr_420_allowed || !ycbcr_420_output)
- 		return INTEL_OUTPUT_FORMAT_RGB;
-@@ -798,6 +799,10 @@ intel_dp_output_format(struct intel_connector *connector,
- 	    intel_dp->dfp.ycbcr_444_to_420)
- 		return INTEL_OUTPUT_FORMAT_RGB;
- 
-+	/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
-+	if (DISPLAY_VER(i915) >= 11 && intel_dp->dfp.ycbcr420_passthrough)
-+		return INTEL_OUTPUT_FORMAT_YCBCR420;
-+
- 	if (intel_dp->dfp.ycbcr_444_to_420)
- 		return INTEL_OUTPUT_FORMAT_YCBCR444;
- 	else
-@@ -2660,6 +2665,8 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 					   const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	bool ycbcr444_to_420 = false;
-+	bool rgb_to_ycbcr = false;
- 	u8 tmp;
- 
- 	if (intel_dp->dpcd[DP_DPCD_REV] < 0x13)
-@@ -2676,8 +2683,35 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 		drm_dbg_kms(&i915->drm, "Failed to %s protocol converter HDMI mode\n",
- 			    str_enable_disable(intel_dp->has_hdmi_sink));
- 
--	tmp = crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 &&
--		intel_dp->dfp.ycbcr_444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
-+	if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
-+		switch (crtc_state->output_format) {
-+		case INTEL_OUTPUT_FORMAT_YCBCR420:
-+			/*
-+			 * sink_format is YCBCR420, output_format is also YCBCR420:
-+			 * Passthrough.
-+			 */
-+			break;
-+		case INTEL_OUTPUT_FORMAT_YCBCR444:
-+			/*
-+			 * sink_format is YCBCR420, output_format is YCBCR444:
-+			 * Downsample.
-+			 */
-+			ycbcr444_to_420 = true;
-+			break;
-+		case INTEL_OUTPUT_FORMAT_RGB:
-+			/*
-+			 * sink_format is YCBCR420, output_format is RGB:
-+			 * Convert to YCBCR444 and Downsample.
-+			 */
-+			rgb_to_ycbcr = true;
-+			ycbcr444_to_420 = true;
-+			break;
-+		default:
-+			break;
-+		}
-+	}
-+
-+	tmp = ycbcr444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
- 
- 	if (drm_dp_dpcd_writeb(&intel_dp->aux,
- 			       DP_PROTOCOL_CONVERTER_CONTROL_1, tmp) != 1)
-@@ -2685,13 +2719,12 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 			    "Failed to %s protocol converter YCbCr 4:2:0 conversion mode\n",
- 			    str_enable_disable(intel_dp->dfp.ycbcr_444_to_420));
- 
--	tmp = intel_dp->dfp.rgb_to_ycbcr ?
--		DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
-+	tmp = rgb_to_ycbcr ? DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
- 
- 	if (drm_dp_pcon_convert_rgb_to_ycbcr(&intel_dp->aux, tmp) < 0)
- 		drm_dbg_kms(&i915->drm,
--			   "Failed to %s protocol converter RGB->YCbCr conversion mode\n",
--			   str_enable_disable(tmp));
-+			    "Failed to %s protocol converter RGB->YCbCr conversion mode\n",
-+			    str_enable_disable(tmp));
- }
- 
- bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
-@@ -4541,7 +4574,7 @@ intel_dp_update_420(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	struct intel_connector *connector = intel_dp->attached_connector;
--	bool is_branch, ycbcr_420_passthrough, ycbcr_444_to_420, rgb_to_ycbcr;
-+	bool is_branch;
- 
- 	/* No YCbCr output support on gmch platforms */
- 	if (HAS_GMCH(i915))
-@@ -4555,38 +4588,21 @@ intel_dp_update_420(struct intel_dp *intel_dp)
- 		return;
- 
- 	is_branch = drm_dp_is_branch(intel_dp->dpcd);
--	ycbcr_420_passthrough =
-+	intel_dp->dfp.ycbcr420_passthrough =
- 		drm_dp_downstream_420_passthrough(intel_dp->dpcd,
- 						  intel_dp->downstream_ports);
- 	/* on-board LSPCON always assumed to support 4:4:4->4:2:0 conversion */
--	ycbcr_444_to_420 =
-+	intel_dp->dfp.ycbcr_444_to_420 =
- 		dp_to_dig_port(intel_dp)->lspcon.active ||
- 		drm_dp_downstream_444_to_420_conversion(intel_dp->dpcd,
- 							intel_dp->downstream_ports);
--	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
--								 intel_dp->downstream_ports,
--								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
--
--	if (DISPLAY_VER(i915) >= 11) {
--		/* Let PCON convert from RGB->YCbCr if possible */
--		if (is_branch && rgb_to_ycbcr && ycbcr_444_to_420) {
--			intel_dp->dfp.rgb_to_ycbcr = true;
--			intel_dp->dfp.ycbcr_444_to_420 = true;
--			connector->base.ycbcr_420_allowed = true;
--		} else {
--		/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
--			intel_dp->dfp.ycbcr_444_to_420 =
--				ycbcr_444_to_420 && !ycbcr_420_passthrough;
-+	intel_dp->dfp.rgb_to_ycbcr =
-+		drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
-+							  intel_dp->downstream_ports,
-+							  DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
- 
--			connector->base.ycbcr_420_allowed =
--				!is_branch || ycbcr_444_to_420 || ycbcr_420_passthrough;
--		}
--	} else {
--		/* 4:4:4->4:2:0 conversion is the only way */
--		intel_dp->dfp.ycbcr_444_to_420 = ycbcr_444_to_420;
--
--		connector->base.ycbcr_420_allowed = ycbcr_444_to_420;
--	}
-+	if (!is_branch || intel_dp->dfp.ycbcr420_passthrough || intel_dp->dfp.ycbcr_444_to_420)
-+		connector->base.ycbcr_420_allowed = true;
- 
- 	drm_dbg_kms(&i915->drm,
- 		    "[CONNECTOR:%d:%s] RGB->YcbCr conversion? %s, YCbCr 4:2:0 allowed? %s, YCbCr 4:4:4->4:2:0 conversion? %s\n",
--- 
-2.25.1
-
+Quoting Anshuman Gupta (2022-10-12 11:34:02)
+> DGFX platforms has lmem and cpu can access the lmem objects
+> via mmap and i915 internal i915_gem_object_pin_map() for
+> i915 own usages. Both of these methods has pre-requisite
+> requirement to keep GFX PCI endpoint in D0 for a supported
+> iomem transaction over PCI link. (Refer PCIe specs 5.3.1.4.1)
+>=20
+> Both DG1/DG2 have a hardware bug that violates the PCIe specs
+> and support the iomem read write transaction over PCIe bus despite
+> endpoint is D3 state.
+> Due to above H/W bug, we had never observed any issue with i915 runtime
+> PM versus lmem access.
+> But this issue becomes visible when PCIe gfx endpoint's upstream
+> bridge enters to D3, at this point any lmem read/write access will be
+> returned as unsupported request. But again this issue is not observed
+> on every platform because it has been observed on few host machines
+> DG1/DG2 endpoint's upstream bridge does not bind with pcieport driver.
+> which really disables the PCIe  power savings and leaves the bridge
+> at D0 state.
+>=20
+> Till we fix all issues related to runtime PM, we need
+> to keep autosupend control to 'on' on all discrete platforms with lmem.
+>=20
+> Fixes: 527bab0473f2 ("drm/i915/rpm: Enable runtime pm autosuspend by defa=
+ult")
+> Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_runtime_pm.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i9=
+15/intel_runtime_pm.c
+> index 6ed5786bcd29..410a5cb58a61 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -591,8 +591,15 @@ void intel_runtime_pm_enable(struct intel_runtime_pm=
+ *rpm)
+>                 pm_runtime_use_autosuspend(kdev);
+>         }
+> =20
+> -       /* Enable by default */
+> -       pm_runtime_allow(kdev);
+> +       /*
+> +        *  FIXME: Temp hammer to keep autosupend disable on lmem support=
+ed platforms.
+> +        *  As per PCIe specs 5.3.1.4.1, all iomem read write request ove=
+r a PCIe
+> +        *  function will be unsupported in case PCIe endpoint function i=
+s in D3.
+> +        *  Let's keep i915 autosuspend control 'on' till we fix all know=
+n issue
+> +        *  with lmem access in D3.
+> +        */
+> +       if (!HAS_LMEM(i915))
+> +               pm_runtime_allow(kdev);
+> =20
+>         /*
+>          * The core calls the driver load handler with an RPM reference h=
+eld.
+> --=20
+> 2.25.1
+>=20
