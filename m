@@ -2,51 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B755FD5FC
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Oct 2022 10:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFC55FD60E
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Oct 2022 10:17:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A15F710E102;
-	Thu, 13 Oct 2022 08:12:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13A0010E102;
+	Thu, 13 Oct 2022 08:17:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1EAF10E102;
- Thu, 13 Oct 2022 08:12:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665648749; x=1697184749;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=7n7bm9cEbwpAcQHLjxyNJZugoRkYPQp3Pb3ATCfFMcw=;
- b=ObT1NxtidbhoCaH2SFUCGamK0rrVCNOqdyRGLdKNr4RZU2ad9Hi85uqc
- LPItVJnSFXRZ9/GcTHBuZUtYMDhinpCHRxUAyru8wUCFttyFyCnT47Ba6
- SWzU2ZaMPURmNhecRN29OZ7ER35FXfUXd34nMzjNaLXGmTFYTiQICG6wU
- 7ER0K35vKf+/uxs8cHqSSFOsZomdXE4Umj48ggY77sNXfP2J5LYt0bUhh
- fnFr/yX7eAiGzggpTZpRbkmY7dBxjllAiJGCZwpkqibOUCQKkVMig5XYw
- h/tJNVf4E4PPl1wIY8Wj3z1MF1reKdny9EmfPGDjtCUvFQ8dZ3y0Nb1Hz w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="306079538"
-X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; d="scan'208";a="306079538"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2022 01:12:29 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="769524814"
-X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; d="scan'208";a="769524814"
-Received: from ndenisov-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.41.197])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2022 01:12:21 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, keescook@chromium.org
-In-Reply-To: <20221013064956.1548741-1-gwan-gyeong.mun@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220926191109.1803094-1-keescook@chromium.org>
- <20221013064956.1548741-1-gwan-gyeong.mun@intel.com>
-Date: Thu, 13 Oct 2022 11:12:29 +0300
-Message-ID: <87zge0rvki.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B096910E102;
+ Thu, 13 Oct 2022 08:17:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A891AAADD2;
+ Thu, 13 Oct 2022 08:17:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v3] overflow: Introduce overflows_type() and
- castable_to_type()
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Thu, 13 Oct 2022 08:17:44 -0000
+Message-ID: <166564906466.20377.7018458465252330933@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220926191109.1803094-1-keescook@chromium.org>
+In-Reply-To: <20220926191109.1803094-1-keescook@chromium.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBv?=
+ =?utf-8?q?verflow=3A_Introduce_overflows=5Ftype=28=29_and_castable=5Fto?=
+ =?utf-8?b?X3R5cGUoKSAocmV2Mik=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,41 +41,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: arnd@kernel.org, airlied@linux.ie, trix@redhat.com, dlatypov@google.com,
- llvm@lists.linux.dev, ndesaulniers@google.com, gustavoars@kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- nathan@kernel.org, linux-sparse@vger.kernel.org,
- linux-hardening@vger.kernel.org, daniel@ffwll.ch, rodrigo.vivi@intel.com,
- intel-gfx@lists.freedesktop.org, vitor@massaru.org,
- luc.vanoostenryck@gmail.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Oct 2022, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
-> diff --git a/lib/overflow_kunit.c b/lib/overflow_kunit.c
-> index 0d98c9bc75da..44da9d190057 100644
-> --- a/lib/overflow_kunit.c
-> +++ b/lib/overflow_kunit.c
-> @@ -16,6 +16,11 @@
->  #include <linux/types.h>
->  #include <linux/vmalloc.h>
->  
-> +/* We're expecting to do a lot of "always true" or "always false" tests. */
-> +#ifdef CONFIG_CC_IS_CLANG
-> +#pragma clang diagnostic ignored "-Wtautological-constant-out-of-range-compare"
-> +#endif
+== Series Details ==
 
-I thought #pragma was discouraged. I didn't try this, but would
-something like this work in the Makefile instead:
+Series: overflow: Introduce overflows_type() and castable_to_type() (rev2)
+URL   : https://patchwork.freedesktop.org/series/109076/
+State : failure
 
-CFLAGS_overflow_kunit.o = $(call cc-disable-warning, tautological-constant-out-of-range-compare)
+== Summary ==
 
-Sorry for not noticing before. If you all think pragma is fine, sorry
-for the noise.
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/109076/revisions/2/mbox/ not applied
+Applying: overflow: Introduce overflows_type() and castable_to_type()
+Using index info to reconstruct a base tree...
+M	include/linux/overflow.h
+M	lib/overflow_kunit.c
+Falling back to patching base and 3-way merge...
+Auto-merging lib/overflow_kunit.c
+CONFLICT (content): Merge conflict in lib/overflow_kunit.c
+Auto-merging include/linux/overflow.h
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 overflow: Introduce overflows_type() and castable_to_type()
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-BR,
-Jani.
 
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
