@@ -1,57 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C886F5FD942
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Oct 2022 14:37:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 323915FD9A7
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Oct 2022 14:56:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14C9C10E8A1;
-	Thu, 13 Oct 2022 12:37:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBC4510E225;
+	Thu, 13 Oct 2022 12:56:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6C6910E8AC;
- Thu, 13 Oct 2022 12:37:13 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 7D31A1F74A;
- Thu, 13 Oct 2022 12:37:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1665664632; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=g3M6nNDdh4dr179mxdmmhC3iID0pjpvGdheURCQW2QI=;
- b=W13s8SyxeUOE8xLRUgMrv/vl4dUzFBnJvphPXjlhnQIEQ6ZAHU8tPmQiEyp0EtEOeCRbD1
- 9C3gnSfnhM3l/TRFHPaDWKRSFkak2V+HSa8YwBy8UhqXkMFVO+YSEt1g79ZozSzUuPbheZ
- YkfrzRd7kzff8JMpmTtxr8AJAkXiAFQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1665664632;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=g3M6nNDdh4dr179mxdmmhC3iID0pjpvGdheURCQW2QI=;
- b=0EEKUaiMoDhL9vD0xBqdHsp4TQZitvniZm56zwdWfH9gMpZg39ADvNYP4rt5k3tQLi0ptB
- 8q95TkaawZv/FoAQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 35EDA139F3;
- Thu, 13 Oct 2022 12:37:12 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id frEODHgGSGP3DgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 13 Oct 2022 12:37:12 +0000
-Date: Thu, 13 Oct 2022 14:37:10 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B27B010E21C;
+ Thu, 13 Oct 2022 12:56:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1665665786; x=1697201786;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=q8cQ1DwGd87RaS6pzGDydRuwXbxbSDcDIQbnbnxaZ3c=;
+ b=DvrMnk5mDvQ3eu5oU2ZQv5/f8PXfjibdkD+6U0jj6Vb750qMllKskvv8
+ The+lDjc0xTpyX0yyP08xD5DCaS1rUM4Y2lWy8lhfpYyMJ3fAoW+ea4wG
+ r0K8ScAznq1gi2BU1psDoMlI7Qd3zeXIhmAVb+dPd3N6bfm4hM7LPV6LN
+ PbP+oqHEZoLK4pthq5N24psOuQG76dDuxFrr5f56Y3gu7HvtjhUMKq12w
+ SwgzZN6jQzs80Qu+x/yQyVfwbaT7oX2GRaU5OSCJEcSjt3zreTVACK/tq
+ W6eKXw3tftKbt2Bjt6Sr1ARkMdwk2Jbhk4+vkHYpJ6J5OR+5xGV0fbeUH Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="331574442"
+X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; d="scan'208";a="331574442"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2022 05:56:26 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="769606984"
+X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; d="scan'208";a="769606984"
+Received: from mpower1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.212.156])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2022 05:56:23 -0700
+Date: Thu, 13 Oct 2022 13:56:21 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <Y0gGdlujszCstDeP@linux-uq9g>
+Message-ID: <Y0gK9QmCmktLLzqp@tursulin-desk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,48 +62,62 @@ Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+Hi Dave, Daniel,
 
-this is the weekly PR for drm-misc-fixes.
+Not sure if there is time for one more pull during the merge window, but
+in case there is here it is. Only one which affects platforms outside
+force_probe and that is the fix for DPT PTE corruption after resume. The
+rest are all DG2 specific.
 
-Best regards
-Thomas
+Regards,
 
-drm-misc-fixes-2022-10-13:
-Short summary of fixes pull:
+Tvrtko
 
- * vc4: HDMI fixes
-The following changes since commit cc62d98bd56d45de4531844ca23913a15136c05b:
+drm-intel-next-fixes-2022-10-13:
+- Fix revocation of non-persistent contexts (Tvrtko Ursulin)
+- Handle migration for dpt (Matthew Auld)
+- Fix display problems after resume (Thomas Hellström)
+- Allow control over the flags when migrating (Matthew Auld)
+- Consider DG2_RC_CCS_CC when migrating buffers (Matthew Auld)
+The following changes since commit cdf6428dd518435a05739abf7659589de30970f4:
 
-  Revert "drm: bridge: analogix/dp: add panel prepare/unprepare in suspend/resume time" (2022-09-23 07:15:18 -0700)
+  drm/i915: Reject excessive dotclocks early (2022-10-03 17:55:32 +0100)
 
 are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-10-13
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2022-10-13
 
-for you to fetch changes up to 4190e8bbcbc77a9c36724681801cedc5229e7fc2:
+for you to fetch changes up to ea19684afb545605bbcb690c49a91ce2c8e596dd:
 
-  drm/vc4: hdmi: Check the HSM rate at runtime_resume (2022-10-13 13:57:04 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * vc4: HDMI fixes
+  drm/i915/display: consider DG2_RC_CCS_CC when migrating buffers (2022-10-11 17:29:05 +0100)
 
 ----------------------------------------------------------------
-Maxime Ripard (3):
-      drm/vc4: Add module dependency on hdmi-codec
-      drm/vc4: hdmi: Enforce the minimum rate at runtime_resume
-      drm/vc4: hdmi: Check the HSM rate at runtime_resume
+- Fix revocation of non-persistent contexts (Tvrtko Ursulin)
+- Handle migration for dpt (Matthew Auld)
+- Fix display problems after resume (Thomas Hellström)
+- Allow control over the flags when migrating (Matthew Auld)
+- Consider DG2_RC_CCS_CC when migrating buffers (Matthew Auld)
 
- drivers/gpu/drm/vc4/vc4_drv.c  |  1 +
- drivers/gpu/drm/vc4/vc4_hdmi.c | 29 +++++++++++++++++++++++++++++
- 2 files changed, 30 insertions(+)
+----------------------------------------------------------------
+Matthew Auld (3):
+      drm/i915/display: handle migration for dpt
+      drm/i915: allow control over the flags when migrating
+      drm/i915/display: consider DG2_RC_CCS_CC when migrating buffers
 
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+Thomas Hellström (1):
+      drm/i915: Fix display problems after resume
+
+Tvrtko Ursulin (1):
+      drm/i915/guc: Fix revocation of non-persistent contexts
+
+ drivers/gpu/drm/i915/display/intel_fb_pin.c       | 62 ++++++++++++++++-------
+ drivers/gpu/drm/i915/gem/i915_gem_context.c       |  8 +--
+ drivers/gpu/drm/i915/gem/i915_gem_object.c        | 37 +++++++++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h        |  4 ++
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h  |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c           |  5 +-
+ drivers/gpu/drm/i915/gt/intel_context.c           |  5 +-
+ drivers/gpu/drm/i915/gt/intel_context.h           |  3 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c              |  8 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 26 +++++-----
+ 10 files changed, 113 insertions(+), 48 deletions(-)
