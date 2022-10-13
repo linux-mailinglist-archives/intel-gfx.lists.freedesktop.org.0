@@ -1,47 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E4A45FCF18
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Oct 2022 02:01:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F304A5FCF19
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Oct 2022 02:01:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 092FC10E2D4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4DCB10E2B7;
 	Thu, 13 Oct 2022 00:01:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 514BE10E10C;
- Thu, 13 Oct 2022 00:01:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5CC710E10C;
+ Thu, 13 Oct 2022 00:01:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665619290; x=1697155290;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=JJKNQgwMR6JwUxLPr2mg4vB2mJHLGaCaQCipoOO5rKw=;
- b=k1KGPCZt9Q0T/7O3IzbRmv5o0kytg9g/9ymE04MEkwE64PcIKhNRCSQq
- gdeyABrbOzWy6RhWAB6X922sueFXyGkXmdEh+VJveDV/lwhO6ZRcyxNFs
- eOIOpq0CFTiQ3myVl1oZdYoQFJSswtb2hhux9z/mOJ2aA5aYzUSUT+i7x
- PYQhjnc+XiuxHusU25KKv+MykIe2vhgkuxdnDexiW6IWS2ClHIM+gnfSS
- wSexIvEtFIwpyQkzasrvGiTe2N+xE6XNfr67QrFbnYJrTc/4Wi0EbyakO
- hBKJ0eMX++5lxonXAQeVsTHpBryfju3MS09/5uSGdvvX8/eXW/dxqc2pz w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="292263350"
-X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; d="scan'208";a="292263350"
+ t=1665619291; x=1697155291;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=PBuOkYLWb+5YORBbtZMtLcXo6OGyquB4DlXW/qogCbA=;
+ b=UjGYmJs/myoXywd+UIfwEXqHlgZRk+dMDmqdTGdxJ/AiGbSjk3qFf/PL
+ t0ppNVCk3L56Xd8lPcnHOstSu5bUEkdD3UiQPGacTRJWXmNHuzsa1fuYd
+ 4SmQtx2Wj82PSBNi1MLWCoMojeGssK4ekFHYEjPdwiQysS9mhmrd2iQIt
+ JBe92AU22O74AmLd6DLyyFnzgrhaaynXAj16+s/ZZuorHrxcL5h5pcFyN
+ Ov36DH2tQZFMbEZeEVmWe543+d5e8xezaY9K7tYBGrHAUCr8okaQw8cXc
+ GB1CrqnGVzQstTK3YeHM8SElyXXAynbHhQFhc0AmWyZa9M6RpGtw6Iya4 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="292263357"
+X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; d="scan'208";a="292263357"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 17:01:29 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="802031080"
-X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; d="scan'208";a="802031080"
+ 12 Oct 2022 17:01:31 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10498"; a="802031089"
+X-IronPort-AV: E=Sophos;i="5.95,180,1661842800"; d="scan'208";a="802031089"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2022 17:01:29 -0700
+ 12 Oct 2022 17:01:31 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Oct 2022 17:03:25 -0700
-Message-Id: <20221013000332.1738078-1-daniele.ceraolospurio@intel.com>
+Date: Wed, 12 Oct 2022 17:03:26 -0700
+Message-Id: <20221013000332.1738078-2-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20221013000332.1738078-1-daniele.ceraolospurio@intel.com>
+References: <20221013000332.1738078-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 0/7] drm/i915: prepare for uC loading on MTL
+Subject: [Intel-gfx] [PATCH v2 1/7] drm/i915/huc: only load HuC on GTs that
+ have VCS engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,57 +62,96 @@ Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The introduction of the media GT brings a few changes for GuC/HuC. The
-main difference between the 2 GTs is that only the media one has the
-HuC, while both have the GuC. Also, the fact that both GTs use the same
-G-unit and GGTT means we now have parallel interrupt/communication
-paths. Lastly, WOPCM is divided between the two GTs, with each having
-their own private chunk.
+On MTL the primary GT doesn't have any media capabilities, so no video
+engines and no HuC. We must therefore skip the HuC fetch and load on
+that specific case. Given that other multi-GT platforms might have HuC
+on the primary GT, we can't just check for that and it is easier to
+instead check for the lack of VCS engines.
 
-v2: address review comments
+Based on code from Aravind Iddamsetty
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+v2: clarify which engine_mask is used for each GT and why (Tvrtko)
+
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: John Harrison <john.c.harrison@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com> #v1
+---
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c | 29 ++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drv.h        |  9 +++++---
+ 2 files changed, 35 insertions(+), 3 deletions(-)
 
-Aravind Iddamsetty (1):
-  drm/i915/mtl: Handle wopcm per-GT and limit calculations.
-
-Daniele Ceraolo Spurio (5):
-  drm/i915/huc: only load HuC on GTs that have VCS engines
-  drm/i915/uc: fetch uc firmwares for each GT
-  drm/i915/uc: use different ggtt pin offsets for uc loads
-  drm/i915/guc: define media GT GuC send regs
-  drm/i915/guc: handle interrupts from media GuC
-
-Stuart Summers (1):
-  drm/i915/guc: Add GuC deprivilege feature to MTL
-
- drivers/gpu/drm/i915/Makefile               |  5 ++-
- drivers/gpu/drm/i915/gt/intel_ggtt.c        |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c          |  1 +
- drivers/gpu/drm/i915/gt/intel_gt_irq.c      | 21 +++++++--
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  2 +
- drivers/gpu/drm/i915/gt/intel_gt_types.h    |  2 +
- drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c | 48 +++++++++++++++------
- drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h |  0
- drivers/gpu/drm/i915/gt/uc/intel_guc.c      | 43 ++++++++++--------
- drivers/gpu/drm/i915/gt/uc/intel_guc.h      |  5 ++-
- drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h  |  2 +
- drivers/gpu/drm/i915/gt/uc/intel_huc.c      | 29 +++++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_uc.c       | 12 ++++--
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c    | 44 +++++++++++++++----
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h    | 13 ++++++
- drivers/gpu/drm/i915/i915_driver.c          |  2 -
- drivers/gpu/drm/i915/i915_drv.h             | 12 +++---
- drivers/gpu/drm/i915/i915_gem.c             |  6 ++-
- drivers/gpu/drm/i915/i915_pci.c             |  1 +
- 19 files changed, 189 insertions(+), 61 deletions(-)
- rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c (86%)
- rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h (100%)
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+index 4d1cc383b681..ca170ea3426c 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+@@ -203,12 +203,41 @@ void intel_huc_unregister_gsc_notifier(struct intel_huc *huc, struct bus_type *b
+ 	huc->delayed_load.nb.notifier_call = NULL;
+ }
+ 
++static bool vcs_supported(struct intel_gt *gt)
++{
++	intel_engine_mask_t mask = gt->info.engine_mask;
++
++	/*
++	 * We reach here from i915_driver_early_probe for the primary GT before
++	 * its engine mask is set, so we use the device info engine mask for it;
++	 * this means we're not taking VCS fusing into account, but if the
++	 * primary GT supports VCS engines we expect at least one of them to
++	 * remain unfused so we're fine.
++	 * For other GTs we expect the GT-specific mask to be set before we
++	 * call this function.
++	 */
++	GEM_BUG_ON(!gt_is_root(gt) && !gt->info.engine_mask);
++
++	if (gt_is_root(gt))
++		mask = RUNTIME_INFO(gt->i915)->platform_engine_mask;
++	else
++		mask = gt->info.engine_mask;
++
++	return __ENGINE_INSTANCES_MASK(mask, VCS0, I915_MAX_VCS);
++}
++
+ void intel_huc_init_early(struct intel_huc *huc)
+ {
+ 	struct drm_i915_private *i915 = huc_to_gt(huc)->i915;
++	struct intel_gt *gt = huc_to_gt(huc);
+ 
+ 	intel_uc_fw_init_early(&huc->fw, INTEL_UC_FW_TYPE_HUC);
+ 
++	if (!vcs_supported(gt)) {
++		intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_NOT_SUPPORTED);
++		return;
++	}
++
+ 	if (GRAPHICS_VER(i915) >= 11) {
+ 		huc->status.reg = GEN11_HUC_KERNEL_LOAD_INFO;
+ 		huc->status.mask = HUC_LOAD_SUCCESSFUL;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 90ed8e6db2fe..90a347140e90 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -776,12 +776,15 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define __HAS_ENGINE(engine_mask, id) ((engine_mask) & BIT(id))
+ #define HAS_ENGINE(gt, id) __HAS_ENGINE((gt)->info.engine_mask, id)
+ 
+-#define ENGINE_INSTANCES_MASK(gt, first, count) ({		\
++#define __ENGINE_INSTANCES_MASK(mask, first, count) ({			\
+ 	unsigned int first__ = (first);					\
+ 	unsigned int count__ = (count);					\
+-	((gt)->info.engine_mask &						\
+-	 GENMASK(first__ + count__ - 1, first__)) >> first__;		\
++	((mask) & GENMASK(first__ + count__ - 1, first__)) >> first__;	\
+ })
++
++#define ENGINE_INSTANCES_MASK(gt, first, count) \
++	__ENGINE_INSTANCES_MASK((gt)->info.engine_mask, first, count)
++
+ #define RCS_MASK(gt) \
+ 	ENGINE_INSTANCES_MASK(gt, RCS0, I915_MAX_RCS)
+ #define BCS_MASK(gt) \
 -- 
 2.37.3
 
