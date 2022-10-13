@@ -2,48 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DCF15FDE13
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Oct 2022 18:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 299D35FDE9E
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Oct 2022 19:03:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ACA810E8FF;
-	Thu, 13 Oct 2022 16:17:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9591A10E91D;
+	Thu, 13 Oct 2022 17:03:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA6010E8FF
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Oct 2022 16:17:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665677849; x=1697213849;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kgfdhbuUDkXBxSZtZDSdDA6dUAhtuFDMFEsrJl0wlYw=;
- b=Sc+jvhjCNqBZhxHvoAuOJRxWwQLEAi/3W1ure2LM3WvoQrruElVj5Jo0
- PP4+J3wtC+4KOV131huDL45RtJBkUPGYw93D6HVy/BSg7e6aLp5J7E8aC
- lz6eDOMY22mD3b9sBvreZMGbJC2frMxf7A0KUctA19xr5e1/7mgFzccZb
- 8C6E02TjPnNBC4KvI/wiT9TYYAmo5eGOmCHNebr+ci0edHTQYWWMbx7ut
- USR/ghZAVa+YFGzLzKnS3hsItRU6xLbwRxGJRm/3C/i2GYzmo3MExnlm4
- 9QMJB1uuIkanxwhsmD1wpao1tpaJ4LEa5TGqq9lkDCO56vleivP1VpS8q Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="391435851"
-X-IronPort-AV: E=Sophos;i="5.95,182,1661842800"; d="scan'208";a="391435851"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2022 09:14:50 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="660393228"
-X-IronPort-AV: E=Sophos;i="5.95,182,1661842800"; d="scan'208";a="660393228"
-Received: from lab-ah.igk.intel.com ([10.91.215.196])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2022 09:14:48 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Oct 2022 18:14:16 +0200
-Message-Id: <20221013161416.3684904-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A28110E2D6;
+ Thu, 13 Oct 2022 17:03:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F2B18A0099;
+ Thu, 13 Oct 2022 17:03:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/1915/guc: enable engine reset on CAT
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
+Date: Thu, 13 Oct 2022 17:03:24 -0000
+Message-ID: <166568060496.20378.15914506251157096870@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221013154526.2105579-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20221013154526.2105579-1-ashutosh.dixit@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_HWMON_support_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,57 +40,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In case of catastrophic errors GuC is able to initate engine
-reset immediately, instead of waiting for timeout.
+== Series Details ==
 
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
-Hi all,
+Series: drm/i915: Add HWMON support (rev9)
+URL   : https://patchwork.freedesktop.org/series/104278/
+State : warning
 
-I am new in the subject, so please be polite if this is mistake.
-Tests shows that it allows to save about 7 seconds on the machine
-(Raptor Lake) in case of CAT.
-I am not aware of scenario in which would be reasonable to keep
-the engine in hung state.
-On the other side I am not sure if there should not be constraints
-on firmware version.
+== Summary ==
 
-Regards
-Andrzej
----
- drivers/gpu/drm/i915/gt/uc/intel_guc.c      | 2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+Error: dim checkpatch failed
+2ef44d6cc455 drm/i915/hwmon: Add HWMON infrastructure
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:90: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#90: 
+new file mode 100644
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 27b09ba1d295fc..2adcdf13db1911 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -211,7 +211,7 @@ static u32 guc_ctl_debug_flags(struct intel_guc *guc)
- 
- static u32 guc_ctl_feature_flags(struct intel_guc *guc)
- {
--	u32 flags = 0;
-+	u32 flags = GUC_CTL_ENABLE_ENGINE_RESET_ON_CAT;
- 
- 	if (!intel_guc_submission_is_used(guc))
- 		flags |= GUC_CTL_DISABLE_SCHEDULER;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-index e7a7fb450f442a..96f3116e263cdf 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-@@ -109,6 +109,7 @@
- 
- #define GUC_CTL_FEATURE			2
- #define   GUC_CTL_ENABLE_SLPC		BIT(2)
-+#define   GUC_CTL_ENABLE_ENGINE_RESET_ON_CAT BIT(8)
- #define   GUC_CTL_DISABLE_SCHEDULER	BIT(14)
- 
- #define GUC_CTL_DEBUG			3
--- 
-2.34.1
+total: 0 errors, 1 warnings, 0 checks, 182 lines checked
+e80cc6c222f9 drm/i915/hwmon: Add HWMON current voltage support
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 111 lines checked
+e5ecfe3079ba drm/i915/hwmon: Power PL1 limit and TDP setting
+9eeab472dcd4 drm/i915/hwmon: Show device level energy usage
+20f35e213b5a drm/i915/hwmon: Expose card reactive critical power
+3f3842926bb2 drm/i915/hwmon: Expose power1_max_interval
+1217470da461 drm/i915/hwmon: Extend power/energy for XEHPSDV
+
 
