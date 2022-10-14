@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27D555FEA3F
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Oct 2022 10:14:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 685215FEAA7
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Oct 2022 10:40:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C8BD10EA96;
-	Fri, 14 Oct 2022 08:14:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1678510E1C0;
+	Fri, 14 Oct 2022 08:40:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 488A310EA98;
- Fri, 14 Oct 2022 08:14:39 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4025710EAA8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 08:40:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665735279; x=1697271279;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=wmDGS//aOHauqwUePoJW8GE7hPsYvPgiTr7OXQVXfyE=;
- b=JbfR8i8g9DG6i4V5T2JbSbPBPi326nUlGu9Te/+VgYnWgNu92WzarnM3
- UvgS65G96fNg+tbTgxGiZ7oHUMG0Toy8oF5Yx5B4yGWrryL0JXv+DYATu
- b7AVObYIY3FW21CUukMDvNhibG93MT3qhPUCGvrohIGkK/XkPcmmYvhNV
- wWydkEu6Lb/uTaMHb73vxxqmcr5M60Ny0Llq+OqmMhJxeQEEIX2DGgQQ0
- Zlzf3g46s5jOAK8oREKgnDUzJ+PPBdrqQNYBL+k5TkMfJr4z25y5UZYcS
- rNf1aP7ZjC17oRZ1WyHeEVBKp29PkLBgPQIdyQybMI3SKyAAkQVdKBxtU w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="331829354"
-X-IronPort-AV: E=Sophos;i="5.95,182,1661842800"; d="scan'208";a="331829354"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2022 01:14:30 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="716665068"
-X-IronPort-AV: E=Sophos;i="5.95,182,1661842800"; d="scan'208";a="716665068"
-Received: from lgleeson-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.43.239])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2022 01:14:28 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <Y0hmBn6NrUrBexyY@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1665496046.git.jani.nikula@intel.com>
- <20fb913a93c60fd24fc51b441ccea7bc75e82dd1.1665496046.git.jani.nikula@intel.com>
- <Y0hb0VOaYZk5TptS@intel.com> <Y0hmBn6NrUrBexyY@intel.com>
-Date: Fri, 14 Oct 2022 11:14:43 +0300
-Message-ID: <87o7uestxo.fsf@intel.com>
+ t=1665736810; x=1697272810;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Jce/F8grp9VJj0pjG2jsibCpNF2+I6YIv1tK9nIljbw=;
+ b=Uodh4nEytgUhrM0bdgmPuUKK/hu/UF2/5pGPwgnyaAhGLzXA/0cI8ljI
+ GjgOh5oWd5RSDw0xj8MkuFGKyhMvRwvqZk/zB/WRVPSOGdTnL0RpjVyvt
+ kMPAf1TQaEnikX6m5LsnF1xB+/UYXqCH8n4RYMUy6sb50VROsTSO9K6LS
+ fBro6wcmiQmXssTuInOU2O8ljdCt+n/dzB0Qu53sxJkrk7VCVv/fYdDdB
+ nt4Ln83rKl9u78Qm5l5B3aUqmk97AeuddUSTve8g0b93+zPWLpLQSSAmK
+ G9bAb/PyihhwAdZlq3VD3XAf/Eut+ftoE1k0KNAji7k3ZHouBtG4hMcBS A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="391629673"
+X-IronPort-AV: E=Sophos;i="5.95,182,1661842800"; d="scan'208";a="391629673"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2022 01:39:55 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="696229411"
+X-IronPort-AV: E=Sophos;i="5.95,182,1661842800"; d="scan'208";a="696229411"
+Received: from salamu-mobl1.ger.corp.intel.com (HELO [10.252.11.69])
+ ([10.252.11.69])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2022 01:39:54 -0700
+Message-ID: <43b8728b-4f05-3f32-d794-7b94ba65480c@intel.com>
+Date: Fri, 14 Oct 2022 09:39:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 01/15] drm/i915/hdmi: do dual mode detect
- only if connected
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.3.1
+Content-Language: en-GB
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20221013175650.1769399-1-jonathan.cavitt@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20221013175650.1769399-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: Fix access_memory null
+ pointer exception
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,136 +62,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: andrzej.hajda@intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Oct 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Oct 13, 2022 at 09:41:21PM +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
->> On Tue, Oct 11, 2022 at 04:49:35PM +0300, Jani Nikula wrote:
->> > For normal connector detect, there's really no point in trying dual mo=
-de
->> > detect if the connector is disconnected. We can simplify the detect
->> > sequence by skipping it. Since intel_hdmi_dp_dual_mode_detect() is only
->> > called when EDID is present, we can drop the has_edid parameter.
->> >=20
->> > The functional effect is speeding up disconnected connector detection
->> > ever so slightly, and, combined with firmware EDID, also stop logging
->> > about assuming dual mode adaptor.
->> >=20
->> > It's a bit subtle, but this will also skip dual mode detect if the
->> > connector is force connected and a) there's no EDID of any kind, normal
->> > or override/firmare or b) there's EDID but it does not indicate
->> > digital. These are corner cases no matter what, and arguably forcing
->> > should not be limited by dual mode detect.
->> >=20
->> > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_hdmi.c | 17 +++++++----------
->> >  1 file changed, 7 insertions(+), 10 deletions(-)
->> >=20
->> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/d=
-rm/i915/display/intel_hdmi.c
->> > index 93519fb23d9d..a332eaac86cd 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> > @@ -2355,7 +2355,7 @@ intel_hdmi_unset_edid(struct drm_connector *conn=
-ector)
->> >  }
->> >=20=20
->> >  static void
->> > -intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector, bool =
-has_edid)
->> > +intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector)
->> >  {
->> >  	struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
->> >  	struct intel_hdmi *hdmi =3D intel_attached_hdmi(to_intel_connector(c=
-onnector));
->> > @@ -2371,16 +2371,13 @@ intel_hdmi_dp_dual_mode_detect(struct drm_conn=
-ector *connector, bool has_edid)
->> >  	 * CONFIG1 pin, but no such luck on our hardware.
->> >  	 *
->> >  	 * The only method left to us is to check the VBT to see
->> > -	 * if the port is a dual mode capable DP port. But let's
->> > -	 * only do that when we sucesfully read the EDID, to avoid
->> > -	 * confusing log messages about DP dual mode adaptors when
->> > -	 * there's nothing connected to the port.
->> > +	 * if the port is a dual mode capable DP port.
->> >  	 */
->> >  	if (type =3D=3D DRM_DP_DUAL_MODE_UNKNOWN) {
->> >  		/* An overridden EDID imply that we want this port for testing.
->> >  		 * Make sure not to set limits for that port.
->> >  		 */
->> > -		if (has_edid && !connector->override_edid &&
->> > +		if (!connector->override_edid &&
->> >  		    intel_bios_is_port_dp_dual_mode(dev_priv, port)) {
->> >  			drm_dbg_kms(&dev_priv->drm,
->> >  				    "Assuming DP dual mode adaptor presence based on VBT\n");
->> > @@ -2435,18 +2432,18 @@ intel_hdmi_set_edid(struct drm_connector *conn=
-ector)
->> >  		intel_gmbus_force_bit(i2c, false);
->> >  	}
->> >=20=20
->> > -	intel_hdmi_dp_dual_mode_detect(connector, edid !=3D NULL);
->> > -
->> > -	intel_display_power_put(dev_priv, POWER_DOMAIN_GMBUS, wakeref);
->> > -
->> >  	to_intel_connector(connector)->detect_edid =3D edid;
->> >  	if (edid && edid->input & DRM_EDID_INPUT_DIGITAL) {
->>=20
->> We didn't have this digital input thing before. What happens with
->> HDMI->VGA dongles for example?
->>=20
->> Hmm. This whole thing might already be broken on those. I suspect
->> I've only used my HDMI->VGA dongle on LSPCON machines, so never
->> noticed this. Need to go plug that thing into a native HDMI port...
->
-> Except I must have left it elsewhere since I can't find it here.
-> So can't test right now unfortunately.
->
-> I first thought this digital check thing might be due to
-> the DVI-I shenanigans in intel_crt_detect_ddc(), but that
-> was added for am unspecified gen2 machine in commit f5afcd3dd0dc
-> ("drm/i915/crt: Check for a analog monitor in case of DVI-I")
-> so not even relevant here. And I don't think I've ever seen
-> a g4x+ machine with an actual DVI-I port.
->
-> commit aa93d632c496 ("drm/i915: Require digital monitor
-> on HDMI ports for detect") is where this check was added,
-> but there is no actual justification for checking the
-> digital thing vs. just making sure the edid read succeeded.
->
-> So looks to me like this check can just be removed. And
-> if we do come across some real DVI-I use cases we should
-> probably check the VBT DDC pin assignments before we go
-> assuming anything about the wiring.
+On 13/10/2022 18:56, Jonathan Cavitt wrote:
+> i915_ttm_to_gem can return a NULL pointer, which is
+> dereferenced in i915_ttm_access_memory without first
+> checking if it is NULL.  Inspecting
+> i915_ttm_io_mem_reserve, it appears the correct
+> behavior in this case is to return -EINVAL.
 
-Are you saying remove the "edid->input & DRM_EDID_INPUT_DIGITAL"
-altogether? Or turn this into:
+The GEM object has already been dereferenced before this point, if you 
+look at the caller (vm_access_ttm). The NULL obj thing is to identify 
+"ttm ghost objects", and I don't think a normal userpace object can 
+suddenly become one (access_memory comes from ptrace). AFAIK ghost 
+objects are just for temporarily hanging on to some memory/state, while 
+the dma-resv is busy. In the places where ttm is the one giving us the 
+object, then it might be possible to see these types of objects, since 
+ttm could in theory pass one in (like during eviction).
 
-	if (edid) {
-		if (edid->input & DRM_EDID_INPUT_DIGITAL) {
-			intel_hdmi->has_audio =3D drm_detect_monitor_audio(edid);
-			intel_hdmi->has_hdmi_sink =3D drm_detect_hdmi_monitor(edid);
-		}
-		connected =3D true;
-	}
-
-Since e.g. DP wraps the audio/hdmi detect calls in digital check.
-
-OTOH I really want to get rid of the detect audio/hdmi calls [1]. Just a
-lot of old cruft and the rabbit hole gets deeper. :(
-
-
-BR,
-Jani.
-
-
-
-[1] https://patchwork.freedesktop.org/series/108024/
-
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> Fixes: 26b15eb0 ("drm/i915/ttm: implement access_memory")
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Suggested-by: John C Harrison <John.C.Harrison@intel.com>
+> CC: Matthew Auld <matthew.auld@intel.com>
+> CC: Andrzej Hajda <andrzej.hajda@intel.com>
+> CC: Nirmoy Das <nirmoy.das@intel.com>
+> CC: Andi Shyti <andi.shyti@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 9 +++++++--
+>   1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index d63f30efd631..b569624f2ed9 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -704,11 +704,16 @@ static int i915_ttm_access_memory(struct ttm_buffer_object *bo,
+>   				  int len, int write)
+>   {
+>   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+> -	resource_size_t iomap = obj->mm.region->iomap.base -
+> -		obj->mm.region->region.start;
+> +	resource_size_t iomap;
+>   	unsigned long page = offset >> PAGE_SHIFT;
+>   	unsigned long bytes_left = len;
+>   
+> +	if (!obj)
+> +		return -EINVAL;
+> +
+> +	iomap = obj->mm.region->iomap.base -
+> +		obj->mm.region->region.start;
+> +
+>   	/*
+>   	 * TODO: For now just let it fail if the resource is non-mappable,
+>   	 * otherwise we need to perform the memcpy from the gpu here, without
