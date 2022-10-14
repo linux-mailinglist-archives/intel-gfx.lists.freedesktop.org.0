@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61E295FECCB
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Oct 2022 12:58:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B29E55FED37
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Oct 2022 13:34:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5585110E084;
-	Fri, 14 Oct 2022 10:58:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EE6910E1ED;
+	Fri, 14 Oct 2022 11:34:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08EEE10E9D9;
- Fri, 14 Oct 2022 10:58:18 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31D7810E1ED
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 11:33:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665745099; x=1697281099;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=8WHP7256XgL6r+GHZnM4u3uombJFm6QP9tixwB4AJ5U=;
- b=nvlq0pMpNSTvMXkEmDiMAt1QlOiNQoUAji6c10Ai187Ptt89JhcPF/37
- rTuqwP4xbehux4YYkbkVy8H8wy/+Gs6UTN/IJG7ThKEOR3CN/YCcFJBgh
- 9CaxcXzwreWbk1fmbtEJxbTsuN3eBN7IVGr7z8X5aCMRBYbDvYj4X855k
- ox1/wMKCaCxLz7B2xjxEn3nwSaYAz8lNfR/Ncl0LIvJOzS5ESYMF7D6uW
- SoYURRClkRtWiBmVUMN5j9fwik0tsxYX/U2tC7jbaHP2mnezElkYo6HBf
- Gz+jhzmOvroE82u9e6H/sgeGdg02JS5102c1J/lopf6PYuPmXmFMnYiCD Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="285737545"
-X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="285737545"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2022 03:58:16 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="629899238"
-X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="629899238"
-Received: from salamu-mobl1.ger.corp.intel.com (HELO [10.252.11.69])
- ([10.252.11.69])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2022 03:58:14 -0700
-Message-ID: <466153a3-59ef-e91f-d267-ff9c777eccb9@intel.com>
-Date: Fri, 14 Oct 2022 11:58:12 +0100
+ t=1665747239; x=1697283239;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kwswd1u67ukpz7gOwOtHHQdRtwn/fYcqw9yf8RLyEqo=;
+ b=fZflcr3ZjPg4HEC1/bYJAyvJzXyoeBkVAbzQTLchHKSKA+BQ5iVUZQq9
+ AskyD+u771xXkVrk90eHreBeGpfbBfsHR2HAgGcEpA6FM0G8acTZVMcca
+ wcO280LveNwTcU5v3279yPSgKadkhBxqCq9Y7JhI+uPsjTDXCh9CMfuEf
+ CADJXz53PV10lEWfhVmyzcB4uziqoswE/uI3Uutpg9bGcABDW3ZZ+e2FB
+ QnKZvFzz5gBp279TXvMfD+hH9gp39TNTtoTzU6rmIY4au4Y+qVzRzr8pI
+ ovcUj85rEX4bbdbOgk6H9qjZO3lg4VPgLXlc9U7R2QavYRLnriqn35W+N w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="391660090"
+X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="391660090"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2022 04:33:58 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10499"; a="802601606"
+X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="802601606"
+Received: from anshuma1-desk.iind.intel.com ([10.190.239.112])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2022 04:33:55 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 14 Oct 2022 17:02:58 +0530
+Message-Id: <20221014113258.1284226-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221012083402.1069940-1-anshuman.gupta@intel.com>
+References: <20221012083402.1069940-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.1
-Content-Language: en-GB
-To: Jordan Justen <jordan.l.justen@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221004114915.221708-1-matthew.auld@intel.com>
- <20221004114915.221708-2-matthew.auld@intel.com>
- <166573205234.1044993.5297661838478296333@jljusten-skl.local>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <166573205234.1044993.5297661838478296333@jljusten-skl.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915/uapi: expose GTT alignment
+Subject: [Intel-gfx] [PATCH v2] drm/i915/dgfx: Keep PCI autosuspend control
+ 'on' by default on all dGPU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,94 +57,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>, dri-devel@lists.freedesktop.org,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: matthew.auld@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 14/10/2022 08:20, Jordan Justen wrote:
-> Acked-by: Jordan Justen <jordan.l.justen@intel.com>
+DGFX platforms has lmem and cpu can access the lmem objects
+via mmap and i915 internal i915_gem_object_pin_map() for
+i915 own usages. Both of these methods has pre-requisite
+requirement to keep GFX PCI endpoint in D0 for a supported
+iomem transaction over PCI link. (Refer PCIe specs 5.3.1.4.1)
 
-Thanks. Can I take that as ack for merging the series from Mesa POV? I 
-think Lionel was going to test this, but I think keeps getting swamped 
-with other stuff. We kind of urgently need to land this series.
+Both DG1/DG2 have a known hardware bug that violates the PCIe specs
+and support the iomem read write transaction over PCIe bus despite
+endpoint is D3 state.
+Due to above H/W bug, we had never observed any issue with i915 runtime
+PM versus lmem access.
+But this issue becomes visible when PCIe gfx endpoint's upstream
+bridge enters to D3, at this point any lmem read/write access will be
+returned as unsupported request. But again this issue is not observed
+on every platform because it has been observed on few host machines
+DG1/DG2 endpoint's upstream bridge does not bind with pcieport driver.
+which really disables the PCIe  power savings and leaves the bridge
+at D0 state.
 
-> 
-> On 2022-10-04 04:49:15, Matthew Auld wrote:
->> On some platforms we potentially have different alignment restrictions
->> depending on the memory type. We also now have different alignment
->> restrictions for the same region across different kernel versions.
->> Extend the region query to return the minimum required GTT alignment.
->>
->> Testcase: igt@gem_create@create-ext-placement-alignment
->> Testcase: igt@i915_query@query-regions-sanity-check
->> Suggested-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Michal Mrozek <michal.mrozek@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Stuart Summers <stuart.summers@intel.com>
->> Cc: Jordan Justen <jordan.l.justen@intel.com>
->> Cc: Yang A Shi <yang.a.shi@intel.com>
->> Cc: Nirmoy Das <nirmoy.das@intel.com>
->> Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->> ---
->>   drivers/gpu/drm/i915/i915_query.c |  1 +
->>   include/uapi/drm/i915_drm.h       | 29 +++++++++++++++++++++++++++--
->>   2 files changed, 28 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
->> index 6ec9c9fb7b0d..111377f210ed 100644
->> --- a/drivers/gpu/drm/i915/i915_query.c
->> +++ b/drivers/gpu/drm/i915/i915_query.c
->> @@ -498,6 +498,7 @@ static int query_memregion_info(struct drm_i915_private *i915,
->>                  info.region.memory_class = mr->type;
->>                  info.region.memory_instance = mr->instance;
->>                  info.probed_size = mr->total;
->> +               info.gtt_alignment = mr->min_page_size;
->>   
->>                  if (mr->type == INTEL_MEMORY_LOCAL)
->>                          info.probed_cpu_visible_size = mr->io_size;
->> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->> index 08d69e36fb66..2e613109356b 100644
->> --- a/include/uapi/drm/i915_drm.h
->> +++ b/include/uapi/drm/i915_drm.h
->> @@ -3346,8 +3346,33 @@ struct drm_i915_memory_region_info {
->>          /** @region: The class:instance pair encoding */
->>          struct drm_i915_gem_memory_class_instance region;
->>   
->> -       /** @rsvd0: MBZ */
->> -       __u32 rsvd0;
->> +       union {
->> +               /** @rsvd0: MBZ */
->> +               __u32 rsvd0;
->> +               /**
->> +                * @gtt_alignment:
->> +                *
->> +                * The minimum required GTT alignment for this type of memory.
->> +                * When allocating a GTT address it must be aligned to this
->> +                * value or larger. On some platforms the kernel might opt to
->> +                * using 64K pages for I915_MEMORY_CLASS_DEVICE, where 64K GTT
->> +                * pages can then be used if we also use 64K GTT alignment.
->> +                *
->> +                * NOTE: If this is zero then this must be an older
->> +                * kernel which lacks support for this field.
->> +                *
->> +                * Side note: For larger objects (especially for
->> +                * I915_MEMORY_CLASS_DEVICE), like 2M+ in size, userspace should
->> +                * consider potentially bumping the GTT alignment to say 2M,
->> +                * which could potentially increase the likelihood of the kernel
->> +                * being able to utilise 2M GTT pages underneath, if the layout
->> +                * of the physical pages allows it.  On some configurations we
->> +                * can then also use a more efficient page-table layout, if we
->> +                * can't use the more desirable 2M GTT page, so long as we know
->> +                * that the entire page-table will be used by this object.
->> +                */
->> +               __u32 gtt_alignment;
->> +       };
->>   
->>          /**
->>           * @probed_size: Memory probed by the driver
->> -- 
->> 2.37.3
->>
+We need a unique interface to read/write from lmem with runtime PM
+wakeref protection something similar to intel_uncore_{read, write},
+keep autosuspend control to 'on' on all discrete platforms,
+until we have a unique interface to read/write from lmem.
+
+This just change the default autosuspend setting of i915 on dGPU,
+user can still change it to 'auto'.
+
+v2:
+- Modified the commit message and subject with more information.
+- Changed the Fixes tag to LMEM support commit. [Joonas]
+- Changed !HAS_LMEM() Cond to !IS_DGFX(). [Rodrigo]
+
+Fixes: b908be543e44 ("drm/i915: support creating LMEM objects")
+Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/intel_runtime_pm.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index 6ed5786bcd29..744cca507946 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -591,8 +591,15 @@ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
+ 		pm_runtime_use_autosuspend(kdev);
+ 	}
+ 
+-	/* Enable by default */
+-	pm_runtime_allow(kdev);
++	/*
++	 *  FIXME: Temp hammer to keep autosupend disable on lmem supported platforms.
++	 *  As per PCIe specs 5.3.1.4.1, all iomem read write request over a PCIe
++	 *  function will be unsupported in case PCIe endpoint function is in D3.
++	 *  Let's keep i915 autosuspend control 'on' till we fix all known issue
++	 *  with lmem access in D3.
++	 */
++	if (!IS_DGFX(i915))
++		pm_runtime_allow(kdev);
+ 
+ 	/*
+ 	 * The core calls the driver load handler with an RPM reference held.
+-- 
+2.25.1
+
