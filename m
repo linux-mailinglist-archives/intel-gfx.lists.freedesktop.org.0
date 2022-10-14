@@ -2,46 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D43D65FF154
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Oct 2022 17:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A82C5FF150
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Oct 2022 17:27:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3E5E10EB22;
-	Fri, 14 Oct 2022 15:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5178B10EB1D;
+	Fri, 14 Oct 2022 15:27:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CCA810EB21
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 15:27:51 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AABB010EB1D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 15:27:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665761271; x=1697297271;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=oXPRvQOsHbLrl0K6nOvl+kcNg1Xyij5/Fh6NRdbfRNI=;
- b=azTq2qi2bcL4pp/Pw2WeV4yQP3r2pgkAyub6JwXLmlkm3c0SXAgr5+YB
- LOqooet0VgcTDH1jB+YUHNataxhw2x8vq+gvwy7haHl2DVOO5Zh5SaXUq
- FEFhsmO4OeUAwY0bYOnSgGNdpx9p4SivzgADiueuYY5jWyNr6BWedWmg1
- OypurpB0kMa6JXA2UBpgsA8m2dnN1TB1qa6ak1QhF+a4BmiTWXLYICoGK
- 2Dj+c3TKNDOJNitOSNmiFoie6pd4go4wUc5QDXemq7BnHzMP+oxDMxfqL
- 5iyYjUbGM/fXEwR/IIuIOi31uU9i65+xINM27/uc2deNNCl5y0HN5Whki Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="285128083"
-X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="285128083"
+ t=1665761256; x=1697297256;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=CGJlN7W0nAZVJSCPzQBRErQrftj598LXgzYyGOlpzS0=;
+ b=l9b9AXcVm3mff6VPETU1W+AP2UK+MOLAmFDKE92e/O1xSHFzN2rc3rwQ
+ WcxH0hYcGNh1jCqdt0KfViy9KUEpwCWdz/gcK3kSjAYfSzuFcXfJOb9Wn
+ eTFW7vG/JpJouHaohYjLdlFN05Huw8O7Ex1VWN9eg54pJ+qYbJF+iDhJS
+ ftxr6vEx+4TGgOqyPB/UFN8oHlf1diGAbakzzOTD7t+JYfpkfhQjZp/9t
+ 0HhA1VupEcmmW0y8MlznFAjyk3d9rbQ/hBxJ7MooTSZetWfcan4Z5d7kB
+ mD9vbUt0uIsKh43JA1Nn1fmIYO/3obKYSgUb7SnBGwXi9vTGEw5PN9urG A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="285791236"
+X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="285791236"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2022 08:27:30 -0700
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2022 08:27:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="696340278"
-X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="696340278"
+X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="696340303"
+X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="696340303"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga004.fm.intel.com with ESMTP; 14 Oct 2022 08:27:28 -0700
+ by fmsmga004.fm.intel.com with ESMTP; 14 Oct 2022 08:27:34 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Oct 2022 20:56:18 +0530
-Message-Id: <20221014152622.233398-1-suraj.kandpal@intel.com>
+Date: Fri, 14 Oct 2022 20:56:19 +0530
+Message-Id: <20221014152622.233398-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221014152622.233398-1-suraj.kandpal@intel.com>
+References: <20221014152622.233398-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 0/4] Enable YCbCr420 for VDSC
+Subject: [Intel-gfx] [PATCH v4 1/4] drm/i915/dp: Check if DSC supports the
+ given output_format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,40 +60,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch series aims to enable the YCbCr420 format
-for DSC. Changes are mostly compute params related for
-hdmi,dp and dsi along with the addition of new rc_tables
-for native_420 and corresponding changes to macros used to
-fetch them.
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
----v2
--adding fields missed for vdsc_cfg [Vandita]
--adding corresponding registers and writing to the [Vandita]
+Go with DSC only if the given output_format is supported.
 
----v3
--adding 11 bit left shift missed in nsl_bpg_offset calculation
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 29 +++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
----v4
--adding display version check before writing in new pps register
-
-Ankit Nautiyal (1):
-  drm/i915/dp: Check if DSC supports the given output_format
-
-Kandpal, Suraj (2):
-  drm/i915: Adding the new registers for DSC
-  drm/i915: Fill in native_420 field
-
-Suraj Kandpal (1):
-  drm/i915: Enable YCbCr420 for VDSC
-
- drivers/gpu/drm/i915/display/icl_dsi.c        |   2 -
- drivers/gpu/drm/i915/display/intel_dp.c       |  32 ++-
- .../gpu/drm/i915/display/intel_qp_tables.c    | 187 ++++++++++++++++--
- .../gpu/drm/i915/display/intel_qp_tables.h    |   4 +-
- drivers/gpu/drm/i915/display/intel_vdsc.c     |  78 +++++++-
- drivers/gpu/drm/i915/i915_reg.h               |  28 +++
- 6 files changed, 308 insertions(+), 23 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 70b06806ec0d..c212171cced7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1464,6 +1464,32 @@ static int intel_dp_dsc_compute_params(struct intel_encoder *encoder,
+ 	return drm_dsc_compute_rc_parameters(vdsc_cfg);
+ }
+ 
++static bool intel_dp_dsc_supports_format(struct intel_dp *intel_dp,
++					 enum intel_output_format output_format)
++{
++	u8 sink_dsc_format;
++
++	switch (output_format) {
++	case INTEL_OUTPUT_FORMAT_RGB:
++		sink_dsc_format = DP_DSC_RGB;
++		break;
++	case INTEL_OUTPUT_FORMAT_YCBCR444:
++		sink_dsc_format = DP_DSC_YCbCr444;
++		break;
++	case INTEL_OUTPUT_FORMAT_YCBCR420:
++		if (min(intel_dp_source_dsc_version_minor(intel_dp),
++			intel_dp_sink_dsc_version_minor(intel_dp)) < 2)
++			return false;
++		sink_dsc_format = DP_DSC_YCbCr420_Native;
++		break;
++	default:
++		return false;
++	}
++
++	return intel_dp->dsc_dpcd[DP_DSC_DEC_COLOR_FORMAT_CAP - DP_DSC_SUPPORT] &
++	       sink_dsc_format;
++}
++
+ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 				       struct intel_crtc_state *pipe_config,
+ 				       struct drm_connector_state *conn_state,
+@@ -1482,6 +1508,9 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+ 		return -EINVAL;
+ 
++	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
++		return -EINVAL;
++
+ 	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
+ 
+ 	if (intel_dp->force_dsc_bpc) {
 -- 
 2.25.1
 
