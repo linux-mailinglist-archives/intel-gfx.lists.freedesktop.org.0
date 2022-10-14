@@ -2,47 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D708B5FEE1E
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Oct 2022 14:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C585FEE1D
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Oct 2022 14:52:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66FB510EAD9;
-	Fri, 14 Oct 2022 12:51:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D712210E4C3;
+	Fri, 14 Oct 2022 12:51:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F60E10E4C3
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 12:51:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 484F310E4C3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 12:51:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665751912; x=1697287912;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=pVP9znrSvxHSv+fXoYNeBlK3Qcw+X0vUryTTQ5LhDTg=;
- b=c4b4Chg1UCuUH1WMNM0hQWBL8SJ1ZNN/8Rp3E9WL1ZJRnb8DTMLDaMAN
- 0/q5u43KCbbII7SraMCkhD3dKt2q82uD2TewHOThsLuaYQi8kmRJAEhLv
- Jo3Pj22rgz9XOenTMUUQzAadqgsSJWf/AAn8PosMzj0ih7dFpjvcEo2/R
- 5mTEguuDvusz4k54mfMpelSPGYRMHKgzenp2n2sCQCJ+MwAdbldMinOAM
- PgFeIY5kWVVkmF9Kl2J8PqPNqhSG0R3f+gJI2nQoJYad1eWqS6pAeDmx6
- U8cwFuVmp/eQRPJCB+7r3gMEshqxMEBLK6aquiidToI8Q94vDYZBfPrgn g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="304104604"
-X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="304104604"
+ t=1665751913; x=1697287913;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=s+2jcRQMbSevISPLvLw8s5iNrxiYpudgyvysqlyDTc0=;
+ b=M9W3YruC/bz5T6nqvK7o8j+1FVoj1e9vzgqpCfOR7wxne+zxwIgGVPO/
+ hBWlkIE8Da9ys5AOGjEzQ92iNpVKmPEUJDhlXy1sVKeb7VCIrBZ/NadJ4
+ 21W6K21HsS7FFofLrOypqfzxAo1RDhlwCqk/V9MHgLW1Gia/cYYp8zTBH
+ KQIraxxfsJtTSgkAQsX8Z5HJxxRpsPpzV9nYzs7v+OQsmhHhxZNYjXHP4
+ kZGbkKzButp/arCF80KrqqJb5JmhLF9tWEQFz6vSRvH2gMiFESBUWW4kY
+ phWjN1U/A6ckRLUyNr4vMmBqLvCgsPxfOtkCC73akLsYoAVC6F/+qDKVb Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="304104607"
+X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="304104607"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2022 05:51:51 -0700
+ 14 Oct 2022 05:51:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="716739676"
-X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="716739676"
+X-IronPort-AV: E=McAfee;i="6500,9779,10500"; a="716739687"
+X-IronPort-AV: E=Sophos;i="5.95,184,1661842800"; d="scan'208";a="716739687"
 Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by FMSMGA003.fm.intel.com with ESMTP; 14 Oct 2022 05:51:50 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 14 Oct 2022 05:51:51 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Oct 2022 15:47:20 +0300
-Message-Id: <20221014124740.774835-1-mika.kahola@intel.com>
+Date: Fri, 14 Oct 2022 15:47:21 +0300
+Message-Id: <20221014124740.774835-2-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221014124740.774835-1-mika.kahola@intel.com>
+References: <20221014124740.774835-1-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 00/20] drm/i915/mtl: Add C10 and C20 phy support
+Subject: [Intel-gfx] [PATCH 01/20] drm/i915/mtl: Initial DDI port setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,75 +59,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PHY programming support for C10 and C20 Type-C chips. This series
-includes fixes for previously sent C10 series.
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Initialize c10 combo phy ports. TODO Type-C ports.
 
-Anusha Srivatsa (1):
-  drm/i915/mtl: Pin assignment for TypeC
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 
-Clint Taylor (1):
-  drm/i915/mtl: Initial DDI port setup
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Gustavo Sousa (1):
-  drm/i915/mtl: Define mask for DDI AUX interrupts
-
-Mika Kahola (14):
-  drm/i915/mtl: Add DP rates
-  drm/i915/mtl: Create separate reg file for PICA registers
-  drm/i915/mtl: Add support for PM DEMAND
-  drm/i915/mtl: C20 PLL programming
-  drm/i915/mtl: C20 HW readout
-  drm/i915/mtl: C20 port clock calculation
-  drm/i915/mtl: C20 HDMI state calculations
-  drm/i915/mtl: Add voltage swing sequence for C20
-  drm/i915/mtl: For DP2.0 10G and 20G rates use MPLLA
-  drm/i915/mtl: Enabling/disabling sequence Thunderbolt pll
-  drm/i915/mtl: Readout Thunderbolt HW state
-  drm/i915/mtl: Enable TC ports
-  drm/i915/mtl: MTL PICA hotplug detection
-  drm/i915/mtl: Power up TCSS
-
-Radhakrishna Sripada (3):
-  drm/i915/mtl: Add Support for C10 PHY message bus and pll programming
-  drm/i915/mtl: Add C10 phy programming for HDMI
-  drm/i915/mtl: Add vswing programming for C10 phys
-
- drivers/gpu/drm/i915/Makefile                 |    1 +
- drivers/gpu/drm/i915/display/intel_bw.c       |    4 +-
- drivers/gpu/drm/i915/display/intel_bw.h       |    2 +
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 2286 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   57 +
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   26 +
- .../gpu/drm/i915/display/intel_cx0_reg_defs.h |  207 ++
- drivers/gpu/drm/i915/display/intel_ddi.c      |   37 +-
- .../drm/i915/display/intel_ddi_buf_trans.c    |   65 +-
- .../drm/i915/display/intel_ddi_buf_trans.h    |    6 +
- drivers/gpu/drm/i915/display/intel_display.c  |   26 +-
- .../drm/i915/display/intel_display_power.c    |   11 +-
- .../i915/display/intel_display_power_map.c    |    1 +
- .../i915/display/intel_display_power_well.c   |    2 +-
- .../drm/i915/display/intel_display_types.h    |   23 +
- drivers/gpu/drm/i915/display/intel_dp.c       |   23 +-
- drivers/gpu/drm/i915/display/intel_dpll.c     |   22 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |    2 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c     |    7 +-
- drivers/gpu/drm/i915/display/intel_hdmi.h     |    1 +
- .../drm/i915/display/intel_modeset_verify.c   |    2 +
- drivers/gpu/drm/i915/display/intel_tc.c       |  145 +-
- drivers/gpu/drm/i915/i915_drv.h               |   12 +
- drivers/gpu/drm/i915/i915_irq.c               |  253 +-
- drivers/gpu/drm/i915/i915_reg.h               |   69 +-
- drivers/gpu/drm/i915/i915_reg_defs.h          |   57 +
- drivers/gpu/drm/i915/intel_pm.c               |  286 +++
- drivers/gpu/drm/i915/intel_pm.h               |   35 +
- 28 files changed, 3641 insertions(+), 27 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_phy.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_phy.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_cx0_reg_defs.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c52da2a21896..6a8937a7d2d9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7900,7 +7900,11 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 	if (!HAS_DISPLAY(dev_priv))
+ 		return;
+ 
+-	if (IS_DG2(dev_priv)) {
++	if (IS_METEORLAKE(dev_priv)) {
++		/* TODO: initialize TC ports as well */
++		intel_ddi_init(dev_priv, PORT_A);
++		intel_ddi_init(dev_priv, PORT_B);
++	} else if (IS_DG2(dev_priv)) {
+ 		intel_ddi_init(dev_priv, PORT_A);
+ 		intel_ddi_init(dev_priv, PORT_B);
+ 		intel_ddi_init(dev_priv, PORT_C);
 -- 
 2.34.1
 
