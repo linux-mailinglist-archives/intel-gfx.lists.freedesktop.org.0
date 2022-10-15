@@ -2,71 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B788601832
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 21:57:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3111601833
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 21:57:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D34CD10EE0E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F65610EE09;
 	Mon, 17 Oct 2022 19:56:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80E4C10E303;
- Thu, 13 Oct 2022 18:23:55 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id a67so3749972edf.12;
- Thu, 13 Oct 2022 11:23:55 -0700 (PDT)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
+ [IPv6:2a00:1450:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68ED310E038;
+ Sat, 15 Oct 2022 08:59:18 +0000 (UTC)
+Received: by mail-wr1-x42e.google.com with SMTP id j16so10899313wrh.5;
+ Sat, 15 Oct 2022 01:59:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=80yVJmDj5IDbUK+aqS6l/dUBm+Bwn69DEdWiolHKVEQ=;
- b=FSJPenagde4qSchQNLIGuKH7m39FqdZYDX4cXscDrSd4DQs0L1KMc4rzYAQdelzOnj
- UF6Ak0NK52yT8/8DfdNJEj9A6gPHnDn66V7+1VWIUqHsECMy3uBtxD1ZuMqhx07ZGxmH
- JrBntFO5CY3UNA85w3OBtKxuhgF5e76Lt7ylZMABNDblsdysCHcDVS8mPFZv9H1JdZ/I
- AKJH0uhU+XEyG10Nd+LEc8vJ0DUGh/1JFMAtnOsnuQLT22u523AH4mmuX/7Zqs6DzjRA
- bG2+Qr5Isa0Tcz+PCt82cXW69Q2hRvI0SGZdd/KO1uPpP7a67dpLrTUV1TBOjvgtGohS
- UKkg==
+ bh=VjSRqmWkaFZ0BLuD6MivrAvypkKqaIT8x6LKQIsQKn8=;
+ b=gdcg6hXz5wuVSv/KtfFI848qYS7t9NYjUI618ptxzzIpxaqmveySS5BR9QIVwZQznb
+ xBp1LMARjJsFgTsfoQXSKdlgOksIgUDgK5K2AKQXk0cNXfVB1iXroI7ut/cD9tGOsURQ
+ jm8KdDG1cgj3F2tXB8fsFhaB4Dgqa4STOi2smUvQX0W6V5JuU1fb2T0Jx1olayaXMioH
+ qUVlRlUtYIZYW47agdnyqxBUbpxtv8QqHmVCx5PtIwbbxpRu//fPm+9YkMHbweUr6hyr
+ GIo4cI3kV/QaK6qCRbfx4UQzBvTvJNtzUUilSXr8/BKEVqoYVnzl8JMOwJPISK3D8rO8
+ AGPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=80yVJmDj5IDbUK+aqS6l/dUBm+Bwn69DEdWiolHKVEQ=;
- b=JAMfg5Bvy3V5S23i3bvj5+daieW9U/8SUe7TWU1FUGarNC4NcH2hVrP7uqrSNRguPG
- OFGt0e/5ScZjRSPfkv/vdvUWD/y9inbnbhdwKOSWQhmm1Ys0fyTqGTlfyuhbE57flE16
- 3NU4sF2DpLRU+TVO1UivLhSLheUHMExD46iKJJAmOlx64zUb6c82pGCbvzVnhcw0Fy7K
- jqiMo9uInPEAOCoLbr4DIZsWqwxp10mMDsqxPPNk3irmz9iDkovxLT55H9VZPzwk3QxW
- BDG5Fe8L7AknFNHBmVyZ0TrtMWi32oDpV/xcC3MkyinWLt2wCAy2u0DQuj7/2t5osJl6
- jRYA==
-X-Gm-Message-State: ACrzQf0/4kMhK9vMcc2UGww+Cn6FfqJog3q5QovqKr9Io38VWriXHLS5
- 9VWe7vJWbXGcTEJqxGECaPI=
-X-Google-Smtp-Source: AMsMyM7ssKdTrHDlPNauUb77WDG9zWLblYWKO18kRWRI7jkR1dhN23ZFAp3iq6h3HOsgFFKHyT7dhQ==
-X-Received: by 2002:a05:6402:b3c:b0:458:f680:6ab8 with SMTP id
- bo28-20020a0564020b3c00b00458f6806ab8mr923431edb.267.1665685433991; 
- Thu, 13 Oct 2022 11:23:53 -0700 (PDT)
+ bh=VjSRqmWkaFZ0BLuD6MivrAvypkKqaIT8x6LKQIsQKn8=;
+ b=uHVDQFEoB8hXmudDp7vw44LWVDJu5EC5YLvrU1KmTuzhkLl8/7yYtGiJrOzaMECDb9
+ KfwqVI47+idwao0FOjDSTSLNdki8MHc6LcAYlGISeBa6HT10GuQETgqzY9V6tniytudD
+ vref3b7L9rYu6xFhDEMpugCMpTUQwgO/G12TgYZgAOQPeR8mPnm0ZEAQj+D4TRiire8W
+ CYiDxYuwbq6UjOhMvNc9ELNLe/yYo91MkqxKzidvxd/tF0jq4wJs/MfMv+HsFOcYrECh
+ ANVoYpxVNE7sn8u9OqWDubksWGaXuewiqV8UQody2WXSGGuriE1ycILem5yYxB6+p0bP
+ H1+w==
+X-Gm-Message-State: ACrzQf3E9BMGvZPctRr9LAjWGxJXFcAf5DFgmhpAjBgn2ygi56PlX72P
+ IFodmWAofbJwxYBkjXjBCLo=
+X-Google-Smtp-Source: AMsMyM6RC+ab/6o3qXAuzwTkjLJWhUo2MRVgXF2cNlp5Etq5q5a0yKzX7Not8qtetRts0yGJHJyAJg==
+X-Received: by 2002:adf:fb0e:0:b0:21a:34a2:5ca9 with SMTP id
+ c14-20020adffb0e000000b0021a34a25ca9mr985742wrr.472.1665824356510; 
+ Sat, 15 Oct 2022 01:59:16 -0700 (PDT)
 Received: from kista.localnet (82-149-19-102.dynamic.telemach.net.
  [82.149.19.102]) by smtp.gmail.com with ESMTPSA id
- e2-20020a170906314200b00730df07629fsm196329eje.174.2022.10.13.11.23.52
+ k13-20020adff5cd000000b0022e36c1113fsm3693723wrp.13.2022.10.15.01.59.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 13 Oct 2022 11:23:53 -0700 (PDT)
+ Sat, 15 Oct 2022 01:59:15 -0700 (PDT)
 From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Karol Herbst <kherbst@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lyude Paul <lyude@redhat.com>, Maxime Ripard <mripard@kernel.org>,
- Emma Anholt <emma@anholt.net>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Ben Skeggs <bskeggs@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maxime Ripard <maxime@cerno.tech>
-Date: Thu, 13 Oct 2022 20:23:51 +0200
-Message-ID: <6482539.4vTCxPXJkl@kista>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v5-22-d841cc64fe4b@cerno.tech>
+To: Maxime Ripard <maxime@cerno.tech>
+Date: Sat, 15 Oct 2022 10:59:14 +0200
+Message-ID: <2649653.mvXUDI8C0e@kista>
+In-Reply-To: <20221014073810.akfoyfzxerywnt65@houat>
 References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
- <20220728-rpi-analog-tv-properties-v5-22-d841cc64fe4b@cerno.tech>
+ <6482539.4vTCxPXJkl@kista> <20221014073810.akfoyfzxerywnt65@houat>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="UTF-8"
@@ -85,320 +74,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Phil Elwell <phil@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
+ Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
  Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- Noralf =?ISO-8859-1?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Maxime Ripard <maxime@cerno.tech>,
- linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+ =?UTF-8?B?Tm9yYWxmIFRyw4PCuG5uZXM=?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Maxime,
+Dne petek, 14. oktober 2022 ob 09:38:10 CEST je Maxime Ripard napisal(a):
+> Hi Jernej,
+>=20
+> On Thu, Oct 13, 2022 at 08:23:51PM +0200, Jernej =C5=A0krabec wrote:
+> > Dne =C4=8Detrtek, 13. oktober 2022 ob 15:19:06 CEST je Maxime Ripard=20
+napisal(a):
+> > > Now that the core can deal fine with analog TV modes, let's convert t=
+he
+> > > sun4i TV driver to leverage those new features.
+> > >=20
+> > > Acked-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > >=20
+> > > ---
+> > > Changes in v5:
+> > > - Removed the count variable in get_modes
+> > > - Removed spurious vc4 change
+> > > ---
+> > >=20
+> > >  drivers/gpu/drm/sun4i/sun4i_tv.c | 145
+> > >=20
+> > > +++++++++++++-------------------------- 1 file changed, 48
+> > > insertions(+),
+> > > 97 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c
+> > > b/drivers/gpu/drm/sun4i/sun4i_tv.c index c65f0a89b6b0..4f07aff11551
+> > > 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_tv.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_tv.c
+> > > @@ -141,23 +141,14 @@ struct resync_parameters {
+> > >=20
+> > >  struct tv_mode {
+> > > =20
+> > >  	char		*name;
+> > >=20
+> > > +	unsigned int	tv_mode;
+> > > +
+> > >=20
+> > >  	u32		mode;
+> > >  	u32		chroma_freq;
+> > >  	u16		back_porch;
+> > >  	u16		front_porch;
+> > >=20
+> > > -	u16		line_number;
+> > >=20
+> > >  	u16		vblank_level;
+> >=20
+> > isn't there a way to get or calculate back_porch, front_porch and
+> > vblank_level from mode? From quick glance over removed values below, I
+> > would say that at least back_porch can be removed too?
+>=20
+> I tried actually, but I'm not sure what the front porch and back porch
+> parameters actually are. They are called that way by Allwinner, but it
+> doesn't match the PAL or NTSC timings at all.
+>=20
+> For example, back_porch is 118 for NTSC and 138 for PAL. Actual back
+> porches would be around 12 and 16, respectively. Actually, the entire
+> blanking area are 138 and 144. This is close enough for PAL, but pretty
+> far off for NTSC.
+>=20
+> Allwinner has the habit of integrating the sync period into one of the
+> porches, but still there's no obvious match.
+>=20
+> front_porch is pretty much in the same case.
 
-Dne =C4=8Detrtek, 13. oktober 2022 ob 15:19:06 CEST je Maxime Ripard napisa=
-l(a):
-> Now that the core can deal fine with analog TV modes, let's convert the
-> sun4i TV driver to leverage those new features.
->=20
-> Acked-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
->=20
-> ---
-> Changes in v5:
-> - Removed the count variable in get_modes
-> - Removed spurious vc4 change
-> ---
->  drivers/gpu/drm/sun4i/sun4i_tv.c | 145
-> +++++++++++++-------------------------- 1 file changed, 48 insertions(+),
-> 97 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c
-> b/drivers/gpu/drm/sun4i/sun4i_tv.c index c65f0a89b6b0..4f07aff11551 100644
-> --- a/drivers/gpu/drm/sun4i/sun4i_tv.c
-> +++ b/drivers/gpu/drm/sun4i/sun4i_tv.c
-> @@ -141,23 +141,14 @@ struct resync_parameters {
->  struct tv_mode {
->  	char		*name;
->=20
-> +	unsigned int	tv_mode;
-> +
->  	u32		mode;
->  	u32		chroma_freq;
->  	u16		back_porch;
->  	u16		front_porch;
-> -	u16		line_number;
->  	u16		vblank_level;
+Ok then.
 
-isn't there a way to get or calculate back_porch, front_porch and vblank_le=
-vel=20
-from mode? From quick glance over removed values below, I would say that at=
-=20
-least back_porch can be removed too?
+>=20
+> Since it affected the display output quite a lot, I chose to keep it for
+> now unfortunately.
+>=20
+> > Otherwise this patch looks ok.
+>=20
+> Can I add your Acked-by/Reviewed-by then?
 
-Otherwise this patch looks ok.
+Sure.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
 Jernej
-
->=20
-> -	u32		hdisplay;
-> -	u16		hfront_porch;
-> -	u16		hsync_len;
-> -	u16		hback_porch;
-> -
-> -	u32		vdisplay;
-> -	u16		vfront_porch;
-> -	u16		vsync_len;
-> -	u16		vback_porch;
-> -
->  	bool		yc_en;
->  	bool		dac3_en;
->  	bool		dac_bit25_en;
-> @@ -213,7 +204,7 @@ static const struct resync_parameters
-> pal_resync_parameters =3D {
->=20
->  static const struct tv_mode tv_modes[] =3D {
->  	{
-> -		.name		=3D "NTSC",
-> +		.tv_mode	=3D DRM_MODE_TV_MODE_NTSC,
->  		.mode		=3D SUN4I_TVE_CFG0_RES_480i,
->  		.chroma_freq	=3D 0x21f07c1f,
->  		.yc_en		=3D true,
-> @@ -222,17 +213,6 @@ static const struct tv_mode tv_modes[] =3D {
->=20
->  		.back_porch	=3D 118,
->  		.front_porch	=3D 32,
-> -		.line_number	=3D 525,
-> -
-> -		.hdisplay	=3D 720,
-> -		.hfront_porch	=3D 18,
-> -		.hsync_len	=3D 2,
-> -		.hback_porch	=3D 118,
-> -
-> -		.vdisplay	=3D 480,
-> -		.vfront_porch	=3D 26,
-> -		.vsync_len	=3D 2,
-> -		.vback_porch	=3D 17,
->=20
->  		.vblank_level	=3D 240,
->=20
-> @@ -242,23 +222,12 @@ static const struct tv_mode tv_modes[] =3D {
->  		.resync_params	=3D &ntsc_resync_parameters,
->  	},
->  	{
-> -		.name		=3D "PAL",
-> +		.tv_mode	=3D DRM_MODE_TV_MODE_PAL,
->  		.mode		=3D SUN4I_TVE_CFG0_RES_576i,
->  		.chroma_freq	=3D 0x2a098acb,
->=20
->  		.back_porch	=3D 138,
->  		.front_porch	=3D 24,
-> -		.line_number	=3D 625,
-> -
-> -		.hdisplay	=3D 720,
-> -		.hfront_porch	=3D 3,
-> -		.hsync_len	=3D 2,
-> -		.hback_porch	=3D 139,
-> -
-> -		.vdisplay	=3D 576,
-> -		.vfront_porch	=3D 28,
-> -		.vsync_len	=3D 2,
-> -		.vback_porch	=3D 19,
->=20
->  		.vblank_level	=3D 252,
->=20
-> @@ -276,63 +245,21 @@ drm_encoder_to_sun4i_tv(struct drm_encoder *encoder)
->  			    encoder);
->  }
->=20
-> -/*
-> - * FIXME: If only the drm_display_mode private field was usable, this
-> - * could go away...
-> - *
-> - * So far, it doesn't seem to be preserved when the mode is passed by
-> - * to mode_set for some reason.
-> - */
-> -static const struct tv_mode *sun4i_tv_find_tv_by_mode(const struct
-> drm_display_mode *mode) +static const struct tv_mode *
-> +sun4i_tv_find_tv_by_mode(unsigned int mode)
->  {
->  	int i;
->=20
-> -	/* First try to identify the mode by name */
->  	for (i =3D 0; i < ARRAY_SIZE(tv_modes); i++) {
->  		const struct tv_mode *tv_mode =3D &tv_modes[i];
->=20
-> -		DRM_DEBUG_DRIVER("Comparing mode %s vs %s",
-> -				 mode->name, tv_mode->name);
-> -
-> -		if (!strcmp(mode->name, tv_mode->name))
-> -			return tv_mode;
-> -	}
-> -
-> -	/* Then by number of lines */
-> -	for (i =3D 0; i < ARRAY_SIZE(tv_modes); i++) {
-> -		const struct tv_mode *tv_mode =3D &tv_modes[i];
-> -
-> -		DRM_DEBUG_DRIVER("Comparing mode %s vs %s (X: %d vs=20
-%d)",
-> -				 mode->name, tv_mode->name,
-> -				 mode->vdisplay, tv_mode-
->vdisplay);
-> -
-> -		if (mode->vdisplay =3D=3D tv_mode->vdisplay)
-> +		if (tv_mode->tv_mode =3D=3D mode)
->  			return tv_mode;
->  	}
->=20
->  	return NULL;
->  }
->=20
-> -static void sun4i_tv_mode_to_drm_mode(const struct tv_mode *tv_mode,
-> -				      struct drm_display_mode=20
-*mode)
-> -{
-> -	DRM_DEBUG_DRIVER("Creating mode %s\n", mode->name);
-> -
-> -	mode->type =3D DRM_MODE_TYPE_DRIVER;
-> -	mode->clock =3D 13500;
-> -	mode->flags =3D DRM_MODE_FLAG_INTERLACE;
-> -
-> -	mode->hdisplay =3D tv_mode->hdisplay;
-> -	mode->hsync_start =3D mode->hdisplay + tv_mode->hfront_porch;
-> -	mode->hsync_end =3D mode->hsync_start + tv_mode->hsync_len;
-> -	mode->htotal =3D mode->hsync_end  + tv_mode->hback_porch;
-> -
-> -	mode->vdisplay =3D tv_mode->vdisplay;
-> -	mode->vsync_start =3D mode->vdisplay + tv_mode->vfront_porch;
-> -	mode->vsync_end =3D mode->vsync_start + tv_mode->vsync_len;
-> -	mode->vtotal =3D mode->vsync_end  + tv_mode->vback_porch;
-> -}
-> -
->  static void sun4i_tv_disable(struct drm_encoder *encoder,
->  			    struct drm_atomic_state *state)
->  {
-> @@ -356,7 +283,11 @@ static void sun4i_tv_enable(struct drm_encoder
-> *encoder, struct drm_crtc_state *crtc_state =3D
->  		drm_atomic_get_new_crtc_state(state, encoder->crtc);
->  	struct drm_display_mode *mode =3D &crtc_state->mode;
-> -	const struct tv_mode *tv_mode =3D sun4i_tv_find_tv_by_mode(mode);
-> +	struct drm_connector *connector =3D &tv->connector;
-> +	struct drm_connector_state *conn_state =3D
-> +		drm_atomic_get_new_connector_state(state, connector);
-> +	const struct tv_mode *tv_mode =3D
-> +		sun4i_tv_find_tv_by_mode(conn_state->tv.mode);
->=20
->  	DRM_DEBUG_DRIVER("Enabling the TV Output\n");
->=20
-> @@ -404,7 +335,7 @@ static void sun4i_tv_enable(struct drm_encoder *encod=
-er,
-> /* Set the lines setup */
->  	regmap_write(tv->regs, SUN4I_TVE_LINE_REG,
->  		     SUN4I_TVE_LINE_FIRST(22) |
-> -		     SUN4I_TVE_LINE_NUMBER(tv_mode->line_number));
-> +		     SUN4I_TVE_LINE_NUMBER(mode->vtotal));
->=20
->  	regmap_write(tv->regs, SUN4I_TVE_LEVEL_REG,
->  		     SUN4I_TVE_LEVEL_BLANK(tv_mode->video_levels-
->blank) |
-> @@ -467,35 +398,43 @@ static const struct drm_encoder_helper_funcs
-> sun4i_tv_helper_funcs =3D {
->=20
->  static int sun4i_tv_comp_get_modes(struct drm_connector *connector)
->  {
-> -	int i;
-> +	struct drm_display_mode *mode;
->=20
-> -	for (i =3D 0; i < ARRAY_SIZE(tv_modes); i++) {
-> -		struct drm_display_mode *mode;
-> -		const struct tv_mode *tv_mode =3D &tv_modes[i];
-> -
-> -		mode =3D drm_mode_create(connector->dev);
-> -		if (!mode) {
-> -			DRM_ERROR("Failed to create a new display=20
-mode\n");
-> -			return 0;
-> -		}
-> +	mode =3D drm_mode_analog_ntsc_480i(connector->dev);
-> +	if (!mode) {
-> +		DRM_ERROR("Failed to create a new display mode\n");
-> +		return -ENOMEM;
-> +	}
->=20
-> -		strcpy(mode->name, tv_mode->name);
-> +	mode->type |=3D DRM_MODE_TYPE_PREFERRED;
-> +	drm_mode_probed_add(connector, mode);
->=20
-> -		sun4i_tv_mode_to_drm_mode(tv_mode, mode);
-> -		drm_mode_probed_add(connector, mode);
-> +	mode =3D drm_mode_analog_pal_576i(connector->dev);
-> +	if (!mode) {
-> +		DRM_ERROR("Failed to create a new display mode\n");
-> +		return -ENOMEM;
->  	}
->=20
-> -	return i;
-> +	drm_mode_probed_add(connector, mode);
-> +
-> +	return 2;
->  }
->=20
->  static const struct drm_connector_helper_funcs
-> sun4i_tv_comp_connector_helper_funcs =3D { +	.atomic_check	=3D
-> drm_atomic_helper_connector_tv_check,
->  	.get_modes	=3D sun4i_tv_comp_get_modes,
->  };
->=20
-> +static void sun4i_tv_connector_reset(struct drm_connector *connector)
-> +{
-> +	drm_atomic_helper_connector_reset(connector);
-> +	drm_atomic_helper_connector_tv_reset(connector);
-> +}
-> +
->  static const struct drm_connector_funcs sun4i_tv_comp_connector_funcs =
-=3D {
->  	.fill_modes		=3D drm_helper_probe_single_connector_modes,
->  	.destroy		=3D drm_connector_cleanup,
-> -	.reset			=3D=20
-drm_atomic_helper_connector_reset,
-> +	.reset			=3D sun4i_tv_connector_reset,
->  	.atomic_duplicate_state	=3D=20
-drm_atomic_helper_connector_duplicate_state,
->  	.atomic_destroy_state	=3D=20
-drm_atomic_helper_connector_destroy_state,
->  };
-> @@ -587,8 +526,20 @@ static int sun4i_tv_bind(struct device *dev, struct
-> device *master,
->=20
->  	drm_connector_attach_encoder(&tv->connector, &tv->encoder);
->=20
-> +	ret =3D drm_mode_create_tv_properties(drm,
-> +					   =20
-BIT(DRM_MODE_TV_MODE_NTSC) |
-> +					   =20
-BIT(DRM_MODE_TV_MODE_PAL));
-> +	if (ret)
-> +		goto err_cleanup_connector;
-> +
-> +	drm_object_attach_property(&tv->connector.base,
-> +				   drm-
->mode_config.tv_mode_property,
-> +				   DRM_MODE_TV_MODE_NTSC);
-> +
->  	return 0;
->=20
-> +err_cleanup_connector:
-> +	drm_connector_cleanup(&tv->connector);
->  err_cleanup_encoder:
->  	drm_encoder_cleanup(&tv->encoder);
->  err_disable_clk:
->=20
-> --
-> b4 0.11.0-dev-7da52
 
 
