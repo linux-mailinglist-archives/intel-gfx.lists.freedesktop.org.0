@@ -2,83 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499045FFA85
-	for <lists+intel-gfx@lfdr.de>; Sat, 15 Oct 2022 16:25:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C01E35FFAB5
+	for <lists+intel-gfx@lfdr.de>; Sat, 15 Oct 2022 17:05:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B3EB10E4D2;
-	Sat, 15 Oct 2022 14:25:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3E2310E4FA;
+	Sat, 15 Oct 2022 15:05:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDE1110E4D2
- for <intel-gfx@lists.freedesktop.org>; Sat, 15 Oct 2022 14:25:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1665843904;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ME5s8prwombT/Lo7EIJUE8W2dMyQx6j/AxSLPiS4UuA=;
- b=HBKmABlgO91fY1IhFsThx2WeHIF9f2KEo2n16aGO0QOB4hUd9cM859pgYliHgN8QC4SbuW
- gHGvTaPD2drNCGRlNy9bNT2tSfhM4/s67vOWJT+JVgzGL4904TdHx5w6y/6I2AWkTBW6rK
- n/cNx4SStCr+WJrfdlRXZdmPYS6BLmg=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-434-CnECha-COXWGwI89-Ztumw-1; Sat, 15 Oct 2022 10:25:03 -0400
-X-MC-Unique: CnECha-COXWGwI89-Ztumw-1
-Received: by mail-ed1-f70.google.com with SMTP id
- b13-20020a056402350d00b0045d0fe2004eso4304156edd.18
- for <intel-gfx@lists.freedesktop.org>; Sat, 15 Oct 2022 07:25:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ME5s8prwombT/Lo7EIJUE8W2dMyQx6j/AxSLPiS4UuA=;
- b=X0SdXcJ270KR+r99DXSj/yKIrzoLBX6Ite+ZWDdfTm+Jp+GyT3ChEZC2MW0XOLKsIx
- niWhf2RyZW1+Fd1s9VPf7kLjI/bMLtsQZF/yXx7EXwU2ldKvkdxYpxmTN82xqFtipO7e
- TSGgiCR36gkd3Nhmh0o7tN8xPI4TvufDR1VCuRZ1BAw1FlQooE0WY1/MCBQUNv0nC1/Z
- 4X5RH+la1W5jw8IIcrto4Irf21ywihQDRxUZucvVhwFxrZZR16Z91gdL+PELlQyIL9+C
- hQY2jMjU36bzYsZvz9Eu1jCmqQ8ddp0eLQ39hdE/p8F6Wlr7He8yLaEUWqhCBRyt3MGs
- paZA==
-X-Gm-Message-State: ACrzQf2zO8k4nSUk5YtAhtHGTgwY1mbSorqEUnao1ohl1ONRMODP11yF
- hScxtoY0VtEM9kr7lKav1JZp5aDJU2SmQGn+Yo+r7OdDjO7NN1L8ktUYRFXUZqQt3goSvW6YwmM
- tHA4IKraATOgEoHMzDG9nfn1Aaiygxm+0FOTf61QxnEkVPzKqzIcW+p0cOWn8czeGSP6HHcyMxf
- dhtc7R
-X-Received: by 2002:a17:906:cc4d:b0:78d:fb86:3979 with SMTP id
- mm13-20020a170906cc4d00b0078dfb863979mr2226156ejb.421.1665843901626; 
- Sat, 15 Oct 2022 07:25:01 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM6O0AU5hfqmWbu/hk//FRl4CjyZipzMGuFT1qoXBlaOZeDAnHmq9e4UUbGYBLMQj/xleCZyHQ==
-X-Received: by 2002:a17:906:cc4d:b0:78d:fb86:3979 with SMTP id
- mm13-20020a170906cc4d00b0078dfb863979mr2226143ejb.421.1665843901393; 
- Sat, 15 Oct 2022 07:25:01 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
- (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
- by smtp.gmail.com with ESMTPSA id
- u1-20020a1709061da100b0073bdf71995dsm3163651ejh.139.2022.10.15.07.25.00
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 15 Oct 2022 07:25:00 -0700 (PDT)
-Message-ID: <e4f7b16e-5b6f-1b2c-5f88-fc4a129ae28f@redhat.com>
-Date: Sat, 15 Oct 2022 16:25:00 +0200
+Received: from smtp.domeneshop.no (smtp.domeneshop.no
+ [IPv6:2a01:5b40:0:3005::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC5CE10E252;
+ Sat, 15 Oct 2022 15:05:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202112;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=P7pRTxq7KYO3k44s3qhhCAVY4oTb2mw2IirE3FSx1ng=; b=GxgJFEJBFZcqMt7jvrGYCAAGvx
+ DhywpEK9lBqlpQmTL4JiLK3wR0cIB5uIM7Vt45U6b7uvvqRM17u4wpNFNJ+6HWbBXQB2B8bPvXXcc
+ SF6kMCb+eFJkntalEPfxQRkTmvEAT5YSt+VnrxWIv835yQ0c5WBfTxfdeZW3tPWyZRRGZJQj7T8m0
+ Nwjnxm9d/Kec3pBZRybCzuqaSZT7YWXxBDldAQ0+bMLTxvqNh/nPKfl9IKbpdXGAnTgVbO6w4Iei4
+ xE654Ew2Owk/VskBBICvPXnHWLrbN62n6D61UnEqU0XnG0aVsZ7niE1H3xvX8rAikZ5owhybXqkb3
+ 8dPL05TQ==;
+Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:64825
+ helo=[192.168.10.61])
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1ojiih-0008O3-ML; Sat, 15 Oct 2022 17:04:59 +0200
+Message-ID: <71e53906-ae9b-55b9-7a93-7bb04a891423@tronnes.org>
+Date: Sat, 15 Oct 2022 17:04:50 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-From: Hans de Goede <hdegoede@redhat.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "Thorsten Leemhuis (regressions address)" <regressions@leemhuis.info>
-References: <355dde1c-91e3-13b5-c8e8-75c9b9779b4f@redhat.com>
-In-Reply-To: <355dde1c-91e3-13b5-c8e8-75c9b9779b4f@redhat.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+To: Maxime Ripard <maxime@cerno.tech>
+References: <20220728-rpi-analog-tv-properties-v4-0-60d38873f782@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v4-11-60d38873f782@cerno.tech>
+ <0aa690b8-988a-878f-4d4f-d391295bc591@tronnes.org>
+ <20221013083638.kloiaxervnhii7ew@houat>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20221013083638.kloiaxervnhii7ew@houat>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] alderlake crashes (random memory corruption?) with
- 6.0 i915 / ucode related
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v4 11/30] drm/modes: Add a function to
+ generate analog display modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,81 +59,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 10/13/22 22:33, Hans de Goede wrote:
-> Hi All,
-> 
-> Yesterday I got a new Lenovo ThinkPad X1 yoga gen 7 laptop, since I plan
-> to make this my new day to day laptop I have copied over the entire
-> rootfs, /home, etc. from my current laptop to avoid having to tweak
-> everything to my liking again.
-> 
-> This meant I had an initramfs generated for the other laptop. Which should
-> be fine since both are Intel machines and the old 5.19.y initramfs-es
-> worked fine. But 6.0.0 crashed with what seems like random memory
-> corruption (list integrity checks failing) until I regenerated the initrd ...
-> 
-> Comparing the old vs regenerated initrds showed no relevant differences,
-> which made me think this is a CPU ucode issue (which is pre-fixed
-> to the initrd for early microcode loading).
-> 
-> After some tests I have the following obeservations with 6.0.0:
-> 
-> 1. The least stable is the old initrd (so with the wrong
-> ucode prefixed) this crashes before ever reaching gdm.
-> I believe that this is caused by late microcode loading
-> kicking in in this case (I though that was being removed?)
-> and doing load microcode loading on the i7-1260P with its
-> mix of P + E cores seems to seriously mess things up.
-> 
-> 2. Slightly more stable, lasting at least a few minutes
-> before crashing is using dis_ucode_ldr
-> 
-> 3. Using nomodeset seems to stabilize things even with
-> the old initrd with the wrong microcode prefixed
-> 
-> 4. 5.19, with an old initrd and with normal modesetting
-> enabled works fine, so in a way this is a 6.0.0 regression
-> 
-> 5. Using 6.0 with the new initrd with the new microcode
-> seems mostly stable, although sometimes this seems to 
-> hang very early during boot, esp. if a previous boot
-> crashed and I have not run this for a long time yet.
-> 
-> 6. After crashes it seems to be necessary to powercycle
-> the machine to get things back in working condition.
-> 
-> 
-> With 6.0 the following WARN triggers:
-> drivers/gpu/drm/i915/display/intel_bios.c:477:
-> 
->         drm_WARN(&i915->drm, min_size == 0,
->                  "Block %d min_size is zero\n", section_id);
-> 
-> Since nomodeset helps this might be quite relevant, in 5.19.13
-> this does not happen, but I'm not sure if 5.19 has this check
-> at all.
-> 
-> 
-> There is a 2022/10/07 BIOS update which includes a CPU microcode
-> update available from Lenovo, I have not applied this yet in case
-> people want to investigate this further first.
 
-A quick update on this, the microcode being in the initrd or not
-seems to be a bit of a red herring. Yesterday the machine crashed
-twice at boot with 6.0.0 with an initrd which did correctly have
-the alderlake microcode cpio archive prefixed.
+Den 13.10.2022 10.36, skrev Maxime Ripard:
+> Hi Noralf,
+> 
+> On Sat, Oct 01, 2022 at 02:52:06PM +0200, Noralf Trønnes wrote:
+>> Den 29.09.2022 18.31, skrev Maxime Ripard:
+>>> Multiple drivers (meson, vc4, sun4i) define analog TV 525-lines and
+>>> 625-lines modes in their drivers.
+>>>
+>>> Since those modes are fairly standard, and that we'll need to use them
+>>> in more places in the future, it makes sense to move their definition
+>>> into the core framework.
+>>>
+>>> However, analog display usually have fairly loose timings requirements,
+>>> the only discrete parameters being the total number of lines and pixel
+>>> clock frequency. Thus, we created a function that will create a display
+>>> mode from the standard, the pixel frequency and the active area.
+>>>
+>>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+>>>
+>>> ---
+>>>
+>>> Changes in v4:
+>>> - Reworded the line length check comment
+>>> - Switch to HZ_PER_KHZ in tests
+>>> - Use previous timing to fill our mode
+>>> - Move the number of lines check earlier
+>>> ---
+>>>  drivers/gpu/drm/drm_modes.c            | 474 +++++++++++++++++++++++++++++++++
+>>>  drivers/gpu/drm/tests/Makefile         |   1 +
+>>>  drivers/gpu/drm/tests/drm_modes_test.c | 144 ++++++++++
+>>>  include/drm/drm_modes.h                |  17 ++
+>>>  4 files changed, 636 insertions(+)
+>>>
+>>
+>> I haven't followed the discussion on this patch, but it seems rather
+>> excessive to add over 600 lines of code (including tests) to add 2 fixed
+>> modes. And it's very difficult to see from the code what the actual
+>> display mode timings really are, which would be useful for other
+>> developers down the road wanting to use them.
+>>
+>> Why not just hardcode the modes?
+> 
+> Yeah, I have kind of the same feeling tbh, but it was asked back on the
+> v1 to ease the transition of old fbdev drivers, since they will need
+> such a function:
+> https://lore.kernel.org/dri-devel/CAMuHMdUrwzPYjA0wdR7ADj5Ov6+m03JbnY8fBYzRYyWDuNm5=g@mail.gmail.com/
+> 
 
-Where as with 5.19 it boots correctly everytime. I will try to
-make some time to git bisect this sometime next week. I expect
-this is an i915 issue though since 6.0.0 with nomodeset on
-the cmdline does seem to boot successfully every time.
+If that's the case I suggest you just hardcode them for now and leave
+the complexity to the developer doing the actual conversion of the fbdev
+driver. Who knows when that will happen, but that person will have your
+well documented and discussed work to fall back on.
 
-Regards,
-
-Hans
-
+Noralf.
