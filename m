@@ -2,61 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FE57600116
-	for <lists+intel-gfx@lfdr.de>; Sun, 16 Oct 2022 18:11:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A818600157
+	for <lists+intel-gfx@lfdr.de>; Sun, 16 Oct 2022 18:33:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B835910E83F;
-	Sun, 16 Oct 2022 16:11:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7D110E46A;
+	Sun, 16 Oct 2022 16:33:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0AD210E82F;
- Sun, 16 Oct 2022 16:11:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds202112;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=SoBF0g+FxVXYhyEJbqnBUYS67u0wCvqTfgLTEmDo6Rs=; b=chyU99w3w9UnsJiZdgEZxPywYK
- 2KFqsArMDjFwStLaJzCr0FFMBxUEZdZSor1/8gZukX9II02z5mT8+lPXJWm5X5KybeOaDgyjfUVXx
- nSd9rTChH84m+/0qpy3JcAB9/zqz528MlroFmgwAk3KsiLi34gVTMlrQZUUqkr/sWHT149wrgyGbw
- ACRXUuRsqa1btBXk7YTvArU3dnpTkza00kF5bK3PxTtiGfy5+0V5z0VlP6JSfRgMqrv7Jt+V/cJMy
- AycYhU90dxCflKYFL6EbN34GAlb/nPpojAQLos+HyhvPPTelcr1bp2sWGdu/t2coHum3e+KJaAnOd
- PmE/yO7Q==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:51414
- helo=[192.168.10.61])
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1ok6Ec-0003SN-2l; Sun, 16 Oct 2022 18:11:30 +0200
-Message-ID: <729f849a-0287-a2fb-125f-892b4dd6053f@tronnes.org>
-Date: Sun, 16 Oct 2022 18:11:21 +0200
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9366B10E46A
+ for <intel-gfx@lists.freedesktop.org>; Sun, 16 Oct 2022 16:33:30 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id C5144B80B6A;
+ Sun, 16 Oct 2022 16:33:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BE6EC433C1;
+ Sun, 16 Oct 2022 16:33:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1665938007;
+ bh=FIOeK8BUo8rL3+8xTW+E8y3RywV8gM1FiWaJCBlICpQ=;
+ h=Subject:To:Cc:From:Date:From;
+ b=TI0F0h4bDE+1XLQFIjeHiy1D0DCl4JsA7NhKDWCdS8LuiBCeWis29wzqzX1nrQy+Q
+ ILI4sEHm8UMHc2mFD6ZWjltzhoqhfFvJtQ15F/Y1nxLhzGn5SYLuzqwxFpSoDuEsTJ
+ ETof19fHVrQHC89RqKGWXPsg2N0edhUPgdfvBS6s=
+To: andrzej.hajda@intel.com, davidesousa@gmail.com, gregkh@linuxfoundation.org,
+ intel-gfx@lists.freedesktop.org, kevinboulain@gmail.com,
+ matthew.auld@intel.com, thomas.hellstrom@linux.intel.com,
+ tvrtko.ursulin@intel.com
+From: <gregkh@linuxfoundation.org>
+Date: Sun, 16 Oct 2022 18:34:05 +0200
+Message-ID: <166593804562174@kroah.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-To: Maxime Ripard <maxime@cerno.tech>, Karol Herbst <kherbst@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lyude Paul <lyude@redhat.com>, Maxime Ripard <mripard@kernel.org>,
- Emma Anholt <emma@anholt.net>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Ben Skeggs <bskeggs@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>
-References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
- <20220728-rpi-analog-tv-properties-v5-8-d841cc64fe4b@cerno.tech>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v5-8-d841cc64fe4b@cerno.tech>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v5 08/22] drm/modes: Move named modes
- parsing to a separate function
+Content-Transfer-Encoding: 8bit
+X-stable: commit
+X-Patchwork-Hint: ignore 
+Subject: [Intel-gfx] Patch "drm/i915: Fix display problems after resume" has
+ been added to the 6.0-stable tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,188 +53,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Phil Elwell <phil@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
+Cc: stable-commits@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+This is a note to let you know that I've just added the patch titled
 
-Den 13.10.2022 15.18, skrev Maxime Ripard:
-> The current construction of the named mode parsing doesn't allow to extend
-> it easily. Let's move it to a separate function so we can add more
-> parameters and modes.
-> 
-> In order for the tests to still pass, some extra checks are needed, so
-> it's not a 1:1 move.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
+    drm/i915: Fix display problems after resume
 
-I was hoping that someone else would step up and review these parser
-patches since the parser code is rather difficult to read, for me at
-least. I have studied it now, so I'll give it a try.
+to the 6.0-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
-> ---
-> Changes in v4:
-> - Fold down all the named mode patches that were split into a single
->   patch again to maintain bisectability
-> ---
->  drivers/gpu/drm/drm_modes.c | 73 ++++++++++++++++++++++++++++++++++++++-------
->  1 file changed, 62 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-> index c0dceff51cac..2f020ef2ddf2 100644
-> --- a/drivers/gpu/drm/drm_modes.c
-> +++ b/drivers/gpu/drm/drm_modes.c
-> @@ -2229,6 +2229,55 @@ static const char * const drm_named_modes_whitelist[] = {
->  	"PAL",
->  };
->  
-> +static int drm_mode_parse_cmdline_named_mode(const char *name,
-> +					     unsigned int name_end,
-> +					     struct drm_cmdline_mode *cmdline_mode)
-> +{
-> +	unsigned int i;
-> +
-> +	if (!name_end)
-> +		return 0;
+The filename of the patch is:
+     drm-i915-fix-display-problems-after-resume.patch
+and it can be found in the queue-6.0 subdirectory.
 
-name_end can't be zero since the argument is checked before calling this
-function.
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
 
-> +
-> +	/* If the name starts with a digit, it's not a named mode */
-> +	if (isdigit(name[0]))
-> +		return 0;
-> +
-> +	/*
-> +	 * If there's an equal sign in the name, the command-line
-> +	 * contains only an option and no mode.
-> +	 */
-> +	if (strnchr(name, name_end, '='))
-> +		return 0;
 
-I think this check actually belongs in
-drm_mode_parse_command_line_for_connector() after options_off is set. If
-theres an equal sign it should skip all mode parsing and skip down to
-drm_mode_parse_cmdline_options(). Which probably means that the mode
-parsing should have been moved out to separate function to avoid using a
-goto.
-But that's probably beyond the scope of this patchset :)
+From 6c482c62a635aa4f534d2439fbf8afa37452b986 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Wed, 5 Oct 2022 14:11:59 +0200
+Subject: drm/i915: Fix display problems after resume
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-> +
-> +#define STR_STRICT_EQ(str, len, cmp) \
-> +	(str_has_prefix(str, cmp) == len)
-> +
-> +	/* The connection status extras can be set without a mode. */
-> +	if (STR_STRICT_EQ(name, name_end, "d") ||
-> +	    STR_STRICT_EQ(name, name_end, "D") ||
-> +	    STR_STRICT_EQ(name, name_end, "e"))
-> +		return 0;
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-It took me a while to understand what is going on here.
-If str_has_prefix() finds a match it returns strlen(prefix). Since
-prefix is always of length 1, name_end has to always be 1 for the
-statement to be true.
+commit 6c482c62a635aa4f534d2439fbf8afa37452b986 upstream.
 
-I would have written it like this:
+Commit 39a2bd34c933 ("drm/i915: Use the vma resource as argument for gtt
+binding / unbinding") introduced a regression that due to the vma resource
+tracking of the binding state, dpt ptes were not correctly repopulated.
+Fix this by clearing the vma resource state before repopulating.
+The state will subsequently be restored by the bind_vma operation.
 
-	/* The connection status extras can be set without a mode. */
-	if (name_end == 1) {
-		if (name[0] == "d" || name[0] == "D" || name[0] == "e")
-			return 0;
-	}
+Fixes: 39a2bd34c933 ("drm/i915: Use the vma resource as argument for gtt binding / unbinding")
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20220912121957.31310-1-thomas.hellstrom@linux.intel.com
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v5.18+
+Reported-and-tested-by: Kevin Boulain <kevinboulain@gmail.com>
+Tested-by: David de Sousa <davidesousa@gmail.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20221005121159.340245-1-thomas.hellstrom@linux.intel.com
+(cherry picked from commit bc2472538c0d1cce334ffc9e97df0614cd2b1469)
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c |    8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-> +
-> +	/*
-> +	 * We're sure we're a named mode at that point, iterate over the
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -1267,10 +1267,16 @@ bool i915_ggtt_resume_vm(struct i915_add
+ 			atomic_read(&vma->flags) & I915_VMA_BIND_MASK;
+ 
+ 		GEM_BUG_ON(!was_bound);
+-		if (!retained_ptes)
++		if (!retained_ptes) {
++			/*
++			 * Clear the bound flags of the vma resource to allow
++			 * ptes to be repopulated.
++			 */
++			vma->resource->bound_flags = 0;
+ 			vma->ops->bind_vma(vm, NULL, vma->resource,
+ 					   obj ? obj->cache_level : 0,
+ 					   was_bound);
++		}
+ 		if (obj) { /* only used during resume => exclusive access */
+ 			write_domain_objs |= fetch_and_zero(&obj->write_domain);
+ 			obj->read_domains |= I915_GEM_DOMAIN_GTT;
 
-that -> this ?
 
-> +	 * list of modes we're aware of.
-> +	 */
-> +	for (i = 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i++) {
-> +		int ret;
-> +
-> +		ret = str_has_prefix(name, drm_named_modes_whitelist[i]);
-> +		if (ret != name_end)
-> +			continue;
-> +
-> +		strcpy(cmdline_mode->name, drm_named_modes_whitelist[i]);
-> +		cmdline_mode->specified = true;
-> +
-> +		return 1;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
->  /**
->   * drm_mode_parse_command_line_for_connector - parse command line modeline for connector
->   * @mode_option: optional per connector mode option
-> @@ -2265,7 +2314,7 @@ bool drm_mode_parse_command_line_for_connector(const char *mode_option,
->  	const char *bpp_ptr = NULL, *refresh_ptr = NULL, *extra_ptr = NULL;
->  	const char *options_ptr = NULL;
->  	char *bpp_end_ptr = NULL, *refresh_end_ptr = NULL;
-> -	int i, len, ret;
-> +	int len, ret;
->  
->  	memset(mode, 0, sizeof(*mode));
->  	mode->panel_orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
-> @@ -2306,17 +2355,19 @@ bool drm_mode_parse_command_line_for_connector(const char *mode_option,
->  		parse_extras = true;
->  	}
->  
-> -	/* First check for a named mode */
-> -	for (i = 0; i < ARRAY_SIZE(drm_named_modes_whitelist); i++) {
-> -		ret = str_has_prefix(name, drm_named_modes_whitelist[i]);
-> -		if (ret == mode_end) {
-> -			if (refresh_ptr)
-> -				return false; /* named + refresh is invalid */
->  
-> -			strcpy(mode->name, drm_named_modes_whitelist[i]);
-> -			mode->specified = true;
-> -			break;
-> -		}
-> +	if (mode_end) {
+Patches currently in stable-queue which might be from thomas.hellstrom@linux.intel.com are
 
-Shouldn't this be:
-
-	if (!mode_end)
-		return false;
-
-I can't see how mode_end == 0 can produce anything valid.
-Scenarios for mode_option that gives mode_end == 0:
-- zero length
-- starts with a comma
-- starts with -bpp
-- starts with @refresh
-
-Maybe it's a separate patch with matching tests ;)
-
-Noralf.
-
-> +		ret = drm_mode_parse_cmdline_named_mode(name, mode_end, mode);
-> +		if (ret < 0)
-> +			return false;
-> +
-> +		/*
-> +		 * Having a mode that starts by a letter (and thus is named)
-> +		 * and an at-sign (used to specify a refresh rate) is
-> +		 * disallowed.
-> +		 */
-> +		if (ret && refresh_ptr)
-> +			return false;
->  	}
->  
->  	/* No named mode? Check for a normal mode argument, e.g. 1024x768 */
-> 
+queue-6.0/drm-i915-gt-use-i915_vm_put-on-ppgtt_create-error-paths.patch
+queue-6.0/drm-virtio-unlock-reservations-on-dma_resv_reserve_fences-error.patch
+queue-6.0/drm-i915-fix-display-problems-after-resume.patch
