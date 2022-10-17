@@ -2,56 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC11F60092B
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 10:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 341EA600966
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 10:55:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2B1F10ECF8;
-	Mon, 17 Oct 2022 08:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 542C210E3D2;
+	Mon, 17 Oct 2022 08:55:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 551BF10ECE7
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Oct 2022 08:51:34 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F8F710ECFA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Oct 2022 08:55:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1665996694; x=1697532694;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=r4+IJYhc2OmkpGMD6PadO5b6HPimeygAt+B+hefD2eQ=;
- b=B5Jlx3kTKYnF2QCHgoKcb6rTHEIpZ0jDaFACvi/cOgO/oq+MMd8WlQUB
- RZBBfIUNKRhSdrrgM2uXNRxieQkcejHktCy4xbL7Ai7jAU/B3OlvLlkYT
- ZYSSRuKEKYKf3By2AyvSIfJ+tsMhMeFeKi5Ums/BJ4EajFemnAieC9OcT
- QjtqX+SQlp93a+JtwGIKcflWXHeSJknoXN7L3noEhQ0iSSYMKnyy80Fvd
- GKBIpxhlWOSAKIXTjfk0GiQMftnWNHoj+6YybDGU2Gp2DEjha4F/VCBnb
- LjzZY7t0OMI5izd9Bt4fzwqmqxj8HdZ38z2yq7/GhrVK31TQ1DsfSyJ9O w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10502"; a="369935932"
-X-IronPort-AV: E=Sophos;i="5.95,191,1661842800"; d="scan'208";a="369935932"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2022 01:51:33 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10502"; a="696977101"
-X-IronPort-AV: E=Sophos;i="5.95,191,1661842800"; d="scan'208";a="696977101"
-Received: from ggeogheg-mobl.ger.corp.intel.com (HELO [10.213.233.137])
- ([10.213.233.137])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2022 01:51:32 -0700
-Message-ID: <44b8d200-8013-fcc2-3163-43f39b1bb5ec@linux.intel.com>
-Date: Mon, 17 Oct 2022 09:51:30 +0100
+ t=1665996950; x=1697532950;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yKtXX+4447oUMe0NhGa7N5JwRi4s0o1DZx5kumOWRUo=;
+ b=d1mBqeMkOWEJLyyJ/IoloAAzx0y2ErbuibQJfeguG19XA6wOjNcbOswO
+ YGSJGz3/w+GmTEIlgSoF0UiTmmC8ELiCgYLIdW+apLu+IJSbGAoUBFeKp
+ Pf5MsmREnMq+3m5juONUrHQXMW8ePqkS690Gwtt4A7tx98jAFI1q89H0f
+ hjTRnOGzl5tALcPRAllITa8wlvIQ5sEpEz97y8E+N/QzC1RrOihHDLKw4
+ BXQegqd7dCWKCGotQuDqN7m7oBQNuaFfsQV3FRUq7cdS9qAGUC7L7XnGn
+ r4JlZzwaBn1sbcQxhDzxVS6QSmihbcofumUv3PmDnbzWF5snh5k18b3FP A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10502"; a="306825053"
+X-IronPort-AV: E=Sophos;i="5.95,191,1661842800"; d="scan'208";a="306825053"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2022 01:55:49 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10502"; a="873394565"
+X-IronPort-AV: E=Sophos;i="5.95,191,1661842800"; d="scan'208";a="873394565"
+Received: from lab-ah.igk.intel.com ([10.91.215.196])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2022 01:55:46 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 17 Oct 2022 10:55:25 +0200
+Message-Id: <20221017085525.3898649-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Content-Language: en-US
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- "Souza, Jose" <jose.souza@intel.com>
-References: <20221013181426.306746-1-jose.souza@intel.com>
- <e77afa6bebf276952ff6750b7e8ac99623a7da92.camel@intel.com>
- <20221014220819.l6r4ahndslsrlvmn@ldmartin-desk2.lan>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221014220819.l6r4ahndslsrlvmn@ldmartin-desk2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] i915: Extend Wa_1607297627 to Alderlake-P
+Subject: [Intel-gfx] [PATCH] drm/i915: fix clear mask in GEN7_MISCCPCTL
+ update
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,56 +57,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+GEN7_DOP_CLOCK_GATE_ENABLE bit should be cleared, not inverse.
+The bug was introduced during conversion to intel_uncore_rmw helper.
 
-On 14/10/2022 23:08, Lucas De Marchi wrote:
-> On Thu, Oct 13, 2022 at 06:23:07PM +0000, Jose Souza wrote:
->> missed the "drm/" in the subject 😛
-> 
-> with that,  Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Fixes: 8cee664d3eb6f8 ("drm/i915: use proper helper for register updates")
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/i915_irq.c | 4 ++--
+ drivers/gpu/drm/i915/intel_pm.c | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-And where is the commit text? :p
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 2b75ca5e6e618b..d68859866bf238 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -1052,8 +1052,8 @@ static void ivb_parity_work(struct work_struct *work)
+ 	if (drm_WARN_ON(&dev_priv->drm, !dev_priv->l3_parity.which_slice))
+ 		goto out;
+ 
+-	misccpctl = intel_uncore_rmw(&dev_priv->uncore, GEN7_MISCCPCTL, ~GEN7_DOP_CLOCK_GATE_ENABLE,
+-				     0);
++	misccpctl = intel_uncore_rmw(&dev_priv->uncore, GEN7_MISCCPCTL,
++				     GEN7_DOP_CLOCK_GATE_ENABLE, 0);
+ 	intel_uncore_posting_read(&dev_priv->uncore, GEN7_MISCCPCTL);
+ 
+ 	while ((slice = ffs(dev_priv->l3_parity.which_slice)) != 0) {
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 9f6c58ad8bdb06..19d4a88184d7a1 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -4321,8 +4321,8 @@ static void gen8_set_l3sqc_credits(struct drm_i915_private *dev_priv,
+ 	u32 val;
+ 
+ 	/* WaTempDisableDOPClkGating:bdw */
+-	misccpctl = intel_uncore_rmw(&dev_priv->uncore, GEN7_MISCCPCTL, ~GEN7_DOP_CLOCK_GATE_ENABLE,
+-				     0);
++	misccpctl = intel_uncore_rmw(&dev_priv->uncore, GEN7_MISCCPCTL,
++				     GEN7_DOP_CLOCK_GATE_ENABLE, 0);
+ 
+ 	val = intel_uncore_read(&dev_priv->uncore, GEN8_L3SQCREG1);
+ 	val &= ~L3_PRIO_CREDITS_MASK;
+-- 
+2.34.1
 
-Impact warrants fixes and/or cc stable 5.17+ for ADL-P force probe 
-removal or not?
-
-Regards,
-
-Tvrtko
-
-> 
-> Lucas De Marchi
-> 
->>
->> On Thu, 2022-10-13 at 11:14 -0700, José Roberto de Souza wrote:
->>> BSpec: 54369
->>> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++--
->>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c 
->>> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> index b8eb20a155f0d..e1d5df3a5756e 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> @@ -2300,11 +2300,11 @@ rcs_engine_wa_init(struct intel_engine_cs 
->>> *engine, struct i915_wa_list *wal)
->>>      }
->>>
->>>      if (IS_DG1_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
->>> -        IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
->>> +        IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915) || 
->>> IS_ALDERLAKE_P(i915)) {
->>>          /*
->>>           * Wa_1607030317:tgl
->>>           * Wa_1607186500:tgl
->>> -         * Wa_1607297627:tgl,rkl,dg1[a0]
->>> +         * Wa_1607297627:tgl,rkl,dg1[a0],adlp
->>>           *
->>>           * On TGL and RKL there are multiple entries for this WA in the
->>>           * BSpec; some indicate this is an A0-only WA, others indicate
->>
