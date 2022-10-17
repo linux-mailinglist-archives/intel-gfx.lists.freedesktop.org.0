@@ -1,62 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B076600DEA
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 13:39:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83589600DED
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 13:40:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60A7310E3FA;
-	Mon, 17 Oct 2022 11:39:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C9D410E3E7;
+	Mon, 17 Oct 2022 11:40:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DC0010E3FA;
- Mon, 17 Oct 2022 11:39:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds202112;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=NqoPivWXTQc91lM55scp1TsWM7KYAkZKCYYjTFjLwwA=; b=eP3AtQH8Ft3/1aQU3b50ikl2kh
- uvnK5IAtJPeRye3apH7rCXI3m1SN4WPI63uFXBNEjPmv4cDphteZ42pnT7TPGmxW5RXz81CHXczTh
- OzjCvLGsT/gN3QlrIDNHh69a4JM45LViFEJP3NkC5h1OqLxWYzzfv8mI8BJ7DgsVBoXipFtEYGf5K
- PrXWqugX074d4EkbM0Wpd7NTVwt7SU2Hi6//t2gsOHwfgWzeLcdO6IpR8ghDmzqVbEE6rGt4Z/Sr1
- 3nf0XARAeZo8X02Q+ULbLP+mjGvrtH4rU4sL9cUAPzXI6gMHmgrwhoIS87WDVJ3AVZDPsTxWdT/bE
- mCVLwX2g==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:53192
- helo=[192.168.10.61])
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1okOSo-0007Ky-Cl; Mon, 17 Oct 2022 13:39:22 +0200
-Message-ID: <a2720899-e93b-6b84-f30b-8d3d28986259@tronnes.org>
-Date: Mon, 17 Oct 2022 13:39:14 +0200
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A242B10E3E7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Oct 2022 11:40:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666006841; x=1697542841;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=IdGO6IfyT+ocAbiU/wKF72a1Ut/HAZwIM/FP+c6ddn0=;
+ b=f5ISCTvwIHi5vZx32oQnnlW+jTp6XhSZMNbDP7Q6Gh+KNDAgejkEqIW/
+ rkc06bsO55hI9iRcoU+c6FZ0kuZ3JsKArDx+7lCCR9t7G8jbbNHzRqMGR
+ ianhTy8YCy/BkHuo4tw1XxTDcftNcuUaA6qZPEZjCszmotVRCqz1WJNPP
+ 2GF1466/SMUT8t653lUu2QmQ1ON+L2o/zZIIJhcLVKsSxtjfqjrTDqWSK
+ L2vh8+Ip1D3YWLySEeg5QQ3LIqa2qN8fVY6TPJYyhx4w1JjsdhbZM6Jej
+ p7qGUxVBa7UyrTvgoCR9m6rWLqi9PgxAmVzdsdsqZXD52G2knadHIIIMC A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10502"; a="306852756"
+X-IronPort-AV: E=Sophos;i="5.95,191,1661842800"; d="scan'208";a="306852756"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2022 04:40:22 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10502"; a="606095234"
+X-IronPort-AV: E=Sophos;i="5.95,191,1661842800"; d="scan'208";a="606095234"
+Received: from mikkelan-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.51.11])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2022 04:40:20 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>, intel-gfx
+ <intel-gfx@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, "Thorsten Leemhuis (regressions address)"
+ <regressions@leemhuis.info>
+In-Reply-To: <717fb4ab-5225-884f-37f9-2032c265824e@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <355dde1c-91e3-13b5-c8e8-75c9b9779b4f@redhat.com>
+ <87a65usvgq.fsf@intel.com> <877d0ysv1e.fsf@intel.com>
+ <717fb4ab-5225-884f-37f9-2032c265824e@redhat.com>
+Date: Mon, 17 Oct 2022 14:40:17 +0300
+Message-ID: <877d0yk7a6.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-To: Maxime Ripard <maxime@cerno.tech>, Karol Herbst <kherbst@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lyude Paul <lyude@redhat.com>, Maxime Ripard <mripard@kernel.org>,
- Emma Anholt <emma@anholt.net>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Ben Skeggs <bskeggs@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>
-References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
- <20220728-rpi-analog-tv-properties-v5-20-d841cc64fe4b@cerno.tech>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v5-20-d841cc64fe4b@cerno.tech>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 20/22] drm/vc4: vec: Convert to the new
- TV mode property
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] alderlake crashes (random memory corruption?) with
+ 6.0 i915 / ucode related
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,250 +63,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Phil Elwell <phil@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 17 Oct 2022, Hans de Goede <hdegoede@redhat.com> wrote:
+> Hi,
+>
+> On 10/17/22 10:39, Jani Nikula wrote:
+>> On Mon, 17 Oct 2022, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>>> On Thu, 13 Oct 2022, Hans de Goede <hdegoede@redhat.com> wrote:
+>>>> With 6.0 the following WARN triggers:
+>>>> drivers/gpu/drm/i915/display/intel_bios.c:477:
+>>>>
+>>>>         drm_WARN(&i915->drm, min_size == 0,
+>>>>                  "Block %d min_size is zero\n", section_id);
+>>>
+>>> What's the value of section_id that gets printed?
+>> 
+>> I'm guessing this is [1] fixed by commit d3a7051841f0 ("drm/i915/bios:
+>> Use hardcoded fp_timing size for generating LFP data pointers") in
+>> v6.1-rc1.
+>> 
+>> I don't think this is the root cause for your issues, but I wonder if
+>> you could try v6.1-rc1 or drm-tip and see if we've fixed the other stuff
+>> already too?
+>
+> 6.1-rc1 indeed does not trigger the drm_WARN and for now (couple of
+> reboots, running for 5 minutes now) it seems stable. 6.0.0 usually
+> crashed during boot (but not always).
+>
+> Do you think it would be worthwhile to try 6.0.0 with d3a7051841f0 ?
+
+My guess is that d3a7051841f0 is a red herring. Sure, it's a warning
+splat that would be nice to get fixed in v6.0, but I doubt it has
+relevance to the problems you're seeing.
+
+Cc: Ville, your thoughts?
+
+> Any other commits which I can try before I go down the bisect route ?
+
+Seems pretty vague I'm afraid. I know it's painful, but likely bisect is
+the fastest way to pinpoint the issue and get at the root cause.
+
+Also, filing a bug at [1] would help us get more attention.
 
 
-Den 13.10.2022 15.19, skrev Maxime Ripard:
-> Now that the core can deal fine with analog TV modes, let's convert the vc4
-> VEC driver to leverage those new features.
-> 
-> We've added some backward compatibility to support the old TV mode property
-> and translate it into the new TV norm property. We're also making use of
-> the new analog TV atomic_check helper to make sure we trigger a modeset
-> whenever the TV mode is updated.
-> 
-> Acked-by: Noralf Trønnes <noralf@tronnes.org>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> ---
+BR,
+Jani.
 
-> @@ -276,19 +292,96 @@ static void vc4_vec_connector_reset(struct drm_connector *connector)
->  
->  static int vc4_vec_connector_get_modes(struct drm_connector *connector)
->  {
-> -	struct drm_connector_state *state = connector->state;
->  	struct drm_display_mode *mode;
->  
-> -	mode = drm_mode_duplicate(connector->dev,
-> -				  vc4_vec_tv_modes[state->tv.legacy_mode].mode);
-> +	mode = drm_mode_analog_ntsc_480i(connector->dev);
->  	if (!mode) {
->  		DRM_ERROR("Failed to create a new display mode\n");
->  		return -ENOMEM;
->  	}
->  
-> +	mode->type |= DRM_MODE_TYPE_PREFERRED;
->  	drm_mode_probed_add(connector, mode);
->  
-> -	return 1;
-> +	mode = drm_mode_analog_pal_576i(connector->dev);
-> +	if (!mode) {
-> +		DRM_ERROR("Failed to create a new display mode\n");
-> +		return -ENOMEM;
 
-I just remembered that you can't return an error from .get_modes, it
-should only return the number of modes added. From doc:
+[1] https://gitlab.freedesktop.org/drm/intel/issues/new
 
-	 * RETURNS:
-	 *
-	 * The number of modes added by calling drm_mode_probed_add().
 
-See also the use of count in drm_helper_probe_single_connector_modes().
+>
+> (I'm assuming this will also affect other users, so we really need
+> to fix this for 6.0.x before it starts hitting Arch + Fedora users)
+>
+> Regards,
+>
+> Hans
+>
+>
+>
+>> [1] https://gitlab.freedesktop.org/drm/intel/-/issues/6592
+>
 
-Patch 14 and 22 has the same issue.
-
-Noralf.
-
-> +	}
-> +
-> +	drm_mode_probed_add(connector, mode);
-> +
-> +	return 2;
-> +}
-> +
-> +static int
-> +vc4_vec_connector_set_property(struct drm_connector *connector,
-> +			       struct drm_connector_state *state,
-> +			       struct drm_property *property,
-> +			       uint64_t val)
-> +{
-> +	struct vc4_vec *vec = connector_to_vc4_vec(connector);
-> +
-> +	if (property != vec->legacy_tv_mode_property)
-> +		return -EINVAL;
-> +
-> +	switch (val) {
-> +	case VC4_VEC_TV_MODE_NTSC:
-> +		state->tv.mode = DRM_MODE_TV_MODE_NTSC;
-> +		break;
-> +
-> +	case VC4_VEC_TV_MODE_NTSC_J:
-> +		state->tv.mode = DRM_MODE_TV_MODE_NTSC_J;
-> +		break;
-> +
-> +	case VC4_VEC_TV_MODE_PAL:
-> +		state->tv.mode = DRM_MODE_TV_MODE_PAL;
-> +		break;
-> +
-> +	case VC4_VEC_TV_MODE_PAL_M:
-> +		state->tv.mode = DRM_MODE_TV_MODE_PAL_M;
-> +		break;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +vc4_vec_connector_get_property(struct drm_connector *connector,
-> +			       const struct drm_connector_state *state,
-> +			       struct drm_property *property,
-> +			       uint64_t *val)
-> +{
-> +	struct vc4_vec *vec = connector_to_vc4_vec(connector);
-> +
-> +	if (property != vec->legacy_tv_mode_property)
-> +		return -EINVAL;
-> +
-> +	switch (state->tv.mode) {
-> +	case DRM_MODE_TV_MODE_NTSC:
-> +		*val = VC4_VEC_TV_MODE_NTSC;
-> +		break;
-> +
-> +	case DRM_MODE_TV_MODE_NTSC_J:
-> +		*val = VC4_VEC_TV_MODE_NTSC_J;
-> +		break;
-> +
-> +	case DRM_MODE_TV_MODE_PAL:
-> +		*val = VC4_VEC_TV_MODE_PAL;
-> +		break;
-> +
-> +	case DRM_MODE_TV_MODE_PAL_M:
-> +		*val = VC4_VEC_TV_MODE_PAL_M;
-> +		break;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
->  }
->  
->  static const struct drm_connector_funcs vc4_vec_connector_funcs = {
-> @@ -297,15 +390,19 @@ static const struct drm_connector_funcs vc4_vec_connector_funcs = {
->  	.reset = vc4_vec_connector_reset,
->  	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
->  	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-> +	.atomic_get_property = vc4_vec_connector_get_property,
-> +	.atomic_set_property = vc4_vec_connector_set_property,
->  };
->  
->  static const struct drm_connector_helper_funcs vc4_vec_connector_helper_funcs = {
-> +	.atomic_check = drm_atomic_helper_connector_tv_check,
->  	.get_modes = vc4_vec_connector_get_modes,
->  };
->  
->  static int vc4_vec_connector_init(struct drm_device *dev, struct vc4_vec *vec)
->  {
->  	struct drm_connector *connector = &vec->connector;
-> +	struct drm_property *prop;
->  	int ret;
->  
->  	connector->interlace_allowed = true;
-> @@ -318,8 +415,17 @@ static int vc4_vec_connector_init(struct drm_device *dev, struct vc4_vec *vec)
->  	drm_connector_helper_add(connector, &vc4_vec_connector_helper_funcs);
->  
->  	drm_object_attach_property(&connector->base,
-> -				   dev->mode_config.legacy_tv_mode_property,
-> -				   VC4_VEC_TV_MODE_NTSC);
-> +				   dev->mode_config.tv_mode_property,
-> +				   DRM_MODE_TV_MODE_NTSC);
-> +
-> +	prop = drm_property_create_enum(dev, 0, "mode",
-> +					legacy_tv_mode_names,
-> +					ARRAY_SIZE(legacy_tv_mode_names));
-> +	if (!prop)
-> +		return -ENOMEM;
-> +	vec->legacy_tv_mode_property = prop;
-> +
-> +	drm_object_attach_property(&connector->base, prop, VC4_VEC_TV_MODE_NTSC);
->  
->  	drm_connector_attach_encoder(connector, &vec->encoder.base);
->  
-> @@ -366,13 +472,16 @@ static void vc4_vec_encoder_enable(struct drm_encoder *encoder,
->  	struct drm_connector *connector = &vec->connector;
->  	struct drm_connector_state *conn_state =
->  		drm_atomic_get_new_connector_state(state, connector);
-> -	const struct vc4_vec_tv_mode *tv_mode =
-> -		&vc4_vec_tv_modes[conn_state->tv.legacy_mode];
-> +	const struct vc4_vec_tv_mode *tv_mode;
->  	int idx, ret;
->  
->  	if (!drm_dev_enter(drm, &idx))
->  		return;
->  
-> +	tv_mode = vc4_vec_tv_mode_lookup(conn_state->tv.mode);
-> +	if (!tv_mode)
-> +		goto err_dev_exit;
-> +
->  	ret = pm_runtime_get_sync(&vec->pdev->dev);
->  	if (ret < 0) {
->  		DRM_ERROR("Failed to retain power domain: %d\n", ret);
-> @@ -454,13 +563,6 @@ static int vc4_vec_encoder_atomic_check(struct drm_encoder *encoder,
->  					struct drm_connector_state *conn_state)
->  {
->  	const struct drm_display_mode *mode = &crtc_state->adjusted_mode;
-> -	const struct vc4_vec_tv_mode *vec_mode;
-> -
-> -	vec_mode = &vc4_vec_tv_modes[conn_state->tv.legacy_mode];
-> -
-> -	if (conn_state->crtc &&
-> -	    !drm_mode_equal(vec_mode->mode, &crtc_state->adjusted_mode))
-> -		return -EINVAL;
->  
->  	if (mode->crtc_hdisplay % 4)
->  		return -EINVAL;
-> @@ -554,13 +656,6 @@ static const struct of_device_id vc4_vec_dt_match[] = {
->  	{ /* sentinel */ },
->  };
->  
-> -static const char * const tv_mode_names[] = {
-> -	[VC4_VEC_TV_MODE_NTSC] = "NTSC",
-> -	[VC4_VEC_TV_MODE_NTSC_J] = "NTSC-J",
-> -	[VC4_VEC_TV_MODE_PAL] = "PAL",
-> -	[VC4_VEC_TV_MODE_PAL_M] = "PAL-M",
-> -};
-> -
->  static int vc4_vec_bind(struct device *dev, struct device *master, void *data)
->  {
->  	struct platform_device *pdev = to_platform_device(dev);
-> @@ -568,9 +663,11 @@ static int vc4_vec_bind(struct device *dev, struct device *master, void *data)
->  	struct vc4_vec *vec;
->  	int ret;
->  
-> -	ret = drm_mode_create_tv_properties_legacy(drm,
-> -						   ARRAY_SIZE(tv_mode_names),
-> -						   tv_mode_names);
-> +	ret = drm_mode_create_tv_properties(drm,
-> +					    BIT(DRM_MODE_TV_MODE_NTSC) |
-> +					    BIT(DRM_MODE_TV_MODE_NTSC_J) |
-> +					    BIT(DRM_MODE_TV_MODE_PAL) |
-> +					    BIT(DRM_MODE_TV_MODE_PAL_M));
->  	if (ret)
->  		return ret;
->  
-> 
+-- 
+Jani Nikula, Intel Open Source Graphics Center
