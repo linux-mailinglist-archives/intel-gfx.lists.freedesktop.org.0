@@ -2,82 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4442660183F
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 21:57:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35AC66015E7
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Oct 2022 20:04:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 419F010EE1F;
-	Mon, 17 Oct 2022 19:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794FB10E721;
+	Mon, 17 Oct 2022 18:04:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
- [IPv6:2a00:1450:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA5110E85C;
- Sun, 16 Oct 2022 19:46:54 +0000 (UTC)
-Received: by mail-lj1-x22b.google.com with SMTP id h8so11718522lja.11;
- Sun, 16 Oct 2022 12:46:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:reply-to:subject:user-agent:mime-version:date:message-id:from
- :from:to:cc:subject:date:message-id:reply-to;
- bh=rdVj1UN0o7hBjGsw3GcLX/7HhNhpR9GEsvnCZKA7nWc=;
- b=eVN1P5+2pEF2Kv5B+7kulfpYcRS0ij67wC56op/K7MTJ9oxjts1NiTMiIXhKUDDNWi
- pClfrmUFwjCqFPiUh9t2aylgpS617BHukulA8IRkFt9jDfyhzBKacR80dEuWIW7uIlru
- /7BkEkGFXjpHuS1qNFxkES8QosHRpMbXUy57JWaDtK7v16WG53LkwTEneJfdabTIa/BN
- tiKFs3N7vSqtH+nQdskgF32wMLK/xbHFx7HwRH0BnJoukpb40vsXARUD3MnEbG+bDYhz
- DATYteNjfpgFflZS3rzy15d+9+CYLsfO1pfLasECYyV6UjYiuhHDXbmsrtY0P6dvd6aq
- O6Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:reply-to:subject:user-agent:mime-version:date:message-id:from
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=rdVj1UN0o7hBjGsw3GcLX/7HhNhpR9GEsvnCZKA7nWc=;
- b=jHxQk0q+sooBlrRG1DhZPjOrvyMB1v3jY+GyuWkprNcpOsyzcXd4XjgiItxg1+WccL
- UDDI3dLho2O0r169a2dszPQPA+d50X/F/qw+yEfICGVgRhprJUYzZ522gw+sxgV72PzE
- YEgufqmOp7PJBbUVSZTz15CHPNkOScbiUs4Dn3pykS/dzQAgqNA0HMOlcGDMZKwazONb
- q4sppxt3l05FZ/phdD6NPGF45cj8zxNQ1r3zPhNE7ydc0P6XHb/DQtRz9P52VtjH43hC
- 6mJU0JjTntXvW8c42sOUQs97xnWV8M9oCl981rMgr+fOqaihTv+pXQLVvySgy9x9buuQ
- 9feg==
-X-Gm-Message-State: ACrzQf2L0fbLSrb1FiztBZnt481Zt3z8lgFutKGvP0fjJViVE1ep3ZIB
- bd2bv13QnoW5AGvgCdQR+tE=
-X-Google-Smtp-Source: AMsMyM4GQhxxpcYSAKIRWoVA3HWWO1eDjPQvlqSV0CxKc0sMPg+zXfwUuwDFiB7tEbVlutMrJsz5sg==
-X-Received: by 2002:a05:651c:198a:b0:26f:b54d:e239 with SMTP id
- bx10-20020a05651c198a00b0026fb54de239mr2691447ljb.421.1665949612500; 
- Sun, 16 Oct 2022 12:46:52 -0700 (PDT)
-Received: from ?IPV6:2a02:a31a:a240:1700:64bb:87df:aad7:a9f0?
- ([2a02:a31a:a240:1700:64bb:87df:aad7:a9f0])
- by smtp.googlemail.com with ESMTPSA id
- k14-20020ac2456e000000b004948378080csm1141576lfm.290.2022.10.16.12.46.50
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 16 Oct 2022 12:46:51 -0700 (PDT)
-From: Mateusz Kwiatkowski <kfyatek@gmail.com>
-X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-Message-ID: <93bf9fcc-c645-b042-011f-8f1fc957af48@gmail.com>
-Date: Sun, 16 Oct 2022 21:46:49 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6543110E721;
+ Mon, 17 Oct 2022 18:04:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5AE2AAADDA;
+ Mon, 17 Oct 2022 18:04:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4814862434026730242=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.3.3
-To: Maxime Ripard <maxime@cerno.tech>, Karol Herbst <kherbst@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lyude Paul <lyude@redhat.com>, Maxime Ripard <mripard@kernel.org>,
- Emma Anholt <emma@anholt.net>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Ben Skeggs <bskeggs@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>
-References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
- <20220728-rpi-analog-tv-properties-v5-21-d841cc64fe4b@cerno.tech>
-Content-Language: pl
-In-Reply-To: <20220728-rpi-analog-tv-properties-v5-21-d841cc64fe4b@cerno.tech>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 17 Oct 2022 19:56:17 +0000
-Subject: [Intel-gfx] [PATCH] drm/vc4: vec: Add support for PAL-60
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dmitry Osipenko" <dmitry.osipenko@collabora.com>
+Date: Mon, 17 Oct 2022 18:04:05 -0000
+Message-ID: <166602984534.13569.17659272722969770740@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221017172229.42269-1-dmitry.osipenko@collabora.com>
+In-Reply-To: <20221017172229.42269-1-dmitry.osipenko@collabora.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTW92?=
+ =?utf-8?q?e_all_drivers_to_a_common_dma-buf_locking_convention?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,146 +40,310 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: kfyatek+publicgit@gmail.com
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support for the PAL-60 mode. Because there is no separate TV mode
-property value for PAL-60, this requires matching the settings based on
-the modeline in addition to just that property alone.
+--===============4814862434026730242==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
----
-This patch depends on patch
-'[PATCH v5 21/22] drm/vc4: vec: Add support for more analog TV standards'
-submitted by Maxime Ripard
-(https://lore.kernel.org/dri-devel/20220728-rpi-analog-tv-properties-v5-21-d841cc64fe4b@cerno.tech/).
+== Series Details ==
 
-To Maxime: if you decide to post v6, feel free to include this in your patchset
-instead if you want.
----
- drivers/gpu/drm/vc4/vc4_vec.c | 27 ++++++++++++++++++++++++---
- 1 file changed, 24 insertions(+), 3 deletions(-)
+Series: Move all drivers to a common dma-buf locking convention
+URL   : https://patchwork.freedesktop.org/series/109786/
+State : success
 
-diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c
-index 88b4330bfa39..bbc41e502cc3 100644
---- a/drivers/gpu/drm/vc4/vc4_vec.c
-+++ b/drivers/gpu/drm/vc4/vc4_vec.c
-@@ -235,6 +235,7 @@ enum vc4_vec_tv_mode_id {
- 
- struct vc4_vec_tv_mode {
- 	unsigned int mode;
-+	u16 expected_htotal;
- 	u32 config0;
- 	u32 config1;
- 	u32 custom_freq;
-@@ -270,37 +271,52 @@ static const struct debugfs_reg32 vec_regs[] = {
- static const struct vc4_vec_tv_mode vc4_vec_tv_modes[] = {
- 	{
- 		.mode = DRM_MODE_TV_MODE_NTSC,
-+		.expected_htotal = 858,
- 		.config0 = VEC_CONFIG0_NTSC_STD | VEC_CONFIG0_PDEN,
- 		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
- 	},
- 	{
- 		.mode = DRM_MODE_TV_MODE_NTSC_443,
-+		.expected_htotal = 858,
- 		.config0 = VEC_CONFIG0_NTSC_STD,
- 		.config1 = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,
- 		.custom_freq = 0x2a098acb,
- 	},
- 	{
- 		.mode = DRM_MODE_TV_MODE_NTSC_J,
-+		.expected_htotal = 858,
- 		.config0 = VEC_CONFIG0_NTSC_STD,
- 		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
- 	},
- 	{
- 		.mode = DRM_MODE_TV_MODE_PAL,
-+		.expected_htotal = 864,
- 		.config0 = VEC_CONFIG0_PAL_BDGHI_STD,
- 		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
- 	},
-+	{
-+		/* PAL-60 */
-+		.mode = DRM_MODE_TV_MODE_PAL,
-+		.expected_htotal = 858,
-+		.config0 = VEC_CONFIG0_PAL_M_STD,
-+		.config1 = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,
-+		.custom_freq = 0x2a098acb,
-+	},
- 	{
- 		.mode = DRM_MODE_TV_MODE_PAL_M,
-+		.expected_htotal = 858,
- 		.config0 = VEC_CONFIG0_PAL_M_STD,
- 		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
- 	},
- 	{
- 		.mode = DRM_MODE_TV_MODE_PAL_N,
-+		.expected_htotal = 864,
- 		.config0 = VEC_CONFIG0_PAL_N_STD,
- 		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
- 	},
- 	{
- 		.mode = DRM_MODE_TV_MODE_SECAM,
-+		.expected_htotal = 864,
- 		.config0 = VEC_CONFIG0_SECAM_STD,
- 		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
- 		.custom_freq = 0x29c71c72,
-@@ -308,14 +324,15 @@ static const struct vc4_vec_tv_mode vc4_vec_tv_modes[] = {
- };
- 
- static inline const struct vc4_vec_tv_mode *
--vc4_vec_tv_mode_lookup(unsigned int mode)
-+vc4_vec_tv_mode_lookup(unsigned int mode, u16 htotal)
- {
- 	unsigned int i;
- 
- 	for (i = 0; i < ARRAY_SIZE(vc4_vec_tv_modes); i++) {
- 		const struct vc4_vec_tv_mode *tv_mode = &vc4_vec_tv_modes[i];
- 
--		if (tv_mode->mode == mode)
-+		if (tv_mode->mode == mode &&
-+		    tv_mode->expected_htotal == htotal)
- 			return tv_mode;
- 	}
- 
-@@ -394,6 +411,7 @@ vc4_vec_connector_set_property(struct drm_connector *connector,
- 		break;
- 
- 	case VC4_VEC_TV_MODE_PAL:
-+	case VC4_VEC_TV_MODE_PAL_60:
- 		state->tv.mode = DRM_MODE_TV_MODE_PAL;
- 		break;
- 
-@@ -551,13 +569,16 @@ static void vc4_vec_encoder_enable(struct drm_encoder *encoder,
- 	struct drm_connector *connector = &vec->connector;
- 	struct drm_connector_state *conn_state =
- 		drm_atomic_get_new_connector_state(state, connector);
-+	struct drm_display_mode *adjusted_mode =
-+		&encoder->crtc->state->adjusted_mode;
- 	const struct vc4_vec_tv_mode *tv_mode;
- 	int idx, ret;
- 
- 	if (!drm_dev_enter(drm, &idx))
- 		return;
- 
--	tv_mode = vc4_vec_tv_mode_lookup(conn_state->tv.mode);
-+	tv_mode = vc4_vec_tv_mode_lookup(conn_state->tv.mode,
-+					 adjusted_mode->htotal);
- 	if (!tv_mode)
- 		goto err_dev_exit;
- 
+== Summary ==
 
-base-commit: e16415e3ddae9abb14a00793554a162403f9af6d
--- 
-2.34.1
+CI Bug Log - changes from CI_DRM_12251 -> Patchwork_109786v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/index.html
+
+Participating hosts (44 -> 45)
+------------------------------
+
+  Additional (3): fi-hsw-4770 fi-rkl-11600 bat-atsm-1 
+  Missing    (2): fi-glk-j4005 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_109786v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {bat-atsm-1}:       NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/bat-atsm-1/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109786v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_softpin@allocator-basic-reserve:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][2] ([fdo#109271]) +9 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#3012])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][4] ([i915#7221])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +7 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#1072]) +3 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][7] ([fdo#109271] / [i915#4312] / [i915#5594])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@runner@aborted.html
+    - fi-rkl-11600:       NOTRUN -> [FAIL][8] ([i915#7220])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-rkl-11600/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-kefka:       [FAIL][9] ([i915#6298]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12251/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  
+#### Warnings ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-bdw-gvtdvm:      [FAIL][11] ([fdo#103375]) -> [INCOMPLETE][12] ([i915#146])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12251/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#7220]: https://gitlab.freedesktop.org/drm/intel/issues/7220
+  [i915#7221]: https://gitlab.freedesktop.org/drm/intel/issues/7221
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12251 -> Patchwork_109786v1
+
+  CI-20190529: 20190529
+  CI_DRM_12251: ff61e79b01712f5d31a4c4f23c6971bbaa71cecb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7016: 642f4bf44e2b42791b4d1684936a1bfbe2d099ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109786v1: ff61e79b01712f5d31a4c4f23c6971bbaa71cecb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+90439219037f dma-buf: Remove obsoleted internal lock
+92b9f4fc64f6 media: videobuf2: Stop using internal dma-buf lock
+cadec1dd4852 dma-buf: Document dynamic locking convention
+387381d70d48 dma-buf: Move dma_buf_mmap() to dynamic locking specification
+0c26569fff4b dma-buf: Move dma_buf_map_attachment() to dynamic locking specification
+502fab6dc886 dma-buf: Move dma_buf_attach() to dynamic locking specification
+de336404aff1 dma-buf: Move dma_buf_vmap() to dynamic locking specification
+7aa48f9b1e50 media: tegra-vde: Prepare to dynamic dma-buf locking specification
+b7edd76c5b55 media: videobuf2: Prepare to dynamic dma-buf locking specification
+72834d9ae115 xen/gntdev: Prepare to dynamic dma-buf locking specification
+7d938b2523eb misc: fastrpc: Prepare to dynamic dma-buf locking specification
+e0fc5d899f04 RDMA/umem: Prepare to dynamic dma-buf locking specification
+7e5934d86acd drm/etnaviv: Prepare to dynamic dma-buf locking specification
+cd58d4b8bf3b drm/tegra: Prepare to dynamic dma-buf locking specification
+f1b579909ecd drm/omapdrm: Prepare to dynamic dma-buf locking specification
+79087e4aecb4 drm/i915: Prepare to dynamic dma-buf locking specification
+b85e435fc4e5 drm/armada: Prepare to dynamic dma-buf locking specification
+4b4bf0858e18 drm/prime: Prepare to dynamic dma-buf locking specification
+d09b239bb5b0 drm/gem: Take reservation lock for vmap/vunmap operations
+9a538c534c80 dma-buf: Add unlocked variant of attachment-mapping functions
+e230b24fc66d dma-buf: Add unlocked variant of vmapping functions
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/index.html
+
+--===============4814862434026730242==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Move all drivers to a common dma-buf locking convention</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109786/">https://patchwork.freedesktop.org/series/109786/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12251 -&gt; Patchwork_109786v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 45)</h2>
+<p>Additional (3): fi-hsw-4770 fi-rkl-11600 bat-atsm-1 <br />
+  Missing    (2): fi-glk-j4005 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_109786v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>{bat-atsm-1}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/bat-atsm-1/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109786v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_softpin@allocator-basic-reserve:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7221">i915#7221</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</p>
+</li>
+<li>
+<p>fi-rkl-11600:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-rkl-11600/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7220">i915#7220</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12251/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_suspend@basic-s3-without-i915:<ul>
+<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12251/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109786v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12251 -&gt; Patchwork_109786v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12251: ff61e79b01712f5d31a4c4f23c6971bbaa71cecb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7016: 642f4bf44e2b42791b4d1684936a1bfbe2d099ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109786v1: ff61e79b01712f5d31a4c4f23c6971bbaa71cecb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>90439219037f dma-buf: Remove obsoleted internal lock<br />
+92b9f4fc64f6 media: videobuf2: Stop using internal dma-buf lock<br />
+cadec1dd4852 dma-buf: Document dynamic locking convention<br />
+387381d70d48 dma-buf: Move dma_buf_mmap() to dynamic locking specification<br />
+0c26569fff4b dma-buf: Move dma_buf_map_attachment() to dynamic locking specification<br />
+502fab6dc886 dma-buf: Move dma_buf_attach() to dynamic locking specification<br />
+de336404aff1 dma-buf: Move dma_buf_vmap() to dynamic locking specification<br />
+7aa48f9b1e50 media: tegra-vde: Prepare to dynamic dma-buf locking specification<br />
+b7edd76c5b55 media: videobuf2: Prepare to dynamic dma-buf locking specification<br />
+72834d9ae115 xen/gntdev: Prepare to dynamic dma-buf locking specification<br />
+7d938b2523eb misc: fastrpc: Prepare to dynamic dma-buf locking specification<br />
+e0fc5d899f04 RDMA/umem: Prepare to dynamic dma-buf locking specification<br />
+7e5934d86acd drm/etnaviv: Prepare to dynamic dma-buf locking specification<br />
+cd58d4b8bf3b drm/tegra: Prepare to dynamic dma-buf locking specification<br />
+f1b579909ecd drm/omapdrm: Prepare to dynamic dma-buf locking specification<br />
+79087e4aecb4 drm/i915: Prepare to dynamic dma-buf locking specification<br />
+b85e435fc4e5 drm/armada: Prepare to dynamic dma-buf locking specification<br />
+4b4bf0858e18 drm/prime: Prepare to dynamic dma-buf locking specification<br />
+d09b239bb5b0 drm/gem: Take reservation lock for vmap/vunmap operations<br />
+9a538c534c80 dma-buf: Add unlocked variant of attachment-mapping functions<br />
+e230b24fc66d dma-buf: Add unlocked variant of vmapping functions</p>
+
+</body>
+</html>
+
+--===============4814862434026730242==--
