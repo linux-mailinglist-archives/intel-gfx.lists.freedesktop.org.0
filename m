@@ -2,33 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA26B6031C1
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 19:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 008146031ED
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 20:02:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6143C10E2F4;
-	Tue, 18 Oct 2022 17:45:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9D5110E922;
+	Tue, 18 Oct 2022 18:02:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 636B810E2F4;
- Tue, 18 Oct 2022 17:45:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5F902A9932;
- Tue, 18 Oct 2022 17:45:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5464310E922;
+ Tue, 18 Oct 2022 18:02:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666116137; x=1697652137;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=w5kKlM9cW8IQMxD0ZSuXTmnOEZ+0UtmkP6O8s9r8tTY=;
+ b=b41XsFzBY1pLljCKV+1bRt2uzyoZc+BYnYgvtRcNZ6evbrboHZMUEypO
+ Veu4aBpdzH4+/bQKynik53UsG30U76mgmJUMIwLX1CI8MhRE/sICvnPln
+ fq0TOlBcMjkyarVjbANKnvcN+BJOo8YNpGHEttOJ4a35VnltkjmIypVcX
+ tTW6eZL6/9JAPf79lUCWG6aRvhhdN8/A5EzeDW7h5zjiw+0C76GJG5shG
+ +nXHNVKW2Q0pDRYHTHN1TLnr1BsznGVsJgpCFRbGlg9cqwSh01S+UA+Os
+ QcI6PC9GDPHy25MHy1JSm58NbkYo9Gxj68eua94I2Nk8l5+zFyhaF72RQ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="304924819"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="304924819"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 11:02:03 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="579913192"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="579913192"
+Received: from kmaslows-mobl.ger.corp.intel.com (HELO [10.252.26.162])
+ ([10.252.26.162])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 11:02:00 -0700
+Message-ID: <a3e3ddb4-b41d-70f5-cda4-082e9e61b62f@intel.com>
+Date: Tue, 18 Oct 2022 19:01:57 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Tue, 18 Oct 2022 17:45:20 -0000
-Message-ID: <166611512038.20427.18001750400313587221@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221018172042.1449885-1-imre.deak@intel.com>
-In-Reply-To: <20221018172042.1449885-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/3=5D_drm/i915/tgl+=3A_Add_locking_aro?=
- =?utf-8?q?und_DKL_PHY_register_accesses?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.3.1
+Content-Language: en-GB
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20221018071630.3831-1-niranjana.vishwanathapura@intel.com>
+ <20221018071630.3831-16-niranjana.vishwanathapura@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20221018071630.3831-16-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v4 15/17] drm/i915/vm_bind: Handle
+ persistent vmas in execbuf3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +63,317 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
+ daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 18/10/2022 08:16, Niranjana Vishwanathapura wrote:
+> Handle persistent (VM_BIND) mappings during the request submission
+> in the execbuf3 path.
+> 
+> v2: Ensure requests wait for bindings to complete.
+> v3: Remove short term pinning with PIN_VALIDATE flag.
+>      Individualize fences before adding to dma_resv obj.
+> 
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> ---
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer3.c   | 208 +++++++++++++++++-
+>   1 file changed, 207 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
+> index a9b4cc44bf66..8120e4c6b7da 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
+> @@ -3,6 +3,7 @@
+>    * Copyright © 2022 Intel Corporation
+>    */
+>   
+> +#include <linux/dma-fence-array.h>
+>   #include <linux/dma-resv.h>
+>   #include <linux/uaccess.h>
+>   
+> @@ -19,6 +20,7 @@
+>   #include "i915_gem_vm_bind.h"
+>   #include "i915_trace.h"
+>   
+> +#define __EXEC3_HAS_PIN			BIT_ULL(33)
+>   #define __EXEC3_ENGINE_PINNED		BIT_ULL(32)
+>   #define __EXEC3_INTERNAL_FLAGS		(~0ull << 32)
+>   
+> @@ -42,7 +44,9 @@
+>    * execlist. Hence, no support for implicit sync.
+>    *
+>    * The new execbuf3 ioctl only works in VM_BIND mode and the VM_BIND mode only
+> - * works with execbuf3 ioctl for submission.
+> + * works with execbuf3 ioctl for submission. All BOs mapped on that VM (through
+> + * VM_BIND call) at the time of execbuf3 call are deemed required for that
+> + * submission.
+>    *
+>    * The execbuf3 ioctl directly specifies the batch addresses instead of as
+>    * object handles as in execbuf2 ioctl. The execbuf3 ioctl will also not
+> @@ -58,6 +62,13 @@
+>    * So, a lot of code supporting execbuf2 ioctl, like relocations, VA evictions,
+>    * vma lookup table, implicit sync, vma active reference tracking etc., are not
+>    * applicable for execbuf3 ioctl.
+> + *
+> + * During each execbuf submission, request fence is added to all VM_BIND mapped
+> + * objects with DMA_RESV_USAGE_BOOKKEEP. The DMA_RESV_USAGE_BOOKKEEP usage will
+> + * prevent over sync (See enum dma_resv_usage). Note that DRM_I915_GEM_WAIT and
+> + * DRM_I915_GEM_BUSY ioctls do not check for DMA_RESV_USAGE_BOOKKEEP usage and
+> + * hence should not be used for end of batch check. Instead, the execbuf3
+> + * timeline out fence should be used for end of batch check.
+>    */
+>   
+>   /**
+> @@ -127,6 +138,23 @@ eb_find_vma(struct i915_address_space *vm, u64 addr)
+>   	return i915_gem_vm_bind_lookup_vma(vm, va);
+>   }
+>   
+> +static void eb_scoop_unbound_vma_all(struct i915_address_space *vm)
+> +{
+> +	struct i915_vma *vma, *vn;
+> +
+> +	/**
+> +	 * Move all unbound vmas back into vm_bind_list so that they are
+> +	 * revalidated.
+> +	 */
+> +	spin_lock(&vm->vm_rebind_lock);
+> +	list_for_each_entry_safe(vma, vn, &vm->vm_rebind_list, vm_rebind_link) {
+> +		list_del_init(&vma->vm_rebind_link);
+> +		if (!list_empty(&vma->vm_bind_link))
+> +			list_move_tail(&vma->vm_bind_link, &vm->vm_bind_list);
+> +	}
+> +	spin_unlock(&vm->vm_rebind_lock);
+> +}
+> +
+>   static int eb_lookup_vma_all(struct i915_execbuffer *eb)
+>   {
+>   	unsigned int i, current_batch = 0;
+> @@ -141,14 +169,108 @@ static int eb_lookup_vma_all(struct i915_execbuffer *eb)
+>   		++current_batch;
+>   	}
+>   
+> +	eb_scoop_unbound_vma_all(eb->context->vm);
+> +
+> +	return 0;
+> +}
+> +
+> +static int eb_lock_vma_all(struct i915_execbuffer *eb)
+> +{
+> +	struct i915_address_space *vm = eb->context->vm;
+> +	struct i915_vma *vma;
+> +	int err;
+> +
+> +	err = i915_gem_object_lock(eb->context->vm->root_obj, &eb->ww);
+> +	if (err)
+> +		return err;
+> +
+> +	list_for_each_entry(vma, &vm->non_priv_vm_bind_list,
+> +			    non_priv_vm_bind_link) {
+> +		err = i915_gem_object_lock(vma->obj, &eb->ww);
+> +		if (err)
+> +			return err;
+> +	}
+> +
+>   	return 0;
+>   }
+>   
+> +static void eb_release_persistent_vma_all(struct i915_execbuffer *eb)
+> +{
+> +	struct i915_address_space *vm = eb->context->vm;
+> +	struct i915_vma *vma, *vn;
+> +
+> +	lockdep_assert_held(&vm->vm_bind_lock);
+> +
+> +	if (!(eb->args->flags & __EXEC3_HAS_PIN))
+> +		return;
+> +
+> +	assert_object_held(vm->root_obj);
+> +
+> +	list_for_each_entry_safe(vma, vn, &vm->vm_bind_list, vm_bind_link)
+> +		if (i915_vma_verify_bind_complete(vma))
+> +			list_move_tail(&vma->vm_bind_link, &vm->vm_bound_list);
+> +
+> +	eb->args->flags &= ~__EXEC3_HAS_PIN;
+> +}
+> +
+>   static void eb_release_vma_all(struct i915_execbuffer *eb)
+>   {
+> +	eb_release_persistent_vma_all(eb);
+>   	eb_unpin_engine(eb);
+>   }
+>   
+> +static int eb_reserve_fence_for_persistent_vma_all(struct i915_execbuffer *eb)
+> +{
+> +	struct i915_address_space *vm = eb->context->vm;
+> +	u64 num_fences = 1;
+> +	struct i915_vma *vma;
+> +	int ret;
+> +
+> +	/* Reserve enough slots to accommodate composite fences */
+> +	if (intel_context_is_parallel(eb->context))
+> +		num_fences = eb->num_batches;
+> +
+> +	ret = dma_resv_reserve_fences(vm->root_obj->base.resv, num_fences);
+> +	if (ret)
+> +		return ret;
+> +
+> +	list_for_each_entry(vma, &vm->non_priv_vm_bind_list,
+> +			    non_priv_vm_bind_link) {
+> +		ret = dma_resv_reserve_fences(vma->obj->base.resv, num_fences);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int eb_validate_persistent_vma_all(struct i915_execbuffer *eb)
+> +{
+> +	struct i915_address_space *vm = eb->context->vm;
+> +	struct i915_vma *vma;
+> +	int ret = 0;
+> +
+> +	lockdep_assert_held(&vm->vm_bind_lock);
+> +	assert_object_held(vm->root_obj);
+> +
+> +	ret = eb_reserve_fence_for_persistent_vma_all(eb);
+> +	if (ret)
+> +		return ret;
+> +
+> +	list_for_each_entry(vma, &vm->vm_bind_list, vm_bind_link) {
+> +		u64 pin_flags = vma->start | PIN_OFFSET_FIXED |
+> +				PIN_USER | PIN_VALIDATE;
+> +
+> +		ret = i915_vma_pin_ww(vma, &eb->ww, 0, 0, pin_flags);
+> +		if (ret)
+> +			break;
+> +
+> +		eb->args->flags |= __EXEC3_HAS_PIN;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>   /*
+>    * Using two helper loops for the order of which requests / batches are created
+>    * and added the to backend. Requests are created in order from the parent to
+> @@ -160,13 +282,80 @@ static void eb_release_vma_all(struct i915_execbuffer *eb)
+>    */
+>   #define for_each_batch_create_order(_eb) \
+>   	for (unsigned int i = 0; i < (_eb)->num_batches; ++i)
+> +#define for_each_batch_add_order(_eb) \
+> +	for (int i = (_eb)->num_batches - 1; i >= 0; --i)
+> +
+> +static void __eb_persistent_add_shared_fence(struct drm_i915_gem_object *obj,
+> +					     struct dma_fence *fence)
+> +{
+> +	struct dma_fence *curr;
+> +	int idx;
+> +
+> +	dma_fence_array_for_each(curr, idx, fence)
+> +		dma_resv_add_fence(obj->base.resv, curr,
+> +				   DMA_RESV_USAGE_BOOKKEEP);
+> +
+> +	obj->write_domain = 0;
+> +	obj->read_domains |= I915_GEM_GPU_DOMAINS;
+> +	obj->mm.dirty = true;
+> +}
+> +
+> +static void eb_persistent_add_shared_fence(struct i915_execbuffer *eb)
+> +{
+> +	struct i915_address_space *vm = eb->context->vm;
+> +	struct dma_fence *fence;
+> +	struct i915_vma *vma;
+> +
+> +	fence = eb->composite_fence ? eb->composite_fence :
+> +		&eb->requests[0]->fence;
+> +
+> +	__eb_persistent_add_shared_fence(vm->root_obj, fence);
+> +	list_for_each_entry(vma, &vm->non_priv_vm_bind_list,
+> +			    non_priv_vm_bind_link)
+> +		__eb_persistent_add_shared_fence(vma->obj, fence);
+> +}
+> +
+> +static void eb_move_all_persistent_vma_to_active(struct i915_execbuffer *eb)
+> +{
+> +	/* Add fence to BOs dma-resv fence list */
+> +	eb_persistent_add_shared_fence(eb);
+> +}
+>   
+>   static int eb_move_to_gpu(struct i915_execbuffer *eb)
+>   {
+> +	struct i915_address_space *vm = eb->context->vm;
+> +	struct i915_vma *vma;
+> +	int err = 0;
+> +
+> +	lockdep_assert_held(&vm->vm_bind_lock);
+> +	assert_object_held(vm->root_obj);
+> +
+> +	eb_move_all_persistent_vma_to_active(eb);
+> +
+> +	list_for_each_entry(vma, &vm->vm_bind_list, vm_bind_link) {
+> +		for_each_batch_add_order(eb) {
+> +			if (!eb->requests[i])
+> +				continue;
+> +
+> +			err = i915_request_await_bind(eb->requests[i], vma);
+> +			if (err)
+> +				goto err_skip;
+> +		}
+> +	}
+> +
+>   	/* Unconditionally flush any chipset caches (for streaming writes). */
+>   	intel_gt_chipset_flush(eb->gt);
+>   
+>   	return 0;
+> +
+> +err_skip:
+> +	for_each_batch_create_order(eb) {
+> +		if (!eb->requests[i])
+> +			break;
+> +
+> +		i915_request_set_error_once(eb->requests[i], err);
+> +	}
+> +	return err;
+>   }
+>   
+>   static int eb_request_submit(struct i915_execbuffer *eb,
+> @@ -483,6 +672,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   
+>   	mutex_lock(&eb.context->vm->vm_bind_lock);
+>   
+> +lookup_vmas:
+>   	err = eb_lookup_vma_all(&eb);
+>   	if (err) {
+>   		eb_release_vma_all(&eb);
+> @@ -499,6 +689,22 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   	/* only throttle once, even if we didn't need to throttle */
+>   	throttle = false;
+>   
+> +	err = eb_lock_vma_all(&eb);
+> +	if (err)
+> +		goto err_validate;
+> +
+> +	/**
+> +	 * No object unbinds possible once the objects are locked. So,
+> +	 * check for any unbinds here, which needs to be scooped up.
+> +	 */
+> +	if (!list_empty(&eb.context->vm->vm_rebind_list)) {
+> +		eb_release_vma_all(&eb);
+> +		i915_gem_ww_ctx_fini(&eb.ww);
+> +		goto lookup_vmas;
+> +	}
 
-Series: series starting with [1/3] drm/i915/tgl+: Add locking around DKL PHY register accesses
-URL   : https://patchwork.freedesktop.org/series/109834/
-State : warning
+Is it not possible to grab the object locks first, and then move stuff 
+off the rebind_list to be re-validated? Or if not maybe a comment to 
+explain?
 
-== Summary ==
-
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
-
+> +
+> +	err = eb_validate_persistent_vma_all(&eb);
+> +
+>   err_validate:
+>   	if (err == -EDEADLK) {
+>   		eb_release_vma_all(&eb);
