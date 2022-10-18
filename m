@@ -1,51 +1,83 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CC12602579
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 09:19:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B8356025D6
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 09:34:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF1AD10EEDA;
-	Tue, 18 Oct 2022 07:17:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6492810E1E0;
+	Tue, 18 Oct 2022 07:34:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEA3E10EEA4;
- Tue, 18 Oct 2022 07:16:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666077409; x=1697613409;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PgIf0JNdVv5y1zbeL5zlETirEoiWvtYe0Lw+HGNgUpk=;
- b=ifW/GPnV4GQIzx21elBlQHVeoDqFB6qio1VAqlLzVOgdam9GVf0jzNx+
- O+X34ueVQ5OgOEJoiMzN9G6kM5txSeouduRaKywo6ej2QnDVYSrFzTBdG
- j7G78il76EVe7i12fwV5t2bcsOFq+hlH+qd9IsH0z8Lja+sjMYl723COC
- IODwR3i0AtIwKGGtviH0XXcgTQrjblatnyhAdVSU0WJPGj42lrnLbinO9
- D1qwdCKhyVnIJQc6K7iDnfBAiqnXih9Uclo2aRpb+NVY7OAIRUpVkz1Mn
- tBocHRJH4cX0AiE8VsbL5Uexo5917Qn/7Hd7MZx5MfH3+l6DwPyreDDAt g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="370221368"
-X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="370221368"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2022 00:16:42 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="661783519"
-X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="661783519"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2022 00:16:41 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 18 Oct 2022 00:16:30 -0700
-Message-Id: <20221018071630.3831-18-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20221018071630.3831-1-niranjana.vishwanathapura@intel.com>
-References: <20221018071630.3831-1-niranjana.vishwanathapura@intel.com>
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
+ [64.147.123.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABD2910E1DB;
+ Tue, 18 Oct 2022 07:34:24 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.west.internal (Postfix) with ESMTP id AFA6D2B06898;
+ Tue, 18 Oct 2022 03:34:19 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute5.internal (MEProxy); Tue, 18 Oct 2022 03:34:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm3; t=1666078459; x=
+ 1666085659; bh=O28Ra42je2l6WzDm/ZO6o7rlbUD0f6okc6FR7gCx5gY=; b=c
+ D7GfdBBYv+RNoIJNHU7ZMe6/6FlTZtIgN1EVcdn7q+/E/tX8MUYD6cWK70SP+095
+ HIysOx6U4hzAzd9Oxr1+lfRNMsdTrBALP5TJwpaKAdsT441k54XiJefZoNwksmDX
+ epJn3K0Zl1gXfWdEG3WyJCO0Gf4YYQgf2AUQhy43zcRtbq4ZG8vbW4fHpJJY6cl7
+ 0Q+/7raGCos6wWg5jQEYEg7BQqlsDeJTfOy8H9hEmeU6/YEQZPzEpuEl/LaL/Vj9
+ qkVpo76vgbxd82LnIZMcIfpuQG5kuH7S0M4AfuBlXTCRA+4FgLH2GFv3vIhwBUIm
+ g/6L/exJNRAJueyn9q0Kw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1666078459; x=
+ 1666085659; bh=O28Ra42je2l6WzDm/ZO6o7rlbUD0f6okc6FR7gCx5gY=; b=K
+ AziRhUbnFvkdSTAUOgSQwizWhJotp/ejPbOhWNRWwnOuNmPW89LQCRyji9fSEqPD
+ 1U1Vltxi+zQuJhVmX9ufaEWhogLUTRpo42yYA/2OigiBIqfDHRcy99ab9ABS3u1S
+ MWPxl+1+f28ZICrHoxJAhEBL+J94+rIw7nBuIcHb7v1ooKaC4Zbinx62GNjEEy6V
+ PxLrPZ0nYSx4mS0ZC0abfrisiOcnTxgGTGK+K0Yj2Xqn9Mat/rJmJALyGyi19B1/
+ 6whf2Y9wu8Z/7EdAVzlj462ybn51hI35XvXMYfbn7EOh8dHJRLKXFejvqm6ySDRi
+ xJDOsXQ3TH3VGqeNPNL0Q==
+X-ME-Sender: <xms:-lZOY2ANOVo_-VHFDC2BsVOUuyO5VW3WiDQ9xO5aOvTmwO6WQXYQxw>
+ <xme:-lZOYwgOxYjEsZMPGEguSQiviJKiwhs1S-50MRE0pJCGpMKsWo2PBRIunN_pl-rN5
+ 35xj_K3svuXb7EjHnQ>
+X-ME-Received: <xmr:-lZOY5mBQh0qtc_Bbrc-pAUe2L5T5LPNYiTMFtT2v7i-3fhzSAW_G6rXN08f>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeltddguddvfecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvvefukfhfgggtugfgjgesthhqredttddtudenucfhrhhomhepofgr
+ gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
+ frrghtthgvrhhnpeejvefftdehvedvfeevffffjeektdfgkedviefgfefhfefgtefhjeej
+ ieegieeugeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
+ iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
+ vggthh
+X-ME-Proxy: <xmx:-lZOY0wQsKHOedSZNpvC-ut337YUuHIfSe8ADCh2G9hhIAUJz6Ho5A>
+ <xmx:-lZOY7T87jDiXPJk9cTa2Wcnzym12ZRSxOTme6T_ESJE1jBCmh6aNw>
+ <xmx:-lZOY_bsoRtzVSwxTgox0TAERmVOBddBaC3ItH-FBFBaC2V_L2o1mA>
+ <xmx:-1ZOYzzDVwXhCAG5OpWMTYanWa3VUWo4DwXwhLLxzzu4VZfUqiNMi22WE54>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 18 Oct 2022 03:34:17 -0400 (EDT)
+Date: Tue, 18 Oct 2022 09:34:16 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Message-ID: <20221018073416.7tttm6mnbt2pdrpk@houat>
+References: <20220728-rpi-analog-tv-properties-v4-0-60d38873f782@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v4-11-60d38873f782@cerno.tech>
+ <0aa690b8-988a-878f-4d4f-d391295bc591@tronnes.org>
+ <20221013083638.kloiaxervnhii7ew@houat>
+ <71e53906-ae9b-55b9-7a93-7bb04a891423@tronnes.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 17/17] drm/i915/vm_bind: Add uapi for user to
- enable vm_bind_mode
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <71e53906-ae9b-55b9-7a93-7bb04a891423@tronnes.org>
+Subject: Re: [Intel-gfx] [PATCH v4 11/30] drm/modes: Add a function to
+ generate analog display modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,184 +90,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
- matthew.auld@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add getparam support for VM_BIND capability version.
-Add VM creation time flag to enable vm_bind_mode for the VM.
+Hi,
 
-v2: update kernel-doc
-v3: create vm->root_obj only upon I915_VM_CREATE_FLAGS_USE_VM_BIND
-v4: replace vm->vm_bind_mode check with i915_gem_vm_is_vm_bind_mode()
+On Sat, Oct 15, 2022 at 05:04:50PM +0200, Noralf Tr=F8nnes wrote:
+> Den 13.10.2022 10.36, skrev Maxime Ripard:
+> > On Sat, Oct 01, 2022 at 02:52:06PM +0200, Noralf Tr=F8nnes wrote:
+> >> Den 29.09.2022 18.31, skrev Maxime Ripard:
+> >>> Multiple drivers (meson, vc4, sun4i) define analog TV 525-lines and
+> >>> 625-lines modes in their drivers.
+> >>>
+> >>> Since those modes are fairly standard, and that we'll need to use them
+> >>> in more places in the future, it makes sense to move their definition
+> >>> into the core framework.
+> >>>
+> >>> However, analog display usually have fairly loose timings requirement=
+s,
+> >>> the only discrete parameters being the total number of lines and pixel
+> >>> clock frequency. Thus, we created a function that will create a displ=
+ay
+> >>> mode from the standard, the pixel frequency and the active area.
+> >>>
+> >>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> >>>
+> >>> ---
+> >>>
+> >>> Changes in v4:
+> >>> - Reworded the line length check comment
+> >>> - Switch to HZ_PER_KHZ in tests
+> >>> - Use previous timing to fill our mode
+> >>> - Move the number of lines check earlier
+> >>> ---
+> >>>  drivers/gpu/drm/drm_modes.c            | 474 +++++++++++++++++++++++=
+++++++++++
+> >>>  drivers/gpu/drm/tests/Makefile         |   1 +
+> >>>  drivers/gpu/drm/tests/drm_modes_test.c | 144 ++++++++++
+> >>>  include/drm/drm_modes.h                |  17 ++
+> >>>  4 files changed, 636 insertions(+)
+> >>>
+> >>
+> >> I haven't followed the discussion on this patch, but it seems rather
+> >> excessive to add over 600 lines of code (including tests) to add 2 fix=
+ed
+> >> modes. And it's very difficult to see from the code what the actual
+> >> display mode timings really are, which would be useful for other
+> >> developers down the road wanting to use them.
+> >>
+> >> Why not just hardcode the modes?
+> >=20
+> > Yeah, I have kind of the same feeling tbh, but it was asked back on the
+> > v1 to ease the transition of old fbdev drivers, since they will need
+> > such a function:
+> > https://lore.kernel.org/dri-devel/CAMuHMdUrwzPYjA0wdR7ADj5Ov6+m03JbnY8f=
+BYzRYyWDuNm5=3Dg@mail.gmail.com/
+> >=20
+>=20
+> If that's the case I suggest you just hardcode them for now and leave
+> the complexity to the developer doing the actual conversion of the fbdev
+> driver. Who knows when that will happen, but that person will have your
+> well documented and discussed work to fall back on.
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 25 +++++++++++++++++++--
- drivers/gpu/drm/i915/gem/i915_gem_context.h |  3 +--
- drivers/gpu/drm/i915/gt/intel_gtt.c         |  2 ++
- drivers/gpu/drm/i915/i915_drv.h             |  2 ++
- drivers/gpu/drm/i915/i915_getparam.c        |  3 +++
- include/uapi/drm/i915_drm.h                 | 22 +++++++++++++++++-
- 6 files changed, 52 insertions(+), 5 deletions(-)
+I'd rather not, tbh. We've collectively spent weeks figuring this out,
+reviewing it and so on, I very much want to avoid doing this all over
+again if it's going to be useful at some point.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 76c6419b7ae0..0376adbbeecc 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1803,9 +1803,13 @@ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
- 	if (!HAS_FULL_PPGTT(i915))
- 		return -ENODEV;
- 
--	if (args->flags)
-+	if (args->flags & I915_VM_CREATE_FLAGS_UNKNOWN)
- 		return -EINVAL;
- 
-+	if ((args->flags & I915_VM_CREATE_FLAGS_USE_VM_BIND) &&
-+	    !HAS_VM_BIND(i915))
-+		return -EOPNOTSUPP;
-+
- 	ppgtt = i915_ppgtt_create(to_gt(i915), 0);
- 	if (IS_ERR(ppgtt))
- 		return PTR_ERR(ppgtt);
-@@ -1818,15 +1822,32 @@ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
- 			goto err_put;
- 	}
- 
-+	if (args->flags & I915_VM_CREATE_FLAGS_USE_VM_BIND) {
-+		struct drm_i915_gem_object *obj;
-+
-+		obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
-+		if (IS_ERR(obj)) {
-+			err = PTR_ERR(obj);
-+			goto err_put;
-+		}
-+
-+		ppgtt->vm.root_obj = obj;
-+	}
-+
- 	err = xa_alloc(&file_priv->vm_xa, &id, &ppgtt->vm,
- 		       xa_limit_32b, GFP_KERNEL);
- 	if (err)
--		goto err_put;
-+		goto err_root_obj_put;
- 
- 	GEM_BUG_ON(id == 0); /* reserved for invalid/unassigned ppgtt */
- 	args->vm_id = id;
- 	return 0;
- 
-+err_root_obj_put:
-+	if (ppgtt->vm.root_obj) {
-+		i915_gem_object_put(ppgtt->vm.root_obj);
-+		ppgtt->vm.root_obj = NULL;
-+	}
- err_put:
- 	i915_vm_put(&ppgtt->vm);
- 	return err;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-index e8b41aa8f8c4..b53aef2853cb 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-@@ -150,8 +150,7 @@ int i915_gem_context_reset_stats_ioctl(struct drm_device *dev, void *data,
-  */
- static inline bool i915_gem_vm_is_vm_bind_mode(struct i915_address_space *vm)
- {
--	/* No support to enable vm_bind mode yet */
--	return false;
-+	return !!vm->root_obj;
- }
- 
- struct i915_address_space *
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 50648ab9214a..ae66fdd4bce9 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -178,6 +178,8 @@ int i915_vm_lock_objects(struct i915_address_space *vm,
- void i915_address_space_fini(struct i915_address_space *vm)
- {
- 	drm_mm_takedown(&vm->mm);
-+	if (vm->root_obj)
-+		i915_gem_object_put(vm->root_obj);
- 	GEM_BUG_ON(!RB_EMPTY_ROOT(&vm->va.rb_root));
- 	mutex_destroy(&vm->vm_bind_lock);
- }
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 7c64f8a17493..f4e7f3d4aff9 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -972,6 +972,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define HAS_BAR2_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
- 				    GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
- 
-+#define HAS_VM_BIND(i915) (GRAPHICS_VER(i915) >= 12)
-+
- /* intel_device_info.c */
- static inline struct intel_device_info *
- mkwrite_device_info(struct drm_i915_private *dev_priv)
-diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-index 342c8ca6414e..f45b3c684bcf 100644
---- a/drivers/gpu/drm/i915/i915_getparam.c
-+++ b/drivers/gpu/drm/i915/i915_getparam.c
-@@ -175,6 +175,9 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 	case I915_PARAM_PERF_REVISION:
- 		value = i915_perf_ioctl_version();
- 		break;
-+	case I915_PARAM_VM_BIND_VERSION:
-+		value = HAS_VM_BIND(i915);
-+		break;
- 	default:
- 		DRM_DEBUG("Unknown parameter %d\n", param->param);
- 		return -EINVAL;
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index fe7ee8f19c83..c2dce8633005 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -771,6 +771,22 @@ typedef struct drm_i915_irq_wait {
- /* Query if the kernel supports the I915_USERPTR_PROBE flag. */
- #define I915_PARAM_HAS_USERPTR_PROBE 56
- 
-+/*
-+ * VM_BIND feature version supported.
-+ *
-+ * The following versions of VM_BIND have been defined:
-+ *
-+ * 0: No VM_BIND support.
-+ *
-+ * 1: In VM_UNBIND calls, the UMD must specify the exact mappings created
-+ *    previously with VM_BIND, the ioctl will not support unbinding multiple
-+ *    mappings or splitting them. Similarly, VM_BIND calls will not replace
-+ *    any existing mappings.
-+ *
-+ * See struct drm_i915_gem_vm_bind and struct drm_i915_gem_vm_unbind.
-+ */
-+#define I915_PARAM_VM_BIND_VERSION	57
-+
- /* Must be kept compact -- no holes and well documented */
- 
- /**
-@@ -2622,6 +2638,9 @@ struct drm_i915_gem_context_destroy {
-  * on the same file. Extensions can be provided to configure exactly how the
-  * address space is setup upon creation.
-  *
-+ * If I915_VM_CREATE_FLAGS_USE_VM_BIND flag is set, VM created will work in
-+ * VM_BIND mode.
-+ *
-  * The id of new VM (bound to the fd) for use with I915_CONTEXT_PARAM_VM is
-  * returned in the outparam @id.
-  *
-@@ -2638,7 +2657,8 @@ struct drm_i915_gem_vm_control {
- 	/** @extensions: Zero-terminated chain of extensions. */
- 	__u64 extensions;
- 
--	/** @flags: reserved for future usage, currently MBZ */
-+#define I915_VM_CREATE_FLAGS_USE_VM_BIND	(1u << 0)
-+#define I915_VM_CREATE_FLAGS_UNKNOWN	(-(I915_VM_CREATE_FLAGS_USE_VM_BIND << 1))
- 	__u32 flags;
- 
- 	/** @vm_id: Id of the VM created or to be destroyed */
--- 
-2.21.0.rc0.32.g243a4c7e27
+Jani also wanted to expose a function and not a raw mode, so this patch
+also addresses that:
+https://lore.kernel.org/dri-devel/8735eeg31e.fsf@intel.com/
 
+Maxime
