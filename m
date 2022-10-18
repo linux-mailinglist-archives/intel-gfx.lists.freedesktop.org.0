@@ -1,33 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A908060266F
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 10:07:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E114D602679
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 10:08:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D95E10E9F4;
-	Tue, 18 Oct 2022 08:07:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA8110EEE6;
+	Tue, 18 Oct 2022 08:08:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9427610E9F4;
- Tue, 18 Oct 2022 08:06:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8C711AA0ED;
- Tue, 18 Oct 2022 08:06:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2639532307113360023=="
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
+ [64.147.123.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC2AB10E9F4;
+ Tue, 18 Oct 2022 08:08:14 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.west.internal (Postfix) with ESMTP id 0EDFD2B05993;
+ Tue, 18 Oct 2022 04:08:09 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute3.internal (MEProxy); Tue, 18 Oct 2022 04:08:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; t=1666080489; x=1666087689; bh=QyIR2mU70I
+ 1YwkwOLa0CmZ/17qlaxKeUVXrXvltnm30=; b=GFjusIHgj8xz/yi7jFvMKNEQxw
+ HZ7+9YtYcFDKPj4XhMSDNdoNg/sq2vcXZOu9JUJQNrnfSNhv3FzbuQxvyTe7zxv6
+ HNmaCAy+x3F8INAsxCFyjYbN1zyXSznVuvbVd4WvSDSSfB22mp4BjmYOkJmMCop4
+ c1zma+hOzfeHlhisprEz6BF7/WdlcDHPoui4ePgJ9+iTrBn7LuNWHOpfCyU43RMZ
+ 9MWeUivxIiVvXOW+9NvBgpukWnqglECw5oQu01fWdHAZtkMyAEHB6cdf76bEC7Uc
+ fUq5aW+BidlQZg4CgEQ37ngnY/EzqNA1p95Hy5fsAV1QBg65BD9ITLEjG/AQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm3; t=1666080489; x=1666087689; bh=QyIR2mU70I1YwkwOLa0CmZ/17qla
+ xKeUVXrXvltnm30=; b=ZH1+1s4aJx7OrygMRTnrhV+LMcQ0Fl5Kp6pyvkYoBkNo
+ GmwWfybSd1z+VI69F79wLXYaoim/Qfyfzn7n/MB2+IRbKrZ+/b0QOLeRsZgAb8Fd
+ 8PqGjo137EOY7CpjWJOeILZb5MjokJbqjUopRfiibgZuUB8FSPF0/jVkgsaLmZG8
+ 6n0wJBtTYqEA+1IaLVqwIbLsA2onk7csRjzUKB8isgB3AEspSi0yKiQX04nzOXNX
+ QiiD4owR9mc4e3meKqg462agLHz3WMQCHWoqPbZ7itzrI8V5rg6/UmHyfqxXmP5G
+ /cd+qux90phW4qVWeCFzCmteS3SOHvJV9HsRIxHA3w==
+X-ME-Sender: <xms:6F5OY6HZgytdMm6Vqyzy8NxLARZpJWI_0b2lwYu5aLlpXTaMlsBOaQ>
+ <xme:6F5OY7VrDINVe0nwa0Y4HWj0xhoc3U-yXZYYH5rqOEMWBepziDr6qryZMpsGL7G0i
+ uwg_8bQZ_ldVY7eD3M>
+X-ME-Received: <xmr:6F5OY0LSSi0uY7NN5F6JAO1Z9rY8338rOwxovMAxprRpD9x04i00D-JrrQI8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeludcutefuodetggdotefrodftvfcurf
+ hrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecuuegr
+ ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+ hrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhepteefffefgfektdefgfeludfgtdejfeejvddttdekteeiffejvdfgheehfffhvedu
+ necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgi
+ himhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:6F5OY0E-ftftih6cOybLdHtpHMzyczz1Aqr_zQyRxv2j9OIzvIxqUg>
+ <xmx:6F5OYwWs3iqVw9YFSBe8SVI8Gk47k1-kxwFyZmVaKn7vT-3wO295oQ>
+ <xmx:6F5OY3NY3rp3gilKugt8Ne3JrajjqLSGe1BvCkrJkzzq1uqDWjql1A>
+ <xmx:6V5OY304Z5gl1LgvOk3C5up8PynQd6xXAoo8YLHxpnj8yXiTGpcxLIvPyw4>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 18 Oct 2022 04:08:08 -0400 (EDT)
+Date: Tue, 18 Oct 2022 10:08:06 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: kfyatek+publicgit@gmail.com
+Message-ID: <20221018080806.mkw4zbzchlatxgwq@houat>
+References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v5-6-d841cc64fe4b@cerno.tech>
+ <30dbbcc8-1d14-0fc8-ed7c-0c3f7d094ea3@gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Tue, 18 Oct 2022 08:06:55 -0000
-Message-ID: <166608041554.20424.4515633025655586725@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221018071630.3831-1-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20221018071630.3831-1-niranjana.vishwanathapura@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/vm=5Fbind=3A_Add_VM=5FBIND_functionality_=28rev7=29?=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="bz2m37ekv7hmvzdb"
+Content-Disposition: inline
+In-Reply-To: <30dbbcc8-1d14-0fc8-ed7c-0c3f7d094ea3@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v5 06/22] drm/modes: Add a function to
+ generate analog display modes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,247 +85,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2639532307113360023==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+--bz2m37ekv7hmvzdb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/i915/vm_bind: Add VM_BIND functionality (rev7)
-URL   : https://patchwork.freedesktop.org/series/105879/
-State : success
+Hi,
 
-== Summary ==
+On Sun, Oct 16, 2022 at 07:34:12PM +0200, Mateusz Kwiatkowski wrote:
+> Hi Maxime & everyone,
+>=20
+> Sorry for being inactive in the discussions about this patchset for the l=
+ast
+> couple of weeks.
+>=20
+> > +const static struct analog_parameters tv_modes_parameters[] =3D {
+> > +	TV_MODE_PARAMETER(DRM_MODE_ANALOG_NTSC,
+> > +			  NTSC_LINES_NUMBER,
+> > +			  NTSC_LINE_DURATION_NS,
+> > +			  PARAM_RANGE(NTSC_HACT_DURATION_MIN_NS,
+> > +				      NTSC_HACT_DURATION_TYP_NS,
+> > +				      NTSC_HACT_DURATION_MAX_NS),
+> > +			  PARAM_RANGE(NTSC_HFP_DURATION_MIN_NS,
+> > +				      NTSC_HFP_DURATION_TYP_NS,
+> > +				      NTSC_HFP_DURATION_MAX_NS),
+> > +			  PARAM_RANGE(NTSC_HSLEN_DURATION_MIN_NS,
+> > +				      NTSC_HSLEN_DURATION_TYP_NS,
+> > +				      NTSC_HSLEN_DURATION_MAX_NS),
+> > +			  PARAM_RANGE(NTSC_HBP_DURATION_MIN_NS,
+> > +				      NTSC_HBP_DURATION_TYP_NS,
+> > +				      NTSC_HBP_DURATION_MAX_NS),
+> > +			  PARAM_RANGE(NTSC_HBLK_DURATION_MIN_NS,
+> > +				      NTSC_HBLK_DURATION_TYP_NS,
+> > +				      NTSC_HBLK_DURATION_MAX_NS),
+> > +			  16,
+> > +			  PARAM_FIELD(3, 3),
+> > +			  PARAM_FIELD(3, 3),
+> > +			  PARAM_FIELD(16, 17)),
+> > +	TV_MODE_PARAMETER(DRM_MODE_ANALOG_PAL,
+> > +			  PAL_LINES_NUMBER,
+> > +			  PAL_LINE_DURATION_NS,
+> > +			  PARAM_RANGE(PAL_HACT_DURATION_MIN_NS,
+> > +				      PAL_HACT_DURATION_TYP_NS,
+> > +				      PAL_HACT_DURATION_MAX_NS),
+> > +			  PARAM_RANGE(PAL_HFP_DURATION_MIN_NS,
+> > +				      PAL_HFP_DURATION_TYP_NS,
+> > +				      PAL_HFP_DURATION_MAX_NS),
+> > +			  PARAM_RANGE(PAL_HSLEN_DURATION_MIN_NS,
+> > +				      PAL_HSLEN_DURATION_TYP_NS,
+> > +				      PAL_HSLEN_DURATION_MAX_NS),
+> > +			  PARAM_RANGE(PAL_HBP_DURATION_MIN_NS,
+> > +				      PAL_HBP_DURATION_TYP_NS,
+> > +				      PAL_HBP_DURATION_MAX_NS),
+> > +			  PARAM_RANGE(PAL_HBLK_DURATION_MIN_NS,
+> > +				      PAL_HBLK_DURATION_TYP_NS,
+> > +				      PAL_HBLK_DURATION_MAX_NS),
+> > +			  12,
+> > +
+> > +			  /*
+> > +			   * The front porch is actually 6 short sync
+> > +			   * pulses for the even field, and 5 for the
+> > +			   * odd field. Each sync takes half a life so
+> > +			   * the odd field front porch is shorter by
+> > +			   * half a line.
+> > +			   *
+> > +			   * In progressive, we're supposed to use 6
+> > +			   * pulses, so we're fine there
+> > +			   */
+> > +			  PARAM_FIELD(3, 2),
+> > +
+> > +			  /*
+> > +			   * The vsync length is 5 long sync pulses,
+> > +			   * each field taking half a line. We're
+> > +			   * shorter for both fields by half a line.
+> > +			   *
+> > +			   * In progressive, we're supposed to use 5
+> > +			   * pulses, so we're off by half
+> > +			   * a line.
+> > +			   *
+> > +			   * In interlace, we're now off by half a line
+> > +			   * for the even field and one line for the odd
+> > +			   * field.
+> > +			   */
+> > +			  PARAM_FIELD(3, 3),
+> > +
+> > +			  /*
+> > +			   * The back porch starts with post-equalizing
+> > +			   * pulses, consisting in 5 short sync pulses
+> > +			   * for the even field, 4 for the odd field. In
+> > +			   * progressive, it's 5 short syncs.
+> > +			   *
+> > +			   * In progressive, we thus have 2.5 lines,
+> > +			   * plus the 0.5 line we were missing
+> > +			   * previously, so we should use 3 lines.
+> > +			   *
+> > +			   * In interlace, the even field is in the
+> > +			   * exact same case than progressive. For the
+> > +			   * odd field, we should be using 2 lines but
+> > +			   * we're one line short, so we'll make up for
+> > +			   * it here by using 3.
+> > +			   *
+> > +			   * The entire blanking area is supposed to
+> > +			   * take 25 lines, so we also need to account
+> > +			   * for the rest of the blanking area that
+> > +			   * can't be in either the front porch or sync
+> > +			   * period.
+> > +			   */
+> > +			  PARAM_FIELD(19, 20)),
+> > +};
+>=20
+> Nit: setting vbp limits like that makes it impossible to use
+> drm_analog_tv_mode() to generate modes that include the VBI for e.g. emit=
+ting
+> teletext.
+>=20
+> This probably doesn't matter, as it can still be created as a custom mode=
+ from
+> userspace, hence I'm mentioning it as a nit.
 
-CI Bug Log - changes from CI_DRM_12254 -> Patchwork_105879v7
-====================================================
+Yeah, I think it's out of scope at least for now. Also, the compositor
+should probably be aware of the margins being used to put the VBI data,
+so expecting userspace to come up with the mode is probably best?
 
-Summary
--------
+> > +		 * By convention, NSTC (aka 525/60) systems start with
+>=20
+> Typo: s/NSTC/NTSC/
 
-  **SUCCESS**
+Fixed, thanks
+Maxime
 
-  No regressions found.
+--bz2m37ekv7hmvzdb
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/index.html
+-----BEGIN PGP SIGNATURE-----
 
-Participating hosts (45 -> 45)
-------------------------------
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY05e5QAKCRDj7w1vZxhR
+xR8VAQC+375DtcagkAytZVeOEe9aSmsByYFfuLp2Bt0aRSrhEAD/SoTKGvPkbrp3
+DYtTf34PAYs3gXueCuNbfrKzWk9/DgM=
+=IY6U
+-----END PGP SIGNATURE-----
 
-  Additional (2): fi-hsw-4770 bat-dg1-5 
-  Missing    (2): fi-bdw-samus fi-kbl-guc 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_105879v7 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#3012])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][4] ([i915#7221])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][5] ([fdo#109271]) +9 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +7 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#1072]) +3 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#4312] / [i915#5594])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@runner@aborted.html
-    - bat-dg1-5:          NOTRUN -> [FAIL][9] ([i915#7220])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/bat-dg1-5/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
-  [i915#7220]: https://gitlab.freedesktop.org/drm/intel/issues/7220
-  [i915#7221]: https://gitlab.freedesktop.org/drm/intel/issues/7221
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12254 -> Patchwork_105879v7
-
-  CI-20190529: 20190529
-  CI_DRM_12254: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7018: 8312a2fe3f3287ba4ac4bc8d100de0734480f482 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_105879v7: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-48b240871f2d drm/i915/vm_bind: Add uapi for user to enable vm_bind_mode
-a07e041f8653 drm/i915/vm_bind: userptr dma-resv changes
-e4ad670ef890 drm/i915/vm_bind: Handle persistent vmas in execbuf3
-cfcbb1e5fe74 drm/i915/vm_bind: Expose i915_request_await_bind()
-379ab291f690 drm/i915/vm_bind: Update i915_vma_verify_bind_complete()
-68859d7ad749 drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl
-1a3fc9620771 drm/i915/vm_bind: Use common execbuf functions in execbuf path
-9b9c5d7176c3 drm/i915/vm_bind: Abstract out common execbuf functions
-801e74a7928f drm/i915/vm_bind: Add out fence support
-7bcb4aa91dbb drm/i915/vm_bind: Support persistent vma activeness tracking
-dcff4ae9f609 drm/i915/vm_bind: Add support to handle object evictions
-37716a795a22 drm/i915/vm_bind: Support for VM private BOs
-aeaf3c8189f0 drm/i915/vm_bind: Implement bind and unbind of object
-8d2d38a3c483 drm/i915/vm_bind: Add support to create persistent vma
-6421e3233284 drm/i915/vm_bind: Expose i915_gem_object_max_page_size()
-81a9071de244 drm/i915/vm_bind: Add __i915_sw_fence_await_reservation()
-b6c9fcf55f30 drm/i915/vm_bind: Expose vm lookup function
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/index.html
-
---===============2639532307113360023==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/vm_bind: Add VM_BIND functionality (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105879/">https://patchwork.freedesktop.org/series/105879/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12254 -&gt; Patchwork_105879v7</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/index.html</p>
-<h2>Participating hosts (45 -&gt; 45)</h2>
-<p>Additional (2): fi-hsw-4770 bat-dg1-5 <br />
-  Missing    (2): fi-bdw-samus fi-kbl-guc </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_105879v7 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7221">i915#7221</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</p>
-</li>
-<li>
-<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/bat-dg1-5/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7220">i915#7220</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12254 -&gt; Patchwork_105879v7</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12254: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7018: 8312a2fe3f3287ba4ac4bc8d100de0734480f482 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_105879v7: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>48b240871f2d drm/i915/vm_bind: Add uapi for user to enable vm_bind_mode<br />
-a07e041f8653 drm/i915/vm_bind: userptr dma-resv changes<br />
-e4ad670ef890 drm/i915/vm_bind: Handle persistent vmas in execbuf3<br />
-cfcbb1e5fe74 drm/i915/vm_bind: Expose i915_request_await_bind()<br />
-379ab291f690 drm/i915/vm_bind: Update i915_vma_verify_bind_complete()<br />
-68859d7ad749 drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl<br />
-1a3fc9620771 drm/i915/vm_bind: Use common execbuf functions in execbuf path<br />
-9b9c5d7176c3 drm/i915/vm_bind: Abstract out common execbuf functions<br />
-801e74a7928f drm/i915/vm_bind: Add out fence support<br />
-7bcb4aa91dbb drm/i915/vm_bind: Support persistent vma activeness tracking<br />
-dcff4ae9f609 drm/i915/vm_bind: Add support to handle object evictions<br />
-37716a795a22 drm/i915/vm_bind: Support for VM private BOs<br />
-aeaf3c8189f0 drm/i915/vm_bind: Implement bind and unbind of object<br />
-8d2d38a3c483 drm/i915/vm_bind: Add support to create persistent vma<br />
-6421e3233284 drm/i915/vm_bind: Expose i915_gem_object_max_page_size()<br />
-81a9071de244 drm/i915/vm_bind: Add __i915_sw_fence_await_reservation()<br />
-b6c9fcf55f30 drm/i915/vm_bind: Expose vm lookup function</p>
-
-</body>
-</html>
-
---===============2639532307113360023==--
+--bz2m37ekv7hmvzdb--
