@@ -1,154 +1,153 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EEDA601DCC
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 01:44:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FC3C601E1D
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 02:07:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1FD410E811;
-	Mon, 17 Oct 2022 23:44:23 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5703710E811;
- Mon, 17 Oct 2022 23:44:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5635910E22E;
+	Tue, 18 Oct 2022 00:07:21 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73E8D10E22E;
+ Tue, 18 Oct 2022 00:07:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666050256; x=1697586256;
+ t=1666051629; x=1697587629;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=/SJguKIbKdnl6YhRQJNeHH/S92E6I+prw2+PSTb/Ax0=;
- b=Vvo36eg4/sarj+2gkpkbVBmWtsPdP0UEU6uupY3V4oIIlh7sdMev08a3
- ILWbhiRTB1niJRMqe8324Ny7qdtoTt7axHB0evvpOA+jxzfTvpcVNec8S
- p7RzsOdK8uuEqu3VLUmpuiMitHnXhSam39CGzW2VFY6l6WYSbkBUfGzZc
- MfamGGcB/bdO06PrFaOClsi2PCIRoHfDZAPgOyFHvKcdpRkfGZAkjy4E2
- Q2/FciyLh61e3yhfskkFQV+J7ITkBKqXmweyZhIVvxoy17TPgh2TJeFai
- UVDYyjcgBZZRxxp7vUsHgmODJiL2nrGQT7sD0IKpwHhD3EYi3dT1I5gD/ w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="303561710"
-X-IronPort-AV: E=Sophos;i="5.95,192,1661842800"; d="scan'208";a="303561710"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2022 16:44:15 -0700
+ bh=qdjjiJWyjBL2bw/DrFP+d23yKZZBiHS7qCQyyhD6VNI=;
+ b=HpN/LgoHLw7BwU5FoaD0wAAufHPMXyFfN6vhYtfnLfDTGzcf0MgyEm8j
+ GdX6pdKSaIaWfamWmyX+3Bs3UqI6g5Evw5rlw2y8lsfXGmIemn7My/AEE
+ epsDcljTkmQRe/CtXGCbZVnB0OjTLKgjqDCAFxV4xmu8osfZbRpYvH6xY
+ XYT1aqbsouXtdhRTAmKNZlpdqTSO+NbZs/Y96bdcBAjsLtpSQu+47rqDw
+ j7KYxX5cDRiGa+wcwC6u/fDoBbHYiIW1uVleaDnSEcJoDDbNsVpG/mR9P
+ KGGbCLme6to7dzyey2OU04PbEHjROkfN+gdzlFEBXybiVP8jr70pHCYbE Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="289246053"
+X-IronPort-AV: E=Sophos;i="5.95,192,1661842800"; d="scan'208";a="289246053"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2022 17:07:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="873656261"
-X-IronPort-AV: E=Sophos;i="5.95,192,1661842800"; d="scan'208";a="873656261"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga006.fm.intel.com with ESMTP; 17 Oct 2022 16:44:15 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="770960187"
+X-IronPort-AV: E=Sophos;i="5.95,192,1661842800"; d="scan'208";a="770960187"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga001.fm.intel.com with ESMTP; 17 Oct 2022 17:06:54 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 17 Oct 2022 16:44:14 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2375.31; Mon, 17 Oct 2022 17:06:33 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 17 Oct 2022 16:44:14 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2375.31; Mon, 17 Oct 2022 17:06:33 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Mon, 17 Oct 2022 16:44:14 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2375.31 via Frontend Transport; Mon, 17 Oct 2022 17:06:33 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.46) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Mon, 17 Oct 2022 16:44:14 -0700
+ 15.1.2375.31; Mon, 17 Oct 2022 17:06:33 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GzPUvaejGIjP1aJORBr9t7UkhaQW2jP13JDPSaKMrV9ay0mTlqyr1pe+50fDbJto89wdQAF70OQ/vgKVl3rL+aWBqLciHNlCQ0EIvxe89eeQD/bQCpV+ftdgjNtiPmq3UO4KTfw4fbRZv5hphDIHLCms5nkxI6fqzOIi6HxtBGEQWlbdE1SwofP41kTb9rmgXO0H8L0/9YSyb+Kwti1qEqw7gEYf3Q6Wez32ZIIQetl8Q03QUgeNo4CoNb+VhckGdiPE9ctHn2J26D0jozoIaKTaobzECJCkMJ1rzRcnh+0HezigJTfPRBKL1dpkpJaxwcfFFRT3F8fOpMf4jOtwuA==
+ b=hNZ16S/6rQKPObih6SJ4IaL7CNR3XLubTaI6AGX5HUQ5lKTfbALGQyAu4fxnZh2MO4TWzq1h9ApaD8nQs8XKiLM0ULDlZHfqZtS5V4cqKywg4huywFajNwflxN+QRJ3gh+3+myj5hP8j9I2C6U7huaRsURh1N3v7A8dS0P9gwFfvwj/YtBWlwrF1HuypN5kD2JIK9L13zEDQr3Md0nRS8kQiKl+Hg5sqG5PPhLLBKBjDDExs414ZC/XB/6v/+E2+J5/YYym1Hcicpx7jUx5TXThYJkQ5c2ayWKuV2jEOPVK1EPRVUpIq2kd3UZEUpvGIAWV3vjyBL15ZqYcIbStKIA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/qkvlm6v7IdtGpH+J0UFJgdkjBwy+yJBlR3C4b5EO7o=;
- b=c1+4AFd4hqUxJLKxAfMJcq9HrL33eQFuU7nDKJs2+smNGsEExrqGC+T+Z4HQkjNmtTcfVJ+YvqT3wpYrCAptwF32HJs9QbwbAV4Z89/gjhoQ1cCULc9CPo1uJRba0wzXgy3LbN0LhZ4+bJPgCxfC/EnexPxNAys5B6Lt4dDHlFg39tkA52VohtFCXpjgNcyAvfUTbDdX/PtlSLJc+NELXAK/m9+p2m9D538SNvEN55zHmmaYirPig3/xXRamhMbaOhUiHSnKcKpbXW/7ew1TB+lZEy6E0HlSO2Xr2lbd/Q2b5A2G3DA6iaLCVQycU6DNHenXhajknG7ZOEXrwmtjkQ==
+ bh=PQ+u/GZkZQdSglvuatPF/CbgVi32UUndgYNKoQ73Zt4=;
+ b=FF1kBDJghKZTg9EiLMKoe6Zuih4JmaxQtrqriBIwRnZQC6j3dhLGeBZfg3VH95aMwAT6GUMRzoIxT18COMhaYcowB/al2/fnMFLd3J9Zo8sfwbQzrWPs3SMlU6kxYtNhao9X83NZDPwTvQXrgMtb3Z1g1n7NRzpa9jxrRTttomcT1b+KiHCisG5qDchwhzQobuN5EdvsdmtDvoXMrj5a8qEGuDYP7DmCbVuzan7kGq9pdg7E1/zUqe3uTKf36FAZcGVGPKi1PTFXXC7ukd+8d4t7m2NF6OKWDcQShMfTTr3qg+MfTLoCzUYJcugTBdTRsbm49Xit1nJ3XELcQ4rviA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by IA1PR11MB6099.namprd11.prod.outlook.com (2603:10b6:208:3d5::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.26; Mon, 17 Oct
- 2022 23:44:12 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::87a1:bf2f:7377:3036]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::87a1:bf2f:7377:3036%7]) with mapi id 15.20.5723.033; Mon, 17 Oct 2022
- 23:44:12 +0000
-Message-ID: <2fab9f05-7c41-2564-b7e1-a26962bb8b42@intel.com>
-Date: Mon, 17 Oct 2022 16:44:09 -0700
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ SJ0PR11MB5024.namprd11.prod.outlook.com (2603:10b6:a03:2dd::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.30; Tue, 18 Oct
+ 2022 00:06:31 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::bff2:8e4f:a657:6095]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::bff2:8e4f:a657:6095%4]) with mapi id 15.20.5723.033; Tue, 18 Oct 2022
+ 00:06:31 +0000
+Message-ID: <85de25e4-2b2c-f40d-1a07-1617364b4b28@intel.com>
+Date: Mon, 17 Oct 2022 17:06:28 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.2
-Content-Language: en-GB
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20221013000332.1738078-1-daniele.ceraolospurio@intel.com>
- <20221013000332.1738078-4-daniele.ceraolospurio@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20221013000332.1738078-4-daniele.ceraolospurio@intel.com>
+ Thunderbird/102.3.2
+Content-Language: en-US
+To: <John.C.Harrison@Intel.com>, <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20221006213813.1563435-1-John.C.Harrison@Intel.com>
+ <20221006213813.1563435-2-John.C.Harrison@Intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20221006213813.1563435-2-John.C.Harrison@Intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR03CA0005.namprd03.prod.outlook.com
- (2603:10b6:a02:a8::18) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+X-ClientProxiedBy: BY5PR17CA0033.namprd17.prod.outlook.com
+ (2603:10b6:a03:1b8::46) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|IA1PR11MB6099:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f31aa54-1c1d-4e2a-2ade-08dab0997e22
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|SJ0PR11MB5024:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb2575af-f205-46b5-a847-08dab09c9c57
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TIClBm95HUjV2KhONotBDnM7ONMm9cP5GXM1uBZ5/HYoXjPxx3FC03x1YnTWuwNxeAP1BYcZeDLkA6SYJe+w04fX1vpqfSzKdxCJee/lB3f69iq9naPAGs7S1UbkXcvdPVpmmoZvKVsc4RAeHVqzANsxp91FTYAxOfGLLiJh6pJumTwqjApMAFv4pCfF0gYxmtaw5Hn2AGrOr8CkyvI1MV7/6CHfrQFHVJ7ojVPhE4HbjV0iF7PK8rEA2aZeEZLwLH2qyL9UveqFXISWsZ7asXbwv50umIL0EqpU/Mr9eQ4T6bonUdevjkjsbxmfxz0dW60mKUhbDGjOHdcLyywRk9gSpguzPvGevi5EfgeekNdNmRMOnhwkKWST/baRWdWzhffZvqmzb5F8194zr6bQuxnhBMd8x5TrOyvVQhpvarTd+6QcrhcgaSqDm1IRp3lrsKdQ2uRSnHHOYTBP1wZDhLhJ9f/VyaLAQpxaIn7ToP6FpGyYph6Euyv2DfJ5TMZ5hzTcLBN9rnnl+tPEODNJO2iCXUUMZ6quG/qaY5GYm+c/ZB3TH0DNqeXzuwkge8bU2ONYr6HbHddpI3A90WnQ+L4SizNNRkjP7F7DCr9EWZ0cpM8ZyRgeK/cnJ7I/1M4WRwGawcKSZdUrCFZPcFAJXGZIPvQEag+J816s2BmGzHIJ1RlW0RrYaWqyWGK1dc2wiLU18cP/3/U8t99p3PyU1pLAnwou0RwoGtKiOMLUQA487ELN1+QPnl+zUr+VEAwvZbFH7pzUKLvoqgOykZ9phvMFQ8l8ZS6VqO8D8wAaRiQ=
+X-Microsoft-Antispam-Message-Info: vQcvufkRjOmR12cthBblZ3e9nDEUNjfYOloWJescZHI+ZraBncHAEGKNIOZndE2Ot3WOxPUZtaNwAAy4ImdupgyUlHwBrsUB4ENqj42bLfPO07cpG6b+4Uh3N2UQpq43ZBS0xPkm00UMcia70doglaNWhekzMxVWw+Uv66CWFi0Xrc6AJm9m9tXALoPizdO+aBHW/17X7hkYl8GZ+2RX+5Rd71O0IEAracHrHQ4sea46VVdAAW3VShtngN02vQ0kefiVxd7oKI5hojs2dwnlYbyzGS7FC8nAL95+PJ7VhCPN7XjOL3uTKr5Eu3FksX6phJcaGqwVC6ghuAvtYqojeF0p2gQloXFDzNw3+Cj/fNZIdP37qjydvFlwl35yROTusKqzwdsoY+WlBoT7J8Qn+/CJVW5UoiNvdkjbwFM5W79gSeUTyMFwZ0RnXmyfVMa8bWL6kF2sIRxWBLHkgAWLMDM4MYTERJ0gcbYqMJcAT1nB6KmK/xyN8Y946C0DgYdCOLaPxpLUhUktOLhZNpy5St/0xT6ZhTkSx1TMsjN8AF8n4uSYwoKf1Qj6xj8sfgMC/wIznLyTcfCPza2iX00KxsiBqzQl1UzudSqyq4b/Sy2mFXyfPIPv8XFueND2iMso35XVSQEY+SuG9Ug372ms9Xjyf/iX2jKQbhsFroxvTiN9G1XksSRB90QpF9J03jLf7P7U2vU846zy1JnRl7tTzpMP+7aOFGOW+g4QIK38HGmtCPJryOTZFsYNzRFB0lkYPWC+GUxl+OQE/liWaFW0X0d8ZxaTOOOl0EkCtBhrQj4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(136003)(366004)(396003)(39860400002)(346002)(376002)(451199015)(31686004)(6486002)(66899015)(478600001)(82960400001)(83380400001)(2616005)(26005)(8936002)(38100700002)(316002)(31696002)(6506007)(2906002)(41300700001)(53546011)(86362001)(186003)(36756003)(5660300002)(8676002)(6512007)(450100002)(6666004)(66946007)(4326008)(107886003)(66476007)(66556008)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(376002)(396003)(346002)(366004)(39860400002)(136003)(451199015)(82960400001)(83380400001)(36756003)(86362001)(107886003)(38100700002)(6666004)(450100002)(31696002)(66946007)(66556008)(316002)(31686004)(8676002)(30864003)(5660300002)(6486002)(186003)(2906002)(2616005)(66476007)(8936002)(4326008)(478600001)(6512007)(26005)(41300700001)(53546011)(6506007)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZURHdmhJYTZtMHlQdHBCVkpwQllKUzhlM29vdDdpOFFwWEZzYThSMnN4YTBq?=
- =?utf-8?B?L0hpdStrcVlaaG4xc0NkdmF5T3RLbzVlUis2aUJnc2tpUGl4UmYwRVptaU1I?=
- =?utf-8?B?UVVhL3hnWmFZYnhiQzVGYkExU2M4UjZ0R1p3VldUQ0RLbnpDWGdpZkUzM2Fx?=
- =?utf-8?B?Y0pJeGFmODJVN1dseXc1SnplN0pnbHRuQXBUYll0SnF3Q252T1FwNHZWcEVz?=
- =?utf-8?B?cUMxTy9oaWxCL3FXMk5YSytPcWJnK2lQaEFFcTVUZEVKdEZTdUVXNEJiZlBL?=
- =?utf-8?B?aGZJTkdKV3owamNBQjhXcFJ2SDIrRnpCZUd4aG5qOGdEVkNsNW9rOGN5THB5?=
- =?utf-8?B?d3ljdlg3bWFJQ3VseHgvRTBaNnhqVnNMdXFiREZiWjIzWVdHUGJ4Z2JEMGg3?=
- =?utf-8?B?UHl0bjNvRHNwMHVvWFM5TWl1anJ1U05qMWFoek1FbjRGYnFmaFBTQVNhSzlL?=
- =?utf-8?B?b085NDQ5QTZuOVJORHNPOTZyS1hwRFpSbHdmR2VibElmb0tpcXR3U3M1a0M5?=
- =?utf-8?B?WU02cjF1ZTE3RUZ4UzZXVjdOUjR6NkVySUQvOGpJUWh5S1RPNmpKa3RkZnUv?=
- =?utf-8?B?ZHo2QUxRSUdXUUpSbENTOTVES2VLbzNiWGZBWXQyVkd3NUFYTHc1aHl2YkRH?=
- =?utf-8?B?djlSN3kzK1pQU0xBZG1KSUVnZHNSN1FhcTJaU3ZZeWhYdGdzM2VaVU5zYXR2?=
- =?utf-8?B?T05naFJ6bjIzMzZoazNqU3ViazRGWi8yVzg5SGNMNGZYeVlTc1JuQit6RUxY?=
- =?utf-8?B?dE16RGIrZHNRRlJ3UUFMSStuZDlGcDRqMzkyWk5oWjZINkI0aldKdVJCZXFF?=
- =?utf-8?B?c3NuQ01VRmJnOS9yNitta2UvUEZFb0UzWUYwWkNEdDFNVnkwMEhwaGEzRnVz?=
- =?utf-8?B?cDZmQ0t5cU5HS2s5S2NYalNsdzlQL1QxSjYveWYwckF3WDZ6WUlCVi82VU9U?=
- =?utf-8?B?SHIvajBHYUZvV1NtOXZwem0zcjRWZEQyK0trZUFLNzlFWi9GTlBFVUd1dS9h?=
- =?utf-8?B?VDNhYkJtTXVHdkxrWXRXZTF1Ui8ySW9yVXZlVFh5aHBvR0Z1Z3d6QVpVSHYw?=
- =?utf-8?B?N1kzM2o5TmlhbmlBTUYwQXhTOFJQTzUxeHN1T1l6ZHNxWEtrcXFGVVVvNmN5?=
- =?utf-8?B?MjgrTHRXY2JtdExwWE4vYlpQUGNjSUplSWdWSDkzYU5rK0djbFFaWXIvWjNo?=
- =?utf-8?B?Y3dDdXNoQVNpd25TOUt4SURoZ2hnV3loUzY4MUYwU2dMRFBsT0k1TnZJWTNE?=
- =?utf-8?B?RGpOaU1yZStqc0ViOXlJUStnbGlabWJoSkltaWtCK2FUbFBxOG9FS24xODMx?=
- =?utf-8?B?NmV4TEs4RlVlT1RCNk5BaTVDQnk5WWp6MXJuWkc5TXNQdGFJK1RueXdqdFk5?=
- =?utf-8?B?K1RIRFpqaWtOYzJRWnI3TjRBUTFvTHhZTzg1MjRzb3kwd1lrTkdMcHN6RUJI?=
- =?utf-8?B?MlZDckR0NkNWM3E2c0hDOFpOZk1KemYzNUxLaEhLLzFGSE5SNEMyR29JQ3Fo?=
- =?utf-8?B?WmJsZ2czcUFVRzlBQzIrenc0NTlLakxhQjlxNU8xcXJOTVFzb3g3SUJNT0dY?=
- =?utf-8?B?ZURCTHpDWEJJWlg2UlNsdVY0TDlhM1ZibkZoNmZIdWxLUXZXOWJjQTNqV2tt?=
- =?utf-8?B?cFNpS2k1UlNCbEh6OFpPNjYyVDFaMXJwOWFjK3FoSmJiNE1udHdUTGNHQSsr?=
- =?utf-8?B?QjhqUjUzd1haSzN2S1hybnl6bWVaM0JycXJENHFaZytYWEtmM3hUcUJBQ3dw?=
- =?utf-8?B?c3l6ZHc1bDdlakl5c2V0NmY3SDFSY3ZMWVZPYUl2VDBQZkFncmN6ZXpqWXFq?=
- =?utf-8?B?NFk0OTZ5RFA4R0lmTEtvQWRPdlZKdUJFTW9BUk9YNG9WSU53eFhKNzZEb3JX?=
- =?utf-8?B?RXRsSWxoUGpQdUQ2UDJaSGRORU5ETHNFZUUrTDJzL01hV3lsRkMzdkNHMmk2?=
- =?utf-8?B?QzhIcFJZTnI4NzFnTmtWTFZEb3JBVFJDT1A1R25HbmtEQVF4WVJUOHVMOGx3?=
- =?utf-8?B?VXZ1TTMyeXJodkVRZUJQVWllcVRUMFNuN0xWYWM5ZG9ya2VkS3dFTXFRTW12?=
- =?utf-8?B?MjNpMDkwTy9FSlZyRU4vc2FPNjFqRncrQ0lBMkdWY0cwWWtOaVRUbXpWMWo5?=
- =?utf-8?B?ZU5GQ0d6cjVHcnh4bWVhZXQ0OTBsR3VqZmNvMUpIZFJYdXNsZFE4OGg0TVJR?=
- =?utf-8?B?ZWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f31aa54-1c1d-4e2a-2ade-08dab0997e22
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MVBzZ0pVWVVNZ0sxdStZU1V0eXhhLzFISndQVTg4K3BmaElRTlRRK2Z4dm8x?=
+ =?utf-8?B?OFZLcHROcjhWREMrY1BnSDZDdzVTRzFiK2daVENYS2F4eXp2Tm43SEdDZHFD?=
+ =?utf-8?B?RDFUSUZuSUdRS3o5bGpYL0oyZjV5elJ5ZkxZUkh1bURvUVFFc2k0UzJhMGxq?=
+ =?utf-8?B?VjIrM29OVUxyWlRwbFY1WWV5ZlpXK2pZcTROZ3Nxc2hrajNNOEE0ZmdYMTdX?=
+ =?utf-8?B?UzNaOEd1M1RCYU8vT1MvdGNoNUZzak5PSld6K0sxUDRFdkt1dk9RM01Nemh6?=
+ =?utf-8?B?UEJGd0RUaEIvRGg1QjYwdUNEYzdmMHBZUFZuNTdzWVBReFFuNndxTVhrQmk1?=
+ =?utf-8?B?UU9VdTZwOFhySE5nUlFkZCtYQy9QZk4wZFRmaDRHOUhHSVVMTFNJYTM5dmFW?=
+ =?utf-8?B?UFFHMkRIeXZTZnJGTDQzNlIrRllCZ1liU29MWCt2MUxiYXUvaWVrWW5wMGlQ?=
+ =?utf-8?B?RFdhT2grblZFMExHU2Q4K2luMVdZTzA2UGJpWFhBR1cyN3REY1FUM3RNU2gy?=
+ =?utf-8?B?QmxXY3JPTy9MTFdOTXB0NldrMHRRNUpST2E1aVVpUzNFRUF3RXl6RmZlQUhr?=
+ =?utf-8?B?UEg5b1VSM3ZXTVI4dExUNkhwcCtXYmpnbVZaS3Z4dUg0cVVjUE9JQTFJNGVN?=
+ =?utf-8?B?MUlEa1g4WDhEaHVQcldsalA5TUlkdHlMQTRORUdsOXRVTE9mbWVxQXhSMXFC?=
+ =?utf-8?B?aHBibi8yL2QvcFVURnk3SHMwTXIvb09Ic2Z2MmJZUnJLbk1Ya01qcTFYM3R4?=
+ =?utf-8?B?aXF4ZHNJN2ZOczlrTCtZemZVYXhGb3JqM293MG1wQmFrSGtodEJRSXVwT2tB?=
+ =?utf-8?B?WFBzYVZ0blVWSTNkTlgwdHdmeVZCa2dqN1Z3Wk0yMUM3TDJwQzRYY1BQNDdJ?=
+ =?utf-8?B?VTVDSFAveW15TUY4Ym9RQlRjVkFweVdMd1hOdnBRYWRCbkt1SzBFNzZydWFW?=
+ =?utf-8?B?SnVZL1c1alViZTV2ejVRUVc0aW9LVVE1ZVRSUy9icGh0d28vbmc2MFhPU1FM?=
+ =?utf-8?B?b2Ric2pJcDZlNGloakdGd3RJTTlzZ2twZEd2N2twOHBhNEh4dzZZVzlXZ21N?=
+ =?utf-8?B?UEduREdhck5KWkEzeHZ3RDBJeXFCZCtXRFJJZkFvNjhuQW5xUTFoMVYyeWVH?=
+ =?utf-8?B?SmlHTWdWYUg5S3pneEpwQ01XeVBhVlFmQTB6My9YNTdNZjluY2JmdTJKSlRC?=
+ =?utf-8?B?TloveUltY3E0dU9tek1nVFVRL2s4aWZ0ZzdKaVpzWG1tbllKbU5JbW1wdHVp?=
+ =?utf-8?B?YVFoRWx4UStRY1ZQUEtaQWFlZzE0UW00RXdFMktyRkFybCtsMWdQUnFWT3Z3?=
+ =?utf-8?B?dkpZQnpEbmFLUWNlWWlyWnBTWnpFV1c4R0x4eHp4Z2NjQ2xYOXZKTzBpVkZh?=
+ =?utf-8?B?OUdQbEJjakV5ZUdDRWJNdXYrUlFmWWxKQXc4R00yT0FlY3N2R2Jybms1NXYz?=
+ =?utf-8?B?WXQwVks0aWl5SnRpS1IrRmdkZjBuTmdPOHVQUDZoTFFlTktHaEhHd1hoVHdX?=
+ =?utf-8?B?dFdUbHNETkhFTG1ZcVA3Tk02OVlqZW80STVhOUVDNjk4MlM0b3JYVnd0MUcv?=
+ =?utf-8?B?cjlBWTBNNUpCYjRGaUNnM0Z1d3NxZTZLc2N2cmlLelUvL1dVbHRTbTRVK2ZK?=
+ =?utf-8?B?RHVLai9PbmgrczVSZTFGcXB0cVFZT2RUY2VGblBBOVFPYXNLNHYvWUpMMzJr?=
+ =?utf-8?B?RjJpVkoxbVRyQ0gxTDJZM2hVSjBDUCtlOCtOVkJCeUsvUlZpMlZQV1V0QTR4?=
+ =?utf-8?B?NXU1MWczWEl0WFFNQU9Oek1LRVJuOXR6b1BqM2tLbGl5VkhLZ3dnTzhjZ0ow?=
+ =?utf-8?B?T2xiVTNwMGNMZUZ5KzBlZGNtYU16N1g3TUNRNzk5ZzJGdE45UVdoWjdRU2FD?=
+ =?utf-8?B?eENsNlVxL2JsK3BrekZUdGdkY2F1RlpkSjdoN3JtMTJ2aXVORVpNditJekFN?=
+ =?utf-8?B?S2lLcmNoYlJBeWZwTG9BOWRVbGlXOGQ4VTNkL1dDVzlCbkRGVmo5WC9GWWZD?=
+ =?utf-8?B?NWVVVG1UckJ6NzMvUmh0L1M2QlNRblRGZUJFSlR6K0c4SDBKU1E2ZnNWUkVX?=
+ =?utf-8?B?dGJPQW52QkczcVpSTFoxRnc3dUxJWk91UkZaRXZGU1M1ZGErbUpnWjBteUox?=
+ =?utf-8?B?a2xWbm5oVStXWEJQdnNucHR1TDI0UnRSOUsvalVYa1E5WWpyTkd3TE52R29P?=
+ =?utf-8?Q?kn8/lXj8PPFZuROgFdY1O9c=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb2575af-f205-46b5-a847-08dab09c9c57
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2022 23:44:12.0405 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2022 00:06:31.2129 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cxtuOBtvA9o40qqTbJKsvidX42QOJce3UqogQRUVcFpI2wS+//hYNqGDqQ/eNg7cwZip0DAMkm7oJwCIIHlx2o2xQy5aIzZdfrst3otCdZM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6099
+X-MS-Exchange-CrossTenant-UserPrincipalName: ftSVlQKZ8tPOaS9mk7c7nS3gcVvsoj8vP/DL6VxAt5YgNwK+bxp61my5Lr752U8zcacBdvqNlz47uqPcopMcHeGJe6ZwL5kVqVMybCB2VRk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5024
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 3/7] drm/i915/uc: use different ggtt pin
- offsets for uc loads
+Subject: Re: [Intel-gfx] [PATCH v5 1/4] drm/i915/guc: Limit scheduling
+ properties to avoid overflow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,137 +160,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/12/2022 17:03, Daniele Ceraolo Spurio wrote:
-> Our current FW loading process is the same for all FWs:
+
+
+On 10/6/2022 2:38 PM, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
 >
-> - Pin FW to GGTT at the start of the ggtt->uc_fw node
-> - Load the FW
-> - Unpin
+> GuC converts the pre-emption timeout and timeslice quantum values into
+> clock ticks internally. That significantly reduces the point of 32bit
+> overflow. On current platforms, worst case scenario is approximately
+> 110 seconds. Rather than allowing the user to set higher values and
+> then get confused by early timeouts, add limits when setting these
+> values.
 >
-> This worked because we didn't have a case where 2 FWs would be loaded on
-> the same GGTT at the same time. On MTL, however, this can happend if both
-> GTs are reset at the same time, so we can't pin everything in the same
-> spot and we need to use separate offset. For simplicity, instead of
-> calculating the exact required size, we reserve a 2MB slot for each fw.
+> v2: Add helper functions for clamping (review feedback from Tvrtko).
+> v3: Add a bunch of BUG_ON range checks in addition to the checks
+> already in the clamping functions (Tvrtko)
 >
-> v2: fail fetch if FW is > 2MBs, improve comments (John)
->
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: John Harrison <john.c.harrison@intel.com>
-> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> (v1)
+
+r-b stands
+
+Daniele
+
+> Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 30 +++++++++++++++++++++---
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h | 13 ++++++++++
->   2 files changed, 40 insertions(+), 3 deletions(-)
+>   drivers/gpu/drm/i915/gt/intel_engine.h        |  6 ++
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 69 +++++++++++++++++++
+>   drivers/gpu/drm/i915/gt/sysfs_engines.c       | 25 ++++---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   | 21 ++++++
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  8 +++
+>   5 files changed, 119 insertions(+), 10 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index de2843dc1307..021290a26195 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -575,6 +575,17 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   	err = firmware_request_nowarn(&fw, uc_fw->file_selected.path, dev);
->   	memcpy(&file_ideal, &uc_fw->file_wanted, sizeof(file_ideal));
->   
-> +	if (!err && fw->size > INTEL_UC_RSVD_GGTT_PER_FW) {
-> +		drm_err(&i915->drm,
-> +			"%s firmware %s: size (%zuKB) exceeds max supported size (%uKB)\n",
-> +			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-> +			fw->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / SZ_1K);
-> +
-> +		/* try to find another blob to load */
-> +		release_firmware(fw);
-> +		err = -ENOENT;
-> +	}
-> +
->   	/* Any error is terminal if overriding. Don't bother searching for older versions */
->   	if (err && intel_uc_fw_is_overridden(uc_fw))
->   		goto fail;
-> @@ -677,14 +688,28 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   
->   static u32 uc_fw_ggtt_offset(struct intel_uc_fw *uc_fw)
->   {
-> -	struct i915_ggtt *ggtt = __uc_fw_to_gt(uc_fw)->ggtt;
-> +	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
-> +	struct i915_ggtt *ggtt = gt->ggtt;
->   	struct drm_mm_node *node = &ggtt->uc_fw;
-> +	u32 offset = uc_fw->type * INTEL_UC_RSVD_GGTT_PER_FW;
-> +
-> +	/*
-> +	 * To keep the math simple, we use 8MB for the root tile and 8MB for
-> +	 * the media one. This will need to be updated if we ever have more
-> +	 * than 1 media GT
-> +	 */
-> +	BUILD_BUG_ON(INTEL_UC_FW_NUM_TYPES * INTEL_UC_RSVD_GGTT_PER_FW > SZ_8M);
-> +	GEM_BUG_ON(gt->type == GT_MEDIA && gt->info.id > 1);
-> +	if (gt->type == GT_MEDIA)
-> +		offset += SZ_8M;
-This is all because render/media GTs share the same page tables? Regular 
-multi-tile is completely separate address spaces and can use a single 
-common address? Otherwise, it seems like 'offset = gt->info.id * 2M' 
-would be the generic solution and no reference to GT_MEDIA required. So 
-maybe add a quick comment to that effect?
-
-
->   
->   	GEM_BUG_ON(!drm_mm_node_allocated(node));
->   	GEM_BUG_ON(upper_32_bits(node->start));
->   	GEM_BUG_ON(upper_32_bits(node->start + node->size - 1));
-> +	GEM_BUG_ON(offset + uc_fw->obj->base.size > node->size);
-> +	GEM_BUG_ON(uc_fw->obj->base.size > INTEL_UC_RSVD_GGTT_PER_FW);
->   
-> -	return lower_32_bits(node->start);
-> +	return lower_32_bits(node->start + offset);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index 04e435bce79bd..cbc8b857d5f7a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -348,4 +348,10 @@ intel_engine_get_hung_context(struct intel_engine_cs *engine)
+>   	return engine->hung_ce;
 >   }
 >   
->   static void uc_fw_bind_ggtt(struct intel_uc_fw *uc_fw)
-> @@ -699,7 +724,6 @@ static void uc_fw_bind_ggtt(struct intel_uc_fw *uc_fw)
->   	dummy->bi.pages = obj->mm.pages;
+> +u64 intel_clamp_heartbeat_interval_ms(struct intel_engine_cs *engine, u64 value);
+> +u64 intel_clamp_max_busywait_duration_ns(struct intel_engine_cs *engine, u64 value);
+> +u64 intel_clamp_preempt_timeout_ms(struct intel_engine_cs *engine, u64 value);
+> +u64 intel_clamp_stop_timeout_ms(struct intel_engine_cs *engine, u64 value);
+> +u64 intel_clamp_timeslice_duration_ms(struct intel_engine_cs *engine, u64 value);
+> +
+>   #endif /* _INTEL_RINGBUFFER_H_ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 2ddcad497fa30..8f16955f0821e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -512,6 +512,26 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id,
+>   		engine->flags |= I915_ENGINE_HAS_EU_PRIORITY;
+>   	}
 >   
->   	GEM_BUG_ON(!i915_gem_object_has_pinned_pages(obj));
-> -	GEM_BUG_ON(dummy->node_size > ggtt->uc_fw.size);
+> +	/* Cap properties according to any system limits */
+> +#define CLAMP_PROP(field) \
+> +	do { \
+> +		u64 clamp = intel_clamp_##field(engine, engine->props.field); \
+> +		if (clamp != engine->props.field) { \
+> +			drm_notice(&engine->i915->drm, \
+> +				   "Warning, clamping %s to %lld to prevent overflow\n", \
+> +				   #field, clamp); \
+> +			engine->props.field = clamp; \
+> +		} \
+> +	} while (0)
+> +
+> +	CLAMP_PROP(heartbeat_interval_ms);
+> +	CLAMP_PROP(max_busywait_duration_ns);
+> +	CLAMP_PROP(preempt_timeout_ms);
+> +	CLAMP_PROP(stop_timeout_ms);
+> +	CLAMP_PROP(timeslice_duration_ms);
+> +
+> +#undef CLAMP_PROP
+> +
+>   	engine->defaults = engine->props; /* never to change again */
 >   
->   	/* uc_fw->obj cache domains were not controlled across suspend */
->   	if (i915_gem_object_has_struct_page(obj))
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> index cb586f7df270..7b3db41efa6e 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> @@ -6,6 +6,7 @@
->   #ifndef _INTEL_UC_FW_H_
->   #define _INTEL_UC_FW_H_
+>   	engine->context_size = intel_engine_context_size(gt, engine->class);
+> @@ -534,6 +554,55 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id,
+>   	return 0;
+>   }
 >   
-> +#include <linux/sizes.h>
->   #include <linux/types.h>
->   #include "intel_uc_fw_abi.h"
->   #include "intel_device_info.h"
-> @@ -114,6 +115,18 @@ struct intel_uc_fw {
->   						     (uc)->fw.file_selected.minor_ver, \
->   						     (uc)->fw.file_selected.patch_ver))
+> +u64 intel_clamp_heartbeat_interval_ms(struct intel_engine_cs *engine, u64 value)
+> +{
+> +	value = min_t(u64, value, jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT));
+> +
+> +	return value;
+> +}
+> +
+> +u64 intel_clamp_max_busywait_duration_ns(struct intel_engine_cs *engine, u64 value)
+> +{
+> +	value = min(value, jiffies_to_nsecs(2));
+> +
+> +	return value;
+> +}
+> +
+> +u64 intel_clamp_preempt_timeout_ms(struct intel_engine_cs *engine, u64 value)
+> +{
+> +	/*
+> +	 * NB: The GuC API only supports 32bit values. However, the limit is further
+> +	 * reduced due to internal calculations which would otherwise overflow.
+> +	 */
+> +	if (intel_guc_submission_is_wanted(&engine->gt->uc.guc))
+> +		value = min_t(u64, value, guc_policy_max_preempt_timeout_ms());
+> +
+> +	value = min_t(u64, value, jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT));
+> +
+> +	return value;
+> +}
+> +
+> +u64 intel_clamp_stop_timeout_ms(struct intel_engine_cs *engine, u64 value)
+> +{
+> +	value = min_t(u64, value, jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT));
+> +
+> +	return value;
+> +}
+> +
+> +u64 intel_clamp_timeslice_duration_ms(struct intel_engine_cs *engine, u64 value)
+> +{
+> +	/*
+> +	 * NB: The GuC API only supports 32bit values. However, the limit is further
+> +	 * reduced due to internal calculations which would otherwise overflow.
+> +	 */
+> +	if (intel_guc_submission_is_wanted(&engine->gt->uc.guc))
+> +		value = min_t(u64, value, guc_policy_max_exec_quantum_ms());
+> +
+> +	value = min_t(u64, value, jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT));
+> +
+> +	return value;
+> +}
+> +
+>   static void __setup_engine_capabilities(struct intel_engine_cs *engine)
+>   {
+>   	struct drm_i915_private *i915 = engine->i915;
+> diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
+> index 9670310562029..f2d9858d827c2 100644
+> --- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
+> +++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
+> @@ -144,7 +144,7 @@ max_spin_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   	       const char *buf, size_t count)
+>   {
+>   	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+> -	unsigned long long duration;
+> +	unsigned long long duration, clamped;
+>   	int err;
+>   
+>   	/*
+> @@ -168,7 +168,8 @@ max_spin_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   	if (err)
+>   		return err;
+>   
+> -	if (duration > jiffies_to_nsecs(2))
+> +	clamped = intel_clamp_max_busywait_duration_ns(engine, duration);
+> +	if (duration != clamped)
+>   		return -EINVAL;
+>   
+>   	WRITE_ONCE(engine->props.max_busywait_duration_ns, duration);
+> @@ -203,7 +204,7 @@ timeslice_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   		const char *buf, size_t count)
+>   {
+>   	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+> -	unsigned long long duration;
+> +	unsigned long long duration, clamped;
+>   	int err;
+>   
+>   	/*
+> @@ -218,7 +219,8 @@ timeslice_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   	if (err)
+>   		return err;
+>   
+> -	if (duration > jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT))
+> +	clamped = intel_clamp_timeslice_duration_ms(engine, duration);
+> +	if (duration != clamped)
+>   		return -EINVAL;
+>   
+>   	WRITE_ONCE(engine->props.timeslice_duration_ms, duration);
+> @@ -256,7 +258,7 @@ stop_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   	   const char *buf, size_t count)
+>   {
+>   	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+> -	unsigned long long duration;
+> +	unsigned long long duration, clamped;
+>   	int err;
+>   
+>   	/*
+> @@ -272,7 +274,8 @@ stop_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   	if (err)
+>   		return err;
+>   
+> -	if (duration > jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT))
+> +	clamped = intel_clamp_stop_timeout_ms(engine, duration);
+> +	if (duration != clamped)
+>   		return -EINVAL;
+>   
+>   	WRITE_ONCE(engine->props.stop_timeout_ms, duration);
+> @@ -306,7 +309,7 @@ preempt_timeout_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   		      const char *buf, size_t count)
+>   {
+>   	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+> -	unsigned long long timeout;
+> +	unsigned long long timeout, clamped;
+>   	int err;
+>   
+>   	/*
+> @@ -322,7 +325,8 @@ preempt_timeout_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   	if (err)
+>   		return err;
+>   
+> -	if (timeout > jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT))
+> +	clamped = intel_clamp_preempt_timeout_ms(engine, timeout);
+> +	if (timeout != clamped)
+>   		return -EINVAL;
+>   
+>   	WRITE_ONCE(engine->props.preempt_timeout_ms, timeout);
+> @@ -362,7 +366,7 @@ heartbeat_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   		const char *buf, size_t count)
+>   {
+>   	struct intel_engine_cs *engine = kobj_to_engine(kobj);
+> -	unsigned long long delay;
+> +	unsigned long long delay, clamped;
+>   	int err;
+>   
+>   	/*
+> @@ -379,7 +383,8 @@ heartbeat_store(struct kobject *kobj, struct kobj_attribute *attr,
+>   	if (err)
+>   		return err;
+>   
+> -	if (delay >= jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT))
+> +	clamped = intel_clamp_heartbeat_interval_ms(engine, delay);
+> +	if (delay != clamped)
+>   		return -EINVAL;
+>   
+>   	err = intel_engine_set_heartbeat(engine, delay);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+> index e7a7fb450f442..968ebd79dce70 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+> @@ -327,6 +327,27 @@ struct guc_update_scheduling_policy {
+>   
+>   #define GLOBAL_POLICY_DEFAULT_DPC_PROMOTE_TIME_US 500000
 >   
 > +/*
-> + * When we load the uC binaries, we pin them in a reserved section at the top of
-> + * the GGTT, which is ~18 MBs. On multi-GT systems where the GTs share the GGTT,
-^^^ meaning only systems with a render GT + media GT as opposed to 
-regular multi-GT systems? Would be good to make that explicit either 
-here or above (or both).
-
-John.
-
-> + * we also need to make sure that each binary is pinned to a unique location
-> + * during load, because the different GT can go through the FW load at the same
-> + * time. Given that the available space is much greater than what is required by
-> + * the binaries, to keep things simple instead of dynamically partitioning the
-> + * reserved section to make space for all the blobs we can just reserve a static
-> + * chunk for each binary.
+> + * GuC converts the timeout to clock ticks internally. Different platforms have
+> + * different GuC clocks. Thus, the maximum value before overflow is platform
+> + * dependent. Current worst case scenario is about 110s. So, the spec says to
+> + * limit to 100s to be safe.
 > + */
-> +#define INTEL_UC_RSVD_GGTT_PER_FW SZ_2M
+> +#define GUC_POLICY_MAX_EXEC_QUANTUM_US		(100 * 1000 * 1000UL)
+> +#define GUC_POLICY_MAX_PREEMPT_TIMEOUT_US	(100 * 1000 * 1000UL)
 > +
->   #ifdef CONFIG_DRM_I915_DEBUG_GUC
->   void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->   			       enum intel_uc_fw_status status);
+> +static inline u32 guc_policy_max_exec_quantum_ms(void)
+> +{
+> +	BUILD_BUG_ON(GUC_POLICY_MAX_EXEC_QUANTUM_US >= UINT_MAX);
+> +	return GUC_POLICY_MAX_EXEC_QUANTUM_US / 1000;
+> +}
+> +
+> +static inline u32 guc_policy_max_preempt_timeout_ms(void)
+> +{
+> +	BUILD_BUG_ON(GUC_POLICY_MAX_PREEMPT_TIMEOUT_US >= UINT_MAX);
+> +	return GUC_POLICY_MAX_PREEMPT_TIMEOUT_US / 1000;
+> +}
+> +
+>   struct guc_policies {
+>   	u32 submission_queue_depth[GUC_MAX_ENGINE_CLASSES];
+>   	/* In micro seconds. How much time to allow before DPC processing is
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 693b07a977893..c433d35ae41ae 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -2430,6 +2430,10 @@ static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
+>   	int ret;
+>   
+>   	/* NB: For both of these, zero means disabled. */
+> +	GEM_BUG_ON(overflows_type(engine->props.timeslice_duration_ms * 1000,
+> +				  execution_quantum));
+> +	GEM_BUG_ON(overflows_type(engine->props.preempt_timeout_ms * 1000,
+> +				  preemption_timeout));
+>   	execution_quantum = engine->props.timeslice_duration_ms * 1000;
+>   	preemption_timeout = engine->props.preempt_timeout_ms * 1000;
+>   
+> @@ -2463,6 +2467,10 @@ static void guc_context_policy_init_v69(struct intel_engine_cs *engine,
+>   		desc->policy_flags |= CONTEXT_POLICY_FLAG_PREEMPT_TO_IDLE_V69;
+>   
+>   	/* NB: For both of these, zero means disabled. */
+> +	GEM_BUG_ON(overflows_type(engine->props.timeslice_duration_ms * 1000,
+> +				  desc->execution_quantum));
+> +	GEM_BUG_ON(overflows_type(engine->props.preempt_timeout_ms * 1000,
+> +				  desc->preemption_timeout));
+>   	desc->execution_quantum = engine->props.timeslice_duration_ms * 1000;
+>   	desc->preemption_timeout = engine->props.preempt_timeout_ms * 1000;
+>   }
 
