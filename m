@@ -2,76 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509066026F5
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 10:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADE4602756
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 10:44:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B9E10EB95;
-	Tue, 18 Oct 2022 08:32:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2569510EB80;
+	Tue, 18 Oct 2022 08:43:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25C0510E4C8;
- Tue, 18 Oct 2022 08:32:00 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.west.internal (Postfix) with ESMTP id 6B89B2B06866;
- Tue, 18 Oct 2022 04:31:55 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Tue, 18 Oct 2022 04:31:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm3; t=1666081915; x=1666089115; bh=fVI2EJnVlp
- jbITRfhf/MEDKDIYqZ83EHW+uFvYqJ3GE=; b=E/oS9DyWhA8g58HLIuCEAdjp+3
- t+kXUNNmuvVW4gCFTX4uansKgdcI0z1od/7hZp2owj39fURNiT13fB47gkmtn3CJ
- 2H2C4LDxzVpImC14E5MiwhaFrP/wzx0Zu6aWSo8vnz6ZiWDuTzIf7mPSafcjIjL7
- Ktt68vaMOaL1Kas6E5aO6d4LP7+lFw8cRiOqNGQ3Ck9TjNIGleczD4KO4Y16ATdN
- sp/ePs2Cxw97s3Eiok74y0erQQ34oFh1UGuDHwcy17gmgBVPIBuw4DUrHqNzS+ar
- dGgnm7RqzlAZVuXIWgZCjwAOse8HIxhDma/q9bVSzJFrtJEPU0+B2qfcoqfA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; t=1666081915; x=1666089115; bh=fVI2EJnVlpjbITRfhf/MEDKDIYqZ
- 83EHW+uFvYqJ3GE=; b=epm9K8FSvMhkC5qc+KzKqUBNaO6dGHyYD3uVRcM+AfSC
- DQBGTJwzntTrsvr9uPrUGuWUjd0kBwTiB7h73aMrJmvShW1KtQzk3qA5CMlu3UJ6
- re2xV5ugJXQEII1HodNUDxsnFaQk7bAUK7K66sg4a+gjWX9R/ZejWdxCimSSqYqm
- 6QatFQOrHIKqRE7Qm7uB77oKaS+dx/V9Gh5wqIfrIkPBteGluP+B60oBLht7/9rQ
- 7cCBygs54841y6xJ1O8yAye2mw90tr2EOGp6fYbN5VA9ebIJ6C+7vG+1lPuCYK9/
- Ugc+txHMO0LDiAjWoEy7aqQHW0V3BnalWAoLOA/+6A==
-X-ME-Sender: <xms:emROY46iy60goFrr_WU2zHsL9iuc399b7JhJODl0-LgksKAMSNTkcw>
- <xme:emROY57mnTp_3ENJZ8OzX0xtCU67J4FOTM3VAdL5AaO4kupPv__bkOI2R59aE_brX
- hCZtUfG-FNzTAksq_o>
-X-ME-Received: <xmr:emROY3d9dWcAzYHBLjYTAdJNGT4GClAW81v9347IhMA51V5iLYMj3p-idlvT>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeluddgtdegucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
- mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
- htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
- hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:emROY9LBVry6aKrA2NlwwP8wDSRg7PDiELeB6DYc4Gds3rw9XRoR1w>
- <xmx:emROY8L27ihIBZ4gnvlia-DXnfdfA_eN5iKOAOL9U6b_pHaaBPg2RQ>
- <xmx:emROY-z4L1c83o5TN_73-0SbD7iixLdy2H6Hz8SbNhRW99CwE2zKgg>
- <xmx:e2ROY2o2vgyykG5PFglEXmdAutCaV1CBZNCRvmLRTqHCgXcMUXkOxWVRiJg>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 18 Oct 2022 04:31:54 -0400 (EDT)
-Date: Tue, 18 Oct 2022 10:31:53 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: kfyatek+publicgit@gmail.com
-Message-ID: <20221018083153.okkqpd5ccfrnwdj3@houat>
-References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
- <20220728-rpi-analog-tv-properties-v5-21-d841cc64fe4b@cerno.tech>
- <93bf9fcc-c645-b042-011f-8f1fc957af48@gmail.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09EC710E98D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Oct 2022 08:43:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666082631; x=1697618631;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KYhFdtMbUn+nPDPaeiRFP9Jgac5hVtLeybouO/qnqQU=;
+ b=VSYBqLlujYyPPVJd/DHymyLFVJmb6Nd6mtHlso3hqNA4ZEUpIIL7KWPw
+ 0hIdIVfjUhjJvRJe38/fHC5WVuT58eQzVkcjlTSOrWdpn5QSZE4lkRgTq
+ 29BGtIqHSlfXt9KfLlyEUu7/ZLL1iNEe3CLvsD/dTbBjg2PdqkHUSsAj1
+ 5+KjwGt7s88Cvj1bBJJbsdVAlnKV336pe9raX6rxxkKRvaEVS4rROEucp
+ x/3YQsjjBMFAW2oftgECZ9Tx8b8tiWYKb0AQK5VmVAk/TMWI4EJVzbrvC
+ CLQuEiiHUyHCb1k8sUY2WE9mDU/oONMmT9Kyk5stzFRPwVKgQWwodqZCT A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="304779379"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="304779379"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 01:43:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="873802431"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="873802431"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmsmga006.fm.intel.com with ESMTP; 18 Oct 2022 01:43:45 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 18 Oct 2022 14:09:20 +0530
+Message-Id: <20221018083921.23239-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="gs7goob5irll63bf"
-Content-Disposition: inline
-In-Reply-To: <93bf9fcc-c645-b042-011f-8f1fc957af48@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/vc4: vec: Add support for PAL-60
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/pps: Add get_pps_idx() hook as
+ part of pps_get_register() cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,63 +56,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Simplified pps_get_register() which use get_pps_idx() hook to derive the
+pps instance and get_pps_idx() will be initialized at pps_init().
 
---gs7goob5irll63bf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v1: Initial version. Got r-b from Jani.
+v2: Corrected unintentional change around memset() call. [Jani]
 
-Hi,
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+ drivers/gpu/drm/i915/display/intel_pps.c           | 14 +++++++++-----
+ 2 files changed, 10 insertions(+), 5 deletions(-)
 
-On Sun, Oct 16, 2022 at 09:46:49PM +0200, Mateusz Kwiatkowski wrote:
-> @@ -308,14 +324,15 @@ static const struct vc4_vec_tv_mode vc4_vec_tv_mode=
-s[] =3D {
->  };
-> =20
->  static inline const struct vc4_vec_tv_mode *
-> -vc4_vec_tv_mode_lookup(unsigned int mode)
-> +vc4_vec_tv_mode_lookup(unsigned int mode, u16 htotal)
->  {
->  	unsigned int i;
-> =20
->  	for (i =3D 0; i < ARRAY_SIZE(vc4_vec_tv_modes); i++) {
->  		const struct vc4_vec_tv_mode *tv_mode =3D &vc4_vec_tv_modes[i];
-> =20
-> -		if (tv_mode->mode =3D=3D mode)
-> +		if (tv_mode->mode =3D=3D mode &&
-> +		    tv_mode->expected_htotal =3D=3D htotal)
->  			return tv_mode;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index e2b853e9e51d..44ab296c1f04 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1694,6 +1694,7 @@ struct intel_dp {
+ 	u8 (*preemph_max)(struct intel_dp *intel_dp);
+ 	u8 (*voltage_max)(struct intel_dp *intel_dp,
+ 			  const struct intel_crtc_state *crtc_state);
++	int (*get_pps_idx)(struct intel_dp *intel_dp);
+ 
+ 	/* Displayport compliance testing */
+ 	struct intel_dp_compliance compliance;
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 21944f5bf3a8..9ed62c891b8c 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -365,11 +365,8 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
+ 	int pps_idx = 0;
+ 
+ 	memset(regs, 0, sizeof(*regs));
+-
+-	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+-		pps_idx = bxt_power_sequencer_idx(intel_dp);
+-	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+-		pps_idx = vlv_power_sequencer_pipe(intel_dp);
++	if (intel_dp->get_pps_idx)
++		pps_idx = intel_dp->get_pps_idx(intel_dp);
+ 
+ 	regs->pp_ctrl = PP_CONTROL(pps_idx);
+ 	regs->pp_stat = PP_STATUS(pps_idx);
+@@ -1432,6 +1429,13 @@ void intel_pps_init(struct intel_dp *intel_dp)
+ 	intel_dp->pps.initializing = true;
+ 	INIT_DELAYED_WORK(&intel_dp->pps.panel_vdd_work, edp_panel_vdd_work);
+ 
++	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
++		intel_dp->get_pps_idx = bxt_power_sequencer_idx;
++	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++		intel_dp->get_pps_idx = vlv_power_sequencer_pipe;
++	else
++		intel_dp->get_pps_idx = NULL;
++
+ 	pps_init_timestamps(intel_dp);
+ 
+ 	with_intel_pps_lock(intel_dp, wakeref) {
+-- 
+2.29.0
 
-Is there any reason we're not using the refresh rate to filter this? It
-seems more natural to me.
-
-Maxime
-
---gs7goob5irll63bf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY05keQAKCRDj7w1vZxhR
-xaoGAP9HmWvEP2iOcoDGqog26qg7gWYMxwwOjWfwgHtgcV81kQEAx9tCz7NmGbD4
-TRrl+IN8yZd5ByEPUAc0V6js5M4u6w8=
-=0Z/k
------END PGP SIGNATURE-----
-
---gs7goob5irll63bf--
