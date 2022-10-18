@@ -1,36 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE4C602EEF
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 16:56:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0A0602F8B
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 17:22:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6805710E8D1;
-	Tue, 18 Oct 2022 14:56:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CBC110EF3C;
+	Tue, 18 Oct 2022 15:22:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C047F10E8AF;
- Tue, 18 Oct 2022 14:55:54 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id BD2FD68C4E; Tue, 18 Oct 2022 16:55:50 +0200 (CEST)
-Date: Tue, 18 Oct 2022 16:55:50 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Juergen Gross <jgross@suse.com>
-Message-ID: <20221018145550.GA21066@lst.de>
-References: <20221018082413.GA25785@lst.de>
- <a5966644-72d7-4b25-83d1-9765d0593e44@suse.com>
- <20221018110243.GA4655@lst.de>
- <d67ceabb-b31a-59e6-fc77-8d6c48b277f2@suse.com>
- <20221018143320.GA19106@lst.de>
- <e0448dac-a35e-cfd0-c087-411558512b5e@suse.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D64310EF3C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Oct 2022 15:22:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666106558; x=1697642558;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mfj6y1zJxsesul+cRLpD8qGCSovxPAibwGwx8EhLNW0=;
+ b=dXG1oiKZRFAXpr7bUb+KMRv0P/vVQM+mf4dcw9lEeADVUsH+5M3ABXk/
+ Th5luqrUQgA4M1NqCXAur4i0oKFSwBd8viAJsO2v7sOFllCZFbxqRWGAT
+ xTS5uuOgE/6KRho+S2tHkG8zAxG9lFKgechHjq0kmPZy3n4T/58aH0TR7
+ ymzfiyLn9DNyH3S0xnpWqBCFbxpdIfnBC5S9WLa33namJDQvvnbx/dCW+
+ uTUIyNbwoibGtjF8VZG2pLVBIRm8MQ+nGSqpmYq9wx8+2wCy941PqQX1q
+ rstusvs6YSlc9uJ4w8yn4p5EdGNQ6rWfVxHrOjWqg/1Rdry1APrVVahOF A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="332684748"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="332684748"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 08:22:37 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="659843953"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="659843953"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 08:22:37 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: linux-firmware@kernel.org
+Date: Tue, 18 Oct 2022 08:24:46 -0700
+Message-Id: <20221018152446.1927225-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e0448dac-a35e-cfd0-c087-411558512b5e@suse.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] i915 "GPU HANG",
- bisected to a2daa27c0c61 "swiotlb: simplify swiotlb_max_segment"
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] PR for HuC 7.10.3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,26 +54,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stefano Stabellini <sstabellini@kernel.org>, regressions@lists.linux.dev,
- dri-devel@lists.freedesktop.org, Anshuman Khandual <anshuman.khandual@arm.com>,
- intel-gfx@lists.freedesktop.org,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- Marek =?iso-8859-1?Q?Marczykowski-G=F3recki?=
- <marmarek@invisiblethingslab.com>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>, iommu@lists.linux.dev,
- Matthew Auld <matthew.auld@intel.com>, Jan Beulich <jbeulich@suse.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, xen-devel@lists.xenproject.org,
- Christoph Hellwig <hch@lst.de>
+Cc: jwboyer@kernel.org, intel-gfx@lists.freedesktop.org, kyle@kernel.org,
+ ben@decadent.org.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 18, 2022 at 04:53:50PM +0200, Juergen Gross wrote:
->> If we don't need the IS_ENABLED is not needed I'm all for dropping it.
->> But unless I misread the code, on arm/arm64 even PV guests are 1:1
->> mapped so that all Linux physically contigous memory also is Xen
->> contigous, so we don't need the hack.
->
-> There are no PV guests on arm/arm64.
+The following changes since commit 48407ffd7adb9511701547068b1e6f0956bd1c94:
 
-Ok, that's the part I was missing.  In that case we should be fine
-without the IS_ENABLED indeed.
+  cnm: update chips&media wave521c firmware. (2022-10-17 10:20:43 -0400)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-firmware dg2_huc_7.10.3_pr
+
+for you to fetch changes up to 8f86b5ab3e051170ea240fc409d457e16e24bc21:
+
+  i915: Add HuC 7.10.3 for DG2 (2022-10-18 08:18:19 -0700)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (1):
+      i915: Add HuC 7.10.3 for DG2
+
+ WHENCE               |   3 +++
+ i915/dg2_huc_gsc.bin | Bin 0 -> 622592 bytes
+ 2 files changed, 3 insertions(+)
+ create mode 100755 i915/dg2_huc_gsc.bin
