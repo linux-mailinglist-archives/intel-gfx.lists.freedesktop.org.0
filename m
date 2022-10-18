@@ -1,54 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B2B16027F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 11:07:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 592E1602815
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 11:16:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ACFD10EEFA;
-	Tue, 18 Oct 2022 09:07:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94A5E10EF08;
+	Tue, 18 Oct 2022 09:16:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1314F10EEFA
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Oct 2022 09:07:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666084069; x=1697620069;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Fs2RQj4atCqrQz7aS0FzLB3nxMM4hMAP+RWqE5i99EY=;
- b=CSnkwpr1rO0IqVCSQDAGixxIVrnHaOlVAqVSTzByst7CdIHT9WgXkI63
- mJZqARJWS53NZMqn+vNOWszyHeGNYkH5fjDb28sggQfl37VT6a7Zf+Dba
- TpMBwACgpC1PkpWUvUWGloSRBb6GgioHPZhgD9jT/TFh8L1VYvQvd3Ptg
- CZPjauRuezpNQvWIMvPBsb0P2XK4zQchZnaCKNmdCaOZKrU/u7oI4GGoG
- CQO+N5Jz4S5Dv0gD5LTPe4Igx/71msR7pVTsh11XXoFRZoh5CN8v9+Djc
- Q1hmOC+71NuCWwyoQbRLX1dbhMC/iJ1tdnt+aPVFu/UvOYEQihz4BOADE A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="332588117"
-X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="332588117"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2022 02:07:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="771114039"
-X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="771114039"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga001.fm.intel.com with SMTP; 18 Oct 2022 02:07:45 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Oct 2022 12:07:45 +0300
-Date: Tue, 18 Oct 2022 12:07:45 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <Y05s4XLPqL4mZwi1@intel.com>
-References: <20221017103756.3925176-1-andrzej.hajda@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7B55110EF00;
+ Tue, 18 Oct 2022 09:16:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 73994A9932;
+ Tue, 18 Oct 2022 09:16:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4847692898498244794=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221017103756.3925176-1-andrzej.hajda@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: use intel_uncore_rmw when
- appropriate
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Date: Tue, 18 Oct 2022 09:16:18 -0000
+Message-ID: <166608457845.20424.4678486594710911643@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221018083921.23239-1-animesh.manna@intel.com>
+In-Reply-To: <20221018083921.23239-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/pps=3A_Add_get=5Fpps=5Fidx?=
+ =?utf-8?q?=28=29_hook_as_part_of_pps=5Fget=5Fregister=28=29_cleanup?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,119 +41,250 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 17, 2022 at 12:37:56PM +0200, Andrzej Hajda wrote:
-> This patch replaces all occurences of the form
-> intel_uncore_write(reg, intel_uncore_read(reg) OP val)
-> with intel_uncore_rmw.
-> 
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> ---
-> Apparently I have missed this pattern during refactoring.
-> 
-> Regards
-> Andrzej
-> ---
->  drivers/gpu/drm/i915/gt/intel_rps.c |   4 +-
->  drivers/gpu/drm/i915/intel_pm.c     | 190 ++++++++++------------------
->  2 files changed, 68 insertions(+), 126 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> index fc23c562d9b2a7..070005dd0da476 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -625,9 +625,7 @@ static void gen5_rps_disable(struct intel_rps *rps)
->  	rgvswctl = intel_uncore_read16(uncore, MEMSWCTL);
->  
->  	/* Ack interrupts, disable EFC interrupt */
-> -	intel_uncore_write(uncore, MEMINTREN,
-> -			   intel_uncore_read(uncore, MEMINTREN) &
-> -			   ~MEMINT_EVAL_CHG_EN);
-> +	intel_uncore_rmw(uncore, MEMINTREN, MEMINT_EVAL_CHG_EN, 0);
->  	intel_uncore_write(uncore, MEMINTRSTS, MEMINT_EVAL_CHG);
->  
->  	/* Go back to the starting frequency */
+--===============4847692898498244794==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Maybe split the gt stuff to a separate patch?
+== Series Details ==
 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 19d4a88184d7a1..4d264147ada94b 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-<snip>
-> @@ -4293,14 +4272,12 @@ static void lpt_init_clock_gating(struct drm_i915_private *dev_priv)
->  	 * disabled when not needed anymore in order to save power.
->  	 */
->  	if (HAS_PCH_LPT_LP(dev_priv))
-> -		intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D,
-> -			   intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D) |
-> -			   PCH_LP_PARTITION_LEVEL_DISABLE);
-> +		intel_uncore_rmw(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, 0,
-                                                                        ^
+Series: series starting with [1/2] drm/i915/pps: Add get_pps_idx() hook as part of pps_get_register() cleanup
+URL   : https://patchwork.freedesktop.org/series/109820/
+State : success
 
-I'd put the newline there in these cases. That way everything we're
-doing to the register value would be neatly on the same line instead
-of spread around like this.
+== Summary ==
 
-> +				 PCH_LP_PARTITION_LEVEL_DISABLE);
->  
->  	/* WADPOClockGatingDisable:hsw */
-> -	intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A),
-> -		   intel_uncore_read(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A)) |
-> -		   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
-> +	intel_uncore_rmw(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A), 0,
-> +			 TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
->  }
->  
->  static void lpt_suspend_hw(struct drm_i915_private *dev_priv)
-<snip>
-> @@ -4532,43 +4494,37 @@ static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
->  	enum pipe pipe;
->  
->  	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
-> -	intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A),
-> -		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A)) |
-> -		   HSW_FBCQ_DIS);
-> +	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
->  
->  	/* WaSwitchSolVfFArbitrationPriority:bdw */
-> -	intel_uncore_write(&dev_priv->uncore, GAM_ECOCHK, intel_uncore_read(&dev_priv->uncore, GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
-> +	intel_uncore_rmw(&dev_priv->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
->  
->  	/* WaPsrDPAMaskVBlankInSRD:bdw */
-> -	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
-> -		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | DPA_MASK_VBLANK_SRD);
-> +	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PAR1_1, 0, DPA_MASK_VBLANK_SRD);
->  
->  	for_each_pipe(dev_priv, pipe) {
->  		/* WaPsrDPRSUnmaskVBlankInSRD:bdw */
-> -		intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
-> -			   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe)) |
-> -			   BDW_DPRS_MASK_VBLANK_SRD);
-> +		intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe), 0,
-> +				 BDW_DPRS_MASK_VBLANK_SRD);
->  	}
->  
->  	/* WaVSRefCountFullforceMissDisable:bdw */
->  	/* WaDSRefCountFullforceMissDisable:bdw */
-> -	intel_uncore_write(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
-> -		   intel_uncore_read(&dev_priv->uncore, GEN7_FF_THREAD_MODE) &
-> -		   ~(GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME));
-> +	intel_uncore_rmw(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
-> +			 (GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME), 0);
+CI Bug Log - changes from CI_DRM_12254 -> Patchwork_109820v1
+====================================================
 
-Useless parens there. Ditto in the other copy.
+Summary
+-------
 
-This stuff really doesn't belong here anyway. I thought someone would have
-hoisted all the gt stuff into a more appropriate place by now. But I guess
-not.
+  **SUCCESS**
 
-Rest of the patch looked ok to me.
+  No regressions found.
 
--- 
-Ville Syrjälä
-Intel
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Additional (2): fi-hsw-4770 bat-atsm-1 
+  Missing    (4): fi-kbl-soraka fi-bdw-samus fi-icl-u2 fi-kbl-guc 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109820v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-gvtdvm:      NOTRUN -> [FAIL][1] ([fdo#103375])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#3012])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][3] ([i915#7221])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][4] ([fdo#109271]) +9 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +7 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][7] ([fdo#109271])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#1072]) +3 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#4312] / [i915#5594])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Warnings ####
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - fi-bdw-gvtdvm:      [INCOMPLETE][10] ([i915#146]) -> [FAIL][11] ([fdo#103375])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
+  [i915#7220]: https://gitlab.freedesktop.org/drm/intel/issues/7220
+  [i915#7221]: https://gitlab.freedesktop.org/drm/intel/issues/7221
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12254 -> Patchwork_109820v1
+
+  CI-20190529: 20190529
+  CI_DRM_12254: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7018: 8312a2fe3f3287ba4ac4bc8d100de0734480f482 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109820v1: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+d30c74ae83d9 drm/i915/pps: Enable 2nd pps for dual EDP scenario
+9826402fcca7 drm/i915/pps: Add get_pps_idx() hook as part of pps_get_register() cleanup
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html
+
+--===============4847692898498244794==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/pps: Add get_pps_idx() hook as part of pps_get_register() cleanup</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109820/">https://patchwork.freedesktop.org/series/109820/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12254 -&gt; Patchwork_109820v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Additional (2): fi-hsw-4770 bat-atsm-1 <br />
+  Missing    (4): fi-kbl-soraka fi-bdw-samus fi-icl-u2 fi-kbl-guc </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109820v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s3@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7221">i915#7221</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
+<ul>
+<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_suspend@basic-s3-without-i915:<ul>
+<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12254 -&gt; Patchwork_109820v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12254: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7018: 8312a2fe3f3287ba4ac4bc8d100de0734480f482 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109820v1: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>d30c74ae83d9 drm/i915/pps: Enable 2nd pps for dual EDP scenario<br />
+9826402fcca7 drm/i915/pps: Add get_pps_idx() hook as part of pps_get_register() cleanup</p>
+
+</body>
+</html>
+
+--===============4847692898498244794==--
