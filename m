@@ -2,79 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6270B6028EB
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 12:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 317A8602959
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 12:32:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6079510E66B;
-	Tue, 18 Oct 2022 10:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68C0E10E7AC;
+	Tue, 18 Oct 2022 10:32:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C4D110E1FB;
- Tue, 18 Oct 2022 10:00:42 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id 9840A2B0681B;
- Tue, 18 Oct 2022 06:00:37 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Tue, 18 Oct 2022 06:00:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm3; t=1666087237; x=1666094437; bh=Mew53OXTwH
- iFXmVQ6iZl8wdqIVw1qLYYMvOjSnGQjvA=; b=h783S06UIS10ylSuF1/o838YPM
- DbVp8c65C70IDJcdNMmiaofP7qPuufEnKRs4zQAgwHIPvIVKKvV6EDExmWiGRi80
- CgRIJfH7KeyuWSnNBSqtBiCKNTxKOKb3kOtEtr/ts5UQ8kPVBhmL4xei7tMXKVS1
- rUH8E9RIAkUwWFOya33EWvEZ4HEOH6PsAHspGS0SR2G6UqMqvqA/N+ODJRzp/ATP
- nTOFmQZx3gM0oZRqQeyHnMo7y/2hAMjrE+b7i49b9nSCy36Ora+nv2YToDQcv7Vu
- XdKa+TQj7D2+4zdj1THQvExQSF3thASe4B5aE3rTc5kGB53FGePLt/3Y9OlQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; t=1666087237; x=1666094437; bh=Mew53OXTwHiFXmVQ6iZl8wdqIVw1
- qLYYMvOjSnGQjvA=; b=MBih877Ia2R4AkvypNa7P62ofASd5XL0SrMcb9zmgHoO
- aXlyIzvS0leCX1CXutgzIouWAlIOMdSV9mQhs091IGwG7qhjErxmL+3ayoVJpmYm
- aDbBlEqIZIWC/kOKNTgZG7jyj0RCg0ABFUzlIpihFdjX0+0TdrNk+cDVmXUka/rJ
- UjhwInHkfq6DmPlnpqiTVtzmJigNO3ga+uVvYw3fEoE1AiVkGqMILI1Ztk5u36u1
- salh1ELf0Isya9OJKJgV1e8qChcxXTtWWtE2uTRwjqVTEVD8vkY1WTSbA9yORqRV
- 5no88hoRCkwa4Ui9AWEQbqmNzaTqf6+6vUyIszuGWg==
-X-ME-Sender: <xms:Q3lOY2nQJX9RqPjmQNiTRRY4F2L4fPkbPAe0gSi-UyAPVOarLyhXaw>
- <xme:Q3lOY90uGpOpg9mVbr79O-uj9LXljCEdpQ0-EZMwFa2Ocz39PpD0TO-cuvKu14ok-
- uit2P9CtjP2JOWcwRs>
-X-ME-Received: <xmr:Q3lOY0raXPka89ULQeI7CnDB39OHXy5yWKa5IRPKT60wDypyuJ7kED84_NBp>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeluddgvdefucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
- mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
- htthgvrhhnpeeljeeugfegveetleevkeetffegudevieetieeugeeugeeivddtjeejvdef
- feetgfenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
- eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
- hh
-X-ME-Proxy: <xmx:RHlOY6nZwkVmV8fTV_dnJgszqGV7bUWlw6HJPq4x2iIjiOpRPgw1LA>
- <xmx:RHlOY01HlDURHhJ5_MRfx5sLZOkPNcVYwpknmpFPSaNwIV9rdW1Msw>
- <xmx:RHlOYxsmFAoVXp0zSZohSbuqaM0lnza9lt7ed7ZkjJpPnjuwQQZe2Q>
- <xmx:RXlOY0U3sTCTETZD1EFyaz82r4EUI5m6-X92lt0_6gKLympJ51598NuFJKU>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 18 Oct 2022 06:00:35 -0400 (EDT)
-Date: Tue, 18 Oct 2022 12:00:33 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Message-ID: <20221018100033.d2sf7xagyycx5d4p@houat>
-References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
- <20220728-rpi-analog-tv-properties-v5-20-d841cc64fe4b@cerno.tech>
- <c1949248-fb40-682c-492e-bafbd915cee3@gmail.com>
- <81936381-ae37-8c84-4681-9eff19f653b5@tronnes.org>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33C8010E7AC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Oct 2022 10:32:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666089160; x=1697625160;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=B9QBkZdiEKRXds6f01qLYgOxmjJ0WM3LSkhM7gknqPs=;
+ b=ZZEbZsqEI0PzjjnbScF5d1N+VHlPRc5UiusOGMeJ1TQ/bZHUr18XNbBq
+ 42h2l0CvaVKtUPZ0wlm9L5HJPioz70RNZheg1lCYtQS9iqeZrZNWEbKX5
+ zYkXFORsutLeWABjT7p0fyQnT2O+Zf/yXFFsYM2O0tIw6hmF+UsFdNNkM
+ m7DDLgIWJQX0hbawX+fJ1atIrIGdIMhA8HCIKUOjREp41xCSSZERLTPVX
+ VQ8I/vdLpg646/jMmL4q5pitR5KhPcqBG5yvdmaulJ9gM3yML31x9K+1C
+ zTluUqaySoC2PgexRSEHjj3cxIzL5p2n9TzNQWo5Bknv/FQJYMda7Aw1h Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="285785649"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="285785649"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 03:32:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="803693165"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="803693165"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga005.jf.intel.com with SMTP; 18 Oct 2022 03:32:36 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 18 Oct 2022 13:32:35 +0300
+Date: Tue, 18 Oct 2022 13:32:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <Y06Awzhqr8FutEgK@intel.com>
+References: <355dde1c-91e3-13b5-c8e8-75c9b9779b4f@redhat.com>
+ <87a65usvgq.fsf@intel.com> <877d0ysv1e.fsf@intel.com>
+ <717fb4ab-5225-884f-37f9-2032c265824e@redhat.com>
+ <241af90a-4cec-9266-8fb0-3c69f9880b52@leemhuis.info>
+ <fac9a564-edff-db25-20d4-7146ae2a7dc8@redhat.com>
+ <87tu42indv.fsf@intel.com>
+ <490bed5d-8db4-dc31-7aed-bc5941c974c5@redhat.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="ni7t7du2ochwvprb"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <81936381-ae37-8c84-4681-9eff19f653b5@tronnes.org>
-Subject: Re: [Intel-gfx] [PATCH v5 20/22] drm/vc4: vec: Convert to the new
- TV mode property
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <490bed5d-8db4-dc31-7aed-bc5941c974c5@redhat.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] alderlake crashes (random memory corruption?) with
+ 6.0 i915 / ucode related
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,142 +67,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- kfyatek+publicgit@gmail.com, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Thorsten Leemhuis <regressions@leemhuis.info>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Oct 17, 2022 at 04:32:28PM +0200, Hans de Goede wrote:
+> Hi,
+> 
+> On 10/17/22 15:35, Jani Nikula wrote:
+> > On Mon, 17 Oct 2022, Hans de Goede <hdegoede@redhat.com> wrote:
+> >> Hi,
+> >>
+> >> On 10/17/22 13:19, Thorsten Leemhuis wrote:
+> >>> CCing the regression mailing list, as it should be in the loop for all
+> >>> regressions, as explained here:
+> >>> https://www.kernel.org/doc/html/latest/admin-guide/reporting-issues.html
+> >>
+> >> Yes sorry about that I meant to Cc the regressions list, not you personally,
+> >> but the auto-completion picked the wrong address-book entry
+> >> (and I did not notice this).
+> >>
+> >>> On 17.10.22 12:48, Hans de Goede wrote:
+> >>>> On 10/17/22 10:39, Jani Nikula wrote:
+> >>>>> On Mon, 17 Oct 2022, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> >>>>>> On Thu, 13 Oct 2022, Hans de Goede <hdegoede@redhat.com> wrote:
+> >>>>>>> With 6.0 the following WARN triggers:
+> >>>>>>> drivers/gpu/drm/i915/display/intel_bios.c:477:
+> >>>>>>>
+> >>>>>>>         drm_WARN(&i915->drm, min_size == 0,
+> >>>>>>>                  "Block %d min_size is zero\n", section_id);
+> >>>>>>
+> >>>>>> What's the value of section_id that gets printed?
+> >>>>>
+> >>>>> I'm guessing this is [1] fixed by commit d3a7051841f0 ("drm/i915/bios:
+> >>>>> Use hardcoded fp_timing size for generating LFP data pointers") in
+> >>>>> v6.1-rc1.
+> >>>>>
+> >>>>> I don't think this is the root cause for your issues, but I wonder if
+> >>>>> you could try v6.1-rc1 or drm-tip and see if we've fixed the other stuff
+> >>>>> already too?
+> >>>>
+> >>>> 6.1-rc1 indeed does not trigger the drm_WARN and for now (couple of
+> >>>> reboots, running for 5 minutes now) it seems stable. 6.0.0 usually
+> >>>> crashed during boot (but not always).
+> >>>>
+> >>>> Do you think it would be worthwhile to try 6.0.0 with d3a7051841f0 ?
+> >>
+> >> So I have been trying 6.0.0 with d3a7051841f0 doing a whole bunch of
+> >> reboots + general use and that seems stable, then I reverted it and
+> >> the very first boot of the kernel with that broke again, so I'm
+> >> pretty sure that d3a7051841f0 fixes things.
+> >>
+> >> So d3a7051841f0 seems to do more then just fix the WARN().
+> > 
+> > Wow, so I guess we do screw up the parsing royally then. :o
+> 
+> I'm running the kernel with lockdep + list-debugging enabled and
+> I could not reproduce this (not easily at least) on a standard
+> Fedora 6.0.0 build without that. So maybe the parsing just manages
+> to write out of binds a tiny bit which just happens to hit a list_head
+> somewhere ... ?
 
---ni7t7du2ochwvprb
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+We don't parse any of the LFP data stuff if we didn't manage
+to generate the data ptrs. So can't really see how that would
+happen. Another theory might be that something else gets
+screwed up if we fail to parse anything, but can't really
+think how that would lead to list corruption either.
 
-On Mon, Oct 17, 2022 at 12:31:31PM +0200, Noralf Tr=F8nnes wrote:
-> Den 16.10.2022 20.52, skrev Mateusz Kwiatkowski:
-> >>  static int vc4_vec_connector_get_modes(struct drm_connector *connecto=
-r)
-> >>  {
-> >> -	struct drm_connector_state *state =3D connector->state;
-> >>  	struct drm_display_mode *mode;
-> >> =20
-> >> -	mode =3D drm_mode_duplicate(connector->dev,
-> >> -				  vc4_vec_tv_modes[state->tv.legacy_mode].mode);
-> >> +	mode =3D drm_mode_analog_ntsc_480i(connector->dev);
-> >>  	if (!mode) {
-> >>  		DRM_ERROR("Failed to create a new display mode\n");
-> >>  		return -ENOMEM;
-> >>  	}
-> >> =20
-> >> +	mode->type |=3D DRM_MODE_TYPE_PREFERRED;
-> >>  	drm_mode_probed_add(connector, mode);
-> >> =20
-> >> -	return 1;
-> >> +	mode =3D drm_mode_analog_pal_576i(connector->dev);
-> >> +	if (!mode) {
-> >> +		DRM_ERROR("Failed to create a new display mode\n");
-> >> +		return -ENOMEM;
-> >> +	}
-> >> +
-> >> +	drm_mode_probed_add(connector, mode);
-> >> +
-> >> +	return 2;
-> >> +}
-> >=20
-> > Referencing those previous discussions:
-> > - https://lore.kernel.org/dri-devel/0255f7c6-0484-6456-350d-cf24f3fee5d=
-6@tronnes.org/
-> > - https://lore.kernel.org/dri-devel/c8f8015a-75da-afa8-ca7f-b2b134cacd1=
-6@gmail.com/
-> >=20
-> > Unconditionally setting the 480i mode as DRM_MODE_TYPE_PREFERRED causes=
- Xorg
-> > (at least on current Raspberry Pi OS) to display garbage when
-> > video=3DComposite1:PAL is specified on the command line, so I'm afraid =
-this won't
-> > do.
-> >=20
-> > As I see it, there are three viable solutions for this issue:
-> >=20
-> > a) Somehow query the video=3D command line option from this function, a=
-nd set
-> >    DRM_MODE_TYPE_PREFERRED appropriately. This would break the abstract=
-ion
-> >    provided by global DRM code, but should work fine.
-> >=20
-> > b) Modify drm_helper_probe_add_cmdline_mode() so that it sets
-> >    DRM_MODE_TYPE_PREFERRED in addition to DRM_MODE_TYPE_USERDEF. This s=
-eems
-> >    pretty robust, but affects the entire DRM subsystem, which may break
-> >    userspace in different ways.
-> >=20
-> >    - Maybe this could be mitigated by adding some additional conditions=
-, e.g.
-> >      setting the PREFERRED flag only if no modes are already flagged as=
- such
-> >      and/or only if the cmdline mode is a named one (~=3D analog TV mod=
-e)
-> >=20
-> > c) Forcing userspace (Xorg / Raspberry Pi OS) to get fixed and honor th=
-e USERDEF
-> >    flag.
-> >=20
-> > Either way, hardcoding 480i as PREFERRED does not seem right.
-> >=20
->=20
-> My solution for this is to look at tv.mode to know which mode to mark as
-> preferred. Maxime didn't like this since it changes things behind
-> userspace's back. I don't see how that can cause any problems for userspa=
-ce.
->=20
-> If userspace uses atomic and sets tv_mode, it has to know which mode to
-> use before hand, so it doesn't look at the preferreded flag.
->=20
-> If it uses legacy and sets tv_mode, it can end up with a stale preferred
-> flag, but no worse than not having the flag or that ntsc is always
-> preferred.
->=20
-> If it doesn't change tv_mode, there's no problem, the preferred flag
-> doesn't change.
+> 
+> Either way things look stable with d3a7051841f0 and it turns out
+> that Fedora already had that cherry-picked downstream in the
+> 5.19.13 kernel which was stable for me too.
+> 
+> >> So lets try to get d3a7051841f0 added to the official stable series
+> >> ASAP (I just noticed that Mark Pearson from Lenovo has already added it
+> >> to Fedora's 6.0.2 build.
+> > 
+> > I think I'd also pick d3a7051841f0^ i.e. both commits:
+> > 
+> > d3a7051841f0 ("drm/i915/bios: Use hardcoded fp_timing size for generating LFP data pointers")
+> > 4e78d6023c15 ("drm/i915/bios: Validate fp_timing terminator presence")
+> > 
+> > for stable.
 
-I don't like it because I just see no way to make this reliable. When we
-set tv_mode, we're not only going to change the preferred flag, but also
-the order of the modes to make the preferred mode first.
+Ack from me.
 
-Since we just changed the mode lists, we also want to send a hotplug
-event to userspace so that it gets notified of it. It will pick up the
-new preferred mode, great.
+> 
+> That sounds good, can you take care of submitting these to gkh ?
+> 
+> Regards,
+> 
+> Hans
 
-But what if it doesn't? There's no requirement for userspace to handle
-hotplug events, and Kodi won't for example. So we just changed the TV
-mode but not the actual mode, and that's it. It's just as broken for
-Kodi as it is for X11 right now.
-
-If we can't get a bullet-proof solution, then I'm not convinced it's
-worth addressing. Especially since it's already the current state, and
-it doesn't seem to bother a lot of people.
-
-Maxime
-
---ni7t7du2ochwvprb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY055QQAKCRDj7w1vZxhR
-xfTwAQDVEQYvVeMYoH1YAgDNEqY24+2ZZadq3pHFsRymVwrROQEAhc/jki+ik+Hi
-+gkkmtM8W9Ky6PhkIjnV9vsG9oldYgs=
-=FjLb
------END PGP SIGNATURE-----
-
---ni7t7du2ochwvprb--
+-- 
+Ville Syrjälä
+Intel
