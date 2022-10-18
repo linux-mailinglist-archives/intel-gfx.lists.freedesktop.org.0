@@ -2,77 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855C4602643
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 09:58:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE76602651
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 10:01:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC5410EECC;
-	Tue, 18 Oct 2022 07:57:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16B9810EEEB;
+	Tue, 18 Oct 2022 08:01:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C98010EECC;
- Tue, 18 Oct 2022 07:57:50 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.west.internal (Postfix) with ESMTP id 5DF992B06870;
- Tue, 18 Oct 2022 03:57:45 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Tue, 18 Oct 2022 03:57:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm3; t=1666079864; x=1666087064; bh=Lr4o8rmETJ
- 5sK3ZkYq2gWw8lpC8hs57X7H/NqOJONxM=; b=vKvmy+HSRwwwE00QKORpSvA4Lo
- m6nq/1xr77nqOg39vFG00W1kaby+7ESVzfOveWTLMqST4HTnbXooc+IMpod42IOx
- fJGm1AGhRONMZeYRUC8qVcFjrltuSWFUnuGhjO6pk4D0ntIUYw9uBjp0BAxSC5cH
- j7gEMmUjV9UbEP2TMyPcbOnWjCNafa3T6/ay+St+jZUyEU+tW3z4r9bK5ApRYCPV
- QJnrQN1luLF7DkKijPPR5+TkCvGldFUPzrT/Dc6GaVBT7HOsrbRUiRo/ro4PYsXD
- hDtsNGB2GJotlu9Xr1uA6mSZ2koJikNZqtk5tyJhhYAX3t1uAYPjRUKabxxg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; t=1666079864; x=1666087064; bh=Lr4o8rmETJ5sK3ZkYq2gWw8lpC8h
- s57X7H/NqOJONxM=; b=Rd+9e5DFtINlfMc2YYOI0+MKnMYwDD9655rlznh2dgSm
- SA/RTKgRXAJmxCQyG0mNyg/ehPPGbUW9PvYKwpqeDuWKUWoIaTLXh5LrXn0SgoYZ
- nGrre6A31fsxquFB7rgEOMQFal70yeQbUFPx1zrABdUaw49LrYPGQMIHXIHdJMPb
- PLWO1Hq2Cv278LKTd1EFIGyFuMHWpAwX5ZWc+iS2kmiBgMt3rT+GIoYDhM9fI3IQ
- USNm+HuOZpZUu9mz7gY8B18uk+KB/PWrMtGuIpIR4hXlLigHF+MR+BXYRGHC2HtT
- ZCPnv4OZLoSFh1TZ89Y/Pl3jCloaTiIG6MfTfd+OjQ==
-X-ME-Sender: <xms:eFxOY4tYe0N7n4oHBdbnTVOOhVkDCJDseBVReSvbhu05j2V5icTOfw>
- <xme:eFxOY1exK__txeJ3ucTKAAh3PMZF4YNvd7eUb7kHi2WWoq68m7rCgMVW2UqMRL37C
- hUb0Qd7Z_qfvsOH6To>
-X-ME-Received: <xmr:eFxOYzwEg8yoSZul-Huszm9lfzk3ZZVvktA7asEbvofMnzHsftMzVNAX5A3A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeltddguddvkecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvvefukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgig
- ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
- grthhtvghrnhepjeevfeehfeekieffgeevleevtefgffefkedtfeeuhfettdegjeehgfeg
- udffffdunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
- epmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:eFxOY7Mhyv3PdEfoHEQDxG63PHDCvZ09uKXpAsXyARpEVsdwgVroog>
- <xmx:eFxOY4_vnjB7joccgkbFlUNnW32Xt0KLsvyB1Xj2t-83rXS-wAhcxQ>
- <xmx:eFxOYzUWodm9Qv1bDIg0-xDVme1dTkQXB7oWBBEcP7NL8kZszvOcuQ>
- <xmx:eFxOY2exmKJm-vn-OQTvnUQLosa1VgJBjnpovYIhjfkaRc-W6Behj_5TCgY>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 18 Oct 2022 03:57:43 -0400 (EDT)
-Date: Tue, 18 Oct 2022 09:57:42 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Message-ID: <20221018075742.7g3sfay3o7wk54kv@houat>
-References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
- <20220728-rpi-analog-tv-properties-v5-8-d841cc64fe4b@cerno.tech>
- <729f849a-0287-a2fb-125f-892b4dd6053f@tronnes.org>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E713D10EEE6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Oct 2022 08:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666080062; x=1697616062;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=E5OV8Kfg3NwFBx9B7gAgOpmeNl4rAjIyh6wyl0od1L8=;
+ b=PWPdYDTcFLDr/9pJiNLBvqJOwms/ks87CL8N+Sq57rUltGkHtlZyI2qI
+ mZr6L3MXC5X3Y7comHLlR0K7eu6hGCb84EhAdlIoUldmYb02jlPEZJjLi
+ OAQBJrSOjyCCi1x/2TWvskmNZ9g/fPf/004O+Y6yxT69wUQcduh2vLCxJ
+ eaXFiwtLHauvd1wHsmrWJkYW2a+6oxEN6gNafnU26HE3JXwO/WHg7JGtP
+ xNmllskLS9ibM7i2qKB0D1Fk07Cu+mPP02kDe5oHg2+M+OaDQ2NCc/dfa
+ 1CHangXklh2n+FxmMUx2sGus50MjKxVLzze3sFvqEkT+wnWRrTJRK2x28 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="293400372"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="293400372"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 01:01:01 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10503"; a="691690375"
+X-IronPort-AV: E=Sophos;i="5.95,193,1661842800"; d="scan'208";a="691690375"
+Received: from gdeegan-mobl.ger.corp.intel.com (HELO [10.213.202.90])
+ ([10.213.202.90])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 01:01:00 -0700
+Message-ID: <bdedca3f-88e3-2da9-cb0e-0a0754621313@linux.intel.com>
+Date: Tue, 18 Oct 2022 09:00:59 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="ah23qdqgdrx2vnp2"
-Content-Disposition: inline
-In-Reply-To: <729f849a-0287-a2fb-125f-892b4dd6053f@tronnes.org>
-Subject: Re: [Intel-gfx] [PATCH v5 08/22] drm/modes: Move named modes
- parsing to a separate function
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Content-Language: en-US
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20221015035952.1741319-1-alan.previn.teres.alexis@intel.com>
+ <20221015035952.1741319-2-alan.previn.teres.alexis@intel.com>
+ <e02ac836-89f4-1734-eacc-73f49ecda323@linux.intel.com>
+ <0c41d33552a0cc52c3835be99ce2e0e50a9084af.camel@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <0c41d33552a0cc52c3835be99ce2e0e50a9084af.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/guc: Add error-capture init
+ warnings when needed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,94 +66,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---ah23qdqgdrx2vnp2
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 17/10/2022 18:46, Teres Alexis, Alan Previn wrote:
+> On Mon, 2022-10-17 at 09:42 +0100, Tvrtko Ursulin wrote:
+>> On 15/10/2022 04:59, Alan Previn wrote:
+>>> If GuC is being used and we initialized GuC-error-capture,
+>>> we need to be warning if we don't provide an error-capture
+>>> register list in the firmware ADS, for valid GT engines.
+>>> A warning makes sense as this would impact debugability
+>>> without realizing why a reglist wasn't retrieved and reported
+>>> by GuC.>
+>>> However, depending on the platform, we might have certain
+>>> engines that have a register list for engine instance error state
+>>> but not for engine class. Thus, add a check only to warn if the
+>>> register list was non existent vs an empty list (use the
+>>> empty lists to skip the warning).
+>>>
+>>> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+>>> ---
+>>>    .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 55 ++++++++++++++++++-
+>>>    1 file changed, 53 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+>>> index 8f1165146013..290c1e1343dd 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+>>> @@ -419,6 +419,44 @@ guc_capture_get_device_reglist(struct intel_guc *guc)
+>>>    	return default_lists;
+>>>    }
+>>>    
+>>> +static const char *
+>>> +__stringify_type(u32 type)
+>>> +{
+>>> +	switch (type) {
+>>> +	case GUC_CAPTURE_LIST_TYPE_GLOBAL:
+>>> +		return "Global";
+>>> +	case GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS:
+>>> +		return "Class";
+>>> +	case GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE:
+>>> +		return "Instance";
+>>> +	default:
+>>> +		return "unknown";
+>>> +	}
+>>> +
+>>> +	return "";
+>>
+>> What's the point of these returns? Gcc complains about not returning a type from const char * return function?
+>>
+> Sorry i am not sure I saw any complain for Gcc. If you are referring to "" then i can re-rev without the default and
+> just let the path outside return the unknown. Is that what you are referring to?
 
-On Sun, Oct 16, 2022 at 06:11:21PM +0200, Noralf Tr=F8nnes wrote:
-> Den 13.10.2022 15.18, skrev Maxime Ripard:
-> > The current construction of the named mode parsing doesn't allow to ext=
-end
-> > it easily. Let's move it to a separate function so we can add more
-> > parameters and modes.
-> >=20
-> > In order for the tests to still pass, some extra checks are needed, so
-> > it's not a 1:1 move.
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >=20
->=20
-> I was hoping that someone else would step up and review these parser
-> patches since the parser code is rather difficult to read, for me at
-> least. I have studied it now, so I'll give it a try.
->=20
-> > ---
-> > Changes in v4:
-> > - Fold down all the named mode patches that were split into a single
-> >   patch again to maintain bisectability
-> > ---
-> >  drivers/gpu/drm/drm_modes.c | 73 +++++++++++++++++++++++++++++++++++++=
-+-------
-> >  1 file changed, 62 insertions(+), 11 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-> > index c0dceff51cac..2f020ef2ddf2 100644
-> > --- a/drivers/gpu/drm/drm_modes.c
-> > +++ b/drivers/gpu/drm/drm_modes.c
-> > @@ -2229,6 +2229,55 @@ static const char * const drm_named_modes_whitel=
-ist[] =3D {
-> >  	"PAL",
-> >  };
-> > =20
-> > +static int drm_mode_parse_cmdline_named_mode(const char *name,
-> > +					     unsigned int name_end,
-> > +					     struct drm_cmdline_mode *cmdline_mode)
-> > +{
-> > +	unsigned int i;
-> > +
-> > +	if (!name_end)
-> > +		return 0;
->=20
-> name_end can't be zero since the argument is checked before calling this
-> function.
+Yes, it is an unreachable path, handled by default switch branch already.
 
-I'd really like to keep it in though. At least, we know by looking at
-this small function that we're going to be safe all the time, no matter
-what the caller does.
+>>> +}
+>>> +
+>>> +static const char *
+>>> +__stringify_engclass(u32 class)
+>>> +{
+>>> +	switch (class) {
+>>> +	case GUC_RENDER_CLASS:
+>>> +		return "Render";
+>>> +	case GUC_VIDEO_CLASS:
+>>> +		return "Video";
+>>> +	case GUC_VIDEOENHANCE_CLASS:
+>>> +		return "VideoEnhance";
+>>> +	case GUC_BLITTER_CLASS:
+>>> +		return "Blitter";
+>>> +	case GUC_COMPUTE_CLASS:
+>>> +		return "Compute";
+>>> +	default:
+>>> +		return "unknown";
+>>> +	}
+>>> +
+>>> +	return "";
+>>> +}
+>>> +
+>>>    static int
+>>>    guc_capture_list_init(struct intel_guc *guc, u32 owner, u32 type, u32 classid,
+>>>    		      struct guc_mmio_reg *ptr, u16 num_entries)
+>>> @@ -487,19 +525,32 @@ intel_guc_capture_getlistsize(struct intel_guc *guc, u32 owner, u32 type, u32 cl
+>>>    			      size_t *size)
+>>>    {
+>>>    	struct intel_guc_state_capture *gc = guc->capture;
+>>> +	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+>>>    	struct __guc_capture_ads_cache *cache = &gc->ads_cache[owner][type][classid];
+>>>    	int num_regs;
+>>>    
+>>> -	if (!gc->reglists)
+>>> +	if (!gc->reglists) {
+>>> +		drm_warn(&i915->drm, "GuC-capture: No reglist on this device\n");
+>>>    		return -ENODEV;
+>>> +	}
+>>>    
+>>>    	if (cache->is_valid) {
+>>>    		*size = cache->size;
+>>>    		return cache->status;
+>>>    	}
+>>>    
+>>> +	if (!guc_capture_get_one_list(gc->reglists, owner, type, classid)) {
+>>> +		if (owner == GUC_CAPTURE_LIST_INDEX_PF && type == GUC_CAPTURE_LIST_TYPE_GLOBAL)
+>>> +			drm_warn(&i915->drm, "GuC-capture: missing reglist type-Global\n");
+>>> +		if (owner == GUC_CAPTURE_LIST_INDEX_PF)
+>>
+>> GUC_CAPTURE_LIST_INDEX_PF could be made once on the enclosing if statement?
+> Sure - will do.
+>>
+>> Btw what's with the PF and VF (cover letter) references while SRIOV does not exists upstream?
+> To maintain a scalable code flow across both the ADS code and guc-error-capture code, we do have to skip over this enum
+> else we'll encounter lots of warnings about missing VF-reglist support (which we cant check for since we dont even have
+> support - i.e we dont even have a "is not supported" check) but the GuC firmware ADS buffer allocation includes an entry
+> for VFs so we have to skip over it. This is the cleanest way i can think of without impacting other code areas and also
+> while adding the ability to warn when its important.
+>>> +			drm_warn(&i915->drm, "GuC-capture: missing regiist type(%d)-%s : "
+>>
+>> reglist
+> thanks - will fix
+>>
+>>> +				 "%s(%d)-Engine\n", type, __stringify_type(type),
+>>> +				 __stringify_engclass(classid), classid);
+>>
+>> One details to consider from Documentation/process/coding-style.rst
+>> """
+>> However, never break user-visible strings such as printk messages because that breaks the ability to grep for them.
+>> """
+>>
+> I totally agree with you but i cant find a way to keep totally grep-able way without creating a whole set of error
+> strings for the various list-types, list-owners and class-types. However i did ensure the first part of the message
+> is grep-able : "GuC-capture: missing reglist type". Do you an alternative proposal?
 
-And if the caller wants to check it as well, fine, it's only a simple
-comparison ran once or twice at boot, it's not like it's in a hot-path.
+Yeah it is not very greppable being largely constructed at runtime, but 
+just don't break the string. IMO no gain to diverge from coding style here.
 
-I've addressed your other comments, thanks!
-Maxime
+Or maybe with one level of indentation less as discussed, and maybe 
+remove "GuC-capture" if it can be implied (are there other reglists not 
+relating to error capture?), maybe it becomes short enough?
 
---ah23qdqgdrx2vnp2
-Content-Type: application/pgp-signature; name="signature.asc"
+"Missing GuC reglist %s(%u):%s(%u)!", ...
 
------BEGIN PGP SIGNATURE-----
+?
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY05cdgAKCRDj7w1vZxhR
-xQM1AP9H4JgsnRShCq6qLr9+GCsm7Uj/MW6Tqyv5ymF9akVodwD+MJH0PS0yUl6U
-Krhepy+KRRj3eEBJ5bua3Ps8acgwCw8=
-=otSH
------END PGP SIGNATURE-----
+Type will never be unknown I suspect since it should always be added 
+very early during development. So type and engine suffixes may be 
+redundant? Or keep it verbose if that fits better with existing GuC 
+error capture logging, I don't know.
 
---ah23qdqgdrx2vnp2--
+> 
+>> Also commit message you can aim to wrap at 75 chars as per submitting-patches.rst.
+>>
+>>> +		return -ENODATA;
+>>
+>> Is this a new exit condition or the thing would exit on the !num_regs check below anyway? Just wondering if the series is only about logging changes or there is more to it.
+> Its no different from previous behavior - and yes its about logging the missing reg lists for hw that needs it as we are
+> missing this for DG2 we we didn't notice (we did a previous revert to remove these warnings but that time the warnings
+> was too verbose - even complaining for the intentional empty lists and for VF cases that isnt supported).
+
+Okay think I get it, thanks. If the "positive match" logging of empty 
+list is more future proof than "negative - don't log these" you will 
+know better.
+
+Regards,
+
+Tvrtko
+
+>>
+>>> +	}
+>>> +
+>>>    	num_regs = guc_cap_list_num_regs(gc, owner, type, classid);
+>>> -	if (!num_regs)
+>>> +	if (!num_regs) /* intentional empty lists can exist depending on hw config */
+>>>    		return -ENODATA;
+>>>    
+>>>    	*size = PAGE_ALIGN((sizeof(struct guc_debug_capture_list)) +
+>>
+>> Regards,
+>>
+>> Tvrtko
+> 
