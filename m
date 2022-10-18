@@ -1,34 +1,80 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592E1602815
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 11:16:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71EAC60286F
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Oct 2022 11:34:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94A5E10EF08;
-	Tue, 18 Oct 2022 09:16:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E9410E55F;
+	Tue, 18 Oct 2022 09:34:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B55110EF00;
- Tue, 18 Oct 2022 09:16:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 73994A9932;
- Tue, 18 Oct 2022 09:16:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4847692898498244794=="
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
+ [64.147.123.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1354D10E513;
+ Tue, 18 Oct 2022 09:34:03 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.west.internal (Postfix) with ESMTP id EAE112B06818;
+ Tue, 18 Oct 2022 05:33:56 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute3.internal (MEProxy); Tue, 18 Oct 2022 05:34:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm3; t=1666085636; x=
+ 1666092836; bh=m28wxnmpSj23GfJ8mguF+RJIPvACWR84C4m9tbBSs2o=; b=h
+ TJ3XFHJn+A8AI/ROPkt+sIqGY3kA4wSIJQT4tHkHl+eM5Yfcjt6X7MYAIUr7Abas
+ QlFe4tD6eLZR/VbYzPHxfb+mmQH0VGNqwYSwV55YB9bcLtz9qxFOwi+BOde3q9ZL
+ WdyVIaCLx1fnmBze8W9xAi0Xv9M2vR2QswXYasftU70eL5G8ZfZ8+hpqiwgPBj3H
+ zWNl5CCgBqV4/lI9o9tIFZT1qgjc8Pd+gffFcHNDISfRVCglOWOLAfXGbTEbRPHa
+ Yz24wplENATRxJGBJBtfQnc7xW25Q8+KWoVVjAMvG2CUhQpR0EOOqAfh4FLpp1cX
+ 5yqaqwrN0S2MK9P/SNs2A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1666085636; x=
+ 1666092836; bh=m28wxnmpSj23GfJ8mguF+RJIPvACWR84C4m9tbBSs2o=; b=C
+ 5vPZsR4g/v/XssSsF5UxPaTyZ5O744YcQyhklPLOetbH0yOlm0PCjh/iY9EZAJ7V
+ uV1SXQOu4CUug0AgTmJ/2n1SCC+FiOjwNU3KptPZNHLSFmFP+8iV5lLytvRIUGet
+ rm3PKGYW8OeqKYNn1TEkhD/N2isE6ds71ZBkQxifTbeGuWIRkEVk9UXVoR30F2Oj
+ /sS8v3YS+KgU4lbjlS5aVXX6eC3gIVIM5iMgDzUe9o/irGu1tn9AAF/Rb3EzIPMM
+ KRBA13tpcwrQwVfkPIv8up+9rplog66fg2VIZD8/j785WDx8QoZg38fgIKAMaVCE
+ j3Kt7kvbfUNsxFzFQk3RA==
+X-ME-Sender: <xms:A3NOY95eeuFlDtiXSd2HrgE85y8GqJmS-uQzUlFg1W2eqOCqjp_BKg>
+ <xme:A3NOY6708zJtmRk4V9UAXdHNs8tZhS1ylzZ9_LPNnb0SRp6ZTjIVvtaIEsSs3rO0E
+ Pqd7SXsQaag2VqpTFA>
+X-ME-Received: <xmr:A3NOY0fae0uVaJ1UzSmyFv1i8G1BkH14Mj-mYvsxa-8778Yi3-eBZbfnGEeX>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeluddgudejucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkfhggtggugfgjsehtqhertddttddunecuhfhrohhmpeforgig
+ ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
+ grthhtvghrnhepleelfeeileelteetfedvieekfeefffevhfdtvefgheevudevheejvddv
+ ieeltdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+ epmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:A3NOY2ImL3oAvGPDqk3mhpaFWs5EcG4v-6NNxYq5KwhG_8Mhk8FqXw>
+ <xmx:A3NOYxIoK_2l01GHo2u3j-yabTPEaxvxxS66qSJ0Pno0VCAZe_RdEA>
+ <xmx:A3NOY_zX3p7YYO0k9S7NWgf64pymTdTf0j475KvkelKtvWwSlMG_RA>
+ <xmx:BHNOY7rCCVuSX-xwJHsXrJ7QI3T3--uNZV0KkEr0FJdIrGwcgv-bEJjia5c>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 18 Oct 2022 05:33:55 -0400 (EDT)
+Date: Tue, 18 Oct 2022 11:33:53 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Message-ID: <20221018093353.pt4vset6o2ldxrbs@houat>
+References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v5-12-d841cc64fe4b@cerno.tech>
+ <7dcf479c-8ac7-ed47-8587-30268684373c@tronnes.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manna, Animesh" <animesh.manna@intel.com>
-Date: Tue, 18 Oct 2022 09:16:18 -0000
-Message-ID: <166608457845.20424.4678486594710911643@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221018083921.23239-1-animesh.manna@intel.com>
-In-Reply-To: <20221018083921.23239-1-animesh.manna@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/pps=3A_Add_get=5Fpps=5Fidx?=
- =?utf-8?q?=28=29_hook_as_part_of_pps=5Fget=5Fregister=28=29_cleanup?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <7dcf479c-8ac7-ed47-8587-30268684373c@tronnes.org>
+Subject: Re: [Intel-gfx] [PATCH v5 12/22] drm/connector: Add a function to
+ lookup a TV mode by its name
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,250 +87,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4847692898498244794==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Oct 17, 2022 at 12:44:45PM +0200, Noralf Tr=F8nnes wrote:
+> Den 13.10.2022 15.18, skrev Maxime Ripard:
+> > As part of the command line parsing rework coming in the next patches,
+> > we'll need to lookup drm_connector_tv_mode values by their name, already
+> > defined in drm_tv_mode_enum_list.
+> >=20
+> > In order to avoid any code duplication, let's do a function that will
+> > perform a lookup of a TV mode name and return its value.
+> >=20
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >  drivers/gpu/drm/drm_connector.c | 24 ++++++++++++++++++++++++
+> >  include/drm/drm_connector.h     |  2 ++
+> >  2 files changed, 26 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_conn=
+ector.c
+> > index 820f4c730b38..30611c616435 100644
+> > --- a/drivers/gpu/drm/drm_connector.c
+> > +++ b/drivers/gpu/drm/drm_connector.c
+> > @@ -991,6 +991,30 @@ static const struct drm_prop_enum_list drm_tv_mode=
+_enum_list[] =3D {
+> >  };
+> >  DRM_ENUM_NAME_FN(drm_get_tv_mode_name, drm_tv_mode_enum_list)
+> > =20
+> > +/**
+> > + * drm_get_tv_mode_from_name - Translates a TV mode name into its enum=
+ value
+> > + * @name: TV Mode name we want to convert
+> > + * @len: Length of @name
+> > + *
+> > + * Translates @name into an enum drm_connector_tv_mode.
+> > + *
+> > + * Returns: the enum value on success, a negative errno otherwise.
+> > + */
+> > +int drm_get_tv_mode_from_name(const char *name, size_t len)
+>=20
+> Do we really need to pass in length here? item->name has to always be
+> NUL terminated otherwise things would break elsewhere, so it shouldn't
+> be necessary AFAICS.
 
-== Series Details ==
+The only user so far is the command-line parsing code, and we might very
+well have an option after the tv_mode, something like
+720x480i,tv_mode=3DNTSC,rotate=3D180
 
-Series: series starting with [1/2] drm/i915/pps: Add get_pps_idx() hook as part of pps_get_register() cleanup
-URL   : https://patchwork.freedesktop.org/series/109820/
-State : success
+In this case, we won't get a NULL-terminated name.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_12254 -> Patchwork_109820v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html
-
-Participating hosts (45 -> 43)
-------------------------------
-
-  Additional (2): fi-hsw-4770 bat-atsm-1 
-  Missing    (4): fi-kbl-soraka fi-bdw-samus fi-icl-u2 fi-kbl-guc 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_109820v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-gvtdvm:      NOTRUN -> [FAIL][1] ([fdo#103375])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#3012])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-hsw-4770:        NOTRUN -> [INCOMPLETE][3] ([i915#7221])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][4] ([fdo#109271]) +9 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +7 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][7] ([fdo#109271])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#1072]) +3 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#4312] / [i915#5594])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@runner@aborted.html
-
-  
-#### Warnings ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-bdw-gvtdvm:      [INCOMPLETE][10] ([i915#146]) -> [FAIL][11] ([fdo#103375])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
-  [i915#7220]: https://gitlab.freedesktop.org/drm/intel/issues/7220
-  [i915#7221]: https://gitlab.freedesktop.org/drm/intel/issues/7221
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12254 -> Patchwork_109820v1
-
-  CI-20190529: 20190529
-  CI_DRM_12254: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7018: 8312a2fe3f3287ba4ac4bc8d100de0734480f482 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_109820v1: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-d30c74ae83d9 drm/i915/pps: Enable 2nd pps for dual EDP scenario
-9826402fcca7 drm/i915/pps: Add get_pps_idx() hook as part of pps_get_register() cleanup
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html
-
---===============4847692898498244794==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/pps: Add get_pps_idx() hook as part of pps_get_register() cleanup</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109820/">https://patchwork.freedesktop.org/series/109820/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12254 -&gt; Patchwork_109820v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 43)</h2>
-<p>Additional (2): fi-hsw-4770 bat-atsm-1 <br />
-  Missing    (4): fi-kbl-soraka fi-bdw-samus fi-icl-u2 fi-kbl-guc </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_109820v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s3@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7221">i915#7221</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_suspend@basic-s3-without-i915:<ul>
-<li>fi-bdw-gvtdvm:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109820v1/fi-bdw-gvtdvm/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12254 -&gt; Patchwork_109820v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12254: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7018: 8312a2fe3f3287ba4ac4bc8d100de0734480f482 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_109820v1: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>d30c74ae83d9 drm/i915/pps: Enable 2nd pps for dual EDP scenario<br />
-9826402fcca7 drm/i915/pps: Add get_pps_idx() hook as part of pps_get_register() cleanup</p>
-
-</body>
-</html>
-
---===============4847692898498244794==--
+Maxime
