@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1CEB603E6A
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 11:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC07603EB7
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 11:20:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C68110EAB9;
-	Wed, 19 Oct 2022 09:14:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14D4510E969;
+	Wed, 19 Oct 2022 09:20:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF99C10EAB9
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 09:14:22 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6133210E969
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 09:19:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666170862; x=1697706862;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=G6sYG829jqfS+e/q4rvLoFbiKBEAH1E74Nh5YSo+1w0=;
- b=MvnrHJ+av5PfKf2c+asff35JZLzrRvudQjzYLOw4foTjnZ77lWOF3Uwm
- YN6YYb9zKaZ7je1a/4uKaWiFu8/0C29/JUwnq/OZbYopg8CTo2ZoST1mx
- 5ChomevBr8BSXk3lO2KsGzNYDZlicixlLYH/zq89BiwCF+Fy0jLmzlC0T
- Bd/xlcBbxgQ74tHpv2CXxbCx02a7E/sDy3fNdxNGxwsQEwqJdHOwqyzIZ
- AJz+0wDR2wn5DaK2fKIuLnHscLGPaOX2zlXDEg8HZDgyank9wBfiias1x
- pjRbVlIjltO4nn569vcFq5+XpKYt05DqkcFBsD2xtTfVaj1NQYAd4O31c Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="286746617"
-X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="286746617"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2022 02:14:22 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="662364561"
-X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="662364561"
-Received: from abyrne1-mobl1.ger.corp.intel.com (HELO [10.252.27.172])
- ([10.252.27.172])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2022 02:14:20 -0700
-Message-ID: <ca42bc29-ef8c-cb36-a8f7-897c7baee0ca@intel.com>
-Date: Wed, 19 Oct 2022 10:14:18 +0100
+ t=1666171194; x=1697707194;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=wiZ5crfTcZrwyuGOzfa2NfIPfMuYS82ul2fFji+Qrl8=;
+ b=Q3rJat5IXZbKx94OJlwzLj0+9y+Vn2GZ00O9CZzKrpilyNdV5a/SCD4l
+ /0CrtDuIILKPNeIkc8C64EfGkm3T74Zx8A7olExutnODbJXey6E7tY4aD
+ 6Vgep9p1axJ70zuzNI//lGMd7UW3JYzPkvcziPlV23l3N1R/yxUv4yO89
+ EZXtDFxpjJFl5dZG8gSU5m9QJ4LCLEWyLe9lXad/28fqz+wPlyr1f662c
+ iosxTk8RmIST9SP97Pu7Ayn2SFUwXXClqscOPTFuKQUVBgqlYc6R/hTTU
+ Betd3/QuJomdMaR8Dvgym8bCTqrmJNcZYquUtvnOZmVNBVVyzeuUpduEu w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="370575191"
+X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="370575191"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 02:19:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="624045181"
+X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="624045181"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga007.jf.intel.com with SMTP; 19 Oct 2022 02:19:50 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 19 Oct 2022 12:19:49 +0300
+Date: Wed, 19 Oct 2022 12:19:49 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Y0/BNSKHS+GYkLCw@intel.com>
+References: <20221018172042.1449885-1-imre.deak@intel.com>
+ <87bkq8i3xp.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.1
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221019071252.180682-1-andrzej.hajda@intel.com>
- <7c31859f-5afc-fc24-98c9-8a14bacd66cd@intel.com>
-In-Reply-To: <7c31859f-5afc-fc24-98c9-8a14bacd66cd@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: add prefetch padding to
- store_dw batchbuffer
+In-Reply-To: <87bkq8i3xp.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/tgl+: Add locking around DKL
+ PHY register accesses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,43 +62,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 19/10/2022 10:12, Matthew Auld wrote:
-> On 19/10/2022 08:12, Andrzej Hajda wrote:
->> Instruction prefetch mechanism requires that 512 bytes after the last
->> command should be readable by EU. Otherwise DMAR errors and engine
->> hangs can happen.
->>
->> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5278
->> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+On Wed, Oct 19, 2022 at 12:00:02PM +0300, Jani Nikula wrote:
+> On Tue, 18 Oct 2022, Imre Deak <imre.deak@intel.com> wrote:
+> > Accessing the TypeC DKL PHY registers during modeset-commit,
+> > -verification, DP link-retraining and AUX power well toggling is racy
+> > due to these code paths being concurrent and the PHY register bank
+> > selection register (HIP_INDEX_REG) being shared between PHY instances
+> > (aka TC ports) and the bank selection being not atomic wrt. the actual
+> > PHY register access.
+> >
+> > Add the required locking around each PHY register bank selection->
+> > register access sequence.
 > 
-> Is there a Bspec ref for this? I would have assumed that EU was more 
-> about kernels/shaders, than simple MI commands? Also should we be 
-> hitting dmar errors for ppGTT if this were some kind of overfetch? 
-> AFAICT we always point entries back to scratch, unlike with say the GGTT 
-> where we might have stale entries, and unbinding should flush the tlb?
-
-s/unbinding/put_pages/
-
+> I honestly think the abstraction here is at a too low level.
 > 
->> ---
->>   drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c 
->> b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
->> index 3c55e77b0f1b00..fe999a02f8e10a 100644
->> --- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
->> +++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
->> @@ -50,7 +50,7 @@ igt_emit_store_dw(struct i915_vma *vma,
->>       u32 *cmd;
->>       int err;
->> -    size = (4 * count + 1) * sizeof(u32);
->> +    size = (4 * count + 1) * sizeof(u32) + 512;
->>       size = round_up(size, PAGE_SIZE);
->>       obj = i915_gem_object_create_internal(vma->vm->i915, size);
->>       if (IS_ERR(obj))
+> Too many places are doing DKL PHY register access to begin with. IMO the
+> solution should be to abstract DKL PHY better, not to provide low level
+> DKL PHY register accessors.
+> 
+> Indeed, this level of granularity leads to a lot of unnecessary
+> lock/unlock that could have a longer span otherwise, and the interface
+> does not lend itself for that.
+
+It's no worse than uncore.lock. No one cares about that in
+these codepaths either.
+
+> Also requires separate bank selection for
+> every write, nearly doubling the MMIO writes.
+
+Drop in the ocean. This is all slow modeset stuff anyway.
+
+IMO separate reg accessors is the correct way to handle indexed
+registers unless you have some very specific performance concerns
+to deal with.
+
+> I think the choice of intel_tc.c is indicative of the problems in
+> abstraction. That file has zero DKL PHY register access currently, but
+> becomes the focal point of DKL PHY.
+> 
+> I'd aim at adding intel_dkl_phy.c which is the only place that includes
+> intel_dkl_phy_regs.h and only place that directly uses the DKL PHY
+> registers. And with that, maybe you don't need to add any DKL PHY
+> specific register accessors.
+
+Ripping out the PHY specific junk from eg. intel_ddi.c I
+think would be a good goal. But that should also be done
+for the mg phy.
+
+-- 
+Ville Syrj�l�
+Intel
