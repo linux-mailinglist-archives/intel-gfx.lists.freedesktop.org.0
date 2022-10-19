@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A7F6603998
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 08:10:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 185EF6039B8
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 08:25:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC3A10E415;
-	Wed, 19 Oct 2022 06:10:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A264E10E9E6;
+	Wed, 19 Oct 2022 06:25:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F1C3210E415;
- Wed, 19 Oct 2022 06:10:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5D2EC10E9E6;
+ Wed, 19 Oct 2022 06:24:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E9E8AA7DFB;
- Wed, 19 Oct 2022 06:10:37 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5507CA7DFF;
+ Wed, 19 Oct 2022 06:24:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Wed, 19 Oct 2022 06:10:37 -0000
-Message-ID: <166615983792.29708.17254974836360425969@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Date: Wed, 19 Oct 2022 06:24:57 -0000
+Message-ID: <166616069732.29708.2786264658512089071@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20221019060043.3749258-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20221019060043.3749258-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/guc=3A_Add_GuC-Error-Capture-Init_coverage_of_new_engin?=
- =?utf-8?q?e_types_=28rev2=29?=
+References: <20221019060402.2807360-1-riana.tauro@intel.com>
+In-Reply-To: <20221019060402.2807360-1-riana.tauro@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_hwmon_support_for_dgfx_selftests?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,35 +47,24 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/guc: Add GuC-Error-Capture-Init coverage of new engine types (rev2)
-URL   : https://patchwork.freedesktop.org/series/109737/
-State : failure
+Series: Add hwmon support for dgfx selftests
+URL   : https://patchwork.freedesktop.org/series/109850/
+State : warning
 
 == Summary ==
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_capture.o
-drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c: In function ‘__stringify_type’:
-drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:436:2: error: label at end of compound statement
-  default:
-  ^~~~~~~
-drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c: In function ‘__stringify_engclass’:
-drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:456:2: error: label at end of compound statement
-  default:
-  ^~~~~~~
-scripts/Makefile.build:250: recipe for target 'drivers/gpu/drm/i915/gt/uc/intel_guc_capture.o' failed
-make[5]: *** [drivers/gpu/drm/i915/gt/uc/intel_guc_capture.o] Error 1
-scripts/Makefile.build:500: recipe for target 'drivers/gpu/drm/i915' failed
-make[4]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:500: recipe for target 'drivers/gpu/drm' failed
-make[3]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:500: recipe for target 'drivers/gpu' failed
-make[2]: *** [drivers/gpu] Error 2
-scripts/Makefile.build:500: recipe for target 'drivers' failed
-make[1]: *** [drivers] Error 2
-Makefile:1992: recipe for target '.' failed
-make: *** [.] Error 2
+Error: dim checkpatch failed
+9cbba6841433 drm/i915/selftests: Rename librapl library to libpower
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 11, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+-:119: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#119: 
+rename from drivers/gpu/drm/i915/selftests/librapl.c
+
+total: 0 errors, 1 warnings, 0 checks, 126 lines checked
+560c8fdc95e8 drm/i915/hwmon: Add helper function to obtain energy values
+b3bf39f91aea drm/i915/selftests: Add hwmon support in libpower for dgfx
 
 
