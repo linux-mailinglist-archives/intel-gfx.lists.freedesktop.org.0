@@ -1,34 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E517603CE1
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 10:53:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B293603D42
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 11:00:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34E1E10F1A6;
-	Wed, 19 Oct 2022 08:53:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46FE110F1AA;
+	Wed, 19 Oct 2022 09:00:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8E10910F1A6;
- Wed, 19 Oct 2022 08:53:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 84FFEA0BA8;
- Wed, 19 Oct 2022 08:53:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2441416568349509366=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A160210E1B5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 09:00:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666170007; x=1697706007;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=BYKm0/YyTzBHhNuQUuji8JRtNzY4nNT1fi51l0avNgg=;
+ b=GpC4VcJPjjwelPISOx6ocZX0Jsuz2etCcl+wSQT/89zBLcn7CytqSkqQ
+ NY1F4mVZ17E9VV3UTEazIgJZHslwawD2SNvwfb6aJF4gWfSTqF4riZSth
+ bw1Tl73I0wDKUKbagdspEvAr8Ju7brBev+p4QtVf5sGFrl4gfq1dJyC4d
+ KvBJLLlCAaKg3pc2zvj2Zsje0p94iqlszIh0Wt1dESTdnNSYNuDe0+3qd
+ sf8beOB7ydGYlJf9KLHNQtjxacCX+vOyiXWffn0qc3awquq7lUx4LM0mO
+ agAPVHLY1TGe+ftFdpi0B7WaCw5XEDxIK0B17mGoBd8jfOgW5kx5LxKgj A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="332906855"
+X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="332906855"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 02:00:06 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="580239322"
+X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="580239322"
+Received: from mosermix-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.50.2])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 02:00:04 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221018172042.1449885-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221018172042.1449885-1-imre.deak@intel.com>
+Date: Wed, 19 Oct 2022 12:00:02 +0300
+Message-ID: <87bkq8i3xp.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Wed, 19 Oct 2022 08:53:10 -0000
-Message-ID: <166616959051.29708.18153093988343480657@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221019072930.17755-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20221019072930.17755-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_Add_GuC-Error-Capture-Init_coverage_of_new_engine_?=
- =?utf-8?q?types_=28rev3=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/tgl+: Add locking around DKL
+ PHY register accesses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,341 +59,568 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2441416568349509366==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 18 Oct 2022, Imre Deak <imre.deak@intel.com> wrote:
+> Accessing the TypeC DKL PHY registers during modeset-commit,
+> -verification, DP link-retraining and AUX power well toggling is racy
+> due to these code paths being concurrent and the PHY register bank
+> selection register (HIP_INDEX_REG) being shared between PHY instances
+> (aka TC ports) and the bank selection being not atomic wrt. the actual
+> PHY register access.
+>
+> Add the required locking around each PHY register bank selection->
+> register access sequence.
 
-== Series Details ==
+I honestly think the abstraction here is at a too low level.
 
-Series: drm/i915/guc: Add GuC-Error-Capture-Init coverage of new engine types (rev3)
-URL   : https://patchwork.freedesktop.org/series/109737/
-State : success
+Too many places are doing DKL PHY register access to begin with. IMO the
+solution should be to abstract DKL PHY better, not to provide low level
+DKL PHY register accessors.
 
-== Summary ==
+Indeed, this level of granularity leads to a lot of unnecessary
+lock/unlock that could have a longer span otherwise, and the interface
+does not lend itself for that. Also requires separate bank selection for
+every write, nearly doubling the MMIO writes.
 
-CI Bug Log - changes from CI_DRM_12259 -> Patchwork_109737v3
-====================================================
+I think the choice of intel_tc.c is indicative of the problems in
+abstraction. That file has zero DKL PHY register access currently, but
+becomes the focal point of DKL PHY.
 
-Summary
--------
+I'd aim at adding intel_dkl_phy.c which is the only place that includes
+intel_dkl_phy_regs.h and only place that directly uses the DKL PHY
+registers. And with that, maybe you don't need to add any DKL PHY
+specific register accessors.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/index.html
-
-Participating hosts (41 -> 41)
-------------------------------
-
-  Additional (1): bat-adlm-1 
-  Missing    (1): fi-kbl-soraka 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_109737v3:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_pm_rpm@basic-rte:
-    - {bat-rplp-1}:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-rplp-1/igt@i915_pm_rpm@basic-rte.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-rplp-1/igt@i915_pm_rpm@basic-rte.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_109737v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +13 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-bdw-5557u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - fi-apl-guc:         [PASS][4] -> [INCOMPLETE][5] ([i915#7056])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][6] -> [INCOMPLETE][7] ([i915#4785])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-    - fi-hsw-g3258:       [PASS][8] -> [INCOMPLETE][9] ([i915#3303] / [i915#4785])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][10] ([i915#146] / [i915#6712])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827]) +7 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-bdw-5557u/igt@kms_chamelium@dp-edid-read.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][12] ([fdo#109271] / [i915#4312] / [i915#5594])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-hsw-4770/igt@runner@aborted.html
-    - fi-hsw-g3258:       NOTRUN -> [FAIL][13] ([fdo#109271] / [i915#4312] / [i915#4991])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-hsw-g3258/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - {fi-tgl-mst}:       [DMESG-WARN][14] ([i915#6434]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-tgl-mst/igt@debugfs_test@read_all_entries.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-tgl-mst/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - {fi-tgl-mst}:       [DMESG-FAIL][16] -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-tgl-mst/igt@i915_selftest@live@gem_contexts.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-tgl-mst/igt@i915_selftest@live@gem_contexts.html
-    - {bat-jsl-1}:        [DMESG-FAIL][18] -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@requests:
-    - {bat-adln-1}:       [DMESG-FAIL][20] -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-adln-1/igt@i915_selftest@live@requests.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-adln-1/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@reset:
-    - {bat-rpls-2}:       [DMESG-FAIL][22] ([i915#4983]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-rpls-2/igt@i915_selftest@live@reset.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-rpls-2/igt@i915_selftest@live@reset.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3:
-    - {bat-dg2-11}:       [FAIL][24] ([i915#6818]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#4991]: https://gitlab.freedesktop.org/drm/intel/issues/4991
-  [i915#5537]: https://gitlab.freedesktop.org/drm/intel/issues/5537
-  [i915#5594]: https://gitlab.freedesktop.org/drm/intel/issues/5594
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6434]: https://gitlab.freedesktop.org/drm/intel/issues/6434
-  [i915#6503]: https://gitlab.freedesktop.org/drm/intel/issues/6503
-  [i915#6559]: https://gitlab.freedesktop.org/drm/intel/issues/6559
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6712]: https://gitlab.freedesktop.org/drm/intel/issues/6712
-  [i915#6818]: https://gitlab.freedesktop.org/drm/intel/issues/6818
-  [i915#7056]: https://gitlab.freedesktop.org/drm/intel/issues/7056
+BR,
+Jani.
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_12259 -> Patchwork_109737v3
+>
+> Kudos to Ville for noticing the race conditions.
+>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v5.5+
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 67 ++++++-------
+>  drivers/gpu/drm/i915/display/intel_display.c  |  2 +
+>  .../gpu/drm/i915/display/intel_display_core.h |  4 +
+>  .../i915/display/intel_display_power_well.c   |  6 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 58 +++++-------
+>  drivers/gpu/drm/i915/display/intel_tc.c       | 94 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_tc.h       |  9 ++
+>  drivers/gpu/drm/i915/i915_reg.h               |  3 +
+>  8 files changed, 167 insertions(+), 76 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 971356237eca3..8e2b338883858 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -1262,33 +1262,30 @@ static void tgl_dkl_phy_set_signal_levels(struct =
+intel_encoder *encoder,
+>  	for (ln =3D 0; ln < 2; ln++) {
+>  		int level;
+>=20=20
+> -		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> -			       HIP_INDEX_VAL(tc_port, ln));
+> -
+> -		intel_de_write(dev_priv, DKL_TX_PMD_LANE_SUS(tc_port), 0);
+> +		intel_tc_dkl_write(dev_priv, DKL_TX_PMD_LANE_SUS(tc_port), ln, 0);
+>=20=20
+>  		level =3D intel_ddi_level(encoder, crtc_state, 2*ln+0);
+>=20=20
+> -		intel_de_rmw(dev_priv, DKL_TX_DPCNTL0(tc_port),
+> -			     DKL_TX_PRESHOOT_COEFF_MASK |
+> -			     DKL_TX_DE_EMPAHSIS_COEFF_MASK |
+> -			     DKL_TX_VSWING_CONTROL_MASK,
+> -			     DKL_TX_PRESHOOT_COEFF(trans->entries[level].dkl.preshoot) |
+> -			     DKL_TX_DE_EMPHASIS_COEFF(trans->entries[level].dkl.de_emphasis) |
+> -			     DKL_TX_VSWING_CONTROL(trans->entries[level].dkl.vswing));
+> +		intel_tc_dkl_rmw(dev_priv, DKL_TX_DPCNTL0(tc_port), ln,
+> +				 DKL_TX_PRESHOOT_COEFF_MASK |
+> +				 DKL_TX_DE_EMPAHSIS_COEFF_MASK |
+> +				 DKL_TX_VSWING_CONTROL_MASK,
+> +				 DKL_TX_PRESHOOT_COEFF(trans->entries[level].dkl.preshoot) |
+> +				 DKL_TX_DE_EMPHASIS_COEFF(trans->entries[level].dkl.de_emphasis) |
+> +				 DKL_TX_VSWING_CONTROL(trans->entries[level].dkl.vswing));
+>=20=20
+>  		level =3D intel_ddi_level(encoder, crtc_state, 2*ln+1);
+>=20=20
+> -		intel_de_rmw(dev_priv, DKL_TX_DPCNTL1(tc_port),
+> -			     DKL_TX_PRESHOOT_COEFF_MASK |
+> -			     DKL_TX_DE_EMPAHSIS_COEFF_MASK |
+> -			     DKL_TX_VSWING_CONTROL_MASK,
+> -			     DKL_TX_PRESHOOT_COEFF(trans->entries[level].dkl.preshoot) |
+> -			     DKL_TX_DE_EMPHASIS_COEFF(trans->entries[level].dkl.de_emphasis) |
+> -			     DKL_TX_VSWING_CONTROL(trans->entries[level].dkl.vswing));
+> +		intel_tc_dkl_rmw(dev_priv, DKL_TX_DPCNTL1(tc_port), ln,
+> +				 DKL_TX_PRESHOOT_COEFF_MASK |
+> +				 DKL_TX_DE_EMPAHSIS_COEFF_MASK |
+> +				 DKL_TX_VSWING_CONTROL_MASK,
+> +				 DKL_TX_PRESHOOT_COEFF(trans->entries[level].dkl.preshoot) |
+> +				 DKL_TX_DE_EMPHASIS_COEFF(trans->entries[level].dkl.de_emphasis) |
+> +				 DKL_TX_VSWING_CONTROL(trans->entries[level].dkl.vswing));
+>=20=20
+> -		intel_de_rmw(dev_priv, DKL_TX_DPCNTL2(tc_port),
+> -			     DKL_TX_DP20BITMODE, 0);
+> +		intel_tc_dkl_rmw(dev_priv, DKL_TX_DPCNTL2(tc_port), ln,
+> +				 DKL_TX_DP20BITMODE, 0);
+>=20=20
+>  		if (IS_ALDERLAKE_P(dev_priv)) {
+>  			u32 val;
+> @@ -1306,10 +1303,10 @@ static void tgl_dkl_phy_set_signal_levels(struct =
+intel_encoder *encoder,
+>  				val |=3D DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2(0);
+>  			}
+>=20=20
+> -			intel_de_rmw(dev_priv, DKL_TX_DPCNTL2(tc_port),
+> -				     DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK |
+> -				     DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK,
+> -				     val);
+> +			intel_tc_dkl_rmw(dev_priv, DKL_TX_DPCNTL2(tc_port), ln,
+> +					 DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK |
+> +					 DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK,
+> +					 val);
+>  		}
+>  	}
+>  }
+> @@ -2019,12 +2016,8 @@ icl_program_mg_dp_mode(struct intel_digital_port *=
+dig_port,
+>  		return;
+>=20=20
+>  	if (DISPLAY_VER(dev_priv) >=3D 12) {
+> -		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> -			       HIP_INDEX_VAL(tc_port, 0x0));
+> -		ln0 =3D intel_de_read(dev_priv, DKL_DP_MODE(tc_port));
+> -		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> -			       HIP_INDEX_VAL(tc_port, 0x1));
+> -		ln1 =3D intel_de_read(dev_priv, DKL_DP_MODE(tc_port));
+> +		ln0 =3D intel_tc_dkl_read(dev_priv, DKL_DP_MODE(tc_port), 0);
+> +		ln1 =3D intel_tc_dkl_read(dev_priv, DKL_DP_MODE(tc_port), 1);
+>  	} else {
+>  		ln0 =3D intel_de_read(dev_priv, MG_DP_MODE(0, tc_port));
+>  		ln1 =3D intel_de_read(dev_priv, MG_DP_MODE(1, tc_port));
+> @@ -2085,12 +2078,8 @@ icl_program_mg_dp_mode(struct intel_digital_port *=
+dig_port,
+>  	}
+>=20=20
+>  	if (DISPLAY_VER(dev_priv) >=3D 12) {
+> -		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> -			       HIP_INDEX_VAL(tc_port, 0x0));
+> -		intel_de_write(dev_priv, DKL_DP_MODE(tc_port), ln0);
+> -		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> -			       HIP_INDEX_VAL(tc_port, 0x1));
+> -		intel_de_write(dev_priv, DKL_DP_MODE(tc_port), ln1);
+> +		intel_tc_dkl_write(dev_priv, DKL_DP_MODE(tc_port), 0, ln0);
+> +		intel_tc_dkl_write(dev_priv, DKL_DP_MODE(tc_port), 1, ln1);
+>  	} else {
+>  		intel_de_write(dev_priv, MG_DP_MODE(0, tc_port), ln0);
+>  		intel_de_write(dev_priv, MG_DP_MODE(1, tc_port), ln1);
+> @@ -3094,10 +3083,8 @@ static void adlp_tbt_to_dp_alt_switch_wa(struct in=
+tel_encoder *encoder)
+>  	enum tc_port tc_port =3D intel_port_to_tc(i915, encoder->port);
+>  	int ln;
+>=20=20
+> -	for (ln =3D 0; ln < 2; ln++) {
+> -		intel_de_write(i915, HIP_INDEX_REG(tc_port), HIP_INDEX_VAL(tc_port, ln=
+));
+> -		intel_de_rmw(i915, DKL_PCS_DW5(tc_port), DKL_PCS_DW5_CORE_SOFTRESET, 0=
+);
+> -	}
+> +	for (ln =3D 0; ln < 2; ln++)
+> +		intel_tc_dkl_rmw(i915, DKL_PCS_DW5(tc_port), ln, DKL_PCS_DW5_CORE_SOFT=
+RESET, 0);
+>  }
+>=20=20
+>  static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 606f9140d024f..68ebf49e6fdbd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7907,6 +7907,8 @@ static void intel_setup_outputs(struct drm_i915_pri=
+vate *dev_priv)
+>=20=20
+>  	intel_pps_unlock_regs_wa(dev_priv);
+>=20=20
+> +	spin_lock_init(&dev_priv->display.tc.dkl_lock);
+> +
+>  	if (!HAS_DISPLAY(dev_priv))
+>  		return;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/=
+gpu/drm/i915/display/intel_display_core.h
+> index 96cf994b0ad1f..6e8371e8ebdb6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -394,6 +394,10 @@ struct intel_display {
+>  		u32 block_time_us;
+>  	} sagv;
+>=20=20
+> +	struct {
+> +		spinlock_t dkl_lock;
+> +	} tc;
+> +
+>  	struct {
+>  		/* ordered wq for modesets */
+>  		struct workqueue_struct *modeset;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/dr=
+ivers/gpu/drm/i915/display/intel_display_power_well.c
+> index df7ee4969ef17..c37d2d5bbd983 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -529,11 +529,9 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_pri=
+vate *dev_priv,
+>  		enum tc_port tc_port;
+>=20=20
+>  		tc_port =3D TGL_AUX_PW_TO_TC_PORT(i915_power_well_instance(power_well)=
+->hsw.idx);
+> -		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> -			       HIP_INDEX_VAL(tc_port, 0x2));
+>=20=20
+> -		if (intel_de_wait_for_set(dev_priv, DKL_CMN_UC_DW_27(tc_port),
+> -					  DKL_CMN_UC_DW27_UC_HEALTH, 1))
+> +		if (wait_for(intel_tc_dkl_read(dev_priv, DKL_CMN_UC_DW_27(tc_port), 2)=
+ &
+> +			     DKL_CMN_UC_DW27_UC_HEALTH, 1))
+>  			drm_warn(&dev_priv->drm,
+>  				 "Timeout waiting TC uC health\n");
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
+drm/i915/display/intel_dpll_mgr.c
+> index b63600d8ebeb0..28895e51c9c21 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -3486,15 +3486,12 @@ static bool dkl_pll_get_hw_state(struct drm_i915_=
+private *dev_priv,
+>  	 * All registers read here have the same HIP_INDEX_REG even though
+>  	 * they are on different building blocks
+>  	 */
+> -	intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> -		       HIP_INDEX_VAL(tc_port, 0x2));
+> -
+> -	hw_state->mg_refclkin_ctl =3D intel_de_read(dev_priv,
+> -						  DKL_REFCLKIN_CTL(tc_port));
+> +	hw_state->mg_refclkin_ctl =3D intel_tc_dkl_read(dev_priv,
+> +						      DKL_REFCLKIN_CTL(tc_port), 2);
+>  	hw_state->mg_refclkin_ctl &=3D MG_REFCLKIN_CTL_OD_2_MUX_MASK;
+>=20=20
+>  	hw_state->mg_clktop2_hsclkctl =3D
+> -		intel_de_read(dev_priv, DKL_CLKTOP2_HSCLKCTL(tc_port));
+> +		intel_tc_dkl_read(dev_priv, DKL_CLKTOP2_HSCLKCTL(tc_port), 2);
+>  	hw_state->mg_clktop2_hsclkctl &=3D
+>  		MG_CLKTOP2_HSCLKCTL_TLINEDRV_CLKSEL_MASK |
+>  		MG_CLKTOP2_HSCLKCTL_CORE_INPUTSEL_MASK |
+> @@ -3502,32 +3499,32 @@ static bool dkl_pll_get_hw_state(struct drm_i915_=
+private *dev_priv,
+>  		MG_CLKTOP2_HSCLKCTL_DSDIV_RATIO_MASK;
+>=20=20
+>  	hw_state->mg_clktop2_coreclkctl1 =3D
+> -		intel_de_read(dev_priv, DKL_CLKTOP2_CORECLKCTL1(tc_port));
+> +		intel_tc_dkl_read(dev_priv, DKL_CLKTOP2_CORECLKCTL1(tc_port), 2);
+>  	hw_state->mg_clktop2_coreclkctl1 &=3D
+>  		MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO_MASK;
+>=20=20
+> -	hw_state->mg_pll_div0 =3D intel_de_read(dev_priv, DKL_PLL_DIV0(tc_port)=
+);
+> +	hw_state->mg_pll_div0 =3D intel_tc_dkl_read(dev_priv, DKL_PLL_DIV0(tc_p=
+ort), 2);
+>  	val =3D DKL_PLL_DIV0_MASK;
+>  	if (dev_priv->display.vbt.override_afc_startup)
+>  		val |=3D DKL_PLL_DIV0_AFC_STARTUP_MASK;
+>  	hw_state->mg_pll_div0 &=3D val;
+>=20=20
+> -	hw_state->mg_pll_div1 =3D intel_de_read(dev_priv, DKL_PLL_DIV1(tc_port)=
+);
+> +	hw_state->mg_pll_div1 =3D intel_tc_dkl_read(dev_priv, DKL_PLL_DIV1(tc_p=
+ort), 2);
+>  	hw_state->mg_pll_div1 &=3D (DKL_PLL_DIV1_IREF_TRIM_MASK |
+>  				  DKL_PLL_DIV1_TDC_TARGET_CNT_MASK);
+>=20=20
+> -	hw_state->mg_pll_ssc =3D intel_de_read(dev_priv, DKL_PLL_SSC(tc_port));
+> +	hw_state->mg_pll_ssc =3D intel_tc_dkl_read(dev_priv, DKL_PLL_SSC(tc_por=
+t), 2);
+>  	hw_state->mg_pll_ssc &=3D (DKL_PLL_SSC_IREF_NDIV_RATIO_MASK |
+>  				 DKL_PLL_SSC_STEP_LEN_MASK |
+>  				 DKL_PLL_SSC_STEP_NUM_MASK |
+>  				 DKL_PLL_SSC_EN);
+>=20=20
+> -	hw_state->mg_pll_bias =3D intel_de_read(dev_priv, DKL_PLL_BIAS(tc_port)=
+);
+> +	hw_state->mg_pll_bias =3D intel_tc_dkl_read(dev_priv, DKL_PLL_BIAS(tc_p=
+ort), 2);
+>  	hw_state->mg_pll_bias &=3D (DKL_PLL_BIAS_FRAC_EN_H |
+>  				  DKL_PLL_BIAS_FBDIV_FRAC_MASK);
+>=20=20
+>  	hw_state->mg_pll_tdc_coldst_bias =3D
+> -		intel_de_read(dev_priv, DKL_PLL_TDC_COLDST_BIAS(tc_port));
+> +		intel_tc_dkl_read(dev_priv, DKL_PLL_TDC_COLDST_BIAS(tc_port), 2);
+>  	hw_state->mg_pll_tdc_coldst_bias &=3D (DKL_PLL_TDC_SSC_STEP_SIZE_MASK |
+>  					     DKL_PLL_TDC_FEED_FWD_GAIN_MASK);
+>=20=20
+> @@ -3715,61 +3712,58 @@ static void dkl_pll_write(struct drm_i915_private=
+ *dev_priv,
+>  	 * All registers programmed here have the same HIP_INDEX_REG even
+>  	 * though on different building block
+>  	 */
+> -	intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> -		       HIP_INDEX_VAL(tc_port, 0x2));
+> -
+>  	/* All the registers are RMW */
+> -	val =3D intel_de_read(dev_priv, DKL_REFCLKIN_CTL(tc_port));
+> +	val =3D intel_tc_dkl_read(dev_priv, DKL_REFCLKIN_CTL(tc_port), 2);
+>  	val &=3D ~MG_REFCLKIN_CTL_OD_2_MUX_MASK;
+>  	val |=3D hw_state->mg_refclkin_ctl;
+> -	intel_de_write(dev_priv, DKL_REFCLKIN_CTL(tc_port), val);
+> +	intel_tc_dkl_write(dev_priv, DKL_REFCLKIN_CTL(tc_port), 2, val);
+>=20=20
+> -	val =3D intel_de_read(dev_priv, DKL_CLKTOP2_CORECLKCTL1(tc_port));
+> +	val =3D intel_tc_dkl_read(dev_priv, DKL_CLKTOP2_CORECLKCTL1(tc_port), 2=
+);
+>  	val &=3D ~MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO_MASK;
+>  	val |=3D hw_state->mg_clktop2_coreclkctl1;
+> -	intel_de_write(dev_priv, DKL_CLKTOP2_CORECLKCTL1(tc_port), val);
+> +	intel_tc_dkl_write(dev_priv, DKL_CLKTOP2_CORECLKCTL1(tc_port), 2, val);
+>=20=20
+> -	val =3D intel_de_read(dev_priv, DKL_CLKTOP2_HSCLKCTL(tc_port));
+> +	val =3D intel_tc_dkl_read(dev_priv, DKL_CLKTOP2_HSCLKCTL(tc_port), 2);
+>  	val &=3D ~(MG_CLKTOP2_HSCLKCTL_TLINEDRV_CLKSEL_MASK |
+>  		 MG_CLKTOP2_HSCLKCTL_CORE_INPUTSEL_MASK |
+>  		 MG_CLKTOP2_HSCLKCTL_HSDIV_RATIO_MASK |
+>  		 MG_CLKTOP2_HSCLKCTL_DSDIV_RATIO_MASK);
+>  	val |=3D hw_state->mg_clktop2_hsclkctl;
+> -	intel_de_write(dev_priv, DKL_CLKTOP2_HSCLKCTL(tc_port), val);
+> +	intel_tc_dkl_write(dev_priv, DKL_CLKTOP2_HSCLKCTL(tc_port), 2, val);
+>=20=20
+>  	val =3D DKL_PLL_DIV0_MASK;
+>  	if (dev_priv->display.vbt.override_afc_startup)
+>  		val |=3D DKL_PLL_DIV0_AFC_STARTUP_MASK;
+> -	intel_de_rmw(dev_priv, DKL_PLL_DIV0(tc_port), val,
+> -		     hw_state->mg_pll_div0);
+> +	intel_tc_dkl_rmw(dev_priv, DKL_PLL_DIV0(tc_port), 2, val,
+> +			 hw_state->mg_pll_div0);
+>=20=20
+> -	val =3D intel_de_read(dev_priv, DKL_PLL_DIV1(tc_port));
+> +	val =3D intel_tc_dkl_read(dev_priv, DKL_PLL_DIV1(tc_port), 2);
+>  	val &=3D ~(DKL_PLL_DIV1_IREF_TRIM_MASK |
+>  		 DKL_PLL_DIV1_TDC_TARGET_CNT_MASK);
+>  	val |=3D hw_state->mg_pll_div1;
+> -	intel_de_write(dev_priv, DKL_PLL_DIV1(tc_port), val);
+> +	intel_tc_dkl_write(dev_priv, DKL_PLL_DIV1(tc_port), 2, val);
+>=20=20
+> -	val =3D intel_de_read(dev_priv, DKL_PLL_SSC(tc_port));
+> +	val =3D intel_tc_dkl_read(dev_priv, DKL_PLL_SSC(tc_port), 2);
+>  	val &=3D ~(DKL_PLL_SSC_IREF_NDIV_RATIO_MASK |
+>  		 DKL_PLL_SSC_STEP_LEN_MASK |
+>  		 DKL_PLL_SSC_STEP_NUM_MASK |
+>  		 DKL_PLL_SSC_EN);
+>  	val |=3D hw_state->mg_pll_ssc;
+> -	intel_de_write(dev_priv, DKL_PLL_SSC(tc_port), val);
+> +	intel_tc_dkl_write(dev_priv, DKL_PLL_SSC(tc_port), 2, val);
+>=20=20
+> -	val =3D intel_de_read(dev_priv, DKL_PLL_BIAS(tc_port));
+> +	val =3D intel_tc_dkl_read(dev_priv, DKL_PLL_BIAS(tc_port), 2);
+>  	val &=3D ~(DKL_PLL_BIAS_FRAC_EN_H |
+>  		 DKL_PLL_BIAS_FBDIV_FRAC_MASK);
+>  	val |=3D hw_state->mg_pll_bias;
+> -	intel_de_write(dev_priv, DKL_PLL_BIAS(tc_port), val);
+> +	intel_tc_dkl_write(dev_priv, DKL_PLL_BIAS(tc_port), 2, val);
+>=20=20
+> -	val =3D intel_de_read(dev_priv, DKL_PLL_TDC_COLDST_BIAS(tc_port));
+> +	val =3D intel_tc_dkl_read(dev_priv, DKL_PLL_TDC_COLDST_BIAS(tc_port), 2=
+);
+>  	val &=3D ~(DKL_PLL_TDC_SSC_STEP_SIZE_MASK |
+>  		 DKL_PLL_TDC_FEED_FWD_GAIN_MASK);
+>  	val |=3D hw_state->mg_pll_tdc_coldst_bias;
+> -	intel_de_write(dev_priv, DKL_PLL_TDC_COLDST_BIAS(tc_port), val);
+> +	intel_tc_dkl_write(dev_priv, DKL_PLL_TDC_COLDST_BIAS(tc_port), 2, val);
+>=20=20
+> -	intel_de_posting_read(dev_priv, DKL_PLL_TDC_COLDST_BIAS(tc_port));
+> +	intel_tc_dkl_posting_read(dev_priv, DKL_PLL_TDC_COLDST_BIAS(tc_port), 2=
+);
+>  }
+>=20=20
+>  static void icl_pll_power_enable(struct drm_i915_private *dev_priv,
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
+15/display/intel_tc.c
+> index 8cecd41ed0033..8123699d3dbfb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -5,6 +5,7 @@
+>=20=20
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+> +#include "intel_de.h"
+>  #include "intel_display.h"
+>  #include "intel_display_power_map.h"
+>  #include "intel_display_types.h"
+> @@ -894,6 +895,99 @@ void intel_tc_port_put_link(struct intel_digital_por=
+t *dig_port)
+>  	intel_tc_port_flush_work(dig_port);
+>  }
+>=20=20
+> +static void dkl_set_hip_idx(struct drm_i915_private *i915, i915_reg_t re=
+g, int idx)
+> +{
+> +	enum tc_port tc_port =3D DKL_REG_TC_PORT(reg);
+> +
+> +	drm_WARN_ON(&i915->drm, tc_port < TC_PORT_1 || tc_port >=3D I915_MAX_TC=
+_PORTS);
+> +
+> +	intel_de_write(i915,
+> +		       HIP_INDEX_REG(tc_port),
+> +		       HIP_INDEX_VAL(tc_port, idx));
+> +}
+> +
+> +/**
+> + * intel_tc_dkl_read - read a Dekel PHY register
+> + * @i915: i915 device instance
+> + * @reg: Dekel PHY register
+> + * @ln: lane instance of @reg
+> + *
+> + * Read the @reg Dekel PHY register.
+> + *
+> + * Returns the read value.
+> + */
+> +u32 intel_tc_dkl_read(struct drm_i915_private *i915, i915_reg_t reg, int=
+ ln)
+> +{
+> +	u32 val;
+> +
+> +	spin_lock(&i915->display.tc.dkl_lock);
+> +
+> +	dkl_set_hip_idx(i915, reg, ln);
+> +	val =3D intel_de_read(i915, reg);
+> +
+> +	spin_unlock(&i915->display.tc.dkl_lock);
+> +
+> +	return val;
+> +}
+> +
+> +/**
+> + * intel_tc_dkl_write - write a Dekel PHY register
+> + * @i915: i915 device instance
+> + * @reg: Dekel PHY register
+> + * @ln: lane instance of @reg
+> + * @val: value to write
+> + *
+> + * Write @val to the @reg Dekel PHY register.
+> + */
+> +void intel_tc_dkl_write(struct drm_i915_private *i915, i915_reg_t reg, i=
+nt ln, u32 val)
+> +{
+> +	spin_lock(&i915->display.tc.dkl_lock);
+> +
+> +	dkl_set_hip_idx(i915, reg, ln);
+> +	intel_de_write(i915, reg, val);
+> +
+> +	spin_unlock(&i915->display.tc.dkl_lock);
+> +}
+> +
+> +/**
+> + * intel_tc_dkl_rmw - read-modify-write a Dekel PHY register
+> + * @i915: i915 device instance
+> + * @reg: Dekel PHY register
+> + * @ln: lane instance of @reg
+> + * @clear: mask to clear
+> + * @set: mask to set
+> + *
+> + * Read the @reg Dekel PHY register, clearing then setting the @clear/@s=
+et bits in it, and writing
+> + * this value back to the register if the value differs from the read on=
+e.
+> + */
+> +void intel_tc_dkl_rmw(struct drm_i915_private *i915, i915_reg_t reg, int=
+ ln, u32 clear, u32 set)
+> +{
+> +	spin_lock(&i915->display.tc.dkl_lock);
+> +
+> +	dkl_set_hip_idx(i915, reg, ln);
+> +	intel_de_rmw(i915, reg, clear, set);
+> +
+> +	spin_unlock(&i915->display.tc.dkl_lock);
+> +}
+> +
+> +/**
+> + * intel_tc_dkl_posting_read - do a posting read from a Dekel PHY regist=
+er
+> + * @i915: i915 device instance
+> + * @reg: Dekel PHY register
+> + * @ln: lane instance of @reg
+> + *
+> + * Read the @reg Dekel PHY register without returning the read value.
+> + */
+> +void intel_tc_dkl_posting_read(struct drm_i915_private *i915, i915_reg_t=
+ reg, int ln)
+> +{
+> +	spin_lock(&i915->display.tc.dkl_lock);
+> +
+> +	dkl_set_hip_idx(i915, reg, ln);
+> +	intel_de_posting_read(i915, reg);
+> +
+> +	spin_unlock(&i915->display.tc.dkl_lock);
+> +}
+> +
+>  static bool
+>  tc_has_modular_fia(struct drm_i915_private *i915, struct intel_digital_p=
+ort *dig_port)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i9=
+15/display/intel_tc.h
+> index d54082e2d5e8d..330ff0fb12f16 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.h
+> @@ -9,6 +9,10 @@
+>  #include <linux/mutex.h>
+>  #include <linux/types.h>
+>=20=20
+> +#include "i915_reg_defs.h"
+> +
+> +struct drm_i915_private;
+> +
+>  struct intel_digital_port;
+>  struct intel_encoder;
+>=20=20
+> @@ -34,6 +38,11 @@ void intel_tc_port_get_link(struct intel_digital_port =
+*dig_port,
+>  void intel_tc_port_put_link(struct intel_digital_port *dig_port);
+>  bool intel_tc_port_ref_held(struct intel_digital_port *dig_port);
+>=20=20
+> +u32 intel_tc_dkl_read(struct drm_i915_private *i915, i915_reg_t reg, int=
+ ln);
+> +void intel_tc_dkl_write(struct drm_i915_private *i915, i915_reg_t reg, i=
+nt ln, u32 val);
+> +void intel_tc_dkl_rmw(struct drm_i915_private *i915, i915_reg_t reg, int=
+ ln, u32 clear, u32 set);
+> +void intel_tc_dkl_posting_read(struct drm_i915_private *i915, i915_reg_t=
+ reg, int ln);
+> +
+>  void intel_tc_port_init(struct intel_digital_port *dig_port, bool is_leg=
+acy);
+>=20=20
+>  bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 99a8535193957..2b7c019725462 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7442,6 +7442,9 @@ enum skl_power_gate {
+>  #define _DKL_PHY5_BASE			0x16C000
+>  #define _DKL_PHY6_BASE			0x16D000
+>=20=20
+> +#define _DKL_BANK_SHIFT			12
+> +#define DKL_REG_TC_PORT(reg)		(((reg).reg - _DKL_PHY1_BASE) >> _DKL_BANK=
+_SHIFT)
+> +
+>  /* DEKEL PHY MMIO Address =3D Phy base + (internal address & ~index_mask=
+) */
+>  #define _DKL_PCS_DW5			0x14
+>  #define DKL_PCS_DW5(tc_port)		_MMIO(_PORT(tc_port, _DKL_PHY1_BASE, \
 
-  CI-20190529: 20190529
-  CI_DRM_12259: af4d5174f9efe29241ffa082a7417fde95ca2f28 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7019: fdbafce2b74e84739bb1d81223ae6f01fb442980 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_109737v3: af4d5174f9efe29241ffa082a7417fde95ca2f28 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-8ec77cd5e822 drm/i915/guc: Add compute reglist for guc err capture
-07eedddd30da drm/i915/guc: Add error-capture init warnings when needed
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/index.html
-
---===============2441416568349509366==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Add GuC-Error-Capture-Init coverage of new engine types (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109737/">https://patchwork.freedesktop.org/series/109737/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12259 -&gt; Patchwork_109737v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/index.html</p>
-<h2>Participating hosts (41 -&gt; 41)</h2>
-<p>Additional (1): bat-adlm-1 <br />
-  Missing    (1): fi-kbl-soraka </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_109737v3:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_pm_rpm@basic-rte:<ul>
-<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-rplp-1/igt@i915_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-rplp-1/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_109737v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-bdw-5557u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7056">i915#7056</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
-</li>
-<li>
-<p>fi-hsw-g3258:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-hsw-g3258/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-bdw-5557u/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6712">i915#6712</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-edid-read:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-bdw-5557u/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5594">i915#5594</a>)</p>
-</li>
-<li>
-<p>fi-hsw-g3258:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-hsw-g3258/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4991">i915#4991</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-tgl-mst/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6434">i915#6434</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-tgl-mst/igt@debugfs_test@read_all_entries.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>
-<p>{fi-tgl-mst}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/fi-tgl-mst/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/fi-tgl-mst/igt@i915_selftest@live@gem_contexts.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-adln-1/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-adln-1/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-rpls-2/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3:</p>
-<ul>
-<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12259/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6818">i915#6818</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109737v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12259 -&gt; Patchwork_109737v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12259: af4d5174f9efe29241ffa082a7417fde95ca2f28 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7019: fdbafce2b74e84739bb1d81223ae6f01fb442980 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_109737v3: af4d5174f9efe29241ffa082a7417fde95ca2f28 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>8ec77cd5e822 drm/i915/guc: Add compute reglist for guc err capture<br />
-07eedddd30da drm/i915/guc: Add error-capture init warnings when needed</p>
-
-</body>
-</html>
-
---===============2441416568349509366==--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
