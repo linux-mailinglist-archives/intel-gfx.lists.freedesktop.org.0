@@ -2,49 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7EB60396F
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 07:58:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C21C603986
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 08:04:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB9E210EA74;
-	Wed, 19 Oct 2022 05:58:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8717410E9AE;
+	Wed, 19 Oct 2022 06:04:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03AEB10EA74
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 05:58:35 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D457510E415
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 06:04:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666159116; x=1697695116;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=onIK4wh8Iko5mHWkR/3LMROJi9JcsJHw/5GOSoG+Cqs=;
- b=CKCpQDuS41xbJAzZ9uH8GWIulNTVd0VL6213B41FEcDzrIyp5OiT8+rm
- AKE0xJLcbX5ibYPbNn4nUvz2+3BY6gecHPAG7ZTjKceSIuHNZURu4zV6L
- w1gLZpRFtG1bRsHvy0URagM7huWtIBQybWBOhRDvynzxiuyiz//yiGzkF
- QR6ZdQDyf/RtRu/xVMwDriwUjD5Ec6e+hgsPu0X3KKEtqWQm5j5QJmxDq
- AFy439rNV9rATLqlDQMnSGV/V8tfnJBdd4P3rcQu3t039+gozBzPajM0w
- 6FXcxzSP42/29gYeI89k0y2FV/+IpyBB5u2a2TWMAefxMJudwTl4oIwRT A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="305049396"
-X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="305049396"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2022 22:58:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="629082880"
-X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="629082880"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by orsmga002.jf.intel.com with ESMTP; 18 Oct 2022 22:58:35 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
+ t=1666159471; x=1697695471;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8xiFnKsaZ6fTXloPgs3WiJ1HZqK34mBa6KAh1ywWQ6Y=;
+ b=Hs13YqFfvSlN1wbHeg6HXZ7XrXsPW8m646YVs1NLomWMgvx5YjCbjqKt
+ 7Epn+0Ex47lx/0pKaLCQakinxcAv26ne4yi6KHTyzBrF2XztWfMheUQSK
+ OXSBZKS8IXj8s8+UhnvxvwmPlypbrU2CgX0G76BRjpGgc5oUWaDuPUWbG
+ vUT7yn+JiMcF/pkccEMCTI7rXhBKfibdv4kgIQyAYbWmS65/0zgGRC5km
+ hz0k8rmgAq7akKzFH/Yi9TUShyo8tPf5D0P4DAk2NU0k2Db26ZXZjzDyK
+ TXV4zYkRfUE0/wtxM2nZ9w0As1N5qZ+BnYG1Kss6ZU9Yb1wdZUo8KaQ9/ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="368367029"
+X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="368367029"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 23:04:31 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="580170657"
+X-IronPort-AV: E=Sophos;i="5.95,195,1661842800"; d="scan'208";a="580170657"
+Received: from rtauro-desk.iind.intel.com ([10.190.239.41])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2022 23:04:29 -0700
+From: Riana Tauro <riana.tauro@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Oct 2022 23:00:43 -0700
-Message-Id: <20221019060043.3749258-3-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221019060043.3749258-1-alan.previn.teres.alexis@intel.com>
-References: <20221019060043.3749258-1-alan.previn.teres.alexis@intel.com>
+Date: Wed, 19 Oct 2022 11:33:59 +0530
+Message-Id: <20221019060402.2807360-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/guc: Add compute reglist for
- guc err capture
+Subject: [Intel-gfx] [PATCH 0/3] Add hwmon support for dgfx selftests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,37 +57,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We missed this at initial upstream because at that time
-none of the GuC enabled platforms had a compute engine.
-Add this now.
+Rename librapl library to libpower. Add hwmon support in libpower for
+dgfx.
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Riana Tauro (2):
+  drm/i915/selftests: Rename librapl library to libpower
+  drm/i915/hwmon: Add helper function to obtain energy values
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-index 47f74aa16ab5..bebb88ba712d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-@@ -169,6 +169,8 @@ static struct __guc_mmio_reg_descr_group default_lists[] = {
- 	MAKE_REGLIST(default_global_regs, PF, GLOBAL, 0),
- 	MAKE_REGLIST(default_rc_class_regs, PF, ENGINE_CLASS, GUC_RENDER_CLASS),
- 	MAKE_REGLIST(xe_lpd_rc_inst_regs, PF, ENGINE_INSTANCE, GUC_RENDER_CLASS),
-+	MAKE_REGLIST(default_rc_class_regs, PF, ENGINE_CLASS, GUC_COMPUTE_CLASS),
-+	MAKE_REGLIST(xe_lpd_rc_inst_regs, PF, ENGINE_INSTANCE, GUC_COMPUTE_CLASS),
- 	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_VIDEO_CLASS),
- 	MAKE_REGLIST(xe_lpd_vd_inst_regs, PF, ENGINE_INSTANCE, GUC_VIDEO_CLASS),
- 	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_VIDEOENHANCE_CLASS),
-@@ -182,6 +184,8 @@ static const struct __guc_mmio_reg_descr_group xe_lpd_lists[] = {
- 	MAKE_REGLIST(xe_lpd_global_regs, PF, GLOBAL, 0),
- 	MAKE_REGLIST(xe_lpd_rc_class_regs, PF, ENGINE_CLASS, GUC_RENDER_CLASS),
- 	MAKE_REGLIST(xe_lpd_rc_inst_regs, PF, ENGINE_INSTANCE, GUC_RENDER_CLASS),
-+	MAKE_REGLIST(xe_lpd_rc_class_regs, PF, ENGINE_CLASS, GUC_COMPUTE_CLASS),
-+	MAKE_REGLIST(xe_lpd_rc_inst_regs, PF, ENGINE_INSTANCE, GUC_COMPUTE_CLASS),
- 	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_VIDEO_CLASS),
- 	MAKE_REGLIST(xe_lpd_vd_inst_regs, PF, ENGINE_INSTANCE, GUC_VIDEO_CLASS),
- 	MAKE_REGLIST(xe_lpd_vec_class_regs, PF, ENGINE_CLASS, GUC_VIDEOENHANCE_CLASS),
+Tilak Tangudu (1):
+  drm/i915/selftests: Add hwmon support in libpower for dgfx
+
+ drivers/gpu/drm/i915/Makefile             |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_rc6.c    | 12 ++++----
+ drivers/gpu/drm/i915/gt/selftest_rps.c    | 26 ++++++++---------
+ drivers/gpu/drm/i915/gt/selftest_slpc.c   |  4 +--
+ drivers/gpu/drm/i915/i915_hwmon.c         | 23 +++++++++++++--
+ drivers/gpu/drm/i915/i915_hwmon.h         |  1 +
+ drivers/gpu/drm/i915/selftests/libpower.c | 35 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/selftests/libpower.h | 19 ++++++++++++
+ drivers/gpu/drm/i915/selftests/librapl.c  | 34 ----------------------
+ drivers/gpu/drm/i915/selftests/librapl.h  | 17 -----------
+ 10 files changed, 97 insertions(+), 76 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/selftests/libpower.c
+ create mode 100644 drivers/gpu/drm/i915/selftests/libpower.h
+ delete mode 100644 drivers/gpu/drm/i915/selftests/librapl.c
+ delete mode 100644 drivers/gpu/drm/i915/selftests/librapl.h
+
 -- 
-2.34.1
+2.25.1
 
