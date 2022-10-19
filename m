@@ -1,53 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96F03604167
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 12:44:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 643E560426D
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 13:02:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E279E10EABE;
-	Wed, 19 Oct 2022 10:43:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13DCC10EAC0;
+	Wed, 19 Oct 2022 11:02:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F73B10E262;
- Wed, 19 Oct 2022 10:43:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds202112;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=DadoXiqteYpnLJ29i7DeTRmR70Jdg+khLdbmGW+Xm0A=; b=eqGdTjr9Okxo1LuL0OBpnuWT3+
- gswk4qO1MpzOsSl6Q5tK5MSZ/Z/EdiBzxQt9FQ/wxMqG9fgH3dZRqaqyaofErZC1occiE6A0eT9bF
- +cgAEOI31xUQIRTSYuoGi20bLNWgXKOYHZS6VB6YkAH5z1K8oS3hWitIGLDuSl/2M3ulT4BUuB423
- 9VtMxYnT4ibV5DI47JR82Uk8FWIzCNdhfAtB3dF4sOREpDgFRPfGKZyclSmiQh+tb5Xrp7OzQtj7N
- NxO6opDh/Sse/qWjJq1ExuRKm9NBp/QhuxXZL0S+GDTDtFzw97F6Q00OwoLtb81+8L5Ij3TBBkhfq
- KPbfXByw==;
-Received: from [2a01:799:95a:cb00:cca0:57ac:c55d:a485] (port=55269)
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1ol6Xm-0007CC-Pr; Wed, 19 Oct 2022 12:43:26 +0200
-Message-ID: <694facef-00bc-6b59-7c44-d68c7ca0c40f@tronnes.org>
-Date: Wed, 19 Oct 2022 12:43:19 +0200
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5D2010EAC0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 11:02:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666177321; x=1697713321;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ references:in-reply-to;
+ bh=kPpd+1wwz/RSRPxvz684oMrk4paIaDWvIFzH3aRJdUI=;
+ b=LgOcKVHkNhEZxlzUdJsXmXiPllzfjea5OJ2Yx8LOGAETJGzqNR7RZvmo
+ gkVLc6De6qC3PJpiIg+4uD9UP49AIUBFN6BPl82i3Fg18hIwSFubt44zh
+ lZJ0rZ/2DlqFjDUUaHm9IZMIvhf/Qnj9AVaRepeDQCY0iwMkYaKNKC8Gy
+ rV6+lpLlTqZyWjrJrVrpjn6iCmrm1F+fQDx6K9A3mukpi5Sop0eKxC2Yj
+ IfdOILHCfcA+96Jp4N3pJpkzDT6QnkhUIg0P5F4Wy6GDybewTZr+VaL+L
+ 2Bu47T0olbTQ+/3PztjVaMlouYx8tIYU9ZMu5Z2g8vf7DCI5BnLdF6E3g A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="286767905"
+X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; 
+ d="scan'208,217";a="286767905"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 04:01:49 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="660296326"
+X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; 
+ d="scan'208,217";a="660296326"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.2.9])
+ ([10.213.2.9])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 04:01:46 -0700
+Content-Type: multipart/alternative;
+ boundary="------------uoG8oTcIPIdatWk7GDwMXmgA"
+Message-ID: <cd6d9802-353c-642d-4ee7-af7b2eac5a01@intel.com>
+Date: Wed, 19 Oct 2022 13:01:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-To: Maxime Ripard <maxime@cerno.tech>
-References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
- <20220728-rpi-analog-tv-properties-v5-12-d841cc64fe4b@cerno.tech>
- <7dcf479c-8ac7-ed47-8587-30268684373c@tronnes.org>
- <20221018093353.pt4vset6o2ldxrbs@houat>
- <e3b98674-5a9e-16f3-4741-ffea43e05cc8@tronnes.org>
- <20221019084828.muy46td63bkyewxk@houat>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20221019084828.muy46td63bkyewxk@houat>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 12/22] drm/connector: Add a function to
- lookup a TV mode by its name
+ Firefox/102.0 Thunderbird/102.3.3
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20221019071252.180682-1-andrzej.hajda@intel.com>
+ <7c31859f-5afc-fc24-98c9-8a14bacd66cd@intel.com>
+ <ca42bc29-ef8c-cb36-a8f7-897c7baee0ca@intel.com>
+Content-Language: en-US
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <ca42bc29-ef8c-cb36-a8f7-897c7baee0ca@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: add prefetch padding to
+ store_dw batchbuffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,86 +67,216 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is a multi-part message in MIME format.
+--------------uoG8oTcIPIdatWk7GDwMXmgA
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-Den 19.10.2022 10.48, skrev Maxime Ripard:
-> On Tue, Oct 18, 2022 at 02:29:00PM +0200, Noralf Trønnes wrote:
->>
->>
->> Den 18.10.2022 11.33, skrev Maxime Ripard:
->>> On Mon, Oct 17, 2022 at 12:44:45PM +0200, Noralf Trønnes wrote:
->>>> Den 13.10.2022 15.18, skrev Maxime Ripard:
->>>>> As part of the command line parsing rework coming in the next patches,
->>>>> we'll need to lookup drm_connector_tv_mode values by their name, already
->>>>> defined in drm_tv_mode_enum_list.
->>>>>
->>>>> In order to avoid any code duplication, let's do a function that will
->>>>> perform a lookup of a TV mode name and return its value.
->>>>>
->>>>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
->>>>> ---
->>>>>  drivers/gpu/drm/drm_connector.c | 24 ++++++++++++++++++++++++
->>>>>  include/drm/drm_connector.h     |  2 ++
->>>>>  2 files changed, 26 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
->>>>> index 820f4c730b38..30611c616435 100644
->>>>> --- a/drivers/gpu/drm/drm_connector.c
->>>>> +++ b/drivers/gpu/drm/drm_connector.c
->>>>> @@ -991,6 +991,30 @@ static const struct drm_prop_enum_list drm_tv_mode_enum_list[] = {
->>>>>  };
->>>>>  DRM_ENUM_NAME_FN(drm_get_tv_mode_name, drm_tv_mode_enum_list)
->>>>>  
->>>>> +/**
->>>>> + * drm_get_tv_mode_from_name - Translates a TV mode name into its enum value
->>>>> + * @name: TV Mode name we want to convert
->>>>> + * @len: Length of @name
->>>>> + *
->>>>> + * Translates @name into an enum drm_connector_tv_mode.
->>>>> + *
->>>>> + * Returns: the enum value on success, a negative errno otherwise.
->>>>> + */
->>>>> +int drm_get_tv_mode_from_name(const char *name, size_t len)
->>>>
->>>> Do we really need to pass in length here? item->name has to always be
->>>> NUL terminated otherwise things would break elsewhere, so it shouldn't
->>>> be necessary AFAICS.
+
+On 19.10.2022 11:14, Matthew Auld wrote:
+> On 19/10/2022 10:12, Matthew Auld wrote:
+>> On 19/10/2022 08:12, Andrzej Hajda wrote:
+>>> Instruction prefetch mechanism requires that 512 bytes after the last
+>>> command should be readable by EU. Otherwise DMAR errors and engine
+>>> hangs can happen.
 >>>
->>> The only user so far is the command-line parsing code, and we might very
->>> well have an option after the tv_mode, something like
->>> 720x480i,tv_mode=NTSC,rotate=180
->>>
->>> In this case, we won't get a NULL-terminated name.
+>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5278
+>>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 >>
->> My point is that item->name will always be NUL terminated so strcmp()
->> will never look past that.
-> 
-> Right, but we don't have the guarantee that strlen(item->name) <
-> strlen(name), and we could thus just access after the end of our name
-> 
+>> Is there a Bspec ref for this? I would have assumed that EU was more 
+>> about kernels/shaders, than simple MI commands? Also should we be 
+>> hitting dmar errors for ppGTT if this were some kind of overfetch? 
+>> AFAICT we always point entries back to scratch, unlike with say the 
+>> GGTT where we might have stale entries, and unbinding should flush 
+>> the tlb?
+>
+> s/unbinding/put_pages/
 
-Ok, using the length limiting str funtions is the safe thing to do, so
-len needs to stay. But I don't get the 'strlen(item->name) == len'
-check. strncmp() will stop when it reaches a NUL in either string so no
-need for the length check?
+Bspec is here [1], but when you made distinction between simple MI 
+commands and kernel/shaders I am not so sure if it applies to this case, 
+so I will present my finding leading to this conclusion:
 
-Anyways:
+My findings (on RaptorLake):
+1. dmar errors always print physical address of recently removed bb 
+created by igt_emit_store_dw, at least in my tests.
+2. intel_iommu enqueues tlb flush during put_pages of this bb, but 
+actual flush happens later, triggered by timer.
+3. Together with dmar errors GuC reports CAT error on context/engine 
+executing this batch (with IPEHR=MI_BATCH_BUFFER_END).
+4. Errors happens only on vcs/vecs (???).
+5. Errors happens only in case tested huge page has size SZ_2M - SZ_64K, 
+or SZ_2M - SZ_4K. In both cases calculated size of bb (8kb) is just few 
+dwords after the last cmd, in other cases there is much more padding.
+6. Enlarging bb works (as in this patch).
+7. Flushing iommu tlb for the phys address of bb just before calling 
+dma_unmap_sg (in i915_gem_gtt_finish_pages) helps as well :)
+8. There is already some workaround present in i915_gem_gtt_finish_pages:
+>
+> /* XXXThis does not prevent more requests being submitted! */
+>
+> if(unlikely(ggtt->do_idle_maps))
+>
+> /* Wait a bit, in the hope it avoids the hang */
+>
+>     usleep_range(100, 250);
+>
+but it is only implemented for Gen5 and is slow, but also works 
+(probably because tlb is flushed meantime).
 
-Reviewed-by: Noralf Trønnes <noralf@tronnes.org>
+[1]: https://gfxspecs.intel.com/Predator/Home/Index/47286
+
+Regards
+Andrzej
+
+>
+>>
+>>> ---
+>>>   drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c 
+>>> b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+>>> index 3c55e77b0f1b00..fe999a02f8e10a 100644
+>>> --- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+>>> +++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+>>> @@ -50,7 +50,7 @@ igt_emit_store_dw(struct i915_vma *vma,
+>>>       u32 *cmd;
+>>>       int err;
+>>> -    size = (4 * count + 1) * sizeof(u32);
+>>> +    size = (4 * count + 1) * sizeof(u32) + 512;
+>>>       size = round_up(size, PAGE_SIZE);
+>>>       obj = i915_gem_object_create_internal(vma->vm->i915, size);
+>>>       if (IS_ERR(obj))
+
+--------------uoG8oTcIPIdatWk7GDwMXmgA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 19.10.2022 11:14, Matthew Auld
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:ca42bc29-ef8c-cb36-a8f7-897c7baee0ca@intel.com">On
+      19/10/2022 10:12, Matthew Auld wrote: <br>
+      <blockquote type="cite">On 19/10/2022 08:12, Andrzej Hajda wrote:
+        <br>
+        <blockquote type="cite">Instruction prefetch mechanism requires
+          that 512 bytes after the last <br>
+          command should be readable by EU. Otherwise DMAR errors and
+          engine <br>
+          hangs can happen. <br>
+          <br>
+          Closes: <a class="moz-txt-link-freetext"
+            href="https://gitlab.freedesktop.org/drm/intel/-/issues/5278">https://gitlab.freedesktop.org/drm/intel/-/issues/5278</a>
+          <br>
+          Signed-off-by: Andrzej Hajda <a class="moz-txt-link-rfc2396E"
+            href="mailto:andrzej.hajda@intel.com">&lt;andrzej.hajda@intel.com&gt;</a>
+          <br>
+        </blockquote>
+        <br>
+        Is there a Bspec ref for this? I would have assumed that EU was
+        more about kernels/shaders, than simple MI commands? Also should
+        we be hitting dmar errors for ppGTT if this were some kind of
+        overfetch? AFAICT we always point entries back to scratch,
+        unlike with say the GGTT where we might have stale entries, and
+        unbinding should flush the tlb? <br>
+      </blockquote>
+      <br>
+      s/unbinding/put_pages/ <br>
+    </blockquote>
+    <br>
+    Bspec is here [1], but when you made distinction between simple MI
+    commands and kernel/shaders I am not so sure if it applies to this
+    case, so I will present my finding leading to this conclusion:<br>
+    <br>
+    My findings (on RaptorLake):<br>
+    1. dmar errors always print physical address of recently removed bb
+    created by igt_emit_store_dw, at least in my tests.<br>
+    2. intel_iommu enqueues tlb flush during put_pages of this bb, but
+    actual flush happens later, triggered by timer.<br>
+    3. Together with dmar errors GuC reports CAT error on context/engine
+    executing this batch (with IPEHR=MI_BATCH_BUFFER_END).<br>
+    4. Errors happens only on vcs/vecs (???).<br>
+    5. Errors happens only in case tested huge page has size SZ_2M -
+    SZ_64K, or SZ_2M - SZ_4K. In both cases calculated size of bb (8kb)
+    is just few dwords after the last cmd, in other cases there is much
+    more padding.<br>
+    6. Enlarging bb works (as in this patch).<br>
+    7. Flushing iommu tlb for the phys address of bb just before calling
+    dma_unmap_sg (in i915_gem_gtt_finish_pages) helps as well :)<br>
+    8. There is already some workaround present in
+    i915_gem_gtt_finish_pages:<br>
+    <blockquote type="cite">
+      <div
+style="background-color:#ffffff;padding-left:2px;padding-top:0px;padding-right:0px;padding-bottom:0px;">
+        <div
+style="color:#000000;background-color:#ffffff;font-family:&quot;Consolas&quot;;font-size:10pt;white-space:nowrap;">
+          <p><span style="color:#000000;"> </span><span
+              style="color:#3f7f5f;">/* </span><span
+              style="color:#7f9fbf;font-weight:bold;">XXX</span><span
+              style="color:#3f7f5f;"> This does not prevent more
+              requests being submitted! */</span></p>
+          <p><span style="color:#000000;"> </span><span
+              style="color:#7f0055;font-weight:bold;">if</span><span
+              style="color:#000000;"> (unlikely(ggtt-&gt;</span><span
+              style="color:#0000c0;">do_idle_maps</span><span
+              style="color:#000000;">))</span></p>
+          <p><span style="color:#000000;"> </span><span
+              style="color:#3f7f5f;">/* Wait a bit, in the hope it
+              avoids the hang */</span></p>
+          <p><span style="color:#000000;">     usleep_range(100, 250);</span></p>
+          <p></p>
+        </div>
+      </div>
+    </blockquote>
+    but it is only implemented for Gen5 and is slow, but also works
+    (probably because tlb is flushed meantime).<br>
+    <br>
+    [1]: <a class="moz-txt-link-freetext" href="https://gfxspecs.intel.com/Predator/Home/Index/47286">https://gfxspecs.intel.com/Predator/Home/Index/47286</a><br>
+    <br>
+    Regards<br>
+    Andrzej<br>
+    <br>
+    <blockquote type="cite"
+      cite="mid:ca42bc29-ef8c-cb36-a8f7-897c7baee0ca@intel.com"> <br>
+      <blockquote type="cite"> <br>
+        <blockquote type="cite">--- <br>
+            drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c | 2 +- <br>
+            1 file changed, 1 insertion(+), 1 deletion(-) <br>
+          <br>
+          diff --git
+          a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+          b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c <br>
+          index 3c55e77b0f1b00..fe999a02f8e10a 100644 <br>
+          --- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c <br>
+          +++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c <br>
+          @@ -50,7 +50,7 @@ igt_emit_store_dw(struct i915_vma *vma, <br>
+                u32 *cmd; <br>
+                int err; <br>
+          -    size = (4 * count + 1) * sizeof(u32); <br>
+          +    size = (4 * count + 1) * sizeof(u32) + 512; <br>
+                size = round_up(size, PAGE_SIZE); <br>
+                obj =
+          i915_gem_object_create_internal(vma-&gt;vm-&gt;i915, size); <br>
+                if (IS_ERR(obj)) <br>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------uoG8oTcIPIdatWk7GDwMXmgA--
