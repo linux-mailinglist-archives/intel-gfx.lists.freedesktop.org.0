@@ -1,60 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB7AA604C9F
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 18:02:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A11C0604CE4
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 18:16:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66DA610EB0D;
-	Wed, 19 Oct 2022 16:02:14 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF6D10EB0D
- for <Intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 16:02:10 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 38E266194B
- for <Intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 16:02:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63028C433D7
- for <Intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 16:02:09 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
- dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
- header.b="myrTXW/w"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
- t=1666195326;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=6H1wSHFGixXZH3xTM90S+PR85eEHKCs/O3DG2gkkP2s=;
- b=myrTXW/wUhth4KVHcVBn0UJP12pMzbYxFkulRANyp43qbbsAHc9rb0lH9g03WWU3kVystC
- TB74c+4yMMsHCrGJVPyWYT4chfKwXWV98QuztBJuy7FFg4rQrc3v5gJpahHvIUYK1EbAGJ
- S8BRuBhQsGGWibc+RvePy/Ta7Manrwk=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 569e38c2
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO)
- for <Intel-gfx@lists.freedesktop.org>;
- Wed, 19 Oct 2022 16:02:06 +0000 (UTC)
-Received: by mail-ua1-f43.google.com with SMTP id x20so7484810ual.6
- for <Intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 09:02:06 -0700 (PDT)
-X-Gm-Message-State: ACrzQf1S+NQJNsDy/S5P5GlH3Js5qHTWL96YKpUBCNZCrKRYqmRvDrB8
- owcT71naeYzO990zONoj1QlJrXTlBA8xsQsMGVs=
-X-Google-Smtp-Source: AMsMyM7csx0cGEXMFscT4GgJB+Xq/gT1iHmNwZWMR+PTZXYCFulqIRiAvE/ubr2ZOrODsYYlz7A35TwbQy/457wGNPs=
-X-Received: by 2002:ab0:5483:0:b0:3dc:40aa:84cf with SMTP id
- p3-20020ab05483000000b003dc40aa84cfmr2185549uaa.102.1666195325370; Wed, 19
- Oct 2022 09:02:05 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAC6210E9DC;
+	Wed, 19 Oct 2022 16:16:13 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E86310E9DC;
+ Wed, 19 Oct 2022 16:16:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666196168; x=1697732168;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=yUF8swZTeykYvYIS0RdvgDV4PFuuqOIV0Wg2Nn65pGU=;
+ b=SuSsSZX8hRR1s2ZemCdfME+4vo/6692NEDWJQqVDw14rjMcfs23En79S
+ enjPilzHZpsXkBpHm4FG4ZDB0QksjVV69A/tpX1FRZczTBh3T3tC+cdWN
+ mkpfDsbsA3yu42mJQL5a0bd9K/NFKrtQcrLF83tLixjWTYjDfaXERstdN
+ pFQJVWJ314a84riIQr5+Lmyw9YWlsx4zOrrjaOOfMZQSOwTg0ymC+s5pq
+ WlNXl1a1b7CiiCoC0eAtMNuB5IhF99GlmLW4CAS1LC6Zf7nqaijyY2fRQ
+ 2CqV1QpHvPTlQ0Yk0Afelln9tfZlsV2NlzbLOXlXw5wIixpTvEuyepyYv A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="306449746"
+X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="306449746"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 09:07:37 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="624199579"
+X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="624199579"
+Received: from abyrne1-mobl1.ger.corp.intel.com (HELO [10.252.27.172])
+ ([10.252.27.172])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 09:07:34 -0700
+Message-ID: <33e7d512-c78d-dfff-0bcd-0cdf94af384a@intel.com>
+Date: Wed, 19 Oct 2022 17:07:31 +0100
 MIME-Version: 1.0
-References: <0029af41-bf24-9972-10ac-f52e1bdcbf08@linux.intel.com>
- <CAHmME9o25v0kZUV-7qEY=6XXAyOA7q0sG8gpQfxHgr3sSVdsWw@mail.gmail.com>
-In-Reply-To: <CAHmME9o25v0kZUV-7qEY=6XXAyOA7q0sG8gpQfxHgr3sSVdsWw@mail.gmail.com>
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Date: Wed, 19 Oct 2022 10:01:53 -0600
-X-Gmail-Original-Message-ID: <CAHmME9oy8BWkt-ryWMgwaVCY7BUEhzYgttQ6DKTaMpjyBjuzkQ@mail.gmail.com>
-Message-ID: <CAHmME9oy8BWkt-ryWMgwaVCY7BUEhzYgttQ6DKTaMpjyBjuzkQ@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] signal: break out of wait loops on kthread_stop()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.3.1
+Content-Language: en-GB
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20221018071630.3831-1-niranjana.vishwanathapura@intel.com>
+ <20221018071630.3831-14-niranjana.vishwanathapura@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20221018071630.3831-14-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v4 13/17] drm/i915/vm_bind: Update
+ i915_vma_verify_bind_complete()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,51 +63,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
- "Eric W. Biederman" <ebiederm@xmission.com>, linux-kernel@vger.kernel.org
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
+ daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 19, 2022 at 10:00 AM Jason A. Donenfeld <Jason@zx2c4.com> wrote:
->
-> On Wed, Oct 19, 2022 at 7:31 AM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
-> >
-> >
-> > Hi,
-> >
-> > A question regarding a7c01fa93aeb ("signal: break out of wait loops on
-> > kthread_stop()") if I may.
-> >
-> > We have a bunch code in i915, possibly limited to self tests (ie debug
-> > builds) but still important for our flows, which spawn kernel threads
-> > and exercises parts of the driver.
-> >
-> > Problem we are hitting with this patch is that code did not really need
-> > to be signal aware until now. Well to say that more accurately - we were
-> > able to test the code which is normally executed from userspace, so is
-> > signal aware, but not worry about -ERESTARTSYS or -EINTR within the test
-> > cases itself.
-> >
-> > For example threads which exercise an internal API for a while until the
-> > parent calls kthread_stop. Now those tests can hit unexpected errors.
-> >
-> > Question is how to best approach working around this change. It is of
-> > course technically possible to rework our code in more than one way,
-> > although with some cost and impact already felt due reduced pass rates
-> > in our automated test suites.
-> >
-> > Maybe an opt out kthread flag from this new behavior? Would that be
-> > acceptable as a quick fix? Or any other comments?
->
-> You can opt out by running `clear_tsk_thread_flag(current,
-> TIF_NOTIFY_SIGNAL);` at the top of your kthread. But you should really
-> fix your code instead. Were I your reviewer, I wouldn't merge code
-> that took the lazy path like that. However, that should work, if you
-> do opt for the quick fix.
+On 18/10/2022 08:16, Niranjana Vishwanathapura wrote:
+> Ensure i915_vma_verify_bind_complete() handles case where bind
+> is not initiated. Also make it non static, add documentation
+> and move it out of CONFIG_DRM_I915_DEBUG_GEM.
+> 
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_vma.c | 16 +++++++++++-----
+>   drivers/gpu/drm/i915/i915_vma.h |  1 +
+>   2 files changed, 12 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index eaa13e9ba966..4975fc662c86 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -439,12 +439,21 @@ int i915_vma_sync(struct i915_vma *vma)
+>   	return i915_vm_sync(vma->vm);
+>   }
+>   
+> -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
+> -static int i915_vma_verify_bind_complete(struct i915_vma *vma)
+> +/**
+> + * i915_vma_verify_bind_complete() - Check for the bind completion of the vma
+> + * @vma: vma to check for bind completion
 
-Oh my, I haven't had my coffee yet and sent that too fast without
-thinking straight. That certainly won't work as intended. Sorry for
-the noise.
+Maybe mention the locking since this is now more than just DEBUG_GEM 
+stuff. I assume we need the object lock or otherwise some guarantee that 
+the vma is pinned?
 
-Jason
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+> + *
+> + * Returns: 0 if the vma bind is completed. Error code otherwise.
+> + */
+> +int i915_vma_verify_bind_complete(struct i915_vma *vma)
+>   {
+>   	struct dma_fence *fence = i915_active_fence_get(&vma->active.excl);
+>   	int err;
+>   
+> +	/* Ensure vma bind is initiated */
+> +	if (!i915_vma_is_bound(vma, I915_VMA_BIND_MASK))
+> +		return -EINVAL;
+> +
+>   	if (!fence)
+>   		return 0;
+>   
+> @@ -457,9 +466,6 @@ static int i915_vma_verify_bind_complete(struct i915_vma *vma)
+>   
+>   	return err;
+>   }
+> -#else
+> -#define i915_vma_verify_bind_complete(_vma) 0
+> -#endif
+>   
+>   I915_SELFTEST_EXPORT void
+>   i915_vma_resource_init_from_vma(struct i915_vma_resource *vma_res,
+> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+> index 1cadbf8fdedf..04770f8ba815 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.h
+> +++ b/drivers/gpu/drm/i915/i915_vma.h
+> @@ -440,6 +440,7 @@ void i915_vma_make_purgeable(struct i915_vma *vma);
+>   
+>   int i915_vma_wait_for_bind(struct i915_vma *vma);
+>   int i915_vma_sync(struct i915_vma *vma);
+> +int i915_vma_verify_bind_complete(struct i915_vma *vma);
+>   
+>   /**
+>    * i915_vma_get_current_resource - Get the current resource of the vma
