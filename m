@@ -1,55 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC2AF60511A
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 22:13:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2679605130
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 22:19:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5D9B10EAC4;
-	Wed, 19 Oct 2022 20:13:07 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC15310EBB1
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 20:13:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666210382; x=1697746382;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=St73ZqXrFg6jpq6tzl6wsAnS3lOpAT2cGNAdsqwD2vE=;
- b=Dr3skJWk8Q6rKPlflQ6sLEWP6HqPqD+28+63qXJhWztGvjbfXsCMdlUi
- WLZoPKbD8uDkhc4LrXn3LAh1LnHqLarfYq9ZbZZe3e4Df+JKNe9LoQGq0
- Wy90nDd0JT0hkteWXvGBmzBCZUzdrVYo95Wx1ANXMECpz/GsH9kd3YNSP
- FxjQlVneAdJZlrsHKxO10jmw1xVUufMbRJvKlbvYv50NFBHTZd5FbZ9c2
- CgLXgSpAbSS6Tf7LMEcmrVTSdx0MFs3MN0KjCNEGpPUsNuZEekiZFAItE
- RuwswAM3WR75QfDhAisUTqTyvGMXKB5l3cVoH8bz+WZXWcHrLIeTcjwge w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="286911529"
-X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="286911529"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2022 13:12:58 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="771953094"
-X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="771953094"
-Received: from ideak-desk.fi.intel.com ([10.237.72.175])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2022 13:12:57 -0700
-Date: Wed, 19 Oct 2022 23:12:53 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Y1BaRfTAH/l+XLqc@ideak-desk.fi.intel.com>
-References: <20221018172042.1449885-1-imre.deak@intel.com>
- <87bkq8i3xp.fsf@intel.com> <Y0/BNSKHS+GYkLCw@intel.com>
- <Y0/Dwl3Bct0owF7S@intel.com> <8735bkhu65.fsf@intel.com>
- <Y0/9Et5mQ5K/Tnsl@ideak-desk.fi.intel.com>
- <87wn8vhndx.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0207510F117;
+	Wed, 19 Oct 2022 20:19:44 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 190FD10F117
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 20:19:36 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id BE95FB825E2;
+ Wed, 19 Oct 2022 20:19:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D90FDC433C1;
+ Wed, 19 Oct 2022 20:19:30 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+ dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
+ header.b="bbSVGaHM"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
+ t=1666210768;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=C5fVcK31viwo6cd+Ntr7JvcXlPspuKK/0tBhkAp7rS4=;
+ b=bbSVGaHMrn3+fdih8eHeNZKmyvNtAFlmp0SakMWD716TytdSbCA9Urv9G/y5v1txQdL8Vx
+ DDizKMClOts+I3M0vy8BhMV5cw9xi8Gu64h5OPb69gI24IaPUm/ZM2A4PgnISpqFLwUcQ6
+ H3FQW7LibPmJT2A/wbQJ6d8YFLUzKFI=
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id f73e1fa5
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
+ Wed, 19 Oct 2022 20:19:27 +0000 (UTC)
+Date: Wed, 19 Oct 2022 14:19:23 -0600
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <Y1Bby6FEEWiFIjjD@zx2c4.com>
+References: <0029af41-bf24-9972-10ac-f52e1bdcbf08@linux.intel.com>
+ <CAHmME9o25v0kZUV-7qEY=6XXAyOA7q0sG8gpQfxHgr3sSVdsWw@mail.gmail.com>
+ <41455798-1dcb-135f-516d-25ab9a8082f5@linux.intel.com>
+ <Y1A+9kN6bwfXeqVt@zx2c4.com>
+ <8acc3e4a-abbc-32bc-626e-7a216f6755c3@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87wn8vhndx.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/tgl+: Add locking around DKL
- PHY register accesses
+In-Reply-To: <8acc3e4a-abbc-32bc-626e-7a216f6755c3@linux.intel.com>
+Subject: Re: [Intel-gfx] signal: break out of wait loops on kthread_stop()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,152 +60,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: sultan@kerneltoast.com,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
+ "Eric W. Biederman" <ebiederm@xmission.com>, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 19, 2022 at 05:57:30PM +0300, Jani Nikula wrote:
-> On Wed, 19 Oct 2022, Imre Deak <imre.deak@intel.com> wrote:
-> > On Wed, Oct 19, 2022 at 03:30:58PM +0300, Jani Nikula wrote:
-> >> On Wed, 19 Oct 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> > On Wed, Oct 19, 2022 at 12:19:49PM +0300, Ville Syrjälä wrote:
-> >> >> On Wed, Oct 19, 2022 at 12:00:02PM +0300, Jani Nikula wrote:
-> >> >> > On Tue, 18 Oct 2022, Imre Deak <imre.deak@intel.com> wrote:
-> >> >> > > Accessing the TypeC DKL PHY registers during modeset-commit,
-> >> >> > > -verification, DP link-retraining and AUX power well toggling is racy
-> >> >> > > due to these code paths being concurrent and the PHY register bank
-> >> >> > > selection register (HIP_INDEX_REG) being shared between PHY instances
-> >> >> > > (aka TC ports) and the bank selection being not atomic wrt. the actual
-> >> >> > > PHY register access.
-> >> >> > >
-> >> >> > > Add the required locking around each PHY register bank selection->
-> >> >> > > register access sequence.
-> >> >> > 
-> >> >> > I honestly think the abstraction here is at a too low level.
-> >> >> > 
-> >> >> > Too many places are doing DKL PHY register access to begin with. IMO the
-> >> >> > solution should be to abstract DKL PHY better, not to provide low level
-> >> >> > DKL PHY register accessors.
-> >> >> > 
-> >> >> > Indeed, this level of granularity leads to a lot of unnecessary
-> >> >> > lock/unlock that could have a longer span otherwise, and the interface
-> >> >> > does not lend itself for that.
-> >> >> 
-> >> >> It's no worse than uncore.lock. No one cares about that in
-> >> >> these codepaths either.
-> >> >> 
-> >> >> > Also requires separate bank selection for
-> >> >> > every write, nearly doubling the MMIO writes.
-> >> >> 
-> >> >> Drop in the ocean. This is all slow modeset stuff anyway.
-> >> >> 
-> >> >> IMO separate reg accessors is the correct way to handle indexed
-> >> >> registers unless you have some very specific performance concerns
-> >> >> to deal with.
-> >> 
-> >> Fair enough.
-> >> 
-> >> > Now, whether those accessors need to be visible everywere is another
-> >> > matter. It should certainly be possible to suck all dkl phy stuff
-> >> > into one file and keep the accessors static. But currently eveything
-> >> > is grouped by function (PLLs in one file, vswing stuff in another,
-> >> > etc.). We'd have to flip that around so that all the sub functions
-> >> > of of each IP block is in the same file. Is that a better apporach?
-> >> > Not sure.
-> >> 
-> >> I'm often interested in the precedent a change makes. What's the
-> >> direction we want to go to?
-> >> 
-> >> So here, we're saying the DKL PHY registers are special, and need to be
-> >> accessed via dedicated register accessors. To enforce this, we create
-> >> strong typing for DKL PHY registers. We go out of our way to make it
-> >> safe to access DKL PHY registers anywhere in the driver.
-> >> 
-> >> Do we want to add more and more register types in the future? And
-> >> duplicate the accessors for each? Oops, looks like we're already on our
-> >> way [1].
-> >
-> > Making the DKL PHY accesses type safe was just a bonus, the main reason
-> > for adding the dkl_phy_reg struct (in a later refactoring patch) is that
-> > defining those registers only makes sense to me specifying all the
-> > attributes (both MMIO and the bank index) of the register at one place.
-> > That's instead of the current way of having to pass these separately to
-> > each accessor functions. For instance to be able to call
-> >
-> > read(DKL_PLL_DIV0(tc_port))
-> >
-> > instead of having to remember the index of each (non lane-instanced)
-> > register and call
-> >
-> > read(DKL_PLL_DIV0(tc_port), 2)
-> >
-> > It also makes more sense to me that the register itself is parametric
-> > if that's needed (lane-instanced registers), for instance
-> >
-> > read(DKL_TX_DPCNTL0(tc_port, 0))
-> >
-> > instead of this being a separate parameter of each accessor function:
-> >
-> > read(DKL_TX_DPCNTL0(tc_port), 0)
-> 
-> This is actually a very good point.
-> 
-> An alternative to this that I've been pondering separately, before these
-> patches, is expanding i915_reg_t to encode things like "display
-> register", "mcr register", etc.
-> 
-> So you'd still have only one i915_reg_t type, and only one set of
-> accessors, but they could be smarter behind the scenes. But I don't like
-> teaching intel uncore about stuff like dkl either. And the main point
-> would be avoiding all the duplication that C type safety requires.
-> 
-> But it's a moot point anyway because we also need something to backport
-> to stable, and I acknowledge your approach makes a lot of sense for that
-> too.
-> 
-> >> My argument is that maybe access to such a hardware block should instead
-> >> be limited to a module (.c file) that abstracts the details. Abstract
-> >> hardware blocks and function, not registers. How many files need big
-> >> changes to add a new PHY?
-> >
-> > I think the accessors could be added to a new intel_tc_phy.c file
-> > instead? (That would still allow further refactoring of both the MG and
-> > DKL functionality as a follow-up to this change for -stable.)
-> 
-> So, why intel_tc_anything? Why not just intel_dkl_phy.[ch],
-> intel_dkl_phy_regs.h? Even if initially limited to the register
-> accessors, you could easily move things like
-> tgl_dkl_phy_set_signal_levels() there, just like
-> intel_snps_phy_set_signal_levels() is in intel_snps_phy.c. And you could
-> have intel_mg_phy.c for MG stuff.
+On Wed, Oct 19, 2022 at 09:09:28PM +0100, Tvrtko Ursulin wrote:
+> Hm why is kthread_stop() after kthread_run() abuse? I don't see it in 
+> kerneldoc that it must not be used for stopping threads.
 
-MG and DKL share some register flags and programming sequences
-(calculating PLL params, setting pin assignments for instance), hence
-thought to have one file for both PHY implementations. But there are
-also differences and sharing code would also be possible between the
-MG and DKL files, so ok if no objections I can add the accessors to
-intel_dkl_phy.[ch].
+Because you don't want it to stop. You want to wait until it's done. If
+you call stop right after run, it will even stop it before it even
+begins to run. That's why you wind up sprinkling your msleeps
+everywhere, indicating that clearly this is not meant to work that way.
 
-> I guess intel_tc_phy_regs.h would mostly be split to
-> intel_dkl_phy_regs.h and intel_mg_phy_regs.h.
+> Yep the yields and sleeps are horrible and will go. But they are also 
+> not relevant for the topic at hand.
 
-Ok, so I suppose this means renaming the current intel_tc_phy_regs.h to
-intel_mg_phy_regs.h, move the DKL regs to intel_dkl_phy_regs.h and
-copy/rename the shared MG_* flags in the former to DKL_* in the latter.
+Except they very much are. The reason you need these is because you're
+using kthread_stop() for something it's not meant to do.
 
---Imre
+> Never mind, I was not looking for anything more than a suggestion on how 
+> to maybe work around it in piece as someone is dealing with the affected 
+> call sites.
 
-> BR,
-> Jani.
-> >
-> >> BR,
-> >> Jani.
-> >> 
-> >> [1] https://lore.kernel.org/r/20221014230239.1023689-13-matthew.d.roper@intel.com
-> >> 
-> >> -- 
-> >> Jani Nikula, Intel Open Source Graphics Center
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Sultan's kthread_work idea is probably the right direction. This would
+seem to have what you need.
+
+Jason
