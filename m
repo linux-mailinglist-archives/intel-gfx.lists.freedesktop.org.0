@@ -2,72 +2,107 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F160604DC9
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 18:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 800A1604E58
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 19:15:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFB0110E7BD;
-	Wed, 19 Oct 2022 16:53:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 573B410EB39;
+	Wed, 19 Oct 2022 17:15:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
- [IPv6:2a00:1450:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A23910E7BD;
- Wed, 19 Oct 2022 16:53:10 +0000 (UTC)
-Received: by mail-wr1-x42d.google.com with SMTP id j7so30133739wrr.3;
- Wed, 19 Oct 2022 09:53:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=5DFiDHx5wZGd/yzujkohJJ41a468Rylww7APwMMpKn4=;
- b=bzPrbgNYfXwdkhopwLn8ymzPsBrlZ30EX3+az2D3Lc5d4yg6S/fRbsBmbLMaA6NAts
- iVpDZ0V/kPaRRjy9L1A8APZ6yIR2savHbZsboNyym6zGPJwqbrvhU79EG0Ud5fTm54MA
- 3cphkOsqMi3XjypXvRPtlKiM4C2mBvXLuGgMWUZqrzl9C/k93X8ZRbaZIDLfHozEADFR
- DPqnnioH3nPttow+j9bw1eZoY+vH/5FT2NDDumFMEqQvI9P9+3/X3CuhWMOJGAoDPJ3r
- zsrq8Ne5kOxK/JC83FEKjUwSLTvnVV77zzOkQhOlT0iszh27d3nWDYPyyWE3oxLLQyZ/
- i9Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=5DFiDHx5wZGd/yzujkohJJ41a468Rylww7APwMMpKn4=;
- b=DuhuHkhlu/lEzYIS6j7g6GxqhBD+XHTFYo8v6s5DrXmhZFDuvnpnhVA3aQhN/zGz6i
- dUwrqyPOxWfeQQqqCvd/JKtU8oON/GfCzKNi9VHkRDET8Pg82CuT+Rk0IWgORrEnNa9e
- lPoeH6JSZYe29ebvxuv10C3Uw7sWO6DjUuVMaSnN6r+blYWoogiX217juXjwCTxsKVjd
- 5gXXAZOM0Ny2jF/Ye4HKgfD3PnUvTEwcbbLEnt3vrgLF8WOOQLLgBHKsQ+FawLnApri8
- ZID8FZigwUH47m94XmYqfNpvjrxj5I37EN+9BGUYqzb34TkHH6IqhfwaoAxbB+9KgV9m
- uwrA==
-X-Gm-Message-State: ACrzQf0DLA/imvCoy3oxjNiGH5vDoolnbGhEE7X2X5KNn5qazC3u5E4Y
- 8qIro5kIOA9squBTsykRUBUk8cFKC6c=
-X-Google-Smtp-Source: AMsMyM4RIfA1QI4OC4Ia4N+eUpNxPu9nQ66XldpkOoEqi3iFNIE6g1LBWU4SXrLT9q5GVd3/2iZsHg==
-X-Received: by 2002:a05:6000:1549:b0:22e:519e:f39d with SMTP id
- 9-20020a056000154900b0022e519ef39dmr5842291wry.703.1666198388729; 
- Wed, 19 Oct 2022 09:53:08 -0700 (PDT)
-Received: from ?IPV6:2a02:908:1256:79a0:f4ab:6c74:114:840d?
- ([2a02:908:1256:79a0:f4ab:6c74:114:840d])
- by smtp.gmail.com with ESMTPSA id
- c11-20020a05600c0a4b00b003c0d504a92csm480928wmq.22.2022.10.19.09.53.07
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Oct 2022 09:53:08 -0700 (PDT)
-Message-ID: <9fbd22af-e21b-a3bb-634c-53b4ca22297d@gmail.com>
-Date: Wed, 19 Oct 2022 18:53:07 +0200
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2068.outbound.protection.outlook.com [40.107.220.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD31310EB39;
+ Wed, 19 Oct 2022 17:15:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z+6V8vxvRZI+ZQfawB/po2SZjFzYhK+YfB6P2VJrfsfolHIqJFkoMDFwcADs45rJ3/9SZJiyu6tsLQUNb8zDauyayF5TK8ZGm2zmpTynPd/OKD9t7/lA6wkQHA15pwwT8Svlb2jKtixxg8n4BsVmzddknfouOfwQFG/NFgcZbsYe+J9ojiEiWCuHIdnq2i7jztoMHwiudPrgRIPRit4f7cI4o8F8CFPqkaUgkrhkDr9HFCLZjVZbkXC9Y0V9Tb2hbBLV7bbXzMYwkHH9bTRrvNhKHkj57huf9Buk4nTW+kpSy+uRnREn1ckdrsgM0swltDD5llvdjmH+fQa7VPQrfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=moa5J+x8ZOwrrGnqC65CPwi0xigEEJOaQhiVe8YwbGs=;
+ b=cL31vsr+DXK0MvbHffxby83lo5kh7Zm112hjh4+IBpsFLPGXTqxDdpgZ0usKZsWflvc8JxeziuHLfX4L2wFVi/o0vCNr1yWJ2vP/x9WLI3bcYNNT2kUwYTD1iMfKO5qlYTll3yMnJ8rbzJuH9k3ZkqJBzwmJthfDY96idB0MU4kVqCCOh7OR+HL/lta1GyEujHCfIsi+qAB3X4zNwg6m/aBA1svuC8AsEFUnqK5qDP43QgDbm7z/cFnUIWIXLxwd++VWA/xqqq2XKH8PLgy1VncrfOLfLCZP2Y9SctuZF2RwOwC4zdZSL2EitA73yfYdRHoSCnk3JrxrGgjU409OGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=moa5J+x8ZOwrrGnqC65CPwi0xigEEJOaQhiVe8YwbGs=;
+ b=StcR7+ve5FJ+TMDjeV/j8Nz+BOpPj76G2Xp1M2wvmG7+d4ULHqk0EuQ8tB86Yod0I+vgmQMMv6iVRJIbvrDgCIZTnZW/cIfZJQIdScBiELxV2AhR/7ZO8bxLrmQLWDtpJTUPNH9RJBZ8NkwZp5XHoPnFB6RWrapQG1SOxkXB8oRU2kGYj1QPTBOfglnPN5L/ZAsKark+MOyuqI9eVmAkG1ExLB6xpT+QotE/ZkJCpgrCoxbjJuxD03suz0v4RIZyg3w40D3B7NPCnvup+d3oxfozsPptAcevxMul5JzIsRt83NvHG2ZLRVQXlkwgxj8RqRlCMwXwNl3y8E7XOa+r4w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by DM4PR12MB7600.namprd12.prod.outlook.com (2603:10b6:8:108::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.26; Wed, 19 Oct
+ 2022 17:15:32 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::7a81:a4e4:bb9c:d1de]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::7a81:a4e4:bb9c:d1de%6]) with mapi id 15.20.5723.033; Wed, 19 Oct 2022
+ 17:15:31 +0000
+Date: Wed, 19 Oct 2022 14:15:30 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Eric Farman <farman@linux.ibm.com>
+Message-ID: <Y1Awsh56Ur/cDrHh@nvidia.com>
+References: <20221019162135.798901-1-farman@linux.ibm.com>
+ <20221019162135.798901-7-farman@linux.ibm.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221019162135.798901-7-farman@linux.ibm.com>
+X-ClientProxiedBy: MN2PR19CA0037.namprd19.prod.outlook.com
+ (2603:10b6:208:19b::14) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-References: <20221019152736.654451-1-Amaranath.Somalapuram@amd.com>
- <20221019152736.654451-5-Amaranath.Somalapuram@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20221019152736.654451-5-Amaranath.Somalapuram@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?W1BBVENIIDUvNl0gZHJtL3JhZGVvbjogZml44oCZ?=
- =?utf-8?q?s_on_ttm=5Fresource_rework_to_use_size=5Ft_type?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|DM4PR12MB7600:EE_
+X-MS-Office365-Filtering-Correlation-Id: 83d74008-cb3b-42d7-f916-08dab1f586c0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aEbATsebNcP7Fg61ktbvHtNSf4VjYbWBwED6ckBY0nGL0qp15sSu5otEa1YDuWeMu/8TPuWU7/SA9LzAKKvaNQSoKhh7tcDcqTx886d2SRPp+nLoITTjzuL8nzEPdAvEqodcIZ9E9b/lTTk1Oa31v2Kl6QmxslKVT1GMbRq+YxQKqymTgqOEYsTXrxo5slj2SZL03bunwwM6KLSCWwkY+HBYqzKQ/XRNCtv6mg3yLfUbf9x7YTsnG9h90C89cvzFJldBoGmlaK8Lm+NEjyeSMBj6pcv4o5ELyGrv2P5R8g78CntUpcOxcfIDvuOcf7Mu9igcPziTgHizbvBHpAs+SyzZM8L/6ryW3W4QU6IaUnjvjZW5u8tk8vb+geEoWO2ZKX5CkI0MCpdqFS1XLdM9g7cQvD6bVR5HU1icz6rYhmmHRhbEtfQJUyVSRRlfrkfXiDUFufhvwqBM+1Ply9EcZG3fl4x4Y/SjG/gW2UF7CZ4+7+cS7IcIb1GYd7MxDsK3wikgcLN7O0BCZs0I9R9cdY02JJciGcWLajYxAeFC/cXJWOEL3lhrfMkyS3K1RxVnCeToHr8clw1N6PzblUuoh2r6JgdavcI+G5k7FCpQwCgAlDWo1uc2Xy66EC+QArKRrAe9h+9dlSnj6eL9MChJq0C897jBDeS3/1MSXgBs1htyhG39ZdPedDa2yrmkWuBKIz/NQPuvX/+YtJ5D8EghiQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(366004)(396003)(136003)(346002)(39860400002)(376002)(451199015)(36756003)(86362001)(38100700002)(66556008)(316002)(6916009)(54906003)(7416002)(5660300002)(7406005)(4744005)(8936002)(186003)(66476007)(2906002)(6506007)(2616005)(66946007)(478600001)(6512007)(6486002)(26005)(41300700001)(4326008)(8676002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TJnT5/dtaW4Qrq4V6mVMrzYp/tYa5MdjXOvNp3b//J1sHuKEIr7aJrUM96eW?=
+ =?us-ascii?Q?DQMcCBM8T2q1spaCSmysQKCvA8FyZ+BgWD6c6aebvNeJgqtWHwwIXvfIhUAQ?=
+ =?us-ascii?Q?I17Q6gY3QHS7ABC1e17l3Wo2fpk60cxarf3C4WUekQtCZQI4CwBjBYwaCvFv?=
+ =?us-ascii?Q?sxD1dbI8aSfdyjK16JW6NQgaw6Ynz1xhXuIlDbX2GPcJm0lTeXzZnnaiUs0A?=
+ =?us-ascii?Q?Qi8veOaCyQZGkuRsi6Z/2r+Rb5NHDZ139a6m5ClS34ErbWMDZJ+/0ybVx3Af?=
+ =?us-ascii?Q?aAeerw6tph5wO+orCaTqt/1ml7J1J5b2X92tem119LROemKq+ckdHJ5wPQvp?=
+ =?us-ascii?Q?G5dlFyHN7y8AN6YsNUx581zb9Wokd+IR5zJCPixrlC0T+BIcMD7Xfi8QK1Rl?=
+ =?us-ascii?Q?P7tFt2lFTBY+jCFZB3H87pYxY6nVli0ggX56HJ6ftvfEDQkR2Ezi34FNzVNX?=
+ =?us-ascii?Q?CmrdselhMpiVOW+XzokVOhqD74WjxpzwKWseqagTlVQaWFbbIxkYCn6L4dKn?=
+ =?us-ascii?Q?U8/h0JSYcZYQoQdO1D1d8MvjxpRxUigPS242p4lqH0TjkYs8hThXULurfYpq?=
+ =?us-ascii?Q?xd/Ixu3qlygrBq+HmVG5x8pKwxg0F7gBEdIUC0rdwAT1TISOrsCQWCWCRcgy?=
+ =?us-ascii?Q?ndnIh7hto3y10vKcKoGgdH5UG7p1HrsiQm4rxwaSQ+hk70KnjKM/SrJholDL?=
+ =?us-ascii?Q?BgTeCEtvrCvW+BvARxWdzPD8Ml2QG2ejGpArUDJmJqpp+tcezdHB2LVLG3ne?=
+ =?us-ascii?Q?XiiAvXOay23zdQSH4X+sqMkG8kTlWecFvgDaL77SKR64EZg/Pv/UvdSSo10T?=
+ =?us-ascii?Q?W1Raq2kACl9PVXoxUFBlSQxAqbDBSZesWTrtCYuqp72ek57+Czm7i5N9wrKC?=
+ =?us-ascii?Q?LOSSujhc3urweC9yQbZcW6clyZV4DbJE9MrCqSqL3L1hNpFq5HnLumNZoiBF?=
+ =?us-ascii?Q?kWlPL/5m/fgErS7VxDKK+pW219j2dQPAxIkK2SfclJAyjb+p5fe1itqCIpOx?=
+ =?us-ascii?Q?Oq0v5yNUGt1ZJTee7MIN6JCzhnqXZEcWldsNjoUpa1U9N1SX7Ik101fFdVIP?=
+ =?us-ascii?Q?7tL69YATnj2NzqscFbnzVscFA3Yd99dopHneWjGzB0qsEGU/jEHL1ERc9Cr5?=
+ =?us-ascii?Q?yUqxlT3ZGWvPW8zCWr8gx5lIQKMRXAsiK68GM1s6fgMiKeayTePwPS4s6WdL?=
+ =?us-ascii?Q?sAmjUFVd5LaXlPPCK1oB919PYNz/Hkx7WOiMzS/SRBKey/ttda7PB9vf1AEP?=
+ =?us-ascii?Q?8Qh83UCOFd6jeInj0XAGuZnF1EK4buDsphrqeS4rda+wBqsA1ntJqba3eh5y?=
+ =?us-ascii?Q?fJ7s1wZKaMHAAxVzEqPVEZXg6GDO50iGz+eO9Q8JPt5iMjwoCcHdC4BB+Y/T?=
+ =?us-ascii?Q?KPVIoC4a9XumVnZZQ4MEj1XymLHP2sWBenU9Nc0IVswNenoEyHcscSvvolW8?=
+ =?us-ascii?Q?U8xj067uf7zuO4Kvj6WuzxtU/WXGXKK0P+ltOokvR4mWodYUBQQYzqCfFoYO?=
+ =?us-ascii?Q?i4srC9UPbEhz5iQ7omtZlMAGrYb80ZWNMkGtXQCmUFiBLx/JKR4uDAYd6Spk?=
+ =?us-ascii?Q?wl/e0MdALHPcNQ6AqIs=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83d74008-cb3b-42d7-f916-08dab1f586c0
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2022 17:15:31.9117 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mLBsXjG/earih/mHhaf87AYpyLZueUs1LoTMGTtfJf/ra5/oLKMdwB4GOICsvT4L
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7600
+Subject: Re: [Intel-gfx] [PATCH v1 6/7] vfio/ccw: replace vfio_init_device
+ with _alloc_
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,110 +115,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
- arunpravin.paneerselvam@amd.com
+Cc: Matthew Rosato <mjrosato@linux.ibm.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
+ linux-s390@vger.kernel.org, Yi Liu <yi.l.liu@intel.com>, kvm@vger.kernel.org,
+ Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Eric Auger <eric.auger@redhat.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Abhishek Sahu <abhsahu@nvidia.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Oct 19, 2022 at 06:21:34PM +0200, Eric Farman wrote:
 
+>  /*
+>   * Initialize a vfio_device so it can be registered to vfio core.
+> - *
+> - * Only vfio-ccw driver should call this interface.
+>   */
+>  int vfio_init_device(struct vfio_device *device, struct device *dev,
+>  		     const struct vfio_device_ops *ops)
+> @@ -422,7 +420,6 @@ int vfio_init_device(struct vfio_device *device, struct device *dev,
+>  	ida_free(&vfio.device_ida, device->index);
+>  	return ret;
+>  }
+> -EXPORT_SYMBOL_GPL(vfio_init_device);
 
-Am 19.10.22 um 17:27 schrieb Somalapuram Amaranath:
-> Fix the ttm_resource from num_pages to size_t size.
->
-> Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> ---
->   drivers/gpu/drm/radeon/radeon_cs.c     | 4 ++--
->   drivers/gpu/drm/radeon/radeon_object.c | 4 ++--
->   drivers/gpu/drm/radeon/radeon_trace.h  | 2 +-
->   drivers/gpu/drm/radeon/radeon_ttm.c    | 4 ++--
->   4 files changed, 7 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/radeon/radeon_cs.c b/drivers/gpu/drm/radeon/radeon_cs.c
-> index 446f7bae54c4..4c930f0cf132 100644
-> --- a/drivers/gpu/drm/radeon/radeon_cs.c
-> +++ b/drivers/gpu/drm/radeon/radeon_cs.c
-> @@ -400,8 +400,8 @@ static int cmp_size_smaller_first(void *priv, const struct list_head *a,
->   	struct radeon_bo_list *lb = list_entry(b, struct radeon_bo_list, tv.head);
->   
->   	/* Sort A before B if A is smaller. */
-> -	return (int)la->robj->tbo.resource->num_pages -
-> -		(int)lb->robj->tbo.resource->num_pages;
-> +	return (int)PFN_UP(la->robj->tbo.resource->size) -
-> +		(int)PFN_UP(lb->robj->tbo.resource->size);
+Should be made static as well
 
-I think you can drop the conversion and PFN_UP. What we need here is a 
-compare result. Something like this:
-
-if (la->robj->tbo.resource->size > lb->robj->tbo.resource->size)
-     return 1;
-if (la->robj->tbo.resource->size < lb->robj->tbo.resource->size)
-     return -1;
-return 0;
-
-And I think it makes more sense to use tbo.base.size here as well 
-instead of the resource size.
-
-Regards,
-Christian.
-
->   }
->   
->   /**
-> diff --git a/drivers/gpu/drm/radeon/radeon_object.c b/drivers/gpu/drm/radeon/radeon_object.c
-> index 00c33b24d5d3..710d04fcbea6 100644
-> --- a/drivers/gpu/drm/radeon/radeon_object.c
-> +++ b/drivers/gpu/drm/radeon/radeon_object.c
-> @@ -232,7 +232,7 @@ int radeon_bo_kmap(struct radeon_bo *bo, void **ptr)
->   		}
->   		return 0;
->   	}
-> -	r = ttm_bo_kmap(&bo->tbo, 0, bo->tbo.resource->num_pages, &bo->kmap);
-> +	r = ttm_bo_kmap(&bo->tbo, 0, PFN_UP(bo->tbo.resource->size), &bo->kmap);
->   	if (r) {
->   		return r;
->   	}
-> @@ -737,7 +737,7 @@ vm_fault_t radeon_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
->   	if (bo->resource->mem_type != TTM_PL_VRAM)
->   		return 0;
->   
-> -	size = bo->resource->num_pages << PAGE_SHIFT;
-> +	size = bo->resource->size;
->   	offset = bo->resource->start << PAGE_SHIFT;
->   	if ((offset + size) <= rdev->mc.visible_vram_size)
->   		return 0;
-> diff --git a/drivers/gpu/drm/radeon/radeon_trace.h b/drivers/gpu/drm/radeon/radeon_trace.h
-> index c9fed5f2b870..22676617e1a5 100644
-> --- a/drivers/gpu/drm/radeon/radeon_trace.h
-> +++ b/drivers/gpu/drm/radeon/radeon_trace.h
-> @@ -22,7 +22,7 @@ TRACE_EVENT(radeon_bo_create,
->   
->   	    TP_fast_assign(
->   			   __entry->bo = bo;
-> -			   __entry->pages = bo->tbo.resource->num_pages;
-> +			   __entry->pages = PFN_UP(bo->tbo.resource->size);
->   			   ),
->   	    TP_printk("bo=%p, pages=%u", __entry->bo, __entry->pages)
->   );
-> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
-> index d33fec488713..fff48306c05f 100644
-> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
-> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
-> @@ -181,7 +181,7 @@ static int radeon_move_blit(struct ttm_buffer_object *bo,
->   
->   	BUILD_BUG_ON((PAGE_SIZE % RADEON_GPU_PAGE_SIZE) != 0);
->   
-> -	num_pages = new_mem->num_pages * (PAGE_SIZE / RADEON_GPU_PAGE_SIZE);
-> +	num_pages = PFN_UP(new_mem->size) * (PAGE_SIZE / RADEON_GPU_PAGE_SIZE);
->   	fence = radeon_copy(rdev, old_start, new_start, num_pages, bo->base.resv);
->   	if (IS_ERR(fence))
->   		return PTR_ERR(fence);
-> @@ -268,7 +268,7 @@ static int radeon_bo_move(struct ttm_buffer_object *bo, bool evict,
->   static int radeon_ttm_io_mem_reserve(struct ttm_device *bdev, struct ttm_resource *mem)
->   {
->   	struct radeon_device *rdev = radeon_get_rdev(bdev);
-> -	size_t bus_size = (size_t)mem->num_pages << PAGE_SHIFT;
-> +	size_t bus_size = (size_t)mem->size;
->   
->   	switch (mem->mem_type) {
->   	case TTM_PL_SYSTEM:
-
+Jason
