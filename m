@@ -2,52 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2679605130
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 22:19:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EED0605165
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 22:38:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0207510F117;
-	Wed, 19 Oct 2022 20:19:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC2D310E0A5;
+	Wed, 19 Oct 2022 20:38:04 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 190FD10F117
- for <Intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 20:19:36 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id BE95FB825E2;
- Wed, 19 Oct 2022 20:19:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D90FDC433C1;
- Wed, 19 Oct 2022 20:19:30 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
- dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
- header.b="bbSVGaHM"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
- t=1666210768;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=C5fVcK31viwo6cd+Ntr7JvcXlPspuKK/0tBhkAp7rS4=;
- b=bbSVGaHMrn3+fdih8eHeNZKmyvNtAFlmp0SakMWD716TytdSbCA9Urv9G/y5v1txQdL8Vx
- DDizKMClOts+I3M0vy8BhMV5cw9xi8Gu64h5OPb69gI24IaPUm/ZM2A4PgnISpqFLwUcQ6
- H3FQW7LibPmJT2A/wbQJ6d8YFLUzKFI=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id f73e1fa5
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
- Wed, 19 Oct 2022 20:19:27 +0000 (UTC)
-Date: Wed, 19 Oct 2022 14:19:23 -0600
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Y1Bby6FEEWiFIjjD@zx2c4.com>
-References: <0029af41-bf24-9972-10ac-f52e1bdcbf08@linux.intel.com>
- <CAHmME9o25v0kZUV-7qEY=6XXAyOA7q0sG8gpQfxHgr3sSVdsWw@mail.gmail.com>
- <41455798-1dcb-135f-516d-25ab9a8082f5@linux.intel.com>
- <Y1A+9kN6bwfXeqVt@zx2c4.com>
- <8acc3e4a-abbc-32bc-626e-7a216f6755c3@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0563F10E0A5
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 20:37:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666211875; x=1697747875;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yUxPhfA1StRrRnNSazLEQZVyQM6Gjkyi+z7kDw5DtdI=;
+ b=kZ4GmTmL5hcr16FSX7qreHAd4+4uPFfPJdVnK/iDM1EEffiZ/yT7iWyx
+ R2NzpYy8dJcEwoPLuAOVtuC1wAbzLxgE3oqf0pwuynS8/GE8rJR0udMks
+ 1q3aVvnZNFwQgbH8ig1kF1P8Lg0jfM63jg3F494dgIjMlp/7aKgjqv09n
+ QS9rJo2KzjNnY2FjVjMffYKA1MG1QoHbxC6mDMMC1gck3OCfXuq3YHpL1
+ yc86JPka21LED95xfYjCeqQBvNjZR/RyXfqI+er+4ufyrEEn4SRQiKJ+B
+ hCNOfWvfQHRYUQoY706LPyN85x3eexomw48uYe/5/mbN1s3ChlE2xiVjt A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="307627389"
+X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="307627389"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 13:37:54 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="718660420"
+X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="718660420"
+Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 13:37:53 -0700
+From: "Taylor, Clinton A" <clinton.a.taylor@intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Oct 2022 13:35:27 -0700
+Message-Id: <20221019203527.1682301-1-clinton.a.taylor@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <8acc3e4a-abbc-32bc-626e-7a216f6755c3@linux.intel.com>
-Subject: Re: [Intel-gfx] signal: break out of wait loops on kthread_stop()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/hdmi: SPD infoframe updated for
+ discrete
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,32 +55,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sultan@kerneltoast.com,
- "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
- "Eric W. Biederman" <ebiederm@xmission.com>, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 19, 2022 at 09:09:28PM +0100, Tvrtko Ursulin wrote:
-> Hm why is kthread_stop() after kthread_run() abuse? I don't see it in 
-> kerneldoc that it must not be used for stopping threads.
+Replace internal with discrete on dgfx platforms
 
-Because you don't want it to stop. You want to wait until it's done. If
-you call stop right after run, it will even stop it before it even
-begins to run. That's why you wind up sprinkling your msleeps
-everywhere, indicating that clearly this is not meant to work that way.
+Signed-off-by: Taylor, Clinton A <clinton.a.taylor@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-> Yep the yields and sleeps are horrible and will go. But they are also 
-> not relevant for the topic at hand.
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 93519fb23d9d..9070da469bdd 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -766,6 +766,7 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
+ 				 struct intel_crtc_state *crtc_state,
+ 				 struct drm_connector_state *conn_state)
+ {
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct hdmi_spd_infoframe *frame = &crtc_state->infoframes.spd.spd;
+ 	int ret;
+ 
+@@ -775,7 +776,10 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
+ 	crtc_state->infoframes.enable |=
+ 		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD);
+ 
+-	ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
++	if (IS_DGFX(dev_priv))
++		ret = hdmi_spd_infoframe_init(frame, "Intel", "Discrete gfx");
++	else
++		ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
+ 	if (drm_WARN_ON(encoder->base.dev, ret))
+ 		return false;
+ 
+-- 
+2.25.1
 
-Except they very much are. The reason you need these is because you're
-using kthread_stop() for something it's not meant to do.
-
-> Never mind, I was not looking for anything more than a suggestion on how 
-> to maybe work around it in piece as someone is dealing with the affected 
-> call sites.
-
-Sultan's kthread_work idea is probably the right direction. This would
-seem to have what you need.
-
-Jason
