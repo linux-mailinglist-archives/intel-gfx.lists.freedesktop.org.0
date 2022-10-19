@@ -1,51 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0B32604D8A
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 18:39:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F4B604DA4
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 18:42:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34F2110E55F;
-	Wed, 19 Oct 2022 16:39:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5975D10EAC2;
+	Wed, 19 Oct 2022 16:42:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AFFF10E9AC
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 16:39:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666197548; x=1697733548;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=RzoV/sXA1lnNSRuZHUDeu2oqDvaDnWm7/KZazZklHHw=;
- b=Uf+bp7ZJ/VoI+Qrcx2yr0vn/JdEwxFg6gy9dZ9jr8eoefU5BUyoOMp2X
- BurCtf0XIX32nSAfDUqpPBDhuRaM3MEJrEpam+3xhuWxT/RHtT04mwvTc
- Y/2BJ+Tx9cqv5VHwzd0x0R1Prln8g0Kk/3+ApT9dvEGfgIgHr4EG26nty
- tiGYBm7W3fIfsycD5wRcd/PAsfgxFjea57xiMBDWummqXJwb6EiSFDiGQ
- lzFCCAdwrHKRI4MzhwqRscyTieB3Id1e4yFU9qcLe+AeDp7nbGlt/Vy8a
- i3g8TvvZcYLnU4yG7Pxd6FH+7tsmAqqYKhYdtiaKhpw2DQ1rNHFUtCLVZ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="370685125"
-X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="370685125"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2022 09:39:07 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="629339629"
-X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="629339629"
-Received: from mosermix-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.50.2])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2022 09:39:05 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-In-Reply-To: <Y0+h++6NReFAZhrv@kroah.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <87k04xiedr.fsf@intel.com> <Y0+fex0i0vmBL6QX@kroah.com>
- <Y0+h++6NReFAZhrv@kroah.com>
-Date: Wed, 19 Oct 2022 19:39:02 +0300
-Message-ID: <87pmenhiop.fsf@intel.com>
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0F9110E9AC;
+ Wed, 19 Oct 2022 16:42:20 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id v1so815762wrt.11;
+ Wed, 19 Oct 2022 09:42:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=3/Bs6kqrgFABQQtvnbn0RONHCOV7yYxUierShgwEzj0=;
+ b=csninIMN7NpCVdWPdIHu+FWpPJfw99JQQFHm4/LkHBGyBsuuv/HRwVbjzBr0hqUXW1
+ VOMnsqHyflUsWkuJqruYMyUw1ECEX3RD8YrfqUSYDS7lKzmCncZXMefbM4Ohz1ja0e8s
+ zYPa5/5+PQ9eINqUWyxHLD9yiFOPsY9nH6Rj/wRwFNgMr4G3pxlcK9oO6JqSk9aMj5HF
+ dOxe7qXNzD9heP8ZRoIF0KUS9ohf3W9mGfgiQb1XqcFh9s7hJiGVgFHimZU5COaDYV8n
+ AG0BsJVTWwCnMiuyeJG+6RH4fwIF/UiE8efkzOzlSQlJA1/1l+EemgHtP/+buD66n0wp
+ k8/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=3/Bs6kqrgFABQQtvnbn0RONHCOV7yYxUierShgwEzj0=;
+ b=2LgOzAfCmPn/Ilq7/klpWp/u9AQSRPZxkEx/4ZenWEAT4D/XKScjMKtmwTiX2HNn/l
+ pZsCm8fvUm4xteAMt8ROw83zvx4i9PC1+ko/Jzi8frxqnAbfLSMpYOVNfRkB4QbXmDnG
+ uD+wtJxpnqM9gC6Phkbu6gx/kSSSsgEBU1mugXcmgz+LOFXhicAIyI68OshKs6Kq+5pQ
+ /jsp0Rf43H68saYQxX/8m9a1jxyWNMX3zubsyQBoiO7tpmkS1ViiZuB0cmvJ4yFjD5pp
+ 4Hw/RgH/8Gil/9a7602mDNl7/w/FaxIUdQC8isz0HHTVel4kknX8CEVJ+vlO4a6jdxBV
+ vn1g==
+X-Gm-Message-State: ACrzQf1o5YpTdusjq6EY5ga94jViwwUqtlhLdhDZySBOnAUNpJBlq4kH
+ DrwURtgcg9SCXg07gxD3SdY=
+X-Google-Smtp-Source: AMsMyM6FbFe+xgSmtLC0J5g/aLs0PRG5EusmnYk0UBNnzoZXi4WDqQLggbZr7JTO39AzloodIES8ng==
+X-Received: by 2002:a05:6000:15ce:b0:230:a14d:997b with SMTP id
+ y14-20020a05600015ce00b00230a14d997bmr5950739wry.370.1666197739107; 
+ Wed, 19 Oct 2022 09:42:19 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:f4ab:6c74:114:840d?
+ ([2a02:908:1256:79a0:f4ab:6c74:114:840d])
+ by smtp.gmail.com with ESMTPSA id
+ m17-20020a7bca51000000b003c6237e867esm511899wml.0.2022.10.19.09.42.17
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 19 Oct 2022 09:42:18 -0700 (PDT)
+Message-ID: <be2d7a93-5062-0582-0e6b-e4a3a73fb6d8@gmail.com>
+Date: Wed, 19 Oct 2022 18:42:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] v5.19 & v6.0 stable backport request
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+References: <20221019152736.654451-1-Amaranath.Somalapuram@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20221019152736.654451-1-Amaranath.Somalapuram@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/ttm: rework on ttm_resource to use
+ size_t type
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,42 +78,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hans de Goede <hdegoede@redhat.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
+ arunpravin.paneerselvam@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Oct 2022, Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
-> On Wed, Oct 19, 2022 at 08:55:55AM +0200, Greg Kroah-Hartman wrote:
->> On Tue, Oct 18, 2022 at 02:02:08PM +0300, Jani Nikula wrote:
->> > 
->> > Hello stable team, please backport these two commits to stable kernels
->> > v5.19 and v6.0:
->> > 
->> > 4e78d6023c15 ("drm/i915/bios: Validate fp_timing terminator presence")
->> 
->> Does not apply to 5.19.y, can you provide a working backport?
->> 
->> > d3a7051841f0 ("drm/i915/bios: Use hardcoded fp_timing size for generating LFP data pointers")
->> 
->> Queued up to both trees now, thanks.
+Am 19.10.22 um 17:27 schrieb Somalapuram Amaranath:
+> Change ttm_resource structure from num_pages to size_t size in bytes.
+
+When you remove the num_pages field (instead of adding the size 
+additionally) you need to change all drivers in one patch.
+
+Otherwise the build would break in between patches and that's not 
+something we can do.
+
 >
-> No, wait, that breaks the build!
+> Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c            | 4 ++--
+>   drivers/gpu/drm/ttm/ttm_bo_util.c       | 6 +++---
+>   drivers/gpu/drm/ttm/ttm_bo_vm.c         | 4 ++--
+>   drivers/gpu/drm/ttm/ttm_range_manager.c | 2 +-
+>   drivers/gpu/drm/ttm/ttm_resource.c      | 8 ++++----
+>   include/drm/ttm/ttm_resource.h          | 2 +-
+>   6 files changed, 13 insertions(+), 13 deletions(-)
 >
-> How did you test this?  I'm dropping both of these now.
->
-> Please resubmit a set of tested patches if you wish to have them applied
-> to the tree.  These were obviously not even attempted, which just wastes
-> all of our time :(
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index 7c8e8be774f1..394ccb13eaed 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -51,8 +51,8 @@ static void ttm_bo_mem_space_debug(struct ttm_buffer_object *bo,
+>   	struct ttm_resource_manager *man;
+>   	int i, mem_type;
+>   
+> -	drm_printf(&p, "No space for %p (%lu pages, %zuK, %zuM)\n",
+> -		   bo, bo->resource->num_pages, bo->base.size >> 10,
+> +	drm_printf(&p, "No space for %p (%lu size, %zuK, %zuM)\n",
+> +		   bo, bo->resource->size, bo->base.size >> 10,
 
-Apologies, misunderstanding on my part about them being applicable
-as-is.
+Please just remove printing the resource size completely here.
 
-Ville has provided the backports. Thanks!
+>   		   bo->base.size >> 20);
+>   	for (i = 0; i < placement->num_placement; i++) {
+>   		mem_type = placement->placement[i].mem_type;
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> index fa04e62202c1..da5493f789df 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> @@ -173,7 +173,7 @@ int ttm_bo_move_memcpy(struct ttm_buffer_object *bo,
+>   
+>   	clear = src_iter->ops->maps_tt && (!ttm || !ttm_tt_is_populated(ttm));
+>   	if (!(clear && ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC)))
+> -		ttm_move_memcpy(clear, dst_mem->num_pages, dst_iter, src_iter);
+> +		ttm_move_memcpy(clear, PFN_UP(dst_mem->size), dst_iter, src_iter);
 
+Please use ttm->num_pages here (IIRC).
 
-BR,
-Jani.
+>   
+>   	if (!src_iter->ops->maps_tt)
+>   		ttm_kmap_iter_linear_io_fini(&_src_iter.io, bdev, src_mem);
+> @@ -357,9 +357,9 @@ int ttm_bo_kmap(struct ttm_buffer_object *bo,
+>   
+>   	map->virtual = NULL;
+>   	map->bo = bo;
+> -	if (num_pages > bo->resource->num_pages)
+> +	if (num_pages > PFN_UP(bo->resource->size))
+>   		return -EINVAL;
+> -	if ((start_page + num_pages) > bo->resource->num_pages)
+> +	if ((start_page + num_pages) > PFN_UP(bo->resource->size))
+>   		return -EINVAL;
+>   
+>   	ret = ttm_mem_io_reserve(bo->bdev, bo->resource);
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> index 38119311284d..876e7d07273c 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> @@ -217,7 +217,7 @@ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+>   	page_last = vma_pages(vma) + vma->vm_pgoff -
+>   		drm_vma_node_start(&bo->base.vma_node);
+>   
+> -	if (unlikely(page_offset >= bo->resource->num_pages))
+> +	if (unlikely(page_offset >= PFN_UP(bo->resource->size)))
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Please use bo->base.size here. The resource size can actually be larger 
+than the BO size, but the extra space shouldn't be CPU map-able.
+
+>   		return VM_FAULT_SIGBUS;
+>   
+>   	prot = ttm_io_prot(bo, bo->resource, prot);
+> @@ -412,7 +412,7 @@ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+>   		 << PAGE_SHIFT);
+>   	int ret;
+>   
+> -	if (len < 1 || (offset + len) >> PAGE_SHIFT > bo->resource->num_pages)
+> +	if (len < 1 || (offset + len) > bo->resource->size)
+
+Same here, please use bo->base.size.
+
+>   		return -EIO;
+>   
+>   	ret = ttm_bo_reserve(bo, true, false, NULL);
+> diff --git a/drivers/gpu/drm/ttm/ttm_range_manager.c b/drivers/gpu/drm/ttm/ttm_range_manager.c
+> index f7c16c46cfbc..0a8bc0b7f380 100644
+> --- a/drivers/gpu/drm/ttm/ttm_range_manager.c
+> +++ b/drivers/gpu/drm/ttm/ttm_range_manager.c
+> @@ -83,7 +83,7 @@ static int ttm_range_man_alloc(struct ttm_resource_manager *man,
+>   
+>   	spin_lock(&rman->lock);
+>   	ret = drm_mm_insert_node_in_range(mm, &node->mm_nodes[0],
+> -					  node->base.num_pages,
+> +					  PFN_UP(node->base.size),
+>   					  bo->page_alignment, 0,
+>   					  place->fpfn, lpfn, mode);
+>   	spin_unlock(&rman->lock);
+> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+> index a729c32a1e48..f9cce0727d40 100644
+> --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> @@ -177,7 +177,7 @@ void ttm_resource_init(struct ttm_buffer_object *bo,
+>   	struct ttm_resource_manager *man;
+>   
+>   	res->start = 0;
+> -	res->num_pages = PFN_UP(bo->base.size);
+> +	res->size = bo->base.size;
+>   	res->mem_type = place->mem_type;
+>   	res->placement = place->flags;
+>   	res->bus.addr = NULL;
+> @@ -192,7 +192,7 @@ void ttm_resource_init(struct ttm_buffer_object *bo,
+>   		list_add_tail(&res->lru, &bo->bdev->pinned);
+>   	else
+>   		list_add_tail(&res->lru, &man->lru[bo->priority]);
+> -	man->usage += res->num_pages << PAGE_SHIFT;
+> +	man->usage += res->size;
+>   	spin_unlock(&bo->bdev->lru_lock);
+>   }
+>   EXPORT_SYMBOL(ttm_resource_init);
+> @@ -214,7 +214,7 @@ void ttm_resource_fini(struct ttm_resource_manager *man,
+>   
+>   	spin_lock(&bdev->lru_lock);
+>   	list_del_init(&res->lru);
+> -	man->usage -= res->num_pages << PAGE_SHIFT;
+> +	man->usage -= res->size;
+>   	spin_unlock(&bdev->lru_lock);
+>   }
+>   EXPORT_SYMBOL(ttm_resource_fini);
+> @@ -665,7 +665,7 @@ ttm_kmap_iter_linear_io_init(struct ttm_kmap_iter_linear_io *iter_io,
+>   		iosys_map_set_vaddr(&iter_io->dmap, mem->bus.addr);
+>   		iter_io->needs_unmap = false;
+>   	} else {
+> -		size_t bus_size = (size_t)mem->num_pages << PAGE_SHIFT;
+> +		size_t bus_size = (size_t)mem->size;
+
+I think we can remove the local variable now, or is that used in some 
+kind of loop?
+
+Thanks,
+Christian.
+
+>   
+>   		iter_io->needs_unmap = true;
+>   		memset(&iter_io->dmap, 0, sizeof(iter_io->dmap));
+> diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+> index 5afc6d664fde..f93c9e52b063 100644
+> --- a/include/drm/ttm/ttm_resource.h
+> +++ b/include/drm/ttm/ttm_resource.h
+> @@ -208,7 +208,7 @@ struct ttm_bus_placement {
+>    */
+>   struct ttm_resource {
+>   	unsigned long start;
+> -	unsigned long num_pages;
+> +	size_t size;
+>   	uint32_t mem_type;
+>   	uint32_t placement;
+>   	struct ttm_bus_placement bus;
+
