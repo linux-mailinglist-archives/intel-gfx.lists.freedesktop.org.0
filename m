@@ -1,57 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2761A605019
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 21:05:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F220605052
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 21:24:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D7BB10E05B;
-	Wed, 19 Oct 2022 19:05:44 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com
- [209.85.216.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD87310E05B
- for <Intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 19:05:39 +0000 (UTC)
-Received: by mail-pj1-f43.google.com with SMTP id
- q10-20020a17090a304a00b0020b1d5f6975so882842pjl.0
- for <Intel-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 12:05:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=8kG5EvpHdHM0iSYnlLwXpTJZuwX3mygkDwBW2OAorH0=;
- b=pGh91OZRbQTCgq/8AHEs2PiY//91ZDk9/JLrRgC+L6LZtQMRGH+VD+XzvjrhZYBY51
- a+wx0Os3lA9K7L9GElDHhMCUIidCOGaVhxYbeAbgUwJc9sn5UZHK8h0vU68KCkFMZegg
- x9VJrkcEygcYdQTY4FFZde6KqjxoNPZudbXOBovyq1IhOF93Nfkoy96HRQYZmiYUOkl2
- Em1wxVNm26tDHTu72LfBA7h8BvUQBcM/0knv3xDkvC+wrp1oSlHqEs+uTX2af+Ex02cZ
- IY6g1kCKPS/HxeCFEX4b/QA4Gx38QNJKQipudXO6BlpfqA4+tdU5mXBd51+A28bz5xDK
- JZhw==
-X-Gm-Message-State: ACrzQf1JmwH9OXbutwQj5yRySssW4qF6I/NKNJ7rdIO+/1hCtzhXHCC+
- eatNPUKHiAHg09UbgFQ2pZk=
-X-Google-Smtp-Source: AMsMyM6Y9lBLr2cALOtxodtksCh7r0lVmvlVAAZsXwkQQ4k9KxfE6GJbNgXOWeWRCnGCuD2w6nhliw==
-X-Received: by 2002:a17:90b:3b92:b0:20d:4fae:1261 with SMTP id
- pc18-20020a17090b3b9200b0020d4fae1261mr11701057pjb.32.1666206339068; 
- Wed, 19 Oct 2022 12:05:39 -0700 (PDT)
-Received: from sultan-box.localdomain ([142.147.89.230])
- by smtp.gmail.com with ESMTPSA id
- r27-20020a63205b000000b00412a708f38asm10123555pgm.35.2022.10.19.12.05.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Oct 2022 12:05:38 -0700 (PDT)
-Date: Wed, 19 Oct 2022 12:05:35 -0700
-From: Sultan Alsawaf <sultan@kerneltoast.com>
-To: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Message-ID: <Y1BKf4ol3YtKvLiG@sultan-box.localdomain>
-References: <0029af41-bf24-9972-10ac-f52e1bdcbf08@linux.intel.com>
- <CAHmME9o25v0kZUV-7qEY=6XXAyOA7q0sG8gpQfxHgr3sSVdsWw@mail.gmail.com>
- <41455798-1dcb-135f-516d-25ab9a8082f5@linux.intel.com>
- <Y1A+9kN6bwfXeqVt@zx2c4.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0B3C10ECD3;
+	Wed, 19 Oct 2022 19:24:03 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F22810ECD3;
+ Wed, 19 Oct 2022 19:23:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666207435; x=1697743435;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=JnxGOMBlD9dESZwRUEynYzbqxPf16SjNl+e4HGE3+U8=;
+ b=mRiX3zeL0je+iID4UhBngX5zz5xWp/jErLekUkEia/YDK51ASazHwaFr
+ 5kAyrEuhsj++YOnHMB+qyxGt3sJe3pmuIN7EaqnJUilPthSdTMBXcM6eF
+ xa1JNzPAxY+A0ltGOv/LOOVJxZIOcJrNqYXRENxmKOwC+vs/EhgRah77M
+ YzhVNM9uSZf6l9mfnBtY2uvCxwwZ3SD4uZ0JtqXGIx58J6XEaIN6mIpsK
+ FPDoVurS/8ewHjzIfbU/NZPx/ZkYfn+SiFTgtRkCX+Dc6s9XNSEhl9n0D
+ MIJtI5P2JucJHadTaaxZRkBtg9AMChmjXIpaNj6nJ59fMpyMPZxyPteBf g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="333072741"
+X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="333072741"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2022 12:23:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="804453210"
+X-IronPort-AV: E=Sophos;i="5.95,196,1661842800"; d="scan'208";a="804453210"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga005.jf.intel.com with SMTP; 19 Oct 2022 12:23:52 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 19 Oct 2022 22:23:51 +0300
+Date: Wed, 19 Oct 2022 22:23:51 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y1BOx7oVQHPgoVzE@intel.com>
+References: <cover.1665496046.git.jani.nikula@intel.com>
+ <20fb913a93c60fd24fc51b441ccea7bc75e82dd1.1665496046.git.jani.nikula@intel.com>
+ <Y0hb0VOaYZk5TptS@intel.com> <Y0hmBn6NrUrBexyY@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <Y1A+9kN6bwfXeqVt@zx2c4.com>
-Subject: Re: [Intel-gfx] signal: break out of wait loops on kthread_stop()
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y0hmBn6NrUrBexyY@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 01/15] drm/i915/hdmi: do dual mode detect
+ only if connected
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,151 +63,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
- "Eric W. Biederman" <ebiederm@xmission.com>, linux-kernel@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 19, 2022 at 12:16:22PM -0600, Jason A. Donenfeld wrote:
-> On Wed, Oct 19, 2022 at 06:57:38PM +0100, Tvrtko Ursulin wrote:
-> > 
-> > On 19/10/2022 17:00, Jason A. Donenfeld wrote:
-> > > On Wed, Oct 19, 2022 at 7:31 AM Tvrtko Ursulin
-> > > <tvrtko.ursulin@linux.intel.com> wrote:
-> > >>
-> > >>
-> > >> Hi,
-> > >>
-> > >> A question regarding a7c01fa93aeb ("signal: break out of wait loops on
-> > >> kthread_stop()") if I may.
-> > >>
-> > >> We have a bunch code in i915, possibly limited to self tests (ie debug
-> > >> builds) but still important for our flows, which spawn kernel threads
-> > >> and exercises parts of the driver.
-> > >>
-> > >> Problem we are hitting with this patch is that code did not really need
-> > >> to be signal aware until now. Well to say that more accurately - we were
-> > >> able to test the code which is normally executed from userspace, so is
-> > >> signal aware, but not worry about -ERESTARTSYS or -EINTR within the test
-> > >> cases itself.
-> > >>
-> > >> For example threads which exercise an internal API for a while until the
-> > >> parent calls kthread_stop. Now those tests can hit unexpected errors.
-> > >>
-> > >> Question is how to best approach working around this change. It is of
-> > >> course technically possible to rework our code in more than one way,
-> > >> although with some cost and impact already felt due reduced pass rates
-> > >> in our automated test suites.
-> > >>
-> > >> Maybe an opt out kthread flag from this new behavior? Would that be
-> > >> acceptable as a quick fix? Or any other comments?
+On Thu, Oct 13, 2022 at 10:24:54PM +0300, Ville Syrjälä wrote:
+> On Thu, Oct 13, 2022 at 09:41:21PM +0300, Ville Syrjälä wrote:
+> > On Tue, Oct 11, 2022 at 04:49:35PM +0300, Jani Nikula wrote:
+> > > For normal connector detect, there's really no point in trying dual mode
+> > > detect if the connector is disconnected. We can simplify the detect
+> > > sequence by skipping it. Since intel_hdmi_dp_dual_mode_detect() is only
+> > > called when EDID is present, we can drop the has_edid parameter.
 > > > 
-> > > You can opt out by running `clear_tsk_thread_flag(current,
-> > > TIF_NOTIFY_SIGNAL);` at the top of your kthread. But you should really
-> > > fix your code instead. Were I your reviewer, I wouldn't merge code
-> > > that took the lazy path like that. However, that should work, if you
-> > > do opt for the quick fix.
-> >
-> > Also, are you confident that the change will not catch anyone else by 
-> > surprise? In the original thread I did not spot any concerns about the 
-> > kthreads being generally unprepared to start receiving EINTR/ERESTARTSYS 
-> > from random call chains.
+> > > The functional effect is speeding up disconnected connector detection
+> > > ever so slightly, and, combined with firmware EDID, also stop logging
+> > > about assuming dual mode adaptor.
+> > > 
+> > > It's a bit subtle, but this will also skip dual mode detect if the
+> > > connector is force connected and a) there's no EDID of any kind, normal
+> > > or override/firmare or b) there's EDID but it does not indicate
+> > > digital. These are corner cases no matter what, and arguably forcing
+> > > should not be limited by dual mode detect.
+> > > 
+> > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_hdmi.c | 17 +++++++----------
+> > >  1 file changed, 7 insertions(+), 10 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > > index 93519fb23d9d..a332eaac86cd 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > > @@ -2355,7 +2355,7 @@ intel_hdmi_unset_edid(struct drm_connector *connector)
+> > >  }
+> > >  
+> > >  static void
+> > > -intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector, bool has_edid)
+> > > +intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector)
+> > >  {
+> > >  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> > >  	struct intel_hdmi *hdmi = intel_attached_hdmi(to_intel_connector(connector));
+> > > @@ -2371,16 +2371,13 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector, bool has_edid)
+> > >  	 * CONFIG1 pin, but no such luck on our hardware.
+> > >  	 *
+> > >  	 * The only method left to us is to check the VBT to see
+> > > -	 * if the port is a dual mode capable DP port. But let's
+> > > -	 * only do that when we sucesfully read the EDID, to avoid
+> > > -	 * confusing log messages about DP dual mode adaptors when
+> > > -	 * there's nothing connected to the port.
+> > > +	 * if the port is a dual mode capable DP port.
+> > >  	 */
+> > >  	if (type == DRM_DP_DUAL_MODE_UNKNOWN) {
+> > >  		/* An overridden EDID imply that we want this port for testing.
+> > >  		 * Make sure not to set limits for that port.
+> > >  		 */
+> > > -		if (has_edid && !connector->override_edid &&
+> > > +		if (!connector->override_edid &&
+> > >  		    intel_bios_is_port_dp_dual_mode(dev_priv, port)) {
+> > >  			drm_dbg_kms(&dev_priv->drm,
+> > >  				    "Assuming DP dual mode adaptor presence based on VBT\n");
+> > > @@ -2435,18 +2432,18 @@ intel_hdmi_set_edid(struct drm_connector *connector)
+> > >  		intel_gmbus_force_bit(i2c, false);
+> > >  	}
+> > >  
+> > > -	intel_hdmi_dp_dual_mode_detect(connector, edid != NULL);
+> > > -
+> > > -	intel_display_power_put(dev_priv, POWER_DOMAIN_GMBUS, wakeref);
+> > > -
+> > >  	to_intel_connector(connector)->detect_edid = edid;
+> > >  	if (edid && edid->input & DRM_EDID_INPUT_DIGITAL) {
+> > 
+> > We didn't have this digital input thing before. What happens with
+> > HDMI->VGA dongles for example?
+> > 
+> > Hmm. This whole thing might already be broken on those. I suspect
+> > I've only used my HDMI->VGA dongle on LSPCON machines, so never
+> > noticed this. Need to go plug that thing into a native HDMI port...
 > 
-> Pretty sure, yea. i915 is unique in its abuse of the API. Keep in mind
-> that kthread_stop() also sets KTHREAD_SHOULD_STOP and such. Your code is
-> abusing the API by calling kthread_run() followed by kthread_stop().
+> Except I must have left it elsewhere since I can't find it here.
+> So can't test right now unfortunately.
 > 
-> As evidence of how broken your code actually is, the kthread_stop()
-> function has a comment that makes it clear, "This can also be called
-> after kthread_create() instead of calling wake_up_process(): the thread
-> will exit without calling threadfn()," yet i915 has attempted to hack
-> around it with ridiculous yields and msleeps. For example:
-> 
->                 threads[n] = kthread_run(__igt_breadcrumbs_smoketest,
->                                          &t, "igt/%d", n);
-> ...
-> 
->         yield(); /* start all threads before we begin */
->         msleep(jiffies_to_msecs(i915_selftest.timeout_jiffies));
-> ...
->                 err = kthread_stop(threads[n]);
-> 
-> 
-> Or here's another one:
-> 
->                 tsk = kthread_run(fn, &thread[i], "igt-%d", i);
-> ...
->         msleep(10); /* start all threads before we kthread_stop() */
-> ...
->                 status = kthread_stop(tsk);
-> 
-> I mean come on.
-> 
-> This is brittle and bad and kind of ridiculous that it shipped this way.
-> Now you're asking to extend your brittleness, so that you can avoid the
-> work of cleaning up 5 call sites. Just clean up those 5 call sites. It's
-> only 5, as far as I can tell.
-> 
-> 
-> > Right, but our hand is a bit forced at the moment. Since 6.1-rc1 has 
-> > propagated to our development tree on Monday, our automated testing 
-> > started failing significantly, which prevents us merging new work until 
-> > resolved. So a quick fix trumps the ideal road in the short term. Just 
-> > because it is quick.
-> 
-> "Short term" -- somehow I can imagine the short term hack will turn into
-> a long term one.
-> 
-> Anyway, what I suspect you might actually want as a bandaid is a
-> "kthread_wait()"-like function, that doesn't try to stop the thread with
-> KTHREAD_SHOULD_STOP and such, but just waits for the completion:
-> 
-> diff --git a/include/linux/kthread.h b/include/linux/kthread.h
-> index 30e5bec81d2b..2699cc45ad15 100644
-> --- a/include/linux/kthread.h
-> +++ b/include/linux/kthread.h
-> @@ -86,6 +86,7 @@ void free_kthread_struct(struct task_struct *k);
->  void kthread_bind(struct task_struct *k, unsigned int cpu);
->  void kthread_bind_mask(struct task_struct *k, const struct cpumask *mask);
->  int kthread_stop(struct task_struct *k);
-> +int kthread_wait(struct task_struct *k);
->  bool kthread_should_stop(void);
->  bool kthread_should_park(void);
->  bool __kthread_should_park(struct task_struct *k);
-> diff --git a/kernel/kthread.c b/kernel/kthread.c
-> index f97fd01a2932..d581d78a3a26 100644
-> --- a/kernel/kthread.c
-> +++ b/kernel/kthread.c
-> @@ -715,6 +715,22 @@ int kthread_stop(struct task_struct *k)
->  }
->  EXPORT_SYMBOL(kthread_stop);
-> 
-> +int kthread_wait(struct task_struct *k)
-> +{
-> +	struct kthread *kthread;
-> +	int ret;
-> +
-> +	get_task_struct(k);
-> +	kthread = to_kthread(k);
-> +	wake_up_process(k);
-> +	wait_for_completion(&kthread->exited);
-> +	ret = kthread->result;
-> +	put_task_struct(k);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL(kthread_stop);
-> +
->  int kthreadd(void *unused)
->  {
->  	struct task_struct *tsk = current;
-> 
+> I first thought this digital check thing might be due to
+> the DVI-I shenanigans in intel_crt_detect_ddc(), but that
+> was added for am unspecified gen2 machine in commit f5afcd3dd0dc
+> ("drm/i915/crt: Check for a analog monitor in case of DVI-I")
+> so not even relevant here. And I don't think I've ever seen
+> a g4x+ machine with an actual DVI-I port.
 
-Hi,
+Good news everyone, I found such a board: Intel DG43GT.
+Well, I didn't physically find one but I found the manual
+online. And some coreboot repo even had the vbt handily
+available. And yes, it does show the same DDC pins being
+used for the DVI-D port and CRT port. So I guess given
+that these digital checks do make some sense.
 
-Given the need to ensure the kthreads are started and then synchronously
-flushed, this seems like a good fit for the kthread_work API, which provides all
-of the necessary plumbing for this usecase. No need for the eldritch kthread API
-abuse and flimsy yield+msleep.
-
-Sultan
+-- 
+Ville Syrjälä
+Intel
