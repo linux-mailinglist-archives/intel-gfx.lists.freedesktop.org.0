@@ -2,153 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9337D60373B
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 02:45:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E2C603781
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Oct 2022 03:25:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B9AA10E20B;
-	Wed, 19 Oct 2022 00:44:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94C5210EA1F;
+	Wed, 19 Oct 2022 01:25:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA70510E060;
- Wed, 19 Oct 2022 00:44:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666140284; x=1697676284;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=9MEFb2KWaqsJRdbDkaPOkWBs8pic6UDsSLWGoP5+h5I=;
- b=aKF9W62MJ1/gjr7HvzqPK/SPp21bp2AOuq/7RTzCa/O7/pfMZkUoI3Kp
- G8hJAhd1KCMjF7Xq0O0faF5Bn/HGhuorv83IaBmPMLcFHe2K2uikd7fDc
- ultMBC5baRe0KtOT/SQ/EdCD1ql3zhUGwO6aPQfIvvkwbS1cxceFpDNKJ
- EKR3EUiYGIWc0iGKHC/XxaBkECdYFJikJYBLBaasBm4b8R+36SSyNcHwY
- +ZBNlOUiY91yxfqLvaG7fi7pOG9FTbItiDHGY+Dzv080buevQjmF6keOY
- umEIvQg7QBWrYTbpw3cA5LztE1R0UY7zAuklxhV01InYYqlW3b9dKJIMM Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="392574020"
-X-IronPort-AV: E=Sophos;i="5.95,194,1661842800"; d="scan'208";a="392574020"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2022 17:44:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10504"; a="606823304"
-X-IronPort-AV: E=Sophos;i="5.95,194,1661842800"; d="scan'208";a="606823304"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga006.jf.intel.com with ESMTP; 18 Oct 2022 17:44:43 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 18 Oct 2022 17:44:43 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 18 Oct 2022 17:44:43 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Tue, 18 Oct 2022 17:44:43 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Tue, 18 Oct 2022 17:44:43 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jMUDQDGdQBZ4nzarBZz9K6DaYnTIOTspkYIRnjGtq8TWvmATK4xckPac6ATcCL+XFftTev0J9WYtbOGi6vnPdjDJTfV0Epo8HbstY4HgLiBRUigpQeeyy2cHPSh0Rmb83rJyhaLZ9kTD3KPszqBrxolszgddWP5vIHl+P2Gu39yPGShwqXV0Oqtw4DDvpK8t9pPwl6P7N0GNkvnbr0KCZ7ZgXckjMfsTYQE0FbEugnArGGgjhcW3IQjX8d7DeHXpwrT/uY+XodLiPi09puBchUKCCiI3eu+PGdewidPlS6pNYf63Cy2KwPGpotkc1p2vLHscPyWDDJla+PiwkvtDyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HHZhI4pRt1numA8GqcyZEsq+9O9wZOCoZ5rQVMO7T+I=;
- b=aZvv8nXhA+JY+Xc9BL0nutkM/6t8qGA4ldRCNTkNS/x16s0GoCmM12NexOImYMZoFCOjBwjTuvw9Ft1jOgjY+s0NWSUrd2ySuR4EWe8mOXz/qy4ul/hjamqBqgZfiQ5JTKNXym7YElu4DvvpJgjvvFzeY0hQ4wX7C7DEFvXQ+hkzdu1zBueeB5h3iMwdqs7P09YKp+SvcWoc1n8shGmaae7u1pKcVGoqpjyTkvB0+HjSlh6xoAJ/V99NQv3JVrACUHv4HMfW54iO1+XKaP6D6xgIVrwlDkBqQ0Fjm9gzRsQXJkhOZv+mdvfgIhun5zuVL6c/EYh74pcluKuvJOzBlg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by DM6PR11MB4596.namprd11.prod.outlook.com (2603:10b6:5:2a6::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.30; Wed, 19 Oct
- 2022 00:44:41 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::87a1:bf2f:7377:3036]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::87a1:bf2f:7377:3036%7]) with mapi id 15.20.5723.033; Wed, 19 Oct 2022
- 00:44:40 +0000
-Message-ID: <bd37abdb-a9af-3f30-17ed-7a13a9652389@intel.com>
-Date: Tue, 18 Oct 2022 17:44:38 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.3
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20221013000332.1738078-1-daniele.ceraolospurio@intel.com>
- <20221013000332.1738078-6-daniele.ceraolospurio@intel.com>
-Content-Language: en-GB
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20221013000332.1738078-6-daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR05CA0077.namprd05.prod.outlook.com
- (2603:10b6:a03:332::22) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 12B1D10E26D;
+ Wed, 19 Oct 2022 01:25:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0A02AAA917;
+ Wed, 19 Oct 2022 01:25:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6750968418021669444=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|DM6PR11MB4596:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1c242fd-985b-46dc-b4e3-08dab16b1b77
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UOnLmSvCPdytHY3aRepcVXjD553AKejsFT8ECqIDAVy7+OgInJasWuqI5Z1QXSh88sSbcj9qqZZWvm8gp1/rNyWXNnlqnhI4ulTiQbCIi4sQ+lLYsjpWrnJ1Bm90NCT+1hSjQmad/zi5/AxI9EMhGZFbEr/GU3VPxCnhSroI6QDDdrmUucvMcACMkpirPtRNTvV2zfNq1aF5L36mRviGSJ0qQs8iFlbg92gh0DyEP7qcYI4pQJwkmdw81yPIkNHcehbhzHeaS/FNb0z3OxPEQKtkPvkxwKk8GUlJrQoj6vdxbXBaEyr2VJ4Zr5yibHRokk2OHE6CCpi8zbCRAj4u84yjeyi44VuFxbG4P21S1twArcn0fylPYbnm2AoPGxGDMySabR+vaA4L4XSy8fToowxXdpQvGyRByJSFhBPkPlPFIjV9RVOcRNbyGrS56gwhFTG3Ozs1rP6vl9Kav8smSX6G1kk394SR8OVe2IpGKw+FxFt3XeLjMutApam3lbNKhJnsbmetgj8MpUfd03DqTd5/k8xo2BCP3Qka6EhKr7KwfmOwmPRI40UYmGGCHXIYVnkBZLQy7ZAsX2NMGqlKXJKhmFY8tKSBrT1S8+l03bFT3UddE0r4oopV8TJYL3PFryySHoTocIqYLlnLmSzcv1S6KzbAnJTLvf8sXd2gD4AkUwE5FfUC2URJYWU7nwkUte/6UrQ7j3t007Dg+9aat3NdnfdljzSu6ExS2MjKaFmnGNfMoplSYREDjae+6yMpbVZae3HMxB0S/8Pvg/icGlhl4ZRJ8MYjRXC3mpGteNE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(39860400002)(396003)(376002)(366004)(136003)(346002)(451199015)(36756003)(66899015)(31686004)(86362001)(31696002)(38100700002)(30864003)(2906002)(5660300002)(82960400001)(2616005)(186003)(6486002)(83380400001)(6506007)(316002)(6512007)(41300700001)(26005)(66946007)(54906003)(66476007)(66556008)(53546011)(8936002)(478600001)(4326008)(8676002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U01iS2Vna2I0WEZGYkdPK25iYS92dTB6K01QRmVaTmVZVFVkREhDNDhHSFZm?=
- =?utf-8?B?dFFlK09ocWlWMnMyZEM5RGpaaWFFemNRc3N2T3FReHAyNzlFU1diblpKQUZS?=
- =?utf-8?B?a0pycDJ6U2pYa3VZYlY3dzlCVWxqSEZWSWpYb2xsLzJqN21FOWp1MndkM1VF?=
- =?utf-8?B?YmJKYnowTC9Ia0VVL0p2K0orUVkweVpnYkVqWlFSc2N1QVdNVUp6azlCWUpS?=
- =?utf-8?B?cStrSCszUlFjbzQ3MFE1RnhoS05xa3hienA4ckdQamI2YkRpamlRSUsrS29P?=
- =?utf-8?B?Q2RnODM0REdyZzZkVFlkVEREbXQyWUZyQys0cCswOTBOY0g4cVpHQ0ZISmNF?=
- =?utf-8?B?MFkxZWNyL2dUbkpVeThqdVVuakdiZWQ0TFNuTUsxWVBqVW9HTnRBUnhrMWtJ?=
- =?utf-8?B?UENtVkVvTG5MbVNxMGFJWXBGWWw0MDgzM090N3UwRCtRbkdFVXEySk5hbG1G?=
- =?utf-8?B?YnVWYjBOUkJEcy9uUk5kWThMMlRhTm9WNkhNYlNzbEdwQkl4MjRXMGhRZkp4?=
- =?utf-8?B?T2dnSTl4ekJVdEd4K3RZY2JJa1duZnh1Y2dGaEIzZy8zUmRIa01hNVFWRTZt?=
- =?utf-8?B?c0wxMXd5Wnl1UXVrRjdlNEp1WXMwQ3hFTkZlcXU0L2p2UFBQc3F6SEFqNU5J?=
- =?utf-8?B?REIzaTVnTzNFTnc4SGd6WEJEb2NlZENJVDdMQWZGcklmejJiTWZkOFdYcXdQ?=
- =?utf-8?B?QkgwTUdSekY0RHpLN21Yd3JSaDB6MjBuRjNoKyt2M2RNYnBXTWV2ZjVkZ1lQ?=
- =?utf-8?B?Tk5jKzdIcnJ6OXJKd3FPOUpRWUlpVTMvdUppbHB2cDJ0bXI3YWlzUUxwcDZH?=
- =?utf-8?B?Y0RGRUZ2aTVocnBCSzdqMmk5YjFtdFVIVmtDbktuSVE1N0c3WUZGeDk2RVZo?=
- =?utf-8?B?NlA4Nmp2MUpid3JxSUVURDR6UHNPc0JjdWwwS1NPM2lEb1V5aGZ1dHVhMzE0?=
- =?utf-8?B?dVNSczhUU2p5d1NWU1E5OTF6RGhBZU1MNXRCS0FaZEpLcndORHJGeTc1TFJL?=
- =?utf-8?B?ZjQzNmFPNEZiMlFhMy8vRDY2SFFxT1Y3SXdyaW1STGZxLzRDb2tCZS9EcVlO?=
- =?utf-8?B?MzFrYzAzL0d6Sm84N0lRU3lhak9wUTJ4NVV3NGY4eGppZjFkOHcxRzZDTHhs?=
- =?utf-8?B?OUZBb3pYMnNnRGRaU1hKeWhTVWEzaEFyMElLZjV4NTFLV05KUUpUMUpueUhT?=
- =?utf-8?B?K3doNkFmVVZSMU13V1NxYUR5TzcwRGp3Rm1vSVRXRW5HMmZ2eldWWXZkN1U3?=
- =?utf-8?B?QSttZUkxblIxL1d0SFJpdUVrOGRlQ3NobGFDdmxldW1ZK25raXRiWStBSUhm?=
- =?utf-8?B?NEs2eW4zOEhMbHF1TUg1UVB3cnZWUWZqWmtRWDVlcnhQWHBoY2ZxMTFsN2FS?=
- =?utf-8?B?RysvQ2E3dDNxVmhSbUo0bytxcE52M1ZmSDUxTmR5Z3BuSFc0UWJ5NEFQaGNv?=
- =?utf-8?B?YmIvakUvVW9CaEdEYnlsSmZtV3V2TlBFRWlTVXNZWHpMdktJWEVTejRNbFpl?=
- =?utf-8?B?VDh5eE9OdCtlclhpekZtRVZyMjhJN2hqa3hSRnQ1TGZsaWJqbDU1em9jNmgx?=
- =?utf-8?B?TWJjSXd3UHIxb2U1dk1JNElUU2VOYlZVYjc0Y3JuWUhlRUgyZ2FyY2tXaGRi?=
- =?utf-8?B?dmtZSk00dUlWeTVPTWRqeVZQNGM1WlR4WFEvZUh5U0FBTE1TaGZEcFUrVTFC?=
- =?utf-8?B?WHFPQ3lNR213WUdpeGVta0RrS25iQTliSk1sYUkrMWFIYjdnbFNDQVpOZ2xK?=
- =?utf-8?B?UHhycUVwZkNZaVJ0Uk5nL1F3RkV6dHVVUVZIRWNQQytyNm96S2U1KzVBRkk2?=
- =?utf-8?B?dFRycFc2bWw0amJLbnVrc2JqMUg3V0VWMkVyOE9ERktOUlZBdXRzUVJyTEhZ?=
- =?utf-8?B?bDNXVWIyalRJQWxhc3EvTm04dnBPM2N3UVpoa2R3RHBmb2VadjNSemZoOGxa?=
- =?utf-8?B?SzlMUGpHeCtLRGhROTVxaTUwZ0FLKzdDVG5WbHR2eG5KR0RqV2tHdnJQZE5n?=
- =?utf-8?B?Z3E4MTREQlVEcFNHQUVCWHBOSmVFV3piZ3Nubk8zVEgraDNYRFFzWHZnbGo1?=
- =?utf-8?B?SE04UG1adjNHRUM5RDFISU9mcHBMTitOaXRHUkg1SGliKyswVjMyd3NqYm5T?=
- =?utf-8?B?OWt0UUovUndOOWppYjc3MGJMc0ZxL0xzRi9FVTA2eDZHQ0Zva2VXOURUU2hQ?=
- =?utf-8?B?dlE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1c242fd-985b-46dc-b4e3-08dab16b1b77
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2022 00:44:40.7887 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iFDUJ76IT2X/P8PNv9FYsyxPdyrdqP8ZfD7bZ3Ei/86uJ6gahDw7It3T2HBQGO0lmZb2L0DW2i32PQwsc4je2psmW7u5z0sBAa8olUHqih8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4596
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 5/7] drm/i915/mtl: Handle wopcm per-GT
- and limit calculations.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Wed, 19 Oct 2022 01:25:26 -0000
+Message-ID: <166614272603.29709.1243207348546563091@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221018071630.3831-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20221018071630.3831-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/vm=5Fbind=3A_Add_VM=5FBIND_functionality_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,412 +40,294 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Alan
- Previn <alan.previn.teres.alexis@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/12/2022 17:03, Daniele Ceraolo Spurio wrote:
-> From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
->
-> With MTL standalone media architecture the wopcm layout has changed with
-> separate partitioning in WOPCM for GCD/GT GuC and SA Media GuC. The size
-What is GCD?
+--===============6750968418021669444==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> of WOPCM is 4MB with lower 2MB for SA Media and upper 2MB for GCD/GT.
->
->      +=====+===> +====================+ <== WOPCM TOP
->      ^     ^     |                    |
->      |     |     |                    |
->      |    GCD    |   GCD RC6 Image    |
->      |    GuC    |    Power Context   |
->      |    WOPCM  |                    |
->      |    Size   +--------------------+
->      |     |     |   GCD GuC Image    |
->      |     |     |                    |
->      |     v     |                    |
->      |     +===> +====================+ <== SA Media GuC WOPCM Top
->      |     ^     |                    |
->      |   SA Media|                    |
->      |    GuC    | SA Media RC6 Image |
->      |   WOPCM   |    Power Context   |
->      |    Size   |                    |
->    WOPCM   |     +--------------------+
->      |     |     |                    |
->      |     |     | SA Media GuC Image |
->      |     v     |                    |
->      |     +===> +====================+ <== GuC WOPCM base
->      |           |     WOPCM RSVD     |
->      |           +------------------- + <== HuC Firmware Top
->      v           |      HuC FW        |
->      +=========> +====================+ <== WOPCM Base
->
-> Given that MTL has GuC deprivilege, the WOPCM registers are pre-locked
-> by the bios. Therefore, we can skip all the math for the partitioning
-> and just limit ourselves to sanity checking the values.
->
-> v2: fix makefile file ordering (Jani)
->
-> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: John Harrison <john.c.harrison@intel.com>
-> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/Makefile               |  5 ++-
->   drivers/gpu/drm/i915/gt/intel_ggtt.c        |  2 +-
->   drivers/gpu/drm/i915/gt/intel_gt.c          |  1 +
->   drivers/gpu/drm/i915/gt/intel_gt_types.h    |  2 +
->   drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c | 48 +++++++++++++++------
->   drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h |  0
->   drivers/gpu/drm/i915/gt/uc/intel_uc.c       |  4 +-
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c    | 14 +++---
->   drivers/gpu/drm/i915/i915_driver.c          |  2 -
->   drivers/gpu/drm/i915/i915_drv.h             |  3 --
->   drivers/gpu/drm/i915/i915_gem.c             |  5 ++-
->   11 files changed, 55 insertions(+), 31 deletions(-)
->   rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c (86%)
->   rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h (100%)
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index f8cc1eb52626..4101b3507346 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -127,9 +127,11 @@ gt-y += \
->   	gt/intel_sseu.o \
->   	gt/intel_sseu_debugfs.o \
->   	gt/intel_timeline.o \
-> +	gt/intel_wopcm.o \
->   	gt/intel_workarounds.o \
->   	gt/shmem_utils.o \
->   	gt/sysfs_engines.o
-> +
->   # x86 intel-gtt module support
->   gt-$(CONFIG_X86) += gt/intel_ggtt_gmch.o
->   # autogenerated null render state
-> @@ -183,8 +185,7 @@ i915-y += \
->   	  i915_trace_points.o \
->   	  i915_ttm_buddy_manager.o \
->   	  i915_vma.o \
-> -	  i915_vma_resource.o \
-> -	  intel_wopcm.o
-> +	  i915_vma_resource.o
->   
->   # general-purpose microcontroller (GuC) support
->   i915-y += gt/uc/intel_uc.o \
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index 5c67e49aacf6..b30560ab1c1b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -560,7 +560,7 @@ static int init_ggtt(struct i915_ggtt *ggtt)
->   	 * why.
->   	 */
->   	ggtt->pin_bias = max_t(u32, I915_GTT_PAGE_SIZE,
-> -			       intel_wopcm_guc_size(&ggtt->vm.i915->wopcm));
-> +			       intel_wopcm_guc_size(&ggtt->vm.gt->wopcm));
->   
->   	ret = intel_vgt_balloon(ggtt);
->   	if (ret)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index b367cfff48d5..a95eb0b656d2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -56,6 +56,7 @@ void intel_gt_common_init_early(struct intel_gt *gt)
->   	seqcount_mutex_init(&gt->tlb.seqno, &gt->tlb.invalidate_lock);
->   	intel_gt_pm_init_early(gt);
->   
-> +	intel_wopcm_init_early(&gt->wopcm);
->   	intel_uc_init_early(&gt->uc);
->   	intel_rps_init_early(&gt->rps);
->   }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index 30003d68fd51..a23cd3af5bf2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -30,6 +30,7 @@
->   #include "intel_migrate_types.h"
->   #include "intel_wakeref.h"
->   #include "pxp/intel_pxp_types.h"
-> +#include "intel_wopcm.h"
->   
->   struct drm_i915_private;
->   struct i915_ggtt;
-> @@ -98,6 +99,7 @@ struct intel_gt {
->   
->   	struct intel_uc uc;
->   	struct intel_gsc gsc;
-> +	struct intel_wopcm wopcm;
->   
->   	struct {
->   		/* Serialize global tlb invalidations */
-> diff --git a/drivers/gpu/drm/i915/intel_wopcm.c b/drivers/gpu/drm/i915/gt/intel_wopcm.c
-> similarity index 86%
-> rename from drivers/gpu/drm/i915/intel_wopcm.c
-> rename to drivers/gpu/drm/i915/gt/intel_wopcm.c
-> index 322fb9eeb880..487fbbbdf3d6 100644
-> --- a/drivers/gpu/drm/i915/intel_wopcm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_wopcm.c
-> @@ -43,6 +43,7 @@
->   /* Default WOPCM size is 2MB from Gen11, 1MB on previous platforms */
->   #define GEN11_WOPCM_SIZE		SZ_2M
->   #define GEN9_WOPCM_SIZE			SZ_1M
-> +#define XELPM_SAMEDIA_WOPCM_SIZE	SZ_2M
-XELPM? Isn't it just XELP?
+== Series Details ==
 
->   #define MAX_WOPCM_SIZE			SZ_8M
->   /* 16KB WOPCM (RSVD WOPCM) is reserved from HuC firmware top. */
->   #define WOPCM_RESERVED_SIZE		SZ_16K
-> @@ -64,9 +65,9 @@
->   #define GEN9_GUC_FW_RESERVED	SZ_128K
->   #define GEN9_GUC_WOPCM_OFFSET	(GUC_WOPCM_RESERVED + GEN9_GUC_FW_RESERVED)
->   
-> -static inline struct drm_i915_private *wopcm_to_i915(struct intel_wopcm *wopcm)
-> +static inline struct intel_gt *wopcm_to_gt(struct intel_wopcm *wopcm)
->   {
-> -	return container_of(wopcm, struct drm_i915_private, wopcm);
-> +	return container_of(wopcm, struct intel_gt, wopcm);
->   }
->   
->   /**
-> @@ -77,7 +78,8 @@ static inline struct drm_i915_private *wopcm_to_i915(struct intel_wopcm *wopcm)
->    */
->   void intel_wopcm_init_early(struct intel_wopcm *wopcm)
->   {
-> -	struct drm_i915_private *i915 = wopcm_to_i915(wopcm);
-> +	struct intel_gt *gt = wopcm_to_gt(wopcm);
-> +	struct drm_i915_private *i915 = gt->i915;
->   
->   	if (!HAS_GT_UC(i915))
->   		return;
-> @@ -157,14 +159,18 @@ static bool check_hw_restrictions(struct drm_i915_private *i915,
->   	return true;
->   }
->   
-> -static bool __check_layout(struct drm_i915_private *i915, u32 wopcm_size,
-> +static bool __check_layout(struct intel_gt *gt, u32 wopcm_size,
->   			   u32 guc_wopcm_base, u32 guc_wopcm_size,
->   			   u32 guc_fw_size, u32 huc_fw_size)
->   {
-> +	struct drm_i915_private *i915 = gt->i915;
->   	const u32 ctx_rsvd = context_reserved_size(i915);
->   	u32 size;
->   
->   	size = wopcm_size - ctx_rsvd;
-> +	if (MEDIA_VER(i915) >= 13)
-> +		size += XELPM_SAMEDIA_WOPCM_SIZE;
-This should check VDBOX_MASK as well?
+Series: drm/i915/vm_bind: Add VM_BIND functionality (rev7)
+URL   : https://patchwork.freedesktop.org/series/105879/
+State : success
 
-> +
->   	if (unlikely(range_overflows(guc_wopcm_base, guc_wopcm_size, size))) {
->   		drm_err(&i915->drm,
->   			"WOPCM: invalid GuC region layout: %uK + %uK > %uK\n",
-> @@ -181,12 +187,14 @@ static bool __check_layout(struct drm_i915_private *i915, u32 wopcm_size,
->   		return false;
->   	}
->   
-> -	size = huc_fw_size + WOPCM_RESERVED_SIZE;
-> -	if (unlikely(guc_wopcm_base < size)) {
-> -		drm_err(&i915->drm, "WOPCM: no space for %s: %uK < %uK\n",
-> -			intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
-> -			guc_wopcm_base / SZ_1K, size / SZ_1K);
-> -		return false;
-> +	if (VDBOX_MASK(gt)) {
-Should this not check for VEBOX as well? Or is it guaranteed that you 
-can't have VECS without VCS?
+== Summary ==
 
-> +		size = huc_fw_size + WOPCM_RESERVED_SIZE;
-> +		if (unlikely(guc_wopcm_base < size)) {
-> +			drm_err(&i915->drm, "WOPCM: no space for %s: %uK < %uK\n",
-> +				intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
-> +				guc_wopcm_base / SZ_1K, size / SZ_1K);
-> +			return false;
-> +		}
->   	}
->   
->   	return check_hw_restrictions(i915, guc_wopcm_base, guc_wopcm_size,
-> @@ -228,8 +236,8 @@ static bool __wopcm_regs_writable(struct intel_uncore *uncore)
->    */
->   void intel_wopcm_init(struct intel_wopcm *wopcm)
->   {
-> -	struct drm_i915_private *i915 = wopcm_to_i915(wopcm);
-> -	struct intel_gt *gt = to_gt(i915);
-> +	struct intel_gt *gt = wopcm_to_gt(wopcm);
-> +	struct drm_i915_private *i915 = gt->i915;
->   	u32 guc_fw_size = intel_uc_fw_get_upload_size(&gt->uc.guc.fw);
->   	u32 huc_fw_size = intel_uc_fw_get_upload_size(&gt->uc.huc.fw);
->   	u32 ctx_rsvd = context_reserved_size(i915);
-> @@ -274,6 +282,19 @@ void intel_wopcm_init(struct intel_wopcm *wopcm)
->   		goto check;
->   	}
->   
-> +	/*
-> +	 * On platforms with a media GT, the WOPCM is partitioned between the
-> +	 * two GTs, so we would have to take that into account when doing the
-> +	 * math below. There is also a new section reserved for the GSC ctx
-ctx -> context - should not use such abbreviations in comments. It's 
-unnecessary and makes the text harder to read.
-> +	 * that w would have to factor in. However, all platforms with a media
-that w would have to fact in -> that would have to be factored in
+CI Bug Log - changes from CI_DRM_12254_full -> Patchwork_105879v7_full
+====================================================
 
-> +	 * GT also have GuC depriv enabled, so the WOPCM regs are pre-locked
-> +	 * and therefore we don't have to do the math ourselves.
-> +	 */
-> +	if (unlikely(i915->media_gt)) {
-> +		drm_err(&i915->drm, "Unlocked WOPCM regs with media GT\n");
-> +		return;
-> +	}
-> +
->   	/*
->   	 * Aligned value of guc_wopcm_base will determine available WOPCM space
->   	 * for HuC firmware and mandatory reserved area.
-> @@ -289,13 +310,14 @@ void intel_wopcm_init(struct intel_wopcm *wopcm)
->   
->   	/* Aligned remainings of usable WOPCM space can be assigned to GuC. */
->   	guc_wopcm_size = wopcm_size - ctx_rsvd - guc_wopcm_base;
-> +
-Extra blank link part way through calculating the guc_wopcm_size 
-variable because?
+Summary
+-------
 
-John.
+  **SUCCESS**
 
->   	guc_wopcm_size &= GUC_WOPCM_SIZE_MASK;
->   
->   	drm_dbg(&i915->drm, "Calculated GuC WOPCM [%uK, %uK)\n",
->   		guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K);
->   
->   check:
-> -	if (__check_layout(i915, wopcm_size, guc_wopcm_base, guc_wopcm_size,
-> +	if (__check_layout(gt, wopcm_size, guc_wopcm_base, guc_wopcm_size,
->   			   guc_fw_size, huc_fw_size)) {
->   		wopcm->guc.base = guc_wopcm_base;
->   		wopcm->guc.size = guc_wopcm_size;
-> diff --git a/drivers/gpu/drm/i915/intel_wopcm.h b/drivers/gpu/drm/i915/gt/intel_wopcm.h
-> similarity index 100%
-> rename from drivers/gpu/drm/i915/intel_wopcm.h
-> rename to drivers/gpu/drm/i915/gt/intel_wopcm.h
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index dbd048b77e19..4cd8a787f9e5 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -357,8 +357,8 @@ static int uc_init_wopcm(struct intel_uc *uc)
->   {
->   	struct intel_gt *gt = uc_to_gt(uc);
->   	struct intel_uncore *uncore = gt->uncore;
-> -	u32 base = intel_wopcm_guc_base(&gt->i915->wopcm);
-> -	u32 size = intel_wopcm_guc_size(&gt->i915->wopcm);
-> +	u32 base = intel_wopcm_guc_base(&gt->wopcm);
-> +	u32 size = intel_wopcm_guc_size(&gt->wopcm);
->   	u32 huc_agent = intel_uc_uses_huc(uc) ? HUC_LOADING_AGENT_GUC : 0;
->   	u32 mask;
->   	int err;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index 021290a26195..57eaece6dada 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -478,10 +478,11 @@ static int check_gsc_manifest(const struct firmware *fw,
->   	return 0;
->   }
->   
-> -static int check_ccs_header(struct drm_i915_private *i915,
-> +static int check_ccs_header(struct intel_gt *gt,
->   			    const struct firmware *fw,
->   			    struct intel_uc_fw *uc_fw)
->   {
-> +	struct drm_i915_private *i915 = gt->i915;
->   	struct uc_css_header *css;
->   	size_t size;
->   
-> @@ -523,10 +524,10 @@ static int check_ccs_header(struct drm_i915_private *i915,
->   
->   	/* Sanity check whether this fw is not larger than whole WOPCM memory */
->   	size = __intel_uc_fw_get_upload_size(uc_fw);
-> -	if (unlikely(size >= i915->wopcm.size)) {
-> +	if (unlikely(size >= gt->wopcm.size)) {
->   		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu > %zu\n",
->   			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-> -			 size, (size_t)i915->wopcm.size);
-> +			 size, (size_t)gt->wopcm.size);
->   		return -E2BIG;
->   	}
->   
-> @@ -554,7 +555,8 @@ static int check_ccs_header(struct drm_i915_private *i915,
->    */
->   int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   {
-> -	struct drm_i915_private *i915 = __uc_fw_to_gt(uc_fw)->i915;
-> +	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
-> +	struct drm_i915_private *i915 = gt->i915;
->   	struct intel_uc_fw_file file_ideal;
->   	struct device *dev = i915->drm.dev;
->   	struct drm_i915_gem_object *obj;
-> @@ -562,7 +564,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   	bool old_ver = false;
->   	int err;
->   
-> -	GEM_BUG_ON(!i915->wopcm.size);
-> +	GEM_BUG_ON(!gt->wopcm.size);
->   	GEM_BUG_ON(!intel_uc_fw_is_enabled(uc_fw));
->   
->   	err = i915_inject_probe_error(i915, -ENXIO);
-> @@ -615,7 +617,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   	if (uc_fw->loaded_via_gsc)
->   		err = check_gsc_manifest(fw, uc_fw);
->   	else
-> -		err = check_ccs_header(i915, fw, uc_fw);
-> +		err = check_ccs_header(gt, fw, uc_fw);
->   	if (err)
->   		goto fail;
->   
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 24d3d2d85fd5..4ebb4ef982e2 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -370,8 +370,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
->   	if (ret)
->   		goto err_ttm;
->   
-> -	intel_wopcm_init_early(&dev_priv->wopcm);
-> -
->   	ret = intel_root_gt_init_early(dev_priv);
->   	if (ret < 0)
->   		goto err_rootgt;
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 90a347140e90..24cffe4f9840 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -62,7 +62,6 @@
->   #include "intel_runtime_pm.h"
->   #include "intel_step.h"
->   #include "intel_uncore.h"
-> -#include "intel_wopcm.h"
->   
->   struct drm_i915_clock_gating_funcs;
->   struct drm_i915_gem_object;
-> @@ -235,8 +234,6 @@ struct drm_i915_private {
->   
->   	struct intel_gvt *gvt;
->   
-> -	struct intel_wopcm wopcm;
-> -
->   	struct pci_dev *bridge_dev;
->   
->   	struct rb_root uabi_engines;
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 9093d2be9e1c..7a9ce81600a0 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -1140,9 +1140,10 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
->   	if (ret)
->   		return ret;
->   
-> -	for_each_gt(gt, dev_priv, i)
-> +	for_each_gt(gt, dev_priv, i) {
->   		intel_uc_fetch_firmwares(&gt->uc);
-> -	intel_wopcm_init(&dev_priv->wopcm);
-> +		intel_wopcm_init(&gt->wopcm);
-> +	}
->   
->   	ret = i915_init_ggtt(dev_priv);
->   	if (ret) {
+  No regressions found.
 
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_105879v7_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_mmap_gtt@fault-concurrent-y:
+    - shard-snb:          [PASS][1] -> [INCOMPLETE][2] ([i915#5161])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-snb2/igt@gem_mmap_gtt@fault-concurrent-y.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-snb5/igt@gem_mmap_gtt@fault-concurrent-y.html
+
+  * igt@gen9_exec_parse@allowed-single:
+    - shard-tglb:         NOTRUN -> [SKIP][3] ([i915#2527] / [i915#2856])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@gen9_exec_parse@allowed-single.html
+
+  * igt@i915_selftest@live@workarounds:
+    - shard-tglb:         NOTRUN -> [INCOMPLETE][4] ([i915#7222])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip:
+    - shard-tglb:         [PASS][5] -> [FAIL][6] ([i915#3743])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-tglb7/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html
+
+  * igt@kms_ccs@pipe-b-crc-sprite-planes-basic-4_tiled_dg2_mc_ccs:
+    - shard-tglb:         NOTRUN -> [SKIP][7] ([i915#6095])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_ccs@pipe-b-crc-sprite-planes-basic-4_tiled_dg2_mc_ccs.html
+
+  * igt@kms_ccs@pipe-c-bad-pixel-format-y_tiled_gen12_mc_ccs:
+    - shard-tglb:         NOTRUN -> [SKIP][8] ([i915#3689] / [i915#3886])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_ccs@pipe-c-bad-pixel-format-y_tiled_gen12_mc_ccs.html
+
+  * igt@kms_content_protection@content_type_change:
+    - shard-tglb:         NOTRUN -> [SKIP][9] ([i915#7118])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_content_protection@content_type_change.html
+
+  * igt@kms_cursor_crc@cursor-sliding-32x10:
+    - shard-tglb:         NOTRUN -> [SKIP][10] ([i915#3555]) +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_cursor_crc@cursor-sliding-32x10.html
+
+  * igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible:
+    - shard-tglb:         NOTRUN -> [SKIP][11] ([fdo#109274] / [fdo#111825] / [i915#3637])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-indfb-pgflip-blt:
+    - shard-tglb:         NOTRUN -> [SKIP][12] ([fdo#109280] / [fdo#111825]) +2 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-indfb-pgflip-blt.html
+
+  * igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-c-edp-1:
+    - shard-tglb:         NOTRUN -> [SKIP][13] ([i915#5176]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-c-edp-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:
+    - shard-tglb:         [FAIL][14] ([i915#3743]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-tglb1/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html
+
+  
+#### Warnings ####
+
+  * igt@gem_pread@exhaustion:
+    - shard-tglb:         [INCOMPLETE][16] ([i915#7244]) -> [WARN][17] ([i915#2658])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-tglb1/igt@gem_pread@exhaustion.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@gem_pread@exhaustion.html
+
+  * igt@gem_workarounds@suspend-resume:
+    - shard-apl:          [INCOMPLETE][18] ([i915#7231] / [i915#7259]) -> [INCOMPLETE][19] ([i915#7259])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-apl3/igt@gem_workarounds@suspend-resume.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-apl6/igt@gem_workarounds@suspend-resume.html
+
+  
+  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
+  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
+  [i915#2658]: https://gitlab.freedesktop.org/drm/intel/issues/2658
+  [i915#2856]: https://gitlab.freedesktop.org/drm/intel/issues/2856
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
+  [i915#3743]: https://gitlab.freedesktop.org/drm/intel/issues/3743
+  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
+  [i915#5161]: https://gitlab.freedesktop.org/drm/intel/issues/5161
+  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
+  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
+  [i915#7118]: https://gitlab.freedesktop.org/drm/intel/issues/7118
+  [i915#7222]: https://gitlab.freedesktop.org/drm/intel/issues/7222
+  [i915#7231]: https://gitlab.freedesktop.org/drm/intel/issues/7231
+  [i915#7244]: https://gitlab.freedesktop.org/drm/intel/issues/7244
+  [i915#7259]: https://gitlab.freedesktop.org/drm/intel/issues/7259
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12254 -> Patchwork_105879v7
+
+  CI-20190529: 20190529
+  CI_DRM_12254: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7018: 8312a2fe3f3287ba4ac4bc8d100de0734480f482 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_105879v7: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/index.html
+
+--===============6750968418021669444==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/vm_bind: Add VM_BIND functionality (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/105879/">https://patchwork.freedesktop.org/series/105879/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12254_full -&gt; Patchwork_105879v7_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_105879v7_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_mmap_gtt@fault-concurrent-y:</p>
+<ul>
+<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-snb2/igt@gem_mmap_gtt@fault-concurrent-y.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-snb5/igt@gem_mmap_gtt@fault-concurrent-y.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5161">i915#5161</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@allowed-single:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@gen9_exec_parse@allowed-single.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2527">i915#2527</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2856">i915#2856</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7222">i915#7222</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip:</p>
+<ul>
+<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-tglb7/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3743">i915#3743</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-b-crc-sprite-planes-basic-4_tiled_dg2_mc_ccs:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_ccs@pipe-b-crc-sprite-planes-basic-4_tiled_dg2_mc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6095">i915#6095</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-c-bad-pixel-format-y_tiled_gen12_mc_ccs:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_ccs@pipe-c-bad-pixel-format-y_tiled_gen12_mc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3689">i915#3689</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3886">i915#3886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@content_type_change:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_content_protection@content_type_change.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@cursor-sliding-32x10:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_cursor_crc@cursor-sliding-32x10.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111825">fdo#111825</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3637">i915#3637</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-indfb-pgflip-blt:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-indfb-pgflip-blt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109280">fdo#109280</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111825">fdo#111825</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-c-edp-1:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-c-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:<ul>
+<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-tglb1/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3743">i915#3743</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@gem_pread@exhaustion:</p>
+<ul>
+<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-tglb1/igt@gem_pread@exhaustion.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7244">i915#7244</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-tglb1/igt@gem_pread@exhaustion.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2658">i915#2658</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_workarounds@suspend-resume:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12254/shard-apl3/igt@gem_workarounds@suspend-resume.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7231">i915#7231</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7259">i915#7259</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_105879v7/shard-apl6/igt@gem_workarounds@suspend-resume.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7259">i915#7259</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12254 -&gt; Patchwork_105879v7</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12254: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7018: 8312a2fe3f3287ba4ac4bc8d100de0734480f482 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_105879v7: 2e6cdde56f896add665edb8d2f6d3dfce8b1b3b6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============6750968418021669444==--
