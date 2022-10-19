@@ -1,122 +1,94 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C43A760A9C7
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 15:24:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A4F60A9BC
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 15:24:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FBAC10E6F5;
-	Mon, 24 Oct 2022 13:23:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7262910E6E4;
+	Mon, 24 Oct 2022 13:23:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com
- (mail-eopbgr80040.outbound.protection.outlook.com [40.107.8.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0834D10E24A;
- Tue, 18 Oct 2022 14:21:48 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2059.outbound.protection.outlook.com [40.107.243.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D9FE10F278;
+ Wed, 19 Oct 2022 15:28:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cZLCghwoaweAK6AiSWMlV1PYyKvXEvTfF/A9GBOG7NgM74RmQHspej6JaSusrPoGU99LX11K/e8JYCr6A0GRBMJu6sRAj36d1ZEx46NozLM2DD9AM1YhI7RHiN6T1lTMVea7O7dyejAShEsWeUOI2cot84kRg7VsH5XQq8tkt/mhQG9uKyIZ4Z2MME4kxBuIVkDji3it9q2nV2tAHz6UnfBEb+9LJZlEIWB4PeagICTwempdxZb1BEx/KcXxOrw8HoKbE8VJbDikFdd3KL/h9Xl+EMSHyZagQpqAAzBctvsHgNlKQgW0USA7mE9iZPTgYRE8OB1BoQtM6ZUUz2GtLw==
+ b=BBfpMRimrYYyGO2jvw31jLb3nuDUz9T8sqX7ZBTnlWSWlAx+3rW78ysG7az6L6Ca/gJGWdHTnCW2ZqtrwreyogUrHYYEWXiVuSYtbOxgS1U92YEGsbYnyzy5QvGMplJxs7eThgGIB7ZidjPCUXFbRaIsPhaMOdZQ3fyooLF8hsRQ4OFDLOv3zK6e4MCMlqvufDEefQgom03RUN4scS+ipdpxg/z01jKLpifYpgjk8uisAfyfrrQAHZi2dy7vio6nytnsVQugMlJ+ahZw8sfYuVhFLuHvcYeU+nlSJIpws9zpsuMcPX00OOcxaCRqv0BGXcOGevsJzkyQt7nNSx8UsA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2K642ghudLTIsyxgMMLATLhX4zB9IF3MWcLYfmF8A8E=;
- b=Vo5Pyj5rNTm6RE99y92aUc1HNCk7nSbjsBURg0bYp5jWV0EkCv+cuppAghr6VVXBRpw7Vi16pjOyVsfp2iC2Z5RMRPP5Fm1MQvWpDf7Enz/XPq9LwkhJHX5pTwOyx3GbyFtc5/KJcyUew2hqRk+WdNDBUTkFCj74hw38EkoHh+AGOAKxzlfx8HoDwUJgft1gZdD+yecwk+n3bplhehsqr8xphtQ4SPT1559wd2aUILGy6qpV4IzaG0+qtlc6J3kG9E5ne9JYA0vxfYfIytmYyWTkrQLbHyYTDCTdwVvhA2e1DgTjL0lVzgbV0tUfYHpQI0CIxn22n3s/X3Zjar+lCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
- dkim=pass header.d=suse.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1; 
+ bh=7mLgxSdMRC/oOsrVgU/r6OiUgX67D+x8v3cjge2PGvY=;
+ b=Ovbs1fx+MsT/2AGd4a1D72sOy5oAJPsZgxdfGGX+Xqay0XmznylDG2Wk/TAtZ4/BM0s0QqBipPaQxqFKc6sfFkf0IlW9Ab3K6dcmQke2/AsPPss264sc7hxWFvcOmIF4xp6Sewwhczw9FwvpTPST47I1ci3x+XR+CwLbuI+vgukGyZjIExXeMMM2+jH5yU9t3HDKT+FUAnGlxLWgRErhz6DBKpkZKhfMi0shWYbhHmB4W8mWMQtxgzk20KeCc0RSei56+PEjqZJaF/sBQjQyZXuBQb96SyliKE/hlzZT+V36abVJTXmvErqd/uVW9r0hvRMkvtM6uPkRLxbCJHAPgA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2K642ghudLTIsyxgMMLATLhX4zB9IF3MWcLYfmF8A8E=;
- b=UOEt5knMgkO2jWfNwUuXG81gW4S5BNB/EoGJDndKIzSf+v+1el3wCcLydBggBwrs6v1hk4kU066uGZFwInhtEY3bG8tMQ9nH8dDS3FqE2jysqpGwicvp0UeJxQboJnRyKRoYbl0GOYMUlWJz+aCKo0YRAUoNF9EY9+OaPhD4LfwsnaaA/PYJKPoDVPLe1DUPbVlf+TJLMBgwyo7PybuVb2HR0TY3XUpJ/m6cHfqgDXct8bbTO0dTDa5XxFOW11KEab84XcmLOHwD0TEDbQhonhpbvv1jQBL559Zs+3/MDrqCRJX3MYd5Zkk7uM4WAl3fGDahWYlwOLgroTAnpzZg9g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=suse.com;
-Received: from VE1PR04MB6560.eurprd04.prod.outlook.com (2603:10a6:803:122::25)
- by PAXPR04MB8766.eurprd04.prod.outlook.com (2603:10a6:102:20d::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.30; Tue, 18 Oct
- 2022 14:21:46 +0000
-Received: from VE1PR04MB6560.eurprd04.prod.outlook.com
- ([fe80::2459:15ae:e6cb:218a]) by VE1PR04MB6560.eurprd04.prod.outlook.com
- ([fe80::2459:15ae:e6cb:218a%7]) with mapi id 15.20.5723.033; Tue, 18 Oct 2022
- 14:21:45 +0000
-Message-ID: <d67ceabb-b31a-59e6-fc77-8d6c48b277f2@suse.com>
-Date: Tue, 18 Oct 2022 16:21:43 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Christoph Hellwig <hch@lst.de>
-References: <20221018082413.GA25785@lst.de>
- <a5966644-72d7-4b25-83d1-9765d0593e44@suse.com>
- <20221018110243.GA4655@lst.de>
-From: Jan Beulich <jbeulich@suse.com>
-In-Reply-To: <20221018110243.GA4655@lst.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS9PR06CA0267.eurprd06.prod.outlook.com
- (2603:10a6:20b:45f::33) To VE1PR04MB6560.eurprd04.prod.outlook.com
- (2603:10a6:803:122::25)
+ bh=7mLgxSdMRC/oOsrVgU/r6OiUgX67D+x8v3cjge2PGvY=;
+ b=26CmjupIxILlHWffmsJzJm6GxrKICSTP9oklfYH37zumQEwm415UKs6sRKwT6uLS/KmnAhjR4jSfJKru4BM4VAeVcCC2KPd/mW9m2HJQUhAf2UwDym1aR3W1vgB7M6quUOjF/HEaUueC/y1NR9XyCHXpQtK5xiGm1tp9oDtbV5M=
+Received: from DM6PR04CA0026.namprd04.prod.outlook.com (2603:10b6:5:334::31)
+ by MW4PR12MB5602.namprd12.prod.outlook.com (2603:10b6:303:169::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.33; Wed, 19 Oct
+ 2022 15:28:23 +0000
+Received: from DM6NAM11FT081.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:334:cafe::57) by DM6PR04CA0026.outlook.office365.com
+ (2603:10b6:5:334::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34 via Frontend
+ Transport; Wed, 19 Oct 2022 15:28:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT081.mail.protection.outlook.com (10.13.172.136) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5746.16 via Frontend Transport; Wed, 19 Oct 2022 15:28:22 +0000
+Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 19 Oct 2022 10:28:18 -0500
+From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Date: Wed, 19 Oct 2022 20:57:31 +0530
+Message-ID: <20221019152736.654451-1-Amaranath.Somalapuram@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR04MB6560:EE_|PAXPR04MB8766:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d1f1b3e-e816-454f-bd6e-08dab1141640
-X-LD-Processed: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba,ExtFwd
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT081:EE_|MW4PR12MB5602:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4040917f-4672-4115-be2e-08dab1e68f16
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: unmDrL5qpfGQ7k1nYSMAelNn3VH1U1IrlamfrNq066vYzyEJTYLVHgmFfmj5vNozi2T+7PgQ6TMP9czFIm5xe6VjZIdKWyE4xLHiTOcexOcx9KUwihpOwPxJAzbxMagytdqJ/A9l1zDeJfsKw0W70mUGb2VYzESxrr638pRIu9dfATl+XOy698gfa1OyCjS9d65PKdKGhkCbbA68UohnTIssvh9fLdU07ug1MoILJ1/ksZyeY7dogEWJYeBZWYsThFutGrDc4E8cnksJTOZTAJCZ8ORJM1FCrHFpN1n2YB3FaGlao/aTTb7Mv0Gq4DRnsbUfjYDQwjcS38yF7YWPS98d/7B+P/wJPGk7zid4bAE2YyfyU6odexY9DWmUVCPJrfpyIheQuGZn8bZKQL7twwe76UCHiwwqu3vV2gkDWY3ka7YLjOak+fjZFVlb/02B/48q5aacPt6MP8cgXgXHcK2BJA+oj1TQx1M1+lx3kDdHGfLt//dzLg9gQH1/Paz7CjGPd8vvIBGZGDABvU5l57lLPibJ5Izp9G4iWrwEt0Ck3T2GhLX+ohDBN2h4/C1rYLss4x1F05bimvAqapGvjzNRORvtHVfX2SHUF/dDSjOFRRDNVPAxCWQv3Vagcz0YsadAUMB9IwSxHG2NQXX3mDvhlbng92HJS3/12DN4hoClpwS/PpgZ4EVbQ8Cr8LtetqveH2o/JSLkr/10c4LEOct1eyc57xhrSM7wqooKnNPFvGKWAbhnluks84rIil3BBifDYDV/iLWSVTMjGkzuLVITFqEaF/YiMQTgpjJxb54=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VE1PR04MB6560.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(366004)(376002)(136003)(346002)(39860400002)(451199015)(38100700002)(31686004)(478600001)(6486002)(186003)(2616005)(36756003)(6506007)(4326008)(54906003)(6916009)(316002)(66946007)(66556008)(5660300002)(8676002)(66476007)(6512007)(53546011)(2906002)(26005)(8936002)(86362001)(31696002)(41300700001)(7416002)(45980500001)(43740500002);
+X-Microsoft-Antispam-Message-Info: SPpnTVUFiO6fL8V99C0hjDcMV0jKdpLuLuDw6bwt2GuM7rLP/jmjGmhynlNZMTAkVMwtpg0bDw6ieRg26cCCqfFD7KqYwMIaRAFba3AXLRPerQUIwjthO3FDDPNoKy9Uab7xBQc8VzQ+pjZ3oV1plG+oLnXN4XbgCSF8rbaCnI5czNd4xauv8ljFkK7hHBgdBkAhvJgkklK2I0cAReu7xFTDcYz3oiszr3jrP3+2Ftmuyaw7xlt9sz1HzbDqLk8Czg/WizzbM1joktRyc2wdrxP2oB/8V9j3Vbt5F6z27jZAJdtP2Bck31kr+/anmYfC8F0aU0Xq/R2GtCPEW3qhzwts9v3nDzHKO95NuKmE4fkUjmj7bxc5A/KuRSfZreKH8nL8kLm3DAKY4njwF9gOb4zUjOwyJw61GxSdr2sglrdxUr9Ja6eexwPxhHZai4Q4RHELf3mTqkZ/CIKd6WOGsPxXAxSjDnf5MR8HmYuF5TEKEXfj+7kPZtHoU7nToY6H4VQrWlxWJCniJyP1pRPuvgsRU3WEgQ8j64y8Tx7AdrCBpToepuHsMrReRQDgXwgagWouTrQCfxdzYL0GqQ8ii7zHBHnoe8ksnKKRCcQjkmugP+8aiO1p9IT+uWxp0CJ1J8uWGSc3cFtk1oXpvcwVtOJGkiRH0H2Clh7AooYgo0QvEPNYutfZMKQxIT5PpcgFL7N/cKpVpqyHih1uDSgoUHa7GJxoLF/EpORN4etOKQv44CBZLKlHt2Y6MTKYkLxUBWGJvvR0jt049QsRXLkyV2RbcBbEbVq56x6GnUpstviwMbUSCZPOMXhhdA8gShuv
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(39860400002)(396003)(346002)(136003)(376002)(451199015)(40470700004)(36840700001)(46966006)(5660300002)(81166007)(2906002)(8936002)(356005)(40480700001)(82740400003)(41300700001)(40460700003)(4326008)(36860700001)(36756003)(8676002)(70206006)(70586007)(83380400001)(110136005)(316002)(47076005)(54906003)(86362001)(2616005)(426003)(336012)(1076003)(16526019)(186003)(450100002)(26005)(82310400005)(478600001)(7696005)(6666004)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c05BYmM0emt2a3ZsM09rZllhdWFQT3JEVURNaFhjU3g1Zmt6azQ2bzkzNTJi?=
- =?utf-8?B?dE9iN1RaWU9Kdm02QWtLZEdYdUdIckpIUkxjaWFKdmE0d0xJNk44Mkd5anBM?=
- =?utf-8?B?UE10Z2NNZjE4a2k4VlcwdG11bU9qcHZtSzYvRElvVnlQWVhPcWY2aDlYMHFn?=
- =?utf-8?B?WmxqajBsSlNLSWlNL1V0MTlFZjgrWGhpSkpLL0pXUkUweitlU21mTmhNV0Rh?=
- =?utf-8?B?SW41RzdxRThWY0ovWDd5U1Z0TVNoakgzeWlTdEpIdUJudXI4bVJScUlkUy85?=
- =?utf-8?B?UENNL1hjM3VQTFBMeGhsNXhpU2tYbWZaUU5LOEMxaGl5OVNxQnJ5SW1NRmpM?=
- =?utf-8?B?WEdBaDdRd3MzSkZUNFdHV3hEUmo4K3NhYWNURGNKblBSTnR6cXk1WDM4THBj?=
- =?utf-8?B?N0NJL3lValF2aXpIc1Q5MWhoc0h5TE9MT2xocmtIVk9WeTA4YUUwOThVYVZQ?=
- =?utf-8?B?aFZCYTZOL1JFVmhhVzF3UDV5QWd0QnJTOHZYRjkyUEZwbnlBQXgzUG83aXdF?=
- =?utf-8?B?dWJucGFybVBRUXhFNmxEeWxXWEgvY2xxV3NldGgrUUk5Z1VWeDNuV3ZWSUpI?=
- =?utf-8?B?cHhIL3FOYThZbm5BaGh4ampGcHY2MytGU2JwNjdIUUFkVjNoRUZIL1A5QUdm?=
- =?utf-8?B?NjA3bzI3d2ZoelFCRDVmSzMwT2JQRm1xWUlGcm9Ka3M4dDM0RWljZitwZHRq?=
- =?utf-8?B?N3N2UDJrcTI0WXc1NHEvNlQzTnBXNHh2UUxDL1ZXaFVDcHNhQzBVRVowU0I5?=
- =?utf-8?B?SXpabU41S0x5MGVHeEJJb2dsYnExYzVMKzVXSUNTL1BFMU16QUkwMFFaZUtR?=
- =?utf-8?B?enh4SlZEUUVGV25OREM5ZlA0R1R4TkJLSFhLdjRiVllMNyt1UDRoTDBXUzQx?=
- =?utf-8?B?empCWnJ4TEFsdHMyNVRQT2tzM3JUUldHRHRxN1RkWUFCNndrMVpOY3hLTHdJ?=
- =?utf-8?B?Z1RPMFdGOG02WmxlMUlNSXpYS0tFL3VqeklWcGJaaXhVbUhwcEtYK1ZQMWda?=
- =?utf-8?B?ekc1VWpMZGhRV09uNzVsKzRqRG0vMjBnUjdLdXFoSFNMNDhPM0k3Z2hsTHJs?=
- =?utf-8?B?dWs1SXozNGpGOXBoZXJYWjBCT2dPZVFnaEV0ektMNzJWVXIvTlg1cXdTeWVV?=
- =?utf-8?B?Qzl1a2J5a2lITVdVTDFLUmhDYmtFS2FCclQ3akZMWFZlelZObWpSSytzZ0wr?=
- =?utf-8?B?VHhMWTh5VEdBblVVb2t4bUFuUFZJNnVuRngxV2VYd0pCQ1V4YlFKTVoxcXcz?=
- =?utf-8?B?bXBUNDlOT2E1YTFPYURxZkdZK3pUalJFTXBvZVRBdzdFUXFWZnZRM1Axbjhz?=
- =?utf-8?B?Vk81VW9zU2FDWWZrMHp5OHdIL1VIT3ptSjFLaEZYMlVQUFp2U3g5UCswVmNC?=
- =?utf-8?B?KzV5eWZZYmwxYnVjdlZxbXVoY1hDS3kyZGgvanhoTUUyeldTREV4QkRGa2Z4?=
- =?utf-8?B?UG9zOXhhRVFEOVZnQ3o3Y0hCdDZsQytJbXVna1AvbmJZNWI3WmZ4Qk5kTWNz?=
- =?utf-8?B?OFFRSFpxN3ZLd0l2RzVrRU5JNk1Nbnd5Q0owZzl6U1A5Tzg0a2VSRTliaGhX?=
- =?utf-8?B?LzVuaWVZZVY2VXBDYjhyMXhDM2ppV0UwUGVPbjBRYlQ3Sm5wMnhSek1ITTN4?=
- =?utf-8?B?S3dmR2htMWdoWWpJMnlPdSs4T0pTU1lKK1JFZGxDTWFCZlFKclYyWFN2dWtO?=
- =?utf-8?B?ZVFpRS9vVEEyMm56ZVZhWnBTNkd5T3VzT2JmOXNlWjRNNkJ6dEhiNHdXVUVU?=
- =?utf-8?B?WndHRlUvM3VrMUpueldIOTc5djZLQUhkZVZNaC9IU05yM1ByWWNkTSs1Vzd3?=
- =?utf-8?B?NnZkcmdhSFRuZ0QvQnNwUElUdlVqL3E5TnZxSld2bkpHTHczYjFBRTZyVkNP?=
- =?utf-8?B?ME9IUjA5YjAxc201NXlsL28wMGZrNjVHV0VLU0pEazFyeDc4MGNnWUIxUEZ6?=
- =?utf-8?B?UGdnbUYvcU5HbGNKMVM5dGlKV1NvZjA0R1ZtSXdOeHNKaUZSYWJoTnFqZEc0?=
- =?utf-8?B?VDRsdGxUODIvRXVCQ2x2N096VHZseVJpVnBJRHowTE9zVHNobGtQT3luenAw?=
- =?utf-8?B?M0grTGtCVjhFU1JHUUdNaWxFVGhOME5Mb1ptVHNqb2ExUGVYdFFsZXNvekRY?=
- =?utf-8?Q?38sq0lqwKw0nx1z1/+AxME4KX?=
-X-OriginatorOrg: suse.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d1f1b3e-e816-454f-bd6e-08dab1141640
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6560.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2022 14:21:45.8712 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dQDXCbjgngb8SmPtVWGMTkn3COXtlu5GoVnxU4JsFR6YaRz/rbOaaN2KcRuHncuFSzrH9CzDbk9X6/FG020e1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8766
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2022 15:28:22.6792 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4040917f-4672-4115-be2e-08dab1e68f16
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT081.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5602
 X-Mailman-Approved-At: Mon, 24 Oct 2022 13:23:26 +0000
-Subject: Re: [Intel-gfx] i915 "GPU HANG",
- bisected to a2daa27c0c61 "swiotlb: simplify swiotlb_max_segment"
+Subject: [Intel-gfx] [PATCH 1/6] drm/ttm: rework on ttm_resource to use
+ size_t type
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,45 +101,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>, regressions@lists.linux.dev,
- dri-devel@lists.freedesktop.org, Anshuman Khandual <anshuman.khandual@arm.com>,
- intel-gfx@lists.freedesktop.org,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- =?UTF-8?Q?Marek_Marczykowski-G=c3=b3recki?= <marmarek@invisiblethingslab.com>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>, iommu@lists.linux.dev,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- xen-devel@lists.xenproject.org
+Cc: alexander.deucher@amd.com, Somalapuram
+ Amaranath <Amaranath.Somalapuram@amd.com>, arunpravin.paneerselvam@amd.com,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 18.10.2022 13:02, Christoph Hellwig wrote:
-> On Tue, Oct 18, 2022 at 10:57:37AM +0200, Jan Beulich wrote:
->> Shouldn't this then be xen_pv_domain() that you use here, and - if you
->> really want IS_ENABLED() in addition - CONFIG_XEN_PV?
-> 
-> I'll need help from people that understand Xen better than me what
-> the exact conditions (and maybe also comments are).
+Change ttm_resource structure from num_pages to size_t size in bytes.
 
-Leaving the "i915 abuses" part aside (because I can't tell what exactly the
-abuse is), but assuming that "can't cope with bounce buffering" means they
-don't actually use the allocated buffers, I'd suggest this:
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+---
+ drivers/gpu/drm/ttm/ttm_bo.c            | 4 ++--
+ drivers/gpu/drm/ttm/ttm_bo_util.c       | 6 +++---
+ drivers/gpu/drm/ttm/ttm_bo_vm.c         | 4 ++--
+ drivers/gpu/drm/ttm/ttm_range_manager.c | 2 +-
+ drivers/gpu/drm/ttm/ttm_resource.c      | 8 ++++----
+ include/drm/ttm/ttm_resource.h          | 2 +-
+ 6 files changed, 13 insertions(+), 13 deletions(-)
 
-	/*
-	 * For Xen PV guests pages aren't contiguous in DMA (machine) address
-	 * space.  The DMA API takes care of that both in dma_alloc_* (by
-	 * calling into the hypervisor to make the pages contiguous) and in
-	 * dma_map_* (by bounce buffering).  But i915 abuses ignores the
-	 * coherency aspects of the DMA API and thus can't cope with bounce
-	 * buffering actually happening, so add a hack here to force small
-	 * allocations and mappings when running in PV mode on Xen.
-	 */
-	if (IS_ENABLED(CONFIG_XEN_PV) && xen_pv_domain())
-		max = PAGE_SIZE;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 7c8e8be774f1..394ccb13eaed 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -51,8 +51,8 @@ static void ttm_bo_mem_space_debug(struct ttm_buffer_object *bo,
+ 	struct ttm_resource_manager *man;
+ 	int i, mem_type;
+ 
+-	drm_printf(&p, "No space for %p (%lu pages, %zuK, %zuM)\n",
+-		   bo, bo->resource->num_pages, bo->base.size >> 10,
++	drm_printf(&p, "No space for %p (%lu size, %zuK, %zuM)\n",
++		   bo, bo->resource->size, bo->base.size >> 10,
+ 		   bo->base.size >> 20);
+ 	for (i = 0; i < placement->num_placement; i++) {
+ 		mem_type = placement->placement[i].mem_type;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index fa04e62202c1..da5493f789df 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -173,7 +173,7 @@ int ttm_bo_move_memcpy(struct ttm_buffer_object *bo,
+ 
+ 	clear = src_iter->ops->maps_tt && (!ttm || !ttm_tt_is_populated(ttm));
+ 	if (!(clear && ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC)))
+-		ttm_move_memcpy(clear, dst_mem->num_pages, dst_iter, src_iter);
++		ttm_move_memcpy(clear, PFN_UP(dst_mem->size), dst_iter, src_iter);
+ 
+ 	if (!src_iter->ops->maps_tt)
+ 		ttm_kmap_iter_linear_io_fini(&_src_iter.io, bdev, src_mem);
+@@ -357,9 +357,9 @@ int ttm_bo_kmap(struct ttm_buffer_object *bo,
+ 
+ 	map->virtual = NULL;
+ 	map->bo = bo;
+-	if (num_pages > bo->resource->num_pages)
++	if (num_pages > PFN_UP(bo->resource->size))
+ 		return -EINVAL;
+-	if ((start_page + num_pages) > bo->resource->num_pages)
++	if ((start_page + num_pages) > PFN_UP(bo->resource->size))
+ 		return -EINVAL;
+ 
+ 	ret = ttm_mem_io_reserve(bo->bdev, bo->resource);
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+index 38119311284d..876e7d07273c 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+@@ -217,7 +217,7 @@ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+ 	page_last = vma_pages(vma) + vma->vm_pgoff -
+ 		drm_vma_node_start(&bo->base.vma_node);
+ 
+-	if (unlikely(page_offset >= bo->resource->num_pages))
++	if (unlikely(page_offset >= PFN_UP(bo->resource->size)))
+ 		return VM_FAULT_SIGBUS;
+ 
+ 	prot = ttm_io_prot(bo, bo->resource, prot);
+@@ -412,7 +412,7 @@ int ttm_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 		 << PAGE_SHIFT);
+ 	int ret;
+ 
+-	if (len < 1 || (offset + len) >> PAGE_SHIFT > bo->resource->num_pages)
++	if (len < 1 || (offset + len) > bo->resource->size)
+ 		return -EIO;
+ 
+ 	ret = ttm_bo_reserve(bo, true, false, NULL);
+diff --git a/drivers/gpu/drm/ttm/ttm_range_manager.c b/drivers/gpu/drm/ttm/ttm_range_manager.c
+index f7c16c46cfbc..0a8bc0b7f380 100644
+--- a/drivers/gpu/drm/ttm/ttm_range_manager.c
++++ b/drivers/gpu/drm/ttm/ttm_range_manager.c
+@@ -83,7 +83,7 @@ static int ttm_range_man_alloc(struct ttm_resource_manager *man,
+ 
+ 	spin_lock(&rman->lock);
+ 	ret = drm_mm_insert_node_in_range(mm, &node->mm_nodes[0],
+-					  node->base.num_pages,
++					  PFN_UP(node->base.size),
+ 					  bo->page_alignment, 0,
+ 					  place->fpfn, lpfn, mode);
+ 	spin_unlock(&rman->lock);
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index a729c32a1e48..f9cce0727d40 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -177,7 +177,7 @@ void ttm_resource_init(struct ttm_buffer_object *bo,
+ 	struct ttm_resource_manager *man;
+ 
+ 	res->start = 0;
+-	res->num_pages = PFN_UP(bo->base.size);
++	res->size = bo->base.size;
+ 	res->mem_type = place->mem_type;
+ 	res->placement = place->flags;
+ 	res->bus.addr = NULL;
+@@ -192,7 +192,7 @@ void ttm_resource_init(struct ttm_buffer_object *bo,
+ 		list_add_tail(&res->lru, &bo->bdev->pinned);
+ 	else
+ 		list_add_tail(&res->lru, &man->lru[bo->priority]);
+-	man->usage += res->num_pages << PAGE_SHIFT;
++	man->usage += res->size;
+ 	spin_unlock(&bo->bdev->lru_lock);
+ }
+ EXPORT_SYMBOL(ttm_resource_init);
+@@ -214,7 +214,7 @@ void ttm_resource_fini(struct ttm_resource_manager *man,
+ 
+ 	spin_lock(&bdev->lru_lock);
+ 	list_del_init(&res->lru);
+-	man->usage -= res->num_pages << PAGE_SHIFT;
++	man->usage -= res->size;
+ 	spin_unlock(&bdev->lru_lock);
+ }
+ EXPORT_SYMBOL(ttm_resource_fini);
+@@ -665,7 +665,7 @@ ttm_kmap_iter_linear_io_init(struct ttm_kmap_iter_linear_io *iter_io,
+ 		iosys_map_set_vaddr(&iter_io->dmap, mem->bus.addr);
+ 		iter_io->needs_unmap = false;
+ 	} else {
+-		size_t bus_size = (size_t)mem->num_pages << PAGE_SHIFT;
++		size_t bus_size = (size_t)mem->size;
+ 
+ 		iter_io->needs_unmap = true;
+ 		memset(&iter_io->dmap, 0, sizeof(iter_io->dmap));
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index 5afc6d664fde..f93c9e52b063 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -208,7 +208,7 @@ struct ttm_bus_placement {
+  */
+ struct ttm_resource {
+ 	unsigned long start;
+-	unsigned long num_pages;
++	size_t size;
+ 	uint32_t mem_type;
+ 	uint32_t placement;
+ 	struct ttm_bus_placement bus;
+-- 
+2.32.0
 
-I've dropped the TDX related remark because I don't think it's meaningful
-for PV guests. Otoh I've left the "abuses ignores" word sequence as is, no
-matter that it reads odd to me. Plus, as hinted at before, I'm not
-convinced the IS_ENABLED() use is actually necessary or warranted here.
-
-Jan
