@@ -2,118 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BEF160577A
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 08:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C69BB60585F
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 09:24:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D75E10E36D;
-	Thu, 20 Oct 2022 06:40:43 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2075.outbound.protection.outlook.com [40.107.244.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0856F10E132
- for <Intel-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 06:40:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R1YEO2KkuQZoS2Yt/3FyqA1WTWY0Bx/Z7M0FAVDJ+djNOESanFk8WxgICQj3r/eWH4LXxolFivp4OVnmMISWghnr7LZD8jMbdSXlBNSYIEoWRAgbp8PUFPAk/cv1a1QRFoDoBxPVP7vL6BLpL55xCSILA1tVOJx73iyGtw1K4A/OSbVQKC0AGsmHEkLh5RN+rvOyFlPdClCGtP0/BfMVGCMd5QDO53E1DuuLq+swHuQLkuEmGQC6/8NtxdkHKSEhK/Or/Oh61t66TtIaL7o1cYZnUxoKRe1mYhrpaxS6Mo/kStR1nka6h2luEWZpazLKbmnLdoeSouZXwoZUkcEFOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZRjd5gGc5dM0iyvE+7fKZbFCMXIeMKgSXAWDB/qHzew=;
- b=geJEY2vrFBFusflg4BX6Gvlx7OvJlvrwMRdhrIp9Ogadi+xwQ7f5RU2F5q9bzLiyAPr7w3WxHhOOeDX6shyTA0oRG6V4zRAZYgv2FZym05P27+4ez7LrAl6hFHJ3B4JRHIkNj3vSmnPcC3x2d2n1NGlIlzplirs1JpYjRWwvRxUyF/eew5mSgG96rE+PUQXgq+vdj071R4ZwFTVm8z3Kfk7WjEtVNUOXAX9bwzFx0c5P6FxCGUbpGFw2MGT8AGTuPRP4KYOcq2jEC1pUm1JvbQRrcUsFvlQgTiCuaH+hA7G1HxowsK/Lb72hcr6DzWca6zzkqlQ/U4cUjwKXCjkRBg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZRjd5gGc5dM0iyvE+7fKZbFCMXIeMKgSXAWDB/qHzew=;
- b=5q4B6jvVBWsBrDUdudIjXVdr4hkFwGQ9v9NZFsY6/VWvFQY3Mk7eTOLy2DE6hHCNiXHcN/TgyQRLmB98norx5cfS+xOvOM18qDka9tHsECTc5QSPSbYtLGcd7N9/fv1PTYUxSYQuA1a/Z/4YvICwASaXArwZw4SnK4DWT7dZTzk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by DM4PR12MB6062.namprd12.prod.outlook.com (2603:10b6:8:b2::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5723.34; Thu, 20 Oct 2022 06:40:33 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::805b:58b6:1f27:d644]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::805b:58b6:1f27:d644%6]) with mapi id 15.20.5723.034; Thu, 20 Oct 2022
- 06:40:33 +0000
-Message-ID: <77499370-bb0e-7f7e-ac1b-ad14f47578d9@amd.com>
-Date: Thu, 20 Oct 2022 08:40:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org
-References: <20221019173254.3361334-1-tvrtko.ursulin@linux.intel.com>
- <20221019173254.3361334-3-tvrtko.ursulin@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20221019173254.3361334-3-tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM6P195CA0104.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:209:86::45) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4E9710E3BC;
+	Thu, 20 Oct 2022 07:24:19 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFB2D10E383;
+ Thu, 20 Oct 2022 07:24:13 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.west.internal (Postfix) with ESMTP id A1CC32B066F7;
+ Thu, 20 Oct 2022 03:24:09 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Thu, 20 Oct 2022 03:24:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to; s=fm3; t=
+ 1666250649; x=1666257849; bh=JcaU5FVi6AAwhCT+KtcSfksN9OhkwnuuXRF
+ y5u6mfXI=; b=fKnscPYoiUZxZ4LJaPh+7+QJGliY8EHkhlNNpvL+dfe5rrB9k9k
+ ZY/hQIUk+yh6TIr2PbwwXBaC1cydVLPd+bYYG1jjdefvuzLXhpb/wCHraWJFo6x5
+ bUjvWKtLehmoVD6xPYvdWF8Dg0dFp/sjGd6W6jBInBNcZd8JrzrVu3f5RSTA65R4
+ EqlE6EnXoeod+HC4k1pCe+rzbvLSCnJIhmfqxSO9awUz/f7ZJMF0fwuqmUtoznAi
+ 2KBx133PhhyPWbe38Rm0oswYPwdb/t1FbtgQf4Xk8KqAAEH1t9s85veRZy1fnKMs
+ io2+1OinpVzAsWbWO6jVKahP/5Xm4hyu3eg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:message-id:mime-version
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1666250649; x=
+ 1666257849; bh=JcaU5FVi6AAwhCT+KtcSfksN9OhkwnuuXRFy5u6mfXI=; b=F
+ uRqzcyhHdcEg7csOXBwaqt5iYOCQie4u/bFSDheOO2bqg/KgoPWXwOX45X7SIb1B
+ vekBAFMRYZCB1TO8hr4ZsALjHWcVFtHK7qWpQkpYpgTg4MyBh9UaM8ABXei16O5m
+ lXtdfdiikISJK1D6XiXR7xOsHXjVGmGIsthBglttJFVCsn4rZGhQSB+VpcOXmL2N
+ 5NazBpha+9NmulH5hmiy3piYMnwNctkbg0ZHL9NQEIYlvDDhJs4b00LtzxHfKPLA
+ SOR/nVMv7t+nzUFswJvmlnd2/QvP+f0tsg4iYxd9kuxGQhw92SzcWDEQBgKrUv58
+ 9+tl6d536Q8U/SlK4uucg==
+X-ME-Sender: <xms:mPdQY-hByFAP3PySLRXz8rb9v-Z6wrwMUNv0CxByMyaQnWiHY5C1zg>
+ <xme:mPdQY_CbUIozK6b_StvoIMb0xDrXP-tIElgQiuvoHeVyrKb81Qz2eEDdzNWUcGdo4
+ 4vCXDLHFcSoAsmh5Lg>
+X-ME-Received: <xmr:mPdQY2FdDCkjf5IR_N6QRRnL_59QZ6WKpIVQQbJ_KvA-zOH8Ey92-SN8sbF_JCIlH1vP3t4GrGeghrfSY2ouK6Sh8Zf2zfEiAkCj>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeelhedguddulecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvvefukfggtggusehgtderredttddunecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepkeehjeeguefhtefhgfehkeehudefudfhjefgheffkedufeegudfghfekfefh
+ vedvnecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrh
+ fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhho
+ rdhtvggthh
+X-ME-Proxy: <xmx:mfdQY3RUeA6dUVvK8OVaNoxfUlxikhm_BOX349vaOyfeGjVPCDNfUg>
+ <xmx:mfdQY7zxT_RIu0bDch5du8Vy9lsnL2neJy2Kpx0bXRMWAsqtLuC-cw>
+ <xmx:mfdQY15xbzvrt9GP_kgchtFeaeKnbYi4YhfX11Eqba_i7yyAAPDQfQ>
+ <xmx:mfdQYyhwzPkAU3OVer2vjXYIBgx3nmAhIMU_1JndzDlfYLkBUn63H9b5hjE>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 20 Oct 2022 03:24:08 -0400 (EDT)
+Date: Thu, 20 Oct 2022 09:24:05 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20221020072405.g3o4hxuk75gmeumw@houat>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|DM4PR12MB6062:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43bcb665-a850-4bff-3fba-08dab265fd38
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TFQi2Cjv/7mG6sVQC5pcdzIOM5nyhQ5wW/mBWnrLW2G6tlYcPz1avai10XdfexRbAnaaM+4+WPC56r9vvs3T1jGTr4fvqTalutT4x2B/pt+cEDj5mwq6Xj6v/cD5CLm88KiQ3FIkZiJiDMmUXH2Y6LD0pcRtgKCsLjP/mNWWM/uOQ1Fv2Ku2Z8MF1sWICSMnGAXqTiJAcGUnPQGfU43q2k0XuBrA9Wo8AJe3N0lvNRjAquoBvVhQvVeBufD1dxv0kdGG/az3Aw2tb9lpqpkA/gQtCumYl3EagL6nalaxbXFf6KkvDHVEIsvFR791YPIBDWZ//VCV3oC8uxuBqy/N6Ngu4HjlkhfQoamt/CC6VXzyXMhNwIapH4byQ2/bP1K/ArFLLeULQhhrYhld4F6BkGIJXdXD+dTCoasmpxBjStMj45yxCXBhUUGFv16v54CClyJ3J3NPE+Wz2Gb7nYAU/Tf4PSzfYtQ15RvnkRWuB4SYWBIo9Hv0NoQhoX3LZKHCz/iR5NEVLlUJc0ZOqbdItidMsgO5A7i/g/VeqGJJCu1qWRS1ZTfCQLK8QEj/p3RwzaUbg/IHgVZ5bHJEV40sXUIT7A0pLH6VwZ0hP7y01/1yLvb1GZIaEkv/CYuS633LZMNKO11WiH0Zzba1jBTQ3JG+otQoXvAX5dI1OJqsLsoSteuZjmkPY4fMxqFnOddCIBsVLjlfq+p+JaX1C+EALxYAiAKXUl766OZ+HC97oCahwQmAICu3JrtbNPHDVR26cRA3oa+pI2MmF3KzbkTwioWXJGolEd4QR+r0s5TJNGE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(39860400002)(396003)(136003)(366004)(346002)(451199015)(186003)(478600001)(6486002)(31686004)(2616005)(2906002)(8936002)(38100700002)(83380400001)(36756003)(6666004)(5660300002)(316002)(7416002)(8676002)(41300700001)(6506007)(66946007)(66556008)(66476007)(4326008)(31696002)(6512007)(54906003)(26005)(86362001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3BtRnJicHZnSVZOa0FweVExTWdlSmNjTDQwQ3JEeCtTV3Y0NjNvUDdBY1B1?=
- =?utf-8?B?dDg0cCt4aTZ6K1pPK1JZSUlYU2FwT0N5azdpM2NCajNnWjFzWE1Wazh3Yzkw?=
- =?utf-8?B?TU5qa3g1U1pEekx4b2tqVnk2VFNzaE16TGFXZHlJbkRvSXl1UXl5Wk9USitM?=
- =?utf-8?B?b0JnT3hBQmFHWXBwempJWEdDQjB2TWdvMktpeXVJTGNJTTNIelR6Smo5c0tW?=
- =?utf-8?B?Q3NVUURNWEp0U0o0bDFPbWh1cUVMVnBUREc2VUh0TUZWOC92Q2hXV1V2b0ZN?=
- =?utf-8?B?b2U4Y2FmODhDcFpoOXJQY1o0UVlqZHdvcmtIZEREWkhOZVVLZ2JEODVVWENu?=
- =?utf-8?B?MnU4WEpGbHRROTFvSHBzL1lmalpXTUh6azUzSytFZVhjOGNEQlNtdzVrSnNK?=
- =?utf-8?B?YWYxWnd6aCtYb0wzQVU2a0ZzLzIrejZScUZBZmZJTnJlUUZOTytOcEtYMlZM?=
- =?utf-8?B?NmExdEVreWJOVnNuUklQYUtvNjNWaVBiejJhUStyTDBOcWtrUTUxVVpzb2hU?=
- =?utf-8?B?eHZNK3h4eEdjT0c5bXFLSXA3MmV3Z2ppTUtMbWtlWXRaR29aWmxEUkd2cVVM?=
- =?utf-8?B?d0RWeE9JcStFS2VYT1ZzUXhvTVFUSVBaMVNmZnFFY0NuY0Rrd0RWOHlmRlVj?=
- =?utf-8?B?c2hUUXZmMmQwem1TRGJFckVqbmlPem9IMndNVzdDc1VseERUOEpRa3dGZTRu?=
- =?utf-8?B?a0NHdFY4QTJCTzY1cnZHVDYwcUEvbDJUazhPT0hLN0Rwc3l2bk95d0RLMHRq?=
- =?utf-8?B?Yy9EdjFPUmZEZ0NXYVIrWlNwUVk2MDFrVG1qdkNpY3RwVkNPL2VtS3Z6T3pW?=
- =?utf-8?B?YXJtOHBtOUY5a01McDlKRzhwMW12Qy9DVUtiMDlEM0QrTW5CTHJidXpOUGhL?=
- =?utf-8?B?eWRZZWNIbkFqMkI3eUVLVzBLRlJoODExZjFGQTg4bzZwSTRHeUxicFpZa3VH?=
- =?utf-8?B?R1krNE5YRmVGcVIrSnk0NlhQL3p5bHZBZWYzUHpYbHlUbFB5L2FDbk9FNFc1?=
- =?utf-8?B?QXJCT2lNMHZPNkQ1OTZwMUhMeEhnSmREUUtiTzJUZUFnWXkwdGVZVys3a2Jj?=
- =?utf-8?B?aFV5MDdnd201SS9PM3lwblgxdHowTkR3RmcwU1pnWmxnYmFPb0hEdERFa1pC?=
- =?utf-8?B?QzZId2VJUHRvN1E0RGNrN04yZHpPWjkrNWVLZVhxVW92NkNXUm43NzFOZnNr?=
- =?utf-8?B?S01kWURkSVhEOUxMazNMUnBiRmwyVEV2Mk4vc25MaDNtemxIL0NVQkozUkxw?=
- =?utf-8?B?b0ZDSnRhQ0tUWC9vUUdtdElRdllwZ0hTdEs5aXFKVWhpc0t1MFFwRFVoc2pp?=
- =?utf-8?B?MkJhajFlU2ZOdjJEYlZvUGdjbXFQQURhTnMyNTVQcmttYlQrSUEzakpsWW9i?=
- =?utf-8?B?eW5FSVc2alJQdjRPb1VOU2lmMGZnTVBGbVZvV1A5NjRhYnBjZlhxSHYzNmRP?=
- =?utf-8?B?ZkM4QnZVd2lzY2xxV0VrdWRRNm1ybmkwWlNPSlFGanEwV0VjOWx6MkRXRDdQ?=
- =?utf-8?B?TkZUeEI4eVFrTmNyYXJHeElndmNTQ2xsVGtTTlhKaVIvSFVGYm5CaDJucUVW?=
- =?utf-8?B?Y3BiWVBaTmdjVCtNbWY3T05STVNoQTdtaUk3MGN2TC9ESGptRnhodmZxY0sx?=
- =?utf-8?B?ZXR6RTdQN0lOakRyS0ZXQ3MzbHU4S1ZKSngrYTdkdzZCY3FXd1EvbFBoVHd2?=
- =?utf-8?B?S3hEYnNuMkhJdlVVZVRHMUpSbHgybDBBYW53MVp3VG1hYXh2ejlqY0dMSm1R?=
- =?utf-8?B?dy9vbHpXa29kYmdPL0p3UXdpL2hiOHI5Um9EZzNPNHZlQUxRSjh2ZGVHdnM5?=
- =?utf-8?B?Nmh5WGdFQjlQWkUrNVhEN0k4Ui9manNCSDlkMmRYRkUzWUoxQ08wSEV6ZlZC?=
- =?utf-8?B?Tmg4eWhURUMreWlWUTJwcW9Bb3FMWUJURXJxUHJkTWRGQU9wUFNGNmpsWDZD?=
- =?utf-8?B?Y2kraWRhV2pnYS9iNFcrWkJCVDN2NjdOTlBIc3QyaHprVE15VUJFS2pWcXR1?=
- =?utf-8?B?QkN0YkVTQmtNRWFoSzcwWHdOdFNrVkJlZHJJWG5tZHZVQklQem96NG9lRGhH?=
- =?utf-8?B?QkpKM0p1UGNGQjFPUmtUUVloSml2eVl6bHU3WnhDTXlUR3p2bWxVMVJ1WHNE?=
- =?utf-8?Q?2IqwIJQKlFzSc+XuCfTpI+Byv?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43bcb665-a850-4bff-3fba-08dab265fd38
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2022 06:40:33.7515 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ldqjbDHW4AByf1vZ+aYbKbckJMOoKVBnP6aCBCsFIVaUSB73fRLrTk8NDIOEf5Yj
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6062
-Subject: Re: [Intel-gfx] [RFC 02/17] drm: Track clients per owning process
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="it2hlqa4etx4kqus"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,262 +81,404 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Johannes Weiner <hannes@cmpxchg.org>,
- linux-kernel@vger.kernel.org,
- =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
- Zefan Li <lizefan.x@bytedance.com>, Dave Airlie <airlied@redhat.com>,
- Tejun Heo <tj@kernel.org>, cgroups@vger.kernel.org,
- "T . J . Mercier" <tjmercier@google.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 19.10.22 um 19:32 schrieb Tvrtko Ursulin:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> To enable propagation of settings from the cgroup drm controller to drm we
-> need to start tracking which processes own which drm clients.
->
-> Implement that by tracking the struct pid pointer of the owning process in
-> a new XArray, pointing to a structure containing a list of associated
-> struct drm_file pointers.
->
-> Clients are added and removed under the filelist mutex and RCU list
-> operations are used below it to allow for lockless lookup.
 
-That won't work easily like this. The problem is that file_priv->pid is 
-usually not accurate these days:
+--it2hlqa4etx4kqus
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- From the debugfs clients file:
+Hi Dave, Daniel,
 
-       systemd-logind   773   0   y    y     0          0
-                 Xorg  1639 128   n    n  1000          0
-                 Xorg  1639 128   n    n  1000          0
-                 Xorg  1639 128   n    n  1000          0
-              firefox  2945 128   n    n  1000          0
-                 Xorg  1639 128   n    n  1000          0
-                 Xorg  1639 128   n    n  1000          0
-                 Xorg  1639 128   n    n  1000          0
-                 Xorg  1639 128   n    n  1000          0
-               chrome 35940 128   n    n  1000          0
-               chrome 35940   0   n    y  1000          1
-               chrome 35940   0   n    y  1000          2
-                 Xorg  1639 128   n    n  1000          0
-                 Xorg  1639 128   n    n  1000          0
-                 Xorg  1639 128   n    n  1000          0
+Here's this week drm-misc-next PR
 
-This is with glxgears and a bunch other OpenGL applications running.
+Maxime
 
-The problem is that for most applications the X/Wayland server is now 
-opening the render node. The only exceptions in this case are apps using 
-DRI2 (VA-API?).
+drm-misc-next-2022-10-20:
+drm-misc-next for 6.2:
 
-I always wanted to fix this and actually track who is using the file 
-descriptor instead of who opened it, but never had the time to do this.
+UAPI Changes:
+  - Documentation for page-flip flags
 
-I think you need to fix this problem first. And BTW: and unsigned long 
-doesn't work as PID either with containers.
+Cross-subsystem Changes:
+  - dma-buf: Add unlocked variant of vmapping and attachment-mapping
+    functions
 
-Regards,
-Christian.
+Core Changes:
+  - atomic-helpers: CRTC primary plane test fixes
+  - connector: TV API consistency improvements, cmdline parsing
+    improvements
+  - crtc-helpers: Introduce drm_crtc_helper_atomic_check() helper
+  - edid: Fixes for HFVSDB parsing,
+  - fourcc: Addition of the Vivante tiled modifier
+  - makefile: Sort and reorganize the objects files
+  - mode_config: Remove fb_base from drm_mode_config_funcs
+  - sched: Add a module parameter to change the scheduling policy,
+    refcounting fix for fences
+  - tests: Sort the Kunit tests in the Makefile, improvements to the
+    DP-MST tests
+  - ttm: Remove unnecessary drm_mm_clean() call
 
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/Makefile     |  1 +
->   drivers/gpu/drm/drm_cgroup.c | 60 ++++++++++++++++++++++++++++++++++++
->   drivers/gpu/drm/drm_file.c   | 18 ++++++++---
->   include/drm/drm_clients.h    | 31 +++++++++++++++++++
->   include/drm/drm_file.h       |  4 +++
->   5 files changed, 110 insertions(+), 4 deletions(-)
->   create mode 100644 drivers/gpu/drm/drm_cgroup.c
->   create mode 100644 include/drm/drm_clients.h
->
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 6e55c47288e4..0719970d17ee 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -59,6 +59,7 @@ drm-$(CONFIG_DRM_LEGACY) += \
->   	drm_scatter.o \
->   	drm_vm.o
->   drm-$(CONFIG_DRM_LIB_RANDOM) += lib/drm_random.o
-> +drm-$(CONFIG_CGROUP_DRM) += drm_cgroup.o
->   drm-$(CONFIG_COMPAT) += drm_ioc32.o
->   drm-$(CONFIG_DRM_PANEL) += drm_panel.o
->   drm-$(CONFIG_OF) += drm_of.o
-> diff --git a/drivers/gpu/drm/drm_cgroup.c b/drivers/gpu/drm/drm_cgroup.c
-> new file mode 100644
-> index 000000000000..a31ff1d593ab
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_cgroup.c
-> @@ -0,0 +1,60 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2022 Intel Corporation
-> + */
-> +
-> +#include <drm/drm_drv.h>
-> +#include <drm/drm_clients.h>
-> +
-> +static DEFINE_XARRAY(drm_pid_clients);
-> +
-> +void drm_clients_close(struct drm_file *file_priv)
-> +{
-> +	unsigned long pid = (unsigned long)file_priv->pid;
-> +	struct drm_device *dev = file_priv->minor->dev;
-> +	struct drm_pid_clients *clients;
-> +
-> +	lockdep_assert_held(&dev->filelist_mutex);
-> +
-> +	clients = xa_load(&drm_pid_clients, pid);
-> +	list_del_rcu(&file_priv->clink);
-> +	if (atomic_dec_and_test(&clients->num)) {
-> +		xa_erase(&drm_pid_clients, pid);
-> +		kfree_rcu(clients, rcu);
-> +	}
-> +}
-> +
-> +int drm_clients_open(struct drm_file *file_priv)
-> +{
-> +	unsigned long pid = (unsigned long)file_priv->pid;
-> +	struct drm_device *dev = file_priv->minor->dev;
-> +	struct drm_pid_clients *clients;
-> +	bool new_client = false;
-> +
-> +	lockdep_assert_held(&dev->filelist_mutex);
-> +
-> +	clients = xa_load(&drm_pid_clients, pid);
-> +	if (!clients) {
-> +		clients = kmalloc(sizeof(*clients), GFP_KERNEL);
-> +		if (!clients)
-> +			return -ENOMEM;
-> +		atomic_set(&clients->num, 0);
-> +		INIT_LIST_HEAD(&clients->file_list);
-> +		init_rcu_head(&clients->rcu);
-> +		new_client = true;
-> +	}
-> +	atomic_inc(&clients->num);
-> +	list_add_tail_rcu(&file_priv->clink, &clients->file_list);
-> +	if (new_client) {
-> +		void *xret;
-> +
-> +		xret = xa_store(&drm_pid_clients, pid, clients, GFP_KERNEL);
-> +		if (xa_err(xret)) {
-> +			list_del_init(&file_priv->clink);
-> +			kfree(clients);
-> +			return PTR_ERR(clients);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-> index a8b4d918e9a3..ce58d5c513db 100644
-> --- a/drivers/gpu/drm/drm_file.c
-> +++ b/drivers/gpu/drm/drm_file.c
-> @@ -40,6 +40,7 @@
->   #include <linux/slab.h>
->   
->   #include <drm/drm_client.h>
-> +#include <drm/drm_clients.h>
->   #include <drm/drm_drv.h>
->   #include <drm/drm_file.h>
->   #include <drm/drm_print.h>
-> @@ -298,6 +299,7 @@ static void drm_close_helper(struct file *filp)
->   
->   	mutex_lock(&dev->filelist_mutex);
->   	list_del(&file_priv->lhead);
-> +	drm_clients_close(file_priv);
->   	mutex_unlock(&dev->filelist_mutex);
->   
->   	drm_file_free(file_priv);
-> @@ -349,10 +351,8 @@ static int drm_open_helper(struct file *filp, struct drm_minor *minor)
->   
->   	if (drm_is_primary_client(priv)) {
->   		ret = drm_master_open(priv);
-> -		if (ret) {
-> -			drm_file_free(priv);
-> -			return ret;
-> -		}
-> +		if (ret)
-> +			goto err_free;
->   	}
->   
->   	filp->private_data = priv;
-> @@ -360,6 +360,9 @@ static int drm_open_helper(struct file *filp, struct drm_minor *minor)
->   	priv->filp = filp;
->   
->   	mutex_lock(&dev->filelist_mutex);
-> +	ret = drm_clients_open(priv);
-> +	if (ret)
-> +		goto err_unlock;
->   	list_add(&priv->lhead, &dev->filelist);
->   	mutex_unlock(&dev->filelist_mutex);
->   
-> @@ -387,6 +390,13 @@ static int drm_open_helper(struct file *filp, struct drm_minor *minor)
->   #endif
->   
->   	return 0;
-> +
-> +err_unlock:
-> +	mutex_unlock(&dev->filelist_mutex);
-> +err_free:
-> +	drm_file_free(priv);
-> +
-> +	return ret;
->   }
->   
->   /**
-> diff --git a/include/drm/drm_clients.h b/include/drm/drm_clients.h
-> new file mode 100644
-> index 000000000000..4ae553a03d1e
-> --- /dev/null
-> +++ b/include/drm/drm_clients.h
-> @@ -0,0 +1,31 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2022 Intel Corporation
-> + */
-> +
-> +#ifndef _DRM_CLIENTS_H_
-> +#define _DRM_CLIENTS_H_
-> +
-> +#include <drm/drm_file.h>
-> +
-> +struct drm_pid_clients {
-> +	atomic_t num;
-> +	struct list_head file_list;
-> +	struct rcu_head rcu;
-> +};
-> +
-> +#if IS_ENABLED(CONFIG_CGROUP_DRM)
-> +void drm_clients_close(struct drm_file *file_priv);
-> +int drm_clients_open(struct drm_file *file_priv);
-> +#else
-> +static inline void drm_clients_close(struct drm_file *file_priv)
-> +{
-> +}
-> +
-> +static inline int drm_clients_open(struct drm_file *file_priv)
-> +{
-> +	return 0;
-> +}
-> +#endif
-> +
-> +#endif
-> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-> index d780fd151789..0965eb111f24 100644
-> --- a/include/drm/drm_file.h
-> +++ b/include/drm/drm_file.h
-> @@ -268,6 +268,10 @@ struct drm_file {
->   	/** @minor: &struct drm_minor for this file. */
->   	struct drm_minor *minor;
->   
-> +#if IS_ENABLED(CONFIG_CGROUP_DRM)
-> +	struct list_head clink;
-> +#endif
-> +
->   	/**
->   	 * @object_idr:
->   	 *
+Driver Changes:
+  - New driver: ofdrm
+  - Move all drivers to a common dma-buf locking convention
+  - bridge:
+    - adv7533: Remove dynamic lane switching
+    - it6505: Runtime PM support
+    - ps8640: Handle AUX defer messages
+    - tc358775: Drop soft-reset over I2C
+  - ast: Atomic Gamma LUT Support, Convert to SHMEM, various
+    improvements
+  - lcdif: Support for YUV planes
+  - mgag200: Fix PLL Setup on some revisions
+  - udl: Modesetting improvements, hot-unplug support
+  - vc4: Fix support for PAL-M
+The following changes since commit 9abf2313adc1ca1b6180c508c25f22f9395cc780:
 
+  Linux 6.1-rc1 (2022-10-16 15:36:24 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2022-10-20
+
+for you to fetch changes up to 7c99616e3fe7f35fe25bf6f5797267da29b4751e:
+
+  drm: Remove drm_mode_config::fb_base (2022-10-19 21:46:16 -0400)
+
+----------------------------------------------------------------
+drm-misc-next for 6.2:
+
+UAPI Changes:
+  - Documentation for page-flip flags
+
+Cross-subsystem Changes:
+  - dma-buf: Add unlocked variant of vmapping and attachment-mapping
+    functions
+
+Core Changes:
+  - atomic-helpers: CRTC primary plane test fixes
+  - connector: TV API consistency improvements, cmdline parsing
+    improvements
+  - crtc-helpers: Introduce drm_crtc_helper_atomic_check() helper
+  - edid: Fixes for HFVSDB parsing,
+  - fourcc: Addition of the Vivante tiled modifier
+  - makefile: Sort and reorganize the objects files
+  - mode_config: Remove fb_base from drm_mode_config_funcs
+  - sched: Add a module parameter to change the scheduling policy,
+    refcounting fix for fences
+  - tests: Sort the Kunit tests in the Makefile, improvements to the
+    DP-MST tests
+  - ttm: Remove unnecessary drm_mm_clean() call
+
+Driver Changes:
+  - New driver: ofdrm
+  - Move all drivers to a common dma-buf locking convention
+  - bridge:
+    - adv7533: Remove dynamic lane switching
+    - it6505: Runtime PM support
+    - ps8640: Handle AUX defer messages
+    - tc358775: Drop soft-reset over I2C
+  - ast: Atomic Gamma LUT Support, Convert to SHMEM, various
+    improvements
+  - lcdif: Support for YUV planes
+  - mgag200: Fix PLL Setup on some revisions
+  - udl: Modesetting improvements, hot-unplug support
+  - vc4: Fix support for PAL-M
+
+----------------------------------------------------------------
+Abhinav Kumar (1):
+      drm/bridge: adv7533: remove dynamic lane switching from adv7533 bridge
+
+Andrey Grodzovsky (1):
+      drm/sched: Add FIFO sched policy to run queue
+
+Ankit Nautiyal (4):
+      drm/edid: Fix minimum bpc supported with DSC1.2 for HDMI sink
+      drm/edid: Split DSC parsing into separate function
+      drm/edid: Refactor HFVSDB parsing for DSC1.2
+      drm/edid: Avoid multiple log lines for HFVSDB parsing
+
+Christian K=F6nig (2):
+      drm/scheduler: fix fence ref counting
+      drm/sched: add missing NULL check in drm_sched_get_cleanup_job v2
+
+Dmitry Osipenko (21):
+      dma-buf: Add unlocked variant of vmapping functions
+      dma-buf: Add unlocked variant of attachment-mapping functions
+      drm/gem: Take reservation lock for vmap/vunmap operations
+      drm/prime: Prepare to dynamic dma-buf locking specification
+      drm/armada: Prepare to dynamic dma-buf locking specification
+      drm/i915: Prepare to dynamic dma-buf locking specification
+      drm/omapdrm: Prepare to dynamic dma-buf locking specification
+      drm/tegra: Prepare to dynamic dma-buf locking specification
+      drm/etnaviv: Prepare to dynamic dma-buf locking specification
+      RDMA/umem: Prepare to dynamic dma-buf locking specification
+      misc: fastrpc: Prepare to dynamic dma-buf locking specification
+      xen/gntdev: Prepare to dynamic dma-buf locking specification
+      media: videobuf2: Prepare to dynamic dma-buf locking specification
+      media: tegra-vde: Prepare to dynamic dma-buf locking specification
+      dma-buf: Move dma_buf_vmap() to dynamic locking specification
+      dma-buf: Move dma_buf_attach() to dynamic locking specification
+      dma-buf: Move dma_buf_map_attachment() to dynamic locking specificati=
+on
+      dma-buf: Move dma_buf_mmap() to dynamic locking specification
+      dma-buf: Document dynamic locking convention
+      media: videobuf2: Stop using internal dma-buf lock
+      dma-buf: Remove obsoleted internal lock
+
+Geert Uytterhoeven (1):
+      drm/modes: parse_cmdline: Add support for named modes containing dash=
+es
+
+Jani Nikula (1):
+      drm: split build lists one per line and sort
+
+Jason Yen (1):
+      drm/bridge: ps8640: Add software to support aux defer
+
+Javier Martinez Canillas (5):
+      drm/ssd130x: Iterate over damage clips instead of using a merged rect
+      drm/mgag200: Do not call drm_atomic_add_affected_planes()
+      drm/simpledrm: Do not call drm_atomic_add_affected_planes()
+      drm/ssd130x: Do not call drm_atomic_add_affected_planes()
+      drm/crtc-helper: Add a drm_crtc_helper_atomic_check() helper
+
+Jilin Yuan (1):
+      drm/edid: fix repeated words in comments
+
+Jocelyn Falempe (2):
+      drm/ast: Add Atomic gamma lut support for aspeed
+      drm/mgag200: Fix PLL setup for G200_SE_A rev >=3D4
+
+Kieran Bingham (1):
+      drm: lcdif: Add support for YUV planes
+
+Laurent Pinchart (3):
+      drm: lcdif: Fix indentation in lcdif_regs.h
+      drm: lcdif: Don't use BIT() for multi-bit register fields
+      drm: lcdif: Switch to limited range for RGB to YUV conversion
+
+Lucas Stach (1):
+      drm/fourcc: add Vivante tile status modifiers
+
+Mateusz Kwiatkowski (1):
+      drm/vc4: vec: Fix definition of PAL-M mode
+
+Maxime Ripard (6):
+      drm/tests: Order Kunit tests in Makefile
+      drm/atomic-helper: Rename drm_atomic_helper_connector_tv_reset to avo=
+id ambiguity
+      drm/connector: Rename subconnector state variable
+      drm/atomic: Add TV subconnector property to get/set_property
+      drm/modes: Only consider bpp and refresh before options
+      Merge drm/drm-next into drm-misc-next
+
+Ma=EDra Canal (2):
+      drm/tests: Split drm_test_dp_mst_calc_pbn_mode into parameterized tes=
+ts
+      drm/tests: Split drm_test_dp_mst_sideband_msg_req_decode into paramet=
+erized tests
+
+Pin-yen Lin (2):
+      drm/bridge: it6505: Adapt runtime power management framework
+      drm/bridge: it6505: Add pre_enable/post_disable callback
+
+Simon Ser (1):
+      drm: document uAPI page-flip flags
+
+Teresa Remmet (1):
+      drm/bridge: tc358775: Do not soft reset i2c-slave controller
+
+Thomas Zimmermann (31):
+      drm/udl: Rename struct udl_drm_connector to struct udl_connector
+      drm/udl: Test pixel limit in mode-config's mode-valid function
+      drm/udl: Use USB timeout constant when reading EDID
+      drm/udl: Various improvements to the connector
+      drm/udl: Move connector to modesetting code
+      drm/udl: Remove udl_simple_display_pipe_mode_valid()
+      drm/udl: Convert to atomic-modesetting helpers
+      drm/udl: Simplify modesetting in CRTC's enable function
+      drm/udl: Support DRM hot-unplugging
+      drm/udl: Use damage iterator
+      drm/udl: Move register constants to udl_proto.h
+      drm/udl: Add constants for display-mode registers
+      drm/udl: Add register constants for color depth
+      drm/udl: Add register constants for video locks
+      drm/udl: Add register constants for framebuffer scanout addresses
+      drm/udl: Add constants for commands
+      drm/atomic-helper: Don't allocate new plane state in CRTC check
+      drm/atomic-helper: Replace drm_atomic_helper_check_crtc_state()
+      drm/ofdrm: Add ofdrm for Open Firmware framebuffers
+      drm/ofdrm: Add CRTC state
+      drm/ofdrm: Add per-model device function
+      drm/ofdrm: Support color management
+      drm/ofdrm: Support big-endian scanout buffers
+      drm/ast: Acquire I/O-register lock in atomic_commit_tail function
+      drm/ast: Call drm_atomic_helper_check_plane_state() unconditionally
+      drm/ast: Do not call drm_atomic_add_affected_planes()
+      drm/ast: Remove cursor double buffering
+      drm/ast: Rename struct ast_cursor_plane to struct ast_plane
+      drm/ast: Style cleanups in plane code
+      drm/ast: Convert ast to SHMEM
+      drm/ast: Avoid reprogramming primary-plane scanout address
+
+Ville Syrj=E4l=E4 (8):
+      drm/edid: Clarify why we only accept the "range limits only" descript=
+or
+      drm/edid: Define more flags
+      drm/edid: Only parse VRR range for continuous frequency displays
+      drm/edid: Extract drm_gtf2_mode()
+      drm/edid: Use GTF2 for inferred modes
+      drm/edid: Use the correct formula for standard timings
+      drm/edid: Unconfuse preferred timing stuff a bit
+      drm/edid: Make version checks less convoluted
+
+Wei Yongjun (3):
+      drm/panel: db7430: Silent no spi_device_id warning
+      drm/panel: tpg110: Silent no spi_device_id warning
+      drm/panel: ws2401: Silent no spi_device_id warning
+
+Zack Rusin (1):
+      drm: Remove drm_mode_config::fb_base
+
+Zeng Heng (1):
+      drm/ttm: Remove unnecessary drm_mm_clean
+
+ruanjinjie (1):
+      drm/nouveau/disp: fix cast removes address space of expression warnin=
+gs
+
+ Documentation/driver-api/dma-buf.rst               |    6 +
+ MAINTAINERS                                        |    1 +
+ drivers/dma-buf/dma-buf.c                          |  216 ++-
+ drivers/gpu/drm/Makefile                           |  107 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c           |    2 -
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c             |    2 -
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c             |    2 -
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c              |    1 -
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c              |    2 -
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |    2 -
+ drivers/gpu/drm/armada/armada_gem.c                |    8 +-
+ drivers/gpu/drm/ast/Kconfig                        |    4 +-
+ drivers/gpu/drm/ast/ast_drv.c                      |    4 +-
+ drivers/gpu/drm/ast/ast_drv.h                      |   34 +-
+ drivers/gpu/drm/ast/ast_main.c                     |    5 +-
+ drivers/gpu/drm/ast/ast_mm.c                       |   14 +-
+ drivers/gpu/drm/ast/ast_mode.c                     |  501 +++----
+ drivers/gpu/drm/bridge/adv7511/adv7511.h           |    3 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |   18 +-
+ drivers/gpu/drm/bridge/adv7511/adv7533.c           |   25 +-
+ drivers/gpu/drm/bridge/ite-it6505.c                |   58 +-
+ drivers/gpu/drm/bridge/parade-ps8640.c             |    9 +-
+ drivers/gpu/drm/bridge/tc358775.c                  |    2 +-
+ drivers/gpu/drm/display/Makefile                   |   14 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |   60 +-
+ drivers/gpu/drm/drm_atomic_state_helper.c          |    6 +-
+ drivers/gpu/drm/drm_atomic_uapi.c                  |    4 +
+ drivers/gpu/drm/drm_client.c                       |    4 +-
+ drivers/gpu/drm/drm_crtc_helper.c                  |   26 +
+ drivers/gpu/drm/drm_edid.c                         |  346 +++--
+ drivers/gpu/drm/drm_format_helper.c                |   10 +
+ drivers/gpu/drm/drm_gem.c                          |   24 +
+ drivers/gpu/drm/drm_gem_dma_helper.c               |    6 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c       |    6 +-
+ drivers/gpu/drm/drm_gem_ttm_helper.c               |    9 +-
+ drivers/gpu/drm/drm_modes.c                        |   18 +-
+ drivers/gpu/drm/drm_plane_helper.c                 |    4 +-
+ drivers/gpu/drm/drm_prime.c                        |    6 +-
+ drivers/gpu/drm/drm_simple_kms_helper.c            |    6 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c        |    2 +-
+ drivers/gpu/drm/gma500/framebuffer.c               |    6 +-
+ drivers/gpu/drm/gma500/psb_drv.h                   |    1 +
+ drivers/gpu/drm/gud/gud_connector.c                |    2 +-
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c    |   16 +-
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h    |    3 -
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c         |    2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c         |   14 +
+ .../gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c   |   16 +-
+ drivers/gpu/drm/lima/lima_sched.c                  |    4 +-
+ drivers/gpu/drm/mgag200/mgag200_g200se.c           |    3 +-
+ drivers/gpu/drm/mgag200/mgag200_mode.c             |   11 +-
+ drivers/gpu/drm/msm/msm_fbdev.c                    |    2 -
+ drivers/gpu/drm/mxsfb/lcdif_kms.c                  |  239 +++-
+ drivers/gpu/drm/mxsfb/lcdif_regs.h                 |   37 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            |    4 +-
+ drivers/gpu/drm/nouveau/nouveau_display.c          |    1 -
+ drivers/gpu/drm/nouveau/nv04_fbcon.c               |    6 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c               |    2 -
+ drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c          |    4 +-
+ drivers/gpu/drm/panel/panel-samsung-db7430.c       |    7 +
+ drivers/gpu/drm/panel/panel-tpo-tpg110.c           |    7 +
+ drivers/gpu/drm/panel/panel-widechips-ws2401.c     |    7 +
+ drivers/gpu/drm/panfrost/panfrost_dump.c           |    4 +-
+ drivers/gpu/drm/panfrost/panfrost_perfcnt.c        |    6 +-
+ drivers/gpu/drm/qxl/qxl_display.c                  |    2 -
+ drivers/gpu/drm/qxl/qxl_object.c                   |   17 +-
+ drivers/gpu/drm/qxl/qxl_prime.c                    |    4 +-
+ drivers/gpu/drm/radeon/radeon_display.c            |    2 -
+ drivers/gpu/drm/radeon/radeon_fb.c                 |    2 +-
+ drivers/gpu/drm/scheduler/sched_entity.c           |   26 +-
+ drivers/gpu/drm/scheduler/sched_main.c             |   96 +-
+ drivers/gpu/drm/solomon/ssd130x.c                  |   37 +-
+ drivers/gpu/drm/tegra/fb.c                         |    1 -
+ drivers/gpu/drm/tegra/gem.c                        |   17 +-
+ drivers/gpu/drm/tests/Makefile                     |   14 +-
+ drivers/gpu/drm/tests/drm_dp_mst_helper_test.c     |  445 +++---
+ drivers/gpu/drm/tiny/Kconfig                       |   13 +
+ drivers/gpu/drm/tiny/Makefile                      |    1 +
+ drivers/gpu/drm/tiny/bochs.c                       |    1 -
+ drivers/gpu/drm/tiny/ofdrm.c                       | 1424 ++++++++++++++++=
+++++
+ drivers/gpu/drm/tiny/simpledrm.c                   |   16 +-
+ drivers/gpu/drm/ttm/ttm_range_manager.c            |    1 -
+ drivers/gpu/drm/udl/Makefile                       |    2 +-
+ drivers/gpu/drm/udl/udl_connector.c                |  139 --
+ drivers/gpu/drm/udl/udl_connector.h                |   15 -
+ drivers/gpu/drm/udl/udl_drv.h                      |   42 +-
+ drivers/gpu/drm/udl/udl_modeset.c                  |  572 +++++---
+ drivers/gpu/drm/udl/udl_proto.h                    |   68 +
+ drivers/gpu/drm/udl/udl_transfer.c                 |    7 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |    2 +-
+ drivers/gpu/drm/vc4/vc4_vec.c                      |    8 +-
+ drivers/infiniband/core/umem_dmabuf.c              |    7 +-
+ .../media/common/videobuf2/videobuf2-dma-contig.c  |   22 +-
+ drivers/media/common/videobuf2/videobuf2-dma-sg.c  |   19 +-
+ drivers/media/common/videobuf2/videobuf2-vmalloc.c |   17 +-
+ .../media/platform/nvidia/tegra-vde/dmabuf-cache.c |    6 +-
+ drivers/misc/fastrpc.c                             |    6 +-
+ drivers/video/fbdev/Kconfig                        |    1 +
+ drivers/xen/gntdev-dmabuf.c                        |    8 +-
+ include/drm/drm_atomic_helper.h                    |    3 +-
+ include/drm/drm_atomic_state_helper.h              |    2 +-
+ include/drm/drm_connector.h                        |    4 +-
+ include/drm/drm_crtc_helper.h                      |    2 +
+ include/drm/drm_edid.h                             |   14 +-
+ include/drm/drm_gem.h                              |    3 +
+ include/drm/drm_mode_config.h                      |    2 -
+ include/drm/gpu_scheduler.h                        |   32 +
+ include/linux/dma-buf.h                            |   17 +-
+ include/uapi/drm/drm_fourcc.h                      |   29 +
+ include/uapi/drm/drm_mode.h                        |   63 +-
+ 110 files changed, 3854 insertions(+), 1358 deletions(-)
+ create mode 100644 drivers/gpu/drm/tiny/ofdrm.c
+ delete mode 100644 drivers/gpu/drm/udl/udl_connector.c
+ delete mode 100644 drivers/gpu/drm/udl/udl_connector.h
+ create mode 100644 drivers/gpu/drm/udl/udl_proto.h
+
+--it2hlqa4etx4kqus
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY1D3lQAKCRDj7w1vZxhR
+xamSAQC5o07ZwefDIWU9tx9qwxGrtuz60gRkbU/4OOCAdmkApQD/dfPEGVsz53HD
+xon9AV2w5TiNjLKbwoMYMGjJjkwuigM=
+=kRl7
+-----END PGP SIGNATURE-----
+
+--it2hlqa4etx4kqus--
