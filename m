@@ -2,54 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037E76062D6
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 16:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2F78606305
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 16:28:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E714B10E4BF;
-	Thu, 20 Oct 2022 14:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7283310F2CD;
+	Thu, 20 Oct 2022 14:27:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6F7310E4BF
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 14:19:39 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB03E10F2C5;
+ Thu, 20 Oct 2022 14:27:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666275579; x=1697811579;
+ t=1666276065; x=1697812065;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Uw5nOGxPjJcMcTP9+JCVYy/dXgu0ZojWfs1QUs8AuG0=;
- b=PjKTiCJ/b0voMIDk2JNEe60BLennrwTXa+qI/Gb3D69LO7YS6C3+BGKu
- Wr+8x+Qotc7BdGI9yJbds30LO31dEZj2gJynccT6bOYZFq+UNcHXdtlq1
- sJj181ITOYDbTy0LE4Dye8cEeGHBij/Fo9kyR9kH4tf4upUrdDfI55m3g
- YabsRnBHkCuooatFfagtMa82zlWdN1vS3BIYUr+C5WZwSaDBeAmzYVoEn
- 8XB5KCKGNrqE8qE43a4WjP+89f3PPdiyYCx/qfbqPwsqrRLimRjIT7gjG
- AiGj3Y3QpKa8VblXgVRhSsPzsz1EcnRNIxCa+TJCMRcn2QTdOuZp7k1ti A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="305455435"
-X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="305455435"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2022 07:19:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="734864744"
-X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="734864744"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga002.fm.intel.com with SMTP; 20 Oct 2022 07:19:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 20 Oct 2022 17:19:35 +0300
-Date: Thu, 20 Oct 2022 17:19:35 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <Y1FY96J0ohzdsS4j@intel.com>
-References: <20221011063447.904649-1-ankit.k.nautiyal@intel.com>
- <20221011063447.904649-3-ankit.k.nautiyal@intel.com>
+ mime-version:in-reply-to;
+ bh=QHy3Ko5XMie94gcwVnlxc1NXfyePOUN4SZHHzdRm/2c=;
+ b=fW/FqGS9k1q7Q5s/NGApRTqkbNHPuP0MG5DyQ2x/PXC3WdPDS9ziz1Tc
+ qjmqNswX2sCKwDIH04AtOL76vYHbHJ6SeBh2quxAjnTFpWu9Y4x7f6UOE
+ UAfZhzi1jW3Lssael2bP8xUQPtaWpe0KCGmCsIRi25HuxhbChtVsLRTYy
+ uKbRS9RTRZvOPKXcCGuWosyKToY+GQDOrwsDB7ph5s/Q9ALgRbfk06rim
+ HE40ZTBjVPg34X2pvphYabQolYktWVDPmGa8W8/yzV/trJjvSLaOtBbFR
+ Jx8V6aVnZ3W2/X7HLdexi4o+3T3R8J774ilQHK57MjY6/sgS4IkjakVYR g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="368768088"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="368768088"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2022 07:27:43 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="958963503"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="958963503"
+Received: from brockhau-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.43.208])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2022 07:27:40 -0700
+Date: Thu, 20 Oct 2022 16:27:38 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Message-ID: <Y1Fa2k/Xk4s5V1ip@ashyti-mobl2.lan>
+References: <20221018071630.3831-1-niranjana.vishwanathapura@intel.com>
+ <20221018071630.3831-17-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221011063447.904649-3-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 2/8] drm/i915/dp: Remove whitespace at
- the end of function.
+In-Reply-To: <20221018071630.3831-17-niranjana.vishwanathapura@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 16/17] drm/i915/vm_bind: userptr dma-resv
+ changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,36 +59,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ thomas.hellstrom@intel.com, matthew.auld@intel.com, daniel.vetter@intel.com,
+ christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 11, 2022 at 12:04:41PM +0530, Ankit Nautiyal wrote:
-> Remove extraline left after intel_dp_configure_protocol_converter.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Hi Niranjana,
 
-First two patches pushed to drm-intel-next. Thanks.
+[...]
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 9133d4c65437..359884617fdc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2690,7 +2690,6 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
->  			   str_enable_disable(tmp));
->  }
->  
-> -
->  bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
->  {
->  	u8 dprx = 0;
-> -- 
-> 2.25.1
+> @@ -307,6 +307,8 @@ struct i915_vma {
+>  	struct list_head non_priv_vm_bind_link;
+>  	/* @vm_rebind_link: link to vm_rebind_list and protected by vm_rebind_lock */
+>  	struct list_head vm_rebind_link; /* Link in vm_rebind_list */
+> +	/*@userptr_invalidated_link: link to the vm->userptr_invalidated_list */
 
--- 
-Ville Syrjälä
-Intel
+nit: add a space here
+
+Andi
