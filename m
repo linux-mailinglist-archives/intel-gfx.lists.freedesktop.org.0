@@ -2,55 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3399606704
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 19:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86D8260671A
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 19:35:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A15710E0E4;
-	Thu, 20 Oct 2022 17:29:15 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF6F510E0E4;
- Thu, 20 Oct 2022 17:29:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666286948; x=1697822948;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+TDDcw1ZrTYNXx0UyHndkfoL+7oODeuZrYvlN/TqRWw=;
- b=SL9hedI6EU7WMW53a4qjJ+MtlN7y9FCc/WuHYEdm7kEeoJmXryXXN9KG
- lVADr7PuwtJ0QDHx7Agx3H4A0fHWJQrPO2Ln+zKJAv2L60BEVTqGVWosf
- pRxziF+hZrjW4EtMJHXgdovplfmkfn4wZluu4ASXJjrROHpL0idNaGUfo
- aGMKydjdyZc1Lc/8sO2Iqt5yrJJE5kxU9BkIrTsZeVdUPVCrJiA9He2Xr
- XtmUxtAK036zXWzxbl20ZD37ud6s0zP2ilQOTuec/JnMsrViS2IzmcAj1
- GexknU6HUn88uaxnNm4+ELQD+/vDdROQYJBSLUBFTZmT6ycaQZi4MIQTy A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="286502374"
-X-IronPort-AV: E=Sophos;i="5.95,199,1661842800"; d="scan'208";a="286502374"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2022 10:29:08 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="632388209"
-X-IronPort-AV: E=Sophos;i="5.95,199,1661842800"; d="scan'208";a="632388209"
-Received: from aasthash-mobl.ger.corp.intel.com (HELO [10.213.232.117])
- ([10.213.232.117])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2022 10:29:06 -0700
-Message-ID: <86e3f93e-c97b-a9f6-b90a-a975f38cfbba@linux.intel.com>
-Date: Thu, 20 Oct 2022 18:29:05 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C74E10E09E;
+	Thu, 20 Oct 2022 17:35:23 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 62F4F10E09E;
+ Thu, 20 Oct 2022 17:35:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9BE49A7DFB;
+ Thu, 20 Oct 2022 17:35:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8151306394329868223=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Content-Language: en-US
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20221020130841.3845791-1-tvrtko.ursulin@linux.intel.com>
- <Y1FYy8gj38GDYzCu@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <Y1FYy8gj38GDYzCu@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Stop using
- kthread_stop()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 20 Oct 2022 17:35:12 -0000
+Message-ID: <166628731261.8588.5466702228850591661@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221020151047.369354-1-matthew.auld@intel.com>
+In-Reply-To: <20221020151047.369354-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_use_i915=5Fsg=5Fdma=5Fsizes=28=29_for_internal_backend?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,535 +40,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============8151306394329868223==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 20/10/2022 15:18, Ville Syrjälä wrote:
-> On Thu, Oct 20, 2022 at 02:08:41PM +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Since a7c01fa93aeb ("signal: break out of wait loops on kthread_stop()")
->> kthread_stop() started asserting a pending signal which wreaks havoc with
->> a few of our selftests. Mainly because they are not fully expecting to
->> handle signals, but also cutting the intended test runtimes short due
->> signal_pending() now returning true (via __igt_timeout), which therefore
->> breaks both the patterns of:
->>
->>    kthread_run()
->>    ..sleep for igt_timeout_ms to allow test to exercise stuff..
->>    kthread_stop()
->>
->> And check for errors recorded in the thread.
->>
->> And also:
->>
->>      Main thread  |   Test thread
->>    ---------------+------------------------------
->>    kthread_run()  |
->>    kthread_stop() |  do stuff until __igt_timeout
->> 		 |  -- exits early due signal --
->>
->> Where this kthread_stop() was assume would have a "join" semantics, which
->> it would have had if not the new signal assertion issue.
->>
->> To recap, threads are now likely to catch a previously impossible
->> ERESTARTSYS or EINTR, marking the test as failed, or have a pointlessly
->> short run time.
->>
->> To work around this start using kthread_work(er) API which provides
->> an explicit way of waiting for threads to exit. And for cases where
->> parent controls the test duration we add explicit signaling which threads
->> will now use instead of relying on kthread_should_stop().
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> ---
->>   .../drm/i915/gem/selftests/i915_gem_context.c | 118 ++++----
->>   drivers/gpu/drm/i915/gt/selftest_execlists.c  |  48 ++--
->>   drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  51 ++--
->>   drivers/gpu/drm/i915/selftests/i915_request.c | 252 +++++++++++-------
->>   4 files changed, 281 insertions(+), 188 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
->> index c6ad67b90e8a..d8864444432b 100644
->> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
->> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
->> @@ -179,97 +179,108 @@ static int live_nop_switch(void *arg)
->>   }
->>   
->>   struct parallel_switch {
->> -	struct task_struct *tsk;
->> +	struct kthread_worker *worker;
->> +	struct kthread_work work;
->>   	struct intel_context *ce[2];
->> +	int result;
->>   };
->>   
->> -static int __live_parallel_switch1(void *data)
->> +static void __live_parallel_switch1(struct kthread_work *work)
->>   {
->> -	struct parallel_switch *arg = data;
->> +	struct parallel_switch *arg =
->> +		container_of(work, typeof(*arg), work);
->>   	IGT_TIMEOUT(end_time);
->>   	unsigned long count;
->>   
->>   	count = 0;
->> +	arg->result = 0;
->>   	do {
->>   		struct i915_request *rq = NULL;
->> -		int err, n;
->> +		int n;
->>   
->> -		err = 0;
->> -		for (n = 0; !err && n < ARRAY_SIZE(arg->ce); n++) {
->> +		for (n = 0; !arg->result && n < ARRAY_SIZE(arg->ce); n++) {
->>   			struct i915_request *prev = rq;
->>   
->>   			rq = i915_request_create(arg->ce[n]);
->>   			if (IS_ERR(rq)) {
->>   				i915_request_put(prev);
->> -				return PTR_ERR(rq);
->> +				arg->result = PTR_ERR(rq);
->> +				break;
->>   			}
->>   
->>   			i915_request_get(rq);
->>   			if (prev) {
->> -				err = i915_request_await_dma_fence(rq, &prev->fence);
->> +				arg->result =
->> +					i915_request_await_dma_fence(rq,
->> +								     &prev->fence);
->>   				i915_request_put(prev);
->>   			}
->>   
->>   			i915_request_add(rq);
->>   		}
->> +
->> +		if (IS_ERR_OR_NULL(rq))
->> +			break;
->> +
->>   		if (i915_request_wait(rq, 0, HZ) < 0)
->> -			err = -ETIME;
->> +			arg->result = -ETIME;
->> +
->>   		i915_request_put(rq);
->> -		if (err)
->> -			return err;
->>   
->>   		count++;
->> -	} while (!__igt_timeout(end_time, NULL));
->> +	} while (!arg->result && !__igt_timeout(end_time, NULL));
->>   
->> -	pr_info("%s: %lu switches (sync)\n", arg->ce[0]->engine->name, count);
->> -	return 0;
->> +	pr_info("%s: %lu switches (sync) <%d>\n",
->> +		arg->ce[0]->engine->name, count, arg->result);
->>   }
->>   
->> -static int __live_parallel_switchN(void *data)
->> +static void __live_parallel_switchN(struct kthread_work *work)
->>   {
->> -	struct parallel_switch *arg = data;
->> +	struct parallel_switch *arg =
->> +		container_of(work, typeof(*arg), work);
->>   	struct i915_request *rq = NULL;
->>   	IGT_TIMEOUT(end_time);
->>   	unsigned long count;
->>   	int n;
->>   
->>   	count = 0;
->> +	arg->result = 0;
->>   	do {
->> -		for (n = 0; n < ARRAY_SIZE(arg->ce); n++) {
->> +		for (n = 0; !arg->result && n < ARRAY_SIZE(arg->ce); n++) {
->>   			struct i915_request *prev = rq;
->> -			int err = 0;
->>   
->>   			rq = i915_request_create(arg->ce[n]);
->>   			if (IS_ERR(rq)) {
->>   				i915_request_put(prev);
->> -				return PTR_ERR(rq);
->> +				arg->result = PTR_ERR(rq);
->> +				break;
->>   			}
->>   
->>   			i915_request_get(rq);
->>   			if (prev) {
->> -				err = i915_request_await_dma_fence(rq, &prev->fence);
->> +				arg->result =
->> +					i915_request_await_dma_fence(rq,
->> +								     &prev->fence);
->>   				i915_request_put(prev);
->>   			}
->>   
->>   			i915_request_add(rq);
->> -			if (err) {
->> -				i915_request_put(rq);
->> -				return err;
->> -			}
->>   		}
->>   
->>   		count++;
->> -	} while (!__igt_timeout(end_time, NULL));
->> -	i915_request_put(rq);
->> +	} while (!arg->result && !__igt_timeout(end_time, NULL));
->>   
->> -	pr_info("%s: %lu switches (many)\n", arg->ce[0]->engine->name, count);
->> -	return 0;
->> +	if (!IS_ERR_OR_NULL(rq))
->> +		i915_request_put(rq);
->> +
->> +	pr_info("%s: %lu switches (many) <%d>\n",
->> +		arg->ce[0]->engine->name, count, arg->result);
->>   }
->>   
->>   static int live_parallel_switch(void *arg)
->>   {
->>   	struct drm_i915_private *i915 = arg;
->> -	static int (* const func[])(void *arg) = {
->> +	static void (* const func[])(struct kthread_work *) = {
->>   		__live_parallel_switch1,
->>   		__live_parallel_switchN,
->>   		NULL,
->> @@ -277,7 +288,7 @@ static int live_parallel_switch(void *arg)
->>   	struct parallel_switch *data = NULL;
->>   	struct i915_gem_engines *engines;
->>   	struct i915_gem_engines_iter it;
->> -	int (* const *fn)(void *arg);
->> +	void (* const *fn)(struct kthread_work *);
->>   	struct i915_gem_context *ctx;
->>   	struct intel_context *ce;
->>   	struct file *file;
->> @@ -348,9 +359,22 @@ static int live_parallel_switch(void *arg)
->>   		}
->>   	}
->>   
->> +	for (n = 0; n < count; n++) {
->> +		struct kthread_worker *worker;
->> +
->> +		if (!data[n].ce[0])
->> +			continue;
->> +
->> +		worker = kthread_create_worker(0, "igt/parallel:%s",
->> +					       data[n].ce[0]->engine->name);
->> +		if (IS_ERR(worker))
->> +			goto out;
->> +
->> +		data[n].worker = worker;
->> +	}
->> +
->>   	for (fn = func; !err && *fn; fn++) {
->>   		struct igt_live_test t;
->> -		int n;
->>   
->>   		err = igt_live_test_begin(&t, i915, __func__, "");
->>   		if (err)
->> @@ -360,30 +384,17 @@ static int live_parallel_switch(void *arg)
->>   			if (!data[n].ce[0])
->>   				continue;
->>   
->> -			data[n].tsk = kthread_run(*fn, &data[n],
->> -						  "igt/parallel:%s",
->> -						  data[n].ce[0]->engine->name);
->> -			if (IS_ERR(data[n].tsk)) {
->> -				err = PTR_ERR(data[n].tsk);
->> -				break;
->> -			}
->> -			get_task_struct(data[n].tsk);
->> +			data[n].result = 0;
->> +			kthread_init_work(&data[n].work, *fn);
->> +			kthread_queue_work(data[n].worker, &data[n].work);
->>   		}
->>   
->> -		yield(); /* start all threads before we kthread_stop() */
->> -
->>   		for (n = 0; n < count; n++) {
->> -			int status;
->> -
->> -			if (IS_ERR_OR_NULL(data[n].tsk))
->> -				continue;
->> -
->> -			status = kthread_stop(data[n].tsk);
->> -			if (status && !err)
->> -				err = status;
->> -
->> -			put_task_struct(data[n].tsk);
->> -			data[n].tsk = NULL;
->> +			if (data[n].ce[0]) {
->> +				kthread_flush_work(&data[n].work);
->> +				if (data[n].result && !err)
->> +					err = data[n].result;
->> +			}
->>   		}
->>   
->>   		if (igt_live_test_end(&t))
->> @@ -399,6 +410,9 @@ static int live_parallel_switch(void *arg)
->>   			intel_context_unpin(data[n].ce[m]);
->>   			intel_context_put(data[n].ce[m]);
->>   		}
->> +
->> +		if (data[n].worker)
->> +			kthread_destroy_worker(data[n].worker);
->>   	}
->>   	kfree(data);
->>   out_file:
->> diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
->> index 56b7d5b5fea0..2c7c053a8808 100644
->> --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
->> +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
->> @@ -3473,12 +3473,14 @@ static int random_priority(struct rnd_state *rnd)
->>   
->>   struct preempt_smoke {
->>   	struct intel_gt *gt;
->> +	struct kthread_work work;
->>   	struct i915_gem_context **contexts;
->>   	struct intel_engine_cs *engine;
->>   	struct drm_i915_gem_object *batch;
->>   	unsigned int ncontext;
->>   	struct rnd_state prng;
->>   	unsigned long count;
->> +	int result;
->>   };
->>   
->>   static struct i915_gem_context *smoke_context(struct preempt_smoke *smoke)
->> @@ -3538,34 +3540,31 @@ static int smoke_submit(struct preempt_smoke *smoke,
->>   	return err;
->>   }
->>   
->> -static int smoke_crescendo_thread(void *arg)
->> +static void smoke_crescendo_work(struct kthread_work *work)
->>   {
->> -	struct preempt_smoke *smoke = arg;
->> +	struct preempt_smoke *smoke = container_of(work, typeof(*smoke), work);
->>   	IGT_TIMEOUT(end_time);
->>   	unsigned long count;
->>   
->>   	count = 0;
->>   	do {
->>   		struct i915_gem_context *ctx = smoke_context(smoke);
->> -		int err;
->>   
->> -		err = smoke_submit(smoke,
->> -				   ctx, count % I915_PRIORITY_MAX,
->> -				   smoke->batch);
->> -		if (err)
->> -			return err;
->> +		smoke->result = smoke_submit(smoke, ctx,
->> +					     count % I915_PRIORITY_MAX,
->> +					     smoke->batch);
->>   
->>   		count++;
->> -	} while (count < smoke->ncontext && !__igt_timeout(end_time, NULL));
->> +	} while (!smoke->result && count < smoke->ncontext &&
->> +		 !__igt_timeout(end_time, NULL));
->>   
->>   	smoke->count = count;
->> -	return 0;
->>   }
->>   
->>   static int smoke_crescendo(struct preempt_smoke *smoke, unsigned int flags)
->>   #define BATCH BIT(0)
->>   {
->> -	struct task_struct *tsk[I915_NUM_ENGINES] = {};
->> +	struct kthread_worker *worker[I915_NUM_ENGINES] = {};
->>   	struct preempt_smoke *arg;
->>   	struct intel_engine_cs *engine;
->>   	enum intel_engine_id id;
->> @@ -3576,6 +3575,8 @@ static int smoke_crescendo(struct preempt_smoke *smoke, unsigned int flags)
->>   	if (!arg)
->>   		return -ENOMEM;
->>   
->> +	memset(arg, 0, I915_NUM_ENGINES * sizeof(*arg));
-> 
-> kcalloc()?
+== Series Details ==
 
-Yeah, answer below.
+Series: drm/i915: use i915_sg_dma_sizes() for internal backend
+URL   : https://patchwork.freedesktop.org/series/109960/
+State : success
 
-> 
->> +
->>   	for_each_engine(engine, smoke->gt, id) {
->>   		arg[id] = *smoke;
->>   		arg[id].engine = engine;
->> @@ -3583,31 +3584,28 @@ static int smoke_crescendo(struct preempt_smoke *smoke, unsigned int flags)
->>   			arg[id].batch = NULL;
->>   		arg[id].count = 0;
->>   
->> -		tsk[id] = kthread_run(smoke_crescendo_thread, arg,
->> -				      "igt/smoke:%d", id);
->> -		if (IS_ERR(tsk[id])) {
->> -			err = PTR_ERR(tsk[id]);
->> +		worker[id] = kthread_create_worker(0, "igt/smoke:%d", id);
->> +		if (IS_ERR(worker[id])) {
->> +			err = PTR_ERR(worker[id]);
->>   			break;
->>   		}
->> -		get_task_struct(tsk[id]);
->> -	}
->>   
->> -	yield(); /* start all threads before we kthread_stop() */
->> +		kthread_init_work(&arg[id].work, smoke_crescendo_work);
->> +		kthread_queue_work(worker[id], &arg[id].work);
->> +	}
->>   
->>   	count = 0;
->>   	for_each_engine(engine, smoke->gt, id) {
->> -		int status;
->> -
->> -		if (IS_ERR_OR_NULL(tsk[id]))
->> +		if (IS_ERR_OR_NULL(worker[id]))
->>   			continue;
->>   
->> -		status = kthread_stop(tsk[id]);
->> -		if (status && !err)
->> -			err = status;
->> +		kthread_flush_work(&arg[id].work);
->> +		if (arg[id].result && !err)
->> +			err = arg[id].result;
->>   
->>   		count += arg[id].count;
->>   
->> -		put_task_struct(tsk[id]);
->> +		kthread_destroy_worker(worker[id]);
->>   	}
->>   
->>   	pr_info("Submitted %lu crescendo:%x requests across %d engines and %d contexts\n",
->> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
->> index 7f3bb1d34dfb..71263058a7b0 100644
->> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
->> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
->> @@ -866,10 +866,13 @@ static int igt_reset_active_engine(void *arg)
->>   }
->>   
->>   struct active_engine {
->> -	struct task_struct *task;
->> +	struct kthread_worker *worker;
->> +	struct kthread_work work;
->>   	struct intel_engine_cs *engine;
->>   	unsigned long resets;
->>   	unsigned int flags;
->> +	bool stop;
->> +	int result;
->>   };
->>   
->>   #define TEST_ACTIVE	BIT(0)
->> @@ -900,10 +903,10 @@ static int active_request_put(struct i915_request *rq)
->>   	return err;
->>   }
->>   
->> -static int active_engine(void *data)
->> +static void active_engine(struct kthread_work *work)
->>   {
->>   	I915_RND_STATE(prng);
->> -	struct active_engine *arg = data;
->> +	struct active_engine *arg = container_of(work, typeof(*arg), work);
->>   	struct intel_engine_cs *engine = arg->engine;
->>   	struct i915_request *rq[8] = {};
->>   	struct intel_context *ce[ARRAY_SIZE(rq)];
->> @@ -913,16 +916,17 @@ static int active_engine(void *data)
->>   	for (count = 0; count < ARRAY_SIZE(ce); count++) {
->>   		ce[count] = intel_context_create(engine);
->>   		if (IS_ERR(ce[count])) {
->> -			err = PTR_ERR(ce[count]);
->> -			pr_err("[%s] Create context #%ld failed: %d!\n", engine->name, count, err);
->> +			arg->result = PTR_ERR(ce[count]);
->> +			pr_err("[%s] Create context #%ld failed: %d!\n",
->> +			       engine->name, count, arg->result);
->>   			while (--count)
->>   				intel_context_put(ce[count]);
->> -			return err;
->> +			return;
->>   		}
->>   	}
->>   
->>   	count = 0;
->> -	while (!kthread_should_stop()) {
->> +	while (!READ_ONCE(arg->stop)) {
->>   		unsigned int idx = count++ & (ARRAY_SIZE(rq) - 1);
->>   		struct i915_request *old = rq[idx];
->>   		struct i915_request *new;
->> @@ -967,7 +971,7 @@ static int active_engine(void *data)
->>   		intel_context_put(ce[count]);
->>   	}
->>   
->> -	return err;
->> +	arg->result = err;
->>   }
->>   
->>   static int __igt_reset_engines(struct intel_gt *gt,
->> @@ -1022,7 +1026,7 @@ static int __igt_reset_engines(struct intel_gt *gt,
->>   
->>   		memset(threads, 0, sizeof(*threads) * I915_NUM_ENGINES);
->>   		for_each_engine(other, gt, tmp) {
->> -			struct task_struct *tsk;
->> +			struct kthread_worker *worker;
->>   
->>   			threads[tmp].resets =
->>   				i915_reset_engine_count(global, other);
->> @@ -1036,19 +1040,21 @@ static int __igt_reset_engines(struct intel_gt *gt,
->>   			threads[tmp].engine = other;
->>   			threads[tmp].flags = flags;
->>   
->> -			tsk = kthread_run(active_engine, &threads[tmp],
->> -					  "igt/%s", other->name);
->> -			if (IS_ERR(tsk)) {
->> -				err = PTR_ERR(tsk);
->> -				pr_err("[%s] Thread spawn failed: %d!\n", engine->name, err);
->> +			worker = kthread_create_worker(0, "igt/%s",
->> +						       other->name);
->> +			if (IS_ERR(worker)) {
->> +				err = PTR_ERR(worker);
->> +				pr_err("[%s] Worker create failed: %d!\n",
->> +				       engine->name, err);
->>   				goto unwind;
->>   			}
->>   
->> -			threads[tmp].task = tsk;
->> -			get_task_struct(tsk);
->> -		}
->> +			threads[tmp].worker = worker;
->>   
->> -		yield(); /* start all threads before we begin */
->> +			kthread_init_work(&threads[tmp].work, active_engine);
->> +			kthread_queue_work(threads[tmp].worker,
->> +					   &threads[tmp].work);
->> +		}
->>   
->>   		st_engine_heartbeat_disable_no_pm(engine);
->>   		GEM_BUG_ON(test_and_set_bit(I915_RESET_ENGINE + id,
->> @@ -1197,17 +1203,20 @@ static int __igt_reset_engines(struct intel_gt *gt,
->>   		for_each_engine(other, gt, tmp) {
->>   			int ret;
->>   
->> -			if (!threads[tmp].task)
->> +			if (!threads[tmp].worker)
->>   				continue;
->>   
->> -			ret = kthread_stop(threads[tmp].task);
->> +			WRITE_ONCE(threads[tmp].stop, true);
->> +			kthread_flush_work(&threads[tmp].work);
-> 
-> Could perhaps optimize things a bit flagging all the threads
-> to stop before doing any flush_work()s. And maybe also do all
-> the init stuff before queuing any works. But dunno if that's
-> worth the hassle.
+== Summary ==
 
-Init stage probably isn't worth complicating, but stopping would be 
-nicer indeed to happen more in sync across threads. Mostly for cases 
-where some sort of metrics per thread is output, and where stop points 
-are relatively spread out.
+CI Bug Log - changes from CI_DRM_12267 -> Patchwork_109960v1
+====================================================
 
-I will leave it all for a follow up though. If this version happens to 
-get a green CI light I will just merge it as is to restore CI coverage 
-and unblock things.
+Summary
+-------
 
-> Looks reasonable enough to me.
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+  **SUCCESS**
 
-Thanks!
+  No regressions found.
 
-Regards,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html
 
-Tvrtko
+Participating hosts (46 -> 42)
+------------------------------
+
+  Additional (1): bat-atsm-1 
+  Missing    (5): fi-hsw-4200u fi-icl-u2 fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109960v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_render_tiled_blits@basic:
+    - fi-apl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#7056])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-8109u:       [PASS][5] -> [DMESG-FAIL][6] ([i915#7270])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-kbl-7567u:       [DMESG-FAIL][7] ([i915#7270]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-kbl-7567u/igt@i915_selftest@live@gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-kbl-7567u/igt@i915_selftest@live@gem_contexts.html
+    - {bat-jsl-1}:        [DMESG-FAIL][9] ([i915#7270]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5828]: https://gitlab.freedesktop.org/drm/intel/issues/5828
+  [i915#7029]: https://gitlab.freedesktop.org/drm/intel/issues/7029
+  [i915#7030]: https://gitlab.freedesktop.org/drm/intel/issues/7030
+  [i915#7056]: https://gitlab.freedesktop.org/drm/intel/issues/7056
+  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
+  [i915#7270]: https://gitlab.freedesktop.org/drm/intel/issues/7270
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12267 -> Patchwork_109960v1
+
+  CI-20190529: 20190529
+  CI_DRM_12267: 1e08742713bca00944d4d38d1080a14dbfa649dc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7020: 05b7eaf9ade2216d17c069c89439015757ee25f7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109960v1: 1e08742713bca00944d4d38d1080a14dbfa649dc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+9864929ed379 drm/i915: use i915_sg_dma_sizes() for internal backend
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html
+
+--===============8151306394329868223==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: use i915_sg_dma_sizes() for internal backend</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109960/">https://patchwork.freedesktop.org/series/109960/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12267 -&gt; Patchwork_109960v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html</p>
+<h2>Participating hosts (46 -&gt; 42)</h2>
+<p>Additional (1): bat-atsm-1 <br />
+  Missing    (5): fi-hsw-4200u fi-icl-u2 fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109960v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7056">i915#7056</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7270">i915#7270</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>
+<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-kbl-7567u/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7270">i915#7270</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-kbl-7567u/igt@i915_selftest@live@gem_contexts.html">PASS</a></p>
+</li>
+<li>
+<p>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7270">i915#7270</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12267 -&gt; Patchwork_109960v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12267: 1e08742713bca00944d4d38d1080a14dbfa649dc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7020: 05b7eaf9ade2216d17c069c89439015757ee25f7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109960v1: 1e08742713bca00944d4d38d1080a14dbfa649dc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>9864929ed379 drm/i915: use i915_sg_dma_sizes() for internal backend</p>
+
+</body>
+</html>
+
+--===============8151306394329868223==--
