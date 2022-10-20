@@ -1,33 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86D8260671A
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 19:35:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B73606746
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 19:49:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C74E10E09E;
-	Thu, 20 Oct 2022 17:35:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 044A210E16B;
+	Thu, 20 Oct 2022 17:49:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 62F4F10E09E;
- Thu, 20 Oct 2022 17:35:13 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E64D10E16B;
+ Thu, 20 Oct 2022 17:48:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9BE49A7DFB;
- Thu, 20 Oct 2022 17:35:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8151306394329868223=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 26B5DA0099;
+ Thu, 20 Oct 2022 17:48:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Thu, 20 Oct 2022 17:35:12 -0000
-Message-ID: <166628731261.8588.5466702228850591661@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Thu, 20 Oct 2022 17:48:48 -0000
+Message-ID: <166628812813.8590.10577344357312261737@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20221020151047.369354-1-matthew.auld@intel.com>
-In-Reply-To: <20221020151047.369354-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_use_i915=5Fsg=5Fdma=5Fsizes=28=29_for_internal_backend?=
+References: <20221020160022.1823365-1-imre.deak@intel.com>
+In-Reply-To: <20221020160022.1823365-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/tgl+=3A_Fix_race_conditions_during_DKL_PHY_accesse?=
+ =?utf-8?q?s?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,199 +46,107 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8151306394329868223==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: use i915_sg_dma_sizes() for internal backend
-URL   : https://patchwork.freedesktop.org/series/109960/
-State : success
+Series: drm/i915/tgl+: Fix race conditions during DKL PHY accesses
+URL   : https://patchwork.freedesktop.org/series/109963/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_12267 -> Patchwork_109960v1
-====================================================
+Error: dim checkpatch failed
+9bbcf8b185e4 drm/i915/tgl+: Add locking around DKL PHY register accesses
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:173: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#173: FILE: drivers/gpu/drm/i915/display/intel_display_core.h:319:
++		spinlock_t phy_lock;
 
-Summary
--------
+-:206: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#206: 
+new file mode 100644
 
-  **SUCCESS**
+-:449: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#449: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:3739:
++	intel_dkl_phy_rmw(dev_priv, DKL_PLL_DIV0(tc_port), 2, val,
++			 hw_state->mg_pll_div0);
 
-  No regressions found.
+-:510: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'reg' - possible side-effects?
+#510: FILE: drivers/gpu/drm/i915/i915_reg.h:7445:
++#define DKL_REG_TC_PORT(reg) \
++	(((reg).reg - _DKL_PHY1_BASE) / (_DKL_PHY2_BASE - _DKL_PHY1_BASE))
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html
+total: 0 errors, 1 warnings, 3 checks, 429 lines checked
+796c17a52706 drm/i915: Rename intel_tc_phy_regs.h to intel_mg_phy_regs.h
+-:50: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#50: 
+rename from drivers/gpu/drm/i915/display/intel_tc_phy_regs.h
 
-Participating hosts (46 -> 42)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 48 lines checked
+060db4c81b85 drm/i915/tgl+: Move DKL PHY register definitions to intel_dkl_phy_regs.h
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:54: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#54: 
+new file mode 100644
 
-  Additional (1): bat-atsm-1 
-  Missing    (5): fi-hsw-4200u fi-icl-u2 fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus 
+-:74: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'reg' - possible side-effects?
+#74: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h:16:
++#define DKL_REG_TC_PORT(reg) \
++	(((reg).reg - _DKL_PHY1_BASE) / (_DKL_PHY2_BASE - _DKL_PHY1_BASE))
 
-Known issues
-------------
+-:91: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#91: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h:33:
++#define   DKL_PLL_DIV0_AFC_STARTUP(val)			REG_FIELD_PREP(DKL_PLL_DIV0_AFC_STARTUP_MASK, (val))
 
-  Here are the changes found in Patchwork_109960v1 that come from known issues:
+-:196: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#196: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h:138:
++#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK, (val))
 
-### IGT changes ###
+-:198: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#198: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h:140:
++#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK, (val))
 
-#### Issues hit ####
+total: 0 errors, 4 warnings, 1 checks, 413 lines checked
+aa5a4c2beb11 drm/i915/tgl+: Sanitize DKL PHY register definitions
+-:186: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#186: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy.c:76:
++void intel_dkl_phy_rmw(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg, u32 clear, u32 set)
 
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [PASS][1] -> [FAIL][2] ([i915#7229])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+-:236: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#236: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy.h:17:
++void intel_dkl_phy_rmw(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg, u32 clear, u32 set);
 
-  * igt@gem_render_tiled_blits@basic:
-    - fi-apl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#7056])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-apl-guc/igt@gem_render_tiled_blits@basic.html
+-:267: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'reg' - possible side-effects?
+#267: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h:27:
++#define DKL_REG_MMIO(reg)				_MMIO(reg.reg)
 
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cfl-8109u:       [PASS][5] -> [DMESG-FAIL][6] ([i915#7270])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
+-:274: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#274: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h:34:
++#define _DKL_REG_BANK_OFFSET(phy_offset)		((phy_offset) & ((1 << _DKL_BANK_SHIFT) - 1))
 
-  
-#### Possible fixes ####
+-:277: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'phy_offset' - possible side-effects?
+#277: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h:37:
++#define _DKL_REG(tc_port, phy_offset)	\
++	((const struct intel_dkl_phy_reg) { \
++		.reg = _DKL_REG_PHY_BASE(tc_port) + \
++		       _DKL_REG_BANK_OFFSET(phy_offset), \
++		.bank_idx = _DKL_REG_BANK_IDX(phy_offset), \
++	})
 
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-kbl-7567u:       [DMESG-FAIL][7] ([i915#7270]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-kbl-7567u/igt@i915_selftest@live@gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-kbl-7567u/igt@i915_selftest@live@gem_contexts.html
-    - {bat-jsl-1}:        [DMESG-FAIL][9] ([i915#7270]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html
+-:284: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ln0_offs' - possible side-effects?
+#284: FILE: drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h:44:
++#define _DKL_REG_LN(tc_port, ln_idx, ln0_offs, ln1_offs) \
++	_DKL_REG(tc_port, (ln0_offs) + (ln_idx) * ((ln1_offs) - (ln0_offs)))
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5828]: https://gitlab.freedesktop.org/drm/intel/issues/5828
-  [i915#7029]: https://gitlab.freedesktop.org/drm/intel/issues/7029
-  [i915#7030]: https://gitlab.freedesktop.org/drm/intel/issues/7030
-  [i915#7056]: https://gitlab.freedesktop.org/drm/intel/issues/7056
-  [i915#7229]: https://gitlab.freedesktop.org/drm/intel/issues/7229
-  [i915#7270]: https://gitlab.freedesktop.org/drm/intel/issues/7270
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12267 -> Patchwork_109960v1
-
-  CI-20190529: 20190529
-  CI_DRM_12267: 1e08742713bca00944d4d38d1080a14dbfa649dc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7020: 05b7eaf9ade2216d17c069c89439015757ee25f7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_109960v1: 1e08742713bca00944d4d38d1080a14dbfa649dc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-9864929ed379 drm/i915: use i915_sg_dma_sizes() for internal backend
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html
-
---===============8151306394329868223==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 3 warnings, 3 checks, 576 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: use i915_sg_dma_sizes() for internal backend</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109960/">https://patchwork.freedesktop.org/series/109960/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12267 -&gt; Patchwork_109960v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/index.html</p>
-<h2>Participating hosts (46 -&gt; 42)</h2>
-<p>Additional (1): bat-atsm-1 <br />
-  Missing    (5): fi-hsw-4200u fi-icl-u2 fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_109960v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7229">i915#7229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-apl-guc/igt@gem_render_tiled_blits@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7056">i915#7056</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7270">i915#7270</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>
-<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/fi-kbl-7567u/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7270">i915#7270</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/fi-kbl-7567u/igt@i915_selftest@live@gem_contexts.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12267/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7270">i915#7270</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109960v1/bat-jsl-1/igt@i915_selftest@live@gem_contexts.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12267 -&gt; Patchwork_109960v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12267: 1e08742713bca00944d4d38d1080a14dbfa649dc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7020: 05b7eaf9ade2216d17c069c89439015757ee25f7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_109960v1: 1e08742713bca00944d4d38d1080a14dbfa649dc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>9864929ed379 drm/i915: use i915_sg_dma_sizes() for internal backend</p>
-
-</body>
-</html>
-
---===============8151306394329868223==--
