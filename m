@@ -2,81 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2DE5605ED7
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 13:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3F5605EE4
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 13:32:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5543510E79C;
-	Thu, 20 Oct 2022 11:29:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18BED10E8E0;
+	Thu, 20 Oct 2022 11:32:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC43110E82B;
- Thu, 20 Oct 2022 11:29:11 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 56D682B066CD;
- Thu, 20 Oct 2022 07:29:04 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Thu, 20 Oct 2022 07:29:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm3; t=1666265343; x=1666272543; bh=mdSqh/jM6E
- 5ZN6DIJNykgL+eED2DQJpEotJl8P+3p8Y=; b=Ox8ZAEZApN4HynE8SjcUtqfjEm
- sEhezjAJ4BVRlsnxOh2ipZmbBmtVKZurVTzyr0oD304ytmxqGLBFeczJf3uK/fDM
- xyN4ZY3YGzL31LcxGhm8QpF0YzIhDDzc38m5GzYH/ajRe03bbeMFX/vr9EJJd1Sk
- /zYPtXkDjE+8ChQbta/PpM2V/ijnr/JFriFPfhwK/MFkdlBfKDEedpQhjwNZnywj
- j9i3JbTiuO0ND2mX1396ajlhExAVGjeiMCnf5d7W/vyQAQsZUVjtL1csp+uK6ETP
- OKcJglEKV6DdrJvfbey01a+PJtOE1Hw6nlNHgA0+DHOhinXcjUvfyFAty7IQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; t=1666265343; x=1666272543; bh=mdSqh/jM6E5ZN6DIJNykgL+eED2D
- QJpEotJl8P+3p8Y=; b=AcVfWBS4hegsRfUao6g1lIQfrzDSeor9U4oFalJ+Bs6Z
- XDVLvLPGVUoottaXUBBjxWIzSeTdl7UqP8csZ3phUGOXG/HJ8ThvkgAGlHfq8TQW
- SidUsKVJYLL4Kk3iPYcvXm252fznSGAOSD+HYm13zCbAk3AGp7abpVMYF/xfuChG
- Z4XdVDSgEga6H0R+Gx0SjpB2NeOzSqkl8nk5R0v0x060A3SHTNGTZ04Vvruwar7C
- 0hvMZ/VyPkZhPFcSO5IsdKpLyXgume7hIv8DJLLjxFf/1rF55AwZ/CxVZPPKWC7q
- vW17SLe+k0JpyfH1Opu042gyv3CJK7Gy43cU+MzKqQ==
-X-ME-Sender: <xms:_jBRYyBH_FfmuOpsaIRsHTlIvMK4HRjs_x4a-pw75k9tnUv7MEfK4A>
- <xme:_jBRY8gkx7cPDfxs2mX8RFUxtD2B_nFNjUqs6reqWbcpQbv9r3PFy2iN_jAO3pd_2
- 5BZ-HzjQ3JsHtyG0Qg>
-X-ME-Received: <xmr:_jBRY1mxlnrNMrpL_jc1lfhapovyapPyKzEe8p2zwveRgHVS99rg8KaRO1P8Fvxs9cHRP-Sg9-BrjDr_cLMLMCxBU06pj-VDvFXgBQsOHHz8xQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeliedggeduucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephfffvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepmhgrgihi
- mhgvsegtvghrnhhordhtvggthhenucggtffrrghtthgvrhhnpeeijeeifffgfedvieeihf
- duffdvleelffejkedufedvffelkeefieektdfhteelhfenucevlhhushhtvghrufhiiigv
- pedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtg
- hh
-X-ME-Proxy: <xmx:_jBRYwzlboYrZF7MlEpdOmoREm59h5d5HCmf6lGxFPt5vWvcmSI58w>
- <xmx:_jBRY3QSVKpltD_y6fDj4po4FJeTpDUvCSxdcktRHOs2Z0F_Bub-Fw>
- <xmx:_jBRY7avNirHWNwHP6X9OuzLrT0InOwaqjrYE8Sw1t5Vcs0EW_dPlQ>
- <xmx:_zBRY_y8SoJT5iMsvyZdgUVB3i4bjFpnwBAu8sEjFylJeo6DG4hmWS-3hRY>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 20 Oct 2022 07:29:02 -0400 (EDT)
-From: maxime@cerno.tech
-Date: Thu, 20 Oct 2022 13:29:00 +0200
-To: Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Message-ID: <20221020112900.dps2zyn4ftefgi3x@houat>
-References: <20220728-rpi-analog-tv-properties-v5-0-d841cc64fe4b@cerno.tech>
- <20220728-rpi-analog-tv-properties-v5-12-d841cc64fe4b@cerno.tech>
- <7dcf479c-8ac7-ed47-8587-30268684373c@tronnes.org>
- <20221018093353.pt4vset6o2ldxrbs@houat>
- <e3b98674-5a9e-16f3-4741-ffea43e05cc8@tronnes.org>
- <20221019084828.muy46td63bkyewxk@houat>
- <694facef-00bc-6b59-7c44-d68c7ca0c40f@tronnes.org>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49AAF10E86D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 11:32:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666265567; x=1697801567;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=BlxiH6v6x7DLkz0sEtP3Di37zx2p/rcVQyd1egZg8pc=;
+ b=nR4ws9yxCzRPOpf4WGu61rPhcLXZ+T1LAScmWln7DkGSZAPNQbeAzrL4
+ d6CbsGNhCodujTZWX1hc7R8PHFkReNIOm2350QCIX7uTvW5V+6R0NR8AF
+ q5eZwNKPAeoijNJtBwKwZkUMuhbNrO6Oxmgg08E9uJQInWayj15M0uYN4
+ RzZuRUTizHvDrPtpDnIYP6FWDrBttpWQCLd/AvGrYI//joQN639NX7OBR
+ 7lxPF8CNPSh62yfjzYDuEwueRz+tX0rofe93ZuOxK1xabcd/iZnx5C8j4
+ LKcXfutYy5sx747xrod7zD80ZvEHxP1Q5oY5lF7VKMzKsS9oL9lXbSLr/ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="370894893"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="370894893"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2022 04:32:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="662992122"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="662992122"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by orsmga001.jf.intel.com with SMTP; 20 Oct 2022 04:32:44 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 20 Oct 2022 14:32:43 +0300
+Date: Thu, 20 Oct 2022 14:32:43 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Message-ID: <Y1Ex2z6BMloyzLWa@intel.com>
+References: <20221013233223.103381-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="u7iy4fry6poy23d7"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <694facef-00bc-6b59-7c44-d68c7ca0c40f@tronnes.org>
-Subject: Re: [Intel-gfx] [PATCH v5 12/22] drm/connector: Add a function to
- lookup a TV mode by its name
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221013233223.103381-1-anusha.srivatsa@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: Do both crawl and
+ squash when changing cdclk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,125 +61,267 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Phil Elwell <phil@raspberrypi.com>, Karol Herbst <kherbst@redhat.com>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Oct 13, 2022 at 04:32:22PM -0700, Anusha Srivatsa wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> For MTL, changing cdclk from between certain frequencies has
+> both squash and crawl. Use the current cdclk config and
+> the new(desired) cdclk config to construtc a mid cdclk config.
+> Set the cdclk twice:
+> - Current cdclk -> mid cdclk
+> - mid cdclk -> desired cdclk
+> 
+> v2: Add check in intel_modeset_calc_cdclk() to avoid cdclk
+> change via modeset for platforms that support squash_crawl sequences(Ville)
+> 
+> v3: Add checks for:
+> - scenario where only slow clock is used and
+> cdclk is actually 0 (bringing up display).
+> - PLLs are on before looking up the waveform.
+> - Squash and crawl capability checks.(Ville)
+> 
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 157 +++++++++++++++++----
+>  1 file changed, 128 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index ad401357ab66..430b4cb0a8ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1675,7 +1675,7 @@ static u32 cdclk_squash_waveform(struct drm_i915_private *dev_priv,
+>  	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
+>  	int i;
+>  
+> -	if (cdclk == dev_priv->display.cdclk.hw.bypass)
+> +	if (cdclk == dev_priv->display.cdclk.hw.bypass || cdclk == 0)
 
---u7iy4fry6poy23d7
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+cdclk should never be zero. Why is that needed? Hmm. Ah, we do set it to
+zero during sanitation. But that shouldn't matter since we shouldn't
+call this in that case...
 
-Hi Noralf,
+>  		return 0;
+>  
+>  	for (i = 0; table[i].refclk; i++)
+> @@ -1689,37 +1689,72 @@ static u32 cdclk_squash_waveform(struct drm_i915_private *dev_priv,
+>  	return 0xffff;
+>  }
+>  
+> -static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> -			  const struct intel_cdclk_config *cdclk_config,
+> -			  enum pipe pipe)
+> +static int cdclk_squash_divider(u16 waveform)
+> +{
+> +	return hweight16(waveform ?: 0xffff);
+> +}
+> +
+> +static bool cdclk_crawl_and_squash(struct drm_i915_private *i915,
+> +				   const struct intel_cdclk_config *old_cdclk_config,
+> +				   const struct intel_cdclk_config *new_cdclk_config,
+> +				   struct intel_cdclk_config *mid_cdclk_config)
+> +{
+> +	u16 old_waveform = cdclk_squash_waveform(i915, old_cdclk_config->cdclk);
+> +	u16 new_waveform = cdclk_squash_waveform(i915, new_cdclk_config->cdclk);
 
-On Wed, Oct 19, 2022 at 12:43:19PM +0200, Noralf Tr=F8nnes wrote:
->=20
->=20
-> Den 19.10.2022 10.48, skrev Maxime Ripard:
-> > On Tue, Oct 18, 2022 at 02:29:00PM +0200, Noralf Tr=F8nnes wrote:
-> >>
-> >>
-> >> Den 18.10.2022 11.33, skrev Maxime Ripard:
-> >>> On Mon, Oct 17, 2022 at 12:44:45PM +0200, Noralf Tr=F8nnes wrote:
-> >>>> Den 13.10.2022 15.18, skrev Maxime Ripard:
-> >>>>> As part of the command line parsing rework coming in the next patch=
-es,
-> >>>>> we'll need to lookup drm_connector_tv_mode values by their name, al=
-ready
-> >>>>> defined in drm_tv_mode_enum_list.
-> >>>>>
-> >>>>> In order to avoid any code duplication, let's do a function that wi=
-ll
-> >>>>> perform a lookup of a TV mode name and return its value.
-> >>>>>
-> >>>>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >>>>> ---
-> >>>>>  drivers/gpu/drm/drm_connector.c | 24 ++++++++++++++++++++++++
-> >>>>>  include/drm/drm_connector.h     |  2 ++
-> >>>>>  2 files changed, 26 insertions(+)
-> >>>>>
-> >>>>> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_=
-connector.c
-> >>>>> index 820f4c730b38..30611c616435 100644
-> >>>>> --- a/drivers/gpu/drm/drm_connector.c
-> >>>>> +++ b/drivers/gpu/drm/drm_connector.c
-> >>>>> @@ -991,6 +991,30 @@ static const struct drm_prop_enum_list drm_tv_=
-mode_enum_list[] =3D {
-> >>>>>  };
-> >>>>>  DRM_ENUM_NAME_FN(drm_get_tv_mode_name, drm_tv_mode_enum_list)
-> >>>>> =20
-> >>>>> +/**
-> >>>>> + * drm_get_tv_mode_from_name - Translates a TV mode name into its =
-enum value
-> >>>>> + * @name: TV Mode name we want to convert
-> >>>>> + * @len: Length of @name
-> >>>>> + *
-> >>>>> + * Translates @name into an enum drm_connector_tv_mode.
-> >>>>> + *
-> >>>>> + * Returns: the enum value on success, a negative errno otherwise.
-> >>>>> + */
-> >>>>> +int drm_get_tv_mode_from_name(const char *name, size_t len)
-> >>>>
-> >>>> Do we really need to pass in length here? item->name has to always be
-> >>>> NUL terminated otherwise things would break elsewhere, so it shouldn=
-'t
-> >>>> be necessary AFAICS.
-> >>>
-> >>> The only user so far is the command-line parsing code, and we might v=
-ery
-> >>> well have an option after the tv_mode, something like
-> >>> 720x480i,tv_mode=3DNTSC,rotate=3D180
-> >>>
-> >>> In this case, we won't get a NULL-terminated name.
-> >>
-> >> My point is that item->name will always be NUL terminated so strcmp()
-> >> will never look past that.
-> >=20
-> > Right, but we don't have the guarantee that strlen(item->name) <
-> > strlen(name), and we could thus just access after the end of our name
-> >=20
->=20
-> Ok, using the length limiting str funtions is the safe thing to do, so
-> len needs to stay. But I don't get the 'strlen(item->name) =3D=3D len'
-> check. strncmp() will stop when it reaches a NUL in either string so no
-> need for the length check?
+... but here we do call it. Just moving these to be called after
+the vco checks should take care of that issue.
 
-Yeah, but if the cmdline is truncated, we'll pass a shorter len than
-strlen(item->name), and it will consider the string as equal.
+> +	u16 mid_waveform;
+> +	int size = 16;
+> +	int div = 2;
+> +
+> +	/* Return if both Squash and Crawl are not present */
+> +	if (!HAS_CDCLK_CRAWL(i915) || !has_cdclk_squasher(i915))
+> +		return false;
+> +
+> +	/* Return if Squash only or Crawl only is the desired action */
+> +	if (old_cdclk_config->vco <= 0 || new_cdclk_config->vco <= 0 ||
+> +	    old_cdclk_config->vco == new_cdclk_config->vco ||
+> +	    old_waveform == new_waveform)
+> +		return false;
+> +
+> +	*mid_cdclk_config = *new_cdclk_config;
+> +
+> +	/* If moving to a higher cdclk(squash) the mid cdclk config
+> +	 * should have the new (squash) waveform.
+> +	 * If moving to a lower cdclk (crawl) the mid cdclk config
+> +	 * should have the new vco.
+> +	 */
+> +
+> +	if (cdclk_squash_divider(new_waveform) > cdclk_squash_divider(old_waveform)) {
+> +		mid_cdclk_config->vco = old_cdclk_config->vco;
+> +		mid_waveform = new_waveform;
+> +	} else {
+> +		mid_cdclk_config->vco = new_cdclk_config->vco;
+> +		mid_waveform = old_waveform;
+> +	}
+> +
+> +	mid_cdclk_config->cdclk = DIV_ROUND_CLOSEST(cdclk_squash_divider(mid_waveform) *
+> +						    mid_cdclk_config->vco, size * div);
+> +
+> +	/* make sure the mid clock came out sane */
+> +
+> +	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk <
+> +		    min(old_cdclk_config->cdclk, new_cdclk_config->cdclk));
+> +	drm_WARN_ON(&i915->drm, mid_cdclk_config->cdclk >
+> +		    i915->display.cdclk.max_cdclk_freq);
+> +	drm_WARN_ON(&i915->drm, cdclk_squash_waveform(i915, mid_cdclk_config->cdclk) !=
+> +		    mid_waveform);
+> +
+> +	return true;
+> +}
+> +
+> +static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> +			   const struct intel_cdclk_config *cdclk_config,
+> +			   enum pipe pipe)
+>  {
+>  	int cdclk = cdclk_config->cdclk;
+>  	int vco = cdclk_config->vco;
+>  	u32 val;
+>  	u16 waveform;
+>  	int clock;
+> -	int ret;
+> -
+> -	/* Inform power controller of upcoming frequency change. */
+> -	if (DISPLAY_VER(dev_priv) >= 11)
+> -		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+> -					SKL_CDCLK_PREPARE_FOR_CHANGE,
+> -					SKL_CDCLK_READY_FOR_CHANGE,
+> -					SKL_CDCLK_READY_FOR_CHANGE, 3);
+> -	else
+> -		/*
+> -		 * BSpec requires us to wait up to 150usec, but that leads to
+> -		 * timeouts; the 2ms used here is based on experiment.
+> -		 */
+> -		ret = snb_pcode_write_timeout(&dev_priv->uncore,
+> -					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+> -					      0x80000000, 150, 2);
+> -	if (ret) {
+> -		drm_err(&dev_priv->drm,
+> -			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
+> -			ret, cdclk);
+> -		return;
+> -	}
+>  
+>  	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->display.cdclk.hw.vco > 0 && vco > 0) {
+>  		if (dev_priv->display.cdclk.hw.vco != vco)
+> @@ -1772,6 +1807,44 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>  
+>  	if (pipe != INVALID_PIPE)
+>  		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(dev_priv, pipe));
+> +}
+> +
+> +static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> +			  const struct intel_cdclk_config *cdclk_config,
+> +			  enum pipe pipe)
+> +{
+> +	struct intel_cdclk_config mid_cdclk_config;
+> +	int cdclk = cdclk_config->cdclk;
+> +	int ret;
+> +
+> +	/* Inform power controller of upcoming frequency change. */
+> +	if (DISPLAY_VER(dev_priv) >= 11)
+> +		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+> +					SKL_CDCLK_PREPARE_FOR_CHANGE,
+> +					SKL_CDCLK_READY_FOR_CHANGE,
+> +					SKL_CDCLK_READY_FOR_CHANGE, 3);
+> +	else
+> +		/*
+> +		 * BSpec requires us to wait up to 150usec, but that leads to
+> +		 * timeouts; the 2ms used here is based on experiment.
+> +		 */
+> +		ret = snb_pcode_write_timeout(&dev_priv->uncore,
+> +					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+> +					      0x80000000, 150, 2);
+> +	if (ret) {
+> +		drm_err(&dev_priv->drm,
+> +			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
+> +			ret, cdclk);
+> +		return;
+> +	}
+> +
+> +	if (cdclk_crawl_and_squash(dev_priv, &dev_priv->display.cdclk.hw,
+> +				   cdclk_config, &mid_cdclk_config)) {
+> +		_bxt_set_cdclk(dev_priv, &mid_cdclk_config, pipe);
+> +		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
+> +	} else {
+> +		_bxt_set_cdclk(dev_priv, cdclk_config, pipe);
+> +	}
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 11) {
+>  		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+> @@ -1944,6 +2017,27 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
+>  		skl_cdclk_uninit_hw(i915);
+>  }
+>  
+> +static bool intel_cdclk_can_crawl_and_squash(struct drm_i915_private *i915,
+> +					     const struct intel_cdclk_config *a,
+> +					     const struct intel_cdclk_config *b)
+> +{
+> +	u16 old_waveform;
+> +	u16 new_waveform;
+> +
+> +	if (a->vco == 0 || b->vco == 0)
+> +		return false;
+> +
+> +	if (HAS_CDCLK_CRAWL(i915) && has_cdclk_squasher(i915)) {
+> +		old_waveform = cdclk_squash_waveform(i915, a->cdclk);
+> +		new_waveform = cdclk_squash_waveform(i915, b->cdclk);
+> +	} else {
+> +		return false;
+> +	}
 
-For example strncmp("NTS", "NTSC", strlen("NTS"))) =3D=3D 0, while it obvio=
-usly
-isn't for us.
+A bit of weird construct this. I would make it
 
-> Anyways:
->=20
-> Reviewed-by: Noralf Tr=F8nnes <noralf@tronnes.org>
+if (!has_crawl || !has_squash)
+	return false;
+...
 
-Thanks!
-Maxime
+just like you had in the other function.
 
---u7iy4fry6poy23d7
-Content-Type: application/pgp-signature; name="signature.asc"
+And doing that check before the vco checks would also be
+more consistent with the other function.
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY1Ew/AAKCRDj7w1vZxhR
-xRcOAQD4kMUrFpaggVUGDdw8lFZHCgfZHGc0linsJEA++8ypNAD/Z2SqzMPMeFZX
-12rXh06m+wXI2OX4uZ0EETbo3eIKRww=
-=pf41
------END PGP SIGNATURE-----
+> +
+> +	return a->vco != b->vco &&
+> +	       old_waveform != new_waveform;
+> +}
+> +
+>  static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
+>  				  const struct intel_cdclk_config *a,
+>  				  const struct intel_cdclk_config *b)
+> @@ -2750,9 +2844,14 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  			pipe = INVALID_PIPE;
+>  	}
+>  
+> -	if (intel_cdclk_can_squash(dev_priv,
+> -				   &old_cdclk_state->actual,
+> -				   &new_cdclk_state->actual)) {
+> +	if (intel_cdclk_can_crawl_and_squash(dev_priv,
+> +					     &old_cdclk_state->actual,
+> +					     &new_cdclk_state->actual)) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "Can change cdclk via crawler and squasher\n");
 
---u7iy4fry6poy23d7--
+"crawler" is a bit weird term here. Maybe we should fix up all of thse
+to use the terms "crawling" and "squashing" or something along those
+lines. I'd make that a separate patch though.
+
+> +	} else if (intel_cdclk_can_squash(dev_priv,
+> +					&old_cdclk_state->actual,
+> +					&new_cdclk_state->actual)) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Can change cdclk via squasher\n");
+>  	} else if (intel_cdclk_can_crawl(dev_priv,
+> -- 
+> 2.25.1
+
+-- 
+Ville Syrjälä
+Intel
