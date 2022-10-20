@@ -1,49 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18AF8605B06
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 11:22:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9BAE605B13
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 11:25:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38E8110E10D;
-	Thu, 20 Oct 2022 09:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 776BB10E10D;
+	Thu, 20 Oct 2022 09:25:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F37B10E509
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 09:22:06 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52A4D10E509;
+ Thu, 20 Oct 2022 09:25:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666257726; x=1697793726;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=r7TNet8YCb1O9ojp50CFwt7Jh5gcm33mRzg9paYdyV8=;
- b=lrgsCbjCv0Y/OFNEUWrTTnDU6u4TdXdiiyq8Sp+6Ij7IvhjnZb+K+ipJ
- mI36t9fdAwJvkU6GIZpEOP74/y9ge/tLHBIY7E4ydfBztTHasB9+A0qsZ
- XQ1ppDN5jL68qvkwTchWXOcIn4fF3NQuScwlU8hLvBMjZbBTJXVkdzmfX
- Yh+8g43KLwOctSEtUvnCn4Q5V+XqGCrEqHwqDRXkLXpT8trqLw4V1EyA3
- yP85OrENKqRKzzqI9j94KWNdQgKVWUpCpaf4TYbpw/VGwio/V+F9owawJ
- PzhgLRFAV18DRSFc0bnVidrDreqMQOh0mEiAyNy2r/tATtFEb6R87wH5Y g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="308341965"
-X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="308341965"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2022 02:22:05 -0700
+ t=1666257916; x=1697793916;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=YtbstwztZn175mOQf8JVm1NZbgkpB72bmnUHfJwpMTs=;
+ b=knHDOXXQCnFn/jh5P/vtoKNyxrQch7nhNNpyAiGxDdvy7OtIKI4/Y51g
+ OuCj13i63fwSyyLND1/p4d/lmWym9z8out7vxWS6v45S9vVVsrhmZaA8F
+ 5VN4RtL1r/0l+wF6Y24kih3fpnZsm5epm3nl16HYB2z26d/huOsvNHDWb
+ goBIKiPFD00FQxe1WZRJ4FaCHaiwBEhuuiFQYq6hbSut8adSeJFHjd0F0
+ xqJF3QZb8hH6xSVU0KBk503qXBiCy0jSkoh92hdof562jI8ahYj1Q335C
+ OjI8nxEv8azZgFFDKHtT75rGliMIIqrAEkhxZ7ip5JcJdUhv0APN+Yylu A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="286379071"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="286379071"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2022 02:25:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="662936156"
-X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="662936156"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga001.jf.intel.com with ESMTP; 20 Oct 2022 02:22:03 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Oct 2022 14:50:49 +0530
-Message-Id: <20221020092049.857144-2-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221020092049.857144-1-suraj.kandpal@intel.com>
-References: <20221020092049.857144-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="692872651"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="692872651"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga008.fm.intel.com with SMTP; 20 Oct 2022 02:25:06 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 20 Oct 2022 12:25:06 +0300
+Date: Thu, 20 Oct 2022 12:25:06 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Y1ET8qxKaOYN54LM@intel.com>
+References: <cover.1665496046.git.jani.nikula@intel.com>
+ <20fb913a93c60fd24fc51b441ccea7bc75e82dd1.1665496046.git.jani.nikula@intel.com>
+ <Y0hb0VOaYZk5TptS@intel.com> <Y0hmBn6NrUrBexyY@intel.com>
+ <Y1BOx7oVQHPgoVzE@intel.com> <87edv2hnz1.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Removing one use macro
+In-Reply-To: <87edv2hnz1.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 01/15] drm/i915/hdmi: do dual mode detect
+ only if connected
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,64 +64,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Removing one use macro for_each_connector_on_encoder which
-is only being used at intel_encoder_find_connector.
+On Thu, Oct 20, 2022 at 11:57:06AM +0300, Jani Nikula wrote:
+> On Wed, 19 Oct 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Thu, Oct 13, 2022 at 10:24:54PM +0300, Ville Syrjälä wrote:
+> >> On Thu, Oct 13, 2022 at 09:41:21PM +0300, Ville Syrjälä wrote:
+> >> > On Tue, Oct 11, 2022 at 04:49:35PM +0300, Jani Nikula wrote:
+> >> > > -	intel_hdmi_dp_dual_mode_detect(connector, edid != NULL);
+> >> > > -
+> >> > > -	intel_display_power_put(dev_priv, POWER_DOMAIN_GMBUS, wakeref);
+> >> > > -
+> >> > >  	to_intel_connector(connector)->detect_edid = edid;
+> >> > >  	if (edid && edid->input & DRM_EDID_INPUT_DIGITAL) {
+> >> > 
+> >> > We didn't have this digital input thing before. What happens with
+> >> > HDMI->VGA dongles for example?
+> >> > 
+> >> > Hmm. This whole thing might already be broken on those. I suspect
+> >> > I've only used my HDMI->VGA dongle on LSPCON machines, so never
+> >> > noticed this. Need to go plug that thing into a native HDMI port...
+> >> 
+> >> Except I must have left it elsewhere since I can't find it here.
+> >> So can't test right now unfortunately.
+> >> 
+> >> I first thought this digital check thing might be due to
+> >> the DVI-I shenanigans in intel_crt_detect_ddc(), but that
+> >> was added for am unspecified gen2 machine in commit f5afcd3dd0dc
+> >> ("drm/i915/crt: Check for a analog monitor in case of DVI-I")
+> >> so not even relevant here. And I don't think I've ever seen
+> >> a g4x+ machine with an actual DVI-I port.
+> >
+> > Good news everyone, I found such a board: Intel DG43GT.
+> > Well, I didn't physically find one but I found the manual
+> > online. And some coreboot repo even had the vbt handily
+> > available. And yes, it does show the same DDC pins being
+> > used for the DVI-D port and CRT port. So I guess given
+> > that these digital checks do make some sense.
+> 
+> So what's the conclusion wrt the patch at hand?
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.h     |  4 ----
- .../gpu/drm/i915/display/intel_modeset_setup.c   | 16 +++++++++++++---
- 2 files changed, 13 insertions(+), 7 deletions(-)
+Seems fine as is for the moment. We'll know more once I locate
+my dongle again.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 2af4a1925063..c803330a276d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -469,10 +469,6 @@ enum hpd_pin {
- 	list_for_each_entry((intel_encoder), &(dev)->mode_config.encoder_list, base.head) \
- 		for_each_if((intel_encoder)->base.crtc == (__crtc))
- 
--#define for_each_connector_on_encoder(dev, __encoder, intel_connector) \
--	list_for_each_entry((intel_connector), &(dev)->mode_config.connector_list, base.head) \
--		for_each_if((intel_connector)->base.encoder == (__encoder))
--
- #define for_each_old_intel_plane_in_state(__state, plane, old_plane_state, __i) \
- 	for ((__i) = 0; \
- 	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index cbfabd58b75a..31ce4ac4059c 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -205,12 +205,22 @@ static bool intel_crtc_has_encoders(struct intel_crtc *crtc)
- 
- static struct intel_connector *intel_encoder_find_connector(struct intel_encoder *encoder)
- {
--	struct drm_device *dev = encoder->base.dev;
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct intel_connector *connector;
-+	struct drm_connector_list_iter conn_iter;
-+	bool found_connector = false;
- 
--	for_each_connector_on_encoder(dev, &encoder->base, connector)
--		return connector;
-+	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+		for_each_intel_connector_iter(connector, &conn_iter) {
-+			if (&encoder->base == connector->base.encoder) {
-+				found_connector = true;
-+				break;
-+			}
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
- 
-+	if (found_connector)
-+		return connector;
- 	return NULL;
- }
- 
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
 -- 
-2.25.1
-
+Ville Syrjälä
+Intel
