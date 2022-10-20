@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 489EF605FB6
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 14:05:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23860605FB5
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Oct 2022 14:05:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E85D10EC74;
-	Thu, 20 Oct 2022 12:05:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1F8110ED6B;
+	Thu, 20 Oct 2022 12:05:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 957EB10EB97
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 12:05:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8456E10EB97
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 12:05:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666267506; x=1697803506;
+ t=1666267509; x=1697803509;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Sa78xOG7Y++C/UUYtg58lVxsx9aSZAGYN4tmPagsohU=;
- b=kgVhq9rv+GcibWVQVV9607eiE0EXHeqpZbfrOXqYFNg8pkCwLo7E2lB/
- GZpnEPnigdWW4ALaglHeY/bzmbA+nxF1+RWaJjcpM6iKePuPmwSYY85Br
- ZSIM8GIzV79w2KNQzZGLvmAj8cgAM+0zFOOodD/UWerfMLjL3NmkfeUNY
- 7A4sIhxgxA+oNg9aFgr90FCqiZFCMc4ChwItvHNQyVxwXFu9VrIHDtt6o
- 0K4kEOa36rfUi0d6t0ri4gj6rW0ylD3W6uxns4lxqPGWtioi1DHdxmINr
- SmcRASSwjunpaWBw54SZi8OPmCEpEx2RMCxcMkdw1evSc5mW0zIYb68x8 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="370900738"
-X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="370900738"
+ bh=Jba08WnNUo9Q3P9EHFPZM2cCvC62fMjOBgUTdf2iEp0=;
+ b=Sr/dhRL0aEJrWQB62+bNeYxQsb6M1aGllBI6x9u3bMNMtmylW6b14WOx
+ 91HxUsdd+MrRVV2h/f2cqLs3vvs9aatpu3uT16xDhdqtFT6Zzo6kmR0B1
+ eFBjusgG7wYVTpINcvjtN2vdTsLBocZyVvlIVXERzAmuDcOWSi5rYP+Zk
+ xRn4uiXBIxGpwR+8g8yjYNhPjBtKrvaMhYv9aakkK/AbQClyyn70ur3xb
+ mmVLBOtDhdhrHFt3ewx7db9/naV6b8DqefgG4lufNREq+b4F6T+jhoIY+
+ dYICbIg0oa1aqjJubpSDrSB46SoZFN1Kj8Fi3HjnVbc4YJ3UYdXTF6Yhl Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="370900752"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="370900752"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2022 05:05:06 -0700
+ 20 Oct 2022 05:05:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="663004729"
-X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="663004729"
+X-IronPort-AV: E=McAfee;i="6500,9779,10505"; a="663004782"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; d="scan'208";a="663004782"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga001.jf.intel.com with SMTP; 20 Oct 2022 05:05:04 -0700
+ by orsmga001.jf.intel.com with SMTP; 20 Oct 2022 05:05:07 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 20 Oct 2022 15:05:03 +0300
+ Thu, 20 Oct 2022 15:05:06 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Oct 2022 15:04:55 +0300
-Message-Id: <20221020120457.19528-3-ville.syrjala@linux.intel.com>
+Date: Thu, 20 Oct 2022 15:04:56 +0300
+Message-Id: <20221020120457.19528-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221020120457.19528-1-ville.syrjala@linux.intel.com>
 References: <20221020120457.19528-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915: Remove some local 'mode_changed'
- bools
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915: Don't flag both full modeset and
+ fastset at the same time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,66 +65,40 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-These 'mode_changed' booleans aren't very helpful. Just
-replace them with direct intel_crtc_needs_modeset() calls
-which is more descriptive.
+Be consistent in whether we flag a full modeset or a
+fastset for the pipe. intel_modeset_all_pipes() would
+seem to be the only codepath not getting this right.
+And let's add a WARN to make sure we did get it right.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++--------
- 1 file changed, 6 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0929fb8a4302..b6004b3e6684 100644
+index b6004b3e6684..7b48ad20c548 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4833,14 +4833,14 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
--	bool mode_changed = intel_crtc_needs_modeset(crtc_state);
- 	int ret;
+@@ -5974,6 +5974,7 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
+ 			    crtc->base.base.id, crtc->base.name, reason);
  
- 	if (DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv) &&
--	    mode_changed && !crtc_state->hw.active)
-+	    intel_crtc_needs_modeset(crtc_state) &&
-+	    !crtc_state->hw.active)
- 		crtc_state->update_wm_post = true;
+ 		crtc_state->uapi.mode_changed = true;
++		crtc_state->update_pipe = false;
  
--	if (mode_changed) {
-+	if (intel_crtc_needs_modeset(crtc_state)) {
- 		ret = intel_dpll_crtc_get_shared_dpll(state, crtc);
+ 		ret = drm_atomic_add_affected_connectors(&state->base,
+ 							 &crtc->base);
+@@ -6925,6 +6926,11 @@ static int intel_atomic_check(struct drm_device *dev,
  		if (ret)
- 			return ret;
-@@ -4853,7 +4853,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 	if (c8_planes_changed(crtc_state))
- 		crtc_state->uapi.color_mgmt_changed = true;
+ 			goto fail;
  
--	if (mode_changed ||
-+	if (intel_crtc_needs_modeset(crtc_state) ||
- 	    intel_crtc_needs_fastset(crtc_state) ||
- 	    crtc_state->uapi.color_mgmt_changed) {
- 		ret = intel_color_check(crtc_state);
-@@ -4881,7 +4881,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 	}
- 
- 	if (DISPLAY_VER(dev_priv) >= 9) {
--		if (mode_changed ||
-+		if (intel_crtc_needs_modeset(crtc_state) ||
- 		    intel_crtc_needs_fastset(crtc_state)) {
- 			ret = skl_update_scaler_crtc(crtc_state);
- 			if (ret)
-@@ -6962,9 +6962,7 @@ static int intel_atomic_prepare_commit(struct intel_atomic_state *state)
- 		return ret;
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
--		bool mode_changed = intel_crtc_needs_modeset(crtc_state);
--
--		if (mode_changed ||
-+		if (intel_crtc_needs_modeset(crtc_state) ||
- 		    intel_crtc_needs_fastset(crtc_state) ||
- 		    crtc_state->uapi.color_mgmt_changed) {
- 			intel_dsb_prepare(crtc_state);
++		/* Either full modeset or fastset (or neither), never both */
++		drm_WARN_ON(&dev_priv->drm,
++			    intel_crtc_needs_modeset(new_crtc_state) &&
++			    intel_crtc_needs_fastset(new_crtc_state));
++
+ 		if (!intel_crtc_needs_modeset(new_crtc_state) &&
+ 		    !intel_crtc_needs_fastset(new_crtc_state))
+ 			continue;
 -- 
 2.35.1
 
