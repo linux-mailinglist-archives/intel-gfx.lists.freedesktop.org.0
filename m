@@ -2,54 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8325F607D6C
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 19:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFCF0607D8E
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 19:30:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC6010E5C3;
-	Fri, 21 Oct 2022 17:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D195F10E17F;
+	Fri, 21 Oct 2022 17:30:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7DA810E596
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 17:22:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666372968; x=1697908968;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=hiKQ3oIktklV1vHjiz+vB7ubyfgWLiWjIb8F6Hr86iY=;
- b=dGIf2KrkQDX1zH95UA8ba+DVYJAL4eVcPq2XOFzXxnIQk3aI+x2+Jx3K
- CgmwuzxGEScTT4MqM5EuigjZbz3A8x43MIp29ffeF//JT4fezem9jImvv
- PMpgLlTn7l+OW7YFpEUMGiloigEJ/5UqqMBSn606HSMXmeYdFjbi2kawj
- hBukeW0eS54IoHYn3Q/Df+m2wYqUEbrVoLa85tasXtRyZnF2kD66jps4/
- aEdAL9CXAuF+l1aZmkvLdYI1w7S7rQgEp3bnfCs11hVLOyHk3zlvdu6A9
- LyfzKh3+YBi6SHh0436vozG7+7rMklSsiLNhzy8WF56E7OU/FyqqN20vw w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="308154891"
-X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="308154891"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 10:22:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="699435925"
-X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="699435925"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga004.fm.intel.com with SMTP; 21 Oct 2022 10:22:42 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 21 Oct 2022 20:22:41 +0300
-Date: Fri, 21 Oct 2022 20:22:41 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Peter Zijlstra <peterz@infradead.org>
-Message-ID: <Y1LVYaPCCP3BBS4g@intel.com>
-References: <20220822111816.760285417@infradead.org>
- <20220822114649.055452969@infradead.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A626C10E17F;
+ Fri, 21 Oct 2022 17:30:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9E07CA0BA8;
+ Fri, 21 Oct 2022 17:30:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0514124306436809352=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220822114649.055452969@infradead.org>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 6/6] freezer,
- sched: Rewrite core freezer logic
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Fri, 21 Oct 2022 17:30:26 -0000
+Message-ID: <166637342661.18267.1881160201947216586@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221021162442.27283-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20221021162442.27283-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Clean_up_crtc_state_flag_checks_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,223 +40,289 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- bigeasy@linutronix.de, rjw@rjwysocki.net, oleg@redhat.com, rostedt@goodmis.org,
- mingo@kernel.org, mgorman@suse.de, intel-gfx@lists.freedesktop.org,
- tj@kernel.org, Will Deacon <will@kernel.org>, dietmar.eggemann@arm.com,
- ebiederm@xmission.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 22, 2022 at 01:18:22PM +0200, Peter Zijlstra wrote:
-> +#ifdef CONFIG_LOCKDEP
-> +	/*
-> +	 * It's dangerous to freeze with locks held; there be dragons there.
-> +	 */
-> +	if (!(state & __TASK_FREEZABLE_UNSAFE))
-> +		WARN_ON_ONCE(debug_locks && p->lockdep_depth);
-> +#endif
+--===============0514124306436809352==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-We now seem to be hitting this sporadically in the intel gfx CI.
+== Series Details ==
 
-I've spotted it on two machines so far:
-https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12270/shard-tglb7/igt@gem_ctx_isolation@preservation-s3@vcs0.html
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109950v1/shard-snb5/igt@kms_flip@flip-vs-suspend-interruptible@a-vga1.html
+Series: drm/i915: Clean up crtc state flag checks (rev3)
+URL   : https://patchwork.freedesktop.org/series/109949/
+State : success
 
-Here's the full splat. Looks a bit funny since the
-WARN()->printk()->console_lock() itself trips lockdep:
+== Summary ==
 
-<6>[   59.998117] PM: suspend entry (s2idle)
-<6>[   59.999878] Filesystems sync: 0.001 seconds
-<6>[   60.000881] Freezing user space processes ... 
-<4>[   60.001059] ------------[ cut here ]------------
-<4>[   60.001071] ======================================================
-<4>[   60.001071] WARNING: possible circular locking dependency detected
-<4>[   60.001072] 6.1.0-rc1-CI_DRM_12270-ga9d18ead9885+ #1 Not tainted
-<4>[   60.001073] ------------------------------------------------------
-<4>[   60.001073] rtcwake/1152 is trying to acquire lock:
-<4>[   60.001074] ffffffff82735198 ((console_sem).lock){..-.}-{2:2}, at: down_trylock+0xa/0x30
-<4>[   60.001082] 
-                  but task is already holding lock:
-<4>[   60.001082] ffff888111a708e0 (&p->pi_lock){-.-.}-{2:2}, at: task_call_func+0x34/0xe0
-<4>[   60.001088] 
-                  which lock already depends on the new lock.
+CI Bug Log - changes from CI_DRM_12275 -> Patchwork_109949v3
+====================================================
 
-<4>[   60.001089] 
-                  the existing dependency chain (in reverse order) is:
-<4>[   60.001089] 
-                  -> #1 (&p->pi_lock){-.-.}-{2:2}:
-<4>[   60.001091]        lock_acquire+0xd3/0x310
-<4>[   60.001094]        _raw_spin_lock_irqsave+0x33/0x50
-<4>[   60.001097]        try_to_wake_up+0x6b/0x610
-<4>[   60.001098]        up+0x3b/0x50
-<4>[   60.001099]        __up_console_sem+0x5c/0x70
-<4>[   60.001102]        console_unlock+0x1bc/0x1d0
-<4>[   60.001104]        do_con_write+0x654/0xa20
-<4>[   60.001108]        con_write+0xa/0x20
-<4>[   60.001110]        do_output_char+0x119/0x1e0
-<4>[   60.001113]        n_tty_write+0x20f/0x490
-<4>[   60.001114]        file_tty_write.isra.29+0x17d/0x320
-<4>[   60.001117]        do_iter_readv_writev+0xdb/0x140
-<4>[   60.001120]        do_iter_write+0x6c/0x1a0
-<4>[   60.001121]        vfs_writev+0x97/0x290
-<4>[   60.001123]        do_writev+0x63/0x110
-<4>[   60.001125]        do_syscall_64+0x37/0x90
-<4>[   60.001128]        entry_SYSCALL_64_after_hwframe+0x63/0xcd
-<4>[   60.001130] 
-                  -> #0 ((console_sem).lock){..-.}-{2:2}:
-<4>[   60.001131]        validate_chain+0xb3d/0x2000
-<4>[   60.001132]        __lock_acquire+0x5a4/0xb70
-<4>[   60.001133]        lock_acquire+0xd3/0x310
-<4>[   60.001134]        _raw_spin_lock_irqsave+0x33/0x50
-<4>[   60.001136]        down_trylock+0xa/0x30
-<4>[   60.001137]        __down_trylock_console_sem+0x25/0xb0
-<4>[   60.001139]        console_trylock+0xe/0x70
-<4>[   60.001140]        vprintk_emit+0x13c/0x380
-<4>[   60.001142]        _printk+0x53/0x6e
-<4>[   60.001145]        report_bug.cold.2+0x10/0x52
-<4>[   60.001147]        handle_bug+0x3f/0x70
-<4>[   60.001148]        exc_invalid_op+0x13/0x60
-<4>[   60.001150]        asm_exc_invalid_op+0x16/0x20
-<4>[   60.001152]        __set_task_frozen+0x58/0x80
-<4>[   60.001156]        task_call_func+0xc2/0xe0
-<4>[   60.001157]        freeze_task+0x84/0xe0
-<4>[   60.001159]        try_to_freeze_tasks+0xac/0x260
-<4>[   60.001160]        freeze_processes+0x56/0xb0
-<4>[   60.001162]        pm_suspend.cold.7+0x1d9/0x31c
-<4>[   60.001164]        state_store+0x7b/0xe0
-<4>[   60.001165]        kernfs_fop_write_iter+0x121/0x1c0
-<4>[   60.001169]        vfs_write+0x34c/0x4e0
-<4>[   60.001170]        ksys_write+0x57/0xd0
-<4>[   60.001172]        do_syscall_64+0x37/0x90
-<4>[   60.001174]        entry_SYSCALL_64_after_hwframe+0x63/0xcd
-<4>[   60.001176] 
-                  other info that might help us debug this:
+Summary
+-------
 
-<4>[   60.001176]  Possible unsafe locking scenario:
+  **SUCCESS**
 
-<4>[   60.001176]        CPU0                    CPU1
-<4>[   60.001176]        ----                    ----
-<4>[   60.001177]   lock(&p->pi_lock);
-<4>[   60.001177]                                lock((console_sem).lock);
-<4>[   60.001178]                                lock(&p->pi_lock);
-<4>[   60.001179]   lock((console_sem).lock);
-<4>[   60.001179] 
-                   *** DEADLOCK ***
+  No regressions found.
 
-<4>[   60.001180] 7 locks held by rtcwake/1152:
-<4>[   60.001180]  #0: ffff888105e99430 (sb_writers#5){.+.+}-{0:0}, at: ksys_write+0x57/0xd0
-<4>[   60.001184]  #1: ffff88810a048288 (&of->mutex){+.+.}-{3:3}, at: kernfs_fop_write_iter+0xee/0x1c0
-<4>[   60.001191]  #2: ffff888100c58538 (kn->active#155){.+.+}-{0:0}, at: kernfs_fop_write_iter+0xf7/0x1c0
-<4>[   60.001194]  #3: ffffffff8264db08 (system_transition_mutex){+.+.}-{3:3}, at: pm_suspend.cold.7+0xfa/0x31c
-<4>[   60.001197]  #4: ffffffff82606098 (tasklist_lock){.+.+}-{2:2}, at: try_to_freeze_tasks+0x63/0x260
-<4>[   60.001201]  #5: ffffffff8273aed8 (freezer_lock){....}-{2:2}, at: freeze_task+0x27/0xe0
-<4>[   60.001204]  #6: ffff888111a708e0 (&p->pi_lock){-.-.}-{2:2}, at: task_call_func+0x34/0xe0
-<4>[   60.001207] 
-                  stack backtrace:
-<4>[   60.001207] CPU: 2 PID: 1152 Comm: rtcwake Not tainted 6.1.0-rc1-CI_DRM_12270-ga9d18ead9885+ #1
-<4>[   60.001210] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.3197.A00.2005110542 05/11/2020
-<4>[   60.001211] Call Trace:
-<4>[   60.001211]  <TASK>
-<4>[   60.001212]  dump_stack_lvl+0x56/0x7f
-<4>[   60.001215]  check_noncircular+0x132/0x150
-<4>[   60.001217]  validate_chain+0xb3d/0x2000
-<4>[   60.001220]  __lock_acquire+0x5a4/0xb70
-<4>[   60.001222]  lock_acquire+0xd3/0x310
-<4>[   60.001223]  ? down_trylock+0xa/0x30
-<4>[   60.001226]  ? vprintk_emit+0x13c/0x380
-<4>[   60.001228]  _raw_spin_lock_irqsave+0x33/0x50
-<4>[   60.001230]  ? down_trylock+0xa/0x30
-<4>[   60.001231]  down_trylock+0xa/0x30
-<4>[   60.001233]  __down_trylock_console_sem+0x25/0xb0
-<4>[   60.001234]  console_trylock+0xe/0x70
-<4>[   60.001235]  vprintk_emit+0x13c/0x380
-<4>[   60.001237]  _printk+0x53/0x6e
-<4>[   60.001240]  ? __set_task_frozen+0x58/0x80
-<4>[   60.001241]  report_bug.cold.2+0x10/0x52
-<4>[   60.001244]  handle_bug+0x3f/0x70
-<4>[   60.001245]  exc_invalid_op+0x13/0x60
-<4>[   60.001247]  asm_exc_invalid_op+0x16/0x20
-<4>[   60.001250] RIP: 0010:__set_task_frozen+0x58/0x80
-<4>[   60.001252] Code: f7 c5 00 20 00 00 74 06 40 f6 c5 03 74 3a 81 e5 00 40 00 00 75 16 8b 15 a2 b9 71 01 85 d2 74 0c 8b 83 60 09 00 00 85 c0 74 02 <0f> 0b c7 43 18 00 80 00 00 b8 00 80 00 00 5b 5d c3 cc cc cc cc 31
-<4>[   60.001254] RSP: 0018:ffffc9000335fcf0 EFLAGS: 00010002
-<4>[   60.001255] RAX: 0000000000000001 RBX: ffff888111a70040 RCX: 0000000000000000
-<4>[   60.001256] RDX: 0000000000000001 RSI: 0000000000000000 RDI: ffff888111a70040
-<4>[   60.001257] RBP: 0000000000000000 R08: 0000000000000001 R09: 00000000fffffffe
-<4>[   60.001258] R10: 0000000001e6f6b9 R11: 00000000934a4c67 R12: 0000000000000246
-<4>[   60.001259] R13: ffffffff811653e0 R14: 0000000000000000 R15: ffff888111a70040
-<4>[   60.001260]  ? __set_task_special+0x40/0x40
-<4>[   60.001263]  task_call_func+0xc2/0xe0
-<4>[   60.001265]  freeze_task+0x84/0xe0
-<4>[   60.001267]  try_to_freeze_tasks+0xac/0x260
-<4>[   60.001270]  freeze_processes+0x56/0xb0
-<4>[   60.001272]  pm_suspend.cold.7+0x1d9/0x31c
-<4>[   60.001274]  state_store+0x7b/0xe0
-<4>[   60.001276]  kernfs_fop_write_iter+0x121/0x1c0
-<4>[   60.001278]  vfs_write+0x34c/0x4e0
-<4>[   60.001281]  ksys_write+0x57/0xd0
-<4>[   60.001284]  do_syscall_64+0x37/0x90
-<4>[   60.001285]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-<4>[   60.001288] RIP: 0033:0x7fb4705521e7
-<4>[   60.001289] Code: 64 89 02 48 c7 c0 ff ff ff ff eb bb 0f 1f 80 00 00 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 24
-<4>[   60.001290] RSP: 002b:00007ffe3efac3d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
-<4>[   60.001291] RAX: ffffffffffffffda RBX: 0000000000000004 RCX: 00007fb4705521e7
-<4>[   60.001292] RDX: 0000000000000004 RSI: 0000559af7969590 RDI: 000000000000000b
-<4>[   60.001293] RBP: 0000559af7969590 R08: 0000000000000000 R09: 0000000000000004
-<4>[   60.001293] R10: 0000559af60922a6 R11: 0000000000000246 R12: 0000000000000004
-<4>[   60.001294] R13: 0000559af7967540 R14: 00007fb47062e4a0 R15: 00007fb47062d8a0
-<4>[   60.001296]  </TASK>
-<4>[   60.001634] WARNING: CPU: 2 PID: 1152 at kernel/freezer.c:129 __set_task_frozen+0x58/0x80
-<4>[   60.001641] Modules linked in: fuse snd_hda_codec_hdmi i915 x86_pkg_temp_thermal coretemp mei_pxp mei_hdcp kvm_intel wmi_bmof snd_hda_intel kvm snd_intel_dspcfg prime_numbers snd_hda_codec cdc_ether ttm e1000e irqbypass snd_hwdep crct10dif_pclmul usbnet drm_buddy crc32_pclmul mii ghash_clmulni_intel snd_hda_core drm_display_helper ptp i2c_i801 pps_core mei_me drm_kms_helper i2c_smbus snd_pcm syscopyarea mei sysfillrect sysimgblt intel_lpss_pci fb_sys_fops video wmi
-<4>[   60.001717] CPU: 2 PID: 1152 Comm: rtcwake Not tainted 6.1.0-rc1-CI_DRM_12270-ga9d18ead9885+ #1
-<4>[   60.001723] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.3197.A00.2005110542 05/11/2020
-<4>[   60.001729] RIP: 0010:__set_task_frozen+0x58/0x80
-<4>[   60.001735] Code: f7 c5 00 20 00 00 74 06 40 f6 c5 03 74 3a 81 e5 00 40 00 00 75 16 8b 15 a2 b9 71 01 85 d2 74 0c 8b 83 60 09 00 00 85 c0 74 02 <0f> 0b c7 43 18 00 80 00 00 b8 00 80 00 00 5b 5d c3 cc cc cc cc 31
-<4>[   60.001744] RSP: 0018:ffffc9000335fcf0 EFLAGS: 00010002
-<4>[   60.001747] RAX: 0000000000000001 RBX: ffff888111a70040 RCX: 0000000000000000
-<4>[   60.001751] RDX: 0000000000000001 RSI: 0000000000000000 RDI: ffff888111a70040
-<4>[   60.001757] RBP: 0000000000000000 R08: 0000000000000001 R09: 00000000fffffffe
-<4>[   60.001763] R10: 0000000001e6f6b9 R11: 00000000934a4c67 R12: 0000000000000246
-<4>[   60.001769] R13: ffffffff811653e0 R14: 0000000000000000 R15: ffff888111a70040
-<4>[   60.001776] FS:  00007fb47043e740(0000) GS:ffff8884a0300000(0000) knlGS:0000000000000000
-<4>[   60.001784] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4>[   60.001789] CR2: 00007f3903c603d8 CR3: 000000010a25a003 CR4: 0000000000770ee0
-<4>[   60.001795] PKRU: 55555554
-<4>[   60.001798] Call Trace:
-<4>[   60.001801]  <TASK>
-<4>[   60.001804]  task_call_func+0xc2/0xe0
-<4>[   60.001809]  freeze_task+0x84/0xe0
-<4>[   60.001815]  try_to_freeze_tasks+0xac/0x260
-<4>[   60.001821]  freeze_processes+0x56/0xb0
-<4>[   60.001826]  pm_suspend.cold.7+0x1d9/0x31c
-<4>[   60.001832]  state_store+0x7b/0xe0
-<4>[   60.001837]  kernfs_fop_write_iter+0x121/0x1c0
-<4>[   60.001843]  vfs_write+0x34c/0x4e0
-<4>[   60.001850]  ksys_write+0x57/0xd0
-<4>[   60.001855]  do_syscall_64+0x37/0x90
-<4>[   60.001860]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-<4>[   60.001866] RIP: 0033:0x7fb4705521e7
-<4>[   60.001870] Code: 64 89 02 48 c7 c0 ff ff ff ff eb bb 0f 1f 80 00 00 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 24
-<4>[   60.001884] RSP: 002b:00007ffe3efac3d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
-<4>[   60.001892] RAX: ffffffffffffffda RBX: 0000000000000004 RCX: 00007fb4705521e7
-<4>[   60.001898] RDX: 0000000000000004 RSI: 0000559af7969590 RDI: 000000000000000b
-<4>[   60.001904] RBP: 0000559af7969590 R08: 0000000000000000 R09: 0000000000000004
-<4>[   60.001910] R10: 0000559af60922a6 R11: 0000000000000246 R12: 0000000000000004
-<4>[   60.001917] R13: 0000559af7967540 R14: 00007fb47062e4a0 R15: 00007fb47062d8a0
-<4>[   60.001925]  </TASK>
-<4>[   60.001928] irq event stamp: 8712
-<4>[   60.001931] hardirqs last  enabled at (8711): [<ffffffff81b73784>] _raw_spin_unlock_irqrestore+0x54/0x70
-<4>[   60.001941] hardirqs last disabled at (8712): [<ffffffff81b7352b>] _raw_spin_lock_irqsave+0x4b/0x50
-<4>[   60.001950] softirqs last  enabled at (8348): [<ffffffff81e0031e>] __do_softirq+0x31e/0x48a
-<4>[   60.001957] softirqs last disabled at (8341): [<ffffffff810c1b08>] irq_exit_rcu+0xb8/0xe0
-<4>[   60.001969] ---[ end trace 0000000000000000 ]---
-<4>[   60.003326] (elapsed 0.002 seconds) done.
-<6>[   60.003332] OOM killer disabled.
-<6>[   60.003334] Freezing remaining freezable tasks ... (elapsed 0.006 seconds) done.
-<6>[   60.010062] printk: Suspending console(s) (use no_console_suspend to debug)
-<6>[   60.041543] e1000e: EEE TX LPI TIMER: 00000011
-<6>[   60.368938] ACPI: EC: interrupt blocked
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/index.html
 
--- 
-Ville Syrjälä
-Intel
+Participating hosts (42 -> 41)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (2): fi-ctg-p8600 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109949v3 that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - fi-bxt-dsi:         [FAIL][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12275/fi-bxt-dsi/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][5] ([fdo#109271]) +12 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@gem_tiled_blits@basic.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bxt-dsi:         NOTRUN -> [DMESG-FAIL][6] ([i915#5334])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bsw-nick/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][9] ([fdo#109271])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bsw-nick/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][10] ([fdo#109271]) +43 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-rplp-1}:       [DMESG-WARN][11] ([i915#2867]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12275/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bsw-nick:        [INCOMPLETE][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12275/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - {bat-rpls-2}:       [FAIL][15] ([i915#6559]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12275/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5537]: https://gitlab.freedesktop.org/drm/intel/issues/5537
+  [i915#6559]: https://gitlab.freedesktop.org/drm/intel/issues/6559
+  [i915#7029]: https://gitlab.freedesktop.org/drm/intel/issues/7029
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_12275 -> Patchwork_109949v3
+
+  CI-20190529: 20190529
+  CI_DRM_12275: d4a671f9794a18817af8df5bce34ad18a10372ee @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7022: d73b21e653555d2e0370789071799aa0037049c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109949v3: d4a671f9794a18817af8df5bce34ad18a10372ee @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+76558285a9d4 drm/i915: Introduce intel_crtc_needs_color_update()
+52bcd4c2586e drm/i915: Don't flag both full modeset and fastset at the same time
+8b56ee7dbcb6 drm/i915: Remove some local 'mode_changed' bools
+69887bd5066b drm/i915: Introduce intel_crtc_needs_fastset()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/index.html
+
+--===============0514124306436809352==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Clean up crtc state flag checks (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109949/">https://patchwork.freedesktop.org/series/109949/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12275 -&gt; Patchwork_109949v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/index.html</p>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (2): fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109949v3 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12275/fi-bxt-dsi/boot.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +12 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bsw-nick/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bxt-dsi/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bsw-nick/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +43 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-rplp-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12275/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/bat-rplp-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12275/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12275/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6559">i915#6559</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109949v3/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12275 -&gt; Patchwork_109949v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12275: d4a671f9794a18817af8df5bce34ad18a10372ee @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7022: d73b21e653555d2e0370789071799aa0037049c1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109949v3: d4a671f9794a18817af8df5bce34ad18a10372ee @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>76558285a9d4 drm/i915: Introduce intel_crtc_needs_color_update()<br />
+52bcd4c2586e drm/i915: Don't flag both full modeset and fastset at the same time<br />
+8b56ee7dbcb6 drm/i915: Remove some local 'mode_changed' bools<br />
+69887bd5066b drm/i915: Introduce intel_crtc_needs_fastset()</p>
+
+</body>
+</html>
+
+--===============0514124306436809352==--
