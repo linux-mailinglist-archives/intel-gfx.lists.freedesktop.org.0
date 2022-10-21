@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D43D6072B2
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 10:43:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DB186072B0
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 10:43:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5833810E649;
-	Fri, 21 Oct 2022 08:43:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6304A10E648;
+	Fri, 21 Oct 2022 08:43:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0498410E648
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 08:42:57 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA6310E646;
+ Fri, 21 Oct 2022 08:42:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666341778; x=1697877778;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=lAvd2vGyTle2qfA7jVd9sV1E5EW6hhsybsbT5qCBZno=;
- b=R6/wzfBzgMyvE6cf6jf0REuwuRNJn53EEJJVo2VhAToPDGO7gNAoWC6B
- 6Tpvl6/t/Pt9TUiqsJrMG2sIysobs5WMpzDKqwcE4iBhcEH/QS+gcPzxi
- QQuDhBSQNR5fAZwv54/81kTypl0iSDBXDrzetgjCD/Yl0x4O2rKIJ3x5V
- qJHhLBUS9kn7dgSe72VUbpVFjYEM23LBqD5fPV7vmkOp+IvRyxQnigwSM
- 20i4o5t5xlyfvDVNiqHdwqrse6Xw1e3dx4On/dFl5Sg2bzKkugoo90VAo
- LJOio8Z/Gw9U86Ag8X6yqGy5dgl2WQIP06BuTBmR+6+tAG059/9MIEeT1 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="308048996"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="308048996"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 01:42:57 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="661485589"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="661485589"
-Received: from avilla3-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.53.153])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ t=1666341777; x=1697877777;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=a4kA4Lu+tBf02z+i3pSRwPonaOVx6GjZKalE7TnyIyw=;
+ b=h2mEqTZdmX60d51Sqmlj/l3Cf0OVjO8pb01s/RdKdxioHDSd7eoj7J2+
+ 0Rrj6F58rh65RCma2LtOkfdrPzsoBRKuXeOQdcbL62aX4XKe/NdPImh44
+ dWlWr1JZBGFlBjzGePu5rFzApRXR6J3SExYJHMJzwdvraInOvX7aLhwhX
+ OQQ/LpMXaBfMeigl8BMiBg7rCZQFJrvkznapdYcCeCBRBCjRj8KBFK5aY
+ z3frnlQQTsDajjW+tkd+H5c83a2RB+0wZxR3jlY5x5ONpik4FvlXBBXaf
+ xxApE3kiZs27rr9ueEbJu1sNfDbJtUwKWDhy8tACGF3iF6u0D90wRXto3 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="290258898"
+X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="290258898"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2022 01:42:56 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="805448428"
+X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="805448428"
+Received: from emoriart-mobl.ger.corp.intel.com (HELO [10.213.218.183])
+ ([10.213.218.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2022 01:42:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Anusha Srivatsa <anusha.srivatsa@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <Y1JE3kDZXBBjKOPz@bala-ubuntu>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221021002024.390052-1-anusha.srivatsa@intel.com>
- <Y1JE3kDZXBBjKOPz@bala-ubuntu>
-Date: Fri, 21 Oct 2022 11:42:53 +0300
-Message-ID: <87pmelftyq.fsf@intel.com>
+Message-ID: <d7e2578c-cbf7-4aa4-0341-8187dec83350@linux.intel.com>
+Date: Fri, 21 Oct 2022 09:42:53 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 0/4] Prep series - CDCLK code churn
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Content-Language: en-US
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211027004821.66097-1-umesh.nerlige.ramappa@intel.com>
+ <20211027004821.66097-2-umesh.nerlige.ramappa@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20211027004821.66097-2-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Connect engine busyness
+ stats from GuC to pmu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,56 +64,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: daniel.vetter@ffwll.ch
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 21 Oct 2022, Balasubramani Vivekanandan <balasubramani.vivekanandan=
-@intel.com> wrote:
-> On 20.10.2022 17:20, Anusha Srivatsa wrote:
->> No functional changes. The series is more of a prep series
->> for the mid_cdclk_config series:
->> https://patchwork.freedesktop.org/series/109694/
->>=20
->> Main change:
->>  - Change usage of "crawler" and "squasher". Use crawling and
->> squashing instead.
->>  - Handle bot hsquash and cralw similar in terms of checking
-> Please check the typos here
 
-This is a cover letter. It's not merged anywhere. It's not necessary to
-point out typos here.
+On 27/10/2021 01:48, Umesh Nerlige Ramappa wrote:
 
-BR,
-Jani.
+[snip]
 
->
-> Regards,
-> Bala
->
->> if the platform supports them or not. With the changes introduced,
->> both are a display feature flag.
->>  - Move code from bxt_set_cdclk() to make it more modularized
->> and easy to read and understand.
->>=20
->> Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>=20
->> Anusha Srivatsa (4):
->>   drm/i915/display: Change terminology for cdclk actions
->>   drm/i915/display: Introduce HAS_CDCLK_SQUASH macro
->>   drm/i915/display: Move chunks of code out of bxt_set_cdclk()
->>   drm/i915/display: Move squash_ctl register programming to its own
->>     function
->>=20
->>  drivers/gpu/drm/i915/display/intel_cdclk.c | 80 ++++++++++++----------
->>  drivers/gpu/drm/i915/i915_drv.h            |  1 +
->>  drivers/gpu/drm/i915/i915_pci.c            |  1 +
->>  drivers/gpu/drm/i915/intel_device_info.h   |  1 +
->>  4 files changed, 48 insertions(+), 35 deletions(-)
->>=20
->> --=20
->> 2.25.1
->>=20
+> +static void guc_timestamp_ping(struct work_struct *wrk)
+> +{
+> +	struct intel_guc *guc = container_of(wrk, typeof(*guc),
+> +					     timestamp.work.work);
+> +	struct intel_uc *uc = container_of(guc, typeof(*uc), guc);
+> +	struct intel_gt *gt = guc_to_gt(guc);
+> +	intel_wakeref_t wakeref;
+> +	unsigned long flags;
+> +	int srcu, ret;
+> +
+> +	/*
+> +	 * Synchronize with gt reset to make sure the worker does not
+> +	 * corrupt the engine/guc stats.
+> +	 */
+> +	ret = intel_gt_reset_trylock(gt, &srcu);
+> +	if (ret)
+> +		return;
+> +
+> +	spin_lock_irqsave(&guc->timestamp.lock, flags);
+> +
+> +	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref)
+> +		__update_guc_busyness_stats(guc);
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Spotted one splat today: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12268/bat-adlp-4/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+Could be that reset lock needs to be inside the rpm get. Haven't really though about it much, could you please check?
+
+<4> [300.214744]
+<4> [300.214753] ======================================================
+<4> [300.214755] WARNING: possible circular locking dependency detected
+<4> [300.214758] 6.1.0-rc1-CI_DRM_12268-g86e8558e3283+ #1 Not tainted
+<4> [300.214761] ------------------------------------------------------
+<4> [300.214762] kworker/10:1H/265 is trying to acquire lock:
+<4> [300.214765] ffffffff8275e560 (fs_reclaim){+.+.}-{0:0}, at: __kmem_cache_alloc_node+0x27/0x170
+<4> [300.214780]
+but task is already holding lock:
+<4> [300.214782] ffffc900013e7e78 ((work_completion)(&(&guc->timestamp.work)->work)){+.+.}-{0:0}, at: process_one_work+0x1eb/0x5b0
+<4> [300.214793]
+which lock already depends on the new lock.
+<4> [300.214794]
+the existing dependency chain (in reverse order) is:
+<4> [300.214796]
+-> #2 ((work_completion)(&(&guc->timestamp.work)->work)){+.+.}-{0:0}:
+<4> [300.214801]        lock_acquire+0xd3/0x310
+<4> [300.214806]        __flush_work+0x77/0x4e0
+<4> [300.214811]        __cancel_work_timer+0x14e/0x1f0
+<4> [300.214815]        intel_guc_submission_reset_prepare+0x7a/0x420 [i915]
+<4> [300.215119]        intel_uc_reset_prepare+0x44/0x50 [i915]
+<4> [300.215360]        reset_prepare+0x21/0x80 [i915]
+<4> [300.215561]        intel_gt_reset+0x143/0x340 [i915]
+<4> [300.215757]        intel_gt_reset_global+0xeb/0x160 [i915]
+<4> [300.215946]        intel_gt_handle_error+0x2c2/0x410 [i915]
+<4> [300.216137]        intel_gt_debugfs_reset_store+0x59/0xc0 [i915]
+<4> [300.216333]        i915_wedged_set+0xc/0x20 [i915]
+<4> [300.216513]        simple_attr_write+0xda/0x100
+<4> [300.216520]        full_proxy_write+0x4e/0x80
+<4> [300.216525]        vfs_write+0xe3/0x4e0
+<4> [300.216531]        ksys_write+0x57/0xd0
+<4> [300.216535]        do_syscall_64+0x37/0x90
+<4> [300.216542]        entry_SYSCALL_64_after_hwframe+0x63/0xcd
+<4> [300.216549]
+-> #1 (&gt->reset.mutex){+.+.}-{3:3}:
+<4> [300.216556]        lock_acquire+0xd3/0x310
+<4> [300.216559]        i915_gem_shrinker_taints_mutex+0x2d/0x50 [i915]
+<4> [300.216799]        intel_gt_init_reset+0x61/0x80 [i915]
+<4> [300.217018]        intel_gt_common_init_early+0x10c/0x190 [i915]
+<4> [300.217227]        intel_root_gt_init_early+0x44/0x60 [i915]
+<4> [300.217434]        i915_driver_probe+0x9ab/0xf30 [i915]
+<4> [300.217615]        i915_pci_probe+0xa5/0x240 [i915]
+<4> [300.217796]        pci_device_probe+0x95/0x110
+<4> [300.217803]        really_probe+0xd6/0x350
+<4> [300.217811]        __driver_probe_device+0x73/0x170
+<4> [300.217816]        driver_probe_device+0x1a/0x90
+<4> [300.217821]        __driver_attach+0xbc/0x190
+<4> [300.217826]        bus_for_each_dev+0x72/0xc0
+<4> [300.217831]        bus_add_driver+0x1bb/0x210
+<4> [300.217835]        driver_register+0x66/0xc0
+<4> [300.217841]        0xffffffffa093001f
+<4> [300.217844]        do_one_initcall+0x53/0x2f0
+<4> [300.217849]        do_init_module+0x45/0x1c0
+<4> [300.217855]        load_module+0x1d5e/0x1e90
+<4> [300.217859]        __do_sys_finit_module+0xaf/0x120
+<4> [300.217864]        do_syscall_64+0x37/0x90
+<4> [300.217869]        entry_SYSCALL_64_after_hwframe+0x63/0xcd
+<4> [300.217875]
+-> #0 (fs_reclaim){+.+.}-{0:0}:
+<4> [300.217880]        validate_chain+0xb3d/0x2000
+<4> [300.217884]        __lock_acquire+0x5a4/0xb70
+<4> [300.217888]        lock_acquire+0xd3/0x310
+<4> [300.217891]        fs_reclaim_acquire+0xa1/0xd0
+<4> [300.217896]        __kmem_cache_alloc_node+0x27/0x170
+<4> [300.217899]        __kmalloc+0x43/0x1a0
+<4> [300.217903]        acpi_ns_internalize_name+0x44/0x9f
+<4> [300.217909]        acpi_ns_get_node_unlocked+0x6b/0xd7
+<4> [300.217914]        acpi_ns_get_node+0x3b/0x54
+<4> [300.217918]        acpi_get_handle+0x89/0xb7
+<4> [300.217922]        acpi_has_method+0x1c/0x40
+<4> [300.217928]        acpi_pci_set_power_state+0x42/0xf0
+<4> [300.217935]        pci_power_up+0x20/0x1a0
+<4> [300.217940]        pci_pm_default_resume_early+0x9/0x30
+<4> [300.217945]        pci_pm_runtime_resume+0x29/0x90
+<4> [300.217948]        __rpm_callback+0x3d/0x110
+<4> [300.217954]        rpm_callback+0x58/0x60
+<4> [300.217959]        rpm_resume+0x548/0x760
+<4> [300.217963]        __pm_runtime_resume+0x42/0x80
+<4> [300.217968]        __intel_runtime_pm_get+0x19/0x80 [i915]
+<4> [300.218170]        guc_timestamp_ping+0x63/0xc0 [i915]
+<4> [300.218467]        process_one_work+0x272/0x5b0
+<4> [300.218472]        worker_thread+0x37/0x370
+<4> [300.218477]        kthread+0xed/0x120
+<4> [300.218481]        ret_from_fork+0x1f/0x30
+<4> [300.218485]
+other info that might help us debug this:
+<4> [300.218487] Chain exists of:
+   fs_reclaim --> &gt->reset.mutex --> (work_completion)(&(&guc->timestamp.work)->work)
+<4> [300.218495]  Possible unsafe locking scenario:
+<4> [300.218497]        CPU0                    CPU1
+<4> [300.218499]        ----                    ----
+<4> [300.218501]   lock((work_completion)(&(&guc->timestamp.work)->work));
+<4> [300.218505]                                lock(&gt->reset.mutex);
+<4> [300.218509]                                lock((work_completion)(&(&guc->timestamp.work)->work));
+<4> [300.218512]   lock(fs_reclaim);
+<4> [300.218515]
+  *** DEADLOCK ***
+
+Regards,
+
+Tvrtko
