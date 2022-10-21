@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD227607C21
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 18:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD7E607C22
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 18:25:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FB4D10E523;
-	Fri, 21 Oct 2022 16:25:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A90410E52C;
+	Fri, 21 Oct 2022 16:25:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1936010E510
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 16:24:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 388DE10E405
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 16:24:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666369495; x=1697905495;
+ t=1666369498; x=1697905498;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Iw23MK7YT++psRavNvWHz3dgfPU4snNkZ/2hZAM3PAw=;
- b=Mcl8kkQL66GaqK1+kyWiv7zUkqPsIoXtpN5BTbfx7zf4ryo740yOu/kQ
- N/qrOUVSIpPWsAuE8d6xR4BryaIfCb7Srcf7ECogMD6gWwD79WqxO5H84
- ggfW0L/k5K1SdZYU+677cl7iVWHQisBn88aDrCzdtj2I7epl2igFWfCE3
- psWww+jVMPwg817bFmIwfIRJTjRL1qxuykpKTKjvuIQiSZlJvg1Fo2TMG
- 5ZpJ7IQQgttZ29MGUc6iF3SdrGXru6C2eMxu9xepqrvY+6ZGXwDnHvS3a
- AOx2LxY39O3/53Rv4CQgish3Bg0ssefLHM5Ibi1is69Fq6eU6c3MiSKu/ g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="294440737"
-X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="294440737"
+ bh=ah4HBwjAbaSeDtM9Dym9k0fmtGIc43yJw67AiyyRFq4=;
+ b=LUbdWX5+TskBj1/CyJRUQSU8rw+gJezhIVWjGfzmVTHj8ZqhEsyR2PbS
+ 8eDtSdFuwtAtpK4yHo7xjxyHUMTIFWTx57Bai/PhzEKjMV53fVtfbfBmM
+ uM153SzVPROejcg6ZINaEyeRMzDPjZsZyF9KrpDy/Luezp6tmPg4o6Ae9
+ 4AAnRAdCW1nrSNmol/O+uOV/4zKCy1ZAOMPbLZQS4B/pDHVzQ4lMjgcSF
+ 4y+DQPbZx5IbuzLyToUvqEdv6uzSAWX9ACiOg6MBMawex+5pgU5wJncNv
+ t172xdy07oC9Gi3Xqak5GDUy8uldTph0izsoX5MOcKk2i0S16+tKWzTZC g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="294440745"
+X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="294440745"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 09:24:54 -0700
+ 21 Oct 2022 09:24:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="625403852"
-X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="625403852"
+X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="625403880"
+X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="625403880"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga007.jf.intel.com with SMTP; 21 Oct 2022 09:24:52 -0700
+ by orsmga007.jf.intel.com with SMTP; 21 Oct 2022 09:24:55 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 21 Oct 2022 19:24:51 +0300
+ Fri, 21 Oct 2022 19:24:55 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 21 Oct 2022 19:24:41 +0300
-Message-Id: <20221021162442.27283-4-ville.syrjala@linux.intel.com>
+Date: Fri, 21 Oct 2022 19:24:42 +0300
+Message-Id: <20221021162442.27283-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221021162442.27283-1-ville.syrjala@linux.intel.com>
 References: <20221021162442.27283-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/4] drm/i915: Don't flag both full modeset
- and fastset at the same time
+Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915: Introduce
+ intel_crtc_needs_color_update()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,61 +66,133 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Be consistent in whether we flag a full modeset or a
-fastset for the pipe. intel_modeset_all_pipes() would
-seem to be the only codepath not getting this right.
+Add a common helper to answer the question "do we need
+to update color management stuff?".
 
-The other case is when we flag the fastset initially,
-currently we just clear the mode_changed flag and set
-the update_pipe flag. But we could still have
-connectors_changed==true or active_changed==true forcing
-a full modeset anyway. So check for that after clearing
-the mode_changed flag.
-
-And let's add a WARN to make sure we did get it right.
-
-v2: Deal with {connectors,active}_changed
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com> #v1
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/hsw_ips.c         |  6 ++----
+ drivers/gpu/drm/i915/display/intel_crtc.c      |  3 +--
+ drivers/gpu/drm/i915/display/intel_display.c   | 18 +++++-------------
+ .../gpu/drm/i915/display/intel_display_types.h |  8 ++++++++
+ 4 files changed, 16 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b6004b3e6684..119a6f92adad 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5974,6 +5974,7 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
- 			    crtc->base.base.id, crtc->base.name, reason);
+diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
+index c23fabb76fda..83aa3800245f 100644
+--- a/drivers/gpu/drm/i915/display/hsw_ips.c
++++ b/drivers/gpu/drm/i915/display/hsw_ips.c
+@@ -104,8 +104,7 @@ static bool hsw_ips_need_disable(struct intel_atomic_state *state,
+ 	 * Disable IPS before we program the LUT.
+ 	 */
+ 	if (IS_HASWELL(i915) &&
+-	    (new_crtc_state->uapi.color_mgmt_changed ||
+-	     intel_crtc_needs_fastset(new_crtc_state)) &&
++	    intel_crtc_needs_color_update(new_crtc_state) &&
+ 	    new_crtc_state->gamma_mode == GAMMA_MODE_MODE_SPLIT)
+ 		return true;
  
- 		crtc_state->uapi.mode_changed = true;
-+		crtc_state->update_pipe = false;
+@@ -146,8 +145,7 @@ static bool hsw_ips_need_enable(struct intel_atomic_state *state,
+ 	 * Re-enable IPS after the LUT has been programmed.
+ 	 */
+ 	if (IS_HASWELL(i915) &&
+-	    (new_crtc_state->uapi.color_mgmt_changed ||
+-	     intel_crtc_needs_fastset(new_crtc_state)) &&
++	    intel_crtc_needs_color_update(new_crtc_state) &&
+ 	    new_crtc_state->gamma_mode == GAMMA_MODE_MODE_SPLIT)
+ 		return true;
  
- 		ret = drm_atomic_add_affected_connectors(&state->base,
- 							 &crtc->base);
-@@ -6149,7 +6150,8 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
- 		return;
- 
- 	new_crtc_state->uapi.mode_changed = false;
--	new_crtc_state->update_pipe = true;
-+	if (!intel_crtc_needs_modeset(new_crtc_state))
-+		new_crtc_state->update_pipe = true;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index af7dbac7ed32..037fc140b585 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -386,8 +386,7 @@ static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_sta
+ 	return crtc_state->hw.active &&
+ 		!intel_crtc_needs_modeset(crtc_state) &&
+ 		!crtc_state->preload_luts &&
+-		(crtc_state->uapi.color_mgmt_changed ||
+-		 intel_crtc_needs_fastset(crtc_state));
++		intel_crtc_needs_color_update(crtc_state);
  }
  
- static int intel_crtc_add_planes_to_state(struct intel_atomic_state *state,
-@@ -6925,6 +6927,11 @@ static int intel_atomic_check(struct drm_device *dev,
- 		if (ret)
- 			goto fail;
+ static void intel_crtc_vblank_work(struct kthread_work *base)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 119a6f92adad..efcc64bdce18 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4853,9 +4853,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+ 	if (c8_planes_changed(crtc_state))
+ 		crtc_state->uapi.color_mgmt_changed = true;
  
-+		/* Either full modeset or fastset (or neither), never both */
-+		drm_WARN_ON(&dev_priv->drm,
-+			    intel_crtc_needs_modeset(new_crtc_state) &&
-+			    intel_crtc_needs_fastset(new_crtc_state));
+-	if (intel_crtc_needs_modeset(crtc_state) ||
+-	    intel_crtc_needs_fastset(crtc_state) ||
+-	    crtc_state->uapi.color_mgmt_changed) {
++	if (intel_crtc_needs_color_update(crtc_state)) {
+ 		ret = intel_color_check(crtc_state);
+ 		if (ret)
+ 			return ret;
+@@ -6969,11 +6967,8 @@ static int intel_atomic_prepare_commit(struct intel_atomic_state *state)
+ 		return ret;
+ 
+ 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+-		if (intel_crtc_needs_modeset(crtc_state) ||
+-		    intel_crtc_needs_fastset(crtc_state) ||
+-		    crtc_state->uapi.color_mgmt_changed) {
++		if (intel_crtc_needs_color_update(crtc_state))
+ 			intel_dsb_prepare(crtc_state);
+-		}
+ 	}
+ 
+ 	return 0;
+@@ -7054,8 +7049,7 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
+ 	 * CRTC was enabled.
+ 	 */
+ 	if (!modeset) {
+-		if (new_crtc_state->uapi.color_mgmt_changed ||
+-		    intel_crtc_needs_fastset(new_crtc_state))
++		if (intel_crtc_needs_color_update(new_crtc_state))
+ 			intel_color_commit_arm(new_crtc_state);
+ 
+ 		if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
+@@ -7120,8 +7114,7 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+ 
+ 	if (!modeset) {
+ 		if (new_crtc_state->preload_luts &&
+-		    (new_crtc_state->uapi.color_mgmt_changed ||
+-		     intel_crtc_needs_fastset(new_crtc_state)))
++		    intel_crtc_needs_color_update(new_crtc_state))
+ 			intel_color_load_luts(new_crtc_state);
+ 
+ 		intel_pre_plane_update(state, crtc);
+@@ -7137,8 +7130,7 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+ 	intel_fbc_update(state, crtc);
+ 
+ 	if (!modeset &&
+-	    (new_crtc_state->uapi.color_mgmt_changed ||
+-	     intel_crtc_needs_fastset(new_crtc_state)))
++	    intel_crtc_needs_color_update(new_crtc_state))
+ 		intel_color_commit_noarm(new_crtc_state);
+ 
+ 	intel_crtc_planes_update_noarm(state, crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 60c748e4e0d8..609eeb5c7b71 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -2064,6 +2064,14 @@ intel_crtc_needs_fastset(const struct intel_crtc_state *crtc_state)
+ 	return crtc_state->update_pipe;
+ }
+ 
++static inline bool
++intel_crtc_needs_color_update(const struct intel_crtc_state *crtc_state)
++{
++	return crtc_state->uapi.color_mgmt_changed ||
++		intel_crtc_needs_fastset(crtc_state) ||
++		intel_crtc_needs_modeset(crtc_state);
++}
 +
- 		if (!intel_crtc_needs_modeset(new_crtc_state) &&
- 		    !intel_crtc_needs_fastset(new_crtc_state))
- 			continue;
+ static inline u32 intel_plane_ggtt_offset(const struct intel_plane_state *plane_state)
+ {
+ 	return i915_ggtt_offset(plane_state->ggtt_vma);
 -- 
 2.35.1
 
