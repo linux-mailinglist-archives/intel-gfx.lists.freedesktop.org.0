@@ -1,56 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D28766072F4
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 10:54:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6070460733B
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 11:06:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BBA210E652;
-	Fri, 21 Oct 2022 08:53:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BED510E5F6;
+	Fri, 21 Oct 2022 09:06:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 514E610E363
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 08:53:38 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9225510E5F6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 09:06:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666342419; x=1697878419;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=cFwDiFbENQZfTrlLcQX7MPRpjoM/g/Zry1B8Xhf9LfI=;
- b=UYRD7JJSnC2PBu72rVtyQ6JIDgTpojWXbXT6zo3lWrjlO3BkmWc7irx+
- ApSanKd4Uqh8Np5eVDuDxe9eOCCW2iEkLNQJy4y8OciGxX9aqfSZrV+br
- nE2xqv7kyv0xL/JxUp+mynOjFmzYyGsXgt7dBTYK2YKmJdPU/LhQtk8Cp
- 5yElSxIvPndzsoIv1QpMyHqPkwO0l+yzZWsCk/a7APodSwN3LYanmRYUe
- HTOocUpB0u0M2BCoMlN5yJXnohrDjq5Kx2qHBE8fm4YPzoLjfhmerXbl0
- MBzD3HK3Iu5s4A9IMKBSohtsEq0cD+b5HdnCKsid9z4w+y+K4tR26bwgd Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="308050687"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="308050687"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 01:53:36 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="608258744"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="608258744"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.28.118])
- ([10.213.28.118])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 01:53:35 -0700
-Message-ID: <0c86efd8-3ea6-e3a5-46fa-8a57f4e8f20a@intel.com>
-Date: Fri, 21 Oct 2022 10:53:33 +0200
+ t=1666343177; x=1697879177;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=pfcXWz7sHJ1LxsAbqoyZPPTHb+IKtDd188o8nHRFej0=;
+ b=UZLyiH1rieQHhTFb0GsxACAds2x1ViaBqNiu93kX9LZGMFMB/37ZCjqu
+ fSxc9/kah712b9HnUmXMTDPZgsy5u1StM+k5kgHcTI1AXnh5/DZAR7qy4
+ hGnyWZeXZOquzmpC74IRJqd/MEPaJfyF7LGdk/DmJ7CuC9dFIQ+l2vQXS
+ ziIlCUqeWYZHTIr2tXXYKjYco3MlwM7eHm8F1HtXf9eSfVNEeaf/ewU1t
+ UwW6HOSiwRarsDQ8toSWWcDa///Hw+FT4LPjb0tqqWNRciLNgbM7lKBgi
+ 1HsH6RxjM4hEZGqwb4jFOMCEKuML39T9MehblzfZoCiM2NJoFr/+JYMd9 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="294352658"
+X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="294352658"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2022 02:06:16 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="693594266"
+X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="693594266"
+Received: from avilla3-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.252.53.153])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2022 02:06:15 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20221020120706.25728-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221020120706.25728-1-ville.syrjala@linux.intel.com>
+Date: Fri, 21 Oct 2022 12:06:12 +0300
+Message-ID: <87h6zxfsvv.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.3
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221020151047.369354-1-matthew.auld@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20221020151047.369354-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: use i915_sg_dma_sizes() for
- internal backend
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Activate DRRS after state readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,73 +62,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+On Thu, 20 Oct 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> On BDW+ we have just the one set of DP M/N registers. The
+> values we write into said registers depends on whether we
+> want DRRS to be in high or low gear. This causes issues
+> for the state checker which currently has to assume either
+> set of M/N (high or low refresh rate) values may appear there.
+> That sort of works for M/N itself, but all other values
+> derived from the M/N (dotclock, pixel rate) are not handled
+> correctly, leading to potential for state checker mismatches.
+>
+> Let's avoid all those problems by simply keeping DRRS in
+> high gear until the state checker has done its hardware
+> state readout.
+>
+> Note that hitting this issue presumable became very hard
+> after commit 1b333c679a0f ("drm/i915: Do DRRS disable/enable
+> during pre/post_plane_update()") since the state check would
+> have to laze about for one full second (delay used by
+> intel_drrs_schedule_work()) to see the low refresh rate.
+> But it is still theoretically possible.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On 20.10.2022 17:10, Matthew Auld wrote:
-> We rely on page_sizes.sg in setup_scratch_page() reporting the correct
-> value if the underlying sgl is not contiguous, however in
-> get_pages_internal() we are only looking at the layout of the created
-> pages when calculating the sg_page_sizes, and not the final sgl, which
-> could in theory be completely different. In such a situation we might
-> incorrectly think we have a 64K scratch page, when it is actually only
-> 4K or similar split over multiple non-contiguous entries, which could
-> lead to broken behaviour when touching the scratch space within the
-> padding of a 64K GTT page-table.  Like we already do for other backends,
-> switch over to calling i915_sg_dma_sizes() after mapping the pages.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+This makes a whole lot of sense.
 
-
-The patch looks OK, but it still does not solve dmar errors in hugepages 
-test [1].
-[1]: https://gitlab.freedesktop.org/drm/intel/-/issues/5278
-
-Anyway:
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_internal.c | 5 +----
->   1 file changed, 1 insertion(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.c b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> index c698f95af15f..301cfb127c4c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> @@ -36,7 +36,6 @@ static int i915_gem_object_get_pages_internal(struct drm_i915_gem_object *obj)
->   	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->   	struct sg_table *st;
->   	struct scatterlist *sg;
-> -	unsigned int sg_page_sizes;
->   	unsigned int npages;
->   	int max_order;
->   	gfp_t gfp;
-> @@ -75,7 +74,6 @@ static int i915_gem_object_get_pages_internal(struct drm_i915_gem_object *obj)
->   
->   	sg = st->sgl;
->   	st->nents = 0;
-> -	sg_page_sizes = 0;
->   
->   	do {
->   		int order = min(fls(npages) - 1, max_order);
-> @@ -94,7 +92,6 @@ static int i915_gem_object_get_pages_internal(struct drm_i915_gem_object *obj)
->   		} while (1);
->   
->   		sg_set_page(sg, page, PAGE_SIZE << order, 0);
-> -		sg_page_sizes |= PAGE_SIZE << order;
->   		st->nents++;
->   
->   		npages -= 1 << order;
-> @@ -116,7 +113,7 @@ static int i915_gem_object_get_pages_internal(struct drm_i915_gem_object *obj)
->   		goto err;
->   	}
->   
-> -	__i915_gem_object_set_pages(obj, st, sg_page_sizes);
-> +	__i915_gem_object_set_pages(obj, st, i915_sg_dma_sizes(st->sgl));
->   
->   	return 0;
->   
+>  drivers/gpu/drm/i915/display/intel_display.c | 43 ++++----------------
+>  1 file changed, 7 insertions(+), 36 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 606f9140d024..906a5ad2bbfa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1261,8 +1261,6 @@ static void intel_post_plane_update(struct intel_at=
+omic_state *state,
+>  	if (needs_cursorclk_wa(old_crtc_state) &&
+>  	    !needs_cursorclk_wa(new_crtc_state))
+>  		icl_wa_cursorclkgating(dev_priv, pipe, false);
+> -
+> -	intel_drrs_activate(new_crtc_state);
+>  }
+>=20=20
+>  static void intel_crtc_enable_flip_done(struct intel_atomic_state *state,
+> @@ -5646,39 +5644,6 @@ intel_pipe_config_compare(const struct intel_crtc_=
+state *current_config,
+>  	PIPE_CONF_CHECK_I(name.y2); \
+>  } while (0)
+>=20=20
+> -/* This is required for BDW+ where there is only one set of registers for
+> - * switching between high and low RR.
+> - * This macro can be used whenever a comparison has to be made between o=
+ne
+> - * hw state and multiple sw state variables.
+> - */
+> -#define PIPE_CONF_CHECK_M_N_ALT(name, alt_name) do { \
+> -	if (!intel_compare_link_m_n(&current_config->name, \
+> -				    &pipe_config->name) && \
+> -	    !intel_compare_link_m_n(&current_config->alt_name, \
+> -				    &pipe_config->name)) { \
+> -		pipe_config_mismatch(fastset, crtc, __stringify(name), \
+> -				     "(expected tu %i data %i/%i link %i/%i, " \
+> -				     "or tu %i data %i/%i link %i/%i, " \
+> -				     "found tu %i, data %i/%i link %i/%i)", \
+> -				     current_config->name.tu, \
+> -				     current_config->name.data_m, \
+> -				     current_config->name.data_n, \
+> -				     current_config->name.link_m, \
+> -				     current_config->name.link_n, \
+> -				     current_config->alt_name.tu, \
+> -				     current_config->alt_name.data_m, \
+> -				     current_config->alt_name.data_n, \
+> -				     current_config->alt_name.link_m, \
+> -				     current_config->alt_name.link_n, \
+> -				     pipe_config->name.tu, \
+> -				     pipe_config->name.data_m, \
+> -				     pipe_config->name.data_n, \
+> -				     pipe_config->name.link_m, \
+> -				     pipe_config->name.link_n); \
+> -		ret =3D false; \
+> -	} \
+> -} while (0)
+> -
+>  #define PIPE_CONF_CHECK_FLAGS(name, mask) do { \
+>  	if ((current_config->name ^ pipe_config->name) & (mask)) { \
+>  		pipe_config_mismatch(fastset, crtc, __stringify(name), \
+> @@ -5747,7 +5712,7 @@ intel_pipe_config_compare(const struct intel_crtc_s=
+tate *current_config,
+>=20=20
+>  	if (HAS_DOUBLE_BUFFERED_M_N(dev_priv)) {
+>  		if (!fastset || !pipe_config->seamless_m_n)
+> -			PIPE_CONF_CHECK_M_N_ALT(dp_m_n, dp_m2_n2);
+> +			PIPE_CONF_CHECK_M_N(dp_m_n);
+>  	} else {
+>  		PIPE_CONF_CHECK_M_N(dp_m_n);
+>  		PIPE_CONF_CHECK_M_N(dp_m2_n2);
+> @@ -7615,6 +7580,12 @@ static void intel_atomic_commit_tail(struct intel_=
+atomic_state *state)
+>=20=20
+>  		intel_modeset_verify_crtc(crtc, state, old_crtc_state, new_crtc_state);
+>=20=20
+> +		/*
+> +		 * Activate DRRS after state readout to avoid
+> +		 * dp_m_n vs. dp_m2_n2 confusion on BDW+.
+> +		 */
+> +		intel_drrs_activate(new_crtc_state);
+> +
+>  		/*
+>  		 * DSB cleanup is done in cleanup_work aligning with framebuffer
+>  		 * cleanup. So copy and reset the dsb structure to sync with
 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
