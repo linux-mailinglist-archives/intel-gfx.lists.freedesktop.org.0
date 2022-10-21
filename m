@@ -1,56 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88F8D60769E
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 13:58:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1F3E6076E6
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 14:29:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2187410E044;
-	Fri, 21 Oct 2022 11:58:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F27510E090;
+	Fri, 21 Oct 2022 12:29:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 994D910E044
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 11:58:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666353483; x=1697889483;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=1Vx4ErsMDm1QfbQsLrEnNSyFHSKI/72eo3EKy9FDLO0=;
- b=gWBsMaMv7RyvZIDE47lLv+U84Xd6rWZKrwXZFufO2ucCPC1t4ajfifmW
- fWRtO8tQrsE+qI+c0w+7zIJ3Q6je2r8ZsC8JYWTrIoKfHbJbZHTv5YZb1
- NDMJMBdnOYCwDa7wgdF0FfT3o0/+4yWgupgAgFSX4ErkKWle512vCOht2
- vKT24RpsgUIHc9eJ7+s8GFlwgpUezbXthVl0zTFZ5hnU/RaRyVACv7qZI
- WNxOtiZd5K5d+hylrdWnYCIpGeOv47eo7lSUomc1TeLSoL2i/GQu5yniW
- LbMH4qJQo6D+NUpoQ4id/ptCWFjSD3Yjl794sqnJhS20j6tNiaOp8TJN5 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="393286827"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="393286827"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 04:58:03 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="719683970"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="719683970"
-Received: from emoriart-mobl.ger.corp.intel.com (HELO [10.213.218.183])
- ([10.213.218.183])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 04:58:01 -0700
-Message-ID: <937334e3-464e-7b8a-31e0-4fa35e5ae5b8@linux.intel.com>
-Date: Fri, 21 Oct 2022 12:57:59 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 94DF810E090;
+ Fri, 21 Oct 2022 12:29:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8CE7BA0BCB;
+ Fri, 21 Oct 2022 12:29:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221019215906.295296-1-andrzej.hajda@intel.com>
- <20221019215906.295296-2-andrzej.hajda@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221019215906.295296-2-andrzej.hajda@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: call
- i915_request_await_object from _i915_vma_move_to_active
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Fri, 21 Oct 2022 12:29:24 -0000
+Message-ID: <166635536454.18264.15439422489659011969@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220926191109.1803094-1-keescook@chromium.org>
+In-Reply-To: <20220926191109.1803094-1-keescook@chromium.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_overflow=3A_Introduce_overflows=5Ftype=28=29_and_castable?=
+ =?utf-8?b?X3RvX3R5cGUoKSAocmV2Myk=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,554 +41,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 19/10/2022 22:59, Andrzej Hajda wrote:
-> Since almost all calls to i915_vma_move_to_active are prepended with
-> i915_request_await_object, let's call the latter from
-> _i915_vma_move_to_active by default and add flag allowing bypassing it.
-> Adjust all callers accordingly.
-> The patch should not introduce functional changes.
-> 
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> ---
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 17 +++++++-------
->   .../i915/gem/selftests/i915_gem_client_blt.c  |  4 +---
->   .../i915/gem/selftests/i915_gem_coherency.c   |  4 +---
->   .../drm/i915/gem/selftests/i915_gem_context.c | 16 ++++----------
->   .../drm/i915/gem/selftests/i915_gem_mman.c    | 10 +++------
->   .../drm/i915/gem/selftests/igt_gem_utils.c    |  8 ++-----
->   drivers/gpu/drm/i915/gt/intel_renderstate.c   |  4 +---
->   drivers/gpu/drm/i915/gt/intel_workarounds.c   |  4 +---
->   drivers/gpu/drm/i915/gt/selftest_execlists.c  | 14 +++---------
->   drivers/gpu/drm/i915/gt/selftest_hangcheck.c  | 17 ++++----------
->   drivers/gpu/drm/i915/gt/selftest_lrc.c        | 12 +++-------
->   drivers/gpu/drm/i915/gt/selftest_mocs.c       |  4 +---
->   drivers/gpu/drm/i915/gt/selftest_rps.c        |  8 ++-----
->   .../gpu/drm/i915/gt/selftest_workarounds.c    | 22 +++++--------------
->   drivers/gpu/drm/i915/gvt/scheduler.c          |  5 ++---
->   drivers/gpu/drm/i915/i915_perf.c              |  4 +---
->   drivers/gpu/drm/i915/i915_vma.c               |  5 +++++
->   drivers/gpu/drm/i915/i915_vma.h               |  1 +
->   drivers/gpu/drm/i915/selftests/i915_request.c |  9 ++------
->   drivers/gpu/drm/i915/selftests/igt_spinner.c  |  5 +----
->   20 files changed, 53 insertions(+), 120 deletions(-)
+Series: overflow: Introduce overflows_type() and castable_to_type() (rev3)
+URL   : https://patchwork.freedesktop.org/series/109076/
+State : warning
 
-This ended up looking quite nice and compact with the inverted flag you 
-added!
+== Summary ==
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Error: dim checkpatch failed
+89eeed59f1ab overflow: Introduce overflows_type() and castable_to_type()
+-:88: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#88: FILE: include/linux/overflow.h:130:
++#define __overflows_type_constexpr(x, T) (			\
++	is_unsigned_type(typeof(x)) ?				\
++		(x) > type_max(typeof(T)) ? 1 : 0		\
++	: is_unsigned_type(typeof(T)) ?				\
++		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
++		: (x) < type_min(typeof(T)) ||			\
++		  (x) > type_max(typeof(T)) ? 1 : 0)
 
-Regards,
+-:89: CHECK:SPACING: No space is necessary after a cast
+#89: FILE: include/linux/overflow.h:131:
++	is_unsigned_type(typeof(x)) ?				\
 
-Tvrtko
+-:90: CHECK:SPACING: No space is necessary after a cast
+#90: FILE: include/linux/overflow.h:132:
++		(x) > type_max(typeof(T)) ? 1 : 0		\
 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 1160723c9d2d94..19e93fef36afce 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -53,13 +53,13 @@ enum {
->   #define DBG_FORCE_RELOC 0 /* choose one of the above! */
->   };
->   
-> -/* __EXEC_OBJECT_NO_RESERVE is BIT(31), defined in i915_vma.h */
-> -#define __EXEC_OBJECT_HAS_PIN		BIT(30)
-> -#define __EXEC_OBJECT_HAS_FENCE		BIT(29)
-> -#define __EXEC_OBJECT_USERPTR_INIT	BIT(28)
-> -#define __EXEC_OBJECT_NEEDS_MAP		BIT(27)
-> -#define __EXEC_OBJECT_NEEDS_BIAS	BIT(26)
-> -#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 26) /* all of the above + */
-> +/* __EXEC_OBJECT_ flags > BIT(29) defined in i915_vma.h */
-> +#define __EXEC_OBJECT_HAS_PIN		BIT(29)
-> +#define __EXEC_OBJECT_HAS_FENCE		BIT(28)
-> +#define __EXEC_OBJECT_USERPTR_INIT	BIT(27)
-> +#define __EXEC_OBJECT_NEEDS_MAP		BIT(26)
-> +#define __EXEC_OBJECT_NEEDS_BIAS	BIT(25)
-> +#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 25) /* all of the above + */
->   #define __EXEC_OBJECT_RESERVED (__EXEC_OBJECT_HAS_PIN | __EXEC_OBJECT_HAS_FENCE)
->   
->   #define __EXEC_HAS_RELOC	BIT(31)
-> @@ -2101,7 +2101,8 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
->   						       eb->composite_fence ?
->   						       eb->composite_fence :
->   						       &eb->requests[j]->fence,
-> -						       flags | __EXEC_OBJECT_NO_RESERVE);
-> +						       flags | __EXEC_OBJECT_NO_RESERVE |
-> +						       __EXEC_OBJECT_NO_REQUEST_AWAIT);
->   		}
->   	}
->   
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
-> index 9a6a6b5b722b60..97dd34bd3acfd3 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
-> @@ -464,9 +464,7 @@ static int move_to_active(struct i915_vma *vma,
->   	int err;
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj, false);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, flags);
-> +	err = i915_vma_move_to_active(vma, rq, flags);
->   	i915_vma_unlock(vma);
->   
->   	return err;
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-> index a666d7e610f5fe..c228fe4aba505a 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-> @@ -239,9 +239,7 @@ static int gpu_set(struct context *ctx, unsigned long offset, u32 v)
->   	}
->   	intel_ring_advance(rq, cs);
->   
-> -	err = i915_request_await_object(rq, vma->obj, true);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
->   
->   out_rq:
->   	i915_request_add(rq);
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> index c6ad67b90e8af2..02c1c306990ca9 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> @@ -970,15 +970,11 @@ emit_rpcs_query(struct drm_i915_gem_object *obj,
->   		goto err_batch;
->   	}
->   
-> -	err = i915_request_await_object(rq, batch->obj, false);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(batch, rq, 0);
-> +	err = i915_vma_move_to_active(batch, rq, 0);
->   	if (err)
->   		goto skip_request;
->   
-> -	err = i915_request_await_object(rq, vma->obj, true);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
->   	if (err)
->   		goto skip_request;
->   
-> @@ -1539,9 +1535,7 @@ static int write_to_scratch(struct i915_gem_context *ctx,
->   	}
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj, false);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, 0);
-> +	err = i915_vma_move_to_active(vma, rq, 0);
->   	i915_vma_unlock(vma);
->   	if (err)
->   		goto skip_request;
-> @@ -1675,9 +1669,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
->   	}
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj, true);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
->   	i915_vma_unlock(vma);
->   	if (err)
->   		goto skip_request;
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> index 1cae24349a96fd..80e7fdd5d16427 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> @@ -565,10 +565,8 @@ static int make_obj_busy(struct drm_i915_gem_object *obj)
->   			goto err_unpin;
->   		}
->   
-> -		err = i915_request_await_object(rq, vma->obj, true);
-> -		if (err == 0)
-> -			err = i915_vma_move_to_active(vma, rq,
-> -						      EXEC_OBJECT_WRITE);
-> +		err = i915_vma_move_to_active(vma, rq,
-> +					      EXEC_OBJECT_WRITE);
->   
->   		i915_request_add(rq);
->   err_unpin:
-> @@ -1608,9 +1606,7 @@ static int __igt_mmap_gpu(struct drm_i915_private *i915,
->   			goto out_unpin;
->   		}
->   
-> -		err = i915_request_await_object(rq, vma->obj, false);
-> -		if (err == 0)
-> -			err = i915_vma_move_to_active(vma, rq, 0);
-> +		err = i915_vma_move_to_active(vma, rq, 0);
->   
->   		err = engine->emit_bb_start(rq, vma->node.start, 0, 0);
->   		i915_request_get(rq);
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-> index 3c55e77b0f1b00..374b10ac430e8f 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-> @@ -131,17 +131,13 @@ int igt_gpu_fill_dw(struct intel_context *ce,
->   	}
->   
->   	i915_vma_lock(batch);
-> -	err = i915_request_await_object(rq, batch->obj, false);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(batch, rq, 0);
-> +	err = i915_vma_move_to_active(batch, rq, 0);
->   	i915_vma_unlock(batch);
->   	if (err)
->   		goto skip_request;
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj, true);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
->   	i915_vma_unlock(vma);
->   	if (err)
->   		goto skip_request;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-> index 5121e6dc2fa53e..9c1ae070ee7b9a 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-> @@ -215,9 +215,7 @@ int intel_renderstate_emit(struct intel_renderstate *so,
->   	if (!so->vma)
->   		return 0;
->   
-> -	err = i915_request_await_object(rq, so->vma->obj, false);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(so->vma, rq, 0);
-> +	err = i915_vma_move_to_active(so->vma, rq, 0);
->   	if (err)
->   		return err;
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 63e1e6becf343b..ce30e3a4c79821 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -3154,9 +3154,7 @@ static int engine_wa_list_verify(struct intel_context *ce,
->   		goto err_vma;
->   	}
->   
-> -	err = i915_request_await_object(rq, vma->obj, true);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
->   	if (err == 0)
->   		err = wa_list_srm(rq, wal, vma);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> index 56b7d5b5fea009..6e483ea2b2bb63 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> @@ -2764,9 +2764,7 @@ static int create_gang(struct intel_engine_cs *engine,
->   	i915_request_get(rq);
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj, false);
-> -	if (!err)
-> -		err = i915_vma_move_to_active(vma, rq, 0);
-> +	err = i915_vma_move_to_active(vma, rq, 0);
->   	if (!err)
->   		err = rq->engine->emit_bb_start(rq,
->   						vma->node.start,
-> @@ -3180,14 +3178,10 @@ create_gpr_client(struct intel_engine_cs *engine,
->   	}
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj, false);
-> -	if (!err)
-> -		err = i915_vma_move_to_active(vma, rq, 0);
-> +	err = i915_vma_move_to_active(vma, rq, 0);
->   	i915_vma_unlock(vma);
->   
->   	i915_vma_lock(batch);
-> -	if (!err)
-> -		err = i915_request_await_object(rq, batch->obj, false);
->   	if (!err)
->   		err = i915_vma_move_to_active(batch, rq, 0);
->   	if (!err)
-> @@ -3519,9 +3513,7 @@ static int smoke_submit(struct preempt_smoke *smoke,
->   
->   	if (vma) {
->   		i915_vma_lock(vma);
-> -		err = i915_request_await_object(rq, vma->obj, false);
-> -		if (!err)
-> -			err = i915_vma_move_to_active(vma, rq, 0);
-> +		err = i915_vma_move_to_active(vma, rq, 0);
->   		if (!err)
->   			err = rq->engine->emit_bb_start(rq,
->   							vma->node.start,
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> index 7f3bb1d34dfbf6..f8dabce671aa64 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> @@ -106,10 +106,7 @@ static int move_to_active(struct i915_vma *vma,
->   	int err;
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj,
-> -					flags & EXEC_OBJECT_WRITE);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, flags);
-> +	err = i915_vma_move_to_active(vma, rq, flags);
->   	i915_vma_unlock(vma);
->   
->   	return err;
-> @@ -1511,15 +1508,9 @@ static int __igt_reset_evict_vma(struct intel_gt *gt,
->   	}
->   
->   	i915_vma_lock(arg.vma);
-> -	err = i915_request_await_object(rq, arg.vma->obj,
-> -					flags & EXEC_OBJECT_WRITE);
-> -	if (err == 0) {
-> -		err = i915_vma_move_to_active(arg.vma, rq, flags);
-> -		if (err)
-> -			pr_err("[%s] Move to active failed: %d!\n", engine->name, err);
-> -	} else {
-> -		pr_err("[%s] Request await failed: %d!\n", engine->name, err);
-> -	}
-> +	err = i915_vma_move_to_active(arg.vma, rq, flags);
-> +	if (err)
-> +		pr_err("[%s] Move to active failed: %d!\n", engine->name, err);
->   
->   	i915_vma_unlock(arg.vma);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> index 82d3f8058995a9..b25f281ce0cbfe 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -452,9 +452,7 @@ static int __live_lrc_state(struct intel_engine_cs *engine,
->   	*cs++ = i915_ggtt_offset(scratch) + RING_TAIL_IDX * sizeof(u32);
->   	*cs++ = 0;
->   
-> -	err = i915_request_await_object(rq, scratch->obj, true);
-> -	if (!err)
-> -		err = i915_vma_move_to_active(scratch, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(scratch, rq, EXEC_OBJECT_WRITE);
->   
->   	i915_request_get(rq);
->   	i915_request_add(rq);
-> @@ -602,9 +600,7 @@ __gpr_read(struct intel_context *ce, struct i915_vma *scratch, u32 *slot)
->   	}
->   
->   	i915_vma_lock(scratch);
-> -	err = i915_request_await_object(rq, scratch->obj, true);
-> -	if (!err)
-> -		err = i915_vma_move_to_active(scratch, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(scratch, rq, EXEC_OBJECT_WRITE);
->   	i915_vma_unlock(scratch);
->   
->   	i915_request_get(rq);
-> @@ -1060,9 +1056,7 @@ static int move_to_active(struct i915_request *rq,
->   	int err;
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj, flags);
-> -	if (!err)
-> -		err = i915_vma_move_to_active(vma, rq, flags);
-> +	err = i915_vma_move_to_active(vma, rq, flags);
->   	i915_vma_unlock(vma);
->   
->   	return err;
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-> index c1d861333c44cc..e0921c87d6a5c2 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-> @@ -228,9 +228,7 @@ static int check_mocs_engine(struct live_mocs *arg,
->   		return PTR_ERR(rq);
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj, true);
-> -	if (!err)
-> -		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
->   	i915_vma_unlock(vma);
->   
->   	/* Read the mocs tables back using SRM */
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> index 99a372486fb7f6..39f1b7564170c4 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> @@ -652,9 +652,7 @@ int live_rps_frequency_cs(void *arg)
->   			goto err_vma;
->   		}
->   
-> -		err = i915_request_await_object(rq, vma->obj, false);
-> -		if (!err)
-> -			err = i915_vma_move_to_active(vma, rq, 0);
-> +		err = i915_vma_move_to_active(vma, rq, 0);
->   		if (!err)
->   			err = rq->engine->emit_bb_start(rq,
->   							vma->node.start,
-> @@ -793,9 +791,7 @@ int live_rps_frequency_srm(void *arg)
->   			goto err_vma;
->   		}
->   
-> -		err = i915_request_await_object(rq, vma->obj, false);
-> -		if (!err)
-> -			err = i915_vma_move_to_active(vma, rq, 0);
-> +		err = i915_vma_move_to_active(vma, rq, 0);
->   		if (!err)
->   			err = rq->engine->emit_bb_start(rq,
->   							vma->node.start,
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-> index 21b1edc052f888..352f021be29f0e 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-> @@ -139,9 +139,7 @@ read_nonprivs(struct intel_context *ce)
->   	}
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj, true);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
->   	i915_vma_unlock(vma);
->   	if (err)
->   		goto err_req;
-> @@ -632,16 +630,12 @@ static int check_dirty_whitelist(struct intel_context *ce)
->   				goto err_request;
->   		}
->   
-> -		err = i915_request_await_object(rq, batch->obj, false);
-> -		if (err == 0)
-> -			err = i915_vma_move_to_active(batch, rq, 0);
-> +		err = i915_vma_move_to_active(batch, rq, 0);
->   		if (err)
->   			goto err_request;
->   
-> -		err = i915_request_await_object(rq, scratch->obj, true);
-> -		if (err == 0)
-> -			err = i915_vma_move_to_active(scratch, rq,
-> -						      EXEC_OBJECT_WRITE);
-> +		err = i915_vma_move_to_active(scratch, rq,
-> +					      EXEC_OBJECT_WRITE);
->   		if (err)
->   			goto err_request;
->   
-> @@ -860,9 +854,7 @@ static int read_whitelisted_registers(struct intel_context *ce,
->   		return PTR_ERR(rq);
->   
->   	i915_vma_lock(results);
-> -	err = i915_request_await_object(rq, results->obj, true);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(results, rq, EXEC_OBJECT_WRITE);
-> +	err = i915_vma_move_to_active(results, rq, EXEC_OBJECT_WRITE);
->   	i915_vma_unlock(results);
->   	if (err)
->   		goto err_req;
-> @@ -944,9 +936,7 @@ static int scrub_whitelisted_registers(struct intel_context *ce)
->   	}
->   
->   	i915_vma_lock(batch);
-> -	err = i915_request_await_object(rq, batch->obj, false);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(batch, rq, 0);
-> +	err = i915_vma_move_to_active(batch, rq, 0);
->   	i915_vma_unlock(batch);
->   	if (err)
->   		goto err_request;
-> diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-> index d6fe94cd0fdb61..9cd8fcbf7cad16 100644
-> --- a/drivers/gpu/drm/i915/gvt/scheduler.c
-> +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-> @@ -570,9 +570,8 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
->   			if (gmadr_bytes == 8)
->   				bb->bb_start_cmd_va[2] = 0;
->   
-> -			ret = i915_vma_move_to_active(bb->vma,
-> -						      workload->req,
-> -						      0);
-> +			ret = i915_vma_move_to_active(bb->vma, workload->req,
-> +						      __EXEC_OBJECT_NO_REQUEST_AWAIT);
->   			if (ret)
->   				goto err;
->   
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 15816df916c781..19138e99d2fd03 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -2015,9 +2015,7 @@ emit_oa_config(struct i915_perf_stream *stream,
->   			goto err_add_request;
->   	}
->   
-> -	err = i915_request_await_object(rq, vma->obj, 0);
-> -	if (!err)
-> -		err = i915_vma_move_to_active(vma, rq, 0);
-> +	err = i915_vma_move_to_active(vma, rq, 0);
->   	if (err)
->   		goto err_add_request;
->   
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index c39488eb9eeba0..7ee3c1a2a16b95 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1842,6 +1842,11 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
->   
->   	GEM_BUG_ON(!vma->pages);
->   
-> +	if (!(flags & __EXEC_OBJECT_NO_REQUEST_AWAIT)) {
-> +		err = i915_request_await_object(rq, vma->obj, flags & EXEC_OBJECT_WRITE);
-> +		if (unlikely(err))
-> +			return err;
-> +	}
->   	err = __i915_vma_move_to_active(vma, rq);
->   	if (unlikely(err))
->   		return err;
-> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> index aecd9c64486b27..0757977a489bcc 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.h
-> +++ b/drivers/gpu/drm/i915/i915_vma.h
-> @@ -55,6 +55,7 @@ static inline bool i915_vma_is_active(const struct i915_vma *vma)
->   
->   /* do not reserve memory to prevent deadlocks */
->   #define __EXEC_OBJECT_NO_RESERVE BIT(31)
-> +#define __EXEC_OBJECT_NO_REQUEST_AWAIT BIT(30)
->   
->   int __must_check _i915_vma_move_to_active(struct i915_vma *vma,
->   					  struct i915_request *rq,
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-> index 818a4909c1f354..f9fe634fe27a62 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_request.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-> @@ -1203,9 +1203,7 @@ static int live_all_engines(void *arg)
->   			goto out_request;
->   		}
->   
-> -		err = i915_request_await_object(request[idx], batch->obj, 0);
-> -		if (err == 0)
-> -			err = i915_vma_move_to_active(batch, request[idx], 0);
-> +		err = i915_vma_move_to_active(batch, request[idx], 0);
->   		GEM_BUG_ON(err);
->   
->   		err = engine->emit_bb_start(request[idx],
-> @@ -1332,10 +1330,7 @@ static int live_sequential_engines(void *arg)
->   			}
->   		}
->   
-> -		err = i915_request_await_object(request[idx],
-> -						batch->obj, false);
-> -		if (err == 0)
-> -			err = i915_vma_move_to_active(batch, request[idx], 0);
-> +		err = i915_vma_move_to_active(batch, request[idx], 0);
->   		GEM_BUG_ON(err);
->   
->   		err = engine->emit_bb_start(request[idx],
-> diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-> index 0c22594ae27469..78b3c138a6d326 100644
-> --- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
-> +++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-> @@ -126,10 +126,7 @@ static int move_to_active(struct i915_vma *vma,
->   	int err;
->   
->   	i915_vma_lock(vma);
-> -	err = i915_request_await_object(rq, vma->obj,
-> -					flags & EXEC_OBJECT_WRITE);
-> -	if (err == 0)
-> -		err = i915_vma_move_to_active(vma, rq, flags);
-> +	err = i915_vma_move_to_active(vma, rq, flags);
->   	i915_vma_unlock(vma);
->   
->   	return err;
+-:91: CHECK:SPACING: No space is necessary after a cast
+#91: FILE: include/linux/overflow.h:133:
++	: is_unsigned_type(typeof(T)) ?				\
+
+-:92: CHECK:SPACING: No space is necessary after a cast
+#92: FILE: include/linux/overflow.h:134:
++		(x) < 0 || (x) > type_max(typeof(T)) ? 1 : 0	\
+
+-:93: CHECK:SPACING: No space is necessary after a cast
+#93: FILE: include/linux/overflow.h:135:
++		: (x) < type_min(typeof(T)) ||			\
+
+-:94: CHECK:SPACING: No space is necessary after a cast
+#94: FILE: include/linux/overflow.h:136:
++		  (x) > type_max(typeof(T)) ? 1 : 0)
+
+-:115: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#115: FILE: include/linux/overflow.h:157:
++#define overflows_type(n, T)					\
++	__builtin_choose_expr(__is_constexpr(n),		\
++			      __overflows_type_constexpr(n, T),	\
++			      __overflows_type(n, T))
+
+-:115: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
+#115: FILE: include/linux/overflow.h:157:
++#define overflows_type(n, T)					\
++	__builtin_choose_expr(__is_constexpr(n),		\
++			      __overflows_type_constexpr(n, T),	\
++			      __overflows_type(n, T))
+
+-:131: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#131: FILE: include/linux/overflow.h:173:
++#define castable_to_type(n, T)						\
++	__builtin_choose_expr(__is_constexpr(n),			\
++			      !__overflows_type_constexpr(n, T),	\
++			      __same_type(n, T))
+
+-:131: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'T' - possible side-effects?
+#131: FILE: include/linux/overflow.h:173:
++#define castable_to_type(n, T)						\
++	__builtin_choose_expr(__is_constexpr(n),			\
++			      !__overflows_type_constexpr(n, T),	\
++			      __same_type(n, T))
+
+-:176: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'of' - possible side-effects?
+#176: FILE: lib/overflow_kunit.c:716:
++#define __TEST_OVERFLOWS_TYPE(func, arg1, arg2, of)	do {		\
++	bool __of = func(arg1, arg2);					\
++	KUNIT_EXPECT_EQ_MSG(test, __of, of,				\
++		"expected " #func "(" #arg1 ", " #arg2 " to%s overflow\n",\
++		of ? "" : " not");					\
++	count++;							\
++} while (0)
+
+-:185: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__t2' - possible side-effects?
+#185: FILE: lib/overflow_kunit.c:725:
++#define TEST_OVERFLOWS_TYPE(__t1, __t2, v, of) do {			\
++	__t1 t1 = (v);							\
++	__t2 t2;							\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, __t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, t2, of);	\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, __t2, of);\
++} while (0)
+
+-:185: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'of' - possible side-effects?
+#185: FILE: lib/overflow_kunit.c:725:
++#define TEST_OVERFLOWS_TYPE(__t1, __t2, v, of) do {			\
++	__t1 t1 = (v);							\
++	__t2 t2;							\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type, t1, __t2, of);		\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, t2, of);	\
++	__TEST_OVERFLOWS_TYPE(__overflows_type_constexpr, t1, __t2, of);\
++} while (0)
+
+-:388: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't1' - possible side-effects?
+#388: FILE: lib/overflow_kunit.c:928:
++#define TEST_SAME_TYPE(t1, t2, same)			do {	\
++	typeof(t1) __t1h = type_max(t1);			\
++	typeof(t1) __t1l = type_min(t1);			\
++	typeof(t2) __t2h = type_max(t2);			\
++	typeof(t2) __t2l = type_min(t2);			\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
++} while (0)
+
+-:388: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't2' - possible side-effects?
+#388: FILE: lib/overflow_kunit.c:928:
++#define TEST_SAME_TYPE(t1, t2, same)			do {	\
++	typeof(t1) __t1h = type_max(t1);			\
++	typeof(t1) __t1l = type_min(t1);			\
++	typeof(t2) __t2h = type_max(t2);			\
++	typeof(t2) __t2l = type_min(t2);			\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
++} while (0)
+
+-:388: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'same' - possible side-effects?
+#388: FILE: lib/overflow_kunit.c:928:
++#define TEST_SAME_TYPE(t1, t2, same)			do {	\
++	typeof(t1) __t1h = type_max(t1);			\
++	typeof(t1) __t1l = type_min(t1);			\
++	typeof(t2) __t2h = type_max(t2);			\
++	typeof(t2) __t2l = type_min(t2);			\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t1, __t1l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1h, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t1l, t1));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2h));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(t2, __t2l));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2h, t2));	\
++	KUNIT_EXPECT_EQ(test, true, __same_type(__t2l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t2, __t1l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1h, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t1l, t2));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2h));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(t1, __t2l));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2h, t1));	\
++	KUNIT_EXPECT_EQ(test, same, __same_type(__t2l, t1));	\
++} while (0)
+
+-:418: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'base' - possible side-effects?
+#418: FILE: lib/overflow_kunit.c:958:
++#define TEST_TYPE_SETS(base, mu8, mu16, mu32, ms8, ms16, ms32, mu64, ms64) \
++do {									\
++	TEST_SAME_TYPE(base,  u8,  mu8);				\
++	TEST_SAME_TYPE(base, u16, mu16);				\
++	TEST_SAME_TYPE(base, u32, mu32);				\
++	TEST_SAME_TYPE(base,  s8,  ms8);				\
++	TEST_SAME_TYPE(base, s16, ms16);				\
++	TEST_SAME_TYPE(base, s32, ms32);				\
++	TEST_SAME_TYPE64(base, u64, mu64);				\
++	TEST_SAME_TYPE64(base, s64, ms64);				\
++} while (0)
+
+-:462: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pass' - possible side-effects?
+#462: FILE: lib/overflow_kunit.c:1002:
++#define TEST_CASTABLE_TO_TYPE(arg1, arg2, pass)	do {	\
++	bool __pass = castable_to_type(arg1, arg2);		\
++	KUNIT_EXPECT_EQ_MSG(test, __pass, pass,			\
++		"expected castable_to_type(" #arg1 ", " #arg2 ") to%s pass\n",\
++		pass ? "" : " not");				\
++	count++;						\
++} while (0)
+
+total: 0 errors, 0 warnings, 19 checks, 490 lines checked
+
+
