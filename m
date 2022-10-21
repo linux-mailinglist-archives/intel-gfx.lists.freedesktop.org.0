@@ -1,49 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B20607DA6
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 19:38:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F03607DA5
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Oct 2022 19:38:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1038910E632;
-	Fri, 21 Oct 2022 17:38:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B00910E608;
+	Fri, 21 Oct 2022 17:38:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BCA910E5E2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49C9E10E608
  for <intel-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 17:37:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1666373853; x=1697909853;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=nXc0vYC1/TsI9d3WB/pomqPe3eANMwrB31/wm81k10o=;
- b=D/BCliiuD2h/OtxRE8xJvPNvjUFa7pN+iu0GikiDMJhZSfwbeMP6srF6
- xPNTOo/RS3nHv1gL5siG/Y2Hl7ns6JeYgkwBA5HMCSMndTQIlYCXvA4Ej
- YJvSco7ynC8WOihWj0FOsyUkg2DFfZz3+YHULaAaYXrHSj4QJLtndjwuj
- IhrKsHoAXgeOF2jg2/RLlJq0pAaWgplt8VLBFLFNFRLrCn7kK6m4Bxjp3
- slyDhTGbZR9NvviD6n0BlTHCxEWVv9oL6DXJPNymLU98FdsKd1pkJVq1t
- PU2AGksESgHYErfIzJfG2fhqylQ/RItKrdCOxwF84jqSn+vtIh4nIZ6wA g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="286781668"
-X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="286781668"
+ bh=rSprZE9eNs94Z3YcoX8Ho/Xh7ab7BHI2/oQC8tgG2EQ=;
+ b=GjNexMtgTMjlV7/AjbRwM+C8JHIBg2rY/gXO892H5OXydvI2K5kvTiXa
+ +bCMdV8TTZehnkDADL0P5kSSxFGWNBMzf0tkYHkKl4K4tWzCoyGLM35k9
+ fBfb9oSxdNNmf0fM/YCYpPtE7BTB5fY9E0mIqZAKqiFuPlCc90mestDds
+ Orig/mTSiZEwrSQGdykXjyezbxuc7+sXyGpYcYg81KatVH2midaKvGS2b
+ GnfKaHfHS6SuDNzFuySwTQQoFZFmMxH6eP8Lz8HoG+5+ZSR3QsxrXWfWY
+ tEIEGRrqePPxX7oPXXqR/1JvjMQvUtaUba/oZhfS9gX+rYRIqaom70Izv w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="286781669"
+X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="286781669"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2022 10:37:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="755898790"
-X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="755898790"
+X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="755898791"
+X-IronPort-AV: E=Sophos;i="5.95,202,1661842800"; d="scan'208";a="755898791"
 Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
  by orsmga004.jf.intel.com with ESMTP; 21 Oct 2022 10:37:32 -0700
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 21 Oct 2022 10:39:45 -0700
-Message-Id: <20221021173946.366210-6-alan.previn.teres.alexis@intel.com>
+Date: Fri, 21 Oct 2022 10:39:46 -0700
+Message-Id: <20221021173946.366210-7-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221021173946.366210-1-alan.previn.teres.alexis@intel.com>
 References: <20221021173946.366210-1-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 5/6] drm/i915/pxp: Make intel_pxp_start
+Subject: [Intel-gfx] [PATCH v3 6/6] drm/i915/pxp: Make intel_pxp_key_check
  implicitly sort PXP-owning-GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,68 +60,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make intel_pxp_is_start implicitly find the PXP-owning-GT.
+Make intel_pxp_key_check implicitly find the PXP-owning-GT.
 Callers of this function shall now pass in i915 since PXP
-is a global GPU feature. Make intel_pxp_start implicitly
-find the right gt to start PXP arb session so
-it's transparent to the callers.
+is a global GPU feature. Make intel_pxp_key_check implicitly
+find the right gt to verify pxp session key establishment count
+so it's transparent to the callers.
 
 Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 2 +-
- drivers/gpu/drm/i915/pxp/intel_pxp.c        | 9 ++++++++-
- drivers/gpu/drm/i915/pxp/intel_pxp.h        | 2 +-
- 3 files changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp.c               | 10 +++++++++-
+ drivers/gpu/drm/i915/pxp/intel_pxp.h               |  2 +-
+ 4 files changed, 12 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 798e77398acc..af60f6494947 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -272,7 +272,7 @@ static int proto_context_set_protected(struct drm_i915_private *i915,
- 		pc->pxp_wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 7cb713043408..04e78acbaf5f 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1841,7 +1841,7 @@ static bool bo_has_valid_encryption(struct drm_i915_gem_object *obj)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
  
- 		if (!intel_pxp_is_active(i915))
--			ret = intel_pxp_start(&to_gt(i915)->pxp);
-+			ret = intel_pxp_start(i915);
- 	}
+-	return intel_pxp_key_check(&to_gt(i915)->pxp, obj, false) == 0;
++	return intel_pxp_key_check(i915, obj, false) == 0;
+ }
  
- 	return ret;
+ static bool pxp_is_borked(struct drm_i915_gem_object *obj)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 1160723c9d2d..23224977e003 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -868,7 +868,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+ 		 */
+ 		if (i915_gem_context_uses_protected_content(eb->gem_context) &&
+ 		    i915_gem_object_is_protected(obj)) {
+-			err = intel_pxp_key_check(&vm->gt->pxp, obj, true);
++			err = intel_pxp_key_check(vm->gt->i915, obj, true);
+ 			if (err) {
+ 				i915_gem_object_put(obj);
+ 				return ERR_PTR(err);
 diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 2c835c38c527..c87f812ba13a 100644
+index c87f812ba13a..5c9a4b2c9a75 100644
 --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
 +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -259,10 +259,17 @@ static bool pxp_component_bound(struct intel_pxp *pxp)
-  * the arb session is restarted from the irq work when we receive the
-  * termination completion interrupt
-  */
--int intel_pxp_start(struct intel_pxp *pxp)
-+int intel_pxp_start(struct drm_i915_private *i915)
+@@ -313,10 +313,18 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp)
+ 	intel_pxp_irq_disable(pxp);
+ }
+ 
+-int intel_pxp_key_check(struct intel_pxp *pxp,
++int intel_pxp_key_check(struct drm_i915_private *i915,
+ 			struct drm_i915_gem_object *obj,
+ 			bool assign)
  {
 +	struct intel_gt *gt = intel_pxp_get_owning_gt(i915);
 +	struct intel_pxp *pxp;
- 	int ret = 0;
- 
++
 +	if (!gt)
 +		return -ENODEV;
 +
 +	pxp = &gt->pxp;
 +
- 	if (!intel_gtpxp_is_enabled(pxp))
+ 	if (!intel_gtpxp_is_active(pxp))
  		return -ENODEV;
  
 diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-index 7d93055cdd6b..c45949bb1f7b 100644
+index c45949bb1f7b..85c5499daba5 100644
 --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
 +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-@@ -31,7 +31,7 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp);
+@@ -33,7 +33,7 @@ void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);
  
- void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);
+ int intel_pxp_start(struct drm_i915_private *i915);
  
--int intel_pxp_start(struct intel_pxp *pxp);
-+int intel_pxp_start(struct drm_i915_private *i915);
- 
- int intel_pxp_key_check(struct intel_pxp *pxp,
+-int intel_pxp_key_check(struct intel_pxp *pxp,
++int intel_pxp_key_check(struct drm_i915_private *i915,
  			struct drm_i915_gem_object *obj,
+ 			bool assign);
+ 
 -- 
 2.34.1
 
