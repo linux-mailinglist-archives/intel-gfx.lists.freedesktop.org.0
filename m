@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6535C6082D6
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Oct 2022 02:25:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 979AA6082D3
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Oct 2022 02:25:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60C2810E68B;
-	Sat, 22 Oct 2022 00:25:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D10E210E682;
+	Sat, 22 Oct 2022 00:25:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52E7710E688;
- Sat, 22 Oct 2022 00:25:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666398333; x=1697934333;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Z1UilT44Yjelz3Tc3wyWL9hS8/jkr7z5/uqckIKNdpc=;
- b=X+TOmGuN0V92OjK90S5j1EA5T+9GNqoMJhLD3OrDr6OTLfAcZCFbCjkF
- yVBuK5UbnwTjS01IWD488KiqA8W3ANcTwy9FwB1017Gx+GIm8W5kGHkmt
- ZvZotkFfKSUeMM6LD+G4PTDeYIZRiM+r+oC2sobO81nQPAvRQIS7+Uu+D
- jEjZMCdpWB/KDzDwNpm4wlmZhiI8WwXewerSSKIPEdKDViHYSV4d2Hi62
- K8AdOPCWt+zrfKJ7TTtHzMYaObDOsKyc1sNpiYSSe6w5Ogh7E+jSRoU+C
- lHUL1rbK1hBK9le95HA0Uyw8OrfSrfBJp6ZHcj6+YyNvEWT02u3W2g9YR w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="294533932"
-X-IronPort-AV: E=Sophos;i="5.95,203,1661842800"; d="scan'208";a="294533932"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 17:25:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="608576062"
-X-IronPort-AV: E=Sophos;i="5.95,203,1661842800"; d="scan'208";a="608576062"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga006.jf.intel.com with ESMTP; 21 Oct 2022 17:25:31 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 21 Oct 2022 17:24:52 -0700
-Message-Id: <20221022002452.36716-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.35.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D855710E687;
+ Sat, 22 Oct 2022 00:25:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8FE68AAA91;
+ Sat, 22 Oct 2022 00:25:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4] drm/i915/slpc: Optmize waitboost for SLPC
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Sat, 22 Oct 2022 00:25:08 -0000
+Message-ID: <166639830855.27175.18115095967423815850@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221022001008.2340224-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20221022001008.2340224-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_prepare_for_uC_loading_on_MTL_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,46 +40,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Waitboost (when SLPC is enabled) results in a H2G message. This can result
-in thousands of messages during a stress test and fill up an already full
-CTB. There is no need to request for RP0 if boost_freq and the min softlimit
-are the same.
+== Series Details ==
 
-v2: Add the tracing back, and check requested freq
-in the worker thread (Tvrtko)
-v3: Check requested freq in dec_waiters as well
-v4: Only check min_softlimit against boost_freq. Limit this
-optimization for server parts for now.
+Series: drm/i915: prepare for uC loading on MTL (rev3)
+URL   : https://patchwork.freedesktop.org/series/108925/
+State : warning
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rps.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index fc23c562d9b2..32e1f5dde5bb 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1016,9 +1016,15 @@ void intel_rps_boost(struct i915_request *rq)
- 		if (rps_uses_slpc(rps)) {
- 			slpc = rps_to_slpc(rps);
- 
-+			if (slpc->min_freq_softlimit == slpc->boost_freq)
-+				return;
-+
- 			/* Return if old value is non zero */
--			if (!atomic_fetch_inc(&slpc->num_waiters))
-+			if (!atomic_fetch_inc(&slpc->num_waiters)) {
-+				GT_TRACE(rps_to_gt(rps), "boost fence:%llx:%llx\n",
-+					 rq->fence.context, rq->fence.seqno);
- 				schedule_work(&slpc->boost_work);
-+			}
- 
- 			return;
- 		}
--- 
-2.35.1
+Error: dim checkpatch failed
+23e8682ebaac drm/i915/huc: only load HuC on GTs that have VCS engines
+-:44: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#44: FILE: drivers/gpu/drm/i915/gt/uc/intel_huc.c:227:
++	GEM_BUG_ON(!gt_is_root(gt) && !gt->info.engine_mask);
+
+total: 0 errors, 1 warnings, 0 checks, 59 lines checked
+6b61c31bc0cb drm/i915/uc: fetch uc firmwares for each GT
+2d8333af5c59 drm/i915/uc: use different ggtt pin offsets for uc loads
+-:65: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#65: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:704:
++	GEM_BUG_ON(gt->type == GT_MEDIA && gt->info.id > 1);
+
+-:72: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#72: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:711:
++	GEM_BUG_ON(offset + uc_fw->obj->base.size > node->size);
+
+-:73: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#73: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:712:
++	GEM_BUG_ON(uc_fw->obj->base.size > INTEL_UC_RSVD_GGTT_PER_FW);
+
+total: 0 errors, 3 warnings, 0 checks, 82 lines checked
+8f6233999615 drm/i915/guc: Add GuC deprivilege feature to MTL
+2800bc01d08e drm/i915/mtl: Handle wopcm per-GT and limit calculations.
+-:136: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#136: 
+rename from drivers/gpu/drm/i915/intel_wopcm.c
+
+-:306: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#306: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:567:
++	GEM_BUG_ON(!gt->wopcm.size);
+
+total: 0 errors, 2 warnings, 0 checks, 245 lines checked
+f7c0098d5ad0 drm/i915/guc: define media GT GuC send regs
+7d959f9adaa8 drm/i915/guc: handle interrupts from media GuC
+
 
