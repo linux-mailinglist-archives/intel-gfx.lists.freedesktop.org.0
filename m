@@ -1,34 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84328608234
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Oct 2022 01:49:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 744186082B0
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Oct 2022 02:08:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC01A10E1A6;
-	Fri, 21 Oct 2022 23:48:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 767E810E30B;
+	Sat, 22 Oct 2022 00:07:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A0AC310E1A6;
- Fri, 21 Oct 2022 23:48:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9925BA0BCB;
- Fri, 21 Oct 2022 23:48:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 236E410E30B;
+ Sat, 22 Oct 2022 00:07:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666397265; x=1697933265;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/bdPB5uiZtNYI8N2XHemcivjgD8CajWvhlkcVy7rtnI=;
+ b=W6nnwtwlMSUobDovEWrQ7ZnguFeU2woLYFXZn3S+P8P/3OehKn+HoMeb
+ xA34CB2C3Zj/9qg4748VwK++dwczh/L0gW1mPgo6EEHXOEfcWQ86BUlRh
+ Eq4t0yoXvl57Ia4SoKdKavxHgtdGqYPBjFNfTQYRv6jURTnolE664yA0x
+ la/bWOsZNkxi0yeg0/a55CJGr2DfZjmbwTEhOssvHy0JV08ZInD9WjXvV
+ 8fE8iztPjl+BYBw3Hn3z8w/DfLHvlFF1OoXH4P22flNCGh81PuCT+m5rh
+ EoPfF+0xZtTy7fB2htxHkjWa1EEmufDvi7gIdsiMlmIK74joEuzW0uWSd g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="371354913"
+X-IronPort-AV: E=Sophos;i="5.95,203,1661842800"; d="scan'208";a="371354913"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2022 17:07:44 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10507"; a="693917180"
+X-IronPort-AV: E=Sophos;i="5.95,203,1661842800"; d="scan'208";a="693917180"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2022 17:07:43 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 21 Oct 2022 17:10:01 -0700
+Message-Id: <20221022001008.2340224-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Fri, 21 Oct 2022 23:48:50 -0000
-Message-ID: <166639613062.18264.16531857721174713222@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221021233912.468966-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20221021233912.468966-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/1=5D_drm/i915/pxp=3A_Separate_PXP_FW_i?=
- =?utf-8?q?nterface_structures_for_both_v42_and_43?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/7] drm/i915: prepare for uC loading on MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,27 +54,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The introduction of the media GT brings a few changes for GuC/HuC. The
+main difference between the 2 GTs is that only the media one has the
+HuC, while both have the GuC. Also, the fact that both GTs use the same
+G-unit and GGTT means we now have parallel interrupt/communication
+paths. Lastly, WOPCM is divided between the two GTs, with each having
+their own private chunk.
 
-Series: series starting with [1/1] drm/i915/pxp: Separate PXP FW interface structures for both v42 and 43
-URL   : https://patchwork.freedesktop.org/series/110013/
-State : failure
+v2: address review comments.
+v3: comment improvements, minor clean-up.
 
-== Summary ==
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/110013/revisions/1/mbox/ not applied
-Applying: drm/i915/pxp: Separate PXP FW interface structures for both v42 and 43
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/pxp/intel_pxp_tee.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/pxp: Separate PXP FW interface structures for both v42 and 43
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Aravind Iddamsetty (1):
+  drm/i915/mtl: Handle wopcm per-GT and limit calculations.
 
+Daniele Ceraolo Spurio (5):
+  drm/i915/huc: only load HuC on GTs that have VCS engines
+  drm/i915/uc: fetch uc firmwares for each GT
+  drm/i915/uc: use different ggtt pin offsets for uc loads
+  drm/i915/guc: define media GT GuC send regs
+  drm/i915/guc: handle interrupts from media GuC
+
+Stuart Summers (1):
+  drm/i915/guc: Add GuC deprivilege feature to MTL
+
+ Documentation/gpu/i915.rst                  |  2 +-
+ drivers/gpu/drm/i915/Makefile               |  5 ++-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c        |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c          |  1 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c      | 21 ++++++++--
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  2 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h    |  2 +
+ drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c | 44 ++++++++++++++------
+ drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h |  0
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c      | 43 +++++++++++--------
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h      |  5 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h  |  2 +
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c      | 29 +++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c       | 12 ++++--
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c    | 46 +++++++++++++++++----
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h    | 14 +++++++
+ drivers/gpu/drm/i915/i915_driver.c          |  2 -
+ drivers/gpu/drm/i915/i915_drv.h             | 12 +++---
+ drivers/gpu/drm/i915/i915_gem.c             |  6 ++-
+ drivers/gpu/drm/i915/i915_pci.c             |  1 +
+ 20 files changed, 189 insertions(+), 62 deletions(-)
+ rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c (87%)
+ rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h (100%)
+
+-- 
+2.37.3
 
