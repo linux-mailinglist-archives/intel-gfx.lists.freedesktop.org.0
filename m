@@ -1,50 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1DF460BD52
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 00:24:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4371860BDF7
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 00:55:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64C8010E081;
-	Mon, 24 Oct 2022 22:24:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D57F710E081;
+	Mon, 24 Oct 2022 22:55:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0F4310E0AE;
- Mon, 24 Oct 2022 22:24:16 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E16210E05E;
+ Mon, 24 Oct 2022 22:55:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666650256; x=1698186256;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iTC9bdF2DcYCY35t0SbX5g2wZya5NbilhvRMLCijzUM=;
- b=GYCi6DgdcB0FuFXgVxgo7dSWlXTKKJbfOtL1CcYwXKtY7pgRB+3DZdP7
- wXKhUnrJKEhoWyamTzIhLWz0VONU/xyNHc9r/hsWcWWrEs0TBwwo8Kjy2
- S3iamuNtvSJS3Nb1yE2iOZI6mglYhLFxz1BqZIWW41nXwSkUnmdpSNfSd
- CuoXxirHZLM57r3aasnv2sVtVyM6ajnkR0+9GHrX08xeMwcOCYjW7ap14
- R5nkJO/eWKbh7lsB/djYpsz8s1/9PCCKr9fTq/osuQAMxd2Ys/6jNAkUc
- Qgwivcq3L7xZ9ZmJ2ylsosBRAFl1MYEX3/ChKzcy50l0IrMxMUlmA2x5A w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="371751662"
-X-IronPort-AV: E=Sophos;i="5.95,210,1661842800"; d="scan'208";a="371751662"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 15:24:15 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="626216786"
-X-IronPort-AV: E=Sophos;i="5.95,210,1661842800"; d="scan'208";a="626216786"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 15:24:15 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Oct 2022 15:26:42 -0700
-Message-Id: <20221024222642.2377564-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221022001008.2340224-6-daniele.ceraolospurio@intel.com>
-References: <20221022001008.2340224-6-daniele.ceraolospurio@intel.com>
+ t=1666652125; x=1698188125;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1A3eKDsU3LhgqsTueV17cTFF9fwFU5tkguGLGKLnlKQ=;
+ b=AdzQc4x1hBa5mCtMOcX3MkHLKLrvgLKY5xK1MjzES9SAba7soq9GqUw1
+ nSEV3JPzm9LYMqzP48EPuW8GhJBD3zS2byafI3ZLlMU2e6uh1R8BcRyfp
+ N4AEeh6d7QGQ4FyYGv9+P0KW2rGlg/Dbhy5MRLOoggGsY2Mor+VzEMHq3
+ jUWCXv8VKWZXaqmBC6l3S65GDptpETDIgVMXZzFcniGcox7co+9ga6MNn
+ kHsxWCkWXit965JjRggfUvURi6J6OMyGuNrKcJpYrz/KLI9SdjC65O4On
+ O4d63+WqQpZYRM8PVDTP1+nF7UBGltMBHf2WRAbGcknViOH61wmSR8hS4 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="307532215"
+X-IronPort-AV: E=Sophos;i="5.95,210,1661842800"; d="scan'208";a="307532215"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 15:55:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="609362912"
+X-IronPort-AV: E=Sophos;i="5.95,210,1661842800"; d="scan'208";a="609362912"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by orsmga006.jf.intel.com with ESMTP; 24 Oct 2022 15:55:23 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon, 24 Oct 2022 15:54:53 -0700
+Message-Id: <20221024225453.4856-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Handle wopcm per-GT and limit
- calculations.
+Subject: [Intel-gfx] [PATCH v4] drm/i915/slpc: Use platform limits for
+ min/max frequency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,364 +56,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+GuC will set the min/max frequencies to theoretical max on
+ATS-M. This will break kernel ABI, so limit min/max frequency
+to RP0(platform max) instead.
 
-With MTL standalone media architecture the wopcm layout has changed,
-with separate partitioning in WOPCM for the root GT GuC and the media
-GT GuC. The size of WOPCM is 4MB with the lower 2MB reserved for the
-media GT and the upper 2MB for the root GT.
+Also modify the SLPC selftest to update the min frequency
+when we have a server part so that we can iterate between
+platform min and max.
 
-Given that MTL has GuC deprivilege, the WOPCM registers are pre-locked
-by the bios. Therefore, we can skip all the math for the partitioning
-and just limit ourselves to sanity-checking the values.
+v2: Check softlimits instead of platform limits (Riana)
+v3: More review comments (Ashutosh)
+v4: No need to use saved_min_freq and other comments (Ashutosh)
 
-v2: fix makefile file ordering (Jani)
-v3: drop XELPM_SAMEDIA_WOPCM_SIZE, check huc instead of VDBOX (John)
-v4: further clarify commit message, remove blank line (John)
+Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7030
 
-Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: John Harrison <john.c.harrison@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- Documentation/gpu/i915.rst                  |  2 +-
- drivers/gpu/drm/i915/Makefile               |  5 ++-
- drivers/gpu/drm/i915/gt/intel_ggtt.c        |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c          |  1 +
- drivers/gpu/drm/i915/gt/intel_gt_types.h    |  2 +
- drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c | 43 ++++++++++++++-------
- drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h |  0
- drivers/gpu/drm/i915/gt/uc/intel_uc.c       |  4 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c    | 14 ++++---
- drivers/gpu/drm/i915/i915_driver.c          |  2 -
- drivers/gpu/drm/i915/i915_drv.h             |  3 --
- drivers/gpu/drm/i915/i915_gem.c             |  5 ++-
- 12 files changed, 51 insertions(+), 32 deletions(-)
- rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c (87%)
- rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h (100%)
+ drivers/gpu/drm/i915/gt/selftest_slpc.c       | 20 +++++-----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 37 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |  2 +
+ .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |  3 ++
+ 4 files changed, 53 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-index 4e59db1cfb00..60ea21734902 100644
---- a/Documentation/gpu/i915.rst
-+++ b/Documentation/gpu/i915.rst
-@@ -494,7 +494,7 @@ WOPCM
- WOPCM Layout
- ~~~~~~~~~~~~
+diff --git a/drivers/gpu/drm/i915/gt/selftest_slpc.c b/drivers/gpu/drm/i915/gt/selftest_slpc.c
+index 4c6e9257e593..82ec95a299f6 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_slpc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_slpc.c
+@@ -239,6 +239,11 @@ static int run_test(struct intel_gt *gt, int test_type)
+ 	if (!intel_uc_uses_guc_slpc(&gt->uc))
+ 		return 0;
  
--.. kernel-doc:: drivers/gpu/drm/i915/intel_wopcm.c
-+.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_wopcm.c
-    :doc: WOPCM Layout
- 
- GuC
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 2535593ab379..cf3a96b3cd58 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -127,9 +127,11 @@ gt-y += \
- 	gt/intel_sseu.o \
- 	gt/intel_sseu_debugfs.o \
- 	gt/intel_timeline.o \
-+	gt/intel_wopcm.o \
- 	gt/intel_workarounds.o \
- 	gt/shmem_utils.o \
- 	gt/sysfs_engines.o
-+
- # x86 intel-gtt module support
- gt-$(CONFIG_X86) += gt/intel_ggtt_gmch.o
- # autogenerated null render state
-@@ -183,8 +185,7 @@ i915-y += \
- 	  i915_trace_points.o \
- 	  i915_ttm_buddy_manager.o \
- 	  i915_vma.o \
--	  i915_vma_resource.o \
--	  intel_wopcm.o
-+	  i915_vma_resource.o
- 
- # general-purpose microcontroller (GuC) support
- i915-y += gt/uc/intel_uc.o \
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 6b58c95ad6a0..9263f10ecd28 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -560,7 +560,7 @@ static int init_ggtt(struct i915_ggtt *ggtt)
- 	 * why.
- 	 */
- 	ggtt->pin_bias = max_t(u32, I915_GTT_PAGE_SIZE,
--			       intel_wopcm_guc_size(&ggtt->vm.i915->wopcm));
-+			       intel_wopcm_guc_size(&ggtt->vm.gt->wopcm));
- 
- 	ret = intel_vgt_balloon(ggtt);
- 	if (ret)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 27dbb9e4bd6c..8c751314df3d 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -56,6 +56,7 @@ void intel_gt_common_init_early(struct intel_gt *gt)
- 	seqcount_mutex_init(&gt->tlb.seqno, &gt->tlb.invalidate_lock);
- 	intel_gt_pm_init_early(gt);
- 
-+	intel_wopcm_init_early(&gt->wopcm);
- 	intel_uc_init_early(&gt->uc);
- 	intel_rps_init_early(&gt->rps);
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index 64aa2ba624fc..2d18fd9ab11f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -30,6 +30,7 @@
- #include "intel_migrate_types.h"
- #include "intel_wakeref.h"
- #include "pxp/intel_pxp_types.h"
-+#include "intel_wopcm.h"
- 
- struct drm_i915_private;
- struct i915_ggtt;
-@@ -100,6 +101,7 @@ struct intel_gt {
- 
- 	struct intel_uc uc;
- 	struct intel_gsc gsc;
-+	struct intel_wopcm wopcm;
- 
- 	struct {
- 		/* Serialize global tlb invalidations */
-diff --git a/drivers/gpu/drm/i915/intel_wopcm.c b/drivers/gpu/drm/i915/gt/intel_wopcm.c
-similarity index 87%
-rename from drivers/gpu/drm/i915/intel_wopcm.c
-rename to drivers/gpu/drm/i915/gt/intel_wopcm.c
-index 322fb9eeb880..7ebbcc191c2d 100644
---- a/drivers/gpu/drm/i915/intel_wopcm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_wopcm.c
-@@ -64,9 +64,9 @@
- #define GEN9_GUC_FW_RESERVED	SZ_128K
- #define GEN9_GUC_WOPCM_OFFSET	(GUC_WOPCM_RESERVED + GEN9_GUC_FW_RESERVED)
- 
--static inline struct drm_i915_private *wopcm_to_i915(struct intel_wopcm *wopcm)
-+static inline struct intel_gt *wopcm_to_gt(struct intel_wopcm *wopcm)
- {
--	return container_of(wopcm, struct drm_i915_private, wopcm);
-+	return container_of(wopcm, struct intel_gt, wopcm);
- }
- 
- /**
-@@ -77,7 +77,8 @@ static inline struct drm_i915_private *wopcm_to_i915(struct intel_wopcm *wopcm)
-  */
- void intel_wopcm_init_early(struct intel_wopcm *wopcm)
- {
--	struct drm_i915_private *i915 = wopcm_to_i915(wopcm);
-+	struct intel_gt *gt = wopcm_to_gt(wopcm);
-+	struct drm_i915_private *i915 = gt->i915;
- 
- 	if (!HAS_GT_UC(i915))
- 		return;
-@@ -157,10 +158,11 @@ static bool check_hw_restrictions(struct drm_i915_private *i915,
- 	return true;
- }
- 
--static bool __check_layout(struct drm_i915_private *i915, u32 wopcm_size,
-+static bool __check_layout(struct intel_gt *gt, u32 wopcm_size,
- 			   u32 guc_wopcm_base, u32 guc_wopcm_size,
- 			   u32 guc_fw_size, u32 huc_fw_size)
- {
-+	struct drm_i915_private *i915 = gt->i915;
- 	const u32 ctx_rsvd = context_reserved_size(i915);
- 	u32 size;
- 
-@@ -181,12 +183,14 @@ static bool __check_layout(struct drm_i915_private *i915, u32 wopcm_size,
- 		return false;
- 	}
- 
--	size = huc_fw_size + WOPCM_RESERVED_SIZE;
--	if (unlikely(guc_wopcm_base < size)) {
--		drm_err(&i915->drm, "WOPCM: no space for %s: %uK < %uK\n",
--			intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
--			guc_wopcm_base / SZ_1K, size / SZ_1K);
--		return false;
-+	if (intel_uc_supports_huc(&gt->uc)) {
-+		size = huc_fw_size + WOPCM_RESERVED_SIZE;
-+		if (unlikely(guc_wopcm_base < size)) {
-+			drm_err(&i915->drm, "WOPCM: no space for %s: %uK < %uK\n",
-+				intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
-+				guc_wopcm_base / SZ_1K, size / SZ_1K);
-+			return false;
-+		}
- 	}
- 
- 	return check_hw_restrictions(i915, guc_wopcm_base, guc_wopcm_size,
-@@ -228,8 +232,8 @@ static bool __wopcm_regs_writable(struct intel_uncore *uncore)
-  */
- void intel_wopcm_init(struct intel_wopcm *wopcm)
- {
--	struct drm_i915_private *i915 = wopcm_to_i915(wopcm);
--	struct intel_gt *gt = to_gt(i915);
-+	struct intel_gt *gt = wopcm_to_gt(wopcm);
-+	struct drm_i915_private *i915 = gt->i915;
- 	u32 guc_fw_size = intel_uc_fw_get_upload_size(&gt->uc.guc.fw);
- 	u32 huc_fw_size = intel_uc_fw_get_upload_size(&gt->uc.huc.fw);
- 	u32 ctx_rsvd = context_reserved_size(i915);
-@@ -274,6 +278,19 @@ void intel_wopcm_init(struct intel_wopcm *wopcm)
- 		goto check;
- 	}
- 
-+	/*
-+	 * On platforms with a media GT, the WOPCM is partitioned between the
-+	 * two GTs, so we would have to take that into account when doing the
-+	 * math below. There is also a new section reserved for the GSC context
-+	 * that would have to be factored in. However, all platforms with a
-+	 * media GT also have GuC depriv enabled, so the WOPCM regs are
-+	 * pre-locked and therefore we don't have to do the math ourselves.
-+	 */
-+	if (unlikely(i915->media_gt)) {
-+		drm_err(&i915->drm, "Unlocked WOPCM regs with media GT\n");
-+		return;
++	if (slpc->min_freq == slpc->rp0_freq) {
++		pr_err("Min/Max are fused to the same value\n");
++		return -EINVAL;
 +	}
 +
- 	/*
- 	 * Aligned value of guc_wopcm_base will determine available WOPCM space
- 	 * for HuC firmware and mandatory reserved area.
-@@ -295,7 +312,7 @@ void intel_wopcm_init(struct intel_wopcm *wopcm)
- 		guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K);
+ 	if (igt_spinner_init(&spin, gt))
+ 		return -ENOMEM;
  
- check:
--	if (__check_layout(i915, wopcm_size, guc_wopcm_base, guc_wopcm_size,
-+	if (__check_layout(gt, wopcm_size, guc_wopcm_base, guc_wopcm_size,
- 			   guc_fw_size, huc_fw_size)) {
- 		wopcm->guc.base = guc_wopcm_base;
- 		wopcm->guc.size = guc_wopcm_size;
-diff --git a/drivers/gpu/drm/i915/intel_wopcm.h b/drivers/gpu/drm/i915/gt/intel_wopcm.h
-similarity index 100%
-rename from drivers/gpu/drm/i915/intel_wopcm.h
-rename to drivers/gpu/drm/i915/gt/intel_wopcm.h
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index dbd048b77e19..4cd8a787f9e5 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -357,8 +357,8 @@ static int uc_init_wopcm(struct intel_uc *uc)
- {
- 	struct intel_gt *gt = uc_to_gt(uc);
- 	struct intel_uncore *uncore = gt->uncore;
--	u32 base = intel_wopcm_guc_base(&gt->i915->wopcm);
--	u32 size = intel_wopcm_guc_size(&gt->i915->wopcm);
-+	u32 base = intel_wopcm_guc_base(&gt->wopcm);
-+	u32 size = intel_wopcm_guc_size(&gt->wopcm);
- 	u32 huc_agent = intel_uc_uses_huc(uc) ? HUC_LOADING_AGENT_GUC : 0;
- 	u32 mask;
- 	int err;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index 81e06d71c1a8..0c80ba51a4bd 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -478,10 +478,11 @@ static int check_gsc_manifest(const struct firmware *fw,
+@@ -253,17 +258,14 @@ static int run_test(struct intel_gt *gt, int test_type)
+ 	}
+ 
+ 	/*
+-	 * FIXME: With efficient frequency enabled, GuC can request
+-	 * frequencies higher than the SLPC max. While this is fixed
+-	 * in GuC, we level set these tests with RPn as min.
++	 * Set min frequency to RPn so that we can test the whole
++	 * range of RPn-RP0. This also turns off efficient freq
++	 * usage and makes results more predictable.
+ 	 */
+ 	err = slpc_set_min_freq(slpc, slpc->min_freq);
+-	if (err)
++	if (err) {
++		pr_err("Unable to update min freq!");
+ 		return err;
+-
+-	if (slpc->min_freq == slpc->rp0_freq) {
+-		pr_err("Min/Max are fused to the same value\n");
+-		return -EINVAL;
+ 	}
+ 
+ 	intel_gt_pm_wait_for_idle(gt);
+@@ -330,7 +332,7 @@ static int run_test(struct intel_gt *gt, int test_type)
+ 				engine->name, max_act_freq);
+ 
+ 			/* Actual frequency should rise above min */
+-			if (max_act_freq <= slpc_min_freq) {
++			if (max_act_freq <= slpc->min_freq) {
+ 				pr_err("Actual freq did not rise above min\n");
+ 				pr_err("Perf Limit Reasons: 0x%x\n",
+ 				       intel_uncore_read(gt->uncore, GT0_PERF_LIMIT_REASONS));
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index fdd895f73f9f..c7e568af1e9c 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -263,6 +263,7 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
+ 
+ 	slpc->max_freq_softlimit = 0;
+ 	slpc->min_freq_softlimit = 0;
++	slpc->min_is_rpmax = false;
+ 
+ 	slpc->boost_freq = 0;
+ 	atomic_set(&slpc->num_waiters, 0);
+@@ -588,6 +589,39 @@ static int slpc_set_softlimits(struct intel_guc_slpc *slpc)
  	return 0;
  }
  
--static int check_ccs_header(struct drm_i915_private *i915,
-+static int check_ccs_header(struct intel_gt *gt,
- 			    const struct firmware *fw,
- 			    struct intel_uc_fw *uc_fw)
- {
-+	struct drm_i915_private *i915 = gt->i915;
- 	struct uc_css_header *css;
- 	size_t size;
- 
-@@ -523,10 +524,10 @@ static int check_ccs_header(struct drm_i915_private *i915,
- 
- 	/* Sanity check whether this fw is not larger than whole WOPCM memory */
- 	size = __intel_uc_fw_get_upload_size(uc_fw);
--	if (unlikely(size >= i915->wopcm.size)) {
-+	if (unlikely(size >= gt->wopcm.size)) {
- 		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu > %zu\n",
- 			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
--			 size, (size_t)i915->wopcm.size);
-+			 size, (size_t)gt->wopcm.size);
- 		return -E2BIG;
- 	}
- 
-@@ -554,7 +555,8 @@ static int check_ccs_header(struct drm_i915_private *i915,
-  */
- int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- {
--	struct drm_i915_private *i915 = __uc_fw_to_gt(uc_fw)->i915;
-+	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
-+	struct drm_i915_private *i915 = gt->i915;
- 	struct intel_uc_fw_file file_ideal;
- 	struct device *dev = i915->drm.dev;
- 	struct drm_i915_gem_object *obj;
-@@ -562,7 +564,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 	bool old_ver = false;
- 	int err;
- 
--	GEM_BUG_ON(!i915->wopcm.size);
-+	GEM_BUG_ON(!gt->wopcm.size);
- 	GEM_BUG_ON(!intel_uc_fw_is_enabled(uc_fw));
- 
- 	err = i915_inject_probe_error(i915, -ENXIO);
-@@ -615,7 +617,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
- 	if (uc_fw->loaded_via_gsc)
- 		err = check_gsc_manifest(fw, uc_fw);
- 	else
--		err = check_ccs_header(i915, fw, uc_fw);
-+		err = check_ccs_header(gt, fw, uc_fw);
- 	if (err)
- 		goto fail;
- 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index ffff49868dc5..ba4b71aedc40 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -371,8 +371,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	if (ret)
- 		goto err_ttm;
- 
--	intel_wopcm_init_early(&dev_priv->wopcm);
--
- 	ret = intel_root_gt_init_early(dev_priv);
- 	if (ret < 0)
- 		goto err_rootgt;
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 9453fdd4205f..66aa2cd9aefe 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -62,7 +62,6 @@
- #include "intel_runtime_pm.h"
- #include "intel_step.h"
- #include "intel_uncore.h"
--#include "intel_wopcm.h"
- 
- struct drm_i915_clock_gating_funcs;
- struct drm_i915_gem_object;
-@@ -235,8 +234,6 @@ struct drm_i915_private {
- 
- 	struct intel_gvt *gvt;
- 
--	struct intel_wopcm wopcm;
--
- 	struct pci_dev *bridge_dev;
- 
- 	struct rb_root uabi_engines;
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 9093d2be9e1c..7a9ce81600a0 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1140,9 +1140,10 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
- 	if (ret)
- 		return ret;
- 
--	for_each_gt(gt, dev_priv, i)
-+	for_each_gt(gt, dev_priv, i) {
- 		intel_uc_fetch_firmwares(&gt->uc);
--	intel_wopcm_init(&dev_priv->wopcm);
-+		intel_wopcm_init(&gt->wopcm);
++static bool is_slpc_min_freq_rpmax(struct intel_guc_slpc *slpc)
++{
++	struct drm_i915_private *i915 = slpc_to_i915(slpc);
++	int slpc_min_freq;
++	int ret;
++
++	ret = intel_guc_slpc_get_min_freq(slpc, &slpc_min_freq);
++	if (ret) {
++		drm_err(&i915->drm,
++			"Failed to get min freq: (%d)\n",
++			ret);
++		return false;
 +	}
++
++	if (slpc_min_freq == SLPC_MAX_FREQ_MHZ)
++		return true;
++	else
++		return false;
++}
++
++static void update_server_min_softlimit(struct intel_guc_slpc *slpc)
++{
++	/* For server parts, SLPC min will be at RPMax.
++	 * Use min softlimit to clamp it to RP0 instead.
++	 */
++	if (!slpc->min_freq_softlimit &&
++	    is_slpc_min_freq_rpmax(slpc)) {
++		slpc->min_is_rpmax = true;
++		slpc->min_freq_softlimit = slpc->rp0_freq;
++		(slpc_to_gt(slpc))->defaults.min_freq = slpc->min_freq_softlimit;
++	}
++}
++
+ static int slpc_use_fused_rp0(struct intel_guc_slpc *slpc)
+ {
+ 	/* Force SLPC to used platform rp0 */
+@@ -647,6 +681,9 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
  
- 	ret = i915_init_ggtt(dev_priv);
- 	if (ret) {
+ 	slpc_get_rp_values(slpc);
+ 
++	/* Handle the case where min=max=RPmax */
++	update_server_min_softlimit(slpc);
++
+ 	/* Set SLPC max limit to RP0 */
+ 	ret = slpc_use_fused_rp0(slpc);
+ 	if (unlikely(ret)) {
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+index 82a98f78f96c..11975a31c9d0 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+@@ -9,6 +9,8 @@
+ #include "intel_guc_submission.h"
+ #include "intel_guc_slpc_types.h"
+ 
++#define SLPC_MAX_FREQ_MHZ 4250
++
+ struct intel_gt;
+ struct drm_printer;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
+index 73d208123528..a6ef53b04e04 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
+@@ -19,6 +19,9 @@ struct intel_guc_slpc {
+ 	bool supported;
+ 	bool selected;
+ 
++	/* Indicates this is a server part */
++	bool min_is_rpmax;
++
+ 	/* platform frequency limits */
+ 	u32 min_freq;
+ 	u32 rp0_freq;
 -- 
-2.37.3
+2.35.1
 
