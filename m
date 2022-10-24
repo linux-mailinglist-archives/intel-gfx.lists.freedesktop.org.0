@@ -2,149 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC36460CD8B
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 15:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7739460CD8A
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 15:32:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F85110E148;
-	Tue, 25 Oct 2022 13:32:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C28E6897D4;
+	Tue, 25 Oct 2022 13:32:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A19010E822
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 15:08:49 +0000 (UTC)
-Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29OD4Iai005939;
- Mon, 24 Oct 2022 15:07:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-id : content-transfer-encoding : mime-version; s=corp-2022-7-12;
- bh=bLQwIHydo53434X0wQQ8/E7O8RAXBWJzojGMnULryrw=;
- b=2CKiocv5n4PFpNmmJ9c+bl+DuiDa0qDpC87+rxUlgY75YXzHJ3PruYI4ZB1mp1sNBnCW
- Xlz4Wx66x7eTWbq9X2HwdM84oBIdpcaf+d0LYV+zrJimS7C24bUkj9i/51L7rtO8XLjY
- oYBaqgCs8Y1jM6GIYb6gh1w40oQ5dkgPxNggPTOEk9nBY0g0eCk+aXwZHcRghdBn86cu
- ztxIDp75Qy8MYT9NgB9kzp1h57pHm4sVcTGIDlIubAl3UlP20yTOkMBNf0ag6GDK05PW
- Qj0ZiyhkZe7pmLCaYl+3pwNCczWWAT9ps30CgmpD2IFc0XbS+hPry7LV69pTmqCCYPkv Vg== 
-Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com
- (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3kc6xduu9w-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 24 Oct 2022 15:07:57 +0000
-Received: from pps.filterd
- (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
- by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.5/8.17.1.5)
- with ESMTP id 29OE6DbD012765; Mon, 24 Oct 2022 15:07:56 GMT
-Received: from nam11-dm6-obe.outbound.protection.outlook.com
- (mail-dm6nam11lp2169.outbound.protection.outlook.com [104.47.57.169])
- by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
- 3kc6y3pv4m-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 24 Oct 2022 15:07:56 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qp5QDi0mvjdofcS229xxgv4Xbed8EBRoCquaElpnqXASpMaaDPRmzd4Km7zrcjULwm1CHfwrlFyi88lPJgB9y9Yz3E9yGdbHIcUkqU7bdII49udDYWbQmtibv1Zb8EbMPtV+1xIgujsucY24e2rp09cU2392TwO0/Qq0rxz98okbVLFvuV+pcO8B7GTxCvK15B74F1CjLeTa3HsJ8Fhylt0ZQ1Zq1NyeX6SCTINIUGH0yoCZ0dBJnEvM5hjPmgrRR7l7ImyFlSBd4qev4SrDMq9ZpHtAmHPRf0X8cF4DCOaj5hmeYnH3WhoMQFNc4nuy+WlkqBiI0Ox54DRBgnMyfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bLQwIHydo53434X0wQQ8/E7O8RAXBWJzojGMnULryrw=;
- b=ImBy4euFiWRzYeL6f2bS0mjwbFDVgru2J99CxjJUxymDUdA9SgAUlG2sjheHt1QgkrlZPj73m9sCH8SgKMe2tiY+wG4U0jhDYIOVwNOlAlKMVW/FL+0T8JCBBWFpJWrRy5WdPYckA1KfR+2LOuUUHipr0f/q2zO5xcLU97GCXA6aWSaCyShx5a0jR8ERxOmH9WXg2EK+7cuRaLkFyCIUlIM7W5vk4SS1DpLYwc25YXb4GYYQ4zgO5JYhW8NzpRpbgzyboJhpZhWon7jnKuFCz/xD365p6rsPrjC8jUd6UaRVh2xn02xcQE4ecNlSVZkmRdv6EGf55+b+Ag0ZazrYHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bLQwIHydo53434X0wQQ8/E7O8RAXBWJzojGMnULryrw=;
- b=LQ03axoCI7JnuA+madV2U81BrJH4yUKcKPu09Gh5OnhXjgQ3PmL5wpGkD3ICZOoM7Z1/bLLMljKLSvrmob5nrH7rUKp7zqPrfaoncjtnJ5hsya6A5CC+Dw+d3GytNTw0YrAt5fQnRdHYAmRPK7y1pkCO2YME5/P+8Nd8ZYSwmgE=
-Received: from SN6PR10MB3022.namprd10.prod.outlook.com (2603:10b6:805:d8::25)
- by DS0PR10MB6054.namprd10.prod.outlook.com (2603:10b6:8:cd::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5723.35; Mon, 24 Oct 2022 15:07:54 +0000
-Received: from SN6PR10MB3022.namprd10.prod.outlook.com
- ([fe80::f378:f1d0:796a:55a1]) by SN6PR10MB3022.namprd10.prod.outlook.com
- ([fe80::f378:f1d0:796a:55a1%3]) with mapi id 15.20.5746.023; Mon, 24 Oct 2022
- 15:07:54 +0000
-From: Liam Howlett <liam.howlett@oracle.com>
-To: kernel test robot <oliver.sang@intel.com>
-Thread-Topic: [linus:master] [i915]  f683b9d613:
- igt.gem_userptr_blits.probe.fail
-Thread-Index: AQHY52ZPgWXQSVJFM0ahQR2v+R0nKa4dpeQA
-Date: Mon, 24 Oct 2022 15:07:54 +0000
-Message-ID: <20221024150734.zjo46njdblmykczj@revolver>
-References: <202210241246.68be2f11-oliver.sang@intel.com>
-In-Reply-To: <202210241246.68be2f11-oliver.sang@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN6PR10MB3022:EE_|DS0PR10MB6054:EE_
-x-ms-office365-filtering-correlation-id: 67d34217-405f-4e36-212e-08dab5d186fa
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CjJww7PyhGtT2hq+zwa5rftoX0nZeyLRu3HMtkEBY9RD6I9gxhAoUBNxYEq11ttWXs0QtTtt5G1uPFygwUUcIvEx7whJ4gkbhXQlOFHlc60pjheF0GUd0sV66WamMgtVbzOBQuEpSmGqDyEBRwqsKQvL9XVSwJM/TLXS/jGLCXivUpto+n/bHt2eqISb69L6ksQfRu93nKcmWZmus3yfEs0ugnIstPddGgGTx0d3ifqs8bQlFGDnhdlyTqmozMToBqmDHn2UU+CcXHi3CNgS9J3+yK/W7H3yc5UXjaPuzbBw5eexYGfda6Kn970r+63c5Cyalw4SegUJz9f6FDRDWz/qUTkeKwC4YfWNdoLYapQyfnMBXgcLt74NRje9QxPpSEquVP51ypXgpvqjxsZLtozWYrUvoRUgG73TJe9URPvf5M3weaptxdzjXu7gLtMzjZFyvhpCDuGAyYSUWPNWt0fg50Is9PxXOOMZTkJi/I2GJ+Nb8bzUfKAjJjUiyTfJWLxHtqJjvZ7xOqBP8pf2a9fkUKQGilTDbFJLZzE3gg+DtTVOfW+2wXAw45+PD1w8LD2QRw8PgnsbC/SScl9MPXBsytzYN7NxB/zI6B54QTcczCX2+len0cnV7f1sLwE3h9jpow0dfxyLwofgx9CKJBTz6WwVYjmiX0SReH5jz3LG6kSZOVhhXWUgGBj4yf/TWyc2o7uG2IwIZaev6RcOiEgNC0bt8A0W+Ycippfaflg3IgC6IMXRptlNQxlBoeeVXfQ2KmGSnoP2QurxeDnNz3zSXcQXUZGXipPBQFlgpnVAfrAJf3Zm/trrDsnsV4urRSW+X1C11H4juF3ixMOYTA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN6PR10MB3022.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(7916004)(346002)(366004)(39860400002)(376002)(136003)(396003)(451199015)(2906002)(966005)(4001150100001)(9686003)(71200400001)(478600001)(1076003)(186003)(33716001)(6486002)(38100700002)(6916009)(122000001)(54906003)(66446008)(66556008)(8936002)(316002)(38070700005)(6506007)(91956017)(66476007)(66946007)(8676002)(41300700001)(4326008)(64756008)(76116006)(6512007)(44832011)(83380400001)(7416002)(5660300002)(86362001)(26005);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fiALzd31CGtF+h1UVx5zD8uIyUKz8zQiu65L3eu+CJ3afCx8cqaOjn3uM9Yl?=
- =?us-ascii?Q?UrsihHPUY7NzNHx1a9g4nHJYFkwO6+v+S8HBJ98T5ezhycjFGZiOOvSswyTK?=
- =?us-ascii?Q?dNv12DVTISv4/P8o9I55zNxn7DuP3pIXWHzU4TSbsEUbO+AEGvrXkH7Z0Sqi?=
- =?us-ascii?Q?WMXBX7XO14ipElDdlmlGVrNtPNeoGqHul1UKYcLtSy4OqDwJKDtN3tAFc9JC?=
- =?us-ascii?Q?2NI8YkZ8rZ6MOUjbl6c1bYZBmitFMHXa6STgkk8neSPJeGwbn39h28zq4jeM?=
- =?us-ascii?Q?AzJJzQ+oT0nSpUTovXLSxYCI319eurI0x41/gy+N3m+3hjCIasPEbCMTD15k?=
- =?us-ascii?Q?dfU2BUARsRaK3k07v/Yl0vSiKkK4i8wEeM5weW6mNiziX6hQQPROvyUauUSY?=
- =?us-ascii?Q?av8JOPnzBkU4JQNC6mcFoTO6bj3DO19RCJFSklt5McZ6hXQzFFo7ZxHsmIZ4?=
- =?us-ascii?Q?0mMSdHinHcmcP8t1adP5zYKsmblg1+xgc5ujTxybbSEBRgtXJwBlATGi4Dao?=
- =?us-ascii?Q?17AsgHcZ+JsTcE43tmiUF1FXjxZfGK3Bpzl9BmTPqW6TYE+xbAsWjnxS7yFp?=
- =?us-ascii?Q?tytjh9ShYmI2xdiLoaX7UoVZrr/39zlF57XUwW/CgZfUimc0PoPIVGYeus5Y?=
- =?us-ascii?Q?y5tScrsXWNHqCefa8B5kLVNfUDW9obL6E4h70eDlLkeJ1G9cRV8+yWRBnbmJ?=
- =?us-ascii?Q?mntGBRsZSx9sCsgeD6xutlWf3gyyKl6xPM/9IW8esIY65X+ox+FpZfm/O3BN?=
- =?us-ascii?Q?VUckvMiPZWV97+i+hym43x8W6a67P7pOCXjfHZuTxv5yyqpHgI16gLBlFkzv?=
- =?us-ascii?Q?UlcBdxk/vHG1rp/GkiTagHdqVJr4MANtDVq5S2GahYnjvMvLYHz7LzN3PC6B?=
- =?us-ascii?Q?A/quICXMyFWEb58ydjT6z4VIFrxI9+MdjLJW/tYsOS+lFMtd49xkMZPfEze6?=
- =?us-ascii?Q?38c9VS+TzkQQFHHmvGp7l9G+uJ3Sc8ImjRtPdpcG6tG0nq8GBJfpehxrERLi?=
- =?us-ascii?Q?/aBONmIT4SfQSu44kscp1h8xQ4QwjBs/+NB+b4FzHjYG8ukDxT0eowfQi12a?=
- =?us-ascii?Q?b8laxzSdFdFI2X9+I0VuJVcZvAwrVOCjS6XHDKbN3+EWhTtS6kXCPblhfUjH?=
- =?us-ascii?Q?F1mpWWL/N1Yluwr8tmOrXj/2Kj9mLw2VGbCkZry3RpZc95E9rwmGUQS9sS8h?=
- =?us-ascii?Q?XCG8sKnMzUvTuNUIb9rvODApJA6matqH7tWCqWzFX2idecshnu0b3AFHMaim?=
- =?us-ascii?Q?zZ6GAV58Hnue1JYXxULweaeSvXFlyGIvrck6xbOG2tiLoeM46yaV3LoncBWj?=
- =?us-ascii?Q?SOfr0B1zZEsQroVNbyAbykuHqdKVmwuDcHb0ci2Mw4itqdvk+figMgXmRe4c?=
- =?us-ascii?Q?17xesoHIhDLuKrsM4DhBOUVS08mAevpGcxZHWuPOFHKejsauSqtOLDeFctag?=
- =?us-ascii?Q?z9DWpm04Zr8Gh8ZmjXoL6fkswFVq7k1t5pcz1elfbu8DqrRMLHfI1ArwBRVe?=
- =?us-ascii?Q?AY+9j3DptnHr1iXTr2tbN3vx6+4Vsj3mNIc3dLrRS339LAZmZ+yWwJ8LiC3y?=
- =?us-ascii?Q?gHQPbHChTrUdNGhBqndnq5RrLq9DoR12EL+VfW/5GIS7Q2GNF3uX1ZjBssll?=
- =?us-ascii?Q?9g=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <D9036337C0897D4E9DF5ABE4FC02F776@namprd10.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 885 seconds by postgrey-1.36 at gabe;
+ Mon, 24 Oct 2022 22:43:32 UTC
+Received: from server.atrad.com.au (server.atrad.com.au [150.101.241.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D74410E05E;
+ Mon, 24 Oct 2022 22:43:31 +0000 (UTC)
+Received: from marvin.atrad.com.au (marvin.atrad.com.au [192.168.0.2])
+ by server.atrad.com.au (8.17.1/8.17.1) with ESMTPS id 29OMOeVe015083
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO);
+ Tue, 25 Oct 2022 08:54:42 +1030
+Date: Tue, 25 Oct 2022 08:54:40 +1030
+From: Jonathan Woithe <jwoithe@just42.net>
+To: Akihiko Odaki <akihiko.odaki@daynix.com>
+Message-ID: <Y1cQqG2eiISdKv0S@marvin.atrad.com.au>
+References: <20221024113513.5205-1-akihiko.odaki@daynix.com>
+ <20221024113513.5205-10-akihiko.odaki@daynix.com>
 MIME-Version: 1.0
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR10MB3022.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67d34217-405f-4e36-212e-08dab5d186fa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2022 15:07:54.3365 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2bx2fVXyB64yzgCOGApwfsamva2yU6YNpEgW5xvJNJVazhdgJWh1A2mXeBjlCxRH/k/djFIJhI6qL7caSbGnTg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB6054
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-24_04,2022-10-21_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
- bulkscore=0
- suspectscore=0 malwarescore=0 phishscore=0 mlxscore=0 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210240092
-X-Proofpoint-GUID: Od2fGoqPHYui47Qw3xhLnjMapYUq6u8B
-X-Proofpoint-ORIG-GUID: Od2fGoqPHYui47Qw3xhLnjMapYUq6u8B
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221024113513.5205-10-akihiko.odaki@daynix.com>
+X-MIMEDefang-action: accept
+X-Scanned-By: MIMEDefang 2.86 on 192.168.0.1
 X-Mailman-Approved-At: Tue, 25 Oct 2022 13:32:37 +0000
-Subject: Re: [Intel-gfx] [linus:master] [i915] f683b9d613:
- igt.gem_userptr_blits.probe.fail
+Subject: Re: [Intel-gfx] [PATCH 09/22] platform/x86: fujitsu-laptop: Use
+ acpi_video_get_backlight_types()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,123 +45,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Davidlohr Bueso <dave@stgolabs.net>, David Hildenbrand <david@redhat.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Matthew Wilcox <willy@infradead.org>, David Howells <dhowells@redhat.com>,
- "lkp@lists.01.org" <lkp@lists.01.org>, SeongJae Park <sj@kernel.org>,
- Sven Schnelle <svens@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>,
- Will Deacon <will@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
- Yu Zhao <yuzhao@google.com>
+Cc: linux-fbdev@vger.kernel.org, Ike Panhc <ike.pan@canonical.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, dri-devel@lists.freedesktop.org,
+ Azael Avalos <coproscefalo@gmail.com>, Mattia Dongili <malattia@linux.it>,
+ Daniel Dadap <ddadap@nvidia.com>, Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
+ David Airlie <airlied@gmail.com>, Daniel Thompson <daniel.thompson@linaro.org>,
+ Jonathan Corbet <corbet@lwn.net>, "Lee, Chun-Yi" <jlee@suse.com>,
+ Helge Deller <deller@gmx.de>, Lee Jones <lee@kernel.org>,
+ Robert Moore <robert.moore@intel.com>, linux-acpi@vger.kernel.org,
+ Cezary Jackiewicz <cezary.jackiewicz@gmail.com>, Len Brown <lenb@kernel.org>,
+ Kenneth Chan <kenneth.t.chan@gmail.com>,
+ Corentin Chary <corentin.chary@gmail.com>, intel-gfx@lists.freedesktop.org,
+ acpi4asus-user@lists.sourceforge.net, Maxime Ripard <mripard@kernel.org>,
+ Mark Gross <markgross@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ platform-driver-x86@vger.kernel.org, devel@acpica.org,
+ ibm-acpi-devel@lists.sourceforge.net, Jingoo Han <jingoohan1@gmail.com>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-* kernel test robot <oliver.sang@intel.com> [221024 01:06]:
->=20
-> Greeting,
->=20
-> FYI, we noticed igt.gem_userptr_blits.probe.fail due to commit (built wit=
-h gcc-11):
->=20
-> commit: f683b9d613193362ceb954c216f663a43c027302 ("i915: use the VMA iter=
-ator")
-> https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git master
->=20
-> in testcase: igt
-> version: igt-x86_64-cf55acde-1_20221012
-> with following parameters:
->=20
-> 	group: group-13
->=20
->=20
->=20
-> on test machine: 20 threads 1 sockets (Commet Lake) with 16G memory
->=20
-> caused below changes (please refer to attached dmesg/kmsg for entire log/=
-backtrace):
->=20
->=20
->=20
->=20
-> If you fix the issue, kindly add following tag
-> | Reported-by: kernel test robot <oliver.sang@intel.com>
-> | Link: https://lore.kernel.org/r/202210241246.68be2f11-oliver.sang@intel=
-.com
->=20
->=20
->=20
-> 2022-10-24 03:27:39 build/tests/gem_userptr_blits --run-subtest probe
-> IGT-Version: 1.26-gcf55acde (x86_64) (Linux: 6.0.0-rc3-00280-gf683b9d6131=
-9 x86_64)
-> Aperture size is 268435456 MiB
-> Total RAM is 13505 MiB
-> Not enough RAM to run test, reducing buffer count.
-> Test requirement not met in function __igt_unique____real_main2320, file =
-../tests/i915/gem_userptr_blits.c:2401:
-> Test requirement: has_userptr(fd)
-> Starting subtest: probe
-> (gem_userptr_blits:1984) CRITICAL: Test assertion failure function test_p=
-robe, file ../tests/i915/gem_userptr_blits.c:2231:
-> (gem_userptr_blits:1984) CRITICAL: Failed assertion: __gem_userptr(fd, pt=
-r + 4096, 3*4096, 0, 0x2, &handle) =3D=3D expected
-> (gem_userptr_blits:1984) CRITICAL: Last errno: 14, Bad address
-> (gem_userptr_blits:1984) CRITICAL: error: 0 !=3D -14
-> Subtest probe failed.
-> **** DEBUG ****
-> (gem_userptr_blits:1984) DEBUG: Test requirement passed: has_userptr_prob=
-e(fd)
-> (gem_userptr_blits:1984) CRITICAL: Test assertion failure function test_p=
-robe, file ../tests/i915/gem_userptr_blits.c:2231:
-> (gem_userptr_blits:1984) CRITICAL: Failed assertion: __gem_userptr(fd, pt=
-r + 4096, 3*4096, 0, 0x2, &handle) =3D=3D expected
-> (gem_userptr_blits:1984) CRITICAL: Last errno: 14, Bad address
-> (gem_userptr_blits:1984) CRITICAL: error: 0 !=3D -14
-> (gem_userptr_blits:1984) igt_core-INFO: Stack trace:
-> (gem_userptr_blits:1984) igt_core-INFO:   #0 [__igt_fail_assert+0x106]
-> (gem_userptr_blits:1984) igt_core-INFO:   #1 ../tests/i915/gem_userptr_bl=
-its.c:801 __igt_unique____real_main2320()
-> (gem_userptr_blits:1984) igt_core-INFO:   #2 ../tests/i915/gem_userptr_bl=
-its.c:2320 main()
-> (gem_userptr_blits:1984) igt_core-INFO:   #3 ../csu/libc-start.c:308 __li=
-bc_start_main()
-> (gem_userptr_blits:1984) igt_core-INFO:   #4 [_start+0x2a]
-> ****  END  ****
-> Stack trace:
->   #0 [__igt_fail_assert+0x106]
->   #1 ../tests/i915/gem_userptr_blits.c:801 __igt_unique____real_main2320(=
-)
->   #2 ../tests/i915/gem_userptr_blits.c:2320 main()
->   #3 ../csu/libc-start.c:308 __libc_start_main()
->   #4 [_start+0x2a]
-> Subtest probe: FAIL (0.052s)
->=20
->=20
->=20
-> To reproduce:
->=20
->         git clone https://github.com/intel/lkp-tests.git
->         cd lkp-tests
->         sudo bin/lkp install job.yaml           # job file is attached in=
- this email
->         bin/lkp split-job --compatible job.yaml # generate the yaml file =
-for lkp run
->         sudo bin/lkp run generated-yaml-file
->=20
->         # if come across any failure that blocks the test,
->         # please remove ~/.lkp and /lkp dir to run from a clean state.
->=20
+On Mon, Oct 24, 2022 at 08:35:00PM +0900, Akihiko Odaki wrote:
+> acpi_video_get_backlight_type() is now deprecated.
 
-These steps seem insufficient.  Initially, it failed complaining about a
-missing config so I created the directory manually and copied the
-confing in only to have it fail again:
+The practical impact of this patch series on fujitsu-laptop is obviously
+very minor assuming the new acpi_video_get_backlight_types() function
+functions as advertised.  Accordingly, as maintainer of fujitsu-laptop I
+will defer to the opinions of others who maintain the lower level
+infrastructure which is more substantially affected by the bulk of the
+changes in this series.
 
-lkp-tests/filters/need_kconfig_hw.rb:11:in `load_kernel_context':
-context.yaml doesn't exist:
-/pkg/linux/x86_64-rhel-8.3-func/gcc-11/f683b9d613193362ceb954c216f663a43c02=
-7302/context.yaml
+I note that Hans has naked the series and I'm happy to go along with that.
 
-Is there a full set of instructions for recreation?
+Regards
+  jonathan
 
-Thanks,
-Liam
+> Signed-off-by: Akihiko Odaki <akihiko.odaki@daynix.com>
+> ---
+>  drivers/platform/x86/fujitsu-laptop.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/platform/x86/fujitsu-laptop.c b/drivers/platform/x86/fujitsu-laptop.c
+> index b543d117b12c..e820de39cb68 100644
+> --- a/drivers/platform/x86/fujitsu-laptop.c
+> +++ b/drivers/platform/x86/fujitsu-laptop.c
+> @@ -387,7 +387,7 @@ static int acpi_fujitsu_bl_add(struct acpi_device *device)
+>  	struct fujitsu_bl *priv;
+>  	int ret;
+>  
+> -	if (acpi_video_get_backlight_type() != acpi_backlight_vendor)
+> +	if (!(acpi_video_get_backlight_types() & ACPI_BACKLIGHT_VENDOR))
+>  		return -ENODEV;
+>  
+>  	priv = devm_kzalloc(&device->dev, sizeof(*priv), GFP_KERNEL);
+> @@ -819,7 +819,7 @@ static int acpi_fujitsu_laptop_add(struct acpi_device *device)
+>  
+>  	/* Sync backlight power status */
+>  	if (fujitsu_bl && fujitsu_bl->bl_device &&
+> -	    acpi_video_get_backlight_type() == acpi_backlight_vendor) {
+> +	    (acpi_video_get_backlight_types() & ACPI_BACKLIGHT_VENDOR)) {
+>  		if (call_fext_func(fext, FUNC_BACKLIGHT, 0x2,
+>  				   BACKLIGHT_PARAM_POWER, 0x0) == BACKLIGHT_OFF)
+>  			fujitsu_bl->bl_device->props.power = FB_BLANK_POWERDOWN;
+> -- 
+> 2.37.3
