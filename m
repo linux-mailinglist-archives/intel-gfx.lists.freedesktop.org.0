@@ -1,50 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122FC60A9A9
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 15:23:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99A4360A92E
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 15:16:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48F0310E6B3;
-	Mon, 24 Oct 2022 13:23:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA4010E62E;
+	Mon, 24 Oct 2022 13:16:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB6DD10E615;
- Mon, 24 Oct 2022 13:14:55 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 62642612F3;
- Mon, 24 Oct 2022 13:14:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F11F4C433C1;
- Mon, 24 Oct 2022 13:14:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1666617295;
- bh=3nE0pujKjkKrAG3Zlhw1YeJuPRfB3mFezLZb6lzLCGA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=LMm2+6OBEsQawTDmuHx79XkDRpx8g9QS54i0VAgQtCk02UkomS95/vMkOooCKFRX3
- xxQEe24yv/tDtsQYrTGmzauMv0Jh6zHqana1EL/TBHlmO6GXulViaDuIlAEYGkafKP
- kqE4fIBr817hQoEx/xF9wYtGawey5ywjjoX7MjRMntvcbUYm0BK0RPqRrLUuuXw2Nk
- nhWxKTcWwM9VEt4aM7KgAIT39FftcsQukjfpyyfLMkVVk5XzPzt3H5NCVm2IIV71GR
- WEwDHsAVQ/xfBG0zYbWT3h7jEZyT/78B/fc3OPRLq/euFmv9sbHup10WXUReRUbepL
- 1J6fTEisi4WTg==
-Received: by pali.im (Postfix)
- id 060EE82F; Mon, 24 Oct 2022 15:14:51 +0200 (CEST)
-Date: Mon, 24 Oct 2022 15:14:51 +0200
-From: Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To: Akihiko Odaki <akihiko.odaki@daynix.com>
-Message-ID: <20221024131451.lvkesdg3kvyvbi7n@pali>
-References: <20221024113513.5205-1-akihiko.odaki@daynix.com>
- <746e5cc6-516f-8f69-9d4b-8fe237de8fd6@redhat.com>
- <edec5950-cec8-b647-ccb1-ba48f9b3bbb0@daynix.com>
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEC3210E62E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 13:16:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666617400; x=1698153400;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=9yeQZWNT7E+XuH13j1Dx32eNKjoQQO/UlR9Gic6MOy4=;
+ b=eykvfoQjwqzWD1pZPEj5R6NBcrx8e4RnrgsIdQcSTHQOAVOMDqixlGZT
+ dKmRGqLW3fx49sJTKZ6MF64WYC3Os+MozctvHozdNM4c+u0cR11X2kLkF
+ GpHCgeqI6Y0F0hsTR/hzfuZvdr+/McQkZvzGUhO0ZYpFIbOWjbhIZmuEM
+ LnMOkuVMWL/Ff8nibdlbWOOfS49mb++4JE42ctHoE/01iiFSLl5oVo4QV
+ Vz30vGWF5PtjgT/O+G56XzjEXr/p52I2kTtbmNYD52Ey/g7AELm53hxX9
+ Ekhe2zifdBCPJ2PPc1Us+a7S+X6KBRh4qC+GXbQ1YkepigkQxdX0We6DP g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="369480548"
+X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="369480548"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 06:16:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="694545837"
+X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="694545837"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
+ by fmsmga008.fm.intel.com with SMTP; 24 Oct 2022 06:16:36 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 24 Oct 2022 16:16:36 +0300
+Date: Mon, 24 Oct 2022 16:16:36 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>
+Message-ID: <Y1aQNHDIujgQts/G@intel.com>
+References: <20221024064004.1879-1-shawn.c.lee@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <edec5950-cec8-b647-ccb1-ba48f9b3bbb0@daynix.com>
-User-Agent: NeoMutt/20180716
-X-Mailman-Approved-At: Mon, 24 Oct 2022 13:23:26 +0000
-Subject: Re: [Intel-gfx] [PATCH 00/22] Fallback to native backlight
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221024064004.1879-1-shawn.c.lee@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pps: improve eDP power on flow.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,45 +60,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Ike Panhc <ike.pan@canonical.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, dri-devel@lists.freedesktop.org,
- Azael Avalos <coproscefalo@gmail.com>, Mattia Dongili <malattia@linux.it>,
- Daniel Dadap <ddadap@nvidia.com>, Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- David Airlie <airlied@gmail.com>, Daniel Thompson <daniel.thompson@linaro.org>,
- Jonathan Woithe <jwoithe@just42.net>, Jonathan Corbet <corbet@lwn.net>, "Lee,
- Chun-Yi" <jlee@suse.com>, Helge Deller <deller@gmx.de>,
- Lee Jones <lee@kernel.org>, Robert Moore <robert.moore@intel.com>,
- linux-acpi@vger.kernel.org, Cezary Jackiewicz <cezary.jackiewicz@gmail.com>,
- Len Brown <lenb@kernel.org>, Kenneth Chan <kenneth.t.chan@gmail.com>,
- Corentin Chary <corentin.chary@gmail.com>, intel-gfx@lists.freedesktop.org,
- acpi4asus-user@lists.sourceforge.net, Maxime Ripard <mripard@kernel.org>,
- Mark Gross <markgross@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- platform-driver-x86@vger.kernel.org, devel@acpica.org,
- ibm-acpi-devel@lists.sourceforge.net, Jingoo Han <jingoohan1@gmail.com>,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Monday 24 October 2022 21:58:57 Akihiko Odaki wrote:
-> Regarding the second limitation, I don't even understand the difference
-> between vendor and native. My guess is that a vendor backlight device uses
-> vendor-specific ACPI interface, and a native one directly uses hardware
-> registers. If my guess is correct, the difference between vendor and native
-> does not imply that both of them are likely to exist at the same time. As
-> the conclusion, there is no more motivation to try to de-duplicate the
-> vendor/native combination than to try to de-duplicate combination of devices
-> with a single type.
+On Mon, Oct 24, 2022 at 02:40:04PM +0800, Lee Shawn C wrote:
+> Driver always apply panel power off cycle delay before eDP enable.
+> If eDP display was enabled at pre-os stage, driver would always
+> trigger modeset to optimize cdclk setting after boot into kernel.
+> So last_power_on and last_backlight_off value will be updated.
+> 
+> We can check last_power_on and last_backlight_off before insert
+> panel power cycle delay. If these values are the same, it means eDP
+> was off until now and driver should bypass this delay to save
+> some times to speed up eDP power on sequence.
+> 
+> Cc: Shankar Uma <uma.shankar@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_pps.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 21944f5bf3a8..f3485a4fbfd0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -509,6 +509,13 @@ static void wait_panel_power_cycle(struct intel_dp *intel_dp)
+>  	ktime_t panel_power_on_time;
+>  	s64 panel_power_off_duration;
+>  
+> +	/* When last_power_on equal to last_backlight_off, it means driver did not
+> +	 * turn on or off eDP panel so far.
 
-Hello! I just want to point one thing. On some Dell laptops there are
-3 different ways (= 3 different APIs) how to control display backlight.
-There is ACPI driver (uses ACPI), GPU/DRM driver (i915.ko; uses directly
-HW) and platform vendor driver (dell-laptop.ko; uses vendor BIOS or
-firmware API). Just every driver has different pre-calculated scaling
-values. So sometimes user wants to choose different driver just because
-it allows to set backlight level with "better" granularity. Registering
-all 3 device drivers is bad as user does not want to see 3 display
-panels and forcing registration of specific one without runtime option
-is also bad (some of those drivers do not have to be suitable or has
-worse granularity as other).
+But someone else may have turned it off just before we were handed
+control, we have no idea. The pessimistic estimate is the safe one.
+
+Also I don't understand what this has to do with the story in
+the comit message. In that story you say eDP was already on,
+so the power cycle delay is not relevant at all. /me confused.
+
+> So we can bypass power cycle delay to
+> +	 * save some times here.
+> +	 */
+> +	if (intel_dp->pps.last_power_on == intel_dp->pps.last_backlight_off)
+> +		return;
+> +
+>  	drm_dbg_kms(&i915->drm, "Wait for panel power cycle\n");
+>  
+>  	/* take the difference of current time and panel power off time
+> @@ -1098,9 +1105,11 @@ bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp)
+>  
+>  static void pps_init_timestamps(struct intel_dp *intel_dp)
+>  {
+> +	unsigned long tmp_jiffies = jiffies;
+> +
+>  	intel_dp->pps.panel_power_off_time = ktime_get_boottime();
+> -	intel_dp->pps.last_power_on = jiffies;
+> -	intel_dp->pps.last_backlight_off = jiffies;
+> +	intel_dp->pps.last_power_on = tmp_jiffies;
+> +	intel_dp->pps.last_backlight_off = tmp_jiffies;
+>  }
+>  
+>  static void
+> -- 
+> 2.17.1
+
+-- 
+Ville Syrjälä
+Intel
