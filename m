@@ -1,146 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E7D260AB45
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 15:48:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3775460ABF9
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 16:00:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D93410E739;
-	Mon, 24 Oct 2022 13:48:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC7D10E733;
+	Mon, 24 Oct 2022 14:00:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D090B10E72A
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 13:47:59 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50A1510E733
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 14:00:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666619279; x=1698155279;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:reply-to:content-transfer-encoding: mime-version;
- bh=rLxpYGz5zdEWYFp4q5LGxbOhsgwl+N7WMYxCkZ/2tTw=;
- b=GXvsC8TLpGPJT9KPvC0YCAS1DvpTf0r5QgvCBdpcQYPLUiCrhApAZfnP
- /VpJSybfNbnC/827M7OAuMvFrqBRNMw/GlOYv6/QKOYApDr6E8+4yK25o
- FCVF3pb5Wjh60XCzZvwVQA5FxuZH6Joh9Rzxh9ScU8/6rmRGVio1ymgNc
- MHtoEBZ7b3X7Q9I3Ouuknbf1i7qlgK/iUOjW7xFaD6r2Ob0FWyWEcrcb0
- Tf0C+vn1/aVyTuprMiU6BmKB27fZ54xy55gVDaxJqqpX/4+TMFDsORsx5
- nlGTxN0lbDer4gz11ErB7XkAOtlG0HQ4gwlnTRLQ8QIoBI6qZu5OWeN7X Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="308512129"
-X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="308512129"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 06:47:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="631260572"
-X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="631260572"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 24 Oct 2022 06:47:59 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 24 Oct 2022 06:47:58 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 24 Oct 2022 06:47:58 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Mon, 24 Oct 2022 06:47:58 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Mon, 24 Oct 2022 06:47:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ibGNpLVYbNow63fbKm8yIp0tchLRzLwxBDUWHoBFM0fm/Z3wdLwoije/LxJy6tJAi+X/6ptck2B1bzc1v9On8YfylOwnjATk455G63Lq44JksAmoXmRn+ylPkc870MXvq5iaDv8L2UdMhr4T9u9QpGDVtDU05qDMIXHlQr0SgGH+evK/RpZukcjFk5dk3OKTYftmRYfzyJ/JV75AdrvGUjwjOjZw9TeSP8p0VWrSWQglWlbAs8uMGkQhgR7TxdHnfJccbHvvhSiaKMaWlWpnrkSvZNF9qfCs2S2AhNEjL8kz+xWqFtxg/b+JiociYMhSBBy+siVs/W+mB0IrPjLz0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2Zx5p0Hdtqi3JXDtsVZCNsFLVWOgsAESX+g4kTXeH78=;
- b=D6rek7uXs72RXYTJFMWD3tHBiu55uW+OlkdHPHDWVxz4Q76DIIlZPpgRwqK6WlbIn643mpg6VARm9rbvcCajx1kHEoYhQZImSY8y2aWcYZamJH9dR/NkeRGL7AY6Ts3MRuVlnELoKlOev/4ZmEDEIo4zmhf4zdhMt/hizRMsKjTqYQXnctjCpD8R9qiprxXXYhycdS4PJVFKpJ5z39+HwjayvHxj/qgl+GTlo5dMXfAllJfQDWsi9lqayNcFaqvNA9J5fbkswGIAOkD6ol1vjuyvCc9ppTcbYxWSJYrIP00zwG687Xgth0bseIDWFWROybbO/udeBRUlM0s7DAcnow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BYAPR11MB2710.namprd11.prod.outlook.com (2603:10b6:a02:c7::24)
- by DM4PR11MB5565.namprd11.prod.outlook.com (2603:10b6:5:39e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.35; Mon, 24 Oct
- 2022 13:47:56 +0000
-Received: from BYAPR11MB2710.namprd11.prod.outlook.com
- ([fe80::4010:eca5:d49d:11b6]) by BYAPR11MB2710.namprd11.prod.outlook.com
- ([fe80::4010:eca5:d49d:11b6%6]) with mapi id 15.20.5723.033; Mon, 24 Oct 2022
- 13:47:56 +0000
-From: "Lee, Shawn C" <shawn.c.lee@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH] drm/i915/pps: improve eDP power on flow.
-Thread-Index: AQHY53OVmudcJfkkaUesdm84zHZMYq4dhsgAgAAFlPA=
-Date: Mon, 24 Oct 2022 13:47:56 +0000
-Message-ID: <BYAPR11MB271072A339A7501A1075981AA32E9@BYAPR11MB2710.namprd11.prod.outlook.com>
-References: <20221024064004.1879-1-shawn.c.lee@intel.com>
- <Y1aQNHDIujgQts/G@intel.com>
-In-Reply-To: <Y1aQNHDIujgQts/G@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-dlp-product: dlpe-windows
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB2710:EE_|DM4PR11MB5565:EE_
-x-ms-office365-filtering-correlation-id: 10def97b-17db-4b85-d8d6-08dab5c65b38
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dYWNoxtgkFr9P1t+P01RqCVnRNz/pmIzeGiBUw8fYFvaqjJx9QipdJFnNJwgbb538QyeMAuRd0KCyjxJpyvaD+RAk3LvY/x8qyt2Qjb+MypWouMI7sFttm4AJ1EI0SIbYM/x7uZ340aNcwhxumY5F7wTRK7Gk8+eIZ1IZm0vXoC3eprh2vFv/+24qBloI49izwBjhUP0byUOsnjhhRQrtMtaOcCvkJn7R1bDscW5nKoqL9EmTYsgKDdzzQUG3aU6xMocei1dr9ZzrsoW0TqXs1eW1KkHhgvvBLsP5Ma59tt6mEi+JHG+UPgw3tuUm0t61FUXR4wf8Pk3o64ciqYtoYzv+gp21AH8HSLjckrTyD78PgRrNHZ0Gg84b+MV3DNyeYCO7ptxsbB3408cY3GXo8Jpbh5N2BPqLmOlQ1aZ2HSUS9LEZraGVp5xN3DrSYO6BwH2SWiQ0iO4jT9zCv2S2HJD8VVJtkDxcRNxXF5UExdkNL61iY7Q/LO0Fo6Kbh3nDJs5+d6SxJ0HedP+S82cEdaBbuvdur9J6O1as0lj2JvH1D80cTqWwOVLyzRvxZur40om7pvFsHAvAX3ChFDKUKkRtzxHEaraYUOm0pL4V9lqB3+YPtglZJFXiWatxNDdqLV0bBASM/AyzQ1Mr2QTgYve1VwJRz2MBiHn4n4zhgcB6P2xSqeQ+tygK/OIKaiLqgSZGEE1vrRDWur2gnXMYl+ISomO3Zy9u628Uzr3E3pBG817CZFzxveu9+SgYcV5Gn+cKjhtwusX131/iSyBKA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2710.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(346002)(136003)(376002)(396003)(366004)(39860400002)(451199015)(54906003)(52536014)(7696005)(53546011)(316002)(6916009)(66446008)(8796002)(55016003)(8936002)(26005)(9686003)(33656002)(66574015)(2906002)(66476007)(8676002)(5660300002)(4326008)(64756008)(66946007)(186003)(86362001)(76116006)(41300700001)(55236004)(66556008)(83380400001)(122000001)(6506007)(38070700005)(478600001)(38100700002)(71200400001)(82960400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?rz7ZFyh6NDChHyCQEj3mfJ56KLvh0++XeTo9X9vvaeOSwq3reRsDWyoQBp?=
- =?iso-8859-1?Q?FRKSpSXLl/65WEA6kI1G106VLRmGIxmomuG7VpMi4mU/5hrSdxHcj0Wa9F?=
- =?iso-8859-1?Q?c/aUPDglqg79G1hKModE5nHBhmcim6HSuya3jvaRhphHy06CaYt7i4yOqb?=
- =?iso-8859-1?Q?13Pg3ZvHlVnxTqCS7pUKVCNiWXIvdtaSkVIiOdO9OuMSJoMDkIVvBzk6/B?=
- =?iso-8859-1?Q?rbze/oXsjoTcFYmROeXV/fY7L1uhEA3vKXt/ri8T5py6K3onIyQh1hocsW?=
- =?iso-8859-1?Q?Z0mso4b018+50vUbnHvOU1WP64d9hX0FnG09Hore2tDzYjjCj366OGCVXb?=
- =?iso-8859-1?Q?zPmHgOIk9Xad50A7hDLh55z2OPvADgqUuXrapaKbz283jkIhnGhdNBvmkW?=
- =?iso-8859-1?Q?AhlMEcDvPNgi/rBo501Gyisi8Cf+R9qf7lVZPuMiGNBUCNWIEUtmGeP/Fh?=
- =?iso-8859-1?Q?sdhNlkpiR9LPfITBejq+XP0mdQayuU3rGnN9fu5AJUfLuJrGiLM1qBuG8L?=
- =?iso-8859-1?Q?xbSOXGd1Xg2OxE4Geb/CwRVtVC4e6LiBjKYHeYmx2eetiMnqMSBIIUkc1w?=
- =?iso-8859-1?Q?BvuXdknB2N3PXX6g7mVyrvItn4sfzFuf+EhFBm+i4d17h/wRNK8/4+vZFD?=
- =?iso-8859-1?Q?dd/6bVOb4n37Job8OUCuqf6Dfy0tgRlSKh17jJ6tx14RYt9+lRjq7V+O0M?=
- =?iso-8859-1?Q?r8ajDxRm2rGIUzB2ban4VVl5+p9VCRgff2dd13tmBusE7PUCt3gsDnOOe7?=
- =?iso-8859-1?Q?zovA9k4xwU8LsF/YHOSrYfUaCLeOME3jMFaMo2YWg/yvcSrN8o8S1enuhH?=
- =?iso-8859-1?Q?xOdI0U35qUEJ+4NlMkNhtaJ2M2tj3NCnQT7PR88l4El+CONYwToIV3aXqd?=
- =?iso-8859-1?Q?a0x9I/ZLmUv/gZzHHGBY+eCK0SlM5hFp1gVsusdRzeRQxFqmeBUDDWps2e?=
- =?iso-8859-1?Q?Je+WO43xLhHO98kv2NbtgG4TiP0C5c92PhOMlwUrJKRCzpAAY93gcrLCzx?=
- =?iso-8859-1?Q?wcTZ2GeGdcYEvUot7p3nvKgZ2XSFBK8ubsPS5O7J5z/LfyHZqb94DyOzNu?=
- =?iso-8859-1?Q?SphnltZ52rrM8e0NARv27LCbdQSQJXLP/CPjnb+YuZ4DYeDQNttJBMoTTB?=
- =?iso-8859-1?Q?lkVyRILLOp2o/J3NPgIIZ5Rec+7ieerB8KfXmGvbWhpf+U1eFCbvwaWtLm?=
- =?iso-8859-1?Q?eS1XcQGSG9XB2KrgpZce9IgBENcGRUfHE+QNOrVqmCSe6ZS65xq91nzHsS?=
- =?iso-8859-1?Q?YG6Lo58BoNc3fOlm6MNaEmsIK9a//biq4AORALDH6gKpkogtxiln3HOzM5?=
- =?iso-8859-1?Q?atQn/s233bixy5qKTpTUOF+JGevpNKhqUsEHmOliIL6gFOBGDMTcjO0Sxx?=
- =?iso-8859-1?Q?mByhc/gMlsaeOEBcqyyE1vHoqRgzrjPJMVJ0ahnCkA8rKmdY9ZIWy28xXb?=
- =?iso-8859-1?Q?M8NrsJrE2fjEME6hITPA1EuwWmvYXZbnl8dl7Dunb51/P2avyVZ+tUhB2a?=
- =?iso-8859-1?Q?ZYjLQbPQBwxENyCdlMspsXNmqsUbwEytAfFCsmUtmXgHq7mcvW/wj5dlMU?=
- =?iso-8859-1?Q?o9VuQ0YrxRwCxlLcJZuZVRVJot9AyJJwPRmCTY5Hc4tMBYmOxl+B4+xXwb?=
- =?iso-8859-1?Q?6V3YoEQoCnpUxHEE0rkaEXs7EYKcuYI7DP?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ t=1666620028; x=1698156028;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=xpfxS74bZwkxqpZXHKt4UZ4YVKaYJy7ibvVqUrVQD2Q=;
+ b=WBxGJ88VMccGrGRBp6++SrCW6u60hCta5aTxzWbVQHaRJo4+6+SoRmOe
+ 2hJtk5d05aw21zU5bKlKuBpJyOUTMHg4XDOJ0v4jmyHVhnqLWJH6az8Tx
+ gIIda4/eR/egzFf5dLcxyt5cinR3uCgVF7Az87tECEfwdnKdtkK2Q3xuw
+ bYsf3BsouzrBWqcC1NO59WsVq7p+Q184I5eFy+79qKzmacFoeaEqPN0hk
+ 765n0SxSoDdHOcq0vE41Sz9vI0LqOxEwJXz8Rv4FTekT7wTIcw3fdYyLx
+ OTE1PVUTBV+LmTSw3JA3m8gVEdOn3OrLSs35aNl2nguukrVbNKVSPt0/K Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="294819466"
+X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="294819466"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 07:00:26 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="694557198"
+X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="694557198"
+Received: from cwilso3-mobl.fi.intel.com (HELO [10.252.13.22]) ([10.252.13.22])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 07:00:23 -0700
+Message-ID: <ce8f70da-23c3-9218-895a-62baebdb6678@intel.com>
+Date: Mon, 24 Oct 2022 15:00:21 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2710.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10def97b-17db-4b85-d8d6-08dab5c65b38
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2022 13:47:56.4482 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Zh88/y56AvLM35gt24wQREy9/QP1MG8Y8X2agn/wY80o2gktR4rhN5dgQ2WG6jYe4TN/ObKak/TyeciE3l3ZSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5565
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pps: improve eDP power on flow.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.4.0
+Content-Language: en-GB
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220923143125.5768-1-anshuman.gupta@intel.com>
+ <20221021095525.788221-1-anshuman.gupta@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20221021095525.788221-1-anshuman.gupta@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: Encapsulate lmem rpm stuff
+ in intel_runtime_pm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,92 +61,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "20221024064004.1879-1-shawn.c.lee@intel.com"
- <20221024064004.1879-1-shawn.c.lee@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 21/10/2022 10:55, Anshuman Gupta wrote:
+> Runtime pm is not really per GT, therefore it make sense to
+> move lmem_userfault_list, lmem_userfault_lock and
+> userfault_wakeref from intel_gt to intel_runtime_pm structure,
+> which is embedded to i915.
+> 
+> No functional change.
+> 
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_mman.c |  6 +++---
+>   drivers/gpu/drm/i915/gem/i915_gem_pm.c   |  2 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c  |  8 ++++----
+>   drivers/gpu/drm/i915/gt/intel_gt.c       |  3 ---
+>   drivers/gpu/drm/i915/gt/intel_gt_types.h | 17 -----------------
+>   drivers/gpu/drm/i915/i915_gem.c          |  4 +---
+>   drivers/gpu/drm/i915/intel_runtime_pm.c  |  5 +++++
+>   drivers/gpu/drm/i915/intel_runtime_pm.h  | 22 ++++++++++++++++++++++
+>   8 files changed, 36 insertions(+), 31 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> index 73d9eda1d6b7..fd29a9053582 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> @@ -413,7 +413,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
+>   	vma->mmo = mmo;
+>   
+>   	if (CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+> -		intel_wakeref_auto(&to_gt(i915)->userfault_wakeref,
+> +		intel_wakeref_auto(&i915->runtime_pm.userfault_wakeref,
+>   				   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
+>   
+>   	if (write) {
+> @@ -589,9 +589,9 @@ void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj)
+>   	spin_unlock(&obj->mmo.lock);
+>   
+>   	if (obj->userfault_count) {
+> -		mutex_lock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
+> +		mutex_lock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
+>   		list_del(&obj->userfault_link);
+> -		mutex_unlock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
+> +		mutex_unlock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
+>   		obj->userfault_count = 0;
+>   	}
+>   }
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+> index e5bfb6be9f7a..0d812f4d787d 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+> @@ -27,7 +27,7 @@ void i915_gem_suspend(struct drm_i915_private *i915)
+>   
+>   	GEM_TRACE("%s\n", dev_name(i915->drm.dev));
+>   
+> -	intel_wakeref_auto(&to_gt(i915)->userfault_wakeref, 0);
+> +	intel_wakeref_auto(&i915->runtime_pm.userfault_wakeref, 0);
+>   	flush_workqueue(i915->wq);
+>   
+>   	/*
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index 84c91a4228a1..50c70796ca38 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -1101,13 +1101,13 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+>   	/* ttm_bo_vm_reserve() already has dma_resv_lock */
+>   	if (ret == VM_FAULT_NOPAGE && wakeref && !obj->userfault_count) {
+>   		obj->userfault_count = 1;
+> -		mutex_lock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
+> -		list_add(&obj->userfault_link, &to_gt(to_i915(obj->base.dev))->lmem_userfault_list);
+> -		mutex_unlock(&to_gt(to_i915(obj->base.dev))->lmem_userfault_lock);
+> +		mutex_lock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
+> +		list_add(&obj->userfault_link, &to_i915(obj->base.dev)->runtime_pm.lmem_userfault_list);
+> +		mutex_unlock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
+>   	}
+>   
+>   	if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+> -		intel_wakeref_auto(&to_gt(to_i915(obj->base.dev))->userfault_wakeref,
+> +		intel_wakeref_auto(&to_i915(obj->base.dev)->runtime_pm.userfault_wakeref,
+>   				   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
+>   
+>   	i915_ttm_adjust_lru(obj);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 27dbb9e4bd6c..0ad8118ccbee 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -40,8 +40,6 @@ void intel_gt_common_init_early(struct intel_gt *gt)
+>   {
+>   	spin_lock_init(gt->irq_lock);
+>   
+> -	INIT_LIST_HEAD(&gt->lmem_userfault_list);
+> -	mutex_init(&gt->lmem_userfault_lock);
+>   	INIT_LIST_HEAD(&gt->closed_vma);
+>   	spin_lock_init(&gt->closed_lock);
+>   
+> @@ -859,7 +857,6 @@ static int intel_gt_tile_setup(struct intel_gt *gt, phys_addr_t phys_addr)
+>   	}
+>   
+>   	intel_uncore_init_early(gt->uncore, gt);
+> -	intel_wakeref_auto_init(&gt->userfault_wakeref, gt->uncore->rpm);
+>   
+>   	ret = intel_uncore_setup_mmio(gt->uncore, phys_addr);
+>   	if (ret)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> index 64aa2ba624fc..ff9251807f5c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> @@ -144,20 +144,6 @@ struct intel_gt {
+>   	struct intel_wakeref wakeref;
+>   	atomic_t user_wakeref;
+>   
+> -	/**
+> -	 *  Protects access to lmem usefault list.
+> -	 *  It is required, if we are outside of the runtime suspend path,
+> -	 *  access to @lmem_userfault_list requires always first grabbing the
+> -	 *  runtime pm, to ensure we can't race against runtime suspend.
+> -	 *  Once we have that we also need to grab @lmem_userfault_lock,
+> -	 *  at which point we have exclusive access.
+> -	 *  The runtime suspend path is special since it doesn't really hold any locks,
+> -	 *  but instead has exclusive access by virtue of all other accesses requiring
+> -	 *  holding the runtime pm wakeref.
+> -	 */
+> -	struct mutex lmem_userfault_lock;
+> -	struct list_head lmem_userfault_list;
+> -
+>   	struct list_head closed_vma;
+>   	spinlock_t closed_lock; /* guards the list of closed_vma */
+>   
+> @@ -173,9 +159,6 @@ struct intel_gt {
+>   	 */
+>   	intel_wakeref_t awake;
+>   
+> -	/* Manual runtime pm autosuspend delay for user GGTT/lmem mmaps */
+> -	struct intel_wakeref_auto userfault_wakeref;
+> -
+>   	u32 clock_frequency;
+>   	u32 clock_period_ns;
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> index 55d605c0c55d..299f94a9fb87 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -843,7 +843,7 @@ void i915_gem_runtime_suspend(struct drm_i915_private *i915)
+>   		__i915_gem_object_release_mmap_gtt(obj);
+>   
+>   	list_for_each_entry_safe(obj, on,
+> -				 &to_gt(i915)->lmem_userfault_list, userfault_link)
+> +				 &i915->runtime_pm.lmem_userfault_list, userfault_link)
+>   		i915_gem_object_runtime_pm_release_mmap_offset(obj);
+>   
+>   	/*
+> @@ -1227,8 +1227,6 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
+>   	struct intel_gt *gt;
+>   	unsigned int i;
+>   
+> -	intel_wakeref_auto_fini(&to_gt(dev_priv)->userfault_wakeref);
+> -
+>   	i915_gem_suspend_late(dev_priv);
+>   	for_each_gt(gt, dev_priv, i)
+>   		intel_gt_driver_remove(gt);
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index 744cca507946..bb74d4975cc8 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -633,6 +633,8 @@ void intel_runtime_pm_driver_release(struct intel_runtime_pm *rpm)
+>   						     runtime_pm);
+>   	int count = atomic_read(&rpm->wakeref_count);
+>   
+> +	intel_wakeref_auto_fini(&rpm->userfault_wakeref);
+> +
+>   	drm_WARN(&i915->drm, count,
+>   		 "i915 raw-wakerefs=%d wakelocks=%d on cleanup\n",
+>   		 intel_rpm_raw_wakeref_count(count),
+> @@ -652,4 +654,7 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm)
+>   	rpm->available = HAS_RUNTIME_PM(i915);
+>   
+>   	init_intel_runtime_pm_wakeref(rpm);
+> +	INIT_LIST_HEAD(&rpm->lmem_userfault_list);
+> +	mutex_init(&rpm->lmem_userfault_lock);
+> +	intel_wakeref_auto_init(&rpm->userfault_wakeref, rpm);
+>   }
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
+> index d9160e3ff4af..d0c04af2a6f3 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
+> @@ -53,6 +53,28 @@ struct intel_runtime_pm {
+>   	bool irqs_enabled;
+>   	bool no_wakeref_tracking;
+>   
+> +	/**
 
-On Monday, October 24, 2022 9:17 PM, Ville Syrj=E4l=E4 <ville.syrjala@linux=
-.intel.com> wrote:
->On Mon, Oct 24, 2022 at 02:40:04PM +0800, Lee Shawn C wrote:
->> Driver always apply panel power off cycle delay before eDP enable.
->> If eDP display was enabled at pre-os stage, driver would always=20
->> trigger modeset to optimize cdclk setting after boot into kernel.
->> So last_power_on and last_backlight_off value will be updated.
->>=20
->> We can check last_power_on and last_backlight_off before insert panel=20
->> power cycle delay. If these values are the same, it means eDP was off=20
->> until now and driver should bypass this delay to save some times to=20
->> speed up eDP power on sequence.
->>=20
->> Cc: Shankar Uma <uma.shankar@intel.com>
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_pps.c | 13 +++++++++++--
->>  1 file changed, 11 insertions(+), 2 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c=20
->> b/drivers/gpu/drm/i915/display/intel_pps.c
->> index 21944f5bf3a8..f3485a4fbfd0 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pps.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
->> @@ -509,6 +509,13 @@ static void wait_panel_power_cycle(struct intel_dp =
-*intel_dp)
->>  	ktime_t panel_power_on_time;
->>  	s64 panel_power_off_duration;
->> =20
->> +	/* When last_power_on equal to last_backlight_off, it means driver did=
- not
->> +	 * turn on or off eDP panel so far.
->
->But someone else may have turned it off just before we were handed control=
-, we have no idea. The pessimistic estimate is the safe one.
+Nit: that's not properly formatted kernel-doc.
 
-Thanks! It looks to me this situation should not be happpened. Right?
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
->
->Also I don't understand what this has to do with the story in the comit me=
-ssage. In that story you say eDP was already on, so the power cycle delay i=
-s not relevant at all. /me confused.
->
-
-I will modify commit messages and send patch v2 later.
-
-Best regards,
-Shawn
-
->> So we can bypass power cycle delay to
->> +	 * save some times here.
->> +	 */
->> +	if (intel_dp->pps.last_power_on =3D=3D intel_dp->pps.last_backlight_of=
-f)
->> +		return;
->> +
->>  	drm_dbg_kms(&i915->drm, "Wait for panel power cycle\n");
->> =20
->>  	/* take the difference of current time and panel power off time @@=20
->> -1098,9 +1105,11 @@ bool intel_pps_have_panel_power_or_vdd(struct=20
->> intel_dp *intel_dp)
->> =20
->>  static void pps_init_timestamps(struct intel_dp *intel_dp)  {
->> +	unsigned long tmp_jiffies =3D jiffies;
->> +
->>  	intel_dp->pps.panel_power_off_time =3D ktime_get_boottime();
->> -	intel_dp->pps.last_power_on =3D jiffies;
->> -	intel_dp->pps.last_backlight_off =3D jiffies;
->> +	intel_dp->pps.last_power_on =3D tmp_jiffies;
->> +	intel_dp->pps.last_backlight_off =3D tmp_jiffies;
->>  }
->> =20
->>  static void
->> --
->> 2.17.1
->
->--
->Ville Syrj=E4l=E4
->Intel
->
+> +	 *  Protects access to lmem usefault list.
+> +	 *  It is required, if we are outside of the runtime suspend path,
+> +	 *  access to @lmem_userfault_list requires always first grabbing the
+> +	 *  runtime pm, to ensure we can't race against runtime suspend.
+> +	 *  Once we have that we also need to grab @lmem_userfault_lock,
+> +	 *  at which point we have exclusive access.
+> +	 *  The runtime suspend path is special since it doesn't really hold any locks,
+> +	 *  but instead has exclusive access by virtue of all other accesses requiring
+> +	 *  holding the runtime pm wakeref.
+> +	 */
+> +	struct mutex lmem_userfault_lock;
+> +
+> +	/*
+> +	 *  Keep list of userfaulted gem obj, which require to release their
+> +	 *  mmap mappings at runtime suspend path.
+> +	 */
+> +	struct list_head lmem_userfault_list;
+> +
+> +	/* Manual runtime pm autosuspend delay for user GGTT/lmem mmaps */
+> +	struct intel_wakeref_auto userfault_wakeref;
+> +
+>   #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+>   	/*
+>   	 * To aide detection of wakeref leaks and general misuse, we
