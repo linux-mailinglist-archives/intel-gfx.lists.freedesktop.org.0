@@ -2,55 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF71E60AD67
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 16:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8B0B60AD9C
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 16:29:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF8B010E779;
-	Mon, 24 Oct 2022 14:22:58 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3B0710E779
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 14:22:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666621374; x=1698157374;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=fDPivvMBDhb/QBOBAp6R6clyQLbxF/w1zOoYdmUBA8I=;
- b=cPbMR/9lBm9FP+nhav9oIicGQ8xoY1HIBsC04CyGaVQjFjxmQMKcgsR9
- yl1Xl6y/kqIptaHa+irLeUR0FFIZ6ZPotJ8TjvjxxFRPQ6mZQ6KkyWGfn
- 6AvmJAxfaMuRoLEUexwrVuuprDML4mXMDqzkPxzv1nhlfB5s5I1PoMp8S
- 76vypXv5wqwmnsteTM9Ps5VSxKa8+osFoEW/lr09mBmwH3uERZVy2WKFS
- jFtvN7p64YV8frPH8oD8GaHvFC7HNcUgInVRwn8umMidqCKladik2vGYm
- F2LqP3kNs0jfydvu627QZ6P9WJouKtXLgxGbp9uwZTDTcXQ07+OK8HExu A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="307418501"
-X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="307418501"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 07:21:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="582429831"
-X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="582429831"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga003.jf.intel.com with SMTP; 24 Oct 2022 07:21:06 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Oct 2022 17:21:05 +0300
-Date: Mon, 24 Oct 2022 17:21:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "20221024064004.1879-1-shawn.c.lee@intel.com"
- <20221024064004.1879-1-shawn.c.lee@intel.com>
-Message-ID: <Y1afUdAwfVTACJoK@intel.com>
-References: <20221024064004.1879-1-shawn.c.lee@intel.com>
- <Y1aQNHDIujgQts/G@intel.com>
- <BYAPR11MB271072A339A7501A1075981AA32E9@BYAPR11MB2710.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D241F10E7BB;
+	Mon, 24 Oct 2022 14:29:33 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+X-Greylist: delayed 363 seconds by postgrey-1.36 at gabe;
+ Mon, 24 Oct 2022 14:29:30 UTC
+Received: from outbound-smtp11.blacknight.com (outbound-smtp11.blacknight.com
+ [46.22.139.106])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EF3610E7BB
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 14:29:30 +0000 (UTC)
+Received: from mail.blacknight.com (pemlinmail03.blacknight.ie [81.17.254.16])
+ by outbound-smtp11.blacknight.com (Postfix) with ESMTPS id
+ 934201C449B
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 15:23:25 +0100 (IST)
+Received: (qmail 2363 invoked from network); 24 Oct 2022 14:23:25 -0000
+Received: from unknown (HELO techsingularity.net)
+ (mgorman@techsingularity.net@[84.203.198.246])
+ by 81.17.254.9 with ESMTPSA (AES256-SHA encrypted, authenticated);
+ 24 Oct 2022 14:23:25 -0000
+Date: Mon, 24 Oct 2022 15:23:21 +0100
+From: Mel Gorman <mgorman@techsingularity.net>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20221024142321.f2etddxtqa47bib7@techsingularity.net>
+References: <1596edbb-02ad-6bdf-51b8-15c2d2e08b76@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <BYAPR11MB271072A339A7501A1075981AA32E9@BYAPR11MB2710.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pps: improve eDP power on flow.
+In-Reply-To: <1596edbb-02ad-6bdf-51b8-15c2d2e08b76@linux.intel.com>
+Subject: Re: [Intel-gfx] mm/huge_memory: do not clobber swp_entry_t during
+ THP split
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,92 +47,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Linux MM <linux-mm@kvack.org>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
+ Hugh Dickins <hughd@google.com>, Matthew Auld <matthew.auld@intel.com>,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 24, 2022 at 01:47:56PM +0000, Lee, Shawn C wrote:
+On Mon, Oct 24, 2022 at 02:04:50PM +0100, Tvrtko Ursulin wrote:
 > 
-> On Monday, October 24, 2022 9:17 PM, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >On Mon, Oct 24, 2022 at 02:40:04PM +0800, Lee Shawn C wrote:
-> >> Driver always apply panel power off cycle delay before eDP enable.
-> >> If eDP display was enabled at pre-os stage, driver would always 
-> >> trigger modeset to optimize cdclk setting after boot into kernel.
-> >> So last_power_on and last_backlight_off value will be updated.
-> >> 
-> >> We can check last_power_on and last_backlight_off before insert panel 
-> >> power cycle delay. If these values are the same, it means eDP was off 
-> >> until now and driver should bypass this delay to save some times to 
-> >> speed up eDP power on sequence.
-> >> 
-> >> Cc: Shankar Uma <uma.shankar@intel.com>
-> >> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> >> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_pps.c | 13 +++++++++++--
-> >>  1 file changed, 11 insertions(+), 2 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c 
-> >> b/drivers/gpu/drm/i915/display/intel_pps.c
-> >> index 21944f5bf3a8..f3485a4fbfd0 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> >> @@ -509,6 +509,13 @@ static void wait_panel_power_cycle(struct intel_dp *intel_dp)
-> >>  	ktime_t panel_power_on_time;
-> >>  	s64 panel_power_off_duration;
-> >>  
-> >> +	/* When last_power_on equal to last_backlight_off, it means driver did not
-> >> +	 * turn on or off eDP panel so far.
-> >
-> >But someone else may have turned it off just before we were handed control, we have no idea. The pessimistic estimate is the safe one.
+> Hi Mel, mm experts,
 > 
-> Thanks! It looks to me this situation should not be happpened. Right?
+> With 6.1-rc2 we started hitting the WARN_ON added in 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t during THP split") in i915 automated CI:
+> 
 
-What situation? We have no idea when the panel was powered off, so we
-have to make a pessimistic estimate.
+Thanks for the report. As shmem pages pages are allocated via vma_alloc_folio
+and are compound pages, can you try the following patch please?  If it
+still triggers, please post the new oops as it'll include the tail page
+information.
 
-> 
-> >
-> >Also I don't understand what this has to do with the story in the comit message. In that story you say eDP was already on, so the power cycle delay is not relevant at all. /me confused.
-> >
-> 
-> I will modify commit messages and send patch v2 later.
-> 
-> Best regards,
-> Shawn
-> 
-> >> So we can bypass power cycle delay to
-> >> +	 * save some times here.
-> >> +	 */
-> >> +	if (intel_dp->pps.last_power_on == intel_dp->pps.last_backlight_off)
-> >> +		return;
-> >> +
-> >>  	drm_dbg_kms(&i915->drm, "Wait for panel power cycle\n");
-> >>  
-> >>  	/* take the difference of current time and panel power off time @@ 
-> >> -1098,9 +1105,11 @@ bool intel_pps_have_panel_power_or_vdd(struct 
-> >> intel_dp *intel_dp)
-> >>  
-> >>  static void pps_init_timestamps(struct intel_dp *intel_dp)  {
-> >> +	unsigned long tmp_jiffies = jiffies;
-> >> +
-> >>  	intel_dp->pps.panel_power_off_time = ktime_get_boottime();
-> >> -	intel_dp->pps.last_power_on = jiffies;
-> >> -	intel_dp->pps.last_backlight_off = jiffies;
-> >> +	intel_dp->pps.last_power_on = tmp_jiffies;
-> >> +	intel_dp->pps.last_backlight_off = tmp_jiffies;
-> >>  }
-> >>  
-> >>  static void
-> >> --
-> >> 2.17.1
-> >
-> >--
-> >Ville Syrjälä
-> >Intel
-> >
+--8<--
+From: Hugh Dickins <hughd@google.com>
+Subject: [PATCH] mm: prep_compound_tail() clear page->private
 
+Although page allocation always clears page->private in the first page
+or head page of an allocation, it has never made a point of clearing
+page->private in the tails (though 0 is often what is already there).
+
+But now commit 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t
+during THP split") issues a warning when page_tail->private is found to
+be non-0 (unless it's swapcache).
+
+Change that warning to dump page_tail (which also dumps head), instead
+of just the head: so far we have seen dead000000000122, dead000000000003,
+dead000000000001 or 0000000000000002 in the raw output for tail private.
+
+We could just delete the warning, but today's consensus appears to want
+page->private to be 0, unless there's a good reason for it to be set:
+so now clear it in prep_compound_tail() (more general than just for THP;
+but not for high order allocation, which makes no pass down the tails).
+
+Fixes: 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t during THP split")
+Signed-off-by: Hugh Dickins <hughd@google.com>
+Cc: Mel Gorman <mgorman@techsingularity.net>
+Cc: Matthew Wilcox (Oracle) <willy@infradead.org>
+Cc: <stable@vger.kernel.org>
+---
+ mm/huge_memory.c | 2 +-
+ mm/page_alloc.c  | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+index 03fc7e5edf07..561a42567477 100644
+--- a/mm/huge_memory.c
++++ b/mm/huge_memory.c
+@@ -2462,7 +2462,7 @@ static void __split_huge_page_tail(struct page *head, int tail,
+ 	 * Fix up and warn once if private is unexpectedly set.
+ 	 */
+ 	if (!folio_test_swapcache(page_folio(head))) {
+-		VM_WARN_ON_ONCE_PAGE(page_tail->private != 0, head);
++		VM_WARN_ON_ONCE_PAGE(page_tail->private != 0, page_tail);
+ 		page_tail->private = 0;
+ 	}
+ 
+diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+index b5a6c815ae28..218b28ee49ed 100644
+--- a/mm/page_alloc.c
++++ b/mm/page_alloc.c
+@@ -807,6 +807,7 @@ static void prep_compound_tail(struct page *head, int tail_idx)
+ 
+ 	p->mapping = TAIL_MAPPING;
+ 	set_compound_head(p, head);
++	set_page_private(p, 0);
+ }
+ 
+ void prep_compound_page(struct page *page, unsigned int order)
 -- 
-Ville Syrjälä
-Intel
+2.35.3
