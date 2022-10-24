@@ -1,49 +1,77 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4958460A2E4
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 13:49:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E720460A349
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 13:53:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13D2810E399;
-	Mon, 24 Oct 2022 11:48:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB34510E3AE;
+	Mon, 24 Oct 2022 11:53:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4768D10E388;
- Mon, 24 Oct 2022 11:48:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666612127; x=1698148127;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=t3cjsGp+mGZTfId3Uz83F67WuGQ8r3GpeajQ9Pj0MTw=;
- b=lQzhuwqLzLMuR5AakR7looY8bd44B6YaoF5OxpGymmL+04RdTKr946Sr
- 5P5/QKGy2aLERlrGR7RwU51L/Q4SAyCU2YiPIgjH8HvCo8uFUjBU96j5o
- o58NdESU1rzJKJBHO1EWJnSuY0Xt7p4FjEbw2WNq7Rh6xM7nkW0Vt8eLM
- v1Sno+gpcswipMQBOWyhFZ51X2lPNt7BLNeZYpUjFW2estyyz/V6CvAGG
- fx8QNed/CWH9g7w5hhqQ4RUY926tYYEz4XMf50e2AYCDyxmrqbsoyzFHp
- d+kKkWd3xe7GsCF0Az5ZXSnhjyNCg1mKqg8FU9Oactph+yFvrKhyijRSl g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="287793400"
-X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="287793400"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 04:48:46 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="631231987"
-X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="631231987"
-Received: from emontau-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.52.221])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 04:48:35 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Akihiko Odaki <akihiko.odaki@daynix.com>
-In-Reply-To: <20221024113513.5205-1-akihiko.odaki@daynix.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221024113513.5205-1-akihiko.odaki@daynix.com>
-Date: Mon, 24 Oct 2022 14:48:32 +0300
-Message-ID: <87tu3te92n.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B23210E399
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 11:53:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1666612389;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Sa227/HWN+mg/M9GF8z0s+pXLCfMWbPNsK+iHgKq07I=;
+ b=HQEOtsfDJqdXysxURlrTr+Duqg+eAbg7Mym7exmsdXBZbzpIhV+4KT41EmEZdUcboJr3q5
+ wOOpG9NxL+/AkxrxP3RHMrgKBQfcEkUpxtpTFOddj/415mQK68GZDpkyySAYduf5yHzRcO
+ Ec/4p2kgN7U0FcL5pq/RnFDv1tp8bdM=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-650-BguT9GvtMNuCovBr5ONjLQ-1; Mon, 24 Oct 2022 07:53:08 -0400
+X-MC-Unique: BguT9GvtMNuCovBr5ONjLQ-1
+Received: by mail-ed1-f71.google.com with SMTP id
+ z11-20020a056402274b00b00461dba91468so1839164edd.6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 04:53:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Sa227/HWN+mg/M9GF8z0s+pXLCfMWbPNsK+iHgKq07I=;
+ b=GGHHRR0lV8ZIiTRXRo/IBKPZW/bo9SqnQqvTICzwnFiHB5+1ge0O/+QAPFLFOg1WDk
+ duRI/NjB7qt4If8ZxxBnBbl2OLScEgEkcmojovf7mHZoW6ygonNv9AsO7VCwSrQFVsPa
+ /+CcdkDTNxbZHTLD+21J9N5jaV9ed8RQSwBB8B7VZ9+b3NriPkQk+txWMA1fsJIDiBPj
+ 4Y4IRzJY9l+0u6u1QC1VVNYNLiaeVGC7RXuLGcszHaChFipiATsccnSJFM23uzLVa/ZK
+ 7ScCHgLwEWDSQSoYqcx/GYjq0Z53xtR+RedpQTC4VBJLpugbn4zwaHxZEsXeUAtDlOYd
+ 79gA==
+X-Gm-Message-State: ACrzQf0L6m3SLns4D81Ct/A/1O15Dc8GR07+3kk/2V3lYGLkrXRJZIK4
+ o4OBrpuX1E4fgUrcqkqJMl7+R5DPK/V1uwwKEhiqmHlFJaJbrq+g0stHndEP3Zqe9FCPv911lz8
+ NBMu717LVmVYfE9Kg8Xidi3xWAYdk
+X-Received: by 2002:a17:907:608f:b0:78e:1b60:60e2 with SMTP id
+ ht15-20020a170907608f00b0078e1b6060e2mr27603513ejc.382.1666612387313; 
+ Mon, 24 Oct 2022 04:53:07 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM6rKjf9vFNIG71zIVFmhWoGUssYXpRCR0TKoudwiSS8QTCTafqY38Nm8/FfK1Fy5krk9VAMgg==
+X-Received: by 2002:a17:907:608f:b0:78e:1b60:60e2 with SMTP id
+ ht15-20020a170907608f00b0078e1b6060e2mr27603473ejc.382.1666612387069; 
+ Mon, 24 Oct 2022 04:53:07 -0700 (PDT)
+Received: from [10.40.98.142] ([78.108.130.194])
+ by smtp.gmail.com with ESMTPSA id
+ h3-20020a1709070b0300b007ab2d744801sm17394ejl.190.2022.10.24.04.53.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 24 Oct 2022 04:53:06 -0700 (PDT)
+Message-ID: <746e5cc6-516f-8f69-9d4b-8fe237de8fd6@redhat.com>
+Date: Mon, 24 Oct 2022 13:53:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+To: Akihiko Odaki <akihiko.odaki@daynix.com>
+References: <20221024113513.5205-1-akihiko.odaki@daynix.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20221024113513.5205-1-akihiko.odaki@daynix.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Subject: Re: [Intel-gfx] [PATCH 00/22] Fallback to native backlight
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,8 +89,7 @@ Cc: linux-fbdev@vger.kernel.org, Ike Panhc <ike.pan@canonical.com>,
  "Rafael J. Wysocki" <rafael@kernel.org>, dri-devel@lists.freedesktop.org,
  Azael Avalos <coproscefalo@gmail.com>, Mattia Dongili <malattia@linux.it>,
  Daniel Dadap <ddadap@nvidia.com>, Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- Akihiko Odaki <akihiko.odaki@daynix.com>, David Airlie <airlied@gmail.com>,
- Daniel Thompson <daniel.thompson@linaro.org>,
+ David Airlie <airlied@gmail.com>, Daniel Thompson <daniel.thompson@linaro.org>,
  Jonathan Woithe <jwoithe@just42.net>, Jonathan Corbet <corbet@lwn.net>, "Lee,
  Chun-Yi" <jlee@suse.com>, Helge Deller <deller@gmx.de>,
  Lee Jones <lee@kernel.org>, Robert Moore <robert.moore@intel.com>,
@@ -70,17 +97,18 @@ Cc: linux-fbdev@vger.kernel.org, Ike Panhc <ike.pan@canonical.com>,
  Len Brown <lenb@kernel.org>, Kenneth Chan <kenneth.t.chan@gmail.com>,
  Corentin Chary <corentin.chary@gmail.com>, intel-gfx@lists.freedesktop.org,
  acpi4asus-user@lists.sourceforge.net, Maxime Ripard <mripard@kernel.org>,
- Mark Gross <markgross@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- platform-driver-x86@vger.kernel.org, devel@acpica.org,
- ibm-acpi-devel@lists.sourceforge.net, Jingoo Han <jingoohan1@gmail.com>,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
+ Mark Gross <markgross@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, platform-driver-x86@vger.kernel.org,
+ devel@acpica.org, ibm-acpi-devel@lists.sourceforge.net,
+ Jingoo Han <jingoohan1@gmail.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 Oct 2022, Akihiko Odaki <akihiko.odaki@daynix.com> wrote:
+Hi Akihiko,
+
+On 10/24/22 13:34, Akihiko Odaki wrote:
 > Commit 2600bfa3df99 ("ACPI: video: Add acpi_video_backlight_use_native()
 > helper") and following commits made native backlight unavailable if
 > CONFIG_ACPI_VIDEO is set and the backlight feature of ACPI video is
@@ -88,14 +116,44 @@ On Mon, 24 Oct 2022, Akihiko Odaki <akihiko.odaki@daynix.com> wrote:
 > C13 Yoga Chromebook. Allow to fall back to native backlight in such
 > cases.
 
-Where's the bug report with relevant logs, kconfigs, etc?
+I appreciate your work on this, but what this in essence does is
+it allows 2 backlight drivers (vendor + native) to get registered
+for the same panel again. While the whole goal of the backlight refactor
+series landing in 6.1 was to make it so that there always is only
+*1* backlight device registered instead of (possibly) registering
+multiple and letting userspace figure it out. It is also important
+to only always have 1 backlight device per panel for further
+upcoming changes.
 
-BR,
-Jani.
+So nack for this solution, sorry.
 
->
+I am aware that this breaks backlight control on some Chromebooks,
+this was already reported and I wrote a long reply explaining why
+things are done the way they are done now and also suggesting
+2 possible (much simpler) fixes, see:
+https://lore.kernel.org/linux-acpi/42a5f2c9-a1dc-8fc0-7334-fe6c390ecfbb@redhat.com/
+
+Unfortunately the reported has not followed-up on this and
+I don't have the hardware to test this myself.
+
+Can you please try implementing 1 of the fixes suggested there
+and then submit that upstream ?
+
+Regards,
+
+Hans
+
+
+
+
+
+
+
+
+
+> 
 > Signed-off-by: Akihiko Odaki <akihiko.odaki@daynix.com>
->
+> 
 > Akihiko Odaki (22):
 >   drm/i915/opregion: Improve backlight request condition
 >   ACPI: video: Introduce acpi_video_get_backlight_types()
@@ -120,7 +178,7 @@ Jani.
 >   platform/x86: intel_oaktrail: Use acpi_video_get_backlight_types()
 >   ACPI: video: Remove acpi_video_get_backlight_type()
 >   ACPI: video: Fallback to native backlight
->
+> 
 >  Documentation/gpu/todo.rst                    |  8 +--
 >  drivers/acpi/acpi_video.c                     |  2 +-
 >  drivers/acpi/video_detect.c                   | 54 ++++++++++---------
@@ -147,6 +205,5 @@ Jani.
 >  include/acpi/video.h                          | 21 ++++----
 >  include/linux/backlight.h                     |  1 +
 >  25 files changed, 85 insertions(+), 66 deletions(-)
+> 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
