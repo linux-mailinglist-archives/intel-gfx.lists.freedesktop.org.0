@@ -1,54 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F034609CB5
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 10:29:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56958609DCC
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 11:18:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96AD989A94;
-	Mon, 24 Oct 2022 08:29:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E004710E348;
+	Mon, 24 Oct 2022 09:18:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B6FC89A94
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 08:29:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666600187; x=1698136187;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=pDycIZDno5liCqpGAn7PtwhOt6dQm0UBN7oyFV8ct7c=;
- b=IkvKC8Ez1eWGV6uPYz2ZKDuCIx4QD9mMd+hb3GfJZlGNS50fKg/xAN9r
- I0YBwIhy0q7j/jXmF1+dV/Md6CFTz4vJa7oPPqrQZxehdI8gqwKcRrWha
- lXBVfAtvoEYKRJjtRp0siB44lxz3QY4iSnVnLMlL3TxgEadNbXoBIvmFb
- zDe3uXtk0GIAJt8XifKALoow8fmG1LVKIyXdYjtlRJ4bd9JM6MoN47OQX
- d/BTjvO/suU20Icof0v6kBH9VXhC8qNszsPFQytdE3uFGkbNZ4pUpH5E6
- bz4NGp5beetvGcJYyTNIayXl3BUlXARZarG6HueJTY+nGGa73vcwmMR9J A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="307357420"
-X-IronPort-AV: E=Sophos;i="5.95,207,1661842800"; d="scan'208";a="307357420"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 01:29:47 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="773743909"
-X-IronPort-AV: E=Sophos;i="5.95,207,1661842800"; d="scan'208";a="773743909"
-Received: from emontau-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.52.221])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 01:29:44 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Andi Shyti
- <andi.shyti@linux.intel.com>
-In-Reply-To: <167818fb-6eb5-7836-16a1-620853821734@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20221019143818.244339-1-andrzej.hajda@intel.com>
- <Y1Lldx9p5Fm5u0Oh@ashyti-mobl2.lan>
- <167818fb-6eb5-7836-16a1-620853821734@intel.com>
-Date: Mon, 24 Oct 2022 11:29:41 +0300
-Message-ID: <8735bdfwui.fsf@intel.com>
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38DA410E2E5;
+ Mon, 24 Oct 2022 09:18:12 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id C13D5B8100E;
+ Mon, 24 Oct 2022 09:18:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E91FC433D6;
+ Mon, 24 Oct 2022 09:18:00 +0000 (UTC)
+Message-ID: <9781200b-2d6e-b401-abc5-559410b1a435@xs4all.nl>
+Date: Mon, 24 Oct 2022 11:17:58 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: use intel_uncore_rmw when
- appropriate
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Content-Language: en-US
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
+ Qiang Yu <yuq825@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Ruhl Michael J <michael.j.ruhl@intel.com>
+References: <20221017172229.42269-1-dmitry.osipenko@collabora.com>
+ <20221017172229.42269-15-dmitry.osipenko@collabora.com>
+From: Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20221017172229.42269-15-dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v7 14/21] media: tegra-vde: Prepare to
+ dynamic dma-buf locking specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,64 +78,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 Oct 2022, Andrzej Hajda <andrzej.hajda@intel.com> wrote:
-> Hi,
->
-> Thx for review.
->
-> On 21.10.2022 20:31, Andi Shyti wrote:
->> Hi Andrzej,
->>
->> On Wed, Oct 19, 2022 at 04:38:17PM +0200, Andrzej Hajda wrote:
->>> This patch replaces all occurences of the form
->>> intel_uncore_write(reg, intel_uncore_read(reg) OP val)
->>> with intel_uncore_rmw.
->>>
->>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
->> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->>
->> There are some lines that go over 80 characters... do you mind if I fix them
->> before pushing it?
->
-> No problem, I guess you know that for some time the 'hard' limit has 
-> been raised to 100 chars/line [1], and this is for aesthetic reasons :)
-> If you do, please follow advice from Ville to break the line after the 
-> 2nd argument - to keep 'clear' and 'set' args on the same line, if possible.
-
-Please don't get into the habit of changing stuff while pushing. Please
-prefer pushing stuff that was sent to the list and the CI crunched
-through as-is.
-
-Changing the commit message is fine. Doing some glaring
-comment/whitespace fixes is acceptable. But going through entire patches
-and fixing issues while pushing, not so much.
-
-And in this case in particular, please don't go out of your way to limit
-to 80 characters.
-
-BR,
-Jani.
 
 
+On 10/17/22 19:22, Dmitry Osipenko wrote:
+> Prepare Tegra video decoder driver to the common dynamic dma-buf
+> locking convention by starting to use the unlocked versions of dma-buf
+> API functions.
+> 
+> Acked-by: Christian König <christian.koenig@amd.com>
 
+Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
 
+Thanks!
 
+	Hans
 
->
-> [1]: 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=bdc48fa11e46f867ea4d75fa59ee87a7f48be144
->
-> Regards
-> Andrzej
->
->>
->> Andi
->
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> ---
+>  drivers/media/platform/nvidia/tegra-vde/dmabuf-cache.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/media/platform/nvidia/tegra-vde/dmabuf-cache.c b/drivers/media/platform/nvidia/tegra-vde/dmabuf-cache.c
+> index 69c346148070..1c5b94989aec 100644
+> --- a/drivers/media/platform/nvidia/tegra-vde/dmabuf-cache.c
+> +++ b/drivers/media/platform/nvidia/tegra-vde/dmabuf-cache.c
+> @@ -38,7 +38,7 @@ static void tegra_vde_release_entry(struct tegra_vde_cache_entry *entry)
+>  	if (entry->vde->domain)
+>  		tegra_vde_iommu_unmap(entry->vde, entry->iova);
+>  
+> -	dma_buf_unmap_attachment(entry->a, entry->sgt, entry->dma_dir);
+> +	dma_buf_unmap_attachment_unlocked(entry->a, entry->sgt, entry->dma_dir);
+>  	dma_buf_detach(dmabuf, entry->a);
+>  	dma_buf_put(dmabuf);
+>  
+> @@ -102,7 +102,7 @@ int tegra_vde_dmabuf_cache_map(struct tegra_vde *vde,
+>  		goto err_unlock;
+>  	}
+>  
+> -	sgt = dma_buf_map_attachment(attachment, dma_dir);
+> +	sgt = dma_buf_map_attachment_unlocked(attachment, dma_dir);
+>  	if (IS_ERR(sgt)) {
+>  		dev_err(dev, "Failed to get dmabufs sg_table\n");
+>  		err = PTR_ERR(sgt);
+> @@ -152,7 +152,7 @@ int tegra_vde_dmabuf_cache_map(struct tegra_vde *vde,
+>  err_free:
+>  	kfree(entry);
+>  err_unmap:
+> -	dma_buf_unmap_attachment(attachment, sgt, dma_dir);
+> +	dma_buf_unmap_attachment_unlocked(attachment, sgt, dma_dir);
+>  err_detach:
+>  	dma_buf_detach(dmabuf, attachment);
+>  err_unlock:
