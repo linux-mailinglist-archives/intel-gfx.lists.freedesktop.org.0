@@ -2,74 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE3E260AE73
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 17:01:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E928E60AE81
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 17:05:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12FB810E457;
-	Mon, 24 Oct 2022 15:01:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EB4110E818;
+	Mon, 24 Oct 2022 15:05:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com
- [IPv6:2607:f8b0:4864:20::1033])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9701710E457
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 15:01:06 +0000 (UTC)
-Received: by mail-pj1-x1033.google.com with SMTP id m2so4326462pjr.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 08:01:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=daynix-com.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=oUQJnoiVcjmiMscuWttpHv+zHGY2MfyL7+ONIPh7x0c=;
- b=ZOVjhMxzWHLNLunugrJ+SECAAXLWsf7AdLqkh+K7UNjlaUGQ9T2vB5C1CqvSyz5voW
- bguPwKRzm/d8Nc2tvHEhPSDIQzvuWtsgD76Q/qYilldT8A9N6UkUnxvuSJDxx+vTvE5o
- 2wEHu1Ri6xBOStR4aLMOYkidCez0B+QKB5Gjb1/7yy9AVQO65fUF1zxcv/Y3e5YiV1+W
- poVwgnoe6oH0RiJlDMLgz9IaGKxX8b/8Q8eYaqr1/wtwkiyiEjjVSRhacLaxo5ldxl3i
- VwCVp598YWRBTePj+MBn0nF3yxfpV30BK9THLsARcWwXtz5SWeF5ah3JcJvdPHFdxBai
- s3Yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=oUQJnoiVcjmiMscuWttpHv+zHGY2MfyL7+ONIPh7x0c=;
- b=Lk4aY9UqLUzq3rxt85JxnaC4or4LDBlzHO4PwhIhO+jsrJeGx24GsZcZOij0FI8qtZ
- 7uWpYUIGpEF1dqoFvJ2bcj5mhpw/H2rCOeJ/Tl6JiJg2YQogWijcSvSoAwU7iGnFvnxy
- /uj7hxGb0j+twa15R27VgXBXSkyEiMbmV2Hu9Va8U2LieJww1/Ama+YsJ5lJFEsAis68
- l6P5rWyBAw9txA0X1cj106kKMcUFih89Dk7srFxzstSojRgzLJtHm+lCdR0oej38XDEw
- 16KSj8ZTmjo/Rv5vC7EUc3j4InEaF2dKzHDcrB0jGeLb/MNPHHgRrf9ZV73H9Dhp4pmT
- onrA==
-X-Gm-Message-State: ACrzQf2nLSJLAMd4ZKOfROqhWf7kT7w9Yvcv1PgYhOsz7GQbmfo9coRj
- fpc/C2ORCqBn155cbMYCuQ72ig==
-X-Google-Smtp-Source: AMsMyM7lilCtHTTMSwA5VWVUapmiwGzvoSOUrpXDvYfOl0lDSGsKoMB/yl+OOPDcRF0udOxMB24knQ==
-X-Received: by 2002:a17:90b:1e46:b0:20a:f9d8:1ff7 with SMTP id
- pi6-20020a17090b1e4600b0020af9d81ff7mr76442318pjb.34.1666623666090; 
- Mon, 24 Oct 2022 08:01:06 -0700 (PDT)
-Received: from ?IPV6:2400:4050:c360:8200:8ae8:3c4:c0da:7419?
- ([2400:4050:c360:8200:8ae8:3c4:c0da:7419])
- by smtp.gmail.com with ESMTPSA id
- i19-20020a63e453000000b00434760ee36asm17045962pgk.16.2022.10.24.08.00.57
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 24 Oct 2022 08:01:05 -0700 (PDT)
-Message-ID: <78ad5d7b-4078-0b8e-f4aa-6c8113631359@daynix.com>
-Date: Tue, 25 Oct 2022 00:00:56 +0900
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1537110E818;
+ Mon, 24 Oct 2022 15:05:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EF4E9A0BA8;
+ Mon, 24 Oct 2022 15:05:23 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7074368423534776959=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Hans de Goede <hdegoede@redhat.com>
-References: <20221024113513.5205-1-akihiko.odaki@daynix.com>
- <746e5cc6-516f-8f69-9d4b-8fe237de8fd6@redhat.com>
- <edec5950-cec8-b647-ccb1-ba48f9b3bbb0@daynix.com>
- <60672af8-05d2-113c-12b9-d635608be0dd@redhat.com>
- <ea69242c-0bc8-c7bb-9602-c7489bb69684@daynix.com>
- <7373e258-f7cc-4416-9b1c-c8c9dab59ada@daynix.com>
- <ae3497ed-b68d-c36a-6b6f-f7b9771d9238@redhat.com>
-From: Akihiko Odaki <akihiko.odaki@daynix.com>
-In-Reply-To: <ae3497ed-b68d-c36a-6b6f-f7b9771d9238@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 00/22] Fallback to native backlight
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 24 Oct 2022 15:05:23 -0000
+Message-ID: <166662392394.3424.14261743351309895189@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1666614699.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1666614699.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/edid=3A_EDID_override_refactoring_and_fixes_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,218 +40,451 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Ike Panhc <ike.pan@canonical.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, dri-devel@lists.freedesktop.org,
- Azael Avalos <coproscefalo@gmail.com>, Mattia Dongili <malattia@linux.it>,
- Daniel Dadap <ddadap@nvidia.com>, Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- David Airlie <airlied@gmail.com>, Daniel Thompson <daniel.thompson@linaro.org>,
- Jonathan Woithe <jwoithe@just42.net>, Jonathan Corbet <corbet@lwn.net>, "Lee,
- Chun-Yi" <jlee@suse.com>, Helge Deller <deller@gmx.de>,
- Lee Jones <lee@kernel.org>, Robert Moore <robert.moore@intel.com>,
- linux-acpi@vger.kernel.org, Cezary Jackiewicz <cezary.jackiewicz@gmail.com>,
- Len Brown <lenb@kernel.org>, Kenneth Chan <kenneth.t.chan@gmail.com>,
- Corentin Chary <corentin.chary@gmail.com>, intel-gfx@lists.freedesktop.org,
- acpi4asus-user@lists.sourceforge.net, Maxime Ripard <mripard@kernel.org>,
- Mark Gross <markgross@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, platform-driver-x86@vger.kernel.org,
- devel@acpica.org, ibm-acpi-devel@lists.sourceforge.net,
- Jingoo Han <jingoohan1@gmail.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============7074368423534776959==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/edid: EDID override refactoring and fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/109579/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_12285 -> Patchwork_109579v2
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_109579v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_109579v2, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/index.html
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Missing    (4): fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus bat-dg1-5 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_109579v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hugepages:
+    - fi-adl-ddr5:        [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-adl-ddr5/igt@i915_selftest@live@hugepages.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-adl-ddr5/igt@i915_selftest@live@hugepages.html
+    - fi-rkl-guc:         [PASS][3] -> [DMESG-FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-rkl-guc/igt@i915_selftest@live@hugepages.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-rkl-guc/igt@i915_selftest@live@hugepages.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@hugepages:
+    - {fi-ehl-2}:         [PASS][5] -> [DMESG-FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-ehl-2/igt@i915_selftest@live@hugepages.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-ehl-2/igt@i915_selftest@live@hugepages.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3:
+    - {bat-dg2-9}:        [PASS][7] -> [DMESG-WARN][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-3:
+    - {bat-dg2-9}:        [PASS][9] -> [INCOMPLETE][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-3.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-3.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109579v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][11] ([fdo#109271]) +32 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-icl-u2:          NOTRUN -> [DMESG-WARN][12] ([i915#4890])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][13] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:
+    - fi-bsw-kefka:       [PASS][14] -> [FAIL][15] ([i915#6298])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html
+
+  * igt@runner@aborted:
+    - fi-adl-ddr5:        NOTRUN -> [FAIL][16] ([i915#4312])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-adl-ddr5/igt@runner@aborted.html
+    - fi-rkl-guc:         NOTRUN -> [FAIL][17] ([i915#4312])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-rkl-guc/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@read:
+    - {bat-rpls-2}:       [SKIP][18] ([i915#2582]) -> [PASS][19] +4 similar issues
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-rpls-2/igt@fbdev@read.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-rpls-2/igt@fbdev@read.html
+
+  * igt@gem_exec_parallel@engines@contexts:
+    - fi-bsw-nick:        [INCOMPLETE][20] -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-bsw-nick/igt@gem_exec_parallel@engines@contexts.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-bsw-nick/igt@gem_exec_parallel@engines@contexts.html
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-adlm-1}:       [DMESG-WARN][22] ([i915#2867]) -> [PASS][23] +1 similar issue
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-icl-u2:          [DMESG-WARN][24] ([i915#4890]) -> [PASS][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-icl-u2/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-icl-u2/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8109u:       [DMESG-FAIL][26] ([i915#62]) -> [PASS][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@guc_multi_lrc:
+    - fi-cfl-8109u:       [DMESG-WARN][28] ([i915#5904] / [i915#7174]) -> [PASS][29] +2 similar issues
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_selftest@live@guc_multi_lrc.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@i915_selftest@live@guc_multi_lrc.html
+
+  * igt@i915_selftest@live@hugepages:
+    - {bat-adln-1}:       [DMESG-FAIL][30] -> [PASS][31]
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-adln-1/igt@i915_selftest@live@hugepages.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-adln-1/igt@i915_selftest@live@hugepages.html
+    - {bat-jsl-1}:        [DMESG-FAIL][32] -> [PASS][33]
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-jsl-1/igt@i915_selftest@live@hugepages.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-jsl-1/igt@i915_selftest@live@hugepages.html
+    - {bat-rpls-1}:       [DMESG-FAIL][34] -> [PASS][35]
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-rpls-1/igt@i915_selftest@live@hugepages.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-rpls-1/igt@i915_selftest@live@hugepages.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-cfl-8109u:       [DMESG-WARN][36] ([i915#5904]) -> [PASS][37] +27 similar issues
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - fi-cfl-8109u:       [DMESG-WARN][38] ([i915#5904] / [i915#62]) -> [PASS][39]
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [DMESG-WARN][40] ([i915#62]) -> [PASS][41] +13 similar issues
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4890]: https://gitlab.freedesktop.org/drm/intel/issues/4890
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5537]: https://gitlab.freedesktop.org/drm/intel/issues/5537
+  [i915#5904]: https://gitlab.freedesktop.org/drm/intel/issues/5904
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#6298]: https://gitlab.freedesktop.org/drm/intel/issues/6298
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7029]: https://gitlab.freedesktop.org/drm/intel/issues/7029
+  [i915#7174]: https://gitlab.freedesktop.org/drm/intel/issues/7174
 
 
-On 2022/10/24 23:37, Hans de Goede wrote:
-> Hi,
-> 
-> On 10/24/22 16:31, Akihiko Odaki wrote:
->> On 2022/10/24 23:06, Akihiko Odaki wrote:
->>> On 2022/10/24 22:21, Hans de Goede wrote:
->>>> Hi,
->>>>
->>>> On 10/24/22 14:58, Akihiko Odaki wrote:
->>>>> On 2022/10/24 20:53, Hans de Goede wrote:
->>>>>> Hi Akihiko,
->>>>>>
->>>>>> On 10/24/22 13:34, Akihiko Odaki wrote:
->>>>>>> Commit 2600bfa3df99 ("ACPI: video: Add acpi_video_backlight_use_native()
->>>>>>> helper") and following commits made native backlight unavailable if
->>>>>>> CONFIG_ACPI_VIDEO is set and the backlight feature of ACPI video is
->>>>>>> unavailable, which broke the backlight functionality on Lenovo ThinkPad
->>>>>>> C13 Yoga Chromebook. Allow to fall back to native backlight in such
->>>>>>> cases.
->>>>>>
->>>>>> I appreciate your work on this, but what this in essence does is
->>>>>> it allows 2 backlight drivers (vendor + native) to get registered
->>>>>> for the same panel again. While the whole goal of the backlight refactor
->>>>>> series landing in 6.1 was to make it so that there always is only
->>>>>> *1* backlight device registered instead of (possibly) registering
->>>>>> multiple and letting userspace figure it out. It is also important
->>>>>> to only always have 1 backlight device per panel for further
->>>>>> upcoming changes.
->>>>>>
->>>>>> So nack for this solution, sorry.
->>>>>>
->>>>>> I am aware that this breaks backlight control on some Chromebooks,
->>>>>> this was already reported and I wrote a long reply explaining why
->>>>>> things are done the way they are done now and also suggesting
->>>>>> 2 possible (much simpler) fixes, see:
->>>>>> https://lore.kernel.org/linux-acpi/42a5f2c9-a1dc-8fc0-7334-fe6c390ecfbb@redhat.com/
->>>>>>
->>>>>> Unfortunately the reported has not followed-up on this and
->>>>>> I don't have the hardware to test this myself.
->>>>>>
->>>>>> Can you please try implementing 1 of the fixes suggested there
->>>>>> and then submit that upstream ?
->>>>>>
->>>>>> Regards,
->>>>>>
->>>>>> Hans
->>>>>>
->>>>>
->>>>> Hi Hans,
->>>>>
->>>>> Thanks for reviewing and letting me know the prior attempt.
->>>>>
->>>>> In this case, there is only a native backlight device and no vendor backlight device so the duplication of backlight devices does not happen. I think it is better to handle such a case without quirks.
->>>>
->>>> Adding a single heuristic for all chromebooks is something completely different
->>>> then adding per model quirks which indeed ideally should be avoided (but this
->>>> is not always possible).
->>>>
->>>>> I understand it is still questionable to cover the case by allowing duplication when both of a vendor backlight device and native one. To explain my understanding and reasoning for *not* trying to apply the de-duplication rule to the vendor/native combination, let me first describe that the de-duplication which happens in acpi_video_get_backlight_type() is a heuristics and limited.
->>>>>
->>>>> As the background of acpi_video_get_backlight_type(), there is an assumption that it should be common that both of the firmware, implementing ACPI, and the kernel have code to drive backlight. In the case, the more reliable one should be picked instead of using both, and that is what the statements in `if (video_caps & ACPI_VIDEO_BACKLIGHT)` does.
->>>>>
->>>>> However, the method has two limitations:
->>>>> 1. It does not cover the case where two backlight devices with the same type exist.
->>>>
->>>> This only happens when there are 2 panels; or 2 gpus driving a single panel
->>>> which are both special cases where we actually want 2 backlight devices.
->>>>
->>>>> 2. The underlying assumption does not apply to vendor/native combination.
->>>>>
->>>>> Regarding the second limitation, I don't even understand the difference between vendor and native. My guess is that a vendor backlight device uses vendor-specific ACPI interface, and a native one directly uses hardware registers. If my guess is correct, the difference between vendor and native does not imply that both of them are likely to exist at the same time. As the conclusion, there is no more motivation to try to de-duplicate the vendor/native combination than to try to de-duplicate combination of devices with a single type.
->>>>>
->>>>> Of course, it is better if we could also avoid registering two devices with one type for one physical device. Possibly we can do so by providing a parameter to indicate that it is for the same "internal" backlight to devm_backlight_device_register(), and let the function check for the duplication. However, this rule may be too restrict, or may have problems I missed.
->>>>>
->>>>> Based on the discussion above, we can deduce three possibilities:
->>>>> a. There is no reason to distinguish vendor and native in this case, and we can stick to my current proposal.
->>>>> b. There is a valid reason to distinguish vendor and native, and we can adopt the same strategy that already adopted for ACPI video/vendor combination.
->>>>> c. We can implement de-duplication in devm_backlight_device_register().
->>>>> d. The other possible options are not worth, and we can just implement quirks specific to Chromebook/coreboot.
->>>>>
->>>>> In case b, it should be noted that vendor and native backlight device do not require ACPI video, and CONFIG_ACPI_VIDEO may not be enabled. In the case, the de-duplication needs to be implemented in backlight class device.
->>>>
->>>> I have been working on the ACPI/x86 backlight detection code since 2015, please trust
->>>> me when I say that allowing both vendor + native backlight devices at the same time
->>>> is a bad idea.
->>>>
->>>> I'm currently in direct contact with the ChromeOS team about fixing the Chromebook
->>>> backlight issue introduced in 6.1-rc1.
->>>>
->>>> If you wan to help, please read:
->>>>
->>>> https://lore.kernel.org/linux-acpi/42a5f2c9-a1dc-8fc0-7334-fe6c390ecfbb@redhat.com/
->>>>
->>>> And try implementing 1 if the 2 solutions suggested there.
->>>>
->>>> Regards,
->>>>
->>>> Hans
->>>
->>> Hi,
->>>
->>> I just wanted to confirm your intention that we should distinguish vendor and native. In the case I think it is better to modify __acpi_video_get_backlight_type() and add "native_available" check in case of no ACPI video as already done for the ACPI video/native combination.
->>>
->>> Unfortunately this has one pitfall though: it does not work if CONFIG_ACPI_VIDEO is disabled. If it is, acpi_video_get_backlight_type() always return acpi_backlight_vendor, and acpi_video_backlight_use_native() always returns true. It is not a regression but the current behavior. Fixing it requires also refactoring touching both of ACPI video and backlight class driver so I guess I'm not an appropriate person to do that, and I should just add "native_available" check to __acpi_video_get_backlight_type().
->>>
->>> Does that sound good?
->>
->> Well, it would not be that easy since just adding native_available cannot handle the case where the vendor driver gets registered first. Checking with "native_available" was possible for ACPI video/vendor combination because ACPI video registers its backlight after some delay. I still think it does not overcomplicate things to modify __acpi_video_get_backlight_type() so that it can use both of vendor and native as fallback while preventing duplicate registration.
-> 
-> In the mean time this has already been fixed by a single patch of just a few
-> lines, rather then requiring 22 patches, see:
-> 
-> https://lore.kernel.org/dri-devel/20221024141210.67784-1-dmitry.osipenko@collabora.com/
-> 
-> Regards,
-> 
-> Hans
+Build changes
+-------------
 
-It should be the smaller indeed. Modifying 
-__acpi_video_get_backlight_type() so that it can fall back to either of 
-vendor and native requires all of the vendor drivers to use something 
-like acpi_video_backlight_use_native() but for vendor. It certainly 
-requires 22 patches.
+  * Linux: CI_DRM_12285 -> Patchwork_109579v2
 
-That aside, the first patch in this series can be applied without the 
-later patches so you may have a look at it. It's fine if you don't merge 
-it though since it does not fix really a pragmatic bug as its message says.
+  CI-20190529: 20190529
+  CI_DRM_12285: 92b40b6e1d54d68a766c1545b9ace3e2eccad94a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7023: 229bb0accbb7c8cedcc8d9256ad2b6683c9f161a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109579v2: 92b40b6e1d54d68a766c1545b9ace3e2eccad94a @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Regards,
-Akihiko Odaki
 
-> 
-> 
-> 
-> 
->>>>>>> Akihiko Odaki (22):
->>>>>>>      drm/i915/opregion: Improve backlight request condition
->>>>>>>      ACPI: video: Introduce acpi_video_get_backlight_types()
->>>>>>>      LoongArch: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: acer-wmi: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: asus-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: asus-wmi: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: compal-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: eeepc-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: fujitsu-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: ideapad-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: msi-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: msi-wmi: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: nvidia-wmi-ec-backlight: Use
->>>>>>>        acpi_video_get_backlight_types()
->>>>>>>      platform/x86: panasonic-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: samsung-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: sony-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: thinkpad_acpi: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: toshiba_acpi: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: dell-laptop: Use acpi_video_get_backlight_types()
->>>>>>>      platform/x86: intel_oaktrail: Use acpi_video_get_backlight_types()
->>>>>>>      ACPI: video: Remove acpi_video_get_backlight_type()
->>>>>>>      ACPI: video: Fallback to native backlight
->>>>>>>
->>>>>>>     Documentation/gpu/todo.rst                    |  8 +--
->>>>>>>     drivers/acpi/acpi_video.c                     |  2 +-
->>>>>>>     drivers/acpi/video_detect.c                   | 54 ++++++++++---------
->>>>>>>     drivers/gpu/drm/i915/display/intel_opregion.c |  3 +-
->>>>>>>     drivers/platform/loongarch/loongson-laptop.c  |  4 +-
->>>>>>>     drivers/platform/x86/acer-wmi.c               |  2 +-
->>>>>>>     drivers/platform/x86/asus-laptop.c            |  2 +-
->>>>>>>     drivers/platform/x86/asus-wmi.c               |  4 +-
->>>>>>>     drivers/platform/x86/compal-laptop.c          |  2 +-
->>>>>>>     drivers/platform/x86/dell/dell-laptop.c       |  2 +-
->>>>>>>     drivers/platform/x86/eeepc-laptop.c           |  2 +-
->>>>>>>     drivers/platform/x86/fujitsu-laptop.c         |  4 +-
->>>>>>>     drivers/platform/x86/ideapad-laptop.c         |  2 +-
->>>>>>>     drivers/platform/x86/intel/oaktrail.c         |  2 +-
->>>>>>>     drivers/platform/x86/msi-laptop.c             |  2 +-
->>>>>>>     drivers/platform/x86/msi-wmi.c                |  2 +-
->>>>>>>     .../platform/x86/nvidia-wmi-ec-backlight.c    |  2 +-
->>>>>>>     drivers/platform/x86/panasonic-laptop.c       |  2 +-
->>>>>>>     drivers/platform/x86/samsung-laptop.c         |  2 +-
->>>>>>>     drivers/platform/x86/sony-laptop.c            |  2 +-
->>>>>>>     drivers/platform/x86/thinkpad_acpi.c          |  4 +-
->>>>>>>     drivers/platform/x86/toshiba_acpi.c           |  2 +-
->>>>>>>     drivers/video/backlight/backlight.c           | 18 +++++++
->>>>>>>     include/acpi/video.h                          | 21 ++++----
->>>>>>>     include/linux/backlight.h                     |  1 +
->>>>>>>     25 files changed, 85 insertions(+), 66 deletions(-)
->>>>>>>
->>>>>>
->>>>>
->>>>
->>
-> 
+### Linux commits
+
+4c9502802c8b drm/edid: convert to device specific logging
+53cce095e530 drm/edid: add [CONNECTOR:%d:%s] to debug logging
+4284cc43765b drm/edid/firmware: convert to drm device specific logging
+f668e80f043a drm/edid: move edid load declarations to internal header
+1bd1552c09cb drm/edid: use struct drm_edid for override/firmware EDID
+902f95527121 drm/edid/firmware: rename drm_load_edid_firmware() to drm_edid_load_firmware()
+dbc51a554251 drm/edid/firmware: drop redundant connector_name variable/parameter
+2351cb1a5c82 drm/edid: detach debugfs EDID override from EDID property update
+ca0a256e024f drm/edid: add function for checking drm_edid validity
+eeb9bc2facfc drm/edid: split drm_edid block count helper
+6ac00f8634f8 drm/edid: rename drm_add_override_edid_modes() to drm_edid_override_connector_update()
+8b205e15ce89 drm/edid: abstract debugfs override EDID show better
+4dd7c0b70ff3 drm/edid: debug log EDID override set/reset
+57d65779b0b3 drm/amd/display: stop using connector->override_edid
+2436f1baf297 drm/i915/hdmi: stop using connector->override_edid
+b0b30261b346 drm/i915/hdmi: do dual mode detect only if connected
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/index.html
+
+--===============7074368423534776959==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/edid: EDID override refactoring and fixes (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109579/">https://patchwork.freedesktop.org/series/109579/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12285 -&gt; Patchwork_109579v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_109579v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_109579v2, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/index.html</p>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Missing    (4): fi-ctg-p8600 fi-hsw-4770 fi-bdw-samus bat-dg1-5 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_109579v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hugepages:</p>
+<ul>
+<li>
+<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-adl-ddr5/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-adl-ddr5/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></p>
+</li>
+<li>
+<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-rkl-guc/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-rkl-guc/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hugepages:</p>
+<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-ehl-2/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-ehl-2/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-dp-3.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-3:</p>
+<ul>
+<li>{bat-dg2-9}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-dp-3.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109579v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +32 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4890">i915#4890</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor@atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6298">i915#6298</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-adl-ddr5/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@read:</p>
+<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-rpls-2/igt@fbdev@read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-rpls-2/igt@fbdev@read.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_parallel@engines@contexts:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-bsw-nick/igt@gem_exec_parallel@engines@contexts.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-bsw-nick/igt@gem_exec_parallel@engines@contexts.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-icl-u2/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4890">i915#4890</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-icl-u2/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc_multi_lrc:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_selftest@live@guc_multi_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7174">i915#7174</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@i915_selftest@live@guc_multi_lrc.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hugepages:</p>
+<ul>
+<li>
+<p>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-adln-1/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-adln-1/igt@i915_selftest@live@hugepages.html">PASS</a></p>
+</li>
+<li>
+<p>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-jsl-1/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-jsl-1/igt@i915_selftest@live@hugepages.html">PASS</a></p>
+</li>
+<li>
+<p>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-rpls-1/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/bat-rpls-1/igt@i915_selftest@live@hugepages.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">PASS</a> +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109579v2/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> +13 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12285 -&gt; Patchwork_109579v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12285: 92b40b6e1d54d68a766c1545b9ace3e2eccad94a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7023: 229bb0accbb7c8cedcc8d9256ad2b6683c9f161a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109579v2: 92b40b6e1d54d68a766c1545b9ace3e2eccad94a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>4c9502802c8b drm/edid: convert to device specific logging<br />
+53cce095e530 drm/edid: add [CONNECTOR:%d:%s] to debug logging<br />
+4284cc43765b drm/edid/firmware: convert to drm device specific logging<br />
+f668e80f043a drm/edid: move edid load declarations to internal header<br />
+1bd1552c09cb drm/edid: use struct drm_edid for override/firmware EDID<br />
+902f95527121 drm/edid/firmware: rename drm_load_edid_firmware() to drm_edid_load_firmware()<br />
+dbc51a554251 drm/edid/firmware: drop redundant connector_name variable/parameter<br />
+2351cb1a5c82 drm/edid: detach debugfs EDID override from EDID property update<br />
+ca0a256e024f drm/edid: add function for checking drm_edid validity<br />
+eeb9bc2facfc drm/edid: split drm_edid block count helper<br />
+6ac00f8634f8 drm/edid: rename drm_add_override_edid_modes() to drm_edid_override_connector_update()<br />
+8b205e15ce89 drm/edid: abstract debugfs override EDID show better<br />
+4dd7c0b70ff3 drm/edid: debug log EDID override set/reset<br />
+57d65779b0b3 drm/amd/display: stop using connector-&gt;override_edid<br />
+2436f1baf297 drm/i915/hdmi: stop using connector-&gt;override_edid<br />
+b0b30261b346 drm/i915/hdmi: do dual mode detect only if connected</p>
+
+</body>
+</html>
+
+--===============7074368423534776959==--
