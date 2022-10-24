@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995BC60BD4C
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 00:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1DF460BD52
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 00:24:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5034610E05F;
-	Mon, 24 Oct 2022 22:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64C8010E081;
+	Mon, 24 Oct 2022 22:24:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CDD9210E05F;
- Mon, 24 Oct 2022 22:22:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9F6DAA7DFB;
- Mon, 24 Oct 2022 22:22:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4299915241410977612=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0F4310E0AE;
+ Mon, 24 Oct 2022 22:24:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666650256; x=1698186256;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=iTC9bdF2DcYCY35t0SbX5g2wZya5NbilhvRMLCijzUM=;
+ b=GYCi6DgdcB0FuFXgVxgo7dSWlXTKKJbfOtL1CcYwXKtY7pgRB+3DZdP7
+ wXKhUnrJKEhoWyamTzIhLWz0VONU/xyNHc9r/hsWcWWrEs0TBwwo8Kjy2
+ S3iamuNtvSJS3Nb1yE2iOZI6mglYhLFxz1BqZIWW41nXwSkUnmdpSNfSd
+ CuoXxirHZLM57r3aasnv2sVtVyM6ajnkR0+9GHrX08xeMwcOCYjW7ap14
+ R5nkJO/eWKbh7lsB/djYpsz8s1/9PCCKr9fTq/osuQAMxd2Ys/6jNAkUc
+ Qgwivcq3L7xZ9ZmJ2ylsosBRAFl1MYEX3/ChKzcy50l0IrMxMUlmA2x5A w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="371751662"
+X-IronPort-AV: E=Sophos;i="5.95,210,1661842800"; d="scan'208";a="371751662"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 15:24:15 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="626216786"
+X-IronPort-AV: E=Sophos;i="5.95,210,1661842800"; d="scan'208";a="626216786"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 15:24:15 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Oct 2022 15:26:42 -0700
+Message-Id: <20221024222642.2377564-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20221022001008.2340224-6-daniele.ceraolospurio@intel.com>
+References: <20221022001008.2340224-6-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-Date: Mon, 24 Oct 2022 22:22:08 -0000
-Message-ID: <166665012862.3425.380496155852115465@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221024171108.14373-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20221024171108.14373-1-vinay.belgaumkar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/slpc=3A_Optmize_waitboost_for_SLPC_=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Handle wopcm per-GT and limit
+ calculations.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,376 +57,364 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4299915241410977612==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 
-== Series Details ==
+With MTL standalone media architecture the wopcm layout has changed,
+with separate partitioning in WOPCM for the root GT GuC and the media
+GT GuC. The size of WOPCM is 4MB with the lower 2MB reserved for the
+media GT and the upper 2MB for the root GT.
 
-Series: drm/i915/slpc: Optmize waitboost for SLPC (rev5)
-URL   : https://patchwork.freedesktop.org/series/109840/
-State : failure
+Given that MTL has GuC deprivilege, the WOPCM registers are pre-locked
+by the bios. Therefore, we can skip all the math for the partitioning
+and just limit ourselves to sanity-checking the values.
 
-== Summary ==
+v2: fix makefile file ordering (Jani)
+v3: drop XELPM_SAMEDIA_WOPCM_SIZE, check huc instead of VDBOX (John)
+v4: further clarify commit message, remove blank line (John)
 
-CI Bug Log - changes from CI_DRM_12287 -> Patchwork_109840v5
-====================================================
+Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: John Harrison <john.c.harrison@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+---
+ Documentation/gpu/i915.rst                  |  2 +-
+ drivers/gpu/drm/i915/Makefile               |  5 ++-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c        |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c          |  1 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h    |  2 +
+ drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c | 43 ++++++++++++++-------
+ drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h |  0
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c       |  4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c    | 14 ++++---
+ drivers/gpu/drm/i915/i915_driver.c          |  2 -
+ drivers/gpu/drm/i915/i915_drv.h             |  3 --
+ drivers/gpu/drm/i915/i915_gem.c             |  5 ++-
+ 12 files changed, 51 insertions(+), 32 deletions(-)
+ rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.c (87%)
+ rename drivers/gpu/drm/i915/{ => gt}/intel_wopcm.h (100%)
 
-Summary
--------
+diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+index 4e59db1cfb00..60ea21734902 100644
+--- a/Documentation/gpu/i915.rst
++++ b/Documentation/gpu/i915.rst
+@@ -494,7 +494,7 @@ WOPCM
+ WOPCM Layout
+ ~~~~~~~~~~~~
+ 
+-.. kernel-doc:: drivers/gpu/drm/i915/intel_wopcm.c
++.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_wopcm.c
+    :doc: WOPCM Layout
+ 
+ GuC
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 2535593ab379..cf3a96b3cd58 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -127,9 +127,11 @@ gt-y += \
+ 	gt/intel_sseu.o \
+ 	gt/intel_sseu_debugfs.o \
+ 	gt/intel_timeline.o \
++	gt/intel_wopcm.o \
+ 	gt/intel_workarounds.o \
+ 	gt/shmem_utils.o \
+ 	gt/sysfs_engines.o
++
+ # x86 intel-gtt module support
+ gt-$(CONFIG_X86) += gt/intel_ggtt_gmch.o
+ # autogenerated null render state
+@@ -183,8 +185,7 @@ i915-y += \
+ 	  i915_trace_points.o \
+ 	  i915_ttm_buddy_manager.o \
+ 	  i915_vma.o \
+-	  i915_vma_resource.o \
+-	  intel_wopcm.o
++	  i915_vma_resource.o
+ 
+ # general-purpose microcontroller (GuC) support
+ i915-y += gt/uc/intel_uc.o \
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 6b58c95ad6a0..9263f10ecd28 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -560,7 +560,7 @@ static int init_ggtt(struct i915_ggtt *ggtt)
+ 	 * why.
+ 	 */
+ 	ggtt->pin_bias = max_t(u32, I915_GTT_PAGE_SIZE,
+-			       intel_wopcm_guc_size(&ggtt->vm.i915->wopcm));
++			       intel_wopcm_guc_size(&ggtt->vm.gt->wopcm));
+ 
+ 	ret = intel_vgt_balloon(ggtt);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 27dbb9e4bd6c..8c751314df3d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -56,6 +56,7 @@ void intel_gt_common_init_early(struct intel_gt *gt)
+ 	seqcount_mutex_init(&gt->tlb.seqno, &gt->tlb.invalidate_lock);
+ 	intel_gt_pm_init_early(gt);
+ 
++	intel_wopcm_init_early(&gt->wopcm);
+ 	intel_uc_init_early(&gt->uc);
+ 	intel_rps_init_early(&gt->rps);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index 64aa2ba624fc..2d18fd9ab11f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -30,6 +30,7 @@
+ #include "intel_migrate_types.h"
+ #include "intel_wakeref.h"
+ #include "pxp/intel_pxp_types.h"
++#include "intel_wopcm.h"
+ 
+ struct drm_i915_private;
+ struct i915_ggtt;
+@@ -100,6 +101,7 @@ struct intel_gt {
+ 
+ 	struct intel_uc uc;
+ 	struct intel_gsc gsc;
++	struct intel_wopcm wopcm;
+ 
+ 	struct {
+ 		/* Serialize global tlb invalidations */
+diff --git a/drivers/gpu/drm/i915/intel_wopcm.c b/drivers/gpu/drm/i915/gt/intel_wopcm.c
+similarity index 87%
+rename from drivers/gpu/drm/i915/intel_wopcm.c
+rename to drivers/gpu/drm/i915/gt/intel_wopcm.c
+index 322fb9eeb880..7ebbcc191c2d 100644
+--- a/drivers/gpu/drm/i915/intel_wopcm.c
++++ b/drivers/gpu/drm/i915/gt/intel_wopcm.c
+@@ -64,9 +64,9 @@
+ #define GEN9_GUC_FW_RESERVED	SZ_128K
+ #define GEN9_GUC_WOPCM_OFFSET	(GUC_WOPCM_RESERVED + GEN9_GUC_FW_RESERVED)
+ 
+-static inline struct drm_i915_private *wopcm_to_i915(struct intel_wopcm *wopcm)
++static inline struct intel_gt *wopcm_to_gt(struct intel_wopcm *wopcm)
+ {
+-	return container_of(wopcm, struct drm_i915_private, wopcm);
++	return container_of(wopcm, struct intel_gt, wopcm);
+ }
+ 
+ /**
+@@ -77,7 +77,8 @@ static inline struct drm_i915_private *wopcm_to_i915(struct intel_wopcm *wopcm)
+  */
+ void intel_wopcm_init_early(struct intel_wopcm *wopcm)
+ {
+-	struct drm_i915_private *i915 = wopcm_to_i915(wopcm);
++	struct intel_gt *gt = wopcm_to_gt(wopcm);
++	struct drm_i915_private *i915 = gt->i915;
+ 
+ 	if (!HAS_GT_UC(i915))
+ 		return;
+@@ -157,10 +158,11 @@ static bool check_hw_restrictions(struct drm_i915_private *i915,
+ 	return true;
+ }
+ 
+-static bool __check_layout(struct drm_i915_private *i915, u32 wopcm_size,
++static bool __check_layout(struct intel_gt *gt, u32 wopcm_size,
+ 			   u32 guc_wopcm_base, u32 guc_wopcm_size,
+ 			   u32 guc_fw_size, u32 huc_fw_size)
+ {
++	struct drm_i915_private *i915 = gt->i915;
+ 	const u32 ctx_rsvd = context_reserved_size(i915);
+ 	u32 size;
+ 
+@@ -181,12 +183,14 @@ static bool __check_layout(struct drm_i915_private *i915, u32 wopcm_size,
+ 		return false;
+ 	}
+ 
+-	size = huc_fw_size + WOPCM_RESERVED_SIZE;
+-	if (unlikely(guc_wopcm_base < size)) {
+-		drm_err(&i915->drm, "WOPCM: no space for %s: %uK < %uK\n",
+-			intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
+-			guc_wopcm_base / SZ_1K, size / SZ_1K);
+-		return false;
++	if (intel_uc_supports_huc(&gt->uc)) {
++		size = huc_fw_size + WOPCM_RESERVED_SIZE;
++		if (unlikely(guc_wopcm_base < size)) {
++			drm_err(&i915->drm, "WOPCM: no space for %s: %uK < %uK\n",
++				intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
++				guc_wopcm_base / SZ_1K, size / SZ_1K);
++			return false;
++		}
+ 	}
+ 
+ 	return check_hw_restrictions(i915, guc_wopcm_base, guc_wopcm_size,
+@@ -228,8 +232,8 @@ static bool __wopcm_regs_writable(struct intel_uncore *uncore)
+  */
+ void intel_wopcm_init(struct intel_wopcm *wopcm)
+ {
+-	struct drm_i915_private *i915 = wopcm_to_i915(wopcm);
+-	struct intel_gt *gt = to_gt(i915);
++	struct intel_gt *gt = wopcm_to_gt(wopcm);
++	struct drm_i915_private *i915 = gt->i915;
+ 	u32 guc_fw_size = intel_uc_fw_get_upload_size(&gt->uc.guc.fw);
+ 	u32 huc_fw_size = intel_uc_fw_get_upload_size(&gt->uc.huc.fw);
+ 	u32 ctx_rsvd = context_reserved_size(i915);
+@@ -274,6 +278,19 @@ void intel_wopcm_init(struct intel_wopcm *wopcm)
+ 		goto check;
+ 	}
+ 
++	/*
++	 * On platforms with a media GT, the WOPCM is partitioned between the
++	 * two GTs, so we would have to take that into account when doing the
++	 * math below. There is also a new section reserved for the GSC context
++	 * that would have to be factored in. However, all platforms with a
++	 * media GT also have GuC depriv enabled, so the WOPCM regs are
++	 * pre-locked and therefore we don't have to do the math ourselves.
++	 */
++	if (unlikely(i915->media_gt)) {
++		drm_err(&i915->drm, "Unlocked WOPCM regs with media GT\n");
++		return;
++	}
++
+ 	/*
+ 	 * Aligned value of guc_wopcm_base will determine available WOPCM space
+ 	 * for HuC firmware and mandatory reserved area.
+@@ -295,7 +312,7 @@ void intel_wopcm_init(struct intel_wopcm *wopcm)
+ 		guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K);
+ 
+ check:
+-	if (__check_layout(i915, wopcm_size, guc_wopcm_base, guc_wopcm_size,
++	if (__check_layout(gt, wopcm_size, guc_wopcm_base, guc_wopcm_size,
+ 			   guc_fw_size, huc_fw_size)) {
+ 		wopcm->guc.base = guc_wopcm_base;
+ 		wopcm->guc.size = guc_wopcm_size;
+diff --git a/drivers/gpu/drm/i915/intel_wopcm.h b/drivers/gpu/drm/i915/gt/intel_wopcm.h
+similarity index 100%
+rename from drivers/gpu/drm/i915/intel_wopcm.h
+rename to drivers/gpu/drm/i915/gt/intel_wopcm.h
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+index dbd048b77e19..4cd8a787f9e5 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+@@ -357,8 +357,8 @@ static int uc_init_wopcm(struct intel_uc *uc)
+ {
+ 	struct intel_gt *gt = uc_to_gt(uc);
+ 	struct intel_uncore *uncore = gt->uncore;
+-	u32 base = intel_wopcm_guc_base(&gt->i915->wopcm);
+-	u32 size = intel_wopcm_guc_size(&gt->i915->wopcm);
++	u32 base = intel_wopcm_guc_base(&gt->wopcm);
++	u32 size = intel_wopcm_guc_size(&gt->wopcm);
+ 	u32 huc_agent = intel_uc_uses_huc(uc) ? HUC_LOADING_AGENT_GUC : 0;
+ 	u32 mask;
+ 	int err;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+index 81e06d71c1a8..0c80ba51a4bd 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+@@ -478,10 +478,11 @@ static int check_gsc_manifest(const struct firmware *fw,
+ 	return 0;
+ }
+ 
+-static int check_ccs_header(struct drm_i915_private *i915,
++static int check_ccs_header(struct intel_gt *gt,
+ 			    const struct firmware *fw,
+ 			    struct intel_uc_fw *uc_fw)
+ {
++	struct drm_i915_private *i915 = gt->i915;
+ 	struct uc_css_header *css;
+ 	size_t size;
+ 
+@@ -523,10 +524,10 @@ static int check_ccs_header(struct drm_i915_private *i915,
+ 
+ 	/* Sanity check whether this fw is not larger than whole WOPCM memory */
+ 	size = __intel_uc_fw_get_upload_size(uc_fw);
+-	if (unlikely(size >= i915->wopcm.size)) {
++	if (unlikely(size >= gt->wopcm.size)) {
+ 		drm_warn(&i915->drm, "%s firmware %s: invalid size: %zu > %zu\n",
+ 			 intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
+-			 size, (size_t)i915->wopcm.size);
++			 size, (size_t)gt->wopcm.size);
+ 		return -E2BIG;
+ 	}
+ 
+@@ -554,7 +555,8 @@ static int check_ccs_header(struct drm_i915_private *i915,
+  */
+ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+ {
+-	struct drm_i915_private *i915 = __uc_fw_to_gt(uc_fw)->i915;
++	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
++	struct drm_i915_private *i915 = gt->i915;
+ 	struct intel_uc_fw_file file_ideal;
+ 	struct device *dev = i915->drm.dev;
+ 	struct drm_i915_gem_object *obj;
+@@ -562,7 +564,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+ 	bool old_ver = false;
+ 	int err;
+ 
+-	GEM_BUG_ON(!i915->wopcm.size);
++	GEM_BUG_ON(!gt->wopcm.size);
+ 	GEM_BUG_ON(!intel_uc_fw_is_enabled(uc_fw));
+ 
+ 	err = i915_inject_probe_error(i915, -ENXIO);
+@@ -615,7 +617,7 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
+ 	if (uc_fw->loaded_via_gsc)
+ 		err = check_gsc_manifest(fw, uc_fw);
+ 	else
+-		err = check_ccs_header(i915, fw, uc_fw);
++		err = check_ccs_header(gt, fw, uc_fw);
+ 	if (err)
+ 		goto fail;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index ffff49868dc5..ba4b71aedc40 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -371,8 +371,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	if (ret)
+ 		goto err_ttm;
+ 
+-	intel_wopcm_init_early(&dev_priv->wopcm);
+-
+ 	ret = intel_root_gt_init_early(dev_priv);
+ 	if (ret < 0)
+ 		goto err_rootgt;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 9453fdd4205f..66aa2cd9aefe 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -62,7 +62,6 @@
+ #include "intel_runtime_pm.h"
+ #include "intel_step.h"
+ #include "intel_uncore.h"
+-#include "intel_wopcm.h"
+ 
+ struct drm_i915_clock_gating_funcs;
+ struct drm_i915_gem_object;
+@@ -235,8 +234,6 @@ struct drm_i915_private {
+ 
+ 	struct intel_gvt *gvt;
+ 
+-	struct intel_wopcm wopcm;
+-
+ 	struct pci_dev *bridge_dev;
+ 
+ 	struct rb_root uabi_engines;
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 9093d2be9e1c..7a9ce81600a0 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1140,9 +1140,10 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
+ 	if (ret)
+ 		return ret;
+ 
+-	for_each_gt(gt, dev_priv, i)
++	for_each_gt(gt, dev_priv, i) {
+ 		intel_uc_fetch_firmwares(&gt->uc);
+-	intel_wopcm_init(&dev_priv->wopcm);
++		intel_wopcm_init(&gt->wopcm);
++	}
+ 
+ 	ret = i915_init_ggtt(dev_priv);
+ 	if (ret) {
+-- 
+2.37.3
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_109840v5 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_109840v5, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/index.html
-
-Participating hosts (40 -> 39)
-------------------------------
-
-  Missing    (1): fi-ctg-p8600 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_109840v5:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hugepages:
-    - fi-glk-j4005:       [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-glk-j4005/igt@i915_selftest@live@hugepages.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-glk-j4005/igt@i915_selftest@live@hugepages.html
-    - fi-cfl-8109u:       [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-cfl-8109u/igt@i915_selftest@live@hugepages.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-cfl-8109u/igt@i915_selftest@live@hugepages.html
-    - fi-rkl-guc:         [PASS][5] -> [DMESG-FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-rkl-guc/igt@i915_selftest@live@hugepages.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-rkl-guc/igt@i915_selftest@live@hugepages.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@hugepages:
-    - {fi-jsl-1}:         [PASS][7] -> [DMESG-FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-jsl-1/igt@i915_selftest@live@hugepages.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-jsl-1/igt@i915_selftest@live@hugepages.html
-
-  * igt@i915_selftest@live@migrate:
-    - {bat-adlp-6}:       [PASS][9] -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-adlp-6/igt@i915_selftest@live@migrate.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-adlp-6/igt@i915_selftest@live@migrate.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_109840v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][11] ([fdo#109271])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-kbl-x1275/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][12] ([fdo#109271] / [fdo#111827])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-kbl-x1275/igt@kms_chamelium@common-hpd-after-suspend.html
-    - fi-adl-ddr5:        NOTRUN -> [SKIP][13] ([fdo#111827])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-adl-ddr5/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@runner@aborted:
-    - fi-glk-j4005:       NOTRUN -> [FAIL][14] ([i915#4312])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-glk-j4005/igt@runner@aborted.html
-    - fi-cfl-8109u:       NOTRUN -> [FAIL][15] ([i915#4312])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-cfl-8109u/igt@runner@aborted.html
-    - fi-rkl-guc:         NOTRUN -> [FAIL][16] ([i915#4312])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-rkl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {bat-rpls-1}:       [DMESG-WARN][17] ([i915#6687]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - {bat-rpls-2}:       [DMESG-WARN][19] ([i915#5537]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][21] ([i915#5334]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hugepages:
-    - {bat-adln-1}:       [DMESG-FAIL][23] -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-adln-1/igt@i915_selftest@live@hugepages.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-adln-1/igt@i915_selftest@live@hugepages.html
-    - fi-adl-ddr5:        [DMESG-FAIL][25] -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-adl-ddr5/igt@i915_selftest@live@hugepages.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-adl-ddr5/igt@i915_selftest@live@hugepages.html
-    - {bat-jsl-1}:        [DMESG-FAIL][27] -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-jsl-1/igt@i915_selftest@live@hugepages.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-jsl-1/igt@i915_selftest@live@hugepages.html
-
-  * igt@i915_selftest@live@migrate:
-    - fi-kbl-x1275:       [INCOMPLETE][29] -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-kbl-x1275/igt@i915_selftest@live@migrate.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-kbl-x1275/igt@i915_selftest@live@migrate.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cfl-8109u:       [DMESG-WARN][31] ([i915#62]) -> [PASS][32] +14 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2:
-    - fi-bdw-5557u:       [INCOMPLETE][33] ([i915#146]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5537]: https://gitlab.freedesktop.org/drm/intel/issues/5537
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12287 -> Patchwork_109840v5
-
-  CI-20190529: 20190529
-  CI_DRM_12287: 96e6798f907330779791745e512702c37ee86105 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7025: f8b8e0713f87460a2c050ec8fe18fa487f98e228 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_109840v5: 96e6798f907330779791745e512702c37ee86105 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-49a75c84ec58 drm/i915/slpc: Optmize waitboost for SLPC
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/index.html
-
---===============4299915241410977612==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/slpc: Optmize waitboost for SLPC (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109840/">https://patchwork.freedesktop.org/series/109840/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12287 -&gt; Patchwork_109840v5</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_109840v5 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_109840v5, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/index.html</p>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Missing    (1): fi-ctg-p8600 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_109840v5:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>
-<p>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-glk-j4005/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-glk-j4005/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-cfl-8109u/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-cfl-8109u/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-rkl-guc/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-rkl-guc/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-jsl-1/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-jsl-1/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-adlp-6/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-adlp-6/igt@i915_selftest@live@migrate.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_109840v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-kbl-x1275/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-kbl-x1275/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-<li>
-<p>fi-adl-ddr5:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-adl-ddr5/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-glk-j4005/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5537">i915#5537</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>
-<p>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-adln-1/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-adln-1/igt@i915_selftest@live@hugepages.html">PASS</a></p>
-</li>
-<li>
-<p>fi-adl-ddr5:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-adl-ddr5/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-adl-ddr5/igt@i915_selftest@live@hugepages.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-jsl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/bat-jsl-1/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/bat-jsl-1/igt@i915_selftest@live@hugepages.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-kbl-x1275/igt@i915_selftest@live@migrate.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-kbl-x1275/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> +14 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12287/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109840v5/fi-bdw-5557u/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-2.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12287 -&gt; Patchwork_109840v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12287: 96e6798f907330779791745e512702c37ee86105 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7025: f8b8e0713f87460a2c050ec8fe18fa487f98e228 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_109840v5: 96e6798f907330779791745e512702c37ee86105 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>49a75c84ec58 drm/i915/slpc: Optmize waitboost for SLPC</p>
-
-</body>
-</html>
-
---===============4299915241410977612==--
