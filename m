@@ -2,65 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC7160A9B7
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 15:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13AD960A9C9
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 15:24:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 603D210E6DC;
-	Mon, 24 Oct 2022 13:23:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5829110E716;
+	Mon, 24 Oct 2022 13:23:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com
- [IPv6:2607:f8b0:4864:20::52d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70ED310E3AE
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 11:36:40 +0000 (UTC)
-Received: by mail-pg1-x52d.google.com with SMTP id g129so6818992pgc.7
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 04:36:40 -0700 (PDT)
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
+ [IPv6:2607:f8b0:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D567D10E399
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 11:36:48 +0000 (UTC)
+Received: by mail-pg1-x52b.google.com with SMTP id s196so8466641pgs.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 04:36:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=daynix-com.20210112.gappssmtp.com; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=28wDlqMofB1pExK+J7NJqLJ5sSPJ8IDYDWuGoZcg4WU=;
- b=zPrE3Z79yDGzLtfx2QawETgF1lUMugvN0C6qQ0CWIaiD5/kUtQIJww0VDJMrkYc3N9
- elYuVucHc32XKow2YGLm3Vr08Z5vsbFCWlv4vq7Nx1QXhYg0jtjzlw0H9CXWI7Ta2vol
- 6FUMEN9tnwiBaSCwpYfKwo7U/Mq0MJA9eOTbkI8+uvO7eXR9gmEds/Sy3ur7LFminYR1
- NVY1BZW0FhIWVkiQMHh5J542GVxkeRWv1QNvckPM+a6g8eqefXzkOAt0+7UqdUmERKZa
- J+mLK9mmXa4DfceGk2cEkxou1QrTtBSQu+UKjsPm36wMjvQrtPcLMKbyQMEJWea/JWpP
- WvvA==
+ bh=aTWnIAAWrGsxFWyDKsfKu5xKbLpsLEHl3kQR801HKCo=;
+ b=MRe/lYU3QcRg+eNbrdoMjeONSL07r0OuDkWzCVk6tpzA20LxxB9dtVNP6GAZVtqzIg
+ /Ydi6DIu3Wy5fZXEZmacOcz+NqXiSg1SXC5+xE40BzARxzxxK4lzIbVbKWJmk00nhUWL
+ J95wLECXE4yV76gl9zFLYhn0sUtCfGQd7MZ3fPt+5gVvmN0pleQRDgrqZg3vefZrijSa
+ Yr0OxSWw7RuG0IesV0KfRF12UlNsEctSBC+ObKy3MmlA9Ekq0p3IRfhEG3FwtLPaqAOb
+ tgPmTvcjcO2SHlUmacRidezoVVwplJ41JEut0A62tZuMt+eaVkdbww0tkfz+m4Yo8zhg
+ FlhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=28wDlqMofB1pExK+J7NJqLJ5sSPJ8IDYDWuGoZcg4WU=;
- b=KXE6Qcl/vIsJG78C2D6mYUL4/PioDG6teW/wt/+A9q7IX49z+KoGToPKCuK4eSF0/+
- yhtTyf+vXP60mqgQOLKw9MtCtEUsyUK+DfC8BBtBZZOVGnV5dgimV2Ctz4d2La4WSa5N
- +iPlHTSWvPhENDPY0YXFBdplEjz8aULkwdl2Ij1DnczRrGK9rvMCAAl+N1l6bgTnvDUb
- hDzvhtCAHcf2wHRkYal6RaW602VZWMlmF/e0BWr2I+neeZ3wLEFSuGz0zXxOyF/Pte4y
- obQOfNsQEtYbxCwzDU5ziO8Tvez8mx7eAUVRWGWQ60s+wwJiPi3+CTtTU5Dr235gAbJW
- 0CRA==
-X-Gm-Message-State: ACrzQf22iCiQ6Rrpp7IcNYzUFcIOo0q6gPqyQgvim+bI5EBWnt3reGea
- p3iOhKbfs81Dar+DdySrpSUvxA==
-X-Google-Smtp-Source: AMsMyM6SfjrakTfflVuQ8PwvI36ClP4mxWtm2JBvE32zMW6Lo2xtR9eBT667zzx11rUWR7R7KloyFA==
-X-Received: by 2002:a63:5702:0:b0:44b:290:f24f with SMTP id
- l2-20020a635702000000b0044b0290f24fmr27871108pgb.558.1666611399944; 
- Mon, 24 Oct 2022 04:36:39 -0700 (PDT)
+ bh=aTWnIAAWrGsxFWyDKsfKu5xKbLpsLEHl3kQR801HKCo=;
+ b=h3X8v2hgy+zg9W3D4Y2MTr4OZcAkPSomRjZzdrGDSOemYfJYfPEOadTT40P75BBDkP
+ VM7fPcr4vK4xlW7EQGOQ0X6+YOhrj++DGrqp1Qqxue8QX5tWYvvbCCuYVsa4XWmUfdBg
+ PWKfx2QiRc843vPLBzIbJDSgZVh1mb7/x1Y6xqjGjic6yHy472kJlSsyQvj+q/Ulvmse
+ GwZg3oKqWLEc1OuDmTeaPKRe5fF/4AO6idkOuqxMN8c5NRlLEmtRLs4TR1GqBSeKZCRM
+ IdYUxZSVP+15ncScNLQOyQQZzMVVtyJr8VdLVyK5M4QLHjKc3sutz2PPlhcj2A2Nxz3z
+ 6jqg==
+X-Gm-Message-State: ACrzQf0rJVVg6oXPDevlliAhDRxqgpqPX84YHNHiFhB5rdgNISYmFKfC
+ lYER+OXw14JnifHBSVAE9Y343A==
+X-Google-Smtp-Source: AMsMyM4YJ5urGf6JLjky27R9T5sFwrnmf9RBCYrtUNpAE3TI6fc6EtzOOV4rZk9R6ICHsHu1MQHt3A==
+X-Received: by 2002:a63:64d:0:b0:46b:158f:102e with SMTP id
+ 74-20020a63064d000000b0046b158f102emr28740541pgg.150.1666611408492; 
+ Mon, 24 Oct 2022 04:36:48 -0700 (PDT)
 Received: from fedora.flets-east.jp ([2400:4050:c360:8200:8ae8:3c4:c0da:7419])
  by smtp.gmail.com with ESMTPSA id
- b8-20020a170903228800b001830ed575c3sm19475075plh.117.2022.10.24.04.36.31
+ b8-20020a170903228800b001830ed575c3sm19475075plh.117.2022.10.24.04.36.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Oct 2022 04:36:39 -0700 (PDT)
+ Mon, 24 Oct 2022 04:36:47 -0700 (PDT)
 From: Akihiko Odaki <akihiko.odaki@daynix.com>
 To: 
-Date: Mon, 24 Oct 2022 20:34:58 +0900
-Message-Id: <20221024113513.5205-8-akihiko.odaki@daynix.com>
+Date: Mon, 24 Oct 2022 20:34:59 +0900
+Message-Id: <20221024113513.5205-9-akihiko.odaki@daynix.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20221024113513.5205-1-akihiko.odaki@daynix.com>
 References: <20221024113513.5205-1-akihiko.odaki@daynix.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 24 Oct 2022 13:23:26 +0000
-Subject: [Intel-gfx] [PATCH 07/22] platform/x86: compal-laptop: Use
+Subject: [Intel-gfx] [PATCH 08/22] platform/x86: eeepc-laptop: Use
  acpi_video_get_backlight_types()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,22 +101,22 @@ acpi_video_get_backlight_type() is now deprecated.
 
 Signed-off-by: Akihiko Odaki <akihiko.odaki@daynix.com>
 ---
- drivers/platform/x86/compal-laptop.c | 2 +-
+ drivers/platform/x86/eeepc-laptop.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/platform/x86/compal-laptop.c b/drivers/platform/x86/compal-laptop.c
-index e10d2f64dfad..16ced03fa1b7 100644
---- a/drivers/platform/x86/compal-laptop.c
-+++ b/drivers/platform/x86/compal-laptop.c
-@@ -1043,7 +1043,7 @@ static int __init compal_init(void)
- 		return -ENODEV;
- 	}
+diff --git a/drivers/platform/x86/eeepc-laptop.c b/drivers/platform/x86/eeepc-laptop.c
+index a388a28b6f2a..91dea49f7c3d 100644
+--- a/drivers/platform/x86/eeepc-laptop.c
++++ b/drivers/platform/x86/eeepc-laptop.c
+@@ -1400,7 +1400,7 @@ static int eeepc_acpi_add(struct acpi_device *device)
+ 	if (result)
+ 		goto fail_platform;
  
 -	if (acpi_video_get_backlight_type() == acpi_backlight_vendor) {
 +	if ((acpi_video_get_backlight_types() & ACPI_BACKLIGHT_VENDOR)) {
- 		struct backlight_properties props;
- 		memset(&props, 0, sizeof(struct backlight_properties));
- 		props.type = BACKLIGHT_PLATFORM;
+ 		result = eeepc_backlight_init(eeepc);
+ 		if (result)
+ 			goto fail_backlight;
 -- 
 2.37.3
 
