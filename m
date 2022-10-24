@@ -2,32 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D8860B593
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 20:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03FF660B5AE
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 20:37:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96A7110E72C;
-	Mon, 24 Oct 2022 18:32:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A110910E094;
+	Mon, 24 Oct 2022 18:37:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0BB6210E724;
- Mon, 24 Oct 2022 18:32:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0341FAADD8;
- Mon, 24 Oct 2022 18:32:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2887223900956888908=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8926510E094
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 18:37:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666636627; x=1698172627;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=9GGfDx1GkpPWwVaWDvySIPLJ8dKOMGcULXZ50cflxas=;
+ b=NoVk2j/JnSFoJQYV8W2pFRqWHtxVH8yPVFEFpgDb6+FqfKm4FThywtMr
+ jJjWfMvV+slHSWe4ah4H7o/BxWs7Ft8F7ukbxBQggWrAG8wQramau9RZj
+ 0lK1TPopHpAIi9KTVWeTdv1kQCJ5elhLsvltA4z5nt4k8KfjK30U23HYl
+ oBfyR6qxThI53Gtqmwu5kDEPO7XzpdFY4+CQMBdjr09mHqqCNjaHSqi32
+ Hjmz+sMwmmdHUr6LQkbx1AV3mTaKnErqHNHH5l9WWm9cDGsl5LR+RPyFt
+ oWnd0kfJsdhzrshkXyWONVwPq3/U60Um0nsMk6VVKHwRABmel+Q+yUBQ5 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="290797819"
+X-IronPort-AV: E=Sophos;i="5.95,210,1661842800"; d="scan'208";a="290797819"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 11:37:06 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="700261183"
+X-IronPort-AV: E=Sophos;i="5.95,210,1661842800"; d="scan'208";a="700261183"
+Received: from scsudhak-mobl5.gar.corp.intel.com (HELO intel.com)
+ ([10.251.215.22])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 11:37:03 -0700
+Date: Mon, 24 Oct 2022 20:37:01 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <Y1bbTbF6pzKjKbqC@ashyti-mobl2.lan>
+References: <20221019143818.244339-1-andrzej.hajda@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Date: Mon, 24 Oct 2022 18:32:45 -0000
-Message-ID: <166663636597.3425.7996454829384891198@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20221024144558.27747-1-nirmoy.das@intel.com>
-In-Reply-To: <20221024144558.27747-1-nirmoy.das@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_unwanted_ghost_obj_check?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221019143818.244339-1-andrzej.hajda@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: use intel_uncore_rmw when
+ appropriate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,374 +58,483 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2887223900956888908==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Andrzej,
 
-== Series Details ==
+On Wed, Oct 19, 2022 at 04:38:17PM +0200, Andrzej Hajda wrote:
+> This patch replaces all occurences of the form
+> intel_uncore_write(reg, intel_uncore_read(reg) OP val)
+> with intel_uncore_rmw.
+> 
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Series: drm/i915: Remove unwanted ghost obj check
-URL   : https://patchwork.freedesktop.org/series/110065/
-State : success
+both the patches pushed in drm-intel-gt-next.
 
-== Summary ==
+Thanks,
+Andi
 
-CI Bug Log - changes from CI_DRM_12285 -> Patchwork_110065v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/index.html
-
-Participating hosts (43 -> 41)
-------------------------------
-
-  Additional (2): fi-kbl-soraka fi-tgl-dsi 
-  Missing    (4): fi-ctg-p8600 fi-icl-u2 fi-bdw-samus bat-dg1-5 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_110065v1:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@hugepages:
-    - {fi-ehl-2}:         [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-ehl-2/igt@i915_selftest@live@hugepages.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-ehl-2/igt@i915_selftest@live@hugepages.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_110065v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +4 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][5] ([fdo#109271]) +32 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@runner@aborted:
-    - fi-kbl-soraka:      NOTRUN -> [FAIL][8] ([i915#4312] / [i915#4991])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-kbl-soraka/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_parallel@engines@contexts:
-    - fi-bsw-nick:        [INCOMPLETE][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-bsw-nick/igt@gem_exec_parallel@engines@contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-bsw-nick/igt@gem_exec_parallel@engines@contexts.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - {bat-adlm-1}:       [DMESG-WARN][11] ([i915#2867]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-adlm-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/bat-adlm-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-cfl-8109u:       [DMESG-FAIL][13] ([i915#62]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@guc_multi_lrc:
-    - fi-cfl-8109u:       [DMESG-WARN][15] ([i915#5904] / [i915#7174]) -> [PASS][16] +2 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_selftest@live@guc_multi_lrc.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@i915_selftest@live@guc_multi_lrc.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][17] ([i915#4785]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@hugepages:
-    - {bat-adln-1}:       [DMESG-FAIL][19] -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-adln-1/igt@i915_selftest@live@hugepages.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/bat-adln-1/igt@i915_selftest@live@hugepages.html
-    - {bat-rpls-1}:       [DMESG-FAIL][21] -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-rpls-1/igt@i915_selftest@live@hugepages.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/bat-rpls-1/igt@i915_selftest@live@hugepages.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-cfl-8109u:       [DMESG-WARN][23] ([i915#5904]) -> [PASS][24] +27 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - fi-cfl-8109u:       [DMESG-WARN][25] ([i915#5904] / [i915#62]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cfl-8109u:       [DMESG-WARN][27] ([i915#62]) -> [PASS][28] +13 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3:
-    - {bat-dg2-11}:       [FAIL][29] ([i915#6818]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#4991]: https://gitlab.freedesktop.org/drm/intel/issues/4991
-  [i915#5904]: https://gitlab.freedesktop.org/drm/intel/issues/5904
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#6818]: https://gitlab.freedesktop.org/drm/intel/issues/6818
-  [i915#6856]: https://gitlab.freedesktop.org/drm/intel/issues/6856
-  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
-  [i915#7125]: https://gitlab.freedesktop.org/drm/intel/issues/7125
-  [i915#7174]: https://gitlab.freedesktop.org/drm/intel/issues/7174
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_12285 -> Patchwork_110065v1
-
-  CI-20190529: 20190529
-  CI_DRM_12285: 92b40b6e1d54d68a766c1545b9ace3e2eccad94a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7023: 229bb0accbb7c8cedcc8d9256ad2b6683c9f161a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_110065v1: 92b40b6e1d54d68a766c1545b9ace3e2eccad94a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-f884e3aac6c1 drm/i915: Remove unwanted ghost obj check
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/index.html
-
---===============2887223900956888908==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Remove unwanted ghost obj check</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110065/">https://patchwork.freedesktop.org/series/110065/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_12285 -&gt; Patchwork_110065v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 41)</h2>
-<p>Additional (2): fi-kbl-soraka fi-tgl-dsi <br />
-  Missing    (4): fi-ctg-p8600 fi-icl-u2 fi-bdw-samus bat-dg1-5 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_110065v1:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@hugepages:<ul>
-<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-ehl-2/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-ehl-2/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_110065v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-kbl-soraka/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +32 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-bsw-nick/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4991">i915#4991</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@contexts:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-bsw-nick/igt@gem_exec_parallel@engines@contexts.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-bsw-nick/igt@gem_exec_parallel@engines@contexts.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-adlm-1/igt@gem_exec_suspend@basic-s3@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/bat-adlm-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc_multi_lrc:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_selftest@live@guc_multi_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7174">i915#7174</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@i915_selftest@live@guc_multi_lrc.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>
-<p>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-adln-1/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/bat-adln-1/igt@i915_selftest@live@hugepages.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-rpls-1/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/bat-rpls-1/igt@i915_selftest@live@hugepages.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">PASS</a> +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5904">i915#5904</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> +13 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3:</p>
-<ul>
-<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12285/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6818">i915#6818</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110065v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_12285 -&gt; Patchwork_110065v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_12285: 92b40b6e1d54d68a766c1545b9ace3e2eccad94a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7023: 229bb0accbb7c8cedcc8d9256ad2b6683c9f161a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_110065v1: 92b40b6e1d54d68a766c1545b9ace3e2eccad94a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>f884e3aac6c1 drm/i915: Remove unwanted ghost obj check</p>
-
-</body>
-</html>
-
---===============2887223900956888908==--
+> ---
+> v2:
+> - removed spare parens and moved clear/set args to the same line (Ville)
+> - split i915 and gt stuff (Ville)
+> - rebased on the latest drm-tip
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 187 +++++++++++---------------------
+>  1 file changed, 66 insertions(+), 121 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index f736b2181c12e0..ee34e278563603 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -60,25 +60,20 @@ static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
+>  		 * Must match Sampler, Pixel Back End, and Media. See
+>  		 * WaCompressedResourceSamplerPbeMediaNewHashMode.
+>  		 */
+> -		intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
+> -			   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) |
+> -			   SKL_DE_COMPRESSED_HASH_MODE);
+> +		intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PAR1_1, 0, SKL_DE_COMPRESSED_HASH_MODE);
+>  	}
+>  
+>  	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
+> -	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
+> -		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | SKL_EDP_PSR_FIX_RDWRAP);
+> +	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PAR1_1, 0, SKL_EDP_PSR_FIX_RDWRAP);
+>  
+>  	/* WaEnableChickenDCPR:skl,bxt,kbl,glk,cfl */
+> -	intel_uncore_write(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
+> -		   intel_uncore_read(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1) | MASK_WAKEMEM);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1, 0, MASK_WAKEMEM);
+>  
+>  	/*
+>  	 * WaFbcWakeMemOn:skl,bxt,kbl,glk,cfl
+>  	 * Display WA #0859: skl,bxt,kbl,glk,cfl
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+> -		   DISP_FBC_MEMORY_WAKE);
+> +	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_MEMORY_WAKE);
+>  }
+>  
+>  static void bxt_init_clock_gating(struct drm_i915_private *dev_priv)
+> @@ -86,15 +81,13 @@ static void bxt_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	gen9_init_clock_gating(dev_priv);
+>  
+>  	/* WaDisableSDEUnitClockGating:bxt */
+> -	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+> -		   GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+>  
+>  	/*
+>  	 * FIXME:
+>  	 * GEN8_HDCUNIT_CLOCK_GATE_DISABLE_HDCREQ applies on 3x6 GT SKUs only.
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+> -		   GEN8_HDCUNIT_CLOCK_GATE_DISABLE_HDCREQ);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6, 0, GEN8_HDCUNIT_CLOCK_GATE_DISABLE_HDCREQ);
+>  
+>  	/*
+>  	 * Wa: Backlight PWM may stop in the asserted state, causing backlight
+> @@ -115,16 +108,13 @@ static void bxt_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	 * WaFbcTurnOffFbcWatermark:bxt
+>  	 * Display WA #0562: bxt
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+> -		   DISP_FBC_WM_DIS);
+> +	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+>  
+>  	/*
+>  	 * WaFbcHighMemBwCorruptionAvoidance:bxt
+>  	 * Display WA #0883: bxt
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+> -			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)) |
+> -			   DPFC_DISABLE_DUMMY0);
+> +	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A), 0, DPFC_DISABLE_DUMMY0);
+>  }
+>  
+>  static void glk_init_clock_gating(struct drm_i915_private *dev_priv)
+> @@ -4055,9 +4045,9 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_priv)
+>   */
+>  static void ilk_init_lp_watermarks(struct drm_i915_private *dev_priv)
+>  {
+> -	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK) & ~WM_LP_ENABLE);
+> -	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK) & ~WM_LP_ENABLE);
+> -	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK) & ~WM_LP_ENABLE);
+> +	intel_uncore_rmw(&dev_priv->uncore, WM3_LP_ILK, WM_LP_ENABLE, 0);
+> +	intel_uncore_rmw(&dev_priv->uncore, WM2_LP_ILK, WM_LP_ENABLE, 0);
+> +	intel_uncore_rmw(&dev_priv->uncore, WM1_LP_ILK, WM_LP_ENABLE, 0);
+>  
+>  	/*
+>  	 * Don't touch WM_LP_SPRITE_ENABLE here.
+> @@ -4111,9 +4101,7 @@ static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
+>  	enum pipe pipe;
+>  
+>  	for_each_pipe(dev_priv, pipe) {
+> -		intel_uncore_write(&dev_priv->uncore, DSPCNTR(pipe),
+> -			   intel_uncore_read(&dev_priv->uncore, DSPCNTR(pipe)) |
+> -			   DISP_TRICKLE_FEED_DISABLE);
+> +		intel_uncore_rmw(&dev_priv->uncore, DSPCNTR(pipe), 0, DISP_TRICKLE_FEED_DISABLE);
+>  
+>  		intel_uncore_rmw(&dev_priv->uncore, DSPSURF(pipe), 0, 0);
+>  		intel_uncore_posting_read(&dev_priv->uncore, DSPSURF(pipe));
+> @@ -4162,19 +4150,13 @@ static void ilk_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	 */
+>  	if (IS_IRONLAKE_M(dev_priv)) {
+>  		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
+> -		intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
+> -			   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
+> -			   ILK_FBCQ_DIS);
+> -		intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
+> -			   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
+> -			   ILK_DPARB_GATE);
+> +		intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
+> +		intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
+>  	}
+>  
+>  	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
+>  
+> -	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
+> -		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
+> -		   ILK_ELPIN_409_SELECT);
+> +	intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
+>  
+>  	g4x_disable_trickle_feed(dev_priv);
+>  
+> @@ -4194,8 +4176,7 @@ static void cpt_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE |
+>  		   PCH_DPLUNIT_CLOCK_GATE_DISABLE |
+>  		   PCH_CPUNIT_CLOCK_GATE_DISABLE);
+> -	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN2, intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN2) |
+> -		   DPLS_EDP_PPS_FIX_DIS);
+> +	intel_uncore_rmw(&dev_priv->uncore, SOUTH_CHICKEN2, 0, DPLS_EDP_PPS_FIX_DIS);
+>  	/* The below fixes the weird display corruption, a few pixels shifted
+>  	 * downward, on (only) LVDS of some HP laptops with IVY.
+>  	 */
+> @@ -4233,9 +4214,7 @@ static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
+>  
+>  	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
+>  
+> -	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
+> -		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
+> -		   ILK_ELPIN_409_SELECT);
+> +	intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
+>  
+>  	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1,
+>  		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
+> @@ -4295,14 +4274,12 @@ static void lpt_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	 * disabled when not needed anymore in order to save power.
+>  	 */
+>  	if (HAS_PCH_LPT_LP(dev_priv))
+> -		intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D,
+> -			   intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D) |
+> -			   PCH_LP_PARTITION_LEVEL_DISABLE);
+> +		intel_uncore_rmw(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D,
+> +				 0, PCH_LP_PARTITION_LEVEL_DISABLE);
+>  
+>  	/* WADPOClockGatingDisable:hsw */
+> -	intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A),
+> -		   intel_uncore_read(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A)) |
+> -		   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
+> +	intel_uncore_rmw(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A),
+> +			 0, TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
+>  }
+>  
+>  static void lpt_suspend_hw(struct drm_i915_private *dev_priv)
+> @@ -4361,8 +4338,7 @@ static void gen12lp_init_clock_gating(struct drm_i915_private *dev_priv)
+>  
+>  	/* Wa_1409825376:tgl (pre-prod)*/
+>  	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0))
+> -		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
+> -			   TGL_VRH_GATING_DIS);
+> +		intel_uncore_rmw(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, 0, TGL_VRH_GATING_DIS);
+>  
+>  	/* Wa_14013723622:tgl,rkl,dg1,adl-s */
+>  	if (DISPLAY_VER(dev_priv) == 12)
+> @@ -4387,8 +4363,7 @@ static void dg1_init_clock_gating(struct drm_i915_private *dev_priv)
+>  
+>  	/* Wa_1409836686:dg1[a0] */
+>  	if (IS_DG1_GRAPHICS_STEP(dev_priv, STEP_A0, STEP_B0))
+> -		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
+> -			   DPT_GATING_DIS);
+> +		intel_uncore_rmw(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, 0, DPT_GATING_DIS);
+>  }
+>  
+>  static void xehpsdv_init_clock_gating(struct drm_i915_private *dev_priv)
+> @@ -4430,8 +4405,7 @@ static void cnp_init_clock_gating(struct drm_i915_private *dev_priv)
+>  		return;
+>  
+>  	/* Display WA #1181 WaSouthDisplayDisablePWMCGEGating: cnp */
+> -	intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D) |
+> -		   CNP_PWM_CGE_GATING_DISABLE);
+> +	intel_uncore_rmw(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, 0, CNP_PWM_CGE_GATING_DISABLE);
+>  }
+>  
+>  static void cfl_init_clock_gating(struct drm_i915_private *dev_priv)
+> @@ -4440,23 +4414,20 @@ static void cfl_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	gen9_init_clock_gating(dev_priv);
+>  
+>  	/* WAC6entrylatency:cfl */
+> -	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
+> -		   FBC_LLC_FULLY_OPEN);
+> +	intel_uncore_rmw(&dev_priv->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+>  
+>  	/*
+>  	 * WaFbcTurnOffFbcWatermark:cfl
+>  	 * Display WA #0562: cfl
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+> -		   DISP_FBC_WM_DIS);
+> +	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+>  
+>  	/*
+>  	 * WaFbcNukeOnHostModify:cfl
+>  	 * Display WA #0873: cfl
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+> -			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)) |
+> -			   DPFC_NUKE_ON_ANY_MODIFICATION);
+> +	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+> +			 0, DPFC_NUKE_ON_ANY_MODIFICATION);
+>  }
+>  
+>  static void kbl_init_clock_gating(struct drm_i915_private *dev_priv)
+> @@ -4464,33 +4435,30 @@ static void kbl_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	gen9_init_clock_gating(dev_priv);
+>  
+>  	/* WAC6entrylatency:kbl */
+> -	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
+> -		   FBC_LLC_FULLY_OPEN);
+> +	intel_uncore_rmw(&dev_priv->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+>  
+>  	/* WaDisableSDEUnitClockGating:kbl */
+>  	if (IS_KBL_GRAPHICS_STEP(dev_priv, 0, STEP_C0))
+> -		intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+> -			   GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+> +		intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6,
+> +				 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+>  
+>  	/* WaDisableGamClockGating:kbl */
+>  	if (IS_KBL_GRAPHICS_STEP(dev_priv, 0, STEP_C0))
+> -		intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1, intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
+> -			   GEN6_GAMUNIT_CLOCK_GATE_DISABLE);
+> +		intel_uncore_rmw(&dev_priv->uncore, GEN6_UCGCTL1,
+> +				 0, GEN6_GAMUNIT_CLOCK_GATE_DISABLE);
+>  
+>  	/*
+>  	 * WaFbcTurnOffFbcWatermark:kbl
+>  	 * Display WA #0562: kbl
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+> -		   DISP_FBC_WM_DIS);
+> +	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+>  
+>  	/*
+>  	 * WaFbcNukeOnHostModify:kbl
+>  	 * Display WA #0873: kbl
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+> -			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)) |
+> -			   DPFC_NUKE_ON_ANY_MODIFICATION);
+> +	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+> +			 0, DPFC_NUKE_ON_ANY_MODIFICATION);
+>  }
+>  
+>  static void skl_init_clock_gating(struct drm_i915_private *dev_priv)
+> @@ -4502,31 +4470,26 @@ static void skl_init_clock_gating(struct drm_i915_private *dev_priv)
+>  				   GEN8_DOP_CLOCK_GATE_ENABLE, 0);
+>  
+>  	/* WAC6entrylatency:skl */
+> -	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
+> -		   FBC_LLC_FULLY_OPEN);
+> +	intel_uncore_rmw(&dev_priv->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+>  
+>  	/*
+>  	 * WaFbcTurnOffFbcWatermark:skl
+>  	 * Display WA #0562: skl
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+> -		   DISP_FBC_WM_DIS);
+> +	intel_uncore_rmw(&dev_priv->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+>  
+>  	/*
+>  	 * WaFbcNukeOnHostModify:skl
+>  	 * Display WA #0873: skl
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+> -			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)) |
+> -			   DPFC_NUKE_ON_ANY_MODIFICATION);
+> +	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+> +			 0, DPFC_NUKE_ON_ANY_MODIFICATION);
+>  
+>  	/*
+>  	 * WaFbcHighMemBwCorruptionAvoidance:skl
+>  	 * Display WA #0883: skl
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+> -			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)) |
+> -			   DPFC_DISABLE_DUMMY0);
+> +	intel_uncore_rmw(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A), 0, DPFC_DISABLE_DUMMY0);
+>  }
+>  
+>  static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
+> @@ -4534,43 +4497,37 @@ static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	enum pipe pipe;
+>  
+>  	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
+> -	intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A),
+> -		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A)) |
+> -		   HSW_FBCQ_DIS);
+> +	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
+>  
+>  	/* WaSwitchSolVfFArbitrationPriority:bdw */
+> -	intel_uncore_write(&dev_priv->uncore, GAM_ECOCHK, intel_uncore_read(&dev_priv->uncore, GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
+> +	intel_uncore_rmw(&dev_priv->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
+>  
+>  	/* WaPsrDPAMaskVBlankInSRD:bdw */
+> -	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
+> -		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | DPA_MASK_VBLANK_SRD);
+> +	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PAR1_1, 0, DPA_MASK_VBLANK_SRD);
+>  
+>  	for_each_pipe(dev_priv, pipe) {
+>  		/* WaPsrDPRSUnmaskVBlankInSRD:bdw */
+> -		intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
+> -			   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe)) |
+> -			   BDW_DPRS_MASK_VBLANK_SRD);
+> +		intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
+> +				 0, BDW_DPRS_MASK_VBLANK_SRD);
+>  	}
+>  
+>  	/* WaVSRefCountFullforceMissDisable:bdw */
+>  	/* WaDSRefCountFullforceMissDisable:bdw */
+> -	intel_uncore_write(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
+> -		   intel_uncore_read(&dev_priv->uncore, GEN7_FF_THREAD_MODE) &
+> -		   ~(GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME));
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
+> +			 GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME, 0);
+>  
+>  	intel_uncore_write(&dev_priv->uncore, RING_PSMI_CTL(RENDER_RING_BASE),
+>  		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
+>  
+>  	/* WaDisableSDEUnitClockGating:bdw */
+> -	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+> -		   GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+>  
+>  	/* WaProgramL3SqcReg1Default:bdw */
+>  	gen8_set_l3sqc_credits(dev_priv, 30, 2);
+>  
+>  	/* WaKVMNotificationOnConfigChange:bdw */
+> -	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR2_1, intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR2_1)
+> -		   | KVM_CONFIG_CHANGE_NOTIFICATION_SELECT);
+> +	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PAR2_1,
+> +			 0, KVM_CONFIG_CHANGE_NOTIFICATION_SELECT);
+>  
+>  	lpt_init_clock_gating(dev_priv);
+>  
+> @@ -4579,24 +4536,20 @@ static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	 * Also see the CHICKEN2 write in bdw_init_workarounds() to disable DOP
+>  	 * clock gating.
+>  	 */
+> -	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1,
+> -		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) | GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN6_UCGCTL1, 0, GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
+>  }
+>  
+>  static void hsw_init_clock_gating(struct drm_i915_private *dev_priv)
+>  {
+>  	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
+> -	intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A),
+> -		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A)) |
+> -		   HSW_FBCQ_DIS);
+> +	intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
+>  
+>  	/* This is required by WaCatErrorRejectionIssue:hsw */
+> -	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+> -		   intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
+> -		   GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+> +			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+>  
+>  	/* WaSwitchSolVfFArbitrationPriority:hsw */
+> -	intel_uncore_write(&dev_priv->uncore, GAM_ECOCHK, intel_uncore_read(&dev_priv->uncore, GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
+> +	intel_uncore_rmw(&dev_priv->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
+>  
+>  	lpt_init_clock_gating(dev_priv);
+>  }
+> @@ -4606,9 +4559,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
+>  
+>  	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
+> -	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
+> -		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
+> -		   ILK_FBCQ_DIS);
+> +	intel_uncore_rmw(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
+>  
+>  	/* WaDisableBackToBackFlipFix:ivb */
+>  	intel_uncore_write(&dev_priv->uncore, IVB_CHICKEN3,
+> @@ -4634,9 +4585,8 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
+>  		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
+>  
+>  	/* This is required by WaCatErrorRejectionIssue:ivb */
+> -	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+> -			intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
+> -			GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+> +			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+>  
+>  	g4x_disable_trickle_feed(dev_priv);
+>  
+> @@ -4661,9 +4611,8 @@ static void vlv_init_clock_gating(struct drm_i915_private *dev_priv)
+>  		   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
+>  
+>  	/* This is required by WaCatErrorRejectionIssue:vlv */
+> -	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+> -		   intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
+> -		   GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+> +			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+>  
+>  	/*
+>  	 * According to the spec, bit 13 (RCZUNIT) must be set on IVB.
+> @@ -4675,8 +4624,7 @@ static void vlv_init_clock_gating(struct drm_i915_private *dev_priv)
+>  	/* WaDisableL3Bank2xClockGate:vlv
+>  	 * Disabling L3 clock gating- MMIO 940c[25] = 1
+>  	 * Set bit 25, to disable L3_BANK_2x_CLK_GATING */
+> -	intel_uncore_write(&dev_priv->uncore, GEN7_UCGCTL4,
+> -		   intel_uncore_read(&dev_priv->uncore, GEN7_UCGCTL4) | GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN7_UCGCTL4, 0, GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
+>  
+>  	/*
+>  	 * WaDisableVLVClockGating_VBIIssue:vlv
+> @@ -4690,21 +4638,18 @@ static void chv_init_clock_gating(struct drm_i915_private *dev_priv)
+>  {
+>  	/* WaVSRefCountFullforceMissDisable:chv */
+>  	/* WaDSRefCountFullforceMissDisable:chv */
+> -	intel_uncore_write(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
+> -		   intel_uncore_read(&dev_priv->uncore, GEN7_FF_THREAD_MODE) &
+> -		   ~(GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME));
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
+> +			 GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME, 0);
+>  
+>  	/* WaDisableSemaphoreAndSyncFlipWait:chv */
+>  	intel_uncore_write(&dev_priv->uncore, RING_PSMI_CTL(RENDER_RING_BASE),
+>  		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
+>  
+>  	/* WaDisableCSUnitClockGating:chv */
+> -	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1, intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
+> -		   GEN6_CSUNIT_CLOCK_GATE_DISABLE);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN6_UCGCTL1, 0, GEN6_CSUNIT_CLOCK_GATE_DISABLE);
+>  
+>  	/* WaDisableSDEUnitClockGating:chv */
+> -	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+> -		   GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+> +	intel_uncore_rmw(&dev_priv->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+>  
+>  	/*
+>  	 * WaProgramL3SqcReg1Default:chv
+> -- 
+> 2.34.1
