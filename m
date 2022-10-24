@@ -2,52 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A4360A92E
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 15:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE23560A985
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Oct 2022 15:21:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADA4010E62E;
-	Mon, 24 Oct 2022 13:16:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EB1110E69B;
+	Mon, 24 Oct 2022 13:21:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEC3210E62E
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 13:16:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666617400; x=1698153400;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=9yeQZWNT7E+XuH13j1Dx32eNKjoQQO/UlR9Gic6MOy4=;
- b=eykvfoQjwqzWD1pZPEj5R6NBcrx8e4RnrgsIdQcSTHQOAVOMDqixlGZT
- dKmRGqLW3fx49sJTKZ6MF64WYC3Os+MozctvHozdNM4c+u0cR11X2kLkF
- GpHCgeqI6Y0F0hsTR/hzfuZvdr+/McQkZvzGUhO0ZYpFIbOWjbhIZmuEM
- LnMOkuVMWL/Ff8nibdlbWOOfS49mb++4JE42ctHoE/01iiFSLl5oVo4QV
- Vz30vGWF5PtjgT/O+G56XzjEXr/p52I2kTtbmNYD52Ey/g7AELm53hxX9
- Ekhe2zifdBCPJ2PPc1Us+a7S+X6KBRh4qC+GXbQ1YkepigkQxdX0We6DP g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="369480548"
-X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="369480548"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 06:16:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="694545837"
-X-IronPort-AV: E=Sophos;i="5.95,209,1661842800"; d="scan'208";a="694545837"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga008.fm.intel.com with SMTP; 24 Oct 2022 06:16:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Oct 2022 16:16:36 +0300
-Date: Mon, 24 Oct 2022 16:16:36 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>
-Message-ID: <Y1aQNHDIujgQts/G@intel.com>
-References: <20221024064004.1879-1-shawn.c.lee@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BD4910E69A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 13:21:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1666617692;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=bZe1w3EPaVA+CN/q+Lt0jOZyvsYbOMnl65HsFpxBLe8=;
+ b=X3DNgjF5C28/JAKBUbCRW3SyhNLds7Rl6JNhduFjGpK4LsgvyyW3KS3vQdwj/OruwzZdgh
+ uvPeswU+S/PISSKVTghRUD5iBayqAYvETQed7pkNHzHX9tYJmO+SnM9WYo40Akbzt/hitA
+ M3cQ0FKqV3rOmWwXewnj1qAXnyLoOvA=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-382-gDmdlBwCPfaaqc7lcPlo7w-1; Mon, 24 Oct 2022 09:21:29 -0400
+X-MC-Unique: gDmdlBwCPfaaqc7lcPlo7w-1
+Received: by mail-ed1-f69.google.com with SMTP id
+ dz9-20020a0564021d4900b0045d9a3aded4so9763455edb.22
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 06:21:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=bZe1w3EPaVA+CN/q+Lt0jOZyvsYbOMnl65HsFpxBLe8=;
+ b=Ifv8xfIuY5gAqIq+1XT3KHV/fZw9WFGFouecDmFfpTk/glXSb59iSFFFmawmaeDJCZ
+ jP4nAAVhNVOZKrYFXDZGmuz50r3YmMkIwrnJmWU+Guue3SXplGlz+Pwa3cXf3MGzlULE
+ frEKRYtlSHMYhx1K8zlaaHeDokQ752kqyWgDPIKdoO1/bapwjxbioucuohpTn3l2oFXx
+ oi3JiBaKyMWp3kfT5zFHjxXbe3YSVPEZbyLyFaI1V2uMFcInNKGeRqCJVwJPqf567nAm
+ Wy7QcjrcnhZoFKpMT+tx4rN2uHUXqHn/XaLzavkFYSR3wR5jN/dPh1DfKebeKXijFNbM
+ gfrQ==
+X-Gm-Message-State: ACrzQf3i43gaoyN3E/BdHdHMzlUqBVdM5dbYYhKzBFGSlb/6VSQOdNFb
+ DtLaX3qSir9ZbuwS/fv1FHsM4HCAe/fxA6yRmnMQ9+WAJk3eSz/0vElWdFTLP9T289eJvuFKoNU
+ KmvlyX//rW8FxNLJQblEYn3Fa9x/W
+X-Received: by 2002:a17:907:7627:b0:78d:b6f5:9f15 with SMTP id
+ jy7-20020a170907762700b0078db6f59f15mr27908048ejc.149.1666617688153; 
+ Mon, 24 Oct 2022 06:21:28 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM5eVoX3Zdsw3dT2G3BRaFLKO7Cw6SDF7Gj5r0DB42X2PLxNRQiYtexmaaMeTBVnA50ta6oFDw==
+X-Received: by 2002:a17:907:7627:b0:78d:b6f5:9f15 with SMTP id
+ jy7-20020a170907762700b0078db6f59f15mr27908007ejc.149.1666617687840; 
+ Mon, 24 Oct 2022 06:21:27 -0700 (PDT)
+Received: from [10.40.98.142] ([78.108.130.194])
+ by smtp.gmail.com with ESMTPSA id
+ l17-20020a1709060cd100b00783c545544fsm15509207ejh.215.2022.10.24.06.21.26
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 24 Oct 2022 06:21:27 -0700 (PDT)
+Message-ID: <60672af8-05d2-113c-12b9-d635608be0dd@redhat.com>
+Date: Mon, 24 Oct 2022 15:21:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+To: Akihiko Odaki <akihiko.odaki@daynix.com>
+References: <20221024113513.5205-1-akihiko.odaki@daynix.com>
+ <746e5cc6-516f-8f69-9d4b-8fe237de8fd6@redhat.com>
+ <edec5950-cec8-b647-ccb1-ba48f9b3bbb0@daynix.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <edec5950-cec8-b647-ccb1-ba48f9b3bbb0@daynix.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221024064004.1879-1-shawn.c.lee@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pps: improve eDP power on flow.
+Subject: Re: [Intel-gfx] [PATCH 00/22] Fallback to native backlight
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,73 +87,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, Ike Panhc <ike.pan@canonical.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, dri-devel@lists.freedesktop.org,
+ Azael Avalos <coproscefalo@gmail.com>, Mattia Dongili <malattia@linux.it>,
+ Daniel Dadap <ddadap@nvidia.com>, Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
+ David Airlie <airlied@gmail.com>, Daniel Thompson <daniel.thompson@linaro.org>,
+ Jonathan Woithe <jwoithe@just42.net>, Jonathan Corbet <corbet@lwn.net>, "Lee,
+ Chun-Yi" <jlee@suse.com>, Helge Deller <deller@gmx.de>,
+ Lee Jones <lee@kernel.org>, Robert Moore <robert.moore@intel.com>,
+ linux-acpi@vger.kernel.org, Cezary Jackiewicz <cezary.jackiewicz@gmail.com>,
+ Len Brown <lenb@kernel.org>, Kenneth Chan <kenneth.t.chan@gmail.com>,
+ Corentin Chary <corentin.chary@gmail.com>, intel-gfx@lists.freedesktop.org,
+ acpi4asus-user@lists.sourceforge.net, Maxime Ripard <mripard@kernel.org>,
+ Mark Gross <markgross@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, platform-driver-x86@vger.kernel.org,
+ devel@acpica.org, ibm-acpi-devel@lists.sourceforge.net,
+ Jingoo Han <jingoohan1@gmail.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 24, 2022 at 02:40:04PM +0800, Lee Shawn C wrote:
-> Driver always apply panel power off cycle delay before eDP enable.
-> If eDP display was enabled at pre-os stage, driver would always
-> trigger modeset to optimize cdclk setting after boot into kernel.
-> So last_power_on and last_backlight_off value will be updated.
+Hi,
+
+On 10/24/22 14:58, Akihiko Odaki wrote:
+> On 2022/10/24 20:53, Hans de Goede wrote:
+>> Hi Akihiko,
+>>
+>> On 10/24/22 13:34, Akihiko Odaki wrote:
+>>> Commit 2600bfa3df99 ("ACPI: video: Add acpi_video_backlight_use_native()
+>>> helper") and following commits made native backlight unavailable if
+>>> CONFIG_ACPI_VIDEO is set and the backlight feature of ACPI video is
+>>> unavailable, which broke the backlight functionality on Lenovo ThinkPad
+>>> C13 Yoga Chromebook. Allow to fall back to native backlight in such
+>>> cases.
+>>
+>> I appreciate your work on this, but what this in essence does is
+>> it allows 2 backlight drivers (vendor + native) to get registered
+>> for the same panel again. While the whole goal of the backlight refactor
+>> series landing in 6.1 was to make it so that there always is only
+>> *1* backlight device registered instead of (possibly) registering
+>> multiple and letting userspace figure it out. It is also important
+>> to only always have 1 backlight device per panel for further
+>> upcoming changes.
+>>
+>> So nack for this solution, sorry.
+>>
+>> I am aware that this breaks backlight control on some Chromebooks,
+>> this was already reported and I wrote a long reply explaining why
+>> things are done the way they are done now and also suggesting
+>> 2 possible (much simpler) fixes, see:
+>> https://lore.kernel.org/linux-acpi/42a5f2c9-a1dc-8fc0-7334-fe6c390ecfbb@redhat.com/
+>>
+>> Unfortunately the reported has not followed-up on this and
+>> I don't have the hardware to test this myself.
+>>
+>> Can you please try implementing 1 of the fixes suggested there
+>> and then submit that upstream ?
+>>
+>> Regards,
+>>
+>> Hans
+>>
 > 
-> We can check last_power_on and last_backlight_off before insert
-> panel power cycle delay. If these values are the same, it means eDP
-> was off until now and driver should bypass this delay to save
-> some times to speed up eDP power on sequence.
+> Hi Hans,
 > 
-> Cc: Shankar Uma <uma.shankar@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
+> Thanks for reviewing and letting me know the prior attempt.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 21944f5bf3a8..f3485a4fbfd0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -509,6 +509,13 @@ static void wait_panel_power_cycle(struct intel_dp *intel_dp)
->  	ktime_t panel_power_on_time;
->  	s64 panel_power_off_duration;
->  
-> +	/* When last_power_on equal to last_backlight_off, it means driver did not
-> +	 * turn on or off eDP panel so far.
+> In this case, there is only a native backlight device and no vendor backlight device so the duplication of backlight devices does not happen. I think it is better to handle such a case without quirks.
 
-But someone else may have turned it off just before we were handed
-control, we have no idea. The pessimistic estimate is the safe one.
+Adding a single heuristic for all chromebooks is something completely different
+then adding per model quirks which indeed ideally should be avoided (but this
+is not always possible).
 
-Also I don't understand what this has to do with the story in
-the comit message. In that story you say eDP was already on,
-so the power cycle delay is not relevant at all. /me confused.
+> I understand it is still questionable to cover the case by allowing duplication when both of a vendor backlight device and native one. To explain my understanding and reasoning for *not* trying to apply the de-duplication rule to the vendor/native combination, let me first describe that the de-duplication which happens in acpi_video_get_backlight_type() is a heuristics and limited.
+> 
+> As the background of acpi_video_get_backlight_type(), there is an assumption that it should be common that both of the firmware, implementing ACPI, and the kernel have code to drive backlight. In the case, the more reliable one should be picked instead of using both, and that is what the statements in `if (video_caps & ACPI_VIDEO_BACKLIGHT)` does.
+> 
+> However, the method has two limitations:
+> 1. It does not cover the case where two backlight devices with the same type exist.
 
-> So we can bypass power cycle delay to
-> +	 * save some times here.
-> +	 */
-> +	if (intel_dp->pps.last_power_on == intel_dp->pps.last_backlight_off)
-> +		return;
-> +
->  	drm_dbg_kms(&i915->drm, "Wait for panel power cycle\n");
->  
->  	/* take the difference of current time and panel power off time
-> @@ -1098,9 +1105,11 @@ bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp)
->  
->  static void pps_init_timestamps(struct intel_dp *intel_dp)
->  {
-> +	unsigned long tmp_jiffies = jiffies;
-> +
->  	intel_dp->pps.panel_power_off_time = ktime_get_boottime();
-> -	intel_dp->pps.last_power_on = jiffies;
-> -	intel_dp->pps.last_backlight_off = jiffies;
-> +	intel_dp->pps.last_power_on = tmp_jiffies;
-> +	intel_dp->pps.last_backlight_off = tmp_jiffies;
->  }
->  
->  static void
-> -- 
-> 2.17.1
+This only happens when there are 2 panels; or 2 gpus driving a single panel
+which are both special cases where we actually want 2 backlight devices.
 
--- 
-Ville Syrj�l�
-Intel
+> 2. The underlying assumption does not apply to vendor/native combination.
+> 
+> Regarding the second limitation, I don't even understand the difference between vendor and native. My guess is that a vendor backlight device uses vendor-specific ACPI interface, and a native one directly uses hardware registers. If my guess is correct, the difference between vendor and native does not imply that both of them are likely to exist at the same time. As the conclusion, there is no more motivation to try to de-duplicate the vendor/native combination than to try to de-duplicate combination of devices with a single type.
+> 
+> Of course, it is better if we could also avoid registering two devices with one type for one physical device. Possibly we can do so by providing a parameter to indicate that it is for the same "internal" backlight to devm_backlight_device_register(), and let the function check for the duplication. However, this rule may be too restrict, or may have problems I missed.
+> 
+> Based on the discussion above, we can deduce three possibilities:
+> a. There is no reason to distinguish vendor and native in this case, and we can stick to my current proposal.
+> b. There is a valid reason to distinguish vendor and native, and we can adopt the same strategy that already adopted for ACPI video/vendor combination.
+> c. We can implement de-duplication in devm_backlight_device_register().
+> d. The other possible options are not worth, and we can just implement quirks specific to Chromebook/coreboot.
+> 
+> In case b, it should be noted that vendor and native backlight device do not require ACPI video, and CONFIG_ACPI_VIDEO may not be enabled. In the case, the de-duplication needs to be implemented in backlight class device.
+
+I have been working on the ACPI/x86 backlight detection code since 2015, please trust
+me when I say that allowing both vendor + native backlight devices at the same time
+is a bad idea.
+
+I'm currently in direct contact with the ChromeOS team about fixing the Chromebook
+backlight issue introduced in 6.1-rc1.
+
+If you wan to help, please read:
+
+https://lore.kernel.org/linux-acpi/42a5f2c9-a1dc-8fc0-7334-fe6c390ecfbb@redhat.com/
+
+And try implementing 1 if the 2 solutions suggested there.
+
+Regards,
+
+Hans
+
+
+
+>>> Akihiko Odaki (22):
+>>>    drm/i915/opregion: Improve backlight request condition
+>>>    ACPI: video: Introduce acpi_video_get_backlight_types()
+>>>    LoongArch: Use acpi_video_get_backlight_types()
+>>>    platform/x86: acer-wmi: Use acpi_video_get_backlight_types()
+>>>    platform/x86: asus-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: asus-wmi: Use acpi_video_get_backlight_types()
+>>>    platform/x86: compal-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: eeepc-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: fujitsu-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: ideapad-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: msi-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: msi-wmi: Use acpi_video_get_backlight_types()
+>>>    platform/x86: nvidia-wmi-ec-backlight: Use
+>>>      acpi_video_get_backlight_types()
+>>>    platform/x86: panasonic-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: samsung-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: sony-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: thinkpad_acpi: Use acpi_video_get_backlight_types()
+>>>    platform/x86: toshiba_acpi: Use acpi_video_get_backlight_types()
+>>>    platform/x86: dell-laptop: Use acpi_video_get_backlight_types()
+>>>    platform/x86: intel_oaktrail: Use acpi_video_get_backlight_types()
+>>>    ACPI: video: Remove acpi_video_get_backlight_type()
+>>>    ACPI: video: Fallback to native backlight
+>>>
+>>>   Documentation/gpu/todo.rst                    |  8 +--
+>>>   drivers/acpi/acpi_video.c                     |  2 +-
+>>>   drivers/acpi/video_detect.c                   | 54 ++++++++++---------
+>>>   drivers/gpu/drm/i915/display/intel_opregion.c |  3 +-
+>>>   drivers/platform/loongarch/loongson-laptop.c  |  4 +-
+>>>   drivers/platform/x86/acer-wmi.c               |  2 +-
+>>>   drivers/platform/x86/asus-laptop.c            |  2 +-
+>>>   drivers/platform/x86/asus-wmi.c               |  4 +-
+>>>   drivers/platform/x86/compal-laptop.c          |  2 +-
+>>>   drivers/platform/x86/dell/dell-laptop.c       |  2 +-
+>>>   drivers/platform/x86/eeepc-laptop.c           |  2 +-
+>>>   drivers/platform/x86/fujitsu-laptop.c         |  4 +-
+>>>   drivers/platform/x86/ideapad-laptop.c         |  2 +-
+>>>   drivers/platform/x86/intel/oaktrail.c         |  2 +-
+>>>   drivers/platform/x86/msi-laptop.c             |  2 +-
+>>>   drivers/platform/x86/msi-wmi.c                |  2 +-
+>>>   .../platform/x86/nvidia-wmi-ec-backlight.c    |  2 +-
+>>>   drivers/platform/x86/panasonic-laptop.c       |  2 +-
+>>>   drivers/platform/x86/samsung-laptop.c         |  2 +-
+>>>   drivers/platform/x86/sony-laptop.c            |  2 +-
+>>>   drivers/platform/x86/thinkpad_acpi.c          |  4 +-
+>>>   drivers/platform/x86/toshiba_acpi.c           |  2 +-
+>>>   drivers/video/backlight/backlight.c           | 18 +++++++
+>>>   include/acpi/video.h                          | 21 ++++----
+>>>   include/linux/backlight.h                     |  1 +
+>>>   25 files changed, 85 insertions(+), 66 deletions(-)
+>>>
+>>
+> 
+
