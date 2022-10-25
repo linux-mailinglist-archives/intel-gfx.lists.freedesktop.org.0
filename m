@@ -2,55 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4189460C6E2
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 10:50:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 378F660C70D
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 10:57:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7690D10E29C;
-	Tue, 25 Oct 2022 08:50:20 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8440410E29C
- for <Intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 08:50:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666687818; x=1698223818;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+sq3Tuq3OmApd38934B0rmhnfZ4wp2+OMxOZQWK5IZo=;
- b=Rc61xcXXQrW4T4fPoaMzRMeK10+kwNgBrTzlBd2wYlT34U9tqtGN11w0
- gnpXcPY/3SgBJ0zrq2Tyo7D/4l1uFgoUli3+68YE6yyW//fHSCQErC4/2
- xn9QvMXMmtz0tHpahoVqfyBfnuiPjcHkmA4SkdLLBoeZIU3mG9YvC8WDC
- 7z9bUoZ+FhrUaiF8zPmgg1ZRI0BglfhtqtAwdHAPn2+rce/OOsXeEhLpZ
- TZeYeT6NoLeMHdmRJ/zpotS+5HAsrTDd92dqmgwJVPzVFKe6YvMPT3ed9
- iObrbP0JRgG4mB4mhhLhtY7iA+6/iALSkRwpoTipHUxge84qUl48Ig4rH w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="288021751"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="288021751"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2022 01:50:17 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="700465631"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="700465631"
-Received: from anagimen-mobl1.ger.corp.intel.com (HELO [10.213.203.143])
- ([10.213.203.143])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2022 01:50:16 -0700
-Message-ID: <8d9517cc-6fba-ede0-a95f-e9b036e75ceb@linux.intel.com>
-Date: Tue, 25 Oct 2022 09:50:14 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83B1210E2B9;
+	Tue, 25 Oct 2022 08:57:41 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A276110E2A7;
+ Tue, 25 Oct 2022 08:57:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 86082A010C;
+ Tue, 25 Oct 2022 08:57:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Mel Gorman <mgorman@techsingularity.net>
-References: <1596edbb-02ad-6bdf-51b8-15c2d2e08b76@linux.intel.com>
- <20221024142321.f2etddxtqa47bib7@techsingularity.net>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20221024142321.f2etddxtqa47bib7@techsingularity.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] mm/huge_memory: do not clobber swp_entry_t during
- THP split
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Tue, 25 Oct 2022 08:57:38 -0000
+Message-ID: <166668825851.15482.12287173078052678677@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221025065905.13325-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20221025065905.13325-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/vm=5Fbind=3A_Add_VM=5FBIND_functionality_=28rev8?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,88 +41,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux MM <linux-mm@kvack.org>,
- "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
- Hugh Dickins <hughd@google.com>, Matthew Auld <matthew.auld@intel.com>,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 24/10/2022 15:23, Mel Gorman wrote:
-> On Mon, Oct 24, 2022 at 02:04:50PM +0100, Tvrtko Ursulin wrote:
->>
->> Hi Mel, mm experts,
->>
->> With 6.1-rc2 we started hitting the WARN_ON added in 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t during THP split") in i915 automated CI:
->>
-> 
-> Thanks for the report. As shmem pages pages are allocated via vma_alloc_folio
-> and are compound pages, can you try the following patch please?  If it
-> still triggers, please post the new oops as it'll include the tail page
-> information.
-> 
-> --8<--
-> From: Hugh Dickins <hughd@google.com>
-> Subject: [PATCH] mm: prep_compound_tail() clear page->private
-> 
-> Although page allocation always clears page->private in the first page
-> or head page of an allocation, it has never made a point of clearing
-> page->private in the tails (though 0 is often what is already there).
-> 
-> But now commit 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t
-> during THP split") issues a warning when page_tail->private is found to
-> be non-0 (unless it's swapcache).
-> 
-> Change that warning to dump page_tail (which also dumps head), instead
-> of just the head: so far we have seen dead000000000122, dead000000000003,
-> dead000000000001 or 0000000000000002 in the raw output for tail private.
-> 
-> We could just delete the warning, but today's consensus appears to want
-> page->private to be 0, unless there's a good reason for it to be set:
-> so now clear it in prep_compound_tail() (more general than just for THP;
-> but not for high order allocation, which makes no pass down the tails).
-> 
-> Fixes: 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t during THP split")
-> Signed-off-by: Hugh Dickins <hughd@google.com>
-> Cc: Mel Gorman <mgorman@techsingularity.net>
-> Cc: Matthew Wilcox (Oracle) <willy@infradead.org>
-> Cc: <stable@vger.kernel.org>
-> ---
->   mm/huge_memory.c | 2 +-
->   mm/page_alloc.c  | 1 +
->   2 files changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
-> index 03fc7e5edf07..561a42567477 100644
-> --- a/mm/huge_memory.c
-> +++ b/mm/huge_memory.c
-> @@ -2462,7 +2462,7 @@ static void __split_huge_page_tail(struct page *head, int tail,
->   	 * Fix up and warn once if private is unexpectedly set.
->   	 */
->   	if (!folio_test_swapcache(page_folio(head))) {
-> -		VM_WARN_ON_ONCE_PAGE(page_tail->private != 0, head);
-> +		VM_WARN_ON_ONCE_PAGE(page_tail->private != 0, page_tail);
->   		page_tail->private = 0;
->   	}
->   
-> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
-> index b5a6c815ae28..218b28ee49ed 100644
-> --- a/mm/page_alloc.c
-> +++ b/mm/page_alloc.c
-> @@ -807,6 +807,7 @@ static void prep_compound_tail(struct page *head, int tail_idx)
->   
->   	p->mapping = TAIL_MAPPING;
->   	set_compound_head(p, head);
-> +	set_page_private(p, 0);
->   }
->   
->   void prep_compound_page(struct page *page, unsigned int order)
+Series: drm/i915/vm_bind: Add VM_BIND functionality (rev8)
+URL   : https://patchwork.freedesktop.org/series/105879/
+State : warning
 
-The patch seems to fix our CI runs. Is it considered final version? If 
-so I can temporarily put it in until it arrives via the next rc - 
-assuming that would be the flow from upstream pov?
+== Summary ==
 
-Regards,
+Error: dim checkpatch failed
+f90c61132e40 drm/i915/vm_bind: Expose vm lookup function
+ce0a50fbd695 drm/i915/vm_bind: Add __i915_sw_fence_await_reservation()
+96720f194e91 drm/i915/vm_bind: Expose i915_gem_object_max_page_size()
+85b5fc29129a drm/i915/vm_bind: Add support to create persistent vma
+-:61: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#61: FILE: drivers/gpu/drm/i915/i915_vma.c:309:
++	GEM_BUG_ON(!IS_ERR(vma) && i915_vma_compare(vma, vm, view));
 
-Tvrtko
+-:82: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#82: FILE: drivers/gpu/drm/i915/i915_vma.c:330:
++	GEM_BUG_ON(!kref_read(&vm->ref));
+
+-:127: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#127: FILE: drivers/gpu/drm/i915/i915_vma.h:181:
++	GEM_BUG_ON(view && !(i915_is_ggtt_or_dpt(vm) ||
+
+total: 0 errors, 3 warnings, 0 checks, 107 lines checked
+5e7adf229a35 drm/i915/vm_bind: Implement bind and unbind of object
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:83: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#83: 
+new file mode 100644
+
+-:459: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#459: FILE: drivers/gpu/drm/i915/gt/intel_gtt.c:181:
++	GEM_BUG_ON(!RB_EMPTY_ROOT(&vm->va.rb_root));
+
+-:580: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#580: FILE: include/uapi/drm/i915_drm.h:539:
++#define DRM_IOCTL_I915_GEM_VM_BIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
+
+-:581: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#581: FILE: include/uapi/drm/i915_drm.h:540:
++#define DRM_IOCTL_I915_GEM_VM_UNBIND	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_UNBIND, struct drm_i915_gem_vm_unbind)
+
+total: 0 errors, 4 warnings, 0 checks, 607 lines checked
+3bba46628e09 drm/i915/vm_bind: Support for VM private BOs
+11bebebd40f5 drm/i915/vm_bind: Add support to handle object evictions
+2ff8bd9137b2 drm/i915/vm_bind: Support persistent vma activeness tracking
+4a9ed0e6ac9c drm/i915/vm_bind: Add out fence support
+fea013678f0d drm/i915/vm_bind: Abstract out common execbuf functions
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:28: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#28: 
+new file mode 100644
+
+-:171: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#171: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.c:139:
++		GEM_BUG_ON(err);	/* perma-pinned should incr a counter */
+
+-:246: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#246: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.c:214:
++	GEM_BUG_ON("Context not found");
+
+-:600: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#600: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.c:568:
++	GEM_BUG_ON(!intel_context_is_parent(context));
+
+total: 0 errors, 4 warnings, 0 checks, 747 lines checked
+3e4718e2bb90 drm/i915/vm_bind: Use common execbuf functions in execbuf path
+8cbdd730afb4 drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:39: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#39: 
+new file mode 100644
+
+-:266: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#266: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c:223:
++	GEM_BUG_ON(eb->args->flags & __EXEC3_ENGINE_PINNED);
+
+-:663: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#663: FILE: include/uapi/drm/i915_drm.h:542:
++#define DRM_IOCTL_I915_GEM_EXECBUFFER3	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER3, struct drm_i915_gem_execbuffer3)
+
+total: 0 errors, 3 warnings, 0 checks, 679 lines checked
+3e0c296d3084 drm/i915/vm_bind: Update i915_vma_verify_bind_complete()
+fe5ea3690cbc drm/i915/vm_bind: Expose i915_request_await_bind()
+547984b3d085 drm/i915/vm_bind: Handle persistent vmas in execbuf3
+a3d9881b6d3d drm/i915/vm_bind: userptr dma-resv changes
+1b9beeea8d01 drm/i915/vm_bind: Limit vm_bind mode to non-recoverable contexts
+d159d07a9805 drm/i915/vm_bind: Add uapi for user to enable vm_bind_mode
+efbcca7d400d drm/i915/vm_bind: Render VM_BIND documentation
+
+
