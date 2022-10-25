@@ -2,37 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CCAE60D5C4
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 22:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E87D60D5D3
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 22:42:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90D8610E35A;
-	Tue, 25 Oct 2022 20:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BBC010E35A;
+	Tue, 25 Oct 2022 20:42:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from cavan.codon.org.uk (irc.codon.org.uk [IPv6:2a00:1098:84:22e::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40B3010E35A;
- Tue, 25 Oct 2022 20:40:45 +0000 (UTC)
-Received: by cavan.codon.org.uk (Postfix, from userid 1000)
- id 56B3F4245C; Tue, 25 Oct 2022 21:40:43 +0100 (BST)
-Date: Tue, 25 Oct 2022 21:40:43 +0100
-From: Matthew Garrett <mjg59@srcf.ucam.org>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20221025204043.GA23306@srcf.ucam.org>
-References: <20220825143726.269890-1-hdegoede@redhat.com>
- <20220825143726.269890-3-hdegoede@redhat.com>
- <f914ceb3-94bd-743c-f8b6-0334086e731a@gmail.com>
- <42a5f2c9-a1dc-8fc0-7334-fe6c390ecfbb@redhat.com>
- <20221024203057.GA28675@srcf.ucam.org>
- <8f53b8b6-ead2-22f5-16f7-65b31f7cc05c@redhat.com>
- <20221025193248.GA21457@srcf.ucam.org>
- <144cd47e-42dc-2b84-1a90-ea5e080e08a3@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 592BA10E35A;
+ Tue, 25 Oct 2022 20:42:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 50CCFAA0EA;
+ Tue, 25 Oct 2022 20:42:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <144cd47e-42dc-2b84-1a90-ea5e080e08a3@redhat.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v5 02/31] drm/i915: Don't register backlight
- when another backlight should be used (v2)
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jason Gunthorpe" <jgg@nvidia.com>
+Date: Tue, 25 Oct 2022 20:42:25 -0000
+Message-ID: <166673054532.15484.1984656210494804092@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <0-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
+In-Reply-To: <0-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBD?=
+ =?utf-8?q?onnect_VFIO_to_IOMMUFD?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,40 +40,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pan@freedesktop.org, Karol Herbst <kherbst@redhat.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- Dmitry Osipenko <digetx@gmail.com>, amd-gfx@lists.freedesktop.org,
- linux-acpi@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@redhat.com>, Len Brown <lenb@kernel.org>,
- Daniel Dadap <ddadap@nvidia.com>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Mark Gross <markgross@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andy@kernel.org>, Xinhui <Xinhui.Pan@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 25, 2022 at 10:25:33PM +0200, Hans de Goede wrote:
+== Series Details ==
 
-> Having the native driver come and then go and be replaced
-> with the vendor driver would also be quite inconvenient
-> for these planned changes.
+Series: Connect VFIO to IOMMUFD
+URL   : https://patchwork.freedesktop.org/series/110133/
+State : failure
 
-I understand that it would be inconvenient, but you've broken existing 
-working setups.
- 
-> Can you perhaps explain a bit in what way your laptop
-> is weird ?
+== Summary ==
 
-It's a Chinese replacement motherboard for a Thinkpad X201, running my 
-own port of Coreboot. Its DMI strings look like an actual Thinkpad in 
-order to ensure that thinkpad_acpi can bind for hotkey suport, so it's 
-hard to quirk. It'll actually be fixed by your proposed patch to fall 
-back to native rather than vendor, but that patch will break any older 
-machines that offer a vendor interface and don't have the native control 
-hooked up (pretty sure at least the Thinkpad X40 falls into that 
-category).
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/110133/revisions/1/mbox/ not applied
+Applying: vfio: Move vfio_device driver open/close code to a function
+Applying: vfio: Move vfio_device_assign_container() into vfio_device_first_open()
+Applying: vfio: Rename vfio_device_assign/unassign_container()
+Applying: vfio: Move storage of allow_unsafe_interrupts to vfio_main.c
+Applying: vfio: Use IOMMU_CAP_ENFORCE_CACHE_COHERENCY for vfio_file_enforced_coherent()
+Applying: vfio-iommufd: Allow iommufd to be used in place of a container fd
+Applying: vfio-iommufd: Support iommufd for physical VFIO devices
+Applying: vfio-iommufd: Support iommufd for emulated VFIO devices
+Applying: vfio: Make vfio_container optionally compiled
+Applying: iommufd: Allow iommufd to supply /dev/vfio/vfio
+error: sha1 information is lacking or useless (drivers/iommu/iommufd/Kconfig).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0010 iommufd: Allow iommufd to supply /dev/vfio/vfio
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+
