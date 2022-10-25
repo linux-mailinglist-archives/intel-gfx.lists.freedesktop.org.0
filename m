@@ -1,56 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7738460C2D8
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 06:52:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80F1560C46E
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 08:59:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F44310E0F4;
-	Tue, 25 Oct 2022 04:52:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A49C410E176;
+	Tue, 25 Oct 2022 06:59:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D29610E07B
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 04:52:17 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C1D810E069;
+ Tue, 25 Oct 2022 06:59:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666673537; x=1698209537;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Xclpbz6CzoT2N4k2dsAPSkon8bbf3eyJSQvC5r5ayqc=;
- b=QV0C7nmxrTM3cYE3SuZLJGM4qYjvqraSg0fdiGUH4JWU06qQ7wu7s21w
- WTJc8qJmXAzTPsl6lAtOAs0UFrAujq2QV+uE2u4PXx/1TY9FUp7fqRnQ7
- o8NBJtkH9Y2dvsMJ5hWoEdYgp33tTTN7BMRspfZble+2DXzz9NWm96+3v
- QRQFAKOoi2xk7kszTyd5FvZoRL+7yRth4uPgkIPQEMsf8Wpg7Qw/9mhlt
- 8wlFjTLE3qVC7IvCKEkXZ9gB9FzU6lsDj+ereA+mWcuPqXjx7mqxc/Rh6
- iZpKOWzmqsJSTRdRo0LNaNAzcuj0FgJcThCduY1eJgXR6FkgUn3CsexwD A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="287306317"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="287306317"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2022 21:52:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="582644348"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="582644348"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by orsmga003.jf.intel.com with SMTP; 24 Oct 2022 21:52:08 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 25 Oct 2022 07:52:07 +0300
-Date: Tue, 25 Oct 2022 07:52:07 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Peter Zijlstra <peterz@infradead.org>
-Message-ID: <Y1drd2gzxUJWdz5F@intel.com>
-References: <20220822111816.760285417@infradead.org>
- <20220822114649.055452969@infradead.org>
- <Y1LVYaPCCP3BBS4g@intel.com>
+ t=1666681151; x=1698217151;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IR8weANTJV40UoXBGHPW5pVE20sGO/VvkaBZzpvSyDg=;
+ b=B6u6DOm1t9CbBgIXHJf8Nq8DsMm4LBh9YURAwtdf/iq41RGGra0HRH9r
+ 7d3j57hSz11h1WeuzmsdyGZwj4GFNGc9rsJN2M3S77hqG5s3oR8cHvJfE
+ 8tAF7S9AQxcTyPgo1GW4UtFbjvn1y/KOmO46i0n4C/pmIwwxtlEhYJv3Z
+ FjT0jdeOkXA9zjPTOMeIqrgptCijK6WhiWJgtxg9JSNVMo0TmTM3mSM30
+ dU+gdQVbPfEDGHVOqHcDz8bt0gSRaXOHi4aIvsJptXaRbUi3pRtYlQ0Tf
+ 1L+5aYi5FyvLi7RSLTYj45lgOjB4MVaAm9d4d5Dp4FHYS1iVygpliG6ei w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="334198156"
+X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="334198156"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 23:59:10 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="806564374"
+X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="806564374"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2022 23:59:10 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon, 24 Oct 2022 23:58:46 -0700
+Message-Id: <20221025065905.13325-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y1LVYaPCCP3BBS4g@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 6/6] freezer,
- sched: Rewrite core freezer logic
+Subject: [Intel-gfx] [PATCH v5 00/19] drm/i915/vm_bind: Add VM_BIND
+ functionality
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,58 +56,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- bigeasy@linutronix.de, rjw@rjwysocki.net, oleg@redhat.com, rostedt@goodmis.org,
- mingo@kernel.org, mgorman@suse.de, intel-gfx@lists.freedesktop.org,
- tj@kernel.org, Will Deacon <will@kernel.org>, dietmar.eggemann@arm.com,
- ebiederm@xmission.com
+Cc: paulo.r.zanoni@intel.com, jani.nikula@intel.com, thomas.hellstrom@intel.com,
+ matthew.auld@intel.com, daniel.vetter@intel.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 21, 2022 at 08:22:41PM +0300, Ville Syrjälä wrote:
-> On Mon, Aug 22, 2022 at 01:18:22PM +0200, Peter Zijlstra wrote:
-> > +#ifdef CONFIG_LOCKDEP
-> > +	/*
-> > +	 * It's dangerous to freeze with locks held; there be dragons there.
-> > +	 */
-> > +	if (!(state & __TASK_FREEZABLE_UNSAFE))
-> > +		WARN_ON_ONCE(debug_locks && p->lockdep_depth);
-> > +#endif
-> 
-> We now seem to be hitting this sporadically in the intel gfx CI.
-> 
-> I've spotted it on two machines so far:
-> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12270/shard-tglb7/igt@gem_ctx_isolation@preservation-s3@vcs0.html
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109950v1/shard-snb5/igt@kms_flip@flip-vs-suspend-interruptible@a-vga1.html
+DRM_I915_GEM_VM_BIND/UNBIND ioctls allows UMD to bind/unbind GEM
+buffer objects (BOs) or sections of a BOs at specified GPU virtual
+addresses on a specified address space (VM). Multiple mappings can map
+to the same physical pages of an object (aliasing). These mappings (also
+referred to as persistent mappings) will be persistent across multiple
+GPU submissions (execbuf calls) issued by the UMD, without user having
+to provide a list of all required mappings during each submission (as
+required by older execbuf mode).
 
-Sadly no luck in reproducing this locally so far. In the meantime
-I added the following patch into our topic/core-for-CI branch in
-the hopes of CI stumbling on it again and dumping a bit more data:
+This patch series support VM_BIND version 1, as described by the param
+I915_PARAM_VM_BIND_VERSION.
 
---- a/kernel/freezer.c
-+++ b/kernel/freezer.c
-@@ -125,8 +125,16 @@ static int __set_task_frozen(struct task_struct *p, void *arg)
- 	/*
- 	 * It's dangerous to freeze with locks held; there be dragons there.
- 	 */
--	if (!(state & __TASK_FREEZABLE_UNSAFE))
--		WARN_ON_ONCE(debug_locks && p->lockdep_depth);
-+	if (!(state & __TASK_FREEZABLE_UNSAFE)) {
-+		static bool warned = false;
-+
-+		if (!warned && debug_locks && p->lockdep_depth) {
-+			debug_show_held_locks(p);
-+			WARN(1, "%s/%d holding locks while freezing\n",
-+			     p->comm, task_pid_nr(p));
-+			warned = true;
-+		}
-+	}
- #endif
- 
- 	WRITE_ONCE(p->__state, TASK_FROZEN);
+Add new execbuf3 ioctl (I915_GEM_EXECBUFFER3) which only works in
+vm_bind mode. The vm_bind mode only works with this new execbuf3 ioctl.
+The new execbuf3 ioctl will not have any execlist support and all the
+legacy support like relocations etc., are removed.
+
+TODOs:
+* Async VM_UNBIND support.
+* Optimizations.
+
+NOTEs:
+* It is based on below VM_BIND design+uapi rfc.
+  Documentation/gpu/rfc/i915_vm_bind.rst
+
+* The IGT RFC series is posted as,
+  [PATCH i-g-t v5 0/12] vm_bind: Add VM_BIND validation support
+
+v2: Address various review comments
+v3: Address review comments and other fixes
+v4: Remove vm_unbind out fence uapi which is not supported yet,
+    replace vm->vm_bind_mode check with i915_gem_vm_is_vm_bind_mode()
+v5: Render kernel-doc, use PIN_NOEVICT, limit vm_bind support to
+    non-recoverable faults
+
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+
+Niranjana Vishwanathapura (19):
+  drm/i915/vm_bind: Expose vm lookup function
+  drm/i915/vm_bind: Add __i915_sw_fence_await_reservation()
+  drm/i915/vm_bind: Expose i915_gem_object_max_page_size()
+  drm/i915/vm_bind: Add support to create persistent vma
+  drm/i915/vm_bind: Implement bind and unbind of object
+  drm/i915/vm_bind: Support for VM private BOs
+  drm/i915/vm_bind: Add support to handle object evictions
+  drm/i915/vm_bind: Support persistent vma activeness tracking
+  drm/i915/vm_bind: Add out fence support
+  drm/i915/vm_bind: Abstract out common execbuf functions
+  drm/i915/vm_bind: Use common execbuf functions in execbuf path
+  drm/i915/vm_bind: Implement I915_GEM_EXECBUFFER3 ioctl
+  drm/i915/vm_bind: Update i915_vma_verify_bind_complete()
+  drm/i915/vm_bind: Expose i915_request_await_bind()
+  drm/i915/vm_bind: Handle persistent vmas in execbuf3
+  drm/i915/vm_bind: userptr dma-resv changes
+  drm/i915/vm_bind: Limit vm_bind mode to non-recoverable contexts
+  drm/i915/vm_bind: Add uapi for user to enable vm_bind_mode
+  drm/i915/vm_bind: Render VM_BIND documentation
+
+ Documentation/gpu/i915.rst                    |  78 +-
+ drivers/gpu/drm/i915/Makefile                 |   3 +
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  43 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  17 +
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  72 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   6 +
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 516 +----------
+ .../gpu/drm/i915/gem/i915_gem_execbuffer3.c   | 871 ++++++++++++++++++
+ .../drm/i915/gem/i915_gem_execbuffer_common.c | 666 +++++++++++++
+ .../drm/i915/gem/i915_gem_execbuffer_common.h |  74 ++
+ drivers/gpu/drm/i915/gem/i915_gem_ioctls.h    |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   3 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   2 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   6 +
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |  19 +
+ drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h   |  30 +
+ .../drm/i915/gem/i915_gem_vm_bind_object.c    | 446 +++++++++
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |  17 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |  21 +
+ drivers/gpu/drm/i915/i915_driver.c            |   4 +
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |  39 +
+ drivers/gpu/drm/i915/i915_gem_gtt.h           |   3 +
+ drivers/gpu/drm/i915/i915_getparam.c          |   3 +
+ drivers/gpu/drm/i915/i915_sw_fence.c          |  28 +-
+ drivers/gpu/drm/i915/i915_sw_fence.h          |  23 +-
+ drivers/gpu/drm/i915/i915_vma.c               | 134 ++-
+ drivers/gpu/drm/i915/i915_vma.h               |  67 +-
+ drivers/gpu/drm/i915/i915_vma_types.h         |  39 +
+ include/uapi/drm/i915_drm.h                   | 275 +++++-
+ 30 files changed, 2967 insertions(+), 542 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_execbuffer3.c
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.c
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_execbuffer_common.h
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_vm_bind.h
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_vm_bind_object.c
+
 -- 
-2.37.4
+2.21.0.rc0.32.g243a4c7e27
 
--- 
-Ville Syrjälä
-Intel
