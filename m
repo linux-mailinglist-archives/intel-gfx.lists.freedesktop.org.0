@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E87D60D5D3
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 22:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7589860D5D4
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 22:43:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BBC010E35A;
-	Tue, 25 Oct 2022 20:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EADBB10E42C;
+	Tue, 25 Oct 2022 20:43:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 592BA10E35A;
- Tue, 25 Oct 2022 20:42:25 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2D47D10E37D;
+ Tue, 25 Oct 2022 20:43:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 50CCFAA0EA;
- Tue, 25 Oct 2022 20:42:25 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 299EAAA0EA;
+ Tue, 25 Oct 2022 20:43:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Gunthorpe" <jgg@nvidia.com>
-Date: Tue, 25 Oct 2022 20:42:25 -0000
-Message-ID: <166673054532.15484.1984656210494804092@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Tue, 25 Oct 2022 20:43:04 -0000
+Message-ID: <166673058416.15484.13466515360942820107@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <0-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
-In-Reply-To: <0-v1-4991695894d8+211-vfio_iommufd_jgg@nvidia.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBD?=
- =?utf-8?q?onnect_VFIO_to_IOMMUFD?=
+References: <20220825143726.269890-1-hdegoede@redhat.com>
+In-Reply-To: <20220825143726.269890-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/kms=3A_Stop_registering_multiple_/sys/class/backlight_devs_f?=
+ =?utf-8?q?or_a_single_display_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,27 +48,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Connect VFIO to IOMMUFD
-URL   : https://patchwork.freedesktop.org/series/110133/
+Series: drm/kms: Stop registering multiple /sys/class/backlight devs for a single display (rev3)
+URL   : https://patchwork.freedesktop.org/series/107755/
 State : failure
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/110133/revisions/1/mbox/ not applied
-Applying: vfio: Move vfio_device driver open/close code to a function
-Applying: vfio: Move vfio_device_assign_container() into vfio_device_first_open()
-Applying: vfio: Rename vfio_device_assign/unassign_container()
-Applying: vfio: Move storage of allow_unsafe_interrupts to vfio_main.c
-Applying: vfio: Use IOMMU_CAP_ENFORCE_CACHE_COHERENCY for vfio_file_enforced_coherent()
-Applying: vfio-iommufd: Allow iommufd to be used in place of a container fd
-Applying: vfio-iommufd: Support iommufd for physical VFIO devices
-Applying: vfio-iommufd: Support iommufd for emulated VFIO devices
-Applying: vfio: Make vfio_container optionally compiled
-Applying: iommufd: Allow iommufd to supply /dev/vfio/vfio
-error: sha1 information is lacking or useless (drivers/iommu/iommufd/Kconfig).
-error: could not build fake ancestor
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/107755/revisions/3/mbox/ not applied
+Applying: ACPI: video: Add acpi_video_backlight_use_native() helper
+Using index info to reconstruct a base tree...
+M	drivers/acpi/video_detect.c
+M	include/acpi/video.h
+Falling back to patching base and 3-way merge...
+Auto-merging include/acpi/video.h
+CONFLICT (content): Merge conflict in include/acpi/video.h
+Auto-merging drivers/acpi/video_detect.c
+CONFLICT (content): Merge conflict in drivers/acpi/video_detect.c
+error: Failed to merge in the changes.
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0010 iommufd: Allow iommufd to supply /dev/vfio/vfio
+Patch failed at 0001 ACPI: video: Add acpi_video_backlight_use_native() helper
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
