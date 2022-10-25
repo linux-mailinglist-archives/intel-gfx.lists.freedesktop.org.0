@@ -1,57 +1,80 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC11A6131D1
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Oct 2022 09:40:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A7C6132EE
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Oct 2022 10:41:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8739B10E157;
-	Mon, 31 Oct 2022 08:40:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD2310E173;
+	Mon, 31 Oct 2022 09:41:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37F4610E157;
- Mon, 31 Oct 2022 08:40:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1667205607; x=1698741607;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=pHqhML5efohtqgNb7+dHGJE5mcWVlZrNvGh0lsvaScQ=;
- b=gs+8ASN7pJ5r9RXMut5SRdFYS1AtDlHhS3aZZ7RuLV6ru4MMKW0r1gMg
- iYNZvO5ZW90RhTeJpUOjURyT0JYOLnKclTguyZKLI2kunejEZzjUVU2P8
- Qf0FONbLQP9tut4ALwnWzTAqgKA7YUuVbVVJEkjJyC6Kw0RI1kkjP5h1A
- jMulgpjRbnx/tKtslBIMBbhDHrvJupye9uoa39Crc48iQGJWmHbTCImN9
- 0TKawu+vHO7Bnz1hIDgt68phSFK0dLyblASPOD0j8Xpkdsf3dPxfUSskr
- fg0vNgu2H/yicLIpDj/I/pmUX1x4k8dTAPBf9DGbfH8PN5vHKLmE1GBX9 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10516"; a="309936808"
-X-IronPort-AV: E=Sophos;i="5.95,227,1661842800"; d="scan'208";a="309936808"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2022 01:40:06 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10516"; a="878658561"
-X-IronPort-AV: E=Sophos;i="5.95,227,1661842800"; d="scan'208";a="878658561"
-Received: from ffarrell-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.13.132])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2022 01:40:03 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?Q?Aur=C3=A9lien?= <aurelien.intel@ap2c.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Hans de Goede <hdegoede@redhat.com>, Lyude
- <lyude@redhat.com>, dri-devel@lists.freedesktop.org
-In-Reply-To: <e168e993071e55404dfa91387cf4db97@ap2c.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <87zgf556dm.fsf@intel.com> <878rms7emr.fsf@intel.com>
- <183219aab00.2890.be34037ad6564a4fe81285fd91a8f407@ap2c.com>
- <YxsMcH37rRkt0cfj@intel.com> <115b5a5ebddcd268ee5f7688400448a2@ap2c.com>
- <e168e993071e55404dfa91387cf4db97@ap2c.com>
-Date: Mon, 31 Oct 2022 10:40:00 +0200
-Message-ID: <87wn8g8jz3.fsf@intel.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8522D10E1BD;
+ Tue, 25 Oct 2022 13:57:12 +0000 (UTC)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29PBG0nK012135;
+ Tue, 25 Oct 2022 13:56:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=aHpzy4jYP4QgBrfnEo3hF1WixD4989yYm1SxoPiA0i8=;
+ b=K9gBX2dA19Ru8Zl8oGw3bxGbvfcijuymZrL49+ryTdoxnAR/NFK7itRPmawaypAK50Rz
+ 9R5wOL/4Gi91LTpiCg8qnb1cbC4CKGbjyKcWhL36OdV/OjNFB20c8aCDC4ldSlrLYQyE
+ vtzlReRZbBRI53tbbCiy4MqzBYLDhZNaFzunQFoKgL2tTgHYC231usHccFscMh4PMv8q
+ ThXp/sbJQa73a+qIBF/d3MFQHt8nX4Sb40VsxzipINUWUAzX2+Fh2vZsITmOoexugpxv
+ m8C1Lm5q3K+I117H9y7MbDyLMsA1fviubTSElhtbZtAHQaXDL5i/dNTFGBapGlPjQnwZ Ig== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ke6qs1rec-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 25 Oct 2022 13:56:57 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29PDuucL014044
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 25 Oct 2022 13:56:56 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 25 Oct
+ 2022 06:56:55 -0700
+Message-ID: <ae0077cf-2fdc-fd0c-9b51-a8da5d677d52@quicinc.com>
+Date: Tue, 25 Oct 2022 07:56:55 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] Developing a new backlight driver for specific OLED
- screen
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Content-Language: en-US
+To: =?UTF-8?Q?Micha=c5=82_Winiarski?= <michal.winiarski@intel.com>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <intel-gfx@lists.freedesktop.org>
+References: <20220911211443.581481-1-michal.winiarski@intel.com>
+ <20220911211443.581481-2-michal.winiarski@intel.com>
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <20220911211443.581481-2-michal.winiarski@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-ORIG-GUID: x1TWMRnQd4tBzOiPL8BaRpMObfsy8t0G
+X-Proofpoint-GUID: x1TWMRnQd4tBzOiPL8BaRpMObfsy8t0G
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-25_06,2022-10-25_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0
+ suspectscore=0 adultscore=0 phishscore=0 clxscore=1011 mlxscore=0
+ lowpriorityscore=0 malwarescore=0 mlxlogscore=796 priorityscore=1501
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210250080
+X-Mailman-Approved-At: Mon, 31 Oct 2022 09:39:38 +0000
+Subject: Re: [Intel-gfx] [PATCH v5 1/3] drm: Use XArray instead of IDR for
+ minors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,69 +87,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Matthew Wilcox <willy@infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 Oct 2022, "Aur=C3=A9lien" <aurelien.intel@ap2c.com> wrote:
-> Hi,=20
->
-> I come back on my problem regarding the development of a specific driver =
-which controls the brightness of my OLED device.
->
->> If it's eDP and uses some proprietary DPCD brightness control mechanism,
->> I think in practice it usually is somewhat dependent on the GPU.
->>=20
->> (OTOH I realize you don't mention eDP. If it's not eDP, DDC/CI is the
->> more likely way to control brightness than DPCD.)
->
-> I succeed to control the brightness through the /dev/drm_dp_aux0 device.
-> Since I only need access to the DP AUX channel, I would like to develop a=
-n independant (from the GPU) driver. Unfortunately I don't know how to get =
-access to the DP AUX channel from this independant driver.. Do you have som=
-e ideas?
->
-> I am totally agree with the fact that this display might only be used wit=
-h an intel gfx card but I'm not sure that this code (which only use DP AUX =
-read/write access) must be in the intel gfx driver code.=20
+On 9/11/2022 3:14 PM, Michał Winiarski wrote:
+> IDR is deprecated, and since XArray manages its own state with internal
+> locking, it simplifies the locking on DRM side.
+> Additionally, don't use the IRQ-safe variant, since operating on drm
+> minor is not done in IRQ context.
+> 
+> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+> Suggested-by: Matthew Wilcox <willy@infradead.org>
+> ---
 
-With the information provided, I basically see two options:
-
-1) Just make it part of i915 anyway, or
-
-2) Make it library code in drm that i915 calls.
-
-Observe that it's fairly easy to do 1 first, and, if necessary, turn it
-into 2 later. This is actually exactly how the current DP AUX brightness
-code evolved.
-
-IMO there's no point in trying to add a framework to make this an
-independent driver you could probe separately. It's an unnecessary
-complication, overengineering.
-
->
->>> Unfortunately I guess the mechanism is not shared with many OLED
->>> displays...
->>=20
->> Do you have a spec for it? How does it differ from the VESA eDP DPCD
->> brightness control?
->
-> I don't have any specs but as far as I understood it configures some scre=
-en registers to scale the PWM of all OLED pixels depending on the display s=
-tate. It uses its own vendor's ports and registers. And values sent on the =
-display registers to set the desired brightness are computed with complex f=
-ormulaes (and the calculation needs static tables of values and display inf=
-ormation got from the display at startup).
-
-What's the source of the information?
-
-Pretty soon we're going to need something more concrete to discuss this
-further. Spec or implementation or something.
-
-
-BR,
-Jani.
-
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
