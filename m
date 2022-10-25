@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A1D60CA03
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 12:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3353B60CA06
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 12:27:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DE9010E33C;
-	Tue, 25 Oct 2022 10:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6111510E347;
+	Tue, 25 Oct 2022 10:27:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F59F10E33C
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 10:26:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D13110E18D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 10:26:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666693612; x=1698229612;
+ t=1666693616; x=1698229616;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kaUGWP9Ft/BEhpEYM6wba8Id8CuY66h1+Oi+efRC1Tk=;
- b=lfQHaHCM1lPcozjpU3vTsJMDFDNxJLv2Se7pUirVRySmB5cjEpdZkbrT
- eKFsoQHCFmxHlsLeNDw65eBllYMdCAFkW0WCsbCnXjqKgGltOx0jgNbDL
- Kr7xURrEGlsPFn9vvPOE5Vb9zY67vVGmw7wUfw9cG/y4n+qTz8FHYXOPj
- WOfp+qqbBI+yf8FcGcbLvgtxyJc/EYLPJOlp9oJPe/t5syR+X6myUMScK
- 1KkKcnkugVCatrDUq9DRkHGQWbXNs+jQpODxEC6Y6FbFvb7U+wABJNQG3
- csZx0YknilokDbW/SYQZI2Eo8TCF1is/Dnuvem2piAe8BWgE1D/ez0w75 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="305253713"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="305253713"
+ bh=cl7i0eaMd/pCXbFCa05T5ZWymKhgstqkD4t/PhaXZ+k=;
+ b=P9oOWkticAAaEECn2sFGMb8XHoh/MNGgXwSzc5qEEdiQecBjgOLMYLrE
+ QDP1usSiUeNqT8i8xmSBqPLmD1JdFFFu1yo+BCpoByeuhhbJEKpoffWnO
+ IgaSyZgiumI/WZe4kVFFy5vLETxbEjd/wBHerx69UhyBV9iD3edCufhv3
+ ZTwLZt2TfCS1SR1gp5Hn68Bkb/82nNE/ul1BThekLwyyjuxxTyyPeImTo
+ CD9w1aXtctlSR5Q15dIg+qS9iGe9SyH4jk9PmWNgSbprFDsk2aWCqjFxn
+ Xtlv5tg+hBpG5l6h6zCk+zZy0C7FjLciDfG3c/F2c2yvMOA1ZcA/MFY3D g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="305253715"
+X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="305253715"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2022 03:26:52 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="720806788"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="720806788"
+ 25 Oct 2022 03:26:53 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="720806797"
+X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="720806797"
 Received: from ideak-desk.fi.intel.com ([10.237.68.144])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2022 03:26:51 -0700
+ 25 Oct 2022 03:26:52 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Oct 2022 13:26:42 +0300
-Message-Id: <20221025102644.2123988-3-imre.deak@intel.com>
+Date: Tue, 25 Oct 2022 13:26:43 +0300
+Message-Id: <20221025102644.2123988-4-imre.deak@intel.com>
 X-Mailer: git-send-email 2.31.1.189.g2e36527f23
 In-Reply-To: <20221025102644.2123988-1-imre.deak@intel.com>
 References: <20221025102644.2123988-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/4] drm/i915: Rename intel_tc_phy_regs.h to
- intel_mg_phy_regs.h
+Subject: [Intel-gfx] [PATCH v3 3/4] drm/i915/tgl+: Move DKL PHY register
+ definitions to intel_dkl_phy_regs.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,94 +62,476 @@ Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-An upcoming patch moves the DKL PHY register definitions to
-intel_dkl_phy_regs.h, so for consistency rename intel_tc_phy_regs.h
-containing only MG PHY register definitions to intel_mg_phy_regs.h.
+Move the TypeC DKL PHY register definitions to intel_dkl_phy_regs.h.
 
-Suggested-by: Jani Nikula <jani.nikula@intel.com>
+No functional changes.
+
+v2:
+- Move the definitions to a new intel_dkl_phy_regs.h file. (Jani).
+
 Cc: Jani Nikula <jani.nikula@intel.com>
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c                    | 2 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c               | 2 +-
- .../display/{intel_tc_phy_regs.h => intel_mg_phy_regs.h}    | 6 +++---
- drivers/gpu/drm/i915/display/intel_tc.c                     | 2 +-
- 4 files changed, 6 insertions(+), 6 deletions(-)
- rename drivers/gpu/drm/i915/display/{intel_tc_phy_regs.h => intel_mg_phy_regs.h} (99%)
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   1 +
+ .../i915/display/intel_display_power_well.c   |   1 +
+ drivers/gpu/drm/i915/display/intel_dkl_phy.c  |   1 +
+ .../gpu/drm/i915/display/intel_dkl_phy_regs.h | 193 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   1 +
+ drivers/gpu/drm/i915/display/intel_tc.c       |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 179 ----------------
+ 7 files changed, 198 insertions(+), 179 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 7708ccbbdeb75..37272c6e4269d 100644
+index 37272c6e4269d..54142ca3e6947 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -56,13 +56,13 @@
- #include "intel_hdmi.h"
- #include "intel_hotplug.h"
- #include "intel_lspcon.h"
-+#include "intel_mg_phy_regs.h"
- #include "intel_pps.h"
- #include "intel_psr.h"
- #include "intel_quirks.h"
- #include "intel_snps_phy.h"
- #include "intel_sprite.h"
- #include "intel_tc.h"
--#include "intel_tc_phy_regs.h"
- #include "intel_vdsc.h"
- #include "intel_vrr.h"
- #include "skl_scaler.h"
+@@ -44,6 +44,7 @@
+ #include "intel_display_power.h"
+ #include "intel_display_types.h"
+ #include "intel_dkl_phy.h"
++#include "intel_dkl_phy_regs.h"
+ #include "intel_dp.h"
+ #include "intel_dp_link_training.h"
+ #include "intel_dp_mst.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 1d18eee562534..86974c515206e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -13,6 +13,7 @@
+ #include "intel_display_power_well.h"
+ #include "intel_display_types.h"
+ #include "intel_dkl_phy.h"
++#include "intel_dkl_phy_regs.h"
+ #include "intel_dmc.h"
+ #include "intel_dpio_phy.h"
+ #include "intel_dpll.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+index 710b030c7ed54..01781293ffdcf 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+@@ -9,6 +9,7 @@
+ #include "intel_de.h"
+ #include "intel_display.h"
+ #include "intel_dkl_phy.h"
++#include "intel_dkl_phy_regs.h"
+ 
+ static void
+ dkl_phy_set_hip_idx(struct drm_i915_private *i915, i915_reg_t reg, int idx)
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h b/drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h
+new file mode 100644
+index 0000000000000..189201278f590
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h
+@@ -0,0 +1,193 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#ifndef __INTEL_DKL_PHY_REGS__
++#define __INTEL_DKL_PHY_REGS__
++
++#define _DKL_PHY1_BASE					0x168000
++#define _DKL_PHY2_BASE					0x169000
++#define _DKL_PHY3_BASE					0x16A000
++#define _DKL_PHY4_BASE					0x16B000
++#define _DKL_PHY5_BASE					0x16C000
++#define _DKL_PHY6_BASE					0x16D000
++
++#define DKL_REG_TC_PORT(__reg) \
++	(((__reg).reg - _DKL_PHY1_BASE) / (TC_PORT_1 + _DKL_PHY2_BASE - _DKL_PHY1_BASE))
++
++/* DEKEL PHY MMIO Address = Phy base + (internal address & ~index_mask) */
++#define _DKL_PCS_DW5					0x14
++#define DKL_PCS_DW5(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_PCS_DW5)
++#define   DKL_PCS_DW5_CORE_SOFTRESET			REG_BIT(11)
++
++#define _DKL_PLL_DIV0					0x200
++#define DKL_PLL_DIV0(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_PLL_DIV0)
++#define   DKL_PLL_DIV0_AFC_STARTUP_MASK			REG_GENMASK(27, 25)
++#define   DKL_PLL_DIV0_AFC_STARTUP(val)			REG_FIELD_PREP(DKL_PLL_DIV0_AFC_STARTUP_MASK, (val))
++#define   DKL_PLL_DIV0_INTEG_COEFF(x)			((x) << 16)
++#define   DKL_PLL_DIV0_INTEG_COEFF_MASK			(0x1F << 16)
++#define   DKL_PLL_DIV0_PROP_COEFF(x)			((x) << 12)
++#define   DKL_PLL_DIV0_PROP_COEFF_MASK			(0xF << 12)
++#define   DKL_PLL_DIV0_FBPREDIV_SHIFT			(8)
++#define   DKL_PLL_DIV0_FBPREDIV(x)			((x) << DKL_PLL_DIV0_FBPREDIV_SHIFT)
++#define   DKL_PLL_DIV0_FBPREDIV_MASK			(0xF << DKL_PLL_DIV0_FBPREDIV_SHIFT)
++#define   DKL_PLL_DIV0_FBDIV_INT(x)			((x) << 0)
++#define   DKL_PLL_DIV0_FBDIV_INT_MASK			(0xFF << 0)
++#define   DKL_PLL_DIV0_MASK				(DKL_PLL_DIV0_INTEG_COEFF_MASK | \
++							 DKL_PLL_DIV0_PROP_COEFF_MASK | \
++							 DKL_PLL_DIV0_FBPREDIV_MASK | \
++							 DKL_PLL_DIV0_FBDIV_INT_MASK)
++
++#define _DKL_PLL_DIV1					0x204
++#define DKL_PLL_DIV1(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_PLL_DIV1)
++#define   DKL_PLL_DIV1_IREF_TRIM(x)			((x) << 16)
++#define   DKL_PLL_DIV1_IREF_TRIM_MASK			(0x1F << 16)
++#define   DKL_PLL_DIV1_TDC_TARGET_CNT(x)		((x) << 0)
++#define   DKL_PLL_DIV1_TDC_TARGET_CNT_MASK		(0xFF << 0)
++
++#define _DKL_PLL_SSC					0x210
++#define DKL_PLL_SSC(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_PLL_SSC)
++#define   DKL_PLL_SSC_IREF_NDIV_RATIO(x)		((x) << 29)
++#define   DKL_PLL_SSC_IREF_NDIV_RATIO_MASK		(0x7 << 29)
++#define   DKL_PLL_SSC_STEP_LEN(x)			((x) << 16)
++#define   DKL_PLL_SSC_STEP_LEN_MASK			(0xFF << 16)
++#define   DKL_PLL_SSC_STEP_NUM(x)			((x) << 11)
++#define   DKL_PLL_SSC_STEP_NUM_MASK			(0x7 << 11)
++#define   DKL_PLL_SSC_EN				(1 << 9)
++
++#define _DKL_PLL_BIAS					0x214
++#define DKL_PLL_BIAS(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_PLL_BIAS)
++#define   DKL_PLL_BIAS_FRAC_EN_H			(1 << 30)
++#define   DKL_PLL_BIAS_FBDIV_SHIFT			(8)
++#define   DKL_PLL_BIAS_FBDIV_FRAC(x)			((x) << DKL_PLL_BIAS_FBDIV_SHIFT)
++#define   DKL_PLL_BIAS_FBDIV_FRAC_MASK			(0x3FFFFF << DKL_PLL_BIAS_FBDIV_SHIFT)
++
++#define _DKL_PLL_TDC_COLDST_BIAS			0x218
++#define DKL_PLL_TDC_COLDST_BIAS(tc_port)		_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_PLL_TDC_COLDST_BIAS)
++#define   DKL_PLL_TDC_SSC_STEP_SIZE(x)			((x) << 8)
++#define   DKL_PLL_TDC_SSC_STEP_SIZE_MASK		(0xFF << 8)
++#define   DKL_PLL_TDC_FEED_FWD_GAIN(x)			((x) << 0)
++#define   DKL_PLL_TDC_FEED_FWD_GAIN_MASK		(0xFF << 0)
++
++#define _DKL_REFCLKIN_CTL				0x12C
++#define DKL_REFCLKIN_CTL(tc_port)			_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_REFCLKIN_CTL)
++/* Bits are the same as MG_REFCLKIN_CTL */
++
++#define _DKL_CLKTOP2_HSCLKCTL				0xD4
++#define DKL_CLKTOP2_HSCLKCTL(tc_port)			_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_CLKTOP2_HSCLKCTL)
++/* Bits are the same as MG_CLKTOP2_HSCLKCTL */
++
++#define _DKL_CLKTOP2_CORECLKCTL1			0xD8
++#define DKL_CLKTOP2_CORECLKCTL1(tc_port)		_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_CLKTOP2_CORECLKCTL1)
++/* Bits are the same as MG_CLKTOP2_CORECLKCTL1 */
++
++#define _DKL_TX_DPCNTL0					0x2C0
++#define DKL_TX_DPCNTL0(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_TX_DPCNTL0)
++#define  DKL_TX_PRESHOOT_COEFF(x)			((x) << 13)
++#define  DKL_TX_PRESHOOT_COEFF_MASK			(0x1f << 13)
++#define  DKL_TX_DE_EMPHASIS_COEFF(x)			((x) << 8)
++#define  DKL_TX_DE_EMPAHSIS_COEFF_MASK			(0x1f << 8)
++#define  DKL_TX_VSWING_CONTROL(x)			((x) << 0)
++#define  DKL_TX_VSWING_CONTROL_MASK			(0x7 << 0)
++
++#define _DKL_TX_DPCNTL1					0x2C4
++#define DKL_TX_DPCNTL1(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_TX_DPCNTL1)
++/* Bits are the same as DKL_TX_DPCNTRL0 */
++
++#define _DKL_TX_DPCNTL2					0x2C8
++#define DKL_TX_DPCNTL2(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_TX_DPCNTL2)
++#define  DKL_TX_DP20BITMODE				REG_BIT(2)
++#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK	REG_GENMASK(4, 3)
++#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK, (val))
++#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK	REG_GENMASK(6, 5)
++#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK, (val))
++
++#define _DKL_TX_FW_CALIB				0x2F8
++#define DKL_TX_FW_CALIB(tc_port)			_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_TX_FW_CALIB)
++#define  DKL_TX_CFG_DISABLE_WAIT_INIT			(1 << 7)
++
++#define _DKL_TX_PMD_LANE_SUS				0xD00
++#define DKL_TX_PMD_LANE_SUS(tc_port)			_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_TX_PMD_LANE_SUS)
++
++#define _DKL_TX_DW17					0xDC4
++#define DKL_TX_DW17(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_TX_DW17)
++
++#define _DKL_TX_DW18					0xDC8
++#define DKL_TX_DW18(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_TX_DW18)
++
++#define _DKL_DP_MODE					0xA0
++#define DKL_DP_MODE(tc_port)				_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_DP_MODE)
++
++#define _DKL_CMN_UC_DW27				0x36C
++#define DKL_CMN_UC_DW_27(tc_port)			_MMIO(_PORT(tc_port, \
++								    _DKL_PHY1_BASE, \
++								    _DKL_PHY2_BASE) + \
++							      _DKL_CMN_UC_DW27)
++#define  DKL_CMN_UC_DW27_UC_HEALTH			(0x1 << 15)
++
++/*
++ * Each Dekel PHY is addressed through a 4KB aperture. Each PHY has more than
++ * 4KB of register space, so a separate index is programmed in HIP_INDEX_REG0
++ * or HIP_INDEX_REG1, based on the port number, to set the upper 2 address
++ * bits that point the 4KB window into the full PHY register space.
++ */
++#define _HIP_INDEX_REG0					0x1010A0
++#define _HIP_INDEX_REG1					0x1010A4
++#define HIP_INDEX_REG(tc_port)				_MMIO((tc_port) < 4 ? _HIP_INDEX_REG0 \
++							      : _HIP_INDEX_REG1)
++#define _HIP_INDEX_SHIFT(tc_port)			(8 * ((tc_port) % 4))
++#define HIP_INDEX_VAL(tc_port, val)			((val) << _HIP_INDEX_SHIFT(tc_port))
++
++#endif /* __INTEL_DKL_PHY_REGS__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 8bbc2b5e50ed9..eb4decd8c68bf 100644
+index eb4decd8c68bf..bb7c8aef89526 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -29,9 +29,9 @@
+@@ -26,6 +26,7 @@
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_dkl_phy.h"
++#include "intel_dkl_phy_regs.h"
  #include "intel_dpio_phy.h"
  #include "intel_dpll.h"
  #include "intel_dpll_mgr.h"
-+#include "intel_mg_phy_regs.h"
- #include "intel_pch_refclk.h"
- #include "intel_tc.h"
--#include "intel_tc_phy_regs.h"
- 
- /**
-  * DOC: Display PLLs
-diff --git a/drivers/gpu/drm/i915/display/intel_tc_phy_regs.h b/drivers/gpu/drm/i915/display/intel_mg_phy_regs.h
-similarity index 99%
-rename from drivers/gpu/drm/i915/display/intel_tc_phy_regs.h
-rename to drivers/gpu/drm/i915/display/intel_mg_phy_regs.h
-index 5a545086f9599..07978f8d5fb74 100644
---- a/drivers/gpu/drm/i915/display/intel_tc_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_mg_phy_regs.h
-@@ -3,8 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
--#ifndef __INTEL_TC_PHY_REGS__
--#define __INTEL_TC_PHY_REGS__
-+#ifndef __INTEL_MG_PHY_REGS__
-+#define __INTEL_MG_PHY_REGS__
- 
- #include "i915_reg_defs.h"
- 
-@@ -277,4 +277,4 @@
- 						   _MG_PLL_TDC_COLDST_BIAS_PORT1, \
- 						   _MG_PLL_TDC_COLDST_BIAS_PORT2)
- 
--#endif /* __INTEL_TC_PHY_REGS__ */
-+#endif /* __INTEL_MG_PHY_REGS__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 8cecd41ed0033..351709725cd04 100644
+index 351709725cd04..70624b4b2d38c 100644
 --- a/drivers/gpu/drm/i915/display/intel_tc.c
 +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -9,8 +9,8 @@
+@@ -8,6 +8,7 @@
+ #include "intel_display.h"
  #include "intel_display_power_map.h"
  #include "intel_display_types.h"
++#include "intel_dkl_phy_regs.h"
  #include "intel_dp_mst.h"
-+#include "intel_mg_phy_regs.h"
+ #include "intel_mg_phy_regs.h"
  #include "intel_tc.h"
--#include "intel_tc_phy_regs.h"
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 231345887cbb3..1c0da50c0dc73 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -7435,185 +7435,6 @@ enum skl_power_gate {
+ 						   _ADLS_DPLL4_CFGCR1, \
+ 						   _ADLS_DPLL3_CFGCR1)
  
- static const char *tc_port_mode_name(enum tc_port_mode mode)
- {
+-#define _DKL_PHY1_BASE			0x168000
+-#define _DKL_PHY2_BASE			0x169000
+-#define _DKL_PHY3_BASE			0x16A000
+-#define _DKL_PHY4_BASE			0x16B000
+-#define _DKL_PHY5_BASE			0x16C000
+-#define _DKL_PHY6_BASE			0x16D000
+-
+-#define DKL_REG_TC_PORT(__reg) \
+-	(((__reg).reg - _DKL_PHY1_BASE) / (TC_PORT_1 + _DKL_PHY2_BASE - _DKL_PHY1_BASE))
+-
+-/* DEKEL PHY MMIO Address = Phy base + (internal address & ~index_mask) */
+-#define _DKL_PCS_DW5			0x14
+-#define DKL_PCS_DW5(tc_port)		_MMIO(_PORT(tc_port, _DKL_PHY1_BASE, \
+-						    _DKL_PHY2_BASE) + \
+-						    _DKL_PCS_DW5)
+-#define   DKL_PCS_DW5_CORE_SOFTRESET	REG_BIT(11)
+-
+-#define _DKL_PLL_DIV0			0x200
+-#define   DKL_PLL_DIV0_AFC_STARTUP_MASK	REG_GENMASK(27, 25)
+-#define   DKL_PLL_DIV0_AFC_STARTUP(val)	REG_FIELD_PREP(DKL_PLL_DIV0_AFC_STARTUP_MASK, (val))
+-#define   DKL_PLL_DIV0_INTEG_COEFF(x)	((x) << 16)
+-#define   DKL_PLL_DIV0_INTEG_COEFF_MASK	(0x1F << 16)
+-#define   DKL_PLL_DIV0_PROP_COEFF(x)	((x) << 12)
+-#define   DKL_PLL_DIV0_PROP_COEFF_MASK	(0xF << 12)
+-#define   DKL_PLL_DIV0_FBPREDIV_SHIFT   (8)
+-#define   DKL_PLL_DIV0_FBPREDIV(x)	((x) << DKL_PLL_DIV0_FBPREDIV_SHIFT)
+-#define   DKL_PLL_DIV0_FBPREDIV_MASK	(0xF << DKL_PLL_DIV0_FBPREDIV_SHIFT)
+-#define   DKL_PLL_DIV0_FBDIV_INT(x)	((x) << 0)
+-#define   DKL_PLL_DIV0_FBDIV_INT_MASK	(0xFF << 0)
+-#define   DKL_PLL_DIV0_MASK		(DKL_PLL_DIV0_INTEG_COEFF_MASK | \
+-					 DKL_PLL_DIV0_PROP_COEFF_MASK | \
+-					 DKL_PLL_DIV0_FBPREDIV_MASK | \
+-					 DKL_PLL_DIV0_FBDIV_INT_MASK)
+-#define DKL_PLL_DIV0(tc_port)		_MMIO(_PORT(tc_port, _DKL_PHY1_BASE, \
+-						    _DKL_PHY2_BASE) + \
+-						    _DKL_PLL_DIV0)
+-
+-#define _DKL_PLL_DIV1				0x204
+-#define   DKL_PLL_DIV1_IREF_TRIM(x)		((x) << 16)
+-#define   DKL_PLL_DIV1_IREF_TRIM_MASK		(0x1F << 16)
+-#define   DKL_PLL_DIV1_TDC_TARGET_CNT(x)	((x) << 0)
+-#define   DKL_PLL_DIV1_TDC_TARGET_CNT_MASK	(0xFF << 0)
+-#define DKL_PLL_DIV1(tc_port)		_MMIO(_PORT(tc_port, _DKL_PHY1_BASE, \
+-						    _DKL_PHY2_BASE) + \
+-						    _DKL_PLL_DIV1)
+-
+-#define _DKL_PLL_SSC				0x210
+-#define   DKL_PLL_SSC_IREF_NDIV_RATIO(x)	((x) << 29)
+-#define   DKL_PLL_SSC_IREF_NDIV_RATIO_MASK	(0x7 << 29)
+-#define   DKL_PLL_SSC_STEP_LEN(x)		((x) << 16)
+-#define   DKL_PLL_SSC_STEP_LEN_MASK		(0xFF << 16)
+-#define   DKL_PLL_SSC_STEP_NUM(x)		((x) << 11)
+-#define   DKL_PLL_SSC_STEP_NUM_MASK		(0x7 << 11)
+-#define   DKL_PLL_SSC_EN			(1 << 9)
+-#define DKL_PLL_SSC(tc_port)		_MMIO(_PORT(tc_port, _DKL_PHY1_BASE, \
+-						    _DKL_PHY2_BASE) + \
+-						    _DKL_PLL_SSC)
+-
+-#define _DKL_PLL_BIAS			0x214
+-#define   DKL_PLL_BIAS_FRAC_EN_H	(1 << 30)
+-#define   DKL_PLL_BIAS_FBDIV_SHIFT	(8)
+-#define   DKL_PLL_BIAS_FBDIV_FRAC(x)	((x) << DKL_PLL_BIAS_FBDIV_SHIFT)
+-#define   DKL_PLL_BIAS_FBDIV_FRAC_MASK	(0x3FFFFF << DKL_PLL_BIAS_FBDIV_SHIFT)
+-#define DKL_PLL_BIAS(tc_port)		_MMIO(_PORT(tc_port, _DKL_PHY1_BASE, \
+-						    _DKL_PHY2_BASE) + \
+-						    _DKL_PLL_BIAS)
+-
+-#define _DKL_PLL_TDC_COLDST_BIAS		0x218
+-#define   DKL_PLL_TDC_SSC_STEP_SIZE(x)		((x) << 8)
+-#define   DKL_PLL_TDC_SSC_STEP_SIZE_MASK	(0xFF << 8)
+-#define   DKL_PLL_TDC_FEED_FWD_GAIN(x)		((x) << 0)
+-#define   DKL_PLL_TDC_FEED_FWD_GAIN_MASK	(0xFF << 0)
+-#define DKL_PLL_TDC_COLDST_BIAS(tc_port) _MMIO(_PORT(tc_port, \
+-						     _DKL_PHY1_BASE, \
+-						     _DKL_PHY2_BASE) + \
+-						     _DKL_PLL_TDC_COLDST_BIAS)
+-
+-#define _DKL_REFCLKIN_CTL		0x12C
+-/* Bits are the same as MG_REFCLKIN_CTL */
+-#define DKL_REFCLKIN_CTL(tc_port)	_MMIO(_PORT(tc_port, \
+-						    _DKL_PHY1_BASE, \
+-						    _DKL_PHY2_BASE) + \
+-					      _DKL_REFCLKIN_CTL)
+-
+-#define _DKL_CLKTOP2_HSCLKCTL		0xD4
+-/* Bits are the same as MG_CLKTOP2_HSCLKCTL */
+-#define DKL_CLKTOP2_HSCLKCTL(tc_port)	_MMIO(_PORT(tc_port, \
+-						    _DKL_PHY1_BASE, \
+-						    _DKL_PHY2_BASE) + \
+-					      _DKL_CLKTOP2_HSCLKCTL)
+-
+-#define _DKL_CLKTOP2_CORECLKCTL1		0xD8
+-/* Bits are the same as MG_CLKTOP2_CORECLKCTL1 */
+-#define DKL_CLKTOP2_CORECLKCTL1(tc_port)	_MMIO(_PORT(tc_port, \
+-							    _DKL_PHY1_BASE, \
+-							    _DKL_PHY2_BASE) + \
+-						      _DKL_CLKTOP2_CORECLKCTL1)
+-
+-#define _DKL_TX_DPCNTL0				0x2C0
+-#define  DKL_TX_PRESHOOT_COEFF(x)			((x) << 13)
+-#define  DKL_TX_PRESHOOT_COEFF_MASK			(0x1f << 13)
+-#define  DKL_TX_DE_EMPHASIS_COEFF(x)		((x) << 8)
+-#define  DKL_TX_DE_EMPAHSIS_COEFF_MASK		(0x1f << 8)
+-#define  DKL_TX_VSWING_CONTROL(x)			((x) << 0)
+-#define  DKL_TX_VSWING_CONTROL_MASK			(0x7 << 0)
+-#define DKL_TX_DPCNTL0(tc_port) _MMIO(_PORT(tc_port, \
+-						     _DKL_PHY1_BASE, \
+-						     _DKL_PHY2_BASE) + \
+-						     _DKL_TX_DPCNTL0)
+-
+-#define _DKL_TX_DPCNTL1				0x2C4
+-/* Bits are the same as DKL_TX_DPCNTRL0 */
+-#define DKL_TX_DPCNTL1(tc_port) _MMIO(_PORT(tc_port, \
+-						     _DKL_PHY1_BASE, \
+-						     _DKL_PHY2_BASE) + \
+-						     _DKL_TX_DPCNTL1)
+-
+-#define _DKL_TX_DPCNTL2					0x2C8
+-#define  DKL_TX_DP20BITMODE				REG_BIT(2)
+-#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK	REG_GENMASK(4, 3)
+-#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK, (val))
+-#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK	REG_GENMASK(6, 5)
+-#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK, (val))
+-#define DKL_TX_DPCNTL2(tc_port) _MMIO(_PORT(tc_port, \
+-						     _DKL_PHY1_BASE, \
+-						     _DKL_PHY2_BASE) + \
+-						     _DKL_TX_DPCNTL2)
+-
+-#define _DKL_TX_FW_CALIB				0x2F8
+-#define  DKL_TX_CFG_DISABLE_WAIT_INIT			(1 << 7)
+-#define DKL_TX_FW_CALIB(tc_port) _MMIO(_PORT(tc_port, \
+-						     _DKL_PHY1_BASE, \
+-						     _DKL_PHY2_BASE) + \
+-						     _DKL_TX_FW_CALIB)
+-
+-#define _DKL_TX_PMD_LANE_SUS				0xD00
+-#define DKL_TX_PMD_LANE_SUS(tc_port) _MMIO(_PORT(tc_port, \
+-							  _DKL_PHY1_BASE, \
+-							  _DKL_PHY2_BASE) + \
+-							  _DKL_TX_PMD_LANE_SUS)
+-
+-#define _DKL_TX_DW17					0xDC4
+-#define DKL_TX_DW17(tc_port) _MMIO(_PORT(tc_port, \
+-						     _DKL_PHY1_BASE, \
+-						     _DKL_PHY2_BASE) + \
+-						     _DKL_TX_DW17)
+-
+-#define _DKL_TX_DW18					0xDC8
+-#define DKL_TX_DW18(tc_port) _MMIO(_PORT(tc_port, \
+-						     _DKL_PHY1_BASE, \
+-						     _DKL_PHY2_BASE) + \
+-						     _DKL_TX_DW18)
+-
+-#define _DKL_DP_MODE					0xA0
+-#define DKL_DP_MODE(tc_port) _MMIO(_PORT(tc_port, \
+-						     _DKL_PHY1_BASE, \
+-						     _DKL_PHY2_BASE) + \
+-						     _DKL_DP_MODE)
+-
+-#define _DKL_CMN_UC_DW27			0x36C
+-#define  DKL_CMN_UC_DW27_UC_HEALTH		(0x1 << 15)
+-#define DKL_CMN_UC_DW_27(tc_port)		_MMIO(_PORT(tc_port, \
+-							    _DKL_PHY1_BASE, \
+-							    _DKL_PHY2_BASE) + \
+-							    _DKL_CMN_UC_DW27)
+-
+-/*
+- * Each Dekel PHY is addressed through a 4KB aperture. Each PHY has more than
+- * 4KB of register space, so a separate index is programmed in HIP_INDEX_REG0
+- * or HIP_INDEX_REG1, based on the port number, to set the upper 2 address
+- * bits that point the 4KB window into the full PHY register space.
+- */
+-#define _HIP_INDEX_REG0			0x1010A0
+-#define _HIP_INDEX_REG1			0x1010A4
+-#define HIP_INDEX_REG(tc_port)		_MMIO((tc_port) < 4 ? _HIP_INDEX_REG0 \
+-					      : _HIP_INDEX_REG1)
+-#define _HIP_INDEX_SHIFT(tc_port)	(8 * ((tc_port) % 4))
+-#define HIP_INDEX_VAL(tc_port, val)	((val) << _HIP_INDEX_SHIFT(tc_port))
+-
+ /* BXT display engine PLL */
+ #define BXT_DE_PLL_CTL			_MMIO(0x6d000)
+ #define   BXT_DE_PLL_RATIO(x)		(x)	/* {60,65,100} * 19.2MHz */
 -- 
 2.37.1
 
