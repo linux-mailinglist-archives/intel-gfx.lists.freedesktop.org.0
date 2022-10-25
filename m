@@ -1,51 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C84C860C807
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 11:27:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FA160C987
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 12:10:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F3F110E2F0;
-	Tue, 25 Oct 2022 09:27:36 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE2D10E2F0
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 09:27:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666690051; x=1698226051;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=y/c+ruBwxt30ovLGsBERF/fybqR7NnFu49MS+Nacg5w=;
- b=ANv+I7DS1J8pZZ3Y7Nt9uTM3BKzlw5YimJ0qwVwuTmjN/5EaHmLn34eq
- aBJC+fb5MfKO68J78IH3gU41VaFSyP0IXt8XDnSOhqw4v6FvUsmN7dSWP
- 3hwzk+JLKOkH92yI/hvwghB1JyRKmK2WhvBuq1d4rp7l8jUrvCriSvlSQ
- kzwGtrXBKAlr+E9wNpAUGgOGT7LAoYUokUuxJlB4Kfjv76h/m5iFXypza
- mpqzSUaT4fPGZN+DZ5FzSlvEV5WIjT9yBf41Cme1xr8R0AhsTTYTjB/4N
- DGygsvMnlmcVO+yj8uLKeJrYqxJUvPoNEieMWz0hGFVgkVxVjzIVhNs0x A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="309319316"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="309319316"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2022 02:27:30 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="806602505"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="806602505"
-Received: from arybkin-mobl1.ccr.corp.intel.com (HELO intel.com)
- ([10.252.44.231])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2022 02:27:29 -0700
-Date: Tue, 25 Oct 2022 11:27:26 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Karolina Drobnik <karolina.drobnik@intel.com>
-Message-ID: <Y1er/myQsOayPTtb@ashyti-mobl2.lan>
-References: <20221025091903.986819-1-karolina.drobnik@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CEB910E2F5;
+	Tue, 25 Oct 2022 10:10:19 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+X-Greylist: delayed 391 seconds by postgrey-1.36 at gabe;
+ Tue, 25 Oct 2022 10:10:14 UTC
+Received: from outbound-smtp31.blacknight.com (outbound-smtp31.blacknight.com
+ [81.17.249.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2FB510E2F5
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 10:10:14 +0000 (UTC)
+Received: from mail.blacknight.com (pemlinmail02.blacknight.ie [81.17.254.11])
+ by outbound-smtp31.blacknight.com (Postfix) with ESMTPS id
+ 8CB7D134006
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 11:03:40 +0100 (IST)
+Received: (qmail 16574 invoked from network); 25 Oct 2022 10:03:40 -0000
+Received: from unknown (HELO techsingularity.net)
+ (mgorman@techsingularity.net@[84.203.198.246])
+ by 81.17.254.9 with ESMTPSA (AES256-SHA encrypted, authenticated);
+ 25 Oct 2022 10:03:40 -0000
+Date: Tue, 25 Oct 2022 11:03:38 +0100
+From: Mel Gorman <mgorman@techsingularity.net>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20221025100338.zcvqyji5gwiuj3nj@techsingularity.net>
+References: <1596edbb-02ad-6bdf-51b8-15c2d2e08b76@linux.intel.com>
+ <20221024142321.f2etddxtqa47bib7@techsingularity.net>
+ <8d9517cc-6fba-ede0-a95f-e9b036e75ceb@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
-In-Reply-To: <20221025091903.986819-1-karolina.drobnik@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] i915/i915_gem_context: Remove debug message
- in i915_gem_context_create_ioctl
+In-Reply-To: <8d9517cc-6fba-ede0-a95f-e9b036e75ceb@linux.intel.com>
+Subject: Re: [Intel-gfx] mm/huge_memory: do not clobber swp_entry_t during
+ THP split
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,38 +49,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
+ Hugh Dickins <hughd@google.com>,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
+ Linux MM <linux-mm@kvack.org>, Matthew Auld <matthew.auld@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> We know that as long as GEM context create ioctl succeeds, a context was
-> created. There is no need to write about it, especially when such a message
-> heavily pollutes dmesg and makes debugging actual errors harder.
+Cc'ing Andrew for awareness. Andrew, this bug report is almost identical to
+the one Hugh already reported and fixed in "[PATCH] mm: prep_compound_tail()
+clear page->private". Nothing wrong with the patch AFAIK and only the last
+paragraph is relevant to you.
+
+On Tue, Oct 25, 2022 at 09:50:14AM +0100, Tvrtko Ursulin wrote:
 > 
-> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Karolina Drobnik <karolina.drobnik@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-Thanks, Karolina!
-Andi
-
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c | 1 -
->  1 file changed, 1 deletion(-)
+> On 24/10/2022 15:23, Mel Gorman wrote:
+> > On Mon, Oct 24, 2022 at 02:04:50PM +0100, Tvrtko Ursulin wrote:
+> > > 
+> > > Hi Mel, mm experts,
+> > > 
+> > > With 6.1-rc2 we started hitting the WARN_ON added in 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t during THP split") in i915 automated CI:
+> > > 
+> > 
+> > Thanks for the report. As shmem pages pages are allocated via vma_alloc_folio
+> > and are compound pages, can you try the following patch please?  If it
+> > still triggers, please post the new oops as it'll include the tail page
+> > information.
+> > 
+> > --8<--
+> > From: Hugh Dickins <hughd@google.com>
+> > Subject: [PATCH] mm: prep_compound_tail() clear page->private
+> > 
+> > Although page allocation always clears page->private in the first page
+> > or head page of an allocation, it has never made a point of clearing
+> > page->private in the tails (though 0 is often what is already there).
+> > 
+> > But now commit 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t
+> > during THP split") issues a warning when page_tail->private is found to
+> > be non-0 (unless it's swapcache).
+> > 
+> > Change that warning to dump page_tail (which also dumps head), instead
+> > of just the head: so far we have seen dead000000000122, dead000000000003,
+> > dead000000000001 or 0000000000000002 in the raw output for tail private.
+> > 
+> > We could just delete the warning, but today's consensus appears to want
+> > page->private to be 0, unless there's a good reason for it to be set:
+> > so now clear it in prep_compound_tail() (more general than just for THP;
+> > but not for high order allocation, which makes no pass down the tails).
+> > 
+> > Fixes: 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t during THP split")
+> > Signed-off-by: Hugh Dickins <hughd@google.com>
+> > Cc: Mel Gorman <mgorman@techsingularity.net>
+> > Cc: Matthew Wilcox (Oracle) <willy@infradead.org>
+> > Cc: <stable@vger.kernel.org>
+> > ---
+> >   mm/huge_memory.c | 2 +-
+> >   mm/page_alloc.c  | 1 +
+> >   2 files changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+> > index 03fc7e5edf07..561a42567477 100644
+> > --- a/mm/huge_memory.c
+> > +++ b/mm/huge_memory.c
+> > @@ -2462,7 +2462,7 @@ static void __split_huge_page_tail(struct page *head, int tail,
+> >   	 * Fix up and warn once if private is unexpectedly set.
+> >   	 */
+> >   	if (!folio_test_swapcache(page_folio(head))) {
+> > -		VM_WARN_ON_ONCE_PAGE(page_tail->private != 0, head);
+> > +		VM_WARN_ON_ONCE_PAGE(page_tail->private != 0, page_tail);
+> >   		page_tail->private = 0;
+> >   	}
+> > diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+> > index b5a6c815ae28..218b28ee49ed 100644
+> > --- a/mm/page_alloc.c
+> > +++ b/mm/page_alloc.c
+> > @@ -807,6 +807,7 @@ static void prep_compound_tail(struct page *head, int tail_idx)
+> >   	p->mapping = TAIL_MAPPING;
+> >   	set_compound_head(p, head);
+> > +	set_page_private(p, 0);
+> >   }
+> >   void prep_compound_page(struct page *page, unsigned int order)
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 1e29b1e6d186..1456ca87c04e 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -2298,7 +2298,6 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
->  	}
->  
->  	args->ctx_id = id;
-> -	drm_dbg(&i915->drm, "HW context %d created\n", args->ctx_id);
->  
->  	return 0;
->  
-> -- 
-> 2.25.1
+> The patch seems to fix our CI runs.
+
+Thanks for letting me know.
+
+> Is it considered final version?
+
+AFAIK, yes.
+
+> If so I
+> can temporarily put it in until it arrives via the next rc - assuming that
+> would be the flow from upstream pov?
+> 
+
+I expect it to. It's currently in the akpm/mm.git branch
+mm/mm-hotfixes-unstable where I expect it to flow to mm/mm-hotfixes-stable
+in due course before sending to Linus. I can't make promises about the
+timing as that's determined by Andrew.
+
+-- 
+Mel Gorman
+SUSE Labs
