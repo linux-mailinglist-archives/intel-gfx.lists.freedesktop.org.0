@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD04D60C6A8
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 10:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4189460C6E2
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 10:50:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4409D10E18A;
-	Tue, 25 Oct 2022 08:40:20 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96AA710E133
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 08:40:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7690D10E29C;
+	Tue, 25 Oct 2022 08:50:20 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8440410E29C
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 08:50:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666687215; x=1698223215;
+ t=1666687818; x=1698223818;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=g7MVCF/+VzUuc0ANX5JgmkjUeGq543Z2DXlYDGVoPIs=;
- b=QHcGMtvYPZHLWnlKKd4G2E893LkPnXBCpHBgvm4cI3eAxTz2a6Kwh5h4
- Ke/hXiwiYCI3p+HHuDa4cN0RnYJqNEV3kFZULH3Js9dHJ36H4Ti/sjVtx
- dC6+siy8pXeFZecukCGVpEn2TCyTQ8CkDu+Daj/QQbuQNN53NJfVmfx8t
- rhPOa3Z9cqKQVVn6esliCJUviVFPN7amqjp1Es1Y8G9z62Zv6KTz8DJhI
- D84E7RXU+EwSkrioHxyD0ZnvsPCQWpwHRctlTpzgsrQtD9jVQUfgFn+kq
- RAZF2K1KxoovvBXgo4H97DNHiN3mjT84J4o9dLwkNHa3VbPFKsh+FAkxO A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="369691393"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="369691393"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2022 01:40:14 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="756857043"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="756857043"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.45.43])
- ([10.252.45.43])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2022 01:40:12 -0700
-Message-ID: <48981b93-7373-4e2e-537b-c32e1dc2f98a@linux.intel.com>
-Date: Tue, 25 Oct 2022 10:40:10 +0200
+ bh=+sq3Tuq3OmApd38934B0rmhnfZ4wp2+OMxOZQWK5IZo=;
+ b=Rc61xcXXQrW4T4fPoaMzRMeK10+kwNgBrTzlBd2wYlT34U9tqtGN11w0
+ gnpXcPY/3SgBJ0zrq2Tyo7D/4l1uFgoUli3+68YE6yyW//fHSCQErC4/2
+ xn9QvMXMmtz0tHpahoVqfyBfnuiPjcHkmA4SkdLLBoeZIU3mG9YvC8WDC
+ 7z9bUoZ+FhrUaiF8zPmgg1ZRI0BglfhtqtAwdHAPn2+rce/OOsXeEhLpZ
+ TZeYeT6NoLeMHdmRJ/zpotS+5HAsrTDd92dqmgwJVPzVFKe6YvMPT3ed9
+ iObrbP0JRgG4mB4mhhLhtY7iA+6/iALSkRwpoTipHUxge84qUl48Ig4rH w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="288021751"
+X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="288021751"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2022 01:50:17 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="700465631"
+X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; d="scan'208";a="700465631"
+Received: from anagimen-mobl1.ger.corp.intel.com (HELO [10.213.203.143])
+ ([10.213.203.143])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2022 01:50:16 -0700
+Message-ID: <8d9517cc-6fba-ede0-a95f-e9b036e75ceb@linux.intel.com>
+Date: Tue, 25 Oct 2022 09:50:14 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20221024101946.28974-1-matthew.auld@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
 Content-Language: en-US
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20221024101946.28974-1-matthew.auld@intel.com>
+To: Mel Gorman <mgorman@techsingularity.net>
+References: <1596edbb-02ad-6bdf-51b8-15c2d2e08b76@linux.intel.com>
+ <20221024142321.f2etddxtqa47bib7@techsingularity.net>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20221024142321.f2etddxtqa47bib7@techsingularity.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915/uapi: expose GTT alignment"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] mm/huge_memory: do not clobber swp_entry_t during
+ THP split
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,83 +63,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Linux MM <linux-mm@kvack.org>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
+ Hugh Dickins <hughd@google.com>, Matthew Auld <matthew.auld@intel.com>,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 10/24/2022 12:19 PM, Matthew Auld wrote:
-> The process for merging uAPI is to have UMD side ready and reviewed and
-> merged before merging. Revert for now until that is ready.
->
-> This reverts commit d54576a074a29d4901d0a693cd84e1a89057f694.
->
-> Reported-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> Cc: Michal Mrozek <michal.mrozek@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Cc: Jordan Justen <jordan.l.justen@intel.com>
-> Cc: Yang A Shi <yang.a.shi@intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+On 24/10/2022 15:23, Mel Gorman wrote:
+> On Mon, Oct 24, 2022 at 02:04:50PM +0100, Tvrtko Ursulin wrote:
+>>
+>> Hi Mel, mm experts,
+>>
+>> With 6.1-rc2 we started hitting the WARN_ON added in 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t during THP split") in i915 automated CI:
+>>
+> 
+> Thanks for the report. As shmem pages pages are allocated via vma_alloc_folio
+> and are compound pages, can you try the following patch please?  If it
+> still triggers, please post the new oops as it'll include the tail page
+> information.
+> 
+> --8<--
+> From: Hugh Dickins <hughd@google.com>
+> Subject: [PATCH] mm: prep_compound_tail() clear page->private
+> 
+> Although page allocation always clears page->private in the first page
+> or head page of an allocation, it has never made a point of clearing
+> page->private in the tails (though 0 is often what is already there).
+> 
+> But now commit 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t
+> during THP split") issues a warning when page_tail->private is found to
+> be non-0 (unless it's swapcache).
+> 
+> Change that warning to dump page_tail (which also dumps head), instead
+> of just the head: so far we have seen dead000000000122, dead000000000003,
+> dead000000000001 or 0000000000000002 in the raw output for tail private.
+> 
+> We could just delete the warning, but today's consensus appears to want
+> page->private to be 0, unless there's a good reason for it to be set:
+> so now clear it in prep_compound_tail() (more general than just for THP;
+> but not for high order allocation, which makes no pass down the tails).
+> 
+> Fixes: 71e2d666ef85 ("mm/huge_memory: do not clobber swp_entry_t during THP split")
+> Signed-off-by: Hugh Dickins <hughd@google.com>
+> Cc: Mel Gorman <mgorman@techsingularity.net>
+> Cc: Matthew Wilcox (Oracle) <willy@infradead.org>
+> Cc: <stable@vger.kernel.org>
 > ---
->   drivers/gpu/drm/i915/i915_query.c |  1 -
->   include/uapi/drm/i915_drm.h       | 29 ++---------------------------
->   2 files changed, 2 insertions(+), 28 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index 111377f210ed..6ec9c9fb7b0d 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -498,7 +498,6 @@ static int query_memregion_info(struct drm_i915_private *i915,
->   		info.region.memory_class = mr->type;
->   		info.region.memory_instance = mr->instance;
->   		info.probed_size = mr->total;
-> -		info.gtt_alignment = mr->min_page_size;
+>   mm/huge_memory.c | 2 +-
+>   mm/page_alloc.c  | 1 +
+>   2 files changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+> index 03fc7e5edf07..561a42567477 100644
+> --- a/mm/huge_memory.c
+> +++ b/mm/huge_memory.c
+> @@ -2462,7 +2462,7 @@ static void __split_huge_page_tail(struct page *head, int tail,
+>   	 * Fix up and warn once if private is unexpectedly set.
+>   	 */
+>   	if (!folio_test_swapcache(page_folio(head))) {
+> -		VM_WARN_ON_ONCE_PAGE(page_tail->private != 0, head);
+> +		VM_WARN_ON_ONCE_PAGE(page_tail->private != 0, page_tail);
+>   		page_tail->private = 0;
+>   	}
 >   
->   		if (mr->type == INTEL_MEMORY_LOCAL)
->   			info.probed_cpu_visible_size = mr->io_size;
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index c2dce8633005..9bf281ec1125 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -3466,33 +3466,8 @@ struct drm_i915_memory_region_info {
->   	/** @region: The class:instance pair encoding */
->   	struct drm_i915_gem_memory_class_instance region;
+> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+> index b5a6c815ae28..218b28ee49ed 100644
+> --- a/mm/page_alloc.c
+> +++ b/mm/page_alloc.c
+> @@ -807,6 +807,7 @@ static void prep_compound_tail(struct page *head, int tail_idx)
 >   
-> -	union {
-> -		/** @rsvd0: MBZ */
-> -		__u32 rsvd0;
-> -		/**
-> -		 * @gtt_alignment:
-> -		 *
-> -		 * The minimum required GTT alignment for this type of memory.
-> -		 * When allocating a GTT address it must be aligned to this
-> -		 * value or larger. On some platforms the kernel might opt to
-> -		 * using 64K pages for I915_MEMORY_CLASS_DEVICE, where 64K GTT
-> -		 * pages can then be used if we also use 64K GTT alignment.
-> -		 *
-> -		 * NOTE: If this is zero then this must be an older
-> -		 * kernel which lacks support for this field.
-> -		 *
-> -		 * Side note: For larger objects (especially for
-> -		 * I915_MEMORY_CLASS_DEVICE), like 2M+ in size, userspace should
-> -		 * consider potentially bumping the GTT alignment to say 2M,
-> -		 * which could potentially increase the likelihood of the kernel
-> -		 * being able to utilise 2M GTT pages underneath, if the layout
-> -		 * of the physical pages allows it.  On some configurations we
-> -		 * can then also use a more efficient page-table layout, if we
-> -		 * can't use the more desirable 2M GTT page, so long as we know
-> -		 * that the entire page-table will be used by this object.
-> -		 */
-> -		__u32 gtt_alignment;
-> -	};
-> +	/** @rsvd0: MBZ */
-> +	__u32 rsvd0;
+>   	p->mapping = TAIL_MAPPING;
+>   	set_compound_head(p, head);
+> +	set_page_private(p, 0);
+>   }
 >   
->   	/**
->   	 * @probed_size: Memory probed by the driver
+>   void prep_compound_page(struct page *page, unsigned int order)
+
+The patch seems to fix our CI runs. Is it considered final version? If 
+so I can temporarily put it in until it arrives via the next rc - 
+assuming that would be the flow from upstream pov?
+
+Regards,
+
+Tvrtko
