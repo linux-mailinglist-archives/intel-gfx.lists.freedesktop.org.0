@@ -1,49 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 696BE60D55F
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 22:17:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D514060D560
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Oct 2022 22:17:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FFFB10E1B9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8488410E1E4;
 	Tue, 25 Oct 2022 20:17:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAFBA10E195
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3C5610E1E9
  for <intel-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 20:17:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1666729031; x=1698265031;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=sOj7czvw8Iyz7/T7VEZBcnCMddbpFGlsUmMOJFz4Lx8=;
- b=Z3195UXFqUNTfZB9QPR6TiMA/o0Q+4/WPZpWdTxtQtMMBgxvKa7ibUCi
- Hlu2lTDftKDZQF1tKZQM93W/JbHNOYsRLduj36e3HYUapPO2xrG0wYxNI
- IGuUMNz7EjdOSg6VjS7aZq25UYPMgRzM4XuQLLFbOUgx+cPwMPvGLY7u7
- vKQzeAbESvc6YY43Z0V1a+DXU4Xe1kJ1yIwdhNgv7T2x0V2PWaxX5zyiy
- qcQxdsXQyRD9bMZxyac0945VrlLWeytjC4u6IyNaiAjan7akdiEkB0i+x
- aIm+ZSifqX2eYgF4Ni8Lmk9Lu+c74+pjHxVub0yubSw3fHQpgs9nzuM+6 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="369847678"
-X-IronPort-AV: E=Sophos;i="5.95,212,1661842800"; d="scan'208";a="369847678"
+ bh=S6TU5IPCKqugKuXPsfWSoRIT1EXNM/yiDDISPsvQZ4M=;
+ b=CLsuKkxvv6riwHZxIB0xiN7HEqTRwMozH2hxX/stecL3ZzzYFUBgCxan
+ VydFXpIbLwLSdrzZZpikporXI4JlecY+sXmTb6oLRranaIz5eybL+jLsd
+ C56nkRjV+k++NvlgMOOBreUXWTQ645CwJ499J9EF1S2HkRSpYtr6ho4kK
+ 1CP0PdTEln4SRAbZpNvfKDMpR4BkGGKgLMf7c4EkiSoD9cNq/HdEnVGiE
+ nMt/5obHVVwqHbDXjt60jMuzNJtSDX30Ts+a5+RC9nSjKzt3PF/L3M8aY
+ 2W5Ir9hwijgUB5BWqTrfjjFi2sBrIiObvqIL33LKf0O48GBBrZ6xLRqt6 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="369847679"
+X-IronPort-AV: E=Sophos;i="5.95,212,1661842800"; d="scan'208";a="369847679"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Oct 2022 13:17:09 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="609699731"
-X-IronPort-AV: E=Sophos;i="5.95,212,1661842800"; d="scan'208";a="609699731"
+X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="609699732"
+X-IronPort-AV: E=Sophos;i="5.95,212,1661842800"; d="scan'208";a="609699732"
 Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Oct 2022 13:17:09 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Oct 2022 20:17:04 +0000
-Message-Id: <20221025201708.84018-13-umesh.nerlige.ramappa@intel.com>
+Date: Tue, 25 Oct 2022 20:17:05 +0000
+Message-Id: <20221025201708.84018-14-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221025201708.84018-1-umesh.nerlige.ramappa@intel.com>
 References: <20221025201708.84018-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 12/16] drm/i915/perf: Apply Wa_18013179988
+Subject: [Intel-gfx] [PATCH v5 13/16] drm/i915/perf: Save/restore EU flex
+ counters across reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,130 +60,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-OA reports in the OA buffer contain an OA timestamp field that helps
-user calculate delta between 2 OA reports. The calculation relies on the
-CS timestamp frequency to convert the timestamp value to nanoseconds.
-The CS timestamp frequency is a function of the CTC_SHIFT value in
-RPM_CONFIG0.
-
-In DG2, OA unit assumes that the CTC_SHIFT is 3, instead of using the
-actual value from RPM_CONFIG0. At the user level, this results in an
-error in calculating delta between 2 OA reports since the OA timestamp
-is not shifted in the same manner as CS timestamp. Also the periodicity
-of the reports is different from what the user configured because of
-mismatch in the CS and OA frequencies.
-
-The issue also affects MI_REPORT_PERF_COUNT command.
-
-To resolve this, return actual OA timestamp frequency to the user in
-i915_getparam_ioctl, so that user can calculate the right OA exponent as
-well as interpret the reports correctly.
-
-MR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18893
+If a drm client is killed, then hw contexts used by the client are reset
+immediately. This reset clears the EU flex counter configuration. If an
+OA use case is running in parallel, it would start seeing zeroed eu
+counter values following the reset even if the drm client is restarted.
+Save/restore the EU flex counter config so that the EU counters can be
+monitored continuously across resets.
 
 v2:
-- Use REG_FIELD_GET (Ashutosh)
-- Update commit msg
+- Save/restore eu flex config only for gen12, as for pre-gen12, these
+  are saved and restored in the context image.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/i915/i915_getparam.c |  3 +++
- drivers/gpu/drm/i915/i915_perf.c     | 30 ++++++++++++++++++++++++++--
- drivers/gpu/drm/i915/i915_perf.h     |  2 ++
- include/uapi/drm/i915_drm.h          |  6 ++++++
- 4 files changed, 39 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-index 342c8ca6414e..3047e80e1163 100644
---- a/drivers/gpu/drm/i915/i915_getparam.c
-+++ b/drivers/gpu/drm/i915/i915_getparam.c
-@@ -175,6 +175,9 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 	case I915_PARAM_PERF_REVISION:
- 		value = i915_perf_ioctl_version();
- 		break;
-+	case I915_PARAM_OA_TIMESTAMP_FREQUENCY:
-+		value = i915_perf_oa_timestamp_frequency(i915);
-+		break;
- 	default:
- 		DRM_DEBUG("Unknown parameter %d\n", param->param);
- 		return -EINVAL;
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 18619eb19769..8540eb6156e4 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -3109,6 +3109,30 @@ get_sseu_config(struct intel_sseu *out_sseu,
- 	return i915_gem_user_to_context_sseu(engine->gt, drm_sseu, out_sseu);
- }
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+index 34ef4f36e660..a419d60166c8 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+@@ -392,6 +392,16 @@ static int guc_mmio_regset_init(struct temp_regset *regset,
+ 		else
+ 			ret |= GUC_MMIO_REG_ADD(gt, regset, GEN9_LNCFCMOCS(i), false);
  
-+/*
-+ * OA timestamp frequency = CS timestamp frequency in most platforms. On some
-+ * platforms OA unit ignores the CTC_SHIFT and the 2 timestamps differ. In such
-+ * cases, return the adjusted CS timestamp frequency to the user.
-+ */
-+u32 i915_perf_oa_timestamp_frequency(struct drm_i915_private *i915)
-+{
-+	/* Wa_18013179988:dg2 */
-+	if (IS_DG2(i915)) {
-+		intel_wakeref_t wakeref;
-+		u32 reg, shift;
-+
-+		with_intel_runtime_pm(to_gt(i915)->uncore->rpm, wakeref)
-+			reg = intel_uncore_read(to_gt(i915)->uncore, RPM_CONFIG0);
-+
-+		shift = REG_FIELD_GET(GEN10_RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK,
-+				      reg);
-+
-+		return to_gt(i915)->clock_frequency << (3 - shift);
++	if (GRAPHICS_VER(engine->i915) >= 12) {
++		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL0, false);
++		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL1, false);
++		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL2, false);
++		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL3, false);
++		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL4, false);
++		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL5, false);
++		ret |= GUC_MMIO_REG_ADD(gt, regset, EU_PERF_CNTL6, false);
 +	}
 +
-+	return to_gt(i915)->clock_frequency;
-+}
-+
- /**
-  * i915_oa_stream_init - validate combined props for OA stream and init
-  * @stream: An i915 perf stream
-@@ -3830,8 +3854,10 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
- 
- static u64 oa_exponent_to_ns(struct i915_perf *perf, int exponent)
- {
--	return intel_gt_clock_interval_to_ns(to_gt(perf->i915),
--					     2ULL << exponent);
-+	u64 nom = (2ULL << exponent) * NSEC_PER_SEC;
-+	u32 den = i915_perf_oa_timestamp_frequency(perf->i915);
-+
-+	return div_u64(nom + den - 1, den);
+ 	return ret ? -1 : 0;
  }
  
- static __always_inline bool
-diff --git a/drivers/gpu/drm/i915/i915_perf.h b/drivers/gpu/drm/i915/i915_perf.h
-index 1d1329e5af3a..f96e09a4af04 100644
---- a/drivers/gpu/drm/i915/i915_perf.h
-+++ b/drivers/gpu/drm/i915/i915_perf.h
-@@ -57,4 +57,6 @@ static inline void i915_oa_config_put(struct i915_oa_config *oa_config)
- 	kref_put(&oa_config->ref, i915_oa_config_release);
- }
- 
-+u32 i915_perf_oa_timestamp_frequency(struct drm_i915_private *i915);
-+
- #endif /* __I915_PERF_H__ */
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 158b35fb28f3..c346b1923d11 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -765,6 +765,12 @@ typedef struct drm_i915_irq_wait {
- /* Query if the kernel supports the I915_USERPTR_PROBE flag. */
- #define I915_PARAM_HAS_USERPTR_PROBE 56
- 
-+/*
-+ * Frequency of the timestamps in OA reports. This used to be the same as the CS
-+ * timestamp frequency, but differs on some platforms.
-+ */
-+#define I915_PARAM_OA_TIMESTAMP_FREQUENCY 57
-+
- /* Must be kept compact -- no holes and well documented */
- 
- /**
 -- 
 2.25.1
 
