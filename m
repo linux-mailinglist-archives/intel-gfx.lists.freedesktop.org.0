@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4302060DEB0
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Oct 2022 12:12:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 653F760DEA9
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Oct 2022 12:12:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A684610E4B2;
-	Wed, 26 Oct 2022 10:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8BAE10E4AC;
+	Wed, 26 Oct 2022 10:12:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D9C310E26A
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 10:11:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52A8310E26A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 10:11:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666779106; x=1698315106;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gm81K3zHMYhRuY91zbvRhsMMAkuy90BAvGBGbHXSJ1w=;
- b=FBO1jP1IuZv9KEpbFj8yihZ3ceJ+svOTPCZYpvB0Yym5UkqTJQLFryJb
- DaCg1ZcrVoox+3dh2utFMdTvAdsmqe6iAG9X83cLf2BkDNG0C371niclL
- 05pvhqQ9nBLkwAHXCNgXtieCyhWeUrNgorQb8x9KKjhxuS1RHtt2wc+uD
- b9cN7vyyIZzz93dvJehpMjRK+mkQKVqJADtr3dKeeBCXeXlSH82jeVHsL
- ERYOGGU3RwKJy2/mfAKky4jok3QlmIIwXNRwBvC0s+TMZEfI/JMx9hdCv
- auMsNImNVwpm6qZ4l1XW2eVX0SxI32Gn3fDb7RWvW77ucoSQ/2QRud2W1 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="394222261"
-X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; d="scan'208";a="394222261"
+ t=1666779109; x=1698315109;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=nqoz5xcsHHOIrQ6MOKBN9Bls25Dv+d7ciWN7gchklvU=;
+ b=KheVr9g93RiRPxcO2Sb6kKGOf702j4DFBaNa3+SehKQ3Wx/bgDYbxG+s
+ PiBXK0ygw4gwHo/HcrohOV5ffZGqDASosyH7g1kmtURPQwophseNF0ONX
+ B0K96SnjVaXDrh2nZ417FrgjruGVf+vKgOVIPN/Rml9E2lg+79G2auZwq
+ n3PfEQKvikSnNJt7Q2Os2FlmasnDj/i0lEUHJp3EbLq5BUfW+/hCHCrC5
+ 0ZU1Phu0V4uUuLteqAEiFuN6ji/VTkQWvyKhsG+hV9tN7oHqcJ4f6l6P6
+ Bd4XbFNL4x6MSYBZE2v14At+hdjWie7KUJVKN/9SHIC9MFJSe/aK2y7fP g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="394222266"
+X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; d="scan'208";a="394222266"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2022 03:11:46 -0700
+ 26 Oct 2022 03:11:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="695305878"
-X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; d="scan'208";a="695305878"
+X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="695305908"
+X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; d="scan'208";a="695305908"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga008.fm.intel.com with SMTP; 26 Oct 2022 03:11:44 -0700
+ by fmsmga008.fm.intel.com with SMTP; 26 Oct 2022 03:11:47 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Oct 2022 13:11:43 +0300
+ Wed, 26 Oct 2022 13:11:46 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Oct 2022 13:11:29 +0300
-Message-Id: <20221026101134.20865-4-ville.syrjala@linux.intel.com>
+Date: Wed, 26 Oct 2022 13:11:30 +0300
+Message-Id: <20221026101134.20865-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.37.4
 In-Reply-To: <20221026101134.20865-1-ville.syrjala@linux.intel.com>
 References: <20221026101134.20865-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/8] drm/i915/sdvo: Grab mode_config.mutex
- during LVDS init to avoid WARNs
+Subject: [Intel-gfx] [PATCH 4/8] drm/i915/sdvo: Simplify output setup debugs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,41 +59,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-drm_mode_probed_add() is unhappy about being called w/o
-mode_config.mutex. Grab it during LVDS fixed mode setup
-to silence the WARNs.
+Get rid of this funny byte based dumping of invalid output
+flags and just dump it as a single hex numbers. Also do that
+early since all the rest is going to get skipped anyway of
+the thing is zero.
 
-Cc: stable@vger.kernel.org
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7301
-Fixes: aa2b88074a56 ("drm/i915/sdvo: Fix multi function encoder stuff")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_sdvo.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 25 ++++++++++-------------
+ 1 file changed, 11 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index ccf81d616cb4..1eaaa7ec580e 100644
+index 1eaaa7ec580e..d432f70001b7 100644
 --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
 +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -2899,8 +2899,12 @@ intel_sdvo_lvds_init(struct intel_sdvo *intel_sdvo, int device)
- 	intel_panel_add_vbt_sdvo_fixed_mode(intel_connector);
+@@ -199,7 +199,7 @@ to_intel_sdvo_connector(struct drm_connector *connector)
+ 	container_of((conn_state), struct intel_sdvo_connector_state, base.base)
  
- 	if (!intel_panel_preferred_fixed_mode(intel_connector)) {
-+		mutex_lock(&i915->drm.mode_config.mutex);
-+
- 		intel_ddc_get_modes(connector, &intel_sdvo->ddc);
- 		intel_panel_add_edid_fixed_modes(intel_connector, false);
-+
-+		mutex_unlock(&i915->drm.mode_config.mutex);
- 	}
+ static bool
+-intel_sdvo_output_setup(struct intel_sdvo *intel_sdvo, u16 flags);
++intel_sdvo_output_setup(struct intel_sdvo *intel_sdvo);
+ static bool
+ intel_sdvo_tv_create_property(struct intel_sdvo *intel_sdvo,
+ 			      struct intel_sdvo_connector *intel_sdvo_connector,
+@@ -2937,11 +2937,18 @@ static u16 intel_sdvo_filter_output_flags(u16 flags)
+ }
  
- 	intel_panel_init(intel_connector);
+ static bool
+-intel_sdvo_output_setup(struct intel_sdvo *intel_sdvo, u16 flags)
++intel_sdvo_output_setup(struct intel_sdvo *intel_sdvo)
+ {
+ 	struct drm_i915_private *i915 = to_i915(intel_sdvo->base.base.dev);
++	u16 flags;
+ 
+-	flags = intel_sdvo_filter_output_flags(flags);
++	flags = intel_sdvo_filter_output_flags(intel_sdvo->caps.output_flags);
++
++	if (flags == 0) {
++		DRM_DEBUG_KMS("%s: Unknown SDVO output type (0x%04x)\n",
++			      SDVO_NAME(intel_sdvo), intel_sdvo->caps.output_flags);
++		return false;
++	}
+ 
+ 	intel_sdvo->controlled_output = flags;
+ 
+@@ -2984,15 +2991,6 @@ intel_sdvo_output_setup(struct intel_sdvo *intel_sdvo, u16 flags)
+ 		if (!intel_sdvo_lvds_init(intel_sdvo, 1))
+ 			return false;
+ 
+-	if (flags == 0) {
+-		unsigned char bytes[2];
+-
+-		memcpy(bytes, &intel_sdvo->caps.output_flags, 2);
+-		DRM_DEBUG_KMS("%s: Unknown SDVO output type (0x%02x%02x)\n",
+-			      SDVO_NAME(intel_sdvo),
+-			      bytes[0], bytes[1]);
+-		return false;
+-	}
+ 	intel_sdvo->base.pipe_mask = ~0;
+ 
+ 	return true;
+@@ -3368,8 +3366,7 @@ bool intel_sdvo_init(struct drm_i915_private *dev_priv,
+ 	intel_sdvo->colorimetry_cap =
+ 		intel_sdvo_get_colorimetry_cap(intel_sdvo);
+ 
+-	if (intel_sdvo_output_setup(intel_sdvo,
+-				    intel_sdvo->caps.output_flags) != true) {
++	if (!intel_sdvo_output_setup(intel_sdvo)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "SDVO output failed to setup on %s\n",
+ 			    SDVO_NAME(intel_sdvo));
 -- 
 2.37.4
 
