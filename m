@@ -1,82 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC5E060EB63
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 00:02:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F9060EB73
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 00:21:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3338F10E554;
-	Wed, 26 Oct 2022 22:02:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48EBA10E533;
+	Wed, 26 Oct 2022 22:21:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com
- [IPv6:2a00:1450:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83BC810E53B;
- Wed, 26 Oct 2022 22:02:28 +0000 (UTC)
-Received: by mail-lj1-x235.google.com with SMTP id s24so13856796ljs.11;
- Wed, 26 Oct 2022 15:02:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:from:to:cc:subject:date:message-id:reply-to;
- bh=vdgNzDxQTO6bdUosOm0eh7BG6o7NyvcQ+Csx9d4p3mU=;
- b=hVGfulv077UBxsCtfjWKjttGMkhjPh4/Hf9rDhRbZDsum/itTcad9RTU1pC69hYnH4
- 9k1YuY9UxLIiVPXb3HwL3UPoWvKhihpgwxTEZ5ch2rFIzc2KDyTz1PXgYzEOoTIAxWji
- 0fcw9CBPwvkD7Cu/10sUAMuFJjZp52i9aJ9hD6THhpmT2E2bInxB89sJ1qw6GH7xMcBb
- dkjH9kLpoPcLQlOyqka5xGNGAuLoz8+aa3SovNXgokAk4K8jhW/88cPvotghUpvcGFa3
- BamcsNgnvR9P8Nsdd7EYxrLctpprENAiLlNtyDm9dgj0xUD1gsJ4EQB9bOkmGVAbO8Iy
- aqDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=vdgNzDxQTO6bdUosOm0eh7BG6o7NyvcQ+Csx9d4p3mU=;
- b=Pxx4pWsfeuaimfxkv3lDIlqNqz4/+Y0WwLZtuFQ9eX3jKLXZ+PgRgShsLvMvtWDB9+
- cObGn/dhCytCvi5ZqlbYqyJevi7/tOpP8k7A3Qy1tDvBFkVIk8Wy4pSm2BdAGSxJHaht
- GTHovYVq9CYmKcQD9wsYTXKwiZQ3VctssmLRvNQRRZLJGjWcPG3YTNDlxeFgTBylyxPF
- 3+iRz5YMLZw55vRoevvr+Q8FlGtRU9WtYHrDpykIIQ7Q05b1S9Pb3f3lcyscIcI+3WPz
- JifXhmc95tF6wkZYXAoQx8CJTC2mOrKxKt/2QEnokQHR+a3kesUIZv0VX0ZAsJIxGwMw
- odxw==
-X-Gm-Message-State: ACrzQf0a9Tw5Gc19NB5FXBdaR0D3H8OigqHTRJcGeAbRCnJSBmg0GiGv
- sQqtThkDDAcV7tnhIlHzt1w=
-X-Google-Smtp-Source: AMsMyM5+7FXwwLPlb9qIuDs7qKIPm1MbION3iWvH0DJZ+41PbaxEGy2+MUlPXsrTQOO45XWlwDc8OQ==
-X-Received: by 2002:a2e:9e43:0:b0:25d:d8e9:7b15 with SMTP id
- g3-20020a2e9e43000000b0025dd8e97b15mr17315108ljk.234.1666821746508; 
- Wed, 26 Oct 2022 15:02:26 -0700 (PDT)
-Received: from ?IPV6:2a02:a31a:a240:1700:c898:de98:30b3:a07?
- ([2a02:a31a:a240:1700:c898:de98:30b3:a07])
- by smtp.googlemail.com with ESMTPSA id
- m17-20020a056512359100b004ac269b7792sm987675lfr.127.2022.10.26.15.02.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 26 Oct 2022 15:02:26 -0700 (PDT)
-From: Mateusz Kwiatkowski <kfyatek@gmail.com>
-X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-Message-ID: <8d0eee22-50f5-5b0a-c1e6-c5f61dd5bbcd@gmail.com>
-Date: Thu, 27 Oct 2022 00:02:24 +0200
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E16B710E533
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 22:21:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666822865; x=1698358865;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yvtkaKkqrCXSymCz3lFMUswjF3RrfcWJbyNYtXtYdsY=;
+ b=BsCJTYu1PWdi/p9QorbkAPp/2GodlhzpYZohS1saOMTiqMKOEL/F6Njm
+ F1+4lS7nhEuVvQ+cfsEB0tkNGXdFu31qXS//wE3cNbKoin2OkzFG4dpid
+ v/l4JNyzg2ytAUr2ydPZXPTuY+E/uJurlDDJOBfTMMdTLblFOInJ1NvyL
+ xmRhei9DtJ6Prk4W7njHs1dbFOcq32Euq9Hc12NWe8OKvbJdEseV+ODef
+ HWxdzASFEVb5MuKugPP2sr+SYbnA8iHuU7RwNfE31PfGzs7q9W6bU5AUF
+ X05osegFF/Yz1G7zeFls6NCjO3xxfvZjr3Q1C+Y5ql5Dog269iY+uAYcI g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="394390422"
+X-IronPort-AV: E=Sophos;i="5.95,215,1661842800"; d="scan'208";a="394390422"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2022 15:21:05 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="721431379"
+X-IronPort-AV: E=Sophos;i="5.95,215,1661842800"; d="scan'208";a="721431379"
+Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2022 15:21:05 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 26 Oct 2022 22:20:46 +0000
+Message-Id: <20221026222102.5526-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.0
-Content-Language: pl
-To: maxime@cerno.tech, Karol Herbst <kherbst@redhat.com>,
- Emma Anholt <emma@anholt.net>, Ben Skeggs <bskeggs@redhat.com>,
- Chen-Yu Tsai <wens@csie.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@linux.ie>,
- Maxime Ripard <mripard@kernel.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lyude Paul <lyude@redhat.com>
-References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
- <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 16/23] drm/probe-helper: Provide a TV
- get_modes helper
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v6 00/16] Add DG2 OA support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,65 +54,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Maxime,
+Add OA format support for DG2 and various fixes for DG2.
 
-First of all, nice idea with the helper function that can be reused by different
-drivers. This is neat!
+This series has 2 uapi changes listed below:
 
-But looking at this function, it feels a bit overcomplicated. You're creating
-the two modes, then checking which one is the default, then set the preferred
-one and possibly reorder them. Maybe it can be simplified somehow?
+1) drm/i915/perf: Add OAG and OAR formats for DG2
 
-Although when I tried to refactor it myself, I ended up with something that's
-not better at all. Maybe it needs to be complicated, after all :(
+DG2 has new OA formats defined that can be selected by the
+user. The UMD changes that are consumed by GPUvis are:
+https://patchwork.freedesktop.org/patch/504456/?series=107633&rev=5
 
-Anyway, the current version seems to have a couple of bugs:
+Mesa MR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18893
 
-> +	if (tv_mode_supported(connector, DRM_MODE_TV_MODE_PAL) ||
-> +	    tv_mode_supported(connector, DRM_MODE_TV_MODE_PAL_N) ||
-> +	    tv_mode_supported(connector, DRM_MODE_TV_MODE_SECAM)) {
-> +		mode = drm_mode_analog_pal_576i(connector->dev);
-> +		if (!mode)
-> +			return 0;
-> +
-> +		tv_modes[count++] = mode;
-> +	}
+2) drm/i915/perf: Apply Wa_18013179988
 
-If the 480i mode has been created properly, but there's an error creating the
-576i one (we enter the if (!mode) clause), the 480i mode will leak.
+DG2 has a bug where the OA timestamp does not tick at the CS timestamp
+frequency. Instead it ticks at a multiple that is determined from the
+CTC_SHIFT value in RPM_CONFIG. Since the timestamp is used by UMD to
+make sense of all the counters in the report, expose the OA timestamp
+frequency to the user. The interface is generic and applies to all
+platforms. On platforms where the bug is not present, this returns the
+CS timestamp frequency. UMD specific changes consumed by GPUvis are:
+https://patchwork.freedesktop.org/patch/504464/?series=107633&rev=5
 
-> +	if (count == 1) {
+Mesa MR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18893
 
-You're handling the count == 1 case specially, but if count == 0, the rest of
-the code will assume that two modes exist and probably segfault in the process.
+v2:
+- Add review comments
+- Update uapi changes in cover letter
+- Drop patches for non-production platforms
+drm/i915/perf: Use helpers to process reports w.r.t. OA buffer size
+drm/i915/perf: Add Wa_16010703925:dg2
 
-> +	ret = drm_object_property_get_default_value(&connector->base,
-> +						    dev->mode_config.tv_mode_property,
-> +						    &default_mode);
-> +	if (ret)
-> +		return 0;
-> +
-> +	if (cmdline->tv_mode_specified)
-> +		default_mode = cmdline->tv_mode;
+- Drop 64-bit OA format changes for now
+drm/i915/perf: Parse 64bit report header formats correctly
+drm/i915/perf: Add Wa_1608133521:dg2
 
-In case of an error (ret != 0), the modes created so far in the tv_modes array
-will leak.
+v3:
+- Add review comments to patches 02, 04, 05, 14
+- Drop Acks
 
-Also, I wonder if maybe the if (cmdline->tv_mode_specified) clause should go
-first? If we're going to use the default from cmdline, there's no point in even
-querying the property default value.
+v4:
+- Add review comments to patch 04
+- Update R-bs
+- Add MR links to patches 02 and 12
 
-Best regards,
-Mateusz Kwiatkowski
+v5:
+- Drop unrelated comment
+- Rebase and fix MCR reg write
+- On pre-gen12, EU flex config is saved/restored in the context image, so
+  save/restore EU flex config only for gen12.
+
+v6:
+- Fix checkpatch issues
+
+Test-with: 20221025200709.83314-1-umesh.nerlige.ramappa@intel.com
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+
+Lionel Landwerlin (1):
+  drm/i915/perf: complete programming whitelisting for XEHPSDV
+
+Umesh Nerlige Ramappa (14):
+  drm/i915/perf: Fix OA filtering logic for GuC mode
+  drm/i915/perf: Add 32-bit OAG and OAR formats for DG2
+  drm/i915/perf: Fix noa wait predication for DG2
+  drm/i915/perf: Determine gen12 oa ctx offset at runtime
+  drm/i915/perf: Enable bytes per clock reporting in OA
+  drm/i915/perf: Simply use stream->ctx
+  drm/i915/perf: Move gt-specific data from i915->perf to gt->perf
+  drm/i915/perf: Replace gt->perf.lock with stream->lock for file ops
+  drm/i915/perf: Use gt-specific ggtt for OA and noa-wait buffers
+  drm/i915/perf: Store a pointer to oa_format in oa_buffer
+  drm/i915/perf: Add Wa_1508761755:dg2
+  drm/i915/perf: Apply Wa_18013179988
+  drm/i915/perf: Save/restore EU flex counters across reset
+  drm/i915/perf: Enable OA for DG2
+
+Vinay Belgaumkar (1):
+  drm/i915/guc: Support OA when Wa_16011777198 is enabled
+
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h   |   1 +
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   4 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/gt/intel_lrc.h           |   2 +
+ drivers/gpu/drm/i915/gt/intel_sseu.c          |   4 +-
+ .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |   9 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  10 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  66 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |   2 +
+ drivers/gpu/drm/i915/i915_drv.h               |   5 +
+ drivers/gpu/drm/i915/i915_getparam.c          |   3 +
+ drivers/gpu/drm/i915/i915_pci.c               |   2 +
+ drivers/gpu/drm/i915/i915_perf.c              | 576 ++++++++++++++----
+ drivers/gpu/drm/i915/i915_perf.h              |   2 +
+ drivers/gpu/drm/i915/i915_perf_oa_regs.h      |   6 +-
+ drivers/gpu/drm/i915/i915_perf_types.h        |  47 +-
+ drivers/gpu/drm/i915/intel_device_info.h      |   2 +
+ drivers/gpu/drm/i915/selftests/i915_perf.c    |  16 +-
+ include/uapi/drm/i915_drm.h                   |  10 +
+ 20 files changed, 630 insertions(+), 141 deletions(-)
+
+-- 
+2.25.1
 
