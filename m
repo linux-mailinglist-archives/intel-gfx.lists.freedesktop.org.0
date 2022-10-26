@@ -1,57 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A67C60DFE3
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Oct 2022 13:43:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0734960DFEB
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Oct 2022 13:45:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68AAD89E1D;
-	Wed, 26 Oct 2022 11:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C018810E22B;
+	Wed, 26 Oct 2022 11:45:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from desiato.infradead.org (desiato.infradead.org
- [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77B1510E4F7
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 11:43:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=1v05Evd/fgFRHniJFAuL6qKyLKCeLYseVqo6d1zZ8vA=; b=XQLfoQJibzGTEgFDcyw3rTTf3f
- wGGPojTZaONiB7oIHpEzRPQdX7Z8vVGafDq2VINLAJcDj5zilpR24Q89I0ng2jHRxACywG0JAauwB
- gNfhUiRQ0zKU/8+tCAVCFrTvIk+5bJ9a5eMX2cCqTjF/AmcjQpMFO7gG2jKeFdO6Ojuqczxu2kibm
- kPP40qoWWbmADbZYdQeLbOT2VK/Jdy20HnzddgGNHOyda/B/If3F2sHS+SWiJRfqTIrr8nhnaG3iq
- d62sV06M1tw99bqs/2PtjiKaPwgR4d4ZPbJdtvBHL1TcqzQkOt5vOLAhJZZb3fB3jL4m2iqk5pTbh
- 3FtxaFlQ==;
-Received: from j130084.upc-j.chello.nl ([24.132.130.84]
- helo=noisy.programming.kicks-ass.net)
- by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1oneoI-006ZvI-RL; Wed, 26 Oct 2022 11:43:03 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 91D9D30010B;
- Wed, 26 Oct 2022 13:43:00 +0200 (CEST)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id 55A0B2B54C7C2; Wed, 26 Oct 2022 13:43:00 +0200 (CEST)
-Date: Wed, 26 Oct 2022 13:43:00 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <Y1kdRNNfUeAU+FNl@hirez.programming.kicks-ass.net>
-References: <20220822111816.760285417@infradead.org>
- <20220822114649.055452969@infradead.org>
- <Y1LVYaPCCP3BBS4g@intel.com> <Y1drd2gzxUJWdz5F@intel.com>
- <Y1e/Kd+1UQqeSwzY@hirez.programming.kicks-ass.net>
- <Y1kMv1GpKwOSIt8f@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 10F8F10E22B;
+ Wed, 26 Oct 2022 11:45:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0927DAADD8;
+ Wed, 26 Oct 2022 11:45:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0948408773785253632=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y1kMv1GpKwOSIt8f@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 6/6] freezer,
- sched: Rewrite core freezer logic
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Christoph Hellwig" <hch@lst.de>
+Date: Wed, 26 Oct 2022 11:45:17 -0000
+Message-ID: <166678471700.25383.11684472473824491285@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221020110308.1582518-1-hch@lst.de>
+In-Reply-To: <20221020110308.1582518-1-hch@lst.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_stop_abusing_swiotlb=5Fmax=5Fsegment_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,158 +40,231 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- bigeasy@linutronix.de, rjw@rjwysocki.net, oleg@redhat.com, rostedt@goodmis.org,
- mingo@kernel.org, mgorman@suse.de, intel-gfx@lists.freedesktop.org,
- tj@kernel.org, Will Deacon <will@kernel.org>, dietmar.eggemann@arm.com,
- ebiederm@xmission.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 26, 2022 at 01:32:31PM +0300, Ville Syrjälä wrote:
-> Short form looks to be this:
-> <4>[  355.437846] 1 lock held by rs:main Q:Reg/359:
-> <4>[  355.438418]  #0: ffff88844693b758 (&rq->__lock){-.-.}-{2:2}, at: raw_spin_rq_lock_nested+0x1b/0x30
-> <4>[  355.438432] rs:main Q:Reg/359 holding locks while freezing
+--===============0948408773785253632==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> <4>[  355.438429] ------------[ cut here ]------------
-> <4>[  355.438432] rs:main Q:Reg/359 holding locks while freezing
-> <4>[  355.438439] WARNING: CPU: 0 PID: 6211 at kernel/freezer.c:134 __set_task_frozen+0x86/0xb0
-> <4>[  355.438447] Modules linked in: snd_hda_intel i915 mei_hdcp mei_pxp drm_display_helper drm_kms_helper vgem drm_shmem_helper snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio snd_intel_dspcfg snd_hda_codec snd_hwdep snd_hda_core snd_pcm prime_numbers ttm drm_buddy syscopyarea sysfillrect sysimgblt fb_sys_fops fuse x86_pkg_temp_thermal coretemp kvm_intel btusb btrtl btbcm btintel kvm irqbypass bluetooth crct10dif_pclmul crc32_pclmul ecdh_generic ghash_clmulni_intel ecc e1000e mei_me i2c_i801 ptp mei i2c_smbus pps_core lpc_ich video wmi [last unloaded: drm_kms_helper]
-> <4>[  355.438521] CPU: 0 PID: 6211 Comm: rtcwake Tainted: G     U             6.1.0-rc2-CI_DRM_12295-g3844a56a0922+ #1
-> <4>[  355.438526] Hardware name:  /NUC5i7RYB, BIOS RYBDWi35.86A.0385.2020.0519.1558 05/19/2020
-> <4>[  355.438530] RIP: 0010:__set_task_frozen+0x86/0xb0
-> <4>[  355.438536] Code: 83 60 09 00 00 85 c0 74 2a 48 89 df e8 ac 02 9b 00 8b 93 38 05 00 00 48 8d b3 48 07 00 00 48 c7 c7 a0 62 2b 82 e8 ee c1 9a 00 <0f> 0b c6 05 51 75 e3 02 01 c7 43 18 00 80 00 00 b8 00 80 00 00 5b
-> <4>[  355.438541] RSP: 0018:ffffc900012cbcf0 EFLAGS: 00010086
-> <4>[  355.438546] RAX: 0000000000000000 RBX: ffff88810d090040 RCX: 0000000000000004
-> <4>[  355.438550] RDX: 0000000000000004 RSI: 00000000fffff5de RDI: 00000000ffffffff
-> <4>[  355.438553] RBP: 0000000000000000 R08: 0000000000000000 R09: c0000000fffff5de
-> <4>[  355.438557] R10: 00000000002335f8 R11: ffffc900012cbb88 R12: 0000000000000246
-> <4>[  355.438561] R13: ffffffff81165430 R14: 0000000000000000 R15: ffff88810d090040
-> <4>[  355.438565] FS:  00007fcfa43c7740(0000) GS:ffff888446800000(0000) knlGS:0000000000000000
-> <4>[  355.438569] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4>[  355.438582] CR2: 00007fceb380f6b8 CR3: 0000000117c5c004 CR4: 00000000003706f0
-> <4>[  355.438586] Call Trace:
-> <4>[  355.438589]  <TASK>
-> <4>[  355.438592]  task_call_func+0xc4/0xe0
-> <4>[  355.438600]  freeze_task+0x84/0xe0
-> <4>[  355.438607]  try_to_freeze_tasks+0xac/0x260
-> <4>[  355.438616]  freeze_processes+0x56/0xb0
-> <4>[  355.438622]  pm_suspend.cold.7+0x1d9/0x31c
-> <4>[  355.438629]  state_store+0x7b/0xe0
-> <4>[  355.438637]  kernfs_fop_write_iter+0x124/0x1c0
-> <4>[  355.438644]  vfs_write+0x34f/0x4e0
-> <4>[  355.438655]  ksys_write+0x57/0xd0
-> <4>[  355.438663]  do_syscall_64+0x3a/0x90
-> <4>[  355.438670]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+== Series Details ==
 
-Oh I think I see what's going on.
+Series: drm/i915: stop abusing swiotlb_max_segment (rev7)
+URL   : https://patchwork.freedesktop.org/series/109946/
+State : success
 
-It's a very narrow race between schedule() and task_call_func().
+== Summary ==
 
-  CPU0						CPU1
+CI Bug Log - changes from CI_DRM_12296 -> Patchwork_109946v7
+====================================================
 
-  __schedule()
-    rq_lock();
-    prev_state = READ_ONCE(prev->__state);
-    if (... && prev_state) {
-      deactivate_tasl(rq, prev, ...)
-        prev->on_rq = 0;
+Summary
+-------
 
-						task_call_func()
-						  raw_spin_lock_irqsave(p->pi_lock);
-						  state = READ_ONCE(p->__state);
-						  smp_rmb();
-						  if (... || p->on_rq) // false!!!
-						    rq = __task_rq_lock()
+  **SUCCESS**
 
-						  ret = func();
+  No regressions found.
 
-    next = pick_next_task();
-    rq = context_switch(prev, next)
-      prepare_lock_switch()
-        spin_release(&__rq_lockp(rq)->dep_map...)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/index.html
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Missing    (4): fi-kbl-soraka fi-jsl-1 fi-ctg-p8600 fi-icl-u2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_109946v7 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-apl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-apl-guc/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-rkl-guc:         [PASS][2] -> [INCOMPLETE][3] ([i915#4983])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-apl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-apl-guc/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-apl-guc:         NOTRUN -> [SKIP][5] ([fdo#109271]) +11 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-apl-guc/igt@kms_psr@sprite_plane_onoff.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-adlm-1}:       [DMESG-WARN][6] ([i915#2867]) -> [PASS][7] +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_hangman@error-state-basic:
+    - fi-apl-guc:         [DMESG-WARN][8] -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - {bat-adln-1}:       [DMESG-FAIL][10] ([i915#4258]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-adln-1/igt@i915_selftest@live@gt_pm.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/bat-adln-1/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3:
+    - {bat-dg2-11}:       [FAIL][12] ([i915#6818]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5828]: https://gitlab.freedesktop.org/drm/intel/issues/5828
+  [i915#6818]: https://gitlab.freedesktop.org/drm/intel/issues/6818
+  [i915#7029]: https://gitlab.freedesktop.org/drm/intel/issues/7029
 
 
+Build changes
+-------------
 
-So while the task is on it's way out, it still holds rq->lock for a
-little while, and right then task_call_func() comes in and figures it
-doesn't need rq->lock anymore (because the task is already dequeued --
-but still running there) and then the __set_task_frozen() thing observes
-it's holding rq->lock and yells murder.
+  * Linux: CI_DRM_12296 -> Patchwork_109946v7
 
-Could you please give the below a spin?
+  CI-20190529: 20190529
+  CI_DRM_12296: dc5600688adfc13fed8128d9043bab2257066646 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7026: ce0f97e7e0aa54c40049a8365b3d61773c92e588 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_109946v7: dc5600688adfc13fed8128d9043bab2257066646 @ git://anongit.freedesktop.org/gfx-ci/linux
 
----
-diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index cb2aa2b54c7a..f519f44cd4c7 100644
---- a/kernel/sched/core.c
-+++ b/kernel/sched/core.c
-@@ -4200,6 +4200,37 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
- 	return success;
- }
- 
-+static bool __task_needs_rq_lock(struct task_struct *p)
-+{
-+	unsigned int state = READ_ONCE(p->__state);
-+
-+	/*
-+	 * Since pi->lock blocks try_to_wake_up(), we don't need rq->lock when
-+	 * the task is blocked. Make sure to check @state since ttwu() can drop
-+	 * locks at the end, see ttwu_queue_wakelist().
-+	 */
-+	if (state == TASK_RUNNING || state == TASK_WAKING)
-+		return true;
-+
-+	/*
-+	 * Ensure we load p->on_rq after p->__state, otherwise it would be
-+	 * possible to, falsely, observe p->on_rq == 0.
-+	 *
-+	 * See try_to_wake_up() for a longer comment.
-+	 */
-+	smp_rmb();
-+	if (p->on_rq)
-+		return true;
-+
-+#ifdef CONFIG_SMP
-+	smp_rmb();
-+	if (p->on_cpu)
-+		return true;
-+#endif
-+
-+	return false;
-+}
-+
- /**
-  * task_call_func - Invoke a function on task in fixed state
-  * @p: Process for which the function is to be invoked, can be @current.
-@@ -4217,28 +4248,12 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
- int task_call_func(struct task_struct *p, task_call_f func, void *arg)
- {
- 	struct rq *rq = NULL;
--	unsigned int state;
- 	struct rq_flags rf;
- 	int ret;
- 
- 	raw_spin_lock_irqsave(&p->pi_lock, rf.flags);
- 
--	state = READ_ONCE(p->__state);
--
--	/*
--	 * Ensure we load p->on_rq after p->__state, otherwise it would be
--	 * possible to, falsely, observe p->on_rq == 0.
--	 *
--	 * See try_to_wake_up() for a longer comment.
--	 */
--	smp_rmb();
--
--	/*
--	 * Since pi->lock blocks try_to_wake_up(), we don't need rq->lock when
--	 * the task is blocked. Make sure to check @state since ttwu() can drop
--	 * locks at the end, see ttwu_queue_wakelist().
--	 */
--	if (state == TASK_RUNNING || state == TASK_WAKING || p->on_rq)
-+	if (__task_needs_rq_lock(p))
- 		rq = __task_rq_lock(p, &rf);
- 
- 	/*
+
+### Linux commits
+
+47b27212f26b drm/i915: stop abusing swiotlb_max_segment
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/index.html
+
+--===============0948408773785253632==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: stop abusing swiotlb_max_segment (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/109946/">https://patchwork.freedesktop.org/series/109946/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12296 -&gt; Patchwork_109946v7</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/index.html</p>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Missing    (4): fi-kbl-soraka fi-jsl-1 fi-ctg-p8600 fi-icl-u2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_109946v7 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-apl-guc/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-apl-guc/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_hangman@error-state-basic:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/fi-apl-guc/igt@i915_hangman@error-state-basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-adln-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4258">i915#4258</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/bat-adln-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3:</p>
+<ul>
+<li>{bat-dg2-11}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6818">i915#6818</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_109946v7/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-3.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12296 -&gt; Patchwork_109946v7</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12296: dc5600688adfc13fed8128d9043bab2257066646 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7026: ce0f97e7e0aa54c40049a8365b3d61773c92e588 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_109946v7: dc5600688adfc13fed8128d9043bab2257066646 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>47b27212f26b drm/i915: stop abusing swiotlb_max_segment</p>
+
+</body>
+</html>
+
+--===============0948408773785253632==--
