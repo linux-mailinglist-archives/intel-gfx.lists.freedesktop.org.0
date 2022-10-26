@@ -2,90 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A065560DE7E
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Oct 2022 11:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC7C60DE98
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Oct 2022 12:08:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5C9910E363;
-	Wed, 26 Oct 2022 09:59:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 288C810E4AC;
+	Wed, 26 Oct 2022 10:08:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D84510E26A
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 09:59:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1666778374;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=88clgiauNntAl3Wz7H3JYTecCEZyzTGGOgZ+LgOj43I=;
- b=eAmcIBZ2fJwuaQX2xZ1NE9RXLF7+9MTXgFNgUatjGChLQd+4F2NV08EAwr1F2jM5txspVz
- 1iZjj8ggOcUqaO6/U9urOtgwPAMMr7EhOgY6zAujRYBB4dVPgA1bltHWzmlK3CdcoQ7aGF
- I3spo7NoQa0wga+at26gd0GJ8ljvvQk=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-633-QeRVSqOyP36qiW4xyT7tUA-1; Wed, 26 Oct 2022 05:59:33 -0400
-X-MC-Unique: QeRVSqOyP36qiW4xyT7tUA-1
-Received: by mail-ej1-f72.google.com with SMTP id
- hc43-20020a17090716ab00b0078e28567ffbso4268108ejc.15
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 02:59:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=88clgiauNntAl3Wz7H3JYTecCEZyzTGGOgZ+LgOj43I=;
- b=GUo+ZSgZ/zGGNn2OZnc0kR3hCV8rfabkQZ+Fj+dlLKA3iGxBz56bW2RTYiWCiqjDiE
- iqddShY/fWrhDIPLkvcpb/j8EwzENmn+P4pSm76wNQZpOaPh109aj31cPGu3F9/00zM7
- 0Ua6ZHG14/lpFnngHIs95h8zUDlKa9oNI56gNrmyebR0K6E0EXyDcbnvsi3kOlWvWY1c
- ISLZzdTGPvvVfrURYRiS7t4xGqWGFTuSmvhqzWYu0KyhxkaBy1X7H1okTcWQZuvZkmvV
- jQJSSBCEVktA7ip/tXeIs4uF1hKYNzK6eRkzuxWb8O+s8C4s5etvjRf851aDnP9ATo0c
- h05Q==
-X-Gm-Message-State: ACrzQf1Y/iK4p0mOhziYwB0odgT5+M47Zi6pcEsclI39Rw8yvfFlUEdk
- 6dbzBCC+CHDQwypn3T55wKqAoatA/Jy3njGPJ531XkFv6dkOMa7ZE5d9yTS/pwgNKDeaSqUP06I
- m6MoouJ47zcZvMzz9whv+8pgJbCsk
-X-Received: by 2002:a17:906:fe04:b0:777:b13d:30a6 with SMTP id
- wy4-20020a170906fe0400b00777b13d30a6mr36058262ejb.248.1666778372049; 
- Wed, 26 Oct 2022 02:59:32 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM778dCSL7x8318qzKenTU6R7Jp/heP0pFWsLg0Zjgt4GfqQod/XgRUMTGVY4TA8QIvtp3pSAg==
-X-Received: by 2002:a17:906:fe04:b0:777:b13d:30a6 with SMTP id
- wy4-20020a170906fe0400b00777b13d30a6mr36058246ejb.248.1666778371810; 
- Wed, 26 Oct 2022 02:59:31 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
- (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
- by smtp.gmail.com with ESMTPSA id
- x10-20020a1709060eea00b007415f8ffcbbsm2706055eji.98.2022.10.26.02.59.29
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 26 Oct 2022 02:59:29 -0700 (PDT)
-Message-ID: <fa6cc1d9-6740-b495-2c72-cae18c429ca6@redhat.com>
-Date: Wed, 26 Oct 2022 11:59:28 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AAEA010E26A;
+ Wed, 26 Oct 2022 10:07:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A1B53AADDB;
+ Wed, 26 Oct 2022 10:07:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3335120301897726175=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-To: Matthew Garrett <mjg59@srcf.ucam.org>
-References: <20220825143726.269890-1-hdegoede@redhat.com>
- <20220825143726.269890-3-hdegoede@redhat.com>
- <f914ceb3-94bd-743c-f8b6-0334086e731a@gmail.com>
- <42a5f2c9-a1dc-8fc0-7334-fe6c390ecfbb@redhat.com>
- <20221024203057.GA28675@srcf.ucam.org>
- <8f53b8b6-ead2-22f5-16f7-65b31f7cc05c@redhat.com>
- <20221025193248.GA21457@srcf.ucam.org>
- <144cd47e-42dc-2b84-1a90-ea5e080e08a3@redhat.com>
- <20221025204043.GA23306@srcf.ucam.org>
- <cb5add36-c13c-ccd5-1b4b-71b45163a170@redhat.com>
- <20221025234040.GA27673@srcf.ucam.org>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20221025234040.GA27673@srcf.ucam.org>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v5 02/31] drm/i915: Don't register backlight
- when another backlight should be used (v2)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Wed, 26 Oct 2022 10:07:58 -0000
+Message-ID: <166677887862.25382.15439093027192249770@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221024172139.80435-1-matthew.auld@intel.com>
+In-Reply-To: <20221024172139.80435-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/userptr=3A_restore_probe=5Frange_behaviour_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,163 +40,253 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pan@freedesktop.org, Karol Herbst <kherbst@redhat.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- Dmitry Osipenko <digetx@gmail.com>, amd-gfx@lists.freedesktop.org,
- linux-acpi@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@redhat.com>, Len Brown <lenb@kernel.org>,
- Daniel Dadap <ddadap@nvidia.com>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Mark Gross <markgross@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andy@kernel.org>, Xinhui <Xinhui.Pan@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--===============3335120301897726175==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 10/26/22 01:40, Matthew Garrett wrote:
-> On Wed, Oct 26, 2022 at 01:27:25AM +0200, Hans de Goede wrote:
-> 
->> this code should actually set the ACPI_VIDEO_BACKLIGHT flag:
->> drivers/acpi/scan.c:
->>
->> static acpi_status
->> acpi_backlight_cap_match(acpi_handle handle, u32 level, void *context,
->>                           void **return_value)
->> {
->>         long *cap = context;
->>
->>         if (acpi_has_method(handle, "_BCM") &&
->>             acpi_has_method(handle, "_BCL")) {
->>                 acpi_handle_debug(handle, "Found generic backlight support\n");
->>                 *cap |= ACPI_VIDEO_BACKLIGHT;
->>                 /* We have backlight support, no need to scan further */
->>                 return AE_CTRL_TERMINATE;
->>         }
->>         return 0;
->> }
-> 
-> Ah, yeah, my local tree no longer matches the upstream behaviour because 
-> I've hacked the EC firmware to remove the backlight trigger because it 
-> had an extremely poor brightness curve and also automatically changed it 
-> on AC events - as a result I removed the backlight code from the DSDT 
-> and just fell back to the native control. Like I said I'm a long way 
-> from the normal setup, but this did previously work.
+== Series Details ==
 
-Ok, so this is a local customization to what is already a custom BIOS
-for a custom motherboard. There is a lot of custom in that sentence and
-TBH at some point things might become too custom for them to be expected
-to work OOTB.
+Series: drm/i915/userptr: restore probe_range behaviour (rev2)
+URL   : https://patchwork.freedesktop.org/series/110083/
+State : success
 
-Note that you can always just override the choses made by the heuristisc/
-quirks on the kernel commandline by adding:
+== Summary ==
 
-acpi_backlight=native   (I think you want this one?)
+CI Bug Log - changes from CI_DRM_12296 -> Patchwork_110083v2
+====================================================
 
-or if you want the old thinkpad_acpi module vendor/EC interface:
+Summary
+-------
 
-acpi_backlight=vendor
+  **SUCCESS**
 
-Asking you to pass this on the commandline does not seem like a huge
-stretch given the large amount of hw/firmware customization you have done ?
+  No regressions found.
 
-> The "right" logic here seems pretty simple: if ACPI backlight control is 
-> expected to work, use it. If it isn't, but there's a vendor interface, 
-> use it. If there's no vendor interface, use the native interface.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/index.html
 
-I'm afraid things are not that simple. I assume that with
-"if ACPI backlight control is expected to work" you mean don't
-use ACPI backlight control when (acpi_osi_is_win8() && native_available)
-evaluates to true because it is known to be broken on some of
-those systems because Windows 8 stopped using it ?
+Participating hosts (41 -> 37)
+------------------------------
 
-Unfortunately something similar applies to vendor interfaces,
-When Windows XP started using (and mandating for certification
-IIRC) ACPI backlight control, vendors still kept their own
-vendor specific EC/smbios/ACPI/WMI backlight interfaces around for
-a long long time, except they were often no longer tested.
+  Missing    (4): fi-kbl-soraka fi-ctg-p8600 fi-rkl-11600 fi-icl-u2 
 
-So basically we have 3 major backlight control methods:
+Possible new issues
+-------------------
 
-1. native GPU backlight control, which sometimes does not work
-on older laptops because the backlight is connected to the EC
-rather then the GPU there, yet often still enabled in the
-video-bios-tables so the GPU drivers will still try to use it.
+  Here are the unknown changes that may have been introduced in Patchwork_110083v2:
 
-2. ACPI -> known to be always present on recent Windows laptops
-because mandated by the hardware certification requirements
-(even on Windows 8+), but regularly broken on Windows 8+ because
-their backlight control was moved from the core-os to the GPU
-drivers and those typically use the native method.
+### IGT changes ###
 
-3. Vendor specific EC/smbios/ACPI/WMI interfaces which work
-on older laptops, but are often present on newer laptops
-despite them no longer working and to get working backlight
-control either 1. or 2. should be used.
+#### Suppressed ####
 
-So basically non of the 3 main backlight control methods can
-be trusted even if they are present. Which is why need to have
-a combination of heuristics + quirks.
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
 
-And I have been working on moving all this into a central
-place in drivers/acpi/video_detect.c because having
-the heuristics + quirks spread out all over the place does
-not help.
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-rpls-2}:       [WARN][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/bat-rpls-2/igt@i915_pm_rpm@module-reload.html
 
-> The 
-> problem you're dealing with is that the knowledge of whether or not 
-> there's a vendor interface isn't something the core kernel code knows 
-> about. What you're proposing here is effectively for us to expose 
-> additional information about whether or not there's a vendor interface 
-> in the system firmware, but since we're talking in some cases about 
-> hardware that's almost 20 years old, we're not realistically going to 
-> get those old machines fixed.
+  
+Known issues
+------------
 
-I don't understand why you keep talking about the old vendor interfaces,
-at least for the chromebook part of this thread the issue is that
-the i915 driver no longer registers the intel_backlight device which
-is a native device type, which is caused by the patch this email
-thread is about (and old vendor interfaces do not come into play
-at all here). So AFAICT this is a native vs acpi backlight control
-issue ?
+  Here are the changes found in Patchwork_110083v2 that come from known issues:
 
-I really want to resolve your bug, but I still lack a lot of info,
-like what backlight interface you were actually using in 6.0 ?
+### IGT changes ###
 
-Can you please provide the following info for your laptop:
+#### Issues hit ####
 
-1. Output of "ls /sys/class/backlight" with 6.0  (working setup)
-2. Output of "ls /sys/class/backlight" with 6.1  (non-working setup)
-3. dmidecode output, so that I can check if this quirk:
+  * igt@gem_lmem_swapping@basic:
+    - fi-apl-guc:         NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html
 
-        {
-         .callback = video_detect_force_video,
-         /* ThinkPad X201s */
-         .matches = {
-                DMI_MATCH(DMI_SYS_VENDOR, "LENOVO"),
-                DMI_MATCH(DMI_PRODUCT_VERSION, "ThinkPad X201s"),
-                },
-        },
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-apl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/fi-apl-guc/igt@kms_chamelium@hdmi-crc-fast.html
 
-will trigger.
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-apl-guc:         NOTRUN -> [SKIP][5] ([fdo#109271]) +11 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/fi-apl-guc/igt@kms_psr@sprite_plane_onoff.html
 
-4. An acpidump. Although you already said that you have removed the
-ACPI video bus bits, so I guess I can just assume that
-the ACPI_VIDEO_BACKLIGHT flag won't get set.
+  
+#### Possible fixes ####
 
-Regards,
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - {bat-adlm-1}:       [DMESG-WARN][6] ([i915#2867]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html
 
-Hans
+  * igt@i915_hangman@error-state-basic:
+    - fi-apl-guc:         [DMESG-WARN][8] -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - {bat-adln-1}:       [DMESG-FAIL][10] ([i915#4258]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-adln-1/igt@i915_selftest@live@gt_pm.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/bat-adln-1/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@reset:
+    - {bat-rpls-1}:       [DMESG-FAIL][12] ([i915#4983] / [i915#5828]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5278]: https://gitlab.freedesktop.org/drm/intel/issues/5278
+  [i915#5828]: https://gitlab.freedesktop.org/drm/intel/issues/5828
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6997]: https://gitlab.freedesktop.org/drm/intel/issues/6997
+  [i915#7029]: https://gitlab.freedesktop.org/drm/intel/issues/7029
 
 
-p.s.
+Build changes
+-------------
 
-This thread has made me wonder if the 6.1 changes don't cause
-regressions on other laptops flashed with a CoreOS BIOS, I will
-start a mail-thread asking for testing on the CoreOS mailinglist.
+  * Linux: CI_DRM_12296 -> Patchwork_110083v2
 
+  CI-20190529: 20190529
+  CI_DRM_12296: dc5600688adfc13fed8128d9043bab2257066646 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7026: ce0f97e7e0aa54c40049a8365b3d61773c92e588 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_110083v2: dc5600688adfc13fed8128d9043bab2257066646 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+c1a5be7ad986 drm/i915/userptr: restore probe_range behaviour
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/index.html
+
+--===============3335120301897726175==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/userptr: restore probe_range behaviour (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/110083/">https://patchwork.freedesktop.org/series/110083/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_12296 -&gt; Patchwork_110083v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/index.html</p>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Missing    (4): fi-kbl-soraka fi-ctg-p8600 fi-rkl-11600 fi-icl-u2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_110083v2:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>{bat-rpls-2}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/bat-rpls-2/igt@i915_pm_rpm@module-reload.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_110083v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/fi-apl-guc/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/fi-apl-guc/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>{bat-adlm-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/bat-adlm-1/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_hangman@error-state-basic:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/fi-apl-guc/igt@i915_hangman@error-state-basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>{bat-adln-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-adln-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4258">i915#4258</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/bat-adln-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_12296/bat-rpls-1/igt@i915_selftest@live@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5828">i915#5828</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_110083v2/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_12296 -&gt; Patchwork_110083v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_12296: dc5600688adfc13fed8128d9043bab2257066646 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7026: ce0f97e7e0aa54c40049a8365b3d61773c92e588 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_110083v2: dc5600688adfc13fed8128d9043bab2257066646 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>c1a5be7ad986 drm/i915/userptr: restore probe_range behaviour</p>
+
+</body>
+</html>
+
+--===============3335120301897726175==--
