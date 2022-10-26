@@ -1,82 +1,153 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF2CB60EB9B
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 00:33:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E33460EBA0
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 00:33:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB15210E2A3;
-	Wed, 26 Oct 2022 22:32:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CFCC10E5A7;
+	Wed, 26 Oct 2022 22:33:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com
- [IPv6:2a00:1450:4864:20::132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAACC10E2A3;
- Wed, 26 Oct 2022 22:32:54 +0000 (UTC)
-Received: by mail-lf1-x132.google.com with SMTP id p8so31751353lfu.11;
- Wed, 26 Oct 2022 15:32:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:from:to:cc:subject:date:message-id:reply-to;
- bh=avrg0p0zcjNQXnwku7LjBEc26ITlI2L8ZDmV7YUxLHk=;
- b=hNP1eWcSKtSWB1d/Pitcegm6aBvNbn9ZZwOPfvyAHeLfSpWgKviYSn4HdfxqpmVxLx
- 3hqUT8rGLCtA1WbTsRwnPe5u3UcMos9xSnD5TZv+rOmijKDGBBCh8NVOtzeenY0qOWJW
- oh4drqCKFAmxuzjfWyqczkgGVY4e/XY9DK8cne6pWop/CZJOjY5RUV1N/4OKtEk0nxJO
- UC4dx27z4ITheuTf5vkslf5rQZRUk0qCvLfi1+DCcHCbS9nB8ML9tKunPxRfZ0ivAOEf
- qxDLwB203CFgLYKKW5ACXrIXmtd/8O6FmrNt5N5n34ARyUZHAOHdwbczBPdcJL3R4Gsa
- ONMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=avrg0p0zcjNQXnwku7LjBEc26ITlI2L8ZDmV7YUxLHk=;
- b=1nYT+r7khKJp1hWKV+LVlhEMXkz4WWoAZlzVmcvKIG4fEOM0G6kEtJXP5d6qmOnb5y
- NBJEcuOCsZjTCf5TEsH54lEqRHVq8VPk7uOMJaluexrs1FIPO3Bge46E7C0b75LYiQo/
- KfIBPBzmx/qwNIGVxxSFAi3e2gBkQLYmNU//1FoaEa50ScIC698FAA5eR0XD84SgpBPG
- 5CewE1yEMpQE9d5VEDjPvf60dy7IkMFtPtf05d60AofHNCvrtS1rZEcQA9BB6t8cdFiN
- yTpO38BwFEF7EYOKh7OIu0gds9r3oc0Uy/7TzGGbRFCuUquQOUNiZVSskqtDvwSO9bJ/
- C/ww==
-X-Gm-Message-State: ACrzQf0x+tzO9WYcpz9PuGiv6jHlunOGa751+n5RHP0tc4NkmrLyWwBs
- 7zx7ilinOeKREvdJ3LHPAEo=
-X-Google-Smtp-Source: AMsMyM52ijLmTwWqEjQAFcbPkrpP0UqjyCZnJDRwDtXnieH2RtRbTOsPad5/gfZTaDZK85qSTqo5mQ==
-X-Received: by 2002:ac2:4c47:0:b0:4a2:c07b:4b62 with SMTP id
- o7-20020ac24c47000000b004a2c07b4b62mr15855128lfk.426.1666823572924; 
- Wed, 26 Oct 2022 15:32:52 -0700 (PDT)
-Received: from ?IPV6:2a02:a31a:a240:1700:c898:de98:30b3:a07?
- ([2a02:a31a:a240:1700:c898:de98:30b3:a07])
- by smtp.googlemail.com with ESMTPSA id
- n11-20020ac2490b000000b004979df1c1fasm994280lfi.61.2022.10.26.15.32.51
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 26 Oct 2022 15:32:52 -0700 (PDT)
-From: Mateusz Kwiatkowski <kfyatek@gmail.com>
-X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-Message-ID: <e9b8ebf6-8781-0c55-5dd5-9f5077bd6b93@gmail.com>
-Date: Thu, 27 Oct 2022 00:32:50 +0200
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B46410E5A7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 22:33:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666823629; x=1698359629;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ mime-version; bh=wgI7oAcAtmcmRprzxukRAjpsyajBxbRpwOZgCv7cJVE=;
+ b=G5NBmsGpZkcLbfHDryTXaMYljldwYr0raY+HYExLXyWRkDiv7dRUNW+P
+ Ikh+blhqmpbwTUU7wMBa1XbFGhfNohiCyFBnUOrzgdxx23wRZTlRLHdUM
+ Ws/RMeem5jOwXOJDlrxKRCBy8iDexsuupr5SBUGvqjSqJuUBdfqC8hymH
+ kcasAFF40lJV6miW2sSawG7Jatuku3Z5dSGYvILt8MJhaWV00mmTo5yeb
+ b+nYcti2adv+GiABjNOYKh+5RBoG+Si/oJbt5EZ7gtVSPxDKnNS4k+++X
+ 4fl7FLjt/41v54R9EM2lQRob9D3XuPz6EY6ZU5WFKOWGPHCSPWo9z4DJG g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="309770708"
+X-IronPort-AV: E=Sophos;i="5.95,215,1661842800"; 
+ d="scan'208,217";a="309770708"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2022 15:33:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="632190037"
+X-IronPort-AV: E=Sophos;i="5.95,215,1661842800"; 
+ d="scan'208,217";a="632190037"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga002.jf.intel.com with ESMTP; 26 Oct 2022 15:33:48 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 26 Oct 2022 15:33:48 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Wed, 26 Oct 2022 15:33:48 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.107)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Wed, 26 Oct 2022 15:33:47 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QxxnPpRYqswQYl1PqrBZJxwcRTqL9cUp3fo5VkIadjvkrTBrFDaZncAMZ7Lphk7wPsJBSn4/uzn+AqBe8YQuHEA3UX5hmOcOpJyVSwLamzJgd98wqYiTDJJmoXjHIRSywOplds0bSGj5P2HICwaplyUqBH5sGSa96C9hydOW+ekTDeOyyDWyeqXT725pCLnt/wonFcjjyXS4+LsnxV7Gcb/82CVd3GGouqDHz2XDbs3fp8xrG6IcJ/cU5PjZH1KzhkYrluKhW2llI6hHbGkEyd59uMp0sfOWZc18NvbmbooTcIpVtstF4sopaC7McrMlxK2GMToYP3MBP5UlbIeenA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wgI7oAcAtmcmRprzxukRAjpsyajBxbRpwOZgCv7cJVE=;
+ b=HQK4KrxM8ea4hhjZttMIAcqmcd/GPa4TDOrakrSZl9vdImm852td+41xZoKW6QKufUR6xo4MglvXrkC6HrHqzhe6m8MLqmFT+q8uwHpV3+WVT6pe8uUhH+4F3brPFVex4rlwanV5zDjUarv8x+0v8cT7W+uIwPVhTaqSZY89VpMzxK3LvC42CydO6rtpOflgU917UZufrDSUmwYF0bOWoRYyX0/MeGGiOtCUA1sVuGRzMvmgh9TWGk32/JuA6ufFKJ/6QFiFmhsNF8R6vkau4F0c3YuTM+34W6rySher49G5DTyZ3b7Azy74LK2WW2mqMN1BuuUbPFY+LyBuzYZ4FA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
+ SA1PR11MB6614.namprd11.prod.outlook.com (2603:10b6:806:255::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.28; Wed, 26 Oct
+ 2022 22:33:46 +0000
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::bbc2:ab8e:b98:feaf]) by DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::bbc2:ab8e:b98:feaf%7]) with mapi id 15.20.5746.028; Wed, 26 Oct 2022
+ 22:33:46 +0000
+From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgRml4IEd1Yy1FcnItQ2FwdHVy?=
+ =?utf-8?Q?e_sizing_warning?=
+Thread-Index: AQHY6Ww0SD9z6leTUU6ZFbfSlLLe864hQ8uA
+Date: Wed, 26 Oct 2022 22:33:46 +0000
+Message-ID: <c2034ca7ee6233f5e58809c59e5c443a4229ea20.camel@intel.com>
+References: <20221026060506.1007830-1-alan.previn.teres.alexis@intel.com>
+ <166681037881.25383.2701696649777398096@emeril.freedesktop.org>
+In-Reply-To: <166681037881.25383.2701696649777398096@emeril.freedesktop.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.44.4-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM8PR11MB5751:EE_|SA1PR11MB6614:EE_
+x-ms-office365-filtering-correlation-id: 1d0d2c1d-2e3d-4672-bef2-08dab7a2252f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: joxJvqacOlzHOykxJGnTBYX5I/n1I7y1Ev2iUru84GJAtrdhWFh1dIzxtJjLzioU35c7mZEW6KT1X+gPGBM/0Q4R9ts1ZzXDWBKLeczLxc26dCno6y4/JuAovQz9eZQackJqst80liobJ+xuaYivUflsdWDXr9AnZTXOeAdDqSvnh1/9yDbcsZR2nyzVFym+hy1ZKDQ8VuwP6cpwJ+egxqyoXyQzaehmo1M+wzEhdr5643HmIdf2xUiXkH1TkLmTIkTHUNTH9u2FzKZv/hOAibZudsVB7cuCORfjizcWi2NZ5THM4yqkRinMJzPcPob7YAHQt5E8TYIaA6BgyZvaPAVG23zJ4/UorN6rSzfVO68lPyBkMQxncWlfNsMZ4We2jhBN3qfFHjlCnIWPy7/pSbgK9ny8XMObr7D9eRRFWdCYCbSyvqnBcLM+9XMtrL7D3fxUlZBEvFEUDBBL2nQFBCo6pfUepzXd5wGtFxZC1XCaqO5eWaVcSJXxyGm08YWs4Llt640FEdJ1fGVepDXoQ+hSU+9eY23TlTjaNuwcs8XFyspTNrqPOAkjkIg1Rey2iAGLgjuUamPBq/GxfVsq9nRC+nWUksKE0huyHNEs3EqqwE80xaSP+oJStznQgO3tSMPtDo5DOWM9QScTDm+bVoI/jNjyWopMNwBji1y4SkoiDgAr4X4J7kYel5nfLY4crxHPPyXJ/b2quoKOd6CPGyzT2uHrX2LvFNo3eDj97TduRjLfTOxZQCHewbJMxhOWS7W1jFrPQj2NoEhYACGWuH4Kfr3zapqTTEiUWYYHzbDCFowpbm/QOLtNTdbvTovpekyXuX6+R04S+sMTeUUq9A==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(396003)(39860400002)(366004)(376002)(136003)(451199015)(36756003)(71200400001)(166002)(38100700002)(122000001)(5660300002)(82960400001)(83380400001)(38070700005)(86362001)(66556008)(186003)(2616005)(8936002)(966005)(21615005)(6512007)(26005)(40265005)(6506007)(6486002)(316002)(478600001)(66446008)(6916009)(91956017)(2906002)(66946007)(76116006)(66476007)(64756008)(4001150100001)(41300700001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZXVNU3VlZXhNYU1mL2hTQkZMUHFGTFpNNzV4d1daanZVYnRwZnlGOG0vVGly?=
+ =?utf-8?B?Q0dqeGE4TFlwVjR6Q3UrU1hUMlpWMUQ3TEo4QzRHeHpRVU5IWCtxL3VpMys2?=
+ =?utf-8?B?Q01aR2VXOVcrc2kwbCtuN0FzVEg3eGVSTytuVXJLQVdTcEhmekdXbE8zQXpj?=
+ =?utf-8?B?ZzlBbmJtU1lKU2lDNnZqWWZuVkQ3d0RLRGg1cVdIdjdzdWRVb0ppTFJOclFC?=
+ =?utf-8?B?Q2diOUI2a2Fia0Rqek1jUCsvVTBmdlh0ZWZDbndLVWxXMzVFNlhLS1ltaVJY?=
+ =?utf-8?B?VWhBV1hGeC8wQ1ZKdlF3RXdObmk5SGJaYlVMWVZ0RU5scXJxQmd3ZzFibnM0?=
+ =?utf-8?B?QW5hWFl4U3NtSzhzZUIwM3VHSWxNVjFPODYrQkhwZ25iNzlSNDNjNzEzTUMv?=
+ =?utf-8?B?VHNwU3JKTllkTm8rOEdiWkh6S1BGU01GNS8wcDllRzgvN2VCTmt6dVg4UDRC?=
+ =?utf-8?B?V0tmWEoxY1NMTGg5aHdzZTNXZndlaDZFN1IvQVljMkVuTE1nVmQvUWJGbWtF?=
+ =?utf-8?B?V014SlNNMy9IQStjQmtERXNqWDl5QlNlYVJuOUI2RUlIeFdRQWZSdk8zMGJp?=
+ =?utf-8?B?REgrRis4VzRiQzdPYVlzb1N5em5ja1NFaG5yV1BBd0FOeSt1M21yV3R3bmlG?=
+ =?utf-8?B?YW1ZOGtzZ1NrM1FuTEhDR2piay9WdXlHdzcyU0RwekRYUkZjaXkyMkFxRGhK?=
+ =?utf-8?B?WlNRNFNxTlRqTXhUMXhNRC8xRG81RUE1WGl2eDY1T0JmUGltR0RyV21tdG5h?=
+ =?utf-8?B?bTNsQ29JdU5SWE9tdDhqUithUkw2aGpsdVcvSW83RFFCZkluQ3FTTHlISG5S?=
+ =?utf-8?B?S2xURmwxUE5VL3BZa21RVnF2dW9KcHVBSWVqazBXZm5JbVBaUGZtV3EyRnNE?=
+ =?utf-8?B?ZmJ3MmdvcUt2a2NrYnRiMDkzbWxpMCtnUWEzTHZnK3NRVjFkdnphWUVsM0xt?=
+ =?utf-8?B?UjVraE02Ym45djkxVnpRTGhTd1ljWkhCOVRRckdNRk1MN0lYOEhKdGg5d3RH?=
+ =?utf-8?B?WUoyeXRsNWIrRVVDbHg2NnNFUEVFckFLYTNaWFBNQTEycGhvelc1TXpMN0dT?=
+ =?utf-8?B?aitnNDUwcXphT3lpVk1NSTgwL05Dc2hNSXJETkpLMnVTMG9CbGNqVWxEMm9T?=
+ =?utf-8?B?dGRTZjNDM2dDTzdkaUZFLzc3QnpJMHRzUSt1VUZIRU1ldGoydDQvb2FUUzAx?=
+ =?utf-8?B?YXNiWGh2NTFNMzBsK2p2RHJmZklUcitlWU1XK3VudmVmemhTY2xVb0VKalVr?=
+ =?utf-8?B?RU9MR2IyakRuM1E4UFkrTUdsdHhBNkxlNjE2cmEvbldWci90aHRzK0R2Q2k5?=
+ =?utf-8?B?K1Uwb0d4SXBrZVd1eG9aS1dDbU9iWDBmUVJSMW1DM0VxN04vbS9zUGIxSVJO?=
+ =?utf-8?B?QTE5Q05BK201NXVXa1k5dVhEWThoZlBPN1JmUzV3eHBlOHQyRS93YjRhaVNN?=
+ =?utf-8?B?RDcxMEQ5NjZ6UWZlOEU5L09LVWx4dnl4NXBJWmNHeGJ3REx0MGc0dHUxOFBL?=
+ =?utf-8?B?eVJLcjVGdkJESjlDOTFwZzlHSE1jWk1ET21QakhiL3pWMGticzVzakt5VU1N?=
+ =?utf-8?B?dEZIMWZhemt6QThsTlo2OVBGWlNpTkNZR3luSm5ZTU9XUGxRbmk3SlpReW1L?=
+ =?utf-8?B?STVsaVFNUEVadFZEbXdrUHpmZVI0cUdLd1JZNzc4NEJiVlZHd3JxdHk0NkZT?=
+ =?utf-8?B?YUJ4YjZzbmNic0MzRFdTclduNmorc0ZwY1BSdE9paUJrZ2hYWi84d2lueVZ5?=
+ =?utf-8?B?ZEc3dUhIY1VOSkpIZFlLSUtaMHRIeFRGRkQzVnRZNjJlTyt3alliWVZNZ29T?=
+ =?utf-8?B?R0pKbTJmcytVTVo0VHhTWURqYmliQzhnTFVlUVpuQ0xGWFNCekhBR2FaS1VK?=
+ =?utf-8?B?S1NmTG5jdUZ2eFpUOC9IZ1RkVmZUL3VVRzVISGhVOUdTTm5KUE1RZFhjaEt0?=
+ =?utf-8?B?bjR0QXE4VXAwNkhTak1LakFNL3lxRjAwTTlETkhXOFVvQ0VEMEJKcWc1S2Nz?=
+ =?utf-8?B?UTRzeTVYSytMTXc3bzdCU2VrR3ZweDI5bEhCWHVsbSsweDV0R0pWTkt1dU9F?=
+ =?utf-8?B?SGk4VVY5bC9yNmJnNEZ2SXY5ZnJiTEdKYzA1NkZJSEtPYUZMQmp1bEtpQXpt?=
+ =?utf-8?B?TGFVcUFqWElWWDZxTThDc24zS3pCVHVYQmpDU2J4Qy9PaWlrVktTVGJRekg1?=
+ =?utf-8?Q?mFW4hPQMVkX79LK3Ej89TLA=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_c2034ca7ee6233f5e58809c59e5c443a4229ea20camelintelcom_"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.0
-Content-Language: pl
-To: maxime@cerno.tech, Karol Herbst <kherbst@redhat.com>,
- Emma Anholt <emma@anholt.net>, Ben Skeggs <bskeggs@redhat.com>,
- Chen-Yu Tsai <wens@csie.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@linux.ie>,
- Maxime Ripard <mripard@kernel.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lyude Paul <lyude@redhat.com>
-References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
- <20220728-rpi-analog-tv-properties-v6-22-e7792734108f@cerno.tech>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v6-22-e7792734108f@cerno.tech>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v6 22/23] drm/vc4: vec: Add support for more
- analog TV standards
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d0d2c1d-2e3d-4672-bef2-08dab7a2252f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2022 22:33:46.2661 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: k3hE0+0M14FF6qDBOtzPoIKMsomZfmkTXlnIgNeXzCktYgJbc9qYatT5WQ9s4XEQlooE4kx6cBNtw88UsRpZ8LE04+SYk04A8sBWjx1U7LkJEaWkvpbxsNgKpxY3AgUg
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6614
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgRml4?=
+ =?utf-8?q?_Guc-Err-Capture_sizing_warning?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,375 +160,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Maxime,
+--_000_c2034ca7ee6233f5e58809c59e5c443a4229ea20camelintelcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I've seen that you've incorporated my PAL60 patch. Thanks!
+QVMgcGVyIHRoZSBvdGhlciByZXYsIGJlbG93IHJlZ3Jlc3Npb25zIGFyZSwgb25jZSBhZ2Fpbiwg
+dW5yZWxhdGVkIHRvIHRoaXMgc2VyaWVzIGJlY2F1c2UgdGhpcyBzZXJpZXMgcGF0Y2ggbW9kaWZp
+ZWQgY29kZSB0aGF0IG9ubHkgZ2V0IGV4ZWN1dGVkIGlmIEd1QyBBRFMgaXMgYmVpbmcgaW5pdGlh
+bGl6ZWQgd2hlcmVhcyB0aGUgcmVncmVzc2lvbnMgYXJlIG9uIHBsYXRmb3JtcyB0aGF0IGRvIG5v
+dCBoYXZlIEd1QyBlbmFibGVkICh3aGljaCBpIGZ1cnRoZXIgdmVyaWZpZWQgaW4gdGhlIGZ1bGwg
+ZG1lc2cpLg0KDQpPbiBXZWQsIDIwMjItMTAtMjYgYXQgMTg6NTIgKzAwMDAsIFBhdGNod29yayB3
+cm90ZToNClBhdGNoIERldGFpbHMNClNlcmllczogRml4IEd1Yy1FcnItQ2FwdHVyZSBzaXppbmcg
+d2FybmluZw0KVVJMOiAgICBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVz
+LzExMDE1NS8NClN0YXRlOiAgZmFpbHVyZQ0KRGV0YWlsczogICAgICAgIGh0dHBzOi8vaW50ZWwt
+Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzExMDE1NXYxL2luZGV4Lmh0bWwN
+CkNJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzEyMjk1X2Z1bGwgLT4gUGF0Y2h3b3Jr
+XzExMDE1NXYxX2Z1bGwNClN1bW1hcnkNCg0KRkFJTFVSRQ0KDQpTZXJpb3VzIHVua25vd24gY2hh
+bmdlcyBjb21pbmcgd2l0aCBQYXRjaHdvcmtfMTEwMTU1djFfZnVsbCBhYnNvbHV0ZWx5IG5lZWQg
+dG8gYmUNCnZlcmlmaWVkIG1hbnVhbGx5Lg0KDQpJZiB5b3UgdGhpbmsgdGhlIHJlcG9ydGVkIGNo
+YW5nZXMgaGF2ZSBub3RoaW5nIHRvIGRvIHdpdGggdGhlIGNoYW5nZXMNCmludHJvZHVjZWQgaW4g
+UGF0Y2h3b3JrXzExMDE1NXYxX2Z1bGwsIHBsZWFzZSBub3RpZnkgeW91ciBidWcgdGVhbSB0byBh
+bGxvdyB0aGVtDQp0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwg
+cmVkdWNlIGZhbHNlIHBvc2l0aXZlcyBpbiBDSS4NCg0KUGFydGljaXBhdGluZyBob3N0cyAoOSAt
+PiAxMSkNCg0KQWRkaXRpb25hbCAoMik6IHNoYXJkLXJrbCBzaGFyZC1kZzENCg0KUG9zc2libGUg
+bmV3IGlzc3Vlcw0KDQpIZXJlIGFyZSB0aGUgdW5rbm93biBjaGFuZ2VzIHRoYXQgbWF5IGhhdmUg
+YmVlbiBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18xMTAxNTV2MV9mdWxsOg0KDQpJR1QgY2hhbmdl
+cw0KUG9zc2libGUgcmVncmVzc2lvbnMNCg0KICAqICAgaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUBl
+eGVjbGlzdHM6DQoNCiAgICAgKiAgIHNoYXJkLXNrbDogTk9UUlVOIC0+IElOQ09NUExFVEU8aHR0
+cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTEwMTU1djEv
+c2hhcmQtc2tsNS9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGV4ZWNsaXN0cy5odG1sPg0KICAqICAg
+aWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0Bwc3ItMXAtcHJpbXNjcm4tY3VyLWluZGZiLWRy
+YXctcmVuZGVyOg0KDQogICAgICogICBzaGFyZC1pY2xiOiBQQVNTPGh0dHBzOi8vaW50ZWwtZ2Z4
+LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzEyMjk1L3NoYXJkLWljbGI2L2lndEBrbXNf
+ZnJvbnRidWZmZXJfdHJhY2tpbmdAcHNyLTFwLXByaW1zY3JuLWN1ci1pbmRmYi1kcmF3LXJlbmRl
+ci5odG1sPiAtPiBGQUlMPGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+UGF0Y2h3b3JrXzExMDE1NXYxL3NoYXJkLWljbGIxL2lndEBrbXNfZnJvbnRidWZmZXJfdHJhY2tp
+bmdAcHNyLTFwLXByaW1zY3JuLWN1ci1pbmRmYi1kcmF3LXJlbmRlci5odG1sPg0KICAqICAgaWd0
+QGttc19zZXF1ZW5jZUBxdWV1ZS1pZGxlQGVkcC0xLXBpcGUtYToNCg0KICAgICAqICAgc2hhcmQt
+c2tsOiBOT1RSVU4gLT4gRkFJTDxodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
+dGlwL1BhdGNod29ya18xMTAxNTV2MS9zaGFyZC1za2wyL2lndEBrbXNfc2VxdWVuY2VAcXVldWUt
+aWRsZUBlZHAtMS1waXBlLWEuaHRtbD4NCiAgKiAgIGlndEBzeW5jb2JqX3RpbWVsaW5lQHdhaXQt
+YWxsLWZvci1zdWJtaXQtc25hcHNob3Q6DQoNCiAgICAgKiAgIHNoYXJkLXNrbDogUEFTUzxodHRw
+czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMjI5NS9zaGFyZC1z
+a2wyL2lndEBzeW5jb2JqX3RpbWVsaW5lQHdhaXQtYWxsLWZvci1zdWJtaXQtc25hcHNob3QuaHRt
+bD4gLT4gRkFJTDxodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNo
+d29ya18xMTAxNTV2MS9zaGFyZC1za2wxL2lndEBzeW5jb2JqX3RpbWVsaW5lQHdhaXQtYWxsLWZv
+ci1zdWJtaXQtc25hcHNob3QuaHRtbD4NCg0KV2FybmluZ3MNCg0KICAqICAgaWd0QHJ1bm5lckBh
+Ym9ydGVkOg0KICAgICAqICAgc2hhcmQtc2tsOiAoRkFJTDxodHRwczovL2ludGVsLWdmeC1jaS4w
+MS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xMjI5NS9zaGFyZC1za2w0L2lndEBydW5uZXJAYWJv
+cnRlZC5odG1sPiwgRkFJTDxodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
+L0NJX0RSTV8xMjI5NS9zaGFyZC1za2wxMC9pZ3RAcnVubmVyQGFib3J0ZWQuaHRtbD4sIEZBSUw8
+aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fMTIyOTUvc2hh
+cmQtc2tsNy9pZ3RAcnVubmVyQGFib3J0ZWQuaHRtbD4pIChpOTE1IzMwMDI8aHR0cHM6Ly9naXRs
+YWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMzAwMj4gLyBpOTE1IzQzMTI8aHR0
+cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvNDMxMj4gLyBpOTE1
+IzY5NDk8aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvNjk0
+OT4pIC0+IChGQUlMPGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0
+Y2h3b3JrXzExMDE1NXYxL3NoYXJkLXNrbDkvaWd0QHJ1bm5lckBhYm9ydGVkLmh0bWw+LCBGQUlM
+PGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzExMDE1
+NXYxL3NoYXJkLXNrbDIvaWd0QHJ1bm5lckBhYm9ydGVkLmh0bWw+LCBGQUlMPGh0dHBzOi8vaW50
+ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzExMDE1NXYxL3NoYXJkLXNr
+bDIvaWd0QHJ1bm5lckBhYm9ydGVkLmh0bWw+LCBGQUlMPGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
+Lm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzExMDE1NXYxL3NoYXJkLXNrbDMvaWd0QHJ1bm5l
+ckBhYm9ydGVkLmh0bWw+LCBGQUlMPGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
+bS10aXAvUGF0Y2h3b3JrXzExMDE1NXYxL3NoYXJkLXNrbDUvaWd0QHJ1bm5lckBhYm9ydGVkLmh0
+bWw+LCBGQUlMPGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3
+b3JrXzExMDE1NXYxL3NoYXJkLXNrbDMvaWd0QHJ1bm5lckBhYm9ydGVkLmh0bWw+LCBGQUlMPGh0
+dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzExMDE1NXYx
+L3NoYXJkLXNrbDYvaWd0QHJ1bm5lckBhYm9ydGVkLmh0bWw+KSAoaTkxNSMzMDAyPGh0dHBzOi8v
+Z2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzMwMDI+IC8gaTkxNSM0MzEy
+PGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzQzMTI+KQ0K
+DQo=
 
-I still yet need to test your v6 changes, but looking at this code with just my
-mental static analysis, it seems to me that the vc4_vec_encoder_atomic_check()
-should have the tv_mode validation. I should've added it to the PAL60 patch,
-but it somehow slipped my mind then.
+--_000_c2034ca7ee6233f5e58809c59e5c443a4229ea20camelintelcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <8644364AADE2214695CDB23E63A37266@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-Anyway, I mentioned it previously here:
-https://lore.kernel.org/dri-devel/0f2beec2-ae8e-5579-f0b6-a73d9dae1af4@gmail.com/
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjx0aXRsZT5Qcm9qZWN0IExpc3QgLSBQYXRjaHdv
+cms8L3RpdGxlPg0KPHN0eWxlIGlkPSJjc3MtdGFibGUtc2VsZWN0IiB0eXBlPSJ0ZXh0L2NzcyI+
+DQogICB0ZCB7IHBhZGRpbmc6IDJwdDsgfQ0KICA8L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHk+DQo8
+ZGl2PkFTIHBlciB0aGUgb3RoZXIgcmV2LCBiZWxvdyByZWdyZXNzaW9ucyBhcmUsIG9uY2UgYWdh
+aW4sIHVucmVsYXRlZCB0byB0aGlzIHNlcmllcyBiZWNhdXNlIHRoaXMgc2VyaWVzIHBhdGNoIG1v
+ZGlmaWVkIGNvZGUgdGhhdCBvbmx5IGdldCBleGVjdXRlZCBpZiBHdUMgQURTIGlzIGJlaW5nIGlu
+aXRpYWxpemVkIHdoZXJlYXMgdGhlIHJlZ3Jlc3Npb25zIGFyZSBvbiBwbGF0Zm9ybXMgdGhhdCBk
+byBub3QgaGF2ZSBHdUMgZW5hYmxlZCAod2hpY2gNCiBpIGZ1cnRoZXIgdmVyaWZpZWQgaW4gdGhl
+IGZ1bGwgZG1lc2cpLjwvZGl2Pg0KPGRpdj48c3Bhbj48L3NwYW4+PC9kaXY+DQo8ZGl2Pjxicj4N
+CjwvZGl2Pg0KPGRpdj5PbiBXZWQsIDIwMjItMTAtMjYgYXQgMTg6NTIgKzAwMDAsIFBhdGNod29y
+ayB3cm90ZTo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiIHN0eWxlPSJtYXJnaW46MCAw
+IDAgLjhleDsgYm9yZGVyLWxlZnQ6MnB4ICM3MjlmY2Ygc29saWQ7cGFkZGluZy1sZWZ0OjFleCI+
+DQo8ZGl2PjxiPlBhdGNoIERldGFpbHM8L2I+PC9kaXY+DQo8ZGl2Pg0KPHRhYmxlPg0KPHRib2R5
+Pg0KPHRyPg0KPHRkPjxiPlNlcmllczo8L2I+PC90ZD4NCjx0ZD5GaXggR3VjLUVyci1DYXB0dXJl
+IHNpemluZyB3YXJuaW5nPC90ZD4NCjwvdHI+DQo8dHI+DQo8dGQ+PGI+VVJMOjwvYj48L3RkPg0K
+PHRkPjxhIGhyZWY9Imh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvMTEw
+MTU1LyI+aHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy8xMTAxNTUvPC9h
+PjwvdGQ+DQo8L3RyPg0KPHRyPg0KPHRkPjxiPlN0YXRlOjwvYj48L3RkPg0KPHRkPmZhaWx1cmU8
+L3RkPg0KPC90cj4NCjx0cj4NCjx0ZD48Yj5EZXRhaWxzOjwvYj48L3RkPg0KPHRkPjxhIGhyZWY9
+Imh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzExMDE1
+NXYxL2luZGV4Lmh0bWwiPmh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+UGF0Y2h3b3JrXzExMDE1NXYxL2luZGV4Lmh0bWw8L2E+PC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0K
+PC90YWJsZT4NCjwvZGl2Pg0KPGgxPkNJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzEy
+Mjk1X2Z1bGwgLSZndDsgUGF0Y2h3b3JrXzExMDE1NXYxX2Z1bGw8L2gxPg0KPGgyPlN1bW1hcnk8
+L2gyPg0KPHA+PHN0cm9uZz5GQUlMVVJFPC9zdHJvbmc+PC9wPg0KPHA+U2VyaW91cyB1bmtub3du
+IGNoYW5nZXMgY29taW5nIHdpdGggUGF0Y2h3b3JrXzExMDE1NXYxX2Z1bGwgYWJzb2x1dGVseSBu
+ZWVkIHRvIGJlPGJyPg0KdmVyaWZpZWQgbWFudWFsbHkuPC9wPg0KPHA+SWYgeW91IHRoaW5rIHRo
+ZSByZXBvcnRlZCBjaGFuZ2VzIGhhdmUgbm90aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzPGJy
+Pg0KaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtfMTEwMTU1djFfZnVsbCwgcGxlYXNlIG5vdGlmeSB5
+b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93IHRoZW08YnI+DQp0byBkb2N1bWVudCB0aGlzIG5ldyBmYWls
+dXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVkdWNlIGZhbHNlIHBvc2l0aXZlcyBpbiBDSS48L3A+DQo8
+aDI+UGFydGljaXBhdGluZyBob3N0cyAoOSAtJmd0OyAxMSk8L2gyPg0KPHA+QWRkaXRpb25hbCAo
+Mik6IHNoYXJkLXJrbCBzaGFyZC1kZzEgPC9wPg0KPGgyPlBvc3NpYmxlIG5ldyBpc3N1ZXM8L2gy
+Pg0KPHA+SGVyZSBhcmUgdGhlIHVua25vd24gY2hhbmdlcyB0aGF0IG1heSBoYXZlIGJlZW4gaW50
+cm9kdWNlZCBpbiBQYXRjaHdvcmtfMTEwMTU1djFfZnVsbDo8L3A+DQo8aDM+SUdUIGNoYW5nZXM8
+L2gzPg0KPGg0PlBvc3NpYmxlIHJlZ3Jlc3Npb25zPC9oND4NCjx1bD4NCjxsaT4NCjxwPmlndEBp
+OTE1X3NlbGZ0ZXN0QGxpdmVAZXhlY2xpc3RzOjwvcD4NCjx1bD4NCjxsaT5zaGFyZC1za2w6IE5P
+VFJVTiAtJmd0OyA8YSBocmVmPSJodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
+dGlwL1BhdGNod29ya18xMTAxNTV2MS9zaGFyZC1za2w1L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVA
+ZXhlY2xpc3RzLmh0bWwiPg0KSU5DT01QTEVURTwvYT48L2xpPjwvdWw+DQo8L2xpPjxsaT4NCjxw
+PmlndEBrbXNfZnJvbnRidWZmZXJfdHJhY2tpbmdAcHNyLTFwLXByaW1zY3JuLWN1ci1pbmRmYi1k
+cmF3LXJlbmRlcjo8L3A+DQo8dWw+DQo8bGk+c2hhcmQtaWNsYjogPGEgaHJlZj0iaHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fMTIyOTUvc2hhcmQtaWNsYjYv
+aWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0Bwc3ItMXAtcHJpbXNjcm4tY3VyLWluZGZiLWRy
+YXctcmVuZGVyLmh0bWwiPg0KUEFTUzwvYT4gLSZndDsgPGEgaHJlZj0iaHR0cHM6Ly9pbnRlbC1n
+ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTEwMTU1djEvc2hhcmQtaWNsYjEv
+aWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0Bwc3ItMXAtcHJpbXNjcm4tY3VyLWluZGZiLWRy
+YXctcmVuZGVyLmh0bWwiPg0KRkFJTDwvYT48L2xpPjwvdWw+DQo8L2xpPjxsaT4NCjxwPmlndEBr
+bXNfc2VxdWVuY2VAcXVldWUtaWRsZUBlZHAtMS1waXBlLWE6PC9wPg0KPHVsPg0KPGxpPnNoYXJk
+LXNrbDogTk9UUlVOIC0mZ3Q7IDxhIGhyZWY9Imh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
+cmVlL2RybS10aXAvUGF0Y2h3b3JrXzExMDE1NXYxL3NoYXJkLXNrbDIvaWd0QGttc19zZXF1ZW5j
+ZUBxdWV1ZS1pZGxlQGVkcC0xLXBpcGUtYS5odG1sIj4NCkZBSUw8L2E+PC9saT48L3VsPg0KPC9s
+aT48bGk+DQo8cD5pZ3RAc3luY29ial90aW1lbGluZUB3YWl0LWFsbC1mb3Itc3VibWl0LXNuYXBz
+aG90OjwvcD4NCjx1bD4NCjxsaT5zaGFyZC1za2w6IDxhIGhyZWY9Imh0dHBzOi8vaW50ZWwtZ2Z4
+LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzEyMjk1L3NoYXJkLXNrbDIvaWd0QHN5bmNv
+YmpfdGltZWxpbmVAd2FpdC1hbGwtZm9yLXN1Ym1pdC1zbmFwc2hvdC5odG1sIj4NClBBU1M8L2E+
+IC0mZ3Q7IDxhIGhyZWY9Imh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+UGF0Y2h3b3JrXzExMDE1NXYxL3NoYXJkLXNrbDEvaWd0QHN5bmNvYmpfdGltZWxpbmVAd2FpdC1h
+bGwtZm9yLXN1Ym1pdC1zbmFwc2hvdC5odG1sIj4NCkZBSUw8L2E+PC9saT48L3VsPg0KPC9saT48
+L3VsPg0KPGg0Pldhcm5pbmdzPC9oND4NCjx1bD4NCjxsaT5pZ3RAcnVubmVyQGFib3J0ZWQ6DQo8
+dWw+DQo8bGk+c2hhcmQtc2tsOiAoPGEgaHJlZj0iaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
+L3RyZWUvZHJtLXRpcC9DSV9EUk1fMTIyOTUvc2hhcmQtc2tsNC9pZ3RAcnVubmVyQGFib3J0ZWQu
+aHRtbCI+RkFJTDwvYT4sDQo8YSBocmVmPSJodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJl
+ZS9kcm0tdGlwL0NJX0RSTV8xMjI5NS9zaGFyZC1za2wxMC9pZ3RAcnVubmVyQGFib3J0ZWQuaHRt
+bCI+DQpGQUlMPC9hPiwgPGEgaHJlZj0iaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUv
+ZHJtLXRpcC9DSV9EUk1fMTIyOTUvc2hhcmQtc2tsNy9pZ3RAcnVubmVyQGFib3J0ZWQuaHRtbCI+
+DQpGQUlMPC9hPikgKDxhIGhyZWY9Imh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0v
+aW50ZWwvaXNzdWVzLzMwMDIiPmk5MTUjMzAwMjwvYT4gLw0KPGEgaHJlZj0iaHR0cHM6Ly9naXRs
+YWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvNDMxMiI+aTkxNSM0MzEyPC9hPiAv
+IDxhIGhyZWY9Imh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVz
+LzY5NDkiPg0KaTkxNSM2OTQ5PC9hPikgLSZndDsgKDxhIGhyZWY9Imh0dHBzOi8vaW50ZWwtZ2Z4
+LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzExMDE1NXYxL3NoYXJkLXNrbDkvaWd0
+QHJ1bm5lckBhYm9ydGVkLmh0bWwiPkZBSUw8L2E+LA0KPGEgaHJlZj0iaHR0cHM6Ly9pbnRlbC1n
+ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTEwMTU1djEvc2hhcmQtc2tsMi9p
+Z3RAcnVubmVyQGFib3J0ZWQuaHRtbCI+DQpGQUlMPC9hPiwgPGEgaHJlZj0iaHR0cHM6Ly9pbnRl
+bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTEwMTU1djEvc2hhcmQtc2ts
+Mi9pZ3RAcnVubmVyQGFib3J0ZWQuaHRtbCI+DQpGQUlMPC9hPiwgPGEgaHJlZj0iaHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTEwMTU1djEvc2hhcmQt
+c2tsMy9pZ3RAcnVubmVyQGFib3J0ZWQuaHRtbCI+DQpGQUlMPC9hPiwgPGEgaHJlZj0iaHR0cHM6
+Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTEwMTU1djEvc2hh
+cmQtc2tsNS9pZ3RAcnVubmVyQGFib3J0ZWQuaHRtbCI+DQpGQUlMPC9hPiwgPGEgaHJlZj0iaHR0
+cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTEwMTU1djEv
+c2hhcmQtc2tsMy9pZ3RAcnVubmVyQGFib3J0ZWQuaHRtbCI+DQpGQUlMPC9hPiwgPGEgaHJlZj0i
+aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTEwMTU1
+djEvc2hhcmQtc2tsNi9pZ3RAcnVubmVyQGFib3J0ZWQuaHRtbCI+DQpGQUlMPC9hPikgKDxhIGhy
+ZWY9Imh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzMwMDIi
+Pmk5MTUjMzAwMjwvYT4gLw0KPGEgaHJlZj0iaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3Jn
+L2RybS9pbnRlbC9pc3N1ZXMvNDMxMiI+aTkxNSM0MzEyPC9hPik8L2xpPjwvdWw+DQo8L2xpPjwv
+dWw+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-It would look something like this, inside vc4_vec_encoder_atomic_check():
-
-+	const struct vc4_vec_tv_mode *tv_mode =
-+		vc4_vec_tv_mode_lookup(conn_state->tv.mode);
-+
-+	if (!tv_mode)
-+		return -EINVAL;
-
-Without this, it's possible to set e.g. 480i mode and SECAM, which will fail -
-but with the current version it will only fail in vc4_vec_encoder_enable(),
-which cannot return an error, and in my experience that causes a rather lengthy
-lockup.
-
-But, like I said, I still need to actually test that with this version.
-
-Anyway, I was also thinking about adding support for the more "exotic"
-non-standard modes. NTSC-50 is, unfortunately, impossible with VEC, but
-PAL-N-60 and PAL-M-50 should work. The necessary vc4_vec_tv_modes entries would
-look something like:
-
-@@ -325,12 +325,28 @@ static const struct vc4_vec_tv_mode vc4_vec_tv_modes[] = {
- 		.config0 = VEC_CONFIG0_PAL_M_STD,
- 		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
- 	},
-+	{
-+		/* PAL-M-50 */
-+		.mode = DRM_MODE_TV_MODE_PAL,
-+		.expected_htotal = 864,
-+		.config0 = VEC_CONFIG0_PAL_BDGHI_STD,
-+		.config1 = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,
-+		.custom_freq = 0x21e6efe3,
-+	},
- 	{
- 		.mode = DRM_MODE_TV_MODE_PAL_N,
- 		.expected_htotal = 864,
- 		.config0 = VEC_CONFIG0_PAL_N_STD,
- 		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
- 	},
-+	{
-+		/* PAL-N-60 */
-+		.mode = DRM_MODE_TV_MODE_PAL_N,
-+		.expected_htotal = 858,
-+		.config0 = VEC_CONFIG0_PAL_M_STD,
-+		.config1 = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,
-+		.custom_freq = 0x21f69446,
-+	},
- 	{
- 		.mode = DRM_MODE_TV_MODE_SECAM,
- 		.expected_htotal = 864,
-
-I'm not sure if we actually want to add that. The two arguments for doing so
-I can think of is 1. it should work, so "why not", 2. it means that more modes
-will result in _some_ kind of a valid signal, rather than erroring out, which
-is always a plus in my book. I can also think of a hypothetical use case, like
-someone in South America with an old PAL-N-only set that would nevertheless
-still sync at 60 Hz (perhaps with the help of messing with vertical hold knob),
-who would like to play retro games at 60 Hz in color.
-
-But on the other hand, I admit that this scenario is likely a stretch and the
-number of people who would actually use it is probably close to the proverbial
-two ;) So it's your call, I'm just leaving those settings here just in case.
-
-I'll get back in a couple of days when I do some testing of this v6 patchset.
-
-Best regards,
-Mateusz Kwiatkowski
-
-W dniu 26.10.2022 o 17:33, maxime@cerno.tech pisze:
-> From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
->
-> Add support for the following composite output modes (all of them are
-> somewhat more obscure than the previously defined ones):
->
-> - NTSC_443 - NTSC-style signal with the chroma subcarrier shifted to
->   4.43361875 MHz (the PAL subcarrier frequency). Never used for
->   broadcasting, but sometimes used as a hack to play NTSC content in PAL
->   regions (e.g. on VCRs).
-> - PAL_N - PAL with alternative chroma subcarrier frequency,
->   3.58205625 MHz. Used as a broadcast standard in Argentina, Paraguay
->   and Uruguay to fit 576i50 with colour in 6 MHz channel raster.
-> - PAL60 - 480i60 signal with PAL-style color at normal European PAL
->   frequency. Another non-standard, non-broadcast mode, used in similar
->   contexts as NTSC_443. Some displays support one but not the other.
-> - SECAM - French frequency-modulated analog color standard; also have
->   been broadcast in Eastern Europe and various parts of Africa and Asia.
->   Uses the same 576i50 timings as PAL.
->
-> Also added some comments explaining color subcarrier frequency
-> registers.
->
-> Acked-by: Noralf Trønnes <noralf@tronnes.org>
-> Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
->
-> ---
-> Changes in v6:
-> - Support PAL60 again
-> ---
->  drivers/gpu/drm/vc4/vc4_vec.c | 111 ++++++++++++++++++++++++++++++++++++++++--
->  1 file changed, 107 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c
-> index 1dda451c8def..d82aef168075 100644
-> --- a/drivers/gpu/drm/vc4/vc4_vec.c
-> +++ b/drivers/gpu/drm/vc4/vc4_vec.c
-> @@ -46,6 +46,7 @@
->  #define VEC_CONFIG0_YDEL(x)		((x) << 26)
->  #define VEC_CONFIG0_CDEL_MASK		GENMASK(25, 24)
->  #define VEC_CONFIG0_CDEL(x)		((x) << 24)
-> +#define VEC_CONFIG0_SECAM_STD		BIT(21)
->  #define VEC_CONFIG0_PBPR_FIL		BIT(18)
->  #define VEC_CONFIG0_CHROMA_GAIN_MASK	GENMASK(17, 16)
->  #define VEC_CONFIG0_CHROMA_GAIN_UNITY	(0 << 16)
-> @@ -76,6 +77,27 @@
->  #define VEC_SOFT_RESET			0x10c
->  #define VEC_CLMP0_START			0x144
->  #define VEC_CLMP0_END			0x148
-> +
-> +/*
-> + * These set the color subcarrier frequency
-> + * if VEC_CONFIG1_CUSTOM_FREQ is enabled.
-> + *
-> + * VEC_FREQ1_0 contains the most significant 16-bit half-word,
-> + * VEC_FREQ3_2 contains the least significant 16-bit half-word.
-> + * 0x80000000 seems to be equivalent to the pixel clock
-> + * (which itself is the VEC clock divided by 8).
-> + *
-> + * Reference values (with the default pixel clock of 13.5 MHz):
-> + *
-> + * NTSC  (3579545.[45] Hz)     - 0x21F07C1F
-> + * PAL   (4433618.75 Hz)       - 0x2A098ACB
-> + * PAL-M (3575611.[888111] Hz) - 0x21E6EFE3
-> + * PAL-N (3582056.25 Hz)       - 0x21F69446
-> + *
-> + * NOTE: For SECAM, it is used as the Dr center frequency,
-> + * regardless of whether VEC_CONFIG1_CUSTOM_FREQ is enabled or not;
-> + * that is specified as 4406250 Hz, which corresponds to 0x29C71C72.
-> + */
->  #define VEC_FREQ3_2			0x180
->  #define VEC_FREQ1_0			0x184
->  
-> @@ -118,6 +140,14 @@
->  
->  #define VEC_INTERRUPT_CONTROL		0x190
->  #define VEC_INTERRUPT_STATUS		0x194
-> +
-> +/*
-> + * Db center frequency for SECAM; the clock for this is the same as for
-> + * VEC_FREQ3_2/VEC_FREQ1_0, which is used for Dr center frequency.
-> + *
-> + * This is specified as 4250000 Hz, which corresponds to 0x284BDA13.
-> + * That is also the default value, so no need to set it explicitly.
-> + */
->  #define VEC_FCW_SECAM_B			0x198
->  #define VEC_SECAM_GAIN_VAL		0x19c
->  
-> @@ -197,10 +227,15 @@ enum vc4_vec_tv_mode_id {
->  	VC4_VEC_TV_MODE_NTSC_J,
->  	VC4_VEC_TV_MODE_PAL,
->  	VC4_VEC_TV_MODE_PAL_M,
-> +	VC4_VEC_TV_MODE_NTSC_443,
-> +	VC4_VEC_TV_MODE_PAL_60,
-> +	VC4_VEC_TV_MODE_PAL_N,
-> +	VC4_VEC_TV_MODE_SECAM,
->  };
->  
->  struct vc4_vec_tv_mode {
->  	unsigned int mode;
-> +	u16 expected_htotal;
->  	u32 config0;
->  	u32 config1;
->  	u32 custom_freq;
-> @@ -236,35 +271,68 @@ static const struct debugfs_reg32 vec_regs[] = {
->  static const struct vc4_vec_tv_mode vc4_vec_tv_modes[] = {
->  	{
->  		.mode = DRM_MODE_TV_MODE_NTSC,
-> +		.expected_htotal = 858,
->  		.config0 = VEC_CONFIG0_NTSC_STD | VEC_CONFIG0_PDEN,
->  		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
->  	},
-> +	{
-> +		.mode = DRM_MODE_TV_MODE_NTSC_443,
-> +		.expected_htotal = 858,
-> +		.config0 = VEC_CONFIG0_NTSC_STD,
-> +		.config1 = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,
-> +		.custom_freq = 0x2a098acb,
-> +	},
->  	{
->  		.mode = DRM_MODE_TV_MODE_NTSC_J,
-> +		.expected_htotal = 858,
->  		.config0 = VEC_CONFIG0_NTSC_STD,
->  		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
->  	},
->  	{
->  		.mode = DRM_MODE_TV_MODE_PAL,
-> +		.expected_htotal = 864,
->  		.config0 = VEC_CONFIG0_PAL_BDGHI_STD,
->  		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
->  	},
-> +	{
-> +		/* PAL-60 */
-> +		.mode = DRM_MODE_TV_MODE_PAL,
-> +		.expected_htotal = 858,
-> +		.config0 = VEC_CONFIG0_PAL_M_STD,
-> +		.config1 = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ,
-> +		.custom_freq = 0x2a098acb,
-> +	},
->  	{
->  		.mode = DRM_MODE_TV_MODE_PAL_M,
-> +		.expected_htotal = 858,
->  		.config0 = VEC_CONFIG0_PAL_M_STD,
->  		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
->  	},
-> +	{
-> +		.mode = DRM_MODE_TV_MODE_PAL_N,
-> +		.expected_htotal = 864,
-> +		.config0 = VEC_CONFIG0_PAL_N_STD,
-> +		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
-> +	},
-> +	{
-> +		.mode = DRM_MODE_TV_MODE_SECAM,
-> +		.expected_htotal = 864,
-> +		.config0 = VEC_CONFIG0_SECAM_STD,
-> +		.config1 = VEC_CONFIG1_C_CVBS_CVBS,
-> +		.custom_freq = 0x29c71c72,
-> +	},
->  };
->  
->  static inline const struct vc4_vec_tv_mode *
-> -vc4_vec_tv_mode_lookup(unsigned int mode)
-> +vc4_vec_tv_mode_lookup(unsigned int mode, u16 htotal)
->  {
->  	unsigned int i;
->  
->  	for (i = 0; i < ARRAY_SIZE(vc4_vec_tv_modes); i++) {
->  		const struct vc4_vec_tv_mode *tv_mode = &vc4_vec_tv_modes[i];
->  
-> -		if (tv_mode->mode == mode)
-> +		if (tv_mode->mode == mode &&
-> +		    tv_mode->expected_htotal == htotal)
->  			return tv_mode;
->  	}
->  
-> @@ -273,9 +341,13 @@ vc4_vec_tv_mode_lookup(unsigned int mode)
->  
->  static const struct drm_prop_enum_list legacy_tv_mode_names[] = {
->  	{ VC4_VEC_TV_MODE_NTSC, "NTSC", },
-> +	{ VC4_VEC_TV_MODE_NTSC_443, "NTSC-443", },
->  	{ VC4_VEC_TV_MODE_NTSC_J, "NTSC-J", },
->  	{ VC4_VEC_TV_MODE_PAL, "PAL", },
-> +	{ VC4_VEC_TV_MODE_PAL_60, "PAL-60", },
->  	{ VC4_VEC_TV_MODE_PAL_M, "PAL-M", },
-> +	{ VC4_VEC_TV_MODE_PAL_N, "PAL-N", },
-> +	{ VC4_VEC_TV_MODE_SECAM, "SECAM", },
->  };
->  
->  static enum drm_connector_status
-> @@ -306,11 +378,16 @@ vc4_vec_connector_set_property(struct drm_connector *connector,
->  		state->tv.mode = DRM_MODE_TV_MODE_NTSC;
->  		break;
->  
-> +	case VC4_VEC_TV_MODE_NTSC_443:
-> +		state->tv.mode = DRM_MODE_TV_MODE_NTSC_443;
-> +		break;
-> +
->  	case VC4_VEC_TV_MODE_NTSC_J:
->  		state->tv.mode = DRM_MODE_TV_MODE_NTSC_J;
->  		break;
->  
->  	case VC4_VEC_TV_MODE_PAL:
-> +	case VC4_VEC_TV_MODE_PAL_60:
->  		state->tv.mode = DRM_MODE_TV_MODE_PAL;
->  		break;
->  
-> @@ -318,6 +395,14 @@ vc4_vec_connector_set_property(struct drm_connector *connector,
->  		state->tv.mode = DRM_MODE_TV_MODE_PAL_M;
->  		break;
->  
-> +	case VC4_VEC_TV_MODE_PAL_N:
-> +		state->tv.mode = DRM_MODE_TV_MODE_PAL_N;
-> +		break;
-> +
-> +	case VC4_VEC_TV_MODE_SECAM:
-> +		state->tv.mode = DRM_MODE_TV_MODE_SECAM;
-> +		break;
-> +
->  	default:
->  		return -EINVAL;
->  	}
-> @@ -341,6 +426,10 @@ vc4_vec_connector_get_property(struct drm_connector *connector,
->  		*val = VC4_VEC_TV_MODE_NTSC;
->  		break;
->  
-> +	case DRM_MODE_TV_MODE_NTSC_443:
-> +		*val = VC4_VEC_TV_MODE_NTSC_443;
-> +		break;
-> +
->  	case DRM_MODE_TV_MODE_NTSC_J:
->  		*val = VC4_VEC_TV_MODE_NTSC_J;
->  		break;
-> @@ -353,6 +442,14 @@ vc4_vec_connector_get_property(struct drm_connector *connector,
->  		*val = VC4_VEC_TV_MODE_PAL_M;
->  		break;
->  
-> +	case DRM_MODE_TV_MODE_PAL_N:
-> +		*val = VC4_VEC_TV_MODE_PAL_N;
-> +		break;
-> +
-> +	case DRM_MODE_TV_MODE_SECAM:
-> +		*val = VC4_VEC_TV_MODE_SECAM;
-> +		break;
-> +
->  	default:
->  		return -EINVAL;
->  	}
-> @@ -448,13 +545,16 @@ static void vc4_vec_encoder_enable(struct drm_encoder *encoder,
->  	struct drm_connector *connector = &vec->connector;
->  	struct drm_connector_state *conn_state =
->  		drm_atomic_get_new_connector_state(state, connector);
-> +	struct drm_display_mode *adjusted_mode =
-> +		&encoder->crtc->state->adjusted_mode;
->  	const struct vc4_vec_tv_mode *tv_mode;
->  	int idx, ret;
->  
->  	if (!drm_dev_enter(drm, &idx))
->  		return;
->  
-> -	tv_mode = vc4_vec_tv_mode_lookup(conn_state->tv.mode);
-> +	tv_mode = vc4_vec_tv_mode_lookup(conn_state->tv.mode,
-> +					 adjusted_mode->htotal);
->  	if (!tv_mode)
->  		goto err_dev_exit;
->  
-> @@ -643,9 +743,12 @@ static int vc4_vec_bind(struct device *dev, struct device *master, void *data)
->  
->  	ret = drm_mode_create_tv_properties(drm,
->  					    BIT(DRM_MODE_TV_MODE_NTSC) |
-> +					    BIT(DRM_MODE_TV_MODE_NTSC_443) |
->  					    BIT(DRM_MODE_TV_MODE_NTSC_J) |
->  					    BIT(DRM_MODE_TV_MODE_PAL) |
-> -					    BIT(DRM_MODE_TV_MODE_PAL_M));
-> +					    BIT(DRM_MODE_TV_MODE_PAL_M) |
-> +					    BIT(DRM_MODE_TV_MODE_PAL_N) |
-> +					    BIT(DRM_MODE_TV_MODE_SECAM));
->  	if (ret)
->  		return ret;
->  
->
-
+--_000_c2034ca7ee6233f5e58809c59e5c443a4229ea20camelintelcom_--
