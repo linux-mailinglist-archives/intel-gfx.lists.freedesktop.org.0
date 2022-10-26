@@ -2,46 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F9060EB73
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 00:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F8CB60EB7A
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 00:21:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48EBA10E533;
-	Wed, 26 Oct 2022 22:21:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F038710E578;
+	Wed, 26 Oct 2022 22:21:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E16B710E533
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 22:21:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2298310E53B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 22:21:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666822865; x=1698358865;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yvtkaKkqrCXSymCz3lFMUswjF3RrfcWJbyNYtXtYdsY=;
- b=BsCJTYu1PWdi/p9QorbkAPp/2GodlhzpYZohS1saOMTiqMKOEL/F6Njm
- F1+4lS7nhEuVvQ+cfsEB0tkNGXdFu31qXS//wE3cNbKoin2OkzFG4dpid
- v/l4JNyzg2ytAUr2ydPZXPTuY+E/uJurlDDJOBfTMMdTLblFOInJ1NvyL
- xmRhei9DtJ6Prk4W7njHs1dbFOcq32Euq9Hc12NWe8OKvbJdEseV+ODef
- HWxdzASFEVb5MuKugPP2sr+SYbnA8iHuU7RwNfE31PfGzs7q9W6bU5AUF
- X05osegFF/Yz1G7zeFls6NCjO3xxfvZjr3Q1C+Y5ql5Dog269iY+uAYcI g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="394390422"
-X-IronPort-AV: E=Sophos;i="5.95,215,1661842800"; d="scan'208";a="394390422"
+ t=1666822866; x=1698358866;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=wyTprWxRDAJtaGf1vt1QfI6lpLCf4CizLzJL1rV+Pa4=;
+ b=cs/1Epj3tlOS4xBn/9nlgPdfWuWrAfCq7NVdkVF0xFZ3hVyl24NXzHDg
+ 6hMCT+jTUYafZaCYFSrM+x7QejgCKiDuhiyLtUXcIiCHcFXfnS4Q0q+UI
+ BQWc7pNfpwdI2yz/FHM91ulms700YNy7W9Z3cojgqC7uVQ0YrgSYU2Sa9
+ ooeT6L2wR9Is5UB1tB9i1OZXzVihjFATLwrSiUJSsS6b/ipl50CaO++8E
+ FsfW4naFzpp7cuqgqXtqW9RNWPJdd/hmHXpzhxzjrX8FW3npsLISG37uu
+ sHT6zYnuo1ZxpXigsuUm/sxpC11cNBLtM1kpa+Gjfp6zVr3GX1XDqZLfL A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="394390423"
+X-IronPort-AV: E=Sophos;i="5.95,215,1661842800"; d="scan'208";a="394390423"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Oct 2022 15:21:05 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="721431379"
-X-IronPort-AV: E=Sophos;i="5.95,215,1661842800"; d="scan'208";a="721431379"
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="721431380"
+X-IronPort-AV: E=Sophos;i="5.95,215,1661842800"; d="scan'208";a="721431380"
 Received: from dut042-dg2frd.fm.intel.com ([10.105.19.4])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Oct 2022 15:21:05 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Oct 2022 22:20:46 +0000
-Message-Id: <20221026222102.5526-1-umesh.nerlige.ramappa@intel.com>
+Date: Wed, 26 Oct 2022 22:20:47 +0000
+Message-Id: <20221026222102.5526-2-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221026222102.5526-1-umesh.nerlige.ramappa@intel.com>
+References: <20221026222102.5526-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 00/16] Add DG2 OA support
+Subject: [Intel-gfx] [PATCH v6 01/16] drm/i915/perf: Fix OA filtering logic
+ for GuC mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,107 +60,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add OA format support for DG2 and various fixes for DG2.
+With GuC mode of submission, GuC is in control of defining the context
+id field that is part of the OA reports. To filter reports, UMD and KMD
+must know what sw context id was chosen by GuC. There is not interface
+between KMD and GuC to determine this, so read the upper-dword of
+EXECLIST_STATUS to filter/squash OA reports for the specific context.
 
-This series has 2 uapi changes listed below:
+v2: Explain guc id stealing w.r.t OA use case
 
-1) drm/i915/perf: Add OAG and OAR formats for DG2
-
-DG2 has new OA formats defined that can be selected by the
-user. The UMD changes that are consumed by GPUvis are:
-https://patchwork.freedesktop.org/patch/504456/?series=107633&rev=5
-
-Mesa MR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18893
-
-2) drm/i915/perf: Apply Wa_18013179988
-
-DG2 has a bug where the OA timestamp does not tick at the CS timestamp
-frequency. Instead it ticks at a multiple that is determined from the
-CTC_SHIFT value in RPM_CONFIG. Since the timestamp is used by UMD to
-make sense of all the counters in the report, expose the OA timestamp
-frequency to the user. The interface is generic and applies to all
-platforms. On platforms where the bug is not present, this returns the
-CS timestamp frequency. UMD specific changes consumed by GPUvis are:
-https://patchwork.freedesktop.org/patch/504464/?series=107633&rev=5
-
-Mesa MR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18893
-
-v2:
-- Add review comments
-- Update uapi changes in cover letter
-- Drop patches for non-production platforms
-drm/i915/perf: Use helpers to process reports w.r.t. OA buffer size
-drm/i915/perf: Add Wa_16010703925:dg2
-
-- Drop 64-bit OA format changes for now
-drm/i915/perf: Parse 64bit report header formats correctly
-drm/i915/perf: Add Wa_1608133521:dg2
-
-v3:
-- Add review comments to patches 02, 04, 05, 14
-- Drop Acks
-
-v4:
-- Add review comments to patch 04
-- Update R-bs
-- Add MR links to patches 02 and 12
-
-v5:
-- Drop unrelated comment
-- Rebase and fix MCR reg write
-- On pre-gen12, EU flex config is saved/restored in the context image, so
-  save/restore EU flex config only for gen12.
-
-v6:
-- Fix checkpatch issues
-
-Test-with: 20221025200709.83314-1-umesh.nerlige.ramappa@intel.com
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.h |   2 +
+ drivers/gpu/drm/i915/i915_perf.c    | 144 ++++++++++++++++++++++++----
+ 2 files changed, 127 insertions(+), 19 deletions(-)
 
-Lionel Landwerlin (1):
-  drm/i915/perf: complete programming whitelisting for XEHPSDV
-
-Umesh Nerlige Ramappa (14):
-  drm/i915/perf: Fix OA filtering logic for GuC mode
-  drm/i915/perf: Add 32-bit OAG and OAR formats for DG2
-  drm/i915/perf: Fix noa wait predication for DG2
-  drm/i915/perf: Determine gen12 oa ctx offset at runtime
-  drm/i915/perf: Enable bytes per clock reporting in OA
-  drm/i915/perf: Simply use stream->ctx
-  drm/i915/perf: Move gt-specific data from i915->perf to gt->perf
-  drm/i915/perf: Replace gt->perf.lock with stream->lock for file ops
-  drm/i915/perf: Use gt-specific ggtt for OA and noa-wait buffers
-  drm/i915/perf: Store a pointer to oa_format in oa_buffer
-  drm/i915/perf: Add Wa_1508761755:dg2
-  drm/i915/perf: Apply Wa_18013179988
-  drm/i915/perf: Save/restore EU flex counters across reset
-  drm/i915/perf: Enable OA for DG2
-
-Vinay Belgaumkar (1):
-  drm/i915/guc: Support OA when Wa_16011777198 is enabled
-
- drivers/gpu/drm/i915/gt/intel_engine_regs.h   |   1 +
- drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   4 +
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
- drivers/gpu/drm/i915/gt/intel_lrc.h           |   2 +
- drivers/gpu/drm/i915/gt/intel_sseu.c          |   4 +-
- .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |   9 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  10 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |  66 ++
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |   2 +
- drivers/gpu/drm/i915/i915_drv.h               |   5 +
- drivers/gpu/drm/i915/i915_getparam.c          |   3 +
- drivers/gpu/drm/i915/i915_pci.c               |   2 +
- drivers/gpu/drm/i915/i915_perf.c              | 576 ++++++++++++++----
- drivers/gpu/drm/i915/i915_perf.h              |   2 +
- drivers/gpu/drm/i915/i915_perf_oa_regs.h      |   6 +-
- drivers/gpu/drm/i915/i915_perf_types.h        |  47 +-
- drivers/gpu/drm/i915/intel_device_info.h      |   2 +
- drivers/gpu/drm/i915/selftests/i915_perf.c    |  16 +-
- include/uapi/drm/i915_drm.h                   |  10 +
- 20 files changed, 630 insertions(+), 141 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
+index a390f0813c8b..7111bae759f3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.h
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
+@@ -110,6 +110,8 @@ enum {
+ #define XEHP_SW_CTX_ID_WIDTH			16
+ #define XEHP_SW_COUNTER_SHIFT			58
+ #define XEHP_SW_COUNTER_WIDTH			6
++#define GEN12_GUC_SW_CTX_ID_SHIFT		39
++#define GEN12_GUC_SW_CTX_ID_WIDTH		16
+ 
+ static inline void lrc_runtime_start(struct intel_context *ce)
+ {
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 15816df916c7..255335868b6a 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -1231,6 +1231,128 @@ static struct intel_context *oa_pin_context(struct i915_perf_stream *stream)
+ 	return stream->pinned_ctx;
+ }
+ 
++static int
++__store_reg_to_mem(struct i915_request *rq, i915_reg_t reg, u32 ggtt_offset)
++{
++	u32 *cs, cmd;
++
++	cmd = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
++	if (GRAPHICS_VER(rq->engine->i915) >= 8)
++		cmd++;
++
++	cs = intel_ring_begin(rq, 4);
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	*cs++ = cmd;
++	*cs++ = i915_mmio_reg_offset(reg);
++	*cs++ = ggtt_offset;
++	*cs++ = 0;
++
++	intel_ring_advance(rq, cs);
++
++	return 0;
++}
++
++static int
++__read_reg(struct intel_context *ce, i915_reg_t reg, u32 ggtt_offset)
++{
++	struct i915_request *rq;
++	int err;
++
++	rq = i915_request_create(ce);
++	if (IS_ERR(rq))
++		return PTR_ERR(rq);
++
++	i915_request_get(rq);
++
++	err = __store_reg_to_mem(rq, reg, ggtt_offset);
++
++	i915_request_add(rq);
++	if (!err && i915_request_wait(rq, 0, HZ / 2) < 0)
++		err = -ETIME;
++
++	i915_request_put(rq);
++
++	return err;
++}
++
++static int
++gen12_guc_sw_ctx_id(struct intel_context *ce, u32 *ctx_id)
++{
++	struct i915_vma *scratch;
++	u32 *val;
++	int err;
++
++	scratch = __vm_create_scratch_for_read_pinned(&ce->engine->gt->ggtt->vm, 4);
++	if (IS_ERR(scratch))
++		return PTR_ERR(scratch);
++
++	err = i915_vma_sync(scratch);
++	if (err)
++		goto err_scratch;
++
++	err = __read_reg(ce, RING_EXECLIST_STATUS_HI(ce->engine->mmio_base),
++			 i915_ggtt_offset(scratch));
++	if (err)
++		goto err_scratch;
++
++	val = i915_gem_object_pin_map_unlocked(scratch->obj, I915_MAP_WB);
++	if (IS_ERR(val)) {
++		err = PTR_ERR(val);
++		goto err_scratch;
++	}
++
++	*ctx_id = *val;
++	i915_gem_object_unpin_map(scratch->obj);
++
++err_scratch:
++	i915_vma_unpin_and_release(&scratch, 0);
++	return err;
++}
++
++/*
++ * For execlist mode of submission, pick an unused context id
++ * 0 - (NUM_CONTEXT_TAG -1) are used by other contexts
++ * XXX_MAX_CONTEXT_HW_ID is used by idle context
++ *
++ * For GuC mode of submission read context id from the upper dword of the
++ * EXECLIST_STATUS register. Note that we read this value only once and expect
++ * that the value stays fixed for the entire OA use case. There are cases where
++ * GuC KMD implementation may deregister a context to reuse it's context id, but
++ * we prevent that from happening to the OA context by pinning it.
++ */
++static int gen12_get_render_context_id(struct i915_perf_stream *stream)
++{
++	u32 ctx_id, mask;
++	int ret;
++
++	if (intel_engine_uses_guc(stream->engine)) {
++		ret = gen12_guc_sw_ctx_id(stream->pinned_ctx, &ctx_id);
++		if (ret)
++			return ret;
++
++		mask = ((1U << GEN12_GUC_SW_CTX_ID_WIDTH) - 1) <<
++			(GEN12_GUC_SW_CTX_ID_SHIFT - 32);
++	} else if (GRAPHICS_VER_FULL(stream->engine->i915) >= IP_VER(12, 50)) {
++		ctx_id = (XEHP_MAX_CONTEXT_HW_ID - 1) <<
++			(XEHP_SW_CTX_ID_SHIFT - 32);
++
++		mask = ((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
++			(XEHP_SW_CTX_ID_SHIFT - 32);
++	} else {
++		ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) <<
++			 (GEN11_SW_CTX_ID_SHIFT - 32);
++
++		mask = ((1U << GEN11_SW_CTX_ID_WIDTH) - 1) <<
++			(GEN11_SW_CTX_ID_SHIFT - 32);
++	}
++	stream->specific_ctx_id = ctx_id & mask;
++	stream->specific_ctx_id_mask = mask;
++
++	return 0;
++}
++
+ /**
+  * oa_get_render_ctx_id - determine and hold ctx hw id
+  * @stream: An i915-perf stream opened for OA metrics
+@@ -1244,6 +1366,7 @@ static struct intel_context *oa_pin_context(struct i915_perf_stream *stream)
+ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+ {
+ 	struct intel_context *ce;
++	int ret = 0;
+ 
+ 	ce = oa_pin_context(stream);
+ 	if (IS_ERR(ce))
+@@ -1290,24 +1413,7 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+ 
+ 	case 11:
+ 	case 12:
+-		if (GRAPHICS_VER_FULL(ce->engine->i915) >= IP_VER(12, 50)) {
+-			stream->specific_ctx_id_mask =
+-				((1U << XEHP_SW_CTX_ID_WIDTH) - 1) <<
+-				(XEHP_SW_CTX_ID_SHIFT - 32);
+-			stream->specific_ctx_id =
+-				(XEHP_MAX_CONTEXT_HW_ID - 1) <<
+-				(XEHP_SW_CTX_ID_SHIFT - 32);
+-		} else {
+-			stream->specific_ctx_id_mask =
+-				((1U << GEN11_SW_CTX_ID_WIDTH) - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
+-			/*
+-			 * Pick an unused context id
+-			 * 0 - BITS_PER_LONG are used by other contexts
+-			 * GEN12_MAX_CONTEXT_HW_ID (0x7ff) is used by idle context
+-			 */
+-			stream->specific_ctx_id =
+-				(GEN12_MAX_CONTEXT_HW_ID - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
+-		}
++		ret = gen12_get_render_context_id(stream);
+ 		break;
+ 
+ 	default:
+@@ -1321,7 +1427,7 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+ 		stream->specific_ctx_id,
+ 		stream->specific_ctx_id_mask);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ /**
 -- 
 2.25.1
 
