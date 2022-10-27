@@ -1,59 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9EFF60F884
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 15:09:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA84460FA84
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 16:37:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9897B10E631;
-	Thu, 27 Oct 2022 13:09:11 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A367B10E631
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 13:09:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E80210E650;
+	Thu, 27 Oct 2022 14:37:25 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88C0310E650
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 14:37:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666876147; x=1698412147;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=dHh/6/Dzmpx/29YzzJwtL73LUhSox/sVQeM65Sucsr8=;
- b=k6tA1jT6s+VgVUzblSjOoxNvW48sCqec9oLtZcuFrYHHIfJtN5SxdzKb
- u/wKFDtVKg5EsTICuJC+7V6ZDAHoaFstqeoEBTlntPsEGVu1Lm/OWQDNZ
- SCAJPbO6uL8HDCbubVSSSpDPABWk1O1YHCrqRiAtH/kbX3RtvluHbKEZc
- wy19KfC46DEPFWUsCdhJVBlpzMcelIk00565NBKRv04XzgCeg1dMr/QDj
- 8xsCT/3FbU10JyndVyy7mvsbKXy0KXPGf5PS+xS6/MGOxqPrC4lt2KAcV
- mx62uhAo11z5eUYTrmqOYF3pFsvvAWeVuTB+phifmOiJK2oXgYhPtKl1F g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="308209695"
-X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="308209695"
+ t=1666881442; x=1698417442;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=eevl7ITna1hMKAHJnc1Xawqrv3pRigvhaJzPJ4rONVQ=;
+ b=YF1ZRXtDVwAqGjtfYohKoFE5Wks1+ey6vMgPgn9KadlMYeZid+DHQ2Nj
+ B8xyyXDZqsq/lLn6XSpmN9daKALN+kbJnl4cOuPSMLZOmV3/gKm9hwO3t
+ AHGNi3BR32oMluB0odkCWowEKRrrfFOBeXIY+9oo61JqUgYXN+HavgtjO
+ +mfhNYwA/j1iYfvhmOfPtUFJ4jH1FgddSFzXiBpzonrVk6xUAWJ+DpRec
+ qjZ3B8VFqIfigG+vZK2W51iy2jh69PUFPS15x5vK4lGlmPoO3nNDbr7nt
+ mLUIRcFjQ8jJvfiMhQXu/JZn64Aah51Evh+nkKll+dRJ9dKyqAJYcreqD g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="334871325"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="334871325"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2022 06:09:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="634895825"
-X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="634895825"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.191])
- by fmsmga007.fm.intel.com with SMTP; 27 Oct 2022 06:09:02 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 27 Oct 2022 16:09:01 +0300
-Date: Thu, 27 Oct 2022 16:09:01 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Peter Zijlstra <peterz@infradead.org>
-Message-ID: <Y1qC7d7QVJB8NCHt@intel.com>
-References: <20220822111816.760285417@infradead.org>
- <20220822114649.055452969@infradead.org>
- <Y1LVYaPCCP3BBS4g@intel.com> <Y1drd2gzxUJWdz5F@intel.com>
- <Y1e/Kd+1UQqeSwzY@hirez.programming.kicks-ass.net>
- <Y1kMv1GpKwOSIt8f@intel.com>
- <Y1kdRNNfUeAU+FNl@hirez.programming.kicks-ass.net>
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2022 07:32:05 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="634926260"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="634926260"
+Received: from rgrilak-mobl.ger.corp.intel.com (HELO [10.213.238.72])
+ ([10.213.238.72])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2022 07:32:02 -0700
+Message-ID: <908129fa-3ddc-0f62-18df-e318dc760955@linux.intel.com>
+Date: Thu, 27 Oct 2022 15:32:00 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y1kdRNNfUeAU+FNl@hirez.programming.kicks-ass.net>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 6/6] freezer,
- sched: Rewrite core freezer logic
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To: Tejun Heo <tj@kernel.org>
+References: <20221019173254.3361334-1-tvrtko.ursulin@linux.intel.com>
+ <Y1BFziiJdBzsIJWH@slm.duckdns.org>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <Y1BFziiJdBzsIJWH@slm.duckdns.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC 00/17] DRM scheduling cgroup controller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,169 +62,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- bigeasy@linutronix.de, rjw@rjwysocki.net, oleg@redhat.com, rostedt@goodmis.org,
- mingo@kernel.org, mgorman@suse.de, intel-gfx@lists.freedesktop.org,
- tj@kernel.org, Will Deacon <will@kernel.org>, dietmar.eggemann@arm.com,
- ebiederm@xmission.com
+Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ Johannes Weiner <hannes@cmpxchg.org>, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zefan Li <lizefan.x@bytedance.com>, Dave Airlie <airlied@redhat.com>,
+ cgroups@vger.kernel.org, "T . J . Mercier" <tjmercier@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 26, 2022 at 01:43:00PM +0200, Peter Zijlstra wrote:
-> On Wed, Oct 26, 2022 at 01:32:31PM +0300, Ville Syrjälä wrote:
-> > Short form looks to be this:
-> > <4>[  355.437846] 1 lock held by rs:main Q:Reg/359:
-> > <4>[  355.438418]  #0: ffff88844693b758 (&rq->__lock){-.-.}-{2:2}, at: raw_spin_rq_lock_nested+0x1b/0x30
-> > <4>[  355.438432] rs:main Q:Reg/359 holding locks while freezing
-> 
-> > <4>[  355.438429] ------------[ cut here ]------------
-> > <4>[  355.438432] rs:main Q:Reg/359 holding locks while freezing
-> > <4>[  355.438439] WARNING: CPU: 0 PID: 6211 at kernel/freezer.c:134 __set_task_frozen+0x86/0xb0
-> > <4>[  355.438447] Modules linked in: snd_hda_intel i915 mei_hdcp mei_pxp drm_display_helper drm_kms_helper vgem drm_shmem_helper snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio snd_intel_dspcfg snd_hda_codec snd_hwdep snd_hda_core snd_pcm prime_numbers ttm drm_buddy syscopyarea sysfillrect sysimgblt fb_sys_fops fuse x86_pkg_temp_thermal coretemp kvm_intel btusb btrtl btbcm btintel kvm irqbypass bluetooth crct10dif_pclmul crc32_pclmul ecdh_generic ghash_clmulni_intel ecc e1000e mei_me i2c_i801 ptp mei i2c_smbus pps_core lpc_ich video wmi [last unloaded: drm_kms_helper]
-> > <4>[  355.438521] CPU: 0 PID: 6211 Comm: rtcwake Tainted: G     U             6.1.0-rc2-CI_DRM_12295-g3844a56a0922+ #1
-> > <4>[  355.438526] Hardware name:  /NUC5i7RYB, BIOS RYBDWi35.86A.0385.2020.0519.1558 05/19/2020
-> > <4>[  355.438530] RIP: 0010:__set_task_frozen+0x86/0xb0
-> > <4>[  355.438536] Code: 83 60 09 00 00 85 c0 74 2a 48 89 df e8 ac 02 9b 00 8b 93 38 05 00 00 48 8d b3 48 07 00 00 48 c7 c7 a0 62 2b 82 e8 ee c1 9a 00 <0f> 0b c6 05 51 75 e3 02 01 c7 43 18 00 80 00 00 b8 00 80 00 00 5b
-> > <4>[  355.438541] RSP: 0018:ffffc900012cbcf0 EFLAGS: 00010086
-> > <4>[  355.438546] RAX: 0000000000000000 RBX: ffff88810d090040 RCX: 0000000000000004
-> > <4>[  355.438550] RDX: 0000000000000004 RSI: 00000000fffff5de RDI: 00000000ffffffff
-> > <4>[  355.438553] RBP: 0000000000000000 R08: 0000000000000000 R09: c0000000fffff5de
-> > <4>[  355.438557] R10: 00000000002335f8 R11: ffffc900012cbb88 R12: 0000000000000246
-> > <4>[  355.438561] R13: ffffffff81165430 R14: 0000000000000000 R15: ffff88810d090040
-> > <4>[  355.438565] FS:  00007fcfa43c7740(0000) GS:ffff888446800000(0000) knlGS:0000000000000000
-> > <4>[  355.438569] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> > <4>[  355.438582] CR2: 00007fceb380f6b8 CR3: 0000000117c5c004 CR4: 00000000003706f0
-> > <4>[  355.438586] Call Trace:
-> > <4>[  355.438589]  <TASK>
-> > <4>[  355.438592]  task_call_func+0xc4/0xe0
-> > <4>[  355.438600]  freeze_task+0x84/0xe0
-> > <4>[  355.438607]  try_to_freeze_tasks+0xac/0x260
-> > <4>[  355.438616]  freeze_processes+0x56/0xb0
-> > <4>[  355.438622]  pm_suspend.cold.7+0x1d9/0x31c
-> > <4>[  355.438629]  state_store+0x7b/0xe0
-> > <4>[  355.438637]  kernfs_fop_write_iter+0x124/0x1c0
-> > <4>[  355.438644]  vfs_write+0x34f/0x4e0
-> > <4>[  355.438655]  ksys_write+0x57/0xd0
-> > <4>[  355.438663]  do_syscall_64+0x3a/0x90
-> > <4>[  355.438670]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> 
-> Oh I think I see what's going on.
-> 
-> It's a very narrow race between schedule() and task_call_func().
-> 
->   CPU0						CPU1
-> 
->   __schedule()
->     rq_lock();
->     prev_state = READ_ONCE(prev->__state);
->     if (... && prev_state) {
->       deactivate_tasl(rq, prev, ...)
->         prev->on_rq = 0;
-> 
-> 						task_call_func()
-> 						  raw_spin_lock_irqsave(p->pi_lock);
-> 						  state = READ_ONCE(p->__state);
-> 						  smp_rmb();
-> 						  if (... || p->on_rq) // false!!!
-> 						    rq = __task_rq_lock()
-> 
-> 						  ret = func();
-> 
->     next = pick_next_task();
->     rq = context_switch(prev, next)
->       prepare_lock_switch()
->         spin_release(&__rq_lockp(rq)->dep_map...)
-> 
-> 
-> 
-> So while the task is on it's way out, it still holds rq->lock for a
-> little while, and right then task_call_func() comes in and figures it
-> doesn't need rq->lock anymore (because the task is already dequeued --
-> but still running there) and then the __set_task_frozen() thing observes
-> it's holding rq->lock and yells murder.
-> 
-> Could you please give the below a spin?
 
-Thanks. I've added this to our CI branch. I'll try to keep and eye
-on it in the coming days and let you know if anything still trips.
-And I'll report back maybe ~middle of next week if we haven't caught
-anything by then.
+Hi Tejun,
+
+On 19/10/2022 19:45, Tejun Heo wrote:
+> Hello,
+> 
+> On Wed, Oct 19, 2022 at 06:32:37PM +0100, Tvrtko Ursulin wrote:
+> ...
+>> DRM static priority interface files
+>> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>
+>>    drm.priority_levels
+>> 	One of:
+>> 	 1) And integer representing the minimum number of discrete priority
+>> 	    levels for the whole group.
+>> 	    Optionally followed by an asterisk ('*') indicating some DRM clients
+>> 	    in the group support more than the minimum number.
+>> 	 2) '0'- indicating one or more DRM clients in the group has no support
+>> 	    for static priority control.
+>> 	 3) 'n/a' - when there are no DRM clients in the configured group.
+>>
+>>    drm.priority
+>> 	A read-write integer between -10000 and 10000 (inclusive) representing
+>> 	an abstract static priority level.
+>>
+>>    drm.effective_priority
+>> 	Read only integer showing the current effective priority level for the
+>> 	group. Effective meaning taking into account the chain of inherited
+> 
+>>From interface POV, this is a lot worse than the second proposal and I'd
+> really like to avoid this. Even if we go with mapping user priority
+> configuration to per-driver priorities, I'd much prefer if the interface
+> presented to user is weight based and let each driver try to match the
+> resulting hierarchical weight (ie. the absolute proportion a given cgroup
+> should have at the point in time) as best as they can rather than exposing
+> opaque priority numbers to userspace whose meaning isn't defined at all.
+
+I actually somewhat agree here and this proposal was mainly motivated by 
+my desire to come up with *something* which would allow similar 
+_external_ control as it exists in the CPU and IO world (nice/ionice).
+
+Because currently priority of GPU workloads cannot be controlled from 
+the outside at all. And especially if we consider pipelines composed of 
+stages where part of the processing is done on the CPU and part on the 
+GPU (or AI/VPU accelerator), then I think it would be really useful to 
+be able to do so.
+
+To this effect I proposed connecting CPU nice with GPU priority, same as 
+it is connected for IO priority (so only if it hasn't been explicitly 
+changed away from the defaults), but at that point I was getting 
+feedback nudging me into direction of cgroups.
+
+Looking at what's available in cgroups world now, I have spotted the 
+blkio.prio.class control. For my current use case (lower GPU scheduling 
+of background/unfocused windows) that would also work. Even if starting 
+with just two possible values - 'no-change' and 'idle' (to follow the IO 
+controller naming).
+
+How would you view that as a proposal? It would be a bit tougher "sell" 
+to the DRM community, perhaps, given that many drivers do have 
+scheduling priority, but the concept of scheduling class is not really 
+there. Nevertheless a concept of normal-vs-background could be plausible 
+in my mind. It could be easily implemented by using the priority 
+controls available in many drivers.
+
+>> DRM scheduling soft limits interface files
+>> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>
+>>    drm.weight
+>> 	Standard cgroup weight based control [1, 10000] used to configure the
+>> 	relative distributing of GPU time between the sibling groups.
+> 
+> Please take a look at io.weight. This can follow the same convention to
+> express both global and per-device weights.
+> 
+>>    drm.period_us
+>> 	An integer representing the period with which the controller should look
+>> 	at the GPU usage by the group and potentially send the over/under budget
+>> 	signal.
+>> 	Value of zero (defaul) disables the soft limit checking.
+> 
+> Can we not do period_us or at least make it a per-driver tuning parameter
+> exposed as module param? Weight, users can easily understand and configure.
+> period_us is a lot more an implementation detail. If we want to express the
+> trade-off between latency and bandwidth at the interface, we prolly should
+> encode the latency requirement in a more canonical way but let's leave that
+> for the future.
+
+Yes agreed - for the moment (while RFC) it is handy for me to have it 
+controllable per group. But I agree a kernel global (modparam) should be 
+sufficient in the final solution.
 
 > 
-> ---
-> diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-> index cb2aa2b54c7a..f519f44cd4c7 100644
-> --- a/kernel/sched/core.c
-> +++ b/kernel/sched/core.c
-> @@ -4200,6 +4200,37 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
->  	return success;
->  }
->  
-> +static bool __task_needs_rq_lock(struct task_struct *p)
-> +{
-> +	unsigned int state = READ_ONCE(p->__state);
-> +
-> +	/*
-> +	 * Since pi->lock blocks try_to_wake_up(), we don't need rq->lock when
-> +	 * the task is blocked. Make sure to check @state since ttwu() can drop
-> +	 * locks at the end, see ttwu_queue_wakelist().
-> +	 */
-> +	if (state == TASK_RUNNING || state == TASK_WAKING)
-> +		return true;
-> +
-> +	/*
-> +	 * Ensure we load p->on_rq after p->__state, otherwise it would be
-> +	 * possible to, falsely, observe p->on_rq == 0.
-> +	 *
-> +	 * See try_to_wake_up() for a longer comment.
-> +	 */
-> +	smp_rmb();
-> +	if (p->on_rq)
-> +		return true;
-> +
-> +#ifdef CONFIG_SMP
-> +	smp_rmb();
-> +	if (p->on_cpu)
-> +		return true;
-> +#endif
-> +
-> +	return false;
-> +}
-> +
->  /**
->   * task_call_func - Invoke a function on task in fixed state
->   * @p: Process for which the function is to be invoked, can be @current.
-> @@ -4217,28 +4248,12 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
->  int task_call_func(struct task_struct *p, task_call_f func, void *arg)
->  {
->  	struct rq *rq = NULL;
-> -	unsigned int state;
->  	struct rq_flags rf;
->  	int ret;
->  
->  	raw_spin_lock_irqsave(&p->pi_lock, rf.flags);
->  
-> -	state = READ_ONCE(p->__state);
-> -
-> -	/*
-> -	 * Ensure we load p->on_rq after p->__state, otherwise it would be
-> -	 * possible to, falsely, observe p->on_rq == 0.
-> -	 *
-> -	 * See try_to_wake_up() for a longer comment.
-> -	 */
-> -	smp_rmb();
-> -
-> -	/*
-> -	 * Since pi->lock blocks try_to_wake_up(), we don't need rq->lock when
-> -	 * the task is blocked. Make sure to check @state since ttwu() can drop
-> -	 * locks at the end, see ttwu_queue_wakelist().
-> -	 */
-> -	if (state == TASK_RUNNING || state == TASK_WAKING || p->on_rq)
-> +	if (__task_needs_rq_lock(p))
->  		rq = __task_rq_lock(p, &rf);
->  
->  	/*
+>>    drm.budget_supported
+>> 	One of:
+>> 	 1) 'yes' - when all DRM clients in the group support the functionality.
+>> 	 2) 'no' - when at least one of the DRM clients does not support the
+>> 		   functionality.
+>> 	 3) 'n/a' - when there are no DRM clients in the group.
+> 
+> Yeah, I'm not sure about this. This isn't a per-cgroup property to begin
+> with and I'm not sure 'no' meaning at least one device not supporting is
+> intuitive. The distinction between 'no' and 'n/a' is kinda weird too. Please
+> drop this.
 
--- 
-Ville Syrjälä
-Intel
+The idea actually is for this to be per-cgroup and potentially change 
+dynamically. It implements the concept of "observability", how I have, 
+perhaps clumsily, named it.
+
+This is because we can have a mix of DRM file descriptors in a cgroup, 
+not all of which support the proposed functionality. So I wanted to have 
+something by which the administrator can observe the status of the group.
+
+For instance seeing some clients do not support the feature could be 
+signal that things have been misconfigured, or that appeal needs to be 
+made for driver X to start supporting the feature. Seeing a "no" there 
+in other words is a signal that budgeting may not really work as 
+expected and needs to be investigated.
+
+> Another basic interface question. Is everyone happy with the drm prefix or
+> should it be something like gpu? Also, in the future, if there's a consensus
+> around how to control gpu memory, what prefix would that take?
+
+Given the current effort to bring in AI/VPU/ML accelerator devices under 
+the DRM umbrella I think drm prefix is okay. At least some of those 
+devices (the ones I looked at) will accept the same concepts of 
+scheduling and memory allocation as well.
+
+And for memory specifically, I don't see why the drm prefix would not work.
+
+But yeah, I echo the calls for wider feedback. Given how drm cgroup 
+controller has been on a wish list for ages I have to say I expected a 
+bit more interest. :)
+
+>> The second proposal is a little bit more advanced in concept and also a little
+>> bit less finished. Interesting thing is that it builds upon the per client GPU
+>> utilisation work which landed recently for a few drivers. So my thinking is that
+>> in principle, an intersect of drivers which support both that and some sort of
+>> priority scheduling control, could also in theory support this.
+>>
+>> Another really interesting angle for this controller is that it mimics the same
+>> control menthod used by the CPU scheduler. That is the proportional/weight based
+>> GPU time budgeting. Which makes it easy to configure and does not need a new
+>> mental model.
+>>
+>> However, as the introduction mentions, GPUs are much more heterogenous and
+>> therefore the controller uses very "soft" wording as to what it promises. The
+>> general statement is that it can define budgets, notify clients when they are
+>> over them, and let individual drivers implement best effort handling of those
+>> conditions.
+>>
+>> Delegation of duties in the implementation goes likes this:
+>>
+>>   * DRM cgroup controller implements the control files and the scanning loop.
+>>   * DRM core is required to track all DRM clients belonging to processes so it
+>>     can answer when asked how much GPU time is a process using.
+>>   * DRM core also provides a call back which the controller will call when a
+>>     certain process is over budget.
+>>   * Individual drivers need to implement two similar hooks, but which work for
+>>     a single DRM client. Over budget callback and GPU utilisation query.
+>>
+>> What I have demonstrated in practice is that when wired to i915, in a really
+>> primitive way where the over-budget condition simply lowers the scheduling
+>> priority, the concept can be almost equally effective as the static priority
+>> control. I say almost because the design where budget control depends on the
+>> periodic usage scanning has a fundamental delay, so responsiveness will depend
+>> on the scanning period, which may or may not be a problem for a particular use
+>> case.
+>>
+>> The unfinished part is the GPU budgeting split which currently does not
+>> propagate unused bandwith to children, neither can share it with siblings. But
+>> this is not due fundamental reasons, just to avoid spending too much time on it
+>> too early.
+> 
+> Rather than doing it hierarchically on the spot, it's usually a lot cheaper
+> and easier to calculate the flattened hierarchical weight per leaf cgroup
+> and divide the bandwidth according to the eventual portions. For an example,
+> please take a look at block/blk-iocost.c.
+
+This seems exactly what I had in mind (but haven't implemented it yet). 
+So in this RFC I have budget splitting per group where each tree level 
+adds up to "100%" and the thing which I have not implemented is 
+"borrowing" or yielding (how blk-iocost.c calls it, or donating) unused 
+budgets to siblings.
+
+I am very happy to hear my idea is the right one and someone already 
+implemented it. Thanks for this pointer!
+
+> I don't know much about the drm driver side, so can't comment much on it but
+> I do really like the idea of having the core implementation determining who
+> should get how much and then letting each driver enforce the target. That
+> seems a lot more robust and generic than trying to somehow coax and expose
+> per-driver priority implementations directly.
+
+Thanks, and thanks for having a detailed read and providing great 
+feedback so far!
+
+Regards,
+
+Tvrtko
+
