@@ -2,49 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9027A60F39A
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 11:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4763560F3CF
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 11:38:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 208AB10E5A4;
-	Thu, 27 Oct 2022 09:23:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 765B910E5B2;
+	Thu, 27 Oct 2022 09:37:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0124D10E5A4
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 09:22:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666862571; x=1698398571;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=m9M25b6hyKYCBAF4CXTirJiNn4k2Ha/oNufwtV2s4uA=;
- b=Ns4Zt7M6ApZBywjm/w2ec1sSniTmYzu9k168B/EgVVV4UcpO2jiCgCTJ
- ELeLap1d0OjhiAj8xSLtyUChuRMUvgR7M7wqmO6eA2FTWo22ZnuSmonY0
- WMydWTb1ntSBAENcMn207RFu1KV4Qn+VBp3Jo4QJYchQC8XhEwnp2kqEd
- Iqadrk/Bl/9HodG1XMGUK5n+OWFmqCIxAnp4wriupqBd2tWR2NVkGAWMM
- tEb0rdl/lqZjSGQYqoSmY14kAVtrzFBKEqulWF8MCHF8E71EgqtCKTMiv
- cgYuN7E54ju4/axtoqUSunfYZecLm5KYizOA4/u7I0kuv/a76kkxWaWKm g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="394491140"
-X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="394491140"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2022 02:22:51 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="721596551"
-X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="721596551"
-Received: from srr4-3-linux-105-anshuma1.iind.intel.com ([10.223.74.179])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2022 02:22:50 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Oct 2022 14:52:42 +0530
-Message-Id: <20221027092242.1476080-3-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221027092242.1476080-1-anshuman.gupta@intel.com>
-References: <20221027092242.1476080-1-anshuman.gupta@intel.com>
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
+ [64.147.123.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2A4410E59E;
+ Thu, 27 Oct 2022 09:37:42 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.west.internal (Postfix) with ESMTP id E0A312B066EB;
+ Thu, 27 Oct 2022 05:37:34 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute5.internal (MEProxy); Thu, 27 Oct 2022 05:37:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; t=1666863454; x=1666870654; bh=5ItCVshj6J
+ yZau2J5cjH0M8JHw139GrYlnIerAQcZWs=; b=IVFSYrra2yRKDBScb6i+EPPsnR
+ H7iUD7VkPJAKE695dyeIFHVvDzTnEOFd/PuRkXJYQDLL3GqO5VDnC18zyG53l/7I
+ pvgnmLqeiBPBWXQjApcUVHOrKRHilbj5+ASZsv6ndq61A0vf5cAG6GPGNStKiCRy
+ wer2bctGBN1o9JRLtzfw8j3SxBth2GhmC1AF3SbqCoOAk5ikvGienxjeMuTVnd3b
+ CIYEdhLoJTnMe4apOVtrct3AJygLwtX9QefTOEjFMks85VRv9W7SGo+EMXE4ei+c
+ /vSdG+pF0qpFn1D0F3ffTOrvCiLzPaO3Iv99pS2pxcK/5ssmEIuPwA72joMw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm3; t=1666863454; x=1666870654; bh=5ItCVshj6JyZau2J5cjH0M8JHw13
+ 9GrYlnIerAQcZWs=; b=aMBp3hE4BgyODOr6WOBsdolHjS2Onrihiev6Ff/sAjQh
+ Cama2t5zFVnEKp63jv9ugJbpKhvl71qc+L5qSL1TZPihHUka8luZ1042BOHS5Sxh
+ aMKHX7Ay1bGb29oD5v8DX8oZBPKSAoX9G4RJblIy3UNVtu3bbfNqg1CYVaEHxNJc
+ pHr9LW/SlL0Xhx1KndHWOx5hpeWVSz48zu40JY3Je6zDtTTEvFuI+nyPVFLcWWtY
+ eqbDGYXUYbYyBSfExtphfrsas5tR+XzSbiwxPrJVDiXhOZHeBFTCAEXgpwFpx+Y+
+ pod1LrzbN+UsFQjTvFLBJJEhMjbUc60CIEflbK3G1Q==
+X-ME-Sender: <xms:XVFaY2V3HXvfhP1sHBM2RqKgaN_XBF1qyOB-16Icc85JB7HqiOyGyQ>
+ <xme:XVFaYymw4tPdxY-cElvQVHHZLmvXXXhqeFlJcjgr306-I0KGXWDk9VMwSgLcrhFrI
+ 6vBlnwtvAVwP-Gv9dE>
+X-ME-Received: <xmr:XVFaY6Yv9syrc2eNVMwBSReD-NF-yontoCDOlMFptjpietVbD3UxWNp9XeGYc57se2BDpokpHl05GwQ2hi7OCyXnbvZ2cF1h8PCaUIeVB1DPtg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrtdeggdduiecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepteefffefgfektdefgfeludfgtdejfeejvddttdekteeiffejvdfgheehfffh
+ vedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+ grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:XVFaY9XZjJldLB8TfWAvQMGF4_ZIwB3BAmJ9FrbIS74qAyEc9gHcKw>
+ <xmx:XVFaYwniTa_gv5wa6Swk-Bkdalxuyr-d6ooN7h3oJMCVZXoae2kxxg>
+ <xmx:XVFaYyfwb0zZapv__NMakGUW6Ff2JSZL3y8FQRnm40OE9l_KC--TOQ>
+ <xmx:XlFaY0E6LsDzaiDnQgO6ixyU_rtUbrrppb7Nh4KTrTCg4VBJmZ0lFuKlYcg>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 27 Oct 2022 05:37:32 -0400 (EDT)
+Date: Thu, 27 Oct 2022 11:37:30 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Mateusz Kwiatkowski <kfyatek@gmail.com>
+Message-ID: <20221027093730.tb4oaissdapf6ifr@houat>
+References: <20220728-rpi-analog-tv-properties-v6-0-e7792734108f@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v6-16-e7792734108f@cerno.tech>
+ <8d0eee22-50f5-5b0a-c1e6-c5f61dd5bbcd@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/dgfx: Grab wakeref at
- i915_ttm_unmap_virtual
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="xamrv4lbhqfdsxuo"
+Content-Disposition: inline
+In-Reply-To: <8d0eee22-50f5-5b0a-c1e6-c5f61dd5bbcd@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v6 16/23] drm/probe-helper: Provide a TV
+ get_modes helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,169 +85,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com, rodrigo.vivi@intel.com
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-arm-kernel@lists.infradead.org,
+ Dom Cobley <dom@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We had already grabbed the rpm wakeref at obj destruction path,
-but it also required to grab the wakeref when object moves.
-When i915_gem_object_release_mmap_offset() gets called by
-i915_ttm_move_notify(), it will release the mmap offset without
-grabbing the wakeref. We want to avoid that therefore,
-grab the wakeref at i915_ttm_unmap_virtual() accordingly.
 
-While doing that also changed the lmem_userfault_lock from
-mutex to spinlock, as spinlock widely used for list.
+--xamrv4lbhqfdsxuo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Also changed if (obj->userfault_count) to
-GEM_BUG_ON(!obj->userfault_count).
+Hi Mateusz,
 
-v2:
-- Removed lmem_userfault_{list,lock} from intel_gt. [Matt Auld]
+On Thu, Oct 27, 2022 at 12:02:24AM +0200, Mateusz Kwiatkowski wrote:
+> First of all, nice idea with the helper function that can be reused by
+> different drivers. This is neat!
 
-Fixes: ad74457a6b5a ("drm/i915/dgfx: Release mmap on rpm suspend")
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 19 +++++-------
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c  | 38 ++++++++++++++++--------
- drivers/gpu/drm/i915/intel_runtime_pm.c  |  2 +-
- drivers/gpu/drm/i915/intel_runtime_pm.h  |  2 +-
- 4 files changed, 35 insertions(+), 26 deletions(-)
+Yeah, it looked to me that given how complex it is, we don't want to
+duplicate it in each and every driver.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index fd29a9053582..e63329bc8065 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -557,11 +557,13 @@ void i915_gem_object_runtime_pm_release_mmap_offset(struct drm_i915_gem_object *
- 
- 	drm_vma_node_unmap(&bo->base.vma_node, bdev->dev_mapping);
- 
--	if (obj->userfault_count) {
--		/* rpm wakeref provide exclusive access */
--		list_del(&obj->userfault_link);
--		obj->userfault_count = 0;
--	}
-+	/*
-+	 * We have exclusive access here via runtime suspend. All other callers
-+	 * must first grab the rpm wakeref.
-+	 */
-+	GEM_BUG_ON(!obj->userfault_count);
-+	list_del(&obj->userfault_link);
-+	obj->userfault_count = 0;
- }
- 
- void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj)
-@@ -587,13 +589,6 @@ void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj)
- 		spin_lock(&obj->mmo.lock);
- 	}
- 	spin_unlock(&obj->mmo.lock);
--
--	if (obj->userfault_count) {
--		mutex_lock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
--		list_del(&obj->userfault_link);
--		mutex_unlock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
--		obj->userfault_count = 0;
--	}
- }
- 
- static struct i915_mmap_offset *
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 50c70796ca38..93639b2dd04f 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -509,18 +509,9 @@ static int i915_ttm_shrink(struct drm_i915_gem_object *obj, unsigned int flags)
- static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
- {
- 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
--	intel_wakeref_t wakeref = 0;
- 
- 	if (bo->resource && !i915_ttm_is_ghost_object(bo)) {
--		/* ttm_bo_release() already has dma_resv_lock */
--		if (i915_ttm_cpu_maps_iomem(bo->resource))
--			wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
--
- 		__i915_gem_object_pages_fini(obj);
--
--		if (wakeref)
--			intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, wakeref);
--
- 		i915_ttm_free_cached_io_rsgt(obj);
- 	}
- }
-@@ -1098,12 +1089,15 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
- 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
- 		goto out_rpm;
- 
--	/* ttm_bo_vm_reserve() already has dma_resv_lock */
-+	/*
-+	 * ttm_bo_vm_reserve() already has dma_resv_lock.
-+	 * userfault_count is protected by dma_resv lock and rpm wakeref.
-+	 */
- 	if (ret == VM_FAULT_NOPAGE && wakeref && !obj->userfault_count) {
- 		obj->userfault_count = 1;
--		mutex_lock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
-+		spin_lock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
- 		list_add(&obj->userfault_link, &to_i915(obj->base.dev)->runtime_pm.lmem_userfault_list);
--		mutex_unlock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
-+		spin_unlock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
- 	}
- 
- 	if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
-@@ -1169,7 +1163,27 @@ static u64 i915_ttm_mmap_offset(struct drm_i915_gem_object *obj)
- 
- static void i915_ttm_unmap_virtual(struct drm_i915_gem_object *obj)
- {
-+	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
-+	intel_wakeref_t wakeref = 0;
-+
-+	assert_object_held_shared(obj);
-+
-+	if (i915_ttm_cpu_maps_iomem(bo->resource)) {
-+		wakeref = intel_runtime_pm_get(&to_i915(obj->base.dev)->runtime_pm);
-+
-+		/* userfault_count is protected by obj lock and rpm wakeref. */
-+		if (obj->userfault_count) {
-+			spin_lock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
-+			list_del(&obj->userfault_link);
-+			spin_unlock(&to_i915(obj->base.dev)->runtime_pm.lmem_userfault_lock);
-+			obj->userfault_count = 0;
-+		}
-+	}
-+
- 	ttm_bo_unmap_virtual(i915_gem_to_ttm(obj));
-+
-+	if (wakeref)
-+		intel_runtime_pm_put(&to_i915(obj->base.dev)->runtime_pm, wakeref);
- }
- 
- static const struct drm_i915_gem_object_ops i915_gem_ttm_obj_ops = {
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index bb74d4975cc8..129746713d07 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -655,6 +655,6 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm)
- 
- 	init_intel_runtime_pm_wakeref(rpm);
- 	INIT_LIST_HEAD(&rpm->lmem_userfault_list);
--	mutex_init(&rpm->lmem_userfault_lock);
-+	spin_lock_init(&rpm->lmem_userfault_lock);
- 	intel_wakeref_auto_init(&rpm->userfault_wakeref, rpm);
- }
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
-index 9f50f109aa11..98b8b28baaa1 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-@@ -64,7 +64,7 @@ struct intel_runtime_pm {
- 	 *  but instead has exclusive access by virtue of all other accesses requiring
- 	 *  holding the runtime pm wakeref.
- 	 */
--	struct mutex lmem_userfault_lock;
-+	spinlock_t lmem_userfault_lock;
- 
- 	/*
- 	 *  Keep list of userfaulted gem obj, which require to release their
--- 
-2.38.0
+> But looking at this function, it feels a bit overcomplicated. You're
+> creating the two modes,
 
+If reported as supported by the connector, yes.
+
+> then checking which one is the default, then set the preferred one and
+> possibly reorder them. Maybe it can be simplified somehow?
+
+Possibly, but I couldn't find something simpler. We should only expose
+the modes that the driver reports as supported, so we can have 0-2
+modes. Then the preferred flag needs to be set on the default one like
+you suggested.
+
+But also, EDIDs define the preferred mode as either the mode with the
+flag set or the first mode listed. So a lot of program just use the
+heuristic to just pick the first mode listed.
+
+So it might be that I'm too careful, but it still seems useful to me.
+
+> Although when I tried to refactor it myself, I ended up with something th=
+at's
+> not better at all. Maybe it needs to be complicated, after all :(
+
+Yeah, that was my conclusion too :/
+
+> Anyway, the current version seems to have a couple of bugs:
+>=20
+> > +	if (tv_mode_supported(connector, DRM_MODE_TV_MODE_PAL) ||
+> > +	    tv_mode_supported(connector, DRM_MODE_TV_MODE_PAL_N) ||
+> > +	    tv_mode_supported(connector, DRM_MODE_TV_MODE_SECAM)) {
+> > +		mode =3D drm_mode_analog_pal_576i(connector->dev);
+> > +		if (!mode)
+> > +			return 0;
+> > +
+> > +		tv_modes[count++] =3D mode;
+> > +	}
+>=20
+> If the 480i mode has been created properly, but there's an error creating=
+ the
+> 576i one (we enter the if (!mode) clause), the 480i mode will leak.
+>=20
+> > +	if (count =3D=3D 1) {
+>=20
+> You're handling the count =3D=3D 1 case specially, but if count =3D=3D 0,=
+ the rest of
+> the code will assume that two modes exist and probably segfault in the pr=
+ocess.
+>=20
+> > +	ret =3D drm_object_property_get_default_value(&connector->base,
+> > +						    dev->mode_config.tv_mode_property,
+> > +						    &default_mode);
+> > +	if (ret)
+> > +		return 0;
+> > +
+> > +	if (cmdline->tv_mode_specified)
+> > +		default_mode =3D cmdline->tv_mode;
+>=20
+> In case of an error (ret !=3D 0), the modes created so far in the tv_mode=
+s array
+> will leak.
+
+Thanks for the review, I'll fix these bugs
+
+> Also, I wonder if maybe the if (cmdline->tv_mode_specified) clause should=
+ go
+> first? If we're going to use the default from cmdline, there's no point i=
+n even
+> querying the property default value.
+
+Maybe, I don't know. I find the flow of the code more readable that way,
+but if you disagree I'll change it.
+
+Maxime
+
+--xamrv4lbhqfdsxuo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY1pRWgAKCRDj7w1vZxhR
+xTVQAQCdqQ7+vEr0O0pC7P93kHAYwFz0oBZn90Ip4EjyExKRPgD/cMwjjUZ6daWo
+/idlovksY5X1UdblxYiDcBffKZ9k8gM=
+=nRSG
+-----END PGP SIGNATURE-----
+
+--xamrv4lbhqfdsxuo--
