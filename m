@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F213660F7DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 14:46:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F6AE60F844
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 15:00:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D470A10E60B;
-	Thu, 27 Oct 2022 12:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFE6210E62C;
+	Thu, 27 Oct 2022 13:00:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DFAB910E60A;
- Thu, 27 Oct 2022 12:46:50 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D43E310E629;
+ Thu, 27 Oct 2022 13:00:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D94FAAADD7;
- Thu, 27 Oct 2022 12:46:50 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CE498AADDB;
+ Thu, 27 Oct 2022 13:00:45 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Somalapuram Amaranath" <amaranath.somalapuram@amd.com>
-Date: Thu, 27 Oct 2022 12:46:50 -0000
-Message-ID: <166687481086.4252.10232738753736873367@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Thu, 27 Oct 2022 13:00:45 -0000
+Message-ID: <166687564581.4254.1906121029427505665@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20221027091237.983582-1-Amaranath.Somalapuram@amd.com>
-In-Reply-To: <20221027091237.983582-1-Amaranath.Somalapuram@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/ttm=3A_rework_on_ttm=5Fresource_to_use_size=5Ft_type_=28rev2?=
- =?utf-8?q?=29?=
+References: <20221027092242.1476080-1-anshuman.gupta@intel.com>
+In-Reply-To: <20221027092242.1476080-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dgfx=3A_Grab_wakeref_at_i915=5Fttm=5Funmap=5Fvirtu?=
+ =?utf-8?b?YWwgKHJldjQp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,66 +48,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/ttm: rework on ttm_resource to use size_t type (rev2)
-URL   : https://patchwork.freedesktop.org/series/110129/
-State : failure
+Series: drm/i915/dgfx: Grab wakeref at i915_ttm_unmap_virtual (rev4)
+URL   : https://patchwork.freedesktop.org/series/108972/
+State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/110129/revisions/2/mbox/ not applied
-Applying: drm/ttm: rework on ttm_resource to use size_t type
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-M	drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-M	drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-M	drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-M	drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-M	drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-M	drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-M	drivers/gpu/drm/i915/i915_scatterlist.c
-M	drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-M	drivers/gpu/drm/i915/intel_region_ttm.c
-M	drivers/gpu/drm/nouveau/nouveau_bo.c
-M	drivers/gpu/drm/nouveau/nouveau_bo0039.c
-M	drivers/gpu/drm/nouveau/nouveau_bo5039.c
-M	drivers/gpu/drm/nouveau/nouveau_bo74c1.c
-M	drivers/gpu/drm/nouveau/nouveau_bo85b5.c
-M	drivers/gpu/drm/nouveau/nouveau_bo9039.c
-M	drivers/gpu/drm/nouveau/nouveau_bo90b5.c
-M	drivers/gpu/drm/nouveau/nouveau_boa0b5.c
-M	drivers/gpu/drm/nouveau/nouveau_gem.c
-M	drivers/gpu/drm/nouveau/nouveau_mem.c
-M	drivers/gpu/drm/nouveau/nouveau_ttm.c
-M	drivers/gpu/drm/radeon/radeon_cs.c
-M	drivers/gpu/drm/radeon/radeon_object.c
-M	drivers/gpu/drm/radeon/radeon_trace.h
-M	drivers/gpu/drm/radeon/radeon_ttm.c
-M	drivers/gpu/drm/ttm/ttm_bo.c
-M	drivers/gpu/drm/ttm/ttm_bo_util.c
-M	drivers/gpu/drm/ttm/ttm_bo_vm.c
-M	drivers/gpu/drm/ttm/ttm_range_manager.c
-M	drivers/gpu/drm/ttm/ttm_resource.c
-M	drivers/gpu/drm/vmwgfx/vmwgfx_blit.c
-M	drivers/gpu/drm/vmwgfx/vmwgfx_bo.c
-M	drivers/gpu/drm/vmwgfx/vmwgfx_cotable.c
-M	drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c
-M	drivers/gpu/drm/vmwgfx/vmwgfx_gmrid_manager.c
-M	drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-M	drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c
-M	include/drm/ttm/ttm_resource.h
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-Auto-merging drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c
-Auto-merging drivers/gpu/drm/vmwgfx/vmwgfx_cotable.c
-Auto-merging drivers/gpu/drm/vmwgfx/vmwgfx_bo.c
-Auto-merging drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-Auto-merging drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/ttm: rework on ttm_resource to use size_t type
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Error: dim checkpatch failed
+d83d4490c920 drm/i915: Encapsulate lmem rpm stuff in intel_runtime_pm
+-:69: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#69: FILE: drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1105:
++		list_add(&obj->userfault_link, &to_i915(obj->base.dev)->runtime_pm.lmem_userfault_list);
+
+total: 0 errors, 1 warnings, 0 checks, 147 lines checked
+721d116886f7 drm/i915/dgfx: Grab wakeref at i915_ttm_unmap_virtual
+-:44: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#44: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:564:
++	GEM_BUG_ON(!obj->userfault_count);
+
+-:155: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#155: FILE: drivers/gpu/drm/i915/intel_runtime_pm.h:67:
++	spinlock_t lmem_userfault_lock;
+
+total: 0 errors, 1 warnings, 1 checks, 109 lines checked
 
 
