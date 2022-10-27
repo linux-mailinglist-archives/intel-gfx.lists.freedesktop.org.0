@@ -2,61 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE2460EE86
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 05:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC5C060EEAB
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 05:36:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8280E10E167;
-	Thu, 27 Oct 2022 03:26:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AE0F10E2F3;
+	Thu, 27 Oct 2022 03:35:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com
- [IPv6:2607:f8b0:4864:20::82c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B60110E167;
- Thu, 27 Oct 2022 03:26:55 +0000 (UTC)
-Received: by mail-qt1-x82c.google.com with SMTP id f22so297561qto.3;
- Wed, 26 Oct 2022 20:26:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=vFwHYUjzDN0mA8IGZNoSPKemBRIs93alZhFx20gRWys=;
- b=Anhhj6NTYg1jyE2HEZEZfZMqb1yqAzPlKURqUCFgAcrETyPW2IK+4H6VPipcS3Cixq
- suRBtJsu1AMhkyH5hkQ6hdOlu2xzVv0bTRLVEg3ytIfKMEjAlvJxEEUKuYJNHxP9XNSt
- 3o9nRLtWMg767KdsgKe/Zau4DLe6auk0mBFdFkEZUcANgo7veSDziJqHQ5Uld4UB21so
- KhUga6sXWvZFcd7PFLNji4y3nXE6KKxq7f40MMOd+7e+ebQ11S6WqaIbGuBJN2geplT4
- F2Z8EEwpkk0HNTKvlSunySmC1ZK/3cUelPgE0CM50vhHxhcf+WbblS+DM1eHeHlqNZXB
- YkTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=vFwHYUjzDN0mA8IGZNoSPKemBRIs93alZhFx20gRWys=;
- b=cXQrSAPJe2s+JCcUkRz2KyQRzxijiYeQ+qE9xB0XV29kvq0JEOYVKQ+vL1bke+k+XZ
- cI/Q62HaGoFqE/Q1NOled6RY22pM4/FLo31lT29aK+nfzRV/iftt6N3t9Dn/8sFnBIcP
- 0kkZwC38IidwaZah/E3eV5F1SiqnOaaIWEYqSdRxNRsKn1xY7Hw7DOeCnHDa23Z/8cI2
- Od26CrBgeNkZubZEHwpmCTeVZlxz8AsCPyPqxlJFsIBs7VRhzpLNyrcgmi86LaYixR5h
- BA0XX3ZCW12Cg+hk4iseooaZ09OG3Yffgmf3aILvRUr/gZYmah6Zy8NOzJB82aksEKQp
- 7Fdg==
-X-Gm-Message-State: ACrzQf3FCHyKOq/svxHIaN/EwL7nkJBafIkEYwAOusXVWf0iTMGlQ8XU
- P+wrPfX+pDUwQEMHPtXFwHof3QRR5CmLUer1LyY=
-X-Google-Smtp-Source: AMsMyM6lkWL6L97VUy56JRV/rFHo27hEgmw1FhlvQz7pf7xoMcR1o+Z02FIxZfB8r3eUwq1pjdDgqcovxLypi4j43v0=
-X-Received: by 2002:a05:622a:38d:b0:39c:c94d:a887 with SMTP id
- j13-20020a05622a038d00b0039cc94da887mr40343997qtx.272.1666841214253; Wed, 26
- Oct 2022 20:26:54 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AB0A210E16D;
+ Thu, 27 Oct 2022 03:35:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A0E87A0003;
+ Thu, 27 Oct 2022 03:35:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <Yz8rIxV7bVCcfZb0@kroah.com>
- <20221007013708.1946061-1-zyytlz.wz@163.com>
- <CAPM=9ty0+ouf+rQWhM=9XSKFOA2zxKfa00MsNBvwrQGPQm2uPQ@mail.gmail.com>
-In-Reply-To: <CAPM=9ty0+ouf+rQWhM=9XSKFOA2zxKfa00MsNBvwrQGPQm2uPQ@mail.gmail.com>
-From: Zheng Hacker <hackerzheng666@gmail.com>
-Date: Thu, 27 Oct 2022 11:26:41 +0800
-Message-ID: <CAJedcCwxioxr+4TBTdrEjAZh97J3oroSHSgax+bxSNRXCBvkRg@mail.gmail.com>
-To: Dave Airlie <airlied@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/gvt: fix double free bug in
- split_2MB_gtt_entry
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Date: Thu, 27 Oct 2022 03:35:55 -0000
+Message-ID: <166684175562.4254.6195381536460278292@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20221026222102.5526-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20221026222102.5526-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_DG2_OA_support_=28rev11=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,38 +40,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org, airlied@linux.ie,
- gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- 1002992920@qq.com, Zheng Wang <zyytlz.wz@163.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Dave Airlie <airlied@gmail.com> =E4=BA=8E2022=E5=B9=B410=E6=9C=8827=E6=97=
-=A5=E5=91=A8=E5=9B=9B 08:01=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Fri, 7 Oct 2022 at 11:38, Zheng Wang <zyytlz.wz@163.com> wrote:
-> >
-> > If intel_gvt_dma_map_guest_page failed, it will call
-> > ppgtt_invalidate_spt, which will finally free the spt.
-> > But the caller does not notice that, it will free spt again in error pa=
-th.
-> >
-> > Fix this by spliting invalidate and free in ppgtt_invalidate_spt.
-> > Only free spt when in good case.
-> >
-> > Reported-by: Zheng Wang <hackerzheng666@gmail.com>
-> > Signed-off-by: Zheng Wang <zyytlz.wz@163.com>
->
-> Has this landed in a tree yet, since it's a possible CVE, might be
-> good to merge it somewhere.
->
-> Dave.
->
+== Series Details ==
 
-Hi Dave,
+Series: Add DG2 OA support (rev11)
+URL   : https://patchwork.freedesktop.org/series/107584/
+State : warning
 
-This patched hasn't been merged yet. Could you please help with this?
+== Summary ==
 
-Best Regards,
-Zheng Wang
+Error: dim checkpatch failed
+c780bcbe9c6f drm/i915/perf: Fix OA filtering logic for GuC mode
+2401ac2c7fc1 drm/i915/perf: Add 32-bit OAG and OAR formats for DG2
+5d610536496e drm/i915/perf: Fix noa wait predication for DG2
+8150f38baaf3 drm/i915/perf: Determine gen12 oa ctx offset at runtime
+f8424d7d4682 drm/i915/perf: Enable bytes per clock reporting in OA
+332119d05b01 drm/i915/perf: Simply use stream->ctx
+9973045e0a8a drm/i915/perf: Move gt-specific data from i915->perf to gt->perf
+68ee20b88b7c drm/i915/perf: Replace gt->perf.lock with stream->lock for file ops
+93a32bbfa186 drm/i915/perf: Use gt-specific ggtt for OA and noa-wait buffers
+a4ad0fa8da87 drm/i915/perf: Store a pointer to oa_format in oa_buffer
+4d0cdc933cfc drm/i915/perf: Add Wa_1508761755:dg2
+2369dd487b2d drm/i915/perf: Apply Wa_18013179988
+b3ae6a1bea90 drm/i915/perf: Save/restore EU flex counters across reset
+11e115088bfc drm/i915/guc: Support OA when Wa_16011777198 is enabled
+-:72: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#72: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:208:
++	GEM_BUG_ON(id >= SLPC_MAX_PARAM);
+
+total: 0 errors, 1 warnings, 0 checks, 151 lines checked
+304e1330b825 drm/i915/perf: complete programming whitelisting for XEHPSDV
+dca80a1d9ead drm/i915/perf: Enable OA for DG2
+
+
