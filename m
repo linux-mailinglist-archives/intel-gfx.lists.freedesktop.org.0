@@ -1,91 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49AA660F2DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 10:52:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B3660F336
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 11:07:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2A7D10E588;
-	Thu, 27 Oct 2022 08:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1608310E1F7;
+	Thu, 27 Oct 2022 09:07:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A369A10E586
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 08:51:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1666860709;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=piG9yqT6xAhiMXdKpX5Y3Qo1FGMuiTJ1yFwdVO4p5IY=;
- b=J0+4zbvXyTATgLNbua0dZp3QPkoqKjhr9lkoUkPgo1mvU5j+l+h6C8WCTNYiqUvZs/DVDy
- BwBNU/fZ/37vGepTdQxSkh0gd2FDxwXKENoPy6mIyPkwoImRyFbZFTroOsgc0bUq3WI81E
- E8Xf9uFnOHFjbdgXTgaZkrteK0aK4kE=
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
- [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-44-aUKxsOxqOvaBg90N1vMqlg-1; Thu, 27 Oct 2022 04:51:48 -0400
-X-MC-Unique: aUKxsOxqOvaBg90N1vMqlg-1
-Received: by mail-ed1-f72.google.com with SMTP id
- m7-20020a056402430700b0045daff6ee5dso655066edc.10
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 01:51:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=piG9yqT6xAhiMXdKpX5Y3Qo1FGMuiTJ1yFwdVO4p5IY=;
- b=AblLDzixUQsrzmEnwfOykOPPCWIqkw3ia78rc/VUWVu9O7h9cClZoV3oaWYtWlvo6n
- AH+2LtOeEmYKr4NptE/oLVs40g8Wq0n10IWb2H27HhW1nI8zSfB058c8NRi4WoD3wfVK
- vWfImIWGi7PDH33Dd/mCyCFNXAI8hWHF0i4IvERVjcPhhIKYo9J0nlkfaU1viX/CCtE2
- SdC1B5uhlMIVA4KGKyfkuQpDBz/M4Ivo/Z6yeJXvcK1c9FRj3TNqqpxSXpcRRNtRL1BD
- IBtxqRWnL5CU4ICDJt9Yi1Q1BHDlZLaUWoXuWPkC4v9mB6PbHGXTox3OOf721+Kxen5b
- uPig==
-X-Gm-Message-State: ACrzQf14REGoHy4AaCSQ+9jzBCk6uGRv/QaSwPPydfm/1791rP3jxsgL
- Kv1bRwy2pt8cuDA/IherM2faMLaWCg4WF2eEgJT66g6EVPypqqc1NJmqAACcDsB7NM7HA8YYFyc
- MVEspect6vW/+K5qwSAvX6PJIon3C
-X-Received: by 2002:a05:6402:ea0:b0:454:38bf:aa3d with SMTP id
- h32-20020a0564020ea000b0045438bfaa3dmr19108206eda.291.1666860707445; 
- Thu, 27 Oct 2022 01:51:47 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM4M97BY+DJtCFsy6QaUdWwayGL+u3zLh+pSJfoHcV6/8JnsSecEzthndHQaTneGvNUsC3XcVA==
-X-Received: by 2002:a05:6402:ea0:b0:454:38bf:aa3d with SMTP id
- h32-20020a0564020ea000b0045438bfaa3dmr19108164eda.291.1666860707189; 
- Thu, 27 Oct 2022 01:51:47 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
- (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
- by smtp.gmail.com with ESMTPSA id
- w15-20020a056402268f00b004615bea1d5bsm635132edd.35.2022.10.27.01.51.45
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 27 Oct 2022 01:51:46 -0700 (PDT)
-Message-ID: <099dee98-8aeb-af36-828c-110f5ac6e9a3@redhat.com>
-Date: Thu, 27 Oct 2022 10:51:45 +0200
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41E5710E0E3;
+ Thu, 27 Oct 2022 09:07:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666861642; x=1698397642;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ad9M3i9h/5Kfy1CALxKF2HSFy/sxmTX7+Z0mhlS5eGA=;
+ b=FHz2IVATsNPsmDE+5cH9MtaGhOp6oYfvH+Ji1H9ApSYNO3dmKjenVNDj
+ jm5idRra+cg/1GFC723/GufeOM03mHZak1RAf0E+YNFo4yfI5d9KvWfBt
+ DwOGIBLNqRnFj8qzpyNlxh6Xeozwh76Qs1uL9ZH7PYNn7cBOrZJp/mOYX
+ 7+egQhJ3CQrEgu9+li3wrcwHxqCo80kS4SmWL2WR0zquQCJQZDdkUnx0a
+ GZnF3FrPTXPWNnM1rkl6cQedFQf1rHZt7kc7jqyy3EzAtHrOC8VMuoEF8
+ xlHIP2+vWyyzdQarLZcS3pNh/Dn7F/P3EcE0DaK3CE5hgJ1Bda5DgeWv5 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="372384612"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="372384612"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2022 02:07:21 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="701271733"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="701271733"
+Received: from rgrilak-mobl.ger.corp.intel.com (HELO [10.213.238.72])
+ ([10.213.238.72])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2022 02:07:18 -0700
+Message-ID: <6621c4d6-c306-c1f9-eefe-818b4ff4469b@linux.intel.com>
+Date: Thu, 27 Oct 2022 10:07:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-To: Matthew Garrett <mjg59@srcf.ucam.org>
-References: <f914ceb3-94bd-743c-f8b6-0334086e731a@gmail.com>
- <42a5f2c9-a1dc-8fc0-7334-fe6c390ecfbb@redhat.com>
- <20221024203057.GA28675@srcf.ucam.org>
- <8f53b8b6-ead2-22f5-16f7-65b31f7cc05c@redhat.com>
- <20221025193248.GA21457@srcf.ucam.org>
- <144cd47e-42dc-2b84-1a90-ea5e080e08a3@redhat.com>
- <20221025204043.GA23306@srcf.ucam.org>
- <cb5add36-c13c-ccd5-1b4b-71b45163a170@redhat.com>
- <20221025234040.GA27673@srcf.ucam.org>
- <fa6cc1d9-6740-b495-2c72-cae18c429ca6@redhat.com>
- <20221026204920.GA15326@srcf.ucam.org>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20221026204920.GA15326@srcf.ucam.org>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v5 02/31] drm/i915: Don't register backlight
- when another backlight should be used (v2)
+ Thunderbird/102.3.3
+Content-Language: en-US
+To: Christoph Hellwig <hch@lst.de>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
+References: <20221020110308.1582518-1-hch@lst.de>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20221020110308.1582518-1-hch@lst.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: stop abusing swiotlb_max_segment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,132 +62,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pan@freedesktop.org, Karol Herbst <kherbst@redhat.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- Dmitry Osipenko <digetx@gmail.com>, amd-gfx@lists.freedesktop.org,
- linux-acpi@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@redhat.com>, Len Brown <lenb@kernel.org>,
- Daniel Dadap <ddadap@nvidia.com>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Mark Gross <markgross@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andy@kernel.org>, Xinhui <Xinhui.Pan@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, marmarek@invisiblethingslab.com,
+ dri-devel@lists.freedesktop.org, oleksandr_tyshchenko@epam.com,
+ iommu@lists.linux.dev, daniel@ffwll.ch, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 10/26/22 22:49, Matthew Garrett wrote:
-> On Wed, Oct 26, 2022 at 11:59:28AM +0200, Hans de Goede wrote:
+On 20/10/2022 12:03, Christoph Hellwig wrote:
+> From: Robert Beckett <bob.beckett@collabora.com>
 > 
->> Ok, so this is a local customization to what is already a custom BIOS
->> for a custom motherboard. There is a lot of custom in that sentence and
->> TBH at some point things might become too custom for them to be expected
->> to work OOTB.
+> swiotlb_max_segment used to return either the maximum size that swiotlb
+> could bounce, or for Xen PV PAGE_SIZE even if swiotlb could bounce buffer
+> larger mappings.  This made i915 on Xen PV work as it bypasses the
+> coherency aspect of the DMA API and can't cope with bounce buffering
+> and this avoided bounce buffering for the Xen/PV case.
 > 
-> But it *did* work OOTB before. You broke it. I accept that I'm a 
-> ludicrously weird corner case here, but there are going to be other 
-> systems that are also affected by this.
+> So instead of adding this hack back, check for Xen/PV directly in i915
+> for the Xen case and otherwise use the proper DMA API helper to query
+> the maximum mapping size.
 > 
->> I'm afraid things are not that simple. I assume that with
->> "if ACPI backlight control is expected to work" you mean don't
->> use ACPI backlight control when (acpi_osi_is_win8() && native_available)
->> evaluates to true because it is known to be broken on some of
->> those systems because Windows 8 stopped using it ?
+> Replace swiotlb_max_segment() calls with dma_max_mapping_size().
+> In i915_gem_object_get_pages_internal() no longer consider max_segment
+> only if CONFIG_SWIOTLB is enabled. There can be other (iommu related)
+> causes of specific max segment sizes.
 > 
-> Correct.
-> 
->> Unfortunately something similar applies to vendor interfaces,
->> When Windows XP started using (and mandating for certification
->> IIRC) ACPI backlight control, vendors still kept their own
->> vendor specific EC/smbios/ACPI/WMI backlight interfaces around for
->> a long long time, except they were often no longer tested.
-> 
-> The current situation (both before your patchset and with its current 
-> implementation) is that vendor is preferred to native, so if the vendor 
-> interface is present then we're already using it.
+> Fixes: a2daa27c0c61 ("swiotlb: simplify swiotlb_max_segment")
+> Reported-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> [hch: added the Xen hack, rewrote the changelog]
 
-All vendor drivers that I'm aware of have:
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-	if (acpi_video_get_backlight_type() != acpi_backlight_vendor)
-		return;
-
-In their backlight register paths and this has been present since
-circa 2015.
-
-So both before and after my 6.1 refactor vendor is only preferred
-on devices which don't implement the ACPI video bus control method.
-
->>> The 
->>> problem you're dealing with is that the knowledge of whether or not 
->>> there's a vendor interface isn't something the core kernel code knows 
->>> about. What you're proposing here is effectively for us to expose 
->>> additional information about whether or not there's a vendor interface 
->>> in the system firmware, but since we're talking in some cases about 
->>> hardware that's almost 20 years old, we're not realistically going to 
->>> get those old machines fixed.
->>
->> I don't understand why you keep talking about the old vendor interfaces,
->> at least for the chromebook part of this thread the issue is that
->> the i915 driver no longer registers the intel_backlight device which
->> is a native device type, which is caused by the patch this email
->> thread is about (and old vendor interfaces do not come into play
->> at all here). So AFAICT this is a native vs acpi backlight control
->> issue ?
-> 
-> I'm referring to your proposed patch that changed the default from 
-> backlight_vendor to backlight_native, which would fix my machine and 
-> Chromebooks but break anything that relies on the vendor interfaces.
-
-I see. I agree that preferring native over vendor on machines
-which do not have ACPI video backlight control will cause issues
-on older machines. Avoiding this scenario is exactly why currently
-the native check is conditional on the presence of ACPI video
-backlight control.
-
->> I really want to resolve your bug, but I still lack a lot of info,
->> like what backlight interface you were actually using in 6.0 ?
-> 
-> Native.
-> 
->>         {
->>          .callback = video_detect_force_video,
->>          /* ThinkPad X201s */
->>          .matches = {
->>                 DMI_MATCH(DMI_SYS_VENDOR, "LENOVO"),
->>                 DMI_MATCH(DMI_PRODUCT_VERSION, "ThinkPad X201s"),
->>                 },
->>         },
->>
->> will trigger.
-> 
-> In this case you'd break anyone else running the system who isn't using 
-> the hacked EC and different ACPI tables - obviously there's ways round 
-> this, but realistically since I'm (as far as I know) the only person in 
-> this situation it makes more sense for me to add a kernel parameter than 
-> carry around an exceedingly niche DMI quirk. I'm fine with that. But the 
-> point I'm trying to make is that the machines *are* telling you whether 
-> they'd prefer vendor or native.
-
-I wish that that ("telling you whether they'd prefer vendor or native")
-were true. But that does not match my experience at all and I've been
-working on making the kernel pick the right backlight interface on
-laptops since 2014.
-
-Just because a vendor interface is present does not mean that it will
-work. Unfortunately for none of the 3 main native/acpi_video/vendor
-backlight control methods the control method being present also guarantees
-that it will work. Which completely sucks, but it is the reality we
-have to deal with.
-
-> , and you're not taking that into account 
-> in the video_detect code.
+I'll merge this in a minute - thanks again for the cleanup!
 
 Regards,
 
-Hans
+Tvrtko
 
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_internal.c | 19 +++--------
+>   drivers/gpu/drm/i915/gem/i915_gem_shmem.c    |  2 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c      |  4 +--
+>   drivers/gpu/drm/i915/gem/i915_gem_userptr.c  |  2 +-
+>   drivers/gpu/drm/i915/i915_scatterlist.h      | 34 ++++++++++++--------
+>   5 files changed, 29 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.c b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
+> index c698f95af15fe..629acb403a2c9 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_internal.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
+> @@ -6,7 +6,6 @@
+>   
+>   #include <linux/scatterlist.h>
+>   #include <linux/slab.h>
+> -#include <linux/swiotlb.h>
+>   
+>   #include "i915_drv.h"
+>   #include "i915_gem.h"
+> @@ -38,22 +37,12 @@ static int i915_gem_object_get_pages_internal(struct drm_i915_gem_object *obj)
+>   	struct scatterlist *sg;
+>   	unsigned int sg_page_sizes;
+>   	unsigned int npages;
+> -	int max_order;
+> +	int max_order = MAX_ORDER;
+> +	unsigned int max_segment;
+>   	gfp_t gfp;
+>   
+> -	max_order = MAX_ORDER;
+> -#ifdef CONFIG_SWIOTLB
+> -	if (is_swiotlb_active(obj->base.dev->dev)) {
+> -		unsigned int max_segment;
+> -
+> -		max_segment = swiotlb_max_segment();
+> -		if (max_segment) {
+> -			max_segment = max_t(unsigned int, max_segment,
+> -					    PAGE_SIZE) >> PAGE_SHIFT;
+> -			max_order = min(max_order, ilog2(max_segment));
+> -		}
+> -	}
+> -#endif
+> +	max_segment = i915_sg_segment_size(i915->drm.dev) >> PAGE_SHIFT;
+> +	max_order = min(max_order, get_order(max_segment));
+>   
+>   	gfp = GFP_KERNEL | __GFP_HIGHMEM | __GFP_RECLAIMABLE;
+>   	if (IS_I965GM(i915) || IS_I965G(i915)) {
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index f42ca1179f373..11125c32dd35d 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -194,7 +194,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+>   	struct intel_memory_region *mem = obj->mm.region;
+>   	struct address_space *mapping = obj->base.filp->f_mapping;
+>   	const unsigned long page_count = obj->base.size / PAGE_SIZE;
+> -	unsigned int max_segment = i915_sg_segment_size();
+> +	unsigned int max_segment = i915_sg_segment_size(i915->drm.dev);
+>   	struct sg_table *st;
+>   	struct sgt_iter sgt_iter;
+>   	struct page *page;
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index 4f861782c3e85..a4aa9500fa179 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -189,7 +189,7 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
+>   	struct drm_i915_private *i915 = container_of(bdev, typeof(*i915), bdev);
+>   	struct intel_memory_region *mr = i915->mm.regions[INTEL_MEMORY_SYSTEM];
+>   	struct i915_ttm_tt *i915_tt = container_of(ttm, typeof(*i915_tt), ttm);
+> -	const unsigned int max_segment = i915_sg_segment_size();
+> +	const unsigned int max_segment = i915_sg_segment_size(i915->drm.dev);
+>   	const size_t size = (size_t)ttm->num_pages << PAGE_SHIFT;
+>   	struct file *filp = i915_tt->filp;
+>   	struct sgt_iter sgt_iter;
+> @@ -538,7 +538,7 @@ static struct i915_refct_sgt *i915_ttm_tt_get_st(struct ttm_tt *ttm)
+>   	ret = sg_alloc_table_from_pages_segment(st,
+>   			ttm->pages, ttm->num_pages,
+>   			0, (unsigned long)ttm->num_pages << PAGE_SHIFT,
+> -			i915_sg_segment_size(), GFP_KERNEL);
+> +			i915_sg_segment_size(i915_tt->dev), GFP_KERNEL);
+>   	if (ret) {
+>   		st->sgl = NULL;
+>   		return ERR_PTR(ret);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> index d4398948f0162..f34e01a7fefb9 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> @@ -129,7 +129,7 @@ static void i915_gem_object_userptr_drop_ref(struct drm_i915_gem_object *obj)
+>   static int i915_gem_userptr_get_pages(struct drm_i915_gem_object *obj)
+>   {
+>   	const unsigned long num_pages = obj->base.size >> PAGE_SHIFT;
+> -	unsigned int max_segment = i915_sg_segment_size();
+> +	unsigned int max_segment = i915_sg_segment_size(obj->base.dev->dev);
+>   	struct sg_table *st;
+>   	unsigned int sg_page_sizes;
+>   	struct page **pvec;
+> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
+> index 9ddb3e743a3e5..b0a1db44f8950 100644
+> --- a/drivers/gpu/drm/i915/i915_scatterlist.h
+> +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
+> @@ -9,7 +9,8 @@
+>   
+>   #include <linux/pfn.h>
+>   #include <linux/scatterlist.h>
+> -#include <linux/swiotlb.h>
+> +#include <linux/dma-mapping.h>
+> +#include <xen/xen.h>
+>   
+>   #include "i915_gem.h"
+>   
+> @@ -127,19 +128,26 @@ static inline unsigned int i915_sg_dma_sizes(struct scatterlist *sg)
+>   	return page_sizes;
+>   }
+>   
+> -static inline unsigned int i915_sg_segment_size(void)
+> +static inline unsigned int i915_sg_segment_size(struct device *dev)
+>   {
+> -	unsigned int size = swiotlb_max_segment();
+> -
+> -	if (size == 0)
+> -		size = UINT_MAX;
+> -
+> -	size = rounddown(size, PAGE_SIZE);
+> -	/* swiotlb_max_segment_size can return 1 byte when it means one page. */
+> -	if (size < PAGE_SIZE)
+> -		size = PAGE_SIZE;
+> -
+> -	return size;
+> +	size_t max = min_t(size_t, UINT_MAX, dma_max_mapping_size(dev));
+> +
+> +	/*
+> +	 * For Xen PV guests pages aren't contiguous in DMA (machine) address
+> +	 * space.  The DMA API takes care of that both in dma_alloc_* (by
+> +	 * calling into the hypervisor to make the pages contiguous) and in
+> +	 * dma_map_* (by bounce buffering).  But i915 abuses ignores the
+> +	 * coherency aspects of the DMA API and thus can't cope with bounce
+> +	 * buffering actually happening, so add a hack here to force small
+> +	 * allocations and mappings when running in PV mode on Xen.
+> +	 *
+> +	 * Note this will still break if bounce buffering is required for other
+> +	 * reasons, like confidential computing hypervisors or PCIe root ports
+> +	 * with addressing limitations.
+> +	 */
+> +	if (xen_pv_domain())
+> +		max = PAGE_SIZE;
+> +	return round_down(max, PAGE_SIZE);
+>   }
+>   
+>   bool i915_sg_trim(struct sg_table *orig_st);
