@@ -1,91 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF46960F56D
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 12:38:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 879F960F57F
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Oct 2022 12:40:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D06210E5C6;
-	Thu, 27 Oct 2022 10:37:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83E7710E1AC;
+	Thu, 27 Oct 2022 10:40:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97BF210E5C6
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 10:37:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1666867073;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=KIrIm83XlmkQEHvLgMNI62dGgv/hpRuvnAfiEarWzlw=;
- b=OHGWG0YHNBiMFKLKAcQDT1KtbGf2FrcBxY2yfsk9zKclprYVL0Vfvq/QNHGLS5SUWjpqaR
- Mi7znTXIfahKwOx7HysHLQ6C7RGV716ZCCT0K207WRKHQneP+NWtiuYDXEd3uJGAdLyTiR
- 8M97wGP51arPMxcQ+uJQIN7IpQWcWo8=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-428-TGLYofbvN_aqTxBpRbsOmA-1; Thu, 27 Oct 2022 06:37:52 -0400
-X-MC-Unique: TGLYofbvN_aqTxBpRbsOmA-1
-Received: by mail-ej1-f70.google.com with SMTP id
- nb9-20020a1709071c8900b0078d858f15c1so768095ejc.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 03:37:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=KIrIm83XlmkQEHvLgMNI62dGgv/hpRuvnAfiEarWzlw=;
- b=FcscpLG/hiEN6puUZtsnLL+ucPgIb1kC+5MhmWVlWP9pqvbjWST7/ikKJ0jyoeOMYA
- jYAUnVwPtfQ0mzIwQs4Ym4IBa0avsL0/yfeeJ0KJYT5tRYPuOx501M/7fxgkpsApH0s5
- +SB8O3icPvE0JEUDjnIlQ8JWtukvKsDmziCAT9zU1uYF7y0mB1UJqqgMk7K5+0iH6mfx
- qiYEXSolsb5NHOAqZNrLAcvVLcEi7yMb5PT3zBM1Luv27kihcfLQCOt1Lvs6rOG4XDIX
- LPUwewgHFeVb6Gk6l87oS4Mk/BCfFbgnVMMfoPfusB7QlesAtPWUGGusLKQvTSBU8C3L
- geag==
-X-Gm-Message-State: ACrzQf1vXNCjtmje5czDHWH/UGWz1ENppzERm81BUZ4KpEtpqNpcSqAV
- ZPrFmZOnyzzWD+G2W1tFY0xtnxdSsGIro9BXE8RagfaQx60TbMGS3cf8ugxJTNSdXS2Z+xX4bz/
- zGj88qZELXu6wPkPq0+7P8lKSUVX0
-X-Received: by 2002:a17:906:9bd8:b0:78d:85f9:36ae with SMTP id
- de24-20020a1709069bd800b0078d85f936aemr42186644ejc.342.1666867071304; 
- Thu, 27 Oct 2022 03:37:51 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM5SZMU3P4Zsb6VMxou+01MOar68Mbr9wEuDuf/meiI+Zmby9PhRAPjCmSxwGQr42Uzv+ipmOg==
-X-Received: by 2002:a17:906:9bd8:b0:78d:85f9:36ae with SMTP id
- de24-20020a1709069bd800b0078d85f936aemr42186603ejc.342.1666867071054; 
- Thu, 27 Oct 2022 03:37:51 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
- (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
- by smtp.gmail.com with ESMTPSA id
- i14-20020a50c3ce000000b004587c2b5048sm739068edf.52.2022.10.27.03.37.49
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 27 Oct 2022 03:37:50 -0700 (PDT)
-Message-ID: <6df2016d-ed2d-57fa-dcad-48537732895f@redhat.com>
-Date: Thu, 27 Oct 2022 12:37:49 +0200
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CBC910E1AC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 10:40:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1666867239; x=1698403239;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=uV6ayQpHo02H1KczeLmq/wPEY+xEKMEH4CcQKcIl4F8=;
+ b=LCv5VpCd+/rqQu9ECI25bI2UbIoLHg3tkFXC47gPtfr//39nOs6y933H
+ BD9+w5SmMhmmh3MOYPWGJ1Wywn2rW6BIZ5o/UYIdNV+o+Vbk3vV7J/5ff
+ S/akyU7u5jeDBpinc8SJpDMdlVhcuVmwNLvNuObVRQYs62bSR2phUUkJs
+ dppriwsOrYzDnCjKuiNQPR+ZiBkciUKAsaiakw32XPlsOBBh63QVf9kCN
+ etvuyqvs2fuGlBTT47oLZVrFAn9Ae9U6VOf/myq6zeNoiVrwFyExlrLkQ
+ cYLmJxzpgAF54FW0rtk9KYIZMBEOFUM1Bn6bcYQ3igN+/2dp7Hg03pcqJ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="370255605"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="370255605"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2022 03:40:38 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="961578803"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; d="scan'208";a="961578803"
+Received: from unknown (HELO intel.com) ([10.252.46.180])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2022 03:40:37 -0700
+Date: Thu, 27 Oct 2022 12:40:34 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Karolina Drobnik <karolina.drobnik@intel.com>
+Message-ID: <Y1pgIvGVhvCXOFLT@ashyti-mobl2.lan>
+References: <20221025091903.986819-1-karolina.drobnik@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-To: Matthew Garrett <mjg59@srcf.ucam.org>
-References: <20221025193248.GA21457@srcf.ucam.org>
- <144cd47e-42dc-2b84-1a90-ea5e080e08a3@redhat.com>
- <20221025204043.GA23306@srcf.ucam.org>
- <cb5add36-c13c-ccd5-1b4b-71b45163a170@redhat.com>
- <20221025234040.GA27673@srcf.ucam.org>
- <fa6cc1d9-6740-b495-2c72-cae18c429ca6@redhat.com>
- <20221026204920.GA15326@srcf.ucam.org>
- <099dee98-8aeb-af36-828c-110f5ac6e9a3@redhat.com>
- <20221027091123.GA28089@srcf.ucam.org>
- <933be908-0bc2-56cc-8d6f-38f2d208ef20@redhat.com>
- <20221027095249.GA28666@srcf.ucam.org>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20221027095249.GA28666@srcf.ucam.org>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v5 02/31] drm/i915: Don't register backlight
- when another backlight should be used (v2)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221025091903.986819-1-karolina.drobnik@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] i915/i915_gem_context: Remove debug message
+ in i915_gem_context_create_ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,86 +57,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
- amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
- Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@redhat.com>,
- Len Brown <lenb@kernel.org>, Daniel Dadap <ddadap@nvidia.com>,
- Jani Nikula <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Mark Gross <markgross@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andy@kernel.org>, Xinhui <Xinhui.Pan@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Karolina,
 
-On 10/27/22 11:52, Matthew Garrett wrote:
-> On Thu, Oct 27, 2022 at 11:39:38AM +0200, Hans de Goede wrote:
+On Tue, Oct 25, 2022 at 11:19:03AM +0200, Karolina Drobnik wrote:
+> We know that as long as GEM context create ioctl succeeds, a context was
+> created. There is no need to write about it, especially when such a message
+> heavily pollutes dmesg and makes debugging actual errors harder.
 > 
->> The *only* behavior which actually is new in 6.1 is the native GPU
->> drivers now doing the equivalent of:
->>
->> 	if (acpi_video_get_backlight_type() != acpi_backlight_native)
->> 		return;
->>
->> In their backlight register paths (i), which is causing the native
->> backlight to disappear on your custom laptop setup and on Chromebooks
->> (with the Chromebooks case being already solved I hope.).
+> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Karolina Drobnik <karolina.drobnik@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+
+pushed to drm-intel-gt-next.
+
+Thank you!
+Andi
+
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> It's causing the backlight control to vanish on any machine that isn't 
-> ((acpi_video || vendor interface) || !acpi). Most machines that fall 
-> into that are either weird or Chromebooks or old, but there are machines 
-> that fall into that.
-
-I acknowledge that their are machines that fall into this category,
-but I expect / hope there to be so few of them that we can just DMI
-quirk our way out if this.
-
-I believe the old group to be small because:
-
-1. Generally speaking the "native" control method is usually not
-present on the really old (pre ACPI video spec) mobile GPUs.
-
-2. On most old laptops I would still expect there to be a vendor
-interface too, and if both get registered standard desktop environments
-will prefer the vendor one, so then we need a native DMI quirk to
-disable the vendor interface anyways and we already have a bunch of
-those, so some laptops in this group are already covered by DMI quirks.
-
-And a fix for the Chromebook case is already in Linus' tree, which
-just leaves the weird case, of which there will hopefully be only
-a few.
-
-I do share your worry that this might break some machines, but
-the only way to really find out is to get this code out there
-I'm afraid.
-
-I have just written a blog post asking for people to check if
-their laptop might be affected; and to report various details
-to me of their laptop is affected:
-
-https://hansdegoede.dreamwidth.org/26548.html
-
-Lets wait and see how this goes. If I get (too) many reports then
-I will send a revert of the addition of the:
-
- 	if (acpi_video_get_backlight_type() != acpi_backlight_native)
- 		return;
-
-check to the i915 / radeon / amd / nouveau drivers.
-
-(And if I only get a couple of reports I will probably just submit
-DMI quirks for the affected models).
-
-Regards,
-
-Hans
-
-
-
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 1e29b1e6d186..1456ca87c04e 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -2298,7 +2298,6 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
+>  	}
+>  
+>  	args->ctx_id = id;
+> -	drm_dbg(&i915->drm, "HW context %d created\n", args->ctx_id);
+>  
+>  	return 0;
+>  
+> -- 
+> 2.25.1
